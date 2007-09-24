@@ -3,14 +3,14 @@
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # Marcos Bedinelli <bedinelli@sourceforge.net>, 2002-2006.
 # Luiz Gonzaga dos Santos <lfilho@gmail.com>, 2007-2007.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 2.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2007-09-15 12:58-0300\n"
+"PO-Revision-Date: 2007-09-21 20:44-0300\n"
 "Last-Translator: Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>\n"
 "Language-Team: Portuguese/Brazil <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -252,9 +252,8 @@ msgid "Column Name"
 msgstr "Nome da Coluna"
 
 #: ../src/ColumnOrder.py:85
-#, fuzzy
 msgid "Column Editor"
-msgstr "Editor de _Coluna"
+msgstr "Editor de Coluna"
 
 #: ../src/const.py:149
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
@@ -302,9 +301,8 @@ msgid "Calculated"
 msgstr "Calculado"
 
 #: ../src/DateEdit.py:148
-#, fuzzy
 msgid "Bad Date"
-msgstr "Data"
+msgstr "Data Ruim"
 
 #: ../src/DateEdit.py:196
 #: ../src/DateEdit.py:283
@@ -344,9 +342,9 @@ msgstr ""
 "Por favor crie um novo banco de dados GRAMPS e importe o arquivo."
 
 #: ../src/DbLoader.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown type: %s"
-msgstr "Sexo desconhecido para %s.\n"
+msgstr "Tipo desconhecido: %s"
 
 #: ../src/DbLoader.py:260
 #: ../src/PluginUtils/_Tool.py:110
@@ -364,15 +362,13 @@ msgstr ""
 "Se acha que quererá reverter a importação, por favor pare agora e faça um backup de seu banco de dados."
 
 #: ../src/DbLoader.py:266
-#, fuzzy
 msgid "_Proceed with import"
-msgstr "Continuar com a adição"
+msgstr "_Continuar com a importação"
 
 #: ../src/DbLoader.py:266
 #: ../src/PluginUtils/_Tool.py:117
-#, fuzzy
 msgid "_Stop"
-msgstr "_Superior"
+msgstr "_Parar"
 
 #: ../src/DbLoader.py:272
 msgid "GRAMPS: Import database"
@@ -396,9 +392,8 @@ msgid "You do not have read access to the selected file."
 msgstr "Você não possui permissão de leitura para o arquivo selecionado."
 
 #: ../src/DbLoader.py:389
-#, fuzzy
 msgid "Cannot create database"
-msgstr "Não posso abrir o banco de dados"
+msgstr "Não foi possível criar o banco de dados"
 
 #: ../src/DbLoader.py:390
 #: ../src/DbLoader.py:412
@@ -427,7 +422,6 @@ msgid "This may be caused by an improper installation of GRAMPS."
 msgstr "Isso pode ter sido causa por uma instalação imprópria do GRAMPS."
 
 #: ../src/DbLoader.py:451
-#, fuzzy
 msgid "Low level database corruption detected"
 msgstr "Corrupção no banco de dados detectada"
 
@@ -461,9 +455,8 @@ msgid "%(relationship)s of %(person)s"
 msgstr "%(relationship)s de %(person)s"
 
 #: ../src/DisplayState.py:353
-#, fuzzy
 msgid "No active person"
-msgstr "Não é uma pessoa válida"
+msgstr "Nenhuma pessoa ativa"
 
 #: ../src/Exporter.py:98
 msgid "Export Assistant"
@@ -496,7 +489,7 @@ msgstr ""
 "Se você mudar de idéia durante o processo, basta pressionar o botão Cancela a qualquer momento e o seu banco de dados atual permanecerá intacto."
 
 #: ../src/Exporter.py:162
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -512,26 +505,24 @@ msgstr ""
 "Nome:\t%s\n"
 "Pasta:\t%s\n"
 "\n"
-"Pressione Avança para prosseguir, Cancela para cancelar, ou Volta para revisar suas opções."
+"Pressione OK para prosseguir, Cancelar para cancelar, ou Voltar para revisar suas opções."
 
 #: ../src/Exporter.py:167
 #: ../src/plugins/MediaManager.py:258
-#, fuzzy
 msgid "Final confirmation"
-msgstr "Confirmação final de salvamento"
+msgstr "Confirmação final"
 
 #: ../src/Exporter.py:204
 msgid "Your data has been saved"
 msgstr "Seus dados foram salvos"
 
 #: ../src/Exporter.py:206
-#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press OK button now to continue.\n"
 "\n"
 "Note: the database currently opened in your GRAMPS window is NOT the file you have just saved. Future editing of the currently opened database will not alter the copy you have just made. "
 msgstr ""
-"A cópia de seus dados foi bem sucedida. Agora, pressione o botão Aplica para poder continuar.\n"
+"A cópia de seus dados foi bem sucedida. Agora, pressione o botão OK para continuar.\n"
 "\n"
 "Nota: o banco de dados que está aberto neste momento na janela GRAMPS NÃO é o arquivo que você acabou de salvar. Modificações futuras no banco de dados correntemente aberto não alterarão a cópia que você acabou de fazer."
 
@@ -540,13 +531,12 @@ msgid "Saving failed"
 msgstr "O processo de salvamento falhou"
 
 #: ../src/Exporter.py:216
-#, fuzzy
 msgid ""
 "There was an error while saving your data. You may try starting the export again.\n"
 "\n"
 "Note: your currently opened database is safe. It was only a copy of your data that failed to save."
 msgstr ""
-"Houve um erro enquanto seus dados eram salvos. Por favor retorne e tente novamente.\n"
+"Houve um erro enquanto seus dados eram salvos. Você pode tentar exportar novamente.\n"
 "\n"
 "Nota: o seu banco de dados correntemente aberto está seguro. A falha de gravação ocorreu apenas na cópia de seus dados."
 
@@ -596,9 +586,8 @@ msgstr "Estilo islandês"
 #: ../src/GrampsCfg.py:104
 #: ../src/GrampsCfg.py:107
 #: ../src/GrampsCfg.py:559
-#, fuzzy
 msgid "Preferences"
-msgstr "Referências"
+msgstr "Preferências"
 
 #: ../src/GrampsCfg.py:116
 #: ../src/glade/gramps.glade.h:72
@@ -606,24 +595,20 @@ msgid "General"
 msgstr "Geral"
 
 #: ../src/GrampsCfg.py:120
-#, fuzzy
 msgid "Name Display"
-msgstr "Exibe"
+msgstr "Exibição de Nome"
 
 #: ../src/GrampsCfg.py:122
-#, fuzzy
 msgid "ID Formats"
-msgstr "Formato de Exibição"
+msgstr "Formatos de ID"
 
 #: ../src/GrampsCfg.py:124
-#, fuzzy
 msgid "Warnings"
-msgstr "<b>Avisos:</b>"
+msgstr "Avisos"
 
 #: ../src/GrampsCfg.py:126
-#, fuzzy
 msgid "Researcher"
-msgstr "Informações do Pesquisador"
+msgstr "Pesquisador"
 
 #: ../src/GrampsCfg.py:128
 msgid "Marker Colors"
@@ -672,16 +657,14 @@ msgid "ZIP/Postal Code"
 msgstr "CEP/Código Postal"
 
 #: ../src/GrampsCfg.py:149
-#, fuzzy
 msgid "Phone"
-msgstr "Fone:"
+msgstr "Fone"
 
 #: ../src/GrampsCfg.py:150
 #: ../src/ToolTips.py:151
 #: ../src/DataViews/_RepositoryView.py:72
-#, fuzzy
 msgid "Email"
-msgstr "E-mail:"
+msgstr "Email"
 
 #: ../src/GrampsCfg.py:158
 #: ../src/gramps_main.py:97
@@ -768,9 +751,8 @@ msgstr "Completo"
 
 #: ../src/GrampsCfg.py:194
 #: ../src/RelLib/_MarkerType.py:48
-#, fuzzy
 msgid "ToDo"
-msgstr "Ferramentas"
+msgstr "A Fazer"
 
 #: ../src/GrampsCfg.py:196
 #: ../src/RelLib/_AttributeType.py:54
@@ -783,54 +765,45 @@ msgstr "Ferramentas"
 #: ../src/RelLib/_MarkerType.py:46
 #: ../src/RelLib/_EventRoleType.py:49
 #: ../src/RelLib/_EventType.py:88
-#, fuzzy
 msgid "Custom"
-msgstr "Tamanho Personalizado"
+msgstr "Personalizado"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:255
-#, fuzzy
 msgid "_Display format"
-msgstr "Formato de Exibição"
+msgstr "_Formato de Exibição"
 
 #: ../src/GrampsCfg.py:261
-#, fuzzy
 msgid "C_ustom format details"
-msgstr "Comandos P_ersonalizados"
+msgstr "Detalhes de formatos personalizados"
 
 #: ../src/GrampsCfg.py:303
-#, fuzzy
 msgid "Format Name"
-msgstr "Pré-formatado"
+msgstr "Formatar Nome"
 
 #: ../src/GrampsCfg.py:308
 msgid "Example"
 msgstr "Exemplo"
 
 #: ../src/GrampsCfg.py:440
-#, fuzzy
 msgid "Date format"
-msgstr "Formato da _data:"
+msgstr "Formato de data"
 
 #: ../src/GrampsCfg.py:453
-#, fuzzy
 msgid "Surname Guessing"
-msgstr "Sobrenomes"
+msgstr "Dedução de Sobrenomes"
 
 #: ../src/GrampsCfg.py:458
-#, fuzzy
 msgid "Active person's name and ID"
-msgstr "Nome e ID _GRAMPS da pessoa ativa"
+msgstr "Nome e ID da pessoa ativa"
 
 #: ../src/GrampsCfg.py:459
-#, fuzzy
 msgid "Relationship to home person"
-msgstr "Relação para com o pai:"
+msgstr "Relacionamento com a pessoa inicial"
 
 #: ../src/GrampsCfg.py:472
-#, fuzzy
 msgid "Status bar"
-msgstr "Status:"
+msgstr "Barra de status"
 
 #: ../src/GrampsCfg.py:476
 msgid "Show text in sidebar buttons (takes effect on restart)"
@@ -845,19 +818,16 @@ msgid "Changing the data format will not take effect until the next time GRAMPS 
 msgstr "Mudar o formato de dados não terá efeito até a próxima vez que o GRAMPS for iniciado"
 
 #: ../src/GrampsCfg.py:495
-#, fuzzy
 msgid "Automatically backup database on exit"
-msgstr "Carrega o último banco de dados _automaticamente"
+msgstr "Fazer um backup do banco de dados automaticamente quando sair"
 
 #: ../src/GrampsCfg.py:497
-#, fuzzy
 msgid "Automatically load last database"
-msgstr "Carrega o último banco de dados _automaticamente"
+msgstr "Carrega o último banco de dados automaticamente"
 
 #: ../src/GrampsCfg.py:499
-#, fuzzy
 msgid "Enable database transactions"
-msgstr "Não bloqueia transações"
+msgstr "Habilitar transações no banco de dados"
 
 #: ../src/GrampsCfg.py:501
 msgid "Add default source on import"
@@ -869,28 +839,24 @@ msgstr "Habilita o verificador ortográfico"
 
 #: ../src/GrampsCfg.py:505
 #: ../data/gramps.schemas.in.h:19
-#, fuzzy
 msgid "Display Tip of the Day"
-msgstr "_Exibe a Dica do Dia"
+msgstr "Exibe a Dica do Dia"
 
 #: ../src/GrampsCfg.py:507
-#, fuzzy
 msgid "Use shading in Relationship View"
-msgstr "  Ele teve uma relação com %(name)s"
+msgstr "Usar sombreamento na Visão de Relacionamento"
 
 #: ../src/GrampsCfg.py:509
-#, fuzzy
 msgid "Display edit buttons on Relationship View"
-msgstr "  Ele teve uma relação com %(name)s"
+msgstr "Exibir botões de edição na Visão de Relacionamento"
 
 #: ../src/GrampsCfg.py:511
 msgid "Remember last view displayed"
 msgstr "Lembrar ultima visão mostrada"
 
 #: ../src/GrampsCfg.py:583
-#, fuzzy
 msgid "Name Format Editor"
-msgstr "Editor de Nome"
+msgstr "Editor de Formato de Nome"
 
 #: ../src/GrampsCfg.py:606
 msgid "The format definition is invalid"
@@ -1081,7 +1047,8 @@ msgstr ""
 msgid ""
 "Click to change the active person\n"
 "Right click to display the edit menu"
-msgstr "Clique para mudar a pessoa ativa\n"
+msgstr ""
+"Clique para mudar a pessoa ativa\n"
 "Clque com o botão direito para exibir o menu de edição"
 
 #: ../src/GrampsWidgets.py:93
@@ -1268,7 +1235,8 @@ msgid ""
 "\n"
 "If this problem continues to exist after running this tool, please file a bug report at http://bugs.gramps-project.org\n"
 "\n"
-msgstr "GRAMPS detectou um erro no banco de dados. Isso usualmente pode ser resolvido executando a ferramenta de checagem e reparação de banco de dados.\n"
+msgstr ""
+"GRAMPS detectou um erro no banco de dados. Isso usualmente pode ser resolvido executando a ferramenta de checagem e reparação de banco de dados.\n"
 "\n"
 "Se o problema persistir após a execução desta ferramentea, por favor preencha um relatório de erro em: http://bugs.gramps-project.org\n"
 "\n"
@@ -2012,7 +1980,6 @@ msgid "_User Manual"
 msgstr "Man_ual do usuário"
 
 #: ../src/ViewManager.py:347
-#, fuzzy
 msgid "Tip of the day"
 msgstr "Dica do Dia"
 
@@ -2071,14 +2038,12 @@ msgid "_Bookmarks"
 msgstr "_Marcadores"
 
 #: ../src/ViewManager.py:395
-#, fuzzy
 msgid "_Sidebar"
 msgstr "_Barra Lateral"
 
 #: ../src/ViewManager.py:397
-#, fuzzy
 msgid "_Toolbar"
-msgstr "_Ferramentas"
+msgstr "_Barra de Ferramentas"
 
 #: ../src/ViewManager.py:399
 msgid "_Filter sidebar"
@@ -2146,9 +2111,8 @@ msgid "Could not open help"
 msgstr "Não foi possível abrir a ajuda"
 
 #: ../src/ViewManager.py:666
-#, fuzzy
 msgid "GRAMPS Homepage"
-msgstr "GRAMPS _home page"
+msgstr "Homepage GRAMPS"
 
 #: ../src/ViewManager.py:939
 msgid "Read Only"
@@ -2473,9 +2437,9 @@ msgid "Siblings"
 msgstr "Irmãos"
 
 #: ../src/DataViews/_RelationView.py:842
-#, fuzzy, python-format
+#, python-format
 msgid "b. %s, d. %s"
-msgstr "%s e %s"
+msgstr "n. %s, f. %s"
 
 #: ../src/DataViews/_RelationView.py:844
 #, python-format
@@ -2634,9 +2598,8 @@ msgid "Jump to mother"
 msgstr "Pular para mãe"
 
 #: ../src/DataViews/_PedigreeView.py:1272
-#, fuzzy
 msgid "A person was found to be his/her own ancestor."
-msgstr "Uma pessoa não pode ser vinculada como seu próprio pai/mãe"
+msgstr "Uma pessoa foi vinculada como seu próprio pai/mãe."
 
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
 #. (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
@@ -3165,7 +3128,6 @@ msgid "Data"
 msgstr "Dados"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:54
-#, fuzzy
 msgid "Remove the selected event"
 msgstr "Apaga o evento selecionado"
 
@@ -3188,7 +3150,8 @@ msgid ""
 "This event reference cannot be edited at this time. Either the associated event is already being edited or another event reference that is associated with the same event is being edited.\n"
 "\n"
 "To edit this event reference, you need to close the event."
-msgstr "Essa referência de evento não pode ser editada no momento. Ou o evento associado já está sendo editado ou outra referência de evento que está associada com o mesmo evento está sendo editada.\n"
+msgstr ""
+"Essa referência de evento não pode ser editada no momento. Ou o evento associado já está sendo editado ou outra referência de evento que está associada com o mesmo evento está sendo editada.\n"
 "\n"
 "Para editar essa referência de evento, você tem que fechar o evento."
 
@@ -3234,9 +3197,8 @@ msgid "Set as default name"
 msgstr "Configurar como nome padrão"
 
 #: ../src/DisplayTabs/_NoteTab.py:84
-#, fuzzy
 msgid "Flowed"
-msgstr "Derramado"
+msgstr "Fluxo"
 
 #: ../src/DisplayTabs/_NoteTab.py:85
 msgid "Formatted"
@@ -3275,7 +3237,8 @@ msgid ""
 "This repository reference cannot be edited at this time. Either the associated repository is already being edited or another repository reference that is associated with the same repository is being edited.\n"
 "\n"
 "To edit this repository reference, you need to close the repository."
-msgstr "Essa referência de repositório não pode ser editada no momento. Ou o repositório associado já está sendo editado ou outra referência de repositório que é associada com o mesmo repositório está sendo editada.\n"
+msgstr ""
+"Essa referência de repositório não pode ser editada no momento. Ou o repositório associado já está sendo editado ou outra referência de repositório que é associada com o mesmo repositório está sendo editada.\n"
 "\n"
 "Para editar essa referência de repositório, você tem que fechar o repositório."
 
@@ -3296,7 +3259,8 @@ msgid ""
 "This source reference cannot be edited at this time. Either the associated source is already being edited or another source reference that is associated with the same source is being edited.\n"
 "\n"
 "To edit this source reference, you need to close the source."
-msgstr "Essa referência de fonte não pode ser editada no momente. Ou a fonte associada já está sendo editada ou outra referência de fonte que está associada com a mesma fonte está sendo editada.\n"
+msgstr ""
+"Essa referência de fonte não pode ser editada no momente. Ou a fonte associada já está sendo editada ou outra referência de fonte que está associada com a mesma fonte está sendo editada.\n"
 "\n"
 "Para editar essa referência de fonte, você tem que fechar a fonte."
 
@@ -3882,7 +3846,8 @@ msgid ""
 "Your data cannot be saved because you are out of disk space. Please free up some disk space and try again.\n"
 "\n"
 "%s"
-msgstr "Seus dados não podem ser salvos porque você está sem espaço em disco. Por favor libere um pouco de espaço em disco e tente novamente.\n"
+msgstr ""
+"Seus dados não podem ser salvos porque você está sem espaço em disco. Por favor libere um pouco de espaço em disco e tente novamente.\n"
 "\n"
 "%s"
 
@@ -4076,7 +4041,6 @@ msgid "People with common ancestor with %s"
 msgstr "Pessoas com ancestral comum a %s"
 
 #: ../src/GrampsDb/_WriteGedcom.py:471
-#, fuzzy
 msgid "Researcher information"
 msgstr "Informações do Pesquisador"
 
@@ -4085,7 +4049,8 @@ msgid ""
 "A valid GEDCOM file is required to contain researcher information. You need to fill these data in the Preferences dialog.\n"
 "\n"
 "However, most programs do not require it. You may leave this empty if you want."
-msgstr "Um arquivo GEDCOM válido é requerido para conter a informação do pesquisador. Você precisa preencher esses dados no diálogo de Preferências.\n"
+msgstr ""
+"Um arquivo GEDCOM válido é requerido para conter a informação do pesquisador. Você precisa preencher esses dados no diálogo de Preferências.\n"
 "\n"
 "No entanto, a maioria dos programas não requerem isso. Você pode deixá-lo em branco se quiser."
 
@@ -4147,7 +4112,8 @@ msgid ""
 "This is the Bug Reporting Assistant. It will help you to make a bug report to the Gramps developers that will be as detailed as possible.\n"
 "\n"
 "The assistant will ask you a few questions and will gather some information about the error that has occured and the operating environment. At the end of the assistant you will be asked to send an email to the Gramps bug reporting mailing list. The assistant will place the bug report on the clip board so that you can paste it into your email programme and review exactly what information is being sent."
-msgstr "Este é o Assistente para Reportar Bugs. Ele te ajudará a reportar o problema para os desenvolvedores do GRAMPS que será o mais detalhado possível.\n"
+msgstr ""
+"Este é o Assistente para Reportar Bugs. Ele te ajudará a reportar o problema para os desenvolvedores do GRAMPS que será o mais detalhado possível.\n"
 "\n"
 "O assistente te fará algumas perguntas e angariar algumas informações sobre o erro que ocorreu e o ambiente de operação. No final do assistente você será orientado a enviar o email para a lista de emails de problemas do GRAMPS. o assistente irá colocará o email na área de transferência de modo que você possa simplesmente coloar no seu programa de email e rever exatamente a informação sendo enviada."
 
@@ -4173,8 +4139,7 @@ msgstr "Reportar um problema: Passo 5 de 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
 msgid "GRAMPS is an Open Source project. Its success depends on its users. User feedback is important. Thank you for taking the time to submit a bug report."
-msgstr ""
-"GRAMPS é um projeto de Código Aberto (Open Source). Seu sucesso depende dos usuários e de seus comentários. Obrigado por dedicar um pouco do seu tempo relatando um problema."
+msgstr "GRAMPS é um projeto de Código Aberto (Open Source). Seu sucesso depende dos usuários e de seus comentários. Obrigado por dedicar um pouco do seu tempo relatando um problema."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:130
 msgid "If you can see that there is any personal information included in the error please remove it."
@@ -4468,7 +4433,7 @@ msgid "Different database"
 msgstr "Banco de dados diferente"
 
 #: ../src/plugins/BookReport.py:713
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
 "\n"
@@ -4478,9 +4443,9 @@ msgid ""
 msgstr ""
 "Este livro foi criado com referências ao banco de dados %s.\n"
 "\n"
-"Isto tornam inválidas as referências à pessoa central salvas no livro.\n"
+" Isto tornam inválidas as referências à pessoa central salvas no livro.\n"
 "\n"
-"Sendo assim, a pessoa central de cada ítem está sendo ajustada para a pessoa ativa do banco de dados correntemente aberto."
+"Sendo assim, a pessoa central de cada item está sendo ajustada para a pessoa ativa do banco de dados correntemente aberto."
 
 #: ../src/plugins/BookReport.py:736
 #: ../src/plugins/BookReport.py:754
@@ -5021,14 +4986,13 @@ msgid "%d corrupted family relationship fixed\n"
 msgstr "%d relacionamentos familiares corrompidos reparados\n"
 
 #: ../src/plugins/Check.py:982
-#, fuzzy
 msgid "1 person was referenced but not found\n"
-msgstr "1 lugar foi referenciado, mas não foi encontrado\n"
+msgstr "1 pessoa foi referenciada mas não encontrada\n"
 
 #: ../src/plugins/Check.py:984
-#, fuzzy, python-format
+#, python-format
 msgid "%d persons were referenced, but not found\n"
-msgstr "%d lugares foram referenciados, mas não foram encontrados\n"
+msgstr "%d pessoas foram referenciadas, mas não foram encontradas\n"
 
 #: ../src/plugins/Check.py:987
 msgid "1 repository was referenced but not found\n"
@@ -5234,19 +5198,18 @@ msgid "Descendant Chart"
 msgstr "Gráfico de Descendentes"
 
 #: ../src/plugins/DescendChart.py:467
-#, fuzzy
 msgid "Produces a graphical descendant tree chart"
-msgstr "Produz um diagrama de árvore de descendente gráfico"
+msgstr "Produz um diagrama de descendentes em gráfico de árvore"
 
 #: ../src/plugins/DescendReport.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s - %(place)s"
-msgstr "n. %(birth_year)d - %(place)s"
+msgstr "n. %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:131
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s"
-msgstr " n. %(birth_date)s"
+msgstr "n. %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:139
 #, python-format
@@ -5254,9 +5217,9 @@ msgid "d. %(death_date)s - %(place)s"
 msgstr "f. %(death_year)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s"
-msgstr " f. %(death_date)s"
+msgstr "f. %(death_date)s"
 
 #: ../src/plugins/DescendReport.py:179
 #, python-format
@@ -5316,7 +5279,6 @@ msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
 #: ../src/plugins/DetAncestralReport.py:326
 #: ../src/plugins/DetDescendantReport.py:354
-#, fuzzy
 msgid "Address: "
 msgstr "Endereço:"
 
@@ -5848,7 +5810,6 @@ msgid "Structured Vector Graphics (SVG)"
 msgstr "Gráficos Vetoriais Escaláveis (SVG)"
 
 #: ../src/plugins/GraphViz.py:83
-#, fuzzy
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Gráficos Vetoriais Escaláveis Comprimidos (SVG)"
 
@@ -6406,7 +6367,7 @@ msgid ""
 "The following action is to be performed:\n"
 "\n"
 "Operation:\t%s"
-msgstr ""
+msgstr "As seguintes ações serão executadas:\n"
 
 #: ../src/plugins/MediaManager.py:400
 msgid "Replace _substrings in the path"
@@ -6421,9 +6382,8 @@ msgid "Replace substring settings"
 msgstr "Configurações de substituição de subtextos."
 
 #: ../src/plugins/MediaManager.py:419
-#, fuzzy
 msgid "_Replace:"
-msgstr "_Lugar:"
+msgstr "_Substituir:"
 
 #: ../src/plugins/MediaManager.py:428
 msgid "_With:"
@@ -6593,7 +6553,7 @@ msgstr "Carta"
 #: ../src/plugins/NarrativeWeb.py:1237
 #: ../src/plugins/NarrativeWeb.py:1701
 msgid "GRAMPS ID"
-msgstr "GRAMPS ID"
+msgstr "ID GRAMPS"
 
 #: ../src/plugins/NarrativeWeb.py:785
 msgid "Postal Code"
@@ -6601,7 +6561,7 @@ msgstr "Código Postal"
 
 #: ../src/plugins/NarrativeWeb.py:851
 msgid "Previous"
-msgstr "Prévio"
+msgstr "Anterior"
 
 #: ../src/plugins/NarrativeWeb.py:852
 #, python-format
@@ -6618,14 +6578,12 @@ msgid "The file has been moved or deleted"
 msgstr "O arquivo foi movido ou apagado"
 
 #: ../src/plugins/NarrativeWeb.py:911
-#, fuzzy
 msgid "File type"
-msgstr "Filtro"
+msgstr "Tipo de arquivo"
 
 #: ../src/plugins/NarrativeWeb.py:959
-#, fuzzy
 msgid "Missing media object:"
-msgstr "O objeto multimídia está faltando"
+msgstr "Objeto de mídia faltando:"
 
 #: ../src/plugins/NarrativeWeb.py:1004
 #: ../src/plugins/NarrativeWeb.py:1006
@@ -6642,7 +6600,7 @@ msgstr "Número de pessoas"
 
 #: ../src/plugins/NarrativeWeb.py:1186
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source's title will take you to that source's page."
-msgstr "Esta página contém um índice de todas as fontes de referência no banco de dados, ordenadas por título. Ao clicar no título de uma fonte de referência, você será levado à página daquela fonte de referência."
+msgstr "Esta página contém um índice de todas as fontes no banco de dados, ordenadas por título. Ao clicar no título de uma fonte de referência, você será levado à página daquela fonte."
 
 #: ../src/plugins/NarrativeWeb.py:1239
 msgid "Publication information"
@@ -6650,7 +6608,7 @@ msgstr "Informação de publicação"
 
 #: ../src/plugins/NarrativeWeb.py:1269
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object's page."
-msgstr "Esta página contém um índice de todos os objetos multimídia no banco de dados, ordenados por título. Ao clicar no título, você será levado à página daquele objeto multimídia."
+msgstr "Esta página contém um índice de todos os objetos de mídia no banco de dados, ordenados por título. Ao clicar no título, você será levado à página daquele objeto de mídia."
 
 #: ../src/plugins/NarrativeWeb.py:1550
 msgid "Ancestors"
@@ -6682,7 +6640,7 @@ msgstr "Parceiro(a)"
 #: ../src/plugins/NarrativeWeb.py:2041
 #, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
+msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;em&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2043
 #, python-format
@@ -6692,7 +6650,7 @@ msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 #: ../src/plugins/NarrativeWeb.py:2047
 #, python-format
 msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
+msgstr "%(date)s&nbsp;&nbsp;em&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2157
 #, python-format
@@ -6705,7 +6663,7 @@ msgstr "Nem %s nem %s são diretórios"
 #: ../src/plugins/NarrativeWeb.py:2185
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr "Não pude criar o diretório: %s"
+msgstr "Não foi possível criar o diretório: %s"
 
 #: ../src/plugins/NarrativeWeb.py:2191
 msgid "Invalid file name"
@@ -6713,7 +6671,7 @@ msgstr "Nome de arquivo inválido."
 
 #: ../src/plugins/NarrativeWeb.py:2192
 msgid "The archive file must be a file, not a directory"
-msgstr "O arquivo 'archive' precisa ser de fato um arquivo, não um diretório"
+msgstr "O arquivo de arquivamento deve ser de fato um arquivo, não um diretório"
 
 #: ../src/plugins/NarrativeWeb.py:2201
 msgid "Generate HTML reports"
@@ -6733,7 +6691,7 @@ msgstr "Filtrando as pessoas vivas"
 
 #: ../src/plugins/NarrativeWeb.py:2294
 msgid "Creating individual pages"
-msgstr "Criando páginas do indivíduo"
+msgstr "Criando páginas individuais"
 
 #: ../src/plugins/NarrativeWeb.py:2318
 msgid "Creating surname pages"
@@ -6741,7 +6699,7 @@ msgstr "Criando páginas de sobrenome"
 
 #: ../src/plugins/NarrativeWeb.py:2340
 msgid "Creating source pages"
-msgstr "Criando páginas de fonte de referência"
+msgstr "Criando páginas de fonte"
 
 #: ../src/plugins/NarrativeWeb.py:2353
 msgid "Creating place pages"
@@ -6749,7 +6707,7 @@ msgstr "Criando páginas de lugar"
 
 #: ../src/plugins/NarrativeWeb.py:2367
 msgid "Creating media pages"
-msgstr "Criando páginas de multimídia"
+msgstr "Criando páginas de mídia"
 
 #: ../src/plugins/NarrativeWeb.py:2459
 msgid "My Family Tree"
@@ -6757,7 +6715,7 @@ msgstr "Minha Árvore Familiar"
 
 #: ../src/plugins/NarrativeWeb.py:2512
 msgid "Do not include records marked private"
-msgstr "Não inclui registros marcados como privados"
+msgstr "Não incluir registros marcados como privados"
 
 #: ../src/plugins/NarrativeWeb.py:2513
 msgid "Restrict information on living people"
@@ -6777,27 +6735,27 @@ msgstr "Extensão do arquivo"
 
 #: ../src/plugins/NarrativeWeb.py:2517
 msgid "Publisher contact/Note ID"
-msgstr "Contato do editor/Nota ID"
+msgstr "Contato do editor/ID Nota"
 
 #: ../src/plugins/NarrativeWeb.py:2518
 msgid "Include images and media objects"
-msgstr "Inclui imagens e objetos multimídia"
+msgstr "Incluir imagens e objetos de mídia"
 
 #: ../src/plugins/NarrativeWeb.py:2519
 msgid "Include download page"
-msgstr "Inclui página de download"
+msgstr "Incluir página de download"
 
 #: ../src/plugins/NarrativeWeb.py:2520
 msgid "Include ancestor graph"
-msgstr "Inclui o gráfico de ancestral"
+msgstr "Incluir o gráfico de ancestrais"
 
 #: ../src/plugins/NarrativeWeb.py:2538
 msgid "Suppress GRAMPS ID"
-msgstr "Suprime o GRAMPS ID"
+msgstr "Suprimir o ID GRAMPS"
 
 #: ../src/plugins/NarrativeWeb.py:2579
 msgid "Standard copyright"
-msgstr "Direitos autorais"
+msgstr "Direitos autorais padrão"
 
 #: ../src/plugins/NarrativeWeb.py:2580
 msgid "Creative Commons - By attribution"
@@ -6809,7 +6767,7 @@ msgstr "Creative Commons - Por atribuição, Sem derivações"
 
 #: ../src/plugins/NarrativeWeb.py:2582
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative Commons - Por atribuição, Compartilhamento-semelhante"
+msgstr "Creative Commons - Por atribuição, Tipo-Compartilhamento"
 
 #: ../src/plugins/NarrativeWeb.py:2583
 msgid "Creative Commons - By attribution, Non-commercial"
@@ -6821,7 +6779,7 @@ msgstr "Creative Commons - Por atribuição, Não-comercial, Sem derivações"
 
 #: ../src/plugins/NarrativeWeb.py:2585
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
-msgstr "Creative Commons - Por atribuição, Não-comercial, Compartilhamento-semelhante"
+msgstr "Creative Commons - Por atribuição, Não-comercial, Tipo-Compartilhamento"
 
 #: ../src/plugins/NarrativeWeb.py:2586
 msgid "No copyright notice"
@@ -6840,9 +6798,8 @@ msgid "Copyright"
 msgstr "Direitos Autorais"
 
 #: ../src/plugins/NarrativeWeb.py:2623
-#, fuzzy
 msgid "Ancestor graph generations"
-msgstr "Gráfico de Ancestrais"
+msgstr "Gerações de Gráfico de Ancestrais"
 
 #: ../src/plugins/NarrativeWeb.py:2626
 msgid "Page Generation"
@@ -6850,11 +6807,11 @@ msgstr "Geração de Página"
 
 #: ../src/plugins/NarrativeWeb.py:2652
 msgid "Home Media/Note ID"
-msgstr "Home Media/Note ID"
+msgstr "Mídia Inicial / ID Nota"
 
 #: ../src/plugins/NarrativeWeb.py:2654
 msgid "Introduction Media/Note ID"
-msgstr "Introduction Media/Note ID"
+msgstr "Mídia introdutória / ID Nota"
 
 #: ../src/plugins/NarrativeWeb.py:2657
 msgid "HTML user header"
@@ -6871,11 +6828,11 @@ msgstr "Privacidade"
 #: ../src/plugins/NarrativeWeb.py:2731
 #: ../src/plugins/NarrativeWeb.py:2795
 msgid "Generate Web Site"
-msgstr "Gera o Web Site"
+msgstr "Gerar o Web Site"
 
 #: ../src/plugins/NarrativeWeb.py:2763
 msgid "Store web pages in .tar.gz archive"
-msgstr "Armazena as páginas web em um arquivo tipo .tar.gz"
+msgstr "Armazenar as páginas web em um arquivo tipo .tar.gz"
 
 #: ../src/plugins/NarrativeWeb.py:2775
 #: ../src/ReportBase/_ReportDialog.py:265
@@ -6902,7 +6859,7 @@ msgstr "Web Site Narrativo"
 
 #: ../src/plugins/NarrativeWeb.py:3008
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
-msgstr "Gera páginas web (HTML) para indivíduos, ou conjunto de indivíduos."
+msgstr "Gerar páginas web (HTML) para indivíduos, ou conjunto de indivíduos."
 
 #: ../src/plugins/PatchNames.py:91
 msgid "Name and title extraction tool"
@@ -6927,7 +6884,7 @@ msgstr "Construindo a tela"
 #: ../src/plugins/PatchNames.py:326
 #: ../src/plugins/PatchNames.py:356
 msgid "Extract information from names"
-msgstr "Extrai informações a partir de nomes"
+msgstr "Extrair informações a partir de nomes"
 
 #: ../src/plugins/PatchNames.py:360
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
@@ -6936,17 +6893,17 @@ msgstr "Vasculha o banco de dados inteiro e tenta extrair títulos, apelidos e p
 #: ../src/plugins/ReadPkg.py:76
 #, python-format
 msgid "Could not create temporary directory %s"
-msgstr "Não pude criar o diretório temporário %s"
+msgstr "Não foi possível criar o diretório temporário %s"
 
 #: ../src/plugins/ReadPkg.py:80
 #, python-format
 msgid "Temporary directory %s is not writable"
-msgstr "Não posso escrever no diretório temporário %s"
+msgstr "Diretório temporário %s não é gravável"
 
 #: ../src/plugins/ReadPkg.py:93
 #, python-format
 msgid "Error extracting into %s"
-msgstr "Erro extraindo para dentro de %s"
+msgstr "Erro extraindo para para %s"
 
 #: ../src/plugins/ReadPkg.py:118
 msgid "GRAMPS packages"
@@ -6959,9 +6916,8 @@ msgid "GRAMPS package"
 msgstr "Pacote GRAMPS"
 
 #: ../src/plugins/Rebuild.py:80
-#, fuzzy
 msgid "Rebuilding secondary indices..."
-msgstr "Reconstrói índices secundários"
+msgstr "Reconstruindo índices secundários..."
 
 #: ../src/plugins/Rebuild.py:94
 msgid "Secondary indices rebuilt"
@@ -6973,7 +6929,7 @@ msgstr "Todos os índices secundários foram reconstruídos."
 
 #: ../src/plugins/Rebuild.py:124
 msgid "Rebuild secondary indices"
-msgstr "Reconstrói índices secundários"
+msgstr "Reconstruir índices secundários"
 
 #: ../src/plugins/Rebuild.py:128
 msgid "Rebuilds secondary indices"
@@ -6986,14 +6942,13 @@ msgstr "Causa do Falecimento"
 #: ../src/plugins/RelCalc.py:84
 #: ../src/PluginUtils/_Tool.py:138
 #: ../src/ReportBase/_ReportDialog.py:658
-#, fuzzy
 msgid "Active person has not been set"
-msgstr "<b>_Pais da pessoa ativa</b>"
+msgstr "Pessoa ativa não foi configurada"
 
 #: ../src/plugins/RelCalc.py:85
 #: ../src/PluginUtils/_Tool.py:139
 msgid "You must select an active person for this tool to work properly."
-msgstr ""
+msgstr "Você deve selecionar uma pessoa ativa para essa ferramenta funcionar adequadamente."
 
 #: ../src/plugins/RelCalc.py:97
 #, python-format
@@ -7003,10 +6958,9 @@ msgstr "Calculadora de relacionamentos: %(person_name)s"
 #: ../src/plugins/RelCalc.py:101
 #, python-format
 msgid "Relationship to %(person_name)s"
-msgstr "Relação para com %(person_name)s"
+msgstr "Relacionamento com %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:138
-#, fuzzy
 msgid "Relationship Calculator tool"
 msgstr "Calculadora de relacionamentos"
 
@@ -7021,9 +6975,8 @@ msgid "Their common ancestors are %s and %s."
 msgstr "Os ancestrais comuns à eles são %s e %s."
 
 #: ../src/plugins/RelCalc.py:172
-#, fuzzy
 msgid "Their common ancestors are: "
-msgstr "Os ancestrais comuns à eles são : "
+msgstr "Os ancestrais comuns à eles são: "
 
 #: ../src/plugins/RelCalc.py:192
 #, python-format
@@ -7033,7 +6986,7 @@ msgstr "%s e %s são a mesma pessoa."
 #: ../src/plugins/RelCalc.py:194
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
-msgstr "%(person)s e %(active_person)s não são da mesma família."
+msgstr "%(person)s e %(active_person)s não são relacionados."
 
 #: ../src/plugins/RelCalc.py:197
 #, python-format
@@ -7049,27 +7002,24 @@ msgid "Calculates the relationship between two people"
 msgstr "Calcula a relação entre duas pessoas"
 
 #: ../src/plugins/RemoveUnused.py:72
-#, fuzzy
 msgid "Unused Objects"
-msgstr "Objetos Multimídia"
+msgstr "Objetos não utilizados"
 
 #. Add mark column
 #. Add ignore column
 #: ../src/plugins/RemoveUnused.py:163
 #: ../src/plugins/Verify.py:489
 msgid "Mark"
-msgstr ""
+msgstr "Marcar"
 
 #: ../src/plugins/RemoveUnused.py:289
 #: ../src/plugins/RemoveUnused.py:405
-#, fuzzy
 msgid "Remove unused objects"
-msgstr "Remove Objeto Multimídia"
+msgstr "Remover objetos não utilizados"
 
 #: ../src/plugins/RemoveUnused.py:409
-#, fuzzy
 msgid "Removes unused objects from the database"
-msgstr "Remove o objeto e todas as referências a ele do banco de dados"
+msgstr "Remover objetos não utilizados do banco de dados"
 
 #: ../src/plugins/ReorderIds.py:61
 msgid "Reordering GRAMPS IDs"
@@ -7084,31 +7034,29 @@ msgid "Reordering Family IDs"
 msgstr "Reordenando os IDs de Famílias"
 
 #: ../src/plugins/ReorderIds.py:90
-#, fuzzy
 msgid "Reordering Event IDs"
-msgstr "Reordenando os IDs de Lugar"
+msgstr "Reordenando os IDs de Eventos"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
-msgstr "Reordenando os IDs de Objetos Multimídia"
+msgstr "Reordenando os IDs de Objetos de Mídia"
 
 #: ../src/plugins/ReorderIds.py:110
 msgid "Reordering Source IDs"
-msgstr "Reordenando os IDs de Fonte de Referência"
+msgstr "Reordenando os IDs de Fonte"
 
 #: ../src/plugins/ReorderIds.py:120
 msgid "Reordering Place IDs"
 msgstr "Reordenando os IDs de Lugar"
 
 #: ../src/plugins/ReorderIds.py:130
-#, fuzzy
 msgid "Reordering Repository IDs"
-msgstr "Reordenando os IDs de Fonte de Referência"
+msgstr "Reordenando os IDs de Repositórios"
 
 #: ../src/plugins/ReorderIds.py:145
 #: ../src/plugins/ReorderIds.py:226
 msgid "Reorder GRAMPS IDs"
-msgstr "Reordena os GRAMPS IDs"
+msgstr "Reordenar os GRAMPS IDs"
 
 #: ../src/plugins/ReorderIds.py:193
 msgid "Finding and assigning unused IDs"
@@ -7116,7 +7064,7 @@ msgstr "Procurando e associando IDs não usados"
 
 #: ../src/plugins/ReorderIds.py:230
 msgid "Reorders the gramps IDs according to gramps' default rules."
-msgstr "Reordena os IDs gramps de acordo com as regras pré-definidas."
+msgstr "Reordena os IDs gramps de acordo com as regras GRAMPS padrões."
 
 #: ../src/plugins/SimpleBookTitle.py:128
 msgid "Title of the Book"
@@ -7166,7 +7114,7 @@ msgstr "Imagem"
 
 #: ../src/plugins/SimpleBookTitle.py:212
 msgid "Preview"
-msgstr "Pré-visualização"
+msgstr "Pré-visualizar"
 
 #: ../src/plugins/SimpleBookTitle.py:214
 #: ../src/ReportBase/_ReportDialog.py:368
@@ -7191,11 +7139,11 @@ msgstr "Gerador de código SoundEx"
 
 #: ../src/plugins/SoundGen.py:144
 msgid "Generate SoundEx codes"
-msgstr "Gera códigos SoundEx"
+msgstr "Gerar códigos SoundEx"
 
 #: ../src/plugins/SoundGen.py:148
 msgid "Generates SoundEx codes for names"
-msgstr "Gera códigos SoundEx para nomes"
+msgstr "Gerar códigos SoundEx para nomes"
 
 #: ../src/plugins/StatisticsChart.py:75
 msgid "Item count"
@@ -7255,7 +7203,7 @@ msgstr "Local de casamento"
 
 #: ../src/plugins/StatisticsChart.py:118
 msgid "Number of relationships"
-msgstr "Número de relações"
+msgstr "Número de relacionamentos"
 
 #: ../src/plugins/StatisticsChart.py:120
 msgid "Age when first child born"
@@ -7325,7 +7273,7 @@ msgstr "Ainda vivo"
 #: ../src/plugins/StatisticsChart.py:240
 #: ../src/plugins/StatisticsChart.py:252
 msgid "Events missing"
-msgstr "Eventos estão faltando"
+msgstr "Eventos faltando"
 
 #: ../src/plugins/StatisticsChart.py:260
 #: ../src/plugins/StatisticsChart.py:268
@@ -7356,7 +7304,7 @@ msgstr "Ordenando dados..."
 #: ../src/plugins/StatisticsChart.py:523
 #, python-format
 msgid "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s"
-msgstr "%(genders)s nascido(s) %(year_from)04d-%(year_to)04d: %(chart_title)s"
+msgstr "%(genders)s nascidos %(year_from)04d-%(year_to)04d: %(chart_title)s"
 
 #: ../src/plugins/StatisticsChart.py:525
 #, python-format
@@ -7375,28 +7323,28 @@ msgstr "%s (pessoas):"
 
 #: ../src/plugins/StatisticsChart.py:820
 msgid "The style used for the items and values."
-msgstr "O estilo usado para os ítens e valores."
+msgstr "O estilo usado para os itens e valores."
 
 #: ../src/plugins/StatisticsChart.py:876
 msgid "Select how the statistical data is sorted."
-msgstr "Seleciona a maneira como os dados estatísticos são ordenados."
+msgstr "Seleciona a forma como os dados estatísticos são ordenados."
 
 #: ../src/plugins/StatisticsChart.py:877
 msgid "Sort chart items by"
-msgstr "Ordena ítens de diagrama por"
+msgstr "Ordenar itens de diagrama por"
 
 #. sorting order
 #: ../src/plugins/StatisticsChart.py:880
 msgid "Check to reverse the sorting order."
-msgstr "Clique para inverter a forma de ordenação."
+msgstr "Cheque para inverter a forma de ordenação."
 
 #: ../src/plugins/StatisticsChart.py:881
 msgid "Sort in reverse order"
-msgstr "Ordena de forma inversa"
+msgstr "Ordenar de forma inversa"
 
 #: ../src/plugins/StatisticsChart.py:900
 msgid "Select year range within which people need to be born to be selected for statistics."
-msgstr "Seleciona um período de anos no qual as pessoas precisam ter nascido a fim de serem selecionadas para fins estatísticos."
+msgstr "Seleciona uma faixa de anos na qual as pessoas precisam ter nascido a fim de serem selecionadas para estatísticas."
 
 #: ../src/plugins/StatisticsChart.py:901
 msgid "People born between"
@@ -7405,15 +7353,15 @@ msgstr "Pessoas nascidas entre"
 #. include people without known birth year?
 #: ../src/plugins/StatisticsChart.py:905
 msgid "Check this if you want people who have no known birth date or year to be accounted also in the statistics."
-msgstr "Clique aqui se você deseja que pessoas que não possuem uma data de nascimento ou ano conhecidos sejam consideradas nas estatísticas."
+msgstr "Cheque este se você deseja que pessoas que não possuem uma data de nascimento ou ano conhecidos sejam consideradas nas estatísticas."
 
 #: ../src/plugins/StatisticsChart.py:906
 msgid "Include people without known birth years"
-msgstr "Inclui pessoas que não possuem anos de nascimento conhecidos"
+msgstr "Incluir pessoas que não possuem anos de nascimento conhecidos"
 
 #: ../src/plugins/StatisticsChart.py:918
 msgid "Select which genders are included into statistics."
-msgstr "Seleciona o sexo que será incluso nas estatísticas."
+msgstr "Selecionar os sexos que serão inclusos nas estatísticas."
 
 #: ../src/plugins/StatisticsChart.py:919
 msgid "Genders included"
@@ -7422,15 +7370,15 @@ msgstr "Sexos inclusos"
 #. max. pie item selection
 #: ../src/plugins/StatisticsChart.py:922
 msgid "With fewer items pie chart and legend will be used instead of a bar chart."
-msgstr "Com menos ítens, gráfico de pizza e legenda serão usados, ao invés do gráfico de barras."
+msgstr "Com menos itens, gráfico de pizza e legenda serão usados, ao invés do gráfico de barras."
 
 #: ../src/plugins/StatisticsChart.py:926
 msgid "Max. items for a pie"
-msgstr "Ítens máx. para um pizza"
+msgstr "Máximo de itens para uma pizza"
 
 #: ../src/plugins/StatisticsChart.py:945
 msgid "Mark checkboxes to add charts with indicated data"
-msgstr "Marque as caixas de verificação para acrescentar diagramas com os dados indicados"
+msgstr "Marque as caixas para acrescentar diagramas com os dados indicados"
 
 #: ../src/plugins/StatisticsChart.py:946
 #: ../src/plugins/StatisticsChart.py:951
@@ -7440,7 +7388,7 @@ msgstr "Diagramas"
 #. Note about children
 #: ../src/plugins/StatisticsChart.py:950
 msgid "Note that both biological and adopted children are taken into account."
-msgstr "Observe que tanto os filhos biológicos quanto os adotados são considerados."
+msgstr "Note que tanto os filhos biológicos quanto os adotados são considerados."
 
 #: ../src/plugins/StatisticsChart.py:979
 msgid "Statistics Chart"
@@ -7490,15 +7438,15 @@ msgstr "Sobrenomes únicos"
 
 #: ../src/plugins/Summary.py:122
 msgid "Media Objects"
-msgstr "Objetos Multimídia"
+msgstr "Objetos de Mídia"
 
 #: ../src/plugins/Summary.py:124
 msgid "Individuals with media objects"
-msgstr "Indivíduos com objetos multimídia"
+msgstr "Indivíduos com objetos de mídia"
 
 #: ../src/plugins/Summary.py:125
 msgid "Total number of media object references"
-msgstr "Número total de referências a objetos multimídia"
+msgstr "Número total de referências a objetos de mídia"
 
 #: ../src/plugins/Summary.py:126
 msgid "Number of unique media objects"
@@ -7506,7 +7454,7 @@ msgstr "Número de objetos multimídia únicos"
 
 #: ../src/plugins/Summary.py:127
 msgid "Total size of media objects"
-msgstr "Tamanho total dos objetos multimídia"
+msgstr "Tamanho total dos objetos de mídia"
 
 #: ../src/plugins/Summary.py:128
 msgid "bytes"
@@ -7514,7 +7462,7 @@ msgstr "bytes"
 
 #: ../src/plugins/Summary.py:131
 msgid "Missing Media Objects"
-msgstr "Objetos Multimídia Faltantes"
+msgstr "Objetos de Mídia Faltando"
 
 #: ../src/plugins/Summary.py:145
 msgid "Database summary"
@@ -7529,9 +7477,9 @@ msgid "Provides a summary of the current database"
 msgstr "Provê um sumário do banco de dados corrente"
 
 #: ../src/plugins/TimeLine.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "Timeline Graph for %s"
-msgstr "Gráfico de Linha Temporal"
+msgstr "Gráfico de Linha Temporal para %s"
 
 #: ../src/plugins/TimeLine.py:168
 #: ../src/ReportBase/_ReportDialog.py:693
@@ -7553,7 +7501,7 @@ msgstr "O estilo usado para os rótulos de ano."
 
 #: ../src/plugins/TimeLine.py:457
 msgid "Sort by"
-msgstr "Ordenado por"
+msgstr "Ordenar por"
 
 #: ../src/plugins/TimeLine.py:476
 msgid "Timeline Graph"
@@ -7564,9 +7512,8 @@ msgid "Generates a timeline graph."
 msgstr "Gera um gráfico de linha temporal."
 
 #: ../src/plugins/Verify.py:206
-#, fuzzy
 msgid "Database Verify tool"
-msgstr "Verifica o Banco de Dados"
+msgstr "Ferramenta para Verificação do Banco de Dados"
 
 #: ../src/plugins/Verify.py:442
 msgid "Database Verification Results"
@@ -7574,186 +7521,166 @@ msgstr "Resultados de Verificação do Banco de Dados"
 
 #. Add column with the warning text
 #: ../src/plugins/Verify.py:500
-#, fuzzy
 msgid "Warning"
-msgstr "Trabalhando"
+msgstr "Aviso"
 
 #: ../src/plugins/Verify.py:580
 msgid "_Show all"
-msgstr "_Mostra todos"
+msgstr "_Mostrar todos"
 
 #: ../src/plugins/Verify.py:590
 #: ../src/plugins/verify.glade.h:22
 msgid "_Hide marked"
-msgstr ""
+msgstr "_Esconder marcadas"
 
 #: ../src/plugins/Verify.py:842
 msgid "Baptism before birth"
-msgstr ""
+msgstr "Batismo antes do nascimento"
 
 #: ../src/plugins/Verify.py:856
 msgid "Death before baptism"
-msgstr ""
+msgstr "Falecimento antes do batismo"
 
 #: ../src/plugins/Verify.py:870
 msgid "Burial before birth"
-msgstr ""
+msgstr "Enterro antes do nascimento"
 
 #: ../src/plugins/Verify.py:884
 msgid "Burial before death"
-msgstr ""
+msgstr "Enterro antes do falecimento"
 
 #: ../src/plugins/Verify.py:898
-#, fuzzy
 msgid "Death before birth"
-msgstr "Mês de falecimento"
+msgstr "Falecimento antes do nascimento"
 
 #: ../src/plugins/Verify.py:912
 msgid "Burial before baptism"
-msgstr ""
+msgstr "Enterro antes do batismo"
 
 #: ../src/plugins/Verify.py:930
-#, fuzzy
 msgid "Old age at death"
 msgstr "Idade ao falecer"
 
 #: ../src/plugins/Verify.py:941
-#, fuzzy
 msgid "Unknown gender"
-msgstr "Sexo desconhecido para %s.\n"
+msgstr "Sexo desconhecido"
 
 #: ../src/plugins/Verify.py:951
-#, fuzzy
 msgid "Multiple parents"
-msgstr "Múltiplo parentesco para %s.\n"
+msgstr "Múltiplo pais"
 
 #: ../src/plugins/Verify.py:968
-#, fuzzy
 msgid "Married often"
-msgstr "Nome de Casado(a)"
+msgstr "Casado cerca"
 
 #: ../src/plugins/Verify.py:987
-#, fuzzy
 msgid "Old and unmarried"
-msgstr "solteiro(a)"
+msgstr "Idoso e não-casado"
 
 #: ../src/plugins/Verify.py:1014
-#, fuzzy
 msgid "Too many children"
-msgstr "Seus filhos:"
+msgstr "Possui filhos demais"
 
 #: ../src/plugins/Verify.py:1029
-#, fuzzy
 msgid "Same sex marriage"
-msgstr "Idade ao casar"
+msgstr "Matrmônio entre mesmo sexo"
 
 #: ../src/plugins/Verify.py:1039
-#, fuzzy
 msgid "Female husband"
-msgstr "marido"
+msgstr "Esposo feminino"
 
 #: ../src/plugins/Verify.py:1049
-#, fuzzy
 msgid "Male wife"
-msgstr "esposa"
+msgstr "Esposa masculina"
 
 #: ../src/plugins/Verify.py:1065
-#, fuzzy
 msgid "Husband and wife with the same surname"
-msgstr "Marido e mulher com o mesmo sobrenome: %s na família %s, e %s.\n"
+msgstr "Marido e mulher com o mesmo sobrenome"
 
 #: ../src/plugins/Verify.py:1090
-#, fuzzy
 msgid "Large age difference between spouses"
-msgstr "Grande diferença de idade entre filhos: família %s.\n"
+msgstr "Grande diferença de idade entre cônjuges"
 
 #: ../src/plugins/Verify.py:1121
-#, fuzzy
 msgid "Marriage before birth"
-msgstr "Contrato Matrimonial"
+msgstr "Matrimônio antes do nascimento"
 
 #: ../src/plugins/Verify.py:1152
-#, fuzzy
 msgid "Marriage after death"
-msgstr "Contrato Matrimonial"
+msgstr "Matrimônio após falecimento"
 
 #: ../src/plugins/Verify.py:1184
-#, fuzzy
 msgid "Early marriage"
-msgstr "Idade ao casar"
+msgstr "Matrimônio precoce"
 
 #: ../src/plugins/Verify.py:1216
 #, fuzzy
 msgid "Late marriage"
-msgstr "Idade ao casar"
+msgstr "Matrimônio atrasado"
 
 #: ../src/plugins/Verify.py:1277
-#, fuzzy
 msgid "Old father"
-msgstr "Outro"
+msgstr "Pai idoso"
 
 #: ../src/plugins/Verify.py:1280
-#, fuzzy
 msgid "Old mother"
-msgstr "Outro"
+msgstr "Mãe idosa"
 
 #: ../src/plugins/Verify.py:1322
 msgid "Young father"
-msgstr ""
+msgstr "Pai jovem"
 
 #: ../src/plugins/Verify.py:1325
 msgid "Young mother"
-msgstr ""
+msgstr "Mãe jovem"
 
 #: ../src/plugins/Verify.py:1364
+#, fuzzy
 msgid "Unborn father"
-msgstr ""
+msgstr "Pai não-nascido"
 
 #: ../src/plugins/Verify.py:1367
+#, fuzzy
 msgid "Unborn mother"
-msgstr ""
+msgstr "Mãe não-nascida"
 
 #: ../src/plugins/Verify.py:1406
 #, fuzzy
 msgid "Dead father"
-msgstr "Ano de falecimento"
+msgstr "Pai falecido"
 
 #: ../src/plugins/Verify.py:1409
 #, fuzzy
 msgid "Dead mother"
-msgstr "Mês de falecimento"
+msgstr "Mãe falecida"
 
 #: ../src/plugins/Verify.py:1431
-#, fuzzy
 msgid "Large year span for all children"
-msgstr "Grande intervalo de idade para todas as crianças: família %s.\n"
+msgstr "Grande intervalo de idade para todas as crianças"
 
 #: ../src/plugins/Verify.py:1453
-#, fuzzy
 msgid "Large age differences between children"
-msgstr "Grande diferença de idade entre filhos: família %s.\n"
+msgstr "Grande diferença de idade entre filhos"
 
 #: ../src/plugins/Verify.py:1463
-#, fuzzy
 msgid "Disconnected individual"
-msgstr "Indivíduos não conectados"
+msgstr "Indivíduo não conectado"
 
 #: ../src/plugins/Verify.py:1476
-#, fuzzy
 msgid "Verify the data"
-msgstr "Verifica o banco de dados"
+msgstr "Verificar os dados"
 
 #: ../src/plugins/Verify.py:1477
 msgid "Verifies the data against user-defined tests"
-msgstr ""
+msgstr "Checa os dados com testes definidos pelo usuário"
 
 #: ../src/plugins/WriteCD.py:56
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
-msgstr ""
+msgstr "Não pode ser carregado porque as definições do Python para GNOME não estão instaladas"
 
 #: ../src/plugins/WriteCD.py:77
 msgid "Export to CD"
-msgstr "Exporta para um CD"
+msgstr "Exporta para CD"
 
 #: ../src/plugins/WriteCD.py:116
 #: ../src/plugins/WriteCD.py:161
@@ -7765,7 +7692,7 @@ msgstr "Falhou a preparação para exportação para CD"
 #: ../src/plugins/WriteCD.py:272
 #, python-format
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
-msgstr "Existem referências ao arquivo inexistente %(file_name)s no banco de dados. O arquivo talvez tenha sido apagado ou movido para um local diferente. Você pode escolher entre remover a referência do banco de dados, deixá-la referenciando o arquivo inexistente, ou selecionar um novo arquivo."
+msgstr "O arquivo %(file_name)s é referenciado no banco de dados, mas não existe mais. O arquivo talvez tenha sido apagado ou movido para um local diferente. Você pode escolher entre remover a referência do banco de dados, deixá-la referenciando o arquivo inexistente, ou selecionar um novo arquivo."
 
 #. -------------------------------------------------------------------------
 #.
@@ -7791,7 +7718,7 @@ msgstr "Árvore Familiar _Web"
 
 #: ../src/plugins/WriteFtree.py:312
 msgid "Web Family Tree format."
-msgstr "Formato de Árvore Familiar _Web"
+msgstr "Formato de Árvore Familiar Web."
 
 #: ../src/plugins/WriteFtree.py:313
 msgid "Web Family Tree export options"
@@ -7829,32 +7756,27 @@ msgstr "Pacote GRAM_PS (XML portável)"
 
 #: ../src/plugins/WritePkg.py:208
 msgid "GRAMPS package is an archived XML database together with the media object files."
-msgstr "O pacote GRAMPS é um banco de dados XML arquivado juntamente com os arquivos de objeto multimídia."
+msgstr "O pacote GRAMPS é um banco de dados XML arquivado juntamente com os arquivos de objeto de mídia"
 
 #: ../src/plugins/RebuildRefMap.py:82
-#, fuzzy
 msgid "Rebuilding reference maps..."
-msgstr "Reconstruindo Índices Secundários"
+msgstr "Reconstruindo mapas de referência..."
 
 #: ../src/plugins/RebuildRefMap.py:95
-#, fuzzy
 msgid "Reference maps rebuilt"
-msgstr "Seletor da Fonte de Referência"
+msgstr "Mapas de referência reconstruídos"
 
 #: ../src/plugins/RebuildRefMap.py:96
-#, fuzzy
 msgid "All reference maps have been rebuilt."
-msgstr "Todos os índices secundários foram reconstruídos."
+msgstr "Todos os mapas de referência foram reconstruídos."
 
 #: ../src/plugins/RebuildRefMap.py:125
-#, fuzzy
 msgid "Rebuild reference maps"
-msgstr "Editor de Referência Multimídia"
+msgstr "Reconstruir mapas de referência"
 
 #: ../src/plugins/RebuildRefMap.py:129
-#, fuzzy
 msgid "Rebuilds reference maps"
-msgstr "Editor de Referência Multimídia"
+msgstr "Reconstrói mapas de referência"
 
 #. -------------------------------------------------------------------------
 #.
@@ -7867,11 +7789,11 @@ msgstr "Nenhuma descrição foi provida"
 
 #: ../src/PluginUtils/_Plugins.py:69
 msgid "Unsupported"
-msgstr "Não sustentado"
+msgstr "Não suportado"
 
 #: ../src/PluginUtils/_Plugins.py:128
 msgid "_Apply"
-msgstr "_Aplica"
+msgstr "_Aplicar"
 
 #: ../src/PluginUtils/_Plugins.py:270
 msgid "Report Selection"
@@ -7884,11 +7806,11 @@ msgstr "Selecione um relatório a partir daqueles disponívies à esquerda."
 
 #: ../src/PluginUtils/_Plugins.py:272
 msgid "_Generate"
-msgstr "_Gera"
+msgstr "_Gerar"
 
 #: ../src/PluginUtils/_Plugins.py:272
 msgid "Generate selected report"
-msgstr "Gera relatório selecionado"
+msgstr "Gerar relatório selecionado"
 
 #: ../src/PluginUtils/_Plugins.py:302
 msgid "Tool Selection"
@@ -7896,28 +7818,28 @@ msgstr "Seleção de Ferramenta"
 
 #: ../src/PluginUtils/_Plugins.py:303
 msgid "Select a tool from those available on the left."
-msgstr "Seleciona uma ferramenta a partir daquelas disponívies à esquerda."
+msgstr "Selecione uma ferramenta a partir daquelas disponívies à esquerda."
 
 #: ../src/PluginUtils/_Plugins.py:304
 #: ../src/plugins/verify.glade.h:24
 msgid "_Run"
-msgstr "_Executa"
+msgstr "_Executar"
 
 #: ../src/PluginUtils/_Plugins.py:305
 msgid "Run selected tool"
-msgstr "Executa a ferramenta selecionada"
+msgstr "Executar ferramenta selecionada"
 
 #: ../src/PluginUtils/_Plugins.py:435
 msgid "Reload plugins"
-msgstr "Recarrega os plugins"
+msgstr "Recarregar plugins"
 
 #: ../src/PluginUtils/_Plugins.py:436
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr "Tentativa de se recarregar os plugins. Nota: Esta ferramenta, em si mesma, não é recarregada!"
+msgstr "Tentativa de recarregar os plugins. Nota: Esta ferramenta em si não é recarregada!"
 
 #: ../src/PluginUtils/_Tool.py:68
 msgid "Debug"
-msgstr "Debug"
+msgstr "Depurar"
 
 #: ../src/PluginUtils/_Tool.py:69
 msgid "Analysis and Exploration"
@@ -7925,11 +7847,11 @@ msgstr "Análise e Exploração"
 
 #: ../src/PluginUtils/_Tool.py:70
 msgid "Database Processing"
-msgstr "Processa o Banco de Dados"
+msgstr "Processamento do Banco de Dados"
 
 #: ../src/PluginUtils/_Tool.py:71
 msgid "Database Repair"
-msgstr "Repara o Banco de Dados"
+msgstr "Reparação do Banco de Dados"
 
 #: ../src/PluginUtils/_Tool.py:72
 msgid "Revision Control"
@@ -7945,52 +7867,46 @@ msgid ""
 "\n"
 "If you think you may want to revert running this tool, please stop here and backup your database."
 msgstr ""
+"Procedendo com esta ferramenta apagará o histórico de desfazimento para essa sessão. Em particular, você não será capaz de reverter as alterações feitas por esta ferramenta ou quaisquer alterações feitas antes dela.\n"
+"\n"
+"Se você acha que pode querer voltar atrás após usar a ferramenta, por favor pare agora e faça um backup do seu banco de dados."
 
 #: ../src/PluginUtils/_Tool.py:117
-#, fuzzy
 msgid "_Proceed with the tool"
-msgstr "Continuar com a adição"
+msgstr "_Proceder com a ferramenta"
 
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
-#, fuzzy
 msgid "Plugin Status"
-msgstr "Status dos plugins"
+msgstr "Status do plugin"
 
 #: ../src/PluginUtils/_PluginStatus.py:79
-#, fuzzy
 msgid "File"
-msgstr "Arquivo:"
+msgstr "Arquivo"
 
 #: ../src/PluginUtils/_PluginStatus.py:82
-#, fuzzy
 msgid "Message"
-msgstr "_Funde"
+msgstr "Mensagem"
 
 #: ../src/PluginUtils/_PluginStatus.py:94
-#, fuzzy
 msgid "Unavailable"
-msgstr "Livros Disponíveis"
+msgstr "Não disponível"
 
 #: ../src/PluginUtils/_PluginStatus.py:98
-#, fuzzy
 msgid "Fail"
-msgstr "Família"
+msgstr "Falha"
 
 #: ../src/PluginUtils/_PluginStatus.py:105
-#, fuzzy
 msgid "OK"
-msgstr "O"
+msgstr "OK"
 
 #: ../src/PluginUtils/_PluginStatus.py:117
-#, fuzzy
 msgid "Summary"
-msgstr "Sumário de %s"
+msgstr "Sumário"
 
 #: ../src/ReportBase/_BareReportDialog.py:104
-#, fuzzy
 msgid "Configuration"
-msgstr "Confirmação"
+msgstr "Configuração"
 
 #: ../src/ReportBase/_BareReportDialog.py:189
 #, python-format
@@ -8009,7 +7925,7 @@ msgstr "Pessoa Central"
 
 #: ../src/ReportBase/_BareReportDialog.py:365
 msgid "C_hange"
-msgstr "M_odifica"
+msgstr "A_lterar"
 
 #. Styles Frame
 #: ../src/ReportBase/_BareReportDialog.py:378
@@ -8083,7 +7999,7 @@ msgstr "Opções HTML"
 
 #: ../src/ReportBase/_ReportDialog.py:259
 msgid "Save As"
-msgstr "Salva Como"
+msgstr "Salvar Como"
 
 #: ../src/ReportBase/_ReportDialog.py:291
 msgid "Output Format"
@@ -8094,9 +8010,8 @@ msgid "Height"
 msgstr "Altura"
 
 #: ../src/ReportBase/_ReportDialog.py:386
-#, fuzzy
 msgid "Metric"
-msgstr "restrito"
+msgstr "Métrica"
 
 #: ../src/ReportBase/_ReportDialog.py:390
 msgid "Orientation"
@@ -8120,7 +8035,7 @@ msgstr "Modelo do Usuário"
 
 #: ../src/ReportBase/_ReportDialog.py:474
 msgid "Choose File"
-msgstr "Escolhe o Arquivo"
+msgstr "Escolher o Arquivo"
 
 #: ../src/ReportBase/_ReportDialog.py:513
 #: ../src/ReportBase/_ReportDialog.py:539
@@ -8148,11 +8063,11 @@ msgstr "Você pode escolher entre sobrescrever o arquivo, ou modificar o nome do
 
 #: ../src/ReportBase/_ReportDialog.py:527
 msgid "_Overwrite"
-msgstr "_Sobrescreve"
+msgstr "_Sobrescrever"
 
 #: ../src/ReportBase/_ReportDialog.py:528
 msgid "_Change filename"
-msgstr "_Modifica o nome do arquivo"
+msgstr "_Alterar o nome do arquivo"
 
 #: ../src/ReportBase/_ReportDialog.py:540
 #, python-format
@@ -8167,7 +8082,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:659
 msgid "You must select an active person for this report to work properly."
-msgstr ""
+msgstr "Você deve selecionar uma pessoa ativa para este relatório funcionar devidamente."
 
 #: ../src/ReportBase/_Report.py:97
 msgid "Progress Report"
@@ -8283,17 +8198,17 @@ msgid "She was born %(modified_date)s."
 msgstr "Ela nasceu em %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
 msgstr "%(unknown_gender_name)s nasceu em %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was born %(modified_date)s."
 msgstr "%(male_name)s nasceu em %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was born %(modified_date)s."
 msgstr "%(female_name)s nasceu em %(modified_date)s."
 
@@ -9825,12 +9740,12 @@ msgid "He was the son of %(father)s and %(mother)s."
 msgstr "Ele era o filho de %(father)s e %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s and %(mother)s."
 msgstr "%(male_name)s é o filho de %(father)s e %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:733
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s and %(mother)s."
 msgstr "%(male_name)s era o filho de %(father)s e %(mother)s."
 
@@ -9845,12 +9760,12 @@ msgid "She was the daughter of %(father)s and %(mother)s."
 msgstr "Ela era a filha de %(father)s e %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:742
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s and %(mother)s."
 msgstr "%(female_name)s é a filha de %(father)s e %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:743
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s and %(mother)s."
 msgstr "%(female_name)s era a filha de %(father)s e %(mother)s."
 
@@ -9885,12 +9800,12 @@ msgid "He was the son of %(father)s."
 msgstr "Ele era o filho de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(father)s."
 msgstr "%(male_name)s é o filho de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:766
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(father)s."
 msgstr "%(male_name)s era o filho de %(father)s."
 
@@ -9905,12 +9820,12 @@ msgid "She was the daughter of %(father)s."
 msgstr "Ela era a filha de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:775
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(father)s."
 msgstr "%(female_name)s é a filha de %(father)s."
 
 #: ../src/ReportBase/_ReportUtils.py:776
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(father)s."
 msgstr "%(female_name)s era a filha de %(father)s."
 
@@ -9945,12 +9860,12 @@ msgid "He was the son of %(mother)s."
 msgstr "Ele era o filho de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:798
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s is the son of %(mother)s."
 msgstr "%(male_name)s é o filho de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:799
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was the son of %(mother)s."
 msgstr "%(male_name)s era o filho de %(mother)s."
 
@@ -9965,12 +9880,12 @@ msgid "She was the daughter of %(mother)s."
 msgstr "Ela era a filha de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:808
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s is the daughter of %(mother)s."
 msgstr "%(female_name)s é a filha de %(mother)s."
 
 #: ../src/ReportBase/_ReportUtils.py:809
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was the daughter of %(mother)s."
 msgstr "%(female_name)s era a filha de %(mother)s."
 
@@ -10363,19 +10278,16 @@ msgid "Social Security Number"
 msgstr "Cadastro de Pessoas Físicas"
 
 #: ../src/RelLib/_AttributeType.py:64
-#, fuzzy
 msgid "Agency"
-msgstr "Idade"
+msgstr "Agência"
 
 #: ../src/RelLib/_AttributeType.py:66
-#, fuzzy
 msgid "Father's Age"
-msgstr "Sobrenome do pai"
+msgstr "Idade do Pai"
 
 #: ../src/RelLib/_AttributeType.py:67
-#, fuzzy
 msgid "Mother's Age"
-msgstr "Mãe"
+msgstr "Idade da Mãe"
 
 #: ../src/RelLib/_Date.py:112
 msgid "Gregorian"
@@ -10407,9 +10319,8 @@ msgid "Baptism"
 msgstr "Batismo"
 
 #: ../src/RelLib/_LdsOrd.py:92
-#, fuzzy
 msgid "Endowment"
-msgstr "<b>Dote</b>"
+msgstr "Dote"
 
 #: ../src/RelLib/_LdsOrd.py:93
 #: ../src/RelLib/_EventType.py:101
@@ -10417,14 +10328,12 @@ msgid "Confirmation"
 msgstr "Confirmação"
 
 #: ../src/RelLib/_LdsOrd.py:94
-#, fuzzy
 msgid "Sealed to Parents"
-msgstr "<b>Selado aos pais</b>"
+msgstr "Selado aos pais"
 
 #: ../src/RelLib/_LdsOrd.py:95
-#, fuzzy
 msgid "Sealed to Spouse"
-msgstr "<b>Selado ao cônjuge</b>"
+msgstr "Selado ao cônjuge"
 
 #: ../src/RelLib/_LdsOrd.py:99
 msgid "<No Status>"
@@ -10480,47 +10389,39 @@ msgstr "Não liberado"
 
 #: ../src/RelLib/_RepositoryType.py:52
 msgid "Library"
-msgstr ""
+msgstr "Biblioteca"
 
 #: ../src/RelLib/_RepositoryType.py:53
-#, fuzzy
 msgid "Cemetery"
-msgstr "_Centro"
+msgstr "Cemitério"
 
 #: ../src/RelLib/_RepositoryType.py:54
-#, fuzzy
 msgid "Church"
-msgstr "Paróquia"
+msgstr "Igreja"
 
 #: ../src/RelLib/_RepositoryType.py:55
-#, fuzzy
 msgid "Archive"
-msgstr "_Arquivar"
+msgstr "Arquivar"
 
 #: ../src/RelLib/_RepositoryType.py:56
-#, fuzzy
 msgid "Album"
-msgstr "Sobre"
+msgstr "Album"
 
 #: ../src/RelLib/_RepositoryType.py:57
-#, fuzzy
 msgid "Web site"
-msgstr "Título do web site"
+msgstr "Web site"
 
 #: ../src/RelLib/_RepositoryType.py:58
-#, fuzzy
 msgid "Bookstore"
 msgstr "Livros"
 
 #: ../src/RelLib/_RepositoryType.py:59
-#, fuzzy
 msgid "Collection"
-msgstr "Seleção de Ferramenta"
+msgstr "Coleção"
 
 #: ../src/RelLib/_RepositoryType.py:60
-#, fuzzy
 msgid "Safe"
-msgstr "Estado"
+msgstr "Cofre"
 
 #: ../src/RelLib/_FamilyRelType.py:45
 msgid "Civil Union"
@@ -10535,22 +10436,20 @@ msgid "Married"
 msgstr "Casado"
 
 #: ../src/RelLib/_UrlType.py:47
-#, fuzzy
 msgid "E-mail"
-msgstr "E-mail:"
+msgstr "E-mail"
 
 #: ../src/RelLib/_UrlType.py:48
-#, fuzzy
 msgid "Web Home"
-msgstr "Lar"
+msgstr "Página Web Inicial"
 
 #: ../src/RelLib/_UrlType.py:49
 msgid "Web Search"
-msgstr ""
+msgstr "Busca Web"
 
 #: ../src/RelLib/_UrlType.py:50
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 #: ../src/RelLib/_NameType.py:46
 msgid "Also Known As"
@@ -10583,7 +10482,7 @@ msgstr "Sob Tutela"
 
 #: ../src/RelLib/_SourceMediaType.py:55
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: ../src/RelLib/_SourceMediaType.py:56
 #: ../src/plugins/book.glade.h:3
@@ -10591,81 +10490,72 @@ msgid "Book"
 msgstr "Livro"
 
 #: ../src/RelLib/_SourceMediaType.py:57
-#, fuzzy
 msgid "Card"
-msgstr "vCard"
+msgstr "Cartão"
 
 #: ../src/RelLib/_SourceMediaType.py:58
-#, fuzzy
 msgid "Electronic"
-msgstr "_Seleciona Pessoa"
+msgstr "Eletrônico"
 
 #: ../src/RelLib/_SourceMediaType.py:59
-#, fuzzy
 msgid "Fiche"
-msgstr "_Arquivo"
+msgstr "Ficha"
 
 #: ../src/RelLib/_SourceMediaType.py:60
-#, fuzzy
 msgid "Film"
-msgstr "_Arquivo"
+msgstr "Filme"
 
 #: ../src/RelLib/_SourceMediaType.py:61
-#, fuzzy
 msgid "Magazine"
-msgstr "Tamanho da margem"
+msgstr "Revista"
 
 #: ../src/RelLib/_SourceMediaType.py:62
-#, fuzzy
 msgid "Manuscript"
-msgstr "Postscript"
+msgstr "Manuscrito"
 
 #: ../src/RelLib/_SourceMediaType.py:63
 msgid "Map"
-msgstr ""
+msgstr "Mapa"
 
 #: ../src/RelLib/_SourceMediaType.py:64
 msgid "Newspaper"
-msgstr ""
+msgstr "Jornal"
 
 #: ../src/RelLib/_SourceMediaType.py:65
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: ../src/RelLib/_SourceMediaType.py:66
 msgid "Tombstone"
-msgstr ""
+msgstr "Túmulo"
 
 #: ../src/RelLib/_SourceMediaType.py:67
-#, fuzzy
 msgid "Video"
-msgstr "Vista"
+msgstr "Video"
 
 #: ../src/RelLib/_EventRoleType.py:50
-#, fuzzy
 msgid "Primary"
-msgstr "Privacidade"
+msgstr "Primário"
 
 #: ../src/RelLib/_EventRoleType.py:51
-#, fuzzy
 msgid "Clergy"
-msgstr "Liberado"
+msgstr "Clero"
 
 #: ../src/RelLib/_EventRoleType.py:52
 msgid "Celebrant"
-msgstr ""
+msgstr "Celebrante"
 
 #: ../src/RelLib/_EventRoleType.py:53
 msgid "Aide"
-msgstr ""
+msgstr "Ajudante"
 
 #: ../src/RelLib/_EventRoleType.py:54
 msgid "Bride"
-msgstr ""
+msgstr "Noiva"
 
 #: ../src/RelLib/_EventRoleType.py:55
 msgid "Groom"
-msgstr ""
+msgstr "Noivo"
 
 #: ../src/RelLib/_EventRoleType.py:56
 msgid "Witness"
@@ -10824,19 +10714,18 @@ msgid "Alternate Marriage"
 msgstr "Matrimônio Alternativo"
 
 #: ../src/Filters/_SearchBar.py:88
-#, fuzzy, python-format
+#, python-format
 msgid "%s contains"
-msgstr "%s (continuado)"
+msgstr "%s contém"
 
 #: ../src/Filters/_SearchBar.py:91
 #, python-format
 msgid "%s does not contain"
-msgstr ""
+msgstr "%s não contém"
 
 #: ../src/Filters/Rules/_Everything.py:45
-#, fuzzy
 msgid "Every object"
-msgstr "Todas as Pessoas"
+msgstr "Cada objeto"
 
 #: ../src/Filters/Rules/_Everything.py:46
 #: ../src/Filters/Rules/_HasAttributeBase.py:50
@@ -10880,14 +10769,12 @@ msgid "General filters"
 msgstr "Filtros gerais"
 
 #: ../src/Filters/Rules/_Everything.py:47
-#, fuzzy
 msgid "Matches every object in the database"
-msgstr "Encontra todas as pessoas no banco de dados"
+msgstr "Encontra todas os objetos no banco de dados"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:46
-#, fuzzy
 msgid "Attribute:"
-msgstr "_Atributo:"
+msgstr "Atributo:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:46
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
@@ -10897,22 +10784,19 @@ msgid "Value:"
 msgstr "Valor:"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:47
-#, fuzzy
 msgid "Objects with the <attribute>"
-msgstr "Pessoas com o atributo familiar <attribute>"
+msgstr "Pessoas com o <attribute>"
 
 #: ../src/Filters/Rules/_HasAttributeBase.py:48
-#, fuzzy
 msgid "Matches objects with the given attribute of a particular value"
-msgstr "Encontra as pessoas com o atributo pessoal que tenha um valor específico"
+msgstr "Encontra objetos com o atributo dado de um valor específico"
 
 #: ../src/Filters/Rules/_HasEventBase.py:49
 #: ../src/Filters/Rules/Person/_IsWitness.py:44
 #: ../src/Filters/Rules/Event/_HasType.py:46
 #: ../src/FilterEditor/_EditRule.py:83
-#, fuzzy
 msgid "Event type:"
-msgstr "_Tipo de evento:"
+msgstr "Tipo de evento:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:50
 #: ../src/Filters/Rules/Person/_HasBirth.py:48
@@ -10946,12 +10830,11 @@ msgstr "Descrição:"
 
 #: ../src/Filters/Rules/_HasEventBase.py:53
 msgid "Events matching parameters"
-msgstr ""
+msgstr "Eventos com parâmetros encontrados"
 
 #: ../src/Filters/Rules/_HasEventBase.py:54
-#, fuzzy
 msgid "Matches events with particular parameters"
-msgstr "Encontra as pessoas com uma relação específica"
+msgstr "Encontra eventos com parâmetros específicos"
 
 #: ../src/Filters/Rules/_HasEventBase.py:55
 #: ../src/Filters/Rules/Person/_FamilyWithIncompleteEvent.py:46
@@ -10981,30 +10864,25 @@ msgid "ID:"
 msgstr "ID:"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:46
-#, fuzzy
 msgid "Object with <Id>"
-msgstr "Pessoas com <Id>"
+msgstr "Objetos com <Id>"
 
 #: ../src/Filters/Rules/_HasGrampsId.py:47
-#, fuzzy
 msgid "Matches objects with a specified GRAMPS ID"
-msgstr "Encontra pessoas com um GRAMPS ID especificado"
+msgstr "Encontra pessoas com um ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:49
-#, fuzzy
 msgid "Regular expression:"
-msgstr "Usa expressão regular"
+msgstr "Expressão regular:"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:45
-#, fuzzy
 msgid "Objects having notes containing <regular expression>"
-msgstr "Pessoas que possuem notas contendo <substring>"
+msgstr "Objetos tendo notas contendo <regular expressionr>"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:46
-#, fuzzy
 msgid "Matches objects whose notes contain text matching a regular expression"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma expressão regular"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:43
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
@@ -11015,14 +10893,12 @@ msgid "Substring:"
 msgstr "Cadeia de caracteres:"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:44
-#, fuzzy
 msgid "Objects having notes containing <substring>"
 msgstr "Pessoas que possuem notas contendo <substring>"
 
 #: ../src/Filters/Rules/_HasNoteSubstrBase.py:45
-#, fuzzy
 msgid "Matches objects whose notes contain text matching a substring"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra objetos cujas notas contém texto que coincide com uma cadeia de caracteres"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:45
@@ -11037,24 +10913,20 @@ msgid "Regular-Expression matching:"
 msgstr "Coincide com expressão regular:"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:46
-#, fuzzy
 msgid "Objects with records containing <substring>"
-msgstr "Pessoas com registros contendo <substring>"
+msgstr "Objetos com registros contendo <substring>"
 
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:47
-#, fuzzy
 msgid "Matches objects whose records contain text matching a substring"
-msgstr "Encontra as pessoas cujos registros contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra objetos cujos registros contém texto que coincide com uma cadeia de caracteres"
 
 #: ../src/Filters/Rules/_IsPrivate.py:43
-#, fuzzy
 msgid "Objects marked private"
-msgstr "Pessoas marcadas como privadas"
+msgstr "Objetos marcados privados"
 
 #: ../src/Filters/Rules/_IsPrivate.py:44
-#, fuzzy
 msgid "Matches objects that are indicated as private"
-msgstr "Encontra as pessoas que estão indicadas como privadas"
+msgstr "Encontra objetos que estão indicadas como privados"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:51
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
@@ -11069,23 +10941,20 @@ msgid "Filter name:"
 msgstr "Nome do filtro:"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:52
-#, fuzzy
 msgid "Objects matching the <filter>"
-msgstr "Pessoas coincidentes com o <filter>"
+msgstr "Objetos coincidentes com <filter>"
 
 #: ../src/Filters/Rules/_MatchesFilterBase.py:53
-#, fuzzy
 msgid "Matches objects matched by the specified filter name"
-msgstr "Encontra as pessoas que foram encontradas pelo filtro especificado"
+msgstr "Encontra objetos que foram encontrados pelo filtro especificado"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:50
-#, fuzzy
 msgid "Objects with <Id>"
-msgstr "Pessoas com <Id>"
+msgstr "Objetos com <Id>"
 
 #: ../src/Filters/Rules/_RegExpIdBase.py:51
 msgid "Matches objects whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Encontra objetos que o ID GRAMPS batam com a expressão regular"
 
 #: ../src/Filters/Rules/_Rule.py:40
 msgid "Miscellaneous filters"
@@ -11098,18 +10967,16 @@ msgstr "Sem descrição"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:87
-#, fuzzy
 msgid "Marker type:"
-msgstr "_Tipo de evento:"
+msgstr "Tipo de marcador:"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:48
 msgid "Has marker of"
-msgstr ""
+msgstr "Tem marcador de"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:49
-#, fuzzy
 msgid "Matches markers of a particular type"
-msgstr "Encontra as pessoas com uma relação específica"
+msgstr "Encontra os marcadores para um tipo específico"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
 msgid "Disconnected people"
@@ -11276,7 +11143,6 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Encontra as pessoas com um nome (parcial) especificado"
 
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "People having notes containing <substring>"
 msgstr "Pessoas que possuem notas contendo <substring>"
 
@@ -11293,14 +11159,12 @@ msgid "Matches people that have a note"
 msgstr "Encontra as pessoas que possuem uma nota"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
-#, fuzzy
 msgid "People having notes containing <regular expression>"
-msgstr "Pessoas que possuem notas contendo <substring>"
+msgstr "Pessoas que possuem notas contendo <regular expression>"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Matches people whose notes contain text matching a regular expression"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma expressão regular"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:46
 msgid "Number of relationships:"
@@ -11580,9 +11444,8 @@ msgid "People matching the <filter>"
 msgstr "Pessoas coincidentes com o <filter>"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches people matched by the specified filter name"
-msgstr "Encontra as pessoas que foram encontradas pelo filtro especificado"
+msgstr "Encontra as pessoas que pelo filtro especificado"
 
 #: ../src/Filters/Rules/Person/_MultipleMarriages.py:43
 msgid "People with multiple marriage records"
@@ -11637,28 +11500,24 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Encontra as pessoas sem indicações de falecimento que não sejam muito velhas"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
-#, fuzzy
 msgid "People with <Id> matching regular expression"
-msgstr "Pessoas com registros que coincidem com a expressão regular..."
+msgstr "Pessoas com <Id> coincidindo com expressão regular"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Matches people whose GRAMPS ID matches the regular expression"
-msgstr "Pessoas com registros que coincidem com a expressão regular..."
+msgstr "Pessoas com ID GRAMPS que coincidem com a expressão regular"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:46
 msgid "Expression:"
-msgstr ""
+msgstr "Expressão:"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
-#, fuzzy
 msgid "People matching the <regex_name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Pessoas coincidentes com <regex_name>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
-#, fuzzy
 msgid "Matches people's names with a specified regular expression"
-msgstr "Encontra as pessoas com um nome (parcial) especificado"
+msgstr "Encontra nomes de pessoa com uma expressão regular especificada"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
@@ -11674,286 +11533,237 @@ msgid "Matches the ancestors of two persons back to a common ancestor, producing
 msgstr "Procura os ancestrais de duas pessoas até um ancestral comum, produzindo o caminho de relações entre duas pessoas."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
-#, fuzzy
 msgid "Relationship path between bookmarked persons"
-msgstr "Caminho de relação entre <persons>"
+msgstr "Caminho de relação entre pessoas favoritadas"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:54
-#, fuzzy
 msgid "Matches the ancestors of bookmarked individuals back to common ancestors, producing the relationship path(s) between bookmarked persons."
-msgstr "Procura os ancestrais de duas pessoas até um ancestral comum, produzindo o caminho de relações entre duas pessoas."
+msgstr "Encontra os ancestrais de indivíduos favoritados de volta para ancentrais comuns, produzindo caminhos de relações entre pessoas favoritadas."
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
 msgid "People matching the <name>"
 msgstr "Pessoas coincidentes com <name>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
-#, fuzzy
 msgid "People with <marker>"
-msgstr "Pessoas com imagens"
+msgstr "Pessoas com <marker>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
-#, fuzzy
 msgid "Matches people with a marker of a particular value"
-msgstr "Encontra as pessoas com dados de falecimento que tenham um valor específico"
+msgstr "Encontra as pessoas com marcadores de um valor particular"
 
 #: ../src/Filters/Rules/Person/_MissingParent.py:44
-#, fuzzy
 msgid "People missing parents"
-msgstr "Pessoas que possuem notas"
+msgstr "Pessoas sem pais"
 
 #: ../src/Filters/Rules/Person/_MissingParent.py:45
 msgid "Matches people that are children in a family with less than two parents or are not children in any family."
-msgstr ""
+msgstr "Encontra pessoas que são filhos em uma família com menos de dois pais ou não são filhos de nenhuma família."
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
-#, fuzzy
 msgid "Every family"
-msgstr "Reordenando os IDs de Famílias"
+msgstr "Cada família"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
-#, fuzzy
 msgid "Matches every family in the database"
-msgstr "Encontra todas as pessoas no banco de dados"
+msgstr "Encontra todas as famílias no banco de dados"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
-#, fuzzy
 msgid "Families marked private"
-msgstr "Pessoas marcadas como privadas"
+msgstr "Famílias marcadas como privadas"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
-#, fuzzy
 msgid "Matches families that are indicated as private"
-msgstr "Encontra as pessoas que estão indicadas como privadas"
+msgstr "Encontra as famílias indicadas como privadas"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
-#, fuzzy
 msgid "Families with the family <attribute>"
-msgstr "Pessoas com o atributo familiar <attribute>"
+msgstr "Famílias com o atributo familiar <attribute>"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Encontra as pessoas com o atributo familiar que tenha um valor específico"
+msgstr "Encontra famílias com o atributo familiar que tenha um valor específico"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
-#, fuzzy
 msgid "Families with the <event>"
-msgstr "Famílias com eventos incompletos"
+msgstr "Famílias com o <event>"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
-#, fuzzy
 msgid "Matches families with an event of a particular value"
-msgstr "Encontra as pessoas com um evento pessoal que tenha um valor específico"
+msgstr "Encontra famílias com um evento que tenha um valor específico"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
-#, fuzzy
 msgid "Family with <Id>"
-msgstr "Pessoas com <Id>"
+msgstr "Família com <Id>"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:46
-#, fuzzy
 msgid "Matches a family with a specified GRAMPS ID"
-msgstr "Encontra pessoas com um GRAMPS ID especificado"
+msgstr "Encontra a família com um ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:43
-#, fuzzy
 msgid "Families having notes containing <substring>"
-msgstr "Pessoas que possuem notas contendo <substring>"
+msgstr "Famílias que possuem notas contendo <substring>"
 
 #: ../src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a substring"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra famílias cujas notas contém texto que coincide com uma cadeia de caracteres"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
-#, fuzzy
 msgid "Families having notes containing <regular expression>"
-msgstr "Pessoas que possuem notas contendo <substring>"
+msgstr "Famílias que possuem notas contendo <regular expression>"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:44
-#, fuzzy
 msgid "Matches families whose notes contain text matching a regular expression"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra famílias cujas notas contém texto que coincide com uma expressão regular"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:47
-#, fuzzy
 msgid "Family with the relationship type"
-msgstr "Pessoas com as <relationships>"
+msgstr "Família com o tipo de relacionamento"
 
 #: ../src/Filters/Rules/Family/_HasRelType.py:48
-#, fuzzy
 msgid "Matches family with the relationship type of a particular value"
-msgstr "Encontra as pessoas com o atributo pessoal que tenha um valor específico"
+msgstr "Encontra famílias com o tipo de relacionamento com um valor específico"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-#, fuzzy
 msgid "Families with <Id> matching regular expression"
-msgstr "Pessoas com registros que coincidem com a expressão regular..."
+msgstr "Famílias com <Id> batendo com expressão regular"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Encontra famílias que o ID GRAMPS batam com a expressão regular"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:45
-#, fuzzy
 msgid "Families matching the <filter>"
-msgstr "Pessoas coincidentes com o <filter>"
+msgstr "Famílias coincidentes com o <filter>"
 
 #: ../src/Filters/Rules/Family/_MatchesFilter.py:46
-#, fuzzy
 msgid "Matches families matched by the specified filter name"
-msgstr "Encontra as pessoas que foram encontradas pelo filtro especificado"
+msgstr "Encontra as famílias que pelo filtro especificado"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:46
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:46
-#, fuzzy
 msgid "Person ID:"
-msgstr "_Pessoa:"
+msgstr "ID da Pessoa:"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
 msgid "Families with mother with the <Id>"
-msgstr ""
+msgstr "Famílias com mãe com o <Id>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose mother has a specified GRAMPS ID"
-msgstr "Encontra pessoas com um GRAMPS ID especificado"
+msgstr "Encontra famílias que tenha uma mãe com um ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:49
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:49
-#, fuzzy
 msgid "Mother filters"
-msgstr "Filtros gerais"
+msgstr "Filtros de mãe"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
 msgid "Families with father with the <Id>"
-msgstr ""
+msgstr "Famílias com pai com o <Id>"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
-#, fuzzy
 msgid "Matches families whose father has a specified GRAMPS ID"
-msgstr "Encontra pessoas com um GRAMPS ID especificado"
+msgstr "Encontra famílias que tem um pai com o ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:49
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:49
-#, fuzzy
 msgid "Father filters"
-msgstr "Filtros de família"
+msgstr "Filtros de pai"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:46
-#, fuzzy
 msgid "Families with mother with the <name>"
-msgstr "Pessoas com o <name>"
+msgstr "Famílias com mãe com o <name>"
 
 #: ../src/Filters/Rules/Family/_MotherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:47
-#, fuzzy
 msgid "Matches families whose mother has a specified (partial) name"
-msgstr "Encontra as pessoas com um nome (parcial) especificado"
+msgstr "Encontra famílias que a mãe tem um nome (parcial) especificado"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
 msgid "Families with child with the <Id>"
-msgstr ""
+msgstr "Famílias com filhos com o <Id>"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
-#, fuzzy
 msgid "Matches families where child has a specified GRAMPS ID"
-msgstr "Encontra pessoas com um GRAMPS ID especificado"
+msgstr "Encontra famílias que tenham filhos com um ID GRAMPS especificado"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:50
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:49
 #: ../src/Filters/Rules/Family/_SearchChildName.py:49
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:49
-#, fuzzy
 msgid "Child filters"
-msgstr "Filtros de família"
+msgstr "Filtros de filhos"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:46
-#, fuzzy
 msgid "Families with father with the <name>"
-msgstr "Pessoas com o <name>"
+msgstr "Família que tenham o pai com o <name>"
 
 #: ../src/Filters/Rules/Family/_FatherHasNameOf.py:47
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:47
-#, fuzzy
 msgid "Matches families whose father has a specified (partial) name"
-msgstr "Encontra as pessoas com um nome (parcial) especificado"
+msgstr "Encontra famílias que tenham o pai com um nome (parcial) especificado"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:46
-#, fuzzy
 msgid "Families with child with the <name>"
-msgstr "Pessoas com o <name>"
+msgstr "Famílias com filhos com o <name>"
 
 #: ../src/Filters/Rules/Family/_ChildHasNameOf.py:47
-#, fuzzy
 msgid "Matches families where child has a specified (partial) name"
-msgstr "Encontra as pessoas com um nome (parcial) especificado"
+msgstr "Encontra famílias que tenham filhos com um nome (parcial) especificado"
 
 #: ../src/Filters/Rules/Family/_SearchFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Famílias que tenham o pai coincidente com <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:46
-#, fuzzy
 msgid "Families with any child matching the <name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Famílias com qualquer filho coincidente com <name>"
 
 #: ../src/Filters/Rules/Family/_SearchChildName.py:47
-#, fuzzy
 msgid "Matches families where any child has a specified (partial) name"
-msgstr "Encontra as pessoas com um nome (parcial) especificado"
+msgstr "Encontra famílias que tenham qualquer filho com um nome (parcial) especificado"
 
 #: ../src/Filters/Rules/Family/_SearchMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Famílias que tenham a mãe coincidente com <name>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:46
-#, fuzzy
 msgid "Families with father matching the <regex_name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Famílias que tenham o pai coincidentes com <regex_name>"
 
 #: ../src/Filters/Rules/Family/_RegExpFatherName.py:47
-#, fuzzy
 msgid "Matches families whose father has a name matching a specified regular expression"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra famílias que tenham o pai que tenha o nome coincidente com uma expressão regular especificada"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:46
-#, fuzzy
 msgid "Families with mother matching the <regex_name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Famílias que tenham mãe coincidente com <regex_name>"
 
 #: ../src/Filters/Rules/Family/_RegExpMotherName.py:47
-#, fuzzy
 msgid "Matches families whose mother has a name matching a specified regular expression"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra famílias que tenham a mãe com o nome coincidindo com uma expressão regular especificada"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:46
-#, fuzzy
 msgid "Families with child matching the <regex_name>"
-msgstr "Pessoas coincidentes com <name>"
+msgstr "Famílias com filhos coincidindo com <regex_name>"
 
 #: ../src/Filters/Rules/Family/_RegExpChildName.py:47
-#, fuzzy
 msgid "Matches families where child has a name matching a specified regular expression"
-msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadeia de caracteres"
+msgstr "Encontra famílias que tenham filhos com o nome coincidindo com uma expressão regular especificada"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:45
-#, fuzzy
 msgid "Families with <marker>"
-msgstr "Famílias com eventos incompletos"
+msgstr "Famílis com <marker>"
 
 #: ../src/Filters/Rules/Family/_HasMarkerOf.py:46
-#, fuzzy
 msgid "Matches Families with a marker of a particular value"
-msgstr "Encontra as pessoas com um evento pessoal que tenha um valor específico"
+msgstr "Encontra Famílias com um marcador que tenha um valor específico"
 
 #: ../src/Filters/Rules/Event/_MatchesFilter.py:45
 #, fuzzy
@@ -11992,7 +11802,7 @@ msgstr "Pessoas com registros que coincidem com a expressão regular..."
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Encontra eventos que o ID GRAMPS batam com a expressão regular"
 
 #: ../src/Filters/Rules/Event/_AllEvents.py:45
 #, fuzzy
@@ -12056,7 +11866,7 @@ msgstr "Encontra pessoas com um GRAMPS ID especificado"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:46
 msgid "Places with no latitude or longitude given"
-msgstr ""
+msgstr "Lugares sem latitude ou longitude"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
 #, fuzzy
@@ -12129,19 +11939,19 @@ msgstr "_Longitude:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle height:"
-msgstr ""
+msgstr "Altura do retângulo:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:48
 msgid "Rectangle width:"
-msgstr ""
+msgstr "Largura do retângulo:"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:49
 msgid "Places in neighborhood of given position"
-msgstr ""
+msgstr "Lugares na vizinhança da posição dada"
 
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:50
 msgid "Matches places with latitude or longitude positioned in a rectangle of given height and width (in degrees), and with middlepoint the given latitude and longitude."
-msgstr ""
+msgstr "Encontra lugares com latitude ou logintude posicionados num retângulo duma dada altura e largura (em graus), e com ponto médio da latiude e longitude dadas."
 
 #: ../src/Filters/Rules/Place/_MatchesFilter.py:45
 #, fuzzy
@@ -12200,7 +12010,7 @@ msgstr "Pessoas com registros que coincidem com a expressão regular..."
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Encontra fontes que o ID GRAMPS batam com a expressão regular"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
@@ -12304,7 +12114,7 @@ msgstr "Caminho:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Media objects matching parameters"
-msgstr ""
+msgstr "Objetos de mídia encontrados com os parâmetros"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
 #, fuzzy
@@ -12358,7 +12168,7 @@ msgstr "Pessoas com registros que coincidem com a expressão regular..."
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Encontra objetos de mídia que o ID GRAMPS batam com a expressão regular"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 #, fuzzy
@@ -12402,11 +12212,11 @@ msgstr "Encontra as pessoas cujas notas contém texto que coincide com uma cadei
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr ""
+msgstr "Repositórios encontrados com os parâmetros"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 #, fuzzy
@@ -12430,7 +12240,7 @@ msgstr "Pessoas com registros que coincidem com a expressão regular..."
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr ""
+msgstr "Encontra repositórios que o ID GRAMPS batam com a expressão regular"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 #, fuzzy
@@ -12477,13 +12287,13 @@ msgstr "Famílias"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:84
 msgid "any"
-msgstr ""
+msgstr "qualquer"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:112
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:114
 #, python-format
 msgid "example: \"%s\" or \"%s\""
-msgstr ""
+msgstr "exemplo: \"%s\" or \"%s\""
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:113
 #, fuzzy
@@ -12810,6 +12620,9 @@ msgid ""
 "Male\n"
 "Unknown"
 msgstr ""
+"Feminino\n"
+"Masculino\n"
+"Desconhecido"
 
 #: ../src/glade/edit_person.glade.h:14
 #, fuzzy
@@ -12819,12 +12632,12 @@ msgstr "Sexo"
 #: ../src/glade/edit_person.glade.h:16
 #: ../src/glade/gramps.glade.h:75
 msgid "Indicates if the record is private"
-msgstr ""
+msgstr "Indica se o registro é privado"
 
 #: ../src/glade/edit_person.glade.h:17
 #: ../src/glade/gramps.glade.h:85
 msgid "Marker:"
-msgstr ""
+msgstr "Marcador:"
 
 #: ../src/glade/edit_person.glade.h:18
 #, fuzzy
@@ -12862,7 +12675,7 @@ msgstr "_Título:"
 
 #: ../src/glade/gramps.glade.h:1
 msgid "\n"
-msgstr ""
+msgstr "\n"
 
 #: ../src/glade/gramps.glade.h:3
 msgid "<b>Alignment</b>"
@@ -12917,15 +12730,15 @@ msgstr "<b>Mãe</b>"
 
 #: ../src/glade/gramps.glade.h:16
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
-msgstr ""
+msgstr "<b>Nota:</b> Qualquer mudança nos dados do evento compartilhado refletirá no evento propriamente dito, para todos os participantes do evento."
 
 #: ../src/glade/gramps.glade.h:17
 msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
-msgstr ""
+msgstr "<b>Nota:</b> Qualquer mudanjça nos dados do repositório compartilhado refletirá no repositório propriamente dito, para todos items que referenciam o repositório."
 
 #: ../src/glade/gramps.glade.h:18
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
-msgstr ""
+msgstr "<b>Nota:</b> Qualquer mudança nos dados da fonte compartilhada frelfetira na fonte propriamente dita, para todos os items que referenciam a fonte."
 
 #: ../src/glade/gramps.glade.h:20
 msgid "<b>Paragraph options</b>"
@@ -13049,7 +12862,7 @@ msgstr "Co_ndado:"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Convert to a relative path"
-msgstr ""
+msgstr "Converter para caminho relativo"
 
 #: ../src/glade/gramps.glade.h:53
 msgid "Cou_ntry:"
@@ -13087,7 +12900,7 @@ msgstr "Não pergunte novamente"
 
 #: ../src/glade/gramps.glade.h:63
 msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
-msgstr ""
+msgstr "Posiçao Leste/Oeste, ex.: -2.88589, 2º53'9.23\" ou -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:64
 #, fuzzy
@@ -13105,7 +12918,7 @@ msgstr "Primeira li_nha:"
 
 #: ../src/glade/gramps.glade.h:67
 msgid "Format _definition:"
-msgstr ""
+msgstr "_Definição de formato:"
 
 #: ../src/glade/gramps.glade.h:68
 #, fuzzy
@@ -13114,7 +12927,7 @@ msgstr "_Nome do livro:"
 
 #: ../src/glade/gramps.glade.h:69
 msgid "Format definition d_etails"
-msgstr ""
+msgstr "D_etalhes da definição de formato"
 
 #: ../src/glade/gramps.glade.h:70
 msgid "GRAMPS"
@@ -13171,7 +12984,7 @@ msgstr "Mê_s"
 
 #: ../src/glade/gramps.glade.h:88
 msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
-msgstr ""
+msgstr "Posição Norte/Sul, exemplo 50.84988, 50º50'59.60\"N ou 50:50:59.60"
 
 #: ../src/glade/gramps.glade.h:89
 #, fuzzy
@@ -13260,6 +13073,14 @@ msgid ""
 "  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
+"As seguintes convenções são usadas:\n"
+"<tt>  <b>%f</b> - Primeiro nome       <b>%F</b> - PRIMEIRO NOME\n"
+"  <b>%l</b> - Sobrenome          <b>%L</b> - SOBRENOME\n"
+"  <b>%t</b> - Título            <b>%T</b> - TÍTULO\n"
+"  <b>%p</b> - Prefixo           <b>%P</b> - PREFIXO\n"
+"  <b>%s</b> - Sufixo           <b>%S</b> - SUFIXO\n"
+"  <b>%c</b> - Nome Usual        <b>%C</b> - NOME USUAL\n"
+"  <b>%y</b> - Patronímico       <b>%Y</b> - PATRONÍMICO</tt>"
 
 #: ../src/glade/gramps.glade.h:120
 msgid "Upper X:"
@@ -13622,6 +13443,9 @@ msgid ""
 "At least one rule must apply\n"
 "Exactly one rule must apply"
 msgstr ""
+"Todas as regras devem se aplicar\n"
+"Pelo menos uma regra deve se aplicar\n"
+"Exatamente uma regra deve se aplicar"
 
 #: ../src/glade/rule.glade.h:13
 #, fuzzy
@@ -13752,6 +13576,8 @@ msgid ""
 "<b><i>Please install the rcs package\n"
 "to enable the default functionality.</i></b>"
 msgstr ""
+"<b><i>Por favor instale o pacote rcs\n"
+" para habilitar a funcionalidade padrão.</i></b>"
 
 #: ../src/plugins/checkpoint.glade.h:3
 msgid "<b>Revision control system</b>"
@@ -13947,16 +13773,16 @@ msgstr "_Estima as datas que faltam"
 #: ../src/plugins/verify.glade.h:23
 #: ../src/plugins/unused.glade.h:8
 msgid "_Mark all"
-msgstr ""
+msgstr "_Marcar todas"
 
 #: ../src/plugins/verify.glade.h:25
 #: ../src/plugins/unused.glade.h:9
 msgid "_Unmark all"
-msgstr ""
+msgstr "_Desmarcar todas"
 
 #: ../src/plugins/unused.glade.h:3
 msgid "Search for events"
-msgstr ""
+msgstr "Procurar por eventos"
 
 #: ../src/plugins/unused.glade.h:4
 #, fuzzy
@@ -13980,7 +13806,7 @@ msgstr "Todas as Pessoas"
 
 #: ../src/plugins/unused.glade.h:10
 msgid "gtk-find"
-msgstr ""
+msgstr "gtk-find"
 
 #: ../src/plugins/unused.glade.h:11
 #, fuzzy
@@ -13989,11 +13815,11 @@ msgstr "Remove"
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
-msgstr ""
+msgstr "GRAMPS Sistema de Genealogia"
 
 #: ../data/gramps.desktop.in.h:2
 msgid "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Gerencia informações genealógicas, faz análises e pesquisas genealógicas"
 
 #: ../data/gramps.keys.in.h:2
 #: ../data/gramps.xml.in.h:2
@@ -14019,23 +13845,23 @@ msgstr "Carrega o último banco de dados _automaticamente"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Backup database on exit"
-msgstr ""
+msgstr "Fazer backup do banco de dados quando sair"
 
 #: ../data/gramps.schemas.in.h:3
 msgid "Color used to highlight TODO items in a list"
-msgstr ""
+msgstr "Cor usada para realçar items A FAZER numa lista"
 
 #: ../data/gramps.schemas.in.h:4
 msgid "Color used to highlight complete items in a list"
-msgstr ""
+msgstr "Cor usada para realçar itens completos numa lista"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Color used to highlight custom marker items in a list"
-msgstr ""
+msgstr "Cor usada para realçar itens com marcadores customizados numa lista"
 
 #: ../data/gramps.schemas.in.h:6
 msgid "Create default source on import"
-msgstr ""
+msgstr "Criar fonte padrão quando importar"
 
 #: ../data/gramps.schemas.in.h:7
 #, fuzzy
@@ -14044,15 +13870,15 @@ msgstr "Formato de Exibição"
 
 #: ../data/gramps.schemas.in.h:8
 msgid "Default event GRAMPS ID pattern"
-msgstr ""
+msgstr "Formato padrão de ID GRAMPS para eventos"
 
 #: ../data/gramps.schemas.in.h:9
 msgid "Default family GRAMPS ID pattern"
-msgstr ""
+msgstr "Formato padrão de ID GRAMPS para famílias"
 
 #: ../data/gramps.schemas.in.h:10
 msgid "Default media object GRAMPS ID pattern"
-msgstr ""
+msgstr "Formato padrão de ID GRAMPS para objetos de mídia"
 
 #: ../data/gramps.schemas.in.h:11
 #, fuzzy
@@ -14061,7 +13887,7 @@ msgstr "Pessoa pré-determinada"
 
 #: ../data/gramps.schemas.in.h:12
 msgid "Default place GRAMPS ID pattern"
-msgstr ""
+msgstr "Formato padrão de ID GRAMPS para lugares"
 
 #: ../data/gramps.schemas.in.h:13
 #, fuzzy
@@ -14075,27 +13901,27 @@ msgstr "Pessoa pré-determinada"
 
 #: ../data/gramps.schemas.in.h:15
 msgid "Default source GRAMPS ID pattern"
-msgstr ""
+msgstr "Formato padrão de ID GRAMPS para fontes"
 
 #: ../data/gramps.schemas.in.h:16
 msgid "Default surname guessing style"
-msgstr ""
+msgstr "Estilo padrão para dedução de sobrenomes"
 
 #: ../data/gramps.schemas.in.h:17
 msgid "Default website directory"
-msgstr ""
+msgstr "Diretório padrão do website"
 
 #: ../data/gramps.schemas.in.h:18
 msgid "Display Filter controls"
-msgstr ""
+msgstr "Exibir controles de Filtro"
 
 #: ../data/gramps.schemas.in.h:20
 msgid "Display informational message when editing a person"
-msgstr ""
+msgstr "Exibir mensagem informativa quando editando uma pessoa"
 
 #: ../data/gramps.schemas.in.h:21
 msgid "Do not prompt on save"
-msgstr ""
+msgstr "Não perguntar ao salvar"
 
 #: ../data/gramps.schemas.in.h:22
 #, fuzzy
@@ -14104,11 +13930,11 @@ msgstr "Habilita o verificador ortográfico"
 
 #: ../data/gramps.schemas.in.h:23
 msgid "Enables the display of portability warning"
-msgstr ""
+msgstr "Habilita a exibição do aviso de portabilidade"
 
 #: ../data/gramps.schemas.in.h:24
 msgid "Enables the display of portability warning."
-msgstr ""
+msgstr "Habilita a exibição do aviso de portabilidade."
 
 #: ../data/gramps.schemas.in.h:25
 #, fuzzy
@@ -14117,27 +13943,27 @@ msgstr "Não bloqueia transações"
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Enables the use of transactions, which increase data security and improve speed."
-msgstr ""
+msgstr "Habilita o uso de transações, que aumenta a segurança dos dados e melhora a velocidade."
 
 #: ../data/gramps.schemas.in.h:27
 msgid "Full pathname of the default report directory."
-msgstr ""
+msgstr "Caminho completo do diretório padrão de relatório."
 
 #: ../data/gramps.schemas.in.h:28
 msgid "Full pathname of the default website directory."
-msgstr ""
+msgstr "Caminho completo do diretório padrão de website."
 
 #: ../data/gramps.schemas.in.h:29
 msgid "Full pathname of the directory from which GRAMPS has last imported data."
-msgstr ""
+msgstr "Caminho completo do diretório de qual o GRAMPS importou os últimos dados."
 
 #: ../data/gramps.schemas.in.h:30
 msgid "Full pathname of the directory into which GRAMPS has last exported data."
-msgstr ""
+msgstr "Caminho completo para o diretório no qual GRAMPs exportou os últimos dados."
 
 #: ../data/gramps.schemas.in.h:31
 msgid "Full pathname of the last GRDB database GRAMPS has worked with."
-msgstr ""
+msgstr "Caminho completo para o último banco de dados GRDB que o GRAMPS trabalhou."
 
 #: ../data/gramps.schemas.in.h:32
 #, fuzzy
@@ -14236,99 +14062,99 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:51
 msgid "Hide beta warning on startup"
-msgstr ""
+msgstr "Esconder aviso de beta quando iniciar"
 
 #: ../data/gramps.schemas.in.h:52
 msgid "If True, a new source will be created and every record without source reference will be referenced to this source"
-msgstr ""
+msgstr "Se verdadeiro, uma nova fonte será criada e todo registro sem referência de fonte será referenciado para esta fonte."
 
 #: ../data/gramps.schemas.in.h:53
 msgid "If True, shading is used to highlight data in Relationship View"
-msgstr ""
+msgstr "Se verdsadeiro, sobreamento é usado para realçar dados na Visão Relatório"
 
 #: ../data/gramps.schemas.in.h:54
 msgid "If True, the Map View will connect to OpenGIS servers to download maps."
-msgstr ""
+msgstr "Se verdadeiro, a Visão de Mapa conectará nos servidores OpenGIS para fazer download dos mapas."
 
 #: ../data/gramps.schemas.in.h:55
 msgid "If set to 0 or 1, the statusbar will the name and GRAMPS ID of an active person. If set to 2, the statusbar will show the relationship of the active person to the Default Person."
-msgstr ""
+msgstr "Se configurado para 0 ou 1, a barra de status terá o nome e o ID GRAMPS de uma pessoa ativa. Se configurado para 2, a barra de status exibirá a relação da pessoa ativa com a pessoa padrão."
 
 #: ../data/gramps.schemas.in.h:56
 msgid "If set to 1, Plugin Status Window will pop automatically when problems are detected on plugins load and reload."
-msgstr ""
+msgstr "Se configurado par 1, a janela de status de plugin aparecerá automaticamente quando problemas forem detectados ao carregar ou recarregar plugins."
 
 #: ../data/gramps.schemas.in.h:57
 msgid "If set to 1, Tip of the Day will be displayed on startup."
-msgstr ""
+msgstr "Se configurado para 1, Dica do Dia será exibida ao iniciar."
 
 #: ../data/gramps.schemas.in.h:58
 msgid "If set to 1, the Filter controls will be displayed in People View."
-msgstr ""
+msgstr "Se configurado para 1, os controles de Filtros serão exibidos na Visão de Pessoa"
 
 #: ../data/gramps.schemas.in.h:59
 msgid "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook View will be used instead."
-msgstr ""
+msgstr "Se configurado para 1, a Visão da Barra Lateral será habilitada. Se configurado para 0, a visão de Bloco de Notas será usada no lugar."
 
 #: ../data/gramps.schemas.in.h:60
 msgid "If set to 1, the last database will be loaded on the startup."
-msgstr ""
+msgstr "Se configurada para 1, o último banco de dados será carregado ao iniciar."
 
 #: ../data/gramps.schemas.in.h:61
 msgid "If set to 1, the spelling checker will be enabled if it is available on the system."
-msgstr ""
+msgstr "Se configurado para 1, o verificador ortográfico será habilitado se presente no sistema."
 
 #: ../data/gramps.schemas.in.h:62
 msgid "If set to 1, the toolbar will be shown in the main GRAMPS window."
-msgstr ""
+msgstr "Se configurado para 1, a barra de ferramentas será exibida na janela principal do GRAMPS."
 
 #: ../data/gramps.schemas.in.h:63
 msgid "If set to 1, the warning about beta version will not be displayed on the startup."
-msgstr ""
+msgstr "Se configurado para 1, o aviso sobre a versão beta não será exibido ao iniciar."
 
 #: ../data/gramps.schemas.in.h:64
 msgid "If set to 1, this key indicates that the screen size has already been checked and the initial interface decision made. No action will be taken if the screen is too smal, since the user may have overridden our settings."
-msgstr ""
+msgstr "Se configurado para 1, essa chave indica que o tamanho da tela já foi checado e a decisão inicial de interface feita. Nenhuma ação sesrá tomada se a tela é muito pequena, já que o usuário pode ter sobrescrito nossas configurações."
 
 #: ../data/gramps.schemas.in.h:65
 msgid "If set to 1, this key indicates that the startup druid has already been run."
-msgstr ""
+msgstr "Se configurado para 1, essa chave indica que o assistente de início já foi executado."
 
 #: ../data/gramps.schemas.in.h:66
 msgid "If set to True, a warning dialog will be displayed whenever the user is a risk of creating a duplicate family when adding parents to a person."
-msgstr ""
+msgstr "Se configurado para Verdadeiro, um diálogo de aviso será exibido sempre que o usuário arrisque criar um família duplicada quando adicionado pais a uma pessoa."
 
 #: ../data/gramps.schemas.in.h:67
 msgid "If set to True, an XML backup of the database is created on exit."
-msgstr ""
+msgstr "Se configurado para Verdadeiro, um backup XML do banco de daos é criado na saída."
 
 #: ../data/gramps.schemas.in.h:68
 msgid "If set to True, an informational dialog will be displayed whenever the user edits a person."
-msgstr ""
+msgstr "Se configurado para Verdadeiro, um diálogo informativo será exibido sempre que usuário editar uma pessoa."
 
 #: ../data/gramps.schemas.in.h:69
 msgid "If set to True, event reports are shown on the Family View."
-msgstr ""
+msgstr "Se configurado para Verdadeiro, relatórios de eventos serão mostrados na Visão de Família."
 
 #: ../data/gramps.schemas.in.h:70
 msgid "If set to True, siblings will be shown on the Family View."
-msgstr ""
+msgstr "Se configurado para Verdadeiro, irmãos serão exibidos na Visão de Família."
 
 #: ../data/gramps.schemas.in.h:71
 msgid "If set to True, the Sidebar buttons will contain a text description of the view, otherwise it will only display the button."
-msgstr ""
+msgstr "Se configurado para Verdadeiro,os botões da barra lateral conterão um texto descritivo da visão, do contrário somente o botão será exibido."
 
 #: ../data/gramps.schemas.in.h:72
 msgid "Include text on sidebar buttons"
-msgstr ""
+msgstr "Incluir texto nos botões da barra lateral"
 
 #: ../data/gramps.schemas.in.h:73
 msgid "Indicates the GRAMPS should remember last view displayed."
-msgstr ""
+msgstr "Indica que o GRAMPS deve lembrar da última visão exibida."
 
 #: ../data/gramps.schemas.in.h:74
 msgid "Indicates the last view displayed. This view will be displayed when the system is restarted."
-msgstr ""
+msgstr "Indica a última visão exibida. Essa visão será exibida quando o sistema for reiniciado."
 
 #: ../data/gramps.schemas.in.h:75
 #, fuzzy
@@ -14337,23 +14163,23 @@ msgstr "A informação é pri_vada"
 
 #: ../data/gramps.schemas.in.h:76
 msgid "Last database GRAMPS has worked with"
-msgstr ""
+msgstr "Último banco de dados que o GRAMPS trabalhou"
 
 #: ../data/gramps.schemas.in.h:77
 msgid "Last directory from which the import was made"
-msgstr ""
+msgstr "Último diretório no qual a importação foi feita"
 
 #: ../data/gramps.schemas.in.h:78
 msgid "Last directory into which the export was made"
-msgstr ""
+msgstr "Último diretório no qual a exportação foi feita"
 
 #: ../data/gramps.schemas.in.h:79
 msgid "Last view displayed"
-msgstr ""
+msgstr "Última visão exibida"
 
 #: ../data/gramps.schemas.in.h:80
 msgid "Load last database on startup"
-msgstr ""
+msgstr "Carregar último banco de dados ao iniciar"
 
 #: ../data/gramps.schemas.in.h:81
 #, fuzzy
@@ -14362,19 +14188,19 @@ msgstr "Formato de Exibição"
 
 #: ../data/gramps.schemas.in.h:82
 msgid "Preferred format for graphical reports"
-msgstr ""
+msgstr "Formato preferido para relatórios gráficos"
 
 #: ../data/gramps.schemas.in.h:83
 msgid "Preferred format for graphical reports."
-msgstr ""
+msgstr "Formato preferido para relatórios gráficos."
 
 #: ../data/gramps.schemas.in.h:84
 msgid "Preferred format for text reports"
-msgstr ""
+msgstr "Formato preferido para relatórios textuais"
 
 #: ../data/gramps.schemas.in.h:85
 msgid "Preferred format for text reports."
-msgstr ""
+msgstr "Formato preferido para relatórios textuais."
 
 #: ../data/gramps.schemas.in.h:86
 #, fuzzy
@@ -14413,7 +14239,7 @@ msgstr "Informações do Pesquisador"
 
 #: ../data/gramps.schemas.in.h:93
 msgid "Researcher email address."
-msgstr ""
+msgstr "Endereço de email do pesquisador."
 
 #: ../data/gramps.schemas.in.h:94
 #, fuzzy
@@ -14467,15 +14293,15 @@ msgstr "Apaga o endereço selecionado"
 
 #: ../data/gramps.schemas.in.h:104
 msgid "Screen size has been checked"
-msgstr ""
+msgstr "Tamanho da tela foi checado"
 
 #: ../data/gramps.schemas.in.h:105
 msgid "Show event details on the Family View"
-msgstr ""
+msgstr "Exibe detalhes do evento na Visão de Família"
 
 #: ../data/gramps.schemas.in.h:106
 msgid "Show siblings on the Family View"
-msgstr ""
+msgstr "Exibie irmãos na Visão de Família"
 
 #: ../data/gramps.schemas.in.h:107
 #, fuzzy
@@ -14494,11 +14320,11 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:110
 msgid "Specifies the height of the address editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de endereços."
 
 #: ../data/gramps.schemas.in.h:111
 msgid "Specifies the height of the attribute editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de atributo."
 
 #: ../data/gramps.schemas.in.h:112
 #, fuzzy
@@ -14507,7 +14333,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:113
 msgid "Specifies the height of the event reference editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de referência de eventos."
 
 #: ../data/gramps.schemas.in.h:114
 #, fuzzy
@@ -14516,11 +14342,11 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:115
 msgid "Specifies the height of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Especifica a altura da interface quando o GRAMPS inicia."
 
 #: ../data/gramps.schemas.in.h:116
 msgid "Specifies the height of the location editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de locais."
 
 #: ../data/gramps.schemas.in.h:117
 #, fuzzy
@@ -14529,7 +14355,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:118
 msgid "Specifies the height of the media reference editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de referência de mídia."
 
 #: ../data/gramps.schemas.in.h:119
 #, fuzzy
@@ -14543,7 +14369,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:121
 msgid "Specifies the height of the person reference editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de referência de pessoas."
 
 #: ../data/gramps.schemas.in.h:122
 #, fuzzy
@@ -14552,11 +14378,11 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:123
 msgid "Specifies the height of the repository editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de repositórios."
 
 #: ../data/gramps.schemas.in.h:124
 msgid "Specifies the height of the repository reference editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de referência de repositórios."
 
 #: ../data/gramps.schemas.in.h:125
 #, fuzzy
@@ -14565,7 +14391,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:126
 msgid "Specifies the height of the source reference editor interface."
-msgstr ""
+msgstr "Especifica a altura da interface do editor de referência de fonte."
 
 #: ../data/gramps.schemas.in.h:127
 #, fuzzy
@@ -14579,39 +14405,39 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:129
 msgid "Specifies the width of the address editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de endereço."
 
 #: ../data/gramps.schemas.in.h:130
 msgid "Specifies the width of the attribute editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de atributo."
 
 #: ../data/gramps.schemas.in.h:131
 msgid "Specifies the width of the event editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de evento."
 
 #: ../data/gramps.schemas.in.h:132
 msgid "Specifies the width of the event reference editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de referência de evento."
 
 #: ../data/gramps.schemas.in.h:133
 msgid "Specifies the width of the family editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de família."
 
 #: ../data/gramps.schemas.in.h:134
 msgid "Specifies the width of the interface when GRAMPS starts."
-msgstr ""
+msgstr "Especifica a largura da interface quando o GRAMPS inicia."
 
 #: ../data/gramps.schemas.in.h:135
 msgid "Specifies the width of the location editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de locais."
 
 #: ../data/gramps.schemas.in.h:136
 msgid "Specifies the width of the media editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de mídia."
 
 #: ../data/gramps.schemas.in.h:137
 msgid "Specifies the width of the media reference editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de referência de mídia."
 
 #: ../data/gramps.schemas.in.h:138
 #, fuzzy
@@ -14620,31 +14446,31 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:139
 msgid "Specifies the width of the person editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de pessoa."
 
 #: ../data/gramps.schemas.in.h:140
 msgid "Specifies the width of the person reference editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de referência de pessoa."
 
 #: ../data/gramps.schemas.in.h:141
 msgid "Specifies the width of the place editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de lugar."
 
 #: ../data/gramps.schemas.in.h:142
 msgid "Specifies the width of the repository editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de repositório."
 
 #: ../data/gramps.schemas.in.h:143
 msgid "Specifies the width of the repository reference editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de referência de repositório."
 
 #: ../data/gramps.schemas.in.h:144
 msgid "Specifies the width of the source editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de fonte."
 
 #: ../data/gramps.schemas.in.h:145
 msgid "Specifies the width of the source reference editor interface."
-msgstr ""
+msgstr "Especifica a largura da interface do editor de referência de fonte."
 
 #: ../data/gramps.schemas.in.h:146
 #, fuzzy
@@ -14653,75 +14479,75 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:147
 msgid "Startup druid has been run"
-msgstr ""
+msgstr "Assistente de início foi executado"
 
 #: ../data/gramps.schemas.in.h:148
 msgid "The new GRAMPS IDs for the events are generated according to this format string."
-msgstr ""
+msgstr "Os novos IDs GRAMPS para os eventos são gerados no seguinte formato."
 
 #: ../data/gramps.schemas.in.h:149
 msgid "The new GRAMPS IDs for the family are generated according to this format string."
-msgstr ""
+msgstr "Os novos IDs GRAMPS para a família são gerados no seguinte formato."
 
 #: ../data/gramps.schemas.in.h:150
 msgid "The new GRAMPS IDs for the media object are generated according to this format string."
-msgstr ""
+msgstr "Os novos IDs GRAMPS para o objeto de mídia são gerados no seguinte formato."
 
 #: ../data/gramps.schemas.in.h:151
 msgid "The new GRAMPS IDs for the person are generated according to this format string."
-msgstr ""
+msgstr "Os novos IDs GRAMPS para a pessoa são gerados no seguinte formato."
 
 #: ../data/gramps.schemas.in.h:152
 msgid "The new GRAMPS IDs for the place are generated according to this format string."
-msgstr ""
+msgstr "Os novos IDs GRAMPS para o lugar são gerados no seguinte formato."
 
 #: ../data/gramps.schemas.in.h:153
 msgid "The new GRAMPS IDs for the repositories are generated according to this format string."
-msgstr ""
+msgstr "Os novos IDs GRAMPS para os repositórios são gerados no seguinte formato."
 
 #: ../data/gramps.schemas.in.h:154
 msgid "The new GRAMPS IDs for the source are generated according to this format string."
-msgstr ""
+msgstr "Os novos IDs GRAMPS para a fonte são gerados no seguinte formato."
 
 #: ../data/gramps.schemas.in.h:155
 msgid "This key determines the date display format. O corresponds to the MM/DD/YYYY (US format), 1 corrsponds to DD/MM/YYYY (European format), and 2 corresponds to YYYY-MM-DD (ISO format)."
-msgstr ""
+msgstr "Essa chave determina o formato de exibição de datas. 0 corresponde ao formato MM/DD/YYYY (padrão americano), 1 corresponde a DD/MM/YYYY (padrão europeu), e 2 corresponde a YYYY-MM-DD (padrão ISO)."
 
 #: ../data/gramps.schemas.in.h:156
 msgid "This key determines the name display format. Use 1 for \"Surname, Firstname\", 2 for \"Firstname Surname\", 3 for \"Patronymic Firstname\", and 4 for \"Firstname\" style. For custom styles, use negative integers, whose meaning is database-specific. Zero is reserved for internal purposes and should not be used. If used, it will be changed to 1 by GRAMPS."
-msgstr ""
+msgstr "Essa chave determina o formato de exibição do nome. Use 1 para o estilo \"Sobrenome, Primeiro-nome\", 2 para \"Primeiro-nome Sobrenome\", 3 para \"Primeiro-nome Patronímico\", e 4 para \"Primeiro-nome\". Para estilos personalizados, use inteiros negativos, que significam que é específico de banco de dados. Zero é reservado para propósitos internos e não deve ser usado. Se usado, ele será alterado para 1 pelo GRAMPS."
 
 #: ../data/gramps.schemas.in.h:157
 msgid "This key determines the style of the surname guessing when the new person is added to the database. Use 0 for Father's surname, 1 for no guessing, 2 for the combination of mother's and father's surnames, and 3 for the Icelandic style."
-msgstr ""
+msgstr "Essa chave determina o estilo da dedução do sobrenome quando uma nova pessoa é adicionada ao banco de dados. Use 0 para Sobrenome do pai, 1 para não deduzir, 2 para combinar o sobrenomes da mãe e do pai, e 3 para o estilo Icelandic."
 
 #: ../data/gramps.schemas.in.h:158
 msgid "This key disables prompting when data has changed and the Cancel button has been pressed."
-msgstr ""
+msgstr "Essa chave desabilita a pergunta quando dados sofrerem alterações e o botão Cancelar for pressionado."
 
 #: ../data/gramps.schemas.in.h:159
 msgid "This key keeps the version for which the welcome message has already been displayed. The integer denotes the major, minor, and release numerals, e.g. 200 denotes the 2.0.0 version."
-msgstr ""
+msgstr "Esse chave mantém a versão para a qual a mensagem de boas vindas já foi exibida. O inteiro denota os numerais maior, menor e número de release. Ex.: 200 denota a versão 2.0.0."
 
 #: ../data/gramps.schemas.in.h:160
 msgid "Use last view displayed"
-msgstr ""
+msgstr "Usar última visão exibida"
 
 #: ../data/gramps.schemas.in.h:161
 msgid "Use online maps"
-msgstr ""
+msgstr "Usar mapas online"
 
 #: ../data/gramps.schemas.in.h:162
 msgid "Use shading to highlight data in Relationship View"
-msgstr ""
+msgstr "Usar sombreamento para realçar os dados na Visão de Relacionamento"
 
 #: ../data/gramps.schemas.in.h:163
 msgid "Warn when adding parents in a way that may cause duplicate families."
-msgstr ""
+msgstr "Avisar quando adionar pais num modo que possa causar famílias duplicadas."
 
 #: ../data/gramps.schemas.in.h:164
 msgid "Welcome message has already been displayed for this version"
-msgstr ""
+msgstr "Mensagem de boas vindas já foi exibidas para essa versão"
 
 #: ../data/gramps.schemas.in.h:165
 #, fuzzy
@@ -14745,7 +14571,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:169
 msgid "Width of the event reference editor interface."
-msgstr ""
+msgstr "Largura da interface do editor de referência."
 
 #: ../data/gramps.schemas.in.h:170
 #, fuzzy
@@ -14754,7 +14580,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:171
 msgid "Width of the interface."
-msgstr ""
+msgstr "Largura da interface."
 
 #: ../data/gramps.schemas.in.h:172
 #, fuzzy
@@ -14768,7 +14594,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:174
 msgid "Width of the media reference editor interface."
-msgstr ""
+msgstr "Largura da interface do editor de referência de mídia."
 
 #: ../data/gramps.schemas.in.h:175
 #, fuzzy
@@ -14782,7 +14608,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:177
 msgid "Width of the person reference editor interface."
-msgstr ""
+msgstr "Largura da interface do editor de referência de pessoa."
 
 #: ../data/gramps.schemas.in.h:178
 #, fuzzy
@@ -14806,7 +14632,7 @@ msgstr "Retorna ao índice de lugares"
 
 #: ../data/gramps.schemas.in.h:182
 msgid "Width of the source reference editor interface."
-msgstr ""
+msgstr "Largura da interface do editor de referência de fonte."
 
 #: ../data/gramps.schemas.in.h:183
 #, fuzzy
@@ -14819,7 +14645,7 @@ msgstr "<b>Adicionando Filhos</b>: Para adicionar filhos no GRAMPS, torne o pai 
 
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Back up your database</b>: As you modifiy your database you can easily back it up by selecting <b>Tools &gt; Revision control &gt; Checkpoint the database</b>. This will back up the database in its current state using a revision control system. You can then always retrieve it using the same menu. You must have a revision control system installed. RCS is a common choice."
-msgstr ""
+msgstr "<b>Fazer backup do seu banco de dados</b>: A medida que vc modifica seu banco de daos, você pode facilmente fazer backup selecionando <b>Ferramentas &gt; Controle de Revisões &gt; Ponto de checagem do banco de dados</b>; Isso irá fazer backup do seu banco de dados no seu estado corrente usando um controle de revisões. Você então poderá sempre resgatá-lo usando o mesmo menu. Você deve ter um controle de revisões instalado em seu sistema. RCS é uma escolha comum."
 
 #: ../src/data/tips.xml.in.h:3
 msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the window is a convenient place to store the names of frequently used individuals. Clicking on a bookmarked individual will make that person the Active Person. To create a bookmark for a person, make them the Active Person, right click on their name and click on 'add bookmark'."
@@ -14903,7 +14729,7 @@ msgstr "<b>Ajustando Suas Preferências</b>: Não está contente com o comportam
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Relationships View is easy. Just doubleclick on the name of a person to make it the active one."
-msgstr ""
+msgstr "<b>Passando a Visão de Família</b>: Alterado a Pessoa Ativa na Visão de Relacionamentos é fácil. Apenas dê duplo-clique no nome da pessoa para torná-la a pessoa ativa."
 
 #: ../src/data/tips.xml.in.h:22
 #, fuzzy
