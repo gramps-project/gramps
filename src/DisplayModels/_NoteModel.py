@@ -124,11 +124,11 @@ class NoteModel(BaseModel):
                 dlist = self.search.apply(self.db, 
                 [ k for k in self.sort_keys()\
                       if k != ignore and \
-                             self.__unattached_note(h)])
+                             self.__unattached_note(k)])
             else:
                 dlist = [ k for k in self.sort_keys() \
                               if k != ignore and \
-                             self.__unattached_note(h)]
+                             self.__unattached_note(k)]
 
             self.displayed = len(dlist)
             self.node_map.set_path_map(dlist)

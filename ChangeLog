@@ -1,4 +1,7 @@
 2007-09-23  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DisplayModels/_NoteModel.py: correct bug in unattached with filter
+
+2007-09-23  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/ArgHandler.py: from buglist, read recent file is broken in GRAMPS 30!
 	DISABLE, this module must be cleaned completely before 3.0 !!
 
