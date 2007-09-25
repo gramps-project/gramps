@@ -670,6 +670,7 @@ src/glade/mergedata.glade
 src/glade/plugins.glade
 src/glade/rule.glade
 src/glade/scratchpad.glade
+src/glade/paper_settings.glade
 src/plugins/book.glade
 src/plugins/cdexport.glade
 src/plugins/changenames.glade

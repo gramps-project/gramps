@@ -28,7 +28,7 @@ interfaces should be derived from the core classes.
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "Revision:$Id$"
+__revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #

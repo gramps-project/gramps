@@ -1,3 +1,9 @@
+2007-09-25  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/glade/Makefile.am:
+	* po/POTFILES.in:
+	Add src/glade/paper_settings.glade.
+	* src/BaseDoc.py: Fix $Revision$ svn property.
+
 2007-09-24  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DataViews/_EventView.py: no filter and column editor on event view, issue #1248
 
