@@ -58,20 +58,6 @@ from Filters.SideBar import RepoSidebarFilter
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-column_names = [
-    _('Name'),
-    _('ID'),
-    _('Type'),
-    _('Home URL'),
-    _('Street'),
-    _('ZIP/Postal Code'),
-    _('City'),
-    _('County'),
-    _('State'),
-    _('Country'),
-    _('Email'),
-    _('Search URL'),
-    ]
 
 #-------------------------------------------------------------------------
 #
@@ -79,7 +65,22 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class RepositoryView(PageView.ListView):
-    
+
+    COLUMN_NAMES = [
+        _('Name'),
+        _('ID'),
+        _('Type'),
+        _('Home URL'),
+        _('Street'),
+        _('ZIP/Postal Code'),
+        _('City'),
+        _('County'),
+        _('State'),
+        _('Country'),
+        _('Email'),
+        _('Search URL'),
+        ]
+        
     ADD_MSG = _("Add a new repository")
     EDIT_MSG = _("Edit the selected repository")
     DEL_MSG = _("Delete the selected repository")
@@ -101,7 +102,7 @@ class RepositoryView(PageView.ListView):
 
         PageView.ListView.__init__(
             self, _('Repositories'), dbstate, uistate,
-            column_names, len(column_names),
+            RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
             DisplayModels.RepositoryModel, signal_map,
             dbstate.db.get_repo_bookmarks(),
             Bookmarks.RepoBookmarks,filter_class=RepoSidebarFilter)
@@ -129,7 +130,7 @@ class RepositoryView(PageView.ListView):
             _('Select Repository Columns'),
             self.uistate,
             self.dbstate.db.get_repository_column_order(),
-            column_names,
+            RepositoryView.COLUMN_NAMES,
             self.set_column_order)
 
     def set_column_order(self, clist):

@@ -35,6 +35,7 @@ import pango
 #-------------------------------------------------------------------------
 import const
 import ManagedWindow
+from Filters import SearchBar
 
 #-------------------------------------------------------------------------
 #
@@ -42,12 +43,22 @@ import ManagedWindow
 #
 #-------------------------------------------------------------------------
 class BaseSelector(ManagedWindow.ManagedWindow):
+    """Base class for the selectors, showing a dialog from which to select
+        one of the primary objects
+    """
+    
     NONE   = -1
     TEXT   =  0
     MARKUP =  1
     IMAGE  =  2
 
-    def __init__(self, dbstate, uistate, track=[], filter=None, skip=set()):
+    def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
+                 show_search_bar = True):
+        '''Set up the dialog with the dbstate and uistate, track of parent
+            windows for ManagedWindow, initial filter for the model, skip with
+            set of handles to skip in the view, and search_bar to show the 
+            SearchBar at the top or not. 
+        '''
         self.title = self.get_window_title()
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
@@ -59,18 +70,34 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.glade = gtk.glade.XML(const.GLADE_FILE,"select_person","gramps")
         window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
+        vbox = self.glade.get_widget('select_person_vbox')
         self.tree =  self.glade.get_widget('plist')
         self.tree.connect('row-activated', self._on_row_activated)
+        
+        self.colinfo = self.column_view_names()
+        #add the search bar
+        self.search_bar = SearchBar(dbstate, uistate, 
+                                    self.build_tree)
+        filter_box = self.search_bar.build()
+        self.setup_filter()
+        vbox.pack_start(filter_box, False, False)
+        vbox.reorder_child(filter_box, 1)
 
         self.set_window(window,title_label,self.title)
 
-        self.model = self.get_model_class()(self.db,skip=skip)
+        self.skip_list=skip
+        self.build_tree()
         self.selection = self.tree.get_selection()
-
-        self.tree.set_model(self.model)
         self.add_columns(self.tree)
+        
         self._local_init()
+
         self.show()
+        #show or hide search bar?
+        self.set_show_search_bar(show_search_bar)
+        #Hide showall always (used in person selector only)
+        showbox = self.glade.get_widget('showall')
+        showbox.hide()
 
     def add_columns(self,tree):
         tree.set_fixed_height_mode(True)
@@ -139,3 +166,53 @@ class BaseSelector(ManagedWindow.ManagedWindow):
     def get_handle_column(self):
         # return 3
         assert False, "Must be defined in the subclass"
+        
+    def set_show_search_bar(self, value):
+        '''make the search bar at the top shown
+        '''
+        self.show_search_bar = value
+        if not self.search_bar :
+            return
+        if self.show_search_bar :
+            self.search_bar.show()
+        else :
+            self.search_bar.hide()
+            
+    def column_order(self):
+        """
+        Column order for db columns
+        
+        Derived classes must override this function.
+        """
+        raise NotImplementedError
+    
+    def column_view_names(self):
+        """
+        Get correct column view names on which model is based
+        
+        Derived classes must override this function.
+        """
+        raise NotImplementedError
+            
+    def setup_filter(self):
+        """
+        Builds the default filters and add them to the filter bar.
+        """
+        cols = []
+        for pair in [pair for pair in self.column_order() if pair[0]]:
+            cols.append((self.colinfo[pair[1]], pair[1]))
+        self.search_bar.setup_filter(cols)
+        
+    def build_tree(self):
+        """
+        Builds the selection people see in the Selector
+        """
+        #search info for the 
+        filter_info = (False, self.search_bar.get_value())
+        #reset the model
+        self.model = self.get_model_class()(self.db, skip=self.skip_list,
+                                            search=filter_info)
+        
+        self.tree.set_model(self.model)
+        
+

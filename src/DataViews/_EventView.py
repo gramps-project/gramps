@@ -50,14 +50,6 @@ from Filters.SideBar import EventSidebarFilter
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-column_names = [
-    _('Description'),
-    _('ID'),
-    _('Type'),
-    _('Date'),
-    _('Place'),
-    _('Last Changed'),
-    ]
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +60,15 @@ class EventView(PageView.ListView):
     """
     EventView class, derived from the ListView
     """
-
+    COLUMN_NAMES = [
+        _('Description'),
+        _('ID'),
+        _('Type'),
+        _('Date'),
+        _('Place'),
+        _('Last Changed'),
+        ]
+    
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
@@ -93,7 +93,8 @@ class EventView(PageView.ListView):
 
         PageView.ListView.__init__(
             self, _('Events'), dbstate, uistate,
-            column_names, len(column_names), DisplayModels.EventModel,
+            EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
+            DisplayModels.EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
             Bookmarks.EventBookmarks, filter_class=EventSidebarFilter)
 
@@ -189,7 +190,7 @@ class EventView(PageView.ListView):
             _('Select Event Columns'),
             self.uistate,
             self.dbstate.db.get_event_column_order(),
-            column_names,
+            EventView.COLUMN_NAMES,
             self.set_column_order)
 
     def set_column_order(self, clist):

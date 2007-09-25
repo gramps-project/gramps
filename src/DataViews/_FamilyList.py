@@ -48,21 +48,21 @@ from ReportBase import CATEGORY_QR_FAMILY
 from gettext import gettext as _
 import gtk
 
-column_names = [
-    _('ID'),
-    _('Father'),
-    _('Mother'),
-    _('Relationship'),
-    _('Marriage Date'),
-    _('Last Changed'),
-    ]
-
 #-------------------------------------------------------------------------
 #
 # FamilyListView
 #
 #-------------------------------------------------------------------------
 class FamilyListView(PageView.ListView):
+    
+    COLUMN_NAMES = [
+        _('ID'),
+        _('Father'),
+        _('Mother'),
+        _('Relationship'),
+        _('Marriage Date'),
+        _('Last Changed'),
+        ]
 
     ADD_MSG     = _("Add a new family")
     EDIT_MSG    = _("Edit the selected family")
@@ -86,7 +86,8 @@ class FamilyListView(PageView.ListView):
 
         PageView.ListView.__init__(
             self, _('Family List'), dbstate, uistate,
-            column_names, len(column_names), DisplayModels.FamilyModel,
+            FamilyListView.COLUMN_NAMES, len(FamilyListView.COLUMN_NAMES), 
+            DisplayModels.FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
             Bookmarks.FamilyBookmarks, filter_class=FamilySidebarFilter)
         
@@ -103,7 +104,7 @@ class FamilyListView(PageView.ListView):
             _('Select Family List Columns'),
             self.uistate,
             self.dbstate.db.get_family_list_column_order(),
-            column_names,
+            FamilyListView.COLUMN_NAMES,
             self.set_column_order)
 
     def set_column_order(self, clist):

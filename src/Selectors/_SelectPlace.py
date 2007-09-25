@@ -59,3 +59,16 @@ class SelectPlace(BaseSelector):
         
     def get_handle_column(self):
         return PlaceModel.HANDLE_COL
+    
+    def column_order(self):
+        """
+        returns a tuple indicating the column order of the model
+        """
+        return self.db.get_place_column_order()
+    
+    def column_view_names(self):
+        """
+        Get correct column view names on which model is based
+        """
+        import DataViews
+        return DataViews.PlaceView.COLUMN_NAMES

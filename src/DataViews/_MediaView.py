@@ -64,14 +64,6 @@ from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import MediaSidebarFilter
 from DdTargets import DdTargets
 
-COLUMN_NAMES = [
-    _('Title'), 
-    _('ID'), 
-    _('Type'), 
-    _('Path'), 
-    _('Last Changed'), 
-    _('Date'), 
-    ]
 
 #-------------------------------------------------------------------------
 #
@@ -86,6 +78,15 @@ class MediaView(PageView.ListView):
     thumbnail image at the top of the view that must be updated when the
     selection changes or when the selected media object changes.
     """
+    
+    COLUMN_NAMES = [
+        _('Title'), 
+        _('ID'), 
+        _('Type'), 
+        _('Path'), 
+        _('Last Changed'), 
+        _('Date'), 
+        ]
     
     ADD_MSG     = _("Add a new media object")
     EDIT_MSG    = _("Edit the selected media object")
@@ -105,7 +106,8 @@ class MediaView(PageView.ListView):
 
         PageView.ListView.__init__(
             self, _('Media'), dbstate, uistate, 
-            COLUMN_NAMES, len(COLUMN_NAMES), DisplayModels.MediaModel, 
+            MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
+            DisplayModels.MediaModel, 
             signal_map, dbstate.db.get_media_bookmarks(), 
             Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter)
 
@@ -247,7 +249,7 @@ class MediaView(PageView.ListView):
             _('Select Media Columns'), 
             self.uistate, 
             self.dbstate.db.get_media_column_order(), 
-            COLUMN_NAMES, 
+            MediaView.COLUMN_NAMES, 
             self.set_column_order)
 
     def set_column_order(self, clist):

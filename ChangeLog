@@ -1,3 +1,20 @@
+2007-09-25  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DataViews/_MediaView.py: COLUMN_NAMES as class constant for reuse
+	* src/DataViews/_RepositoryView.py: COLUMN_NAMES as class constant for reuse
+	* src/DataViews/_SourceView.py: COLUMN_NAMES as class constant for reuse
+	* src/DataViews/_EventView.py: COLUMN_NAMES as class constant for reuse
+	* src/DataViews/_FamilyList.py: COLUMN_NAMES as class constant for reuse
+	* src/DataViews/_PlaceView.py: COLUMN_NAMES as class constant for reuse
+	* src/DataViews/_NoteView.py: COLUMN_NAMES as class constant for reuse
+	* src/Selectors/_BaseSelector.py: add hideable searchbar to selector
+	* src/Selectors/_SelectRepository.py: implement new BaseSelector methods
+	* src/Selectors/_SelectSource.py: implement new BaseSelector methods
+	* src/Selectors/_SelectEvent.py: implement new BaseSelector methods
+	* src/Selectors/_SelectFamily.py: implement new BaseSelector methods,
+	fix bug with wrong handle column
+	* src/Selectors/_SelectPlace.py: implement new BaseSelector methods
+	* src/Selectors/_SelectObject.py: implement new BaseSelector methods
+
 2007-09-25  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/glade/Makefile.am:
 	* po/POTFILES.in:

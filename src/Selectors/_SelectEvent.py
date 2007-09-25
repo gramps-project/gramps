@@ -66,3 +66,17 @@ class SelectEvent(BaseSelector):
         
     def get_handle_column(self):
         return 6
+    
+        
+    def column_order(self):
+        """
+        returns a tuple indicating the column order of the model
+        """
+        return self.db.get_event_column_order()
+    
+    def column_view_names(self):
+        """
+        Get correct column view names on which model is based
+        """
+        import DataViews
+        return DataViews.EventView.COLUMN_NAMES

@@ -57,14 +57,6 @@ from Filters.SideBar import SourceSidebarFilter
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-column_names = [
-    _('Title'),
-    _('ID'),
-    _('Author'),
-    _('Abbreviation'),
-    _('Publication Information'),
-    _('Last Changed'),
-    ]
 
 #-------------------------------------------------------------------------
 #
@@ -73,6 +65,15 @@ column_names = [
 #-------------------------------------------------------------------------
 class SourceView(PageView.ListView):
 
+    COLUMN_NAMES = [
+        _('Title'),
+        _('ID'),
+        _('Author'),
+        _('Abbreviation'),
+        _('Publication Information'),
+        _('Last Changed'),
+        ]
+    
     ADD_MSG = _("Add a new source")
     EDIT_MSG = _("Edit the selected source")
     DEL_MSG = _("Delete the selected source")
@@ -93,8 +94,9 @@ class SourceView(PageView.ListView):
             }
 
         PageView.ListView.__init__(
-            self, _('Sources'), dbstate, uistate, column_names,
-            len(column_names), DisplayModels.SourceModel, signal_map,
+            self, _('Sources'), dbstate, uistate, 
+            SourceView.COLUMN_NAMES, len(SourceView.COLUMN_NAMES), 
+            DisplayModels.SourceModel, signal_map,
             dbstate.db.get_source_bookmarks(),
             Bookmarks.SourceBookmarks, multiple=True,
             filter_class=SourceSidebarFilter)
@@ -124,7 +126,7 @@ class SourceView(PageView.ListView):
             _('Select Source Columns'),
             self.uistate,
             self.dbstate.db.get_source_column_order(),
-            column_names,
+            SourceView.COLUMN_NAMES,
             self.set_column_order)
 
     def set_column_order(self, clist):

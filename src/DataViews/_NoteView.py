@@ -58,12 +58,6 @@ from Editors import EditNote, DeleteNoteQuery
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-column_names = [
-    _('ID'),
-    _('Type'),
-    _('Marker'),
-    _('Preview'),
-    ]
 
 #-------------------------------------------------------------------------
 #
@@ -71,6 +65,13 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class NoteView(PageView.ListView):
+    
+    COLUMN_NAMES = [
+        _('ID'),
+        _('Type'),
+        _('Marker'),
+        _('Preview'),
+        ]
 
     ADD_MSG     = _("Add a new note")
     EDIT_MSG    = _("Edit the selected note")
@@ -92,8 +93,8 @@ class NoteView(PageView.ListView):
         }
 
         PageView.ListView.__init__(
-            self, _('Notes'), dbstate, uistate, column_names,
-            len(column_names), DisplayModels.NoteModel, signal_map,
+            self, _('Notes'), dbstate, uistate, NoteView.COLUMN_NAMES,
+            len(NoteView.COLUMN_NAMES), DisplayModels.NoteModel, signal_map,
             dbstate.db.get_note_bookmarks(),
             Bookmarks.NoteBookmarks,
             filter_class=NoteSidebarFilter,
@@ -184,7 +185,7 @@ class NoteView(PageView.ListView):
             _('Select Note Columns'),
             self.uistate,
             self.dbstate.db.get_note_column_order(),
-            column_names,
+            NoteView.COLUMN_NAMES,
             self.set_column_order)
 
     def set_column_order(self, clist):

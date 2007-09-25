@@ -93,3 +93,16 @@ class SelectObject(BaseSelector):
         pix = ThumbNails.get_thumbnail_image(obj.get_path())
         self.preview.set_from_pixbuf(pix)
         gc.collect()
+        
+    def column_order(self):
+        """
+        returns a tuple indicating the column order of the model
+        """
+        return self.db.get_media_column_order()
+    
+    def column_view_names(self):
+        """
+        Get correct column view names on which model is based
+        """
+        import DataViews
+        return DataViews.MediaView.COLUMN_NAMES

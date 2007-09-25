@@ -57,20 +57,6 @@ from Filters.SideBar import PlaceSidebarFilter
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-column_names = [
-    _('Place Name'),
-    _('ID'),
-    _('Church Parish'),
-    _('ZIP/Postal Code'),
-    _('City'),
-    _('County'),
-    _('State'),
-    _('Country'),
-    _('Longitude'),
-    _('Latitude'),
-    _('Last Changed'),
-    _('Street'),
-    ]
 
 #-------------------------------------------------------------------------
 #
@@ -78,6 +64,21 @@ column_names = [
 #
 #-------------------------------------------------------------------------
 class PlaceView(PageView.ListView):
+    
+    COLUMN_NAMES = [
+        _('Place Name'),
+        _('ID'),
+        _('Church Parish'),
+        _('ZIP/Postal Code'),
+        _('City'),
+        _('County'),
+        _('State'),
+        _('Country'),
+        _('Longitude'),
+        _('Latitude'),
+        _('Last Changed'),
+        _('Street'),
+        ]
 
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
@@ -99,8 +100,9 @@ class PlaceView(PageView.ListView):
             }
 
         PageView.ListView.__init__(
-            self, _('Places'), dbstate, uistate, column_names,
-            len(column_names), DisplayModels.PlaceModel, signal_map,
+            self, _('Places'), dbstate, uistate, PlaceView.COLUMN_NAMES,
+            len(PlaceView.COLUMN_NAMES), 
+            DisplayModels.PlaceModel, signal_map,
             dbstate.db.get_place_bookmarks(),
             Bookmarks.PlaceBookmarks, 
             multiple=True,
@@ -158,7 +160,7 @@ class PlaceView(PageView.ListView):
             _('Select Place Columns'),
             self.uistate,
             self.dbstate.db.get_place_column_order(),
-            column_names,
+            PlaceView.COLUMN_NAMES,
             self.set_column_order)
 
     def set_column_order(self, clist):
