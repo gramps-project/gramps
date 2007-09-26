@@ -1,3 +1,7 @@
+2007-09-26 James G. Sack <jgsack@san.rr.com>
+	* src/plugins/Check.py: same sex marriage need not be CIVIL_UNION, bug #1245
+	This includes the 8374 commit which was not present in trunk (??)
+
 2007-09-26  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Selectors/_SelectNote.py:a note selector for the reports
 	* src/Selectors/Makefile.am: add selectNote
