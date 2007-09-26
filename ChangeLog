@@ -1,3 +1,7 @@
+2007-09-26  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Selectors/_BaseSelector.py: add column sorting
+	* src/Selectors/_SelectEvent.py:remove whitespace
+
 2007-09-25  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DataViews/_MediaView.py: COLUMN_NAMES as class constant for reuse
 	* src/DataViews/_RepositoryView.py: COLUMN_NAMES as class constant for reuse

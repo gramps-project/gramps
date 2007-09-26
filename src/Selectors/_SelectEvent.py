@@ -66,7 +66,6 @@ class SelectEvent(BaseSelector):
         
     def get_handle_column(self):
         return 6
-    
         
     def column_order(self):
         """

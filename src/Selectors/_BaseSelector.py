@@ -72,6 +72,8 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         title_label = self.glade.get_widget('title')
         vbox = self.glade.get_widget('select_person_vbox')
         self.tree =  self.glade.get_widget('plist')
+        self.tree.set_headers_visible(True)
+        self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
         
         self.colinfo = self.column_view_names()
@@ -84,11 +86,17 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         vbox.reorder_child(filter_box, 1)
 
         self.set_window(window,title_label,self.title)
+        
+        #set up sorting
+        self.sort_col = 0
+        self.setupcols = True
+        self.columns = []
+        self.sortorder = gtk.SORT_ASCENDING
 
         self.skip_list=skip
         self.build_tree()
         self.selection = self.tree.get_selection()
-        self.add_columns(self.tree)
+        
         
         self._local_init()
 
@@ -113,7 +121,11 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(item[1])
             column.set_resizable(True)
-            column.set_sort_column_id(ix)
+            #connect click
+            column.connect('clicked', self.column_clicked, ix)
+            column.set_clickable(True)
+            ##column.set_sort_column_id(ix) # model has its own sort implemented
+            self.columns.append(column)
             tree.append_column(column)           
         
     def build_menu_names(self,obj):
@@ -178,6 +190,21 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         else :
             self.search_bar.hide()
             
+    def begintree(self, store, path, node, sel_list):
+        handle_column = self.get_handle_column()
+        handle = store.get_value(node, handle_column)
+        sel_list.append(handle)
+        
+    def first_selected(self):
+        """ first selected entry in the Selector tree
+        """
+        mlist = []
+        self.selection.selected_foreach(self.begintree, mlist)
+        if mlist:
+            return mlist[0]
+        else:
+            return None
+            
     def column_order(self):
         """
         Column order for db columns
@@ -209,10 +236,50 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         """
         #search info for the 
         filter_info = (False, self.search_bar.get_value())
-        #reset the model
-        self.model = self.get_model_class()(self.db, skip=self.skip_list,
+        #set up cols the first time
+        if self.setupcols :
+            self.add_columns(self.tree)
+            
+        #reset the model with correct sorting
+        self.model = self.get_model_class()(self.db, self.sort_col,
+                                            self.sortorder,
+                                            sort_map=self.column_order(),
+                                            skip=self.skip_list,
                                             search=filter_info)
         
         self.tree.set_model(self.model)
-        
 
+        #sorting arrow in column header (not on start, only on click)
+        if not self.setupcols :
+            for i in xrange(len(self.columns)):
+                enable_sort_flag = (i==self.sort_col)
+                self.columns[i].set_sort_indicator(enable_sort_flag)
+            self.columns[self.sort_col].set_sort_order(self.sortorder)
+
+        # set the search column to be the sorted column
+        search_col = self.column_order()[self.sort_col][1]
+        self.tree.set_search_column(search_col)
+        
+        self.setupcols = False
+        
+    def column_clicked(self, obj, data):
+        if self.sort_col != data:
+            self.sortorder = gtk.SORT_ASCENDING
+        else:
+            if (self.columns[data].get_sort_order() == gtk.SORT_DESCENDING
+                or not self.columns[data].get_sort_indicator()):
+                self.sortorder = gtk.SORT_ASCENDING
+            else:
+                self.sortorder = gtk.SORT_DESCENDING
+
+        self.sort_col = data
+        handle = self.first_selected()
+
+        self.build_tree()
+
+        if handle:
+            path = self.model.on_get_path(handle)
+            self.selection.select_path(path)
+            self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
+            
+        return True
