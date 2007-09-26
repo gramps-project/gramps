@@ -573,52 +573,40 @@ class CheckIntegrity:
         self.db.remove_family(family_handle,self.trans)
 
     def check_parent_relationships(self):
+        """Repair father=female or mother=male in hetero families
+        """
 
         fhandle_list = self.db.get_family_handles()
         self.progress.set_pass(_('Looking for broken parent relationships'),
                                len(fhandle_list))
-        
+
         for family_handle in fhandle_list:
             self.progress.step()
             family = self.db.get_family_from_handle(family_handle)
-            mother_handle = family.get_mother_handle()
+
             father_handle = family.get_father_handle()
-            father = None
             if father_handle:
-                father = self.db.get_person_from_handle(father_handle)
-            mother = None
-            if mother_handle:
-                mother = self.db.get_person_from_handle(mother_handle)
-            rel_type = family.get_relationship()
-
-            if not father_handle and not mother_handle:
-                continue
-            elif not father_handle:
-                if mother and mother.get_gender() == RelLib.Person.MALE:
-                    # No father set and mother is male
-                    family.set_father_handle(mother_handle)
-                    family.set_mother_handle(None)
-                    self.db.commit_family(family,self.trans)
-            elif not mother_handle:
-                if father and father.get_gender() == RelLib.Person.FEMALE:
-                    # No mother set and father is female
-                    family.set_mother_handle(father_handle)
-                    family.set_father_handle(None)
-                    self.db.commit_family(family,self.trans)
+                fgender = self.db.get_person_from_handle(father_handle
+                                                         ).get_gender()
             else:
-                fgender = father.get_gender()
-                mgender = mother.get_gender()
-                if rel_type != RelLib.FamilyRelType.CIVIL_UNION:
-                    if fgender == mgender and fgender != RelLib.Person.UNKNOWN:
-                        family.set_relationship(RelLib.FamilyRelType.CIVIL_UNION)
-                        self.fam_rel.append(family_handle)
-                        self.db.commit_family(family,self.trans)
-                    elif fgender == RelLib.Person.FEMALE or mgender == RelLib.Person.MALE:
-                        family.set_father_handle(mother_handle)
-                        family.set_mother_handle(father_handle)
-                        self.fam_rel.append(family_handle)
-                        self.db.commit_family(family,self.trans)
+                fgender = None
 
+            mother_handle = family.get_mother_handle()
+            if mother_handle:
+                mgender = self.db.get_person_from_handle(mother_handle
+                                                         ).get_gender()
+            else:
+                mgender = None
+
+            if (fgender == RelLib.Person.FEMALE \
+                    or mgender == RelLib.Person.MALE) \
+                    and fgender != mgender:
+                # swap. note: (at most) one handle may be None
+                family.set_father_handle(mother_handle)
+                family.set_mother_handle(father_handle)
+                self.db.commit_family(family,self.trans)
+                self.fam_rel.append(family_handle)
+ 
     def check_events(self):
         self.progress.set_pass(_('Looking for event problems'),
                                self.db.get_number_of_people()
