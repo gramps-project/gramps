@@ -6368,6 +6368,8 @@ msgid ""
 "\n"
 "Operation:\t%s"
 msgstr "As seguintes ações serão executadas:\n"
+"\n"
+"Operation:\t%s"
 
 #: ../src/plugins/MediaManager.py:400
 msgid "Replace _substrings in the path"

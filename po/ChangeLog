@@ -1,4 +1,7 @@
-﻿2007-09-24  Luiz Gonzaga <lfilho@gmail.com>
+2007-09-26  Benny Malengier <benny.malengier@gramps-project.org> 
+	* pt_BR.po: Crash with wrong string on line 6364
+
+2007-09-24  Luiz Gonzaga <lfilho@gmail.com>
 	* pt_BR.po: Update. All translated! Going to Fuzzy and Review the ENTIRE file (3074 strings) now...
 
 2007-09-17  Luiz Gonzaga <lfilho@gmail.com>
