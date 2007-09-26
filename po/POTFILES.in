@@ -274,6 +274,7 @@ src/Mime/_PythonMime.py
 src/Selectors/_BaseSelector.py
 src/Selectors/_SelectEvent.py
 src/Selectors/_SelectFamily.py
+src/Selectors/_SelectNote.py
 src/Selectors/_SelectObject.py
 src/Selectors/_SelectPerson.py
 src/Selectors/_SelectPlace.py

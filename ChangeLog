@@ -1,4 +1,9 @@
 2007-09-26  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Selectors/_SelectNote.py:a note selector for the reports
+	* src/Selectors/Makefile.am: add selectNote
+	* po/POTFILES.in: add selectNote
+
+2007-09-26  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Selectors/_BaseSelector.py: add column sorting
 	* src/Selectors/_SelectEvent.py:remove whitespace
 

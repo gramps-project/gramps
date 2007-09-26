@@ -10,6 +10,7 @@ pkgdata_PYTHON = \
 	_BaseSelector.py \
 	_SelectEvent.py \
 	_SelectFamily.py \
+	_SelectNote.py \
 	_SelectObject.py \
 	_SelectPerson.py \
 	_SelectRepository.py \
