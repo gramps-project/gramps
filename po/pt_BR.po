@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 2.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2007-09-26 23:56-0300\n"
+"PO-Revision-Date: 2007-09-27 14:11-0300\n"
 "Last-Translator: Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>\n"
 "Language-Team: Portuguese/Brazil <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -13415,7 +13415,7 @@ msgstr ""
 "Abaixo se encontra uma lista com nomes de família \n"
 "na qual o GRAMPS pode corrigir letras maiúsculas\n"
 "e minúsculas. Selecione os nomes que você gostaria\n"
-"que o GRAMPS corrigisse."
+"que o GRAMPS corrigisse. "
 
 #: ../src/plugins/changenames.glade.h:4
 msgid "_Accept changes and close"
@@ -13431,7 +13431,7 @@ msgstr "_Novo tipo de evento:"
 
 #: ../src/plugins/changetype.glade.h:3
 msgid "_Original event type:"
-msgstr "Tipo de evento _original:"
+msgstr "Tipo _original de evento:"
 
 #: ../src/plugins/checkpoint.glade.h:1
 msgid ""
@@ -13463,7 +13463,7 @@ msgstr "Recuperação:"
 
 #: ../src/plugins/checkpoint.glade.h:8
 msgid "This tool allows archiving and retrieval of your data using the revision control system of your choice."
-msgstr "Esta ferramenta permite que você arquive e recuper seus dados através do uso de um sistema de controle de revisões de sua escolha."
+msgstr "Esta ferramenta permite arquivar e recuperar seus dados através do uso de um sistema de controle de revisões de sua escolha."
 
 #: ../src/plugins/checkpoint.glade.h:9
 msgid "_Archive"
@@ -13546,7 +13546,7 @@ msgstr "Código SoundEx:"
 #: ../src/plugins/verify.glade.h:1
 #: ../src/plugins/unused.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<i>Duplo-clique na linha para ver/editar dados</i>"
+msgstr "<b>Duplo-clique na linha para ver/editar dados</b>"
 
 #: ../src/plugins/verify.glade.h:2
 msgid "<b>Families</b>"
@@ -13595,11 +13595,11 @@ msgstr "_Diferença máxima de idade entre marido e mulher"
 
 #: ../src/plugins/verify.glade.h:14
 msgid "Maximum number of _spouses for a person"
-msgstr "Número máximo de _cônjuges para uma pessoa"
+msgstr "Número máximo de cônjuge_s para uma pessoa"
 
 #: ../src/plugins/verify.glade.h:15
 msgid "Maximum number of c_hildren"
-msgstr "Número máximo de _filhos"
+msgstr "Número máximo de fil_hos"
 
 #: ../src/plugins/verify.glade.h:16
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
@@ -13678,7 +13678,6 @@ msgstr "Banco de Dados XML GRAMPS"
 
 #: ../data/gramps.keys.in.h:3
 #: ../data/gramps.xml.in.h:3
-#, fuzzy
 msgid "GRAMPS database"
 msgstr "Bancos de dados GRAMPS"
 
@@ -13768,9 +13767,8 @@ msgid "Do not prompt on save"
 msgstr "Não perguntar ao salvar"
 
 #: ../data/gramps.schemas.in.h:22
-#, fuzzy
 msgid "Enable the spelling checker, if available"
-msgstr "Habilita o verificador ortográfico"
+msgstr "Habilita o verificador ortográfico, se disponível"
 
 #: ../data/gramps.schemas.in.h:23
 msgid "Enables the display of portability warning"
@@ -13781,9 +13779,8 @@ msgid "Enables the display of portability warning."
 msgstr "Habilita a exibição do aviso de portabilidade."
 
 #: ../data/gramps.schemas.in.h:25
-#, fuzzy
 msgid "Enables the use of transactions"
-msgstr "Não bloqueia transações"
+msgstr "Habilita o uso de transações"
 
 #: ../data/gramps.schemas.in.h:26
 msgid "Enables the use of transactions, which increase data security and improve speed."
@@ -13810,107 +13807,88 @@ msgid "Full pathname of the last GRDB database GRAMPS has worked with."
 msgstr "Caminho completo para o último banco de dados GRDB que o GRAMPS trabalhou."
 
 #: ../data/gramps.schemas.in.h:32
-#, fuzzy
 msgid "Height of the LDS editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de SUD."
 
 #: ../data/gramps.schemas.in.h:33
-#, fuzzy
 msgid "Height of the address editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de endereço."
 
 #: ../data/gramps.schemas.in.h:34
-#, fuzzy
 msgid "Height of the attribute editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de atributo."
 
 #: ../data/gramps.schemas.in.h:35
-#, fuzzy
 msgid "Height of the event editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de evento."
 
 #: ../data/gramps.schemas.in.h:36
-#, fuzzy
 msgid "Height of the event reference editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de referência de evento."
 
 #: ../data/gramps.schemas.in.h:37
-#, fuzzy
 msgid "Height of the family editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de família."
 
 #: ../data/gramps.schemas.in.h:38
-#, fuzzy
 msgid "Height of the interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface."
 
 #: ../data/gramps.schemas.in.h:39
-#, fuzzy
 msgid "Height of the location editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de locais."
 
 #: ../data/gramps.schemas.in.h:40
-#, fuzzy
 msgid "Height of the media editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de mídia."
 
 #: ../data/gramps.schemas.in.h:41
-#, fuzzy
 msgid "Height of the media reference editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de referência de mídia."
 
 #: ../data/gramps.schemas.in.h:42
-#, fuzzy
 msgid "Height of the name editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de nome."
 
 #: ../data/gramps.schemas.in.h:43
-#, fuzzy
 msgid "Height of the person editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de pessoa."
 
 #: ../data/gramps.schemas.in.h:44
-#, fuzzy
 msgid "Height of the person reference editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de referência de pessoa."
 
 #: ../data/gramps.schemas.in.h:45
-#, fuzzy
 msgid "Height of the place editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de lugar."
 
 #: ../data/gramps.schemas.in.h:46
-#, fuzzy
 msgid "Height of the repository editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de repositório."
 
 #: ../data/gramps.schemas.in.h:47
-#, fuzzy
 msgid "Height of the repository reference editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de referência de repositório."
 
 #: ../data/gramps.schemas.in.h:48
-#, fuzzy
 msgid "Height of the source editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de fonte."
 
 #: ../data/gramps.schemas.in.h:49
-#, fuzzy
 msgid "Height of the source reference editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de fonte de referência."
 
 #: ../data/gramps.schemas.in.h:50
-#, fuzzy
 msgid "Height of the url editor interface."
-msgstr "Retorna ao índice de lugares"
+msgstr "Altura da interface do editor de url."
 
 #: ../data/gramps.schemas.in.h:51
 msgid "Hide beta warning on startup"
-msgstr "Esconder aviso de beta quando iniciar"
+msgstr "Ocultar aviso de beta ao iniciar"
 
 #: ../data/gramps.schemas.in.h:52
 msgid "If True, a new source will be created and every record without source reference will be referenced to this source"
-msgstr "Se verdadeiro, uma nova fonte será criada e todo registro sem referência de fonte será referenciado para esta fonte."
+msgstr "Se verdadeiro, uma nova fonte será criada e todo registro sem referência de fonte será referenciado para esta fonte"
 
 #: ../data/gramps.schemas.in.h:53
 msgid "If True, shading is used to highlight data in Relationship View"
@@ -13934,7 +13912,7 @@ msgstr "Se configurado para 1, Dica do Dia será exibida ao iniciar."
 
 #: ../data/gramps.schemas.in.h:58
 msgid "If set to 1, the Filter controls will be displayed in People View."
-msgstr "Se configurado para 1, os controles de Filtros serão exibidos na Visão de Pessoa"
+msgstr "Se configurado para 1, os controles de Filtros serão exibidos na Visão de Pessoa."
 
 #: ../data/gramps.schemas.in.h:59
 msgid "If set to 1, the Sidebar View will be enabled. If set to 0, the Notebook View will be used instead."
