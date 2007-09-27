@@ -139,20 +139,27 @@ class MyInteger(gtk.SpinButton):
 #
 #-------------------------------------------------------------------------
 class MyFilters(gtk.ComboBox):
-    
-    def __init__(self,filters,filter_name):
+    """Class to present a combobox of selectable filters
+    """
+    def __init__(self, filters, filter_name=None):
+        """ Construct the combobox from the entries of 
+            the filters list. 
+            filter_name is name of calling filter
+            If filter_name is given, it will be excluded from the dropdown box
+        """
         gtk.ComboBox.__init__(self)
         store = gtk.ListStore(str)
         self.set_model(store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
-        self.flist = [ f.get_name() for f in filters ]
+        #remove own name from the list if given.
+        self.flist = [ f.get_name() for f in filters if \
+            (filter_name is None or f.get_name() != filter_name)]
         self.flist.sort()
 
         for fname in self.flist:
-            if fname != filter_name:
-                store.append(row=[fname])
+            store.append(row=[fname])
         self.set_active(0)
         self.show()
         
@@ -469,13 +476,13 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Filter name:'):
                     t = MyFilters(self.filterdb.get_filters(self.space),
                                   self.filter_name)
-                # filters of another namespace
+                # filters of another namespace, name may be same as caller!
                 elif v == _('Person filter name:'):
-                    t = MyFilters(self.filterdb.get_filters('Person'),
-                                  self.filter_name)
+                    t = MyFilters(self.filterdb.get_filters('Person'))
                 elif v == _('Event filter name:'):
-                    t = MyFilters(self.filterdb.get_filters('Event'),
-                                  self.filter_name)
+                    t = MyFilters(self.filterdb.get_filters('Event'))
+                elif v == _('Source filter name:'):
+                    t = MyFilters(self.filterdb.get_filters('Source'))
                 elif _name2typeclass.has_key(v):
                     t = MySelect(_name2typeclass[v])
                 elif v == _('Inclusive:'):
