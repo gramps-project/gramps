@@ -823,8 +823,8 @@ class GtkDocFrame(GtkDocBaseElement):
     _allowed_children = ['LINE', 'POLYGON', 'BOX', 'TEXT']
 
     def divide(self, layout, width, height, dpi_x, dpi_y):
-        frame_width = self._style.width * dpi_x / 2.54
-        frame_height = self._style.height * dpi_y / 2.54
+        frame_width = round(self._style.width * dpi_x / 2.54)
+        frame_height = round(self._style.height * dpi_y / 2.54)
         t_margin = self._style.spacing[2] * dpi_y / 2.54
         b_margin = self._style.spacing[3] * dpi_y / 2.54
         
@@ -1213,8 +1213,15 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
         paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
         
+        # horizontal position of the text is not included in the style,
+        # we assume that it is the size of the shadow, or 0.2mm
+        if style.get_shadow():
+            x_offset = style.get_shadow_space()
+        else:
+            x_offset = 0.2
+            
         new_text = GtkDocText(paragraph_style, 'center', text,
-                              x + 0.2, y + h / 2, angle=0)
+                              x_offset , y + h / 2, angle=0)
         self._active_element.add_child(new_text)
     
     def draw_text(self, style_name, text, x, y):

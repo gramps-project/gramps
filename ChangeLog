@@ -1,3 +1,8 @@
+2007-09-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/PdfDoc.py: Fix pagination problems.
+	* src/docgen/CairoDoc.py: Fix pagination problem. Fix text position in
+	the box.
+
 2007-09-27  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/FilterEditor/_EditRule.py: wrong filter selection, bug #807
 	Based on work Johan

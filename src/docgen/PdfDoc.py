@@ -95,8 +95,8 @@ class PdfDoc(CairoDoc):
         """Setup environment for printing.
         """
         # get page size
-        self.page_width = context.get_width()
-        self.page_height = context.get_height()
+        self.page_width = round(context.get_width())
+        self.page_height = round(context.get_height())
         
         # initialize pagination
         self.setup_paginate()
