@@ -1,3 +1,7 @@
+2007-09-27  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/FilterEditor/_EditRule.py: wrong filter selection, bug #807
+	Based on work Johan
+
 2007-09-26 James G. Sack <jgsack@san.rr.com>
 	* src/plugins/Check.py: same sex marriage need not be CIVIL_UNION, bug #1245
 

@@ -139,19 +139,20 @@ class MyInteger(gtk.SpinButton):
 #-------------------------------------------------------------------------
 class MyFilters(gtk.ComboBox):
     
-    def __init__(self,filters,filter_name):
+    def __init__(self,filters,filter_name=None):
         gtk.ComboBox.__init__(self)
         store = gtk.ListStore(str)
         self.set_model(store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)
         self.add_attribute(cell,'text',0)
-        self.flist = [ f.get_name() for f in filters ]
+        #remove own name from the list if given.
+        self.flist = [ f.get_name() for f in filters if \
+            (filter_name is None or f.get_name() != filter_name)]
         self.flist.sort()
 
         for fname in self.flist:
-            if fname != filter_name:
-                store.append(row=[fname])
+            store.append(row=[fname])
         self.set_active(0)
         self.show()
         
