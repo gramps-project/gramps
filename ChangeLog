@@ -1,4 +1,7 @@
 2007-09-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/CairoDoc.py: Really fix text position in the box.
+
+2007-09-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: Fix pagination problems.
 	* src/docgen/CairoDoc.py: Fix pagination problem. Fix text position in
 	the box.

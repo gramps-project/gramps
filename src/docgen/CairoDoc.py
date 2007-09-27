@@ -1221,7 +1221,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             x_offset = 0.2
             
         new_text = GtkDocText(paragraph_style, 'center', text,
-                              x_offset , y + h / 2, angle=0)
+                              x + x_offset , y + h / 2, angle=0)
         self._active_element.add_child(new_text)
     
     def draw_text(self, style_name, text, x, y):
