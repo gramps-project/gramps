@@ -1,4 +1,8 @@
 2007-09-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/GtkPrint.py (paperstyle_to_pagesetup): Fix paper name and
+	custom size conversion.
+
+2007-09-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/CairoDoc.py: Really fix text position in the box.
 
 2007-09-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>

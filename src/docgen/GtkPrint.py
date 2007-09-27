@@ -102,6 +102,8 @@ def paperstyle_to_pagesetup(paper_style):
     @return: page_setup
     @rtype: gtk.PageSetup
     """
+    # paper size names according to 'PWG Candidate Standard 5101.1-2002'
+    # ftp://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn10-20020226-5101.1.pdf
     gramps_to_gtk = {
         "Letter": "na_letter",
         "Legal": "na_legal",
@@ -118,21 +120,22 @@ def paperstyle_to_pagesetup(paper_style):
         "B4": "iso_b4",
         "B5": "iso_b5",
         "B6": "iso_b6",
-        "B": "iso_b",
-        "C": "iso_c",
-        "D": "iso_d",
-        "E": "iso_e",
+        "B": "na_ledger",
+        "C": "na_c",
+        "D": "na_d",
+        "E": "na_e",
     }
 
     # First set the paper size
     gramps_paper_size = paper_style.get_size()
     gramps_paper_name = gramps_paper_size.get_name()
     
-    # FIXME it is wrong to use translatable text in comparison.
-    # How can we distinguish custom size though?
+    # All sizes not included in the translation table (even if a standard size)
+    # are handled as custom format, because we are not intelligent enough.
     if gramps_to_gtk.has_key(gramps_paper_name):
         paper_size = gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
-    elif gramps_paper_name == _("Custom Size"):
+        log.debug("Selected paper size: %s" % gramps_to_gtk[gramps_paper_name])
+    else:
         paper_width = gramps_paper_size.get_width() * 10
         paper_height = gramps_paper_size.get_height() * 10
         paper_size = gtk.paper_size_new_custom("custom",
@@ -140,11 +143,7 @@ def paperstyle_to_pagesetup(paper_style):
                                                paper_width,
                                                paper_height,
                                                gtk.UNIT_MM)
-    else:
-        def_paper_size_name = gtk.paper_size_get_default()
-        paper_size = gtk.PaperSize(def_paper_size_name)
-        log.debug("Unknown paper size, falling back to the default: %s" %
-                  def_paper_size_name)
+        log.debug("Selected paper size: (%f,%f)" % (paper_width, paper_height))
         
     page_setup = gtk.PageSetup()
     page_setup.set_paper_size(paper_size)
