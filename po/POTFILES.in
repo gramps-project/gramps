@@ -101,11 +101,9 @@ src/docgen/AsciiDoc.py
 src/docgen/GtkPrint.py
 src/docgen/HtmlDoc.py
 src/docgen/LaTeXDoc.py
-src/docgen/LPRDoc.py
 src/docgen/ODSDoc.py
 src/docgen/ODFDoc.py
 src/docgen/ODSTab.py
-src/docgen/OpenOfficeDoc.py
 src/docgen/OpenSpreadSheet.py
 src/docgen/PdfDoc.py
 src/docgen/PSDrawDoc.py
