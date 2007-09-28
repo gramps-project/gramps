@@ -191,7 +191,8 @@ class GalleryTab(ButtonTab):
             handle = ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(handle)
             pixbuf = ThumbNails.get_thumbnail_image(obj.get_path(), 
-                                                    obj.get_mime_type())
+                                                    obj.get_mime_type(),
+                                                    ref.get_rectangle())
             self.iconmodel.append(row=[pixbuf, obj.get_description(), ref])
         self._connect_icon_model()
         self._set_label()

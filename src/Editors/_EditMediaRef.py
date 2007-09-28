@@ -78,7 +78,7 @@ class EditMediaRef(EditReference):
     def _setup_fields(self):
         
         mtype = self.source.get_mime_type()
-
+        self.mtype = mtype
         self.pix = ThumbNails.get_thumbnail_image(self.source.get_path(),mtype)
         self.pixmap = self.top.get_widget("pixmap")
         ebox = self.top.get_widget('eventbox')
@@ -87,6 +87,14 @@ class EditMediaRef(EditReference):
         self.pixmap.set_from_pixbuf(self.pix)
 
         coord = self.source_ref.get_rectangle()
+
+        self.rectangle = coord
+        
+        self.subpixmap = self.top.get_widget("subpixmap")
+        self.subpix = ThumbNails.get_thumbnail_image(self.source.get_path(),
+                                                     mtype,
+                                                     coord)
+        self.subpixmap.set_from_pixbuf(self.subpix)
 
         if coord and type(coord) == tuple:
             self.top.get_widget("upperx").set_value(coord[0])
@@ -99,6 +107,30 @@ class EditMediaRef(EditReference):
             self.top.get_widget("lowerx").set_sensitive(False)
             self.top.get_widget("lowery").set_sensitive(False)
         
+        self.upperx_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("upperx"),
+            self.set_upperx,
+            self.get_upperx,
+            self.db.readonly)
+
+        self.uppery_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("uppery"),
+            self.set_uppery,
+            self.get_uppery,
+            self.db.readonly)
+
+        self.lowerx_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("lowerx"),
+            self.set_lowerx,
+            self.get_lowerx,
+            self.db.readonly)
+
+        self.lowery_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("lowery"),
+            self.set_lowery,
+            self.get_lowery,
+            self.db.readonly)
+
         self.descr_window = MonitoredEntry(
             self.top.get_widget("description"),
             self.source.set_description,
@@ -133,6 +165,153 @@ class EditMediaRef(EditReference):
         else:
             self.top.get_widget("type").set_text("")
             
+    def set_upperx(self, value):
+        """
+        Callback for the signal handling of the spinbutton for the left x coordinate of the subsection.
+        Updates the subsection thumbnail using the given value for the left x coordinate.
+        
+        @param value: the left x coordinate of the subsection
+        """
+        
+        if self.rectangle == None:
+            self.rectangle = (0,0,0,0)
+        self.rectangle = (value,
+                          self.rectangle[1],
+                          self.rectangle[2],
+                          self.rectangle[3])
+        self.update_subpixmap()
+
+    def set_uppery(self, value):
+        """
+        Callback for the signal handling of the spinbutton for the upper y coordinate of the subsection.
+        Updates the subsection thumbnail using the given value for the upper y coordinate.
+        
+        @param value: the upper y coordinate of the subsection
+        """
+        
+        if self.rectangle == None:
+            self.rectangle = (0,0,0,0)
+        self.rectangle = (self.rectangle[0],
+                          value,
+                          self.rectangle[2],
+                          self.rectangle[3])
+        self.update_subpixmap()
+
+    def set_lowerx(self, value):
+        """
+        Callback for the signal handling of the spinbutton for the right x coordinate of the subsection.
+        Updates the subsection thumbnail using the given value for the right x coordinate.
+        
+        @param value: the right x coordinate of the subsection
+        """
+        
+        if self.rectangle == None:
+            self.rectangle = (0,0,0,0)
+        self.rectangle = (self.rectangle[0],
+                          self.rectangle[1],
+                          value,
+                          self.rectangle[3])
+        self.update_subpixmap()
+
+    def set_lowery(self, value):
+        """
+        Callback for the signal handling of the spinbutton for the lower y coordinate of the subsection.
+        Updates the subsection thumbnail using the given value for the lower y coordinate.
+        
+        @param value: the lower y coordinate of the subsection
+        """
+        
+        if self.rectangle == None:
+            self.rectangle = (0,0,0,0)
+        self.rectangle = (self.rectangle[0],
+                          self.rectangle[1],
+                          self.rectangle[2],
+                          value)
+        self.update_subpixmap()
+
+    def get_upperx(self):
+        """
+        Callback for the signal handling of the spinbutton for the left x coordinate of the subsection.
+        
+        @returns: the left x coordinate of the subsection or 0 if there is no selection
+        """
+        
+        if self.rectangle != None:
+            return self.rectangle[0]
+        else:
+            return 0
+
+    def get_uppery(self):
+        """
+        Callback for the signal handling of the spinbutton for the uppper y coordinate of the subsection.
+        
+        @returns: the upper y coordinate of the subsection or 0 if there is no selection
+        """
+         
+        if self.rectangle != None:
+            return self.rectangle[1]
+        else:
+            return 0
+
+    def get_lowerx(self):
+        """
+        Callback for the signal handling of the spinbutton for the right x coordinate of the subsection.
+        
+        @returns: the right x coordinate of the subsection or 0 if there is no selection
+        """
+        
+        if self.rectangle != None:
+            return self.rectangle[2]
+        else:
+            return 0
+
+    def get_lowery(self):
+        """
+        Callback for the signal handling of the spinbutton for the lower y coordinate of the subsection.
+        
+        @returns: the lower y coordinate of the subsection or 0 if there is no selection
+        """
+        
+        if self.rectangle != None:
+            return self.rectangle[3]
+        else:
+            return 0
+
+    def update_subpixmap(self):
+        """
+        Updates the thumbnail of the specified subsection
+        """
+        
+        path = self.source.get_path()
+        if path == None:
+            self.subpixmap.hide()
+        else:
+            try:
+                pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+                width = pixbuf.get_width()
+                height = pixbuf.get_height()
+                upper_x = min(self.rectangle[0], self.rectangle[2])/100.
+                lower_x = max(self.rectangle[0], self.rectangle[2])/100.
+                upper_y = min(self.rectangle[1], self.rectangle[3])/100.
+                lower_y = max(self.rectangle[1], self.rectangle[3])/100.
+                sub_x = int(upper_x * width)
+                sub_y = int(upper_y * height)
+                sub_width = int((lower_x - upper_x) * width)
+                sub_height = int((lower_y - upper_y) * height)
+                if sub_width > 0 and sub_height > 0:
+                    pixbuf = pixbuf.subpixbuf(sub_x, sub_y, sub_width, sub_height)
+                    width = sub_width
+                    height = sub_height
+                ratio = float(max(height, width))
+                scale = const.THUMBSCALE / ratio
+                x = int(scale * width)
+                y = int(scale * height)
+                pixbuf = pixbuf.scale_simple(x, y, gtk.gdk.INTERP_BILINEAR)
+                self.subpixmap.set_from_pixbuf(pixbuf)
+                self.subpixmap.show()
+            except:
+                self.subpixmap.hide()
+
     def build_menu_names(self, person):
         """
         Provides the information needed by the base class to define the

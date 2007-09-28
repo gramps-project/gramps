@@ -106,7 +106,7 @@ def __get_gconf_bool(key):
 # __build_thumb_path
 #
 #-------------------------------------------------------------------------
-def __build_thumb_path(path):
+def __build_thumb_path(path, rectangle=None):
     """
     Converts the specified path into a corresponding path for the thumbnail
     image. We do this by converting the original path into an MD5SUM value
@@ -115,10 +115,15 @@ def __build_thumb_path(path):
 
     @type path: unicode
     @param path: filename of the source file
+    @type rectangle: tuple
+    @param rectangle: subsection rectangle
     @rtype: unicode
     @returns: full path name to the corresponding thumbnail file.
     """
-    md5_hash = md5.md5(path)
+    extra = ""
+    if rectangle != None:
+        extra = "?" + str(rectangle)
+    md5_hash = md5.md5(path+extra)
     return os.path.join(const.THUMB_DIR, md5_hash.hexdigest()+'.png')
 
 #-------------------------------------------------------------------------
@@ -126,7 +131,7 @@ def __build_thumb_path(path):
 # __create_thumbnail_image
 #
 #-------------------------------------------------------------------------
-def __create_thumbnail_image(src_file, mtype=None):
+def __create_thumbnail_image(src_file, mtype=None, rectangle=None):
     """
     Generates the thumbnail image for a file. If the mime type is specified,
     and is not an 'image', then we attempt to find and run a thumbnailer
@@ -137,8 +142,10 @@ def __create_thumbnail_image(src_file, mtype=None):
     @type src_file: unicode
     @param mtype: mime type of the specified file (optional)
     @type mtype: unicode
+    @param rectangle: subsection rectangle
+    @type rectangle: tuple
     """
-    filename = __build_thumb_path(src_file)
+    filename = __build_thumb_path(src_file, rectangle)
 
     if mtype and not mtype.startswith('image/'):
         # Not an image, so run the thumbnailer
@@ -150,6 +157,21 @@ def __create_thumbnail_image(src_file, mtype=None):
             pixbuf = gtk.gdk.pixbuf_new_from_file(src_file)
             width = pixbuf.get_width()
             height = pixbuf.get_height()
+
+            if rectangle != None:
+                upper_x = min(rectangle[0], rectangle[2])/100.
+                lower_x = max(rectangle[0], rectangle[2])/100.
+                upper_y = min(rectangle[1], rectangle[3])/100.
+                lower_y = max(rectangle[1], rectangle[3])/100.
+                sub_x = int(upper_x * width)
+                sub_y = int(upper_y * height)
+                sub_width = int((lower_x - upper_x) * width)
+                sub_height = int((lower_y - upper_y) * height)
+                if sub_width > 0 and sub_height > 0:
+                    pixbuf = pixbuf.subpixbuf(sub_x, sub_y, sub_width, sub_height)
+                    width = sub_width
+                    height = sub_height
+                    
             scale = const.THUMBSCALE / (float(max(width, height)))
             
             scaled_width = int(width * scale)
@@ -214,7 +236,7 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
 # get_thumbnail_image
 #
 #-------------------------------------------------------------------------
-def get_thumbnail_image(src_file, mtype=None):
+def get_thumbnail_image(src_file, mtype=None, rectangle=None):
     """
     Returns the thumbnail image (in GTK Pixbuf format) associated with the
     source file passed to the function. If no thumbnail could be found, 
@@ -228,11 +250,13 @@ def get_thumbnail_image(src_file, mtype=None):
     @type src_file: unicode
     @param mime_type: mime type of the source file
     @type mime_type: unicode
+    @param rectangle: subsection rectangle
+    @type rectangle: tuple
     @returns: thumbnail representing the source file
     @rtype: gtk.gdk.Pixbuf
     """
     try:
-        filename = get_thumbnail_path(src_file, mtype)
+        filename = get_thumbnail_path(src_file, mtype, rectangle)
         return gtk.gdk.pixbuf_new_from_file(filename)
     except (gobject.GError, OSError):
         if mtype:
@@ -246,7 +270,7 @@ def get_thumbnail_image(src_file, mtype=None):
 # get_thumbnail_path
 #
 #-------------------------------------------------------------------------
-def get_thumbnail_path(src_file, mtype=None):
+def get_thumbnail_path(src_file, mtype=None, rectangle=None):
     """
     Returns the path to the thumbnail image associated with the
     source file passed to the function. If the thumbnail does not exist, 
@@ -256,16 +280,18 @@ def get_thumbnail_path(src_file, mtype=None):
     @type src_file: unicode
     @param mime_type: mime type of the source file
     @type mime_type: unicode
+    @param rectangle: subsection rectangle
+    @type rectangle: tuple
     @returns: thumbnail representing the source file
     @rtype: gtk.gdk.Pixbuf
     """
-    filename = __build_thumb_path(src_file)
+    filename = __build_thumb_path(src_file, rectangle)
     if not os.path.isfile(src_file):
         return os.path.join(const.IMAGE_DIR, "image-missing.png")
     else:
         if not os.path.isfile(filename):
-            __create_thumbnail_image(src_file, mtype)
+            __create_thumbnail_image(src_file, mtype, rectangle)
         elif os.path.getmtime(src_file) > os.path.getmtime(filename):
-            __create_thumbnail_image(src_file, mtype)
+            __create_thumbnail_image(src_file, mtype, rectangle)
         return os.path.abspath(filename)
 

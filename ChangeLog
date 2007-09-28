@@ -1,3 +1,14 @@
+2007-09-28 Tobias Gehrig <tobias@gehrignet.de>
+	* src/DataViews/_PedigreeView.py: use subsection thumbnails
+	* src/DataViews/_RelationView.py: use subsection thumbnails
+	* src/Editors/_EditPerson.py: use subsection thumbnails
+	* src/Editors/_EditMediaRef.py: added subsection thumbnail preview and signal handlers
+	to update subsection thumbnail on spinbutton changes
+	* src/DisplayTabs/_GalleryTab.py: use subsection thumbnails
+	* src/ThumbNails.py: added rectangle parameter to thumbnail functions to specify the subsection
+	* src/GrampsWidgets.py: added class MonitoredSpinButton
+	* src/glade/gramps.glade: added preview pixmap of subsection thumbnail to change_description
+
 2007-09-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/CairoDoc.py (fontstyle_to_fontdescription): Fix deprecated
 	warning.

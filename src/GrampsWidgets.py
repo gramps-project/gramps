@@ -414,6 +414,122 @@ class MonitoredEntry:
         if self.get_val():
             self.obj.set_text(self.get_val())
 
+class MonitoredSpinButton:
+    """
+    Class for signal handling of spinbuttons.
+    (Code is a modified copy of MonitoredEntry)
+    """
+
+    def __init__(self, obj, set_val, get_val, read_only=False,
+                 autolist=None, changed=None):
+        """
+        @param obj: widget to be monitored
+        @type obj: gtk.SpinButton
+        @param set_val: callback to be called when obj is changed
+        @param get_val: callback to be called to retrieve value for obj
+        @param read_only: If SpinButton is read only.
+        """
+        
+        self.obj = obj
+        self.set_val = set_val
+        self.get_val = get_val
+        self.changed = changed
+
+        if get_val():
+            self.obj.set_value(get_val())
+        self.obj.connect('changed', self._on_change)
+        self.obj.set_editable(not read_only)
+
+        if autolist:
+            AutoComp.fill_entry(obj,autolist)
+
+    def reinit(self, set_val, get_val):
+        """
+        Reinitialize class with the specified callback functions.
+
+        @param set_val: callback to be called when SpinButton is changed
+        @param get_val: callback to be called to retrieve value for SpinButton
+        """
+        
+        self.set_val = set_val
+        self.get_val = get_val
+        self.update()
+
+    def set_value(self, value):
+        """
+        Sets the value of the monitored widget to the specified value.
+
+        @param value: Value to be set.
+        """
+        
+        self.obj.set_value(value)
+        
+    def connect(self, signal, callback):
+        """
+        Connect the signal of monitored widget to the specified callback.
+
+        @param signal: Signal prototype for which a connection should be set up.
+        @param callback: Callback function to be called when signal is emitted.
+        """
+        
+        self.obj.connect(signal, callback)
+
+    def _on_change(self, obj):
+        """
+        Event handler to be called when the monitored widget is changed.
+
+        @param obj: Widget that has been changed.
+        @type obj: gtk.SpinButton
+        """
+        
+        self.set_val(obj.get_value())
+        if self.changed:
+            self.changed(obj)
+
+    def force_value(self, value):
+        """
+        Sets the value of the monitored widget to the specified value.
+
+        @param value: Value to be set.
+        """
+        
+        self.obj.set_value(value)
+
+    def get_value(self):
+        """
+        Gets the current value of the monitored widget.
+
+        @returns: Current value of monitored widget.
+        """
+
+        return self.obj.get_value()
+
+    def enable(self, value):
+        """
+        Changes the property editable and sensitive of the monitored widget to value.
+
+        @param value: If widget should be editable or deactivated.
+        @type value: bool
+        """
+        
+        self.obj.set_sensitive(value)
+        self.obj.set_editable(value)
+
+    def grab_focus(self):
+        """
+        Assign the keyboard focus to the monitored widget.
+        """
+        
+        self.obj.grab_focus()
+
+    def update(self):
+        """
+        Updates value of monitored SpinButton with the value returned by the get_val callback.
+        """
+        
+        if self.get_val():
+            self.obj.set_value(self.get_val())
+
 class MonitoredText:
 
     def __init__(self, obj, set_val, get_val, read_only=False):

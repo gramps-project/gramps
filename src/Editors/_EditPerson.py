@@ -390,7 +390,7 @@ class EditPerson(EditPrimary):
         Called when a media reference had been edited. This allows fot
         the updating image on the main form which has just been modified. 
         """
-        self.load_photo(obj.get_path())
+        self.load_photo(obj.get_path(), ref.get_rectangle())
         self.gallery_tab.edit_callback(ref, obj)
 
     def _image_button_press(self, obj, event):
@@ -525,7 +525,7 @@ class EditPerson(EditPrimary):
             return False
         return False
 
-    def load_photo(self, path):
+    def load_photo(self, path, rectangle=None):
         """loads, scales, and displays the person's main photo from the path"""
         self.load_obj = path
         if path == None:
@@ -533,6 +533,21 @@ class EditPerson(EditPrimary):
         else:
             try:
                 i = gtk.gdk.pixbuf_new_from_file(path)
+                width = i.get_width()
+                height = i.get_height()
+
+                if rectangle != None:
+                    upper_x = min(rectangle[0], rectangle[2])/100.
+                    lower_x = max(rectangle[0], rectangle[2])/100.
+                    upper_y = min(rectangle[1], rectangle[3])/100.
+                    lower_y = max(rectangle[1], rectangle[3])/100.
+                    sub_x = int(upper_x * width)
+                    sub_y = int(upper_y * height)
+                    sub_width = int((lower_x - upper_x) * width)
+                    sub_height = int((lower_y - upper_y) * height)
+                    if sub_width > 0 and sub_height > 0:
+                        i = i.subpixbuf(sub_x, sub_y, sub_width, sub_height)
+
                 ratio = float(max(i.get_height(), i.get_width()))
                 scale = float(100.0)/ratio
                 x = int(scale*(i.get_width()))
@@ -696,7 +711,7 @@ class EditPerson(EditPrimary):
             if self.load_obj != obj.get_path():
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
-                    self.load_photo(obj.get_path())
+                    self.load_photo(obj.get_path(), photo.get_rectangle())
                 else:
                     self.load_photo(None)
         else:
