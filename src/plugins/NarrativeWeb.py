@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
+# Copyright (C) 2007       Gary Burton <gary.burton@zen.co.uk>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -726,19 +727,27 @@ class IndividualListPage(BasePage):
                 # birth column
                 if self.showbirth:
                     of.write('<td class="field">')
-                    birth_ref = person.get_birth_ref()
-                    if birth_ref:
-                        birth = db.get_event_from_handle(birth_ref.ref)
-                        of.write(_dd.display(birth.get_date_object()))
+                    birth = ReportUtils.get_birth_or_fallback(db, person)
+                    if birth:
+                        if birth.get_type() == RelLib.EventType.BIRTH:
+                            of.write(_dd.display(birth.get_date_object()))
+                        else:
+                            of.write('<em>')
+                            of.write(_dd.display(birth.get_date_object()))
+                            of.write('</em>')
                     of.write('</td>')
 
                 # death column
                 if self.showdeath:
                     of.write('<td class="field">')
-                    death_ref = person.get_death_ref()
-                    if death_ref:
-                        death = db.get_event_from_handle(death_ref.ref)
-                        of.write(_dd.display(death.get_date_object()))
+                    death = ReportUtils.get_death_or_fallback(db, person)
+                    if death:
+                        if death.get_type() == RelLib.EventType.DEATH:
+                            of.write(_dd.display(death.get_date_object()))
+                        else:
+                            of.write('<em>')
+                            of.write(_dd.display(death.get_date_object()))
+                            of.write('</em>')
                     of.write('</td>')
 
                 # spouse (partner) column
@@ -840,19 +849,27 @@ class SurnamePage(BasePage):
             # birth column
             if self.showbirth:
                 of.write('<td class="field">')
-                birth_ref = person.get_birth_ref()
-                if birth_ref:
-                    birth = db.get_event_from_handle(birth_ref.ref)
-                    of.write(_dd.display(birth.get_date_object()))
+                birth = ReportUtils.get_birth_or_fallback(db, person)
+                if birth:
+                    if birth.get_type() == RelLib.EventType.BIRTH:
+                        of.write(_dd.display(birth.get_date_object()))
+                    else:
+                        of.write('<em>')
+                        of.write(_dd.display(birth.get_date_object()))
+                        of.write('</em>')
                 of.write('</td>')
 
             # death column
             if self.showdeath:
                 of.write('<td class="field">')
-                death_ref = person.get_death_ref()
-                if death_ref:
-                    death = db.get_event_from_handle(death_ref.ref)
-                    of.write(_dd.display(death.get_date_object()))
+                death = ReportUtils.get_death_or_fallback(db, person)
+                if death:
+                    if death.get_type() == RelLib.EventType.DEATH:
+                        of.write(_dd.display(death.get_date_object()))
+                    else:
+                        of.write('<em>')
+                        of.write(_dd.display(death.get_date_object()))
+                        of.write('</em>')
                 of.write('</td>')
 
             # spouse (partner) column

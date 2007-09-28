@@ -1,3 +1,7 @@
+2007-09-28  Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/NarrativeWeb.py: provide fallback dates on Narrative Web pages
+	Issue #0001258
+
 2007-09-27  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py (paperstyle_to_pagesetup): Fix paper name and
 	custom size conversion.
