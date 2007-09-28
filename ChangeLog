@@ -1,3 +1,9 @@
+2007-09-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/CairoDoc.py:
+	* src/docgen/GtkPrint.py:
+	* src/docgen/PdfDoc.py:
+	Cleanup.
+
 2007-09-28 Tobias Gehrig <tobias@gehrignet.de>
 	* src/DataViews/_PedigreeView.py: use subsection thumbnails
 	* src/DataViews/_RelationView.py: use subsection thumbnails

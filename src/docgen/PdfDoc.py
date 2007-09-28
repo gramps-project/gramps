@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007  Zsolt Foldvari
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -98,9 +98,6 @@ class PdfDoc(CairoDoc):
         self.page_width = round(context.get_width())
         self.page_height = round(context.get_height())
         
-        # initialize pagination
-        self.setup_paginate()
-        
     def on_paginate(self, operation, context):
         """Paginate the whole document in chunks.
         """
@@ -108,7 +105,11 @@ class PdfDoc(CairoDoc):
         dpi_x = context.get_dpi_x()
         dpi_y = context.get_dpi_y()
         
-        finished = self.paginate(layout, dpi_x, dpi_y)
+        finished = self.paginate(layout,
+                                 self.page_width,
+                                 self.page_height,
+                                 dpi_x,
+                                 dpi_y)
         # update page number
         operation.set_n_pages(len(self._pages))
         
@@ -126,12 +127,16 @@ class PdfDoc(CairoDoc):
         """
         cr = context.get_cairo_context()
         layout = context.create_pango_layout()
-        width = context.get_width()
-        height = context.get_height()
         dpi_x = context.get_dpi_x()
         dpi_y = context.get_dpi_y()
 
-        self.draw_page(page_nr, cr, layout, width, height, dpi_x, dpi_y)
+        self.draw_page(page_nr,
+                       cr,
+                       layout,
+                       self.page_width,
+                       self.page_height,
+                       dpi_x,
+                       dpi_y)
         
 #------------------------------------------------------------------------
 #

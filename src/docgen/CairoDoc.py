@@ -1078,6 +1078,7 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self._doc = GtkDocDocument()
         self._active_element = self._doc
         self._pages = []
+        self._elements_to_paginate = []
     
     def close(self):
         self.run()
@@ -1268,25 +1269,23 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         """
         raise NotImplementedError
 
-    def setup_paginate(self):
-        """Setup initial variables for pagination.
-        """
-        # get all document level elements and beging a new page
-        self.elements_to_paginate = self._doc.get_children()[:]
-        self._pages = [GtkDocDocument(),]
-        self.available_height = self.page_height
-
-    def paginate(self, layout, dpi_x, dpi_y):
+    def paginate(self, layout, page_width, page_height, dpi_x, dpi_y):
         """Paginate the meta document in chunks.
         
         Only one document level element is handled at one run.
 
         """
+        # if first time run than initialize the variables
+        if not self._elements_to_paginate:
+            self._elements_to_paginate = self._doc.get_children()[:]
+            self._pages.append(GtkDocDocument())
+            self._available_height = page_height
+        
         # try to fit the next element to current page, divide it if needed
-        elem = self.elements_to_paginate.pop(0)
+        elem = self._elements_to_paginate.pop(0)
         (e1, e2), e1_h = elem.divide(layout,
-                                     self.page_width,
-                                     self.available_height,
+                                     page_width,
+                                     self._available_height,
                                      dpi_x,
                                      dpi_y)
 
@@ -1296,17 +1295,17 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 
         # if elem was divided remember the second half to be processed
         if e2 is not None:
-            self.elements_to_paginate.insert(0, e2)
+            self._elements_to_paginate.insert(0, e2)
 
         # calculate how much space left on current page
-        self.available_height -= e1_h
+        self._available_height -= e1_h
 
         # start new page if needed
         if (e1 is None) or (e2 is not None):
             self._pages.append(GtkDocDocument())
-            self.available_height = self.page_height
+            self._available_height = page_height
         
-        return len(self.elements_to_paginate) == 0
+        return len(self._elements_to_paginate) == 0
         
     def draw_page(self, page_nr, cr, layout, width, height, dpi_x, dpi_y):
         """Draw a page on a Cairo context.
