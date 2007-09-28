@@ -1,4 +1,7 @@
 2007-09-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/PdfDoc.py: Rewrite without gtk.PrintOperation dependency.
+
+2007-09-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/CairoDoc.py:
 	* src/docgen/GtkPrint.py:
 	* src/docgen/PdfDoc.py:

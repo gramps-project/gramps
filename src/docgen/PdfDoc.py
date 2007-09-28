@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""PDF output generator based on Cairo and gtk.PrintOperation.
+"""PDF output generator based on Cairo.
 """
 
 __revision__ = "$Revision$"
@@ -31,6 +31,7 @@ __author__   = "Zsolt Foldvari"
 # Python modules
 #
 #------------------------------------------------------------------------
+from gettext import gettext as _
 import os
 
 #------------------------------------------------------------------------
@@ -39,9 +40,7 @@ import os
 #
 #------------------------------------------------------------------------
 from CairoDoc import CairoDoc
-from GtkPrint import paperstyle_to_pagesetup
 from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
-import Errors
 import Utils
 import Mime
 
@@ -51,17 +50,25 @@ import Mime
 #
 #------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".PdfDoc")
+LOG = logging.getLogger(".PdfDoc")
 
 #-------------------------------------------------------------------------
 #
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
+import pango
+import cairo
+import pangocairo
 
-if gtk.pygtk_version < (2, 10, 0):
-    raise Errors.UnavailableError(_("PyGtk 2.10 or later is required"))
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
+
+# resolution
+DPI = 72.0
 
 #------------------------------------------------------------------------
 #
@@ -69,95 +76,80 @@ if gtk.pygtk_version < (2, 10, 0):
 #
 #------------------------------------------------------------------------
 class PdfDoc(CairoDoc):
-    """Print document via GtkPrint* interface.
-    
-    Requires Gtk+ 2.10.
-    
+    """Render the document into PDF file using Cairo.
     """
     def run(self):
-        """Run the Gtk Print operation.
+        """Create the PDF output.
         """
-        # get a page setup from the paper style we have
-        page_setup = paperstyle_to_pagesetup(self.paper)
+        # get paper dimensions
+        paper_width = self.paper.get_size().get_width() * DPI / 2.54
+        paper_height = self.paper.get_size().get_height() * DPI / 2.54
+        page_width = round(self.paper.get_usable_width() * DPI / 2.54)
+        page_height = round(self.paper.get_usable_height() * DPI / 2.54)
+        left_margin = self.paper.get_left_margin() * DPI / 2.54
+        top_margin = self.paper.get_top_margin() * DPI / 2.54
+
+        # create cairo context and pango layout
+        surface = cairo.PDFSurface(self._filename, paper_width, paper_height)
+        surface.set_fallback_resolution(300, 300)
+        cr = pangocairo.CairoContext(cairo.Context(surface))
+
+        fontmap = pangocairo.cairo_font_map_get_default()
+        fontmap.set_resolution(DPI)
         
-        # set up a print operation
-        operation = gtk.PrintOperation()
-        operation.set_default_page_setup(page_setup)
-        operation.set_export_filename(self._filename)
-        operation.connect("begin_print", self.on_begin_print)
-        operation.connect("draw_page", self.on_draw_page)
-        operation.connect("paginate", self.on_paginate)
+        pango_context = fontmap.create_context()
+        options = cairo.FontOptions()
+        options.set_hint_metrics(cairo.HINT_METRICS_OFF)
+        pangocairo.context_set_font_options(pango_context, options)
+        layout = pango.Layout(pango_context)
+        cr.update_context(pango_context)
         
-        # export to PDF file
-        operation.run(gtk.PRINT_OPERATION_ACTION_EXPORT, None)
-        
-    def on_begin_print(self, operation, context):
-        """Setup environment for printing.
-        """
-        # get page size
-        self.page_width = round(context.get_width())
-        self.page_height = round(context.get_height())
-        
-    def on_paginate(self, operation, context):
-        """Paginate the whole document in chunks.
-        """
-        layout = context.create_pango_layout()
-        dpi_x = context.get_dpi_x()
-        dpi_y = context.get_dpi_y()
-        
-        finished = self.paginate(layout,
-                                 self.page_width,
-                                 self.page_height,
-                                 dpi_x,
-                                 dpi_y)
-        # update page number
-        operation.set_n_pages(len(self._pages))
-        
+        # paginate the document
+        finished = self.paginate(layout, page_width, page_height, DPI, DPI)
+        while not finished:
+            finished = self.paginate(layout, page_width, page_height, DPI, DPI)
+
+        # render the pages
+        for page_nr in range(len(self._pages)):
+            cr.save()
+            cr.translate(left_margin, top_margin)
+            self.draw_page(page_nr, cr, layout,
+                           page_width, page_height,
+                           DPI, DPI)
+            cr.show_page()
+            cr.restore()
+            
+        # close the surface (file)
+        surface.finish()
+
         # load the result into an external viewer
-        if finished and self.print_req:
-            apptype = 'application/pdf'
-            app = Mime.get_application(apptype)
+        if self.print_req:
+            app = Mime.get_application('application/pdf')
             os.environ["FILE"] = self._filename
             os.system('%s "$FILE" &' % app[0])
             
-        return finished
-
-    def on_draw_page(self, operation, context, page_nr):
-        """Draw the requested page.
-        """
-        cr = context.get_cairo_context()
-        layout = context.create_pango_layout()
-        dpi_x = context.get_dpi_x()
-        dpi_y = context.get_dpi_y()
-
-        self.draw_page(page_nr,
-                       cr,
-                       layout,
-                       self.page_width,
-                       self.page_height,
-                       dpi_x,
-                       dpi_y)
+#------------------------------------------------------------------------
+#
+# Functions
+#
+#------------------------------------------------------------------------
+def register_docgen():
+    """Register the docgen with the GRAMPS plugin system.
+    """
+    try:
+        mprog = Mime.get_application("application/pdf")
+        mtype = Mime.get_description("application/pdf")
         
-#------------------------------------------------------------------------
-#
-# Register the document generator with the GRAMPS plugin system
-#
-#------------------------------------------------------------------------
-print_label = None
-try:
-    mprog = Mime.get_application("application/pdf")
-    mtype = Mime.get_description("application/pdf")
-    
-    if Utils.search_for(mprog[0]):
-        print_label=_("Open in %s") % mprog[1]
-    else:
-        print_label=None
+        if Utils.search_for(mprog[0]):
+            print_label = _("Open in %s") % mprog[1]
+        else:
+            print_label = None
+    except:
+        mtype = _('PDF document')
+        print_label = None
+        
     register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
-    register_draw_doc(mtype, PdfDoc, 1, 1,    ".pdf", print_label)
-    register_book_doc(mtype,classref=PdfDoc,
-                      table=1,paper=1,style=1,ext=".pdf")
-except:
-    register_text_doc(_('PDF document'), PdfDoc,1, 1, 1,".pdf", None)
-    register_draw_doc(_('PDF document'), PdfDoc,1, 1,   ".pdf", None)
-    register_book_doc(name=_("PDF document"),classref=PdfDoc,
-                      table=1,paper=1,style=1,ext=".pdf")
+    register_draw_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
+    register_book_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
+
+register_docgen()
