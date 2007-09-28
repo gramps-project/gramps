@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007  Zsolt Foldvari
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,6 +96,7 @@ _GNOME_FONT = {
 
 font_families = _GNOME_FONT
 
+# FIXME debug logging does not work here.
 def set_font_families():
 ##def set_font_families(pango_context):
     """Set the used font families depending on availability.
@@ -152,7 +153,7 @@ def fontstyle_to_fontdescription(font_style):
         f_style = pango.STYLE_NORMAL
         
     font_description = pango.FontDescription(font_families[font_style.face])
-    font_description.set_size(font_style.get_size() * pango.SCALE)
+    font_description.set_size(int(round(font_style.get_size() * pango.SCALE)))
     font_description.set_weight(f_weight)
     font_description.set_style(f_style)
     

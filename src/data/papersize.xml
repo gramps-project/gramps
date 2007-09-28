@@ -16,7 +16,7 @@
   <page name="B5" height="25.0" width="17.6"/>
   <page name="B6" height="17.6" width="12.5"/>
   <page name="B" height="43.18" width="27.94"/>
-  <page name="C" height="56.1" width="43.18"/>
-  <page name="D" height="86.36" width="56.1"/>
+  <page name="C" height="55.88" width="43.18"/>
+  <page name="D" height="86.36" width="55.88"/>
   <page name="E" height="111.76" width="86.36"/>
 </paper>

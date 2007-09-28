@@ -117,7 +117,7 @@ SYSTEM_FILTERS = os.path.join(DATA_DIR, "system_filters.xml")
 TEMPLATE_DIR   = os.path.join(DATA_DIR, "templates")
 TIP_DATA       = os.path.join(DATA_DIR, "tips.xml")
 
-PAPERSIZE      = "file:%s/papersize.xml" % DATA_DIR
+PAPERSIZE      = os.path.join(DATA_DIR, "papersize.xml")
 
 USE_TIPS       = False
 

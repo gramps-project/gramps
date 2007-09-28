@@ -1,3 +1,11 @@
+2007-09-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/docgen/CairoDoc.py (fontstyle_to_fontdescription): Fix deprecated
+	warning.
+	* src/ReportBase/_PaperMenu.py:
+	* src/data/papersize.xml:
+	Fix "C" and "D" paper size values.
+	* src/const.py.in: Correct PAPERSIZE path constant.
+
 2007-09-28  Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/NarrativeWeb.py: provide fallback dates on Narrative Web pages
 	Issue #0001258

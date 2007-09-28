@@ -197,8 +197,8 @@ except (IOError,OSError,SAXParseException):
         BaseDoc.PaperSize("B5",25.0,17.6),
         BaseDoc.PaperSize("B6",17.6,12.5),
         BaseDoc.PaperSize("B",43.18,27.94),
-        BaseDoc.PaperSize("C",56.1,43.18),
-        BaseDoc.PaperSize("D",86.36, 56.1),
+        BaseDoc.PaperSize("C",55.88,43.18),
+        BaseDoc.PaperSize("D",86.36, 55.88),
         BaseDoc.PaperSize("E",111.76,86.36),
         BaseDoc.PaperSize(_("Custom Size"),-1,-1)
-        ]
+    ]
