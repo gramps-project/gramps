@@ -1,3 +1,8 @@
+2007-09-29 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_ReadXML.py: remove bug: no more creation of objects if bookmark is found with
+	handle that is not in database. This causes corruption of database!
+	* src/GrampsDb/_GrampsDbBase.py: person bookmarks do not work after save. Correct. Issue #1260
+
 2007-09-28 James G. Sack <jgsack@san.rr.com>
 	* src/GrampsDb/_GrampsDbBase.py:
 	0001187: Runaway Gramps XML file sizes
@@ -33,6 +38,7 @@
 	* src/ThumbNails.py: added rectangle parameter to thumbnail functions to specify the subsection
 	* src/GrampsWidgets.py: added class MonitoredSpinButton
 	* src/glade/gramps.glade: added preview pixmap of subsection thumbnail to change_description
+	Part 1 of thumbnail changes
 
 2007-09-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/CairoDoc.py (fontstyle_to_fontdescription): Fix deprecated
