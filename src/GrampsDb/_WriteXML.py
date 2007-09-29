@@ -911,11 +911,30 @@ class XmlWriter(UpdateCallback):
                 self.g.write(' priv="1"')
             proplist = photo.get_attribute_list()
             refslist = photo.get_source_references()
+            rect = photo.get_rectangle()
+            if rect is not None :
+                corner1_x = rect[0]
+                corner1_y = rect[1]
+                corner2_x = rect[2]
+                corner2_y = rect[3]
+                if corner1_x==None : corner1_x = 0
+                if corner1_y==None : corner1_y = 0
+                if corner2_x==None : corner2_x = 0
+                if corner2_y==None : corner2_y = 0
+                #don't output not set rectangle
+                if (corner1_x == 0 and corner1_y == 0
+                    and corner2_x == 0 and corner2_y == 0
+                   ):
+                    rect = None
             if len(proplist) == 0 and len(refslist) == 0 \
-                                    and photo.get_note() == "":
+                    and photo.get_note() == "" and rect is None:
                 self.g.write("/>\n")
             else:
                 self.g.write(">\n")
+                if rect is not None :
+                    self.g.write(' %s<region corner1_x="%d" corner1_y="%d" '
+                                 'corner2_x="%d" corner2_y="%d"/>\n' % 
+                            (sp,corner1_x,corner1_y,corner2_x,corner2_y))
                 self.write_attribute_list(proplist,indent+1)
                 for ref in refslist:
                     self.dump_source_ref(ref,indent+1)

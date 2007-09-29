@@ -206,7 +206,10 @@ class EditMediaRef(EditReference):
             )
 
         if (coord[0] == None and coord[1] == None
-            and coord[2] == None and coord[3] == None):
+                and coord[2] == None and coord[3] == None) or (
+            coord[0] == 0 and coord[1] == 0
+                and coord[2] == 0 and coord[3] == 0
+           ):
             coord = None
 
         self.source_ref.set_rectangle(coord)
