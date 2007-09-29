@@ -1,3 +1,8 @@
+2007-09-28 James G. Sack <jgsack@san.rr.com>
+	* src/RecentFiles.py:
+	* src/GrampsDb/_GrampsDbBase.py:
+	0001187: Runaway Gramps XML file sizes
+
 2007-09-27  Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/FilterEditor/_EditRule.py: wrong filter selection, bug #807
 	Based on work Johan

@@ -65,7 +65,7 @@ class GnomeRecentItem:
         self.mime = m
         self.time = t
         self.private = p
-        self.groups = g
+        self.groups = list(g)  # want a copy (not an alias)
 
     def set_uri(self,val):
         self.uri = val
