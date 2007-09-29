@@ -87,6 +87,14 @@ class EditMediaRef(EditReference):
         self.pixmap.set_from_pixbuf(self.pix)
 
         coord = self.source_ref.get_rectangle()
+        #upgrade path: set invalid (from eg old db) to none
+        if (coord[0] == None and coord[1] == None
+                and coord[2] == None and coord[3] == None) or (
+            coord[0] == 0 and coord[1] == 0
+                and coord[2] == 100 and coord[3] == 100) or (
+            coord[0] == coord[2] and coord[1] == coord[3]
+           ):
+            coord = None
 
         self.rectangle = coord
         
@@ -97,38 +105,44 @@ class EditMediaRef(EditReference):
         self.subpixmap.set_from_pixbuf(self.subpix)
 
         if coord and type(coord) == tuple:
-            self.top.get_widget("upperx").set_value(coord[0])
-            self.top.get_widget("uppery").set_value(coord[1])
-            self.top.get_widget("lowerx").set_value(coord[2])
-            self.top.get_widget("lowery").set_value(coord[3])
+            self.top.get_widget("corner1_x").set_value(coord[0])
+            self.top.get_widget("corner1_y").set_value(coord[1])
+            self.top.get_widget("corner2_x").set_value(coord[2])
+            self.top.get_widget("corner2_y").set_value(coord[3])
+        else:
+            self.top.get_widget("corner1_x").set_value(0)
+            self.top.get_widget("corner1_y").set_value(0)
+            self.top.get_widget("corner2_x").set_value(100)
+            self.top.get_widget("corner2_y").set_value(100)
+            
         if self.dbstate.db.readonly:
-            self.top.get_widget("upperx").set_sensitive(False)
-            self.top.get_widget("uppery").set_sensitive(False)
-            self.top.get_widget("lowerx").set_sensitive(False)
-            self.top.get_widget("lowery").set_sensitive(False)
+            self.top.get_widget("corner1_x").set_sensitive(False)
+            self.top.get_widget("corner1_y").set_sensitive(False)
+            self.top.get_widget("corner2_x").set_sensitive(False)
+            self.top.get_widget("corner2_y").set_sensitive(False)
         
-        self.upperx_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("upperx"),
-            self.set_upperx,
-            self.get_upperx,
+        self.corner1_x_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("corner1_x"),
+            self.set_corner1_x,
+            self.get_corner1_x,
             self.db.readonly)
 
-        self.uppery_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("uppery"),
-            self.set_uppery,
-            self.get_uppery,
+        self.corner1_y_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("corner1_y"),
+            self.set_corner1_y,
+            self.get_corner1_y,
             self.db.readonly)
 
-        self.lowerx_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("lowerx"),
-            self.set_lowerx,
-            self.get_lowerx,
+        self.corner2_x_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("corner2_x"),
+            self.set_corner2_x,
+            self.get_corner2_x,
             self.db.readonly)
 
-        self.lowery_spinbutton = MonitoredSpinButton(
-            self.top.get_widget("lowery"),
-            self.set_lowery,
-            self.get_lowery,
+        self.corner2_y_spinbutton = MonitoredSpinButton(
+            self.top.get_widget("corner2_y"),
+            self.set_corner2_y,
+            self.get_corner2_y,
             self.db.readonly)
 
         self.descr_window = MonitoredEntry(
@@ -165,75 +179,81 @@ class EditMediaRef(EditReference):
         else:
             self.top.get_widget("type").set_text("")
             
-    def set_upperx(self, value):
+    def set_corner1_x(self, value):
         """
-        Callback for the signal handling of the spinbutton for the left x coordinate of the subsection.
-        Updates the subsection thumbnail using the given value for the left x coordinate.
+        Callback for the signal handling of the spinbutton for the first
+        corner x coordinate of the subsection.
+        Updates the subsection thumbnail using the given value
         
-        @param value: the left x coordinate of the subsection
+        @param value: the first corner x coordinate of the subsection in int
         """
         
         if self.rectangle == None:
-            self.rectangle = (0,0,0,0)
+            self.rectangle = (0,0,100,100)
         self.rectangle = (value,
                           self.rectangle[1],
                           self.rectangle[2],
                           self.rectangle[3])
         self.update_subpixmap()
 
-    def set_uppery(self, value):
+    def set_corner1_y(self, value):
         """
-        Callback for the signal handling of the spinbutton for the upper y coordinate of the subsection.
-        Updates the subsection thumbnail using the given value for the upper y coordinate.
+        Callback for the signal handling of the spinbutton for the first
+        corner y coordinate of the subsection.
+        Updates the subsection thumbnail using the given value
         
-        @param value: the upper y coordinate of the subsection
+        @param value: the first corner y coordinate of the subsection in int
         """
         
         if self.rectangle == None:
-            self.rectangle = (0,0,0,0)
+            self.rectangle = (0,0,100,100)
         self.rectangle = (self.rectangle[0],
                           value,
                           self.rectangle[2],
                           self.rectangle[3])
         self.update_subpixmap()
 
-    def set_lowerx(self, value):
+    def set_corner2_x(self, value):
         """
-        Callback for the signal handling of the spinbutton for the right x coordinate of the subsection.
-        Updates the subsection thumbnail using the given value for the right x coordinate.
+        Callback for the signal handling of the spinbutton for the second
+        corner x coordinate of the subsection.
+        Updates the subsection thumbnail using the given value
         
-        @param value: the right x coordinate of the subsection
+        @param value: the second corner x coordinate of the subsection in int
         """
         
         if self.rectangle == None:
-            self.rectangle = (0,0,0,0)
+            self.rectangle = (0,0,100,100)
         self.rectangle = (self.rectangle[0],
                           self.rectangle[1],
                           value,
                           self.rectangle[3])
         self.update_subpixmap()
 
-    def set_lowery(self, value):
+    def set_corner2_y(self, value):
         """
-        Callback for the signal handling of the spinbutton for the lower y coordinate of the subsection.
-        Updates the subsection thumbnail using the given value for the lower y coordinate.
+        Callback for the signal handling of the spinbutton for the second
+        corner y coordinate of the subsection.
+        Updates the subsection thumbnail using the given value
         
-        @param value: the lower y coordinate of the subsection
+        @param value: the second corner y coordinate of the subsection in int
         """
         
         if self.rectangle == None:
-            self.rectangle = (0,0,0,0)
+            self.rectangle = (0,0,100,100)
         self.rectangle = (self.rectangle[0],
                           self.rectangle[1],
                           self.rectangle[2],
                           value)
         self.update_subpixmap()
 
-    def get_upperx(self):
+    def get_corner1_x(self):
         """
-        Callback for the signal handling of the spinbutton for the left x coordinate of the subsection.
+        Callback for the signal handling of the spinbutton for the first corner 
+        x coordinate of the subsection.
         
-        @returns: the left x coordinate of the subsection or 0 if there is no selection
+        @returns: the first corner x coordinate of the subsection or 0 if 
+                  there is no selection
         """
         
         if self.rectangle != None:
@@ -241,11 +261,13 @@ class EditMediaRef(EditReference):
         else:
             return 0
 
-    def get_uppery(self):
+    def get_corner1_y(self):
         """
-        Callback for the signal handling of the spinbutton for the uppper y coordinate of the subsection.
+        Callback for the signal handling of the spinbutton for the first corner 
+        y coordinate of the subsection.
         
-        @returns: the upper y coordinate of the subsection or 0 if there is no selection
+        @returns: the first corner y coordinate of the subsection or 0 if 
+                  there is no selection
         """
          
         if self.rectangle != None:
@@ -253,29 +275,33 @@ class EditMediaRef(EditReference):
         else:
             return 0
 
-    def get_lowerx(self):
+    def get_corner2_x(self):
         """
-        Callback for the signal handling of the spinbutton for the right x coordinate of the subsection.
+        Callback for the signal handling of the spinbutton for the second
+        corner x coordinate of the subsection.
         
-        @returns: the right x coordinate of the subsection or 0 if there is no selection
+        @returns: the second corner x coordinate of the subsection or 100 if 
+                  there is no selection
         """
         
         if self.rectangle != None:
             return self.rectangle[2]
         else:
-            return 0
+            return 100
 
-    def get_lowery(self):
+    def get_corner2_y(self):
         """
-        Callback for the signal handling of the spinbutton for the lower y coordinate of the subsection.
+        Callback for the signal handling of the spinbutton for the second
+        corner x coordinate of the subsection.
         
-        @returns: the lower y coordinate of the subsection or 0 if there is no selection
+        @returns: the second corner x coordinate of the subsection or 100 if 
+                  there is no selection
         """
         
         if self.rectangle != None:
             return self.rectangle[3]
         else:
-            return 0
+            return 100
 
     def update_subpixmap(self):
         """
@@ -392,14 +418,19 @@ class EditMediaRef(EditReference):
     def save(self,*obj):
 
         coord = (
-            self.top.get_widget("upperx").get_value_as_int(),
-            self.top.get_widget("uppery").get_value_as_int(),
-            self.top.get_widget("lowerx").get_value_as_int(),
-            self.top.get_widget("lowery").get_value_as_int(),
+            self.top.get_widget("corner1_x").get_value_as_int(),
+            self.top.get_widget("corner1_y").get_value_as_int(),
+            self.top.get_widget("corner2_x").get_value_as_int(),
+            self.top.get_widget("corner2_y").get_value_as_int(),
             )
 
+        #do not set unset or invalid coord
         if (coord[0] == None and coord[1] == None
-            and coord[2] == None and coord[3] == None):
+                and coord[2] == None and coord[3] == None) or (
+            coord[0] == 0 and coord[1] == 0
+                and coord[2] == 100 and coord[3] == 100) or (
+            coord[0] == coord[2] and coord[1] == coord[3]
+           ):
             coord = None
 
         self.source_ref.set_rectangle(coord)

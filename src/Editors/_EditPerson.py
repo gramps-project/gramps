@@ -123,6 +123,7 @@ class EditPerson(EditPrimary):
                                     RelLib.Person.UNKNOWN)
 
         self.load_obj = None
+        self.load_rect = None
         self.top = gtk.glade.XML(const.PERSON_GLADE, "edit_person", "gramps")
 
         self.set_window(self.top.get_widget("edit_person"), None, self.get_menu_title())
@@ -387,7 +388,7 @@ class EditPerson(EditPrimary):
 
     def _image_callback(self, ref, obj):
         """
-        Called when a media reference had been edited. This allows fot
+        Called when a media reference had been edited. This allows for
         the updating image on the main form which has just been modified. 
         """
         self.load_photo(obj.get_path(), ref.get_rectangle())
@@ -528,6 +529,7 @@ class EditPerson(EditPrimary):
     def load_photo(self, path, rectangle=None):
         """loads, scales, and displays the person's main photo from the path"""
         self.load_obj = path
+        self.load_rect = rectangle
         if path == None:
             self.obj_photo.hide()
         else:
@@ -702,13 +704,16 @@ class EditPerson(EditPrimary):
     def load_person_image(self):
         """
         Loads the primary image into the main form if it exists.
+        Used as callback on Gallery Tab too.
         """
         media_list = self.obj.get_media_list()
         if media_list:
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
             obj = self.db.get_object_from_handle(object_handle)
-            if self.load_obj != obj.get_path():
+            #reload if different media, or different rectangle
+            if self.load_obj != obj.get_path() or \
+                    self.load_rect != photo.get_rectangle():
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
                     self.load_photo(obj.get_path(), photo.get_rectangle())

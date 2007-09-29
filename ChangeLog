@@ -1,3 +1,11 @@
+2007-09-29  Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_GrampsDbBase.py: documentation string error
+	* src/Editors/_EditPerson.py: reload image if rectangle changes
+	* src/glade/gramps.glade: rename in Media editor referencer,
+	use region and corner as terms, add tooltip
+	* src/Editors/_EditMediaRef.py: rename to upper/lower to corner1/2,
+	provide upgrade path, default to (0,0,100,100) not (0,0,0,0)
+
 2007-09-28  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/PdfDoc.py: Rewrite without gtk.PrintOperation dependency.
 

@@ -408,7 +408,7 @@ class GrampsDbBase(GrampsDBCallback):
 
     def request_rebuild(self):
         """
-        Notifies clients that the data has change significantly, and that all
+        Notifies clients that the data has changed significantly, and that all
         internal data dependent on the database should be rebuilt.
         """
         self.emit('person-rebuild')
