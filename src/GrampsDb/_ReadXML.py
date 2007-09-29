@@ -852,7 +852,6 @@ class GrampsParser(UpdateCallback):
         elif target == 'event':
             if self.db.find_event_from_handle(handle,self.trans) is not None:
                 self.db.event_bookmarks.append(handle)
-            print self.db.event_bookmarks.get()
         elif target == 'source':
             if self.db.find_source_from_handle(handle,self.trans) is not None:
                 self.db.source_bookmarks.append(handle)
