@@ -1,3 +1,8 @@
+2007-09-29 James G. Sack <jgsack@san.rr.com>
+	* src/GrampsDb/_ReadXML.py: remove bug: no more creation of objects if bookmark is found with
+	handle that is not in database. This causes corruption of database!
+	* src/GrampsDb/_GrampsDbBase.py: person bookmarks do not work after save. Correct. Issue #1260
+
 2007-09-28 James G. Sack <jgsack@san.rr.com>
 	* src/RecentFiles.py:
 	* src/GrampsDb/_GrampsDbBase.py:

@@ -44,7 +44,6 @@ class GrampsXMLDB(GrampsInMemDB):
     def __init__(self, use_txn = True):
         """creates a new GrampsDB"""
         GrampsInMemDB.__init__(self)
-	self.bookmarks = GrampsDbBookmarks()
 
     def load(self, name, callback, mode="w"):
         
@@ -58,7 +57,6 @@ class GrampsXMLDB(GrampsInMemDB):
         except OSError, IOError:
             return 1
         
-        self.bookmarks.set(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
         self.abort_possible = True
         return 1

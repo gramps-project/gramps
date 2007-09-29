@@ -840,27 +840,31 @@ class GrampsParser(UpdateCallback):
 
         # This is new XML, so we are guaranteed to have a handle ref
         handle = attrs['hlink'].replace('_','')
+        # Due to pre 2.2.9 bug, bookmarks might be handle of other object
+        # Make sure those are filtered out.
+        # Bookmarks are at end, so all handle must exist before we do bookmrks
         if target == 'person':
-            self.db.check_person_from_handle(handle,self.trans)
-            self.db.bookmarks.append(handle)
+            if self.db.find_person_from_handle(handle,self.trans) is not None:
+                self.db.bookmarks.append(handle)
         elif target == 'family':
-            self.db.check_family_from_handle(handle,self.trans)
-            self.db.family_bookmarks.append(handle)
+            if self.db.find_family_from_handle(handle,self.trans) is not None:
+                self.db.family_bookmarks.append(handle)
         elif target == 'event':
-            self.db.check_event_from_handle(handle,self.trans)
-            self.db.event_bookmarks.append(handle)
+            if self.db.find_event_from_handle(handle,self.trans) is not None:
+                self.db.event_bookmarks.append(handle)
+            print self.db.event_bookmarks.get()
         elif target == 'source':
-            self.db.check_source_from_handle(handle,self.trans)
-            self.db.source_bookmarks.append(handle)
+            if self.db.find_source_from_handle(handle,self.trans) is not None:
+                self.db.source_bookmarks.append(handle)
         elif target == 'place':
-            self.db.check_place_from_handle(handle,self.trans)
-            self.db.place_bookmarks.append(handle)
+            if self.db.find_place_from_handle(handle,self.trans) is not None:
+                self.db.place_bookmarks.append(handle)
         elif target == 'media':
-            self.db.check_object_from_handle(handle,self.trans)
-            self.db.media_bookmarks.append(handle)
+            if self.db.find_object_from_handle(handle,self.trans) is not None:
+                self.db.media_bookmarks.append(handle)
         elif target == 'repository':
-            self.db.check_repository_from_handle(handle,self.trans)
-            self.db.repo_bookmarks.append(handle)
+            if self.db.find_repository_from_handle(handle,self.trans) is not None:
+                self.db.repo_bookmarks.append(handle)
 
     def start_format(self,attrs):
         number = int(attrs['number'])
