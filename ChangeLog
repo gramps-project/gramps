@@ -1,3 +1,7 @@
+2007-09-29  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.rng: Add region to objref.
+	* data/grampsxml.dtd: Add region to objref.
+
 2007-09-29 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_ReadXML.py: read region tag in xml
 	* src/GrampsDb/_WriteXML.py: output region tag in xml (=subsection of picture)
