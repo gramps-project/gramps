@@ -93,8 +93,8 @@ _SIGBASE = ('person', 'family', 'source', 'event',
             'media', 'place', 'repository','note')
 
 class GrampsDbBookmarks:
-    def __init__(self, default = []):
-        self.bookmarks = default
+    def __init__(self, default=[]):
+        self.bookmarks = list(default) # want a copy (not an alias)
 
     def set(self, new_list):
         self.bookmarks = new_list
