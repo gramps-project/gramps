@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 2.2.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-28 19:34-0700\n"
-"PO-Revision-Date: 2007-09-27 23:15-0300\n"
+"PO-Revision-Date: 2007-09-28 20:23-0300\n"
 "Last-Translator: Luiz Gonzaga dos Santos Filho <lfilho@gmail.com>\n"
 "Language-Team: Portuguese/Brazil <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -5710,9 +5710,8 @@ msgstr "Nomes do Pai/Mãe Alternativos"
 
 #. Parental Marriage
 #: ../src/plugins/FamilyGroup.py:809
-#, fuzzy
 msgid "Parent Marriage"
-msgstr "Matrimônio Alternativo"
+msgstr "Matrimônio de Pais"
 
 #. Relatives Dates
 #: ../src/plugins/FamilyGroup.py:813
@@ -7616,9 +7615,8 @@ msgid "Early marriage"
 msgstr "Matrimônio precoce"
 
 #: ../src/plugins/Verify.py:1216
-#, fuzzy
 msgid "Late marriage"
-msgstr "Matrimônio atrasado"
+msgstr "Matrimônio tardio"
 
 #: ../src/plugins/Verify.py:1277
 msgid "Old father"
@@ -7637,22 +7635,18 @@ msgid "Young mother"
 msgstr "Mãe jovem"
 
 #: ../src/plugins/Verify.py:1364
-#, fuzzy
 msgid "Unborn father"
 msgstr "Pai não-nascido"
 
 #: ../src/plugins/Verify.py:1367
-#, fuzzy
 msgid "Unborn mother"
 msgstr "Mãe não-nascida"
 
 #: ../src/plugins/Verify.py:1406
-#, fuzzy
 msgid "Dead father"
 msgstr "Pai falecido"
 
 #: ../src/plugins/Verify.py:1409
-#, fuzzy
 msgid "Dead mother"
 msgstr "Mãe falecida"
 
@@ -12439,7 +12433,6 @@ msgid "Families:"
 msgstr "Famílias:"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:8
-#, fuzzy
 msgid "File:"
 msgstr "Arquivo:"
 
@@ -12456,7 +12449,6 @@ msgid "This GEDCOM file has identified itself as using ANSEL enconding. Sometime
 msgstr "Este arquivo GEDCOM diz estar usando codificação ANSEL. Algumas vezes, isto é um erro. Se os dados importados contém caracteres incomuns, desfaça a importação e determine um novo conjunto de caracteres através da seleção de uma codificação diferente abaixo."
 
 #: ../src/GrampsDb/gedcomimport.glade.h:12
-#, fuzzy
 msgid "Version:"
 msgstr "Versão:"
 
@@ -13710,9 +13702,8 @@ msgid "Create default source on import"
 msgstr "Criar fonte padrão quando importar"
 
 #: ../data/gramps.schemas.in.h:7
-#, fuzzy
 msgid "Date display format"
-msgstr "Formato de Exibição"
+msgstr "Formato de Exibição de Datas"
 
 #: ../data/gramps.schemas.in.h:8
 msgid "Default event GRAMPS ID pattern"
@@ -14416,7 +14407,7 @@ msgstr "Largura da interface do editor de url."
 
 #: ../src/data/tips.xml.in.h:1
 msgid "<b>Adding Children</b>: To add children in GRAMPS make either of the parents the Active Person then switch to the Family View. If the child is already in the database, click on the third button down to the right of the Children list. If the person is not already in the database, click on the second button down to the right of the Children list. After the child's information is entered they will automatically be listed as a child of the Active Person."
-msgstr "<b>Adicionando Filhos</b>: Para adicionar filhos no GRAMPS, torne o pai ou a mãe na Pessoa Ativa e mude para a Vista Família. Se o filho já faz parte do banco de dados, clique no terceiro botão abaixo e à direita da lista de Filhos. Se a pessoa ainda não faz parte do banco de dados, clique no segundo botão abaixo e à direita da lista de Filhos. Após as informações da pessoa terem sido entradas, a pessoa será automaticamente listada como um filho da Pessoa Ativa."
+msgstr "<b>Adicionando Filhos</b>: Para adicionar filhos no GRAMPS, torne o pai ou a mãe na Pessoa Ativa e mude para a Visão Família. Se o filho já faz parte do banco de dados, clique no terceiro botão abaixo e à direita da lista de Filhos. Se a pessoa ainda não faz parte do banco de dados, clique no segundo botão abaixo e à direita da lista de Filhos. Após as informações da pessoa terem sido entradas, a pessoa será automaticamente listada como um filho da Pessoa Ativa."
 
 #: ../src/data/tips.xml.in.h:2
 msgid "<b>Back up your database</b>: As you modifiy your database you can easily back it up by selecting <b>Tools &gt; Revision control &gt; Checkpoint the database</b>. This will back up the database in its current state using a revision control system. You can then always retrieve it using the same menu. You must have a revision control system installed. RCS is a common choice."
@@ -14427,7 +14418,6 @@ msgid "<b>Bookmarking Individuals</b>: The Bookmark menu at the top of the windo
 msgstr "<b>Marcando Indivíduos</b>: O menu Marcadores no topo da janela é um lugar conveniente para armazenar os nomes de indivíduos freqüentemente usados. Ao se clicar em um indivíduo marcado, o mesmo se tornará a Pessoa Ativa. Para criar um marcador para uma pessoa, torne-a na Pessoa Ativa, clique com botão direito sobre seu nome, e clique em 'adiciona marcador'."
 
 #: ../src/data/tips.xml.in.h:4
-#, fuzzy
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
 msgstr "<b>Calculando Relacionamentos</b>: Esta ferramenta, embaixo de <b>Ferramentas &gt; Utilitários &gt; Calculadora de Relacionamentos</b> permite que você verifique se alguém mais na família tem um grau de parentesco (por sangue, não por casamento) com você. Relacionamentos precisos, bem como os ancestrais comuns são reportados."
 
@@ -14453,7 +14443,7 @@ msgstr "<b>Editando o Relacionamento de um Filho(a)</b>: Nem todos os filhos sã
 
 #: ../src/data/tips.xml.in.h:10
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
-msgstr "<b>Filtrando Pessoas</b>: Na Vista Pessoas, você pode 'filtrar' indivíduos baseando-se em muitos critérios. Vá para Filtro (bem ao lado direito do ícone Pessoas) e escolha um entre as dúzias de filtros pré-programados. Por exemplo todas as pessoas adotadas numa árvore familiar podem ser localizadas. Pessoas sem um data de nascimento mencionada também podem ser filtradas. Para ver os resultados clique em Aplica. Se os controles de filtro não estiverem visíveis, habilite-os ao escolher <b>Visão &gt; Filtro</b>."
+msgstr "<b>Filtrando Pessoas</b>: Na Visão Pessoas, você pode 'filtrar' indivíduos baseando-se em muitos critérios. Vá para Filtro (bem ao lado direito do ícone Pessoas) e escolha um entre as dúzias de filtros pré-programados. Por exemplo todas as pessoas adotadas numa árvore familiar podem ser localizadas. Pessoas sem um data de nascimento mencionada também podem ser filtradas. Para ver os resultados clique em Aplica. Se os controles de filtro não estiverem visíveis, habilite-os ao escolher <b>Visão &gt; Filtro</b>."
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>GRAMPS Mailing Lists</b>: Want answers to your queries about GRAMPS? Check out the gramps-users list. Many people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of GRAMPS, try gramps-devel. Information on both mailing lists can be found at lists.sf.net."
@@ -14484,37 +14474,32 @@ msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'i
 msgstr "<b>Filtragem Inversa</b>: Filtros podem ser facilmente invertidos ao se usar a opção 'inverter'. Por exemplo, ao se inverter o filtro 'Pessoas com crianças', você pode selecionar todas as pessoas que não tenham crianças."
 
 #: ../src/data/tips.xml.in.h:18
-#, fuzzy
 msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
-msgstr "<b>Listando Eventos</b>: Os eventos da vida de um indivíduo podem ser adicionados ao banco de dados através da opção <b>Pessoa &gt; Edita Pessoa &gt; Eventos</b>. Este espaço pode ser usado para uma larga variedade de opções, como por exemplo adoções, batismos (e outras cerimônias religiosas), sepultamentos, causas de falecimento, listagens de Censo, graduações conquistadas, eleições, emigração, serviço militar, títulos nobiliárquicos, ocupações, ordenação, propriedade, religião, aposentadoria, testamentos, etc."
+msgstr "<b>Listando Eventos</b>: Os eventos da vida de um indivíduo podem ser adicionados ao banco de dados através da opção <b>Pessoa &gt; Editar Pessoa &gt; Eventos</b>. Este espaço pode ser usado para uma larga variedade de opções, como por exemplo adoções, batismos (e outras cerimônias religiosas), sepultamentos, causas de falecimento, listagens de Censo, graduações conquistadas, eleições, emigração, serviço militar, títulos nobiliárquicos, ocupações, ordenação, propriedade, religião, aposentadoria, testamentos, etc."
 
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
-msgstr "<b>Localizando Pessoas</b>: Por padrão, cada sobrenome na Vista Pessoas é listado apenas uma vez. Ao se clicar na seta do lado esquerdo de um nome, a lista se expande a fim de mostrar todos os indivíduos que possuem aquele sobrenome."
+msgstr "<b>Localizando Pessoas</b>: Por padrão, cada sobrenome na Visão Pessoas é listado apenas uma vez. Ao se clicar na seta do lado esquerdo de um nome, a lista se expande a fim de mostrar todos os indivíduos que possuem aquele sobrenome."
 
 #: ../src/data/tips.xml.in.h:20
-#, fuzzy
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr "<b>Ajustando Suas Preferências</b>: Não está contente com o comportamento pré-definido do GRAMPS? <B>Edita &gt; Preferências</b> permite que você modifique muitas configurações, de tal forma que o GRAMPS se encaixe melhor às suas necessidades."
+msgstr "<b>Ajustando Suas Preferências</b>: Não está contente com o comportamento padrão do GRAMPS? <B>Editar &gt; Preferências</b> permite que você modifique muitas configurações, de tal forma que o GRAMPS se encaixe melhor às suas necessidades."
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Relationships View is easy. Just doubleclick on the name of a person to make it the active one."
 msgstr "<b>Passando a Visão de Família</b>: Alterado a Pessoa Ativa na Visão de Relacionamentos é fácil. Apenas dê duplo-clique no nome da pessoa para torná-la a pessoa ativa."
 
 #: ../src/data/tips.xml.in.h:22
-#, fuzzy
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the &quot;Show All&quot; checkbutton."
 msgstr "<b>Seleção 'Mostra todos'</b>: Ao se adicionar um cônjuge ou um filho, a lista de pessoas mostradas é filtrada a fim de exibir somente as pessoas que poderiam realisticamente se enquadrar naquela situação (baseando-se em datas do banco de dados). No caso do GRAMPS estar errado ao fazer a escolha, você pode manualmente ignorar o filtro ao clicar na opção &quot;Mostra todos&quot;."
 
 #: ../src/data/tips.xml.in.h:23
-#, fuzzy
 msgid "<b>SoundEx can help with family research</b>: SoundEx solves a long standing problem in genealogy---how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
 msgstr "<b>O SoundEx pode ajudar com a pesquisa familiar</b>: O SoundEx resolve um problema que se arrasta há muito tempo em genealogia---como manipular variações ortográficas. O utilitário SoundEx toma um sobrenome e gera uma forma simplificada que é equivalente a outros nomes com mesma sonoridade. O conhecimento do Código SoundEx para um sobrenome é de grande ajuda ao se pesquisar arquivos de Dados do Censo (micro-filme) em uma biblioteca ou outros centros de pesquisa. Para saber o código SoundEx dos sobrenomes em seu banco de dados, vá para <b>Ferramentas &gt; Utilitários &gt; Gera Código SoundEx</b>."
 
 #: ../src/data/tips.xml.in.h:24
-#, fuzzy
 msgid "<b>Starting a New Family Tree</b>: A good way to start a new family tree is to enter all the members of the family into the database (use <b>Edit &gt; Add</b> or click on the Add button under the People menu). Then go to the Relationship View and create relationships between people."
-msgstr "<b>Começar uma Nova Árvore Familiar</b>: Uma boa maneira de se começar uma nova árvore familiar é entrar todos os membros da família no banco de dados (use <b>Edita &gt; Adiciona</b>, ou clique no botão Adiciona embaixo do menu Pessoas). Depois vá para a Vista Família e crie relacionamentos entre pessoas. Então varra os relacionamentos de todas as pessoas a partir do menu Família."
+msgstr "<b>Começar uma Nova Árvore Familiar</b>: Uma boa maneira de se começar uma nova árvore familiar é entrar todos os membros da família no banco de dados (use <b>Edita &gt; Adiciona</b>, ou clique no botão Adiciona embaixo do menu Pessoas). Depois vá para a Visão Família e crie relacionamentos entre pessoas. Então varra os relacionamentos de todas as pessoas a partir do menu Família."
 
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
@@ -14522,35 +14507,31 @@ msgstr "<b>Converse Com Seus Familiares Antes Que Seja Tarde Demais</b>: Seus fa
 
 #: ../src/data/tips.xml.in.h:26
 msgid "<b>The Family View</b>: The Family View is used to display a typical family unit---the parents, spouses and children of an individual."
-msgstr "<b>A Vista Família</b>: A Vista Família é usada para exibir uma unidade familiar típica---os pais, cônjuges e crianças de um indivíduo."
+msgstr "<b>A Visão Família</b>: A Visão Família é usada para exibir uma unidade familiar típica---os pais, cônjuges e crianças de um indivíduo."
 
 #: ../src/data/tips.xml.in.h:27
-#, fuzzy
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Não sabe a Data?</b> Se você não está certo a respeito da data em que um evento aconteceu (por exemplo, nascimento ou falecimento), o GRAMPS permite que você entre uma grande variedade de formatos de datas baseados num 'chute' ou estimativa. Por exemplo, &quot;cerca de 1908&quot; é uma entrada válida no GRAMPS para uma data de nascimento. Veja a seção 3.7.2.2 do manual do GRAMPS para uma descrição completa das opções de entrada de datas."
+msgstr "<b>Incerto sobre um Data?</b> Se você não está certo a respeito da data em que um evento aconteceu (por exemplo, nascimento ou falecimento), o GRAMPS permite que você entre uma grande variedade de formatos de datas baseados num 'chute' ou estimativa. Por exemplo, &quot;cerca de 1908&quot; é uma entrada válida no GRAMPS para uma data de nascimento. Veja a seção 3.7.2.2 do manual do GRAMPS para uma descrição completa das opções de entrada de datas."
 
 #: ../src/data/tips.xml.in.h:28
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
 msgstr "<b>Quem Nasceu Quando</b>: A ferramenta 'Compara eventos de indivíduos' permite que você compare dados de todos (ou alguns) os indivíduos em seu banco de dados. Isto é útil, digamos, se você deseja listar todas as datas de nascimento de todas as pessoas em seu banco de dados."
 
 #: ../src/data/tips.xml.in.h:29
-#, fuzzy
 msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
 msgstr "Um período de datas pode ser especificado ao se usar o formato &quot;entre Janeiro 4, 2000 e Marco 20, 2003&quot;"
 
 #: ../src/data/tips.xml.in.h:30
-#, fuzzy
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting &quot;set as default name&quot; from the menu."
-msgstr "Um nome alternativo pode ser selecionado como o nome preferido para uma pessoa ao se selecionar o nome desejado na lista de nomes da pessoa. O menu de contexto pode ser mostrado ao se clicar o botão direito do mouse, e ao selecionar à partir do menu."
+msgstr "Um nome alternativo pode ser selecionado como o nome preferencial de uma pessoa selecionando o nome desejado na lista de pessoas, chamando o menu de contexto clicando com o botão direito do mouse, e selecionando &quot;configurar como nome padrão&quot; do menu."
 
 #: ../src/data/tips.xml.in.h:31
 msgid "An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser."
-msgstr "Uma imagem pode ser adicionada à qualquer galeria ou à Vista Multimídia ao se arrastar e soltar a imagem de um gerenciador de arquivos ou navegador da internet (web browser)."
+msgstr "Uma imagem pode ser adicionada à qualquer galeria ou à Visão Multimídia ao se arrastar e soltar a imagem de um gerenciador de arquivos ou navegador da internet (web browser)."
 
 #: ../src/data/tips.xml.in.h:32
-#, fuzzy
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Qualquer um pode ser escolhido como a 'pessoa inicial' no GRAMPS. Use <b>Edita &gt; Estabelece a Pessoa Inicial</b>. A pessoa inicial é a pessoa que é selecionada quando o banco de dados é aberto, ou quando o botão Lar é pressionado."
+msgstr "Qualquer um pode ser escolhido como a 'pessoa inicial' no GRAMPS. Use <b>Editar &gt; Estabelecer a Pessoa Inicial</b>. A pessoa inicial é a pessoa que é selecionada quando o banco de dados é aberto, ou quando o botão Home é pressionado."
 
 #: ../src/data/tips.xml.in.h:33
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -14561,19 +14542,16 @@ msgid "Birth order of children in a family can be set, even if they do not have 
 msgstr "A order de nascimento dos filhos numa família pode ser determinada através da funcionalidade arrastar e soltar, mesmo que os filhos não possuam datas de nascimento."
 
 #: ../src/data/tips.xml.in.h:35
-#, fuzzy
 msgid "Custom reports can be created by advanced users under the &quot;plugin&quot; system. More information on custom reports can be found at http://developers.gramps-project.org"
-msgstr "Relatórios personalizados podem ser criados por usuários avançados através do sistema &quot;plugin&quot;. Mais informações sobre relatórios personalizados podem ser encontradas em http://developers.gramps-project.org"
+msgstr "Relatórios personalizados podem ser criados por usuários avançados através do sistema de &quot;plugins&quot;. Mais informações sobre relatórios personalizados podem ser encontradas em http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
-#, fuzzy
 msgid "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr "Não se esqueça de ler o manual do GRAMPS, <b>Ajuda &gt; Manual do Usuário</b>. Os desenvolvedores trabalharam muito para que a maioria das operações fossem intuitivas, mas o manual está repleto de informações que farão com que o seu tempo gasto com genealogia sejá mais produtivo."
+msgstr "Não se esqueça de ler o manual do GRAMPS, <b>Ajuda &gt; Manual do Usuário</b>. Os desenvolvedores trabalharam muito para que a maioria das operações fossem intuitivas, mas o manual está repleto de informações que farão com que o seu tempo gasto com genealogia seja mais produtivo."
 
 #: ../src/data/tips.xml.in.h:37
-#, fuzzy
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Edit &gt; Person Filter Editor</b>."
-msgstr "Os filtros permitem que você limite as pessoas que são mostradas na Vista Pessoas. Além dos filtros pré-programados, Filtros Personalizados podem ser criados e estão limitados apenas pela sua imaginação. Filtros Personalizados são criados a partir de <b>Ferramentas &gt; Utilitários &gt; Editor de Filtro Personalizado</b>."
+msgstr "Os filtros permitem que você limite as pessoas que são mostradas na Visão Pessoas. Além dos filtros pré-programados, Filtros Personalizados podem ser criados e estão limitados apenas pela sua imaginação. Filtros Personalizados são criados a partir de <b>Ferramentas &gt; Utilitários &gt; Editor de Filtro Personalizado</b>."
 
 #: ../src/data/tips.xml.in.h:38
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
@@ -14620,9 +14598,8 @@ msgid "GRAMPS is written in a computer language called Python using the GTK and 
 msgstr "O GRAMPS é escrito em uma linguagem de computador chamada Python. Ele usa o GTK e bibliotecas do GNOME para a interface gráfica. O GRAMPS é suportado em qualquer computador para o qual estes programas foram portados."
 
 #: ../src/data/tips.xml.in.h:49
-#, fuzzy
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
-msgstr "O GRAMPS mantém uma lista passada de Pessoas Ativas. Você pode se deslocar na lista para frente ou para trás usando <b>Vai &gt; Avança</b> e <b>Vai &gt; Volta</b>."
+msgstr "O GRAMPS mantém uma lista passada de Pessoas Ativas. Você pode se deslocar na lista para frente ou para trás usando <b>Ir &gt; Avançar</b> e <b>Ir &gt; Voltar</b>."
 
 #: ../src/data/tips.xml.in.h:50
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
@@ -14646,7 +14623,7 @@ msgstr "Comece de onde você sabe e vá para onde você não sabe. Sempre grave 
 
 #: ../src/data/tips.xml.in.h:55
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
-msgstr "Na maioria dos casos ao se dar um duplo-clique numa entrada de nome, fonte de referência, lugar ou multimídia abrirá uma janela que permitirá que você edite o objeto. Observe que o resultado pode ser dependente do contexto. Por exemplo, ao se clicar num pai/mãe na Vista Família o editor de relações será aberto."
+msgstr "Na maioria dos casos ao se dar um duplo-clique numa entrada de nome, fonte de referência, lugar ou multimídia abrirá uma janela que permitirá que você edite o objeto. Observe que o resultado pode ser dependente do contexto. Por exemplo, ao se clicar num pai/mãe na Visão Família o editor de relações será aberto."
 
 #: ../src/data/tips.xml.in.h:56
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
@@ -14669,7 +14646,6 @@ msgid "The 'merge' function allows you to combine separately listed people into 
 msgstr "A função 'funde' permite que você combine pessoas listadas separadamente em uma única. Isto é muito útil ao se combinar dois bancos de dados que tenham pessoas que se sobrepõem, ou para se combinar nomes divergentes que foram erroneamente vinculados a um indivíduo."
 
 #: ../src/data/tips.xml.in.h:61
-#, fuzzy
 msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
 msgstr "O relatório de Livro, <b>Relatórios &gt; Livros &gt; Relatório de Livro</b>, permite que usuários agrupem uma variedade de relatórios em um único documento. Este relatório único é mais fácil de distribuir do que relatórios múltiplos, especialmente quando estão impressos."
 
@@ -14683,33 +14659,31 @@ msgstr "A homepage do GRAMPS localiza-se em http://gramps-project.org/"
 
 #: ../src/data/tips.xml.in.h:64
 msgid "The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
-msgstr "A Vista Multimídia mostra uma lista com todos os objetos multimídia contidos no banco de dados. Estes podem ser imagens, vídeos, sons, planilhas, documentos, e outros mais."
+msgstr "A Visão Multimídia mostra uma lista com todos os objetos multimídia contidos no banco de dados. Estes podem ser imagens, vídeos, sons, planilhas, documentos, e outros mais."
 
 #: ../src/data/tips.xml.in.h:65
 msgid "The Pedigree View displays a traditional pedigree chart. Hold the mouse over an individual to see more information about them or right click on an individual to view a menu to quickly access their spouses, siblings, children, or parents."
-msgstr "A Vista Linhagem exibe um diagrama de linhagem tradicional. Posicione e mantenha o mouse sobre um indivíduo para ver mais informações sobre ele, ou clique com o botão direito sobre um indivíduo para acessar um menu que dá acesso rápido a seu(s) cônjuge(s), irmãos, filhos, ou pais."
+msgstr "A Visão Linhagem exibe um diagrama de linhagem tradicional. Posicione e mantenha o mouse sobre um indivíduo para ver mais informações sobre ele, ou clique com o botão direito sobre um indivíduo para acessar um menu que dá acesso rápido a seus cônjuges, irmãos, filhos, ou pais."
 
 #: ../src/data/tips.xml.in.h:66
 msgid "The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr "A Vista Lugares mostra uma lista de todos os lugares contidos no banco de dados. A lista pode ser ordenada por critérios diferentes, como por exemplo por Cidade, Condado ou Estado."
+msgstr "A Visão Lugares mostra uma lista de todos os lugares contidos no banco de dados. A lista pode ser ordenada por critérios diferentes, como por exemplo por Cidade, Condado ou Estado."
 
 #: ../src/data/tips.xml.in.h:67
 msgid "The Sources View shows a list of all sources in a single window. Double-click on each to edit, add notes, and to see which individuals reference the source."
-msgstr "A Vista Fontes de Referência mostra uma lista com todas as fontes de referência em uma única janela. Dê um duplo-clique para editar, adicionar notas, e ver qual indivíduo está vinculado àquela fonte de referência."
+msgstr "A Visão Fontes de Referência mostra uma lista com todas as fontes de referência em uma única janela. Dê um duplo-clique para editar, adicionar notas, e ver qual indivíduo está vinculado àquela fonte de referência."
 
 #: ../src/data/tips.xml.in.h:68
-#, fuzzy
 msgid "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking system at http://bugs.gramps-project.org"
-msgstr "A melhor maneira de reportar um problema do GRAMPS é através do GRAMPS Bug Tracker localizado no Sourceforge, http://sourceforge.net/tracker/?group_id=25770&amp;atid=385137"
+msgstr "A melhor maneira de reportar um problema do GRAMPS é através do GRAMPS Bug Tracker localizado em http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:69
 msgid "Tired of having to take your hand off the keyboard to use the mouse? Many functions in GRAMPS have keyboard shortcuts. If one exists for a function it is displayed on the right side of the menu."
 msgstr "Cansado de ter que tirar sua mão do teclado para usar o mouse? Muitas funções no GRAMPS possuem atalhos de teclado. Se um deles existe para uma função, ele é exibido ao lado direito do menu."
 
 #: ../src/data/tips.xml.in.h:70
-#, fuzzy
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
-msgstr "A fim de se fundir duas pessoas, selecione as duas (uma segunda pessoa pode ser selecionada mantendo-se pressionada a tecla Control, enquanto se clica) e clique em <b>Edita &gt; Fusão Rápida</b>."
+msgstr "A fim de se fundir duas pessoas, selecione as duas (uma segunda pessoa pode ser selecionada mantendo-se pressionada a tecla Control, enquanto se clica) e clique em <b>Editar &gt; Fusão Rápida</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
