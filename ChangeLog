@@ -1,3 +1,6 @@
+2007-09-29  Brian Matherly <brian@gramps-project.org>
+	* src/gramps.py: Don't import gramps_main until logging is setup.
+
 2007-09-29 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_ReadXML.py: remove bug: no more creation of objects if bookmark is found with
 	handle that is not in database. This causes corruption of database!

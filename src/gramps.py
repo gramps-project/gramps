@@ -94,7 +94,6 @@ gettext.install("gramps",loc,unicode=1)
 # gramps libraries
 #
 #-------------------------------------------------------------------------
-import gramps_main 
 import gobject
 
 try:
@@ -169,6 +168,7 @@ def run():
         pass
     
     try:        
+        import gramps_main 
         gramps_main.Gramps(args)
     except SystemExit, e:
         if e.code:
