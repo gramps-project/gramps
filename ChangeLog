@@ -1,3 +1,7 @@
+2007-09-30  Stephane Charette <stephanecharette@gmail.com>
+	* src/data/main*.css: 0001266: Narrative web report: gallery images
+	don't show up correctly in IE7
+
 2007-09-30  Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/NarrativeWeb.py: 0001236: Narrative web report: If the event 
 	has no date, there's no place (Issue #0001236)

@@ -247,8 +247,6 @@ TD.data {
 #content { }
 #summaryarea {
     min-height: 100px;
-    /* Hack: IE Dynamic Expression to set the width */
-    height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );
 }
 #footer {
 	background-color: #454;
