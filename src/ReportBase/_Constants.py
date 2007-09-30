@@ -41,20 +41,22 @@ MODE_BKI = 2    # Book Item interface using GUI
 MODE_CLI = 4    # Command line interface (CLI)
 
 # Report categories
-CATEGORY_TEXT = 0
-CATEGORY_DRAW = 1
-CATEGORY_CODE = 2
-CATEGORY_WEB  = 3
-CATEGORY_VIEW = 4
-CATEGORY_BOOK = 5
+CATEGORY_TEXT     = 0
+CATEGORY_DRAW     = 1
+CATEGORY_CODE     = 2
+CATEGORY_WEB      = 3
+CATEGORY_VIEW     = 4
+CATEGORY_BOOK     = 5
+CATEGORY_GRAPHVIZ = 6
 
 standalone_categories = {
-    CATEGORY_TEXT : _("Text Reports"),
-    CATEGORY_DRAW : _("Graphical Reports"),
-    CATEGORY_CODE : _("Code Generators"),
-    CATEGORY_WEB  : _("Web Page"),
-    CATEGORY_VIEW : _("View"),
-    CATEGORY_BOOK : _("Books"),
+    CATEGORY_TEXT     : _("Text Reports"),
+    CATEGORY_DRAW     : _("Graphical Reports"),
+    CATEGORY_CODE     : _("Code Generators"),
+    CATEGORY_WEB      : _("Web Page"),
+    CATEGORY_VIEW     : _("View"),
+    CATEGORY_BOOK     : _("Books"),
+    CATEGORY_GRAPHVIZ : _("Graphviz"),
 }
 
 book_categories = {

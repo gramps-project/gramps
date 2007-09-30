@@ -52,7 +52,8 @@ import const
 from QuestionDialog import ErrorDialog, OptionDialog, RunDatabaseRepair
 
 from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
-     CATEGORY_VIEW, CATEGORY_CODE, CATEGORY_WEB, standalone_categories
+     CATEGORY_VIEW, CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ, \
+     standalone_categories
 from _BareReportDialog import BareReportDialog
 from _FileEntry import FileEntry
 from _PaperMenu import PaperComboBox, OrientationComboBox, paper_sizes
@@ -672,6 +673,9 @@ def report(dbstate,uistate,person,report_class,options_class,
     elif category == CATEGORY_DRAW:
         from _DrawReportDialog import DrawReportDialog
         dialog_class = DrawReportDialog
+    elif category == CATEGORY_GRAPHVIZ:
+        from _GraphvizReportDialog import GraphvizReportDialog
+        dialog_class = GraphvizReportDialog
     elif category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_VIEW,CATEGORY_WEB):
         try:
             report_class(dbstate,uistate,person)
@@ -701,15 +705,20 @@ def report(dbstate,uistate,person,report_class,options_class,
             except Errors.ReportError, msg:
                 (m1,m2) = msg.messages()
                 ErrorDialog(m1,m2)
-            except Errors.DatabaseError,msg:
+            except Errors.DatabaseError,msg:                
                 ErrorDialog(_("Report could not be created"),str(msg))
-            except AttributeError,msg:
-                if str(msg).startswith("'NoneType' object has no attribute"):
-                    # "'NoneType' object has no attribute ..." usually means
-                    # database corruption
-                    RunDatabaseRepair(str(msg))
-                else:
-                    raise
+#           The following except statement will catch all "NoneType" exceptions.
+#           This is useful for released code where the exception is most likely
+#           a corrupt database. But it is less useful for developing new reports
+#           where the execption is most likely a report bug.                
+#            except AttributeError,msg:
+#                if str(msg).startswith("'NoneType' object has no attribute"):
+#                    # "'NoneType' object has no attribute ..." usually means
+#                    # database corruption
+#                    RunDatabaseRepair(str(msg))
+#                else:
+#                    raise
+                raise
             except:
                 log.error("Failed to run report.", exc_info=True)
             break

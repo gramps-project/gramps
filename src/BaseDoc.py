@@ -1551,3 +1551,50 @@ class DrawDoc:
     def draw_line(self, style, x1, y1, x2, y2):
         raise NotImplementedError
 
+#-------------------------------------------------------------------------------
+#
+# GVDoc
+#
+#-------------------------------------------------------------------------------
+class GVDoc:
+    """
+    Abstract Interface for Graphviz document generators. Output formats
+    for Graphviz reports must implment this interface to be used by the
+    report system.
+    """
+    def add_node(self, id, label, shape="box", fillcolor="white", url=""):
+        """
+        Add a node to this graph. Nodes can be different shapes like boxes and
+        circles.
+        
+        @param id: A unique identification value for this node.
+            Example: "p55"
+        @type id: string
+        @param label: The text to be displayed in the node.
+            Example: "John Smith"
+        @type label: string
+        @param shape: The shape for the node.
+            Examples: "box", "ellipse", "circle"
+        @type shape: string
+        @param fillcolor: The fill color for the node.
+            Examples: "blue", "lightyellow"
+        @type fillcolor: string
+        @param url: A URL for the node.
+        @type url: string
+        @return: nothing
+        """
+        raise NotImplementedError
+        
+    def add_link(self, id1, id2):
+        """
+        Add a link between two nodes.
+        
+        @param id1: The unique identifier of the starting node.
+            Example: "p55"
+        @type id1: string
+        @param id2: The unique identifier of the ending node.
+            Example: "p55"
+        @type id2: string
+        @return: nothing
+        """
+        raise NotImplementedError

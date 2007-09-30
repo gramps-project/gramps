@@ -1,4 +1,11 @@
 2007-09-29  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/GVHourGlass.py: Added.
+	* src/ReportBase/_GraphvizReportDialog: Added
+	* src/ReportBase/_Constants.py: Add Graphviz type.
+	* src/ReportBase/_ReportDialog.py: Add Graphviz type.
+	* src/BaseDoc.py: Add GVDoc interface.
+
+2007-09-29  Brian Matherly <brian@gramps-project.org>
 	* src/gramps.py: Don't import gramps_main until logging is setup.
 
 2007-09-29 Benny Malengier <benny.malengier@gramps-project.org> 
