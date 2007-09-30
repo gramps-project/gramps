@@ -2041,6 +2041,8 @@ class IndividualPage(BasePage):
             text = _('%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s') % tmap
         elif descr and date:
             text = _('%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;') % tmap
+        elif descr and place:
+            text = _('%(description)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s') % tmap
         elif descr:
             text = descr
         elif date and place:
