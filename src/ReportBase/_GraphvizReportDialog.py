@@ -154,7 +154,7 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
 #-------------------------------------------------------------------------------
 class GVDotDoc(GVDocBase):
     def close(self):
-        GVDoc.close(self)
+        GVDocBase.close(self)
         
         # Make sure the extension is correct
         if self.filename[-4:] != ".dot":
