@@ -31,6 +31,7 @@ __author__   = "Zsolt Foldvari"
 # Python modules
 #
 #------------------------------------------------------------------------
+from gettext import gettext as _
 from math import radians
 import os
 ##try:
@@ -549,22 +550,22 @@ class GtkPrint(CairoDoc):
     def on_begin_print(self, operation, context):
         """Setup environment for printing.
         """
-        # get data from print context
+        # get data from context here only once to save time on pagination
         self.page_width = round(context.get_width())
         self.page_height = round(context.get_height())
+        self.dpi_x = context.get_dpi_x()
+        self.dpi_y = context.get_dpi_y()
         
     def on_paginate(self, operation, context):
         """Paginate the whole document in chunks.
         """
         layout = context.create_pango_layout()
-        dpi_x = context.get_dpi_x()
-        dpi_y = context.get_dpi_y()
 
         finished = self.paginate(layout,
                                  self.page_width,
                                  self.page_height,
-                                 dpi_x,
-                                 dpi_y)
+                                 self.dpi_x,
+                                 self.dpi_y)
         # update page number
         operation.set_n_pages(len(self._pages))
         
@@ -579,16 +580,12 @@ class GtkPrint(CairoDoc):
         """
         cr = context.get_cairo_context()
         layout = context.create_pango_layout()
+        width = round(context.get_width())
+        height = round(context.get_height())
         dpi_x = context.get_dpi_x()
         dpi_y = context.get_dpi_y()
 
-        self.draw_page(page_nr,
-                       cr,
-                       layout,
-                       self.page_width,
-                       self.page_height,
-                       dpi_x,
-                       dpi_y)
+        self.draw_page(page_nr, cr, layout, width, height, dpi_x, dpi_y)
         
     def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
