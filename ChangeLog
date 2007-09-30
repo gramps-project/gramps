@@ -1,3 +1,7 @@
+2007-09-30  Stephane Charette <stephanecharette@gmail.com>
+	* src/data/main*.css: fix IE7 display problem when viewing Narrative
+	Web gallery images (gramps bug report #0001266)
+
 2007-09-30  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/docgen/GtkPrint.py (on_draw_page): Fix zooming problem in preview.
 
