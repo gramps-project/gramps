@@ -1,3 +1,9 @@
+2007-09-28  Gary Burton <gary.burton@zen.co.uk>
+	* src/DataViews/_RelationView.py:
+	* src/Editors/_EditFamily.py:
+	* src/GrampsWidgets.py:
+	Allow enter to open iconbuttons that are not delete, issue #1159
+
 2007-10-01 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsDbUtils/_ReadXML.py: read region tag in xml
 	* src/GrampsDb/_GrampsDbWriteXML.py: output region tag in xml (=subsection of picture)

@@ -89,6 +89,8 @@ _ADATA_START  = _ALABEL_STOP
 _ADATA_STOP   = _ADATA_START+3
 _SDATA_START  = 2
 _SDATA_STOP   = 4
+_RETURN = gtk.gdk.keyval_from_name("Return")
+_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
 class AttachList:
 
@@ -1139,7 +1141,8 @@ class RelationshipView(PageView.PersonNavView):
             self.row += 1
 
     def edit_button_press(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+            or event.keyval in (_RETURN, _KP_ENTER):
             self.edit_person(obj, handle)
         
     def edit_person(self, obj, handle):
@@ -1151,7 +1154,8 @@ class RelationshipView(PageView.PersonNavView):
             pass
 
     def edit_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+            or event.keyval in (_RETURN, _KP_ENTER):
             from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
@@ -1200,7 +1204,8 @@ class RelationshipView(PageView.PersonNavView):
         self.edit_person(obj, phandle)
 
     def select_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+            or event.keyval in (_RETURN, _KP_ENTER):
             from Selectors import selector_factory
             SelectFamily = selector_factory('Family')
 

@@ -176,6 +176,7 @@ class IconButton(gtk.Button):
 
         if func:
             self.connect('button-press-event', func, handle)
+            self.connect('key-press-event', func, handle)
 
 class WarnButton(gtk.Button):
     def __init__(self):
