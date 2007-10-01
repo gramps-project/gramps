@@ -1,3 +1,7 @@
+2007-09-30  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py: 0001253: Calendar report crashes without 
+	margins entered.
+
 2007-09-30  Stephane Charette <stephanecharette@gmail.com>
 	* src/data/main*.css: fix IE7 display problem when viewing Narrative
 	Web gallery images (gramps bug report #0001266)

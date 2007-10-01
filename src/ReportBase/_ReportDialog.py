@@ -585,7 +585,7 @@ class ReportDialog(BareReportDialog):
                 paper_margins[i] = paper_margins[i] * self.paper_unit_multiplier
                 paper_margins[i] = max(paper_margins[i], 0)
             except:
-                self.paper_margins[i] = 2.54
+                paper_margins[i] = 2.54
                 
         return paper_margins
         
