@@ -47,16 +47,17 @@ try:
 except ImportError:
     pass
 
+#-------------------------------------------------------------------------
+#
+# Miscellaneous initialization
+#
+#-------------------------------------------------------------------------
 import gtk.gdk
 import gtk
 import gtk.glade
 import gobject
 
-# setup import path
-
 gobject.threads_init()
-
-sys.path.append(os.path.abspath(os.path.basename(__file__)))
 
 #-------------------------------------------------------------------------
 #

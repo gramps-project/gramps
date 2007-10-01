@@ -1,3 +1,6 @@
+2007-09-28 James G. Sack <jgsack@san.rr.com>
+	* src/gramps.py: remove wrong setting of sys.path
+
 2007-10-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/plugins/DescendChart.py:
 	* src/plugins/AncestorChart.py:
