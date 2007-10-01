@@ -313,6 +313,7 @@ src/plugins/FamilyLines.py
 src/plugins/FanChart.py
 src/plugins/FindDupes.py
 src/plugins/GraphViz.py
+src/plugins/GVHourGlass.py
 src/plugins/ImportCSV.py
 src/plugins/ImportGeneWeb.py
 src/plugins/ImportvCard.py
@@ -372,6 +373,7 @@ src/ReportBase/_Constants.py
 src/ReportBase/_DrawFormatComboBox.py
 src/ReportBase/_DrawReportDialog.py
 src/ReportBase/_Endnotes.py
+src/ReportBase/_GraphvizReportDialog.py
 src/ReportBase/_FileEntry.py
 src/ReportBase/__init__.py
 src/ReportBase/_PaperMenu.py
