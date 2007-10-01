@@ -1,3 +1,9 @@
+2007-10-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/plugins/DescendChart.py:
+	* src/plugins/AncestorChart.py:
+	Adjust available paper height when report is forced onto one page,
+	so that it won't draw on the bottom margin.
+
 2007-10-01 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_DbUtils.py: do deep copy of bookmarks from old to new db
 	* src/GrampsDb/_GrampsXMLDB.py: in load_from: load correct bookmarks

@@ -262,11 +262,15 @@ class DescendChart(Report):
         if self.title and self.force_fit:
             pstyle = style_sheet.get_paragraph_style("DC2-Title")
             tfont = pstyle.get_font()
-            self.offset = pt2cm(1.25* tfont.get_size())
+            self.offset = pt2cm(1.25 * tfont.get_size())
+            
+            gstyle = style_sheet.get_draw_style("DC2-box")
+            shadow_height = gstyle.get_shadow_space()
         else:
             self.offset = 0
-        self.uh = self.doc.get_usable_height() - self.offset
-        uw = self.doc.get_usable_width()-pt2cm(self.box_pad_pts)
+            shadow_height = 0
+        self.uh = self.doc.get_usable_height() - self.offset - shadow_height
+        uw = self.doc.get_usable_width() - pt2cm(self.box_pad_pts)
 
         calc_width = pt2cm(self.box_width + self.box_pad_pts) + self.box_gap
         self.box_width = pt2cm(self.box_width)
