@@ -21,6 +21,7 @@
 # $Id: __init__.py 6086 2006-03-06 03:54:58Z dallingham $
 
 from gettext import gettext as _
+import copy
 
 import RelLib
 from BasicUtils import UpdateCallback
@@ -272,14 +273,14 @@ def db_copy(from_db,to_db,callback):
 
     # Copy bookmarks over:
     # we already know that there's no overlap in handles anywhere
-    to_db.bookmarks        = from_db.bookmarks
-    to_db.family_bookmarks = from_db.family_bookmarks
-    to_db.event_bookmarks  = from_db.event_bookmarks
-    to_db.source_bookmarks = from_db.source_bookmarks
-    to_db.place_bookmarks  = from_db.place_bookmarks
-    to_db.media_bookmarks  = from_db.media_bookmarks
-    to_db.repo_bookmarks   = from_db.repo_bookmarks
-    to_db.note_bookmarks   = from_db.note_bookmarks
+    to_db.bookmarks        = copy.deepcopy(from_db.bookmarks)
+    to_db.family_bookmarks = copy.deepcopy(from_db.family_bookmarks)
+    to_db.event_bookmarks  = copy.deepcopy(from_db.event_bookmarks)
+    to_db.source_bookmarks = copy.deepcopy(from_db.source_bookmarks)
+    to_db.place_bookmarks  = copy.deepcopy(from_db.place_bookmarks)
+    to_db.media_bookmarks  = copy.deepcopy(from_db.media_bookmarks)
+    to_db.repo_bookmarks   = copy.deepcopy(from_db.repo_bookmarks)
+    to_db.note_bookmarks   = copy.deepcopy(from_db.note_bookmarks)
 
     # Copy name formats
     to_db.name_formats = from_db.name_formats

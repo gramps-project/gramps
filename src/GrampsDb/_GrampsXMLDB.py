@@ -74,7 +74,6 @@ class GrampsXMLDB(GrampsInMemDB):
         self.id_trans = {}
         db_copy(other_database,self,callback)
         GrampsInMemDB.load(self,filename,callback)
-        self.bookmarks.set(self.metadata.get('bookmarks',[]))
         self.db_is_open = True
 
         try:            
