@@ -1,4 +1,8 @@
 2007-09-30  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0001238: Web report: sort references for 
+	places and media
+
+2007-09-30  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_ReportDialog.py: 0001253: Calendar report crashes without 
 	margins entered.
 

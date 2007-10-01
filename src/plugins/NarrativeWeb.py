@@ -38,6 +38,7 @@ import locale
 import shutil
 import codecs
 import tarfile
+import operator 
 from gettext import gettext as _
 from cStringIO import StringIO
 from textwrap import TextWrapper
@@ -565,9 +566,11 @@ class BasePage:
         of.write('<div id="references">\n')
         of.write('<h4>%s</h4>\n' % _('References'))
         of.write('<table class="infolist">\n')
+        
+        sortlist = sorted(handlelist, key=operator.itemgetter(1))
 
         index = 1
-        for (path,name,gid) in handlelist:
+        for (path,name,gid) in sortlist:
             of.write('<tr><td class="field">%d. ' % index)
             self.person_link(of,path,name,gid)
             of.write('</td></tr>\n')
