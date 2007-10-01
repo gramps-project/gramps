@@ -382,6 +382,7 @@ class GrampsParser(UpdateCallback):
             "families"   : (None, self.stop_families), 
             "family"     : (self.start_family, self.stop_family), 
             "rel"        : (self.start_rel, None), 
+            "region"     : (self.start_region, None),
             "father"     : (self.start_father, None), 
             "first"      : (None, self.stop_first), 
             "call"       : (None, self.stop_call), 
@@ -1341,6 +1342,13 @@ class GrampsParser(UpdateCallback):
             self.person.add_media_reference(self.objref)
         elif self.placeobj:
             self.placeobj.add_media_reference(self.objref)
+
+    def start_region(self,attrs):
+        rect = (int(attrs.get('corner1_x')),
+                int(attrs.get('corner1_y')),
+                int(attrs.get('corner2_x')),
+                int(attrs.get('corner2_y')) )
+        self.objref.set_rectangle(rect)
 
     def start_object(self, attrs):
         gramps_id = self.map_oid(attrs['id'])

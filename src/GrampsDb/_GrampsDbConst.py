@@ -40,7 +40,7 @@ else:
     USER_HOME = os.environ['HOME'] 
     HOME_DIR = os.path.join(USER_HOME,'.gramps')
 
-env_dir        = os.path.join(HOME_DIR,"env")
+ENV_DIR         = os.path.join(HOME_DIR,"env")
 
 
 APP_GRAMPS      = "application/x-gramps"

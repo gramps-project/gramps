@@ -943,10 +943,32 @@ class GrampsDbXmlWriter(UpdateCallback):
             proplist = photo.get_attribute_list()
             refslist = photo.get_source_references()
             nreflist = photo.get_note_list()
-            if (len(proplist) + len(nreflist) + len(refslist)) == 0:
+            rect = photo.get_rectangle()
+            if rect is not None :
+                corner1_x = rect[0]
+                corner1_y = rect[1]
+                corner2_x = rect[2]
+                corner2_y = rect[3]
+                if corner1_x==None : corner1_x = 0
+                if corner1_y==None : corner1_y = 0
+                if corner2_x==None : corner2_x = 100
+                if corner2_y==None : corner2_y = 100
+                #don't output not set rectangle
+                if (corner1_x == 0 and corner1_y == 0
+                    and corner2_x == 0 and corner2_y == 0
+                   ) or (corner1_x == 0 and corner1_y == 0
+                    and corner2_x == 100 and corner2_y == 100
+                   ):
+                    rect = None
+            if (len(proplist) + len(nreflist) + len(refslist)) == 0 \
+                    and rect is None:
                 self.g.write("/>\n")
             else:
                 self.g.write(">\n")
+                if rect is not None :
+                    self.g.write(' %s<region corner1_x="%d" corner1_y="%d" '
+                                 'corner2_x="%d" corner2_y="%d"/>\n' %
+                            (sp,corner1_x,corner1_y,corner2_x,corner2_y))
                 self.write_attribute_list(proplist,indent+1)
                 for ref in refslist:
                     self.dump_source_ref(ref,indent+1)

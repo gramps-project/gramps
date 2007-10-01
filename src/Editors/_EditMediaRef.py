@@ -88,12 +88,12 @@ class EditMediaRef(EditReference):
 
         coord = self.source_ref.get_rectangle()
         #upgrade path: set invalid (from eg old db) to none
-        if (coord[0] == None and coord[1] == None
+        if coord is not None and ((coord[0] == None and coord[1] == None
                 and coord[2] == None and coord[3] == None) or (
             coord[0] == 0 and coord[1] == 0
                 and coord[2] == 100 and coord[3] == 100) or (
             coord[0] == coord[2] and coord[1] == coord[3]
-           ):
+           )):
             coord = None
 
         self.rectangle = coord

@@ -1,4 +1,10 @@
-2007-09-28 James G. Sack <jgsack@san.rr.com>
+2007-10-01 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/GrampsDbUtils/_ReadXML.py: read region tag in xml
+	* src/GrampsDb/_GrampsDbWriteXML.py: output region tag in xml (=subsection of picture)
+	* src/GrampsDb/_GrampsDbConst.py: change env_dir in ENV_DIR
+	* src/Editors/_EditMediaRef.py: remove bug with coord None
+
+2007-10-01 James G. Sack <jgsack@san.rr.com>
 	* src/gramps.py: remove wrong setting of sys.path
 
 2007-10-01  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
