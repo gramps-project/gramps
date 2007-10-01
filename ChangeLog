@@ -1,3 +1,7 @@
+2007-10-01 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_DbUtils.py: do deep copy of bookmarks from old to new db
+	* src/GrampsDb/_GrampsXMLDB.py: in load_from: load correct bookmarks
+
 2007-09-30  Stephane Charette <stephanecharette@gmail.com>
 	* src/data/main*.css: 0001266: Narrative web report: gallery images
 	don't show up correctly in IE7
