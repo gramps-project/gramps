@@ -567,7 +567,9 @@ class BasePage:
         of.write('<h4>%s</h4>\n' % _('References'))
         of.write('<table class="infolist">\n')
         
-        sortlist = sorted(handlelist, key=operator.itemgetter(1))
+        sortlist = sorted(handlelist, 
+                          key = operator.itemgetter(1), 
+                          cmp = strcoll_case_sensitive)
 
         index = 1
         for (path,name,gid) in sortlist:

@@ -1,3 +1,7 @@
+2007-10-02  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0001238: Web report: sort references for 
+	places and media (use locale and case sensitive sort)
+
 2007-09-28  Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/_RelationView.py:
 	* src/Editors/_EditFamily.py:
