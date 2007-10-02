@@ -438,7 +438,7 @@ class MonitoredSpinButton:
 
         if get_val():
             self.obj.set_value(get_val())
-        self.obj.connect('changed', self._on_change)
+        self.obj.connect('value-changed', self._on_change)
         self.obj.set_editable(not read_only)
 
         if autolist:

@@ -1,8 +1,12 @@
+2007-10-02 Tobias Gehrig <tobias@gehrignet.de>
+	* src/GrampsWidgets.py: refresh thumbnail section on change
+	* src/glade/gramps.glade: better placement of lock icon on editmediaref
+
 2007-10-02  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0001238: Web report: sort references for 
 	places and media (use locale and case sensitive sort)
 
-2007-09-28  Gary Burton <gary.burton@zen.co.uk>
+2007-10-01  Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/_RelationView.py:
 	* src/Editors/_EditFamily.py:
 	* src/GrampsWidgets.py:
