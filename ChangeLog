@@ -1,3 +1,6 @@
+2007-10-02 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DateEdit.py: resolve issue #1270, date edit not closing
+
 2007-10-02 Tobias Gehrig <tobias@gehrignet.de>
 	* src/GrampsWidgets.py: refresh thumbnail section on change
 	* src/glade/gramps.glade: better placement of lock icon on editmediaref

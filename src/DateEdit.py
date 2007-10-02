@@ -277,6 +277,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                         value=the_value,
                         text=the_text)
                 self.close()
+                break
 
     def build_menu_names(self, obj):
         """
