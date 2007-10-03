@@ -638,14 +638,13 @@ class ListView(BookMarkView):
         self.search_bar.setup_filter(cols)
 
     def goto_handle(self, handle):
-        if not self.dbstate.active or self.inactive:
+        if not handle or self.inactive:
             return
 
-        # mark inactive to prevent recusion
+        # mark inactive to prevent recursion
         self.inactive = True
 
-        # select the active person in the person view
-
+        # select the handle in the view
         try:
             path = self.model.on_get_path(handle)
             self.selection.unselect_all()
@@ -729,7 +728,14 @@ class ListView(BookMarkView):
             self.dirty = False
         else:
             self.dirty = True
-        
+
+    def object_build(self):
+        """callback, for if tree must be rebuild and bookmarks redrawn
+        """
+        self.build_tree()
+        if self.active:
+            self.bookmarks.redraw()
+
     def filter_toggle_action(self,obj):
         if obj.get_active():
             self.search_bar.hide()

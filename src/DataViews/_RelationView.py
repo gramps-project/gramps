@@ -171,6 +171,9 @@ class RelationshipView(PageView.PersonNavView):
             self.change_person(None)
 
     def person_rebuild(self):
+        """Large change to person database"""
+        if self.active:
+            self.bookmarks.redraw()
         if self.dbstate.active:
             while not self.change_person(self.dbstate.active.handle):
                 pass

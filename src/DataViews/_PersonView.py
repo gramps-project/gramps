@@ -416,7 +416,7 @@ class PersonView(PageView.PersonNavView):
         db.connect('person-add', self.person_added)
         db.connect('person-update', self.person_updated)
         db.connect('person-delete', self.person_removed)
-        db.connect('person-rebuild', self.build_tree)
+        db.connect('person-rebuild', self.person_rebuild)
 
         if self.active:
             self.build_tree()
@@ -724,6 +724,12 @@ class PersonView(PageView.PersonNavView):
 
     def func(self, tree, path, ex_list):
         ex_list.append(self.model.mapper.top_path2iter[path[0]])
+
+    def person_rebuild(self):
+        """Large change to person database"""
+        if self.active:
+            self.bookmarks.redraw()
+        self.build_tree()
 
     def person_removed(self, handle_list):
         if not self.model:

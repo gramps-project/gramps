@@ -93,7 +93,7 @@ class MediaView(PageView.ListView):
             'media-add'     : self.row_add,
             'media-update'  : self.row_update,
             'media-delete'  : self.row_delete,
-            'media-rebuild' : self.build_tree,
+            'media-rebuild' : self.object_build,
             }
 
         PageView.ListView.__init__(

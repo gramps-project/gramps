@@ -631,7 +631,7 @@ class PedigreeView(PageView.PersonNavView):
         db.connect('person-add', self.person_rebuild)
         db.connect('person-update', self.person_rebuild)
         db.connect('person-delete', self.person_rebuild)
-        db.connect('person-rebuild', self.person_rebuild)
+        db.connect('person-rebuild', self.person_rebuild_bm)
         db.connect('family-update', self.person_rebuild)
         db.connect('family-add',    self.person_rebuild)
         db.connect('family-delete', self.person_rebuild)
@@ -650,6 +650,12 @@ class PedigreeView(PageView.PersonNavView):
             self.rebuild_trees(None)
         self.uistate.modify_statusbar(self.dbstate)
     
+    def person_rebuild_bm(self,dummy=None):
+        """Large change to person database"""
+        self.person_rebuild(dummy)
+        if self.active:
+            self.bookmarks.redraw()
+
     def person_rebuild(self,dummy=None):
         self.format_helper.clear_cache()
         self.dirty = True
