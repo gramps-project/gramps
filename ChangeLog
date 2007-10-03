@@ -1,4 +1,7 @@
 2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/plugins/Check.py: add remove empty objects. This needs testing...
+
+2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_GrampsDbBase.py: copy bookmark list, don't reference
 	* src/GrampsDb/_ReadXML.py: only add bookmarks if not present already, #1187
 
