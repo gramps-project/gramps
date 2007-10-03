@@ -19,7 +19,6 @@ pkgdata_PYTHON = \
 	_GrampsDbWriteXML.py \
 	_GrampsGEDDB.py\
 	_GrampsInMemDB.py\
-	_HelperFunctions.py\
 	__init__.py\
 	_LongOpStatus.py\
 	_ProgressMonitor.py

@@ -57,6 +57,3 @@ from _GrampsDbWriteXML import GrampsDbXmlWriter, \
 from _LongOpStatus import LongOpStatus
 from _ProgressMonitor import ProgressMonitor
 
-from _HelperFunctions import *
-
-from _DbBase import DbBase
