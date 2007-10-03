@@ -658,16 +658,12 @@ class CheckIntegrity:
     def _check_empty(self, data, empty_data, changepos):
         """compare the data with the data of an empty object
             change, handle and gramps_id are not compared """
-        print 'checking'
-        print data
-        print empty_data
         if changepos is not None:
             return (data[2:changepos] == empty_data[2:changepos] and 
                     data[changepos+1:] == empty_data[changepos+1:]
                    )
         else :
             return data[2:] == empty_data[2:]
-
 
     def cleanup_empty_families(self,automatic):
 
@@ -1018,7 +1014,6 @@ class CheckIntegrity:
                         + len(self.empty_objects['places'])
                         + len(self.empty_objects['repos'])
                      )
-        print 'empty objs:',empty_objs
 
         errors = (photos + efam + blink + plink + slink + rel
                   + event_invalid + person 
