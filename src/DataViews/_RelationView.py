@@ -131,7 +131,7 @@ class RelationshipView(PageView.PersonNavView):
                                  self.config_update)
         Config.client.notify_add("/apps/gramps/interface/toolbar-on",
                                  self.shade_update)
-	self.reorder_sensitive = False
+        self.reorder_sensitive = False
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
@@ -307,19 +307,19 @@ class RelationshipView(PageView.PersonNavView):
         self.order_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.order_action.add_actions([
             ('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
-	     _("Reorder the relationships"), self.reorder),
+             _("Reorder the relationships"), self.reorder),
             ])
 
         self.family_action = gtk.ActionGroup(self.title + '/Family')
         self.family_action.add_actions([
             ('Edit', gtk.STOCK_EDIT, _('Edit'), None ,
-	     _("Edits the active person"), self.edit_active),
+             _("Edits the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Spouse'), None ,
-	     _("Adds a new relationship"), self.add_spouse),
+             _("Adds a new relationship"), self.add_spouse),
             ('AddParents', 'gramps-parents', _('Add'), None ,
-	     _("Adds a new set of parents"), self.add_parents),
+             _("Adds a new set of parents"), self.add_parents),
             ('ShareFamily', 'gramps-sharefamily', _('Share'), None ,
-	     _("Adds an existing set of parents"), self.select_parents),
+             _("Adds an existing set of parents"), self.select_parents),
             ])
 
         self.add_action_group(self.order_action)
@@ -332,7 +332,7 @@ class RelationshipView(PageView.PersonNavView):
                                None, None, self.siblings_toggle, 
                                self.show_siblings)
 
-	self.order_action.set_sensitive(self.reorder_sensitive)
+        self.order_action.set_sensitive(self.reorder_sensitive)
         self.family_action.set_sensitive(False)
 
     def siblings_toggle(self, obj):
@@ -360,7 +360,8 @@ class RelationshipView(PageView.PersonNavView):
         self.dbstate.db.connect('person-add', self.redraw)
         self.dbstate.db.connect('person-delete', self.redraw)
         self.bookmarks.update_bookmarks(db.get_bookmarks())
-        self.bookmarks.redraw()
+        if self.active:
+                self.bookmarks.redraw()
         self.redraw()
 
     def get_name(self, handle, use_gender=False):
@@ -427,7 +428,7 @@ class RelationshipView(PageView.PersonNavView):
             self.row += 1
                 
         family_handle_list = person.get_family_handle_list()
-	
+    
         if not self.reorder_sensitive:
             self.reorder_sensitive = len(family_handle_list)> 1
 
@@ -661,7 +662,7 @@ class RelationshipView(PageView.PersonNavView):
             # Show edit-Buttons if toolbar is not visible
             if self.reorder_sensitive:
                 add = GrampsWidgets.IconButton(self.reorder, None, 
-					       gtk.STOCK_SORT_ASCENDING)
+                           gtk.STOCK_SORT_ASCENDING)
                 self.tooltips.set_tip(add, _('Reorder families'))
                 hbox.pack_start(add, False)
 

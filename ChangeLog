@@ -1,3 +1,7 @@
+2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DataViews/_PedigreeView.py: correctly load bookmarks, issue 1271
+	* src/DataViews/_RelationView.py: correctly load bookmarks, issue 1271
+
 2007-10-01 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_DbUtils.py: do deep copy of bookmarks from old to new db
 	* src/GrampsDb/_GrampsXMLDB.py: in load_from: load correct bookmarks

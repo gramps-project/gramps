@@ -637,10 +637,10 @@ class PedigreeView(PageView.PersonNavView):
         db.connect('family-delete', self.person_rebuild)
         db.connect('family-rebuild', self.person_rebuild)
         self.bookmarks.update_bookmarks(self.dbstate.db.get_bookmarks())
-        if self.dbstate.active:
+        if self.active:
             self.bookmarks.redraw()
         self.build_tree()
- 
+
     def goto_active_person(self,handle=None):
         self.dirty = True
         if handle:
