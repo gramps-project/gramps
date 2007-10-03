@@ -845,25 +845,32 @@ class GrampsParser(UpdateCallback):
         # Make sure those are filtered out.
         # Bookmarks are at end, so all handle must exist before we do bookmrks
         if target == 'person':
-            if self.db.find_person_from_handle(handle,self.trans) is not None:
+            if (self.db.find_person_from_handle(handle,self.trans) is not None
+                    and handle not in self.db.bookmarks.get() ):
                 self.db.bookmarks.append(handle)
         elif target == 'family':
-            if self.db.find_family_from_handle(handle,self.trans) is not None:
+            if (self.db.find_family_from_handle(handle,self.trans) is not None
+                    and handle not in self.db.family_bookmarks.get() ):
                 self.db.family_bookmarks.append(handle)
         elif target == 'event':
-            if self.db.find_event_from_handle(handle,self.trans) is not None:
+            if (self.db.find_event_from_handle(handle,self.trans) is not None
+                    and handle not in self.db.event_bookmarks.get() ):
                 self.db.event_bookmarks.append(handle)
         elif target == 'source':
-            if self.db.find_source_from_handle(handle,self.trans) is not None:
+            if (self.db.find_source_from_handle(handle,self.trans) is not None
+                    and handle not in self.db.source_bookmarks.get() ):
                 self.db.source_bookmarks.append(handle)
         elif target == 'place':
-            if self.db.find_place_from_handle(handle,self.trans) is not None:
+            if (self.db.find_place_from_handle(handle,self.trans) is not None
+                    and handle not in self.db.place_bookmarks.get() ):
                 self.db.place_bookmarks.append(handle)
         elif target == 'media':
-            if self.db.find_object_from_handle(handle,self.trans) is not None:
+            if (self.db.find_object_from_handle(handle,self.trans) is not None
+                    and handle not in self.db.media_bookmarks.get() ):
                 self.db.media_bookmarks.append(handle)
         elif target == 'repository':
-            if self.db.find_repository_from_handle(handle,self.trans) is not None:
+            if (self.db.find_repository_from_handle(handle,self.trans) 
+                    is not None and handle not in self.db.repo_bookmarks.get()):
                 self.db.repo_bookmarks.append(handle)
 
     def start_format(self,attrs):
