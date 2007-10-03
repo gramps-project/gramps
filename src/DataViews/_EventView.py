@@ -83,7 +83,7 @@ class EventView(PageView.ListView):
             'event-add'     : self.row_add,
             'event-update'  : self.row_update,
             'event-delete'  : self.row_delete,
-            'event-rebuild' : self.build_tree,
+            'event-rebuild' : self.object_build,
             }
 
         self.func_list = {

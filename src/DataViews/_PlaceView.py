@@ -91,7 +91,7 @@ class PlaceView(PageView.ListView):
             'place-add'     : self.row_add,
             'place-update'  : self.row_update,
             'place-delete'  : self.row_delete,
-            'place-rebuild' : self.build_tree,
+            'place-rebuild' : self.object_build,
             }
 
         self.func_list = {

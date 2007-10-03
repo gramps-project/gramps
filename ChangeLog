@@ -1,3 +1,19 @@
+2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DataViews/_PedigreeView.py: correctly load bookmarks, issue 1271
+	* src/DataViews/_RelationView.py: correctly load bookmarks, issue 1271
+	* src/PageView.py: correct bug not going to bookmark if no active person
+	* src/DataViews/_MediaView.py:
+	* src/DataViews/_NoteView.py:
+	* src/DataViews/_RepositoryView.py:
+	* src/DataViews/_SourceView.py:
+	* src/DataViews/_EventView.py:
+	* src/DataViews/_FamilyList.py:
+	* src/DataViews/_PedigreeView.py:
+	* src/DataViews/_PlaceView.py:
+	* src/DataViews/_PersonView.py:
+	* src/DataViews/_RelationView.py:
+	after import, redraw bookmark menu
+
 2007-10-02 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DateEdit.py: resolve issue #1270, date edit not closing
 

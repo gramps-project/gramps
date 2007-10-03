@@ -92,7 +92,7 @@ class RepositoryView(PageView.ListView):
             'repository-add'     : self.row_add,
             'repository-update'  : self.row_update,
             'repository-delete'  : self.row_delete,
-            'repository-rebuild' : self.build_tree,
+            'repository-rebuild' : self.object_build,
             }
         
         self.func_list = {

@@ -76,7 +76,7 @@ class FamilyListView(PageView.ListView):
             'family-add'     : self.row_add,
             'family-update'  : self.row_update,
             'family-delete'  : self.row_delete,
-            'family-rebuild' : self.build_tree,
+            'family-rebuild' : self.object_build,
             }
 
         self.func_list = {

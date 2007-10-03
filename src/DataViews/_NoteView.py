@@ -84,7 +84,7 @@ class NoteView(PageView.ListView):
             'note-add'     : self.row_add,
             'note-update'  : self.row_update,
             'note-delete'  : self.row_delete,
-            'note-rebuild' : self.build_tree,
+            'note-rebuild' : self.object_build,
         }
 
         self.func_list = {

@@ -85,7 +85,7 @@ class SourceView(PageView.ListView):
             'source-add'     : self.row_add,
             'source-update'  : self.row_update,
             'source-delete'  : self.row_delete,
-            'source-rebuild' : self.build_tree,
+            'source-rebuild' : self.object_build,
             }
 
         self.func_list = {
