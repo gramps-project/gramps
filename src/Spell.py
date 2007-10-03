@@ -50,7 +50,9 @@ try:
         print _("Spelling checker cannot be used without language set.")
         print _("Set your locale appropriately to use spelling checker.")
     else:
-        gtkspell.Spell(gtk.TextView()).set_language(lang)
+        #work around gtkspell bug with tv
+        tv = gtk.TextView()
+        gtkspell.Spell(tv).set_language(lang)
         success = True
 except ImportError, msg:
     print _("Spelling checker is not installed")

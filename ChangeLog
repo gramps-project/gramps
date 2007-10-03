@@ -1,4 +1,7 @@
 2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Spell.py: add gtkspell bug workaround, see eg issue 1272, 1091, ...
+
+2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/PageView.py: correct bug not going to bookmark if no active person
 	* src/DataViews/_MediaView.py:
 	* src/DataViews/_RepositoryView.py:
