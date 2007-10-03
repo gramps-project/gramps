@@ -221,8 +221,9 @@ src/GrampsDbUtils/_WriteXML.py
 src/GrampsDbUtils/__init__.py
 
 # gen/proxy
-src/gen/proxy/livingproxy.py
-src/gen/proxy/privateproxy.py
+src/gen/proxy/living.py
+src/gen/proxy/private.py
+src/gen/proxy/filter.py
 src/gen/proxy/proxybase.py
 src/gen/proxy/dbbase.py
 src/gen/proxy/__init__.py
