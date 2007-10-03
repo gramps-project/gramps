@@ -1,3 +1,6 @@
+2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Spell.py: add gtkspell bug workaround, see eg issue 1272, 1091, ...
+
 2007-10-03  Don Allingham  <don@gramps-project.org>
 	* various: create gen package, move proxy files to this library
 

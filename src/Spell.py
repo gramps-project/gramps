@@ -170,7 +170,9 @@ class Spell:
     if HAVE_GTKSPELL:
         for lang_code, lang_name in LANGUAGES.items():
             try:
-                gtkspell.Spell(gtk.TextView()).set_language(lang_code)
+                #work around gtkspell bug with tv
+                tv = gtk.TextView()
+                gtkspell.Spell(tv).set_language(lang_code)
                 _installed_languages[lang_code] = lang_name
             except RuntimeError:
                 pass
