@@ -33,7 +33,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from _ProxyDbBase import ProxyDbBase
+from proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):
     """

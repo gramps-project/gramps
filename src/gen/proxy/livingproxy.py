@@ -32,7 +32,7 @@ __revision__ = "$Revision$"
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from _ProxyDbBase import ProxyDbBase
+from proxybase import ProxyDbBase
 from RelLib import *
 from Utils import probably_alive
 

@@ -113,31 +113,6 @@ then
 fi
 AC_MSG_RESULT($has_pygnome)
 
-AC_MSG_CHECKING(Python bindings for gnome vfs)
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    # Do not import gnome.vfs, this can raise a RuntimeError if the
-    # display cannot be opened.  Just search it.
-    import imp
-    imp.find_module('gnome/vfs')
-    out("gnome.vfs")
-except ImportError:
-    imp.find_module('gnomevfs')
-    out("gnomevfs")
-except:
-    out("NO")
-EOF
-$PYTHON conftest.py
-has_vfs=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test NO = "$has_vfs"
-then
-   AC_MSG_ERROR([
-**** The python bindings for GNOME VFS (gnome2-python-vfs) could not be found.])
-fi
-AC_MSG_RESULT($has_vfs)
-
 AC_MSG_CHECKING(Python bindings for glade)
 cat > conftest.py <<EOF
 $pygtk_require
@@ -202,6 +177,8 @@ src/PluginUtils/Makefile
 src/ReportBase/Makefile
 src/plugins/Makefile
 src/DateHandler/Makefile
+src/gen/Makefile
+src/gen/proxy/Makefile
 src/data/Makefile
 src/data/templates/Makefile
 src/glade/Makefile

@@ -9,6 +9,7 @@ SUBDIRS = \
 	Editors \
 	Filters \
 	FilterEditor \
+	gen \
 	GrampsDb \
 	GrampsDbUtils \
 	GrampsLocale \

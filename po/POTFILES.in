@@ -213,15 +213,19 @@ src/GrampsDbUtils/_GedcomStageOne.py
 src/GrampsDbUtils/_GedcomParse.py
 src/GrampsDbUtils/_GedcomTokens.py
 src/GrampsDbUtils/_GrampsDbWRFactories.py
-src/GrampsDbUtils/_LivingProxyDb.py
-src/GrampsDbUtils/_PrivateProxyDb.py
-src/GrampsDbUtils/_ProxyDbBase.py
 src/GrampsDbUtils/_ReadGedcom.py
 src/GrampsDbUtils/_ReadXML.py
 src/GrampsDbUtils/_WriteGedcom.py
 src/GrampsDbUtils/_WriteGrdb.py
 src/GrampsDbUtils/_WriteXML.py
 src/GrampsDbUtils/__init__.py
+
+# gen/proxy
+src/gen/proxy/livingproxy.py
+src/gen/proxy/privateproxy.py
+src/gen/proxy/proxybase.py
+src/gen/proxy/dbbase.py
+src/gen/proxy/__init__.py
 
 # GrampsLocale package
 src/GrampsLocale/_GrampsLocale.py

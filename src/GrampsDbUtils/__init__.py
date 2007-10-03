@@ -35,6 +35,7 @@ on using these factories see the _GrampsDbUtilsFactories.py file comments.
 
 """
 
+__version__ = "$Revision$"
 
 from _GrampsDbWRFactories import \
      gramps_db_writer_factory, \
@@ -48,6 +49,6 @@ from _WriteXML import XmlWriter
 
 import _Backup as Backup
 
-from _PrivateProxyDb import PrivateProxyDb
-from _LivingProxyDb import LivingProxyDb
+#from _PrivateProxyDb import PrivateProxyDb
+#from _LivingProxyDb import LivingProxyDb
 

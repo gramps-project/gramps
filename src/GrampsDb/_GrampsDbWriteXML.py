@@ -61,6 +61,8 @@ from _GrampsDbConst import \
 from _GrampsDbExceptions import *
 from _LongOpStatus import LongOpStatus
 
+import gen.proxy
+
 #-------------------------------------------------------------------------
 #
 # Attempt to load the GZIP library. Some version of python do not seem
@@ -105,16 +107,14 @@ def exportData(database, filename, person, option_box, callback, version="unknow
     private = option_box.private
 
     if private:
-        from GrampsDbUtils._PrivateProxyDb import PrivateProxyDb
-        database = PrivateProxyDb(database)
+        database = gen.proxy.PrivateProxyDb(database)
 
     if restrict:
-        from GrampsDbUtils._LivingProxyDb import LivingProxyDb
-        database = LivingProxyDb(database, LivingProxyDb.MODE_RESTRICT)
+        database = gen.proxy.LivingProxyDb(
+            database, gen.proxy.LivingProxyDb.MODE_RESTRICT)
 
     if not option_box.cfilter.is_empty():
-        from GrampsDbUtils._FilterProxyDb import FilterProxyDb
-        database = FilterProxyDb(database, option_box.cfilter)
+        database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
 
     g = GrampsDbXmlWriter(database, 0, compress, version, callback)
     ret = g.write(filename)

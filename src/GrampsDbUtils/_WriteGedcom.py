@@ -41,6 +41,7 @@ import _GedcomInfo as GedcomInfo
 import Errors
 import ExportOptions
 import BasicUtils
+import gen.proxy
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -290,20 +291,18 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
             # If the private flag is set, apply the PrivateProxyDb
             if option_box.private:
-                from _PrivateProxyDb import PrivateProxyDb
-                self.dbase = PrivateProxyDb(self.dbase)
+                self.dbase = gen.proxy.PrivateProxyDb(self.dbase)
 
             # If the restrict flag is set, apply the LivingProxyDb
             if option_box.restrict:
-                from _LivingProxyDb import LivingProxyDb
-                self.dbase = LivingProxyDb(self.dbase, 
-                                           LivingProxyDb.MODE_RESTRICT)
+                self.dbase = gen.proxy.LivingProxyDb(
+                    self.dbase, gen.proxy.LivingProxyDb.MODE_RESTRICT)
 
             # If the filter returned by cfilter is not empty, apply the 
             # FilterProxyDb
             if not option_box.cfilter.is_empty():
-                from _FilterProxyDb import FilterProxyDb
-                self.dbase = FilterProxyDb(self.dbase, option_box.cfilter)
+                self.dbase = gen.proxy.FilterProxyDb(
+                    self.dbase, option_box.cfilter)
 
     def write_gedcom_file(self, filename):
         """

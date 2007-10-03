@@ -32,7 +32,7 @@ __revision__ = "$Revision: 8864 $"
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from GrampsDb import DbBase
+from dbbase import DbBase
 
 class ProxyDbBase(DbBase):
     """

@@ -33,7 +33,7 @@ __revision__ = "$Revision: 8864 $"
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from _ProxyDbBase import ProxyDbBase
+from proxybase import ProxyDbBase
 
 class FilterProxyDb(ProxyDbBase):
     """

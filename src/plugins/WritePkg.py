@@ -35,6 +35,7 @@ from cStringIO import StringIO
 from gettext import gettext as _
 import ExportOptions
 from BasicUtils import UpdateCallback
+import gen.proxy
 
 #------------------------------------------------------------------------
 #
@@ -76,16 +77,14 @@ def writeData(database, filename, person, option_box, callback=None):
     private = option_box.private
 
     if private:
-        from GrampsDbUtils._PrivateProxyDb import PrivateProxyDb
-        database = PrivateProxyDb(database)
+        database = gen.proxy.PrivateProxyDb(database)
 
     if restrict:
-        from GrampsDbUtils._LivingProxyDb import LivingProxyDb
-        database = LivingProxyDb(database, LivingProxyDb.MODE_RESTRICT)
+        database = gen.proxy.LivingProxyDb(
+            database, gen.proxy.LivingProxyDb.MODE_RESTRICT)
 
     if not option_box.cfilter.is_empty():
-        from GrampsDbUtils._FilterProxyDb import FilterProxyDb
-        database = FilterProxyDb(database, option_box.cfilter)
+        database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
 
 
     writer = PackageWriter(database, filename, callback)

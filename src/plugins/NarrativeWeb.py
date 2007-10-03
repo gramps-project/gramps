@@ -82,7 +82,8 @@ from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
-from GrampsDbUtils import PrivateProxyDb, LivingProxyDb
+from gen.proxy import PrivateProxyDb
+from gen.proxy import LivingProxyDb
 
 #------------------------------------------------------------------------
 #
