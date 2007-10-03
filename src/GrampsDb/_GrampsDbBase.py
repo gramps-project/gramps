@@ -97,7 +97,7 @@ class GrampsDbBookmarks:
         self.bookmarks = list(default) # want a copy (not an alias)
 
     def set(self, new_list):
-        self.bookmarks = new_list
+        self.bookmarks = list(new_list)
 
     def get(self):
         return self.bookmarks
