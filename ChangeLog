@@ -1,3 +1,8 @@
+2007-10-03  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 0001238: Web report: sort references for 
+	places and media (use remove case sensitive sort and use normalized strings 
+	for each section)
+
 2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_GrampsDbBase.py: copy bookmark list, don't reference
 	* src/GrampsDbUtils/_ReadXML.py: only add bookmarks if not present already, #1187

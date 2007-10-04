@@ -42,6 +42,7 @@ import operator
 from gettext import gettext as _
 from cStringIO import StringIO
 from textwrap import TextWrapper
+from unicodedata import normalize
 
 #------------------------------------------------------------------------
 #
@@ -570,7 +571,7 @@ class BasePage:
         
         sortlist = sorted(handlelist, 
                           key = operator.itemgetter(1), 
-                          cmp = strcoll_case_sensitive)
+                          cmp = locale.strcoll)
 
         index = 1
         for (path,name,gid) in sortlist:
@@ -966,20 +967,20 @@ class PlaceListPage(BasePage):
             if not n or len(n) == 0:
                 continue
             
-            if n[0] != last_letter:
-                last_letter = n[0]
+            letter = normalize('NFD',n)[0].upper()
+            
+            if letter != last_letter:
+                last_letter = letter
                 of.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
                 of.write('<tr><td class="category">%s</td>' % last_letter)
                 of.write('<td class="data">')
                 self.place_link(of,place.handle,n,place.gramps_id)
                 of.write('</td></tr>')
-                last_surname = n
-            elif n != last_surname:
+            else:
                 of.write('<tr><td class="category">&nbsp;</td>')
                 of.write('<td class="data">')
                 self.place_link(of,place.handle,n,place.gramps_id)
                 of.write('</td></tr>')
-                last_surname = n
             
         of.write('</tbody>\n</table>\n')
         self.display_footer(of,db)
@@ -1289,8 +1290,12 @@ class SurnameListPage(BasePage):
             if len(surname) == 0:
                 continue
             
-            if surname[0] != last_letter:
-                last_letter = surname[0]
+            # Get a capital normalized version of the first letter of 
+            # the surname
+            letter = normalize('NFD',surname)[0].upper()
+            
+            if letter != last_letter:
+                last_letter = letter
                 of.write('<tr><td class="category">%s</td>' % last_letter)
                 of.write('<td class="data">')
                 self.surname_link(of,surname)
@@ -1431,7 +1436,7 @@ class SourcesPage(BasePage):
             key = source.get_title() + str(source.get_gramps_id())
             source_dict[key] = (source, handle)
         keys = source_dict.keys()
-        keys.sort(strcoll_case_sensitive)
+        keys.sort(locale.strcoll)
 
         msg = _("This page contains an index of all the sources in the "
                 "database, sorted by their title. Clicking on a source's "
@@ -2841,8 +2846,8 @@ class WebReportOptions(ReportOptions):
 
                 data = cursor.next()
             cursor.close()
-        media_list.sort(lambda x, y: strcoll_case_sensitive(x[0], y[0]))
-        html_list.sort(lambda x, y: strcoll_case_sensitive(x[0], y[0]))
+        media_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
+        html_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
 
         self.home_note = mk_combobox(media_list,self.options_dict['NWEBhomenote'])
         self.intro_note = mk_combobox(media_list,self.options_dict['NWEBintronote'])
@@ -3077,28 +3082,13 @@ def sort_people(db,handle_list):
 
     sorted_lists = []
     temp_list = sname_sub.keys()
-    temp_list.sort(strcoll_case_sensitive)
+    temp_list.sort(locale.strcoll)
     for name in temp_list:
         slist = map(lambda x: (sortnames[x],x),sname_sub[name])
-        slist.sort(lambda x,y: strcoll_case_sensitive(x[0],y[0]))
+        slist.sort(lambda x,y: locale.strcoll(x[0],y[0]))
         entries = map(lambda x: x[1], slist)
         sorted_lists.append((name,entries))
     return sorted_lists
-
-def strcoll_case_sensitive(string1,string2):
-    """ This function was written because string comparisons
-        seem to be case insensitive if the string is longer than 
-        one character. """
-    if len(string1) > 0 and len(string2) > 0:
-        diff = locale.strcoll(string1[0],string2[0])
-    else:
-        diff = 0
-
-    if diff == 0:
-        # If the first character is the same, compare the rest
-        diff = locale.strcoll(string1,string2)
-    return diff
-        
 
 #------------------------------------------------------------------------
 #
