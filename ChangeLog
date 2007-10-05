@@ -1,3 +1,11 @@
+2007-10-05 James G. Sack <jgsack@san.rr.com>
+	* src/GrampsDb/_GrampsDbBase.py:
+	* src/GrampsDb/_GrampsGEDDB.py:
+	* src/GrampsDb/_GrampsXMLDB.py:
+	* src/GrampsDb/_GrampsInMemDB.py:
+	* src/Bookmarks.py:
+	issue #1261: creating bookmark does not lead to save of xml
+
 2007-10-03 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/plugins/Check.py: add remove empty objects. This needs testing...
 

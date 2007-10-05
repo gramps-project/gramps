@@ -106,6 +106,10 @@ class Bookmarks :
             self.uistate.uimanager.remove_action_group(self.action_group)
             self.active = DISABLED
 
+    def redraw_and_report_change(self):
+        self.dbstate.db.report_bm_change()
+        self.redraw()
+
     def redraw(self):
         """Create the pulldown menu"""
         f = StringIO()
@@ -153,7 +157,7 @@ class Bookmarks :
         """appends the person to the bottom of the bookmarks"""
         if person_handle not in self.bookmarks.get():
             self.bookmarks.append(person_handle)
-            self.redraw()
+            self.redraw_and_report_change()
 
     def remove_handles(self, handle_list):
         """
@@ -169,7 +173,7 @@ class Bookmarks :
                 self.bookmarks.remove(handle)
                 modified = True
         if modified:
-            self.redraw()
+            self.redraw_and_report_change()
 
     def draw_window(self):
         """Draws the bookmark dialog box"""
@@ -233,7 +237,7 @@ class Bookmarks :
         if self.response == gtk.RESPONSE_HELP:
             self.help_clicked()
         if self.modified:
-            self.redraw()
+            self.redraw_and_report_change()
         self.top.destroy()
 
     def delete_clicked(self,obj):

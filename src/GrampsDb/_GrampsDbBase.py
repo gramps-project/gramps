@@ -303,6 +303,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.path = ""
         self.name_group = {}
         self.surname_list = []
+        self._bm_changes = 0
 
     def rebuild_secondary(self, callback):
         pass
@@ -2182,6 +2183,13 @@ class GrampsDbBase(GrampsDBCallback):
             cursor.close()
 
         return
+
+    def report_bm_change(self):
+        self._bm_changes += 1;
+
+    def db_has_bm_changes(self):
+        return self._bm_changes > 0
+
         
 class Transaction:
     """

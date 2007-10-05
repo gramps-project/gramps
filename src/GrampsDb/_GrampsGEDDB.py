@@ -69,8 +69,7 @@ class GrampsGEDDB(GrampsInMemDB):
     def close(self):
         if not self.db_is_open:
             return
-        if (not self.readonly) and ((len(self.undodb)>0) or
-                                    not self.abort_possible):
+        if self.db_is_changed():    
             writer = GedcomWriter(self,self.get_default_person())
             writer.export_data(self.full_name)
         self.db_is_open = False
