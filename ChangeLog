@@ -1,3 +1,6 @@
+2007-10-05 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_ReadGedcom.py: issue #1169, wrong GEDCOM parse ADDR
+
 2007-10-05 James G. Sack <jgsack@san.rr.com>
 	* src/GrampsDb/_GrampsDbBase.py:
 	* src/GrampsDb/_GrampsGEDDB.py:

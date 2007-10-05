@@ -1042,7 +1042,7 @@ class GedcomParser(UpdateCallback):
             matches = self.get_next()
             key = matches[2].strip()
             if matches[0] < 0 or matches[1] == TOKEN_TRLR:
-		self.backup()
+                self.backup()
                 break
             if key in ("FAM","FAMILY"):
                 self.parse_FAM(matches)
@@ -1325,9 +1325,9 @@ class GedcomParser(UpdateCallback):
                 a.set_value(matches[2])
                 self.family.add_attribute(a)
             else:
-		if matches[1] not in (TOKEN_ENDL, TOKEN_BAPL, TOKEN_CONL):
-		    func = self.family_func.get(matches[1], self.func_family_event)
-		    func(self.family, matches, 2)
+                if matches[1] not in (TOKEN_ENDL, TOKEN_BAPL, TOKEN_CONL):
+                    func = self.family_func.get(matches[1], self.func_family_event)
+                    func(self.family, matches, 2)
 
         # handle addresses attached to families
         if self.addr != None:
@@ -1557,7 +1557,7 @@ class GedcomParser(UpdateCallback):
         # reference to a named note defined elsewhere
         if matches[2] and matches[2][0] == "@":
             note_obj = self.note_map.get(matches[2])
-	    note = note_obj.get()
+            note = note_obj.get()
         else:
             note = matches[2]
             self.ignore_sub_junk(level+1)
@@ -1969,14 +1969,12 @@ class GedcomParser(UpdateCallback):
         if place_handle:
             place = self.db.get_place_from_handle(place_handle)
             main_loc = place.get_main_location()
-	    try:
-		if main_loc and main_loc.get_street() != location.get_street():
-		    old_title = place.get_title()
-		    place = self.find_or_create_place(index)
-		    place.set_title(old_title)
-		    place_handle = place.handle
-	    except:
-		print matches
+            if main_loc and location and \
+                main_loc.get_street() != location.get_street():
+                    old_title = place.get_title()
+                    place = self.find_or_create_place(index)
+                    place.set_title(old_title)
+                    place_handle = place.handle
         else:
             place = self.find_or_create_place(index)
             place.set_title(matches[2])
