@@ -77,6 +77,9 @@ class GalleryTab(ButtonTab):
 
         self.rebuild()
         self.show_all()
+        
+        #connect external remove of object to rebuild
+        self.dbstate.db.connect('media-delete',self.media_delete)
 
     def double_click(self, obj, event):
         """
@@ -269,6 +272,26 @@ class GalleryTab(ButtonTab):
     def edit_callback(self, media_ref, ref):
         self.changed = True
         self.rebuild()
+        
+    def media_delete(self, del_media_handle_list):
+        """
+        Outside of this tab media objects have been deleted. Check if tab
+        and object must be changed.
+        Note: delete of object will cause reference on database to be removed,
+              so this method need not do this
+        """
+        ref_handles = [x.ref for x in self.media_list]
+        for handle in del_media_handle_list :
+            pos = None
+            try :
+                pos = ref_handles.index(handle)
+            except ValueError :
+                continue
+            
+            if pos is not None:
+                #oeps, we need to remove this reference, and rebuild tab
+                self.media_list.remove(self.media_list[pos])
+                self.rebuild()
 
     def _set_dnd(self):
         """

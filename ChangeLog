@@ -1,4 +1,8 @@
 2007-10-05 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DisplayTabs/_GalleryTab.py: remove bug that leads to database corruption,
+	if media is deleted in mediaview, remove media in all open gallery tabs
+
+2007-10-05 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_ReadGedcom.py: issue #1169, wrong GEDCOM parse ADDR
 
 2007-10-05 James G. Sack <jgsack@san.rr.com>
