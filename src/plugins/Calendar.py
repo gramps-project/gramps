@@ -65,6 +65,7 @@ class Calendar(Report):
         self.year = options_class.handler.options_dict['year']
         self.country = options_class.handler.options_dict['country']
         self.anniversaries = options_class.handler.options_dict['anniversaries']
+        self.start_dow = options_class.handler.options_dict['start_dow'][0]
         self.maiden_name = options_class.handler.options_dict['maiden_name']
         self.alive = options_class.handler.options_dict['alive']
         self.birthdays = options_class.handler.options_dict['birthdays']
@@ -188,14 +189,15 @@ class Calendar(Report):
         cell_height = (height - header)/ 6
         current_date = datetime.date(year, month, 1)
         spacing = pt2cm(1.25 * ptext.get_font().get_size()) # 158
-        if current_date.isoweekday() != 7: # start dow here is 7, sunday
-            current_ord = current_date.toordinal() - current_date.isoweekday()
+        if current_date.isoweekday() != self.start_dow:
+            # Go back to previous first day of week, and start from there
+            current_ord = current_date.toordinal() - ( (current_date.isoweekday() + 7) - self.start_dow ) % 7
         else:
             current_ord = current_date.toordinal()
         for day_col in range(7):
             font_height = pt2cm(pdaynames.get_font().get_size())
             self.doc.center_text("CAL-Daynames", 
-                                 GrampsLocale.long_days[day_col+1],
+                                 GrampsLocale.long_days[(day_col+self.start_dow) % 7 + 1],
                                  day_col * cell_width + cell_width/2,
                                  header - font_height * 1.5)
         for week_row in range(6):
@@ -409,6 +411,13 @@ class CalendarOptions(MenuOptions):
             count += 1
         country.set_help(_("Select the country to see associated holidays"))
         menu.add_option(category_name,"country", country)
+
+        start_dow = EnumeratedListOption(_("First day of week"), GrampsLocale.long_days[1])
+        for count in range(1,8):
+            # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
+            start_dow.add_item((count+5) % 7 + 1, GrampsLocale.long_days[count]) 
+        start_dow.set_help(_("Select the first day of the week for the calendar"))
+        menu.add_option(category_name, "start_dow", start_dow) 
 
         maiden_name = EnumeratedListOption(_("Birthday surname"),
                                            ("maiden", _("Wives use their own surname")))
