@@ -2325,9 +2325,13 @@ class GrampsDbBase(GrampsDBCallback):
         return
 
     def report_bm_change(self):
+        """method that adds 1 to the number of bookmark changes during this session
+        """
         self._bm_changes += 1;
 
     def db_has_bm_changes(self):
+        """method that returns True if there where bookmark changes during the session
+        """
         return self._bm_changes > 0
         
 class Transaction:

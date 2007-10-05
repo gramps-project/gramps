@@ -380,6 +380,9 @@ class GrampsInMemDB(GrampsDbBase):
         return None
 
     def db_is_changed(self):
+        """return True if core data of database has changed in Memory
+             Note: this excludes most meta-data, you should check that separately
+        """
         return not self.readonly and \
               (len(self.undodb) > 0 or 
                 not self.abort_possible)
