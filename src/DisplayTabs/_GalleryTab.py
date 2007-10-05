@@ -35,6 +35,7 @@ import urlparse
 #
 #-------------------------------------------------------------------------
 import gtk
+import pango
 import os
 
 #-------------------------------------------------------------------------
@@ -145,27 +146,46 @@ class GalleryTab(ButtonTab):
         self.iconmodel.connect_after('row-deleted', self._update_internal_list)
 
     def build_interface(self):
-
+        """Setup the GUI.
+        
+        It includes an IconView placed inside of a ScrolledWindow.
+        
+        """
+        item_width = 125
+        
+        # create the model used with the icon view
         self._build_icon_model()
+        
         # build the icon view
         self.iconlist = gtk.IconView()
         self.iconlist.set_pixbuf_column(0)
-        self.iconlist.set_text_column(1)
+        # set custom text cell renderer for better control
+        text_renderer = gtk.CellRendererText()
+        text_renderer.set_property('xalign', 0.5)
+        text_renderer.set_property('yalign', 0.0)
+        text_renderer.set_property('wrap-mode', pango.WRAP_WORD_CHAR)
+        text_renderer.set_property('wrap-width', item_width)
+        text_renderer.set_property('alignment', pango.ALIGN_CENTER)
+        self.iconlist.pack_end(text_renderer)
+        self.iconlist.set_attributes(text_renderer, text=1)
+        
+        # set basic properties of the icon view
         self.iconlist.set_margin(12)
-        try:
-            # This is only available for pygtk 2.8
-            self.iconlist.set_reorderable(True)
-        except AttributeError:
-            pass
-        self.iconlist.set_item_width(125)
         self.iconlist.set_spacing(24)
+        self.iconlist.set_reorderable(True)
+        self.iconlist.set_item_width(item_width)
         self.iconlist.set_selection_mode(gtk.SELECTION_SINGLE)
+        
+        # connect the signals
         self.iconlist.connect('selection-changed', self._selection_changed)
         self.iconlist.connect('button_press_event', self.double_click)
         self._connect_icon_model()
         
+        # create the scrolled window
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        
+        # put everything together
         scroll.add(self.iconlist)
         self.pack_start(scroll, True)
 

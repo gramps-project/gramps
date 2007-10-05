@@ -1,3 +1,7 @@
+2007-10-05  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
+	* src/DisplayTabs/_GalleryTab.py (build_interface): Create custom cell
+	renderer for better control.
+
 2007-07-23  Johan Gonqvist <johan.gronqvist@gmail.com>
 	* src/plugins/Calendar.py: first day of calendar is an option.
 
