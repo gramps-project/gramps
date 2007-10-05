@@ -1,3 +1,11 @@
+2007-10-05 James G. Sack <jgsack@san.rr.com>
+	* src/GrampsDb/_GrampsDbBase.py:
+	* src/GrampsDb/_GrampsGEDDB.py:
+	* src/GrampsDb/_GrampsXMLDB.py:
+	* src/GrampsDb/_GrampsInMemDB.py:
+	* src/Bookmarks.py:
+	issue #1261: creating bookmark does not lead to save of xml
+
 2007-10-03  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 0001238: Web report: sort references for 
 	places and media (use remove case sensitive sort and use normalized strings 

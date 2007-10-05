@@ -94,8 +94,7 @@ class GrampsXMLDB(GrampsInMemDB):
             log.warning("Failed to load XML writer", exc_info=True)
             raise GrampsDbException("Failed to load XML writer")
 
-        if (not self.readonly) and ((len(self.undodb)>0) or
-                                    not self.abort_possible):
+        if self.db_is_changed() or self.db_has_bm_changes():
             quick_write(self,self.full_name)
         self.db_is_open = False
         GrampsInMemDB.close(self)

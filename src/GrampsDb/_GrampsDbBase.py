@@ -260,6 +260,7 @@ class GrampsDbBase(GrampsDBCallback):
         self.repo_bookmarks = GrampsDbBookmarks()
         self.media_bookmarks = GrampsDbBookmarks()
         self.note_bookmarks = GrampsDbBookmarks()
+	self._bm_changes = 0
         self.path = ""
         self.name_group = {}
         self.surname_list = []
@@ -2322,6 +2323,12 @@ class GrampsDbBase(GrampsDBCallback):
             cursor.close()
 
         return
+
+    def report_bm_change(self):
+        self._bm_changes += 1;
+
+    def db_has_bm_changes(self):
+        return self._bm_changes > 0
         
 class Transaction:
     """

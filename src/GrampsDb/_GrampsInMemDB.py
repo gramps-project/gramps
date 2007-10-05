@@ -378,3 +378,8 @@ class GrampsInMemDB(GrampsDbBase):
                 obj.unserialize(data)
                 return obj
         return None
+
+    def db_is_changed(self):
+        return not self.readonly and \
+              (len(self.undodb) > 0 or 
+                not self.abort_possible)

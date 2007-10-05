@@ -90,8 +90,7 @@ class GrampsGEDDB(GrampsInMemDB):
             log.warning("Failed to load Gedcom writer", exc_info=True)
             raise GrampsDbException("Failed to load Gedcom writer")
 
-        if (not self.readonly) and ((len(self.undodb)>0) or
-                                    not self.abort_possible):
+        if self.db_is_changed():
             writer = GedcomWriter(self,self.get_default_person())
             writer.export_data(self.full_name)
         self.db_is_open = False
