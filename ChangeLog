@@ -1,3 +1,6 @@
+2007-10-06 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/plugins/Check.py: add remove empty objects.
+
 2007-10-05  Zsolt Foldvari  <zfoldvar@users.sourceforge.net>
 	* src/DisplayTabs/_GalleryTab.py (build_interface): Create custom cell
 	renderer for better control.

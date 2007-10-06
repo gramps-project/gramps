@@ -170,6 +170,8 @@ class Check(Tool.BatchTool):
         prev_total = -1
         total = 0
         
+        #start with empty objects, broken links can be corrected below then
+        checker.cleanup_empty_objects()
         while prev_total != total:
             prev_total = total
             
@@ -219,6 +221,15 @@ class CheckIntegrity:
         self.invalid_source_references = []
         self.invalid_repo_references = []
         self.removed_name_format = []
+        self.empty_objects = {'persons' : [],
+                              'families': [],
+                              'events'  : [],
+                              'sources' : [],
+                              'media'   : [],
+                              'places'  : [],
+                              'repos'   : [],
+                              'notes'   : [],
+                             }
         self.progress = Utils.ProgressMeter(_('Checking database'),'')
 
     def family_errors(self):
@@ -546,6 +557,124 @@ class CheckIntegrity:
                     elif missmedia_action == 3:
                         select_clicked()
             self.progress.step()
+    
+    def cleanup_empty_objects(self):
+        #the position of the change column in the primary objects
+        CHANGE_PERSON = 17
+        CHANGE_FAMILY = 12
+        CHANGE_EVENT  = 10
+        CHANGE_SOURCE = 8
+        CHANGE_PLACE  = 11
+        CHANGE_MEDIA  = 8
+        CHANGE_REPOS  = 7
+        CHANGE_NOTE   = 5
+        
+        empty_person_data = RelLib.Person().serialize()
+        empty_family_data = RelLib.Family().serialize()
+        empty_event_data = RelLib.Event().serialize()
+        empty_source_data = RelLib.Source().serialize()
+        empty_place_data = RelLib.Place().serialize()
+        empty_media_data = RelLib.MediaObject().serialize()
+        empty_repos_data = RelLib.Repository().serialize()
+        empty_note_data = RelLib.Note().serialize()
+
+        tables = {
+            'persons' : {'get_func': self.db.get_person_from_handle,
+                         'cursor_func': self.db.get_person_cursor,
+                         'total_func' : self.db.get_number_of_people,
+                         'progress' : _('Looking for empty people records'),
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_person_data, 
+                                                    CHANGE_PERSON),
+                         'remove'  : self.db.remove_person},
+            'families': {'get_func': self.db.get_family_from_handle,
+                         'cursor_func': self.db.get_family_cursor,
+                         'total_func' : self.db.get_number_of_families,
+                         'progress' : _('Looking for empty family records'),
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_family_data, 
+                                                    CHANGE_FAMILY),
+                         'remove'  : self.db.remove_family},
+            'events'  : {'get_func': self.db.get_event_from_handle,
+                         'cursor_func': self.db.get_event_cursor,
+                         'total_func' : self.db.get_number_of_events,
+                         'progress' : _('Looking for empty event records'),
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_event_data, 
+                                                    CHANGE_EVENT),
+                         'remove'  : self.db.remove_event},
+            'sources' : {'get_func': self.db.get_source_from_handle,
+                         'cursor_func': self.db.get_source_cursor,
+                         'total_func' : self.db.get_number_of_sources,
+                         'progress' : _('Looking for empty source records'),
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_source_data, 
+                                                    CHANGE_SOURCE),
+                         'remove'  : self.db.remove_source},
+            'places'  : {'get_func': self.db.get_place_from_handle,
+                         'cursor_func': self.db.get_place_cursor,
+                         'total_func' : self.db.get_number_of_places,
+                         'progress' : _('Looking for empty place records'),
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_place_data, 
+                                                    CHANGE_PLACE),
+                         'remove'  : self.db.remove_place},
+            'media'   : {'get_func': self.db.get_object_from_handle,
+                         'cursor_func': self.db.get_media_cursor,
+                         'progress' : _('Looking for empty media records'),
+                         'total_func' : self.db.get_number_of_media_objects,
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_media_data, 
+                                                    CHANGE_MEDIA),
+                         'remove'  : self.db.remove_object},
+            'repos'   : {'get_func': self.db.get_repository_from_handle,
+                         'cursor_func': self.db.get_repository_cursor,
+                         'total_func' : self.db.get_number_of_repositories,
+                         'progress' : _('Looking for empty repository records'),
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_repos_data, 
+                                                    CHANGE_REPOS),
+                         'remove'  : self.db.remove_repository},
+            'notes'   : {'get_func': self.db.get_note_from_handle,
+                         'cursor_func': self.db.get_note_cursor,
+                         'total_func' : self.db.get_number_of_notes,
+                         'progress' : _('Looking for empty note records'),
+                         'check_func' : lambda x : self._check_empty(x, 
+                                                    empty_note_data, 
+                                                    CHANGE_NOTE),
+                         'remove'  : self.db.remove_note},
+            }
+        for the_type in tables.keys():
+            cursor = tables[the_type]['cursor_func']()
+            total = tables[the_type]['total_func']()
+            check = tables[the_type]['check_func']
+            remove_func = tables[the_type]['remove']
+            
+            self.progress.set_pass(tables[the_type]['progress'],total)
+            
+            item = cursor.first()
+            while item:
+                self.progress.step()
+                (handle,data) = item
+                if check(data):
+                    self.empty_objects[the_type].append(handle)
+                    #we cannot remove here as that would destroy cursor
+                item = cursor.next()
+            
+            cursor.close()
+            #now remove
+            for handle in self.empty_objects[the_type]:
+                remove_func(handle, self.trans)
+    
+    def _check_empty(self, data, empty_data, changepos):
+        """compare the data with the data of an empty object
+            change, handle and gramps_id are not compared """
+        if changepos is not None:
+            return (data[2:changepos] == empty_data[2:changepos] and 
+                    data[changepos+1:] == empty_data[changepos+1:]
+                   )
+        else :
+            return data[2:] == empty_data[2:]
 
     def cleanup_empty_families(self,automatic):
 
@@ -890,10 +1019,21 @@ class CheckIntegrity:
         source_references = len(self.invalid_source_references)
         repo_references = len(self.invalid_repo_references)
         name_format = len(self.removed_name_format)
+        empty_objs = ( len(self.empty_objects['persons']) 
+                        + len(self.empty_objects['families'])
+                        + len(self.empty_objects['events'])
+                        + len(self.empty_objects['sources'])
+                        + len(self.empty_objects['media'])
+                        + len(self.empty_objects['places'])
+                        + len(self.empty_objects['repos'])
+                        + len(self.empty_objects['notes'])
+                     )
 
-        errors = blink + efam + photos + rel + person + event_invalid\
-                 + person_references + place_references + source_references\
-                 + repo_references
+        errors = (photos + efam + blink + plink + slink + rel
+                  + event_invalid + person 
+                  + person_references + place_references + source_references
+                  + repo_references + name_format + empty_objs
+                 )
         
         if errors == 0:
             if cl:
@@ -962,14 +1102,16 @@ class CheckIntegrity:
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if efam == 1:
-            self.text.write(_("1 empty family was found\n"))
+            self.text.write(_("1 family with no parents or children found, removed.\n"))
             self.text.write("\t%s\n" % self.empty_family[0])
         elif efam > 1:
-            self.text.write(_("%d empty families were found\n") % efam)
+            self.text.write(_("%d families with no parents or children, removed.\n") % efam)
+
         if rel == 1:
             self.text.write(_("1 corrupted family relationship fixed\n"))
         elif rel > 1:
             self.text.write(_("%d corrupted family relationship fixed\n") % rel)
+
         if person_references == 1:
             self.text.write(_("1 person was referenced but not found\n"))
         elif person_references > 1:
@@ -979,47 +1121,78 @@ class CheckIntegrity:
             self.text.write(_("1 repository was referenced but not found\n"))
         elif repo_references > 1:
             self.text.write(_("%d repositories were referenced, but not found\n") % repo_references)
+
         if photos == 1:
             self.text.write(_("1 media object was referenced, but not found\n"))
         elif photos > 1:
             self.text.write(_("%d media objects were referenced, but not found\n") % photos)
+
         if bad_photos == 1:
             self.text.write(_("Reference to 1 missing media object was kept\n"))
         elif bad_photos > 1:
             self.text.write(_("References to %d media objects were kept\n") % bad_photos)
+
         if replaced_photos == 1:
             self.text.write(_("1 missing media object was replaced\n"))
         elif replaced_photos > 1:
             self.text.write(_("%d missing media objects were replaced\n") % replaced_photos)
+
         if removed_photos == 1:
             self.text.write(_("1 missing media object was removed\n"))
         elif removed_photos > 1:
             self.text.write(_("%d missing media objects were removed\n") % removed_photos)
+
         if event_invalid == 1:
             self.text.write(_("1 invalid event reference was removed\n"))
         elif event_invalid > 1:
             self.text.write(_("%d invalid event references were removed\n") % event_invalid)
+
         if birth_invalid == 1:
             self.text.write(_("1 invalid birth event name was fixed\n"))
         elif birth_invalid > 1:
             self.text.write(_("%d invalid birth event names were fixed\n") % birth_invalid)
+
         if death_invalid == 1:
             self.text.write(_("1 invalid death event name was fixed\n"))
         elif death_invalid > 1:
             self.text.write(_("%d invalid death event names were fixed\n") % death_invalid)
+
         if place_references == 1:
             self.text.write(_("1 place was referenced but not found\n"))
         elif place_references > 1:
             self.text.write(_("%d places were referenced, but not found\n") % place_references)
+
         if source_references == 1:
             self.text.write(_("1 source was referenced but not found\n"))
         elif source_references > 1:
             self.text.write(_("%d sources were referenced, but not found\n") % source_references)
+
         if name_format == 1:
             self.text.write(_("1 invalid name format reference was removed\n"))
         elif name_format > 1:
             self.text.write(_("%d invalid name format references were removed\n")
                             % name_format)
+
+        if empty_objs > 0 :
+            self.text.write(_("%d empty objects removed:\n"
+                              "   %d person objects\n"
+                              "   %d family objects\n"
+                              "   %d event objects\n"
+                              "   %d source objects\n"
+                              "   %d media objects\n"
+                              "   %d place objects\n"
+                              "   %d repository objects\n"
+                              "   %d note objects\n"
+                            ) % (empty_objs, 
+                                 len(self.empty_objects['persons']),
+                                 len(self.empty_objects['families']),
+                                 len(self.empty_objects['events']),
+                                 len(self.empty_objects['sources']),
+                                 len(self.empty_objects['media']),
+                                 len(self.empty_objects['places']),
+                                 len(self.empty_objects['repos']),
+                                 len(self.empty_objects['notes']) 
+                                ) )
 
         return errors
 
