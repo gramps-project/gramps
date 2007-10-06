@@ -83,6 +83,12 @@ def easter(year):
     day = l + 28 - 31 * ( month / 4 )
     return "%d/%d/%d" % (year, month, day)
 
+def g2iso(dow):
+    """ Converst GRAMPS day of week to ISO day of week """
+    # GRAMPS: SUN = 1
+    # ISO: MON = 1
+    return (dow + 5) % 7 + 1
+
 #------------------------------------------------------------------------
 #
 # Calendar
@@ -209,14 +215,19 @@ class Calendar(Report):
         cell_height = (height - header)/ 6
         current_date = datetime.date(year, month, 1)
         spacing = pt2cm(1.25 * self["CAL-Text"].get_size()) # 158
-        if current_date.isoweekday() != 7: # start dow here is 7, sunday
-            current_ord = current_date.toordinal() - current_date.isoweekday()
+        if current_date.isoweekday() != g2iso(self["start_dow"] + 1):
+            # Go back to previous first day of week, and start from there
+            current_ord = (current_date.toordinal() -
+                           ((current_date.isoweekday() + 7) -
+                            g2iso(self["start_dow"] + 1) ) % 7)
         else:
             current_ord = current_date.toordinal()
         for day_col in range(7):
             font_height = pt2cm(self["CAL-Daynames"].get_size())
             self.doc.center_text("CAL-Daynames", 
-                                 GrampsLocale.long_days[day_col+1],
+                                 GrampsLocale.long_days[(day_col+
+                                                         g2iso(self["start_dow"] + 1))
+                                                        % 7 + 1],
                                  day_col * cell_width + cell_width/2,
                                  header - font_height * 1.5)
         for week_row in range(6):
@@ -702,6 +713,9 @@ class NewReportOptions(ReportOptions):
 
 class CalendarOptions(NewReportOptions):
     def enable_options(self):
+        weekdays = []
+        for count in range(7):
+            weekdays.append(GrampsLocale.long_days[count + 1])
         self.enable_dict = {}
         self.widgets = [
             FilterWidget(self, label = _("Filter"),
@@ -734,6 +748,13 @@ class CalendarOptions(NewReportOptions):
                        help  = "Year of calendar",
                        valid_text = "Any year",
                        ),
+            SelectionWidget(self, label = _("First day of week"),
+                        name = "start_dow",
+                        value = 0, # First day of week
+                        options = map(lambda w: ("", w, w), weekdays),
+                        help = "Select the first day of the week for the calendar",
+                        valid_text="Select the first day of the week for the calendar",
+                        ),
             SelectionWidget(self, label = _("Country for holidays"),
                         name = "country",
                         value = 0, # Don't include holidays
@@ -824,6 +845,9 @@ class CalendarOptions(NewReportOptions):
 
 class CalendarReportOptions(NewReportOptions):
     def enable_options(self):
+        weekdays = []
+        for count in range(7):
+            weekdays.append(GrampsLocale.long_days[count + 1])
         self.enable_dict = {}
         self.widgets = [
             FilterWidget(self, label = _("Filter"),
@@ -863,6 +887,13 @@ class CalendarReportOptions(NewReportOptions):
                        help  = "Year of report",
                        valid_text = "Any year",
                        ),
+            SelectionWidget(self, label = _("First day of week"),
+                        name = "start_dow",
+                        value = 0,
+                        options = map(lambda w: ("", w, w), weekdays),
+                        help = "Select the first day of the week for the calendar",
+                        valid_text="Select the first day of the week for the calendar",
+                        ),
             SelectionWidget(self, label = _("Country for holidays"),
                         name = "country",
                         value = 0, # Don't include holidays

@@ -1,3 +1,6 @@
+2007-10-06  Douglas Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: various improvements
+
 2007-10-06 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DataViews/_RelationView.py: don't crash on missing media ref
 	* src/DisplayTabs/_GalleryTab.py: on missing media ref, notify to run check tool
