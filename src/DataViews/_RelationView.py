@@ -556,7 +556,7 @@ class RelationshipView(PageView.PersonNavView):
         image_list = person.get_media_list()
         if image_list:
             mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
-            if mobj.get_mime_type()[0:5] == "image":
+            if mobj and mobj.get_mime_type()[0:5] == "image":
                 pixbuf = ImgManip.get_thumbnail_image(mobj.get_path())
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)

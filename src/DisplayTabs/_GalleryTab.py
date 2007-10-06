@@ -213,9 +213,15 @@ class GalleryTab(ButtonTab):
         for ref in self.media_list:
             handle = ref.get_reference_handle()
             obj = self.dbstate.db.get_object_from_handle(handle)
-            pixbuf = ImgManip.get_thumbnail_image(obj.get_path(), 
+            if obj is None :
+                #notify user of error
+                from QuestionDialog import RunDatabaseRepair
+                RunDatabaseRepair(
+                            _('Unexisting media found in the Gallery'))
+            else :
+                pixbuf = ImgManip.get_thumbnail_image(obj.get_path(), 
                                                   obj.get_mime_type())
-            self.iconmodel.append(row=[pixbuf, obj.get_description(), ref])
+                self.iconmodel.append(row=[pixbuf, obj.get_description(), ref])
         self._connect_icon_model()
         self._set_label()
         self._selection_changed()

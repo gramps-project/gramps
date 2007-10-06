@@ -186,6 +186,7 @@ class Check(Tool.BatchTool):
         checker.check_person_references()
         checker.check_place_references()
         checker.check_source_references()
+        checker.check_media_references()
         checker.check_repo_references()
         self.db.transaction_commit(trans, _("Check Integrity"))
         self.db.enable_signals()
@@ -220,6 +221,7 @@ class CheckIntegrity:
         self.invalid_place_references = []
         self.invalid_source_references = []
         self.invalid_repo_references = []
+        self.invalid_media_references = []
         self.removed_name_format = []
         self.empty_objects = {'persons' : [],
                               'families': [],
@@ -937,7 +939,8 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-            
+        
+        #I think this for loop is useless! source does not reference other sources
         for handle in known_handles:
             self.progress.step()
             info = self.db.source_map[handle]
@@ -985,6 +988,96 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
+                
+    def check_media_references(self):
+        known_handles = self.db.get_media_object_handles(False)
+
+        total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
+                self.db.get_number_of_events() + self.db.get_number_of_places() + \
+                self.db.get_number_of_sources()
+
+        self.progress.set_pass(_('Looking for media object reference problems'),
+                               total)
+        
+        for handle in self.db.person_map.keys():
+            self.progress.step()
+            info = self.db.person_map[handle]
+            person = RelLib.Person()
+            person.unserialize(info)
+            handle_list = person.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'MediaObject' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                person.remove_media_references(bad_handles)
+                self.db.commit_person(person,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_media_references]
+                self.invalid_media_references += new_bad_handles
+
+        for handle in self.db.family_map.keys():
+            self.progress.step()
+            info = self.db.family_map[handle]
+            family = RelLib.Family()
+            family.unserialize(info)
+            handle_list = family.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'MediaObject' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                family.remove_media_references(bad_handles)
+                self.db.commit_family(family,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_media_references]
+                self.invalid_media_references += new_bad_handles
+
+        for handle in self.db.place_map.keys():
+            self.progress.step()
+            info = self.db.place_map[handle]
+            place = RelLib.Place()
+            place.unserialize(info)
+            handle_list = place.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'MediaObject' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                place.remove_media_references(bad_handles)
+                self.db.commit_place(place,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_media_references]
+                self.invalid_media_references += new_bad_handles
+        
+        for handle in self.db.event_map.keys():
+            self.progress.step()
+            info = self.db.event_map[handle]
+            event = RelLib.Event()
+            event.unserialize(info)
+            handle_list = event.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'MediaObject' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                event.remove_media_references(bad_handles)
+                self.db.commit_event(event,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_media_references]
+                self.invalid_media_references += new_bad_handles
+        
+        for handle in self.db.source_map.keys():
+            self.progress.step()
+            info = self.db.source_map[handle]
+            source = RelLib.Source()
+            source.unserialize(info)
+            handle_list = source.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'MediaObject' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                source.remove_media_references(bad_handles)
+                self.db.commit_source(source,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_media_references]
+                self.invalid_media_references += new_bad_handles
 
     def build_report(self,cl=0):
         self.progress.close()
@@ -1005,6 +1098,7 @@ class CheckIntegrity:
         place_references = len(self.invalid_place_references)
         source_references = len(self.invalid_source_references)
         repo_references = len(self.invalid_repo_references)
+        media_references = len(self.invalid_media_references)
         name_format = len(self.removed_name_format)
         empty_objs = ( len(self.empty_objects['persons']) 
                         + len(self.empty_objects['families'])
@@ -1018,7 +1112,8 @@ class CheckIntegrity:
         errors = (photos + efam + blink + plink + slink + rel
                   + event_invalid + person 
                   + person_references + place_references + source_references
-                  + repo_references + name_format + empty_objs
+                  + repo_references + media_references
+                  + name_format + empty_objs
                  )
         
         if errors == 0:
@@ -1088,10 +1183,10 @@ class CheckIntegrity:
                 self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 
         if efam == 1:
-            self.text.write(_("1 empty family was found\n"))
+            self.text.write(_("1 family with no parents or children found, removed.\n"))
             self.text.write("\t%s\n" % self.empty_family[0])
         elif efam > 1:
-            self.text.write(_("%d empty families were found\n") % efam)
+            self.text.write(_("%d families with no parents or children, removed.\n") % efam)
 
         if rel == 1:
             self.text.write(_("1 corrupted family relationship fixed\n"))
@@ -1152,6 +1247,12 @@ class CheckIntegrity:
             self.text.write(_("1 source was referenced but not found\n"))
         elif source_references > 1:
             self.text.write(_("%d sources were referenced, but not found\n") % source_references)
+        
+        if media_references == 1:
+            self.text.write(_("1 media object was referenced but not found\n"))
+        elif media_references > 1:
+            self.text.write(_("%d media objects were referenced, "
+                              "but not found\n") % media_references)
 
         if name_format == 1:
             self.text.write(_("1 invalid name format reference was removed\n"))
