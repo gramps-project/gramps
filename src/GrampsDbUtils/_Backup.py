@@ -58,6 +58,8 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
+from gen.db.dbdir import FAMILY_TBL, PLACES_TBL, SOURCES_TBL, MEDIA_TBL, \
+    EVENTS_TBL, PERSON_TBL, REPO_TBL, NOTE_TBL, META
 
 #------------------------------------------------------------------------
 #
@@ -66,7 +68,6 @@ from QuestionDialog import ErrorDialog
 #------------------------------------------------------------------------
 import logging
 import os
-from gen.db.dbdir import GrampsDBDir
 import cPickle as pickle
 
 LOG = logging.getLogger(".Backup")
@@ -219,13 +220,13 @@ def __build_tbl_map(database):
     @type database: GrampsDbDir
     """
     return [
-        ( GrampsDBDir.PERSON_TBL,  database.person_map.db),
-        ( GrampsDBDir.FAMILY_TBL,  database.family_map.db),
-        ( GrampsDBDir.PLACES_TBL,  database.place_map.db),
-        ( GrampsDBDir.SOURCES_TBL, database.source_map.db),
-        ( GrampsDBDir.REPO_TBL,    database.repository_map.db),
-        ( GrampsDBDir.NOTE_TBL,    database.note_map.db),
-        ( GrampsDBDir.MEDIA_TBL,   database.media_map.db),
-        ( GrampsDBDir.EVENTS_TBL,  database.event_map.db),
-        ( GrampsDBDir.META,        database.metadata.db),
+        ( PERSON_TBL,  database.person_map.db),
+        ( FAMILY_TBL,  database.family_map.db),
+        ( PLACES_TBL,  database.place_map.db),
+        ( SOURCES_TBL, database.source_map.db),
+        ( REPO_TBL,    database.repository_map.db),
+        ( NOTE_TBL,    database.note_map.db),
+        ( MEDIA_TBL,   database.media_map.db),
+        ( EVENTS_TBL,  database.event_map.db),
+        ( META,        database.metadata.db),
         ]
