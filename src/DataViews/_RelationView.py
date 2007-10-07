@@ -237,21 +237,21 @@ class RelationshipView(PageView.PersonNavView):
 
         self.child = None
 
-        scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scroll.show()
+        self.scroll = gtk.ScrolledWindow()
+        self.scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.scroll.show()
         
         vp = gtk.Viewport()
         vp.set_shadow_type(gtk.SHADOW_NONE)
         vp.add(self.vbox)
 
-        scroll.add(vp)
-        scroll.show_all()
+        self.scroll.add(vp)
+        self.scroll.show_all()
 
         container.set_spacing(6)
         container.pack_start(self.header, False, False)
         container.pack_start(gtk.HSeparator(), False, False)
-        container.add(scroll)
+        container.add(self.scroll)
         container.show_all()
         return container
 
@@ -403,6 +403,8 @@ class RelationshipView(PageView.PersonNavView):
             return True
 
     def _change_person(self, obj):
+        self.scroll.get_vadjustment().value = \
+                            self.scroll.get_vadjustment().lower
         if self.redrawing:
             return False
         self.redrawing = True
