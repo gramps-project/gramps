@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -24,6 +24,7 @@ Provide utilities for printing endnotes in text reports.
 """
 
 import BaseDoc
+from gettext import gettext as _
 
 def add_endnote_styles(style_sheet):
     """
@@ -33,30 +34,30 @@ def add_endnote_styles(style_sheet):
     @type style_sheet: L{Basedoc.StyleSheet}
     """
     font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+    font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
     para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set_header_level(2)
     para.set_top_margin(0.25)
     para.set_bottom_margin(0.25)
     para.set_description(_('The style used for the generation header.'))
-    style_sheet.add_paragraph_style("Endnotes-Header",para)
+    style_sheet.add_paragraph_style("Endnotes-Header", para)
 
     para = BaseDoc.ParagraphStyle()
-    para.set(first_indent=-0.75,lmargin=.75)
+    para.set(first_indent=-0.75, lmargin=.75)
     para.set_top_margin(0.25)
     para.set_bottom_margin(0.25)
     para.set_description(_('The basic style used for the endnotes source display.'))
-    style_sheet.add_paragraph_style("Endnotes-Source",para)
+    style_sheet.add_paragraph_style("Endnotes-Source", para)
 
     para = BaseDoc.ParagraphStyle()
     para.set(lmargin=1.5)
     para.set_top_margin(0.25)
     para.set_bottom_margin(0.25)
     para.set_description(_('The basic style used for the endnotes reference display.'))
-    style_sheet.add_paragraph_style("Endnotes-Ref",para)
+    style_sheet.add_paragraph_style("Endnotes-Ref", para)
 
-def cite_source(bibliography,obj):
+def cite_source(bibliography, obj):
     """
     Cite any sources for the object and add them to the bibliography.
     
@@ -71,15 +72,15 @@ def cite_source(bibliography,obj):
         first = 1
         for ref in slist:
             if not first:
-                txt += ','
+                txt += ', '
             first = 0
-            (cindex,key) = bibliography.add_reference(ref)
+            (cindex, key) = bibliography.add_reference(ref)
             txt += "%d" % (cindex + 1)
             if key != None:
                 txt += key
     return txt
 
-def write_endnotes(bibliography,database,doc):
+def write_endnotes(bibliography, database, doc):
     """
     Write all the entries in the bibliography as endnotes.
     
@@ -103,7 +104,7 @@ def write_endnotes(bibliography,database,doc):
         source = database.get_source_from_handle(citation.get_source_handle())
         first = True
         
-        doc.start_paragraph('Endnotes-Source',"%d." % cindex)
+        doc.start_paragraph('Endnotes-Source', "%d." % cindex)
         
         src_txt = _format_source_text(source)
             
@@ -117,8 +118,8 @@ def write_endnotes(bibliography,database,doc):
         
             first = True
             rindex = 0
-            for key,ref in ref_list:
-                txt = "%s: %s" % (key,ref.get_page())
+            for key, ref in ref_list:
+                txt = "%s: %s" % (key, ref.get_page())
                 if first:
                     doc.write_text(txt)
                     first = False

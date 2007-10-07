@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -68,15 +68,15 @@ from Filters.SideBar import PersonSidebarFilter
 from DdTargets import DdTargets
 
 column_names = [
-    _('Name'),
-    _('ID') ,
-    _('Gender'),
-    _('Birth Date'),
-    _('Birth Place'),
-    _('Death Date'),
-    _('Death Place'),
-    _('Spouse'),
-    _('Last Change'),
+    _('Name'), 
+    _('ID') , 
+    _('Gender'), 
+    _('Birth Date'), 
+    _('Birth Place'), 
+    _('Death Date'), 
+    _('Death Place'), 
+    _('Spouse'), 
+    _('Last Change'), 
     ]
         
 class PersonView(PageView.PersonNavView):
@@ -97,27 +97,27 @@ class PersonView(PageView.PersonNavView):
         self.generic_filter = None
 
         self.func_list = {
-            'F2' : self.key_goto_home_person,
-            'F3' : self.key_edit_selected_person,
-            '<CONTROL>BackSpace' : self.key_delete_selected_person,
-            '<CONTROL>J' : self.jump,
+            'F2' : self.key_goto_home_person, 
+            'F3' : self.key_edit_selected_person, 
+            '<CONTROL>BackSpace' : self.key_delete_selected_person, 
+            '<CONTROL>J' : self.jump, 
             }
         self.dirty = True
 
-        Config.client.notify_add("/apps/gramps/interface/filter",
+        Config.client.notify_add("/apps/gramps/interface/filter", 
                                  self.filter_toggle)
         
     def change_page(self):
         PageView.PersonNavView.change_page(self)
         self.edit_action.set_visible(True)
         self.edit_action.set_sensitive(not self.dbstate.db.readonly)
-        self.uistate.show_filter_results(self.dbstate,
-                                         self.model.displayed,
+        self.uistate.show_filter_results(self.dbstate, 
+                                         self.model.displayed, 
                                          self.model.total)
 
     def set_active(self):
         PageView.PersonNavView.set_active(self)
-        self.key_active_changed = self.dbstate.connect('active-changed',
+        self.key_active_changed = self.dbstate.connect('active-changed', 
                                                        self.goto_active_person)
         self.goto_active_person()
     
@@ -129,7 +129,7 @@ class PersonView(PageView.PersonNavView):
     def define_actions(self):
         """
         Required define_actions function for PageView. Builds the action
-        group information required. We extend beyond the normal here,
+        group information required. We extend beyond the normal here, 
         since we want to have more than one action group for the PersonView.
         Most PageViews really won't care about this.
 
@@ -147,28 +147,28 @@ class PersonView(PageView.PersonNavView):
 
         self.all_action.add_actions([
                 ('OpenAllNodes', None, _("Expand all nodes"), None, None, 
-                 self.open_all_nodes),
+                 self.open_all_nodes), 
                 ('Edit', gtk.STOCK_EDIT, _("_Edit"), "<control>Return", 
-                 _("Edit the selected person"), self.edit),
+                 _("Edit the selected person"), self.edit), 
                 ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
-                 self.close_all_nodes),
-                ('QuickReport', None, _("Quick Report"), None, None, None),
-                ('Dummy', None, '  ', None, None, self.dummy_report),
+                 self.close_all_nodes), 
+                ('QuickReport', None, _("Quick Report"), None, None, None), 
+                ('Dummy', None, '  ', None, None, self.dummy_report), 
                 ])
 
         self.edit_action.add_actions(
             [
                 ('Add', gtk.STOCK_ADD, _("_Add"), "<control>Insert", 
-		 _("Add a new person"), self.add),
+		 _("Add a new person"), self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
-                 _("Remove the selected person"), self.remove),
+                 _("Remove the selected person"), self.remove), 
                 ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, 
-                 None, self._column_editor),
+                 None, self._column_editor), 
                 ('CmpMerge', None, _('_Compare and merge'), None, None, 
-                 self.cmp_merge),
+                 self.cmp_merge), 
                 ('FastMerge', None, _('_Fast merge'), None, None, 
-                 self.fast_merge),
-                ('ExportTab', None, _('Export view'), None, None, self.export),
+                 self.fast_merge), 
+                ('ExportTab', None, _('Export view'), None, None, self.export), 
                 ])
 
         self._add_action_group(self.edit_action)
@@ -191,7 +191,7 @@ class PersonView(PageView.PersonNavView):
 
         if len(mlist) != 2:
             QuestionDialog.ErrorDialog(
-		_("Cannot merge people"),
+		_("Cannot merge people"), 
 		_("Exactly two people must be selected to perform a merge. "
 		  "A second person can be selected by holding down the "
 		  "control key while clicking on the desired person."))
@@ -204,7 +204,7 @@ class PersonView(PageView.PersonNavView):
                                     person2, self.build_tree)
             else:
                 QuestionDialog.ErrorDialog(
-                    _("Cannot merge people"),
+                    _("Cannot merge people"), 
                     _("Exactly two people must be selected to perform a "
                       "merge. A second person can be selected by holding "
                       "down the control key while clicking on the desired "
@@ -215,7 +215,7 @@ class PersonView(PageView.PersonNavView):
 
         if len(mlist) != 2:
             QuestionDialog.ErrorDialog(
-		_("Cannot merge people"),
+		_("Cannot merge people"), 
 		_("Exactly two people must be selected to perform a merge. "
 		  "A second person can be selected by holding down the "
 		  "control key while clicking on the desired person."))
@@ -229,7 +229,7 @@ class PersonView(PageView.PersonNavView):
                                     person2, self.build_tree)
             else:
                 QuestionDialog.ErrorDialog(
-		    _("Cannot merge people"),
+		    _("Cannot merge people"), 
 		    _("Exactly two people must be selected to perform a merge. "
 		      "A second person can be selected by holding down the "
 		      "control key while clicking on the desired person."))
@@ -238,10 +238,10 @@ class PersonView(PageView.PersonNavView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
-            _('Select Person Columns'),
-            self.uistate,
-            self.dbstate.db.get_person_column_order(),
-            column_names,
+            _('Select Person Columns'), 
+            self.uistate, 
+            self.dbstate.db.get_person_column_order(), 
+            column_names, 
             self.set_column_order)
 
     def set_column_order(self, column_list):
@@ -274,7 +274,7 @@ class PersonView(PageView.PersonNavView):
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
-        self.search_bar = SearchBar(self.dbstate, self.uistate,
+        self.search_bar = SearchBar(self.dbstate, self.uistate, 
                                     self.build_tree, self.goto_active_person)
         filter_box = self.search_bar.build()
         
@@ -283,7 +283,7 @@ class PersonView(PageView.PersonNavView):
         self.tree.set_headers_visible(True)
         self.tree.set_fixed_height_mode(True)
         self.tree.connect('key-press-event', self._key_press)
-        self.tree.connect('start-interactive-search',self.open_all_nodes)
+        self.tree.connect('start-interactive-search', self.open_all_nodes)
 
         scrollwindow = gtk.ScrolledWindow()
         scrollwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -310,7 +310,7 @@ class PersonView(PageView.PersonNavView):
         self.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.selection.connect('changed', self.row_changed)
 
-        self.filter_sidebar = PersonSidebarFilter(self.dbstate, self.uistate,
+        self.filter_sidebar = PersonSidebarFilter(self.dbstate, self.uistate, 
                                                   self.filter_clicked)
         self.filter_pane = self.filter_sidebar.get_widget()
 
@@ -448,19 +448,19 @@ class PersonView(PageView.PersonNavView):
         in the display tree.
 
         We have a bit of a problem due to the nature of how GTK works.
-        We have unselect the previous path and select the new path. However,
+        We have unselect the previous path and select the new path. However, 
         these cause a row change, which calls the row_change callback, which
         can end up calling change_active_person, which can call
         goto_active_person, causing a bit of recusion. Confusing, huh?
 
-        Unforunately, we row_change has to be able to call change_active_person,
+        Unforunately, we row_change has to be able to call change_active_person, 
         because the can occur from the interface in addition to programatically.
 
         TO handle this, we set the self.inactive variable that we can check
         in row_change to look for this particular condition.
         """
 
-        # if there is no active person, or if we have been marked inactive,
+        # if there is no active person, or if we have been marked inactive, 
         # simply return
 
         if not self.dbstate.active or self.inactive:
@@ -500,7 +500,7 @@ class PersonView(PageView.PersonNavView):
                     self.tree.scroll_to_cell(path, None, 1, 0.5, 0)
         except KeyError:
             self.selection.unselect_all()
-            self.uistate.push_message(self.dbstate,
+            self.uistate.push_message(self.dbstate, 
                                       _("Active person not visible"))
             self.dbstate.active = person
         
@@ -521,7 +521,7 @@ class PersonView(PageView.PersonNavView):
     def build_tree(self, skip=[]):
         """
         Creates a new PeopleModel instance. Essentially creates a complete
-        rebuild of the data. We need to temporarily store the active person,
+        rebuild of the data. We need to temporarily store the active person, 
         since it can change when rows are unselected when the model is set.
         """
         if self.active:
@@ -535,8 +535,8 @@ class PersonView(PageView.PersonNavView):
             self.tree.set_model(self.model)
 
             if const.USE_TIPS and self.model.tooltip_column != None:
-                self.tooltips = TreeTips.TreeTips(self.tree,
-                                                  self.model.tooltip_column,
+                self.tooltips = TreeTips.TreeTips(self.tree, 
+                                                  self.model.tooltip_column, 
                                                   True)
 
             self.build_columns()
@@ -544,8 +544,8 @@ class PersonView(PageView.PersonNavView):
             self.dbstate.change_active_person(active)
             self._goto()
             self.dirty = False
-            self.uistate.show_filter_results(self.dbstate,
-                                             self.model.displayed,
+            self.uistate.show_filter_results(self.dbstate, 
+                                             self.model.displayed, 
                                              self.model.total)
         else:
             self.dirty = True
@@ -610,8 +610,8 @@ class PersonView(PageView.PersonNavView):
                              'from the database.')
             msg = "%s %s" % (msg, Utils.data_recover_msg)
             QuestionDialog.QuestionDialog(_('Delete %s?') % name, 
-                                          msg,
-                                          _('_Delete Person'),
+                                          msg, 
+                                          _('_Delete Person'), 
                                           self.delete_person_response)
 
     def delete_person_response(self):
@@ -646,9 +646,9 @@ class PersonView(PageView.PersonNavView):
             self.tree.remove_column(column)
         try:
             column = gtk.TreeViewColumn(
-                _('Name'),
-                self.renderer,
-                text=0,
+                _('Name'), 
+                self.renderer, 
+                text=0, 
                 foreground=self.model.marker_color_column)
             
         except AttributeError:
@@ -666,7 +666,7 @@ class PersonView(PageView.PersonNavView):
             name = column_names[pair[1]]
             try:
                 column = gtk.TreeViewColumn(
-                    name, self.renderer, markup=pair[1],
+                    name, self.renderer, markup=pair[1], 
                     foreground=self.model.marker_color_column)
             except AttributeError:
                 column = gtk.TreeViewColumn(
@@ -697,12 +697,12 @@ class PersonView(PageView.PersonNavView):
                 pass
 
         if len(selected_ids) == 1:
-            self.tree.drag_source_set(BUTTON1_MASK,
-                                      [DdTargets.PERSON_LINK.target()],
+            self.tree.drag_source_set(BUTTON1_MASK, 
+                                      [DdTargets.PERSON_LINK.target()], 
                                       ACTION_COPY)
         elif len(selected_ids) > 1:
-            self.tree.drag_source_set(BUTTON1_MASK,
-                                      [DdTargets.PERSON_LINK_LIST.target()],
+            self.tree.drag_source_set(BUTTON1_MASK, 
+                                      [DdTargets.PERSON_LINK_LIST.target()], 
                                       ACTION_COPY)
         self.uistate.modify_statusbar(self.dbstate)
         
@@ -852,7 +852,7 @@ class PersonView(PageView.PersonNavView):
             reportactions = []
             if menu and self.dbstate.active:
                 (ui, reportactions) = create_quickreport_menu(
-                                            CATEGORY_QR_PERSON,
+                                            CATEGORY_QR_PERSON, 
                                             self.dbstate, 
                                             self.dbstate.active.handle)
             if len(reportactions) > 1 :
@@ -866,8 +866,8 @@ class PersonView(PageView.PersonNavView):
                 return True
         return False
 
-    def _key_press(self,obj,event):
-        if not event.state or event.state  in (gtk.gdk.MOD2_MASK,):
+    def _key_press(self, obj, event):
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 if self.dbstate.active:
                     self.edit(obj)
@@ -884,25 +884,25 @@ class PersonView(PageView.PersonNavView):
 
     def key_goto_home_person(self):
         self.home(None)
-        self.uistate.push_message(self.dbstate,
+        self.uistate.push_message(self.dbstate, 
                                   _("Go to default person"))
 
     def key_edit_selected_person(self):
         self.edit(None)
-        self.uistate.push_message(self.dbstate,
+        self.uistate.push_message(self.dbstate, 
                                   _("Edit selected person"))
 
 
     def key_delete_selected_person(self):
         self.remove(None)
-        self.uistate.push_message(self.dbstate,
+        self.uistate.push_message(self.dbstate, 
                                   _("Delete selected person"))
 
     def export(self, obj):
         chooser = gtk.FileChooserDialog(
-            _("Export view as spreadsheet"),
+            _("Export view as spreadsheet"), 
             self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_SAVE,
+            gtk.FILE_CHOOSER_ACTION_SAVE, 
             (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
              gtk.STOCK_OPEN, gtk.RESPONSE_OK))
         chooser.set_do_overwrite_confirmation(True)
@@ -967,23 +967,23 @@ class PersonView(PageView.PersonNavView):
             ofile.write_cell(name)
         ofile.end_row()
 
-        # The tree model works different from the rest of the list-based models,
+        # The tree model works different from the rest of the list-based models, 
         # since the iterator method only works on top level nodes. So we must 
         # loop through based off of paths
 
-        path = (0,)
+        path = (0, )
         node = self.model.on_get_iter(path)
         while node:
             real_iter = self.model.get_iter(path)
             for subindex in range(0, self.model.iter_n_children(real_iter)):
-                subpath = ((path[0],subindex))
+                subpath = ((path[0], subindex))
                 row = self.model[subpath]
                 ofile.start_row()
                 for index in data_cols:
                     ofile.write_cell(row[index])
                 ofile.end_row()
             node = self.model.on_iter_next(node)
-            path = (path[0]+1,)
+            path = (path[0]+1, )
         ofile.end_page()
         ofile.close()
         

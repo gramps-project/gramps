@@ -66,7 +66,7 @@ from QuestionDialog import ErrorDialog
 #------------------------------------------------------------------------
 import logging
 import os
-from GrampsDb import _GrampsDBDir as GrampsDBDir
+from gen.db.dbdir import GrampsDBDir
 import cPickle as pickle
 
 LOG = logging.getLogger(".Backup")

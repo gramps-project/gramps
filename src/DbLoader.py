@@ -57,6 +57,7 @@ import const
 import Config
 import Mime
 import GrampsDb
+import gen.db
 import GrampsDbUtils
 import Utils
 from PluginUtils import import_list
@@ -117,7 +118,7 @@ class DbLoader:
             filetype = type_selector.get_value()
             if filetype == 'auto':
                 filetype = Mime.get_type(filename)
-            (the_path, the_file) = os.path.split(filename)
+#            (the_path, the_file) = os.path.split(filename)
             choose.destroy()
             if filetype in OPEN_FORMATS:
                 self.read_file(filename, filetype)
@@ -376,8 +377,9 @@ class DbLoader:
             mode = 'w'
 
         try:
-            dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
-        except GrampsDb.GrampsDbException, msg:
+            #dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
+            dbclass = gen.db.GrampsDBDir
+        except gen.db.GrampsDbException, msg:
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename, 
                 _("This may be caused by an improper installation of GRAMPS.") +

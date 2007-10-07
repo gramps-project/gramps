@@ -51,16 +51,16 @@ LOG = logging.getLogger(".GrampsDb")
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from _GrampsDBCallback import GrampsDBCallback
-from _CursorIterator import CursorIterator
+from callback import GrampsDBCallback
+from iterator import CursorIterator
 
 #-------------------------------------------------------------------------
 #
 # constants
 #
 #-------------------------------------------------------------------------
-from _GrampsDbConst import *
-from _GrampsCursor import GrampsCursor
+from dbconst import *
+from cursor import GrampsCursor
 
 _UNDO_SIZE = 1000
 

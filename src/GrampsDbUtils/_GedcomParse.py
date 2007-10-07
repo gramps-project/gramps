@@ -122,7 +122,7 @@ import _GedcomUtils as GedcomUtils
 import _GedcomLex as GedcomLex
 import _GedcomChar as GedcomChar
 
-from GrampsDb._GrampsDbConst  import EVENT_KEY
+from gen.db.dbconst import EVENT_KEY
 
 #-------------------------------------------------------------------------
 #

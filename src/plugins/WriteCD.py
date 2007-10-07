@@ -82,8 +82,7 @@ _title_string = _("Export to CD")
 def writeData(database, filename, person, option_box=None, callback=None):
     ret = 0
     writer = PackageWriter(database, filename, callback)
-    ret = writer.export()
-    return ret
+    writer.export()
     
 #-------------------------------------------------------------------------
 #

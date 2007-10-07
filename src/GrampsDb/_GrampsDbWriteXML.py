@@ -54,12 +54,12 @@ log = logging.getLogger(".WriteXML")
 import RelLib 
 from BasicUtils import UpdateCallback
 
-from _GrampsDbConst import \
+from gen.db.dbconst import \
      PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
  
-from _GrampsDbExceptions import *
-from _LongOpStatus import LongOpStatus
+from gen.db.exceptions import *
+from gen.db.longop import LongOpStatus
 
 import gen.proxy
 

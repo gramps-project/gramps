@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -72,70 +72,70 @@ def register_stock_icons ():
     #iconpath to the base image. The front of the list has highest priority 
     if platform.system() == "Windows":
         iconpaths = [
-                    (os.path.join(const.IMAGE_DIR,'48x48'),'.png'),
-                    (const.IMAGE_DIR,'.png'),
+                    (os.path.join(const.IMAGE_DIR, '48x48'), '.png'), 
+                    (const.IMAGE_DIR, '.png'), 
                     ]
     else :
         iconpaths = [
-                    (os.path.join(const.IMAGE_DIR,'scalable'),'.svg'),
-                    (const.IMAGE_DIR,'.svg'), (const.IMAGE_DIR,'.png'),
+                    (os.path.join(const.IMAGE_DIR, 'scalable'), '.svg'), 
+                    (const.IMAGE_DIR, '.svg'), (const.IMAGE_DIR, '.png'), 
                     ]
     
-    #sizes: menu=16, small_toolbar=18, large_toolbar=24,
+    #sizes: menu=16, small_toolbar=18, large_toolbar=24, 
     #       button=20, dnd=32, dialog=48
     #add to the back of this list to overrule images set at beginning of list
     extraiconsize = [
-                    (os.path.join(const.IMAGE_DIR, '22x22'),
-                            gtk.ICON_SIZE_LARGE_TOOLBAR),
-                    (os.path.join(const.IMAGE_DIR, '16x16'),
-                            gtk.ICON_SIZE_MENU),
-                    (os.path.join(const.IMAGE_DIR, '22x22'),
-                            gtk.ICON_SIZE_BUTTON),
+                    (os.path.join(const.IMAGE_DIR, '22x22'), 
+                            gtk.ICON_SIZE_LARGE_TOOLBAR), 
+                    (os.path.join(const.IMAGE_DIR, '16x16'), 
+                            gtk.ICON_SIZE_MENU), 
+                    (os.path.join(const.IMAGE_DIR, '22x22'), 
+                            gtk.ICON_SIZE_BUTTON), 
                     ]
 
     items = [
-        ('gramps-db',_('Family Trees'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-address',_('Address'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-attribute',_('Attribute'),gtk.gdk.CONTROL_MASK,0,''),
-        #('gramps-bookmark',_('Bookmarks'),gtk.gdk.CONTROL_MASK,0,''),
-        #('gramps-bookmark-delete',_('Delete bookmark'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-bookmark-edit',_('Edit Bookmarks'),gtk.gdk.CONTROL_MASK,0,''), 
-        ('gramps-bookmark-new',_('Add Bookmark'),gtk.gdk.CONTROL_MASK,0,''), 
-        ('gramps-date',_('Date'),gtk.gdk.CONTROL_MASK,0,''), 
-        ('gramps-date-edit',_('Edit Date'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-event',_('Events'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-family',_('Family'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-font',_('Font'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-font-color',_('Font Color'),gtk.gdk.CONTROL_MASK,0,''),        
-        ('gramps-font-bgcolor',_('Font Background Color'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-lock',_('Public'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-media',_('Media'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-notes',_('Notes'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-parents',_('Parents'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-parents-add',_('Add Parents'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-parents-open',_('Select Parents'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-pedigree',_('Pedigree'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-person',_('Person'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-place',_('Places'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-relation',_('Relationships'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-reports',_('Reports'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-repository',_('Repositories'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-source',_('Sources'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-spouse',_('Add Spouse'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-tools',_('Tools'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-unlock',_('Private'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-viewmedia',_('View'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-zoom-in',_('Zoom In'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-zoom-out',_('Zoom Out'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-zoom-fit-width',_('Fit Width'),gtk.gdk.CONTROL_MASK,0,''),
-        ('gramps-zoom-best-fit',_('Fit Page'),gtk.gdk.CONTROL_MASK,0,''),
+        ('gramps-db', _('Family Trees'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-address', _('Address'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-attribute', _('Attribute'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        #('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        #('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-bookmark-edit', _('Edit Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-bookmark-new', _('Add Bookmark'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-date', _('Date'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-date-edit', _('Edit Date'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-event', _('Events'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-family', _('Family'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-font', _('Font'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-font-color', _('Font Color'), gtk.gdk.CONTROL_MASK, 0, ''),        
+        ('gramps-font-bgcolor', _('Font Background Color'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-lock', _('Public'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-media', _('Media'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-notes', _('Notes'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-parents', _('Parents'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-parents-add', _('Add Parents'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-parents-open', _('Select Parents'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-pedigree', _('Pedigree'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-person', _('Person'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-place', _('Places'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-relation', _('Relationships'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-reports', _('Reports'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-repository', _('Repositories'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-source', _('Sources'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-spouse', _('Add Spouse'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-tools', _('Tools'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-unlock', _('Private'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-viewmedia', _('View'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-zoom-in', _('Zoom In'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-zoom-out', _('Zoom Out'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-zoom-fit-width', _('Fit Width'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-zoom-best-fit', _('Fit Page'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ]
     # the following icons are not yet in new directory structure
     # they should be ported in the near future
     items_legacy = [
-         ('gramps-export',_('Export'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-undo-history',_('Undo History'),gtk.gdk.CONTROL_MASK,0,''),
-         ('gramps-url',_('URL'),gtk.gdk.CONTROL_MASK,0,''),
+         ('gramps-export', _('Export'), gtk.gdk.CONTROL_MASK, 0, ''), 
+         ('gramps-undo-history', _('Undo History'), gtk.gdk.CONTROL_MASK, 0, ''), 
+         ('gramps-url', _('URL'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ]
     
     # Register our stock items
@@ -147,8 +147,8 @@ def register_stock_icons ():
     
     for data in items+items_legacy:
         pixbuf = 0
-        for (dirname,ext) in iconpaths:
-            icon_file = os.path.expanduser(os.path.join(dirname,data[0]+ext))
+        for (dirname, ext) in iconpaths:
+            icon_file = os.path.expanduser(os.path.join(dirname, data[0]+ext))
             if os.path.isfile(icon_file):
                 try:
                     pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
@@ -157,7 +157,7 @@ def register_stock_icons ():
                     pass
                   
         if not pixbuf :
-            icon_file = os.path.join(const.IMAGE_DIR,'gramps.png')
+            icon_file = os.path.join(const.IMAGE_DIR, 'gramps.png')
             pixbuf = gtk.gdk.pixbuf_new_from_file (icon_file)
             
         pixbuf = pixbuf.add_alpha(True, chr(0xff), chr(0xff), chr(0xff))
@@ -184,12 +184,12 @@ def register_stock_icons ():
 
 
 def build_user_paths():
-    user_paths = [const.HOME_DIR,
-                  os.path.join(const.HOME_DIR,"filters"),
-                  os.path.join(const.HOME_DIR,"plugins"),
-                  os.path.join(const.HOME_DIR,"docgen"),
-                  os.path.join(const.HOME_DIR,"templates"),
-                  os.path.join(const.HOME_DIR,"thumb")]
+    user_paths = [const.HOME_DIR, 
+                  os.path.join(const.HOME_DIR, "filters"), 
+                  os.path.join(const.HOME_DIR, "plugins"), 
+                  os.path.join(const.HOME_DIR, "docgen"), 
+                  os.path.join(const.HOME_DIR, "templates"), 
+                  os.path.join(const.HOME_DIR, "thumb")]
     
     for path in user_paths:
         if not os.path.isdir(path):
@@ -208,33 +208,29 @@ class Gramps:
     process. It may spawn several windows and control several databases.
     """
 
-    def __init__(self,args):
+    def __init__(self, args):
         try:
             build_user_paths()
             self.welcome()    
         except OSError, msg:
-            ErrorDialog(_("Configuration error"),str(msg))
-            return
+            ErrorDialog(_("Configuration error"), str(msg))
         except Errors.GConfSchemaError, val:
-            ErrorDialog(_("Configuration error"),str(val) +
+            ErrorDialog(_("Configuration error"), str(val) +
                         _("\n\nPossibly the installation of GRAMPS "
                           "was incomplete. Make sure the GConf schema "
                           "of GRAMPS is properly installed."))
             gtk.main_quit()
-            return
         except:
             log.error("Error reading configuration.", exc_info=True)
-            return
             
         if not mime_type_is_defined(const.APP_GRAMPS):
-            ErrorDialog(_("Configuration error"),
+            ErrorDialog(_("Configuration error"), 
                         _("A definition for the MIME-type %s could not "
                           "be found \n\nPossibly the installation of GRAMPS "
                           "was incomplete. Make sure the MIME-types "
                           "of GRAMPS are properly installed.")
                         % const.APP_GRAMPS)
             gtk.main_quit()
-            return
 
         register_stock_icons()
         
@@ -245,9 +241,9 @@ class Gramps:
 
         self.vm.init_interface()
 
-        # Depending on the nature of this session,
+        # Depending on the nature of this session, 
         # we may need to change the order of operation
-        ah = ArgHandler.ArgHandler(state,self.vm,args)
+        ah = ArgHandler.ArgHandler(state, self.vm, args)
         if ah.need_gui():
             ah.handle_args()
             self.vm.post_init_interface()
@@ -263,7 +259,7 @@ class Gramps:
 #         if not Config.get(Config.BETAWARN):
 #             from QuestionDialog import WarningDialog
 #             WarningDialog(
-#                 _('Danger: This is unstable code!'),
+#                 _('Danger: This is unstable code!'), 
 #                 _("The GRAMPS 2.1 release is an early, experimental "
 #                   "branch of the future 2.2 release. This version is "
 #                   "not meant for normal usage. Use at your own risk.\n\n"
@@ -275,6 +271,6 @@ class Gramps:
 #                   "releases of GRAMPS. <b>BACKUP</b> your existing databases "
 #                   "before opening them with this version, and make "
 #                   "sure to export your data to XML every now and then."))
-#             Config.set(Config.AUTOLOAD,False)
-#             Config.set(Config.BETAWARN,True)
+#             Config.set(Config.AUTOLOAD, False)
+#             Config.set(Config.BETAWARN, True)
                             

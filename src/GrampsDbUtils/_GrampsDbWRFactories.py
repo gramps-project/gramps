@@ -41,7 +41,7 @@ import logging
 log = logging.getLogger(".GrampDb")
 
     
-from GrampsDb import GrampsDbException
+from gen.db import GrampsDbException
 
 
 def gramps_db_writer_factory(db_type):

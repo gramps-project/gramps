@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -59,36 +59,36 @@ class FamilyModel(BaseModel):
 
     _MARKER_COL = 13
 
-    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None, 
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_family_cursor
         self.map = db.get_raw_family_data
         self.fmap = [
-            self.column_id,
-            self.column_father,
-            self.column_mother,
-            self.column_type,
-            self.column_marriage,
-            self.column_change,
-            self.column_handle,
-            self.column_tooltip,
-            self.column_marker_text,
-            self.column_marker_color,
+            self.column_id, 
+            self.column_father, 
+            self.column_mother, 
+            self.column_type, 
+            self.column_marriage, 
+            self.column_change, 
+            self.column_handle, 
+            self.column_tooltip, 
+            self.column_marker_text, 
+            self.column_marker_color, 
             ]
         self.smap = [
-            self.column_id,
-            self.sort_father,
-            self.sort_mother,
-            self.column_type,
-            self.sort_marriage,
-            self.sort_change,
-            self.column_handle,
-            self.column_tooltip,
-            self.column_marker_text,
-            self.column_marker_color,
+            self.column_id, 
+            self.sort_father, 
+            self.sort_mother, 
+            self.column_type, 
+            self.sort_marriage, 
+            self.sort_change, 
+            self.column_handle, 
+            self.column_tooltip, 
+            self.column_marker_text, 
+            self.column_marker_color, 
             ]
         self.marker_color_column = 9
-        BaseModel.__init__(self, db, scol, order, tooltip_column=6,
+        BaseModel.__init__(self, db, scol, order, tooltip_column=6, 
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
@@ -151,7 +151,7 @@ class FamilyModel(BaseModel):
         return "%012x" % data[13]
     
     def column_change(self, data):
-        return unicode(time.strftime('%x %X',time.localtime(data[13])),
+        return unicode(time.strftime('%x %X', time.localtime(data[13])), 
                        GrampsLocale.codeset)
 
     def column_marker_text(self, data):
@@ -175,11 +175,12 @@ class FamilyModel(BaseModel):
             pass
         return None
 
-    def column_tooltip(self,data):
+    def column_tooltip(self, data):
         if const.USE_TIPS:
             try:
-                t = ToolTips.TipFromFunction(self.db, lambda:
-                                             self.db.get_family_from_handle(data[0]))
+                t = ToolTips.TipFromFunction(
+                    self.db, lambda:
+                        self.db.get_family_from_handle(data[0]))
             except:
                 log.error("Failed to create tooltip.", exc_info=True)
             return t

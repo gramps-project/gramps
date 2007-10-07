@@ -45,13 +45,13 @@ __LOG = logging.getLogger(".GrampsDb")
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from _GrampsDbBase import *
+from gen.db.base import *
 from _DbUtils import db_copy
-import _GrampsDbConst as const
+import gen.db.const as const
 from _GrampsDbExceptions import FileVersionError
 from BasicUtils import UpdateCallback
 
-from _GrampsCursor import GrampsCursor
+from gen.db.cursor import GrampsCursor
 
 _MINVERSION = 9
 _DBVERSION = 13

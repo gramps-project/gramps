@@ -19,4 +19,4 @@
 #
 
 __version__ = "$Revision: $"
-__all__ = [ "proxy" ]
+__all__ = [ "proxy", "db" ]

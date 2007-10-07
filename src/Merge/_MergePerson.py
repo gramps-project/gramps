@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import sets
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +56,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, person1, person2, update=None) :
 
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         self.glade = gtk.glade.XML(const.MERGE_GLADE, "merge")
         window = self.glade.get_widget('merge')
@@ -69,36 +68,36 @@ class PersonCompare(ManagedWindow.ManagedWindow):
         self.p2 = person2
         self.update = update
         
-        self.set_window(window,self.glade.get_widget('title'),
+        self.set_window(window, self.glade.get_widget('title'), 
                         _("Compare People"))
         self.display(self.text1.get_buffer(), person1)
         self.display(self.text2.get_buffer(), person2)
 
-        self.glade.get_widget('cancel').connect('clicked',self.close)
-        self.glade.get_widget('close').connect('clicked',self.merge)
-        self.glade.get_widget('help').connect('clicked',self.help)
+        self.glade.get_widget('cancel').connect('clicked', self.close)
+        self.glade.get_widget('close').connect('clicked', self.merge)
+        self.glade.get_widget('help').connect('clicked', self.help)
 
-    def help(self,obj):
+    def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-merge-people')
 
-    def merge(self,obj):
-        if check_for_spouse(self.p1,self.p2):
+    def merge(self, obj):
+        if check_for_spouse(self.p1, self.p2):
             QuestionDialog.ErrorDialog(
-                _("Cannot merge people"),
+                _("Cannot merge people"), 
                 _("Spouses cannot be merged. To merge these people, "
                   "you must first break the relationship between them."))
-        elif check_for_child(self.p1,self.p2):
+        elif check_for_child(self.p1, self.p2):
             QuestionDialog.ErrorDialog(
-                _("Cannot merge people"),
+                _("Cannot merge people"), 
                 _("A parent and child cannot be merged. To merge these "
                   "people, you must first break the relationship between "
                   "them."))
         else:
             if self.glade.get_widget('select1').get_active():
-                merge = MergePeople(self.db,self.p1,self.p2)
+                merge = MergePeople(self.db, self.p1, self.p2)
             else:
-                merge = MergePeople(self.db,self.p2,self.p1)
+                merge = MergePeople(self.db, self.p2, self.p1)
             self.close()
             merge.merge()
             if self.update:
@@ -106,90 +105,90 @@ class PersonCompare(ManagedWindow.ManagedWindow):
 
     def add(self, tobj, tag, text):
         text += "\n"
-        tobj.insert_with_tags(tobj.get_end_iter(),text,tag)
+        tobj.insert_with_tags(tobj.get_end_iter(), text, tag)
         
     def display(self, tobj, person):
         normal = tobj.create_tag()
-        normal.set_property('indent',10)
-        normal.set_property('pixels-above-lines',1)
-        normal.set_property('pixels-below-lines',1)
+        normal.set_property('indent', 10)
+        normal.set_property('pixels-above-lines', 1)
+        normal.set_property('pixels-below-lines', 1)
         indent = tobj.create_tag()
-        indent.set_property('indent',30)
-        indent.set_property('pixels-above-lines',1)
-        indent.set_property('pixels-below-lines',1)
+        indent.set_property('indent', 30)
+        indent.set_property('pixels-above-lines', 1)
+        indent.set_property('pixels-below-lines', 1)
         title = tobj.create_tag()
-        title.set_property('weight',pango.WEIGHT_BOLD)
-        title.set_property('scale',pango.SCALE_LARGE)
-        self.add(tobj,title,name_displayer.display(person))
-        self.add(tobj,normal,"%s:\t%s" % (_('ID'),person.get_gramps_id()))
-        self.add(tobj,normal,"%s:\t%s" % (_('Gender'),sex[person.get_gender()]))
+        title.set_property('weight', pango.WEIGHT_BOLD)
+        title.set_property('scale', pango.SCALE_LARGE)
+        self.add(tobj, title, name_displayer.display(person))
+        self.add(tobj, normal, "%s:\t%s" % (_('ID'), person.get_gramps_id()))
+        self.add(tobj, normal, "%s:\t%s" % (_('Gender'), sex[person.get_gender()]))
         bref = person.get_birth_ref()
         if bref:
-            self.add(tobj,normal,"%s:\t%s" % (_('Birth'),self.get_event_info(bref.ref)))
+            self.add(tobj, normal, "%s:\t%s" % (_('Birth'), self.get_event_info(bref.ref)))
         dref = person.get_death_ref()
         if dref:
-            self.add(tobj,normal,"%s:\t%s" % (_('Death'),self.get_event_info(dref.ref)))
+            self.add(tobj, normal, "%s:\t%s" % (_('Death'), self.get_event_info(dref.ref)))
 
         nlist = person.get_alternate_names()
         if len(nlist) > 0:
-            self.add(tobj,title,_("Alternate Names"))
+            self.add(tobj, title, _("Alternate Names"))
             for name in nlist:
-                self.add(tobj,normal,name_displayer.display_name(name))
+                self.add(tobj, normal, name_displayer.display_name(name))
 
         elist = person.get_event_ref_list()
         if len(elist) > 0:
-            self.add(tobj,title,_("Events"))
+            self.add(tobj, title, _("Events"))
             for event_ref in person.get_event_ref_list():
                 event_handle = event_ref.ref
                 name = str(
                     self.db.get_event_from_handle(event_handle).get_type())
-                self.add(tobj,normal,"%s:\t%s" % (name,self.get_event_info(event_handle)))
+                self.add(tobj, normal, "%s:\t%s" % (name, self.get_event_info(event_handle)))
         plist = person.get_parent_family_handle_list()
 
         if len(plist) > 0:
-            self.add(tobj,title,_("Parents"))
+            self.add(tobj, title, _("Parents"))
             for fid in person.get_parent_family_handle_list():
-                (fn,mn,gid) = self.get_parent_info(fid)
-                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),gid))
+                (fn, mn, gid) = self.get_parent_info(fid)
+                self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), gid))
                 if fn:
-                    self.add(tobj,indent,"%s:\t%s" % (_('Father'),fn))
+                    self.add(tobj, indent, "%s:\t%s" % (_('Father'), fn))
                 if mn:
-                    self.add(tobj,indent,"%s:\t%s" % (_('Mother'),mn))
+                    self.add(tobj, indent, "%s:\t%s" % (_('Mother'), mn))
         else:
-            self.add(tobj,normal,_("No parents found"))
+            self.add(tobj, normal, _("No parents found"))
             
-        self.add(tobj,title,_("Spouses"))
+        self.add(tobj, title, _("Spouses"))
         slist = person.get_family_handle_list()
         if len(slist) > 0:
             for fid in slist:
-                (fn,mn,pid) = self.get_parent_info(fid)
+                (fn, mn, pid) = self.get_parent_info(fid)
                 family = self.db.get_family_from_handle(fid)
-                self.add(tobj,normal,"%s:\t%s" % (_('Family ID'),pid))
-                spouse_id = ReportUtils.find_spouse(person,family)
+                self.add(tobj, normal, "%s:\t%s" % (_('Family ID'), pid))
+                spouse_id = ReportUtils.find_spouse(person, family)
                 if spouse_id:
                     spouse = self.db.get_person_from_handle(spouse_id)
-                    self.add(tobj,indent,"%s:\t%s" % (_('Spouse'),name_of(spouse)))
+                    self.add(tobj, indent, "%s:\t%s" % (_('Spouse'), name_of(spouse)))
                 relstr = str(family.get_relationship())
-                self.add(tobj,indent,"%s:\t%s" % (_('Type'),relstr))
-                event = ReportUtils.find_marriage(self.db,family)
+                self.add(tobj, indent, "%s:\t%s" % (_('Type'), relstr))
+                event = ReportUtils.find_marriage(self.db, family)
                 if event:
-                    self.add(tobj,indent,"%s:\t%s" % (
+                    self.add(tobj, indent, "%s:\t%s" % (
                         _('Marriage'), self.get_event_info(event.get_handle())))
                 for child_ref in family.get_child_ref_list():
                     child = self.db.get_person_from_handle(child_ref.ref)
-                    self.add(tobj,indent,"%s:\t%s" % (_('Child'),name_of(child)))
+                    self.add(tobj, indent, "%s:\t%s" % (_('Child'), name_of(child)))
         else:
-            self.add(tobj,normal,_("No spouses or children found"))
+            self.add(tobj, normal, _("No spouses or children found"))
 
         alist = person.get_address_list()
         if len(alist) > 0:
-            self.add(tobj,title,_("Addresses"))
+            self.add(tobj, title, _("Addresses"))
             for addr in alist:
-                location = ", ".join([addr.get_street(),addr.get_city(),
-                                     addr.get_state(),addr.get_country()])
-                self.add(tobj,normal,location.strip())
+                location = ", ".join([addr.get_street(), addr.get_city(), 
+                                     addr.get_state(), addr.get_country()])
+                self.add(tobj, normal, location.strip())
 
-    def get_parent_info(self,fid):
+    def get_parent_info(self, fid):
         family = self.db.get_family_from_handle(fid)
         father_id = family.get_father_handle()
         mother_id = family.get_mother_handle()
@@ -203,9 +202,9 @@ class PersonCompare(ManagedWindow.ManagedWindow):
             mname = name_of(mother)
         else:
             mname = u""
-        return (fname,mname,family.get_gramps_id())
+        return (fname, mname, family.get_gramps_id())
 
-    def get_event_info(self,handle):
+    def get_event_info(self, handle):
         date = ""
         place = ""
         if handle:
@@ -214,7 +213,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
             place = self.place_name(event)
             if date:
                 if place:
-                    return "%s, %s" % (date,place)
+                    return "%s, %s" % (date, place)
                 else:
                     return date
             else:
@@ -225,7 +224,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
         else:
             return ""
 
-    def place_name(self,event):
+    def place_name(self, event):
         place_id = event.get_place_handle()
         if place_id:
             place = self.db.get_place_from_handle(place_id)
@@ -236,18 +235,18 @@ class PersonCompare(ManagedWindow.ManagedWindow):
 
 def check_for_spouse(p1, p2):
 
-    f1 = sets.Set(p1.get_family_handle_list())
-    f2 = sets.Set(p2.get_family_handle_list())
+    f1 = set(p1.get_family_handle_list())
+    f2 = set(p2.get_family_handle_list())
 
     return len(f1.intersection(f2)) != 0
 
 def check_for_child(p1, p2):
 
-    fs1 = sets.Set(p1.get_family_handle_list())
-    fp1 = sets.Set(p1.get_parent_family_handle_list())
+    fs1 = set(p1.get_family_handle_list())
+    fp1 = set(p1.get_parent_family_handle_list())
 
-    fs2 = sets.Set(p2.get_family_handle_list())
-    fp2 = sets.Set(p2.get_parent_family_handle_list())
+    fs2 = set(p2.get_family_handle_list())
+    fp2 = set(p2.get_parent_family_handle_list())
 
     return len(fs1.intersection(fp2)) != 0 or len(fs2.intersection(fp1))
 
@@ -262,20 +261,20 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 
         if check_for_spouse(person1, person2):
             QuestionDialog.ErrorDialog(
-                _("Cannot merge people"),
+                _("Cannot merge people"), 
                 _("Spouses cannot be merged. To merge these people, "
                   "you must first break the relationship between them."))
             return
 
         if check_for_child(person1, person2):
             QuestionDialog.ErrorDialog(
-                _("Cannot merge people"),
+                _("Cannot merge people"), 
                 _("A parent and child cannot be merged. To merge these "
                   "people, you must first break the relationship between "
                   "them."))
             return
 
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         
         glade = gtk.glade.XML(const.MERGE_GLADE, 'merge_people')
         window = glade.get_widget('merge_people')
@@ -290,7 +289,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
         p1.set_label(n1)
         p2.set_label(n2)
 
-        glade.get_widget('help').connect('clicked',self.help)
+        glade.get_widget('help').connect('clicked', self.help)
 
         ret = gtk.RESPONSE_HELP
         while ret == gtk.RESPONSE_HELP:
@@ -298,31 +297,31 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
         
         if ret == gtk.RESPONSE_OK:
 
-            if check_for_spouse(person1,person2):
+            if check_for_spouse(person1, person2):
                 QuestionDialog.ErrorDialog(
-                    _("Cannot merge people"),
+                    _("Cannot merge people"), 
                     _("Spouses cannot be merged. To merge these people, "
                       "you must first break the relationship between them."))
-            elif check_for_child(person1,person2):
+            elif check_for_child(person1, person2):
                 QuestionDialog.ErrorDialog(
-                    _("Cannot merge people"),
+                    _("Cannot merge people"), 
                     _("A parent and child cannot be merged. To merge these "
                       "people, you must first break the relationship between "
                       "them."))
             else:
                 if p1.get_active():
-                    merge = MergePeople(dbstate.db,person1,person2)
+                    merge = MergePeople(dbstate.db, person1, person2)
                 else:
-                    merge = MergePeople(dbstate.db,person2,person1)
+                    merge = MergePeople(dbstate.db, person2, person1)
                 merge.merge()
                 if update:
                     update()
         self.close()
 
-    def build_menu_names(self,obj):
-        return (_('Merge People'),None)
+    def build_menu_names(self, obj):
+        return (_('Merge People'), None)
 
-    def help(self,obj):
+    def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-merge-people')
 
@@ -330,7 +329,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 def name_of(p):
     if not p:
         return ""
-    return "%s [%s]" % (name_displayer.display(p),p.get_gramps_id())
+    return "%s [%s]" % (name_displayer.display(p), p.get_gramps_id())
 
 #-------------------------------------------------------------------------
 #
@@ -339,15 +338,15 @@ def name_of(p):
 #-------------------------------------------------------------------------
 class MergePeople:
 
-    def __init__(self,db,person1,person2):
+    def __init__(self, db, person1, person2):
         self.db = db
         self.p1 = person1
         self.p2 = person2
 
-    def copy_note(self,one,two):
+    def copy_note(self, one, two):
         one.set_note_list(one.get_note_list() + two.get_note_list())
 
-    def copy_sources(self,one,two):
+    def copy_sources(self, one, two):
         slist = one.get_source_references()[:]
         for xsrc in two.get_source_references():
             for src in slist:
@@ -356,13 +355,13 @@ class MergePeople:
             else:
                 one.add_source_reference(xsrc)
 
-    def debug_person(self,person, msg=""):
+    def debug_person(self, person, msg=""):
         if __debug__:
-            print "## %s person handle %s" % (msg,person.get_handle())
+            print "## %s person handle %s" % (msg, person.get_handle())
             for h in person.get_family_handle_list():
                 fam = self.db.get_family_from_handle(h)
                 print " - family %s has father: %s, mother: %s" % \
-                      (h,fam.get_father_handle(),fam.get_mother_handle())
+                      (h, fam.get_father_handle(), fam.get_mother_handle())
             for h in person.get_parent_family_handle_list():
                 print " - parent family %s" % h
 
@@ -384,18 +383,18 @@ class MergePeople:
         new = RelLib.Person()
         trans = self.db.transaction_begin()
 
-        self.merge_person_information(new,trans)
+        self.merge_person_information(new, trans)
         self.debug_person(new, "NEW")
 
-        self.merge_family_information(new,trans)
+        self.merge_family_information(new, trans)
         self.debug_person(new, "NEW")
 
-        self.db.commit_person(new,trans)
+        self.db.commit_person(new, trans)
         self.debug_person(new, "NEW")
-        self.db.remove_person(self.old_handle,trans)
-        self.db.transaction_commit(trans,"Merge Person")
+        self.db.remove_person(self.old_handle, trans)
+        self.db.transaction_commit(trans, "Merge Person")
 
-    def merge_person_information(self,new,trans):
+    def merge_person_information(self, new, trans):
         """
         Merging the person's individual information is pretty simple. The
         person 'new' is a new, empty person. The data is loaded in this
@@ -454,7 +453,7 @@ class MergePeople:
         # note
         new.set_note_list(self.p1.get_note_list() + self.p2.get_note_list())
         
-    def merge_gramps_ids(self,new):
+    def merge_gramps_ids(self, new):
         """
         Merges the GRAMPS IDs. The new GRAMPS ID is taken from
         destination person. The GRAMPS ID of the other person is added
@@ -497,7 +496,7 @@ class MergePeople:
             else:
                 new.add_alternate_name(name)
 
-    def merge_birth(self, new,trans):
+    def merge_birth(self, new, trans):
         """
         Merges the birth events of the two people. If the primary
         person does not have a birth event, then the birth event from
@@ -560,7 +559,7 @@ class MergePeople:
         list any parents that are not already there. This eliminates
         any duplicates.
 
-        Once this has been completed, we loop through each family,
+        Once this has been completed, we loop through each family, 
         converting any child handles referring to the secondary person
         to the destination person.
         """
@@ -579,7 +578,7 @@ class MergePeople:
         # person
         
         for family_handle in parent_list:
-            self.convert_child_ids(family_handle, self.new_handle,
+            self.convert_child_ids(family_handle, self.new_handle, 
                                    self.old_handle, trans)
             new.add_parent_family_handle(family_handle)
                     
@@ -610,9 +609,9 @@ class MergePeople:
         if [ref.ref for ref in new_ref_list] \
                != [ref.ref for ref in orig_ref_list]:
             family.set_child_ref_list(new_ref_list)
-            self.db.commit_family(family,trans)
+            self.db.commit_family(family, trans)
     
-    def merge_relationships(self,new,trans):
+    def merge_relationships(self, new, trans):
         """
         Merges the relationships associated with the merged people.
         """
@@ -649,14 +648,14 @@ class MergePeople:
                 else:
                     if __debug__:
                         print "Merging family pair"
-                    self.merge_family_pair(tgt_family,src_family,trans)
+                    self.merge_family_pair(tgt_family, src_family, trans)
                     
                     # change parents of the family to point to the new
                     # family
                     self.adjust_family_pointers(tgt_family, src_family, trans)
                                                 
                     new.remove_family_handle(src_handle)
-                    self.db.remove_family(src_handle,trans)
+                    self.db.remove_family(src_handle, trans)
                     if __debug__:
                         print "Deleted src_family %s" % src_handle
             else:
@@ -680,7 +679,7 @@ class MergePeople:
                 if __debug__:
                     print "Family %s now has mother %s" % (
                         src_handle, self.new_handle)
-            self.db.commit_family(src_family,trans)
+            self.db.commit_family(src_family, trans)
 
         # a little debugging here
 
@@ -697,10 +696,10 @@ class MergePeople:
 ##             if self.p2 == fam.get_mother_handle():
 ##                 fam.set_mother_handle(self.p1)
 ##             if fam.get_father_handle() == None and fam.get_mother_handle() == None:
-##                 self.delete_empty_family(fam,trans)
+##                 self.delete_empty_family(fam, trans)
 ##             data = cursor.next()
 
-    def find_modified_family(self,family):
+    def find_modified_family(self, family):
         """
         Look for a existing family that matches the merged person. This means
         looking at the current family, and replacing the secondary person's
@@ -736,7 +735,7 @@ class MergePeople:
         myfamily = None
         while node:
             # data[2] == father_handle field, data[2] == mother_handle field
-            (thandle,data) = node
+            (thandle, data) = node
             if data[2] == fhandle and data[3] == mhandle and thandle != family_handle:
                 myfamily = RelLib.Family()
                 myfamily.unserialize(data)
@@ -766,14 +765,14 @@ class MergePeople:
             father.remove_family_handle(src_family_handle)
             if __debug__:
                 print "Removed family %s from father %s" % (src_family_handle, father_id)
-            self.db.commit_person(father,trans)
+            self.db.commit_person(father, trans)
         if mother and src_family_handle in mother.get_family_handle_list():
             mother.remove_family_handle(src_family_handle)
             if __debug__:
                 print "Removed family %s from mother %s" % (src_family_handle, mother_id)
-            self.db.commit_person(mother,trans)
+            self.db.commit_person(mother, trans)
                         
-        self.merge_family_pair(tgt_family,src_family,trans)
+        self.merge_family_pair(tgt_family, src_family, trans)
                         
         for child_ref in src_family.get_child_ref_list():
             child_handle = child_ref.ref
@@ -782,19 +781,19 @@ class MergePeople:
             if child.remove_parent_family_handle(src_family_handle):
                 if __debug__:
                     print "Remove parent family %s from %s" \
-                          % (src_family_handle,child_handle)
+                          % (src_family_handle, child_handle)
                 child.add_parent_family_handle(tgt_family.handle)
-                self.db.commit_person(child,trans)
+                self.db.commit_person(child, trans)
 
         # delete the old source family
-        self.db.remove_family(src_family_handle,trans)
+        self.db.remove_family(src_family_handle, trans)
         if __debug__:
             print "Deleted src_family %s" % src_family_handle
-        self.db.commit_family(tgt_family,trans)
+        self.db.commit_family(tgt_family, trans)
         if tgt_family.get_handle() not in new.get_family_handle_list():
             new.add_family_handle(tgt_family.get_handle())
 
-    def merge_family_pair(self,tgt_family,src_family,trans):
+    def merge_family_pair(self, tgt_family, src_family, trans):
 
         tgt_family_child_handles = [ref.ref
                                     for ref in tgt_family.get_child_ref_list()]
@@ -810,9 +809,9 @@ class MergePeople:
                 i = 0
                 for fam in parents[:]:
                     if fam[0] == src_family.get_handle():
-                        parents[i] = (tgt_family.get_handle(),fam[1],fam[2])
+                        parents[i] = (tgt_family.get_handle(), fam[1], fam[2])
                     i += 1
-                self.db.commit_person(child,trans)
+                self.db.commit_person(child, trans)
 
         # merge family events
 
@@ -834,7 +833,7 @@ class MergePeople:
 
         # merge family top-level sources
 
-        self.copy_sources(tgt_family,src_family)
+        self.copy_sources(tgt_family, src_family)
 
         # merge multimedia objects
 
@@ -861,7 +860,7 @@ class MergePeople:
                     tgt_family_handle, father_handle)
 
             # commit the change
-            self.db.commit_person(father,trans)
+            self.db.commit_person(father, trans)
 
         mother_handle = src_family.get_mother_handle()
         if mother_handle:
@@ -874,7 +873,7 @@ class MergePeople:
                     tgt_family_handle, mother_handle)
 
             # commit the change
-            self.db.commit_person(mother,trans)
+            self.db.commit_person(mother, trans)
 
         # remove the children from the old family
         for child_ref in src_family.get_child_ref_list():
@@ -882,16 +881,16 @@ class MergePeople:
             if child_handle != self.new_handle:
                 child = self.db.get_person_from_handle(child_handle)
                 if child.remove_parent_family_handle(src_family_handle):
-                    self.db.commit_person(child,trans)
+                    self.db.commit_person(child, trans)
 
 
-    def remove_marriage(self,family,person,trans):
+    def remove_marriage(self, family, person, trans):
         if person:
             person.remove_family_handle(family.get_handle())
-            if family.get_father_handle() == None and family.get_mother_handle() == None:
-                self.delete_empty_family(family,trans)
+            if family.get_father_handle() is None and family.get_mother_handle() is None:
+                self.delete_empty_family(family, trans)
 
-    def delete_empty_family(self,family,trans):
+    def delete_empty_family(self, family, trans):
         family_handle = family.get_handle()
         for child_ref in family.get_child_ref_list():
             child_handle = child_ref.ref
@@ -900,8 +899,8 @@ class MergePeople:
                 child.set_main_parent_family_handle(None)
             else:
                 child.remove_parent_family_handle(family_handle)
-            self.db.commit_person(child,trans)
-        self.db.remove_family(family_handle,trans)
+            self.db.commit_person(child, trans)
+        self.db.remove_family(family_handle, trans)
         if __debug__:
             print "Deleted empty family %s" % family_handle
 

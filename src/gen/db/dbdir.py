@@ -48,12 +48,11 @@ log = logging.getLogger(".GrampsDb")
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-from _GrampsDbBase import *
-from _DbUtils import db_copy
-import _GrampsDbConst as const
-from _GrampsDbExceptions import FileVersionError
+from base import *
+import dbconst as const
+from exceptions import FileVersionError
 from BasicUtils import UpdateCallback
-from _GrampsCursor import GrampsCursor
+from cursor import GrampsCursor
 import Errors
 
 _MINVERSION = 9
@@ -172,7 +171,7 @@ class GrampsDBDirDupCursor(GrampsDBDirAssocCursor):
 # GrampsDBDir
 #
 #-------------------------------------------------------------------------
-class GrampsDBDir(GrampsDbBase,UpdateCallback):
+class GrampsDBDir(GrampsDbBase, UpdateCallback):
     """GRAMPS database object. This object is a base class for other
     objects."""
 
@@ -590,6 +589,7 @@ class GrampsDBDir(GrampsDbBase,UpdateCallback):
     def load_from(self, other_database, filename, callback):
         try:
             self.load(filename,callback)
+            from GrampsDb import db_copy
             db_copy(other_database,self,callback)
             return 1
         except DBERRS, msg:

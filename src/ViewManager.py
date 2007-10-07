@@ -77,6 +77,8 @@ import UndoHistory
 from DbLoader import DbLoader
 import GrampsDisplay
 from GrampsDb import ProgressMonitor
+import gen.db
+
 import ProgressDialog
 
 def show_url(dialog, link, user_data):
@@ -1050,8 +1052,6 @@ class ViewManager:
         should enable signals, as well as finish up with other UI goodies.
         """
 
-        import GrampsDb
-
         if os.path.exists(filename):
             if not os.access(filename, os.W_OK):
                 mode = "r"
@@ -1071,8 +1071,8 @@ class ViewManager:
             mode = 'w'
 
         try:
-            dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
-        except GrampsDb.GrampsDbException, msg:
+            dbclass = gen.db.dbdir.GrampsDBDir
+        except gen.db.exceptions.GrampsDbException, msg:
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename, 
                 _("This may be caused by an improper installation of GRAMPS.") +

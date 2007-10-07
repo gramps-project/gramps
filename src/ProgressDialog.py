@@ -87,7 +87,7 @@ class GtkProgressDialog(gtk.Dialog):
         
         self._progress_bars = []
         
-    def add(self,long_op_status):
+    def add(self, long_op_status):
         """Add a new status object to the progress dialog.
         
         @param long_op_status: the status object.        
@@ -145,7 +145,7 @@ class GtkProgressDialog(gtk.Dialog):
         gtk.Dialog.hide(self)
         self._process_events()
         
-    def _warn(self,x,y):
+    def _warn(self, x, y):
         return True
     
     def close(self):
@@ -155,7 +155,7 @@ if __name__ == '__main__':
     import time
     from GrampsDb import LongOpStatus, ProgressMonitor
 
-    def test(a,b):
+    def test(a, b):
         d = ProgressMonitor(GtkProgressDialog)
         
         s = LongOpStatus("Doing very long operation", 100, 10)
@@ -165,7 +165,7 @@ if __name__ == '__main__':
         for i in xrange(0, 99):
             time.sleep(0.1)
             if i == 30:
-                t = LongOpStatus("doing a shorter one", 100, 10,
+                t = LongOpStatus("doing a shorter one", 100, 10, 
                                  can_cancel=True)
                 d.add_op(t)
                 for j in xrange(0, 99):

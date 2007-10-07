@@ -1,4 +1,4 @@
-from _LongOpStatus import LongOpStatus
+from longop import LongOpStatus
 
 class CursorIterator(object):
     

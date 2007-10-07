@@ -38,7 +38,8 @@ required e.g.:
 >     GrampsDb.gramps_db_reader_factory(db_type = const.APP_GEDCOM)
      
 """
-import _GrampsDbConst as const
+import gen.db.dbconst as const
+from gen.db.exceptions import GrampsDbException
 
 import logging
 log = logging.getLogger(".GrampDb")
@@ -50,7 +51,6 @@ except:
     log.warn("No Config module available, using defaults.")
     config = None
     
-from _GrampsDbExceptions import GrampsDbException
 
 def gramps_db_factory(db_type):
     """Factory class for obtaining a Gramps database backend.

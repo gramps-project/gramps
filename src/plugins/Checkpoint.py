@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -67,14 +67,14 @@ else:
 
 # Some message strings
 rcs_setup_failure_msg = [
-    _("Checkpoint Archive Creation Failed"),
+    _("Checkpoint Archive Creation Failed"), 
     _("No checkpointing archive was found. "
       "An attempt to create it has failed with the "
       "following message:\n\n%s")
     ]
 
 rcs_setup_success_msg = [
-    _("Checkpoint Archive Created"),
+    _("Checkpoint Archive Created"), 
     _("No checkpointing archive was found, "
       "so it was created to enable archiving.\n\n"
       "The archive file name is %s\n"
@@ -84,24 +84,24 @@ rcs_setup_success_msg = [
     ]
 
 archive_failure_msg = [
-    _("Checkpoint Failed"),
+    _("Checkpoint Failed"), 
     _("An attempt to archive the data failed "
       "with the following message:\n\n%s")
     ]
 
 archive_success_msg = [
-    _("Checkpoint Succeeded "),
+    _("Checkpoint Succeeded "), 
     _("The data was successfully archived.")
     ]
 
 retrieve_failure_msg = [
-    _("Checkpoint Failed"),
+    _("Checkpoint Failed"), 
     _("An attempt to retrieve the data failed "
       "with the following message:\n\n%s")
     ]
 
 retrieve_success_msg = [
-    _("Checkpoint Succeeded "),
+    _("Checkpoint Succeeded "), 
     _("The data was successfully retrieved.")
     ]
 
@@ -118,7 +118,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         self.dbstate = dbstate
 
         if uistate:
-            ManagedWindow.ManagedWindow.__init__(self, uistate, [],
+            ManagedWindow.ManagedWindow.__init__(self, uistate, [], 
                                                  Checkpoint)
             self.callback = self.callback_real
             self.init_gui()
@@ -130,8 +130,8 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         # Draw dialog and make it handle everything
 
         base = os.path.dirname(__file__)
-        glade_file = "%s/%s" % (base,"checkpoint.glade")
-        self.glade = gtk.glade.XML(glade_file,"top","gramps")
+        glade_file = "%s/%s" % (base, "checkpoint.glade")
+        self.glade = gtk.glade.XML(glade_file, "top", "gramps")
 
         self.cust_arch_cb = self.glade.get_widget("cust_arch")
         self.cust_ret_cb = self.glade.get_widget("cust_ret")
@@ -153,7 +153,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         self.cust_arch_cb.set_sensitive(self.cust_rb.get_active())
         self.cust_ret_cb.set_sensitive(self.cust_rb.get_active())
 
-        self.rcs_rb.connect('toggled',self.rcs_toggled)
+        self.rcs_rb.connect('toggled', self.rcs_toggled)
 
         # Disable RCS if the rcs binary is not available
         # and show the normally hidden warning
@@ -161,13 +161,13 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
 
         self.title = _("Checkpoint Data")
         window = self.glade.get_widget('top')
-        self.set_window(window,self.glade.get_widget('title'),self.title)
+        self.set_window(window, self.glade.get_widget('title'), self.title)
 
         self.glade.signal_autoconnect({
-            "on_close_clicked" : self.close,
-            "on_arch_clicked"  : self.on_archive_clicked,
-            "on_ret_clicked"   : self.on_retrieve_clicked,
-            "on_help_clicked"  : self.on_help_clicked,
+            "on_close_clicked" : self.close, 
+            "on_arch_clicked"  : self.on_archive_clicked, 
+            "on_ret_clicked"   : self.on_retrieve_clicked, 
+            "on_help_clicked"  : self.on_help_clicked, 
             })
 
         self.show()
@@ -179,38 +179,38 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
         else:
             warning_label.hide()
 
-    def build_menu_names(self,obj):
-        return (_("Checkpoint tool"),None)
+    def build_menu_names(self, obj):
+        return (_("Checkpoint tool"), None)
 
-    def rcs_toggled(self,obj):
+    def rcs_toggled(self, obj):
         self.cust_arch_cb.set_sensitive(not obj.get_active())
         self.cust_ret_cb.set_sensitive(not obj.get_active())
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('index')
 
-    def on_archive_clicked(self,obj):
+    def on_archive_clicked(self, obj):
         self.options.handler.options_dict['cacmd'] = unicode(
             self.cust_arch_cb.get_text())
         self.options.handler.options_dict['rcs']  = int(
             self.rcs_rb.get_active())
         
-        self.run_tool(archive=True,cli=False)
+        self.run_tool(archive=True, cli=False)
         # Save options
         self.options.handler.save_options()
 
-    def on_retrieve_clicked(self,obj):
+    def on_retrieve_clicked(self, obj):
         self.options.handler.options_dict['crcmd'] = unicode(
             self.cust_ret_cb.get_text())
         self.options.handler.options_dict['rcs']  = int(
             self.rcs_rb.get_active())
         
-        self.run_tool(archive=False,cli=False)
+        self.run_tool(archive=False, cli=False)
         # Save options
         self.options.handler.save_options()
 
-    def run_tool(self,archive=True,cli=False):
+    def run_tool(self, archive=True, cli=False):
         """
         RCS will be a builtin command, since we can handle all
         configuration on our own. This isn't true for most versioning
@@ -237,15 +237,15 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             self.uistate.modify_statusbar(self.dbstate)
 
     def timestamp(self):
-        return unicode(time.strftime('%x %X',time.localtime(time.time())))
+        return unicode(time.strftime('%x %X', time.localtime(time.time())))
 
-    def custom(self,cmd,checkin,cli):
+    def custom(self, cmd, checkin, cli):
         """
         Passed the generated XML file to the specified command.
         """
         proc = subprocess.Popen(
-                cmd,
-                stderr = subprocess.PIPE,
+                cmd, 
+                stderr = subprocess.PIPE, 
                 stdin = subprocess.PIPE )
         if checkin:
             xmlwrite = GrampsDbUtils.XmlWriter(self.db, self.callback, 
@@ -282,19 +282,19 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             print msg1
             print msg2
         else:
-            dialog(msg1,msg2)
+            dialog(msg1, msg2)
 
     def rcs(self, checkin, cli):
         """
         Check the generated XML file into RCS. Initialize the RCS file if
         it does not already exist.
         """
-        (archive_base,ext) = os.path.splitext(self.db.get_save_path())
+        (archive_base, ext) = os.path.splitext(self.db.get_save_path())
 
         archive_base = os.path.join(archive_base, "archive")
         comment = self.timestamp()
 
-        archive = archive_base + ",v"
+        archive = archive_base + ", v"
 
         # If the archive file does not exist, we either set it up
         # or die trying
@@ -319,7 +319,7 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
                 print msg1
                 print msg2
             else:
-                dialog(msg1,msg2)
+                dialog(msg1, msg2)
 
             if status:
                 return
@@ -333,8 +333,8 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
             cmd = ["ci", archive_base]
 
             proc = subprocess.Popen(
-                cmd,
-                stdin = subprocess.PIPE,
+                cmd, 
+                stdin = subprocess.PIPE, 
                 stderr = subprocess.PIPE )
             proc.stdin.write(comment)
             proc.stdin.close()
@@ -356,10 +356,10 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
                 print msg1
                 print msg2
             else:
-                dialog(msg1,msg2)
+                dialog(msg1, msg2)
         else:
             proc = subprocess.Popen(
-                    ("co", "-p", archive_base), stdout=subprocess.PIPE,
+                    ("co", "-p", archive_base), stdout=subprocess.PIPE, 
                     stderr = subprocess.PIPE )
             status = proc.wait()
             message = "\n".join(proc.stderr.readlines())
@@ -379,9 +379,9 @@ class Checkpoint(Tool.Tool, ManagedWindow.ManagedWindow):
                 print msg1
                 print msg2
             else:
-                dialog(msg1,msg2)
+                dialog(msg1, msg2)
 
-    def callback_real(self,value):
+    def callback_real(self, value):
         """
         Call back function for the WriteXML function that updates the
         status progress bar.
@@ -400,30 +400,30 @@ class CheckpointOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name, person_id=None):
+        Tool.ToolOptions.__init__(self, name, person_id)
 
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
-            'rcs'     : 1,
-            'archive' : 1,
-            'cacmd'   : '',
-            'crcmd'   : '',
+            'rcs'     : 1, 
+            'archive' : 1, 
+            'cacmd'   : '', 
+            'crcmd'   : '', 
         }
         self.options_help = {
-            'rcs'     : ("=0/1",
-                         "Whether to use RCS (ignores custom commands).",
-                         ["Do not use RCS","Use RCS"],
-                         True),
-            'archive' : ("=0/1",
-                         "Whether to archive or retrieve.",
-                         ["Retrieve","Archive"],
-                         True),
-            'cacmd'   : ("=str","Custom command line for archiving",
-                         "Custom command string"),
-            'crcmd'   : ("=str","Custom command line for retrieval",
-                         "Custom command string"),
+            'rcs'     : ("=0/1", 
+                         "Whether to use RCS (ignores custom commands).", 
+                         ["Do not use RCS", "Use RCS"], 
+                         True), 
+            'archive' : ("=0/1", 
+                         "Whether to archive or retrieve.", 
+                         ["Retrieve", "Archive"], 
+                         True), 
+            'cacmd'   : ("=str", "Custom command line for archiving", 
+                         "Custom command string"), 
+            'crcmd'   : ("=str", "Custom command line for retrieval", 
+                         "Custom command string"), 
         }
 
 #------------------------------------------------------------------------
@@ -432,15 +432,15 @@ class CheckpointOptions(Tool.ToolOptions):
 #
 #------------------------------------------------------------------------
 register_tool(
-    name = 'chkpoint',
-    category = Tool.TOOL_REVCTL,
-    tool_class = Checkpoint,
-    options_class = CheckpointOptions,
-    modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Checkpoint the database"),
-    status = _("Stable"),
-    author_name = "Alex Roitman",
-    author_email = "shura@gramps-project.org",
+    name = 'chkpoint', 
+    category = Tool.TOOL_REVCTL, 
+    tool_class = Checkpoint, 
+    options_class = CheckpointOptions, 
+    modes = Tool.MODE_GUI | Tool.MODE_CLI, 
+    translated_name = _("Checkpoint the database"), 
+    status = _("Stable"), 
+    author_name = "Alex Roitman", 
+    author_email = "shura@gramps-project.org", 
     description = _("Store a snapshot of the current database into "
                     "a revision control system")
     )

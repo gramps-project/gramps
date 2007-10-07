@@ -1,6 +1,6 @@
 import time
 
-from _GrampsDBCallback import GrampsDBCallback
+from callback import GrampsDBCallback
 
 class LongOpStatus(GrampsDBCallback):
     """LongOpStatus provides a way of communicating the status of a long

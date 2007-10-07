@@ -10,7 +10,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -54,92 +54,92 @@ import BaseDoc
 
 born_full_date_with_place = [
   {
-    RelLib.Person.UNKNOWN :  _("This person was born on %(birth_date)s in %(birth_place)s."),
-    RelLib.Person.MALE :  _("He was born on %(birth_date)s in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("She was born on %(birth_date)s in %(birth_place)s."),
-  },
+    RelLib.Person.UNKNOWN :  _("This person was born on %(birth_date)s in %(birth_place)s."), 
+    RelLib.Person.MALE :  _("He was born on %(birth_date)s in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("She was born on %(birth_date)s in %(birth_place)s."), 
+  }, 
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born on %(birth_date)s in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born on %(birth_date)s in %(birth_place)s."),
-  },
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."), 
+    RelLib.Person.MALE : _("%(male_name)s was born on %(birth_date)s in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("%(female_name)s was born on %(birth_date)s in %(birth_place)s."), 
+  }, 
 ]
 
 born_modified_date_with_place = [
   {
-    RelLib.Person.UNKNOWN :  _("This person was born %(modified_date)s in %(birth_place)s."),
-    RelLib.Person.MALE :  _("He was born %(modified_date)s in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("She was born %(modified_date)s in %(birth_place)s."),
-  },
+    RelLib.Person.UNKNOWN :  _("This person was born %(modified_date)s in %(birth_place)s."), 
+    RelLib.Person.MALE :  _("He was born %(modified_date)s in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("She was born %(modified_date)s in %(birth_place)s."), 
+  }, 
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born %(modified_date)s in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born %(modified_date)s in %(birth_place)s."),
-  },
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."), 
+    RelLib.Person.MALE : _("%(male_name)s was born %(modified_date)s in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("%(female_name)s was born %(modified_date)s in %(birth_place)s."), 
+  }, 
 ]
 
 born_full_date_no_place = [
   {
-    RelLib.Person.UNKNOWN : _("This person was born on %(birth_date)s."),
-    RelLib.Person.MALE : _("He was born on %(birth_date)s."),
-    RelLib.Person.FEMALE : _("She was born on %(birth_date)s."),
-  },
+    RelLib.Person.UNKNOWN : _("This person was born on %(birth_date)s."), 
+    RelLib.Person.MALE : _("He was born on %(birth_date)s."), 
+    RelLib.Person.FEMALE : _("She was born on %(birth_date)s."), 
+  }, 
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born on %(birth_date)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born on %(birth_date)s."),
-  },
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s."), 
+    RelLib.Person.MALE : _("%(male_name)s was born on %(birth_date)s."), 
+    RelLib.Person.FEMALE : _("%(female_name)s was born on %(birth_date)s."), 
+  }, 
 ]  
 
 born_modified_date_no_place = [
   {
-    RelLib.Person.UNKNOWN : _("This person was born %(modified_date)s."),
-    RelLib.Person.MALE : _("He was born %(modified_date)s."),
-    RelLib.Person.FEMALE : _("She was born %(modified_date)s."),
-  },
+    RelLib.Person.UNKNOWN : _("This person was born %(modified_date)s."), 
+    RelLib.Person.MALE : _("He was born %(modified_date)s."), 
+    RelLib.Person.FEMALE : _("She was born %(modified_date)s."), 
+  }, 
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born %(modified_date)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born %(modified_date)s."),
-  },
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s."), 
+    RelLib.Person.MALE : _("%(male_name)s was born %(modified_date)s."), 
+    RelLib.Person.FEMALE : _("%(female_name)s was born %(modified_date)s."), 
+  }, 
 ]  
 
 born_partial_date_with_place = [
   {
-    RelLib.Person.UNKNOWN : _("This person was born in %(month_year)s in %(birth_place)s."),
-    RelLib.Person.MALE : _("He was born in %(month_year)s in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("She was born in %(month_year)s in %(birth_place)s."),
-  },
+    RelLib.Person.UNKNOWN : _("This person was born in %(month_year)s in %(birth_place)s."), 
+    RelLib.Person.MALE : _("He was born in %(month_year)s in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("She was born in %(month_year)s in %(birth_place)s."), 
+  }, 
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born in %(month_year)s in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born in %(month_year)s in %(birth_place)s."),
-  },
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."), 
+    RelLib.Person.MALE : _("%(male_name)s was born in %(month_year)s in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("%(female_name)s was born in %(month_year)s in %(birth_place)s."), 
+  }, 
 ]  
 
 born_partial_date_no_place = [
   {
-    RelLib.Person.UNKNOWN : _("This person was born in %(month_year)s."),
-    RelLib.Person.MALE : _("He was born in %(month_year)s."),
-    RelLib.Person.FEMALE : _("She was born in %(month_year)s."),
-  },
+    RelLib.Person.UNKNOWN : _("This person was born in %(month_year)s."), 
+    RelLib.Person.MALE : _("He was born in %(month_year)s."), 
+    RelLib.Person.FEMALE : _("She was born in %(month_year)s."), 
+  }, 
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(month_year)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born in %(month_year)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born in %(month_year)s."),
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(month_year)s."), 
+    RelLib.Person.MALE : _("%(male_name)s was born in %(month_year)s."), 
+    RelLib.Person.FEMALE : _("%(female_name)s was born in %(month_year)s."), 
   }
 ]  
 
 born_no_date_with_place = [
   {
-    RelLib.Person.UNKNOWN : _("This person was born in %(birth_place)s."),
-    RelLib.Person.MALE : _("He was born in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("She was born in %(birth_place)s."),
-  },
+    RelLib.Person.UNKNOWN : _("This person was born in %(birth_place)s."), 
+    RelLib.Person.MALE : _("He was born in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("She was born in %(birth_place)s."), 
+  }, 
   {
-    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(birth_place)s."),
-    RelLib.Person.MALE : _("%(male_name)s was born in %(birth_place)s."),
-    RelLib.Person.FEMALE : _("%(female_name)s was born in %(birth_place)s."),
+    RelLib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(birth_place)s."), 
+    RelLib.Person.MALE : _("%(male_name)s was born in %(birth_place)s."), 
+    RelLib.Person.FEMALE : _("%(female_name)s was born in %(birth_place)s."), 
   }
 ]  
 
@@ -151,331 +151,331 @@ born_no_date_with_place = [
 
 died_full_date_with_place = [
   { RelLib.Person.UNKNOWN : [
-    _("This person died on %(death_date)s in %(death_place)s."),
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("This person died on %(death_date)s in %(death_place)s."), 
+    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("This person died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("He died on %(death_date)s in %(death_place)s."),
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("He died on %(death_date)s in %(death_place)s."), 
+    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("He died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("She died on %(death_date)s in %(death_place)s."),
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
-  },
+    _("She died on %(death_date)s in %(death_place)s."), 
+    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("She died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
   { RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."),
-    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s."), 
+    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("%(male_name)s died on %(death_date)s in %(death_place)s."),
-    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(male_name)s died on %(death_date)s in %(death_place)s."), 
+    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(male_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("%(female_name)s died on %(death_date)s in %(death_place)s."),
-    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
-  },
+    _("%(female_name)s died on %(death_date)s in %(death_place)s."), 
+    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
 ]
 
 died_modified_date_with_place = [
   { RelLib.Person.UNKNOWN : [
-    _("This person died %(death_date)s in %(death_place)s."),
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("This person died %(death_date)s in %(death_place)s."), 
+    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("This person died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("He died %(death_date)s in %(death_place)s."),
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("He died %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("He died %(death_date)s in %(death_place)s."), 
+    _("He died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("He died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("He died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("She died %(death_date)s in %(death_place)s."),
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("She died %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
-  },
+    _("She died %(death_date)s in %(death_place)s."), 
+    _("She died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("She died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("She died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
   { RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s."),
-    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s."), 
+    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("%(male_name)s died %(death_date)s in %(death_place)s."),
-    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(male_name)s died %(death_date)s in %(death_place)s."), 
+    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("%(female_name)s died %(death_date)s in %(death_place)s."),
-    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."),
-    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."),
-    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."),
-    ],
-  },
+    _("%(female_name)s died %(death_date)s in %(death_place)s."), 
+    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
 ]
 
 died_full_date_no_place = [
   { RelLib.Person.UNKNOWN : [
-    _("This person died on %(death_date)s."),
-    _("This person died on %(death_date)s at the age of %(age)d years."),
-    _("This person died on %(death_date)s at the age of %(age)d months."),
-    _("This person died on %(death_date)s at the age of %(age)d days."),
-    ],
+    _("This person died on %(death_date)s."), 
+    _("This person died on %(death_date)s at the age of %(age)d years."), 
+    _("This person died on %(death_date)s at the age of %(age)d months."), 
+    _("This person died on %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("He died on %(death_date)s."),
-    _("He died on %(death_date)s at the age of %(age)d years."),
-    _("He died on %(death_date)s at the age of %(age)d months."),
-    _("He died on %(death_date)s at the age of %(age)d days."),
-    ],
+    _("He died on %(death_date)s."), 
+    _("He died on %(death_date)s at the age of %(age)d years."), 
+    _("He died on %(death_date)s at the age of %(age)d months."), 
+    _("He died on %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("She died on %(death_date)s."),
-    _("She died on %(death_date)s at the age of %(age)d years."),
-    _("She died on %(death_date)s at the age of %(age)d months."),
-    _("She died on %(death_date)s at the age of %(age)d days."),
-    ],
-  },
+    _("She died on %(death_date)s."), 
+    _("She died on %(death_date)s at the age of %(age)d years."), 
+    _("She died on %(death_date)s at the age of %(age)d months."), 
+    _("She died on %(death_date)s at the age of %(age)d days."), 
+    ], 
+  }, 
   { RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died on %(death_date)s."),
-    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."),
-    ],
+    _("%(unknown_gender_name)s died on %(death_date)s."), 
+    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died on %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("%(male_name)s died on %(death_date)s."),
-    _("%(male_name)s died on %(death_date)s at the age of %(age)d years."),
-    _("%(male_name)s died on %(death_date)s at the age of %(age)d months."),
-    _("%(male_name)s died on %(death_date)s at the age of %(age)d days."),
-    ],
+    _("%(male_name)s died on %(death_date)s."), 
+    _("%(male_name)s died on %(death_date)s at the age of %(age)d years."), 
+    _("%(male_name)s died on %(death_date)s at the age of %(age)d months."), 
+    _("%(male_name)s died on %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("%(female_name)s died on %(death_date)s."),
-    _("%(female_name)s died on %(death_date)s at the age of %(age)d years."),
-    _("%(female_name)s died on %(death_date)s at the age of %(age)d months."),
-    _("%(female_name)s died on %(death_date)s at the age of %(age)d days."),
-    ],
-  },
+    _("%(female_name)s died on %(death_date)s."), 
+    _("%(female_name)s died on %(death_date)s at the age of %(age)d years."), 
+    _("%(female_name)s died on %(death_date)s at the age of %(age)d months."), 
+    _("%(female_name)s died on %(death_date)s at the age of %(age)d days."), 
+    ], 
+  }, 
 ]  
 
 died_modified_date_no_place = [
   { RelLib.Person.UNKNOWN : [
-    _("This person died %(death_date)s."),
-    _("This person died %(death_date)s at the age of %(age)d years."),
-    _("This person died %(death_date)s at the age of %(age)d months."),
-    _("This person died %(death_date)s at the age of %(age)d days."),
-    ],
+    _("This person died %(death_date)s."), 
+    _("This person died %(death_date)s at the age of %(age)d years."), 
+    _("This person died %(death_date)s at the age of %(age)d months."), 
+    _("This person died %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("He died %(death_date)s."),
-    _("He died %(death_date)s at the age of %(age)d years."),
-    _("He died %(death_date)s at the age of %(age)d months."),
-    _("He died %(death_date)s at the age of %(age)d days."),
-    ],
+    _("He died %(death_date)s."), 
+    _("He died %(death_date)s at the age of %(age)d years."), 
+    _("He died %(death_date)s at the age of %(age)d months."), 
+    _("He died %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("She died %(death_date)s."),
-    _("She died %(death_date)s at the age of %(age)d years."),
-    _("She died %(death_date)s at the age of %(age)d months."),
-    _("She died %(death_date)s at the age of %(age)d days."),
-    ],
-  },
+    _("She died %(death_date)s."), 
+    _("She died %(death_date)s at the age of %(age)d years."), 
+    _("She died %(death_date)s at the age of %(age)d months."), 
+    _("She died %(death_date)s at the age of %(age)d days."), 
+    ], 
+  }, 
   { RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died %(death_date)s."),
-    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."),
-    ],
+    _("%(unknown_gender_name)s died %(death_date)s."), 
+    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("%(male_name)s died %(death_date)s."),
-    _("%(male_name)s died %(death_date)s at the age of %(age)d years."),
-    _("%(male_name)s died %(death_date)s at the age of %(age)d months."),
-    _("%(male_name)s died %(death_date)s at the age of %(age)d days."),
-    ],
+    _("%(male_name)s died %(death_date)s."), 
+    _("%(male_name)s died %(death_date)s at the age of %(age)d years."), 
+    _("%(male_name)s died %(death_date)s at the age of %(age)d months."), 
+    _("%(male_name)s died %(death_date)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("%(female_name)s died %(death_date)s."),
-    _("%(female_name)s died %(death_date)s at the age of %(age)d years."),
-    _("%(female_name)s died %(death_date)s at the age of %(age)d months."),
-    _("%(female_name)s died %(death_date)s at the age of %(age)d days."),
-    ],
-  },
+    _("%(female_name)s died %(death_date)s."), 
+    _("%(female_name)s died %(death_date)s at the age of %(age)d years."), 
+    _("%(female_name)s died %(death_date)s at the age of %(age)d months."), 
+    _("%(female_name)s died %(death_date)s at the age of %(age)d days."), 
+    ], 
+  }, 
 ]  
 
 died_partial_date_with_place = [
   { RelLib.Person.UNKNOWN : [
-    _("This person died in %(month_year)s in %(death_place)s."),
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d years."),
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d months."),
-    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("This person died in %(month_year)s in %(death_place)s."), 
+    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("This person died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("He died in %(month_year)s in %(death_place)s."),
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d years."),
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d months."),
-    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("He died in %(month_year)s in %(death_place)s."), 
+    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("He died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("She died in %(month_year)s in %(death_place)s."),
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d years."),
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d months."),
-    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d days."),
+    _("She died in %(month_year)s in %(death_place)s."), 
+    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("She died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
     ]
-  },
+  }, 
   { RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."),
-    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."), 
+    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("%(male_name)s died in %(month_year)s in %(death_place)s."),
-    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."),
-    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."),
-    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(male_name)s died in %(month_year)s in %(death_place)s."), 
+    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("%(female_name)s died in %(month_year)s in %(death_place)s."),
-    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."),
-    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."),
-    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."),
-    ],
-  },
+    _("%(female_name)s died in %(month_year)s in %(death_place)s."), 
+    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d years."), 
+    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
+    _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
 ]  
 
 died_partial_date_no_place = [
   { RelLib.Person.UNKNOWN : [
-    _("This person died in %(month_year)s."),
-    _("This person died in %(month_year)s at the age of %(age)d years."),
-    _("This person died in %(month_year)s at the age of %(age)d months."),
-    _("This person died in %(month_year)s at the age of %(age)d days."),
-    ],
+    _("This person died in %(month_year)s."), 
+    _("This person died in %(month_year)s at the age of %(age)d years."), 
+    _("This person died in %(month_year)s at the age of %(age)d months."), 
+    _("This person died in %(month_year)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("He died in %(month_year)s."),
-    _("He died in %(month_year)s at the age of %(age)d years."),
-    _("He died in %(month_year)s at the age of %(age)d months."),
-    _("He died in %(month_year)s at the age of %(age)d days."),
-    ],
+    _("He died in %(month_year)s."), 
+    _("He died in %(month_year)s at the age of %(age)d years."), 
+    _("He died in %(month_year)s at the age of %(age)d months."), 
+    _("He died in %(month_year)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("She died in %(month_year)s."),
-    _("She died in %(month_year)s at the age of %(age)d years."),
-    _("She died in %(month_year)s at the age of %(age)d months."),
-    _("She died in %(month_year)s at the age of %(age)d days."),
-    ],
-  },
+    _("She died in %(month_year)s."), 
+    _("She died in %(month_year)s at the age of %(age)d years."), 
+    _("She died in %(month_year)s at the age of %(age)d months."), 
+    _("She died in %(month_year)s at the age of %(age)d days."), 
+    ], 
+  }, 
   { RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died in %(month_year)s."),
-    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."),
-    ],
+    _("%(unknown_gender_name)s died in %(month_year)s."), 
+    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("%(male_name)s died in %(month_year)s."),
-    _("%(male_name)s died in %(month_year)s at the age of %(age)d years."),
-    _("%(male_name)s died in %(month_year)s at the age of %(age)d months."),
-    _("%(male_name)s died in %(month_year)s at the age of %(age)d days."),
-    ],
+    _("%(male_name)s died in %(month_year)s."), 
+    _("%(male_name)s died in %(month_year)s at the age of %(age)d years."), 
+    _("%(male_name)s died in %(month_year)s at the age of %(age)d months."), 
+    _("%(male_name)s died in %(month_year)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("%(female_name)s died in %(month_year)s."),
-    _("%(female_name)s died in %(month_year)s at the age of %(age)d years."),
-    _("%(female_name)s died in %(month_year)s at the age of %(age)d months."),
-    _("%(female_name)s died in %(month_year)s at the age of %(age)d days."),
-    ],
+    _("%(female_name)s died in %(month_year)s."), 
+    _("%(female_name)s died in %(month_year)s at the age of %(age)d years."), 
+    _("%(female_name)s died in %(month_year)s at the age of %(age)d months."), 
+    _("%(female_name)s died in %(month_year)s at the age of %(age)d days."), 
+    ], 
   }
 ]  
 
 died_no_date_with_place = [
   {
     RelLib.Person.UNKNOWN : [
-    _("This person died in %(death_place)s."),
-    _("This person died in %(death_place)s at the age of %(age)d years."),
-    _("This person died in %(death_place)s at the age of %(age)d months."),
-    _("This person died in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("This person died in %(death_place)s."), 
+    _("This person died in %(death_place)s at the age of %(age)d years."), 
+    _("This person died in %(death_place)s at the age of %(age)d months."), 
+    _("This person died in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("He died in %(death_place)s."),
-    _("He died in %(death_place)s at the age of %(age)d years."),
-    _("He died in %(death_place)s at the age of %(age)d months."),
-    _("He died in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("He died in %(death_place)s."), 
+    _("He died in %(death_place)s at the age of %(age)d years."), 
+    _("He died in %(death_place)s at the age of %(age)d months."), 
+    _("He died in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("She died in %(death_place)s."),
-    _("She died in %(death_place)s at the age of %(age)d years."),
-    _("She died in %(death_place)s at the age of %(age)d months."),
-    _("She died in %(death_place)s at the age of %(age)d days."),
-    ],
-  },
+    _("She died in %(death_place)s."), 
+    _("She died in %(death_place)s at the age of %(age)d years."), 
+    _("She died in %(death_place)s at the age of %(age)d months."), 
+    _("She died in %(death_place)s at the age of %(age)d days."), 
+    ], 
+  }, 
   { RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s died in %(death_place)s."),
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(unknown_gender_name)s died in %(death_place)s."), 
+    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    _("%(male_name)s died in %(death_place)s."),
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d years."),
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d months."),
-    _("%(male_name)s died in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(male_name)s died in %(death_place)s."), 
+    _("%(male_name)s died in %(death_place)s at the age of %(age)d years."), 
+    _("%(male_name)s died in %(death_place)s at the age of %(age)d months."), 
+    _("%(male_name)s died in %(death_place)s at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    _("%(female_name)s died in %(death_place)s."),
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d years."),
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d months."),
-    _("%(female_name)s died in %(death_place)s at the age of %(age)d days."),
-    ],
+    _("%(female_name)s died in %(death_place)s."), 
+    _("%(female_name)s died in %(death_place)s at the age of %(age)d years."), 
+    _("%(female_name)s died in %(death_place)s at the age of %(age)d months."), 
+    _("%(female_name)s died in %(death_place)s at the age of %(age)d days."), 
+    ], 
   }
 ]  
 
 died_no_date_no_place = [
   { RelLib.Person.UNKNOWN : [
-    "",
-    _("This person died at the age of %(age)d years."),
-    _("This person died at the age of %(age)d months."),
-    _("This person died at the age of %(age)d days."),
-    ],
+    "", 
+    _("This person died at the age of %(age)d years."), 
+    _("This person died at the age of %(age)d months."), 
+    _("This person died at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    "",
-    _("He died at the age of %(age)d years."),
-    _("He died at the age of %(age)d months."),
-    _("He died at the age of %(age)d days."),
-    ],
+    "", 
+    _("He died at the age of %(age)d years."), 
+    _("He died at the age of %(age)d months."), 
+    _("He died at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    "",
-    _("She died at the age of %(age)d years."),
-    _("She died at the age of %(age)d months."),
-    _("She died at the age of %(age)d days."),
-    ],
-  },
+    "", 
+    _("She died at the age of %(age)d years."), 
+    _("She died at the age of %(age)d months."), 
+    _("She died at the age of %(age)d days."), 
+    ], 
+  }, 
   { RelLib.Person.UNKNOWN : [
-    "",
-    _("%(unknown_gender_name)s died at the age of %(age)d years."),
-    _("%(unknown_gender_name)s died at the age of %(age)d months."),
-    _("%(unknown_gender_name)s died at the age of %(age)d days."),
-    ],
+    "", 
+    _("%(unknown_gender_name)s died at the age of %(age)d years."), 
+    _("%(unknown_gender_name)s died at the age of %(age)d months."), 
+    _("%(unknown_gender_name)s died at the age of %(age)d days."), 
+    ], 
     RelLib.Person.MALE : [
-    "",
-    _("%(male_name)s died at the age of %(age)d years."),
-    _("%(male_name)s died at the age of %(age)d months."),
-    _("%(male_name)s died at the age of %(age)d days."),
-    ],
+    "", 
+    _("%(male_name)s died at the age of %(age)d years."), 
+    _("%(male_name)s died at the age of %(age)d months."), 
+    _("%(male_name)s died at the age of %(age)d days."), 
+    ], 
     RelLib.Person.FEMALE : [
-    "",
-    _("%(female_name)s died at the age of %(age)d years."),
-    _("%(female_name)s died at the age of %(age)d months."),
-    _("%(female_name)s died at the age of %(age)d days."),
-    ],
-  },
+    "", 
+    _("%(female_name)s died at the age of %(age)d years."), 
+    _("%(female_name)s died at the age of %(age)d months."), 
+    _("%(female_name)s died at the age of %(age)d days."), 
+    ], 
+  }, 
 ]
 
 #------------------------------------------------------------------------
@@ -486,121 +486,121 @@ died_no_date_no_place = [
 
 buried_full_date_place = {
     RelLib.Person.MALE: [
-    _("%(male_name)s was buried on %(burial_date)s in %(burial_place)s."),
-    _("He was buried on %(burial_date)s in %(burial_place)s."),
-    ],
+    _("%(male_name)s was buried on %(burial_date)s in %(burial_place)s."), 
+    _("He was buried on %(burial_date)s in %(burial_place)s."), 
+    ], 
     RelLib.Person.FEMALE: [
-    _("%(female_name)s was buried on %(burial_date)s in %(burial_place)s."),
-    _("She was buried on %(burial_date)s in %(burial_place)s."),
-    ],
+    _("%(female_name)s was buried on %(burial_date)s in %(burial_place)s."), 
+    _("She was buried on %(burial_date)s in %(burial_place)s."), 
+    ], 
     RelLib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."),
-    _("This person was buried on %(burial_date)s in %(burial_place)s."),
-    ],
+    _("%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."), 
+    _("This person was buried on %(burial_date)s in %(burial_place)s."), 
+    ], 
     }
 
 buried_full_date_no_place = {
     RelLib.Person.MALE: [
-    _("%(male_name)s was buried on %(burial_date)s."),
-    _("He was buried on %(burial_date)s."),
-    ],
+    _("%(male_name)s was buried on %(burial_date)s."), 
+    _("He was buried on %(burial_date)s."), 
+    ], 
     RelLib.Person.FEMALE: [
-    _("%(female_name)s was buried on %(burial_date)s."),
-    _("She was buried on %(burial_date)s."),
-    ],
+    _("%(female_name)s was buried on %(burial_date)s."), 
+    _("She was buried on %(burial_date)s."), 
+    ], 
     RelLib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried on %(burial_date)s."),
-    _("This person was buried on %(burial_date)s."),
-    ],
+    _("%(unknown_gender_name)s was buried on %(burial_date)s."), 
+    _("This person was buried on %(burial_date)s."), 
+    ], 
     }
 
 buried_partial_date_place = {
     RelLib.Person.MALE: [
-    _("%(male_name)s was buried in %(month_year)s in %(burial_place)s."),
-    _("He was buried in %(month_year)s in %(burial_place)s."),
-    ],
+    _("%(male_name)s was buried in %(month_year)s in %(burial_place)s."), 
+    _("He was buried in %(month_year)s in %(burial_place)s."), 
+    ], 
     RelLib.Person.FEMALE: [
-    _("%(female_name)s was buried in %(month_year)s in %(burial_place)s."),
-    _("She was buried in %(month_year)s in %(burial_place)s."),
-    ],
+    _("%(female_name)s was buried in %(month_year)s in %(burial_place)s."), 
+    _("She was buried in %(month_year)s in %(burial_place)s."), 
+    ], 
     RelLib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."),
-    _("This person was buried in %(month_year)s in %(burial_place)s."),
-    ],
+    _("%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."), 
+    _("This person was buried in %(month_year)s in %(burial_place)s."), 
+    ], 
     }
 
 buried_partial_date_no_place = {
     RelLib.Person.MALE: [
-    _("%(male_name)s was buried in %(month_year)s."),
-    _("He was buried in %(month_year)s."),
-    ],
+    _("%(male_name)s was buried in %(month_year)s."), 
+    _("He was buried in %(month_year)s."), 
+    ], 
     RelLib.Person.FEMALE: [
-    _("%(female_name)s was buried in %(month_year)s."),
-    _("She was buried in %(month_year)s."),
-    ],
+    _("%(female_name)s was buried in %(month_year)s."), 
+    _("She was buried in %(month_year)s."), 
+    ], 
     RelLib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried in %(month_year)s."),
-    _("This person was buried in %(month_year)s."),
-    ],
+    _("%(unknown_gender_name)s was buried in %(month_year)s."), 
+    _("This person was buried in %(month_year)s."), 
+    ], 
     }
 
 buried_modified_date_place = {
     RelLib.Person.MALE: [
-    _("%(male_name)s was buried %(modified_date)s in %(burial_place)s."),
-    _("He was buried %(modified_date)s in %(burial_place)s."),
-    ],
+    _("%(male_name)s was buried %(modified_date)s in %(burial_place)s."), 
+    _("He was buried %(modified_date)s in %(burial_place)s."), 
+    ], 
     RelLib.Person.FEMALE: [
-    _("%(female_name)s was buried %(modified_date)s in %(burial_place)s."),
-    _("She was buried %(modified_date)s in %(burial_place)s."),
-    ],
+    _("%(female_name)s was buried %(modified_date)s in %(burial_place)s."), 
+    _("She was buried %(modified_date)s in %(burial_place)s."), 
+    ], 
     RelLib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."),
-    _("This person was buried %(modified_date)s in %(burial_place)s."),
-    ],
+    _("%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."), 
+    _("This person was buried %(modified_date)s in %(burial_place)s."), 
+    ], 
     }
 
 buried_modified_date_no_place = {
     RelLib.Person.MALE: [
-    _("%(male_name)s was buried %(modified_date)s."),
-    _("He was buried %(modified_date)s."),
-    ],
+    _("%(male_name)s was buried %(modified_date)s."), 
+    _("He was buried %(modified_date)s."), 
+    ], 
     RelLib.Person.FEMALE: [
-    _("%(female_name)s was buried %(modified_date)s."),
-    _("She was buried %(modified_date)s."),
-    ],
+    _("%(female_name)s was buried %(modified_date)s."), 
+    _("She was buried %(modified_date)s."), 
+    ], 
     RelLib.Person.UNKNOWN: [
-    _("%(unknown_gender_name)s was buried %(modified_date)s."),
-    _("This person was buried %(modified_date)s."),
-    ],
+    _("%(unknown_gender_name)s was buried %(modified_date)s."), 
+    _("This person was buried %(modified_date)s."), 
+    ], 
     }
 
 buried_no_date_place = {
     RelLib.Person.MALE    : [
-    _("%(male_name)s was buried in %(burial_place)s."),
-    _("He was buried in %(burial_place)s."),
-    ],
+    _("%(male_name)s was buried in %(burial_place)s."), 
+    _("He was buried in %(burial_place)s."), 
+    ], 
     RelLib.Person.FEMALE  : [
-    _("%(female_name)s was buried in %(burial_place)s."),
-    _("She was buried in %(burial_place)s."),
-    ],
+    _("%(female_name)s was buried in %(burial_place)s."), 
+    _("She was buried in %(burial_place)s."), 
+    ], 
     RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was buried in %(burial_place)s."),
-    _("This person was buried in %(burial_place)s."),
-    ],
+    _("%(unknown_gender_name)s was buried in %(burial_place)s."), 
+    _("This person was buried in %(burial_place)s."), 
+    ], 
     }
 
 buried_no_date_no_place = {
     RelLib.Person.MALE    : [
-    _("%(male_name)s was buried."),
-    _("He was buried."),
-    ],
+    _("%(male_name)s was buried."), 
+    _("He was buried."), 
+    ], 
     RelLib.Person.FEMALE  : [
-    _("%(female_name)s was buried."),
-    _("She was buried."),
-    ],
+    _("%(female_name)s was buried."), 
+    _("She was buried."), 
+    ], 
     RelLib.Person.UNKNOWN : [
-    _("%(unknown_gender_name)s was buried."),
-    _("This person was buried."),
+    _("%(unknown_gender_name)s was buried."), 
+    _("This person was buried."), 
     ]
     }
 
@@ -612,98 +612,98 @@ buried_no_date_no_place = {
 
 marriage_first_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('This person married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('This person married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     }
 
 marriage_also_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('This person also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     }
 
 marriage_first_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person married %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person married %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person married %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('This person married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('This person married %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('This person married %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He married %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He married %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He married %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('He married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('He married %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('He married %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She married %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She married %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She married %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('She married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('She married %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('She married %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     }
 
 marriage_also_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person also married %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person also married %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person also married %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('This person also married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('This person also married %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('This person also married %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He also married %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He also married %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He also married %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('He also married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('He also married %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('He also married %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She also married %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She also married %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She also married %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('She also married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('She also married %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('She also married %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     }
 
 marriage_first_place = {
-    RelLib.Person.UNKNOWN : _('This person married %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He married %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She married %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person married %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He married %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She married %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 marriage_also_place = {
-    RelLib.Person.UNKNOWN : _('This person also married %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also married %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also married %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also married %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He also married %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She also married %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 marriage_first_only = {
-    RelLib.Person.UNKNOWN : _('This person married %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He married %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She married %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person married %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He married %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She married %(spouse)s%(endnotes)s.'), 
     }
 
 marriage_also_only = {
-    RelLib.Person.UNKNOWN : _('This person also married %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also married %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also married %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also married %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He also married %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She also married %(spouse)s%(endnotes)s.'), 
     }
 
 #------------------------------------------------------------------------
@@ -714,98 +714,98 @@ marriage_also_only = {
 
 unmarried_first_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('This person had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('This person had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('This person had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('He had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('He had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('She had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('She had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('She had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     }
 
 unmarried_also_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('This person also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('This person also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('This person also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('He also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('He also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('He also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('She also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('She also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     }
 
 unmarried_first_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('This person had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('This person had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('This person had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('He had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('She had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('She had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     }
 
 unmarried_also_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('This person also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('This person also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('This person also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('He also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('He also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('He also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('She also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('She also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     }
 
 unmarried_first_place = {
-    RelLib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 unmarried_also_place = {
-    RelLib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 unmarried_first_only = {
-    RelLib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He had an unmarried relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
     }
 
 unmarried_also_only = {
-    RelLib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
     }
 
 #------------------------------------------------------------------------
@@ -817,98 +817,98 @@ unmarried_also_only = {
 
 relationship_first_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('This person had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('This person had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('This person had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('He had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('He had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('He had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('She had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('She had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     }
 
 relationship_also_date_place = {
     RelLib.Person.UNKNOWN : [
-        _('This person also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('This person also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('This person also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('This person also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('This person also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('This person also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('He also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('He also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('He also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('He also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'),
-        _('She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'),
-        _('She also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
-      ],
+        _('She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
+        _('She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
+        _('She also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ], 
     }
 
 relationship_first_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     }
 
 relationship_also_date = {
     RelLib.Person.UNKNOWN : [
-        _('This person also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('This person also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('This person also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('This person also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('This person also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('This person also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.MALE : [
-        _('He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     RelLib.Person.FEMALE : [
-        _('She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'),
-        _('She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'),
-        _('She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
-      ],
+        _('She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
+        _('She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
+        _('She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ], 
     }
 
 relationship_first_place = {
-    RelLib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 relationship_also_place = {
-    RelLib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 relationship_first_only = {
-    RelLib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He had a relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She had a relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He had a relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She had a relationship with %(spouse)s%(endnotes)s.'), 
     }
 
 relationship_also_only = {
-    RelLib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.MALE : _('He also had a relationship with %(spouse)s%(endnotes)s.'),
-    RelLib.Person.FEMALE : _('She also had a relationship with %(spouse)s%(endnotes)s.'),
+    RelLib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.MALE : _('He also had a relationship with %(spouse)s%(endnotes)s.'), 
+    RelLib.Person.FEMALE : _('She also had a relationship with %(spouse)s%(endnotes)s.'), 
     }
 
 #-------------------------------------------------------------------------
@@ -920,100 +920,100 @@ relationship_also_only = {
 child_father_mother = {
     RelLib.Person.UNKNOWN: [
       [
-        _("This person is the child of %(father)s and %(mother)s."),
-        _("This person was the child of %(father)s and %(mother)s."),
-      ],
+        _("This person is the child of %(father)s and %(mother)s."), 
+        _("This person was the child of %(father)s and %(mother)s."), 
+      ], 
       [
-        _("%(male_name)s is the child of %(father)s and %(mother)s."),
-        _("%(male_name)s was the child of %(father)s and %(mother)s."),
-      ],
-    ],
+        _("%(male_name)s is the child of %(father)s and %(mother)s."), 
+        _("%(male_name)s was the child of %(father)s and %(mother)s."), 
+      ], 
+    ], 
     RelLib.Person.MALE : [
       [
-        _("He is the son of %(father)s and %(mother)s."),
-        _("He was the son of %(father)s and %(mother)s."),
-      ],
+        _("He is the son of %(father)s and %(mother)s."), 
+        _("He was the son of %(father)s and %(mother)s."), 
+      ], 
       [
-        _("%(male_name)s is the son of %(father)s and %(mother)s."),
-        _("%(male_name)s was the son of %(father)s and %(mother)s."),
+        _("%(male_name)s is the son of %(father)s and %(mother)s."), 
+        _("%(male_name)s was the son of %(father)s and %(mother)s."), 
       ]
-    ],
+    ], 
     RelLib.Person.FEMALE : [
      [
-        _("She is the daughter of %(father)s and %(mother)s."),
-        _("She was the daughter of %(father)s and %(mother)s."),
-     ],
+        _("She is the daughter of %(father)s and %(mother)s."), 
+        _("She was the daughter of %(father)s and %(mother)s."), 
+     ], 
      [
-        _("%(female_name)s is the daughter of %(father)s and %(mother)s."),
-        _("%(female_name)s was the daughter of %(father)s and %(mother)s."),
-     ],
+        _("%(female_name)s is the daughter of %(father)s and %(mother)s."), 
+        _("%(female_name)s was the daughter of %(father)s and %(mother)s."), 
+     ], 
     ]
 }
 
 child_father = {
     RelLib.Person.UNKNOWN : [
       [
-        _("This person is the child of %(father)s."),
-        _("This person was the child of %(father)s."),
-      ],
+        _("This person is the child of %(father)s."), 
+        _("This person was the child of %(father)s."), 
+      ], 
       [
-        _("%(male_name)s is the child of %(father)s."),
-        _("%(male_name)s was the child of %(father)s."),
-      ],
-    ],
+        _("%(male_name)s is the child of %(father)s."), 
+        _("%(male_name)s was the child of %(father)s."), 
+      ], 
+    ], 
     RelLib.Person.MALE : [
       [
-        _("He is the son of %(father)s."),
-        _("He was the son of %(father)s."),
-      ],
+        _("He is the son of %(father)s."), 
+        _("He was the son of %(father)s."), 
+      ], 
       [
-        _("%(male_name)s is the son of %(father)s."),
-        _("%(male_name)s was the son of %(father)s."),
-      ],
-    ],
+        _("%(male_name)s is the son of %(father)s."), 
+        _("%(male_name)s was the son of %(father)s."), 
+      ], 
+    ], 
     RelLib.Person.FEMALE : [
       [
-        _("She is the daughter of %(father)s."),
-        _("She was the daughter of %(father)s."),
+        _("She is the daughter of %(father)s."), 
+        _("She was the daughter of %(father)s."), 
       ],  
       [
-        _("%(female_name)s is the daughter of %(father)s."),
-        _("%(female_name)s was the daughter of %(father)s."),
-      ],
-    ],
+        _("%(female_name)s is the daughter of %(father)s."), 
+        _("%(female_name)s was the daughter of %(father)s."), 
+      ], 
+    ], 
 }
 
 child_mother = {
     RelLib.Person.UNKNOWN : [
       [
-        _("This person is the child of %(mother)s."),
-        _("This person was the child of %(mother)s."),
-      ],
+        _("This person is the child of %(mother)s."), 
+        _("This person was the child of %(mother)s."), 
+      ], 
       [
-        _("%(male_name)s is the child of %(mother)s."),
-        _("%(male_name)s was the child of %(mother)s."),
-      ],
-    ],
+        _("%(male_name)s is the child of %(mother)s."), 
+        _("%(male_name)s was the child of %(mother)s."), 
+      ], 
+    ], 
     RelLib.Person.MALE : [
       [
-        _("He is the son of %(mother)s."),
-        _("He was the son of %(mother)s."),
-      ],
+        _("He is the son of %(mother)s."), 
+        _("He was the son of %(mother)s."), 
+      ], 
       [
-        _("%(male_name)s is the son of %(mother)s."),
-        _("%(male_name)s was the son of %(mother)s."),
-      ],
-    ],
+        _("%(male_name)s is the son of %(mother)s."), 
+        _("%(male_name)s was the son of %(mother)s."), 
+      ], 
+    ], 
     RelLib.Person.FEMALE : [
       [
-        _("She is the daughter of %(mother)s."),
-        _("She was the daughter of %(mother)s."),
-      ],
+        _("She is the daughter of %(mother)s."), 
+        _("She was the daughter of %(mother)s."), 
+      ], 
       [
-        _("%(female_name)s is the daughter of %(mother)s."),
-        _("%(female_name)s was the daughter of %(mother)s."),
-      ],
-   ],
+        _("%(female_name)s is the daughter of %(mother)s."), 
+        _("%(female_name)s was the daughter of %(mother)s."), 
+      ], 
+   ], 
 }
 
 #-------------------------------------------------------------------------
@@ -1022,10 +1022,10 @@ child_mother = {
 #
 #-------------------------------------------------------------------------
 _rtype = {
-    RelLib.FamilyRelType.UNMARRIED     : _("unmarried"),
-    RelLib.FamilyRelType.CIVIL_UNION   : _("civil union"),
-    RelLib.FamilyRelType.UNKNOWN       : _("Unknown"),
-    RelLib.FamilyRelType.CUSTOM        : _("Other"),
+    RelLib.FamilyRelType.UNMARRIED     : _("unmarried"), 
+    RelLib.FamilyRelType.CIVIL_UNION   : _("civil union"), 
+    RelLib.FamilyRelType.UNKNOWN       : _("Unknown"), 
+    RelLib.FamilyRelType.CUSTOM        : _("Other"), 
     }
    
 #-------------------------------------------------------------------------
@@ -1035,7 +1035,7 @@ _rtype = {
 #-------------------------------------------------------------------------
 def pt2cm(pt):
     """
-    Converts points to centimeters. Fonts are typically specified in points,
+    Converts points to centimeters. Fonts are typically specified in points, 
     but the BaseDoc classes use centimeters.
 
     @param pt: points
@@ -1047,7 +1047,7 @@ def pt2cm(pt):
 
 def cm2pt(cm):
     """
-    Converts centimeters to points. Fonts are typically specified in points,
+    Converts centimeters to points. Fonts are typically specified in points, 
     but the BaseDoc classes use centimeters.
 
     @param cm: centimeters
@@ -1063,13 +1063,13 @@ def rgb_color(color):
 
     @param color: list or tuple of integer values for red, green, and blue
     @type color: int
-    @returns: (r,g,b) tuple of floating point color values
+    @returns: (r, g, b) tuple of floating point color values
     @rtype: 3-tuple
     """
     r = float(color[0])/255.0
     g = float(color[1])/255.0
     b = float(color[2])/255.0
-    return (r,g,b)
+    return (r, g, b)
 
 def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle, 
                end_angle,  short_radius=0):
@@ -1121,7 +1121,7 @@ def draw_wedge(doc,  style,  centerx,  centery,  radius,  start_angle,
     delta = (eangle - sangle) / 2.0
     rad = short_radius + (radius - short_radius) / 2.0
 
-    return ( (centerx + cos(sangle + delta) * rad),
+    return ( (centerx + cos(sangle + delta) * rad), 
              (centery + sin(sangle + delta) * rad))
 
 
@@ -1159,7 +1159,7 @@ def draw_pie_chart(doc, center_x, center_y, radius, data, start=0):
 
     for item in data:
         incr = 360.0*(item[1]/total)
-        draw_wedge(doc,item[0], center_x, center_y, radius, start, start + incr)
+        draw_wedge(doc, item[0], center_x, center_y, radius, start, start + incr)
         start += incr
 
 def draw_legend(doc, start_x, start_y, data, title, label_style):
@@ -1178,7 +1178,7 @@ def draw_legend(doc, start_x, start_y, data, title, label_style):
     @type start_y: float
     @param data: List of tuples containing the data to be used to create the
        legend. In order to be compatible with the graph plots, the first and
-       third values of the tuple used. The format is (graphics_format, value,
+       third values of the tuple used. The format is (graphics_format, value, 
        legend_description).
     @type data: list
     """
@@ -1225,12 +1225,12 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
        the L{draw_legend} function.
     @type data: list
     """
-    doc.draw_line(format,start_x,start_y+height,start_x,start_y)
-    doc.draw_line(format,start_x,start_y+height,start_x+width,start_y+height)
+    doc.draw_line(format, start_x, start_y+height, start_x, start_y)
+    doc.draw_line(format, start_x, start_y+height, start_x+width, start_y+height)
 
     largest = 0.0
     for item in data:
-        largest = max(item[1],largest)
+        largest = max(item[1], largest)
 
     scale = float(height)/float(largest)
     units = len(data)
@@ -1241,19 +1241,19 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
     start = 0.5*box_width + start_x
     for index in range(units):
         size = float(data[index][1]) * scale
-        doc.draw_box(data[index][0],"",start,bottom-size,box_width,box_height)
+        doc.draw_box(data[index][0], "", start, bottom-size, box_width, box_height)
         start += box_width * 1.5
 
 
 _t = time.localtime(time.time())
-_TODAY = DateHandler.parser.parse("%04d-%02d-%02d" % (_t[0],_t[1],_t[2]))
+_TODAY = DateHandler.parser.parse("%04d-%02d-%02d" % (_t[0], _t[1], _t[2]))
 
 def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     """
     Estimates the age of a person based off the birth and death
     dates of the person. A tuple containing the estimated upper
     and lower bounds of the person's age is returned. If either
-    the birth or death date is missing, a (-1,-1) is returned.
+    the birth or death date is missing, a (-1, -1) is returned.
     
     @param db: GRAMPS database to which the Person object belongs
     @type db: GrampsDbBase
@@ -1267,7 +1267,7 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
        used
     @type start_handle: str
     @returns: tuple containing the lower and upper bounds of the
-       person's age, or (-1,-1) if it could not be determined.
+       person's age, or (-1, -1) if it could not be determined.
     @rtype: tuple
     """
 
@@ -1289,7 +1289,7 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
 
     # if either of the events is not defined, return an error message
     if not bhandle:
-        return (-1,-1)
+        return (-1, -1)
 
     bdata = db.get_event_from_handle(bhandle).get_date_object()
     if dhandle:
@@ -1298,15 +1298,15 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
         if today != None:
             ddata = today
         else:
-            return (-1,-1)
+            return (-1, -1)
 
     # if the date is not valid, return an error message
     if not bdata.get_valid() or not ddata.get_valid():
-        return (-1,-1)
+        return (-1, -1)
 
     # if a year is not valid, return an error message
     if not bdata.get_year_valid() or not ddata.get_year_valid():
-        return (-1,-1)
+        return (-1, -1)
 
     bstart = bdata.get_start_date()
     bstop  = bdata.get_stop_date()
@@ -1314,27 +1314,27 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     dstart = ddata.get_start_date()
     dstop  = ddata.get_stop_date()
 
-    def _calc_diff(low,high):
-        if (low[1],low[0]) > (high[1],high[0]):
+    def _calc_diff(low, high):
+        if (low[1], low[0]) > (high[1], high[0]):
             return high[2] - low[2] - 1
         else:
             return high[2] - low[2]
 
     if bstop == RelLib.Date.EMPTY and dstop == RelLib.Date.EMPTY:
-        lower = _calc_diff(bstart,dstart)
+        lower = _calc_diff(bstart, dstart)
         age = (lower, lower)
     elif bstop == RelLib.Date.EMPTY:
-        lower = _calc_diff(bstart,dstart)
-        upper = _calc_diff(bstart,dstop)
-        age = (lower,upper)
+        lower = _calc_diff(bstart, dstart)
+        upper = _calc_diff(bstart, dstop)
+        age = (lower, upper)
     elif dstop == RelLib.Date.EMPTY:
-        lower = _calc_diff(bstop,dstart)
-        upper = _calc_diff(bstart,dstart)
-        age = (lower,upper)
+        lower = _calc_diff(bstop, dstart)
+        upper = _calc_diff(bstart, dstart)
+        age = (lower, upper)
     else:
-        lower = _calc_diff(bstop,dstart)
-        upper = _calc_diff(bstart,dstop)
-        age = (lower,upper)
+        lower = _calc_diff(bstop, dstart)
+        upper = _calc_diff(bstart, dstop)
+        age = (lower, upper)
     return age
 
 def estimate_age_on_date(db, person, ddata=_TODAY):
@@ -1346,38 +1346,38 @@ def estimate_age_on_date(db, person, ddata=_TODAY):
     if bref:
         bhandle = bref.get_reference_handle()
     if not bhandle:
-        return (-1,-1)
+        return (-1, -1)
     bdata = db.get_event_from_handle(bhandle).get_date_object()
     # if the date is not valid, return an error message
     if not bdata.get_valid() or not ddata.get_valid():
-        return (-1,-1)
+        return (-1, -1)
     # if a year is not valid, return an error message
     if not bdata.get_year_valid() or not ddata.get_year_valid():
-        return (-1,-1)
+        return (-1, -1)
     bstart = bdata.get_start_date()
     bstop  = bdata.get_stop_date()
     dstart = ddata.get_start_date()
     dstop  = ddata.get_stop_date()
-    def _calc_diff(low,high):
-        if (low[1],low[0]) > (high[1],high[0]):
+    def _calc_diff(low, high):
+        if (low[1], low[0]) > (high[1], high[0]):
             return high[2] - low[2] - 1
         else:
             return high[2] - low[2]
     if bstop == RelLib.Date.EMPTY and dstop == RelLib.Date.EMPTY:
-        lower = _calc_diff(bstart,dstart)
+        lower = _calc_diff(bstart, dstart)
         age = [lower, lower]
     elif bstop == RelLib.Date.EMPTY:
-        lower = _calc_diff(bstart,dstart)
-        upper = _calc_diff(bstart,dstop)
-        age = [lower,upper]
+        lower = _calc_diff(bstart, dstart)
+        upper = _calc_diff(bstart, dstop)
+        age = [lower, upper]
     elif dstop == RelLib.Date.EMPTY:
-        lower = _calc_diff(bstop,dstart)
-        upper = _calc_diff(bstart,dstart)
-        age = [lower,upper]
+        lower = _calc_diff(bstop, dstart)
+        upper = _calc_diff(bstart, dstart)
+        age = [lower, upper]
     else:
-        lower = _calc_diff(bstop,dstart)
-        upper = _calc_diff(bstart,dstop)
-        age = [lower,upper]
+        lower = _calc_diff(bstop, dstart)
+        upper = _calc_diff(bstart, dstop)
+        age = [lower, upper]
     if age[0] < 0 and age[1] < 0:
         age = (-1, -1)
     elif age[0] > 120 and age[1] > 120:
@@ -1396,7 +1396,7 @@ def roman(num):
     if not 0 < num < 4000:
         return "?"
     vals = (1000, 900, 500, 400, 100,  90,  50,  40,  10,   9,   5,   4,   1)
-    nums = ( 'M','CM', 'D','CD', 'C','XC', 'L','XL', 'X','IX', 'V','IV', 'I')
+    nums = ( 'M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I')
     retval = ""
     for i in range(len(vals)):
         amount  = int(num / vals[i])
@@ -1409,7 +1409,7 @@ def roman(num):
 # 
 #
 #-------------------------------------------------------------------------
-def place_name(db,place_handle):
+def place_name(db, place_handle):
     if place_handle:
         place = db.get_place_from_handle(place_handle).get_title()
     else:
@@ -1432,9 +1432,9 @@ def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
     if mime_type and mime_type.startswith("image"):
         filename = media_object.get_path()
         if os.path.exists(filename):
-            doc.add_media_object(filename,"right",w_cm,h_cm)
+            doc.add_media_object(filename, "right", w_cm, h_cm)
         else:
-            WarningDialog(_("Could not add photo to page"),
+            WarningDialog(_("Could not add photo to page"), 
                           "%s: %s" % (filename, _('File does not exist')))
 
 #-------------------------------------------------------------------------
@@ -1446,7 +1446,7 @@ def empty_notes(whatever):
     # Empty stab function for when endnotes are not needed
     return ""
 
-def get_birth_death_strings(database,person,empty_date="",empty_place=""):
+def get_birth_death_strings(database, person, empty_date="", empty_place=""):
     """
     Returns strings for dates and places of birth and death.
     """
@@ -1481,9 +1481,9 @@ def get_birth_death_strings(database,person,empty_date="",empty_place=""):
             ddate_full = ddate_obj and ddate_obj.get_day_valid()
             ddate_mod = ddate_obj and ddate_obj.get_modifier() != RelLib.Date.MOD_NONE
 
-    return (bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod)
+    return (bdate, bplace, bdate_full, bdate_mod, ddate, dplace, ddate_full, ddate_mod)
 
-def born_died_str(database,person,endnotes=None,name_object=None,person_name=None):
+def born_died_str(database, person, endnotes=None, name_object=None, person_name=None):
     """
     Composes a string describing birth and death of a person.
     Missing information will be omitted without loss of readability.
@@ -1522,8 +1522,8 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
         else:
             person_name = _('She')
 
-    bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
-                            get_birth_death_strings(database,person)
+    bdate, bplace, bdate_full, bdate_mod, ddate, dplace, ddate_full, ddate_mod = \
+                            get_birth_death_strings(database, person)
 
     birth = None
     birth_ref = person.get_birth_ref()
@@ -1536,17 +1536,17 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
         death = database.get_event_from_handle(death_ref.ref)
 
     values = {
-        'unknown_gender_name' : person_name,
-        'name'                : person_name,
-        'male_name'           : person_name,
-        'female_name'         : person_name,
-        'endnotes'            : endnotes(name_object),
-        'birth_date'          : bdate,
-        'birth_place'         : bplace,
-        'birth_endnotes'      : endnotes(birth),
-        'death_date'          : ddate,
-        'death_place'         : dplace,
-        'death_endnotes'      : endnotes(death),
+        'unknown_gender_name' : person_name, 
+        'name'                : person_name, 
+        'male_name'           : person_name, 
+        'female_name'         : person_name, 
+        'endnotes'            : endnotes(name_object), 
+        'birth_date'          : bdate, 
+        'birth_place'         : bplace, 
+        'birth_endnotes'      : endnotes(birth), 
+        'death_date'          : ddate, 
+        'death_place'         : dplace, 
+        'death_endnotes'      : endnotes(death), 
         }
 
     if person.get_gender() == RelLib.Person.MALE:
@@ -1700,8 +1700,8 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
 # married_str
 #
 #-------------------------------------------------------------------------
-def married_str(database,person,family,endnotes=None,
-                empty_date="",empty_place="",is_first=True):
+def married_str(database, person, family, endnotes=None, 
+                empty_date="", empty_place="", is_first=True):
     """
     Composes a string describing marriage of a person. Missing information will
     be omitted without loss of readability. Optional references may be added to
@@ -1744,12 +1744,12 @@ def married_str(database,person,family,endnotes=None,
     relationship = family.get_relationship()
 
     values = {
-        'spouse'        : spouse_name,
-        'endnotes'      : endnotes(event),
-        'full_date'     : date,
-        'modified_date' : date,
-        'partial_date'  : date,
-        'place'         : place,
+        'spouse'        : spouse_name, 
+        'endnotes'      : endnotes(event), 
+        'full_date'     : date, 
+        'modified_date' : date, 
+        'partial_date'  : date, 
+        'place'         : place, 
         }
 
     if event:
@@ -1866,12 +1866,12 @@ def child_str(person, father_name="", mother_name="", dead=0, person_name=0):
     """
 
     values = {
-        'father'              : father_name,
-        'mother'              : mother_name,
-        'male_name'           : person_name,
-        'name'                : person_name,
-        'female_name'         : person_name,
-        'unknown_gender_name' : person_name,
+        'father'              : father_name, 
+        'mother'              : mother_name, 
+        'male_name'           : person_name, 
+        'name'                : person_name, 
+        'female_name'         : person_name, 
+        'unknown_gender_name' : person_name, 
         }
 
     if person_name == 0:
@@ -1897,7 +1897,7 @@ def child_str(person, father_name="", mother_name="", dead=0, person_name=0):
 # find_spouse
 #
 #-------------------------------------------------------------------------
-def find_spouse(person,family):
+def find_spouse(person, family):
     if person.get_handle() == family.get_father_handle():
         spouse_handle = family.get_mother_handle()
     else:
@@ -1909,7 +1909,7 @@ def find_spouse(person,family):
 # find_marriage
 #
 #-------------------------------------------------------------------------
-def find_marriage(database,family):    
+def find_marriage(database, family):    
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
         if event and int(event.get_type()) == RelLib.EventType.MARRIAGE:
@@ -1921,7 +1921,7 @@ def find_marriage(database,family):
 # born_str
 #
 #-------------------------------------------------------------------------
-def born_str(database,person,person_name=None,empty_date="",empty_place=""):
+def born_str(database, person, person_name=None, empty_date="", empty_place=""):
     """ 
     Check birth record.
     Statement formats name precedes this
@@ -1941,18 +1941,18 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
 
     text = ""
     
-    bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
-                get_birth_death_strings(database,person,empty_date,empty_place)
+    bdate, bplace, bdate_full, bdate_mod, ddate, dplace, ddate_full, ddate_mod = \
+                get_birth_death_strings(database, person, empty_date, empty_place)
 
     value_map = {
         'name'                : person_name, 
         'male_name'           : person_name, 
         'unknown_gender_name' : person_name, 
         'female_name'         : person_name, 
-        'birth_date'          : bdate,
-        'birth_place'         : bplace,
-        'month_year'          : bdate,
-        'modified_date'       : bdate,
+        'birth_date'          : bdate, 
+        'birth_place'         : bplace, 
+        'month_year'          : bdate, 
+        'modified_date'       : bdate, 
         }
 
     gender = person.get_gender()
@@ -1987,8 +1987,8 @@ def born_str(database,person,person_name=None,empty_date="",empty_place=""):
 # died_str
 #
 #-------------------------------------------------------------------------
-def died_str(database,person,person_name=None,empty_date="",empty_place="",
-             age=None,age_units=0):
+def died_str(database, person, person_name=None, empty_date="", empty_place="", 
+             age=None, age_units=0):
     """
     Write obit sentence.
         FIRSTNAME died on Date
@@ -2025,19 +2025,19 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
 
     text = ""
 
-    bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
-                get_birth_death_strings(database,person,empty_date,empty_place)
+    bdate, bplace, bdate_full, bdate_mod, ddate, dplace, ddate_full, ddate_mod = \
+                get_birth_death_strings(database, person, empty_date, empty_place)
 
     value_map = {
         'name'                : person_name, 
         'unknown_gender_name' : person_name, 
         'male_name'           : person_name, 
         'female_name'         : person_name, 
-        'death_date'          : ddate,
-        'modified_date'       : ddate,
-        'death_place'         : dplace,
-        'age'                 : age ,
-        'month_year'          : ddate,
+        'death_date'          : ddate, 
+        'modified_date'       : ddate, 
+        'death_place'         : dplace, 
+        'age'                 : age , 
+        'month_year'          : ddate, 
         }
 
     gender = person.get_gender()
@@ -2072,7 +2072,7 @@ def died_str(database,person,person_name=None,empty_date="",empty_place="",
 # buried_str
 #
 #-------------------------------------------------------------------------
-def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
+def buried_str(database, person, person_name=None, empty_date="", empty_place=""):
     """ 
     Check burial record.
     Statement formats name precedes this
@@ -2122,10 +2122,10 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         'male_name'           : person_name, 
         'name'                : person_name, 
         'female_name'         : person_name, 
-        'burial_date'         : bdate,
-        'burial_place'        : bplace,
-        'month_year'          : bdate,
-        'modified_date'       : bdate,
+        'burial_date'         : bdate, 
+        'burial_place'        : bplace, 
+        'month_year'          : bdate, 
+        'modified_date'       : bdate, 
         }
 
     if bdate and bdate_mod:
@@ -2157,21 +2157,21 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
 # list_person_str
 #
 #-------------------------------------------------------------------------
-def list_person_str(database,person,empty_date="",empty_place=""):
+def list_person_str(database, person, empty_date="", empty_place=""):
     """ 
     Briefly list person and birth/death events.
     """
 
-    bdate,bplace,bdate_full,bdate_mod,ddate,dplace,ddate_full,ddate_mod = \
-                        get_birth_death_strings(database,person)
+    bdate, bplace, bdate_full, bdate_mod, ddate, dplace, ddate_full, ddate_mod = \
+                        get_birth_death_strings(database, person)
 
     text = ""
 
     values = {
-        'birth_date'  : bdate,
-        'birth_place' : bplace,
-        'death_date'  : ddate,
-        'death_place' : dplace,
+        'birth_date'  : bdate, 
+        'birth_place' : bplace, 
+        'death_date'  : ddate, 
+        'death_place' : dplace, 
         }
     
     if bdate:
@@ -2229,7 +2229,7 @@ def list_person_str(database,person,empty_date="",empty_place=""):
                     text = ""
     return text
 
-def get_birth_or_fallback(database,person):
+def get_birth_or_fallback(database, person):
     birth_ref = person.get_birth_ref()
     if birth_ref:   # regular birth found
         return database.get_event_from_handle(birth_ref.ref)
@@ -2240,7 +2240,7 @@ def get_birth_or_fallback(database,person):
             return event
     return None    
 
-def get_death_or_fallback(database,person):
+def get_death_or_fallback(database, person):
     birth_ref = person.get_death_ref()
     if birth_ref:   # regular death found
         return database.get_event_from_handle(birth_ref.ref)
@@ -2251,11 +2251,11 @@ def get_death_or_fallback(database,person):
             return event
     return None    
 
-def old_calc_age(database,person):
+def old_calc_age(database, person):
     """
     Calulate age. 
     
-    Returns a tuple (age,units) where units is an integer representing
+    Returns a tuple (age, units) where units is an integer representing
     time units:
         no age info:    0
         years:          1
@@ -2286,7 +2286,7 @@ def old_calc_age(database,person):
 
     # wihtout at least a year for each event we're clueless
     if not (birth_year_valid and death_year_valid):
-        return (age,units)
+        return (age, units)
     
     # FIXME: The code below uses hard-coded 31 days in a month
     # and 12 month in a year. This is incorrect for half the Gregorian
@@ -2328,10 +2328,10 @@ def old_calc_age(database,person):
         age = death.get_day() + 31 - birth.get_day()
         unit = DAYS
 
-    return (age,units)
+    return (age, units)
 
     
-def common_name(person,use_call=False):
+def common_name(person, use_call=False):
     if use_call and person.get_primary_name().get_call_name():
         return person.get_primary_name().get_call_name()
     else:
@@ -2342,7 +2342,7 @@ def common_name(person,use_call=False):
 # Indexing function
 #
 #-------------------------------------------------------------------------
-def get_person_mark(db,person):
+def get_person_mark(db, person):
     """
     Returns a IndexMark that can be used to index a person in a report
     
@@ -2370,7 +2370,7 @@ def get_person_mark(db,person):
     if birth == " " and death == " ":
         key = name
     else:
-        key = "%s (%s - %s)" % (name,birth,death)
+        key = "%s (%s - %s)" % (name, birth, death)
         
     return BaseDoc.IndexMark( key, BaseDoc.INDEX_TYPE_ALP )
 
@@ -2386,12 +2386,12 @@ def get_address_str(addr):
     @param addr: the GRAMPS address instance
     """
     str = ""
-    elems = [ addr.get_street(),
-              addr.get_city(),
-              addr.get_county(),
-              addr.get_state(),
-              addr.get_country(),
-              addr.get_postal_code(),
+    elems = [ addr.get_street(), 
+              addr.get_city(), 
+              addr.get_county(), 
+              addr.get_state(), 
+              addr.get_country(), 
+              addr.get_postal_code(), 
               addr.get_phone()   ]
     
     for info in elems:
@@ -2399,7 +2399,7 @@ def get_address_str(addr):
             if str == "":
                 str = info
             else:
-                str = "%s, %s" % (str,info)
+                str = "%s, %s" % (str, info)
     return str
     
 #-------------------------------------------------------------------------
@@ -2407,7 +2407,7 @@ def get_address_str(addr):
 # People Filters
 #
 #-------------------------------------------------------------------------
-def get_person_filters(person,include_single=True):
+def get_person_filters(person, include_single=True):
     """
     Returns a list of filters that are relevant for the given person
 
@@ -2437,23 +2437,23 @@ def get_person_filters(person,include_single=True):
 
     des = GenericFilter()
     des.set_name(_("Descendants of %s") % name)
-    des.add_rule(Rules.Person.IsDescendantOf([gramps_id,1]))
+    des.add_rule(Rules.Person.IsDescendantOf([gramps_id, 1]))
 
     df = GenericFilter()
     df.set_name(_("Descendant Families of %s") % name)
-    df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id,1]))
+    df.add_rule(Rules.Person.IsDescendantFamilyOf([gramps_id, 1]))
 
     ans = GenericFilter()
     ans.set_name(_("Ancestors of %s") % name)
-    ans.add_rule(Rules.Person.IsAncestorOf([gramps_id,1]))
+    ans.add_rule(Rules.Person.IsAncestorOf([gramps_id, 1]))
 
     com = GenericFilter()
     com.set_name(_("People with common ancestor with %s") % name)
     com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
     if include_single == True:
-        the_filters = [filt_id,all,des,df,ans,com]
+        the_filters = [filt_id, all, des, df, ans, com]
     else:
-        the_filters = [all,des,df,ans,com]
+        the_filters = [all, des, df, ans, com]
     the_filters.extend(CustomFilters.get_filters('Person'))
     return the_filters
