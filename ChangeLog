@@ -1,4 +1,7 @@
 2007-10-07  Douglas Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: various improvements, issue #931
+
+2007-10-07  Douglas Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: various improvements, issue #1157
 
 2007-10-07  Gary Burton <gary.burton@zen.co.uk>

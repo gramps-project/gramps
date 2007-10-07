@@ -45,7 +45,8 @@ cm2pt = ReportUtils.cm2pt
 from Filters import GenericFilter, ParamFilter, Rules
 import GrampsLocale
 import RelLib
-from Utils import probably_alive
+import NameDisplay
+from Utils import probably_alive, ProgressMeter
 from FontScale import string_trim, string_width
 
 #------------------------------------------------------------------------
@@ -126,24 +127,33 @@ class Calendar(Report):
             if int(n.get_type()) == RelLib.NameType.MARRIED:
                 married_name = n
         # Now, decide which to use:
+        call_name = None
+        display_name = None
         if maiden_name != None:
             if married_name != None:
-                first_name, family_name = married_name.get_first_name(), married_name.get_surname()
                 call_name = married_name.get_call_name()
+                display_name = RelLib.Name(married_name)
             else:
-                first_name, family_name = primary_name.get_first_name(), maiden_name
                 call_name = primary_name.get_call_name()
+                display_name = RelLib.Name(primary_name)
+                display_name.set_surname(maiden_name)
         else:
-            first_name, family_name = primary_name.get_first_name(), primary_name.get_surname()
             call_name = primary_name.get_call_name()
+            display_name = RelLib.Name(primary_name)
         # If they have a nickname use it
         if call_name != None and call_name.strip() != "":
-            first_name = call_name.strip()
+            display_name.set_call_name(call_name.strip())
         else: # else just get the first name:
-            first_name = first_name.strip()
+            first_name = display_name.get_first_name().strip()
             if " " in first_name:
                 first_name, rest = first_name.split(" ", 1) # just one split max
-        return ("%s %s" % (first_name, family_name)).strip()
+                display_name.set_call_name(first_name)
+            else:
+                display_name.set_call_name(first_name)
+        if self["name_display_format"].upper() == "DEFAULT":
+            return NameDisplay.displayer.display_name(display_name).strip()
+        else:
+            return NameDisplay.displayer.format_str(display_name, self["name_display_format"]).strip()
         
     def draw_rectangle(self, style, sx, sy, ex, ey):
         """ This should be in BaseDoc """
@@ -186,6 +196,7 @@ class Calendar(Report):
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
         # initialize the dict to fill:
+        self.progress = ProgressMeter(_('Calendar'))
         self.calendar = {}
         # get the information, first from holidays:
         if self["country"] != 0: # Don't include holidays
@@ -193,8 +204,11 @@ class Calendar(Report):
         # get data from database:
         self.collect_data()
         # generate the report:
+        self.progress.set_pass(_('Formating months...'), 12)
         for month in range(1, 13):
+            self.progress.step()
             self.print_page(month)
+        self.progress.close()
 
     def print_page(self, month):
         """
@@ -280,7 +294,9 @@ class Calendar(Report):
         self.filter = filters[filter_num]
         people = self.filter.apply(self.database,
                                    self.database.get_person_handles(sort_handles=False))
+        self.progress.set_pass(_('Filtering data...'), len(people))
         for person_handle in people:
+            self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
             birth_ref = person.get_birth_ref()
             birth_date = None
@@ -354,6 +370,7 @@ class Calendar(Report):
 class CalendarReport(Calendar):
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
+        self.progress = ProgressMeter(_('Birthday and Anniversary Report'))
         # initialize the dict to fill:
         self.calendar = {}
         # get the information, first from holidays:
@@ -377,8 +394,12 @@ class CalendarReport(Calendar):
             self.doc.start_paragraph('BIR-Text3style')
             self.doc.write_text(str(self["text3"]))
             self.doc.end_paragraph()
+        self.progress.set_pass(_('Formating months...'), 12)
         for month in range(1, 13):
+            self.progress.step()
             self.print_page(month)
+        self.progress.close()
+
     def print_page(self, month):
         year = self["year"]
         self.doc.start_paragraph('BIR-Monthstyle')
@@ -785,6 +806,12 @@ class CalendarOptions(NewReportOptions):
                         help = "Select married women's maiden name.",
                         valid_text = "Select to use married women's maiden name.",
                         ),
+            EntryWidget(self, label = _("Name display format"),
+                        name = "name_display_format",
+                        value = '%c %l',
+                        help = "Use custom format (such as %c %l) or DEFAULT for system preference",
+                        valid_text = "Use: %f %l %t %p %s %c %y"
+                        ),
             CheckWidget(self, label = _("Only include living people"),
                         name = "alive",
                         value = 1,
@@ -823,7 +850,7 @@ class CalendarOptions(NewReportOptions):
                         ),
             StyleWidget(self, label = _('Daily text display.'),
                         name = "CAL-Text",
-                        size = 9,
+                        size = 7,
                         type_face = BaseDoc.FONT_SERIF,
                         ),
             StyleWidget(self, label = _('Days of the week text.'),
@@ -923,6 +950,12 @@ class CalendarReportOptions(NewReportOptions):
                                    ],
                         help = "Select married women's maiden name.",
                         valid_text = "Select to use married women's maiden name.",
+                        ),
+            EntryWidget(self, label = _("Name display format"),
+                        name = "name_display_format",
+                        value = '%f %l',
+                        help = "Use custom format or DEFAULT for system preference",
+                        valid_text = "Use: %f %l %t %p %s %c %y"
                         ),
             CheckWidget(self, label = _("Only include living people"),
                         name = "alive",
