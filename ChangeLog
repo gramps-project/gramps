@@ -1,4 +1,7 @@
 2007-10-07  Gary Burton <gary.burton@zen.co.uk>
+	* src/DataViews/_RelationView.py: init scroll pos on new person, issue #442
+
+2007-10-07  Gary Burton <gary.burton@zen.co.uk>
 	* src/PageView.py: sort column retains filter value, issue #507
 
 2007-10-06  Douglas Blank  <dblank@cs.brynmawr.edu>
