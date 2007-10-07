@@ -309,7 +309,8 @@ class Calendar(Report):
                                     if father != None:
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_short_name(person, father_lastname)
-                self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
+                if age >= 0:
+                    self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
             if self["anniversaries"] and ((self["alive"] and alive) or not self["alive"]):
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
@@ -328,19 +329,27 @@ class Calendar(Report):
                             if self["alive"]:
                                 if not probably_alive(spouse, self.database, self["year"]):
                                     continue
+                            are_married = None
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
+                                if int(event.get_type()) in [RelLib.EventType.MARRIAGE, RelLib.EventType.MARR_ALT]:
+                                    are_married = event
+                                elif int(event.get_type()) in [RelLib.EventType.DIVORCE, RelLib.EventType.ANNULMENT]:
+                                    are_married = None
+                            if are_married != None:
+                                event = are_married
                                 event_obj = event.get_date_object()
                                 year = event_obj.get_year()
                                 month = event_obj.get_month()
                                 day = event_obj.get_day()
                                 years = self["year"] - year
-                                text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
-                                    'spouse' : spouse_name,
-                                    'person' : short_name,
-                                    'nyears' : years,
-                                    }
-                                self.add_day_item(text, year, month, day)
+                                if years >= 0:
+                                    text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
+                                        'spouse' : spouse_name,
+                                        'person' : short_name,
+                                        'nyears' : years,
+                                        }
+                                    self.add_day_item(text, year, month, day)
 
 class CalendarReport(Calendar):
     def write_report(self):
