@@ -52,8 +52,6 @@ import const
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
 
-EMPTY_SEARCH = (0, '', False)
-
 #----------------------------------------------------------------
 #
 # PageView
@@ -670,7 +668,7 @@ class ListView(BookMarkView):
         handle = self.first_selected()
 
         if Config.get(Config.FILTER):
-            search = EMPTY_SEARCH
+            search = (True, self.generic_filter)
         else:
             search = (False,self.search_bar.get_value())
 
@@ -762,7 +760,7 @@ class ListView(BookMarkView):
             db.connect(sig, self.signal_map[sig])
 
 #        if Config.get(Config.FILTER):
-#            search = EMPTY_SEARCH
+#            search = (True, self.generic_filter)
 #        else:
 #            search = self.search_bar.get_value()
 #        self.model = self.make_model(self.dbstate.db, 0, search=search)
