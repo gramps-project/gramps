@@ -88,7 +88,7 @@ def get_researcher():
     owner.set_name(n)
     owner.set_address(a)
     owner.set_city(c)
-    owner.set_street(s)
+    owner.set_state(s)
     owner.set_country(ct)
     owner.set_postal_code(p)
     owner.set_phone(ph)

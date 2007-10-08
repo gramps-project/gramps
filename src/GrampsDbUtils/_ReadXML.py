@@ -1981,8 +1981,14 @@ class GrampsParser(UpdateCallback):
         self.note = None
 
     def stop_research(self, tag):
-        self.owner.set(self.resname, self.resaddr, self.rescity, self.resstate, 
-                       self.rescon, self.respos, self.resphone, self.resemail)
+        self.owner.set_name(self.resname)
+        self.owner.set_address(self.resaddr)
+        self.owner.set_city(self.rescity)
+        self.owner.set_state(self.resstate)
+        self.owner.set_country(self.rescon)
+        self.owner.set_postal_code(self.respos)
+        self.owner.set_phone(self.resphone)
+        self.owner.set_email(self.resemail)
 
     def stop_resname(self, tag):
         self.resname = tag
