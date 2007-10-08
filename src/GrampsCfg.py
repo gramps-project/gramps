@@ -90,7 +90,7 @@ def get_researcher():
     owner.set_city(c)
     owner.set_street(s)
     owner.set_country(ct)
-    owner.set_postal(p)
+    owner.set_postal_code(p)
     owner.set_phone(ph)
     owner.set_email(e)
 
