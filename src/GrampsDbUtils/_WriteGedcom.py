@@ -426,7 +426,15 @@ class GedcomWriter(BasicUtils.UpdateCallback):
           +1 <<CHANGE_DATE>> {0:1}                  # not used
         """
         owner = self.dbase.get_researcher()
-        (name, addr, city, stae, ctry, post, phon, mail) = owner.get()
+        name = owner.get_name()
+        addr = owner.get_address()
+        city = owner.get_city()
+        state = owner.get_state()
+        ctry = owner.get_country()
+        post = owner.get_postal_code()
+        phon = owner.get_phon()
+        mail = owner.get_email()
+
         if not name : 
             name = u'Not Provided'
         if not addr : 
@@ -435,14 +443,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         self.__writeln(0, "@SUBM@", "SUBM")
         self.__writeln(1, "NAME", name)
         self.__writeln(1, "ADDR", addr)
-        if city and stae and post:
-            self.__writeln(2, "CONT", "%s, %s %s" % (city, stae, post))
+        if city and state and post:
+            self.__writeln(2, "CONT", "%s, %s %s" % (city, state, post))
         else:
             self.__writeln(2, "CONT", u"Not Provided")
         if city:
             self.__writeln(2, "CITY", city)
-        if stae:
-            self.__writeln(2, "STAE", stae)
+        if state:
+            self.__writeln(2, "STAE", state)
         if post:
             self.__writeln(2, "POST", post)
         if ctry:
