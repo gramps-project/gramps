@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2005  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,6 +49,22 @@ class Researcher(LocationBase):
         self.addr = ""
         self.email = ""
 
+    def serialize(self):
+        """
+        Converts the object to a serialized tuple of data
+        """
+        return (LocationBase.serialize(self),
+                self.name, self.addr, self.email)
+
+    def unserialize(self, data):
+        """
+        Converts a serialized tuple of data to an object
+        """
+        (location, self.name, self.addr, self.email) = data
+        LocationBase.unserialize(self, location)
+        
+        return self
+
     def set_name(self, data):
         """sets the database owner's name"""
         self.name = data
@@ -72,33 +88,3 @@ class Researcher(LocationBase):
     def get_email(self):
         """returns the database owner's email"""
         return self.email
-
-    def set(self, name, addr, city, state, country, postal, phone, email):
-        """sets the information about the database owner"""
-        if name:
-            self.name = name.strip()
-        if addr:
-            self.addr = addr.strip()
-        if city:
-            self.city = city.strip()
-        if state:
-            self.state = state.strip()
-        if country:
-            self.country = country.strip()
-        if postal:
-            self.postal = postal.strip()
-        if phone:
-            self.phone = phone.strip()
-        if email:
-            self.email = email.strip()
-
-    def get(self):
-        """gets the information about the database owner"""
-        return (self.name,
-                self.addr,
-                self.city,
-                self.state,
-                self.country,
-                self.postal,
-                self.phone,
-                self.email)
