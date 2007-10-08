@@ -44,7 +44,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Config
-import RelLib
+import gen.lib
 from _EditPrimary import EditPrimary
 
 from DisplayTabs import \
@@ -64,7 +64,7 @@ class EditSource(EditPrimary):
                              source, dbstate.db.get_source_from_handle)
 
     def empty_object(self):
-        return RelLib.Source()
+        return gen.lib.Source()
 
     def get_menu_title(self):
         title = self.obj.get_title()
@@ -131,7 +131,7 @@ class EditSource(EditPrimary):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(), self.get_menu_title(),
-                    RelLib.NoteType.SOURCE))
+                    gen.lib.NoteType.SOURCE))
         
         self.gallery_tab = self._add_tab(
             notebook,

@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from _BaseModel import BaseModel
 
 #-------------------------------------------------------------------------
@@ -100,7 +100,7 @@ class RepositoryModel(BaseModel):
         return unicode(data[1])
 
     def column_type(self,data):
-        return str(RelLib.RepositoryType(data[2]))
+        return str(gen.lib.RepositoryType(data[2]))
 
     def column_name(self,data):
         return unicode(data[3])
@@ -108,7 +108,7 @@ class RepositoryModel(BaseModel):
     def column_city(self,data):
         try:
             if data[4]:
-                addr = RelLib.Address()
+                addr = gen.lib.Address()
                 addr.unserialize(data[4][0])
                 return addr.get_city()
             else:
@@ -119,7 +119,7 @@ class RepositoryModel(BaseModel):
     def column_street(self,data):
         try:
             if data[5]:
-                addr = RelLib.Address()
+                addr = gen.lib.Address()
                 addr.unserialize(data[5][0])
                 return addr.get_street()
             else:
@@ -130,7 +130,7 @@ class RepositoryModel(BaseModel):
     def column_county(self,data):
         try:
             if data[5]:
-                addr = RelLib.Address()
+                addr = gen.lib.Address()
                 addr.unserialize(data[5][0])
                 return addr.get_county()
             else:
@@ -141,7 +141,7 @@ class RepositoryModel(BaseModel):
     def column_state(self,data):
         try:
             if data[5]:
-                addr = RelLib.Address()
+                addr = gen.lib.Address()
                 addr.unserialize(data[5][0])
                 return addr.get_state()
             else:
@@ -152,7 +152,7 @@ class RepositoryModel(BaseModel):
     def column_country(self,data):
         try:
             if data[5]:
-                addr = RelLib.Address()
+                addr = gen.lib.Address()
                 addr.unserialize(data[5][0])
                 return addr.get_country()
             else:
@@ -163,7 +163,7 @@ class RepositoryModel(BaseModel):
     def column_postal_code(self,data):
         try:
             if data[5]:
-                addr = RelLib.Address()
+                addr = gen.lib.Address()
                 addr.unserialize(data[5][0])
                 return addr.get_postal_code()
             else:
@@ -174,7 +174,7 @@ class RepositoryModel(BaseModel):
     def column_phone(self,data):
         try:
             if data[5]:
-                addr = RelLib.Address()
+                addr = gen.lib.Address()
                 addr.unserialize(data[5][0])
                 return addr.get_phone()
             else:
@@ -185,27 +185,27 @@ class RepositoryModel(BaseModel):
     def column_email(self,data):
         if data[6]:
             for i in data[6]:
-                url = RelLib.Url()
+                url = gen.lib.Url()
                 url.unserialize(i)
-                if url.get_type() == RelLib.UrlType.EMAIL:
+                if url.get_type() == gen.lib.UrlType.EMAIL:
                     return unicode(url.path)
         return u''
 
     def column_search_url(self,data):
         if data[6]:
             for i in data[6]:
-                url = RelLib.Url()
+                url = gen.lib.Url()
                 url.unserialize(i)
-                if url.get_type() == RelLib.UrlType.WEB_SEARCH:
+                if url.get_type() == gen.lib.UrlType.WEB_SEARCH:
                     return unicode(url.path)
         return u''
     
     def column_home_url(self,data):
         if data[6]:
             for i in data[6]:
-                url = RelLib.Url()
+                url = gen.lib.Url()
                 url.unserialize(i)
-                if url.get_type() == RelLib.UrlType.WEB_HOME:
+                if url.get_type() == gen.lib.UrlType.WEB_HOME:
                     return unicode(url.path)
         return u""
 

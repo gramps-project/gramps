@@ -47,7 +47,7 @@ log = logging.getLogger(".GrampsDb")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+from gen.lib import *
 from base import *
 import dbconst as const
 from exceptions import FileVersionError
@@ -607,7 +607,11 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                 self.name_formats[format_ix] = format
         
         # database owner
-        self.set_researcher(self.metadata.get('researcher', default=self.owner))
+        try:
+            self.set_researcher(self.metadata.get('researcher', 
+                                                  default=self.owner))
+        except ImportError: #handle problems with pre-alpha 3.0
+            pass
         
         # bookmarks
         self.bookmarks.set(self.metadata.get('bookmarks',default=[]))

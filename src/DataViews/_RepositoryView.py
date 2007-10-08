@@ -38,7 +38,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import PageView
 import DisplayModels
 import Utils
@@ -190,7 +190,7 @@ class RepositoryView(PageView.ListView):
             pass
 
     def add(self, obj):
-        EditRepository(self.dbstate, self.uistate, [], RelLib.Repository())
+        EditRepository(self.dbstate, self.uistate, [], gen.lib.Repository())
 
     def remove(self, obj):
         db = self.dbstate.db

@@ -47,7 +47,7 @@ import gtk
 #-------------------------------------------------------------------------
 import Mime
 from BasicUtils import name_displayer
-import RelLib
+import gen.lib
 import Errors
 from QuestionDialog import WarningDialog
 
@@ -57,31 +57,31 @@ from QuestionDialog import WarningDialog
 #
 #-------------------------------------------------------------------------
 gender = {
-    RelLib.Person.MALE    : _("male"), 
-    RelLib.Person.FEMALE  : _("female"), 
-    RelLib.Person.UNKNOWN : _("unknown"), 
+    gen.lib.Person.MALE    : _("male"), 
+    gen.lib.Person.FEMALE  : _("female"), 
+    gen.lib.Person.UNKNOWN : _("unknown"), 
     }
 def format_gender( type):
     return gender.get(type[0], _("Invalid"))
 
 confidence = {
-    RelLib.SourceRef.CONF_VERY_HIGH : _("Very High"), 
-    RelLib.SourceRef.CONF_HIGH      : _("High"), 
-    RelLib.SourceRef.CONF_NORMAL    : _("Normal"), 
-    RelLib.SourceRef.CONF_LOW       : _("Low"), 
-    RelLib.SourceRef.CONF_VERY_LOW  : _("Very Low"), 
+    gen.lib.SourceRef.CONF_VERY_HIGH : _("Very High"), 
+    gen.lib.SourceRef.CONF_HIGH      : _("High"), 
+    gen.lib.SourceRef.CONF_NORMAL    : _("Normal"), 
+    gen.lib.SourceRef.CONF_LOW       : _("Low"), 
+    gen.lib.SourceRef.CONF_VERY_LOW  : _("Very Low"), 
    }
 
 family_rel_descriptions = {
-    RelLib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
+    gen.lib.FamilyRelType.MARRIED     : _("A legal or common-law relationship "
                                          "between a husband and wife"), 
-    RelLib.FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
+    gen.lib.FamilyRelType.UNMARRIED   : _("No legal or common-law relationship "
                                          "between man and woman"), 
-    RelLib.FamilyRelType.CIVIL_UNION : _("An established relationship between "
+    gen.lib.FamilyRelType.CIVIL_UNION : _("An established relationship between "
                                          "members of the same sex"), 
-    RelLib.FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
+    gen.lib.FamilyRelType.UNKNOWN     : _("Unknown relationship between a man "
                                          "and woman"), 
-    RelLib.FamilyRelType.CUSTOM      : _("An unspecified relationship "
+    gen.lib.FamilyRelType.CUSTOM      : _("An unspecified relationship "
                                          "a man and woman"), 
     }
 
@@ -539,9 +539,9 @@ def probably_alive(person, db, current_year=None, limit=0):
     # If the recorded death year is before current year then
     # things are simple.
     death_ref = person.get_death_ref()
-    if death_ref and death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
+    if death_ref and death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
         death = db.get_event_from_handle(death_ref.ref)
-        if death.get_date_object().get_start_date() != RelLib.Date.EMPTY:
+        if death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
             death_year = death.get_date_object().get_year()
             if death_year + limit < current_year:
                 return False
@@ -550,12 +550,12 @@ def probably_alive(person, db, current_year=None, limit=0):
     # These are fairly good indications that someone's not alive.
     for ev_ref in person.get_primary_event_ref_list():
         ev = db.get_event_from_handle(ev_ref.ref)
-        if ev and int(ev.get_type()) in [RelLib.EventType.CAUSE_DEATH, 
-                                         RelLib.EventType.BURIAL, 
-                                         RelLib.EventType.CREMATION]:
+        if ev and int(ev.get_type()) in [gen.lib.EventType.CAUSE_DEATH, 
+                                         gen.lib.EventType.BURIAL, 
+                                         gen.lib.EventType.CREMATION]:
             if not death_year:
                 death_year = ev.get_date_object().get_year()
-            if ev.get_date_object().get_start_date() != RelLib.Date.EMPTY:
+            if ev.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
                 if ev.get_date_object().get_year() + limit < current_year:
                     return False
         # For any other event of this person, check whether it happened
@@ -567,9 +567,9 @@ def probably_alive(person, db, current_year=None, limit=0):
     # If they were born within 100 years before current year then
     # assume they are alive (we already know they are not dead).
     birth_ref = person.get_birth_ref()
-    if birth_ref and birth_ref.get_role() == RelLib.EventRoleType.PRIMARY:
+    if birth_ref and birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
         birth = db.get_event_from_handle(birth_ref.ref)
-        if birth.get_date_object().get_start_date() != RelLib.Date.EMPTY:
+        if birth.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
             if not birth_year:
                 birth_year = birth.get_date_object().get_year()
             # Check whether the birth event is too old because the
@@ -600,7 +600,7 @@ def probably_alive(person, db, current_year=None, limit=0):
             if child_birth_ref:
                 child_birth = db.get_event_from_handle(child_birth_ref.ref)
                 dobj = child_birth.get_date_object()
-                if dobj.get_start_date() != RelLib.Date.EMPTY:
+                if dobj.get_start_date() != gen.lib.Date.EMPTY:
                     # if sibling birth date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
@@ -610,7 +610,7 @@ def probably_alive(person, db, current_year=None, limit=0):
             if child_death_ref:
                 child_death = db.get_event_from_handle(child_death_ref.ref)
                 dobj = child_death.get_date_object()
-                if dobj.get_start_date() != RelLib.Date.EMPTY:
+                if dobj.get_start_date() != gen.lib.Date.EMPTY:
                     # if sibling death date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
@@ -633,8 +633,8 @@ def probably_alive(person, db, current_year=None, limit=0):
                 if child_birth_ref:
                     child_birth = db.get_event_from_handle(child_birth_ref.ref)
                     dobj = child_birth.get_date_object()
-                    if dobj.get_start_date() != RelLib.Date.EMPTY:
-                        d = RelLib.Date(dobj)
+                    if dobj.get_start_date() != gen.lib.Date.EMPTY:
+                        d = gen.lib.Date(dobj)
                         val = d.get_start_date()
                         val = d.get_year() - years
                         d.set_year(val)
@@ -645,7 +645,7 @@ def probably_alive(person, db, current_year=None, limit=0):
                 if child_death_ref:
                     child_death = db.get_event_from_handle(child_death_ref.ref)
                     dobj = child_death.get_date_object()
-                    if dobj.get_start_date() != RelLib.Date.EMPTY:
+                    if dobj.get_start_date() != gen.lib.Date.EMPTY:
                         if not not_too_old (dobj, current_year):
                             return True
 
@@ -676,20 +676,20 @@ def probably_alive(person, db, current_year=None, limit=0):
             if father_handle:
                 father = db.get_person_from_handle(father_handle)
                 father_birth_ref = father.get_birth_ref()
-                if father_birth_ref and father_birth_ref.get_role() == RelLib.EventRoleType.PRIMARY:
+                if father_birth_ref and father_birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
                     father_birth = db.get_event_from_handle(
                         father_birth_ref.ref)
                     dobj = father_birth.get_date_object()
-                    if dobj.get_start_date() != RelLib.Date.EMPTY:
+                    if dobj.get_start_date() != gen.lib.Date.EMPTY:
                         if not not_too_old (dobj, year - average_generation_gap):
                             return True
 
                 father_death_ref = father.get_death_ref()
-                if father_death_ref and father_death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
+                if father_death_ref and father_death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
                     father_death = db.get_event_from_handle(
                         father_death_ref.ref)
                     dobj = father_death.get_date_object()
-                    if dobj.get_start_date() != RelLib.Date.EMPTY:
+                    if dobj.get_start_date() != gen.lib.Date.EMPTY:
                         if dobj.get_year() < year - average_generation_gap:
                             return True
 
@@ -700,19 +700,19 @@ def probably_alive(person, db, current_year=None, limit=0):
             if mother_handle:
                 mother = db.get_person_from_handle(mother_handle)
                 mother_birth_ref = mother.get_birth_ref()
-                if mother_birth_ref and mother_birth_ref.get_role() == RelLib.EventRoleType.PRIMARY:
+                if mother_birth_ref and mother_birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
                     mother_birth = db.get_event_from_handle(mother_birth_ref.ref)
                     dobj = mother_birth.get_date_object()
-                    if dobj.get_start_date() != RelLib.Date.EMPTY:
+                    if dobj.get_start_date() != gen.lib.Date.EMPTY:
                         if not not_too_old (dobj, year - average_generation_gap):
                             return True
 
                 mother_death_ref = mother.get_death_ref()
-                if mother_death_ref and mother_death_ref.get_role() == RelLib.EventRoleType.PRIMARY:
+                if mother_death_ref and mother_death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
                     mother_death = db.get_event_from_handle(
                         mother_death_ref.ref)
                     dobj = mother_death.get_date_object()
-                    if dobj.get_start_date() != RelLib.Date.EMPTY:
+                    if dobj.get_start_date() != gen.lib.Date.EMPTY:
                         if dobj.get_year() < year - average_generation_gap:
                             return True
 

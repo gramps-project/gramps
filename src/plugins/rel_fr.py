@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 import types
 from gettext import gettext as _
@@ -197,42 +197,42 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if firstRel == 0:
             if secondRel == 0:
                 return ('', common)
-            elif other_person.get_gender() == RelLib.Person.MALE:
+            elif other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_father(secondRel), common)
             else:
                 return (self.get_mother(secondRel), common)
         elif secondRel == 0:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_son(firstRel), common)
             else:
                 return (self.get_daughter(firstRel), common)
         elif firstRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_uncle(secondRel), common)
             else:
                 return (self.get_aunt(secondRel), common)
         elif secondRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-1), common)
             else:
                 return (self.get_niece(firstRel-1), common)
         elif firstRel == 2 and secondRel == 2:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return ('le cousin germain', common)
             else:
                 return ('la cousine germaine', common)
         elif firstRel == 3 and secondRel == 2:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return ('le neveu à la mode de Bretagne', common)
             else:
                 return ('la nièce à la mode de Bretagne', common)
         elif firstRel == 2 and secondRel == 3:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return ('l\'oncle à la mode de Bretagne', common)
             else:
                 return ('la tante à la mode de Bretagne', common)
         else:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_cousin(firstRel, secondRel), common)
             else:
                 return (self.get_cousine(firstRel, secondRel), common)

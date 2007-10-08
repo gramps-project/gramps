@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _AttrModel import AttrModel
@@ -76,7 +76,7 @@ class AttrEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         pname = ''
-        attr = RelLib.Attribute()
+        attr = gen.lib.Attribute()
         try:
             self.get_editor()(
                 self.dbstate, self.uistate, self.track, attr, 

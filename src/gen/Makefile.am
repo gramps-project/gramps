@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-SUBDIRS = proxy
+SUBDIRS = proxy db lib utils
 
 pkgdatadir = $(datadir)/@PACKAGE@/gen
 

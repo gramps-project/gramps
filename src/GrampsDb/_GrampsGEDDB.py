@@ -25,7 +25,7 @@ Provides the GRAMPS DB interface for supporting in-memory editing
 of GEDCOM files.
 """
 
-from RelLib import *
+from gen.lib import *
 from _GrampsInMemDB import *
 from _GrampsDbExceptions import GrampsDbException
 

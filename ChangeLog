@@ -1,5 +1,9 @@
+2007-10-08  Don Allingham  <don@gramps-project.org>
+
+	* various: gen.lib integration. probably touches almost every file
+
 2007-10-07  Don Allingham  <don@gramps-project.org>
-	* various: gen.utils integrationk
+	* various: gen.utils integration
 
 2007-10-07  Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/_RelationView.py: init scroll pos on new person, issue #442

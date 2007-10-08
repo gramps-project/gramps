@@ -62,7 +62,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
 from ReportBase._ReportDialog import ReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 from Filters import GenericFilter, Rules
-import RelLib
+import gen.lib
 import DateHandler
 from BasicUtils import name_displayer
 import const
@@ -432,8 +432,8 @@ just use iconv:
     def get_family_link(self, p_id, family, frel, mrel):
         "returns string of GraphViz edge linking child to family"
         style = ''
-        adopted = ((int(frel) != RelLib.ChildRefType.BIRTH) or
-                   (int(mrel) != RelLib.ChildRefType.BIRTH))
+        adopted = ((int(frel) != gen.lib.ChildRefType.BIRTH) or
+                   (int(mrel) != gen.lib.ChildRefType.BIRTH))
         if adopted and self.adoptionsdashed:
             style = 'style=dotted'
         return '"p%s" -> "f%s" [%s];\n' % (p_id,
@@ -442,7 +442,7 @@ just use iconv:
     def get_parent_link(self, p_id, parent_handle, rel):
         "returns string of GraphViz edge linking child to parent"
         style = ''
-        if (int(rel) != RelLib.ChildRefType.BIRTH) and self.adoptionsdashed:
+        if (int(rel) != gen.lib.ChildRefType.BIRTH) and self.adoptionsdashed:
             style = 'style=dotted'
         parent = self.database.get_person_from_handle(parent_handle)
         return '"p%s" -> "p%s" [%s];\n' % (p_id, parent.get_gramps_id(), style)
@@ -492,7 +492,7 @@ just use iconv:
                         for event_ref in fam.get_event_ref_list():
                             event = self.database.get_event_from_handle(
                                 event_ref.ref)
-                            if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+                            if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
                                 label = self.get_event_string(event)
                                 break
                         if self.includeid:
@@ -603,10 +603,10 @@ just use iconv:
         # missing info, use (first) christening/burial instead
         for event_ref in person.get_primary_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
-            if int(event.get_type()) == RelLib.EventType.CHRISTEN:
+            if int(event.get_type()) == gen.lib.EventType.CHRISTEN:
                 if not birth:
                     birth = self.get_event_string(event)
-            elif int(event.get_type()) ==  RelLib.EventType.BURIAL:
+            elif int(event.get_type()) ==  gen.lib.EventType.BURIAL:
                 if not death:
                     death = self.get_event_string(event)
         return (birth, death)

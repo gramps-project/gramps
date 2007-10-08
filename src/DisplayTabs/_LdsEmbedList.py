@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from _LdsModel import LdsModel
 from _EmbeddedList import EmbeddedList
@@ -65,7 +65,7 @@ class LdsEmbedList(EmbeddedList):
         return EditLdsOrd
 
     def new_data(self):
-        return RelLib.LdsOrd()
+        return gen.lib.LdsOrd()
     
     def get_data(self):
         return self.data

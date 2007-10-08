@@ -47,7 +47,7 @@ import GrampsDisplay
 import MarkupText
 from _EditPrimary import EditPrimary
 from GrampsWidgets import *
-from RelLib import Note
+from gen.lib import Note
 
 #-------------------------------------------------------------------------
 #

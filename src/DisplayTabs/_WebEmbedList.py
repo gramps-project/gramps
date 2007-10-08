@@ -33,7 +33,7 @@ import gtk
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _WebModel import WebModel
@@ -70,7 +70,7 @@ class WebEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2))
 
     def add_button_clicked(self, obj):
-        url = RelLib.Url()
+        url = gen.lib.Url()
         try:
             from Editors import EditUrl
             

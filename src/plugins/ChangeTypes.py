@@ -48,7 +48,7 @@ import Utils
 import locale
 import ManagedWindow
 import AutoComp
-from RelLib import EventType
+from gen.lib import EventType
 from QuestionDialog import OkDialog
 from PluginUtils import Tool, register_tool
 

@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _LocationModel import LocationModel
@@ -68,7 +68,7 @@ class LocationEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 
     def add_button_clicked(self, obj):
-        loc = RelLib.Location()
+        loc = gen.lib.Location()
         try:
             from Editors import EditLocation
             

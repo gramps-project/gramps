@@ -31,7 +31,7 @@ __revision__ = "$Revision$"
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import PageView
 import DisplayModels
 import Utils
@@ -207,7 +207,7 @@ class EventView(PageView.ListView):
 
     def add(self, obj):
         try:
-            EditEvent(self.dbstate, self.uistate, [], RelLib.Event())
+            EditEvent(self.dbstate, self.uistate, [], gen.lib.Event())
         except Errors.WindowActiveError:
             pass
 

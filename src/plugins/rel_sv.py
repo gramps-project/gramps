@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 import types
 from gettext import gettext as _
@@ -115,7 +115,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('son')
             else:
                 result.append('dotter')
-        if person.get_gender() == RelLib.Person.MALE:
+        if person.get_gender() == gen.lib.Person.MALE:
             result.append('son')
         else:
             result.append('dotter')
@@ -148,7 +148,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('son')
             else:
                 result.append('dotter')
-        if person.get_gender() == RelLib.Person.MALE:
+        if person.get_gender() == gen.lib.Person.MALE:
             result.append('son')
         else:
             result.append('dotter')
@@ -211,7 +211,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif not secondRel:
             return (self.get_direct_descendant(other_person,firstRel),common)
         elif len(firstRel) == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_ancestors_brother(secondRel),common)
             else:
                 return (self.get_ancestors_sister(secondRel),common)

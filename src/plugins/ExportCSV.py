@@ -54,7 +54,7 @@ log = logging.getLogger(".ExportCSV")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import Utils
@@ -384,12 +384,12 @@ class CSVWriter:
                     note = '' # don't export notes or source
                     callname = primary_name.get_call_name()
                     gender = person.get_gender()
-                    if gender == RelLib.Person.MALE:
-                        gender = Utils.gender[RelLib.Person.MALE]
-                    elif gender == RelLib.Person.FEMALE:
-                        gender = Utils.gender[RelLib.Person.FEMALE]
+                    if gender == gen.lib.Person.MALE:
+                        gender = Utils.gender[gen.lib.Person.MALE]
+                    elif gender == gen.lib.Person.FEMALE:
+                        gender = Utils.gender[gen.lib.Person.FEMALE]
                     else:
-                        gender = Utils.gender[RelLib.Person.UNKNOWN]
+                        gender = Utils.gender[gen.lib.Person.UNKNOWN]
                     # Birth:
                     birthdate = ""
                     birthplace = ""
@@ -459,7 +459,7 @@ class CSVWriter:
                     event_ref_list = family.get_event_ref_list()
                     for event_ref in event_ref_list:
                         event = self.db.get_event_from_handle(event_ref.ref)
-                        if event.get_type() == RelLib.EventType.MARRIAGE:
+                        if event.get_type() == gen.lib.EventType.MARRIAGE:
                             mdate = self.format_date( event)
                             place_handle = event.get_place_handle()
                             if place_handle:

@@ -43,7 +43,7 @@ import const
 import Config
 import Mime
 import ThumbNails
-from RelLib import NoteType
+from gen.lib import NoteType
 
 from DisplayTabs import \
      SourceEmbedList,AttrEmbedList,MediaBackRefList,NoteTab

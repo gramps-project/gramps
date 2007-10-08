@@ -55,7 +55,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Errors
-import RelLib
+import gen.lib
 import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
@@ -299,13 +299,13 @@ class CSVParser:
                 # adjust gender, if not already provided
                 if husband:
                     # this is just a guess, if unknown
-                    if husband.get_gender() == RelLib.Person.UNKNOWN:
-                        husband.set_gender(RelLib.Person.MALE)
+                    if husband.get_gender() == gen.lib.Person.UNKNOWN:
+                        husband.set_gender(gen.lib.Person.MALE)
                         self.db.commit_person(husband, self.trans)
                 if wife:
                     # this is just a guess, if unknown
-                    if wife.get_gender() == RelLib.Person.UNKNOWN:
-                        wife.set_gender(RelLib.Person.FEMALE)
+                    if wife.get_gender() == gen.lib.Person.UNKNOWN:
+                        wife.set_gender(gen.lib.Person.FEMALE)
                         self.db.commit_person(wife, self.trans)
                 if marriage_ref:
                     self.storeup("family", marriage_ref.lower(), family)
@@ -319,9 +319,9 @@ class CSVParser:
                     marriagedate = _dp.parse(marriagedate)
                 if marriagedate or marriageplace or marriagesource:
                     # add, if new; replace, if different
-                    new, marriage = self.get_or_create_event(family, RelLib.EventType.MARRIAGE, marriagedate, marriageplace, marriagesource)
+                    new, marriage = self.get_or_create_event(family, gen.lib.EventType.MARRIAGE, marriagedate, marriageplace, marriagesource)
                     if new:
-                        mar_ref = RelLib.EventRef()
+                        mar_ref = gen.lib.EventRef()
                         mar_ref.set_reference_handle(marriage.get_handle())
                         family.add_event_ref(mar_ref)
                         self.db.commit_family(family, self.trans)
@@ -358,7 +358,7 @@ class CSVParser:
                 if child.get_handle() not in [ref.ref for ref in family.get_child_ref_list()]:
                     # add child to family
                     if self.debug: print "   adding child to family", child.get_gramps_id(), family.get_gramps_id()
-                    childref = RelLib.ChildRef()
+                    childref = gen.lib.ChildRef()
                     childref.set_reference_handle(child.get_handle())
                     family.add_child_ref( childref)
                     self.db.commit_family(family, self.trans)
@@ -366,12 +366,12 @@ class CSVParser:
                 if gender:
                     # replace
                     gender = gender.lower()
-                    if gender == gender_map[RelLib.Person.MALE]:
-                        gender = RelLib.Person.MALE
-                    elif gender == gender_map[RelLib.Person.FEMALE]:
-                        gender = RelLib.Person.FEMALE
+                    if gender == gender_map[gen.lib.Person.MALE]:
+                        gender = gen.lib.Person.MALE
+                    elif gender == gender_map[gen.lib.Person.FEMALE]:
+                        gender = gen.lib.Person.FEMALE
                     else:
-                        gender = RelLib.Person.UNKNOWN
+                        gender = gen.lib.Person.UNKNOWN
                     child.set_gender(gender)
                 if source:
                     # add, if new
@@ -383,7 +383,7 @@ class CSVParser:
                         if ref.ref == source.get_handle():
                             found = 1
                     if not found:
-                        sref = RelLib.SourceRef()
+                        sref = gen.lib.SourceRef()
                         sref.set_reference_handle(source.get_handle())
                         child.add_source_reference(sref)
                 # put note on child
@@ -425,8 +425,8 @@ class CSVParser:
                         continue # need a name if it is a new person
                     # new person
                     person = self.create_person(firstname, surname)
-                    name = RelLib.Name()
-                    name.set_type( RelLib.NameType(RelLib.NameType.BIRTH))
+                    name = gen.lib.Name()
+                    name.set_type( gen.lib.NameType(gen.lib.NameType.BIRTH))
                     name.set_first_name(firstname)
                     name.set_surname(surname)
                     person.set_primary_name(name)
@@ -457,14 +457,14 @@ class CSVParser:
                 elif person_ref != None:
                     if person_ref.startswith("[") and person_ref.endswith("]"):
                         person.gramps_id = person_ref[1:-1]
-                if person.get_gender() == RelLib.Person.UNKNOWN and gender != None:
+                if person.get_gender() == gen.lib.Person.UNKNOWN and gender != None:
                     gender = gender.lower()
-                    if gender == gender_map[RelLib.Person.MALE]:
-                        gender = RelLib.Person.MALE
-                    elif gender == gender_map[RelLib.Person.FEMALE]:
-                        gender = RelLib.Person.FEMALE
+                    if gender == gender_map[gen.lib.Person.MALE]:
+                        gender = gen.lib.Person.MALE
+                    elif gender == gender_map[gen.lib.Person.FEMALE]:
+                        gender = gen.lib.Person.FEMALE
                     else:
-                        gender = RelLib.Person.UNKNOWN
+                        gender = gen.lib.Person.UNKNOWN
                     person.set_gender(gender)
                 #########################################################
                 # add if new, replace if different
@@ -475,11 +475,11 @@ class CSVParser:
                 if birthsource != None:
                     new, birthsource = self.get_or_create_source(birthsource)
                 if birthdate or birthplace or birthsource:
-                    new, birth = self.get_or_create_event(person, RelLib.EventType.BIRTH, birthdate, birthplace, birthsource)
+                    new, birth = self.get_or_create_event(person, gen.lib.EventType.BIRTH, birthdate, birthplace, birthsource)
                     birth_ref = person.get_birth_ref()
                     if birth_ref == None:
                         # new
-                        birth_ref = RelLib.EventRef()
+                        birth_ref = gen.lib.EventRef()
                     birth_ref.set_reference_handle( birth.get_handle())
                     person.set_birth_ref( birth_ref)
                 if deathdate != None:
@@ -489,14 +489,14 @@ class CSVParser:
                 if deathsource != None:
                     new, deathsource = self.get_or_create_source(deathsource)
                 if deathdate or deathplace or deathsource or deathcause:
-                    new, death = self.get_or_create_event(person, RelLib.EventType.DEATH, deathdate, deathplace, deathsource)
+                    new, death = self.get_or_create_event(person, gen.lib.EventType.DEATH, deathdate, deathplace, deathsource)
                     if deathcause:
                         death.set_description(deathcause)
                         self.db.commit_event(death, self.trans)
                     death_ref = person.get_death_ref()
                     if death_ref == None:
                         # new
-                        death_ref = RelLib.EventRef()
+                        death_ref = gen.lib.EventRef()
                     death_ref.set_reference_handle(death.get_handle())
                     person.set_death_ref(death_ref)
                 if source:
@@ -509,7 +509,7 @@ class CSVParser:
                         if ref.ref == source.get_handle():
                             found = 1
                     if not found:
-                        sref = RelLib.SourceRef()
+                        sref = gen.lib.SourceRef()
                         sref.set_reference_handle(source.get_handle())
                         person.add_source_reference(sref)
                 self.db.commit_person(person, self.trans)
@@ -545,7 +545,7 @@ class CSVParser:
                 if self.debug: print "   returning existing family"
                 return family
         # if not, create one:
-        family = RelLib.Family()
+        family = gen.lib.Family()
         # was marked with a gramps_id, but didn't exist, so we'll use it:
         if family_ref.startswith("[") and family_ref.endswith("]"):
             family.set_gramps_id(family_ref[1:-1])
@@ -589,7 +589,7 @@ class CSVParser:
                         if ref.ref == source.get_handle():
                             found = 1
                     if not found:
-                        sref = RelLib.SourceRef()
+                        sref = gen.lib.SourceRef()
                         sref.set_reference_handle(source.get_handle())
                         event.add_source_reference(sref)
                 self.db.commit_event(event,self.trans)
@@ -597,9 +597,9 @@ class CSVParser:
                 return (0, event)
         # else create it:
         if self.debug: print "   creating event"
-        event = RelLib.Event()
+        event = gen.lib.Event()
         if type:
-            event.set_type(RelLib.EventType(type))
+            event.set_type(gen.lib.EventType(type))
         if date:
             event.set_date_object(date)
         if place:
@@ -612,7 +612,7 @@ class CSVParser:
                 if ref.ref == source.get_handle():
                     found = 1
             if not found:
-                sref = RelLib.SourceRef()
+                sref = gen.lib.SourceRef()
                 sref.set_reference_handle(source.get_handle())
                 event.add_source_reference(sref)
         self.db.add_event(event,self.trans)
@@ -621,7 +621,7 @@ class CSVParser:
     
     def create_person(self,firstname,lastname):
         """ Used to create a new person we know doesn't exist """
-        person = RelLib.Person()
+        person = gen.lib.Person()
         mykey = firstname+lastname
         self.db.add_person(person,self.trans)
         self.db.commit_person(person,self.trans)
@@ -636,7 +636,7 @@ class CSVParser:
             place = self.db.get_place_from_handle(place_handle)
             if place.get_title() == place_name:
                 return (0, place)
-        place = RelLib.Place()
+        place = gen.lib.Place()
         place.set_title(place_name)
         self.db.add_place(place,self.trans)
         self.db.commit_place(place,self.trans)
@@ -650,7 +650,7 @@ class CSVParser:
             source = self.db.get_source_from_handle(source_handle)
             if source.get_title() == source_text:
                 return (0, source)
-        source = RelLib.Source()
+        source = gen.lib.Source()
         source.set_title(source_text)
         self.db.add_source(source, self.trans)
         self.db.commit_source(source, self.trans)

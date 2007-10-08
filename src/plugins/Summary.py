@@ -43,7 +43,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from PluginUtils import register_report
 from ReportBase import CATEGORY_VIEW, MODE_GUI
 import DateHandler
@@ -101,9 +101,9 @@ def build_report(database,person):
                 missing_bday = missing_bday + 1
         else:
             missing_bday = missing_bday + 1
-        if person.get_gender() == RelLib.Person.FEMALE:
+        if person.get_gender() == gen.lib.Person.FEMALE:
             females = females + 1
-        elif person.get_gender() == RelLib.Person.MALE:
+        elif person.get_gender() == gen.lib.Person.MALE:
             males = males + 1
         else:
             unknowns += 1

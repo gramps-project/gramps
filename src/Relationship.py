@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import types
 from TransUtils import sgettext as _
 
@@ -304,49 +304,49 @@ class RelationshipCalculator:
                                                  family.get_mother_handle()]:
                 family_rel = family.get_relationship()
                 # Determine person's gender
-                if other.get_gender() == RelLib.Person.MALE:
-                    gender = RelLib.Person.MALE
-                elif other.get_gender() == RelLib.Person.FEMALE:
-                    gender = RelLib.Person.FEMALE
+                if other.get_gender() == gen.lib.Person.MALE:
+                    gender = gen.lib.Person.MALE
+                elif other.get_gender() == gen.lib.Person.FEMALE:
+                    gender = gen.lib.Person.FEMALE
                 # Person's gender is unknown, try guessing from spouse's
-                elif orig.get_gender() == RelLib.Person.MALE:
-                    if family_rel == RelLib.FamilyRelType.CIVIL_UNION:
-                        gender = RelLib.Person.MALE
+                elif orig.get_gender() == gen.lib.Person.MALE:
+                    if family_rel == gen.lib.FamilyRelType.CIVIL_UNION:
+                        gender = gen.lib.Person.MALE
                     else:
-                        gender = RelLib.Person.FEMALE
-                elif orig.get_gender() == RelLib.Person.FEMALE:
-                    if family_rel == RelLib.FamilyRelType.CIVIL_UNION:
-                        gender = RelLib.Person.FEMALE
+                        gender = gen.lib.Person.FEMALE
+                elif orig.get_gender() == gen.lib.Person.FEMALE:
+                    if family_rel == gen.lib.FamilyRelType.CIVIL_UNION:
+                        gender = gen.lib.Person.FEMALE
                     else:
-                        gender = RelLib.Person.MALE
+                        gender = gen.lib.Person.MALE
                 else:
-                    gender = RelLib.Person.UNKNOWN
+                    gender = gen.lib.Person.UNKNOWN
 
-                if family_rel == RelLib.FamilyRelType.MARRIED:
-                    if gender == RelLib.Person.MALE:
+                if family_rel == gen.lib.FamilyRelType.MARRIED:
+                    if gender == gen.lib.Person.MALE:
                         return _("husband")
-                    elif gender == RelLib.Person.FEMALE:
+                    elif gender == gen.lib.Person.FEMALE:
                         return _("wife")
                     else:
                         return _("gender unknown|spouse")
-                elif family_rel == RelLib.FamilyRelType.UNMARRIED:
-                    if gender == RelLib.Person.MALE:
+                elif family_rel == gen.lib.FamilyRelType.UNMARRIED:
+                    if gender == gen.lib.Person.MALE:
                         return _("unmarried|husband")
-                    elif gender == RelLib.Person.FEMALE:
+                    elif gender == gen.lib.Person.FEMALE:
                         return _("unmarried|wife")
                     else:
                         return _("gender unknown,unmarried|spouse")
-                elif family_rel == RelLib.FamilyRelType.CIVIL_UNION:
-                    if gender == RelLib.Person.MALE:
+                elif family_rel == gen.lib.FamilyRelType.CIVIL_UNION:
+                    if gender == gen.lib.Person.MALE:
                         return _("male,civil union|partner")
-                    elif gender == RelLib.Person.FEMALE:
+                    elif gender == gen.lib.Person.FEMALE:
                         return _("female,civil union|partner")
                     else:
                         return _("gender unknown,civil union|partner")
                 else:
-                    if gender == RelLib.Person.MALE:
+                    if gender == gen.lib.Person.MALE:
                         return _("male,unknown relation|partner")
-                    elif gender == RelLib.Person.FEMALE:
+                    elif gender == gen.lib.Person.FEMALE:
                         return _("female,unknown relation|partner")
                     else:
                         return _("gender unknown,unknown relation|partner")
@@ -432,22 +432,22 @@ class RelationshipCalculator:
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
-            elif other_person.get_gender() == RelLib.Person.MALE:
+            elif other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_father(secondRel),common)
             else:
                 return (self.get_mother(secondRel),common)
         elif secondRel == 0:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_son(firstRel),common)
             else:
                 return (self.get_daughter(firstRel),common)
         elif firstRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_uncle(secondRel),common)
             else:
                 return (self.get_aunt(secondRel),common)
         elif secondRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-1),common)
             else:
                 return (self.get_niece(firstRel-1),common)

@@ -25,12 +25,12 @@
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from _EventEmbedList import EventEmbedList
 
 _std_types = [
-    RelLib.EventType(RelLib.EventType.BIRTH),
-    RelLib.EventType(RelLib.EventType.DEATH),
+    gen.lib.EventType(gen.lib.EventType.BIRTH),
+    gen.lib.EventType(gen.lib.EventType.DEATH),
     ]
                
 
@@ -48,7 +48,7 @@ class PersonEventEmbedList(EventEmbedList):
         return self.obj.get_event_ref_list()
 
     def default_role(self):
-        return RelLib.EventRoleType(RelLib.EventRoleType.PRIMARY)
+        return gen.lib.EventRoleType(gen.lib.EventRoleType.PRIMARY)
 
     def default_type(self):
         type_list = []
@@ -62,8 +62,8 @@ class PersonEventEmbedList(EventEmbedList):
 
         for etype in _std_types:
             if etype not in type_list:
-                return RelLib.EventType(etype)
-        return RelLib.EventType(RelLib.EventType.BIRTH)
+                return gen.lib.EventType(etype)
+        return gen.lib.EventType(gen.lib.EventType.BIRTH)
 
     def get_ref_editor(self):
         from Editors import EditEventRef

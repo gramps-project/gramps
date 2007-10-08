@@ -40,7 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsWidgets
-import RelLib
+import gen.lib
 
 from _SidebarFilter import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules

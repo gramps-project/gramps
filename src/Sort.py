@@ -39,7 +39,7 @@ import locale
 # GRAMPS Modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Date
+from gen.lib import Date
 from BasicUtils import name_displayer as _nd
 
 #-------------------------------------------------------------------------

@@ -47,7 +47,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import Errors
-import RelLib
+import gen.lib
 from PluginUtils import Tool, register_tool
 import const
 import Utils
@@ -234,7 +234,7 @@ class TestcaseGenerator(Tool.Tool):
             print "TESTING SIGNALS..."
     
             print "\nCREATE PERSON"
-            p = RelLib.Person()
+            p = gen.lib.Person()
             h = self.db.add_person( p, self.trans)
             print "\nUPDATE PERSON"
             self.db.commit_person( p, self.trans)
@@ -242,7 +242,7 @@ class TestcaseGenerator(Tool.Tool):
             self.db.remove_person( h, self.trans)
     
             print "\nCREATE FAMILY"
-            f = RelLib.Family()
+            f = gen.lib.Family()
             h = self.db.add_family( f, self.trans)
             print "\nUPDATE FAMILY"
             self.db.commit_family( f, self.trans)
@@ -250,7 +250,7 @@ class TestcaseGenerator(Tool.Tool):
             self.db.remove_family( h, self.trans)
     
             print "\nCREATE EVENT"
-            e = RelLib.Event()
+            e = gen.lib.Event()
             h = self.db.add_event( e, self.trans)
             print "\nUPDATE EVENT"
             self.db.commit_event( e, self.trans)
@@ -258,7 +258,7 @@ class TestcaseGenerator(Tool.Tool):
             self.db.remove_event( h, self.trans)
     
             print "\nCREATE PLACE"
-            p = RelLib.Place()
+            p = gen.lib.Place()
             h = self.db.add_place( p, self.trans)
             print "\nUPDATE PLACE"
             self.db.commit_place( p, self.trans)
@@ -266,7 +266,7 @@ class TestcaseGenerator(Tool.Tool):
             self.db.remove_place( h, self.trans)
     
             print "\nCREATE SOURCE"
-            s = RelLib.Source()
+            s = gen.lib.Source()
             h = self.db.add_source( s, self.trans)
             print "\nUPDATE SOURCE"
             self.db.commit_source( s, self.trans)
@@ -274,7 +274,7 @@ class TestcaseGenerator(Tool.Tool):
             self.db.remove_source( h, self.trans)
     
             print "\nCREATE MEDIA"
-            m = RelLib.MediaObject()
+            m = gen.lib.MediaObject()
             h = self.db.add_object( m, self.trans)
             print "\nUPDATE MEDIA"
             self.db.commit_media_object( m, self.trans)
@@ -374,12 +374,12 @@ class TestcaseGenerator(Tool.Tool):
 
     def generate_broken_relations(self):
         # Create a family, that links to father and mother, but father does not link back
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken1","Family links to this person, but person does not link back")
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken1",None)
-        fam = RelLib.Family()
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken1","Family links to this person, but person does not link back")
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken1",None)
+        fam = gen.lib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         #person1 = self.db.get_person_from_handle(person1_h)
         #person1.add_family_handle(fam_h)
@@ -390,12 +390,12 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that misses the link to the father
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken2",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken2",None)
-        fam = RelLib.Family()
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken2",None)
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken2",None)
+        fam = gen.lib.Family()
         #fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -406,12 +406,12 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that misses the link to the mother
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken3",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken3",None)
-        fam = RelLib.Family()
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken3",None)
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken3",None)
+        fam = gen.lib.Family()
         fam.set_father_handle(person1_h)
         #fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -422,12 +422,12 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that links to father and mother, but father does not link back
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken4",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
-        fam = RelLib.Family()
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken4",None)
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken4","Family links to this person, but person does not link back")
+        fam = gen.lib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -438,12 +438,12 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create two married people of same sex.
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken5",None)
-        person2_h = self.generate_person(RelLib.Person.MALE,"Broken5",None)
-        fam = RelLib.Family()
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
+        person2_h = self.generate_person(gen.lib.Person.MALE,"Broken5",None)
+        fam = gen.lib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -454,12 +454,12 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that contains an invalid handle to for the father
-        #person1_h = self.generate_person(RelLib.Person.MALE,"Broken6",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken6",None)
-        fam = RelLib.Family()
+        #person1_h = self.generate_person(gen.lib.Person.MALE,"Broken6",None)
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken6",None)
+        fam = gen.lib.Family()
         fam.set_father_handle("InvalidHandle1")
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         #person1 = self.db.get_person_from_handle(person1_h)
         #person1.add_family_handle(fam_h)
@@ -470,12 +470,12 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Create a family, that contains an invalid handle to for the mother
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken7",None)
-        #person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken7",None)
-        fam = RelLib.Family()
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken7",None)
+        #person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken7",None)
+        fam = gen.lib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle("InvalidHandle2")
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         fam_h = self.db.add_family(fam,self.trans)
         person1 = self.db.get_person_from_handle(person1_h)
         person1.add_family_handle(fam_h)
@@ -487,14 +487,14 @@ class TestcaseGenerator(Tool.Tool):
 
 
         # Creates a family where the child does not link back to the family
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken8",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken8",None)
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken8",None)
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken8",None)
         child_h = self.generate_person(None,"Broken8",None)
-        fam = RelLib.Family()
+        fam = gen.lib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
-        child_ref = RelLib.ChildRef()
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
+        child_ref = gen.lib.ChildRef()
         child_ref.set_reference_handle(child_h)
         self.fill_object(child_ref)
         fam.add_child_ref(child_ref)
@@ -511,15 +511,15 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
         # Creates a family where the child is not linked, but the child links to the family
-        person1_h = self.generate_person(RelLib.Person.MALE,"Broken9",None)
-        person2_h = self.generate_person(RelLib.Person.FEMALE,"Broken9",None)
+        person1_h = self.generate_person(gen.lib.Person.MALE,"Broken9",None)
+        person2_h = self.generate_person(gen.lib.Person.FEMALE,"Broken9",None)
         child_h = self.generate_person(None,"Broken9",None)
-        fam = RelLib.Family()
+        fam = gen.lib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        fam.set_relationship((RelLib.FamilyRelType.MARRIED,''))
+        fam.set_relationship((gen.lib.FamilyRelType.MARRIED,''))
         #fam.add_child_handle(child_h)
-        child_ref = RelLib.ChildRef()
+        child_ref = gen.lib.ChildRef()
         child_ref.set_reference_handle(child_h)
         self.fill_object(child_ref)
         fam.add_child_ref(child_ref)
@@ -538,7 +538,7 @@ class TestcaseGenerator(Tool.Tool):
         # Creates a person having a non existing birth event handle set
         person_h = self.generate_person(None,"Broken11",None)
         person = self.db.get_person_from_handle(person_h)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle("InvalidHandle4")
         person.set_birth_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -547,7 +547,7 @@ class TestcaseGenerator(Tool.Tool):
         # Creates a person having a non existing death event handle set
         person_h = self.generate_person(None,"Broken12",None)
         person = self.db.get_person_from_handle(person_h)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle("InvalidHandle5")
         person.set_death_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -556,7 +556,7 @@ class TestcaseGenerator(Tool.Tool):
         # Creates a person having a non existing event handle set
         person_h = self.generate_person(None,"Broken13",None)
         person = self.db.get_person_from_handle(person_h)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle("InvalidHandle6")
         person.add_event_ref(event_ref)
         self.db.commit_person(person,self.trans)
@@ -564,11 +564,11 @@ class TestcaseGenerator(Tool.Tool):
 
         # Creates a person with a birth event having an empty type
         person_h = self.generate_person(None,"Broken14",None)
-        event = RelLib.Event()
+        event = gen.lib.Event()
         event.set_type('')
         event.set_description("Test for Broken14")
         event_h = self.db.add_event(event,self.trans)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle(event_h)
         person = self.db.get_person_from_handle(person_h)
         person.set_birth_ref(event_ref)
@@ -577,10 +577,10 @@ class TestcaseGenerator(Tool.Tool):
 
         # Creates a person with a death event having an empty type
         person_h = self.generate_person(None,"Broken15",None)
-        event = RelLib.Event()
+        event = gen.lib.Event()
         event.set_description("Test for Broken15")
         event_h = self.db.add_event(event,self.trans)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle(event_h)
         person = self.db.get_person_from_handle(person_h)
         person.set_death_ref(event_ref)
@@ -589,10 +589,10 @@ class TestcaseGenerator(Tool.Tool):
 
         # Creates a person with an event having an empty type
         person_h = self.generate_person(None,"Broken16",None)
-        event = RelLib.Event()
+        event = gen.lib.Event()
         event.set_description("Test for Broken16")
         event_h = self.db.add_event(event,self.trans)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle(event_h)
         person = self.db.get_person_from_handle(person_h)
         person.add_event_ref(event_ref)
@@ -601,12 +601,12 @@ class TestcaseGenerator(Tool.Tool):
 
         # Creates a person with a birth event pointing to nonexisting place
         person_h = self.generate_person(None,"Broken17",None)
-        event = RelLib.Event()
-        event.set_type(RelLib.EventType.BIRTH)
+        event = gen.lib.Event()
+        event.set_type(gen.lib.EventType.BIRTH)
         event.set_place_handle("InvalidHandle7")
         event.set_description("Test for Broken17")
         event_h = self.db.add_event(event,self.trans)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle(event_h)
         person = self.db.get_person_from_handle(person_h)
         person.set_birth_ref(event_ref)
@@ -615,12 +615,12 @@ class TestcaseGenerator(Tool.Tool):
 
         # Creates a person with an event pointing to nonexisting place
         person_h = self.generate_person(None,"Broken18",None)
-        event = RelLib.Event()
-        event.set_type(RelLib.EventType.BIRTH)
+        event = gen.lib.Event()
+        event.set_type(gen.lib.EventType.BIRTH)
         event.set_place_handle("InvalidHandle8")
         event.set_description("Test for Broken18")
         event_h = self.db.add_event(event,self.trans)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle(event_h)
         person = self.db.get_person_from_handle(person_h)
         person.add_event_ref(event_ref)
@@ -631,88 +631,88 @@ class TestcaseGenerator(Tool.Tool):
     def generate_date_tests(self):
         dates = []
         # first some valid dates
-        calendar = RelLib.Date.CAL_GREGORIAN
-        for quality in (RelLib.Date.QUAL_NONE, RelLib.Date.QUAL_ESTIMATED,
-                        RelLib.Date.QUAL_CALCULATED):
-            for modifier in (RelLib.Date.MOD_NONE, RelLib.Date.MOD_BEFORE,
-                             RelLib.Date.MOD_AFTER, RelLib.Date.MOD_ABOUT):
+        calendar = gen.lib.Date.CAL_GREGORIAN
+        for quality in (gen.lib.Date.QUAL_NONE, gen.lib.Date.QUAL_ESTIMATED,
+                        gen.lib.Date.QUAL_CALCULATED):
+            for modifier in (gen.lib.Date.MOD_NONE, gen.lib.Date.MOD_BEFORE,
+                             gen.lib.Date.MOD_AFTER, gen.lib.Date.MOD_ABOUT):
                 for slash1 in (False,True):
-                    d = RelLib.Date()
+                    d = gen.lib.Date()
                     d.set(quality,modifier,calendar,(4,7,1789,slash1),"Text comment")
                     dates.append( d)
-            for modifier in (RelLib.Date.MOD_RANGE, RelLib.Date.MOD_SPAN):
+            for modifier in (gen.lib.Date.MOD_RANGE, gen.lib.Date.MOD_SPAN):
                 for slash1 in (False,True):
                     for slash2 in (False,True):
-                        d = RelLib.Date()
+                        d = gen.lib.Date()
                         d.set(quality,modifier,calendar,(4,7,1789,slash1,5,8,1876,slash2),"Text comment")
                         dates.append( d)
-            modifier = RelLib.Date.MOD_TEXTONLY
-            d = RelLib.Date()
-            d.set(quality,modifier,calendar,RelLib.Date.EMPTY,
+            modifier = gen.lib.Date.MOD_TEXTONLY
+            d = gen.lib.Date()
+            d.set(quality,modifier,calendar,gen.lib.Date.EMPTY,
                   "This is a textual date")
             dates.append( d)
         
         # test invalid dates
         dateval = (4,7,1789,False,5,8,1876,False)
         for l in range(1,len(dateval)):
-            d = RelLib.Date()
+            d = gen.lib.Date()
             try:
-                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-                      RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_NONE,
+                      gen.lib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
                 dates.append( d)
             except Errors.DateError, e:
                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
                 dates.append( d)
             except:
-                d = RelLib.Date()
+                d = gen.lib.Date()
                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
                 dates.append( d)
         for l in range(1,len(dateval)):
-            d = RelLib.Date()
+            d = gen.lib.Date()
             try:
-                d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,RelLib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
+                d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_SPAN,gen.lib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
                 dates.append( d)
             except Errors.DateError, e:
                 d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
                 dates.append( d)
             except:
-                d = RelLib.Date()
+                d = gen.lib.Date()
                 d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
                 dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-              RelLib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
+        d = gen.lib.Date()
+        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_NONE,
+              gen.lib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
         dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_NONE,
-              RelLib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
+        d = gen.lib.Date()
+        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_NONE,
+              gen.lib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
         dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
-              RelLib.Date.CAL_GREGORIAN,
+        d = gen.lib.Date()
+        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_SPAN,
+              gen.lib.Date.CAL_GREGORIAN,
               (4,7,1789,False,55,8,1876,False),"Text comment")
         dates.append( d)
-        d = RelLib.Date()
-        d.set(RelLib.Date.QUAL_NONE,RelLib.Date.MOD_SPAN,
-              RelLib.Date.CAL_GREGORIAN,
+        d = gen.lib.Date()
+        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_SPAN,
+              gen.lib.Date.CAL_GREGORIAN,
               (4,7,1789,False,5,88,1876,False),"Text comment")
         dates.append( d)
         
         # now add them as birth to new persons
         i = 1
         for dateval in dates:
-            person = RelLib.Person()
-            name = RelLib.Name()
+            person = gen.lib.Person()
+            name = gen.lib.Name()
             name.set_surname("DateTest")
             name.set_first_name("Test %d" % i)
             person.set_primary_name( name)
             self.db.add_person(person,self.trans)
-            bevent = RelLib.Event()
-            bevent.set_type(RelLib.EventType.BIRTH)
+            bevent = gen.lib.Event()
+            bevent.set_type(gen.lib.EventType.BIRTH)
             bevent.set_date_object(dateval)
             bevent_h = self.db.add_event(bevent,self.trans)
             self.generated_events.append(bevent_h)
-            bevent_ref = RelLib.EventRef()
+            bevent_ref = gen.lib.EventRef()
             bevent_ref.set_reference_handle(bevent_h)
             # for the death event display the date as text and parse it back to a new date
             ndate = None
@@ -721,36 +721,36 @@ class TestcaseGenerator(Tool.Tool):
                 try:
                     ndate = _dp.parse( datestr)
                     if not ndate:
-                        ndate = RelLib.Date()
+                        ndate = gen.lib.Date()
                         ndate.set_as_text("DateParser None")
-                        person.set_marker(RelLib.MarkerType.TODO_TYPE)
+                        person.set_marker(gen.lib.MarkerType.TODO_TYPE)
                     else:
-                        person.set_marker(RelLib.MarkerType.COMPLETE)
+                        person.set_marker(gen.lib.MarkerType.COMPLETE)
                 except:
-                    ndate = RelLib.Date()
+                    ndate = gen.lib.Date()
                     ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                    person.set_marker(RelLib.MarkerType.TODO_TYPE)
+                    person.set_marker(gen.lib.MarkerType.TODO_TYPE)
             except:
-                ndate = RelLib.Date()
+                ndate = gen.lib.Date()
                 ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                person.set_marker(RelLib.MarkerType.TODO_TYPE)
+                person.set_marker(gen.lib.MarkerType.TODO_TYPE)
             
-            if dateval.get_modifier() != RelLib.Date.MOD_TEXTONLY \
-                   and ndate.get_modifier() == RelLib.Date.MOD_TEXTONLY:
+            if dateval.get_modifier() != gen.lib.Date.MOD_TEXTONLY \
+                   and ndate.get_modifier() == gen.lib.Date.MOD_TEXTONLY:
                 # parser was unable to correctly parse the string
                 ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
-                person.set_marker(RelLib.MarkerType.TODO_TYPE)
-            if dateval.get_modifier() == RelLib.Date.MOD_TEXTONLY \
+                person.set_marker(gen.lib.MarkerType.TODO_TYPE)
+            if dateval.get_modifier() == gen.lib.Date.MOD_TEXTONLY \
                     and dateval.get_text().count("Traceback") \
-                    and person.get_marker() == RelLib.MarkerType.COMPLETE:
-                person.set_marker(RelLib.MarkerType.TODO_TYPE)
+                    and person.get_marker() == gen.lib.MarkerType.COMPLETE:
+                person.set_marker(gen.lib.MarkerType.TODO_TYPE)
             
-            devent = RelLib.Event()
-            devent.set_type(RelLib.EventType.DEATH)
+            devent = gen.lib.Event()
+            devent.set_type(gen.lib.EventType.DEATH)
             devent.set_date_object(ndate)
             devent_h = self.db.add_event(devent,self.trans)
             self.generated_events.append(devent_h)
-            devent_ref = RelLib.EventRef()
+            devent_ref = gen.lib.EventRef()
             devent_ref.set_reference_handle(devent_h)
             person.set_birth_ref(bevent_ref)
             person.set_death_ref(devent_ref)
@@ -767,19 +767,19 @@ class TestcaseGenerator(Tool.Tool):
 
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
-        np = RelLib.Person()
+        np = gen.lib.Person()
         self.fill_object(np)
         
         # Gender
         if gender == None:
             gender = randint(0,1)
         if randint(0,10) == 1:  # Set some persons to unknown gender
-            np.set_gender(RelLib.Person.UNKNOWN)
+            np.set_gender(gen.lib.Person.UNKNOWN)
         else:
             np.set_gender(gender)
         
         # Name
-        name = RelLib.Name()
+        name = gen.lib.Name()
         self.fill_object( name)
         (firstname,lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
@@ -799,7 +799,7 @@ class TestcaseGenerator(Tool.Tool):
         # generate some slightly different alternate name
         firstname2 = firstname.replace("m", "n").replace("l", "i").replace("b", "d")
         if firstname2 != firstname:
-            alt_name = RelLib.Name(name)
+            alt_name = gen.lib.Name(name)
             self.fill_object( alt_name)
             if randint(0,2) == 1:
                 alt_name.set_surname(self.rand_text(self.LASTNAME))
@@ -820,7 +820,7 @@ class TestcaseGenerator(Tool.Tool):
             np.add_alternate_name( alt_name)
         firstname2 = firstname.replace("a", "e").replace("o", "u").replace("r", "p")
         if firstname2 != firstname:
-            alt_name = RelLib.Name(name)
+            alt_name = gen.lib.Name(name)
             self.fill_object( alt_name)
             if randint(0,2) == 1:
                 alt_name.set_surname(self.rand_text(self.LASTNAME))
@@ -848,25 +848,25 @@ class TestcaseGenerator(Tool.Tool):
         
         # birth
         if randint(0,1) == 1:
-            (birth_year, eref) = self.rand_personal_event( RelLib.EventType.BIRTH, by,by)
+            (birth_year, eref) = self.rand_personal_event( gen.lib.EventType.BIRTH, by,by)
             np.set_birth_ref(eref)
 
         # baptism
         if randint(0,1) == 1:
             (bapt_year, eref) = self.rand_personal_event(
-                choice( (RelLib.EventType.BAPTISM, RelLib.EventType.CHRISTEN)), by, by+2)
+                choice( (gen.lib.EventType.BAPTISM, gen.lib.EventType.CHRISTEN)), by, by+2)
             np.add_event_ref(eref)
 
         # death
         death_year = None
         if randint(0,1) == 1:
-            (death_year, eref) = self.rand_personal_event( RelLib.EventType.DEATH, dy,dy)
+            (death_year, eref) = self.rand_personal_event( gen.lib.EventType.DEATH, dy,dy)
             np.set_death_ref(eref)
 
         # burial
         if randint(0,1) == 1:
             (bur_year, eref) = self.rand_personal_event(
-                choice( (RelLib.EventType.BURIAL, RelLib.EventType.CREMATION)), dy, dy+2)
+                choice( (gen.lib.EventType.BURIAL, gen.lib.EventType.CREMATION)), dy, dy+2)
             np.add_event_ref(eref)
         
         # some other events
@@ -878,10 +878,10 @@ class TestcaseGenerator(Tool.Tool):
         if self.generated_events:
             while randint(0,5) == 1:
                 e_h = choice(self.generated_events)
-                eref = RelLib.EventRef()
+                eref = gen.lib.EventRef()
                 self.fill_object( eref)
                 eref.set_reference_handle(e_h)
-                eref.set_role( self.rand_type(RelLib.EventRoleType()))
+                eref.set_role( self.rand_type(gen.lib.EventRoleType()))
                 np.add_event_ref(eref)
         
         # PersonRef
@@ -893,7 +893,7 @@ class TestcaseGenerator(Tool.Tool):
                     asso_h = self.generate_person(None, None, alive_in_year = alive_in_year)
                 else:
                     asso_h = self.generate_person()
-                asso = RelLib.PersonRef()
+                asso = gen.lib.PersonRef()
                 asso.set_reference_handle(asso_h)
                 asso.set_relation(self.rand_text(self.SHORT))
                 self.fill_object(asso)
@@ -942,7 +942,7 @@ class TestcaseGenerator(Tool.Tool):
         if person2_h and randint(0,2) > 0:
             self.parents_todo.append(person2_h)
             
-        fam = RelLib.Family()
+        fam = gen.lib.Family()
         self.add_defaults(fam)
         if person1_h:
             fam.set_father_handle(person1_h)
@@ -972,7 +972,7 @@ class TestcaseGenerator(Tool.Tool):
                 (born,died) = self.person_dates[child_h]
                 alive_in_year = born
             fam = self.db.get_family_from_handle(fam_h)
-            child_ref = RelLib.ChildRef()
+            child_ref = gen.lib.ChildRef()
             child_ref.set_reference_handle(child_h)
             self.fill_object(child_ref)
             fam.add_child_ref(child_ref)
@@ -1008,11 +1008,11 @@ class TestcaseGenerator(Tool.Tool):
         if randint(0,2) > 1:
             self.parents_todo.append(person2_h)
             
-        fam = RelLib.Family()
+        fam = gen.lib.Family()
         self.add_defaults(fam)
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
-        child_ref = RelLib.ChildRef()
+        child_ref = gen.lib.ChildRef()
         child_ref.set_reference_handle(child_h)
         self.fill_object(child_ref)
         fam.add_child_ref(child_ref)
@@ -1033,9 +1033,9 @@ class TestcaseGenerator(Tool.Tool):
         self.fill_object( object)
     
     def rand_name( self, lastname=None, gender=None):
-        if gender == RelLib.Person.MALE:
+        if gender == gen.lib.Person.MALE:
             firstname = self.rand_text( self.FIRSTNAME_MALE)
-        elif gender == RelLib.Person.FEMALE:
+        elif gender == gen.lib.Person.FEMALE:
             firstname = self.rand_text( self.FIRSTNAME_FEMALE)
         else:
             firstname = self.rand_text( self.FIRSTNAME)
@@ -1055,7 +1055,7 @@ class TestcaseGenerator(Tool.Tool):
             start = end - randint(0,100)
         year = randint(start,end)
         
-        ndate = RelLib.Date()
+        ndate = gen.lib.Date()
         if randint(0,10) == 1:
             # Some get a textual date
             ndate.set_as_text( choice((self.rand_text(self.SHORT),"Unknown","??","Don't know","TODO!")))
@@ -1065,23 +1065,23 @@ class TestcaseGenerator(Tool.Tool):
                 pass
             else:
                 # regular dates
-                calendar = RelLib.Date.CAL_GREGORIAN
-                quality = choice( (RelLib.Date.QUAL_NONE,
-                                   RelLib.Date.QUAL_ESTIMATED,
-                                   RelLib.Date.QUAL_CALCULATED))
-                modifier = choice( (RelLib.Date.MOD_NONE,
-                                    RelLib.Date.MOD_BEFORE,
-                                    RelLib.Date.MOD_AFTER,\
-                                    RelLib.Date.MOD_ABOUT,
-                                    RelLib.Date.MOD_RANGE,
-                                    RelLib.Date.MOD_SPAN))
+                calendar = gen.lib.Date.CAL_GREGORIAN
+                quality = choice( (gen.lib.Date.QUAL_NONE,
+                                   gen.lib.Date.QUAL_ESTIMATED,
+                                   gen.lib.Date.QUAL_CALCULATED))
+                modifier = choice( (gen.lib.Date.MOD_NONE,
+                                    gen.lib.Date.MOD_BEFORE,
+                                    gen.lib.Date.MOD_AFTER,\
+                                    gen.lib.Date.MOD_ABOUT,
+                                    gen.lib.Date.MOD_RANGE,
+                                    gen.lib.Date.MOD_SPAN))
                 day = randint(0,28)
                 if day > 0: # avoid days without month
                     month = randint(1,12)
                 else:
                     month = randint(0,12)
                 
-                if modifier in (RelLib.Date.MOD_RANGE, RelLib.Date.MOD_SPAN):
+                if modifier in (gen.lib.Date.MOD_RANGE, gen.lib.Date.MOD_SPAN):
                     day2 = randint(0,28)
                     if day2 > 0:
                         month2 = randint(1,12)
@@ -1096,68 +1096,68 @@ class TestcaseGenerator(Tool.Tool):
     
     def fill_object( self, o):
     
-        if isinstance(o,RelLib.Address):
+        if isinstance(o,gen.lib.Address):
             if randint(0,1) == 1:
                 o.set_street( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,RelLib._AddressBase.AddressBase):
+        if issubclass(o.__class__,gen.lib._AddressBase.AddressBase):
             while randint(0,1) == 1:
-                a = RelLib.Address()
+                a = gen.lib.Address()
                 self.fill_object(a)
                 o.add_address( a)
 
-        if isinstance(o,RelLib.Attribute):
-            o.set_type( self.rand_type(RelLib.AttributeType()))
+        if isinstance(o,gen.lib.Attribute):
+            o.set_type( self.rand_type(gen.lib.AttributeType()))
             o.set_value( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,RelLib._AttributeBase.AttributeBase):
+        if issubclass(o.__class__,gen.lib._AttributeBase.AttributeBase):
             while randint(0,1) == 1:
-                a = RelLib.Attribute()
+                a = gen.lib.Attribute()
                 self.fill_object(a)
                 o.add_attribute( a)
 
-        if isinstance(o,RelLib.ChildRef):
+        if isinstance(o,gen.lib.ChildRef):
             if randint(0,3) == 1:
-                o.set_mother_relation( self.rand_type( RelLib.ChildRefType()))
+                o.set_mother_relation( self.rand_type( gen.lib.ChildRefType()))
             if randint(0,3) == 1:
-                o.set_father_relation( self.rand_type( RelLib.ChildRefType()))
+                o.set_father_relation( self.rand_type( gen.lib.ChildRefType()))
 
-        if issubclass(o.__class__,RelLib._DateBase.DateBase):
+        if issubclass(o.__class__,gen.lib._DateBase.DateBase):
             if randint(0,1) == 1:
                 (y,d) = self.rand_date()
                 o.set_date_object( d)
 
-        if isinstance(o,RelLib.Family):
+        if isinstance(o,gen.lib.Family):
             if randint(0,2) == 1:
-                o.set_relationship( self.rand_type(RelLib.FamilyRelType()))
+                o.set_relationship( self.rand_type(gen.lib.FamilyRelType()))
             else:
-                o.set_relationship(RelLib.FamilyRelType(RelLib.FamilyRelType.MARRIED))
+                o.set_relationship(gen.lib.FamilyRelType(gen.lib.FamilyRelType.MARRIED))
 
-        if isinstance(o,RelLib.LdsOrd):
+        if isinstance(o,gen.lib.LdsOrd):
             if randint(0,1) == 1:
                 o.set_temple( choice( LdsUtils.temple_to_abrev.keys()))
 
-        if issubclass(o.__class__,RelLib._LdsOrdBase.LdsOrdBase):
+        if issubclass(o.__class__,gen.lib._LdsOrdBase.LdsOrdBase):
             while randint(0,1) == 1:
-                ldsord = RelLib.LdsOrd()
+                ldsord = gen.lib.LdsOrd()
                 self.fill_object( ldsord)
                 # TODO: adapt type and status to family/person
-                #if isinstance(o,RelLib.Person):
-                #if isinstance(o,RelLib.Family):
+                #if isinstance(o,gen.lib.Person):
+                #if isinstance(o,gen.lib.Family):
                 ldsord.set_type( choice(
-                    [item[0] for item in RelLib.LdsOrd._TYPE_MAP] ))
-                ldsord.set_status( randint(0,len(RelLib.LdsOrd._STATUS_MAP)-1))
+                    [item[0] for item in gen.lib.LdsOrd._TYPE_MAP] ))
+                ldsord.set_status( randint(0,len(gen.lib.LdsOrd._STATUS_MAP)-1))
                 if self.generated_families:
                     ldsord.set_family_handle( choice(self.generated_families))
                 o.add_lds_ord( ldsord)
 
-        if isinstance(o,RelLib.Location):
+        if isinstance(o,gen.lib.Location):
             if randint(0,1) == 1:
                 o.set_parish( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_county( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,RelLib._LocationBase.LocationBase):
+        if issubclass(o.__class__,gen.lib._LocationBase.LocationBase):
             if randint(0,1) == 1:
                 o.set_phone( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
@@ -1169,11 +1169,11 @@ class TestcaseGenerator(Tool.Tool):
             if randint(0,1) == 1:
                 o.set_postal_code( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,RelLib._MediaBase.MediaBase):
+        if issubclass(o.__class__,gen.lib._MediaBase.MediaBase):
             while randint(0,1) == 1:
-                o.add_media_reference( self.fill_object( RelLib.MediaRef()))
+                o.add_media_reference( self.fill_object( gen.lib.MediaRef()))
 
-        if isinstance(o,RelLib.MediaObject):
+        if isinstance(o,gen.lib.MediaObject):
             if randint(0,3) == 1:
                 o.set_description( self.rand_text(self.LONG))
             else:
@@ -1181,9 +1181,9 @@ class TestcaseGenerator(Tool.Tool):
                 o.set_path("/tmp/TestcaseGenerator.png")
                 o.set_mime_type("image/png")
 
-        if isinstance(o,RelLib.MediaRef):
+        if isinstance(o,gen.lib.MediaRef):
             if not self.generated_media or randint(0,10) == 1:
-                m = RelLib.MediaObject()
+                m = gen.lib.MediaObject()
                 self.fill_object(m)
                 self.db.add_object( m, self.trans)
                 self.generated_media.append( m.get_handle())
@@ -1191,56 +1191,56 @@ class TestcaseGenerator(Tool.Tool):
             if randint(0,1) == 1:
                 o.set_rectangle( (randint(0,200),randint(0,200),randint(0,200),randint(0,200)))
         
-        if isinstance(o,RelLib.Name):
-            o.set_type( self.rand_type( RelLib.NameType()))
+        if isinstance(o,gen.lib.Name):
+            o.set_type( self.rand_type( gen.lib.NameType()))
 
-        if isinstance(o,RelLib.Note):
+        if isinstance(o,gen.lib.Note):
             o.set( self.rand_text(self.NOTE))
-            o.set_format( choice( (RelLib.Note.FLOWED,RelLib.Note.FORMATTED)))
-            o.set_type( self.rand_type(RelLib.NoteType()))
+            o.set_format( choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
+            o.set_type( self.rand_type(gen.lib.NoteType()))
 
-        if issubclass(o.__class__,RelLib._NoteBase.NoteBase):
+        if issubclass(o.__class__,gen.lib._NoteBase.NoteBase):
             while randint(0,1) == 1:
                 if not self.generated_notes or randint(0,10) == 1:
-                    n = RelLib.Note()
+                    n = gen.lib.Note()
                     self.fill_object(n)
                     self.db.add_note( n, self.trans)
                     self.generated_notes.append( n.get_handle())
                 n_h = choice(self.generated_notes)
                 o.add_note(n_h)
         
-        if isinstance(o,RelLib.Place):
+        if isinstance(o,gen.lib.Place):
             o.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_longitude( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_latitude( self.rand_text(self.SHORT))
-            o.set_main_location( self.fill_object( RelLib.Location()))
+            o.set_main_location( self.fill_object( gen.lib.Location()))
             while randint(0,1) == 1:
-                o.add_alternate_locations( self.fill_object( RelLib.Location()))
+                o.add_alternate_locations( self.fill_object( gen.lib.Location()))
 
-        if issubclass(o.__class__,RelLib._PrivacyBase.PrivacyBase):
+        if issubclass(o.__class__,gen.lib._PrivacyBase.PrivacyBase):
             o.set_privacy( randint(0,5) == 1)
             
-        if issubclass(o.__class__,RelLib.PrimaryObject):
-            o.set_marker( self.rand_type(RelLib.MarkerType()))
+        if issubclass(o.__class__,gen.lib.PrimaryObject):
+            o.set_marker( self.rand_type(gen.lib.MarkerType()))
 
-        if isinstance(o,RelLib.RepoRef):
+        if isinstance(o,gen.lib.RepoRef):
             if not self.generated_repos or randint(0,10) == 1:
-                r = RelLib.Repository()
+                r = gen.lib.Repository()
                 self.fill_object(r)
                 self.db.add_repository( r, self.trans)
                 self.generated_repos.append(r.get_handle())
             o.set_reference_handle( choice( self.generated_repos))
             if randint(0,1) == 1:
                 o.set_call_number( self.rand_text(self.SHORT))
-            o.set_media_type( self.rand_type(RelLib.SourceMediaType()))
+            o.set_media_type( self.rand_type(gen.lib.SourceMediaType()))
 
-        if isinstance(o,RelLib.Repository):
-            o.set_type( self.rand_type(RelLib.RepositoryType()))
+        if isinstance(o,gen.lib.Repository):
+            o.set_type( self.rand_type(gen.lib.RepositoryType()))
             o.set_name( self.rand_text(self.SHORT))
 
-        if isinstance(o,RelLib.Source):
+        if isinstance(o,gen.lib.Source):
             o.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_author( self.rand_text(self.SHORT))
@@ -1251,19 +1251,19 @@ class TestcaseGenerator(Tool.Tool):
             while randint(0,1) == 1:
                 o.set_data_item( self.rand_text(self.SHORT), self.rand_text(self.SHORT))
             while randint(0,1) == 1:
-                r = RelLib.RepoRef()
+                r = gen.lib.RepoRef()
                 self.fill_object(r)
                 o.add_repo_reference( r)
 
-        if issubclass(o.__class__,RelLib._SourceBase.SourceBase):
+        if issubclass(o.__class__,gen.lib._SourceBase.SourceBase):
             while randint(0,1) == 1:
-                s = RelLib.SourceRef()
+                s = gen.lib.SourceRef()
                 self.fill_object(s)
                 o.add_source_reference( s)
 
-        if isinstance(o,RelLib.SourceRef):
+        if isinstance(o,gen.lib.SourceRef):
             if not self.generated_sources or randint(0,10) == 1:
-                s = RelLib.Source()
+                s = gen.lib.Source()
                 self.fill_object(s)
                 self.db.add_source( s, self.trans)
                 self.generated_sources.append( s.get_handle())
@@ -1277,35 +1277,35 @@ class TestcaseGenerator(Tool.Tool):
                 o.set_date_object( d)
             o.set_confidence_level(choice(Utils.confidence.keys()))
 
-        if issubclass(o.__class__,RelLib._UrlBase.UrlBase):
+        if issubclass(o.__class__,gen.lib._UrlBase.UrlBase):
             while randint(0,1) == 1:
-                u = RelLib.Url()
+                u = gen.lib.Url()
                 self.fill_object(u)
                 o.add_url(u)
         
-        if isinstance(o,RelLib.Url):
+        if isinstance(o,gen.lib.Url):
             o.set_path("http://www.gramps-project.org/?test=%s" % self.rand_text(self.SHORT))
             o.set_description( self.rand_text(self.SHORT))
-            o.set_type( self.rand_type(RelLib.UrlType()))
+            o.set_type( self.rand_type(gen.lib.UrlType()))
 
         return o
 
     def rand_personal_event( self, type=None, start=None, end=None):
         if type:
-            typeval = RelLib.EventType(type)
+            typeval = gen.lib.EventType(type)
         else:
-            typeval = self.rand_type(RelLib.EventType())
+            typeval = self.rand_type(gen.lib.EventType())
         return self._rand_event( typeval, start, end)
         
     def rand_family_event( self, type=None, start=None, end=None):
         if type:
-            typeval = RelLib.EventType(type)
+            typeval = gen.lib.EventType(type)
         else:
-            typeval = self.rand_type(RelLib.EventType())
+            typeval = self.rand_type(gen.lib.EventType())
         return self._rand_event( typeval, start, end)
     
     def _rand_event( self, type, start, end):
-        e = RelLib.Event()
+        e = gen.lib.Event()
         self.fill_object(e)
         e.set_type( type)
         #if randint(0,1) == 1:
@@ -1318,13 +1318,13 @@ class TestcaseGenerator(Tool.Tool):
         e.set_date_object( d)
         event_h = self.db.add_event(e, self.trans)
         self.generated_events.append(event_h)
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         self.fill_object(event_ref)
         event_ref.set_reference_handle(event_h)
         return (year, event_ref)
     
     def rand_type( self, list):
-        if issubclass( list.__class__, RelLib.GrampsType):
+        if issubclass( list.__class__, gen.lib.GrampsType):
             map = list.get_map()
             key = choice( map.keys())
             if key == list.get_custom():
@@ -1336,7 +1336,7 @@ class TestcaseGenerator(Tool.Tool):
         
     def rand_place( self):
         if not self.generated_places or randint(0,10) == 1:
-            place = RelLib.Place()
+            place = gen.lib.Place()
             self.fill_object( place)
             self.db.add_place( place, self.trans)
             self.generated_places.append( place.get_handle())

@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from _LdsEmbedList import LdsEmbedList
-import RelLib
+import gen.lib
 
 #-------------------------------------------------------------------------
 #
@@ -61,6 +61,6 @@ class FamilyLdsEmbedList(LdsEmbedList):
         return EditFamilyLdsOrd
     
     def new_data(self):
-        lds = RelLib.LdsOrd()
-        lds.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
+        lds = gen.lib.LdsOrd()
+        lds.set_type(gen.lib.LdsOrd.SEAL_TO_SPOUSE)
         return lds

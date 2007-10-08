@@ -64,7 +64,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import DateHandler
 
 #-------------------------------------------------------------------------
@@ -248,7 +248,7 @@ class FamilyTip:
 
 
 CLASS_MAP = {
-    RelLib.Repository : RepositoryTip,
-    RelLib.Person     : PersonTip,
-    RelLib.Family     : FamilyTip
+    gen.lib.Repository : RepositoryTip,
+    gen.lib.Person     : PersonTip,
+    gen.lib.Family     : FamilyTip
     }

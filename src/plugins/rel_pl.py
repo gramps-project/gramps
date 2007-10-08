@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 import types
 from gettext import gettext as _
@@ -526,12 +526,12 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
-            elif other_person.get_gender() == RelLib.Person.MALE:
+            elif other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_father(secondRel,firstRel),common)
             else:
                 return (self.get_mother(secondRel,firstRel),common)
         elif secondRel == 0:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_son(secondRel,firstRel),common)
             else:
                 return (self.get_daughter(secondRel,firstRel),common)
@@ -553,30 +553,30 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     if sibling.ref in firstList:
                         # discriminate between siblings/uncles etc. and stepsiblings/stepuncles etc.
                         if other_person.get_main_parents_family_handle() == db.get_person_from_handle(sibling.ref).get_main_parents_family_handle():
-                            if other_person.get_gender() == RelLib.Person.MALE:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                            if other_person.get_gender() == gen.lib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
                                     # brat / stryj / (pra)dziadek stryjeczny
                                     return (self.get_uncle_of_male(secondRel,firstRel),common)
                                 else:
                                     # brat / wuj / (pra)dziadek cioteczny
                                     return (self.get_uncle_of_female(secondRel,firstRel),common)
                             else:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
                                     # siostra / ciotka / (pra)babcia stryjeczna
                                     return (self.get_aunt_of_male(secondRel,firstRel),common)
                                 else:
                                     # siostra / ciotka / (pra)babcia cioteczna
                                     return (self.get_aunt_of_female(secondRel,firstRel),common)
                         else:
-                            if other_person.get_gender() == RelLib.Person.MALE:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                            if other_person.get_gender() == gen.lib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
                                     # brat / stryj / (pra)dziadek stryjeczny
                                     return (self.get_uncle_of_male(secondRel,firstRel)+" (przyrodni)",common)
                                 else:
                                     # brat / wuj / (pra)dziadek cioteczny
                                     return (self.get_uncle_of_female(secondRel,firstRel)+" (przyrodni)",common)
                             else:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
                                     # siostra / ciotka / (pra)babcia stryjeczna
                                     return (self.get_aunt_of_male(secondRel,firstRel)+" (przyrodnia)",common)
                                 else:
@@ -604,31 +604,31 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                             for child_handle in db.get_family_from_handle(sibFamily).get_child_ref_list():
                                 if child_handle.ref in secondList:
                                     child = db.get_person_from_handle(child_handle.ref)
-                                    if other_person.get_gender() == RelLib.Person.MALE:
-                                        if sibling.get_gender() == RelLib.Person.MALE:
-                                            if child.get_gender() == RelLib.Person.MALE:
+                                    if other_person.get_gender() == gen.lib.Person.MALE:
+                                        if sibling.get_gender() == gen.lib.Person.MALE:
+                                            if child.get_gender() == gen.lib.Person.MALE:
                                                 # bratanek / syn bratanka
                                                 return (self.get_nephew_of_brothers_son(secondRel,firstRel),common)
                                             else:
                                                 # bratanek / syn bratanicy
                                                 return (self.get_nephew_of_brothers_daughter(secondRel,firstRel),common)
                                         else:
-                                            if child.get_gender() == RelLib.Person.MALE:
+                                            if child.get_gender() == gen.lib.Person.MALE:
                                                 # siostrzeniec / syn siostrzeńca
                                                 return (self.get_nephew_of_sisters_son(secondRel,firstRel),common)
                                             else:
                                                 # siostrzniec / syn siostrzenicy
                                                 return (self.get_nephew_of_sisters_daughter(secondRel,firstRel),common)
                                     else:
-                                        if sibling.get_gender() == RelLib.Person.MALE:
-                                            if child.get_gender() == RelLib.Person.MALE:
+                                        if sibling.get_gender() == gen.lib.Person.MALE:
+                                            if child.get_gender() == gen.lib.Person.MALE:
                                                 # bratanica / córka bratanka
                                                 return (self.get_niece_of_brothers_son(secondRel,firstRel),common)
                                             else:
                                                 # bratanica / córka bratanicy
                                                 return (self.get_niece_of_brothers_daughter(secondRel,firstRel),common)
                                         else:
-                                            if child.get_gender() == RelLib.Person.MALE:
+                                            if child.get_gender() == gen.lib.Person.MALE:
                                                 # siostrzenica / córka siostrzeńca
                                                 return (self.get_niece_of_sisters_son(secondRel,firstRel),common)
                                             else:
@@ -650,13 +650,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 children = ancFamily.get_child_ref_list()
                 for sibling in children:
                     if sibling.ref in firstList:
-                        if other_person.get_gender() == RelLib.Person.MALE:
-                            if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                        if other_person.get_gender() == gen.lib.Person.MALE:
+                            if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
                                 return (self.get_senior_male_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
                             else:
                                 return (self.get_senior_male_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
                         else:
-                            if db.get_person_from_handle(sibling.ref).get_gender() == RelLib.Person.MALE:
+                            if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
                                 return (self.get_senior_female_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
                             else:
                                 return (self.get_senior_female_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
@@ -681,9 +681,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         				    if other_sibling_handle.ref in secondList:
             					sibling = db.get_person_from_handle(sibling_handle.ref)
             					other_sibling = db.get_person_from_handle(other_sibling_handle.ref)
-            					if other_person.get_gender() == RelLib.Person.MALE:
-            						if other_sibling.get_gender() == RelLib.Person.MALE:
-            							if sibling.get_gender() == RelLib.Person.MALE:
+            					if other_person.get_gender() == gen.lib.Person.MALE:
+            						if other_sibling.get_gender() == gen.lib.Person.MALE:
+            							if sibling.get_gender() == gen.lib.Person.MALE:
             								# brat stryjeczny
             								return (self.get_junior_male_cousin_father_uncle(secondRel,firstRel),common)
             							else:
@@ -693,8 +693,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             							# brat cioteczny
             							return (self.get_junior_male_cousin_aunt(secondRel,firstRel),common)
             					else:
-            						if other_sibling.get_gender() == RelLib.Person.MALE:
-            							if sibling.get_gender() == RelLib.Person.MALE:
+            						if other_sibling.get_gender() == gen.lib.Person.MALE:
+            							if sibling.get_gender() == gen.lib.Person.MALE:
             								# siostra stryjeczna
             								return (self.get_junior_female_cousin_father_uncle(secondRel,firstRel),common)
             							else:

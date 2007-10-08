@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _AddressModel import AddressModel
@@ -94,7 +94,7 @@ class AddrEmbedList(EmbeddedList):
         already exists (Errors.WindowActiveError), we ignore it. This prevents 
         the dialog from coming up twice on the same object.
         """
-        addr = RelLib.Address()
+        addr = gen.lib.Address()
         try:
             from Editors import EditAddress
             

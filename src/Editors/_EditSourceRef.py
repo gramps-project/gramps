@@ -40,7 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
+import gen.lib
 
 from DisplayTabs import \
      NoteTab,TextTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
@@ -112,11 +112,11 @@ class EditSourceRef(EditReference):
             self.top.get_widget('confidence'),
             self.source_ref.set_confidence_level,
             self.source_ref.get_confidence_level, [
-            (_('Very Low'), RelLib.SourceRef.CONF_VERY_LOW),
-            (_('Low'), RelLib.SourceRef.CONF_LOW),
-            (_('Normal'), RelLib.SourceRef.CONF_NORMAL),
-            (_('High'), RelLib.SourceRef.CONF_HIGH),
-            (_('Very High'), RelLib.SourceRef.CONF_VERY_HIGH)],
+            (_('Very Low'), gen.lib.SourceRef.CONF_VERY_LOW),
+            (_('Low'), gen.lib.SourceRef.CONF_LOW),
+            (_('Normal'), gen.lib.SourceRef.CONF_NORMAL),
+            (_('High'), gen.lib.SourceRef.CONF_HIGH),
+            (_('Very High'), gen.lib.SourceRef.CONF_VERY_HIGH)],
             self.db.readonly)
 
         self.date = MonitoredDate(
@@ -141,7 +141,7 @@ class EditSourceRef(EditReference):
             notebook_src,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.source.get_note_list(), 
-                    notetype=RelLib.NoteType.SOURCE))
+                    notetype=gen.lib.NoteType.SOURCE))
         
         self.gallery_tab = self._add_tab(
             notebook_src,
@@ -173,7 +173,7 @@ class EditSourceRef(EditReference):
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.source_ref.get_note_list(),
-                    notetype=RelLib.NoteType.SOURCEREF))
+                    notetype=gen.lib.NoteType.SOURCEREF))
 
         self._setup_notebook_tabs( notebook_src)
         self._setup_notebook_tabs( notebook_ref)

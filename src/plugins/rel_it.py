@@ -31,7 +31,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 import types
 from PluginUtils import register_relcalc
@@ -172,27 +172,27 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
-            elif other_person.get_gender() == RelLib.Person.MALE:
+            elif other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_father(secondRel),common)
             else:
                 return (self.get_mother(secondRel),common)
         elif secondRel == 0:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_son(firstRel),common)
             else:
                 return (self.get_daughter(firstRel),common)
         elif firstRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_uncle(secondRel),common)
             else:
                 return (self.get_aunt(secondRel),common)
         elif secondRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-1),common)
             else:
                 return (self.get_niece(firstRel-1),common)
         else:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_male_cousin(firstRel-1, secondRel-1), common)
             else:
                 return (self.get_female_cousin(firstRel-1, secondRel-1), common)

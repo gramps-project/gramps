@@ -32,7 +32,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 import types
 from gettext import gettext as _
@@ -355,27 +355,27 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
-            elif other_person.get_gender() == RelLib.Person.MALE:
+            elif other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_father(secondRel),common)
             else:
                 return (self.get_mother(secondRel),common)
         elif secondRel == 0:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_son(firstRel),common)
             else:
                 return (self.get_daughter(firstRel),common)
         elif secondRel > firstRel:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_uncle(secondRel-firstRel,firstRel),common)
             else:
                 return (self.get_aunt(secondRel-firstRel,firstRel),common)
         elif secondRel < firstRel:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-secondRel,secondRel),common)
             else:
 		    return (self.get_niece(firstRel-secondRel,secondRel),common)
         else: # obviously secondRel == firstRel
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_male_cousin(firstRel-1),common)
             else:
                 return (self.get_female_cousin(firstRel-1),common)

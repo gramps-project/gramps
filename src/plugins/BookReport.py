@@ -63,7 +63,7 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Person
+from gen.lib import Person
 import const
 import Utils
 import ListModel

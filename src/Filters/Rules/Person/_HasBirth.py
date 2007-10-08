@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import DateHandler
-from RelLib import EventType,EventRoleType
+from gen.lib import EventType,EventRoleType
 from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------

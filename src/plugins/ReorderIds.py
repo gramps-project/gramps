@@ -39,7 +39,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import Utils
-import RelLib
+import gen.lib
 from PluginUtils import Tool, register_tool
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
@@ -68,7 +68,7 @@ class ReorderIds(Tool.BatchTool):
         if uistate:
             self.progress.set_pass(_('Reordering People IDs'),
                                    db.get_number_of_people())
-        self.reorder(RelLib.Person,
+        self.reorder(gen.lib.Person,
                      db.get_person_from_gramps_id,
                      db.get_person_from_handle,
                      db.find_next_person_gramps_id,
@@ -79,7 +79,7 @@ class ReorderIds(Tool.BatchTool):
         if uistate:
             self.progress.set_pass(_('Reordering Family IDs'),
                                    db.get_number_of_families())
-        self.reorder(RelLib.Family,
+        self.reorder(gen.lib.Family,
                      db.get_family_from_gramps_id,
                      db.get_family_from_handle,
                      db.find_next_family_gramps_id,
@@ -89,7 +89,7 @@ class ReorderIds(Tool.BatchTool):
         if uistate:
             self.progress.set_pass(_('Reordering Event IDs'),
                                    db.get_number_of_events())
-        self.reorder(RelLib.Event,
+        self.reorder(gen.lib.Event,
                      db.get_event_from_gramps_id,
                      db.get_event_from_handle,
                      db.find_next_event_gramps_id,
@@ -99,7 +99,7 @@ class ReorderIds(Tool.BatchTool):
         if uistate:
             self.progress.set_pass(_('Reordering Media Object IDs'),
                                    db.get_number_of_media_objects())
-        self.reorder(RelLib.MediaObject,
+        self.reorder(gen.lib.MediaObject,
                      db.get_object_from_gramps_id,
                      db.get_object_from_handle,
                      db.find_next_object_gramps_id,
@@ -109,7 +109,7 @@ class ReorderIds(Tool.BatchTool):
         if uistate:
             self.progress.set_pass(_('Reordering Source IDs'),
                                    db.get_number_of_sources())
-        self.reorder(RelLib.Source,
+        self.reorder(gen.lib.Source,
                      db.get_source_from_gramps_id,
                      db.get_source_from_handle,
                      db.find_next_source_gramps_id,
@@ -119,7 +119,7 @@ class ReorderIds(Tool.BatchTool):
         if uistate:
             self.progress.set_pass(_('Reordering Place IDs'),
                                    db.get_number_of_places())
-        self.reorder(RelLib.Place,
+        self.reorder(gen.lib.Place,
                      db.get_place_from_gramps_id,
                      db.get_place_from_handle,
                      db.find_next_place_gramps_id,
@@ -129,7 +129,7 @@ class ReorderIds(Tool.BatchTool):
         if uistate:
             self.progress.set_pass(_('Reordering Repository IDs'),
                                    db.get_number_of_repositories())
-        self.reorder(RelLib.Repository,
+        self.reorder(gen.lib.Repository,
                      db.get_repository_from_gramps_id,
                      db.get_repository_from_handle,
                      db.find_next_repository_gramps_id,

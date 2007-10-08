@@ -45,7 +45,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
+import gen.lib
 import TreeTips
 import DateHandler
 import GrampsDisplay
@@ -460,7 +460,7 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
         notelist = [ self._db.get_note_from_handle(hndl) 
                      for hndl in self._obj.get_note_list() ]
         srctxtlist = [ note for note in notelist 
-                       if note.get_type() == RelLib.NoteType.SOURCE_TEXT]
+                       if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
 
         if len(srctxtlist) > 0:
             self._value = srctxtlist[0].get_text()

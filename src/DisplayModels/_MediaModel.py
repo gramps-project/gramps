@@ -45,7 +45,7 @@ import const
 import ToolTips
 import GrampsLocale
 import DateHandler
-import RelLib
+import gen.lib
 from _BaseModel import BaseModel
 
 #-------------------------------------------------------------------------
@@ -109,13 +109,13 @@ class MediaModel(BaseModel):
 
     def column_date(self,data):
         if data[9]:
-            date = RelLib.Date()
+            date = gen.lib.Date()
             date.unserialize(data[9])
             return unicode(DateHandler.displayer.display(date))
         return u''
 
     def sort_date(self,data):
-        obj = RelLib.MediaObject()
+        obj = gen.lib.MediaObject()
         obj.unserialize(data)
         d = obj.get_date_object()
         if d:

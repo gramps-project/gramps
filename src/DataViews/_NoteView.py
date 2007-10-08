@@ -45,7 +45,7 @@ import Errors
 import Bookmarks
 import Config
 import ColumnOrder
-from RelLib import Note
+from gen.lib import Note
 from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import NoteSidebarFilter

@@ -55,7 +55,7 @@ log = logging.getLogger(".ExportVCal")
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import Utils
-from RelLib import Date, EventType
+from gen.lib import Date, EventType
 import Errors
 from QuestionDialog import ErrorDialog
 from PluginUtils import register_export

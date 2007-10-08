@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 import types
 from gettext import gettext as _
@@ -125,7 +125,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('sønne')
             else:
                 result.append('datter')
-        if person.get_gender() == RelLib.Person.MALE:
+        if person.get_gender() == gen.lib.Person.MALE:
             result.append('søn')
         else:
             result.append('datter')
@@ -148,12 +148,12 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     result.append('sønne')
                 else:
                     result.append('datter')
-            if person.get_gender() == RelLib.Person.MALE:
+            if person.get_gender() == gen.lib.Person.MALE:
                 result.append('søn')
             else:
                 result.append('datter')
         else:
-            if person.get_gender() == RelLib.Person.MALE:
+            if person.get_gender() == gen.lib.Person.MALE:
                 result.append('bror')
             else:
                 result.append('søster')

@@ -29,7 +29,7 @@ log = getLogger(".ObjectSelector")
 
 from _FilterFrameBase import FilterFrameBase
 from Filters import GenericFilter, Rules
-import RelLib
+import gen.lib
 
 class PersonFilterFrame(FilterFrameBase):
     
@@ -57,9 +57,9 @@ class PersonFilterFrame(FilterFrameBase):
 	    self.make_text_widget("Name")
 
         # Gender
-        genders=[[_("Male"),RelLib.Person.MALE],
-                 [_("Female"),RelLib.Person.FEMALE],
-                 [_("Unknown"),RelLib.Person.UNKNOWN]]
+        genders=[[_("Male"),gen.lib.Person.MALE],
+                 [_("Female"),gen.lib.Person.FEMALE],
+                 [_("Unknown"),gen.lib.Person.UNKNOWN]]
 
 	self._gender_list = gtk.ListStore(str,int)
 
@@ -190,11 +190,11 @@ class PersonFilterFrame(FilterFrameBase):
 
         if self._gender_check.get_active():
             gender = self._gender_list.get_value(self._gender_combo.get_active_iter(),1)
-            if gender == RelLib.Person.MALE:
+            if gender == gen.lib.Person.MALE:
                 filter.add_rule(Rules.Person.IsMale([]))
-            elif gender == RelLib.Person.FEMALE:
+            elif gender == gen.lib.Person.FEMALE:
                 filter.add_rule(Rules.Person.IsFemale([]))
-            elif gender == RelLib.Person.UNKNOWN:
+            elif gender == gen.lib.Person.UNKNOWN:
                 filter.add_rule(Rules.Person.HasUnknownGender([]))
             else:
                 log.warn("Received unknown gender from filter widget")

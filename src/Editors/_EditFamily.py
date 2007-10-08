@@ -51,7 +51,7 @@ import gtk
 import const
 import Utils
 from BasicUtils import name_displayer
-import RelLib
+import gen.lib
 import Config
 import Errors
 
@@ -197,7 +197,7 @@ class ChildEmbedList(EmbeddedList):
     def add_button_clicked(self,obj):
         from Editors import EditPerson
 
-        person = RelLib.Person()
+        person = gen.lib.Person()
         autoname = Config.get(Config.SURNAME_GUESSING)
         if autoname == 0:
             name = self.north_american()
@@ -212,7 +212,7 @@ class ChildEmbedList(EmbeddedList):
                    self.new_child_added)
 
     def new_child_added(self, person):
-        ref = RelLib.ChildRef()
+        ref = gen.lib.ChildRef()
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
         self.rebuild()
@@ -232,7 +232,7 @@ class ChildEmbedList(EmbeddedList):
         person = sel.run()
         
         if person:
-            ref = RelLib.ChildRef()
+            ref = gen.lib.ChildRef()
             ref.ref = person.get_handle()
             self.family.add_child_ref(ref)
             self.rebuild()
@@ -319,7 +319,7 @@ class ChildEmbedList(EmbeddedList):
                     self._move(row_from, row, obj)
                 else:
                     handle = obj
-                    obj = RelLib.ChildRef()
+                    obj = gen.lib.ChildRef()
                     obj.ref = handle
                     self._handle_drag(row, obj)
                 self.rebuild()
@@ -363,7 +363,7 @@ class FastMaleFilter:
 
     def match(self, handle):
         value = self.db.get_raw_person_data(handle)
-        return value[2] == RelLib.Person.MALE
+        return value[2] == gen.lib.Person.MALE
 
 class FastFemaleFilter:
 
@@ -372,7 +372,7 @@ class FastFemaleFilter:
 
     def match(self, handle):
         value = self.db.get_raw_person_data(handle)
-        return value[2] == RelLib.Person.FEMALE
+        return value[2] == gen.lib.Person.FEMALE
 
 #-------------------------------------------------------------------------
 #
@@ -413,7 +413,7 @@ class EditFamily(EditPrimary):
             self.add_parent = False
 
     def empty_object(self):
-        return RelLib.Family()
+        return gen.lib.Family()
 
     def _local_init(self):
         self.build_interface()
@@ -581,7 +581,7 @@ class EditFamily(EditPrimary):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=RelLib.NoteType.FAMILY))
+                    notetype=gen.lib.NoteType.FAMILY))
             
         self.gallery_tab = self._add_tab(
             notebook,
@@ -612,15 +612,15 @@ class EditFamily(EditPrimary):
 
     def add_mother_clicked(self, obj):
         from Editors import EditPerson
-        person = RelLib.Person()
-        person.set_gender(RelLib.Person.FEMALE)
+        person = gen.lib.Person()
+        person.set_gender(gen.lib.Person.FEMALE)
         EditPerson(self.dbstate, self.uistate, self.track, person,
                    self.new_mother_added)
 
     def add_father_clicked(self, obj):
         from Editors import EditPerson
-        person = RelLib.Person()
-        person.set_gender(RelLib.Person.MALE)
+        person = gen.lib.Person()
+        person.set_gender(gen.lib.Person.MALE)
         EditPerson(self.dbstate, self.uistate, self.track,
                    person, self.new_father_added)
 
@@ -662,7 +662,7 @@ class EditFamily(EditPrimary):
                 self.update_mother(person.handle)
 
     def on_change_father(self, selector_window, obj):
-        if  obj.__class__ == RelLib.Person:
+        if  obj.__class__ == gen.lib.Person:
             try:
                 person = obj
                 self.obj.set_father_handle(person.get_handle()) 
@@ -677,7 +677,7 @@ class EditFamily(EditPrimary):
             log.warn(
                 "Object selector returned obj.__class__ = %s, it should "
                 "have been of type %s." % (obj.__class__.__name__,
-                                           RelLib.Person.__name__))
+                                           gen.lib.Person.__name__))
             
         selector_window.close()
 

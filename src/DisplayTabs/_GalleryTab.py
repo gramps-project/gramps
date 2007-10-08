@@ -43,7 +43,7 @@ import os
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Utils
 import ThumbNails
 import Errors
@@ -243,7 +243,7 @@ class GalleryTab(ButtonTab):
         src = am.object
 
         if src:
-            sref = RelLib.MediaRef()
+            sref = gen.lib.MediaRef()
             try:
                 from Editors import EditMediaRef
                 
@@ -269,7 +269,7 @@ class GalleryTab(ButtonTab):
         sel = SelectObject(self.dbstate,self.uistate,self.track)
         src = sel.run()
         if src:
-            sref = RelLib.MediaRef()
+            sref = gen.lib.MediaRef()
             try:
                 from Editors import EditMediaRef
                 
@@ -410,7 +410,7 @@ class GalleryTab(ButtonTab):
                         self._handle_drag(row, obj)
                     self.rebuild()
                 elif mytype == DdTargets.MEDIAOBJ.drag_type:
-                    oref = RelLib.MediaRef()
+                    oref = gen.lib.MediaRef()
                     oref.set_reference_handle(obj)
                     self.get_data().append(oref)
                     self.changed = True
@@ -425,7 +425,7 @@ class GalleryTab(ButtonTab):
                     mime = Mime.get_type(name)
                     if not Mime.is_valid_type(mime):
                         return
-                    photo = RelLib.MediaObject()
+                    photo = gen.lib.MediaObject()
                     photo.set_path(name)
                     photo.set_mime_type(mime)
                     basename = os.path.basename(name)
@@ -433,7 +433,7 @@ class GalleryTab(ButtonTab):
                     photo.set_description(root)
                     trans = self.dbstate.db.transaction_begin()
                     self.dbstate.db.add_object(photo, trans)
-                    oref = RelLib.MediaRef()
+                    oref = gen.lib.MediaRef()
                     oref.set_reference_handle(photo.get_handle())
                     self.get_data().append(oref)
                     self.changed = True
@@ -452,14 +452,14 @@ class GalleryTab(ButtonTab):
 #                         return
 #                     tfile = Utils.fix_encoding(tfile)
 #                     mime = GrampsMime.get_type(tfile)
-#                     photo = RelLib.MediaObject()
+#                     photo = gen.lib.MediaObject()
 #                     photo.set_mime_type(mime)
 #                     photo.set_description(d)
 #                     photo.set_path(tfile)
 #                     trans = self.db.transaction_begin()
 #                     self.db.add_object(photo,trans)
 #                     self.db.transaction_commit(trans,_("Drag Media Object"))
-#                     oref = RelLib.MediaRef()
+#                     oref = gen.lib.MediaRef()
 #                     oref.set_reference_handle(photo.get_handle())
 #                     self.dataobj.add_media_reference(oref)
 #                     self.add_thumbnail(oref)

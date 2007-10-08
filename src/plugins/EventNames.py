@@ -43,7 +43,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import ManagedWindow
-import RelLib
+import gen.lib
 import Utils
 
 from PluginUtils import Tool, register_tool
@@ -82,7 +82,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         for handle in self.db.get_person_handles():
             person = self.db.get_person_from_handle(handle)
             for event_ref in person.get_event_ref_list():
-                if event_ref.get_role() == RelLib.EventRoleType.PRIMARY:
+                if event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if event.get_description() == "":
@@ -93,7 +93,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
             for event_ref in family.get_event_ref_list():
-                if event_ref.get_role() == RelLib.EventRoleType.FAMILY:
+                if event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
                     event_handle = event_ref.ref
                     event = self.db.get_event_from_handle(event_handle)
                     if event.get_description() == "":

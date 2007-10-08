@@ -51,7 +51,7 @@ import gtk
 import const
 import Utils
 import Mime
-import RelLib
+import gen.lib
 import GrampsWidgets
 from BasicUtils import name_displayer
 import Errors
@@ -101,7 +101,7 @@ class EditPerson(EditPrimary):
         Returns an empty Person object for comparison for changes. This
         is used by the base class (EditPrimary)
         """
-        return RelLib.Person()
+        return gen.lib.Person()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -120,7 +120,7 @@ class EditPerson(EditPrimary):
         self.pname = self.obj.get_primary_name()
         self.should_guess_gender = (not self.obj.get_gramps_id() and
                                     self.obj.get_gender () ==
-                                    RelLib.Person.UNKNOWN)
+                                    gen.lib.Person.UNKNOWN)
 
         self.load_obj = None
         self.load_rect = None
@@ -203,9 +203,9 @@ class EditPerson(EditPrimary):
             self.obj.set_gender, 
             self.obj.get_gender, 
             (
-            (_('female'), RelLib.Person.FEMALE), 
-            (_('male'), RelLib.Person.MALE), 
-            (_('unknown'), RelLib.Person.UNKNOWN)
+            (_('female'), gen.lib.Person.FEMALE), 
+            (_('male'), gen.lib.Person.MALE), 
+            (_('unknown'), gen.lib.Person.UNKNOWN)
             ), 
             self.db.readonly)
 
@@ -315,7 +315,7 @@ class EditPerson(EditPrimary):
             notebook, 
             NoteTab(self.dbstate, self.uistate, self.track, 
                     self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=RelLib.NoteType.PERSON))
+                    notetype=gen.lib.NoteType.PERSON))
         
         self.gallery_tab = self._add_tab(
             notebook, 
@@ -561,7 +561,7 @@ class EditPerson(EditPrimary):
                 self.obj_photo.hide()
 
     def _check_for_unknown_gender(self):
-        if self.obj.get_gender() == RelLib.Person.UNKNOWN:
+        if self.obj.get_gender() == gen.lib.Person.UNKNOWN:
             d = GenderDialog(self.window)
             gender = d.run()
             d.destroy()
@@ -604,7 +604,7 @@ class EditPerson(EditPrimary):
 
         if original:
             (female, male, unknown) = _select_gender[self.obj.get_gender()]
-            if male and original.get_gender() != RelLib.Person.MALE:
+            if male and original.get_gender() != gen.lib.Person.MALE:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_mother_handle():
@@ -613,7 +613,7 @@ class EditPerson(EditPrimary):
                         else:
                             temp_family.set_mother_handle(None)
                             temp_family.set_father_handle(self.obj)
-            elif female and original != RelLib.Person.FEMALE:
+            elif female and original != gen.lib.Person.FEMALE:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
@@ -622,7 +622,7 @@ class EditPerson(EditPrimary):
                         else:
                             temp_family.set_father_handle(None)
                             temp_family.set_mother_handle(self.obj)
-            elif unknown and original.get_gender() != RelLib.Person.UNKNOWN:
+            elif unknown and original.get_gender() != gen.lib.Person.UNKNOWN:
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
@@ -821,6 +821,6 @@ class GenderDialog(gtk.MessageDialog):
             _("The gender of the person is currently unknown. "
               "Usually, this is a mistake. Please specify the gender."))
 
-        self.add_button(_('Male'), RelLib.Person.MALE)
-        self.add_button(_('Female'), RelLib.Person.FEMALE)
-        self.add_button(_('Unknown'), RelLib.Person.UNKNOWN)
+        self.add_button(_('Male'), gen.lib.Person.MALE)
+        self.add_button(_('Female'), gen.lib.Person.FEMALE)
+        self.add_button(_('Unknown'), gen.lib.Person.UNKNOWN)

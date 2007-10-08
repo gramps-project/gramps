@@ -44,7 +44,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
      FilterListOption, \
      CATEGORY_DRAW, CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import GrampsLocale
-import RelLib
+import gen.lib
 from Utils import probably_alive, ProgressMeter
 from FontScale import string_trim, string_width
 pt2cm = ReportUtils.pt2cm
@@ -84,7 +84,7 @@ class Calendar(Report):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for n in names:
-            if int(n.get_type()) == RelLib.NameType.MARRIED:
+            if int(n.get_type()) == gen.lib.NameType.MARRIED:
                 married_name = n
         # Now, decide which to use:
         if maiden_name != None:
@@ -265,7 +265,7 @@ class Calendar(Report):
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
                 if self.maiden_name == 0: # get husband's last name:
-                    if person.get_gender() == RelLib.Person.FEMALE:
+                    if person.get_gender() == gen.lib.Person.FEMALE:
                         family_list = person.get_family_handle_list()
                         if len(family_list) > 0:
                             fhandle = family_list[0] # first is primary

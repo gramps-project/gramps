@@ -54,7 +54,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import const
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog

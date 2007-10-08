@@ -42,7 +42,7 @@ import gtk
 #-------------------------------------------------------------------------
 import Spell
 import Errors
-import RelLib
+import gen.lib
 from DisplayTabs import log
 from _NoteModel import NoteModel
 from _EmbeddedList import EmbeddedList
@@ -104,7 +104,7 @@ class NoteTab(EmbeddedList):
         return ((1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
-        note = RelLib.Note()
+        note = gen.lib.Note()
         if self.notetype :
             note.set_type(self.notetype)
         try:

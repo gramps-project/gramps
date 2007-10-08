@@ -68,7 +68,7 @@ import gtk
 # GRAMPS module
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import const
 import BaseDoc
 from GrampsCfg import get_researcher
@@ -197,7 +197,7 @@ class WebReport(Report):
         married_name = None
         names = [primary_name] + person.get_alternate_names()
         for n in names:
-            if int(n.get_type()) == RelLib.NameType.MARRIED:
+            if int(n.get_type()) == gen.lib.NameType.MARRIED:
                 married_name = n
         # Now, decide which to use:
         if maiden_name != None:
@@ -588,7 +588,7 @@ class WebReport(Report):
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
                 if self.Surname == 0: # get husband's last name:
-                    if person.get_gender() == RelLib.Person.FEMALE:
+                    if person.get_gender() == gen.lib.Person.FEMALE:
                         family_list = person.get_family_handle_list()
                         if len(family_list) > 0:
                             fhandle = family_list[0] # first is primary
@@ -623,9 +623,9 @@ class WebReport(Report):
                             married = True
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
-                    if event and int(event.get_type()) in [RelLib.EventType.DIVORCE,
-                                                           RelLib.EventType.ANNULMENT,
-                                                            RelLib.EventType.DIV_FILING]:
+                    if event and int(event.get_type()) in [gen.lib.EventType.DIVORCE,
+                                                           gen.lib.EventType.ANNULMENT,
+                                                            gen.lib.EventType.DIV_FILING]:
                             married = False
                             if married:
                                 for event_ref in fam.get_event_ref_list():

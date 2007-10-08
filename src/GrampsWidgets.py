@@ -791,7 +791,7 @@ class PlaceEntry:
             self.obj.set_text(u'')
             self.set_button(False)
         else:
-            from RelLib import Place
+            from gen.lib import Place
             from Editors import EditPlace
 
             place = Place()

@@ -40,7 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsWidgets
-import RelLib
+import gen.lib
 
 from _SidebarFilter import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
@@ -61,8 +61,8 @@ class EventSidebarFilter(SidebarFilter):
     def create_widget(self):
         self.filter_id = gtk.Entry()
         self.filter_desc = gtk.Entry()       
-        self.filter_event = RelLib.Event()
-        self.filter_event.set_type((RelLib.EventType.CUSTOM,u''))
+        self.filter_event = gen.lib.Event()
+        self.filter_event.set_type((gen.lib.EventType.CUSTOM,u''))
         self.etype = gtk.ComboBoxEntry()
        
         self.event_menu = GrampsWidgets.MonitoredDataType(

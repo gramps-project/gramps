@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 from PluginUtils import register_relcalc
 import types
@@ -272,25 +272,25 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return (is_spouse,[])
 
         if self.is_fathermother_in_law(other_person,orig_person):
-            if other_person.getGender() == RelLib.Person.MALE:
+            if other_person.getGender() == gen.lib.Person.MALE:
                 return ("apósa",self.get_fathermother_in_law_common(other_person,orig_person))
-            elif other_person.getGender() == RelLib.Person.FEMALE:
+            elif other_person.getGender() == gen.lib.Person.FEMALE:
                 return ("anyósa",self.get_fathermother_in_law_common(other_person,orig_person))
             elif other_person.getGender() == 2 :
                 return ("apósa vagy anyósa",self.get_fathermother_in_law_common(other_person,orig_person))
 
         if self.is_fathermother_in_law(orig_person,other_person):
-            if orig_person.getGender() == RelLib.Person.MALE:
+            if orig_person.getGender() == gen.lib.Person.MALE:
                 return ("veje",self.get_fathermother_in_law_common(orig_person,other_person))
-            elif orig_person.getGender() == RelLib.Person.FEMALE:
+            elif orig_person.getGender() == gen.lib.Person.FEMALE:
                 return ("menye",self.get_fathermother_in_law_common(orig_person,other_person))
             elif orig_person.getGender() == 2 :
                 return ("veje vagy menye",self.get_fathermother_in_law_common(orig_person,other_person))
 
         if self.is_brothersister_in_law(orig_person,other_person):
-            if other_person.getGender() == RelLib.Person.MALE:
+            if other_person.getGender() == gen.lib.Person.MALE:
                 return ("sógora",self.get_brothersister_in_law_common(orig_person,other_person))
-            elif other_person.getGender() == RelLib.Person.FEMALE:
+            elif other_person.getGender() == gen.lib.Person.FEMALE:
                 return ("sógornője",self.get_brothersister_in_law_common(orig_person,other_person))
             elif other_person.getGender() == 2 :
                 return ("sógora vagy sógornője",self.get_brothersister_in_law_common(orig_person,other_person))
@@ -313,19 +313,19 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
-            elif other_person.get_gender() == RelLib.Person.MALE:
+            elif other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_father(secondRel),common)
             else:
                 return (self.get_mother(secondRel),common)
 
         elif secondRel == 0:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_son(firstRel),common)
             else:
                 return (self.get_daughter(firstRel),common)
 
         elif firstRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 if secondRel == 1:
                     return (self.get_age_brother(self.get_age_comp(orig_person,other_person)),common)
                 else :return (self.get_uncle(secondRel),common)
@@ -335,13 +335,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 else :return (self.get_aunt(secondRel),common)
 
         elif secondRel == 1:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-1),common)
             else:
                 return (self.get_niece(firstRel-1),common)
 
         else:
-            if other_person.get_gender() == RelLib.Person.MALE:
+            if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_male_cousin(firstRel-1), common)
             else:
                 return (self.get_female_cousin(firstRel-1), common)

@@ -28,7 +28,7 @@ of GRAMPS XML format.
 import logging
 log = logging.getLogger(".GrampsDb")
 
-from RelLib import *
+from gen.lib import *
 from _GrampsInMemDB import *
 from _GrampsDbExceptions import GrampsDbException
 

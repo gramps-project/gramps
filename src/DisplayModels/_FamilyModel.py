@@ -45,7 +45,7 @@ import ToolTips
 import GrampsLocale
 import DateHandler
 from BasicUtils import name_displayer
-import RelLib
+import gen.lib
 import gen.utils
 
 from _BaseModel import BaseModel
@@ -126,10 +126,10 @@ class FamilyModel(BaseModel):
             return u""
 
     def column_type(self, data):
-        return str(RelLib.FamilyRelType(data[5]))
+        return str(gen.lib.FamilyRelType(data[5]))
 
     def column_marriage(self, data):
-        erlist = [ RelLib.EventRef().unserialize(d) for d in data[6] ]
+        erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]
         event = gen.utils.marriage_from_eventref_list(self.db, erlist)
         if event:
             return DateHandler.displayer.display(event.date)
@@ -137,7 +137,7 @@ class FamilyModel(BaseModel):
             return u''
 
     def sort_marriage(self, data):
-        erlist = [ RelLib.EventRef().unserialize(d) for d in data[6] ]
+        erlist = [ gen.lib.EventRef().unserialize(d) for d in data[6] ]
         event = gen.utils.marriage_from_eventref_list(self.db, erlist)
         if event:
             return "%09d" % event.date.get_sort_value()
@@ -165,11 +165,11 @@ class FamilyModel(BaseModel):
     def column_marker_color(self, data):
         try:
             col = data[FamilyModel._MARKER_COL][0]
-            if col == RelLib.MarkerType.COMPLETE:
+            if col == gen.lib.MarkerType.COMPLETE:
                 return self.complete_color
-            elif col == RelLib.MarkerType.TODO_TYPE:
+            elif col == gen.lib.MarkerType.TODO_TYPE:
                 return self.todo_color
-            elif col == RelLib.MarkerType.CUSTOM:
+            elif col == gen.lib.MarkerType.CUSTOM:
                 return self.custom_color
         except IndexError:
             pass

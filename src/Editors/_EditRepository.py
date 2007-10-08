@@ -41,7 +41,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Config
-import RelLib
+import gen.lib
 
 from GrampsWidgets import *
 from DisplayTabs import AddrEmbedList,WebEmbedList,NoteTab,SourceBackRefList
@@ -55,7 +55,7 @@ class EditRepository(EditPrimary):
                              repository, dbstate.db.get_repository_from_handle)
 
     def empty_object(self):
-        return RelLib.Repository()
+        return gen.lib.Repository()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -125,7 +125,7 @@ class EditRepository(EditPrimary):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=RelLib.NoteType.REPO))
+                    notetype=gen.lib.NoteType.REPO))
 
         self.backref_tab = self._add_tab(
             notebook,

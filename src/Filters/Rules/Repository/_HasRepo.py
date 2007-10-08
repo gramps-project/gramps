@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import RepositoryType
+from gen.lib import RepositoryType
 from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------

@@ -43,7 +43,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
 import BaseDoc
 from BasicUtils import name_displayer
 
-from RelLib import ChildRefType
+from gen.lib import ChildRefType
 
 #------------------------------------------------------------------------
 #

@@ -54,7 +54,7 @@ import gobject
 # GRAMPS module
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Config
 import Errors
 import Utils
@@ -509,9 +509,9 @@ class FamilyLinesReport(Report):
 
             # figure out what colour to use
             colour = self.colourUnknown
-            if person.get_gender() ==  RelLib.Person.MALE:
+            if person.get_gender() ==  gen.lib.Person.MALE:
                 colour = self.colourMales
-            if person.get_gender() ==  RelLib.Person.FEMALE:
+            if person.get_gender() ==  gen.lib.Person.FEMALE:
                 colour = self.colourFemales
 
             # see if we have surname colours that match this person
@@ -640,7 +640,7 @@ class FamilyLinesReport(Report):
             if self.includeDates or self.includePlaces:
                 for event_ref in family.get_event_ref_list():
                     event = self.db.get_event_from_handle(event_ref.ref)
-                    if event.get_type() == RelLib.EventType.MARRIAGE:
+                    if event.get_type() == gen.lib.EventType.MARRIAGE:
                         # get the wedding date
                         if (event.private and self.includePrivate) or not event.private:
                             if self.includeDates:

@@ -43,7 +43,7 @@ import gtk
 import Config
 import DateHandler
 from BasicUtils import name_displayer as _nd
-from RelLib import Name
+from gen.lib import Name
 import ManagedWindow
 from GrampsWidgets import *
 import QuestionDialog
@@ -73,7 +73,7 @@ def set_calendar_date_format():
     DateHandler.set_format(Config.get_date_format(format_list))
 
 def get_researcher():
-    import RelLib
+    import gen.lib
     
     n  = Config.get(Config.RESEARCHER_NAME)
     a  = Config.get(Config.RESEARCHER_ADDR)
@@ -84,7 +84,7 @@ def get_researcher():
     ph = Config.get(Config.RESEARCHER_PHONE)
     e  = Config.get(Config.RESEARCHER_EMAIL)
 
-    owner = RelLib.Researcher()
+    owner = gen.lib.Researcher()
     owner.set(n, a, c, s, ct, p, ph, e)
     return owner
 

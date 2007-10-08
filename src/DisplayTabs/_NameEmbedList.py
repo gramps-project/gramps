@@ -39,7 +39,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _NameModel import NameModel
@@ -93,7 +93,7 @@ class NameEmbedList(EmbeddedList):
         self.callback()
         
     def add_button_clicked(self, obj):
-        name = RelLib.Name()
+        name = gen.lib.Name()
         try:
             from Editors import EditName
             

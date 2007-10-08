@@ -38,7 +38,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Config
 import PageView
 import DisplayModels
@@ -189,7 +189,7 @@ class SourceView(PageView.ListView):
             pass
 
     def add(self, obj):
-        EditSource(self.dbstate, self.uistate, [], RelLib.Source())
+        EditSource(self.dbstate, self.uistate, [], gen.lib.Source())
 
     def remove(self, obj):
         for source_handle in self.selected_handles():

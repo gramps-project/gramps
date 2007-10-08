@@ -32,7 +32,7 @@ __revision__ = "$Revision: 8864 $"
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+from gen.lib import *
 
 class DbBase:
     """

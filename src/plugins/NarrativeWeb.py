@@ -64,7 +64,7 @@ import gtk
 # GRAMPS module
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import const
 from GrampsCfg import get_researcher
 from Filters import GenericFilter, Rules
@@ -494,11 +494,11 @@ class BasePage:
             if not descr:
                 descr = uri
             of.write('<tr><td class="field">%d.</td>' % index)
-            if url.get_type() == RelLib.UrlType.EMAIL and not uri.startswith("mailto:"):
+            if url.get_type() == gen.lib.UrlType.EMAIL and not uri.startswith("mailto:"):
                 of.write('<td class="data"><a href="mailto:%s">%s</a>' % (uri,descr))
-            elif url.get_type() == RelLib.UrlType.WEB_HOME and not uri.startswith("http://"):
+            elif url.get_type() == gen.lib.UrlType.WEB_HOME and not uri.startswith("http://"):
                 of.write('<td class="data"><a href="http://%s">%s</a>' % (uri,descr))
-            elif url.get_type() == RelLib.UrlType.WEB_FTP and not uri.startswith("ftp://"):
+            elif url.get_type() == gen.lib.UrlType.WEB_FTP and not uri.startswith("ftp://"):
                 of.write('<td class="data"><a href="ftp://%s">%s</a>' % (uri,descr))
             else:
                 of.write('<td class="data"><a href="%s">%s</a>' % (uri,descr))
@@ -736,7 +736,7 @@ class IndividualListPage(BasePage):
                     of.write('<td class="field">')
                     birth = ReportUtils.get_birth_or_fallback(db, person)
                     if birth:
-                        if birth.get_type() == RelLib.EventType.BIRTH:
+                        if birth.get_type() == gen.lib.EventType.BIRTH:
                             of.write(_dd.display(birth.get_date_object()))
                         else:
                             of.write('<em>')
@@ -749,7 +749,7 @@ class IndividualListPage(BasePage):
                     of.write('<td class="field">')
                     death = ReportUtils.get_death_or_fallback(db, person)
                     if death:
-                        if death.get_type() == RelLib.EventType.DEATH:
+                        if death.get_type() == gen.lib.EventType.DEATH:
                             of.write(_dd.display(death.get_date_object()))
                         else:
                             of.write('<em>')
@@ -858,7 +858,7 @@ class SurnamePage(BasePage):
                 of.write('<td class="field">')
                 birth = ReportUtils.get_birth_or_fallback(db, person)
                 if birth:
-                    if birth.get_type() == RelLib.EventType.BIRTH:
+                    if birth.get_type() == gen.lib.EventType.BIRTH:
                         of.write(_dd.display(birth.get_date_object()))
                     else:
                         of.write('<em>')
@@ -871,7 +871,7 @@ class SurnamePage(BasePage):
                 of.write('<td class="field">')
                 death = ReportUtils.get_death_or_fallback(db, person)
                 if death:
-                    if death.get_type() == RelLib.EventType.DEATH:
+                    if death.get_type() == gen.lib.EventType.DEATH:
                         of.write(_dd.display(death.get_date_object()))
                     else:
                         of.write('<em>')
@@ -1665,9 +1665,9 @@ class ContactPage(BasePage):
 class IndividualPage(BasePage):
 
     gender_map = {
-        RelLib.Person.MALE    : _('male'),
-        RelLib.Person.FEMALE  : _('female'),
-        RelLib.Person.UNKNOWN : _('unknown'),
+        gen.lib.Person.MALE    : _('male'),
+        gen.lib.Person.FEMALE  : _('female'),
+        gen.lib.Person.UNKNOWN : _('unknown'),
         }
     
     def __init__(self, db, person, title, ind_list,
@@ -1993,7 +1993,7 @@ class IndividualPage(BasePage):
                              val)
         else:
             of.write(_nd.display(person))
-        if rel != RelLib.ChildRefType.BIRTH:
+        if rel != gen.lib.ChildRefType.BIRTH:
             of.write('&nbsp;&nbsp;&nbsp;(%s)' % str(rel))
         of.write('</td>\n')
 
@@ -2124,10 +2124,10 @@ class IndividualPage(BasePage):
         gender = self.person.get_gender()
         reltype = family.get_relationship()
 
-        if reltype == RelLib.FamilyRelType.MARRIED:
-            if gender == RelLib.Person.FEMALE:
+        if reltype == gen.lib.FamilyRelType.MARRIED:
+            if gender == gen.lib.Person.FEMALE:
                 relstr = _("Husband")
-            elif gender == RelLib.Person.MALE:
+            elif gender == gen.lib.Person.MALE:
                 relstr = _("Wife")
             else:
                 relstr = _("Partner")

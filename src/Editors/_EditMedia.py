@@ -43,7 +43,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Config
-import RelLib
+import gen.lib
 import Mime
 import ThumbNails
 from _EditPrimary import EditPrimary
@@ -64,7 +64,7 @@ class EditMedia(EditPrimary):
                              state.db.get_object_from_handle)
 
     def empty_object(self):
-        return RelLib.MediaObject()
+        return gen.lib.MediaObject()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -156,13 +156,13 @@ class EditMedia(EditPrimary):
                 notebook,
                 NoteTab(self.dbstate, self.uistate, self.track,
                         self.obj.get_note_list(), 
-                        notetype=RelLib.NoteType.MEDIA))
+                        notetype=gen.lib.NoteType.MEDIA))
         else:
             self.note_tab = self._add_tab(
                 notebook,
                 NoteTab(self.dbstate, self.uistate, self.track,
                         self.obj.get_note_list(),
-                        notetype=RelLib.NoteType.MEDIA))
+                        notetype=gen.lib.NoteType.MEDIA))
 
             self.src_list = self._add_tab(
                 notebook,

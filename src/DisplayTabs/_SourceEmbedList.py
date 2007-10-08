@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _SourceRefModel import SourceRefModel
@@ -81,8 +81,8 @@ class SourceEmbedList(EmbeddedList):
         try:
             from Editors import EditSourceRef
             
-            sref = RelLib.SourceRef()
-            src = RelLib.Source()
+            sref = gen.lib.SourceRef()
+            src = gen.lib.Source()
             EditSourceRef(
                 self.dbstate,
                 self.uistate,
@@ -103,7 +103,7 @@ class SourceEmbedList(EmbeddedList):
             try:
                 from Editors import EditSourceRef
                 
-                ref = RelLib.SourceRef()
+                ref = gen.lib.SourceRef()
                 EditSourceRef(self.dbstate,
                               self.uistate,
                               self.track, 
@@ -146,7 +146,7 @@ class SourceEmbedList(EmbeddedList):
         self.rebuild()
 
     def handle_extra_type(self, objtype, obj):
-        sref = RelLib.SourceRef()
+        sref = gen.lib.SourceRef()
         src = self.dbstate.db.get_source_from_handle(obj)
         try:
             from Editors import EditSourceRef

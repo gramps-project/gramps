@@ -47,7 +47,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 
 import BaseDoc
-import RelLib
+import gen.lib
 from DateHandler import displayer as _dd
 from BasicUtils import name_displayer as _nd
 
@@ -601,12 +601,12 @@ class ComprehensiveAncestorsReport (Report):
             return t
 
         gender = person.get_gender ()
-        if gender == RelLib.Person.FEMALE:
+        if gender == gen.lib.Person.FEMALE:
             if name.get_type () == 'Married Name':
                 return _('Mrs.')
 
             return _('Miss')
-        elif gender == RelLib.Person.MALE:
+        elif gender == gen.lib.Person.MALE:
             return _('Mr.')
         else:
             return _('(gender unknown)')
@@ -727,7 +727,7 @@ class ComprehensiveAncestorsReport (Report):
                                 break
 
                     if not first_rel:
-                        if gender == RelLib.Person.FEMALE:
+                        if gender == gen.lib.Person.FEMALE:
                             ret += _('  She later married %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:
@@ -737,7 +737,7 @@ class ComprehensiveAncestorsReport (Report):
                     elif (listing_children or
                           spouse == mother or
                           family != from_family):
-                        if gender == RelLib.Person.FEMALE:
+                        if gender == gen.lib.Person.FEMALE:
                             ret += _('  She married %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:
@@ -748,14 +748,14 @@ class ComprehensiveAncestorsReport (Report):
                         ret += self.event_info (marriage)
                 else: # Not a marriage
                     if not first_rel:
-                        if gender == RelLib.Person.FEMALE:
+                        if gender == gen.lib.Person.FEMALE:
                             ret += _('  She later had a relationship with %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:
                             ret += _('  He later had a relationship with %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                     else:
-                        if gender == RelLib.Person.FEMALE:
+                        if gender == gen.lib.Person.FEMALE:
                             ret += _('  She had a relationship with %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
                         else:

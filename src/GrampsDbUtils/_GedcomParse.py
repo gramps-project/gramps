@@ -109,7 +109,7 @@ LOG = logging.getLogger(".GedcomImport")
 #
 #-------------------------------------------------------------------------
 import Errors
-import RelLib
+import gen.lib
 from BasicUtils import name_displayer, UpdateCallback
 import Mime
 import LdsUtils
@@ -141,19 +141,19 @@ TRUNC_MSG = _("Your GEDCOM file is corrupted. "
 # constants
 #
 #-------------------------------------------------------------------------
-TYPE_BIRTH  = RelLib.ChildRefType()
-TYPE_ADOPT  = RelLib.ChildRefType(RelLib.ChildRefType.ADOPTED)
-TYPE_FOSTER = RelLib.ChildRefType(RelLib.ChildRefType.FOSTER)
+TYPE_BIRTH  = gen.lib.ChildRefType()
+TYPE_ADOPT  = gen.lib.ChildRefType(gen.lib.ChildRefType.ADOPTED)
+TYPE_FOSTER = gen.lib.ChildRefType(gen.lib.ChildRefType.FOSTER)
 
 RELATION_TYPES = (
-    RelLib.ChildRefType.BIRTH, 
-    RelLib.ChildRefType.UNKNOWN, 
-    RelLib.ChildRefType.NONE, 
+    gen.lib.ChildRefType.BIRTH, 
+    gen.lib.ChildRefType.UNKNOWN, 
+    gen.lib.ChildRefType.NONE, 
     )
 
 PEDIGREE_TYPES = {
-    'birth'  : RelLib.ChildRefType(), 
-    'natural': RelLib.ChildRefType(), 
+    'birth'  : gen.lib.ChildRefType(), 
+    'natural': gen.lib.ChildRefType(), 
     'step'   : TYPE_ADOPT, 
     'adopted': TYPE_ADOPT, 
     'foster' : TYPE_FOSTER, 
@@ -174,28 +174,28 @@ EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
 EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 
 FTW_BAD_PLACE = [
-    RelLib.EventType.OCCUPATION, 
-    RelLib.EventType.RELIGION, 
-    RelLib.EventType.DEGREE
+    gen.lib.EventType.OCCUPATION, 
+    gen.lib.EventType.RELIGION, 
+    gen.lib.EventType.DEGREE
     ]
 
 MEDIA_MAP = {
-    'audio'      : RelLib.SourceMediaType.AUDIO, 
-    'book'       : RelLib.SourceMediaType.BOOK, 
-    'card'       : RelLib.SourceMediaType.CARD, 
-    'electronic' : RelLib.SourceMediaType.ELECTRONIC, 
-    'fiche'      : RelLib.SourceMediaType.FICHE, 
-    'microfiche' : RelLib.SourceMediaType.FICHE, 
-    'microfilm'  : RelLib.SourceMediaType.FICHE, 
-    'film'       : RelLib.SourceMediaType.FILM, 
-    'magazine'   : RelLib.SourceMediaType.MAGAZINE, 
-    'manuscript' : RelLib.SourceMediaType.MANUSCRIPT, 
-    'map'        : RelLib.SourceMediaType.MAP, 
-    'newspaper'  : RelLib.SourceMediaType.NEWSPAPER, 
-    'photo'      : RelLib.SourceMediaType.PHOTO, 
-    'tombstone'  : RelLib.SourceMediaType.TOMBSTONE, 
-    'grave'      : RelLib.SourceMediaType.TOMBSTONE, 
-    'video'      : RelLib.SourceMediaType.VIDEO, 
+    'audio'      : gen.lib.SourceMediaType.AUDIO, 
+    'book'       : gen.lib.SourceMediaType.BOOK, 
+    'card'       : gen.lib.SourceMediaType.CARD, 
+    'electronic' : gen.lib.SourceMediaType.ELECTRONIC, 
+    'fiche'      : gen.lib.SourceMediaType.FICHE, 
+    'microfiche' : gen.lib.SourceMediaType.FICHE, 
+    'microfilm'  : gen.lib.SourceMediaType.FICHE, 
+    'film'       : gen.lib.SourceMediaType.FILM, 
+    'magazine'   : gen.lib.SourceMediaType.MAGAZINE, 
+    'manuscript' : gen.lib.SourceMediaType.MANUSCRIPT, 
+    'map'        : gen.lib.SourceMediaType.MAP, 
+    'newspaper'  : gen.lib.SourceMediaType.NEWSPAPER, 
+    'photo'      : gen.lib.SourceMediaType.PHOTO, 
+    'tombstone'  : gen.lib.SourceMediaType.TOMBSTONE, 
+    'grave'      : gen.lib.SourceMediaType.TOMBSTONE, 
+    'video'      : gen.lib.SourceMediaType.VIDEO, 
 }
 
 #-------------------------------------------------------------------------
@@ -276,7 +276,7 @@ class GedcomParser(UpdateCallback):
         self.gedsource = self.gedmap.get_from_source_tag('GEDCOM 5.5')
         self.use_def_src = default_source
         if self.use_def_src:
-            self.def_src = RelLib.Source()
+            self.def_src = gen.lib.Source()
             fname = os.path.basename(filename).split('\\')[-1]
             self.def_src.set_title(_("Import from GEDCOM (%s)") % 
                                    encode_filename(fname))
@@ -830,7 +830,7 @@ class GedcomParser(UpdateCallback):
             
         for title in self.inline_srcs.keys():
             handle = self.inline_srcs[title]
-            src = RelLib.Source()
+            src = gen.lib.Source()
             src.set_handle(handle)
             src.set_title(title)
             self.dbase.add_source(src, self.trans)
@@ -869,7 +869,7 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise, 
         we create a new person, assign the handle and GRAMPS ID.
         """
-        person = RelLib.Person()
+        person = gen.lib.Person()
         intid = self.gid2id.get(gramps_id)
         if self.dbase.has_person_handle(intid):
             person.unserialize(self.dbase.get_raw_person_data(intid))
@@ -885,7 +885,7 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise, 
         we create a new family, assign the handle and GRAMPS ID.
         """
-        family = RelLib.Family()
+        family = gen.lib.Family()
         intid = self.fid2id.get(gramps_id)
         if self.dbase.has_family_handle(intid):
             family.unserialize(self.dbase.get_raw_family_data(intid))
@@ -901,7 +901,7 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise, 
         we create a new media object, assign the handle and GRAMPS ID.
         """
-        obj = RelLib.MediaObject()
+        obj = gen.lib.MediaObject()
         intid = self.oid2id.get(gramps_id)
         if self.dbase.has_object_handle(intid):
             obj.unserialize(self.dbase.get_raw_object_data(intid))
@@ -917,7 +917,7 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise, 
         we create a new source, assign the handle and GRAMPS ID.
         """
-        obj = RelLib.Source()
+        obj = gen.lib.Source()
         intid = self.sid2id.get(gramps_id)
         if self.dbase.has_source_handle(intid):
             obj.unserialize(self.dbase.get_raw_source_data(intid))
@@ -936,7 +936,7 @@ class GedcomParser(UpdateCallback):
         Some GEDCOM "flavors" destroy the specification, and declare the 
         repository inline instead of in a object. 
         """
-        repository = RelLib.Repository()
+        repository = gen.lib.Repository()
         if not gramps_id:
             need_commit = True
             gramps_id = self.dbase.find_next_repository_gramps_id()
@@ -963,7 +963,7 @@ class GedcomParser(UpdateCallback):
         Some GEDCOM "flavors" destroy the specification, and declare the 
         repository inline instead of in a object. 
         """
-        note = RelLib.Note()
+        note = gen.lib.Note()
         if not gramps_id:
             need_commit = True
             gramps_id = self.dbase.find_next_note_gramps_id()
@@ -987,7 +987,7 @@ class GedcomParser(UpdateCallback):
         already used (is in the db), we return the item in the db. Otherwise, 
         we create a new place, assign the handle and GRAMPS ID.
         """
-        place = RelLib.Place()
+        place = gen.lib.Place()
 
         # check to see if we've encountered this name before
         # if we haven't we need to get a new GRAMPS ID
@@ -1282,8 +1282,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
-        attr.set_type((RelLib.AttributeType.CUSTOM, line.token_text))
+        attr = gen.lib.Attribute()
+        attr.set_type((gen.lib.AttributeType.CUSTOM, line.token_text))
         attr.set_value(line.data)
         state.person.add_attribute(attr)
         self.__skip_subordinate_levels(state.level+1)
@@ -1295,7 +1295,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, RelLib.EventType.CUSTOM, 
+        event_ref = self.__build_event_pair(state, gen.lib.EventType.CUSTOM, 
                                             self.event_parse_tbl, line.data)
         state.person.add_event_ref(event_ref)
 
@@ -1326,8 +1326,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
-        attr.set_type((RelLib.AttributeType.CUSTOM, 'RESN'))
+        attr = gen.lib.Attribute()
+        attr.set_type((gen.lib.AttributeType.CUSTOM, 'RESN'))
         state.person.add_attribute(attr)
 
     def __person_alt_name(self, line, state):
@@ -1344,7 +1344,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         name = GedcomUtils.parse_name_personal(line.data)
-        name.set_type(RelLib.NameType.AKA)
+        name.set_type(gen.lib.NameType.AKA)
         state.person.add_alternate_name(name)
 
         # Create a new state, and parse the remainder of the NAME level
@@ -1377,7 +1377,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data and line.data[0] == '@':
-            ref = RelLib.MediaRef()
+            ref = gen.lib.MediaRef()
             handle = self.__find_object_handle(line.data[1:-1])
             ref.set_reference_handle(handle)
             state.person.add_media_reference(ref)
@@ -1411,7 +1411,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        # build a RelLib.Name structure from the text
+        # build a gen.lib.Name structure from the text
         
         name = GedcomUtils.parse_name_personal(line.data)
 
@@ -1422,10 +1422,10 @@ class GedcomParser(UpdateCallback):
         # of different name types
         
         if state.name_cnt == 0:
-            name.set_type(RelLib.NameType.BIRTH)
+            name.set_type(gen.lib.NameType.BIRTH)
             state.person.set_primary_name(name)
         else:
-            name.set_type(RelLib.NameType.AKA)
+            name.set_type(gen.lib.NameType.AKA)
             state.person.add_alternate_name(name)
         state.name_cnt += 1
 
@@ -1462,7 +1462,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, RelLib.EventType.CUSTOM, 
+        event_ref = self.__build_event_pair(state, gen.lib.EventType.CUSTOM, 
                                            self.event_parse_tbl, line.data)
         state.person.add_event_ref(event_ref)
 
@@ -1481,7 +1481,7 @@ class GedcomParser(UpdateCallback):
 
         event = line.data
         event.set_gramps_id(self.emapper.find_next())
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
@@ -1509,7 +1509,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, RelLib.EventType.RELIGION, 
+        event_ref = self.__build_event_pair(state, gen.lib.EventType.RELIGION, 
                                            self.event_parse_tbl, line.data)
         state.person.add_event_ref(event_ref)
 
@@ -1532,7 +1532,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, RelLib.EventType.BIRTH, 
+        event_ref = self.__build_event_pair(state, gen.lib.EventType.BIRTH, 
                                            self.event_parse_tbl, line.data)
         if state.person.get_birth_ref():
             state.person.add_event_ref(event_ref)
@@ -1554,7 +1554,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, RelLib.EventType.ADOPT, 
+        event_ref = self.__build_event_pair(state, gen.lib.EventType.ADOPT, 
                                            self.adopt_parse_tbl, line.data)
         state.person.add_event_ref(event_ref)
 
@@ -1572,7 +1572,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event_ref = self.__build_event_pair(state, RelLib.EventType.DEATH, 
+        event_ref = self.__build_event_pair(state, gen.lib.EventType.DEATH, 
                                            self.event_parse_tbl, line.data)
         if state.person.get_death_ref():
             state.person.add_event_ref(event_ref)
@@ -1622,7 +1622,7 @@ class GedcomParser(UpdateCallback):
         """
         sub_state = GedcomUtils.CurrentState()
         sub_state.level = state.level+1
-        sub_state.addr = RelLib.Address()
+        sub_state.addr = gen.lib.Address()
         sub_state.addr.set_street(line.data)
         state.person.add_address(sub_state.addr)
         self.__parse_level(sub_state, self.parse_addr_tbl, self.__ignore)
@@ -1636,7 +1636,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        addr = RelLib.Address()
+        addr = gen.lib.Address()
         addr.set_street("Unknown")
         addr.set_phone(line.data)
         state.person.add_address(addr)
@@ -1648,10 +1648,10 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event = RelLib.Event()
-        event_ref = RelLib.EventRef()
+        event = gen.lib.Event()
+        event_ref = gen.lib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
-        event.set_type(RelLib.EventType.NOB_TITLE)
+        event.set_type(gen.lib.EventType.NOB_TITLE)
         event.set_description(line.data)
 
         sub_state = GedcomUtils.CurrentState()
@@ -1685,9 +1685,9 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if line.data == "_OTHN":
-            state.name.set_type(RelLib.NameType.AKA)
+            state.name.set_type(gen.lib.NameType.AKA)
         else:
-            state.name.set_type((RelLib.NameType.CUSTOM, line.data))
+            state.name.set_type((gen.lib.NameType.CUSTOM, line.data))
 
     def __name_note(self, line, state):
         """
@@ -1760,13 +1760,13 @@ class GedcomParser(UpdateCallback):
         text = line.data.strip()
         data = text.split()
         if len(data) == 1:
-            name = RelLib.Name(state.person.primary_name)
+            name = gen.lib.Name(state.person.primary_name)
             name.set_surname(data[0].strip())
-            name.set_type(RelLib.NameType.MARRIED)
+            name.set_type(gen.lib.NameType.MARRIED)
             state.person.add_alternate_name(name)
         elif len(data) > 1:
             name = GedcomUtils.parse_name_personal(text)
-            name.set_type(RelLib.NameType.MARRIED)
+            name.set_type(gen.lib.NameType.MARRIED)
             state.person.add_alternate_name(name)
 
     def __name_nsfx(self, line, state):
@@ -1787,8 +1787,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
-        attr.set_type(RelLib.AttributeType.NICKNAME)
+        attr = gen.lib.Attribute()
+        attr.set_type(gen.lib.AttributeType.NICKNAME)
         attr.set_value(line.data)
         state.person.add_attribute(attr)
         self.__skip_subordinate_levels(state.level+1)
@@ -1803,12 +1803,12 @@ class GedcomParser(UpdateCallback):
         lname = line.data.split()
         name_len = len(lname)
         if name_len == 1:
-            attr = RelLib.Attribute()
-            attr.set_type(RelLib.AttributeType.NICKNAME)
+            attr = gen.lib.Attribute()
+            attr.set_type(gen.lib.AttributeType.NICKNAME)
             attr.set_value(line.data)
             state.person.add_attribute(attr)
         else:
-            name = RelLib.Name()
+            name = gen.lib.Name()
             name.set_surname(lname[-1].strip())
             name.set_first_name(' '.join(lname[0:name_len-1]))
             state.person.add_alternate_name(name)
@@ -1847,7 +1847,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        addr = RelLib.Address()
+        addr = gen.lib.Address()
 
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
@@ -1971,7 +1971,7 @@ class GedcomParser(UpdateCallback):
         """
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
-        sub_state.attr = RelLib.Attribute()
+        sub_state.attr = gen.lib.Attribute()
         sub_state.attr.set_value(line.data)
         sub_state.level = state.level+1
         state.person.add_attribute(sub_state.attr)
@@ -1991,7 +1991,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.build_lds_ord(state, RelLib.LdsOrd.BAPTISM)
+        self.build_lds_ord(state, gen.lib.LdsOrd.BAPTISM)
 
     def __person_conl(self, line, state):
         """
@@ -2002,7 +2002,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.build_lds_ord(state, RelLib.LdsOrd.CONFIRMATION)
+        self.build_lds_ord(state, gen.lib.LdsOrd.CONFIRMATION)
 
     def __person_endl(self, line, state):
         """
@@ -2013,7 +2013,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.build_lds_ord(state, RelLib.LdsOrd.ENDOWMENT)
+        self.build_lds_ord(state, gen.lib.LdsOrd.ENDOWMENT)
 
     def __person_slgc(self, line, state):
         """
@@ -2024,7 +2024,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        self.build_lds_ord(state, RelLib.LdsOrd.SEAL_TO_PARENTS)
+        self.build_lds_ord(state, gen.lib.LdsOrd.SEAL_TO_PARENTS)
 
     def build_lds_ord(self, state, lds_type):
         """
@@ -2037,7 +2037,7 @@ class GedcomParser(UpdateCallback):
         """
         sub_state = GedcomUtils.CurrentState()
         sub_state.level = state.level + 1
-        sub_state.lds_ord = RelLib.LdsOrd()
+        sub_state.lds_ord = gen.lib.LdsOrd()
         sub_state.lds_ord.set_type(lds_type)
         sub_state.place = None
         sub_state.place_fields = GedcomUtils.PlaceParser()
@@ -2147,7 +2147,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        status = GedcomInfo.lds_status.get(line.data, RelLib.LdsOrd.STATUS_NONE)
+        status = GedcomInfo.lds_status.get(line.data, gen.lib.LdsOrd.STATUS_NONE)
         state.lds_ord.set_status(status)
 
     def __person_famc(self, line, state):
@@ -2199,7 +2199,7 @@ class GedcomParser(UpdateCallback):
                         ref.set_father_relation(sub_state.ftype)
                     break
             else:
-                ref = RelLib.ChildRef()
+                ref = gen.lib.ChildRef()
                 ref.ref = state.person.handle
                 if sub_state.ftype:
                     ref.set_mother_relation(sub_state.ftype)
@@ -2221,7 +2221,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         state.ftype = PEDIGREE_TYPES.get(line.data.lower(), 
-                                         RelLib.ChildRefType.UNKNOWN)
+                                         gen.lib.ChildRefType.UNKNOWN)
 
     def __person_famc_note(self, line, state):
         """
@@ -2314,7 +2314,7 @@ class GedcomParser(UpdateCallback):
         sub_state = GedcomUtils.CurrentState()
         sub_state.person = state.person
         sub_state.level = state.level + 1
-        sub_state.ref = RelLib.PersonRef()
+        sub_state.ref = gen.lib.PersonRef()
         sub_state.ref.ref = handle
         sub_state.ignore = False
 
@@ -2475,8 +2475,8 @@ class GedcomParser(UpdateCallback):
         """
         event = line.data
         event.set_gramps_id(self.emapper.find_next())
-        event_ref = RelLib.EventRef()
-        event_ref.set_role(RelLib.EventRoleType.FAMILY)
+        event_ref = gen.lib.EventRef()
+        event_ref.set_role(gen.lib.EventRoleType.FAMILY)
         self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
@@ -2487,16 +2487,16 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
 
-        if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+        if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
             descr = event.get_description()
             if descr == "Civil Union":
-                state.family.type.set(RelLib.FamilyRelType.CIVIL_UNION)
+                state.family.type.set(gen.lib.FamilyRelType.CIVIL_UNION)
                 event.set_description('')
             elif descr == "Unmarried":
-                state.family.type.set(RelLib.FamilyRelType.UNMARRIED)
+                state.family.type.set(gen.lib.FamilyRelType.UNMARRIED)
                 event.set_description('')
             else:
-                state.family.type.set(RelLib.FamilyRelType.MARRIED)
+                state.family.type.set(gen.lib.FamilyRelType.MARRIED)
 
         family_event_name(event, state.family, self.dbase)
         self.dbase.commit_event(event, self.trans)
@@ -2515,9 +2515,9 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        event = RelLib.Event()
-        event_ref = RelLib.EventRef()
-        event_ref.set_role(RelLib.EventRoleType.FAMILY)
+        event = gen.lib.Event()
+        event_ref = gen.lib.EventRef()
+        event_ref.set_role(gen.lib.EventRoleType.FAMILY)
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(line.data)
         self.dbase.add_event(event, self.trans)
@@ -2567,7 +2567,7 @@ class GedcomParser(UpdateCallback):
             if sub_state.mrel:
                 ref.set_mother_relation(sub_state.mrel)
         else:
-            ref = RelLib.ChildRef()
+            ref = gen.lib.ChildRef()
             ref.ref = child.handle
             if sub_state.frel:
                 ref.set_father_relation(sub_state.frel)
@@ -2592,8 +2592,8 @@ class GedcomParser(UpdateCallback):
             """
         sub_state = GedcomUtils.CurrentState()
         sub_state.level = state.level + 1
-        sub_state.lds_ord = RelLib.LdsOrd()
-        sub_state.lds_ord.set_type(RelLib.LdsOrd.SEAL_TO_SPOUSE)
+        sub_state.lds_ord = gen.lib.LdsOrd()
+        sub_state.lds_ord.set_type(gen.lib.LdsOrd.SEAL_TO_SPOUSE)
         sub_state.place = None
         sub_state.family = state.family
         sub_state.place_fields = GedcomUtils.PlaceParser()
@@ -2684,7 +2684,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        state.addr = RelLib.Address()
+        state.addr = gen.lib.Address()
         state.addr.set_street(line.data)
         self.__parse_level(state, self.parse_addr_tbl, self.__ignore)
 
@@ -2704,7 +2704,7 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
+        attr = gen.lib.Attribute()
         attr.set_type(line.token_text)
         attr.set_value(line.data)
         state.family.add_attribute(attr)
@@ -2853,17 +2853,17 @@ class GedcomParser(UpdateCallback):
         """
         if state.event.get_type().is_custom():
             if GED_2_GRAMPS.has_key(line.data):
-                name = RelLib.EventType(GED_2_GRAMPS[line.data])
+                name = gen.lib.EventType(GED_2_GRAMPS[line.data])
             else:
                 val = self.gedsource.tag2gramps(line.data)
                 if val:
-                    name = RelLib.EventType((RelLib.EventType.CUSTOM, val))
+                    name = gen.lib.EventType((gen.lib.EventType.CUSTOM, val))
                 else:
                     try:
-                        name = RelLib.EventType((RelLib.EventType.CUSTOM, 
+                        name = gen.lib.EventType((gen.lib.EventType.CUSTOM, 
                                                  line[3]))
                     except AttributeError:
-                        name = RelLib.EventType(RelLib.EventType.UNKNOWN)
+                        name = gen.lib.EventType(gen.lib.EventType.UNKNOWN)
             state.event.set_type(name)
         else:
             try:
@@ -3002,7 +3002,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         sub_state = GedcomUtils.CurrentState(level=state.level+1)
-        sub_state.location = RelLib.Location()
+        sub_state.location = gen.lib.Location()
         sub_state.location.set_street(line.data)
         sub_state.note = []
         sub_state.event = state.event
@@ -3063,7 +3063,7 @@ class GedcomParser(UpdateCallback):
         if line.data[0:13] == "Description: ":
             state.event.set_description(line.data[13:])
         else:
-            new_note = RelLib.Note(line.data)
+            new_note = gen.lib.Note(line.data)
             new_note.set_handle(Utils.create_id())
             self.dbase.add_note(new_note, self.trans)
             self.__skip_subordinate_levels(state.level+2)
@@ -3085,8 +3085,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
-        attr.set_type(RelLib.AttributeType.CAUSE)
+        attr = gen.lib.Attribute()
+        attr.set_type(gen.lib.AttributeType.CAUSE)
         attr.set_value(line.data)
         state.event.add_attribute(attr)
 
@@ -3113,8 +3113,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
-        attr.set_type(RelLib.AttributeType.AGE)
+        attr = gen.lib.Attribute()
+        attr.set_type(gen.lib.AttributeType.AGE)
         attr.set_value(line.data)
         state.event_ref.add_attribute(attr)
 
@@ -3130,8 +3130,8 @@ class GedcomParser(UpdateCallback):
             if self.__level_is_finished(line, state.level):
                 break
             elif line.token == TOKEN_AGE:
-                attr = RelLib.Attribute()
-                attr.set_type(RelLib.AttributeType.FATHER_AGE)
+                attr = gen.lib.Attribute()
+                attr.set_type(gen.lib.AttributeType.FATHER_AGE)
                 attr.set_value(line.data)
                 state.event_ref.add_attribute(attr)
 
@@ -3147,8 +3147,8 @@ class GedcomParser(UpdateCallback):
             if self.__level_is_finished(line, state.level):
                 break
             elif line.token == TOKEN_AGE:
-                attr = RelLib.Attribute()
-                attr.set_type(RelLib.AttributeType.MOTHER_AGE)
+                attr = gen.lib.Attribute()
+                attr.set_type(gen.lib.AttributeType.MOTHER_AGE)
                 attr.set_value(line.data)
                 state.event_ref.add_attribute(attr)
 
@@ -3159,8 +3159,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
-        attr.set_type(RelLib.AttributeType.AGENCY)
+        attr = gen.lib.Attribute()
+        attr.set_type(gen.lib.AttributeType.AGENCY)
         attr.set_value(line.data)
         state.event.add_attribute(attr)
 
@@ -3178,7 +3178,7 @@ class GedcomParser(UpdateCallback):
             # +1 TYPE <TYPE_OF_RELATION>
             assert( state.event.handle)  # event handle is required to be set
             wit = self.__find_or_create_person(self.pid_map[line.data])
-            event_ref = RelLib.EventRef()
+            event_ref = gen.lib.EventRef()
             event_ref.set_reference_handle(state.event.handle)
             while True:
                 line = self.__get_next_line()
@@ -3186,18 +3186,18 @@ class GedcomParser(UpdateCallback):
                     break
                 elif line.token == TOKEN_TYPE:
                     if line.data in ("WITNESS_OF_MARRIAGE"):
-                        role = RelLib.EventRoleType(
-                            RelLib.EventRoleType.WITNESS)
+                        role = gen.lib.EventRoleType(
+                            gen.lib.EventRoleType.WITNESS)
                     else:
-                        role = RelLib.EventRoleType(
-                            (RelLib.EventRoleType.CUSTOM, line.data))
+                        role = gen.lib.EventRoleType(
+                            (gen.lib.EventRoleType.CUSTOM, line.data))
                     event_ref.set_role(role)
             wit.add_event_ref(event_ref)
             self.dbase.commit_person(wit, self.trans)
         else:
             # n _WITN <TEXTUAL_LIST_OF_NAMES>
-            attr = RelLib.Attribute()
-            attr.set_type(RelLib.AttributeType.WITNESS)
+            attr = gen.lib.Attribute()
+            attr.set_type(gen.lib.AttributeType.WITNESS)
             attr.set_value(line.data)
             state.event.add_attribute(attr)
         
@@ -3219,8 +3219,8 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.parse_person_adopt, 
                          self.__undefined)
 
-        if (int(sub_state.mrel) == RelLib.ChildRefType.BIRTH  and
-            int(sub_state.frel) == RelLib.ChildRefType.BIRTH):
+        if (int(sub_state.mrel) == gen.lib.ChildRefType.BIRTH  and
+            int(sub_state.frel) == gen.lib.ChildRefType.BIRTH):
             sub_state.mrel = sub_state.frel = TYPE_ADOPT
 
         if state.person.get_main_parents_family_handle() == handle:
@@ -3234,7 +3234,7 @@ class GedcomParser(UpdateCallback):
             ref.set_father_relation(sub_state.frel)
             ref.set_mother_relation(sub_state.mrel)
         else:
-            ref = RelLib.ChildRef()
+            ref = gen.lib.ChildRef()
             ref.ref = state.person.handle
             ref.set_father_relation(sub_state.frel)
             ref.set_mother_relation(sub_state.mrel)
@@ -3269,7 +3269,7 @@ class GedcomParser(UpdateCallback):
             state.person.set_main_parent_family_handle(None)
         state.person.add_parent_family_handle(handle)
         
-        frel = mrel = RelLib.ChildRefType.BIRTH
+        frel = mrel = gen.lib.ChildRefType.BIRTH
 
         family = self.dbase.find_family_from_handle(handle, self.trans)
         reflist = [ ref for ref in family.get_child_ref_list() \
@@ -3279,7 +3279,7 @@ class GedcomParser(UpdateCallback):
             ref.set_father_relation(frel)
             ref.set_mother_relation(mrel)
         else:
-            ref = RelLib.ChildRef()
+            ref = gen.lib.ChildRef()
             ref.ref = state.person.handle
             ref.set_father_relation(frel)
             ref.set_mother_relation(mrel)
@@ -3414,21 +3414,21 @@ class GedcomParser(UpdateCallback):
         state.src_ref.set_date_object(line.data)
 
     def __source_text(self, line, state):
-        note = RelLib.Note()
+        note = gen.lib.Note()
         note.set(line.data)
         gramps_id = self.dbase.find_next_note_gramps_id()
         note.set_gramps_id(gramps_id)
-        note.set_type(RelLib.NoteType.SOURCE_TEXT)
+        note.set_type(gen.lib.NoteType.SOURCE_TEXT)
         self.dbase.add_note(note, self.trans)
 
         state.source.add_note(note.get_handle())
 
     def __srcref_data_text(self, line, state):
-        note = RelLib.Note()
+        note = gen.lib.Note()
         note.set(line.data)
         gramps_id = self.dbase.find_next_note_gramps_id()
         note.set_gramps_id(gramps_id)
-        note.set_type(RelLib.NoteType.SOURCE_TEXT)
+        note.set_type(gen.lib.NoteType.SOURCE_TEXT)
         self.dbase.add_note(note, self.trans)
 
         state.src_ref.add_note(note.get_handle())
@@ -3583,7 +3583,7 @@ class GedcomParser(UpdateCallback):
             self.repo2id[line.data] = repo.get_gramps_id()
             repo.set_name(line.data)
             self.dbase.commit_repository(repo, self.trans)
-        repo_ref = RelLib.RepoRef()
+        repo_ref = gen.lib.RepoRef()
         repo_ref.set_reference_handle(repo.handle)
 
         sub_state = GedcomUtils.CurrentState()
@@ -3607,7 +3607,7 @@ class GedcomParser(UpdateCallback):
     def __repo_ref_medi(self, line, state):
         name = line.data
         mtype = MEDIA_MAP.get(name.lower(), 
-                              (RelLib.SourceMediaType.CUSTOM, name))
+                              (gen.lib.SourceMediaType.CUSTOM, name))
         state.repo_ref.set_media_type(mtype)
 
     def __repo_ref_note(self, line, state):
@@ -3635,8 +3635,8 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        attr = RelLib.Attribute()
-        attr.set_type(RelLib.AttributeType.AGENCY)
+        attr = gen.lib.Attribute()
+        attr.set_type(gen.lib.AttributeType.AGENCY)
         attr.set_value(line.data)
         state.source.add_attribute(attr)
 
@@ -3910,7 +3910,7 @@ class GedcomParser(UpdateCallback):
         if this happened, and try to fix it.
         """
 
-        addr = RelLib.Address()
+        addr = gen.lib.Address()
         addr.set_street(line.data)
 
         sub_state = GedcomUtils.CurrentState()
@@ -3957,7 +3957,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if not state.location:
-            state.location = RelLib.Location()
+            state.location = gen.lib.Location()
         val = state.location.get_street()
         if val:
             val = "%s, %s" % (val, line.data.strip())
@@ -3973,7 +3973,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if not state.location:
-            state.location = RelLib.Location()
+            state.location = gen.lib.Location()
         state.location.set_date_object(line.data)
 
     def __location_city(self, line, state):
@@ -3984,7 +3984,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if not state.location:
-            state.location = RelLib.Location()
+            state.location = gen.lib.Location()
         state.location.set_city(line.data)
 
     def __location_stae(self, line, state):
@@ -3995,7 +3995,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if not state.location:
-            state.location = RelLib.Location()
+            state.location = gen.lib.Location()
         state.location.set_state(line.data)
 
     def __location_post(self, line, state):
@@ -4006,7 +4006,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if not state.location:
-            state.location = RelLib.Location()
+            state.location = gen.lib.Location()
         state.location.set_postal_code(line.data)
 
     def __location_ctry(self, line, state):
@@ -4017,7 +4017,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if not state.location:
-            state.location = RelLib.Location()
+            state.location = gen.lib.Location()
         state.location.set_country(line.data)
 
     def __location_note(self, line, state):
@@ -4028,7 +4028,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if not state.location:
-            state.location = RelLib.Location()
+            state.location = gen.lib.Location()
         self.__parse_note(line, state.event, state.level+1)
 
     def map_ancestry_com(self, person, original_gid):
@@ -4191,14 +4191,14 @@ class GedcomParser(UpdateCallback):
             gid = line.data.strip()
             obj.add_note(self.__find_note_handle(self.nid_map[gid]))
         else:
-            new_note = RelLib.Note(line.data)
+            new_note = gen.lib.Note(line.data)
             new_note.set_handle(Utils.create_id())
             self.dbase.add_note(new_note, self.trans)
             self.__skip_subordinate_levels(level+1)
             obj.add_note(new_note.get_handle())
 
     def __parse_inline_note(self, line, level):
-        new_note = RelLib.Note(line.data)
+        new_note = gen.lib.Note(line.data)
         gid = self.nid_map[line.token_text]
         handle = self.nid2id.get(gid)
         new_note.set_handle(handle)
@@ -4234,11 +4234,11 @@ class GedcomParser(UpdateCallback):
         Handles the specified source, building a source reference to
         the object.
         """
-        source_ref = RelLib.SourceRef()
+        source_ref = gen.lib.SourceRef()
         if line.data and line.data[0] != "@":
             title = line.data
             handle = self.inline_srcs.get(title, Utils.create_id())
-            src = RelLib.Source()
+            src = gen.lib.Source()
             src.handle = handle
             src.gramps_id = self.dbase.find_next_source_gramps_id()
             self.inline_srcs[title] = handle
@@ -4298,10 +4298,10 @@ class GedcomParser(UpdateCallback):
         
     def build_media_object(self, obj, form, filename, title, note):
         if form == "url":
-            url = RelLib.Url()
+            url = gen.lib.Url()
             url.set_path(filename)
             url.set_description(title)
-            url.set_type(RelLib.UrlType.WEB_HOME)
+            url.set_type(gen.lib.UrlType.WEB_HOME)
             obj.add_url(url)
         else:
             (valid, path) = self.__find_file(filename, self.dir_path)
@@ -4310,7 +4310,7 @@ class GedcomParser(UpdateCallback):
                 path = filename.replace('\\', os.path.sep)
             photo_handle = self.media_map.get(path)
             if photo_handle == None:
-                photo = RelLib.MediaObject()
+                photo = gen.lib.MediaObject()
                 photo.set_path(path)
                 photo.set_description(title)
                 full_path = os.path.abspath(path)
@@ -4322,7 +4322,7 @@ class GedcomParser(UpdateCallback):
                 self.media_map[path] = photo.handle
             else:
                 photo = self.dbase.get_object_from_handle(photo_handle)
-            oref = RelLib.MediaRef()
+            oref = gen.lib.MediaRef()
             oref.set_reference_handle(photo.handle)
             oref.add_note(note)
             obj.add_media_reference(oref)
@@ -4340,8 +4340,8 @@ class GedcomParser(UpdateCallback):
         n <<MULTIMEDIA_LINK>> {0:M} p.*, *
         n <<NOTE_STRUCTURE>> {0:M} p.
         """
-        event = RelLib.Event()
-        event_ref = RelLib.EventRef()
+        event = gen.lib.Event()
+        event_ref = gen.lib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(event_type)
 
@@ -4365,8 +4365,8 @@ class GedcomParser(UpdateCallback):
 
     def __build_family_event_pair(self, state, event_type, event_map, 
                                  description):
-        event = RelLib.Event()
-        event_ref = RelLib.EventRef()
+        event = gen.lib.Event()
+        event_ref = gen.lib.EventRef()
         event.set_gramps_id(self.emapper.find_next())
         event.set_type(event_type)
         if description and description != 'Y':
@@ -4416,7 +4416,7 @@ class GedcomParser(UpdateCallback):
         Adds the default source to the object.
         """
         if self.use_def_src and len(obj.get_source_references()) == 0:
-            sref = RelLib.SourceRef()
+            sref = gen.lib.SourceRef()
             sref.set_reference_handle(self.def_src.handle)
             obj.add_source_reference(sref)
 

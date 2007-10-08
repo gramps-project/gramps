@@ -53,7 +53,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
-from RelLib import Date
+from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
 from PluginUtils import register_export

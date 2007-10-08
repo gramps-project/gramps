@@ -56,7 +56,7 @@ import Config
 import Utils
 import Bookmarks
 import Mime
-import RelLib
+import gen.lib
 
 from Editors import EditMedia, DeleteMediaQuery
 import Errors
@@ -187,7 +187,7 @@ class MediaView(PageView.ListView):
                     mime = Mime.get_type(name)
                     if not Mime.is_valid_type(mime):
                         return
-                    photo = RelLib.MediaObject()
+                    photo = gen.lib.MediaObject()
                     photo.set_path(name)
                     photo.set_mime_type(mime)
                     basename = os.path.basename(name)

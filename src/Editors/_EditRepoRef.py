@@ -42,7 +42,7 @@ import gtk
 import const
 import Config
 
-from RelLib import NoteType
+from gen.lib import NoteType
 
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from GrampsWidgets import *

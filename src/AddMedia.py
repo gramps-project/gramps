@@ -54,7 +54,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-import RelLib
+import gen.lib
 import Mime
 import GrampsDisplay
 import ManagedWindow
@@ -130,7 +130,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         description = unicode(self.description.get_text())
 
         if self.internal.get_active():
-            mobj = RelLib.MediaObject()
+            mobj = gen.lib.MediaObject()
             mobj.set_description(description)
             mobj.set_handle(Utils.create_id())
             mobj.set_mime_type(None)
@@ -155,7 +155,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             if description == "":
                 description = os.path.basename(filename)
 
-            mobj = RelLib.MediaObject()
+            mobj = gen.lib.MediaObject()
             mobj.set_description(description)
             mobj.set_mime_type(mtype)
             name = filename

@@ -43,7 +43,7 @@ __version__ = "$Revision$"
 
 from BasicUtils import name_displayer
 import DateHandler
-import RelLib
+import gen.lib
 
 #------------------------------------------------------------------------
 #
@@ -118,7 +118,7 @@ class SubstKeywords:
                 if not e_ref:
                     continue
                 e = database.get_event_from_handle(e_ref.ref)
-                if e.get_type() == RelLib.EventType.MARRIAGE:
+                if e.get_type() == gen.lib.EventType.MARRIAGE:
                     self.m = DateHandler.get_date(e)
                     mplace_handle = e.get_place_handle()
                     if mplace_handle:

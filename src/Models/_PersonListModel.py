@@ -10,7 +10,7 @@ from _PathCursor import PathCursor
 from _ListCursor import ListCursor
 
 from _FastModel import FastModel
-import RelLib
+import gen.lib
 
 
 class PersonListModel(FastModel):
@@ -27,7 +27,7 @@ class PersonListModel(FastModel):
         return ListCursor(db.surnames.cursor())
 
     def _get_object_class(self,db):
-        return RelLib.Person
+        return gen.lib.Person
 
     def _get_length(self,db):
         return self._table.stat()['ndata']

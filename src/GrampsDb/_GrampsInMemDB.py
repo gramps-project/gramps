@@ -37,7 +37,7 @@ import time
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+from gen.lib import *
 from _GrampsDbBase import *
 from _GrampsCursor import GrampsCursor
 

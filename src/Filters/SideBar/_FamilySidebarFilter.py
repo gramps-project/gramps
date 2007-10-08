@@ -40,7 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsWidgets
-import RelLib
+import gen.lib
 
 from _SidebarFilter import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
@@ -64,12 +64,12 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_mother = gtk.Entry()
         self.filter_child = gtk.Entry()
         
-        self.filter_event = RelLib.Event()
-        self.filter_event.set_type((RelLib.EventType.CUSTOM,u''))
+        self.filter_event = gen.lib.Event()
+        self.filter_event.set_type((gen.lib.EventType.CUSTOM,u''))
         self.etype = gtk.ComboBoxEntry()
 
-        self.family_stub = RelLib.Family()
-        self.family_stub.set_relationship((RelLib.FamilyRelType.CUSTOM,u''))
+        self.family_stub = gen.lib.Family()
+        self.family_stub.set_relationship((gen.lib.FamilyRelType.CUSTOM,u''))
         self.rtype = gtk.ComboBoxEntry()
         
         self.event_menu = GrampsWidgets.MonitoredDataType(
@@ -82,8 +82,8 @@ class FamilySidebarFilter(SidebarFilter):
             self.family_stub.set_relationship,
             self.family_stub.get_relationship)
         
-        self.filter_marker = RelLib.Family()
-        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM,u''))
+        self.filter_marker = gen.lib.Family()
+        self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM,u''))
         self.mtype = gtk.ComboBoxEntry()
         self.marker_menu = GrampsWidgets.MonitoredDataType(
             self.mtype,

@@ -35,7 +35,7 @@ import time
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import const
 import _GedcomInfo as GedcomInfo
 import Errors
@@ -73,39 +73,39 @@ MONTH = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 CALENDAR_MAP = {
-    RelLib.Date.CAL_HEBREW : (HMONTH, '@#DHEBREW@'), 
-    RelLib.Date.CAL_FRENCH : (FMONTH, '@#DFRENCH R@'), 
-    RelLib.Date.CAL_JULIAN : (MONTH, '@#DJULIAN@'), 
+    gen.lib.Date.CAL_HEBREW : (HMONTH, '@#DHEBREW@'), 
+    gen.lib.Date.CAL_FRENCH : (FMONTH, '@#DFRENCH R@'), 
+    gen.lib.Date.CAL_JULIAN : (MONTH, '@#DJULIAN@'), 
     }
 
 DATE_MODIFIER = {
-    RelLib.Date.MOD_ABOUT : "ABT", 
-    RelLib.Date.MOD_BEFORE : "BEF", 
-    RelLib.Date.MOD_AFTER : "AFT", 
+    gen.lib.Date.MOD_ABOUT : "ABT", 
+    gen.lib.Date.MOD_BEFORE : "BEF", 
+    gen.lib.Date.MOD_AFTER : "AFT", 
     }
 
 LDS_ORD_NAME = {
-    RelLib.LdsOrd.BAPTISM         : 'BAPL', 
-    RelLib.LdsOrd.ENDOWMENT       : 'ENDL', 
-    RelLib.LdsOrd.SEAL_TO_PARENTS : 'SLGC', 
-    RelLib.LdsOrd.SEAL_TO_SPOUSE  : 'SGLS', 
-    RelLib.LdsOrd.CONFIRMATION    : 'CONL', 
+    gen.lib.LdsOrd.BAPTISM         : 'BAPL', 
+    gen.lib.LdsOrd.ENDOWMENT       : 'ENDL', 
+    gen.lib.LdsOrd.SEAL_TO_PARENTS : 'SLGC', 
+    gen.lib.LdsOrd.SEAL_TO_SPOUSE  : 'SGLS', 
+    gen.lib.LdsOrd.CONFIRMATION    : 'CONL', 
     }
 
 LDS_STATUS = {
-    RelLib.LdsOrd.STATUS_BIC        : "BIC", 
-    RelLib.LdsOrd.STATUS_CANCELED   : "CANCELED", 
-    RelLib.LdsOrd.STATUS_CHILD      : "CHILD", 
-    RelLib.LdsOrd.STATUS_CLEARED    : "CLEARED", 
-    RelLib.LdsOrd.STATUS_COMPLETED  : "COMPLETED", 
-    RelLib.LdsOrd.STATUS_DNS        : "DNS", 
-    RelLib.LdsOrd.STATUS_INFANT     : "INFANT", 
-    RelLib.LdsOrd.STATUS_PRE_1970   : "PRE-1970", 
-    RelLib.LdsOrd.STATUS_QUALIFIED  : "QUALIFIED", 
-    RelLib.LdsOrd.STATUS_DNS_CAN    : "DNS/CAN", 
-    RelLib.LdsOrd.STATUS_STILLBORN  : "STILLBORN", 
-    RelLib.LdsOrd.STATUS_SUBMITTED  : "SUBMITTED" , 
-    RelLib.LdsOrd.STATUS_UNCLEARED  : "UNCLEARED", 
+    gen.lib.LdsOrd.STATUS_BIC        : "BIC", 
+    gen.lib.LdsOrd.STATUS_CANCELED   : "CANCELED", 
+    gen.lib.LdsOrd.STATUS_CHILD      : "CHILD", 
+    gen.lib.LdsOrd.STATUS_CLEARED    : "CLEARED", 
+    gen.lib.LdsOrd.STATUS_COMPLETED  : "COMPLETED", 
+    gen.lib.LdsOrd.STATUS_DNS        : "DNS", 
+    gen.lib.LdsOrd.STATUS_INFANT     : "INFANT", 
+    gen.lib.LdsOrd.STATUS_PRE_1970   : "PRE-1970", 
+    gen.lib.LdsOrd.STATUS_QUALIFIED  : "QUALIFIED", 
+    gen.lib.LdsOrd.STATUS_DNS_CAN    : "DNS/CAN", 
+    gen.lib.LdsOrd.STATUS_STILLBORN  : "STILLBORN", 
+    gen.lib.LdsOrd.STATUS_SUBMITTED  : "SUBMITTED" , 
+    gen.lib.LdsOrd.STATUS_UNCLEARED  : "UNCLEARED", 
     }
 
 LANGUAGES = {
@@ -134,10 +134,10 @@ MIME2GED = {
     }
 
 QUALITY_MAP = {
-    RelLib.SourceRef.CONF_VERY_HIGH : "3", 
-    RelLib.SourceRef.CONF_HIGH      : "2", 
-    RelLib.SourceRef.CONF_LOW       : "1", 
-    RelLib.SourceRef.CONF_VERY_LOW  : "0", 
+    gen.lib.SourceRef.CONF_VERY_HIGH : "3", 
+    gen.lib.SourceRef.CONF_HIGH      : "2", 
+    gen.lib.SourceRef.CONF_LOW       : "1", 
+    gen.lib.SourceRef.CONF_VERY_LOW  : "0", 
     }
 
 #-------------------------------------------------------------------------
@@ -566,7 +566,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         nicknames exist in the attribute list.
         """
         nicknames = [ attr.get_value() for attr in person.get_attribute_list()
-                      if int(attr.get_type()) == RelLib.AttributeType.NICKNAME ]
+                      if int(attr.get_type()) == gen.lib.AttributeType.NICKNAME ]
         if len(nicknames) > 0:
             nickname = nicknames[0]
         else:
@@ -582,9 +582,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         male or female, simply do not output anything. The only valid values are
         M (male) or F (female). So if the geneder is unknown, we output nothing.
         """
-        if person.get_gender() == RelLib.Person.MALE:
+        if person.get_gender() == gen.lib.Person.MALE:
             self.__writeln(1, "SEX", "M")
-        elif person.get_gender() == RelLib.Person.FEMALE:
+        elif person.get_gender() == gen.lib.Person.FEMALE:
             self.__writeln(1, "SEX", "F")
 
     def __lds_ords(self, obj, level):
@@ -606,7 +606,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             etype = int(event.get_type())
 
             # if the event is a birth or death, skip it.
-            if etype in (RelLib.EventType.BIRTH, RelLib.EventType.DEATH):
+            if etype in (gen.lib.EventType.BIRTH, gen.lib.EventType.DEATH):
                 continue
                 
             val = GedcomInfo.personalConstantEvents.get(etype, "").strip()
@@ -654,8 +654,8 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                         for fh in person.get_parent_family_handle_list() ]:
             for child_ref in [ ref for ref in family.get_child_ref_list()
                                if ref.ref == person.handle ]:
-                if child_ref.mrel == RelLib.ChildRefType.ADOPTED \
-                        or child_ref.frel == RelLib.ChildRefType.ADOPTED:
+                if child_ref.mrel == gen.lib.ChildRefType.ADOPTED \
+                        or child_ref.frel == gen.lib.ChildRefType.ADOPTED:
                     adoptions.append((family, child_ref.frel, child_ref.mrel))
 
         for (fam, frel, mrel) in adoptions:
@@ -663,7 +663,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             self.__writeln(2, 'FAMC', '@%s@' % fam.get_gramps_id())
             if mrel == frel:
                 self.__writeln(3, 'ADOP', 'BOTH')
-            elif mrel == RelLib.ChildRefType.ADOPTED:
+            elif mrel == gen.lib.ChildRefType.ADOPTED:
                 self.__writeln(3, 'ADOP', 'WIFE')
             else:
                 self.__writeln(3, 'ADOP', 'HUSB')
@@ -680,7 +680,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         
         # filter out the nicknames
         attr_list = [ attr for attr in person.get_attribute_list()
-                      if attr.get_type() != RelLib.AttributeType.NICKNAME ]
+                      if attr.get_type() != gen.lib.AttributeType.NICKNAME ]
 
         for attr in attr_list:
 
@@ -882,9 +882,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                 else:
                     self.__writeln(1, val, 'Y')
 
-                if event.get_type() == RelLib.EventType.MARRIAGE:
+                if event.get_type() == gen.lib.EventType.MARRIAGE:
                     ftype = family.get_relationship()
-                    if ftype != RelLib.FamilyRelType.MARRIED and str(ftype):
+                    if ftype != gen.lib.FamilyRelType.MARRIED and str(ftype):
                         self.__writeln(2, 'TYPE', str(ftype))
 
                     self.__family_event_attrs(event.get_attribute_list(), 2) 
@@ -908,10 +908,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         to WIFE/HUSB AGE attributes.
         """
         for attr in attr_list:
-            if attr.get_type() == RelLib.AttributeType.FATHER_AGE:
+            if attr.get_type() == gen.lib.AttributeType.FATHER_AGE:
                 self.__writeln(level, 'HUSB')
                 self.__writeln(level+1, 'AGE', attr.get_value())
-            elif attr.get_type() == RelLib.AttributeType.MOTHER_AGE:
+            elif attr.get_type() == gen.lib.AttributeType.MOTHER_AGE:
                 self.__writeln(level, 'WIFE')
                 self.__writeln(level+1, 'AGE', attr.get_value())
 
@@ -1111,19 +1111,19 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
         for attr in event.get_attribute_list():
             attr_type = attr.get_type()
-            if attr_type == RelLib.AttributeType.CAUSE:
+            if attr_type == gen.lib.AttributeType.CAUSE:
                 self.__writeln(2, 'CAUS', attr.get_value())
-            elif attr_type == RelLib.AttributeType.AGENCY:
+            elif attr_type == gen.lib.AttributeType.AGENCY:
                 self.__writeln(2, 'AGNC', attr.get_value())
 
         for attr in event_ref.get_attribute_list():
             attr_type = attr.get_type()
-            if attr_type == RelLib.AttributeType.AGE:
+            if attr_type == gen.lib.AttributeType.AGE:
                 self.__writeln(2, 'AGE', attr.get_value())
-            elif attr_type == RelLib.AttributeType.FATHER_AGE:
+            elif attr_type == gen.lib.AttributeType.FATHER_AGE:
                 self.__writeln(2, 'HUSB')
                 self.__writeln(3, 'AGE', attr.get_value())
-            elif attr_type == RelLib.AttributeType.MOTHER_AGE:
+            elif attr_type == gen.lib.AttributeType.MOTHER_AGE:
                 self.__writeln(2, 'WIFE')
                 self.__writeln(3, 'AGE', attr.get_value())
 
@@ -1180,7 +1180,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         if lds_ord.get_place_handle():
             self.__place(
                 self.dbase.get_place_from_handle(lds_ord.get_place_handle()), 2)
-        if lds_ord.get_status() != RelLib.LdsOrd.STATUS_NONE:
+        if lds_ord.get_status() != gen.lib.LdsOrd.STATUS_NONE:
             self.__writeln(2, 'STAT', LDS_STATUS[lds_ord.get_status()])
         
         self.__note_references(lds_ord.get_note_list(), index+1)
@@ -1192,14 +1192,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         expected formta.
         """
         start = date.get_start_date()
-        if start != RelLib.Date.EMPTY:
+        if start != gen.lib.Date.EMPTY:
             cal = date.get_calendar()
             mod = date.get_modifier()
-            if date.get_modifier() == RelLib.Date.MOD_SPAN:
+            if date.get_modifier() == gen.lib.Date.MOD_SPAN:
                 val = "FROM %s TO %s" % (
                     make_date(start, cal, mod), 
                     make_date(date.get_stop_date(), cal, mod))
-            elif date.get_modifier() == RelLib.Date.MOD_RANGE:
+            elif date.get_modifier() == gen.lib.Date.MOD_RANGE:
                 val = "BET %s AND %s" % (
                     make_date(start, cal, mod), 
                     make_date(date.get_stop_date(), cal, mod))
@@ -1287,8 +1287,8 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         if ref.get_page() != "":
             self.__writeln(level+1, 'PAGE', ref.get_page())
 
-        conf = min(ref.get_confidence_level(), RelLib.SourceRef.CONF_VERY_HIGH)
-        if conf != RelLib.SourceRef.CONF_NORMAL and conf != -1:
+        conf = min(ref.get_confidence_level(), gen.lib.SourceRef.CONF_VERY_HIGH)
+        if conf != gen.lib.SourceRef.CONF_NORMAL and conf != -1:
             self.__writeln(level+1, "QUAY", QUALITY_MAP[conf])
 
         if len(ref.get_note_list()) > 0:
@@ -1296,7 +1296,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             note_list = [ self.dbase.get_note_from_handle(h) 
                           for h in ref.get_note_list() ]
             note_list = [ n for n in note_list 
-                          if n.get_type() == RelLib.NoteType.SOURCE_TEXT]
+                          if n.get_type() == gen.lib.NoteType.SOURCE_TEXT]
 
             if note_list:
                 ref_text = note_list[0].get()
@@ -1312,7 +1312,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             note_list = [ self.dbase.get_note_from_handle(h) 
                           for h in ref.get_note_list() ]
             note_list = [ n.handle for n in note_list 
-                          if n.get_type() != RelLib.NoteType.SOURCE_TEXT]
+                          if n.get_type() != gen.lib.NoteType.SOURCE_TEXT]
             self.__note_references(note_list, level+1)
 
     def __photo(self, photo, level):

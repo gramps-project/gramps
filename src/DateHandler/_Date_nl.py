@@ -43,7 +43,7 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Date
+from gen.lib import Date
 from _DateParser import DateParser
 from _DateDisplay import DateDisplay
 from _DateHandler import register_datehandler

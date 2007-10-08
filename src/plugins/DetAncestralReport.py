@@ -43,7 +43,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
@@ -184,7 +184,7 @@ class DetAncestorReport(Report):
                         family = self.database.get_family_from_handle(family_handle)
                         mother_handle = family.get_mother_handle()
                         if mother_handle == None or                            \
-                           person.get_gender() == RelLib.Person.FEMALE:
+                           person.get_gender() == gen.lib.Person.FEMALE:
                             if self.listChildren:
                                 self.write_children(family)
                             if self.includeEvents:
@@ -544,7 +544,7 @@ class DetAncestorReport(Report):
             ind_handle = None
             has_info = False
             person_key = ""
-            if mate.get_gender() == RelLib.Person.MALE:
+            if mate.get_gender() == gen.lib.Person.MALE:
                 ind_handle = family.get_mother_handle()
             else:
                 ind_handle = family.get_father_handle()
@@ -558,9 +558,9 @@ class DetAncestorReport(Report):
                     event = self.database.get_event_from_handle(event_ref.ref)
                     if event:
                         etype = event.get_type()
-                        if etype == RelLib.EventType.BURIAL or \
-                           etype == RelLib.EventType.BIRTH  or \
-                           etype == RelLib.EventType.DEATH     :
+                        if etype == gen.lib.EventType.BURIAL or \
+                           etype == gen.lib.EventType.BIRTH  or \
+                           etype == gen.lib.EventType.DEATH     :
                             has_info = True
                             break   
                 if not has_info:
@@ -604,7 +604,7 @@ class DetAncestorReport(Report):
 
                 self.doc.end_paragraph()
 
-            if person_name and mate.get_gender()==RelLib.Person.MALE:
+            if person_name and mate.get_gender()==gen.lib.Person.MALE:
                 if self.listChildren:
                     self.write_children(family)
                 if self.includeEvents:

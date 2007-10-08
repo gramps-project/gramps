@@ -63,7 +63,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Date
+from gen.lib import Date
 import DateHandler
 import const
 import GrampsDisplay

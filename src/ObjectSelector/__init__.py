@@ -49,7 +49,7 @@ The class hierachy is currently this:
 
     ObjectFrameFactory
 
-To implement a selector for a new Primary RelLib type you need to implement a new
+To implement a selector for a new Primary gen.lib type you need to implement a new
 subclass of each of:
 
        FilterFrameBase

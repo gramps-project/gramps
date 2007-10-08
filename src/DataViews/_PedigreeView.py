@@ -49,7 +49,7 @@ except:
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import PageView
 from BasicUtils import name_displayer
 import Utils
@@ -81,9 +81,9 @@ class PersonBoxWidget_old( gtk.Button):
         if person:
             gtk.Button.__init__(self, fh.format_person(person, maxlines))
             gender = person.get_gender()
-            if gender == RelLib.Person.MALE:
+            if gender == gen.lib.Person.MALE:
                 self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#F5FFFF"))
-            elif gender == RelLib.Person.FEMALE:
+            elif gender == gen.lib.Person.FEMALE:
                 self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFF5FF"))
             else:
                 self.modify_bg( gtk.STATE_NORMAL, self.get_colormap().alloc_color("#FFFFF5"))
@@ -135,19 +135,19 @@ class PersonBoxWidget_cairo( gtk.DrawingArea, _PersonWidget_base):
         self.text = ""
         if self.person:
             self.text = self.fh.format_person(self.person,self.maxlines,True)
-            if alive and self.person.get_gender() == RelLib.Person.MALE:
+            if alive and self.person.get_gender() == gen.lib.Person.MALE:
                 self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
                 self.bordercolor = (32/256.0, 74/256.0, 135/256.0)
-            elif alive and self.person.get_gender() == RelLib.Person.FEMALE:
+            elif alive and self.person.get_gender() == gen.lib.Person.FEMALE:
                 self.bgcolor = (255/256.0, 205/256.0, 241/256.0)
                 self.bordercolor = (135/256.0, 32/256.0, 106/256.0)
             elif alive:
                 self.bgcolor = (244/256.0, 220/256.0, 183/256.0)
                 self.bordercolor = (143/256.0, 89/256.0, 2/256.0)
-            elif self.person.get_gender() == RelLib.Person.MALE:
+            elif self.person.get_gender() == gen.lib.Person.MALE:
                 self.bgcolor = (185/256.0, 207/256.0, 231/256.0)
                 self.bordercolor = (0,0,0)
-            elif self.person.get_gender() == RelLib.Person.FEMALE:
+            elif self.person.get_gender() == gen.lib.Person.FEMALE:
                 self.bgcolor = (255/256.0, 205/256.0, 241/256.0)
                 self.bordercolor = (0,0,0)
             else:
@@ -305,16 +305,16 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
         self.shadow_gc.line_style = gtk.gdk.LINE_SOLID
         self.shadow_gc.line_width = 4
         if self.person:
-            if self.alive and self.person.get_gender() == RelLib.Person.MALE:
+            if self.alive and self.person.get_gender() == gen.lib.Person.MALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#b9cfe7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#204a87"))
-            elif self.person.get_gender() == RelLib.Person.MALE:
+            elif self.person.get_gender() == gen.lib.Person.MALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#b9cfe7"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
-            elif self.alive and self.person.get_gender() == RelLib.Person.FEMALE:
+            elif self.alive and self.person.get_gender() == gen.lib.Person.FEMALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#ffcdf1"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#87206a"))
-            elif self.person.get_gender() == RelLib.Person.FEMALE:
+            elif self.person.get_gender() == gen.lib.Person.FEMALE:
                 self.bg_gc.set_foreground( self.get_colormap().alloc_color("#ffcdf1"))
                 self.border_gc.set_foreground( self.get_colormap().alloc_color("#000000"))
             elif self.alive:
@@ -358,7 +358,7 @@ class FormattingHelper:
         text = ""
         for event_ref in family.get_event_ref_list():
             event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == RelLib.EventType.MARRIAGE:
+            if event and event.get_type() == gen.lib.EventType.MARRIAGE:
                 if line_count < 3:
                     return DateHandler.get_date(event)
                 name = str(event.get_type())
@@ -402,7 +402,7 @@ class FormattingHelper:
         text = name
         if line_count >= 3:
             birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
-            if birth and use_markup and birth.get_type() != RelLib.EventType.BIRTH:
+            if birth and use_markup and birth.get_type() != gen.lib.EventType.BIRTH:
                 bdate  = "<i>%s</i>" % escape(DateHandler.get_date(birth))
                 bplace = "<i>%s</i>" % escape(self.get_place_name(birth.get_place_handle()))
             elif birth and use_markup:
@@ -415,7 +415,7 @@ class FormattingHelper:
                 bdate = ""
                 bplace = ""
             death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
-            if death and use_markup and death.get_type() != RelLib.EventType.DEATH:
+            if death and use_markup and death.get_type() != gen.lib.EventType.DEATH:
                 ddate  = "<i>%s</i>" % escape(DateHandler.get_date(death))
                 dplace = "<i>%s</i>" % escape(self.get_place_name(death.get_place_handle()))
             elif death and use_markup:
@@ -1111,8 +1111,8 @@ class PedigreeView(PageView.PersonNavView):
         if family_handle:   # one parent already exists -> Edit current family
             family = self.dbstate.db.get_family_from_handle(family_handle)
         else:   # no parents -> create new family
-            family = RelLib.Family()
-            childref = RelLib.ChildRef()
+            family = gen.lib.Family()
+            childref = gen.lib.ChildRef()
             childref.set_reference_handle(person_handle)
             family.add_child_ref(childref)
         try:
@@ -1274,8 +1274,8 @@ class PedigreeView(PageView.PersonNavView):
         if family != None:
             for child_ref in family.get_child_ref_list():
                 if child_ref.ref == person.handle:
-                    mrel = child_ref.mrel == RelLib.ChildRefType.BIRTH
-                    frel = child_ref.frel == RelLib.ChildRefType.BIRTH
+                    mrel = child_ref.mrel == gen.lib.ChildRefType.BIRTH
+                    frel = child_ref.frel == gen.lib.ChildRefType.BIRTH
             
                     lst[index] = (person,val,family,alive)
                     father_handle = family.get_father_handle()
@@ -1777,10 +1777,10 @@ def build_detail_string(db,person):
     else:
         for event_ref in person.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == RelLib.EventType.BAPTISM:
+            if event and event.get_type() == gen.lib.EventType.BAPTISM:
                 detail_text += format_event(db, _BAPT, event)
                 break
-            if event and event.get_type() == RelLib.EventType.CHRISTEN:
+            if event and event.get_type() == gen.lib.EventType.CHRISTEN:
                 detail_text += format_event(db, _CHRI, event)
                 break
 
@@ -1791,10 +1791,10 @@ def build_detail_string(db,person):
     else:
         for event_ref in person.get_event_ref_list():
             event = db.get_event_from_handle(event_ref.ref)
-            if event and event.get_type() == RelLib.EventType.BURIAL:
+            if event and event.get_type() == gen.lib.EventType.BURIAL:
                 detail_text += format_event(db, _BURI, event)
                 break
-            if event and event.get_type() == RelLib.EventType.CREMATION:
+            if event and event.get_type() == gen.lib.EventType.CREMATION:
                 detail_text += format_event(db, _CREM, event)
                 break
 

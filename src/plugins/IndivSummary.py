@@ -43,7 +43,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import const
 import BaseDoc
 from PluginUtils import register_report
@@ -225,7 +225,7 @@ class IndivSummary(Report):
 
         self.doc.start_cell("IVS-NormalCell")
         self.doc.start_paragraph("IVS-Normal")
-        if self.start_person.get_gender() == RelLib.Person.MALE:
+        if self.start_person.get_gender() == gen.lib.Person.MALE:
             self.doc.write_text(_("Male"))
         else:
             self.doc.write_text(_("Female"))

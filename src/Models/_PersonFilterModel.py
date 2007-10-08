@@ -10,7 +10,7 @@ from _PathCursor import PathCursor
 from _ListCursor import ListCursor
 
 from _FastFilterModel import FastFilterModel
-import RelLib
+import gen.lib
 
 
 class PersonFilterModel(FastFilterModel):
@@ -22,7 +22,7 @@ class PersonFilterModel(FastFilterModel):
 
 
     def _get_object_class(self,db):
-        return RelLib.Person
+        return gen.lib.Person
 
     
     def _get_fetch_func(self,db):

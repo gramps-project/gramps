@@ -32,7 +32,7 @@ __revision__ = "$Revision$"
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+from gen.lib import *
 from proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):

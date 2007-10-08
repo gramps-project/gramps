@@ -41,7 +41,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import const
 import Utils
 import BaseDoc
@@ -466,9 +466,9 @@ class IndivCompleteReport(Report):
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Gender"))
-        if self.start_person.get_gender() == RelLib.Person.MALE:
+        if self.start_person.get_gender() == gen.lib.Person.MALE:
             self.normal_cell(_("Male"))
-        elif self.start_person.get_gender() == RelLib.Person.FEMALE:
+        elif self.start_person.get_gender() == gen.lib.Person.FEMALE:
             self.normal_cell(_("Female"))
         else:
             self.normal_cell(_("Unknown"))

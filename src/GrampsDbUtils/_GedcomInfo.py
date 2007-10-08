@@ -32,7 +32,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import const
-import RelLib
+import gen.lib
 
 ADOPT_NONE         = 0
 ADOPT_EVENT        = 1
@@ -65,67 +65,67 @@ SOURCE_REFS_YES    = 1
 #
 #-------------------------------------------------------------------------
 familyConstantEvents = {
-    RelLib.EventType.ANNULMENT  : "ANUL",
-    RelLib.EventType.DIV_FILING : "DIVF",
-    RelLib.EventType.DIVORCE    : "DIV",
-    RelLib.EventType.CENSUS     : "CENS",
-    RelLib.EventType.ENGAGEMENT : "ENGA",
-    RelLib.EventType.MARR_BANNS : "MARB",
-    RelLib.EventType.MARR_CONTR : "MARC",
-    RelLib.EventType.MARR_LIC   : "MARL",
-    RelLib.EventType.MARR_SETTL : "MARS",
-    RelLib.EventType.MARRIAGE   : "MARR"
+    gen.lib.EventType.ANNULMENT  : "ANUL",
+    gen.lib.EventType.DIV_FILING : "DIVF",
+    gen.lib.EventType.DIVORCE    : "DIV",
+    gen.lib.EventType.CENSUS     : "CENS",
+    gen.lib.EventType.ENGAGEMENT : "ENGA",
+    gen.lib.EventType.MARR_BANNS : "MARB",
+    gen.lib.EventType.MARR_CONTR : "MARC",
+    gen.lib.EventType.MARR_LIC   : "MARL",
+    gen.lib.EventType.MARR_SETTL : "MARS",
+    gen.lib.EventType.MARRIAGE   : "MARR"
     }
 
 personalConstantEvents = {
-    RelLib.EventType.ADOPT            : "ADOP",
-    RelLib.EventType.ADULT_CHRISTEN   : "CHRA",
-    RelLib.EventType.BIRTH            : "BIRT",
-    RelLib.EventType.DEATH            : "DEAT",
-    RelLib.EventType.BAPTISM          : "BAPM",
-    RelLib.EventType.BAR_MITZVAH      : "BARM",
-    RelLib.EventType.BAS_MITZVAH      : "BASM",
-    RelLib.EventType.BLESS            : "BLES",
-    RelLib.EventType.BURIAL           : "BURI",
-    RelLib.EventType.CAUSE_DEATH      : "CAUS",
-    RelLib.EventType.ORDINATION       : "ORDN",
-    RelLib.EventType.CENSUS           : "CENS",
-    RelLib.EventType.CHRISTEN         : "CHR" ,
-    RelLib.EventType.CONFIRMATION     : "CONF",
-    RelLib.EventType.CREMATION        : "CREM",
-    RelLib.EventType.DEGREE           : "_DEG", 
-    RelLib.EventType.DIV_FILING       : "DIVF",
-    RelLib.EventType.EDUCATION        : "EDUC",
-    RelLib.EventType.ELECTED          : "",
-    RelLib.EventType.EMIGRATION       : "EMIG",
-    RelLib.EventType.FIRST_COMMUN     : "FCOM",
-    RelLib.EventType.GRADUATION       : "GRAD",
-    RelLib.EventType.MED_INFO         : "_MDCL", 
-    RelLib.EventType.MILITARY_SERV    : "_MILT", 
-    RelLib.EventType.NATURALIZATION   : "NATU",
-    RelLib.EventType.NOB_TITLE        : "TITL",
-    RelLib.EventType.NUM_MARRIAGES    : "NMR",
-    RelLib.EventType.IMMIGRATION      : "IMMI",
-    RelLib.EventType.OCCUPATION       : "OCCU",
-    RelLib.EventType.PROBATE          : "PROB",
-    RelLib.EventType.PROPERTY         : "PROP",
-    RelLib.EventType.RELIGION         : "RELI",
-    RelLib.EventType.RESIDENCE        : "RESI", 
-    RelLib.EventType.RETIREMENT       : "RETI",
-    RelLib.EventType.WILL             : "WILL",
+    gen.lib.EventType.ADOPT            : "ADOP",
+    gen.lib.EventType.ADULT_CHRISTEN   : "CHRA",
+    gen.lib.EventType.BIRTH            : "BIRT",
+    gen.lib.EventType.DEATH            : "DEAT",
+    gen.lib.EventType.BAPTISM          : "BAPM",
+    gen.lib.EventType.BAR_MITZVAH      : "BARM",
+    gen.lib.EventType.BAS_MITZVAH      : "BASM",
+    gen.lib.EventType.BLESS            : "BLES",
+    gen.lib.EventType.BURIAL           : "BURI",
+    gen.lib.EventType.CAUSE_DEATH      : "CAUS",
+    gen.lib.EventType.ORDINATION       : "ORDN",
+    gen.lib.EventType.CENSUS           : "CENS",
+    gen.lib.EventType.CHRISTEN         : "CHR" ,
+    gen.lib.EventType.CONFIRMATION     : "CONF",
+    gen.lib.EventType.CREMATION        : "CREM",
+    gen.lib.EventType.DEGREE           : "_DEG", 
+    gen.lib.EventType.DIV_FILING       : "DIVF",
+    gen.lib.EventType.EDUCATION        : "EDUC",
+    gen.lib.EventType.ELECTED          : "",
+    gen.lib.EventType.EMIGRATION       : "EMIG",
+    gen.lib.EventType.FIRST_COMMUN     : "FCOM",
+    gen.lib.EventType.GRADUATION       : "GRAD",
+    gen.lib.EventType.MED_INFO         : "_MDCL", 
+    gen.lib.EventType.MILITARY_SERV    : "_MILT", 
+    gen.lib.EventType.NATURALIZATION   : "NATU",
+    gen.lib.EventType.NOB_TITLE        : "TITL",
+    gen.lib.EventType.NUM_MARRIAGES    : "NMR",
+    gen.lib.EventType.IMMIGRATION      : "IMMI",
+    gen.lib.EventType.OCCUPATION       : "OCCU",
+    gen.lib.EventType.PROBATE          : "PROB",
+    gen.lib.EventType.PROPERTY         : "PROP",
+    gen.lib.EventType.RELIGION         : "RELI",
+    gen.lib.EventType.RESIDENCE        : "RESI", 
+    gen.lib.EventType.RETIREMENT       : "RETI",
+    gen.lib.EventType.WILL             : "WILL",
     }
 
 familyConstantAttributes = {
-    RelLib.AttributeType.NUM_CHILD   : "NCHI",
+    gen.lib.AttributeType.NUM_CHILD   : "NCHI",
     }
 
 personalConstantAttributes = {
-    RelLib.AttributeType.CASTE       : "CAST",
-    RelLib.AttributeType.DESCRIPTION : "DSCR",
-    RelLib.AttributeType.ID          : "IDNO",
-    RelLib.AttributeType.NATIONAL    : "NATI",
-    RelLib.AttributeType.NUM_CHILD   : "NCHI",
-    RelLib.AttributeType.SSN         : "SSN",
+    gen.lib.AttributeType.CASTE       : "CAST",
+    gen.lib.AttributeType.DESCRIPTION : "DSCR",
+    gen.lib.AttributeType.ID          : "IDNO",
+    gen.lib.AttributeType.NATIONAL    : "NATI",
+    gen.lib.AttributeType.NUM_CHILD   : "NCHI",
+    gen.lib.AttributeType.SSN         : "SSN",
     }
 
 #-------------------------------------------------------------------------
@@ -134,19 +134,19 @@ personalConstantAttributes = {
 #
 #-------------------------------------------------------------------------
 lds_status = {
-    "BIC"      : RelLib.LdsOrd.STATUS_BIC,
-    "CANCELED" : RelLib.LdsOrd.STATUS_CANCELED,
-    "CHILD"    : RelLib.LdsOrd.STATUS_CHILD,
-    "CLEARED"  : RelLib.LdsOrd.STATUS_CLEARED,
-    "COMPLETED": RelLib.LdsOrd.STATUS_COMPLETED,
-    "DNS"      : RelLib.LdsOrd.STATUS_DNS,
-    "INFANT"   : RelLib.LdsOrd.STATUS_INFANT,
-    "PRE-1970" : RelLib.LdsOrd.STATUS_PRE_1970,
-    "QUALIFIED": RelLib.LdsOrd.STATUS_QUALIFIED,
-    "DNS/CAN"  : RelLib.LdsOrd.STATUS_DNS_CAN,
-    "STILLBORN": RelLib.LdsOrd.STATUS_STILLBORN,
-    "SUBMITTED": RelLib.LdsOrd.STATUS_SUBMITTED,
-    "UNCLEARED": RelLib.LdsOrd.STATUS_UNCLEARED,
+    "BIC"      : gen.lib.LdsOrd.STATUS_BIC,
+    "CANCELED" : gen.lib.LdsOrd.STATUS_CANCELED,
+    "CHILD"    : gen.lib.LdsOrd.STATUS_CHILD,
+    "CLEARED"  : gen.lib.LdsOrd.STATUS_CLEARED,
+    "COMPLETED": gen.lib.LdsOrd.STATUS_COMPLETED,
+    "DNS"      : gen.lib.LdsOrd.STATUS_DNS,
+    "INFANT"   : gen.lib.LdsOrd.STATUS_INFANT,
+    "PRE-1970" : gen.lib.LdsOrd.STATUS_PRE_1970,
+    "QUALIFIED": gen.lib.LdsOrd.STATUS_QUALIFIED,
+    "DNS/CAN"  : gen.lib.LdsOrd.STATUS_DNS_CAN,
+    "STILLBORN": gen.lib.LdsOrd.STATUS_STILLBORN,
+    "SUBMITTED": gen.lib.LdsOrd.STATUS_SUBMITTED,
+    "UNCLEARED": gen.lib.LdsOrd.STATUS_UNCLEARED,
     }
 
 #-------------------------------------------------------------------------

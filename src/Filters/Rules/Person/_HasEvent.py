@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import EventRoleType
+from gen.lib import EventRoleType
 from Filters.Rules._HasEventBase import HasEventBase
 
 #-------------------------------------------------------------------------

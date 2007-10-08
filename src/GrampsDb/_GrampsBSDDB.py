@@ -44,7 +44,7 @@ __LOG = logging.getLogger(".GrampsDb")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+from gen.lib import *
 from gen.db.base import *
 from gen.utils import db_copy
 import gen.db.const as const

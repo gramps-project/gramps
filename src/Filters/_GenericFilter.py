@@ -24,7 +24,7 @@
 Package providing filtering framework for GRAMPS.
 """
 
-import RelLib
+import gen.lib
 #-------------------------------------------------------------------------
 #
 # GenericFilter
@@ -100,7 +100,7 @@ class GenericFilter:
         return db.get_person_cursor()
 
     def make_obj(self):
-        return RelLib.Person()
+        return gen.lib.Person()
 
     def find_from_handle(self, db, handle):
         return db.get_person_from_handle(handle)
@@ -213,7 +213,7 @@ class GenericFamilyFilter(GenericFilter):
         return db.get_family_cursor()
 
     def make_obj(self):
-        return RelLib.Family()
+        return gen.lib.Family()
 
     def find_from_handle(self, db, handle):
         return db.get_family_from_handle(handle)
@@ -227,7 +227,7 @@ class GenericEventFilter(GenericFilter):
         return db.get_event_cursor()
 
     def make_obj(self):
-        return RelLib.Event()
+        return gen.lib.Event()
 
     def find_from_handle(self, db, handle):
         return db.get_event_from_handle(handle)
@@ -241,7 +241,7 @@ class GenericSourceFilter(GenericFilter):
         return db.get_source_cursor()
 
     def make_obj(self):
-        return RelLib.Source()
+        return gen.lib.Source()
 
     def find_from_handle(self, db, handle):
         return db.get_source_from_handle(handle)
@@ -255,7 +255,7 @@ class GenericPlaceFilter(GenericFilter):
         return db.get_place_cursor()
 
     def make_obj(self):
-        return RelLib.Place()
+        return gen.lib.Place()
 
     def find_from_handle(self, db, handle):
         return db.get_place_from_handle(handle)
@@ -269,7 +269,7 @@ class GenericMediaFilter(GenericFilter):
         return db.get_media_cursor()
 
     def make_obj(self):
-        return RelLib.MediaObject()
+        return gen.lib.MediaObject()
 
     def find_from_handle(self, db, handle):
         return db.get_object_from_handle(handle)
@@ -283,7 +283,7 @@ class GenericRepoFilter(GenericFilter):
         return db.get_repository_cursor()
 
     def make_obj(self):
-        return RelLib.Repository()
+        return gen.lib.Repository()
 
     def find_from_handle(self, db, handle):
         return db.get_repository_from_handle(handle)
@@ -297,7 +297,7 @@ class GenericNoteFilter(GenericFilter):
         return db.get_note_cursor()
 
     def make_obj(self):
-        return RelLib.Note()
+        return gen.lib.Note()
 
     def find_from_handle(self, db, handle):
         return db.get_note_from_handle(handle)

@@ -29,7 +29,7 @@ class FastModel(gtk.GenericTreeModel):
     @ivar _table: main table to be displayed
     @ivar _cursor: cursor for accessing the table.
     @ivar _obj_class: the class of the object that is being pulled from
-    the database. This should probably be one of the primary RelLib
+    the database. This should probably be one of the primary gen.lib
     classes.
     @ivar _num_children_cache: dictionary to hold the number of
     children for each primary record so that we don't have to look

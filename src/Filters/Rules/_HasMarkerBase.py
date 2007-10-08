@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import MarkerType
+from gen.lib import MarkerType
 from Filters.Rules._Rule import Rule
 
 #-------------------------------------------------------------------------

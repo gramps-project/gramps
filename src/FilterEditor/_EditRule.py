@@ -56,7 +56,7 @@ import gobject
 #-------------------------------------------------------------------------
 import GrampsDisplay
 import const
-import RelLib
+import gen.lib
 from Filters import Rules
 import AutoComp
 from Selectors import selector_factory
@@ -78,14 +78,14 @@ def by_rule_name(f,s):
 #
 #-------------------------------------------------------------------------
 _name2typeclass = {
-    _('Personal event:')     : RelLib.EventType,
-    _('Family event:')       : RelLib.EventType,
-    _('Event type:')         : RelLib.EventType,
-    _('Personal attribute:') : RelLib.AttributeType,
-    _('Family attribute:')   : RelLib.AttributeType,
-    _('Relationship type:')  : RelLib.FamilyRelType,
-    _('Marker type:')        : RelLib.MarkerType,
-    _('Note type:')          : RelLib.NoteType,
+    _('Personal event:')     : gen.lib.EventType,
+    _('Family event:')       : gen.lib.EventType,
+    _('Event type:')         : gen.lib.EventType,
+    _('Personal attribute:') : gen.lib.AttributeType,
+    _('Family attribute:')   : gen.lib.AttributeType,
+    _('Relationship type:')  : gen.lib.FamilyRelType,
+    _('Marker type:')        : gen.lib.MarkerType,
+    _('Note type:')          : gen.lib.NoteType,
 }
 
 #-------------------------------------------------------------------------

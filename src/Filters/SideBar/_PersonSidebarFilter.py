@@ -40,7 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import GrampsWidgets
-import RelLib
+import gen.lib
 import DateHandler
 
 from _SidebarFilter import SidebarFilter
@@ -72,16 +72,16 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_id = gtk.Entry()
         self.filter_birth = gtk.Entry()
         self.filter_death = gtk.Entry()
-        self.filter_event = RelLib.Event()
-        self.filter_event.set_type((RelLib.EventType.CUSTOM, u''))
+        self.filter_event = gen.lib.Event()
+        self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
         self.etype = gtk.ComboBoxEntry()
         self.event_menu = GrampsWidgets.MonitoredDataType(
             self.etype, 
             self.filter_event.set_type, 
             self.filter_event.get_type)
 
-        self.filter_marker = RelLib.Person()
-        self.filter_marker.set_marker((RelLib.MarkerType.CUSTOM, u''))
+        self.filter_marker = gen.lib.Person()
+        self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM, u''))
         self.mtype = gtk.ComboBoxEntry()
         self.marker_menu = GrampsWidgets.MonitoredDataType(
             self.mtype, 
@@ -102,13 +102,13 @@ class PersonSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Person')
 
-        exdate1 = RelLib.Date()
-        exdate2 = RelLib.Date()
-        exdate1.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, 
-                    RelLib.Date.CAL_GREGORIAN, (0, 0, 1800, False, 
+        exdate1 = gen.lib.Date()
+        exdate2 = gen.lib.Date()
+        exdate1.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_RANGE, 
+                    gen.lib.Date.CAL_GREGORIAN, (0, 0, 1800, False, 
                                                 0, 0, 1900, False))
-        exdate2.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_BEFORE, 
-                    RelLib.Date.CAL_GREGORIAN, (0, 0, 1850, False))
+        exdate2.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_BEFORE, 
+                    gen.lib.Date.CAL_GREGORIAN, (0, 0, 1850, False))
 
         msg1 = DateHandler.displayer.display(exdate1)
         msg2 = DateHandler.displayer.display(exdate2)

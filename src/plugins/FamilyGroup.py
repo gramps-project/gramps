@@ -35,7 +35,7 @@ import gtk
 # GRAMPS 
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
@@ -241,7 +241,7 @@ class FamilyGroup(Report):
         if not person_handle and not self.missingInfo:
             return
         elif not person_handle:
-            person = RelLib.Person()
+            person = gen.lib.Person()
         else:
             person = self.database.get_person_from_handle(person_handle)
         name = _nd.display(person)
@@ -259,7 +259,7 @@ class FamilyGroup(Report):
 
         birth_ref = person.get_birth_ref()
         birth = None
-        evtName = str(RelLib.EventType())
+        evtName = str(gen.lib.EventType())
         if birth_ref:
             birth = self.database.get_event_from_handle(birth_ref.ref)
         if birth or self.missingInfo:
@@ -267,7 +267,7 @@ class FamilyGroup(Report):
 
         death_ref = person.get_death_ref()
         death = None
-        evtName = str(RelLib.EventType(RelLib.EventType.DEATH))
+        evtName = str(gen.lib.EventType(gen.lib.EventType.DEATH))
         if death_ref:
             death = self.database.get_event_from_handle(death_ref.ref)
         if death or self.missingInfo:
@@ -332,7 +332,7 @@ class FamilyGroup(Report):
         for event_ref in family_ref_list:
             if event_ref:
                 event = self.database.get_event_from_handle(event_ref.ref)
-                if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+                if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
                     m = event
                     break
 
@@ -346,14 +346,14 @@ class FamilyGroup(Report):
             self.doc.end_cell()
             self.doc.end_row()
         
-            evtName = str(RelLib.EventType(RelLib.EventType.MARRIAGE))
+            evtName = str(gen.lib.EventType(gen.lib.EventType.MARRIAGE))
             self.dump_parent_event(evtName,m)
             
             for event_ref in family_ref_list:
                 if event_ref:
                     event = self.database.get_event_from_handle(event_ref.ref)
                     evtType = event.get_type()
-                    if int(evtType) != RelLib.EventType.MARRIAGE:
+                    if int(evtType) != gen.lib.EventType.MARRIAGE:
                         name = Utils.format_event( evtType )
                         self.dump_parent_event(name,event)
             
@@ -369,7 +369,7 @@ class FamilyGroup(Report):
         for event_ref in family_list:
             if event_ref:
                 event = self.database.get_event_from_handle(event_ref.ref)
-                if event.get_type() == RelLib.EventType.MARRIAGE:
+                if event.get_type() == gen.lib.EventType.MARRIAGE:
                     m = event
                     break
 
@@ -388,7 +388,7 @@ class FamilyGroup(Report):
             for event_ref in family_list:
                 if event_ref:
                     event = self.database.get_event_from_handle(event_ref.ref)
-                    if event.get_type() != RelLib.EventType.MARRIAGE:
+                    if event.get_type() != gen.lib.EventType.MARRIAGE:
                         self.dump_parent_event(str(event.get_type()),event)
             
             self.doc.end_table()
@@ -458,9 +458,9 @@ class FamilyGroup(Report):
             self.doc.start_cell('FGR-TextChild2')
         self.doc.start_paragraph('FGR-ChildText')
         index_str = ("%d" % index)
-        if person.get_gender() == RelLib.Person.MALE:
+        if person.get_gender() == gen.lib.Person.MALE:
             self.doc.write_text(index_str + _("acronym for male|M"))
-        elif person.get_gender() == RelLib.Person.FEMALE:
+        elif person.get_gender() == gen.lib.Person.FEMALE:
             self.doc.write_text(index_str + _("acronym for female|F"))
         else:
             self.doc.write_text(_("%dU") % index)
@@ -498,7 +498,7 @@ class FamilyGroup(Report):
                 for event_ref in family.get_event_ref_list():
                     if event_ref:
                         event = self.database.get_event_from_handle(event_ref.ref)
-                        if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+                        if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
                             m = event
                             break  
                 
@@ -548,7 +548,7 @@ class FamilyGroup(Report):
                     self.doc.end_row()
                   
                 if m:
-                    evtName = str(RelLib.EventType(RelLib.EventType.MARRIAGE))
+                    evtName = str(gen.lib.EventType(gen.lib.EventType.MARRIAGE))
                     if index == families:
                         self.dump_child_event('FGR-TextChild2',evtName,m)
                     else:

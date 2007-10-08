@@ -38,7 +38,7 @@ import gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import PageView
 import DisplayModels
 import Utils
@@ -227,7 +227,7 @@ class PlaceView(PageView.ListView):
 
     def add(self, obj):
         try:
-            EditPlace(self.dbstate, self.uistate, [], RelLib.Place())
+            EditPlace(self.dbstate, self.uistate, [], gen.lib.Place())
         except Errors.WindowActiveError:
             pass
 

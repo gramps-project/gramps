@@ -35,7 +35,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import RelLib
+import gen.lib
 import DateHandler
 import const
 from PluginUtils import register_report

@@ -27,7 +27,7 @@ sys.path.append("..")
 import gtk
 import gobject
 
-from RelLib import Person
+from gen.lib import Person
 from BasicUtils import name_displayer
 display_name = name_displayer.display
 

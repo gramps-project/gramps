@@ -31,7 +31,7 @@ Display a person's father or mother lineage
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 from Simple import SimpleAccess, SimpleDoc
 from gettext import gettext as _
 from PluginUtils import register_quick_report
@@ -61,18 +61,18 @@ def run_father(database, document, person):
     sd.header2(__FMT %(_("Name Father"), _("Birth Date"), _("Death Date")))
     sd.paragraph("")
     
-    make_details(RelLib.Person.MALE, person, sa, sd, database)
+    make_details(gen.lib.Person.MALE, person, sa, sd, database)
     
     sd.paragraph("")
     sd.paragraph("")
     
-    if person.gender == RelLib.Person.FEMALE :
+    if person.gender == gen.lib.Person.FEMALE :
         return
     
     sd.header2((_("Direct line male descendants")))
     sd.paragraph("")
     
-    make_details_child(RelLib.Person.MALE, person, sa, sd, database)
+    make_details_child(gen.lib.Person.MALE, person, sa, sd, database)
     
 def run_mother(database, document, person):
     """ Function writing the mother lineage quick report
@@ -94,18 +94,18 @@ def run_mother(database, document, person):
     sd.header2(__FMT %(_("Name Mother"), _("Birth"), _("Death Date")))
     sd.paragraph("")
     
-    make_details(RelLib.Person.FEMALE, person, sa, sd, database)
+    make_details(gen.lib.Person.FEMALE, person, sa, sd, database)
     
     sd.paragraph("")
     sd.paragraph("")
     
-    if person.gender == RelLib.Person.MALE :
+    if person.gender == gen.lib.Person.MALE :
         return
     
     sd.header2((_("Direct line female descendants")))
     sd.paragraph("")
     
-    make_details_child(RelLib.Person.FEMALE, person, sa, sd, database)
+    make_details_child(gen.lib.Person.FEMALE, person, sa, sd, database)
     
 def make_details(gender, person, sa, sd, database) :
     """ Function writing one line of ancestry on the document in 
@@ -141,7 +141,7 @@ def make_details(gender, person, sa, sd, database) :
                             ref.get_father_relation()) for ref in 
                             family.get_child_ref_list() 
                             if ref.ref == person_handle]
-            if gender == RelLib.Person.MALE :
+            if gender == gen.lib.Person.MALE :
                 person = database.get_person_from_handle(
                             family.get_father_handle())
                 refnr  = 1
@@ -154,11 +154,11 @@ def make_details(gender, person, sa, sd, database) :
             # that would complicate the code
             #Also, we assume the birth relation is in the FIRST
             # family of the person, so we go up on non-birth
-            if not childrel[0][refnr] == RelLib.ChildRefType.BIRTH :
+            if not childrel[0][refnr] == gen.lib.ChildRefType.BIRTH :
                 rem_str = add_rem(rem_str, _("No birth relation with child"))
             if person and person.gender == gender :
                 break
-            elif person and person.gender == RelLib.Person.UNKNOWN :
+            elif person and person.gender == gen.lib.Person.UNKNOWN :
                 rem_str = add_rem(rem_str, _("Unknown gender"))
                 break
             else :
@@ -178,7 +178,7 @@ def make_details_child(gender, person, sa, sd, database) :
             raise RuntimeError
         #we use some global var from make_details_child !
         rem_str = ""
-        if child.gender == RelLib.Person.UNKNOWN :
+        if child.gender == gen.lib.Person.UNKNOWN :
             rem_str = add_rem(rem_str, _("Unknown gender"))
             
         if rem_str : 
@@ -207,7 +207,7 @@ def make_details_child(gender, person, sa, sd, database) :
                             fam.get_child_ref_list()]
             for childdet in childrel: 
                 #relation with parent must be by birth
-                if not childdet[childrelnr] == RelLib.ChildRefType.BIRTH :
+                if not childdet[childrelnr] == gen.lib.ChildRefType.BIRTH :
                     continue
                             
                 newchild = database.get_person_from_handle(childdet[0])

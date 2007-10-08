@@ -33,7 +33,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from proxybase import ProxyDbBase
-from RelLib import *
+from gen.lib import *
 from Utils import probably_alive
 
 #-------------------------------------------------------------------------

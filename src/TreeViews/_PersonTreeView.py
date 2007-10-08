@@ -8,7 +8,7 @@ from Models import \
      PersonTreeModel, PersonListModel, PersonFilterModel
 
 from BasicUtils import name_displayer
-from RelLib import Event
+from gen.lib import Event
 import DateHandler
 import Utils
 

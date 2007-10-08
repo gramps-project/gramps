@@ -54,7 +54,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Utils
 import const
 import ManagedWindow
@@ -262,10 +262,10 @@ class CheckIntegrity:
             p_changed = False
             name = person.get_primary_name()
             if name.get_sort_as() in deleted_name_formats:
-                name.set_sort_as(RelLib.Name.DEF)
+                name.set_sort_as(gen.lib.Name.DEF)
                 p_changed = True
             if name.get_display_as() in deleted_name_formats:
-                name.set_display_as(RelLib.Name.DEF)
+                name.set_display_as(gen.lib.Name.DEF)
                 p_changed = True
             if p_changed:
                 person.set_primary_name(name)
@@ -274,10 +274,10 @@ class CheckIntegrity:
             name_list = []
             for name in person.get_alternate_names():
                 if name.get_sort_as() in deleted_name_formats:
-                    name.set_sort_as(RelLib.Name.DEF)
+                    name.set_sort_as(gen.lib.Name.DEF)
                     a_changed = True
                 if name.get_display_as() in deleted_name_formats:
-                    name.set_display_as(RelLib.Name.DEF)
+                    name.set_display_as(gen.lib.Name.DEF)
                     a_changed = True
                 name_list.append(name)
             if a_changed:
@@ -302,7 +302,7 @@ class CheckIntegrity:
 
         for handle in self.db.person_map.keys():
             value = self.db.person_map[handle]
-            p = RelLib.Person(value)
+            p = gen.lib.Person(value)
             splist = p.get_family_handle_list()
             if len(splist) != len(set(splist)):
                 new_list = []
@@ -571,14 +571,14 @@ class CheckIntegrity:
         CHANGE_REPOS  = 7
         CHANGE_NOTE   = 5
         
-        empty_person_data = RelLib.Person().serialize()
-        empty_family_data = RelLib.Family().serialize()
-        empty_event_data = RelLib.Event().serialize()
-        empty_source_data = RelLib.Source().serialize()
-        empty_place_data = RelLib.Place().serialize()
-        empty_media_data = RelLib.MediaObject().serialize()
-        empty_repos_data = RelLib.Repository().serialize()
-        empty_note_data = RelLib.Note().serialize()
+        empty_person_data = gen.lib.Person().serialize()
+        empty_family_data = gen.lib.Family().serialize()
+        empty_event_data = gen.lib.Event().serialize()
+        empty_source_data = gen.lib.Source().serialize()
+        empty_place_data = gen.lib.Place().serialize()
+        empty_media_data = gen.lib.MediaObject().serialize()
+        empty_repos_data = gen.lib.Repository().serialize()
+        empty_note_data = gen.lib.Note().serialize()
 
         tables = {
             'persons' : {'get_func': self.db.get_person_from_handle,
@@ -730,8 +730,8 @@ class CheckIntegrity:
             else:
                 mgender = None
 
-            if (fgender == RelLib.Person.FEMALE \
-                    or mgender == RelLib.Person.MALE) \
+            if (fgender == gen.lib.Person.FEMALE \
+                    or mgender == gen.lib.Person.MALE) \
                     and fgender != mgender:
                 # swap. note: (at most) one handle may be None
                 family.set_father_handle(mother_handle)
@@ -759,9 +759,9 @@ class CheckIntegrity:
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
                 else:
-                    if int(birth.get_type()) != RelLib.EventType.BIRTH:
+                    if int(birth.get_type()) != gen.lib.EventType.BIRTH:
                         # Birth event was not of the type "Birth"
-                        birth.set_type(RelLib.EventType(RelLib.EventType.BIRTH))
+                        birth.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
                         self.db.commit_event(birth,self.trans)
                         self.invalid_birth_events.append(key)
             death_ref = person.get_death_ref()
@@ -775,9 +775,9 @@ class CheckIntegrity:
                     self.db.commit_person(person,self.trans)
                     self.invalid_events.append(key)
                 else:
-                    if int(death.get_type()) != RelLib.EventType.DEATH:
+                    if int(death.get_type()) != gen.lib.EventType.DEATH:
                         # Death event was not of the type "Death"
-                        death.set_type(RelLib.EventType(RelLib.EventType.DEATH))
+                        death.set_type(gen.lib.EventType(gen.lib.EventType.DEATH))
                         self.db.commit_event(death,self.trans)
                         self.invalid_death_events.append(key)
 
@@ -908,7 +908,7 @@ class CheckIntegrity:
         for handle in self.db.person_map.keys():
             self.progress.step()
             info = self.db.person_map[handle]
-            person = RelLib.Person()
+            person = gen.lib.Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -924,7 +924,7 @@ class CheckIntegrity:
         for handle in self.db.family_map.keys():
             self.progress.step()
             info = self.db.family_map[handle]
-            family = RelLib.Family()
+            family = gen.lib.Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -940,7 +940,7 @@ class CheckIntegrity:
         for handle in self.db.place_map.keys():
             self.progress.step()
             info = self.db.place_map[handle]
-            place = RelLib.Place()
+            place = gen.lib.Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -957,7 +957,7 @@ class CheckIntegrity:
         for handle in known_handles:
             self.progress.step()
             info = self.db.source_map[handle]
-            source = RelLib.Source()
+            source = gen.lib.Source()
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -973,7 +973,7 @@ class CheckIntegrity:
         for handle in self.db.media_map.keys():
             self.progress.step()
             info = self.db.media_map[handle]
-            obj = RelLib.MediaObject()
+            obj = gen.lib.MediaObject()
             obj.unserialize(info)
             handle_list = obj.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -989,7 +989,7 @@ class CheckIntegrity:
         for handle in self.db.event_map.keys():
             self.progress.step()
             info = self.db.event_map[handle]
-            event = RelLib.Event()
+            event = gen.lib.Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -1015,7 +1015,7 @@ class CheckIntegrity:
         for handle in self.db.person_map.keys():
             self.progress.step()
             info = self.db.person_map[handle]
-            person = RelLib.Person()
+            person = gen.lib.Person()
             person.unserialize(info)
             handle_list = person.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -1031,7 +1031,7 @@ class CheckIntegrity:
         for handle in self.db.family_map.keys():
             self.progress.step()
             info = self.db.family_map[handle]
-            family = RelLib.Family()
+            family = gen.lib.Family()
             family.unserialize(info)
             handle_list = family.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -1047,7 +1047,7 @@ class CheckIntegrity:
         for handle in self.db.place_map.keys():
             self.progress.step()
             info = self.db.place_map[handle]
-            place = RelLib.Place()
+            place = gen.lib.Place()
             place.unserialize(info)
             handle_list = place.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -1063,7 +1063,7 @@ class CheckIntegrity:
         for handle in self.db.event_map.keys():
             self.progress.step()
             info = self.db.event_map[handle]
-            event = RelLib.Event()
+            event = gen.lib.Event()
             event.unserialize(info)
             handle_list = event.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list
@@ -1079,7 +1079,7 @@ class CheckIntegrity:
         for handle in self.db.source_map.keys():
             self.progress.step()
             info = self.db.source_map[handle]
-            source = RelLib.Source()
+            source = gen.lib.Source()
             source.unserialize(info)
             handle_list = source.get_referenced_handles_recursively()
             bad_handles = [ item[1] for item in handle_list

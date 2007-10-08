@@ -44,7 +44,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Config
-import RelLib
+import gen.lib
 from _EditPrimary import EditPrimary
 
 from DisplayTabs import *
@@ -63,7 +63,7 @@ class EditPlace(EditPrimary):
                              dbstate.db.get_place_from_handle, callback)
 
     def empty_object(self):
-        return RelLib.Place()
+        return gen.lib.Place()
 
     def _local_init(self):
         self.top = gtk.glade.XML(const.GLADE_FILE,"place_editor","gramps")
@@ -180,7 +180,7 @@ class EditPlace(EditPrimary):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=RelLib.NoteType.PLACE))
+                    notetype=gen.lib.NoteType.PLACE))
         
         self.gallery_tab = self._add_tab(
             notebook,

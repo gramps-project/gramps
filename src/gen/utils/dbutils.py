@@ -23,7 +23,7 @@
 from gettext import gettext as _
 import copy
 
-import RelLib
+import gen.lib
 from BasicUtils import UpdateCallback
 
 
@@ -168,17 +168,17 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
 def marriage_from_eventref_list(db, eventref_list):
     for eventref in eventref_list:
         event = db.get_event_from_handle(eventref.ref)
-        if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+        if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
             return event
     else:
         return None
 
 def add_child_to_family(db, family, child,
-                        mrel=RelLib.ChildRefType(),
-                        frel=RelLib.ChildRefType(),
+                        mrel=gen.lib.ChildRefType(),
+                        frel=gen.lib.ChildRefType(),
                         trans=None):
 
-    cref = RelLib.ChildRef()
+    cref = gen.lib.ChildRef()
     cref.ref = child.handle
     cref.set_father_relation(frel)
     cref.set_mother_relation(mrel)
@@ -261,7 +261,7 @@ def db_copy(from_db,to_db,callback):
         item = cursor.first()
         while item:
             (handle,data) = item
-            exec('obj = RelLib.%s()' % table_name)
+            exec('obj = gen.lib.%s()' % table_name)
             obj.unserialize(data)
             add_func(obj,trans)
             item = cursor.next()
@@ -295,12 +295,12 @@ def set_birth_death_index(db, person):
     for index in range(len(event_ref_list)):
         ref = event_ref_list[index]
         event = db.get_event_from_handle(ref.ref)
-        if (int(event.get_type()) == RelLib.EventType.BIRTH) \
-               and (int(ref.get_role()) == RelLib.EventRoleType.PRIMARY) \
+        if (int(event.get_type()) == gen.lib.EventType.BIRTH) \
+               and (int(ref.get_role()) == gen.lib.EventRoleType.PRIMARY) \
                and (birth_ref_index == -1):
             birth_ref_index = index
-        elif (int(event.get_type()) == RelLib.EventType.DEATH) \
-                 and (int(ref.get_role()) == RelLib.EventRoleType.PRIMARY) \
+        elif (int(event.get_type()) == gen.lib.EventType.DEATH) \
+                 and (int(ref.get_role()) == gen.lib.EventRoleType.PRIMARY) \
                  and (death_ref_index == -1):
             death_ref_index = index
 

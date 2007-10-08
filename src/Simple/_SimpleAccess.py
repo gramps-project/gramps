@@ -24,13 +24,13 @@ Provides a simplified database access interface to the GRAMPS database.
 
 from types import NoneType
 
-import RelLib
+import gen.lib
 import DateHandler
 import Utils
 
 from BasicUtils import name_displayer
 from ReportBase import ReportUtils
-from RelLib import EventType
+from gen.lib import EventType
 
 class SimpleAccess:
     """
@@ -107,11 +107,11 @@ class SimpleAccess:
         Returns the name of the person, or and empty string if the person is None
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns the name of the person based of the program preferences
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             return name_displayer.display(person)
         else:
@@ -122,11 +122,11 @@ class SimpleAccess:
         Returns the name of the person, or and empty string if the person is None
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns the name of the person based of the program preferences
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             return person.get_primary_name().get_surname()
         else:
@@ -137,11 +137,11 @@ class SimpleAccess:
         Returns the first name of the person, or and empty string if the person is None
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns the first name of the person based of the program preferences
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             return person.get_primary_name().get_first_name()
         else:
@@ -152,11 +152,11 @@ class SimpleAccess:
         Returns the GRAMPS ID of the person or family
 
         @param obj: Person or Family object
-        @type obj: L{RelLib.Person} or L{RelLib.Family}
+        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
         @return: Returns the GRAMPS Id value of the person or family
         @rtype: unicode
         """
-        assert(isinstance(obj, (RelLib.Person, RelLib.Family, NoneType)))
+        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
         if obj:
             return obj.get_gramps_id()
         else:
@@ -167,11 +167,11 @@ class SimpleAccess:
         Returns a string representing the gender of the person
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string indentifying the person's gender
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
             return Utils.gender[person.get_gender()]
         return u''
@@ -181,13 +181,13 @@ class SimpleAccess:
         Returns a person associated as a parent of the person
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @param func: function used to extract the appropriate parent
         @type func: function
         @return: mother or father of the associated person
-        @rtype: L{RelLib.Person}
+        @rtype: L{gen.lib.Person}
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
             parent_handle_list = person.get_parent_family_handle_list()
@@ -202,13 +202,13 @@ class SimpleAccess:
         Returns a person associated as a parent of the family
 
         @param family: Family object
-        @type family: L{RelLib.Family}
+        @type family: L{gen.lib.Family}
         @param func: function used to extract the appropriate parent
         @type func: function
         @return: mother or father of the associated family
-        @rtype: L{RelLib.Family}
+        @rtype: L{gen.lib.Family}
         """
-        assert(isinstance(family, (RelLib.Family, NoneType)))
+        assert(isinstance(family, (gen.lib.Family, NoneType)))
 
         if family:
             handle = func(family)
@@ -221,13 +221,13 @@ class SimpleAccess:
         Returns a string describing the date associated with the person
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @param func: function used to extract the associated date information
         @type func: function
         @return: Returns a string describing the date
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
             ref = func(person)
@@ -245,13 +245,13 @@ class SimpleAccess:
         Returns a string describing the place associated with the person
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @param func: function used to extract the associated place information
         @type func: function
         @return: Returns a string describing the place
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
             ref = func(person)
@@ -268,11 +268,11 @@ class SimpleAccess:
         Returns the primary spouse of the person
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: The spouse identified as the person's primary spouse
-        @rtype: L{RelLib.Person}
+        @rtype: L{gen.lib.Person}
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -293,12 +293,12 @@ class SimpleAccess:
         his/per primary spouse.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string describing the relationship between the person and
         his/per primary spouse.
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -315,12 +315,12 @@ class SimpleAccess:
         where married.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string describing the place where the person and his/her spouse
         where married.
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -345,12 +345,12 @@ class SimpleAccess:
         where married.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string indicicating the date when the person and his/her spouse
         where married.
         @rtype: unicode
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
 
         if person:
             family_handle_list = person.get_family_handle_list()
@@ -375,13 +375,13 @@ class SimpleAccess:
         Returns a list of the children as the children of the primary spouse.
 
         @param obj: Person or Family object
-        @type obj: L{RelLib.Person} or L{RelLib.Family}
-        @return: Returns a list of L{RelLib.Person} objects representing the children
+        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
+        @return: Returns a list of L{gen.lib.Person} objects representing the children
         @rtype: list
         """
-        assert(isinstance(obj, (RelLib.Person, RelLib.Family, NoneType)))
+        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
 
-        if isinstance(obj, RelLib.Person):
+        if isinstance(obj, gen.lib.Person):
             family_handle_list = obj.get_family_handle_list()
             if family_handle_list:
                 family_id = family_handle_list[0]
@@ -389,7 +389,7 @@ class SimpleAccess:
                 
                 return [ self.dbase.get_person_from_handle(hndl.ref) 
                          for hndl in family.get_child_ref_list() ]
-        elif isinstance(obj, RelLib.Family):
+        elif isinstance(obj, gen.lib.Family):
             return [ self.dbase.get_person_from_handle(hndl.ref) 
                      for hndl in obj.get_child_ref_list() ]
         return []
@@ -400,15 +400,15 @@ class SimpleAccess:
         family.
 
         @param obj: Person or Family object
-        @type obj: L{RelLib.Person} or L{RelLib.Family}
+        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
         @return: The father in the person's primary family or the father of the
                  family
-        @rtype: L{RelLib.Person}
+        @rtype: L{gen.lib.Person}
         """
-        if isinstance(obj, RelLib.Person):
-            return self.__parent(obj, RelLib.Family.get_father_handle)
-        elif isinstance(obj, RelLib.Family):
-            return self.__family_parent(obj, RelLib.Family.get_father_handle)
+        if isinstance(obj, gen.lib.Person):
+            return self.__parent(obj, gen.lib.Family.get_father_handle)
+        elif isinstance(obj, gen.lib.Family):
+            return self.__family_parent(obj, gen.lib.Family.get_father_handle)
         else:
             return None
 
@@ -418,15 +418,15 @@ class SimpleAccess:
         family.
 
         @param obj: Person object
-        @type obj: L{RelLib.Person} or L{RelLib.Family}
+        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
         @return: The mother in the person's primary family or the mother of the
                  family
-        @rtype: L{RelLib.Person}
+        @rtype: L{gen.lib.Person}
         """
-        if isinstance(obj, RelLib.Person):
-            return self.__parent(obj, RelLib.Family.get_mother_handle)
-        elif isinstance(obj, RelLib.Family):
-            return self.__family_parent(obj, RelLib.Family.get_mother_handle)
+        if isinstance(obj, gen.lib.Person):
+            return self.__parent(obj, gen.lib.Family.get_mother_handle)
+        elif isinstance(obj, gen.lib.Family):
+            return self.__family_parent(obj, gen.lib.Family.get_mother_handle)
         else:
             return None
         
@@ -435,55 +435,55 @@ class SimpleAccess:
         Returns a string indicating the date when the person's birth.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string indicating the date when the person's birth.
         @rtype: unicode
         """
-        return self.__event_date(person, RelLib.Person.get_birth_ref)
+        return self.__event_date(person, gen.lib.Person.get_birth_ref)
 
     def birth_place(self, person):
         """
         Returns a string indicating the place of the person's birth.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string indicating the place of the person's birth.
         @rtype: unicode
         """
-        return self.__event_place(person, RelLib.Person.get_birth_ref)
+        return self.__event_place(person, gen.lib.Person.get_birth_ref)
 
     def death_date(self, person):
         """
         Returns a string indicating the date when the person's death.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string indicating the date when the person's death.
         @rtype: unicode
         """
-        return self.__event_date(person, RelLib.Person.get_death_ref)
+        return self.__event_date(person, gen.lib.Person.get_death_ref)
 
     def death_place(self, person):
         """
         Returns a string indicating the place of the person's death.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
+        @type person: L{gen.lib.Person}
         @return: Returns a string indicating the place of the person's death.
         @rtype: unicode
         """
-        return self.__event_place(person, RelLib.Person.get_death_ref)
+        return self.__event_place(person, gen.lib.Person.get_death_ref)
 
     def event_place(self, event):
         """
         Returns a string indicating the place of the event
 
         @param event: Event object
-        @type event: L{RelLib.Event}
+        @type event: L{gen.lib.Event}
         @return: Returns a string indicating the place of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (RelLib.Event, NoneType)))
+        assert(isinstance(event, (gen.lib.Event, NoneType)))
 
         if event:
             place_handle = event.get_place_handle()
@@ -496,11 +496,11 @@ class SimpleAccess:
         Returns a string indicating the date of the event
 
         @param event: Event object
-        @type event: L{RelLib.Event}
+        @type event: L{gen.lib.Event}
         @return: Returns a string indicating the date of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (RelLib.Event, NoneType)))
+        assert(isinstance(event, (gen.lib.Event, NoneType)))
         date_obj = event.get_date_object()
         if date_obj:
             return DateHandler.displayer.display(date_obj)
@@ -512,11 +512,11 @@ class SimpleAccess:
         Returns a string indicating the type of the event
 
         @param event: Event object
-        @type event: L{RelLib.Event}
+        @type event: L{gen.lib.Event}
         @return: Returns a string indicating the type of the event
         @rtype: unicode
         """
-        assert(isinstance(event, (RelLib.Event, NoneType)))
+        assert(isinstance(event, (gen.lib.Event, NoneType)))
         if event:
             return str(event.get_type())
         else:
@@ -525,17 +525,17 @@ class SimpleAccess:
     def events(self, obj, restrict=None):
         """
         Returns a list of events associated with the object. This object
-        can be either a L{RelLib.Person} or L{RelLib.Family}.
+        can be either a L{gen.lib.Person} or L{gen.lib.Family}.
 
         @param obj: Person or Family
-        @type obj: L{RelLib.Person} or L{RelLib.Family}
+        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
         @param restrict: Optional list of strings that will limit the types
         of events to those of the specfied types.
         @type restrict: list
         @return: list of events assocated with the object
         @rtype: list
         """
-        assert(isinstance(obj, (RelLib.Person, RelLib.Family, NoneType)))
+        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
         assert(type(restrict) == type([]) or restrict == None)
 
         if obj:
@@ -553,14 +553,14 @@ class SimpleAccess:
     def sources(self, obj):
         """
         Returns a list of events associated with the object. This object
-        can be either a L{RelLib.Person} or L{RelLib.Family}.
+        can be either a L{gen.lib.Person} or L{gen.lib.Family}.
 
         @param obj: Person or Family
-        @type obj: L{RelLib.Person} or L{RelLib.Family}
+        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
         @return: list of events assocated with the object
         @rtype: list
         """
-        assert(isinstance(obj, (RelLib.Person, RelLib.Family, RelLib.Event, NoneType)))
+        assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, gen.lib.Event, NoneType)))
 
         if obj:
             handles = [ ref.ref for ref in obj.get_source_references() ]
@@ -573,12 +573,12 @@ class SimpleAccess:
         Returns a list of families in which the person is listed as a parent.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
-        @return: list of L{RelLib.Family} objects in which the person is listed
+        @type person: L{gen.lib.Person}
+        @return: list of L{gen.lib.Family} objects in which the person is listed
            as a parent.
         @rtype: list
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
         
         if person:
             return [ self.dbase.get_family_from_handle(handle) 
@@ -590,12 +590,12 @@ class SimpleAccess:
         Returns a list of families in which the person is listed as a child.
 
         @param person: Person object
-        @type person: L{RelLib.Person}
-        @return: list of L{RelLib.Family} objects in which the person is listed
+        @type person: L{gen.lib.Person}
+        @return: list of L{gen.lib.Family} objects in which the person is listed
            as a child.
         @rtype: list
         """
-        assert(isinstance(person, (RelLib.Person, NoneType)))
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
         
         if person:
             return [ self.dbase.get_family_from_handle(handle) 
@@ -688,11 +688,11 @@ class SimpleAccess:
         Returns the title of the source.
 
         @param source: Source object
-        @type source: L{RelLib.Source}
+        @type source: L{gen.lib.Source}
         @return: title of the source
         @rtype: unicode
         """
-        assert(isinstance(source, (RelLib.Source, NoneType)))
+        assert(isinstance(source, (gen.lib.Source, NoneType)))
         if source:
             return source.get_title()
         return u''
@@ -702,11 +702,11 @@ class SimpleAccess:
         Returns the author of the source.
 
         @param source: Source object
-        @type source: L{RelLib.Source}
+        @type source: L{gen.lib.Source}
         @return: author of the source
         @rtype: unicode
         """
-        assert(isinstance(source, (RelLib.Source, NoneType)))
+        assert(isinstance(source, (gen.lib.Source, NoneType)))
         if source:
             return source.get_author()
         return u''

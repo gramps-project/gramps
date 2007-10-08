@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _PersonRefModel import PersonRefModel
@@ -73,7 +73,7 @@ class PersonRefEmbedList(EmbeddedList):
         from Editors import EditPersonRef
 
         try:
-            ref = RelLib.PersonRef()
+            ref = gen.lib.PersonRef()
             ref.rel = _('Godfather')
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,
@@ -106,7 +106,7 @@ class PersonRefEmbedList(EmbeddedList):
         """
         try:
             from Editors import EditPersonRef
-            ref = RelLib.PersonRef(obj)
+            ref = gen.lib.PersonRef(obj)
             ref.rel = _('Unknown')
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,

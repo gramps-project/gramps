@@ -37,7 +37,7 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Name
+from gen.lib import Name
 from Errors import NameDisplayError
 
 try:
@@ -455,15 +455,15 @@ class NameDisplay:
 
     def sorted(self,person):
         """
-        Returns a text string representing the L{RelLib.Person} instance's
+        Returns a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for displaying a sorted
         name.
 
-        @param person: L{RelLib.Person} instance that contains the
+        @param person: L{gen.lib.Person} instance that contains the
         L{Name} that is to be displayed. The primary name is used for
         the display.
-        @type person: L{RelLib.Person}
-        @returns: Returns the L{RelLib.Person} instance's name
+        @type person: L{gen.lib.Person}
+        @returns: Returns the L{gen.lib.Person} instance's name
         @rtype: str
         """
         name = person.get_primary_name()
@@ -499,14 +499,14 @@ class NameDisplay:
 
     def display(self,person):
         """
-        Returns a text string representing the L{RelLib.Person} instance's
+        Returns a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for normal displaying.
 
-        @param person: L{RelLib.Person} instance that contains the
+        @param person: L{gen.lib.Person} instance that contains the
         L{Name} that is to be displayed. The primary name is used for
         the display.
-        @type person: L{RelLib.Person}
-        @returns: Returns the L{RelLib.Person} instance's name
+        @type person: L{gen.lib.Person}
+        @returns: Returns the L{gen.lib.Person} instance's name
         @rtype: str
         """
         name = person.get_primary_name()
@@ -514,14 +514,14 @@ class NameDisplay:
 
     def display_formal(self,person):
         """
-        Returns a text string representing the L{RelLib.Person} instance's
+        Returns a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for normal displaying.
 
-        @param person: L{RelLib.Person} instance that contains the
+        @param person: L{gen.lib.Person} instance that contains the
         L{Name} that is to be displayed. The primary name is used for
         the display.
-        @type person: L{RelLib.Person}
-        @returns: Returns the L{RelLib.Person} instance's name
+        @type person: L{gen.lib.Person}
+        @returns: Returns the L{gen.lib.Person} instance's name
         @rtype: str
         """
         # FIXME: At this time, this is just duplicating display() method

@@ -50,7 +50,7 @@ LOG = logging.getLogger(".GrampsDb")
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from RelLib import *
+from gen.lib import *
 from callback import GrampsDBCallback
 from iterator import CursorIterator
 

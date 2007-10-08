@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _RepoRefModel import RepoRefModel
@@ -81,7 +81,7 @@ class RepoEmbedList(EmbeddedList):
         try:
             from Editors import EditRepoRef
             
-            ref = RelLib.RepoRef()
+            ref = gen.lib.RepoRef()
             repo = self.dbstate.db.get_repository_from_handle(obj)
             EditRepoRef(
                 self.dbstate, self.uistate, self.track, 
@@ -90,8 +90,8 @@ class RepoEmbedList(EmbeddedList):
             pass
 
     def add_button_clicked(self, obj):
-        ref = RelLib.RepoRef()
-        repo = RelLib.Repository()
+        ref = gen.lib.RepoRef()
+        repo = gen.lib.Repository()
         try:
             from Editors import EditRepoRef
             
@@ -116,7 +116,7 @@ class RepoEmbedList(EmbeddedList):
             try:
                 from Editors import EditRepoRef
                 
-                ref = RelLib.RepoRef()
+                ref = gen.lib.RepoRef()
                 EditRepoRef(self.dbstate,
                               self.uistate,
                               self.track, 

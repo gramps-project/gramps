@@ -43,7 +43,7 @@ import gtk
 import ToolTips
 import GrampsLocale
 import DateHandler
-import RelLib
+import gen.lib
 from _BaseModel import BaseModel
 
 #-------------------------------------------------------------------------
@@ -107,21 +107,21 @@ class EventModel(BaseModel):
             return u''
 
     def column_type(self,data):
-        return str(RelLib.EventType(data[COLUMN_TYPE]))
+        return str(gen.lib.EventType(data[COLUMN_TYPE]))
 
     def column_id(self,data):
         return unicode(data[COLUMN_ID])
 
     def column_date(self,data):
         if data[COLUMN_DATE]:
-            event = RelLib.Event()
+            event = gen.lib.Event()
             event.unserialize(data)
             return DateHandler.get_date(event)
         return u''
 
     def sort_date(self,data):
         if data[COLUMN_DATE]:
-            event = RelLib.Event()
+            event = gen.lib.Event()
             event.unserialize(data)
             return "%09d" % event.get_date_object().get_sort_value()
         return u''

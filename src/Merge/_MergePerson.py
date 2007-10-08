@@ -40,7 +40,7 @@ import pango
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from ReportBase import ReportUtils
 from BasicUtils import name_displayer
 import const
@@ -380,7 +380,7 @@ class MergePeople:
         self.debug_person(self.p1, "P1")
         self.debug_person(self.p2, "P2")
         
-        new = RelLib.Person()
+        new = gen.lib.Person()
         trans = self.db.transaction_begin()
 
         self.merge_person_information(new, trans)
@@ -460,7 +460,7 @@ class MergePeople:
         to the merged person as an attribute.
         """
         # copy of GRAMPS ID as an attribute
-        attr = RelLib.Attribute()
+        attr = gen.lib.Attribute()
         attr.set_type('Merged GRAMPS ID')
         attr.set_value(self.p2.get_gramps_id())
         new.add_attribute(attr)
@@ -598,7 +598,7 @@ class MergePeople:
         for child_ref in orig_ref_list:
             if child_ref.ref == old_handle:
                 if new_handle not in [ref.ref for ref in new_ref_list]:
-                    new_ref = RelLib.ChildRef()
+                    new_ref = gen.lib.ChildRef()
                     new_ref.ref = new_handle
                     new_ref_list.append(new_ref)
             elif child_ref.ref not in [ref.ref for ref in new_ref_list]:
@@ -686,7 +686,7 @@ class MergePeople:
 ##         cursor = self.db.get_family_cursor()
 ##         data = cursor.first()
 ##         while data:
-##             fam = RelLib.Family()
+##             fam = gen.lib.Family()
 ##             fam.unserialize(data[1])
 ##             if self.p2 in [ref.ref for ref in fam.get_child_ref_list()]:
 ##                 fam.remove_child_ref(self.p2)
@@ -737,7 +737,7 @@ class MergePeople:
             # data[2] == father_handle field, data[2] == mother_handle field
             (thandle, data) = node
             if data[2] == fhandle and data[3] == mhandle and thandle != family_handle:
-                myfamily = RelLib.Family()
+                myfamily = gen.lib.Family()
                 myfamily.unserialize(data)
                 break
             node = cursor.next()

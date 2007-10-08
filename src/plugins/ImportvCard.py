@@ -53,7 +53,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import Errors
-import RelLib
+import gen.lib
 import const
 from QuestionDialog import ErrorDialog
 from PluginUtils import register_import
@@ -165,15 +165,15 @@ class VCardParser:
     def next_person(self):
         if self.person is not None:
             self.db.add_person(self.person,self.trans)
-        self.person = RelLib.Person()
+        self.person = gen.lib.Person()
 
     def set_nick_name(self, fields, data):
         self.person.set_nick_name(data)
 
     def add_name(self, fields, data):
         data_fields = data.split(";")
-        name = RelLib.Name()
-        name.set_type(RelLib.NameType(RelLib.NameType.AKA))
+        name = gen.lib.Name()
+        name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
         name.set_surname(data_fields[0])
         name.set_first_name(data_fields[1])
         if data_fields[2]:
@@ -184,14 +184,14 @@ class VCardParser:
         self.person.set_primary_name(name)
 
     def add_title(self, fields, data):
-        name = RelLib.Name()
-        name.set_type(RelLib.NameType(RelLib.NameType.AKA))
+        name = gen.lib.Name()
+        name.set_type(gen.lib.NameType(gen.lib.NameType.AKA))
         name.set_title(data)
         self.person.add_alternate_name(name)
 
     def add_address(self, fields, data):
         data_fields = data.split(";")
-        addr = RelLib.Address()
+        addr = gen.lib.Address()
         addr.set_street(data_fields[0]+data_fields[1]+data_fields[2])
         addr.set_city(data_fields[3])
         addr.set_state(data_fields[4])
@@ -200,18 +200,18 @@ class VCardParser:
         self.person.add_address(addr)
 
     def add_phone(self, fields, data):
-        addr = RelLib.Address()
+        addr = gen.lib.Address()
         addr.set_phone(data)
         self.person.add_address(addr)
 
     def add_birthday(self, fields, data):
-        event = RelLib.Event()
-        event.set_type(RelLib.EventType(RelLib.EventType.BIRTH))
+        event = gen.lib.Event()
+        event.set_type(gen.lib.EventType(gen.lib.EventType.BIRTH))
         self.db.add_event(event,self.trans)
         self.person.set_birth_handle(event.get_handle())
 
     def add_url(self, fields, data):
-        url = RelLib.Url()
+        url = gen.lib.Url()
         url.set_path(data)
         self.person.add_url(url)
 

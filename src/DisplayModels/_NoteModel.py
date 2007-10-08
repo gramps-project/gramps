@@ -45,7 +45,7 @@ import const
 import ToolTips
 import GrampsLocale
 from _BaseModel import BaseModel
-import RelLib
+import gen.lib
 
 #-------------------------------------------------------------------------
 #
@@ -146,12 +146,12 @@ class NoteModel(BaseModel):
         return unicode(data[1])
 
     def column_type(self,data):
-        temp = RelLib.NoteType()
+        temp = gen.lib.NoteType()
         temp.set(data[4])
         return unicode(str(temp))
 
     def column_marker(self, data):
-        temp = RelLib.MarkerType()
+        temp = gen.lib.MarkerType()
         temp.set(data[6])
         return unicode(str(temp))
     
@@ -170,11 +170,11 @@ class NoteModel(BaseModel):
     def column_marker_color(self, data):
         try:
             col = data[NoteModel._MARKER_COL][0]
-            if col == RelLib.MarkerType.COMPLETE:
+            if col == gen.lib.MarkerType.COMPLETE:
                 return self.complete_color
-            elif col == RelLib.MarkerType.TODO_TYPE:
+            elif col == gen.lib.MarkerType.TODO_TYPE:
                 return self.todo_color
-            elif col == RelLib.MarkerType.CUSTOM:
+            elif col == gen.lib.MarkerType.CUSTOM:
                 return self.custom_color
         except IndexError:
             pass

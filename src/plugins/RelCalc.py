@@ -42,7 +42,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from BasicUtils import name_displayer
 import ManagedWindow
 import ListModel

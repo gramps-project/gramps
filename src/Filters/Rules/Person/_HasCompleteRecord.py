@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules._Rule import Rule
-from RelLib import MarkerType
+from gen.lib import MarkerType
 
 #-------------------------------------------------------------------------
 #

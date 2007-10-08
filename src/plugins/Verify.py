@@ -50,7 +50,7 @@ import gtk.glade
 #
 #------------------------------------------------------------------------
 import const
-import RelLib
+import gen.lib
 import Utils
 import GrampsDisplay
 from ManagedWindow import ManagedWindow
@@ -122,10 +122,10 @@ def get_date_from_event_type(db,person,event_type):
     return 0
 
 def get_bapt_date(db,person):
-    return get_date_from_event_type(db,person,RelLib.EventType.BAPTISM)
+    return get_date_from_event_type(db,person,gen.lib.EventType.BAPTISM)
 
 def get_bury_date(db,person):
-    return get_date_from_event_type(db,person,RelLib.EventType.BURIAL)
+    return get_date_from_event_type(db,person,gen.lib.EventType.BURIAL)
 
 def get_birth_date(db,person,estimate=False):
     if not person:
@@ -194,7 +194,7 @@ def get_marriage_date(db,family):
         return 0
     for event_ref in family.get_event_ref_list():
         event = find_event(db,event_ref.ref)
-        if event.get_type() == RelLib.EventType.MARRIAGE:
+        if event.get_type() == gen.lib.EventType.MARRIAGE:
             date_obj = event.get_date_object()
             return date_obj.get_sort_value()
     return 0
@@ -941,8 +941,8 @@ class UnknownGender(PersonRule):
     ID = 8
     SEVERITY = Rule.WARNING
     def broken(self):
-        female = self.obj.get_gender() == RelLib.Person.FEMALE
-        male = self.obj.get_gender() == RelLib.Person.MALE
+        female = self.obj.get_gender() == gen.lib.Person.FEMALE
+        male = self.obj.get_gender() == gen.lib.Person.MALE
         return not (male or female)
 
     def get_message(self):
@@ -1008,11 +1008,11 @@ class TooManyChildren(PersonRule):
     def broken(self):
         n_child = get_n_children(self.db,self.obj)
 
-        if (self.obj.get_gender == RelLib.Person.MALE) \
+        if (self.obj.get_gender == gen.lib.Person.MALE) \
                and (n_child > self.mx_child_dad):
             return True
 
-        if (self.obj.get_gender == RelLib.Person.FEMALE) \
+        if (self.obj.get_gender == gen.lib.Person.FEMALE) \
                and (n_child > self.mx_child_mom):
             return True
 
@@ -1030,7 +1030,7 @@ class SameSexFamily(FamilyRule):
         same_sex = (mother and father and
                     (mother.get_gender() == father.get_gender()))
         unknown_sex = (mother and
-                       (mother.get_gender() == RelLib.Person.UNKNOWN))
+                       (mother.get_gender() == gen.lib.Person.UNKNOWN))
         return (same_sex and not unknown_sex)
 
     def get_message(self):
@@ -1041,7 +1041,7 @@ class FemaleHusband(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         father = get_father(self.db,self.obj)
-        return (father and (father.get_gender() == RelLib.Person.FEMALE))
+        return (father and (father.get_gender() == gen.lib.Person.FEMALE))
 
     def get_message(self):
         return _("Female husband")
@@ -1051,7 +1051,7 @@ class MaleWife(FamilyRule):
     SEVERITY = Rule.WARNING
     def broken(self):
         mother = get_mother(self.db,self.obj)
-        return (mother and (mother.get_gender() == RelLib.Person.MALE))
+        return (mother and (mother.get_gender() == gen.lib.Person.MALE))
 
     def get_message(self):
         return _("Male wife")

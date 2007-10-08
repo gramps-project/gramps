@@ -51,7 +51,7 @@ log = logging.getLogger(".WriteGeneWeb")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from Filters import GenericFilter, Rules, build_filter_menu
 import const
 import Utils
@@ -312,17 +312,17 @@ class GeneWebWriter:
         event_ref_list = family.get_event_ref_list()
         for event_ref in event_ref:
             event = self.db.get_event_from_handle(event_ref.ref)
-            if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+            if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
                 w_list = event.get_witness_list()
                 if w_list:
                     for witness in w_list:
-                        if witness and witness.type == RelLib.Event.ID:
+                        if witness and witness.type == gen.lib.Event.ID:
                             person = self.db.get_person_from_handle(witness.get_value())
                             if person:
                                 gender = ""
-                                if person.get_gender() == RelLib.Person.MALE:
+                                if person.get_gender() == gen.lib.Person.MALE:
                                     gender = "h"
-                                elif person.get_gender() == RelLib.Person.FEMALE:
+                                elif person.get_gender() == gen.lib.Person.FEMALE:
                                     gender = "f"
                                 self.writeln("wit %s %s %s" % (gender, self.get_ref_name(person), self.get_full_person_info_fam(person)))
                             
@@ -348,9 +348,9 @@ class GeneWebWriter:
                 child = self.db.get_person_from_handle(child_ref.ref)
                 if child:
                     gender = ""
-                    if child.get_gender() == RelLib.Person.MALE:
+                    if child.get_gender() == gen.lib.Person.MALE:
                         gender = "h"
-                    elif child.get_gender() == RelLib.Person.FEMALE:
+                    elif child.get_gender() == gen.lib.Person.FEMALE:
                         gender = "f"
                     self.writeln("- %s %s %s" % (gender, self.get_child_ref_name(child, father_lastname), self.get_full_person_info_child(child)))
             self.writeln("end")
@@ -371,11 +371,11 @@ class GeneWebWriter:
 ##         event_ref_list = family.get_event_ref_list()
 ##         for event_ref in event_ref_list:
 ##             event = self.db.get_event_from_handle(event_ref.ref)
-##             if int(event.get_type()) == RelLib.EventType.MARRIAGE:
+##             if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
 ##                 w_list = event.get_witness_list()
 ##                 if w_list:
 ##                     for witness in w_list:
-##                         if witness and witness.type == RelLib.Event.ID:
+##                         if witness and witness.type == gen.lib.Event.ID:
 ##                             person = self.db.get_person_from_handle(witness.get_value())
 ##                             if person:
 ##                                 self.write_note_of_person(person)
@@ -504,7 +504,7 @@ class GeneWebWriter:
         divorced = 0
         for event_ref in event_ref_list:
             event = self.db.get_event_from_handle(event_ref.ref)
-            if event.get_type() == RelLib.EventType.MARRIAGE:
+            if event.get_type() == gen.lib.EventType.MARRIAGE:
                 married = 1
                 m_date = self.format_date( event.get_date_object())
                 place_handle = event.get_place_handle()
@@ -512,7 +512,7 @@ class GeneWebWriter:
                     place = self.db.get_place_from_handle(place_handle)
                     m_place = place.get_title()
                 m_source = self.get_primary_source( event.get_source_references())
-            if event.get_type() == RelLib.EventType.ENGAGEMENT:
+            if event.get_type() == gen.lib.EventType.ENGAGEMENT:
                 engaged = 1
                 eng_date = self.format_date( event.get_date_object())
                 place_handle = event.get_place_handle()
@@ -520,7 +520,7 @@ class GeneWebWriter:
                     place = self.db.get_place_from_handle(place_handle)
                     eng_place = place.get_title()
                 eng_source = self.get_primary_source( event.get_source_references())
-            if event.get_type() == RelLib.EventType.DIVORCE:
+            if event.get_type() == gen.lib.EventType.DIVORCE:
                 divorced = 1
                 div_date = self.format_date( event.get_date_object())
         if married == 1:
@@ -545,7 +545,7 @@ class GeneWebWriter:
             if eng_source != "":
                 ret = ret + "#ms %s " % self.rem_spaces( m_source)
         else:
-            if family.get_relationship() != RelLib.FamilyRelType.MARRIED:
+            if family.get_relationship() != gen.lib.FamilyRelType.MARRIED:
                 """Not married or engaged"""
                 ret = ret + " #nm "
 
@@ -575,19 +575,19 @@ class GeneWebWriter:
         (day,month,year,sl) = subdate
         
         cal_type = ""
-        if cal == RelLib.Date.CAL_HEBREW:
+        if cal == gen.lib.Date.CAL_HEBREW:
             cal_type = "H"
-        elif cal == RelLib.Date.CAL_FRENCH:
+        elif cal == gen.lib.Date.CAL_FRENCH:
             cal_type = "F"
-        elif cal == RelLib.Date.CAL_JULIAN:
+        elif cal == gen.lib.Date.CAL_JULIAN:
             cal_type = "J"
         
         mode_prefix = ""
-        if mode == RelLib.Date.MOD_ABOUT:
+        if mode == gen.lib.Date.MOD_ABOUT:
             mode_prefix = "~"
-        elif mode == RelLib.Date.MOD_BEFORE:
+        elif mode == gen.lib.Date.MOD_BEFORE:
             mode_prefix = "<"
-        elif mode == RelLib.Date.MOD_AFTER:
+        elif mode == gen.lib.Date.MOD_AFTER:
             mode_prefix = ">"
             
         if year > 0:
@@ -610,7 +610,7 @@ class GeneWebWriter:
         elif not date.is_empty():
             mod = date.get_modifier()
             cal = cal = date.get_calendar()
-            if mod == RelLib.Date.MOD_SPAN or mod == RelLib.Date.MOD_RANGE:
+            if mod == gen.lib.Date.MOD_SPAN or mod == gen.lib.Date.MOD_RANGE:
                 retval = "%s..%s" % (
                     self.format_single_date(date.get_start_date(), cal,mod),
                     self.format_single_date(date.get_stop_date(),cal,mod))

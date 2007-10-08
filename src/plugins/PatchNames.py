@@ -49,7 +49,7 @@ from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
-import RelLib
+import gen.lib
 
 #-------------------------------------------------------------------------
 #
@@ -286,8 +286,8 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 name = p.get_primary_name()
                 name.set_first_name(grp[1].strip())
                 nick_name = grp[2].strip()
-                attr = RelLib.Attribute()
-                attr.set_type(RelLib.AttributeType.NICKNAME)
+                attr = gen.lib.Attribute()
+                attr.set_type(gen.lib.AttributeType.NICKNAME)
                 attr.set_value(nick_name)
                 p.add_attribute(attr)
                 self.db.commit_person(p,self.trans)

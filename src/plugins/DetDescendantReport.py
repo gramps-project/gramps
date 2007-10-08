@@ -44,7 +44,7 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Utils
 import Errors
 from PluginUtils import register_report
@@ -170,7 +170,7 @@ class DetDescendantReport(Report):
         nspouses = 0
         for family_handle in self.start_person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
-            if self.start_person.get_gender() == RelLib.Person.MALE:
+            if self.start_person.get_gender() == gen.lib.Person.MALE:
                 spouse_handle = family.get_mother_handle()
             else:
                 spouse_handle = family.get_father_handle()
@@ -254,7 +254,7 @@ class DetDescendantReport(Report):
             for family_handle in person.get_family_handle_list():
                 family = self.database.get_family_from_handle(family_handle)
                 if self.includeMates:
-                    if person.get_gender() == RelLib.Person.MALE:
+                    if person.get_gender() == gen.lib.Person.MALE:
                         mate_handle = family.get_mother_handle()
                     else:
                         mate_handle = family.get_father_handle()

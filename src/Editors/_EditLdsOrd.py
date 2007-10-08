@@ -49,7 +49,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Config
-import RelLib
+import gen.lib
 from BasicUtils import name_displayer
 import LdsUtils
 
@@ -59,65 +59,65 @@ from DisplayTabs import SourceEmbedList,NoteTab
 from GrampsWidgets import *
 
 _DATA_MAP = {
-    RelLib.LdsOrd.BAPTISM : [
-        RelLib.LdsOrd.STATUS_NONE,
-        RelLib.LdsOrd.STATUS_CHILD,
-        RelLib.LdsOrd.STATUS_CLEARED,
-        RelLib.LdsOrd.STATUS_COMPLETED,
-        RelLib.LdsOrd.STATUS_INFANT,
-        RelLib.LdsOrd.STATUS_PRE_1970,
-        RelLib.LdsOrd.STATUS_QUALIFIED,
-        RelLib.LdsOrd.STATUS_STILLBORN,
-        RelLib.LdsOrd.STATUS_SUBMITTED,
-        RelLib.LdsOrd.STATUS_UNCLEARED,
+    gen.lib.LdsOrd.BAPTISM : [
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_CHILD,
+        gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED,
+        gen.lib.LdsOrd.STATUS_INFANT,
+        gen.lib.LdsOrd.STATUS_PRE_1970,
+        gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_STILLBORN,
+        gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED,
         ],
-    RelLib.LdsOrd.CONFIRMATION : [
-        RelLib.LdsOrd.STATUS_NONE,
-        RelLib.LdsOrd.STATUS_CHILD,
-        RelLib.LdsOrd.STATUS_CLEARED,
-        RelLib.LdsOrd.STATUS_COMPLETED,
-        RelLib.LdsOrd.STATUS_INFANT,
-        RelLib.LdsOrd.STATUS_PRE_1970,
-        RelLib.LdsOrd.STATUS_QUALIFIED,
-        RelLib.LdsOrd.STATUS_STILLBORN,
-        RelLib.LdsOrd.STATUS_SUBMITTED,
-        RelLib.LdsOrd.STATUS_UNCLEARED,
+    gen.lib.LdsOrd.CONFIRMATION : [
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_CHILD,
+        gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED,
+        gen.lib.LdsOrd.STATUS_INFANT,
+        gen.lib.LdsOrd.STATUS_PRE_1970,
+        gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_STILLBORN,
+        gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED,
         ],
-    RelLib.LdsOrd.ENDOWMENT: [
-        RelLib.LdsOrd.STATUS_NONE,
-        RelLib.LdsOrd.STATUS_CHILD,
-        RelLib.LdsOrd.STATUS_CLEARED,
-        RelLib.LdsOrd.STATUS_COMPLETED,
-        RelLib.LdsOrd.STATUS_INFANT,
-        RelLib.LdsOrd.STATUS_PRE_1970,
-        RelLib.LdsOrd.STATUS_QUALIFIED,
-        RelLib.LdsOrd.STATUS_STILLBORN,
-        RelLib.LdsOrd.STATUS_SUBMITTED,
-        RelLib.LdsOrd.STATUS_UNCLEARED,
+    gen.lib.LdsOrd.ENDOWMENT: [
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_CHILD,
+        gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED,
+        gen.lib.LdsOrd.STATUS_INFANT,
+        gen.lib.LdsOrd.STATUS_PRE_1970,
+        gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_STILLBORN,
+        gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED,
         ],
-    RelLib.LdsOrd.SEAL_TO_PARENTS:[
-        RelLib.LdsOrd.STATUS_NONE,
-        RelLib.LdsOrd.STATUS_BIC,
-        RelLib.LdsOrd.STATUS_CLEARED,
-        RelLib.LdsOrd.STATUS_COMPLETED,
-        RelLib.LdsOrd.STATUS_DNS,
-        RelLib.LdsOrd.STATUS_PRE_1970,
-        RelLib.LdsOrd.STATUS_QUALIFIED,
-        RelLib.LdsOrd.STATUS_STILLBORN,
-        RelLib.LdsOrd.STATUS_SUBMITTED,
-        RelLib.LdsOrd.STATUS_UNCLEARED,
+    gen.lib.LdsOrd.SEAL_TO_PARENTS:[
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_BIC,
+        gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED,
+        gen.lib.LdsOrd.STATUS_DNS,
+        gen.lib.LdsOrd.STATUS_PRE_1970,
+        gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_STILLBORN,
+        gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED,
         ],
-    RelLib.LdsOrd.SEAL_TO_SPOUSE :[
-        RelLib.LdsOrd.STATUS_NONE,
-        RelLib.LdsOrd.STATUS_CANCELED,
-        RelLib.LdsOrd.STATUS_CLEARED,
-        RelLib.LdsOrd.STATUS_COMPLETED,
-        RelLib.LdsOrd.STATUS_DNS,
-        RelLib.LdsOrd.STATUS_PRE_1970,
-        RelLib.LdsOrd.STATUS_QUALIFIED,
-        RelLib.LdsOrd.STATUS_DNS_CAN,
-        RelLib.LdsOrd.STATUS_SUBMITTED,
-        RelLib.LdsOrd.STATUS_UNCLEARED,
+    gen.lib.LdsOrd.SEAL_TO_SPOUSE :[
+        gen.lib.LdsOrd.STATUS_NONE,
+        gen.lib.LdsOrd.STATUS_CANCELED,
+        gen.lib.LdsOrd.STATUS_CLEARED,
+        gen.lib.LdsOrd.STATUS_COMPLETED,
+        gen.lib.LdsOrd.STATUS_DNS,
+        gen.lib.LdsOrd.STATUS_PRE_1970,
+        gen.lib.LdsOrd.STATUS_QUALIFIED,
+        gen.lib.LdsOrd.STATUS_DNS_CAN,
+        gen.lib.LdsOrd.STATUS_SUBMITTED,
+        gen.lib.LdsOrd.STATUS_UNCLEARED,
         ],
     }
 
@@ -160,10 +160,10 @@ class EditLdsOrd(EditSecondary):
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 
     def _get_types(self):
-        return (RelLib.LdsOrd.BAPTISM,
-                RelLib.LdsOrd.ENDOWMENT,
-                RelLib.LdsOrd.CONFIRMATION,
-                RelLib.LdsOrd.SEAL_TO_PARENTS)
+        return (gen.lib.LdsOrd.BAPTISM,
+                gen.lib.LdsOrd.ENDOWMENT,
+                gen.lib.LdsOrd.CONFIRMATION,
+                gen.lib.LdsOrd.SEAL_TO_PARENTS)
 
     def _setup_fields(self):
 
@@ -197,7 +197,7 @@ class EditLdsOrd(EditSecondary):
             self.top.get_widget('type'),
             self.obj.set_type,
             self.obj.get_type,
-            [(item[1],item[0]) for item in RelLib.LdsOrd._TYPE_MAP
+            [(item[1],item[0]) for item in gen.lib.LdsOrd._TYPE_MAP
              if item[0] in self._get_types()],
             self.db.readonly,
             changed=self.ord_type_changed)
@@ -213,7 +213,7 @@ class EditLdsOrd(EditSecondary):
             self.top.get_widget('status'),
             self.obj.set_status,
             self.obj.get_status,
-            [(item[1],item[0]) for item in RelLib.LdsOrd._STATUS_MAP
+            [(item[1],item[0]) for item in gen.lib.LdsOrd._STATUS_MAP
              if item[0] in _DATA_MAP[self.obj.get_type()] ],
             self.db.readonly)
 
@@ -221,19 +221,19 @@ class EditLdsOrd(EditSecondary):
         self.update_parent_label()
 
     def ord_type_changed(self):
-        if self.obj.get_type() == RelLib.LdsOrd.BAPTISM:
+        if self.obj.get_type() == gen.lib.LdsOrd.BAPTISM:
             self.parents.hide()
             self.parents_label.hide()
             self.parents_select.hide()
-        elif self.obj.get_type() == RelLib.LdsOrd.ENDOWMENT:
+        elif self.obj.get_type() == gen.lib.LdsOrd.ENDOWMENT:
             self.parents.hide()
             self.parents_label.hide()
             self.parents_select.hide()
-        elif self.obj.get_type() == RelLib.LdsOrd.SEAL_TO_PARENTS:
+        elif self.obj.get_type() == gen.lib.LdsOrd.SEAL_TO_PARENTS:
             self.parents.show()
             self.parents_label.show()
             self.parents_select.show()
-        new_data = [(item[1],item[0]) for item in RelLib.LdsOrd._STATUS_MAP
+        new_data = [(item[1],item[0]) for item in gen.lib.LdsOrd._STATUS_MAP
                     if item[0] in _DATA_MAP[self.obj.get_type()] ]
         self.status_menu.change_menu(new_data)
 
@@ -247,7 +247,7 @@ class EditLdsOrd(EditSecondary):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
-                    notetype=RelLib.NoteType.LDS))
+                    notetype=gen.lib.NoteType.LDS))
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
@@ -345,7 +345,7 @@ class EditFamilyLdsOrd(EditSecondary):
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 
     def _get_types(self):
-        return (RelLib.LdsOrd.SEAL_TO_SPOUSE,)
+        return (gen.lib.LdsOrd.SEAL_TO_SPOUSE,)
 
     def _setup_fields(self):
 
@@ -379,7 +379,7 @@ class EditFamilyLdsOrd(EditSecondary):
             self.top.get_widget('type'),
             self.obj.set_type,
             self.obj.get_type,
-            [(item[1],item[0]) for item in RelLib.LdsOrd._TYPE_MAP
+            [(item[1],item[0]) for item in gen.lib.LdsOrd._TYPE_MAP
              if item[0] in self._get_types()],
             self.db.readonly)
 
@@ -394,7 +394,7 @@ class EditFamilyLdsOrd(EditSecondary):
             self.top.get_widget('status'),
             self.obj.set_status,
             self.obj.get_status,
-            [(item[1],item[0]) for item in RelLib.LdsOrd._STATUS_MAP
+            [(item[1],item[0]) for item in gen.lib.LdsOrd._STATUS_MAP
              if item[0] in _DATA_MAP[self.obj.get_type()]],
             self.db.readonly)
 
@@ -408,7 +408,7 @@ class EditFamilyLdsOrd(EditSecondary):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.obj.get_note_list(),
-                    notetype=RelLib.NoteType.LDS))
+                    notetype=gen.lib.NoteType.LDS))
         
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)

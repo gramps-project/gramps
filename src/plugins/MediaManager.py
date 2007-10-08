@@ -47,7 +47,7 @@ import gtk
 import GrampsDisplay
 import Assistant
 import Errors
-from RelLib import MediaObject
+from gen.lib import MediaObject
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
 

@@ -41,7 +41,7 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
-import RelLib
+import gen.lib
 import DateHandler
 import const
 

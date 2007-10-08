@@ -51,7 +51,7 @@ import gtk
 #------------------------------------------------------------------------
 
 # Person and relation types
-from RelLib import Person, FamilyRelType, EventType
+from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
 from PluginUtils import register_report

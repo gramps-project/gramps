@@ -41,7 +41,7 @@ log = logging.getLogger(".DateDisplay")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import Date
+from gen.lib import Date
 import GrampsLocale
 
 #-------------------------------------------------------------------------

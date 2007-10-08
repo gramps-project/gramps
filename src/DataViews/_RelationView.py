@@ -46,7 +46,7 @@ import gtk
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import PageView
 from BasicUtils import name_displayer
 import DateHandler
@@ -59,9 +59,9 @@ import gen.utils
 from ReportBase import ReportUtils
 
 _GenderCode = {
-    RelLib.Person.MALE    : u'\u2642', 
-    RelLib.Person.FEMALE  : u'\u2640', 
-    RelLib.Person.UNKNOWN : u'\u2650', 
+    gen.lib.Person.MALE    : u'\u2642', 
+    gen.lib.Person.FEMALE  : u'\u2640', 
+    gen.lib.Person.UNKNOWN : u'\u2650', 
     }
 
 _NAME_START   = 0
@@ -745,9 +745,9 @@ class RelationshipView(PageView.PersonNavView):
             elif count == 1 :
                 gender = self.dbstate.db.get_person_from_handle(\
                                         child_list[0]).gender
-                if gender == RelLib.Person.MALE :
+                if gender == gen.lib.Person.MALE :
                     childmsg = _(" (1 brother)")
-                elif gender == RelLib.Person.FEMALE :
+                elif gender == gen.lib.Person.FEMALE :
                     childmsg = _(" (1 sister)")
                 else :
                     childmsg = _(" (1 sibling)")
@@ -934,7 +934,7 @@ class RelationshipView(PageView.PersonNavView):
             return None
 
         birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, child)
-        if birth and birth.get_type != RelLib.EventType.BIRTH:
+        if birth and birth.get_type != gen.lib.EventType.BIRTH:
             bdate  = "<i>%s</i>" % cgi.escape(DateHandler.get_date(birth))
         elif birth:
             bdate  = cgi.escape(DateHandler.get_date(birth))
@@ -942,7 +942,7 @@ class RelationshipView(PageView.PersonNavView):
             bdate = ""
 
         death = ReportUtils.get_death_or_fallback(self.dbstate.db, child)
-        if death and death.get_type != RelLib.EventType.DEATH:
+        if death and death.get_type != gen.lib.EventType.DEATH:
             ddate  = "<i>%s</i>" % cgi.escape(DateHandler.get_date(death))
         elif death:
             ddate  = cgi.escape(DateHandler.get_date(death))
@@ -1030,7 +1030,7 @@ class RelationshipView(PageView.PersonNavView):
         for event_ref in family.get_event_ref_list():
             handle = event_ref.ref
             event = self.dbstate.db.get_event_from_handle(handle)
-            if event.get_type() == RelLib.EventType.MARRIAGE:
+            if event.get_type() == gen.lib.EventType.MARRIAGE:
                 self.write_event_ref(vbox, _('Marriage'), event)
                 value = True
         return value
@@ -1172,12 +1172,12 @@ class RelationshipView(PageView.PersonNavView):
     def add_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             from Editors import EditFamily
-            family = RelLib.Family()
+            family = gen.lib.Family()
             person = self.dbstate.active
             if not person:
                 return
             
-            if person.gender == RelLib.Person.MALE:
+            if person.gender == gen.lib.Person.MALE:
                 family.set_father_handle(person.handle)
             else:
                 family.set_mother_handle(person.handle)
@@ -1189,13 +1189,13 @@ class RelationshipView(PageView.PersonNavView):
 
     def add_spouse(self, obj):
         from Editors import EditFamily
-        family = RelLib.Family()
+        family = gen.lib.Family()
         person = self.dbstate.active
 
         if not person:
             return
             
-        if person.gender == RelLib.Person.MALE:
+        if person.gender == gen.lib.Person.MALE:
             family.set_father_handle(person.handle)
         else:
             family.set_mother_handle(person.handle)
@@ -1253,13 +1253,13 @@ class RelationshipView(PageView.PersonNavView):
 
     def add_parents(self, obj):
         from Editors import EditFamily
-        family = RelLib.Family()
+        family = gen.lib.Family()
         person = self.dbstate.active
 
         if not person:
             return
 
-        ref = RelLib.ChildRef()
+        ref = gen.lib.ChildRef()
         ref.ref = person.handle
         family.add_child_ref(ref)
         
@@ -1271,10 +1271,10 @@ class RelationshipView(PageView.PersonNavView):
     def add_parent_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
             from Editors import EditFamily
-            family = RelLib.Family()
+            family = gen.lib.Family()
             person = self.dbstate.active
 
-            ref = RelLib.ChildRef()
+            ref = gen.lib.ChildRef()
             ref.ref = person.handle
             family.add_child_ref(ref)
                 

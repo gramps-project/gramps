@@ -51,7 +51,7 @@ gettext.install("gramps",loc,unicode=1)
 import DateHandler
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
-from RelLib import Date
+from gen.lib import Date
 
 print locale.getlocale(locale.LC_TIME)
 print _dd

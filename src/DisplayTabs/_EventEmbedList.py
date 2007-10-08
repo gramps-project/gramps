@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Errors
 from DdTargets import DdTargets
 from _EmbeddedList import EmbeddedList
@@ -84,15 +84,15 @@ class EventEmbedList(EmbeddedList):
         return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5))
 
     def default_type(self):
-        return RelLib.EventType(RelLib.EventType.MARRIAGE)
+        return gen.lib.EventType(gen.lib.EventType.MARRIAGE)
 
     def default_role(self):
-        return RelLib.EventRoleType(RelLib.EventRoleType.FAMILY)
+        return gen.lib.EventRoleType(gen.lib.EventRoleType.FAMILY)
 
     def add_button_clicked(self, obj):
         try:
-            ref = RelLib.EventRef()
-            event = RelLib.Event()
+            ref = gen.lib.EventRef()
+            event = gen.lib.Event()
             ref.set_role(self.default_role())
             event.set_type(self.default_type())
             self.get_ref_editor()(
@@ -109,7 +109,7 @@ class EventEmbedList(EmbeddedList):
         event = sel.run()
         if event:
             try:
-                ref = RelLib.EventRef()
+                ref = gen.lib.EventRef()
                 ref.set_role(self.default_role())
                 self.get_ref_editor()(
                     self.dbstate, self.uistate, self.track,
@@ -151,7 +151,7 @@ class EventEmbedList(EmbeddedList):
         And event reference that is from a drag and drop has
         an unknown event reference type
         """
-        from RelLib import EventRoleType
+        from gen.lib import EventRoleType
         
         obj.set_role((EventRoleType.UNKNOWN,''))
         EmbeddedList._handle_drag(self, row, obj)
@@ -163,7 +163,7 @@ class EventEmbedList(EmbeddedList):
 
     def handle_extra_type(self, objtype, obj):
         try:
-            ref = RelLib.EventRef()
+            ref = gen.lib.EventRef()
             event = self.dbstate.db.get_event_from_handle(obj)
             ref.set_role(self.default_role())
             self.get_ref_editor()(

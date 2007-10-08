@@ -39,7 +39,7 @@ import re
 
 from _GedcomInfo import *
 import _GedcomTokens as GedcomTokens
-import RelLib
+import gen.lib
 from DateHandler._DateParser import DateParser
 
 #------------------------------------------------------------------------
@@ -84,20 +84,20 @@ RANGE = re.compile(r"\s*BET\s+@#D?([^@]+)@\s*(.*)\s+AND\s+@#D?([^@]+)@\s*(.*)$")
 SPAN  = re.compile(r"\s*FROM\s+@#D?([^@]+)@\s*(.*)\s+TO\s+@#D?([^@]+)@\s*(.*)$")
 
 CALENDAR_MAP = {
-    "FRENCH R" : RelLib.Date.CAL_FRENCH,
-    "JULIAN"   : RelLib.Date.CAL_JULIAN,
-    "HEBREW"   : RelLib.Date.CAL_HEBREW,
+    "FRENCH R" : gen.lib.Date.CAL_FRENCH,
+    "JULIAN"   : gen.lib.Date.CAL_JULIAN,
+    "HEBREW"   : gen.lib.Date.CAL_HEBREW,
 }
 
 QUALITY_MAP = {
-    'CAL' : RelLib.Date.QUAL_CALCULATED,
-    'INT' : RelLib.Date.QUAL_CALCULATED,
-    'EST' : RelLib.Date.QUAL_ESTIMATED,
+    'CAL' : gen.lib.Date.QUAL_CALCULATED,
+    'INT' : gen.lib.Date.QUAL_CALCULATED,
+    'EST' : gen.lib.Date.QUAL_ESTIMATED,
 }
 
 SEX_MAP = {
-    'F' : RelLib.Person.FEMALE,
-    'M' : RelLib.Person.MALE,
+    'F' : gen.lib.Person.FEMALE,
+    'M' : gen.lib.Person.MALE,
 }
 
 #-----------------------------------------------------------------------
@@ -133,8 +133,8 @@ class GedLine:
     this is just a text string. However, for certain tokens where we know 
     the context, we can provide some value. The current parsed tokens are:
 
-    TOKEN_DATE   - RelLib.Date
-    TOKEN_SEX    - RelLib.Person gender item
+    TOKEN_DATE   - gen.lib.Date
+    TOKEN_SEX    - gen.lib.Person gender item
     TOEKN_UKNOWN - Check to see if this is a known event
     """
 
@@ -167,16 +167,16 @@ class GedLine:
 
     def calc_sex(self):
         """
-        Converts the data field to a RelLib token indicating the gender
+        Converts the data field to a gen.lib token indicating the gender
         """
         try:
-            self.data = SEX_MAP.get(self.data.strip()[0], RelLib.Person.UNKNOWN)
+            self.data = SEX_MAP.get(self.data.strip()[0], gen.lib.Person.UNKNOWN)
         except:
-            self.data = RelLib.Person.UNKNOWN
+            self.data = gen.lib.Person.UNKNOWN
 
     def calc_date(self):
         """
-        Converts the data field to a RelLib.Date object
+        Converts the data field to a gen.lib.Date object
         """
         self.data = extract_date(self.data)
 
@@ -188,7 +188,7 @@ class GedLine:
         """
         token = GED2GRAMPS.get(self.token_text)
         if token:
-            event = RelLib.Event()
+            event = gen.lib.Event()
             event.set_description(self.data)
             event.set_type(token)
             self.token = GedcomTokens.TOKEN_GEVENT
@@ -196,7 +196,7 @@ class GedLine:
         else:
             token = GED2ATTR.get(self.token_text)
             if token:
-                attr = RelLib.Attribute()
+                attr = gen.lib.Attribute()
                 attr.set_value(self.data)
                 attr.set_type(token)
                 self.token = GedcomTokens.TOKEN_ATTR
@@ -209,16 +209,16 @@ class GedLine:
             self.data = gid[1:-1]
 
     def calc_nchi(self):
-        attr = RelLib.Attribute()
+        attr = gen.lib.Attribute()
         attr.set_value(self.data)
-        attr.set_type(RelLib.AttributeType.NUM_CHILD)
+        attr.set_type(gen.lib.AttributeType.NUM_CHILD)
         self.data = attr
         self.token = GedcomTokens.TOKEN_ATTR
 
     def calc_attr(self):
-        attr = RelLib.Attribute()
+        attr = gen.lib.Attribute()
         attr.set_value(self.data)
-        attr.set_type((RelLib.AttributeType.CUSTOM, self.token_text))
+        attr.set_type((gen.lib.AttributeType.CUSTOM, self.token_text))
         self.data = attr
         self.token = GedcomTokens.TOKEN_ATTR
 
@@ -253,9 +253,9 @@ DATE_CNV = GedcomDateParser()
 
 def extract_date(text):
     """
-    Converts the specified text to a RelLib.Date object.
+    Converts the specified text to a gen.lib.Date object.
     """
-    dateobj = RelLib.Date()
+    dateobj = gen.lib.Date()
 
     text = text.replace('BET ABT','EST BET') # Horrible hack for Tim Lyons
 
@@ -264,20 +264,20 @@ def extract_date(text):
         match = MOD.match(text)
         if match:
             (mod, text) = match.groups()
-            qual = QUALITY_MAP.get(mod, RelLib.Date.QUAL_NONE)
+            qual = QUALITY_MAP.get(mod, gen.lib.Date.QUAL_NONE)
         else:
-            qual = RelLib.Date.QUAL_NONE
+            qual = gen.lib.Date.QUAL_NONE
 
         # parse the range if we match, if so, return
         match = RANGE.match(text)
         if match:
             (cal1, data1, ignore, cal2, data2) = match.groups()
 
-            cal = CALENDAR_MAP.get(cal1, RelLib.Date.CAL_GREGORIAN)
+            cal = CALENDAR_MAP.get(cal1, gen.lib.Date.CAL_GREGORIAN)
                     
             start = DATE_CNV.parse(data1)
             stop =  DATE_CNV.parse(data2)
-            dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_RANGE, cal,
+            dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_RANGE, cal,
                         start.get_start_date() + stop.get_start_date())
             dateobj.set_quality(qual)
             return dateobj
@@ -287,11 +287,11 @@ def extract_date(text):
         if match:
             (cal1, data1, cal2, data2) = match.groups()
 
-            cal = CALENDAR_MAP.get(cal1, RelLib.Date.CAL_GREGORIAN)
+            cal = CALENDAR_MAP.get(cal1, gen.lib.Date.CAL_GREGORIAN)
                     
             start = DATE_CNV.parse(data1)
             stop =  DATE_CNV.parse(data2)
-            dateobj.set(RelLib.Date.QUAL_NONE, RelLib.Date.MOD_SPAN, cal,
+            dateobj.set(gen.lib.Date.QUAL_NONE, gen.lib.Date.MOD_SPAN, cal,
                         start.get_start_date() + stop.get_start_date())
             dateobj.set_quality(qual)
             return dateobj
@@ -304,7 +304,7 @@ def extract_date(text):
             else:
                 dateobj = DATE_CNV.parse(data)
             dateobj.set_calendar(CALENDAR_MAP.get(cal, 
-                                                  RelLib.Date.CAL_GREGORIAN))
+                                                  gen.lib.Date.CAL_GREGORIAN))
             dateobj.set_quality(qual)
             return dateobj
 

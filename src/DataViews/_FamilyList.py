@@ -31,7 +31,7 @@ __revision__ = "$Revision$"
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import PageView
 import DisplayModels
 import Bookmarks
@@ -193,7 +193,7 @@ class FamilyListView(PageView.ListView):
         
     def add(self, obj):
         from Editors import EditFamily
-        family = RelLib.Family()
+        family = gen.lib.Family()
         try:
             EditFamily(self.dbstate, self.uistate, [], family)
         except Errors.WindowActiveError:

@@ -41,7 +41,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Config
-import RelLib
+import gen.lib
 
 from DisplayTabs import SourceEmbedList,NoteTab,GalleryTab,EventBackRefList,AttrEmbedList
 from GrampsWidgets import *
@@ -172,13 +172,13 @@ class EditEventRef(EditReference):
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.source.get_note_list(),
-                    notetype=RelLib.NoteType.EVENT))
+                    notetype=gen.lib.NoteType.EVENT))
         
         self.note_ref_tab = self._add_tab(
             notebook_ref,
             NoteTab(self.dbstate, self.uistate, self.track,
                     self.source_ref.get_note_list(),
-                    notetype=RelLib.NoteType.EVENTREF))
+                    notetype=gen.lib.NoteType.EVENTREF))
         
         self.gallery_tab = self._add_tab(
             notebook,
@@ -238,5 +238,5 @@ class EditFamilyEventRef(EditEventRef):
         self.add_event = self.db.add_family_event
 
     def get_custom_events(self):
-        return [ RelLib.EventType((RelLib.EventType.CUSTOM,val)) \
+        return [ gen.lib.EventType((gen.lib.EventType.CUSTOM,val)) \
                  for val in self.dbstate.db.get_family_event_types()]

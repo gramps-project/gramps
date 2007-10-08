@@ -40,7 +40,7 @@ import re
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
 import Mime
-import RelLib
+import gen.lib
 import const
 import Utils
 import DateHandler
@@ -64,12 +64,12 @@ except:
 PERSON_RE = re.compile(r"\s*\<person\s(.*)$")
 
 CHILD_REL_MAP = {
-    "Birth"     : RelLib.ChildRefType(RelLib.ChildRefType.BIRTH), 
-    "Adopted"   : RelLib.ChildRefType(RelLib.ChildRefType.ADOPTED), 
-    "Stepchild" : RelLib.ChildRefType(RelLib.ChildRefType.STEPCHILD), 
-    "Sponsored" : RelLib.ChildRefType(RelLib.ChildRefType.SPONSORED), 
-    "Foster"    : RelLib.ChildRefType(RelLib.ChildRefType.FOSTER), 
-    "Unknown"   : RelLib.ChildRefType(RelLib.ChildRefType.UNKNOWN), 
+    "Birth"     : gen.lib.ChildRefType(gen.lib.ChildRefType.BIRTH), 
+    "Adopted"   : gen.lib.ChildRefType(gen.lib.ChildRefType.ADOPTED), 
+    "Stepchild" : gen.lib.ChildRefType(gen.lib.ChildRefType.STEPCHILD), 
+    "Sponsored" : gen.lib.ChildRefType(gen.lib.ChildRefType.SPONSORED), 
+    "Foster"    : gen.lib.ChildRefType(gen.lib.ChildRefType.FOSTER), 
+    "Unknown"   : gen.lib.ChildRefType(gen.lib.ChildRefType.UNKNOWN), 
     }
 
 EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
@@ -332,7 +332,7 @@ class GrampsParser(UpdateCallback):
         self.name = None
         self.tempDefault = None
         self.home = None
-        self.owner = RelLib.Researcher()
+        self.owner = gen.lib.Researcher()
         self.func_list = [None]*50
         self.func_index = 0
         self.func = None
@@ -454,7 +454,7 @@ class GrampsParser(UpdateCallback):
             person = self.db.get_person_from_handle(intid)
         else:
             intid = Utils.create_id()
-            person = RelLib.Person()
+            person = gen.lib.Person()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
             self.db.add_person(person, self.trans)
@@ -467,7 +467,7 @@ class GrampsParser(UpdateCallback):
             family = self.db.get_family_from_handle(intid)
         else:
             intid = Utils.create_id()
-            family = RelLib.Family()
+            family = gen.lib.Family()
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
             self.db.add_family(family, self.trans)
@@ -480,7 +480,7 @@ class GrampsParser(UpdateCallback):
             event = self.db.get_event_from_handle(intid)
         else:
             intid = Utils.create_id()
-            event = RelLib.Event()
+            event = gen.lib.Event()
             event.set_handle(intid)
             event.set_gramps_id(gramps_id)
             self.db.add_event(event, self.trans)
@@ -493,7 +493,7 @@ class GrampsParser(UpdateCallback):
             place = self.db.get_place_from_handle(intid)
         else:
             intid = Utils.create_id()
-            place = RelLib.Place()
+            place = gen.lib.Place()
             place.set_handle(intid)
             place.set_gramps_id(gramps_id)
             self.db.add_place(place, self.trans)
@@ -506,7 +506,7 @@ class GrampsParser(UpdateCallback):
             source = self.db.get_source_from_handle(intid)
         else:
             intid = Utils.create_id()
-            source = RelLib.Source()
+            source = gen.lib.Source()
             source.set_handle(intid)
             source.set_gramps_id(gramps_id)
             self.db.add_source(source, self.trans)
@@ -519,7 +519,7 @@ class GrampsParser(UpdateCallback):
             obj = self.db.get_object_from_handle(intid)
         else:
             intid = Utils.create_id()
-            obj = RelLib.MediaObject()
+            obj = gen.lib.MediaObject()
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
             self.db.add_object(obj, self.trans)
@@ -532,7 +532,7 @@ class GrampsParser(UpdateCallback):
             repo = self.db.get_repository_from_handle(intid)
         else:
             intid = Utils.create_id()
-            repo = RelLib.Repository()
+            repo = gen.lib.Repository()
             repo.set_handle(intid)
             repo.set_gramps_id(gramps_id)
             self.db.add_repository(repo, self.trans)
@@ -545,7 +545,7 @@ class GrampsParser(UpdateCallback):
             note = self.db.get_note_from_handle(intid)
         else:
             intid = Utils.create_id()
-            note = RelLib.Note()
+            note = gen.lib.Note()
             note.set_handle(intid)
             note.set_gramps_id(gramps_id)
             self.db.add_note(note, self.trans)
@@ -558,7 +558,7 @@ class GrampsParser(UpdateCallback):
             repo = self.db.get_repository_from_handle(intid)
         else:
             intid = Utils.create_id()
-            repo = RelLib.Repository()
+            repo = gen.lib.Repository()
             repo.set_handle(intid)
             repo.set_gramps_id(gramps_id)
             self.db.add_repository(repo, self.trans)
@@ -671,7 +671,7 @@ class GrampsParser(UpdateCallback):
         self.db.request_rebuild()
 
     def start_lds_ord(self, attrs):
-        self.ord = RelLib.LdsOrd()
+        self.ord = gen.lib.LdsOrd()
         self.ord.set_type_from_xml(attrs['type'])
         self.ord.private = bool(attrs.get("priv"))
         if self.person:
@@ -732,7 +732,7 @@ class GrampsParser(UpdateCallback):
         """Bypass the function calls for this one, since it appears to
         take up quite a bit of time"""
         
-        loc = RelLib.Location()
+        loc = gen.lib.Location()
         loc.phone = attrs.get('phone', '')
         loc.postal = attrs.get('postal', '')
         loc.city = attrs.get('city', '')
@@ -752,10 +752,10 @@ class GrampsParser(UpdateCallback):
         self.in_witness = True
         self.witness_comment = ""
         if attrs.has_key('name'):
-            note = RelLib.Note()
+            note = gen.lib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness name: %s") % attrs['name'])
-            note.type.set(RelLib.NoteType.EVENT)
+            note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
             self.event.add_note(note.handle)
@@ -773,9 +773,9 @@ class GrampsParser(UpdateCallback):
         # Add an EventRef from that person
         # to this event using ROLE_WITNESS role
         if person:
-            event_ref = RelLib.EventRef()
+            event_ref = gen.lib.EventRef()
             event_ref.ref = self.event.handle
-            event_ref.role.set(RelLib.EventRoleType.WITNESS)
+            event_ref.role.set(gen.lib.EventRoleType.WITNESS)
             person.event_ref_list.append(event_ref)
             self.db.commit_person(person, self.trans, self.change)
         
@@ -787,9 +787,9 @@ class GrampsParser(UpdateCallback):
         if self.person or self.family:
             # GRAMPS LEGACY: old events that were written inside
             # person or family objects.
-            self.event = RelLib.Event()
+            self.event = gen.lib.Event()
             self.event.handle = Utils.create_id()
-            self.event.type = RelLib.EventType()
+            self.event.type = gen.lib.EventType()
             self.event.type.set_from_xml_str(attrs['type'])
             self.db.add_event(self.event, self.trans)
         else:
@@ -805,7 +805,7 @@ class GrampsParser(UpdateCallback):
             self.event.private = bool(attrs.get("priv"))
 
     def start_eventref(self, attrs):
-        self.eventref = RelLib.EventRef()
+        self.eventref = gen.lib.EventRef()
         self.eventref.ref = attrs['hlink'].replace('_', '')
         self.eventref.private = bool(attrs.get('priv'))
         if attrs.has_key('role'):
@@ -822,21 +822,21 @@ class GrampsParser(UpdateCallback):
             self.family.add_event_ref(self.eventref)
         elif self.person:
             event.personal = True
-            if (event.type == RelLib.EventType.BIRTH) \
-                   and (self.eventref.role == RelLib.EventRoleType.PRIMARY) \
+            if (event.type == gen.lib.EventType.BIRTH) \
+                   and (self.eventref.role == gen.lib.EventRoleType.PRIMARY) \
                    and (self.person.get_birth_ref() == None):
                 self.person.set_birth_ref(self.eventref)
-            elif (event.type == RelLib.EventType.DEATH) \
-                     and (self.eventref.role == RelLib.EventRoleType.PRIMARY) \
+            elif (event.type == gen.lib.EventType.DEATH) \
+                     and (self.eventref.role == gen.lib.EventRoleType.PRIMARY) \
                      and (self.person.get_death_ref() == None):
                 self.person.set_death_ref(self.eventref)
             else:
                 self.person.add_event_ref(self.eventref)
 
     def start_attribute(self, attrs):
-        self.attribute = RelLib.Attribute()
+        self.attribute = gen.lib.Attribute()
         self.attribute.private = bool(attrs.get("priv"))
-        self.attribute.type = RelLib.AttributeType()
+        self.attribute.type = gen.lib.AttributeType()
         if attrs.has_key('type'):
             self.attribute.type.set_from_xml_str(attrs["type"])
         self.attribute.value = attrs.get("value", '')
@@ -856,7 +856,7 @@ class GrampsParser(UpdateCallback):
             self.family.add_attribute(self.attribute)
 
     def start_address(self, attrs):
-        self.address = RelLib.Address()
+        self.address = gen.lib.Address()
         self.address.private = bool(attrs.get("priv"))
 
     def start_bmark(self, attrs):
@@ -950,7 +950,7 @@ class GrampsParser(UpdateCallback):
         self.person.private = bool(attrs.get("priv"))
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
-            self.person.marker.set(RelLib.MarkerType.COMPLETE)
+            self.person.marker.set(gen.lib.MarkerType.COMPLETE)
         else:
             self.person.marker.set_from_xml_str(attrs.get("marker", ''))
 
@@ -994,14 +994,14 @@ class GrampsParser(UpdateCallback):
     def start_childref(self, attrs):
         # Here we are handling the new XML, in which frel and mrel
         # belong to the "child" tag under family.
-        self.childref = RelLib.ChildRef()
+        self.childref = gen.lib.ChildRef()
         self.childref.ref = attrs['hlink'].replace('_', '')
         self.childref.private = bool(attrs.get('priv'))
 
-        mrel = RelLib.ChildRefType()
+        mrel = gen.lib.ChildRefType()
         if attrs.get('mrel'):
             mrel.set_from_xml_str(attrs['mrel'])
-        frel = RelLib.ChildRefType()
+        frel = gen.lib.ChildRefType()
         if attrs.get('frel'):
             frel.set_from_xml_str(attrs['frel'])
 
@@ -1012,7 +1012,7 @@ class GrampsParser(UpdateCallback):
         self.family.add_child_ref(self.childref)
 
     def start_personref(self, attrs):
-        self.personref = RelLib.PersonRef()
+        self.personref = gen.lib.PersonRef()
         self.personref.ref = attrs['hlink'].replace('_', '')
         self.personref.private = bool(attrs.get('priv'))
         self.personref.rel = attrs['rel']
@@ -1021,7 +1021,7 @@ class GrampsParser(UpdateCallback):
     def start_url(self, attrs):
         if not attrs.has_key("href"):
             return
-        url = RelLib.Url()
+        url = gen.lib.Url()
         url.path = attrs["href"]
         url.set_description(attrs.get("description", ''))
         url.private = bool(attrs.get('priv'))
@@ -1052,7 +1052,7 @@ class GrampsParser(UpdateCallback):
                 
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
-            self.family.marker.set(RelLib.MarkerType.COMPLETE)
+            self.family.marker.set(gen.lib.MarkerType.COMPLETE)
         else:
             self.family.marker.set_from_xml_str(attrs.get("marker", ''))
 
@@ -1083,14 +1083,14 @@ class GrampsParser(UpdateCallback):
 
         # Here we are handling the old XML, in which
         # frel and mrel belonged to the "childof" tag
-        mrel = RelLib.ChildRefType()
-        frel = RelLib.ChildRefType()
+        mrel = gen.lib.ChildRefType()
+        frel = gen.lib.ChildRefType()
         if attrs.has_key('mrel'):
             mrel.set_from_xml_str(attrs['mrel'])
         if attrs.has_key('frel'):
             frel.set_from_xml_str(attrs['frel'])
 
-        childref = RelLib.ChildRef()
+        childref = gen.lib.ChildRef()
         childref.ref = self.person.handle
         if not mrel.is_default():
             childref.set_mother_relation(mrel)
@@ -1110,11 +1110,11 @@ class GrampsParser(UpdateCallback):
 
     def start_name(self, attrs):
         if not self.in_witness:
-            self.name = RelLib.Name()
+            self.name = gen.lib.Name()
             name_type = attrs['type']
             # Mapping "Other Name" from gramps 2.0.x to Unknown
             if (self.version_string=='1.0.0') and (name_type=='Other Name'):
-                self.name.set_type(RelLib.NameType.UNKNOWN)
+                self.name.set_type(gen.lib.NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
             self.name.private = bool(attrs.get("priv"))
@@ -1153,69 +1153,69 @@ class GrampsParser(UpdateCallback):
             except KeyError:
                 self.note = self.find_note_by_gramps_id(gramps_id)
             self.note.private = bool(attrs.get("priv"))
-            self.note.format = int(attrs.get('format', RelLib.Note.FLOWED))
+            self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
         else:
             # GRAMPS LEGACY: old notes that were written inside other objects
             # We need to create a top-level note, it's type depends on 
             #   the caller object, and inherits privacy from caller object
             # On stop_note the reference to this note will be added
-            self.note = RelLib.Note()
+            self.note = gen.lib.Note()
             self.note.handle = Utils.create_id()
-            self.note.format = int(attrs.get('format', RelLib.Note.FLOWED))
+            self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             if self.source_ref:
-                self.note.type.set(RelLib.NoteType.SOURCEREF)
+                self.note.type.set(gen.lib.NoteType.SOURCEREF)
                 self.note.private = self.source_ref.private
             elif self.address:
-                self.note.type.set(RelLib.NoteType.ADDRESS)
+                self.note.type.set(gen.lib.NoteType.ADDRESS)
                 self.note.private = self.address.private
             elif self.ord:
-                self.note.type.set(RelLib.NoteType.LDS)
+                self.note.type.set(gen.lib.NoteType.LDS)
                 self.note.private = self.ord.private
             elif self.attribute:
-                self.note.type.set(RelLib.NoteType.ATTRIBUTE)
+                self.note.type.set(gen.lib.NoteType.ATTRIBUTE)
                 self.note.private = self.attribute.private
             elif self.object:
-                self.note.type.set(RelLib.NoteType.MEDIA)
+                self.note.type.set(gen.lib.NoteType.MEDIA)
                 self.note.private = self.object.private
             elif self.objref:
-                self.note.type.set(RelLib.NoteType.MEDIAREF)
+                self.note.type.set(gen.lib.NoteType.MEDIAREF)
                 self.note.private = self.objref.private
             elif self.photo:
-                self.note.type.set(RelLib.NoteType.MEDIA)
+                self.note.type.set(gen.lib.NoteType.MEDIA)
                 self.note.private = self.photo.private
             elif self.name:
-                self.note.type.set(RelLib.NoteType.PERSONNAME)
+                self.note.type.set(gen.lib.NoteType.PERSONNAME)
                 self.note.private = self.name.private
             elif self.source:
-                self.note.type.set(RelLib.NoteType.SOURCE)
+                self.note.type.set(gen.lib.NoteType.SOURCE)
                 self.note.private = self.source.private
             elif self.event:
-                self.note.type.set(RelLib.NoteType.EVENT)
+                self.note.type.set(gen.lib.NoteType.EVENT)
                 self.note.private = self.event.private
             elif self.personref:
-                self.note.type.set(RelLib.NoteType.ASSOCIATION)
+                self.note.type.set(gen.lib.NoteType.ASSOCIATION)
                 self.note.private = self.personref.private
             elif self.person:
-                self.note.type.set(RelLib.NoteType.PERSON)
+                self.note.type.set(gen.lib.NoteType.PERSON)
                 self.note.private = self.person.private
             elif self.childref:
-                self.note.type.set(RelLib.NoteType.CHILDREF)
+                self.note.type.set(gen.lib.NoteType.CHILDREF)
                 self.note.private = self.childref.private
             elif self.family:
-                self.note.type.set(RelLib.NoteType.FAMILY)
+                self.note.type.set(gen.lib.NoteType.FAMILY)
                 self.note.private = self.family.private
             elif self.placeobj:
-                self.note.type.set(RelLib.NoteType.PLACE)
+                self.note.type.set(gen.lib.NoteType.PLACE)
                 self.note.private = self.placeobj.private
             elif self.eventref:
-                self.note.type.set(RelLib.NoteType.EVENTREF)
+                self.note.type.set(gen.lib.NoteType.EVENTREF)
                 self.note.private = self.eventref.private
             elif self.repo:
-                self.note.type.set(RelLib.NoteType.REPO)
+                self.note.type.set(gen.lib.NoteType.REPO)
                 self.note.private = self.repo.private
             elif self.reporef:
-                self.note.type.set(RelLib.NoteType.REPOREF)
+                self.note.type.set(gen.lib.NoteType.REPOREF)
                 self.note.private = self.reporef.private
  
             self.db.add_note(self.note, self.trans)
@@ -1262,7 +1262,7 @@ class GrampsParser(UpdateCallback):
             self.reporef.add_note(handle)
 
     def start_sourceref(self, attrs):
-        self.source_ref = RelLib.SourceRef()
+        self.source_ref = gen.lib.SourceRef()
         try:
             handle = attrs["hlink"].replace('_', '')
             self.db.check_source_from_handle(handle, self.trans)
@@ -1313,7 +1313,7 @@ class GrampsParser(UpdateCallback):
         self.source.private = bool(attrs.get("priv"))
 
     def start_reporef(self, attrs):
-        self.reporef = RelLib.RepoRef()
+        self.reporef = gen.lib.RepoRef()
         try:
             handle = attrs['hlink'].replace('_', '')
             self.db.check_repository_from_handle(handle, self.trans)
@@ -1330,7 +1330,7 @@ class GrampsParser(UpdateCallback):
         self.source.add_repo_reference(self.reporef)
 
     def start_objref(self, attrs):
-        self.objref = RelLib.MediaRef()
+        self.objref = gen.lib.MediaRef()
         try:
             handle = attrs['hlink'].replace('_', '')
             self.db.check_object_from_handle(handle, self.trans)
@@ -1412,8 +1412,8 @@ class GrampsParser(UpdateCallback):
         self.reporef = None
         
     def start_photo(self, attrs):
-        self.photo = RelLib.MediaObject()
-        self.pref = RelLib.MediaRef()
+        self.photo = gen.lib.MediaObject()
+        self.pref = gen.lib.MediaRef()
         self.pref.set_reference_handle(self.photo.get_handle())
         
         for key in attrs.keys():
@@ -1429,7 +1429,7 @@ class GrampsParser(UpdateCallback):
                 else:
                     self.photo.set_path(src)
             else:
-                attr = RelLib.Attribute()
+                attr = gen.lib.Attribute()
                 attr.set_type(key)
                 attr.set_value(attrs[key])
                 self.photo.add_attribute(attr)
@@ -1445,10 +1445,10 @@ class GrampsParser(UpdateCallback):
             self.placeobj.add_media_reference(self.pref)
 
     def start_daterange(self, attrs):
-        self.start_compound_date(attrs, RelLib.Date.MOD_RANGE)
+        self.start_compound_date(attrs, gen.lib.Date.MOD_RANGE)
 
     def start_datespan(self, attrs):
-        self.start_compound_date(attrs, RelLib.Date.MOD_SPAN)
+        self.start_compound_date(attrs, gen.lib.Date.MOD_SPAN)
 
     def start_compound_date(self, attrs, mode):
         if self.source_ref:
@@ -1498,20 +1498,20 @@ class GrampsParser(UpdateCallback):
             rng_day = 0
 
         if attrs.has_key("cformat"):
-            cal = RelLib.Date.calendar.index(attrs['calendar'])
+            cal = gen.lib.Date.calendar.index(attrs['calendar'])
         else:
-            cal = RelLib.Date.CAL_GREGORIAN
+            cal = gen.lib.Date.CAL_GREGORIAN
 
         if attrs.has_key('quality'):
             val = attrs['quality']
             if val == 'estimated':
-                qual = RelLib.Date.QUAL_ESTIMATED
+                qual = gen.lib.Date.QUAL_ESTIMATED
             elif val == 'calculated':
-                qual = RelLib.Date.QUAL_CALCULATED
+                qual = gen.lib.Date.QUAL_CALCULATED
             else:
-                qual = RelLib.Date.QUAL_NONE
+                qual = gen.lib.Date.QUAL_NONE
         else:
-            qual = RelLib.Date.QUAL_NONE
+            qual = gen.lib.Date.QUAL_NONE
         
         date_value.set(qual, mode, cal, 
                        (day, month, year, False, rng_day, 
@@ -1553,31 +1553,31 @@ class GrampsParser(UpdateCallback):
             day = 0
 
         if attrs.has_key("cformat"):
-            cal = RelLib.Date.calendar_names.index(attrs['cformat'])
+            cal = gen.lib.Date.calendar_names.index(attrs['cformat'])
         else:
-            cal = RelLib.Date.CAL_GREGORIAN
+            cal = gen.lib.Date.CAL_GREGORIAN
 
         if attrs.has_key('type'):
             val = attrs['type']
             if val == "about":
-                mod = RelLib.Date.MOD_ABOUT
+                mod = gen.lib.Date.MOD_ABOUT
             elif val == "after":
-                mod = RelLib.Date.MOD_AFTER
+                mod = gen.lib.Date.MOD_AFTER
             else:
-                mod = RelLib.Date.MOD_BEFORE
+                mod = gen.lib.Date.MOD_BEFORE
         else:
-            mod = RelLib.Date.MOD_NONE
+            mod = gen.lib.Date.MOD_NONE
 
         if attrs.has_key('quality'):
             val = attrs['quality']
             if val == 'estimated':
-                qual = RelLib.Date.QUAL_ESTIMATED
+                qual = gen.lib.Date.QUAL_ESTIMATED
             elif val == 'calculated':
-                qual = RelLib.Date.QUAL_CALCULATED
+                qual = gen.lib.Date.QUAL_CALCULATED
             else:
-                qual = RelLib.Date.QUAL_NONE
+                qual = gen.lib.Date.QUAL_NONE
         else:
-            qual = RelLib.Date.QUAL_NONE
+            qual = gen.lib.Date.QUAL_NONE
         
         date_value.set(qual, mod, cal, (day, month, year, False))
 
@@ -1640,10 +1640,10 @@ class GrampsParser(UpdateCallback):
             text = None
 
         if text != None:
-            note = RelLib.Note()
+            note = gen.lib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness comment: %s") % text)
-            note.type.set(RelLib.NoteType.EVENT)
+            note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
             self.event.add_note(note.handle)
@@ -1705,27 +1705,27 @@ class GrampsParser(UpdateCallback):
 
     def stop_event(self, *tag):
         if self.family:
-            ref = RelLib.EventRef()
+            ref = gen.lib.EventRef()
             ref.ref = self.event.handle
             ref.private = self.event.private
-            ref.role.set(RelLib.EventRoleType.FAMILY)
+            ref.role.set(gen.lib.EventRoleType.FAMILY)
             self.family.add_event_ref(ref)
         elif self.person:
-            ref = RelLib.EventRef()
+            ref = gen.lib.EventRef()
             ref.ref = self.event.handle
             ref.private = self.event.private
-            ref.role.set(RelLib.EventRoleType.PRIMARY)
-            if (self.event.type == RelLib.EventType.BIRTH) \
+            ref.role.set(gen.lib.EventRoleType.PRIMARY)
+            if (self.event.type == gen.lib.EventType.BIRTH) \
                    and (self.person.get_birth_ref() == None):
                 self.person.set_birth_ref(ref)
-            elif (self.event.type == RelLib.EventType.DEATH) \
+            elif (self.event.type == gen.lib.EventType.DEATH) \
                      and (self.person.get_death_ref() == None):
                 self.person.set_death_ref(ref)
             else:
                 self.person.add_event_ref(ref)
 
         if self.event.get_description() == "" and \
-               self.event.get_type() != RelLib.EventType.CUSTOM:
+               self.event.get_type() != gen.lib.EventType.CUSTOM:
             if self.family:
                 text = EVENT_FAMILY_STR % {
                     'event_name' : str(self.event.get_type()), 
@@ -1746,21 +1746,21 @@ class GrampsParser(UpdateCallback):
     def stop_name(self, tag):
         if self.in_witness:
             # Parse witnesses created by older gramps
-            note = RelLib.Note()
+            note = gen.lib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness name: %s") % tag)
-            note.type.set(RelLib.NoteType.EVENT)
+            note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
             self.event.add_note(note.handle)
         elif self.alt_name:
             # former aka tag -- alternate name
             if self.name.get_type() == "":
-                self.name.set_type(RelLib.NameType.AKA)
+                self.name.set_type(gen.lib.NameType.AKA)
             self.person.add_alternate_name(self.name)
         else:
             if self.name.get_type() == "":
-                self.name.set_type(RelLib.NameType.BIRTH)
+                self.name.set_type(gen.lib.NameType.BIRTH)
             self.person.set_primary_name (self.name)
         self.name = None
 
@@ -1773,9 +1773,9 @@ class GrampsParser(UpdateCallback):
         person = self.find_person_by_gramps_id(self.map_gid(tag))
         # Add an EventRef from that person
         # to this event using ROLE_WITNESS role
-        event_ref = RelLib.EventRef()
+        event_ref = gen.lib.EventRef()
         event_ref.ref = self.event.handle
-        event_ref.role.set(RelLib.EventRoleType.WITNESS)
+        event_ref.role.set(gen.lib.EventRoleType.WITNESS)
         person.event_ref_list.append(event_ref)
         self.db.commit_person(person, self.trans, self.change)
 
@@ -1784,7 +1784,7 @@ class GrampsParser(UpdateCallback):
             if self.place_map.has_key(tag):
                 self.placeobj = self.place_map[tag]
             else:
-                self.placeobj = RelLib.Place()
+                self.placeobj = gen.lib.Place()
                 self.placeobj.set_title(tag)
         if self.ord:
             self.ord.set_place_handle(self.placeobj.get_handle())
@@ -1820,19 +1820,19 @@ class GrampsParser(UpdateCallback):
 
     def stop_cause(self, tag):
         # The old event's cause is now an attribute
-        attr = RelLib.Attribute()
-        attr.set_type(RelLib.AttributeType.CAUSE)
+        attr = gen.lib.Attribute()
+        attr.set_type(gen.lib.AttributeType.CAUSE)
         attr.set_value(tag)
         self.event.add_attribute(attr)
 
     def stop_gender(self, tag):
         t = tag
         if t == "M":
-            self.person.set_gender (RelLib.Person.MALE)
+            self.person.set_gender (gen.lib.Person.MALE)
         elif t == "F":
-            self.person.set_gender (RelLib.Person.FEMALE)
+            self.person.set_gender (gen.lib.Person.FEMALE)
         else:
-            self.person.set_gender (RelLib.Person.UNKNOWN)
+            self.person.set_gender (gen.lib.Person.UNKNOWN)
 
     def stop_stitle(self, tag):
         self.source.title = tag
@@ -1888,11 +1888,11 @@ class GrampsParser(UpdateCallback):
             text = tag
         # This is old XML. We no longer have "text" attribute in soure_ref.
         # So we create a new note, commit, and add the handle to note list.
-        note = RelLib.Note()
+        note = gen.lib.Note()
         note.handle = Utils.create_id()
         note.private = self.source_ref.private
         note.set(text)
-        note.type.set(RelLib.NoteType.SOURCE_TEXT)
+        note.type.set(gen.lib.NoteType.SOURCE_TEXT)
         self.db.add_note(note, self.trans)       
         self.source_ref.add_note(note.handle)
 
@@ -1902,11 +1902,11 @@ class GrampsParser(UpdateCallback):
             text = fix_spaces(self.scomments_list)
         else:
             text = tag
-        note = RelLib.Note()
+        note = gen.lib.Note()
         note.handle = Utils.create_id()
         note.private = self.source_ref.private
         note.set(text)
-        note.type.set(RelLib.NoteType.SOURCEREF)
+        note.type.set(gen.lib.NoteType.SOURCEREF)
         self.db.add_note(note, self.trans)
         self.source_ref.add_note(note.handle)
 
@@ -1928,8 +1928,8 @@ class GrampsParser(UpdateCallback):
 
     def stop_nick(self, tag):
         if self.person:
-            attr = RelLib.Attribute()
-            attr.set_type(RelLib.AttributeType.NICKNAME)
+            attr = gen.lib.Attribute()
+            attr.set_type(gen.lib.AttributeType.NICKNAME)
             attr.set_value(tag)
             self.person.add_attribute(attr)
 
@@ -2020,7 +2020,7 @@ class GrampsParser(UpdateCallback):
     def stop_aka(self, tag):
         self.person.add_alternate_name(self.name)
         if self.name.get_type() == "":
-            self.name.set_type(RelLib.NameType.AKA)
+            self.name.set_type(gen.lib.NameType.AKA)
         self.name = None
 
     def startElement(self, tag, attrs):

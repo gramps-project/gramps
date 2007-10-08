@@ -41,7 +41,7 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 import Config
-import RelLib
+import gen.lib
 import GrampsDisplay
 from _EditPrimary import EditPrimary
 
@@ -73,7 +73,7 @@ class EditEvent(EditPrimary):
         self.commit_event = self.db.commit_event
 
     def empty_object(self):
-        return RelLib.Event()
+        return gen.lib.Event()
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -167,7 +167,7 @@ class EditEvent(EditPrimary):
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), notetype=RelLib.NoteType.EVENT))
+                    self.obj.get_note_list(), notetype=gen.lib.NoteType.EVENT))
         
         self.gallery_tab = self._add_tab(
             notebook,

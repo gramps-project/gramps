@@ -50,7 +50,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 from DisplayModels import PeopleModel
 import PageView
 from BasicUtils import name_displayer
@@ -551,7 +551,7 @@ class PersonView(PageView.PersonNavView):
             self.dirty = True
 
     def add(self, obj):
-        person = RelLib.Person()
+        person = gen.lib.Person()
         
         # attempt to get the current surname
 

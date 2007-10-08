@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules._Rule import Rule
-from RelLib import EventRoleType, EventType
+from gen.lib import EventRoleType, EventType
 
 #-------------------------------------------------------------------------
 # "Witnesses"

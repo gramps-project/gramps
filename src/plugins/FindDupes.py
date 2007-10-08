@@ -43,7 +43,7 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import RelLib
+import gen.lib
 import Utils
 import soundex
 from BasicUtils import name_displayer
@@ -203,7 +203,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             self.progress.step()
             p1 = self.db.get_person_from_handle(p1_id)
             key = self.gen_key(p1.get_primary_name().get_surname())
-            if p1.get_gender() == RelLib.Person.MALE:
+            if p1.get_gender() == gen.lib.Person.MALE:
                 if males.has_key(key):
                     males[key].append(p1_id)
                 else:
@@ -222,7 +222,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             p1 = self.db.get_person_from_handle(p1key)
 
             key = self.gen_key(p1.get_primary_name().get_surname())
-            if p1.get_gender() == RelLib.Person.MALE:
+            if p1.get_gender() == gen.lib.Person.MALE:
                 remaining = males[key]
             else:
                 remaining = females[key]
@@ -274,25 +274,25 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         if birth1_ref:
             birth1 = self.db.get_event_from_handle(birth1_ref.ref)
         else:
-            birth1 = RelLib.Event()
+            birth1 = gen.lib.Event()
 
         death1_ref = p1.get_death_ref()
         if death1_ref:
             death1 = self.db.get_event_from_handle(death1_ref.ref)
         else:
-            death1 = RelLib.Event()
+            death1 = gen.lib.Event()
 
         birth2_ref = p2.get_birth_ref()
         if birth2_ref:
             birth2 = self.db.get_event_from_handle(birth2_ref.ref)
         else:
-            birth2 = RelLib.Event()
+            birth2 = gen.lib.Event()
 
         death2_ref = p2.get_death_ref()
         if death2_ref:
             death2 = self.db.get_event_from_handle(death2_ref.ref)
         else:
-            death2 = RelLib.Event()
+            death2 = gen.lib.Event()
 
         value = self.date_match(birth1.get_date_object(),
                                 birth2.get_date_object())
@@ -373,7 +373,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             f1 = self.db.get_family_from_handle(f1_id)
             for f2_id in p2.get_family_handle_list():
                 f2 = self.db.get_family_from_handle(f2_id)
-                if p1.get_gender() == RelLib.Person.FEMALE:
+                if p1.get_gender() == gen.lib.Person.FEMALE:
                     father1_id = f1.get_father_handle()
                     father2_id = f2.get_father_handle()
                     if father1_id and father2_id:

@@ -23,7 +23,7 @@ Support classes to simplify GEDCOM importing
 """
 
 import re
-import RelLib
+import gen.lib
 
 NAME_RE    = re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
@@ -73,20 +73,20 @@ class PlaceParser:
     """
 
     __field_map = {
-	'addr'          : RelLib.Location.set_street,
-	'subdivision'   : RelLib.Location.set_street,
-	'addr1'         : RelLib.Location.set_street,
-	'adr1'          : RelLib.Location.set_street,
-	'city'          : RelLib.Location.set_city,
-	'town'          : RelLib.Location.set_city,
-	'village'       : RelLib.Location.set_city,
-	'county'        : RelLib.Location.set_county,
-	'country'       : RelLib.Location.set_country,
-	'state'         : RelLib.Location.set_state,
-	'state/province': RelLib.Location.set_state,
-	'region'        : RelLib.Location.set_state,
-	'province'      : RelLib.Location.set_state,
-	'area code'     : RelLib.Location.set_postal_code,
+	'addr'          : gen.lib.Location.set_street,
+	'subdivision'   : gen.lib.Location.set_street,
+	'addr1'         : gen.lib.Location.set_street,
+	'adr1'          : gen.lib.Location.set_street,
+	'city'          : gen.lib.Location.set_city,
+	'town'          : gen.lib.Location.set_city,
+	'village'       : gen.lib.Location.set_city,
+	'county'        : gen.lib.Location.set_county,
+	'country'       : gen.lib.Location.set_country,
+	'state'         : gen.lib.Location.set_state,
+	'state/province': gen.lib.Location.set_state,
+	'region'        : gen.lib.Location.set_state,
+	'province'      : gen.lib.Location.set_state,
+	'area code'     : gen.lib.Location.set_postal_code,
 	}
 
     def __init__(self, line=None):
@@ -99,7 +99,7 @@ class PlaceParser:
         """
         Parses the GEDCOM PLAC.FORM into a list of function
         pointers (if possible). It does this my mapping the text strings
-        (separated by commas) to the corresponding RelLib.Location
+        (separated by commas) to the corresponding gen.lib.Location
         method via the __field_map variable
         """
         for item in line.data.split(','):
@@ -203,7 +203,7 @@ def parse_name_personal(text):
     """
     Parses a GEDCOM NAME value into an Name structure
     """
-    name = RelLib.Name()
+    name = gen.lib.Name()
 
     match = SURNAME_RE.match(text)
     if match:

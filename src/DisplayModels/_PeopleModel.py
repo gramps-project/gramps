@@ -59,7 +59,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-from RelLib import *
+from gen.lib import *
 from BasicUtils import name_displayer
 import DateHandler
 import ToolTips

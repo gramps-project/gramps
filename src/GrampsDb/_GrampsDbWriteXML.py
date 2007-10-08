@@ -51,7 +51,7 @@ log = logging.getLogger(".WriteXML")
 #
 #-------------------------------------------------------------------------
 
-import RelLib 
+import gen.lib 
 from BasicUtils import UpdateCallback
 
 from gen.db.dbconst import \
@@ -443,9 +443,9 @@ class GrampsDbXmlWriter(UpdateCallback):
     def write_person(self,person,index=1):
         sp = "  "*index
         self.write_primary_tag("person",person,index)
-        if person.get_gender() == RelLib.Person.MALE:
+        if person.get_gender() == gen.lib.Person.MALE:
             self.write_line("gender","M",index+1)
-        elif person.get_gender() == RelLib.Person.FEMALE:
+        elif person.get_gender() == gen.lib.Person.FEMALE:
             self.write_line("gender","F",index+1)
         else:
             self.write_line("gender","U",index+1)
@@ -774,15 +774,15 @@ class GrampsDbXmlWriter(UpdateCallback):
         sp = '  '*indent
 
         cal= date.get_calendar()
-        if cal != RelLib.Date.CAL_GREGORIAN:
-            calstr = ' cformat="%s"' % RelLib.Date.calendar_names[cal]
+        if cal != gen.lib.Date.CAL_GREGORIAN:
+            calstr = ' cformat="%s"' % gen.lib.Date.calendar_names[cal]
         else:
             calstr = ''
 
         qual = date.get_quality()
-        if qual == RelLib.Date.QUAL_ESTIMATED:
+        if qual == gen.lib.Date.QUAL_ESTIMATED:
             qual_str = ' quality="estimated"'
-        elif qual == RelLib.Date.QUAL_CALCULATED:
+        elif qual == gen.lib.Date.QUAL_CALCULATED:
             qual_str = ' quality="calculated"'
         else:
             qual_str = ""
@@ -790,7 +790,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         mode = date.get_modifier()
         
         if date.is_compound():
-            if mode == RelLib.Date.MOD_RANGE:
+            if mode == gen.lib.Date.MOD_RANGE:
                 tagname = 'daterange'
             else:
                 tagname = 'datespan'         
@@ -800,16 +800,16 @@ class GrampsDbXmlWriter(UpdateCallback):
             if d1 != "" or d2 != "":
                 self.g.write('%s<%s start="%s" stop="%s"%s%s/>\n'
                              % (sp,tagname,d1,d2,qual_str,calstr))
-        elif mode != RelLib.Date.MOD_TEXTONLY:
+        elif mode != gen.lib.Date.MOD_TEXTONLY:
             date_str = self.get_iso_date(date.get_start_date())
             if date_str == "":
                 return
             
-            if mode == RelLib.Date.MOD_BEFORE:
+            if mode == gen.lib.Date.MOD_BEFORE:
                 mode_str = ' type="before"'
-            elif mode == RelLib.Date.MOD_AFTER:
+            elif mode == gen.lib.Date.MOD_AFTER:
                 mode_str = ' type="after"'
-            elif mode == RelLib.Date.MOD_ABOUT:
+            elif mode == gen.lib.Date.MOD_ABOUT:
                 mode_str = ' type="about"'
             else:
                 mode_str = ""

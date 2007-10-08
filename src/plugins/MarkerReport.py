@@ -41,7 +41,7 @@ from ReportBase import Report, ReportUtils, ReportOptions, \
 import BaseDoc
 import Sort
 import AutoComp
-from RelLib import MarkerType, FamilyRelType
+from gen.lib import MarkerType, FamilyRelType
 from Filters import GenericFilter, GenericFilterFactory, Rules
 from BasicUtils import name_displayer
 import DateHandler

@@ -48,7 +48,7 @@ import const
 import Config
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
-from RelLib import NoteType
+from gen.lib import NoteType
 
 from DisplayTabs import SourceEmbedList, NoteTab
 from GrampsWidgets import *
