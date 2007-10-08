@@ -438,25 +438,17 @@ class GrampsDbBase(GrampsDBCallback):
         
         self.update_reference_map(obj, transaction)
 
-        try:
-            if transaction.batch:
-                data_map[handle] = obj.serialize()
-                old_data = None
+        if transaction.batch:
+            data_map[handle] = obj.serialize()
+            old_data = None
+        else:
+            old_data = data_map.get(handle)
+            new_data = obj.serialize()
+            transaction.add(key, handle, old_data, new_data)
+            if old_data:
+                update_list.append((handle, new_data))
             else:
-                old_data = data_map.get(handle)
-                new_data = obj.serialize()
-                transaction.add(key, handle, old_data, new_data)
-                if old_data:
-                    update_list.append((handle, new_data))
-                else:
-                    add_list.append((handle, new_data))
-        except db.DBNoSpaceError, msg:
-            from QuestionDialog import ErrorDialog
-
-            ErrorDialog(_("Out of disk space"),
-                        _("Your data cannot be saved because you are out "
-                          "of disk space. Please free up some disk space "
-                          "and try again.\n\n%s") % msg[1])
+                add_list.append((handle, new_data))
         return old_data
 
     def commit_person(self, person, transaction, change_time=None):

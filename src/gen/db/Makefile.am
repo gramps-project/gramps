@@ -8,7 +8,6 @@ pkgdatadir = $(datadir)/@PACKAGE@/db
 pkgdata_PYTHON = \
 	__init__.py\
 	base.py \
-	callback.py \
 	cursor.py \
 	dbconst.py \
 	dbdir.py \

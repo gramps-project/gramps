@@ -412,10 +412,11 @@ class GrampsDBCallback(object):
                             cb[0](fn[1],*args)
                         elif type(fn) == types.FunctionType or \
                                  type(fn) == types.MethodType: # call func
-                            try:
-                                fn(*args)
-                            except Errors.DbError:
-                                display_error()
+                            fn(*args)
+#                             try:
+#                                 fn(*args)
+#                             except Errors.DbError:
+#                                 display_error()
                         else:
                             self._warn("Badly formed entry in callback map.\n")
                     except:
@@ -464,15 +465,15 @@ class GrampsDBCallback(object):
     enable_all_signals = classmethod(__enable_all_signals)
 
 
-def display_error():
-    from QuestionDialog import ErrorDialog
-    ErrorDialog(
-        _('Database error'),
-        _('A problem as been detected in your database. '
-          'This is probably caused by opening a database that was '
-          'created with one transaction setting when the database was '
-          'created with another, or by moving a non-portable database '
-          'to a different machine.'))
+# def display_error():
+#     from QuestionDialog import ErrorDialog
+#     ErrorDialog(
+#         _('Database error'),
+#         _('A problem as been detected in your database. '
+#           'This is probably caused by opening a database that was '
+#           'created with one transaction setting when the database was '
+#           'created with another, or by moving a non-portable database '
+#           'to a different machine.'))
     
 #-------------------------------------------------------------------------
 #

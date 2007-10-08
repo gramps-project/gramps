@@ -7,8 +7,10 @@ pkgdatadir = $(datadir)/@PACKAGE@/utils
 
 pkgdata_PYTHON = \
 	__init__.py \
-	dbutils.py
-
+	dbutils.py \
+	callback.py \
+	progressmon.py \
+	longop.py
 
 pkgpyexecdir = @pkgpyexecdir@/utils
 pkgpythondir = @pkgpythondir@/utils

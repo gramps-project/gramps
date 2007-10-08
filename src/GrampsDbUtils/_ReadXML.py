@@ -45,7 +45,7 @@ import const
 import Utils
 import DateHandler
 from BasicUtils import name_displayer
-from GrampsDb._GrampsDbConst import \
+from gen.db.dbconst import \
      PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, \
      MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY
 from BasicUtils import UpdateCallback

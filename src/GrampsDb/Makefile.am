@@ -6,22 +6,12 @@
 pkgdatadir = $(datadir)/@PACKAGE@/GrampsDb
 
 pkgdata_PYTHON = \
-	_CursorIterator.py \
-	_DbUtils.py \
-	_GrampsBSDDB.py\
-	_GrampsCursor.py\
-	_GrampsDbBase.py\
-	_GrampsDBCallback.py\
-	_GrampsDbConst.py\
 	_GrampsDBDir.py \
-	_GrampsDbExceptions.py\
 	_GrampsDbFactories.py\
 	_GrampsDbWriteXML.py \
 	_GrampsGEDDB.py\
 	_GrampsInMemDB.py\
-	__init__.py\
-	_LongOpStatus.py\
-	_ProgressMonitor.py
+	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/GrampsDb
 pkgpythondir = @pkgpythondir@/GrampsDb

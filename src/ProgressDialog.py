@@ -12,7 +12,7 @@ class _GtkProgressBar(gtk.VBox):
     
     def __init__(self, long_op_status):
         """@param long_op_status: the status of the operation.
-           @type long_op_status: L{GrampsDb.LongOpStatus}
+           @type long_op_status: L{gen.utils.LongOpStatus}
         """
         gtk.VBox.__init__(self)
         
@@ -91,7 +91,7 @@ class GtkProgressDialog(gtk.Dialog):
         """Add a new status object to the progress dialog.
         
         @param long_op_status: the status object.        
-        @type long_op_status: L{GrampsDb.LongOpStatus}
+        @type long_op_status: L{gen.utils.LongOpStatus}
         @return: a key that can be used as the L{pbar_idx} 
                  to the other methods.
         @rtype: int
@@ -153,7 +153,7 @@ class GtkProgressDialog(gtk.Dialog):
         
 if __name__ == '__main__':
     import time
-    from GrampsDb import LongOpStatus, ProgressMonitor
+    from gen.utils import LongOpStatus, ProgressMonitor
 
     def test(a, b):
         d = ProgressMonitor(GtkProgressDialog)

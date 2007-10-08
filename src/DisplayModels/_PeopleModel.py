@@ -65,7 +65,7 @@ import DateHandler
 import ToolTips
 import GrampsLocale
 import Config
-from gen.db.longop import LongOpStatus
+from gen.utils.longop import LongOpStatus
 from Filters import SearchFilter, ExactSearchFilter
 from Lru import LRU
 

@@ -21,4 +21,7 @@
 __version__ = "$Revision: $"
 
 from dbutils import *
+from progressmon import ProgressMonitor
+from longop import LongOpStatus
+from callback import GrampsDBCallback
 

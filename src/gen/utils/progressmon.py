@@ -23,7 +23,7 @@ This module provides a progess dialog for displaying the status of
 long running operations.
 """
 import logging
-log = logging.getLogger(".GrampsDb")
+log = logging.getLogger(".gen")
 
 from gettext import gettext as _
 
@@ -34,7 +34,7 @@ class _StatusObjectFacade(object):
     def __init__(self, status_obj, heartbeat_cb_id=None, end_cb_id=None):
         """
         @param status_obj: 
-        @type status_obj: L{GrampsDb.LongOpStatus}
+        @type status_obj: L{gen.utils.LongOpStatus}
         
         @param heartbeat_cb_id: (default: None)
         @type heartbeat_cb_id: int
@@ -51,7 +51,7 @@ class _StatusObjectFacade(object):
 class ProgressMonitor(object):
     """A dialog for displaying the status of long running operations.
     
-    It will work with L{GrampsDb.LongOpStatus} objects to track the 
+    It will work with L{gen.utils.LongOpStatus} objects to track the 
     progress of long running operations. If the operations is going to 
     take longer than I{popup_time} it will pop up a dialog with a 
     progress bar so that the user gets some feedback about what is 
@@ -102,7 +102,7 @@ class ProgressMonitor(object):
         """Add a new status object to the progress dialog.
         
         @param op_status: the status object.        
-        @type op_status: L{GrampsDb.LongOpStatus}
+        @type op_status: L{gen.utils.LongOpStatus}
         """
         
         log.debug("adding op to Progress Monitor")

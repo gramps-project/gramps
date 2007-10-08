@@ -76,7 +76,7 @@ import GrampsWidgets
 import UndoHistory
 from DbLoader import DbLoader
 import GrampsDisplay
-from GrampsDb import ProgressMonitor
+from gen.utils import ProgressMonitor
 import gen.db
 
 import ProgressDialog
