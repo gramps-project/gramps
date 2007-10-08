@@ -54,7 +54,7 @@ import ThumbNails
 import Config
 import GrampsWidgets
 import Errors
-import GrampsDb
+import gen.utils
 
 from ReportBase import ReportUtils
 
@@ -1226,7 +1226,7 @@ class RelationshipView(PageView.PersonNavView):
                 active_handle = self.dbstate.active.handle
                 child = self.dbstate.db.get_person_from_handle(active_handle)
 
-                GrampsDb.add_child_to_family(
+                gen.utils.add_child_to_family(
                     self.dbstate.db,
                     family,
                     child)
@@ -1246,7 +1246,7 @@ class RelationshipView(PageView.PersonNavView):
             active_handle = self.dbstate.active.handle
             child = self.dbstate.db.get_person_from_handle(active_handle)
             
-            GrampsDb.add_child_to_family(
+            gen.utils.add_child_to_family(
                 self.dbstate.db,
                 family,
                 child)
@@ -1285,15 +1285,15 @@ class RelationshipView(PageView.PersonNavView):
 
     def delete_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            GrampsDb.remove_parent_from_family(self.dbstate.db, 
-                                               self.dbstate.active.handle, 
-                                               handle)
+            gen.utils.remove_parent_from_family(self.dbstate.db, 
+                                                self.dbstate.active.handle, 
+                                                handle)
 
     def delete_parent_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            GrampsDb.remove_child_from_family(self.dbstate.db, 
-                                              self.dbstate.active.handle, 
-                                              handle)
+            gen.utils.remove_child_from_family(self.dbstate.db, 
+                                               self.dbstate.active.handle, 
+                                               handle)
 
     def change_to(self, obj, handle):
         self.dbstate.change_active_handle(handle)

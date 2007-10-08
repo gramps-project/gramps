@@ -48,7 +48,7 @@ import DateHandler
 import QuestionDialog
 import GrampsDisplay
 import ManagedWindow
-import GrampsDb
+import gen.utils
 
 sex = ( _("female"), _("male"), _("unknown"))
 
@@ -422,7 +422,7 @@ class MergePeople:
         # merge the event lists
         self.merge_event_lists(new)
 
-        GrampsDb.set_birth_death_index(self.db, new)
+        gen.utils.set_birth_death_index(self.db, new)
 
         # copy attributes
         new.set_attribute_list(self.p1.get_attribute_list() +

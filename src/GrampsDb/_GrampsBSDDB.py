@@ -46,7 +46,7 @@ __LOG = logging.getLogger(".GrampsDb")
 #-------------------------------------------------------------------------
 from RelLib import *
 from gen.db.base import *
-from _DbUtils import db_copy
+from gen.utils import db_copy
 import gen.db.const as const
 from _GrampsDbExceptions import FileVersionError
 from BasicUtils import UpdateCallback

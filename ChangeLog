@@ -1,3 +1,6 @@
+2007-10-07  Don Allingham  <don@gramps-project.org>
+	* various: gen.utils integrationk
+
 2007-10-07  Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/_RelationView.py: init scroll pos on new person, issue #442
 

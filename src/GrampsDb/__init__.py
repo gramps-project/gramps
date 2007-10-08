@@ -46,7 +46,7 @@ from _GrampsDbFactories import gramps_db_factory
 
 #from _GrampsDBCallback import GrampsDBCallback
 
-from _DbUtils import *
+#from _DbUtils import *
 
 #import _GrampsDbConst as GrampsDbConst
 

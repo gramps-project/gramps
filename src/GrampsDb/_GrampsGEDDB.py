@@ -29,7 +29,7 @@ from RelLib import *
 from _GrampsInMemDB import *
 from _GrampsDbExceptions import GrampsDbException
 
-from _DbUtils import db_copy
+from gen.utils import db_copy
 
 #-------------------------------------------------------------------------
 #

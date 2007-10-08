@@ -56,7 +56,7 @@ import GrampsWidgets
 from BasicUtils import name_displayer
 import Errors
 
-from GrampsDb import set_birth_death_index
+from gen.utils import set_birth_death_index
 
 from _EditPrimary import EditPrimary
 from QuestionDialog import *

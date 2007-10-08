@@ -180,6 +180,7 @@ src/DateHandler/Makefile
 src/gen/Makefile
 src/gen/proxy/Makefile
 src/gen/db/Makefile
+src/gen/utils/Makefile
 src/data/Makefile
 src/data/templates/Makefile
 src/glade/Makefile

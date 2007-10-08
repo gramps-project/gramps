@@ -46,7 +46,7 @@ import GrampsLocale
 import DateHandler
 from BasicUtils import name_displayer
 import RelLib
-import GrampsDb
+import gen.utils
 
 from _BaseModel import BaseModel
 
@@ -130,7 +130,7 @@ class FamilyModel(BaseModel):
 
     def column_marriage(self, data):
         erlist = [ RelLib.EventRef().unserialize(d) for d in data[6] ]
-        event = GrampsDb.marriage_from_eventref_list(self.db, erlist)
+        event = gen.utils.marriage_from_eventref_list(self.db, erlist)
         if event:
             return DateHandler.displayer.display(event.date)
         else:
@@ -138,7 +138,7 @@ class FamilyModel(BaseModel):
 
     def sort_marriage(self, data):
         erlist = [ RelLib.EventRef().unserialize(d) for d in data[6] ]
-        event = GrampsDb.marriage_from_eventref_list(self.db, erlist)
+        event = gen.utils.marriage_from_eventref_list(self.db, erlist)
         if event:
             return "%09d" % event.date.get_sort_value()
         else:

@@ -37,7 +37,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from _GrampsBSDDB import GrampsBSDDB
 from QuestionDialog import ErrorDialog
-from _DbUtils import db_copy
+from gen.utils import db_copy
 
 #-------------------------------------------------------------------------
 #

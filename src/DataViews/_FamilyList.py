@@ -201,13 +201,13 @@ class FamilyListView(PageView.ListView):
 
     def remove(self, obj):
         self.uistate.set_busy_cursor(1)
-        import GrampsDb
+        import gen.utils
         
         mlist = []
         self.selection.selected_foreach(self.blist, mlist)
 
         for handle in mlist:
-            GrampsDb.remove_family_relationships(self.dbstate.db, handle)
+            gen.utils.remove_family_relationships(self.dbstate.db, handle)
         self.build_tree()
         self.uistate.set_busy_cursor(0)
     
