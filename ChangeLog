@@ -1,4 +1,5 @@
 2007-10-08  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsCfg.py (get_researcher): Remove old usage.
 	* src/gen/db/dbdir.py (__close_metadata): Store tuple;
 	(_load_metadata): Load from tuple;
 	* src/gen/db/base.py (GrampsDbBase.set_researcher): Move details

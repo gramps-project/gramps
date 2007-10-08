@@ -85,7 +85,15 @@ def get_researcher():
     e  = Config.get(Config.RESEARCHER_EMAIL)
 
     owner = gen.lib.Researcher()
-    owner.set(n, a, c, s, ct, p, ph, e)
+    owner.set_name(n)
+    owner.set_address(a)
+    owner.set_city(c)
+    owner.set_street(s)
+    owner.set_country(ct)
+    owner.set_postal(p)
+    owner.set_phone(ph)
+    owner.set_email(e)
+
     return owner
 
 #-------------------------------------------------------------------------
