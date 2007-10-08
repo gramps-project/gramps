@@ -36,7 +36,7 @@ from types import InstanceType
 from secondaryobj import SecondaryObject
 from privacybase import PrivacyBase
 from notebase import NoteBase
-from attributeBase import AttributeBase
+from attrbase import AttributeBase
 from refbase import RefBase
 from eventroletype import EventRoleType
 

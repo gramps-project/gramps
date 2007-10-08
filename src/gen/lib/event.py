@@ -35,7 +35,7 @@ from primaryobj import PrimaryObject
 from srcbase import SourceBase
 from notebase import NoteBase
 from mediabase import MediaBase
-from attributeBase import AttributeBase
+from attrbase import AttributeBase
 from datebase import DateBase
 from placebase import PlaceBase
 from eventtype import EventType

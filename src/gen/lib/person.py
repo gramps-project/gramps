@@ -37,7 +37,7 @@ from primaryobj import PrimaryObject
 from srcbase import SourceBase
 from notebase import NoteBase
 from mediabase import MediaBase
-from attributeBase import AttributeBase
+from attrbase import AttributeBase
 from addressbase import AddressBase
 from ldsordbase import LdsOrdBase
 from urlbase import UrlBase

@@ -8,7 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/lib
 pkgdata_PYTHON = \
 	addressbase.py \
 	address.py \
-	attributeBase.py \
+	attrbase.py \
 	attribute.py \
 	attrtype.py \
 	baseobj.py \

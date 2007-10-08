@@ -1,5 +1,7 @@
 2007-10-08  Don Allingham  <don@gramps-project.org>
+	* src/gen/lib/attrbase.py: renamed from attributeBase.py
 
+2007-10-08  Don Allingham  <don@gramps-project.org>
 	* various: gen.lib integration. probably touches almost every file
 
 2007-10-07  Don Allingham  <don@gramps-project.org>

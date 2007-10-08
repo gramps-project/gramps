@@ -36,7 +36,7 @@ from privacybase import PrivacyBase
 from srcbase import SourceBase
 from notebase import NoteBase
 from refbase import RefBase
-from attributeBase import AttributeBase
+from attrbase import AttributeBase
 
 #-------------------------------------------------------------------------
 #

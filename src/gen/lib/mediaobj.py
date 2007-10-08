@@ -43,7 +43,7 @@ from primaryobj import PrimaryObject
 from srcbase import SourceBase
 from notebase import NoteBase
 from datebase import DateBase
-from attributeBase import AttributeBase
+from attrbase import AttributeBase
 from markertype import MarkerType
 
 #-------------------------------------------------------------------------
