@@ -1753,10 +1753,7 @@ class GrampsDbBase(GrampsDBCallback):
 
     def set_researcher(self, owner):
         """sets the information about the owner of the database"""
-        self.owner.set(owner.get_name(), owner.get_address(), 
-                       owner.get_city(), owner.get_state(), 
-                       owner.get_country(), owner.get_postal_code(), 
-                       owner.get_phone(), owner.get_email())
+        self.owner.set_from(owner)
 
     def get_researcher(self):
         """returns the Researcher instance, providing information about

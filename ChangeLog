@@ -1,6 +1,12 @@
 2007-10-08  Alex Roitman  <shura@gramps-project.org>
+	* src/gen/db/dbdir.py (__close_metadata): Store tuple;
+	(_load_metadata): Load from tuple;
+	* src/gen/db/base.py (GrampsDbBase.set_researcher): Move details
+	to the Researcher class.
 	* src/gen/lib/researcher.py (serialize, unserialize): Add methods; 
+	(set_from): Add method;
 	(set, get): Remove methods.
+	(__init__): Copy from source if provided.
 
 2007-10-08  Don Allingham  <don@gramps-project.org>
 	* src/gen/lib/attrbase.py: renamed from attributeBase.py

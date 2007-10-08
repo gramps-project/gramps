@@ -608,8 +608,9 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         
         # database owner
         try:
-            self.set_researcher(self.metadata.get('researcher', 
-                                                  default=self.owner))
+            owner_data = self.metadata.get('researcher')
+            if owner_data:
+                self.owner.unserialize(owner_data)
         except ImportError: #handle problems with pre-alpha 3.0
             pass
         
@@ -1139,7 +1140,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             self.metadata.put('name_formats',self.name_formats,txn=the_txn)
             
             # database owner
-            self.metadata.put('researcher', self.owner, txn=the_txn)
+            owner_data = self.owner.serialize()
+            self.metadata.put('researcher', owner_data, txn=the_txn)
 
             # bookmarks
             self.metadata.put('bookmarks',self.bookmarks.get(),txn=the_txn)

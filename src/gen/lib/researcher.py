@@ -41,13 +41,19 @@ from locationbase import LocationBase
 class Researcher(LocationBase):
     """Contains the information about the owner of the database"""
     
-    def __init__(self):
-        """Initializes the Researcher object"""
+    def __init__(self, source=None):
+        """Initializes the Researcher object,
+        copying from the source if provided"""
 
-        LocationBase.__init__(self )
-        self.name = ""
-        self.addr = ""
-        self.email = ""
+        LocationBase.__init__(self, source)
+        if source:
+            self.name = source.name
+            self.addr = source.addr
+            self.email = source.email
+        else:
+            self.name = ""
+            self.addr = ""
+            self.email = ""
 
     def serialize(self):
         """
@@ -88,3 +94,17 @@ class Researcher(LocationBase):
     def get_email(self):
         """returns the database owner's email"""
         return self.email
+
+    def set_from(self,other_researcher):
+        """set all attributes from another instance"""
+        self.street = other_researcher.street
+        self.city = other_researcher.city
+        self.county = other_researcher.county
+        self.state = other_researcher.state
+        self.country = other_researcher.country
+        self.postal = other_researcher.postal
+        self.phone = other_researcher.phone
+
+        self.name = other_researcher.name
+        self.addr = other_researcher.addr
+        self.email =  other_researcher.email
