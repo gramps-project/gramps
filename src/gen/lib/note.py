@@ -41,8 +41,9 @@ from types import InstanceType
 #-------------------------------------------------------------------------
 from primaryobj import BasicPrimaryObject
 from notetype import NoteType
-from MarkupText import ROOT_START_TAG, LEN_ROOT_START_TAG
 from markertype import MarkerType
+
+ROOT_START_TAG = '<gramps>'
 
 #-------------------------------------------------------------------------
 #
@@ -119,7 +120,7 @@ class Note(BasicPrimaryObject):
         """
         text = self.text
 
-        if not markup and text[0:LEN_ROOT_START_TAG] == ROOT_START_TAG:
+        if not markup and text.starts_with(ROOT_START_TAG):
             text = self.delete_tags(text)
         
         return text

@@ -1,3 +1,6 @@
+2007-10-08  Don Allingham  <don@gramps-project.org>
+	* src/gen/lib/note.py: make independent of MarkupText.py
+
 2007-10-08  Alex Roitman  <shura@gramps-project.org>
 	* src/GrampsCfg.py (get_researcher): Remove old usage.
 	* src/gen/db/dbdir.py (__close_metadata): Store tuple;
