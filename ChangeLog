@@ -1,3 +1,6 @@
+2007-10-09  Alex Roitman  <shura@gramps-project.org>
+	* configure.in: remove obsolete RelLib/Makefile.in
+
 2007-10-09 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/gen/db/base.py: allow not to create gramps_id on add
 	* src/GrampsDbUtils/_ReadXML.py: on sourceref, don't create gramps_id

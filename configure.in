@@ -145,7 +145,6 @@ gramps.spec
 gramps.sh
 src/const.py
 src/Makefile
-src/RelLib/Makefile
 src/Config/Makefile
 src/FilterEditor/Makefile
 src/Mime/Makefile
