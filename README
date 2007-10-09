@@ -7,7 +7,7 @@ Requirements
 The following packages *MUST* be installed in order for Gramps to work:
    Python 2.3 or greater
    Gnome 2.8 or greater
-   PyGTK2 2.4 or greater
+   PyGTK2 2.6 or greater
    Gnome-python 2.6 or greater
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
