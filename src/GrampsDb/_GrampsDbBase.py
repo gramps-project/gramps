@@ -791,12 +791,12 @@ class GrampsDbBase(GrampsDBCallback):
         return obj
 
     def _check_from_handle(self, handle, transaction, class_type, dmap,
-                           add_func):
+                           add_func, set_gid=True):
         handle = str(handle)
         if not dmap.has_key(handle):
             obj = class_type()
             obj.set_handle(handle)
-            add_func(obj, transaction)
+            add_func(obj, transaction, set_gid=set_gid)
 
     def find_person_from_handle(self, handle, transaction):
         """
@@ -862,13 +862,15 @@ class GrampsDbBase(GrampsDBCallback):
         self._check_from_handle(handle, transaction, Person, 
                                 self.person_map, self.add_person)
 
-    def check_source_from_handle(self, handle, transaction):
+    def check_source_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether a Source with the passed handle exists in the database.
         If no such Source exists, a new Source is added to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
         self._check_from_handle(handle, transaction, Source, 
-                                self.source_map, self.add_source)
+                                self.source_map, self.add_source, 
+                                set_gid=set_gid)
 
     def check_event_from_handle(self, handle, transaction):
         """
@@ -977,7 +979,7 @@ class GrampsDbBase(GrampsDBCallback):
         assert False, "Needs to be overridden in the derived class"
 
     def _add_object(self, obj, transaction, find_next_func, commit_func):
-        if not obj.gramps_id:
+        if find_next_func and not obj.gramps_id:
             obj.gramps_id = find_next_func()
         if not obj.handle:
             obj.handle = self.create_id()
@@ -986,41 +988,65 @@ class GrampsDbBase(GrampsDBCallback):
             self.genderStats.count_person (obj)
         return obj.handle
 
-    def add_person(self, person, transaction):
+    def add_person(self, person, transaction, set_gid=True):
         """
         Adds a Person to the database, assigning internal IDs if they have
         not already been defined.
+        If not set_gid, then gramps_id is not set
         """
-        return self._add_object(person, transaction, 
-                                self.find_next_person_gramps_id, 
-                                self.commit_person)
+        if set_gid:
+            return self._add_object(person, transaction, 
+                                    self.find_next_person_gramps_id, 
+                                    self.commit_person)
+        else:
+            return self._add_object(person, transaction, 
+                                    None, 
+                                    self.commit_person)
 
-    def add_family(self, family, transaction):
+    def add_family(self, family, transaction, set_gid=True):
         """
         Adds a Family to the database, assigning internal IDs if they have
         not already been defined.
+        If not set_gid, then gramps_id is not set
         """
-        return self._add_object(family, transaction, 
-                                self.find_next_family_gramps_id, 
-                                self.commit_family)
+        if set_gid:
+            return self._add_object(family, transaction, 
+                                    self.find_next_family_gramps_id, 
+                                    self.commit_family)
+        else:
+            return self._add_object(family, transaction, 
+                                    None, 
+                                    self.commit_family)
 
-    def add_source(self, source, transaction):
+    def add_source(self, source, transaction, set_gid=True):
         """
         Adds a Source to the database, assigning internal IDs if they have
         not already been defined.
+        If not set_gid, then gramps_id is not set
         """
-        return self._add_object(source, transaction, 
-                                self.find_next_source_gramps_id, 
+        if set_gid:
+            return self._add_object(source, transaction, 
+                                    self.find_next_source_gramps_id, 
+                                    self.commit_source)
+        else :
+            return self._add_object(source, transaction, 
+                                None, 
                                 self.commit_source)
 
-    def add_event(self, event, transaction):
+    def add_event(self, event, transaction, set_gid=True):
         """
         Adds an Event to the database, assigning internal IDs if they have
         not already been defined.
+        If not set_gid, then gramps_id is not set
         """
-        return self._add_object(event, transaction, 
-                                self.find_next_event_gramps_id, 
-                                self.commit_event)
+        if set_gid:
+            return self._add_object(event, transaction, 
+                                    self.find_next_event_gramps_id, 
+                                    self.commit_event)
+        else:
+            return self._add_object(event, transaction, 
+                                    None, 
+                                    self.commit_event)
 
     def add_person_event(self, event, transaction):
         """
@@ -1040,32 +1066,50 @@ class GrampsDbBase(GrampsDBCallback):
             self.family_event_names.add(str(event.type))
         return self.add_event(event, transaction)
 
-    def add_place(self, place, transaction):
+    def add_place(self, place, transaction, set_gid=True):
         """
         Adds a Place to the database, assigning internal IDs if they have
         not already been defined.
+        If not set_gid, then gramps_id is not set
         """
-        return self._add_object(place, transaction, 
-                                self.find_next_place_gramps_id, 
-                                self.commit_place)
+        if set_gid:
+            return self._add_object(place, transaction, 
+                                    self.find_next_place_gramps_id, 
+                                    self.commit_place)
+        else:
+            return self._add_object(place, transaction, 
+                                    None,
+                                    self.commit_place)
 
-    def add_object(self, obj, transaction):
+    def add_object(self, obj, transaction, set_gid=True):
         """
         Adds a MediaObject to the database, assigning internal IDs if they have
         not already been defined.
+        If not set_gid, then gramps_id is not set
         """
-        return self._add_object(obj, transaction, 
-                                self.find_next_object_gramps_id, 
-                                self.commit_media_object)
+        if set_gid:
+            return self._add_object(obj, transaction, 
+                                    self.find_next_object_gramps_id, 
+                                    self.commit_media_object)
+        else:
+            return self._add_object(obj, transaction, 
+                                    None, 
+                                    self.commit_media_object)
 
-    def add_repository(self, obj, transaction):
+    def add_repository(self, obj, transaction, set_gid=True):
         """
         Adds a Repository to the database, assigning internal IDs if they have
         not already been defined.
+        If not set_gid, then gramps_id is not set
         """
-        return self._add_object(obj, transaction, 
-                                self.find_next_repository_gramps_id, 
-                                self.commit_repository)
+        if set_gid:
+            return self._add_object(obj, transaction, 
+                                    self.find_next_repository_gramps_id, 
+                                    self.commit_repository)
+        else:
+            return self._add_object(obj, transaction, 
+                                    None,
+                                    self.commit_repository)
 
     def get_name_group_mapping(self, name):
         """

@@ -1,4 +1,10 @@
 2007-10-09 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_GrampsDbBase.py: allow not to create gramps_id on add
+	* src/GrampsDb/_ReadXML.py: on sourceref, don't create gramps_id
+	* src/GrampsDb/_GrampsInMemDB.py: remove gid from memory map only if not None
+	* src/DbLoader.py: traceback to console on xml load error
+
+2007-10-09 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDb/_GrampsInMemDB.py: correctly store global name grouping
 	* src/GrampsDb/_GrampsBSDDB.py: correctly store global name grouping
 	* src/RelLib/_Name.py: allow grouping equal to surname

@@ -463,6 +463,8 @@ class DbLoader:
         except Exception, msg:
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename,str(msg) )
+            import traceback
+            traceback.print_exc()
         return True
     
     def open_saved_as(self, filename, filetype):
