@@ -102,11 +102,11 @@ class EditPerson(EditPrimary):
         return RelLib.Person()
 
     def get_menu_title(self):
-	if self.obj.get_handle():
-	    name = NameDisplay.displayer.display(self.obj)
-	    title = _('Person') + ': %s' % name
-	else:
-	    title = _('New Person')
+        if self.obj.get_handle():
+            name = NameDisplay.displayer.display(self.obj)
+            title = _('Person') + ': %s' % name
+        else:
+            title = _('New Person')
         return title
 
     def _local_init(self):
@@ -494,11 +494,11 @@ class EditPerson(EditPrimary):
 
     def _check_for_unknown_gender(self):
         if self.obj.get_gender() == RelLib.Person.UNKNOWN:
-	    d = GenderDialog(self.window)
-	    gender = d.run()
-	    d.destroy()
-	    if gender >= 0:
-		self.obj.set_gender(gender)
+            d = GenderDialog(self.window)
+            gender = d.run()
+            d.destroy()
+            if gender >= 0:
+                self.obj.set_gender(gender)
         
     def _check_and_update_id(self):
         original = self.db.get_person_from_handle(self.obj.get_handle())
@@ -737,19 +737,19 @@ class EditPerson(EditPrimary):
 class GenderDialog(gtk.MessageDialog):
     def __init__(self,parent=None):
         gtk.MessageDialog.__init__(self,
-				   parent, 
-				   flags=gtk.DIALOG_MODAL,
-				   type=gtk.MESSAGE_QUESTION,
-				   )
+                                   parent, 
+                                   flags=gtk.DIALOG_MODAL,
+                                   type=gtk.MESSAGE_QUESTION,
+                                   )
         self.set_icon(ICON)
         self.set_title('')
 
-	self.set_markup('<span size="larger" weight="bold">%s</span>' % 
-			_('Unknown gender specified'))
-	self.format_secondary_text(
-	    _("The gender of the person is currently unknown. "
-	      "Usually, this is a mistake. Please specify the gender."))
+        self.set_markup('<span size="larger" weight="bold">%s</span>' % 
+                        _('Unknown gender specified'))
+        self.format_secondary_text(
+            _("The gender of the person is currently unknown. "
+              "Usually, this is a mistake. Please specify the gender."))
 
-	self.add_button(_('Male'), RelLib.Person.MALE)
-	self.add_button(_('Female'), RelLib.Person.FEMALE)
-	self.add_button(_('Unknown'), RelLib.Person.UNKNOWN)
+        self.add_button(_('Male'), RelLib.Person.MALE)
+        self.add_button(_('Female'), RelLib.Person.FEMALE)
+        self.add_button(_('Unknown'), RelLib.Person.UNKNOWN)
