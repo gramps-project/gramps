@@ -1257,6 +1257,9 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             self.event_map.sync()
 
     def set_name_group_mapping(self, name, group):
+        """Make name group under the value of group.
+           If group =None, the old grouping is deleted 
+        """
         if not self.readonly:
             if self.UseTXN:
                 # Start transaction if needed
@@ -1265,10 +1268,10 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                 the_txn = None
             name = str(name)
             data = self.name_group.get(name, txn=the_txn)
-            if not group and data:
+            if data is not None:
                 self.name_group.delete(name, txn=the_txn)
-            else:
-                self.name_group.put(name, group, txn=the_txn)
+            if group is not None:
+                self.name_group.put(name,group,txn=the_txn)
             if self.UseTXN:
                 the_txn.commit()
             else:

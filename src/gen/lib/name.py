@@ -176,11 +176,11 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
         Sets the grouping name for a person. Normally, this is the person's
         surname. However, some locales group equivalent names (e.g. Ivanova
         and Ivanov in Russian are usually considered equivalent.
+        Note that there is also a database wide grouping set_name_group_mapping
+          So one might map a name Smith to SmithNew, and have one person still
+          grouped with name Smith. Hence, group_as can be equal to surname!
         """
-        if name == self.surname:
-            self.group_as = ""
-        else:
-            self.group_as = name
+        self.group_as = name
 
     def get_group_as(self):
         """

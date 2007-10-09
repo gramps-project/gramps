@@ -1,3 +1,9 @@
+2007-10-09 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_GrampsInMemDB.py: correctly store global name grouping
+	* src/GrampsDb/_GrampsBSDDB.py: correctly store global name grouping
+	* src/RelLib/_Name.py: allow grouping equal to surname
+	* src/Editors/_EditName.py: correct handling of name grouping, issue #647
+
 2007-10-08  Don Allingham  <don@gramps-project.org>
 	* various: cleanup
 
