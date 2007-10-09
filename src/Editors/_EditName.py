@@ -71,17 +71,24 @@ class EditName(EditSecondary):
                         _("Name Editor"))
 
         self.original_group_as = self.obj.get_group_as()
+        self.original_group_set = not (self.original_group_as == '')
+        srn = self.obj.get_surname()
+        self._get_global_grouping(srn)
+
         self.general_label = self.top.get_widget("general_tab")
 
         self.group_over = self.top.get_widget('group_over')
         self.group_over.connect('toggled',self.on_group_over_toggled)
         self.group_over.set_sensitive(not self.db.readonly)
+        
+        self.toggle_dirty = False
 
         Utils.bold_label(self.general_label)
 
     def _post_init(self):
-        if self.original_group_as and \
-               (self.original_group_as != self.obj.get_surname()):
+        """if there is override, set the override toggle active
+        """
+        if self.original_group_set or self.global_group_set :
             self.group_over.set_active(True)
 
     def _connect_signals(self):
@@ -96,8 +103,11 @@ class EditName(EditSecondary):
             self.obj.get_group_as,
             self.db.readonly)
 
-        if not self.original_group_as:
-            self.group_as.force_value(self.obj.get_surname())
+        if not self.original_group_set:
+            if self.global_group_set :
+                self.group_as.force_value(self.global_group_as)
+            else :
+                self.group_as.force_value(self.obj.get_surname())
             
         format_list = [(name,number) for (number,name,fmt_str,act)
                        in NameDisplay.displayer.get_name_format(also_default=True)]
@@ -161,7 +171,7 @@ class EditName(EditSecondary):
             self.db.readonly)
 
         table = self.top.get_widget('table23')
-	date_entry = ValidatableMaskedEntry(str)
+        date_entry = ValidatableMaskedEntry(str)
         date_entry.show()
         table.attach(date_entry, 2, 3, 4, 5)
 
@@ -199,6 +209,18 @@ class EditName(EditSecondary):
                     self.obj.get_note_object()))
 
         self._setup_notebook_tabs( notebook)
+        
+    def _get_global_grouping(self, srn):
+        """ we need info on the global grouping of the surname on init, 
+            and on change of surname
+            """
+        self.global_group_as = self.db.get_name_group_mapping(srn)
+        if srn == self.global_group_as:
+            self.global_group_as = None
+            self.global_group_set = False
+        else:
+            self.global_group_set = True
+            
 
     def build_menu_names(self,name):
         if name:
@@ -210,48 +232,141 @@ class EditName(EditSecondary):
         return (menu_label,submenu_label)
 
     def update_group_as(self,obj):
+        """Callback if surname changes on GUI
+            If overwrite is not set, we change the group name too
+        """
+        name = self.obj.get_surname()
         if not self.group_over.get_active():
-            if self.obj.get_group_as() != self.obj.get_surname():
-                val = self.obj.get_group_as()
+            self.group_as.force_value(name)
+        #new surname, so perhaps now a different grouping?
+        self._get_global_grouping(name)
+        if not self.group_over.get_active() and self.global_group_set :
+            self.group_over.set_active(True)
+            self.group_as.enable(True)
+            self.toggle_dirty = True
+            self.group_as.force_value(self.global_group_as)
+        elif self.group_over.get_active() and self.toggle_dirty:
+            #changing surname caused active group_over in past, change 
+            # group_over as we type
+            if self.global_group_set :
+                self.group_as.force_value(self.global_group_as)
             else:
-                name = self.obj.get_surname()
-                val = self.db.get_name_group_mapping(name)
-            self.group_as.force_value(val)
+                self.toggle_dirty = False
+                self.group_as.force_value(name)
+                self.group_over.set_active(False)
+                self.group_as.enable(False)
         
     def on_group_over_toggled(self,obj):
+        """ group over changes, if activated, enable edit,
+            if unactivated, go back to surname.
+        """
+        self.toggle_dirty = False
+        #enable group as box
         self.group_as.enable(obj.get_active())
         
         if not obj.get_active():
-            field_value = self.obj.get_surname()
-            mapping = self.db.get_name_group_mapping(field_value)
-            self.group_as.set_text(mapping)
+            surname = self.obj.get_surname()
+            self.group_as.set_text(surname)
 
     def save(self,*obj):
-
-        if not self.group_over.get_active():
-            self.obj.set_group_as("")
-        elif self.obj.get_group_as() == self.obj.get_surname():
-            self.obj.set_group_as("")
-        elif self.obj.get_group_as() != self.original_group_as:
-            grp_as = self.obj.get_group_as()
-            srn = self.obj.get_surname()
-            if grp_as not in self.db.get_name_group_keys():
+        """Save the name setting. All is ok, except grouping. We need to 
+           consider: 
+            1/     global set, not local set --> unset (ask if global unset)
+            2/     global set,     local set --> unset (only local unset!)
+            3/ not global set,     local set 
+            or not global set, not local set --> unset
+            4/ not local set, not global set
+            or not local set,     global set --> set val (ask global or local)
+            5/     local set, not global set --> set (change local)
+            6/     local set,     global set --> set (set to global if possible)
+        """
+        closeit = True
+        surname = self.obj.get_surname()
+        group_as= self.obj.get_group_as()
+        grouping_active = self.group_over.get_active()
+        
+        if not grouping_active :
+            #user wants to group with surname
+            if self.global_group_set and not self.original_group_set :
+                #warn that group will revert to surname
                 from QuestionDialog import QuestionDialog2
                 q = QuestionDialog2(
+                    _("Break global name grouping?"),
+                    _("All people with the name of %(surname)s will no longer "
+                      "be grouped with the name of %(group_name)s."
+                      ) % { 'surname' : surname,
+                            'group_name':group_as},
+                    _("Continue"),
+                    _("Return to Name Editor"))
+                val = q.run()
+                if val:
+                    #delete the grouping link on database
+                    self.db.set_name_group_mapping(surname, None)
+                    self.obj.set_group_as("")
+                else :
+                    closeit = False
+            elif self.global_group_set and self.original_group_set:
+                #we change it only back to surname locally, so store group_as
+                # Note: if all surnames are locally changed to surname, we 
+                #       should actually unsed the global group here ....
+                pass
+            else :
+                #global group not set, don't set local group too:
+                self.obj.set_group_as("")
+        else:
+            #user wants to override surname, see what he wants
+            if not self.original_group_set :
+                #if changed, ask if this has to happen for the entire group,
+                #this might be creation of group link, or change of group link
+                if self.global_group_as != group_as:
+                    from QuestionDialog import QuestionDialog2
+                        
+                    q = QuestionDialog2(
                     _("Group all people with the same name?"),
                     _("You have the choice of grouping all people with the "
                       "name of %(surname)s with the name of %(group_name)s, or "
-                      "just mapping this particular name.") % { 'surname' : srn,
-                                                                'group_name':grp_as},
+                      "just mapping this particular name."
+                                       ) % { 'surname' : surname,
+                                             'group_name':group_as},
                     _("Group all"),
                     _("Group this name only"))
-                val = q.run()
-                if val:
-                    self.obj.set_group_as("")
-                    self.db.set_name_group_mapping(srn,grp_as)
+                    val = q.run()
+                    if val:
+                        if group_as == surname :
+                            self.db.set_name_group_mapping(surname, None)
+                        else:
+                            self.db.set_name_group_mapping(surname, group_as)
+                        self.obj.set_group_as("")
+                    else:
+                        if self.global_group_set :
+                            #allow smith to Dummy, but one person still Smith
+                            self.obj.set_group_as(group_as)
+                        elif group_as == surname :
+                            self.obj.set_group_as("")
+                        else:
+                            self.obj.set_group_as(group_as)
                 else:
-                    self.obj.set_group_as(grp_as)
+                    #keep original value, no original group
+                    self.obj.set_group_as("")
+            elif not self.global_group_set :
+                #don't ask user, group was set locally before, 
+                #change it locally only
+                if group_as == surname :
+                    #remove grouping
+                    self.obj.set_group_as("")
+                else:
+                    pass
+            
+            else:
+                #locally set group and global group set
+                if group_as == self.global_group_as :
+                    #unset local group, go with global one
+                    self.obj.set_group_as("")
+                else :
+                    #local set is different from global, keep it like that
+                    pass
 
-        if self.callback:
-            self.callback(self.obj)
-        self.close()
+        if closeit:
+            if self.callback:
+                self.callback(self.obj)
+            self.close()

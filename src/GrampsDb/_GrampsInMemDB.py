@@ -140,7 +140,7 @@ class GrampsInMemDB(GrampsDbBase):
     def set_name_group_mapping(self,name,group):
         if group == None and self.name_group.has_key(name):
             del self.name_group[name]
-        else:
+        if group is not None :
             self.name_group[name] = group
 
     def build_surname_list(self):

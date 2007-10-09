@@ -1,4 +1,10 @@
-2007-10-06 Benny Malengier <benny.malengier@gramps-project.org> 
+2007-10-09 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_GrampsInMemDB.py: correctly store global name grouping
+	* src/GrampsDb/_GrampsBSDDB.py: correctly store global name grouping
+	* src/RelLib/_Name.py: allow grouping equal to surname
+	* src/Editors/_EditName.py: correct handling of name grouping, issue #647
+
+2007-10-09 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Editors/_EditPerson.py: change tabs in spaces (I HATE THIS !!!)
 
 2007-10-07  Douglas Blank  <dblank@cs.brynmawr.edu>
