@@ -1265,7 +1265,9 @@ class GrampsParser(UpdateCallback):
         self.source_ref = gen.lib.SourceRef()
         try:
             handle = attrs["hlink"].replace('_', '')
-            self.db.check_source_from_handle(handle, self.trans)
+            #create source object to obtain handle, gid is set in start_source
+            self.db.check_source_from_handle(handle, self.trans,
+                                             set_gid = False)
         except KeyError:
             source = self.find_source_by_gramps_id(self.map_sid(attrs["ref"]))
             handle = source.handle

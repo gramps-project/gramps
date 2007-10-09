@@ -252,7 +252,7 @@ class GrampsInMemDB(GrampsDbBase):
         old_data = db_map.get(obj.handle)
         if old_data:
             old_id = old_data[self.ID_INDEX]
-            if obj.gramps_id != old_id:
+            if old_id is not None and obj.gramps_id != old_id:
                 del trans_map[old_id]
         trans_map[gid] = obj.handle
         return True
