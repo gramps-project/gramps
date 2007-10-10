@@ -1,3 +1,7 @@
+2007-10-10  Espen Berg  <espenbe@gmail.com>
+	* nb.po: Translation complete
+	* no.po: Translation complete
+
 2007-10-03  Frederik De Richter <frederik.de.richter@googlemail.com>
 	* nl.po: 100%
 
@@ -42,16 +46,16 @@
 	* sk.po: Translation update.
 
 2007-05-21 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation
+	* lt.po: updated Lithuanian translation
 
 2007-05-21  Stefan Björk  <betula@users.sourceforge.net>
 	* sv.po: Translation update; bug #0001058.
 
-2007-05-17  Espen Berg  <espen.berg@ntnu.no>
+2007-05-17  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
-2007-05-14  Espen Berg  <espen.berg@ntnu.no>
+2007-05-14  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
@@ -70,14 +74,14 @@
 2007-03-07  Stefan Björk  <betula@users.sourceforge.net>
 	* sv.po: Translation update.
 
-2007-02-20  Espen Berg  <espen.berg@ntnu.no>
+2007-02-20  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
 2007-02-15  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
 
-2007-02-14  Espen Berg  <espen.berg@ntnu.no>
+2007-02-14  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Translation update
 	* no.po: Translation update
 
@@ -182,7 +186,7 @@
 2006-11-29  Lubo Vasko  <pgval@post.sk>
 	* sk.po: Translation update.
 
-2006-11-21  Espen Berg <espen.berg@ntnu.no>
+2006-11-21  Espen Berg <espenbe@gmail.com>
 	* nb.po: updated Norwegian translation
 	* no.po: updated Norwegian translation
 
@@ -198,7 +202,7 @@
 2006-11-16  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
 
-2006-11-16  Espen Berg <espen.berg@ntnu.no>
+2006-11-16  Espen Berg <espenbe@gmail.com>
 	* nb.po: updated Norwegian translation, cleanup.
 	* no.po: updated Norwegian translation, cleanup.
 
@@ -249,7 +253,7 @@
 2006-10-29 Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
 	* ru.po: Update.
 
-2006-10-29  Espen Berg <espen.berg@ntnu.no>
+2006-10-29  Espen Berg <espenbe@gmail.com>
 	* nb.po: Bug-fix in Norwegian translation.
 	* nn.po: Bug-fix in Norwegian translation.
 
@@ -283,7 +287,7 @@
 2006-10-24  Alex Roitman  <shura@gramps-project.org>
 	* ru.po: Update translation.
 
-2006-10-24  Espen Berg  <espen.berg@ntnu.no>
+2006-10-24  Espen Berg  <espenbe@gmail.com>
 	* nb.po: Updated Norwegian translation.
 	* no.po: Updated Norwegian translation.
 
@@ -310,7 +314,7 @@
 2006-10-15  Piotr Czubaszek  <pioterus@gmail.com>
 	* pl.po: Translation update.
 
-2006-10-15 Espen Berg  <espen.berg@ntnu.no>
+2006-10-15 Espen Berg  <espenbe@gmail.com>
 	* nb.po, no.po: Translation update.
 
 2006-10-13  Alex Roitman  <shura@gramps-project.org>
@@ -463,7 +467,7 @@
 2006-05-22  Alex Roitman  <shura@gramps-project.org>
 	* gramps.pot: Update.
 
-2006-05-18  Espen Berg  <espen.berg@ntnu.no>
+2006-05-18  Espen Berg  <espenbe@gmail.com>
 	* nb.po, no.po: Translation update.
 
 2006-05-17  Alex Roitman  <shura@gramps-project.org>
