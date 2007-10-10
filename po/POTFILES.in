@@ -90,6 +90,8 @@ src/DateHandler/_Date_fr.py
 src/DateHandler/_DateHandler.py
 src/DateHandler/_Date_lt.py
 src/DateHandler/_Date_nl.py
+src/DateHandler/_Date_pl.py
+src/DateHandler/_Date_pt.py
 src/DateHandler/_DateParser.py
 src/DateHandler/_Date_ru.py
 src/DateHandler/_Date_sk.py

@@ -1,3 +1,8 @@
+2007-10-10 Duarte Loreto <happyguy_pt@hotmail.com>
+	* src/DateHandler/_Date_pt.py: portugese datehandler accompanying translation
+	* po/POTFILES.in: new file in POTFILE
+	* src/DateHandler/Makefile.am: add new file for distribution
+
 2007-10-09  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/Makefile.am: update
 	* src/gen/db/Makefile.am: update
