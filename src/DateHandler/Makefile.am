@@ -17,6 +17,7 @@ pkgdata_PYTHON = \
 	_Date_nl.py\
 	_Date_sk.py\
 	_Date_pl.py\
+	_Date_pt.py\
 	_DateDisplay.py\
 	_DateParser.py\
 	_DateHandler.py\
