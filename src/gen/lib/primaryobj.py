@@ -32,7 +32,7 @@ __revision__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import time
-import GrampsLocale
+import locale
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +50,10 @@ from mediabase import MediaBase
 # Localized constants
 #
 #-------------------------------------------------------------------------
-CODESET = GrampsLocale.codeset
+try:
+    CODESET = locale.nl_langinfo(locale.CODESET)
+except:
+    CODESET = locale.getpreferredencoding()
 
 #-------------------------------------------------------------------------
 #

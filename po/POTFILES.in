@@ -191,18 +191,12 @@ src/Editors/_EditUrl.py
 src/Editors/__init__.py
 
 # GrampsDb package
-src/GrampsDb/_DbUtils.py
 src/GrampsDb/_GrampsBSDDB.py
-src/GrampsDb/_GrampsDbBase.py
-src/GrampsDb/_GrampsDBCallback.py
-src/GrampsDb/_GrampsDBDir.py
-src/GrampsDb/_GrampsDbExceptions.py
 src/GrampsDb/_GrampsDbFactories.py
 src/GrampsDb/_GrampsDbWriteXML.py
 src/GrampsDb/_GrampsGEDDB.py
 src/GrampsDb/_GrampsInMemDB.py
 src/GrampsDb/_GrampsXMLDB.py
-src/GrampsDb/_ProgressMonitor.py
 src/GrampsDb/__init__.py
 
 # GrampsDbUtils package
@@ -242,36 +236,6 @@ src/GrampsLogger/_RotateHandler.py
 src/Mime/_GnomeMime.py
 src/Mime/__init__.py
 src/Mime/_PythonMime.py
-
-# Models package
-# src/Models/_FastFilterModel.py
-# src/Models/_FastModel.py
-# src/Models/__init__.py
-# src/Models/_ListCursor.py
-# src/Models/_PathCursor.py
-# src/Models/_PersonFilterModel.py
-# src/Models/_PersonListModel.py
-# src/Models/_PersonTreeModel.py
-
-# ObjectSelector package
-# src/ObjectSelector/_Constants.py
-# src/ObjectSelector/_Factories.py
-# src/ObjectSelector/_FamilyFilterFrame.py
-# src/ObjectSelector/_FamilyFrame.py
-# src/ObjectSelector/_FamilyPreviewFrame.py
-# src/ObjectSelector/_FamilyTreeFrame.py
-# src/ObjectSelector/_FilterFrameBase.py
-# src/ObjectSelector/_FilterSpecBase.py
-# src/ObjectSelector/__init__.py
-# src/ObjectSelector/_ObjectFrameBase.py
-# src/ObjectSelector/_ObjectSelectorWindow.py
-# src/ObjectSelector/_PersonFilterFrame.py
-# src/ObjectSelector/_PersonFilterSpec.py
-# src/ObjectSelector/_PersonFrame.py
-# src/ObjectSelector/_PersonPreviewFrame.py
-# src/ObjectSelector/_PersonTreeFrame.py
-# src/ObjectSelector/_PreviewFrameBase.py
-# src/ObjectSelector/_TreeFrameBase.py
 
 # Selectors package
 src/Selectors/_BaseSelector.py
@@ -393,61 +357,81 @@ src/ReportBase/_TemplateParser.py
 src/ReportBase/_TextFormatComboBox.py
 src/ReportBase/_TextReportDialog.py
 
-# RelLib package
-src/RelLib/_AddressBase.py
-src/RelLib/_Address.py
-src/RelLib/_AttributeBase.py
-src/RelLib/_Attribute.py
-src/RelLib/_AttributeType.py
-src/RelLib/_BaseObject.py
-src/RelLib/_CalSdn.py
-src/RelLib/_ChildRefType.py
-src/RelLib/_DateBase.py
-src/RelLib/_Date.py
-src/RelLib/_Event.py
-src/RelLib/_EventRef.py
-src/RelLib/_EventRoleType.py
-src/RelLib/_EventType.py
-src/RelLib/_Family.py
-src/RelLib/_FamilyRelType.py
-src/RelLib/_GenderStats.py
-src/RelLib/_GrampsType.py
-src/RelLib/__init__.py
-src/RelLib/_LdsOrd.py
-src/RelLib/_LdsOrdBase.py
-src/RelLib/_LocationBase.py
-src/RelLib/_Location.py
-src/RelLib/_MarkerType.py
-src/RelLib/_MediaBase.py
-src/RelLib/_MediaObject.py
-src/RelLib/_MediaRef.py
-src/RelLib/_Name.py
-src/RelLib/_NameType.py
-src/RelLib/_NoteBase.py
-src/RelLib/_Note.py
-src/RelLib/_NoteType.py
-src/RelLib/_Person.py
-src/RelLib/_PlaceBase.py
-src/RelLib/_Place.py
-src/RelLib/_PrimaryObject.py
-src/RelLib/_PrivacyBase.py
-src/RelLib/_PrivateSourceNote.py
-src/RelLib/_RepoRef.py
-src/RelLib/_Repository.py
-src/RelLib/_RepositoryType.py
-src/RelLib/_Researcher.py
-src/RelLib/_SourceNote.py
-src/RelLib/_Source.py
-src/RelLib/_SourceMediaType.py
-src/RelLib/_SourceRef.py
-src/RelLib/_UrlBase.py
-src/RelLib/_Url.py
-src/RelLib/_UrlType.py
-src/RelLib/_Witness.py
-
-# TreeViews package
-# src/TreeViews/__init__.py
-# src/TreeViews/_PersonTreeView.py
+# gen
+src/gen/proxy/living.py
+src/gen/proxy/private.py
+src/gen/proxy/proxybase.py
+src/gen/proxy/dbbase.py
+src/gen/proxy/filter.py
+src/gen/proxy/__init__.py
+src/gen/db/base.py
+src/gen/db/dbdir.py
+src/gen/db/cursor.py
+src/gen/db/exceptions.py
+src/gen/db/dbconst.py
+src/gen/db/__init__.py
+src/gen/db/iterator.py
+src/gen/lib/witness.py
+src/gen/lib/__init__.py
+src/gen/lib/reporef.py
+src/gen/lib/url.py
+src/gen/lib/personref.py
+src/gen/lib/urltype.py
+src/gen/lib/note.py
+src/gen/lib/repo.py
+src/gen/lib/notetype.py
+src/gen/lib/repotype.py
+src/gen/lib/location.py
+src/gen/lib/datebase.py
+src/gen/lib/privacybase.py
+src/gen/lib/calendar.py
+src/gen/lib/mediaref.py
+src/gen/lib/attrtype.py
+src/gen/lib/srcnote.py
+src/gen/lib/primaryobj.py
+src/gen/lib/childref.py
+src/gen/lib/ldsordbase.py
+src/gen/lib/childreftype.py
+src/gen/lib/markertype.py
+src/gen/lib/genderstats.py
+src/gen/lib/place.py
+src/gen/lib/srcref.py
+src/gen/lib/address.py
+src/gen/lib/src.py
+src/gen/lib/srcmediatype.py
+src/gen/lib/grampstype.py
+src/gen/lib/urlbase.py
+src/gen/lib/notebase.py
+src/gen/lib/locationbase.py
+src/gen/lib/attribute.py
+src/gen/lib/attrbase.py
+src/gen/lib/baseobj.py
+src/gen/lib/eventroletype.py
+src/gen/lib/person.py
+src/gen/lib/refbase.py
+src/gen/lib/mediaobj.py
+src/gen/lib/mediabase.py
+src/gen/lib/date.py
+src/gen/lib/eventref.py
+src/gen/lib/privsrcnote.py
+src/gen/lib/placebase.py
+src/gen/lib/name.py
+src/gen/lib/addressbase.py
+src/gen/lib/family.py
+src/gen/lib/event.py
+src/gen/lib/nametype.py
+src/gen/lib/secondaryobj.py
+src/gen/lib/srcbase.py
+src/gen/lib/eventtype.py
+src/gen/lib/researcher.py
+src/gen/lib/familyreltype.py
+src/gen/lib/ldsord.py
+src/gen/__init__.py
+src/gen/utils/__init__.py
+src/gen/utils/dbutils.py
+src/gen/utils/callback.py
+src/gen/utils/longop.py
+src/gen/utils/progressmon.py
 
 # Filters package
 src/Filters/_FilterComboBox.py

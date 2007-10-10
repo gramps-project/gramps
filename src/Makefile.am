@@ -20,7 +20,6 @@ SUBDIRS = \
 	Mime \
 	Selectors \
 	Simple \
-	RelLib \
 	data \
 	PluginUtils \
 	ReportBase \

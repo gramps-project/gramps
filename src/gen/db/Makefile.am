@@ -12,8 +12,7 @@ pkgdata_PYTHON = \
 	dbconst.py \
 	dbdir.py \
 	exceptions.py \
-	iterator.py \
-	longop.py
+	iterator.py 
 
 pkgpyexecdir = @pkgpyexecdir@/db
 pkgpythondir = @pkgpythondir@/db

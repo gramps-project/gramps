@@ -6,7 +6,6 @@
 pkgdatadir = $(datadir)/@PACKAGE@/GrampsDb
 
 pkgdata_PYTHON = \
-	_GrampsDBDir.py \
 	_GrampsDbFactories.py\
 	_GrampsDbWriteXML.py \
 	_GrampsGEDDB.py\
