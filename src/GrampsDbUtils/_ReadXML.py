@@ -1333,7 +1333,7 @@ class GrampsParser(UpdateCallback):
         self.reporef = gen.lib.RepoRef()
         try:
             handle = attrs['hlink'].replace('_', '')
-            self.db.check_repository_from_handle(handle, self.trans
+            self.db.check_repository_from_handle(handle, self.trans,
                                                  set_gid = False)
         except KeyError:
             repo = self.find_repo_by_gramps_id(self.map_rid(attrs['ref']))
@@ -1351,7 +1351,7 @@ class GrampsParser(UpdateCallback):
         self.objref = gen.lib.MediaRef()
         try:
             handle = attrs['hlink'].replace('_', '')
-            self.db.check_object_from_handle(handle, self.trans
+            self.db.check_object_from_handle(handle, self.trans,
                                              set_gid = False)
         except KeyError:
             obj = self.find_object_by_gramps_id(self.map_oid(attrs['ref']))
