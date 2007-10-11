@@ -673,13 +673,23 @@ class GrampsParser(UpdateCallback):
         self.ord.set_family_handle(handle)
         
     def start_place(self,attrs):
+        """A reference to a place in an object: event or lds_ord
+        """
         try:
-            self.placeobj = self.db.find_place_from_handle(
-                attrs['hlink'].replace('_',''),self.trans)
+            handle = attrs['hlink'].replace('_','')
+            self.db.check_place_from_handle(handle,self.trans,set_gid = False)
         except KeyError:
+            #I think this code is wrong, place has no ref attribute
             gramps_id = self.map_pid(attrs['ref'])
-            self.placeobj = self.find_place_by_gramps_id(gramps_id)
-        self.placeobj.private = bool(attrs.get("priv"))
+            place = self.find_place_by_gramps_id(gramps_id)
+            handle = place.handle
+        
+        if self.ord:
+            self.ord.set_place_handle(handle)
+        elif self.object:
+            self.object.set_place_handle(handle)
+        else:
+            self.event.set_place_handle(handle)
         
     def start_placeobj(self,attrs):
         gramps_id = self.map_pid(attrs['id'])
@@ -925,6 +935,7 @@ class GrampsParser(UpdateCallback):
     def start_father(self,attrs):
         try:
             handle = attrs['hlink'].replace('_','')
+            #all persons exist before father tag is encountered
             self.db.check_person_from_handle(handle,self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
@@ -934,6 +945,7 @@ class GrampsParser(UpdateCallback):
     def start_mother(self,attrs):
         try:
             handle = attrs['hlink'].replace('_','')
+            #all persons exist before mother tag is encountered
             self.db.check_person_from_handle(handle,self.trans)
         except KeyError:
             person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
@@ -1040,7 +1052,7 @@ class GrampsParser(UpdateCallback):
     def start_childof(self,attrs):
         try:
             handle = attrs["hlink"].replace('_','')
-            self.db.check_family_from_handle(handle,self.trans)
+            self.db.check_family_from_handle(handle,self.trans,set_gid=False)
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             handle = family.handle
@@ -1066,7 +1078,7 @@ class GrampsParser(UpdateCallback):
     def start_parentin(self,attrs):
         try:
             handle = attrs["hlink"].replace('_','')
-            self.db.check_family_from_handle(handle,self.trans)
+            self.db.check_family_from_handle(handle,self.trans,set_gid=False)
         except KeyError:
             family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             handle = family.handle
@@ -1153,7 +1165,7 @@ class GrampsParser(UpdateCallback):
 
     def start_source(self,attrs):
         self.update(self.p.CurrentLineNumber)
-        gramps_id = self.map_sid(attrs["id"])
+        gramps_id = self.map_sid(attrs["id"]) #avoid double id's on import
         try:
             self.source = self.db.find_source_from_handle(
                 attrs['handle'].replace('_',''),self.trans)
@@ -1166,7 +1178,8 @@ class GrampsParser(UpdateCallback):
         self.reporef = RelLib.RepoRef()
         try:
             handle = attrs['hlink'].replace('_','')
-            self.db.check_repository_from_handle(handle,self.trans)
+            self.db.check_repository_from_handle(handle,self.trans,
+                                                 set_gid=None)
         except KeyError:
             repo = self.find_repo_by_gramps_id(self.map_rid(attrs['ref']))
             handle = repo.handle
@@ -1182,7 +1195,7 @@ class GrampsParser(UpdateCallback):
         self.objref = RelLib.MediaRef()
         try:
             handle = attrs['hlink'].replace('_','')
-            self.db.check_object_from_handle(handle,self.trans)
+            self.db.check_object_from_handle(handle,self.trans,set_gid = False)
         except KeyError:
             obj = self.find_object_by_gramps_id(self.map_oid(attrs['ref']))
             handle = obj.handle
@@ -1617,20 +1630,32 @@ class GrampsParser(UpdateCallback):
         self.db.commit_person(person,self.trans,self.change)
 
     def stop_place(self,tag):
-        if self.placeobj == None:
-            if self.place_map.has_key(tag):
-                self.placeobj = self.place_map[tag]
-            else:
-                self.placeobj = RelLib.Place()
-                self.placeobj.set_title(tag)
-        if self.ord:
-            self.ord.set_place_handle(self.placeobj.get_handle())
-        elif self.object:
-            self.object.set_place_handle(self.placeobj.get_handle())
-        else:
-            self.event.set_place_handle(self.placeobj.get_handle())
-        self.db.commit_place(self.placeobj,self.trans,self.change)
-        self.placeobj = None
+        """end of a reference to place, should do nothing ...
+           Note, if we encounter <place>blabla</place> this method is called
+                with tag='blabla
+        """
+        ##place = None
+        ##handle = None
+        ##if self.place_ref == None:  #todo, add place_ref in start and init
+        ##    #legacy cody? I see no reason for this, but it was present
+        ##    if self.place_map.has_key(tag):
+        ##        place = self.place_map[tag]
+        ##        handle = place.get_handle()
+        ##        place = None
+        ##    else:
+        ##        place = RelLib.Place()
+        ##        place.set_title(tag)
+        ##        handle = place.get_handle()
+        ##    if self.ord:
+        ##        self.ord.set_place_handle(handle)
+        ##    elif self.object:
+        ##        self.object.set_place_handle(handle)
+        ##    else:
+        ##        self.event.set_place_handle(handle)
+        ##    if place :
+        ##        self.db.commit_place(self.placeobj,self.trans,self.change)
+        ##self.place_ref = None
+        pass
         
     def stop_date(self,tag):
         if tag:

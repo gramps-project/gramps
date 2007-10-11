@@ -1,3 +1,8 @@
+2007-10-11 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDb/_GrampsDbBase.py: allow check without gid creation on all objects
+	* src/GrampsDb/_ReadXML.py: on reference read, don't create gid.
+	This also patches a privacy setting error on placeobj in place tag section
+
 2007-10-11  Alex Roitman  <shura@gramps-project.org>
 	* src/plugins/unused.glade: Do not translate gtk stock label id.
 
