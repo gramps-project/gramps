@@ -1240,7 +1240,7 @@ msgstr "_Éditeur de colonne"
 #: ../src/ViewManager.py:388
 #: ../src/DataViews/_PersonView.py:148
 msgid "_Edit"
-msgstr "Éditio_n"
+msgstr "É_dition"
 
 #: ../src/PageView.py:827
 msgid "_Filter"
@@ -3208,7 +3208,7 @@ msgstr "Ouvrir avec %s"
 
 #: ../src/DisplayTabs/_GalleryTab.py:220
 msgid "Unexisting media found in the Gallery"
-msgstr "Objet média inexistant trouvé dans la gallerie"
+msgstr "Objet média inexistant trouvé dans la galerie"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 msgid "LDS"
