@@ -96,16 +96,11 @@ class FilterParser(handler.ContentHandler):
                         exec 'self.r = Rules.%s.%s' % (
                             self.namespace,last_name)
                     except (ImportError, NameError, AttributeError ):
-                        # Now try the private rule
-                        try:
-                            exec "self.r = Rules.%s.private['%s']" % (
-                                self.namespace,last_name)
-                        except KeyError:
-                            print "ERROR: Filter rule '%s' in "\
-                                  "filter '%s' not found!"\
+                        print "ERROR: Filter rule '%s' in "\
+                              "filter '%s' not found!"\
                                   % (save_name,self.f.get_name())
-                            self.r = None
-                            return
+                        self.r = None
+                        return
             self.a = []
         elif tag == "arg":
             self.a.append(attrs['value'])

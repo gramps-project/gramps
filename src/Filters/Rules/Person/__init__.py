@@ -95,8 +95,6 @@ from _RegExpName import RegExpName
 from _MatchIdOf import MatchIdOf
 from _RegExpIdOf import RegExpIdOf
 
-# This is the name->class storage for private rule classes
-private = {}
 
 #-------------------------------------------------------------------------
 #
@@ -162,6 +160,3 @@ editor_rule_list = [
     Disconnected,
 ]
 
-def register(rule):
-    private[rule.__name__] = rule
-    editor_rule_list.append(rule)
