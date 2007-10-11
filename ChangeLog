@@ -1,3 +1,6 @@
+2007-10-11 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DateHandler/__init__.py: use portuguese date handler
+
 2007-10-10 Duarte Loreto <happyguy_pt@hotmail.com>
 	* src/DateHandler/_Date_pt.py: portugese datehandler accompanying translation
 	* po/POTFILES.in: new file in POTFILE
