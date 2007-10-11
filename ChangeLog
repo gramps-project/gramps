@@ -1,3 +1,7 @@
+2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Filters/_FilterParser.py: avoid unknown filters crashing
+	* src/Filters/Rules/Person/__init__.py: remove private filter list and register, not used.
+
 2007-10-11 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/gen/db/base.py: allow check without gid creation on all objects
 	* src/GrampsDbUtils/_ReadXML.py: on reference read, don't create gid.
