@@ -887,13 +887,15 @@ class GrampsDbBase(GrampsDBCallback):
         return self.find_from_handle(handle, transaction, Note, 
                                      self.note_map, self.add_note)
 
-    def check_person_from_handle(self, handle, transaction):
+    def check_person_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether a Person with the passed handle exists in the database.
         If no such Person exists, a new Person is added to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Person, 
-                                self.person_map, self.add_person)
+                                 self.person_map, self.add_person, 
+                                 set_gid = set_gid)
 
     def check_source_from_handle(self, handle, transaction, set_gid=True):
         """
@@ -905,57 +907,69 @@ class GrampsDbBase(GrampsDBCallback):
                                  self.source_map, self.add_source, 
                                  set_gid=set_gid)
                                 
-    def check_event_from_handle(self, handle, transaction):
+    def check_event_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether an Event with the passed handle exists in the database.
         If no such Event exists, a new Event is added to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Event, 
-                                self.event_map, self.add_event)
+                                 self.event_map, self.add_event, 
+                                 set_gid=set_gid)
 
-    def check_object_from_handle(self, handle, transaction):
+    def check_object_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether a MediaObject with the passed handle exists in
         the database. If no such MediaObject exists, a new Object is
         added to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
 
         self.__check_from_handle(handle, transaction, MediaObject, 
-                                self.media_map, self.add_object)
+                                 self.media_map, self.add_object, 
+                                 set_gid=set_gid)
 
-    def check_place_from_handle(self, handle, transaction):
+    def check_place_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether a Place with the passed handle exists in the database.
         If no such Place exists, a new Place is added to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Place, 
-                                self.place_map, self.add_place)
+                                 self.place_map, self.add_place, 
+                                 set_gid=set_gid)
 
-    def check_family_from_handle(self, handle, transaction):
+    def check_family_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether a Family with the passed handle exists in the database.
         If no such Family exists, a new Family is added to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Family, 
-                                self.family_map, self.add_family)
+                                 self.family_map, self.add_family, 
+                                 set_gid=set_gid)
 
-    def check_repository_from_handle(self, handle, transaction):
+    def check_repository_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether a Repository with the passed handle exists in the
         database. If no such Repository exists, a new Repository is added
         to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Repository, 
-                                self.repository_map, self.add_repository)
+                                 self.repository_map, self.add_repository, 
+                                 set_gid=set_gid)
 
-    def check_note_from_handle(self, handle, transaction):
+    def check_note_from_handle(self, handle, transaction, set_gid=True):
         """
         Checks whether a Note with the passed handle exists in the
         database. If no such Note exists, a new Note is added
         to the database.
+        If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Note, 
-                                self.note_map, self.add_note)
+                                 self.note_map, self.add_note, 
+                                 set_gid=set_gid)
 
     def get_person_from_gramps_id(self, val):
         """

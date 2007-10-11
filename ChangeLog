@@ -1,4 +1,9 @@
 2007-10-11 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/gen/db/base.py: allow check without gid creation on all objects
+	* src/GrampsDbUtils/_ReadXML.py: on reference read, don't create gid.
+	This also patches a privacy setting error on placeobj in place tag section
+
+2007-10-11 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DateHandler/__init__.py: use portuguese date handler
 
 2007-10-11  Don Allingham  <don@gramps-project.org>
