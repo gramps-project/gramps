@@ -39,6 +39,7 @@ import _Date_ru
 import _Date_sv
 import _Date_sk
 import _Date_pl
+import _Date_pt
 
 # Initialize global parser
 try:
