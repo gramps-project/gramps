@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: svny\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-10 23:43-0700\n"
-"PO-Revision-Date: 2007-10-11 09:21+0200\n"
+"PO-Revision-Date: 2007-10-11 10:22+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2850,7 +2850,7 @@ msgid ""
 "added to this report"
 msgstr ""
 "Du har inte Python Image Library installerat. Bilder kommer ej att ingå i "
-"denna rapport."
+"denna rapport"
 
 #: ../src/docgen/PdfDoc.py:376
 #, python-format
@@ -3365,7 +3365,9 @@ msgstr "Bryta gruppering av namn globalt?"
 msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
 "name of %(group_name)s."
-msgstr "Alla människor med namnet %(surname)s kommer inte längre att grupperas med namnen %(group_name)s."
+msgstr ""
+"Alla människor med namnet %(surname)s kommer inte längre att grupperas med "
+"namnen %(group_name)s."
 
 #: ../src/Editors/_EditName.py:299
 msgid "Continue"
@@ -6688,7 +6690,7 @@ msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 #: ../src/plugins/NarrativeWeb.py:2045
 #, python-format
 msgid "%(description)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
-msgstr "%(description)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
+msgstr "%(description)s&nbsp;&nbsp;vid&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2049
 #, python-format
