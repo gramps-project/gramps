@@ -59,7 +59,7 @@ from gen.db.dbconst import \
      MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
  
 from gen.db.exceptions import *
-from gen.db.longop import LongOpStatus
+from gen.utils.longop import LongOpStatus
 
 import gen.proxy
 

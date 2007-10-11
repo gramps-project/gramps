@@ -51,7 +51,7 @@ LOG = logging.getLogger(".GrampsDb")
 #
 #-------------------------------------------------------------------------
 from gen.lib import *
-from callback import GrampsDBCallback
+from gen.utils.callback import GrampsDBCallback
 from iterator import CursorIterator
 
 #-------------------------------------------------------------------------

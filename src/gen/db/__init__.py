@@ -21,7 +21,7 @@
 __version__ = "$Revision: $"
 
 from base import *
-from callback import *
+#from callback import *
 from cursor import *
 from dbconst import *
 from dbdir import *
