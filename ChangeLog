@@ -1,3 +1,6 @@
+2007-10-11  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/unused.glade: Do not translate gtk stock label id.
+
 2007-10-11 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DateHandler/__init__.py: use portuguese date handler
 
