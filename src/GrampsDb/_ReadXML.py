@@ -679,7 +679,7 @@ class GrampsParser(UpdateCallback):
             handle = attrs['hlink'].replace('_','')
             self.db.check_place_from_handle(handle,self.trans,set_gid = False)
         except KeyError:
-            #I think this code is wrong, place has no ref attribute
+            #legacy, before  hlink there was ref
             gramps_id = self.map_pid(attrs['ref'])
             place = self.find_place_by_gramps_id(gramps_id)
             handle = place.handle
@@ -1179,7 +1179,7 @@ class GrampsParser(UpdateCallback):
         try:
             handle = attrs['hlink'].replace('_','')
             self.db.check_repository_from_handle(handle,self.trans,
-                                                 set_gid=None)
+                                                 set_gid=False)
         except KeyError:
             repo = self.find_repo_by_gramps_id(self.map_rid(attrs['ref']))
             handle = repo.handle
