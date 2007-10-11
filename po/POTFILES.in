@@ -106,8 +106,6 @@ src/docgen/LaTeXDoc.py
 src/docgen/ODSDoc.py
 src/docgen/ODFDoc.py
 src/docgen/ODSTab.py
-src/docgen/OpenSpreadSheet.py
-src/docgen/PdfDoc.py
 src/docgen/PSDrawDoc.py
 src/docgen/RTFDoc.py
 src/docgen/SpreadSheetDoc.py
@@ -193,12 +191,8 @@ src/Editors/_EditUrl.py
 src/Editors/__init__.py
 
 # GrampsDb package
-src/GrampsDb/_GrampsBSDDB.py
 src/GrampsDb/_GrampsDbFactories.py
 src/GrampsDb/_GrampsDbWriteXML.py
-src/GrampsDb/_GrampsGEDDB.py
-src/GrampsDb/_GrampsInMemDB.py
-src/GrampsDb/_GrampsXMLDB.py
 src/GrampsDb/__init__.py
 
 # GrampsDbUtils package

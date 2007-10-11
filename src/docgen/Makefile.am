@@ -19,6 +19,7 @@ docgen_PYTHON = \
 	PSDrawDoc.py\
 	RTFDoc.py\
 	SvgDrawDoc.py\
+	TextBufDoc.py \
 	GtkPrint.py
 
 GLADEFILES = \
