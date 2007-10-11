@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: gramps 2.2.x\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-07-04 22:59-0700\n"
-"PO-Revision-Date: 2007-10-10 17:33+0100\n"
+"PO-Revision-Date: 2007-10-10 22:59+0100\n"
 "Last-Translator: Bernard Banko <bernard.banko (afna) siol.net>\n"
-"Language-Team: Lugos slovenizacija<lugos-slo at lugos.si>\n"
+"Language-Team: Lugos slovenizacija <lugos-slo at lugos.si>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,11 +82,11 @@ msgstr "Nisem mogel odpreti datototeke %s"
 #: ../src/DbLoader.py:349
 #, python-format
 msgid ""
-"File type \"%s\" is unknown to GRAMPS.\n"
+"File type &quot;%s&quot; is unknown to GRAMPS.\n"
 "\n"
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
-"Gramps ne pozna vrste datotek \"%s\".\n"
+"Gramps ne pozna vrste datotek &quot;%s&quot;.\n"
 "\n"
 "Veljavne vrste so: baza podatkov GRAMPS, GRAMPS XML, paket GRAMPS in GEDCOM."
 
@@ -335,11 +335,11 @@ msgstr "GRAMPS: Odpri bazo"
 #: ../src/DbLoader.py:123
 #, python-format
 msgid ""
-"Files of type \"%s\" cannot be opened directly.\n"
+"Files of type &quot;%s&quot; cannot be opened directly.\n"
 "\n"
 "Please create a new GRAMPS database and import the file."
 msgstr ""
-"Datotek vrste \"%s\" se ne da odpreti neposredno.\n"
+"Datotek vrste &quot;%s&quot; se ne da odpreti neposredno.\n"
 "\n"
 "Ustvarite novo bazo podatkov GRAMPS ter vanjo uvozite želeno datoteko."
 
@@ -526,7 +526,7 @@ msgid ""
 msgstr ""
 "Kopija vaših podatkov je bila uspešno shranjena. Za nadaljevanje lahko pritisnente gumb Uveljavi.\n"
 "\n"
-"Opomba: baza podatkov, ki je trenutno odprta v oknu GRAMPS _NI_ datoteka, ki ste jo ravnokar shranili. Spremembe, ki jih boste vnesli v trenutno odprto bazo, v ravnokar ustvarjeni datoteki ne bodo upoštevane."
+"Opomba: baza podatkov, ki je trenutno odprta v oknu GRAMPS, NI datoteka, ki ste jo ravnokar shranili. Spremembe, ki jih boste vnesli v trenutno odprto bazo, v ravnokar ustvarjeni datoteki ne bodo upoštevane. "
 
 #: ../src/Exporter.py:214
 msgid "Saving failed"
@@ -1136,7 +1136,7 @@ msgstr "Zaznamka ni bilo mogoče določiti, saj ni bil noben izbran."
 
 #: ../src/PageView.py:251
 msgid "_Add bookmark"
-msgstr "_Dodaj zaznamek..."
+msgstr "_Dodaj zaznamek"
 
 #: ../src/PageView.py:253
 msgid "_Edit bookmarks"
@@ -1231,12 +1231,12 @@ msgstr "V bazi podatkov je bila odkrita napaka."
 
 #: ../src/QuestionDialog.py:186
 msgid ""
-"GRAMPS has detected an error in the database. This can usually be resolved by running the \"Check and Repair Database\" tool.\n"
+"GRAMPS has detected an error in the database. This can usually be resolved by running the &quot;Check and Repair Database&quot; tool.\n"
 "\n"
 "If this problem continues to exist after running this tool, please file a bug report at http://bugs.gramps-project.org\n"
 "\n"
 msgstr ""
-"Program GRAMPS je naletel na napako v bazi podatkov. Običajno se težavo da rešiti z uporabo orodja \"Preveri in popravi bazo podatkov\".\n"
+"Program GRAMPS je naletel na napako v bazi podatkov. Običajno se težavo da rešiti z uporabo orodja &quot;Preveri in popravi bazo podatkov&quot;.\n"
 "\n"
 "Če po uporabi tega orodja težava ne bo odpravljena, javite napako na naslov http://bugs.gramps-project.org\n"
 "\n"
@@ -2229,7 +2229,7 @@ msgstr "Zakonci"
 #: ../src/plugins/FamilyGroup.py:432
 #: ../src/RelLib/_EventType.py:123
 msgid "Marriage"
-msgstr "Poroka "
+msgstr "Poroka"
 
 #: ../src/Merge/_MergePerson.py:182
 msgid "No spouses or children found"
@@ -3002,7 +3002,7 @@ msgstr "Neoblikovano besedilo"
 #: ../src/docgen/HtmlDoc.py:157
 #: ../src/docgen/HtmlDoc.py:182
 msgid "The marker '<!-- START -->' was not in the template"
-msgstr "Oznake \"<!-- START -->\" v predlogi ni bilo."
+msgstr "Oznake &quot;<!-- START -->&quot; v predlogi ni bilo."
 
 #: ../src/docgen/HtmlDoc.py:158
 #: ../src/docgen/HtmlDoc.py:183
@@ -3719,7 +3719,7 @@ msgstr "Uredi nahajališče"
 
 #: ../src/Editors/_EditRepository.py:147
 msgid "Cannot save repository"
-msgstr "Nahajališča se ne da shraniti. "
+msgstr "Nahajališča se ne da shraniti."
 
 #: ../src/Editors/_EditRepository.py:148
 msgid "No data exists for this repository. Please enter data or cancel the edit."
@@ -4069,7 +4069,7 @@ msgstr "GE_DCOM"
 
 #: ../src/GrampsDb/_WriteGedcom.py:1512
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input. "
-msgstr "GEDCOM se uporablja za prenašanje podatkov med različnimi rodoslovnimi programi. Večina izmed njih sprejema datoteke GEDCOM za vhodne podatke."
+msgstr "GEDCOM se uporablja za prenašanje podatkov med različnimi rodoslovnimi programi. Večina izmed njih sprejema datoteke GEDCOM za vhodne podatke. "
 
 #: ../src/GrampsDb/_WriteGedcom.py:1514
 msgid "GEDCOM export options"
@@ -5103,8 +5103,8 @@ msgstr "Preveri, če je baza morda poškodovana, ter jo po možnosti tudi poprav
 
 #: ../src/plugins/CountAncestors.py:59
 #, python-format
-msgid "Ancestors of \"%s\""
-msgstr "\"%s\" -  predniki"
+msgid "Ancestors of &quot;%s&quot;"
+msgstr "&quot;%s&quot; -  predniki"
 
 #: ../src/plugins/CountAncestors.py:93
 #, python-format
@@ -5272,7 +5272,7 @@ msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 #: ../src/plugins/DetAncestralReport.py:326
 #: ../src/plugins/DetDescendantReport.py:354
 msgid "Address: "
-msgstr "Naslov:"
+msgstr "Naslov: "
 
 #: ../src/plugins/DetAncestralReport.py:348
 #: ../src/plugins/DetDescendantReport.py:376
@@ -6018,7 +6018,7 @@ msgstr "Uporabite, če v poročilu besedilo ni pravilno izpisano. Potrebno npr. 
 
 #: ../src/plugins/GraphViz.py:830
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "Označi nekrvne povezave s pikčastimi črtami."
+msgstr "Označi nekrvne povezave s pikčastimi črtami"
 
 #: ../src/plugins/GraphViz.py:834
 msgid "Non-birth relationships will show up as dotted lines in the graph."
@@ -6469,8 +6469,8 @@ msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:322
 #, python-format
-msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
-msgstr "Ustvarjeno s programom <a href=\"http://gramps-project.org\">GRAMPS</a>, dne %(date)s."
+msgid "Generated by <a href=&quot;http://gramps-project.org&quot;>GRAMPS</a> on %(date)s"
+msgstr "Ustvarjeno s programom <a href=&quot;http://gramps-project.org&quot;>GRAMPS</a>, dne %(date)s."
 
 #: ../src/plugins/NarrativeWeb.py:345
 #: ../src/plugins/NarrativeWeb.py:1080
@@ -6970,7 +6970,7 @@ msgstr "Njuna skupna prednika sta %s in %s."
 
 #: ../src/plugins/RelCalc.py:172
 msgid "Their common ancestors are: "
-msgstr "Njuni skupni predniki so:"
+msgstr "Njuni skupni predniki so: "
 
 #: ../src/plugins/RelCalc.py:192
 #, python-format
@@ -10426,7 +10426,7 @@ msgstr "Poročen"
 
 #: ../src/RelLib/_UrlType.py:47
 msgid "E-mail"
-msgstr "E-pošta "
+msgstr "E-pošta"
 
 #: ../src/RelLib/_UrlType.py:48
 msgid "Web Home"
@@ -11462,7 +11462,7 @@ msgstr "Najde osebe, ki nimajo znanega datuma rojstva"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:43
 msgid "People marked private"
-msgstr "Osebe z oznako \"zasebno\""
+msgstr "Osebe z oznako &quot;zasebno&quot;"
 
 #: ../src/Filters/Rules/Person/_PeoplePrivate.py:44
 msgid "Matches people that are indicated as private"
@@ -11519,7 +11519,7 @@ msgstr "Filtri za sorodstvo"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:49
 msgid "Matches the ancestors of two persons back to a common ancestor, producing the relationship path between two persons."
-msgstr "Najde prednike dveh oseb vse do skupnega prednika in tako ustvari sorodstveno povezavo med omenjenima dvema osebama"
+msgstr "Najde prednike dveh oseb vse do skupnega prednika in tako ustvari sorodstveno povezavo med omenjenima dvema osebama."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
 msgid "Relationship path between bookmarked persons"
@@ -12197,8 +12197,8 @@ msgstr "karkoli"
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:112
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:114
 #, python-format
-msgid "example: \"%s\" or \"%s\""
-msgstr "primer: \"%s\" ali \"%s\""
+msgid "example: &quot;%s&quot; or &quot;%s&quot;"
+msgstr "primer: &quot;%s&quot; ali &quot;%s&quot;"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:113
 msgid "Death date"
@@ -12405,8 +12405,8 @@ msgid "<b>Warning messages</b>"
 msgstr "<b>Opozorila</b>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:3
-msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
-msgstr "<span size=\"larger\" weight=\"bold\">Kodiranje GEDCOM</span>"
+msgid "<span size=&quot;larger&quot; weight=&quot;bold&quot;>GEDCOM Encoding</span>"
+msgstr "<span size=&quot;larger&quot; weight=&quot;bold&quot;>Kodiranje GEDCOM</span>"
 
 #: ../src/GrampsDb/gedcomimport.glade.h:4
 msgid "Created by:"
@@ -12473,8 +12473,8 @@ msgid "<b>Preferred name</b>"
 msgstr "<b>Prednostno ime</b>"
 
 #: ../src/glade/edit_person.glade.h:4
-msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
-msgstr "Naziv s katerim se obračamo na osebo, npr. \"Dr.\" ali \"Msgr.\""
+msgid "A title used to refer to the person, such as &quot;Dr.&quot; or &quot;Rev.&quot;"
+msgstr "Naziv s katerim se obračamo na osebo, npr. &quot;Dr.&quot; ali &quot;Msgr.&quot;"
 
 #: ../src/glade/edit_person.glade.h:5
 #: ../src/glade/gramps.glade.h:36
@@ -12487,12 +12487,12 @@ msgid "Accept changes and close window"
 msgstr "Uveljavi spremembe in zapri okno"
 
 #: ../src/glade/edit_person.glade.h:7
-msgid "An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\""
-msgstr "Neobvezna predpona za priimek, ki se ne uporablja pri abecednem razvrščanju, npr. \"de\", \"von\""
+msgid "An optional prefix for the family name that is not used in sorting, such as &quot;de&quot; or &quot;van&quot;"
+msgstr "Neobvezna predpona za priimek, ki se ne uporablja pri abecednem razvrščanju, npr. &quot;de&quot;, &quot;von&quot;"
 
 #: ../src/glade/edit_person.glade.h:8
-msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Neobvezna pripona k imenu, npr. \"Ml.\" ali \"III\""
+msgid "An optional suffix to the name, such as &quot;Jr.&quot; or &quot;III&quot;"
+msgstr "Neobvezna pripona k imenu, npr. &quot;Ml.&quot; ali &quot;III&quot;"
 
 #: ../src/glade/edit_person.glade.h:9
 #: ../src/glade/gramps.glade.h:47
@@ -12774,8 +12774,8 @@ msgid "Do not show this dialog again"
 msgstr "Ne sprašuj več"
 
 #: ../src/glade/gramps.glade.h:63
-msgid "East/West position, eg -2.88589, 2°53'9.23\" W or -2:53:9.23"
-msgstr "Vzhodno/Zahodno, npr. -2.88589, 2°53'9.23\" Z ali -2:53:9.23"
+msgid "East/West position, eg -2.88589, 2°53'9.23&quot; W or -2:53:9.23"
+msgstr "Vzhodno/Zahodno, npr. -2.88589, 2°53'9.23&quot; Z ali -2:53:9.23"
 
 #: ../src/glade/gramps.glade.h:64
 msgid "Example:"
@@ -12854,8 +12854,8 @@ msgid "Mo_nth"
 msgstr "Mese_c"
 
 #: ../src/glade/gramps.glade.h:88
-msgid "North/South position, eg 50.84988, 50°50'59.60\"N or 50:50:59.60"
-msgstr "Severno/Južno, npr. 50.84988, 50°50'59.60\"S ali 50:50:59.60"
+msgid "North/South position, eg 50.84988, 50°50'59.60&quot;N or 50:50:59.60"
+msgstr "Severno/Južno, npr. 50.84988, 50°50'59.60&quot;S ali 50:50:59.60"
 
 #: ../src/glade/gramps.glade.h:89
 msgid "Ordinance:"
@@ -13050,11 +13050,11 @@ msgstr "_Ohrani referenco"
 
 #: ../src/glade/gramps.glade.h:149
 msgid "_Left"
-msgstr "_Levo "
+msgstr "_Levo"
 
 #: ../src/glade/gramps.glade.h:150
 msgid "_Longitude:"
-msgstr "Zemljepisna dol_žina"
+msgstr "Zemljepisna dol_žina:"
 
 #: ../src/glade/gramps.glade.h:151
 msgid "_Media Type:"
@@ -13095,7 +13095,7 @@ msgstr "Podatki o _objavi:"
 
 #: ../src/glade/gramps.glade.h:160
 msgid "_Relationship:"
-msgstr "_Vez:"
+msgstr "_Sorodstvo:"
 
 #: ../src/glade/gramps.glade.h:161
 msgid "_Remove Object"
@@ -13103,7 +13103,7 @@ msgstr "_Odstrani predmet"
 
 #: ../src/glade/gramps.glade.h:162
 msgid "_Right"
-msgstr "_Desno "
+msgstr "_Desno"
 
 #: ../src/glade/gramps.glade.h:163
 msgid "_Role:"
@@ -13163,7 +13163,7 @@ msgstr "_Del / Stran:"
 
 #: ../src/glade/gramps.glade.h:178
 msgid "_Web address:"
-msgstr "_Spletni naslov: "
+msgstr "_Spletni naslov:"
 
 #: ../src/glade/gramps.glade.h:179
 msgid "_Year"
@@ -14285,8 +14285,8 @@ msgid "This key determines the date display format. O corresponds to the MM/DD/Y
 msgstr "Ta ključ določa obliko prikazanih datumov. 0 ustreza ameriški obliki MM/DD/LLLL, 1 evropski DD/MM/LLLL, 2 pa ISO standardu LLLL-MM-DD."
 
 #: ../data/gramps.schemas.in.h:156
-msgid "This key determines the name display format. Use 1 for \"Surname, Firstname\", 2 for \"Firstname Surname\", 3 for \"Patronymic Firstname\", and 4 for \"Firstname\" style. For custom styles, use negative integers, whose meaning is database-specific. Zero is reserved for internal purposes and should not be used. If used, it will be changed to 1 by GRAMPS."
-msgstr "Ta ključ določa obliko prikaza imen. 1 se uporablja za \"Priimek, Ime\", 2 za \"Ime Priimek\", 3 za \"Patronim Ime\" in 4 za \"Ime\".Za prikrojene stile uporabljajte negativna cela števlla, njihov pomen je odvisen od baze podatkov. Ničla je rezervirana za potrebe programa. Če se jo vseeno uporabi, jo program GRAMPS samodejno spremeni v 1."
+msgid "This key determines the name display format. Use 1 for &quot;Surname, Firstname&quot;, 2 for &quot;Firstname Surname&quot;, 3 for &quot;Patronymic Firstname&quot;, and 4 for &quot;Firstname&quot; style. For custom styles, use negative integers, whose meaning is database-specific. Zero is reserved for internal purposes and should not be used. If used, it will be changed to 1 by GRAMPS."
+msgstr "Ta ključ določa obliko prikaza imen. 1 se uporablja za &quot;Priimek, Ime&quot;, 2 za &quot;Ime Priimek&quot;, 3 za &quot;Patronim Ime&quot; in 4 za &quot;Ime&quot;.Za prikrojene stile uporabljajte negativna cela števlla, njihov pomen je odvisen od baze podatkov. Ničla je rezervirana za potrebe programa. Če se jo vseeno uporabi, jo program GRAMPS samodejno spremeni v 1."
 
 #: ../data/gramps.schemas.in.h:157
 msgid "This key determines the style of the surname guessing when the new person is added to the database. Use 0 for Father's surname, 1 for no guessing, 2 for the combination of mother's and father's surnames, and 3 for the Icelandic style."
@@ -14410,11 +14410,11 @@ msgstr "<b>Osebe z zaznamki</b>: Meni Zaznamki na vrhu okna je pripravno mesto z
 
 #: ../src/data/tips.xml.in.h:4
 msgid "<b>Calculating Relationships</b>: This tool, under <b>Tools &gt; Utilities &gt; Relationship calculator</b> allows you to check if someone else in the family is related (by blood, not marriage) to you. Precise relationships as well as the common ancestors are reported."
-msgstr "<b>Izračun sorodstva</b>: Orodje, ki se nahaja pod <b>Orodja > Pripomočki > Računanje sorodstva</b>, vam omogoča preverjanje, če je kdo v družini z vami v krvnem sorodstvu. Izpiše se natančno sorodstveno razmerje ter skupni predniki."
+msgstr "<b>Izračun sorodstva</b>: Orodje, ki se nahaja pod <b>Orodja &gt; Pripomočki &gt; Računanje sorodstva</b>, vam omogoča preverjanje, če je kdo v družini z vami v krvnem sorodstvu. Izpiše se natančno sorodstveno razmerje ter skupni predniki."
 
 #: ../src/data/tips.xml.in.h:5
 msgid "<b>Changing The Preferred Name</b>: It is easy to manage people with several names in GRAMPS. Make the person the Active Person, doubleclick on the record, and select the Names tab. Different types of names can be added. For example, Married Name, Birth Name, etc. Selecting a preferred name is just a matter of right-clicking on the name and choosing the only item in the menu."
-msgstr "<b>Spreminjanje prednostnega imena</b>: V GRAMPSU lahko enostavno urejamo osebe z večimi imeni. Oseba naj bo aktivna oseba, dvokliknite na zapis in izberite zavihek Imena. Dodajate lahko razne vrste imen, kot sta poročno ime, rojstno ime in podobno. Prednostno ime potem določite z desnim klikom na ime in potrditvijo elementa, ki se prikaže v meniju. "
+msgstr "<b>Spreminjanje prednostnega imena</b>: V GRAMPSU lahko enostavno urejamo osebe z večimi imeni. Oseba naj bo aktivna oseba, dvokliknite na zapis in izberite zavihek Imena. Dodajate lahko razne vrste imen, kot sta poročno ime, rojstno ime in podobno. Prednostno ime potem določite z desnim klikom na ime in potrditvijo elementa, ki se prikaže v meniju."
 
 #: ../src/data/tips.xml.in.h:6
 msgid "<b>Contributing to GRAMPS</b>: Want to help with GRAMPS but can't program? Not a problem. A project as large as GRAMPS requires people with a wide variety of skills. Contributions can vary from writing documentation to testing development versions to helping with the web site. Start by subscribing to the gramps developers mailing list, gramps-devel and introducing yourself. Subscription information can be found at lists.sf.net."
@@ -14426,15 +14426,15 @@ msgstr "<b>Različni pogledi</b>: Na voljo je devet različnih pogledov za prika
 
 #: ../src/data/tips.xml.in.h:8
 msgid "<b>Duplicate Entries</b>: <b>Tools &gt; Database Processing &gt; Find possible duplicate</b> people allows you to located (and merge) entries of the same person entered more than once in the database."
-msgstr "<b>Podvojeni vnosi</b>: S pomočjo <b>Orodja > Izračuni v bazi > Najdi morebitne podvojitve</b> lahko poiščete (in združite) morebitne večkratne vnose za isto osebo v bazi."
+msgstr "<b>Podvojeni vnosi</b>: S pomočjo <b>Orodja &gt; Izračuni v bazi &gt; Najdi morebitne podvojitve</b> lahko poiščete (in združite) morebitne večkratne vnose za isto osebo v bazi."
 
 #: ../src/data/tips.xml.in.h:9
 msgid "<b>Editing The Relationship of a Child</b>: Not all children are the related by birth to their parents. You can edit the relationship of a child to each parent by making the child the active person. In the Relationship View, click on the third icon to the right of the &quot;Parents:&quot; entry. This brings up the Family Editor. Now select the child, right-click and choose &quot;Edit relationship&quot;. Here you can set the relationship between the child and its father and mother. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
-msgstr "<b>Urejanje sorodstvene vezi otroka</b>: S svojimi starši niso vsi otroci povezani z rojstvom. Povezavo otroka z vsakim od staršev lahko uredite tako, da nastavite otroka za aktivno osebo in nato v pogledu Sorodstvo kliknete tretjo ikono na desni strani vnosa \"Starši\". S tem se odpre Urejevalnik družin. V njem izberite otroka, kliknite desno in izberite \"Uredi povezavo\". Tako boste lahko določili povezavo otroka z vsakim od staršev. Ta je lahko rojstvo, posvojitev, priženitev, financiranje, rejništvo, brez ali neznano."
+msgstr "<b>Urejanje sorodstvene vezi otroka</b>: S svojimi starši niso vsi otroci povezani z rojstvom. Povezavo otroka z vsakim od staršev lahko uredite tako, da nastavite otroka za aktivno osebo in nato v pogledu Sorodstvo kliknete tretjo ikono na desni strani vnosa &quot;Starši&quot;. S tem se odpre Urejevalnik družin. V njem izberite otroka, kliknite desno in izberite &quot;Uredi povezavo&quot;. Tako boste lahko določili povezavo otroka z vsakim od staršev. Ta je lahko rojstvo, posvojitev, priženitev, financiranje, rejništvo, brez ali neznano."
 
 #: ../src/data/tips.xml.in.h:10
 msgid "<b>Filtering People</b>: In the People View, you can 'filter' individuals based on many criteria. Go to the Filter (just to the right of the People icon) and choose one of the dozen different presets. For example, all adopted people in the family tree can be located. People without a birth date mentioned can also be filtered. To get the results click Apply. If the filter controls are not visible, enable them by choosing <b>View &gt; Filter</b>."
-msgstr "<b>Filtriranje po osebah</b>: v pogledu Osebe le-te lahko \"filtrirate\" po različnih kriterijih. Pojdite na Filter (desno od ikone Osebe) in izberite enega izmed mnogih prednastavljenih. Poiščete lahko na primer vse posvojene osebe v družinskem drevesu. Prav tako tudi vse osebe brez navedenega rojstnega datuma. Za prikaz rezultatov kliknite na Uporabi. Če kontrolniki za filtre niso vidni, jih lahko prikažete s <b>Pogled > Filter</b>."
+msgstr "<b>Filtriranje po osebah</b>: v pogledu Osebe le-te lahko &quot;filtrirate&quot; po različnih kriterijih. Pojdite na Filter (desno od ikone Osebe) in izberite enega izmed mnogih prednastavljenih. Poiščete lahko na primer vse posvojene osebe v družinskem drevesu. Prav tako tudi vse osebe brez navedenega rojstnega datuma. Za prikaz rezultatov kliknite na Uporabi. Če kontrolniki za filtre niso vidni, jih lahko prikažete s <b>Pogled &gt; Filter</b>."
 
 #: ../src/data/tips.xml.in.h:11
 msgid "<b>GRAMPS Mailing Lists</b>: Want answers to your queries about GRAMPS? Check out the gramps-users list. Many people are on the list, so you're likely to get an answer quickly. If you have questions related to the development of GRAMPS, try gramps-devel. Information on both mailing lists can be found at lists.sf.net."
@@ -14462,11 +14462,11 @@ msgstr "<b>Nepravilni datumi</b>: Vsakdo kdaj pa kdaj vnese datum v neveljavni o
 
 #: ../src/data/tips.xml.in.h:17
 msgid "<b>Inverted Filtering</b>: Filters can easily be reversed by using the 'invert' option. For instance, by inverting the 'People with children' filter you can select all people without children."
-msgstr "<b>Obrnjeno filtriranje</b>: Filtre lahko brez težav obrnete s potrditvijo možnosti \"obrni\".  Če npr. obrnete filter \"Osebe z otroki\",  bodo prikazane vse osebe brez otrok."
+msgstr "<b>Obrnjeno filtriranje</b>: Filtre lahko brez težav obrnete s potrditvijo možnosti &quot;obrni&quot;.  Če npr. obrnete filter &quot;Osebe z otroki&quot;,  bodo prikazane vse osebe brez otrok."
 
 #: ../src/data/tips.xml.in.h:18
 msgid "<b>Listing Events</b>: Events in the life of any individual may be added to the database via the <b>Person &gt; Edit Person &gt; Events</b> option. This space can be used to include a wide range of options ranging from adoptions, to baptisms (and other religious ceremonies), burials, causes of death, Census listings, degrees earned, elections, emigration, military service, nobility titles, occupations, ordination, property, religion, retirement, wills, etc."
-msgstr "<b>Prikaz dogodkov</b>: Dogodke v življenju posamezne osebe lahko vnesemo v bazo s pomočjo izbire <b>Oseba > Uredi osebo > Dogodki</b>. To je prostor za vključitev raznovrstnih podatkov, kot so npr. posvojitve, krsti in druge slovesnosti, pogrebi, razlogi smrti, podatki iz cenzusov, odlikovanja, izvolitve, emigracija, vojaški rok, plemiški naslovi, poklici, ordinacije, lastnina, vera, upokojitev, oporoke, itd."
+msgstr "<b>Prikaz dogodkov</b>: Dogodke v življenju posamezne osebe lahko vnesemo v bazo s pomočjo izbire <b>Oseba &gt; Uredi osebo &gt; Dogodki</b>. To je prostor za vključitev raznovrstnih podatkov, kot so npr. posvojitve, krsti in druge slovesnosti, pogrebi, razlogi smrti, podatki iz cenzusov, odlikovanja, izvolitve, emigracija, vojaški rok, plemiški naslovi, poklici, ordinacije, lastnina, vera, upokojitev, oporoke, itd."
 
 #: ../src/data/tips.xml.in.h:19
 msgid "<b>Locating People</b>: By default, each surname in the People View is listed only once. By clicking on the arrow to the left of a name, the list will expand to show all individuals with that last name."
@@ -14474,7 +14474,7 @@ msgstr "<b>Iskanje oseb</b>: Po privzetih nastavitvah je v pogledu Osebe vsak pr
 
 #: ../src/data/tips.xml.in.h:20
 msgid "<b>Setting Your Preferences</b>: Not happy with some default behavior of GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of settings, allowing you to tailor GRAMPS to your needs."
-msgstr "<b>Osebne nastavitve</b>: Niste zadovoljni kakšnimi od privzetih nastavitev GRAMPS-a? S klikom na <b>Uredi > Nastavitve</b> lahko prilagodite veliko število nastavitev in si tako GRAMPS prikrojite po svojem okusu."
+msgstr "<b>Osebne nastavitve</b>: Niste zadovoljni kakšnimi od privzetih nastavitev GRAMPS-a? S klikom na <b>Uredi &gt; Nastavitve</b> lahko prilagodite veliko število nastavitev in si tako GRAMPS prikrojite po svojem okusu."
 
 #: ../src/data/tips.xml.in.h:21
 msgid "<b>Shifting a Family View</b>: Changing the Active Person in the Relationships View is easy. Just doubleclick on the name of a person to make it the active one."
@@ -14482,15 +14482,15 @@ msgstr "<b>Premik v pogledu Družine</b>: Spreminjanje aktivne osebe v pogledu S
 
 #: ../src/data/tips.xml.in.h:22
 msgid "<b>Show All Checkbutton</b>: When adding a spouse or child, the list of people shown is filtered to display only people who could realistically fit the role (based on dates in the database). In case GRAMPS is wrong in making this choice, you can override that filter by checking the &quot;Show All&quot; checkbutton."
-msgstr "<b>Gumb Pokaži vse</b>: Ko dodajamo zakonca ali otroka, je seznam prikazanih ljudi prefiltriran tako, da se vidijo samo osebe, pri katerih je to sploh možno (na osnovi datumov). Če se GRAMPS pri filtriranju zmoti, lahko napako zaobidete z obkljukano možnostjo \"Pokaži vse\"."
+msgstr "<b>Gumb Pokaži vse</b>: Ko dodajamo zakonca ali otroka, je seznam prikazanih ljudi prefiltriran tako, da se vidijo samo osebe, pri katerih je to sploh možno (na osnovi datumov). Če se GRAMPS pri filtriranju zmoti, lahko napako zaobidete z obkljukano možnostjo &quot;Pokaži vse&quot;."
 
 #: ../src/data/tips.xml.in.h:23
 msgid "<b>SoundEx can help with family research</b>: SoundEx solves a long standing problem in genealogy---how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
-msgstr "<b>Pri družinskih raziskavah vam lahko pomaga SoundEx</b>: S pomočjo SoundExa rešujemo starodavni problem rodoslovja - preseganje črkovne različice zapisov. Orodje za SoundEx na osnovi priimka izračuna poenostavljeno kodo, ki ustreza priimkom, ki zvenijo enako. Če tako za določeni priimek poznamo njegovo SoundEx kodo, je to lahko zelo koristno pri iskanju po cenzusih v knjižnicah in podobno. Za izračun SoundEx kode pojdite v <b>Orodja > Pripomočki > Izračun SoundEx kode</b>."
+msgstr "<b>Pri družinskih raziskavah vam lahko pomaga SoundEx</b>: S pomočjo SoundExa rešujemo starodavni problem rodoslovja - preseganje črkovne različice zapisov. Orodje za SoundEx na osnovi priimka izračuna poenostavljeno kodo, ki ustreza priimkom, ki zvenijo enako. Če tako za določeni priimek poznamo njegovo SoundEx kodo, je to lahko zelo koristno pri iskanju po cenzusih v knjižnicah in podobno. Za izračun SoundEx kode pojdite v <b>Orodja &gt; Pripomočki &gt; Izračun SoundEx kode</b>."
 
 #: ../src/data/tips.xml.in.h:24
 msgid "<b>Starting a New Family Tree</b>: A good way to start a new family tree is to enter all the members of the family into the database (use <b>Edit &gt; Add</b> or click on the Add button under the People menu). Then go to the Relationship View and create relationships between people."
-msgstr "<b>Začetek novega družinskega drevesa</b>: Dober način za začetek novega družinskega drevesa je vnos vseh družinskih članov v bazo (preko <b>Uredi > Dodaj</b> ali s klikom na gumb Dodaj v meniju Osebe). Potem pojdite v pogled Sorodstvo in ustvarite sorodstvene povezave med posameznimi osebami."
+msgstr "<b>Začetek novega družinskega drevesa</b>: Dober način za začetek novega družinskega drevesa je vnos vseh družinskih članov v bazo (preko <b>Uredi &gt; Dodaj</b> ali s klikom na gumb Dodaj v meniju Osebe). Potem pojdite v pogled Sorodstvo in ustvarite sorodstvene povezave med posameznimi osebami."
 
 #: ../src/data/tips.xml.in.h:25
 msgid "<b>Talk to Relatives Before It Is Too Late</b>: Your oldest relatives can be your most important source of information. They usually know things about the family that haven't been written down. They might tell you nuggets about people that may one day lead to a new avenue of research. At the very least, you will get to hear some great stories. Don't forget to record the conversations!"
@@ -14502,7 +14502,7 @@ msgstr "<b>Družine</b>: Pogled Družine se uporablja za prikaz osnovne družins
 
 #: ../src/data/tips.xml.in.h:27
 msgid "<b>Unsure of a Date?</b> If you're unsure about the date an event occurred (for example birth or death), GRAMPS allows you to enter a wide range of date formats based on a guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 of the GRAMPS manual for a complete description of date entry options."
-msgstr "<b>Negotovi glede kakšnega datuma?</b> Če za kakšen dogodek (rojstvo ali smrt) ne veste natančnega datuma, vam GRAMPS omogoča vnos širokega izbora oblik datumov, ki so osnovani na ugibanju ali oceni. Na primer, \"okrog 1908\" je veljavna oblika rojstnega datuma v programu GRAMPS. Poglejte v poglavje 3.7.2.2 priročnika za uporabo GRAMPS, kjer se boste seznanili s celotno razlago vnašanja datumov."
+msgstr "<b>Negotovi glede kakšnega datuma?</b> Če za kakšen dogodek (rojstvo ali smrt) ne veste natančnega datuma, vam GRAMPS omogoča vnos širokega izbora oblik datumov, ki so osnovani na ugibanju ali oceni. Na primer, &quot;okrog 1908&quot; je veljavna oblika rojstnega datuma v programu GRAMPS. Poglejte v poglavje 3.7.2.2 priročnika za uporabo GRAMPS, kjer se boste seznanili s celotno razlago vnašanja datumov."
 
 #: ../src/data/tips.xml.in.h:28
 msgid "<b>Who Was Born When</b>: The 'Compare individual events' tool allows you to compare data of all (or some of) the individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database."
@@ -14510,11 +14510,11 @@ msgstr "<b>Kdo se je rodil takrat</b>: Orodje za primerjanje posameznih dogodkov
 
 #: ../src/data/tips.xml.in.h:29
 msgid "A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;"
-msgstr "<b>Razpon datumov</b> se lahko poda z vnosom v obliki \"od 4 jan 2000 do 20 mar 2003\"."
+msgstr "<b>Razpon datumov</b> se lahko poda z vnosom v obliki &quot;od 4 jan 2000 do 20 mar 2003&quot;."
 
 #: ../src/data/tips.xml.in.h:30
 msgid "An alternate name can be selected as a person's preferred name by selecting the desired name in the person's name list, bringing up the context menu by clicking the right mouse button, and selecting &quot;set as default name&quot; from the menu."
-msgstr "<b>Drugo ime</b> lahko pri posamezni osebi določite kot prednostno tako, da v seznamu imen posamezne osebe izberete želeno ime ter z desnim klikom prikažete priročni meni, v katerem potem izberete \"nastavi za privzeto ime\"."
+msgstr "<b>Drugo ime</b> lahko pri posamezni osebi določite kot prednostno tako, da v seznamu imen posamezne osebe izberete želeno ime ter z desnim klikom prikažete priročni meni, v katerem potem izberete &quot;nastavi za privzeto ime&quot;."
 
 #: ../src/data/tips.xml.in.h:31
 msgid "An image can be added to any gallery or the Media View by dragging and dropping it from a file manager or a web browser."
@@ -14522,7 +14522,7 @@ msgstr "<b>Novo sliko</b> lahko dodamo zbirkam slik ali oknu s prirejenimi predm
 
 #: ../src/data/tips.xml.in.h:32
 msgid "Anyone can be chosen as the 'home person' in GRAMPS. Use <b>Edit &gt; Set Home Person</b>. The home person is the person who is selected when the database is opened or when the home button is pressed."
-msgstr "Za 'izhodiščno osebo' v GRAMPS-u se lahko določi kogarkoli. Uporabite <b>Uredi > Nastavi izhodiščno osebo</b>. To je oseba, ki je prikazana, kadar odprete bazo podatkov ali kadar kliknete na gumb za vrnitev na izhodiščno osebo."
+msgstr "Za 'izhodiščno osebo' v GRAMPS-u se lahko določi kogarkoli. Uporabite <b>Uredi &gt; Nastavi izhodiščno osebo</b>. To je oseba, ki je prikazana, kadar odprete bazo podatkov ali kadar kliknete na gumb za vrnitev na izhodiščno osebo."
 
 #: ../src/data/tips.xml.in.h:33
 msgid "Be accurate when recording genealogical information. Don't make assumptions while recording primary information; write it exactly as you see it. Use bracketed comments to indicate your additions, deletions or comments. Use of the Latin 'sic' is recommended to confirm the accurate transcription of what appears to be an error in a source."
@@ -14538,11 +14538,11 @@ msgstr "Naprednejši uporabniki lahko ustvarijo <b>prilagojena poročila</b> s p
 
 #: ../src/data/tips.xml.in.h:36
 msgid "Don't forget to read the GRAMPS manual, <b>Help &gt; User Manual</b>. The developers have worked hard to make most operations intuitive but the manual is full of information that will make your time spent on genealogy more productive."
-msgstr "Ne pozabite prebrati priročnika za uporabo programa GRAMPS v <b>Pomoč > Priročnik</b>. Programerji so se sicer potrudili, da bi bila večina operacij kar najbolj intuitivnih, vendar vam bo priročnik vseeno pomagal, da boste svoj čas, ki ga posvečate rodoslovju, čimbolj izkoristili."
+msgstr "Ne pozabite prebrati priročnika za uporabo programa GRAMPS v <b>Pomoč &gt; Priročnik</b>. Programerji so se sicer potrudili, da bi bila večina operacij kar najbolj intuitivnih, vendar vam bo priročnik vseeno pomagal, da boste svoj čas, ki ga posvečate rodoslovju, čimbolj izkoristili."
 
 #: ../src/data/tips.xml.in.h:37
 msgid "Filters allow you to limit the people seen in the People View. In addition to the many preset filters, Custom Filters can be created that allow you to create filters limited only by your imagination. Custom filters can be created from <b>Edit &gt; Person Filter Editor</b>."
-msgstr "S pomočjo filtrov lahko omejite število ljudi, prikazanih v pogledu Osebe. Poleg mnogih vnaprej nastavljenih si lahko tudi sami ustvarite prilagojene filtre po svojem okusu. To storite v meniju <b>Orodja > Pripomočki > Urejevalnik filtrov oseb</b>."
+msgstr "S pomočjo filtrov lahko omejite število ljudi, prikazanih v pogledu Osebe. Poleg mnogih vnaprej nastavljenih si lahko tudi sami ustvarite prilagojene filtre po svojem okusu. To storite v meniju <b>Orodja &gt; Pripomočki &gt; Urejevalnik filtrov oseb</b>."
 
 #: ../src/data/tips.xml.in.h:38
 msgid "GRAMPS allows you to generate a number of reports (both text and graphical) based on your genealogical information. There is great flexibility in selecting what people are included in the reports as well as the output format (html, pdf, OpenOffice, RTF, AbiWord, KWord, LaTeX and plain text). Experiment with the reports under the <b>Reports</b> menu to get an idea of how powerful GRAMPS is."
@@ -14590,7 +14590,7 @@ msgstr "GRAMPS je napisan v programskem jeziku Python in uporablja knjižnice GT
 
 #: ../src/data/tips.xml.in.h:49
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
-msgstr "GRAMPS si zapomni seznam prejšnjih aktivnih oseb. Po njem se lahko pomikate z ukazoma <b>Pojdi > Naprej</b> in <b>Pojdi > Nazaj</b>."
+msgstr "GRAMPS si zapomni seznam prejšnjih aktivnih oseb. Po njem se lahko pomikate z ukazoma <b>Pojdi &gt; Naprej</b> in <b>Pojdi &gt; Nazaj</b>."
 
 #: ../src/data/tips.xml.in.h:50
 msgid "GRAMPS makes every effort to maintain compatibility with GEDCOM, the general standard of recording genealogical information. Filters exist that make importing and exporting GEDCOM files trivial."
@@ -14638,7 +14638,7 @@ msgstr "Funkcija Združi vam omogoča združitev oseb, ki so navedene v ločenih
 
 #: ../src/data/tips.xml.in.h:61
 msgid "The Book report, <b>Reports &gt; Books &gt; Book Report</b>, allows users to collect a variety of reports into a single document. This single report is easier to distribute than multiple reports, especially when printed."
-msgstr "Knjižno poročilo (<b>Poročila > Knjige > Knjižno poročilo</b>) uporabnikom omogoča združitev več poročil v en sam dokument, ki ga je potem laže posredovati drugim, zlasti v tiskani obliki."
+msgstr "Knjižno poročilo (<b>Poročila &gt; Knjige &gt; Knjižno poročilo</b>) uporabnikom omogoča združitev več poročil v en sam dokument, ki ga je potem laže posredovati drugim, zlasti v tiskani obliki."
 
 #: ../src/data/tips.xml.in.h:62
 msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
@@ -14674,7 +14674,7 @@ msgstr "Ste se naveličali umikati roke s tipkovnice za premik miške? Veliko fu
 
 #: ../src/data/tips.xml.in.h:70
 msgid "To easily merge two people, select them both (a second person can be selected by holding the Control key while clicking) and clicking on <b>Edit &gt; Fast Merge</b>."
-msgstr "Za enostavno <b>združitev dveh oseb</b> v eno izberite obe osebi (drugo izberite tako, da med klikanjem pridržite tipko Ctrl) ter nato kliknite ukaz <b>Uredi > Hitro spajanje</b>."
+msgstr "Za enostavno <b>združitev dveh oseb</b> v eno izberite obe osebi (drugo izberite tako, da med klikanjem pridržite tipko Ctrl) ter nato kliknite ukaz <b>Uredi &gt; Hitro spajanje</b>."
 
 #: ../src/data/tips.xml.in.h:71
 msgid "To run GRAMPS, you need to have GNOME installed. But you do not need to be running the GNOME desktop."
