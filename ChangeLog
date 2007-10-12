@@ -7,6 +7,9 @@
 	* src/gen/lib/note.py (Note.get): fix typo
 
 2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/gramps_main.py: don't create filters dir, not needed
+
+2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Filters/Rules/Event/_MatchesSourceFilter.py: new filter
 	* src/Filters/Rules/Event/__init__.py: load new filter
 	* src/Filters/Rules/Event/Makefile.am: distribute

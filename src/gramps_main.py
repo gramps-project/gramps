@@ -184,11 +184,10 @@ def register_stock_icons ():
 
 
 def build_user_paths():
-    user_paths = [const.HOME_DIR, 
-                  os.path.join(const.HOME_DIR, "filters"), 
-                  os.path.join(const.HOME_DIR, "plugins"), 
-                  os.path.join(const.HOME_DIR, "docgen"), 
-                  os.path.join(const.HOME_DIR, "templates"), 
+    user_paths = [const.HOME_DIR,
+                  os.path.join(const.HOME_DIR, "plugins"),
+                  os.path.join(const.HOME_DIR, "docgen"),
+                  os.path.join(const.HOME_DIR, "templates"),
                   os.path.join(const.HOME_DIR, "thumb")]
     
     for path in user_paths:
