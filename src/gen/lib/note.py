@@ -120,7 +120,7 @@ class Note(BasicPrimaryObject):
         """
         text = self.text
 
-        if not markup and text.starts_with(ROOT_START_TAG):
+        if not markup and text.startswith(ROOT_START_TAG):
             text = self.delete_tags(text)
         
         return text
