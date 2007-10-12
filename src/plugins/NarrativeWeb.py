@@ -1529,7 +1529,8 @@ class GalleryPage(BasePage):
 
         index = 1
         mlist = media_list.keys()
-        mlist.sort(self.by_media_title)
+        sort = Sort.Sort(self.db)
+        mlist.sort(sort.by_media_title)
         for handle in mlist:
             media = db.get_object_from_handle(handle)
             date = _dd.display(media.get_date_object())
@@ -1553,15 +1554,6 @@ class GalleryPage(BasePage):
 
         self.display_footer(of,db)
         self.close_file(of)
-
-    def by_media_title(self,a_id,b_id):
-        """Sort routine for comparing two events by their dates. """
-        if not (a_id and b_id):
-            return False
-        a = self.db.get_object_from_handle(a_id)
-        b = self.db.get_object_from_handle(b_id)
-        return cmp(a.desc,b.desc)
-
 
 #------------------------------------------------------------------------
 #
@@ -2589,7 +2581,8 @@ class WebReport(Report):
         total = len(self.photo_list)
         index = 1
         photo_keys = self.photo_list.keys()
-        photo_keys.sort(self.by_media_title)
+        sort = Sort.Sort(self.database)
+        photo_keys.sort(sort.by_media_title)
         
         for photo_handle in photo_keys:
             gc.collect() # Reduce memory usage when there are many images.
@@ -2603,14 +2596,6 @@ class WebReport(Report):
             self.progress.step()
             prev = photo_handle
             index += 1
-
-    def by_media_title(self,a_id,b_id):
-        """Sort routine for comparing two events by their dates. """
-        if not (a_id and b_id):
-            return False
-        a = self.database.get_object_from_handle(a_id)
-        b = self.database.get_object_from_handle(b_id)
-        return cmp(a.desc,b.desc)
 
     def base_pages(self, photo_list, archive):
 

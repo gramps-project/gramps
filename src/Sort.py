@@ -128,4 +128,13 @@ class Sort:
             return 0
         a_obj = self.database.get_place_from_handle(a_id)
         b_obj = self.database.get_place_from_handle(b_id)
-        return cmp(a_obj.title, b_obj.title)
+        return locale.strcoll(a_obj.title, b_obj.title)
+    
+    def by_media_title(self,a_id,b_id):
+        """Sort routine for comparing two media objects by their title. """
+        if not (a_id and b_id):
+            return False
+        a = self.database.get_object_from_handle(a_id)
+        b = self.database.get_object_from_handle(b_id)
+        return locale.strcoll(a.desc,b.desc)
+    

@@ -1,3 +1,8 @@
+2007-10-12  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: 
+	* src/Sort.py: (use locale.strcoll for sorting)
+	0001238: Web report: sort references for places and media
+
 2007-10-12  Don Allingham  <don@gramps-project.org>
 	* src/gen/lib/note.py (Note.get): fix typo
 
