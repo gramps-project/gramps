@@ -25,7 +25,8 @@ Provides the database state class
 __author__ = "Donald N. Allingham"
 __revision__ = "$Revision: 8032 $"
 
-from gen.db import GrampsDBCallback, GrampsDbBase
+from gen.db import GrampsDbBase
+from gen.utils import GrampsDBCallback
 import Config
 
 class DbState(GrampsDBCallback):

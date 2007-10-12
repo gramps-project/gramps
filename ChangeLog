@@ -1,3 +1,7 @@
+2007-10-11  Don Allingham  <don@gramps-project.org>
+	* src/DisplayState.py: fix callback references
+	* src/DbState.py: fix callback references
+
 2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Filters/_FilterParser.py: avoid unknown filters crashing
 	* src/Filters/Rules/Person/__init__.py: remove private filter list and register, not used.
