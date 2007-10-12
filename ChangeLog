@@ -1,3 +1,6 @@
+2007-10-12  Alex Roitman  <shura@gramps-project.org>
+	* src/plugins/unused.glade: Do not translate GTK stock ids.
+
 2007-10-12  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 
 	* src/Sort.py: (use locale.strcoll for sorting)
