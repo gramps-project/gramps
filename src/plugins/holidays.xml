@@ -10,7 +10,7 @@
     <date name="April Fool's Day" value="*/4/1" type="secular" />
     <date name="Earth Day" value="*/4/22" type="secular" />
     <date name="Mother's Day" value="*/2/sun/may" type="secular" />
-    <date name="Victoria Day" value="*/5/21" type="national" />
+    <date name="Victoria Day" value="*/5/24" offset="-mon" type="national" />
     <date name="Father's Day" value="*/3/sun/jun" type="secular" />
     <date name="St-Jean Baptiste (QC)" value="*/6/24" type="national" />
     <date name="Canada Day" value="*/7/1" type="national" />
