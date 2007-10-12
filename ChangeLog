@@ -1,4 +1,7 @@
 2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/gramps_main.py: don't create filters dir, not needed
+
+2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/Filters/_FilterParser.py: avoid unknown filters crashing
 	* src/Filters/Rules/Person/__init__.py: remove private filter list and register, not used.
 
