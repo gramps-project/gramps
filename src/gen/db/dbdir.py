@@ -839,7 +839,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         >       result_list = [i for i in find_backlink_handles(handle)]
         """
 
-
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
         referenced_cur = self.get_reference_map_referenced_cursor()
@@ -1345,6 +1344,9 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             self.event_map.sync()
 
     def set_name_group_mapping(self, name, group):
+        """Make name group under the value of group.
+           If group =None, the old grouping is deleted 
+        """
         try:
             self.__set_name_group_mapping(name, group)
         except DBERRS, msg:
@@ -1359,11 +1361,11 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             else:
                 the_txn = None
             name = str(name)
-            data = self.name_group.get(name,txn=the_txn)
-            if not group and data:
-                self.name_group.delete(name,txn=the_txn)
-            else:
-                self.name_group.put(name,group,txn=the_txn)
+            data = self.name_group.get(name, txn=the_txn)
+            if data is not None:
+                self.name_group.delete(name, txn=the_txn)
+            if group is not None:
+                self.name_group.put(name, group, txn=the_txn)
             if self.UseTXN:
                 the_txn.commit()
             else:
