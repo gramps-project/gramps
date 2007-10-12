@@ -40,6 +40,7 @@ from _HasReferenceCountOf import HasReferenceCountOf
 from _EventPrivate import EventPrivate
 from _MatchesFilter import MatchesFilter
 from _MatchesPersonFilter import MatchesPersonFilter
+from _MatchesSourceFilter import MatchesSourceFilter
 
 editor_rule_list = [
     AllEvents,
@@ -54,4 +55,5 @@ editor_rule_list = [
     EventPrivate,
     MatchesFilter,
     MatchesPersonFilter,
+    MatchesSourceFilter,
 ]

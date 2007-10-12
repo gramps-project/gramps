@@ -49,6 +49,7 @@ pkgdata_PYTHON = \
 	_IsSpouseOfFilterMatch.py \
 	_IsWitness.py \
 	_MatchesFilter.py \
+	_MatchesEventFilter.py \
 	_MissingParent.py \
 	_MultipleMarriages.py \
 	_NeverMarried.py \

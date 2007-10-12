@@ -14,6 +14,7 @@ pkgdata_PYTHON = \
 	_HasNoteMatchingSubstringOf.py\
 	_HasReferenceCountOf.py\
 	_MatchesPersonFilter.py\
+	_MatchesSourceFilter.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Event

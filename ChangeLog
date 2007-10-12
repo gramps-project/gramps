@@ -1,4 +1,14 @@
 2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/Filters/Rules/Event/_MatchesSourceFilter.py: new filter
+	* src/Filters/Rules/Event/__init__.py: load new filter
+	* src/Filters/Rules/Event/Makefile.am: distribute
+	* src/Filters/Rules/Person/_MatchesEventFilter.py: new filter
+	* src/Filters/Rules/Person/__init__.py: load new filter
+	* src/Filters/Rules/Person/Makefile.am: distribute
+	* po/POTFILES.in: translate new filters
+	This is issue #1249
+
+2007-10-12 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/gen/db/dbdir.py: do name group change from GrampsBSDDB to dbdir.
 
 2007-10-11  Don Allingham  <don@gramps-project.org>
