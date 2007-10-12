@@ -13971,12 +13971,12 @@ msgstr "Recherche des sources"
 
 #: ../src/plugins/unused.glade.h:10
 msgid "gtk-find"
-msgstr "Trouver"
+msgstr ""
 
 # enlever une référence à un object
 #: ../src/plugins/unused.glade.h:11
 msgid "gtk-remove"
-msgstr "Enlever"
+msgstr ""
 
 #: ../data/gramps.desktop.in.h:1
 msgid "GRAMPS Genealogy System"
