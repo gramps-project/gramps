@@ -1,3 +1,10 @@
+2007-10-13  Stephane Charette <stephanecharette@gmail.com>
+	* src/plugins/rel_pt.py: new file (Portuguese), contributed by Duarte
+	Loreto <happyguy_pt@hotmail.com>
+	* src/plugins/Makefile.am: added rel_pt.py
+	* po/POTFILES: added rel_pt.py
+	* po/POTFILES.in: added rel_pt.py
+
 2007-10-12  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/holidays.xml: Fixed Victoria Day (via James A. Treacy)
 	* src/plugins/holidays.xml: Added Swedish official holidays (via Peter Landgren)
