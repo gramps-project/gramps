@@ -1,3 +1,6 @@
+2007-10-13 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/PageView.py: define_actions called twice, gives warning in new gtk, remove.
+
 2007-10-13  Stephane Charette <stephanecharette@gmail.com>
 	* src/plugins/rel_pt.py: new file (Portuguese), contributed by Duarte
 	Loreto <happyguy_pt@hotmail.com>

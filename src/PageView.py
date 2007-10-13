@@ -152,7 +152,8 @@ class PageView:
 
     def get_actions(self):
         if not self.action_group:
-            self.define_actions()
+            #define actions happened in viewmanager
+            #self.define_actions()
             self._build_action_group()
         return [self.action_group] + self.additional_action_groups
 
@@ -324,7 +325,7 @@ class PersonNavView(BookMarkView):
         handled correctly.
         """
         BookMarkView.enable_action_group(self,obj)
-        
+
         self.fwd_action.set_visible(True)
         self.back_action.set_visible(True)
         hobj = self.uistate.phistory
