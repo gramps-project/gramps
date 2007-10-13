@@ -302,6 +302,7 @@ src/plugins/rel_fr.py
 src/plugins/rel_hu.py
 src/plugins/rel_it.py
 src/plugins/rel_no.py
+src/plugins/rel_pt.py
 src/plugins/rel_ru.py
 src/plugins/rel_sk.py
 src/plugins/rel_sv.py

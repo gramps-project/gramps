@@ -1,3 +1,9 @@
+2007-10-13  Stephane Charette <stephanecharette@gmail.com>
+	* src/plugins/rel_pt.py: new file (Portuguese) contributed by Duarte
+	Loreto <happyguy_pt@hotmail.com>
+	* src/plugins/Makefile.am: added rel_pt.py
+	* po/POTFILES.in: added rel_pt.py
+
 2007-10-12  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: 
 	0001252: Unicode error in NarrativeWeb.py in gramps3.0
