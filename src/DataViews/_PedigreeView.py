@@ -593,8 +593,6 @@ class PedigreeView(PageView.PersonNavView):
         """
 
         PageView.PersonNavView.define_actions(self)
-#        self._add_action('HomePerson',gtk.STOCK_HOME,_("_Home"),
-#                        tip=_("Go to the default person"), callback=self.home)
 
     def build_tree(self):
         """

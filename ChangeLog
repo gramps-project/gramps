@@ -1,7 +1,10 @@
 2007-10-14 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DataViews/_PedigreeView.py: remove useless commented line
+
+2007-10-14 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DisplayState.py: actiongroup made double, gives warnings (errors) in newer GTK
 
-2007-10-14  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+2007-10-14  Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/plugins/holidays.xml: Added German holidays (from Mirko Leonhaeuser)
 
 2007-10-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
