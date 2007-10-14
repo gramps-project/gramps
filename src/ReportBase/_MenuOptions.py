@@ -494,6 +494,8 @@ class MenuOptions(ReportOptions):
                     self.__add_number_option(category,name,option,dialog)
                 elif otype == TextOption:
                     self.__add_text_option(category,name,option,dialog)
+                elif otype == StringOption:
+                    self.__add_string_option(category,name,option,dialog)
                 elif otype == BooleanOption:
                     self.__add_boolean_option(category,name,option,dialog)
                 elif otype == EnumeratedListOption:
@@ -514,6 +516,8 @@ class MenuOptions(ReportOptions):
                 self.__parse_number_option(name,option)
             elif otype == TextOption:
                 self.__parse_text_option(name,option)
+            elif otype == StringOption:
+                self.__parse_string_option(name,option)
             elif otype == BooleanOption:
                 self.__parse_boolean_option(name,option)
             elif otype == EnumeratedListOption:
@@ -555,13 +559,31 @@ class MenuOptions(ReportOptions):
         self.gui[name].add_events(gtk.gdk.LEAVE_NOTIFY_MASK)
         self.tooltips.set_tip(self.gui[name],option.get_help())
         
+    def __add_string_option(self,category,name,option,dialog):
+        """
+        Add a StringOption (single line text) to the dialog.
+        """
+        self.gui[name] = gtk.Entry()
+        self.gui[name].set_text(self.options_dict[name])
+        dialog.add_frame_option(category,option.get_label(),self.gui[name])
+        self.tooltips.set_tip(self.gui[name],option.get_help())
+
     def __parse_text_option(self,name,option):
+        """
+        Parse the text option (multi-line text).
+        """
         b = self.gui[name].get_buffer()
         text_val = unicode( b.get_text( b.get_start_iter(),
                                         b.get_end_iter(),
                                         False)             )
         self.options_dict[name] = text_val.split('\n')
         
+    def __parse_string_option(self,name,option):
+        """
+        Parse the string option (single line text).
+        """
+        self.options_dict[name] = self.gui[name].get_text()
+
     def __add_boolean_option(self,category,name,option,dialog):
         """
         Add a BooleanOption to the dialog.

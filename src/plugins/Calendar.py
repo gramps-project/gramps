@@ -40,7 +40,7 @@ import BaseDoc
 from BasicUtils import name_displayer
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
-     MenuOptions, NumberOption, BooleanOption, TextOption, EnumeratedListOption, \
+     MenuOptions, NumberOption, BooleanOption, StringOption, EnumeratedListOption, \
      FilterListOption, \
      CATEGORY_DRAW, CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import GrampsLocale
@@ -61,7 +61,10 @@ class Calendar(Report):
     """
     def __init__(self,database,person,options_class):
         Report.__init__(self,database,person,options_class)
-        self.titletext = "\n".join(options_class.handler.options_dict['titletext'])
+        if 'titletext' in options_class.handler.options_dict.keys():
+            # report and graphic share most of the same code
+            # but calendar doesn't have a title
+            self.titletext = options_class.handler.options_dict['titletext']
         self.year = options_class.handler.options_dict['year']
         self.country = options_class.handler.options_dict['country']
         self.anniversaries = options_class.handler.options_dict['anniversaries']
@@ -69,9 +72,9 @@ class Calendar(Report):
         self.maiden_name = options_class.handler.options_dict['maiden_name']
         self.alive = options_class.handler.options_dict['alive']
         self.birthdays = options_class.handler.options_dict['birthdays']
-        self.text1 = "\n".join(options_class.handler.options_dict['text1'])
-        self.text2 = "\n".join(options_class.handler.options_dict['text2'])
-        self.text3 = "\n".join(options_class.handler.options_dict['text3'])
+        self.text1 = options_class.handler.options_dict['text1']
+        self.text2 = options_class.handler.options_dict['text2']
+        self.text3 = options_class.handler.options_dict['text3']
         self.filter = options_class.handler.options_dict['filter']
         self.filter.person = person
         name = name_displayer.display_formal(person)
@@ -278,7 +281,8 @@ class Calendar(Report):
                                     if father != None:
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_short_name(person, father_lastname)
-                self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
+                if age >= 0:
+                    self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
             if self.anniversaries and ((self.alive and alive) or not self.alive):
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
@@ -304,12 +308,13 @@ class Calendar(Report):
                                 month = event_obj.get_month()
                                 day = event_obj.get_day()
                                 years = self.year - year
-                                text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
-                                    'spouse' : spouse_name,
-                                    'person' : short_name,
-                                    'nyears' : years,
-                                    }
-                                self.add_day_item(text, year, month, day)
+                                if years >= 0:
+                                    text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
+                                        'spouse' : spouse_name,
+                                        'person' : short_name,
+                                        'nyears' : years,
+                                        }
+                                    self.add_day_item(text, year, month, day)
 
 class CalendarReport(Calendar):
     """ The Calendar text report """
@@ -376,24 +381,7 @@ class CalendarOptions(MenuOptions):
     
     def add_menu_options(self, menu):
         """ Adds the options for the graphical calendar """
-        category_name = _("Text Options")
-
-        titletext = TextOption(_("Title text"),
-                               [_("Birthday and Anniversary Report")])
-        titletext.set_help(_("Title of calendar"))
-        menu.add_option(category_name,"titletext", titletext)
-
-        text1 = TextOption(_("Text Area 1"), [_("My Calendar")]) 
-        text1.set_help(_("First line of text at bottom of calendar"))
-        menu.add_option(category_name,"text1", text1)
-
-        text2 = TextOption(_("Text Area 2"), [_("Produced with GRAMPS")])
-        text2.set_help(_("Second line of text at bottom of calendar"))
-        menu.add_option(category_name,"text2", text2)
-
-        text3 = TextOption(_("Text Area 3"), ["http://gramps-project.org/"],)
-        text3.set_help(_("Third line of text at bottom of calendar"))
-        menu.add_option(category_name,"text3", text3)
+        category_name = _("Report Options")
 
         year = NumberOption(_("Year of calendar"), time.localtime()[0], 1000, 3000)
         year.set_help(_("Year of calendar"))
@@ -437,6 +425,20 @@ class CalendarOptions(MenuOptions):
         anniversaries = BooleanOption(_("Include anniversaries"), True)
         anniversaries.set_help(_("Include anniversaries in the calendar"))
         menu.add_option(category_name,"anniversaries", anniversaries)
+
+        category_name = _("Text Options")
+
+        text1 = StringOption(_("Text Area 1"), _("My Calendar")) 
+        text1.set_help(_("First line of text at bottom of calendar"))
+        menu.add_option(category_name,"text1", text1)
+
+        text2 = StringOption(_("Text Area 2"), _("Produced with GRAMPS"))
+        text2.set_help(_("Second line of text at bottom of calendar"))
+        menu.add_option(category_name,"text2", text2)
+
+        text3 = StringOption(_("Text Area 3"), "http://gramps-project.org/",)
+        text3.set_help(_("Third line of text at bottom of calendar"))
+        menu.add_option(category_name,"text3", text3)
 
     def make_my_style(self, default_style, name, description,
                       size=9, font=BaseDoc.FONT_SERIF, justified ="left",
@@ -503,6 +505,16 @@ class CalendarOptions(MenuOptions):
         
 class CalendarReportOptions(CalendarOptions):
     """ Options for the calendar (birthday and anniversary) report """
+
+    def add_menu_options(self, menu):
+        """ Adds the options for the graphical calendar """
+        category_name = _("Text Options")
+        titletext = StringOption(_("Title text"),
+                                 _("Birthday and Anniversary Report"))
+        titletext.set_help(_("Title of calendar"))
+        menu.add_option(category_name,"titletext", titletext)
+        CalendarOptions.add_menu_options(self, menu)
+
     def make_default_style(self, default_style):
         """ Adds the options for the textual report """
         self.make_my_style(default_style, "BIR-Title",
