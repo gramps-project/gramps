@@ -75,6 +75,14 @@ _F_RAWFN = 4 # name format raw function
 
 #-------------------------------------------------------------------------
 #
+# Local functions
+#
+#-------------------------------------------------------------------------
+# Because of occurring in an exec(), this couldn't be in a lambda:
+def _make_cmp(a,b): return -cmp(a[1], b[1])
+
+#-------------------------------------------------------------------------
+#
 # NameDisplay class
 #
 #-------------------------------------------------------------------------
@@ -267,59 +275,24 @@ class NameDisplay:
 
         # we need the names of each of the variables or methods that are
         # called to fill in each format flag.
-        d = {"%t":"raw_data[_TITLE]",
-             "%f":"raw_data[_FIRSTNAME]",
-             "%p":"raw_data[_PREFIX]",
-             "%l":"raw_data[_SURNAME]",
-             "%s":"raw_data[_SUFFIX]",
-             "%y":"raw_data[_PATRONYM]",
-             "%c":"raw_data[_CALL]",
-             "%T":"raw_data[_TITLE].upper()",
-             "%F":"raw_data[_FIRSTNAME].upper()",
-             "%P":"raw_data[_PREFIX].upper()",
-             "%L":"raw_data[_SURNAME].upper()",
-             "%S":"raw_data[_SUFFIX].upper()",
-             "%Y":"raw_data[_PATRONYM].upper()",
-             "%C":"raw_data[_CALL].upper()",
+        # Dictionary is "code": ("expression", "keyword", "i18n-keyword")
+        d = {"t": ("raw_data[_TITLE]",     "title",      _("title")),
+             "f": ("raw_data[_FIRSTNAME]", "given",      _("given")),
+             "p": ("raw_data[_PREFIX]",    "prefix",     _("prefix")),
+             "l": ("raw_data[_SURNAME]",   "surname",    _("surname")),
+             "s": ("raw_data[_SUFFIX]",    "suffix",     _("suffix")),
+             "y": ("raw_data[_PATRONYM]",  "patronymic", _("patronymic")),
+             "c": ("raw_data[_CALL]",      "call",       _("call")),
+             "x": ("(raw_data[_CALL] or raw_data[_FIRSTNAME].split(' ')[0])",
+                   "common",
+                   _("common")),
+             "i": ("''.join([word[0] +'.' for word in ('. ' +" +
+                   " raw_data[_FIRSTNAME]).split()][1:])",
+                   "initials",
+                   _("initials"))
              }
-
-        new_fmt = format_str
-
-        # replace the specific format string flags with a 
-        # flag that works in standard python format strings.
-        new_fmt = new_fmt.replace("%t","%s")
-        new_fmt = new_fmt.replace("%f","%s")
-        new_fmt = new_fmt.replace("%p","%s")
-        new_fmt = new_fmt.replace("%l","%s")
-        new_fmt = new_fmt.replace("%s","%s")
-        new_fmt = new_fmt.replace("%y","%s")
-        new_fmt = new_fmt.replace("%c","%s")
-
-        new_fmt = new_fmt.replace("%T","%s")
-        new_fmt = new_fmt.replace("%F","%s")
-        new_fmt = new_fmt.replace("%P","%s")
-        new_fmt = new_fmt.replace("%L","%s")
-        new_fmt = new_fmt.replace("%S","%s")
-        new_fmt = new_fmt.replace("%Y","%s")
-        new_fmt = new_fmt.replace("%C","%s")
-
-        # find each format flag in the original format string
-        # for each one we find the variable name that is needed to 
-        # replace it and add this to a list. This list will be used
-        # generate the replacement tuple.
-        pat = re.compile('|'.join(d.keys()))
-
-        param = ()
-        mat = pat.search(format_str)
-        while mat:
-            param = param + (d[mat.group(0)],)
-            mat = pat.search(format_str,mat.end())
-
-        s = 'def fn(raw_data):\n'\
-            ' return "%s" %% (%s)' % (new_fmt,",".join(param))
-        exec(s)
-
-        return fn
+        args = "raw_data"
+        return self._make_fn(format_str, d, args)
 
     def _gen_cooked_func(self, format_str):
         """The job of building the name from a format string is rather
@@ -341,56 +314,97 @@ class NameDisplay:
 
         # we need the names of each of the variables or methods that are
         # called to fill in each format flag.
-        d = {"%t":"title",
-             "%f":"first",
-             "%p":"prefix",
-             "%l":"surname",
-             "%s":"suffix",
-             "%y":"patronymic",
-             "%c":"call",
-             "%T":"title.upper()",
-             "%F":"first.upper()",
-             "%P":"prefix.upper()",
-             "%L":"surname.upper()",
-             "%S":"suffix.upper()",
-             "%Y":"patronymic.upper()",
-             "%C":"call.upper()",
+        # Dictionary is "code": ("expression", "keyword", "i18n-keyword")
+        d = {"t": ("title",      "title",      _("title")),
+             "f": ("first",      "given",      _("given")),
+             "p": ("prefix",     "prefix",     _("prefix")),
+             "l": ("surname",    "surname",    _("surname")),
+             "s": ("suffix",     "suffix",     _("suffix")),
+             "y": ("patronymic", "patronymic", _("patronymic")),
+             "c": ("call",       "call",       _("call")),
+             "x": ("(call or first.split(' ')[0])", "common", _("common")),
+             "i": ("''.join([word[0] +'.' for word in ('. ' + first).split()][1:])",
+                   "initials", _("initials"))
              }
+        args = "first,surname,prefix,suffix,patronymic,title,call"
+        return self._make_fn(format_str, d, args)
+
+    def _make_fn(self, format_str, d, args):
+        """
+        Creates the name display function and handles dependent
+        punctuation.
+        """
+        # First, go through and do internationalization-based
+        # key-word replacement. Just replace ikeywords with
+        # %codes (ie, replace "irstnamefay" with "%f", and
+        # "IRSTNAMEFAY" for %F)
+        d_keys = [(code, d[code][2]) for code in d.keys()]
+        d_keys.sort(_make_cmp) # reverse sort by ikeyword
+        for (code, ikeyword) in d_keys:
+            exp, keyword, ikeyword = d[code]
+            format_str = format_str.replace(ikeyword,"%"+ code)
+            format_str = format_str.replace(ikeyword.upper(),"%"+ code.upper())
+        # Next, go through and do key-word replacement.
+        # Just replace keywords with
+        # %codes (ie, replace "firstname" with "%f", and
+        # "FIRSTNAME" for %F)
+        d_keys = [(code, d[code][1]) for code in d.keys()]
+        d_keys.sort(_make_cmp) # reverse sort by keyword
+        for (code, keyword) in d_keys:
+            exp, keyword, ikeyword = d[code]
+            format_str = format_str.replace(keyword,"%"+ code)
+            format_str = format_str.replace(keyword.upper(),"%"+ code.upper())
+        # Get lower and upper versions of codes:
+        codes = d.keys() + [c.upper() for c in d.keys()]
+        # Next, list out the matching patterns:
+        # If it starts with "!" however, treat the punctuation verbatim:
+        if len(format_str) > 0 and format_str[0] == "!":
+            format_str = format_str[1:]
+            patterns = ["%(" + ("|".join(codes)) + ")",          # %s
+                        ]
+        else:
+            patterns = [",\W*\(%(" + ("|".join(codes)) + ")\)",  # ,\W*(%s)
+                        ",\W*%(" + ("|".join(codes)) + ")",      # ,\W*%s
+                        "\(%(" + ("|".join(codes)) + ")\)",      # (%s)
+                        "%(" + ("|".join(codes)) + ")",          # %s
+                        ]
 
         new_fmt = format_str
 
         # replace the specific format string flags with a 
         # flag that works in standard python format strings.
-        new_fmt = new_fmt.replace("%t","%s")
-        new_fmt = new_fmt.replace("%f","%s")
-        new_fmt = new_fmt.replace("%p","%s")
-        new_fmt = new_fmt.replace("%l","%s")
-        new_fmt = new_fmt.replace("%s","%s")
-        new_fmt = new_fmt.replace("%y","%s")
-        new_fmt = new_fmt.replace("%c","%s")
-
-        new_fmt = new_fmt.replace("%T","%s")
-        new_fmt = new_fmt.replace("%F","%s")
-        new_fmt = new_fmt.replace("%P","%s")
-        new_fmt = new_fmt.replace("%L","%s")
-        new_fmt = new_fmt.replace("%S","%s")
-        new_fmt = new_fmt.replace("%Y","%s")
-        new_fmt = new_fmt.replace("%C","%s")
+        new_fmt = re.sub("|".join(patterns), "%s", new_fmt)
 
         # find each format flag in the original format string
         # for each one we find the variable name that is needed to 
         # replace it and add this to a list. This list will be used
         # generate the replacement tuple.
-        pat = re.compile('|'.join(d.keys()))
 
+        # This compiled pattern should match all of the format codes.
+        pat = re.compile("|".join(patterns))
         param = ()
         mat = pat.search(format_str)
         while mat:
-            param = param + (d[mat.group(0)],)
+            match_pattern = mat.group(0) # the matching pattern
+            # prefix, code, suffix:
+            p, code, s = re.split("%(.)", match_pattern)
+            field = d[code][0]
+            if code.isupper():
+                field += ".upper()"
+            if p == '' and s == '':
+                param = param + (field,)
+            else:
+                param = param + ("ifNotEmpty(%s,'%s','%s')" % (field,p,s), )
             mat = pat.search(format_str,mat.end())
+        s = """
+def fn(%s):
+    def ifNotEmpty(str,p,s):
+        if str == '':
+            return ''
+        else:
+            return p + str + s
+    return "%s" %% (%s)""" % (args, new_fmt, ",".join(param))
 
-        s = 'def fn(first,surname,prefix,suffix,patronymic,title,call,):\n'\
-            ' return "%s" %% (%s)' % (new_fmt,",".join(param))
         exec(s)
 
         return fn

@@ -1,4 +1,7 @@
 2007-10-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/BasicUtils/_NameDisplay.py: Feature Request #1018, optional parens and commas in NameDisplay, new "common" & "initials" keywords, and i18n
+
+2007-10-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Utils.py: uses MAX_AGE_PROB_ALIVE, MAX_SIB_AGE_DIFF, MIN_GENERATION_YEARS, AVG_GENERATION_GAP from Config (Bug #1217)
 	* src/Config/_GrampsConfigKeys.py: added MAX_AGE_PROB_ALIVE, MAX_SIB_AGE_DIFF, MIN_GENERATION_YEARS, AVG_GENERATION_GAP
 
