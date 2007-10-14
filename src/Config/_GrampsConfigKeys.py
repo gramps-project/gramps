@@ -151,7 +151,10 @@ OWNER_WARN           = ('behavior', 'owner-warn', 0)
 DATE_BEFORE_RANGE    = ('behavior', 'date-before-range', 1)
 DATE_AFTER_RANGE     = ('behavior', 'date-after-range', 1)
 DATE_ABOUT_RANGE     = ('behavior', 'date-about-range', 1)
-
+MAX_AGE_PROB_ALIVE   = ('behavior', 'max-age-prob-alive', 1)
+MAX_SIB_AGE_DIFF     = ('behavior', 'max-sib-age-diff', 1)
+MIN_GENERATION_YEARS = ('behavior', 'min-generation-years', 1)
+AVG_GENERATION_GAP   = ('behavior', 'avg-generation-gap', 1)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -259,4 +262,8 @@ default_value = {
     DATE_BEFORE_RANGE    : 9999,
     DATE_AFTER_RANGE     : 9999,
     DATE_ABOUT_RANGE     : 10,
+    MAX_AGE_PROB_ALIVE   : 110,
+    MAX_SIB_AGE_DIFF     : 20,
+    MIN_GENERATION_YEARS : 13,
+    AVG_GENERATION_GAP   : 20,
 }

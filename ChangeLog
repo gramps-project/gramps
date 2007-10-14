@@ -1,4 +1,8 @@
 2007-10-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/Utils.py: uses MAX_AGE_PROB_ALIVE, MAX_SIB_AGE_DIFF, MIN_GENERATION_YEARS, AVG_GENERATION_GAP from Config (Bug #1217)
+	* src/Config/_GrampsConfigKeys.py: added MAX_AGE_PROB_ALIVE, MAX_SIB_AGE_DIFF, MIN_GENERATION_YEARS, AVG_GENERATION_GAP
+
+2007-10-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: no negative years on calendar (no events show before they occur)
 	* src/plugins/Calendar.py: uses StringOption in MenuOption
 	* src/ReportBase/_MenuOptions.py: adds StringOption (one line text entry)

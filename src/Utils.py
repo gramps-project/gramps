@@ -51,6 +51,26 @@ import gen.lib
 import Errors
 from QuestionDialog import WarningDialog
 
+
+#-------------------------------------------------------------------------
+#
+# Constants from config .ini keys
+#
+#-------------------------------------------------------------------------
+#obtain the values once, they do not change!
+try:
+    import Config
+    _MAX_AGE_PROB_ALIVE   = Config.get(Config.MAX_AGE_PROB_ALIVE)
+    _MAX_SIB_AGE_DIFF     = Config.get(Config.MAX_SIB_AGE_DIFF)
+    _MIN_GENERATION_YEARS = Config.get(Config.MIN_GENERATION_YEARS)
+    _AVG_GENERATION_GAP   = Config.get(Config.AVG_GENERATION_GAP)
+except ImportError:
+    # Utils used as module not part of GRAMPS
+    _MAX_AGE_PROB_ALIVE   = 110
+    _MAX_SIB_AGE_DIFF     = 20
+    _MIN_GENERATION_YEARS = 13
+    _AVG_GENERATION_GAP   = 20
+
 #-------------------------------------------------------------------------
 #
 # Integer to String  mappings for constants
@@ -580,14 +600,14 @@ def probably_alive(person, db, current_year=None, limit=0):
                 return True
     
     if not birth_year and death_year:
-        if death_year > current_year + 110:
-            # person died more tha 110 after current year
+        if death_year > current_year + _MAX_AGE_PROB_ALIVE:
+            # person died more than MAX after current year
             return False
 
     # Neither birth nor death events are available. Try looking
     # at siblings. If a sibling was born more than 120 years past, 
-    # or more than 20 future, then problem then this person is
-    # probably not alive. If the sibling died more than 120 years
+    # or more than 20 future, then probably this person is
+    # not alive. If the sibling died more than 120 years
     # past, or more than 120 years future, then probably not alive.
 
     family_list = person.get_parent_family_handle_list()
@@ -604,7 +624,10 @@ def probably_alive(person, db, current_year=None, limit=0):
                     # if sibling birth date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
-                        if not (current_year - 120 < year < current_year + 20):
+                        if not (current_year -
+                                (_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF) <
+                                year <
+                                current_year + _MAX_SIB_AGE_DIFF):
                             return False
             child_death_ref = child.get_death_ref()
             if child_death_ref:
@@ -614,13 +637,13 @@ def probably_alive(person, db, current_year=None, limit=0):
                     # if sibling death date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
-                        if not (current_year - 120 < year < current_year + 120):
+                        if not (current_year -
+                                (_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF) <
+                                year < current_year + _MAX_AGE_PROB_ALIVE):
                             return False
 
     # Try looking for descendants that were born more than a lifespan
     # ago.
-
-    min_generation = 13
 
     def descendants_too_old (person, years):
         for family_handle in person.get_family_handle_list():
@@ -649,7 +672,7 @@ def probably_alive(person, db, current_year=None, limit=0):
                         if not not_too_old (dobj, current_year):
                             return True
 
-                if descendants_too_old (child, years + min_generation):
+                if descendants_too_old (child, years + _MIN_GENERATION_YEARS):
                     return True
                 
         return False
@@ -658,16 +681,14 @@ def probably_alive(person, db, current_year=None, limit=0):
     # been alive in the current year then they must be dead.
 
     try:
-        if descendants_too_old (person, min_generation):
+        if descendants_too_old(person, _MIN_GENERATION_YEARS):
             return False
     except RuntimeError:
         raise Errors.DatabaseError(
             _("Database error: %s is defined as his or her own ancestor") %
             name_displayer.display(person))
 
-    average_generation_gap = 20
-
-    def ancestors_too_old (person, year):
+    def ancestors_too_old(person, year):
         family_handle = person.get_main_parents_family_handle()
         
         if family_handle:                
@@ -681,7 +702,7 @@ def probably_alive(person, db, current_year=None, limit=0):
                         father_birth_ref.ref)
                     dobj = father_birth.get_date_object()
                     if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                        if not not_too_old (dobj, year - average_generation_gap):
+                        if not not_too_old (dobj, year - _AVG_GENERATION_GAP):
                             return True
 
                 father_death_ref = father.get_death_ref()
@@ -690,10 +711,10 @@ def probably_alive(person, db, current_year=None, limit=0):
                         father_death_ref.ref)
                     dobj = father_death.get_date_object()
                     if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                        if dobj.get_year() < year - average_generation_gap:
+                        if dobj.get_year() < year - _AVG_GENERATION_GAP:
                             return True
 
-                if ancestors_too_old (father, year - average_generation_gap):
+                if ancestors_too_old (father, year - _AVG_GENERATION_GAP):
                     return True
 
             mother_handle = family.get_mother_handle()
@@ -704,7 +725,7 @@ def probably_alive(person, db, current_year=None, limit=0):
                     mother_birth = db.get_event_from_handle(mother_birth_ref.ref)
                     dobj = mother_birth.get_date_object()
                     if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                        if not not_too_old (dobj, year - average_generation_gap):
+                        if not not_too_old (dobj, year - _AVG_GENERATION_GAP):
                             return True
 
                 mother_death_ref = mother.get_death_ref()
@@ -713,10 +734,10 @@ def probably_alive(person, db, current_year=None, limit=0):
                         mother_death_ref.ref)
                     dobj = mother_death.get_date_object()
                     if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                        if dobj.get_year() < year - average_generation_gap:
+                        if dobj.get_year() < year - _AVG_GENERATION_GAP:
                             return True
 
-                if ancestors_too_old (mother, year - average_generation_gap):
+                if ancestors_too_old (mother, year - _AVG_GENERATION_GAP):
                     return True
 
         return False
@@ -739,7 +760,7 @@ def not_too_old(date, current_year=None):
     year = date.get_year()
     if year > current_year:
         return False
-    return (year != 0 and current_year - year < 110)
+    return (year != 0 and current_year - year < _MAX_AGE_PROB_ALIVE)
 
 def too_old(date, current_year=None):
     if current_year:
@@ -750,7 +771,7 @@ def too_old(date, current_year=None):
     year = date.get_year()
     if year > the_current_year:
         return True
-    return (year != 0 and the_current_year - year > 150)
+    return (year != 0 and the_current_year - year > _MAX_AGE_PROB_ALIVE)
 
 #-------------------------------------------------------------------------
 #
