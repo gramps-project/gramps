@@ -285,4 +285,139 @@
     <date name="Juldagen" value="*/12/25" type="national" />
     <date name="Annandag Jul" value="*/12/26" type="national" />
   </country>
+  <country name="Deutschland">
+    <date name="Neujahr" type="national" value="*/1/1" />
+    <date name="Hl. Drei Könige BW,BY,ST" type="religious" value="*/1/6" />
+    <date name="Karfreitag" type="religious" value="1980/4/4" />
+    <date name="Karfreitag" type="religious" value="1981/4/17" />
+    <date name="Karfreitag" type="religious" value="1982/4/9" />
+    <date name="Karfreitag" type="religious" value="1983/4/1" />
+    <date name="Karfreitag" type="religious" value="1984/4/20" />
+    <date name="Karfreitag" type="religious" value="1985/4/5" />
+    <date name="Karfreitag" type="religious" value="1986/3/28" />
+    <date name="Karfreitag" type="religious" value="1987/4/17" />
+    <date name="Karfreitag" type="religious" value="1988/4/1" />
+    <date name="Karfreitag" type="religious" value="1989/3/24" />
+    <date name="Karfreitag" type="religious" value="1990/4/13" />
+    <date name="Karfreitag" type="religious" value="1991/3/29" />
+    <date name="Karfreitag" type="religious" value="1992/4/17" />
+    <date name="Karfreitag" type="religious" value="1993/4/9" />
+    <date name="Karfreitag" type="religious" value="1994/4/1" />
+    <date name="Karfreitag" type="religious" value="1995/4/14" />
+    <date name="Karfreitag" type="religious" value="1996/4/5" />
+    <date name="Karfreitag" type="religious" value="1997/3/28" />
+    <date name="Karfreitag" type="religious" value="1998/4/10" />
+    <date name="Karfreitag" type="religious" value="1999/4/2" />
+    <date name="Karfreitag" type="religious" value="2000/4/21" />
+    <date name="Karfreitag" type="religious" value="2001/4/13" />
+    <date name="Karfreitag" type="religious" value="2002/3/29" />
+    <date name="Karfreitag" type="religious" value="2003/4/18" />
+    <date name="Karfreitag" type="religious" value="2004/4/9" />
+    <date name="Karfreitag" type="religious" value="2005/3/25" />
+    <date name="Karfreitag" type="religious" value="2006/4/14" />
+    <date name="Karfreitag" type="religious" value="2007/4/6" />
+    <date name="Karfreitag" type="religious" value="2008/3/21" />
+    <date name="Karfreitag" type="religious" value="2009/4/10" />
+    <date name="Karfreitag" type="religious" value="2010/4/2" />
+    <date name="Karfreitag" type="religious" value="2011/4/22" />
+    <date name="Karfreitag" type="religious" value="2012/4/6" />
+    <date name="Karfreitag" type="religious" value="2013/3/29" />
+    <date name="Karfreitag" type="religious" value="2014/4/18" />
+    <date name="Karfreitag" type="religious" value="2015/4/3" />
+    <date name="Karfreitag" type="religious" value="2016/3/25" />
+    <date name="Karfreitag" type="religious" value="2017/4/14" />
+    <date name="Karfreitag" type="religious" value="2018/3/30" />
+    <date name="Karfreitag" type="religious" value="2019/4/19" />
+    <date name="Karfreitag" type="religious" value="2020/4/10" />
+    <date name="Karfreitag" type="religious" value="2021/4/2" />
+    <date name="Karfreitag" type="religious" value="2022/4/15" />
+    <date name="Karfreitag" type="religious" value="2023/4/7" />
+    <date name="Karfreitag" type="religious" value="2024/3/29" />
+    <date name="Ostermontag" type="religious" value="1980/4/7" />
+    <date name="Ostermontag" type="religious" value="1981/4/20" />
+    <date name="Ostermontag" type="religious" value="1982/4/12" />
+    <date name="Ostermontag" type="religious" value="1983/4/4" />
+    <date name="Ostermontag" type="religious" value="1984/4/23" />
+    <date name="Ostermontag" type="religious" value="1985/4/8" />
+    <date name="Ostermontag" type="religious" value="1986/3/31" />
+    <date name="Ostermontag" type="religious" value="1987/4/20" />
+    <date name="Ostermontag" type="religious" value="1988/4/4" />
+    <date name="Ostermontag" type="religious" value="1989/3/27" />
+    <date name="Ostermontag" type="religious" value="1990/4/16" />
+    <date name="Ostermontag" type="religious" value="1991/4/1" />
+    <date name="Ostermontag" type="religious" value="1992/4/20" />
+    <date name="Ostermontag" type="religious" value="1993/4/12" />
+    <date name="Ostermontag" type="religious" value="1994/4/4" />
+    <date name="Ostermontag" type="religious" value="1995/4/17" />
+    <date name="Ostermontag" type="religious" value="1996/4/8" />
+    <date name="Ostermontag" type="religious" value="1997/3/31" />
+    <date name="Ostermontag" type="religious" value="1998/4/13" />
+    <date name="Ostermontag" type="religious" value="1999/4/5" />
+    <date name="Ostermontag" type="religious" value="2000/4/24" />
+    <date name="Ostermontag" type="religious" value="2001/4/16" />
+    <date name="Ostermontag" type="religious" value="2002/4/1" />
+    <date name="Ostermontag" type="religious" value="2003/4/21" />
+    <date name="Ostermontag" type="religious" value="2004/4/12" />
+    <date name="Ostermontag" type="religious" value="2005/3/28" />
+    <date name="Ostermontag" type="religious" value="2006/4/17" />
+    <date name="Ostermontag" type="religious" value="2007/4/9" />
+    <date name="Ostermontag" type="religious" value="2008/3/24" />
+    <date name="Ostermontag" type="religious" value="2009/4/13" />
+    <date name="Ostermontag" type="religious" value="2010/4/5" />
+    <date name="Ostermontag" type="religious" value="2011/4/25" />
+    <date name="Ostermontag" type="religious" value="2012/4/9" />
+    <date name="Ostermontag" type="religious" value="2013/4/1" />
+    <date name="Ostermontag" type="religious" value="2014/4/21" />
+    <date name="Ostermontag" type="religious" value="2015/4/6" />
+    <date name="Ostermontag" type="religious" value="2016/3/28" />
+    <date name="Ostermontag" type="religious" value="2017/4/17" />
+    <date name="Ostermontag" type="religious" value="2018/4/2" />
+    <date name="Ostermontag" type="religious" value="2019/4/22" />
+    <date name="Ostermontag" type="religious" value="2020/4/13" />
+    <date name="Ostermontag" type="religious" value="2021/4/5" />
+    <date name="Ostermontag" type="religious" value="2022/4/18" />
+    <date name="Ostermontag" type="religious" value="2023/4/10" />
+    <date name="Ostermontag" type="religious" value="2024/4/1" />
+    <date name="Maifeiertag" type="national" value="*/5/1" />
+    <date name="Christi Himmelfahrt" type="religious" value="2006/5/25" />
+    <date name="Christi Himmelfahrt" type="religious" value="2007/5/17" />
+    <date name="Christi Himmelfahrt" type="religious" value="2008/5/1" />
+    <date name="Christi Himmelfahrt" type="religious" value="2009/5/21" />
+    <date name="Christi Himmelfahrt" type="religious" value="2010/5/13" />
+    <date name="Christi Himmelfahrt" type="religious" value="2011/6/2" />
+    <date name="Christi Himmelfahrt" type="religious" value="2012/5/17" />
+    <date name="Christi Himmelfahrt" type="religious" value="2013/5/9" />
+    <date name="Christi Himmelfahrt" type="religious" value="2014/5/29" />
+    <date name="Christi Himmelfahrt" type="religious" value="2015/5/14" />
+    <date name="Christi Himmelfahrt" type="religious" value="2016/5/5" />
+    <date name="Pfingstmontag" type="religious" value="2006/6/5" />
+    <date name="Pfingstmontag" type="religious" value="2007/5/28" />
+    <date name="Pfingstmontag" type="religious" value="2008/5/12" />
+    <date name="Pfingstmontag" type="religious" value="2009/6/1" />
+    <date name="Pfingstmontag" type="religious" value="2010/5/24" />
+    <date name="Pfingstmontag" type="religious" value="2011/6/13" />
+    <date name="Pfingstmontag" type="religious" value="2012/5/28" />
+    <date name="Pfingstmontag" type="religious" value="2013/5/20" />
+    <date name="Pfingstmontag" type="religious" value="2014/6/9" />
+    <date name="Pfingstmontag" type="religious" value="2015/5/25" />
+    <date name="Pfingstmontag" type="religious" value="2016/5/16" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2006/6/15" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2007/6/7" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2008/5/22" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2009/6/11" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2010/6/3" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2011/6/23" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2012/6/7" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2013/5/30" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2014/6/19" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2015/6/4" />
+    <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2016/5/26" />
+    <date name="Mariä Himmelfahrt SL" type="religious" value="*/8/15" />
+    <date name="Tag der Deutschen Einheit" type="national" value="*/10/3" />
+    <date name="Reformationstag BB, MV, SN, ST, TH" type="religious" value="*/10/31" />
+    <date name="Allerheiligen BW, BY, NW, RP, SL" type="religious" value="*/11/1" />
+    <date name="Buß- u. Bettag SN" type="religious" value="*/11/23"  offset="-wed"/>
+    <date name="1. Weihnachtsfeiertag" type="religious" value="*/12/25" />
+    <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
+  </country>
 </calendar>
