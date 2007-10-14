@@ -1,3 +1,9 @@
+2007-10-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: no negative years on calendar (no events show before they occur)
+	* src/plugins/Calendar.py: uses StringOption in MenuOption
+	* src/ReportBase/_MenuOptions.py: adds StringOption (one line text entry)
+	* src/ReportBase/__init__.py: adds StringOption
+
 2007-10-13  Stephane Charette <stephanecharette@gmail.com>
 	* src/plugins/rel_pt.py: new file (Portuguese) contributed by Duarte
 	Loreto <happyguy_pt@hotmail.com>
