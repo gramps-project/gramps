@@ -1,3 +1,6 @@
+2007-10-14  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/holidays.xml: Added German holidays (from Mirko Leonhaeuser)
+
 2007-10-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
         * src/plugins/holidays.xml: Fixed Victoria Day (via James A. Treacy)
         * src/plugins/holidays.xml: Added Swedish official holidays (via Peter L
