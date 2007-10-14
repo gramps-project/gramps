@@ -177,6 +177,7 @@ class RecentDocsMenu:
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
+            self.action_group = gtk.ActionGroup('RecentFiles')
             self.active = DISABLED
             
         actions = []
