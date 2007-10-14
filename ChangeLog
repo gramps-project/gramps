@@ -1,4 +1,8 @@
 2007-10-14 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/DataViews/_PedigreeView.py: home person action added twice, gives warnings
+	in new GTK
+
+2007-10-14 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DisplayState.py: actiongroup made double, gives warnings (errors) in newer GTK
 	* src/PageView.py: remove useless comments
 
