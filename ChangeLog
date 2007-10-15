@@ -1,3 +1,6 @@
+2007-10-15  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/WebCal.py: Create directory if it doesn't exist.
+
 2007-10-14  Don Allingham  <don@gramps-project.org>
 	* src/GrampsDb/_GrampsBSDDB.py: fix gen calls
 

@@ -446,6 +446,24 @@ class WebReport(Report):
 
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
+        if not os.path.isdir(self.html_dir):
+            parent_dir = os.path.dirname(self.html_dir)
+            if not os.path.isdir(parent_dir):
+                ErrorDialog(_("Neither %s nor %s are directories") % \
+                            (self.html_dir,parent_dir))
+                return
+            else:
+                try:
+                    os.mkdir(self.html_dir)
+                except IOError, value:
+                    ErrorDialog(_("Could not create the directory: %s") % \
+                                self.html_dir + "\n" + value[1])
+                    return
+                except:
+                    ErrorDialog(_("Could not create the directory: %s") % \
+                                self.html_dir)
+                    return
+        
         # initialize the dict to fill:
         self.calendar = {}
         self.progress = Utils.ProgressMeter(_("Generate HTML calendars"),'')
