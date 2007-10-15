@@ -1,3 +1,6 @@
+2007-10-14  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDb/_GrampsBSDDB.py: fix gen calls
+
 2007-10-14 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DataViews/_PedigreeView.py: remove useless commented line
 
