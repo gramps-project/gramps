@@ -1,3 +1,6 @@
+2007-10-16  Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/NarrativeWeb.py: 0001267: Web report and shared event
+
 2007-10-16  Frederik De	Richter <frederik.de.richter@googlemail.com>
 	* src/plugins/rel_nl.py: new version
 

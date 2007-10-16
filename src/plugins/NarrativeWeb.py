@@ -85,6 +85,7 @@ from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
 from gen.proxy import PrivateProxyDb
 from gen.proxy import LivingProxyDb
+from gen.lib.eventroletype import EventRoleType
 
 #------------------------------------------------------------------------
 #
@@ -1916,7 +1917,7 @@ class IndividualPage(BasePage):
         of.write('</tr>\n</table>\n</div>\n')
 
     def display_ind_events(self,of):
-        evt_ref_list = self.person.get_primary_event_ref_list()
+        evt_ref_list = self.person.get_event_ref_list()
         
         if not evt_ref_list:
             return
@@ -1929,7 +1930,13 @@ class IndividualPage(BasePage):
             event = self.db.get_event_from_handle(event_ref.ref)
             if event:
                 evt_name = str(event.get_type())
-                of.write('<tr><td class="field">%s</td>\n' % evt_name)
+
+                if event_ref.get_role() == EventRoleType.PRIMARY:
+                    of.write('<tr><td class="field">%s</td>\n' % evt_name)
+                else:
+                    of.write('<tr><td class="field">%s (%s)</td>\n' \
+                        % (evt_name, event_ref.get_role()))
+
                 of.write('<td class="data">\n')
                 of.write(self.format_event(event))
                 of.write('</td>\n')
