@@ -1,3 +1,7 @@
+2007-10-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/WebCal.py: fixed a wrong indent level
+	* src/plugins/Calendar.py: handle divorces, weekdays, easter, eval values in XML
+
 2007-10-15  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/WebCal.py: Create directory if it doesn't exist.
 

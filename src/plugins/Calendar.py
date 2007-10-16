@@ -52,6 +52,38 @@ cm2pt = ReportUtils.cm2pt
 
 #------------------------------------------------------------------------
 #
+# Support functions
+#
+#------------------------------------------------------------------------
+def easter(year):
+    """
+    Computes the year/month/day of easter. Based on work by
+    J.-M. Oudin (1940) and is reprinted in the "Explanatory Supplement
+    to the Astronomical Almanac", ed. P. K.  Seidelmann (1992).  Note:
+    Ash Wednesday is 46 days before Easter Sunday.
+    """
+    c = year / 100
+    n = year - 19 * (year / 19)
+    k = (c - 17) / 25
+    i = c - c / 4 - (c - k) / 3 + 19 * n + 15
+    i = i - 30 * (i / 30)
+    i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1))
+                           * ((21 - n) / 11))
+    j = year + year / 4 + i + 2 - c + c / 4
+    j = j - 7 * (j / 7)
+    l = i - j
+    month = 3 + (l + 40) / 44
+    day = l + 28 - 31 * ( month / 4 )
+    return "%d/%d/%d" % (year, month, day)
+
+def g2iso(dow):
+    """ Converst GRAMPS day of week to ISO day of week """
+    # GRAMPS: SUN = 1
+    # ISO: MON = 1
+    return (dow + 5) % 7 + 1
+
+#------------------------------------------------------------------------
+#
 # Calendar
 #
 #------------------------------------------------------------------------
@@ -192,15 +224,19 @@ class Calendar(Report):
         cell_height = (height - header)/ 6
         current_date = datetime.date(year, month, 1)
         spacing = pt2cm(1.25 * ptext.get_font().get_size()) # 158
-        if current_date.isoweekday() != self.start_dow:
+        if current_date.isoweekday() != g2iso(self.start_dow + 1):
             # Go back to previous first day of week, and start from there
-            current_ord = current_date.toordinal() - ( (current_date.isoweekday() + 7) - self.start_dow ) % 7
+            current_ord = (current_date.toordinal() -
+                           ((current_date.isoweekday() + 7) -
+                            g2iso(self.start_dow + 1) ) % 7)
         else:
             current_ord = current_date.toordinal()
         for day_col in range(7):
             font_height = pt2cm(pdaynames.get_font().get_size())
             self.doc.center_text("CAL-Daynames", 
-                                 GrampsLocale.long_days[(day_col+self.start_dow) % 7 + 1],
+                                 GrampsLocale.long_days[(day_col+
+                                                         g2iso(self.start_dow + 1))
+                                                        % 7 + 1],
                                  day_col * cell_width + cell_width/2,
                                  header - font_height * 1.5)
         for week_row in range(6):
@@ -301,20 +337,33 @@ class Calendar(Report):
                             if self.alive:
                                 if not probably_alive(spouse, self.database, self.year):
                                     continue
+                            # TEMP: this will hanlde ordered events
+                            # GRAMPS 3.0 will have a new mechanism for start/stop events
+                            are_married = None
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
-                                event_obj = event.get_date_object()
-                                year = event_obj.get_year()
-                                month = event_obj.get_month()
-                                day = event_obj.get_day()
-                                years = self.year - year
-                                if years >= 0:
-                                    text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
-                                        'spouse' : spouse_name,
-                                        'person' : short_name,
-                                        'nyears' : years,
-                                        }
-                                    self.add_day_item(text, year, month, day)
+                                if int(event.get_type()) in [gen.lib.EventType.MARRIAGE,
+                                                             gen.lib.EventType.MARR_ALT]:
+                                    are_married = event
+                                elif int(event.get_type()) in [gen.lib.EventType.DIVORCE,
+                                                               gen.lib.EventType.ANNULMENT,
+                                                               gen.lib.EventType.DIV_FILING]:
+                                    are_married = None
+                            if are_married != None:
+                                for event_ref in fam.get_event_ref_list():
+                                    event = self.database.get_event_from_handle(event_ref.ref)
+                                    event_obj = event.get_date_object()
+                                    year = event_obj.get_year()
+                                    month = event_obj.get_month()
+                                    day = event_obj.get_day()
+                                    years = self.year - year
+                                    if years >= 0:
+                                        text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
+                                            'spouse' : spouse_name,
+                                            'person' : short_name,
+                                            'nyears' : years,
+                                            }
+                                        self.add_day_item(text, year, month, day)
 
 class CalendarReport(Calendar):
     """ The Calendar text report """
@@ -684,6 +733,10 @@ class Holidays:
                 else:
                     # must be a dayname
                     offset = rule["offset"]
+            if len(rule["value"]) > 0 and rule["value"][0] == '&':
+                # eval exp -> year/num[/day[/month]]
+                y, m, d = date.year, date.month, date.day
+                rule["value"] = eval(rule["value"][1:])
             if rule["value"].count("/") == 3: # year/num/day/month, "3rd wednesday in april"
                 y, num, dayname, mon = rule["value"].split("/")
                 if y == "*":

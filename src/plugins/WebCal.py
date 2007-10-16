@@ -641,10 +641,10 @@ class WebReport(Report):
                             married = True
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
-                    if event and int(event.get_type()) in [gen.lib.EventType.DIVORCE,
-                                                           gen.lib.EventType.ANNULMENT,
-                                                            gen.lib.EventType.DIV_FILING]:
-                            married = False
+                                if event and int(event.get_type()) in [gen.lib.EventType.DIVORCE,
+                                                                       gen.lib.EventType.ANNULMENT,
+                                                                       gen.lib.EventType.DIV_FILING]:
+                                    married = False
                             if married:
                                 for event_ref in fam.get_event_ref_list():
                                     event = self.database.get_event_from_handle(event_ref.ref)
