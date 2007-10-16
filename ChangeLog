@@ -1,3 +1,8 @@
+2007-10-15  Stephane Charette <stephanecharette@gmail.com>
+	* src/plugins/rel_nl.py: fixes contributed by Frederik De
+	Richter <frederik.de.richter@googlemail.com> and Benny
+	Malengier <benny.malengier@gramps-project.org>
+
 2007-10-14 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/DataViews/_PedigreeView.py: home person action added twice, gives warnings
 	in new GTK
