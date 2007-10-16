@@ -295,8 +295,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_relationship(self,orig_person,other_person):
         """
-        Returns a string representing the relationshp between the two peopl
-e,
+        Returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
 
         Special cases: relation strings "", "undefined" and "spouse".
@@ -311,11 +310,9 @@ e,
         if is_spouse:
             return (is_spouse,[])
 
-        (firstRel,secondRel,common) = self.get_relationship_distance(orig
-_person,other_person)
+        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
 
-        if type(common) == types.StringType or type(common) == type
-s.UnicodeType:
+        if type(common) == types.StringType or type(common) == types.UnicodeType:
             return (common,[])
         elif common:
             person_handle = common[0]
@@ -339,18 +336,14 @@ s.UnicodeType:
                 return (self.get_daughter(firstRel), common)
         elif secondRel > firstRel:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_uncle(secondRel - firstRel,firstRel), comm
-on)
+                return (self.get_uncle(secondRel - firstRel,firstRel), common)
             else:
-                return (self.get_aunt(secondRel - firstRel, firstRel), comm
-on)
+                return (self.get_aunt(secondRel - firstRel, firstRel), common)
         elif secondRel < firstRel:
             if other_person.get_gender() == RelLib.Person.MALE:
-                return (self.get_nephew(firstRel - secondRel, secondRel), c
-ommon)
+                return (self.get_nephew(firstRel - secondRel, secondRel), common)
             else:
-                return (self.get_niece(firstRel - secondRel, secondRel), co
-mmon)
+                return (self.get_niece(firstRel - secondRel, secondRel), common)
         else:
                 if other_person.get_gender() == RelLib.Person.MALE:
                     return (self.get_male_cousin(firstRel -1), common)
@@ -374,14 +367,12 @@ mmon)
 ##        else:
 ##            if other_person.get_gender() == RelLib.Person.MALE:
 ##                if firstRel+secondRel>len(_level_name)-1:
-##                    return (self.get_male_cousin(firstRel+secondRel),comm
-on)
+##                    return (self.get_male_cousin(firstRel+secondRel),common)
 ##                else:
 ##                    return ('verre neef',common)
 ##            else:
 ##                if firstRel+secondRel>len(_level_name)-1:
-##                    return (self.get_female_cousin(firstRel+secondRel),co
-mmon)
+##                    return (self.get_female_cousin(firstRel+secondRel),common)
 ##                else:
 ##                    return ('verre nicht',common)
 
@@ -391,8 +382,7 @@ mmon)
 #
 #-------------------------------------------------------------------------
 register_relcalc(RelationshipCalculator,
-    ["nl", "NL", "nl_NL", "nl_BE", "nederlands", "Nederlands", "nl_NL.UTF8"
-,
+    ["nl", "NL", "nl_NL", "nl_BE", "nederlands", "Nederlands", "nl_NL.UTF8",
      "nl_BE.UTF8","nl_NL@euro", "nl_NL.UTF8@euro","nl_BE@euro",
      "dutch","Dutch", "nl_NL.UTF-8", "nl_BE.UTF-8","nl_NL.utf-8",
      "nl_BE.utf-8","nl_NL.utf8", "nl_BE.UTF-8", "nl_BE.UTF8@euro"])

@@ -1,3 +1,6 @@
+2007-10-16  Stephane Charette <stephanecharette@gmail.com>
+	* src/plugins/rel_nl.py: wrong linebreaks in previous commit!
+
 2007-10-15  Stephane Charette <stephanecharette@gmail.com>
 	* src/plugins/rel_nl.py: fixes contributed by Frederik De
 	Richter <frederik.de.richter@googlemail.com> and Benny
