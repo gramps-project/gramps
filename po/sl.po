@@ -88,7 +88,7 @@ msgid ""
 "\n"
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
-"Gramps ne pozna vrste datotek &quot;%s\&quot;.\n"
+"Gramps ne pozna vrste datotek &quot;%s&quot;.\n"
 "\n"
 "Veljavne vrste so: baza podatkov GRAMPS, GRAMPS XML, paket GRAMPS in GEDCOM."
 
