@@ -98,10 +98,11 @@ class Calendar(Report):
             # but calendar doesn't have a title
             self.titletext = options_class.handler.options_dict['titletext']
         self.year = options_class.handler.options_dict['year']
+        self.name_format = options_class.handler.options_dict['name_format'][0]
         self.country = options_class.handler.options_dict['country']
         self.anniversaries = options_class.handler.options_dict['anniversaries']
         self.start_dow = options_class.handler.options_dict['start_dow'][0]
-        self.maiden_name = options_class.handler.options_dict['maiden_name']
+        self.maiden_name = options_class.handler.options_dict['maiden_name'][0]
         self.alive = options_class.handler.options_dict['alive']
         self.birthdays = options_class.handler.options_dict['birthdays']
         self.text1 = options_class.handler.options_dict['text1']
@@ -112,7 +113,7 @@ class Calendar(Report):
         name = name_displayer.display_formal(person)
         self.title = _("Calendar for %s") % name
 
-    def get_short_name(self, person, maiden_name = None):
+    def get_name(self, person, maiden_name = None):
         """ Returns person's name, unless maiden_name given, unless married_name listed. """
         # Get all of a person's names:
         primary_name = person.get_primary_name()
@@ -124,22 +125,14 @@ class Calendar(Report):
         # Now, decide which to use:
         if maiden_name != None:
             if married_name != None:
-                first_name, family_name = married_name.get_first_name(), married_name.get_surname()
-                call_name = married_name.get_call_name()
+                name = gen.lib.Name(married_name)
             else:
-                first_name, family_name = primary_name.get_first_name(), maiden_name
-                call_name = primary_name.get_call_name()
+                name = gen.lib.Name(primary_name)
+                name.set_surname(maiden_name)
         else:
-            first_name, family_name = primary_name.get_first_name(), primary_name.get_surname()
-            call_name = primary_name.get_call_name()
-        # If they have a nickname use it
-        if call_name != None and call_name.strip() != "":
-            first_name = call_name.strip()
-        else: # else just get the first name:
-            first_name = first_name.strip()
-            if " " in first_name:
-                first_name, rest = first_name.split(" ", 1) # just one split max
-        return ("%s %s" % (first_name, family_name)).strip()
+            name = gen.lib.Name(primary_name)
+        name.set_display_as(self.name_format)
+        return name_displayer.display_name(name)
         
     def draw_rectangle(self, style, sx, sy, ex, ey):
         """ This should be in BaseDoc """
@@ -303,7 +296,7 @@ class Calendar(Report):
                 age = self.year - year
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
-                if self.maiden_name == 0: # get husband's last name:
+                if self.maiden_name == 'spouse': # get husband's last name:
                     if person.get_gender() == gen.lib.Person.FEMALE:
                         family_list = person.get_family_handle_list()
                         if len(family_list) > 0:
@@ -316,7 +309,7 @@ class Calendar(Report):
                                     father = self.database.get_person_from_handle(father_handle)
                                     if father != None:
                                         father_lastname = father.get_primary_name().get_surname()
-                short_name = self.get_short_name(person, father_lastname)
+                short_name = self.get_name(person, father_lastname)
                 if age >= 0:
                     self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
             if self.anniversaries and ((self.alive and alive) or not self.alive):
@@ -332,8 +325,8 @@ class Calendar(Report):
                     if spouse_handle:
                         spouse = self.database.get_person_from_handle(spouse_handle)
                         if spouse:
-                            spouse_name = self.get_short_name(spouse)
-                            short_name = self.get_short_name(person)
+                            spouse_name = self.get_name(spouse)
+                            short_name = self.get_name(person)
                             if self.alive:
                                 if not probably_alive(spouse, self.database, self.year):
                                     continue
@@ -441,6 +434,12 @@ class CalendarOptions(MenuOptions):
         filter.set_help(_("Select filter to restrict people that appear on calendar"))
         menu.add_option(category_name,"filter", filter)
 
+        name_format = EnumeratedListOption(_("Name format"), (1, ""))
+        for num, name, fmt_str, act in name_displayer.get_name_format():
+            name_format.add_item(num, name)
+        name_format.set_help(_("Select the format to display names"))
+        menu.add_option(category_name,"name_format", name_format)
+
         country = EnumeratedListOption(_("Country for holidays"), (0,_("Don't include holidays")))
         count = 0
         for c in  _countries:
@@ -457,9 +456,9 @@ class CalendarOptions(MenuOptions):
         menu.add_option(category_name, "start_dow", start_dow) 
 
         maiden_name = EnumeratedListOption(_("Birthday surname"),
-                                           ("maiden", _("Wives use their own surname")))
-        maiden_name.add_item("regular", _("Wives use husband's surname"))
-        maiden_name.add_item("maiden", _("Wives use their own surname"))
+                                           ("own", _("Wives use their own surname")))
+        maiden_name.add_item("spouse", _("Wives use husband's surname"))
+        maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name,"maiden_name", maiden_name)
 
