@@ -1,3 +1,6 @@
+2007-10-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/gen/lib/date.py: added method Date.offset(value) -> (y,m,d)
+
 2007-10-16  Don Allingham  <don@gramps-project.org>
 	* src/DataViews/_PersonView.py (PersonView.delete_person_response): 
 	use gen.utils.delete_person_from_database

@@ -265,8 +265,7 @@ class Date:
             """
             new_date = Date()
             new_date.set_yr_mon_day(dateval[0], dateval[1], dateval[2])
-            return Date._calendar_change[Date.CAL_GREGORIAN](
-                                                    new_date.sortval + offset)
+            return new_date.offset(offset)
         
         datecopy = Date(self)
         #we do all calculation in Gregorian calendar
@@ -333,17 +332,13 @@ class Date:
         other_start, other_stop = other_date.get_start_stop_range()
         self_start, self_stop = self.get_start_stop_range()
 
-        ##DEBUG print "   date compare:", self_start, self_stop, other_start, 
-        ##DEBUG                           other_stop
+        #DEBUG print "compare:",self_start,self_stop,other_start,other_stop
 
         # If some overlap then match is True, otherwise False.
-        if ((self_start <= other_start <= self_stop) or
-            (self_start <= other_stop <= self_stop) or 
-            (other_start <= self_start <= other_stop) or 
-            (other_start <= self_stop <= other_stop)):
-            return True
-        else:
-            return False
+        return ((self_start <= other_start <= self_stop) or
+                (self_start <= other_stop <= self_stop) or 
+                (other_start <= self_start <= other_stop) or 
+                (other_start <= self_stop <= other_stop))
             
     def __str__(self):
         """
@@ -759,13 +754,19 @@ class Date:
                and self.get_year_valid() and self.get_month_valid() \
                and self.get_day_valid()
 
+    def offset(self, value):
+        """
+        Returns (year, month, day) of this date +- value.
+        """
+        return Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value)
+
+
 # if __name__ == "__main__":
 #     # Test function. Call it as follows from the command line (so as to find
 #     #        imported modules):
-#     #    export PYTHONPATH=/path/to/gramps/src python src/gen.lib/_Date.py 
+#     #    export PYTHONPATH=/path/to/gramps/src python src/gen/lib/date.py 
 #     #
-#     from DateHandler import _DateParser
-#     df = _DateParser.DateParser() # date factory
+#     from DateHandler import parser as df
 #     def test_date(d1, d2, expected1, expected2 = None):
 #         if expected2 == None:
 #             expected2 = expected1
