@@ -60,7 +60,7 @@ import TreeTips
 import Errors
 import Config
 import const
-import GrampsDb
+import gen.utils
 
 from Editors import EditPerson
 from Filters import SearchBar
@@ -629,7 +629,7 @@ class PersonView(PageView.PersonNavView):
         active_name = _("Delete Person (%s)") % name_displayer.display(person)
 
         # delete the person from the database
-        GrampsDb.delete_person_from_database(self.dbstate.db, person, trans)
+        gen.utils.delete_person_from_database(self.dbstate.db, person, trans)
 
         # remove the person from the list
         self.remove_from_person_list(person)

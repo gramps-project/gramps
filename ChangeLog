@@ -1,3 +1,7 @@
+2007-10-16  Don Allingham  <don@gramps-project.org>
+	* src/DataViews/_PersonView.py (PersonView.delete_person_response): 
+	use gen.utils.delete_person_from_database
+
 2007-10-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: Fixed bug with maiden names, added some support for selecting name formats
 
