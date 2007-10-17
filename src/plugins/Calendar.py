@@ -74,13 +74,42 @@ def easter(year):
     l = i - j
     month = 3 + (l + 40) / 44
     day = l + 28 - 31 * ( month / 4 )
-    return "%d/%d/%d" % (year, month, day)
+    return SDate("%d/%d/%d" % (year, month, day))
 
 def g2iso(dow):
     """ Converst GRAMPS day of week to ISO day of week """
     # GRAMPS: SUN = 1
     # ISO: MON = 1
     return (dow + 5) % 7 + 1
+
+class SDate(str):
+    """ String date that you can add/subtract to/from. """
+    def __init__(self, sdate):
+        self.sdate = sdate
+
+    def __add__(self, other):
+        """ Date math: add day to a string date 'y/m/d' """
+        dy, dm, dd = map(int, self.sdate.split("/"))
+        date = gen.lib.Date()
+        date.set_yr_mon_day(dy, dm, dd)
+        y,m,d = date.offset(other)
+        return "%d/%d/%d" % (y,m,d)
+
+    def __radd__(self, other):
+        """ Date math: add day to a string date 'y/m/d' on right """
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        """ Date math: subtract day to a string date 'y/m/d' """
+        return self.__add__(-other)
+
+    def __rsub__(self, other):
+        """ Date math: subtract day to a string date 'y/m/d' on right """
+        return self.__sub__(other)
+
+    def __str__(self):
+        # Don't need to overload len, split, or count because it uses this
+        return self.sdate
 
 #------------------------------------------------------------------------
 #
@@ -732,10 +761,11 @@ class Holidays:
                 else:
                     # must be a dayname
                     offset = rule["offset"]
-            if len(rule["value"]) > 0 and rule["value"][0] == '&':
+            if len(rule["value"]) > 0 and rule["value"][0] == '>':
                 # eval exp -> year/num[/day[/month]]
                 y, m, d = date.year, date.month, date.day
                 rule["value"] = eval(rule["value"][1:])
+            if self.debug: print "rule['value']:", rule["value"]
             if rule["value"].count("/") == 3: # year/num/day/month, "3rd wednesday in april"
                 y, num, dayname, mon = rule["value"].split("/")
                 if y == "*":

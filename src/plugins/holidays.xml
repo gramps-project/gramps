@@ -23,51 +23,8 @@
     <date name="Daylight Savings ends" value="*/-1/sun/oct" type="informational" />
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Boxing Day" value="*/12/26" type="national" />
-    <date name="Easter" type="religious" value="1980/4/6" />
-    <date name="Easter" type="religious" value="1981/4/19" />
-    <date name="Easter" type="religious" value="1982/4/11" />
-    <date name="Easter" type="religious" value="1983/4/3" />
-    <date name="Easter" type="religious" value="1984/4/22" />
-    <date name="Easter" type="religious" value="1985/4/7" />
-    <date name="Easter" type="religious" value="1986/3/30" />
-    <date name="Easter" type="religious" value="1987/4/19" />
-    <date name="Easter" type="religious" value="1988/4/3" />
-    <date name="Easter" type="religious" value="1989/3/26" />
-    <date name="Easter" type="religious" value="1990/4/15" />
-    <date name="Easter" type="religious" value="1991/3/31" />
-    <date name="Easter" type="religious" value="1992/4/19" />
-    <date name="Easter" type="religious" value="1993/4/11" />
-    <date name="Easter" type="religious" value="1994/4/3" />
-    <date name="Easter" type="religious" value="1995/4/16" />
-    <date name="Easter" type="religious" value="1996/4/7" />
-    <date name="Easter" type="religious" value="1997/3/30" />
-    <date name="Easter" type="religious" value="1998/4/12" />
-    <date name="Easter" type="religious" value="1999/4/4" />
-    <date name="Easter" type="religious" value="2000/4/23" />
-    <date name="Easter" type="religious" value="2001/4/15" />
-    <date name="Easter" type="religious" value="2002/3/31" />
-    <date name="Easter" type="religious" value="2003/4/20" />
-    <date name="Easter" type="religious" value="2004/4/11" />
-    <date name="Easter" type="religious" value="2005/3/27" />
-    <date name="Easter" type="religious" value="2006/4/16" />
-    <date name="Easter" type="religious" value="2007/4/8" />
-    <date name="Easter" type="religious" value="2008/3/23" />
-    <date name="Easter" type="religious" value="2009/4/12" />
-    <date name="Easter" type="religious" value="2010/4/4" />
-    <date name="Easter" type="religious" value="2011/4/24" />
-    <date name="Easter" type="religious" value="2012/4/8" />
-    <date name="Easter" type="religious" value="2013/3/31" />
-    <date name="Easter" type="religious" value="2014/4/20" />
-    <date name="Easter" type="religious" value="2015/4/5" />
-    <date name="Easter" type="religious" value="2016/3/27" />
-    <date name="Easter" type="religious" value="2017/4/16" />
-    <date name="Easter" type="religious" value="2018/4/1" />
-    <date name="Easter" type="religious" value="2019/4/21" />
-    <date name="Easter" type="religious" value="2020/4/12" />
-    <date name="Easter" type="religious" value="2021/4/4" />
-    <date name="Easter" type="religious" value="2022/4/17" />
-    <date name="Easter" type="religious" value="2023/4/9" />
-    <date name="Easter" type="religious" value="2024/3/31" />
+    <date name="Easter" type="religious" value="> easter(y)" />
+    <date name="Ash Wednesday" type="religious" value="> easter(y) - 46" />
     <date name="Passover" value="2005/4/24" type="religious" />
     <date name="Passover" value="2006/4/13" type="religious" />
     <date name="Passover" value="2007/4/03" type="religious" />
@@ -130,51 +87,8 @@
     <date name="Income Taxes due" value="*/4/17" type="national" 
      if="date.weekday() == 0" />
     <date name="Daylight Savings ends" value="*/-1/sun/oct" type="informational" />
-    <date name="Easter" type="religious" value="1980/4/6" />
-    <date name="Easter" type="religious" value="1981/4/19" />
-    <date name="Easter" type="religious" value="1982/4/11" />
-    <date name="Easter" type="religious" value="1983/4/3" />
-    <date name="Easter" type="religious" value="1984/4/22" />
-    <date name="Easter" type="religious" value="1985/4/7" />
-    <date name="Easter" type="religious" value="1986/3/30" />
-    <date name="Easter" type="religious" value="1987/4/19" />
-    <date name="Easter" type="religious" value="1988/4/3" />
-    <date name="Easter" type="religious" value="1989/3/26" />
-    <date name="Easter" type="religious" value="1990/4/15" />
-    <date name="Easter" type="religious" value="1991/3/31" />
-    <date name="Easter" type="religious" value="1992/4/19" />
-    <date name="Easter" type="religious" value="1993/4/11" />
-    <date name="Easter" type="religious" value="1994/4/3" />
-    <date name="Easter" type="religious" value="1995/4/16" />
-    <date name="Easter" type="religious" value="1996/4/7" />
-    <date name="Easter" type="religious" value="1997/3/30" />
-    <date name="Easter" type="religious" value="1998/4/12" />
-    <date name="Easter" type="religious" value="1999/4/4" />
-    <date name="Easter" type="religious" value="2000/4/23" />
-    <date name="Easter" type="religious" value="2001/4/15" />
-    <date name="Easter" type="religious" value="2002/3/31" />
-    <date name="Easter" type="religious" value="2003/4/20" />
-    <date name="Easter" type="religious" value="2004/4/11" />
-    <date name="Easter" type="religious" value="2005/3/27" />
-    <date name="Easter" type="religious" value="2006/4/16" />
-    <date name="Easter" type="religious" value="2007/4/8" />
-    <date name="Easter" type="religious" value="2008/3/23" />
-    <date name="Easter" type="religious" value="2009/4/12" />
-    <date name="Easter" type="religious" value="2010/4/4" />
-    <date name="Easter" type="religious" value="2011/4/24" />
-    <date name="Easter" type="religious" value="2012/4/8" />
-    <date name="Easter" type="religious" value="2013/3/31" />
-    <date name="Easter" type="religious" value="2014/4/20" />
-    <date name="Easter" type="religious" value="2015/4/5" />
-    <date name="Easter" type="religious" value="2016/3/27" />
-    <date name="Easter" type="religious" value="2017/4/16" />
-    <date name="Easter" type="religious" value="2018/4/1" />
-    <date name="Easter" type="religious" value="2019/4/21" />
-    <date name="Easter" type="religious" value="2020/4/12" />
-    <date name="Easter" type="religious" value="2021/4/4" />
-    <date name="Easter" type="religious" value="2022/4/17" />
-    <date name="Easter" type="religious" value="2023/4/9" />
-    <date name="Easter" type="religious" value="2024/3/31" />
+    <date name="Easter" type="religious" value="> easter(y)" />
+    <date name="Ash Wednesday" type="religious" value="> easter(y) - 46" />
     <date name="Passover" value="2005/4/24" type="religious" />
     <date name="Passover" value="2006/4/13" type="religious" />
     <date name="Passover" value="2007/4/03" type="religious" />

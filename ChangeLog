@@ -1,4 +1,8 @@
 2007-10-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: changed exp eval char to '>'
+	* src/plugins/holidays.xml: added easter and ash wed eval's
+
+2007-10-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/gen/lib/date.py: added method Date.offset(value) -> (y,m,d)
 
 2007-10-16  Don Allingham  <don@gramps-project.org>
