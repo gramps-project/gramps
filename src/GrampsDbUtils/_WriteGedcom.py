@@ -432,7 +432,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         state = owner.get_state()
         ctry = owner.get_country()
         post = owner.get_postal_code()
-        phon = owner.get_phon()
+        phon = owner.get_phone()
         mail = owner.get_email()
 
         if not name : 

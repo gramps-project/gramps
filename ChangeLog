@@ -1,3 +1,6 @@
+2007-10-17 Benny Malengier <benny.malengier@gramps-project.org> 
+	* src/GrampsDbUtils/_WriteGedcom.py: bug get_phon must be get_phone
+
 2007-10-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: changed exp eval char to '>'
 	* src/plugins/holidays.xml: added easter and ash wed eval's
