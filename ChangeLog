@@ -1,3 +1,6 @@
+2007-10-18  Stephane Charette <stephanecharette@gmail.com>
+	* configure.in: release 2.2.9, update version string to 2.2.10
+
 2007-10-17  Stephane Charette <stephanecharette@gmail.com>
 	* NEWS: describe version 2.2.9
 	* configure.in: version 2.2.9
