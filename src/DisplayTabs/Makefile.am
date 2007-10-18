@@ -28,6 +28,7 @@ pkgdata_PYTHON = \
 	_MediaBackRefList.py \
 	_NameEmbedList.py \
 	_NameModel.py \
+	_NoteBackRefList.py \
 	_NoteTab.py \
 	_NoteModel.py \
 	_TextTab.py \

@@ -149,6 +149,7 @@ src/DisplayTabs/_LocationModel.py
 src/DisplayTabs/_MediaBackRefList.py
 src/DisplayTabs/_NameEmbedList.py
 #src/DisplayTabs/_NameModel.py
+src/DisplayTabs/_NoteBackRefList.py
 src/DisplayTabs/_NoteTab.py
 src/DisplayTabs/_TextTab.py
 src/DisplayTabs/_PersonEventEmbedList.py

@@ -47,6 +47,7 @@ from _LdsEmbedList import LdsEmbedList
 from _LocationEmbedList import LocationEmbedList
 from _MediaBackRefList import MediaBackRefList
 from _NameEmbedList import NameEmbedList
+from _NoteBackRefList import NoteBackRefList
 from _NoteTab import NoteTab
 from _TextTab import TextTab
 from _PersonEventEmbedList import PersonEventEmbedList

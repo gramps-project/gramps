@@ -1,4 +1,13 @@
 2007-10-18  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/__init__.py: add note backref
+	* src/glade/gramps.glade: add notebook to note editor to show backref
+	* src/DisplayTabs/_NoteTab.py: import editnote in method to avoid import loop
+	* src/Editors/_EditNote.py: add notetab of backreferences
+	* src/DisplayTabs/_NoteBackRefList.py: note backreferences list
+	* src/DisplayTabs/Makefile.am: new backref file
+	* po/POTFILES.in: new backref file
+
+2007-10-18  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/DisplayModels/_BaseModel.py: remove comments
 	* src/DisplayModels/_NoteModel.py: show all notes again in note view
 

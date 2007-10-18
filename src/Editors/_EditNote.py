@@ -46,6 +46,7 @@ import Config
 import GrampsDisplay
 import MarkupText
 from _EditPrimary import EditPrimary
+from DisplayTabs import NoteBackRefList
 from GrampsWidgets import *
 from gen.lib import Note
 
@@ -185,7 +186,25 @@ class EditNote(EditPrimary):
         self.define_ok_button(self.top.get_widget('ok'),self.save)
         self.define_cancel_button(self.top.get_widget('cancel'))
         self.define_help_button(self.top.get_widget('help'), '')
+    
+    def _create_tabbed_pages(self):
+        """
+        Creates the notebook tabs and inserts them into the main
+        window.
+        """
+        notebook = self.top.get_widget("note_notebook")
         
+        self.backref_tab = self._add_tab(
+            notebook,
+            NoteBackRefList(self.dbstate, self.uistate, self.track,
+                            self.dbstate.db.find_backlink_handles(
+                                                            self.obj.handle))
+                                        )
+        
+        self._setup_notebook_tabs( notebook)
+        
+        notebook.show_all()
+
     def build_interface(self):
         FORMAT_TOOLBAR = '''
         <ui>

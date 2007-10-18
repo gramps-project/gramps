@@ -46,7 +46,6 @@ import gen.lib
 from DisplayTabs import log
 from _NoteModel import NoteModel
 from _EmbeddedList import EmbeddedList
-from Editors import EditNote
 from DdTargets import DdTargets
 
 #-------------------------------------------------------------------------
@@ -108,6 +107,7 @@ class NoteTab(EmbeddedList):
         if self.notetype :
             note.set_type(self.notetype)
         try:
+            from Editors import EditNote
             EditNote(self.dbstate, self.uistate, self.track, 
                             note, self.add_callback,
                             self.callertitle, extratype = [self.notetype])
@@ -124,6 +124,7 @@ class NoteTab(EmbeddedList):
         if handle:
             note = self.dbstate.db.get_note_from_handle(handle)
             try:
+                from Editors import EditNote
                 EditNote(self.dbstate, self.uistate, self.track, note,
                         self.edit_callback, self.callertitle,
                         extratype = [self.notetype] )
