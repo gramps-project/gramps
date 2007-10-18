@@ -1,3 +1,16 @@
+Version 2.2.9 -- the "Here's your ninepence" release
+* Many bug fixes & translation update (especially reports)
+* Brazilian Portugese translation (Luiz)
+* Slovenian translation (Bernard)
+* Polish Date module (Piotr)
+* correction of incomplete export to .gramps:  export of media
+  subsection (Benny), datespan support (Alex), bookmark save,
+  keep grampsid number on import (Benny)
+* Some new filters and resolved filter issues (Alex, Brian)
+* Rewrite of the Remove Unused tool (Alex)
+* Critical bookmark bug (James, Benny)
+* Critical gallery bug, with additional Check & Repair functions (Benny)
+
 Version 2.2.8 -- the "You sons of a silly person" release
 * Bug fixes
 

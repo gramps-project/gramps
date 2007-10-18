@@ -1,3 +1,7 @@
+2007-10-17  Stephane Charette <stephanecharette@gmail.com>
+	* NEWS: describe version 2.2.9
+	* configure.in: version 2.2.9
+
 2007-10-16  Stephane Charette <stephanecharette@gmail.com>
 	* src/plugins/rel_nl.py: wrong linebreaks in previous commit!
 
