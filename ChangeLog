@@ -1,3 +1,7 @@
+2007-10-18  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/DisplayModels/_BaseModel.py: remove comments
+	* src/DisplayModels/_NoteModel.py: show all notes again in note view
+
 2007-10-17 Benny Malengier <benny.malengier@gramps-project.org> 
 	* src/GrampsDbUtils/_WriteGedcom.py: bug get_phon must be get_phone
 
