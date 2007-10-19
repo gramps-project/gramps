@@ -388,7 +388,7 @@ class NameDisplay:
             match_pattern = mat.group(0) # the matching pattern
             # prefix, code, suffix:
             p, code, s = re.split("%(.)", match_pattern)
-            field = d[code][0]
+            field = d[code.lower()][0]
             if code.isupper():
                 field += ".upper()"
             if p == '' and s == '':

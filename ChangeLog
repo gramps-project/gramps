@@ -1,3 +1,6 @@
+2007-10-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/BasicUtils/_NameDisplay.py: bug in making patterns with uppercase
+
 2007-10-18  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/__init__.py: add note backref
 	* src/glade/gramps.glade: add notebook to note editor to show backref
