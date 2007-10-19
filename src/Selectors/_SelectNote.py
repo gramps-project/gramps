@@ -51,7 +51,7 @@ class SelectNote(BaseSelector):
     """
 
     def get_window_title(self):
-        return _("Select General Note")
+        return _("Select Note")
         
     def get_model_class(self):
         return NoteModel

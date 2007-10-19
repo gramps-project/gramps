@@ -56,11 +56,13 @@ from DdTargets import DdTargets
 class NoteTab(EmbeddedList):
 
     _HANDLE_COL = 2
+    _DND_TYPE = DdTargets.NOTE_LINK
 
     _MSG = {
         'add'   : _('Create and add a new note'),
         'del'   : _('Remove the existing note'),
         'edit'  : _('Edit the selected note'),
+        'share' : _('Add an existing note'),
         'up'    : _('Move the selected note upwards'),
         'down'  : _('Move the selected note downwards'),
     }
@@ -76,19 +78,7 @@ class NoteTab(EmbeddedList):
         self.callertitle = callertitle
         self.notetype = notetype
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _("Notes"), NoteModel, move=True)
-        
-        self.tree.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                [DdTargets.NOTE_LINK.target()], 
-                                gtk.gdk.ACTION_COPY)
-        self.tree.connect('drag_data_received', self.on_drag_data_received)
-
-    def on_drag_data_received(self, widget, context, x, y,
-                              selection, info, time):
-        """Insert the received note to the note list of current object.
-        """
-        (drag_type, idval, obj, val) = pickle.loads(selection.data)
-        self.add_callback(obj)
+                              _("Notes"), NoteModel, share=True, move=True)
 
     def get_editor(self):
         pass
@@ -130,7 +120,16 @@ class NoteTab(EmbeddedList):
                         extratype = [self.notetype] )
             except Errors.WindowActiveError:
                 pass
-                
+    
+    def share_button_clicked(self, obj):
+        from Selectors import selector_factory
+        SelectNote = selector_factory('Note')
+
+        sel = SelectNote(self.dbstate,self.uistate,self.track)
+        note = sel.run()
+        if note:
+            self.add_callback(note.handle)
+    
     def get_icon_name(self):
         return 'gramps-notes'
 

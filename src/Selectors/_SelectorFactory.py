@@ -44,6 +44,9 @@ def selector_factory(classname):
     elif classname == 'Repository':
         from _SelectRepository import SelectRepository
         cls = SelectRepository
+    elif classname == 'Note':
+        from _SelectNote import SelectNote
+        cls = SelectNote
     else:
         raise SelectorException("Attempt to create unknown "
                                 "selector class: "

@@ -1,3 +1,10 @@
+2007-10-19  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_EmbeddedList.py: traceback to console on ErrorDialog
+	* src/DisplayTabs/_NoteTab.py:
+	* src/Selectors/_SelectNote.py:
+	* src/Selectors/_SelectorFactory.py:
+	Share button on notetab, enable note selector, normal drag and drop
+
 2007-10-19  Gary Burton <gary.burton@zen.co.uk>
 	* src/DisplayTabs/_EmbeddedList.py:
 	* src/DisplayTabs/_ButtonTab.py:

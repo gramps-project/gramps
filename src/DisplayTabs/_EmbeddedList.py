@@ -406,6 +406,8 @@ class EmbeddedList(ButtonTab):
             self.model = self.build_model(self.get_data(), self.dbstate.db)
         except AttributeError, msg:
             from QuestionDialog import RunDatabaseRepair
+            import traceback
+            traceback.print_exc()
             RunDatabaseRepair(str(msg))
             return
 
