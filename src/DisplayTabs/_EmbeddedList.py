@@ -311,6 +311,7 @@ class EmbeddedList(ButtonTab):
         self.tree.set_reorderable(True)
         self.tree.set_rules_hint(True)
         self.tree.connect('button_press_event', self.double_click)
+        self.tree.connect('key_press_event', self.key_pressed)
 
         # create the scrolled window, and attach the treeview
         scroll = gtk.ScrolledWindow()
