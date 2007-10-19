@@ -1634,7 +1634,7 @@
 	      <child>
 		<widget class="GtkEntry" id="longitude">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">East/West position, eg -2.88589, 2°53'9.23&quot; W or -2:53:9.23</property>
+		  <property name="tooltip" translatable="yes">East/West position, eg -2.88589, 2°53'9.23&quot;W or -2:53:9.23</property>
 		  <property name="can_focus">True</property>
 		  <property name="editable">True</property>
 		  <property name="visibility">True</property>

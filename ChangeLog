@@ -1,3 +1,6 @@
+2007-10-19  Frank S. Thomas  <frank@thomas-alfeld.de>
+	* src/glade/gramps.glade: Remove extra space.
+
 2007-10-18  Stephane Charette <stephanecharette@gmail.com>
 	* configure.in: release 2.2.9, update version string to 2.2.10
 
