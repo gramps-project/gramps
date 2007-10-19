@@ -1,3 +1,8 @@
+2007-10-19  Gary Burton <gary.burton@zen.co.uk>
+	* src/DisplayTabs/_EmbeddedList.py:
+	* src/DisplayTabs/_ButtonTab.py:
+	ENTER is edit on embedded lists, issue #1296
+
 2007-10-19  Frank S. Thomas  <frank@thomas-alfeld.de>
 	* src/glade/gramps.glade: Remove extra space.
 

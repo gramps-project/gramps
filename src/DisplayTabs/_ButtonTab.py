@@ -43,6 +43,9 @@ from GrampsWidgets import SimpleButton
 from _GrampsTab import GrampsTab
 import Errors
 
+_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_RETURN = gtk.gdk.keyval_from_name("Return")
+
 #-------------------------------------------------------------------------
 #
 # Classes
@@ -125,6 +128,18 @@ class ButtonTab(GrampsTab):
         the Edit button handler is called
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            try:
+                self.edit_button_clicked(obj)
+            except Errors.WindowActiveError:
+                pass
+
+    def key_pressed(self, obj, event):
+        """
+        Handles the return key being pressed on list. If the key is pressed,
+        the Edit button handler is called
+        """
+        if event.type == gtk.gdk.KEY_PRESS and \
+            event.keyval in (_RETURN, _KP_ENTER):
             try:
                 self.edit_button_clicked(obj)
             except Errors.WindowActiveError:
