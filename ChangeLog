@@ -1,4 +1,8 @@
 2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_BackRefModel.py: allow repository in backref (backref of note)
+	* src/DisplayTabs/_BackRefList.py: allow edit of repository from backrefs
+
+2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>
 	* README: gramps 3.0 requires python 2.5
 
 2007-10-19  Benny Malengier  <benny.malengier@gramps-project.org>

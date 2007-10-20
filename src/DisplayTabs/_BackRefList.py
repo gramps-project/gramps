@@ -165,3 +165,11 @@ class BackRefList(EmbeddedList):
                 EditEvent(self.dbstate, self.uistate, [], event)
             except Errors.WindowActiveError:
                 pass
+        elif reftype == 'Repository':
+            try:
+                from Editors import EditRepository
+                
+                repo = self.dbstate.db.get_repository_from_handle(ref)
+                EditRepository(self.dbstate, self.uistate, [], repo)
+            except Errors.WindowActiveError:
+                pass

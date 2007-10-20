@@ -87,6 +87,11 @@ class BackRefModel(gtk.ListStore):
                 name = p.get_title()
                 gid = p.gramps_id
                 handle = p.handle
+            elif dtype == 'Repository':
+                p = self.db.get_repository_from_handle(ref[1])
+                name = p.get_name()
+                gid = p.gramps_id
+                handle = p.handle
             else:
                 p = self.db.get_object_from_handle(ref[1])
                 name = p.get_description()
