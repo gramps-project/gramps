@@ -5,7 +5,7 @@ If building from source, also read the INSTALL file (at least through the
 Requirements
 --------------------------------
 The following packages *MUST* be installed in order for Gramps to work:
-   Python 2.4 or greater
+   Python 2.5 or greater
    PyGTK2 2.10 or greater
    Python Glade bindings 
    librsvg2 (svg icon view)

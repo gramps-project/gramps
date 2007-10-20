@@ -1,3 +1,6 @@
+2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>
+	* README: gramps 3.0 requires python 2.5
+
 2007-10-19  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_EmbeddedList.py: traceback to console on ErrorDialog
 	* src/DisplayTabs/_NoteTab.py:
