@@ -1938,7 +1938,7 @@ class IndividualPage(BasePage):
                         % (evt_name, event_ref.get_role()))
 
                 of.write('<td class="data">\n')
-                of.write(self.format_event(event))
+                of.write(self.format_event(event, event_ref))
                 of.write('</td>\n')
                 of.write('</tr>\n')
         of.write('</table>\n')
@@ -2163,7 +2163,7 @@ class IndividualPage(BasePage):
             of.write('<tr><td>&nbsp;</td>\n')
             of.write('<td class="field">%s</td>\n' % evtType)
             of.write('<td class="data">\n')
-            of.write(self.format_event(event))
+            of.write(self.format_event(event, event_ref))
             of.write('</td>\n</tr>\n')
         for attr in family.get_attribute_list():
             attrType = str(attr.get_type())
@@ -2216,7 +2216,7 @@ class IndividualPage(BasePage):
                     self.pedigree_person(of,child)
                 of.write('</div>\n')
 
-    def format_event(self,event):
+    def format_event(self,event,event_ref):
         lnk = (self.cur_name, self.page_title, self.gid)
         descr = event.get_description()
         place_handle = event.get_place_handle()
@@ -2254,8 +2254,19 @@ class IndividualPage(BasePage):
             text = '\n'
         text += self.get_citation_links( event.get_source_references() )
 
-        # if the event has a note attached to it, get the text and format it correctly
+        # if the event or event reference has a attributes attached to it,
+        # get the text and format it correctly
+        attr_list = event.get_attribute_list()
+        attr_list.extend(event_ref.get_attribute_list())
+        for attr in attr_list:
+            text += _("<br>%(type)s: %(value)s") % {
+                'type'     : attr.get_type(),
+                'value'    : attr.get_value() }
+
+        # if the event or event reference has a note attached to it,
+        # get the text and format it correctly
         notelist = event.get_note_list()
+        notelist.extend(event_ref.get_note_list())
         for notehandle in notelist:
             nobj = self.db.get_note_from_handle(notehandle)
             if nobj:
@@ -2268,14 +2279,6 @@ class IndividualPage(BasePage):
                         text += u"<p>"
                         text += u"<br>".join(note_text.split("\n"))
                         text += u"</p>"
-                        
-        # if the event has a attributes attached to it, get the text and format
-        # it correctly
-        for attr in event.get_attribute_list():
-            text += _("<p>%(type)s: %(value)s</p>") % {
-                'type'     : attr.get_type(),
-                'value'    : attr.get_value() }
-
         return text
     
     def get_citation_links(self, source_ref_list):
