@@ -1,4 +1,7 @@
 2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/gramps_main.py: terminate if wrong python version
+
+2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_BackRefModel.py: allow repository in backref (backref of note)
 	* src/DisplayTabs/_BackRefList.py: allow edit of repository from backrefs
 

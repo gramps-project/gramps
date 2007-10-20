@@ -206,8 +206,23 @@ class Gramps:
     There can be only one instance of this class per gramps application
     process. It may spawn several windows and control several databases.
     """
-
+    
+    MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
+    
     def __init__(self, args):
+        stopload = False
+        import sys
+        if not sys.version_info >= Gramps.MIN_PYTHON_VERSION :
+            ErrorDialog(_("Wrong Python version"), 
+                        _("Your Python version does not meet the "
+                          "requirements. At least python %d.%d.%d is needed to"
+                          " start GRAMPS.\n\n"
+                          "GRAMPS will terminate now.") % (
+                                                Gramps.MIN_PYTHON_VERSION[0], 
+                                                Gramps.MIN_PYTHON_VERSION[1],
+                                                Gramps.MIN_PYTHON_VERSION[2]))
+            gtk.main_quit()
+            stopload = True
         try:
             build_user_paths()
             self.welcome()    
@@ -219,6 +234,7 @@ class Gramps:
                           "was incomplete. Make sure the GConf schema "
                           "of GRAMPS is properly installed."))
             gtk.main_quit()
+            stopload = True
         except:
             log.error("Error reading configuration.", exc_info=True)
             
@@ -230,6 +246,7 @@ class Gramps:
                           "of GRAMPS are properly installed.")
                         % const.APP_GRAMPS)
             gtk.main_quit()
+            stopload = True
 
         register_stock_icons()
         
@@ -238,6 +255,9 @@ class Gramps:
         for view in DataViews.get_views():
             self.vm.register_view(view)
 
+        if stopload:
+            return
+        
         self.vm.init_interface()
 
         # Depending on the nature of this session, 
