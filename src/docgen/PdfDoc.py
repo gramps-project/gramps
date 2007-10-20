@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -365,7 +365,7 @@ class PdfDoc(BaseDoc.BaseDoc):
             global _pil_warn
             if _pil_warn:
                 ErrorDialog(
-                   _("You do not have the Python Imaging Library installed "
+                   _("You do not have the Python Imaging Library installed. "
                      "Images will not be added to this report"))
                 _pil_warn = False
             return

@@ -1,3 +1,6 @@
+2007-10-19  Piotr Czubaszek  <pioterus@gmail.com>
+	* src/docgen/PdfDoc.py (PdfDoc.add_media_object): Missing period.
+
 2007-10-19  Gary Burton <gary.burton@zen.co.uk>
 	* src/DisplayTabs/_EmbeddedList.py:
 	* src/DisplayTabs/_ButtonTab.py:
