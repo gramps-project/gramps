@@ -1,4 +1,8 @@
 2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>
+	* src/gramps_main.py: if error and terminate, don't show family manager before exit
+	* src/gramps.py: terminate if wrong python version
+
+2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>
 	* src/gramps_main.py: terminate if wrong python version
 
 2007-10-20  Benny Malengier  <benny.malengier@gramps-project.org>

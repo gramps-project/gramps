@@ -92,6 +92,23 @@ gettext.install("gramps",loc,unicode=1)
 
 #-------------------------------------------------------------------------
 #
+# Minimum version check
+#
+#-------------------------------------------------------------------------
+
+MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
+if not sys.version_info >= MIN_PYTHON_VERSION :
+    print gettext.gettext("Your Python version does not meet the "
+                  "requirements. At least python %d.%d.%d is needed to"
+                  " start GRAMPS.\n\n"
+                  "GRAMPS will terminate now.") % (
+                                        MIN_PYTHON_VERSION[0], 
+                                        MIN_PYTHON_VERSION[1],
+                                        MIN_PYTHON_VERSION[2])
+    sys.exit(1)
+
+#-------------------------------------------------------------------------
+#
 # gramps libraries
 #
 #-------------------------------------------------------------------------

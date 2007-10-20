@@ -207,22 +207,8 @@ class Gramps:
     process. It may spawn several windows and control several databases.
     """
     
-    MIN_PYTHON_VERSION = (2, 5, 0, '', 0)
-    
     def __init__(self, args):
         stopload = False
-        import sys
-        if not sys.version_info >= Gramps.MIN_PYTHON_VERSION :
-            ErrorDialog(_("Wrong Python version"), 
-                        _("Your Python version does not meet the "
-                          "requirements. At least python %d.%d.%d is needed to"
-                          " start GRAMPS.\n\n"
-                          "GRAMPS will terminate now.") % (
-                                                Gramps.MIN_PYTHON_VERSION[0], 
-                                                Gramps.MIN_PYTHON_VERSION[1],
-                                                Gramps.MIN_PYTHON_VERSION[2]))
-            gtk.main_quit()
-            stopload = True
         try:
             build_user_paths()
             self.welcome()    
@@ -256,6 +242,8 @@ class Gramps:
             self.vm.register_view(view)
 
         if stopload:
+            # We stop further loading so family tree manager is not shown
+            # before the exit of GRAMPS
             return
         
         self.vm.init_interface()
