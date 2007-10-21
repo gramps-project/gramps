@@ -269,7 +269,7 @@ class SimpleBookTitleOptions(ReportOptions):
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set(pad=0.5)
         para.set_description(_('The style used for the title of the page.'))
-        default_style.add_style("SBT-Title",para)
+        default_style.add_paragraph_style("SBT-Title",para)
     
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -279,7 +279,7 @@ class SimpleBookTitleOptions(ReportOptions):
         para.set(pad=0.5)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the subtitle.'))
-        default_style.add_style("SBT-Subtitle",para)
+        default_style.add_paragraph_style("SBT-Subtitle",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=1)
@@ -289,7 +289,7 @@ class SimpleBookTitleOptions(ReportOptions):
         para.set(pad=0.5)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the footer.'))
-        default_style.add_style("SBT-Footer",para)
+        default_style.add_paragraph_style("SBT-Footer",para)
 
 #------------------------------------------------------------------------
 #

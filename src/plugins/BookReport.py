@@ -1066,7 +1066,9 @@ class BookReportDialog(ReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,
-                               BaseDoc.PaperStyle(self.paper,self.orien),
+                               BaseDoc.PaperStyle(self.paper_size,
+                                                  self.paper_orientation,
+                                                  *self.paper_margins),
                                self.template_name)
 
         self.rptlist = []

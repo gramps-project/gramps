@@ -1,3 +1,7 @@
+2007-10-20  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/BookReport.py: Get book report working again.
+	* src/plugins/SimpleBookTitle.py: Get title page working again.
+
 2007-10-20  Gary Burton  <gary.burton@zen.co.uk>
 	* src/plugins/NarrativeWeb.py: display event reference notes and attributes
 
