@@ -1,3 +1,8 @@
+2007-10-21 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditPerson.py: If a family changes, rebuild family backref of all 
+	open editors. issue #1309, causing corrupt database.
+	Also remove unneeded associations rebuild when family changes
+
 2007-10-20  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_BareReportDialog.py:
 	* src/plugins/WebCal.py:

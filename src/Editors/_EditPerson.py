@@ -172,19 +172,26 @@ class EditPerson(EditPrimary):
         self._add_db_signal('family-add', self.family_change)
 
     def family_change(self, handle_list):
-        flist = self.obj.get_family_handle_list() + self.obj.get_parent_family_handle_list()
-        for handle in handle_list:
-            if handle in flist:
-                self._update_families()
-                return
+        """Callback for family change signals. This should rebuild the 
+           backreferences to family in person when:
+            1)a family the person is parent of changes. Person could have 
+              been removed
+            2)a family the person is child in changes. Child could have been 
+              removed
+            3)a family is changed. The person could be added as child or
+              parent
+        """
+        #As this would be an extensive check, we choose the easy path and
+        #   rebuild family backreferences on all family changes
+        
+        self._update_families()
 
     def _update_families(self):
         phandle = self.obj.get_handle()
         person = self.dbstate.db.get_person_from_handle(phandle)
         self.obj.set_family_handle_list(person.get_family_handle_list())
-        self.obj.set_parent_family_handle_list(person.get_parent_family_handle_list())
-        self.person_ref_list.data = self.obj.get_person_ref_list()
-        self.person_ref_list.rebuild()
+        self.obj.set_parent_family_handle_list(
+                                        person.get_parent_family_handle_list())
 
     def _setup_fields(self):
         """
