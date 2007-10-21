@@ -1,3 +1,6 @@
+2007-10-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: select first/last marriage for maiden name
+
 2007-10-21 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_EmbeddedList.py: during rebuild, don't do select change
 	* src/DisplayTabs/_NoteTab.py: connect db note changes so tab updates

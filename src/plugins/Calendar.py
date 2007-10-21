@@ -151,6 +151,7 @@ class Calendar(Report):
         for n in names:
             if int(n.get_type()) == gen.lib.NameType.MARRIED:
                 married_name = n
+                break # use first
         # Now, decide which to use:
         if maiden_name != None:
             if married_name != None:
@@ -325,11 +326,14 @@ class Calendar(Report):
                 age = self.year - year
                 # add some things to handle maiden name:
                 father_lastname = None # husband, actually
-                if self.maiden_name == 'spouse': # get husband's last name:
+                if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
                     if person.get_gender() == gen.lib.Person.FEMALE:
                         family_list = person.get_family_handle_list()
                         if len(family_list) > 0:
-                            fhandle = family_list[0] # first is primary
+                            if self.maiden_name == 'spouse_first':
+                                fhandle = family_list[0]
+                            else:
+                                fhandle = family_list[-1]
                             fam = self.database.get_family_from_handle(fhandle)
                             father_handle = fam.get_father_handle()
                             mother_handle = fam.get_mother_handle()
@@ -350,7 +354,8 @@ class Calendar(Report):
                     if father_handle == person.get_handle():
                         spouse_handle = mother_handle
                     else:
-                        continue # with next person if this was the marriage event
+                        continue # with next person if the father is not "person"
+                                 # this will keep from duplicating the anniversary
                     if spouse_handle:
                         spouse = self.database.get_person_from_handle(spouse_handle)
                         if spouse:
@@ -486,7 +491,8 @@ class CalendarOptions(MenuOptions):
 
         maiden_name = EnumeratedListOption(_("Birthday surname"),
                                            ("own", _("Wives use their own surname")))
-        maiden_name.add_item("spouse", _("Wives use husband's surname"))
+        maiden_name.add_item("spouse_first", _("Wives use husband's surname (from first family listed)"))
+        maiden_name.add_item("spouse_last", _("Wives use husband's surname (from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name,"maiden_name", maiden_name)
