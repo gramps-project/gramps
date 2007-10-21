@@ -1,3 +1,12 @@
+
+2007-10-21 Jim Sack <jgsack@san.rr.com>
+	* src/ansel_utf8.py: (see tracker issue #831) fix inoperative
+	Gedcom/ANSEL input & output somewhat following pattern of robocoder
+	patch, but with data corrections, additions, and testing. Rewrote code
+	functions ansel_to_utf8 and utf8_to_ansel. Added note that utf8
+	references (including function names) should be changed to unicode.
+	(This changelog accounts for the r9227 commit)
+
 2007-10-21 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditPerson.py: If a family changes, rebuild family backref of all 
 	open editors. issue #1309, causing corrupt database.
