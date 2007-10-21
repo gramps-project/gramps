@@ -90,6 +90,7 @@ class ButtonTab(GrampsTab):
         @param move_buttons: Add up and down button to the Notebook tab or not
         @type name: bool
         """
+        self.dirty_selection = False
         GrampsTab.__init__(self,dbstate, uistate, track, name)
         self.tooltips = gtk.Tooltips()
         self.create_buttons(share_button, move_buttons, jump_button)
@@ -237,6 +238,10 @@ class ButtonTab(GrampsTab):
         """
         # Comparing to None is important, as empty strings
         # and 0 can be returned
+        # This method is called as callback on change, and can be called 
+        # explicitly, dirty_selection must make sure they do not interact
+        if self.dirty_selection:
+            return
         if self.get_selected() != None:
             self.edit_btn.set_sensitive(True)
             if self.jump_btn:

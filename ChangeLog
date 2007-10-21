@@ -1,4 +1,13 @@
 2007-10-21 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_EmbeddedList.py: during rebuild, don't do select change
+	* src/DisplayTabs/_NoteTab.py: connect db note changes so tab updates
+	* src/DisplayTabs/_ButtonTab.py: avoid double call of selection_change
+	* src/DisplayTabs/_GrampsTab.py: method to add db connects, and set connects
+	* src/Editors/_EditPrimary.py: on add tab pass db connection method
+	* src/Editors/_EditSecondary.py: on add tab pass db connection method
+	* src/Editors/_EditReference.py: on add tab pass db connection method
+
+2007-10-21 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditPerson.py: If a family changes, rebuild family backref of all 
 	open editors. issue #1309, causing corrupt database.
 	Also remove unneeded associations rebuild when family changes

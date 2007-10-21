@@ -402,6 +402,8 @@ class EmbeddedList(ButtonTab):
         Rebuilds the data in the database by creating a new model,
         using the build_model function passed at creation time.
         """
+        #during rebuild, don't do _selection_changed
+        self.dirty_selection = True
         try:
             self.model = self.build_model(self.get_data(), self.dbstate.db)
         except AttributeError, msg:
@@ -413,4 +415,6 @@ class EmbeddedList(ButtonTab):
 
         self.tree.set_model(self.model)
         self._set_label()
+        #model and tree are reset, allow _selection_changed again, and force it
+        self.dirty_selection = False
         self._selection_changed()

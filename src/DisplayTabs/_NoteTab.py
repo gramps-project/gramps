@@ -80,6 +80,12 @@ class NoteTab(EmbeddedList):
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _("Notes"), NoteModel, share=True, move=True)
 
+    def connect_db_signals(self):
+        #connect external remove/change of object to rebuild of grampstab
+        self._add_db_signal('note-delete', self.note_delete)
+        self._add_db_signal('note-rebuild', self.rebuild)
+        self._add_db_signal('note-update',self.note_update)
+
     def get_editor(self):
         pass
 
@@ -116,7 +122,7 @@ class NoteTab(EmbeddedList):
             try:
                 from Editors import EditNote
                 EditNote(self.dbstate, self.uistate, self.track, note,
-                        self.edit_callback, self.callertitle,
+                        callertitle = self.callertitle,
                         extratype = [self.notetype] )
             except Errors.WindowActiveError:
                 pass
@@ -132,7 +138,29 @@ class NoteTab(EmbeddedList):
     
     def get_icon_name(self):
         return 'gramps-notes'
-
-    def edit_callback(self, name):
-        self.changed = True
-        self.rebuild()
+        
+    def note_delete(self, del_note_handle_list):
+        """
+        Outside of this tab note objects have been deleted. Check if tab
+        and object must be changed.
+        Note: delete of object will cause reference on database to be removed,
+              so this method need not do this
+        """
+        rebuild = False
+        for handle in del_note_handle_list :
+            while self.data.count(handle) > 0:
+                self.data.remove(handle)
+                rebuild = True
+        if rebuild:
+            self.rebuild()
+                
+    def note_update(self, upd_note_handle_list):
+        """
+        Outside of this tab note objects have been updated. Check if tab
+        and object must be updated.
+        """
+        ref_handles = self.data
+        for handle in upd_note_handle_list :
+            if handle in self.data:
+                self.rebuild()
+                break
