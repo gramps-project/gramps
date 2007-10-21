@@ -148,7 +148,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.setup_target_frame()
         self.setup_format_frame()
         self.setup_style_frame()
-        #self.setup_output_notebook()
         
         self.notebook = gtk.Notebook()
         self.notebook.set_border_width(6)
@@ -435,10 +434,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         pass
 
     def setup_html_frame(self):
-        """Not used in bare report dialogs. Override in the subclass."""
-        pass
-
-    def setup_output_notebook(self):
         """Not used in bare report dialogs. Override in the subclass."""
         pass
     

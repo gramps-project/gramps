@@ -1,4 +1,13 @@
 2007-10-20  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_BareReportDialog.py:
+	* src/plugins/WebCal.py:
+	* src/plugins/NarrativeWeb.py:
+	* src/plugins/FamilyLines.py:
+	* src/ReportBase/_ReportDialog.py:
+	Remove unused funtions setup_output_notebook and setup_post_process from
+	the ReportDialog class.
+
+2007-10-20  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/BookReport.py: Get book report working again.
 	* src/plugins/SimpleBookTitle.py: Get title page working again.
 

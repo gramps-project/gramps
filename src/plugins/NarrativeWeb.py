@@ -3031,12 +3031,6 @@ class WebReportDialog(ReportDialog):
     def setup_format_frame(self):
         """Do nothing, since we don't want a format frame (NWEB only)"""
         pass
-    
-    def setup_post_process(self):
-        """The format frame is not used in this dialog.  Hide it, and
-        set the output notebook to always display the html template
-        page."""
-        pass
 
     def parse_format_frame(self):
         """The format frame is not used in this dialog."""

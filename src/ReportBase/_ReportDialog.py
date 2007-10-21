@@ -89,10 +89,6 @@ class ReportDialog(BareReportDialog):
         BareReportDialog.init_interface(self)
         if self.format_menu:
             self.doc_type_changed(self.format_menu)
-        self.setup_post_process()
-
-    def setup_post_process(self):
-        pass
 
     def setup_center_person(self):
         pass
@@ -304,15 +300,6 @@ class ReportDialog(BareReportDialog):
                 base = self.get_default_basename()
                 spath = os.path.normpath("%s/%s%s" % (spath,base,ext))
                 self.target_fileentry.set_filename(spath)
-
-    def setup_output_notebook(self):
-        """Set up the output notebook of the dialog.
-        
-        This sole purpose of this function is to grab a pointer for later
-        use in the callback from when the file format is changed.
-        
-        """
-        pass
 
     def size_changed(self, obj):
         """Paper size combobox 'changed' callback."""
