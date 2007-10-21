@@ -20,321 +20,376 @@
 
 # $Id$
 
+# ANSEL references:
+#  http://lcweb2.loc.gov/diglib/codetables/45.html
+#  http://www.gymel.com/charsets/ANSEL.html
+
+# Note that cStringIO stores 8-bit strings (bytes not unicode)
+# utf8 will do, since that looks just like bytes 
 import cStringIO
 
+# list of ANSEL codes that replicate ASCII
+# note that DEL (127=0x7F) is a control char
+# Note: spec allows control-chars that Gramps probably doesn't use
+#  but 10=0x0A _is_ needed (!)
+# ---
+# Also: there are two additional control chars 0x98,0x9c (unicode same)
+#  which we also ignore for now (start/emd of string (or sort sequence)
+# ---
+# TODO: should we allow TAB, as a Gramps extension?
+_printable_ascii = map(chr, range(32,127)) # note: up thru 126
+_use_ASCII = map(chr, [10, 27, 29 ,30, 31]) + _printable_ascii
+
+# mappings of single byte ANSEL codes to unicode
 _onebyte = {
-    '\x8D' : u'\x20\x0D', '\x8E' : u'\x20\x0C', '\xA1' : u'\x01\x41',
-    '\xA2' : u'\xD8',     '\xA3' : u'\xD0',     '\xA4' : u'\xDE',
-    '\xA5' : u'\xC6',     '\xA6' : u'\x01\x52', '\xA7' : u'\x02\xB9',
-    '\xA8' : u'\xB7',     '\xA9' : u'\x26\x6D', '\xAA' : u'\xAE',
-    '\xAB' : u'\xB1',     '\xAC' : u'\x01\xA0', '\xAD' : u'\x01\xAF',
-    '\xAE' : u'\x02\xBE', '\xB0' : u'\x02\xBF', '\xB1' : u'\x01\x42',
-    '\xB2' : u'\xF8',     '\xB3' : u'\x01\x11', '\xB4' : u'\xFE',
-    '\xB5' : u'\xE6',     '\xB6' : u'\x01\x53', '\xB7' : u'\x02\xBA',
-    '\xB8' : u'\x01\x31', '\xB9' : u'\xA3',     '\xBA' : u'\xF0',
-    '\xBC' : u'\x01\xA1', '\xBD' : u'\x01\xB0', '\xC0' : u'\xB0',
-    '\xC1' : u'\x21\x13', '\xC2' : u'\x21\x17', '\xC3' : u'\xA9',
-    '\xC4' : u'\x26\x6F', '\xC5' : u'\xBF',     '\xC6' : u'\xA1',
-    '\xCF' : u'\xDF',     '\xE0' : u'\x03\x09', '\xE1' : u'\x03',
-    '\xE2' : u'\x03\x01', '\xE3' : u'\x03\x02', '\xE4' : u'\x03\x03',
-    '\xE5' : u'\x03\x04', '\xE6' : u'\x03\x06', '\xE7' : u'\x03\x07',
-    '\xE9' : u'\x03\x0C', '\xEA' : u'\x03\x0A', '\xEB' : u'\xFE\x20',
-    '\xEC' : u'\xFE\x21', '\xED' : u'\x03\x15', '\xEE' : u'\x03\x0B',
-    '\xEF' : u'\x03\x10', '\xF0' : u'\x03\x27', '\xF1' : u'\x03\x28',
-    '\xF2' : u'\x03\x23', '\xF3' : u'\x03\x24', '\xF4' : u'\x03\x25',
-    '\xF5' : u'\x03\x33', '\xF6' : u'\x03\x32', '\xF7' : u'\x03\x26',
-    '\xF8' : u'\x03\x1C', '\xF9' : u'\x03\x2E', '\xFA' : u'\xFE\x22',
-    '\xFB' : u'\xFE\x23', '\xFE' : u'\x03\x13',
+     '\xA1' : u'\u0141',   '\xA2' : u'\u00d8',   '\xA3' : u'\u0110',   
+     '\xA4' : u'\u00de',   '\xA5' : u'\u00c6',   '\xA6' : u'\u0152',   
+     '\xA7' : u'\u02b9',   '\xA8' : u'\u00b7',   '\xA9' : u'\u266d',   
+     '\xAA' : u'\u00ae',   '\xAB' : u'\u00b1',   '\xAC' : u'\u01a0',   
+     '\xAD' : u'\u01af',   '\xAE' : u'\u02be',   '\xB0' : u'\u02bb',   
+     '\xB1' : u'\u0142',   '\xB2' : u'\u00f8',   '\xB3' : u'\u0111',   
+     '\xB4' : u'\u00fe',   '\xB5' : u'\u00e6',   '\xB6' : u'\u0153',   
+     '\xB7' : u'\u02ba',   '\xB8' : u'\u0131',   '\xB9' : u'\u00a3',   
+     '\xBA' : u'\u00f0',   '\xBC' : u'\u01a1',   '\xBD' : u'\u01b0',   
+     '\xC0' : u'\u00b0',   '\xC1' : u'\u2113',   '\xC2' : u'\u2117',   
+     '\xC3' : u'\u00a9',   '\xC4' : u'\u266f',   '\xC5' : u'\u00bf',   
+     '\xC6' : u'\u00a1',   '\xC7' : u'\u00df',   '\xC8' : u'\u20ac',  
     }
 
+# combining forms (in ANSEL, they precede the modified ASCII character
+# whereas the unicode combining term follows the character modified
+# Note: unicode allows multiple modifiers, but ANSEL may not (TDB?), 
+# so we ignore multiple combining forms in this module
+#  8d & 8e are zero-width joiner (ZWJ), and zero-width non-joiner ZWNJ
+#  (strange things) probably not commonly found in our needs, unless one
+#   starts writing persian (or???) poetry in ANSEL
+_acombiners = {
+     '\x8D' : u'\u200d',   '\x8E' : u'\u200c',   '\xE0' : u'\u0309',   
+     '\xE1' : u'\u0300',   '\xE2' : u'\u0301',   '\xE3' : u'\u0302',   
+     '\xE4' : u'\u0303',   '\xE5' : u'\u0304',   '\xE6' : u'\u0306',   
+     '\xE7' : u'\u0307',   '\xE8' : u'\u0308',   '\xE9' : u'\u030c',   
+     '\xEA' : u'\u030a',   '\xEB' : u'\ufe20',   '\xEC' : u'\ufe21',   
+     '\xED' : u'\u0315',   '\xEE' : u'\u030b',   '\xEF' : u'\u0310',   
+     '\xF0' : u'\u0327',   '\xF1' : u'\u0328',   '\xF2' : u'\u0323',   
+     '\xF3' : u'\u0324',   '\xF4' : u'\u0325',   '\xF5' : u'\u0333',   
+     '\xF6' : u'\u0332',   '\xF7' : u'\u0326',   '\xF8' : u'\u031c',   
+     '\xF9' : u'\u032e',   '\xFA' : u'\ufe22',   '\xFB' : u'\ufe23',   
+     '\xFE' : u'\u0313',  
+   }
+
+# mappings of two byte (precomposed forms) ANSEL codes to unicode
 _twobyte = {
-    '\xE0\x41' : u'\x1E\xA2', '\xE0\x45' : u'\x1E\xBA', '\xE0\x49' : u'\x1E\xC8',
-    '\xE0\x4F' : u'\x1E\xCE', '\xE0\x55' : u'\x1E\xE6', '\xE0\x59' : u'\x1E\xF6',
-    '\xE0\x61' : u'\x1E\xA3', '\xE0\x65' : u'\x1E\xBB', '\xE0\x69' : u'\x1E\xC9',
-    '\xE0\x6F' : u'\x1E\xCF', '\xE0\x75' : u'\x1E\xE7', '\xE0\x79' : u'\x1E\xF7',
-    '\xE1\x41' : u'\xC0',     '\xE1\x45' : u'\xC8',     '\xE1\x49' : u'\xCC',
-    '\xE1\x4F' : u'\xD2',     '\xE1\x55' : u'\xD9',     '\xE1\x57' : u'\x1E\x80',
-    '\xE1\x59' : u'\x1E\xF2', '\xE1\x61' : u'\xE0',     '\xE1\x65' : u'\xE8',
-    '\xE1\x69' : u'\xEC',     '\xE1\x6F' : u'\xF2',     '\xE1\x75' : u'\xF9',
-    '\xE1\x77' : u'\x1E\x81', '\xE1\x79' : u'\x1E\xF3', '\xE2\x41' : u'\xC1',
-    '\xE2\x43' : u'\x01\x06', '\xE2\x45' : u'\xC9',     '\xE2\x47' : u'\x01\xF4',
-    '\xE2\x49' : u'\xCD',     '\xE2\x4B' : u'\x1E\x30', '\xE2\x4C' : u'\x01\x39',
-    '\xE2\x4D' : u'\x1E\x3E', '\xE2\x4E' : u'\x01\x43', '\xE2\x4F' : u'\xD3',
-    '\xE2\x50' : u'\x1E\x54', '\xE2\x52' : u'\x01\x54', '\xE2\x53' : u'\x01\x5A',
-    '\xE2\x55' : u'\xDA',     '\xE2\x57' : u'\x1E\x82', '\xE2\x59' : u'\xDD',
-    '\xE2\x5A' : u'\x01\x79', '\xE2\x61' : u'\xE1',     '\xE2\x63' : u'\x01\x07',
-    '\xE2\x65' : u'\xE9',     '\xE2\x67' : u'\x01\xF5', '\xE2\x69' : u'\xED',
-    '\xE2\x6B' : u'\x1E\x31', '\xE2\x6C' : u'\x01\x3A', '\xE2\x6D' : u'\x1E\x3F',
-    '\xE2\x6E' : u'\x01\x44', '\xE2\x6F' : u'\xF3',     '\xE2\x70' : u'\x1E\x55',
-    '\xE2\x72' : u'\x01\x55', '\xE2\x73' : u'\x01\x5B', '\xE2\x75' : u'\xFA',
-    '\xE2\x77' : u'\x1E\x83', '\xE2\x79' : u'\xFD',     '\xE2\x7A' : u'\x01\x7A',
-    '\xE2\xA5' : u'\x01\xFC', '\xE2\xB5' : u'\x01\xFD', '\xE3\x41' : u'\xC2',
-    '\xE3\x43' : u'\x01\x08', '\xE3\x45' : u'\xCA',     '\xE3\x47' : u'\x01\x1C',
-    '\xE3\x48' : u'\x01\x24', '\xE3\x49' : u'\xCE',     '\xE3\x4A' : u'\x01\x34',
-    '\xE3\x4F' : u'\xD4',     '\xE3\x53' : u'\x01\x5C', '\xE3\x55' : u'\xDB',
-    '\xE3\x57' : u'\x01\x74', '\xE3\x59' : u'\x01\x76', '\xE3\x5A' : u'\x1E\x90',
-    '\xE3\x61' : u'\xE2',     '\xE3\x63' : u'\x01\x09', '\xE3\x65' : u'\xEA',
-    '\xE3\x67' : u'\x01\x1D', '\xE3\x68' : u'\x01\x25', '\xE3\x69' : u'\xEE',
-    '\xE3\x6A' : u'\x01\x35', '\xE3\x6F' : u'\xF4',     '\xE3\x73' : u'\x01\x5D',
-    '\xE3\x75' : u'\xFB',     '\xE3\x77' : u'\x01\x75', '\xE3\x79' : u'\x01\x77',
-    '\xE3\x7A' : u'\x1E\x91', '\xE4\x41' : u'\xC3',     '\xE4\x45' : u'\x1E\xBC',
-    '\xE4\x49' : u'\x01\x28', '\xE4\x4E' : u'\xD1',     '\xE4\x4F' : u'\xD5',
-    '\xE4\x55' : u'\x01\x68', '\xE4\x56' : u'\x1E\x7C', '\xE4\x59' : u'\x1E\xF8',
-    '\xE4\x61' : u'\xE3',     '\xE4\x65' : u'\x1E\xBD', '\xE4\x69' : u'\x01\x29',
-    '\xE4\x6E' : u'\xF1',     '\xE4\x6F' : u'\xF5',     '\xE4\x75' : u'\x01\x69',
-    '\xE4\x76' : u'\x1E\x7D', '\xE4\x79' : u'\x1E\xF9', '\xE5\x41' : u'\x01',
-    '\xE5\x45' : u'\x01\x12', '\xE5\x47' : u'\x1E\x20', '\xE5\x49' : u'\x01\x2A',
-    '\xE5\x4F' : u'\x01\x4C', '\xE5\x55' : u'\x01\x6A', '\xE5\x61' : u'\x01\x01',
-    '\xE5\x65' : u'\x01\x13', '\xE5\x67' : u'\x1E\x21', '\xE5\x69' : u'\x01\x2B',
-    '\xE5\x6F' : u'\x01\x4D', '\xE5\x75' : u'\x01\x6B', '\xE5\xA5' : u'\x01\xE2',
-    '\xE5\xB5' : u'\x01\xE3', '\xE6\x41' : u'\x01\x02', '\xE6\x45' : u'\x01\x14',
-    '\xE6\x47' : u'\x01\x1E', '\xE6\x49' : u'\x01\x2C', '\xE6\x4F' : u'\x01\x4E',
-    '\xE6\x55' : u'\x01\x6C', '\xE6\x61' : u'\x01\x03', '\xE6\x65' : u'\x01\x15',
-    '\xE6\x67' : u'\x01\x1F', '\xE6\x69' : u'\x01\x2D', '\xE6\x6F' : u'\x01\x4F',
-    '\xE6\x75' : u'\x01\x6D', '\xE7\x42' : u'\x1E\x02', '\xE7\x43' : u'\x01\x0A',
-    '\xE7\x44' : u'\x1E\x0A', '\xE7\x45' : u'\x01\x16', '\xE7\x46' : u'\x1E\x1E',
-    '\xE7\x47' : u'\x01\x20', '\xE7\x48' : u'\x1E\x22', '\xE7\x49' : u'\x01\x30',
-    '\xE7\x4D' : u'\x1E\x40', '\xE7\x4E' : u'\x1E\x44', '\xE7\x50' : u'\x1E\x56',
-    '\xE7\x52' : u'\x1E\x58', '\xE7\x53' : u'\x1E\x60', '\xE7\x54' : u'\x1E\x6A',
-    '\xE7\x57' : u'\x1E\x86', '\xE7\x58' : u'\x1E\x8A', '\xE7\x59' : u'\x1E\x8E',
-    '\xE7\x5A' : u'\x01\x7B', '\xE7\x62' : u'\x1E\x03', '\xE7\x63' : u'\x01\x0B',
-    '\xE7\x64' : u'\x1E\x0B', '\xE7\x65' : u'\x01\x17', '\xE7\x66' : u'\x1E\x1F',
-    '\xE7\x67' : u'\x01\x21', '\xE7\x68' : u'\x1E\x23', '\xE7\x6D' : u'\x1E\x41',
-    '\xE7\x6E' : u'\x1E\x45', '\xE7\x70' : u'\x1E\x57', '\xE7\x72' : u'\x1E\x59',
-    '\xE7\x73' : u'\x1E\x61', '\xE7\x74' : u'\x1E\x6B', '\xE7\x77' : u'\x1E\x87',
-    '\xE7\x78' : u'\x1E\x8B', '\xE7\x79' : u'\x1E\x8F', '\xE7\x7A' : u'\x01\x7C',
-    '\xE8\x41' : u'\xC4',     '\xE8\x45' : u'\xCB',     '\xE8\x48' : u'\x1E\x26',
-    '\xE8\x49' : u'\xCF',     '\xE8\x4F' : u'\xD6',     '\xE8\x55' : u'\xDC',
-    '\xE8\x57' : u'\x1E\x84', '\xE8\x58' : u'\x1E\x8C', '\xE8\x59' : u'\x01\x78',
-    '\xE8\x61' : u'\xE4',     '\xE8\x65' : u'\xEB',     '\xE8\x68' : u'\x1E\x27',
-    '\xE8\x69' : u'\xEF',     '\xE8\x6F' : u'\xF6',     '\xE8\x74' : u'\x1E\x97',
-    '\xE8\x75' : u'\xFC',     '\xE8\x77' : u'\x1E\x85', '\xE8\x78' : u'\x1E\x8D',
-    '\xE8\x79' : u'\xFF',     '\xE9\x41' : u'\x01\xCD', '\xE9\x43' : u'\x01\x0C',
-    '\xE9\x44' : u'\x01\x0E', '\xE9\x45' : u'\x01\x1A', '\xE9\x47' : u'\x01\xE6',
-    '\xE9\x49' : u'\x01\xCF', '\xE9\x4B' : u'\x01\xE8', '\xE9\x4C' : u'\x01\x3D',
-    '\xE9\x4E' : u'\x01\x47', '\xE9\x4F' : u'\x01\xD1', '\xE9\x52' : u'\x01\x58',
-    '\xE9\x53' : u'\x01\x60', '\xE9\x54' : u'\x01\x64', '\xE9\x55' : u'\x01\xD3',
-    '\xE9\x5A' : u'\x01\x7D', '\xE9\x61' : u'\x01\xCE', '\xE9\x63' : u'\x01\x0D',
-    '\xE9\x64' : u'\x01\x0F', '\xE9\x65' : u'\x01\x1B', '\xE9\x67' : u'\x01\xE7',
-    '\xE9\x69' : u'\x01\xD0', '\xE9\x6A' : u'\x01\xF0', '\xE9\x6B' : u'\x01\xE9',
-    '\xE9\x6C' : u'\x01\x3E', '\xE9\x6E' : u'\x01\x48', '\xE9\x6F' : u'\x01\xD2',
-    '\xE9\x72' : u'\x01\x59', '\xE9\x73' : u'\x01\x61', '\xE9\x74' : u'\x01\x65',
-    '\xE9\x75' : u'\x01\xD4', '\xE9\x7A' : u'\x01\x7E', '\xEA\x41' : u'\xC5',
-    '\xEA\x61' : u'\xE5',     '\xEA\x75' : u'\x01\x6F', '\xEA\x77' : u'\x1E\x98',
-    '\xEA\x79' : u'\x1E\x99', '\xEA\xAD' : u'\x01\x6E', '\xEE\x4F' : u'\x01\x50',
-    '\xEE\x55' : u'\x01\x70', '\xEE\x6F' : u'\x01\x51', '\xEE\x75' : u'\x01\x71',
-    '\xF0\x20' : u'\xB8',     '\xF0\x43' : u'\xC7',     '\xF0\x44' : u'\x1E\x10',
-    '\xF0\x47' : u'\x01\x22', '\xF0\x48' : u'\x1E\x28', '\xF0\x4B' : u'\x01\x36',
-    '\xF0\x4C' : u'\x01\x3B', '\xF0\x4E' : u'\x01\x45', '\xF0\x52' : u'\x01\x56',
-    '\xF0\x53' : u'\x01\x5E', '\xF0\x54' : u'\x01\x62', '\xF0\x63' : u'\xE7',
-    '\xF0\x64' : u'\x1E\x11', '\xF0\x67' : u'\x01\x23', '\xF0\x68' : u'\x1E\x29',
-    '\xF0\x6B' : u'\x01\x37', '\xF0\x6C' : u'\x01\x3C', '\xF0\x6E' : u'\x01\x46',
-    '\xF0\x72' : u'\x01\x57', '\xF0\x73' : u'\x01\x5F', '\xF0\x74' : u'\x01\x63',
-    '\xF1\x41' : u'\x01\x04', '\xF1\x45' : u'\x01\x18', '\xF1\x49' : u'\x01\x2E',
-    '\xF1\x4F' : u'\x01\xEA', '\xF1\x55' : u'\x01\x72', '\xF1\x61' : u'\x01\x05',
-    '\xF1\x65' : u'\x01\x19', '\xF1\x69' : u'\x01\x2F', '\xF1\x6F' : u'\x01\xEB',
-    '\xF1\x75' : u'\x01\x73', '\xF2\x41' : u'\x1E\xA0', '\xF2\x42' : u'\x1E\x04',
-    '\xF2\x44' : u'\x1E\x0C', '\xF2\x45' : u'\x1E\xB8', '\xF2\x48' : u'\x1E\x24',
-    '\xF2\x49' : u'\x1E\xCA', '\xF2\x4B' : u'\x1E\x32', '\xF2\x4C' : u'\x1E\x36',
-    '\xF2\x4D' : u'\x1E\x42', '\xF2\x4E' : u'\x1E\x46', '\xF2\x4F' : u'\x1E\xCC',
-    '\xF2\x52' : u'\x1E\x5A', '\xF2\x53' : u'\x1E\x62', '\xF2\x54' : u'\x1E\x6C',
-    '\xF2\x55' : u'\x1E\xE4', '\xF2\x56' : u'\x1E\x7E', '\xF2\x57' : u'\x1E\x88',
-    '\xF2\x59' : u'\x1E\xF4', '\xF2\x5A' : u'\x1E\x92', '\xF2\x61' : u'\x1E\xA1',
-    '\xF2\x62' : u'\x1E\x05', '\xF2\x64' : u'\x1E\x0D', '\xF2\x65' : u'\x1E\xB9',
-    '\xF2\x68' : u'\x1E\x25', '\xF2\x69' : u'\x1E\xCB', '\xF2\x6B' : u'\x1E\x33',
-    '\xF2\x6C' : u'\x1E\x37', '\xF2\x6D' : u'\x1E\x43', '\xF2\x6E' : u'\x1E\x47',
-    '\xF2\x6F' : u'\x1E\xCD', '\xF2\x72' : u'\x1E\x5B', '\xF2\x73' : u'\x1E\x63',
-    '\xF2\x74' : u'\x1E\x6D', '\xF2\x75' : u'\x1E\xE5', '\xF2\x76' : u'\x1E\x7F',
-    '\xF2\x77' : u'\x1E\x89', '\xF2\x79' : u'\x1E\xF5', '\xF2\x7A' : u'\x1E\x93',
-    '\xF3\x55' : u'\x1E\x72', '\xF3\x75' : u'\x1E\x73', '\xF4\x41' : u'\x1E',
-    '\xF4\x61' : u'\x1E\x01', '\xF9\x48' : u'\x1E\x2A', '\xF9\x68' : u'\x1E\x2B',
-    }
+     '\xE0\x41' : u'\u1ea2',   '\xE0\x45' : u'\u1eba',   '\xE0\x49' : u'\u1ec8',   
+     '\xE0\x4F' : u'\u1ece',   '\xE0\x55' : u'\u1ee6',   '\xE0\x59' : u'\u1ef6',   
+     '\xE0\x61' : u'\u1ea3',   '\xE0\x65' : u'\u1ebb',   '\xE0\x69' : u'\u1ec9',   
+     '\xE0\x6F' : u'\u1ecf',   '\xE0\x75' : u'\u1ee7',   '\xE0\x79' : u'\u1ef7',   
+     '\xE1\x41' : u'\u00c0',   '\xE1\x45' : u'\u00c8',   '\xE1\x49' : u'\u00cc',   
+     '\xE1\x4F' : u'\u00d2',   '\xE1\x55' : u'\u00d9',   '\xE1\x57' : u'\u1e80',   
+     '\xE1\x59' : u'\u1ef2',   '\xE1\x61' : u'\u00e0',   '\xE1\x65' : u'\u00e8',   
+     '\xE1\x69' : u'\u00ec',   '\xE1\x6F' : u'\u00f2',   '\xE1\x75' : u'\u00f9',   
+     '\xE1\x77' : u'\u1e81',   '\xE1\x79' : u'\u1ef3',   '\xE2\x41' : u'\u00c1',   
+     '\xE2\x43' : u'\u0106',   '\xE2\x45' : u'\u00c9',   '\xE2\x47' : u'\u01f4',   
+     '\xE2\x49' : u'\u00cd',   '\xE2\x4B' : u'\u1e30',   '\xE2\x4C' : u'\u0139',   
+     '\xE2\x4D' : u'\u1e3e',   '\xE2\x4E' : u'\u0143',   '\xE2\x4F' : u'\u00d3',   
+     '\xE2\x50' : u'\u1e54',   '\xE2\x52' : u'\u0154',   '\xE2\x53' : u'\u015a',   
+     '\xE2\x55' : u'\u00da',   '\xE2\x57' : u'\u1e82',   '\xE2\x59' : u'\u00dd',   
+     '\xE2\x5A' : u'\u0179',   '\xE2\x61' : u'\u00e1',   '\xE2\x63' : u'\u0107',   
+     '\xE2\x65' : u'\u00e9',   '\xE2\x67' : u'\u01f5',   '\xE2\x69' : u'\u00ed',   
+     '\xE2\x6B' : u'\u1e31',   '\xE2\x6C' : u'\u013a',   '\xE2\x6D' : u'\u1e3f',   
+     '\xE2\x6E' : u'\u0144',   '\xE2\x6F' : u'\u00f3',   '\xE2\x70' : u'\u1e55',   
+     '\xE2\x72' : u'\u0155',   '\xE2\x73' : u'\u015b',   '\xE2\x75' : u'\u00fa',   
+     '\xE2\x77' : u'\u1e83',   '\xE2\x79' : u'\u00fd',   '\xE2\x7A' : u'\u017a',   
+     '\xE2\xA5' : u'\u01fc',   '\xE2\xB5' : u'\u01fd',   '\xE3\x41' : u'\u00c2',   
+     '\xE3\x43' : u'\u0108',   '\xE3\x45' : u'\u00ca',   '\xE3\x47' : u'\u011c',   
+     '\xE3\x48' : u'\u0124',   '\xE3\x49' : u'\u00ce',   '\xE3\x4A' : u'\u0134',   
+     '\xE3\x4F' : u'\u00d4',   '\xE3\x53' : u'\u015c',   '\xE3\x55' : u'\u00db',   
+     '\xE3\x57' : u'\u0174',   '\xE3\x59' : u'\u0176',   '\xE3\x5A' : u'\u1e90',   
+     '\xE3\x61' : u'\u00e2',   '\xE3\x63' : u'\u0109',   '\xE3\x65' : u'\u00ea',   
+     '\xE3\x67' : u'\u011d',   '\xE3\x68' : u'\u0125',   '\xE3\x69' : u'\u00ee',   
+     '\xE3\x6A' : u'\u0135',   '\xE3\x6F' : u'\u00f4',   '\xE3\x73' : u'\u015d',   
+     '\xE3\x75' : u'\u00fb',   '\xE3\x77' : u'\u0175',   '\xE3\x79' : u'\u0177',   
+     '\xE3\x7A' : u'\u1e91',   '\xE4\x41' : u'\u00c3',   '\xE4\x45' : u'\u1ebc',   
+     '\xE4\x49' : u'\u0128',   '\xE4\x4E' : u'\u00d1',   '\xE4\x4F' : u'\u00d5',   
+     '\xE4\x55' : u'\u0168',   '\xE4\x56' : u'\u1e7c',   '\xE4\x59' : u'\u1ef8',   
+     '\xE4\x61' : u'\u00e3',   '\xE4\x65' : u'\u1ebd',   '\xE4\x69' : u'\u0129',   
+     '\xE4\x6E' : u'\u00f1',   '\xE4\x6F' : u'\u00f5',   '\xE4\x75' : u'\u0169',   
+     '\xE4\x76' : u'\u1e7d',   '\xE4\x79' : u'\u1ef9',   '\xE5\x41' : u'\u0100',   
+     '\xE5\x45' : u'\u0112',   '\xE5\x47' : u'\u1e20',   '\xE5\x49' : u'\u012a',   
+     '\xE5\x4F' : u'\u014c',   '\xE5\x55' : u'\u016a',   '\xE5\x61' : u'\u0101',   
+     '\xE5\x65' : u'\u0113',   '\xE5\x67' : u'\u1e21',   '\xE5\x69' : u'\u012b',   
+     '\xE5\x6F' : u'\u014d',   '\xE5\x75' : u'\u016b',   '\xE5\xA5' : u'\u01e2',   
+     '\xE5\xB5' : u'\u01e3',   '\xE6\x41' : u'\u0102',   '\xE6\x45' : u'\u0114',   
+     '\xE6\x47' : u'\u011e',   '\xE6\x49' : u'\u012c',   '\xE6\x4F' : u'\u014e',   
+     '\xE6\x55' : u'\u016c',   '\xE6\x61' : u'\u0103',   '\xE6\x65' : u'\u0115',   
+     '\xE6\x67' : u'\u011f',   '\xE6\x69' : u'\u012d',   '\xE6\x6F' : u'\u014f',   
+     '\xE6\x75' : u'\u016d',   '\xE7\x42' : u'\u1e02',   '\xE7\x43' : u'\u010a',   
+     '\xE7\x44' : u'\u1e0a',   '\xE7\x45' : u'\u0116',   '\xE7\x46' : u'\u1e1e',   
+     '\xE7\x47' : u'\u0120',   '\xE7\x48' : u'\u1e22',   '\xE7\x49' : u'\u0130',   
+     '\xE7\x4D' : u'\u1e40',   '\xE7\x4E' : u'\u1e44',   '\xE7\x50' : u'\u1e56',   
+     '\xE7\x52' : u'\u1e58',   '\xE7\x53' : u'\u1e60',   '\xE7\x54' : u'\u1e6a',   
+     '\xE7\x57' : u'\u1e86',   '\xE7\x58' : u'\u1e8a',   '\xE7\x59' : u'\u1e8e',   
+     '\xE7\x5A' : u'\u017b',   '\xE7\x62' : u'\u1e03',   '\xE7\x63' : u'\u010b',   
+     '\xE7\x64' : u'\u1e0b',   '\xE7\x65' : u'\u0117',   '\xE7\x66' : u'\u1e1f',   
+     '\xE7\x67' : u'\u0121',   '\xE7\x68' : u'\u1e23',   '\xE7\x6D' : u'\u1e41',   
+     '\xE7\x6E' : u'\u1e45',   '\xE7\x70' : u'\u1e57',   '\xE7\x72' : u'\u1e59',   
+     '\xE7\x73' : u'\u1e61',   '\xE7\x74' : u'\u1e6b',   '\xE7\x77' : u'\u1e87',   
+     '\xE7\x78' : u'\u1e8b',   '\xE7\x79' : u'\u1e8f',   '\xE7\x7A' : u'\u017c',   
+     '\xE8\x41' : u'\u00c4',   '\xE8\x45' : u'\u00cb',   '\xE8\x48' : u'\u1e26',   
+     '\xE8\x49' : u'\u00cf',   '\xE8\x4F' : u'\u00d6',   '\xE8\x55' : u'\u00dc',   
+     '\xE8\x57' : u'\u1e84',   '\xE8\x58' : u'\u1e8c',   '\xE8\x59' : u'\u0178',   
+     '\xE8\x61' : u'\u00e4',   '\xE8\x65' : u'\u00eb',   '\xE8\x68' : u'\u1e27',   
+     '\xE8\x69' : u'\u00ef',   '\xE8\x6F' : u'\u00f6',   '\xE8\x74' : u'\u1e97',   
+     '\xE8\x75' : u'\u00fc',   '\xE8\x77' : u'\u1e85',   '\xE8\x78' : u'\u1e8d',   
+     '\xE8\x79' : u'\u00ff',   '\xE9\x41' : u'\u01cd',   '\xE9\x43' : u'\u010c',   
+     '\xE9\x44' : u'\u010e',   '\xE9\x45' : u'\u011a',   '\xE9\x47' : u'\u01e6',   
+     '\xE9\x49' : u'\u01cf',   '\xE9\x4B' : u'\u01e8',   '\xE9\x4C' : u'\u013d',   
+     '\xE9\x4E' : u'\u0147',   '\xE9\x4F' : u'\u01d1',   '\xE9\x52' : u'\u0158',   
+     '\xE9\x53' : u'\u0160',   '\xE9\x54' : u'\u0164',   '\xE9\x55' : u'\u01d3',   
+     '\xE9\x5A' : u'\u017d',   '\xE9\x61' : u'\u01ce',   '\xE9\x63' : u'\u010d',   
+     '\xE9\x64' : u'\u010f',   '\xE9\x65' : u'\u011b',   '\xE9\x67' : u'\u01e7',   
+     '\xE9\x69' : u'\u01d0',   '\xE9\x6A' : u'\u01f0',   '\xE9\x6B' : u'\u01e9',   
+     '\xE9\x6C' : u'\u013e',   '\xE9\x6E' : u'\u0148',   '\xE9\x6F' : u'\u01d2',   
+     '\xE9\x72' : u'\u0159',   '\xE9\x73' : u'\u0161',   '\xE9\x74' : u'\u0165',   
+     '\xE9\x75' : u'\u01d4',   '\xE9\x7A' : u'\u017e',   '\xEA\x41' : u'\u00c5',   
+     '\xEA\x61' : u'\u00e5',   '\xEA\x75' : u'\u016f',   '\xEA\x77' : u'\u1e98',   
+     '\xEA\x79' : u'\u1e99',   '\xEA\xAD' : u'\u016e',   '\xEE\x4F' : u'\u0150',   
+     '\xEE\x55' : u'\u0170',   '\xEE\x6F' : u'\u0151',   '\xEE\x75' : u'\u0171',   
+     '\xF0\x20' : u'\u00b8',   '\xF0\x43' : u'\u00c7',   '\xF0\x44' : u'\u1e10',   
+     '\xF0\x47' : u'\u0122',   '\xF0\x48' : u'\u1e28',   '\xF0\x4B' : u'\u0136',   
+     '\xF0\x4C' : u'\u013b',   '\xF0\x4E' : u'\u0145',   '\xF0\x52' : u'\u0156',   
+     '\xF0\x53' : u'\u015e',   '\xF0\x54' : u'\u0162',   '\xF0\x63' : u'\u00e7',   
+     '\xF0\x64' : u'\u1e11',   '\xF0\x67' : u'\u0123',   '\xF0\x68' : u'\u1e29',   
+     '\xF0\x6B' : u'\u0137',   '\xF0\x6C' : u'\u013c',   '\xF0\x6E' : u'\u0146',   
+     '\xF0\x72' : u'\u0157',   '\xF0\x73' : u'\u015f',   '\xF0\x74' : u'\u0163',   
+     '\xF1\x41' : u'\u0104',   '\xF1\x45' : u'\u0118',   '\xF1\x49' : u'\u012e',   
+     '\xF1\x4F' : u'\u01ea',   '\xF1\x55' : u'\u0172',   '\xF1\x61' : u'\u0105',   
+     '\xF1\x65' : u'\u0119',   '\xF1\x69' : u'\u012f',   '\xF1\x6F' : u'\u01eb',   
+     '\xF1\x75' : u'\u0173',   '\xF2\x41' : u'\u1ea0',   '\xF2\x42' : u'\u1e04',   
+     '\xF2\x44' : u'\u1e0c',   '\xF2\x45' : u'\u1eb8',   '\xF2\x48' : u'\u1e24',   
+     '\xF2\x49' : u'\u1eca',   '\xF2\x4B' : u'\u1e32',   '\xF2\x4C' : u'\u1e36',   
+     '\xF2\x4D' : u'\u1e42',   '\xF2\x4E' : u'\u1e46',   '\xF2\x4F' : u'\u1ecc',   
+     '\xF2\x52' : u'\u1e5a',   '\xF2\x53' : u'\u1e62',   '\xF2\x54' : u'\u1e6c',   
+     '\xF2\x55' : u'\u1ee4',   '\xF2\x56' : u'\u1e7e',   '\xF2\x57' : u'\u1e88',   
+     '\xF2\x59' : u'\u1ef4',   '\xF2\x5A' : u'\u1e92',   '\xF2\x61' : u'\u1ea1',   
+     '\xF2\x62' : u'\u1e05',   '\xF2\x64' : u'\u1e0d',   '\xF2\x65' : u'\u1eb9',   
+     '\xF2\x68' : u'\u1e25',   '\xF2\x69' : u'\u1ecb',   '\xF2\x6B' : u'\u1e33',   
+     '\xF2\x6C' : u'\u1e37',   '\xF2\x6D' : u'\u1e43',   '\xF2\x6E' : u'\u1e47',   
+     '\xF2\x6F' : u'\u1ecd',   '\xF2\x72' : u'\u1e5b',   '\xF2\x73' : u'\u1e63',   
+     '\xF2\x74' : u'\u1e6d',   '\xF2\x75' : u'\u1ee5',   '\xF2\x76' : u'\u1e7f',   
+     '\xF2\x77' : u'\u1e89',   '\xF2\x79' : u'\u1ef5',   '\xF2\x7A' : u'\u1e93',   
+     '\xF3\x55' : u'\u1e72',   '\xF3\x75' : u'\u1e73',   '\xF4\x41' : u'\u1e00',   
+     '\xF4\x61' : u'\u1e01',   '\xF9\x48' : u'\u1e2a',   '\xF9\x68' : u'\u1e2b',  
+   }
+
+# mappings of unicode to ANSEL codes
+# note: a char u'\u00A1' is internally remembered & represented as u'\xA1'
+#  so do NOT blindly use 4-hexdigit keys for those cases
+#  or the conversion function will fail
+_utoa = { 
+     u'\xa1'   : '\xC6',       u'\xa3'   : '\xB9',       u'\xa9'   : '\xC3',       
+     u'\xae'   : '\xAA',       u'\xb0'   : '\xC0',       u'\xb1'   : '\xAB',       
+     u'\xb7'   : '\xA8',       u'\xb8'   : '\xF0\x20',   u'\xbf'   : '\xC5',       
+     u'\xc0'   : '\xE1\x41',   u'\xc1'   : '\xE2\x41',   u'\xc2'   : '\xE3\x41',   
+     u'\xc3'   : '\xE4\x41',   u'\xc4'   : '\xE8\x41',   u'\xc5'   : '\xEA\x41',   
+     u'\xc6'   : '\xA5',       u'\xc7'   : '\xF0\x43',   u'\xc8'   : '\xE1\x45',   
+     u'\xc9'   : '\xE2\x45',   u'\xca'   : '\xE3\x45',   u'\xcb'   : '\xE8\x45',   
+     u'\xcc'   : '\xE1\x49',   u'\xcd'   : '\xE2\x49',   u'\xce'   : '\xE3\x49',   
+     u'\xcf'   : '\xE8\x49',   u'\xd1'   : '\xE4\x4E',   u'\xd2'   : '\xE1\x4F',   
+     u'\xd3'   : '\xE2\x4F',   u'\xd4'   : '\xE3\x4F',   u'\xd5'   : '\xE4\x4F',   
+     u'\xd6'   : '\xE8\x4F',   u'\xd8'   : '\xA2',       u'\xd9'   : '\xE1\x55',   
+     u'\xda'   : '\xE2\x55',   u'\xdb'   : '\xE3\x55',   u'\xdc'   : '\xE8\x55',   
+     u'\xdd'   : '\xE2\x59',   u'\xde'   : '\xA4',       u'\xdf'   : '\xC7',       
+     u'\xe0'   : '\xE1\x61',   u'\xe1'   : '\xE2\x61',   u'\xe2'   : '\xE3\x61',   
+     u'\xe3'   : '\xE4\x61',   u'\xe4'   : '\xE8\x61',   u'\xe5'   : '\xEA\x61',   
+     u'\xe6'   : '\xB5',       u'\xe7'   : '\xF0\x63',   u'\xe8'   : '\xE1\x65',   
+     u'\xe9'   : '\xE2\x65',   u'\xea'   : '\xE3\x65',   u'\xeb'   : '\xE8\x65',   
+     u'\xec'   : '\xE1\x69',   u'\xed'   : '\xE2\x69',   u'\xee'   : '\xE3\x69',   
+     u'\xef'   : '\xE8\x69',   u'\xf0'   : '\xBA',       u'\xf1'   : '\xE4\x6E',   
+     u'\xf2'   : '\xE1\x6F',   u'\xf3'   : '\xE2\x6F',   u'\xf4'   : '\xE3\x6F',   
+     u'\xf5'   : '\xE4\x6F',   u'\xf6'   : '\xE8\x6F',   u'\xf8'   : '\xB2',       
+     u'\xf9'   : '\xE1\x75',   u'\xfa'   : '\xE2\x75',   u'\xfb'   : '\xE3\x75',   
+     u'\xfc'   : '\xE8\x75',   u'\xfd'   : '\xE2\x79',   u'\xfe'   : '\xB4',       
+     u'\xff'   : '\xE8\x79',   u'\u0100' : '\xE5\x41',   u'\u0101' : '\xE5\x61',   
+     u'\u0102' : '\xE6\x41',   u'\u0103' : '\xE6\x61',   u'\u0104' : '\xF1\x41',   
+     u'\u0105' : '\xF1\x61',   u'\u0106' : '\xE2\x43',   u'\u0107' : '\xE2\x63',   
+     u'\u0108' : '\xE3\x43',   u'\u0109' : '\xE3\x63',   u'\u010a' : '\xE7\x43',   
+     u'\u010b' : '\xE7\x63',   u'\u010c' : '\xE9\x43',   u'\u010d' : '\xE9\x63',   
+     u'\u010e' : '\xE9\x44',   u'\u010f' : '\xE9\x64',   u'\u0110' : '\xA3',       
+     u'\u0111' : '\xB3',       u'\u0112' : '\xE5\x45',   u'\u0113' : '\xE5\x65',   
+     u'\u0114' : '\xE6\x45',   u'\u0115' : '\xE6\x65',   u'\u0116' : '\xE7\x45',   
+     u'\u0117' : '\xE7\x65',   u'\u0118' : '\xF1\x45',   u'\u0119' : '\xF1\x65',   
+     u'\u011a' : '\xE9\x45',   u'\u011b' : '\xE9\x65',   u'\u011c' : '\xE3\x47',   
+     u'\u011d' : '\xE3\x67',   u'\u011e' : '\xE6\x47',   u'\u011f' : '\xE6\x67',   
+     u'\u0120' : '\xE7\x47',   u'\u0121' : '\xE7\x67',   u'\u0122' : '\xF0\x47',   
+     u'\u0123' : '\xF0\x67',   u'\u0124' : '\xE3\x48',   u'\u0125' : '\xE3\x68',   
+     u'\u0128' : '\xE4\x49',   u'\u0129' : '\xE4\x69',   u'\u012a' : '\xE5\x49',   
+     u'\u012b' : '\xE5\x69',   u'\u012c' : '\xE6\x49',   u'\u012d' : '\xE6\x69',   
+     u'\u012e' : '\xF1\x49',   u'\u012f' : '\xF1\x69',   u'\u0130' : '\xE7\x49',   
+     u'\u0131' : '\xB8',       u'\u0134' : '\xE3\x4A',   u'\u0135' : '\xE3\x6A',   
+     u'\u0136' : '\xF0\x4B',   u'\u0137' : '\xF0\x6B',   u'\u0139' : '\xE2\x4C',   
+     u'\u013a' : '\xE2\x6C',   u'\u013b' : '\xF0\x4C',   u'\u013c' : '\xF0\x6C',   
+     u'\u013d' : '\xE9\x4C',   u'\u013e' : '\xE9\x6C',   u'\u0141' : '\xA1',       
+     u'\u0142' : '\xB1',       u'\u0143' : '\xE2\x4E',   u'\u0144' : '\xE2\x6E',   
+     u'\u0145' : '\xF0\x4E',   u'\u0146' : '\xF0\x6E',   u'\u0147' : '\xE9\x4E',   
+     u'\u0148' : '\xE9\x6E',   u'\u014c' : '\xE5\x4F',   u'\u014d' : '\xE5\x6F',   
+     u'\u014e' : '\xE6\x4F',   u'\u014f' : '\xE6\x6F',   u'\u0150' : '\xEE\x4F',   
+     u'\u0151' : '\xEE\x6F',   u'\u0152' : '\xA6',       u'\u0153' : '\xB6',       
+     u'\u0154' : '\xE2\x52',   u'\u0155' : '\xE2\x72',   u'\u0156' : '\xF0\x52',   
+     u'\u0157' : '\xF0\x72',   u'\u0158' : '\xE9\x52',   u'\u0159' : '\xE9\x72',   
+     u'\u015a' : '\xE2\x53',   u'\u015b' : '\xE2\x73',   u'\u015c' : '\xE3\x53',   
+     u'\u015d' : '\xE3\x73',   u'\u015e' : '\xF0\x53',   u'\u015f' : '\xF0\x73',   
+     u'\u0160' : '\xE9\x53',   u'\u0161' : '\xE9\x73',   u'\u0162' : '\xF0\x54',   
+     u'\u0163' : '\xF0\x74',   u'\u0164' : '\xE9\x54',   u'\u0165' : '\xE9\x74',   
+     u'\u0168' : '\xE4\x55',   u'\u0169' : '\xE4\x75',   u'\u016a' : '\xE5\x55',   
+     u'\u016b' : '\xE5\x75',   u'\u016c' : '\xE6\x55',   u'\u016d' : '\xE6\x75',   
+     u'\u016e' : '\xEA\xAD',   u'\u016f' : '\xEA\x75',   u'\u0170' : '\xEE\x55',   
+     u'\u0171' : '\xEE\x75',   u'\u0172' : '\xF1\x55',   u'\u0173' : '\xF1\x75',   
+     u'\u0174' : '\xE3\x57',   u'\u0175' : '\xE3\x77',   u'\u0176' : '\xE3\x59',   
+     u'\u0177' : '\xE3\x79',   u'\u0178' : '\xE8\x59',   u'\u0179' : '\xE2\x5A',   
+     u'\u017a' : '\xE2\x7A',   u'\u017b' : '\xE7\x5A',   u'\u017c' : '\xE7\x7A',   
+     u'\u017d' : '\xE9\x5A',   u'\u017e' : '\xE9\x7A',   u'\u01a0' : '\xAC',       
+     u'\u01a1' : '\xBC',       u'\u01af' : '\xAD',       u'\u01b0' : '\xBD',       
+     u'\u01cd' : '\xE9\x41',   u'\u01ce' : '\xE9\x61',   u'\u01cf' : '\xE9\x49',   
+     u'\u01d0' : '\xE9\x69',   u'\u01d1' : '\xE9\x4F',   u'\u01d2' : '\xE9\x6F',   
+     u'\u01d3' : '\xE9\x55',   u'\u01d4' : '\xE9\x75',   u'\u01e2' : '\xE5\xA5',   
+     u'\u01e3' : '\xE5\xB5',   u'\u01e6' : '\xE9\x47',   u'\u01e7' : '\xE9\x67',   
+     u'\u01e8' : '\xE9\x4B',   u'\u01e9' : '\xE9\x6B',   u'\u01ea' : '\xF1\x4F',   
+     u'\u01eb' : '\xF1\x6F',   u'\u01f0' : '\xE9\x6A',   u'\u01f4' : '\xE2\x47',   
+     u'\u01f5' : '\xE2\x67',   u'\u01fc' : '\xE2\xA5',   u'\u01fd' : '\xE2\xB5',   
+     u'\u02b9' : '\xA7',       u'\u02ba' : '\xB7',       u'\u02bb' : '\xB0',       
+     u'\u02be' : '\xAE',       u'\u1e00' : '\xF4\x41',   u'\u1e01' : '\xF4\x61',   
+     u'\u1e02' : '\xE7\x42',   u'\u1e03' : '\xE7\x62',   u'\u1e04' : '\xF2\x42',   
+     u'\u1e05' : '\xF2\x62',   u'\u1e0a' : '\xE7\x44',   u'\u1e0b' : '\xE7\x64',   
+     u'\u1e0c' : '\xF2\x44',   u'\u1e0d' : '\xF2\x64',   u'\u1e10' : '\xF0\x44',   
+     u'\u1e11' : '\xF0\x64',   u'\u1e1e' : '\xE7\x46',   u'\u1e1f' : '\xE7\x66',   
+     u'\u1e20' : '\xE5\x47',   u'\u1e21' : '\xE5\x67',   u'\u1e22' : '\xE7\x48',   
+     u'\u1e23' : '\xE7\x68',   u'\u1e24' : '\xF2\x48',   u'\u1e25' : '\xF2\x68',   
+     u'\u1e26' : '\xE8\x48',   u'\u1e27' : '\xE8\x68',   u'\u1e28' : '\xF0\x48',   
+     u'\u1e29' : '\xF0\x68',   u'\u1e2a' : '\xF9\x48',   u'\u1e2b' : '\xF9\x68',   
+     u'\u1e30' : '\xE2\x4B',   u'\u1e31' : '\xE2\x6B',   u'\u1e32' : '\xF2\x4B',   
+     u'\u1e33' : '\xF2\x6B',   u'\u1e36' : '\xF2\x4C',   u'\u1e37' : '\xF2\x6C',   
+     u'\u1e3e' : '\xE2\x4D',   u'\u1e3f' : '\xE2\x6D',   u'\u1e40' : '\xE7\x4D',   
+     u'\u1e41' : '\xE7\x6D',   u'\u1e42' : '\xF2\x4D',   u'\u1e43' : '\xF2\x6D',   
+     u'\u1e44' : '\xE7\x4E',   u'\u1e45' : '\xE7\x6E',   u'\u1e46' : '\xF2\x4E',   
+     u'\u1e47' : '\xF2\x6E',   u'\u1e54' : '\xE2\x50',   u'\u1e55' : '\xE2\x70',   
+     u'\u1e56' : '\xE7\x50',   u'\u1e57' : '\xE7\x70',   u'\u1e58' : '\xE7\x52',   
+     u'\u1e59' : '\xE7\x72',   u'\u1e5a' : '\xF2\x52',   u'\u1e5b' : '\xF2\x72',   
+     u'\u1e60' : '\xE7\x53',   u'\u1e61' : '\xE7\x73',   u'\u1e62' : '\xF2\x53',   
+     u'\u1e63' : '\xF2\x73',   u'\u1e6a' : '\xE7\x54',   u'\u1e6b' : '\xE7\x74',   
+     u'\u1e6c' : '\xF2\x54',   u'\u1e6d' : '\xF2\x74',   u'\u1e72' : '\xF3\x55',   
+     u'\u1e73' : '\xF3\x75',   u'\u1e7c' : '\xE4\x56',   u'\u1e7d' : '\xE4\x76',   
+     u'\u1e7e' : '\xF2\x56',   u'\u1e7f' : '\xF2\x76',   u'\u1e80' : '\xE1\x57',   
+     u'\u1e81' : '\xE1\x77',   u'\u1e82' : '\xE2\x57',   u'\u1e83' : '\xE2\x77',   
+     u'\u1e84' : '\xE8\x57',   u'\u1e85' : '\xE8\x77',   u'\u1e86' : '\xE7\x57',   
+     u'\u1e87' : '\xE7\x77',   u'\u1e88' : '\xF2\x57',   u'\u1e89' : '\xF2\x77',   
+     u'\u1e8a' : '\xE7\x58',   u'\u1e8b' : '\xE7\x78',   u'\u1e8c' : '\xE8\x58',   
+     u'\u1e8d' : '\xE8\x78',   u'\u1e8e' : '\xE7\x59',   u'\u1e8f' : '\xE7\x79',   
+     u'\u1e90' : '\xE3\x5A',   u'\u1e91' : '\xE3\x7A',   u'\u1e92' : '\xF2\x5A',   
+     u'\u1e93' : '\xF2\x7A',   u'\u1e97' : '\xE8\x74',   u'\u1e98' : '\xEA\x77',   
+     u'\u1e99' : '\xEA\x79',   u'\u1ea0' : '\xF2\x41',   u'\u1ea1' : '\xF2\x61',   
+     u'\u1ea2' : '\xE0\x41',   u'\u1ea3' : '\xE0\x61',   u'\u1eb8' : '\xF2\x45',   
+     u'\u1eb9' : '\xF2\x65',   u'\u1eba' : '\xE0\x45',   u'\u1ebb' : '\xE0\x65',   
+     u'\u1ebc' : '\xE4\x45',   u'\u1ebd' : '\xE4\x65',   u'\u1ec8' : '\xE0\x49',   
+     u'\u1ec9' : '\xE0\x69',   u'\u1eca' : '\xF2\x49',   u'\u1ecb' : '\xF2\x69',   
+     u'\u1ecc' : '\xF2\x4F',   u'\u1ecd' : '\xF2\x6F',   u'\u1ece' : '\xE0\x4F',   
+     u'\u1ecf' : '\xE0\x6F',   u'\u1ee4' : '\xF2\x55',   u'\u1ee5' : '\xF2\x75',   
+     u'\u1ee6' : '\xE0\x55',   u'\u1ee7' : '\xE0\x75',   u'\u1ef2' : '\xE1\x59',   
+     u'\u1ef3' : '\xE1\x79',   u'\u1ef4' : '\xF2\x59',   u'\u1ef5' : '\xF2\x79',   
+     u'\u1ef6' : '\xE0\x59',   u'\u1ef7' : '\xE0\x79',   u'\u1ef8' : '\xE4\x59',   
+     u'\u1ef9' : '\xE4\x79',   u'\u20ac' : '\xC8',       u'\u2113' : '\xC1',       
+     u'\u2117' : '\xC2',       u'\u266d' : '\xA9',       u'\u266f' : '\xC4',      
+   }
 
 
-_utoa = {
-    u'\xA1' : '\xC6',     u'\xA3' : '\xB9',     u'\xA9' : '\xC3',
-    u'\xAE' : '\xAA',     u'\xB0' : '\xC0',     u'\xB1' : '\xAB',
-    u'\xB7' : '\xA8',     u'\xB8' : '\xF0\x20', u'\xBF' : '\xC5',
-    u'\xC0' : '\xE1\x41', u'\xC1' : '\xE2\x41', u'\xC2' : '\xE3\x41',
-    u'\xC3' : '\xE4\x41', u'\xC4' : '\xE8\x41', u'\xC5' : '\xEA\x41',
-    u'\xC6' : '\xA5',     u'\xC7' : '\xF0\x43', u'\xC8' : '\xE1\x45',
-    u'\xC9' : '\xE2\x45', u'\xCA' : '\xE3\x45', u'\xCB' : '\xE8\x45',
-    u'\xCC' : '\xE1\x49', u'\xCD' : '\xE2\x49', u'\xCE' : '\xE3\x49',
-    u'\xCF' : '\xE8\x49', u'\xD0' : '\xA3',     u'\xD1' : '\xE4\x4E',
-    u'\xD2' : '\xE1\x4F', u'\xD3' : '\xE2\x4F', u'\xD4' : '\xE3\x4F',
-    u'\xD5' : '\xE4\x4F', u'\xD6' : '\xE8\x4F', u'\xD8' : '\xA2',
-    u'\xD9' : '\xE1\x55', u'\xDA' : '\xE2\x55', u'\xDB' : '\xE3\x55',
-    u'\xDC' : '\xE8\x55', u'\xDD' : '\xE2\x59', u'\xDE' : '\xA4',
-    u'\xDF' : '\xCF',     u'\xE0' : '\xE1\x61', u'\xE1' : '\xE2\x61',
-    u'\xE2' : '\xE3\x61', u'\xE3' : '\xE4\x61', u'\xE4' : '\xE8\x61',
-    u'\xE5' : '\xEA\x61', u'\xE6' : '\xB5',     u'\xE7' : '\xF0\x63',
-    u'\xE8' : '\xE1\x65', u'\xE9' : '\xE2\x65', u'\xEA' : '\xE3\x65',
-    u'\xEB' : '\xE8\x65', u'\xEC' : '\xE1\x69', u'\xED' : '\xE2\x69',
-    u'\xEE' : '\xE3\x69', u'\xEF' : '\xE8\x69', u'\xF0' : '\xBA',
-    u'\xF1' : '\xE4\x6E', u'\xF2' : '\xE1\x6F', u'\xF3' : '\xE2\x6F',
-    u'\xF4' : '\xE3\x6F', u'\xF5' : '\xE4\x6F', u'\xF6' : '\xE8\x6F',
-    u'\xF8' : '\xB2',     u'\xF9' : '\xE1\x75', u'\xFA' : '\xE2\x75',
-    u'\xFB' : '\xE3\x75', u'\xFC' : '\xE8\x75', u'\xFD' : '\xE2\x79',
-    u'\xFE' : '\xB4',     u'\xFF' : '\xE8\x79', u'\x01' : '\xE5\x41',
-    u'\x01\x01' : '\xE5\x61', u'\x01\x02' : '\xE6\x41', u'\x01\x03' : '\xE6\x61',
-    u'\x01\x04' : '\xF1\x41', u'\x01\x05' : '\xF1\x61', u'\x01\x06' : '\xE2\x43',
-    u'\x01\x07' : '\xE2\x63', u'\x01\x08' : '\xE3\x43', u'\x01\x09' : '\xE3\x63',
-    u'\x01\x0A' : '\xE7\x43', u'\x01\x0B' : '\xE7\x63', u'\x01\x0C' : '\xE9\x43',
-    u'\x01\x0D' : '\xE9\x63', u'\x01\x0E' : '\xE9\x44', u'\x01\x0F' : '\xE9\x64',
-    u'\x01\x10' : '\xA3',     u'\x01\x11' : '\xB3',     u'\x01\x12' : '\xE5\x45',
-    u'\x01\x13' : '\xE5\x65', u'\x01\x14' : '\xE6\x45', u'\x01\x15' : '\xE6\x65',
-    u'\x01\x16' : '\xE7\x45', u'\x01\x17' : '\xE7\x65', u'\x01\x18' : '\xF1\x45',
-    u'\x01\x19' : '\xF1\x65', u'\x01\x1A' : '\xE9\x45', u'\x01\x1B' : '\xE9\x65',
-    u'\x01\x1C' : '\xE3\x47', u'\x01\x1D' : '\xE3\x67', u'\x01\x1E' : '\xE6\x47',
-    u'\x01\x1F' : '\xE6\x67', u'\x01\x20' : '\xE7\x47', u'\x01\x21' : '\xE7\x67',
-    u'\x01\x22' : '\xF0\x47', u'\x01\x23' : '\xF0\x67', u'\x01\x24' : '\xE3\x48',
-    u'\x01\x25' : '\xE3\x68', u'\x01\x28' : '\xE4\x49', u'\x01\x29' : '\xE4\x69',
-    u'\x01\x2A' : '\xE5\x49', u'\x01\x2B' : '\xE5\x69', u'\x01\x2C' : '\xE6\x49',
-    u'\x01\x2D' : '\xE6\x69', u'\x01\x2E' : '\xF1\x49', u'\x01\x2F' : '\xF1\x69',
-    u'\x01\x30' : '\xE7\x49', u'\x01\x31' : '\xB8',     u'\x01\x34' : '\xE3\x4A',
-    u'\x01\x35' : '\xE3\x6A', u'\x01\x36' : '\xF0\x4B', u'\x01\x37' : '\xF0\x6B',
-    u'\x01\x39' : '\xE2\x4C', u'\x01\x3A' : '\xE2\x6C', u'\x01\x3B' : '\xF0\x4C',
-    u'\x01\x3C' : '\xF0\x6C', u'\x01\x3D' : '\xE9\x4C', u'\x01\x3E' : '\xE9\x6C',
-    u'\x01\x41' : '\xA1',     u'\x01\x42' : '\xB1',     u'\x01\x43' : '\xE2\x4E',
-    u'\x01\x44' : '\xE2\x6E', u'\x01\x45' : '\xF0\x4E', u'\x01\x46' : '\xF0\x6E',
-    u'\x01\x47' : '\xE9\x4E', u'\x01\x48' : '\xE9\x6E', u'\x01\x4C' : '\xE5\x4F',
-    u'\x01\x4D' : '\xE5\x6F', u'\x01\x4E' : '\xE6\x4F', u'\x01\x4F' : '\xE6\x6F',
-    u'\x01\x50' : '\xEE\x4F', u'\x01\x51' : '\xEE\x6F', u'\x01\x52' : '\xA6',
-    u'\x01\x53' : '\xB6',     u'\x01\x54' : '\xE2\x52', u'\x01\x55' : '\xE2\x72',
-    u'\x01\x56' : '\xF0\x52', u'\x01\x57' : '\xF0\x72', u'\x01\x58' : '\xE9\x52',
-    u'\x01\x59' : '\xE9\x72', u'\x01\x5A' : '\xE2\x53', u'\x01\x5B' : '\xE2\x73',
-    u'\x01\x5C' : '\xE3\x53', u'\x01\x5D' : '\xE3\x73', u'\x01\x5E' : '\xF0\x53',
-    u'\x01\x5F' : '\xF0\x73', u'\x01\x60' : '\xE9\x53', u'\x01\x61' : '\xE9\x73',
-    u'\x01\x62' : '\xF0\x54', u'\x01\x63' : '\xF0\x74', u'\x01\x64' : '\xE9\x54',
-    u'\x01\x65' : '\xE9\x74', u'\x01\x68' : '\xE4\x55', u'\x01\x69' : '\xE4\x75',
-    u'\x01\x6A' : '\xE5\x55', u'\x01\x6B' : '\xE5\x75', u'\x01\x6C' : '\xE6\x55',
-    u'\x01\x6D' : '\xE6\x75', u'\x01\x6E' : '\xEA\xAD', u'\x01\x6F' : '\xEA\x75',
-    u'\x01\x70' : '\xEE\x55', u'\x01\x71' : '\xEE\x75', u'\x01\x72' : '\xF1\x55',
-    u'\x01\x73' : '\xF1\x75', u'\x01\x74' : '\xE3\x57', u'\x01\x75' : '\xE3\x77',
-    u'\x01\x76' : '\xE3\x59', u'\x01\x77' : '\xE3\x79', u'\x01\x78' : '\xE8\x59',
-    u'\x01\x79' : '\xE2\x5A', u'\x01\x7A' : '\xE2\x7A', u'\x01\x7B' : '\xE7\x5A',
-    u'\x01\x7C' : '\xE7\x7A', u'\x01\x7D' : '\xE9\x5A', u'\x01\x7E' : '\xE9\x7A',
-    u'\x01\xA0' : '\xAC',     u'\x01\xA1' : '\xBC',     u'\x01\xAF' : '\xAD',
-    u'\x01\xB0' : '\xBD',     u'\x01\xCD' : '\xE9\x41', u'\x01\xCE' : '\xE9\x61',
-    u'\x01\xCF' : '\xE9\x49', u'\x01\xD0' : '\xE9\x69', u'\x01\xD1' : '\xE9\x4F',
-    u'\x01\xD2' : '\xE9\x6F', u'\x01\xD3' : '\xE9\x55', u'\x01\xD4' : '\xE9\x75',
-    u'\x01\xE2' : '\xE5\xA5', u'\x01\xE3' : '\xE5\xB5', u'\x01\xE6' : '\xE9\x47',
-    u'\x01\xE7' : '\xE9\x67', u'\x01\xE8' : '\xE9\x4B', u'\x01\xE9' : '\xE9\x6B',
-    u'\x01\xEA' : '\xF1\x4F', u'\x01\xEB' : '\xF1\x6F', u'\x01\xF0' : '\xE9\x6A',
-    u'\x01\xF4' : '\xE2\x47', u'\x01\xF5' : '\xE2\x67', u'\x01\xFC' : '\xE2\xA5',
-    u'\x01\xFD' : '\xE2\xB5', u'\x02\xB9' : '\xA7',     u'\x02\xBA' : '\xB7',
-    u'\x02\xBE' : '\xAE',     u'\x02\xBF' : '\xB0',     u'\x03' : '\xE1',
-    u'\x03\x01' : '\xE2',     u'\x03\x02' : '\xE3',     u'\x03\x03' : '\xE4',
-    u'\x03\x04' : '\xE5',     u'\x03\x06' : '\xE6',     u'\x03\x07' : '\xE7',
-    u'\x03\x09' : '\xE0',     u'\x03\x0A' : '\xEA',     u'\x03\x0B' : '\xEE',
-    u'\x03\x0C' : '\xE9',     u'\x03\x10' : '\xEF',     u'\x03\x13' : '\xFE',
-    u'\x03\x15' : '\xED',     u'\x03\x1C' : '\xF8',     u'\x03\x23' : '\xF2',
-    u'\x03\x24' : '\xF3',     u'\x03\x25' : '\xF4',     u'\x03\x26' : '\xF7',
-    u'\x03\x27' : '\xF0',     u'\x03\x28' : '\xF1',     u'\x03\x2E' : '\xF9',
-    u'\x03\x32' : '\xF6',     u'\x03\x33' : '\xF5',     u'\x1E' : '\xF4\x41',
-    u'\x1E\x01' : '\xF4\x61', u'\x1E\x02' : '\xE7\x42', u'\x1E\x03' : '\xE7\x62',
-    u'\x1E\x04' : '\xF2\x42', u'\x1E\x05' : '\xF2\x62', u'\x1E\x0A' : '\xE7\x44',
-    u'\x1E\x0B' : '\xE7\x64', u'\x1E\x0C' : '\xF2\x44', u'\x1E\x0D' : '\xF2\x64',
-    u'\x1E\x10' : '\xF0\x44', u'\x1E\x11' : '\xF0\x64', u'\x1E\x1E' : '\xE7\x46',
-    u'\x1E\x1F' : '\xE7\x66', u'\x1E\x20' : '\xE5\x47', u'\x1E\x21' : '\xE5\x67',
-    u'\x1E\x22' : '\xE7\x48', u'\x1E\x23' : '\xE7\x68', u'\x1E\x24' : '\xF2\x48',
-    u'\x1E\x25' : '\xF2\x68', u'\x1E\x26' : '\xE8\x48', u'\x1E\x27' : '\xE8\x68',
-    u'\x1E\x28' : '\xF0\x48', u'\x1E\x29' : '\xF0\x68', u'\x1E\x2A' : '\xF9\x48',
-    u'\x1E\x2B' : '\xF9\x68', u'\x1E\x30' : '\xE2\x4B', u'\x1E\x31' : '\xE2\x6B',
-    u'\x1E\x32' : '\xF2\x4B', u'\x1E\x33' : '\xF2\x6B', u'\x1E\x36' : '\xF2\x4C',
-    u'\x1E\x37' : '\xF2\x6C', u'\x1E\x3E' : '\xE2\x4D', u'\x1E\x3F' : '\xE2\x6D',
-    u'\x1E\x40' : '\xE7\x4D', u'\x1E\x41' : '\xE7\x6D', u'\x1E\x42' : '\xF2\x4D',
-    u'\x1E\x43' : '\xF2\x6D', u'\x1E\x44' : '\xE7\x4E', u'\x1E\x45' : '\xE7\x6E',
-    u'\x1E\x46' : '\xF2\x4E', u'\x1E\x47' : '\xF2\x6E', u'\x1E\x54' : '\xE2\x50',
-    u'\x1E\x55' : '\xE2\x70', u'\x1E\x56' : '\xE7\x50', u'\x1E\x57' : '\xE7\x70',
-    u'\x1E\x58' : '\xE7\x52', u'\x1E\x59' : '\xE7\x72', u'\x1E\x5A' : '\xF2\x52',
-    u'\x1E\x5B' : '\xF2\x72', u'\x1E\x60' : '\xE7\x53', u'\x1E\x61' : '\xE7\x73',
-    u'\x1E\x62' : '\xF2\x53', u'\x1E\x63' : '\xF2\x73', u'\x1E\x6A' : '\xE7\x54',
-    u'\x1E\x6B' : '\xE7\x74', u'\x1E\x6C' : '\xF2\x54', u'\x1E\x6D' : '\xF2\x74',
-    u'\x1E\x72' : '\xF3\x55', u'\x1E\x73' : '\xF3\x75', u'\x1E\x7C' : '\xE4\x56',
-    u'\x1E\x7D' : '\xE4\x76', u'\x1E\x7E' : '\xF2\x56', u'\x1E\x7F' : '\xF2\x76',
-    u'\x1E\x80' : '\xE1\x57', u'\x1E\x81' : '\xE1\x77', u'\x1E\x82' : '\xE2\x57',
-    u'\x1E\x83' : '\xE2\x77', u'\x1E\x84' : '\xE8\x57', u'\x1E\x85' : '\xE8\x77',
-    u'\x1E\x86' : '\xE7\x57', u'\x1E\x87' : '\xE7\x77', u'\x1E\x88' : '\xF2\x57',
-    u'\x1E\x89' : '\xF2\x77', u'\x1E\x8A' : '\xE7\x58', u'\x1E\x8B' : '\xE7\x78',
-    u'\x1E\x8C' : '\xE8\x58', u'\x1E\x8D' : '\xE8\x78', u'\x1E\x8E' : '\xE7\x59',
-    u'\x1E\x8F' : '\xE7\x79', u'\x1E\x90' : '\xE3\x5A', u'\x1E\x91' : '\xE3\x7A',
-    u'\x1E\x92' : '\xF2\x5A', u'\x1E\x93' : '\xF2\x7A', u'\x1E\x97' : '\xE8\x74',
-    u'\x1E\x98' : '\xEA\x77', u'\x1E\x99' : '\xEA\x79', u'\x1E\xA0' : '\xF2\x41',
-    u'\x1E\xA1' : '\xF2\x61', u'\x1E\xA2' : '\xE0\x41', u'\x1E\xA3' : '\xE0\x61',
-    u'\x1E\xB8' : '\xF2\x45', u'\x1E\xB9' : '\xF2\x65', u'\x1E\xBA' : '\xE0\x45',
-    u'\x1E\xBB' : '\xE0\x65', u'\x1E\xBC' : '\xE4\x45', u'\x1E\xBD' : '\xE4\x65',
-    u'\x1E\xC8' : '\xE0\x49', u'\x1E\xC9' : '\xE0\x69', u'\x1E\xCA' : '\xF2\x49',
-    u'\x1E\xCB' : '\xF2\x69', u'\x1E\xCC' : '\xF2\x4F', u'\x1E\xCD' : '\xF2\x6F',
-    u'\x1E\xCE' : '\xE0\x4F', u'\x1E\xCF' : '\xE0\x6F', u'\x1E\xE4' : '\xF2\x55',
-    u'\x1E\xE5' : '\xF2\x75', u'\x1E\xE6' : '\xE0\x55', u'\x1E\xE7' : '\xE0\x75',
-    u'\x1E\xF2' : '\xE1\x59', u'\x1E\xF3' : '\xE1\x79', u'\x1E\xF4' : '\xF2\x59',
-    u'\x1E\xF5' : '\xF2\x79', u'\x1E\xF6' : '\xE0\x59', u'\x1E\xF7' : '\xE0\x79',
-    u'\x1E\xF8' : '\xE4\x59', u'\x1E\xF9' : '\xE4\x79',
-#    u'\x20\x0C' : '\x8E',     u'\x20\x0D' : '\x8D',     u'\x21\x13' : '\xC1',
-#    u'\x21\x17' : '\xC2',     u'\x26\x6D' : '\xA9',     u'\x26\x6F' : '\xC4',
-    u'\xFE\x20' : '\xEB',
-    u'\xFE\x21' : '\xEC',     u'\xFE\x22' : '\xFA',     u'\xFE\x23' : '\xFB',
-    }
-
+# unicode combining forms mapped to ANSEL 
+_ucombiners = {
+     u'\u0300' : '\xE1',       u'\u0301' : '\xE2',       u'\u0302' : '\xE3',       
+     u'\u0303' : '\xE4',       u'\u0304' : '\xE5',       u'\u0306' : '\xE6',       
+     u'\u0307' : '\xE7',       u'\u0308' : '\xE8',       u'\u0309' : '\xE0',       
+     u'\u030a' : '\xEA',       u'\u030b' : '\xEE',       u'\u030c' : '\xE9',       
+     u'\u0310' : '\xEF',       u'\u0313' : '\xFE',       u'\u0315' : '\xED',       
+     u'\u031c' : '\xF8',       u'\u0323' : '\xF2',       u'\u0324' : '\xF3',       
+     u'\u0325' : '\xF4',       u'\u0326' : '\xF7',       u'\u0327' : '\xF0',       
+     u'\u0328' : '\xF1',       u'\u032e' : '\xF9',       u'\u0332' : '\xF6',       
+     u'\u0333' : '\xF5',       u'\u200c' : '\x8E',       u'\u200d' : '\x8D',       
+     u'\ufe20' : '\xEB',       u'\ufe21' : '\xEC',       u'\ufe22' : '\xFA',       
+     u'\ufe23' : '\xFB',      
+}
+ 
+# TODO: change name to ansel_to_unicode (it does NOT return utf-8)
+# ALSO: I think I'd prefer full pass-through of ANSEL's ASCII subset,
+#  with substitutions and deletions handled at a higher level
 def ansel_to_utf8(s):
-    """Converts an ANSEL encoded string to UTF8"""
+    """ Convert an ANSEL encoded string to unicode """
 
     buff = cStringIO.StringIO()
     while s:
-        c0 = ord(s[0])
-        if c0 <= 31:
-            head = u' '
-            s = s[1:]
-        elif c0 > 127:
-            l2 = s[0:2]
-            l1 = s[0]
-            if _twobyte.has_key(l2):
-                head = _twobyte[l2]
-                s = s[2:]
-            elif _onebyte.has_key(l1):
-                head = _onebyte[l1]
-                s = s[1:]
+        if ord(s[0]) < 128:
+            if s[0] in _use_ASCII:
+                head = s[0]
             else:
-                head = u'\xff\xfd'
-                s = s[1:]
-        else:
-            head = s[0]
+                # substitute space for disallowed (control) chars
+                head = ' '
             s = s[1:]
-        buff.write(head)
-    ans = unicode(buff.getvalue())
+        else:
+            if _twobyte.has_key(s[0:2]):
+                head = _twobyte[s[0:2]]
+                s = s[2:]
+            elif _onebyte.has_key(s[0]):
+                head = _onebyte[s[0]]
+                s = s[1:]
+            elif s[0] in _acombiners.keys():
+                c =  _acombiners[s[0]]
+                # always consume the combiner
+                s = s[1:]
+                next = s[0]
+                if next in _printable_ascii:
+                    # consume next as well
+                    s = s[1:]
+                    # unicode: combiner follows base-char
+                    head = next + c
+                else:
+                    # just drop the unexpected combiner
+                    continue 
+            else:
+                head = u'\ufffd' # "Replacement Char"
+                s = s[1:]
+        # note: cStringIO handles 8-bit strings, only (no unicode)
+        buff.write(head.encode("utf-8"))
+    ans = unicode(buff.getvalue(), "utf-8")
     buff.close()
     return ans
 
+
+# TODO: change name to unicode_to_ansel (it does NOT process utf-8 input) 
 def utf8_to_ansel(s):
-    """Converts an UTF8 encoded string to ANSEL"""
-    
-    if type(s) != unicode:
-	s = unicode(s)
+    """ Convert a unicode string to ANSEL """
+   
     buff = cStringIO.StringIO()
     while s:
-        c0 = ord(s[0])
-        if c0 <= 3 or c0 == 0x1e or c0 >= 0xf3:
-            try:
-                head = _utoa[s[0:2]]
-                s = s[2:]
-            except:
-		try:
-		    head = _utoa[s[0:1]]
-		    s = s[1:]
-		except:
-		    head = '?'
-		    s = s[1:]
-        elif c0 > 127:
-            try:
-                head = _utoa[s[0:1]]
-                s = s[1:]
-            except:
-                head = '?'
-                s = s[1:]
+        if ord(s[0]) < 128:
+            head = s[0].encode('ascii')
+            if not head in _use_ASCII:
+                head = ' '
         else:
-            head = s[0]
-            s = s[1:]
+            if s[0] in _utoa.keys():
+                head = _utoa[s[0]]
+            elif s[0] in _ucombiners.keys():
+                c = _ucombiners[s[0]]
+                # head happens to have last conversion to ansel
+                if len(head) == 1 and head[-1] in _printable_ascii:
+                    last = head[-1]
+                    head = head[:-1] + c + last
+                    buff.seek(-1,2)
+                    buff.truncate()
+                else:
+                    # ignore mpultiple combiners
+                    # but always consume the combiner
+                    s = s[1:]
+                    continue
+            else:
+                head = '?'
+        s = s[1:]
         buff.write(head)
     ans = buff.getvalue()
     buff.close()
