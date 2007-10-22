@@ -254,7 +254,11 @@ class GrampsInMemDB(GrampsDbBase):
             old_id = old_data[self.ID_INDEX]
             if old_id is not None and obj.gramps_id != old_id:
                 del trans_map[old_id]
-        trans_map[gid] = obj.handle
+        #on load of xml for backref that are encountered before object exists,
+        #the object is created empty with gid None. Do not add this to 
+        #trans_map. Broken ref will then also not be exported (good!)
+        if gid is not None:
+            trans_map[gid] = obj.handle
         return True
 
     def commit_person(self,person,transaction,change_time=None):
