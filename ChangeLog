@@ -1,4 +1,7 @@
 2007-10-22 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_GalleryTab.py: remove edit_callback, works via signals now
+
+2007-10-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_EmbeddedList.py: during rebuild, don't do select change
 	* src/DisplayTabs/_ButtonTab.py: avoid double call of selection_change
 	* src/DisplayTabs/_GrampsTab.py: method to add db connects, and set connects

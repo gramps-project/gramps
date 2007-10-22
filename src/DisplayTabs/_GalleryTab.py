@@ -294,14 +294,10 @@ class GalleryTab(ButtonTab):
                 from Editors import EditMediaRef
                 
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
-                             obj, ref, self.edit_callback)
+                             obj, ref, None)
             except Errors.WindowActiveError:
                 pass
 
-    def edit_callback(self, media_ref, ref):
-        self.changed = True
-        self.rebuild()
-        
     def media_delete(self, del_media_handle_list):
         """
         Outside of this tab media objects have been deleted. Check if tab
