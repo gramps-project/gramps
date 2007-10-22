@@ -119,6 +119,19 @@ class Option:
         @return: nothing
         """
         self.__help_str = help
+
+    def add_dialog_category(self, dialog, category):
+        """
+        Add the GUI object to the dialog on the appropriate tab.
+        """
+        dialog.add_frame_option(category, self.get_label(), self.gobj)
+
+    def add_tooltip(self, tooltip):
+        """
+        Add the option's help to the GUI object.
+        """
+        tooltip.set_tip(self.gobj, self.get_help())
+        
         
 #-------------------------------------------------------------------------
 #
@@ -140,6 +153,20 @@ class StringOption(Option):
         @return: nothing
         """
         Option.__init__(self,label,value)
+
+    def make_gui_obj(self, dialog):
+        """
+        Add a StringOption (single line text) to the dialog.
+        """
+        value = self.get_value()
+        self.gobj = gtk.Entry()
+        self.gobj.set_text(value)
+
+    def parse(self):
+        """
+        Parse the string option (single line text).
+        """
+        return self.gobj.get_text()
         
 #-------------------------------------------------------------------------
 #
@@ -187,6 +214,22 @@ class NumberOption(Option):
         """
         return self.__max
 
+    def make_gui_obj(self, dialog):
+        """
+        Add a NumberOption to the dialog.
+        """
+        value = self.get_value()
+        adj = gtk.Adjustment(1,self.get_min(),self.get_max(),1)
+        self.gobj = gtk.SpinButton(adj)
+        self.gobj.set_value(value)
+
+    def parse(self):
+        """
+        Parse the object and return.
+        """
+        return int(self.gobj.get_value_as_int())
+                
+
 #-------------------------------------------------------------------------
 #
 # TextOption class
@@ -207,6 +250,32 @@ class TextOption(Option):
         @return: nothing
         """
         Option.__init__(self,label,value)
+
+    def make_gui_obj(self, dialog):
+        """
+        Add a TextOption to the dialog.
+        """
+        value = self.get_value()
+        self.gobj = gtk.TextView()
+        self.gobj.get_buffer().set_text("\n".join(value))
+        self.gobj.set_editable(1)
+        swin = gtk.ScrolledWindow()
+        swin.set_shadow_type(gtk.SHADOW_IN)
+        swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        swin.add(self.gobj)
+        # Required for tooltip
+        self.gobj.add_events(gtk.gdk.ENTER_NOTIFY_MASK)
+        self.gobj.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)
+
+    def parse(self):
+        """
+        Parse the text option (multi-line text).
+        """
+        b = self.gobj.get_buffer()
+        text_val = unicode( b.get_text( b.get_start_iter(),
+                                        b.get_end_iter(),
+                                        False)             )
+        return text_val.split('\n')
         
 #-------------------------------------------------------------------------
 #
@@ -229,6 +298,20 @@ class BooleanOption(Option):
         """
         Option.__init__(self,label,value)
 
+    def make_gui_obj(self, dialog):
+        """
+        Add a BooleanOption to the dialog.
+        """
+        value = self.get_value()
+        self.gobj = gtk.CheckButton(self.get_label())
+        self.gobj.set_active(value)
+        
+    def parse(self):
+        """
+        Parse the object and return.
+        """
+        return self.gobj.get_active()
+        
 #-------------------------------------------------------------------------
 #
 # EnumeratedListOption class
@@ -273,6 +356,30 @@ class EnumeratedListOption(Option):
         @return: an array of tuples containing (value,description) pairs.
         """
         return self.__items
+
+    def make_gui_obj(self, dialog):
+        """
+        Add an EnumeratedListOption to the dialog.
+        """
+        v = self.get_value()
+        active_index = 0
+        current_index = 0 
+        self.gobj = gtk.combo_box_new_text()
+        for (value,description) in self.get_items():
+            self.gobj.append_text(description)
+            if value == v:
+                active_index = current_index
+            current_index += 1
+        self.gobj.set_active( active_index )
+
+    def parse(self):
+        """
+        Parse the EnumeratedListOption and return.
+        """
+        index = self.gobj.get_active()
+        items = self.get_items()
+        value = items[index]
+        return value
 
 #-------------------------------------------------------------------------
 #
@@ -333,6 +440,29 @@ class FilterListOption(Option):
         @return: an array of filter objects
         """
         return self.__filters
+
+    def make_gui_obj(self, dialog):
+        """
+        Add an FilterListOption to the dialog.
+        """
+        self.gobj = gtk.combo_box_new_text()
+        for filter in self.get_items():
+            if filter in ["person"]:
+                filter_list = ReportUtils.get_person_filters(dialog.person,False)
+                for filter in filter_list:
+                    self.gobj.append_text(filter.get_name())
+                    self.add_filter(filter)
+        # FIXME: set proper default
+        self.gobj.set_active(0)
+        
+    def parse(self):
+        """
+        Parse the object and return.
+        """
+        index = self.gobj.get_active()
+        items = self.get_filters()
+        filter = items[index]
+        return filter
 
 #-------------------------------------------------------------------------
 #
@@ -463,13 +593,11 @@ class MenuOptions(ReportOptions):
     def set_new_options(self):
         self.options_dict = {}
         self.options_help = {}
-        
         self.add_menu_options(self.menu)
-
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
-            self.options_help[name] = option.get_help()
+            self.options_dict[name] = option.get_help()
 
     def add_menu_options(self,menu):
         """
@@ -482,161 +610,33 @@ class MenuOptions(ReportOptions):
         raise NotImplementedError
 
     def add_user_options(self,dialog):
-        self.gui = {}
+        """
+        Generic method to add user options to the gui.
+        """
         self.tooltips = gtk.Tooltips()
-        
         for category in self.menu.get_categories():
             for name in self.menu.get_option_names(category):
                 option = self.menu.get_option(category,name)
-                otype = option.__class__
-                
-                if otype == NumberOption:
-                    self.__add_number_option(category,name,option,dialog)
-                elif otype == TextOption:
-                    self.__add_text_option(category,name,option,dialog)
-                elif otype == StringOption:
-                    self.__add_string_option(category,name,option,dialog)
-                elif otype == BooleanOption:
-                    self.__add_boolean_option(category,name,option,dialog)
-                elif otype == EnumeratedListOption:
-                    self.__add_enumerated_list_option(category,name,option,
-                                                      dialog) 
-                elif otype == FilterListOption:
-                    self.__add_filter_list_option(category,name,option,
-                                                  dialog) 
-                else:
-                    raise NotImplementedError
+                option.make_gui_obj(dialog)
+                option.add_dialog_category(dialog, category)
+                option.add_tooltip(self.tooltips)
                 
     def parse_user_options(self,dialog):
+        """
+        Generic method to parse the user options and cache result in options_dict.
+        """
         for name in self.menu.get_all_option_names():
-            option = self.menu.get_option_by_name(name)
-            otype = option.__class__
-            
-            if otype == NumberOption:
-                self.__parse_number_option(name,option)
-            elif otype == TextOption:
-                self.__parse_text_option(name,option)
-            elif otype == StringOption:
-                self.__parse_string_option(name,option)
-            elif otype == BooleanOption:
-                self.__parse_boolean_option(name,option)
-            elif otype == EnumeratedListOption:
-                self.__parse_enumerated_list_option(name,option)
-            elif otype == FilterListOption:
-                self.__parse_filter_list_option(name,option)
-            else:
-                raise NotImplementedError
-            
-    def __add_number_option(self,category,name,option,dialog):
-        """
-        Add a NumberOption to the dialog.
-        """
-        adj = gtk.Adjustment(1,option.get_min(),option.get_max(),1)
-        self.gui[name] = gtk.SpinButton(adj)
-        self.gui[name].set_value(self.options_dict[name])
-        dialog.add_frame_option(category,option.get_label(),self.gui[name])
-        
-        self.tooltips.set_tip(self.gui[name],option.get_help())
-        
-    def __parse_number_option(self,name,option):
-        self.options_dict[name] = int(self.gui[name].get_value_as_int())
-                
-    def __add_text_option(self,category,name,option,dialog):
-        """
-        Add a TextOption to the dialog.
-        """
-        self.gui[name] = gtk.TextView()
-        self.gui[name].get_buffer().set_text("\n".join(self.options_dict[name]))
-        self.gui[name].set_editable(1)
-        swin = gtk.ScrolledWindow()
-        swin.set_shadow_type(gtk.SHADOW_IN)
-        swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        swin.add(self.gui[name])
-        dialog.add_frame_option(category,option.get_label(),swin)
-        
-        # Required for tooltip
-        self.gui[name].add_events(gtk.gdk.ENTER_NOTIFY_MASK)
-        self.gui[name].add_events(gtk.gdk.LEAVE_NOTIFY_MASK)
-        self.tooltips.set_tip(self.gui[name],option.get_help())
-        
-    def __add_string_option(self,category,name,option,dialog):
-        """
-        Add a StringOption (single line text) to the dialog.
-        """
-        self.gui[name] = gtk.Entry()
-        self.gui[name].set_text(self.options_dict[name])
-        dialog.add_frame_option(category,option.get_label(),self.gui[name])
-        self.tooltips.set_tip(self.gui[name],option.get_help())
+            self.options_dict[name] = self.menu.get_option_by_name(name).parse()
 
-    def __parse_text_option(self,name,option):
+    def get_option_names(self):
         """
-        Parse the text option (multi-line text).
+        Return all names of options.
         """
-        b = self.gui[name].get_buffer()
-        text_val = unicode( b.get_text( b.get_start_iter(),
-                                        b.get_end_iter(),
-                                        False)             )
-        self.options_dict[name] = text_val.split('\n')
-        
-    def __parse_string_option(self,name,option):
-        """
-        Parse the string option (single line text).
-        """
-        self.options_dict[name] = self.gui[name].get_text()
+        return self.menu.get_all_option_names()
 
-    def __add_boolean_option(self,category,name,option,dialog):
+    def get_user_value(self, name):
         """
-        Add a BooleanOption to the dialog.
+        Get and parse the users choice.
         """
-        self.gui[name] = gtk.CheckButton(option.get_label())
-        self.gui[name].set_active(self.options_dict[name])
-        dialog.add_frame_option(category,"",self.gui[name])
-        
-        self.tooltips.set_tip(self.gui[name],option.get_help())
-        
-    def __parse_boolean_option(self,name,option):
-        self.options_dict[name] = self.gui[name].get_active()
-        
-    def __add_enumerated_list_option(self,category,name,option,dialog):
-        """
-        Add an EnumeratedListOption to the dialog.
-        """
-        active_index = 0
-        current_index = 0 
-        self.gui[name] = gtk.combo_box_new_text()
-        for (value,description) in option.get_items():
-            self.gui[name].append_text(description)
-            if value == self.options_dict[name]:
-                active_index = current_index
-            current_index += 1
-        self.gui[name].set_active( active_index )
-        dialog.add_frame_option(category,option.get_label(),self.gui[name])
-        
-        self.tooltips.set_tip(self.gui[name],option.get_help())
+        return self.menu.get_option_by_name(name).parse()
 
-    def __add_filter_list_option(self,category,name,option,dialog):
-        """
-        Add an FilterListOption to the dialog.
-        """
-        self.gui[name] = gtk.combo_box_new_text()
-        for filter in option.get_items():
-            if filter in ["person"]:
-                filter_list = ReportUtils.get_person_filters(dialog.person,False)
-                for filter in filter_list:
-                    self.gui[name].append_text(filter.get_name())
-                    option.add_filter(filter)
-        self.gui[name].set_active(0)
-        dialog.add_frame_option(category,option.get_label(),self.gui[name])
-        self.tooltips.set_tip(self.gui[name],option.get_help())
-        
-    def __parse_enumerated_list_option(self,name,option):
-        index = self.gui[name].get_active()
-        items = option.get_items()
-        value = items[index]
-        self.options_dict[name] = value
-
-    def __parse_filter_list_option(self,name,option):
-        index = self.gui[name].get_active()
-        items = option.get_filters()
-        filter = items[index]
-        self.options_dict[name] = filter
