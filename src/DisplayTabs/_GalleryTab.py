@@ -78,9 +78,12 @@ class GalleryTab(ButtonTab):
 
         self.rebuild()
         self.show_all()
-        
-        #connect external remove of object to rebuild
-        self.dbstate.db.connect('media-delete',self.media_delete)
+    
+    def connect_db_signals(self):
+        #connect external remove/change of object to rebuild of grampstab
+        self._add_db_signal('media-delete', self.media_delete)
+        self._add_db_signal('media-rebuild', self.rebuild)
+        self._add_db_signal('media-update', self.media_update)
 
     def double_click(self, obj, event):
         """
@@ -306,18 +309,34 @@ class GalleryTab(ButtonTab):
         Note: delete of object will cause reference on database to be removed,
               so this method need not do this
         """
+        rebuild = False
         ref_handles = [x.ref for x in self.media_list]
         for handle in del_media_handle_list :
-            pos = None
-            try :
-                pos = ref_handles.index(handle)
-            except ValueError :
-                continue
+            while 1:
+                pos = None
+                try :
+                    pos = ref_handles.index(handle)
+                except ValueError :
+                    break
             
-            if pos is not None:
-                #oeps, we need to remove this reference, and rebuild tab
-                self.media_list.remove(self.media_list[pos])
+                if pos is not None:
+                    #oeps, we need to remove this reference, and rebuild tab
+                    del self.media_list[pos]
+                    del ref_handles[pos]
+                    rebuild = True
+        if rebuild:
+            self.rebuild()
+    
+    def media_update(self, upd_media_handle_list):
+        """
+        Outside of this tab media objects have been changed. Check if tab
+        and object must be changed.
+        """
+        ref_handles = [x.ref for x in self.media_list]
+        for handle in upd_media_handle_list :
+            if handle in ref_handles:
                 self.rebuild()
+                break
 
     def _set_dnd(self):
         """

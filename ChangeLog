@@ -1,4 +1,14 @@
 2007-10-22 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_EmbeddedList.py: during rebuild, don't do select change
+	* src/DisplayTabs/_ButtonTab.py: avoid double call of selection_change
+	* src/DisplayTabs/_GrampsTab.py: method to add db connects, and set connects
+	* src/Editors/_EditPrimary.py: on add tab pass db connection method
+	* src/Editors/_EditSecondary.py: on add tab pass db connection method
+	* src/Editors/_EditReference.py: on add tab pass db connection method
+	* src/DisplayTabs/_GalleryTab.py: use new structure to correctly update
+	displaytab
+
+2007-10-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsDb/_GrampsInMemDB.py: xml load/save not working, fixed #1319
 
 2007-10-21 Jim Sack <jgsack@san.rr.com>

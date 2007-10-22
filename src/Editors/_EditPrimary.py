@@ -99,6 +99,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
 
     def _add_tab(self,notebook,page):
         notebook.insert_page(page, page.get_tab_widget())
+        page.add_db_signal_callback(self._add_db_signal)
         return page
 
     def _cleanup_on_exit(self):

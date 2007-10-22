@@ -66,6 +66,8 @@ class GrampsTab(gtk.HBox):
         self.track = track
         self.changed = False
         
+        self._add_db_signal = None
+        
         # save name used for notebook label, and build the widget used
         # for the label
         
@@ -134,6 +136,27 @@ class GrampsTab(gtk.HBox):
         @rtype: gtk.HBox
         """
         return self.label_container
+
+    def add_db_signal_callback(self, add_db_signal):
+        """
+        The grampstab must be able to react to database signals, however
+        on destroy of the editor to which the tab is attached, these signals
+        must be disconnected.
+        This method sets the method with which to add database signals on tabs,
+        typically EditPrimary and EditSecondary add tabs, and have methods to 
+        connect signals and register them so they are correctly disconnected 
+        on close
+        """
+        self._add_db_signal = add_db_signal
+        self.connect_db_signals()
+
+    def connect_db_signals(self):
+        """
+        Function to connect db signals to GrampsTab methods. This function 
+        should be overridden in the derived class.
+        It is called when the add_db_signal method is added.
+        """
+        pass
 
     def _set_label(self):
         """
