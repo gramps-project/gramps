@@ -1,4 +1,7 @@
 2007-10-23 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/RelCalc.py: better comment, issue #1181
+
+2007-10-23 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Relationship.py: new algorithm to calculate relation
 	* src/plugins/all_relations.py: begin of quick report to show extended relationship.
 

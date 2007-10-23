@@ -157,8 +157,12 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             commontext = ""
         elif length == 1:
             person = self.db.get_person_from_handle(common[0])
-            name = name_displayer.display(person)
-            commontext = " " + _("Their common ancestor is %s.") % name
+            if common[0] == other_person.handle or \
+                    common[0] == self.person.handle :
+                commontext = ''
+            else :
+                name = name_displayer.display(person)
+                commontext = " " + _("Their common ancestor is %s.") % name
         elif length == 2:
             p1 = self.db.get_person_from_handle(common[0])
             p2 = self.db.get_person_from_handle(common[1])
