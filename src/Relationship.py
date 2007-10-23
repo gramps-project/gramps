@@ -807,7 +807,9 @@ class RelationshipCalculator:
                                                       other_person.get_gender()
                                                      )
         if is_spouse:
-            return (is_spouse + ' and ' + rel_str, common)
+            return (_('%(spouse_relation)s and %(other_relation)s') % {
+                        'spouse_relation': is_spouse, 
+                        'other_relation': rel_str} , common )
         else:
             return (rel_str, common)
 ##        #original programmer did a sick joke here, switching first with other!
