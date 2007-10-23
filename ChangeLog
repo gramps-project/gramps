@@ -1,3 +1,7 @@
+2007-10-23 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Relationship.py: new algorithm to calculate relation
+	* src/plugins/all_relations.py: begin of quick report to show extended relationship.
+
 2007-10-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_GalleryTab.py: correctly update displaytab
 
