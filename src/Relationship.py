@@ -750,17 +750,20 @@ class RelationshipCalculator:
                         self.__apply_filter_new(db, mother,
                                 rel_str + addstr, rel_fam_new,
                                 pmap, depth, stoprecursemap, store_all)
-                if not fhandle and not mhandle :
-                    #family without parents, add brothers
+                if not fhandle and not mhandle and stoprecursemap is None:
+                    #family without parents, add brothers for orig person
+                    #other person has recusemap, and will stop when seeing
+                    #the brother.
                     child_list = [ref.ref for ref in family.get_child_ref_list()
                           if ref.ref != person.handle]
                     addstr = self.REL_SIBLING
-                    if pmap.has_key(person.handle) :
-                        pmap[person.handle][0] += [rel_str + addstr]
-                        pmap[person.handle][1] += [rel_fam_new]
-                        #person is already a grandparent in another branch
-                    elif store_all or commonancestor:
-                        pmap[person.handle] = [[rel_str+addstr],[rel_fam_new]]
+                    for chandle in child_list :
+                        if pmap.has_key(chandle) :
+                            pmap[chandle][0] += [rel_str + addstr]
+                            pmap[chandle][1] += [rel_fam_new]
+                            #person is already a grandparent in another branch
+                        else:
+                            pmap[chandle] = [[rel_str+addstr],[rel_fam_new]]
                 fam += 1
         except:
             import traceback
