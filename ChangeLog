@@ -1,4 +1,8 @@
 2007-10-24 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins.py/rel_xx.py: return order of get_relationship_distance
+	changed. Not for pt, there that method is inherited.
+
+2007-10-24 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/all_relations.py: collapse parents same family in one line
 	* src/Relationship.py: change no parent family code
 

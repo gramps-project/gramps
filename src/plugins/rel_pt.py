@@ -259,7 +259,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if is_spouse:
             return (is_spouse,[])
 
-        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
+        #get_relationship_distance changed, first data is relation to 
+        #orig person, apperently secondRel in this function
+        (secondRel,firstRel,common) = self.get_relationship_distance(orig_person,other_person)
 
         if type(common) == types.StringType or type(common) == types.UnicodeType:
             return (common,[])

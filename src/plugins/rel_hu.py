@@ -296,7 +296,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return ("sógora vagy sógornője",self.get_brothersister_in_law_common(orig_person,other_person))
 
 
-        (firstRel,secondRel,common) = \
+        #get_relationship_distance changed, first data is relation to 
+        #orig person, apperently secondRel in this function
+        (secondRel,firstRel,common) = \
                      self.get_relationship_distance(db,orig_person,other_person)
         
         if type(common) == types.StringType or \

@@ -111,7 +111,7 @@ _father_level = [ "",
                   "oudgrootvader (graad 6)",
                   "oudovergrootvader(graad 7)",
                   "oudbetovergrootvader (graad 8)",
-                  "stamvader graad 9)",
+                  "stamvader (graad 9)",
                   "stamgrootvader",
                   "stamovergrootvader",
                   "stambetovergrootvader",
@@ -310,7 +310,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if is_spouse:
             return (is_spouse,[])
 
-        (firstRel,secondRel,common) = self.get_relationship_distance(db,
+        #get_relationship_distance changed, first data is relation to 
+        #orig person, apperently secondRel in this function
+        (secondRel,firstRel,common) = self.get_relationship_distance(db,
                                                      orig_person,other_person)
 
         if (type(common) == types.StringType or 
