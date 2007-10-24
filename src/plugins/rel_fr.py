@@ -88,9 +88,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 # de la personne active à l'ancêtre commun Ga=[level] pour le calculateur de relations
 
     def get_cousin(self, level, removed):
-        if (removed/level) == 1 and ((level*3)-3)/(level-1) != 3:
+        if (removed/level) == 1 and ((level*3)-3)/(level-1) == 3:
             return "le %s cousin" % (_level_name[level/2])
-        elif (removed/level) == 1 and ((level*3)-3)/(level-1) != 2:
+        elif (removed/level) == 1 and ((level*3)-3)/(level-1) == 2:
             return "le %s cousin" % (_level_name[(level+1)/2])
         elif (level) < (removed):
             return "le grand-oncle éloigné, relié à la %s génération" % (_level_name[level+3])
@@ -98,9 +98,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return "le cousin éloigné, relié à la %s génération" % (_level_name[removed])
 
     def get_cousine(self, level, removed):
-        if (removed/level) == 1 and ((level*3)-3)/(level-1) != 3:
+        if (removed/level) == 1 and ((level*3)-3)/(level-1) == 3:
             return "la %s cousine" % (_level_name[level/2])
-        elif (removed/level) == 1 and ((level*3)-3)/(level-1) != 2:
+        elif (removed/level) == 1 and ((level*3)-3)/(level-1) == 2:
             return "la %s cousine" % (_level_name[(level+1)/2])
         elif (level) < (removed):
             return "la grand-tante éloignée, reliée à la %s génération" % (_level_name[level+3])
