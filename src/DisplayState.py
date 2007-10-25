@@ -316,7 +316,7 @@ class DisplayState(gen.utils.GrampsDBCallback):
         self.widget = None
         self.warnbtn = warnbtn
         self.last_bar = self.status.insert(min_width=15, ralign=True)
-        self.relationship = _PluginMgr.relationship_class()
+        self.set_relationship_class()
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
         self.rhandler = WarnHandler(capacity=400, button=warnbtn)
@@ -334,6 +334,12 @@ class DisplayState(gen.utils.GrampsDBCallback):
     def db_changed(self, db):
         db.connect('long-op-start', self.progress_monitor.add_op)
 
+    def set_relationship_class(self):
+        """method that rebinds the relationship to the current rel calc
+           Should be called after load or reload of plugins
+        """
+        self.relationship = _PluginMgr.relationship_class()
+        
     def display_relationship(self, dbstate):
         default_person = dbstate.db.get_default_person()
         active = dbstate.get_active_person()

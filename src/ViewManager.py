@@ -543,6 +543,7 @@ class ViewManager:
         self.fileactions.set_sensitive(False)
         self.__build_tools_menu(tool_list)
         self.__build_report_menu(report_list)
+        self.uistate.set_relationship_class()
         self.uistate.connect('plugins-reloaded', 
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
@@ -1368,6 +1369,7 @@ class ViewManager:
         """
         self.__build_tools_menu(tool_menu_list)
         self.__build_report_menu(report_menu_list)
+        self.uistate.set_relationship_class()
 
     def __build_tools_menu(self, tool_menu_list):
         """

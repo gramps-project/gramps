@@ -1,3 +1,8 @@
+2007-10-26 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/rel_nl.py: merge in changes of branch22
+	* src/DisplayState.py: method to set rel class
+	* src/ViewManager.py: call set rel class after loading plugins
+
 2007-10-25 Gary Burton <gary.burton@zen.co.uk>
 	* src/GrampsWidgets.py: allow MonitoredEntry widgets to be updated with
 	empty strings. issue #1314
@@ -10,7 +15,7 @@
 
 2007-10-24 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins.py/rel_xx.py: return order of get_relationship_distance
-	changed. Not for pt, there that method is inherited.
+	changed. Not for pl, there that method is inherited.
 
 2007-10-24 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/all_relations.py: collapse parents same family in one line
