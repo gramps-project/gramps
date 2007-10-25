@@ -1,3 +1,6 @@
+2007-10-26 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/rel_nl.py: various improvements
+
 2007-10-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_GalleryTab.py: remove edit_callback, works via signals now
 

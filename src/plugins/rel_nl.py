@@ -40,13 +40,13 @@ from PluginUtils import register_relcalc
 #-------------------------------------------------------------------------
 
 _removed_level = [ " ",
-                " eerste graad",
-                " tweede graad",
-                " derde graad",
-                " vierde graad",
-                " vijfde graad",
-                " zesde graad",
-                " zevende graad",
+                " eerste",
+                " tweede",
+                " derde",
+                " vierde",
+                " vijfde",
+                " zesde",
+                " zevende",
                 " achtste",
                 " negende",
                 " tiende",
@@ -81,7 +81,7 @@ _parents_level = [ "",
                    "oudovergrootouders",
                    "oudbetovergrootouders",
                    "stamouders",
-                   "stamgrootouders",
+                   "stamgrootouders",        # gen 10
                    "stamovergrootouders",
                    "stambetovergrootouders",
                    "stamoudouders",
@@ -91,7 +91,7 @@ _parents_level = [ "",
                    "edelouders",
                    "edelgrootoders",
                    "edelovergrootoudouders",
-                   "edelbetovergrootouders",
+                   "edelbetovergrootouders", # gen 20
                    "edeloudouders",
                    "edeloudgrootouders",
                    "edeloudvergrootouders",
@@ -103,66 +103,66 @@ _parents_level = [ "",
                    "edelstamoudouders" ]
 
 _father_level = [ "",
-                  "vader (graad 1)",
-                  "grootvader (graad 2)",
-                  "overgrootvader (graad 3)",
-                  "betovergrootvader (graad 4)",
-                  "oudvader (graad 5)",
-                  "oudgrootvader (graad 6)",
-                  "oudovergrootvader(graad 7)",
-                  "oudbetovergrootvader (graad 8)",
-                  "stamvader graad 9)",
-                  "stamgrootvader",
-                  "stamovergrootvader",
-                  "stambetovergrootvader",
-                  "stamoudvader",
-                  "stamoudgrootvader",
-                  "stamoudovergrootvader",
-                  "stamoudbetovergrootvader",
-                  "edelvader",
-                  "edelgrootvader",
-                  "edelovergrootoudvader",
-                  "edelbetovergrootvader",
-                  "edeloudvader",
-                  "edeloudgrootvader",
-                  "edeloudvergrootvader",
-                  "edeloudbetovergrootvader",
-                  "edelstamvader",
-                  "edelstamgrootvader",
-                  "edelstamovergrootvader",
-                  "edelstambetovergrootvader",
-                  "edelstamoudvader" ]
+                  "vader",
+                  "grootvader",
+                  "overgrootvader",
+                  "betovergrootvader",
+                  "oudvader (generatie 5)",
+                  "oudgrootvader  (generatie 6)",
+                  "oudovergrootvader  (generatie 7)",
+                  "oudbetovergrootvader  (generatie 8)",
+                  "stamvader  (generatie 9)",
+                  "stamgrootvader  (generatie 10)",
+                  "stamovergrootvader  (generatie 11)",
+                  "stambetovergrootvader (generatie 12)",
+                  "stamoudvader (generatie 13)",
+                  "stamoudgrootvader (generatie 14)",
+                  "stamoudovergrootvader (generatie 15)",
+                  "stamoudbetovergrootvader (generatie 16)",
+                  "edelvader (generatie 17)",
+                  "edelgrootvader (generatie 18)",
+                  "edelovergrootoudvader (generatie 19)",
+                  "edelbetovergrootvader  (generatie 20)",
+                  "edeloudvader (generatie 21)",
+                  "edeloudgrootvader (generatie 22)",
+                  "edeloudvergrootvader (generatie 23)",
+                  "edeloudbetovergrootvader (generatie 24)",
+                  "edelstamvader (generatie 25)",
+                  "edelstamgrootvader (generatie 26)",
+                  "edelstamovergrootvader (generatie 27)",
+                  "edelstambetovergrootvader (generatie 28)",
+                  "edelstamoudvader (generatie 29)" ]
 
 _mother_level = [ "",
-                  "moeder (graad 1)",
-                  "grootmoeder (graad 2)",
-                  "overgrootmoeder (graad 3)",
-                  "betovergrootmoeder (graad 4)",
-                  "oudmoeder",
-                  "oudgrootmoeder",
-                  "oudovergrootmoeder",
-                  "oudbetovergrootmoeder",
-                  "stammoeder",
-                  "stamgrootmoeder",
-                  "stamovergrootmoeder",
-                  "stambetovergrootmoeder",
-                  "stamoudmoeder",
-                  "stamoudgrootmoeder",
-                  "stamoudovergrootmoeder",
-                  "stamoudbetovergrootmoeder",
-                  "edelmoeder",
-                  "edelgrootmoeder",
-                  "edelovergrootoudmoeder",
-                  "edelbetovergrootmoeder",
-                  "edeloudmoeder",
-                  "edeloudgrootmoeder",
-                  "edeloudvergrootmoeder",
-                  "edeloudbetovergrootmoeder",
-                  "edelstammoeder",
-                  "edelstamgrootmoeder",
-                  "edelstamovergrootmoeder",
-                  "edelstambetovergrootmoeder",
-                  "edelstamoudmoeder" ]
+                  "moeder ",
+                  "grootmoeder",
+                  "overgrootmoeder",
+                  "betovergrootmoeder",
+                  "oudmoeder (generatie 5)",
+                  "oudgrootmoeder (generatie 6)",
+                  "oudovergrootmoeder (generatie 7)",
+                  "oudbetovergrootmoeder (generatie 8)",
+                  "stammoeder (generatie 9)",
+                  "stamgrootmoeder (generatie 10)",
+                  "stamovergrootmoeder  (generatie 11)",
+                  "stambetovergrootmoeder (generatie 12)",
+                  "stamoudmoeder (generatie 13)",
+                  "stamoudgrootmoeder (generatie 14)",
+                  "stamoudovergrootmoeder (generatie 15)",
+                  "stamoudbetovergrootmoeder (generatie 16)",
+                  "edelmoeder (generatie 17)",
+                  "edelgrootmoeder (generatie 18)",
+                  "edelovergrootoudmoeder (generatie 19)",
+                  "edelbetovergrootmoeder (generatie 20)",
+                  "edeloudmoeder (generatie 21)",
+                  "edeloudgrootmoeder (generatie 22)",
+                  "edeloudvergrootmoeder (generatie 23)",
+                  "edeloudbetovergrootmoeder (generatie 24)",
+                  "edelstammoeder (generatie 25)",
+                  "edelstamgrootmoeder (generatie 26)",
+                  "edelstamovergrootmoeder (generatie 27)",
+                  "edelstambetovergrootmoeder (generatie 28)",
+                  "edelstamoudmoeder (generatie 29)" ]
 
 _son_level = [ "",
                "zoon",
@@ -178,22 +178,6 @@ _daughter_level = [ "",
                     "achterachterkleindochter",
                     "achterachterachterkleindochter"]
 
-##_sister_level = [ "",
-##                  "zuster",
-##                  "tante",
-##                  "groottante",
-##                  "overgroottante" ,
-##                  "betovergroottante",
-##                  "oudtante"]
-
-##_brother_level = [ "",
-##                   "broer",
-##                   "oom",
-##                   "grootoom",
-##                   "overgrootoom",
-##                   "betovergrootoom",
-##                   "oudoom" ]
-
 _nephew_level = [ "",
                   "neef",
                   "achterneef",
@@ -202,19 +186,20 @@ _nephew_level = [ "",
 _niece_level = [ "",
                  "nicht",
                  "achternicht", 
-                 "achterachtenicht"]
+                 "achterachternicht"]
 _aunt_level = [ "",  
                 "tante", 
                 "groottante",
                 "overgroottante",
                 "betovergroottante",
-                "oudtante"]
+                "oudtante (generatie 5)"]
 
 _uncle_level = [ "",  
                  "oom",
                  "grootoom",
                  "overgrootoom",
-                 "betovergrootoom"]
+                 "betovergrootoom",
+                 "oudoom (generatie 5)"]
 #-------------------------------------------------------------------------
 #
 #
@@ -226,72 +211,103 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Relationship.RelationshipCalculator.__init__(self,db)
 
     def get_parents(self, level):
-        if level>len(_parents_level)-1:
-            return "verre voorouders"
+        if level > len(_parents_level)-1:
+            return "verre voorouders (%d generaties)" % level
         else:
             return _parents_level[level]    
     def get_father(self, level):
-        if level>len(_father_level)-1:
-            return "verre voorouder"
+        if level > len(_father_level)-1:
+            return "verre voorvader (%d generaties)" % level
         else:
             return _father_level[level]
 
     def get_son(self, level):
-        if level>len(_son_level)-1:
-            return "verre afstammeling"
+        if level < len(_son_level):
+            return _son_level[level] 
         else:
-            return _son_level[level]  
+            return "verre achterkleinzoon (%d generaties)" % level
 
     def get_mother(self,level):
-        if level>len(_mother_level)-1:
-            return "verre voorouder"
+        if level > len(_mother_level)-1:
+            return "verre voormoeder (%d generaties)" % level
         else:
             return _mother_level[level]
 
     def get_daughter(self, level):
-        if level>len(_daughter_level)-1:
-            return "verre afstammelinge"
+        if level > len(_daughter_level)-1:
+            return "verre achterkleindochter (%d generaties)" % level
         else:
             return _daughter_level[level]
 
     def get_aunt(self, level, removed):
-        if level>len(_aunt_level)-1 or removed > len(_removed_level) -1:
-            return "verre voorouder"
+        if removed == 1 and level < len(_aunt_level):
+            return _aunt_level[level]
+        elif level > len(_aunt_level)-1 or removed > len(_removed_level) -1:
+            return "verre tante (%d generaties, %d graden)" % (level, removed)
+        elif level > len(_aunt_level)-1:
+            return "verre tante van de%s graad (%d generaties)" \
+                                            % (_removed_level[removed], level)
         else:
-            return _aunt_level[level] + _removed_level[removed]    
+            return _aunt_level[level] + _removed_level[removed] + " graad"    
+        
     def get_uncle(self, level, removed):
-        if level>len(_uncle_level)-1 or removed > len(_removed_level) -1:
-            return "verre voorouder"
+        if removed == 1 and level < len(_uncle_level):
+            return _uncle_level[level]
+        elif level > len(_uncle_level)-1 or removed > len(_removed_level) -1:
+            return "verre oom (%d generaties, %d graden)" % (level, removed)
+        elif level > len(_uncle_level)-1:
+            return "verre oom van de%s graad (%d generaties)" \
+                                            % (_removed_level[removed], level)
         else:
-            return _uncle_level[level] + _removed_level[removed]   
+            return _uncle_level[level] + _removed_level[removed] + " graad"
 
-    def get_nephew(self,level, removed):
-        if level>len(_nephew_level)-1 or removed > len(_removed_level) -1:
-            return "verre voorouder"
+    def get_nephew(self, level, removed=1):
+        if removed == 1 and level < len(_nephew_level):
+            return _nephew_level[level]
+        elif level > len(_nephew_level)-1 or removed > len(_removed_level) -1:
+            return "verre neef (%d generaties, %d graden)" % (level, removed)
+        elif level > len(_nephew_level)-1:
+            return "verre neef van de%s graad (%d generaties)" \
+                                            % (_removed_level[removed], level)
         else:
-            return _nephew_level[level] + _removed_level[removed]   
+            return _nephew_level[level] + _removed_level[removed] + " graad"
 
-    def get_niece(self,level, removed):
-        if level>len(_niece_level)-1 or removed > len(_removed_level) -1:
-            return "verre afstammelinge"
+    def get_niece(self, level, removed=1):
+        if removed == 1 and level < len(_niece_level):
+            return _niece_level[level]
+        if level > len(_niece_level)-1 or removed > len(_removed_level) -1:
+            return "verre nicht (%d generaties, %d graden)" % (level, removed)
+        elif level > len(_niece_level)-1:
+            return "verre nicht van de%s graad (%d generaties)" \
+                                            % (_removed_level[removed], level)
         else:
-            return _niece_level[level] + _removed_level[removed]  
+            return _niece_level[level] + _removed_level[removed] + " graad"
 
     def get_male_cousin(self,removed):
-        if removed>len(_removed_level)-1:
-            return "verre afstammeling"
+        """Specific Dutch thing, the nieces/nephews on same level are called
+            going sideways in a branch as the nieces/newphews going downward
+            from your brother/sisters. This used to be called "kozijn"
+        """
+        removed = removed - 1
+        if removed > len(_removed_level)-1:
+            return "verre neef (kozijn, %d graden)" % removed
         elif removed == 0:
             return "broer"
         else:
-            return "neef "+_removed_level[removed]
+            return "neef (kozijn)"+_removed_level[removed] + " graad"
 
     def get_female_cousin(self,removed):
-        if removed>len(_removed_level)-1:
-            return "verre afstammelinge"
-        elif  removed == 0:
-            return " zus"
+        """Specific Dutch thing, the nieces/nephews on same level are called
+            going sideways in a branch as the nieces/newphews going downward
+            from your brother/sisters.  This used to be called "kozijn"
+        """
+        removed = removed - 1
+        if removed > len(_removed_level)-1:
+            return "verre nicht (kozijn, %d graden)" % removed
+        elif removed == 0:
+            return "zus"
         else:
-            return "nicht "+ _removed_level[removed]
+            return "nicht (kozijn)"+ _removed_level[removed] + " graad"
 
     def get_relationship(self,orig_person,other_person):
         """
@@ -323,6 +339,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         secondRel = len(secondRel)
 
         if firstRel == 0:
+            #other person is ancestor
             if secondRel == 0:
                 return ('',common)
             elif other_person.get_gender() == RelLib.Person.MALE:
@@ -330,51 +347,31 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 return (self.get_mother(secondRel), common)
         elif secondRel == 0:
+            #other person is descendant
             if other_person.get_gender() == RelLib.Person.MALE:
                 return (self.get_son(firstRel), common)
             else:
                 return (self.get_daughter(firstRel), common)
         elif secondRel > firstRel:
+            #other person is higher in the branch, in english uncle/aunt or 
+            #cousin up, in dutch always 'oom/tante'
             if other_person.get_gender() == RelLib.Person.MALE:
                 return (self.get_uncle(secondRel - firstRel,firstRel), common)
             else:
                 return (self.get_aunt(secondRel - firstRel, firstRel), common)
         elif secondRel < firstRel:
+            #other person is lower in the branch, in english niece/nephew or 
+            #cousin down, in dutch always 'neef/nicht'
             if other_person.get_gender() == RelLib.Person.MALE:
                 return (self.get_nephew(firstRel - secondRel, secondRel), common)
             else:
                 return (self.get_niece(firstRel - secondRel, secondRel), common)
         else:
-                if other_person.get_gender() == RelLib.Person.MALE:
-                    return (self.get_male_cousin(firstRel -1), common)
-                else:
-                    return (self.get_female_cousin(firstRel -1), common)
-##        elif firstRel == 2 and secondRel == 2:
-##            if other_person.get_gender() == RelLib.Person.MALE:
-##                return ('de neef',common)
-##            else:
-##                return ('de nicht',common)
-##        elif firstRel == 3 and secondRel == 2:
-##            if other_person.get_gender() == RelLib.Person.MALE:
-##                return ('neef',common)
-##            else:
-##                return ('nicht',common)
-##        elif firstRel == 2 and secondRel == 3:
-##            if other_person.get_gender() == RelLib.Person.MALE:
-##                return ('de oom',common)
-##            else:
-##                return ('de tante',common)
-##        else:
-##            if other_person.get_gender() == RelLib.Person.MALE:
-##                if firstRel+secondRel>len(_level_name)-1:
-##                    return (self.get_male_cousin(firstRel+secondRel),common)
-##                else:
-##                    return ('verre neef',common)
-##            else:
-##                if firstRel+secondRel>len(_level_name)-1:
-##                    return (self.get_female_cousin(firstRel+secondRel),common)
-##                else:
-##                    return ('verre nicht',common)
+            # people on the same level secondRel == firstRel
+            if other_person.get_gender() == RelLib.Person.MALE:
+                return (self.get_male_cousin(firstRel), common)
+            else:
+                return (self.get_female_cousin(firstRel), common)
 
 #-------------------------------------------------------------------------
 #
