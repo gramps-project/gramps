@@ -33,7 +33,6 @@ from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
 
 from PluginUtils import Tool, relationship_class, register_tool
-import RelLib
 
 # define the formatting string once as a constant. Since this is reused
 

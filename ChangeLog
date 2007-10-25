@@ -1,3 +1,6 @@
+2007-10-25 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/all_relations.py: don't import RelLib
+
 2007-10-24 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins.py/rel_xx.py: return order of get_relationship_distance
 	changed. Not for pt, there that method is inherited.
