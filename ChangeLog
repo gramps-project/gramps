@@ -1,3 +1,7 @@
+2007-10-25 Gary Burton <gary.burton@zen.co.uk>
+	* src/GrampsWidgets.py: allow MonitoredEntry widgets to be updated with
+	empty strings. issue #1314
+
 2007-10-25 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/lineage.py: gen variable conflicts with module gen
 
