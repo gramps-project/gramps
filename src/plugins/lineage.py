@@ -168,13 +168,13 @@ def make_details_child(gender, person, sa, sd, database) :
     """ Function that prints the details of the children in the 
         male/female lineage
     """
-    def make_child_line(child, prepend, gen) :
+    def make_child_line(child, prepend, generation) :
         """ Recursively called funcion to write one child line
             Person is the child, prepend is the string that preceeds it
             on print. As the recursion grows, prepend is increased
             Gen is the generation level
         """
-        if gen > __MAX_GEN :
+        if generation > __MAX_GEN :
             raise RuntimeError
         #we use some global var from make_details_child !
         rem_str = ""
@@ -213,7 +213,7 @@ def make_details_child(gender, person, sa, sd, database) :
                 newchild = database.get_person_from_handle(childdet[0])
                 # person must have the required gender
                 if newchild and newchild.gender == gender :
-                    make_child_line(newchild, prepend + '  |', gen+1)
+                    make_child_line(newchild, prepend + '  |', generation+1)
                     
     # loop over all children of gender and output, start with no prepend
     try :

@@ -1,4 +1,7 @@
 2007-10-25 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/lineage.py: gen variable conflicts with module gen
+
+2007-10-25 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/all_relations.py: don't import RelLib
 
 2007-10-24 Benny Malengier <benny.malengier@gramps-project.org>
