@@ -1,3 +1,7 @@
+2007-10-27 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Relationship.py: begin of extension to step and in-law
+	NOT finished.
+
 2007-10-26 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Relationship.py: change api get_singular, add docu string
 	* src/plugins/all_relations.py: call get_singular changed.
