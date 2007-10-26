@@ -1,3 +1,7 @@
+2007-10-26 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Relationship.py: change api get_singular, add docu string
+	* src/plugins/all_relations.py: call get_singular changed.
+
 2007-10-25  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: display date on text report in locale;
 	changed a font default; removed string date class: use offset instead

@@ -232,11 +232,18 @@ MAX_DEPTH = 15
 
 class RelationshipCalculator:
     
-    REL_MOTHER           = 'm'
-    REL_FATHER           = 'f'
-    REL_MOTHER_NOTBIRTH  = 'M'
-    REL_FATHER_NOTBIRTH  = 'F'
-    REL_SIBLING          = 's'
+    REL_MOTHER           = 'm'      # going up to mother
+    REL_FATHER           = 'f'      # going up to father
+    REL_MOTHER_NOTBIRTH  = 'M'      # going up to mother, not birth relation
+    REL_FATHER_NOTBIRTH  = 'F'      # going up to father, not birth relation
+    REL_SIBLING          = 's'      # going sideways to sibling (no parents)
+    REL_FAM_BIRTH        = 'a'      # going up to family (mother and father)
+    REL_FAM_NONBIRTH     = 'A'      # going up to family, not birth relation
+    REL_FAM_BIRTH_MOTH_ONLY = 'b'   # going up to fam, only birth rel to mother
+    REL_FAM_BIRTH_FATH_ONLY = 'c'   # going up to fam, only birth rel to father
+    
+    REL_FAM_INLAW_PREFIX = 'L'      # going to the partner.
+    
 
     def __init__(self):
         pass
@@ -806,9 +813,10 @@ class RelationshipCalculator:
         dist_other= len(secondRel)
         rel_str = self.get_single_relationship_string(dist_orig,
                                                       dist_other,
-                                                      orig_person.get_gender(),
-                                                      other_person.get_gender()
-                                                     )
+                                                    orig_person.get_gender(),
+                                                    other_person.get_gender(),
+                                                    firstRel, secondRel
+                                                    )
         if is_spouse:
             return (_('%(spouse_relation)s and %(other_relation)s') % {
                         'spouse_relation': is_spouse, 
@@ -950,7 +958,9 @@ class RelationshipCalculator:
         return rel_str
     
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
-                                       only_birth=True):
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True, 
+                                       in_law_a=False, in_law_b=False):
         """
         Provides a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
@@ -965,6 +975,30 @@ class RelationshipCalculator:
         Ga and Gb can be used to mathematically calculate the relationship.
         See the Wikipedia entry for more information:
             http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+        
+        Some languages need to know the specific path to the common ancestor.
+        Those languages should use reltocommon_a and reltocommon_b which is 
+        a string like 'mfmf'. The possible string codes are:
+            REL_MOTHER             # going up to mother
+            REL_FATHER             # going up to father
+            REL_MOTHER_NOTBIRTH    # going up to mother, not birth relation
+            REL_FATHER_NOTBIRTH    # going up to father, not birth relation
+            REL_SIBLING            # going sideways to sibling (no parents)
+            REL_FAM_BIRTH          # going up to family (mother and father)
+            REL_FAM_NONBIRTH       # going up to family, not birth relation
+            REL_FAM_BIRTH_MOTH_ONLY # going up to fam, only birth rel to mother
+            REL_FAM_BIRTH_FATH_ONLY # going up to fam, only birth rel to father
+        Prefix codes are stripped, so REL_FAM_INLAW_PREFIX is not present. 
+        If the relation starts with the inlaw of the person a, then 'in_law_a'
+        is True, if it starts with the inlaw of person b, then 'in_law_b' is
+        True.
+        Note that only_birth=False, means that in the reltocommon one of the
+        NOTBIRTH specifiers is present.
+        The REL_FAM identifiers mean that the relation is not via a common 
+        ancestor, but via a common family (note that that is not possible for 
+        direct descendants or direct ancestors!). If the relation to one of the
+        parents in that common family is by birth, then 'only_birth' is not
+        set to False.
             
         @param Ga: The number of generations between the main person and the 
                    common ancestor.
@@ -976,6 +1010,20 @@ class RelationshipCalculator:
         @type gender_a: int gender
         @param gender_b : gender of person b
         @type gender_b: int gender
+        @param reltocommon_a : relation path to common ancestor or common
+                            Family for person a. 
+                            Note that length = Ga
+        @type reltocommon_a: str 
+        @param reltocommon_b : relation path to common ancestor or common
+                            Family for person b. 
+                            Note that length = Gb
+        @type reltocommon_b: str 
+        @param in_law_a : True if path to common ancestors is via the partner
+                          of person a
+        @type in_law_a: bool
+        @param in_law_b : True if path to common ancestors is via the partner
+                          of person b
+        @type in_law_b: bool
         @param only_birth : True if relation between a and b is by birth only
                             False otherwise
         @type only_birth: bool

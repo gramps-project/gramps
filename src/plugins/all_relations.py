@@ -161,6 +161,7 @@ def run(database, document, person):
         rel_str = rel_class.get_single_relationship_string(
                                 len(relation[4]), len(relation[2]), 
                                 home_person.get_gender(), person.get_gender(),
+                                relation[4], relation[2], 
                                 only_birth = birth)
         sdoc.paragraph(__FMT % (count, rel_str))
         count += 1
