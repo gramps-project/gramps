@@ -1,3 +1,11 @@
+2007-10-26 Stéphane Charette <stephanecharette@gmail.com>
+	* src/plugins/NarrativeWeb.py: various:  EOL should be <br> not <p>,
+	date is now displayed in the user's locale, source references no
+	longer skipped on media pages, allow half-sibling to be shown, allow
+	columns to be configurable, event notes are no longer skipped, progress
+	indicator no longer gets stuck at 100% for long periods of time with
+	large databases
+
 2007-10-26 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/rel_nl.py: various improvements
 
