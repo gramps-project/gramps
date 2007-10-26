@@ -1,3 +1,7 @@
+2007-10-25  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: display date on text report in locale;
+	changed a font default; removed string date class: use offset instead
+
 2007-10-26 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/rel_nl.py: merge in changes of branch22
 	* src/DisplayState.py: method to set rel class

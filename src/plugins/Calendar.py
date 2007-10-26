@@ -38,11 +38,13 @@ import os
 #------------------------------------------------------------------------
 import BaseDoc
 from BasicUtils import name_displayer
+from DateHandler import displayer
 from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, \
-     MenuOptions, NumberOption, BooleanOption, StringOption, EnumeratedListOption, \
-     FilterListOption, \
-     CATEGORY_DRAW, CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+     MenuOptions, NumberOption, BooleanOption, StringOption, \
+     FilterListOption, EnumeratedListOption, \
+     CATEGORY_DRAW, CATEGORY_TEXT, \
+     MODE_GUI, MODE_BKI, MODE_CLI
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter
@@ -74,42 +76,13 @@ def easter(year):
     l = i - j
     month = 3 + (l + 40) / 44
     day = l + 28 - 31 * ( month / 4 )
-    return SDate("%d/%d/%d" % (year, month, day))
+    return "%d/%d/%d" % (year, month, day)
 
 def g2iso(dow):
     """ Converst GRAMPS day of week to ISO day of week """
     # GRAMPS: SUN = 1
     # ISO: MON = 1
     return (dow + 5) % 7 + 1
-
-class SDate(str):
-    """ String date that you can add/subtract to/from. """
-    def __init__(self, sdate):
-        self.sdate = sdate
-
-    def __add__(self, other):
-        """ Date math: add day to a string date 'y/m/d' """
-        dy, dm, dd = map(int, self.sdate.split("/"))
-        date = gen.lib.Date()
-        date.set_yr_mon_day(dy, dm, dd)
-        y,m,d = date.offset(other)
-        return "%d/%d/%d" % (y,m,d)
-
-    def __radd__(self, other):
-        """ Date math: add day to a string date 'y/m/d' on right """
-        return self.__add__(other)
-
-    def __sub__(self, other):
-        """ Date math: subtract day to a string date 'y/m/d' """
-        return self.__add__(-other)
-
-    def __rsub__(self, other):
-        """ Date math: subtract day to a string date 'y/m/d' on right """
-        return self.__sub__(other)
-
-    def __str__(self):
-        # Don't need to overload len, split, or count because it uses this
-        return self.sdate
 
 #------------------------------------------------------------------------
 #
@@ -444,7 +417,12 @@ class CalendarReport(Calendar):
                     p = p.replace("\n", " ")
                     if thisday not in started_day:
                         self.doc.start_paragraph("BIR-Daystyle")
-                        self.doc.write_text("%s %s" % (GrampsLocale.long_months[month], str(thisday.day)))
+                        date = gen.lib.Date()
+                        date.set_yr_mon_day(year, month, i + 1)
+                        sdate = displayer.display(date)
+                        # Display date in locale's format
+                        self.doc.write_text( sdate )
+                        #self.doc.write_text("%s %s" % (GrampsLocale.long_months[month], str(thisday.day)))
                         self.doc.end_paragraph()
                         started_day[thisday] = 1
                     self.doc.start_paragraph("BIR-Datastyle")
@@ -609,7 +587,7 @@ class CalendarReportOptions(CalendarOptions):
                            _('Day text style'), 12, indent=.5,
                            italic=1, bold=1)
         self.make_my_style(default_style,"BIR-Monthstyle",
-                           _('Month text style'), 12, bold=1)
+                           _('Month text style'), 14, bold=1)
         self.make_my_style(default_style,"BIR-Text1style",
                            _('Text at bottom, line 1'), 12, justified="center")
         self.make_my_style(default_style,"BIR-Text2style",
@@ -617,6 +595,11 @@ class CalendarReportOptions(CalendarOptions):
         self.make_my_style(default_style,"BIR-Text3style",
                            _('Text at bottom, line 3'), 12, justified="center")
 
+#------------------------------------------------------------------------
+#
+# XML Classes
+#
+#------------------------------------------------------------------------
 class Element:
     """ A parsed XML element """
     def __init__(self,name,attributes):
