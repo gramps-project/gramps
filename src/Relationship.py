@@ -752,7 +752,7 @@ class RelationshipCalculator:
                     father = db.get_person_from_handle(fhandle)
                     if childrel[0][1] == gen.lib.ChildRefType.BIRTH :
                         addstr = self.REL_FATHER
-                    elif not self.only_birth :
+                    elif not self.__only_birth :
                         addstr = self.REL_FATHER_NOTBIRTH
                     else :
                         addstr = ''
@@ -767,7 +767,7 @@ class RelationshipCalculator:
                     mother = db.get_person_from_handle(mhandle)
                     if childrel[0][0] == gen.lib.ChildRefType.BIRTH :
                         addstr = self.REL_MOTHER
-                    elif not self.only_birth :
+                    elif not self.__only_birth :
                         addstr = self.REL_MOTHER_NOTBIRTH
                     else :
                         addstr = ''
