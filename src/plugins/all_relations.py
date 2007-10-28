@@ -169,7 +169,7 @@ def run(database, document, person):
     remarks(msg_list, sdoc)
     
     sdoc.paragraph("")
-    sdoc.header1(_("Detailed path to common ancestor"))
+    sdoc.header1(_("Detailed path from %(person)s to common ancestor") % {'person':p1})
     sdoc.paragraph("")
     sdoc.header2(__FMT_DET1 % (_('   '), _('Name Common ancestor')))
     sdoc.header2(__FMT_DET2 % (' ', _('Parent'), _('Birth'), _('Family')))
@@ -202,7 +202,7 @@ def run(database, document, person):
         count += 1
     
     sdoc.paragraph("")
-    sdoc.header1(_("Detailed path for home person to common ancestor"))
+    sdoc.header1(_("Detailed path from %(person)s to common ancestor") % {'person':p2})
     sdoc.paragraph("")
     sdoc.header2(__FMT_DET1 % (_('   '), _('Name Common ancestor')))
     sdoc.header2(__FMT_DET2 % (' ', _('Parent'), _('Birth'), _('Family')))
