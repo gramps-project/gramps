@@ -59,7 +59,7 @@ class EditLocation(EditSecondary):
                         _('Location Editor'))
 
     def _setup_fields(self):
-        self.city   = MonitoredEntry(
+        self.street = MonitoredEntry(
             self.top.get_widget("street"),
             self.obj.set_street,
             self.obj.get_street,

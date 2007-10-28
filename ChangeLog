@@ -1,4 +1,10 @@
 2007-10-28 Gary Burton <gary.burton@zen.co.uk>
+	* src/Editors/_EditPlace.py: fixed name of street MonitoredEntry
+	* src/Editors/_EditLocation.py: fixed name of street MonitoredEntry
+	MonitoredEntry field for street wrongly named as city.
+	Caused strange occasional drag and drop bug. issue #1304
+
+2007-10-28 Gary Burton <gary.burton@zen.co.uk>
 	* src/DisplayTabs/_EnbeddedList.py: Fixed crash when doing a drag and
 	drop with an object that was deleted from a list. issue # 1326
 

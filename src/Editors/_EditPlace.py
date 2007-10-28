@@ -93,7 +93,7 @@ class EditPlace(EditPrimary):
             self.obj.set_title, self.obj.get_title,
             self.db.readonly)
         
-        self.city = MonitoredEntry(
+        self.street = MonitoredEntry(
             self.top.get_widget("street"),
             mloc.set_street, mloc.get_street, self.db.readonly)
 
