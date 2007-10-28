@@ -1,3 +1,7 @@
+2007-10-28 Gary Burton <gary.burton@zen.co.uk>
+	* src/DisplayTabs/_EnbeddedList.py: Fixed crash when doing a drag and
+	drop with an object that was deleted from a list. issue # 1326
+
 2007-10-27 Benny Malengier <benny.malengier@gramps-project.org>
     * src/Relationship.py: finish up step and inlaw, expand test routine
     Still to add: half-brother recognition, family collapse
