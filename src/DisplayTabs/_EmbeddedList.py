@@ -199,7 +199,7 @@ class EmbeddedList(ButtonTab):
                 # if the is same object, we have a move, otherwise,
                 # it is a standard drag-n-drop
                 
-                if id(self) == selfid:
+                if id(self) == selfid and self.get_selected() is not None:
                     self._move(row_from, row, obj)
                 else:
                     self._handle_drag(row, obj)

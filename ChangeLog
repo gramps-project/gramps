@@ -1,3 +1,7 @@
+2007-10-28 Gary Burton <gary.burton@zen.co.uk>
+	* src/DisplayTabs/_EnbeddedList.py: Fixed crash when doing a drag and
+	drop with an object that was deleted from a list. issue # 1326
+
 2007-10-26 Stéphane Charette <stephanecharette@gmail.com>
 	* src/plugins/NarrativeWeb.py: various:  EOL should be <br> not <p>,
 	date is now displayed in the user's locale, source references no
