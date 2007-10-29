@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2003-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,13 +41,13 @@ from PluginUtils import register_relcalc
 
 # level est utilisé pour trouver/afficher le niveau de la génération : à la %sème génération
 
-_level_name = [ "première", "deuxième", "troisième", "quatrième", "cinquième", "sixième", "septième", "huitième", "neuvième", "dixième", "onzième", "douzième", "treizième", "quatorzième", "quinzième", "seizième", "dix-septième", "dix-huitième", "dix-neuvième", "vingtième", "vingt-et-unième", "vingt-deuxième", "vingt-deuxième", "vingt-troisième","vingt-quatrième","vingt-sixième","vingt-septième", "vingt-huitième","vingt-neuvième","trentième", ]
+_level_name = [ "première", "deuxième", "troisième", "quatrième", "cinquième", "sixième", "septième", "huitième", "neuvième", "dixième", "onzième", "douzième", "treizième", "quatorzième", "quinzième", "seizième", "dix-septième", "dix-huitième", "dix-neuvième", "vingtième", "vingt-et-unième", "vingt-deuxième", "vingt-deuxième", "vingt-troisième", "vingt-quatrième", "vingt-sixième", "vingt-septième", "vingt-huitième", "vingt-neuvième", "trentième", ]
 
 # pour le degrè (canon et civil), limitation 20+20 ainsi que pour LE [premier] cousin 
 
 _removed_level = [ "premier", "deuxième", "troisième", "quatrième", "cinquième", "sixième", "septième", "huitième", "neuvième", "dixième", "onzième", "douzième", "treizième", "quatorzième", "quinzième", "seizième", "dix-septième", "dix-huitième", "dix-neuvième", "vingtième", "vingt-et-unième", "vingt-deuxième", "vingt-deuxième", "vingt-troisième","vingt-quatrième","vingt-sixième","vingt-septième", "vingt-huitième","vingt-neuvième","trentième", "trente-et-unième", "trente-deuxième", "trente-troisième", "trente-quatrième", "trente-cinquième", "trente-sixième", "trente-septième", "trente-huitième", "trente-neuvième", "quarantième", "quanrante-et-unième", ]
 
-# listes volontairement limitées | small lists, use generation level if > [4]
+# listes volontairement limitées | small lists, use generation level if > [5]
 
 _father_level = [ "", "le père", "le grand-père", "l'arrière-grand-père", "le trisaïeul", ]
 
@@ -274,7 +274,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif in_law_a and gender_a == gen.lib.Person.FEMALE:
             inlaw = 'belle-'
         else:
-            inlaw =''
+            inlaw = ''
 
         rel_str = "un parent éloigné"
         if Ga == 0:
@@ -286,9 +286,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             elif gender_b == gen.lib.Person.FEMALE and Gb < len(_daughter_level):
                 rel_str = _daughter_level[Gb]
             elif Gb < len(_level_name) and gender_b == gen.lib.Person.MALE:
-                rel_str = "le descendant éloigné (%dème génération)" % Gb
+                rel_str = "le descendant éloigné (%dème génération)" % (Gb+1)
             elif Gb < len(_level_name) and gender_b == gen.lib.Person.FEMALE:
-                rel_str = "la descendante éloignée (%dème génération)" % Gb
+                rel_str = "la descendante éloignée (%dème génération)" % (Gb+1)
             else:
                 return rel_str
         elif Gb == 0:
@@ -324,9 +324,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = _niece_level[Gb]
             else:
                 if gender_b == gen.lib.Person.MALE: 
-                    rel_str = "le neveu éloigné (par la %dème génération)" % Gb
+                    rel_str = "le neveu éloigné (par la %dème génération)" % (Gb+1)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la nièce éloignée (par la %dème génération)" % Gb
+                    rel_str = "la nièce éloignée (par la %dème génération)" % (Gb+1)
                 else:
                     return rel_str   
         elif Ga > 1 and Ga == Gb:
@@ -366,9 +366,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     return rel_str
             else:
                 if gender_b == gen.lib.Person.MALE:   
-                    rel_str = "le grand-oncle par la %sème génération" % (Ga)
+                    rel_str = "le grand-oncle par la %sème génération" % (Ga+1)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la grand-tante par la %sème génération" % (Ga)
+                    rel_str = "la grand-tante par la %sème génération" % (Ga+1)
                 else:
                     return rel_str 
         elif Gb > 1 and Gb > Ga:
@@ -393,9 +393,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return rel_str
             else:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "le cousin par la %sème génération" % (Ga)
+                    rel_str = "le cousin par la %sème génération" % (Ga+1)
                 elif gender_b ==gen.lib.Person.FEMALE:
-                    rel_str = "la cousine par la %sème génération" % (Ga)
+                    rel_str = "la cousine par la %sème génération" % (Ga+1)
                 else:
                     return rel_str 
         return rel_str
