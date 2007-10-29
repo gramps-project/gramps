@@ -24,7 +24,7 @@
     <date name="Christmas" value="*/12/25" type="national" />
     <date name="Boxing Day" value="*/12/26" type="national" />
     <date name="Easter" type="religious" value="> easter(y)" />
-    <date name="Ash Wednesday" type="religious" value="> easter(y) - 46" />
+    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
     <date name="Passover" value="2005/4/24" type="religious" />
     <date name="Passover" value="2006/4/13" type="religious" />
     <date name="Passover" value="2007/4/03" type="religious" />
@@ -88,7 +88,7 @@
      if="date.weekday() == 0" />
     <date name="Daylight Savings ends" value="*/-1/sun/oct" type="informational" />
     <date name="Easter" type="religious" value="> easter(y)" />
-    <date name="Ash Wednesday" type="religious" value="> easter(y) - 46" />
+    <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
     <date name="Passover" value="2005/4/24" type="religious" />
     <date name="Passover" value="2006/4/13" type="religious" />
     <date name="Passover" value="2007/4/03" type="religious" />
