@@ -178,117 +178,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return _niece_level[level]
 
 
-    def get_relationship(self, db, orig_person, other_person):
-        """
-        Returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-        
-        Special cases: relation strings "", "undefined" and "spouse".
-        """
-
-        if orig_person == None:
-            return (_("undefined"), [])
-
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-
-        (secondRel, firstRel, common) = \
-                self.get_relationship_distance(db, orig_person, other_person)
-        
-        if type(common) == types.StringType or \
-           type(common) == types.UnicodeType:
-            if is_spouse:
-                return (is_spouse, [])
-            else:
-                return (common, [])
-        elif common:
-            person_handle = common[0]
-        else:
-            if is_spouse:
-                return (is_spouse, [])
-            else:
-                return ("", [])
-
-        #distance from common ancestor to the people
-        dist_orig = len(firstRel)
-        dist_other = len(secondRel)
-        rel_str = self.get_single_relationship_string(dist_orig,
-                                                      dist_other,
-                                                    orig_person.get_gender(),
-                                                    other_person.get_gender(),
-                                                    firstRel, secondRel
-                                                    )
-        if is_spouse:
-            return (_('%(spouse_relation)s et %(other_relation)s') % {
-                        'spouse_relation': is_spouse, 
-                        'other_relation': rel_str} , common )
-
-        if dist_orig == 0:
-            if dist_other == 0:
-                return ('', common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_father(dist_other), common)
-            else:
-                return (self.get_mother(dist_other), common)
-        elif dist_other == 0:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_son(dist_orig), common)
-            else:
-                return (self.get_daughter(dist_orig), common)
-        elif dist_orig == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_uncle(dist_other), common)
-            else:
-                return (self.get_aunt(dist_other), common)
-        elif dist_other == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_nephew(dist_orig-1), common)
-            else:
-                return (self.get_niece(dist_orig-1), common)
-        elif dist_orig == 2 and dist_other == 2:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return ('le cousin germain', common)
-            else:
-                return ('la cousine germaine', common)
-        elif dist_orig == 3 and dist_other == 2:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return ('le neveu à la mode de Bretagne', common)
-            else:
-                return ('la nièce à la mode de Bretagne', common)
-        elif dist_orig == 2 and dist_other == 3:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return ('l\'oncle à la mode de Bretagne', common)
-            else:
-                return ('la tante à la mode de Bretagne', common)     
-        else:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_cousin(dist_orig, dist_other), common)
-            else:
-                return (self.get_cousine(dist_orig, dist_other), common)
-
 # kinship report
 
     def get_plural_relationship_string(self, Ga, Gb):
         """
-        Provides a string that describes the relationsip between a person, and
-        a group of people with the same relationship. E.g. "grandparents" or
-        "children".
-        
-        Ga and Gb can be used to mathematically calculate the relationship.
-        See the Wikipedia entry for more information:
-            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
-        
-        @param Ga: The number of generations between the main person and the 
-        common ancestor.
-        @type Ga: int
-        @param Gb: The number of generations between the group of people and the
-        common ancestor
-        @type Gb: int
-        @returns: A string describing the relationship between the person and
-        the group.
-        @rtype: str
+        voir Relationship.py
         """
         rel_str = "des parents éloignés"
         if Ga == 0:
@@ -355,82 +249,33 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return rel_str
         return rel_str
 
-# quick report
+# quick report /RelCalc tool
 
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
                                        only_birth=True, 
                                        in_law_a=False, in_law_b=False):
         """
-        Provides a string that describes the relationsip between a person, and
-        another person. E.g. "grandparent" or "child".
-        To be used as: 'person a is the grandparent of b', this will 
-            be in translation string :
-                            'person a is the %(relation)s of b'
-            Note that languages with gender should add 'the' inside the 
-            translation, so eg in french:
-                            'person a est %(relation)s de b'
-            where relation will be here: le grandparent
-        
-        Ga and Gb can be used to mathematically calculate the relationship.
-        See the Wikipedia entry for more information:
-            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
-        
-        Some languages need to know the specific path to the common ancestor.
-        Those languages should use reltocommon_a and reltocommon_b which is 
-        a string like 'mfmf'. The possible string codes are:
-            REL_MOTHER             # going up to mother
-            REL_FATHER             # going up to father
-            REL_MOTHER_NOTBIRTH    # going up to mother, not birth relation
-            REL_FATHER_NOTBIRTH    # going up to father, not birth relation
-            REL_SIBLING            # going sideways to sibling (no parents)
-            REL_FAM_BIRTH          # going up to family (mother and father)
-            REL_FAM_NONBIRTH       # going up to family, not birth relation
-            REL_FAM_BIRTH_MOTH_ONLY # going up to fam, only birth rel to mother
-            REL_FAM_BIRTH_FATH_ONLY # going up to fam, only birth rel to father
-        Prefix codes are stripped, so REL_FAM_INLAW_PREFIX is not present. 
-        If the relation starts with the inlaw of the person a, then 'in_law_a'
-        is True, if it starts with the inlaw of person b, then 'in_law_b' is
-        True.
-        Note that only_birth=False, means that in the reltocommon one of the
-        NOTBIRTH specifiers is present.
-        The REL_FAM identifiers mean that the relation is not via a common 
-        ancestor, but via a common family (note that that is not possible for 
-        direct descendants or direct ancestors!). If the relation to one of the
-        parents in that common family is by birth, then 'only_birth' is not
-        set to False.
-            
-        @param Ga: The number of generations between the main person and the 
-                   common ancestor.
-        @type Ga: int
-        @param Gb: The number of generations between the other person and the
-                   common ancestor
-        @type Gb: int
-        @param gender_a : gender of person a
-        @type gender_a: int gender
-        @param gender_b : gender of person b
-        @type gender_b: int gender
-        @param reltocommon_a : relation path to common ancestor or common
-                            Family for person a. 
-                            Note that length = Ga
-        @type reltocommon_a: str 
-        @param reltocommon_b : relation path to common ancestor or common
-                            Family for person b. 
-                            Note that length = Gb
-        @type reltocommon_b: str 
-        @param in_law_a : True if path to common ancestors is via the partner
-                          of person a
-        @type in_law_a: bool
-        @param in_law_b : True if path to common ancestors is via the partner
-                          of person b
-        @type in_law_b: bool
-        @param only_birth : True if relation between a and b is by birth only
-                            False otherwise
-        @type only_birth: bool
-        @returns: A string describing the relationship between the two people
-        @rtype: str
+       voir Relationship.py
         """
-        print 'Ga, Gb :', Ga, Gb
+       ## print 'Ga, Gb :', Ga, Gb
+
+        if only_birth:
+            step = 'germain'
+        elif REL_FAM_BIRTH_MOTH_ONLY:
+            step = 'utérin'
+        elif REL_FAM_BIRTH_FATH_ONLY:
+            step = 'consanguin'
+        else:
+            step = ''
+
+        if in_law_a and gender_a == gen.lib.Person.MALE :
+            inlaw = 'beau-'
+        elif in_law_a and gender_a == gen.lib.Person.FEMALE:
+            inlaw = 'belle-'
+        else:
+            inlaw =''
+
         rel_str = "un parent éloigné"
         if Ga == 0:
             # b is descendant of a
@@ -466,9 +311,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = _sister_level[Ga]
             else:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "l'oncle éloigné (par la %dème génération)" % Ga
+                    rel_str = "l'oncle éloigné (par la %dème génération)" % (Ga+1)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la tante éloignée (par la %dème génération)" % Ga
+                    rel_str = "la tante éloignée (par la %dème génération)" % (Ga+1)
                 else:
                     return rel_str
         elif Ga == 1:
