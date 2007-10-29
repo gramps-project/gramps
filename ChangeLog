@@ -1,3 +1,6 @@
+2007-10-27 Benny Malengier <benny.malengier@gramps-project.org>
+    * src/DbManager.py: issue #1325, localize last date of change
+
 2007-10-28 Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditPlace.py: fixed name of street MonitoredEntry
 	* src/Editors/_EditLocation.py: fixed name of street MonitoredEntry

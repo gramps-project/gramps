@@ -751,7 +751,8 @@ def time_val(dirpath):
     meta = os.path.join(dirpath, META_NAME)
     if os.path.isfile(meta):
         tval = os.stat(meta)[9]
-        last = time.asctime(time.localtime(tval))
+        last = time.strftime('%x %X', time.localtime(tval))
+        #last = time.strftime('%a %b %d %X %Y', time.localtime(tval))
     else:
         tval = 0
         last = _("Never")
