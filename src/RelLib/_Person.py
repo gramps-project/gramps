@@ -223,6 +223,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def _remove_handle_references(self, classname, handle_list):
         if classname == 'Event':
+            # Keep a copy of the birth and death references
+            birth_ref = self.get_birth_ref()
+            death_ref = self.get_death_ref()
+
             new_list = [ref for ref in self.event_ref_list
                         if ref.ref not in handle_list]
             # If deleting removing the reference to the event
@@ -236,6 +240,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                         in handle_list):
                 self.death_ref_index = -1
             self.event_ref_list = new_list
+
+            # Reset the indexes after deleting the event from even_ref_list
+            if (self.birth_ref_index != -1):
+                self.set_birth_ref(birth_ref)
+            if (self.death_ref_index != -1):
+                self.set_death_ref(birth_ref)
         elif classname == 'Person':
             new_list = [ref for ref in self.person_ref_list
                         if ref.ref not in handle_list]
@@ -428,7 +438,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
-        if event_ref == None:
+        if event_ref is None:
             self.birth_ref_index = -1
             return
         # check whether we already have this ref in the list
@@ -451,7 +461,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         """
         if event_ref and not isinstance(event_ref, EventRef):
             raise ValueError("Expecting EventRef instance")
-        if event_ref == None:
+        if event_ref is None:
             self.death_ref_index = -1
             return
         # check whether we already have this ref in the list

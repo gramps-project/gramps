@@ -1,3 +1,7 @@
+2007-10-29 Gary Burton <gary.burton@zen.co.uk>
+	* src/RelLib/_Person.py: reset birth and death indexes after deleting
+	an event. Fixes #1327
+
 2007-10-28 Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditPlace.py: fixed name of street MonitoredEntry
 	* src/Editors/_EditLocation.py: fixed name of street MonitoredEntry
