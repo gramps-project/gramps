@@ -69,7 +69,7 @@ if os.environ.has_key("GRAMPSI18N"):
 elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
     loc = os.path.join(const.ROOT_DIR, "lang")
 else:
-    loc = "/usr/share/locale"
+    loc = "/usr/local/share/locale"
 
 try:
     locale.setlocale(locale.LC_ALL,'C')

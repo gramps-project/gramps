@@ -32,8 +32,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv99\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-25 08:52+0200\n"
-"PO-Revision-Date: 2007-10-25 15:21+0200\n"
+"POT-Creation-Date: 2007-10-30 10:13+0100\n"
+"PO-Revision-Date: 2007-10-30 11:11+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgstr ""
 
 #: ../src/AddMedia.py:90
 msgid "Select a media object"
-msgstr "Välj ett medieobjekt"
+msgstr "Välj ett mediaobjekt"
 
 #: ../src/AddMedia.py:112
 msgid "Select media object"
@@ -96,7 +96,7 @@ msgstr "GRAMPS kan inte öppna icke-egna data utan att skapa en ny GRAMPS-databa
 #: ../src/ArgHandler.py:340 ../src/DbLoader.py:132 ../src/DbLoader.py:139
 #: ../src/DbLoader.py:191 ../src/DbLoader.py:197 ../src/DbLoader.py:280
 #: ../src/DbLoader.py:301 ../src/DbLoader.py:384 ../src/DbLoader.py:405
-#: ../src/ViewManager.py:1077
+#: ../src/ViewManager.py:1078
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Kunde inte öppna fil: %s"
@@ -384,19 +384,19 @@ msgstr "Du har inte läsåtkomst till den valda filen."
 msgid "Cannot create database"
 msgstr "Kan inte skapa databas"
 
-#: ../src/DbLoader.py:343 ../src/DbLoader.py:365 ../src/ViewManager.py:1059
+#: ../src/DbLoader.py:343 ../src/DbLoader.py:365 ../src/ViewManager.py:1060
 msgid "You do not have write access to the selected file."
 msgstr "Du har inte skrivåtkomst till den valda filen."
 
-#: ../src/DbLoader.py:364 ../src/ViewManager.py:1058
+#: ../src/DbLoader.py:364 ../src/ViewManager.py:1059
 msgid "Read only database"
 msgstr "Skrivskyddad databas"
 
-#: ../src/DbLoader.py:371 ../src/ViewManager.py:1065
+#: ../src/DbLoader.py:371 ../src/ViewManager.py:1066
 msgid "Missing or Invalid database"
 msgstr "Databas saknas eller är felaktig"
 
-#: ../src/DbLoader.py:372 ../src/ViewManager.py:1066
+#: ../src/DbLoader.py:372 ../src/ViewManager.py:1067
 #, python-format
 msgid ""
 "%s could not be found.\n"
@@ -405,7 +405,7 @@ msgstr ""
 "%s kunde inte hittas.\n"
 "Det är möjligt att filen raderats eller flyttats."
 
-#: ../src/DbLoader.py:385 ../src/ViewManager.py:1078
+#: ../src/DbLoader.py:385 ../src/ViewManager.py:1079
 msgid "This may be caused by an improper installation of GRAMPS."
 msgstr "Detta kan ha orsakats av en felaktig installation av GRAMPS."
 
@@ -594,7 +594,8 @@ msgstr "Kunde inte skapa databasmappen: "
 #: ../src/DataViews/_RelationView.py:388 ../src/DataViews/_RelationView.py:826
 #: ../src/DataViews/_RelationView.py:864
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
-#: ../src/Editors/_EditPerson.py:833 ../src/plugins/Check.py:1157
+#: ../src/Editors/_EditPerson.py:833 ../src/plugins/all_relations.py:186
+#: ../src/plugins/all_relations.py:219 ../src/plugins/Check.py:1157
 #: ../src/plugins/FamilyLines.py:997 ../src/plugins/IndivComplete.py:474
 #: ../src/plugins/NarrativeWeb.py:549 ../src/PluginUtils/_PluginMgr.py:184
 #: ../src/PluginUtils/_PluginMgr.py:186 ../src/PluginUtils/_PluginMgr.py:187
@@ -652,12 +653,12 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DisplayState.py:350
+#: ../src/DisplayState.py:356
 #, python-format
 msgid "%(relationship)s of %(person)s"
 msgstr "%(relationship)s till %(person)s"
 
-#: ../src/DisplayState.py:411
+#: ../src/DisplayState.py:417
 msgid "No active person"
 msgstr "Ingen aktiv person"
 
@@ -937,7 +938,8 @@ msgstr "Person"
 #: ../src/ToolTips.py:228 ../src/DataViews/_RelationView.py:453
 #: ../src/DataViews/_RelationView.py:1094
 #: ../src/DataViews/_RelationView.py:1118 ../src/Editors/_EditFamily.py:468
-#: ../src/plugins/all_events.py:80 ../src/gen/lib/eventroletype.py:57
+#: ../src/plugins/all_events.py:80 ../src/plugins/all_relations.py:175
+#: ../src/plugins/all_relations.py:208 ../src/gen/lib/eventroletype.py:57
 #: ../src/FilterEditor/_EditRule.py:269
 msgid "Family"
 msgstr "Familj"
@@ -1196,7 +1198,8 @@ msgstr "Anteckningar"
 #: ../src/gramps_main.py:114 ../src/Merge/_MergePerson.py:149
 #: ../src/DataViews/_PedigreeView.py:1558
 #: ../src/DataViews/_RelationView.py:440 ../src/DataViews/_RelationView.py:734
-#: ../src/DataViews/_RelationView.py:768 ../src/plugins/NarrativeWeb.py:708
+#: ../src/DataViews/_RelationView.py:768 ../src/plugins/all_relations.py:194
+#: ../src/plugins/all_relations.py:227 ../src/plugins/NarrativeWeb.py:708
 #: ../src/plugins/NarrativeWeb.py:843 ../src/plugins/NarrativeWeb.py:2006
 msgid "Parents"
 msgstr "Föräldrar"
@@ -1326,8 +1329,8 @@ msgid ""
 "\n"
 "GRAMPS will terminate now."
 msgstr ""
-"Din Python-version klarar inte kraven. åtminston Python %d.%d.%d "
-"behövs för att starta GRAMPS.\n"
+"Din Python-version klarar inte kraven. åtminston Python %d.%d.%d behövs för "
+"att starta GRAMPS.\n"
 "\n"
 "GRAMPS kommer att avslutas nu."
 
@@ -1420,17 +1423,17 @@ msgstr "Välj bakgrundsfärg"
 msgid "Select font"
 msgstr "Välj typsnitt"
 
-#: ../src/PageView.py:316 ../src/ViewManager.py:1287
+#: ../src/PageView.py:316 ../src/ViewManager.py:1288
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s har lagts till i bokmärkena"
 
-#: ../src/PageView.py:320 ../src/PageView.py:614 ../src/ViewManager.py:1290
+#: ../src/PageView.py:320 ../src/PageView.py:614 ../src/ViewManager.py:1291
 #: ../src/DataViews/_FamilyList.py:190
 msgid "Could Not Set a Bookmark"
 msgstr "Kunde inte placera ett bokmärke"
 
-#: ../src/PageView.py:321 ../src/ViewManager.py:1291
+#: ../src/PageView.py:321 ../src/ViewManager.py:1292
 #: ../src/DataViews/_FamilyList.py:191
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Inget bokmärke kunde läggas till eftersom ingen hade valts."
@@ -1597,82 +1600,83 @@ msgstr ""
 msgid "Quick Report"
 msgstr "Snabbrapport"
 
-#: ../src/Relationship.py:332
+#: ../src/Relationship.py:373
 msgid "husband"
 msgstr "make"
 
-#: ../src/Relationship.py:334
+#: ../src/Relationship.py:375
 msgid "wife"
 msgstr "maka"
 
-#: ../src/Relationship.py:336
+#: ../src/Relationship.py:377
 msgid "gender unknown|spouse"
 msgstr "make/maka"
 
-#: ../src/Relationship.py:339
+#: ../src/Relationship.py:380
 msgid "unmarried|husband"
 msgstr "sambo"
 
-#: ../src/Relationship.py:341
+#: ../src/Relationship.py:382
 msgid "unmarried|wife"
 msgstr "sambo"
 
-#: ../src/Relationship.py:343
+#: ../src/Relationship.py:384
 msgid "gender unknown,unmarried|spouse"
 msgstr "sambo"
 
-#: ../src/Relationship.py:346
+#: ../src/Relationship.py:387
 msgid "male,civil union|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:348
+#: ../src/Relationship.py:389
 msgid "female,civil union|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:350
+#: ../src/Relationship.py:391
 msgid "gender unknown,civil union|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:353
+#: ../src/Relationship.py:394
 msgid "male,unknown relation|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:355
+#: ../src/Relationship.py:396
 msgid "female,unknown relation|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:357
+#: ../src/Relationship.py:398
 msgid "gender unknown,unknown relation|partner"
 msgstr "partner"
 
-#: ../src/Relationship.py:396 ../src/Relationship.py:574
+#: ../src/Relationship.py:437 ../src/Relationship.py:615
 #: ../src/DataViews/_PedigreeView.py:1257 ../src/plugins/rel_pl.py:475
 msgid "Relationship loop detected"
 msgstr "Släktskapsslinga detekterad"
 
-#: ../src/Relationship.py:626
+#: ../src/Relationship.py:667
 #, python-format
 msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"Släktträd når bakåt längre än det maximalt antal av %d generationer, som genomsökts.\n"
+"Släktträd når bakåt längre än det maximalt antal av %d generationer, som "
+"genomsökts.\n"
 "Det är möjhligt att släktskap har missats."
 
-#: ../src/Relationship.py:687
+#: ../src/Relationship.py:728
 msgid "Relationship loop detected:"
 msgstr "Släktskapsslinga detekterad:"
 
-#: ../src/Relationship.py:688
+#: ../src/Relationship.py:729
 #, python-format
 msgid "Person %s connects to himself via %s"
 msgstr "Person %s kopplad till sig själv via %s"
 
-#: ../src/Relationship.py:780
+#: ../src/Relationship.py:821
 msgid "undefined"
 msgstr "odefinierad"
 
-#: ../src/Relationship.py:813
+#: ../src/Relationship.py:855
 #, python-format
 msgid "%(spouse_relation)s and %(other_relation)s"
 msgstr "%(spouse_relation)s och %(other_relation)s"
@@ -1680,6 +1684,7 @@ msgstr "%(spouse_relation)s och %(other_relation)s"
 #: ../src/Reorder.py:30 ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:154 ../src/DataViews/_FamilyList.py:60
 #: ../src/DataViews/_RelationView.py:769 ../src/Selectors/_SelectFamily.py:54
+#: ../src/plugins/all_relations.py:192 ../src/plugins/all_relations.py:225
 #: ../src/plugins/FamilyGroup.py:195 ../src/plugins/FamilyGroup.py:206
 #: ../src/plugins/IndivComplete.py:216 ../src/plugins/IndivComplete.py:218
 #: ../src/plugins/IndivComplete.py:505 ../src/plugins/MarkerReport.py:212
@@ -1691,6 +1696,7 @@ msgstr "Far"
 #: ../src/Reorder.py:30 ../src/ToolTips.py:238
 #: ../src/Merge/_MergePerson.py:156 ../src/DataViews/_FamilyList.py:61
 #: ../src/DataViews/_RelationView.py:770 ../src/Selectors/_SelectFamily.py:55
+#: ../src/plugins/all_relations.py:189 ../src/plugins/all_relations.py:222
 #: ../src/plugins/FamilyGroup.py:212 ../src/plugins/FamilyGroup.py:223
 #: ../src/plugins/IndivComplete.py:225 ../src/plugins/IndivComplete.py:227
 #: ../src/plugins/IndivComplete.py:510 ../src/plugins/MarkerReport.py:218
@@ -1899,6 +1905,7 @@ msgstr "Personlänk"
 
 #: ../src/ScratchPad.py:710 ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:127 ../src/DataViews/_RelationView.py:543
+#: ../src/plugins/all_relations.py:175 ../src/plugins/all_relations.py:208
 #: ../src/plugins/FamilyGroup.py:481 ../src/plugins/FamilyGroup.py:483
 #: ../src/plugins/lineage.py:94 ../src/plugins/MarkerReport.py:131
 #: ../src/plugins/NarrativeWeb.py:699 ../src/plugins/NarrativeWeb.py:837
@@ -2580,11 +2587,11 @@ msgstr "_Verktygsrad"
 msgid "_Filter sidebar"
 msgstr "_Filterpanel"
 
-#: ../src/ViewManager.py:475 ../src/ViewManager.py:1223
+#: ../src/ViewManager.py:475 ../src/ViewManager.py:1224
 msgid "_Undo"
 msgstr "_Ångra"
 
-#: ../src/ViewManager.py:480 ../src/ViewManager.py:1240
+#: ../src/ViewManager.py:480 ../src/ViewManager.py:1241
 msgid "_Redo"
 msgstr "Åte_rställ"
 
@@ -2594,28 +2601,28 @@ msgid "Key %s is not bound"
 msgstr "Tangent %s är inte knuten till någonting"
 
 #. load document generators
-#: ../src/ViewManager.py:585
+#: ../src/ViewManager.py:586
 msgid "Loading document formats..."
 msgstr "Läser in dokumentformat..."
 
 #. load plugins
-#: ../src/ViewManager.py:590
+#: ../src/ViewManager.py:591
 msgid "Loading plugins..."
 msgstr "Läser in insticksmoduler..."
 
-#: ../src/ViewManager.py:604
+#: ../src/ViewManager.py:605
 msgid "Ready"
 msgstr "Färdig"
 
-#: ../src/ViewManager.py:633
+#: ../src/ViewManager.py:634
 msgid "Autobackup..."
 msgstr "Automatisk säkerhetskopiering..."
 
-#: ../src/ViewManager.py:647
+#: ../src/ViewManager.py:648
 msgid "Abort changes?"
 msgstr "Överge ändringar?"
 
-#: ../src/ViewManager.py:648
+#: ../src/ViewManager.py:649
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
@@ -2623,19 +2630,19 @@ msgstr ""
 "Att överge ändringar innebär att databasen återställs till utseendet före "
 "den här redigeringssessionen."
 
-#: ../src/ViewManager.py:650
+#: ../src/ViewManager.py:651
 msgid "Abort changes"
 msgstr "Överge ändringar"
 
-#: ../src/ViewManager.py:651
+#: ../src/ViewManager.py:652
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../src/ViewManager.py:660
+#: ../src/ViewManager.py:661
 msgid "Cannot abandon session's changes"
 msgstr "Kan inte överge sessionens ändringar"
 
-#: ../src/ViewManager.py:661
+#: ../src/ViewManager.py:662
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -2643,11 +2650,11 @@ msgstr ""
 "Ändringar kan inte helt överges eftersom antalet ändringar gjorda under "
 "sessionen överskrider gränsen."
 
-#: ../src/ViewManager.py:1169
+#: ../src/ViewManager.py:1170
 msgid "Read Only"
 msgstr "Skrivskyddad"
 
-#: ../src/ViewManager.py:1466
+#: ../src/ViewManager.py:1468
 msgid ""
 "Much of GRAMPS' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
@@ -2661,7 +2668,7 @@ msgstr ""
 "Create Commons Attribution-ShareAlike 2.5\n"
 "licens."
 
-#: ../src/ViewManager.py:1479
+#: ../src/ViewManager.py:1481
 msgid "GRAMPS Homepage"
 msgstr "GRAMPS hemsida"
 
@@ -3453,7 +3460,8 @@ msgstr " (1 syskon)"
 msgid " (only child)"
 msgstr " (enda barn)"
 
-#: ../src/DataViews/_RelationView.py:807
+#: ../src/DataViews/_RelationView.py:807 ../src/plugins/all_relations.py:182
+#: ../src/plugins/all_relations.py:215
 msgid "and"
 msgstr "och"
 
@@ -5078,27 +5086,28 @@ msgid "All Events"
 msgstr "Alla händelser"
 
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
-#: ../src/plugins/siblings.py:80 ../src/plugins/AncestorChart.py:524
-#: ../src/plugins/AncestorReport.py:346 ../src/plugins/BookReport.py:1193
-#: ../src/plugins/Calendar.py:875 ../src/plugins/Calendar.py:888
-#: ../src/plugins/ChangeNames.py:204 ../src/plugins/ChangeTypes.py:208
-#: ../src/plugins/Checkpoint.py:441 ../src/plugins/Check.py:1357
-#: ../src/plugins/CountAncestors.py:142 ../src/plugins/Desbrowser.py:161
-#: ../src/plugins/DescendChart.py:477 ../src/plugins/DescendReport.py:277
-#: ../src/plugins/EndOfLineReport.py:297 ../src/plugins/Eval.py:130
-#: ../src/plugins/EventCmp.py:456 ../src/plugins/EventNames.py:163
-#: ../src/plugins/ExtractCity.py:585 ../src/plugins/FamilyGroup.py:935
-#: ../src/plugins/FamilyLines.py:1431 ../src/plugins/FanChart.py:421
-#: ../src/plugins/FindDupes.py:699 ../src/plugins/GraphViz.py:1322
-#: ../src/plugins/GraphViz.py:1336 ../src/plugins/GVHourGlass.py:180
-#: ../src/plugins/IndivComplete.py:671 ../src/plugins/KinshipReport.py:436
-#: ../src/plugins/Leak.py:131 ../src/plugins/lineage.py:245
-#: ../src/plugins/lineage.py:256 ../src/plugins/MarkerReport.py:569
-#: ../src/plugins/NarrativeWeb.py:3175 ../src/plugins/PatchNames.py:357
-#: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:231
-#: ../src/plugins/RemoveUnused.py:406 ../src/plugins/ReorderIds.py:227
-#: ../src/plugins/SoundGen.py:145 ../src/plugins/StatisticsChart.py:950
-#: ../src/plugins/TimeLine.py:459 ../src/plugins/RebuildRefMap.py:126
+#: ../src/plugins/all_relations.py:260 ../src/plugins/siblings.py:80
+#: ../src/plugins/AncestorChart.py:524 ../src/plugins/AncestorReport.py:346
+#: ../src/plugins/BookReport.py:1193 ../src/plugins/Calendar.py:875
+#: ../src/plugins/Calendar.py:888 ../src/plugins/ChangeNames.py:204
+#: ../src/plugins/ChangeTypes.py:208 ../src/plugins/Checkpoint.py:441
+#: ../src/plugins/Check.py:1357 ../src/plugins/CountAncestors.py:142
+#: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:477
+#: ../src/plugins/DescendReport.py:277 ../src/plugins/EndOfLineReport.py:297
+#: ../src/plugins/Eval.py:130 ../src/plugins/EventCmp.py:456
+#: ../src/plugins/EventNames.py:163 ../src/plugins/ExtractCity.py:585
+#: ../src/plugins/FamilyGroup.py:935 ../src/plugins/FamilyLines.py:1431
+#: ../src/plugins/FanChart.py:421 ../src/plugins/FindDupes.py:699
+#: ../src/plugins/GraphViz.py:1322 ../src/plugins/GraphViz.py:1336
+#: ../src/plugins/GVHourGlass.py:180 ../src/plugins/IndivComplete.py:671
+#: ../src/plugins/KinshipReport.py:436 ../src/plugins/Leak.py:131
+#: ../src/plugins/lineage.py:245 ../src/plugins/lineage.py:256
+#: ../src/plugins/MarkerReport.py:569 ../src/plugins/NarrativeWeb.py:3175
+#: ../src/plugins/PatchNames.py:357 ../src/plugins/Rebuild.py:125
+#: ../src/plugins/RelCalc.py:231 ../src/plugins/RemoveUnused.py:406
+#: ../src/plugins/ReorderIds.py:227 ../src/plugins/SoundGen.py:145
+#: ../src/plugins/StatisticsChart.py:950 ../src/plugins/TimeLine.py:459
+#: ../src/plugins/RebuildRefMap.py:126
 msgid "Stable"
 msgstr "Stabil"
 
@@ -5109,6 +5118,71 @@ msgstr "Visa händelser för en person, både personliga och familjerelaterade."
 #: ../src/plugins/all_events.py:157
 msgid "Display the family and family members events."
 msgstr "Visa släkten och släktmedlemmarnas händelser."
+
+#: ../src/plugins/all_relations.py:58
+msgid "Home person not set."
+msgstr "Aktiv person är inte bestämd"
+
+#: ../src/plugins/all_relations.py:64
+#, python-format
+msgid "Relationships of %s to %s"
+msgstr "Släktskap mellan %s och %s"
+
+#: ../src/plugins/all_relations.py:68 ../src/plugins/RelCalc.py:195
+#, python-format
+msgid "%s and %s are the same person."
+msgstr "%s och %s är samma person."
+
+#: ../src/plugins/all_relations.py:84 ../src/plugins/RelCalc.py:200
+#, python-format
+msgid "%(person)s is the %(relationship)s of %(active_person)s."
+msgstr "%(person)s är %(relationship)s till %(active_person)s."
+
+#: ../src/plugins/all_relations.py:92 ../src/plugins/RelCalc.py:197
+#, python-format
+msgid "%(person)s and %(active_person)s are not related."
+msgstr "%(person)s och %(active_person)s är inte släkt."
+
+#: ../src/plugins/all_relations.py:172 ../src/plugins/all_relations.py:205
+#, python-format
+msgid "Detailed path from %(person)s to common ancestor"
+msgstr "Detaljerad väg från %(person)s till gemensam förfader"
+
+#: ../src/plugins/all_relations.py:174 ../src/plugins/all_relations.py:207
+msgid "   "
+msgstr "   "
+
+#: ../src/plugins/all_relations.py:174 ../src/plugins/all_relations.py:207
+msgid "Name Common ancestor"
+msgstr "Namn på gemensam förfader"
+
+#: ../src/plugins/all_relations.py:175 ../src/plugins/all_relations.py:208
+msgid "Parent"
+msgstr "Föräldrar"
+
+#: ../src/plugins/all_relations.py:195 ../src/plugins/all_relations.py:228
+msgid "Yes"
+msgstr "Ja"
+
+#: ../src/plugins/all_relations.py:198 ../src/plugins/all_relations.py:231
+msgid "No"
+msgstr "Nej"
+
+#: ../src/plugins/all_relations.py:241
+msgid "Remarks"
+msgstr "Anmärkning"
+
+#: ../src/plugins/all_relations.py:243
+msgid "The following problems where encountered:"
+msgstr "Följande problem uppstod:"
+
+#: ../src/plugins/all_relations.py:259
+msgid "Relation to Home Person"
+msgstr "Släktskap till hemperson"
+
+#: ../src/plugins/all_relations.py:261
+msgid "Display all relationships between person and home person."
+msgstr "Visa alla släktskap mellan person och hemperson"
 
 #. display the title
 #: ../src/plugins/siblings.py:46
@@ -8747,21 +8821,6 @@ msgstr "Deras gemensamma anor är %s och %s."
 #: ../src/plugins/RelCalc.py:175
 msgid "Their common ancestors are: "
 msgstr "Deras gemensamma anor är: "
-
-#: ../src/plugins/RelCalc.py:195
-#, python-format
-msgid "%s and %s are the same person."
-msgstr "%s och %s är samma person."
-
-#: ../src/plugins/RelCalc.py:197
-#, python-format
-msgid "%(person)s and %(active_person)s are not related."
-msgstr "%(person)s och %(active_person)s är inte släkt."
-
-#: ../src/plugins/RelCalc.py:200
-#, python-format
-msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr "%(person)s är %(relationship)s till %(active_person)s."
 
 #: ../src/plugins/RelCalc.py:230
 msgid "Relationship calculator"
