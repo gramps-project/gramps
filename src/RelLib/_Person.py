@@ -245,7 +245,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             if (self.birth_ref_index != -1):
                 self.set_birth_ref(birth_ref)
             if (self.death_ref_index != -1):
-                self.set_death_ref(birth_ref)
+                self.set_death_ref(death_ref)
         elif classname == 'Person':
             new_list = [ref for ref in self.person_ref_list
                         if ref.ref not in handle_list]

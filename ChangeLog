@@ -1,4 +1,7 @@
 2007-10-29 Gary Burton <gary.burton@zen.co.uk>
+	* src/RelLib/_Person.py: setting the death index wrongly.
+
+2007-10-29 Gary Burton <gary.burton@zen.co.uk>
 	* src/RelLib/_Person.py: reset birth and death indexes after deleting
 	an event. Fixes #1327
 
