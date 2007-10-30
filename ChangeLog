@@ -1,3 +1,6 @@
+2007-10-30 Gary Burton <gary.burton@zen.co.uk>
+	* src/gen/lib/person.py: setting the death index wrongly.
+
 2007-10-27 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/rel_fr.py: add test procedure
 	* src/Relationship.py: generlize test procedure
