@@ -1101,7 +1101,7 @@ class RelationshipCalculator:
                                      step=step, inlaw=inlaw)
         return rel_str
     
-def _test(onlybirth, inlawa, inlawb, printrelstr):
+def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     """ this is a generic test suite for the singular relationship
             TRANSLATORS: do NOT translate, use __main__ !
     """
@@ -1126,7 +1126,7 @@ def _test(onlybirth, inlawa, inlawb, printrelstr):
     FMT = '%+50s'
     MAX = 30
     
-    rc = RelationshipCalculator()
+    #rc = RelationshipCalculator()
     
     if inlawa or inlawb :
         print '\nchildren cannot have in-law extension; not testing\n'
@@ -1415,7 +1415,7 @@ def _test(onlybirth, inlawa, inlawb, printrelstr):
                     else:
                         print rel
 
-def test(printrelstr):
+def test(rc, printrelstr):
     """ this is a generic test suite for the singular relationship
             TRANSLATORS: do NOT translate, call this from 
                          __main__ in the rel_xx.py module.
@@ -1426,28 +1426,33 @@ def test(printrelstr):
     print 'Test normal relations?'
     data = sys.stdin.readline()
     if data == 'y\n':
-        _test(True, False, False, printrelstr)
+        _test(rc, True, False, False, printrelstr)
     print '\n\nTest step relations?'
     data = sys.stdin.readline()
     if data == 'y\n':
-        _test(False, False, False, printrelstr)
+        _test(rc, False, False, False, printrelstr)
     print '\n\nTest in-law relations (first pers)?'
     data = sys.stdin.readline()
     if data == 'y\n':
-        _test(True, True, False, printrelstr)
+        _test(rc, True, True, False, printrelstr)
     print '\n\nTest step and in-law relations?'
     data = sys.stdin.readline()
     if data == 'y\n':
-        _test(False, True, False, printrelstr)
+        _test(rc, False, True, False, printrelstr)
     
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
-    #    export PYTHONPATH=/path/to/gramps/src python src/gen/lib/date.py 
+    #    export PYTHONPATH=/path/to/gramps/src python src/plugins/rel_fr.py 
     # (Above not needed here)
     
     """TRANSLATORS, copy this if statement at the bottom of your 
-        rel_xx.py module, and test your work with:
+        rel_xx.py module, after adding: 'from Relationship import test'
+        and test your work with:
+        export PYTHONPATH=/path/to/gramps/src 
         python src/plugins/rel_xx.py
+        
+        See eg rel_fr.py at the bottom
     """
-    test(True)
+    rc = RelationshipCalculator()
+    test(rc, True)

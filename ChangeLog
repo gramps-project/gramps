@@ -1,3 +1,7 @@
+2007-10-27 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/rel_fr.py: add test procedure
+	* src/Relationship.py: generlize test procedure
+
 2007-10-29 Gary Burton <gary.burton@zen.co.uk>
 	* src/gen/lib/person.py: reset birth and death indexes after deleting
     an event. Fixes #1327

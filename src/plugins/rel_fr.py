@@ -41,25 +41,48 @@ from PluginUtils import register_relcalc
 
 # level est utilisé pour trouver/afficher le niveau de la génération : à la %sème génération
 
-_level_name = [ "première", "deuxième", "troisième", "quatrième", "cinquième", "sixième", "septième", "huitième", "neuvième", "dixième", "onzième", "douzième", "treizième", "quatorzième", "quinzième", "seizième", "dix-septième", "dix-huitième", "dix-neuvième", "vingtième", "vingt-et-unième", "vingt-deuxième", "vingt-deuxième", "vingt-troisième", "vingt-quatrième", "vingt-sixième", "vingt-septième", "vingt-huitième", "vingt-neuvième", "trentième", ]
+_level_name = [ "première", "deuxième", "troisième", "quatrième", "cinquième", 
+                "sixième", "septième", "huitième", "neuvième", "dixième", 
+                "onzième", "douzième", "treizième", "quatorzième", "quinzième", 
+                "seizième", "dix-septième", "dix-huitième", "dix-neuvième", 
+                "vingtième", "vingt-et-unième", "vingt-deuxième", 
+                "vingt-deuxième", "vingt-troisième", "vingt-quatrième", 
+                "vingt-sixième", "vingt-septième", "vingt-huitième", 
+                "vingt-neuvième", "trentième", ]
 
 # pour le degrè (canon et civil), limitation 20+20 ainsi que pour LE [premier] cousin 
 
-_removed_level = [ "premier", "deuxième", "troisième", "quatrième", "cinquième", "sixième", "septième", "huitième", "neuvième", "dixième", "onzième", "douzième", "treizième", "quatorzième", "quinzième", "seizième", "dix-septième", "dix-huitième", "dix-neuvième", "vingtième", "vingt-et-unième", "vingt-deuxième", "vingt-deuxième", "vingt-troisième","vingt-quatrième","vingt-sixième","vingt-septième", "vingt-huitième","vingt-neuvième","trentième", "trente-et-unième", "trente-deuxième", "trente-troisième", "trente-quatrième", "trente-cinquième", "trente-sixième", "trente-septième", "trente-huitième", "trente-neuvième", "quarantième", "quanrante-et-unième", ]
+_removed_level = ["premier", "deuxième", "troisième", "quatrième", "cinquième", 
+                    "sixième", "septième", "huitième", "neuvième", "dixième", 
+                    "onzième", "douzième", "treizième", "quatorzième", 
+                    "quinzième", "seizième", "dix-septième", "dix-huitième", 
+                    "dix-neuvième", "vingtième", "vingt-et-unième", 
+                    "vingt-deuxième", "vingt-deuxième", "vingt-troisième",
+                    "vingt-quatrième","vingt-sixième","vingt-septième", 
+                    "vingt-huitième","vingt-neuvième","trentième", 
+                    "trente-et-unième", "trente-deuxième", "trente-troisième", 
+                    "trente-quatrième", "trente-cinquième", "trente-sixième", 
+                    "trente-septième", "trente-huitième", "trente-neuvième", 
+                    "quarantième", "quanrante-et-unième", ]
 
 # listes volontairement limitées | small lists, use generation level if > [5]
 
-_father_level = [ "", "le père", "le grand-père", "l'arrière-grand-père", "le trisaïeul", ]
+_father_level = [ "", "le père", "le grand-père", "l'arrière-grand-père", 
+                    "le trisaïeul", ]
 
-_mother_level = [ "", "la mère", "la grand-mère", "l'arrière-grand-mère", "la trisaïeule", ]
+_mother_level = [ "", "la mère", "la grand-mère", "l'arrière-grand-mère", 
+                    "la trisaïeule", ]
 
 _son_level = [ "", "le fils", "le petit-fils", "l'arrière-petit-fils", ]
 
-_daughter_level = [ "", "la fille", "la petite-fille", "l'arrière-petite-fille", ]
+_daughter_level = [ "", "la fille", "la petite-fille", 
+                    "l'arrière-petite-fille", ]
 
-_sister_level = [ "", "la soeur", "la tante", "la grand-tante", "l'arrière-grand-tante", ]
+_sister_level = [ "", "la soeur", "la tante", "la grand-tante", 
+                    "l'arrière-grand-tante", ]
 
-_brother_level = [ "", "le frère", "l'oncle", "le grand-oncle", "l'arrière-grand-oncle", ]
+_brother_level = [ "", "le frère", "l'oncle", "le grand-oncle", 
+                    "l'arrière-grand-oncle", ]
 
 _nephew_level = [ "", "le neveu", "le petit-neveu", "l'arrière-petit-neveu", ]
 
@@ -67,13 +90,22 @@ _niece_level = [ "", "la nièce", "la petite-nièce", "l'arrière-petite-nièce"
 
 # kinship report
 
-_parents_level = [ "", "les parents", "les grands-parents", "les arrières-grands-parents", "les trisaïeux", ]
+_parents_level = [ "", "les parents", "les grands-parents", 
+                    "les arrières-grands-parents", "les trisaïeux", ]
 
-_children_level = [ "", "les enfants", "les petits-enfants", "les arrières-petits-enfants", "les arrières-arrières-petits-enfants", ]
+_children_level = [ "", "les enfants", "les petits-enfants", 
+                    "les arrières-petits-enfants", 
+                    "les arrières-arrières-petits-enfants", ]
 
-_siblings_level = [ "", "les frères et les soeurs", "les oncles et les tantes", "les grands-oncles et les grands-tantes", "les arrières-grands-oncles et les arrières-grands-tantes", ]
+_siblings_level = [ "", "les frères et les soeurs", "les oncles et les tantes", 
+                    "les grands-oncles et les grands-tantes", 
+                    "les arrières-grands-oncles et les arrières-grands-tantes", 
+                    ]
 
-_nephews_nieces_level = [   "", "les neveux et les nièces", "les petits-neveux et les petites-nièces", "les arrière-petits-neveux et les arrières-petites-nièces", ]
+_nephews_nieces_level = ["", "les neveux et les nièces", 
+                        "les petits-neveux et les petites-nièces", 
+                        "les arrière-petits-neveux et les arrières-petites-nièces",
+                        ]
 
 #-------------------------------------------------------------------------
 #
@@ -84,19 +116,6 @@ _nephews_nieces_level = [   "", "les neveux et les nièces", "les petits-neveux 
 MAX_DEPTH = 15
 
 class RelationshipCalculator(Relationship.RelationshipCalculator):
-
-
-    REL_MOTHER           = 'm'      # going up to mother
-    REL_FATHER           = 'f'      # going up to father
-    REL_MOTHER_NOTBIRTH  = 'M'      # going up to mother, not birth relation
-    REL_FATHER_NOTBIRTH  = 'F'      # going up to father, not birth relation
-    REL_SIBLING          = 's'      # going sideways to sibling (no parents)
-    REL_FAM_BIRTH        = 'a'      # going up to family (mother and father)
-    REL_FAM_NONBIRTH     = 'A'      # going up to family, not birth relation
-    REL_FAM_BIRTH_MOTH_ONLY = 'b'   # going up to fam, only birth rel to mother
-    REL_FAM_BIRTH_FATH_ONLY = 'c'   # going up to fam, only birth rel to father
-    
-    REL_FAM_INLAW_PREFIX = 'L'      # going to the partner.
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
@@ -109,9 +128,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif (removed/level) == 1 and ((level*3)-3)/(level-1) == 2:
             return "le %s cousin" % (_level_name[(level+1)/2])
         elif (level) < (removed):
-            return "le grand-oncle éloigné, relié à la %s génération" % (_level_name[level+3])
+            return "le grand-oncle éloigné, relié à la %s génération" % (
+                        _level_name[level+3])
         else:
-            return "le cousin éloigné, relié à la %s génération" % (_level_name[removed])
+            return "le cousin éloigné, relié à la %s génération" % (
+                        _level_name[removed])
 
     def get_cousine(self, level, removed):
         if (removed/level) == 1 and ((level*3)-3)/(level-1) == 3:
@@ -119,61 +140,72 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif (removed/level) == 1 and ((level*3)-3)/(level-1) == 2:
             return "la %s cousine" % (_level_name[(level+1)/2])
         elif (level) < (removed):
-            return "la grand-tante éloignée, reliée à la %s génération" % (_level_name[level+3])
+            return "la grand-tante éloignée, reliée à la %s génération" % (
+                        _level_name[level+3])
         else:
-            return "la cousine éloignée, reliée à la %s génération" % (_level_name[removed])
+            return "la cousine éloignée, reliée à la %s génération" % (
+                        _level_name[removed])
 
     def get_parents(self, level):
         if level > len(_parents_level)-1:
-            return "les ascendants éloignés, à la %s génération" % (_level_name[level])
+            return "les ascendants éloignés, à la %s génération" % (
+                        _level_name[level])
         else:
             return _parents_level[level]
 
     def get_father(self, level):
         if level > len(_father_level)-1:
-            return "l'ascendant éloigné, à la %s génération" % (_level_name[level])
+            return "l'ascendant éloigné, à la %s génération" % (
+                        _level_name[level])
         else:
             return _father_level[level]
 
     def get_son(self, level):
         if level > len(_son_level)-1:
-            return "le descendant éloigné, à la %s génération" % (_level_name[level+1])
+            return "le descendant éloigné, à la %s génération" % (
+                        _level_name[level+1])
         else:
             return _son_level[level]
 
     def get_mother(self, level):
         if level > len(_mother_level)-1:
-            return "l'ascendante éloignée, à la %s génération" % (_level_name[level])
+            return "l'ascendante éloignée, à la %s génération" % (
+                        _level_name[level])
         else:
             return _mother_level[level]
 
     def get_daughter(self, level):
         if level > len(_daughter_level)-1:
-            return "la descendante éloignée, à la %s génération" % (_level_name[level+1])
+            return "la descendante éloignée, à la %s génération" % (
+                        _level_name[level+1])
         else:
             return _daughter_level[level]
 
     def get_aunt(self, level):
         if level > len(_sister_level)-1:
-            return "la tante éloignée, reliée à la %s génération" % (_level_name[level])
+            return "la tante éloignée, reliée à la %s génération" % (
+                        _level_name[level])
         else:
             return _sister_level[level]
 
     def get_uncle(self, level):
         if level > len(_brother_level)-1:
-            return "l'oncle éloigné, relié à la %s génération" % (_level_name[level])
+            return "l'oncle éloigné, relié à la %s génération" % (
+                        _level_name[level])
         else:
             return _brother_level[level]
 
     def get_nephew(self, level):
         if level > len(_nephew_level)-1:
-            return "le neveu éloigné, relié à la %s génération" % (_level_name[level+1])
+            return "le neveu éloigné, relié à la %s génération" % (
+                        _level_name[level+1])
         else:
             return _nephew_level[level]
 
     def get_niece(self, level):
         if level > len(_niece_level)-1:
-            return "la nièce éloignée, reliée à la %s génération" % (_level_name[level+1])
+            return "la nièce éloignée, reliée à la %s génération" % (
+                        _level_name[level+1])
         else:
             return _niece_level[level]
 
@@ -260,18 +292,24 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
        ## print 'Ga, Gb :', Ga, Gb
 
+        #jerome, I would delete this logic
+        #a step father or step uncle is the relation to a person who does not
+        # go with birth rel. I am still adding this to english...
         if only_birth:
             step = 'germain'
-        elif REL_FAM_BIRTH_MOTH_ONLY:
+        elif (reltocommon != '' and 
+                    reltocommon_a[-1] == self.REL_FAM_BIRTH_MOTH_ONLY):
             step = 'utérin'
-        elif REL_FAM_BIRTH_FATH_ONLY:
+        elif (reltocommon != '' and 
+                    reltocommon_a[-1] == REL_FAM_BIRTH_FATH_ONLY):
             step = 'consanguin'
         else:
             step = ''
 
-        if in_law_a and gender_a == gen.lib.Person.MALE :
+        if (in_law_a or in_law_b) and gender_b == gen.lib.Person.MALE :
             inlaw = 'beau-'
-        elif in_law_a and gender_a == gen.lib.Person.FEMALE:
+        elif (in_law_a or in_law_b) and (gender_b == gen.lib.Person.FEMALE or
+                gender_b == gen.lib.Person.UNKNOWN):
             inlaw = 'belle-'
         else:
             inlaw = ''
@@ -405,6 +443,23 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 # Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
+
 register_relcalc(RelationshipCalculator,
-    ["fr", "FR", "fr_FR", "fr_CA", "francais", "Francais", "fr_FR.UTF8", "fr_FR@euro", "fr_FR.UTF8@euro",
-            "french","French", "fr_FR.UTF-8", "fr_FR.utf-8", "fr_FR.utf8", "fr_CA.UTF-8"])
+    ["fr", "FR", "fr_FR", "fr_CA", "francais", "Francais", "fr_FR.UTF8", 
+            "fr_FR@euro", "fr_FR.UTF8@euro",
+            "french","French", "fr_FR.UTF-8", "fr_FR.utf-8", "fr_FR.utf8", 
+            "fr_CA.UTF-8"])
+
+if __name__ == "__main__":
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src python src/gen/lib/date.py 
+    # (Above not needed here)
+    
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel_xx.py
+    """
+    from Relationship import test
+    rc = RelationshipCalculator()
+    test(rc, True)
