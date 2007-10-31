@@ -79,14 +79,14 @@
     <date name="Memorial Day" value="*/-1/mon/may" type="secular" />
     <date name="Flag Day" value="*/6/14" type="secular" />
     <date name="Election Day" value="*/11/2" offset="tue" type="secular" />
-    <date name="Daylight Savings begins" value="*/1/sun/apr" type="informational" />
+    <date name="Daylight Saving begins" value="> dst(y)[0]" type="informational" />
     <date name="Income Taxes due" value="*/4/15" type="national" 
      if="date.weekday().__cmp__(4)-1" />
     <date name="Income Taxes due" value="*/4/16" type="national" 
      if="date.weekday() == 0" />
     <date name="Income Taxes due" value="*/4/17" type="national" 
      if="date.weekday() == 0" />
-    <date name="Daylight Savings ends" value="*/-1/sun/oct" type="informational" />
+    <date name="Daylight Saving ends" value="> dst(y)[1]" type="informational" />
     <date name="Easter" type="religious" value="> easter(y)" />
     <date name="Ash Wednesday" type="religious" value="> easter(y)" offset="-46" />
     <date name="Passover" value="2005/4/24" type="religious" />

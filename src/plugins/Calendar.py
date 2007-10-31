@@ -27,6 +27,7 @@ __version__ = "$Revision$"
 from gettext import gettext as _
 from xml.parsers import expat
 import datetime
+import math
 import time
 import const
 import os
@@ -83,6 +84,23 @@ def g2iso(dow):
     # GRAMPS: SUN = 1
     # ISO: MON = 1
     return (dow + 5) % 7 + 1
+
+def dst(year, area="us"):
+    """
+    Returns Daylight Saving Time start/stop in a given area ("us", "eu").
+    US calculation valid 1976-2099; EU 1996-2099
+    """
+    if area == "us":
+        if year > 2006:
+            start = "%d/%d/%d" % (year, 3, 14 - (math.floor(1 + year * 5 / 4) % 7)) # March
+            stop = "%d/%d/%d" % (year, 11, 7 - (math.floor(1 + year * 5 / 4) % 7)) # November
+        else:
+            start = "%d/%d/%d" % (year, 4, (2 + 6 * year - math.floor(year / 4) ) % 7 + 1) # April
+            stop =  "%d/%d/%d" % (year, 10,(31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
+    elif area == "eu":
+        start = "%d/%d/%d" % (year, 3,(31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
+        stop =  "%d/%d/%d" % (year, 10,(31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
+    return (start, stop)
 
 #------------------------------------------------------------------------
 #
@@ -213,7 +231,7 @@ class Calendar(Report):
         self.doc.draw_box("CAL-Title", "", 0, 0, width, header)
         self.doc.draw_line("CAL-Border", 0, header, width, header)
         year = self.year
-        title = "%s %d" % (GrampsLocale.long_months[month], year)
+        title = "%s %d" % (GrampsLocale.long_months[month].capitalize(), year)
         font_height = pt2cm(ptitle.get_font().get_size())
         self.doc.center_text("CAL-Title", title, width/2, font_height * 0.25)
         cell_width = width / 7
@@ -232,7 +250,7 @@ class Calendar(Report):
             self.doc.center_text("CAL-Daynames", 
                                  GrampsLocale.long_days[(day_col+
                                                          g2iso(self.start_dow + 1))
-                                                        % 7 + 1],
+                                                        % 7 + 1].capitalize(),
                                  day_col * cell_width + cell_width/2,
                                  header - font_height * 1.5)
         for week_row in range(6):
@@ -404,7 +422,7 @@ class CalendarReport(Calendar):
         """ Prints a month as a page """
         year = self.year
         self.doc.start_paragraph('BIR-Monthstyle')
-        self.doc.write_text(GrampsLocale.long_months[month])
+        self.doc.write_text(GrampsLocale.long_months[month].capitalize())
         self.doc.end_paragraph()
         current_date = datetime.date(year, month, 1)
         current_ord = current_date.toordinal()
@@ -455,10 +473,10 @@ class CalendarOptions(MenuOptions):
         country.set_help(_("Select the country to see associated holidays"))
         menu.add_option(category_name,"country", country)
 
-        start_dow = EnumeratedListOption(_("First day of week"), GrampsLocale.long_days[1])
+        start_dow = EnumeratedListOption(_("First day of week"), GrampsLocale.long_days[1].capitalize())
         for count in range(1,8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
-            start_dow.add_item((count+5) % 7 + 1, GrampsLocale.long_days[count]) 
+            start_dow.add_item((count+5) % 7 + 1, GrampsLocale.long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow) 
 
