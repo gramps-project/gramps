@@ -404,7 +404,7 @@ class CalendarReport(Calendar):
         """ Prints a month as a page """
         year = self.year
         self.doc.start_paragraph('BIR-Monthstyle')
-        self.doc.write_text("%s %d" % (GrampsLocale.long_months[month], year))
+        self.doc.write_text(GrampsLocale.long_months[month])
         self.doc.end_paragraph()
         current_date = datetime.date(year, month, 1)
         current_ord = current_date.toordinal()
@@ -417,12 +417,7 @@ class CalendarReport(Calendar):
                     p = p.replace("\n", " ")
                     if thisday not in started_day:
                         self.doc.start_paragraph("BIR-Daystyle")
-                        date = gen.lib.Date()
-                        date.set_yr_mon_day(year, month, i + 1)
-                        sdate = displayer.display(date)
-                        # Display date in locale's format
-                        self.doc.write_text( sdate )
-                        #self.doc.write_text("%s %s" % (GrampsLocale.long_months[month], str(thisday.day)))
+                        self.doc.write_text(str(thisday.day))
                         self.doc.end_paragraph()
                         started_day[thisday] = 1
                     self.doc.start_paragraph("BIR-Datastyle")
