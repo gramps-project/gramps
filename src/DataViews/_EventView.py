@@ -28,6 +28,13 @@ __revision__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
 # gramps modules
 #
 #-------------------------------------------------------------------------
@@ -170,8 +177,8 @@ class EventView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self._add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
-        self._add_action('ColumnEdit', None, _('_Column Editor'),
-                        callback=self._column_editor,)
+        self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
+                        _('_Column Editor'), callback=self._column_editor,)
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_event_from_gramps_id(gid)
