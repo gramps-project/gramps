@@ -1744,6 +1744,8 @@ def clear_lock_file(name):
         return
 
 def write_lock_file(name):
+    if not os.path.isdir(name):
+        os.mkdir(name)
     f = open(os.path.join(name, "lock"), "w")
     if os.name == 'nt':
         text = os.environ['USERNAME']

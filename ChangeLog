@@ -1,3 +1,10 @@
+2007-10-31  Jim Sack <jgsack@san.rr.com>
+	* src/gen/db/dbdir.py bug #1331 write_lock_file() add mkdir if needed
+	* src/gramps.py bug #1332 more gramps termination problems fixed
+	* src/ArgHandler bug #1333 change remove to glob remove and rmdir
+	*  (op cit) bug #1334 update module name and calling parm to import2
+	*    and function name: s/export_data/write_gedcom_file/
+
 2007-10-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DataViews/_EventView.py: Add properties icon to column editor
 	  menu entry - the other views use that too.

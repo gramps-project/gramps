@@ -435,10 +435,13 @@ class ArgHandler:
                 self.cl_export(expt[0],expt[1])
 
             print "Cleaning up."
-            # remove import db after use
+            # remove import db subdir after use
             self.state.db.close()
             if self.imports:
-                os.remove(self.imp_db_path)
+                import glob
+                for f in glob.glob(os.path.join(self.imp_db_path, "*")):
+                    os.remove(f)
+                os.rmdir(self.imp_db_path)
             print "Exiting."
             sys.exit(0)
 
@@ -476,8 +479,8 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             try:
                 # Cheating here to use default encoding
-                from GrampsDbUtils._GedcomParse import import2
-                import2(self.state.db,filename,None,None,False)
+                from GrampsDbUtils._ReadGedcom import import2
+                import2(self.state.db,filename,None,"",False)
             except:
                 print "Error importing %s" % filename
                 sys.exit(1)
@@ -574,7 +577,7 @@ class ArgHandler:
         elif format == 'gedcom':
             try:
                 gw = GrampsDbUtils.GedcomWriter(self.state.db, None, 1)
-                ret = gw.export_data(filename)
+                ret = gw.write_gedcom_file(filename)
             except:
                 print "Error exporting %s" % filename
                 sys.exit(1)

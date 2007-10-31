@@ -184,17 +184,40 @@ def run():
         program.set_property('app-prefix', const.PREFIXDIR)
     except:
         pass
-    
+
     try:        
+        quit_now = False
+        exit_code = 0
         import gramps_main 
         gramps_main.Gramps(args)
+        # TODO: check for returns from gramps_main.Gramps.__init__()
+        #  that perhaps should have raised an exception to be caught here
+
     except SystemExit, e:
+        quit_now = True
         if e.code:
-            log.error("Gramps terminated with exit code: %d." % e.code, exc_info=True)
-        gtk.main_quit()
-        return False
+            exit_code = e.code
+            log.error("Gramps terminated with exit code: %d." \
+                      % e.code, exc_info=True)
+    except OSError, e:
+        quit_now = True
+        exit_code = e[0] or 1
+        try:
+            fn = e.filename
+        except AttributeError:
+            fn = ""
+        log.error("Gramps terminated because of OS Error\n" +
+            "Error detais: %s %s" % (repr(e), fn), exc_info=True)
     except:
+        quit_now = True
+        exit_code = 1
         log.error("Gramps failed to start.", exc_info=True)
 
+    if quit_now:
+        gtk.main_quit()
+        sys.exit(exit_code)
+        
+    return False
+        
 gobject.timeout_add(100, run, priority=100)
 gtk.main()
