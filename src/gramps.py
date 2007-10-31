@@ -170,9 +170,14 @@ def run():
     
     try:        
         gramps_main.Gramps(args)
-    except SystemExit, msg:
-        log.error("Gramps terminated with the following message:\n %s."
-                  % msg, exc_info=True)
+    except SystemExit, err:
+        # err.message may be numeric=0 or string="" or None or False
+        # or (), or [], .. ,  all of which are non-error conditions
+        # which need no error logging/dialog here (lower-level, maybe)
+        if err and err.message:
+            log.error("Gramps terminated with the following message:\n %r." 
+                      % err.message, exc_info=True)
+        gtk.main_quit()
     except:
         log.error("Gramps failed to start.", exc_info=True)
 
