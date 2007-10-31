@@ -101,63 +101,11 @@ def run(database, document, person):
     count = 1
 
     #collapse common so parents of same fam in common are one line
-    commonnew = []
-    existing_path = []
-    for relation in common:
-        relstrfirst = None
-        if relation[2] :
-            relstrfirst = relation[2][:-1]
-        relstrsec = None
-        if relation[4] :
-            relstrsec = relation[4][:-1]
-        familypath = (relstrfirst, relstrsec, relation[3], relation[5])
-        try:
-            posfam = existing_path.index(familypath)
-        except ValueError:
-            posfam = None
-        #if relstr is '', the ancestor is unique, if posfam None, first time
-        # we see this family path
-        if (posfam is not None and relstrfirst is not None and 
-                relstrsec is not None):
-            #we already have a common ancestor of this family, just add the 
-            #other
-            tmp = commonnew[posfam]
-            if (relation[2][-1]== rel_class.REL_MOTHER or 
-                    relation[2][-1] == rel_class.REL_FATHER or 
-                    tmp[2][-1] == rel_class.REL_MOTHER or
-                    tmp[2][-1] == rel_class.REL_FATHER or
-                    tmp[2][-1] == rel_class.REL_SIBLING) :
-                #we consider the relation to parents by birth
-                reltofirst = 'p'
-            else:
-                reltofirst = 'P'
-            if (relation[4][-1]== rel_class.REL_MOTHER or 
-                    relation[4][-1] == rel_class.REL_FATHER or 
-                    tmp[4][-1] == rel_class.REL_MOTHER or
-                    tmp[4][-1] == rel_class.REL_FATHER or
-                    tmp[4][-1] == rel_class.REL_SIBLING) :
-                #we consider the relation to parents by birth
-                reltosec = 'p'
-            else:
-                reltosec = 'P'
-            commonnew[posfam] = (tmp[0], tmp[1]+[relation[1]], 
-                                 relation[2][:-1]+reltofirst, 
-                                 tmp[3], relation[4][:-1]+reltosec,
-                                 tmp[5])
-        else :
-            existing_path.append(familypath)
-            commonnew.append((relation[0], [relation[1]], relation[2],
-                              relation[3], relation[4], relation[5]  ) 
-                            )
-    
+    commonnew = rel_class.collapse_relations(common)
+
     for relation in commonnew: 
-        birth = not (rel_class.REL_MOTHER_NOTBIRTH in relation[2] or 
-                     rel_class.REL_FATHER_NOTBIRTH in relation[2] or
-                     'P' in relation[2] or
-                     rel_class.REL_MOTHER_NOTBIRTH in relation[4] or 
-                     rel_class.REL_FATHER_NOTBIRTH in relation[4] or
-                     'P' in relation[4]
-                    )
+        birth = rel_class.only_birth(relation[2])\
+                    and rel_class.only_birth(relation[4])
         rel_str = rel_class.get_single_relationship_string(
                                 len(relation[4]), len(relation[2]), 
                                 home_person.get_gender(), person.get_gender(),
@@ -177,10 +125,12 @@ def run(database, document, person):
     count = 1
     for relation in commonnew: 
         counter = str(count)
-        name = sdb.name(database.get_person_from_handle(relation[1][0]))
-        for handle in relation[1][1:]:
-            name += ' ' + _('and') + ' ' + \
-                    sdb.name(database.get_person_from_handle(handle))
+        name = _('Unknown')
+        if relation[1]:
+            name = sdb.name(database.get_person_from_handle(relation[1][0]))
+            for handle in relation[1][1:]:
+                name += ' ' + _('and') + ' ' + \
+                        sdb.name(database.get_person_from_handle(handle))
         sdoc.paragraph(__FMT_DET1 % (counter, name))
         for rel,fam in zip(relation[2],relation[3]) :
             par_str = _('Unknown') #when sibling, parent is unknown
@@ -190,12 +140,19 @@ def run(database, document, person):
             if rel == rel_class.REL_FATHER \
                     or rel == rel_class.REL_FATHER_NOTBIRTH:
                 par_str = _('Father')
-            if rel == 'p' or rel == 'P':
+            if (rel == rel_class.REL_FAM_BIRTH 
+                    or rel == rel_class.REL_FAM_NONBIRTH 
+                    or rel == rel_class.REL_FAM_BIRTH_MOTH_ONLY
+                    or rel == rel_class.REL_FAM_BIRTH_FATH_ONLY):
                 par_str = _('Parents')
             birth_str = _('Yes')
-            if rel == rel_class.REL_MOTHER_NOTBIRTH \
-                    or rel == rel_class.REL_FATHER_NOTBIRTH or rel == 'P':
+            if (rel == rel_class.REL_MOTHER_NOTBIRTH 
+                    or rel == rel_class.REL_FATHER_NOTBIRTH 
+                    or rel == rel_class.REL_FAM_NONBIRTH):
                 birth_str = _('No')
+            elif (rel == rel_class.REL_FAM_BIRTH_FATH_ONLY 
+                    or rel == rel_class.REL_FAM_BIRTH_MOTH_ONLY):
+                birth_str = _('Partial')
             sdoc.paragraph(__FMT_DET2 % (' ', par_str, birth_str, str(fam+1)))
             counter=''
             name = ''
@@ -210,10 +167,12 @@ def run(database, document, person):
     count = 1
     for relation in commonnew: 
         counter = str(count)
-        name = sdb.name(database.get_person_from_handle(relation[1][0]))
-        for handle in relation[1][1:]:
-            name += ' ' + _('and') + ' ' + \
-                    sdb.name(database.get_person_from_handle(handle))
+        name = _('Unknown')
+        if relation[1]:
+            name = sdb.name(database.get_person_from_handle(relation[1][0]))
+            for handle in relation[1][1:]:
+                name += ' ' + _('and') + ' ' + \
+                        sdb.name(database.get_person_from_handle(handle))
         sdoc.paragraph(__FMT_DET1 % (counter, name))
         for rel,fam in zip(relation[4],relation[5]) :
             par_str = _('Unknown')
@@ -223,12 +182,19 @@ def run(database, document, person):
             if rel == rel_class.REL_FATHER \
                     or rel == rel_class.REL_FATHER_NOTBIRTH:
                 par_str = _('Father')
-            if rel == 'p' or rel == 'P':
+            if (rel == rel_class.REL_FAM_BIRTH 
+                    or rel == rel_class.REL_FAM_NONBIRTH 
+                    or rel == rel_class.REL_FAM_BIRTH_MOTH_ONLY
+                    or rel == rel_class.REL_FAM_BIRTH_FATH_ONLY):
                 par_str = _('Parents')
             birth_str = _('Yes')
-            if rel == rel_class.REL_MOTHER_NOTBIRTH \
-                    or rel == rel_class.REL_FATHER_NOTBIRTH or rel == 'P':
+            if (rel == rel_class.REL_MOTHER_NOTBIRTH 
+                    or rel == rel_class.REL_FATHER_NOTBIRTH 
+                    or rel == rel_class.REL_FAM_NONBIRTH):
                 birth_str = _('No')
+            elif (rel == rel_class.REL_FAM_BIRTH_FATH_ONLY 
+                    or rel == rel_class.REL_FAM_BIRTH_MOTH_ONLY):
+                birth_str = _('Partial')
             sdoc.paragraph(__FMT_DET2 % (' ', par_str, birth_str, str(fam+1)))
             counter=''
             name = ''

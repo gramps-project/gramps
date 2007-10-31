@@ -526,7 +526,6 @@ class RelationshipCalculator:
                 common.append( common_anc[1] )
             
         return (firstRel, secondRel, common)
-        
 
     def get_relationship_distance_new(self, db, orig_person,
                                       other_person,
@@ -535,7 +534,7 @@ class RelationshipCalculator:
                                       only_birth=True,
                                       max_depth = MAX_DEPTH):
         """
-        Returns if all_dist == First a 'tuple, string':
+        Returns if all_dist == True a 'tuple, string':
             (rank, person handle, firstRel_str, firstRel_fam,
              secondRel_str, secondRel_fam), msg 
         or if all_dist == True a 'list of tuple, string': 
@@ -810,8 +809,195 @@ class RelationshipCalculator:
             import traceback
             print traceback.print_exc()
             return
-           
-    def get_relationship(self,db,orig_person,other_person):
+
+    def collapse_relations(self, relations):
+        """ Internal method to condense the relationships as returned by
+            get_relationship_distance_new.
+            Common ancestors in the same family are collapsed to one entry,
+            changing the person paths to family paths, eg 'mf' and 'mm' become
+            'ma'
+            
+            relations : list of relations as returned by 
+                        get_relationship_distance_new with all_dist = True
+                        
+            returns : the same data as relations, but collapsed, hence the 
+                        handle entry is now a list of handles, and the 
+                        path to common ancestors can now contain family
+                        identifiers (eg 'a', ...)
+                        In the case of sibling, this is replaced by family
+                        with common ancestor handles empty list []!
+        """
+        if relations[0][0] == -1 :
+            return relations
+        commonnew = []
+        existing_path = []
+        for relation in relations:
+            relstrfirst = None
+            commonhandle = [relation[1]]
+            if relation[2] :
+                relstrfirst = relation[2][:-1]
+            relstrsec = None
+            if relation[4] :
+                relstrsec = relation[4][:-1]
+            relfamfirst = relation[3][:]
+            relfamsec = relation[5][:]
+            #handle pure sibling:
+            if relation[2] and relation[2][-1] == self.REL_SIBLING:
+                #sibling will be the unique common ancestor, 
+                #change to a family with unknown handle for common ancestor
+                relation[2] = relation[2][:-1] + self.REL_FAM_BIRTH
+                relation[4] = relation[4] + self.REL_FAM_BIRTH
+                relfamsec = relfamsec + [relfamfirst[-1]]
+                relstrsec = relation[4][:-1]
+                commonhandle = []
+                    
+            # a unique path to family:
+            familypath = (relstrfirst, relstrsec, relfamfirst, relfamsec)
+            try:
+                posfam = existing_path.index(familypath)
+            except ValueError:
+                posfam = None
+            #if relstr is '', the ancestor is unique, if posfam None, 
+            # first time we see this family path
+            if (posfam is not None and relstrfirst is not None and 
+                    relstrsec is not None):
+                #we already have a common ancestor of this family, just add the
+                #other, setting correct family relation
+                tmp = commonnew[posfam]
+                frstcomstr = relation[2][-1]
+                scndcomstr = tmp[2][-1]
+                newcomstra = self.famrel_from_persrel(frstcomstr, scndcomstr)
+                frstcomstr = relation[4][-1]
+                scndcomstr = tmp[4][-1]
+                newcomstrb = self.famrel_from_persrel(frstcomstr, scndcomstr)
+
+                commonnew[posfam] = (tmp[0], tmp[1]+commonhandle, 
+                                 relation[2][:-1]+newcomstra, 
+                                 tmp[3], relation[4][:-1]+newcomstrb,
+                                 tmp[5])
+                    
+            else :
+                existing_path.append(familypath)
+                commonnew.append((relation[0], commonhandle, relation[2],
+                                  relfamfirst, relation[4], relfamsec) 
+                                )
+        return commonnew
+
+    def famrel_from_persrel(self, persrela, persrelb):
+        """ Conversion from eg 'f' and 'm' to 'a', so relation to the two 
+            persons of a common family is converted to a family relation
+        """
+        if persrela == persrelb:
+            #should not happen, procedure called in error, just return value
+            return persrela
+        if (persrela == self.REL_MOTHER and persrelb == self.REL_FATHER) or \
+            (persrelb == self.REL_MOTHER and persrela == self.REL_FATHER):
+            return self.REL_FAM_BIRTH
+        if (persrela == self.REL_MOTHER and persrelb == self.REL_FATHER_NOTBIRTH) or \
+            (persrelb == self.REL_MOTHER and persrela == self.REL_FATHER_NOTBIRTH):
+            return self.REL_FAM_BIRTH_MOTH_ONLY
+        if (persrela == self.REL_FATHER and persrelb == self.REL_MOTHER_NOTBIRTH) or \
+            (persrelb == self.REL_FATHER and persrela == self.REL_MOTHER_NOTBIRTH):
+            return self.REL_FAM_BIRTH_FATH_ONLY
+        #catch calling with family relations already, return val
+        if (persrela == self.REL_FAM_BIRTH or 
+                persrela == self.REL_FAM_BIRTH_FATH_ONLY or
+                persrela == self.REL_FAM_BIRTH_MOTH_ONLY or 
+                persrela == REL_FAM_NONBIRTH):
+            return persrela
+        if (persrelb == self.REL_FAM_BIRTH or 
+                persrelb == self.REL_FAM_BIRTH_FATH_ONLY or
+                persrelb == self.REL_FAM_BIRTH_MOTH_ONLY or 
+                persrelb == REL_FAM_NONBIRTH):
+            return persrelb
+        return self.REL_FAM_NONBIRTH
+
+    def only_birth(self, path):
+        """ given a path to common ancestor. Return True if only birth 
+            relations, False otherwise
+        """
+        only_birth = True
+        for str in path:
+            only_birth = only_birth and (str not in [self.REL_FAM_NONBIRTH, 
+                           self.REL_FATHER_NOTBIRTH, self.REL_MOTHER_NOTBIRTH])
+        return only_birth
+
+    def get_one_relationship(self, db, orig_person, other_person):
+        """
+        returns a string representing the most relevant relationship between 
+        the two people
+        """
+        if orig_person == None:
+            return (_("undefined"),[])
+
+        if orig_person.get_handle() == other_person.get_handle():
+            return ('', [])
+
+        is_spouse = self.is_spouse(db,orig_person,other_person)
+        if is_spouse:
+            return is_spouse
+        
+        data, msg = self.get_relationship_distance_new(
+                                db, orig_person, other_person,
+                                all_dist=True,
+                                all_families=True, only_birth=False)
+        if data[0][0] == -1:
+            return ''
+        
+        data = self.collapse_relations(data)
+        #most relevant relationship is a birth family relation of lowest rank
+        databest = [data[0]]
+        rankbest = data[0][0]
+        for rel in data :
+            if rel[0] == rankbest:
+                databest.append(rel)
+        if len(databest) == 1:
+            rel = databest[0]
+            dist_orig = len(rel[2])
+            dist_other= len(rel[4])
+            birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
+            return get_single_relationship_string(dist_orig,
+                                                  dist_other,
+                                                  orig_person.get_gender(),
+                                                  other_person.get_gender(),
+                                                  rel[2], rel[4],
+                                                  only_birth=birth, 
+                                                  in_law_a=False, 
+                                                  in_law_b=False)
+        else:
+            rel = databest[0]
+            order = [self.REL_FAM_BIRTH, self.REL_FAM_BIRTH_MOTH_ONLY,
+                     self.REL_FAM_BIRTH_FATH_ONLY, self.REL_MOTHER,
+                     self.REL_FATHER, self.REL_SIBLING, self.REL_FAM_NONBIRTH, 
+                     self.REL_MOTHER_NOTBIRTH, self.REL_MOTHER_NOTBIRTH]
+            for relother in databest:
+                relbirth = self.only_birth(rel[2]) and self.only_birth(rel[4])
+                if relother[2] == '' or relother[4]== '':
+                    #direct relation, take that
+                    rel = relother
+                    break
+                if not relbirth and self.only_birth(relother[2]) \
+                                and self.only_birth(relother[4]) :
+                    #birth takes precedence
+                    rel = relother
+                    continue
+                if order.index(relother[2][-1]) < order.index(rel[2][-1]):
+                    rel = relother
+                    continue
+                if order.index(relother[2][-1]) == order.index(rel[2][-1]) and\
+                        order.index(relother[4][-1]) < order.index(rel[4][-1]):
+                    rel = relother
+                    continue
+            return get_single_relationship_string(dist_orig,
+                                                  dist_other,
+                                                  orig_person.get_gender(),
+                                                  other_person.get_gender(),
+                                                  rel[2], rel[4],
+                                                  only_birth=birth, 
+                                                  in_law_a=False, 
+                                                  in_law_b=False)
+        
+    def get_relationship(self, db, orig_person, other_person):
         """
         returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
