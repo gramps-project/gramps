@@ -30,7 +30,7 @@
 #-------------------------------------------------------------------------
 import traceback
 import sys
-from random import randint,choice
+from random import randint,choice,random
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -780,20 +780,10 @@ class TestcaseGenerator(Tool.Tool):
         
         # Name
         name = gen.lib.Name()
-        self.fill_object( name)
         (firstname,lastname) = self.rand_name(lastname, gender)
         name.set_first_name(firstname)
         name.set_surname(lastname)
-        if randint(0,1) == 1:
-            name.set_title( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            name.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
-        if randint(0,1) == 1:
-            name.set_surname_prefix( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            name.set_suffix( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            name.set_call_name( self.rand_text(self.FIRSTNAME))
+        self.fill_object( name)
         np.set_primary_name(name)
         
         # generate some slightly different alternate name
@@ -881,7 +871,6 @@ class TestcaseGenerator(Tool.Tool):
                 eref = gen.lib.EventRef()
                 self.fill_object( eref)
                 eref.set_reference_handle(e_h)
-                eref.set_role( self.rand_type(gen.lib.EventRoleType()))
                 np.add_event_ref(eref)
         
         # PersonRef
@@ -1096,11 +1085,8 @@ class TestcaseGenerator(Tool.Tool):
     
     def fill_object( self, o):
     
-        if isinstance(o,gen.lib.Address):
-            if randint(0,1) == 1:
-                o.set_street( self.rand_text(self.SHORT))
-
-        if issubclass(o.__class__,gen.lib._AddressBase.AddressBase):
+        
+        if issubclass(o.__class__,gen.lib.addressbase.AddressBase):
             while randint(0,1) == 1:
                 a = gen.lib.Address()
                 self.fill_object(a)
@@ -1110,7 +1096,7 @@ class TestcaseGenerator(Tool.Tool):
             o.set_type( self.rand_type(gen.lib.AttributeType()))
             o.set_value( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,gen.lib._AttributeBase.AttributeBase):
+        if issubclass(o.__class__,gen.lib.attrbase.AttributeBase):
             while randint(0,1) == 1:
                 a = gen.lib.Attribute()
                 self.fill_object(a)
@@ -1122,10 +1108,17 @@ class TestcaseGenerator(Tool.Tool):
             if randint(0,3) == 1:
                 o.set_father_relation( self.rand_type( gen.lib.ChildRefType()))
 
-        if issubclass(o.__class__,gen.lib._DateBase.DateBase):
+        if issubclass(o.__class__,gen.lib.datebase.DateBase):
             if randint(0,1) == 1:
                 (y,d) = self.rand_date()
                 o.set_date_object( d)
+
+        if isinstance(o,gen.lib.Event):
+            if randint(0,1) == 1:
+                o.set_description( self.rand_text(self.LONG))
+
+        if issubclass(o.__class__,gen.lib.eventref.EventRef):
+            o.set_role( self.rand_type(gen.lib.EventRoleType()))
 
         if isinstance(o,gen.lib.Family):
             if randint(0,2) == 1:
@@ -1135,9 +1128,9 @@ class TestcaseGenerator(Tool.Tool):
 
         if isinstance(o,gen.lib.LdsOrd):
             if randint(0,1) == 1:
-                o.set_temple( choice( LdsUtils.temple_to_abrev.keys()))
+                o.set_temple( choice( LdsUtils.TEMPLES.name_code_data())[1])
 
-        if issubclass(o.__class__,gen.lib._LdsOrdBase.LdsOrdBase):
+        if issubclass(o.__class__,gen.lib.ldsordbase.LdsOrdBase):
             while randint(0,1) == 1:
                 ldsord = gen.lib.LdsOrd()
                 self.fill_object( ldsord)
@@ -1154,22 +1147,24 @@ class TestcaseGenerator(Tool.Tool):
         if isinstance(o,gen.lib.Location):
             if randint(0,1) == 1:
                 o.set_parish( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                o.set_county( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,gen.lib._LocationBase.LocationBase):
+        if issubclass(o.__class__,gen.lib.locationbase.LocationBase):
             if randint(0,1) == 1:
-                o.set_phone( self.rand_text(self.SHORT))
+                o.set_street( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_city( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_postal_code( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_phone( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_state( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
                 o.set_country( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                o.set_postal_code( self.rand_text(self.SHORT))
+                o.set_county( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,gen.lib._MediaBase.MediaBase):
+        if issubclass(o.__class__,gen.lib.mediabase.MediaBase):
             while randint(0,1) == 1:
                 o.add_media_reference( self.fill_object( gen.lib.MediaRef()))
 
@@ -1193,13 +1188,27 @@ class TestcaseGenerator(Tool.Tool):
         
         if isinstance(o,gen.lib.Name):
             o.set_type( self.rand_type( gen.lib.NameType()))
+            if randint(0,1) == 1:
+                o.set_title( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_patronymic( self.rand_text(self.FIRSTNAME_MALE))
+            if randint(0,1) == 1:
+                o.set_surname_prefix( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_suffix( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_call_name( self.rand_text(self.FIRSTNAME))
+            if randint(0,1) == 1:
+                o.set_group_as( o.get_surname()[:1])
+            # o.set_display_as()
+            # o.set_sort_as()
 
         if isinstance(o,gen.lib.Note):
             o.set( self.rand_text(self.NOTE))
             o.set_format( choice( (gen.lib.Note.FLOWED,gen.lib.Note.FORMATTED)))
             o.set_type( self.rand_type(gen.lib.NoteType()))
 
-        if issubclass(o.__class__,gen.lib._NoteBase.NoteBase):
+        if issubclass(o.__class__,gen.lib.notebase.NoteBase):
             while randint(0,1) == 1:
                 if not self.generated_notes or randint(0,10) == 1:
                     n = gen.lib.Note()
@@ -1212,19 +1221,32 @@ class TestcaseGenerator(Tool.Tool):
         if isinstance(o,gen.lib.Place):
             o.set_title( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
-                o.set_longitude( self.rand_text(self.SHORT))
+                if randint(0,4) == 1:
+                    o.set_longitude( self.rand_text(self.SHORT))
+                else:
+                    o.set_longitude( str(random()*360.0-180.0))
             if randint(0,1) == 1:
-                o.set_latitude( self.rand_text(self.SHORT))
+                if randint(0,4) == 1:
+                    o.set_latitude( self.rand_text(self.SHORT))
+                else:
+                    o.set_latitude( str(random()*180.0-90.0))
             o.set_main_location( self.fill_object( gen.lib.Location()))
             while randint(0,1) == 1:
                 o.add_alternate_locations( self.fill_object( gen.lib.Location()))
 
-        if issubclass(o.__class__,gen.lib._PrivacyBase.PrivacyBase):
+        if issubclass(o.__class__,gen.lib.placebase.PlaceBase):
+            if randint(0,1) == 1:
+                o.set_place_handle( self.rand_place())
+
+        if issubclass(o.__class__,gen.lib.primaryobj.BasicPrimaryObject):
+            if randint(0,1) == 1:
+                o.set_gramps_id( self.rand_text(self.SHORT))
+            if randint(0,1) == 1:
+                o.set_marker( self.rand_type(gen.lib.MarkerType()))
+
+        if issubclass(o.__class__,gen.lib.privacybase.PrivacyBase):
             o.set_privacy( randint(0,5) == 1)
             
-        if issubclass(o.__class__,gen.lib.PrimaryObject):
-            o.set_marker( self.rand_type(gen.lib.MarkerType()))
-
         if isinstance(o,gen.lib.RepoRef):
             if not self.generated_repos or randint(0,10) == 1:
                 r = gen.lib.Repository()
@@ -1255,7 +1277,7 @@ class TestcaseGenerator(Tool.Tool):
                 self.fill_object(r)
                 o.add_repo_reference( r)
 
-        if issubclass(o.__class__,gen.lib._SourceBase.SourceBase):
+        if issubclass(o.__class__,gen.lib.srcbase.SourceBase):
             while randint(0,1) == 1:
                 s = gen.lib.SourceRef()
                 self.fill_object(s)
@@ -1270,14 +1292,14 @@ class TestcaseGenerator(Tool.Tool):
             o.set_reference_handle( choice( self.generated_sources))
             if randint(0,1) == 1:
                 o.set_page( self.rand_text(self.NUMERIC))
-            if randint(0,1) == 1:
-                o.set_text( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                (year, d) = self.rand_date( )
-                o.set_date_object( d)
+            #if randint(0,1) == 1:
+            #    o.set_text( self.rand_text(self.SHORT))
+            #if randint(0,1) == 1:
+            #    (year, d) = self.rand_date( )
+            #    o.set_date_object( d)
             o.set_confidence_level(choice(Utils.confidence.keys()))
 
-        if issubclass(o.__class__,gen.lib._UrlBase.UrlBase):
+        if issubclass(o.__class__,gen.lib.urlbase.UrlBase):
             while randint(0,1) == 1:
                 u = gen.lib.Url()
                 self.fill_object(u)
@@ -1308,12 +1330,6 @@ class TestcaseGenerator(Tool.Tool):
         e = gen.lib.Event()
         self.fill_object(e)
         e.set_type( type)
-        #if randint(0,1) == 1:
-        #    e.set_cause( self.rand_text(self.SHORT))
-        if randint(0,1) == 1:
-            e.set_description( self.rand_text(self.LONG))
-        if randint(0,1) == 1:
-            e.set_place_handle( self.rand_place())
         (year, d) = self.rand_date( start, end)
         e.set_date_object( d)
         event_h = self.db.add_event(e, self.trans)

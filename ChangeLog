@@ -1,6 +1,8 @@
 2007-11-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* configure.in: We have a runtime check for Python 2.5. Do the same
 	here by using AM_PATH_PYTHON(2.5)
+	* src/plugins/TestcaseGenerator.py: finalize RelLib -> gen.lib
+	transitition
 
 2007-10-31  Jim Sack <jgsack@san.rr.com>
 	* src/gen/db/dbdir.py bug #1331 write_lock_file() add mkdir if needed
