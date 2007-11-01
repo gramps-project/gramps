@@ -39,39 +39,48 @@ from PluginUtils import register_relcalc
 #
 #-------------------------------------------------------------------------
 
-# level est utilisé pour trouver/afficher le niveau de la génération : à la %sème génération
+# level est utilisé pour trouver/afficher le niveau de la génération : 
+# à la %sème génération
 
-_level_name = [ "première", "deuxième", "troisième", "quatrième", "cinquième", 
-                "sixième", "septième", "huitième", "neuvième", "dixième", 
-                "onzième", "douzième", "treizième", "quatorzième", "quinzième", 
-                "seizième", "dix-septième", "dix-huitième", "dix-neuvième", 
-                "vingtième", "vingt-et-unième", "vingt-deuxième", 
-                "vingt-deuxième", "vingt-troisième", "vingt-quatrième", 
-                "vingt-sixième", "vingt-septième", "vingt-huitième", 
-                "vingt-neuvième", "trentième", ]
+_level_name = [ "première", "deuxième", "troisième", "quatrième", 
+                "cinquième", "sixième", "septième", "huitième", 
+                "neuvième", "dixième", "onzième", "douzième", 
+                "treizième", "quatorzième", "quinzième", 
+                "seizième", "dix-septième", "dix-huitième",
+                "dix-neuvième", "vingtième", "vingt-et-unième",
+                "vingt-deuxième", "vingt-troisième", 
+                "vingt-quatrième", "vingt-cinquième",
+                "vingt-sixième", "vingt-septième", 
+                "vingt-huitième", "vingt-neuvième",
+                "trentième", ]
 
-# pour le degrè (canon et civil), limitation 20+20 ainsi que pour LE [premier] cousin 
+# pour le degrè (canon et civil), limitation 20+20 ainsi que pour 
+# LE [premier] cousin 
 
-_removed_level = ["premier", "deuxième", "troisième", "quatrième", "cinquième", 
-                    "sixième", "septième", "huitième", "neuvième", "dixième", 
-                    "onzième", "douzième", "treizième", "quatorzième", 
-                    "quinzième", "seizième", "dix-septième", "dix-huitième", 
-                    "dix-neuvième", "vingtième", "vingt-et-unième", 
-                    "vingt-deuxième", "vingt-deuxième", "vingt-troisième",
-                    "vingt-quatrième","vingt-sixième","vingt-septième", 
-                    "vingt-huitième","vingt-neuvième","trentième", 
-                    "trente-et-unième", "trente-deuxième", "trente-troisième", 
-                    "trente-quatrième", "trente-cinquième", "trente-sixième", 
-                    "trente-septième", "trente-huitième", "trente-neuvième", 
-                    "quarantième", "quanrante-et-unième", ]
+_removed_level = [ "premièr", "deuxième", "troisième", "quatrième", 
+                   "cinquième", "sixième", "septième", "huitième", 
+                   "neuvième", "dixième", "onzième", "douzième", 
+                   "treizième", "quatorzième", "quinzième", 
+                   "seizième", "dix-septième", "dix-huitième",
+                   "dix-neuvième", "vingtième", "vingt-et-unième",
+                   "vingt-deuxième", "vingt-troisième", 
+                   "vingt-quatrième", "vingt-cinquième",
+                   "vingt-sixième", "vingt-septième", 
+                   "vingt-huitième", "vingt-neuvième",
+                   "trentième", "trente-et-unième", 
+                   "trente-deuxième", "trente-troisième", 
+                   "trente-quatrième", "trente-cinquième", 
+                   "trente-sixième", "trente-septième", 
+                   "trente-huitième", "trente-neuvième", 
+                   "quarantième", "quanrante-et-unième", ]
 
 # listes volontairement limitées | small lists, use generation level if > [5]
 
-_father_level = [ "", "le père%s", "le grand-père%s", "l'arrière-grand-père%s", 
-                    "le trisaïeul%s", ]
+_father_level = [ "", "le père%s", "le grand-père%s", 
+                  "l'arrière-grand-père%s", "le trisaïeul%s", ]
 
-_mother_level = [ "", "la mère%s", "la grand-mère%s", "l'arrière-grand-mère%s", 
-                    "la trisaïeule%s", ]
+_mother_level = [ "", "la mère%s", "la grand-mère%s", 
+                  "l'arrière-grand-mère%s", "la trisaïeule%s", ]
 
 _son_level = [ "", "le fils", "le petit-fils", "l'arrière-petit-fils", ]
 
@@ -84,9 +93,11 @@ _sister_level = [ "", "la sœur%s", "la tante%s", "la grand-tante%s",
 _brother_level = [ "", "le frère%s", "l'oncle%s", "le grand-oncle%s", 
                     "l'arrière-grand-oncle%s", ]
 
-_nephew_level = [ "", "le neveu%s", "le petit-neveu%s", "l'arrière-petit-neveu%s", ]
+_nephew_level = [ "", "le neveu%s", "le petit-neveu%s", 
+                  "l'arrière-petit-neveu%s", ]
 
-_niece_level = [ "", "la nièce%s", "la petite-nièce%s", "l'arrière-petite-nièce%s", ]
+_niece_level = [ "", "la nièce%s", "la petite-nièce%s", 
+                 "l'arrière-petite-nièce%s", ]
 
 # kinship report
 
@@ -97,14 +108,15 @@ _children_level = [ "", "les enfants", "les petits-enfants",
                     "les arrières-petits-enfants", 
                     "les arrières-arrières-petits-enfants", ]
 
-_siblings_level = [ "", "les frères et les sœurs", "les oncles et les tantes", 
+_siblings_level = [ "", "les frères et les sœurs", 
+                    "les oncles et les tantes", 
                     "les grands-oncles et les grands-tantes", 
                     "les arrières-grands-oncles et les arrières-grands-tantes", 
                     ]
 
-_nephews_nieces_level = ["", "les neveux et les nièces", 
-                        "les petits-neveux et les petites-nièces", 
-                        "les arrière-petits-neveux et les arrières-petites-nièces",
+_nephews_nieces_level = [ "", "les neveux et les nièces", 
+                          "les petits-neveux et les petites-nièces", 
+                          "les arrière-petits-neveux et les arrières-petites-nièces",
                         ]
 
 #-------------------------------------------------------------------------
@@ -120,7 +132,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-# de la personne active à l'ascendant commun Ga=[level] pour le calculateur de relations
+# de la personne active à l'ascendant commun Ga=[level] pour 
+# le calculateur de relations
 
     def get_cousin(self, level, removed, dir = '', step='', inlaw=''):
         if removed == 0 and level < len(_level_name):
@@ -153,49 +166,57 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_father(self, level, inlaw=''):
         if level > len(_father_level)-1:
-            return "l'ascendant éloigné, à la %s génération" % (_level_name[level])
+            return "l'ascendant éloigné, à la %s génération" % (
+                        _level_name[level])
         else:
             return _father_level[level] % inlaw
 
     def get_mother(self, level, inlaw=''):
         if level > len(_mother_level)-1:
-            return "l'ascendante éloignée, à la %s génération" % (_level_name[level])
+            return "l'ascendante éloignée, à la %s génération" % (
+                        _level_name[level])
         else:
             return _mother_level[level] % inlaw
 
     def get_parent_unknown(self, level, inlaw=''):
         if level > len(_level_name)-1:
-            return "l'ascendant éloigné, à la %s génération" % (_level_name[level])
+            return "l'ascendant éloigné, à la %s génération" % (
+                        _level_name[level])
         else:
             return "un parent éloigné"
 
     def get_son(self, level, step=''):
         if level > len(_son_level)-1:
-            return "le descendant éloigné, à la %s génération" % (_level_name[level+1])
+            return "le descendant éloigné, à la %s génération" % (
+                        _level_name[level+1])
         else:
             return _son_level[level]
 
     def get_daughter(self, level, step=''):
         if level > len(_daughter_level)-1:
-            return "la descendante éloignée, à la %s génération" % (_level_name[level+1])
+            return "la descendante éloignée, à la %s génération" % (
+                        _level_name[level+1])
         else:
             return _daughter_level[level]
 
     def get_child_unknown(self, level, step=''):
         if level > len(_level_name)-1:
-            return "le descendant éloigné, à la %s génération" % (_level_name[level+1])
+            return "le descendant éloigné, à la %s génération" % (
+                        _level_name[level+1])
         else:
             return "un descendant éloigné"
 
     def get_uncle(self, level, step='', inlaw=''):
         if level > len(_brother_level)-1:
-            return "l'oncle éloigné, relié à la %s génération" % (_level_name[level])
+            return "l'oncle éloigné, relié à la %s génération" % (
+                        _level_name[level])
         else:
             return _brother_level[level] % inlaw
 
     def get_aunt(self, level, step='', inlaw=''):
         if level > len(_sister_level)-1:
-            return "la tante éloignée, reliée à la %s génération" % (_level_name[level])
+            return "la tante éloignée, reliée à la %s génération" % (
+                        _level_name[level])
         else:
             return _sister_level[level] % inlaw
 
@@ -221,39 +242,45 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         voir Relationship.py
         """
         rel_str = "des parents éloignés"
+        gen = " à la %sème génération"
+        bygen = " par la %sème génération"
+        cmt = " (frères ou sœurs d'un ascendant" + gen % (
+                       Ga) + ")"
         if Ga == 0:
             # These are descendants
             if Gb < len(_children_level):
                 rel_str = _children_level[Gb]
             else:
-                rel_str = "les descendants à la %sème génération" % (Gb+1)
+                rel_str = "les descendants" + gen % (
+                               Gb+1)
         elif Gb == 0:
             # These are parents/grand parents
             if Ga < len(_parents_level):
                 rel_str = _parents_level[Ga]
             else:
-                rel_str = "les ascendants à la %sème génération" % (Ga+1) 
+                rel_str = "les ascendants" + gen % (
+                               Ga+1) 
         elif Gb == 1:
             # These are siblings/aunts/uncles
             if Ga < len(_siblings_level):
                 rel_str = _siblings_level[Ga]
             else:
-                rel_str = "Les enfants d'un ascendant à la %sème génération (frères ou sœurs d'un ascendant à la %sème génération)" % (Ga+1, Ga)
+                rel_str = "Les enfants d'un ascendant" + gen % (
+                               Ga+1) + cmt 
         elif Ga == 1:
             # These are nieces/nephews
             if Gb < len(_nephews_nieces_level):
                 rel_str = _nephews_nieces_level[Gb]
             else:
-                rel_str = "les neveux et les nièces à la %sème génération" % (Gb)
+                rel_str = "les neveux et les nièces" + gen % (
+                               Gb)
         elif Ga > 1 and Ga == Gb:
             # These are cousins in the same generation
             # use custom level for latin words
             if Ga == 2:
                 rel_str = "les cousins germains et cousines germaines" 
-            elif ((Ga*3)-3)/(Ga-1) == 2:
-                rel_str = "le %s cousin et cousine" % (_removed_level[(Gb-1)/2])
-            elif ((Ga*3)-3)/(Ga-1) == 3:
-                rel_str = "le %s cousin et cousine" % (_removed_level[Gb/2])
+            elif Ga <= len(_level_name):
+                rel_str = "les %ss cousins et cousines" % _level_name[Ga-2]
             # security    
             else:
                 rel_str = "les cousins et cousines"
@@ -263,11 +290,16 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # first person.
             # use custom level for latin words and specific relation
             if Ga == 3 and Gb == 2:
-                rel_str = "les oncles et tantes à la mode de Bretagne (cousins germains d'un parent)" 
-            elif Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level) and (Ga+Gb) < len(_removed_level):
-                rel_str = "les oncles et tantes du %s au %s degré (canon) et au %s degré (civil)" % (_removed_level[Gb], _removed_level[Ga], _removed_level[Ga+Gb] )
+                desc = " (cousins germains d'un parent)"
+                rel_str = "les oncles et tantes à la mode de Bretagne" + desc
+            elif Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " du %s au %s degré (canon)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " et au %s degré (civil)" % ( _removed_level[Ga+Gb+1] )
+                rel_str = "les oncles et tantes" + can + civ
             elif Ga < len(_level_name):
-                rel_str = "les grands-oncles et grands-tantes par la %sème génération" % (Ga)
+                rel_str = "les grands-oncles et grands-tantes" + bygen % (
+                               Ga+1)
             else:
                 return rel_str
         elif Gb > 1 and Gb > Ga:
@@ -276,11 +308,16 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # first person.
             # use custom level for latin words and specific relation
             if Ga == 2 and Gb == 3:
-                rel_str = "les neveux et nièces à la mode de Bretagne (cousins issus d'un germain)"
-            elif Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level) and (Ga+Gb) < len(_removed_level):
-                rel_str = "le cousin ou cousine du %s au %s degré (canon) et au %s degré (civil)" % (_removed_level[Ga], _removed_level[Gb], _removed_level[Ga+Gb] )
+                info = " (cousins issus d'un germain)"
+                rel_str = "les neveux et nièces à la mode de Bretagne" + info
+            elif Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " du %s au %s degré (canon)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " et au %s degré (civil)" % ( _removed_level[Ga+Gb+1] )
+                rel_str = "les neveux et nièces" + can + civ
             elif Ga < len(_level_name):
-                rel_str =  "les cousins et cousines par la %sème génération" % (Ga)
+                rel_str =  "les neveux et nièces" + bygen % (
+                                Gb)
             else:
                 return rel_str
         return rel_str
@@ -296,10 +333,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
        ## print 'Ga, Gb :', Ga, Gb
 
-        #jerome, I would delete this logic
-        #a step father or step uncle is the relation to a person who does not
-        # go with birth rel. I am still adding this to english...
-        # I will see if I am able to just add it on sibling children and cousins first levels
+        # jerome, I would delete this logic
+        # a step father or step uncle is the relation to a person 
+        # who does not go with birth rel. 
+        # I am still adding this to english...
+        # benny, I will see if I am able to just add it on sibling 
+        # children and cousins first levels
+
         if reltocommon_a != '':
             reltocommon = reltocommon_a
         else:
@@ -316,13 +356,15 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             step = ''
 
-        #'bru/gendre' for 'daughter/son in-law', 'beau-père' for 'father-in-law', use (by alliance) !!!
+        #'bru/gendre' for 'daughter/son in-law', 
+        #'beau-père' for 'father-in-law', use (by alliance) !!!
         if in_law_a or in_law_b:
             inlaw = ' (par alliance)'
         else:
             inlaw = ''
 
         rel_str = "un parent éloigné"
+        bygen = " par la %sème génération"
         if Ga == 0:
             # b is descendant of a
             if Gb == 0 :
@@ -332,9 +374,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             elif gender_b == gen.lib.Person.FEMALE and Gb < len(_daughter_level):
                 rel_str = self.get_daughter(Gb, step)
             elif Gb < len(_level_name) and gender_b == gen.lib.Person.MALE:
-                rel_str = "le descendant éloigné (%dème génération)" % (Gb+1)
+                rel_str = "le descendant éloigné (%dème génération)" % (
+                               Gb+1)
             elif Gb < len(_level_name) and gender_b == gen.lib.Person.FEMALE:
-                rel_str = "la descendante éloignée (%dème génération)" % (Gb+1)
+                rel_str = "la descendante éloignée (%dème génération)" % (
+                               Gb+1)
             else:
                 return self.get_child_unknown(Gb, step)
         elif Gb == 0:
@@ -344,9 +388,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             elif gender_b == gen.lib.Person.FEMALE and Ga < len(_mother_level):
                 rel_str = self.get_mother(Ga, inlaw)
             elif Ga < len(_level_name) and gender_b == gen.lib.Person.MALE:
-                rel_str = "l'ascendant éloigné (%dème génération)" % (Ga+1)
+                rel_str = "l'ascendant éloigné (%dème génération)" % (
+                               Ga+1)
             elif Ga < len(_level_name) and gender_b == gen.lib.Person.FEMALE:
-                rel_str = "l'ascendante éloignée (%dème génération)" % (Ga+1)
+                rel_str = "l'ascendante éloignée (%dème génération)" % (
+                               Ga+1)
             else:
                 return self.get_parent_unknown(Ga, inlaw)
         elif Gb == 1:
@@ -357,9 +403,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = self.get_aunt(Ga, step, inlaw)
             else:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "l'oncle éloigné (par la %dème génération)" % (Ga+1)
+                    rel_str = "l'oncle éloigné" + bygen % (
+                                   Ga+1)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la tante éloignée (par la %dème génération)" % (Ga+1)
+                    rel_str = "la tante éloignée" + bygen % (
+                                   Ga+1)
                 else:
                     return rel_str
         elif Ga == 1:
@@ -370,9 +418,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = self.get_niece(Gb-1, inlaw)
             else:
                 if gender_b == gen.lib.Person.MALE: 
-                    rel_str = "le neveu éloigné (par la %dème génération)" % (Gb+1)
+                    rel_str = "le neveu éloigné" + bygen % (
+                                   Gb+1)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la nièce éloignée (par la %dème génération)" % (Gb+1)
+                    rel_str = "la nièce éloignée" + bygen % (
+                                   Gb+1)
                 else:
                     return rel_str   
         elif Ga == Gb:
@@ -391,16 +441,21 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # first person.
             if Ga == 3 and Gb == 2:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "l'oncle à la mode de Bretagne (cousin germain d'un parent)"
+                    desc = " (cousin germain d'un parent)"
+                    rel_str = "l'oncle à la mode de Bretagne" + desc
                 elif gender_b == gen.lib.Person.FEMALE: 
-                    rel_str = "la tante à la mode de Bretagne (cousin germain d'un parent)"
+                    desc = " (cousine germaine d'un parent)"
+                    rel_str = "la tante à la mode de Bretagne" + desc
                 else:
                     return rel_str
-            elif Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level) and (Ga+Gb) < len(_removed_level):
+            elif Gb <= len(_level_name) and (Ga-Gb) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " du %s au %s degré (canon)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " et au %s degré (civil)" % ( _removed_level[Ga+Gb+1] )
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "l'oncle du %s au %s degré (canon) et au %s degré (civil)" % (_removed_level[Gb], _removed_level[Ga], _removed_level[Ga+Gb] )
+                    rel_str = "l'oncle" + can + civ
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la tante du %s au %s degré (canon) et au %s degré (civil)" % (_removed_level[Gb], _removed_level[Ga], _removed_level[Ga+Gb] )
+                    rel_str = "la tante" + can + civ
                 else:
                     return rel_str
             else:
@@ -415,26 +470,30 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # being in a lower generation from the common ancestor than the 
             # first person.
             if Ga == 2 and Gb == 3:
+                info = " (cousins issus d'un germain)"
                 if gender_b == gen.lib.Person.MALE:   
-                    rel_str = "le neveu à la mode de Bretagne (cousin issu d'un germain)"
+                    rel_str = "le neveu à la mode de Bretagne" + info
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la nièce à la mode de Bretagne (cousine issue d'un germain)"
+                    rel_str = "la nièce à la mode de Bretagne" + info
                 else:
                     return rel_str
-            elif Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level) and (Ga+Gb) < len(_removed_level):
+            elif Ga <= len(_level_name) and (Gb-Ga) < len(_removed_level) and (Ga+Gb+1) < len(_removed_level):
+                can = " du %s au %s degré (canon)"  % (
+                           _removed_level[Gb], _removed_level[Ga] )
+                civ = " et au %s degré (civil)" % ( _removed_level[Ga+Gb+1] )
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "le cousin du %s au %s degré (canon) et au %s degré (civil)" % (_removed_level[Ga], _removed_level[Gb], _removed_level[Ga+Gb] )
+                    rel_str = "le neveu" + can + civ
                 if gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la cousine du %s au %s degré (canon) et au %s degré (civil)" % (_removed_level[Ga], _removed_level[Gb], _removed_level[Ga+Gb] )
+                    rel_str = "la nièce" + can + civ
                 else:
                     return rel_str
             elif Ga > len(_level_name):
                 return rel_str
             else:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "le cousin par la %sème génération" % (Ga+1)
+                    rel_str = self.get_nephew(Ga, step, inlaw)
                 elif gender_b ==gen.lib.Person.FEMALE:
-                    rel_str = "la cousine par la %sème génération" % (Ga+1)
+                    rel_str = self.get_niece(Ga, step, inlaw)
                 else:
                     return rel_str 
         return rel_str
