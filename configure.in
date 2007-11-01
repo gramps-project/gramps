@@ -45,9 +45,9 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define to the Gettext pa
 AM_GLIB_GNU_GETTEXT
 
 dnl Checks for programs.  
-dnl We first only check for python >= 2.4
+dnl We first only check for python >= 2.5
 
-AM_PATH_PYTHON(2.4)
+AM_PATH_PYTHON(2.5)
 AC_PATH_PROG(BINSH, sh)
 
 pygtk_require="
