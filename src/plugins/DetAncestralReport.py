@@ -369,6 +369,20 @@ class DetAncestorReport(Report):
             self.doc.write_text(event.get_description())
             self.doc.write_text(".")
         self.doc.end_paragraph()
+
+        if self.includeNotes:
+            # if the event or event reference has a note attached to it,
+            # get the text and format it correctly
+            note = event.get_note()
+            if note != "":
+                self.doc.start_paragraph('DAR-MoreDetails')
+                self.doc.write_text(note)
+                self.doc.end_paragraph()
+            note = event_ref.get_note()
+            if note != "":
+                self.doc.start_paragraph('DAR-MoreDetails')
+                self.doc.write_text(note)
+                self.doc.end_paragraph()
                 
     def write_parents(self, person, firstName):
         family_handle = person.get_main_parents_family_handle()
