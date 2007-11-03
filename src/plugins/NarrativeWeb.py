@@ -75,6 +75,7 @@ import Utils
 import ImgManip
 import GrampsLocale
 import DateHandler
+import Mime
 from QuestionDialog import ErrorDialog, WarningDialog
 from NameDisplay import displayer as _nd
 from DateHandler import displayer as _dd
@@ -1050,7 +1051,7 @@ class MediaPage(BasePage):
         of = self.create_link_file(handle,"img")
             
         mime_type = photo.get_mime_type()
-        
+
         if mime_type:
             note_only = False
             newpath = self.copy_source_file(handle, photo)
@@ -1129,10 +1130,10 @@ class MediaPage(BasePage):
             of.write('<td class="field">%s</td>\n' % _('GRAMPS ID'))
             of.write('<td class="data">%s</td>\n' % photo.gramps_id)
             of.write('</tr>\n')
-        if not note_only:
+        if not note_only and not mime_type.startswith("image/"):
             of.write('<tr>\n')
             of.write('<td class="field">%s</td>\n' % _('File type'))
-            of.write('<td class="data">%s</td>\n' % photo.mime)
+            of.write('<td class="data">%s</td>\n' % Mime.get_description(mime_type))
             of.write('</tr>\n')
         date = _dd.display(photo.get_date_object())
         if date != "":

@@ -1,3 +1,7 @@
+2007-11-02 Stéphane Charette <stephanecharette@gmail.com>
+	* src/plugins/NarrativeWeb.py: issue #1340, do not display mime-types
+	in NarrativeWeb for image/*
+
 2007-10-31 Jim Sack <jgsack@san.rr.com>
 	* src/Gramps.py In run(), skip error-dialog for things like 
 	exit(0) such as used when processing command-line operations.
