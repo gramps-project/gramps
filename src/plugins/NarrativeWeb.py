@@ -79,6 +79,7 @@ import Errors
 import Utils
 import ThumbNails
 import GrampsLocale
+import Mime
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
@@ -1066,9 +1067,9 @@ class MediaPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list,
                           photo.gramps_id)
         of = self.create_link_file(handle,"img")
-            
+
         mime_type = photo.get_mime_type()
-        
+
         if mime_type:
             note_only = False
             newpath = self.copy_source_file(handle, photo)
@@ -1078,11 +1079,11 @@ class MediaPage(BasePage):
             target_exists = False
 
         self.copy_thumbnail(handle, photo)
-            
+
         self.page_title = photo.get_description()
         self.display_header(of,db, "%s - %s" % (_('Gallery'), title),
                             get_researcher().get_name(),up=True)
-        
+
         of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % self.page_title.strip())
 
@@ -1147,10 +1148,10 @@ class MediaPage(BasePage):
             of.write('<td class="field">%s</td>\n' % _('GRAMPS ID'))
             of.write('<td class="data">%s</td>\n' % photo.gramps_id)
             of.write('</tr>\n')
-        if not note_only:
+        if not note_only and not mime_type.startswith("image/"):
             of.write('<tr>\n')
             of.write('<td class="field">%s</td>\n' % _('File type'))
-            of.write('<td class="data">%s</td>\n' % photo.mime)
+            of.write('<td class="data">%s</td>\n' % Mime.get_description(mime_type))
             of.write('</tr>\n')
         date = _dd.display(photo.get_date_object())
         if date != "":

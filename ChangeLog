@@ -1,3 +1,7 @@
+2007-11-02  Stéphane Charette  <stephanecharette@gmail.com>
+	* src/plugins/NarrativeWeb.py: issue #1340, do not display mime-types
+        in NarrativeWeb for image/*
+
 2007-11-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* configure.in: We have a runtime check for Python 2.5. Do the same
 	here by using AM_PATH_PYTHON(2.5)
