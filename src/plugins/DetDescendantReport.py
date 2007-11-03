@@ -298,23 +298,37 @@ class DetDescendantReport(Report):
             if text and (date or place):
                 text += ". "
             text += event.get_description()
-            
+
         text += "%s. " % self.endnotes(event)
-        
+
         self.doc.write_text(text)
 
         if self.includeAttrs:
             text = ""
-            for attr in event.get_attribute_list():
+            attr_list = event.get_attribute_list()
+            attr_list.extend(event_ref.get_attribute_list())
+            for attr in attr_list:
                 if text:
                     text += "; "
                 text += _("%(type)s: %(value)s%(endnotes)s") % {
                     'type'     : attr.get_type(),
                     'value'    : attr.get_value(),
                     'endnotes' : self.endnotes(attr) }
+            text = " " + text
             self.doc.write_text(text)
-        
+
         self.doc.end_paragraph()
+
+        if self.includeNotes:
+            # if the event or event reference has a note attached to it,
+            # get the text and format it correctly
+            notelist = event.get_note_list()
+            notelist.extend(event_ref.get_note_list())
+            for notehandle in notelist:
+                note = self.database.get_note_from_handle(notehandle)
+                self.doc.start_paragraph('DDR-MoreDetails')
+                self.doc.write_text(note.get())
+                self.doc.end_paragraph()
 
     def write_parents(self, person, firstName):
         family_handle = person.get_main_parents_family_handle()

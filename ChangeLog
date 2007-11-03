@@ -1,3 +1,8 @@
+2007-11-03 Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/DetDescendantReport.py
+	* src/plugins/DetAncestralReport.py
+	Added functionality to print event and event reference notes. issue #1335
+
 2007-11-02  Stéphane Charette  <stephanecharette@gmail.com>
 	* src/plugins/NarrativeWeb.py: issue #1340, do not display mime-types
         in NarrativeWeb for image/*
