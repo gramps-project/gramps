@@ -78,6 +78,7 @@ from ReportBase._CommandLineReport import CommandLineReport
 import Errors
 import Utils
 import ThumbNails
+import ImgManip
 import GrampsLocale
 import Mime
 from QuestionDialog import ErrorDialog, WarningDialog
@@ -96,6 +97,8 @@ from gen.lib.eventroletype import EventRoleType
 _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
 
+MAX_IMG_WIDTH=800   # resize images that are wider than this
+MAX_IMG_HEIGHT=600  # resize images that are taller than this
 WIDTH=160
 HEIGHT=50
 VGAP=10
@@ -1103,8 +1106,26 @@ class MediaPage(BasePage):
             if mime_type.startswith("image/"):
                 of.write('<div class="centered">\n')
                 if target_exists:
-                    of.write('<img ')
+                    # if the image is spectacularly large, then force the client
+                    # to resize it, and include a "<a href=" link to the actual
+                    # image; most web browsers will dynamically resize an image
+                    # and provide zoom-in/zoom-out functionality when the image
+                    # is displayed directly
+                    (width, height) = ImgManip.image_size(photo.get_path())
+                    scale = 1.0
+                    if width > MAX_IMG_WIDTH or height > MAX_IMG_HEIGHT:
+                        # image is too large -- scale it down and link to the full image
+                        scale = min(float(MAX_IMG_WIDTH)/float(width), float(MAX_IMG_HEIGHT)/float(height))
+                        width = int(width * scale)
+                        height = int(height * scale)
+                        of.write('<a href="../../../%s">\n' % newpath)
+
+                    of.write('<img width="%d" height="%d"' % (width, height))
                     of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+
+                    if scale <> 1.0:
+                        of.write('</a>\n');
+
                 else:
                     of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
                 of.write('</div>\n')
