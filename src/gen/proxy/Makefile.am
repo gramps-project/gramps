@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/proxy
+pkgdatadir = $(datadir)/@PACKAGE@/gen/proxy
 
 pkgdata_PYTHON = \
 	__init__.py \
@@ -13,8 +13,8 @@ pkgdata_PYTHON = \
 	private.py \
 	proxybase.py
 
-pkgpyexecdir = @pkgpyexecdir@/gen
-pkgpythondir = @pkgpythondir@/gen
+pkgpyexecdir = @pkgpyexecdir@/gen/proxy
+pkgpythondir = @pkgpythondir@/gen/proxy
 
 
 # Clean up all the byte-compiled files

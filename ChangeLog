@@ -1,3 +1,9 @@
+2007-11-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/gen/lib/Makefile.am
+	* src/gen/db/Makefile.am
+	* src/gen/proxy/Makefile.am
+	* src/gen/utils/Makefile.am: Fix path structure
+
 2007-11-03  Stéphane Charette  <stephanecharette@gmail.com>
 	* src/plugins/NarrativeWeb.py: resize and link to large images
 

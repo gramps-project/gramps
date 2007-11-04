@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/lib
+pkgdatadir = $(datadir)/@PACKAGE@/gen/lib
 
 pkgdata_PYTHON = \
 	addressbase.py \
@@ -62,13 +62,13 @@ pkgdata_PYTHON = \
 	urltype.py \
 	witness.py 
 
-pkgpyexecdir = @pkgpyexecdir@/lib
-pkgpythondir = @pkgpythondir@/lib
+pkgpyexecdir = @pkgpyexecdir@/gen/lib
+pkgpythondir = @pkgpythondir@/gen/lib
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
-GRAMPS_PY_MODPATH = "../"
+GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \

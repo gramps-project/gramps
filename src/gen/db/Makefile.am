@@ -3,7 +3,7 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/db
+pkgdatadir = $(datadir)/@PACKAGE@/gen/db
 
 pkgdata_PYTHON = \
 	__init__.py\
@@ -14,14 +14,14 @@ pkgdata_PYTHON = \
 	exceptions.py \
 	iterator.py 
 
-pkgpyexecdir = @pkgpyexecdir@/db
-pkgpythondir = @pkgpythondir@/db
+pkgpyexecdir = @pkgpyexecdir@/gen/db
+pkgpythondir = @pkgpythondir@/gen/db
 
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
-GRAMPS_PY_MODPATH = "../"
+GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
