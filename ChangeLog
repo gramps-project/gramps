@@ -1,3 +1,8 @@
+2007-11-04  Stéphane Charette  <stephanecharette@gmail.com>
+	* src/plugins/NarrativeWeb.py: Fix first problem described in issue
+	#1280 (HTTP 404 errors due to source references on media pages); there
+	is still a serious problem for which I don't yet have a solution
+
 2007-11-04  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/gen/lib/Makefile.am
 	* src/gen/db/Makefile.am

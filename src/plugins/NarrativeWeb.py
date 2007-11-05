@@ -1071,6 +1071,9 @@ class MediaPage(BasePage):
                           photo.gramps_id)
         of = self.create_link_file(handle,"img")
 
+        self.db = db
+        self.src_list = src_list
+
         mime_type = photo.get_mime_type()
 
         if mime_type:
@@ -1191,8 +1194,6 @@ class MediaPage(BasePage):
         self.close_file(of)
 
     def display_media_sources(self, of, db, photo):
-        self.db = db
-        self.src_list = {}
         self.bibli = Bibliography()
         for sref in photo.get_source_references():
             self.bibli.add_reference(sref)
@@ -2498,9 +2499,9 @@ class WebReport(Report):
         self.person_pages(ind_list, place_list, source_list, archive)
         self.surname_pages(ind_list, archive)
         self.place_pages(place_list, source_list, archive)
-        self.source_pages(source_list, self.photo_list, archive)
         if self.inc_gallery:
             self.gallery_pages(self.photo_list, source_list, archive)
+        self.source_pages(source_list, self.photo_list, archive)
         
         if archive:
             archive.close()
