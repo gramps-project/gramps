@@ -1,4 +1,8 @@
 2007-11-05 Jim Sack <jgsack@san.rr.com>
+	* src/test/gramps_cli_test.py
+	simple test for gramps CLI (after bugfix #1331-1334 )
+
+2007-11-05 Jim Sack <jgsack@san.rr.com>
 	* src/gen/utils/callback.py
 	* src/gen/utils/test/callback_test.py
 	Extracted unittest code to separate file, modified test portion
