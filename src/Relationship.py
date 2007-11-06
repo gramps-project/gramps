@@ -1403,12 +1403,12 @@ class RelationshipCalculator:
         elif Ga == 1:
             # b is niece/nephew of a
             if gender_b == gen.lib.Person.MALE:
-                rel_str = self.get_nephew(Gb, step, inlaw)
+                rel_str = self.get_nephew(Gb-1, step, inlaw)
             elif gender_b == gen.lib.Person.FEMALE:
-                rel_str = self.get_niece(Gb, step, inlaw)
+                rel_str = self.get_niece(Gb-1, step, inlaw)
             elif Gb < len(_niece_level) and Gb < len(_nephew_level):
-                rel_str = "%s or %s" % (self.get_nephew(Gb, step, inlaw),
-                                        self.get_niece(Gb, step, inlaw))
+                rel_str = "%s or %s" % (self.get_nephew(Gb-1, step, inlaw),
+                                        self.get_niece(Gb-1, step, inlaw))
             else:
                 rel_str = "distant %snephews/nieces%s" % (step, inlaw)
         elif Ga == Gb:
