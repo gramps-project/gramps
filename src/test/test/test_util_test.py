@@ -72,9 +72,8 @@ class Test1(U.TestCase):
 # path-related features (note use of tu.msg tested above)
 class Test2(U.TestCase):
     def test2a_context_via_traceback(s):
-        e = __file__.rstrip(".co")   # eg in *.py[co]
-        g = tu._caller_context()[0]
-        g.rstrip('c')
+        e = os.path.basename(__file__).rstrip(".co")   # eg in *.py[co]
+        g = os.path.basename(tu._caller_context()[0]).rstrip('co')
         s.assertEqual(g,e, tu.msg(g,e, "_caller_context"))
   
     def test2b_absdir(s):
