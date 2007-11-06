@@ -1,4 +1,10 @@
 2007-11-05 Jim Sack <jgsack@san.rr.com>
+	* src/gen/utils/callback.py
+	* src/gen/utils/test/callback_test.py
+	Extracted unittest code to separate file, modified test portion
+	slightly to adapt to new testing framework.
+
+2007-11-05 Jim Sack <jgsack@san.rr.com>
 	* src/test directory added
 	* src/test/{__init__,regrtest,test_init}.py added
 	* src/test/test/test_util_test.py added
