@@ -222,15 +222,15 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_nephew(self, level, step='', inlaw=''):
         if level > len(_nephew_level)-1:
-            return "le neveu éloigné, relié à la %s génération" % (
-                        _level_name[level+1])
+            return "le neveu éloigné, à la %s génération" % (
+                        _level_name[level])
         else:
             return _nephew_level[level] % inlaw
 
     def get_niece(self, level, step='', inlaw=''):
         if level > len(_niece_level)-1:
-            return "la nièce éloignée, reliée à la %s génération" % (
-                        _level_name[level+1])
+            return "la nièce éloignée, à la %s génération" % (
+                        _level_name[level])
         else:
             return _niece_level[level] % inlaw
 
@@ -270,7 +270,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif Ga == 1:
             # These are nieces/nephews
             if Gb < len(_nephews_nieces_level):
-                rel_str = _nephews_nieces_level[Gb]
+                rel_str = _nephews_nieces_level[Gb-1]
             else:
                 rel_str = "les neveux et les nièces" + gen % (
                                Gb)
@@ -418,11 +418,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = self.get_niece(Gb-1, inlaw)
             else:
                 if gender_b == gen.lib.Person.MALE: 
-                    rel_str = "le neveu éloigné" + bygen % (
-                                   Gb+1)
+                    rel_str = "le neveu éloigné (%dème génération)" %  (
+                                   Gb)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la nièce éloignée" + bygen % (
-                                   Gb+1)
+                    rel_str = "la nièce éloignée (%dème génération)" %  (
+                                   Gb)
                 else:
                     return rel_str   
         elif Ga == Gb:
