@@ -345,16 +345,11 @@ class DisplayState(gen.utils.GrampsDBCallback):
         active = dbstate.get_active_person()
         if default_person == None or active == None:
             return u''
-
-        pname = name_displayer.display(default_person)
-        (name, plist) = self.relationship.get_relationship(
-            dbstate.db, default_person, active)
-
+        
+        name = self.relationship.get_one_relationship(
+                                            dbstate.db, default_person, active)
         if name:
-            if plist == None:
-                return name
-            return _("%(relationship)s of %(person)s") % {
-                'relationship' : name, 'person' : pname }
+            return name
         else:
             return u""
 

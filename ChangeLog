@@ -1,3 +1,10 @@
+2007-11-06 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/all_relations.py: refractor, use class
+	* src/Relationship.py: further improvements
+	* src/plugins/rel_pl.py: rename procedure to avoid conflict
+	* src/plugins/rel_it.py: start of changes
+	* src/DisplayState.py: use the new method get_one_relation
+
 2007-11-05 Jim Sack <jgsack@san.rr.com>
 	* src/gen/proxy/dbbase.py
 	add missing gettext import (noticed by chance)

@@ -38,6 +38,7 @@ from TransUtils import sgettext as _
 
 STEP= 'step'
 INLAW='-in-law'
+HALF = 'half'
 
 _level_name = [ "", "first", "second", "third", "fourth", "fifth", "sixth",
                 "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth",
@@ -253,7 +254,22 @@ class RelationshipCalculator:
     
     REL_FAM_INLAW_PREFIX = 'L'      # going to the partner.
     
-
+    #sibling types
+    NORM_SIB = 0
+    HALF_SIB = 1
+    STEP_SIB = 2
+    UNKNOWN_SIB  = 3
+    
+    #partner types
+    PARTNER_MARRIED        = 1
+    PARTNER_UNMARRIED      = 2
+    PARTNER_CIVIL_UNION    = 3
+    PARTNER_UNKNOWN_REL    = 4
+    PARTNER_EX_MARRIED     = 5
+    PARTNER_EX_UNMARRIED   = 6
+    PARTNER_EX_CIVIL_UNION = 7
+    PARTNER_EX_UNKNOWN_REL = 8
+    
     def __init__(self):
         pass
 
@@ -320,6 +336,48 @@ class RelationshipCalculator:
         else:
             return "distant %suncle%s/%saunt%s " % (step, inlaw, step, inlaw)
 
+    def get_sibling_type(self, db, orig, other):
+        """ Translation free determination of type of orig and other as siblings
+            The procedure returns sibling types, these can be passed to 
+            get_sibling_relationship_string.
+            Only call this method if known that orig and other are siblings
+        """
+        fatherorig, motherorig = self._get_birth_parents(db, orig)
+        fatherother, motherother = self._get_birth_parents(db, other)
+        if fatherorig and motherorig and fatherother and motherother:
+            if fatherother == fatherorig and motherother == motherorig:
+                return self.NORM_SIB
+            elif fatherother == fatherorig or motherother == motherorig:
+                return self.HALF_SIB
+            else :
+                return self.STEP_SIB
+        else:
+            #other has unknown father or mother, 
+            # or orig has unknown father or mother, hence we cannot know
+            # how the siblings are related:
+            return self.UNKNOWN_SIB
+
+    def _get_birth_parents(self, db, person):
+        """ method that returns the birthparents of a person as tuple
+            (mother handle, father handle), if no known birthparent, the 
+            handle is replaced by None
+        """
+        birthfather = None
+        birthmother = None
+        for f in person.get_parent_family_handle_list():
+            family = db.get_family_from_handle(f)
+            childrel = [(ref.get_mother_relation(), 
+                             ref.get_father_relation()) for ref in 
+                                family.get_child_ref_list() 
+                                if ref.ref == person.handle]
+            if not birthmother and childrel[0][0] == gen.lib.ChildRefType.BIRTH:
+                birthmother = family.get_mother_handle()
+            if not birthfather and childrel[0][1] == gen.lib.ChildRefType.BIRTH:
+                birthfather = family.get_father_handle()
+            if birthmother and birthfather:
+                break
+        return (birthmother, birthfather)
+
     def get_nephew(self, level, step='', inlaw=''):
         if level>len(_nephew_level)-1:
             return "distant %snephew%s" % (step, inlaw)
@@ -343,62 +401,67 @@ class RelationshipCalculator:
                                         step, inlaw,
                                         _removed_level[removed], dir)
 
-    def is_spouse(self, db, orig, other):
+    def get_spouse_type(self, db, orig, other, all_rel = False):
+        """ Translation free determination if orig and other are partners.
+            The procedure returns partner types, these can be passed to 
+            get_partner_relationship_string.
+            If all_rel=False, returns None or a partner type. 
+            If all_rel=True, returns a list, empty if no partner
+        """
+        val = []
         for f in orig.get_family_handle_list():
             family = db.get_family_from_handle(f)
+            # return first found spouse type
             if family and other.get_handle() in [family.get_father_handle(),
                                                  family.get_mother_handle()]:
                 family_rel = family.get_relationship()
-                # Determine person's gender
-                if other.get_gender() == gen.lib.Person.MALE:
-                    gender = gen.lib.Person.MALE
-                elif other.get_gender() == gen.lib.Person.FEMALE:
-                    gender = gen.lib.Person.FEMALE
-                # Person's gender is unknown, try guessing from spouse's
-                elif orig.get_gender() == gen.lib.Person.MALE:
-                    if family_rel == gen.lib.FamilyRelType.CIVIL_UNION:
-                        gender = gen.lib.Person.MALE
-                    else:
-                        gender = gen.lib.Person.FEMALE
-                elif orig.get_gender() == gen.lib.Person.FEMALE:
-                    if family_rel == gen.lib.FamilyRelType.CIVIL_UNION:
-                        gender = gen.lib.Person.FEMALE
-                    else:
-                        gender = gen.lib.Person.MALE
-                else:
-                    gender = gen.lib.Person.UNKNOWN
-
+                #check for divorce event:
+                ex = False
+                for eventref in family.get_event_ref_list():
+                    event = db.get_event_from_handle(eventref.ref)
+                    if event and (event.get_type() == gen.lib.EventType.DIVORCE
+                        or event.get_type() == gen.lib.EventType.ANNULMENT):
+                        ex = True
+                        break
                 if family_rel == gen.lib.FamilyRelType.MARRIED:
-                    if gender == gen.lib.Person.MALE:
-                        return _("husband")
-                    elif gender == gen.lib.Person.FEMALE:
-                        return _("wife")
+                    if ex:
+                        val.append(self.PARTNER_EX_MARRIED)
                     else:
-                        return _("gender unknown|spouse")
+                        val.append(self.PARTNER_MARRIED)
                 elif family_rel == gen.lib.FamilyRelType.UNMARRIED:
-                    if gender == gen.lib.Person.MALE:
-                        return _("unmarried|husband")
-                    elif gender == gen.lib.Person.FEMALE:
-                        return _("unmarried|wife")
+                    if ex:
+                        val.append(self.PARTNER_EX_UNMARRIED)
                     else:
-                        return _("gender unknown,unmarried|spouse")
+                        val.append(self.PARTNER_UNMARRIED)
                 elif family_rel == gen.lib.FamilyRelType.CIVIL_UNION:
-                    if gender == gen.lib.Person.MALE:
-                        return _("male,civil union|partner")
-                    elif gender == gen.lib.Person.FEMALE:
-                        return _("female,civil union|partner")
+                    if ex:
+                        val.append(self.PARTNER_EX_CIVIL_UNION)
                     else:
-                        return _("gender unknown,civil union|partner")
+                        val.append(self.PARTNER_CIVIL_UNION)
                 else:
-                    if gender == gen.lib.Person.MALE:
-                        return _("male,unknown relation|partner")
-                    elif gender == gen.lib.Person.FEMALE:
-                        return _("female,unknown relation|partner")
+                    if ex:
+                        val.append(self.PARTNER_EX_UNKNOWN_REL)
                     else:
-                        return _("gender unknown,unknown relation|partner")
+                        val.append(self.PARTNER_UNKNOWN_REL)
+
+        if all_rel :
+            return val
+        else:
+            #last relation is normally the defenitive relation
+            if val:
+                return val[-1]
             else:
                 return None
-        return None
+        
+    def is_spouse(self, db, orig, other, all_rel=False):
+        """ determine the spouse relation
+        """
+        type = self.get_spouse_type(db, orig, other, all_rel)
+        if type:
+            return self.get_partner_relationship_string(type, 
+                        orig.get_gender(), other.get_gender())
+        else:
+            return None
 
     def get_relationship_distance_old(self, db, orig_person, other_person):
         """
@@ -499,7 +562,9 @@ class RelationshipCalculator:
                     
         in the Rel, f is father, m is mother
         """
-        
+        warn( "Use get_relationship_distance_new or get_one_relationship",
+              DeprecationWarning, 2)
+            
         firstRel = -1
         secondRel = -1
         common = []
@@ -547,10 +612,12 @@ class RelationshipCalculator:
         *person_handle  The Common ancestor
         *firstRel_str   String with the path to the common ancestor 
                         from orig Person
-        *firstRel_fam   Family numbers along the path
+        *firstRel_fam   Family numbers along the path as a list, eg [0,0,1]. 
+                        For parent in multiple families, eg [0. [0, 2], 1]
         *secondRel_str  String with the path to the common ancestor 
                         from otherPerson
-        *secondRel_fam  Family numbers along the path
+        *secondRel_fam  Family numbers along the path, eg [0,0,1]. 
+                        For parent in multiple families, eg [0. [0, 2], 1]
         *msg            List of messages indicating errors. Empyt list if no
                         errors.
                         
@@ -700,8 +767,9 @@ class RelationshipCalculator:
             return
         if depth > self.__max_depth:
             self.__maxDepthReached = True
-            print 'Max depth reached for ', person.get_primary_name(), depth,\
-                        rel_str
+            print 'Maximum ancestor generations ('+str(depth)+') reached', \
+                        '(' + rel_str + ').',\
+                        'Stopping relation algorithm.'
             return
         depth += 1
         
@@ -748,9 +816,8 @@ class RelationshipCalculator:
 ##            print 'all_families', family_handles
             
         try:
-            parentsdone = [] #avoid doing same parent twice in diff families
+            parentstodo = {}
             fam = 0
-##            print 'starting family loop over family_handles', family_handles
             for family_handle in family_handles :
                 rel_fam_new = rel_fam +[fam]
                 family = db.get_family_from_handle(family_handle)
@@ -760,36 +827,37 @@ class RelationshipCalculator:
                                 family.get_child_ref_list() 
                                 if ref.ref == person.handle]
                 fhandle = family.father_handle
-##                print 'fhandle', fhandle, parentsdone
-                if fhandle and not fhandle in parentsdone:
-                    father = db.get_person_from_handle(fhandle)
-                    if childrel[0][1] == gen.lib.ChildRefType.BIRTH :
-                        addstr = self.REL_FATHER
-                    elif not self.__only_birth :
-                        addstr = self.REL_FATHER_NOTBIRTH
-                    else :
-                        addstr = ''
-##                    print 'for father, add string is =',addstr
-                    if addstr :
-                        parentsdone.append(fhandle)
-                        self.__apply_filter_new(db, father,
-                                rel_str + addstr, rel_fam_new,
-                                pmap, depth, stoprecursemap, store_all)
                 mhandle = family.mother_handle
-                if mhandle and not mhandle in parentsdone:
-                    mother = db.get_person_from_handle(mhandle)
-                    if childrel[0][0] == gen.lib.ChildRefType.BIRTH :
-                        addstr = self.REL_MOTHER
-                    elif not self.__only_birth :
-                        addstr = self.REL_MOTHER_NOTBIRTH
-                    else :
-                        addstr = ''
-##                    print 'for mother, add string is =',addstr
-                    if addstr:
-                        parentsdone.append(mhandle)
-                        self.__apply_filter_new(db, mother,
-                                rel_str + addstr, rel_fam_new,
-                                pmap, depth, stoprecursemap, store_all)
+                for data in [(fhandle, self.REL_FATHER, 
+                                self.REL_FATHER_NOTBIRTH, childrel[0][1]), 
+                             (mhandle, self.REL_MOTHER, 
+                                self.REL_MOTHER_NOTBIRTH, childrel[0][0])]:
+                    if data[0] and not data[0] in parentstodo.keys() :
+                        persontodo = db.get_person_from_handle(data[0])
+                        if data[3] == gen.lib.ChildRefType.BIRTH :
+                            addstr = data[1]
+                        elif not self.__only_birth :
+                            addstr = data[2]
+                        else :
+                            addstr = ''
+                        if addstr :
+                            parentstodo[data[0]] = (persontodo, 
+                                                    rel_str + addstr,
+                                                    rel_fam_new)
+                    elif data [0] and data[0] in parentstodo.keys():
+                        #this person is already scheduled to research
+                        #update family list
+                        famlist = parentstodo[data[0]][2]
+                        if not isinstance(famlist[-1], list) and \
+                                not fam == famlist[-1]:
+                            famlist = famlist[:-1] + [[famlist[-1]]]
+                        if isinstance(famlist[-1], list) and \
+                                fam not in famlist[-1] :
+                            famlist = famlist[:-1] + [famlist[-1] + [fam]]
+                            parentstodo[data[0]] = (parentstodo[data[0]][0],
+                                                    parentstodo[data[0]][1],
+                                                    famlist
+                                                    )
                 if not fhandle and not mhandle and stoprecursemap is None:
                     #family without parents, add brothers for orig person
                     #other person has recusemap, and will stop when seeing
@@ -805,6 +873,13 @@ class RelationshipCalculator:
                         else:
                             pmap[chandle] = [[rel_str+addstr],[rel_fam_new]]
                 fam += 1
+
+            for handle in parentstodo.keys():
+                data = parentstodo[handle]
+                self.__apply_filter_new(db, data[0],
+                                data[1], data[2],
+                                pmap, depth, stoprecursemap, store_all)
+
         except:
             import traceback
             print traceback.print_exc()
@@ -851,36 +926,59 @@ class RelationshipCalculator:
                 relstrsec = relation[4][:-1]
                 commonhandle = []
                     
-            # a unique path to family:
-            familypath = (relstrfirst, relstrsec, relfamfirst, relfamsec)
-            try:
-                posfam = existing_path.index(familypath)
-            except ValueError:
-                posfam = None
-            #if relstr is '', the ancestor is unique, if posfam None, 
-            # first time we see this family path
-            if (posfam is not None and relstrfirst is not None and 
+            # a unique path to family of common person:
+            familypaths = []
+            if relfamfirst and isinstance(relfamfirst[-1], list):
+                if relfamsec and isinstance(relfamsec[-1], list):
+                    for val1 in relfamfirst[-1]:
+                        for val2 in relfamsec[-1]:
+                            familypaths.append((relstrfirst, relstrsec,
+                                                relfamfirst[:-1] + [val1], 
+                                                relfamsec[:-1] + [val2]))
+                else:
+                    for val1 in relfamfirst[-1]:
+                        familypaths.append((relstrfirst, relstrsec,
+                                            relfamfirst[:-1] + [val1], 
+                                            relfamsec))
+            elif relfamsec and isinstance(relfamsec[-1], list):
+                for val2 in relfamsec[-1]:
+                    familypaths.append((relstrfirst, relstrsec,
+                                        relfamfirst, 
+                                        relfamsec[:-1] + [val2]))
+            else:
+                familypaths.append((relstrfirst, relstrsec,
+                                    relfamfirst, relfamsec))
+            ##print 'resulting fam path', familypaths
+            for familypath in familypaths:
+                #familypath = (relstrfirst, relstrsec, relfamfirst, relfamsec)
+                try:
+                    posfam = existing_path.index(familypath)
+                except ValueError:
+                    posfam = None
+                #if relstr is '', the ancestor is unique, if posfam None, 
+                # first time we see this family path
+                if (posfam is not None and relstrfirst is not None and 
                     relstrsec is not None):
-                #we already have a common ancestor of this family, just add the
-                #other, setting correct family relation
-                tmp = commonnew[posfam]
-                frstcomstr = relation[2][-1]
-                scndcomstr = tmp[2][-1]
-                newcomstra = self.famrel_from_persrel(frstcomstr, scndcomstr)
-                frstcomstr = relation[4][-1]
-                scndcomstr = tmp[4][-1]
-                newcomstrb = self.famrel_from_persrel(frstcomstr, scndcomstr)
+                    #we already have a common ancestor of this family, just add the
+                    #other, setting correct family relation
+                    tmp = commonnew[posfam]
+                    frstcomstr = relation[2][-1]
+                    scndcomstr = tmp[2][-1]
+                    newcomstra = self.famrel_from_persrel(frstcomstr, scndcomstr)
+                    frstcomstr = relation[4][-1]
+                    scndcomstr = tmp[4][-1]
+                    newcomstrb = self.famrel_from_persrel(frstcomstr, scndcomstr)
 
-                commonnew[posfam] = (tmp[0], tmp[1]+commonhandle, 
+                    commonnew[posfam] = (tmp[0], tmp[1]+commonhandle, 
                                  relation[2][:-1]+newcomstra, 
                                  tmp[3], relation[4][:-1]+newcomstrb,
                                  tmp[5])
-                    
-            else :
-                existing_path.append(familypath)
-                commonnew.append((relation[0], commonhandle, relation[2],
-                                  relfamfirst, relation[4], relfamsec) 
-                                )
+                else :
+                    existing_path.append(familypath)
+                    commonnew.append((relation[0], commonhandle, relation[2],
+                                    relfamfirst, relation[4], relfamsec) 
+                                    )   
+        ##print 'commonnew', commonnew
         return commonnew
 
     def famrel_from_persrel(self, persrela, persrelb):
@@ -903,12 +1001,12 @@ class RelationshipCalculator:
         if (persrela == self.REL_FAM_BIRTH or 
                 persrela == self.REL_FAM_BIRTH_FATH_ONLY or
                 persrela == self.REL_FAM_BIRTH_MOTH_ONLY or 
-                persrela == REL_FAM_NONBIRTH):
+                persrela == self.REL_FAM_NONBIRTH):
             return persrela
         if (persrelb == self.REL_FAM_BIRTH or 
                 persrelb == self.REL_FAM_BIRTH_FATH_ONLY or
                 persrelb == self.REL_FAM_BIRTH_MOTH_ONLY or 
-                persrelb == REL_FAM_NONBIRTH):
+                persrelb == self.REL_FAM_NONBIRTH):
             return persrelb
         return self.REL_FAM_NONBIRTH
 
@@ -928,12 +1026,12 @@ class RelationshipCalculator:
         the two people
         """
         if orig_person == None:
-            return (_("undefined"),[])
+            return _("undefined")
 
         if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
+            return ''
 
-        is_spouse = self.is_spouse(db,orig_person,other_person)
+        is_spouse = self.is_spouse(db, orig_person, other_person)
         if is_spouse:
             return is_spouse
         
@@ -951,12 +1049,18 @@ class RelationshipCalculator:
         for rel in data :
             if rel[0] == rankbest:
                 databest.append(rel)
+        rel = databest[0]
+        dist_orig = len(rel[2])
+        dist_other= len(rel[4])
         if len(databest) == 1:
-            rel = databest[0]
-            dist_orig = len(rel[2])
-            dist_other= len(rel[4])
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
-            return get_single_relationship_string(dist_orig,
+            if dist_orig == 1 and dist_other == 1:
+                return self.get_sibling_relationship_string(
+                            self.get_sibling_type(
+                                                db, orig_person, other_person), 
+                            orig_person.get_gender(),
+                            other_person.get_gender())
+            return self.get_single_relationship_string(dist_orig,
                                                   dist_other,
                                                   orig_person.get_gender(),
                                                   other_person.get_gender(),
@@ -965,11 +1069,11 @@ class RelationshipCalculator:
                                                   in_law_a=False, 
                                                   in_law_b=False)
         else:
-            rel = databest[0]
             order = [self.REL_FAM_BIRTH, self.REL_FAM_BIRTH_MOTH_ONLY,
                      self.REL_FAM_BIRTH_FATH_ONLY, self.REL_MOTHER,
                      self.REL_FATHER, self.REL_SIBLING, self.REL_FAM_NONBIRTH, 
-                     self.REL_MOTHER_NOTBIRTH, self.REL_MOTHER_NOTBIRTH]
+                     self.REL_MOTHER_NOTBIRTH, self.REL_FATHER_NOTBIRTH]
+            orderbest = order.index(self.REL_MOTHER)
             for relother in databest:
                 relbirth = self.only_birth(rel[2]) and self.only_birth(rel[4])
                 if relother[2] == '' or relother[4]== '':
@@ -981,6 +1085,18 @@ class RelationshipCalculator:
                     #birth takes precedence
                     rel = relother
                     continue
+                if order.index(relother[2][-1]) < order.index(rel[2][-1]) and\
+                        order.index(relother[2][-1]) < orderbest:
+                    rel = relother
+                    continue
+                if order.index(relother[4][-1]) < order.index(rel[4][-1]) and\
+                        order.index(relother[4][-1]) < orderbest:
+                    rel = relother
+                    continue
+                if order.index(rel[2][-1]) < orderbest or \
+                        order.index(rel[4][-1]) < orderbest:
+                    #keep the good one
+                    continue
                 if order.index(relother[2][-1]) < order.index(rel[2][-1]):
                     rel = relother
                     continue
@@ -988,7 +1104,16 @@ class RelationshipCalculator:
                         order.index(relother[4][-1]) < order.index(rel[4][-1]):
                     rel = relother
                     continue
-            return get_single_relationship_string(dist_orig,
+            dist_orig = len(rel[2])
+            dist_other= len(rel[4])
+            birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
+            if dist_orig == 1 and dist_other == 1:
+                return self.get_sibling_relationship_string(
+                            self.get_sibling_type(
+                                                db, orig_person, other_person), 
+                            orig_person.get_gender(),
+                            other_person.get_gender())
+            return self.get_single_relationship_string(dist_orig,
                                                   dist_other,
                                                   orig_person.get_gender(),
                                                   other_person.get_gender(),
@@ -1171,7 +1296,6 @@ class RelationshipCalculator:
             REL_FATHER             # going up to father
             REL_MOTHER_NOTBIRTH    # going up to mother, not birth relation
             REL_FATHER_NOTBIRTH    # going up to father, not birth relation
-            REL_SIBLING            # going sideways to sibling (no parents)
             REL_FAM_BIRTH          # going up to family (mother and father)
             REL_FAM_NONBIRTH       # going up to family, not birth relation
             REL_FAM_BIRTH_MOTH_ONLY # going up to fam, only birth rel to mother
@@ -1180,13 +1304,18 @@ class RelationshipCalculator:
         If the relation starts with the inlaw of the person a, then 'in_law_a'
         is True, if it starts with the inlaw of person b, then 'in_law_b' is
         True.
+        Also REL_SIBLING (# going sideways to sibling (no parents)) is not 
+        passed to this routine. The collapse_relations changes this to a 
+        family relation. 
+        Hence, calling routines should always strip REL_SIBLING and 
+        REL_FAM_INLAW_PREFIX before calling get_single_relationship_string()
         Note that only_birth=False, means that in the reltocommon one of the
         NOTBIRTH specifiers is present.
         The REL_FAM identifiers mean that the relation is not via a common 
         ancestor, but via a common family (note that that is not possible for 
         direct descendants or direct ancestors!). If the relation to one of the
         parents in that common family is by birth, then 'only_birth' is not
-        set to False.
+        set to False. The only_birth() method is normally used for this.
             
         @param Ga: The number of generations between the main person and the 
                    common ancestor.
@@ -1217,6 +1346,11 @@ class RelationshipCalculator:
         @type only_birth: bool
         @returns: A string describing the relationship between the two people
         @rtype: str
+        
+        NOTE: 1/the self.REL_SIBLING should not be passed to this routine, 
+                so we should not check on it. All other self.
+              2/for better determination of siblings, use if Ga=1=Gb 
+                get_sibling_relationship_string
         """
 ##        print 'Ga, Gb :', Ga, Gb
         
@@ -1236,6 +1370,14 @@ class RelationshipCalculator:
             # b is descendant of a
             if Gb == 0 :
                 rel_str = 'same person'
+            elif Gb == 1 and inlaw:
+                #inlaw children only exist up to first level:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = self.get_son(Gb, step)+inlaw
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = self.get_daughter(Gb, step)+inlaw
+                else:
+                    rel_str = self.get_child_unknown(Gb, step)+inlaw
             elif gender_b == gen.lib.Person.MALE:
                 rel_str = self.get_son(Gb, step)
             elif gender_b == gen.lib.Person.FEMALE:
@@ -1286,7 +1428,112 @@ class RelationshipCalculator:
             rel_str = self.get_cousin(Ga-1, Gb-Ga, dir = ' (down)', 
                                      step=step, inlaw=inlaw)
         return rel_str
-    
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+        """ Determine the string giving the relation between two siblings of
+            type sib_type.
+            Eg: b is the brother of a
+                Here 'brother' is the string we need to determine
+            This method gives more details about siblings than 
+            get_single_relationship_string can do.
+            DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR LANGUAGE,
+                AND SAME METHODS EXIST (get_uncle, get_aunt, get_sibling)
+        """
+        if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
+            typestr = ''
+        elif sib_type == self.HALF_SIB:
+            typestr = HALF
+        elif sib_type == self.STEP_SIB:
+            typestr = STEP
+
+        if in_law_a or in_law_b :
+            inlaw = INLAW
+        else:
+            inlaw = ''
+
+        if gender_b == gen.lib.Person.MALE:
+            rel_str = self.get_uncle(1, typestr, inlaw)
+        elif gender_b == gen.lib.Person.FEMALE:
+            rel_str = self.get_aunt(1, typestr, inlaw)
+        else:
+            rel_str = self.get_sibling(1, typestr, inlaw)
+        return rel_str
+
+    def get_partner_relationship_string(self, spouse_type, gender_a, gender_b):
+        """ Determine the string giving the relation between two partnes of
+            type spouse_type.
+            Eg: b is the spouse of a
+                Here 'spouse' is the string we need to determine
+            DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR LANGUAGE,
+                AS GETTEXT IS ALREADY USED !
+        """
+        #english only needs gender of b, we don't guess if unknown like in old 
+        # procedure as that is stupid in present day cases!
+        gender = gender_b
+
+        if not spouse_type:
+            return ''
+
+        if spouse_type == self.PARTNER_MARRIED:
+            if gender == gen.lib.Person.MALE:
+                return _("husband")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("wife")
+            else:
+                return _("gender unknown|spouse")
+        elif spouse_type == self.PARTNER_EX_MARRIED:
+            if gender == gen.lib.Person.MALE:
+                return _("ex-husband")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("ex-wife")
+            else:
+                return _("gender unknown|ex-spouse")
+        elif spouse_type == self.PARTNER_UNMARRIED:
+            if gender == gen.lib.Person.MALE:
+                return _("unmarried|husband")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("unmarried|wife")
+            else:
+                return _("gender unknown,unmarried|spouse")
+        elif spouse_type == self.PARTNER_EX_UNMARRIED:
+            if gender == gen.lib.Person.MALE:
+                return _("unmarried|ex-husband")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("unmarried|ex-wife")
+            else:
+                return _("gender unknown,unmarried|ex-spouse")
+        elif spouse_type == self.PARTNER_CIVIL_UNION:
+            if gender == gen.lib.Person.MALE:
+                return _("male,civil union|partner")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("female,civil union|partner")
+            else:
+                return _("gender unknown,civil union|partner")
+        elif spouse_type == self.PARTNER_EX_CIVIL_UNION:
+            if gender == gen.lib.Person.MALE:
+                return _("male,civil union|former partner")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("female,civil union|former partner")
+            else:
+                return _("gender unknown,civil union|former partner")
+        elif spouse_type == self.PARTNER_UNKNOWN_REL:
+            if gender == gen.lib.Person.MALE:
+                return _("male,unknown relation|partner")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("female,unknown relation|partner")
+            else:
+                return _("gender unknown,unknown relation|partner")
+        else:
+            # here we have spouse_type == self.PARTNER_EX_UNKNOWN_REL
+            #   or other not catched types
+            if gender == gen.lib.Person.MALE:
+                return _("male,unknown relation|former partner")
+            elif gender == gen.lib.Person.FEMALE:
+                return _("female,unknown relation|former partner")
+            else:
+                return _("gender unknown,unknown relation|former partner")
+
 def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     """ this is a generic test suite for the singular relationship
             TRANSLATORS: do NOT translate, use __main__ !
@@ -1315,7 +1562,29 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     #rc = RelationshipCalculator()
     
     if inlawa or inlawb :
-        print '\nchildren cannot have in-law extension; not testing\n'
+        print '\ngrandchildren cannot have in-law extension; only testing'\
+              'children\n'
+        print FMT % rc.get_single_relationship_string(0, 1, 
+                                                gen.lib.Person.MALE, 
+                                                gen.lib.Person.MALE,
+                                                '', 'f',
+                                                only_birth=onlybirth, 
+                                                in_law_a=inlawa,
+                                                in_law_b=inlawb)
+        print FMT % rc.get_single_relationship_string(0, 1, 
+                                                gen.lib.Person.MALE, 
+                                                gen.lib.Person.FEMALE,
+                                                '', 'f',
+                                                only_birth=onlybirth, 
+                                                in_law_a=inlawa,
+                                                in_law_b=inlawb)
+        print FMT % rc.get_single_relationship_string(0, 1, 
+                                                gen.lib.Person.MALE, 
+                                                gen.lib.Person.UNKNOWN,
+                                                '', 'f',
+                                                only_birth=onlybirth, 
+                                                in_law_a=inlawa,
+                                                in_law_b=inlawb)
     else:
         print '\ntesting sons (Enter to start)\n'
         sys.stdin.readline()
@@ -1601,6 +1870,37 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                     else:
                         print rel
 
+def _testsibling(rc):
+    vals = [(rc.NORM_SIB, 'sibling'), (rc.HALF_SIB, 'half sib'),
+            (rc.STEP_SIB, 'step sib'), (rc.UNKNOWN_SIB, 'undetermined sib')]
+    FMT = '%+50s'
+    for gendr, strgen in [(gen.lib.Person.MALE, 'male'), 
+                           (gen.lib.Person.FEMALE, 'female'), 
+                           (gen.lib.Person.UNKNOWN, 'unknown')]:
+        for inlaw in [False, True]:
+         for sibt, str in vals:
+            print FMT % rc.get_sibling_relationship_string(
+                                sibt, gen.lib.Person.MALE, gendr, 
+                                in_law_a = inlaw) + ' |info:', str, strgen
+
+def _test_spouse(rc):
+    FMT = '%+50s'
+    vals = [(rc.PARTNER_MARRIED, 'married'), (rc.PARTNER_UNMARRIED, 'unmarried'),
+            (rc.PARTNER_CIVIL_UNION, 'civil union'), 
+            (rc.PARTNER_UNKNOWN_REL, 'unknown rel'),
+            (rc.PARTNER_EX_MARRIED, 'ex-married'), 
+            (rc.PARTNER_EX_UNMARRIED, 'ex-unmarried'),
+            (rc.PARTNER_EX_CIVIL_UNION, 'ex civil union'), 
+            (rc.PARTNER_EX_UNKNOWN_REL, 'ex unknown rel')]
+
+    for gender, strgen in [(gen.lib.Person.MALE, 'male'), 
+                           (gen.lib.Person.FEMALE, 'female'), 
+                           (gen.lib.Person.UNKNOWN, 'unknown')] :
+        for spouse_type, str in vals:
+            print FMT % rc.get_partner_relationship_string(
+                            spouse_type, gen.lib.Person.MALE, gender) + \
+                            ' |info: gender='+strgen+', rel='+str
+
 def test(rc, printrelstr):
     """ this is a generic test suite for the singular relationship
             TRANSLATORS: do NOT translate, call this from 
@@ -1625,6 +1925,14 @@ def test(rc, printrelstr):
     data = sys.stdin.readline()
     if data == 'y\n':
         _test(rc, False, True, False, printrelstr)
+    print '\n\nTest sibling types?'
+    data = sys.stdin.readline()
+    if data == 'y\n':
+        _testsibling(rc)
+    print '\n\nTest partner types?'
+    data = sys.stdin.readline()
+    if data == 'y\n':
+        _test_spouse(rc)
     
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find

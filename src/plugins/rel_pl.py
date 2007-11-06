@@ -445,7 +445,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _niece_level_of_sisters_daughter[level]
 
-    def get_relationship_distance(self,db,orig_person,other_person):
+    def get_relationship_distance_pl(self,db,orig_person,other_person):
         """
         Returns a tuple (firstRel,secondRel,common):
         
@@ -509,7 +509,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return (is_spouse,[])
 
         (firstRel,secondRel,common,firstList,secondList) = \
-                     self.get_relationship_distance(db,orig_person,other_person)
+                self.get_relationship_distance_pl(db,orig_person,other_person)
         
         if type(common) == types.StringType or \
            type(common) == types.UnicodeType:

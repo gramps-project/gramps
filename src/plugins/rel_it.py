@@ -112,7 +112,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if   level == 1: return "sorella"
         else           : return self.get_uncle(level, "a")
 
-    def get_nephew (self,level, gender="o"):
+    def get_nephew(self,level, gender="o"):
         if level>len(_level)-1:
             return "remote descendant"
         elif level == 0: return ""
@@ -207,6 +207,20 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 #-------------------------------------------------------------------------
 register_relcalc(RelationshipCalculator,
     ["it", "IT", "it_IT", "it_IT@euro", "it_IT.utf8"])
+
+if __name__ == "__main__":
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src python src/gen/lib/date.py 
+    # (Above not needed here)
+    
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel_xx.py
+    """
+    from Relationship import test
+    rc = RelationshipCalculator()
+    test(rc, True)
 
 # Local variables:
 # buffer-file-coding-system: utf-8
