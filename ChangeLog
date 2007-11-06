@@ -1,4 +1,8 @@
 2007-11-05 Jim Sack <jgsack@san.rr.com>
+	* src/gen/proxy/dbbase.py
+	add missing gettext import (noticed by chance)
+
+2007-11-05 Jim Sack <jgsack@san.rr.com>
 	* src/test/test/test_util_test.py fix subtle error in test 2a
 	* src/GrampsDbUtils/test/_GedcomChar_test.py add for testing next
 	* src/ansel_utf8.py replacement fixes failed _GedcomChar 

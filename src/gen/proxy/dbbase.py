@@ -27,6 +27,9 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 __author__ = "Brian Matherly"
 __revision__ = "$Revision: 8864 $"
 
+from gettext import gettext as _
+
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries
