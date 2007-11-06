@@ -204,16 +204,18 @@ class AllRelReport():
                             and self.rel_class.only_birth(relation[4])
                 distorig = len(relation[4])
                 distother = len(relation[2])
-                if distorig == 1 or distother ==1 :
+                if distorig == 1 and distother == 1 and not inlawa \
+                        and not inlawb:
                     rel_str = self.rel_class.get_sibling_relationship_string(
                                 self.rel_class.get_sibling_type(
                                     self.database, pers1, pers2), 
                                 self.home_person.get_gender(),
-                                pers2.get_gender())
-                rel_str = self.rel_class.get_single_relationship_string(
+                                self.person.get_gender())
+                else:
+                    rel_str = self.rel_class.get_single_relationship_string(
                                         distorig, distother, 
                                         self.home_person.get_gender(), 
-                                        pers2.get_gender(),
+                                        self.person.get_gender(),
                                         relation[4], relation[2], 
                                         only_birth = birth,
                                         in_law_a = inlawa, in_law_b = inlawb)

@@ -36,10 +36,6 @@ from TransUtils import sgettext as _
 #
 #-------------------------------------------------------------------------
 
-STEP= 'step'
-INLAW='-in-law'
-HALF = 'half'
-
 _level_name = [ "", "first", "second", "third", "fourth", "fifth", "sixth",
                 "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth",
                 "thirteenth", "fourteenth", "fifteenth", "sixteenth",
@@ -259,6 +255,11 @@ class RelationshipCalculator:
     HALF_SIB = 1
     STEP_SIB = 2
     UNKNOWN_SIB  = 3
+    
+    #sibling strings
+    STEP= 'step'
+    INLAW='-in-law'
+    HALF = 'half-'
     
     #partner types
     PARTNER_MARRIED        = 1
@@ -1357,10 +1358,10 @@ class RelationshipCalculator:
         if only_birth:
             step = ''
         else:
-            step = STEP
+            step = self.STEP
 
         if in_law_a or in_law_b :
-            inlaw = INLAW
+            inlaw = self.INLAW
         else:
             inlaw = ''
 
@@ -1443,12 +1444,12 @@ class RelationshipCalculator:
         if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
             typestr = ''
         elif sib_type == self.HALF_SIB:
-            typestr = HALF
+            typestr = self.HALF
         elif sib_type == self.STEP_SIB:
-            typestr = STEP
+            typestr = self.STEP
 
         if in_law_a or in_law_b :
-            inlaw = INLAW
+            inlaw = self.INLAW
         else:
             inlaw = ''
 

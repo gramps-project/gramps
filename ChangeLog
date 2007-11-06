@@ -1,4 +1,8 @@
 2007-11-06 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/all_relations.py: english issues
+	* src/Relationship.py: english issues
+
+2007-11-06 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Relationship.py: fix error with nephew, niece
 
 2007-11-06 Benny Malengier <benny.malengier@gramps-project.org>
