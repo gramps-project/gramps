@@ -1,4 +1,12 @@
 2007-11-05 Jim Sack <jgsack@san.rr.com>
+	* src/test/test/test_util_test.py fix subtle error in test 2a
+	* src/GrampsDbUtils/test/_GedcomChar_test.py add for testing next
+	* src/ansel_utf8.py replacement fixes failed _GedcomChar 
+	* src/test/ansel_utf8_test.py detailed test for above
+	Note that ansel_utf8 fixes one mis-mapped char in the 2.2 version
+	 (this fix will be back-ported; both use identical code)
+
+2007-11-05 Jim Sack <jgsack@san.rr.com>
 	* src/test/gramps_cli_test.py
 	simple test for gramps CLI (after bugfix #1331-1334 )
 
