@@ -1,4 +1,7 @@
 2007-11-06 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/gramps.py: text error, issue #1342
+
+2007-11-06 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/all_relations.py: refractor, use class
 	* src/Relationship.py: further improvements
 	* src/plugins/rel_pl.py: rename procedure to avoid conflict

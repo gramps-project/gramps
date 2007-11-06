@@ -207,7 +207,7 @@ def run():
         except AttributeError:
             fn = ""
         log.error("Gramps terminated because of OS Error\n" +
-            "Error detais: %s %s" % (repr(e), fn), exc_info=True)
+            "Error details: %s %s" % (repr(e), fn), exc_info=True)
     except:
         quit_now = True
         exit_code = 1
