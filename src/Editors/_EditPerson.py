@@ -171,7 +171,7 @@ class EditPerson(EditPrimary):
         self._add_db_signal('family-update', self.family_change)
         self._add_db_signal('family-add', self.family_change)
 
-    def family_change(self, handle_list):
+    def family_change(self, handle_list=[]):
         """Callback for family change signals. This should rebuild the 
            backreferences to family in person when:
             1)a family the person is parent of changes. Person could have 
@@ -183,7 +183,6 @@ class EditPerson(EditPrimary):
         """
         #As this would be an extensive check, we choose the easy path and
         #   rebuild family backreferences on all family changes
-        
         self._update_families()
 
     def _update_families(self):
