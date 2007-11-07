@@ -130,6 +130,12 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             mobj.set_handle(Utils.create_id())
             mobj.set_mime_type(None)
         else:
+            if self.file_text.get_filename() is None:
+                msgstr = _("Import failed")
+                msgstr2 = _("The filename supplied could not be found.")
+                ErrorDialog(msgstr, msgstr2)
+                return
+            
             filename = Utils.get_unicode_path(self.file_text.get_filename())
             full_file = filename
 

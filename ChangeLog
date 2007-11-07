@@ -1,3 +1,6 @@
+2007-11-07 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/AddMedia.py: add media crash, fix issue #1349
+
 2007-11-05 Jim Sack <jgsack@san.rr.com>
 	* src/ansel_utf8.py: fix old typo in ansel char 0xAE 
 	was U+02BE, changed to U+02BC (now same as 3.0 code)
