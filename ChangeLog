@@ -1,3 +1,6 @@
+2007-11-07 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/AddMedia.py: media crash, fix issue #1349, change unicode to Utils
+
 2007-11-06 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/all_relations.py: english issues
 	* src/Relationship.py: english issues
