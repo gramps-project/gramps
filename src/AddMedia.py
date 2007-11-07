@@ -58,7 +58,14 @@ import Mime
 import GrampsDisplay
 import ManagedWindow
 
+#-------------------------------------------------------------------------
+#
+# global variables
+#
+#-------------------------------------------------------------------------
+
 _last_directory = None
+_relative_path  = False
 
 #-------------------------------------------------------------------------
 #
@@ -97,6 +104,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.internal = self.glade.get_widget('internal')
         self.internal.connect('toggled', self.internal_toggled)
         self.relpath = self.glade.get_widget('relpath')
+        self.relpath.set_active(_relative_path)
         self.temp_name = ""
         self.object = None
 
@@ -120,7 +128,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
         """
-        global _last_directory
+        global _last_directory, _relative_path
         
         description = unicode(self.description.get_text())
 
@@ -160,7 +168,8 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
             mobj.set_mime_type(mtype)
             name = filename
             mobj.set_path(name)
-            _last_directory = os.path.dirname(filename)
+            _last_directory = os.path.dirname(full_file)
+            _relative_path = self.relpath.get_active()
 
         mobj.set_handle(Utils.create_id())
         if not mobj.get_gramps_id():

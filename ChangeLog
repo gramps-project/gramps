@@ -1,4 +1,8 @@
 2007-11-07 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/AddMedia.py: fix issue #1350, relative path not working addmedia
+	* src/Editors/_EditPerson.py: family rebuild callback error
+
+2007-11-07 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/AddMedia.py: add media crash, fix issue #1349
 
 2007-11-05 Jim Sack <jgsack@san.rr.com>
