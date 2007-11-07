@@ -559,8 +559,8 @@ class ArgHandler:
                 gw = GrampsDb.GedcomWriter(self.state.db,None,1,filename)
                 ret = gw.export_data(filename)
             except:
-                print "Error exporting %s" % filename
-                sys._xit(msg)
+                msg = "Error exporting %s" % filename
+                sys.exit(msg)
         elif format == 'gramps-xml':
             filename = os.path.normpath(os.path.abspath(filename))
             if filename:

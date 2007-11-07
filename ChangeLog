@@ -1,3 +1,7 @@
+2007-11-07 Jim Sack <jgsack@san.rr.com>
+	* src/ArgHandler.py: typos in cl_export at L562,3 bug #1353
+	triggered by exporting gedcom
+
 2007-11-07 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/AddMedia.py: fix issue #1350, relative path not working addmedia
 	* src/Editors/_EditPerson.py: family rebuild callback error
