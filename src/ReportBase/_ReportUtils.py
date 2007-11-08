@@ -2241,8 +2241,8 @@ def get_birth_or_fallback(database, person):
     return None    
 
 def get_death_or_fallback(database, person):
-    birth_ref = person.get_death_ref()
-    if birth_ref:   # regular death found
+    death_ref = person.get_death_ref()
+    if death_ref:   # regular death found
         return database.get_event_from_handle(birth_ref.ref)
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
@@ -2253,7 +2253,7 @@ def get_death_or_fallback(database, person):
 
 def old_calc_age(database, person):
     """
-    Calulate age. 
+    Calculate age. 
     
     Returns a tuple (age, units) where units is an integer representing
     time units:
