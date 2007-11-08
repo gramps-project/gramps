@@ -2243,7 +2243,7 @@ def get_birth_or_fallback(database, person):
 def get_death_or_fallback(database, person):
     death_ref = person.get_death_ref()
     if death_ref:   # regular death found
-        return database.get_event_from_handle(birth_ref.ref)
+        return database.get_event_from_handle(death_ref.ref)
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
