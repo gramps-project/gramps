@@ -772,8 +772,7 @@ class RelationshipView(PageView.PersonNavView):
             if self.show_siblings:
                 active = self.dbstate.active.handle
 
-                child_list = [ref.ref for ref in family.get_child_ref_list()\
-                              if ref.ref != active]
+                child_list = [ref.ref for ref in family.get_child_ref_list()]
 
                 if child_list:
                     eventbox = gtk.EventBox()
@@ -789,7 +788,8 @@ class RelationshipView(PageView.PersonNavView):
 
                     i = 1
                     for child_handle in child_list:
-                        self.write_child(vbox, child_handle, i)
+                        child_should_be_linked = (child_handle != active)
+                        self.write_child(vbox, child_handle, i, child_should_be_linked)
                         i += 1
 
                     eventbox.add(vbox)
@@ -892,19 +892,30 @@ class RelationshipView(PageView.PersonNavView):
             lbl.set_padding(0, 5)
         return lbl
 
-    def write_child(self, vbox, handle, index):
+    def write_child(self, vbox, handle, index, child_should_be_linked):
         parent = has_children(self.dbstate.db,
                               self.dbstate.db.get_person_from_handle(handle))
-        if parent:
+
+        format = ''
+        if child_should_be_linked and parent:
             format = 'underline="single" weight="heavy" style="italic"'
-        else:
+        elif child_should_be_linked and not parent:
             format = 'underline="single"'
+        elif parent and not child_should_be_linked:
+            format = 'weight="heavy" style="italic"'
+
+        if child_should_be_linked:
+            link_func = self._button_press
+        else:
+            link_func = None
+
         link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True),
-                                             self._button_press, handle, format)
+                                             link_func, handle, format)
+
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
-        if Config.get(Config.RELEDITBTN):
+        if child_should_be_linked and Config.get(Config.RELEDITBTN):
             button = GrampsWidgets.IconButton(self.edit_button_press, handle)
         else:
             button = None
@@ -1137,7 +1148,7 @@ class RelationshipView(PageView.PersonNavView):
 
                 i = 1
                 for child_ref in child_list:
-                    self.write_child(vbox, child_ref.ref, i)
+                    self.write_child(vbox, child_ref.ref, i, True)
                     i += 1
 
                 eventbox.add(vbox)

@@ -126,12 +126,13 @@ class LinkLabel(gtk.EventBox):
         self.decoration = decoration
         text = '<span %s>%s</span>' % (self.decoration, self.orig_text)
 
-        msg = _('Click to make the active person\n'
-                'Right click to display the edit menu')
-        if not Config.get(Config.RELEDITBTN):
-            msg += "\n" + _('Edit icons can be enabled in the Preferences dialog')
+        if func:
+            msg = _('Click to make the active person\n'
+                    'Right click to display the edit menu')
+            if not Config.get(Config.RELEDITBTN):
+                msg += "\n" + _('Edit icons can be enabled in the Preferences dialog')
 
-        self.tooltips.set_tip(self, msg)
+            self.tooltips.set_tip(self, msg)
         
         self.label = gtk.Label(text)
         self.label.set_use_markup(True)
@@ -143,11 +144,12 @@ class LinkLabel(gtk.EventBox):
             hbox.pack_start(GenderLabel(label[1]), False, False, 0)
             hbox.set_spacing(4)
         self.add(hbox)
-        
-        self.connect('button-press-event', func, handle)
-        self.connect('enter-notify-event', self.enter_text, handle)
-        self.connect('leave-notify-event', self.leave_text, handle)
-        self.connect('realize', realize_cb)
+
+        if func:
+            self.connect('button-press-event', func, handle)
+            self.connect('enter-notify-event', self.enter_text, handle)
+            self.connect('leave-notify-event', self.leave_text, handle)
+            self.connect('realize', realize_cb)
 
     def set_padding(self, x, y):
         self.label.set_padding(x, y)
