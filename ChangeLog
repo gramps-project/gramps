@@ -1,3 +1,7 @@
+2007-11-07 Benny Malengier <benny.malengier@gramps-project.org>
+	* TODO: update
+	* src/DisplayTabs/_EventEmbedList.py: catch managed window crash
+
 2007-11-08 Stéphane Charette <stephanecharette@gmail.com>
 	* src/DataViews/_RelationView.py: issue #1352
 	* src/GrampsWidgets.py: issue #1352, include all siblings in

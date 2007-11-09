@@ -1,4 +1,4 @@
-* Remove GCONF, provide up grade path
+* Remove GCONF, provide up grade path - IN PROGRESS
 
 * Replace the LPRDoc interface (based on gnome-print) with a GTK based
   print routine. This would remove one of the last gnome-specific 
@@ -16,6 +16,11 @@
   shouldn't. - DONE
 
 * before release: fix command line options
+
+* remove critical bugs: 
+   - #1053 - DONE (testing of LDS privacy needed!!)
+   - #1318, wrong note backreferences
+   - #1208, relative path, see bug note for agreed solution
 
 * before release on multiple notes: 
     --> in note view: only show orphaned notes (notes are NOT in remove 
@@ -41,6 +46,8 @@
 
 * Remove import of global var in __init__.py, use functions or don't export. Eg.
   PluginUtils/__init__.py export of plugin lists (tool_list, ...). E
+
+* Add forward/backward buttons (and active object) on all object views, not only person views.
 
 * Split views
 

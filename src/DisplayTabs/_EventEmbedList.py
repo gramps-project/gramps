@@ -148,8 +148,8 @@ class EventEmbedList(EmbeddedList):
 
     def _handle_drag(self, row, obj):
         """
-        And event reference that is from a drag and drop has
-        an unknown event reference type
+        An event reference that is from a drag and drop has
+        an unknown event reference role
         """
         from gen.lib import EventRoleType
         
@@ -157,9 +157,19 @@ class EventEmbedList(EmbeddedList):
         EmbeddedList._handle_drag(self, row, obj)
 
         event = self.dbstate.db.get_event_from_handle(obj.ref)
-        self.get_ref_editor()(
-            self.dbstate, self.uistate, self.track,
-            event, obj, self.object_edited)
+        try:
+            self.get_ref_editor()(self.dbstate, self.uistate, self.track,
+                                  event, obj, self.object_edited)
+        except Errors.WindowActiveError:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                    _("Cannot edit this reference"),
+                    _("This event reference cannot be edited at this time. "
+                      "Either the associated event is already being edited "
+                      "or another event reference that is associated with "
+                      "the same event is being edited.\n\nTo edit this event "
+                      "reference, you need to close the event.")
+                    )
 
     def handle_extra_type(self, objtype, obj):
         try:
