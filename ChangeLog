@@ -1,3 +1,7 @@
+2007-11-10 Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/IndivComplete.py: added support for printing non-primary,
+	non-family events.
+
 2007-11-10 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/all_relations.py: collapse inlaws
 	* src/plugins/Ancestors.py: use new calling grandparent string

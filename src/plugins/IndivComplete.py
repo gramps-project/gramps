@@ -89,11 +89,17 @@ class IndivCompleteReport(Report):
         self.filter = filters[filter_num]
         self.bibli = None
 
-    def write_fact(self,event):
+    def write_fact(self,event_ref):
+        event = self.database.get_event_from_handle(event_ref.ref)
         if event == None:
             return
         text = ""
-        name = str(event.get_type())
+        if event_ref.get_role() == gen.lib.EventRoleType.PRIMARY or \
+           event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
+            name = str(event.get_type())
+        else:
+            name = '%(event)s (%(role)s)' % {'event' : str(event.get_type()),
+                                             'role' : event_ref.get_role()}
 
         date = DateHandler.get_date(event)
         place_handle = event.get_place_handle()
@@ -325,8 +331,7 @@ class IndivCompleteReport(Report):
             
             for event_ref in family.get_event_ref_list():
                 if event_ref:
-                    event = self.database.get_event_from_handle(event_ref.ref)
-                    self.write_fact(event)
+                    self.write_fact(event_ref)
 
             child_ref_list = family.get_child_ref_list()
             if len(child_ref_list):
@@ -387,11 +392,10 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        event_ref_list = self.start_person.get_primary_event_ref_list()
+        event_ref_list = self.start_person.get_event_ref_list()
         for event_ref in event_ref_list:
             if event_ref:
-                event = self.database.get_event_from_handle(event_ref.ref)
-                self.write_fact(event)
+                self.write_fact(event_ref)
         self.doc.end_table()
         self.doc.start_paragraph("IDS-Normal")
         self.doc.end_paragraph()
