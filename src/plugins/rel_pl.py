@@ -469,8 +469,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         rank = 9999999
 
         try:
-            self.__apply_filter(db,orig_person,'',firstList,firstMap)
-            self.__apply_filter(db,other_person,'',secondList,secondMap)
+            self.__apply_filter_old(db,orig_person,'',firstList,firstMap)
+            self.__apply_filter_old(db,other_person,'',secondList,secondMap)
         except RuntimeError:
             return (firstRel,secondRel,_("Relationship loop detected"))
 

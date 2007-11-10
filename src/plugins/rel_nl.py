@@ -103,109 +103,153 @@ _parents_level = [ "",
                    "edelstamoudouders" ]
 
 _father_level = [ "",
-                  "vader",
-                  "grootvader",
-                  "overgrootvader",
-                  "betovergrootvader",
-                  "oudvader (generatie 5)",
-                  "oudgrootvader  (generatie 6)",
-                  "oudovergrootvader  (generatie 7)",
-                  "oudbetovergrootvader  (generatie 8)",
-                  "stamvader  (generatie 9)",
-                  "stamgrootvader  (generatie 10)",
-                  "stamovergrootvader  (generatie 11)",
-                  "stambetovergrootvader (generatie 12)",
-                  "stamoudvader (generatie 13)",
-                  "stamoudgrootvader (generatie 14)",
-                  "stamoudovergrootvader (generatie 15)",
-                  "stamoudbetovergrootvader (generatie 16)",
-                  "edelvader (generatie 17)",
-                  "edelgrootvader (generatie 18)",
-                  "edelovergrootoudvader (generatie 19)",
-                  "edelbetovergrootvader  (generatie 20)",
-                  "edeloudvader (generatie 21)",
-                  "edeloudgrootvader (generatie 22)",
-                  "edeloudvergrootvader (generatie 23)",
-                  "edeloudbetovergrootvader (generatie 24)",
-                  "edelstamvader (generatie 25)",
-                  "edelstamgrootvader (generatie 26)",
-                  "edelstamovergrootvader (generatie 27)",
-                  "edelstambetovergrootvader (generatie 28)",
-                  "edelstamoudvader (generatie 29)" ]
+                  "%s%svader",
+                  "%s%sgrootvader",
+                  "%s%sovergrootvader",
+                  "%s%sbetovergrootvader",
+                  "%s%soudvader (generatie 5)",
+                  "%s%soudgrootvader (generatie 6)",
+                  "%s%soudovergrootvader (generatie 7)",
+                  "%s%soudbetovergrootvader (generatie 8)",
+                  "%s%sstamvader (generatie 9)",
+                  "%s%sstamgrootvader (generatie 10)",
+                  "%s%sstamovergrootvader (generatie 11)",
+                  "%s%sstambetovergrootvader (generatie 12)",
+                  "%s%sstamoudvader (generatie 13)",
+                  "%s%sstamoudgrootvader (generatie 14)",
+                  "%s%sstamoudovergrootvader (generatie 15)",
+                  "%s%sstamoudbetovergrootvader (generatie 16)",
+                  "%s%sedelvader (generatie 17)",
+                  "%s%sedelgrootvader (generatie 18)",
+                  "%s%sedelovergrootoudvader (generatie 19)",
+                  "%s%sedelbetovergrootvader (generatie 20)",
+                  "%s%sedeloudvader (generatie 21)",
+                  "%s%sedeloudgrootvader (generatie 22)",
+                  "%s%sedeloudvergrootvader (generatie 23)",
+                  "%s%sedeloudbetovergrootvader (generatie 24)",
+                  "%s%sedelstamvader (generatie 25)",
+                  "%s%sedelstamgrootvader (generatie 26)",
+                  "%s%sedelstamovergrootvader (generatie 27)",
+                  "%s%sedelstambetovergrootvader (generatie 28)",
+                  "%s%sedelstamoudvader (generatie 29)" ]
 
 _mother_level = [ "",
-                  "moeder ",
-                  "grootmoeder",
-                  "overgrootmoeder",
-                  "betovergrootmoeder",
-                  "oudmoeder (generatie 5)",
-                  "oudgrootmoeder (generatie 6)",
-                  "oudovergrootmoeder (generatie 7)",
-                  "oudbetovergrootmoeder (generatie 8)",
-                  "stammoeder (generatie 9)",
-                  "stamgrootmoeder (generatie 10)",
-                  "stamovergrootmoeder  (generatie 11)",
-                  "stambetovergrootmoeder (generatie 12)",
-                  "stamoudmoeder (generatie 13)",
-                  "stamoudgrootmoeder (generatie 14)",
-                  "stamoudovergrootmoeder (generatie 15)",
-                  "stamoudbetovergrootmoeder (generatie 16)",
-                  "edelmoeder (generatie 17)",
-                  "edelgrootmoeder (generatie 18)",
-                  "edelovergrootoudmoeder (generatie 19)",
-                  "edelbetovergrootmoeder (generatie 20)",
-                  "edeloudmoeder (generatie 21)",
-                  "edeloudgrootmoeder (generatie 22)",
-                  "edeloudvergrootmoeder (generatie 23)",
-                  "edeloudbetovergrootmoeder (generatie 24)",
-                  "edelstammoeder (generatie 25)",
-                  "edelstamgrootmoeder (generatie 26)",
-                  "edelstamovergrootmoeder (generatie 27)",
-                  "edelstambetovergrootmoeder (generatie 28)",
-                  "edelstamoudmoeder (generatie 29)" ]
+                  "%s%smoeder",
+                  "%s%sgrootmoeder",
+                  "%s%sovergrootmoeder",
+                  "%s%sbetovergrootmoeder",
+                  "%s%soudmoeder (generatie 5)",
+                  "%s%soudgrootmoeder (generatie 6)",
+                  "%s%soudovergrootmoeder (generatie 7)",
+                  "%s%soudbetovergrootmoeder (generatie 8)",
+                  "%s%sstammoeder (generatie 9)",
+                  "%s%sstamgrootmoeder (generatie 10)",
+                  "%s%sstamovergrootmoeder (generatie 11)",
+                  "%s%sstambetovergrootmoeder (generatie 12)",
+                  "%s%sstamoudmoeder (generatie 13)",
+                  "%s%sstamoudgrootmoeder (generatie 14)",
+                  "%s%sstamoudovergrootmoeder (generatie 15)",
+                  "%s%sstamoudbetovergrootmoeder (generatie 16)",
+                  "%s%sedelmoeder (generatie 17)",
+                  "%s%sedelgrootmoeder (generatie 18)",
+                  "%s%sedelovergrootoudmoeder (generatie 19)",
+                  "%s%sedelbetovergrootmoeder (generatie 20)",
+                  "%s%sedeloudmoeder (generatie 21)",
+                  "%s%sedeloudgrootmoeder (generatie 22)",
+                  "%s%sedeloudvergrootmoeder (generatie 23)",
+                  "%s%sedeloudbetovergrootmoeder (generatie 24)",
+                  "%s%sedelstammoeder (generatie 25)",
+                  "%s%sedelstamgrootmoeder (generatie 26)",
+                  "%s%sedelstamovergrootmoeder (generatie 27)",
+                  "%s%sedelstambetovergrootmoeder (generatie 28)",
+                  "%s%sedelstamoudmoeder (generatie 29)" ]
+
+_ouder_level = [ "",
+                  "%s%souder ",
+                  "%s%sgrootouder",
+                  "%s%sovergrootouder",
+                  "%s%sbetovergrootouder",
+                  "%s%soudouder (generatie 5)",
+                  "%s%soudgrootouder (generatie 6)",
+                  "%s%soudovergrootouder (generatie 7)",
+                  "%s%soudbetovergrootouder (generatie 8)",
+                  "%s%sstamouder (generatie 9)",
+                  "%s%sstamgrootouder (generatie 10)",
+                  "%s%sstamovergrootouder (generatie 11)",
+                  "%s%sstambetovergrootouder (generatie 12)",
+                  "%s%sstamoudouder (generatie 13)",
+                  "%s%sstamoudgrootouder (generatie 14)",
+                  "%s%sstamoudovergrootouder (generatie 15)",
+                  "%s%sstamoudbetovergrootouder (generatie 16)",
+                  "%s%sedelouder (generatie 17)",
+                  "%s%sedelgrootouder (generatie 18)",
+                  "%s%sedelovergrootoudouder (generatie 19)",
+                  "%s%sedelbetovergrootouder (generatie 20)",
+                  "%s%sedeloudouder (generatie 21)",
+                  "%s%sedeloudgrootouder (generatie 22)",
+                  "%s%sedeloudvergrootouder (generatie 23)",
+                  "%s%sedeloudbetovergrootouder (generatie 24)",
+                  "%s%sedelstamouder (generatie 25)",
+                  "%s%sedelstamgrootouder (generatie 26)",
+                  "%s%sedelstamovergrootouder (generatie 27)",
+                  "%s%sedelstambetovergrootouder (generatie 28)",
+                  "%s%sedelstamoudouder (generatie 29)" ]
 
 _son_level = [ "",
-               "zoon",
-               "kleinzoon",
-               "achterkleinzoon", 
-               "achterachterkleinzoon",
-               "achterachterachterkleinzoon"]
+               "%szoon",
+               "%skleinzoon",
+               "%sachterkleinzoon", 
+               "%sachterachterkleinzoon",
+               "%sachterachterachterkleinzoon"]
 
 _daughter_level = [ "",
-                    "dochter",
-                    "kleindochter",
-                    "achterkleindochter",
-                    "achterachterkleindochter",
-                    "achterachterachterkleindochter"]
+                    "%sdochter",
+                    "%skleindochter",
+                    "%sachterkleindochter",
+                    "%sachterachterkleindochter",
+                    "%sachterachterachterkleindochter"]
+
+_kind_level = [ "",
+                "%skind",
+                "%skleinkind",
+                "%sachterkleinkind",
+                "%sachterachterkleinkind",
+                "%sachterachterachterkleinkind"]
 
 _nephew_level = [ "",
-                  "neef",
-                  "achterneef",
-                  "achterachterneef" ]
+                  "%s%sneef",
+                  "%s%sachterneef",
+                  "%s%sachterachterneef" ]
 
 _niece_level = [ "",
-                 "nicht",
-                 "achternicht", 
-                 "achterachternicht"]
+                 "%s%snicht",
+                 "%s%sachternicht", 
+                 "%s%sachterachternicht"]
 _aunt_level = [ "",  
-                "tante", 
-                "groottante",
-                "overgroottante",
-                "betovergroottante",
-                "oudtante (generatie 5)"]
+                "%s%stante", 
+                "%s%sgroottante",
+                "%s%sovergroottante",
+                "%s%sbetovergroottante",
+                "%s%soudtante"]
 
 _uncle_level = [ "",  
-                 "oom",
-                 "grootoom",
-                 "overgrootoom",
-                 "betovergrootoom",
-                 "oudoom (generatie 5)"]
+                 "%s%soom",
+                 "%s%sgrootoom",
+                 "%s%sovergrootoom",
+                 "%s%sbetovergrootoom",
+                 "%s%soudoom"]
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
+    
+    #sibling strings
+    STEP= 'stief'
+    HALF = 'half'
+    
+    INLAW='aangetrouwde '
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
@@ -214,168 +258,283 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if level > len(_parents_level)-1:
             return "verre voorouders (%d generaties)" % level
         else:
-            return _parents_level[level]    
-    def get_father(self, level):
+            return _parents_level[level]
+
+    def _get_father(self, level, step='', inlaw=''):
+        """Internal Dutch method to create relation string
+        """
         if level > len(_father_level)-1:
-            return "verre voorvader (%d generaties)" % level
+            return "verre %s%svoorvader (%d generaties)" % (inlaw, step, level)
         else:
-            return _father_level[level]
+            return _father_level[level] % (inlaw, step)
 
-    def get_son(self, level):
+    def _get_son(self, level, step=''):
+        """Internal Dutch method to create relation string
+        """
         if level < len(_son_level):
-            return _son_level[level] 
+            return _son_level[level]  % step
         else:
-            return "verre achterkleinzoon (%d generaties)" % level
+            return "verre %sachterkleinzoon (%d generaties)" % (step, level)
 
-    def get_mother(self,level):
+    def _get_mother(self,level, step='', inlaw=''):
+        """Internal Dutch method to create relation string
+        """
         if level > len(_mother_level)-1:
-            return "verre voormoeder (%d generaties)" % level
+            return "verre voormoeder (%d generaties)"  % (inlaw, step, level)
         else:
-            return _mother_level[level]
+            return _mother_level[level] % (inlaw, step)
 
-    def get_daughter(self, level):
+    def _get_daughter(self, level, step=''):
+        """Internal Dutch method to create relation string
+        """
         if level > len(_daughter_level)-1:
-            return "verre achterkleindochter (%d generaties)" % level
+            return "verre %sachterkleindochter (%d generaties)" % (step, level)
         else:
-            return _daughter_level[level]
+            return _daughter_level[level]  % step
 
-    def get_aunt(self, level, removed):
+    def _get_parent_unknown(self, level, step='', inlaw=''):
+        """Internal Dutch method to create relation string
+        """
+        if level > len(_ouder_level)-1:
+            return "verre voorouder (%d generaties)"  % (inlaw, step, level)
+        elif level == 1:
+            return _mother_level[level] % (inlaw, step) + ' of ' + \
+                    _father_level[level] % (inlaw, step)
+        else:
+            return _ouder_level[level] % (inlaw, step)
+
+    def _get_child_unknown(self, level, step=''):
+        """Internal Dutch method to create relation string
+        """
+        if level > len(_kind_level)-1:
+            return "ver %sachterkleinkind (%d generaties)" % (step, level)
+        else:
+            return _kind_level[level]  % step
+
+    def _get_aunt(self, level, removed, step='', inlaw=''):
+        """Internal Dutch method to create relation string
+        """
         if removed == 1 and level < len(_aunt_level):
-            return _aunt_level[level]
-        elif level > len(_aunt_level)-1 or removed > len(_removed_level) -1:
-            return "verre tante (%d generaties, %d graden)" % (level, removed)
+            return _aunt_level[level] % (inlaw, step)
+        elif removed == 1:
+            return "verre %s%stante (%d generaties)" % (inlaw, step, level)
+        elif level > len(_aunt_level)-1 and removed > len(_removed_level) -1:
+            return "verre %s%stante (%d generaties, %d graden)" % (inlaw, step,
+                                                            level, removed)
         elif level > len(_aunt_level)-1:
-            return "verre tante van de%s graad (%d generaties)" \
-                                            % (_removed_level[removed], level)
+            return "verre %s%stante van de%s graad (%d generaties)" % (inlaw,
+                                        step, _removed_level[removed], level)
         else:
-            return _aunt_level[level] + _removed_level[removed] + " graad"    
+            return _aunt_level[level] % (inlaw, step) \
+                        + _removed_level[removed] + " graad"    
         
-    def get_uncle(self, level, removed):
+    def _get_uncle(self, level, removed, step='', inlaw=''):
+        """Internal Dutch method to create relation string
+        """
         if removed == 1 and level < len(_uncle_level):
-            return _uncle_level[level]
-        elif level > len(_uncle_level)-1 or removed > len(_removed_level) -1:
-            return "verre oom (%d generaties, %d graden)" % (level, removed)
+            return _uncle_level[level] % (inlaw, step)
+        elif removed == 1:
+            return "verre %s%soom (%d generaties)" % (inlaw, step, level)
+        elif level > len(_uncle_level)-1 and removed > len(_removed_level) -1:
+            return "verre %s%soom (%d generaties, %d graden)" % (inlaw, step, 
+                                                            level, removed)
         elif level > len(_uncle_level)-1:
-            return "verre oom van de%s graad (%d generaties)" \
-                                            % (_removed_level[removed], level)
+            return "verre %s%soom van de%s graad (%d generaties)" % (inlaw,
+                                        step, _removed_level[removed], level)
         else:
-            return _uncle_level[level] + _removed_level[removed] + " graad"
+            return _uncle_level[level] % (inlaw, step) \
+                        + _removed_level[removed] + " graad"
 
-    def get_nephew(self, level, removed=1):
+    def _get_sibling(self, level, step='', inlaw=''):
+        """overwrite of English method to return unknown gender sibling
+        """
+        assert(level == 1)
+        return self._get_male_cousin(0, step=step, inlaw=inlaw) + ' of ' \
+                + self._get_female_cousin(0, step=step, inlaw=inlaw)
+
+    def _get_nephew(self, level, removed=1, step='', inlaw=''):
+        """Internal Dutch method to create relation string
+        """
         if removed == 1 and level < len(_nephew_level):
-            return _nephew_level[level]
-        elif level > len(_nephew_level)-1 or removed > len(_removed_level) -1:
-            return "verre neef (%d generaties, %d graden)" % (level, removed)
+            return _nephew_level[level] % (inlaw, step)
+        elif removed == 1:
+            return "verre %s%sneef (%d generaties)" % (inlaw, step, level)
+        elif level > len(_nephew_level)-1 and removed > len(_removed_level) -1:
+            return "verre %s%sneef (%d generaties, %d graden)" % (inlaw, step,
+                                                                level, removed)
         elif level > len(_nephew_level)-1:
-            return "verre neef van de%s graad (%d generaties)" \
-                                            % (_removed_level[removed], level)
+            return "verre %s%sneef van de%s graad (%d generaties)" % (inlaw, step, 
+                                                _removed_level[removed], level)
         else:
-            return _nephew_level[level] + _removed_level[removed] + " graad"
+            return _nephew_level[level] % (inlaw, step) \
+                        + _removed_level[removed] + " graad"
 
-    def get_niece(self, level, removed=1):
+    def _get_niece(self, level, removed=1, step='', inlaw=''):
+        """Internal Dutch method to create relation string
+        """
         if removed == 1 and level < len(_niece_level):
-            return _niece_level[level]
-        if level > len(_niece_level)-1 or removed > len(_removed_level) -1:
-            return "verre nicht (%d generaties, %d graden)" % (level, removed)
+            return _niece_level[level] % (inlaw, step)
+        elif removed == 1:
+            return "verre %s%snicht (%d generaties)" % (inlaw, step, level)
+        elif level > len(_niece_level)-1 and removed > len(_removed_level) -1:
+            return "verre %s%snicht (%d generaties, %d graden)" % (inlaw, step,
+                                                                level, removed)
         elif level > len(_niece_level)-1:
-            return "verre nicht van de%s graad (%d generaties)" \
-                                            % (_removed_level[removed], level)
+            return "verre %s%snicht van de%s graad (%d generaties)"% (inlaw, 
+                                        step, _removed_level[removed], level)
         else:
-            return _niece_level[level] + _removed_level[removed] + " graad"
+            return _niece_level[level] % (inlaw, step) \
+                        + _removed_level[removed] + " graad"
 
-    def get_male_cousin(self,removed):
+    def _get_male_cousin(self, removed, step='', inlaw=''):
         """Specific Dutch thing, the nieces/nephews on same level are called
             going sideways in a branch as the nieces/newphews going downward
             from your brother/sisters. This used to be called "kozijn"
         """
         removed = removed - 1
         if removed > len(_removed_level)-1:
-            return "verre neef (kozijn, %d graden)" % removed
+            return "verre %s%sneef (kozijn, %d graden)" % (inlaw, step, 
+                                                           removed)
         elif removed == 0:
-            return "broer"
+            return "%s%sbroer" % (inlaw, step)
         else:
-            return "neef (kozijn)"+_removed_level[removed] + " graad"
+            return "%s%sneef (kozijn)" % (inlaw, step)  \
+                        +_removed_level[removed] + " graad"
 
-    def get_female_cousin(self,removed):
+    def _get_female_cousin(self, removed, step='', inlaw=''):
         """Specific Dutch thing, the nieces/nephews on same level are called
             going sideways in a branch as the nieces/newphews going downward
             from your brother/sisters.  This used to be called "kozijn"
         """
         removed = removed - 1
         if removed > len(_removed_level)-1:
-            return "verre nicht (kozijn, %d graden)" % removed
+            return "verre %s%snicht (kozijn, %d graden)" % (inlaw, step, 
+                                                           removed)
         elif removed == 0:
-            return "zus"
+            return "%s%szus"  % (inlaw, step)
         else:
-            return "nicht (kozijn)"+ _removed_level[removed] + " graad"
+            return "%s%snicht (kozijn)"  % (inlaw, step) \
+                        + _removed_level[removed] + " graad"
 
-    def get_relationship(self, db, orig_person, other_person):
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True, 
+                                       in_law_a=False, in_law_b=False):
         """
-        Returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-
-        Special cases: relation strings "", "undefined" and "spouse".
+        Returns a string representing the relationship between the two people,
+        see english method, eg b is father of a
         """
-        if orig_person == None:
-            return ("niet bepaald",[])
-
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return (is_spouse,[])
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = self.get_relationship_distance(db,
-                                                     orig_person,other_person)
-
-        if (type(common) == types.StringType or 
-                 type(common) == types.UnicodeType):
-            return (common,[])
-        elif common:
-            person_handle = common[0]
+        if only_birth:
+            step = ''
         else:
-            return ("",[])
+            step = self.STEP
 
-        firstRel = len(firstRel)
-        secondRel = len(secondRel)
+        if in_law_a or in_law_b :
+            inlaw = self.INLAW
+        else:
+            inlaw = ''
 
-        if firstRel == 0:
-            #other person is ancestor
-            if secondRel == 0:
-                return ('',common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_father(secondRel), common)
+        rel_str = "verre %s%sfamilie" % (inlaw, step)
+
+        if Gb == 0:
+            #b is ancestor
+            if Ga == 0:
+                rel_str = 'zelfde persoon'
+            elif Ga == 1 and inlaw and not step:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'schoonvader'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'schoonmoeder'
+                else:
+                    rel_str = 'schoonouder'
+            elif gender_b == gen.lib.Person.MALE:
+                rel_str = self._get_father(Ga, step, inlaw)
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = self._get_mother(Ga, step, inlaw)
             else:
-                return (self.get_mother(secondRel), common)
-        elif secondRel == 0:
-            #other person is descendant
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_son(firstRel), common)
+                rel_str = self._get_parent_unknown(Ga, step, inlaw)
+        elif Ga == 0:
+            #a is descendant
+            if Gb == 1 and inlaw and not step:
+                #inlaw children only exist up to first level:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'schoonzoon'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'schoondochter'
+                else:
+                    rel_str = 'schoonzoon of -dochter'
+            elif Gb == 1 and inlaw and step:
+                #inlaw stepchild
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'aangetrouwde stiefzoon'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'aangetrouwde stiefdochter'
+                else:
+                    rel_str = 'aangetrouwde stiefzoon of dochter'
+            elif gender_b == gen.lib.Person.MALE:
+                rel_str = self._get_son(Gb, step)
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = self._get_daughter(Gb, step)
             else:
-                return (self.get_daughter(firstRel), common)
-        elif secondRel > firstRel:
-            #other person is higher in the branch, in english uncle/aunt or 
+                rel_str = self._get_child_unknown(Gb, step)
+        elif Ga > Gb:
+            #b is higher in the branch, in english uncle/aunt or 
             #cousin up, in dutch always 'oom/tante'
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_uncle(secondRel - firstRel,firstRel), common)
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = self._get_uncle(Ga - Gb, Gb, step, inlaw)
             else:
-                return (self.get_aunt(secondRel - firstRel, firstRel), common)
-        elif secondRel < firstRel:
-            #other person is lower in the branch, in english niece/nephew or 
+                rel_str = self._get_aunt(Ga - Gb, Gb, step, inlaw)
+        elif Ga < Gb:
+            #b is lower in the branch, in english niece/nephew or 
             #cousin down, in dutch always 'neef/nicht'
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_nephew(firstRel - secondRel, secondRel), common)
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = self._get_nephew(Gb - Ga, Ga, step, inlaw)
             else:
-                return (self.get_niece(firstRel - secondRel, secondRel), common)
+                rel_str = self._get_niece(Gb - Ga, Ga, step, inlaw)
         else:
-            # people on the same level secondRel == firstRel
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_male_cousin(firstRel), common)
+            # people on the same level Ga == Gb
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = self._get_male_cousin(Ga, step, inlaw)
             else:
-                return (self.get_female_cousin(firstRel), common)
+                rel_str = self._get_female_cousin(Ga, step, inlaw)
+        
+        return rel_str
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+        """ Determine the string giving the relation between two siblings of
+            type sib_type.
+            Eg: b is the brother of a
+                Here 'brother' is the string we need to determine
+            This method gives more details about siblings than 
+            get_single_relationship_string can do.
+            DIFFERENT HELPER FUNCTIONS THAN ENGLISH
+        """
+        if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
+            typestr = ''
+        elif sib_type == self.HALF_SIB:
+            typestr = self.HALF
+        elif sib_type == self.STEP_SIB:
+            typestr = self.STEP
+
+        if in_law_a or in_law_b :
+            inlaw = self.INLAW
+        else:
+            inlaw = ''
+
+        if inlaw and not typestr:
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = 'schoonbroer'
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = 'schoonzus'
+            else:
+                rel_str = 'schoonzus/broer'
+        else:
+            if gender_b == gen.lib.Person.MALE:
+                rel_str = self._get_male_cousin(1, typestr, inlaw)
+            else:
+                rel_str = self._get_female_cousin(1, typestr, inlaw)
+        return rel_str
 
 #-------------------------------------------------------------------------
 #
@@ -387,3 +546,17 @@ register_relcalc(RelationshipCalculator,
      "nl_BE.UTF8","nl_NL@euro", "nl_NL.UTF8@euro","nl_BE@euro",
      "dutch","Dutch", "nl_NL.UTF-8", "nl_BE.UTF-8","nl_NL.utf-8",
      "nl_BE.utf-8","nl_NL.utf8", "nl_BE.UTF-8", "nl_BE.UTF8@euro"])
+
+if __name__ == "__main__":
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src python 
+    #    src/plugins/rel_nl.py
+    
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel_xx.py
+    """
+    from Relationship import test
+    rc = RelationshipCalculator()
+    test(rc, True)

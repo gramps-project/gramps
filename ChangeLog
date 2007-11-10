@@ -1,4 +1,12 @@
-2007-11-07 Benny Malengier <benny.malengier@gramps-project.org>
+2007-11-10 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/all_relations.py: collapse inlaws
+	* src/plugins/Ancestors.py: use new calling grandparent string
+	* src/plugins/rel_nl.py: change to new API
+	* src/plugins/rel_it.py: change comment
+	* src/plugins/rel_pl.py: use old filter
+	* src/Relationship.py: improvements, protected methods
+
+2007-11-08 Benny Malengier <benny.malengier@gramps-project.org>
 	* TODO: update
 	* src/DisplayTabs/_EventEmbedList.py: catch managed window crash
 

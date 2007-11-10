@@ -55,111 +55,205 @@ _removed_level = [ "", " once removed", " twice removed",
                    " eighteen times removed",
                    " nineteen times removed", " twenty times removed" ]
 
-_parents_level = [ "", "parents", "grandparents", "great grandparents", "second great grandparents",
-                  "third great grandparents",  "fourth great grandparents",
-                  "fifth great grandparents",  "sixth great grandparents",
-                  "seventh great grandparents", "eighth great grandparents",
-                  "ninth great grandparents", "tenth great grandparents",
-                  "eleventh great grandparents",  "twelfth great grandparents",
-                  "thirteenth great grandparents", "fourteenth great grandparents",
-                  "fifteenth great grandparents", "sixteenth great grandparents",
-                  "seventeenth great grandparents", "eighteenth great grandparents",
-                  "nineteenth great grandparents", "twentieth great grandparents", ]
+_parents_level = [ "", "parents", "grandparents", "great grandparents",
+                   "second great grandparents",
+                  "third great grandparents",
+                  "fourth great grandparents",
+                  "fifth great grandparents",
+                  "sixth great grandparents",
+                  "seventh great grandparents",
+                  "eighth great grandparents",
+                  "ninth great grandparents",
+                  "tenth great grandparents",
+                  "eleventh great grandparents",
+                  "twelfth great grandparents",
+                  "thirteenth great grandparents",
+                  "fourteenth great grandparents",
+                  "fifteenth great grandparents",
+                  "sixteenth great grandparents",
+                  "seventeenth great grandparents",
+                  "eighteenth great grandparents",
+                  "nineteenth great grandparents",
+                  "twentieth great grandparents", ]
 
-_father_level = [ "", "%sfather%s", "%sgrandfather%s", "great %sgrandfather%s", 
-                  "second great %sgrandfather%s",
-                  "third great %sgrandfather%s",  "fourth great %sgrandfather%s",
-                  "fifth great %sgrandfather%s",  "sixth great %sgrandfather%s",
-                  "seventh great %sgrandfather%s", "eighth great %sgrandfather%s",
-                  "ninth great %sgrandfather%s", "tenth great %sgrandfather%s",
-                  "eleventh great %sgrandfather%s",  "twelfth great %sgrandfather%s",
-                  "thirteenth great %sgrandfather%s", "fourteenth great %sgrandfather%s",
-                  "fifteenth great %sgrandfather%s", "sixteenth great %sgrandfather%s",
-                  "seventeenth great %sgrandfather%s", "eighteenth great %sgrandfather%s",
-                  "nineteenth great %sgrandfather%s", "twentieth great %sgrandfather%s", ]
+_father_level = [ "", "%(step)sfather%(inlaw)s", "%(step)sgrandfather%(inlaw)s", 
+                 "great %(step)sgrandfather%(inlaw)s", 
+                  "second great %(step)sgrandfather%(inlaw)s",
+                  "third great %(step)sgrandfather%(inlaw)s",
+                  "fourth great %(step)sgrandfather%(inlaw)s",
+                  "fifth great %(step)sgrandfather%(inlaw)s",
+                  "sixth great %(step)sgrandfather%(inlaw)s",
+                  "seventh great %(step)sgrandfather%(inlaw)s",
+                  "eighth great %(step)sgrandfather%(inlaw)s",
+                  "ninth great %(step)sgrandfather%(inlaw)s",
+                  "tenth great %(step)sgrandfather%(inlaw)s",
+                  "eleventh great %(step)sgrandfather%(inlaw)s",
+                  "twelfth great %(step)sgrandfather%(inlaw)s",
+                  "thirteenth great %(step)sgrandfather%(inlaw)s",
+                  "fourteenth great %(step)sgrandfather%(inlaw)s",
+                  "fifteenth great %(step)sgrandfather%(inlaw)s",
+                  "sixteenth great %(step)sgrandfather%(inlaw)s",
+                  "seventeenth great %(step)sgrandfather%(inlaw)s",
+                  "eighteenth great %(step)sgrandfather%(inlaw)s",
+                  "nineteenth great %(step)sgrandfather%(inlaw)s",
+                  "twentieth great %(step)sgrandfather%(inlaw)s", ]
 
-_mother_level = [ "", "%smother%s", "%sgrandmother%s", "great %sgrandmother%s", 
-                  "second great %sgrandmother%s",
-                  "third great %sgrandmother%s",  "fourth great %sgrandmother%s",
-                  "fifth great %sgrandmother%s",  "sixth great %sgrandmother%s",
-                  "seventh great %sgrandmother%s", "eighth great %sgrandmother%s",
-                  "ninth great %sgrandmother%s", "tenth great %sgrandmother%s",
-                  "eleventh great %sgrandmother%s",  "twelfth great %sgrandmother%s",
-                  "thirteenth great %sgrandmother%s", "fourteenth great %sgrandmother%s",
-                  "fifteenth great %sgrandmother%s", "sixteenth great %sgrandmother%s",
-                  "seventeenth great %sgrandmother%s", "eighteenth great %sgrandmother%s",
-                  "nineteenth great %sgrandmother%s", "twentieth great %sgrandmother%s", ]
+_mother_level = [ "", "%(step)smother%(inlaw)s", 
+                  "%(step)sgrandmother%(inlaw)s",
+                  "great %(step)sgrandmother%(inlaw)s", 
+                  "second great %(step)sgrandmother%(inlaw)s",
+                  "third great %(step)sgrandmother%(inlaw)s",
+                  "fourth great %(step)sgrandmother%(inlaw)s",
+                  "fifth great %(step)sgrandmother%(inlaw)s",
+                  "sixth great %(step)sgrandmother%(inlaw)s",
+                  "seventh great %(step)sgrandmother%(inlaw)s",
+                  "eighth great %(step)sgrandmother%(inlaw)s",
+                  "ninth great %(step)sgrandmother%(inlaw)s",
+                  "tenth great %(step)sgrandmother%(inlaw)s",
+                  "eleventh great %(step)sgrandmother%(inlaw)s",
+                  "twelfth great %(step)sgrandmother%(inlaw)s",
+                  "thirteenth great %(step)sgrandmother%(inlaw)s",
+                  "fourteenth great %(step)sgrandmother%(inlaw)s",
+                  "fifteenth great %(step)sgrandmother%(inlaw)s",
+                  "sixteenth great %(step)sgrandmother%(inlaw)s",
+                  "seventeenth great %(step)sgrandmother%(inlaw)s",
+                  "eighteenth great %(step)sgrandmother%(inlaw)s",
+                  "nineteenth great %(step)sgrandmother%(inlaw)s", 
+                  "twentieth great %(step)sgrandmother%(inlaw)s", ]
 
-_son_level = [ "", "%sson", "%sgrandson", "great %sgrandson", "second great %sgrandson",
-               "third great %sgrandson",  "fourth great %sgrandson",
-               "fifth great %sgrandson",  "sixth great %sgrandson",
-               "seventh great %sgrandson", "eighth great %sgrandson",
-               "ninth great %sgrandson", "tenth great %sgrandson",
-               "eleventh great %sgrandson",  "twelfth great %sgrandson",
-               "thirteenth great %sgrandson", "fourteenth great %sgrandson",
-               "fifteenth great %sgrandson", "sixteenth great %sgrandson",
-               "seventeenth great %sgrandson", "eighteenth great %sgrandson",
-               "nineteenth great %sgrandson", "twentieth great %sgrandson", ]
+_son_level = [ "", "%(step)sson", "%(step)sgrandson", 
+                "great %(step)sgrandson", 
+                "second great %(step)sgrandson",
+                "third great %(step)sgrandson",  
+                "fourth great %(step)sgrandson",
+                "fifth great %(step)sgrandson",  
+                "sixth great %(step)sgrandson",
+                "seventh great %(step)sgrandson", 
+                "eighth great %(step)sgrandson",
+                "ninth great %(step)sgrandson", 
+                "tenth great %(step)sgrandson",
+                "eleventh great %(step)sgrandson",  
+                "twelfth great %(step)sgrandson",
+                "thirteenth great %(step)sgrandson", 
+                "fourteenth great %(step)sgrandson",
+                "fifteenth great %(step)sgrandson", 
+                "sixteenth great %(step)sgrandson",
+                "seventeenth great %(step)sgrandson", 
+                "eighteenth great %(step)sgrandson",
+                "nineteenth great %(step)sgrandson", 
+                "twentieth great %(step)sgrandson", ]
 
-_daughter_level = [ "", "%sdaughter", "%sgranddaughter", "great %sgranddaughter",
-                    "second great %sgranddaughter",
-                    "third great %sgranddaughter",  "fourth great %sgranddaughter",
-                    "fifth great %sgranddaughter",  "sixth great %sgranddaughter",
-                    "seventh great %sgranddaughter", "eighth great %sgranddaughter",
-                    "ninth great %sgranddaughter", "tenth great %sgranddaughter",
-                    "eleventh great %sgranddaughter",  "twelfth great %sgranddaughter",
-                    "thirteenth great %sgranddaughter", "fourteenth great %sgranddaughter",
-                    "fifteenth great %sgranddaughter", "sixteenth great %sgranddaughter",
-                    "seventeenth great %sgranddaughter", "eighteenth great %sgranddaughter",
-                    "nineteenth great %sgranddaughter", "twentieth great %sgranddaughter", ]
+_daughter_level = [ "", "%(step)sdaughter", "%(step)sgranddaughter",
+                    "great %(step)sgranddaughter",
+                    "second great %(step)sgranddaughter",
+                    "third great %(step)sgranddaughter",  
+                    "fourth great %(step)sgranddaughter",
+                    "fifth great %(step)sgranddaughter",  
+                    "sixth great %(step)sgranddaughter",
+                    "seventh great %(step)sgranddaughter", 
+                    "eighth great %(step)sgranddaughter",
+                    "ninth great %(step)sgranddaughter", 
+                    "tenth great %(step)sgranddaughter",
+                    "eleventh great %(step)sgranddaughter",  
+                    "twelfth great %(step)sgranddaughter",
+                    "thirteenth great %(step)sgranddaughter", 
+                    "fourteenth great %(step)sgranddaughter",
+                    "fifteenth great %(step)sgranddaughter", 
+                    "sixteenth great %(step)sgranddaughter",
+                    "seventeenth great %(step)sgranddaughter", 
+                    "eighteenth great %(step)sgranddaughter",
+                    "nineteenth great %(step)sgranddaughter", 
+                    "twentieth great %(step)sgranddaughter", ]
 
-_sister_level = [ "", "%ssister%s", "%saunt%s", "%sgrandaunt%s", 
-                  "great %sgrandaunt%s", "second great %sgrandaunt%s",
-                  "third great %sgrandaunt%s",  "fourth great %sgrandaunt%s",
-                  "fifth great %sgrandaunt%s",  "sixth great %sgrandaunt%s",
-                  "seventh great %sgrandaunt%s", "eighth great %sgrandaunt%s",
-                  "ninth great %sgrandaunt%s", "tenth great %sgrandaunt%s",
-                  "eleventh great %sgrandaunt%s",  "twelfth great %sgrandaunt%s",
-                  "thirteenth great %sgrandaunt%s", "fourteenth great %sgrandaunt%s",
-                  "fifteenth great %sgrandaunt%s", "sixteenth great %sgrandaunt%s",
-                  "seventeenth great %sgrandaunt%s", "eighteenth great %sgrandaunt%s",
-                  "nineteenth great %sgrandaunt%s", "twentieth great %sgrandaunt%s", ]
+_sister_level = [ "", "%(step)ssister%(inlaw)s", "%(step)saunt%(inlaw)s",
+                  "%(step)sgrandaunt%(inlaw)s", 
+                  "great %(step)sgrandaunt%(inlaw)s",
+                  "second great %(step)sgrandaunt%(inlaw)s",
+                  "third great %(step)sgrandaunt%(inlaw)s",
+                  "fourth great %(step)sgrandaunt%(inlaw)s",
+                  "fifth great %(step)sgrandaunt%(inlaw)s",
+                  "sixth great %(step)sgrandaunt%(inlaw)s",
+                  "seventh great %(step)sgrandaunt%(inlaw)s",
+                  "eighth great %(step)sgrandaunt%(inlaw)s",
+                  "ninth great %(step)sgrandaunt%(inlaw)s",
+                  "tenth great %(step)sgrandaunt%(inlaw)s",
+                  "eleventh great %(step)sgrandaunt%(inlaw)s",
+                  "twelfth great %(step)sgrandaunt%(inlaw)s",
+                  "thirteenth great %(step)sgrandaunt%(inlaw)s",
+                  "fourteenth great %(step)sgrandaunt%(inlaw)s",
+                  "fifteenth great %(step)sgrandaunt%(inlaw)s",
+                  "sixteenth great %(step)sgrandaunt%(inlaw)s",
+                  "seventeenth great %(step)sgrandaunt%(inlaw)s",
+                  "eighteenth great %(step)sgrandaunt%(inlaw)s",
+                  "nineteenth great %(step)sgrandaunt%(inlaw)s",
+                  "twentieth great %(step)sgrandaunt%(inlaw)s", ]
 
-_brother_level = [ "", "%sbrother%s", "%suncle%s", "%sgranduncle%s", 
-                   "great %sgranduncle%s", "second great %sgranduncle%s",
-                   "third great %sgranduncle%s",  "fourth great %sgranduncle%s",
-                   "fifth great %sgranduncle%s",  "sixth great %sgranduncle%s",
-                   "seventh great %sgranduncle%s", "eighth great %sgranduncle%s",
-                   "ninth great %sgranduncle%s", "tenth great %sgranduncle%s",
-                   "eleventh great %sgranduncle%s",  "twelfth great %sgranduncle%s",
-                   "thirteenth great %sgranduncle%s", "fourteenth great %sgranduncle%s",
-                   "fifteenth great %sgranduncle%s", "sixteenth great %sgranduncle%s",
-                   "seventeenth great %sgranduncle%s", "eighteenth great %sgranduncle%s",
-                   "nineteenth great %sgranduncle%s", "twentieth great %sgranduncle%s", ]
+_brother_level = [ "", "%(step)sbrother%(inlaw)s", "%(step)suncle%(inlaw)s",
+                   "%(step)sgranduncle%(inlaw)s", 
+                   "great %(step)sgranduncle%(inlaw)s",
+                   "second great %(step)sgranduncle%(inlaw)s",
+                   "third great %(step)sgranduncle%(inlaw)s",  
+                   "fourth great %(step)sgranduncle%(inlaw)s",
+                   "fifth great %(step)sgranduncle%(inlaw)s",  
+                   "sixth great %(step)sgranduncle%(inlaw)s",
+                   "seventh great %(step)sgranduncle%(inlaw)s", 
+                   "eighth great %(step)sgranduncle%(inlaw)s",
+                   "ninth great %(step)sgranduncle%(inlaw)s", 
+                   "tenth great %(step)sgranduncle%(inlaw)s",
+                   "eleventh great %(step)sgranduncle%(inlaw)s",  
+                   "twelfth great %(step)sgranduncle%(inlaw)s",
+                   "thirteenth great %(step)sgranduncle%(inlaw)s", 
+                   "fourteenth great %(step)sgranduncle%(inlaw)s",
+                   "fifteenth great %(step)sgranduncle%(inlaw)s", 
+                   "sixteenth great %(step)sgranduncle%(inlaw)s",
+                   "seventeenth great %(step)sgranduncle%(inlaw)s", 
+                   "eighteenth great %(step)sgranduncle%(inlaw)s",
+                   "nineteenth great %(step)sgranduncle%(inlaw)s", 
+                   "twentieth great %(step)sgranduncle%(inlaw)s", ]
 
-_nephew_level = [ "", "%snephew%s", "%sgrandnephew%s", "great %sgrandnephew%s",
-                  "second great %sgrandnephew%s",
-                  "third great %sgrandnephew%s",  "fourth great %sgrandnephew%s",
-                  "fifth great %sgrandnephew%s",  "sixth great %sgrandnephew%s",
-                  "seventh great %sgrandnephew%s", "eighth great %sgrandnephew%s",
-                  "ninth great %sgrandnephew%s", "tenth great %sgrandnephew%s",
-                  "eleventh great %sgrandnephew%s",  "twelfth great %sgrandnephew%s",
-                  "thirteenth great %sgrandnephew%s", "fourteenth great %sgrandnephew%s",
-                  "fifteenth great %sgrandnephew%s", "sixteenth great %sgrandnephew%s",
-                  "seventeenth great %sgrandnephew%s", "eighteenth great %sgrandnephew%s",
-                  "nineteenth great %sgrandnephew%s", "twentieth great %sgrandnephew%s", ]
+_nephew_level = [ "", "%(step)snephew%(inlaw)s", "%(step)sgrandnephew%(inlaw)s", 
+                  "great %(step)sgrandnephew%(inlaw)s",
+                  "second great %(step)sgrandnephew%(inlaw)s",
+                  "third great %(step)sgrandnephew%(inlaw)s",  
+                  "fourth great %(step)sgrandnephew%(inlaw)s",
+                  "fifth great %(step)sgrandnephew%(inlaw)s", 
+                  "sixth great %(step)sgrandnephew%(inlaw)s",
+                  "seventh great %(step)sgrandnephew%(inlaw)s",
+                  "eighth great %(step)sgrandnephew%(inlaw)s",
+                  "ninth great %(step)sgrandnephew%(inlaw)s",
+                  "tenth great %(step)sgrandnephew%(inlaw)s",
+                  "eleventh great %(step)sgrandnephew%(inlaw)s",
+                  "twelfth great %(step)sgrandnephew%(inlaw)s",
+                  "thirteenth great %(step)sgrandnephew%(inlaw)s",
+                  "fourteenth great %(step)sgrandnephew%(inlaw)s",
+                  "fifteenth great %(step)sgrandnephew%(inlaw)s",
+                  "sixteenth great %(step)sgrandnephew%(inlaw)s",
+                  "seventeenth great %(step)sgrandnephew%(inlaw)s",
+                  "eighteenth great %(step)sgrandnephew%(inlaw)s",
+                  "nineteenth great %(step)sgrandnephew%(inlaw)s",
+                  "twentieth great %(step)sgrandnephew%(inlaw)s", ]
 
-_niece_level = [ "", "%sniece%s", "%sgrandniece%s", "great %sgrandniece%s", 
-                 "second great %sgrandniece%s",
-                 "third great %sgrandniece%s",  "fourth great %sgrandniece%s",
-                 "fifth great %sgrandniece%s",  "sixth great %sgrandniece%s",
-                 "seventh great %sgrandniece%s", "eighth great %sgrandniece%s",
-                 "ninth great %sgrandniece%s", "tenth great %sgrandniece%s",
-                 "eleventh great %sgrandniece%s",  "twelfth great %sgrandniece%s",
-                 "thirteenth great %sgrandniece%s", "fourteenth great %sgrandniece%s",
-                 "fifteenth great %sgrandniece%s", "sixteenth great %sgrandniece%s",
-                 "seventeenth great %sgrandniece%s", "eighteenth great %sgrandniece%s",
-                 "nineteenth great %sgrandniece%s", "twentieth great %sgrandniece%s", ]
+_niece_level = [ "", "%(step)sniece%(inlaw)s", "%(step)sgrandniece%(inlaw)s", 
+                 "great %(step)sgrandniece%(inlaw)s", 
+                 "second great %(step)sgrandniece%(inlaw)s",
+                 "third great %(step)sgrandniece%(inlaw)s", 
+                 "fourth great %(step)sgrandniece%(inlaw)s",
+                 "fifth great %(step)sgrandniece%(inlaw)s", 
+                 "sixth great %(step)sgrandniece%(inlaw)s",
+                 "seventh great %(step)sgrandniece%(inlaw)s",
+                 "eighth great %(step)sgrandniece%(inlaw)s",
+                 "ninth great %(step)sgrandniece%(inlaw)s",
+                 "tenth great %(step)sgrandniece%(inlaw)s",
+                 "eleventh great %(step)sgrandniece%(inlaw)s", 
+                 "twelfth great %(step)sgrandniece%(inlaw)s",
+                 "thirteenth great %(step)sgrandniece%(inlaw)s",
+                 "fourteenth great %(step)sgrandniece%(inlaw)s",
+                 "fifteenth great %(step)sgrandniece%(inlaw)s",
+                 "sixteenth great %(step)sgrandniece%(inlaw)s",
+                 "seventeenth great %(step)sgrandniece%(inlaw)s",
+                 "eighteenth great %(step)sgrandniece%(inlaw)s",
+                 "nineteenth great %(step)sgrandniece%(inlaw)s",
+                 "twentieth great %(step)sgrandniece%(inlaw)s", ]
 
 _children_level = [ "",
     "children",                        "grandchildren", 
@@ -189,18 +283,29 @@ _siblings_level = [ "",
     "twentieth great granduncles/aunts", ]
     
 _sibling_level = [ "",
-    "%ssibling%s",                          "%suncle/aunt%s", 
-    "%sgranduncle/aunt%s",                  "great %sgranduncle/aunt%s", 
-    "second great %sgranduncle/aunt%s",     "third great %sgranduncle/aunt%s",  
-    "fourth great %sgranduncle/aunt%s",     "fifth great %sgranduncle/aunt%s",  
-    "sixth great %sgranduncle/aunt%s",      "seventh great %sgranduncle/aunt%s", 
-    "eighth great %sgranduncle/aunt%s",     "ninth great %sgranduncle/aunt%s", 
-    "tenth great %sgranduncle/aunt%s",      "eleventh great %sgranduncle/aunt%s",  
-    "twelfth great %sgranduncle/aunt%s",    "thirteenth great %sgranduncle/aunt%s", 
-    "fourteenth great %sgranduncle/aunt%s", "fifteenth great %sgranduncle/aunt%s", 
-    "sixteenth great %sgranduncle/aunt%s",  "seventeenth great %sgranduncle/aunt%s", 
-    "eighteenth great %sgranduncle/aunt%s", "nineteenth great %sgranduncle/aunt%s", 
-    "twentieth great %sgranduncle/aunt%s", ]
+    "%(step)ssibling%(inlaw)s",                          
+    "%(step)suncle/aunt%(inlaw)s", 
+    "%(step)sgranduncle/aunt%(inlaw)s",                  
+    "great %(step)sgranduncle/aunt%(inlaw)s", 
+    "second great %(step)sgranduncle/aunt%(inlaw)s",     
+    "third great %(step)sgranduncle/aunt%(inlaw)s",  
+    "fourth great %(step)sgranduncle/aunt%(inlaw)s",     
+    "fifth great %(step)sgranduncle/aunt%(inlaw)s",  
+    "sixth great %(step)sgranduncle/aunt%(inlaw)s",      
+    "seventh great %(step)sgranduncle/aunt%(inlaw)s", 
+    "eighth great %(step)sgranduncle/aunt%(inlaw)s",     
+    "ninth great %(step)sgranduncle/aunt%(inlaw)s", 
+    "tenth great %(step)sgranduncle/aunt%(inlaw)s",      
+    "eleventh great %(step)sgranduncle/aunt%(inlaw)s",  
+    "twelfth great %(step)sgranduncle/aunt%(inlaw)s",    
+    "thirteenth great %(step)sgranduncle/aunt%(inlaw)s", 
+    "fourteenth great %(step)sgranduncle/aunt%(inlaw)s", 
+    "fifteenth great %(step)sgranduncle/aunt%(inlaw)s", 
+    "sixteenth great %(step)sgranduncle/aunt%(inlaw)s",  
+    "seventeenth great %(step)sgranduncle/aunt%(inlaw)s", 
+    "eighteenth great %(step)sgranduncle/aunt%(inlaw)s", 
+    "nineteenth great %(step)sgranduncle/aunt%(inlaw)s", 
+    "twentieth great %(step)sgranduncle/aunt%(inlaw)s", ]
 
 _nephews_nieces_level = [   "", 
                             "siblings",
@@ -258,9 +363,10 @@ class RelationshipCalculator:
     
     #sibling strings
     STEP= 'step'
-    INLAW='-in-law'
     HALF = 'half-'
-    
+
+    INLAW='-in-law'
+        
     #partner types
     PARTNER_MARRIED        = 1
     PARTNER_UNMARRIED      = 2
@@ -280,62 +386,129 @@ class RelationshipCalculator:
         else:
             return _parents_level[level]
 
-    def get_father(self, level, step='', inlaw=''):
+    DIST_FATHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
+    
+    def _get_father(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
         if level>len(_father_level)-1:
-            return "distant %sancestor%s (%d generations)" % (step, inlaw, 
-                                                              level)
+            return self.DIST_FATHER % {'step': step, 'inlaw': inlaw,
+                                       'level': level}
         else:
-            return _father_level[level] % (step, inlaw)
+            return _father_level[level] % {'step': step, 'inlaw': inlaw} 
 
-    def get_son(self, level, step=''):
+    DIST_SON = "distant %(step)sdescendant (%(level)d generations)"
+    
+    def _get_son(self, level, step=''):
+        """Internal english method to create relation string
+        """
         if level>len(_son_level)-1:
-            return "distant %sdescendant (%d generations)" % (step, level)
+            return self.DIST_SON % {'step': step, 'level': level}
         else:
-            return _son_level[level] % step
+            return _son_level[level] % {'step': step}
 
-    def get_mother(self, level, step='', inlaw=''):
+    DIST_MOTHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
+    
+    def _get_mother(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
         if level>len(_mother_level)-1:
-            return "distant %sancestor%s (%d generations)" % (step, inlaw, 
-                                                              level)
+            return self.DIST_MOTHER % {'step': step, 'inlaw': inlaw,
+                                       'level': level}
         else:
-            return _mother_level[level] % (step, inlaw)
+            return _mother_level[level] % {'step': step, 'inlaw': inlaw} 
 
-    def get_daughter(self, level, step=''):
+    DIST_DAUGHTER = "distant %(step)sdescendant (%(level)d generations)"
+
+    def _get_daughter(self, level, step=''):
+        """Internal english method to create relation string
+        """
         if level>len(_daughter_level)-1:
-            return "distant %sdescendant (%d generations)" % (step, level)
+            return self.DIST_DAUGHTER % {'step': step, 'level': level}
         else:
-            return _daughter_level[level] % step
+            return _daughter_level[level] % {'step': step}
 
-    def get_parent_unknown(self, level, step='', inlaw=''):
+    def _get_parent_unknown(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
         if level < len(_level_name):
             return _level_name[level] + ' ' + '%sancestor%s' % (step, inlaw)
         else:
             return "distant %sancestor%s (%d generations)" % (step, inlaw, 
                                                               level)
 
-    def get_child_unknown(self, level, step=''):
+    DIST_CHILD = "distant %(step)sdescendant (%(level)d generations)"
+
+    def _get_child_unknown(self, level, step=''):
+        """Internal english method to create relation string
+        """
         if level < len(_level_name):
             return _level_name[level] + ' ' + '%sdescendant' % step
         else:
-            return "distant %sdescendant (%d generations)" % (step, level)
+            return self.DIST_CHILD % {'step': step, 'level': level}
 
-    def get_aunt(self, level, step='', inlaw=''):
+    DIST_AUNT = "distant %(step)saunt%(inlaw)s"
+
+    def _get_aunt(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
         if level>len(_sister_level)-1:
-            return "distant %saunt%s" % (step, inlaw)
+            return self.DIST_AUNT % {'step': step, 'inlaw': inlaw}
         else:
-            return _sister_level[level] % (step, inlaw)
+            return _sister_level[level] % {'step': step, 'inlaw': inlaw} 
 
-    def get_uncle(self, level, step='', inlaw=''):
+    DIST_UNCLE = "distant %(step)suncle%(inlaw)s"
+
+    def _get_uncle(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
         if level>len(_brother_level)-1:
-            return "distant %suncle%s" % (step, inlaw)
+            return self.DIST_UNCLE % {'step': step, 'inlaw': inlaw}
         else:
-            return _brother_level[level] % (step, inlaw)
+            return _brother_level[level] % {'step': step, 'inlaw': inlaw} 
 
-    def get_sibling(self, level, step='', inlaw=''):
-        if level < len(_sibling_level):
-            return _sibling_level[level] % (step, inlaw)
+    DIST_NEPHEW = "distant %(step)snephew%(inlaw)s"
+
+    def _get_nephew(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
+        if level>len(_nephew_level)-1:
+            return self.DIST_NEPHEW % {'step': step, 'inlaw': inlaw}
         else:
-            return "distant %suncle%s/%saunt%s " % (step, inlaw, step, inlaw)
+            return _nephew_level[level] % {'step': step, 'inlaw': inlaw} 
+
+    DIST_NIECE = "distant %(step)sniece%(inlaw)s"
+
+    def _get_niece(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
+        if level>len(_niece_level)-1:
+            return self.DIST_NIECE % {'step': step, 'inlaw': inlaw}
+        else:
+            return _niece_level[level] % {'step': step, 'inlaw': inlaw} 
+
+    def _get_cousin(self, level, removed, dir = '', step='', inlaw=''):
+        """Internal english method to create relation string
+        """
+        if removed == 0 and level < len(_level_name):
+            return "%s %scousin%s" % (_level_name[level],
+                                        step, inlaw)
+        elif removed > len(_removed_level)-1 or level>len(_level_name)-1:
+            return "distant %srelative%s" % (step, inlaw)
+        else:
+            return "%s %scousin%s%s%s" % (_level_name[level],
+                                        step, inlaw,
+                                        _removed_level[removed], dir)
+
+    DIST_SIB = "distant %(step)suncle/aunt%(inlaw)s"
+
+    def _get_sibling(self, level, step='', inlaw=''):
+        """Internal english method to create relation string
+        """
+        if level < len(_sibling_level):
+            return _sibling_level[level] % {'step': step, 'inlaw': inlaw} 
+        else:
+            return self.DIST_SIB % {'step': step, 'inlaw': inlaw} 
 
     def get_sibling_type(self, db, orig, other):
         """ Translation free determination of type of orig and other as siblings
@@ -378,29 +551,6 @@ class RelationshipCalculator:
             if birthmother and birthfather:
                 break
         return (birthmother, birthfather)
-
-    def get_nephew(self, level, step='', inlaw=''):
-        if level>len(_nephew_level)-1:
-            return "distant %snephew%s" % (step, inlaw)
-        else:
-            return _nephew_level[level] % (step, inlaw)
-
-    def get_niece(self, level, step='', inlaw=''):
-        if level>len(_niece_level)-1:
-            return "distant %sniece%s" % (step, inlaw)
-        else:
-            return _niece_level[level] % (step, inlaw)
-
-    def get_cousin(self, level, removed, dir = '', step='', inlaw=''):
-        if removed == 0 and level < len(_level_name):
-            return "%s %scousin%s" % (_level_name[level],
-                                        step, inlaw)
-        elif removed > len(_removed_level)-1 or level>len(_level_name)-1:
-            return "distant %srelative%s" % (step, inlaw)
-        else:
-            return "%s %scousin%s%s%s" % (_level_name[level],
-                                        step, inlaw,
-                                        _removed_level[removed], dir)
 
     def get_spouse_type(self, db, orig, other, all_rel = False):
         """ Translation free determination if orig and other are partners.
@@ -464,59 +614,9 @@ class RelationshipCalculator:
         else:
             return None
 
-    def get_relationship_distance_old(self, db, orig_person, other_person):
+    def __apply_filter_old(self, db, person, rel_str, plist, pmap, depth=1):
+        """ DEPRECATED -- DO NOT USE
         """
-           ** DEPRECATED  -- USE NEW **
-        
-        NOTE: CHANGED ORDER OF RETURN, now first is rel to orig, second to other
-                (as it should, but wasn't !! )
-
-        Returns a tuple (firstRel, secondRel, common):
-        
-        firstRel    Number of generations from the orig_person to their
-                    closest common ancestors, as eg 'ffmm'
-        secondRel   Number of generations from the other_person to that
-                    firstRel closest common ancestors, as eg 'ffmm'
-        common      list of all these common ancestors (so same generation
-                    difference with firstRel), no specific order !!
-                    
-        in the Rel, f is father, m is mother
-        """
-        print "get_relationship_distance_old is deprecated, use new instead!"
-        
-        firstRel = -1
-        secondRel = -1
-        common = []
-
-        firstMap = {}
-        firstList = []
-        secondMap = {}
-        secondList = []
-        rank = 9999999
-
-        try:
-            self.__apply_filter(db, orig_person, '', firstList, firstMap)
-            self.__apply_filter(db, other_person, '', secondList, secondMap)
-        except RuntimeError:
-            return (firstRel, secondRel, _("Relationship loop detected"))
-
-        for person_handle in firstList:
-            if person_handle in secondList:
-                new_rank = len(firstMap[person_handle])
-                if new_rank < rank:
-                    rank = new_rank
-                    common = [ person_handle ]
-                elif new_rank == rank:
-                    common.append(person_handle)
-
-        if common:
-            person_handle = common[0]
-            firstRel = firstMap[person_handle]
-            secondRel = secondMap[person_handle]
-
-        return (firstRel,secondRel,common)
-
-    def __apply_filter(self, db, person, rel_str, plist, pmap, depth=1):
         if person == None or depth > MAX_DEPTH:
             return
         depth += 1
@@ -530,12 +630,12 @@ class RelationshipCalculator:
                 fhandle = family.father_handle
                 if fhandle:
                     father = db.get_person_from_handle(fhandle)
-                    self.__apply_filter(db, father, rel_str+'f', plist, pmap,
+                    self.__apply_filter_old(db, father, rel_str+'f', plist, pmap,
                                         depth)
                 mhandle = family.mother_handle
                 if mhandle:
                     mother = db.get_person_from_handle(mhandle)
-                    self.__apply_filter(db, mother, rel_str+'m', plist, pmap,
+                    self.__apply_filter_old(db, mother, rel_str+'m', plist, pmap,
                                         depth)
         except:
             return
@@ -671,8 +771,8 @@ class RelationshipCalculator:
         rank = 9999999
 
         try:
-            self.__apply_filter_new(db, orig_person, '', [], firstMap)
-            self.__apply_filter_new(db, other_person, '', [], secondMap,
+            self.__apply_filter(db, orig_person, '', [], firstMap)
+            self.__apply_filter(db, other_person, '', [], secondMap,
                                     stoprecursemap = firstMap, 
                                     store_all=False)
 ##            print firstMap
@@ -755,7 +855,7 @@ class RelationshipCalculator:
         else :
             return [(-1,None,'',[],'',[])], self.__msg
     
-    def __apply_filter_new(self, db, person, rel_str, rel_fam, pmap,
+    def __apply_filter(self, db, person, rel_str, rel_fam, pmap,
                             depth=1, stoprecursemap=None, store_all=True):
         '''We recursively add parents of person in pmap with correct rel_str, 
             if store_all. If store_all false, only store parents if in the
@@ -877,7 +977,7 @@ class RelationshipCalculator:
 
             for handle in parentstodo.keys():
                 data = parentstodo[handle]
-                self.__apply_filter_new(db, data[0],
+                self.__apply_filter(db, data[0],
                                 data[1], data[2],
                                 pmap, depth, stoprecursemap, store_all)
 
@@ -1021,33 +1121,50 @@ class RelationshipCalculator:
                            self.REL_FATHER_NOTBIRTH, self.REL_MOTHER_NOTBIRTH])
         return only_birth
 
-    def get_one_relationship(self, db, orig_person, other_person):
+    def get_one_relationship(self, db, orig_person, other_person, 
+                             extra_info=False):
         """
         returns a string representing the most relevant relationship between 
-        the two people
+        the two people. If extra_info = True, extra information is returned:
+        (relation_string, distance_common_orig, distance_common_other)
         """
+        stop = False
         if orig_person == None:
-            return _("undefined")
+            rel_str = _("undefined")
+            stop = True
 
-        if orig_person.get_handle() == other_person.get_handle():
-            return ''
+        if not stop and orig_person.get_handle() == other_person.get_handle():
+            rel_str = ''
+            stop = True
 
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return is_spouse
+        if not stop:
+            is_spouse = self.is_spouse(db, orig_person, other_person)
+            if is_spouse:
+                rel_str = is_spouse
+                stop = True
+        
+        if stop:
+            if extra_info:
+                return (rel_str, -1, -1)
+            else:
+                return rel_str
         
         data, msg = self.get_relationship_distance_new(
                                 db, orig_person, other_person,
                                 all_dist=True,
                                 all_families=True, only_birth=False)
         if data[0][0] == -1:
-            return ''
+            if extra_info:
+                return ('', -1, -1)
+            else:
+                return ''
         
         data = self.collapse_relations(data)
         #most relevant relationship is a birth family relation of lowest rank
         databest = [data[0]]
         rankbest = data[0][0]
         for rel in data :
+            #data is sorted on rank
             if rel[0] == rankbest:
                 databest.append(rel)
         rel = databest[0]
@@ -1056,12 +1173,13 @@ class RelationshipCalculator:
         if len(databest) == 1:
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
             if dist_orig == 1 and dist_other == 1:
-                return self.get_sibling_relationship_string(
+                rel_str = self.get_sibling_relationship_string(
                             self.get_sibling_type(
                                                 db, orig_person, other_person), 
                             orig_person.get_gender(),
                             other_person.get_gender())
-            return self.get_single_relationship_string(dist_orig,
+            else:
+                rel_str = self.get_single_relationship_string(dist_orig,
                                                   dist_other,
                                                   orig_person.get_gender(),
                                                   other_person.get_gender(),
@@ -1109,12 +1227,13 @@ class RelationshipCalculator:
             dist_other= len(rel[4])
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
             if dist_orig == 1 and dist_other == 1:
-                return self.get_sibling_relationship_string(
+                rel_str =  self.get_sibling_relationship_string(
                             self.get_sibling_type(
                                                 db, orig_person, other_person), 
                             orig_person.get_gender(),
                             other_person.get_gender())
-            return self.get_single_relationship_string(dist_orig,
+            else:
+                rel_str = self.get_single_relationship_string(dist_orig,
                                                   dist_other,
                                                   orig_person.get_gender(),
                                                   other_person.get_gender(),
@@ -1122,6 +1241,10 @@ class RelationshipCalculator:
                                                   only_birth=birth, 
                                                   in_law_a=False, 
                                                   in_law_b=False)
+        if extra_info:
+            return (rel_str, dist_orig, dist_other)
+        else:
+            return rel_str
         
     def get_relationship(self, db, orig_person, other_person):
         """
@@ -1170,33 +1293,17 @@ class RelationshipCalculator:
         else:
             return (rel_str, common)
 
-    def get_grandparents_string(self,db,orig_person,other_person):
+    def get_grandparents_string(self, db, orig_person, other_person):
         """
-        returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
+        returns a string representing the relationship between the two people
+        if the other_person is a grandparent in general terms and in plural
         """
-        if orig_person == None:
-            return ("undefined",[])
+        (rel_str, dist_orig, dist_other) = self.get_one_relationship(db, 
+                                            orig_person, other_person,
+                                            extra_info = True)
 
-        if orig_person == other_person:
-            return ('', [])
-        
-        (firstRel,secondRel,common) = \
-                     self.get_relationship_distance(db,orig_person,other_person)
-        
-        if type(common) == types.StringType or \
-           type(common) == types.UnicodeType:
-            return (common,[])
-        elif common:
-            person_handle = common[0]
-        else:
-            return ("",[])
-
-        if len(firstRel) == 0:
-            if len(secondRel) == 0:
-                return ('',common)
-            else:
-                return (self.get_parents(len(secondRel)),common)
+        if dist_other == 0:
+            return self.get_parents(dist_orig)
         else:
             return None
         
@@ -1374,59 +1481,59 @@ class RelationshipCalculator:
             elif Gb == 1 and inlaw:
                 #inlaw children only exist up to first level:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = self.get_son(Gb, step)+inlaw
+                    rel_str = self._get_son(Gb, step)+inlaw
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = self.get_daughter(Gb, step)+inlaw
+                    rel_str = self._get_daughter(Gb, step)+inlaw
                 else:
-                    rel_str = self.get_child_unknown(Gb, step)+inlaw
+                    rel_str = self._get_child_unknown(Gb, step)+inlaw
             elif gender_b == gen.lib.Person.MALE:
-                rel_str = self.get_son(Gb, step)
+                rel_str = self._get_son(Gb, step)
             elif gender_b == gen.lib.Person.FEMALE:
-                rel_str = self.get_daughter(Gb, step)
+                rel_str = self._get_daughter(Gb, step)
             else:
-                rel_str = self.get_child_unknown(Gb, step)
+                rel_str = self._get_child_unknown(Gb, step)
         elif Gb == 0:
             # b is parents/grand parent of a
             if gender_b == gen.lib.Person.MALE:
-                rel_str = self.get_father(Ga, step, inlaw)
+                rel_str = self._get_father(Ga, step, inlaw)
             elif gender_b == gen.lib.Person.FEMALE:
-                rel_str = self.get_mother(Ga, step, inlaw)
+                rel_str = self._get_mother(Ga, step, inlaw)
             else:
-                rel_str = self.get_parent_unknown(Ga, step, inlaw)
+                rel_str = self._get_parent_unknown(Ga, step, inlaw)
         elif Gb == 1:
             # b is sibling/aunt/uncle of a
             if gender_b == gen.lib.Person.MALE:
-                rel_str = self.get_uncle(Ga, step, inlaw)
+                rel_str = self._get_uncle(Ga, step, inlaw)
             elif gender_b == gen.lib.Person.FEMALE:
-                rel_str = self.get_aunt(Ga, step, inlaw)
+                rel_str = self._get_aunt(Ga, step, inlaw)
             else:
-                rel_str = self.get_sibling(Ga, step, inlaw)
+                rel_str = self._get_sibling(Ga, step, inlaw)
         elif Ga == 1:
             # b is niece/nephew of a
             if gender_b == gen.lib.Person.MALE:
-                rel_str = self.get_nephew(Gb-1, step, inlaw)
+                rel_str = self._get_nephew(Gb-1, step, inlaw)
             elif gender_b == gen.lib.Person.FEMALE:
-                rel_str = self.get_niece(Gb-1, step, inlaw)
+                rel_str = self._get_niece(Gb-1, step, inlaw)
             elif Gb < len(_niece_level) and Gb < len(_nephew_level):
-                rel_str = "%s or %s" % (self.get_nephew(Gb-1, step, inlaw),
-                                        self.get_niece(Gb-1, step, inlaw))
+                rel_str = "%s or %s" % (self._get_nephew(Gb-1, step, inlaw),
+                                        self._get_niece(Gb-1, step, inlaw))
             else:
                 rel_str = "distant %snephews/nieces%s" % (step, inlaw)
         elif Ga == Gb:
             # a and b cousins in the same generation
-            rel_str = self.get_cousin(Ga-1, 0, dir = '', step=step, 
+            rel_str = self._get_cousin(Ga-1, 0, dir = '', step=step, 
                                      inlaw=inlaw)
         elif Ga > Gb:
             # These are cousins in different generations with the second person 
             # being in a higher generation from the common ancestor than the 
             # first person.
-            rel_str = self.get_cousin(Gb-1, Ga-Gb, dir = ' (up)', 
+            rel_str = self._get_cousin(Gb-1, Ga-Gb, dir = ' (up)', 
                                      step=step, inlaw=inlaw)
         elif Gb > Ga:
             # These are cousins in different generations with the second person 
             # being in a lower generation from the common ancestor than the 
             # first person.
-            rel_str = self.get_cousin(Ga-1, Gb-Ga, dir = ' (down)', 
+            rel_str = self._get_cousin(Ga-1, Gb-Ga, dir = ' (down)', 
                                      step=step, inlaw=inlaw)
         return rel_str
 
@@ -1454,11 +1561,11 @@ class RelationshipCalculator:
             inlaw = ''
 
         if gender_b == gen.lib.Person.MALE:
-            rel_str = self.get_uncle(1, typestr, inlaw)
+            rel_str = self._get_uncle(1, typestr, inlaw)
         elif gender_b == gen.lib.Person.FEMALE:
-            rel_str = self.get_aunt(1, typestr, inlaw)
+            rel_str = self._get_aunt(1, typestr, inlaw)
         else:
-            rel_str = self.get_sibling(1, typestr, inlaw)
+            rel_str = self._get_sibling(1, typestr, inlaw)
         return rel_str
 
     def get_partner_relationship_string(self, spouse_type, gender_a, gender_b):
@@ -1830,7 +1937,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                     rel =  (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(j, i,
                                     gen.lib.Person.MALE, 
-                                    gen.lib.Person.FEMALE,
+                                    gen.lib.Person.MALE,
                                     relstra, relstrb,
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), j, i )
@@ -1862,7 +1969,7 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                     rel = (FMT + ' |info:   male, Ga=%2d, Gb=%2d') % (
                                     rc.get_single_relationship_string(i, j,
                                     gen.lib.Person.MALE, 
-                                    gen.lib.Person.FEMALE,
+                                    gen.lib.Person.MALE,
                                     relstra, relstrb,
                                     only_birth=onlybirth, 
                                     in_law_a=inlawa, in_law_b=inlawb), i, j)

@@ -253,8 +253,9 @@ class ComprehensiveAncestorsReport (Report):
                     if self.gp:
                         break
 
-                relstring = self.relationship.get_grandparents_string (self.start_person,
-                               self.database.get_person_from_handle(self.gp))[0]
+                relstring = self.relationship.get_grandparents_string(
+                                self.start_person,
+                                self.database.get_person_from_handle(self.gp))
                 heading = _("%(name)s's maternal %(grandparents)s") % \
                           { 'name': self.first_name_or_nick (self.start_person),
                             'grandparents': relstring }
@@ -278,8 +279,9 @@ class ComprehensiveAncestorsReport (Report):
 
                 if paternal_known:
                     self.doc.start_paragraph ("AR-Heading")
-                    relstring = self.relationship.get_grandparents_string (self.start_person,
-                                                                           self.database.get_person_from_handle(self.gp))[0]
+                    relstring = self.relationship.get_grandparents_string(
+                                 self.start_person,
+                                 self.database.get_person_from_handle(self.gp))
                     if thisgen == 2:
                         heading = _("%(name)s's %(parents)s") % \
                                   { 'name': self.first_name_or_nick (self.start_person),
