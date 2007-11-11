@@ -1,3 +1,13 @@
+2007-11-10 Jim Sack <jgsack@san.rr.com>
+	* src/GrampsDbUtils/_WriteGrdb.py: missing parent in import
+	* src/GrampsDbUtils/test/_GrampsDbWRFactories_test.py: added unittest
+	The _WriteGrdb problem wasn't encountered until now, because the
+	import is buried in a function (of_GrampsDbWRFactories)  that doesn't 
+	always get exercised. A unit test was added to test the calling module
+	by verifying those imports within functions.
+	(belated CL entry for r9320 change made 11-07)
+
+
 2007-11-10 Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/IndivComplete.py: added support for printing non-primary,
 	non-family events.
