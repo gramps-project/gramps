@@ -1,3 +1,7 @@
+2007-11-10 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/rel_nl.py: inlaw children are allowed
+	* src/Relationship.py: inlaw children are allowed
+
 2007-11-10 Jim Sack <jgsack@san.rr.com>
 	* src/GrampsDbUtils/_WriteGrdb.py: missing parent in import
 	* src/GrampsDbUtils/test/_GrampsDbWRFactories_test.py: added unittest

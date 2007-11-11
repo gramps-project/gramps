@@ -196,25 +196,25 @@ _ouder_level = [ "",
                   "%s%sedelstamoudouder (generatie 29)" ]
 
 _son_level = [ "",
-               "%szoon",
-               "%skleinzoon",
-               "%sachterkleinzoon", 
-               "%sachterachterkleinzoon",
-               "%sachterachterachterkleinzoon"]
+               "%s%szoon",
+               "%s%skleinzoon",
+               "%s%sachterkleinzoon", 
+               "%s%sachterachterkleinzoon",
+               "%s%sachterachterachterkleinzoon"]
 
 _daughter_level = [ "",
-                    "%sdochter",
-                    "%skleindochter",
-                    "%sachterkleindochter",
-                    "%sachterachterkleindochter",
-                    "%sachterachterachterkleindochter"]
+                    "%s%sdochter",
+                    "%s%skleindochter",
+                    "%s%sachterkleindochter",
+                    "%s%sachterachterkleindochter",
+                    "%s%sachterachterachterkleindochter"]
 
 _kind_level = [ "",
-                "%skind",
-                "%skleinkind",
-                "%sachterkleinkind",
-                "%sachterachterkleinkind",
-                "%sachterachterachterkleinkind"]
+                "%s%skind",
+                "%s%skleinkind",
+                "%s%sachterkleinkind",
+                "%s%sachterachterkleinkind",
+                "%s%sachterachterachterkleinkind"]
 
 _nephew_level = [ "",
                   "%s%sneef",
@@ -268,48 +268,51 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return _father_level[level] % (inlaw, step)
 
-    def _get_son(self, level, step=''):
+    def _get_son(self, level, step='', inlaw=''):
         """Internal Dutch method to create relation string
         """
         if level < len(_son_level):
-            return _son_level[level]  % step
+            return _son_level[level]  % (inlaw, step)
         else:
-            return "verre %sachterkleinzoon (%d generaties)" % (step, level)
+            return "verre %s%sachterkleinzoon (%d generaties)" % (inlaw,
+                                                                  step, level)
 
     def _get_mother(self,level, step='', inlaw=''):
         """Internal Dutch method to create relation string
         """
         if level > len(_mother_level)-1:
-            return "verre voormoeder (%d generaties)"  % (inlaw, step, level)
+            return "verre %s%svoormoeder (%d generaties)"  % (inlaw, step, level)
         else:
             return _mother_level[level] % (inlaw, step)
 
-    def _get_daughter(self, level, step=''):
+    def _get_daughter(self, level, step='', inlaw=''):
         """Internal Dutch method to create relation string
         """
         if level > len(_daughter_level)-1:
-            return "verre %sachterkleindochter (%d generaties)" % (step, level)
+            return "verre %s%sachterkleindochter (%d generaties)" % (inlaw, 
+                                                                   step, level)
         else:
-            return _daughter_level[level]  % step
+            return _daughter_level[level]  % (inlaw, step)
 
     def _get_parent_unknown(self, level, step='', inlaw=''):
         """Internal Dutch method to create relation string
         """
         if level > len(_ouder_level)-1:
-            return "verre voorouder (%d generaties)"  % (inlaw, step, level)
+            return "verre %s%svoorouder (%d generaties)"  % (inlaw, step, level)
         elif level == 1:
             return _mother_level[level] % (inlaw, step) + ' of ' + \
                     _father_level[level] % (inlaw, step)
         else:
             return _ouder_level[level] % (inlaw, step)
 
-    def _get_child_unknown(self, level, step=''):
+    def _get_child_unknown(self, level, step='', inlaw=''):
         """Internal Dutch method to create relation string
         """
         if level > len(_kind_level)-1:
-            return "ver %sachterkleinkind (%d generaties)" % (step, level)
+            return "ver %s%sachterkleinkind (%d generaties)" % (inlaw, step, 
+                                                                level)
         else:
-            return _kind_level[level]  % step
+            return _kind_level[level]  % (inlaw, step)
 
     def _get_aunt(self, level, removed, step='', inlaw=''):
         """Internal Dutch method to create relation string
@@ -472,11 +475,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 else:
                     rel_str = 'aangetrouwde stiefzoon of dochter'
             elif gender_b == gen.lib.Person.MALE:
-                rel_str = self._get_son(Gb, step)
+                rel_str = self._get_son(Gb, step, inlaw)
             elif gender_b == gen.lib.Person.FEMALE:
-                rel_str = self._get_daughter(Gb, step)
+                rel_str = self._get_daughter(Gb, step, inlaw)
             else:
-                rel_str = self._get_child_unknown(Gb, step)
+                rel_str = self._get_child_unknown(Gb, step, inlaw)
         elif Ga > Gb:
             #b is higher in the branch, in english uncle/aunt or 
             #cousin up, in dutch always 'oom/tante'
@@ -550,8 +553,8 @@ register_relcalc(RelationshipCalculator,
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
-    #    export PYTHONPATH=/path/to/gramps/src python 
-    #    src/plugins/rel_nl.py
+    #    export PYTHONPATH=/path/to/gramps/src
+    #    python src/plugins/rel_nl.py
     
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
