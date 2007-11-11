@@ -43,6 +43,7 @@ import sys
 import getopt
 from gettext import gettext as _
 import logging
+import glob
 
 #-------------------------------------------------------------------------
 #
@@ -60,6 +61,17 @@ import Utils
 
 from PluginUtils import Tool, cl_list, cli_tool_list
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
+
+
+def _rm_files(dirpath, pattern="*"):
+    """ Remove files in a directory which match the pattern 
+    
+    The optional pattern can use shell-style wildcards
+    
+    """
+    for fpath in glob.glob(os.path.join(dirpath, pattern)):
+        if os.path.isfile(fpath):
+            os.remove(fpath)
 
 #-------------------------------------------------------------------------
 # ArgHandler
@@ -106,6 +118,8 @@ class ArgHandler:
         self.imports = []
 
         self.parse_args()
+
+    
 
     #-------------------------------------------------------------------------
     # Argument parser: sorts out given arguments
@@ -406,10 +420,8 @@ class ArgHandler:
                     % self.impdir_path 
                 sys.exit(1)
             # and clean it up before use
-            files = os.listdir(self.impdir_path) ;
-            for fn in files:
-                if os.path.isfile(os.path.join(self.impdir_path,fn)):
-                    os.remove(os.path.join(self.impdir_path,fn))
+            _rm_files(self.impdir_path)
+            _rm_files(self.imp_db_path)
 
             self.vm.db_loader.read_file(self.imp_db_path,const.APP_GRAMPS)
 
@@ -435,13 +447,10 @@ class ArgHandler:
                 self.cl_export(expt[0],expt[1])
 
             print "Cleaning up."
-            # remove import db subdir after use
+            # remove files in import db subdir after use
             self.state.db.close()
             if self.imports:
-                import glob
-                for f in glob.glob(os.path.join(self.imp_db_path, "*")):
-                    os.remove(f)
-                os.rmdir(self.imp_db_path)
+                _rm_files(self.imp_db_path)
             print "Exiting."
             sys.exit(0)
 

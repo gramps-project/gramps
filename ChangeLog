@@ -1,3 +1,8 @@
+2007-11-11 Jim Sack <jgsack@san.rr.com>
+	* src/ArgHandler.py: remove leftovers from prior CLI crash (#1358)
+	* src/test/gramps_cli_test.py: add test for this bug 
+	This bug only affected CLI, and only showed after CLI crasvn 
+
 2007-11-10 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/rel_nl.py: inlaw children are allowed
 	* src/Relationship.py: inlaw children are allowed

@@ -7,7 +7,7 @@ import re
 from test import test_util as tu
 
 pdir = tu.path_append_parent()
-ddir = tu.make_subdir( __file__ + ".data")
+ddir = tu.make_subdir( "cli_test_data")
 
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
@@ -37,7 +37,6 @@ class Test(unittest.TestCase):
         s.assertFalse(os.path.exists(out_ged), 
             "NO out file %r yet" % out_ged)
  
-
     # This tests the fix for bug #1331-1334
     # read trivial gedcom input, write gedcom output
     def test2_exec_CLI(s):
@@ -51,6 +50,28 @@ class Test(unittest.TestCase):
         content = open(ofile).read()
         g = re.search("INDI", content)
         s.assertTrue(g, "found 'INDI' in output file")
+
+    # this verifies that files in the "import dir" 
+    # get cleaned before (and after) running a CLI
+    # (eg cleanout stale files from prior crash-runs)
+    def test3_files_in_import_dir(s):
+        import const
+        idir = os.path.join(const.HOME_DIR,"import")
+        ddir = os.path.join(idir, "import_db.grdb")
+        bogofiles = [os.path.join(ddir,fn) 
+            for fn in ("family.db", "lock")]
+        for fn in bogofiles:
+            f = open(fn, "w").write("garbage")
+        
+        # ~same as test 2
+        ifile = min1r
+        ofile = out_ged
+        gcmd = "./gramps.py -i%s -o%s" % (ifile, ofile)
+        rc = os.system("cd %s &&  python %s" % (pdir, gcmd)) 
+        s.assertEquals(rc,0, tu.msg(rc,0, "executed CLI cmmand %r" % gcmd))
+
+        for fn in bogofiles:
+            s.assertFalse(os.path.exists(fn))
 
 
 if __name__ == "__main__":
