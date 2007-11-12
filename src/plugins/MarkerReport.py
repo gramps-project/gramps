@@ -476,7 +476,7 @@ class MarkerOptions(ReportOptions):
                                                    MarkerType._CUSTOM,
                                                    marker_index)
         
-        dialog.add_option('Marker',self.marker_menu)
+        dialog.add_option(_('Marker'),self.marker_menu)
 
     def parse_user_options(self,dialog):
         """
