@@ -1,3 +1,7 @@
+2007-11-12 Gary Burton <gary.burton@zen.co.uk>
+	* src/ScratchPad.py: fixed a crash when building tooltip. Not enough
+	place holders in format string
+
 2007-11-12 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/_PersonView.py: translation: Edit object, not menu with action|_Edit
 	* src/PageView.py: translation: Edit object, not menu with action|_Edit

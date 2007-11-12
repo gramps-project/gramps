@@ -755,6 +755,7 @@ class ScratchSourceLink(ScratchPadWrapper):
         s = "<big><b>%s</b></big>\n\n"\
             "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
             "\t<b>%s:</b>\t%s" % (
             _("Source Link"),
             _("Title"),escape(base.get_title()),
