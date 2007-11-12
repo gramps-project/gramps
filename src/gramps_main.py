@@ -134,6 +134,7 @@ def register_stock_icons ():
     # they should be ported in the near future
     items_legacy = [
          ('gramps-export', _('Export'), gtk.gdk.CONTROL_MASK, 0, ''), 
+         ('gramps-import', _('Import'), gtk.gdk.CONTROL_MASK, 0, ''),
          ('gramps-undo-history', _('Undo History'), gtk.gdk.CONTROL_MASK, 0, ''), 
          ('gramps-url', _('URL'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ]

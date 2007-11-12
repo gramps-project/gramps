@@ -221,13 +221,13 @@ class DbLoader:
                 self.uistate.window)
             if not warn_dialog.run():
                 return False
-        
+
         choose = gtk.FileChooserDialog(
             _('GRAMPS: Import database'), 
             self.uistate.window, 
             gtk.FILE_CHOOSER_ACTION_OPEN, 
             (gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+             'gramps-import',gtk.RESPONSE_OK))
         choose.set_local_only(False)
 
         # Always add automatic (macth all files) filter

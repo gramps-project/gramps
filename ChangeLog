@@ -1,3 +1,8 @@
+2007-11-12 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/images/gramps-import.png : import image
+	* src/gramps_main.py: register import image
+	* src/DbLoader.py: Use import not open in import dialog, issue #396
+
 2007-11-11 Jim Sack <jgsack@san.rr.com>
 	* src/GrampsDbUtils/_WriteGedcom.py: fix #1364 s/SGLS/SLGS/
 	Fixes 3.0 trunk. same issue exists in 2.2.x to be fixed next
