@@ -1,4 +1,8 @@
 2007-11-11 Jim Sack <jgsack@san.rr.com>
+	* src/GrampsDbUtils/_WriteGedcom.py: fix #1364 s/SGLS/SLGS/
+	Fixes 3.0 trunk. same issue exists in 2.2.x to be fixed next
+
+2007-11-11 Jim Sack <jgsack@san.rr.com>
 	* src/ArgHandler.py: remove leftovers from prior CLI crash (#1358)
 	* src/test/gramps_cli_test.py: add test for this bug 
 	This bug only affected CLI, and only showed after CLI crasvn 

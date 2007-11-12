@@ -88,7 +88,7 @@ LDS_ORD_NAME = {
     gen.lib.LdsOrd.BAPTISM         : 'BAPL', 
     gen.lib.LdsOrd.ENDOWMENT       : 'ENDL', 
     gen.lib.LdsOrd.SEAL_TO_PARENTS : 'SLGC', 
-    gen.lib.LdsOrd.SEAL_TO_SPOUSE  : 'SGLS', 
+    gen.lib.LdsOrd.SEAL_TO_SPOUSE  : 'SLGS', 
     gen.lib.LdsOrd.CONFIRMATION    : 'CONL', 
     }
 
@@ -598,7 +598,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
     def __lds_ords(self, obj, level):
         """
         Simply loop through the list of LDS ordinances, and call the function 
-        that write the LDS oridinance structure.
+        that write the LDS ordinance structure.
         """
         for lds_ord in obj.get_lds_ord_list():
             self.write_ord(lds_ord, level)
