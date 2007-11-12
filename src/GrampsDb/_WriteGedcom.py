@@ -124,7 +124,7 @@ lds_ord_name = {
     RelLib.LdsOrd.BAPTISM         : 'BAPL',
     RelLib.LdsOrd.ENDOWMENT       : 'ENDL',
     RelLib.LdsOrd.SEAL_TO_PARENTS : 'SLGC',
-    RelLib.LdsOrd.SEAL_TO_SPOUSE  : 'SGLS',
+    RelLib.LdsOrd.SEAL_TO_SPOUSE  : 'SLGS',
     RelLib.LdsOrd.CONFIRMATION    : 'CONL',
     }
 
