@@ -61,6 +61,7 @@ import Errors
 import Config
 import const
 import gen.utils
+from TransUtils import sgettext as _s
 
 from Editors import EditPerson
 from Filters import SearchBar
@@ -148,7 +149,7 @@ class PersonView(PageView.PersonNavView):
         self.all_action.add_actions([
                 ('OpenAllNodes', None, _("Expand all nodes"), None, None, 
                  self.open_all_nodes), 
-                ('Edit', gtk.STOCK_EDIT, _("_Edit"), "<control>Return", 
+                ('Edit', gtk.STOCK_EDIT, _s("action|_Edit"), "<control>Return", 
                  _("Edit the selected person"), self.edit), 
                 ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
                  self.close_all_nodes), 

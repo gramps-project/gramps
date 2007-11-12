@@ -1,4 +1,9 @@
 2007-11-12 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/_PersonView.py: translation: Edit object, not menu with action|_Edit
+	* src/PageView.py: translation: Edit object, not menu with action|_Edit
+	issue #1370
+
+2007-11-12 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ViewManager.py: use import image
 
 2007-11-12 Benny Malengier <benny.malengier@gramps-project.org>
