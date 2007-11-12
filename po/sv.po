@@ -1,4 +1,4 @@
-# translation of svny.po to Svenska
+# translation of sv.po to Svenska
 # translation of sv.po to
 # -*- coding: utf-8 -*-
 # Svenska meddelanden i Gramps.
@@ -28,10 +28,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: svny\n"
+"Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-10 23:43-0700\n"
-"PO-Revision-Date: 2007-10-11 10:22+0200\n"
+"PO-Revision-Date: 2007-11-12 20:44+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -10803,11 +10803,11 @@ msgstr "Vuxendop"
 
 #: ../src/RelLib/_EventType.py:94
 msgid "Bar Mitzvah"
-msgstr "Bar mitsva"
+msgstr "Bar mitzva"
 
 #: ../src/RelLib/_EventType.py:95
 msgid "Bas Mitzvah"
-msgstr "Bat mitsva"
+msgstr "Bat mitzva"
 
 #: ../src/RelLib/_EventType.py:96
 msgid "Blessing"
@@ -10827,7 +10827,7 @@ msgstr "Folkräkning"
 
 #: ../src/RelLib/_EventType.py:100
 msgid "Christening"
-msgstr "Kristning"
+msgstr "Barndop"
 
 #: ../src/RelLib/_EventType.py:102
 msgid "Cremation"
@@ -10835,7 +10835,7 @@ msgstr "Kremering"
 
 #: ../src/RelLib/_EventType.py:103
 msgid "Degree"
-msgstr "Examen"
+msgstr "Examen - utbildningsnivå"
 
 #: ../src/RelLib/_EventType.py:104
 msgid "Education"
@@ -13958,10 +13958,12 @@ msgid "Search for sources"
 msgstr "Leta efter källor"
 
 #: ../src/plugins/unused.glade.h:10
+#, fuzzy
 msgid "gtk-find"
 msgstr "gtk-find"
 
 #: ../src/plugins/unused.glade.h:11
+#, fuzzy
 msgid "gtk-remove"
 msgstr "gtk-remove"
 
