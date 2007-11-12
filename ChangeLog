@@ -1,4 +1,7 @@
 2007-11-12 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ViewManager.py: use import image
+
+2007-11-12 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/images/gramps-import.png : import image
 	* src/gramps_main.py: register import image
 	* src/DbLoader.py: Use import not open in import dialog, issue #396

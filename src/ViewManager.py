@@ -453,7 +453,7 @@ class ViewManager:
         self._action_action_list = [
             ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "<alt>s", 
              _("Open the ScratchPad dialog"), self.scratchpad), 
-            ('Import', gtk.STOCK_CONVERT, _('_Import'), "<control>i", None, 
+            ('Import', 'gramps-import', _('_Import'), "<control>i", None, 
              self.import_data), 
             ('Tools', 'gramps-tools', _('_Tools'), None, 
              _("Open the tools dialog"), self.tools_clicked), 
