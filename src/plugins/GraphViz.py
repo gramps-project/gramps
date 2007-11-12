@@ -789,7 +789,7 @@ class GraphVizOptions(ReportOptions):
         if filter_index > len(filter_list):
             filter_index = 0
         self.filter_menu.set_active(filter_index)
-        dialog.add_option('Filter',self.filter_menu)
+        dialog.add_option(_('Filter'),self.filter_menu)
 
         # Content options tab
         msg = _("Include Birth, Marriage and Death dates")

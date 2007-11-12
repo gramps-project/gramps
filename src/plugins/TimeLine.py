@@ -425,7 +425,7 @@ class TimeLineOptions(ReportOptions):
         if filter_index > len(filter_list):
             filter_index = 0
         self.filter_menu.set_active(filter_index)
-        dialog.add_option('Filter',self.filter_menu)
+        dialog.add_option(_('Filter'),self.filter_menu)
         
         self.sort_menu = gtk.combo_box_new_text()
 
