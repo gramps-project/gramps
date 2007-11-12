@@ -30,10 +30,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: sv99\n"
+"Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-30 10:13+0100\n"
-"PO-Revision-Date: 2007-10-30 11:11+0100\n"
+"PO-Revision-Date: 2007-11-12 21:18+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6566,7 +6566,7 @@ msgstr "Rapport för oavslutade släktband"
 
 #: ../src/plugins/EndOfLineReport.py:298
 msgid "Produces a textual end of line report"
-msgstr "Skapar en texttrogen rapport för oavslutade släktband"
+msgstr "Skapar en textrapport för oavslutade släktband"
 
 #: ../src/plugins/Eval.py:59 ../src/plugins/Eval.py:129
 msgid "Python evaluation window"
@@ -13486,11 +13486,11 @@ msgstr "Dop"
 
 #: ../src/gen/lib/eventtype.py:94
 msgid "Bar Mitzvah"
-msgstr "Bar mitsva"
+msgstr "Bar mitzva"
 
 #: ../src/gen/lib/eventtype.py:95
 msgid "Bas Mitzvah"
-msgstr "Bat mitsva"
+msgstr "Bat mitzva"
 
 #: ../src/gen/lib/eventtype.py:96
 msgid "Blessing"
@@ -13510,7 +13510,7 @@ msgstr "Folkräkning"
 
 #: ../src/gen/lib/eventtype.py:100
 msgid "Christening"
-msgstr "Dop"
+msgstr "Barndop"
 
 #: ../src/gen/lib/eventtype.py:101 ../src/gen/lib/ldsord.py:93
 msgid "Confirmation"
@@ -13522,7 +13522,7 @@ msgstr "Kremering"
 
 #: ../src/gen/lib/eventtype.py:103
 msgid "Degree"
-msgstr "Examen"
+msgstr "Examen - utbildningsnivå"
 
 #: ../src/gen/lib/eventtype.py:104
 msgid "Education"
