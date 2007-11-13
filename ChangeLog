@@ -1,3 +1,7 @@
+2007-11-13 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/GraphViz.py: issue #1362, code generation should not show
+	open with ghostview, ..., instead show app with text/plain.
+
 2007-11-12 Gary Burton <gary.burton@zen.co.uk>
 	* src/ScratchPad.py: fixed a crash when building tooltip. Not enough
 	place holders in format string
