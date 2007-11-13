@@ -29,7 +29,7 @@ Handles the Tip of the Day dialog
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from xml.parsers.expat import ParserCreate
+from xml.parsers.expat import ParserCreate,ExpatError
 from xml.sax.saxutils import escape
 from random import Random
 from gettext import gettext as _
@@ -50,6 +50,7 @@ import gtk
 import const
 import Config
 import ManagedWindow
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -79,7 +80,14 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         close = xml.get_widget('close')
         close.connect("clicked", self.close_cb)
         
-        tparser = TipParser()
+        try:
+            tparser = TipParser()
+        except (IOError,ExpatError), e:
+            self.close()
+            ErrorDialog(
+                _("Failed to display tip of the day"),
+                _("Unable to read the tips from external file.\n\n%s")%e)
+            return
         self.tip_list = tparser.get()
 
         self.new_index = range(len(self.tip_list))

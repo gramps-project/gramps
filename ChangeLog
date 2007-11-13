@@ -1,3 +1,6 @@
+2007-11-13 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/TipOfDay.py: Catch exceptions when parsing the tips file.
+
 2007-11-12 Gary Burton <gary.burton@zen.co.uk>
 	* src/ScratchPad.py: fixed a crash when building tooltip. Not enough
 	place holders in format string
