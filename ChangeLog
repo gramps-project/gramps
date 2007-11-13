@@ -1,3 +1,11 @@
+2007-11-13 Jim Sack <jgsack@san.rr.com>
+	* src/test/regrtest.py: undo removal of module imports in scan-for-tests
+	* src/GrampsDbUtils/test/_GrampsDbWRFactories_test.py: minor improve.
+	* src/GrampsDbUtils/test/_GedcomChar_test.py: add tests for utf8
+	The regrtest had a unwise "optimization" that actually broke the
+	..Factories test. A comment was left in place where the un-doing was
+	done because it seems like a good thing to document.
+
 2007-11-13 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/TipOfDay.py: Catch exceptions when parsing the tips file.
 

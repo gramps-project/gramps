@@ -31,9 +31,12 @@ def gen_chars(filename, encoding):
     """write generic test chars as given file and encoding"""
     if not os.path.exists(filename):
         codecs.open(filename, "wb", encoding).write(utest_chars)
-    
+
+###
 class Test1_ansi(unittest.TestCase):
+    """Test original "ANSI" reader and codecs: latin, cp1252"""
     enc = "latin-1"
+    cp = "cp1252"
     fil = os.path.join(cdir,enc)
     exp  = utest_chars
     
@@ -50,7 +53,13 @@ class Test1_ansi(unittest.TestCase):
         got=codecs.open(s.fil, encoding=s.enc).read()
         s.assertEquals(got,s.exp, m(got,s.exp, "using codec %s" % s.enc))
 
+    def test1c_read_codec_cp1252(s):
+        got=codecs.open(s.fil, encoding=s.cp).read()
+        s.assertEquals(got,s.exp, m(got,s.exp, "using codec %s" % s.cp))
+
+###
 class Test2_ansel(unittest.TestCase):
+    """Test original AnselReader (later: ansel codec)"""
     enc = "ansel"
     afil = os.path.join(cdir,enc)
     exp  = a2u
@@ -63,7 +72,91 @@ class Test2_ansel(unittest.TestCase):
         ra = G.AnselReader(f)
         got = ra.readline()
         s.assertEquals(got,s.exp, m(got,s.exp, "AnselReader"))
-       
+
+###
+class Test3(unittest.TestCase):
+    """Test otriginal UTF8Reader and codecs: utf_8, utf_8_sig 
+    with no 'BOM' (sig) in input (the common case) 
+
+    out of curiosity, verify behavior reading a 1-byte file
+    """
+    enc = "utf_8"
+    enc_sig = enc + "_sig"
+    ufil = os.path.join(cdir, "chars.utf8")
+    f1byte = os.path.join(cdir, "1byte")
+    exp  = utest_chars
+    
+    def setUp(s):
+        gen_chars(s.ufil, s.enc)
+        if not os.path.exists(s.f1byte):
+            open(s.f1byte, "wb").write("1")
+ 
+    def test3a_u8_UTF8Reader_NO_BOM_sig(s):
+        f=open(s.ufil)
+        ra=G.UTF8Reader(f)
+        g = ra.readline()
+        s.assertEquals(g,s.exp, m(g,s.exp, "orig UTF8Reader"))
+        r2 = G.UTF8Reader(open(s.f1byte))
+        g = r2.readline()
+        s.assertEquals(g,"1", 
+            m(g,"1", "read 1-byte file"))
+  
+    # NB: utf_8 reads data and never expects a BOM-sig
+    def test3b_utf8_codec_NO_BOM_sig_as_expected(s):
+        g=codecs.open(s.ufil, encoding=s.enc).read()
+        s.assertEquals(g,s.exp, m(g,s.exp, "codec utf8"))
+        g=codecs.open(s.f1byte, encoding=s.enc).read()
+        s.assertEquals(g,"1", m(g,"1", "codec utf8"))
+  
+    # NB: utf_8_sig reads data even absent a BOM-sig (GOOD!)
+    def test3c_utf8_sig_codec_NO_BOM_sig_tolerated_GOOD(s):
+        g=codecs.open(s.ufil, encoding=s.enc_sig).read()
+        s.assertEquals(g,s.exp, 
+            m(g,s.exp, "codec utf_8_sig NO sig input"))
+        g=codecs.open(s.f1byte, encoding=s.enc_sig).read()
+        s.assertEquals(g,"1", 
+            m(g,"1", "codec utf_8_sig NO sig input"))
+
+###
+class Test4(unittest.TestCase):
+    """Test otriginal UTF8Reader and codecs: utf_8, utf_8_sig
+    with 'BOM' (sig) in input (uncommon, [some?] MS Windows only?) 
+    """
+    enc = "utf_8"
+    enc_sig = enc + "_sig"
+    ufil = os.path.join(cdir, "chars.utf8_sig")
+    exp  = utest_chars
+    
+    def setUp(s):
+        gen_chars(s.ufil, s.enc_sig)
+ 
+    def test4a_u8_UTF8Reader_WITH_BOM_sig(s):
+        f=open(s.ufil)
+        ra=G.UTF8Reader(f)
+        g = ra.readline()
+        s.assertEquals(g,s.exp, m(g,s.exp, "orig UTF8Reader"))
+   
+    # utf_8 reads an initial BOM-sig as data -- oops, pity
+    #  write the test to verify this known codec behavior 
+    # ==> Recommend: do not use utf8 as input codec (use utf_8_sig)
+    def test4b_utf8_codec_WITH_BOM_sig_reads_as_data_PITY(s):
+        g=codecs.open(s.ufil, encoding=s.enc).read()
+        e0=u'\ufeff'
+        s.assertEquals(g[0], e0, 
+            m(g[0],e0, "codec utf8 reads 'BOM'-sig as data" ))
+        g = g[1:]
+        s.assertEquals(g,s.exp, 
+            m(g,s.exp, "codec utf8 reads rest of data ok"))
+  
+    # utf_8_sig reads and ignores the BOM-sig
+    def test4c_utf8_sig_codec_WITH_BOM_sig_as_expected(s):
+        g=codecs.open(s.ufil, encoding=s.enc_sig).read()
+        s.assertEquals(g,s.exp, 
+            m(g,s.exp, "codec utf_8_sig NO sig input"))
+
+###
+
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,7 +2,7 @@
 import unittest
 
 from test import test_util as tu
-tu.path_append_parent()
+par = tu.path_append_parent()
 
 ###
 class Test1(unittest.TestCase):
@@ -13,6 +13,9 @@ class Test1(unittest.TestCase):
 
     """
     def test1a_buried_imports(s):
+        import sys
+        s.assertTrue(par in sys.path, 
+            "par %r has to be in path!" % par)
         ilist = (
             "_WriteGrdb",
             "_WriteXML",

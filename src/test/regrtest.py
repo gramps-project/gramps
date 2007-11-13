@@ -80,7 +80,8 @@ def getTestSuites(loc=gramps_root):
     paths = [(path,files) for path,dirs,files in os.walk(loc) \
         if test_mod(path,dirs) and match_mod(files)] 
 
-    oldpath = list(sys.path)
+    ## NO -- see explanation below
+    ##  oldpath = list(sys.path)
     for (dir,test_modules) in paths:
         sys.path.append(dir)
 
@@ -96,8 +97,16 @@ def getTestSuites(loc=gramps_root):
                 perf_suites.append(mod.perfSuite())
             except:
                 pass
-        # remove temporary paths added
-        sys.path = list(oldpath)
+        # NO: was: remove temporary paths added 
+        # this seems like it should be reasonable,
+        # but it causes failure in _GrampsDbWRFactories_test.py
+        #  (I suspect it is an actual bug in the runner
+        #   but the easiest fix is to keep the imports,
+        #   which is what other loaders seem to do)
+        # ==>  this aspect of test frameworks is *hard*
+        ## NO -- do NOT:
+        ## remove temporary paths added
+        ## sys.path = list(oldpath)
     return (test_suites,perf_suites)
 
     
