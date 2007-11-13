@@ -1,3 +1,7 @@
+2007-11-13 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/GraphViz.py: issue #1362, code generation should not show
+	open with ghostview, ..., instead show app with text/plain.
+
 2007-11-13 Jim Sack <jgsack@san.rr.com>
 	* src/test/regrtest.py: undo removal of module imports in scan-for-tests
 	* src/GrampsDbUtils/test/_GrampsDbWRFactories_test.py: minor improve.

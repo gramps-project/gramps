@@ -363,6 +363,9 @@ GRAMPS - Relationship graph
 
 Generated on %s.
 
+More info:
+http://www.gramps-project.org/wiki/index.php?title=Howto:_Make_a_relationship_chart
+
 Report content options:
   include URLs       : %s
           IDs        : %s
@@ -1081,6 +1084,12 @@ class GraphVizDialog(ReportDialog):
     def make_report(self):
         """Create the object that will produce the GraphViz file."""
         GraphViz(self.database,self.person,self.options_class)
+        if self.print_report.get_active ():
+            try:
+                app = Mime.get_application("text/plain")[0]
+                Utils.launch(app,self.options_class.get_output())
+            except:
+                pass
 
 #------------------------------------------------------------------------
 #
@@ -1119,7 +1128,7 @@ class FormatComboBox(gtk.ComboBox):
         return '.dot'
 
     def get_printable(self):
-        _apptype = _options.formats[self.get_active()][3]
+        _apptype = "text/plain"
         print_label = None
         try:
             mprog = Mime.get_application(_apptype)
