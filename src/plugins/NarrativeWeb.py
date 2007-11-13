@@ -2754,9 +2754,9 @@ class WebReportOptions(ReportOptions):
         self.include_gallery.set_active(self.options_dict['NWEBgallery'])
 
         self.living = gtk.combo_box_new_text()
-        self.living.append_text("Exclude")
-        self.living.append_text("Restrict")
-        self.living.append_text("Include")
+        self.living.append_text(_("Exclude"))
+        self.living.append_text(_("Restrict"))
+        self.living.append_text(_("Include"))
         self.living.set_active(self.options_dict['NWEBlivinginfo'])
         
         self.restrict_years = gtk.SpinButton(gtk.Adjustment(1,0,100,1))

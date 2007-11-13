@@ -1,3 +1,7 @@
+2007-11-13  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: Fix 0001369: Cannot translate (LivingProxy) 
+	references on NarrativeWeb dialog
+
 2007-11-13 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/GraphViz.py: issue #1362, code generation should not show
 	open with ghostview, ..., instead show app with text/plain.
