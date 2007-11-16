@@ -244,7 +244,7 @@
 		<widget class="GtkLabel" id="label436">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_Gender:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -323,7 +323,7 @@
 		<widget class="GtkLabel" id="label437">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_ID:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -351,7 +351,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label269">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">T_ype:</property>
+		  <property name="label" translatable="yes">_Type:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -560,7 +560,7 @@
 		<widget class="GtkLabel" id="label443">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_Marker:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -589,7 +589,7 @@
 		<widget class="GtkLabel" id="label444">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_Call Name:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>

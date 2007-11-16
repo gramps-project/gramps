@@ -305,7 +305,7 @@
 		<widget class="GtkLabel" id="label658">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_ID:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -1646,7 +1646,7 @@
 		<widget class="GtkLabel" id="label655">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_ID:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -5008,7 +5008,7 @@
 			<widget class="GtkLabel" id="label129">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_Path:</property>
-			  <property name="use_underline">False</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
 			  <property name="wrap">False</property>
@@ -5037,7 +5037,7 @@
 			<widget class="GtkLabel" id="label132">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_ID:</property>
-			  <property name="use_underline">False</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
 			  <property name="wrap">False</property>
@@ -5066,7 +5066,7 @@
 			<widget class="GtkLabel" id="label126">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_Title:</property>
-			  <property name="use_underline">False</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
 			  <property name="wrap">False</property>
@@ -5255,7 +5255,7 @@
 			<widget class="GtkLabel" id="label660">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_Type:</property>
-			  <property name="use_underline">False</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -5548,7 +5548,7 @@
 		    <widget class="GtkLabel" id="label181">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_ID:</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
 		      <property name="wrap">False</property>
@@ -7186,7 +7186,7 @@
 		<widget class="GtkLabel" id="label656">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_ID:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -7375,6 +7375,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+                  <property name="mnemonic_widget">attr_menu</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -8682,7 +8683,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label594">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">T_ype:</property>
+		  <property name="label" translatable="yes">_Type:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -8823,7 +8824,7 @@
 		<widget class="GtkLabel" id="label654">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">_Call Name:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -10228,7 +10229,7 @@
 		    <widget class="GtkLabel" id="label633">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_ID:</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -11801,7 +11802,7 @@ Very High</property>
 		    <widget class="GtkLabel" id="label611">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_ID:</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -12468,7 +12469,7 @@ Very High</property>
 			<widget class="GtkLabel" id="label634">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">_ID:</property>
-			  <property name="use_underline">False</property>
+			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -12863,7 +12864,7 @@ Very High</property>
 		<widget class="GtkLabel" id="label646">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes">LDS _Temple:</property>
-		  <property name="use_underline">False</property>
+		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
@@ -14643,7 +14644,7 @@ Very High</property>
 		    <widget class="GtkLabel" id="label661">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Format definition details</property>
-		      <property name="use_underline">True</property>
+		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -15413,7 +15414,7 @@ Very High</property>
 			    <widget class="GtkLabel" id="label715">
 			      <property name="visible">True</property>
 			      <property name="label" translatable="yes">_Spelling:</property>
-			      <property name="use_underline">False</property>
+			      <property name="use_underline">True</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_LEFT</property>
 			      <property name="wrap">False</property>
@@ -15484,7 +15485,7 @@ Very High</property>
 		    <widget class="GtkLabel" id="label707">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Type:</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -15529,7 +15530,7 @@ Very High</property>
 		    <widget class="GtkLabel" id="label708">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_ID:</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -15579,7 +15580,7 @@ Very High</property>
 		    <widget class="GtkLabel" id="label709">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">_Marker:</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -15608,7 +15609,7 @@ Very High</property>
 		    <widget class="GtkCheckButton" id="format">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">Preformatted</property>
+		      <property name="label" translatable="yes">_Preformatted</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -15689,8 +15690,8 @@ Very High</property>
 	  <child>
 	    <widget class="GtkLabel" id="label715">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;b&gt;_Note&lt;/b&gt;</property>
-	      <property name="use_underline">True</property>
+	      <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
+	      <property name="use_underline">False</property>
 	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
 	      <property name="wrap">False</property>
@@ -15798,7 +15799,7 @@ Very High</property>
 			<widget class="GtkLabel" id="label710">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">Close Window</property>
-			  <property name="use_underline">True</property>
+			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
@@ -15873,7 +15874,7 @@ Very High</property>
 			<widget class="GtkLabel" id="label713">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">Load Family Tree</property>
-			  <property name="use_underline">True</property>
+			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
 			  <property name="wrap">False</property>
