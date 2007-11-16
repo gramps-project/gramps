@@ -931,7 +931,7 @@ class ListView(BookMarkView):
 
         self._add_action_group(self.edit_action)
 
-        self._add_action('Edit', gtk.STOCK_EDIT, _s("action|_Edit"), 
+        self._add_action('Edit', gtk.STOCK_EDIT, _("action|_Edit"), 
                          accel="<control>Return", 
                          tip=self.EDIT_MSG, 
                          callback=self.edit)
