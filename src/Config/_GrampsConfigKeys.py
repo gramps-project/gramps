@@ -97,6 +97,10 @@ SOURCE_WIDTH         = ('interface', 'source-width', 1)
 SOURCE_REF_HEIGHT    = ('interface', 'source-ref-height', 1)
 SOURCE_REF_WIDTH     = ('interface', 'source-ref-width', 1)
 FILTER               = ('interface', 'filter', 0)
+PEDVIEW_TREESIZE     = ('interface', 'pedview-tree-size', 1)
+PEDVIEW_LAYOUT       = ('interface', 'pedview-layout', 1)
+PEDVIEW_SHOW_MARRIAGE= ('interface', 'pedview-show-marriage', 0)
+PEDVIEW_SHOW_IMAGES  = ('interface', 'pedview-show-images', 0)
 DATABASE_PATH        = ('behavior', 'database-path', 2)
 FPREFIX              = ('preferences', 'fprefix', 2)
 EPREFIX              = ('preferences', 'eprefix', 2)
@@ -206,6 +210,10 @@ default_value = {
     SOURCE_REF_HEIGHT    : 450, 
     SOURCE_REF_WIDTH     : 600, 
     FILTER               : False, 
+    PEDVIEW_TREESIZE     : 0,
+    PEDVIEW_LAYOUT       : 0,
+    PEDVIEW_SHOW_MARRIAGE: False,
+    PEDVIEW_SHOW_IMAGES  : True,
     DATABASE_PATH        : '~/.gramps/grampsdb', 
     FPREFIX              : 'F%04d', 
     EPREFIX              : 'E%04d', 
