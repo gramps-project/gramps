@@ -304,7 +304,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label658">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">ID:</property>
+		  <property name="label" translatable="yes">_ID:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -314,6 +314,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+                  <property name="mnemonic_widget">gid</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -1220,7 +1221,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label229">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">ID:</property>
+		      <property name="label" translatable="yes">_ID:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1271,7 +1272,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label202">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Type:</property>
+		      <property name="label" translatable="yes">_Type:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1281,6 +1282,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+                      <property name="mnemonic_widget">marriage_type</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -1299,7 +1301,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label590">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Marker:</property>
+		      <property name="label" translatable="yes">_Marker:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1309,6 +1311,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">marker</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -1533,7 +1536,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label244">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Place Name:</property>
+		  <property name="label" translatable="yes">_Place Name:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -1572,6 +1575,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">lat_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -1600,6 +1604,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		   <property name="mnemonic_widget">lon_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -1640,7 +1645,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label655">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">ID:</property>
+		  <property name="label" translatable="yes">_ID:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1650,6 +1655,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">gid</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -5001,7 +5007,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label129">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Path:</property>
+			  <property name="label" translatable="yes">_Path:</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5011,6 +5017,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">path</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -5029,7 +5036,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label132">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">ID:</property>
+			  <property name="label" translatable="yes">_ID:</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5039,6 +5046,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">gid</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -5057,7 +5065,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label126">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Title:</property>
+			  <property name="label" translatable="yes">_Title:</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5067,6 +5075,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">description</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -5245,7 +5254,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label660">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Type:</property>
+			  <property name="label" translatable="yes">_Type:</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -5255,6 +5264,7 @@
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">type</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -5537,7 +5547,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label181">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">ID:</property>
+		      <property name="label" translatable="yes">_ID:</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -5547,6 +5557,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">gid</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -5604,6 +5615,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">date_edit</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -6902,6 +6914,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">date_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -7172,7 +7185,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label656">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">ID:</property>
+		  <property name="label" translatable="yes">_ID:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -7182,6 +7195,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">gid</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -8185,6 +8199,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">type</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -8677,6 +8692,7 @@
 		  <property name="yalign">0</property>
 		  <property name="xpad">1</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">name_type</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -8806,7 +8822,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label654">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Call Name:</property>
+		  <property name="label" translatable="yes">_Call Name:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -8816,6 +8832,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">call</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -8922,6 +8939,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">sort_as</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -8953,6 +8971,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">display_as</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -9030,6 +9049,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">date_stat</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -10146,6 +10166,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">repository_type</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -10206,7 +10227,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label633">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">ID:</property>
+		      <property name="label" translatable="yes">_ID:</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -10216,6 +10237,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">gid</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -10441,6 +10463,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">3</property>
+		  <property name="mnemonic_widget">eer_role_combo</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -10646,6 +10669,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">eer_date_entry</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -11275,6 +11299,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">date_stat</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -11567,7 +11592,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label604">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Author:</property>
+		      <property name="label" translatable="yes">_Author:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -11596,7 +11621,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label606">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Abbreviation:</property>
+		      <property name="label" translatable="yes">A_bbreviation:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -11625,7 +11650,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label607">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Publication Information:</property>
+		      <property name="label" translatable="yes">_Publication Information:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -11775,7 +11800,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label611">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">ID:</property>
+		      <property name="label" translatable="yes">_ID:</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -12124,6 +12149,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">media_type</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -12343,6 +12369,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">repo_type</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -12440,7 +12467,7 @@ Very High</property>
 		      <child>
 			<widget class="GtkLabel" id="label634">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">ID:</property>
+			  <property name="label" translatable="yes">_ID:</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -12450,6 +12477,7 @@ Very High</property>
 			  <property name="yalign">0.5</property>
 			  <property name="xpad">0</property>
 			  <property name="ypad">0</property>
+			  <property name="mnemonic_widget">gid</property>
 			  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			  <property name="width_chars">-1</property>
 			  <property name="single_line_mode">False</property>
@@ -12729,6 +12757,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">date_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -12747,7 +12776,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkLabel" id="label639">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Place:</property>
+		  <property name="label" translatable="yes">_Place:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -12833,7 +12862,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkLabel" id="label646">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">LDS Temple:</property>
+		  <property name="label" translatable="yes">LDS _Temple:</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -12843,6 +12872,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">temple</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -12971,6 +13001,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">status</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -13288,6 +13319,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">date_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -13810,6 +13842,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+		  <property name="mnemonic_widget">person</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -14092,6 +14125,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+                  <property name="mnemonic_widget">frel</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -14120,6 +14154,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+                  <property name="mnemonic_widget">mrel</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -14607,7 +14642,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label661">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Format definition d_etails</property>
+		      <property name="label" translatable="yes">Format definition details</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -14649,6 +14684,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
+                  <property name="mnemonic_widget">example_label</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -15376,7 +15412,7 @@ Very High</property>
 			  <child>
 			    <widget class="GtkLabel" id="label715">
 			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Spelling:</property>
+			      <property name="label" translatable="yes">_Spelling:</property>
 			      <property name="use_underline">False</property>
 			      <property name="use_markup">False</property>
 			      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -15386,6 +15422,7 @@ Very High</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
+                              <property name="mnemonic_widget">spell</property>
 			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			      <property name="width_chars">-1</property>
 			      <property name="single_line_mode">False</property>
@@ -15446,7 +15483,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label707">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Type:</property>
+		      <property name="label" translatable="yes">_Type:</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -15456,6 +15493,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+                      <property name="mnemonic_widget">type</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -15490,7 +15528,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label708">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">ID:</property>
+		      <property name="label" translatable="yes">_ID:</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -15500,6 +15538,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+                      <property name="mnemonic_widget">id</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -15539,7 +15578,7 @@ Very High</property>
 		  <child>
 		    <widget class="GtkLabel" id="label709">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Marker:</property>
+		      <property name="label" translatable="yes">_Marker:</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -15549,6 +15588,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+                      <property name="mnemonic_widget">marker</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>

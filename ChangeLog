@@ -1,3 +1,8 @@
+2007-11-16  Jerome Rapinat <romjerome@yahoo.fr>
+	* src/glade/gramps.glade: correct mnemonic_widget
+	* src/glade/edit_person.glade: correct mnemonic_widget
+	ticket #1367
+
 2007-11-16 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/Config/_GrampsConfigKeys.py: Add keys for the PedigreeView
 	* src/DataViews/_PedigreeView.py: Remember tree settings in config
