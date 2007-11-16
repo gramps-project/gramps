@@ -1,3 +1,11 @@
+﻿2007-11-16 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	Trying to fix unicode filename handling on Windows. Patch ported from 2.2.
+	* src/Utils.py: add get_unicode_path()
+	* src/ArgHandler.py: use Utils.get_unicode_path()
+	* src/AddMedia.py: use Utils.get_unicode_path()
+	* src/DbLoader.py: use Utils.get_unicode_path()
+	* src/Editors/_EditMedia.py: use Utils.get_unicode_path()
+
 2007-11-16  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/glade/gramps.glade: correct mnemonic_widget
 	* src/glade/edit_person.glade: correct mnemonic_widget

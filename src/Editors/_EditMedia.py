@@ -46,6 +46,7 @@ import Config
 import gen.lib
 import Mime
 import ThumbNails
+import Utils
 from _EditPrimary import EditPrimary
 
 from GrampsWidgets import *
@@ -126,7 +127,7 @@ class EditMedia(EditPrimary):
         
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ThumbNails.get_thumbnail_image(self.obj.get_path(),mtype)
+            pb = ThumbNails.get_thumbnail_image(Utils.find_file(self.obj.get_path()),mtype)
             pixmap.set_from_pixbuf(pb)
             ebox.connect('button-press-event', self.button_press_event)
             descr = Mime.get_description(mtype)
@@ -214,8 +215,7 @@ class EditMedia(EditPrimary):
 
         status = f.run()
         if status == gtk.RESPONSE_OK:
-            self.file_path.set_text(unicode(f.get_filename(),
-                                            sys.getfilesystemencoding()))
+            self.file_path.set_text(Utils.get_unicode_path(f.get_filename()))
         f.destroy()
         
     def setup_filepath(self):
@@ -223,7 +223,7 @@ class EditMedia(EditPrimary):
         self.file_path = self.glade.get_widget("path")
         
         if self.obj.get_mime_type():
-            fname = self.obj.get_path()
+            fname = Utils.get_unicode_path(self.obj.get_path())
             self.file_path.set_text(fname)
             self.select.connect('clicked', self.select_file)
         else:
@@ -235,11 +235,11 @@ class EditMedia(EditPrimary):
         path = self.glade.get_widget('path').get_text()
 
         if path != self.obj.get_path():
-            mime = Mime.get_type(os.path.abspath(path))
+            mime = Mime.get_type(Utils.find_file(os.path.abspath(path)))
             self.obj.set_mime_type(mime)
 
         if self.obj.get_mime_type():
-            self.obj.set_path(path)
+            self.obj.set_path(Utils.get_unicode_path(path))
 
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)

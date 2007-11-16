@@ -151,9 +151,8 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
                 msgstr2 = _("The filename supplied could not be found.")
                 ErrorDialog(msgstr, msgstr2)
                 return
-            
-            filename = unicode(self.file_text.get_filename(),
-                               sys.getfilesystemencoding())
+
+            filename = Utils.get_unicode_path(self.file_text.get_filename())
             full_file = filename
 
             if self.relpath.get_active():
@@ -197,7 +196,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         fname = self.file_text.get_filename()
         if not fname:
             return
-        filename = unicode(fname, sys.getfilesystemencoding())
+        filename = Utils.get_unicode_path(fname)
         basename = os.path.basename(filename)
         (root, ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())
