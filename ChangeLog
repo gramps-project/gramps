@@ -1,4 +1,7 @@
-﻿2007-11-16 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+2007-11-16  Jerome Rapinat <romjerome@yahoo.fr>
+	* src/plugins/rel_pt.py: import gen.lib
+
+2007-11-16 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	Trying to fix unicode filename handling on Windows. Patch ported from 2.2.
 	* src/Utils.py: add get_unicode_path()
 	* src/ArgHandler.py: use Utils.get_unicode_path()
