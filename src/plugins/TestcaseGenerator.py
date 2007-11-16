@@ -53,8 +53,6 @@ import const
 import Utils
 import LdsUtils
 from QuestionDialog import ErrorDialog
-from DateHandler import parser as _dp
-from DateHandler import displayer as _dd
 
 #-------------------------------------------------------------------------
 #
@@ -137,10 +135,6 @@ class TestcaseGenerator(Tool.Tool):
         self.check_bugs.set_active( self.options.handler.options_dict['bugs'])
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
-        self.check_dates = gtk.CheckButton( _("Generate date tests"))
-        self.check_dates.set_active( self.options.handler.options_dict['dates'])
-        self.top.vbox.pack_start(self.check_dates,0,0,5)
-
         self.check_persons = gtk.CheckButton( _("Generate dummy families"))
         self.check_persons.set_active( self.options.handler.options_dict['persons'])
         self.top.vbox.pack_start(self.check_persons,0,0,5)
@@ -177,8 +171,6 @@ class TestcaseGenerator(Tool.Tool):
         response = self.top.run()
         self.options.handler.options_dict['bugs']  = int(
             self.check_bugs.get_active())
-        self.options.handler.options_dict['dates']  = int(
-            self.check_dates.get_active())
         self.options.handler.options_dict['persons']  = int(
             self.check_persons.get_active())
         self.options.handler.options_dict['no_trans']  = int(
@@ -342,9 +334,6 @@ class TestcaseGenerator(Tool.Tool):
         if self.options.handler.options_dict['bugs']:
             self.generate_broken_relations()
         
-        if self.options.handler.options_dict['dates']:
-            self.generate_date_tests()
-
         if self.options.handler.options_dict['persons']:
             while True:
                 if not self.persons_todo:
@@ -628,136 +617,6 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
 
-    def generate_date_tests(self):
-        dates = []
-        # first some valid dates
-        calendar = gen.lib.Date.CAL_GREGORIAN
-        for quality in (gen.lib.Date.QUAL_NONE, gen.lib.Date.QUAL_ESTIMATED,
-                        gen.lib.Date.QUAL_CALCULATED):
-            for modifier in (gen.lib.Date.MOD_NONE, gen.lib.Date.MOD_BEFORE,
-                             gen.lib.Date.MOD_AFTER, gen.lib.Date.MOD_ABOUT):
-                for slash1 in (False,True):
-                    d = gen.lib.Date()
-                    d.set(quality,modifier,calendar,(4,7,1789,slash1),"Text comment")
-                    dates.append( d)
-            for modifier in (gen.lib.Date.MOD_RANGE, gen.lib.Date.MOD_SPAN):
-                for slash1 in (False,True):
-                    for slash2 in (False,True):
-                        d = gen.lib.Date()
-                        d.set(quality,modifier,calendar,(4,7,1789,slash1,5,8,1876,slash2),"Text comment")
-                        dates.append( d)
-            modifier = gen.lib.Date.MOD_TEXTONLY
-            d = gen.lib.Date()
-            d.set(quality,modifier,calendar,gen.lib.Date.EMPTY,
-                  "This is a textual date")
-            dates.append( d)
-        
-        # test invalid dates
-        dateval = (4,7,1789,False,5,8,1876,False)
-        for l in range(1,len(dateval)):
-            d = gen.lib.Date()
-            try:
-                d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_NONE,
-                      gen.lib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-                dates.append( d)
-            except Errors.DateError, e:
-                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-                dates.append( d)
-            except:
-                d = gen.lib.Date()
-                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                dates.append( d)
-        for l in range(1,len(dateval)):
-            d = gen.lib.Date()
-            try:
-                d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_SPAN,gen.lib.Date.CAL_GREGORIAN,dateval[:l],"Text comment")
-                dates.append( d)
-            except Errors.DateError, e:
-                d.set_as_text("Date identified value correctly as invalid.\n%s" % e)
-                dates.append( d)
-            except:
-                d = gen.lib.Date()
-                d.set_as_text("Date.set Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                dates.append( d)
-        d = gen.lib.Date()
-        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_NONE,
-              gen.lib.Date.CAL_GREGORIAN,(44,7,1789,False),"Text comment")
-        dates.append( d)
-        d = gen.lib.Date()
-        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_NONE,
-              gen.lib.Date.CAL_GREGORIAN,(4,77,1789,False),"Text comment")
-        dates.append( d)
-        d = gen.lib.Date()
-        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_SPAN,
-              gen.lib.Date.CAL_GREGORIAN,
-              (4,7,1789,False,55,8,1876,False),"Text comment")
-        dates.append( d)
-        d = gen.lib.Date()
-        d.set(gen.lib.Date.QUAL_NONE,gen.lib.Date.MOD_SPAN,
-              gen.lib.Date.CAL_GREGORIAN,
-              (4,7,1789,False,5,88,1876,False),"Text comment")
-        dates.append( d)
-        
-        # now add them as birth to new persons
-        i = 1
-        for dateval in dates:
-            person = gen.lib.Person()
-            name = gen.lib.Name()
-            name.set_surname("DateTest")
-            name.set_first_name("Test %d" % i)
-            person.set_primary_name( name)
-            self.db.add_person(person,self.trans)
-            bevent = gen.lib.Event()
-            bevent.set_type(gen.lib.EventType.BIRTH)
-            bevent.set_date_object(dateval)
-            bevent_h = self.db.add_event(bevent,self.trans)
-            self.generated_events.append(bevent_h)
-            bevent_ref = gen.lib.EventRef()
-            bevent_ref.set_reference_handle(bevent_h)
-            # for the death event display the date as text and parse it back to a new date
-            ndate = None
-            try:
-                datestr = _dd.display( dateval)
-                try:
-                    ndate = _dp.parse( datestr)
-                    if not ndate:
-                        ndate = gen.lib.Date()
-                        ndate.set_as_text("DateParser None")
-                        person.set_marker(gen.lib.MarkerType.TODO_TYPE)
-                    else:
-                        person.set_marker(gen.lib.MarkerType.COMPLETE)
-                except:
-                    ndate = gen.lib.Date()
-                    ndate.set_as_text("DateParser Exception %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                    person.set_marker(gen.lib.MarkerType.TODO_TYPE)
-            except:
-                ndate = gen.lib.Date()
-                ndate.set_as_text("DateDisplay Exception: %s" % ("".join(traceback.format_exception(*sys.exc_info())),))
-                person.set_marker(gen.lib.MarkerType.TODO_TYPE)
-            
-            if dateval.get_modifier() != gen.lib.Date.MOD_TEXTONLY \
-                   and ndate.get_modifier() == gen.lib.Date.MOD_TEXTONLY:
-                # parser was unable to correctly parse the string
-                ndate.set_as_text( "TEXTONLY: "+ndate.get_text())
-                person.set_marker(gen.lib.MarkerType.TODO_TYPE)
-            if dateval.get_modifier() == gen.lib.Date.MOD_TEXTONLY \
-                    and dateval.get_text().count("Traceback") \
-                    and person.get_marker() == gen.lib.MarkerType.COMPLETE:
-                person.set_marker(gen.lib.MarkerType.TODO_TYPE)
-            
-            devent = gen.lib.Event()
-            devent.set_type(gen.lib.EventType.DEATH)
-            devent.set_date_object(ndate)
-            devent_h = self.db.add_event(devent,self.trans)
-            self.generated_events.append(devent_h)
-            devent_ref = gen.lib.EventRef()
-            devent_ref.set_reference_handle(devent_h)
-            person.set_birth_ref(bevent_ref)
-            person.set_death_ref(devent_ref)
-            self.db.commit_person(person,self.trans)
-            i = i + 1
-        self.commit_transaction()   # COMMIT TRANSACTION STEP
-    
     def generate_person(self,gender=None,lastname=None,note=None, alive_in_year=None):
         if not self.cli:
             self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.options.handler.options_dict['person_count'])))
@@ -1488,7 +1347,6 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
         # Options specific for this report
         self.options_dict = {
             'bugs'          : 0,
-            'dates'         : 1,
             'persons'       : 1,
             'person_count'  : 2000,
             'no_trans'      : 0,
@@ -1501,10 +1359,6 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
             'bugs'          : ("=0/1",
                                 "Whether to create invalid database references.",
                                 ["Skip test","Create invalid Database references"],
-                                True),
-            'dates'         : ("=0/1",
-                                "Whether to create test for date handling.",
-                                ["Skip test","Create date tests"],
                                 True),
             'persons'       : ("=0/1",
                                 "Whether to create a bunch of dummy persons",
