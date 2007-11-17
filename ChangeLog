@@ -1,9 +1,13 @@
+2007-11-16  Stéphane Charette <stephanecharette@gmail.com>
+	* src/plugins/NarrativeWeb.py: issue #1381, no need to print
+	"Confidence" on every reference line if it is "Normal"
+
 2007-11-16  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/plugins/rel_pt.py: import gen.lib
 
 2007-11-16 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	Trying to fix unicode filename handling on Windows. Patch ported from 2.2.
-	* src/Utils.py: add get_unicode_path()
+ 	* src/Utils.py: add get_unicode_path()
 	* src/ArgHandler.py: use Utils.get_unicode_path()
 	* src/AddMedia.py: use Utils.get_unicode_path()
 	* src/DbLoader.py: use Utils.get_unicode_path()

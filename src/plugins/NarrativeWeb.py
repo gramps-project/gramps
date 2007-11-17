@@ -543,14 +543,11 @@ class BasePage:
             of.write('</td></tr>\n')
 
             for key,sref in citation.get_ref_list():
-                of.write('\t<tr><td></td>')
-                of.write('<td class="field">')
-                of.write('<a name="sref%d%s">' % (cindex,key))
-                of.write('</a>%d%s.</td>' % (cindex,key))
-                of.write('<td>')
 
                 tmp = []
                 confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
+                if confidence == _('Normal'):
+                    confidence = None
                 for (label,data) in [(_('Date'),_dd.display(sref.date)),
                                      (_('Page'),sref.page),
                                      (_('Confidence'),confidence)]:
@@ -561,9 +558,14 @@ class BasePage:
                     note = self.db.get_note_from_handle(notehandle)
                     tmp.append("%s: %s" % (_('Text'),note.get(True)))
                 if len(tmp) > 0:
+                    of.write('\t<tr><td></td>')
+                    of.write('<td class="field">')
+                    of.write('<a name="sref%d%s">' % (cindex,key))
+                    of.write('</a>%d%s.</td>' % (cindex,key))
+                    of.write('<td>')
                     of.write('<br />'.join(tmp))
-                of.write('<p/>')
-                of.write('</td></tr>\n')
+                    of.write('<p/>')
+                    of.write('</td></tr>\n')
         of.write('</table>\n')
         of.write('</div>\n')
 
