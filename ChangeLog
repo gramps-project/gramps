@@ -4,6 +4,8 @@
 
 2007-11-16  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/plugins/rel_pt.py: import gen.lib
+        * src/DataViews/_PersonView.py: typo on gettext context
+	* src/PageView.py: typo on gettext context
 
 2007-11-16 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	Trying to fix unicode filename handling on Windows. Patch ported from 2.2.
