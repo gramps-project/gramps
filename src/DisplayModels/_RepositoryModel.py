@@ -107,9 +107,9 @@ class RepositoryModel(BaseModel):
 
     def column_city(self,data):
         try:
-            if data[4]:
+            if data[5]:
                 addr = gen.lib.Address()
-                addr.unserialize(data[4][0])
+                addr.unserialize(data[5][0])
                 return addr.get_city()
             else:
                 return u''

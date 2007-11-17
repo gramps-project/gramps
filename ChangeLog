@@ -1,3 +1,6 @@
+2007-11-17 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DisplayModels/_RepositoryModel.py: Properly display the city
+
 2007-11-16  Stéphane Charette <stephanecharette@gmail.com>
 	* src/plugins/NarrativeWeb.py: issue #1381, no need to print
 	"Confidence" on every reference line if it is "Normal"
