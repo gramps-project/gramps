@@ -1,3 +1,7 @@
+2007-11-18  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py: Fix 0001361: Web report: Directory name 
+	conflicts
+
 2007-11-17 Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/DisplayModels/_RepositoryModel.py: Properly display the city
 

@@ -228,9 +228,7 @@ class BasePage:
         return of
 
     def link_path(self,name,path):
-         path = "%s/%s/%s" % (path,name[0],name[1])
-         if os.sys.platform == "win32":
-             path = path.lower()
+         path = "%s/%s/%s" % (path,name[0].lower(),name[1].lower())
          path = self.build_name(path,name)
          return path
 
@@ -241,9 +239,9 @@ class BasePage:
             of = codecs.EncodedFile(self.string_io,'utf-8',
                                     self.encoding,'xmlcharrefreplace')
         else:
-            dirname = os.path.join(self.html_dir,path,name[0],name[1])
-            if os.sys.platform == "win32":
-                dirname = dirname.lower()
+            dirname = os.path.join(self.html_dir,
+                                   path,name[0].lower(),
+                                   name[1].lower())
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
             page_name = self.build_name(dirname,name)
@@ -592,13 +590,11 @@ class BasePage:
     def build_path(self,handle,dirroot,up=False):
         path = ""
         if up:
-            path = '../../../%s/%s/%s' % (dirroot,handle[0],handle[1])
+            path = '../../../%s/%s/%s' % (dirroot,
+                                          handle[0].lower(),
+                                          handle[1].lower())
         else:
-            path = "%s/%s/%s" % (dirroot,handle[0],handle[1])
-        
-        if os.sys.platform == "win32":
-            path = path.lower()
-                              
+            path = "%s/%s/%s" % (dirroot,handle[0].lower(),handle[1].lower())           
         return path
             
     def build_name(self,path,base):
