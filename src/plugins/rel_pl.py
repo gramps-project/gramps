@@ -490,6 +490,33 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
         return (firstRel,secondRel,common,firstList,secondList)
 
+    def __apply_filter_old(self, db, person, rel_str, plist, pmap, depth=1):
+        """ DEPRECATED -- DO NOT USE
+                copied here from Relationship.py as no longer needed elsewhere
+        """
+        if person == None or depth > MAX_DEPTH:
+            return
+        depth += 1
+        plist.append(person.handle)
+        pmap[person.handle] = rel_str  # ?? this overwrites if person is double!
+
+        family_handle = person.get_main_parents_family_handle()
+        try:
+            if family_handle:
+                family = db.get_family_from_handle(family_handle)
+                fhandle = family.father_handle
+                if fhandle:
+                    father = db.get_person_from_handle(fhandle)
+                    self.__apply_filter_old(db, father, rel_str+'f', plist, pmap,
+                                        depth)
+                mhandle = family.mother_handle
+                if mhandle:
+                    mother = db.get_person_from_handle(mhandle)
+                    self.__apply_filter_old(db, mother, rel_str+'m', plist, pmap,
+                                        depth)
+        except:
+            return
+
     def get_relationship(self,db,orig_person,other_person):
         """
         Returns a string representing the relationshp between the two people,

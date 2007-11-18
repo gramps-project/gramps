@@ -459,7 +459,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif Ga == 0:
             #a is descendant
             if Gb == 1 and inlaw and not step:
-                #inlaw children only exist up to first level:
                 if gender_b == gen.lib.Person.MALE:
                     rel_str = 'schoonzoon'
                 elif gender_b == gen.lib.Person.FEMALE:

@@ -30,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 
-import RelLib
+import gen.lib
 import Relationship
 import types
 from gettext import gettext as _

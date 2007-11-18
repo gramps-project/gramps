@@ -616,32 +616,6 @@ class RelationshipCalculator:
                         orig.get_gender(), other.get_gender())
         else:
             return None
-
-    def __apply_filter_old(self, db, person, rel_str, plist, pmap, depth=1):
-        """ DEPRECATED -- DO NOT USE
-        """
-        if person == None or depth > MAX_DEPTH:
-            return
-        depth += 1
-        plist.append(person.handle)
-        pmap[person.handle] = rel_str  # ?? this overwrites if person is double!
-
-        family_handle = person.get_main_parents_family_handle()
-        try:
-            if family_handle:
-                family = db.get_family_from_handle(family_handle)
-                fhandle = family.father_handle
-                if fhandle:
-                    father = db.get_person_from_handle(fhandle)
-                    self.__apply_filter_old(db, father, rel_str+'f', plist, pmap,
-                                        depth)
-                mhandle = family.mother_handle
-                if mhandle:
-                    mother = db.get_person_from_handle(mhandle)
-                    self.__apply_filter_old(db, mother, rel_str+'m', plist, pmap,
-                                        depth)
-        except:
-            return
         
     def get_relationship_distance(self, db, orig_person, other_person):
         """
@@ -759,6 +733,7 @@ class RelationshipCalculator:
         self.__all_families = all_families
         self.__all_dist = all_dist
         self.__only_birth = only_birth
+        self.__crosslinks = False    # no crosslinks
         
         firstRel   = -1
         secondRel  = -1
@@ -776,10 +751,7 @@ class RelationshipCalculator:
         try:
             self.__apply_filter(db, orig_person, '', [], firstMap)
             self.__apply_filter(db, other_person, '', [], secondMap,
-                                    stoprecursemap = firstMap, 
-                                    store_all=False)
-##            print firstMap
-##            print secondMap
+                                    stoprecursemap = firstMap)
         except RuntimeError:
             return (-1,None,-1,[],-1,[] ) , \
                             [_("Relationship loop detected")] + self.__msg
@@ -788,15 +760,15 @@ class RelationshipCalculator:
             if firstMap.has_key(person_handle) :
                 com = []
                 #a common ancestor
-                for rel1,fam1 in zip(firstMap[person_handle][0],
+                for rel1, fam1 in zip(firstMap[person_handle][0],
                                         firstMap[person_handle][1]):
                     l1 = len(rel1)
-                    for rel2,fam2 in zip(secondMap[person_handle][0], 
+                    for rel2, fam2 in zip(secondMap[person_handle][0], 
                                         secondMap[person_handle][1]):
                         l2 = len(rel2)
                         #collect paths to arrive at common ancestor
-                        com.append((l1+l2,person_handle,rel1,fam1,
-                                                        rel2,fam2))
+                        com.append((l1+l2, person_handle, rel1, fam1,
+                                                          rel2, fam2))
                 #insert common ancestor in correct position,
                 #  if shorter links, check if not subset
                 #  if longer links, check if not superset
@@ -828,7 +800,7 @@ class RelationshipCalculator:
                             if rel1new == rel1[:len(rel1new)] and \
                                     rel2new == rel2[:len(rel2new)] :
                                 deletelist.append(index)
-                                index += 1
+                            index += 1
                         deletelist.reverse()
                         for index in deletelist:
                             del common[index]  
@@ -837,8 +809,6 @@ class RelationshipCalculator:
             self.__msg += [_('Family tree reaches back more than the maximum '
                         '%d generations searched.\nIt is possible that '
                         'relationships have been missed') % (max_depth)]
-        
-##        print 'common list :', common
 
         if common and not self.__all_dist :
             rank          = common[0][0]
@@ -859,13 +829,18 @@ class RelationshipCalculator:
             return [(-1,None,'',[],'',[])], self.__msg
     
     def __apply_filter(self, db, person, rel_str, rel_fam, pmap,
-                            depth=1, stoprecursemap=None, store_all=True):
-        '''We recursively add parents of person in pmap with correct rel_str, 
-            if store_all. If store_all false, only store parents if in the
-            stoprecursemap.
-            Stop recursion if parent is in the stoprecursemap (no need to 
-            look parents of otherpers if done so already for origpers)
-            store pers
+                            depth=1, stoprecursemap=None):
+        '''Typically this method is called recursively in two ways:
+            First method is stoprecursemap= None 
+            In this case a recursemap is builded by storing all data.
+            
+            Second method is with a stoprecursemap given
+            In this case parents are recursively looked up. If present in 
+            stoprecursemap, a common ancestor is found, and the method can 
+            stop looking further. If however self.__crosslinks == True, the data
+            of first contains loops, and parents
+            will be looked up anyway an stored if common. At end the doubles
+            are filtered out
         '''
         if person == None or not person.handle :
             return
@@ -878,14 +853,20 @@ class RelationshipCalculator:
         depth += 1
         
         commonancestor = False
-        if stoprecursemap and stoprecursemap.has_key(person.handle) :
-            commonancestor = True
+        store = True                            #normally we store all parents
+        if stoprecursemap:
+            store = False                       #but not if a stop map given
+            if stoprecursemap.has_key(person.handle):
+                commonancestor = True
+                store = True
 
         #add person to the map, take into account that person can be obtained 
         #from different sides 
-        if pmap.has_key(person.handle) :
+        if pmap.has_key(person.handle):
             #person is already a grandparent in another branch, we already have
-            # had lookup of all parents
+            # had lookup of all parents, we call that a crosslink
+            if not stoprecursemap:
+                self.__crosslinks = True
             pmap[person.handle][0] += [rel_str]
             pmap[person.handle][1] += [rel_fam]
             #check if there is no loop father son of his son, ...
@@ -901,29 +882,28 @@ class RelationshipCalculator:
                                 (person.get_primary_name().get_name(),
                                  rel2[len(rel1):])]
                         return
-        elif store_all or commonancestor:
+        elif store:
             pmap[person.handle] = [[rel_str],[rel_fam]]
             
         #having added person to the pmap, we only look up recursively to 
         # parents if this person is not common relative
-        if commonancestor :
-##            print 'common ancestor found'
+        # if however the first map has crosslinks, we need to continue reduced
+        if commonancestor and not self.__crosslinks :
+            #don't continue search, great speedup!
             return 
 
         family_handles = []
         main = person.get_main_parents_family_handle()
-##        print 'main',main
         if main :
             family_handles = [main]
         if self.__all_families :
-            family_handles = person.get_parent_family_handle_list()    
-##            print 'all_families', family_handles
+            family_handles = person.get_parent_family_handle_list() 
             
         try:
             parentstodo = {}
             fam = 0
             for family_handle in family_handles :
-                rel_fam_new = rel_fam +[fam]
+                rel_fam_new = rel_fam + [fam]
                 family = db.get_family_from_handle(family_handle)
                 #obtain childref for this person
                 childrel = [(ref.get_mother_relation(), 
@@ -982,8 +962,7 @@ class RelationshipCalculator:
                 data = parentstodo[handle]
                 self.__apply_filter(db, data[0],
                                 data[1], data[2],
-                                pmap, depth, stoprecursemap, store_all)
-
+                                pmap, depth, stoprecursemap)
         except:
             import traceback
             print traceback.print_exc()
@@ -1021,11 +1000,13 @@ class RelationshipCalculator:
             relfamfirst = relation[3][:]
             relfamsec = relation[5][:]
             #handle pure sibling:
+            rela2 = relation[2]
+            rela4 = relation[4]
             if relation[2] and relation[2][-1] == self.REL_SIBLING:
                 #sibling will be the unique common ancestor, 
                 #change to a family with unknown handle for common ancestor
-                relation[2] = relation[2][:-1] + self.REL_FAM_BIRTH
-                relation[4] = relation[4] + self.REL_FAM_BIRTH
+                rela2 = relation[2][:-1] + self.REL_FAM_BIRTH
+                rela4 = relation[4] + self.REL_FAM_BIRTH
                 relfamsec = relfamsec + [relfamfirst[-1]]
                 relstrsec = relation[4][:-1]
                 commonhandle = []
@@ -1052,7 +1033,6 @@ class RelationshipCalculator:
             else:
                 familypaths.append((relstrfirst, relstrsec,
                                     relfamfirst, relfamsec))
-            ##print 'resulting fam path', familypaths
             for familypath in familypaths:
                 #familypath = (relstrfirst, relstrsec, relfamfirst, relfamsec)
                 try:
@@ -1062,28 +1042,58 @@ class RelationshipCalculator:
                 #if relstr is '', the ancestor is unique, if posfam None, 
                 # first time we see this family path
                 if (posfam is not None and relstrfirst is not None and 
-                    relstrsec is not None):
+                        relstrsec is not None):
                     #we already have a common ancestor of this family, just add the
                     #other, setting correct family relation
                     tmp = commonnew[posfam]
-                    frstcomstr = relation[2][-1]
+                    frstcomstr = rela2[-1]
                     scndcomstr = tmp[2][-1]
                     newcomstra = self.famrel_from_persrel(frstcomstr, scndcomstr)
-                    frstcomstr = relation[4][-1]
+                    frstcomstr = rela4[-1]
                     scndcomstr = tmp[4][-1]
                     newcomstrb = self.famrel_from_persrel(frstcomstr, scndcomstr)
 
                     commonnew[posfam] = (tmp[0], tmp[1]+commonhandle, 
-                                 relation[2][:-1]+newcomstra, 
-                                 tmp[3], relation[4][:-1]+newcomstrb,
+                                 rela2[:-1]+newcomstra, 
+                                 tmp[3], rela4[:-1]+newcomstrb,
                                  tmp[5])
                 else :
                     existing_path.append(familypath)
-                    commonnew.append((relation[0], commonhandle, relation[2],
-                                    relfamfirst, relation[4], relfamsec) 
-                                    )   
-        ##print 'commonnew', commonnew
-        return commonnew
+                    commonnew.append((relation[0], commonhandle, rela2,
+                                    familypath[2], rela4, familypath[3]) 
+                                    )
+        #we now have multiple person handles, single families, now collapse
+        #  families again if all else equal
+        collapsed = commonnew[:1]
+        for rel in commonnew[1:]:
+            found = False
+            for newrel in collapsed:
+                if newrel[0:3] == rel[0:3] and newrel[4] == rel[4]:
+                    #another familypath to arrive at same result, merge
+                    path1 = []
+                    path2 = []
+                    for a, b in zip(newrel[3], rel[3]):
+                        if a == b:
+                            path1.append(a)
+                        elif isinstance(a, list):
+                            path1.append(a.append(b))
+                        else:
+                            path1.append([a, b])
+                    for a, b in zip(newrel[5], rel[5]):
+                        if a == b:
+                            path2.append(a)
+                        elif isinstance(a, list):
+                            path2.append(a.append(b))
+                        else:
+                            path2.append([a, b])
+                    newrel[3][:] = path1[:]
+                    newrel[5][:] = path2[:]
+                    found = True
+                    break
+            if not found:
+                collapsed.append(rel)
+        
+        return collapsed
 
     def famrel_from_persrel(self, persrela, persrelb):
         """ Conversion from eg 'f' and 'm' to 'a', so relation to the two 
@@ -1161,8 +1171,9 @@ class RelationshipCalculator:
                 return ('', -1, -1)
             else:
                 return ''
-        
+
         data = self.collapse_relations(data)
+
         #most relevant relationship is a birth family relation of lowest rank
         databest = [data[0]]
         rankbest = data[0][0]
@@ -1248,7 +1259,73 @@ class RelationshipCalculator:
             return (rel_str, dist_orig, dist_other)
         else:
             return rel_str
+
+    def get_all_relationships(self, db, orig_person, other_person):
+        """ Returns a tuple, of which the first entry is a list with all
+            relationships in text, and the second a list of lists of all common
+            ancestors that have that text as relationship
+        """
+        relstrings = []
+        commons = {}
+        if orig_person == None:
+            return ([], [])
+
+        if orig_person.get_handle() == other_person.get_handle():
+            return ([], [])
+
+        is_spouse = self.is_spouse(db, orig_person, other_person)
+        if is_spouse:
+            relstrings.append(is_spouse)
+            commons[is_spouse] = []
         
+        data, msg = self.get_relationship_distance_new(
+                                db, orig_person, other_person,
+                                all_dist=True,
+                                all_families=True, only_birth=False)
+        if not data[0][0] == -1:
+            for rel in data :
+                rel2 = rel[2]
+                rel4 = rel[4]
+                rel1 = rel[1]
+                dist_orig = len(rel[2])
+                dist_other= len(rel[4])
+                if rel[2] and rel[2][-1] == self.REL_SIBLING:
+                    rel2 = rel2[:-1] + self.REL_FAM_BIRTH
+                    dist_other += 1
+                    rel4 = rel4 + self.REL_FAM_BIRTH
+                    rel1 = None
+                birth = self.only_birth(rel2) and self.only_birth(rel4)
+                if dist_orig == 1 and dist_other == 1:
+                    rel_str = self.get_sibling_relationship_string(
+                                self.get_sibling_type(
+                                                db, orig_person, other_person), 
+                                orig_person.get_gender(),
+                                other_person.get_gender())
+                else:
+                    rel_str = self.get_single_relationship_string(dist_orig,
+                                                     dist_other,
+                                                     orig_person.get_gender(),
+                                                     other_person.get_gender(),
+                                                     rel2, rel4,
+                                                     only_birth=birth, 
+                                                     in_law_a=False, 
+                                                     in_law_b=False)
+                if not rel_str in relstrings:
+                    relstrings.append(rel_str)
+                    if rel1:
+                        commons[rel_str] = [rel1]
+                    else:
+                        #unknown parent eg
+                        commons[rel_str] = []
+                else:
+                    if rel1:
+                        commons[rel_str].append(rel1)
+        #construct the return tupply, relstrings is ordered on rank automatic
+        common_list = []
+        for rel_str in relstrings:
+            common_list.append(commons[rel_str])
+        return (relstrings, common_list)
+
     def get_relationship(self, db, orig_person, other_person):
         """
         returns a string representing the relationshp between the two people,
@@ -1463,8 +1540,6 @@ class RelationshipCalculator:
               2/for better determination of siblings, use if Ga=1=Gb 
                 get_sibling_relationship_string
         """
-##        print 'Ga, Gb :', Ga, Gb
-        
         if only_birth:
             step = ''
         else:

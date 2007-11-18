@@ -97,7 +97,6 @@ class AllRelReport():
                     all_dist=True, 
                     only_birth=False,
                     max_depth=20)
-        
         #all relations
         if (not common or common[0][0]== -1 ) and not is_spouse:
             rstr = _("%(person)s and %(active_person)s are not "
@@ -241,7 +240,7 @@ class AllRelReport():
                 else:
                     skip_list_text.append(rel_str)
                     sdoc.paragraph(_FMT % (count-len(skip_list), rel_str))
-            else :
+            else:
                 sdoc.paragraph(_FMT % (count, rel_str))
             count += 1
         return count
@@ -272,8 +271,9 @@ class AllRelReport():
             sdoc.paragraph("")
         for relation in relations:
             if count in skip_list:
+                count += 1
                 continue
-            counter = str(count)
+            counter = str(count - len([x for x in range(count) if x+1 in skip_list])) 
             name = _('Unknown')
             if relation[1]:
                 name = self.sdb.name(self.database.get_person_from_handle(
@@ -314,7 +314,7 @@ class AllRelReport():
                 famstr = ''
                 if isinstance(fam, list):
                     famstr = str(fam[0]+1)
-                    for val in fam :
+                    for val in fam[1:] :
                         famstr = famstr + ', ' + str(val+1)
                 else:
                     famstr = str(fam+1)

@@ -89,7 +89,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.relationship = relationship_class()
 
         base = os.path.dirname(__file__)
-        glade_file = "%s/relcalc.glade" % base
+        glade_file = base + os.sep + "relcalc.glade"
         self.glade = gtk.glade.XML(glade_file,"relcalc","gramps")
 
         name = name_displayer.display(self.person)
@@ -144,64 +144,68 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         handle = model.get_value(node,len(PeopleModel.COLUMN_DEFS)-1)
         other_person = self.db.get_person_from_handle(handle)
 
-        if other_person != None:
-            (rel_string,common) = self.relationship.get_relationship(
-                self.db,self.person,other_person)
-            # A quick way to get unique list
-            common = list(set(common))
-            length = len(common)
-        else:
-            length = 0
+        text1 = self.glade.get_widget("text1").get_buffer() 
+        
+        if other_person is None :
+            text1.set_text("")
+            return
+        
+        #now determine the relation, and print it out        
+        rel_strings, common_an = self.relationship.get_all_relationships(
+                                            self.db, self.person, other_person)
 
-        if other_person == None:
-            commontext = ""
-        elif length == 1:
-            person = self.db.get_person_from_handle(common[0])
-            if common[0] == other_person.handle or \
-                    common[0] == self.person.handle :
-                commontext = ''
-            else :
-                name = name_displayer.display(person)
-                commontext = " " + _("Their common ancestor is %s.") % name
-        elif length == 2:
-            p1 = self.db.get_person_from_handle(common[0])
-            p2 = self.db.get_person_from_handle(common[1])
-            p1str = name_displayer.display(p1)
-            p2str = name_displayer.display(p2)
-            commontext = " " + _("Their common ancestors are %s and %s."
-                                 ) % (p1str,p2str)
-        elif length > 2:
-            index = 0
-            commontext = " " + _("Their common ancestors are: ")
-            for person_handle in common:
-                person = self.db.get_person_from_handle(person_handle)
-                if index != 0:
-                    commontext = commontext + ", "
-                commontext = commontext + name_displayer.display(person)
-                index = index + 1
-            commontext = commontext + "."
-        else:
-            commontext = ""
+        p1 = name_displayer.display(self.person)
+        p2 = name_displayer.display(other_person)
 
-        text1 = self.glade.get_widget("text1").get_buffer()
-
-        if other_person:
-            p1 = name_displayer.display(self.person)
-            p2 = name_displayer.display(other_person)
-
-        if other_person == None:
-            rstr = ""
+        text = []
+        if other_person == None: 
+            pass
         elif self.person.handle == other_person.handle:
-            rstr = _("%s and %s are the same person.") % (p1,p2)
-        elif rel_string == "":
+            rstr = _("%s and %s are the same person.") % (p1, p2)
+            text.append((rstr, ""))
+        elif len(rel_strings) == 0:
             rstr = _("%(person)s and %(active_person)s are not related.") % {
-                'person' : p2, 'active_person' : p1 }
-        else:
-            rstr = _("%(person)s is the %(relationship)s of %(active_person)s."
-                     ) % {'person' : p2, 'relationship' : rel_string,
-                          'active_person' : p1 }
+                            'person' : p2, 'active_person' : p1 }
+            text.append((rstr, ""))
 
-        text1.set_text("%s %s" % (rstr, commontext))
+        for rel_string, common in zip(rel_strings, common_an):
+            rstr = _("%(person)s is the %(relationship)s of %(active_person)s."
+                        ) % {'person' : p2, 'relationship' : rel_string,
+                             'active_person' : p1 }
+            length = len(common)
+            if length == 1:
+                person = self.db.get_person_from_handle(common[0])
+                if common[0] == other_person.handle or \
+                        common[0] == self.person.handle :
+                    commontext = ''
+                else :
+                    name = name_displayer.display(person)
+                    commontext = " " + _("Their common ancestor is %s.") % name
+            elif length == 2:
+                p1c = self.db.get_person_from_handle(common[0])
+                p2c = self.db.get_person_from_handle(common[1])
+                p1str = name_displayer.display(p1c)
+                p2str = name_displayer.display(p2c)
+                commontext = " " + _("Their common ancestors are %s and %s."
+                                    ) % (p1str,p2str)
+            elif length > 2:
+                index = 0
+                commontext = " " + _("Their common ancestors are: ")
+                for person_handle in common:
+                    person = self.db.get_person_from_handle(person_handle)
+                    if index != 0:
+                        commontext = commontext + ", "
+                    commontext = commontext + name_displayer.display(person)
+                    index = index + 1
+                commontext = commontext + "."
+            else:
+                commontext = ""
+            text.append((rstr, commontext))
+
+        textval = ""
+        for val in text:
+            textval += "%s %s\n" % (val[0], val[1])
+        text1.set_text(textval)
     
 #------------------------------------------------------------------------
 #
