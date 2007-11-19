@@ -1,3 +1,6 @@
+2007-11-19  Alex Roitman  <shura@gramps-project.org>
+	* src/docgen/Makefile.am (dist_pkgdata_DATA): Use proper name.
+
 2007-11-19  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/IndivComplete.py: Fix crash with alternate parents.
 
