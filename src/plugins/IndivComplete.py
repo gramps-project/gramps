@@ -144,13 +144,15 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-    def write_p_entry(self,label,parent,rel,mark=None):
+    def write_p_entry(self,label,parent,rel,pmark=None):
         self.doc.start_row()
         self.normal_cell(label)
 
         if parent:
-            self.normal_cell('%(parent)s, relationship: %(relation)s' %
-                               { 'parent' : parent, 'relation' : rel },mark)
+            text = '%(parent)s, relationship: %(relation)s' % { 
+                                                            'parent' : parent, 
+                                                            'relation' : rel }
+            self.normal_cell(text, mark=pmark)
         else:
             self.normal_cell('')
         self.doc.end_row()
@@ -241,7 +243,7 @@ class IndivCompleteReport(Report):
         if len(self.start_person.get_alternate_names()) < 1:
             return
         
-        self.doc.start_table("altparents","IDS-IndTable")
+        self.doc.start_table("altnames","IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead",2)
         self.doc.start_paragraph("IDS-TableTitle")

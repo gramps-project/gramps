@@ -1,3 +1,6 @@
+2007-11-19  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/IndivComplete.py: Fix crash with alternate parents.
+
 2007-11-19 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Relationship.py: many improvements and bug fixes
 	* src/plugins/all_relations.py: bug fixes
