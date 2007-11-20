@@ -6,6 +6,8 @@
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
+	all_events.py\
+        all_relations.py\
 	AncestorChart.py\
 	AncestorReport.py\
 	BookReport.py\
@@ -13,13 +15,16 @@ pkgdata_PYTHON = \
 	ChangeTypes.py\
 	ChangeNames.py\
 	Check.py\
+	Checkpoint.py\
 	CountAncestors.py\
+	CustomBookText.py\
 	Desbrowser.py\
-	DescendReport.py\
 	DescendChart.py\
+	DescendReport.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\
 	EndOfLineReport.py\
+	Eval.py\
 	EventCmp.py\
 	EventNames.py\
 	ExportCSV.py\
@@ -28,58 +33,66 @@ pkgdata_PYTHON = \
 	ExtractCity.py\
 	FamilyGroup.py\
 	FamilyLines.py\
-	FindDupes.py\
 	FanChart.py\
+	FindDupes.py\
 	GraphViz.py\
+	GVHourGlass.py\
 	ImportCSV.py\
-	IndivComplete.py\
+	ImportGeneWeb.py\
 	ImportvCard.py\
+	IndivComplete.py\
 	KinshipReport.py\
+	Leak.py\
+	lineage.py\
 	MarkerReport.py\
+	MediaManager.py\
 	NarrativeWeb.py\
+	OwnerEditor.py\
 	PatchNames.py\
-	ReadPkg.py\
 	ReadGrdb.py\
+	ReadPkg.py\
 	Rebuild.py\
+	RebuildRefMap.py\
 	RelCalc.py\
+	rel_cs.py\
+        rel_da.py\
+	rel_de.py\
+	rel_es.py\
+	rel_fi.py\
+	rel_fr.py\
+	rel_hu.py\
+	rel_it.py\
+	rel_nl.py\
+	rel_no.py\
+	rel_pl.py\
+	rel_pt.py\
+	rel_ru.py\
+	rel_sk.py\
+	rel_sv.py\
+	RemoveUnused.py\
 	ReorderIds.py\
+	siblings.py\
+	SimpleBookTitle.py\
 	SoundGen.py\
 	StatisticsChart.py\
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
-	WriteFtree.py\
-	WritePkg.py\
-	WriteCD.py\
-	OwnerEditor.py\
-	rel_ru.py\
-	Eval.py\
-	Leak.py\
-	SimpleBookTitle.py\
-	CustomBookText.py\
-	rel_cs.py\
-	rel_it.py\
-	rel_hu.py\
-	rel_da.py\
-	rel_de.py\
-	rel_fi.py\
-	rel_fr.py\
-	rel_no.py\
-	rel_pt.py\
-	rel_sv.py\
-	rel_sk.py\
-	ImportGeneWeb.py\
-	WriteGeneWeb.py\
-	rel_es.py\
-	Checkpoint.py\
-	MediaManager.py\
-	RemoveUnused.py\
-	rel_pl.py\
-	RebuildRefMap.py\
-	all_events.py\
-	siblings.py\
-	lineage.py\
 	WebCal.py
+	WriteFtree.py\
+        WriteGeneWeb.py\
+	WritePkg.py\
+	WriteCD.py
+
+#        Ancestors.py\
+#        DateParserDisplayTest.py\
+#        DesGraph.py\
+#        DumpGenderStats.py\
+#        FtmStyleAncestors.py\
+#        FtmStyleDescendants.py\
+#        PHPGedViewConnector.py\
+#        TestcaseGenerator.py
+
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
