@@ -1,3 +1,6 @@
+2007-11-20  Jerome Rapinat <romjerome@yahoo.fr>
+	* src/plugins/Makefile.am: up to date
+
 2007-11-19  Alex Roitman  <shura@gramps-project.org>
 	* src/docgen/Makefile.am (dist_pkgdata_DATA): Use proper name.
 
