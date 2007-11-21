@@ -576,9 +576,6 @@ def probably_alive(person, db, current_date=None, limit=0):
         current_date = gen.lib.Date()
         # yr, mon, day:
         current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
-    if (current_date.get_quality() == gen.lib.Date.QUAL_ESTIMATED or
-        current_date.get_modifier() != gen.lib.Date.MOD_NONE):
-        raise AttributeError, "probably_alive cannot take esitmated or modified dates"
 
     death_date = None
     # If the recorded death year is before current year then
@@ -588,7 +585,7 @@ def probably_alive(person, db, current_date=None, limit=0):
         death = db.get_event_from_handle(death_ref.ref)
         if death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
             death_date = death.get_date_object()
-            if death_date.copy_offset_ymd(year=limit) < current_date:
+            if death_date.copy_offset_ymd(year=limit).match(current_date, "<<"):
                 return False
 
     # Look for Cause Of Death, Burial or Cremation events.
@@ -601,8 +598,7 @@ def probably_alive(person, db, current_date=None, limit=0):
             if not death_date:
                 death_date = ev.get_date_object()
             if ev.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
-                if (ev.get_date_object().copy_offset_ymd(year=limit) <
-                    current_date):
+                if ev.get_date_object().copy_offset_ymd(year=limit).match(current_date,"<<"):
                     return False
         # For any other event of this person, check whether it happened
         # too long ago. If so then the person is likely dead now.
@@ -626,7 +622,7 @@ def probably_alive(person, db, current_date=None, limit=0):
                 return True
     
     if not birth_date and death_date:
-        if death_date > current_date.copy_offset_ymd(year=_MAX_AGE_PROB_ALIVE):
+        if death_date.match(current_date.copy_offset_ymd(year=_MAX_AGE_PROB_ALIVE), ">>"):
             # person died more than MAX after current year
             return False
 
@@ -650,8 +646,8 @@ def probably_alive(person, db, current_date=None, limit=0):
                     # if sibling birth date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
-                        if not (current_date.copy_offset_ymd(-(_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF)) <
-                                dobj < current_date.copy_offset_ymd(_MAX_SIB_AGE_DIFF)):
+                        if not (current_date.copy_offset_ymd(-(_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF)).match(dobj,"<<") and
+                                dobj.match(current_date.copy_offset_ymd(_MAX_SIB_AGE_DIFF),"<<")):
                             return False
             child_death_ref = child.get_death_ref()
             if child_death_ref:
@@ -661,8 +657,8 @@ def probably_alive(person, db, current_date=None, limit=0):
                     # if sibling death date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
-                        if not (current_date.copy_offset_ymd(-(_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF)) <
-                                dobj < current_date.copy_offset_ymd(_MAX_AGE_PROB_ALIVE)):
+                        if not (current_date.copy_offset_ymd(-(_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF)).match(dobj,"<<") and
+                                dobj.match(current_date.copy_offset_ymd(_MAX_AGE_PROB_ALIVE),"<<")):
                             return False
 
     # Try looking for descendants that were born more than a lifespan

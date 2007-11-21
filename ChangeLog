@@ -1,4 +1,8 @@
 2007-11-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/gen/lib/date.py: added comparison operator for match()
+	* src/Utils.py: uses new match comparison
+
+2007-11-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Utils.py: probably_alive now takes date rather than year
 	* src/gen/proxy/living.py: create date from year
 	* src/gen/lib/date.py: added methods to do date math

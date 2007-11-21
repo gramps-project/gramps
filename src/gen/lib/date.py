@@ -305,40 +305,55 @@ class Date:
         # return tuples not lists, for comparisons
         return (tuple(startmin), tuple(stopmax))
         
-    def match(self, other_date):
+    def match(self, other_date, comparison="="):
         """
         The other comparisons for Date don't actually look for anything
         other than a straight match, or a simple comparison of the sortval.
         This method allows a more sophisticated comparison looking for
-        any overlap between two possible dates, date spans, and qualities.
-        
-        Returns True if part of other_date matches part of the date-span 
-                    defined by self
+        any match between two possible dates, date spans, and qualities.
+
+        comparison =,== :
+            Returns True if any part of other_date matches any part of self
+        comparison < :
+            Returns True if any part of other_date < any part of self
+        comparison << :
+            Returns True if all parts of other_date < all parts of self
+        comparison > :
+            Returns True if any part of other_date > any part of self
+        comparison >> :
+            Returns True if all parts of other_date > all parts of self
         """
         if (other_date.modifier == Date.MOD_TEXTONLY or
             self.modifier == Date.MOD_TEXTONLY):
-            ###from DateHandler import displayer
-            # If either date is just text, then we can only compare textual
-            # representations
-            # Use text as originally given or display date to format
-            #  in preferences? That is use self.text or displayer ?
-            # It is unclean to import DateHandler in gen.lib !
-            ###self_text = displayer.display(self)
-            self_text = self.text
-            ##DEBUG: print ' TEXT COMPARE ONLY '
-            return (self_text.upper().find(other_date.text.upper()) != -1)
+            if comparison in ["=", "=="]:
+                return (self.text.upper().find(other_date.text.upper()) != -1)
+            else:
+                return False
 
         # Obtain minimal start and maximal stop in Gregorian calendar
         other_start, other_stop = other_date.get_start_stop_range()
-        self_start, self_stop = self.get_start_stop_range()
+        self_start,  self_stop  = self.get_start_stop_range()
 
-        #DEBUG print "compare:",self_start,self_stop,other_start,other_stop
-
-        # If some overlap then match is True, otherwise False.
-        return ((self_start <= other_start <= self_stop) or
-                (self_start <= other_stop <= self_stop) or 
-                (other_start <= self_start <= other_stop) or 
-                (other_start <= self_stop <= other_stop))
+        if comparison in ["=", "=="]:
+            # If some overlap then match is True, otherwise False.
+            return ((self_start <= other_start <= self_stop) or
+                    (self_start <= other_stop <= self_stop) or 
+                    (other_start <= self_start <= other_stop) or 
+                    (other_start <= self_stop <= other_stop))
+        elif comparison == "<":
+            # If any < any
+            return self_start < other_stop
+        elif comparison == "<<":
+            # If all < all
+            return self_stop < other_start
+        elif comparison == ">":
+            # If any > any
+            return self_stop > other_start
+        elif comparison == ">>":
+            # If all > all
+            return self_start > other_stop
+        else:
+            raise AttributeError, ("invalid match comparison operator: '%s'" % comparison)
             
     def __str__(self):
         """
