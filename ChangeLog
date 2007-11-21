@@ -1,4 +1,8 @@
 2007-11-22 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Relationship.py: remove old methods that are no longer used,
+	get_relationship() and get_relationship_distance()
+
+2007-11-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/relcalc.glade: don't do connect in glade, we need key
 	* src/plugins/Leak.py: use os.sep, not + '/'
 	* src/plugins/RelCalc.py: Don't keep recalculating relation map of the

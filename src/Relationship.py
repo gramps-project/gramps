@@ -624,59 +624,6 @@ class RelationshipCalculator:
         else:
             return None
         
-    def get_relationship_distance(self, db, orig_person, other_person):
-        """
-        wrapper around get_relationship_distance_new to return a value like
-        the old method (note, firstRel is now to orig person, not to other as
-            it was in 2.2.x series !!!)
-            
-            *** DO NOT USE, IS INCORRECT IN SOME CASES, eg person common 
-                ancestor along two paths, only one returned,
-                however this should not matter for number of generation or 
-                last gender, eg firstRel is 'ffffm' or 'mmfmm', only one 
-                returned ***
-        
-        Returns a tuple (firstRel, secondRel, common):
-        
-        firstRel    Number of generations from the orig_person to their
-                    closest common ancestors, as eg 'ffmm'
-        secondRel   Number of generations from the other_person to that 
-                    firstRel closest common ancestors, as eg 'ffmm'
-        common      list of all these common ancestors (so same generation
-                    difference with firstRel), no specific order !!
-                    
-        in the Rel, f is father, m is mother
-        """
-        warn( "Use get_relationship_distance_new or get_one_relationship",
-              DeprecationWarning, 2)
-            
-        firstRel = -1
-        secondRel = -1
-        common = []
-        rank = 9999999
-        
-        data, msg = self.get_relationship_distance_new(
-                                db, orig_person, other_person,
-                                all_dist=True,
-                                all_families=False, only_birth=True)
-        #data is sorted on rank, we need closest to orig instead
-        if data[0][0] == -1 :
-            return firstRel, secondRel, common
-        for common_anc in data :
-            # common_anc looks like:
-            #(total dist, handle_common, 'ffffff', [0,0,0,0,0,0],'ff',[0, 0])
-            #where 2&3 are related to orig_pers, 4&5 other_pers
-            new_rank = len(common_anc[2])
-            if new_rank < rank:
-                    rank = new_rank
-                    common = [ common_anc[1] ]
-                    firstRel = common_anc[2]
-                    secondRel = common_anc[4]
-            elif new_rank == rank:
-                common.append( common_anc[1] )
-            
-        return (firstRel, secondRel, common)
-
     def get_relationship_distance_new(self, db, orig_person,
                                       other_person,
                                       all_families=False, 
@@ -689,6 +636,9 @@ class RelationshipCalculator:
              secondRel_str, secondRel_fam), msg 
         or if all_dist == True a 'list of tuple, string': 
             [.....], msg:
+            
+        NOTE: _new can be removed once all rel_xx modules no longer overwrite
+            get_relationship_distance
         
         The tuple or list of tuples consists of:
          
@@ -1352,53 +1302,6 @@ class RelationshipCalculator:
         for rel_str in relstrings:
             common_list.append(commons[rel_str])
         return (relstrings, common_list)
-
-    def get_relationship(self, db, orig_person, other_person):
-        """
-        returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-        """
-
-        if orig_person == None:
-            return (_("undefined"),[])
-
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db,orig_person,other_person)
-
-        (firstRel,secondRel,common) = \
-                self.get_relationship_distance(db,orig_person,other_person)
-        
-        if type(common) == types.StringType or \
-           type(common) == types.UnicodeType:
-            if is_spouse:
-                return (is_spouse,[])
-            else:
-                return (common,[])
-        elif common:
-            person_handle = common[0]
-        else:
-            if is_spouse:
-                return (is_spouse,[])
-            else:
-                return ("",[])
-
-        #distance from common ancestor to the people
-        dist_orig = len(firstRel)
-        dist_other= len(secondRel)
-        rel_str = self.get_single_relationship_string(dist_orig,
-                                                      dist_other,
-                                                    orig_person.get_gender(),
-                                                    other_person.get_gender(),
-                                                    firstRel, secondRel
-                                                    )
-        if is_spouse:
-            return (_('%(spouse_relation)s and %(other_relation)s') % {
-                        'spouse_relation': is_spouse, 
-                        'other_relation': rel_str} , common )
-        else:
-            return (rel_str, common)
 
     def get_grandparents_string(self, db, orig_person, other_person):
         """
