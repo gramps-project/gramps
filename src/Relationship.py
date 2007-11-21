@@ -378,13 +378,14 @@ class RelationshipCalculator:
     PARTNER_EX_UNKNOWN_REL = 8
     
     def __init__(self):
-        pass
-
-    def get_parents(self, level):
-        if level>len(_parents_level)-1:
-            return "distant ancestors (%d generations)" % level
-        else:
-            return _parents_level[level]
+        self.signal_keys = []
+        self.state_signal_key = None
+        self.storemap = False
+        self.dirtymap = True
+        self.stored_map = None
+        self.map_handle = None
+        self.map_meta = None
+        self.__db_connected = False
 
     DIST_FATHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
     
@@ -533,6 +534,12 @@ class RelationshipCalculator:
             # or orig has unknown father or mother, hence we cannot know
             # how the siblings are related:
             return self.UNKNOWN_SIB
+
+    def get_parents(self, level):
+        if level>len(_parents_level)-1:
+            return "distant ancestors (%d generations)" % level
+        else:
+            return _parents_level[level]
 
     def _get_birth_parents(self, db, person):
         """ method that returns the birthparents of a person as tuple
@@ -749,13 +756,32 @@ class RelationshipCalculator:
         rank = 9999999
 
         try:
-            self.__apply_filter(db, orig_person, '', [], firstMap)
+            if (self.storemap and self.stored_map is not None 
+                    and self.map_handle == orig_person.handle 
+                    and not self.dirtymap): 
+                firstMap = self.stored_map
+                self.__maxDepthReached, self.__loopDetected, \
+                 self.__max_depth, self.__all_families,\
+                 self.__all_dist, self.__only_birth,\
+                 self.__crosslinks, self.__msg = self.map_meta
+            else:
+                self.__apply_filter(db, orig_person, '', [], firstMap)
+                self.map_meta = (self.__maxDepthReached,
+                                 self.__loopDetected, 
+                                 self.__max_depth, self.__all_families,
+                                 self.__all_dist, self.__only_birth,
+                                 self.__crosslinks, self.__msg)
             self.__apply_filter(db, other_person, '', [], secondMap,
                                     stoprecursemap = firstMap)
         except RuntimeError:
             return (-1,None,-1,[],-1,[] ) , \
                             [_("Relationship loop detected")] + self.__msg
 
+        if self.storemap:
+            self.stored_map = firstMap
+            self.dirtymap = False
+            self.map_handle = orig_person.handle
+            
         for person_handle in secondMap.keys() :
             if firstMap.has_key(person_handle) :
                 com = []
@@ -844,6 +870,7 @@ class RelationshipCalculator:
         '''
         if person == None or not person.handle :
             return
+        
         if depth > self.__max_depth:
             self.__maxDepthReached = True
             print 'Maximum ancestor generations ('+str(depth)+') reached', \
@@ -1711,6 +1738,55 @@ class RelationshipCalculator:
                 return _("female,unknown relation|former partner")
             else:
                 return _("gender unknown,unknown relation|former partner")
+
+    def connect_db_signals(self, dbstate):
+        """ We can save work by storing a map, however, if database changes
+            this map must be regenerated.
+            Before close, the calling app must call disconnect_db_signals
+        """
+        if self.__db_connected:
+            return
+        assert(len(self.signal_keys)==0)
+        self.state_signal_key = dbstate.connect('database-changed', 
+                                                    self._dbchange_callback)
+        self.__connect_db_signals(dbstate.db)
+    
+    def __connect_db_signals(self, db):
+        signals = ['person-add', 'person-update', 'person-delete',
+                    'person-rebuild', 'family-add', 'family-update', 
+                    'family-delete', 'family-rebuild', 'database-changed']
+        for name in signals:
+            self.signal_keys.append(db.connect(name, 
+                                                    self._datachange_callback))
+        self.storemap = True
+        self.__db_connected = True
+
+    def disconnect_db_signals(self, dbstate):
+        """ Method to disconnect to all signals the relationship calculator is
+            subscribed
+        """
+        dbstate.disconnect(self.state_signal_key)
+        for key in self.signal_keys:
+            dbstate.db.disconnect(key)
+        self.storemap = False
+        self.stored_map = None
+
+    def _dbchange_callback(self, db):
+        """ When database changes, the map can no longer be used. 
+            Connects must be remade
+        """
+        self.dirtymap = True
+        #signals are disconnected on close of old database, connect to new
+        self.__connect_db_signals(db)
+
+    def _datachange_callback(self, list=[]):
+        """ When data in database changes, the map can no  longer be used. 
+            As the map might be in use or might be generated at the moment, 
+            this method sets a dirty flag. Before reusing the map, this flag 
+            will be checked
+        """
+        self.dirtymap = True
+
 
 def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
     """ this is a generic test suite for the singular relationship

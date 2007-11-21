@@ -314,6 +314,9 @@ class DisplayState(gen.utils.GrampsDBCallback):
         self.phistory = History()
         self.gwm = ManagedWindow.GrampsWindowManager(uimanager)
         self.widget = None
+        self.disprel_old = ''
+        self.disprel_defpers = None
+        self.disprel_active = None
         self.warnbtn = warnbtn
         self.last_bar = self.status.insert(min_width=15, ralign=True)
         self.set_relationship_class()
@@ -341,13 +344,30 @@ class DisplayState(gen.utils.GrampsDBCallback):
         self.relationship = _PluginMgr.relationship_class()
         
     def display_relationship(self, dbstate):
+        ''' Construct the relationship in order to show it in the statusbar
+            This can be a time intensive calculation, so we only want to do
+            it if persons are different than before.
+            Eg: select a person, then double click, will result in calling
+                three times to construct build the statusbar. We only want
+                to obtain relationship once!
+            This means the relationship part of statusbar only changes on
+            change of row.
+        '''
+        self.relationship.connect_db_signals(dbstate)
         default_person = dbstate.db.get_default_person()
         active = dbstate.get_active_person()
         if default_person == None or active == None:
             return u''
+        if default_person.handle == self.disprel_defpers and \
+                active.handle == self.disprel_active :
+            return self.disprel_old
         
         name = self.relationship.get_one_relationship(
                                             dbstate.db, default_person, active)
+        #store present call data
+        self.disprel_old = name
+        self.disprel_defpers = default_person.handle
+        self.disprel_active = active.handle
         if name:
             return name
         else:

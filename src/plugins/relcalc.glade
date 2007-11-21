@@ -19,6 +19,7 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="focus_on_map">True</property>
+  <property name="urgency_hint">False</property>
   <property name="has_separator">False</property>
   <signal name="delete_event" handler="on_delete_event" last_modification_time="Tue, 11 May 2004 00:39:37 GMT"/>
 
@@ -43,7 +44,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_close_clicked" object="relcalc"/>
 	    </widget>
 	  </child>
 	</widget>

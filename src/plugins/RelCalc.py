@@ -36,6 +36,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+from gtk import TextBuffer
 
 #-------------------------------------------------------------------------
 #
@@ -85,23 +86,29 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
                         _('You must select an active person for this '
                           'tool to work properly.'))
             return
-        
+
+        self.dbstate = dbstate
         self.relationship = relationship_class()
+        self.relationship.connect_db_signals(dbstate)
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "relcalc.glade"
-        self.glade = gtk.glade.XML(glade_file,"relcalc","gramps")
+        self.glade = gtk.glade.XML(glade_file, "relcalc", "gramps")
 
         name = name_displayer.display(self.person)
         self.title = _('Relationship calculator: %(person_name)s'
                        ) % {'person_name' : name}
         window = self.glade.get_widget('relcalc')
-        self.set_window(window,self.glade.get_widget('title'),
+        self.titlelabel = self.glade.get_widget('title')
+        self.set_window(window, self.titlelabel,
                         _('Relationship to %(person_name)s'
                           ) % {'person_name' : name },
                         self.title)
     
         self.tree = self.glade.get_widget("peopleList")
+        self.text = self.glade.get_widget("text1")
+        self.textbuffer = TextBuffer()
+        self.text.set_buffer(self.textbuffer)
         
         self.model = PeopleModel(self.db,None)
         self.tree.set_model(self.model)
@@ -111,6 +118,8 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         column.set_min_width(225)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         self.tree.append_column(column)
+        #keep reference of column so garbage collection works
+        self.columns = [column]
 
         index = 1
         for pair in self.db.get_person_column_order():
@@ -123,15 +132,24 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
             self.tree.append_column(column)
+            #keep reference of column so garbage collection works
+            self.columns.append(column)
             index += 1
 
-        self.tree.get_selection().connect('changed',self.on_apply_clicked)
-            
-        self.glade.signal_autoconnect({
-            "on_close_clicked" : self.close,
-            })
+        self.sel = self.tree.get_selection()
+        self.changedkey = self.sel.connect('changed',self.on_apply_clicked)
+        self.closebtn = self.glade.get_widget("button5")
+        self.closebtn.connect('clicked', self.close)
 
         self.show()
+
+    def close(self, *obj):
+        ''' Close relcalc tool. Remove non-gtk connections so garbage
+            collection can do its magic.
+        '''
+        self.relationship.disconnect_db_signals(self.dbstate)
+        self.sel.disconnect(self.changedkey)
+        ManagedWindow.ManagedWindow.close(self, *obj)
 
     def build_menu_names(self,obj):
         return (_("Relationship Calculator tool"),None)
@@ -142,12 +160,9 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             return
         
         handle = model.get_value(node,len(PeopleModel.COLUMN_DEFS)-1)
-        other_person = self.db.get_person_from_handle(handle)
-
-        text1 = self.glade.get_widget("text1").get_buffer() 
-        
+        other_person = self.db.get_person_from_handle(handle)        
         if other_person is None :
-            text1.set_text("")
+            self.textbuffer.set_text("")
             return
         
         #now determine the relation, and print it out        
@@ -205,7 +220,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         textval = ""
         for val in text:
             textval += "%s %s\n" % (val[0], val[1])
-        text1.set_text(textval)
+        self.textbuffer.set_text(textval)
     
 #------------------------------------------------------------------------
 #

@@ -63,7 +63,7 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        glade_file = "%s/%s" % (os.path.dirname(__file__),"leak.glade")
+        glade_file = os.path.dirname(__file__) + os.sep + "leak.glade"
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
         window = self.glade.get_widget("top")

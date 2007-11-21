@@ -1,3 +1,16 @@
+2007-11-22 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/relcalc.glade: don't do connect in glade, we need key
+	* src/plugins/Leak.py: use os.sep, not + '/'
+	* src/plugins/RelCalc.py: Don't keep recalculating relation map of the
+	active person, do it once. 50% faster. Make sure all objects can be
+	collected by the garbage collector
+	* src/Relationship.py: allow to connect to database. Map of first 
+	person is stored, only to be removed if database changed, or it
+	concerns a different person. This reduces calculation with 50%
+	* src/DisplayState.py: don't recalculate home person every time, don't
+	call relationship calc on every click, only call it when the people
+	are different
+
 2007-11-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/gen/lib/date.py: added comparison operator for match()
 	* src/Utils.py: uses new match comparison
