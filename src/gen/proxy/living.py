@@ -69,7 +69,7 @@ class LivingProxyDb(ProxyDbBase):
         """
         ProxyDbBase.__init__(self, db)
         self.mode = mode
-        self.current_date = gen.lib.Date()
+        self.current_date = Date()
         self.current_date.set_year(current_year)
         self.years_after_death = years_after_death
 
