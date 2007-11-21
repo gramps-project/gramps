@@ -542,9 +542,18 @@ class Date:
         Sets the year, month, and day values by offset
         """
         dv = list(self.dateval)
-        dv[Date._POS_YR] += year
-        dv[Date._POS_MON] += month
-        dv[Date._POS_DAY] += day
+        if dv[Date._POS_YR]:
+            dv[Date._POS_YR] += year
+        elif year:
+            dv[Date._POS_YR] = year
+        if dv[Date._POS_MON]:
+            dv[Date._POS_MON] += month
+        elif month:
+            dv[Date._POS_MON] = month
+        if dv[Date._POS_DAY]:
+            dv[Date._POS_DAY] += day
+        elif day:
+            dv[Date._POS_DAY] = day            
         self.dateval = tuple(dv)
         self._calc_sort_value()
 

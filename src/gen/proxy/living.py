@@ -69,8 +69,11 @@ class LivingProxyDb(ProxyDbBase):
         """
         ProxyDbBase.__init__(self, db)
         self.mode = mode
-        self.current_date = Date()
-        self.current_date.set_year(current_year)
+        if current_year != None:
+            self.current_date = Date()
+            self.current_date.set_year(current_year)
+        else:
+            self.current_date = None
         self.years_after_death = years_after_death
 
     def get_person_from_handle(self, handle):
