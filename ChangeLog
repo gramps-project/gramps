@@ -1,3 +1,11 @@
+2007-11-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/Utils.py: probably_alive now takes date rather than year
+	* src/gen/proxy/living.py: create date from year
+	* src/gen/lib/date.py: added methods to do date math
+	  and return Date object (set_yr_mon_day_offset, copy_offset_ymd)
+	* src/plugins/Calendar.py: updated to use probably alive date
+	* src/Filters/Rules/Person/_ProbablyAlive.py: parse entry as date
+
 2007-11-20  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/plugins/Makefile.am: up to date
 

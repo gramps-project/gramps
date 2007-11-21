@@ -34,6 +34,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from Utils import probably_alive
 from Filters.Rules._Rule import Rule
+import DateHandler
 
 #-------------------------------------------------------------------------
 # "People probably alive"
@@ -41,16 +42,16 @@ from Filters.Rules._Rule import Rule
 class ProbablyAlive(Rule):
     """People probably alive"""
 
-    labels      = [_("On year:")]
+    labels      = [_("On date:")]
     name        =  _('People probably alive')
     description = _("Matches people without indications of death that are not too old")
     category    = _('General filters')
 
     def prepare(self,db):
         try:
-            self.current_year = int(self.list[0])
+            self.current_date = DateHandler.parser.parse(unicode(self.list[0]))
         except:
-            self.current_year = None
+            self.current_date = None
 
     def apply(self,db,person):
-        return probably_alive(person,db,self.current_year)
+        return probably_alive(person,db,self.current_date)

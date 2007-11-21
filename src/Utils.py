@@ -556,28 +556,39 @@ def create_id():
     return "%08x%08x" % ( int(time.time()*10000), 
                           rand.randint(0, sys.maxint))
 
-def probably_alive(person, db, current_year=None, limit=0):
-    """Returns true if the person may be alive.
+#-------------------------------------------------------------------------
+#
+# probably_alive
+#
+#-------------------------------------------------------------------------
+def probably_alive(person, db, current_date=None, limit=0):
+    """Returns true if the person may be alive on current_date.
 
     This works by a process of emlimination. If we can't find a good
     reason to believe that someone is dead then we assume they must
     be alive.
 
+    current_date - a date object that is not estimated or modified
+                   (defaults to today)
+    limit        - number of years to check beyond death_date
     """
+    if not current_date:
+        current_date = gen.lib.Date()
+        # yr, mon, day:
+        current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
+    if (current_date.get_quality() == gen.lib.Date.QUAL_ESTIMATED or
+        current_date.get_modifier() != gen.lib.Date.MOD_NONE):
+        raise AttributeError, "probably_alive cannot take esitmated or modified dates"
 
-    if not current_year:
-        time_struct = time.localtime(time.time())
-        current_year = time_struct[0]
-
-    death_year = None
+    death_date = None
     # If the recorded death year is before current year then
     # things are simple.
     death_ref = person.get_death_ref()
     if death_ref and death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
         death = db.get_event_from_handle(death_ref.ref)
         if death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
-            death_year = death.get_date_object().get_year()
-            if death_year + limit < current_year:
+            death_date = death.get_date_object()
+            if death_date.copy_offset_ymd(year=limit) < current_date:
                 return False
 
     # Look for Cause Of Death, Burial or Cremation events.
@@ -587,34 +598,35 @@ def probably_alive(person, db, current_year=None, limit=0):
         if ev and int(ev.get_type()) in [gen.lib.EventType.CAUSE_DEATH, 
                                          gen.lib.EventType.BURIAL, 
                                          gen.lib.EventType.CREMATION]:
-            if not death_year:
-                death_year = ev.get_date_object().get_year()
+            if not death_date:
+                death_date = ev.get_date_object()
             if ev.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
-                if ev.get_date_object().get_year() + limit < current_year:
+                if (ev.get_date_object().copy_offset_ymd(year=limit) <
+                    current_date):
                     return False
         # For any other event of this person, check whether it happened
         # too long ago. If so then the person is likely dead now.
-        elif ev and too_old(ev.get_date_object(), current_year):
+        elif ev and too_old(ev.get_date_object(), current_date.get_year()):
             return False
 
-    birth_year = None
+    birth_date = None
     # If they were born within 100 years before current year then
     # assume they are alive (we already know they are not dead).
     birth_ref = person.get_birth_ref()
     if birth_ref and birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
         birth = db.get_event_from_handle(birth_ref.ref)
         if birth.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
-            if not birth_year:
-                birth_year = birth.get_date_object().get_year()
+            if not birth_date:
+                birth_date = birth.get_date_object()
             # Check whether the birth event is too old because the
             # code above did not look at birth, only at other events
-            if too_old(birth.get_date_object(), current_year):
+            if too_old(birth.get_date_object(), current_date.get_year()):
                 return False
-            if not_too_old(birth.get_date_object(), current_year):
+            if not_too_old(birth.get_date_object(), current_date.get_year()):
                 return True
     
-    if not birth_year and death_year:
-        if death_year > current_year + _MAX_AGE_PROB_ALIVE:
+    if not birth_date and death_date:
+        if death_date > current_date.copy_offset_ymd(year=_MAX_AGE_PROB_ALIVE):
             # person died more than MAX after current year
             return False
 
@@ -638,10 +650,8 @@ def probably_alive(person, db, current_year=None, limit=0):
                     # if sibling birth date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
-                        if not (current_year -
-                                (_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF) <
-                                year <
-                                current_year + _MAX_SIB_AGE_DIFF):
+                        if not (current_date.copy_offset_ymd(-(_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF)) <
+                                dobj < current_date.copy_offset_ymd(_MAX_SIB_AGE_DIFF)):
                             return False
             child_death_ref = child.get_death_ref()
             if child_death_ref:
@@ -651,9 +661,8 @@ def probably_alive(person, db, current_year=None, limit=0):
                     # if sibling death date too far away, then not alive:
                     year = dobj.get_year()
                     if year != 0:
-                        if not (current_year -
-                                (_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF) <
-                                year < current_year + _MAX_AGE_PROB_ALIVE):
+                        if not (current_date.copy_offset_ymd(-(_MAX_AGE_PROB_ALIVE + _MAX_SIB_AGE_DIFF)) <
+                                dobj < current_date.copy_offset_ymd(_MAX_AGE_PROB_ALIVE)):
                             return False
 
     # Try looking for descendants that were born more than a lifespan
@@ -675,7 +684,7 @@ def probably_alive(person, db, current_year=None, limit=0):
                         val = d.get_start_date()
                         val = d.get_year() - years
                         d.set_year(val)
-                        if not not_too_old (d, current_year):
+                        if not not_too_old (d, current_date.get_year()):
                             return True
 
                 child_death_ref = child.get_death_ref()
@@ -683,7 +692,7 @@ def probably_alive(person, db, current_year=None, limit=0):
                     child_death = db.get_event_from_handle(child_death_ref.ref)
                     dobj = child_death.get_date_object()
                     if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                        if not not_too_old (dobj, current_year):
+                        if not not_too_old (dobj, current_date.get_year()):
                             return True
 
                 if descendants_too_old (child, years + _MIN_GENERATION_YEARS):
@@ -758,13 +767,11 @@ def probably_alive(person, db, current_year=None, limit=0):
 
     # If there are ancestors that would be too old in the current year
     # then assume our person must be dead too.
-    if ancestors_too_old (person, current_year):
-        #print person.get_primary_name().get_name(), " is dead because ancestors are too old."
+    if ancestors_too_old (person, current_date.get_year()):
         return False
 
     # If we can't find any reason to believe that they are dead we
     # must assume they are alive.
-    #print person.get_primary_name().get_name(), " is probably alive."
     return True
 
 def not_too_old(date, current_year=None):

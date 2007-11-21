@@ -69,7 +69,8 @@ class LivingProxyDb(ProxyDbBase):
         """
         ProxyDbBase.__init__(self, db)
         self.mode = mode
-        self.current_year = current_year
+        self.current_date = gen.lib.Date()
+        self.current_date.set_year(current_year)
         self.years_after_death = years_after_death
 
     def get_person_from_handle(self, handle):
@@ -366,7 +367,7 @@ class LivingProxyDb(ProxyDbBase):
     def __is_living(self,person):
         return probably_alive( person,
                                self.db,
-                               self.current_year,
+                               self.current_date,
                                self.years_after_death )
     
     def __remove_living_from_family(self,family):

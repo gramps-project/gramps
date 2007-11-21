@@ -102,6 +102,14 @@ def dst(year, area="us"):
         stop =  "%d/%d/%d" % (year, 10,(31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
     return (start, stop)
 
+def make_date(year, month, day):
+    """
+    Returns a Date object of the particular year/month/day.
+    """
+    retval = gen.lib.Date()
+    retval.set_yr_mon_day(year, month, day)
+    return retval
+
 #------------------------------------------------------------------------
 #
 # Calendar
@@ -309,8 +317,7 @@ class Calendar(Report):
             if birth_ref:
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
-            alive = probably_alive(person, self.database, self.year)
-            if self.birthdays and birth_date != None and ((self.alive and alive) or not self.alive):
+            if self.birthdays and birth_date != None:
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -335,8 +342,10 @@ class Calendar(Report):
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_name(person, father_lastname)
                 if age >= 0:
-                    self.add_day_item("%s, %d" % (short_name, age), year, month, day)                
-            if self.anniversaries and ((self.alive and alive) or not self.alive):
+                    alive = probably_alive(person, self.database, make_date(self.year, month, day))
+                    if ((self.alive and alive) or not self.alive):
+                        self.add_day_item("%s, %d" % (short_name, age), self.year, month, day)                
+            if self.anniversaries:
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
                     fam = self.database.get_family_from_handle(fhandle)
@@ -352,9 +361,6 @@ class Calendar(Report):
                         if spouse:
                             spouse_name = self.get_name(spouse)
                             short_name = self.get_name(person)
-                            if self.alive:
-                                if not probably_alive(spouse, self.database, self.year):
-                                    continue
                             # TEMP: this will hanlde ordered events
                             # GRAMPS 3.0 will have a new mechanism for start/stop events
                             are_married = None
@@ -381,8 +387,11 @@ class Calendar(Report):
                                             'person' : short_name,
                                             'nyears' : years,
                                             }
-                                        self.add_day_item(text, year, month, day)
-
+                                        alive1 = probably_alive(person,self.database,make_date(self.year,month,day))
+                                        alive2 = probably_alive(spouse,self.database,make_date(self.year,month,day))
+                                        if ((self.alive and alive1 and alive2) or not self.alive):
+                                            self.add_day_item(text, self.year, month, day)
+                                            
 class CalendarReport(Calendar):
     """ The Calendar text report """
     def write_report(self):

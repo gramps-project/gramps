@@ -537,6 +537,25 @@ class Date:
         self.dateval = tuple(dv)
         self._calc_sort_value()
 
+    def set_yr_mon_day_offset(self, year=0, month=0, day=0):
+        """
+        Sets the year, month, and day values by offset
+        """
+        dv = list(self.dateval)
+        dv[Date._POS_YR] += year
+        dv[Date._POS_MON] += month
+        dv[Date._POS_DAY] += day
+        self.dateval = tuple(dv)
+        self._calc_sort_value()
+
+    def copy_offset_ymd(self, year=0, month=0, day=0):
+        """
+        Returns a Date copy based on year, month, and day offset
+        """
+        retval = Date(self)
+        retval.set_yr_mon_day_offset(year, month, day)
+        return retval
+
     def set_year(self, year):
         """
         Sets the year value
@@ -759,7 +778,6 @@ class Date:
         Returns (year, month, day) of this date +- value.
         """
         return Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value)
-
 
 # if __name__ == "__main__":
 #     # Test function. Call it as follows from the command line (so as to find
