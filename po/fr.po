@@ -145,7 +145,7 @@ msgstr "Pays :"
 
 #: ../src/Assistant.py:342
 msgid "ZIP/Postal code:"
-msgstr "Code postal :"
+msgstr "Code postal/INSEE :"
 
 #: ../src/Assistant.py:343
 #: ../src/plugins/ownereditor.glade.h:8
@@ -982,7 +982,7 @@ msgstr "Pays"
 #: ../src/DataViews/_PlaceView.py:72
 #: ../src/DataViews/_RepositoryView.py:75
 msgid "ZIP/Postal Code"
-msgstr "Code postal"
+msgstr "Code postal/INSEE"
 
 #: ../src/GrampsCfg.py:159
 msgid "Phone"
@@ -15036,7 +15036,7 @@ msgstr "Paroisse :"
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
 #: ../src/plugins/ownereditor.glade.h:10
 msgid "ZIP/Postal Code:"
-msgstr "Code postal :"
+msgstr "Code postal/INSEE :"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:50
 msgid "County:"
@@ -15571,7 +15571,7 @@ msgstr "Paroisse"
 
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
 msgid "Zip/Postal code"
-msgstr "Code postal"
+msgstr "Code postal/INSEE"
 
 #: ../src/FilterEditor/_FilterEditor.py:94
 #, python-format
@@ -16528,11 +16528,11 @@ msgstr "_Année"
 
 #: ../src/glade/gramps.glade.h:183
 msgid "_ZIP/Postal code:"
-msgstr "_Code postal :"
+msgstr "_Code postal/INSEE :"
 
 #: ../src/glade/gramps.glade.h:184
 msgid "_Zip/Postal code:"
-msgstr "_Code postal :"
+msgstr "_Code postal/INSEE :"
 
 #: ../src/glade/gramps.glade.h:186
 msgid "pt"
