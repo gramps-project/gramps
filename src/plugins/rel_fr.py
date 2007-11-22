@@ -560,7 +560,8 @@ register_relcalc(RelationshipCalculator,
 if __name__ == "__main__":
     # Test function. Call it as follows from the command line (so as to find
     #        imported modules):
-    #    export PYTHONPATH=/path/to/gramps/src python src/gen/lib/date.py 
+    #    export PYTHONPATH=/path/to/gramps/src 
+    # python src/plugins/rel_fr.py 
     # (Above not needed here)
     
     """TRANSLATORS, copy this if statement at the bottom of your 
