@@ -494,7 +494,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """ DEPRECATED -- DO NOT USE
                 copied here from Relationship.py as no longer needed elsewhere
         """
-        if person == None or depth > MAX_DEPTH:
+        if person == None or depth > 15:
             return
         depth += 1
         plist.append(person.handle)

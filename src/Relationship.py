@@ -30,6 +30,7 @@ import gen.lib
 import types
 from TransUtils import sgettext as _
 
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -339,7 +340,6 @@ _nephews_nieces_level = [   "",
 #
 #-------------------------------------------------------------------------
 
-MAX_DEPTH = 15
 
 class RelationshipCalculator:
     
@@ -386,6 +386,26 @@ class RelationshipCalculator:
         self.map_handle = None
         self.map_meta = None
         self.__db_connected = False
+        self.depth = 15
+        try:
+            import Config
+            self.set_depth(Config.get(Config.GENERATION_DEPTH))
+        except ImportError:
+            pass
+
+    def set_depth(self, depth):
+        ''' set how deep relationships must be searched. Input must be an 
+            integer > 0
+        '''
+        if not depth == self.depth:
+            self.depth = depth
+            self.dirtymap = True
+
+    def get_depth(self):
+        ''' obtain depth of relationship search
+        '''
+        return self.depth
+    
 
     DIST_FATHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
     
@@ -628,8 +648,7 @@ class RelationshipCalculator:
                                       other_person,
                                       all_families=False, 
                                       all_dist=False, 
-                                      only_birth=True,
-                                      max_depth = MAX_DEPTH):
+                                      only_birth=True):
         """
         Returns if all_dist == True a 'tuple, string':
             (rank, person handle, firstRel_str, firstRel_fam,
@@ -680,13 +699,11 @@ class RelationshipCalculator:
         @param only_birth: if True only parents with birth relation are 
                            considered
         @type only_birth:  bool
-        @param max_depth: how many generations deep do we search?
-        @type max_depth: int
         """
         #data storage to communicate with recursive functions
         self.__maxDepthReached = False
         self.__loopDetected = False
-        self.__max_depth = max_depth
+        self.__max_depth = self.get_depth()
         self.__all_families = all_families
         self.__all_dist = all_dist
         self.__only_birth = only_birth
@@ -711,16 +728,17 @@ class RelationshipCalculator:
                     and not self.dirtymap): 
                 firstMap = self.stored_map
                 self.__maxDepthReached, self.__loopDetected, \
-                 self.__max_depth, self.__all_families,\
+                 self.__all_families,\
                  self.__all_dist, self.__only_birth,\
                  self.__crosslinks, self.__msg = self.map_meta
+                self.__msg = list(self.__msg)
             else:
                 self.__apply_filter(db, orig_person, '', [], firstMap)
                 self.map_meta = (self.__maxDepthReached,
                                  self.__loopDetected, 
-                                 self.__max_depth, self.__all_families,
+                                 self.__all_families,
                                  self.__all_dist, self.__only_birth,
-                                 self.__crosslinks, self.__msg)
+                                 self.__crosslinks, list(self.__msg))
             self.__apply_filter(db, other_person, '', [], secondMap,
                                     stoprecursemap = firstMap)
         except RuntimeError:
@@ -784,7 +802,7 @@ class RelationshipCalculator:
         if self.__maxDepthReached :
             self.__msg += [_('Family tree reaches back more than the maximum '
                         '%d generations searched.\nIt is possible that '
-                        'relationships have been missed') % (max_depth)]
+                        'relationships have been missed') % (self.__max_depth)]
 
         if common and not self.__all_dist :
             rank          = common[0][0]
@@ -823,9 +841,9 @@ class RelationshipCalculator:
         
         if depth > self.__max_depth:
             self.__maxDepthReached = True
-            print 'Maximum ancestor generations ('+str(depth)+') reached', \
-                        '(' + rel_str + ').',\
-                        'Stopping relation algorithm.'
+            #print 'Maximum ancestor generations ('+str(depth)+') reached', \
+            #            '(' + rel_str + ').',\
+            #            'Stopping relation algorithm.'
             return
         depth += 1
         

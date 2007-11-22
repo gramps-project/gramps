@@ -342,6 +342,14 @@ class DisplayState(gen.utils.GrampsDBCallback):
            Should be called after load or reload of plugins
         """
         self.relationship = _PluginMgr.relationship_class()
+
+    def set_gendepth(self, value):
+        """ Set the generations we search back for showing relationships
+            on GRAMPS interface. Value must be integer > 0
+            This method will be used by the preference editor when user changes
+            the generations. 
+        """
+        self.relationship.set_depth(value)
         
     def display_relationship(self, dbstate):
         ''' Construct the relationship in order to show it in the statusbar

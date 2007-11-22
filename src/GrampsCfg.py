@@ -519,6 +519,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           4, Config.RELEDITBTN)
         self.add_checkbox(table, _('Remember last view displayed'), 
                           5, Config.USE_LAST_VIEW)
+        self.add_pos_int_entry(table, 
+                _('Number of generations for relationship determination'),
+                6, Config.GENERATION_DEPTH, self.update_gen_depth)
 
         return table
 
@@ -552,6 +555,18 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
+    def add_pos_int_entry(self, table, label, index, constant, callback=None):
+        ''' entry field for positive integers
+        '''
+        lwidget = BasicLabel("%s: " % label)
+        entry = gtk.Entry()
+        entry.set_text(str(Config.get(constant)))
+        if callback:
+            entry.connect('changed', callback, constant)
+        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(entry, 2, 3, index, index+1, yoptions=0)
+
     def add_color(self, table, label, index, constant):
         lwidget = BasicLabel("%s: " % label)
         hexval = Config.get(constant)
@@ -567,6 +582,25 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def update_entry(self, obj, constant):
         Config.set(constant, unicode(obj.get_text()))
+
+    def update_gen_depth(self, obj, constant):
+        ok = True
+        if not obj.get_text():
+            return
+        try:
+            intval = int(obj.get_text())
+        except:
+            intval = Config.get(constant)
+            ok = False
+        if intval < 0 :
+            intval = Config.get(constant)
+            ok = False
+        if ok:
+            Config.set(constant, intval)
+            #immediately use this value in displaystate.
+            self.uistate.set_gendepth(intval)
+        else:
+            obj.set_text(str(intval))
 
     def update_color(self, obj, constant, color_hex_label):
         color = obj.get_color()

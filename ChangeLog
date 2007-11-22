@@ -1,4 +1,15 @@
 2007-11-22 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: key for gen search depth
+	* src/GrampsCfg.py: Gramps preferences allows to set search depth
+			of relationship.
+	* src/Relationship.py: methods to change generation depth of search
+	* src/plugins/rel_fr.py: remove depth use
+	* src/plugins/all_relations.py: use depth, correct remark print error
+	* src/plugins/rel_pl.py: remove depth use
+	* src/DisplayState.py: hook to change relclass depth from GrampsCfg
+	See also issue #1290
+
+2007-11-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Relationship.py: remove old methods that are no longer used,
 	get_relationship() and get_relationship_distance()
 

@@ -95,8 +95,7 @@ class AllRelReport():
                     self.database, self.person, self.home_person,
                     all_families=True, 
                     all_dist=True, 
-                    only_birth=False,
-                    max_depth=20)
+                    only_birth=False)
         #all relations
         if (not common or common[0][0]== -1 ) and not is_spouse:
             rstr = _("%(person)s and %(active_person)s are not "
@@ -143,10 +142,9 @@ class AllRelReport():
                             self.database, inlawpers, inlawhome,
                             all_families=True, 
                             all_dist=True, 
-                            only_birth=False,
-                            max_depth=20)
+                            only_birth=False)
                 if msg:
-                    self.msg_list.append(msg)
+                    self.msg_list += msg
                 if common and not common[0][0] == -1:
                     if not inlawwritten:
                         rstr = _("%(person)s and %(active_person)s have "
@@ -180,7 +178,7 @@ class AllRelReport():
                                         inlawa = inlawa, inlawb = inlawb,
                                         count = count, skip_list = skip,
                                         first = False)
-        self.remarks(self.msg_list)
+        self.remarks(self.msg_list, True)
 
     def get_inlaws(self, person):
         inlaws = []
@@ -324,13 +322,17 @@ class AllRelReport():
             count += 1
         return count
         
-    def remarks(self, msg_list):
+    def remarks(self, msg_list, inlaw=False):
         if msg_list :
             sdoc = self.sdoc
             sdoc.paragraph("")
-            sdoc.header1(_("Remarks"))
+            if inlaw:
+                sdoc.header1(_("Remarks with inlaw family"))
+            else:
+                sdoc.header1(_("Remarks"))
             sdoc.paragraph("")
             sdoc.paragraph(_("The following problems where encountered:"))
+            
             for msg in msg_list :
                 sdoc.paragraph(msg)
             sdoc.paragraph("")

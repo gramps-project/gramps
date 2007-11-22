@@ -125,8 +125,6 @@ _nephews_nieces_level = [ "", "les neveux et les nièces",
 #
 #-------------------------------------------------------------------------
 
-MAX_DEPTH = 15
-
 class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     #sibling strings
