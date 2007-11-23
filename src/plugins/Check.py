@@ -798,7 +798,7 @@ class CheckIntegrity:
                     if not event:
                         # The event referenced by the family
                         # does not exist in the database
-                        family.get_event_list().remove(event_ref)
+                        family.get_event_ref_list().remove(event_ref)
                         self.db.commit_family(family,self.trans)
                         self.invalid_events.append(key)
             elif type(family.get_event_ref_list()) != list:
