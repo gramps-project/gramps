@@ -318,19 +318,20 @@ class RelationshipView(PageView.PersonNavView):
         self.order_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.order_action.add_actions([
             ('ChangeOrder', gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
-            _("Reorder the relationships"), self.reorder),
+            _("Change order of parents and families"), self.reorder),
             ])
 
         self.family_action = gtk.ActionGroup(self.title + '/Family')
         self.family_action.add_actions([
             ('Edit', gtk.STOCK_EDIT, _('Edit'), None ,
-                _("Edits the active person"), self.edit_active),
+                _("Edit the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Add partner'), None ,
-                _("Add a new relationship"), self.add_spouse),
+                _("Add a new family with person as parent"), self.add_spouse),
             ('AddParents', 'gramps-parents-add', _('Add new parents'), None ,
-                _("Adds a new set of parents"), self.add_parents),
-            ('ShareFamily', 'gramps-parents-open', _('Add existing parents'), None ,
-                _("Adds an existing set of parents"), self.select_parents),
+                _("Add a new set of parents"), self.add_parents),
+            ('ShareFamily', 'gramps-parents-open', _('Add existing parents'), 
+                None , _("Add person as child to an existing family"), 
+                self.select_parents),
             ])
 
         self._add_action_group(self.order_action)
@@ -511,7 +512,8 @@ class RelationshipView(PageView.PersonNavView):
         text = fmt % cgi.escape(name)
         label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender])
         if Config.get(Config.RELEDITBTN):
-            button = GrampsWidgets.IconButton(self.edit_button_press, person.handle)
+            button = GrampsWidgets.IconButton(self.edit_button_press, 
+                                              person.handle)
             self.tooltips.set_tip(button, _('Edit %s') % name)
         else:
             button = None
@@ -681,15 +683,17 @@ class RelationshipView(PageView.PersonNavView):
             if is_parent:
                 call_fcn = self.add_parent_family
                 del_fcn = self.delete_parent_family
-                add_msg = _('Add parents')
-                sel_msg = _('Select existing parents')
+                add_msg = _('Add a new set of parents')
+                sel_msg = _('Add person as child to an exiting family')
                 edit_msg = _('Edit parents')
-                del_msg = _('Remove parents')
+                ord_msg = _('Reorder parents')
+                del_msg = _('Remove person as child of these parents')
             else:
-                add_msg = _('Add spouse')
-                sel_msg = _('Select spouse')
+                add_msg = _('Add a new family with person as parent')
+                sel_msg = None
                 edit_msg = _('Edit family')
-                del_msg = _('Remove from family')
+                ord_msg = _('Reorder families')
+                del_msg = _('Remove person as parent in this family')
                 call_fcn = self.add_family
                 del_fcn = self.delete_family
 
@@ -698,7 +702,7 @@ class RelationshipView(PageView.PersonNavView):
                 if self.reorder_sensitive:
                     add = GrampsWidgets.IconButton(self.reorder, None, 
                                                    gtk.STOCK_SORT_ASCENDING)
-                    self.tooltips.set_tip(add, _('Reorder families'))
+                    self.tooltips.set_tip(add, ord_msg)
                     hbox.pack_start(add, False)
 
                 add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
@@ -909,14 +913,15 @@ class RelationshipView(PageView.PersonNavView):
         else:
             link_func = None
 
-        link_label = GrampsWidgets.LinkLabel(self.get_name(handle, True),
-                                             link_func, handle, format)
+        name = self.get_name(handle, True)
+        link_label = GrampsWidgets.LinkLabel(name, link_func, handle, format)
 
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
         if child_should_be_linked and Config.get(Config.RELEDITBTN):
             button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+            self.tooltips.set_tip(button, _('Edit %s') % name[0])
         else:
             button = None
 

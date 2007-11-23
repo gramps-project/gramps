@@ -1,4 +1,7 @@
 2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/_RelationView.py: tooltip cleanup, see also #256
+
+2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/all_relations.py: remove unnecessary import
 	* src/plugins/siblings.py: add sibling relation if not normal
 	* src/Relationship.py: improve sibling type calculation
