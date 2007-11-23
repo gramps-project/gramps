@@ -1,3 +1,9 @@
+2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/all_relations.py: remove unnecessary import
+	* src/plugins/siblings.py: add sibling relation if not normal
+	* src/Relationship.py: improve sibling type calculation
+	Issue #1323
+
 2007-11-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: key for gen search depth
 	* src/GrampsCfg.py: Gramps preferences allows to set search depth

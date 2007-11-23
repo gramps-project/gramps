@@ -546,13 +546,29 @@ class RelationshipCalculator:
             if fatherother == fatherorig and motherother == motherorig:
                 return self.NORM_SIB
             elif fatherother == fatherorig or motherother == motherorig:
+                #all birth parents are known, one 
                 return self.HALF_SIB
             else :
                 return self.STEP_SIB
         else:
-            #other has unknown father or mother, 
-            # or orig has unknown father or mother, hence we cannot know
-            # how the siblings are related:
+            # some birth parents are not known, hence we or cannot know if
+            # half siblings. step siblings might be possible, otherwise give up
+            orig_nb_par = self._get_nonbirth_parent_list(db, orig)
+            if fatherother and fatherother in orig_nb_par:
+                #the birth parent of other is non-birth of orig
+                return self.STEP_SIB
+            if motherother and motherother in orig_nb_par:
+                #the birth parent of other is non-birth of orig
+                return self.STEP_SIB
+            other_nb_par = self._get_nonbirth_parent_list(db, other)
+            if fatherorig and fatherorig in other_nb_par:
+                #the one birth parent of other is non-birth of orig
+                return self.STEP_SIB
+            if motherorig and motherorig in other_nb_par:
+                #the one birth parent of other is non-birth of orig
+                return self.STEP_SIB
+            #there is an unknown birth parent, it could be that this is the
+            # birth parent of the other person
             return self.UNKNOWN_SIB
 
     def get_parents(self, level):
@@ -568,8 +584,8 @@ class RelationshipCalculator:
         """
         birthfather = None
         birthmother = None
-        for f in person.get_parent_family_handle_list():
-            family = db.get_family_from_handle(f)
+        for fam in person.get_parent_family_handle_list():
+            family = db.get_family_from_handle(fam)
             childrel = [(ref.get_mother_relation(), 
                              ref.get_father_relation()) for ref in 
                                 family.get_child_ref_list() 
@@ -581,6 +597,28 @@ class RelationshipCalculator:
             if birthmother and birthfather:
                 break
         return (birthmother, birthfather)
+
+    def _get_nonbirth_parent_list(self, db, person):
+        """ returns a list of handles of parents of which it is known 
+            they are not birth parents. 
+            So all parents which do not have relation BIRTH or UNKNOWN
+            are returned.
+        """
+        nb_parents = []
+        for fam in person.get_parent_family_handle_list():
+            family = db.get_family_from_handle(fam)
+            childrel = [(ref.get_mother_relation(), 
+                             ref.get_father_relation()) for ref in 
+                                family.get_child_ref_list() 
+                                if ref.ref == person.handle]
+            if not childrel[0][0] == gen.lib.ChildRefType.BIRTH \
+                    and not childrel[0][0] == gen.lib.ChildRefType.UNKNOWN :
+                nb_parents.append(family.get_mother_handle())
+            if not childrel[0][1] == gen.lib.ChildRefType.BIRTH \
+                    and not childrel[0][1] == gen.lib.ChildRefType.UNKNOWN :
+                nb_parents.append(family.get_father_handle())
+        #make every person appear only once:
+        return list(set(nb_parents))
 
     def get_spouse_type(self, db, orig, other, all_rel = False):
         """ Translation free determination if orig and other are partners.

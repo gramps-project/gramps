@@ -29,10 +29,8 @@ Display a person's relations to the home person
 
 from Simple import SimpleAccess, SimpleDoc
 from gettext import gettext as _
-from PluginUtils import register_quick_report
+from PluginUtils import register_quick_report, relationship_class
 from ReportBase import CATEGORY_QR_PERSON
-
-from PluginUtils import Tool, relationship_class, register_tool
 
 # define the formatting string once as a constant. Since this is reused
 
