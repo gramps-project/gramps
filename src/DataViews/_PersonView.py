@@ -33,7 +33,6 @@ __revision__ = "$Revision$"
 #
 #------------------------------------------------------------------------
 
-from gettext import gettext as _
 import cPickle as pickle
 
 #-------------------------------------------------------------------------
@@ -61,7 +60,7 @@ import Errors
 import Config
 import const
 import gen.utils
-from TransUtils import sgettext as _s
+from TransUtils import sgettext as _
 
 from Editors import EditPerson
 from Filters import SearchBar
