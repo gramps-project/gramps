@@ -484,7 +484,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = 'la cognata'
                 else:
                     rel_str = 'il cognato/a'
-        elif sib_type == self.HALF_SIB or sib_type == self.STEP_SIB:
+        elif sib_type == self.HALF_SIB_FATHER \
+                or sib_type == self.HALF_SIB_MOTHER \
+                or sib_type == self.STEP_SIB:
             #Italian has no difference between half and step sibling!
             if not inlaw:
                 if gender_b == gen.lib.Person.MALE:

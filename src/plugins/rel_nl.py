@@ -514,7 +514,8 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
             typestr = ''
-        elif sib_type == self.HALF_SIB:
+        elif sib_type == self.HALF_SIB_FATHER \
+                or sib_type == self.HALF_SIB_MOTHER:
             typestr = self.HALF
         elif sib_type == self.STEP_SIB:
             typestr = self.STEP

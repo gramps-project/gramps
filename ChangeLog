@@ -1,4 +1,10 @@
 2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/rel_nl.py: new half sibling types
+	* src/plugins/rel_it.py: new half sibling types
+	* src/Relationship.py: change the sibling type to distinguish
+	side of relation. Correct bug in sibling type determination.
+
+2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/_RelationView.py: tooltip cleanup, see also #256
 
 2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>

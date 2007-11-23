@@ -356,10 +356,11 @@ class RelationshipCalculator:
     REL_FAM_INLAW_PREFIX = 'L'      # going to the partner.
     
     #sibling types
-    NORM_SIB = 0
-    HALF_SIB = 1
-    STEP_SIB = 2
-    UNKNOWN_SIB  = 3
+    NORM_SIB = 0                    # same birth parents
+    HALF_SIB_MOTHER = 1             # same mother, father known to be different
+    HALF_SIB_FATHER = 2             # same father, mother known to be different
+    STEP_SIB = 3                    # birth parents known to be different
+    UNKNOWN_SIB  = 4                # insufficient data to draw conclusion
     
     #sibling strings
     STEP= 'step'
@@ -545,9 +546,11 @@ class RelationshipCalculator:
         if fatherorig and motherorig and fatherother and motherother:
             if fatherother == fatherorig and motherother == motherorig:
                 return self.NORM_SIB
-            elif fatherother == fatherorig or motherother == motherorig:
-                #all birth parents are known, one 
-                return self.HALF_SIB
+            elif fatherother == fatherorig:
+                #all birth parents are known, one
+                return self.HALF_SIB_FATHER
+            elif motherother == motherorig:
+                return self.HALF_SIB_MOTHER
             else :
                 return self.STEP_SIB
         else:
@@ -556,17 +559,29 @@ class RelationshipCalculator:
             orig_nb_par = self._get_nonbirth_parent_list(db, orig)
             if fatherother and fatherother in orig_nb_par:
                 #the birth parent of other is non-birth of orig
-                return self.STEP_SIB
+                if motherother and motherother == motherorig:
+                    return self.HALF_SIB_MOTHER
+                else:
+                    return self.STEP_SIB
             if motherother and motherother in orig_nb_par:
                 #the birth parent of other is non-birth of orig
-                return self.STEP_SIB
+                if fatherother and fatherother == fatherorig:
+                    return self.HALF_SIB_FATHER
+                else:
+                    return self.STEP_SIB
             other_nb_par = self._get_nonbirth_parent_list(db, other)
             if fatherorig and fatherorig in other_nb_par:
                 #the one birth parent of other is non-birth of orig
-                return self.STEP_SIB
+                if motherorig and motherother == motherorig:
+                    return self.HALF_SIB_MOTHER
+                else:
+                    return self.STEP_SIB
             if motherorig and motherorig in other_nb_par:
                 #the one birth parent of other is non-birth of orig
-                return self.STEP_SIB
+                if fatherother and fatherother == fatherorig:
+                    return self.HALF_SIB_FATHER
+                else:
+                    return self.STEP_SIB
             #there is an unknown birth parent, it could be that this is the
             # birth parent of the other person
             return self.UNKNOWN_SIB
@@ -1606,7 +1621,8 @@ class RelationshipCalculator:
         """
         if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
             typestr = ''
-        elif sib_type == self.HALF_SIB:
+        elif sib_type == self.HALF_SIB_MOTHER \
+                or sib_type == self.HALF_SIB_FATHER:
             typestr = self.HALF
         elif sib_type == self.STEP_SIB:
             typestr = self.STEP
@@ -2059,7 +2075,9 @@ def _test(rc, onlybirth, inlawa, inlawb, printrelstr):
                         print rel
 
 def _testsibling(rc):
-    vals = [(rc.NORM_SIB, 'sibling'), (rc.HALF_SIB, 'half sib'),
+    vals = [(rc.NORM_SIB, 'sibling'),
+            (rc.HALF_SIB_MOTHER, 'half sib mother side'),
+            (rc.HALF_SIB_FATHER, 'half sib father side'),
             (rc.STEP_SIB, 'step sib'), (rc.UNKNOWN_SIB, 'undetermined sib')]
     FMT = '%+50s'
     for gendr, strgen in [(gen.lib.Person.MALE, 'male'), 
