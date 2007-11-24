@@ -144,7 +144,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             rel_str = self.get_uncle(level-1, inlaw)
         else:
             # limitation gen = 29
-            return "le cousin éloigné, relié à la %s génération" % (
+            return "le cousin lointain, relié à la %s génération" % (
                         _level_name[removed])
 
     def get_cousine(self, level, removed, dir = '', inlaw=''):
@@ -154,85 +154,85 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif (level) < (removed):
             rel_str = self.get_aunt(level-1, inlaw)
         else:
-            return "la cousine éloignée, reliée à la %s génération" % (
+            return "la cousine lointaine, reliée à la %s génération" % (
                         _level_name[removed])
 
     def get_parents(self, level):
         if level > len(_parents_level)-1:
-            return "les ascendants éloignés, à la %s génération" % (
+            return "les ascendants lointains, à la %s génération" % (
                         _level_name[level])
         else:
             return _parents_level[level]
 
     def get_father(self, level, inlaw=''):
         if level > len(_father_level)-1:
-            return "l'ascendant éloigné, à la %s génération" % (
+            return "l'ascendant lointain, à la %s génération" % (
                         _level_name[level])
         else:
             return _father_level[level] % inlaw
 
     def get_mother(self, level, inlaw=''):
         if level > len(_mother_level)-1:
-            return "l'ascendante éloignée, à la %s génération" % (
+            return "l'ascendante lointaine, à la %s génération" % (
                         _level_name[level])
         else:
             return _mother_level[level] % inlaw
 
     def get_parent_unknown(self, level, inlaw=''):
         if level > len(_level_name)-1:
-            return "l'ascendant éloigné, à la %s génération" % (
+            return "l'ascendant lointain, à la %s génération" % (
                         _level_name[level])
         else:
-            return "un parent éloigné%s" % (inlaw)
+            return "un parent lointain%s" % (inlaw)
 
     def get_son(self, level, inlaw=''):
         if level > len(_son_level)-1:
-            return "le descendant éloigné, à la %s génération" % (
+            return "le descendant lointain, à la %s génération" % (
                         _level_name[level+1])
         else:
             return _son_level[level] % (inlaw)
 
     def get_daughter(self, level, inlaw=''):
         if level > len(_daughter_level)-1:
-            return "la descendante éloignée, à la %s génération" % (
+            return "la descendante lointaine, à la %s génération" % (
                         _level_name[level+1])
         else:
             return _daughter_level[level] % (inlaw)
 
     def get_child_unknown(self, level, inlaw=''):
         if level > len(_level_name)-1:
-            return "le descendant éloigné, à la %s génération" % (
+            return "le descendant lointain, à la %s génération" % (
                         _level_name[level+1])
         else:
-            return "un descendant éloigné%s" % (inlaw)
+            return "un descendant lointain%s" % (inlaw)
 
     def get_sibling_unknown(self, level, inlaw=''):
-        return "un parent éloigné%s" % (inlaw)
+        return "un parent lointain%s" % (inlaw)
 
     def get_uncle(self, level, inlaw=''):
         if level > len(_brother_level)-1:
-            return "l'oncle éloigné, relié à la %s génération" % (
+            return "l'oncle lointain, relié à la %s génération" % (
                         _level_name[level])
         else:
             return _brother_level[level] % (inlaw)
 
     def get_aunt(self, level, inlaw=''):
         if level > len(_sister_level)-1:
-            return "la tante éloignée, reliée à la %s génération" % (
+            return "la tante lointaine, reliée à la %s génération" % (
                         _level_name[level])
         else:
             return _sister_level[level] % (inlaw)
 
     def get_nephew(self, level, inlaw=''):
         if level > len(_nephew_level)-1:
-            return "le neveu éloigné, à la %s génération" % (
+            return "le neveu lointain, à la %s génération" % (
                         _level_name[level])
         else:
             return _nephew_level[level] % (inlaw)
 
     def get_niece(self, level, inlaw=''):
         if level > len(_niece_level)-1:
-            return "la nièce éloignée, à la %s génération" % (
+            return "la nièce lointaine, à la %s génération" % (
                         _level_name[level])
         else:
             return _niece_level[level] % (inlaw)
@@ -244,7 +244,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
         voir Relationship.py
         """
-        rel_str = "des parents éloignés"
+        rel_str = "des parents lointains"
         gen = " à la %sème génération"
         bygen = " par la %sème génération"
         cmt = " (frères ou sœurs d'un ascendant" + gen % (
@@ -336,6 +336,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         """
        voir Relationship.py
         """
+        if only_birth:
+            step = ''
+        else:
+            step = self.STEP
 
         if in_law_a or in_law_b :
             inlaw = self.INLAW
@@ -343,48 +347,52 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             inlaw = ''
         
         
-        rel_str = "un parent éloigné%s" % (inlaw)
+        rel_str = "un parent lointains%s" % (inlaw)
         bygen = " par la %sème génération"
         if Ga == 0:
             # b is descendant of a
             if Gb == 0 :
                 rel_str = 'le même individu'
             elif gender_b == gen.lib.Person.MALE and Gb < len(_son_level):
-                if in_law_a and Gb == 1:
+                if inlaw and Gb == 1 and not step:
                     rel_str = "le gendre"
                 else:
                     rel_str = self.get_son(Gb)
             elif gender_b == gen.lib.Person.FEMALE and Gb < len(_daughter_level):
-                if in_law_a and Gb == 1:
+                if inlaw and Gb == 1 and not step:
                     rel_str = "la bru"
                 else:
                     rel_str = self.get_daughter(Gb)
             # don't display inlaw
             elif Gb < len(_level_name) and gender_b == gen.lib.Person.MALE:
-                rel_str = "le descendant éloigné (%dème génération)" % (
+                rel_str = "le descendant lointain (%dème génération)" % (
                                Gb+1)
             elif Gb < len(_level_name) and gender_b == gen.lib.Person.FEMALE:
-                rel_str = "la descendante éloignée (%dème génération)" % (
+                rel_str = "la descendante lointaine (%dème génération)" % (
                                Gb+1)
             else:
                 return self.get_child_unknown(Gb)
         elif Gb == 0:
             # b is parents/grand parent of a
             if gender_b == gen.lib.Person.MALE and Ga < len(_father_level):
-                if in_law_a and Ga == 1:
+                if inlaw and Ga == 1 and not step:
+                    rel_str = "le père du conjoint"
+                elif step and Ga == 1 and not inlaw:
                     rel_str = "le beau-père"
                 else:
                     rel_str = self.get_father(Ga, inlaw)
             elif gender_b == gen.lib.Person.FEMALE and Ga < len(_mother_level):
-                if in_law_a and Ga == 1:
+                if inlaw and Ga == 1 and not step:
+                    rel_str = "la mère du conjoint"
+                elif step and Ga == 1 and not inlaw:
                     rel_str = "la belle-mère"
                 else:
                     rel_str = self.get_mother(Ga, inlaw)
             elif Ga < len(_level_name) and gender_b == gen.lib.Person.MALE:
-                rel_str = "l'ascendant éloigné%s (%dème génération)" % (
+                rel_str = "l'ascendant lointain%s (%dème génération)" % (
                                inlaw, Ga+1)
             elif Ga < len(_level_name) and gender_b == gen.lib.Person.FEMALE:
-                rel_str = "l'ascendante éloignée%s (%dème génération)" % (
+                rel_str = "l'ascendante lointaine%s (%dème génération)" % (
                                inlaw, Ga+1)
             else:
                 return self.get_parent_unknown(Ga, inlaw)
@@ -397,10 +405,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 # don't display inlaw
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "l'oncle éloigné" + bygen % (
+                    rel_str = "l'oncle lointain" + bygen % (
                                    Ga+1)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la tante éloignée" + bygen % (
+                    rel_str = "la tante lointaine" + bygen % (
                                    Ga+1)
                 elif gender_b == gen.lib.Person.UNKNOWN:
                     rel_str = self.get_sibling_unknown(Ga, inlaw)
@@ -414,10 +422,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = self.get_niece(Gb-1, inlaw)
             else:
                 if gender_b == gen.lib.Person.MALE: 
-                    rel_str = "le neveu éloigné%s (%dème génération)" %  (
+                    rel_str = "le neveu lointain%s (%dème génération)" %  (
                                    inlaw, Gb)
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la nièce éloignée%s (%dème génération)" %  (
+                    rel_str = "la nièce lointaine%s (%dème génération)" %  (
                                    inlaw, Gb)
                 elif gender_b == gen.lib.Person.UNKNOWN:
                     rel_str = self.get_sibling_unknown(Ga, inlaw)
@@ -513,35 +521,64 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
 
-        rel_str = "un frère ou une sœur"
-
-        if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
-            typestr = ''
-        elif sib_type == self.HALF_SIB:
-            typestr = self.HALF
-        elif sib_type == self.STEP_SIB:
-            typestr = self.STEP
-
-        if in_law_a or in_law_b:
+        if in_law_a or in_law_b :
             inlaw = self.INLAW
         else:
             inlaw = ''
-         
-        if typestr:
-            if gender_b == gen.lib.Person.MALE and typestr == self.HALF:
-                rel_str = "le demi-frère"
-            elif gender_b == gen.lib.Person.FEMALE and typestr == self.HALF:
-                rel_str = "la demi-sœur"
-            elif gender_b == gen.lib.Person.MALE and typestr == self.STEP:
-                rel_str = "le beau-frère"
-            elif gender_b == gen.lib.Person.FEMALE and typestr == self.STEP:
-                rel_str = "la belle-sœur"
-            elif gender_b == gen.lib.Person.MALE and typestr == '':
-                rel_str = "le frère"
-            elif gender_b == gen.lib.Person.FEMALE and typestr == '':
-                rel_str = "la sœur"
+        
+        if sib_type == self.NORM_SIB:
+            if not inlaw:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'le frère (germain)'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'la sœur (germaine)'
+                else:
+                    rel_str = 'le frère ou la sœur (germain)'
             else:
-                return rel_str  
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = self.get_uncle(1, '')
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = self.get_aunt(1, '')
+                else:
+                    rel_str = self.get_sibling_unknown(1, '')
+        elif sib_type == self.UNKNOWN_SIB:
+            if not inlaw:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'le frère'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'la sœur'
+                else:
+                    rel_str = 'le frère ou la sœur'
+            else:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = self.get_uncle(1, '')
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = self.get_aunt(1, '')
+                else:
+                    rel_str = self.get_sibling_unknown(1, '')
+
+        elif sib_type == self.HALF_SIB_FATHER:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "le demi-frère consanguin"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "la demi-sœur consanguine"
+                else:
+                    rel_str = "le demi-frère ou la demi-sœur consanguin(e)"
+        elif sib_type == self.HALF_SIB_MOTHER:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "le demi-frère utérin"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "la demi-sœur utérine"
+                else:
+                    rel_str = "le demi-frère ou la demi-sœur utérin(e)"
+        elif sib_type == self.STEP_SIB:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "le beau-frère"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "la belle-sœur"
+                else:
+                    rel_str = "le beau-frère ou la belle-sœur"
+         
         return rel_str
 
 

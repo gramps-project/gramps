@@ -5,6 +5,7 @@
 	* src/DataViews/_PersonView.py: TransUtils issue with gettext context 
         * src/glade/gramps.glade: Inconsistent label in "Associations", issue #1390
         * src/TipOfDay.py: display bold tags, issue #1368
+        * src/plugins/rel_fr.py: improve siblings relations
 
 2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/rel_nl.py: new half sibling types
