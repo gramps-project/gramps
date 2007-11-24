@@ -1,3 +1,9 @@
+2007-11-24  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/gen/lib/date.py: had to import calendar by path.name
+	  (so that the import of date_test would work)
+	* src/gen/lib/test: new test directory
+	* src/gen/lib/test/date_test.py: unittests for date.py
+
 2007-11-24 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditPerson.py: callback family update bug removed
 
