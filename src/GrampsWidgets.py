@@ -736,14 +736,23 @@ class MonitoredDate:
         field.set_editable(not readonly)
         button.set_sensitive(not readonly)
 
-class PlaceEntry:
+class ObjEntry:
     """
-    Handles the selection of a existing or new Place. Supports Drag and Drop
-    to select a place.
+    Handles the selection of a existing or new Object. Supports Drag and Drop
+    to select the object.
+    This is the base class to create a real entry
     """
     def __init__(self, dbstate, uistate, track, obj, set_val, 
                  get_val, add_del, share):
-        
+        '''Pass the dbstate and uistate and present track.
+            obj is a gtk.Label that shows the persent value
+            set_val is function that is called when handle changes, use it
+                to update the calling module
+            get_val is function that is called to obtain handle from calling
+                module
+            add_del is the gtk.Button with add or delete value
+            share is the gtk.Button to call the object selector
+        '''
         self.obj = obj
         self.add_del = add_del
         self.share = share
@@ -754,15 +763,16 @@ class PlaceEntry:
         self.uistate = uistate
         self.track = track
         self.tooltips = gtk.Tooltips()
-
-        self.obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.PLACE_LINK.target()], 
-                               gtk.gdk.ACTION_COPY)
-        self.obj.connect('drag_data_received', self.drag_data_received)
+        
+        #connect drag and drop
+        self._init_dnd()
+        #set the object specific code
+        self._init_object()
 
         if get_val():
             self.set_button(True)
-            p = self.db.get_place_from_handle(self.get_val())
-            name = "%s [%s]" % (p.get_title(), p.gramps_id)
+            p = self.get_from_handle(self.get_val())
+            name = self.get_label(p)
         else:
             name = u""
             self.set_button(False)
@@ -778,61 +788,84 @@ class PlaceEntry:
         self.share.connect('clicked', self.share_clicked)
         
         if not self.db.readonly and not name:
-            obj.set_text("<i>%s</i>" % _('To select a place, use drag-and-drop or use the buttons'))
+            obj.set_text(self.EMPTY_TEXT)
             obj.set_use_markup(True)
         else:
             obj.set_text(name)
 
-    def after_edit(self, place):
-        name = "%s [%s]" % (place.get_title(), place.gramps_id)
+    def _init_dnd(self):
+        '''inheriting objects must set this
+        '''
+        pass
+
+    def _init_object(self):
+        '''inheriting objects can use this to set extra variables
+        '''
+        pass
+
+    def get_from_handle(self, handle):
+        ''' return the object given the hande
+            inheriting objects must set this
+        '''
+        pass
+
+    def get_label(self, object):
+        ''' return the label
+            inheriting objects must set this
+        '''
+        pass
+
+    def after_edit(self, obj):
+        name = self.get_label(obj)
         self.obj.set_text(name)
 
     def add_del_clicked(self, obj):
+        ''' if value, delete, if no value, call editor
+        '''
         if self.get_val():
             self.set_val(None)
             self.obj.set_text(u'')
             self.set_button(False)
         else:
-            from gen.lib import Place
-            from Editors import EditPlace
+            self.call_editor()
 
-            place = Place()
-            try:
-                EditPlace(self.dbstate, self.uistate, self.track, 
-                          place, self.place_added)
-            except WindowActiveError:
-                pass
+    def call_editor(self, obj):
+        '''inheriting objects must set this
+        '''
+        pass
+
+    def call_selector(self):
+        '''inheriting objects must set this
+        '''
+        pass
 
     def drag_data_received(self, widget, context, x, y, selection, info, time):
         (drag_type, idval, obj, val) = pickle.loads(selection.data)
         
         data = self.db.get_place_from_handle(obj)
-        self.place_added(data)
+        self.obj_added(data)
         
-    def place_added(self, data):
+    def obj_added(self, data):
+        ''' callback from adding an object to the entry'''
         self.set_val(data.handle)
-        self.obj.set_text("%s [%s]" % (data.get_title(), data.gramps_id))
+        self.obj.set_text(self.get_label(data))
         self.set_button(True)
 
     def share_clicked(self, obj):
+        ''' if value, edit object, in no value, select existing object
+        '''
         if self.get_val():
-            from Editors import EditPlace
-            
-            place = self.db.get_place_from_handle(self.get_val())
-            try:
-                EditPlace(self.dbstate, self.uistate, self.track, place, 
-                          self.after_edit)
-            except WindowActiveError:
-                pass
+            obj = self.get_from_handle(self.get_val())
+            self.call_editor(obj)
         else:
-            from Selectors import selector_factory
-            cls = selector_factory('Place')
-            select = cls(self.dbstate, self.uistate, self.track)
-            place = select.run()
-            if place:
-                self.place_added(place)
+            select = self.call_selector()
+            obj = select.run()
+            if obj:
+                self.obj_added(obj)
 
     def set_button(self, use_add):
+        ''' This sets the correct image to the two buttons
+        '''
         for i in self.add_del.get_children():
             self.add_del.remove(i)
         for i in self.share.get_children():
@@ -847,8 +880,8 @@ class PlaceEntry:
             image.set_from_stock(gtk.STOCK_EDIT, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
-            self.tooltips.set_tip(self.share, _('Edit place'))
-            self.tooltips.set_tip(self.add_del, _('Remove place'))
+            self.tooltips.set_tip(self.share, self.EDIT_STR)
+            self.tooltips.set_tip(self.add_del, self.DEL_STR)
         else:
             image = gtk.Image()
             image.set_from_stock(gtk.STOCK_ADD, gtk.ICON_SIZE_BUTTON)
@@ -858,8 +891,120 @@ class PlaceEntry:
             image.set_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON)
             image.show()
             self.share.add(image)
-            self.tooltips.set_tip(self.share, _('Select an existing place'))
-            self.tooltips.set_tip(self.add_del, _('Add a new place'))
+            self.tooltips.set_tip(self.share, self.SHARE_STR)
+            self.tooltips.set_tip(self.add_del, self.ADD_STR)
+
+class PlaceEntry(ObjEntry):
+    """
+    Handles the selection of a existing or new Place. Supports Drag and Drop
+    to select a place.
+    """
+    EMPTY_TEXT = "<i>%s</i>" % _('To select a place, use drag-and-drop '
+                                 'or use the buttons')
+    EDIT_STR = _('Edit place')
+    SHARE_STR = _('Select an existing place')
+    ADD_STR = _('Add a new place')
+    DEL_STR = _('Remove place')
+    
+    def __init__(self, dbstate, uistate, track, obj, set_val, 
+                 get_val, add_del, share):
+        ObjEntry.__init__(self, dbstate, uistate, track, obj, set_val, 
+                 get_val, add_del, share)
+
+    def _init_dnd(self):
+        '''connect drag and drop of places
+        '''
+        self.obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.PLACE_LINK.target()], 
+                               gtk.gdk.ACTION_COPY)
+        self.obj.connect('drag_data_received', self.drag_data_received)
+
+    def get_from_handle(self, handle):
+        ''' return the object given the hande
+        '''
+        return self.db.get_place_from_handle(handle)
+
+    def get_label(self, place):
+        return "%s [%s]" % (place.get_title(), place.gramps_id)
+
+    def call_editor(self, obj=None):
+        from Editors import EditPlace
+
+        if obj is None:
+            from gen.lib import Place
+            place = Place()
+            func = self.obj_added
+        else:
+            place = obj
+            func = self.after_edit
+        try:
+            EditPlace(self.dbstate, self.uistate, self.track, 
+                      place, func)
+        except WindowActiveError:
+            pass
+
+    def call_selector(self):
+        from Selectors import selector_factory
+        cls = selector_factory('Place')
+        return cls(self.dbstate, self.uistate, self.track)
+
+class NoteEntry(ObjEntry):
+    """
+    Handles the selection of a existing or new Note. Supports Drag and Drop
+    to select a Note.
+        """
+    EMPTY_TEXT = "<i>%s</i>" % _('To select a note, use drag-and-drop '
+                                 'or use the buttons')
+    EDIT_STR = _('Edit Note')
+    SHARE_STR = _('Select an existing note')
+    ADD_STR = _('Add a new note')
+    DEL_STR = _('Remove note')
+    
+    def __init__(self, dbstate, uistate, track, obj, set_val, 
+                 get_val, add_del, share):
+        ObjEntry.__init__(self, dbstate, uistate, track, obj, set_val, 
+                 get_val, add_del, share)
+
+    def _init_dnd(self):
+        '''connect drag and drop of places
+        '''
+        self.obj.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.NOTE_LINK.target()], 
+                               gtk.gdk.ACTION_COPY)
+        self.obj.connect('drag_data_received', self.drag_data_received)
+
+    def get_from_handle(self, handle):
+        ''' return the object given the hande
+        '''
+        return self.db.get_note_from_handle(handle)
+
+    def get_label(self, note):
+        note = " ".join(note.get(markup=False).split())
+        if len(note) > 35:
+            txt = note[:35]+"..."
+        else:
+            txt = note
+        return "%s [%s]" % (txt, p.gramps_id)
+
+    def call_editor(self, obj=None):
+        from Editors import EditNote
+
+        if obj is None:
+            from gen.lib import Note, Notetype
+            note = Note()
+            note.set_type(NoteType.REPORT)
+            func = self.obj_added
+        else:
+            note = obj
+            func = self.after_edit
+        try:
+            EditNote(self.dbstate, self.uistate, self.track, 
+                      note, func)
+        except WindowActiveError:
+            pass
+
+    def call_selector(self):
+        from Selectors import selector_factory
+        cls = selector_factory('Note')
+        return cls(self.dbstate, self.uistate, self.track)
 
 class Statusbar(gtk.HBox):
     """Custom Statusbar with flexible number of "bars".
