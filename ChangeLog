@@ -1,3 +1,6 @@
+2007-11-24 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditPerson.py: callback family update bug removed
+
 2007-11-24  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/DataViews/_PersonView.py: TransUtils issue with gettext context 
         * src/glade/gramps.glade: Inconsistent label in "Associations", issue #1390
