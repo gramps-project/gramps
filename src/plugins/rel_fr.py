@@ -536,11 +536,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = 'le frère ou la sœur (germain)'
             else:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = self.get_uncle(1, '')
+                    rel_str = "le beau-frère"
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = self.get_aunt(1, '')
+                    rel_str = "la belle-sœur"
                 else:
-                    rel_str = self.get_sibling_unknown(1, '')
+                    rel_str = "le beau-frère ou la belle-sœur"
         elif sib_type == self.UNKNOWN_SIB:
             if not inlaw:
                 if gender_b == gen.lib.Person.MALE:
@@ -551,12 +551,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = 'le frère ou la sœur'
             else:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = self.get_uncle(1, '')
+                    rel_str = "le beau-frère"
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = self.get_aunt(1, '')
+                    rel_str = "la belle-sœur"
                 else:
-                    rel_str = self.get_sibling_unknown(1, '')
-
+                    rel_str = "le beau-frère ou la belle-sœur"
         elif sib_type == self.HALF_SIB_FATHER:
                 if gender_b == gen.lib.Person.MALE:
                     rel_str = "le demi-frère consanguin"
@@ -573,12 +572,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = "le demi-frère ou la demi-sœur utérin(e)"
         elif sib_type == self.STEP_SIB:
                 if gender_b == gen.lib.Person.MALE:
-                    rel_str = "le beau-frère"
+                    rel_str = "le demi-frère"
                 elif gender_b == gen.lib.Person.FEMALE:
-                    rel_str = "la belle-sœur"
+                    rel_str = "la demi-sœur"
                 else:
-                    rel_str = "le beau-frère ou la belle-sœur"
-         
+                    rel_str = "le demi-frère ou la demi-sœur"
         return rel_str
 
 
