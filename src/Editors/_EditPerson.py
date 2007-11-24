@@ -189,11 +189,12 @@ class EditPerson(EditPrimary):
 
     def _update_families(self):
         phandle = self.obj.get_handle()
-        person = self.dbstate.db.get_person_from_handle(phandle)
-        self.obj.set_family_handle_list(person.get_family_handle_list())
-        self.obj.set_parent_family_handle_list(person.get_parent_family_handle_list())
-        #self.person_ref_list.data = self.obj.get_person_ref_list()
-        #self.person_ref_list.rebuild()
+        if phandle:
+            person = self.dbstate.db.get_person_from_handle(phandle)
+            self.obj.set_family_handle_list(person.get_family_handle_list())
+            self.obj.set_parent_family_handle_list(person.get_parent_family_handle_list())
+            #self.person_ref_list.data = self.obj.get_person_ref_list()
+            #self.person_ref_list.rebuild()
 
     def _setup_fields(self):
         """

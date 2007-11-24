@@ -1,3 +1,6 @@
+2007-11-24 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditPerson.py: callback family update bug removed
+
 2007-11-23 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/Check.py: fix wrong event ref (was fixed in trunk in 2007/02)
 
