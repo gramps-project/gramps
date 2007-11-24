@@ -98,9 +98,14 @@ class TipOfDay(ManagedWindow.ManagedWindow):
         
         window.show_all()
 
+    def escape(self,text):
+        text = text.replace('&','&amp;');       # Must be first
+        text = text.replace(' > ',' &gt; ');    # Replace standalone > char
+        text = text.replace('"','&quot;')       # quotes
+        return text
+
     def next_tip_cb(self, dummy=None):
-        tip_text = escape(self.tip_list[self.new_index[self.index]],
-                          { '"' : '&quot;' })
+        tip_text = self.escape(self.tip_list[self.new_index[self.index]])
         self.tip.set_text(_(tip_text))
         self.tip.set_use_markup(True)
         if self.index >= len(self.tip_list)-1:

@@ -13862,7 +13862,7 @@ Very High</property>
 	      <child>
 		<widget class="GtkLabel" id="label650">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Relationship:</property>
+		  <property name="label" translatable="yes">_Association:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
