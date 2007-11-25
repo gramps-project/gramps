@@ -98,10 +98,10 @@ def get(key):
     return val
 
 def get_bool(key):
-    try:
-        val = client.get_bool(key)
-    except gobject.GError:
-        val = None
+    val = client.get(key)
+    if val == None:
+        return None
+    val = client.get_bool(key)
     if val in (True, False):
         return val
     else:
@@ -115,10 +115,10 @@ def set_bool(key, val):
         client.set_bool(key, val)
 
 def get_int(key, correct_tuple=None):
-    try:
-        val = client.get_int(key)
-    except gobject.GError:
-        val = None
+    val = client.get(key)
+    if val == None:
+        return None
+    val = client.get_int(key)
     if not correct_tuple or val in correct_tuple:
         return val
     else:
@@ -132,10 +132,10 @@ def set_int(key, val, correct_tuple=None):
         client.set_int(key, val)
 
 def get_string(key, test_func=None):
-    try:
-        val = client.get_string(key)
-    except gobject.GError:
-        val = None
+    val = client.get(key)
+    if val == None:
+        return None
+    val = client.get_string(key)
     if not test_func or test_func(val):
         return val
     else:
