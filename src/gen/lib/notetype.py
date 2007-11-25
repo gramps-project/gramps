@@ -67,18 +67,22 @@ class NoteType(GrampsType):
     PERSONNAME = 20
     # other common types
     SOURCE_TEXT = 21    # this is used for verbatim source text in SourceRef
+    CITATION   = 22
+    REPORT_TEXT = 23    # this is used for notes used for reports
 
     _CUSTOM = CUSTOM
     _DEFAULT = GENERAL
     
 
     _DATAMAPREAL = [
-        (UNKNOWN,    _("Unknown"),    "Unknown"),
-        (CUSTOM,     _("Custom"),     "Custom"),
-        (GENERAL,    _("General"),    "General"),
-        (RESEARCH,   _("Research"),   "Research"),
-        (TRANSCRIPT, _("Transcript"), "Transcript"),
+        (UNKNOWN,     _("Unknown"),     "Unknown"),
+        (CUSTOM,      _("Custom"),      "Custom"),
+        (GENERAL,     _("General"),     "General"),
+        (RESEARCH,    _("Research"),    "Research"),
+        (TRANSCRIPT,  _("Transcript"),  "Transcript"),
         (SOURCE_TEXT, _("Source text"), "Source text"),
+        (CITATION,    _('Citation'),    "Citation"),
+        (REPORT_TEXT, _("Report"),      "Report"),
         ]
         
     _DATAMAPIGNORE = [

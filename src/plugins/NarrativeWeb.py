@@ -80,6 +80,7 @@ import Utils
 import ThumbNails
 import ImgManip
 import GrampsLocale
+import GrampsWidgets
 import Mime
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
@@ -174,7 +175,8 @@ class BasePage:
         self.photo_list = photo_list
         self.usegraph = options.handler.options_dict['NWEBgraph']
         self.graphgens = options.handler.options_dict['NWEBgraphgens']
-        self.use_home = self.options.handler.options_dict['NWEBhomenote'] != ""
+        self.use_home = self.options.handler.options_dict['NWEBhomenote'] != "" or \
+                        self.options.handler.options_dict['NWEBhomepic'] != ""
         self.page_title = ""
         self.warn_dir = True
 
@@ -1398,20 +1400,21 @@ class HomePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         note_id = options.handler.options_dict['NWEBhomenote']
+        pic_id =  options.handler.options_dict['NWEBhomepic']
         of = self.create_file("index")
         author = get_researcher().get_name()
         self.display_header(of,db,_('Home'),author)
 
         of.write('<h3>%s</h3>\n' % _('Home'))
 
-        if note_id:
-            obj = db.get_object_from_handle(note_id)
+        if pic_id:
+            obj = db.get_object_from_handle(pic_id)
 
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 try:
                     (newpath,thumb_path) = self.copy_media(obj,False)
-                    self.store_file(archive,self.html_dir,obj.get_path(),
+                    self.store_file(archive, self.html_dir, obj.get_path(),
                                     newpath)
                     of.write('<div class="centered">\n')
                     of.write('<img ')
@@ -1419,18 +1422,17 @@ class HomePage(BasePage):
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
                 except (IOError,OSError),msg:
-                    WarningDialog(_("Could not add photo to page"),str(msg))
+                    WarningDialog(_("Could not add photo to page"), str(msg))
 
-            notelist = obj.get_note_list()
-            if notelist:
-                note_obj = db.get_note_from_handle(notelist[0])
-                text = note_obj.get(markup=True)
-                if note_obj.get_format():
-                    of.write('<pre>\n%s\n</pre>\n' % text)
-                else:
-                    of.write('<p>')
-                    of.write('</p><p>'.join(text.split('\n')))
-                    of.write('</p>')
+        if note_id:
+            note_obj = db.get_note_from_handle(note_id)
+            text = note_obj.get(markup=True)
+            if note_obj.get_format():
+                of.write('<pre>\n%s\n</pre>\n' % text)
+            else:
+                of.write('<p>')
+                of.write('</p><p>'.join(text.split('\n')))
+                of.write('</p>')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -2359,6 +2361,7 @@ class WebReport(Report):
         NWEBencoding
         NWEBintronote
         NWEBhomenote
+        NWEBhomepic
         NWEBnoid
         NWEBlinkhome
         NWEBshowbirth
@@ -2415,7 +2418,8 @@ class WebReport(Report):
         self.user_footer = options.handler.options_dict['NWEBfooter']
         self.use_archive = options.handler.options_dict['NWEBarchive']
         self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
-        self.use_home = options.handler.options_dict['NWEBhomenote'] != u""
+        self.use_home = options.handler.options_dict['NWEBhomenote'] != u"" or\
+                        options.handler.options_dict['NWEBhomepic'] != u""
         
     def write_report(self):
         if not self.use_archive:
@@ -2702,12 +2706,13 @@ class WebReportOptions(ReportOptions):
             'NWEBcss'           : 'main0.css',
             'NWEBintronote'     : '',
             'NWEBhomenote'      : '',
+            'NWEBhomepic'      : '',
         }
 
         self.options_help = {
         }
 
-    def add_user_options(self,dialog):
+    def add_user_options(self, dialog):
         priv_msg = _("Do not include records marked private")
         living_msg = _("Living People")
         death_msg = _("Years from death to consider living")
@@ -2851,12 +2856,14 @@ class WebReportOptions(ReportOptions):
         media_list = [['','']]
         html_list = [['','']]
         
+        #Page Generation tab
         if self.db:
             cursor = self.db.get_media_cursor()
             data = cursor.first()
             while data:
                 (handle, value) = data
                 if not value[3]:
+                    #no mime type
                     html_list.append([value[4],handle])
                 media_list.append([value[4],handle])    
 
@@ -2865,14 +2872,29 @@ class WebReportOptions(ReportOptions):
         media_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
         html_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
 
-        self.home_note = mk_combobox(media_list,self.options_dict['NWEBhomenote'])
+        self.home_nt_box, self.home_nt_label, self.home_nt_share_btn \
+                    = mk_object_entry()
+        self.home_note = GrampsWidgets.NoteEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.home_nt_label, 
+                    self.set_home_nt_val, self.get_home_nt_val, 
+                    None, self.home_nt_share_btn)
+        self.home_pic_box, self.home_pic_label, self.home_pic_share_btn \
+                    = mk_object_entry()
+        self.home_pic = GrampsWidgets.MediaEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.home_pic_label, 
+                    self.set_home_pic_val, self.get_home_pic_val, 
+                    None, self.home_pic_share_btn)
         self.intro_note = mk_combobox(media_list,self.options_dict['NWEBintronote'])
         self.contact = mk_combobox(media_list,self.options_dict['NWEBcontact'])
         self.header = mk_combobox(html_list,self.options_dict['NWEBheader'])
         self.footer = mk_combobox(html_list,self.options_dict['NWEBfooter'])
 
-        dialog.add_frame_option(title,_('Home Media/Note ID'),
-                                self.home_note)
+        dialog.add_frame_option(title,_('Home Page note'),
+                                self.home_nt_box)
+        dialog.add_frame_option(title,_('Home Page image'),
+                                self.home_pic_box)
         dialog.add_frame_option(title,_('Introduction Media/Note ID'),
                                 self.intro_note)
         dialog.add_frame_option(title,contact_msg,self.contact)
@@ -2895,7 +2917,41 @@ class WebReportOptions(ReportOptions):
         dialog.add_frame_option(title,None,self.showparents)
         dialog.add_frame_option(title,None,self.showhalfsiblings)
 
-    def parse_user_options(self,dialog):
+    def set_home_nt_val(self, val):
+        ''' store the note handle in options
+        '''
+        if val is None:
+            self.options_dict['NWEBhomenote'] = u''
+        else:
+            self.options_dict['NWEBhomenote'] = unicode(val)
+
+    def get_home_nt_val(self):
+        ''' obtain note handle
+        '''
+        val = self.options_dict['NWEBhomenote'] 
+        if val == "":
+            return None
+        else:
+            return val
+
+    def set_home_pic_val(self, val):
+        ''' store the media handle in options
+        '''
+        if val is None:
+            self.options_dict['NWEBhomepic'] = u''
+        else:
+            self.options_dict['NWEBhomepic'] = unicode(val)
+
+    def get_home_pic_val(self):
+        ''' obtain note handle
+        '''
+        val = self.options_dict['NWEBhomepic'] 
+        if val == "":
+            return None
+        else:
+            return val
+
+    def parse_user_options(self, dialog):
         """Parse the privacy options frame of the dialog.  Save the
         user selected choices for later use."""
         
@@ -2918,7 +2974,6 @@ class WebReportOptions(ReportOptions):
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
         self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_handle())
-        self.options_dict['NWEBhomenote'] = unicode(self.home_note.get_handle())
         self.options_dict['NWEBgraph'] = int(self.inc_graph.get_active())
         
         index = self.graph_gens.get_active()
@@ -2959,25 +3014,30 @@ class WebReportDialog(ReportDialog):
 
     HELP_TOPIC = "rep-web"
 
-    def __init__(self,dbstate,uistate,person):
+    def __init__(self, dbstate, uistate, person):
         self.database = dbstate.db
         self.person = person
         name = "navwebpage"
         translated_name = _("Generate Web Site")
         self.options = WebReportOptions(name,self.database)
         self.category = CATEGORY_WEB
-        ReportDialog.__init__(self,dbstate,uistate,person,self.options,
-                              name,translated_name)
+        ReportDialog.__init__(self, dbstate, uistate, person, self.options,
+                              name, translated_name)
         self.style_name = None
 
         while True:
             response = self.window.run()
             if response == gtk.RESPONSE_OK:
+                self.close()
                 self.make_report()
                 break
-            elif response != gtk.RESPONSE_HELP:
+            elif (response == gtk.RESPONSE_DELETE_EVENT or
+              response == gtk.RESPONSE_CANCEL):
+                # the buttons generating this already call close via connect
                 break
-        self.close()
+
+    def on_cancel(self, *obj):
+        self.close(*obj)
 
     def setup_style_frame(self):
         """The style frame is not used in this dialog."""
@@ -3129,6 +3189,7 @@ class EmptyDoc:
     def init(self):
         pass
 
+
 #-------------------------------------------------------------------------
 #
 # GrampsNoteComboBox
@@ -3180,6 +3241,16 @@ def mk_combobox(media_list,select_value):
     if len(media_list) == 0:
         widget.set_sensitive(False)
     return widget
+
+def mk_object_entry():
+    ''' return a vbox widget with fields for object selection
+    '''
+    box = gtk.HBox()
+    label = gtk.Label()
+    button_sel = gtk.Button()
+    box.pack_start(label)
+    box.pack_start(button_sel, expand=False, fill=False)
+    return (box, label, button_sel)
 
 #-------------------------------------------------------------------------
 #

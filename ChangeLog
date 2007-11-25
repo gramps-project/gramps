@@ -1,3 +1,9 @@
+2007-11-25 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/gen/lib/notetype.py: type report, citation
+	* src/plugins/NarrativeWeb.py: new selection of home note & home media
+	* src/GrampsWidgets.py: NoteEntry, MediaEntry
+	I intend to change the other note selectors likewise next.
+
 2007-11-25  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/gen/lib/date.py: refer to Config values via Config.get()
 	* src/gen/lib/test/date_test.py: set Config values before testing
