@@ -29,6 +29,7 @@ import unittest
 from test import test_util
 test_util.path_append_parent() 
 
+import Config
 import date
 from DateHandler import parser as df
 
@@ -124,6 +125,9 @@ if __name__ == "__main__":
               "before 14 Thermidor 190 (French Republican)", False), 
              ("ab cd", "54 ab cd 2000", True, False),
              ]
+    Config.set(Config.DATE_BEFORE_RANGE, 9999)
+    Config.set(Config.DATE_AFTER_RANGE, 9999)
+    Config.set(Config.DATE_ABOUT_RANGE, 10)
     suite = unittest.TestSuite()
     count = 1
     for test in tests:

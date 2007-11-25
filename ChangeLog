@@ -1,4 +1,8 @@
 2007-11-25  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/gen/lib/date.py: refer to Config values via Config.get()
+	* src/gen/lib/test/date_test.py: set Config values before testing
+
+2007-11-25  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Config/_GrampsGconfKeys.py: fixed changes in gconf interface
 
 2007-11-25  Douglas S.Blank  <dblank@cs.brynmawr.edu>

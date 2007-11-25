@@ -54,24 +54,7 @@ log = logging.getLogger(".Date")
 #
 #------------------------------------------------------------------------
 from gen.lib.calendar import *
-
-#------------------------------------------------------------------------
-#
-# Constants
-#
-#------------------------------------------------------------------------
-
-#obtain the ranges once, they do not change!
-try:
-    import Config
-    _DATE_BEFORE_RANGE = Config.get(Config.DATE_BEFORE_RANGE)
-    _DATE_AFTER_RANGE = Config.get(Config.DATE_AFTER_RANGE)
-    _DATE_ABOUT_RANGE = Config.get(Config.DATE_ABOUT_RANGE)
-except ImportError:
-    # gen.lib used as module not part of GRAMPS
-    _DATE_BEFORE_RANGE = 9999
-    _DATE_AFTER_RANGE = 9999
-    _DATE_ABOUT_RANGE = 10
+import Config
 
 #-------------------------------------------------------------------------
 #
@@ -291,15 +274,15 @@ class Date:
         # if BEFORE, AFTER, or ABOUT/EST, adjust:
         if self.modifier == Date.MOD_BEFORE:
             stopmax = date_offset(startmin, -1)
-            fdiff = _DATE_BEFORE_RANGE
+            fdiff = Config.get(Config.DATE_BEFORE_RANGE)
             startmin = (stopmax[0] - fdiff, stopmax[1], stopmax[2])
         elif self.modifier == Date.MOD_AFTER:
             startmin = date_offset(stopmax, 1)
-            fdiff = _DATE_AFTER_RANGE
+            fdiff = Config.get(Config.DATE_AFTER_RANGE)
             stopmax = (startmin[0] + fdiff, startmin[1], startmin[2])
         elif (self.modifier == Date.MOD_ABOUT or
               self.quality == Date.QUAL_ESTIMATED):
-            fdiff = _DATE_ABOUT_RANGE
+            fdiff = Config.get(Config.DATE_ABOUT_RANGE)
             startmin = (startmin[0] - fdiff, startmin[1], startmin[2])
             stopmax = (stopmax[0] + fdiff, stopmax[1], stopmax[2])
         # return tuples not lists, for comparisons
