@@ -64,16 +64,6 @@ from PluginUtils import Tool, cl_list, cli_tool_list
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
 
 
-def _rm_files(dirpath, pattern="*"):
-    """ Remove files in a directory which match the pattern 
-    
-    The optional pattern can use shell-style wildcards
-    
-    """
-    for fpath in glob.glob(os.path.join(dirpath, pattern)):
-        if os.path.isfile(fpath):
-            os.remove(fpath)
-
 #-------------------------------------------------------------------------
 # ArgHandler
 #-------------------------------------------------------------------------
@@ -406,23 +396,8 @@ class ArgHandler:
         if self.imports:
             self.cl = bool(self.exports or self.actions or self.cl)
 
-            # Create dir for imported database(s)
-            self.impdir_path = os.path.join(const.HOME_DIR,"import")
-            self.imp_db_path = os.path.join(self.impdir_path,"import_db.grdb")
-            if not os.path.isdir(self.impdir_path):
-                try:
-                    os.mkdir(self.impdir_path,0700)
-                except:
-                    print "Could not create import directory %s. Exiting." \
-                        % self.impdir_path 
-                    sys.exit(1)
-            elif not os.access(self.impdir_path,os.W_OK):
-                print "Import directory %s is not writable. Exiting." \
-                    % self.impdir_path 
-                sys.exit(1)
-            # and clean it up before use
-            _rm_files(self.impdir_path)
-            _rm_files(self.imp_db_path)
+            # Create empty dir for imported database(s)
+            self.imp_db_path = Utils.get_empty_tempdir("import_dbdir")
 
             self.vm.db_loader.read_file(self.imp_db_path,const.APP_GRAMPS)
 
@@ -450,8 +425,8 @@ class ArgHandler:
             print "Cleaning up."
             # remove files in import db subdir after use
             self.state.db.close()
-            if self.imports:
-                _rm_files(self.imp_db_path)
+            if self.imp_db_path:
+                Utils.rm_tempdir(self.imp_db_path)
             print "Exiting."
             sys.exit(0)
 
@@ -513,23 +488,7 @@ class ArgHandler:
                 print "Error importing %s" % filename
                 sys.exit(1)
         elif format == 'gramps-pkg':
-            # Create tempdir, if it does not exist, then check for writability
-            tmpdir_path = os.path.join(const.HOME_DIR,"tmp")
-            if not os.path.isdir(tmpdir_path):
-                try:
-                    os.mkdir(tmpdir_path,0700)
-                except:
-                    print "Could not create temporary directory %s" \
-                          % tmpdir_path 
-                    sys.exit(1)
-            elif not os.access(tmpdir_path,os.W_OK):
-                print "Temporary directory %s is not writable" % tmpdir_path 
-                sys.exit(1)
-            else:    # tempdir exists and writable -- clean it up if not empty
-                files = os.listdir(tmpdir_path) ;
-                for fn in files:
-                    os.remove( os.path.join(tmpdir_path,fn) )
-
+            tmpdir_path = Utils.get_empty_tempdir("imp_gpkgdir")
             try:
                 import tarfile
                 archive = tarfile.open(filename)
@@ -557,6 +516,14 @@ class ArgHandler:
             # Clean up tempdir after ourselves
             #     THIS HAS BEEN CHANGED, because now we want to keep images
             #     stay after the import is over. Just delete the XML file.
+            ##jgs:FIXME for how long? just for debug? or this session?
+            ##  must not be forever, since re-exec of this routine 
+            ##   clears dirfiles without asking 
+            ##   & expands nre tarball possibly overwriting subdirs
+            ##
+            ## if only debugging, could do Utils.rm_tempdir here
+            ## in any case, no real harm (exc. space) to leave stuff here
+            ## until next exec of this, which will discard all old stuff
             os.remove(dbname)
 ##             files = os.listdir(tmpdir_path) 
 ##             for fn in files:

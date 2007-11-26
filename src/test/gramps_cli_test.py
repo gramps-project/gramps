@@ -51,13 +51,13 @@ class Test(unittest.TestCase):
         g = re.search("INDI", content)
         s.assertTrue(g, "found 'INDI' in output file")
 
-    # this verifies that files in the "import dir" 
+    # this verifies that files in the temporary "import dir" 
     # get cleaned before (and after) running a CLI
     # (eg cleanout stale files from prior crash-runs)
     def test3_files_in_import_dir(s):
         import const
-        idir = os.path.join(const.HOME_DIR,"import")
-        ddir = os.path.join(idir, "import_db.grdb")
+        ddir = os.path.join(const.TEMP_DIR,"import_dbdir")
+        os.makedirs(ddir)
         bogofiles = [os.path.join(ddir,fn) 
             for fn in ("family.db", "lock")]
         for fn in bogofiles:

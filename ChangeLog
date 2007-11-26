@@ -1,4 +1,14 @@
 2007-11-25 Jim Sack <jgsack@san.rr.com>
+	* src/Utils.py : add get_empty_tempdir() and rm_tempdir()
+	* src/ArgHandler.py : use get_empty_tempdir, etc
+	* src/test/gramps_cli_test.py : update test for new import dir
+	- Note get_empty_tempdir forces location in (new) const.TEMP_DIR. 
+	- Note rm_tempdir is paranoid in only removing subdirs under 
+	TEMP_DIR  -- if needed callers can code shutil.rmtree themselves. 
+	- Also added FIXME comment in AH - about a prior comment and 
+	code change that I feel needs re-examination.
+
+2007-11-25 Jim Sack <jgsack@san.rr.com>
 	* src/gramps_main.py : remove trial code left in on last commit
 	the r9407 trial code may be of interest as it demos how I avoid
 	gui popups when doing CLI testing -- but I think there's probably

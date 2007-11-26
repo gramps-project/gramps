@@ -51,6 +51,8 @@ import gen.lib
 import Errors
 from QuestionDialog import WarningDialog
 
+from const import TEMP_DIR
+import shutil
 
 #-------------------------------------------------------------------------
 #
@@ -861,6 +863,25 @@ def get_new_filename(ext, folder='~/'):
                                             (folder, os.path.sep, ix, ext))):
         ix = ix + 1
     return os.path.expanduser(_NEW_NAME_PATTERN % (folder, os.path.sep, ix, ext))
+
+def get_empty_tempdir(dirname):
+    """ Return path to TEMP_DIR/dirname, a guaranteed empty directory
+
+    makes intervening directories if required
+    fails if _file_ by that name already exists, 
+    or for inadequate permissions to delete dir/files or create dir(s)
+
+    """
+    dirpath = os.path.join(TEMP_DIR,dirname)
+    if os.path.isdir(dirpath):
+        shutil.rmtree(dirpath)
+    os.makedirs(dirpath)
+    return dirpath
+
+def rm_tempdir(path):
+    """Remove a tempdir created with get_empty_tempdir"""
+    if path.startswith(TEMP_DIR) and os.path.isdir(path):
+        shutil.rmtree(path)
 
 def cast_to_bool(val):
     if val == str(True):
