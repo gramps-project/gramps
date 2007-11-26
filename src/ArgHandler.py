@@ -58,6 +58,7 @@ import QuestionDialog
 import Config
 import RecentFiles
 import Utils
+import gen.db.exceptions as GX
 
 from PluginUtils import Tool, cl_list, cli_tool_list
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
@@ -481,6 +482,9 @@ class ArgHandler:
             try:
                 GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS)(
                     self.state.db,filename,empty)
+            except GX.GrampsDbException, e:
+                print "%s" % e.value
+                sys.exit(1)
             except:
                 print "Error importing %s" % filename
                 sys.exit(1)

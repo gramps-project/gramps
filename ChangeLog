@@ -1,4 +1,8 @@
 2007-11-25 Jim Sack <jgsack@san.rr.com>
+	* src/ArgHandler.py : #1397 add except clause for GrampsDbException
+	applies to CLI (not) handling of grdb imports
+
+2007-11-25 Jim Sack <jgsack@san.rr.com>
 	* src/test/regrtest.py : really do the checkin this time
 
 2007-11-25 Jim Sack <jgsack@san.rr.com>
