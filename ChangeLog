@@ -1,3 +1,7 @@
+2007-11-25 Jim Sack <jgsack@san.rr.com>
+	* src/gen/lib/test/date_test.py : make regrtest-compatible
+	* src/test/regrtest.py : add rsplit("/")
+
 2007-11-25 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/gen/lib/notetype.py: type report, citation
 	* src/plugins/NarrativeWeb.py: new selection of home note & home media

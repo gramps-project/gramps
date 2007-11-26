@@ -30,7 +30,8 @@ from test import test_util
 test_util.path_append_parent() 
 
 import Config
-import date
+from gen.lib import date
+##import date
 from DateHandler import parser as df
 
 class Tester(unittest.TestCase):
@@ -60,7 +61,11 @@ class Tester(unittest.TestCase):
             self.assertTrue(val == expected2, "'%s' and '%s' did not match" % (d2, d1))
 
 
-if __name__ == "__main__":
+def suite():
+    """ interface to automated test runner test/regrtest.py """
+    Config.set(Config.DATE_BEFORE_RANGE, 9999)
+    Config.set(Config.DATE_AFTER_RANGE, 9999)
+    Config.set(Config.DATE_ABOUT_RANGE, 10)
     # most are symmetric: #date1, date2, does d1 match d2? does d2 match d1?
     tests = [("before 1960", "before 1961", True),
              ("before 1960", "before 1960", True),
@@ -125,13 +130,13 @@ if __name__ == "__main__":
               "before 14 Thermidor 190 (French Republican)", False), 
              ("ab cd", "54 ab cd 2000", True, False),
              ]
-    Config.set(Config.DATE_BEFORE_RANGE, 9999)
-    Config.set(Config.DATE_AFTER_RANGE, 9999)
-    Config.set(Config.DATE_ABOUT_RANGE, 10)
-    suite = unittest.TestSuite()
+    suite = unittest.TestSuite()            
     count = 1
     for test in tests:
         suite.addTest(Tester('test_match%04d' % count, 1, test))
         suite.addTest(Tester('test_match%04d' % count, 2, test))
         count += 1
-    unittest.TextTestRunner().run(suite)
+    return suite
+
+if __name__ == "__main__":
+    unittest.TextTestRunner().run(suite())
