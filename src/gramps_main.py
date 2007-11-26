@@ -251,13 +251,6 @@ class Gramps:
             ah.handle_args()
             self.vm.post_init_interface()
         else:
-            #jgs:
-            from GrampsLogger import GtkHandler
-            for h in log.parent.handlers:
-                if isinstance(h,GtkHandler):
-                    log.parent.removeHandler(h)
-                    break
-            #jgs:------------------------------             
             ah.handle_args()
             self.vm.post_init_interface()
 
