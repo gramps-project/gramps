@@ -1,4 +1,8 @@
 2007-11-26 Jim Sack <jgsack@san.rr.com>
+	*  src/plugins/ReadPkg.py : reverted previous change
+	better to leave it broken than to risk worse
+
+2007-11-26 Jim Sack <jgsack@san.rr.com>
 	* src/plugins/ReadPkg.py : #1096 add isfile() before remove()
         Note: this may be part a larger "relative path" problem 
 
