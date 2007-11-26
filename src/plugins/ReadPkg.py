@@ -82,7 +82,8 @@ def impData(database, name,cb=None,cl=0):
     else:    # tempdir exists and writable -- clean it up if not empty
         files = os.listdir(tmpdir_path) ;
         for filename in files:
-            os.remove(os.path.join(tmpdir_path,filename))
+            if os.path.isfile(filename):
+                os.remove(os.path.join(tmpdir_path,filename))
 
     try:
         archive = tarfile.open(name)
@@ -98,6 +99,7 @@ def impData(database, name,cb=None,cl=0):
     importer = gramps_db_reader_factory(const.app_gramps_xml)
     importer(database,imp_db_name,cb)
 
+    # (it's not really a "tempdir" --Note this code may be in-flux?)
     # Clean up tempdir after ourselves
     #     THIS HAS BEEN CHANGED, because now we want to keep images
     #     stay after the import is over. Just delete the XML file.
