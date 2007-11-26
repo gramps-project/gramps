@@ -149,7 +149,7 @@ if __name__ == '__main__':
     # hmmm this is starting to look like a unittest.Testprog
     # (maybe with a custom TestLoader)
     if args and os.path.isdir(args[0]):
-        loc =  args[0]
+        loc =  args[0].rstrip(os.path.sep)
     else:
         loc = gramps_root
 
