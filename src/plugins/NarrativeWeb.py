@@ -167,8 +167,10 @@ class BasePage:
         self.showspouse = options.handler.options_dict['NWEBshowspouse']
         self.showparents = options.handler.options_dict['NWEBshowparents']
         self.showhalfsiblings = options.handler.options_dict['NWEBshowhalfsiblings']
-        self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
-        self.use_contact = options.handler.options_dict['NWEBcontact'] != u""
+        self.use_intro = options.handler.options_dict['NWEBintronote'] != u""\
+                    or options.handler.options_dict['NWEBintropic'] != u""
+        self.use_contact = options.handler.options_dict['NWEBcontact'] != u""\
+                    or options.handler.options_dict['NWEBcontactpic'] != u""
         self.use_gallery = options.handler.options_dict['NWEBgallery']
         self.header = options.handler.options_dict['NWEBheader']
         self.footer = options.handler.options_dict['NWEBfooter']
@@ -292,14 +294,10 @@ class BasePage:
         of.write('<div class="fullclear"></div>\n')
         of.write('</div>\n')
         if self.footer:
-            obj = db.get_object_from_handle(self.footer)
-            if obj:
-                notelist = obj.get_note_list()
-                if notelist:
-                    note = db.get_note_from_handle(notelist[0])
-                    of.write('<div class="user_footer">\n')
-                    of.write(note.get(markup=True))
-                    of.write('</div>\n')
+            note = db.get_note_from_handle(self.footer)
+            of.write('<div class="user_footer">\n')
+            of.write(note.get(markup=True))
+            of.write('</div>\n')
         of.write('</body>\n')
         of.write('</html>\n')
     
@@ -330,14 +328,10 @@ class BasePage:
         of.write('</head>\n')
         of.write('<body>\n')
         if self.header:
-            obj = db.get_object_from_handle(self.header)
-            if obj:
-                notelist = obj.get_note_list()
-                if notelist:
-                    note = db.get_note_from_handle(notelist[0])
-                    of.write('  <div class="user_header">\n')
-                    of.write(note.get(markup=True))
-                    of.write('  </div>\n')
+            note = db.get_note_from_handle(self.header)
+            of.write('  <div class="user_header">\n')
+            of.write(note.get(markup=True))
+            of.write('  </div>\n')
         of.write('<div id="navheader">\n')
 
         value = _dp.parse(time.strftime('%b %d %Y'))
@@ -1288,9 +1282,11 @@ class SurnameListPage(BasePage):
         of.write('<th>%s</th>\n' % _('Letter'))
 
         if not self.use_home and not self.use_intro:
-            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("index", self.ext, _('Surname')))
+            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("index", self.ext, 
+                                                            _('Surname')))
         else:
-            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
+            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", 
+                                                    self.ext, _('Surname')))
 
         of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
         of.write('</tr></thead>\n<tbody>\n')
@@ -1347,6 +1343,7 @@ class IntroductionPage(BasePage):
     def __init__(self, db, title, options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
         note_id = options.handler.options_dict['NWEBintronote']
+        pic_id =  options.handler.options_dict['NWEBintropic']
 
         if self.use_home:
             of = self.create_file("introduction")
@@ -1358,33 +1355,30 @@ class IntroductionPage(BasePage):
 
         of.write('<h3>%s</h3>\n' % _('Introduction'))
 
-        if note_id:
-            obj = db.get_object_from_handle(note_id)
-
+        if pic_id:
+            obj = db.get_object_from_handle(pic_id)
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 try:
-                    (newpath,thumb_path) = self.copy_media(obj,False)
-                    self.store_file(archive,self.html_dir,obj.get_path(),
+                    (newpath, thumb_path) = self.copy_media(obj, False)
+                    self.store_file(archive, self.html_dir, obj.get_path(),
                                     newpath)
                     of.write('<div class="centered">\n')
                     of.write('<img ')
                     of.write('src="%s" ' % newpath)
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</div>\n')
-                except (IOError,OSError),msg:
-                    WarningDialog(_("Could not add photo to page"),str(msg))
-
-            notelist = obj.get_note_list()
-            if notelist:
-                note_obj = db.get_note_from_handle(notelist[0])
-                text = note_obj.get(markup=True)
-                if note_obj.get_format():
-                    of.write('<pre>\n%s\n</pre>\n' % text)
-                else:
-                    of.write('<p>')
-                    of.write('<br>'.join(text.split('\n')))
-                    of.write('</p>')
+                except (IOError, OSError), msg:
+                    WarningDialog(_("Could not add photo to page"), str(msg))
+        if note_id:
+            note_obj = db.get_note_from_handle(note_id)
+            text = note_obj.get(markup=True)
+            if note_obj.get_format():
+                of.write('<pre>\n%s\n</pre>\n' % text)
+            else:
+                of.write('<p>')
+                of.write('<br>'.join(text.split('\n')))
+                of.write('</p>')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -1616,15 +1610,15 @@ class ContactPage(BasePage):
         of.write('<h3>%s</h3>\n' % _('Contact'))
 
         note_id = options.handler.options_dict['NWEBcontact']
-        if note_id:
-            obj = db.get_object_from_handle(note_id)
-
+        pic_id = options.handler.options_dict['NWEBcontactpic']
+        if pic_id:
+            obj = db.get_object_from_handle(pic_id)
             mime_type = obj.get_mime_type()
         
             if mime_type and mime_type.startswith("image"):
                 try:
-                    (newpath,thumb_path) = self.copy_media(obj,False)
-                    self.store_file(archive,self.html_dir,obj.get_path(),
+                    (newpath, thumb_path) = self.copy_media(obj, False)
+                    self.store_file(archive, self.html_dir, obj.get_path(),
                                     newpath)
 
                     of.write('<div class="rightwrap">\n')
@@ -1635,8 +1629,8 @@ class ContactPage(BasePage):
                     of.write('alt="%s" />' % obj.get_description())
                     of.write('</td></tr></table>\n')
                     of.write('</div>\n')
-                except (IOError,OSError),msg:
-                    WarningDialog(_("Could not add photo to page"),str(msg))
+                except (IOError, OSError), msg:
+                    WarningDialog(_("Could not add photo to page"), str(msg))
 
         r = get_researcher()
 
@@ -1656,17 +1650,14 @@ class ContactPage(BasePage):
         of.write('</div>\n')
         of.write('<div class="fullclear"></div>\n')
 
-        if obj:
-            nobj = obj.get_note_object()
-            if nobj:
-                format = nobj.get_format()
-                text = nobj.get(markup=True)
-    
-                if format:
-                    text = u"<pre>%s</pre>" % text
-                else:
-                    text = u"<br>".join(text.split("\n"))
-                of.write('<p>%s</p>\n' % text)
+        if note_id:
+            note_obj = db.get_note_from_handle(note_id)
+            text = note_obj.get(markup=True)
+            if note_obj.get_format():
+                text = u"<pre>%s</pre>" % text
+            else:
+                text = u"<br>".join(text.split("\n"))
+            of.write('<p>%s</p>\n' % text)
 
         of.write('</div>\n')
 
@@ -2412,12 +2403,14 @@ class WebReport(Report):
         self.title = options.handler.options_dict['NWEBtitle']
         self.sort = Sort.Sort(self.database)
         self.inc_gallery = options.handler.options_dict['NWEBgallery']
-        self.inc_contact = options.handler.options_dict['NWEBcontact'] != u""
+        self.inc_contact = options.handler.options_dict['NWEBcontact'] != u""\
+                       or options.handler.options_dict['NWEBcontactpic'] != u""
         self.inc_download = options.handler.options_dict['NWEBdownload']
-        self.user_header = options.handler.options_dict['NWEBheader']
-        self.user_footer = options.handler.options_dict['NWEBfooter']
+        #self.user_header = options.handler.options_dict['NWEBheader']
+        #self.user_footer = options.handler.options_dict['NWEBfooter']
         self.use_archive = options.handler.options_dict['NWEBarchive']
-        self.use_intro = options.handler.options_dict['NWEBintronote'] != u""
+        self.use_intro = options.handler.options_dict['NWEBintronote'] != u""\
+                    or options.handler.options_dict['NWEBintropic'] != u""
         self.use_home = options.handler.options_dict['NWEBhomenote'] != u"" or\
                         options.handler.options_dict['NWEBhomepic'] != u""
         
@@ -2695,6 +2688,7 @@ class WebReportOptions(ReportOptions):
             'NWEBshowparents'   : 0,
             'NWEBshowhalfsiblings' : 0,
             'NWEBcontact'       : '', 
+            'NWEBcontactpic'    : '', 
             'NWEBgallery'       : 1, 
             'NWEBheader'        : '', 
             'NWEBfooter'        : '', 
@@ -2705,8 +2699,9 @@ class WebReportOptions(ReportOptions):
             'NWEBencoding'      : 'utf-8',
             'NWEBcss'           : 'main0.css',
             'NWEBintronote'     : '',
+            'NWEBintropic'      : '',
             'NWEBhomenote'      : '',
-            'NWEBhomepic'      : '',
+            'NWEBhomepic'       : '',
         }
 
         self.options_help = {
@@ -2718,7 +2713,8 @@ class WebReportOptions(ReportOptions):
         death_msg = _("Years from death to consider living")
         title_msg = _("Web site title")
         ext_msg = _("File extension")
-        contact_msg = _("Publisher contact/Note ID")
+        contact_msg = _("Publisher contact note")
+        contactpic_msg = _("Publisher contact image")
         gallery_msg = _("Include images and media objects")
         download_msg = _("Include download page")
         graph_msg = _("Include ancestor graph")
@@ -2791,9 +2787,6 @@ class WebReportOptions(ReportOptions):
         # 1 -- no living images, but some images
         # 2 -- any images
 
-        self.intro_note = gtk.Entry()
-        self.intro_note.set_text(self.options_dict['NWEBintronote'])
-
         self.title = gtk.Entry()
         self.title.set_text(self.options_dict['NWEBtitle'])
 
@@ -2853,25 +2846,6 @@ class WebReportOptions(ReportOptions):
 
         title = _("Page Generation")
 
-        media_list = [['','']]
-        html_list = [['','']]
-        
-        #Page Generation tab
-        if self.db:
-            cursor = self.db.get_media_cursor()
-            data = cursor.first()
-            while data:
-                (handle, value) = data
-                if not value[3]:
-                    #no mime type
-                    html_list.append([value[4],handle])
-                media_list.append([value[4],handle])    
-
-                data = cursor.next()
-            cursor.close()
-        media_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
-        html_list.sort(lambda x, y: locale.strcoll(x[0], y[0]))
-
         self.home_nt_box, self.home_nt_label, self.home_nt_share_btn \
                     = mk_object_entry()
         self.home_note = GrampsWidgets.NoteEntry(dialog.dbstate, 
@@ -2886,23 +2860,66 @@ class WebReportOptions(ReportOptions):
                     self.home_pic_label, 
                     self.set_home_pic_val, self.get_home_pic_val, 
                     None, self.home_pic_share_btn)
-        self.intro_note = mk_combobox(media_list,self.options_dict['NWEBintronote'])
-        self.contact = mk_combobox(media_list,self.options_dict['NWEBcontact'])
-        self.header = mk_combobox(html_list,self.options_dict['NWEBheader'])
-        self.footer = mk_combobox(html_list,self.options_dict['NWEBfooter'])
+        self.intro_nt_box, self.intro_nt_label, self.intro_nt_share_btn \
+                    = mk_object_entry()
+        self.intro_note = GrampsWidgets.NoteEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.intro_nt_label, 
+                    self.set_intro_nt_val, self.get_intro_nt_val, 
+                    None, self.intro_nt_share_btn)
+        self.intro_pic_box, self.intro_pic_label, self.intro_pic_share_btn \
+                    = mk_object_entry()
+        self.intro_pic = GrampsWidgets.MediaEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.intro_pic_label, 
+                    self.set_intro_pic_val, self.get_intro_pic_val, 
+                    None, self.intro_pic_share_btn)
+        self.contact_nt_box, self.contact_nt_label, self.contact_nt_share_btn \
+                    = mk_object_entry()
+        self.contact = GrampsWidgets.NoteEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.contact_nt_label, 
+                    self.set_contact_nt_val, self.get_contact_nt_val, 
+                    None, self.contact_nt_share_btn)
+        self.contact_pic_box, self.contact_pic_label, \
+                    self.contact_pic_share_btn = mk_object_entry()
+        self.contact_pic = GrampsWidgets.MediaEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.contact_pic_label, 
+                    self.set_contact_pic_val, self.get_contact_pic_val, 
+                    None, self.contact_pic_share_btn)
+        self.header_nt_box, self.header_nt_label, self.header_nt_share_btn \
+                    = mk_object_entry()
+        self.header = GrampsWidgets.NoteEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.header_nt_label, 
+                    self.set_header_nt_val, self.get_header_nt_val, 
+                    None, self.header_nt_share_btn)
+        self.footer_nt_box, self.footer_nt_label, self.footer_nt_share_btn \
+                    = mk_object_entry()
+        self.footer = GrampsWidgets.NoteEntry(dialog.dbstate, 
+                    dialog.uistate, dialog.track, 
+                    self.footer_nt_label, 
+                    self.set_footer_nt_val, self.get_footer_nt_val, 
+                    None, self.footer_nt_share_btn)
 
         dialog.add_frame_option(title,_('Home Page note'),
                                 self.home_nt_box)
         dialog.add_frame_option(title,_('Home Page image'),
                                 self.home_pic_box)
-        dialog.add_frame_option(title,_('Introduction Media/Note ID'),
-                                self.intro_note)
-        dialog.add_frame_option(title,contact_msg,self.contact)
-        dialog.add_frame_option(title,_('HTML user header'),self.header)
-        dialog.add_frame_option(title,_('HTML user footer'),self.footer)
-        dialog.add_frame_option(title,'',self.include_gallery)
-        dialog.add_frame_option(title,None,self.inc_download)
-        dialog.add_frame_option(title,None,self.noid)
+        dialog.add_frame_option(title,_('Introduction Note'),
+                                self.intro_nt_box)
+        dialog.add_frame_option(title,_('Introduction image'),
+                                self.intro_pic_box)
+        dialog.add_frame_option(title, contact_msg, self.contact_nt_box)
+        dialog.add_frame_option(title, contactpic_msg, self.contact_pic_box)
+        dialog.add_frame_option(title, _('HTML user header'), 
+                                self.header_nt_box)
+        dialog.add_frame_option(title, _('HTML user footer'),
+                                self.footer_nt_box)
+        dialog.add_frame_option(title, '', self.include_gallery)
+        dialog.add_frame_option(title, None, self.inc_download)
+        dialog.add_frame_option(title, None, self.noid)
 
         title = _("Privacy")
         dialog.add_frame_option(title,None,self.no_private)
@@ -2917,39 +2934,70 @@ class WebReportOptions(ReportOptions):
         dialog.add_frame_option(title,None,self.showparents)
         dialog.add_frame_option(title,None,self.showhalfsiblings)
 
-    def set_home_nt_val(self, val):
+    def set_nt_val(self, opt, val):
         ''' store the note handle in options
         '''
         if val is None:
-            self.options_dict['NWEBhomenote'] = u''
+            self.options_dict[opt] = u''
         else:
-            self.options_dict['NWEBhomenote'] = unicode(val)
+            self.options_dict[opt] = unicode(val)
+
+    def get_nt_val(self, opt):
+        ''' obtain note handle
+        '''
+        val = self.options_dict[opt] 
+        if val == "":
+            return None
+        else:
+            return val
+
+    def set_home_nt_val(self, val):
+        self.set_nt_val('NWEBhomenote', val)
 
     def get_home_nt_val(self):
-        ''' obtain note handle
-        '''
-        val = self.options_dict['NWEBhomenote'] 
-        if val == "":
-            return None
-        else:
-            return val
+        return self.get_nt_val('NWEBhomenote')
 
     def set_home_pic_val(self, val):
-        ''' store the media handle in options
-        '''
-        if val is None:
-            self.options_dict['NWEBhomepic'] = u''
-        else:
-            self.options_dict['NWEBhomepic'] = unicode(val)
+        self.set_nt_val('NWEBhomepic', val)
 
     def get_home_pic_val(self):
-        ''' obtain note handle
-        '''
-        val = self.options_dict['NWEBhomepic'] 
-        if val == "":
-            return None
-        else:
-            return val
+        return self.get_nt_val('NWEBhomepic')
+
+    def set_intro_nt_val(self, val):
+        self.set_nt_val('NWEBintronote', val)
+
+    def get_intro_nt_val(self):
+        return self.get_nt_val('NWEBintronote')
+
+    def set_intro_pic_val(self, val):
+        self.set_nt_val('NWEBintropic', val)
+
+    def get_intro_pic_val(self):
+        return self.get_nt_val('NWEBintropic')
+
+    def set_contact_nt_val(self, val):
+        self.set_nt_val('NWEBcontact', val)
+
+    def get_contact_nt_val(self):
+        return self.get_nt_val('NWEBcontact')
+
+    def set_contact_pic_val(self, val):
+        self.set_nt_val('NWEBcontactpic', val)
+
+    def get_contact_pic_val(self):
+        return self.get_nt_val('NWEBcontactpic')
+
+    def set_header_nt_val(self, val):
+        self.set_nt_val('NWEBheader', val)
+
+    def get_header_nt_val(self):
+        return self.get_nt_val('NWEBheader')
+
+    def set_footer_nt_val(self, val):
+        self.set_nt_val('NWEBfooter', val)
+
+    def get_footer_nt_val(self):
+        return self.get_nt_val('NWEBfooter')
 
     def parse_user_options(self, dialog):
         """Parse the privacy options frame of the dialog.  Save the
@@ -2961,7 +3009,6 @@ class WebReportOptions(ReportOptions):
                                              int(self.restrict_years.get_text())
         self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
         self.options_dict['NWEBnoid'] = int(self.noid.get_active())
-        self.options_dict['NWEBcontact'] = unicode(self.contact.get_handle())
         self.options_dict['NWEBlinkhome'] = int(self.linkhome.get_active())
         self.options_dict['NWEBshowbirth'] = int(self.showbirth.get_active())
         self.options_dict['NWEBshowdeath'] = int(self.showdeath.get_active())
@@ -2969,11 +3016,8 @@ class WebReportOptions(ReportOptions):
         self.options_dict['NWEBshowparents'] = int(self.showparents.get_active())
         self.options_dict['NWEBshowhalfsiblings'] = int(self.showhalfsiblings.get_active())
         self.options_dict['NWEBgallery'] = int(self.include_gallery.get_active())
-        self.options_dict['NWEBheader'] = unicode(self.header.get_handle())
-        self.options_dict['NWEBfooter'] = unicode(self.footer.get_handle())
         self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
         self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
-        self.options_dict['NWEBintronote'] = unicode(self.intro_note.get_handle())
         self.options_dict['NWEBgraph'] = int(self.inc_graph.get_active())
         
         index = self.graph_gens.get_active()
@@ -3227,20 +3271,6 @@ class GrampsNoteComboBox(gtk.ComboBox):
         if active:
             handle = self.local_store.get_value(active,1)
         return handle
-
-def mk_combobox(media_list,select_value):
-    store = gtk.ListStore(str,str)
-    node = None
-    
-    for data in media_list:
-        if data[1] == select_value:
-            node = store.append(row=data)
-        else:
-            store.append(row=data)
-    widget = GrampsNoteComboBox(store,node)
-    if len(media_list) == 0:
-        widget.set_sensitive(False)
-    return widget
 
 def mk_object_entry():
     ''' return a vbox widget with fields for object selection

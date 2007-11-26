@@ -867,6 +867,7 @@ class ObjEntry:
         if self.get_val():
             self.set_val(None)
             self.label.set_text(self.EMPTY_TEXT)
+            self.label.set_use_markup(True)
             self.set_button(False)
         else:
             select = self.call_selector()
