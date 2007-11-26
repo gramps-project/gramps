@@ -90,8 +90,16 @@ IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 CUSTOM_FILTERS = os.path.join(HOME_DIR, "custom_filters.xml")
 REPORT_OPTIONS = os.path.join(HOME_DIR, "report_options.xml")
 TOOL_OPTIONS   = os.path.join(HOME_DIR, "tool_options.xml")
-THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
+
 ENV_DIR        = os.path.join(HOME_DIR, "env")
+TEMP_DIR       = os.path.join(HOME_DIR, "temp")
+THUMB_DIR      = os.path.join(HOME_DIR, "thumb")
+USER_DOCGEN    = os.path.join(HOME_DIR, "docgen")    
+USER_PLUGINS   = os.path.join(HOME_DIR, "plugins")    
+USER_TEMPLATES = os.path.join(HOME_DIR, "templates")    
+# dirs checked/made for each Gramps session
+USER_DIRLIST = (HOME_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
+                USER_DOCGEN, USER_PLUGINS, USER_TEMPLATES)
 
 ICON           = os.path.join(ROOT_DIR, "images", "gramps.png")
 LOGO           = os.path.join(ROOT_DIR, "images", "logo.png")

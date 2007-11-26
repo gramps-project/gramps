@@ -185,13 +185,8 @@ def register_stock_icons ():
 
 
 def build_user_paths():
-    user_paths = [const.HOME_DIR,
-                  os.path.join(const.HOME_DIR, "plugins"),
-                  os.path.join(const.HOME_DIR, "docgen"),
-                  os.path.join(const.HOME_DIR, "templates"),
-                  os.path.join(const.HOME_DIR, "thumb")]
-    
-    for path in user_paths:
+    """ check/make user-dirs on each Gramps session"""
+    for path in const.USER_DIRLIST:
         if not os.path.isdir(path):
             os.mkdir(path)
 
@@ -256,6 +251,13 @@ class Gramps:
             ah.handle_args()
             self.vm.post_init_interface()
         else:
+            #jgs:
+            from GrampsLogger import GtkHandler
+            for h in log.parent.handlers:
+                if isinstance(h,GtkHandler):
+                    log.parent.removeHandler(h)
+                    break
+            #jgs:------------------------------             
             ah.handle_args()
             self.vm.post_init_interface()
 

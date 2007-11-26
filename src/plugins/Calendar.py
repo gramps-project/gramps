@@ -182,8 +182,7 @@ class Calendar(Report):
 
     def get_holidays(self, year, country = "United States"):
         """ Looks in multiple places for holidays.xml files """
-        locations = [const.PLUGINS_DIR,
-                     os.path.join(const.HOME_DIR,"plugins")]
+        locations = [const.PLUGINS_DIR, const.USER_PLUGINS]
         holiday_file = 'holidays.xml'
         for dir in locations:
             holiday_full_path = os.path.join(dir, holiday_file)
@@ -834,8 +833,7 @@ class Holidays:
 
 def get_countries():
     """ Looks in multiple places for holidays.xml files """
-    locations = [const.PLUGINS_DIR,
-                 os.path.join(const.HOME_DIR,"plugins")]
+    locations = [const.PLUGINS_DIR, const.USER_PLUGINS]
     holiday_file = 'holidays.xml'
     country_list = []
     for dir in locations:

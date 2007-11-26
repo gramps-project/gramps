@@ -585,12 +585,12 @@ class ViewManager:
         # load document generators
         self.uistate.status_text(_('Loading document formats...'))
         error  = load_plugins(const.DOCGEN_DIR)
-        error |= load_plugins(os.path.join(const.HOME_DIR, "docgen"))
+        error |= load_plugins(const.USER_DOCGEN)
 
         # load plugins
         self.uistate.status_text(_('Loading plugins...'))
         error |= load_plugins(const.PLUGINS_DIR)
-        error |= load_plugins(os.path.join(const.HOME_DIR, "plugins"))
+        error |= load_plugins(const.USER_PLUGINS)
 
         #  get to ssee if we need to open the plugin status window
         if Config.get(Config.POP_PLUGIN_STATUS) and error:

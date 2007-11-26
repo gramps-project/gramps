@@ -93,7 +93,7 @@ _template_map = {
     }
 try:
     template_path = const.TEMPLATE_DIR
-    xmlfile = os.path.join(const.TEMPLATE_DIR,"templates.xml")
+    xmlfile = os.path.join(template_path, "templates.xml")
 
     if os.path.isfile(xmlfile):
         parser = make_parser()
@@ -102,8 +102,8 @@ try:
         parser.parse(the_file)
         the_file.close()
     
-    template_path = os.path.join(const.HOME_DIR,"templates")
-    xmlfile = os.path.join(template_path,"templates.xml")
+    template_path = const.USER_TEMPLATES
+    xmlfile = os.path.join(template_path, "templates.xml")
     if os.path.isfile(xmlfile):
         parser = make_parser()
         parser.setContentHandler(TemplateParser(_template_map,template_path))
