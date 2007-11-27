@@ -314,7 +314,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-                  <property name="mnemonic_widget">gid</property>
+		  <property name="mnemonic_widget">gid</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -1282,7 +1282,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
-                      <property name="mnemonic_widget">marriage_type</property>
+		      <property name="mnemonic_widget">marriage_type</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -1604,7 +1604,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-		   <property name="mnemonic_widget">lon_entry</property>
+		  <property name="mnemonic_widget">lon_entry</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -4396,7 +4396,7 @@
 	    <widget class="GtkTable" id="table51">
 	      <property name="border_width">6</property>
 	      <property name="visible">True</property>
-	      <property name="n_rows">3</property>
+	      <property name="n_rows">2</property>
 	      <property name="n_columns">2</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">6</property>
@@ -4448,28 +4448,6 @@
 		  <property name="right_attach">2</property>
 		  <property name="top_attach">0</property>
 		  <property name="bottom_attach">1</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkCheckButton" id="internal">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">Internal note</property>
-		  <property name="use_underline">True</property>
-		  <property name="relief">GTK_RELIEF_NORMAL</property>
-		  <property name="focus_on_click">True</property>
-		  <property name="active">False</property>
-		  <property name="inconsistent">False</property>
-		  <property name="draw_indicator">True</property>
-		</widget>
-		<packing>
-		  <property name="left_attach">1</property>
-		  <property name="right_attach">2</property>
-		  <property name="top_attach">2</property>
-		  <property name="bottom_attach">3</property>
-		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
@@ -7375,7 +7353,7 @@
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-                  <property name="mnemonic_widget">attr_menu</property>
+		  <property name="mnemonic_widget">attr_menu</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -14126,7 +14104,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-                  <property name="mnemonic_widget">frel</property>
+		  <property name="mnemonic_widget">frel</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -14155,7 +14133,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-                  <property name="mnemonic_widget">mrel</property>
+		  <property name="mnemonic_widget">mrel</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -14685,7 +14663,7 @@ Very High</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
-                  <property name="mnemonic_widget">example_label</property>
+		  <property name="mnemonic_widget">example_label</property>
 		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		  <property name="width_chars">-1</property>
 		  <property name="single_line_mode">False</property>
@@ -15423,7 +15401,7 @@ Very High</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
 			      <property name="ypad">0</property>
-                              <property name="mnemonic_widget">spell</property>
+			      <property name="mnemonic_widget">spell</property>
 			      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 			      <property name="width_chars">-1</property>
 			      <property name="single_line_mode">False</property>
@@ -15494,7 +15472,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
-                      <property name="mnemonic_widget">type</property>
+		      <property name="mnemonic_widget">type</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -15539,7 +15517,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
-                      <property name="mnemonic_widget">id</property>
+		      <property name="mnemonic_widget">id</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>
@@ -15589,7 +15567,7 @@ Very High</property>
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
-                      <property name="mnemonic_widget">marker</property>
+		      <property name="mnemonic_widget">marker</property>
 		      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
 		      <property name="width_chars">-1</property>
 		      <property name="single_line_mode">False</property>

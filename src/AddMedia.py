@@ -101,9 +101,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.file_text = self.glade.get_widget("fname")
         if _last_directory and os.path.isdir(_last_directory):
             self.file_text.set_current_folder(_last_directory)
-            
-        self.internal = self.glade.get_widget('internal')
-        self.internal.connect('toggled', self.internal_toggled)
+
         self.relpath = self.glade.get_widget('relpath')
         self.relpath.set_active(_relative_path)
         self.temp_name = ""
@@ -118,12 +116,6 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         Build the menu name for the window manager
         """
         return(_('Select media object'), None)
-
-    def internal_toggled(self, obj):
-        """
-        Toggles the file_text icon.
-        """
-        self.file_text.set_sensitive(not obj.get_active())
         
     def on_help_imagesel_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -140,44 +132,38 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         
         description = unicode(self.description.get_text())
 
-        if self.internal.get_active():
-            mobj = gen.lib.MediaObject()
-            mobj.set_description(description)
-            mobj.set_handle(Utils.create_id())
-            mobj.set_mime_type(None)
-        else:
-            if self.file_text.get_filename() is None:
-                msgstr = _("Import failed")
-                msgstr2 = _("The filename supplied could not be found.")
-                ErrorDialog(msgstr, msgstr2)
-                return
+        if self.file_text.get_filename() is None:
+            msgstr = _("Import failed")
+            msgstr2 = _("The filename supplied could not be found.")
+            ErrorDialog(msgstr, msgstr2)
+            return
 
-            filename = Utils.get_unicode_path(self.file_text.get_filename())
-            full_file = filename
+        filename = Utils.get_unicode_path(self.file_text.get_filename())
+        full_file = filename
 
-            if self.relpath.get_active():
-                pname = self.dbase.get_save_path()
-                if not os.path.isdir(pname):
-                    pname = os.path.dirname(pname)
-                filename = Utils.relative_path(filename, pname)
+        if self.relpath.get_active():
+            pname = self.dbase.get_save_path()
+            if not os.path.isdir(pname):
+                pname = os.path.dirname(pname)
+            filename = Utils.relative_path(filename, pname)
 
-            if os.path.exists(filename) == 0:
-                msgstr = _("Cannot import %s")
-                msgstr2 = _("The filename supplied could not be found.")
-                ErrorDialog(msgstr % filename, msgstr2)
-                return
+        if os.path.exists(filename) == 0:
+            msgstr = _("Cannot import %s")
+            msgstr2 = _("The filename supplied could not be found.")
+            ErrorDialog(msgstr % filename, msgstr2)
+            return
 
-            mtype = Mime.get_type(full_file)
-            if description == "":
-                description = os.path.basename(filename)
+        mtype = Mime.get_type(full_file)
+        if description == "":
+            description = os.path.basename(filename)
 
-            mobj = gen.lib.MediaObject()
-            mobj.set_description(description)
-            mobj.set_mime_type(mtype)
-            name = filename
-            mobj.set_path(name)
-            _last_directory = os.path.dirname(full_file)
-            _relative_path = self.relpath.get_active()
+        mobj = gen.lib.MediaObject()
+        mobj.set_description(description)
+        mobj.set_mime_type(mtype)
+        name = filename
+        mobj.set_path(name)
+        _last_directory = os.path.dirname(full_file)
+        _relative_path = self.relpath.get_active()
 
         mobj.set_handle(Utils.create_id())
         if not mobj.get_gramps_id():

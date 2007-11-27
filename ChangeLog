@@ -1,3 +1,12 @@
+2007-11-27 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/glade/gramps.glade: remove internal from addmedia
+	* src/AddMedia.py: remove internal
+	* src/Editors/_EditMedia.py: remove internal note code
+	Note: no upgrade code for this. Old internal notes will be connected to 
+	a media object with type 'Note' and have as type 'Media Note', 
+	up to the case a user deletes these media and changes note type to eg
+	report or changes the path to a real media object.
+
 2007-11-27  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/TipOfDay.py: remove uneeded sax escape, issue #1368
 

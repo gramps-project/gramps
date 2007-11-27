@@ -124,12 +124,13 @@ class EditMedia(EditPrimary):
 
         pixmap = self.glade.get_widget("pixmap")
         ebox = self.glade.get_widget('eventbox')
+        ebox.connect('button-press-event', self.button_press_event)
         
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ThumbNails.get_thumbnail_image(Utils.find_file(self.obj.get_path()),mtype)
+            pb = ThumbNails.get_thumbnail_image(
+                                    Utils.find_file(self.obj.get_path()),mtype)
             pixmap.set_from_pixbuf(pb)
-            ebox.connect('button-press-event', self.button_press_event)
             descr = Mime.get_description(mtype)
             if descr:
                 self.glade.get_widget("type").set_text(descr)
@@ -143,36 +144,20 @@ class EditMedia(EditPrimary):
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
 
-        if self.obj.get_mime_type():
-            self.src_list = self._add_tab(
-                notebook,
-                SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
-            
-            self.attr_list = self._add_tab(
-                notebook,
-                AttrEmbedList(self.dbstate, self.uistate, self.track,
-                              self.obj.get_attribute_list()))
-            
-            self.note_tab = self._add_tab(
-                notebook,
-                NoteTab(self.dbstate, self.uistate, self.track,
-                        self.obj.get_note_list(), 
-                        notetype=gen.lib.NoteType.MEDIA))
-        else:
-            self.note_tab = self._add_tab(
-                notebook,
-                NoteTab(self.dbstate, self.uistate, self.track,
-                        self.obj.get_note_list(),
-                        notetype=gen.lib.NoteType.MEDIA))
-
-            self.src_list = self._add_tab(
-                notebook,
-                SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
-            
-            self.attr_list = self._add_tab(
-                notebook,
-                AttrEmbedList(self.dbstate, self.uistate, self.track,
-                              self.obj.get_attribute_list()))
+        self.src_list = self._add_tab(
+            notebook,
+            SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
+        
+        self.attr_list = self._add_tab(
+            notebook,
+            AttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.obj.get_attribute_list()))
+        
+        self.note_tab = self._add_tab(
+            notebook,
+            NoteTab(self.dbstate, self.uistate, self.track,
+                    self.obj.get_note_list(), 
+                    notetype=gen.lib.NoteType.MEDIA))
 
         self.backref_list = self._add_tab(
             notebook,
@@ -222,14 +207,9 @@ class EditMedia(EditPrimary):
         self.select = self.glade.get_widget('file_select')
         self.file_path = self.glade.get_widget("path")
         
-        if self.obj.get_mime_type():
-            fname = Utils.get_unicode_path(self.obj.get_path())
-            self.file_path.set_text(fname)
-            self.select.connect('clicked', self.select_file)
-        else:
-            self.glade.get_widget('path_label').hide()
-            self.file_path.hide()
-            self.select.hide()
+        fname = self.obj.get_path()
+        self.file_path.set_text(fname)
+        self.select.connect('clicked', self.select_file)
             
     def save(self, *obj):
         path = self.glade.get_widget('path').get_text()
@@ -238,8 +218,7 @@ class EditMedia(EditPrimary):
             mime = Mime.get_type(Utils.find_file(os.path.abspath(path)))
             self.obj.set_mime_type(mime)
 
-        if self.obj.get_mime_type():
-            self.obj.set_path(Utils.get_unicode_path(path))
+        self.obj.set_path(Utils.get_unicode_path(path))
 
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)
