@@ -418,6 +418,36 @@ class ManagedWindow:
             self.opened = True
             self.window.show_all()
 
+    def  modal_call(self, after_ok_func=None):
+        ''' 
+            Method to do modal run of the ManagedWindow.
+            Connect the OK button to a method that checks if all is ok, 
+                Do not call close, close is called here.
+                (if not ok, do self.window.run() to obtain new response )
+                TODO: remove close here and do close in BareReportDialog,
+                      this can only be done, once all methods use modal_call()
+                      instead of their own implementation
+            Connect Cancel to do close, delete event is connected to close 
+                here in ManagedWindow.
+            Do not generete RESPONSE_OK/CANCEL/DELETE_EVENT on button clicks 
+            of other buttons
+            after_ok_func is called on ok click in this method
+        '''
+        #self.show()
+        while True:
+            response = self.window.run()
+            if response == gtk.RESPONSE_OK:
+                # dialog will be close by connect, now continue work while
+                # rest of dialog is unresponsive, release when finished
+                self.close()
+                if after_ok_func is not None:
+                    after_ok_func()
+                break
+            elif (response == gtk.RESPONSE_DELETE_EVENT or
+              response == gtk.RESPONSE_CANCEL):
+                # connect buttons generating this to a close call
+                break
+
     def close(self, *obj):
         """
         Close itself.

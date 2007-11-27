@@ -799,7 +799,10 @@ class ObjEntry:
         self.share.connect('clicked', self.share_clicked)
         
         if not self.db.readonly and not name:
-            self.label.set_text(self.EMPTY_TEXT)
+            if self.add_edt is None:
+                self.label.set_text(self.EMPTY_TEXT_RED)
+            else:
+                self.label.set_text(self.EMPTY_TEXT)
             self.label.set_use_markup(True)
         else:
             self.label.set_text(name)
@@ -918,6 +921,7 @@ class PlaceEntry(ObjEntry):
     """
     EMPTY_TEXT = "<i>%s</i>" % _('To select a place, use drag-and-drop '
                                  'or use the buttons')
+    EMPTY_TEXT_RED = "<i>%s</i>" % _('No place given, click button to select one')
     EDIT_STR = _('Edit place')
     SHARE_STR = _('Select an existing place')
     ADD_STR = _('Add a new place')
@@ -971,6 +975,7 @@ class MediaEntry(ObjEntry):
     """
     EMPTY_TEXT = "<i>%s</i>" % _('To select a media object, use drag-and-drop '
                                  'or use the buttons')
+    EMPTY_TEXT_RED = "<i>%s</i>" % _('No image given, click button to select one')
     EDIT_STR = _('Edit media object')
     SHARE_STR = _('Select an existing media object')
     ADD_STR = _('Add a new media object')
@@ -1024,6 +1029,7 @@ class NoteEntry(ObjEntry):
         """
     EMPTY_TEXT = "<i>%s</i>" % _('To select a note, use drag-and-drop '
                                  'or use the buttons')
+    EMPTY_TEXT_RED = "<i>%s</i>" % _('No note given, click button to select one')
     EDIT_STR = _('Edit Note')
     SHARE_STR = _('Select an existing note')
     ADD_STR = _('Add a new note')

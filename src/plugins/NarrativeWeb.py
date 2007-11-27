@@ -2724,7 +2724,11 @@ class WebReportOptions(ReportOptions):
                                                      include_single=False)
         self.filter_menu = gtk.combo_box_new_text()
         for filter in filter_list:
-            self.filter_menu.append_text(filter.get_name())
+            #cut name filter so as not to make dialog too large
+            if len(filter.get_name()) > 60:
+                self.filter_menu.append_text(filter.get_name()[:60]+'...')
+            else:
+                self.filter_menu.append_text(filter.get_name())
         if filter_index > len(filter_list):
             filter_index = 0
         self.filter_menu.set_active(filter_index)
@@ -3069,16 +3073,7 @@ class WebReportDialog(ReportDialog):
                               name, translated_name)
         self.style_name = None
 
-        while True:
-            response = self.window.run()
-            if response == gtk.RESPONSE_OK:
-                self.close()
-                self.make_report()
-                break
-            elif (response == gtk.RESPONSE_DELETE_EVENT or
-              response == gtk.RESPONSE_CANCEL):
-                # the buttons generating this already call close via connect
-                break
+        self.modal_call(self.make_report)
 
     def on_cancel(self, *obj):
         self.close(*obj)
@@ -3277,8 +3272,11 @@ def mk_object_entry():
     '''
     box = gtk.HBox()
     label = gtk.Label()
+    label.set_justify(gtk.JUSTIFY_LEFT)
+    labelexpand = gtk.Label()
     button_sel = gtk.Button()
-    box.pack_start(label)
+    box.pack_start(label, expand=False, fill=True)
+    box.pack_start(labelexpand, expand=True, fill=True)
     box.pack_start(button_sel, expand=False, fill=False)
     return (box, label, button_sel)
 

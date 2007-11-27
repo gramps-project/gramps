@@ -1,3 +1,12 @@
+2007-11-27 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ManagedWindow.py: new call_modal method. 
+				Reports tools should use that
+	* src/GrampsWidgets.py: improve a text string
+	* src/plugins/NarrativeWeb.py: use call_modal, trunkate long filter
+				names, better placement of selector note/media
+	* src/ReportBase/_BareReportDialog.py: reports are modal but not 
+				transient, remove bug to make them transient!
+
 2007-11-26 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/NarrativeWeb.py: new select contact-header-footer-intro
 	* src/GrampsWidgets.py: widget for new select

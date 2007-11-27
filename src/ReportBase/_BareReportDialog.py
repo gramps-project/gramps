@@ -158,7 +158,8 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.notebook.set_current_page(0)
-        self.window.show_all()
+        self.show()
+        #self.window.show_all()
 
     def get_title(self):
         """The window title for this dialog"""
