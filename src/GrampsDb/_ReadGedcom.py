@@ -451,7 +451,8 @@ class Reader:
         while len(self.current_list) < 5:
             old_line = self.f.readline()
             self.index += 1
-            line = old_line.strip('\r\n')
+            # space ensures no trailing space at end-of-line
+            line = old_line.strip(' \r\n')
             if line == "" and line != old_line:
                 continue
             if line == "":
