@@ -632,10 +632,6 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Note to the database, storing the changes
         as part of the transaction.
         """
-        if not note.gramps_id:
-            import traceback
-            traceback.print_stack()
-
         self.commit_base(note, self.note_map, NOTE_KEY, 
                           transaction.note_update,
                           transaction.note_add, 

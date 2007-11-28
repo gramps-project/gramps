@@ -1,3 +1,8 @@
+2007-11-28 Benny Malengier <benny.malengier@gramps-project.org>
+	* example/gramps/example.gramps: correct 3.0 example.gramps, stext is
+	no longer used, xml no longer sorted on id on ouput.
+	* src/gen/db/base.py: remove test code from Don
+
 2007-11-27 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/glade/gramps.glade: remove internal from addmedia
 	* src/AddMedia.py: remove internal
