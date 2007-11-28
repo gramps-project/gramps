@@ -22,13 +22,6 @@
 """
 Abstracted option handling.
 """
-#------------------------------------------------------------------------
-#
-# gtk
-#
-#------------------------------------------------------------------------
-import gtk
-
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -154,7 +147,7 @@ class StringOption(Option):
         """
         Option.__init__(self,label,value)
 
-    def make_gui_obj(self, dialog):
+    def make_gui_obj(self, gtk, dialog):
         """
         Add a StringOption (single line text) to the dialog.
         """
@@ -214,7 +207,7 @@ class NumberOption(Option):
         """
         return self.__max
 
-    def make_gui_obj(self, dialog):
+    def make_gui_obj(self, gtk, dialog):
         """
         Add a NumberOption to the dialog.
         """
@@ -251,7 +244,7 @@ class TextOption(Option):
         """
         Option.__init__(self,label,value)
 
-    def make_gui_obj(self, dialog):
+    def make_gui_obj(self, gtk, dialog):
         """
         Add a TextOption to the dialog.
         """
@@ -298,7 +291,7 @@ class BooleanOption(Option):
         """
         Option.__init__(self,label,value)
 
-    def make_gui_obj(self, dialog):
+    def make_gui_obj(self, gtk, dialog):
         """
         Add a BooleanOption to the dialog.
         """
@@ -357,7 +350,7 @@ class EnumeratedListOption(Option):
         """
         return self.__items
 
-    def make_gui_obj(self, dialog):
+    def make_gui_obj(self, gtk, dialog):
         """
         Add an EnumeratedListOption to the dialog.
         """
@@ -441,7 +434,7 @@ class FilterListOption(Option):
         """
         return self.__filters
 
-    def make_gui_obj(self, dialog):
+    def make_gui_obj(self, gtk, dialog):
         """
         Add an FilterListOption to the dialog.
         """
@@ -609,15 +602,16 @@ class MenuOptions(ReportOptions):
         """
         raise NotImplementedError
 
-    def add_user_options(self,dialog):
+    def add_user_options(self, dialog):
         """
         Generic method to add user options to the gui.
         """
+        import gtk
         self.tooltips = gtk.Tooltips()
         for category in self.menu.get_categories():
             for name in self.menu.get_option_names(category):
                 option = self.menu.get_option(category,name)
-                option.make_gui_obj(dialog)
+                option.make_gui_obj(gtk, dialog)
                 option.add_dialog_category(dialog, category)
                 option.add_tooltip(self.tooltips)
                 

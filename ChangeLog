@@ -1,3 +1,6 @@
+2007-11-28  Douglas S.Blank  <dblank@cs.brynmawr.edu>
+	* src/ReportBase/_MenuOptions.py: removed global need for gtk here
+
 2007-11-28 Benny Malengier <benny.malengier@gramps-project.org>
 	* example/gramps/example.gramps: correct 3.0 example.gramps, stext is
 	no longer used, xml no longer sorted on id on ouput.
