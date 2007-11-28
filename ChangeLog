@@ -1,4 +1,14 @@
 2007-11-28  Douglas S.Blank  <dblank@cs.brynmawr.edu>
+	* src/ReportBase/_MenuOptions.py: removed/moved to PluginUtils
+	* src/ReportBase/__init__.py: removed Menu items
+	* src/plugins/Calendar.py: uses MenuReportOptions
+	* src/plugins/DescendChart.py: uses MenuReportOptions
+	* src/plugins/AncestorChart.py: uses MenuReportOptions
+	* src/plugins/GVHourGlass.py: uses MenuReportOptions
+	* src/plugins/FanChart.py: uses MenuReportOptions
+	* src/PluginUtils/__init__.py: imports Menu items
+
+2007-11-28  Douglas S.Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/_MenuOptions.py: removed global need for gtk here
 
 2007-11-28 Benny Malengier <benny.malengier@gramps-project.org>

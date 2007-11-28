@@ -39,9 +39,10 @@ from gettext import gettext as _
 import BaseDoc
 from SubstKeywords import SubstKeywords
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, \
-     MenuOptions, NumberOption, BooleanOption, TextOption, \
-     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+from PluginUtils import  MenuReportOptions, \
+    NumberOption, BooleanOption, TextOption
+from ReportBase import Report, ReportUtils, CATEGORY_DRAW, \
+    MODE_GUI, MODE_BKI, MODE_CLI
 from BasicUtils import name_displayer
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
@@ -438,14 +439,14 @@ class AncestorChart(Report):
 # 
 #
 #------------------------------------------------------------------------
-class AncestorChartOptions(MenuOptions):
+class AncestorChartOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        MenuOptions.__init__(self,name,person_id)
+        MenuReportOptions.__init__(self,name,person_id)
         
     def add_menu_options(self,menu):
         category_name = _("Report Options")

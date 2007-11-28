@@ -41,3 +41,6 @@ from _PluginMgr import \
 import _Tool as Tool
 import _Plugins as Plugins
 import _PluginStatus as PluginStatus
+from _MenuOptions import MenuReportOptions, MenuToolOptions, \
+    NumberOption, BooleanOption, TextOption, \
+    EnumeratedListOption, FilterListOption, StringOption

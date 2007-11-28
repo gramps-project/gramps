@@ -29,8 +29,9 @@ Generate an hourglass graph using the GraphViz generator.
 #
 #------------------------------------------------------------------------
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, MenuOptions, NumberOption, \
-     CATEGORY_GRAPHVIZ, MODE_GUI, MODE_CLI
+from PluginUtils import MenuReportOptions, NumberOption
+from ReportBase import Report, ReportUtils, CATEGORY_GRAPHVIZ, \
+    MODE_GUI, MODE_CLI
 from BasicUtils import name_displayer
 import DateHandler
 
@@ -145,12 +146,12 @@ class HourGlassReport(Report):
 # HourGlassOptions
 #
 #------------------------------------------------------------------------
-class HourGlassOptions(MenuOptions):
+class HourGlassOptions(MenuReportOptions):
     """
     Defines options for the HourGlass report.
     """
     def __init__(self,name,person_id=None):
-        MenuOptions.__init__(self,name,person_id)
+        MenuReportOptions.__init__(self,name,person_id)
         
     def add_menu_options(self,menu):
         category_name = _("Report Options")

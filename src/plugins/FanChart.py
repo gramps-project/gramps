@@ -35,9 +35,10 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
-     MenuOptions, NumberOption, EnumeratedListOption, \
-     CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
+from PluginUtils import MenuReportOptions, \
+    NumberOption, EnumeratedListOption
+from ReportBase import Report, ReportUtils, CATEGORY_DRAW, \
+    MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
 
 #------------------------------------------------------------------------
@@ -312,12 +313,12 @@ class FanChart(Report):
 # 
 #
 #------------------------------------------------------------------------
-class FanChartOptions(MenuOptions):
+class FanChartOptions(MenuReportOptions):
 
     def __init__(self,name,person_id=None):
         self.MAX_GENERATIONS = 8
         
-        MenuOptions.__init__(self,name,person_id)
+        MenuReportOptions.__init__(self,name,person_id)
         
     def add_menu_options(self,menu):
         category_name = _("Report Options")

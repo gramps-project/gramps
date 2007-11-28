@@ -41,11 +41,12 @@ import BaseDoc
 from BasicUtils import name_displayer
 from DateHandler import displayer
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
-     MenuOptions, NumberOption, BooleanOption, StringOption, \
-     FilterListOption, EnumeratedListOption, \
-     CATEGORY_DRAW, CATEGORY_TEXT, \
-     MODE_GUI, MODE_BKI, MODE_CLI
+from ReportBase import Report, ReportUtils, \
+    CATEGORY_DRAW, CATEGORY_TEXT, \
+    MODE_GUI, MODE_BKI, MODE_CLI
+from PluginUtils import MenuReportOptions, \
+    NumberOption, BooleanOption, StringOption, \
+    FilterListOption, EnumeratedListOption
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter
@@ -451,7 +452,7 @@ class CalendarReport(Calendar):
                     self.doc.end_paragraph()
             current_ord += 1
 
-class CalendarOptions(MenuOptions):
+class CalendarOptions(MenuReportOptions):
     """ Calendar options for graphic calendar """
     
     def add_menu_options(self, menu):
