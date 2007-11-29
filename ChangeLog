@@ -1,3 +1,7 @@
+2007-11-28  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/ReportBase/Makefile.am: removed _MenuOptions.py
+	* src/PluginUtils/Makefile.am: added _MenuOptions.py
+
 2007-11-28  Douglas S.Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/_MenuOptions.py: removed/moved to PluginUtils
 	* src/ReportBase/__init__.py: removed Menu items
