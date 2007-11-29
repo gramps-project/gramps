@@ -38,10 +38,9 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 from SubstKeywords import SubstKeywords
-from PluginUtils import register_report
-from PluginUtils import  MenuReportOptions, \
+from PluginUtils import register_report, \
     NumberOption, BooleanOption, TextOption
-from ReportBase import Report, ReportUtils, CATEGORY_DRAW, \
+from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions,\
     MODE_GUI, MODE_BKI, MODE_CLI
 from BasicUtils import name_displayer
 pt2cm = ReportUtils.pt2cm

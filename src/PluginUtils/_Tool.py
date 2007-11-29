@@ -311,3 +311,4 @@ class ToolOptions(Options):
         """
         self.set_new_options()
         self.handler = ToolOptionHandler(name,self.options_dict,person_id)
+

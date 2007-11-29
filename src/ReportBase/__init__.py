@@ -36,7 +36,7 @@ from _CommandLineReport import cl_report
 from _DrawReportDialog import DrawReportDialog
 from _TextReportDialog import TextReportDialog
 
-from _ReportOptions import ReportOptions
+from _ReportOptions import ReportOptions, MenuReportOptions
 import _ReportUtils as ReportUtils
 
 from _Bibliography import Bibliography, Citation

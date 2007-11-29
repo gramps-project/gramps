@@ -29,11 +29,9 @@
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from PluginUtils import register_report
-from PluginUtils import MenuReportOptions, \
-    NumberOption, BooleanOption, TextOption
-from ReportBase import Report, ReportOptions, ReportUtils, CATEGORY_DRAW, \
-    MODE_GUI, MODE_BKI, MODE_CLI
+from PluginUtils import register_report, NumberOption, BooleanOption, TextOption
+from ReportBase import Report, ReportOptions, MenuReportOptions, \
+    ReportUtils, CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
 from gettext import gettext as _
 import BaseDoc

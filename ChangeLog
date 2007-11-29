@@ -1,3 +1,15 @@
+2007-11-29  Douglas S.Blank  <dblank@cs.brynmawr.edu>
+	* src/ReportBase/__init__.py: import MenuReportOptions
+	* src/ReportBase/_ReportOptions.py: import MenuOptions and
+	  define MenuReportOptions
+	* src/plugins/Calendar.py: get MenuReportOptions from ReportOptions
+	* src/plugins/DescendChart.py: ditto
+	* src/plugins/AncestorChart.py: ditto
+	* src/plugins/GVHourGlass.py: ditto
+	* src/plugins/FanChart.py: ditto
+	* src/PluginUtils/__init__.py: define MenuToolOptions
+	* src/PluginUtils/_MenuOptions.py: Remove circular dependancies
+
 2007-11-29 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/_RepositoryView.py:
 	* src/gen/db/base.py:

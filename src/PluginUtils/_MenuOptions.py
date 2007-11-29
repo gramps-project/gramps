@@ -27,7 +27,6 @@ Abstracted option handling.
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from ReportBase import ReportUtils, ReportOptions
 import _Tool as Tool
 
 #-------------------------------------------------------------------------
@@ -438,9 +437,11 @@ class FilterListOption(Option):
         """
         Add an FilterListOption to the dialog.
         """
+        from ReportBase import ReportUtils
         self.gobj = gtk.combo_box_new_text()
         for filter in self.get_items():
             if filter in ["person"]:
+                # FIXME: get filter list from filter sidebar?
                 filter_list = ReportUtils.get_person_filters(dialog.person,False)
                 for filter in filter_list:
                     self.gobj.append_text(filter.get_name())
@@ -567,6 +568,9 @@ class Menu:
 #
 #------------------------------------------------------------------------
 class MenuOptions:
+    def __init__(self):
+        self.menu = Menu()
+
     def make_default_style(self,default_style):
         pass
 
@@ -620,37 +624,4 @@ class MenuOptions:
         Get and parse the users choice.
         """
         return self.menu.get_option_by_name(name).parse()
-
-#------------------------------------------------------------------------
-#
-# Option handlers for tools and reports
-#
-#------------------------------------------------------------------------
-class MenuReportOptions(MenuOptions,ReportOptions):
-    """
-    The MenuOptions class implementes the ReportOptions functionality in a 
-    generic way so that the user does not need to be concerned with the 
-    graphical representation of the options.
-    
-    The user should inherit the MenuOptions class and override the 
-    add_menu_options function. The user can add options to the menu and the 
-    MenuOptions class will worry about setting up the GUI.
-    """
-    def __init__(self,name,person_id=None):
-        self.menu = Menu()
-        ReportOptions.__init__(self,name, person_id)
-
-class MenuToolOptions(MenuOptions,Tool.ToolOptions):
-    """
-    The MenuOptions class implementes the ReportOptions functionality in a 
-    generic way so that the user does not need to be concerned with the 
-    graphical representation of the options.
-    
-    The user should inherit the MenuOptions class and override the 
-    add_menu_options function. The user can add options to the menu and the 
-    MenuOptions class will worry about setting up the GUI.
-    """
-    def __init__(self,name,person_id=None):
-        self.menu = Menu()
-        Tool.ToolOptions.__init__(self,name, person_id)
 

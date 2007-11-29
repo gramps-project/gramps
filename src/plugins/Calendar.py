@@ -41,11 +41,10 @@ import BaseDoc
 from BasicUtils import name_displayer
 from DateHandler import displayer
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, \
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
     CATEGORY_DRAW, CATEGORY_TEXT, \
     MODE_GUI, MODE_BKI, MODE_CLI
-from PluginUtils import MenuReportOptions, \
-    NumberOption, BooleanOption, StringOption, \
+from PluginUtils import NumberOption, BooleanOption, StringOption, \
     FilterListOption, EnumeratedListOption
 import GrampsLocale
 import gen.lib

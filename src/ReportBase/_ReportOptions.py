@@ -54,7 +54,7 @@ except:
 import const
 import Config
 import BaseDoc
-from PluginUtils import _Options
+from PluginUtils import _Options, MenuOptions
 
 #-------------------------------------------------------------------------
 #
@@ -541,3 +541,25 @@ class ReportOptions(_Options.Options):
         This method MUST NOT be overridden by subclasses.
         """
         self.handler.output = val
+
+#-------------------------------------------------------------------------
+#
+# MenuReportOptions
+#
+#-------------------------------------------------------------------------
+class MenuReportOptions(MenuOptions,ReportOptions):
+    """
+
+    The MenuReportOptions class implementes the ReportOptions
+    functionality in a generic way so that the user does not need to
+    be concerned with the graphical representation of the options.
+    
+    The user should inherit the MenuReportOptions class and override the 
+    add_menu_options function. The user can add options to the menu and the 
+    MenuReportOptions class will worry about setting up the GUI.
+
+    """
+    def __init__(self,name,person_id=None):
+        MenuOptions.__init__(self)
+        ReportOptions.__init__(self,name, person_id)
+

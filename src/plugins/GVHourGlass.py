@@ -28,10 +28,9 @@ Generate an hourglass graph using the GraphViz generator.
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
-from PluginUtils import MenuReportOptions, NumberOption
-from ReportBase import Report, ReportUtils, CATEGORY_GRAPHVIZ, \
-    MODE_GUI, MODE_CLI
+from PluginUtils import register_report, NumberOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
+    MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
 import DateHandler
 

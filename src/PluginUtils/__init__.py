@@ -27,6 +27,9 @@
 #Better would be to do: import _PluginMgr as PluginMgr and then access
 # the list as PluginUtils.PluginMgr, or use a function that returns the pointer
 # of the list.
+from _MenuOptions import MenuOptions, \
+    NumberOption, BooleanOption, TextOption, \
+    EnumeratedListOption, FilterListOption, StringOption
 from _PluginMgr import \
      register_export, register_import, \
      register_tool, register_report, \
@@ -41,6 +44,19 @@ from _PluginMgr import \
 import _Tool as Tool
 import _Plugins as Plugins
 import _PluginWindows as PluginWindows
-from _MenuOptions import MenuReportOptions, MenuToolOptions, \
-    NumberOption, BooleanOption, TextOption, \
-    EnumeratedListOption, FilterListOption, StringOption
+
+# This needs to go above Tool and MenuOption as it needs both
+class MenuToolOptions(MenuOptions,Tool.ToolOptions):
+    """
+    The MenuToolOptions class implementes the ToolOptions
+    functionality in a generic way so that the user does not need to
+    be concerned with the graphical representation of the options.
+    
+    The user should inherit the MenuToolOptions class and override the
+    add_menu_options function. The user can add options to the menu
+    and the MenuToolOptions class will worry about setting up the GUI.
+    """
+    def __init__(self,name,person_id=None):
+        MenuOptions.__init__(self)
+        Tool.ToolOptions.__init__(self,name, person_id)
+

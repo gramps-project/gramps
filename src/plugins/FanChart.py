@@ -35,9 +35,8 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 from PluginUtils import register_report
-from PluginUtils import MenuReportOptions, \
-    NumberOption, EnumeratedListOption
-from ReportBase import Report, ReportUtils, CATEGORY_DRAW, \
+from PluginUtils import NumberOption, EnumeratedListOption
+from ReportBase import Report, ReportUtils,MenuReportOptions,CATEGORY_DRAW, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
 
