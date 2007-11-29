@@ -621,7 +621,11 @@ class MenuOptions:
         """
         return self.menu.get_option_by_name(name).parse()
 
-
+#------------------------------------------------------------------------
+#
+# Option handlers for tools and reports
+#
+#------------------------------------------------------------------------
 class MenuReportOptions(MenuOptions,ReportOptions):
     """
     The MenuOptions class implementes the ReportOptions functionality in a 
@@ -649,3 +653,4 @@ class MenuToolOptions(MenuOptions,Tool.ToolOptions):
     def __init__(self,name,person_id=None):
         self.menu = Menu()
         Tool.ToolOptions.__init__(self,name, person_id)
+
