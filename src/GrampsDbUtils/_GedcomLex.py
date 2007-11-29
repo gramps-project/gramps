@@ -360,7 +360,8 @@ class Reader:
                 return
 
             try:
-                line = line.strip('\n\r').split(None, 2) + ['']
+                # the space ensures no trailing whitespace on last parm
+                line = line.strip(' \n\r').split(None, 2) + ['']
                 level = int(line[0])
             except:
                 continue

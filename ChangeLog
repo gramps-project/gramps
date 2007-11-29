@@ -1,3 +1,9 @@
+2007-11-28 Jim Sack <jgsack@san.rr.com>
+        * src/GrampsDb/_ReadGedcom.py : remove trail whitespace (readahead)
+        fixes (possible) discarded reference due to bogus handles that get created
+        when the reference looks like "@REF_ID@ " (note space after)
+	This is a forward-port of the 2.2.x fix for issue #1399
+
 2007-11-28  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/Makefile.am: removed _MenuOptions.py
 	* src/PluginUtils/Makefile.am: added _MenuOptions.py
