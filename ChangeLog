@@ -1,4 +1,7 @@
 2007-11-29  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/ImportCSV.py: add progress meter
+
+2007-11-29  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/ViewManager.py: use PluginsWindows
 	* src/PluginUtils/_PluginStatus.py: moved from
 	* src/PluginUtils/_PluginWindows.py: moved to

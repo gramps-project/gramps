@@ -61,6 +61,7 @@ from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from PluginUtils import register_import
 from Utils import gender as gender_map
+from Utils import ProgressMeter
 from htmlentitydefs import name2codepoint
 
 #-------------------------------------------------------------------------
@@ -251,7 +252,10 @@ class CSVParser:
             print "error: invalid storeup type in CSV import: '%s'" % type
 
     def process(self):
+        progress = ProgressMeter(_('CSV Import'))
+        progress.set_pass(_('Reading data...'), 1)
         data = self.readCSV() 
+        progress.set_pass(_('Importing data...'), len(data))
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         t = time.time()
@@ -260,11 +264,11 @@ class CSVParser:
         self.fam_count = 0
         self.indi_count = 0
         self.pref  = {} # person ref, internal to this sheet
-        self.fref  = {} # family ref, internal to this sheet
-        
+        self.fref  = {} # family ref, internal to this sheet        
         header = None
         line_number = 0
         for row in data:
+            progress.step()
             line_number += 1
             if "".join(row) == "": # no blanks are allowed inside a table
                 header = None # clear headers, ready for next "table"
@@ -523,6 +527,7 @@ class CSVParser:
         print msg
         print "New Families: %d" % self.fam_count
         print "New Individuals: %d" % self.indi_count
+        progress.close()
         return None
 
     def get_or_create_family(self, family_ref, husband, wife):
