@@ -332,7 +332,7 @@ src/PluginUtils/_Options.py
 src/PluginUtils/_PluginMgr.py
 src/PluginUtils/_Plugins.py
 src/PluginUtils/_Tool.py
-src/PluginUtils/_PluginStatus.py
+src/PluginUtils/_PluginWindows.py
 
 # ReportBase package
 src/ReportBase/_BareReportDialog.py
