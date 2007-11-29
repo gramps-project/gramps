@@ -79,6 +79,7 @@ class RepositoryView(PageView.ListView):
         _('Country'),
         _('Email'),
         _('Search URL'),
+        _('Last Changed'),
         ]
         
     ADD_MSG = _("Add a new repository")

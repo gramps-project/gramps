@@ -24,6 +24,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
+import time
 import logging
 log = logging.getLogger(".")
 
@@ -40,6 +41,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gen.lib
+import GrampsLocale
 from _BaseModel import BaseModel
 
 #-------------------------------------------------------------------------
@@ -66,7 +68,8 @@ class RepositoryModel(BaseModel):
             self.column_state,
             self.column_country,
             self.column_email,
-            self.column_search_url,            
+            self.column_search_url,
+            self.column_change,
             self.column_handle,
             self.column_tooltip
             ]
@@ -83,11 +86,12 @@ class RepositoryModel(BaseModel):
             self.column_state,
             self.column_country,
             self.column_email,
-            self.column_search_url,            
+            self.column_search_url,
+            self.column_change,           
             self.column_handle,            
             ]
         
-        BaseModel.__init__(self, db, scol, order, tooltip_column=12,
+        BaseModel.__init__(self, db, scol, order, tooltip_column=14,
                            search=search, skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
@@ -211,3 +215,7 @@ class RepositoryModel(BaseModel):
 
     def column_tooltip(self,data):
         return ""
+
+    def column_change(self,data):
+        return unicode(time.strftime('%x %X',time.localtime(data[7])),
+                            GrampsLocale.codeset)

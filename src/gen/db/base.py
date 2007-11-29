@@ -615,7 +615,6 @@ class GrampsDbBase(GrampsDBCallback):
         Commits the specified Repository to the database, storing the changes
         as part of the transaction.
         """
-
         self.commit_base(repository, self.repository_map, REPOSITORY_KEY, 
                           transaction.repository_update,
                           transaction.repository_add, 
@@ -2266,7 +2265,7 @@ class GrampsDbBase(GrampsDBCallback):
         """
         default = [(1, 0, 200), (1, 1, 75), (0, 5, 100), (0, 6, 100),
                    (1, 2, 100), (1, 3, 250), (1, 4, 100), (0, 7, 100),
-                   (0, 8, 100), (0, 9, 100), (0, 10, 100)]
+                   (0, 8, 100), (0, 9, 100), (0, 10, 100), (0, 12, 100)]
         return self.__get_columns(REPOSITORY_COL_KEY, default)
 
     def get_note_column_order(self):
