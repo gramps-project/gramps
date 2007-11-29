@@ -621,6 +621,18 @@ class EditFamily(EditPrimary):
         from Editors import EditPerson
         person = gen.lib.Person()
         person.set_gender(gen.lib.Person.MALE)
+        # if child gets same name as father, father should get
+        # same name as child
+        autoname = Config.get(Config.SURNAME_GUESSING)
+        if autoname == 0:
+            name = self.north_american_child()
+        # FIXME: Can you work backwards from child with latin_amer name?
+        #elif autoname == 2:
+        #    name = self.latin_american()
+        else:
+            name = self.no_name()
+        person.get_primary_name().set_surname(name[1])
+        person.get_primary_name().set_surname_prefix(name[0])
         EditPerson(self.dbstate, self.uistate, self.track,
                    person, self.new_father_added)
 
@@ -923,3 +935,17 @@ class EditFamily(EditPrimary):
         Config.set(Config.FAMILY_WIDTH, width)
         Config.set(Config.FAMILY_HEIGHT, height)
         Config.sync()
+
+    def north_american_child(self):
+        """
+        If SURNAME_GUESSING is north american, then find a child
+        and return their name for the father.
+        """
+        # for each child, find one with a last name
+        for ref in self.obj.get_child_ref_list():
+            child = self.db.get_person_from_handle(ref.ref)
+            if child:
+                pname = child.get_primary_name()
+                return (pname.get_surname_prefix(),pname.get_surname())
+        return ("","")
+
