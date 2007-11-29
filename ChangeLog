@@ -1,3 +1,10 @@
+2007-11-29  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/ViewManager.py: use PluginsWindows
+	* src/PluginUtils/_PluginStatus.py: moved from
+	* src/PluginUtils/_PluginWindows.py: moved to
+	* src/PluginUtils/__init__.py: use PluginsWindows
+	* src/PluginUtils/_Plugins.py: use PluginsWindows
+
 2007-11-28  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/PluginUtils/_MenuOptions.py: added comments
 	* src/PluginUtils/_PluginStatus.py: added ToolManagedWindowBatch

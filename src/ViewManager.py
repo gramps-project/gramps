@@ -57,7 +57,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Plugins, Tool, PluginStatus, \
+from PluginUtils import Plugins, Tool, PluginWindows, \
      relationship_class, load_plugins, \
      tool_list, report_list
 
@@ -595,12 +595,12 @@ class ViewManager:
         #  get to ssee if we need to open the plugin status window
         if Config.get(Config.POP_PLUGIN_STATUS) and error:
             try:
-                PluginStatus.PluginStatus(self.state, self.uistate, [])
+                PluginWindows.PluginStatus(self.state, self.uistate, [])
             except Errors.WindowActiveError:
                 old_win = self.uistate.gwm.get_item_from_id(
-                    PluginStatus.PluginStatus)
+                    PluginWindows.PluginStatus)
                 old_win.close()
-                PluginStatus.PluginStatus(self.state, self.uistate, [])
+                PluginWindows.PluginStatus(self.state, self.uistate, [])
 
         self.uistate.push_message(self.state, _('Ready'))
 
@@ -724,12 +724,12 @@ class ViewManager:
         Display plugin status dialog
         """
         try:
-            PluginStatus.PluginStatus(self.state, self.uistate, [])
+            PluginWindows.PluginStatus(self.state, self.uistate, [])
         except Errors.WindowActiveError:
             old_win = self.uistate.gwm.get_item_from_id(
-                PluginStatus.PluginStatus)
+                PluginWindows.PluginStatus)
             old_win.close()
-            PluginStatus.PluginStatus(self.state, self.uistate, [])
+            PluginWindows.PluginStatus(self.state, self.uistate, [])
 
     def sidebar_toggle(self, obj):
         """

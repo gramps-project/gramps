@@ -56,7 +56,7 @@ import Errors
 from ReportBase import report, standalone_categories
 import _Tool
 import _PluginMgr
-import _PluginStatus
+import _PluginWindows
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -380,12 +380,12 @@ class Reload(_Tool.Tool):
         if Config.get(Config.POP_PLUGIN_STATUS) \
                and len(_PluginMgr.failmsg_list):
             try:
-                _PluginStatus.PluginStatus(dbstate,uistate)
+                _PluginWindows.PluginStatus(dbstate,uistate)
             except Errors.WindowActiveError:
                 old_win = uistate.gwm.get_item_from_id(
-                    _PluginStatus.PluginStatus)
+                    _PluginWindows.PluginStatus)
                 old_win.close()
-                _PluginStatus.PluginStatus(dbstate,uistate)
+                _PluginWindows.PluginStatus(dbstate,uistate)
 
         # Emit signal to re-generate tool and report menus
         uistate.emit('plugins-reloaded',
