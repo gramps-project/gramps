@@ -264,6 +264,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.write_line("resphone",owner.get_phone(),3)
         self.write_line("resemail",owner.get_email(),3)
         self.g.write("    </researcher>\n")
+        self.write_metadata()
         self.g.write("  </header>\n")
 
         # First write name formats: we need to know all formats
@@ -342,10 +343,19 @@ class GrampsDbXmlWriter(UpdateCallback):
         # Data is written, now write bookmarks.
         self.write_bookmarks()
 
+        self.write_metadata()
+
         self.g.write("</database>\n")
         
 #        self.status.end()
 #        self.status = None
+
+    def write_metadata(self):
+        """ Method to write out metadata of the database
+        """
+        mediapath= self.db.get_mediapath()
+        if mediapath is not None:
+            self.write_line("mediapath", mediapath, 2)
 
     def write_bookmarks(self):
         bm_person_len = len(self.db.bookmarks.get())

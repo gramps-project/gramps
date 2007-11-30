@@ -406,6 +406,20 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                 self.metadata.sync()
         return None
 
+    def set_mediapath(self, path):
+        """sets the default media path for database, path should be utf-8"""
+        if self.metadata and not self.readonly:
+            if self.UseTXN:
+                # Start transaction if needed
+                the_txn = self.env.txn_begin()
+            else:
+                the_txn = None
+            self.metadata.put('mediapath', path, txn=the_txn)
+            if self.UseTXN:
+                the_txn.commit()
+            else:
+                self.metadata.sync()
+
     def set_column_order(self, col_list, name):
         if self.metadata and not self.readonly: 
             if self.UseTXN:

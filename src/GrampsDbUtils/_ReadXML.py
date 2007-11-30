@@ -160,32 +160,35 @@ def importData(database, filename, callback=None, cl=0, use_trans=False):
 
     database.readonly = read_only
 
-    # copy all local images into <database>.images directory
-    db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
-    db_base = os.path.basename(database.get_save_path())
-    img_dir = os.path.join(db_dir, db_base)
-    first = not os.path.exists(img_dir)
-    
-    for m_id in database.get_media_object_handles():
-        mobject = database.get_object_from_handle(m_id)
-        oldfile = mobject.get_path()
-        if oldfile and not os.path.isabs(oldfile):
-            if first:
-                os.mkdir(img_dir)
-                first = 0
-            newfile = os.path.join(img_dir, oldfile)
-
-            try:
-                oldfilename = os.path.join(basefile, oldfile)
-                shutil.copyfile(oldfilename, newfile)
-                try:
-                    shutil.copystat(oldfilename, newfile)
-                except:
-                    pass
-                mobject.set_path(newfile)
-                database.commit_media_object(mobject, None, change)
-            except (IOError, OSError), msg:
-                ErrorDialog(_('Could not copy file'), str(msg))
+##  TODO - WITH MEDIA PATH, IS THIS STILL NEEDED? 
+##         BETTER LEAVE ALL RELATIVE TO NEW RELATIVE PATH
+##   save_path is in .gramps/dbbase, no good place !
+##    # copy all local images into <database>.images directory
+##    db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
+##    db_base = os.path.basename(database.get_save_path())
+##    img_dir = os.path.join(db_dir, db_base)
+##    first = not os.path.exists(img_dir)
+##    
+##    for m_id in database.get_media_object_handles():
+##        mobject = database.get_object_from_handle(m_id)
+##        oldfile = mobject.get_path()
+##        if oldfile and not os.path.isabs(oldfile):
+##            if first:
+##                os.mkdir(img_dir)
+##                first = 0
+##            newfile = os.path.join(img_dir, oldfile)
+##
+##            try:
+##                oldfilename = os.path.join(basefile, oldfile)
+##                shutil.copyfile(oldfilename, newfile)
+##                try:
+##                    shutil.copystat(oldfilename, newfile)
+##                except:
+##                    pass
+##                mobject.set_path(newfile)
+##                database.commit_media_object(mobject, None, change)
+##            except (IOError, OSError), msg:
+##                ErrorDialog(_('Could not copy file'), str(msg))
 
 #-------------------------------------------------------------------------
 #
@@ -313,6 +316,8 @@ class GrampsParser(UpdateCallback):
         self.resphone = ""
         self.resemail = ""
 
+        self.mediapath = ""
+
         self.pmap = {}
         self.fmap = {}
         self.smap = {}
@@ -389,6 +394,7 @@ class GrampsParser(UpdateCallback):
             "gender"     : (None, self.stop_gender), 
             "header"     : (None, None), 
             "last"       : (self.start_last, self.stop_last), 
+            "mediapath"  : (None, self.stop_mediapath),
             "mother"     : (self.start_mother, None), 
             "name"       : (self.start_name, self.stop_name), 
             "nick"       : (None, self.stop_nick), 
@@ -660,6 +666,19 @@ class GrampsParser(UpdateCallback):
             person = self.find_person_by_gramps_id(gramps_id)
             if person:
                 self.db.set_default_person_handle(person.handle)
+        #set media path, this should really do some parsing to convert eg
+        # windows path to unix ?
+        if self.mediapath:
+            oldpath = self.db.get_mediapath()
+            if not oldpath:
+                self.db.set_mediapath(self.mediapath)
+            elif not oldpath == self.mediapath:
+                ErrorDialog(_("Could not change media path"), 
+                    _("The opened file has media path %s, which conflicts with"
+                      " the media path of the database. Copy the files with "
+                      "non absolute path to new position or change the media "
+                      "path of the database in the Preferences."
+                     ) % self.mediapath )
 
         for key in self.func_map.keys():
             del self.func_map[key]
@@ -2044,6 +2063,9 @@ class GrampsParser(UpdateCallback):
 
     def stop_resemail(self, tag):
         self.resemail = tag
+
+    def stop_mediapath(self, tag):
+        self.mediapath = tag
 
     def stop_ptag(self, tag):
         self.use_p = 1

@@ -2103,6 +2103,17 @@ class GrampsDbBase(GrampsDBCallback):
         media2 = self.media_map[str(second)][4]
         return locale.strcoll(media1, media2)
 
+    def set_mediapath(self, path):
+        """sets the default media path for database, path should be utf-8"""
+        if (self.metadata != None) and (not self.readonly):
+            self.metadata['mediapath'] = path
+
+    def get_mediapath(self):
+        """returns the default media path of the database"""
+        if self.metadata != None:
+            return self.metadata.get('mediapath', None)
+        return None
+
     def set_column_order(self, col_list, name):
         if (self.metadata != None) and (not self.readonly):
             self.metadata[name] = col_list

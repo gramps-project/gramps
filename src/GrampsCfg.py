@@ -43,6 +43,7 @@ import gtk
 import Config
 import DateHandler
 from BasicUtils import name_displayer as _nd
+import Utils
 from gen.lib import Name
 import ManagedWindow
 from GrampsWidgets import *
@@ -522,6 +523,10 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_pos_int_entry(table, 
                 _('Number of generations for relationship determination'),
                 6, Config.GENERATION_DEPTH, self.update_gen_depth)
+        self.path_entry = gtk.Entry()
+        self.add_path_box(table, _('Base path for relative media paths'),
+                7, self.path_entry, self.dbstate.db.get_mediapath(),
+                self.set_mediapath, self.select_mediapath)
 
         return table
 
@@ -545,7 +550,31 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         checkbox.set_active(Config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant)
         table.attach(checkbox, 1, 3, index, index+1, yoptions=0)
-        
+
+    def add_path_box(self, table, label, index, entry, path, callback_label, 
+                     callback_sel):
+        ''' Add an entry to give in path and a select button to open a 
+            dialog. 
+            Changing entry calls callback_label
+            Clicking open button call callback_sel
+        '''
+        lwidget = BasicLabel("%s: " %label)
+        hbox = gtk.HBox()
+        if path:
+            entry.set_text(path)
+        entry.connect('changed', callback_label)
+        btn = gtk.Button()
+        btn.connect('clicked', callback_sel)
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        image.show()
+        btn.add(image)
+        hbox.pack_start(entry, expand=True, fill=True)
+        hbox.pack_start(btn, expand=False, fill=False)
+        table.attach(lwidget, 1, 2, index, index+1, yoptions=0, 
+                     xoptions=gtk.FILL)
+        table.attach(hbox, 2, 3, index, index+1, yoptions=0)
+
     def add_entry(self, table, label, index, constant):
         lwidget = BasicLabel("%s: " % label)
         entry = gtk.Entry()
@@ -579,6 +608,32 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.attach(entry, 1, 2, index, index+1, yoptions=0, xoptions=0)
         table.attach(color_hex_label, 2, 3, index, index+1, yoptions=0)
         return entry
+
+    def set_mediapath(self, *obj):
+        if self.path_entry.get_text().strip():
+            self.dbstate.db.set_mediapath(self.path_entry.get_text())
+        else:
+            self.dbstate.db.set_mediapath(None)
+
+    def select_mediapath(self, *obj):
+        f = gtk.FileChooserDialog(
+            _("Select media directory"),
+            action=gtk.FILE_CHOOSER_ACTION_CREATE_FOLDER,
+            buttons=(gtk.STOCK_CANCEL,
+                     gtk.RESPONSE_CANCEL,
+                     gtk.STOCK_APPLY,
+                     gtk.RESPONSE_OK))
+        mpath = self.dbstate.db.get_mediapath()
+        if not mpath:
+            mpath = const.HOME_DIR
+        f.set_current_folder(os.path.dirname(mpath))
+
+        status = f.run()
+        if status == gtk.RESPONSE_OK:
+            val = Utils.get_unicode_path(f.get_filename())
+            if val:
+                self.path_entry.set_text(val)
+        f.destroy()
 
     def update_entry(self, obj, constant):
         Config.set(constant, unicode(obj.get_text()))
