@@ -1,3 +1,7 @@
+2007-11-30  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.dtd: Add region to objref.
+	* data/grampsxml.rng: Add region to objref.
+
 2007-11-30 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsCfg.py: rel media path entry box
 	* src/gen/db/base.py: methods for access

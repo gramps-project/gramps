@@ -555,6 +555,9 @@
     <optional><attribute name="priv">
         <ref name="priv-content"/>
     </attribute></optional>
+    <optional><element name="region">
+        <ref name="region-content"/>
+    </element></optional>    
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
     </element></zeroOrMore>
@@ -591,6 +594,14 @@
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
+  </define>
+
+  <define name="region-content">
+    <attribute name="corner1_x"><data type="integer"/></attribute>
+    <attribute name="corner1_y"><data type="integer"/></attribute>
+    <attribute name="corner2_x"><data type="integer"/></attribute>
+    <attribute name="corner2_y"><data type="integer"/></attribute>
+    <text/>
   </define>
 
 </grammar>

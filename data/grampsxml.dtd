@@ -427,10 +427,18 @@ SHARED ELEMENTS
         description CDATA #IMPLIED
 >
 
-<!ELEMENT objref (attribute*,sourceref*,noteref*)>
+<!ELEMENT objref (region?,reattribute*,sourceref*,noteref*)>
 <!ATTLIST objref 
         hlink IDREF #REQUIRED
         priv (0|1)  #IMPLIED
+>
+
+<!ELEMENT region EMPTY>
+<!ATTLIST region
+        corner1_x  CDATA #REQUIRED
+        corner1_y  CDATA #REQUIRED
+        corner2_x  CDATA #REQUIRED
+        corner2_y  CDATA #REQUIRED
 >
 
 <!ELEMENT data_item EMPTY>
