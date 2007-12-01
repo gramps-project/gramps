@@ -1,3 +1,7 @@
+2007-12-01  Douglas S.Blank  <dblank@cs.brynmawr.edu>
+	* src/Editors/_EditFamily.py: fixed issues with latin american 
+	surname guessing
+
 2007-11-30  Alex Roitman  <shura@gramps-project.org>
 	* data/grampsxml.dtd: Add region to objref.
 	* data/grampsxml.rng: Add region to objref.

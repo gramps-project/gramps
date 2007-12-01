@@ -196,9 +196,12 @@ class ChildEmbedList(EmbeddedList):
 
     def add_button_clicked(self,obj):
         from Editors import EditPerson
-
         person = gen.lib.Person()
         autoname = Config.get(Config.SURNAME_GUESSING)
+        #_("Father's surname"), 
+        #_("None"), 
+        #_("Combination of mother's and father's surname"), 
+        #_("Icelandic style"), 
         if autoname == 0:
             name = self.north_american()
         elif autoname == 2:
@@ -345,10 +348,10 @@ class ChildEmbedList(EmbeddedList):
                 return ("","")
             father = self.dbstate.db.get_person_from_handle(father_handle)
             mother = self.dbstate.db.get_person_from_handle(mother_handle)
-            fsn = father.get_primary_name().get_surname()
-            msn = mother.get_primary_name().get_surname()
             if not father or not mother:
                 return ("","")
+            fsn = father.get_primary_name().get_surname()
+            msn = mother.get_primary_name().get_surname()
             try:
                 return ("","%s %s" % (fsn.split()[0],msn.split()[0]))
             except:
@@ -614,6 +617,17 @@ class EditFamily(EditPrimary):
         from Editors import EditPerson
         person = gen.lib.Person()
         person.set_gender(gen.lib.Person.FEMALE)
+        autoname = Config.get(Config.SURNAME_GUESSING)
+        #_("Father's surname"), 
+        #_("None"), 
+        #_("Combination of mother's and father's surname"), 
+        #_("Icelandic style"), 
+        if autoname == 2:
+            name = self.latin_american_child("mother")
+        else:
+            name = self.no_name()
+        person.get_primary_name().set_surname(name[1])
+        person.get_primary_name().set_surname_prefix(name[0])
         EditPerson(self.dbstate, self.uistate, self.track, person,
                    self.new_mother_added)
 
@@ -621,14 +635,15 @@ class EditFamily(EditPrimary):
         from Editors import EditPerson
         person = gen.lib.Person()
         person.set_gender(gen.lib.Person.MALE)
-        # if child gets same name as father, father should get
-        # same name as child
         autoname = Config.get(Config.SURNAME_GUESSING)
+        #_("Father's surname"), 
+        #_("None"), 
+        #_("Combination of mother's and father's surname"), 
+        #_("Icelandic style"), 
         if autoname == 0:
             name = self.north_american_child()
-        # FIXME: Can you work backwards from child with latin_amer name?
-        #elif autoname == 2:
-        #    name = self.latin_american()
+        elif autoname == 2:
+            name = self.latin_american_child("father")
         else:
             name = self.no_name()
         person.get_primary_name().set_surname(name[1])
@@ -936,6 +951,12 @@ class EditFamily(EditPrimary):
         Config.set(Config.FAMILY_HEIGHT, height)
         Config.sync()
 
+    def no_name(self):
+        """
+        Default surname guess.
+        """
+        return ("","")
+
     def north_american_child(self):
         """
         If SURNAME_GUESSING is north american, then find a child
@@ -949,3 +970,28 @@ class EditFamily(EditPrimary):
                 return (pname.get_surname_prefix(),pname.get_surname())
         return ("","")
 
+    def latin_american_child(self, parent):
+        """
+        If SURNAME_GUESSING is latin american, then find a child
+        and return their name for the father or mother.
+
+        parent = "mother" | "father"
+        """
+        # for each child, find one with a last name
+        for ref in self.obj.get_child_ref_list():
+            child = self.db.get_person_from_handle(ref.ref)
+            if child:
+                pname = child.get_primary_name()
+                prefix, surname = (pname.get_surname_prefix(),
+                                   pname.get_surname())
+                if " " in surname:
+                    fsn, msn = surname.split(" ", 1)
+                else:
+                    fsn, msn = surname, surname
+                if parent == "father":
+                    return prefix,fsn
+                elif parent == "mother":    
+                    return prefix,msn
+                else:    
+                    return ("","")
+        return ("","")
