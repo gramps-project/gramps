@@ -563,6 +563,14 @@ class Date:
         retval.set_yr_mon_day_offset(year, month, day)
         return retval
 
+    def copy_ymd(self, year=0, month=0, day=0):
+        """
+        Returns a Date copy with year, month, and day set
+        """
+        retval = Date(self)
+        retval.set_yr_mon_day(year, month, day)
+        return retval
+
     def set_year(self, year):
         """
         Sets the year value

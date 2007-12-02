@@ -44,6 +44,7 @@ import ManagedWindow
 import Errors
 import _PluginMgr as PluginMgr
 import _Tool as Tool
+from BasicUtils import name_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -156,18 +157,16 @@ class PluginTrace(ManagedWindow.ManagedWindow):
 # Main window for a batch tool
 #
 #-------------------------------------------------------------------------
-class ToolManagedWindowBatch(Tool.BatchTool, ManagedWindow.ManagedWindow):
+class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     """
     Copied from src/ReportBase/_BareReportDialog.py BareReportDialog
     """
     frame_pad = 5
     border_pad = 6
     HELP_TOPIC = None
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, uistate, option_class, name, callback=None):
         self.dbstate = dbstate
         self.uistate = uistate
-        
-        Tool.BatchTool.__init__(self,dbstate,options_class,name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         self.extra_menu = None
@@ -177,12 +176,13 @@ class ToolManagedWindowBatch(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.format_menu = None
         self.style_button = None
 
-        window = gtk.Dialog('GRAMPS')
+        window = gtk.Dialog('Tool')
         self.set_window(window,None,self.get_title())
         self.window.set_has_separator(False)
 
+        #self.window.connect('response', self.close)
         self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
-        self.cancel.connect('clicked',self.on_cancel)
+        self.cancel.connect('clicked',self.close)
 
         self.ok = self.window.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
         self.ok.connect('clicked',self.on_ok_clicked)
@@ -221,14 +221,39 @@ class ToolManagedWindowBatch(Tool.BatchTool, ManagedWindow.ManagedWindow):
     #
     #------------------------------------------------------------------------
     def on_cancel(self,*obj):
-        pass
+        pass # cancel just closes
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
         and close the window."""
-
         # Save options
+        self.options.parse_user_options(self)
         self.options.handler.save_options()
+        self.pre_run()
+        self.run() # activate results tab
+        self.post_run()
+        
+    def pre_run(self):
+        from Utils import ProgressMeter
+        self.progress = ProgressMeter(_('Tool'))
+        
+    def run(self):
+        raise NotImplementedError, "tool needs to define a run() method"
+
+    def post_run(self):
+        self.progress.close()
+
+    def on_center_person_change_clicked(self,*obj):
+        from Selectors import selector_factory
+        SelectPerson = selector_factory('Person')
+        sel_person = SelectPerson(self.dbstate,self.uistate,self.track)
+        new_person = sel_person.run()
+        if new_person:
+            self.new_person = new_person
+            new_name = name_displayer.display(new_person)
+            if new_name:
+                self.person_label.set_text( "<i>%s</i>" % new_name )
+                self.person_label.set_use_markup(True)
 
     #------------------------------------------------------------------------
     #
@@ -237,7 +262,7 @@ class ToolManagedWindowBatch(Tool.BatchTool, ManagedWindow.ManagedWindow):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - GRAMPS Book" % "FIXME"
+        return "Tool"
 
     def get_header(self, name):
         """The header line to put at the top of the contents of the
@@ -245,8 +270,8 @@ class ToolManagedWindowBatch(Tool.BatchTool, ManagedWindow.ManagedWindow):
         selected person.  Most subclasses will customize this to give
         some indication of what the report will be, i.e. 'Descendant
         Report for %s'."""
-        return _("%(report_name)s for GRAMPS Book") % { 
-                    'report_name' : "FIXME"}
+        return _("%(tool_name)s for GRAMPS") % { 
+                    'tool_name' : "Tool"}
         
     def setup_title(self):
         """Set up the title bar of the dialog.  This function relies
@@ -265,29 +290,29 @@ class ToolManagedWindowBatch(Tool.BatchTool, ManagedWindow.ManagedWindow):
         title = self.get_header(self.name)
         label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(True)
-        self.window.vbox.pack_start(label, True, True,
-                                    ToolManagedWindowBatch.border_pad)
+        self.window.vbox.pack_start(label, True, True, self.border_pad)
         
     def setup_center_person(self): 
         """Set up center person labels and change button. 
         Should be overwritten by standalone report dialogs. """
+        pass
 
-        center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
-        center_label.set_use_markup(True)
-        center_label.set_alignment(0.0,0.5)
-        self.tbl.set_border_width(12)
-        self.tbl.attach(center_label,0,4,self.col,self.col+1)
-        self.col += 1
+#         center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
+#         center_label.set_use_markup(True)
+#         center_label.set_alignment(0.0,0.5)
+#         self.tbl.set_border_width(12)
+#         self.tbl.attach(center_label,0,4,self.col,self.col+1)
+#         self.col += 1
 
-        #name = name_displayer.display(self.person)
-        #self.person_label = gtk.Label( "%s" % name )
-        #self.person_label.set_alignment(0.0,0.5)
-        #self.tbl.attach(self.person_label,2,3,self.col,self.col+1)
+#         name = name_displayer.display(self.person)
+#         self.person_label = gtk.Label( "%s" % name )
+#         self.person_label.set_alignment(0.0,0.5)
+#         self.tbl.attach(self.person_label,2,3,self.col,self.col+1)
         
-        #change_button = gtk.Button("%s..." % _('C_hange') )
-        #change_button.connect('clicked',self.on_center_person_change_clicked)
-        #self.tbl.attach(change_button,3,4,self.col,self.col+1,gtk.SHRINK)
-        #self.col += 1
+#         change_button = gtk.Button("%s..." % _('C_hange') )
+#         change_button.connect('clicked',self.on_center_person_change_clicked)
+#         self.tbl.attach(change_button,3,4,self.col,self.col+1,gtk.SHRINK)
+#         self.col += 1
 
     def add_frame_option(self,frame_name,label_text,widget,tooltip=None):
         """Similar to add_option this method takes a frame_name, a
@@ -344,4 +369,14 @@ class ToolManagedWindowBatch(Tool.BatchTool, ManagedWindow.ManagedWindow):
         this task."""
         self.options.add_user_options(self)
 
+class ToolManagedWindowBatch(Tool.BatchTool, ToolManagedWindowBase):
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        Tool.BatchTool.__init__(self,dbstate,options_class,name)
+        ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
+                                       name, callback)
 
+class ToolManagedWindow(Tool.Tool, ToolManagedWindowBase):
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        Tool.Tool.__init__(self,dbstate,options_class,name)
+        ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
+                                       name, callback)
