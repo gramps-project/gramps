@@ -135,11 +135,11 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 person = self.db.get_person_from_handle(person_handle)
                 birth_ref = person.get_birth_ref()
                 death_ref = person.get_death_ref()
-                print birth_ref, death_ref
+                #print birth_ref, death_ref
                 date1, date2 = self.calc_estimates(person, birth_ref, death_ref)
-                print date1, date2
+                #print date1, date2
                 if not birth_ref and add_birth and date1:
-                    print "added birth"
+                    #print "added birth"
                     birth = self.create_event("Estimated birth date", 
                                               gen.lib.EventType.BIRTH, 
                                               date1, source)
@@ -154,7 +154,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         # don't add events in the future!
                         pass
                     else:
-                        print "added death"
+                        #print "added death"
                         death = self.create_event("Estimated death date", 
                                                   gen.lib.EventType.DEATH, 
                                                   date2, source)
@@ -223,7 +223,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 if not birth_date:
                     birth_date = birth.get_date_object()
 
-        print "   calculating...", birth_date, death_date
+        #print "   calculating...", birth_date, death_date
 
         if not birth_date and death_date:
             # person died more than MAX after current year
@@ -242,7 +242,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         # not alive. If the sibling died more than 120 years
         # past, or more than 120 years future, then probably not alive.
 
-        print "    searching family..."
+        #print "    searching family..."
 
         family_list = person.get_parent_family_handle_list()
         for family_handle in family_list:
@@ -372,7 +372,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         date1, date2 = ancestors_too_old (person, - _MIN_GENERATION_YEARS)
         if date1 and date2:
             return (date1, date2)
-        print "   FAIL"
+        #print "   FAIL"
         # If we can't find any reason to believe that they are dead we
         # must assume they are alive.
         return (None, None)
