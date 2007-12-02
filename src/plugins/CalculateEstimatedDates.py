@@ -57,7 +57,8 @@ class CalcEstDateOptions(MenuToolOptions):
         filter.set_help(_("Select filter to restrict people"))
         menu.add_option(category_name,"filter", filter)
 
-        source_text = StringOption(_("Source text"), _("Calculated Date Estimates"))
+        source_text = StringOption(_("Source text"), 
+                                   _("Calculated Date Estimates"))
         source_text.set_help(_("Source to remove and/or add"))
         menu.add_option(category_name, "source_text", source_text)
 
@@ -85,7 +86,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         add_birth = self.options.handler.options_dict['add_birth']
         add_death = self.options.handler.options_dict['add_death']
         if self.options.handler.options_dict['remove']:
-            self.progress.set_pass(_("Removing '%s'..." % source_text), len(people))
+            self.progress.set_pass(_("Removing '%s'..." % source_text), 
+                                   len(people))
             for person_handle in people:
                 self.progress.step()
                 pupdate = 0
@@ -125,35 +127,41 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 if pupdate == 1:
                     self.db.commit_person(person, self.trans)
         if add_birth or add_death:
-            self.progress.set_pass(_('Calculating estimated dates...'), len(people))
+            self.progress.set_pass(_('Calculating estimated dates...'), 
+                                   len(people))
             source = self.get_or_create_source(source_text)
             for person_handle in people:
                 self.progress.step()
                 person = self.db.get_person_from_handle(person_handle)
                 birth_ref = person.get_birth_ref()
                 death_ref = person.get_death_ref()
-                if birth_ref != None or death_ref != None:
-                    date1, date2 = self.calc_estimates(person, birth_ref, death_ref)
-                    if not birth_ref and add_birth and date1:
-                        birth = self.create_event("Estimated birth date", 
-                                                  gen.lib.EventType.BIRTH, date1, source)
+                print birth_ref, death_ref
+                date1, date2 = self.calc_estimates(person, birth_ref, death_ref)
+                print date1, date2
+                if not birth_ref and add_birth and date1:
+                    print "added birth"
+                    birth = self.create_event("Estimated birth date", 
+                                              gen.lib.EventType.BIRTH, 
+                                              date1, source)
+                    event_ref = gen.lib.EventRef()
+                    event_ref.set_reference_handle(birth.get_handle())
+                    person.set_birth_ref(event_ref)
+                    self.db.commit_person(person, self.trans)
+                if not death_ref and add_death and date2:
+                    current_date = gen.lib.Date()
+                    current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
+                    if current_date.match( date2, "<<"):
+                        # don't add events in the future!
+                        pass
+                    else:
+                        print "added death"
+                        death = self.create_event("Estimated death date", 
+                                                  gen.lib.EventType.DEATH, 
+                                                  date2, source)
                         event_ref = gen.lib.EventRef()
-                        event_ref.set_reference_handle(birth.get_handle())
-                        person.set_birth_ref(event_ref)
+                        event_ref.set_reference_handle(death.get_handle())
+                        person.set_death_ref(event_ref)
                         self.db.commit_person(person, self.trans)
-                    if not death_ref and add_death and date2:
-                        current_date = gen.lib.Date()
-                        current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
-                        if current_date.match( date2, "<<"):
-                            # don't add events in the future!
-                            pass
-                        else:
-                            death = self.create_event("Estimated death date", 
-                                                      gen.lib.EventType.DEATH, date2, source)
-                            event_ref = gen.lib.EventRef()
-                            event_ref.set_reference_handle(death.get_handle())
-                            person.set_death_ref(event_ref)
-                            self.db.commit_person(person, self.trans)
         self.db.transaction_commit(self.trans, _("Calculate date estimates"))
         self.db.enable_signals()
         self.db.request_rebuild()
@@ -215,6 +223,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 if not birth_date:
                     birth_date = birth.get_date_object()
 
+        print "   calculating...", birth_date, death_date
+
         if not birth_date and death_date:
             # person died more than MAX after current year
             birth_date = death_date.copy_offset_ymd(year=-_MAX_AGE_PROB_ALIVE)
@@ -231,6 +241,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         # or more than 20 future, then probably this person is
         # not alive. If the sibling died more than 120 years
         # past, or more than 120 years future, then probably not alive.
+
+        print "    searching family..."
 
         family_list = person.get_parent_family_handle_list()
         for family_handle in family_list:
@@ -285,8 +297,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         child_death = self.db.get_event_from_handle(child_death_ref.ref)
                         dobj = child_death.get_date_object()
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                            return (dobj.copy_offset_dmy(- _MIN_GENERATION_YEARS), 
-                                    d.copy_offset_ymd(- _MIN_GENERATION_YEARS + _MAX_AGE_PROB_ALIVE))
+                            return (dobj.copy_offset_ymd(- _MIN_GENERATION_YEARS), 
+                                    dobj.copy_offset_ymd(- _MIN_GENERATION_YEARS + _MAX_AGE_PROB_ALIVE))
                     date1, date2 = descendants_too_old (child, years + _MIN_GENERATION_YEARS)
                     if date1 and date2:
                         return date1, date2
@@ -302,6 +314,9 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
             raise Errors.DatabaseError(
                 _("Database error: %s is defined as his or her own ancestor") %
                 name_displayer.display(person))
+
+        if date1 and date2:
+            return (date1, date2)
 
         def ancestors_too_old(person, year):
             family_handle = person.get_main_parents_family_handle()
@@ -357,7 +372,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         date1, date2 = ancestors_too_old (person, - _MIN_GENERATION_YEARS)
         if date1 and date2:
             return (date1, date2)
-
+        print "   FAIL"
         # If we can't find any reason to believe that they are dead we
         # must assume they are alive.
         return (None, None)
