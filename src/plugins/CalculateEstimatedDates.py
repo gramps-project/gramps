@@ -36,14 +36,10 @@ import time
 #
 #------------------------------------------------------------------------
 from PluginUtils import Tool, register_tool, PluginWindows, \
-    MenuToolOptions, BooleanOption, FilterListOption, StringOption
+    MenuToolOptions, BooleanOption, FilterListOption, StringOption, \
+    NumberOption
 import gen.lib
 import Config
-
-_MAX_AGE_PROB_ALIVE   = Config.get(Config.MAX_AGE_PROB_ALIVE)
-_MAX_SIB_AGE_DIFF     = Config.get(Config.MAX_SIB_AGE_DIFF)
-_MIN_GENERATION_YEARS = Config.get(Config.MIN_GENERATION_YEARS)
-_AVG_GENERATION_GAP   = Config.get(Config.AVG_GENERATION_GAP)
 
 class CalcEstDateOptions(MenuToolOptions):
     """ Calculate Estimated Date options  """
@@ -74,9 +70,41 @@ class CalcEstDateOptions(MenuToolOptions):
         death.set_help(_("Add estimated death dates"))
         menu.add_option(category_name, "add_death", death)
 
+        # -----------------------------------------------------
+        category_name = _("Config")
+        num = NumberOption(_("Maximum age"), 
+                           Config.get(Config.MAX_AGE_PROB_ALIVE),
+                           0, 200)
+        num.set_help(_("Maximum age that one can live to"))
+        menu.add_option(category_name, "MAX_AGE_PROB_ALIVE", num)
+
+        num = NumberOption(_("Maximum sibling age difference"), 
+                           Config.get(Config.MAX_SIB_AGE_DIFF),
+                           0, 200)
+        num.set_help(_("Maximum age difference between siblings"))
+        menu.add_option(category_name, "MAX_SIB_AGE_DIFF", num)
+
+        num = NumberOption(_("Minimum years between generations"), 
+                           Config.get(Config.MIN_GENERATION_YEARS),
+                           0, 200)
+        num.set_help(_("Minimum years between two generations"))
+        menu.add_option(category_name, "MIN_GENERATION_YEARS", num)
+
+        num = NumberOption(_("Average years between generations"), 
+                           Config.get(Config.AVG_GENERATION_GAP),
+                           0, 200)
+        num.set_help(_("Average years between two generations"))
+        menu.add_option(category_name, "AVG_GENERATION_GAP", num)
+
+
 class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
+    def initial_frame(self):
+        return _("Options")
+
     def run(self):
+        self.add_results_frame()
+        self.results_write("Processing...\n")
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         self.filter = self.options.handler.options_dict['filter']
@@ -85,7 +113,14 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         source_text = self.options.handler.options_dict['source_text']
         add_birth = self.options.handler.options_dict['add_birth']
         add_death = self.options.handler.options_dict['add_death']
-        if self.options.handler.options_dict['remove']:
+        remove_old = self.options.handler.options_dict['remove']
+
+        self.MIN_GENERATION_YEARS = self.options.handler.options_dict['MIN_GENERATION_YEARS']
+        self.MAX_SIB_AGE_DIFF = self.options.handler.options_dict['MAX_SIB_AGE_DIFF']
+        self.MAX_AGE_PROB_ALIVE = self.options.handler.options_dict['MAX_AGE_PROB_ALIVE']
+        self.AVG_GENERATION_GAP = self.options.handler.options_dict['AVG_GENERATION_GAP']
+        if remove_old:
+            self.results_write("Replacing...\n")
             self.progress.set_pass(_("Removing '%s'..." % source_text), 
                                    len(people))
             for person_handle in people:
@@ -127,6 +162,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 if pupdate == 1:
                     self.db.commit_person(person, self.trans)
         if add_birth or add_death:
+            self.results_write("Calculating...\n")
             self.progress.set_pass(_('Calculating estimated dates...'), 
                                    len(people))
             source = self.get_or_create_source(source_text)
@@ -165,6 +201,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         self.db.transaction_commit(self.trans, _("Calculate date estimates"))
         self.db.enable_signals()
         self.db.request_rebuild()
+        self.results_write("Done!\n")
 
     def get_or_create_source(self, source_text):
         source_list = self.db.get_source_handles()
@@ -227,11 +264,11 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
         if not birth_date and death_date:
             # person died more than MAX after current year
-            birth_date = death_date.copy_offset_ymd(year=-_MAX_AGE_PROB_ALIVE)
+            birth_date = death_date.copy_offset_ymd(year=-self.MAX_AGE_PROB_ALIVE)
 
         if not death_date and birth_date:
             # person died more than MAX after current year
-            death_date = birth_date.copy_offset_ymd(year=_MAX_AGE_PROB_ALIVE)
+            death_date = birth_date.copy_offset_ymd(year=self.MAX_AGE_PROB_ALIVE)
 
         if death_date and birth_date:
             return (birth_date, death_date)
@@ -259,8 +296,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         year = dobj.get_year()
                         if year != 0:
                             # sibling birth date
-                            return (gen.lib.Date().copy_ymd(year - _MAX_SIB_AGE_DIFF),
-                                    gen.lib.Date().copy_ymd(year + _MAX_SIB_AGE_DIFF + _MAX_AGE_PROB_ALIVE))
+                            return (gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF),
+                                    gen.lib.Date().copy_ymd(year + self.MAX_SIB_AGE_DIFF + self.MAX_AGE_PROB_ALIVE))
                 child_death_ref = child.get_death_ref()
                 if child_death_ref:
                     child_death = self.db.get_event_from_handle(child_death_ref.ref)
@@ -270,8 +307,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         year = dobj.get_year()
                         if year != 0:
                             # sibling death date
-                            return (gen.lib.Date().copy_ymd(year - _MAX_SIB_AGE_DIFF - _MAX_AGE_PROB_ALIVE),
-                                    gen.lib.Date().copy_ymd(year + _MAX_SIB_AGE_DIFF))
+                            return (gen.lib.Date().copy_ymd(year - self.MAX_SIB_AGE_DIFF - self.MAX_AGE_PROB_ALIVE),
+                                    gen.lib.Date().copy_ymd(year + self.MAX_SIB_AGE_DIFF))
 
         # Try looking for descendants that were born more than a lifespan
         # ago.
@@ -291,15 +328,15 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                             val = d.get_start_date()
                             val = d.get_year() - years
                             d.set_year(val)
-                            return (d, d.copy_offset_ymd(_MAX_AGE_PROB_ALIVE))
+                            return (d, d.copy_offset_ymd(self.MAX_AGE_PROB_ALIVE))
                     child_death_ref = child.get_death_ref()
                     if child_death_ref:
                         child_death = self.db.get_event_from_handle(child_death_ref.ref)
                         dobj = child_death.get_date_object()
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- _MIN_GENERATION_YEARS), 
-                                    dobj.copy_offset_ymd(- _MIN_GENERATION_YEARS + _MAX_AGE_PROB_ALIVE))
-                    date1, date2 = descendants_too_old (child, years + _MIN_GENERATION_YEARS)
+                            return (dobj.copy_offset_ymd(- self.MIN_GENERATION_YEARS), 
+                                    dobj.copy_offset_ymd(- self.MIN_GENERATION_YEARS + self.MAX_AGE_PROB_ALIVE))
+                    date1, date2 = descendants_too_old (child, years + self.MIN_GENERATION_YEARS)
                     if date1 and date2:
                         return date1, date2
             return (None, None)
@@ -309,7 +346,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
         date1, date2 = None, None
         try:
-            date1, date2 = descendants_too_old(person, _MIN_GENERATION_YEARS)
+            date1, date2 = descendants_too_old(person, self.MIN_GENERATION_YEARS)
         except RuntimeError:
             raise Errors.DatabaseError(
                 _("Database error: %s is defined as his or her own ancestor") %
@@ -332,16 +369,16 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         dobj = father_birth.get_date_object()
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
                             return (dobj.copy_offset_ymd(- year), 
-                                    dobj.copy_offset_ymd(- year + _MAX_AGE_PROB_ALIVE))
+                                    dobj.copy_offset_ymd(- year + self.MAX_AGE_PROB_ALIVE))
                     father_death_ref = father.get_death_ref()
                     if father_death_ref and father_death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
                         father_death = self.db.get_event_from_handle(
                             father_death_ref.ref)
                         dobj = father_death.get_date_object()
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- year - _MAX_AGE_PROB_ALIVE), 
-                                    dobj.copy_offset_ymd(- year - _MAX_AGE_PROB_ALIVE + _MAX_AGE_PROB_ALIVE))
-                    date1, date2 = ancestors_too_old (father, year - _AVG_GENERATION_GAP)
+                            return (dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE), 
+                                    dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE))
+                    date1, date2 = ancestors_too_old (father, year - self.AVG_GENERATION_GAP)
                     if date1 and date2:
                         return date1, date2
                 mother_handle = family.get_mother_handle()
@@ -353,23 +390,23 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         dobj = mother_birth.get_date_object()
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
                             return (dobj.copy_offset_ymd(- year), 
-                                    dobj.copy_offset_ymd(- year + _MAX_AGE_PROB_ALIVE))
+                                    dobj.copy_offset_ymd(- year + self.MAX_AGE_PROB_ALIVE))
                     mother_death_ref = mother.get_death_ref()
                     if mother_death_ref and mother_death_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
                         mother_death = self.db.get_event_from_handle(
                             mother_death_ref.ref)
                         dobj = mother_death.get_date_object()
                         if dobj.get_start_date() != gen.lib.Date.EMPTY:
-                            return (dobj.copy_offset_ymd(- year - _MAX_AGE_PROB_ALIVE), 
-                                    dobj.copy_offset_ymd(- year - _MAX_AGE_PROB_ALIVE + _MAX_AGE_PROB_ALIVE))
-                    date1, date2 = ancestors_too_old (mother, year - _AVG_GENERATION_GAP)
+                            return (dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE), 
+                                    dobj.copy_offset_ymd(- year - self.MAX_AGE_PROB_ALIVE + self.MAX_AGE_PROB_ALIVE))
+                    date1, date2 = ancestors_too_old (mother, year - self.AVG_GENERATION_GAP)
                     if date1 and date2:
                         return (date1, date2)
             return (None, None)
 
         # If there are ancestors that would be too old in the current year
         # then assume our person must be dead too.
-        date1, date2 = ancestors_too_old (person, - _MIN_GENERATION_YEARS)
+        date1, date2 = ancestors_too_old (person, - self.MIN_GENERATION_YEARS)
         if date1 and date2:
             return (date1, date2)
         #print "   FAIL"

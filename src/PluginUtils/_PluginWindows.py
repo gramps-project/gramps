@@ -211,9 +211,11 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.notebook.set_border_width(6)
         self.window.vbox.add(self.notebook)
 
+        self.results_text = gtk.TextView() 
+
         self.setup_other_frames()
-        self.notebook.set_current_page(0)
         self.window.show_all()
+        self.set_current_frame(self.initial_frame())
 
     #------------------------------------------------------------------------
     #
@@ -232,6 +234,20 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.pre_run()
         self.run() # activate results tab
         self.post_run()
+
+    def initial_frame(self):
+        return None
+
+    def results_write(self, text):
+        buffer = self.results_text.get_buffer()
+        mark = buffer.create_mark("end", buffer.get_end_iter())
+        self.results_text.scroll_to_mark(mark, 0)
+        buffer.insert_at_cursor(text)
+        buffer.delete_mark_by_name("end")        
+
+    def results_clear(self):
+        buffer = self.results_text.get_buffer()
+        buffer.set_text("")
         
     def pre_run(self):
         from Utils import ProgressMeter
@@ -332,17 +348,49 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         if tooltip:
             self.add_tooltip(widget,tooltip)
 
+    def set_current_frame(self, name):
+        if name == None:
+            self.notebook.set_current_page(0)
+        else:
+            for frame_name in self.frame_names:
+                if name == frame_name:
+                    if len(self.frames[frame_name]) > 0:
+                        fname, child = self.frames[frame_name][0]
+                        page = self.notebook.page_num(child)
+                        self.notebook.set_current_page(page)
+                    return
+
+    def add_results_frame(self,frame_name="Results"):
+        if frame_name not in self.frames:
+            widget = (frame_name, self.results_text)
+            self.frames[frame_name] = [widget]
+            self.frame_names.append(frame_name)
+            l = gtk.Label("<b>%s</b>" % _(frame_name))
+            l.set_use_markup(True)
+            self.notebook.append_page(widget[1], l)
+            self.window.show_all()
+        else:
+            self.results_clear()
+        self.set_current_frame(frame_name)
+
     def setup_other_frames(self):
+        """Similar to add_option this method takes a frame_name, a
+        text string and a Gtk Widget. When the interface is built,
+        all widgets with the same frame_name are grouped into a
+        GtkFrame. This allows the subclass to create its own sections,
+        filling them with its own widgets. The subclass is reponsible for
+        all managing of the widgets, including extracting the final value
+        before the report executes. This task should only be called in
+        the add_user_options task."""
         for key in self.frame_names:
             flist = self.frames[key]
             table = gtk.Table(3,len(flist))
             table.set_col_spacings(12)
             table.set_row_spacings(6)
             table.set_border_width(6)
-            l = gtk.Label("<b>%s</b>" % _(key))
+            l = gtk.Label("<b>%s</b>" % key)
             l.set_use_markup(True)
             self.notebook.append_page(table,l)
-
             row = 0
             for (text,widget) in flist:
                 if text:
