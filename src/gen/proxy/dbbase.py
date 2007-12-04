@@ -1085,6 +1085,14 @@ class DbBase:
         """
         raise NotImplementedError
 
+    def set_mediapath(self, path):
+        """sets the default media path for database, path should be utf-8"""
+        raise NotImplementedError
+
+    def get_mediapath(self):
+        """returns the default media path of the database"""
+        raise NotImplementedError
+
     def set_column_order(self, col_list, name):
         raise NotImplementedError
 

@@ -47,6 +47,7 @@ class ProxyDbBase(DbBase):
         self.db = db
         self.name_formats = db.name_formats
         self.bookmarks = db.bookmarks
+        self.metadata = db.metadata
         self.family_bookmarks = db.family_bookmarks
         self.event_bookmarks = db.event_bookmarks
         self.place_bookmarks = db.place_bookmarks
@@ -265,6 +266,10 @@ class ProxyDbBase(DbBase):
         returns True if the handle exists in the current Note database.
         """
         raise NotImplementedError
+
+    def get_mediapath(self):
+        """returns the default media path of the database"""
+        return self.db.get_mediapath()
 
     def set_column_order(self, col_list, name):
         raise NotImplementedError
