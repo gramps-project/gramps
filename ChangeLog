@@ -1,4 +1,7 @@
 2007-12-04 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/gen/proxy/proxybase.py: remove unneeded assign
+
+2007-12-04 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/gen/proxy/proxybase.py: add mediapath get
 	* src/gen/proxy/dbbase.py: add mediapath methods
 
