@@ -31,7 +31,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-10 23:43-0700\n"
-"PO-Revision-Date: 2007-11-12 20:44+0100\n"
+"PO-Revision-Date: 2007-12-05 14:35+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2994,11 +2994,11 @@ msgstr "Förformaterad"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 msgid "Association"
-msgstr "Koppling"
+msgstr "Relation"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
 msgid "Associations"
-msgstr "Kopplingar"
+msgstr "Relationer"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
 msgid "Godfather"
@@ -12643,7 +12643,7 @@ msgstr "Standard GEDCOM 5.5"
 #: ../src/GrampsDb/gedcomexport.glade.h:11
 #: ../src/plugins/genewebexport.glade.h:6
 msgid "Use _Living as first name"
-msgstr "Använd _bosatt som förnamn"
+msgstr "Använd _Levande som förnamn"
 
 #: ../src/GrampsDb/gedcomexport.glade.h:12
 msgid "_ANSEL"
