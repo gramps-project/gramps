@@ -1,3 +1,4 @@
+# translation of svny1.po to
 # translation of sv99.po to
 # translation of svny.po to
 # translation of sv.po to
@@ -33,7 +34,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-30 10:13+0100\n"
-"PO-Revision-Date: 2007-11-12 21:18+0100\n"
+"PO-Revision-Date: 2007-12-05 14:43+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3876,11 +3877,11 @@ msgstr "Flytta den valda anteckningen neråt"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 msgid "Association"
-msgstr "*Association*"
+msgstr "Relation"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
 msgid "Associations"
-msgstr "*Associationer*"
+msgstr "Relationer"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
 msgid "Godfather"
@@ -16441,7 +16442,7 @@ msgstr "_Publiceringsinformation:"
 
 #: ../src/glade/gramps.glade.h:169
 msgid "_Relationship:"
-msgstr "_Släktskap:"
+msgstr "_Relation:"
 
 #: ../src/glade/gramps.glade.h:170
 msgid "_Remove Object"
@@ -16903,7 +16904,7 @@ msgstr "R_eferensbilder från sökväg:  "
 
 #: ../src/plugins/genewebexport.glade.h:6
 msgid "Use _Living as first name"
-msgstr "Använd _bosatt som förnamn"
+msgstr "Använd _Levande som förnamn"
 
 #: ../src/plugins/genewebexport.glade.h:7
 msgid "_Do not include records marked private"
