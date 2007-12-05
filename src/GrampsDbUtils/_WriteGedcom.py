@@ -547,7 +547,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             self.__writeln(level, "ASSO", "@%s@" % person.get_gramps_id())
             self.__writeln(level+1, "TYPE", ref.get_relation())
             self.__note_references(ref.get_note_list(), level+1)
-            self.__source_references(ref.get_source_references, level+1)
+            self.__source_references(ref.get_source_references(), level+1)
 
     def __note_references(self, notelist, level):
         """

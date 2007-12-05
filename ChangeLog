@@ -1,3 +1,8 @@
+2007-12-05 Jim Sack <jgsack@san.rr.com>
+	* src/GrampsDbUtils/_WriteGedcom.py : add omitted () to function call
+	fixes type error 'instancemethod' object is not iterable
+	reported by RJ in -devel list
+
 2007-12-04 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/gen/proxy/proxybase.py: remove unneeded assign
 
