@@ -181,10 +181,11 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.window.set_has_separator(False)
 
         #self.window.connect('response', self.close)
-        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
+        self.cancel = self.window.add_button(gtk.STOCK_CLOSE,
+                                             gtk.RESPONSE_CANCEL)
         self.cancel.connect('clicked',self.close)
 
-        self.ok = self.window.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
+        self.ok = self.window.add_button(gtk.STOCK_APPLY, gtk.RESPONSE_OK)
         self.ok.connect('clicked',self.on_ok_clicked)
 
         self.window.set_default_size(600,-1)
@@ -226,8 +227,10 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         pass # cancel just closes
 
     def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices. Parse all options
-        and close the window."""
+        """
+        The user is satisfied with the dialog choices. Parse all options
+        and run the tool.
+        """
         # Save options
         self.options.parse_user_options(self)
         self.options.handler.save_options()
@@ -419,9 +422,11 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
 
 class ToolManagedWindowBatch(Tool.BatchTool, ToolManagedWindowBase):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        # This constructor will ask a question, set self.fail:
         Tool.BatchTool.__init__(self,dbstate,options_class,name)
-        ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
-                                       name, callback)
+        if not self.fail:
+            ToolManagedWindowBase.__init__(self, dbstate, uistate, 
+                                           options_class, name, callback)
 
 class ToolManagedWindow(Tool.Tool, ToolManagedWindowBase):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):

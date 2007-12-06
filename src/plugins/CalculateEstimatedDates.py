@@ -222,6 +222,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
             event.set_type(gen.lib.EventType(type))
         if date:
             date.set_modifier(gen.lib.Date.MOD_ABOUT)
+            date.set_quality(gen.lib.Date.QUAL_ESTIMATED)
             date.set_yr_mon_day(date.get_year(), 0, 0)
             event.set_date_object(date)
         if source:

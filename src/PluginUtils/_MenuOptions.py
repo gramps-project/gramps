@@ -575,13 +575,14 @@ class MenuOptions:
         pass
 
     def set_new_options(self):
+        # Fill options_dict with report/tool defaults:
         self.options_dict = {}
         self.options_help = {}
         self.add_menu_options(self.menu)
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
-            self.options_dict[name] = option.get_help()
+            self.options_help[name] = option.get_help()
 
     def add_menu_options(self,menu):
         """
@@ -602,6 +603,9 @@ class MenuOptions:
         for category in self.menu.get_categories():
             for name in self.menu.get_option_names(category):
                 option = self.menu.get_option(category,name)
+                # override option default with xml-saved value:
+                if name in self.options_dict:
+                    option.set_value(self.options_dict[name])
                 option.make_gui_obj(gtk, dialog)
                 option.add_dialog_category(dialog, category)
                 option.add_tooltip(self.tooltips)
