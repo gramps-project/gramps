@@ -537,7 +537,6 @@ class GedcomWriter(BasicUtils.UpdateCallback):
     def __assoc(self, person, level):
         """
           n ASSO @<XREF:INDI>@ {0:M} 
-          +1 TYPE <RECORD_TYPE> {1:1}
           +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}
           +1 <<NOTE_STRUCTURE>> {0:M} 
           +1 <<SOURCE_CITATION>> {0:M} 
@@ -545,7 +544,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         for ref in person.get_person_ref_list():
             person = self.dbase.get_person_from_handle(ref.ref)
             self.__writeln(level, "ASSO", "@%s@" % person.get_gramps_id())
-            self.__writeln(level+1, "TYPE", ref.get_relation())
+            self.__writeln(level+1, "RELA", ref.get_relation())
             self.__note_references(ref.get_note_list(), level+1)
             self.__source_references(ref.get_source_references(), level+1)
 

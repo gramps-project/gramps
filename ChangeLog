@@ -1,3 +1,10 @@
+2007-12-06 Jim Sack <jgsack@san.rr.com>
+	* src/GrampsDbUtils/_GedcomParse.py : #1418 fix read ASSO
+	* src/GrampsDbUtils/_WriteGedcom.py : #1418 fix write ASSO
+	read was looking for TYPE, write was emitting TYPE, but
+	TYPE evidently was only part of a draft (or earlier) spec
+	Current spec allows ASSO to link only to INDI
+
 2007-12-06  Douglas S.Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/CalculateEstimatedDates.py: pass in handle to link
 	* src/PluginUtils/_PluginWindows.py: New clickable text tests

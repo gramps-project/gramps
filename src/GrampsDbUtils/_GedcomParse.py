@@ -553,7 +553,6 @@ class GedcomParser(UpdateCallback):
             }
 
         self.asso_parse_tbl = {
-            TOKEN_TYPE   : self.__person_asso_type, 
             TOKEN_RELA   : self.__person_asso_rela, 
             TOKEN_SOUR   : self.__person_asso_sour, 
             TOKEN_NOTE   : self.__person_asso_note, 
@@ -2291,13 +2290,12 @@ class GedcomParser(UpdateCallback):
         And the the sub tags are:
         
         ASSOCIATION_STRUCTURE:=
-         +1 TYPE <RECORD_TYPE> {1:1}
          +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}
          +1 <<NOTE_STRUCTURE>> {0:M}
          +1 <<SOURCE_CITATION>> {0:M}
 
-        GRAMPS only supports ASSO records to people, so if the TYPE is
-        something other than INDI, the record is ignored.
+        The Gedcom spec notes that the ASSOCIATION_STRUCTURE 
+        can only link to an INDIVIDUAL_RECORD
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -2321,20 +2319,6 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(sub_state, self.asso_parse_tbl, self.__ignore)
         if not sub_state.ignore:
             state.person.add_person_ref(sub_state.ref)
-
-    def __person_asso_type(self, line, state): 
-        """
-        Parses the INDI.ASSO.TYPE tag. GRAMPS only supports the ASSO tag when
-        the tag represents an INDI. So if the data is not INDI, we set the 
-        ignore flag, so that we ignore the record.
-
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if line.data != "INDI":
-            state.ignore = True
 
     def __person_asso_rela(self, line, state): 
         """
