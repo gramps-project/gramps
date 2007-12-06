@@ -167,7 +167,7 @@ class LinkTag(gtk.TextTag):
         try:
             tag_table.add(self)
         except ValueError:
-            print "already in tag table"
+            print "tag already in table"
 
 class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     """
@@ -231,8 +231,8 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.results_text.connect('motion-notify-event', 
                                   self.on_motion)
         self.tags = []
+        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
-        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.DRAFT_LARGE)
 
         self.setup_other_frames()
         self.window.show_all()
@@ -284,19 +284,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
                 break
         return True
 
-    def on_mark_set(self, buffer, textiter, textmark):
-        if (textmark.get_name() != 'insert'):
-            return
-        cursor_pos = buffer.get_insert()
-        iter = buffer.get_iter_at_mark(cursor_pos)
-        for (tag, person_handle) in self.tags:
-            if iter.has_tag(tag):
-                person = self.db.get_person_from_handle(person_handle)
-                #FIXME: Signal Recursion Blocked
-                self.dbstate.change_active_person(person)
-                break
-        return False
-
     def results_write_link(self, text, person, person_handle):
         self.results_write("   ")
         buffer = self.results_text.get_buffer()
@@ -318,10 +305,12 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     def results_clear(self):
         # Remove all tags and clear text
         buffer = self.results_text.get_buffer()
+        tag_table = buffer.get_tag_table()
         start = buffer.get_start_iter()
         end = buffer.get_end_iter()
         for (tag, handle) in self.tags:
             buffer.remove_tag(tag, start, end)
+            tag_table.remove(tag)
         self.tags = []
         buffer.set_text("")
         
