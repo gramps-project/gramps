@@ -41,6 +41,7 @@ from PluginUtils import Tool, register_tool, PluginWindows, \
 import gen.lib
 import Config
 from BasicUtils import name_displayer
+import Errors
 
 #------------------------------------------------------------------------
 #
@@ -214,7 +215,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         added_death = 1
                 if (added_birth or added_death) and display_details:
                     self.results_write_link(name_displayer.display(person),
-                                            person)
+                                            person, person_handle)
                     if added_birth:
                         self.results_write(" added birth on %s" % date1)
                     if added_death:

@@ -34,6 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -157,6 +158,17 @@ class PluginTrace(ManagedWindow.ManagedWindow):
 # Main window for a batch tool
 #
 #-------------------------------------------------------------------------
+class LinkTag(gtk.TextTag):
+    def __init__(self, link, buffer):
+        gtk.TextTag.__init__(self, link)
+        tag_table = buffer.get_tag_table()
+        self.set_property('foreground', "#0000ff")
+        self.set_property('underline', pango.UNDERLINE_SINGLE)
+        try:
+            tag_table.add(self)
+        except ValueError:
+            print "already in tag table"
+
 class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     """
     Copied from src/ReportBase/_BareReportDialog.py BareReportDialog
@@ -213,6 +225,14 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.window.vbox.add(self.notebook)
 
         self.results_text = gtk.TextView() 
+        #buffer = self.results_text.get_buffer()
+        self.results_text.connect('button-press-event', 
+                                  self.on_button_press) 
+        self.results_text.connect('motion-notify-event', 
+                                  self.on_motion)
+        self.tags = []
+        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
+        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.DRAFT_LARGE)
 
         self.setup_other_frames()
         self.window.show_all()
@@ -241,18 +261,52 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     def initial_frame(self):
         return None
 
-    def link_callback(self, button, person):
-        self.dbstate.change_active_person(person)
+    def on_motion(self, view, event):
+        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+                                                       int(event.x), 
+                                                       int(event.y))
+        iter = view.get_iter_at_location(*buffer_location)
+        for (tag, person_handle) in self.tags:
+            if iter.has_tag(tag):
+                view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.link_cursor)
+                return
+        view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.standard_cursor)
 
-    def results_write_link(self, text, person):
+    def on_button_press(self, view, event):
+        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+                                                       int(event.x), 
+                                                       int(event.y))
+        iter = view.get_iter_at_location(*buffer_location)
+        for (tag, person_handle) in self.tags:
+            if iter.has_tag(tag):
+                person = self.db.get_person_from_handle(person_handle)
+                self.dbstate.change_active_person(person)
+                break
+        return True
+
+    def on_mark_set(self, buffer, textiter, textmark):
+        if (textmark.get_name() != 'insert'):
+            return
+        cursor_pos = buffer.get_insert()
+        iter = buffer.get_iter_at_mark(cursor_pos)
+        for (tag, person_handle) in self.tags:
+            if iter.has_tag(tag):
+                person = self.db.get_person_from_handle(person_handle)
+                #FIXME: Signal Recursion Blocked
+                self.dbstate.change_active_person(person)
+                break
+        return False
+
+    def results_write_link(self, text, person, person_handle):
+        self.results_write("   ")
         buffer = self.results_text.get_buffer()
         iter = buffer.get_end_iter()
-        anchor = buffer.create_child_anchor(iter)
-        child = gtk.Button(text)
-        child.connect("clicked", 
-                      lambda button: self.link_callback(button, person))
-        self.results_text.add_child_at_anchor(child, anchor)
-        self.results_text.show_all()
+        offset = buffer.get_char_count()
+        self.results_write(text)
+        start = buffer.get_iter_at_offset(offset)
+        end = buffer.get_end_iter()
+        self.tags.append((LinkTag(person_handle, buffer),person_handle))
+        buffer.apply_tag(self.tags[-1][0], start, end)
         
     def results_write(self, text):
         buffer = self.results_text.get_buffer()
@@ -262,7 +316,13 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         buffer.delete_mark_by_name("end")        
 
     def results_clear(self):
+        # Remove all tags and clear text
         buffer = self.results_text.get_buffer()
+        start = buffer.get_start_iter()
+        end = buffer.get_end_iter()
+        for (tag, handle) in self.tags:
+            buffer.remove_tag(tag, start, end)
+        self.tags = []
         buffer.set_text("")
         
     def pre_run(self):
