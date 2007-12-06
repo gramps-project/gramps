@@ -1,3 +1,7 @@
+2007-12-06  Douglas S.Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/CalculateEstimatedDates.py: experimental click in text
+	* src/PluginUtils/_PluginWindows.py: experimental write_results_link()
+
 2007-12-05  Douglas S.Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/CalculateEstimatedDates.py: set quality CALCULATED on
 	  added dates

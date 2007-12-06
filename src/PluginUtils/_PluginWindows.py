@@ -241,6 +241,19 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     def initial_frame(self):
         return None
 
+    def link_callback(self, button, person):
+        self.dbstate.change_active_person(person)
+
+    def results_write_link(self, text, person):
+        buffer = self.results_text.get_buffer()
+        iter = buffer.get_end_iter()
+        anchor = buffer.create_child_anchor(iter)
+        child = gtk.Button(text)
+        child.connect("clicked", 
+                      lambda button: self.link_callback(button, person))
+        self.results_text.add_child_at_anchor(child, anchor)
+        self.results_text.show_all()
+        
     def results_write(self, text):
         buffer = self.results_text.get_buffer()
         mark = buffer.create_mark("end", buffer.get_end_iter())
@@ -365,12 +378,16 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
 
     def add_results_frame(self,frame_name="Results"):
         if frame_name not in self.frames:
-            widget = (frame_name, self.results_text)
-            self.frames[frame_name] = [widget]
+            window = gtk.ScrolledWindow()
+            window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            window.add(self.results_text)
+            window.set_shadow_type(gtk.SHADOW_IN)
+            window.show_all()
+            self.frames[frame_name] = [[frame_name, window]] 
             self.frame_names.append(frame_name)
             l = gtk.Label("<b>%s</b>" % _(frame_name))
             l.set_use_markup(True)
-            self.notebook.append_page(widget[1], l)
+            self.notebook.append_page(window, l)
             self.window.show_all()
         else:
             self.results_clear()

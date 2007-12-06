@@ -40,7 +40,13 @@ from PluginUtils import Tool, register_tool, PluginWindows, \
     NumberOption
 import gen.lib
 import Config
+from BasicUtils import name_displayer
 
+#------------------------------------------------------------------------
+#
+# Tool Classes
+#
+#------------------------------------------------------------------------
 class CalcEstDateOptions(MenuToolOptions):
     """ Calculate Estimated Date options  """
     
@@ -69,6 +75,10 @@ class CalcEstDateOptions(MenuToolOptions):
         death = BooleanOption(_("Add estimated death dates"), True)
         death.set_help(_("Add estimated death dates"))
         menu.add_option(category_name, "add_death", death)
+
+        display_details = BooleanOption(_("Display detailed results"), False)
+        display_details.set_help(_("Show details for every date entered"))
+        menu.add_option(category_name, "display_details", display_details)
 
         # -----------------------------------------------------
         category_name = _("Config")
@@ -114,6 +124,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         add_birth = self.options.handler.options_dict['add_birth']
         add_death = self.options.handler.options_dict['add_death']
         remove_old = self.options.handler.options_dict['remove']
+        display_details = self.options.handler.options_dict['display_details']
 
         self.MIN_GENERATION_YEARS = self.options.handler.options_dict['MIN_GENERATION_YEARS']
         self.MAX_SIB_AGE_DIFF = self.options.handler.options_dict['MAX_SIB_AGE_DIFF']
@@ -168,6 +179,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
             source = self.get_or_create_source(source_text)
             for person_handle in people:
                 self.progress.step()
+                added_birth, added_death = 0, 0
                 person = self.db.get_person_from_handle(person_handle)
                 birth_ref = person.get_birth_ref()
                 death_ref = person.get_death_ref()
@@ -183,12 +195,13 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                     event_ref.set_reference_handle(birth.get_handle())
                     person.set_birth_ref(event_ref)
                     self.db.commit_person(person, self.trans)
+                    added_birth = 1
                 if not death_ref and add_death and date2:
                     current_date = gen.lib.Date()
                     current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
                     if current_date.match( date2, "<<"):
                         # don't add events in the future!
-                        pass
+                        pass # FIXME: sometimes adds one in future?
                     else:
                         #print "added death"
                         death = self.create_event("Estimated death date", 
@@ -198,6 +211,15 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         event_ref.set_reference_handle(death.get_handle())
                         person.set_death_ref(event_ref)
                         self.db.commit_person(person, self.trans)
+                        added_death = 1
+                if (added_birth or added_death) and display_details:
+                    self.results_write_link(name_displayer.display(person),
+                                            person)
+                    if added_birth:
+                        self.results_write(" added birth on %s" % date1)
+                    if added_death:
+                        self.results_write(" added death on %s" % date2)
+                    self.results_write("\n")
         self.db.transaction_commit(self.trans, _("Calculate date estimates"))
         self.db.enable_signals()
         self.db.request_rebuild()
