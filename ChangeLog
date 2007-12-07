@@ -1,4 +1,8 @@
 2007-12-06  Douglas S.Blank  <dblank@cs.brynmawr.edu>
+	* src/PluginUtils/_PluginWindows.py: Removed unnecessary code
+	* src/PluginUtils/_MenuOptions.py: Added "Change" button for filter option
+
+2007-12-06  Douglas S.Blank  <dblank@cs.brynmawr.edu>
 	* src/PluginUtils/_PluginMgr.py: return values on load_plugins was 
 	reversed: return True if errors.
 

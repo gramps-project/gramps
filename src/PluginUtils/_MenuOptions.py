@@ -433,27 +433,68 @@ class FilterListOption(Option):
         """
         return self.__filters
 
+    def clear_filters(self):
+        """
+        Clear all of the filter objects.
+        
+        """
+        self.__filters = []
+
     def make_gui_obj(self, gtk, dialog):
         """
         Add an FilterListOption to the dialog.
         """
         from ReportBase import ReportUtils
-        self.gobj = gtk.combo_box_new_text()
+        self.dialog = dialog
+        self.combo = gtk.combo_box_new_text()
+        self.gobj = gtk.HBox()
         for filter in self.get_items():
             if filter in ["person"]:
                 # FIXME: get filter list from filter sidebar?
-                filter_list = ReportUtils.get_person_filters(dialog.person,False)
+                filter_list = ReportUtils.get_person_filters(dialog.person,
+                                                             include_single=True)
                 for filter in filter_list:
-                    self.gobj.append_text(filter.get_name())
+                    self.combo.append_text(filter.get_name())
                     self.add_filter(filter)
         # FIXME: set proper default
-        self.gobj.set_active(0)
-        
+        self.combo.set_active(0)
+        self.change_button = gtk.Button("%s..." % _('C_hange') )
+        self.change_button.connect('clicked',self.on_change_clicked)
+        self.gobj.pack_start(self.combo, False)
+        self.gobj.pack_start(self.change_button, False)
+
+    def on_change_clicked(self, *obj):
+        from Selectors import selector_factory
+        SelectPerson = selector_factory('Person')
+        sel_person = SelectPerson(self.dialog.dbstate,
+                                  self.dialog.uistate,
+                                  self.dialog.track)
+        new_person = sel_person.run()
+        if new_person:
+            self.dialog.person = new_person
+            self.update_gui_obj()
+
+    def update_gui_obj(self):
+        # update the gui object with new filter info
+        from ReportBase import ReportUtils
+        for i in range(len(self.get_filters())):
+            self.combo.remove_text(0)
+        self.clear_filters()
+        for filter in self.get_items():
+            if filter in ["person"]:
+                filter_list = ReportUtils.get_person_filters(self.dialog.person,
+                                                             include_single=True)
+                for filter in filter_list:
+                    self.combo.append_text(filter.get_name())
+                    self.add_filter(filter)
+        # FIXME: set proper default
+        self.combo.set_active(0)
+
     def parse(self):
         """
         Parse the object and return.
         """
-        index = self.gobj.get_active()
+        index = self.combo.get_active()
         items = self.get_filters()
         filter = items[index]
         return filter
