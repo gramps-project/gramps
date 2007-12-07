@@ -155,7 +155,7 @@ class PluginTrace(ManagedWindow.ManagedWindow):
 
 #-------------------------------------------------------------------------
 #
-# Main window for a batch tool
+# Classes for tools
 #
 #-------------------------------------------------------------------------
 class LinkTag(gtk.TextTag):
@@ -167,7 +167,7 @@ class LinkTag(gtk.TextTag):
         try:
             tag_table.add(self)
         except ValueError:
-            print "tag already in table"
+            pass # already in table
 
 class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     """
@@ -225,7 +225,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.window.vbox.add(self.notebook)
 
         self.results_text = gtk.TextView() 
-        #buffer = self.results_text.get_buffer()
         self.results_text.connect('button-press-event', 
                                   self.on_button_press) 
         self.results_text.connect('motion-notify-event', 
@@ -235,8 +234,8 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
 
         self.setup_other_frames()
-        self.window.show_all()
         self.set_current_frame(self.initial_frame())
+        self.window.show()
 
     #------------------------------------------------------------------------
     #
@@ -269,10 +268,12 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         for (tag, person_handle) in self.tags:
             if iter.has_tag(tag):
                 view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.link_cursor)
-                return
+                return False # handle event further, if necessary
         view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.standard_cursor)
+        return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
+        from Editors import EditPerson
         buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
                                                        int(event.x), 
                                                        int(event.y))
@@ -280,9 +281,16 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         for (tag, person_handle) in self.tags:
             if iter.has_tag(tag):
                 person = self.db.get_person_from_handle(person_handle)
-                self.dbstate.change_active_person(person)
-                break
-        return True
+                if event.button == 1:
+                    if event.type == gtk.gdk._2BUTTON_PRESS:
+                        try:
+                            EditPerson(self.dbstate, self.uistate, [], person)
+                        except Errors.WindowActiveError:
+                            pass
+                    else:
+                        self.dbstate.change_active_person(person)
+                    return True # handled event
+        return False # did not handle event
 
     def results_write_link(self, text, person, person_handle):
         self.results_write("   ")
@@ -402,13 +410,12 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
             window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
             window.add(self.results_text)
             window.set_shadow_type(gtk.SHADOW_IN)
-            window.show_all()
             self.frames[frame_name] = [[frame_name, window]] 
             self.frame_names.append(frame_name)
             l = gtk.Label("<b>%s</b>" % _(frame_name))
             l.set_use_markup(True)
             self.notebook.append_page(window, l)
-            self.window.show_all()
+            self.notebook.show_all()
         else:
             self.results_clear()
         self.set_current_frame(frame_name)
@@ -444,6 +451,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
                     table.attach(widget, 2, 3, row, row+1,
                                  yoptions=gtk.SHRINK)
                 row = row + 1
+        self.notebook.show_all()
 
     #------------------------------------------------------------------------
     #
