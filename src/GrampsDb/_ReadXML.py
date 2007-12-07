@@ -393,8 +393,10 @@ class GrampsParser(UpdateCallback):
             "gender"     : (None, self.stop_gender),
             "header"     : (None, None),
             "last"       : (self.start_last, self.stop_last),
+            "map"        : (self.start_namemap, None),
             "mother"     : (self.start_mother,None),
             "name"       : (self.start_name, self.stop_name),
+            "namemaps"   : (None, None),
             "nick"       : (None, self.stop_nick),
             "note"       : (self.start_note, self.stop_note),
             "p"          : (None, self.stop_ptag),
@@ -450,6 +452,9 @@ class GrampsParser(UpdateCallback):
             "reporef"    : (self.start_reporef,self.stop_reporef),
             "rname"      : (None, self.stop_rname),
             }
+
+    def errmsg(self, msg):
+        log.warning(msg)
 
     def find_person_by_gramps_id(self,gramps_id):
         intid = self.gid2id.get(gramps_id)
@@ -1111,6 +1116,22 @@ class GrampsParser(UpdateCallback):
                     self.name_display_as = display_as
             except KeyError:
                 pass
+
+    def start_namemap(self, attrs):
+        type = attrs.get('type')
+
+        key = attrs['key']
+        value = attrs['value']
+        if type == 'group_as':
+            if self.db.has_name_group_key(key) :
+                present = self.db.get_name_group_mapping(key)
+                if not value == present:
+                    msg = _("Your family tree groups name %s together"
+                            " with %s, did not change this grouping to %s") % (
+                                                        key, present, value)
+                    self.errmsg(msg)
+            else:
+                self.db.set_name_group_mapping(key, value)
 
     def start_last(self,attrs):
         self.name.prefix = attrs.get('prefix','')

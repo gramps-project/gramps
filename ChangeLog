@@ -1,3 +1,13 @@
+2007-11-24 Benny Malengier <benny.malengier@gramps-project.org>
+	Add support for name grouping import/export
+	* src/GrampsDb/_GrampsDbBase.py: obtain grouping keys
+	* src/GrampsDb/_ReadXML.py: read in group table
+	* src/GrampsDb/_DbUtils.py: grdb -> grdb copy of grouping table
+	* src/GrampsDb/_ReadGrdb.py: read in group table
+	* src/GrampsDb/_WriteXML.py: write group table out
+	* src/GrampsDb/_GrampsBSDDB.py: group table is no sec table, init it
+	together with primary tables!
+
 2007-11-28 Jim Sack <jgsack@san.rr.com>
 	* src/GrampsDb/_ReadGedcom.py : #1399 remove trail whitespace (readahead)
 	fixes discarded reference due to bogus handles that get created

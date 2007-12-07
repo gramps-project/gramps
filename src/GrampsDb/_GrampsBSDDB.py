@@ -399,8 +399,16 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
                                               dbtype=db.DB_BTREE)
         callback(37)
 
-        self._load_metadata()
+        self.name_group = db.DB(self.env)
+        self.name_group.set_flags(db.DB_DUP)
+        if self.readonly:
+            self.name_group.open(self.full_name, "name_group",
+                             db.DB_HASH, flags=db.DB_RDONLY)
+        else:
+            self.name_group.open(self.full_name, "name_group",
+                             db.DB_HASH, flags=self.open_flags())
 
+        self._load_metadata()
         gstats = self.metadata.get('gender_stats',default=None)
 
         if not self.readonly:
@@ -528,11 +536,6 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
         self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
                            flags=table_flags)
-
-        self.name_group = db.DB(self.env)
-        self.name_group.set_flags(db.DB_DUP)
-        self.name_group.open(self.full_name, "name_group",
-                             db.DB_HASH, flags=table_flags)
 
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
@@ -1117,6 +1120,7 @@ class GrampsBSDDB(GrampsDbBase,UpdateCallback):
         self.media_map      = None
         self.event_map      = None
         self.surnames       = None
+        self.name_group     = None
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False
