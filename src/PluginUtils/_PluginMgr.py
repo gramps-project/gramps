@@ -93,13 +93,13 @@ def load_plugins(direct):
     modules that it finds, adding name to the attempt_lists list. If the module
     successfully loads, it is added to the success_list list. Each plugin is
     responsible for registering itself in the correct manner. No attempt
-    is done in this routine to register the tasks."""
+    is done in this routine to register the tasks. Returns True on error. """
     
     global success_list,attempt_list,loaddir_list,failmsg_list
 
     # if the directory does not exist, do nothing
     if not os.path.isdir(direct):
-        return True
+        return False # return value is True for error
 
     # if the path has not already been loaded, save it in the loaddir_list
     # list for use on reloading
@@ -130,10 +130,7 @@ def load_plugins(direct):
         except:
             failmsg_list.append((filename,sys.exc_info()))
 
-    if len(failmsg_list):
-        return False
-    else:
-        return True
+    return len(failmsg_list) != 0 # return True if there are errors
 
 #-------------------------------------------------------------------------
 #

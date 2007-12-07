@@ -1,3 +1,7 @@
+2007-12-06  Douglas S.Blank  <dblank@cs.brynmawr.edu>
+	* src/PluginUtils/_PluginMgr.py: return values on load_plugins was 
+	reversed: return True if errors.
+
 2007-12-06 Jim Sack <jgsack@san.rr.com>
 	* src/GrampsDbUtils/_GedcomParse.py : #1418 fix read ASSO
 	* src/GrampsDbUtils/_WriteGedcom.py : #1418 fix write ASSO
