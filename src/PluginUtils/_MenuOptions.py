@@ -296,6 +296,7 @@ class BooleanOption(Option):
         """
         value = self.get_value()
         self.gobj = gtk.CheckButton(self.get_label())
+        self.set_label("")
         self.gobj.set_active(value)
         
     def parse(self):
