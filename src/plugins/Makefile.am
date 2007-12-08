@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	AncestorChart.py\
 	AncestorReport.py\
 	BookReport.py\
+	CalculateEstimatedDates.py\
 	Calendar.py \
 	ChangeTypes.py\
 	ChangeNames.py\
