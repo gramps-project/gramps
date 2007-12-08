@@ -106,6 +106,26 @@ class TestMake(unittest.TestCase):
         else:
             self.assertTrue(True, "no makefile in '%s'" % dir)
 
+class TestGetText(unittest.TestCase):
+    count = 1
+    def __init__(self, method_name, pofile, searches):
+        method_name = method_name % self.count
+        TestGetText.count += 1
+        self.__dict__[method_name] = lambda: self.helper(pofile, searches)
+        unittest.TestCase.__init__(self, method_name)
+
+    def helper(self, pofile, searches):
+        if not os.path.exists("../../" + pofile):
+            self.assertTrue(False, "'%s' is in POTFILES.in and does not exist" % pofile)
+        fp = open("../../" + pofile, "r")
+        lines = fp.read()
+        fp.close()
+        found = False
+        for search in searches:
+            found = (search in lines) or found
+        self.assertTrue(found, "'%s' is in POTFILES.in but does not contain '%s'" % 
+                        (pofile, searches))
+
 def suite1():
     suite = unittest.TestSuite()            
     for dir, subdir, files in os.walk('../../src'):
@@ -122,5 +142,18 @@ def suite1():
                 suite.addTest(TestMake('test_make_glade_%04d', dir, file))
     return suite
 
+def suite2():
+    suite = unittest.TestSuite()
+    potfiles = get_potfile("../POTFILES.in")
+    for potfile in potfiles:
+        if glob.fnmatch.fnmatch(potfile,"*.py"):
+            suite.addTest(TestGetText('test_gettext_py_%04d', potfile,
+                                      ["import gettext", "from gettext"]))
+        if glob.fnmatch.fnmatch(potfile,"*.glade"):
+            suite.addTest(TestGetText('test_gettext_glade_%04d', potfile,
+                                      ["translatable=\"yes\""]))
+    return suite
+
 if __name__ == "__main__":
     unittest.TextTestRunner().run(suite1())
+    #unittest.TextTestRunner().run(suite2())
