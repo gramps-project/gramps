@@ -59,20 +59,24 @@ def get_potfile(filename):
 class TestPOT(unittest.TestCase):
     potfiles = get_potfile("../POTFILES.in")
     count = 1
-    def __init__(self, method_name, dir, file, search):
+    def __init__(self, method_name, dir, file, searches):
         method_name = method_name % self.count
         TestPOT.count += 1
-        self.__dict__[method_name] = lambda: self.helper(dir, file, search)
+        self.__dict__[method_name] = lambda: self.helper(dir, file, searches)
         unittest.TestCase.__init__(self, method_name)
 
-    def helper(self, dir, file, search):
+    def helper(self, dir, file, searches):
         realpath = (dir + "/" + file)
         pathfile = realpath[3:]
         if os.path.exists(realpath):
             fp = open(realpath, "r")
             lines = fp.read()
             fp.close()
-            if search in lines:
+            found = False
+            for search in searches:
+                if search in lines:
+                    found = True
+            if found:
                 self.assertFalse(pathfile[3:] not in excluded_files and
                                  pathfile[3:] not in self.potfiles, 
                                  "'%s' is not in POTFILES.in" % (pathfile[3:],))
@@ -126,16 +130,34 @@ class TestGetText(unittest.TestCase):
         self.assertTrue(found, "'%s' is in POTFILES.in but does not contain '%s'" % 
                         (pofile, searches))
 
+class TestDups(unittest.TestCase):
+    potfiles = get_potfile("../POTFILES.in")
+    count = 1
+    def __init__(self, method_name, potfile):
+        method_name = method_name % self.count
+        TestPOT.count += 1
+        self.__dict__[method_name] = lambda: self.helper(potfile)
+        unittest.TestCase.__init__(self, method_name)
+
+    def helper(self, potfile):
+        self.assertTrue(self.potfiles.count(potfile) == 1,
+                        "'%s' is in POTFILE.in more than once." % potfile)
+
 def suite1():
+    """
+    Suite of tests designed to see if that if one of a set of phrases
+    is in a file, then that file better be in POTFILES.in.
+    """
     suite = unittest.TestSuite()            
     for dir, subdir, files in os.walk('../../src'):
         for file in files:
             if glob.fnmatch.fnmatch(file,"*.py"):
                 suite.addTest(TestPOT('test_pot_py_%04d', 
-                                      dir, file, "import gettext"))
+                                      dir, file, ["import gettext",
+                                                  "import sgettext"]))
             elif glob.fnmatch.fnmatch(file,"*.glade"):
                 suite.addTest(TestPOT('test_pot_glade_%04d', 
-                                      dir, file, "translatable=\"yes\""))
+                                      dir, file, ["translatable=\"yes\""]))
             if glob.fnmatch.fnmatch(file,"*.py"):
                 suite.addTest(TestMake('test_make_py_%04d', dir, file))
             elif glob.fnmatch.fnmatch(file,"*.glade"):
@@ -143,17 +165,34 @@ def suite1():
     return suite
 
 def suite2():
+    """
+    Suite of tests that check for each file in POTFILES.in, then it
+    should have an import gettext or sgettext.
+    """
     suite = unittest.TestSuite()
     potfiles = get_potfile("../POTFILES.in")
     for potfile in potfiles:
         if glob.fnmatch.fnmatch(potfile,"*.py"):
             suite.addTest(TestGetText('test_gettext_py_%04d', potfile,
-                                      ["import gettext", "from gettext"]))
-        if glob.fnmatch.fnmatch(potfile,"*.glade"):
+                                      ["import gettext",
+                                       "from gettext",
+                                       "import sgettext"]))
+        elif glob.fnmatch.fnmatch(potfile,"*.glade"):
             suite.addTest(TestGetText('test_gettext_glade_%04d', potfile,
                                       ["translatable=\"yes\""]))
+    return suite
+
+def suite3():
+    """
+    Looks for duplicates in POTFILES.in.
+    """
+    suite = unittest.TestSuite()
+    for potfile in set(get_potfile("../POTFILES.in")):
+        if potfile:
+            suite.addTest(TestDups('test_dups_%04d', potfile))
     return suite
 
 if __name__ == "__main__":
     unittest.TextTestRunner().run(suite1())
     #unittest.TextTestRunner().run(suite2())
+    unittest.TextTestRunner().run(suite3())
