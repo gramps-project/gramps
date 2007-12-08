@@ -256,6 +256,7 @@ src/plugins/siblings.py
 src/plugins/AncestorChart.py
 src/plugins/AncestorReport.py
 src/plugins/BookReport.py
+src/plugins/CalculateEstimatedDates.py
 src/plugins/Calendar.py
 src/plugins/ChangeNames.py
 src/plugins/ChangeTypes.py

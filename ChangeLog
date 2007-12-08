@@ -1,3 +1,10 @@
+2007-12-07  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/PluginUtils/Makefile.am: Missing _PluginsWindows.py
+	* po/test: new unittest dir
+	* po/test/po_test.py: new unittest suite for POTFILES
+	  and Makefiles
+	* po/POTFILES.in: Missing CalculateEstimatedDates.py
+
 2007-12-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/PluginUtils/_MenuOptions.py: Fixed boolean option double label
 
