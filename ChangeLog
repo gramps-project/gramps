@@ -1,4 +1,4 @@
-2007-11-24 Benny Malengier <benny.malengier@gramps-project.org>
+2007-12-07 Benny Malengier <benny.malengier@gramps-project.org>
 	Add support for name grouping import/export
 	* src/GrampsDb/_GrampsDbBase.py: obtain grouping keys
 	* src/GrampsDb/_ReadXML.py: read in group table
