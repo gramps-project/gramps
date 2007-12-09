@@ -177,8 +177,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     border_pad = 6
     HELP_TOPIC = None
     def __init__(self, dbstate, uistate, option_class, name, callback=None):
-        self.dbstate = dbstate
-        self.uistate = uistate
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         self.extra_menu = None
@@ -190,7 +188,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
 
         window = gtk.Dialog('Tool')
         self.set_window(window,None,self.get_title())
-        self.window.set_has_separator(False)
+        #self.window.set_has_separator(False)
 
         #self.window.connect('response', self.close)
         self.cancel = self.window.add_button(gtk.STOCK_CLOSE,
@@ -235,7 +233,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
 
         self.setup_other_frames()
         self.set_current_frame(self.initial_frame())
-        self.window.show()
+        self.show()
 
     #------------------------------------------------------------------------
     #
@@ -468,6 +466,8 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
 class ToolManagedWindowBatch(Tool.BatchTool, ToolManagedWindowBase):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         # This constructor will ask a question, set self.fail:
+        self.dbstate = dbstate
+        self.uistate = uistate
         Tool.BatchTool.__init__(self,dbstate,options_class,name)
         if not self.fail:
             ToolManagedWindowBase.__init__(self, dbstate, uistate, 
@@ -475,6 +475,8 @@ class ToolManagedWindowBatch(Tool.BatchTool, ToolManagedWindowBase):
 
 class ToolManagedWindow(Tool.Tool, ToolManagedWindowBase):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        self.dbstate = dbstate
+        self.uistate = uistate
         Tool.Tool.__init__(self,dbstate,options_class,name)
         ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
                                        name, callback)
