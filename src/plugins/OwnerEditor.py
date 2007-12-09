@@ -152,6 +152,9 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         if event.button == 3 and event.type == gtk.gdk.BUTTON_PRESS:
             self.menu.popup(None,None,None,0,0)
 
+    def build_menu_names(self, obj):
+        return (_('Main window'), _("Edit database owner information"))
+
     def on_menu_activate(self, menuitem):
         """Copies the owner information from/to the preferences"""
         if menuitem.name == 'copy_from_preferences_to_db':

@@ -110,6 +110,9 @@ class CalcEstDateOptions(MenuToolOptions):
 
 class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 
+    def get_title(self):
+        return _("Calculate Estimated Dates")
+
     def initial_frame(self):
         return _("Options")
 

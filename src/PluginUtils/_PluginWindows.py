@@ -177,6 +177,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     border_pad = 6
     HELP_TOPIC = None
     def __init__(self, dbstate, uistate, option_class, name, callback=None):
+        self.name = name
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         self.extra_menu = None
@@ -322,7 +323,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         
     def pre_run(self):
         from Utils import ProgressMeter
-        self.progress = ProgressMeter(_('Tool'))
+        self.progress = ProgressMeter(self.get_title())
         
     def run(self):
         raise NotImplementedError, "tool needs to define a run() method"
@@ -337,7 +338,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return "Tool"
+        return "Tool" # self.title
 
     def get_header(self, name):
         """The header line to put at the top of the contents of the
@@ -345,14 +346,12 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         selected person.  Most subclasses will customize this to give
         some indication of what the report will be, i.e. 'Descendant
         Report for %s'."""
-        return _("%(tool_name)s for GRAMPS") % { 
-                    'tool_name' : "Tool"}
+        return self.get_title()
         
     def setup_title(self):
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
         should be."""
-        self.name = ''
         self.window.set_title(self.get_title())
 
     def setup_header(self):
@@ -362,7 +361,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         supplied by the subclass, the default is to use the full name
         of the currently selected person."""
 
-        title = self.get_header(self.name)
+        title = self.get_header(self.get_title())
         label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, True, True, self.border_pad)
@@ -462,6 +461,11 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         calls to add_option or add_frame_option should be called in
         this task."""
         self.options.add_user_options(self)
+
+    def build_menu_names(self, obj):
+        return (_('Main window'), self.get_title())
+
+
 
 class ToolManagedWindowBatch(Tool.BatchTool, ToolManagedWindowBase):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
