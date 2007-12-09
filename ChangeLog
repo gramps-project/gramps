@@ -1,3 +1,7 @@
+2007-12-09  Alex Roitman  <shura@gramps-project.org>
+	* data/grampsxml.rng: Add namemaps and mediapath.
+	* data/grampsxml.dtd: Add namemaps and mediapath.
+
 2007-12-09 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Selectors/_SelectRepository.py: handle column changed, bug #1427
 

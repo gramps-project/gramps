@@ -54,7 +54,7 @@ DATABASE
 
 <!ELEMENT database (header, name-formats?, events?, people?, families?,
                     sources?, places?, objects?, repositories?, notes?,
-                    bookmark?)>
+                    bookmarks?,namemaps?)>
 <!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.2.0/">
 
 <!--	************************************************************
@@ -65,7 +65,7 @@ HEADER
 	person who created this genealogical database)
 -->
 
-<!ELEMENT header (created, researcher?)>
+<!ELEMENT header (created, researcher?, mediapath?)>
 
 <!ELEMENT created EMPTY>
 <!ATTLIST created
@@ -83,6 +83,8 @@ HEADER
 <!ELEMENT respostal  (#PCDATA)>
 <!ELEMENT resphone   (#PCDATA)>
 <!ELEMENT resemail   (#PCDATA)>
+
+<!ELEMENT mediapath  (#PCDATA)>
 
 <!--	************************************************************
 PEOPLE
@@ -332,6 +334,14 @@ BOOKMARKS
 <!ATTLIST bookmark 
         target (person|family|event|source|place|media|repository) #REQUIRED
         hlink  IDREF #REQUIRED
+>
+
+<!ELEMENT namemaps (map)*>
+<!ELEMENT map EMPTY>
+<!ATTLIST map 
+        type  CDATA #REUIRED
+        key   CDATA #REQUIRED
+        value CDATA #REQUIRED
 >
 
 <!--	************************************************************
