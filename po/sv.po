@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-06 20:02+0100\n"
-"PO-Revision-Date: 2007-12-08 16:18+0100\n"
+"PO-Revision-Date: 2007-12-09 22:47+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1540,7 +1540,7 @@ msgstr "Gå till standardpersonen"
 
 #: ../src/PageView.py:392
 msgid "Person Filter Editor"
-msgstr "Personfilterredigerare"
+msgstr "Redigera personfilter"
 
 #: ../src/PageView.py:397
 msgid "Set _Home Person"
@@ -2972,7 +2972,7 @@ msgstr "Ta bort den valda händelsen"
 
 #: ../src/DataViews/_EventView.py:178
 msgid "Event Filter Editor"
-msgstr "Händelsefilterredigerare"
+msgstr "Redigera händelsefilter"
 
 #: ../src/DataViews/_EventView.py:181 ../src/DataViews/_FamilyList.py:166
 #: ../src/DataViews/_MediaView.py:217 ../src/DataViews/_NoteView.py:169
@@ -3035,7 +3035,7 @@ msgstr "Välj kolumner för familjelista"
 
 #: ../src/DataViews/_FamilyList.py:168
 msgid "Family Filter Editor"
-msgstr "Familjefilterredigerare"
+msgstr "Redigera familjefilter"
 
 #: ../src/DataViews/_MediaView.py:92
 msgid "Edit the selected media object"
@@ -3051,7 +3051,7 @@ msgstr "Dra mediaobjekt"
 
 #: ../src/DataViews/_MediaView.py:218
 msgid "Media Filter Editor"
-msgstr "Mediafilterredigerare"
+msgstr "Redigera mediafilter"
 
 #: ../src/DataViews/_MediaView.py:221
 msgid "View in the default viewer"
@@ -3119,7 +3119,7 @@ msgstr "Ta bort den valda anteckningen"
 
 #: ../src/DataViews/_NoteView.py:170
 msgid "Note Filter Editor"
-msgstr "Anteckningsfilterredigerare"
+msgstr "Redigera anteckningsfilter"
 
 #: ../src/DataViews/_NoteView.py:185
 msgid "Select Note Columns"
@@ -3427,7 +3427,7 @@ msgstr "Försök markera plats på Google-kartor"
 
 #: ../src/DataViews/_PlaceView.py:126
 msgid "Place Filter Editor"
-msgstr "Platsfilterredigerare"
+msgstr "Redigera platsfilter"
 
 #: ../src/DataViews/_PlaceView.py:160
 msgid "Select Place Columns"
@@ -3657,7 +3657,7 @@ msgstr "Radera den valda arkivinstitutionen"
 
 #: ../src/DataViews/_RepositoryView.py:124
 msgid "Repository Filter Editor"
-msgstr "Arkivinstitutionsfilterredigerare"
+msgstr "Redigera arkivinstitutionsfilter"
 
 #: ../src/DataViews/_RepositoryView.py:131
 msgid "Select Repository Columns"
@@ -3695,7 +3695,7 @@ msgstr "Radera den valda källan"
 
 #: ../src/DataViews/_SourceView.py:119
 msgid "Source Filter Editor"
-msgstr "Källfilterredigerare"
+msgstr "Redigera källfilter"
 
 #: ../src/DataViews/_SourceView.py:126
 msgid "Select Source Columns"
@@ -10116,7 +10116,7 @@ msgstr "Versionshantering"
 
 #: ../src/PluginUtils/_Tool.py:73
 msgid "Utilities"
-msgstr "Verktyg"
+msgstr "Hjälpmedel"
 
 #: ../src/PluginUtils/_Tool.py:111
 msgid ""
