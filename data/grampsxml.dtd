@@ -336,6 +336,9 @@ BOOKMARKS
         hlink  IDREF #REQUIRED
 >
 
+<!--	************************************************************
+NAME MAPS
+-->
 <!ELEMENT namemaps (map)*>
 <!ELEMENT map EMPTY>
 <!ATTLIST map 
