@@ -52,7 +52,8 @@ DATABASE
 -->
 
 <!ELEMENT database (header, name-formats?, events?, people?, families?,
-                    sources?, places?, objects?, repositories?, bookmark?)>
+                    sources?, places?, objects?, repositories?,
+                    bookmarks?, namemaps?)>
 <!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.1.4/">
 
 <!--	************************************************************
@@ -313,6 +314,17 @@ BOOKMARKS
 <!ATTLIST bookmark 
         target (person|family|event|source|place|media|repository) #REQUIRED
         hlink  IDREF #REQUIRED
+>
+
+<!--	************************************************************
+NAME MAPS
+-->
+<!ELEMENT namemaps (map)*>
+<!ELEMENT map EMPTY>
+<!ATTLIST map 
+        type  CDATA #REUIRED
+        key   CDATA #REQUIRED
+        value CDATA #REQUIRED
 >
 
 <!--	************************************************************
