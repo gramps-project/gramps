@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-10 23:43-0700\n"
-"PO-Revision-Date: 2007-10-15 00:25+0300\n"
+"PO-Revision-Date: 2007-12-09 00:25+0300\n"
 "Last-Translator: Eero Tamminen <eerot@sf>\n"
 "Language-Team:  <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -245,7 +245,7 @@ msgstr "Noin"
 
 #: ../src/DateEdit.py:83
 msgid "Range"
-msgstr "Väli"
+msgstr "Välillä"
 
 #: ../src/DateEdit.py:84
 msgid "Span"
@@ -706,7 +706,7 @@ msgstr "Älä näytä varoitusta perumisesta kun tietoja on muutettu"
 
 #: ../src/GrampsCfg.py:181
 msgid "Show plugin status dialog on plugin load error"
-msgstr "Näytä liitännäisten tila -dialogi kun liitännäisen lataaminen epäonnistuu"
+msgstr "Näytä laajennusten tila -dialogi kun laajennusten lataaminen epäonnistuu"
 
 #: ../src/GrampsCfg.py:192 ../src/GrampsLogger/_ErrorReportAssistant.py:47
 #: ../src/RelLib/_MarkerType.py:47
@@ -1762,7 +1762,7 @@ msgstr "_Tietoja"
 
 #: ../src/ViewManager.py:341
 msgid "_Plugin status"
-msgstr "_Liitännäisten tila"
+msgstr "_Laajennusten tila"
 
 #: ../src/ViewManager.py:343
 msgid "_FAQ"
@@ -1863,7 +1863,7 @@ msgstr "Ladataan tiedostomuotoja..."
 
 #: ../src/ViewManager.py:475
 msgid "Loading plugins..."
-msgstr "Ladataan liitännäisiä..."
+msgstr "Ladataan laajennuksia..."
 
 #: ../src/ViewManager.py:487
 msgid "Ready"
@@ -2787,8 +2787,7 @@ msgstr "LaTeX"
 #: ../src/docgen/LPRDoc.py:51
 msgid "Cannot be loaded because python bindings for GNOME print are not installed"
 msgstr ""
-"Ei voida ladata, koska GNOME tulostuslaajennuksia ei ole asennettu Python-"
-"tulkille"
+"Ei voida ladata, koska GNOME tulostuslaajennuksia ei ole asennettu Python-tulkille"
 
 #: ../src/docgen/LPRDoc.py:1206
 msgid "Print Preview"
@@ -6850,7 +6849,7 @@ msgstr "Kohdehakemisto"
 
 #: ../src/plugins/NarrativeWeb.py:3006
 msgid "Narrative Web Site"
-msgstr "Kerronnallinen www-sivusto"
+msgstr "Www-sivusto johdannolla"
 
 #: ../src/plugins/NarrativeWeb.py:3010
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
@@ -7661,8 +7660,7 @@ msgstr "Tarkistaa tiedot käyttäjän määrittelemillä testeillä"
 #: ../src/plugins/WriteCD.py:56
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
 msgstr ""
-"Lataaminen epäonnistui, koska GNOME laajennuksia Pythontulkille ei ole "
-"asennettu"
+"Lataaminen epäonnistui, koska GNOME laajennuksia Python-tulkille ei ole asennettu"
 
 #: ../src/plugins/WriteCD.py:77
 msgid "Export to CD"
@@ -7830,13 +7828,12 @@ msgstr "Avaa valittu työkalu"
 
 #: ../src/PluginUtils/_Plugins.py:435
 msgid "Reload plugins"
-msgstr "Uudelleenlataa liitännäiset"
+msgstr "Uudelleenlataa laajennukset"
 
 #: ../src/PluginUtils/_Plugins.py:436
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
 msgstr ""
-"Yrittää uudelleenladata liitännäiset. Huom. Työkalua itseään ei "
-"uudelleenladata!"
+"Yrittää uudelleenladata laajennukset. Huom: Uudelleenlataustyökalua ei uudelleenladata!"
 
 #: ../src/PluginUtils/_Tool.py:68
 msgid "Debug"
@@ -7885,7 +7882,7 @@ msgstr "_Jatka työkalun käyttöä"
 #: ../src/PluginUtils/_PluginStatus.py:57
 #: ../src/PluginUtils/_PluginStatus.py:129
 msgid "Plugin Status"
-msgstr "Liitännäisten tila"
+msgstr "Laajennusten tila"
 
 #: ../src/PluginUtils/_PluginStatus.py:79
 msgid "File"
@@ -14093,7 +14090,7 @@ msgstr "GeneWeb lähdetiedosto"
 
 #: ../data/gramps.schemas.in.h:1
 msgid "Automatically pop plugin status window"
-msgstr "Näytä automaattisesti liitännäisten tilaikkuna"
+msgstr "Näytä automaattisesti laajennusten tilaikkuna"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Backup database on exit"
@@ -14328,8 +14325,8 @@ msgid ""
 "If set to 1, Plugin Status Window will pop automatically when problems are "
 "detected on plugins load and reload."
 msgstr ""
-"Jos asetettu arvoon 1, liitännäisten tilaikkuna aukeaa automaattisesti kun "
-"liitännäisten (uudelleen)lataamisessa havaitaan ongelmia."
+"Jos asetettu arvoon 1, laajennusten tilaikkuna aukeaa automaattisesti kun "
+"laajennusten (uudelleen) lataamisessa havaitaan ongelmia."
 
 #: ../data/gramps.schemas.in.h:57
 msgid "If set to 1, Tip of the Day will be displayed on startup."
@@ -15356,7 +15353,7 @@ msgid ""
 "gramps-project.org"
 msgstr ""
 "Edistyneemmät käyttäjät voivat luoda omia erikoisraporttejaan kirjoittamalla "
-"sitä varten GRAMPS &quot;liitännäisen&quot;. Enemmän tietoja "
+"sitä varten GRAMPS &quot;laajennuksen&quot;. Enemmän tietoja "
 "erikoisraporteista löytyy osoitteesta http://developers.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:36
