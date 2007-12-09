@@ -497,9 +497,9 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                         db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
                         db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
 
-            # Only do recovery for existing databases
-            if os.path.isfile(self.full_name):
-                env_flags = env_flags | db.DB_RECOVER
+            # As opposed to before, we always try recovery on databases
+            #  in _GrampsBSDDB.py we only do that on existing filenames
+            env_flags = env_flags | db.DB_RECOVER
 
             # Environment name is now based on the filename
             env_name = name
