@@ -1,3 +1,6 @@
+2007-12-09 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Selectors/_SelectRepository.py: handle column changed, bug #1427
+
 2007-12-09  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/CalculateEstimatedDates.py: define set_title
 	* src/plugins/OwnerEditor.py: define build_menu_names
