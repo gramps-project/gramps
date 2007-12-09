@@ -165,8 +165,11 @@ class GrampsBSDDBDupCursor(GrampsBSDDBAssocCursor):
 #
 #-------------------------------------------------------------------------
 class GrampsBSDDB(GrampsDbBase, UpdateCallback):
-    """GRAMPS database object. This object is a base class for other
-    objects."""
+    """ GRAMPS database object for Berkeley DB. 
+        This is replaced for internal use by gen/db/dbdir.py
+        However, this class is still used for import of the 2.2.x 
+        GRDB format. In 3.0+ this format is no longer used.
+    """
 
     def __init__(self, use_txn = True):
         """creates a new GrampsDB"""
@@ -443,6 +446,15 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.reference_map  = self.__open_table(self.full_name, "reference_map",
                                                 dbtype=db.DB_BTREE)
 
+        self.name_group = db.DB(self.env)
+        self.name_group.set_flags(db.DB_DUP)
+        if self.readonly:
+            self.name_group.open(self.full_name, "name_group",
+                             db.DB_HASH, flags=db.DB_RDONLY)
+        else:
+            self.name_group.open(self.full_name, "name_group",
+                             db.DB_HASH, flags=self.__open_flags())
+
         self.__load_metadata()
 
         gstats = self.metadata.get('gender_stats', default=None)
@@ -586,11 +598,6 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.surnames.set_flags(db.DB_DUP|db.DB_DUPSORT)
         self.surnames.open(self.full_name, "surnames", db.DB_BTREE,
                            flags=table_flags)
-
-        self.name_group = db.DB(self.env)
-        self.name_group.set_flags(db.DB_DUP)
-        self.name_group.open(self.full_name, "name_group",
-                             db.DB_HASH, flags=table_flags)
 
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
@@ -1189,6 +1196,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.media_map      = None
         self.event_map      = None
         self.surnames       = None
+        self.name_group     = None
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False

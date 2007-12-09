@@ -342,8 +342,7 @@ class GrampsDbXmlWriter(UpdateCallback):
 
         # Data is written, now write bookmarks.
         self.write_bookmarks()
-
-        self.write_metadata()
+        self.write_namemaps()
 
         self.g.write("</database>\n")
         
@@ -356,6 +355,18 @@ class GrampsDbXmlWriter(UpdateCallback):
         mediapath= self.db.get_mediapath()
         if mediapath is not None:
             self.write_line("mediapath", mediapath, 2)
+
+    def write_namemaps(self):
+        group_map = self.db.get_name_group_keys()
+        name_len = len(group_map)
+        
+        if name_len > 0:
+            self.g.write("  <namemaps>\n")
+            for key in group_map:
+                value = self.db.get_name_group_mapping(key)
+                self.g.write('    <map type="group_as" key="%s" value="%s"/>\n'
+                             % (key, value) )
+            self.g.write("  </namemaps>\n")
 
     def write_bookmarks(self):
         bm_person_len = len(self.db.bookmarks.get())

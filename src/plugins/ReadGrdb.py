@@ -230,6 +230,22 @@ def importData(database, filename, callback=None, cl=0, use_trans=True):
     database.repo_bookmarks.append_list(other_database.repo_bookmarks.get())
     database.note_bookmarks.append_list(other_database.note_bookmarks.get())
 
+    # Copy grouping table
+    group_map = other_database.get_name_group_keys()
+    name_len = len(group_map)
+    if name_len > 0:
+        for key in group_map:
+            value = other_database.get_name_group_mapping(key)
+            if database.has_name_group_key(key) :
+                present = database.get_name_group_mapping(key)
+                if not value == present:
+                    msg = _("Your family tree groups name %s together"
+                            " with %s, did not change this grouping to %s") % (
+                                                        key, present, value)
+                    print msg
+            else:
+                database.set_name_group_mapping(key, value)
+
     # close the other database and clean things up
     other_database.close()
 

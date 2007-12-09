@@ -1,3 +1,19 @@
+2007-12-09 Benny Malengier <benny.malengier@gramps-project.org>
+	Add support for name grouping import/export
+	* src/GrampsDb/_GrampsDbWriteXML.py: write group table out
+	* src/GrampsDb/_GrampsBSDDB.py: group table is no sec table, init it
+		together with primary tables!
+	* src/gen/db/base.py: obtain grouping keys
+	* src/gen/db/dbdir.py: group table is no sec table, init it
+		together with primary tables!
+	* src/gen/utils/dbutils.py: grdb -> grdb copy of grouping table, 
+		copy mediapath.
+	* src/gen/proxy/proxybase.py: obtain grouping keys, add missing
+		bookmark methods
+	* src/gen/proxy/dbbase.py: add obtain grouping keys method
+	* src/GrampsDbUtils/_ReadXML.py: read in group table
+	* src/plugins/ReadGrdb.py: read in group table
+
 2007-12-07  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/PluginUtils/Makefile.am: Missing _PluginsWindows.py
 	* po/test: new unittest dir

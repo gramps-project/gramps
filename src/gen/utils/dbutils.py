@@ -251,7 +251,7 @@ def db_copy(from_db,to_db,callback):
         }
 
     # Start batch transaction to use async TXN and other tricks
-    trans = to_db.transaction_begin("",batch=True)
+    trans = to_db.transaction_begin("", batch=True)
 
     for table_name in tables.keys():
         cursor_func = tables[table_name]['cursor_func']
@@ -268,8 +268,14 @@ def db_copy(from_db,to_db,callback):
             uc.update()
         cursor.close()
 
+    # Copy name grouping
+    group_map = from_db.get_name_group_keys()
+    for key in group_map:
+        value = from_db.get_name_group_mapping(key)
+        to_db.set_name_group_mapping(key, value)
+
     # Commit batch transaction: does nothing, except undoing the tricks
-    to_db.transaction_commit(trans,"")
+    to_db.transaction_commit(trans, "")
 
     # Copy bookmarks over:
     # we already know that there's no overlap in handles anywhere
@@ -287,6 +293,10 @@ def db_copy(from_db,to_db,callback):
     
     # Copy db owner
     to_db.owner = from_db.owner
+    
+    # Copy other selected metadata
+    if from_db.get_mediapath() is not None:
+        to_db.set_mediapath(from_db.get_mediapath())
     
 def set_birth_death_index(db, person):
     birth_ref_index = -1

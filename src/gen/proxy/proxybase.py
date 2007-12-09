@@ -67,6 +67,12 @@ class ProxyDbBase(DbBase):
         """
         return self.db.get_name_group_mapping(name)
 
+    def has_name_group_key(self, name):
+        """
+        Return if a key exists in the name_group table
+        """
+        return self.db.has_name_group_key(name)
+
     def get_name_group_keys(self):
         """
         Returns the defined names that have been assigned to a default grouping
@@ -446,3 +452,35 @@ class ProxyDbBase(DbBase):
 
     def has_gramps_id(self, obj_key, gramps_id):
         return self.db.has_gramps_ids(obj_key, gramps_id)
+
+    def get_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.bookmarks
+
+    def get_family_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.family_bookmarks
+
+    def get_event_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.event_bookmarks
+
+    def get_place_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.place_bookmarks
+
+    def get_source_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.source_bookmarks
+
+    def get_media_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.media_bookmarks
+
+    def get_repo_bookmarks(self):
+        """returns the list of Person handles in the bookmarks"""
+        return self.repo_bookmarks
+
+    def get_note_bookmarks(self):
+        """returns the list of Note handles in the bookmarks"""
+        return self.note_bookmarks

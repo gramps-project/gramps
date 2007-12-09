@@ -533,6 +533,12 @@ class DbBase:
         """
         raise NotImplementedError
 
+    def has_name_group_key(self, name):
+        """
+        Return if a key exists in the name_group table
+        """
+        raise NotImplementedError
+
     def get_name_group_keys(self):
         """
         Returns the defined names that have been assigned to a default grouping

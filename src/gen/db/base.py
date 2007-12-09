@@ -262,7 +262,6 @@ class GrampsDbBase(GrampsDBCallback):
         self.note_bookmarks = GrampsDbBookmarks()
         self._bm_changes = 0
         self.path = ""
-        self.name_group = {}
         self.surname_list = []
 
     def set_prefixes(self, person, media, family, source, place, event,
@@ -1197,6 +1196,12 @@ class GrampsDbBase(GrampsDBCallback):
         Returns the defined names that have been assigned to a default grouping
         """
         return [unicode(k) for k in self.name_group.keys()]
+
+    def has_name_group_key(self, name):
+        """
+        Return if a key exists in the name_group table
+        """
+        return self.name_group.has_key(str(name))
 
     def set_name_group_mapping(self, name, group):
         """

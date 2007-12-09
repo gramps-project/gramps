@@ -532,7 +532,15 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                                                 dbtype=db.DB_BTREE)
         if callback:
             callback(37)
-
+  
+        self.name_group = db.DB(self.env)
+        self.name_group.set_flags(db.DB_DUP)
+        if self.readonly:
+            self.name_group.open(_mkname(self.full_name, NAME_GROUP), NAME_GROUP,
+                             db.DB_HASH, flags=db.DB_RDONLY)
+        else:
+            self.name_group.open(_mkname(self.full_name, NAME_GROUP), NAME_GROUP,
+                             db.DB_HASH, flags=self.__open_flags())
         self.__load_metadata()
 
         gstats = self.metadata.get('gender_stats', default=None)
@@ -695,11 +703,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.surnames.set_flags(db.DB_DUP | db.DB_DUPSORT)
         self.surnames.open(_mkname(self.full_name, SURNAMES), SURNAMES, 
                            db.DB_BTREE, flags=table_flags)
-
-        self.name_group = db.DB(self.env)
-        self.name_group.set_flags(db.DB_DUP)
-        self.name_group.open(_mkname(self.full_name, NAME_GROUP), NAME_GROUP,
-                             db.DB_HASH, flags=table_flags)
 
         self.id_trans = db.DB(self.env)
         self.id_trans.set_flags(db.DB_DUP)
@@ -1290,6 +1293,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.media_map      = None
         self.event_map      = None
         self.surnames       = None
+        self.name_group     = None
         self.env            = None
         self.metadata       = None
         self.db_is_open     = False
