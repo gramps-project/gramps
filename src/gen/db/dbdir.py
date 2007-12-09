@@ -1047,7 +1047,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         """
         Reindex all primary records in the database.
         This will be a slow process for large databases.
-
         """
 
         # First, remove the reference map and related tables
@@ -1067,8 +1066,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         callback(3)
 
         # Open reference_map and primapry map
-        self.reference_map  = self.__open_table(
-            _mkname(self.full_name, REF_MAP), REF_MAP, dbtype=db.DB_BTREE)
+        self.reference_map  = self.__open_table(self.full_name, REF_MAP, 
+                                                dbtype=db.DB_BTREE)
         
         open_flags = self.__open_flags()
         self.reference_map_primary_map = db.DB(self.env)

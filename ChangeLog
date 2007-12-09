@@ -1,4 +1,7 @@
 2007-12-09 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/gen/db/dbdir.py: rebuild ref map correctly, bug #1421
+
+2007-12-09 Benny Malengier <benny.malengier@gramps-project.org>
 	Add support for name grouping import/export
 	* src/GrampsDb/_GrampsDbWriteXML.py: write group table out
 	* src/GrampsDb/_GrampsBSDDB.py: group table is no sec table, init it
