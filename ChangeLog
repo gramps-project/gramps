@@ -1,3 +1,6 @@
+2007-12-10 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/RelLib/_Event.py: add attr to list of sec objects, bug #1318
+
 2007-12-09  Alex Roitman  <shura@gramps-project.org>
 	* data/grampsxml.rng: Add namemaps.
 	* data/grampsxml.dtd: Add namemaps.
