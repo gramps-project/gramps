@@ -101,10 +101,10 @@ class NameDisplay:
 
     STANDARD_FORMATS = [
         (Name.DEF,_("Default format (defined by GRAMPS preferences)"),'',_ACT),
-        (Name.LNFN,_("Family name, Given name Patronymic"),'%p %l, %f %y %s',_ACT),
-        (Name.FNLN,_("Given name Family name"),'%f %y %p %l %s',_ACT),
-        (Name.PTFN,_("Patronymic, Given name"),'%p %y, %s %f',_ACT),
-        (Name.FN,_("Given name"),'%f',_ACT)
+        (Name.LNFN,_("Surname, Given Patronymic"),'%p %l, %f %y %s',_ACT),
+        (Name.FNLN,_("Given Surname"),'%f %y %p %l %s',_ACT),
+        (Name.PTFN,_("Patronymic, Given"),'%p %y, %s %f',_ACT),
+        (Name.FN,_("Given"),'%f',_ACT)
     ]
     
     def __init__(self):
@@ -440,23 +440,22 @@ def fn(%s):
 
         The following substitutions are made:
             %t -> title
-            %f -> given name (first name)
+            %f -> given (first name)
             %p -> prefix
             %s -> suffix
-            %l -> family name (last name, surname)
+            %l -> surname (last name)
             %y -> patronymic
-            %c -> call name
+            %c -> call
+            %x -> common
+            %i -> initials
         The capital letters are substituted for capitalized name components.
         The %% is substituted with the single % character.
         All the other characters in the fmt_str are unaffected.
-        
         """
-
         func = self.__class__.format_funcs.get(format_str)
         if func == None:
             func = self._gen_cooked_func(format_str)
             self.__class__.format_funcs[format_str] = func
-
         try:
             s = func(first,surname,prefix,suffix,patronymic,title,call)
         except (ValueError,TypeError,):

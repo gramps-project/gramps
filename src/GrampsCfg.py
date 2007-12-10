@@ -387,8 +387,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         name_column = gtk.TreeViewColumn(_('Format'), 
                                          name_renderer, 
                                          text=COL_NAME)
-        name_renderer.set_property('editable', True)
+        name_renderer.set_property('editable', False)
         name_renderer.connect('edited', self.__change_name)
+        self.name_renderer = name_renderer
         format_tree.append_column(name_column)
         example_renderer = gtk.CellRendererText()
         example_column = gtk.TreeViewColumn(_('Example'), 
@@ -457,6 +458,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         idx = self.selected_fmt[COL_NUM] < 0
         self.remove_button.set_sensitive(idx)
         self.edit_button.set_sensitive(idx)
+        self.name_renderer.set_property('editable', idx)
+
 
     def cb_edit_fmt_str(self, obj):
         """

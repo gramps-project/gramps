@@ -1,3 +1,8 @@
+2007-12-10  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/GrampsCfg.py: Fixed bug in being able to edit the uneditable
+	* src/BasicUtils/_NameDisplay.py: Renamed standard name patterns
+	  to match new pattern name keywords
+
 2007-12-10 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/gen/lib/notebase.py: change comment string
 	* src/gen/lib/person.py: change comment string
