@@ -252,7 +252,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # a dummy name to be used in the examples
         self.examplename = Name()
         self.examplename.set_title('Dr.')
-        self.examplename.set_first_name('Edwin')
+        self.examplename.set_first_name('Edwin Jose')
         self.examplename.set_surname_prefix('Rev.')
         self.examplename.set_surname('Smith')
         self.examplename.set_suffix('Sr')
@@ -343,6 +343,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             retval = []
             for word in new_text.split():
                 if word == word.upper():
+                    retval.append(word)
+                elif len(word) > 0 and word[0] == '%':
                     retval.append(word)
                 else:
                     retval.append(word.title())
@@ -517,11 +519,11 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # Display name:
         self.examplename = Name()
         self.examplename.set_title('Dr.')
-        self.examplename.set_first_name('Edwin')
+        self.examplename.set_first_name('Edwin Jose')
         self.examplename.set_surname_prefix('Rev.')
         self.examplename.set_surname('Smith')
         self.examplename.set_suffix('Sr')
-        self.examplename.set_patronymic('Patronymic')
+        self.examplename.set_patronymic('Wilson')
         self.examplename.set_call_name('Ed')
         # get the model for the combo and the treeview
         active = _nd.get_default_format()
