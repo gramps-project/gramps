@@ -256,7 +256,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.examplename.set_surname_prefix('Rev.')
         self.examplename.set_surname('Smith')
         self.examplename.set_suffix('Sr')
-        self.examplename.set_patronymic('Patronymic')
+        self.examplename.set_patronymic('Wilson')
         self.examplename.set_call_name('Ed')
 
         table = gtk.Table(2, 2)
@@ -340,16 +340,23 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         database is simply changing the contents of the name file.
         """
         if len(new_text) > 0 and text != new_text:
+            retval = []
+            for word in new_text.split():
+                if word == word.upper():
+                    retval.append(word)
+                else:
+                    retval.append(word.title())
+            new_text = " ".join(retval)
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
             #self.fmt_model.set_value(node, COL_NAME, new_text)
             exmpl = _nd.format_str(self.examplename, new_text)
-            self.fmt_model.set(self.iter, COL_NAME, new_text.title(), 
+            self.fmt_model.set(self.iter, COL_NAME, new_text, 
                                COL_FMT, new_text, 
                                COL_EXPL, exmpl)
-            self.selected_fmt = (num, new_text.title(), new_text, exmpl)
-            _nd.edit_name_format(num, new_text.title(), new_text)
+            self.selected_fmt = (num, new_text, new_text, exmpl)
+            _nd.edit_name_format(num, new_text, new_text)
             self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                                only_active=False)
 
@@ -375,7 +382,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         # make a treeview for listing all the name formats
         format_tree = gtk.TreeView(self.fmt_model)
         name_renderer = gtk.CellRendererText()
-        name_column = gtk.TreeViewColumn(_('Format Name'), 
+        name_column = gtk.TreeViewColumn(_('Format'), 
                                          name_renderer, 
                                          text=COL_NAME)
         name_renderer.set_property('editable', True)
