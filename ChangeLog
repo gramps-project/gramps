@@ -1,3 +1,9 @@
+2007-12-10  Zdenek Hatas  <zdenek.hatas@gmail.com>
+	* src/DateHandler/_Date_cs.py: czech datehandler added
+	* src/DateHandler/__init__.py: czech datehandler included
+	* src/DateHandler/Makefile.am: czech datehandler included
+	* po/POTFILES.in: czech datehandler included
+
 2007-12-09  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/GrampsCfg.py: Rearranged name display preference settings
 	* src/BasicUtils/_NameDisplay.py: allow title-case name patterns

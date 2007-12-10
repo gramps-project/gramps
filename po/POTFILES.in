@@ -82,6 +82,7 @@ src/DataViews/_RepositoryView.py
 src/DataViews/_SourceView.py
 
 # DateHandler package
+src/DateHandler/_Date_cs.py
 src/DateHandler/_Date_de.py
 src/DateHandler/_DateDisplay.py
 src/DateHandler/_Date_es.py

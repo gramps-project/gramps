@@ -29,6 +29,7 @@ from _DateHandler import LANG, LANG_SHORT, \
     LANG_TO_PARSER, LANG_TO_DISPLAY, register_datehandler
 
 # Import all the localized handlers
+import _Date_cs
 import _Date_de
 import _Date_es
 import _Date_fi
