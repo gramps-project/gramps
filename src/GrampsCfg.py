@@ -102,23 +102,35 @@ def get_researcher():
 #
 #
 #-------------------------------------------------------------------------
+class DisplayNameEditor(ManagedWindow.ManagedWindow):
+    def __init__(self, uistate, dbstate, track, dialog):
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], DisplayNameEditor)
+        self.dialog = dialog
+        self.dbstate = dbstate
+        self.set_window(
+            gtk.Dialog(_('Display Name Editor'), 
+                       flags=gtk.DIALOG_NO_SEPARATOR, 
+                       buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
+            None, _('Display Name Editor'), None)
+        table = self.dialog._build_custom_name_ui()
+        self.window.vbox.add(table)
+        self.window.set_default_size(600, 300)
+        self.window.connect('response', self.close)
+        self.show()
+    def build_menu_names(self, obj):
+        return (_(" Name Editor"), _("Preferences"))
+
 class GrampsPreferences(ManagedWindow.ManagedWindow):
     def __init__(self, uistate, dbstate):
-
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], GrampsPreferences)
-
         self.dbstate = dbstate
-        
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], GrampsPreferences)
         self.set_window(
             gtk.Dialog(_('Preferences'), 
                        flags=gtk.DIALOG_NO_SEPARATOR, 
                        buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
             None, _('Preferences'), None)
-        
         panel = gtk.Notebook()
-
         self.original = Config.get(Config.TRANSACTIONS)
-        
         self.window.vbox.add(panel)
         self.window.connect('response', self.done)
         panel.append_page(self.add_behavior_panel(), 
@@ -127,8 +139,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Database')))
         panel.append_page(self.add_formats_panel(), 
                           MarkupLabel(_('Display')))
-        panel.append_page(self.add_name_panel(), 
-                          MarkupLabel(_('Name Display')))
+        #panel.append_page(self.add_name_panel(), 
+        #                  MarkupLabel(_('Name Display')))
         panel.append_page(self.add_prefix_panel(), 
                           MarkupLabel(_('ID Formats')))
         panel.append_page(self.add_advanced_panel(), 
@@ -137,7 +149,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Researcher')))
         panel.append_page(self.add_color_panel(), 
                           MarkupLabel(_('Marker Colors')))
-
         self.window.show_all()
         self.show()
 
@@ -303,6 +314,54 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         
         return name_format_model, the_index
 
+    def __new_name(self, obj):
+        f = _("%s, %s (%s)" % (_("Surname"),
+                               _("Given"),
+                               _("Common"),
+                               ))
+        i = _nd.add_name_format(f.title(), f)
+        node = self.fmt_model.append(row=[i, f.title(), f, 
+                                   _nd.format_str(self.examplename, f)])
+        path = self.fmt_model.get_path(node)
+        self.format_list.set_cursor(path, 
+                                    focus_column=self.name_column, 
+                                    start_editing=True)
+
+    def __edit_name(self, obj):
+        store, node = self.format_list.get_selection().get_selected()
+        path = self.fmt_model.get_path(node)
+        self.format_list.set_cursor(path, 
+                                    focus_column=self.name_column, 
+                                    start_editing=True)
+
+    def __change_name(self, text, path, new_text):
+        """
+        If the new string is empty, do nothing. Otherwise, renaming the
+        database is simply changing the contents of the name file.
+        """
+        if len(new_text) > 0 and text != new_text:
+            num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
+            node = self.fmt_model.get_iter(path)
+            oldname = self.fmt_model.get_value(node, COL_NAME)
+            #self.fmt_model.set_value(node, COL_NAME, new_text)
+            exmpl = _nd.format_str(self.examplename, new_text)
+            self.fmt_model.set(self.iter, COL_NAME, new_text.title(), 
+                               COL_FMT, new_text, 
+                               COL_EXPL, exmpl)
+            self.selected_fmt = (num, new_text.title(), new_text, exmpl)
+            _nd.edit_name_format(num, new_text.title(), new_text)
+            self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
+                                                               only_active=False)
+
+    def __format_change(self, obj):
+        try:
+            t = (_nd.format_str(self.name, escape(obj.get_text())))
+            self.valid = True
+        except NameDisplayError:
+            t = _("Invalid or incomplete format definition")
+            self.valid = False
+        self.fmt_model.set(self.iter, COL_EXPL, t)
+
     def _build_custom_name_ui(self):
         """
         UI to manage the custom name formats
@@ -319,6 +378,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         name_column = gtk.TreeViewColumn(_('Format Name'), 
                                          name_renderer, 
                                          text=COL_NAME)
+        name_renderer.set_property('editable', True)
+        name_renderer.connect('edited', self.__change_name)
         format_tree.append_column(name_column)
         example_renderer = gtk.CellRendererText()
         example_column = gtk.TreeViewColumn(_('Example'), 
@@ -341,10 +402,12 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.iter = None
 
         insert_button = gtk.Button(stock=gtk.STOCK_ADD)
-        insert_button.connect('clicked', self.cb_insert_fmt_str)
+        insert_button.connect('clicked', self.__new_name)
+                              #self.cb_insert_fmt_str)
 
         self.edit_button = gtk.Button(stock=gtk.STOCK_EDIT)
-        self.edit_button.connect('clicked', self.cb_edit_fmt_str)
+        self.edit_button.connect('clicked', self.__edit_name)
+                                 #self.cb_edit_fmt_str)
         self.edit_button.set_sensitive(False)
 
         self.remove_button = gtk.Button(stock=gtk.STOCK_REMOVE)
@@ -354,7 +417,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.attach(insert_button, 0, 1, 1, 2, yoptions=0)
         table.attach(self.remove_button, 1, 2, 1, 2, yoptions=0)
         table.attach(self.edit_button,   2, 3, 1, 2, yoptions=0)
-
+        self.format_list = format_tree
+        self.name_column = name_column
         return table
 
     def cb_name_changed(self, obj):
@@ -437,26 +501,62 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                                                            only_active=False)
 
     def add_formats_panel(self):
-        table = gtk.Table(3, 8)
+        row = 0
+        table = gtk.Table(4, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
 
+        # Display name:
+        self.examplename = Name()
+        self.examplename.set_title('Dr.')
+        self.examplename.set_first_name('Edwin')
+        self.examplename.set_surname_prefix('Rev.')
+        self.examplename.set_surname('Smith')
+        self.examplename.set_suffix('Sr')
+        self.examplename.set_patronymic('Patronymic')
+        self.examplename.set_call_name('Ed')
+        # get the model for the combo and the treeview
+        active = _nd.get_default_format()
+        self.fmt_model, active = self._build_name_format_model(active)
+        # set up the combo to choose the preset format
+        self.fmt_obox = gtk.ComboBox()
+        cell = gtk.CellRendererText()
+        self.fmt_obox.pack_start(cell, True)
+        self.fmt_obox.add_attribute(cell, 'text', 1)
+        self.fmt_obox.set_model(self.fmt_model)
+        # set the default value as active in the combo
+        self.fmt_obox.set_active(active)
+        self.fmt_obox.connect('changed', self.cb_name_changed)
+        # label for the combo
+        lwidget = BasicLabel("%s: " % _('Name format'))
+        lwidget.set_use_underline(True)
+        lwidget.set_mnemonic_widget(self.fmt_obox)
+        hbox = gtk.HBox()
+        btn = gtk.Button("%s..." % _('Edit') )
+        btn.connect('clicked', self.cb_name_dialog)
+        hbox.pack_start(self.fmt_obox, expand=True, fill=True)
+        hbox.pack_start(btn, expand=False, fill=False)
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(hbox,    1, 3, row, row+1, yoptions=0)
+        row += 1
+
+        # Date format:
         obox = gtk.combo_box_new_text()
         formats = DateHandler.get_date_formats()
         for item in formats:
             obox.append_text(item)
-
         active = Config.get(Config.DATE_FORMAT)
         if active >= len(formats):
             active = 0
         obox.set_active(active)
         obox.connect('changed', self.date_format_changed)
-
         lwidget = BasicLabel("%s: " % _('Date format'))
-        table.attach(lwidget, 0, 1, 0, 1, yoptions=0)
-        table.attach(obox, 1, 3, 0, 1, yoptions=0)
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox, 1, 3, row, row+1, yoptions=0)
+        row += 1
 
+        # Surname guessing:
         obox = gtk.combo_box_new_text()
         formats = _surname_styles
         for item in formats:
@@ -465,34 +565,38 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         obox.connect('changed', 
                      lambda obj: Config.set(Config.SURNAME_GUESSING, 
                                             obj.get_active()))
-
         lwidget = BasicLabel("%s: " % _('Surname Guessing'))
-        table.attach(lwidget, 0, 1, 1, 2, yoptions=0)
-        table.attach(obox, 1, 3, 1, 2, yoptions=0)
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox, 1, 3, row, row+1, yoptions=0)
+        row += 1
 
+        # Status bar:
         obox = gtk.combo_box_new_text()
         formats = [_("Active person's name and ID"), 
                    _("Relationship to home person")]
-        
         for item in formats:
             obox.append_text(item)
         active = Config.get(Config.STATUSBAR)
-        
         if active < 2:
             obox.set_active(0)
         else:
             obox.set_active(1)
         obox.connect('changed', 
                      lambda obj: Config.set(Config.STATUSBAR, 2*obj.get_active()))
-
         lwidget = BasicLabel("%s: " % _('Status bar'))
-        table.attach(lwidget, 0, 1, 2, 3, yoptions=0)
-        table.attach(obox, 1, 3, 2, 3, yoptions=0)
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox,    1, 3, row, row+1, yoptions=0)
+        row += 1
 
+        # Text in sidebar:
         self.add_checkbox(table, _("Show text in sidebar buttons (takes effect on restart)"), 
-                          4, Config.SIDEBAR_TEXT)
+                          row, Config.SIDEBAR_TEXT)
+        row += 1
                      
         return table
+
+    def cb_name_dialog(self, obj):
+        win = DisplayNameEditor(self.uistate, self.dbstate, self.track, self)
 
     def date_format_changed(self, obj):
         from QuestionDialog import OkDialog
@@ -698,7 +802,8 @@ class NameFormatEditDlg:
         self.examplelabel = self.top.get_widget('example_label')
         
         self.nameentry = self.top.get_widget('name_entry')
-        self.nameentry.set_text(self.fmt_name)
+        self.nameentry.set_text('<span weight="bold">%s</span>' % self.fmt_name)
+        self.nameentry.set_use_markup(True)
         
         self.formatentry = self.top.get_widget('format_entry')
         self.formatentry.connect('changed', self.cb_format_changed)
@@ -745,3 +850,5 @@ class NameFormatEditDlg:
 
         self.examplelabel.set_text(sample)
         self.examplelabel.set_use_markup(True)
+        self.nameentry.set_text('<span weight="bold">%s</span>' % obj.get_text().title())
+        self.nameentry.set_use_markup(True)

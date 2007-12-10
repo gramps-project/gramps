@@ -343,6 +343,7 @@ class NameDisplay:
         for (code, ikeyword) in d_keys:
             exp, keyword, ikeyword = d[code]
             format_str = format_str.replace(ikeyword,"%"+ code)
+            format_str = format_str.replace(ikeyword.title(),"%"+ code)
             format_str = format_str.replace(ikeyword.upper(),"%"+ code.upper())
         # Next, go through and do key-word replacement.
         # Just replace keywords with
@@ -353,6 +354,7 @@ class NameDisplay:
         for (code, keyword) in d_keys:
             exp, keyword, ikeyword = d[code]
             format_str = format_str.replace(keyword,"%"+ code)
+            format_str = format_str.replace(keyword.title(),"%"+ code)
             format_str = format_str.replace(keyword.upper(),"%"+ code.upper())
         # Get lower and upper versions of codes:
         codes = d.keys() + [c.upper() for c in d.keys()]
