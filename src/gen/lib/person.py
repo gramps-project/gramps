@@ -350,6 +350,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
+        #don't count double, notes can be found in sourcref
         return self.get_sourcref_child_list() + self.source_list \
                + self.event_ref_list
 

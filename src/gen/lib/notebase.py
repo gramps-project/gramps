@@ -35,7 +35,7 @@ class NoteBase:
     """
     Base class for storing notes.
 
-    Starting in 2.3 branch, the objects may have multiple notes.
+    Starting in 3.0 branch, the objects may have multiple notes.
     Internally, this class maintains a list of Note handles,
     as a note_list attribute of the NoteBase object.
     """

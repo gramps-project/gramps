@@ -220,7 +220,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
         """
-        return self.media_list + self.source_list
+        return self.get_sourcref_child_list() + self.source_list
 
     def is_empty(self):
         """
