@@ -173,7 +173,8 @@ class IndivCompleteReport(Report):
 
         if parent:
             self.normal_cell('%(parent)s, relationship: %(relation)s' %
-                               { 'parent' : parent, 'relation' : rel },mark)
+                               { 'parent' : parent, 'relation' : rel },
+                             mark=mark)
         else:
             self.normal_cell('')
         self.doc.end_row()

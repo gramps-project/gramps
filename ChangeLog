@@ -1,3 +1,6 @@
+2007-12-11 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/IndivComplete.py: bug on buglist, wrong parameter
+
 2007-12-10 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/RelLib/_Event.py: add attr to list of sec objects, bug #1318
 
