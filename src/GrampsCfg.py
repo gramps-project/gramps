@@ -319,8 +319,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                                _("Given"),
                                _("Common"),
                                ))
-        i = _nd.add_name_format(f.title(), f)
-        node = self.fmt_model.append(row=[i, f.title(), f, 
+        i = _nd.add_name_format(f, f)
+        node = self.fmt_model.append(row=[i, f, f, 
                                    _nd.format_str(self.examplename, f)])
         path = self.fmt_model.get_path(node)
         self.format_list.set_cursor(path, 
@@ -340,15 +340,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         database is simply changing the contents of the name file.
         """
         if len(new_text) > 0 and text != new_text:
-            retval = []
-            for word in new_text.split():
-                if word == word.upper():
-                    retval.append(word)
-                elif len(word) > 0 and word[0] == '%':
-                    retval.append(word)
-                else:
-                    retval.append(word.title())
-            new_text = " ".join(retval)
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
@@ -862,5 +853,5 @@ class NameFormatEditDlg:
 
         self.examplelabel.set_text(sample)
         self.examplelabel.set_use_markup(True)
-        self.nameentry.set_text('<span weight="bold">%s</span>' % obj.get_text().title())
+        self.nameentry.set_text('<span weight="bold">%s</span>' % obj.get_text())
         self.nameentry.set_use_markup(True)
