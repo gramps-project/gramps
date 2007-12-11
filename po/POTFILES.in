@@ -213,14 +213,6 @@ src/GrampsDbUtils/_WriteGrdb.py
 src/GrampsDbUtils/_WriteXML.py
 src/GrampsDbUtils/__init__.py
 
-# gen/proxy
-src/gen/proxy/living.py
-src/gen/proxy/private.py
-src/gen/proxy/filter.py
-src/gen/proxy/proxybase.py
-src/gen/proxy/dbbase.py
-src/gen/proxy/__init__.py
-
 # GrampsLocale package
 src/GrampsLocale/_GrampsLocale.py
 
