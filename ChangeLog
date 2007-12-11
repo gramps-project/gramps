@@ -1,4 +1,11 @@
 2007-12-10  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/ViewManager.py: exposed a private method via a new method, 
+	  post_load_newdb()
+	* src/ArgHandler.py: made ArgHandler.handle_args() return filename,
+	  and filetype, if commandline or recentfile
+	* src/gramps_main.py: handles return values from AH.handle_args()
+
+2007-12-10  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DbManager.py: fixed issue in breaking lock on lock
 	which has already been removed
 

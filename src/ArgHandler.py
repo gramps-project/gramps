@@ -312,13 +312,13 @@ class ArgHandler:
                     print "Type: GEDCOM file"
                 elif filetype == const.APP_GRAMPS_XML:
                     print "Type: GRAMPS XML database"
-
+                    
                 try:
-                    self.vm.read_recent_file(filename, filetype)
+                    self.vm.db_loader.read_file(filename, filetype)
                     print "Opened successfully!"
                     success = True
                 except:
-                    print "Cannot open %s. Exiting..."
+                    print "Cannot open '%s'. Exiting..." % filename
 
             elif filetype in (const.APP_GRAMPS_PKG,):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
@@ -350,11 +350,10 @@ class ArgHandler:
                 sys.exit(1)
             if success:
                 # Add the file to the recent items
-                #RecentFiles.recent_files(filename,filetype)
-                pass
+                RecentFiles.recent_files(filename,const.APP_GRAMPS)
             else:
                 sys.exit(1)
-            return
+            return (filename, filetype)
            
         if self.open:
             # Filename to open was given. Open it natively (grdb or any of
@@ -430,17 +429,19 @@ class ArgHandler:
             print "Exiting."
             sys.exit(0)
 
-        ##   read recent file is broken in GRAMPS 30 ! DISABLE
-        ##elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
-        ##    rf = Config.get(Config.RECENT_FILE)
-        ##
-        ##    if os.path.isfile(rf):
-        ##        filetype = Mime.get_type(rf)
-        ##        self.vm.read_recent_file(rf, filetype)
-        ##    elif os.path.isdir(rf):
-        ##        if os.path.isfile(os.path.join(rf, "name.txt")) and \
-        ##                not os.path.isfile(os.path.join(rf,"need_recover")):
-        ##            self.vm.read_recent_file(rf, 'x-directory/normal')
+        ##  read recent file is broken in GRAMPS 30 ! DISABLE
+        elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
+            filename = Config.get(Config.RECENT_FILE)
+            self.vm.db_loader.read_file(filename, const.APP_GRAMPS)
+            return (filename, const.APP_GRAMPS)
+
+           #if os.path.isfile(rf):
+           #    filetype = Mime.get_type(rf)
+           #    self.vm.read_recent_file(rf, filetype)
+           #elif os.path.isdir(rf):
+           #    if os.path.isfile(os.path.join(rf, "name.txt")) and \
+           #            not os.path.isfile(os.path.join(rf,"need_recover")):
+           #        self.vm.read_recent_file(rf, 'x-directory/normal')
 
     #-------------------------------------------------------------------------
     #

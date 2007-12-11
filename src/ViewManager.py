@@ -575,6 +575,17 @@ class ViewManager:
         if not self.state.db.is_open():
             self.__open_activate(None)
 
+    def post_load_newdb(self, filename, filetype):
+        # Attempt to figure out the database title
+        path = os.path.join(filename, "name.txt")
+        try:
+            ifile = open(path)
+            title = ifile.readline().strip()
+            ifile.close()
+        except:
+            title = filename
+        self.__post_load_newdb(filename, filetype, title)
+
     def __do_load_plugins(self):
         """
         Loads the plugins at initialization time.  We load the document 

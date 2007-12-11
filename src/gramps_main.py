@@ -248,8 +248,11 @@ class Gramps:
         # we may need to change the order of operation
         ah = ArgHandler.ArgHandler(state, self.vm, args)
         if ah.need_gui():
-            ah.handle_args()
+            retval = ah.handle_args()
             self.vm.post_init_interface()
+            if retval:
+                filename, filetype = retval
+                self.vm.post_load_newdb(filename, filetype)
         else:
             ah.handle_args()
             self.vm.post_init_interface()
