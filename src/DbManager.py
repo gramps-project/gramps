@@ -356,7 +356,8 @@ class DbManager:
         the display appropriately.
         """
         try:
-            os.unlink(os.path.join(self.lock_file, "lock"))
+            if os.path.exists(os.path.join(self.lock_file, "lock")):
+                os.unlink(os.path.join(self.lock_file, "lock"))
             store, node = self.selection.get_selected()
             dbpath = store.get_value(node, PATH_COL)
             (tval, last) = time_val(dbpath)
