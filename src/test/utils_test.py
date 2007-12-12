@@ -59,6 +59,7 @@ def suite1():
         keyword, code, standard, upper = line
         suite.addTest(TestCase('keyword-%04d', 'keyword', keyword, standard))
         suite.addTest(TestCase('translation-%04d', 'translation', standard, keyword))
+        suite.addTest(TestCase('translation-%04d', 'translation', standard.lower(), keyword))
         suite.addTest(TestCase('translation-%04d', 'translation', upper, keyword.upper()))
     return suite
 
