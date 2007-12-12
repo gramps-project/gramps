@@ -301,17 +301,18 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         Create a common model for ComboBox and TreeView
         """
         name_format_model = gtk.ListStore(int, str, str, str)
-
         index = 0        
         the_index = 0
-        
         for num, name, fmt_str, act in _nd.get_name_format():
+            translation = fmt_str
+            for key in Utils.get_keywords():
+                if key in translation:
+                    translation = translation.replace(key, Utils.get_translation_from_keyword(key))
             self.examplename.set_display_as(num)
             name_format_model.append(
-                row=[num, name, fmt_str, _nd.display_name(self.examplename)])
+                row=[num, translation, fmt_str, _nd.display_name(self.examplename)])
             if num == active: the_index = index
             index += 1
-        
         return name_format_model, the_index
 
     def __new_name(self, obj):
@@ -319,8 +320,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                                _("Given"),
                                _("Common"),
                                ))
-        i = _nd.add_name_format(f, f)
-        node = self.fmt_model.append(row=[i, f, f, 
+        i = _nd.add_name_format(f, f.lower())
+        node = self.fmt_model.append(row=[i, f, f.lower(), 
                                    _nd.format_str(self.examplename, f)])
         path = self.fmt_model.get_path(node)
         self.format_list.set_cursor(path, 
@@ -340,16 +341,19 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         database is simply changing the contents of the name file.
         """
         if len(new_text) > 0 and text != new_text:
+            pattern = new_text
+            for key in Utils.get_translations():
+                if key in pattern:
+                    pattern = pattern.replace(key, Utils.get_keyword_from_translation(key))
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
-            #self.fmt_model.set_value(node, COL_NAME, new_text)
-            exmpl = _nd.format_str(self.examplename, new_text)
+            exmpl = _nd.format_str(self.examplename, pattern)
             self.fmt_model.set(self.iter, COL_NAME, new_text, 
-                               COL_FMT, new_text, 
+                               COL_FMT, pattern, 
                                COL_EXPL, exmpl)
-            self.selected_fmt = (num, new_text, new_text, exmpl)
-            _nd.edit_name_format(num, new_text, new_text)
+            self.selected_fmt = (num, new_text, pattern, exmpl)
+            _nd.edit_name_format(num, new_text, pattern)
             self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                                only_active=False)
 

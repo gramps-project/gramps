@@ -1,3 +1,7 @@
+2007-12-11  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/GrampsCfg.py: added keyword and translation functions
+	* src/Utils.py: Name Display Editor should work in locale
+
 2007-12-10  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/ViewManager.py: exposed a private method via a new method, 
 	  post_load_newdb()

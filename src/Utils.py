@@ -1089,3 +1089,50 @@ def profile(func, *args):
     stats.print_stats(100)
     stats.print_callers(100)
     
+#-------------------------------------------------------------------------
+#
+# Keyword translation interface 
+#
+#-------------------------------------------------------------------------
+
+# keyword, code, translated standard, translated upper
+KEYWORDS = [("title",     "t", _("Title"),     _("TITLE")),
+            ("given",     "f", _("Given"),     _("GIVEN")),
+            ("prefix",    "p", _("Prefix"),    _("PREFIX")),
+            ("surname",   "l", _("Surname"),   _("SURNAME")),
+            ("suffix",    "s", _("Suffix"),    _("SUFFIX")),
+            ("patronymic","y", _("Patronymic"),_("PATRONYMIC")),
+            ("call",      "c", _("Call"),      _("CALL")),
+            ("common",    "x", _("Common"),    _("COMMON")),
+            ("initials",  "i", _("Initials"),  _("INITIALS"))
+            ]
+KEY_TO_TRANS = {}
+TRANS_TO_KEY = {}
+for (key, code, standard, upper) in KEYWORDS:
+    KEY_TO_TRANS[key] = standard
+    KEY_TO_TRANS[key.upper()] = upper
+    KEY_TO_TRANS["%" + ("%s" % code)] = standard
+    KEY_TO_TRANS["%" + ("%s" % code.upper())] = upper
+    TRANS_TO_KEY[standard] = key
+    TRANS_TO_KEY[upper] = key
+
+def get_translation_from_keyword(keyword):
+    """ Return the translation of keyword """
+    return KEY_TO_TRANS.get(keyword, keyword)
+
+def get_keyword_from_translation(word):
+    """ Return the keyword of translation """
+    return TRANS_TO_KEY.get(word, word)
+
+def get_keywords():
+    """ Get all keywords, longest to shortest """
+    keys = KEY_TO_TRANS.keys()
+    keys.sort(lambda a,b: -cmp(len(a), len(b)))
+    return keys
+
+def get_translations():
+    """ Get all translations, longest to shortest """
+    trans = TRANS_TO_KEY.keys()
+    trans.sort(lambda a,b: -cmp(len(a), len(b)))
+    return trans
+    
