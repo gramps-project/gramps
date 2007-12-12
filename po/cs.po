@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-30 10:13+0100\n"
-"PO-Revision-Date: 2007-12-12 12:36+0100\n"
+"PO-Revision-Date: 2007-12-12 22:11+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -360,6 +360,9 @@ msgid ""
 "\n"
 "Please create a new GRAMPS database and import the file."
 msgstr ""
+"Soubor typu \"%s\" nemůže být otevřen přímo.\n"
+"\n"
+"Vytvořte prosím novou databázi GRAMPS a soubor importujte."
 
 #: ../src/DbLoader.py:198
 #, python-format
@@ -377,6 +380,10 @@ msgid ""
 "\n"
 "If you think you may want to revert the import, please stop here and backup your database."
 msgstr ""
+"Pokračování v importu vymaže historii zpětných kroků této relace. Nebude možné vrátit tuto, ani jakoukoli jinou operaci provedenou před ním.\n"
+"\n"
+"\n"
+"Pokud se domníváte, že budete potřebovat import vrátit, přerušte operaci a udělejte zálohu databáze."
 
 #: ../src/DbLoader.py:220
 msgid "_Proceed with import"
@@ -435,11 +442,13 @@ msgid ""
 "%s could not be found.\n"
 "It is possible that this file no longer exists or has been moved."
 msgstr ""
+"%s nemůže být nalezen.\n"
+"Soubor už pravděpodobně neexistuje, nebo byl přesunut."
 
 #: ../src/DbLoader.py:385
 #: ../src/ViewManager.py:1079
 msgid "This may be caused by an improper installation of GRAMPS."
-msgstr ""
+msgstr "Toto může být způsobeno nesprávnou instalací GRAMPS."
 
 #: ../src/DbLoader.py:445
 #, python-format
@@ -448,7 +457,7 @@ msgstr "Nemohu importovat soubor: %s"
 
 #: ../src/DbLoader.py:446
 msgid "This GEDCOM file incorrectly identifies its character set, so it cannot be accurately imported. Please fix the encoding, and import again"
-msgstr ""
+msgstr "Tento GEDCOM soubor nesprávně identifikuje svoji kódovou stránku a proto nemůže být správně importován. Opravte kódování znaků a zkuste operaci opakovat"
 
 #: ../src/DbLoader.py:492
 msgid "All GRAMPS files"
@@ -512,7 +521,7 @@ msgstr "Zlomit zámek na databázi %s?"
 
 #: ../src/DbManager.py:344
 msgid "GRAMPS believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
-msgstr ""
+msgstr "GRAMPS se domnívá, že někdo jiný pracuje s databází. Pokud je uzamčená, nemůžete s touto databází pracovat. Pokud jste si jistí, že s databází nikdo nepracuje, můžete zámek prolomit. V opačném případě může prolomení znamenat porušení databáze."
 
 #: ../src/DbManager.py:350
 msgid "Break lock"
@@ -523,13 +532,13 @@ msgid "Rename failed"
 msgstr "Operace přejmenováni selhala"
 
 #: ../src/DbManager.py:410
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
 "\n"
 "%s"
 msgstr ""
-"Pokus o získání informací selhal s touto chybovou zprávou:\n"
+"Pokus o přejmenování verze selhal s následující chybou:\n"
 "\n"
 "%s"
 
@@ -552,7 +561,7 @@ msgstr "Odstranit databázi %s?"
 
 #: ../src/DbManager.py:486
 msgid "Removing this database will permanently destroy the data."
-msgstr ""
+msgstr "Odstraněním databáze dojde k permanentnímu vymazání dat."
 
 #: ../src/DbManager.py:487
 msgid "Remove database"
@@ -560,7 +569,7 @@ msgstr "Odstranit databázi"
 
 #: ../src/DbManager.py:493
 msgid "Remove the '%{revision}s' version of %{database}s"
-msgstr ""
+msgstr "Odstranit '%{revision}s' verzi z %{database}s"
 
 #: ../src/DbManager.py:497
 msgid "Removing this version will prevent you from extracting it in the future."
@@ -579,19 +588,19 @@ msgid "Deletion failed"
 msgstr "Operace mazání selhala"
 
 #: ../src/DbManager.py:548
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
 "\n"
 "%s"
 msgstr ""
-"Pokus o získání informací selhal s touto chybovou zprávou:\n"
+"Pokus o vymazání verze selhal s následující chybou:\n"
 "\n"
 "%s"
 
 #: ../src/DbManager.py:587
 msgid "Rebuilding database from backup files"
-msgstr ""
+msgstr "Databáze se obnovuje ze záložních souborů"
 
 #: ../src/DbManager.py:621
 msgid "Could not create family tree"
@@ -692,6 +701,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Pokus o archivaci dat skončil neúspěšně s následující chybou:\n"
+"\n"
+"%s"
 
 #: ../src/DisplayState.py:356
 #, python-format
@@ -727,7 +739,7 @@ msgstr "Poslední potvrzení před uložením"
 
 #: ../src/ExportAssistant.py:329
 msgid "Please wait while your data is selected and exported"
-msgstr ""
+msgstr "Vyčkejte prosím než budou vaše data vybrána a exportována"
 
 #: ../src/ExportAssistant.py:342
 #: ../src/PluginUtils/_PluginStatus.py:117
@@ -735,7 +747,7 @@ msgid "Summary"
 msgstr "Shrnutí"
 
 #: ../src/ExportAssistant.py:413
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The data will be saved as follows:\n"
 "\n"
@@ -759,34 +771,35 @@ msgid ""
 "\n"
 "Press Back to return and select a valid filename."
 msgstr ""
+"Vybraný adresář a soubor pro uložení nemůže být vytvořen, nebo nalezen.\n"
+"\n"
+"Stiskněte Zpět a vyberte validní jméno souboru."
 
 #: ../src/ExportAssistant.py:440
 msgid "Your data has been saved"
 msgstr "Vaše data byla uložena"
 
 #: ../src/ExportAssistant.py:442
-#, fuzzy
 msgid ""
 "The copy of your data has been successfully saved. You may press Close button now to continue.\n"
 "\n"
 "Note: the database currently opened in your GRAMPS window is NOT the file you have just saved. Future editing of the currently opened database will not alter the copy you have just made. "
 msgstr ""
-"Kopie vašich dat byla úspěšně uložena. Můžete stisknout tlačítko OK a pokračovat.\n"
-"Upozornění: databáze nyní otevřená v okně GRAMPS NENÍ souborem, který jste právě uložili. Budoucí modifikace aktuálně otevřené databáze nezmění právě vytvořenou kopii."
+"Kopie vašich dat byla úspěšně uložena. Můžete stisknout tlačítko Zavřít a pokračovat.\n"
+"Upozornění: nyní otevřená databáze v okně GRAMPS NENÍ souborem, který jste právě uložili. Budoucí úpravy aktuálně otevřené databáze nezmění právě vytvořenou kopii."
 
 #: ../src/ExportAssistant.py:452
 msgid "Saving failed"
 msgstr "Uložení selhalo"
 
 #: ../src/ExportAssistant.py:454
-#, fuzzy
 msgid ""
 "There was an error while saving your data. You may try starting the export again.\n"
 "\n"
 "Note: your currently opened database is safe. It was only a copy of your data that failed to save."
 msgstr ""
-"Při ukládání vašich dat došlo k chybě. Prosím vraťte se zpět a zkuste to znovu\n"
-"Upozornění: databáze otevřená v současnosti je v bezpečí. Pouze selhalo uložení kopie vašich dat."
+"Při ukládání vašich dat došlo k chybě. Prosím vraťte se zpět a zkuste to znovu.\n"
+"Upozornění: nyní otevřená databáze není ovlivněna. Selhalo pouze uložení kopie vašich dat."
 
 #: ../src/ExportAssistant.py:483
 msgid ""
@@ -1142,7 +1155,7 @@ msgstr "Změna formátu data se projeví až po restartu GRAMPS"
 
 #: ../src/GrampsCfg.py:510
 msgid "Add default source on import"
-msgstr ""
+msgstr "Při importu přidat výchozí pramen "
 
 #: ../src/GrampsCfg.py:512
 msgid "Enable spelling checker"
@@ -1187,18 +1200,16 @@ msgid "Name Format Editor"
 msgstr "Editor formátu jmen"
 
 #: ../src/GrampsCfg.py:630
-#, fuzzy
 msgid "The format definition is invalid"
-msgstr "Detaily d_efinice formátu"
+msgstr "Definice formátu je neplatná"
 
 #: ../src/GrampsCfg.py:631
 msgid "What would you like to do?"
 msgstr "Co byste rádi udělali?"
 
 #: ../src/GrampsCfg.py:632
-#, fuzzy
 msgid "_Continue anyway"
-msgstr "Pokračovat v ukládání"
+msgstr "Pokračovat"
 
 #: ../src/GrampsCfg.py:632
 msgid "_Modify format"
@@ -1389,14 +1400,12 @@ msgid "Zoom Out"
 msgstr "Zmenšit"
 
 #: ../src/gramps_main.py:130
-#, fuzzy
 msgid "Fit Width"
-msgstr "Šířka"
+msgstr "Přizpůsobit šířce"
 
 #: ../src/gramps_main.py:131
-#, fuzzy
 msgid "Fit Page"
-msgstr "Titulní stránka"
+msgstr "Přizpůsobit stránce"
 
 #: ../src/gramps_main.py:136
 msgid "Export"
@@ -1464,10 +1473,12 @@ msgid ""
 "Click to make the active person\n"
 "Right click to display the edit menu"
 msgstr ""
+"Kliknutí levým tlačítkem označí aktivní osobu\n"
+"Kliknutí pravým tlačítkem zobrazíte menu úprav"
 
 #: ../src/GrampsWidgets.py:132
 msgid "Edit icons can be enabled in the Preferences dialog"
-msgstr ""
+msgstr "Ikony pro úpravu je možné aktivovat v dialogu Nastavení"
 
 #: ../src/GrampsWidgets.py:341
 msgid "Record is private"
@@ -1628,9 +1639,8 @@ msgstr "_Odstranit"
 
 #: ../src/PageView.py:928
 #: ../src/DataViews/_PersonView.py:171
-#, fuzzy
 msgid "Export view"
-msgstr "Import obrázku selhal"
+msgstr "Exportovat náhled"
 
 #: ../src/PageView.py:933
 #: ../src/ViewManager.py:397
@@ -1646,7 +1656,7 @@ msgstr "_Filtr"
 #: ../src/PageView.py:1002
 #: ../src/DataViews/_PersonView.py:903
 msgid "Export view as spreadsheet"
-msgstr ""
+msgstr "Exportovat náhled jako tabulku"
 
 #: ../src/PageView.py:1010
 #: ../src/DataViews/_PersonView.py:911
@@ -1705,18 +1715,20 @@ msgstr "Bylo zjištěno poškození databáze"
 
 #: ../src/QuestionDialog.py:197
 msgid "GRAMPS has detected a problem in the underlying Berkeley database. This can be repaired by from the Family Tree Manager. Select the database and click on the Repair button"
-msgstr ""
+msgstr "GRAMPS detekoval problém v Berkeley databázi. Tento stav je možné napravit z menu Správa rodokmenu. Vyberte databázi a klikněte na tlačítko Opravit"
 
 #: ../src/QuestionDialog.py:279
 #: ../src/Utils.py:985
 msgid "Attempt to force closing the dialog"
-msgstr ""
+msgstr "Pokus o vynucené uzavření dialogu"
 
 #: ../src/QuestionDialog.py:280
 msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
 msgstr ""
+"Nezavírejte vynuceně tento důležitý dialog.\n"
+"Vyberte si jednu z nabízených možností"
 
 #: ../src/QuickReports.py:85
 #: ../src/DataViews/_FamilyList.py:173
@@ -1788,7 +1800,6 @@ msgid ""
 msgstr ""
 
 #: ../src/Relationship.py:728
-#, fuzzy
 msgid "Relationship loop detected:"
 msgstr "Detekována smyčka ve vztazích"
 
@@ -2081,9 +2092,8 @@ msgid "Prefix"
 msgstr "Předpona"
 
 #: ../src/ScratchPad.py:560
-#, fuzzy
 msgid "Suffix"
-msgstr "Přípona:"
+msgstr "Přípona"
 
 #: ../src/ScratchPad.py:585
 #: ../src/ScratchPad.py:593
@@ -2189,26 +2199,23 @@ msgstr "Arabština"
 
 #: ../src/Spell.py:79
 msgid "Azerbaijani"
-msgstr ""
+msgstr "Azerbadžánština"
 
 #: ../src/Spell.py:80
-#, fuzzy
 msgid "Belarusian"
-msgstr "Perský"
+msgstr "Běloruština"
 
 #: ../src/Spell.py:81
-#, fuzzy
 msgid "Bulgarian"
-msgstr "Juliánský"
+msgstr "Bulharština"
 
 #: ../src/Spell.py:82
 msgid "Bengali"
-msgstr ""
+msgstr "Bengálština"
 
 #: ../src/Spell.py:83
-#, fuzzy
 msgid "Breton"
-msgstr "Kremace"
+msgstr "Bretaňština"
 
 #: ../src/Spell.py:84
 msgid "Catalan"
@@ -2224,18 +2231,16 @@ msgid "Kashubian"
 msgstr "manžel"
 
 #: ../src/Spell.py:87
-#, fuzzy
 msgid "Welsh"
-msgstr "Sourozenci"
+msgstr "Velština"
 
 #: ../src/Spell.py:88
 msgid "Danish"
 msgstr "Dánština"
 
 #: ../src/Spell.py:89
-#, fuzzy
 msgid "German"
-msgstr "Gregoriánský"
+msgstr "Němčina"
 
 #: ../src/Spell.py:90
 msgid "German - Old Spelling"
@@ -2254,9 +2259,8 @@ msgid "Esperanto"
 msgstr "Esperanto"
 
 #: ../src/Spell.py:94
-#, fuzzy
 msgid "Spanish"
-msgstr "Od..do"
+msgstr "Španělština"
 
 #: ../src/Spell.py:95
 msgid "Estonian"
@@ -2312,16 +2316,15 @@ msgstr "Hebrejský"
 
 #: ../src/Spell.py:107
 msgid "Hindi"
-msgstr ""
+msgstr "Hindština"
 
 #: ../src/Spell.py:108
 msgid "Hiligaynon"
 msgstr ""
 
 #: ../src/Spell.py:109
-#, fuzzy
 msgid "Croatian"
-msgstr "Kremace"
+msgstr "Chorvatština"
 
 #: ../src/Spell.py:110
 msgid "Upper Sorbian"
@@ -2332,9 +2335,8 @@ msgid "Hungarian"
 msgstr "Maďarština"
 
 #: ../src/Spell.py:112
-#, fuzzy
 msgid "Armenian"
-msgstr "média"
+msgstr "Arménština"
 
 #: ../src/Spell.py:113
 #, fuzzy
@@ -2343,36 +2345,31 @@ msgstr "Internet"
 
 #: ../src/Spell.py:114
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonézština"
 
 #: ../src/Spell.py:115
-#, fuzzy
 msgid "Icelandic"
-msgstr "Islandský styl"
+msgstr "Islandština"
 
 #: ../src/Spell.py:116
-#, fuzzy
 msgid "Italian"
-msgstr "_Kurzíva"
+msgstr "Italština"
 
 #: ../src/Spell.py:117
-#, fuzzy
 msgid "Kurdi"
-msgstr "Zvuk"
+msgstr "Kurdština"
 
 #: ../src/Spell.py:118
-#, fuzzy
 msgid "Latin"
-msgstr "Umístění"
+msgstr "Latina"
 
 #: ../src/Spell.py:119
 msgid "Lithuanian"
 msgstr "Litevština"
 
 #: ../src/Spell.py:120
-#, fuzzy
 msgid "Latvian"
-msgstr "Umístění"
+msgstr "Litevština"
 
 #: ../src/Spell.py:121
 #, fuzzy
@@ -2380,14 +2377,12 @@ msgid "Malagasy"
 msgstr "Muži"
 
 #: ../src/Spell.py:122
-#, fuzzy
 msgid "Maori"
-msgstr "Značka"
+msgstr "Maorština"
 
 #: ../src/Spell.py:123
-#, fuzzy
 msgid "Macedonian"
-msgstr "Média"
+msgstr "Makedonština"
 
 #: ../src/Spell.py:124
 msgid "Mongolian"
@@ -2417,9 +2412,8 @@ msgid "Low Saxon"
 msgstr ""
 
 #: ../src/Spell.py:130
-#, fuzzy
 msgid "Dutch"
-msgstr "Úmrtí"
+msgstr "Holandština"
 
 #: ../src/Spell.py:131
 msgid "Norwegian Nynorsk"
@@ -2460,13 +2454,12 @@ msgid "Romanian"
 msgstr "Rumunština"
 
 #: ../src/Spell.py:141
-#, fuzzy
 msgid "Russian"
-msgstr "Juliánský"
+msgstr "Ruština"
 
 #: ../src/Spell.py:142
 msgid "Kinyarwanda"
-msgstr ""
+msgstr "jazyk Kinyarwanda"
 
 #: ../src/Spell.py:143
 #, fuzzy
@@ -2482,9 +2475,8 @@ msgid "Slovenian"
 msgstr "Slovinština"
 
 #: ../src/Spell.py:146
-#, fuzzy
 msgid "Serbian"
-msgstr "Perský"
+msgstr "Srbština"
 
 #: ../src/Spell.py:147
 msgid "Swedish"
@@ -2495,13 +2487,12 @@ msgid "Swahili"
 msgstr "Svahilština"
 
 #: ../src/Spell.py:149
-#, fuzzy
 msgid "Tamil"
-msgstr "Rodina"
+msgstr "Tamilština"
 
 #: ../src/Spell.py:150
 msgid "Telugu"
-msgstr ""
+msgstr "jazyk Telugu"
 
 #: ../src/Spell.py:151
 #, fuzzy
@@ -2510,7 +2501,7 @@ msgstr "Text"
 
 #: ../src/Spell.py:152
 msgid "Tagalog"
-msgstr ""
+msgstr "jazyk Tagalog"
 
 #: ../src/Spell.py:153
 msgid "Setswana"
@@ -2529,13 +2520,12 @@ msgid "Uzbek"
 msgstr "Uzbečtina"
 
 #: ../src/Spell.py:157
-#, fuzzy
 msgid "Vietnamese"
-msgstr "Název souboru"
+msgstr "Vietnamština"
 
 #: ../src/Spell.py:158
 msgid "Walloon"
-msgstr ""
+msgstr "Valonština"
 
 #: ../src/Spell.py:159
 msgid "Yiddish"
@@ -2698,7 +2688,7 @@ msgstr "Chyba databáze: %s je definován jako svůj následovník"
 
 #: ../src/Utils.py:986
 msgid "Please do not force closing this important dialog."
-msgstr ""
+msgstr "Nezavírejte vynuceně tento důležitý dialog."
 
 #: ../src/UndoHistory.py:93
 msgid "Original time"
@@ -2925,7 +2915,7 @@ msgstr "Nelze odvolat změny"
 
 #: ../src/ViewManager.py:662
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
-msgstr ""
+msgstr "Změny nemohou být kompletně odvolány, protože jejich počet v této relaci překročil limit."
 
 #: ../src/ViewManager.py:1170
 msgid "Read Only"
@@ -2939,6 +2929,10 @@ msgid ""
 "Create Commons Attribution-ShareAlike 2.5\n"
 "license."
 msgstr ""
+"Velká část grafiky použité v GRAMPS pochází\n"
+"z projektu Tango, nebo je od něj odvozena.\n"
+"Grafika je vydána pod licencí \n"
+"Create Commons Attribution-ShareAlike 2.5"
 
 #: ../src/ViewManager.py:1481
 msgid "GRAMPS Homepage"
@@ -2969,39 +2963,33 @@ msgstr "Křestní jméno:"
 #. Dictionary is "code": ("expression", "keyword", "i18n-keyword")
 #: ../src/BasicUtils/_NameDisplay.py:279
 #: ../src/BasicUtils/_NameDisplay.py:318
-#, fuzzy
 msgid "title"
-msgstr "Název"
+msgstr "název"
 
 #: ../src/BasicUtils/_NameDisplay.py:280
 #: ../src/BasicUtils/_NameDisplay.py:319
-#, fuzzy
 msgid "given"
-msgstr "_Křestní jméno:"
+msgstr "křestní jméno"
 
 #: ../src/BasicUtils/_NameDisplay.py:281
 #: ../src/BasicUtils/_NameDisplay.py:320
-#, fuzzy
 msgid "prefix"
-msgstr "Předpona"
+msgstr "předpona"
 
 #: ../src/BasicUtils/_NameDisplay.py:282
 #: ../src/BasicUtils/_NameDisplay.py:321
-#, fuzzy
 msgid "surname"
-msgstr "Příjmení"
+msgstr "příjmení"
 
 #: ../src/BasicUtils/_NameDisplay.py:283
 #: ../src/BasicUtils/_NameDisplay.py:322
-#, fuzzy
 msgid "suffix"
-msgstr "Přípona:"
+msgstr "přípona"
 
 #: ../src/BasicUtils/_NameDisplay.py:284
 #: ../src/BasicUtils/_NameDisplay.py:323
-#, fuzzy
 msgid "patronymic"
-msgstr "Jméno po otci:"
+msgstr "po otci"
 
 #: ../src/BasicUtils/_NameDisplay.py:285
 #: ../src/BasicUtils/_NameDisplay.py:324
@@ -3016,9 +3004,8 @@ msgstr "Komentář"
 
 #: ../src/BasicUtils/_NameDisplay.py:292
 #: ../src/BasicUtils/_NameDisplay.py:327
-#, fuzzy
 msgid "initials"
-msgstr "Jednotlivci"
+msgstr "iniciály"
 
 #: ../src/Merge/_MergePerson.py:72
 msgid "Compare People"
@@ -3041,13 +3028,13 @@ msgstr "Osoby nelze sloučit"
 #: ../src/Merge/_MergePerson.py:265
 #: ../src/Merge/_MergePerson.py:303
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
-msgstr ""
+msgstr "Manželé nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte nejdříve zrušit vztah mezi nimi."
 
 #: ../src/Merge/_MergePerson.py:93
 #: ../src/Merge/_MergePerson.py:272
 #: ../src/Merge/_MergePerson.py:308
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
-msgstr ""
+msgstr "Rodič a dítě nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte nejdříve zrušit vztah mezi nimi."
 
 #. Gender
 #: ../src/Merge/_MergePerson.py:124
@@ -3193,9 +3180,8 @@ msgid "_Delete Event"
 msgstr "O_dstranit událost"
 
 #: ../src/DataViews/_FamilyList.py:63
-#, fuzzy
 msgid "Marriage Date"
-msgstr "Věk při sňatku"
+msgstr "Datum sňatku"
 
 #: ../src/DataViews/_FamilyList.py:67
 msgid "Add a new family"
@@ -3243,9 +3229,8 @@ msgid "Media Filter Editor"
 msgstr "Editor filtrů médií"
 
 #: ../src/DataViews/_MediaView.py:221
-#, fuzzy
 msgid "View in the default viewer"
-msgstr "Zobrazit externím prohlížečem"
+msgstr "Zobrazit výchozím prohlížečem"
 
 #: ../src/DataViews/_MediaView.py:238
 #, python-format
@@ -3255,7 +3240,7 @@ msgstr "Nelze zobrazit %s"
 #: ../src/DataViews/_MediaView.py:239
 #, python-format
 msgid "GRAMPS cannot find an application that can view a file type of %s."
-msgstr ""
+msgstr "GRAMPS nemůže najít aplikaci ke zobrazení souboru typu %s."
 
 #: ../src/DataViews/_MediaView.py:249
 msgid "Select Media Columns"
@@ -3327,14 +3312,12 @@ msgid "This note is currently being used. Deleting it will remove it from the da
 msgstr "Tento zdroj je právě používán. Pokud ho odstraníte, bude smazán z databáze a ze všech záznamů, z kterých je odkazován."
 
 #: ../src/DataViews/_NoteView.py:215
-#, fuzzy
 msgid "Deleting note will remove it from the database."
-msgstr "Odstranění události odstraní ji vyjme i z databáze."
+msgstr "Smazáním bude poznámka odstraněna i z databáze."
 
 #: ../src/DataViews/_NoteView.py:221
-#, fuzzy
 msgid "_Delete Note"
-msgstr "O_dstranit pramen"
+msgstr "O_dstranit poznámku"
 
 #. ------------------------------------------------------------------------
 #.
@@ -3580,7 +3563,6 @@ msgid "Edit selected person"
 msgstr "Upravit zvolenou osobu"
 
 #: ../src/DataViews/_PersonView.py:899
-#, fuzzy
 msgid "Delete selected person"
 msgstr "Odstranit vybranou osobu"
 
@@ -3645,7 +3627,7 @@ msgstr "Mapy _Google"
 
 #: ../src/DataViews/_PlaceView.py:125
 msgid "Attempt to map location on Google Maps"
-msgstr ""
+msgstr "Pokus o označení polohy v Google Maps"
 
 #: ../src/DataViews/_PlaceView.py:126
 msgid "Place Filter Editor"
@@ -3777,28 +3759,25 @@ msgid "Reorder families"
 msgstr "Přeskupit rodiny"
 
 #: ../src/DataViews/_RelationView.py:744
-#, fuzzy, python-format
+#, python-format
 msgid " (%d siblings)"
-msgstr "Zobrazit sourozence"
+msgstr " (%d sourozenců)"
 
 #: ../src/DataViews/_RelationView.py:749
-#, fuzzy
 msgid " (1 brother)"
-msgstr " *. %(birth_date)s"
+msgstr " (1 bratr)"
 
 #: ../src/DataViews/_RelationView.py:751
 msgid " (1 sister)"
 msgstr "(1 sestra)"
 
 #: ../src/DataViews/_RelationView.py:753
-#, fuzzy
 msgid " (1 sibling)"
-msgstr "Zobrazit sourozence"
+msgstr " (1 sourozenec)"
 
 #: ../src/DataViews/_RelationView.py:755
-#, fuzzy
 msgid " (only child)"
-msgstr "Příliš mnoho dětí"
+msgstr " (jedináček)"
 
 #: ../src/DataViews/_RelationView.py:807
 #: ../src/plugins/all_relations.py:182
@@ -4100,7 +4079,7 @@ msgstr "SVG (Scalable Vector Graphics)"
 
 #: ../src/docgen/TextBufDoc.py:333
 msgid "TextBuffer"
-msgstr ""
+msgstr "TextBuffer"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:59
 #: ../src/plugins/NarrativeWeb.py:1183
@@ -4217,39 +4196,32 @@ msgid "Set as default name"
 msgstr "Nastavit výchozí jméno"
 
 #: ../src/DisplayTabs/_NoteTab.py:62
-#, fuzzy
 msgid "Create and add a new note"
-msgstr "Vytvořit a přidat nový pramen"
+msgstr "Vytvořit a přidat novou poznámku"
 
 #: ../src/DisplayTabs/_NoteTab.py:63
-#, fuzzy
 msgid "Remove the existing note"
-msgstr "Odstranit vybraný pramen"
+msgstr "Odstranit existující poznámku"
 
 #: ../src/DisplayTabs/_NoteTab.py:65
-#, fuzzy
 msgid "Add an existing note"
-msgstr "Přidat existující pramen"
+msgstr "Přidat existující poznámku"
 
 #: ../src/DisplayTabs/_NoteTab.py:66
-#, fuzzy
 msgid "Move the selected note upwards"
-msgstr "Odstranit vybranou osobu"
+msgstr "Přesunout vybranou poznámku výše"
 
 #: ../src/DisplayTabs/_NoteTab.py:67
-#, fuzzy
 msgid "Move the selected note downwards"
-msgstr "Odstranit vybranou osobu"
+msgstr "Přesunout vybranou poznámku níže"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
-#, fuzzy
 msgid "Association"
-msgstr "Umístění"
+msgstr "Asociace"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
-#, fuzzy
 msgid "Associations"
-msgstr "Umístění"
+msgstr "Asociace"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:77
 msgid "Godfather"
@@ -4443,9 +4415,8 @@ msgid "It is possible to accidentally create multiple families with the same par
 msgstr ""
 
 #: ../src/Editors/_EditFamily.py:452
-#, fuzzy
 msgid "Family has changed"
-msgstr "Naposledy změněno"
+msgstr "Rodina byla změněna"
 
 #: ../src/Editors/_EditFamily.py:453
 msgid "The family you are editing has changed. To make sure that the database is not corrupted, GRAMPS has updated the family to reflect these changes. Any edits you have made may have been lost."
@@ -4611,7 +4582,7 @@ msgstr "Nové jméno"
 
 #: ../src/Editors/_EditName.py:291
 msgid "Break global name grouping?"
-msgstr ""
+msgstr "Porušit globální seskupování jmen?"
 
 #: ../src/Editors/_EditName.py:292
 #, python-format
@@ -4619,9 +4590,8 @@ msgid "All people with the name of %(surname)s will no longer be grouped with th
 msgstr ""
 
 #: ../src/Editors/_EditName.py:296
-#, fuzzy
 msgid "Continue"
-msgstr "Pokračovat v ukládání"
+msgstr "Pokračovat"
 
 #: ../src/Editors/_EditName.py:297
 #, fuzzy
@@ -4648,7 +4618,7 @@ msgstr "Seskupit pouze toto jméno"
 #: ../src/Editors/_EditNote.py:104
 #, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr ""
+msgstr "Poznámka: %(id)s - %(context)s"
 
 #: ../src/Editors/_EditNote.py:109
 #, python-format
@@ -4968,14 +4938,13 @@ msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the U
 msgstr "Váš GEDCOM soubor je porušený. Zdá se, že soubor je v UTF-16 kódováná, ale neobsahuje značku BOM."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:61
-#, fuzzy
 msgid "Your GEDCOM file is empty."
-msgstr "Soubory GEDCOM"
+msgstr "GEDCOM soubor je prázdný."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid line %d in GEDCOM file."
-msgstr "Chyba při čtení GEDCOM souboru"
+msgstr "Neplatný řádek %d v GEDCOM souboru."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:136
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -5001,9 +4970,9 @@ msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s - %(person)s"
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Import from GEDCOM (%s)"
-msgstr "Importovat z %s"
+msgstr "Importovat z GEDCOM (%s)"
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:838
 msgid "GEDCOM import"
@@ -5037,14 +5006,13 @@ msgid "%s could not be opened\n"
 msgstr "%s nemůže být otevřen\n"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:125
-#, fuzzy
 msgid "Invalid GEDCOM file"
-msgstr "Soubory GEDCOM"
+msgstr "Neplatný GEDCOM soubor"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:126
-#, fuzzy, python-format
+#, python-format
 msgid "%s could not be imported"
-msgstr "%s nemůže být otevřen"
+msgstr "%s nemůže být importován"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:146
 msgid "Error reading GEDCOM file"
@@ -5089,14 +5057,12 @@ msgid "Witness comment: %s"
 msgstr "Poznámka svědka: %s"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:474
-#, fuzzy
 msgid "Sorting"
-msgstr "Pracuji"
+msgstr "Třídím"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:485
-#, fuzzy
 msgid "Writing"
-msgstr "Pracuji"
+msgstr "Zapisuji"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1391
 msgid "Export failed"
@@ -5112,18 +5078,16 @@ msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1402
-#, fuzzy
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
-msgstr "GEDCOM se používá pro přenos dat mezi genealogickými programy. Většina genealogického softwaru přijímá jako vstup soubory GEDCOM."
+msgstr "GEDCOM se používá pro přenos dat mezi genealogickými programy. Většina genealogického softwaru soubory GEDCOM přijímá jako vstup."
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1404
 msgid "GEDCOM export options"
 msgstr "Volby exportu GEDCOM"
 
 #: ../src/GrampsDbUtils/_WriteXML.py:91
-#, fuzzy
 msgid "GRAMPS XML export options"
-msgstr "Volby exportu GEDCOM"
+msgstr "Volby exportu GEDCOM XML"
 
 #: ../src/gen/proxy/living.py:414
 msgid "Living"
@@ -5132,49 +5096,42 @@ msgstr "Žijící"
 #: ../src/gen/proxy/dbbase.py:90
 #: ../src/gen/db/base.py:323
 msgid "Processing Person records"
-msgstr ""
+msgstr "Zpracovávají se záznamy osoby"
 
 #: ../src/gen/proxy/dbbase.py:96
 #: ../src/gen/db/base.py:329
-#, fuzzy
 msgid "Processing Family records"
-msgstr "Přeskupuji ID rodin"
+msgstr "Zpracovávají se záznamy rodin"
 
 #: ../src/gen/proxy/dbbase.py:102
 #: ../src/gen/db/base.py:335
-#, fuzzy
 msgid "Processing Event records"
-msgstr "Důvěrný záznam"
+msgstr "Zpracovávají se záznamy událostí"
 
 #: ../src/gen/proxy/dbbase.py:108
 #: ../src/gen/db/base.py:341
-#, fuzzy
 msgid "Processing Place records"
-msgstr "Důvěrný záznam"
+msgstr "Zpracovávají se záznamy míst"
 
 #: ../src/gen/proxy/dbbase.py:114
 #: ../src/gen/db/base.py:347
-#, fuzzy
 msgid "Processing Source records"
-msgstr "Vytváření WWW stránek"
+msgstr "Zpracovávají se záznamy pramenů"
 
 #: ../src/gen/proxy/dbbase.py:120
 #: ../src/gen/db/base.py:353
-#, fuzzy
 msgid "Processing Media records"
-msgstr "Chybějící mediální objekt"
+msgstr "Zpracovávají se záznamy médií"
 
 #: ../src/gen/proxy/dbbase.py:126
 #: ../src/gen/db/base.py:359
-#, fuzzy
 msgid "Processing Repository records"
-msgstr "Přeskupuji ID zdrojů"
+msgstr "Zpracovávají se záznamy zdrojů"
 
 #: ../src/gen/proxy/dbbase.py:132
 #: ../src/gen/db/base.py:365
-#, fuzzy
 msgid "Processing Note records"
-msgstr "Důvěrný záznam"
+msgstr "Zpracovávají se záznamy poznámek"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
 msgid "Report a bug"
@@ -5318,9 +5275,8 @@ msgid "Select Family"
 msgstr "Vybrat rodinu"
 
 #: ../src/Selectors/_SelectNote.py:54
-#, fuzzy
 msgid "Select Note"
-msgstr "Vybrat matku"
+msgstr "Vybrat poznámku"
 
 #: ../src/Selectors/_SelectPerson.py:71
 msgid "Select Person"
@@ -5347,23 +5303,20 @@ msgstr "Odstranit rodiče pro %s"
 #: ../src/plugins/all_events.py:63
 #: ../src/plugins/all_events.py:105
 #: ../src/plugins/all_events.py:114
-#, fuzzy
 msgid "Event Type"
 msgstr "Typ události"
 
 #: ../src/plugins/all_events.py:63
 #: ../src/plugins/all_events.py:106
 #: ../src/plugins/all_events.py:115
-#, fuzzy
 msgid "Event Date"
-msgstr "Typ události"
+msgstr "Datum události"
 
 #: ../src/plugins/all_events.py:63
 #: ../src/plugins/all_events.py:106
 #: ../src/plugins/all_events.py:115
-#, fuzzy
 msgid "Event Place"
-msgstr "Upravit místo"
+msgstr "Místo události"
 
 #. display the results
 #: ../src/plugins/all_events.py:100
@@ -5375,20 +5328,17 @@ msgstr ""
 
 #: ../src/plugins/all_events.py:105
 #: ../src/plugins/all_events.py:114
-#, fuzzy
 msgid "Family Member"
-msgstr "Menu rodin"
+msgstr "Člen rodiny"
 
 #: ../src/plugins/all_events.py:113
-#, fuzzy
 msgid "Personal events of the children"
-msgstr "Osoby mající děti"
+msgstr "Osobní události dětí"
 
 #: ../src/plugins/all_events.py:144
 #: ../src/plugins/all_events.py:155
-#, fuzzy
 msgid "All Events"
-msgstr "Události"
+msgstr "Všechny události"
 
 #: ../src/plugins/all_events.py:145
 #: ../src/plugins/all_events.py:156
@@ -5447,14 +5397,13 @@ msgid "Display the family and family members events."
 msgstr ""
 
 #: ../src/plugins/all_relations.py:58
-#, fuzzy
 msgid "Home person not set."
 msgstr "Nebyla nastavena výchozí osoba"
 
 #: ../src/plugins/all_relations.py:64
-#, fuzzy, python-format
+#, python-format
 msgid "Relationships of %s to %s"
-msgstr "Typ vztahu: %s"
+msgstr "Vztahy mezi osobami %s a %s"
 
 #: ../src/plugins/all_relations.py:68
 #: ../src/plugins/RelCalc.py:195
@@ -5483,7 +5432,7 @@ msgstr ""
 #: ../src/plugins/all_relations.py:174
 #: ../src/plugins/all_relations.py:207
 msgid "   "
-msgstr ""
+msgstr "   "
 
 #: ../src/plugins/all_relations.py:174
 #: ../src/plugins/all_relations.py:207
@@ -5493,9 +5442,8 @@ msgstr "Počet předků"
 
 #: ../src/plugins/all_relations.py:175
 #: ../src/plugins/all_relations.py:208
-#, fuzzy
 msgid "Parent"
-msgstr "Rodiče"
+msgstr "Rodič"
 
 #: ../src/plugins/all_relations.py:195
 #: ../src/plugins/all_relations.py:228
@@ -5504,43 +5452,35 @@ msgstr "Ano"
 
 #: ../src/plugins/all_relations.py:198
 #: ../src/plugins/all_relations.py:231
-#, fuzzy
 msgid "No"
-msgstr "Žádný"
+msgstr "Ne"
 
 #: ../src/plugins/all_relations.py:241
-#, fuzzy
 msgid "Remarks"
-msgstr "Obrátit význam"
+msgstr "Poznámky"
 
 #: ../src/plugins/all_relations.py:243
-#, fuzzy
 msgid "The following problems where encountered:"
 msgstr ""
-"\tNásledující cesty byly vyzkoušeny:\n"
-"\t\t"
 
 #: ../src/plugins/all_relations.py:259
-#, fuzzy
 msgid "Relation to Home Person"
 msgstr "Vztah k výchozí osobě"
 
 #: ../src/plugins/all_relations.py:261
-#, fuzzy
 msgid "Display all relationships between person and home person."
-msgstr "Vztah k výchozí osobě"
+msgstr "Zobrazit všechny vztahy mezi osobou a výchozí osobou."
 
 #. display the title
 #: ../src/plugins/siblings.py:46
-#, fuzzy, python-format
+#, python-format
 msgid "Siblings of %s"
-msgstr "Sourozenci"
+msgstr "Sourozenci osoby %s"
 
 #. display the header of a table
 #: ../src/plugins/siblings.py:50
-#, fuzzy
 msgid "Sibling"
-msgstr "Sourozenci"
+msgstr "Sourozenec"
 
 #: ../src/plugins/siblings.py:81
 msgid "Display a person's siblings."
@@ -5558,7 +5498,7 @@ msgstr "Graf předků pro %s"
 #: ../src/plugins/GVHourGlass.py:156
 #: ../src/ReportBase/_BareReportDialog.py:376
 msgid "Report Options"
-msgstr "Nastavení výpisu"
+msgstr "Nastavení sestavy"
 
 #. Add new options. The first argument is the tab name for grouping options.
 #. if you want to put everyting in the generic "Options" category, use
@@ -5602,9 +5542,8 @@ msgstr "Zmenšit/zvětšit na jednu stránku"
 
 #: ../src/plugins/AncestorChart.py:466
 #: ../src/plugins/DescendChart.py:420
-#, fuzzy
 msgid "Include Blank Pages"
-msgstr "včetně poznámek"
+msgstr "Vkládat prázdné stránky"
 
 #: ../src/plugins/AncestorChart.py:467
 #: ../src/plugins/DescendChart.py:421
@@ -5693,7 +5632,7 @@ msgstr "Stránkový zlom mezi generacemi"
 
 #: ../src/plugins/AncestorReport.py:321
 msgid "Add linebreak after each name"
-msgstr ""
+msgstr "Vložit ukončení řádku za každé jméno"
 
 #: ../src/plugins/AncestorReport.py:345
 msgid "Ahnentafel Report"
@@ -5789,9 +5728,9 @@ msgid "Creates a book containing several reports."
 msgstr "Vytvoří knihu obsahujících několik zpráv."
 
 #: ../src/plugins/Calendar.py:143
-#, fuzzy, python-format
+#, python-format
 msgid "Calendar for %s"
-msgstr "Kalendář"
+msgstr "Kalendář pro %s"
 
 #. initialize the dict to fill:
 #: ../src/plugins/Calendar.py:209
@@ -5831,9 +5770,8 @@ msgstr "Report svátků a narozenin"
 #: ../src/plugins/Calendar.py:462
 #: ../src/plugins/Calendar.py:463
 #: ../src/plugins/WebCal.py:810
-#, fuzzy
 msgid "Year of calendar"
-msgstr "Exportovat do vCalendar"
+msgstr "Rok pro kalendář"
 
 #: ../src/plugins/Calendar.py:466
 #: ../src/plugins/WebCal.py:809
@@ -5843,29 +5781,26 @@ msgstr "Filtr"
 
 #: ../src/plugins/Calendar.py:468
 msgid "Select filter to restrict people that appear on calendar"
-msgstr ""
+msgstr "Vyberte filtr pro omezení osob, které se objeví v kalendáři"
 
 #: ../src/plugins/Calendar.py:471
-#, fuzzy
 msgid "Name format"
-msgstr "Formát data"
+msgstr "Formát jména"
 
 #: ../src/plugins/Calendar.py:474
-#, fuzzy
 msgid "Select the format to display names"
-msgstr "Vybrání jména souboru"
+msgstr "Vyberte formát zobrazení jmen"
 
 #: ../src/plugins/Calendar.py:477
 #: ../src/plugins/WebCal.py:811
 msgid "Country for holidays"
-msgstr ""
+msgstr "Země pro svátky"
 
 #: ../src/plugins/Calendar.py:477
 #: ../src/plugins/Calendar.py:844
 #: ../src/plugins/WebCal.py:1330
-#, fuzzy
 msgid "Don't include holidays"
-msgstr "včetně svátků"
+msgstr "Nezahrnovat svátky"
 
 #: ../src/plugins/Calendar.py:482
 msgid "Select the country to see associated holidays"
@@ -5877,7 +5812,7 @@ msgstr "První den týdne"
 
 #: ../src/plugins/Calendar.py:489
 msgid "Select the first day of the week for the calendar"
-msgstr "Vyberte první den týdne z kalendáře"
+msgstr "Vyberte první den týdne pro kalendář"
 
 #: ../src/plugins/Calendar.py:492
 #: ../src/plugins/WebCal.py:812
@@ -5903,9 +5838,8 @@ msgid "Select married women's displayed surname"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:500
-#, fuzzy
 msgid "Include only living people"
-msgstr "Omezit data na žijící osoby"
+msgstr "Zahrnout pouze žijící osoby"
 
 #: ../src/plugins/Calendar.py:501
 msgid "Include only living people in the calendar"
@@ -5942,9 +5876,8 @@ msgid "Text Area 1"
 msgstr "Text 1"
 
 #: ../src/plugins/Calendar.py:514
-#, fuzzy
 msgid "My Calendar"
-msgstr "Kalendář"
+msgstr "Můj kalendář"
 
 #: ../src/plugins/Calendar.py:515
 msgid "First line of text at bottom of calendar"
@@ -5956,9 +5889,8 @@ msgid "Text Area 2"
 msgstr "Text 2"
 
 #: ../src/plugins/Calendar.py:518
-#, fuzzy
 msgid "Produced with GRAMPS"
-msgstr "_Pokračovat v importu"
+msgstr "Vytvořeno v GRAMPS"
 
 #: ../src/plugins/Calendar.py:519
 msgid "Second line of text at bottom of calendar"
@@ -5974,7 +5906,6 @@ msgid "Third line of text at bottom of calendar"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:568
-#, fuzzy
 msgid "Title text and background color"
 msgstr "Text titulku a barva pozadí"
 
@@ -6550,9 +6481,9 @@ msgid "Checks the database for integrity problems, fixing the problems that it c
 msgstr "Ověří integritu databáze a opraví případné problémy"
 
 #: ../src/plugins/CountAncestors.py:60
-#, fuzzy, python-format
+#, python-format
 msgid "Ancestors of \"%s\""
-msgstr "%s předci"
+msgstr "Předci osoby %s"
 
 #: ../src/plugins/CountAncestors.py:94
 #, fuzzy, python-format
@@ -7098,7 +7029,7 @@ msgstr ""
 
 #: ../src/plugins/ExportCSV.py:504
 msgid "CSV is a common spreadsheet format."
-msgstr ""
+msgstr "CSV je obvyklý formát tabulky."
 
 #: ../src/plugins/ExportCSV.py:505
 #, fuzzy
@@ -7166,14 +7097,12 @@ msgid "United States of America"
 msgstr "Spojené státy americké"
 
 #: ../src/plugins/ExtractCity.py:58
-#, fuzzy
 msgid "Canada"
-msgstr "Kalendář"
+msgstr "Kanada"
 
 #: ../src/plugins/ExtractCity.py:58
-#, fuzzy
 msgid "France"
-msgstr "Zrušit"
+msgstr "Francie"
 
 #: ../src/plugins/ExtractCity.py:344
 #, fuzzy
@@ -7181,7 +7110,6 @@ msgid "Place title"
 msgstr "Editor míst"
 
 #: ../src/plugins/ExtractCity.py:347
-#, fuzzy
 msgid "Postal code"
 msgstr "PSČ"
 
@@ -7221,9 +7149,9 @@ msgid "Attempts to extract city and state/province from a place title"
 msgstr ""
 
 #: ../src/plugins/FamilyGroup.py:111
-#, fuzzy, python-format
+#, python-format
 msgid "%(type)s: %(value)s"
-msgstr "%(event_type)s: %(date)s"
+msgstr "%(type)s: %(value)s"
 
 #: ../src/plugins/FamilyGroup.py:344
 #: ../src/plugins/FamilyGroup.py:381
@@ -7291,9 +7219,8 @@ msgstr "Záznamy rodičů"
 
 #. Parental Attributes
 #: ../src/plugins/FamilyGroup.py:764
-#, fuzzy
 msgid "Parent Attributes"
-msgstr "Atributy"
+msgstr "Atributy rodičů"
 
 #. Parental Names
 #: ../src/plugins/FamilyGroup.py:768
@@ -7338,9 +7265,9 @@ msgstr ""
 "o rodičích a jejich dětech."
 
 #: ../src/plugins/FamilyLines.py:672
-#, fuzzy, python-format
+#, python-format
 msgid "%d children"
-msgstr "Zobrazit děti"
+msgstr "%d dětí"
 
 #: ../src/plugins/FamilyLines.py:730
 #: ../src/plugins/NarrativeWeb.py:2441
@@ -7444,11 +7371,11 @@ msgstr ""
 
 #: ../src/plugins/FamilyLines.py:881
 msgid "Row spacing"
-msgstr ""
+msgstr "Mezera mezi řádky"
 
 #: ../src/plugins/FamilyLines.py:881
 msgid "The minimum amount of free space, in inches, between individual rows."
-msgstr ""
+msgstr "Minimální velikost mezery mezi řádky v palcích."
 
 #: ../src/plugins/FamilyLines.py:882
 #, fuzzy
@@ -7457,7 +7384,7 @@ msgstr "Jméno sloupce"
 
 #: ../src/plugins/FamilyLines.py:882
 msgid "The minimum amount of free space, in inches, between individual columns."
-msgstr ""
+msgstr "Minimální velikost mezery mezi sloupci v palcích."
 
 #: ../src/plugins/FamilyLines.py:883
 #: ../src/plugins/GraphViz.py:912
@@ -7466,12 +7393,11 @@ msgstr "Směr grafu"
 
 #: ../src/plugins/FamilyLines.py:883
 msgid "Left-to-right means oldest ancestors on the left, youngest on the right. Top-to-bottom means oldest ancestors on the top, youngest on the botom."
-msgstr ""
+msgstr "Zleva doprava znamená, že nejstarší předek je nalevo a nejmladší napravo. Shora dolů znamená, že nejstarší předek je nahoře a nejmladší dole."
 
 #: ../src/plugins/FamilyLines.py:884
-#, fuzzy
 msgid "Ratio"
-msgstr "Hodnocení"
+msgstr "Poměr"
 
 #: ../src/plugins/FamilyLines.py:884
 msgid "See the GraphViz documentation for details on the use of \"ratio\".  "
@@ -7489,11 +7415,11 @@ msgstr "Osoby mající fotografii"
 
 #: ../src/plugins/FamilyLines.py:926
 msgid "Follow parents to determine family lines"
-msgstr ""
+msgstr "Pro stanovení rodové linie následovat rodiče "
 
 #: ../src/plugins/FamilyLines.py:927
 msgid "Follow children to determine family lines"
-msgstr ""
+msgstr "Pro stanovení rodové linie následovat potomky"
 
 #: ../src/plugins/FamilyLines.py:928
 msgid "Try to remove extra people and families"
@@ -7539,9 +7465,8 @@ msgid "Surname"
 msgstr "Příjmení"
 
 #: ../src/plugins/FamilyLines.py:947
-#, fuzzy
 msgid "Colour"
-msgstr "Vyplnit barvou"
+msgstr "Barva"
 
 #. ******** INDIVIDUALS **********
 #: ../src/plugins/FamilyLines.py:980
@@ -7557,9 +7482,8 @@ msgid "Limit the number of parents"
 msgstr "Omezit počet rodičů"
 
 #: ../src/plugins/FamilyLines.py:989
-#, fuzzy
 msgid "Limit the number of children"
-msgstr "Maximální počet _dětí"
+msgstr "Maximální počet dětí"
 
 #: ../src/plugins/FamilyLines.py:995
 #: ../src/plugins/Summary.py:116
@@ -7580,20 +7504,17 @@ msgid "Families"
 msgstr "Rodiny"
 
 #: ../src/plugins/FamilyLines.py:1000
-#, fuzzy
 msgid "The maximum number of ancestors to include."
-msgstr "Maximální _počet let mezi dětmi"
+msgstr "Maximální počet zahrnutých předků."
 
 #: ../src/plugins/FamilyLines.py:1002
-#, fuzzy
 msgid "The maximum number of children to include."
-msgstr "Maximální počet _dětí"
+msgstr "Maximální počet zahrnutých potomků."
 
 #. ******** IMAGES ********
 #: ../src/plugins/FamilyLines.py:1005
-#, fuzzy
 msgid "Images"
-msgstr "Obrázek"
+msgstr "Obrázky"
 
 #: ../src/plugins/FamilyLines.py:1006
 #: ../src/plugins/GraphViz.py:840
@@ -7622,34 +7543,28 @@ msgstr ""
 
 #. ******** OPTIONS *********
 #: ../src/plugins/FamilyLines.py:1018
-#, fuzzy
 msgid "Options"
-msgstr "Nastavení výpisu"
+msgstr "Volby"
 
 #: ../src/plugins/FamilyLines.py:1019
-#, fuzzy
 msgid "Include dates"
-msgstr "včetně poznámek"
+msgstr "Zahrnout data"
 
 #: ../src/plugins/FamilyLines.py:1020
-#, fuzzy
 msgid "Include places"
-msgstr "Včetně zdrojů"
+msgstr "Zahrnout místa"
 
 #: ../src/plugins/FamilyLines.py:1021
-#, fuzzy
 msgid "Include the number of children"
-msgstr "Počet dětí"
+msgstr "Zahrnout počet dětí"
 
 #: ../src/plugins/FamilyLines.py:1022
-#, fuzzy
 msgid "Include researcher and date"
-msgstr "Včetně data narození, svatby a úmrtí"
+msgstr "Zahrnout badatele a datum"
 
 #: ../src/plugins/FamilyLines.py:1023
-#, fuzzy
 msgid "Include private records"
-msgstr "Důvěrný záznam"
+msgstr "Zahrnout důvěrné záznamy"
 
 #: ../src/plugins/FamilyLines.py:1025
 msgid ""
@@ -7661,9 +7576,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/FamilyLines.py:1043
-#, fuzzy
 msgid "Whether to include dates for people and families."
-msgstr "Vytvořit testovací případy pro osoby a rodiny"
+msgstr "Zda zahrnout datum pro osoby a rodiny."
 
 #: ../src/plugins/FamilyLines.py:1044
 #, fuzzy
@@ -7683,9 +7597,8 @@ msgid "Whether to include names, dates, and families that are considered private
 msgstr ""
 
 #: ../src/plugins/FamilyLines.py:1176
-#, fuzzy
 msgid "Select surname"
-msgstr "Vybrat soubor"
+msgstr "Vybrat příjmení"
 
 #: ../src/plugins/FamilyLines.py:1191
 #, fuzzy
@@ -7704,9 +7617,8 @@ msgstr "Kraj(okres)"
 #: ../src/plugins/FamilyLines.py:1218
 #: ../src/plugins/FamilyLines.py:1272
 #: ../src/plugins/FamilyLines.py:1323
-#, fuzzy
 msgid "Family Lines"
-msgstr "Seznam rodin"
+msgstr "Rodové linie"
 
 #: ../src/plugins/FamilyLines.py:1219
 #, fuzzy
@@ -7751,7 +7663,7 @@ msgstr "čtvrt kruhu"
 
 #: ../src/plugins/FanChart.py:333
 msgid "The form of the graph: full circle, half circle, or quarter circle."
-msgstr ""
+msgstr "Forma grafu: celý kruh, půlkruh, nebo čtvrt kruhu."
 
 #: ../src/plugins/FanChart.py:337
 msgid "Background color"
@@ -7763,11 +7675,11 @@ msgstr "bílá"
 
 #: ../src/plugins/FanChart.py:339
 msgid "generation dependent"
-msgstr "generačně závislý"
+msgstr "generačně závislá"
 
 #: ../src/plugins/FanChart.py:340
 msgid "Background color is either white or generation dependent"
-msgstr ""
+msgstr "Barva pozadí je buď bílá, nebo závislá na generaci"
 
 #: ../src/plugins/FanChart.py:344
 msgid "Orientation of radial texts"
@@ -8106,7 +8018,6 @@ msgstr "Rodiny budou zobrazeny jako elipsy spojené s rodiči a dětmi"
 #: ../src/plugins/GraphViz.py:943
 #: ../src/plugins/GraphViz.py:950
 #: ../src/plugins/GraphViz.py:960
-#, fuzzy
 msgid "Layout Options"
 msgstr "Nastavení dokumentu"
 
@@ -8116,7 +8027,7 @@ msgstr "Zda-li jdou generace odshora dolů nebo zleva doprava."
 
 #: ../src/plugins/GraphViz.py:920
 msgid "Aspect ratio"
-msgstr ""
+msgstr "Poměr stran"
 
 #: ../src/plugins/GraphViz.py:922
 msgid "Affects greatly how the graph is layed out on the page. Multiple pages overrides the pages settings below."
@@ -8153,7 +8064,7 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:974
 msgid "Note to add to the graph"
-msgstr ""
+msgstr "Poznámka přidaná do grafu"
 
 #: ../src/plugins/GraphViz.py:976
 msgid "This text will be added to the graph."
@@ -8161,7 +8072,7 @@ msgstr "Text bude přidán ke grafu."
 
 #: ../src/plugins/GraphViz.py:980
 msgid "Note location"
-msgstr "Umístěnaí poznámky"
+msgstr "Umístění poznámky"
 
 #: ../src/plugins/GraphViz.py:982
 msgid "Whether note will appear on top or bottom of the page."
@@ -8222,9 +8133,9 @@ msgid "Produces an hourglass graph"
 msgstr "Vytvoří vějířové grafy"
 
 #: ../src/plugins/ImportCSV.py:203
-#, fuzzy, python-format
+#, python-format
 msgid "format error: file %s, line %d: %s"
-msgstr "Neočekávaný konec souboru na řádku %d.\n"
+msgstr "chyba formátu: soubor %s, řádek %d: %s"
 
 #: ../src/plugins/ImportCSV.py:519
 #: ../src/plugins/ImportGeneWeb.py:189
@@ -8234,13 +8145,12 @@ msgid "Import Complete: %d seconds"
 msgstr "Import dokončen za %d vteřin"
 
 #: ../src/plugins/ImportCSV.py:520
-#, fuzzy
 msgid "CSV import"
-msgstr "importovat vCard"
+msgstr "Importovat CSV"
 
 #: ../src/plugins/ImportCSV.py:666
 msgid "CSV spreadsheet files"
-msgstr ""
+msgstr "soubory CSV tabulky"
 
 #: ../src/plugins/ImportCSV.py:668
 msgid "CSV Spreadheet"
@@ -8472,9 +8382,8 @@ msgstr "%s - rodokmen předků"
 #: ../src/plugins/MarkerReport.py:206
 #: ../src/plugins/MarkerReport.py:296
 #: ../src/plugins/MarkerReport.py:382
-#, fuzzy
 msgid "Id"
-msgstr "I"
+msgstr "Id"
 
 #: ../src/plugins/MarkerReport.py:541
 #, fuzzy
@@ -8653,7 +8562,7 @@ msgstr ""
 #: ../src/plugins/NarrativeWeb.py:275
 #, python-format
 msgid "&copy; %(year)d %(person)s"
-msgstr ""
+msgstr "&copy; %(year)d %(person)s"
 
 #: ../src/plugins/NarrativeWeb.py:342
 #: ../src/plugins/WebCal.py:396
@@ -8664,7 +8573,7 @@ msgstr "Vztvořeno v <a href=\"http://gramps-project.org\">GRAMPS</a>  %(date)s"
 #: ../src/plugins/NarrativeWeb.py:353
 #, python-format
 msgid "<br>for <a href=\"%s\">%s</a>"
-msgstr ""
+msgstr "<br>pro <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/NarrativeWeb.py:375
 #: ../src/plugins/NarrativeWeb.py:1334
@@ -8771,9 +8680,8 @@ msgid "File type"
 msgstr "Filtr"
 
 #: ../src/plugins/NarrativeWeb.py:1209
-#, fuzzy
 msgid "Missing media object:"
-msgstr "Chybějící mediální objekt"
+msgstr "Chybějící mediální objekt:"
 
 #: ../src/plugins/NarrativeWeb.py:1254
 #: ../src/plugins/NarrativeWeb.py:1256
@@ -8793,9 +8701,8 @@ msgid "This page contains an index of all the sources in the database, sorted by
 msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:1494
-#, fuzzy
 msgid "Publication information"
-msgstr "Informace o publikaci:"
+msgstr "Informace o publikaci"
 
 #: ../src/plugins/NarrativeWeb.py:1524
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object's page."
@@ -9092,18 +8999,16 @@ msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Vytvoří WWW stránky (HTML) pro jednotlivce, nebo množinu jednotlivců"
 
 #: ../src/plugins/OwnerEditor.py:98
-#, fuzzy
 msgid "Database owner editor"
-msgstr "Chyba databáze"
+msgstr "Editor vlastníka databáze"
 
 #: ../src/plugins/OwnerEditor.py:187
-#, fuzzy
 msgid "Edit database owner information"
-msgstr "Informace o publikaci:"
+msgstr "Změnit informace o vlastníku databáze"
 
 #: ../src/plugins/OwnerEditor.py:191
 msgid "Allow editing database owner information."
-msgstr ""
+msgstr "Umožnit modifikaci informací o vlastníku databáze."
 
 #: ../src/plugins/PatchNames.py:91
 msgid "Name and title extraction tool"
@@ -9160,7 +9065,6 @@ msgid "GRAMPS package"
 msgstr "Balíček GRAMPSu"
 
 #: ../src/plugins/Rebuild.py:80
-#, fuzzy
 msgid "Rebuilding secondary indices..."
 msgstr "Přegenerovat sekundární indexy"
 
@@ -9206,7 +9110,6 @@ msgid "Relationship to %(person_name)s"
 msgstr "Vztah k: %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:137
-#, fuzzy
 msgid "Relationship Calculator tool"
 msgstr "Kalkulátor vztahů"
 
@@ -9233,9 +9136,8 @@ msgid "Calculates the relationship between two people"
 msgstr "Kalkulace vztahu mezi dvěma lidmi"
 
 #: ../src/plugins/RemoveUnused.py:72
-#, fuzzy
 msgid "Unused Objects"
-msgstr "Objekty"
+msgstr "Nepoužité objekty"
 
 #. Add mark column
 #. Add ignore column
@@ -9246,9 +9148,8 @@ msgstr "Značka"
 
 #: ../src/plugins/RemoveUnused.py:289
 #: ../src/plugins/RemoveUnused.py:405
-#, fuzzy
 msgid "Remove unused objects"
-msgstr "Odstranit objekt"
+msgstr "Odstranit nepoužité objekty"
 
 #: ../src/plugins/RemoveUnused.py:409
 msgid "Removes unused objects from the database"
@@ -9901,12 +9802,12 @@ msgstr "Ověřit databázi"
 
 #: ../src/plugins/Verify.py:1487
 msgid "Verifies the data against user-defined tests"
-msgstr ""
+msgstr "Kontroluje data proti uživatelem definovaným testům"
 
 #: ../src/plugins/WebCal.py:469
 #, fuzzy
 msgid "Generate HTML calendars"
-msgstr "Vytvořit HTML report"
+msgstr "Vytvořit HTML kalendáře"
 
 #. generate the report:
 #: ../src/plugins/WebCal.py:480
@@ -9976,11 +9877,11 @@ msgstr "Nastavení dokumentu"
 
 #: ../src/plugins/WebCal.py:797
 msgid "Check to include ONLY the living"
-msgstr ""
+msgstr "Zaškrtnout pro zahrnutí POUZE žijících"
 
 #: ../src/plugins/WebCal.py:800
 msgid "Check for wives to use maiden name"
-msgstr ""
+msgstr "Zaškrtnout pro použití dívčího jména u žen"
 
 #: ../src/plugins/WebCal.py:803
 #, fuzzy
@@ -10138,19 +10039,16 @@ msgstr ""
 
 #: ../src/plugins/WebCal.py:1032
 #: ../src/plugins/WebCal.py:1067
-#, fuzzy
 msgid "Generate Web Calendar"
-msgstr "Vytvořit webovou stránku"
+msgstr "Vytvořit webový kalendář"
 
 #: ../src/plugins/WebCal.py:1424
-#, fuzzy
 msgid "Web Calendar"
-msgstr "Kalendář"
+msgstr "Webový kalendář"
 
 #: ../src/plugins/WebCal.py:1428
-#, fuzzy
 msgid "Generates web (HTML) calendars."
-msgstr "Vytvořit HTML report"
+msgstr "Vytváří webové (HTML) kalendáře."
 
 #: ../src/plugins/WriteCD.py:56
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
@@ -10237,9 +10135,8 @@ msgid "GRAMPS package is an archived XML database together with the media object
 msgstr "Balíček GRAMPS je XML databáze archivovaná spolu s objekty médií"
 
 #: ../src/plugins/WritePkg.py:231
-#, fuzzy
 msgid "GRAMPS package export options"
-msgstr "Balíčky GRAMPSu"
+msgstr "VOlby exportu balíčku GRAMPS"
 
 #: ../src/plugins/RebuildRefMap.py:82
 #, fuzzy
@@ -13207,12 +13104,10 @@ msgid "Research"
 msgstr "Badatel"
 
 #: ../src/gen/lib/notetype.py:80
-#, fuzzy
 msgid "Transcript"
 msgstr "Rukopis"
 
 #: ../src/gen/lib/notetype.py:81
-#, fuzzy
 msgid "Source text"
 msgstr "Pramen"
 
@@ -16419,7 +16314,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:135
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #: ../src/glade/gramps.glade.h:136
 msgid "Y_ear"
@@ -16933,9 +16828,8 @@ msgid "_RCS"
 msgstr "_RCS"
 
 #: ../src/plugins/csvexport.glade.h:2
-#, fuzzy
 msgid "Export:"
-msgstr "Exportovat"
+msgstr "Exportovat:"
 
 #: ../src/plugins/csvexport.glade.h:3
 msgid "_Children"
@@ -17266,7 +17160,7 @@ msgstr "Výchozí šablona pro GRAMPS ID pramene"
 
 #: ../data/gramps.schemas.in.h:18
 msgid "Default surname guessing style"
-msgstr ""
+msgstr "Výchozí styl hádání příjmení"
 
 #: ../data/gramps.schemas.in.h:19
 msgid "Default website directory"
