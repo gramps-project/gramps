@@ -1,3 +1,10 @@
+2007-12-12  Douglas S. Blank  <dblank@doraemon.brynmawr.edu>
+	* src/GrampsCfg.py: added Translation -> Pattern -> Translation
+	so that one can see fully translated text, even if they type in
+	English, or %codes
+	* src/Utils.py: Fixed two bugs in translations of keywords
+	* src/test/utils_test.py: unit tests for keywords/translations
+
 2007-12-11  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/GrampsCfg.py: added keyword and translation functions
 	* src/Utils.py: Name Display Editor should work in locale

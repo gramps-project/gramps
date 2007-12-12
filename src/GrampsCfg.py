@@ -341,19 +341,25 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         database is simply changing the contents of the name file.
         """
         if len(new_text) > 0 and text != new_text:
+            # build a pattern from translated pattern:
             pattern = new_text
             for key in Utils.get_translations():
                 if key in pattern:
                     pattern = pattern.replace(key, Utils.get_keyword_from_translation(key))
+            # now build up a proper translation:
+            translation = pattern
+            for key in Utils.get_keywords():
+                if key in translation:
+                    translation = translation.replace(key, Utils.get_translation_from_keyword(key))
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
             exmpl = _nd.format_str(self.examplename, pattern)
-            self.fmt_model.set(self.iter, COL_NAME, new_text, 
+            self.fmt_model.set(self.iter, COL_NAME, translation, 
                                COL_FMT, pattern, 
                                COL_EXPL, exmpl)
-            self.selected_fmt = (num, new_text, pattern, exmpl)
-            _nd.edit_name_format(num, new_text, pattern)
+            self.selected_fmt = (num, translation, pattern, exmpl)
+            _nd.edit_name_format(num, translation, pattern)
             self.dbstate.db.name_formats = _nd.get_name_format(only_custom=True, 
                                                                only_active=False)
 

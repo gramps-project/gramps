@@ -1113,8 +1113,9 @@ for (key, code, standard, upper) in KEYWORDS:
     KEY_TO_TRANS[key.upper()] = upper
     KEY_TO_TRANS["%" + ("%s" % code)] = standard
     KEY_TO_TRANS["%" + ("%s" % code.upper())] = upper
+    TRANS_TO_KEY[standard.lower()] = key
     TRANS_TO_KEY[standard] = key
-    TRANS_TO_KEY[upper] = key
+    TRANS_TO_KEY[upper] = key.upper()
 
 def get_translation_from_keyword(keyword):
     """ Return the translation of keyword """
