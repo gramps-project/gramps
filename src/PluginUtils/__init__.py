@@ -57,6 +57,7 @@ class MenuToolOptions(MenuOptions,Tool.ToolOptions):
     and the MenuToolOptions class will worry about setting up the GUI.
     """
     def __init__(self,name,person_id=None):
-        MenuOptions.__init__(self)
         Tool.ToolOptions.__init__(self,name, person_id)
+        MenuOptions.__init__(self)
+
 

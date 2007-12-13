@@ -1,3 +1,6 @@
+2007-12-12  Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/__init__.py: Fix MenuToolOptions.
+
 2007-12-12  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/GrampsCfg.py: fixed bug #1305, refresh view after name change
 
