@@ -104,6 +104,8 @@ def get_researcher():
 #-------------------------------------------------------------------------
 class DisplayNameEditor(ManagedWindow.ManagedWindow):
     def __init__(self, uistate, dbstate, track, dialog):
+        # Assumes that there are two methods: dialog.name_changed_check(), 
+        # and dialog._build_custom_name_ui() 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], DisplayNameEditor)
         self.dialog = dialog
         self.dbstate = dbstate
@@ -117,6 +119,10 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
         self.window.set_default_size(600, 300)
         self.window.connect('response', self.close)
         self.show()
+    def close(self, *obj):
+        self.dialog.name_changed_check()
+        ManagedWindow.ManagedWindow.close(self, *obj)
+        
     def build_menu_names(self, obj):
         return (_(" Name Editor"), _("Preferences"))
 
@@ -432,6 +438,18 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.name_column = name_column
         return table
 
+    def name_changed_check(self):
+        """
+        Method to check for a name change. Called by Name Edit Dialog.
+        """
+        obj = self.fmt_obox
+        the_list = obj.get_model()
+        the_iter = obj.get_active_iter()
+        format = the_list.get_value(the_iter, COL_FMT)
+        if format != self.old_format:
+            # Yes a change; call the callback
+            self.cb_name_changed(obj)
+
     def cb_name_changed(self, obj):
         """
         Preset name format ComboBox callback
@@ -609,6 +627,9 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return table
 
     def cb_name_dialog(self, obj):
+        the_list = self.fmt_obox.get_model()
+        the_iter = self.fmt_obox.get_active_iter()
+        self.old_format = the_list.get_value(the_iter, COL_FMT)
         win = DisplayNameEditor(self.uistate, self.dbstate, self.track, self)
 
     def date_format_changed(self, obj):
