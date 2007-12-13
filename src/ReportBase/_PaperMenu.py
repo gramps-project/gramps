@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -60,12 +61,16 @@ except:
 #-------------------------------------------------------------------------
 paper_sizes = []
 
+#-------------------------------------------------------------------------
+#
+# PaperComboBox
+#
+#-------------------------------------------------------------------------
 class PaperComboBox(gtk.ComboBox):
 
-    def __init__(self):
-        gtk.ComboBox.__init__(self,model=None)
-
-    def set(self,mapping,default):
+    def __init__(self,default_name):
+        gtk.ComboBox.__init__(self)
+        
         self.store = gtk.ListStore(str)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
@@ -75,10 +80,10 @@ class PaperComboBox(gtk.ComboBox):
 
         index = 0
         start_index = 0
-        for key in mapping:
+        for key in paper_sizes:
             self.mapping[key.get_name()]  = key
             self.store.append(row=[key.get_name()])
-            if key.get_name() == default:
+            if key.get_name() == default_name:
                 start_index = index
             index += 1
             
@@ -91,12 +96,16 @@ class PaperComboBox(gtk.ComboBox):
         key = self.store[active][0]
         return (self.mapping[key],key)
 
+#-------------------------------------------------------------------------
+#
+# OrientationComboBox
+#
+#-------------------------------------------------------------------------
 class OrientationComboBox(gtk.ComboBox):
 
-    def __init__(self):
-        gtk.ComboBox.__init__(self,model=None)
-
-    def set(self,default=0):
+    def __init__(self,default=BaseDoc.PAPER_PORTRAIT):
+        gtk.ComboBox.__init__(self)
+        
         self.store = gtk.ListStore(str)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
@@ -107,6 +116,12 @@ class OrientationComboBox(gtk.ComboBox):
         self.store.append(row=[_('Portrait')])
         self.store.append(row=[_('Landscape')])
         if default == BaseDoc.PAPER_PORTRAIT:
+            self.set_active(0)
+        else:
+            self.set_active(1)
+
+    def set_value(self,value=0):
+        if value == BaseDoc.PAPER_PORTRAIT:
             self.set_active(0)
         else:
             self.set_active(1)
@@ -122,29 +137,169 @@ class OrientationComboBox(gtk.ComboBox):
 
 #-------------------------------------------------------------------------
 #
-# make_orientation_menu
+# PaperFrame
 #
-#-------------------------------------------------------------------------
-def make_orientation_menu(main_menu,value=0):
+#-------------------------------------------------------------------------  
+class PaperFrame(gtk.HBox):
+    """PaperFrame provides all the entry necessary to specify a paper style. """
+    def __init__(self,default_name,default_orientation):
+        gtk.HBox.__init__(self)
+        glade_file = os.path.join(const.GLADE_DIR, "paper_settings.glade")
+        glade_xml = gtk.glade.XML(glade_file, "paper_table", "gramps")
 
-    myMenu = gtk.Menu()
-    menuitem = gtk.MenuItem(_("Portrait"))
-    menuitem.set_data("i",BaseDoc.PAPER_PORTRAIT)
-    menuitem.show()
-    myMenu.append(menuitem)
+        self.paper_table = glade_xml.get_widget('paper_table')
 
-    menuitem = gtk.MenuItem(_("Landscape"))
-    menuitem.set_data("i",BaseDoc.PAPER_LANDSCAPE)
-    menuitem.show()
-    myMenu.append(menuitem)
+        
+        # get all the widgets
+        widgets = ('pwidth', 'pheight', 'lmargin', 'rmargin', 'tmargin',
+                   'bmargin', 'lunits1', 'lunits2', 'lunits3', 'lunits4',
+                   'lunits5', 'lunits6', 'metric')
+        
+        for w in widgets:
+            setattr(self, w, glade_xml.get_widget(w))
+        
+        # insert custom widgets
+        self.papersize_menu = PaperComboBox(default_name)
+        self.orientation_menu = OrientationComboBox(default_orientation)
+        
+        # connect all widgets
+        format_table = glade_xml.get_widget('format_table')
+        format_table.attach(self.papersize_menu, 1, 3, 0, 1,
+                            yoptions=gtk.SHRINK)
+        format_table.attach(self.orientation_menu, 1, 3, 3, 4,
+                            yoptions=gtk.SHRINK)
 
-    if value == BaseDoc.PAPER_PORTRAIT:
-        myMenu.set_active(0)
-    elif value == BaseDoc.PAPER_LANDSCAPE:
-        myMenu.set_active(1)
+        # connect signals
+        self.papersize_menu.connect('changed',self.size_changed)
+        self.metric.connect('toggled',self.units_changed)
 
-    main_menu.set_menu(myMenu)
+        # set initial values
+        self.paper_unit = 'cm'
+        self.paper_unit_multiplier = 1.0
+        
+        self.paper_table.show_all()
+        self.add(self.paper_table)
 
+    def size_changed(self, obj):
+        """Paper size combobox 'changed' callback."""
+        size, name = self.get_paper_size()
+
+        is_custom = name == _("Custom Size")
+        self.pwidth.set_sensitive(is_custom)
+        self.pheight.set_sensitive(is_custom)
+
+        if self.paper_unit == 'cm':
+            self.pwidth.set_text("%.2f" % size.get_width())
+            self.pheight.set_text("%.2f" % size.get_height())
+        elif self.paper_unit == 'in.':
+            self.pwidth.set_text("%.2f" % size.get_width_inches())
+            self.pheight.set_text("%.2f" % size.get_height_inches())
+        else:
+            raise ValueError('Paper dimension unit "%s" is not allowed' %
+                             self.paper_unit)
+            
+    def units_changed(self, checkbox):
+        """Metric checkbox 'toggled' callback."""
+        paper_size, paper_name = self.get_paper_size()
+        paper_margins = self.get_paper_margins()
+
+        if checkbox.get_active():
+            self.paper_unit = 'cm'
+            self.paper_unit_multiplier = 1.0
+        else:
+            self.paper_unit = 'in.'
+            self.paper_unit_multiplier = 2.54
+            
+        self.lunits1.set_text(self.paper_unit)
+        self.lunits2.set_text(self.paper_unit)
+        self.lunits3.set_text(self.paper_unit)
+        self.lunits4.set_text(self.paper_unit)
+        self.lunits5.set_text(self.paper_unit)
+        self.lunits6.set_text(self.paper_unit)
+        
+        if self.paper_unit == 'cm':
+            self.pwidth.set_text("%.2f" % paper_size.get_width())
+            self.pheight.set_text("%.2f" % paper_size.get_height())
+        else:
+            self.pwidth.set_text("%.2f" % paper_size.get_width_inches())
+            self.pheight.set_text("%.2f" % paper_size.get_height_inches())
+            
+        self.lmargin.set_text("%.2f" %
+                              (paper_margins[0] / self.paper_unit_multiplier))
+        self.rmargin.set_text("%.2f" %
+                              (paper_margins[1] / self.paper_unit_multiplier))
+        self.tmargin.set_text("%.2f" %
+                              (paper_margins[2] / self.paper_unit_multiplier))
+        self.bmargin.set_text("%.2f" %
+                              (paper_margins[3] / self.paper_unit_multiplier))
+        
+    def get_paper_size(self):
+        """Read and validate paper size values.
+        
+        If needed update the dimensions from the width, height entries,
+        and worst case fallback to A4 size.
+        
+        """
+        papersize, papername =  self.papersize_menu.get_value()
+        
+        # FIXME it is wrong to use translatable text in comparison.
+        # How can we distinguish custom size though?
+        if papername == _('Custom Size'):
+            try:
+                h = float(unicode(self.pheight.get_text()))
+                w = float(unicode(self.pwidth.get_text()))
+                
+                if h <= 1.0 or w <= 1.0:
+                    papersize.set_height(29.7)
+                    papersize.set_width(21.0)
+                else:
+                    papersize.set_height(h * self.paper_unit_multiplier)
+                    papersize.set_width(w * self.paper_unit_multiplier)
+            except:
+                papersize.set_height(29.7)
+                papersize.set_width(21.0)
+                
+        return papersize, papername
+
+    def get_paper_margins(self):
+        """Get and validate margin values from dialog entries.
+        
+        Values returned in [cm].
+        
+        """
+        paper_margins = []
+        paper_margins.append(unicode(self.lmargin.get_text()))
+        paper_margins.append(unicode(self.rmargin.get_text()))
+        paper_margins.append(unicode(self.tmargin.get_text()))
+        paper_margins.append(unicode(self.bmargin.get_text()))
+        
+        for i, margin in enumerate(paper_margins):
+            try:
+                paper_margins[i] = float(margin)
+                paper_margins[i] = paper_margins[i] * self.paper_unit_multiplier
+                paper_margins[i] = max(paper_margins[i], 0)
+            except:
+                paper_margins[i] = 2.54
+                
+        return paper_margins
+    
+    def get_paper_style(self):
+        paper_size, paper_name = self.get_paper_size()
+        paper_orientation = self.orientation_menu.get_value()
+        paper_margins = self.get_paper_margins()
+        
+        pstyle = BaseDoc.PaperStyle(paper_size,
+                            paper_orientation,
+                            *paper_margins)
+        return pstyle
+    
+    def get_paper_name(self):
+        paper_size, paper_name = self.get_paper_size()
+        return paper_name
+        
+    def get_orientation(self):
+        return self.orientation_menu.get_value()
+    
 #-------------------------------------------------------------------------
 #
 # PageSizeParser

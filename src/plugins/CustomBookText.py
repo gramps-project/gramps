@@ -102,7 +102,6 @@ class CustomTextOptions(ReportOptions):
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
-    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'top'   : '',
@@ -117,9 +116,12 @@ class CustomTextOptions(ReportOptions):
             'bot'   : ("=str","Final Text",
                             "Whatever String You Wish"),
         }
+        
+    def do_nothing(self):
+        pass
 
     def add_user_options(self,dialog):
-        dialog.setup_center_person = dialog.setup_paper_frame
+        dialog.setup_center_person = self.do_nothing #Disable center person
         dialog.notebook = gtk.Notebook()
         dialog.notebook.set_border_width(6)
         dialog.window.vbox.add(dialog.notebook)
@@ -184,7 +186,7 @@ class CustomTextOptions(ReportOptions):
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set(pad=0.5)
         para.set_description(_('The style used for the first portion of the custom text.'))
-        default_style.add_style("CBT-Initial",para)
+        default_style.add_paragraph_style("CBT-Initial",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
@@ -193,7 +195,7 @@ class CustomTextOptions(ReportOptions):
         para.set(pad=0.5)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set_description(_('The style used for the middle portion of the custom text.'))
-        default_style.add_style("CBT-Middle",para)
+        default_style.add_paragraph_style("CBT-Middle",para)
 
         font = BaseDoc.FontStyle()
         font.set(face=BaseDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
@@ -202,7 +204,7 @@ class CustomTextOptions(ReportOptions):
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         para.set(pad=0.5)
         para.set_description(_('The style used for the last portion of the custom text.'))
-        default_style.add_style("CBT-Final",para)
+        default_style.add_paragraph_style("CBT-Final",para)
 
 #------------------------------------------------------------------------
 #

@@ -468,15 +468,19 @@ class ReportOptions(_Options.Options):
     This is a base Options class for the reports. All reports' options
     classes should derive from it.
     """
-
     def __init__(self,name,person_id=None):
         """
         Initializes the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
         """
-
-        self.set_new_options()
-        self.handler = OptionHandler(name,self.options_dict,person_id)
+        self.name = name
+        self.person_id = person_id
+        self.options_dict = {}
+        self.options_help = {}
+        self.handler = None
+        
+    def load_previous_values(self):
+        self.handler = OptionHandler(self.name,self.options_dict,self.person_id)
 
     def make_default_style(self,default_style):
         """
@@ -560,6 +564,7 @@ class MenuReportOptions(MenuOptions,ReportOptions):
 
     """
     def __init__(self,name,person_id=None):
-        MenuOptions.__init__(self)
         ReportOptions.__init__(self,name, person_id)
+        MenuOptions.__init__(self)
+
 

@@ -328,8 +328,7 @@ class KinshipOptions(ReportOptions):
 
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
-        
-    def set_new_options(self):
+
         self.options_dict = {
             'maxdescend'    : 2,
             'maxascend'     : 2,

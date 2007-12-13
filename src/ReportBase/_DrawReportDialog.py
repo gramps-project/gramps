@@ -21,7 +21,7 @@
 # $Id$
 
 from _Constants import CATEGORY_DRAW
-from _ReportDialog import ReportDialog
+from _DocReportDialog import DocReportDialog
 from _DrawFormatComboBox import DrawFormatComboBox
 
 #-----------------------------------------------------------------------
@@ -29,14 +29,14 @@ from _DrawFormatComboBox import DrawFormatComboBox
 # Drawing reports
 #
 #-----------------------------------------------------------------------
-class DrawReportDialog(ReportDialog):
+class DrawReportDialog(DocReportDialog):
     """A class of ReportDialog customized for drawing based reports."""
     def __init__(self,dbstate,uistate,person,opt,name,translated_name):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_DRAW
-        ReportDialog.__init__(self,dbstate,uistate,person,opt,
+        DocReportDialog.__init__(self,dbstate,uistate,person,opt,
                               name,translated_name)
 
     #------------------------------------------------------------------------

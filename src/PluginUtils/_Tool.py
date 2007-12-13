@@ -92,6 +92,7 @@ class Tool:
             self.options = options_class(name)
         elif type(options_class) == InstanceType:
             self.options = options_class
+        self.options.load_previous_values()
 
     def run_tool(self):
         pass
@@ -309,6 +310,12 @@ class ToolOptions(Options):
         Initializes the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
         """
-        self.set_new_options()
-        self.handler = ToolOptionHandler(name,self.options_dict,person_id)
+        self.name = name
+        self.person_id = person_id
+        self.options_dict = {}
+        self.options_help = {}
+        self.handler = None
+        
+    def load_previous_values(self):
+        self.handler = ToolOptionHandler(self.name,self.options_dict,self.person_id)
 

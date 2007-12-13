@@ -42,7 +42,6 @@ import gtk
 #-------------------------------------------------------------------------
 from BasicUtils import name_displayer
 import BaseDoc
-import Utils
 
 import ManagedWindow
 from _StyleComboBox import StyleComboBox
@@ -89,6 +88,8 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
             self.options = option_class(name)
         elif type(option_class) == InstanceType:
             self.options = option_class
+
+        self.options.load_previous_values()
 
         self.init_interface()
 
@@ -153,8 +154,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.notebook.set_border_width(6)
         self.window.vbox.add(self.notebook)
 
-        self.setup_paper_frame()
-        self.setup_html_frame()
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.notebook.set_current_page(0)
@@ -427,14 +426,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
     #
     #------------------------------------------------------------------------
     def setup_format_frame(self): 
-        """Not used in bare report dialogs. Override in the subclass."""
-        pass
-
-    def setup_paper_frame(self):
-        """Not used in bare report dialogs. Override in the subclass."""
-        pass
-
-    def setup_html_frame(self):
         """Not used in bare report dialogs. Override in the subclass."""
         pass
     

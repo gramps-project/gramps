@@ -2666,8 +2666,7 @@ class WebReportOptions(ReportOptions):
     def __init__(self,name,database=None,person_id=None):
         ReportOptions.__init__(self,name,person_id)
         self.db = database
-        
-    def set_new_options(self):
+
         # Options specific for this report
         self.options_dict = {
             'NWEBfilter'        : 0,
@@ -3086,20 +3085,15 @@ class WebReportDialog(ReportDialog):
         """The style frame is not used in this dialog."""
         self.options.handler.options_dict['NWEBarchive'] = int(
             self.archive.get_active())
-
-    def parse_html_frame(self):
-        pass
     
-    def parse_paper_frame(self):
-        pass
-    
-    def setup_html_frame(self):
+    def setup_report_options_frame(self):
         self.archive = gtk.CheckButton(_('Store web pages in .tar.gz archive'))
         self.archive.set_alignment(0.0,0.5)
         self.archive.set_active(
             self.options.handler.options_dict['NWEBarchive'])
         self.archive.connect('toggled',self.archive_toggle)
         self.add_option(None,self.archive)
+        ReportDialog.setup_report_options_frame(self)
 
     def archive_toggle(self,obj):
         if obj.get_active():
@@ -3120,9 +3114,6 @@ class WebReportDialog(ReportDialog):
             if fname[-7:] == '.tar.gz':
                 fname = fname[:-7]
                 self.target_fileentry.set_filename(fname)
-
-    def setup_paper_frame(self):
-        pass
 
     def get_title(self):
         """The window title for this dialog"""

@@ -21,7 +21,7 @@
 # $Id$
 
 from _Constants import CATEGORY_TEXT
-from _ReportDialog import ReportDialog
+from _DocReportDialog import DocReportDialog
 from _TextFormatComboBox import TextFormatComboBox
 
 #-----------------------------------------------------------------------
@@ -29,7 +29,7 @@ from _TextFormatComboBox import TextFormatComboBox
 # Textual reports
 #
 #-----------------------------------------------------------------------
-class TextReportDialog(ReportDialog):
+class TextReportDialog(DocReportDialog):
     """A class of ReportDialog customized for text based reports."""
 
     def __init__(self,dbstate,uistate,person,options,name,translated_name):
@@ -37,7 +37,7 @@ class TextReportDialog(ReportDialog):
         for a basic text report.  See the ReportDialog class for more
         information."""
         self.category = CATEGORY_TEXT
-        ReportDialog.__init__(self,dbstate,uistate,person,options,
+        DocReportDialog.__init__(self,dbstate,uistate,person,options,
                               name,translated_name)
 
     #------------------------------------------------------------------------

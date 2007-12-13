@@ -656,7 +656,6 @@ class GraphVizOptions(ReportOptions):
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
-    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'filter'     : 0,
@@ -758,9 +757,6 @@ class GraphVizOptions(ReportOptions):
                             True),
 
         }
-
-    def make_doc_menu(self,dialog,active=None):
-        pass
 
     def add_list(self, options, default):
         "returns compobox of given options and default value"

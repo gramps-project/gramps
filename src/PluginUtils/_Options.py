@@ -405,16 +405,9 @@ class Options:
         """
         Initializes the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
-        """
-        self.set_new_options()
-        self.handler = OptionHandler(name,self.options_dict,person_id)
-
-    def set_new_options(self):
-        """
-        Sets options specific for this module. 
         
         Modules that need custom options need to override this method.
-        Two dictionaries MUST be defined here: 
+        Two dictionaries allow the addition of custom options: 
 
             self.options_dict
                 This is a dictionary whose keys are option names
@@ -431,12 +424,19 @@ class Options:
                 number when help is printed on the command line.
 
         NOTE:   Both dictionaries must have identical keys.
-
-        NOTE:   If a particular module does not use custom options,
-                then it should not override this method. 
         """
+        self.name = name
+        self.person_id = person_id
         self.options_dict = {}
         self.options_help = {}
+        self.handler = None
+        
+    def load_previous_values(self):
+        """
+        Modifies all options to have the value they were last used as. Call this
+        function after all options have been added.
+        """
+        self.handler = OptionHandler(self.name,self.options_dict,self.person_id)
 
     def add_user_options(self,dialog):
         """

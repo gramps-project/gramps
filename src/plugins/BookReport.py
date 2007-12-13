@@ -78,6 +78,7 @@ from ReportBase._Constants import CATEGORY_BOOK, MODE_GUI, MODE_CLI
 from ReportBase._BookFormatComboBox import BookFormatComboBox
 from ReportBase._BareReportDialog import BareReportDialog
 from ReportBase._ReportDialog import ReportDialog
+from ReportBase._DocReportDialog import DocReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 from ReportBase._ReportOptions import ReportOptions
 
@@ -137,6 +138,7 @@ class BookItem:
                 self.write_item = item[2]
                 self.name = item[4]
                 self.option_class = item[3](self.name)
+                self.option_class.load_previous_values()
 
     def get_name(self):
         """
@@ -579,7 +581,6 @@ class BookOptions(ReportOptions):
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
-    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'bookname'    : '',
@@ -982,7 +983,7 @@ class BookItemDialog(BareReportDialog):
 # The final dialog - paper, format, target, etc. 
 #
 #------------------------------------------------------------------------
-class BookReportDialog(ReportDialog):
+class BookReportDialog(DocReportDialog):
     """
     A usual Report.Dialog subclass. 
     
@@ -992,7 +993,7 @@ class BookReportDialog(ReportDialog):
     def __init__(self,dbstate,uistate,person,book,options):
         self.options = options
         self.page_html_added = False
-        BareReportDialog.__init__(self,dbstate,uistate,person,options,
+        DocReportDialog.__init__(self,dbstate,uistate,person,options,
                                   'book',_("Book Report"))
         self.book = book
         self.database = dbstate.db
@@ -1038,7 +1039,6 @@ class BookReportDialog(ReportDialog):
         self.close()
 
     def setup_style_frame(self): pass
-    def setup_report_options_frame(self): pass
     def setup_other_frames(self): pass
     def parse_style_frame(self): pass
 
@@ -1065,11 +1065,8 @@ class BookReportDialog(ReportDialog):
 
     def make_document(self):
         """Create a document of the type requested by the user."""
-        self.doc = self.format(self.selected_style,
-                               BaseDoc.PaperStyle(self.paper_size,
-                                                  self.paper_orientation,
-                                                  *self.paper_margins),
-                               self.template_name)
+        pstyle = self.paper_frame.get_paper_style()
+        self.doc = self.format(self.selected_style, pstyle, self.template_name)
 
         self.rptlist = []
         for item in self.book.get_item_list():

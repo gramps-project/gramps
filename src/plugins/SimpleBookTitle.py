@@ -122,7 +122,6 @@ class SimpleBookTitleOptions(ReportOptions):
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
-    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'title'     : _('Title of the Book'),
@@ -145,9 +144,12 @@ class SimpleBookTitleOptions(ReportOptions):
                              "0 (to fit the page)."],
                             False),
         }
+        
+    def do_nothing(self):
+        pass
 
     def add_user_options(self,dialog):
-        dialog.setup_center_person = dialog.setup_paper_frame
+        dialog.setup_center_person = self.do_nothing #Disable center person
         dialog.notebook = gtk.Notebook()
         dialog.notebook.set_border_width(6)
         dialog.window.vbox.add(dialog.notebook)

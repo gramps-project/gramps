@@ -1,3 +1,7 @@
+2007-12-12  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_DocReportDialog.py: Added.
+	* many, many other files: Refactor various aspects of the report system.
+
 2007-12-12  Douglas S. Blank  <dblank@doraemon.brynmawr.edu>
 	* src/GrampsCfg.py: added Translation -> Pattern -> Translation
 	so that one can see fully translated text, even if they type in

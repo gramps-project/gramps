@@ -612,11 +612,7 @@ class Menu:
 class MenuOptions:
     def __init__(self):
         self.menu = Menu()
-
-    def make_default_style(self,default_style):
-        pass
-
-    def set_new_options(self):
+        
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}
         self.options_help = {}
@@ -625,6 +621,9 @@ class MenuOptions:
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
             self.options_help[name] = option.get_help()
+
+    def make_default_style(self,default_style):
+        pass
 
     def add_menu_options(self,menu):
         """
@@ -635,6 +634,10 @@ class MenuOptions:
         @return: nothing
         """
         raise NotImplementedError
+    
+    def add_menu_option(self,option):
+        self.options_dict[name] = option.get_value()
+        self.options_help[name] = option.get_help()
 
     def add_user_options(self, dialog):
         """

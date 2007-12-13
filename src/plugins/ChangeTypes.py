@@ -180,7 +180,6 @@ class ChangeTypesOptions(Tool.ToolOptions):
     def __init__(self,name,person_id=None):
         Tool.ToolOptions.__init__(self,name,person_id)
 
-    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'fromtype'   : '',

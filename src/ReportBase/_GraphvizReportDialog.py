@@ -46,6 +46,7 @@ import BaseDoc
 import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
+from _PaperMenu import PaperFrame
 
 #-------------------------------------------------------------------------------
 #
@@ -514,11 +515,112 @@ class GraphvizReportDialog(ReportDialog):
         for a graphiz report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_GRAPHVIZ
+        #TODO: Add custom options to "opt" first.
         ReportDialog.__init__(self,dbstate,uistate,person,opt,
                               name,translated_name)
+        
+    def init_interface(self):
+        ReportDialog.init_interface(self)
+        self.doc_type_changed(self.format_menu)
 
-    def make_doc_menu(self,active=None):
-        """Build a menu of document types that are appropriate for
-        a graphiz report."""
+    def setup_format_frame(self):
+        """Set up the format frame of the dialog."""
+
+        self.print_report = gtk.CheckButton (_("Open with application"))
+        self.tbl.attach(self.print_report,2,4,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
+        self.col += 1
+
         self.format_menu = GraphvizFormatComboBox()
-        self.format_menu.set(active)
+        self.format_menu.set(self.options.handler.get_format_name())
+        self.format_menu.connect('changed',self.doc_type_changed)
+        label = gtk.Label("%s:" % _("Output Format"))
+        label.set_alignment(0.0,0.5)
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1,
+                        yoptions=gtk.SHRINK)
+        self.col += 1
+
+        ext = self.format_menu.get_ext()
+        if ext == None:
+            ext = ""
+        else:
+            spath = self.get_default_directory()
+            if self.get_target_is_directory():
+                self.target_fileentry.set_filename(spath)
+            else:
+                base = self.get_default_basename()
+                spath = os.path.normpath("%s/%s%s" % (spath,base,ext))
+                self.target_fileentry.set_filename(spath)
+                
+    def setup_report_options_frame(self):
+        self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
+        self.paper_label.set_use_markup(True)
+
+        self.paper_frame = PaperFrame(self.options.handler.get_paper_name(),
+                                      self.options.handler.get_orientation())
+        self.notebook.insert_page(self.paper_frame,self.paper_label,0)
+        self.paper_frame.show_all()
+
+        ReportDialog.setup_report_options_frame(self)
+
+    def doc_type_changed(self, obj):
+        """This routine is called when the user selects a new file
+        formats for the report.  It adjust the various dialog sections
+        to reflect the appropriate values for the currently selected
+        file format.  For example, a HTML document doesn't need any
+        paper size/orientation options, but it does need a template
+        file.  Those chances are made here."""
+
+        label = obj.get_printable()
+        if label:
+            self.print_report.set_label (label)
+            self.print_report.set_sensitive (True)
+        else:
+            self.print_report.set_label (_("Open with application"))
+            self.print_report.set_sensitive (False)
+            
+    def make_document(self):
+        """Create a document of the type requested by the user.
+        """
+        pstyle = self.paper_frame.get_paper_style()
+        
+        self.doc = self.format(None, pstyle, None)
+        
+        self.options.set_document(self.doc)
+
+        if self.print_report.get_active():
+            self.doc.print_requested()
+            
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices.  Validate
+        the output file name before doing anything else.  If there is
+        a file name, gather the options and create the report."""
+
+        # Is there a filename?  This should also test file permissions, etc.
+        if not self.parse_target_frame():
+            self.window.run()
+
+        # Preparation
+        self.parse_format_frame()
+        self.parse_user_options()
+        
+        self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
+        self.options.handler.set_orientation(self.paper_frame.get_orientation())
+
+        # Create the output document.
+        self.make_document()
+        
+        # Save options
+        self.options.handler.save_options()
+        
+    def parse_format_frame(self):
+        """Parse the format frame of the dialog.  Save the user
+        selected output format for later use."""
+        self.format = self.format_menu.get_reference()
+        format_name = self.format_menu.get_clname()
+        self.options.handler.set_format_name(format_name)
+            
+    def setup_style_frame(self):
+        """Required by ReportDialog:BareReportDialog"""
+        pass

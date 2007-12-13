@@ -786,7 +786,6 @@ class FamilyLinesOptions(ReportOptions):
         ReportOptions.__init__(self, name, None)
         self.dialog = dialog
 
-    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'FLfilename'            : 'familylines.dot',

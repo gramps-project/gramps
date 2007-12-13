@@ -674,8 +674,7 @@ class WebReportOptions(ReportOptions):
     def __init__(self,name,database=None,person_id=None):
         ReportOptions.__init__(self,name,person_id)
         self.db = database
-        
-    def set_new_options(self):
+
         # Options specific for this report
         self.options_dict = {
              'WCfilter'        : 0,
@@ -1046,19 +1045,7 @@ class WebReportDialog(ReportDialog):
                 break
         self.close()
 
-    def parse_html_frame(self):
-        pass
-    
-    def parse_paper_frame(self):
-        pass
-    
-    def setup_html_frame(self):
-        pass
-
     def dummy_toggle(self,obj):
-        pass
-
-    def setup_paper_frame(self):
         pass
 
     def get_title(self):

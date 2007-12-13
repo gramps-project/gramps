@@ -664,7 +664,6 @@ class DetAncestorOptions(ReportOptions):
     def __init__(self,name,person_id=None):
         ReportOptions.__init__(self,name,person_id)
 
-    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'gen'           : 10,
