@@ -1,3 +1,6 @@
+2007-12-14  Jerome Rapinat <romjerome@yahoo.fr>
+	* src/plugins/holidays.xml: update french holidays.
+
 2007-12-14  Zdenek Hatas  <zdenek.hatas@gmail.com>
 	* src/plugins/holidays.xml: reencoded to utf-8, added czech
 	   national holidays.

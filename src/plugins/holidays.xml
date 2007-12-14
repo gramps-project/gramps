@@ -129,12 +129,17 @@
     <date name="Fête nationale" value="*/7/14" type="national" />
     <date name="Armistice 1918" value="*/11/11" type="national" />
     <date name="Pâques" value="2007/4/8" type="religious" />
+    <date name="Pâques" value="2008/3/23" type="religious" />
     <date name="Lundi de pâques" value="2007/4/9" type="religious" />
+    <date name="Lundi de pâques" value="2008/3/24" type="religious" />
     <date name="Ascension" value="2007/5/17" type="religious" />
+    <date name="Ascension" value="2008/5/1" type="religious" />
     <date name="Pentecôte" value="2007/5/27" type="religious" />
+    <date name="Pentecôte" value="2008/5/11" type="religious" />
     <date name="Lundi de pentecôte" value="2007/5/28" type="religious" />
-    <date name="Assomption" value="2007/8/15" type="religious" />
-    <date name="Toussaint" value="2007/11/1" type="religious" />
+    <date name="Lundi de pentecôte" value="2008/5/12" type="religious" />
+    <date name="Assomption" value="*/8/15" type="religious" />
+    <date name="Toussaint" value="*/11/1" type="religious" />
     <date name="Noël" value="*/12/25" type="religious" />
     <date name="Saint Etienne" value="*/12/26" type="religious" />
     <date name="Yom Kippur" value="2005/10/13" type="religious" />
