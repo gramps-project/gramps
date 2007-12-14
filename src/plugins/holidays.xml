@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <calendar>
   <country name="Canada">
     <date name="New Year's Day" value="*/1/1" type="national" />
@@ -124,18 +124,18 @@
   </country>
   <country name="France">
     <date name="Jour de l'an" value="*/1/1" type="national" />
-    <date name="Fête du travail" value="*/5/1" type="national" />
+    <date name="FÃªte du travail" value="*/5/1" type="national" />
     <date name="Victoire 1945" value="*/5/8" type="national" />
-    <date name="Fête nationale" value="*/7/14" type="national" />
+    <date name="FÃªte nationale" value="*/7/14" type="national" />
     <date name="Armistice 1918" value="*/11/11" type="national" />
-    <date name="Pâques" value="2007/4/8" type="religious" />
-    <date name="Lundi de pâques" value="2007/4/9" type="religious" />
+    <date name="PÃ¢ques" value="2007/4/8" type="religious" />
+    <date name="Lundi de pÃ¢ques" value="2007/4/9" type="religious" />
     <date name="Ascension" value="2007/5/17" type="religious" />
-    <date name="Pentecôte" value="2007/5/27" type="religious" />
-    <date name="Lundi de pentecôte" value="2007/5/28" type="religious" />
+    <date name="PentecÃ´te" value="2007/5/27" type="religious" />
+    <date name="Lundi de pentecÃ´te" value="2007/5/28" type="religious" />
     <date name="Assomption" value="2007/8/15" type="religious" />
     <date name="Toussaint" value="2007/11/1" type="religious" />
-    <date name="Noël" value="*/12/25" type="religious" />
+    <date name="NoÃ«l" value="*/12/25" type="religious" />
     <date name="Saint Etienne" value="*/12/26" type="religious" />
     <date name="Yom Kippur" value="2005/10/13" type="religious" />
     <date name="Yom Kippur" value="2006/10/02" type="religious" />
@@ -143,56 +143,56 @@
     <date name="Yom Kippur" value="2008/10/09" type="religious" />
     <date name="Yom Kippur" value="2009/9/28" type="religious" />
     <date name="Yom Kippur" value="2010/9/18" type="religious" />
-    <date name="début Hanukkah" value="2004/12/07" type="religious" />
-    <date name="début Hanukkah" value="2005/12/25" type="religious" />
-    <date name="début Hanukkah" value="2006/12/15" type="religious" />
-    <date name="début Hanukkah" value="2007/12/04" type="religious" />
-    <date name="début Hanukkah" value="2008/12/21" type="religious" />
-    <date name="début Hanukkah" value="2009/12/11" type="religious" />
-    <date name="début Hanukkah" value="2010/12/01" type="religious" />
-    <date name="début Ramadan" value="2006/9/24" type="religious" />
-    <date name="début Ramadan" value="2007/9/13" type="religious" />
-    <date name="début Ramadan" value="2008/9/2" type="religious" />
-    <date name="début Kwanzaa" value="*/12/26" type="religious" />
+    <date name="dÃ©but Hanukkah" value="2004/12/07" type="religious" />
+    <date name="dÃ©but Hanukkah" value="2005/12/25" type="religious" />
+    <date name="dÃ©but Hanukkah" value="2006/12/15" type="religious" />
+    <date name="dÃ©but Hanukkah" value="2007/12/04" type="religious" />
+    <date name="dÃ©but Hanukkah" value="2008/12/21" type="religious" />
+    <date name="dÃ©but Hanukkah" value="2009/12/11" type="religious" />
+    <date name="dÃ©but Hanukkah" value="2010/12/01" type="religious" />
+    <date name="dÃ©but Ramadan" value="2006/9/24" type="religious" />
+    <date name="dÃ©but Ramadan" value="2007/9/13" type="religious" />
+    <date name="dÃ©but Ramadan" value="2008/9/2" type="religious" />
+    <date name="dÃ©but Kwanzaa" value="*/12/26" type="religious" />
   </country>
-  <country name="Sverige - röda dagar">
-    <date name="Nyårsdagen" value="*/1/1" type="national" />
+  <country name="Sverige - rÃ¶da dagar">
+    <date name="NyÃ¥rsdagen" value="*/1/1" type="national" />
     <date name="Trettondagen" value="*/1/5" type="national" />
-    <date name="Långfredagen" value="2007/4/6" type="national" />
-    <date name="Påskdagen" value="2007/4/8" type="national" />
-    <date name="Annandag Påsk" value="2007/4/9" type="national" />
-    <date name="Långfredagen" value="2008/3/21" type="national" />
-    <date name="Påskdagen" value="2008/3/23" type="national" />
-    <date name="Annandag Påsk" value="2008/3/24" type="national" />
-    <date name="Långfredagen" value="2009/4/10" type="national" />
-    <date name="Påskdagen" value="2009/4/12" type="national" />
-    <date name="Annandag Påsk" value="2009/4/13" type="national" />
-    <date name="Långfredagen" value="2010/4/2" type="national" />
-    <date name="Påskdagen" value="2010/4/4" type="national" />
-    <date name="Annandag Påsk" value="2010/4/5" type="national" />
-    <date name="Långfredagen" value="2011/4/21" type="national" />
-    <date name="Påskdagen" value="2011/4/24" type="national" />
-    <date name="Annandag Påsk" value="2011/4/25" type="national" />
-    <date name="Långfredagen" value="2012/4/6" type="national" />
-    <date name="Påskdagen" value="2012/4/8" type="national" />
-    <date name="Annandag Påsk" value="2012/4/9" type="national" />
-    <date name="Långfredagen" value="2013/3/29" type="national" />
-    <date name="Påskdagen" value="2013/3/31" type="national" />
-    <date name="Annandag Påsk" value="2013/4/1" type="national" />
-    <date name="Långfredagen" value="2014/4/18" type="national" />
-    <date name="Påskdagen" value="2014/4/20" type="national" />
-    <date name="Annandag Påsk" value="2014/4/21" type="national" />
-    <date name="Långfredagen" value="2015/4/3" type="national" />
-    <date name="Påskdagen" value="2015/4/5" type="national" />
-    <date name="Annandag Påsk" value="2015/4/6" type="national" />
-    <date name="Första Maj" value="*/5/1" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2009/5/21" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2010/5/13" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2011/6/2" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2012/5/17" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2013/5/9" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2014/5/29" type="national" />
-    <date name="Kristi Himmelfärdsdag" value="2015/5/14" type="national" />
+    <date name="LÃ¥ngfredagen" value="2007/4/6" type="national" />
+    <date name="PÃ¥skdagen" value="2007/4/8" type="national" />
+    <date name="Annandag PÃ¥sk" value="2007/4/9" type="national" />
+    <date name="LÃ¥ngfredagen" value="2008/3/21" type="national" />
+    <date name="PÃ¥skdagen" value="2008/3/23" type="national" />
+    <date name="Annandag PÃ¥sk" value="2008/3/24" type="national" />
+    <date name="LÃ¥ngfredagen" value="2009/4/10" type="national" />
+    <date name="PÃ¥skdagen" value="2009/4/12" type="national" />
+    <date name="Annandag PÃ¥sk" value="2009/4/13" type="national" />
+    <date name="LÃ¥ngfredagen" value="2010/4/2" type="national" />
+    <date name="PÃ¥skdagen" value="2010/4/4" type="national" />
+    <date name="Annandag PÃ¥sk" value="2010/4/5" type="national" />
+    <date name="LÃ¥ngfredagen" value="2011/4/21" type="national" />
+    <date name="PÃ¥skdagen" value="2011/4/24" type="national" />
+    <date name="Annandag PÃ¥sk" value="2011/4/25" type="national" />
+    <date name="LÃ¥ngfredagen" value="2012/4/6" type="national" />
+    <date name="PÃ¥skdagen" value="2012/4/8" type="national" />
+    <date name="Annandag PÃ¥sk" value="2012/4/9" type="national" />
+    <date name="LÃ¥ngfredagen" value="2013/3/29" type="national" />
+    <date name="PÃ¥skdagen" value="2013/3/31" type="national" />
+    <date name="Annandag PÃ¥sk" value="2013/4/1" type="national" />
+    <date name="LÃ¥ngfredagen" value="2014/4/18" type="national" />
+    <date name="PÃ¥skdagen" value="2014/4/20" type="national" />
+    <date name="Annandag PÃ¥sk" value="2014/4/21" type="national" />
+    <date name="LÃ¥ngfredagen" value="2015/4/3" type="national" />
+    <date name="PÃ¥skdagen" value="2015/4/5" type="national" />
+    <date name="Annandag PÃ¥sk" value="2015/4/6" type="national" />
+    <date name="FÃ¶rsta Maj" value="*/5/1" type="national" />
+    <date name="Kristi HimmelfÃ¤rdsdag" value="2009/5/21" type="national" />
+    <date name="Kristi HimmelfÃ¤rdsdag" value="2010/5/13" type="national" />
+    <date name="Kristi HimmelfÃ¤rdsdag" value="2011/6/2" type="national" />
+    <date name="Kristi HimmelfÃ¤rdsdag" value="2012/5/17" type="national" />
+    <date name="Kristi HimmelfÃ¤rdsdag" value="2013/5/9" type="national" />
+    <date name="Kristi HimmelfÃ¤rdsdag" value="2014/5/29" type="national" />
+    <date name="Kristi HimmelfÃ¤rdsdag" value="2015/5/14" type="national" />
     <date name="Nationaldag" value="*/6/6" type="national" />
     <date name="Midsommardagen" value="*/3/sat/jun" type="national" />
     <date name="Allahelgonadagen" value="*/1/sat/nov" type="national" />
@@ -201,7 +201,7 @@
   </country>
   <country name="Deutschland">
     <date name="Neujahr" type="national" value="*/1/1" />
-    <date name="Hl. Drei Könige BW,BY,ST" type="religious" value="*/1/6" />
+    <date name="Hl. Drei KÃ¶nige BW,BY,ST" type="religious" value="*/1/6" />
     <date name="Karfreitag" type="religious" value="1980/4/4" />
     <date name="Karfreitag" type="religious" value="1981/4/17" />
     <date name="Karfreitag" type="religious" value="1982/4/9" />
@@ -326,12 +326,26 @@
     <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2014/6/19" />
     <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2015/6/4" />
     <date name="Fronleichnam BW, BY, HE, NW, RP, SL" type="religious" value="2016/5/26" />
-    <date name="Mariä Himmelfahrt SL" type="religious" value="*/8/15" />
+    <date name="MariÃ¤ Himmelfahrt SL" type="religious" value="*/8/15" />
     <date name="Tag der Deutschen Einheit" type="national" value="*/10/3" />
     <date name="Reformationstag BB, MV, SN, ST, TH" type="religious" value="*/10/31" />
     <date name="Allerheiligen BW, BY, NW, RP, SL" type="religious" value="*/11/1" />
-    <date name="Buß- u. Bettag SN" type="religious" value="*/11/23"  offset="-wed"/>
+    <date name="BuÃŸ- u. Bettag SN" type="religious" value="*/11/23"  offset="-wed"/>
     <date name="1. Weihnachtsfeiertag" type="religious" value="*/12/25" />
     <date name="2. Weihnachtsfeiertag" type="religious" value="*/12/26" />
+  </country>
+  <country name="ÄŒeskÃ¡ republika">
+    <date name="NovÃ½ rok" value="*/1/1" type="national" />
+    <date name="VelikonoÄnÃ­ pondÄ›lÃ­" type="religious" value="> easter(y)" offset="+1" />
+    <date name="SvÃ¡tek prÃ¡ce" value="*/5/1" type="national" />
+    <date name="Den osvobozenÃ­ od faÅ¡ismu" value="*/5/8" type="national" />
+    <date name="Den slovanskÃ½ch vÄ›rozvÄ›stÅ¯ Cyrila a MetodÄ›je" value="*/7/5" type="national" />
+    <date name="Den upÃ¡lenÃ­ mistra Jana Husa" value="*/7/6" type="national" />
+    <date name="Den ÄeskÃ© stÃ¡tnosti" value="*/9/28" type="national" />
+    <date name="Den vzniku samostatnÃ©ho ÄeskoslovenskÃ©ho stÃ¡tu" value="*/10/28" type="national" />
+    <date name="Den boje za svobodu a demokracii" value="*/11/17" type="national" />
+    <date name="Å tÄ›drÃ½ den" value="*/12/24" type="religious" />
+    <date name="1. svÃ¡tek vÃ¡noÄnÃ­" value="*/12/25" type="national" />
+    <date name="2. svÃ¡tek vÃ¡noÄnÃ­" value="*/12/26" type="national" />
   </country>
 </calendar>
