@@ -165,6 +165,15 @@ class Source(MediaBase, NoteBase, PrimaryObject):
         """
         return self.media_list
 
+    def get_note_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer notes.
+
+        @return: Returns the list of child secondary child objects that may refer notes.
+        @rtype: list
+        """
+        return self.media_list + self.reporef_list
+
     def get_handle_referents(self):
         """
         Returns the list of child objects which may, directly or through

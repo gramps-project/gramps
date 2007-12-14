@@ -174,19 +174,15 @@ class EditEvent(EditPrimary):
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_media_list()))
 
+        self.attr_ref_list = self._add_tab(
+            notebook,
+            AttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.obj.get_attribute_list()))
+
         self.backref_tab = self._add_tab(
             notebook,
             EventBackRefList(self.dbstate, self.uistate, self.track,
                              self.dbstate.db.find_backlink_handles(self.obj.handle)))
-
-        try:
-            self.attr_ref_list = self._add_tab(
-                notebook,
-                AttrEmbedList(self.dbstate, self.uistate, self.track,
-                              self.obj.get_attribute_list()))
-        except AttributeError:
-            print "Attribute list not available yet"
-        
 
         self._setup_notebook_tabs( notebook)
         

@@ -78,12 +78,14 @@ def low_level(db):
     The name indicates the problematic table (empty if status is True).
     """
 
-    for the_map in [('Person',db.person_map),
-                    ('Family',db.family_map),
-                    ('Event',db.event_map),
-                    ('Place',db.place_map),
-                    ('Source',db.source_map),
-                    ('Media',db.media_map)]:
+    for the_map in [('Person', db.person_map),
+                    ('Family', db.family_map),
+                    ('Event', db.event_map),
+                    ('Place', db.place_map),
+                    ('Source', db.source_map),
+                    ('Media', db.media_map),
+                    ('Repository', db.repository_map),
+                    ('Note', db.note_map)]:
 
         print "Low-level repair: table: %s" % the_map[0]
         if _table_low_level(db,the_map[1]):
@@ -107,8 +109,8 @@ def _table_low_level(db,table):
         print "    No dupes found for this table"
         return True
 
-    import GrampsBSDDB
-    table_cursor = GrampsBSDDB.GrampsBSDDBDupCursor(table)
+    import gen.db
+    table_cursor = gen.db.GrampsDBDirDupCursor(table)
     for handle in dup_handles:
         print "    Duplicates found for handle: %s" % handle
         try:
@@ -156,8 +158,8 @@ class Check(Tool.BatchTool):
 
         # The low-level repair is bypassing the transaction mechanism.
         # As such, we run it before starting the transaction.
-        # We only do this for the BSDDB backend.
-        if self.db.__class__.__name__ == 'GrampsBSDDB':
+        # We only do this for the dbdir backend.
+        if self.db.__class__.__name__ == 'GrampsDBDir':
             low_level(self.db)
         
         trans = self.db.transaction_begin("",batch=True)
@@ -188,6 +190,7 @@ class Check(Tool.BatchTool):
         checker.check_source_references()
         checker.check_media_references()
         checker.check_repo_references()
+        checker.check_note_references()
         self.db.transaction_commit(trans, _("Check Integrity"))
         self.db.enable_signals()
         self.db.request_rebuild()
@@ -222,6 +225,7 @@ class CheckIntegrity:
         self.invalid_source_references = []
         self.invalid_repo_references = []
         self.invalid_media_references = []
+        self.invalid_note_references = []
         self.removed_name_format = []
         self.empty_objects = {'persons' : [],
                               'families': [],
@@ -900,7 +904,8 @@ class CheckIntegrity:
         total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
                 self.db.get_number_of_events() + self.db.get_number_of_places() + \
                 self.db.get_number_of_media_objects() + \
-                self.db.get_number_of_sources()
+                self.db.get_number_of_sources() + \
+                self.db.get_number_of_repositories()
 
         self.progress.set_pass(_('Looking for source reference problems'),
                                total)
@@ -952,7 +957,23 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-        
+
+        for handle in self.db.repository_map.keys():
+            self.progress.step()
+            info = self.db.repository_map[handle]
+            repo = gen.lib.Repository()
+            repo.unserialize(info)
+            handle_list = repo.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                repo.remove_source_references(bad_handles)
+                self.db.commit_repository(repo,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+
         #I think this for loop is useless! sources in sources map exist...
         for handle in known_handles:
             self.progress.step()
@@ -1092,6 +1113,137 @@ class CheckIntegrity:
                                    not in self.invalid_media_references]
                 self.invalid_media_references += new_bad_handles
 
+    def check_note_references(self):
+        known_handles = self.db.get_note_handles()
+
+        total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
+                self.db.get_number_of_events() + self.db.get_number_of_places() + \
+                self.db.get_number_of_media_objects() + \
+                self.db.get_number_of_sources() + \
+                self.db.get_number_of_repositories()
+
+        self.progress.set_pass(_('Looking for note reference problems'),
+                               total)
+        
+        for handle in self.db.person_map.keys():
+            self.progress.step()
+            info = self.db.person_map[handle]
+            person = gen.lib.Person()
+            person.unserialize(info)
+            handle_list = person.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            for bad_handle in bad_handles:
+                person.remove_note(bad_handle)
+            if bad_handles:
+                self.db.commit_person(person,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
+        for handle in self.db.family_map.keys():
+            self.progress.step()
+            info = self.db.family_map[handle]
+            family = gen.lib.Family()
+            family.unserialize(info)
+            handle_list = family.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            for bad_handle in bad_handles:
+                family.remove_note(bad_handle)
+            if bad_handles:
+                self.db.commit_family(family,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
+        for handle in self.db.place_map.keys():
+            self.progress.step()
+            info = self.db.place_map[handle]
+            place = gen.lib.Place()
+            place.unserialize(info)
+            handle_list = place.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            for bad_handle in bad_handles:
+                place.remove_note(bad_handle)
+            if bad_handles:
+                self.db.commit_place(place,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
+        for handle in self.db.source_map.keys():
+            self.progress.step()
+            info = self.db.source_map[handle]
+            source = gen.lib.Source()
+            source.unserialize(info)
+            handle_list = source.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            for bad_handle in bad_handles:
+                source.remove_note(bad_handle)
+            if bad_handles:
+                self.db.commit_source(source,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
+        for handle in self.db.media_map.keys():
+            self.progress.step()
+            info = self.db.media_map[handle]
+            obj = gen.lib.MediaObject()
+            obj.unserialize(info)
+            handle_list = obj.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            for bad_handle in bad_handles:
+                obj.remove_note(bad_handle)
+            if bad_handles:
+                self.db.commit_object(obj,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
+        for handle in self.db.event_map.keys():
+            self.progress.step()
+            info = self.db.event_map[handle]
+            event = gen.lib.Event()
+            event.unserialize(info)
+            handle_list = event.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            for bad_handle in bad_handles:
+                event.remove_note(bad_handle)
+            if bad_handles:
+                self.db.commit_event(event,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
+        for handle in self.db.repository_map.keys():
+            self.progress.step()
+            info = self.db.repository_map[handle]
+            repo = gen.lib.Repository()
+            repo.unserialize(info)
+            handle_list = repo.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Note' and
+                            item[1] not in known_handles ]
+            for bad_handle in bad_handles:
+                repo.remove_note(bad_handle)
+            if bad_handles:
+                self.db.commit_repository(repo,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_note_references]
+                self.invalid_note_references += new_bad_handles
+
     def build_report(self,cl=0):
         self.progress.close()
         bad_photos = len(self.bad_photo)
@@ -1112,6 +1264,7 @@ class CheckIntegrity:
         source_references = len(self.invalid_source_references)
         repo_references = len(self.invalid_repo_references)
         media_references = len(self.invalid_media_references)
+        note_references = len(self.invalid_note_references)
         name_format = len(self.removed_name_format)
         empty_objs = ( len(self.empty_objects['persons']) 
                         + len(self.empty_objects['families'])
@@ -1126,7 +1279,7 @@ class CheckIntegrity:
         errors = (photos + efam + blink + plink + slink + rel
                   + event_invalid + person 
                   + person_references + place_references + source_references
-                  + repo_references + media_references
+                  + repo_references + media_references  + note_references
                   + name_format + empty_objs
                  )
         
@@ -1267,6 +1420,12 @@ class CheckIntegrity:
         elif media_references > 1:
             self.text.write(_("%d media objects were referenced, "
                               "but not found\n") % media_references)
+
+        if note_references == 1:
+            self.text.write(_("1 note object was referenced but not found\n"))
+        elif note_references > 1:
+            self.text.write(_("%d note objects were referenced, "
+                              "but not found\n") % note_references)
 
         if name_format == 1:
             self.text.write(_("1 invalid name format reference was removed\n"))

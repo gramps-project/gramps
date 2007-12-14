@@ -1,3 +1,26 @@
+2007-12-14 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditEvent.py: first attribute tab THEN backref
+	* src/DisplayTabs/_BackRefList.py: whitespace change
+	* src/gen/lib/repo.py: correct error with source backref too
+	* src/gen/lib/personref.py:
+	* src/gen/lib/mediaref.py:
+	* src/gen/lib/childref.py:
+	* src/gen/lib/place.py:
+	* src/gen/lib/address.py:
+	* src/gen/lib/src.py:
+	* src/gen/lib/person.py:
+	* src/gen/lib/mediaobj.py:
+	* src/gen/lib/eventref.py:
+	* src/gen/lib/name.py:
+	* src/gen/lib/family.py:
+	* src/gen/lib/event.py:
+	* src/gen/lib/ldsord.py:
+	Add get_note_child_list method to allow recursive deletion of notes in
+	child objects
+	* src/gen/lib/notebase.py: add remove_note that recursively searches
+		in the child secondary objects
+	* src/plugins/Check.py: fix broken note links, fix broken repo-source link
+
 2007-12-14  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/plugins/holidays.xml: update french holidays.
 

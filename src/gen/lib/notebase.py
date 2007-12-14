@@ -82,19 +82,28 @@ class NoteBase:
 
     def remove_note(self,handle):
         """
-        Removes the specified handle from the list of note handles.
+        Removes the specified handle from the list of note handles, and all
+            and all secondary child objects.
 
         @param handle: L{Note} handle to remove from the list of notes
         @type handle: str
-
-        @return: True if handle was removed, False if it was not in the list
-        @rtype: bool
         """
         if handle in self.note_list:
             self.note_list.remove(handle)
-            return True
-        else:
-            return False
+
+        for item in self.get_note_child_list():
+            item.remove_note(handle)
+    
+    def get_note_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer notes.
+        All methods which inherit from NoteBase and have other child objects
+        with notes, should return here a list of child objects which are NoteBase
+
+        @return: Returns the list of child secondary child objects that may refer notes.
+        @rtype: list
+        """
+        return []
 
     def get_note_list(self):
         """

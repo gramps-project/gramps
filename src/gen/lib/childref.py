@@ -110,6 +110,15 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         """
         return self.source_list
 
+    def get_note_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer notes.
+
+        @return: Returns the list of child secondary child objects that may refer notes.
+        @rtype: list
+        """
+        return self.source_list
+
     def get_referenced_handles(self):
         """
         Returns the list of (classname,handle) tuples for all directly

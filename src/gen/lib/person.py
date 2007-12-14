@@ -330,6 +330,18 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
                     self.attribute_list + self.lds_ord_list + \
                     self.person_ref_list
 
+    def get_note_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer notes.
+
+        @return: Returns the list of child secondary child objects that may refer notes.
+        @rtype: list
+        """
+        return [self.primary_name] + self.media_list + \
+                    self.alternate_names + self.address_list + \
+                    self.attribute_list + self.lds_ord_list + \
+                    self.person_ref_list + self.source_list
+
     def get_referenced_handles(self):
         """
         Returns the list of (classname, handle) tuples for all directly

@@ -54,8 +54,8 @@ class BackRefList(EmbeddedList):
 
     _column_names = [
         (_('Type'), 0, 100),
-        (_('ID'),  1,  75), 
-        (_('Name'), 2, 250), 
+        (_('ID'),  1,  75),
+        (_('Name'), 2, 250),
         ]
     
     def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):
