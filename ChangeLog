@@ -1,3 +1,9 @@
+2007-12-14 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/RelLib/_Repository.py: Repo has address which can have source, so
+		backref of source to repo must be allowed and added!
+	* src/DisplayTabs/_BackRefModel.py: Repo can be backref, add
+	* src/DisplayTabs/_BackRefList.py: Repo can be backref, add
+
 2007-12-11 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/IndivComplete.py: bug on buglist, wrong parameter
 

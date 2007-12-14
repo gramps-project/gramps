@@ -100,6 +100,25 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
             check_list.append(self.note)
         return check_list
 
+    def get_sourcref_child_list(self):
+        """
+        Returns the list of child secondary objects that may refer sources.
+
+        @return: Returns the list of child secondary child objects that may refer sources.
+        @rtype: list
+        """
+        return self.address_list
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects.
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.address_list
+
     def has_source_reference(self, src_handle) :
         """
         Returns True if any of the child objects has reference
@@ -110,6 +129,10 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         @return: Returns whether any of it's child objects has reference to this source handle.
         @rtype: bool
         """
+        for item in self.get_sourcref_child_list():
+            if item.has_source_reference(src_handle):
+                return True
+
         return False
 
     def remove_source_references(self, src_handle_list):
@@ -120,7 +143,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         @param src_handle_list: The list of source handles to be removed.
         @type src_handle_list: list
         """
-        pass
+        for item in self.get_sourcref_child_list():
+            item.remove_source_references(src_handle_list)
 
     def replace_source_references(self, old_handle, new_handle):
         """
@@ -132,7 +156,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         @param new_handle: The source handle to replace the old one with.
         @type new_handle: str
         """
-        pass
+        for item in self.get_sourcref_child_list():
+            item.replace_source_references(old_handle, new_handle)
 
     def set_type(self, the_type):
         """
