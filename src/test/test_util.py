@@ -5,6 +5,8 @@ import sys
 import traceback
 import tempfile
 import shutil
+import logging
+
 
 # _caller_context is primarily here to support and document the process
 # of determining the test-module's directory.
@@ -139,5 +141,49 @@ def delete_tree(dir):
         raise TestError("%r is not a subdir of here (%r) or %r" 
             % (dir, here, tmp))
     shutil.rmtree(sdir)
+
+# simplified logging
+# gramps-independent but gramps-compatible
+#
+# I don't see any need to inherit from logging.Logger
+# (at present, test code needs nothing fancy)
+# but that might be considered for future needs
+# NB: current code reflects limited expertise on the 
+# uses of the logging module
+# ---------------------------------------------------------
+class TestLogger():
+    """this class mainly just encapsulates some globals
+    namely lfname, lfh  for a file log name and handle
+
+    provides simplified logging setup for test modules
+    that need to setup logging for modules under test
+    (just instantiate a TestLogger to avoid error 
+     messages about logging handlers not available)
+
+    There is also a simple logfile capability, to allow
+    test modules to capture gramps logging output
+
+    Note that existing logging will still occur, possibly
+    resulting in console messages and popup dialogs
+    """
+    def __init__(s, lvl=logging.WARN):
+        logging.basicConfig(level=lvl)
+        
+    def logfile_init(s, lfname):
+        """init or re-init a logfile"""
+        if getattr(s, "lfh", None):
+            logging.getLogger().handlers.remove(s.lfh)
+        if os.path.isfile(lfname):
+            os.unlink(lfname)
+        s.lfh = logging.FileHandler(lfname)
+        logging.getLogger().addHandler(s.lfh)
+        s.lfname = lfname
+    
+    def logfile_getlines(s):
+        """get current content of logfile as list of lines"""
+        txt = []
+        if s.lfname and os.path.isfile(s.lfname):
+           txt = open(s.lfname).readlines() 
+        return txt
 
 #===eof===

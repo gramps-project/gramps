@@ -1,3 +1,11 @@
+2007-12-13  Jim Sack <jgsack@san.rr.com>
+	* src/test/test_util.py
+	* src/test/test/test_util_test.py
+	add gramps-independent (but compatible) logging to test_util
+	to give test modules a really simple setup call.
+	also added a simple logfile init and read feature
+	for test modules that need to look at log messages
+
 2007-12-12  Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/__init__.py: Fix MenuToolOptions.
 
