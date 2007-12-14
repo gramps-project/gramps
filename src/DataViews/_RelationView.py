@@ -684,7 +684,7 @@ class RelationshipView(PageView.PersonNavView):
                 call_fcn = self.add_parent_family
                 del_fcn = self.delete_parent_family
                 add_msg = _('Add a new set of parents')
-                sel_msg = _('Add person as child to an exiting family')
+                sel_msg = _('Add person as child to an existing family')
                 edit_msg = _('Edit parents')
                 ord_msg = _('Reorder parents')
                 del_msg = _('Remove person as child of these parents')
