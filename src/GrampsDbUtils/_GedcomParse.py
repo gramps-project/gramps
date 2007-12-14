@@ -4189,7 +4189,7 @@ class GedcomParser(UpdateCallback):
         new_note.set_gramps_id(gid)
         self.dbase.add_note(new_note, self.trans)
         self.nid2id[new_note.gramps_id] = new_note.handle
-        self.__skip_subordinate_levels(level+1)
+        self.__skip_subordinate_levels(level)
 
     def __parse_source_reference(self, src_ref, level, handle):
         """Reads the data associated with a SOUR reference"""
