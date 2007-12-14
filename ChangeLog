@@ -1,4 +1,10 @@
 2007-12-13  Jim Sack <jgsack@san.rr.com>
+	src/test/gedread_util.py : added to support testing
+	src/test/test/gedread_util_test.py : added to test util above
+	src/GrampsDbUtils/test/GR_test.py : added 1st try at testing
+	first try at some gedcon read testing
+
+2007-12-13  Jim Sack <jgsack@san.rr.com>
 	* src/test/test_util.py
 	* src/test/test/test_util_test.py
 	add gramps-independent (but compatible) logging to test_util

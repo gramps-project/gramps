@@ -1,0 +1,55 @@
+"""test for test/gedread_util.py
+
+also illustrates basic use
+"""
+
+import os
+import unittest as U
+import logging
+
+from test import test_util as tu
+from test import gedread_util as gr
+
+
+class Test(U.TestCase):
+    def setUp(s):
+        # make a dir to hold an input gedcom file
+        s.tdir = tu.make_subdir("gr_test")
+
+    def test1(s):
+        prec="""
+0 @I1@ INDI
+1 NAME GedRead TEST /Person/
+"""
+
+        # create a gedcom input file
+        #  from canned head/tail -- see gedread_util
+        infil = os.path.join(s.tdir,"test_in.ged")
+        gr.make_gedcom_input(infil, prec)
+        s.assertTrue(os.path.isfile(infil), 
+            "create input file %s" % infil)
+
+        # create an empty database
+        dbpath = os.path.join(s.tdir,"test_db")
+        db = gr.create_empty_db(dbpath)
+        s.assertTrue(os.path.isdir(dbpath),
+            "create database (dir) %s" % dbpath)
+
+        # create logfile to test for read log-messages
+        # (note: uses recently added test_util 
+        log = os.path.join(s.tdir, "test_log")
+        tl = tu.TestLogger()
+        tl.logfile_init(log)
+        # now read the gedcom
+        gr.gread(db, infil)
+        logging.warn("nothing here")
+        loglines = tl.logfile_getlines()
+        s.assertEquals(len(loglines),1, 
+            "log has no unexpected content")
+        # verify one person in database 
+        np = db.get_number_of_people()
+        s.assertEquals(np,1, 
+            tu.msg(np,1, "db has exactly one person"))
+
+if __name__ == "__main__":
+    U.main()
