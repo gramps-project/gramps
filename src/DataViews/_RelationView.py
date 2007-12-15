@@ -926,8 +926,13 @@ class RelationshipView(PageView.PersonNavView):
             button = None
 
         hbox = gtk.HBox()
-        hbox.pack_start(GrampsWidgets.BasicLabel("%d." % index),
-                        False, False, 0)
+        if child_should_be_linked:
+            l = GrampsWidgets.BasicLabel("%d." % index)
+        else:
+            l = GrampsWidgets.BasicLabel("> %d." % index)
+        l.set_width_chars(5)
+        l.set_alignment(1.0, 0.5)
+        hbox.pack_start(l, False, False, 0)
         hbox.pack_start(GrampsWidgets.LinkBox(link_label, button),
                         False, False, 4)
         hbox.show()
@@ -937,7 +942,7 @@ class RelationshipView(PageView.PersonNavView):
             value = self.info_string(handle)
             if value:
                 l = GrampsWidgets.MarkupLabel(value)
-                l.set_padding(16, 0)
+                l.set_padding(48, 0)
                 vbox.add(l)
         
     def write_data(self, box, title, start_col=_SDATA_START,

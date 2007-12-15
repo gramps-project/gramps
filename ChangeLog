@@ -1,3 +1,8 @@
+2007-12-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/_RelationView.py: Made suggestion by Stian:
+	http://www.gramps-project.org/wiki/index.php?title=GEPS_002:_RelationView_Expand_and_Collapse#User_Contributions
+	and addressed feature request #1404
+
 2007-12-14 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditEvent.py: first attribute tab THEN backref
 	* src/DisplayTabs/_BackRefList.py: whitespace change
