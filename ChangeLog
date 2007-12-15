@@ -1,3 +1,6 @@
+2007-12-15 Gary Burton <gary.burton@zen.co.uk>
+	* src/Editors/_EditFamily.py: emit family-update signal #1416
+
 2007-12-14 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/RelLib/_Repository.py: Repo has address which can have source, so
 		backref of source to repo must be allowed and added!
