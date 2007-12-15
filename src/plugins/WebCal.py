@@ -118,6 +118,14 @@ _cc = [
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License - By attribution, Non-commerical, Share-alike" title="Creative Commons License - By attribution, Non-commerical, Share-alike" src="somerights20.gif" /></a>',
     ]
 
+def make_date(year, month, day):
+    """
+    Returns a Date object of the particular year/month/day.
+    """
+    retval = gen.lib.Date()
+    retval.set_yr_mon_day(year, month, day)
+    return retval
+
 #------------------------------------------------------------------------
 #
 # WebReport
@@ -596,7 +604,7 @@ class WebReport(Report):
             if birth_ref:
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
-            living = probably_alive(person, self.database, self.Year, 0)
+            living = probably_alive(person, self.database, make_date(self.Year, 1, 1), 0)
             if self.Birthday and birth_date != None and ((self.Alive and living) or not self.Alive):
                 year = birth_date.get_year()
                 month = birth_date.get_month()
@@ -635,7 +643,7 @@ class WebReport(Report):
                             spouse_name = self.get_short_name(spouse)
                             short_name = self.get_short_name(person)
                             if self.Alive:
-                                if not probably_alive(spouse, self.database, self.Year, 0):
+                                if not probably_alive(spouse, self.database, make_date(self.Year, 1, 1), 0):
                                     continue
                             married = True
                             for event_ref in fam.get_event_ref_list():

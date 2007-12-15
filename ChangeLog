@@ -1,4 +1,7 @@
 2007-12-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/WebCal.py: Temp fixes to keep running (bug #1441)
+
+2007-12-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/_RelationView.py: Made suggestion by Stian:
 	http://www.gramps-project.org/wiki/index.php?title=GEPS_002:_RelationView_Expand_and_Collapse#User_Contributions
 	and addressed feature request #1404
