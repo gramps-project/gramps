@@ -167,7 +167,7 @@ class ChildEmbedList(EmbeddedList):
                 continue
             name = self._column_names[pair[1]][0]
             render = gtk.CellRendererText()
-            column = gtk.TreeViewColumn(name, render, text=pair[1])
+            column = gtk.TreeViewColumn(name, render, markup=pair[1])
             column.set_min_width(50)
 
             column.set_resizable(True)

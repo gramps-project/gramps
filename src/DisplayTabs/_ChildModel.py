@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk
+import cgi
 
 #-------------------------------------------------------------------------
 #
@@ -35,6 +36,8 @@ import gtk
 import DateHandler
 from BasicUtils import name_displayer
 import Utils
+from ReportBase import ReportUtils
+import gen.lib
 
 #-------------------------------------------------------------------------
 #
@@ -75,10 +78,12 @@ class ChildModel(gtk.ListStore):
         return self.family.get_child_ref_list()
 
     def column_birth_day(self, data):
-        event_ref = data.get_birth_ref()
-        if event_ref and event_ref.ref:
-            event = self.db.get_event_from_handle(event_ref.ref)
-            return DateHandler.get_date(event)
+        birth = ReportUtils.get_birth_or_fallback(self.db, data)
+        if birth:
+            if birth.get_type() == gen.lib.EventType.BIRTH:
+                return DateHandler.get_date(birth)
+            else:
+                return '<i>%s</i>' % cgi.escape(DateHandler.get_date(birth))
         else:
             return u""
 
