@@ -1,3 +1,6 @@
+2007-12-15 Gary Burton <gary.burton@zen.co.uk>
+	* src/Editors/_EditFamily.py: emit family-update signal #1416
+
 2007-12-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Calendar.py: Added relationships (feature #1086)
 	* src/PluginUtils/_MenuOptions.py: added get_center_person to filter option

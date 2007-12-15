@@ -942,6 +942,14 @@ class EditFamily(EditPrimary):
             else:
                 self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
+        else:
+            # Signal an update to allow other windows that use family data to
+            # refresh. The family-update signal is normally only emitted when
+            # the family record itself changes, however the Relationship view
+            # needs to know to refresh when related data such as the marriage
+            # event may have been altered.
+            # Bug #1416
+            self.db.emit('family-update', ([],))
 
         self.close()
 
