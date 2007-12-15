@@ -40,7 +40,7 @@ import os
 import BaseDoc
 from BasicUtils import name_displayer
 from DateHandler import displayer
-from PluginUtils import register_report
+from PluginUtils import register_report, relationship_class
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     CATEGORY_DRAW, CATEGORY_TEXT, \
     MODE_GUI, MODE_BKI, MODE_CLI
@@ -125,6 +125,12 @@ class Calendar(Report):
             # report and graphic share most of the same code
             # but calendar doesn't have a title
             self.titletext = options_class.handler.options_dict['titletext']
+        if 'relationships' in options_class.handler.options_dict.keys():
+            # report and graphic share most of the same code
+            # but calendar doesn't show relationships
+            self.relationships = options_class.handler.options_dict['relationships']
+        else:
+            self.relationships = False
         self.year = options_class.handler.options_dict['year']
         self.name_format = options_class.handler.options_dict['name_format'][0]
         self.country = options_class.handler.options_dict['country']
@@ -137,9 +143,8 @@ class Calendar(Report):
         self.text2 = options_class.handler.options_dict['text2']
         self.text3 = options_class.handler.options_dict['text3']
         self.filter = options_class.handler.options_dict['filter']
-        self.filter.person = person
-        name = name_displayer.display_formal(person)
-        self.title = _("Calendar for %s") % name
+        self.filter_option =  options_class.menu.get_option_by_name('filter')
+        self.title = _("Calendar Report") #% name
 
     def get_name(self, person, maiden_name = None):
         """ Returns person's name, unless maiden_name given, unless married_name listed. """
@@ -305,8 +310,11 @@ class Calendar(Report):
         This method runs through the data, and collects the relevant dates
         and text.
         """
+        self.progress.set_pass(_('Filtering data...'), 0)
         people = self.filter.apply(self.database,
                                    self.database.get_person_handles(sort_handles=False))
+        center_person =  self.filter_option.get_center_person()
+        rel_calc = relationship_class()
         self.progress.set_pass(_('Filtering data...'), len(people))
         for person_handle in people:
             self.progress.step()
@@ -343,7 +351,12 @@ class Calendar(Report):
                 if age >= 0:
                     alive = probably_alive(person, self.database, make_date(self.year, month, day))
                     if ((self.alive and alive) or not self.alive):
-                        self.add_day_item("%s, %d" % (short_name, age), self.year, month, day)                
+                        comment = ""
+                        if self.relationships:
+                            relation = rel_calc.get_one_relationship(self.database, center_person, person)
+                            if relation:
+                                comment = " --- %s" % relation
+                        self.add_day_item("%s, %d%s" % (short_name, age, comment), self.year, month, day)
             if self.anniversaries:
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list: 
@@ -419,6 +432,12 @@ class CalendarReport(Calendar):
         if self.text3.strip() != "":
             self.doc.start_paragraph('BIR-Text3style')
             self.doc.write_text(str(self.text3))
+            self.doc.end_paragraph()
+        if self.relationships:
+            center_person =  self.filter_option.get_center_person()
+            name = center_person.get_primary_name()
+            self.doc.start_paragraph('BIR-Text3style')
+            self.doc.write_text(_("Relationships shown are to %s") % name_displayer.display_name(name))
             self.doc.end_paragraph()
         self.progress.set_pass(_('Formating months...'), 12)
         for month in range(1, 13):
@@ -596,6 +615,11 @@ class CalendarReportOptions(CalendarOptions):
         titletext.set_help(_("Title of calendar"))
         menu.add_option(category_name,"titletext", titletext)
         CalendarOptions.add_menu_options(self, menu)
+        category_name = _("Report Options")
+        option = BooleanOption(_("Include relationships to center person (slower)"),
+                               False)
+        option.set_help(_("Include relationships to center person"))
+        menu.add_option(category_name,"relationships", option)
 
     def make_default_style(self, default_style):
         """ Adds the options for the textual report """

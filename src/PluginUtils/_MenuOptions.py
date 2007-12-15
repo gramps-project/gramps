@@ -475,6 +475,9 @@ class FilterListOption(Option):
             self.dialog.person = new_person
             self.update_gui_obj()
 
+    def get_center_person(self):
+        return self.dialog.person
+
     def update_gui_obj(self):
         # update the gui object with new filter info
         from ReportBase import ReportUtils

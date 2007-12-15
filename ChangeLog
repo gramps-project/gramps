@@ -1,4 +1,8 @@
 2007-12-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: Added relationships (feature #1086)
+	* src/PluginUtils/_MenuOptions.py: added get_center_person to filter option
+
+2007-12-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/WebCal.py: Temp fixes to keep running (bug #1441)
 
 2007-12-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
