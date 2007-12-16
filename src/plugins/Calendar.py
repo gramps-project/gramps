@@ -132,11 +132,11 @@ class Calendar(Report):
         else:
             self.relationships = False
         self.year = options_class.handler.options_dict['year']
-        self.name_format = options_class.handler.options_dict['name_format'][0]
+        self.name_format = options_class.handler.options_dict['name_format']
         self.country = options_class.handler.options_dict['country']
         self.anniversaries = options_class.handler.options_dict['anniversaries']
-        self.start_dow = options_class.handler.options_dict['start_dow'][0]
-        self.maiden_name = options_class.handler.options_dict['maiden_name'][0]
+        self.start_dow = options_class.handler.options_dict['start_dow']
+        self.maiden_name = options_class.handler.options_dict['maiden_name']
         self.alive = options_class.handler.options_dict['alive']
         self.birthdays = options_class.handler.options_dict['birthdays']
         self.text1 = options_class.handler.options_dict['text1']
@@ -212,9 +212,8 @@ class Calendar(Report):
         self.progress = ProgressMeter(_('Calendar'))
         self.calendar = {}
         # get the information, first from holidays:
-        country, country_name = self.country
-        if country != 0: # Don't include holidays
-            self.get_holidays(self.year, _countries[country]) # _country is currently global
+        if self.country != 0: # Don't include holidays
+            self.get_holidays(self.year, _countries[self.country]) # _countries is currently global
         # get data from database:
         self.collect_data()
         # generate the report:
@@ -412,9 +411,8 @@ class CalendarReport(Calendar):
         self.progress = ProgressMeter(_('Birthday and Anniversary Report'))
         self.calendar = {}
         # get the information, first from holidays:
-        country, country_name = self.country
-        if country != 0:
-            self.get_holidays(self.year, _countries[country]) # currently global
+        if self.country != 0:
+            self.get_holidays(self.year, _countries[self.country]) # _countries currently global
         # get data from database:
         self.collect_data()
         # generate the report:

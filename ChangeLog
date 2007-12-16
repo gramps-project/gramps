@@ -1,4 +1,8 @@
 2007-12-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Calendar.py: fixed MenuOption's EnumeratedList to match 
+	Brian's changes on 2007-12-15.
+
+2007-12-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DbManager.py: typo %{}s -> %()s; fixed rcs -q issue
 	* src/Utils.py: typo %{}s -> %()s 
 
