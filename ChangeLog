@@ -1,4 +1,8 @@
 2007-12-15  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py: Add generic Graphviz options.
+	* src/ReportBase/_BareReportDialog.py: Allow dialogs to add options.
+
+2007-12-15  Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_MenuOptions.py: Fix TextOption and EnumeratedListOption.
 
 2007-12-15 Gary Burton <gary.burton@zen.co.uk>

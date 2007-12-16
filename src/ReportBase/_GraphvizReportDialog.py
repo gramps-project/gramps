@@ -27,6 +27,7 @@
 import os
 from cStringIO import StringIO
 import tempfile
+from types import ClassType, InstanceType
 
 #-------------------------------------------------------------------------------
 #
@@ -47,12 +48,33 @@ import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
+from PluginUtils import NumberOption, EnumeratedListOption
 
 #-------------------------------------------------------------------------------
 #
 # Private Contstants
 #
 #-------------------------------------------------------------------------------
+_FONTS = [ { 'name' : _("Default"),                'value' : ""          },
+           {  'name' : _("Postscript / Helvetica"), 'value' : "Helvetica" },
+           {  'name' : _("Truetype / FreeSans"),    'value' : "FreeSans"  }  ]
+
+_RANKDIR = [ { 'name' : _("Vertical"),             'value' : "TB" },
+             { 'name' : _("Horizontal"),           'value' : "LR" } ]
+
+_PAGEDIR = [ { 'name' : _("Bottom, left"),         'value' :"BL" },
+             { 'name' : _("Bottom, right"),        'value' :"BR" },
+             { 'name' : _("Top, left"),            'value' :"TL" },
+             { 'name' : _("Top, Right"),           'value' :"TR" },
+             { 'name' : _("Right, bottom"),        'value' :"RB" },
+             { 'name' : _("Right, top"),           'value' :"RT" },
+             { 'name' : _("Left, bottom"),         'value' :"LB" },
+             { 'name' : _("Left, top"),            'value' :"LT" } ]
+
+_RATIO = [ { 'name' : _("Minimal size"),                'value' : "compress" },
+           { 'name' : _("Fill the given area"),         'value': "fill"      },
+           { 'name' : _("Use optimal number of pages"), 'value': "expand"    } ]
+
 _dot_found = 0
 _gs_cmd = ""
 
@@ -80,11 +102,21 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
     inherit from this class will only need to implement the close function.
     The close function will generate the actual file of the appropriate type.
     """
-    def __init__(self,styles,paper_style,template):
-        BaseDoc.BaseDoc.__init__(self,styles,paper_style,template)
+    def __init__(self,options,paper_style):
+        BaseDoc.BaseDoc.__init__(self,None,paper_style,None)
         
+        self.options = options.handler.options_dict
         self.dot = StringIO()
         self.paper = paper_style
+        
+        self.fontfamily = _FONTS[ self.options['font_family'] ]['value']
+        self.fontsize = self.options['font_size']
+        self.rankdir = _RANKDIR[ self.options['rank_dir'] ]['value']
+        self.pagedir = _PAGEDIR[ self.options['page_dir'] ]['value']
+        self.hpages = self.options['h_pages']
+        self.vpages = self.options['v_pages']
+        self.ratio = _RATIO[ self.options['ratio'] ]['value']
+        
         paper_size = paper_style.get_size()
         pheight = paper_size.get_height_inches()
         pwidth = paper_size.get_width_inches()
@@ -94,10 +126,11 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
             rotate = 90
             sizew = ( paper_size.get_height()      - 
                       self.paper.get_top_margin()  -
-                      self.paper.get_bottom_margin() ) / 2.54
+                      self.paper.get_bottom_margin() ) / 2.54            
             sizeh = ( paper_size.get_width()       - 
                       self.paper.get_left_margin() - 
                       self.paper.get_right_margin() ) / 2.54
+
         else:
             rotate = 0
             sizew = ( paper_size.get_width()       - 
@@ -106,13 +139,17 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
             sizeh = ( paper_size.get_height()      - 
                       self.paper.get_top_margin()  -
                       self.paper.get_bottom_margin() ) / 2.54
+        
+        sizew = sizew * self.hpages         
+        sizeh = sizeh * self.vpages
                       
         self.dot.write( 'digraph GRAMPS_graph { \n' )
         self.dot.write( '  bgcolor=white; \n' )
         self.dot.write( '  center=1; \n' )
-        self.dot.write( '  rankdir="TB"; \n' )
+        self.dot.write( '  ratio=%s; \n' % self.ratio )
+        self.dot.write( '  rankdir="%s"; \n' % self.rankdir ) 
         self.dot.write( '  mclimit=2.0; \n' )
-        self.dot.write( '  pagedir="BL"; \n' )
+        self.dot.write( '  pagedir="%s"; \n' % self.pagedir )
         self.dot.write( '  page="%3.2f,%3.2f"; \n' % ( pwidth, pheight ) )
         self.dot.write( '  size="%3.2f,%3.2f"; \n' % ( sizew, sizeh ) )
         self.dot.write( '  rotate=%d; \n' % rotate )
@@ -135,9 +172,21 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         
         Implementes BaseDoc.GVDoc.add_node().
         """
-        line = '  "%s" [style=filled label="%s", shape="%s", fillcolor="%s",'  \
-               ' URL="%s"];\n'                                               % \
-                (id, label, shape, fillcolor, url)
+        line  = '  "%s" [style=filled, ' % id
+        line += 'label="%s", '           % label
+        line += 'shape="%s", '           % shape
+        line += 'fillcolor="%s", '       % fillcolor
+        
+        if self.fontfamily:
+            line += 'fontname="%s", '    % self.fontfamily
+
+        line += 'fontsize="%0.1f", '     % self.fontsize
+        
+        if url:
+            line += 'URL="%s"'           % url
+            
+        line += '];\n'
+
         self.dot.write(line)
         
     def add_link(self, id1, id2):
@@ -515,9 +564,76 @@ class GraphvizReportDialog(ReportDialog):
         for a graphiz report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_GRAPHVIZ
-        #TODO: Add custom options to "opt" first.
         ReportDialog.__init__(self,dbstate,uistate,person,opt,
                               name,translated_name)
+        
+    def init_options(self,option_class):
+        if type(option_class) == ClassType:
+            self.options = option_class(self.raw_name)
+        elif type(option_class) == InstanceType:
+            self.options = option_class
+            
+        category = _("GraphViz Options")
+        
+        font_family = EnumeratedListOption(_("Font family"), 0)
+        index = 0
+        for item in _FONTS:
+            font_family.add_item(index, item["name"])
+            index+=1
+        font_family.set_help(_("Choose the font family. If international "
+                                "characters don't show, use FreeSans font. "
+                                "FreeSans is available from: "
+                                "http://www.nongnu.org/freefont/"))
+        self.options.add_menu_option(category,"font_family",font_family)
+        
+        font_size = NumberOption(_("Font size"),14,8,128)
+        font_size.set_help(_("The font size, in points."))
+        self.options.add_menu_option(category,"font_size",font_size)
+        
+        rank_dir = EnumeratedListOption(_("Graph Direction"), 0)
+        index = 0
+        for item in _RANKDIR:
+            rank_dir.add_item(index, item["name"])
+            index+=1
+        rank_dir.set_help(_("Whether graph goes from top to bottom "
+                            "or left to right."))
+        self.options.add_menu_option(category,"rank_dir",rank_dir)
+        
+        aspect_ratio = EnumeratedListOption(_("Aspect ratio"), 0)
+        index = 0
+        for item in _RATIO:
+            aspect_ratio.add_item(index, item["name"])
+            index+=1
+        aspect_ratio.set_help(_("Affects greatly how the graph is layed out "
+                                "on the page. Multiple pages overrides the "
+                                "pages settings below."))
+        self.options.add_menu_option(category,"ratio",aspect_ratio)
+        
+        page_dir = EnumeratedListOption(_("Paging Direction"), 0)
+        index = 0
+        for item in _PAGEDIR:
+            page_dir.add_item(index, item["name"])
+            index+=1
+        page_dir.set_help(_("The order in which the graph pages are output. "
+                            "This option only applies if the horizontal pages "
+                            "or vertical pages are greater than 1."))
+        self.options.add_menu_option(category,"page_dir",page_dir)
+        
+        h_pages = NumberOption(_("Number of Horizontal Pages"),1,1,25)
+        h_pages.set_help(_("GraphViz can create very large graphs by "
+                           "spreading the graph across a rectangular "
+                           "array of pages. This controls the number "
+                           "pages in the array horizontally."))
+        self.options.add_menu_option(category,"h_pages",h_pages)
+        
+        v_pages = NumberOption(_("Number of Vertical Pages"),1,1,25)
+        v_pages.set_help(_("GraphViz can create very large graphs by "
+                           "spreading the graph across a rectangular "
+                           "array of pages. This controls the number "
+                           "pages in the array vertically."))
+        self.options.add_menu_option(category,"v_pages",v_pages)
+
+        self.options.load_previous_values()
         
     def init_interface(self):
         ReportDialog.init_interface(self)
@@ -585,7 +701,7 @@ class GraphvizReportDialog(ReportDialog):
         """
         pstyle = self.paper_frame.get_paper_style()
         
-        self.doc = self.format(None, pstyle, None)
+        self.doc = self.format(self.options, pstyle)
         
         self.options.set_document(self.doc)
 

@@ -74,24 +74,24 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
                  name,translated_name,track=[]):
         """Initialize a dialog to request that the user select options
         for a basic *bare* report."""
-
+        self.raw_name = name
         self.dbstate = dbstate
-        self.uistate = uistate
         self.db = dbstate.db
         self.person = person
         self.report_name = translated_name
-        self.raw_name = name
-
+        
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
+        self.init_options(option_class)
+        self.init_interface()
+        
+    def init_options(self,option_class):
         if type(option_class) == ClassType:
-            self.options = option_class(name)
+            self.options = option_class(self.raw_name)
         elif type(option_class) == InstanceType:
             self.options = option_class
 
         self.options.load_previous_values()
-
-        self.init_interface()
 
     def build_window_key(self,obj):
         key = self.raw_name
