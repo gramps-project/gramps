@@ -491,7 +491,7 @@ class DbManager:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
             QuestionDialog.QuestionDialog(
-                _("Remove the '%{revision}s' version of %{database}s") % {
+                _("Remove the '%(revision)s' version of '%(database)s'") % {
                     'revision' : rev, 
                     'database' : parent
                     },
@@ -533,7 +533,7 @@ class DbManager:
         rev = self.data_to_delete[PATH_COL]
         archive = os.path.join(db_dir, ARCHIVE_V)
 
-        cmd = [ "rcs", "-o%s" % rev, archive ]
+        cmd = [ "rcs", "-o%s" % rev, "-q", archive ]
 
         proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
         status = proc.wait()

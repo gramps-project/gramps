@@ -1,4 +1,8 @@
 2007-12-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DbManager.py: typo %{}s -> %()s; fixed rcs -q issue
+	* src/Utils.py: typo %{}s -> %()s 
+
+2007-12-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/ReadPkg.py: attempt to os.remove(directory) failed
 	* src/GrampsDb/_GrampsDbFactories.py: import from gen.db
 

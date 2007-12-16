@@ -203,7 +203,7 @@ def family_upper_name(family, db):
     if father and mother:
         fname = father.get_primary_name().get_upper_name()
         mname = mother.get_primary_name().get_upper_name()
-        name = _("%{father}s and %{mother}s") % {
+        name = _("%(father)s and %(mother)s") % {
             'father' : fname, 
             'mother' : mname 
             }
