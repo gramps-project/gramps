@@ -1,4 +1,12 @@
 2007-12-15  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/FtmStyleAncestors.py
+	* src/plugins/DesGraph.py
+	* src/plugins/Ancestors.py
+	* src/plugins/IndivSummary.py
+	* src/plugins/FtmStyleDescendants.py:
+	Delete reports that have been unsupported for > 1 year.
+
+2007-12-15  Brian Matherly <brian@gramps-project.org>
 	* src/docgen/PdfDoc.py: Fix application launch.
 
 2007-12-15  Brian Matherly <brian@gramps-project.org>
