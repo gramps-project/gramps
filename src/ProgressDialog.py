@@ -125,8 +125,8 @@ class GtkProgressDialog(gtk.Dialog):
         @param pbar_idx: the index as returned from L{add}
         @type pbar_idx: int
         """
-        
-        self._progress_bars[pbar_idx].step()            
+        if pbar_idx < len(self._progress_bars):
+            self._progress_bars[pbar_idx].step()            
         self._process_events()
             
     def _process_events(self):
