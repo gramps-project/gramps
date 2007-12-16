@@ -62,16 +62,19 @@ def gramps_db_factory(db_type):
     """
 
     if db_type == const.APP_GRAMPS:
-        from _GrampsBSDDB import GrampsBSDDB
+        from gen.db import GrampsBSDDB
+        #from _GrampsBSDDB import GrampsBSDDB
         cls = GrampsBSDDB
 #    elif db_type == const.APP_GRAMPS_XML:
 #        from _GrampsXMLDB import GrampsXMLDB
 #        cls = GrampsXMLDB
     elif db_type == const.APP_GEDCOM:
-        from _GrampsGEDDB import GrampsGEDDB
+        from gen.db import GrampsGEDDB
+        #from _GrampsGEDDB import GrampsGEDDB
         cls = GrampsGEDDB
     elif db_type == 'x-directory/normal':
-        from _GrampsDBDir import GrampsDBDir
+        from gen.db import GrampsDBDir
+        #from _GrampsDBDir import GrampsGEDDB
         cls = GrampsDBDir
     else:
         raise GrampsDbException("Attempt to create unknown "

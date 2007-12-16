@@ -82,8 +82,13 @@ def impData(database, name, cb=None, cl=0):
     else:    # tempdir exists and writable -- clean it up if not empty
         files = os.listdir(tmpdir_path) ;
         for filename in files:
-            os.remove(os.path.join(tmpdir_path, filename))
-
+            try:
+                os.remove(os.path.join(tmpdir_path, filename))
+            except OSError:
+                try:
+                    os.removedirs(os.path.join(tmpdir_path, filename))
+                except:
+                    print "could not remove: '%s'" % os.path.join(tmpdir_path, filename)
     try:
         archive = tarfile.open(name)
         for tarinfo in archive:
