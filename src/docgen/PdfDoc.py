@@ -125,8 +125,7 @@ class PdfDoc(CairoDoc):
         # load the result into an external viewer
         if self.print_req:
             app = Mime.get_application('application/pdf')
-            os.environ["FILE"] = self._filename
-            os.system('%s "$FILE" &' % app[0])
+            Utils.launch(app[0], self._filename) 
             
 #------------------------------------------------------------------------
 #
