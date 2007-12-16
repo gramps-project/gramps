@@ -248,13 +248,13 @@ class TextOption(Option):
         Add a TextOption to the dialog.
         """
         value = self.get_value()
-        self.gobj = gtk.TextView()
-        self.gobj.get_buffer().set_text("\n".join(value))
-        self.gobj.set_editable(1)
-        swin = gtk.ScrolledWindow()
-        swin.set_shadow_type(gtk.SHADOW_IN)
-        swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        swin.add(self.gobj)
+        self.gtext = gtk.TextView()
+        self.gtext.get_buffer().set_text("\n".join(value))
+        self.gtext.set_editable(1)
+        self.gobj = gtk.ScrolledWindow()
+        self.gobj.set_shadow_type(gtk.SHADOW_IN)
+        self.gobj.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        self.gobj.add(self.gtext)
         # Required for tooltip
         self.gobj.add_events(gtk.gdk.ENTER_NOTIFY_MASK)
         self.gobj.add_events(gtk.gdk.LEAVE_NOTIFY_MASK)
@@ -263,7 +263,7 @@ class TextOption(Option):
         """
         Parse the text option (multi-line text).
         """
-        b = self.gobj.get_buffer()
+        b = self.gtext.get_buffer()
         text_val = unicode( b.get_text( b.get_start_iter(),
                                         b.get_end_iter(),
                                         False)             )
@@ -357,21 +357,23 @@ class EnumeratedListOption(Option):
         v = self.get_value()
         active_index = 0
         current_index = 0 
-        self.gobj = gtk.combo_box_new_text()
+        self.combo = gtk.combo_box_new_text()
+        self.gobj = gtk.EventBox()
+        self.gobj.add(self.combo)
         for (value,description) in self.get_items():
-            self.gobj.append_text(description)
+            self.combo.append_text(description)
             if value == v:
                 active_index = current_index
             current_index += 1
-        self.gobj.set_active( active_index )
+        self.combo.set_active( active_index )
 
     def parse(self):
         """
         Parse the EnumeratedListOption and return.
         """
-        index = self.gobj.get_active()
+        index = self.combo.get_active()
         items = self.get_items()
-        value = items[index]
+        value,description = items[index]
         return value
 
 #-------------------------------------------------------------------------
@@ -638,7 +640,8 @@ class MenuOptions:
         """
         raise NotImplementedError
     
-    def add_menu_option(self,option):
+    def add_menu_option(self,category,name,option):
+        self.menu.add_option(category,name, option)
         self.options_dict[name] = option.get_value()
         self.options_help[name] = option.get_help()
 

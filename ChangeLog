@@ -1,3 +1,6 @@
+2007-12-15  Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_MenuOptions.py: Fix TextOption and EnumeratedListOption.
+
 2007-12-15 Gary Burton <gary.burton@zen.co.uk>
 	* src/DisplayTabs/_ChildModel.py:
 	* src/Editors/_EditFamily.py: add fallback for birth date (feature #1448)
