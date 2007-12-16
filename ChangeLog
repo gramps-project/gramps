@@ -1,4 +1,7 @@
 2007-12-15  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py: Remove unnecessary code.
+
+2007-12-15  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/FtmStyleAncestors.py
 	* src/plugins/DesGraph.py
 	* src/plugins/Ancestors.py

@@ -411,9 +411,6 @@ class GVPdfDoc(GVDocBase):
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
-        # Generate a temporary PS file.
-        os.system( 'dot -Tps -o"%s" "%s"' % (self.filename,tmp_dot) )
-
         # Create a temporary Postscript file
         (handle,tmp_ps) = tempfile.mkstemp(".ps" )
         os.close( handle )
