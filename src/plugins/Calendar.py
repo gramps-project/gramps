@@ -142,8 +142,11 @@ class Calendar(Report):
         self.text1 = options_class.handler.options_dict['text1']
         self.text2 = options_class.handler.options_dict['text2']
         self.text3 = options_class.handler.options_dict['text3']
-        self.filter = options_class.handler.options_dict['filter']
         self.filter_option =  options_class.menu.get_option_by_name('filter')
+        filter_index = int(self.filter_option.get_value())
+        filters = self.filter_option.get_filters()
+        self.filter = filters[filter_index]
+
         self.title = _("Calendar Report") #% name
 
     def get_name(self, person, maiden_name = None):

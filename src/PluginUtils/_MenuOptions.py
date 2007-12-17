@@ -393,7 +393,7 @@ class FilterListOption(Option):
         @type label: string
         @return: nothing
         """
-        Option.__init__(self,label,"")
+        Option.__init__(self,label,0)
         self.__items = []
         self.__filters = []
 
@@ -459,8 +459,7 @@ class FilterListOption(Option):
                 for filter in filter_list:
                     self.combo.append_text(filter.get_name())
                     self.add_filter(filter)
-        # FIXME: set proper default
-        self.combo.set_active(0)
+        self.combo.set_active(self.get_value())
         self.change_button = gtk.Button("%s..." % _('C_hange') )
         self.change_button.connect('clicked',self.on_change_clicked)
         self.gobj.pack_start(self.combo, False)
@@ -493,17 +492,14 @@ class FilterListOption(Option):
                 for filter in filter_list:
                     self.combo.append_text(filter.get_name())
                     self.add_filter(filter)
-        # FIXME: set proper default
-        self.combo.set_active(0)
+        self.combo.set_active(self.get_value())
 
     def parse(self):
         """
         Parse the object and return.
         """
-        index = self.combo.get_active()
-        items = self.get_filters()
-        filter = items[index]
-        return filter
+        self.__value = int(self.combo.get_active())
+        return self.__value
 
 #-------------------------------------------------------------------------
 #
