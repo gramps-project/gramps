@@ -31,6 +31,7 @@ Report option handling, including saving and parsing.
 #
 #-------------------------------------------------------------------------
 import os
+import copy
 from xml.sax.saxutils import escape
 
 def escxml(d):
@@ -71,6 +72,7 @@ class OptionList(_Options.OptionList):
         self.style_name = None
         self.paper_name = None
         self.orientation = None
+        self.margins = [2.54, 2.54, 2.54, 2.54]
         self.template_name = None
         self.format_name = None
     
@@ -124,6 +126,42 @@ class OptionList(_Options.OptionList):
         """
         return self.orientation
 
+    def set_margins(self,margins):
+        """
+        Sets the margins for the OptionList.
+        @param margins: margins to set. Possible values are floats in cm
+        @type margins: [float, float, float, float]
+        """
+        self.margins = copy.copy(margins)
+
+    def get_margins(self):
+        """
+        Returns the margins for the OptionList.
+        @returns margins: returns the margins, floats in cm
+        @rtype margins: [float, float, float, float]
+        """
+        return copy.copy(self.margins)
+
+    def set_margin(self,pos,value):
+        """
+        Sets a margin for the OptionList.
+        @param pos: Position of margin [left, right, top, bottom]
+        @param value: floating point in cm
+        @type pos: int
+        @type value: float
+        """
+        self.margins[pos] = value
+
+    def get_margin(self,pos):
+        """
+        Returns a margin for the OptionList.
+        @param pos: Position of margin [left, right, top, bottom]
+        @type pos: int
+        @returns: float cm of margin
+        @rtype: float
+        """
+        return self.margins[pos]
+
     def set_template_name(self,template_name):
         """
         Sets the template name for the OptionList.
@@ -174,10 +212,12 @@ class OptionListCollection(_Options.OptionListCollection):
         self.default_paper_name = Config.get(Config.PAPER_PREFERENCE)
         self.default_template_name = ""
         self.default_orientation = BaseDoc.PAPER_PORTRAIT
+        self.default_margins = [2.54, 2.54, 2.54, 2.54]
         self.default_format_name = 'print'
 
         self.last_paper_name = self.default_paper_name
         self.last_orientation = self.default_orientation
+        self.last_margins = copy.copy(self.default_margins)
         self.last_template_name = self.default_template_name
         self.last_format_name = self.default_format_name
         self.option_list_map = {}
@@ -214,6 +254,44 @@ class OptionListCollection(_Options.OptionListCollection):
         @rtype: int
         """
         return self.last_orientation
+
+    def set_last_margins(self,margins):
+        """
+        Sets the last margins used for the any report in this collection.
+        @param margins: margins to set in cm (left, right, top, bottom)
+        @type margins: [float, float, float, float]
+        """
+        self.last_margins = copy.copy(margins)
+
+    def get_last_margins(self):
+        """
+        Returns the last margins used for the any report in this
+        collection.
+        @returns: list of last margins used in cm (left, right, top, bottom)
+        @rtype: [float, float, float, float]
+        """
+        return copy.copy(self.last_margins)
+
+    def set_last_margin(self,pos,value):
+        """
+        Sets the last margin used for the any report in this collection.
+        @param pos: pos to set (0-4) (left, right, top, bottom)
+        @type pos: int
+        @param value: value to set the margin to in cm
+        @type value: float
+        """
+        self.last_margins[pos] = value
+
+    def get_last_margin(self,pos):
+        """
+        Returns the last margins used for the any report in this
+        collection.
+        @param pos: position in margins list
+        @type pos: int
+        @returns: last margin used in pos
+        @rtype: float
+        """
+        return self.last_margins[pos]
 
     def set_last_template_name(self,template_name):
         """
@@ -253,6 +331,10 @@ class OptionListCollection(_Options.OptionListCollection):
             f.write('  <format name="%s"/>\n' % escxml(self.get_last_format_name()) )
         if self.get_last_orientation() != self.default_orientation:
             f.write('  <orientation value="%d"/>\n' % self.get_last_orientation() )
+        if self.get_last_margins() != self.default_margins:
+            margins = self.get_last_margins()
+            for pos in range(len(margins)): 
+                f.write('  <margin number="%s" value="%f"/>\n' % (pos, margins[pos]))
         f.write('</last-common>\n')
 
     def write_module_common(self,f,option_list):
@@ -271,6 +353,11 @@ class OptionListCollection(_Options.OptionListCollection):
         if option_list.get_orientation() \
                and option_list.get_orientation() != self.default_orientation:
             f.write('  <orientation value="%d"/>\n' % option_list.get_orientation() )
+        if option_list.get_margins() \
+               and option_list.get_margins() != self.default_margins:
+            margins = option_list.get_margins()
+            for pos in range(len(margins)): 
+                f.write('  <margin number="%s" value="%f"/>\n' % (pos, margins[pos]))
 
     def parse(self):
         """
@@ -335,6 +422,12 @@ class OptionParser(_Options.OptionParser):
                 self.collection.set_last_orientation(int(attrs['value']))
             else:
                 self.option_list.set_orientation(int(attrs['value']))
+        elif tag == "margin":
+            pos, value = int(attrs['number']), float(attrs['value'])
+            if self.common:
+                self.collection.set_last_margin(pos, value)
+            else:
+                self.option_list.set_margin(pos, value)
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _Options.OptionParser.startElement(self,tag,attrs)
@@ -378,6 +471,7 @@ class OptionHandler(_Options.OptionHandler):
         self.style_name = self.option_list_collection.default_style_name
         self.paper_name = self.option_list_collection.get_last_paper_name()
         self.orientation = self.option_list_collection.get_last_orientation()
+        self.margins = self.option_list_collection.get_last_margins()
         self.template_name = self.option_list_collection.get_last_template_name()
         self.format_name = self.option_list_collection.get_last_format_name()
 
@@ -386,6 +480,8 @@ class OptionHandler(_Options.OptionHandler):
             self.style_name = self.saved_option_list.get_style_name()
         if self.saved_option_list.get_orientation():
             self.orientation = self.saved_option_list.get_orientation()
+        if self.saved_option_list.get_margins():
+            self.margins = self.saved_option_list.get_margins()
         if self.saved_option_list.get_template_name():
             self.template_name = self.saved_option_list.get_template_name()
         if self.saved_option_list.get_paper_name():
@@ -397,6 +493,7 @@ class OptionHandler(_Options.OptionHandler):
         # First we save common options
         self.saved_option_list.set_style_name(self.style_name)
         self.saved_option_list.set_orientation(self.orientation)
+        self.saved_option_list.set_margins(self.margins)
         self.saved_option_list.set_template_name(self.template_name)
         self.saved_option_list.set_paper_name(self.paper_name)
         self.saved_option_list.set_format_name(self.format_name)
@@ -405,6 +502,7 @@ class OptionHandler(_Options.OptionHandler):
 
         # Then save last-common options from the current selection
         self.option_list_collection.set_last_orientation(self.orientation)
+        self.option_list_collection.set_last_margins(self.margins)
         self.option_list_collection.set_last_template_name(self.template_name)
         self.option_list_collection.set_last_paper_name(self.paper_name)
         self.option_list_collection.set_last_format_name(self.format_name)
@@ -454,6 +552,12 @@ class OptionHandler(_Options.OptionHandler):
 
     def set_orientation(self,orientation):
         self.orientation = orientation
+
+    def get_margins(self):
+        return copy.copy(self.margins)
+
+    def set_margins(self,margins):
+        self.margins = copy.copy(margins)
 
 #------------------------------------------------------------------------
 #

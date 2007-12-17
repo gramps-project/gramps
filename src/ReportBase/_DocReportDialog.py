@@ -179,7 +179,9 @@ class DocReportDialog(ReportDialog):
                 
     def setup_report_options_frame(self):
         self.paper_frame = PaperFrame(self.options.handler.get_paper_name(),
-                                      self.options.handler.get_orientation())
+                                      self.options.handler.get_orientation(),
+                                      self.options.handler.get_margins(),
+                                      )
         self.setup_html_frame()
         ReportDialog.setup_report_options_frame(self)
 
@@ -292,6 +294,7 @@ class DocReportDialog(ReportDialog):
         
         self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
+        self.options.handler.set_margins(self.paper_frame.get_paper_margins())
         
         self.parse_user_options()
 

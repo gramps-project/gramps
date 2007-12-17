@@ -142,7 +142,8 @@ class OrientationComboBox(gtk.ComboBox):
 #-------------------------------------------------------------------------  
 class PaperFrame(gtk.HBox):
     """PaperFrame provides all the entry necessary to specify a paper style. """
-    def __init__(self,default_name,default_orientation):
+    def __init__(self,default_name,default_orientation,
+                 margins=[2.54,2.54,2.54,2.54]):
         gtk.HBox.__init__(self)
         glade_file = os.path.join(const.GLADE_DIR, "paper_settings.glade")
         glade_xml = gtk.glade.XML(glade_file, "paper_table", "gramps")
@@ -176,6 +177,11 @@ class PaperFrame(gtk.HBox):
         # set initial values
         self.paper_unit = 'cm'
         self.paper_unit_multiplier = 1.0
+
+        self.lmargin.set_text("%.2f" % margins[0])
+        self.rmargin.set_text("%.2f" % margins[1])
+        self.tmargin.set_text("%.2f" % margins[2])
+        self.bmargin.set_text("%.2f" % margins[3])
         
         self.paper_table.show_all()
         self.add(self.paper_table)
