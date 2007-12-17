@@ -33,6 +33,7 @@ __revision__ = "$Revision: 8197 $"
 #-------------------------------------------------------------------------
 import os
 import time
+import copy
 import subprocess
 from gettext import gettext as _
 
@@ -800,7 +801,7 @@ def find_revisions(name):
         for line in proc.stdout:
             match = rev.match(line)
             if match:
-                rev_str = match.groups()[0]
+                rev_str = copy.copy(match.groups()[0])
                 continue
             match = date.match(line)
             if match:
@@ -813,6 +814,8 @@ def find_revisions(name):
                 get_next = False
                 com_str = line.strip()
                 revlist.append((rev_str, date_str, com_str))
+    proc.stdout.close()
+    del proc
     return revlist
 
 def find_locker_name(dirpath):
@@ -893,8 +896,8 @@ def check_in(dbase, filename, callback, cursor_func = None):
 
     proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
     message = "\n".join(proc.stderr.readlines())
-    proc.stderr.close()
     status = proc.wait()
+    proc.stderr.close()
     del proc
 
     if status != 0:

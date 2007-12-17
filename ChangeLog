@@ -1,4 +1,10 @@
 2007-12-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DbManager.py: I was having some weird issues with the archive
+	file giving errors about "still in use". With these changes, I haven't
+	had it happen... yet. Can't say for certain if these changes fixed it,
+	or if there is another cause.
+
+2007-12-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/CalculateEstimatedDates.py: Give good defaults for Filter 
 	and Enumerated Lists
 	* src/plugins/Calendar.py: Give good defaults for Filter and Enumerated
