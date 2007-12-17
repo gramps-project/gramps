@@ -1,3 +1,11 @@
+2007-12-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/CalculateEstimatedDates.py: Give good defaults for Filter 
+	and Enumerated Lists
+	* src/plugins/Calendar.py: Give good defaults for Filter and Enumerated
+	lists
+	* src/PluginUtils/_MenuOptions.py: added a get_filter() method to return
+	filter object; added a param to constructor to set default filter
+
 2007-12-16  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/Calendar.py: Properly initialize Filter option.
 	* src/PluginUtils/_MenuOptions.py: Properly initialize Filter option.

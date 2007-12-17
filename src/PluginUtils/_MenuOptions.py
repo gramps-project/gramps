@@ -386,14 +386,14 @@ class FilterListOption(Option):
     This class describes an option that provides a finite list of filters.
     Each possible value is assigned a type of set of filters to use.
     """
-    def __init__(self,label):
+    def __init__(self,label,value=0):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Filter"
         @type label: string
         @return: nothing
         """
-        Option.__init__(self,label,0)
+        Option.__init__(self,label,value)
         self.__items = []
         self.__filters = []
 
@@ -453,7 +453,6 @@ class FilterListOption(Option):
         self.gobj = gtk.HBox()
         for filter in self.get_items():
             if filter in ["person"]:
-                # FIXME: get filter list from filter sidebar?
                 filter_list = ReportUtils.get_person_filters(dialog.person,
                                                              include_single=True)
                 for filter in filter_list:
@@ -478,6 +477,12 @@ class FilterListOption(Option):
 
     def get_center_person(self):
         return self.dialog.person
+
+    def get_filter(self):
+        """
+        Return the filter object.
+        """
+        return self.get_filters()[int(self.combo.get_active())]
 
     def update_gui_obj(self):
         # update the gui object with new filter info

@@ -55,7 +55,7 @@ class CalcEstDateOptions(MenuToolOptions):
         """ Adds the options """
         category_name = _("Options")
 
-        filter = FilterListOption(_("Filter"))
+        filter = FilterListOption(_("Filter"), 3)
         filter.add_item("person")
         filter.set_help(_("Select filter to restrict people"))
         menu.add_option(category_name,"filter", filter)
@@ -121,7 +121,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         self.results_write("Processing...\n")
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
-        self.filter = self.options.handler.options_dict['filter']
+        self.filter_option =  self.options.menu.get_option_by_name('filter')
+        self.filter = self.filter_option.get_filter() # the actual filter
         people = self.filter.apply(self.db,
                                    self.db.get_person_handles(sort_handles=False))
         source_text = self.options.handler.options_dict['source_text']

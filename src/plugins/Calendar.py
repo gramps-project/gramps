@@ -143,9 +143,7 @@ class Calendar(Report):
         self.text2 = options_class.handler.options_dict['text2']
         self.text3 = options_class.handler.options_dict['text3']
         self.filter_option =  options_class.menu.get_option_by_name('filter')
-        filter_index = int(self.filter_option.get_value())
-        filters = self.filter_option.get_filters()
-        self.filter = filters[filter_index]
+        self.filter = self.filter_option.get_filter()
 
         self.title = _("Calendar Report") #% name
 
@@ -487,13 +485,13 @@ class CalendarOptions(MenuReportOptions):
         filter.set_help(_("Select filter to restrict people that appear on calendar"))
         menu.add_option(category_name,"filter", filter)
 
-        name_format = EnumeratedListOption(_("Name format"), (1, ""))
+        name_format = EnumeratedListOption(_("Name format"), -1)
         for num, name, fmt_str, act in name_displayer.get_name_format():
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
         menu.add_option(category_name,"name_format", name_format)
 
-        country = EnumeratedListOption(_("Country for holidays"), (0,_("Don't include holidays")))
+        country = EnumeratedListOption(_("Country for holidays"), 0)
         count = 0
         for c in  _countries:
             country.add_item(count, c)
@@ -501,15 +499,14 @@ class CalendarOptions(MenuReportOptions):
         country.set_help(_("Select the country to see associated holidays"))
         menu.add_option(category_name,"country", country)
 
-        start_dow = EnumeratedListOption(_("First day of week"), GrampsLocale.long_days[1].capitalize())
+        start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1,8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, GrampsLocale.long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow) 
 
-        maiden_name = EnumeratedListOption(_("Birthday surname"),
-                                           ("own", _("Wives use their own surname")))
+        maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
         maiden_name.add_item("spouse_first", _("Wives use husband's surname (from first family listed)"))
         maiden_name.add_item("spouse_last", _("Wives use husband's surname (from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
