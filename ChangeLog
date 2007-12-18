@@ -1,3 +1,6 @@
+2007-12-18 Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/DetAncestralReport.py: Remove some test code
+
 2007-12-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DbManager.py: I was having some weird issues with the archive
 	file giving errors about "still in use". With these changes, I haven't

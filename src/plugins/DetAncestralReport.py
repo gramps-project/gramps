@@ -415,7 +415,6 @@ class DetAncestorReport(Report):
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
                 self.doc.start_paragraph('DAR-MoreDetails')
-                self.doc.write_text("test")
                 self.doc.write_text(note.get())
                 self.doc.end_paragraph()
                 
