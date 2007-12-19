@@ -33,10 +33,8 @@ __revision__ = "$Revision: 8197 $"
 #-------------------------------------------------------------------------
 import os
 import time
-import copy
 import subprocess
 from gettext import gettext as _
-
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -72,7 +70,7 @@ import GrampsDbUtils
 import Config
 import Mime
 from DdTargets import DdTargets
-
+import RecentFiles
 IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM, 
                 const.APP_GRAMPS_PKG, const.APP_GENEWEB, 
                 const.APP_GRAMPS)
@@ -295,7 +293,6 @@ class DbManager:
             path_name = os.path.join(dirpath, NAME_FILE)
             if os.path.isfile(path_name):
                 name = file(path_name).readline().strip()
-
                 (tval, last) = time_val(dirpath)
                 (enable, stock_id) = icon_values(dirpath, self.active, 
                                                  self.dbstate.db.is_open())
@@ -374,14 +371,22 @@ class DbManager:
         Changes the name of the database. This is a callback from the
         column, which has been marked as editable. 
 
-        If the new string is empty, do nothing. Otherwise, renaming the
+        If the new string is empty, do nothing. Otherwise, renaming the	
         database is simply changing the contents of the name file.
         """
         if len(new_text) > 0 and text != new_text:
             if len(path) > 1 :
                 self.__rename_revision(path, new_text)
             else:
-                self.__rename_database(path, new_text)
+                """
+	        Check in recent_files.xml if there is another database
+                or Family Tree with the same name as new_text.
+                """
+                if RecentFiles.check_if_recent(new_text):
+                    QuestionDialog.ErrorDialog(_("Family Tree exists already"))
+
+                else:
+                    self.__rename_database(path, new_text)
 
     def __rename_revision(self, path, new_text):
         """
@@ -422,9 +427,13 @@ class DbManager:
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         try:
+            name_file = open(filename, "r")
+            old_text=name_file.read()
+            name_file.close()
             name_file = open(filename, "w")
             name_file.write(new_text)
             name_file.close()
+            RecentFiles.rename_filename(old_text, new_text)
             self.model.set_value(node, NAME_COL, new_text)
         except (OSError, IOError), msg:
             QuestionDialog.ErrorDialog(
@@ -492,7 +501,7 @@ class DbManager:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
             QuestionDialog.QuestionDialog(
-                _("Remove the '%(revision)s' version of '%(database)s'") % {
+                _("Remove the '%{revision}s' version of %{database}s") % {
                     'revision' : rev, 
                     'database' : parent
                     },
@@ -513,7 +522,15 @@ class DbManager:
         if self.data_to_delete[OPEN_COL]:
             self.dbstate.no_database()
             
+        store, node = self.selection.get_selected()
+        path = store.get_path(node)
+        node = self.model.get_iter(path)
+        filename = self.model.get_value(node, FILE_COL)
         try:
+            name_file = open(filename, "r")
+            file_name_to_delete=name_file.read()
+            name_file.close()
+            RecentFiles.remove_filename(file_name_to_delete)
             for (top, dirs, files) in os.walk(self.data_to_delete[1]):
                 for filename in files:
                     os.unlink(os.path.join(top, filename))
@@ -534,7 +551,7 @@ class DbManager:
         rev = self.data_to_delete[PATH_COL]
         archive = os.path.join(db_dir, ARCHIVE_V)
 
-        cmd = [ "rcs", "-o%s" % rev, "-q", archive ]
+        cmd = [ "rcs", "-o%s" % rev, archive ]
 
         proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
         status = proc.wait()
@@ -566,7 +583,7 @@ class DbManager:
 
     def __repair_db(self, obj):
         """
-        Start the rename process by calling the start_editing option on 
+        Start the repair process by calling the start_editing option on 
         the line with the cursor.
         """
         store, node = self.selection.get_selected()
@@ -636,11 +653,9 @@ class DbManager:
         if title == None:
             name_list = [ name[0] for name in self.current_names ]
             title = find_next_db_name(name_list)
-
         name_file = open(path_name, "w")
         name_file.write(title)
         name_file.close()
-
         self.current_names.append(title)
         node = self.model.append(None, [title, new_path, path_name, 
                                         _("Never"), 0, False, ''])
@@ -801,7 +816,7 @@ def find_revisions(name):
         for line in proc.stdout:
             match = rev.match(line)
             if match:
-                rev_str = copy.copy(match.groups()[0])
+                rev_str = match.groups()[0]
                 continue
             match = date.match(line)
             if match:
@@ -814,8 +829,6 @@ def find_revisions(name):
                 get_next = False
                 com_str = line.strip()
                 revlist.append((rev_str, date_str, com_str))
-    proc.stdout.close()
-    del proc
     return revlist
 
 def find_locker_name(dirpath):
@@ -896,8 +909,8 @@ def check_in(dbase, filename, callback, cursor_func = None):
 
     proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
     message = "\n".join(proc.stderr.readlines())
-    status = proc.wait()
     proc.stderr.close()
+    status = proc.wait()
     del proc
 
     if status != 0:
