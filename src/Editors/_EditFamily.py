@@ -85,7 +85,7 @@ class ChildEmbedList(EmbeddedList):
     _MSG = {
         'add'   : _('Create a new person and add the child to the family'),
         'del'   : _('Remove the child from the family'),
-        'edit'  : _('Edit the child/family relationship'),
+        'edit'  : _('Edit the child'),
         'share' : _('Add an existing person as a child of the family'),
         'up'	: _('Move the child up in the childrens list'),
         'down'	: _('Move the child down in the childrens list'),
@@ -115,9 +115,9 @@ class ChildEmbedList(EmbeddedList):
     def get_popup_menu_items(self):
         return [
             (True, True, gtk.STOCK_ADD, self.add_button_clicked),
-            (True, False, _('Share'), self.edit_button_clicked),
-            (False,True,  _('Edit relationship'), self.edit_button_clicked),
-            (False,True,  _('Edit child'), self.edit_child_button_clicked),
+            (True, False, _('Add an existing child'), self.share_button_clicked),
+            (False,True,  _('Edit relationship'), self.edit_relation_button_clicked),
+            (False,True,  _('Edit child'), self.edit_button_clicked),
             (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
 
@@ -253,7 +253,7 @@ class ChildEmbedList(EmbeddedList):
                     self.family.remove_child_ref(ref)
             self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_relation_button_clicked(self,obj):
         handle = self.get_selected()
         if handle:
             from Editors import EditChildRef
@@ -269,7 +269,7 @@ class ChildEmbedList(EmbeddedList):
                         pass
                     break
 
-    def edit_child_button_clicked(self, obj):
+    def edit_button_clicked(self, obj):
         handle = self.get_selected()
         if handle:
             from Editors import EditPerson

@@ -1,3 +1,8 @@
+2007-12-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/Editors/_EditFamily.py: doubleclick now edits; fixed share popup
+	* src/DisplayTabs/_EmbeddedList.py: fixed share popup
+	* src/DisplayTabs/_GalleryTab.py: fixed share popup
+
 2007-12-18 Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/DetAncestralReport.py: Remove some test code
 

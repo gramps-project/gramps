@@ -99,7 +99,7 @@ class EmbeddedList(ButtonTab):
         if self.share_btn:
             itemlist = [
                 (True, True, gtk.STOCK_ADD, self.add_button_clicked),
-                (True, False, _('Share'), self.edit_button_clicked),
+                (True, False, _('Share'), self.share_button_clicked),
                 (False,True, gtk.STOCK_EDIT, self.edit_button_clicked),
                 (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
                 ]
