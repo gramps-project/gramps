@@ -107,7 +107,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        return  self.attribute_list[:]
+        return  self.attribute_list
 
     def get_sourcref_child_list(self):
         """
@@ -116,7 +116,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         @return: Returns the list of child secondary child objects that may refer sources.
         @rtype: list
         """
-        return self.attribute_list[:]
+        return self.attribute_list
 
     def get_note_child_list(self):
         """
@@ -125,7 +125,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         @return: Returns the list of child secondary child objects that may refer notes.
         @rtype: list
         """
-        return self.attribute_list[:]
+        return self.attribute_list
 
     def get_referenced_handles(self):
         """
@@ -139,6 +139,56 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         if self.ref:
             ret += [('Event', self.ref)]
         return ret
+
+    def get_handle_referents(self):
+        """
+        Returns the list of child objects which may, directly or through
+        their children, reference primary objects..
+        
+        @return: Returns the list of objects refereincing primary objects.
+        @rtype: list
+        """
+        return self.get_sourcref_child_list()
+
+    def has_source_reference(self, src_handle) :
+        """
+        Returns True if any of the child objects has reference
+        to this source handle.
+
+        @param src_handle: The source handle to be checked.
+        @type src_handle: str
+        @return: Returns whether any of it's child objects has reference to this source handle.
+        @rtype: bool
+        """
+        for item in self.get_sourcref_child_list():
+            if item.has_source_reference(src_handle):
+                return True
+
+        return False
+
+    def remove_source_references(self, src_handle_list):
+        """
+        Removes references to all source handles in the list
+        in all child objects.
+
+        @param src_handle_list: The list of source handles to be removed.
+        @type src_handle_list: list
+        """
+        for item in self.get_sourcref_child_list():
+            item.remove_source_references(src_handle_list)
+
+    def replace_source_references(self, old_handle, new_handle):
+        """
+        Replaces references to source handles in the list
+        in this object and all child objects.
+
+        @param old_handle: The source handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The source handle to replace the old one with.
+        @type new_handle: str
+        """
+        for item in self.get_sourcref_child_list():
+            item.replace_source_references(old_handle, new_handle)
 
     def get_role(self):
         """

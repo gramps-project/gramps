@@ -90,7 +90,6 @@ class NoteBase:
         """
         if handle in self.note_list:
             self.note_list.remove(handle)
-
         for item in self.get_note_child_list():
             item.remove_note(handle)
     

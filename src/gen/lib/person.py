@@ -328,7 +328,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
                     self.attribute_list + self.lds_ord_list + \
-                    self.person_ref_list
+                    self.person_ref_list + self.event_ref_list
 
     def get_note_child_list(self):
         """
@@ -340,7 +340,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         return [self.primary_name] + self.media_list + \
                     self.alternate_names + self.address_list + \
                     self.attribute_list + self.lds_ord_list + \
-                    self.person_ref_list + self.source_list
+                    self.person_ref_list + self.source_list + \
+                    self.event_ref_list
 
     def get_referenced_handles(self):
         """
@@ -363,8 +364,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         @rtype: list
         """
         #don't count double, notes can be found in sourcref
-        return self.get_sourcref_child_list() + self.source_list \
-               + self.event_ref_list
+        return self.get_sourcref_child_list() + self.source_list
 
     def set_primary_name(self, name):
         """
