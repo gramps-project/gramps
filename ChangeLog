@@ -1,3 +1,8 @@
+2007-12-19 Peter Landgren <peter.talken@telai.com>
+	* src/DbManager.py: fixed unique rename and new databases 
+	* src/RecentFiles.py: fixed unique rename and new databases
+			and update of recent-files.xml
+
 2007-12-19 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/gen/lib/person.py: sources in attributes of eventref are not seen
 		 in ref tables
