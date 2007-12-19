@@ -3,8 +3,6 @@
 		 in ref tables
 	* src/gen/lib/eventref.py: can contain sources, add methods for that
 	* src/gen/lib/notebase.py: whitespace
-	* src/plugins/Check.py: low level check of repo table, add check to 
-		clean up referenced but not existing repos
 
 2007-12-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Editors/_EditFamily.py: doubleclick now edits; fixed share popup
