@@ -1,3 +1,10 @@
+2007-12-17 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/RelLib/_Person.py: sources in attributes of eventref are not seen
+		 in ref tables
+	* src/RelLib/_EventRef.py: can contain sources, add methods for that
+	* src/plugins/Check.py: low level check of repo table, add check to 
+		clean up referenced but not existing repos
+
 2007-12-15 Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditFamily.py: emit family-update signal #1416
 

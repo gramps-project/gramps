@@ -83,7 +83,8 @@ def low_level(db):
                     ('Event',db.event_map),
                     ('Place',db.place_map),
                     ('Source',db.source_map),
-                    ('Media',db.media_map)]:
+                    ('Media',db.media_map),
+                    ('Repository', db.repository_map)]:
 
         print "Low-level repair: table: %s" % the_map[0]
         if _table_low_level(db,the_map[1]):
@@ -887,7 +888,8 @@ class CheckIntegrity:
         total = self.db.get_number_of_people() + self.db.get_number_of_families() + \
                 self.db.get_number_of_events() + self.db.get_number_of_places() + \
                 self.db.get_number_of_media_objects() + \
-                self.db.get_number_of_sources()
+                self.db.get_number_of_sources() + \
+                self.db.get_number_of_repositories()
 
         self.progress.set_pass(_('Looking for source reference problems'),
                                total)
@@ -988,7 +990,23 @@ class CheckIntegrity:
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
-                
+
+        for handle in self.db.repository_map.keys():
+            self.progress.step()
+            info = self.db.repository_map[handle]
+            repo = RelLib.Repository()
+            repo.unserialize(info)
+            handle_list = repo.get_referenced_handles_recursively()
+            bad_handles = [ item[1] for item in handle_list
+                            if item[0] == 'Source' and
+                            item[1] not in known_handles ]
+            if bad_handles:
+                repo.remove_source_references(bad_handles)
+                self.db.commit_repository(repo,self.trans)
+                new_bad_handles = [handle for handle in bad_handles if handle
+                                   not in self.invalid_source_references]
+                self.invalid_source_references += new_bad_handles
+
     def check_media_references(self):
         known_handles = self.db.get_media_object_handles(False)
 
