@@ -31,10 +31,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: sv\n"
+"Project-Id-Version: svny\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-19 17:52+0100\n"
-"PO-Revision-Date: 2007-12-19 18:01+0100\n"
+"POT-Creation-Date: 2007-12-20 14:53+0100\n"
+"PO-Revision-Date: 2007-12-20 16:34+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr "GRAMPS-databaser"
 
 #: ../src/Assistant.py:337 ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:87 ../src/plugins/ownereditor.glade.h:7
+#: ../src/glade/gramps.glade.h:88 ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
 msgstr "Namn:"
@@ -151,7 +151,7 @@ msgid "State/Province:"
 msgstr "Län/delstat:"
 
 #: ../src/Assistant.py:341 ../src/Filters/Rules/Place/_HasPlace.py:52
-#: ../src/glade/gramps.glade.h:58 ../src/plugins/ownereditor.glade.h:5
+#: ../src/glade/gramps.glade.h:59 ../src/plugins/ownereditor.glade.h:5
 msgid "Country:"
 msgstr "Land:"
 
@@ -174,7 +174,7 @@ msgid "Edit Bookmarks"
 msgstr "Redigera bokmärken"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:206 ../src/GrampsCfg.py:171 ../src/ScratchPad.py:172
+#: ../src/Bookmarks.py:206 ../src/GrampsCfg.py:172 ../src/ScratchPad.py:172
 #: ../src/ScratchPad.py:244 ../src/ScratchPad.py:354 ../src/ScratchPad.py:410
 #: ../src/ScratchPad.py:443 ../src/ScratchPad.py:504 ../src/ScratchPad.py:535
 #: ../src/ScratchPad.py:552 ../src/ScratchPad.py:553 ../src/ScratchPad.py:572
@@ -237,7 +237,7 @@ msgstr "Namn"
 msgid "ID"
 msgstr "ID"
 
-#: ../src/ColumnOrder.py:83 ../src/GrampsCfg.py:147
+#: ../src/ColumnOrder.py:83 ../src/GrampsCfg.py:148
 msgid "Display"
 msgstr "Visa"
 
@@ -452,39 +452,39 @@ msgstr "Välj fil_typ:"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:83
+#: ../src/DbManager.py:84
 msgid "Family Tree"
 msgstr "Släktträd"
 
-#: ../src/DbManager.py:97
+#: ../src/DbManager.py:98
 msgid "Extract"
 msgstr "Extrahera"
 
-#: ../src/DbManager.py:97 ../src/gen/lib/repotype.py:55
+#: ../src/DbManager.py:98 ../src/gen/lib/repotype.py:55
 #: ../src/glade/gramps.glade.h:42
 msgid "Archive"
 msgstr "Arkiv"
 
-#: ../src/DbManager.py:255
+#: ../src/DbManager.py:256
 msgid "Family tree name"
 msgstr "Släktträdsnamn"
 
-#: ../src/DbManager.py:264 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:265 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
 #: ../src/PluginUtils/_PluginWindows.py:79
 msgid "Status"
 msgstr "Status"
 
-#: ../src/DbManager.py:270
+#: ../src/DbManager.py:271
 msgid "Last modified"
 msgstr "Senast ändrat"
 
-#: ../src/DbManager.py:341
+#: ../src/DbManager.py:343
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Bryta låset på '%s'-databasen?"
 
-#: ../src/DbManager.py:342
+#: ../src/DbManager.py:344
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -496,19 +496,19 @@ msgstr ""
 "redigera databasen kan du säkert bryta låset.. Emellertid, om någon annan "
 "redigerar databasen och du bryter låsningen kan databasen förstöras."
 
-#: ../src/DbManager.py:348
+#: ../src/DbManager.py:350
 msgid "Break lock"
 msgstr "Bryt låsning"
 
-#: ../src/DbManager.py:386
+#: ../src/DbManager.py:388
 msgid "Family Tree exists already"
 msgstr "Släktträdet finns redan"
 
-#: ../src/DbManager.py:416
+#: ../src/DbManager.py:418
 msgid "Rename failed"
 msgstr "Omdöpning misslyckades"
 
-#: ../src/DbManager.py:417
+#: ../src/DbManager.py:419
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -519,54 +519,55 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:440
+#: ../src/DbManager.py:442
 msgid "Could not rename family tree"
 msgstr "Kunde inte döpa om släktträd"
 
-#: ../src/DbManager.py:476
+#: ../src/DbManager.py:478
 msgid "Extracting archive..."
 msgstr "Extraherar arkiv..."
 
-#: ../src/DbManager.py:480
+#: ../src/DbManager.py:482
 msgid "Importing archive..."
 msgstr "Importerar arkiv..."
 
-#: ../src/DbManager.py:496
+#: ../src/DbManager.py:498
 #, python-format
 msgid "Remove the '%s' database?"
 msgstr "Tag bort '%s'-databasen?"
 
-#: ../src/DbManager.py:497
+#: ../src/DbManager.py:499
 msgid "Removing this database will permanently destroy the data."
 msgstr "genom att ta bort databasen förstörs data permanent."
 
-#: ../src/DbManager.py:498
+#: ../src/DbManager.py:500
 msgid "Remove database"
 msgstr "Tag bort databas"
 
-#: ../src/DbManager.py:504
-msgid "Remove the '%{revision}s' version of %{database}s"
-msgstr "Tag bort '%{revision}s'-versionen av %{database}er"
+#: ../src/DbManager.py:506
+#, python-format
+msgid "Remove the '%(revision)s' version of '%(database)s'"
+msgstr "Tag bort '%(revision)s'-versionen av '%(database)s'"
 
-#: ../src/DbManager.py:508
+#: ../src/DbManager.py:510
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 "Genom att ta bort denna version kommer att förhindra dig att extrahera den i "
 "framtiden."
 
-#: ../src/DbManager.py:510
+#: ../src/DbManager.py:512
 msgid "Remove version"
 msgstr "Tag bort version"
 
-#: ../src/DbManager.py:539
+#: ../src/DbManager.py:541
 msgid "Could not delete family tree"
 msgstr "Kunde inte ta bort släktträd"
 
-#: ../src/DbManager.py:566
+#: ../src/DbManager.py:568
 msgid "Deletion failed"
 msgstr "Bortagandet misslyckades"
 
-#: ../src/DbManager.py:567
+#: ../src/DbManager.py:569
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -577,57 +578,57 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:606
+#: ../src/DbManager.py:608
 msgid "Rebuilding database from backup files"
 msgstr "Bygger om databasen från säkerhetskopia"
 
-#: ../src/DbManager.py:640
+#: ../src/DbManager.py:642
 msgid "Could not create family tree"
 msgstr "Kunde inte skapa släktträd"
 
-#: ../src/DbManager.py:661 ../src/DbManager.py:775
+#: ../src/DbManager.py:665 ../src/DbManager.py:779
 msgid "Never"
 msgstr "Aldrig"
 
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
-#: ../src/DbManager.py:698 ../src/plugins/ImportCSV.py:258
+#: ../src/DbManager.py:702 ../src/plugins/ImportCSV.py:258
 msgid "Importing data..."
 msgstr "Importerar data..."
 
-#: ../src/DbManager.py:760
+#: ../src/DbManager.py:764
 msgid "Could not make database directory: "
 msgstr "Kunde inte skapa databasmappen: "
 
-#: ../src/DbManager.py:845 ../src/ScratchPad.py:80
+#: ../src/DbManager.py:851 ../src/ScratchPad.py:80
 #: ../src/DataViews/_RelationView.py:389 ../src/DataViews/_RelationView.py:830
 #: ../src/DataViews/_RelationView.py:868
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
-#: ../src/Editors/_EditPerson.py:834 ../src/plugins/all_relations.py:273
-#: ../src/plugins/all_relations.py:290 ../src/plugins/Check.py:1310
-#: ../src/plugins/FamilyLines.py:996 ../src/plugins/IndivComplete.py:480
-#: ../src/plugins/NarrativeWeb.py:542 ../src/PluginUtils/_PluginMgr.py:181
-#: ../src/PluginUtils/_PluginMgr.py:183 ../src/PluginUtils/_PluginMgr.py:184
-#: ../src/PluginUtils/_PluginMgr.py:214 ../src/PluginUtils/_PluginMgr.py:215
-#: ../src/PluginUtils/_PluginMgr.py:216 ../src/PluginUtils/_PluginMgr.py:255
-#: ../src/PluginUtils/_PluginMgr.py:257 ../src/PluginUtils/_PluginMgr.py:258
-#: ../src/PluginUtils/_PluginMgr.py:296 ../src/PluginUtils/_PluginMgr.py:297
-#: ../src/PluginUtils/_PluginMgr.py:298 ../src/PluginUtils/_PluginMgr.py:421
-#: ../src/PluginUtils/_PluginMgr.py:423 ../src/PluginUtils/_PluginMgr.py:424
-#: ../src/ReportBase/_ReportUtils.py:1027 ../src/gen/lib/urltype.py:45
-#: ../src/gen/lib/notetype.py:78 ../src/gen/lib/repotype.py:50
-#: ../src/gen/lib/attrtype.py:54 ../src/gen/lib/childreftype.py:56
-#: ../src/gen/lib/srcmediatype.py:53 ../src/gen/lib/grampstype.py:132
-#: ../src/gen/lib/eventroletype.py:48 ../src/gen/lib/nametype.py:44
-#: ../src/gen/lib/eventtype.py:87 ../src/gen/lib/familyreltype.py:43
+#: ../src/plugins/all_relations.py:273 ../src/plugins/all_relations.py:290
+#: ../src/plugins/Check.py:1310 ../src/plugins/FamilyLines.py:996
+#: ../src/plugins/IndivComplete.py:480 ../src/plugins/NarrativeWeb.py:542
+#: ../src/PluginUtils/_PluginMgr.py:181 ../src/PluginUtils/_PluginMgr.py:183
+#: ../src/PluginUtils/_PluginMgr.py:184 ../src/PluginUtils/_PluginMgr.py:214
+#: ../src/PluginUtils/_PluginMgr.py:215 ../src/PluginUtils/_PluginMgr.py:216
+#: ../src/PluginUtils/_PluginMgr.py:255 ../src/PluginUtils/_PluginMgr.py:257
+#: ../src/PluginUtils/_PluginMgr.py:258 ../src/PluginUtils/_PluginMgr.py:296
+#: ../src/PluginUtils/_PluginMgr.py:297 ../src/PluginUtils/_PluginMgr.py:298
+#: ../src/PluginUtils/_PluginMgr.py:421 ../src/PluginUtils/_PluginMgr.py:423
+#: ../src/PluginUtils/_PluginMgr.py:424 ../src/ReportBase/_ReportUtils.py:1027
+#: ../src/gen/lib/urltype.py:45 ../src/gen/lib/notetype.py:78
+#: ../src/gen/lib/repotype.py:50 ../src/gen/lib/attrtype.py:54
+#: ../src/gen/lib/childreftype.py:56 ../src/gen/lib/srcmediatype.py:53
+#: ../src/gen/lib/grampstype.py:132 ../src/gen/lib/eventroletype.py:48
+#: ../src/gen/lib/nametype.py:44 ../src/gen/lib/eventtype.py:87
+#: ../src/gen/lib/familyreltype.py:43
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../src/DbManager.py:866
+#: ../src/DbManager.py:872
 msgid "Retrieve failed"
 msgstr "Återläsning misslyckades"
 
-#: ../src/DbManager.py:867 ../src/plugins/Checkpoint.py:99
+#: ../src/DbManager.py:873 ../src/plugins/Checkpoint.py:99
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -638,19 +639,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:901
+#: ../src/DbManager.py:907
 msgid "Creating data to be archived..."
 msgstr "Skapar data för arkivering..."
 
-#: ../src/DbManager.py:908
+#: ../src/DbManager.py:914
 msgid "Saving archive..."
 msgstr "Sparar arkiv..."
 
-#: ../src/DbManager.py:920
+#: ../src/DbManager.py:926
 msgid "Archiving failed"
 msgstr "Misslyckades att arkivera"
 
-#: ../src/DbManager.py:921 ../src/plugins/Checkpoint.py:88
+#: ../src/DbManager.py:927 ../src/plugins/Checkpoint.py:88
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -826,11 +827,11 @@ msgstr "Anor för %s"
 msgid "People with common ancestor with %s"
 msgstr "Personer med ana gemensam med %s"
 
-#: ../src/GrampsCfg.py:60
+#: ../src/GrampsCfg.py:61
 msgid "Father's surname"
 msgstr "Faderns efternamn"
 
-#: ../src/GrampsCfg.py:61 ../src/Spell.py:168 ../src/Spell.py:247
+#: ../src/GrampsCfg.py:62 ../src/Spell.py:168 ../src/Spell.py:247
 #: ../src/Spell.py:249 ../src/plugins/Check.py:1348
 #: ../src/gen/lib/childreftype.py:50
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:148
@@ -844,60 +845,60 @@ msgstr "Faderns efternamn"
 msgid "None"
 msgstr "Ingen"
 
-#: ../src/GrampsCfg.py:62
+#: ../src/GrampsCfg.py:63
 msgid "Combination of mother's and father's surname"
 msgstr "Kombination av moderns och faderns efternamn"
 
-#: ../src/GrampsCfg.py:63
+#: ../src/GrampsCfg.py:64
 msgid "Icelandic style"
 msgstr "Isländska patronymikon"
 
-#: ../src/GrampsCfg.py:113 ../src/GrampsCfg.py:116
+#: ../src/GrampsCfg.py:114 ../src/GrampsCfg.py:117
 msgid "Display Name Editor"
 msgstr "Redigerare för namnvisning"
 
-#: ../src/GrampsCfg.py:127
+#: ../src/GrampsCfg.py:128
 msgid " Name Editor"
 msgstr " Redigerare för namn"
 
-#: ../src/GrampsCfg.py:127 ../src/GrampsCfg.py:134 ../src/GrampsCfg.py:137
-#: ../src/GrampsCfg.py:810
+#: ../src/GrampsCfg.py:128 ../src/GrampsCfg.py:135 ../src/GrampsCfg.py:138
+#: ../src/GrampsCfg.py:853
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: ../src/GrampsCfg.py:143 ../src/gen/lib/notetype.py:80
-#: ../src/glade/gramps.glade.h:75
+#: ../src/GrampsCfg.py:144 ../src/gen/lib/notetype.py:80
+#: ../src/glade/gramps.glade.h:76
 msgid "General"
 msgstr "Allmänt"
 
-#: ../src/GrampsCfg.py:145
+#: ../src/GrampsCfg.py:146
 msgid "Database"
 msgstr "Databas"
 
-#: ../src/GrampsCfg.py:151
+#: ../src/GrampsCfg.py:152
 msgid "ID Formats"
 msgstr "ID-format"
 
-#: ../src/GrampsCfg.py:153
+#: ../src/GrampsCfg.py:154
 msgid "Warnings"
 msgstr "Varningar"
 
-#: ../src/GrampsCfg.py:155
+#: ../src/GrampsCfg.py:156
 msgid "Researcher"
 msgstr "Forskare"
 
-#: ../src/GrampsCfg.py:157
+#: ../src/GrampsCfg.py:158
 msgid "Marker Colors"
 msgstr "Markeringsfärger"
 
-#: ../src/GrampsCfg.py:172 ../src/gramps_main.py:98 ../src/ScratchPad.py:138
+#: ../src/GrampsCfg.py:173 ../src/gramps_main.py:98 ../src/ScratchPad.py:138
 #: ../src/ScratchPad.py:155 ../src/DisplayTabs/_AddrEmbedList.py:61
 #: ../src/Editors/_EditAddress.py:147 ../src/plugins/FamilyGroup.py:295
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:88
 msgid "Address"
 msgstr "Adress"
 
-#: ../src/GrampsCfg.py:173 ../src/DataViews/_PlaceView.py:73
+#: ../src/GrampsCfg.py:174 ../src/DataViews/_PlaceView.py:73
 #: ../src/DataViews/_RepositoryView.py:76
 #: ../src/DisplayTabs/_AddrEmbedList.py:62
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
@@ -906,12 +907,12 @@ msgstr "Adress"
 msgid "City"
 msgstr "Stad/Kommun"
 
-#: ../src/GrampsCfg.py:174 ../src/DisplayTabs/_LocationEmbedList.py:55
+#: ../src/GrampsCfg.py:175 ../src/DisplayTabs/_LocationEmbedList.py:55
 #: ../src/plugins/NarrativeWeb.py:1023
 msgid "State/Province"
 msgstr "Län/delstat"
 
-#: ../src/GrampsCfg.py:175 ../src/DataViews/_PlaceView.py:76
+#: ../src/GrampsCfg.py:176 ../src/DataViews/_PlaceView.py:76
 #: ../src/DataViews/_RepositoryView.py:79
 #: ../src/DisplayTabs/_AddrEmbedList.py:64
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
@@ -920,21 +921,21 @@ msgstr "Län/delstat"
 msgid "Country"
 msgstr "Land"
 
-#: ../src/GrampsCfg.py:176 ../src/DataViews/_PlaceView.py:72
+#: ../src/GrampsCfg.py:177 ../src/DataViews/_PlaceView.py:72
 #: ../src/DataViews/_RepositoryView.py:75
 msgid "ZIP/Postal Code"
 msgstr "Postnummer"
 
-#: ../src/GrampsCfg.py:177
+#: ../src/GrampsCfg.py:178
 msgid "Phone"
 msgstr "Telefon"
 
-#: ../src/GrampsCfg.py:178 ../src/ToolTips.py:150
+#: ../src/GrampsCfg.py:179 ../src/ToolTips.py:150
 #: ../src/DataViews/_RepositoryView.py:80
 msgid "Email"
 msgstr "E-post"
 
-#: ../src/GrampsCfg.py:186 ../src/gramps_main.py:118 ../src/ToolTips.py:198
+#: ../src/GrampsCfg.py:187 ../src/gramps_main.py:118 ../src/ToolTips.py:198
 #: ../src/Editors/_EditPerson.py:109 ../src/plugins/EventCmp.py:238
 #: ../src/FilterEditor/_EditRule.py:268
 msgid "Person"
@@ -943,7 +944,7 @@ msgstr "Person"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #. get the family events
-#: ../src/GrampsCfg.py:187 ../src/gramps_main.py:107 ../src/ScratchPad.py:556
+#: ../src/GrampsCfg.py:188 ../src/gramps_main.py:107 ../src/ScratchPad.py:556
 #: ../src/ToolTips.py:228 ../src/DataViews/_RelationView.py:454
 #: ../src/DataViews/_RelationView.py:1115
 #: ../src/DataViews/_RelationView.py:1139 ../src/Editors/_EditFamily.py:471
@@ -952,7 +953,7 @@ msgstr "Person"
 msgid "Family"
 msgstr "Familj"
 
-#: ../src/GrampsCfg.py:188 ../src/ScratchPad.py:234 ../src/ScratchPad.py:264
+#: ../src/GrampsCfg.py:189 ../src/ScratchPad.py:234 ../src/ScratchPad.py:264
 #: ../src/ScratchPad.py:342 ../src/DataViews/_EventView.py:75
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -963,54 +964,54 @@ msgstr "Familj"
 msgid "Place"
 msgstr "Plats"
 
-#: ../src/GrampsCfg.py:189 ../src/Editors/_EditSource.py:72
+#: ../src/GrampsCfg.py:190 ../src/Editors/_EditSource.py:72
 #: ../src/FilterEditor/_EditRule.py:272
 msgid "Source"
 msgstr "Källa"
 
-#: ../src/GrampsCfg.py:190 ../src/ScratchPad.py:606 ../src/ScratchPad.py:619
+#: ../src/GrampsCfg.py:191 ../src/ScratchPad.py:606 ../src/ScratchPad.py:619
 #: ../src/Editors/_EditPerson.py:442 ../src/FilterEditor/_EditRule.py:273
 msgid "Media Object"
 msgstr "Mediaobjekt"
 
-#: ../src/GrampsCfg.py:191 ../src/ScratchPad.py:231
+#: ../src/GrampsCfg.py:192 ../src/ScratchPad.py:231
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:123
 #: ../src/FilterEditor/_EditRule.py:270
 msgid "Event"
 msgstr "Händelse"
 
-#: ../src/GrampsCfg.py:192 ../src/ToolTips.py:141
+#: ../src/GrampsCfg.py:193 ../src/ToolTips.py:141
 #: ../src/Editors/_EditRepository.py:64 ../src/Editors/_EditRepository.py:66
 #: ../src/FilterEditor/_EditRule.py:274
 msgid "Repository"
 msgstr "Arkivinstitution"
 
-#: ../src/GrampsCfg.py:201
+#: ../src/GrampsCfg.py:202
 msgid "Suppress warning when adding parents to a child"
 msgstr "Varna inte när föräldrar läggs till ett barn"
 
-#: ../src/GrampsCfg.py:205
+#: ../src/GrampsCfg.py:206
 msgid "Suppress warning when cancelling with changed data"
 msgstr "Varna inte när dialogfönster med osparad information stängs"
 
-#: ../src/GrampsCfg.py:209
+#: ../src/GrampsCfg.py:210
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
 msgstr "Undertryck varning om saknad forskare vid export till GEDCOM"
 
-#: ../src/GrampsCfg.py:214
+#: ../src/GrampsCfg.py:215
 msgid "Show plugin status dialog on plugin load error"
 msgstr "Visa statusfönster vid problem att ladda insticksmoduler"
 
-#: ../src/GrampsCfg.py:225 ../src/GrampsLogger/_ErrorReportAssistant.py:47
+#: ../src/GrampsCfg.py:226 ../src/GrampsLogger/_ErrorReportAssistant.py:47
 #: ../src/gen/lib/markertype.py:47
 msgid "Complete"
 msgstr "Fullständig"
 
-#: ../src/GrampsCfg.py:227 ../src/gen/lib/markertype.py:48
+#: ../src/GrampsCfg.py:228 ../src/gen/lib/markertype.py:48
 msgid "ToDo"
 msgstr "Ofullständig"
 
-#: ../src/GrampsCfg.py:229 ../src/gen/lib/urltype.py:46
+#: ../src/GrampsCfg.py:230 ../src/gen/lib/urltype.py:46
 #: ../src/gen/lib/notetype.py:79 ../src/gen/lib/repotype.py:51
 #: ../src/gen/lib/attrtype.py:55 ../src/gen/lib/childreftype.py:57
 #: ../src/gen/lib/markertype.py:46 ../src/gen/lib/srcmediatype.py:54
@@ -1020,165 +1021,192 @@ msgid "Custom"
 msgstr "Anpassad"
 
 #. label for the combo
-#: ../src/GrampsCfg.py:288
+#: ../src/GrampsCfg.py:289
 msgid "_Display format"
 msgstr "_Visningsformat"
 
-#: ../src/GrampsCfg.py:294
+#: ../src/GrampsCfg.py:295
 msgid "C_ustom format details"
 msgstr "Detaljer för _anpassat format"
 
-#: ../src/GrampsCfg.py:325 ../src/Utils.py:1102
+#: ../src/GrampsCfg.py:326 ../src/GrampsCfg.py:328 ../src/GrampsCfg.py:332
+#: ../src/GrampsCfg.py:333 ../src/GrampsCfg.py:334 ../src/GrampsCfg.py:335
+#: ../src/GrampsCfg.py:336 ../src/Utils.py:1102
 #: ../src/plugins/FamilyLines.py:945 ../src/plugins/FamilyLines.py:1189
 #: ../src/plugins/NarrativeWeb.py:693 ../src/plugins/NarrativeWeb.py:1286
 #: ../src/plugins/NarrativeWeb.py:1289 ../src/plugins/StatisticsChart.py:99
 msgid "Surname"
 msgstr "Efternamn"
 
-#: ../src/GrampsCfg.py:326 ../src/ScratchPad.py:555 ../src/Utils.py:1100
-#: ../src/BasicUtils/_NameDisplay.py:107
+#: ../src/GrampsCfg.py:326 ../src/GrampsCfg.py:328 ../src/GrampsCfg.py:330
+#: ../src/GrampsCfg.py:332 ../src/GrampsCfg.py:333 ../src/GrampsCfg.py:334
+#: ../src/GrampsCfg.py:335 ../src/GrampsCfg.py:336 ../src/GrampsCfg.py:337
+#: ../src/GrampsCfg.py:339 ../src/GrampsCfg.py:340 ../src/GrampsCfg.py:341
+#: ../src/GrampsCfg.py:342 ../src/GrampsCfg.py:343 ../src/ScratchPad.py:555
+#: ../src/Utils.py:1100 ../src/BasicUtils/_NameDisplay.py:107
 msgid "Given"
 msgstr "Förnamn"
 
-#: ../src/GrampsCfg.py:327 ../src/Utils.py:1106
+#: ../src/GrampsCfg.py:326 ../src/GrampsCfg.py:328 ../src/GrampsCfg.py:330
+#: ../src/GrampsCfg.py:335 ../src/GrampsCfg.py:337 ../src/GrampsCfg.py:342
+#: ../src/ScratchPad.py:560 ../src/Utils.py:1103
+msgid "Suffix"
+msgstr "Suffix"
+
+#: ../src/GrampsCfg.py:327 ../src/GrampsCfg.py:332 ../src/GrampsCfg.py:338
+#: ../src/GrampsCfg.py:339 ../src/Utils.py:1106
 msgid "Common"
 msgstr "Common"
 
-#: ../src/GrampsCfg.py:325
-#, python-format
-msgid "%s, %s (%s)"
-msgstr "%s, %s (%s)"
+#: ../src/GrampsCfg.py:329 ../src/GrampsCfg.py:331 ../src/GrampsCfg.py:333
+#: ../src/GrampsCfg.py:340 ../src/Utils.py:1105
+msgid "Call"
+msgstr "Tilltalsnamn"
 
-#: ../src/GrampsCfg.py:377 ../src/GrampsCfg.py:881
+#: ../src/GrampsCfg.py:330 ../src/GrampsCfg.py:337 ../src/GrampsCfg.py:339
+#: ../src/GrampsCfg.py:340 ../src/GrampsCfg.py:341 ../src/GrampsCfg.py:342
+#: ../src/GrampsCfg.py:343 ../src/Utils.py:1102
+msgid "SURNAME"
+msgstr "EFTERNAMN"
+
+#: ../src/GrampsCfg.py:336 ../src/ScratchPad.py:557 ../src/Utils.py:1104
+msgid "Patronymic"
+msgstr "Patronymikon"
+
+#: ../src/GrampsCfg.py:401
+msgid "This format exists already"
+msgstr "Detta format finns redan"
+
+#: ../src/GrampsCfg.py:420 ../src/GrampsCfg.py:924
 msgid "Invalid or incomplete format definition"
 msgstr "Ogiltig eller ofullständig formatdefinition"
 
-#: ../src/GrampsCfg.py:394
+#: ../src/GrampsCfg.py:437
 msgid "Format"
 msgstr "Format"
 
-#: ../src/GrampsCfg.py:402
+#: ../src/GrampsCfg.py:445
 msgid "Example"
 msgstr "Exempel"
 
 #. label for the combo
-#: ../src/GrampsCfg.py:563 ../src/plugins/Calendar.py:488
+#: ../src/GrampsCfg.py:606 ../src/plugins/Calendar.py:488
 msgid "Name format"
 msgstr "Namnformat"
 
-#: ../src/GrampsCfg.py:567 ../src/DataViews/_RelationView.py:326
+#: ../src/GrampsCfg.py:610 ../src/DataViews/_RelationView.py:326
 #: ../src/DisplayTabs/_ButtonTab.py:64 ../src/plugins/BookReport.py:867
 msgid "Edit"
 msgstr "Redigera"
 
-#: ../src/GrampsCfg.py:585
+#: ../src/GrampsCfg.py:628
 msgid "Date format"
 msgstr "Datumformat"
 
-#: ../src/GrampsCfg.py:599
+#: ../src/GrampsCfg.py:642
 msgid "Surname Guessing"
 msgstr "Gissa efternamn"
 
-#: ../src/GrampsCfg.py:606
+#: ../src/GrampsCfg.py:649
 msgid "Active person's name and ID"
 msgstr "Aktiv persons namn och ID"
 
-#: ../src/GrampsCfg.py:607
+#: ../src/GrampsCfg.py:650
 msgid "Relationship to home person"
 msgstr "Släktskap till hemperson"
 
-#: ../src/GrampsCfg.py:617
+#: ../src/GrampsCfg.py:660
 msgid "Status bar"
 msgstr "Statusrad"
 
 #. Text in sidebar:
-#: ../src/GrampsCfg.py:623
+#: ../src/GrampsCfg.py:666
 msgid "Show text in sidebar buttons (takes effect on restart)"
 msgstr "Visa text i sidokolumnens knappar (aktiveras vid omstart)"
 
-#: ../src/GrampsCfg.py:639
+#: ../src/GrampsCfg.py:682
 msgid "Change is not immediate"
 msgstr "Ändringen är inte omedelbar"
 
-#: ../src/GrampsCfg.py:640
+#: ../src/GrampsCfg.py:683
 msgid ""
 "Changing the data format will not take effect until the next time GRAMPS is "
 "started."
 msgstr "Förändringen av dataformat kommer att gälla nästa gång GRAMPS startas."
 
-#: ../src/GrampsCfg.py:649
+#: ../src/GrampsCfg.py:692
 msgid "Add default source on import"
 msgstr "Lägg till standardkälla vid import"
 
-#: ../src/GrampsCfg.py:651
+#: ../src/GrampsCfg.py:694
 msgid "Enable spelling checker"
 msgstr "Aktivera stavningskontroll"
 
-#: ../src/GrampsCfg.py:653 ../data/gramps.schemas.in.h:21
+#: ../src/GrampsCfg.py:696 ../data/gramps.schemas.in.h:21
 msgid "Display Tip of the Day"
 msgstr "Visa dagens tips"
 
-#: ../src/GrampsCfg.py:655
+#: ../src/GrampsCfg.py:698
 msgid "Use shading in Relationship View"
 msgstr "Använd skuggning i relationsvyn"
 
-#: ../src/GrampsCfg.py:657
+#: ../src/GrampsCfg.py:700
 msgid "Display edit buttons on Relationship View"
 msgstr "Visa redigeringsknappar i relationsvyn"
 
-#: ../src/GrampsCfg.py:659
+#: ../src/GrampsCfg.py:702
 msgid "Remember last view displayed"
 msgstr "Kom ihåg senaste vy"
 
-#: ../src/GrampsCfg.py:662
+#: ../src/GrampsCfg.py:705
 msgid "Number of generations for relationship determination"
 msgstr "Antal generationer för släktskapsbestämning"
 
-#: ../src/GrampsCfg.py:665
+#: ../src/GrampsCfg.py:708
 msgid "Base path for relative media paths"
 msgstr "Grundsökväg för relativ mediasökväg"
 
-#: ../src/GrampsCfg.py:677
+#: ../src/GrampsCfg.py:720
 msgid "Database path"
 msgstr "Databassökväg"
 
-#: ../src/GrampsCfg.py:678
+#: ../src/GrampsCfg.py:721
 msgid "Automatically backup database on exit"
 msgstr "Säkerhetskopiera databasen automatiskt"
 
-#: ../src/GrampsCfg.py:680
+#: ../src/GrampsCfg.py:723
 msgid "Automatically load last database"
 msgstr "Läs in senaste databas automatiskt"
 
-#: ../src/GrampsCfg.py:682
+#: ../src/GrampsCfg.py:725
 msgid "Enable database transactions"
 msgstr "Aktivera databastransaktioner"
 
-#: ../src/GrampsCfg.py:758
+#: ../src/GrampsCfg.py:801
 msgid "Select media directory"
 msgstr "Välj en mediamapp"
 
-#: ../src/GrampsCfg.py:834
+#: ../src/GrampsCfg.py:877
 msgid "Name Format Editor"
 msgstr "Namnformatsredigerare"
 
-#: ../src/GrampsCfg.py:858
+#: ../src/GrampsCfg.py:901
 msgid "The format definition is invalid"
 msgstr "Formatdefinition är ogiltig"
 
-#: ../src/GrampsCfg.py:859
+#: ../src/GrampsCfg.py:902
 msgid "What would you like to do?"
 msgstr "Vad skulle du vilja göra?"
 
-#: ../src/GrampsCfg.py:860
+#: ../src/GrampsCfg.py:903
 msgid "_Continue anyway"
 msgstr "_Fortsätta i alla fall"
 
-#: ../src/GrampsCfg.py:860
+#: ../src/GrampsCfg.py:903
 msgid "_Modify format"
 msgstr "_Ändra format"
 
-#: ../src/GrampsCfg.py:868
+#: ../src/GrampsCfg.py:911
 msgid "Both Format name and definition have to be defined"
 msgstr "Både formatnamn och definition måste anges"
 
@@ -1238,10 +1266,12 @@ msgstr "Allmän"
 msgid "Media"
 msgstr "Media"
 
+#. ###############################
 #: ../src/gramps_main.py:113 ../src/DataViews/_NoteView.py:96
 #: ../src/DisplayTabs/_NoteTab.py:81 ../src/plugins/GraphViz.py:972
 #: ../src/plugins/GraphViz.py:978 ../src/plugins/GraphViz.py:986
 #: ../src/plugins/IndivComplete.py:168 ../src/plugins/MarkerReport.py:371
+#: ../src/ReportBase/_GraphvizReportDialog.py:676
 msgid "Notes"
 msgstr "Anteckningar"
 
@@ -2022,18 +2052,10 @@ msgstr "Händelsereferens"
 msgid "Call Name"
 msgstr "Tilltalsnamn"
 
-#: ../src/ScratchPad.py:557 ../src/Utils.py:1104
-msgid "Patronymic"
-msgstr "Patronymikon"
-
 #: ../src/ScratchPad.py:558 ../src/Utils.py:1101
 #: ../src/plugins/PatchNames.py:253 ../src/plugins/PatchNames.py:265
 msgid "Prefix"
 msgstr "Prefix"
-
-#: ../src/ScratchPad.py:560 ../src/Utils.py:1103
-msgid "Suffix"
-msgstr "Suffix"
 
 #: ../src/ScratchPad.py:585 ../src/ScratchPad.py:593
 #: ../src/DisplayTabs/_TextTab.py:52 ../src/plugins/MarkerReport.py:394
@@ -2599,10 +2621,6 @@ msgstr "FÖRNAMN"
 msgid "PREFIX"
 msgstr "PREFIX"
 
-#: ../src/Utils.py:1102
-msgid "SURNAME"
-msgstr "EFTERNAMN"
-
 #: ../src/Utils.py:1103
 msgid "SUFFIX"
 msgstr "SUFFIX"
@@ -2610,10 +2628,6 @@ msgstr "SUFFIX"
 #: ../src/Utils.py:1104
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
-
-#: ../src/Utils.py:1105
-msgid "Call"
-msgstr "Tilltalsnamn"
 
 #: ../src/Utils.py:1105
 msgid "CALL"
@@ -3151,7 +3165,7 @@ msgstr "GRAMPS kan inte hitta ett program, som kan visa filer av typen %s."
 msgid "Select Media Columns"
 msgstr "Välj kolumner för mediaobjekt"
 
-#: ../src/DataViews/_MediaView.py:294 ../src/glade/gramps.glade.h:65
+#: ../src/DataViews/_MediaView.py:294 ../src/glade/gramps.glade.h:66
 msgid "Double click image to view in an external viewer"
 msgstr "Dubbelklicka på bilden för att visa den i ett visningsprogram"
 
@@ -3887,7 +3901,7 @@ msgstr "LaTeX"
 
 #: ../src/docgen/ODFDoc.py:1152 ../src/docgen/PSDrawDoc.py:58
 #: ../src/plugins/GraphViz.py:1133 ../src/plugins/GraphViz.py:1189
-#: ../src/ReportBase/_GraphvizReportDialog.py:541
+#: ../src/ReportBase/_GraphvizReportDialog.py:581
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Öppna i %(program_name)s"
@@ -4594,13 +4608,17 @@ msgstr ""
 "Personens kön är för närvarande okänt. Detta är förmodligen ett misstag. Var "
 "vänlig ange kön."
 
-#: ../src/Editors/_EditPerson.py:832 ../src/plugins/IndivComplete.py:476
-msgid "Male"
-msgstr "Man"
+#: ../src/Editors/_EditPerson.py:832
+msgid "_Male"
+msgstr "_Man"
 
-#: ../src/Editors/_EditPerson.py:833 ../src/plugins/IndivComplete.py:478
-msgid "Female"
-msgstr "Kvinna"
+#: ../src/Editors/_EditPerson.py:833
+msgid "_Female"
+msgstr "_Kvinna"
+
+#: ../src/Editors/_EditPerson.py:834
+msgid "_Unknown"
+msgstr "_Okänd"
 
 #: ../src/Editors/_EditPersonRef.py:82 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference Editor"
@@ -5268,16 +5286,16 @@ msgstr "Alla händelser"
 #: ../src/plugins/EventNames.py:163 ../src/plugins/ExtractCity.py:585
 #: ../src/plugins/FamilyGroup.py:934 ../src/plugins/FamilyLines.py:1430
 #: ../src/plugins/FanChart.py:421 ../src/plugins/FindDupes.py:698
-#: ../src/plugins/GraphViz.py:1327 ../src/plugins/GraphViz.py:1341
-#: ../src/plugins/GVHourGlass.py:180 ../src/plugins/IndivComplete.py:676
-#: ../src/plugins/KinshipReport.py:435 ../src/plugins/Leak.py:131
-#: ../src/plugins/lineage.py:245 ../src/plugins/lineage.py:256
-#: ../src/plugins/MarkerReport.py:568 ../src/plugins/NarrativeWeb.py:3286
-#: ../src/plugins/PatchNames.py:357 ../src/plugins/Rebuild.py:125
-#: ../src/plugins/RelCalc.py:250 ../src/plugins/RemoveUnused.py:405
-#: ../src/plugins/ReorderIds.py:227 ../src/plugins/SoundGen.py:145
-#: ../src/plugins/StatisticsChart.py:949 ../src/plugins/TimeLine.py:458
-#: ../src/plugins/RebuildRefMap.py:126
+#: ../src/plugins/GraphViz.py:1327 ../src/plugins/GraphViz.py:1342
+#: ../src/plugins/GVHourGlass.py:180 ../src/plugins/GVRelGraph.py:505
+#: ../src/plugins/IndivComplete.py:676 ../src/plugins/KinshipReport.py:435
+#: ../src/plugins/Leak.py:131 ../src/plugins/lineage.py:245
+#: ../src/plugins/lineage.py:256 ../src/plugins/MarkerReport.py:568
+#: ../src/plugins/NarrativeWeb.py:3286 ../src/plugins/PatchNames.py:357
+#: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:250
+#: ../src/plugins/RemoveUnused.py:405 ../src/plugins/ReorderIds.py:227
+#: ../src/plugins/SoundGen.py:145 ../src/plugins/StatisticsChart.py:949
+#: ../src/plugins/TimeLine.py:458 ../src/plugins/RebuildRefMap.py:126
 msgid "Stable"
 msgstr "Stabil"
 
@@ -5393,10 +5411,11 @@ msgstr "Visa en persons syskon."
 msgid "Ancestor Graph for %s"
 msgstr "Antavla för %s"
 
+#. ###############################
 #: ../src/plugins/AncestorChart.py:451 ../src/plugins/Calendar.py:477
 #: ../src/plugins/Calendar.py:616 ../src/plugins/DescendChart.py:404
 #: ../src/plugins/FanChart.py:323 ../src/plugins/GVHourGlass.py:156
-#: ../src/ReportBase/_BareReportDialog.py:376
+#: ../src/plugins/GVRelGraph.py:414 ../src/ReportBase/_BareReportDialog.py:376
 msgid "Report Options"
 msgstr "Rapportalternativ"
 
@@ -5605,10 +5624,11 @@ msgstr "Skapar en bok som innehåller flera rapporter."
 msgid "Options"
 msgstr "Alternativ"
 
+#. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:58 ../src/plugins/Calendar.py:483
-#: ../src/plugins/GraphViz.py:791 ../src/plugins/StatisticsChart.py:835
-#: ../src/plugins/TimeLine.py:427 ../src/plugins/WebCal.py:815
-#: ../src/FilterEditor/_FilterEditor.py:109
+#: ../src/plugins/GraphViz.py:791 ../src/plugins/GVRelGraph.py:417
+#: ../src/plugins/StatisticsChart.py:835 ../src/plugins/TimeLine.py:427
+#: ../src/plugins/WebCal.py:815 ../src/FilterEditor/_FilterEditor.py:109
 msgid "Filter"
 msgstr "Filter"
 
@@ -6993,7 +7013,7 @@ msgstr "%ss födelse"
 msgid "Death of %s"
 msgstr "%ss död"
 
-#: ../src/plugins/ExportVCalendar.py:324
+#: ../src/plugins/ExportVCalendar.py:323
 #, python-format
 msgid "Anniversary: %s"
 msgstr "Jubileum: %s"
@@ -7003,15 +7023,15 @@ msgstr "Jubileum: %s"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/ExportVCalendar.py:347
+#: ../src/plugins/ExportVCalendar.py:346
 msgid "vCalendar"
 msgstr "vCalendar"
 
-#: ../src/plugins/ExportVCalendar.py:348
+#: ../src/plugins/ExportVCalendar.py:347
 msgid "vCalendar is used in many calendaring and pim applications."
 msgstr "vCalendar används av många kalender- och pimprogram."
 
-#: ../src/plugins/ExportVCalendar.py:349
+#: ../src/plugins/ExportVCalendar.py:348
 msgid "vCalendar export options"
 msgstr "Exportalternativ för vCalendar"
 
@@ -7020,15 +7040,15 @@ msgstr "Exportalternativ för vCalendar"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/ExportVCard.py:262
+#: ../src/plugins/ExportVCard.py:265
 msgid "vCard"
 msgstr "vCard"
 
-#: ../src/plugins/ExportVCard.py:263
+#: ../src/plugins/ExportVCard.py:266
 msgid "vCard is used in many addressbook and pim applications."
 msgstr "vCard används av många adressboks- och pimprogram."
 
-#: ../src/plugins/ExportVCard.py:264
+#: ../src/plugins/ExportVCard.py:267
 msgid "vCard export options"
 msgstr "Exportalternativ för vCard"
 
@@ -7233,11 +7253,12 @@ msgstr "Skriver släktlinjer"
 
 #. self.dialog.target_fileentry.set_filename(self.options_dict['FLfilename'])
 #. ******** GRAPHVIZ OPTIONS **********
+#. ###############################
 #: ../src/plugins/FamilyLines.py:836 ../src/plugins/GraphViz.py:853
 #: ../src/plugins/GraphViz.py:862 ../src/plugins/GraphViz.py:869
 #: ../src/plugins/GraphViz.py:880 ../src/plugins/GraphViz.py:887
 #: ../src/plugins/GraphViz.py:895 ../src/plugins/GraphViz.py:902
-#: ../src/ReportBase/_GraphvizReportDialog.py:573
+#: ../src/ReportBase/_GraphvizReportDialog.py:614
 msgid "GraphViz Options"
 msgstr "Alternativ för GraphViz"
 
@@ -7449,6 +7470,7 @@ msgid "Images"
 msgstr "Bilder"
 
 #: ../src/plugins/FamilyLines.py:1005 ../src/plugins/GraphViz.py:839
+#: ../src/plugins/GVRelGraph.py:453
 msgid "Include thumbnail images of people"
 msgstr "Inkludera miniatyrbilder på personer"
 
@@ -7461,6 +7483,7 @@ msgid "place the thumbnail image beside the name"
 msgstr "placera miniatyrbilden bredvid namnet"
 
 #: ../src/plugins/FamilyLines.py:1013 ../src/plugins/GraphViz.py:842
+#: ../src/plugins/GVRelGraph.py:454
 msgid "Whether to include thumbnails of people."
 msgstr "Huruvida miniatyrbilder av personer skall tas med."
 
@@ -7711,32 +7734,32 @@ msgid ""
 msgstr "Söker hela databasen efter individer som kan vara samma person."
 
 #: ../src/plugins/GraphViz.py:85
-#: ../src/ReportBase/_GraphvizReportDialog.py:453
+#: ../src/ReportBase/_GraphvizReportDialog.py:493
 msgid "Postscript"
 msgstr "Postscript"
 
 #: ../src/plugins/GraphViz.py:86
-#: ../src/ReportBase/_GraphvizReportDialog.py:458
+#: ../src/ReportBase/_GraphvizReportDialog.py:498
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
 #: ../src/plugins/GraphViz.py:87
-#: ../src/ReportBase/_GraphvizReportDialog.py:463
+#: ../src/ReportBase/_GraphvizReportDialog.py:503
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
 #: ../src/plugins/GraphViz.py:88
-#: ../src/ReportBase/_GraphvizReportDialog.py:468
+#: ../src/ReportBase/_GraphvizReportDialog.py:508
 msgid "PNG image"
 msgstr "PNG-bild"
 
 #: ../src/plugins/GraphViz.py:89
-#: ../src/ReportBase/_GraphvizReportDialog.py:473
+#: ../src/ReportBase/_GraphvizReportDialog.py:513
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
 #: ../src/plugins/GraphViz.py:90
-#: ../src/ReportBase/_GraphvizReportDialog.py:478
+#: ../src/ReportBase/_GraphvizReportDialog.py:518
 msgid "GIF image"
 msgstr "GIF-bild"
 
@@ -7758,15 +7781,20 @@ msgstr "Postscript / Helvetica"
 msgid "Truetype / FreeSans"
 msgstr "Truetype / FreeSans"
 
-#: ../src/plugins/GraphViz.py:99
+#. ------------------------------------------------------------------------
+#.
+#. Constant options items
+#.
+#. ------------------------------------------------------------------------
+#: ../src/plugins/GraphViz.py:99 ../src/plugins/GVRelGraph.py:52
 msgid "B&W outline"
 msgstr "Svartvit kontur"
 
-#: ../src/plugins/GraphViz.py:100
+#: ../src/plugins/GraphViz.py:100 ../src/plugins/GVRelGraph.py:53
 msgid "Colored outline"
 msgstr "Färglagd kontur"
 
-#: ../src/plugins/GraphViz.py:101
+#: ../src/plugins/GraphViz.py:101 ../src/plugins/GVRelGraph.py:54
 msgid "Color fill"
 msgstr "Färgfyllning"
 
@@ -7835,31 +7863,33 @@ msgid "Left, top"
 msgstr "Vänster, överkant"
 
 #: ../src/plugins/GraphViz.py:124
+#: ../src/ReportBase/_GraphvizReportDialog.py:79
 msgid "Top"
 msgstr "Överkant"
 
 #: ../src/plugins/GraphViz.py:125
+#: ../src/ReportBase/_GraphvizReportDialog.py:80
 msgid "Bottom"
 msgstr "Nederkant"
 
-#: ../src/plugins/GraphViz.py:128
+#: ../src/plugins/GraphViz.py:128 ../src/plugins/GVRelGraph.py:56
 msgid "Descendants <- Ancestors"
 msgstr "Ättlingar <- Anor"
 
-#: ../src/plugins/GraphViz.py:129
+#: ../src/plugins/GraphViz.py:129 ../src/plugins/GVRelGraph.py:57
 msgid "Descendants -> Ancestors"
 msgstr "Ättlingar -> Anor"
 
-#: ../src/plugins/GraphViz.py:130
+#: ../src/plugins/GraphViz.py:130 ../src/plugins/GVRelGraph.py:58
 msgid "Descendants <-> Ancestors"
 msgstr "Ättlingar <-> Anor"
 
-#: ../src/plugins/GraphViz.py:131
+#: ../src/plugins/GraphViz.py:131 ../src/plugins/GVRelGraph.py:59
 msgid "Descendants - Ancestors"
 msgstr "Ättlingar - Anor"
 
 #: ../src/plugins/GraphViz.py:150
-#: ../src/ReportBase/_GraphvizReportDialog.py:484
+#: ../src/ReportBase/_GraphvizReportDialog.py:524
 msgid "PDF"
 msgstr "PDF"
 
@@ -7874,11 +7904,11 @@ msgstr ""
 "korrekt, avmarkera alternativet Latin-1 och försök igen."
 
 #. Content options tab
-#: ../src/plugins/GraphViz.py:794
+#: ../src/plugins/GraphViz.py:794 ../src/plugins/GVRelGraph.py:423
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Inkludera födelse-, giftermåls- och dödsdatum"
 
-#: ../src/plugins/GraphViz.py:799
+#: ../src/plugins/GraphViz.py:799 ../src/plugins/GVRelGraph.py:424
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -7886,11 +7916,11 @@ msgstr ""
 "Inkludera de datum när personen föddes, gifte sig och/eller dog i "
 "diagrametiketterna."
 
-#: ../src/plugins/GraphViz.py:803
+#: ../src/plugins/GraphViz.py:803 ../src/plugins/GVRelGraph.py:428
 msgid "Limit dates to years only"
 msgstr "Begränsa datum till år enbart"
 
-#: ../src/plugins/GraphViz.py:807
+#: ../src/plugins/GraphViz.py:807 ../src/plugins/GVRelGraph.py:429
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -7898,11 +7928,11 @@ msgstr ""
 "Skriver enbart ut år för datum, varken månad eller dag eller datumskattning "
 "eller -intervall visas."
 
-#: ../src/plugins/GraphViz.py:811
+#: ../src/plugins/GraphViz.py:811 ../src/plugins/GVRelGraph.py:434
 msgid "Place/cause when no date"
 msgstr "Plats/orsak när datum saknas"
 
-#: ../src/plugins/GraphViz.py:815
+#: ../src/plugins/GraphViz.py:815 ../src/plugins/GVRelGraph.py:435
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field (or cause field when blank place) will be used."
@@ -7910,7 +7940,7 @@ msgstr ""
 "När inget födelse-, giftermåls- eller dödsdatum finns tillgängligt, kommer "
 "korresponderande platsfält (eller orsaksfält om tom plats) att användas."
 
-#: ../src/plugins/GraphViz.py:823
+#: ../src/plugins/GraphViz.py:823 ../src/plugins/GVRelGraph.py:440
 msgid "Include URLs"
 msgstr "Inkludera URL:er"
 
@@ -7924,19 +7954,20 @@ msgstr ""
 "imagemapfiler med aktiva länkar till de filer som skapats med rapporten "
 "\"Skapa webbplats\"."
 
-#: ../src/plugins/GraphViz.py:833
+#: ../src/plugins/GraphViz.py:833 ../src/plugins/GVRelGraph.py:448
 msgid "Include IDs"
 msgstr "Inkludera ID:n"
 
-#: ../src/plugins/GraphViz.py:837
+#: ../src/plugins/GraphViz.py:837 ../src/plugins/GVRelGraph.py:449
 msgid "Include individual and family IDs."
 msgstr "Inkludera individ- och familje-ID."
 
-#: ../src/plugins/GraphViz.py:854
+#. ###############################
+#: ../src/plugins/GraphViz.py:854 ../src/plugins/GVRelGraph.py:468
 msgid "Graph coloring"
 msgstr "Färgläggning av diagram"
 
-#: ../src/plugins/GraphViz.py:856
+#: ../src/plugins/GraphViz.py:856 ../src/plugins/GVRelGraph.py:471
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -7944,21 +7975,22 @@ msgstr ""
 "Män kommer att visas i blått, kvinnor i rött. Om könet för en person är "
 "okänt, visas den i grått."
 
-#: ../src/plugins/GraphViz.py:863
+#: ../src/plugins/GraphViz.py:863 ../src/plugins/GVRelGraph.py:476
 msgid "Arrowhead direction"
 msgstr "Riktning för pilspets"
 
-#: ../src/plugins/GraphViz.py:865
+#: ../src/plugins/GraphViz.py:865 ../src/plugins/GVRelGraph.py:479
 msgid "Choose the direction that the arrows point."
 msgstr "Välj den riktning som pilarna ska peka åt."
 
+#. ###############################
 #: ../src/plugins/GraphViz.py:870
-#: ../src/ReportBase/_GraphvizReportDialog.py:575
+#: ../src/ReportBase/_GraphvizReportDialog.py:617
 msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
 #: ../src/plugins/GraphViz.py:872
-#: ../src/ReportBase/_GraphvizReportDialog.py:580
+#: ../src/ReportBase/_GraphvizReportDialog.py:622
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -7972,7 +8004,7 @@ msgid "Font size (in points)"
 msgstr "Teckenstorlek (i punkter)"
 
 #: ../src/plugins/GraphViz.py:883
-#: ../src/ReportBase/_GraphvizReportDialog.py:587
+#: ../src/ReportBase/_GraphvizReportDialog.py:629
 msgid "The font size, in points."
 msgstr "Teckenstorleken i punkter."
 
@@ -7988,19 +8020,19 @@ msgstr ""
 "Om text inte visas korrekt i rapporten, använd detta. Krävs till exempel för "
 "standardtypsnitt i PostScript. Inte normalt för SVG eller JPG utdata."
 
-#: ../src/plugins/GraphViz.py:893
+#: ../src/plugins/GraphViz.py:893 ../src/plugins/GVRelGraph.py:483
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indikera icke-födelserelationer med punkterade linjer"
 
-#: ../src/plugins/GraphViz.py:897
+#: ../src/plugins/GraphViz.py:897 ../src/plugins/GVRelGraph.py:484
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
 
-#: ../src/plugins/GraphViz.py:900
+#: ../src/plugins/GraphViz.py:900 ../src/plugins/GVRelGraph.py:488
 msgid "Show family nodes"
 msgstr "Visa familjenoder"
 
-#: ../src/plugins/GraphViz.py:904
+#: ../src/plugins/GraphViz.py:904 ../src/plugins/GVRelGraph.py:489
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Familjer kommer att visas som ellipser, länkade till föräldrar och barn."
 
@@ -8015,12 +8047,12 @@ msgid "Whether generations go from top to bottom or left to right."
 msgstr "Huruvida generationer går uppifrån och ned eller från vänster till höger."
 
 #: ../src/plugins/GraphViz.py:919
-#: ../src/ReportBase/_GraphvizReportDialog.py:599
+#: ../src/ReportBase/_GraphvizReportDialog.py:641
 msgid "Aspect ratio"
 msgstr "Aspektförhållande"
 
 #: ../src/plugins/GraphViz.py:921
-#: ../src/ReportBase/_GraphvizReportDialog.py:604
+#: ../src/ReportBase/_GraphvizReportDialog.py:646
 msgid ""
 "Affects greatly how the graph is layed out on the page. Multiple pages "
 "overrides the pages settings below."
@@ -8033,12 +8065,12 @@ msgid "Margin size"
 msgstr "Marginal"
 
 #: ../src/plugins/GraphViz.py:943
-#: ../src/ReportBase/_GraphvizReportDialog.py:619
+#: ../src/ReportBase/_GraphvizReportDialog.py:661
 msgid "Number of Horizontal Pages"
 msgstr "Antal sidor i horisontalled"
 
 #: ../src/plugins/GraphViz.py:945
-#: ../src/ReportBase/_GraphvizReportDialog.py:620
+#: ../src/ReportBase/_GraphvizReportDialog.py:662
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -8049,12 +8081,12 @@ msgstr ""
 "horisontellt."
 
 #: ../src/plugins/GraphViz.py:950
-#: ../src/ReportBase/_GraphvizReportDialog.py:626
+#: ../src/ReportBase/_GraphvizReportDialog.py:668
 msgid "Number of Vertical Pages"
 msgstr "Antal sidor i vertikalled"
 
 #: ../src/plugins/GraphViz.py:952
-#: ../src/ReportBase/_GraphvizReportDialog.py:627
+#: ../src/ReportBase/_GraphvizReportDialog.py:669
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -8072,19 +8104,24 @@ msgstr "Sidordning"
 msgid "The order in which the graph pages are output."
 msgstr "Den ordning som diagramsidorna skrivs ut."
 
+#. ###############################
 #: ../src/plugins/GraphViz.py:973
+#: ../src/ReportBase/_GraphvizReportDialog.py:679
 msgid "Note to add to the graph"
 msgstr "Notis att lägga till grafen"
 
 #: ../src/plugins/GraphViz.py:975
+#: ../src/ReportBase/_GraphvizReportDialog.py:681
 msgid "This text will be added to the graph."
 msgstr "Den här texten läggs till grafen."
 
 #: ../src/plugins/GraphViz.py:979
+#: ../src/ReportBase/_GraphvizReportDialog.py:684
 msgid "Note location"
 msgstr "Placering av notis"
 
 #: ../src/plugins/GraphViz.py:981
+#: ../src/ReportBase/_GraphvizReportDialog.py:687
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
@@ -8093,11 +8130,12 @@ msgid "Note size (in points)"
 msgstr "Notisstorlek (i punkter)"
 
 #: ../src/plugins/GraphViz.py:989
+#: ../src/ReportBase/_GraphvizReportDialog.py:692
 msgid "The size of note text, in points."
 msgstr "Storlek på notis, i punkter."
 
-#: ../src/plugins/GraphViz.py:1046 ../src/plugins/GraphViz.py:1326
-#: ../src/plugins/GraphViz.py:1340
+#: ../src/plugins/GraphViz.py:1046 ../src/plugins/GraphViz.py:1341
+#: ../src/plugins/GVRelGraph.py:504
 msgid "Relationship Graph"
 msgstr "Släktskapsdiagram"
 
@@ -8125,6 +8163,10 @@ msgstr ""
 "konvertera det till ett diagram. Om du vill ha själva dot-filen, så var "
 "snäll och använd rapportkategorin Kodskapare."
 
+#: ../src/plugins/GraphViz.py:1326
+msgid "Relationship Graph (code)"
+msgstr "Släktskapsdiagram (kod)"
+
 #: ../src/plugins/GVHourGlass.py:158 ../src/plugins/KinshipReport.py:378
 msgid "Max Descendant Generations"
 msgstr "Maximalt antal efterföljande generationer"
@@ -8148,6 +8190,44 @@ msgstr "Timglasdiagram"
 #: ../src/plugins/GVHourGlass.py:183
 msgid "Produces an hourglass graph"
 msgstr "Skapar ett timglasdiagram"
+
+#: ../src/plugins/GVRelGraph.py:419
+msgid "Select the filter to be applied to the report"
+msgstr "Välj det filter som skall tillämpas för rapporten"
+
+#: ../src/plugins/GVRelGraph.py:441
+msgid ""
+"Include a URL in each graph node so that PDF and imagemap files can be "
+"generated that contain active links to the files generated by the 'Narrated "
+"Web Site' report."
+msgstr ""
+"Inkludera en URL i varje diagramnod, så att det går att skapa PDF- och "
+"imagemapfiler med aktiva länkar till de filer som skapats med rapporten 'Skapa webbplats'."
+
+#: ../src/plugins/GVRelGraph.py:457
+msgid "Thumbnail Location"
+msgstr "Bildminiatyrplats"
+
+#: ../src/plugins/GVRelGraph.py:458
+msgid "Above the name"
+msgstr "Ovanför namnet"
+
+#: ../src/plugins/GVRelGraph.py:459
+msgid "Beside the name"
+msgstr "Vid sidan om namnet"
+
+#: ../src/plugins/GVRelGraph.py:460
+msgid "Where the thumbnail image should appear relative to the name"
+msgstr "Var miniatyrbilden skall synas relativt till namnet"
+
+#. ###############################
+#: ../src/plugins/GVRelGraph.py:465
+msgid "Graph Style"
+msgstr "Diagrammall"
+
+#: ../src/plugins/GVRelGraph.py:506
+msgid "Generates a relationship graphs using Graphviz."
+msgstr "Genererar släktskapsdiagram med hjälp av GraphViz."
 
 #: ../src/plugins/ImportCSV.py:204
 #, python-format
@@ -8232,6 +8312,14 @@ msgstr "Kunde inte lägga foto till sidan"
 #: ../src/plugins/IndivComplete.py:458 ../src/ReportBase/_ReportUtils.py:1438
 msgid "File does not exist"
 msgstr "Filen finns inte"
+
+#: ../src/plugins/IndivComplete.py:476
+msgid "Male"
+msgstr "Man"
+
+#: ../src/plugins/IndivComplete.py:478
+msgid "Female"
+msgstr "Kvinna"
 
 #: ../src/plugins/IndivComplete.py:577
 msgid "Include Source Information"
@@ -9289,7 +9377,7 @@ msgstr "Från galleri..."
 msgid "From file..."
 msgstr "Från fil..."
 
-#: ../src/plugins/SimpleBookTitle.py:211 ../src/glade/gramps.glade.h:184
+#: ../src/plugins/SimpleBookTitle.py:211 ../src/glade/gramps.glade.h:185
 #: ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
@@ -10158,15 +10246,15 @@ msgstr "Inga familjer matchades av det valda filtret"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/WriteGeneWeb.py:640
+#: ../src/plugins/WriteGeneWeb.py:638
 msgid "G_eneWeb"
 msgstr "G_eneWeb"
 
-#: ../src/plugins/WriteGeneWeb.py:641
+#: ../src/plugins/WriteGeneWeb.py:639
 msgid "GeneWeb is a web based genealogy program."
 msgstr "GeneWeb är ett webbaserat släktforskningsprogram."
 
-#: ../src/plugins/WriteGeneWeb.py:642
+#: ../src/plugins/WriteGeneWeb.py:640
 msgid "GeneWeb export options"
 msgstr "Alternativ för GeneWeb-export"
 
@@ -10442,42 +10530,48 @@ msgstr "*Avslutande notiser*"
 msgid "Use optimal number of pages"
 msgstr "Använd optimalt antal sidor"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:447
+#: ../src/ReportBase/_GraphvizReportDialog.py:487
 msgid "Graphviz Dot File"
 msgstr "Graphviz dot-fil"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:586
+#: ../src/ReportBase/_GraphvizReportDialog.py:628
 msgid "Font size"
 msgstr "Typsnittsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:590
+#: ../src/ReportBase/_GraphvizReportDialog.py:632
 msgid "Graph Direction"
 msgstr "Riktning för diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:595
+#: ../src/ReportBase/_GraphvizReportDialog.py:637
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:609
+#: ../src/ReportBase/_GraphvizReportDialog.py:651
 msgid "Paging Direction"
 msgstr "Sidriktning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:614
+#: ../src/ReportBase/_GraphvizReportDialog.py:656
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
-msgstr "Den ordning i vilket diagramsidor mats ut. Detta val är tillämpligt om antal horisontella eller vertikala sidor är större än 1."
+msgstr ""
+"Den ordning i vilket diagramsidor mats ut. Detta val är tillämpligt om antal "
+"horisontella eller vertikala sidor är större än 1."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:642
-#: ../src/ReportBase/_GraphvizReportDialog.py:693
+#: ../src/ReportBase/_GraphvizReportDialog.py:691
+msgid "Note size"
+msgstr "Anteckningsstorlek"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:704
+#: ../src/ReportBase/_GraphvizReportDialog.py:755
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:650
+#: ../src/ReportBase/_GraphvizReportDialog.py:712
 msgid "Output Format"
 msgstr "Format för utdata"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:670
+#: ../src/ReportBase/_GraphvizReportDialog.py:732
 msgid "Paper Options"
 msgstr "Alternativ för papper"
 
@@ -15667,7 +15761,7 @@ msgid "Type:"
 msgstr "Typ:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:93
 msgid "Path:"
 msgstr "Sökväg:"
 
@@ -16197,11 +16291,15 @@ msgstr ""
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Ett valfritt suffix för namnet, exempelvis \"d. y.\" eller \"III\""
 
-#: ../src/glade/edit_person.glade.h:9
+#: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:48
+msgid "Call _Name:"
+msgstr "_Tilltalsnamn:"
+
+#: ../src/glade/edit_person.glade.h:10
 msgid "Edit the preferred name"
 msgstr "Redigera det föredragna namnet"
 
-#: ../src/glade/edit_person.glade.h:10
+#: ../src/glade/edit_person.glade.h:11
 msgid ""
 "Female\n"
 "Male\n"
@@ -16211,51 +16309,47 @@ msgstr ""
 "Man\n"
 "Okänd"
 
-#: ../src/glade/edit_person.glade.h:13 ../src/glade/gramps.glade.h:78
+#: ../src/glade/edit_person.glade.h:14
+msgid "Gi_ven:"
+msgstr "_Förnamn:"
+
+#: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:79
 msgid "Indicates if the record is private"
 msgstr "Indikerar om posten är privat"
 
-#: ../src/glade/edit_person.glade.h:14
+#: ../src/glade/edit_person.glade.h:16
 msgid "S_uffix:"
 msgstr "S_uffix:"
 
-#: ../src/glade/edit_person.glade.h:15
+#: ../src/glade/edit_person.glade.h:17
 msgid "The person's given name"
 msgstr "Personens förnamn"
 
-#: ../src/glade/edit_person.glade.h:16 ../src/glade/gramps.glade.h:128
-msgid "_Call Name:"
-msgstr "_Tilltalsnamn:"
+#: ../src/glade/edit_person.glade.h:18 ../src/glade/gramps.glade.h:118
+msgid "Tit_le:"
+msgstr "Tite_l:"
 
-#: ../src/glade/edit_person.glade.h:17 ../src/glade/gramps.glade.h:140
+#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:142
 msgid "_Family:"
 msgstr "_Efternamn:"
 
-#: ../src/glade/edit_person.glade.h:18
+#: ../src/glade/edit_person.glade.h:20
 msgid "_Gender:"
 msgstr "_Kön:"
 
-#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:141
-msgid "_Given:"
-msgstr "_Förnamn:"
-
-#: ../src/glade/edit_person.glade.h:20 ../src/glade/gramps.glade.h:142
+#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:144
 msgid "_ID:"
 msgstr "_ID:"
 
-#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:148
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:150
 msgid "_Marker:"
 msgstr "_Markering:"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:158
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:159
 msgid "_Prefix:"
 msgstr "_Prefix:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:173
-msgid "_Title:"
-msgstr "_Titel:"
-
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:175
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:176
 msgid "_Type:"
 msgstr "T_yp:"
 
@@ -16444,107 +16538,107 @@ msgstr "Lands_kap:"
 msgid "Calenda_r:"
 msgstr "Kalende_r:"
 
-#: ../src/glade/gramps.glade.h:48
+#: ../src/glade/gramps.glade.h:49
 msgid "Church _parish:"
 msgstr "_Församling:"
 
-#: ../src/glade/gramps.glade.h:49 ../src/plugins/soundex.glade.h:1
+#: ../src/glade/gramps.glade.h:50 ../src/plugins/soundex.glade.h:1
 msgid "Close Window"
 msgstr "Stäng fönster"
 
-#: ../src/glade/gramps.glade.h:50
+#: ../src/glade/gramps.glade.h:51
 msgid "Close _without saving"
 msgstr "Stäng _utan att spara"
 
-#: ../src/glade/gramps.glade.h:51
+#: ../src/glade/gramps.glade.h:52
 msgid "Close window without changes"
 msgstr "Stäng fönster utan att spara ändringar"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:53
 msgid "Co_unty:"
 msgstr "L_andskap:"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:54
 msgid "Convert to a relative path"
 msgstr "Konvertera till relativ sökväg"
 
-#: ../src/glade/gramps.glade.h:54
+#: ../src/glade/gramps.glade.h:55
 msgid "Corner 1:  X"
 msgstr "Hörn 1:  X"
 
-#: ../src/glade/gramps.glade.h:55
+#: ../src/glade/gramps.glade.h:56
 msgid "Corner 2:  X"
 msgstr "Hörn 2:  X"
 
-#: ../src/glade/gramps.glade.h:56
+#: ../src/glade/gramps.glade.h:57
 msgid "Cou_ntry:"
 msgstr "La_nd:"
 
-#: ../src/glade/gramps.glade.h:57
+#: ../src/glade/gramps.glade.h:58
 msgid "Count_ry:"
 msgstr "La_nd:"
 
-#: ../src/glade/gramps.glade.h:59
+#: ../src/glade/gramps.glade.h:60
 msgid "D_ay"
 msgstr "D_ag"
 
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:61
 msgid "Dat_e:"
 msgstr "_Datum:"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:62
 msgid "De_scription:"
 msgstr "_Beskrivning:"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:63
 msgid "Death:"
 msgstr "Död:"
 
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:64
 msgid "Do not ask again"
 msgstr "Fråga inte igen"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:65
 msgid "Do not show this dialog again"
 msgstr "Fråga inte igen"
 
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:67
 msgid "Example:"
 msgstr "Exempel:"
 
-#: ../src/glade/gramps.glade.h:67
+#: ../src/glade/gramps.glade.h:68
 msgid "Family Trees - GRAMPS"
 msgstr "Släktträd - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:69
 msgid "Family:"
 msgstr "Familj:"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:70
 msgid "First li_ne:"
 msgstr "Första r_aden:"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:71
 msgid "Format _definition:"
 msgstr "Format_definition:"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:72
 msgid "Format _name:"
 msgstr "Format_namn:"
 
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:73
 msgid "Format definition details"
 msgstr "Detaljer för formatdefinition"
 
-#: ../src/glade/gramps.glade.h:73
+#: ../src/glade/gramps.glade.h:74
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:75
 msgid "G_roup as:"
 msgstr "G_ruppera som:"
 
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:77
 msgid ""
 "If media is an image, select a region of the image that is referenced. Point "
 "(0,0) is the top left corner. Do this by giving two corners on a diagonal of "
@@ -16554,7 +16648,7 @@ msgstr ""
 "(0,0) är övre vänstra hörnet. Gör detta genom att ange två diagonala hörn "
 "hos det rektangulära område du vill använda."
 
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:78
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
@@ -16564,111 +16658,115 @@ msgstr ""
 "automatiskt behandlas enligt den för tillfället valda flaggan. Inga "
 "ytterligare dialoger kommer att presenteras för saknade mediafiler."
 
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:80
 msgid "Invoke date editor"
 msgstr "Starta datumredigerare"
 
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:81
 msgid "Keep reference to the missing file"
 msgstr "Behåll referens till den saknade filen"
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:82
 msgid "LDS _Temple:"
 msgstr "LDS-_tempel:"
 
-#: ../src/glade/gramps.glade.h:82
+#: ../src/glade/gramps.glade.h:83
 msgid "L_atitude:"
 msgstr "_Latitud:"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:84
 msgid "L_eft:"
 msgstr "_Vänster:"
 
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:85
 msgid "Le_ft"
 msgstr "V_änster"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:86
 msgid "Load Family Tree"
 msgstr "Ladda släktträd"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:87
 msgid "Mo_nth"
 msgstr "M_ånad"
 
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:89
+msgid "O_verride"
+msgstr "_Åsidosätt"
+
+#: ../src/glade/gramps.glade.h:90
 msgid "Ordinance:"
 msgstr "Prästvigsel:"
 
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:91
 msgid "P_atronymic:"
 msgstr "Patronymi_kon:"
 
-#: ../src/glade/gramps.glade.h:90
+#: ../src/glade/gramps.glade.h:92
 msgid "P_hone:"
 msgstr "_Telefon:"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:94
 msgid "Phon_e:"
 msgstr "_Telefon:"
 
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:95
 msgid "R_ight:"
 msgstr "H_öger:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:96
 msgid "Relationship to _Father:"
 msgstr "Släktskap till _fader:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:97
 msgid "Relationship to _Mother:"
 msgstr "Släktskap till _moder:"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:98
 msgid "Remove object and all references to it from the database"
 msgstr "Ta bort objekt och alla referenser till det från databasen"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:99
 msgid "Rename"
 msgstr "Döp om"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:100
 msgid "Repair"
 msgstr "Reparera"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:101
 msgid "Revision comment - GRAMPS"
 msgstr "Revisionskommentar - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:102
 msgid "Ri_ght"
 msgstr "Hö_ger"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:103
 msgid "S_treet:"
 msgstr "_Gatuadress:"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:104
 msgid "Select replacement for the missing file"
 msgstr "Välj ersättning för den saknade filen"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:105
 msgid "Show all"
 msgstr "Visa alla"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:106
 msgid "Style n_ame:"
 msgstr "Stil_namn:"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:107
 msgid "Suffi_x:"
 msgstr "Suffi_x:"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:108
 msgid "Te_xt comment:"
 msgstr "Te_xtkommentar:"
 
-#: ../src/glade/gramps.glade.h:108
+#: ../src/glade/gramps.glade.h:110
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -16689,7 +16787,7 @@ msgstr ""
 "  <b>%c</b> - Tilltalsnamn     <b>%C</b> - TILLTALSNAMN\n"
 "  <b>%y</b> - Patronymikon     <b>%Y</b> - PATRONYMIKON</tt>"
 
-#: ../src/glade/gramps.glade.h:116
+#: ../src/glade/gramps.glade.h:119
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -16703,227 +16801,231 @@ msgstr ""
 "Hög\n"
 "Mycket hög"
 
-#: ../src/glade/gramps.glade.h:121
+#: ../src/glade/gramps.glade.h:124
 msgid "Y"
 msgstr "*J*"
 
-#: ../src/glade/gramps.glade.h:122
+#: ../src/glade/gramps.glade.h:125
 msgid "Y_ear"
 msgstr "Å_r"
 
-#: ../src/glade/gramps.glade.h:123
+#: ../src/glade/gramps.glade.h:126
 msgid "_Association:"
 msgstr "_Relation"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:127
 msgid "_Attribute:"
 msgstr "Attri_but:"
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:128
 msgid "_Author:"
 msgstr "_Författare:"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:129
 msgid "_Bold"
 msgstr "_Fetstil"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:130
 msgid "_Bottom"
 msgstr "_Nederkant"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:131
 msgid "_Call number:"
 msgstr "_Referensnummer:"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:132
 msgid "_Center"
 msgstr "_I mitten"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:133
 msgid "_City/County:"
 msgstr "_Stad/Kommun:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:134
 msgid "_City:"
 msgstr "_Stad/Kommun:"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:135
 msgid "_Confidence:"
 msgstr "Tillf_örlitlighet:"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:136
 msgid "_Date:"
 msgstr "_Datum:"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:137
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:138
 msgid "_Description:"
 msgstr "_Beskrivning:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:139
 msgid "_Display as:"
 msgstr "_Visa som:"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:140
 msgid "_Display on startup"
 msgstr "_Visa vid uppstart"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:141
 msgid "_Event type:"
 msgstr "H_ändelsetyp:"
 
 #: ../src/glade/gramps.glade.h:143
+msgid "_Given:"
+msgstr "_Förnamn:"
+
+#: ../src/glade/gramps.glade.h:145
 msgid "_Italic"
 msgstr "_Kursiv"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:146
 msgid "_Justify"
 msgstr "_Justera"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:147
 msgid "_Keep Reference"
 msgstr "_Behåll referens"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:148
 msgid "_Left"
 msgstr "_Vänster"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:149
 msgid "_Longitude:"
 msgstr "Longit_ud:"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:151
 msgid "_Media Type:"
 msgstr "_Mediatyp:"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:152
 msgid "_Month"
 msgstr "_Månad"
 
-#: ../src/glade/gramps.glade.h:151 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:153 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Namn:"
 
-#: ../src/glade/gramps.glade.h:152
-msgid "_Override"
-msgstr "_Åsidosätt"
-
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:154
 msgid "_Padding:"
 msgstr "_Utfyllnad:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:155
 msgid "_Path:"
 msgstr "_Sökväg:"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:156
 msgid "_Person:"
 msgstr "_Person:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:157
 msgid "_Place Name:"
 msgstr "Namn på _plats:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:158
 msgid "_Place:"
 msgstr "_Plats:"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:160
 msgid "_Preformatted"
 msgstr "_Förformaterad"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:161
 msgid "_Publication Information:"
 msgstr "_Publiceringsinformation:"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:162
 msgid "_Publication information:"
 msgstr "_Publiceringsinformation:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:163
 msgid "_Remove Object"
 msgstr "_Ta bort objekt"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:164
 msgid "_Right"
 msgstr "H_öger"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:165
 msgid "_Role:"
 msgstr "_Roll:"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:166
 msgid "_Roman (Times, serif)"
 msgstr "Antikva (Times, se_rif)"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:167
 msgid "_Select File"
 msgstr "_Välj fil"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:168
 msgid "_Sort as:"
 msgstr "_Sortera som:"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:169
 msgid "_Spelling:"
 msgstr "_Stavning:"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:170
 msgid "_State/Province:"
 msgstr "L_än/delstat:"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:171
 msgid "_State:"
 msgstr "L_än/delstat:"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:172
 msgid "_Status:"
 msgstr "_Status:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:173
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Schweizisk (Arial, Helvetica, grotesk)"
 
 #: ../src/glade/gramps.glade.h:174
+msgid "_Title:"
+msgstr "_Titel:"
+
+#: ../src/glade/gramps.glade.h:175
 msgid "_Top"
 msgstr "_Överkant"
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:177
 msgid "_Underline"
 msgstr "_Understruken"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:178
 msgid "_Use this selection for all missing media files"
 msgstr "An_vänd denna flagga för alla saknade mediafiler"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:179
 msgid "_Value:"
 msgstr "_Värde:"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:180
 msgid "_Volume/Page:"
 msgstr "_Volym/sida:"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:181
 msgid "_Web address:"
 msgstr "_Webbadress:"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:182
 msgid "_Year"
 msgstr "_År"
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:183
 msgid "_ZIP/Postal code:"
 msgstr "Postnu_mmer:"
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:184
 msgid "_Zip/Postal code:"
 msgstr "Postnu_mmer:"
 
-#: ../src/glade/gramps.glade.h:185
+#: ../src/glade/gramps.glade.h:186
 msgid "pt"
 msgstr "pt"
 
