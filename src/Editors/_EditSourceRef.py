@@ -45,7 +45,7 @@ import gen.lib
 from DisplayTabs import \
      NoteTab,TextTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
 from GrampsWidgets import *
-from _EditReference import EditReference
+from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------
 #
@@ -68,6 +68,19 @@ class EditSourceRef(EditReference):
 
         self.define_warn_box(self.top.get_widget("warn_box"))
         self.define_expander(self.top.get_widget("src_expander"))
+
+        tblref =  self.top.get_widget('table67')
+        notebook = self.top.get_widget('notebook_ref')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
+        tblref =  self.top.get_widget('table68')
+        notebook = self.top.get_widget('notebook_src')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
@@ -131,11 +144,12 @@ class EditSourceRef(EditReference):
         """
         Creates the notebook tabs and inserts them into the main
         window.
-        
         """
-
         notebook_src = self.top.get_widget('notebook_src')
         notebook_ref = self.top.get_widget('notebook_ref')
+
+        self._add_tab(notebook_src, self.primtab)
+        self._add_tab(notebook_ref, self.reftab)
 
         self.note_tab = self._add_tab(
             notebook_src,
@@ -164,10 +178,6 @@ class EditSourceRef(EditReference):
                               self.db.find_backlink_handles(self.source.handle),
                               self.enable_warnbox
                               ))
-
-#        self.text_tab = self._add_tab(
-#            notebook_ref,
-#            TextTab(self.dbstate, self.uistate, self.track,self.source_ref))
 
         self.comment_tab = self._add_tab(
             notebook_ref,

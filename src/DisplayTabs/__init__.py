@@ -33,6 +33,7 @@ log = logging.getLogger(".DisplayTabs")
 from _ChildModel import ChildModel
 
 # Then import tab classes
+from _GrampsTab import GrampsTab
 from _EmbeddedList import EmbeddedList 
 from _AddrEmbedList import AddrEmbedList
 from _AttrEmbedList import AttrEmbedList

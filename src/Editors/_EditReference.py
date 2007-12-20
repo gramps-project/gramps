@@ -27,7 +27,51 @@
 #-------------------------------------------------------------------------
 import ManagedWindow
 from GrampsWidgets import *
+from DisplayTabs import GrampsTab
 import Config
+
+#-------------------------------------------------------------------------
+#
+# Classes
+#
+#-------------------------------------------------------------------------
+
+class RefTab(GrampsTab):
+    """
+    This class provides a simple tabpage for use on EditReference
+    """
+
+    def __init__(self, dbstate, uistate, track, name, widget):
+        """
+        @param dbstate: The database state. Contains a reference to
+        the database, along with other state information. The GrampsTab
+        uses this to access the database and to pass to and created
+        child windows (such as edit dialogs).
+        @type dbstate: DbState
+        @param uistate: The UI state. Used primarily to pass to any created
+        subwindows.
+        @type uistate: DisplayState
+        @param track: The window tracking mechanism used to manage windows.
+        This is only used to pass to generted child windows.
+        @type track: list
+        @param name: Notebook label name
+        @type name: str/unicode
+        @param widget: widget to be shown in the tab
+        @type widge: gtk widget
+        """
+        GrampsTab.__init__(self, dbstate, uistate, track, name)
+        eventbox = gtk.EventBox()
+        eventbox.add(widget)
+        self.pack_start(eventbox)
+        self._set_label(show_image=False)
+        widget.connect('key_press_event', self.key_pressed)
+        self.show_all()
+
+    def is_empty(self):
+        """
+        Override base class
+        """
+        return False
 
 #-------------------------------------------------------------------------
 #
@@ -96,6 +140,7 @@ class EditReference(ManagedWindow.ManagedWindow):
                           self._switch_page_on_dnd,
                           notebook,
                           page_no)
+            child.set_parent_notebook(notebook)
 
     def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, page_no):
         if notebook.get_current_page() != page_no:

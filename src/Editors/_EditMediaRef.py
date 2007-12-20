@@ -48,7 +48,7 @@ from gen.lib import NoteType
 from DisplayTabs import \
      SourceEmbedList,AttrEmbedList,MediaBackRefList,NoteTab
 from GrampsWidgets import *
-from _EditReference import EditReference
+from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------
 #
@@ -74,6 +74,20 @@ class EditMediaRef(EditReference):
                         self.top.get_widget('title'),
                         _('Media Reference Editor'))
         self.define_warn_box(self.top.get_widget("warn_box"))
+
+        tblref =  self.top.get_widget('table50')
+        notebook = self.top.get_widget('notebook_ref')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
+        tblref =  self.top.get_widget('table2')
+        notebook = self.top.get_widget('notebook_shared')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
+
         
     def _setup_fields(self):
         
@@ -368,11 +382,13 @@ class EditMediaRef(EditReference):
         """
         Creates the notebook tabs and inserts them into the main
         window.
-        
         """
         notebook_ref = self.top.get_widget('notebook_ref')
         notebook_src = self.top.get_widget('notebook_shared')
-        
+
+        self._add_tab(notebook_src, self.primtab)
+        self._add_tab(notebook_ref, self.reftab)
+
         self.srcref_list = self._add_tab(
             notebook_ref,
             SourceEmbedList(self.dbstate,self.uistate,self.track,

@@ -53,6 +53,49 @@ from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
 #
+# Classes
+#
+#-------------------------------------------------------------------------
+
+class MainLocTab(GrampsTab):
+    """
+    This class provides the tabpage of the main location tab
+    """
+
+    def __init__(self, dbstate, uistate, track, name, widget):
+        """
+        @param dbstate: The database state. Contains a reference to
+        the database, along with other state information. The GrampsTab
+        uses this to access the database and to pass to and created
+        child windows (such as edit dialogs).
+        @type dbstate: DbState
+        @param uistate: The UI state. Used primarily to pass to any created
+        subwindows.
+        @type uistate: DisplayState
+        @param track: The window tracking mechanism used to manage windows.
+        This is only used to pass to generted child windows.
+        @type track: list
+        @param name: Notebook label name
+        @type name: str/unicode
+        @param widget: widget to be shown in the tab
+        @type widge: gtk widget
+        """
+        GrampsTab.__init__(self, dbstate, uistate, track, name)
+        eventbox = gtk.EventBox()
+        eventbox.add(widget)
+        self.pack_start(eventbox)
+        self._set_label(show_image=False)
+        widget.connect('key_press_event', self.key_pressed)
+        self.show_all()
+
+    def is_empty(self):
+        """
+        Override base class
+        """
+        return False
+
+#-------------------------------------------------------------------------
+#
 # EditPlace
 #
 #-------------------------------------------------------------------------
@@ -73,6 +116,12 @@ class EditPlace(EditPrimary):
         width = Config.get(Config.PLACE_WIDTH)
         height = Config.get(Config.PLACE_HEIGHT)
         self.window.resize(width, height)
+        tblmloc =  self.top.get_widget('table19')
+        notebook = self.top.get_widget('notebook3')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.mloc = MainLocTab(self.dbstate, self.uistate, self.track, 
+                              _('Location'), tblmloc)
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -167,6 +216,8 @@ class EditPlace(EditPrimary):
         """
         notebook = self.top.get_widget('notebook3')
 
+        self._add_tab(notebook, self.mloc)
+
         self.loc_list = self._add_tab(
             notebook,
             LocationEmbedList(self.dbstate,self.uistate, self.track,
@@ -197,7 +248,7 @@ class EditPlace(EditPrimary):
             PlaceBackRefList(self.dbstate,self.uistate,self.track,
                              self.db.find_backlink_handles(self.obj.handle)))
 
-        self._setup_notebook_tabs( notebook)
+        self._setup_notebook_tabs(notebook)
 
     def _cleanup_on_exit(self):
         self.backref_list.close()

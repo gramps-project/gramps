@@ -45,13 +45,14 @@ import gen.lib
 
 from DisplayTabs import SourceEmbedList,NoteTab,GalleryTab,EventBackRefList,AttrEmbedList
 from GrampsWidgets import *
-from _EditReference import EditReference
+from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
+
 
 #-------------------------------------------------------------------------
 #
@@ -78,7 +79,20 @@ class EditEventRef(EditReference):
         self.define_expander(self.top.get_widget("eer_expander"))
         self.share_btn = self.top.get_widget('share_place')
         self.add_del_btn = self.top.get_widget('add_del_place')
-                              
+
+        tblref =  self.top.get_widget('table64')
+        notebook = self.top.get_widget('notebook_ref')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
+        tblref =  self.top.get_widget('table62')
+        notebook = self.top.get_widget('notebook')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
+
     def _init_event(self):
         self.commit_event = self.db.commit_personal_event
         self.add_event = self.db.add_person_event
@@ -155,19 +169,19 @@ class EditEventRef(EditReference):
 
         notebook = self.top.get_widget('notebook')
         notebook_ref = self.top.get_widget('notebook_ref')
-        
+
+        self._add_tab(notebook, self.primtab)
+        self._add_tab(notebook_ref, self.reftab)
+
         self.srcref_list = self._add_tab(
             notebook,
             SourceEmbedList(self.dbstate,self.uistate,self.track,self.source))
 
-        try:
-            self.attr_list = self._add_tab(
-                notebook,
-                AttrEmbedList(self.dbstate, self.uistate, self.track,
-                              self.source.get_attribute_list()))
-        except AttributeError:
-            print "Attribute list not available yet"
-        
+        self.attr_list = self._add_tab(
+            notebook,
+            AttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.source.get_attribute_list()))
+
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
@@ -191,13 +205,10 @@ class EditEventRef(EditReference):
                              self.db.find_backlink_handles(self.source.handle),
                              self.enable_warnbox))
 
-        try:
-            self.attr_ref_list = self._add_tab(
-                notebook_ref,
-                AttrEmbedList(self.dbstate, self.uistate, self.track,
-                              self.source_ref.get_attribute_list()))
-        except AttributeError:
-            print "Attribute list not available yet"
+        self.attr_ref_list = self._add_tab(
+            notebook_ref,
+            AttrEmbedList(self.dbstate, self.uistate, self.track,
+                          self.source_ref.get_attribute_list()))
 
         self._setup_notebook_tabs( notebook)
         self._setup_notebook_tabs( notebook_ref)

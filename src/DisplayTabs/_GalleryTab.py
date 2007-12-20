@@ -182,6 +182,7 @@ class GalleryTab(ButtonTab):
         # connect the signals
         self.iconlist.connect('selection-changed', self._selection_changed)
         self.iconlist.connect('button_press_event', self.double_click)
+        self.iconlist.connect('key_press_event', self.key_pressed)
         self._connect_icon_model()
         
         # create the scrolled window

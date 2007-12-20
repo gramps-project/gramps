@@ -92,6 +92,7 @@ class EditSecondary(ManagedWindow.ManagedWindow):
                           self._switch_page_on_dnd,
                           notebook,
                           page_no)
+            child.set_parent_notebook(notebook)
 
     def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, page_no):
         if notebook.get_current_page() != page_no:

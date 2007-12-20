@@ -46,8 +46,52 @@ from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 
-from DisplayTabs import SourceEmbedList,NoteTab
+from DisplayTabs import GrampsTab,SourceEmbedList,NoteTab
 from GrampsWidgets import *
+
+
+#-------------------------------------------------------------------------
+#
+# Classes
+#
+#-------------------------------------------------------------------------
+
+class GeneralNameTab(GrampsTab):
+    """
+    This class provides the tabpage of the general name tab
+    """
+
+    def __init__(self, dbstate, uistate, track, name, widget):
+        """
+        @param dbstate: The database state. Contains a reference to
+        the database, along with other state information. The GrampsTab
+        uses this to access the database and to pass to and created
+        child windows (such as edit dialogs).
+        @type dbstate: DbState
+        @param uistate: The UI state. Used primarily to pass to any created
+        subwindows.
+        @type uistate: DisplayState
+        @param track: The window tracking mechanism used to manage windows.
+        This is only used to pass to generted child windows.
+        @type track: list
+        @param name: Notebook label name
+        @type name: str/unicode
+        @param widget: widget to be shown in the tab
+        @type widge: gtk widget
+        """
+        GrampsTab.__init__(self, dbstate, uistate, track, name)
+        eventbox = gtk.EventBox()
+        eventbox.add(widget)
+        self.pack_start(eventbox)
+        self._set_label(show_image=False)
+        widget.connect('key_press_event', self.key_pressed)
+        self.show_all()
+
+    def is_empty(self):
+        """
+        Override base class
+        """
+        return False
 
 #-------------------------------------------------------------------------
 #
@@ -71,20 +115,23 @@ class EditName(EditSecondary):
                         self.top.get_widget("title"),
                         _("Name Editor"))
 
+        tblgnam =  self.top.get_widget('table23')
+        notebook = self.top.get_widget('notebook')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblgnam)
+
         self.original_group_as = self.obj.get_group_as()
         self.original_group_set = not (self.original_group_as == '')
         srn = self.obj.get_surname()
         self._get_global_grouping(srn)
-
-        self.general_label = self.top.get_widget("general_tab")
 
         self.group_over = self.top.get_widget('group_over')
         self.group_over.connect('toggled',self.on_group_over_toggled)
         self.group_over.set_sensitive(not self.db.readonly)
         
         self.toggle_dirty = False
-
-        Utils.bold_label(self.general_label)
 
     def _post_init(self):
         """if there is override, set the override toggle active
@@ -194,6 +241,8 @@ class EditName(EditSecondary):
     def _create_tabbed_pages(self):
 
         notebook = self.top.get_widget("notebook")
+
+        self._add_tab(notebook, self.gennam)
 
         self.srcref_list = self._add_tab(
             notebook,

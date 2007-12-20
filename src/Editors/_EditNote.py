@@ -46,7 +46,7 @@ import Config
 import GrampsDisplay
 import MarkupText
 from _EditPrimary import EditPrimary
-from DisplayTabs import NoteBackRefList
+from DisplayTabs import GrampsTab, NoteBackRefList
 from GrampsWidgets import *
 from gen.lib import Note
 
@@ -66,11 +66,57 @@ URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
 
 (GENERAL, HTTP, MAIL) = range(3)
 
+
+
 #-------------------------------------------------------------------------
 #
 # NoteTab
 #
 #-------------------------------------------------------------------------
+
+class NoteTab(GrampsTab):
+    """
+    This class provides the tabpage of the note
+    """
+
+    def __init__(self, dbstate, uistate, track, name, widget):
+        """
+        @param dbstate: The database state. Contains a reference to
+        the database, along with other state information. The GrampsTab
+        uses this to access the database and to pass to and created
+        child windows (such as edit dialogs).
+        @type dbstate: DbState
+        @param uistate: The UI state. Used primarily to pass to any created
+        subwindows.
+        @type uistate: DisplayState
+        @param track: The window tracking mechanism used to manage windows.
+        This is only used to pass to generted child windows.
+        @type track: list
+        @param name: Notebook label name
+        @type name: str/unicode
+        @param widget: widget to be shown in the tab
+        @type widge: gtk widget
+        """
+        GrampsTab.__init__(self, dbstate, uistate, track, name)
+        eventbox = gtk.EventBox()
+        eventbox.add(widget)
+        self.pack_start(eventbox)
+        self._set_label(show_image=False)
+        eventbox.connect('key_press_event', self.key_pressed)
+        self.show_all()
+
+    def is_empty(self):
+        """
+        Override base class
+        """
+        return False
+
+#-------------------------------------------------------------------------
+#
+# EditNote
+#
+#-------------------------------------------------------------------------
+
 class EditNote(EditPrimary):
     hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
     regular_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
@@ -139,6 +185,13 @@ class EditNote(EditPrimary):
         settings = gtk.settings_get_default()
         self.show_unicode = settings.get_property('gtk-show-unicode-menu')
         settings.set_property('gtk-show-unicode-menu', False)
+
+        vboxnote =  self.top.get_widget('vbox131')
+        notebook = self.top.get_widget('note_notebook')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.ntab = NoteTab(self.dbstate, self.uistate, self.track, 
+                              _('Note'), vboxnote)
         
         self.build_interface()
         
@@ -193,7 +246,9 @@ class EditNote(EditPrimary):
         window.
         """
         notebook = self.top.get_widget("note_notebook")
-        
+
+        self._add_tab(notebook, self.ntab)
+
         self.backref_tab = self._add_tab(
             notebook,
             NoteBackRefList(self.dbstate, self.uistate, self.track,
@@ -202,8 +257,6 @@ class EditNote(EditPrimary):
                                         )
         
         self._setup_notebook_tabs( notebook)
-        
-        notebook.show_all()
 
     def build_interface(self):
         FORMAT_TOOLBAR = '''

@@ -46,7 +46,7 @@ from gen.lib import NoteType
 
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
 from GrampsWidgets import *
-from _EditReference import EditReference
+from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------
 #
@@ -73,6 +73,19 @@ class EditRepoRef(EditReference):
 
         self.define_warn_box(self.top.get_widget("warn_box"))
         self.define_expander(self.top.get_widget("src_expander"))
+
+        tblref =  self.top.get_widget('table70')
+        notebook = self.top.get_widget('notebook_ref')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.reftab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
+        tblref =  self.top.get_widget('table69')
+        notebook = self.top.get_widget('notebook_src')
+        #recreate start page as GrampsTab
+        notebook.remove_page(0)
+        self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
+                              _('General'), tblref)
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
@@ -131,6 +144,9 @@ class EditRepoRef(EditReference):
 
         notebook_src = self.top.get_widget('notebook_src')
         notebook_ref = self.top.get_widget('notebook_ref')
+
+        self._add_tab(notebook_src, self.primtab)
+        self._add_tab(notebook_ref, self.reftab)
 
         self.note_tab = self._add_tab(
             notebook_src,

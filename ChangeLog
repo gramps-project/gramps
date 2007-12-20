@@ -1,3 +1,22 @@
+2007-12-19 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditPrimary.py:
+	* src/Editors/_EditPlace.py:
+	* src/Editors/_EditSecondary.py:
+	* src/Editors/_EditSourceRef.py:
+	* src/Editors/_EditReference.py:
+	* src/Editors/_EditRepoRef.py:
+	* src/Editors/_EditNote.py:
+	* src/Editors/_EditMediaRef.py:
+	* src/Editors/_EditEventRef.py:
+	* src/Editors/_EditName.py:
+	* src/DisplayTabs/__init__.py:
+	* src/DisplayTabs/_GalleryTab.py:
+	* src/DisplayTabs/_BackRefList.py:
+	* src/DisplayTabs/_ButtonTab.py:
+	* src/DisplayTabs/_GrampsTab.py:
+	Accelator keys on displaytabs, convert _all_ tabs to GrampsTab! 
+	Feature #955 #1438
+
 2007-12-20  Raphael Ackermann <raphael.ackermann@gmail.com>
         * src/glade/gramps.glade : don't use C or O as accelerator keys on Name Editor, reserved for OK and Cancel buttons #1470
         * src/glade/edit_person.glade : accelerator keys are used double in person editor #1452

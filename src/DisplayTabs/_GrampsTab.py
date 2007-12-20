@@ -27,11 +27,15 @@
 #-------------------------------------------------------------------------
 import gtk
 
+_LEFT = gtk.gdk.keyval_from_name("Left")
+_RIGHT = gtk.gdk.keyval_from_name("Right")
+
 #-------------------------------------------------------------------------
 #
 # Classes
 #
 #-------------------------------------------------------------------------
+
 class GrampsTab(gtk.HBox):
     """
     This class provides the base level class for 'tabs', which are used to
@@ -77,6 +81,7 @@ class GrampsTab(gtk.HBox):
         # build the interface
         self.share_btn = None
         self.build_interface()
+        self.parent_notebook = None
 
     def get_selected(self):
         return None
@@ -137,6 +142,20 @@ class GrampsTab(gtk.HBox):
         """
         return self.label_container
 
+    def key_pressed(self, obj, event):
+        """
+        Handles the key being pressed. 
+        The inheriting object must contain a widget that connects at mimimum
+        to this method, eg an eventbox, tree, ...
+        """
+        if event.type == gtk.gdk.KEY_PRESS:
+            if event.keyval in (_LEFT,) and \
+                    event.state in (gtk.gdk.MOD1_MASK,):
+                self.prev_page()
+            elif event.keyval in (_RIGHT,) and \
+                    event.state in (gtk.gdk.MOD1_MASK,):
+                self.next_page()
+
     def add_db_signal_callback(self, add_db_signal):
         """
         The grampstab must be able to react to database signals, however
@@ -150,7 +169,7 @@ class GrampsTab(gtk.HBox):
         self._add_db_signal = add_db_signal
         self.connect_db_signals()
 
-    def _set_label(self):
+    def _set_label(self, show_image=True):
         """
         Updates the label based of if the tab contains information. Tabs
         without information will not have an icon, and the text will not
@@ -158,7 +177,10 @@ class GrampsTab(gtk.HBox):
         the label text will be in bold face.
         """
         if not self.is_empty():
-            self.tab_image.show()
+            if show_image:
+                self.tab_image.show()
+            else:
+                self.tab_image.hide()
             self.label.set_text("<b>%s</b>" % self.tab_name)
             self.label.set_use_markup(True)
         else:
@@ -181,4 +203,15 @@ class GrampsTab(gtk.HBox):
         It is called after the interface is build.
         """
         pass
+
+    def set_parent_notebook(self, book):
+        self.parent_notebook = book
+
+    def next_page(self):
+        if self.parent_notebook:
+            self.parent_notebook.next_page()
+
+    def prev_page(self):
+        if self.parent_notebook:
+            self.parent_notebook.prev_page()
 

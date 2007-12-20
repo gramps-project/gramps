@@ -95,6 +95,9 @@ class BackRefList(EmbeddedList):
         vbox.pack_start(self.edit_btn, False)
         vbox.show_all()
         self.pack_start(vbox, False)
+        
+        self.add_btn = None
+        self.del_btn = None
 
     def _selection_changed(self, obj=None):
         if self.get_selected():

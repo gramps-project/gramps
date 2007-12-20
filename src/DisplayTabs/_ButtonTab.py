@@ -45,6 +45,11 @@ import Errors
 
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 _RETURN = gtk.gdk.keyval_from_name("Return")
+_DEL = gtk.gdk.keyval_from_name("Delete")
+_ADD = gtk.gdk.keyval_from_name("Insert")
+_OPEN = gtk.gdk.keyval_from_name("o")
+_LEFT = gtk.gdk.keyval_from_name("Left")
+_RIGHT = gtk.gdk.keyval_from_name("Right")
 
 #-------------------------------------------------------------------------
 #
@@ -173,12 +178,29 @@ class ButtonTab(GrampsTab):
         Handles the return key being pressed on list. If the key is pressed,
         the Edit button handler is called
         """
-        if event.type == gtk.gdk.KEY_PRESS and \
-            event.keyval in (_RETURN, _KP_ENTER):
-            try:
-                self.edit_button_clicked(obj)
-            except Errors.WindowActiveError:
-                pass
+        if event.type == gtk.gdk.KEY_PRESS:
+            if  event.keyval in (_RETURN, _KP_ENTER):
+                try:
+                    self.edit_button_clicked(obj)
+                except Errors.WindowActiveError:
+                    pass
+            elif event.keyval in (_DEL,) and self.del_btn:
+                if self.dirty_selection or self.dbstate.db.readonly:
+                    return
+                self.del_button_clicked(obj)
+            elif event.keyval in (_ADD,) and self.add_btn:
+                if self.dirty_selection or self.dbstate.db.readonly:
+                    return
+                self.add_button_clicked(obj)
+            elif event.keyval in (_OPEN,) and self.share_btn and \
+                    event.state in (gtk.gdk.CONTROL_MASK,):
+                self.share_button_clicked(obj)
+            elif event.keyval in (_LEFT,) and \
+                    event.state in (gtk.gdk.MOD1_MASK,):
+                self.prev_page()
+            elif event.keyval in (_RIGHT,) and \
+                    event.state in (gtk.gdk.MOD1_MASK,):
+                self.next_page()
 
     def add_button_clicked(self, obj):
         """
