@@ -603,10 +603,8 @@ class GeneWebWriter:
     
     def format_date(self,date):
         retval = ""
-        
-        strval = date.get_text()
-        if strval:
-            retval = "0(%s)" % self.rem_spaces(strval)
+        if date.get_modifier() == gen.lib.Date.MOD_TEXTONLY:
+            retval = "0(%s)" % self.rem_spaces(date.get_text())
         elif not date.is_empty():
             mod = date.get_modifier()
             cal = cal = date.get_calendar()

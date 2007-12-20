@@ -290,8 +290,7 @@ class CalendarWriter:
     
     def format_date(self,date,thisyear=0):
         retval = ""
-        strval = date.get_text()
-        if strval:
+        if date.get_modifier() == Date.MOD_TEXTONLY:
             return ""
         elif not date.is_empty():
             mod = date.get_modifier()

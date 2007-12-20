@@ -213,7 +213,10 @@ class CardWriter:
                 if birth:
                     b_date = birth.get_date_object()
                     mod = b_date.get_modifier()
-                    if not b_date.get_text() and not b_date.is_empty() and not mod == Date.MOD_SPAN and not mod == Date.MOD_RANGE:
+                    if (date.get_modifier() != Date.MOD_TEXTONLY and 
+                        not b_date.is_empty() and 
+                        not mod == Date.MOD_SPAN and 
+                        not mod == Date.MOD_RANGE):
                         (day,month,year,sl) = b_date.get_start_date()
                         if day > 0 and month > 0 and year > 0:
                             self.writeln("BDAY:%s-%02d-%02d" % (year,month,day))
