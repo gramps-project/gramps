@@ -1,4 +1,7 @@
 2007-12-20 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/glade/gramps.glade: date keybindings, issue #1453
+
+2007-12-20 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/rel_pt.py: RelLib -> gen.lib
 
 2007-12-19 Benny Malengier <benny.malengier@gramps-project.org>
