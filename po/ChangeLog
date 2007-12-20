@@ -1,3 +1,8 @@
+2007-12-20 Jerome Rapinat  <romjerome@yahoo.fr>
+        * POTFILES.in : add plugins/GVRelGraph.py reference
+        * gramps.pot : update template
+	* fr.po: Translation update
+
 2007-12-19 Jerome Rapinat  <romjerome@yahoo.fr>
 	* fr.po: Translation improvements (media is plurial)
 

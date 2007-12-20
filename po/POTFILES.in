@@ -276,6 +276,7 @@ src/plugins/FanChart.py
 src/plugins/FindDupes.py
 src/plugins/GraphViz.py
 src/plugins/GVHourGlass.py
+src/plugins/GVRelGraph.py
 src/plugins/ImportCSV.py
 src/plugins/ImportGeneWeb.py
 src/plugins/ImportvCard.py
