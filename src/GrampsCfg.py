@@ -25,6 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+import random
 from gettext import gettext as _
 from xml.sax.saxutils import escape
 
@@ -322,10 +323,26 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return name_format_model, the_index
 
     def __new_name(self, obj):
-        f = _("%s, %s (%s)" % (_("Surname"),
-                               _("Given"),
-                               _("Common"),
-                               ))
+        lyst = ["%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"), 
+                                    _("Common")),
+                "%s, %s %s (%s)" % (_("Surname"), _("Given"), _("Suffix"), 
+                                    _("Call")),
+                "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), 
+                                    _("Call")),
+                "%s, %s (%s)" % (_("Surname"), _("Given"), _("Common")),
+                "%s, %s (%s)" % (_("Surname"), _("Given"), _("Call")),
+                "%s %s" % (_("Given"), _("Surname")),
+                "%s %s, %s" % (_("Given"), _("Surname"), _("Suffix")),
+                "%s %s %s" % (_("Given"), _("Surname"), _("Patronymic")),
+                "%s, %s %s (%s)" % (_("SURNAME"), _("Given"), _("Suffix"), 
+                                    _("Common")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Common")),
+                "%s, %s (%s)" % (_("SURNAME"), _("Given"), _("Call")),
+                "%s %s" % (_("Given"), _("SURNAME")),
+                "%s %s, %s" % (_("Given"), _("SURNAME"), _("Suffix")),
+                "%s /%s/" % (_("Given"), _("SURNAME")),
+                ]
+        f = lyst[int(random.random() * len(lyst))]
         i = _nd.add_name_format(f, f.lower())
         node = self.fmt_model.append(row=[i, f, f.lower(), 
                                    _nd.format_str(self.examplename, f)])
@@ -340,6 +357,25 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.format_list.set_cursor(path, 
                                     focus_column=self.name_column, 
                                     start_editing=True)
+
+    def __check_for_name(self, name, oldnode):
+        """
+        Check to see if there is another name the same as name
+        in the format list. Don't compare with self (oldnode).
+        """
+        model = self.fmt_obox.get_model()
+        iter = model.get_iter_first()
+        while iter != None:
+            othernum = model.get_value(iter, COL_NUM)
+            oldnum = model.get_value(oldnode, COL_NUM)
+            if othernum == oldnum: 
+                pass# skip comparison with self
+            else:
+                othername = model.get_value(iter, COL_NAME)
+                if othername == name:
+                    return True
+            iter = model.iter_next(iter)
+        return False
 
     def __change_name(self, text, path, new_text):
         """
@@ -360,6 +396,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             num, name, fmt = self.selected_fmt[COL_NUM:COL_EXPL]
             node = self.fmt_model.get_iter(path)
             oldname = self.fmt_model.get_value(node, COL_NAME)
+            # check to see if this pattern already exists
+            if self.__check_for_name(translation, node):
+                QuestionDialog.ErrorDialog(_("This format exists already"), 
+                                           translation)
+                self.edit_button.emit('clicked')
+                return
+            # else, change the name
             exmpl = _nd.format_str(self.examplename, pattern)
             self.fmt_model.set(self.iter, COL_NAME, translation, 
                                COL_FMT, pattern, 

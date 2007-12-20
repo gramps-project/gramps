@@ -1,3 +1,6 @@
+2007-12-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/GrampsCfg.py: added a warning about duplicate pattern
+
 2007-12-19 Peter Landgren <peter.talken@telai.com>
 	* src/DbManager.py: fixed unique rename and new databases 
 	* src/RecentFiles.py: fixed unique rename and new databases
