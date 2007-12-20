@@ -829,6 +829,6 @@ class GenderDialog(gtk.MessageDialog):
             _("The gender of the person is currently unknown. "
               "Usually, this is a mistake. Please specify the gender."))
 
-        self.add_button(_('Male'), gen.lib.Person.MALE)
-        self.add_button(_('Female'), gen.lib.Person.FEMALE)
-        self.add_button(_('Unknown'), gen.lib.Person.UNKNOWN)
+        self.add_button(_('_Male'), gen.lib.Person.MALE)
+        self.add_button(_('_Female'), gen.lib.Person.FEMALE)
+        self.add_button(_('_Unknown'), gen.lib.Person.UNKNOWN)

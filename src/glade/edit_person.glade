@@ -133,7 +133,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label21">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Given:</property>
+		  <property name="label" translatable="yes">Gi_ven:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -191,7 +191,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label47">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Title:</property>
+		  <property name="label" translatable="yes">Tit_le:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -588,7 +588,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label444">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">_Call Name:</property>
+		  <property name="label" translatable="yes">Call _Name:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
