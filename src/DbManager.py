@@ -33,6 +33,7 @@ __revision__ = "$Revision: 8197 $"
 #-------------------------------------------------------------------------
 import os
 import time
+import copy
 import subprocess
 from gettext import gettext as _
 #-------------------------------------------------------------------------
@@ -293,6 +294,7 @@ class DbManager:
             path_name = os.path.join(dirpath, NAME_FILE)
             if os.path.isfile(path_name):
                 name = file(path_name).readline().strip()
+
                 (tval, last) = time_val(dirpath)
                 (enable, stock_id) = icon_values(dirpath, self.active, 
                                                  self.dbstate.db.is_open())
@@ -501,7 +503,7 @@ class DbManager:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
             QuestionDialog.QuestionDialog(
-                _("Remove the '%{revision}s' version of %{database}s") % {
+                _("Remove the '%(revision)s' version of '%(database)s'") % {
                     'revision' : rev, 
                     'database' : parent
                     },
@@ -551,7 +553,7 @@ class DbManager:
         rev = self.data_to_delete[PATH_COL]
         archive = os.path.join(db_dir, ARCHIVE_V)
 
-        cmd = [ "rcs", "-o%s" % rev, archive ]
+        cmd = [ "rcs", "-o%s" % rev, "-q", archive ]
 
         proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
         status = proc.wait()
@@ -653,9 +655,11 @@ class DbManager:
         if title == None:
             name_list = [ name[0] for name in self.current_names ]
             title = find_next_db_name(name_list)
+        
         name_file = open(path_name, "w")
         name_file.write(title)
         name_file.close()
+
         self.current_names.append(title)
         node = self.model.append(None, [title, new_path, path_name, 
                                         _("Never"), 0, False, ''])
@@ -816,7 +820,7 @@ def find_revisions(name):
         for line in proc.stdout:
             match = rev.match(line)
             if match:
-                rev_str = match.groups()[0]
+                rev_str = copy.copy(match.groups()[0])
                 continue
             match = date.match(line)
             if match:
@@ -829,6 +833,8 @@ def find_revisions(name):
                 get_next = False
                 com_str = line.strip()
                 revlist.append((rev_str, date_str, com_str))
+    proc.stdout.close()
+    del proc
     return revlist
 
 def find_locker_name(dirpath):
@@ -909,8 +915,8 @@ def check_in(dbase, filename, callback, cursor_func = None):
 
     proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
     message = "\n".join(proc.stderr.readlines())
-    proc.stderr.close()
     status = proc.wait()
+    proc.stderr.close()
     del proc
 
     if status != 0:
