@@ -1585,7 +1585,7 @@ class GVDoc:
         """
         raise NotImplementedError
         
-    def add_link(self, id1, id2):
+    def add_link(self, id1, id2, style="", head="", tail=""):
         """
         Add a link between two nodes.
         

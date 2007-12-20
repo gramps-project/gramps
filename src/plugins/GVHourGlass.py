@@ -127,7 +127,7 @@ class HourGlassReport(Report):
         else:
             color = 'lightgray'
             
-        self.doc.add_node(p_id,label,"box",color)
+        self.doc.add_node(p_id,label,"box","","filled",color)
         
     def add_family(self,family):
         """
@@ -138,7 +138,7 @@ class HourGlassReport(Report):
         marriage = ReportUtils.find_marriage(self.db,family)
         if marriage:
             label = DateHandler.get_date(marriage)
-        self.doc.add_node(family_id,label,"ellipse","lightyellow")
+        self.doc.add_node(family_id,label,"ellipse","","filled","lightyellow")
 
 #------------------------------------------------------------------------
 #

@@ -48,7 +48,7 @@ import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
-from PluginUtils import NumberOption, EnumeratedListOption
+from PluginUtils import NumberOption, EnumeratedListOption, TextOption
 
 #-------------------------------------------------------------------------------
 #
@@ -56,8 +56,8 @@ from PluginUtils import NumberOption, EnumeratedListOption
 #
 #-------------------------------------------------------------------------------
 _FONTS = [ { 'name' : _("Default"),                'value' : ""          },
-           {  'name' : _("Postscript / Helvetica"), 'value' : "Helvetica" },
-           {  'name' : _("Truetype / FreeSans"),    'value' : "FreeSans"  }  ]
+           { 'name' : _("Postscript / Helvetica"), 'value' : "Helvetica" },
+           { 'name' : _("Truetype / FreeSans"),    'value' : "FreeSans"  }  ]
 
 _RANKDIR = [ { 'name' : _("Vertical"),             'value' : "TB" },
              { 'name' : _("Horizontal"),           'value' : "LR" } ]
@@ -74,6 +74,10 @@ _PAGEDIR = [ { 'name' : _("Bottom, left"),         'value' :"BL" },
 _RATIO = [ { 'name' : _("Minimal size"),                'value' : "compress" },
            { 'name' : _("Fill the given area"),         'value': "fill"      },
            { 'name' : _("Use optimal number of pages"), 'value': "expand"    } ]
+
+
+_NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
+             { 'name' : _("Bottom"), 'value' : "b" }]
 
 _dot_found = 0
 _gs_cmd = ""
@@ -116,6 +120,9 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         self.hpages = self.options['h_pages']
         self.vpages = self.options['v_pages']
         self.ratio = _RATIO[ self.options['ratio'] ]['value']
+        self.noteloc = self.options['noteloc']
+        self.notesize = self.options['notesize']
+        self.note = self.options['note']
         
         paper_size = paper_style.get_size()
         pheight = paper_size.get_height_inches()
@@ -163,39 +170,72 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         This isn't useful by itself. Other classes need to override this and
         actually generate a file.
         """
+        if self.note:
+            self.dot.write( 'labelloc="%s";\n' % self.noteloc )
+            self.dot.write( 'label="' )
+            for line in self.note:
+                self.dot.write( '%s\\n' % line.replace('"', '\\\"') )
+            self.dot.write( '";\n')
+            self.dot.write( 'fontsize="%d";\n' % self.notesize )
+        
         self.dot.write( '}'  )
     
-    def add_node(self, id, label, shape="box", fillcolor="white", url=""):
+    def add_node(self, id, label, shape="", color = "", 
+                 style="", fillcolor="", url="" ):
         """
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
         
         Implementes BaseDoc.GVDoc.add_node().
         """
-        line  = '  "%s" [style=filled, ' % id
+        line  = '  "%s" ['               % id
         line += 'label="%s", '           % label
-        line += 'shape="%s", '           % shape
-        line += 'fillcolor="%s", '       % fillcolor
+        
+        if shape:
+            line += 'shape="%s", '       % shape
+            
+        if color:
+            line += 'color="%s", '       % color
+            
+        if fillcolor:
+            line += 'fillcolor="%s", '   % fillcolor
         
         if self.fontfamily:
             line += 'fontname="%s", '    % self.fontfamily
 
         line += 'fontsize="%0.1f", '     % self.fontsize
         
+        if style:
+            line += 'style="%s", '         % style
+        
         if url:
-            line += 'URL="%s"'           % url
-            
+            line += 'URL="%s", '           % url
+
         line += '];\n'
 
         self.dot.write(line)
         
-    def add_link(self, id1, id2):
+    def add_link(self, id1, id2, style="", head="", tail=""):
         """
         Add a link between two nodes.
         
         Implementes BaseDoc.GVDoc.add_link().
         """
-        self.dot.write('  "%s" -> "%s";\n' % (id1, id2))
+        self.dot.write('  "%s" -> "%s" ' % (id1, id2))
+        
+        if style or head or tail:
+            self.dot.write('[')
+            
+            if style:
+                self.dot.write('style=%s, ' % style)
+            if head:
+                self.dot.write('arrowhead=%s, ' % head)
+            if tail:
+                self.dot.write('arrowtail=%s, ' % tail)
+                
+            self.dot.write(']')
+            
+        self.dot.write(';\n')
 
 #-------------------------------------------------------------------------------
 #
@@ -569,8 +609,10 @@ class GraphvizReportDialog(ReportDialog):
             self.options = option_class(self.raw_name)
         elif type(option_class) == InstanceType:
             self.options = option_class
-            
+
+        ################################
         category = _("GraphViz Options")
+        ################################
         
         font_family = EnumeratedListOption(_("Font family"), 0)
         index = 0
@@ -629,6 +671,26 @@ class GraphvizReportDialog(ReportDialog):
                            "array of pages. This controls the number "
                            "pages in the array vertically."))
         self.options.add_menu_option(category,"v_pages",v_pages)
+        
+        ################################
+        category = _("Notes")
+        ################################
+        
+        note = TextOption(_("Note to add to the graph"), 
+                           [""] )
+        note.set_help(_("This text will be added to the graph."))
+        self.options.add_menu_option(category,"note",note)
+        
+        noteloc = EnumeratedListOption(_("Note location"), 't')
+        for i in range( 0, len(_NOTELOC) ):
+            noteloc.add_item(_NOTELOC[i]["value"], _NOTELOC[i]["name"])
+        noteloc.set_help(_("Whether note will appear on top "
+                                "or bottom of the page."))
+        self.options.add_menu_option(category,"noteloc",noteloc)
+        
+        notesize = NumberOption(_("Note size"),32,8,128)
+        notesize.set_help(_("The size of note text, in points."))
+        self.options.add_menu_option(category,"notesize",notesize)
 
         self.options.load_previous_values()
         
@@ -692,6 +754,16 @@ class GraphvizReportDialog(ReportDialog):
         else:
             self.print_report.set_label (_("Open with application"))
             self.print_report.set_sensitive (False)
+            
+        fname = self.target_fileentry.get_full_path(0)
+        (spath,ext) = os.path.splitext(fname)
+
+        ext_val = obj.get_ext()
+        if ext_val:
+            fname = spath + ext_val
+        else:
+            fname = spath
+        self.target_fileentry.set_filename(fname)
             
     def make_document(self):
         """Create a document of the type requested by the user.

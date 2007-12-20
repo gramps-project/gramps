@@ -1318,16 +1318,17 @@ def get_description_graphics():
 #
 #------------------------------------------------------------------------
 register_report(
-    name = 'rel_graph',
+    name = 'rel_graph1',
     category = CATEGORY_CODE,
     report_class = GraphVizDialog,
     options_class = cl_report,
     modes = MODE_GUI | MODE_CLI,
-    translated_name = _("Relationship Graph"),
+    translated_name = _("Relationship Graph (code)"),
     status = _("Stable"),
     description= get_description(),
     author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org"
+    author_email="don@gramps-project.org",
+    unsupported=True
     )
 
 if _dot_found:
@@ -1341,5 +1342,6 @@ if _dot_found:
         status = _("Stable"),
         description= get_description_graphics(),
         author_name="Donald N. Allingham",
-        author_email="don@gramps-project.org"
+        author_email="don@gramps-project.org",
+        unsupported=True
     )
