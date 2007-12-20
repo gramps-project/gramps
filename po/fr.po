@@ -6667,7 +6667,7 @@ msgstr "1 média manquant a été remplacé\n"
 #: ../src/plugins/Check.py:1386
 #, python-format
 msgid "%d missing media objects were replaced\n"
-msgstr "%d objet média manquants ont été remplacés\n"
+msgstr "%d objets média manquants ont été remplacés\n"
 
 # référence ou non, enlever ou supprimer
 #: ../src/plugins/Check.py:1389
@@ -6731,12 +6731,12 @@ msgstr "1 objet média a été référencé, mais non trouvé\n"
 
 #: ../src/plugins/Check.py:1425
 msgid "1 note object was referenced but not found\n"
-msgstr "1 objet média a été référencé, mais non trouvé\n"
+msgstr "1 note a été référencée, mais non trouvée\n"
 
 #: ../src/plugins/Check.py:1427
 #, python-format
 msgid "%d note objects were referenced, but not found\n"
-msgstr "%d objets média ont été référencés, mais non trouvés\n"
+msgstr "%d notes ont été référencées, mais non trouvées\n"
 
 #: ../src/plugins/Check.py:1431
 msgid "1 invalid name format reference was removed\n"
