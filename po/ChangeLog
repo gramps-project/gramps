@@ -1,3 +1,6 @@
+2007-12-21 Frederik De Richter <frederik.de.richter@pandora.be>
+    * nl.po: Translation update Fuzzy:98 Untranslated: 4
+
 2007-12-20 Jerome Rapinat  <romjerome@yahoo.fr>
         * POTFILES.in : add plugins/GVRelGraph.py reference
         * gramps.pot : update template
