@@ -28,4 +28,5 @@ __version__ = "$Revision: 7972 $"
 
 from _SimpleAccess import *
 from _SimpleDoc import *
+from _SimpleTable import *
 

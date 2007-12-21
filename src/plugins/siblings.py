@@ -23,15 +23,11 @@
 Display a person's siblings in a report window
 """
 
-from Simple import SimpleAccess, SimpleDoc
+from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gen.lib import Person
 from gettext import gettext as _
 from PluginUtils import register_quick_report, relationship_class
 from ReportBase import CATEGORY_QR_PERSON
-
-# define the formatting string once as a constant. Since this is reused
-
-__FMT = "%-30s\t%-10s\t%-18s\t%s"
 
 def run(database, document, person):
     """
@@ -56,10 +52,8 @@ def run(database, document, person):
     # display the title
     sdoc.title(_("Siblings of %s") % sdb.name(person))
     sdoc.paragraph("")
-
-    # display the header of a table
-    sdoc.header1(__FMT % (_("Sibling"), _("Gender"), _("Birth Date"),
-                          _("Type")))
+    st = SimpleTable(sdb, sdoc)
+    st.columns(_("Sibling"), _("Gender"), _("Birth Date"), _("Type"))
 
     # grab our current id, so we can filter the active person out
     # of the data
@@ -68,10 +62,8 @@ def run(database, document, person):
 
     # loop through each family in which the person is a child
     for family in sdb.child_in(person):
-
         # loop through each child in the family
         for child in sdb.children(family):
-
             # only display if this child is not the active person
             if sdb.gid(child) != gid:
                 rel_str = rel_class.get_sibling_relationship_string(
@@ -80,11 +72,10 @@ def run(database, document, person):
                 if rel_str == rel_str_m or rel_str == rel_str_f or \
                         rel_str == rel_str_u :
                     rel_str = ''
-                sdoc.paragraph(__FMT % (
-                        sdb.name(child),
-                        sdb.gender(child),
-                        sdb.birth_date(child), 
-                        rel_str))
+                st.row(sdb.name(child), sdb.gender(child), sdb.birth_date(child), 
+                       rel_str)
+    #st.sort(_("Sibling"))
+    st.write()
                     
 #------------------------------------------------------------------------
 #

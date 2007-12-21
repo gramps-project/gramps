@@ -1340,6 +1340,7 @@ class BaseDoc:
         self._creator = ""
         self.print_req = 0
         self.init_called = False
+        self.type = "standard"
 
     def init(self):
         self.init_called = True

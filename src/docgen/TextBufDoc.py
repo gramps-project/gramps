@@ -61,12 +61,11 @@ _WIDTH_IN_CHARS = 72
 
 
 class DisplayBuf:
-
-    def __init__(self, title, buffer):
+    def __init__(self, title, document):
         g = gtk.glade.XML(const.GLADE_FILE,'scrollmsg')
         self.top = g.get_widget('scrollmsg')
-        msg = g.get_widget('msg')
-        msg.set_buffer(buffer)
+        document.text_view = g.get_widget('msg')
+        document.text_view.set_buffer(document.buffer)
         g.get_widget('close').connect('clicked', self.close)
         
     def close(self, obj):
@@ -85,6 +84,7 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
     #
     #--------------------------------------------------------------------
     def open(self, filename):
+        self.type = "gtk"
         self.tag_table = gtk.TextTagTable()
 
         sheet = self.get_style_sheet()
@@ -137,6 +137,7 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
 
             self.tag_table.add(tag)
         self.buffer = gtk.TextBuffer(self.tag_table)
+        DisplayBuf('',self)
         return
 
     #--------------------------------------------------------------------
@@ -145,7 +146,7 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
     #
     #--------------------------------------------------------------------
     def close(self):
-        DisplayBuf('',self.buffer)
+        pass
 
     def get_usable_width(self):
         return _WIDTH_IN_CHARS

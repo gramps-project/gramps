@@ -84,7 +84,7 @@ def make_basic_stylesheet():
     fstyle.set_size(14)
     fstyle.set_bold(True)
     pstyle.set_font(fstyle)
-    pstyle.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+    pstyle.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
     sheet.add_paragraph_style('Title', pstyle)
 
     pstyle = BaseDoc.ParagraphStyle()
@@ -121,4 +121,25 @@ def make_basic_stylesheet():
     pstyle = BaseDoc.ParagraphStyle()
     pstyle.set_tabs([4, 8, 12, 16])
     sheet.add_paragraph_style('Normal', pstyle)
+
+    # Styles for tables:
+    tbl = BaseDoc.TableStyle()
+    tbl.set_width(100)
+    tbl.set_columns(2)
+    tbl.set_column_width(0,20)
+    tbl.set_column_width(1,80)
+    sheet.add_table_style("Table",tbl)
+
+    cell = BaseDoc.TableCellStyle()
+    cell.set_top_border(1)
+    cell.set_bottom_border(1)
+    sheet.add_cell_style("TableHead",cell)
+
+    cell = BaseDoc.TableCellStyle()
+    sheet.add_cell_style("TableNormalCell",cell)
+
+    cell = BaseDoc.TableCellStyle()
+    cell.set_longlist(1)
+    sheet.add_cell_style("TableListCell",cell)
+
     return sheet

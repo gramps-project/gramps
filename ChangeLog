@@ -1,3 +1,11 @@
+2007-12-20  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/siblings.py: Quick Reports under construction...
+	* src/Simple/_SimpleDoc.py: added table style defaults
+	* src/Simple/__init__.py: added SimpleTable
+	* src/BaseDoc.py: added doc.type = "standard"
+	* src/docgen/TextBufDoc.py: added doc.type = "gtk"
+	* src/Simple/_SimpleTable.py: new file defining table
+
 2007-12-20 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/glade/gramps.glade: date keybindings, issue #1453
 
