@@ -38,27 +38,13 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb, sdoc)
-
     rel_class = relationship_class()
-    rel_str_m = rel_class.get_sibling_relationship_string(
-                            rel_class.NORM_SIB, person.get_gender(), 
-                            Person.MALE)
-    rel_str_f = rel_class.get_sibling_relationship_string(
-                            rel_class.NORM_SIB, person.get_gender(), 
-                            Person.FEMALE)
-    rel_str_u = rel_class.get_sibling_relationship_string(
-                            rel_class.NORM_SIB, person.get_gender(), 
-                            Person.UNKNOWN)
-
     # display the title
     sdoc.title(_("Siblings of %s") % sdb.name(person))
     sdoc.paragraph("")
     stab.columns(_("Sibling"), _("Gender"), _("Birth Date"), _("Type"))
-
-    # grab our current id, so we can filter the active person out
-    # of the data
+    # grab our current id (self):
     gid = sdb.gid(person)
-
     # loop through each family in which the person is a child
     for family in sdb.child_in(person):
         # loop through each child in the family
@@ -66,16 +52,15 @@ def run(database, document, person):
             # only display if this child is not the active person
             if sdb.gid(child) != gid:
                 rel_str = rel_class.get_sibling_relationship_string(
-                           rel_class.get_sibling_type(database, person, child), 
-                                       person.get_gender(), child.get_gender())
-                if rel_str == rel_str_m or rel_str == rel_str_f or \
-                        rel_str == rel_str_u :
-                    rel_str = ''
-                # pass row the child object to make link:
-                stab.row(child, 
-                         sdb.gender(child), 
-                         sdb.birth_date(child), 
-                         rel_str)
+                    rel_class.get_sibling_type(database, person, child), 
+                    person.get_gender(), child.get_gender())
+            else:
+                rel_str = 'self'
+            # pass row the child object to make link:
+            stab.row(child, 
+                     sdb.gender(child), 
+                     sdb.birth_date(child), 
+                     rel_str)
     stab.write()
                     
 #------------------------------------------------------------------------
