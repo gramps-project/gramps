@@ -44,6 +44,9 @@ class SimpleTable:
         self.__sort_col = None
         self.__sort_reverse = False
 
+    def get_row_count(self):
+        return len(self.__rows)
+
     def columns(self, *columns):
         """
         Set the columns
@@ -193,6 +196,8 @@ class SimpleTable:
                 #if model_index == sort_index:
                 # FIXME: what to set here?    
                 model_index += 1
+            if self.title:
+                self.simpledoc.paragraph(self.title)
             # Make a GUI to put the tree view in
             frame = gtk.Frame()
             frame.add(treeview)
@@ -206,4 +211,5 @@ class SimpleTable:
                 model.append(row=([count] + list(data)))
                 count += 1
             frame.show_all()
+            self.simpledoc.paragraph("")
             self.simpledoc.paragraph("")
