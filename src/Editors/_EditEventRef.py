@@ -131,8 +131,8 @@ class EditEventRef(EditReference):
             self.top.get_widget("eer_place"),
             self.source.set_place_handle,
             self.source.get_place_handle,
-            self.add_del_btn,
-            self.share_btn)
+            self.share_btn,
+            self.add_del_btn)
 
         self.ev_privacy = PrivacyButton(
             self.top.get_widget("eer_ev_priv"),

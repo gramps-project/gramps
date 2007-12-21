@@ -1,4 +1,7 @@
 2007-12-21 Gary Burton <gary.burton@zen.co.uk>
+	* src/Editors/_EditEventRef.py: swap around delete/share buttons, bug #1477
+
+2007-12-21 Gary Burton <gary.burton@zen.co.uk>
 	* src/ScratchPad.py: allow items to be moved, feature #1465
 
 2007-12-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
