@@ -384,8 +384,8 @@ class GVJpegDoc(GVDocBase):
         GVDocBase.close(self)
         
         # Make sure the extension is correct
-        if self.filename[-5:] != ".jpeg":
-            self.filename += ".jpeg"
+        if self.filename[-4:] != ".jpg":
+            self.filename += ".jpg"
 
         # Create a temporary dot file
         (handle,tmp_dot) = tempfile.mkstemp(".dot" )
@@ -489,6 +489,13 @@ _formats += [{ 'type' : "dot",
                'class': GVDotDoc }]
 
 if _dot_found:
+    
+    if _gs_cmd != "":
+        _formats += [{ 'type' : "pdf",
+                       'descr': _("PDF"), 
+                       'mime' : "application/pdf", 
+                       'class': GVPdfDoc }]
+    
     _formats += [{ 'type' : "ps",
                    'descr': _("Postscript"), 
                    'mime' : "application/postscript", 
@@ -503,11 +510,6 @@ if _dot_found:
                    'descr': _("Compressed Structured Vector Graphs (SVG)"), 
                    'mime' : "image/svgz", 
                    'class': GVSvgzDoc }]
-
-    _formats += [{ 'type' : "png",
-                   'descr': _("PNG image"), 
-                   'mime' : "image/png", 
-                   'class': GVPngDoc }]
     
     _formats += [{ 'type' : "jpg",
                    'descr': _("JPEG image"), 
@@ -518,12 +520,11 @@ if _dot_found:
                    'descr': _("GIF image"), 
                    'mime' : "image/gif", 
                    'class': GVGifDoc }]
-
-if _dot_found and _gs_cmd != "":
-    _formats += [{ 'type' : "pdf",
-                   'descr': _("PDF"), 
-                   'mime' : "application/pdf", 
-                   'class': GVPdfDoc }]
+    
+    _formats += [{ 'type' : "png",
+                   'descr': _("PNG image"), 
+                   'mime' : "image/png", 
+                   'class': GVPngDoc }]
 
 #-------------------------------------------------------------------------------
 #

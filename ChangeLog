@@ -1,3 +1,6 @@
+2007-12-20  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py: Misc improvements.
+
 2007-12-20  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/siblings.py: Quick Reports under construction...
 	* src/Simple/_SimpleDoc.py: added table style defaults
