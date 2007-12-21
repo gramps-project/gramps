@@ -31,13 +31,19 @@ from xml.sax.saxutils import escape
 from gettext import gettext as _
 from time import strftime as strftime
 
+try:
+    import fcntl
+    use_lock = True
+except:
+    use_lock = False
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
 import gtk
-from gtk.gdk import ACTION_COPY, BUTTON1_MASK
+from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
 
 #-------------------------------------------------------------------------
 #
@@ -63,6 +69,13 @@ from DdTargets import DdTargets
 _stock_image = os.path.join(const.IMAGE_DIR,'stock_link.png')
 LINK_PIC = gtk.gdk.pixbuf_new_from_file(_stock_image)
 BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
+
+#-------------------------------------------------------------------------
+#
+# The file used to store the state of the scratchpad between sessions
+#
+#-------------------------------------------------------------------------
+SCRATCHPAD_FILE = os.path.join(const.HOME_DIR,"scratchpad.dat")
 
 #-------------------------------------------------------------------------
 #
@@ -1033,7 +1046,7 @@ class ScratchPadListView:
             targets = [ScratchPadListView.LOCAL_DRAG_TARGET] + \
                       [target.target() for target in o.__class__.DROP_TARGETS]
 
-            self._widget.enable_model_drag_source(BUTTON1_MASK, targets, ACTION_COPY)
+            self._widget.enable_model_drag_source(BUTTON1_MASK, targets, ACTION_COPY | ACTION_MOVE)
 
     def object_drag_begin(self, context, a):
         return
@@ -1046,11 +1059,6 @@ class ScratchPadListView:
         sel_data.set(sel_data.target, 8, o.pack())
 
     def object_drag_data_received(self,widget,context,x,y,selection,info,time):
-
-        # Ignore drops from the same widget.
-        if ScratchPadListView.LOCAL_DRAG_TYPE in context.targets:            
-            return
-
         model = widget.get_model()
         sel_data = selection.data
 
@@ -1101,7 +1109,9 @@ class ScratchPadListView:
                     model.insert_after(node,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
             else:
                 model.append([o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
-            
+
+            if context.action == ACTION_MOVE:
+                context.finish(True, True, time)
 
         # remember time for double drop workaround.
         self._previous_drop_time = realTime
@@ -1230,7 +1240,6 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         if node:
             model.remove(node)
         return        
-        
 
 def short(val,size=60):
     if len(val) > size:
