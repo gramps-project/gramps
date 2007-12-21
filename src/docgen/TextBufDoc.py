@@ -61,6 +61,7 @@ _WIDTH_IN_CHARS = 72
 
 
 class DisplayBuf:
+    # FIXME: make a managed window now that we have uistate
     def __init__(self, title, document):
         g = gtk.glade.XML(const.GLADE_FILE,'scrollmsg')
         self.top = g.get_widget('scrollmsg')

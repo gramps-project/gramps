@@ -23,17 +23,11 @@
 Display a person's events, both personal and family
 """
 
-from Simple import SimpleAccess, by_date, SimpleDoc
+from Simple import SimpleAccess, by_date, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY
 
-# define the formatting string once as a constant. Since this is reused
-
-__FMT     = "%-15s\t%-15s\t%s"
-__FMT_fam = "%-15s\t%-15s\t%-15s\t%s"
-
-    
 def run(database, document, person):
     """
     Loops through the person events and the family events of any family
@@ -43,6 +37,7 @@ def run(database, document, person):
     
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
+    stab = SimpleTable(sdb, sdoc)
 
     # get the personal events
     event_list = sdb.events(person)
@@ -60,12 +55,13 @@ def run(database, document, person):
     sdoc.title(_("Sorted events of %s") % sdb.name(person))
     sdoc.paragraph("")
 
-    sdoc.header1(__FMT % (_("Event Type"), _("Event Date"), _("Event Place")))
+    stab.columns(_("Event Type"), _("Event Date"), _("Event Place"))
 
     for event in event_list:
-        sdoc.paragraph(__FMT % (sdb.event_type(event), 
-                                sdb.event_date(event), 
-                                sdb.event_place(event)))
+        stab.row(event, 
+                 sdb.event_date(event), 
+                 sdb.event_place(event))
+    stab.write()
 
 def run_fam(database, document, family):
     """
@@ -75,21 +71,22 @@ def run_fam(database, document, family):
     
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
+    stab = SimpleTable(sdb, sdoc)
     
     # get the family events
     event_list = [(_('Family'), x) for x in sdb.events(family)]
     
     # get the events of father and mother
-    fathername = sdb.first_name(sdb.father(family))
-    event_list += [(fathername, x) for x in sdb.events(sdb.father(family))]
-    mothername = sdb.first_name(sdb.mother(family))
-    event_list += [(mothername, x) for x in sdb.events(sdb.mother(family))]
+    #fathername = sdb.first_name(sdb.father(family))
+    event_list += [(sdb.father(family), x) for x in sdb.events(sdb.father(family))]
+    #mothername = sdb.first_name(sdb.mother(family))
+    event_list += [(sdb.mother(family), x) for x in sdb.events(sdb.mother(family))]
     
     # children events
     event_list_children = []
     for child in sdb.children(family) :
-        name = sdb.first_name(child)
-        event_list_children += [(name, x) for x in sdb.events(child)]
+        #name = sdb.first_name(child)
+        event_list_children += [(child, x) for x in sdb.events(child)]
         
     # Sort the events by their date
     event_list.sort(fam_sort)
@@ -102,21 +99,24 @@ def run_fam(database, document, family):
                             sdb.name(sdb.mother(family))))
     sdoc.paragraph("")
 
-    sdoc.header2(__FMT_fam % (_("Family Member"), _("Event Type"), 
-                                _("Event Date"), _("Event Place")))
+    stab.columns(_("Family Member"), _("Event Type"), 
+                 _("Event Date"), _("Event Place"))
 
-    for (name, event) in event_list:
-        sdoc.paragraph(__FMT_fam % (name, sdb.event_type(event), 
-                                sdb.event_date(event), 
-                                sdb.event_place(event)))
-    sdoc.paragraph("")
+    for (person, event) in event_list:
+        stab.row(person, sdb.event_type(event), 
+                 sdb.event_date(event), 
+                 sdb.event_place(event))
+    stab.write()
+
+    stab = SimpleTable(sdb, sdoc)
     sdoc.header1(_("Personal events of the children"))
-    sdoc.header2(__FMT_fam % (_("Family Member"), _("Event Type"), 
-                                _("Event Date"), _("Event Place")))
-    for (name, event) in event_list_children:
-        sdoc.paragraph(__FMT_fam % (name, sdb.event_type(event), 
-                                sdb.event_date(event), 
-                                sdb.event_place(event)))
+    stab.columns(_("Family Member"), _("Event Type"), 
+                 _("Event Date"), _("Event Place"))
+    for (person, event) in event_list_children:
+        stab.row(person, sdb.event_type(event), 
+                 sdb.event_date(event), 
+                 sdb.event_place(event))
+    stab.write()
                                 
 def fam_sort(event1, event2):
     """

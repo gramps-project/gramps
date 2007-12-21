@@ -216,7 +216,8 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         ui_qr = ''
         if self.QR_CATEGORY > -1 :
             (ui_qr, reportactions) = create_quickreport_menu(self.QR_CATEGORY,
-                                    self.dbstate, self.obj.get_handle())
+                                    self.dbstate, self.uistate, 
+                                    self.obj.get_handle())
             self.report_action = gtk.ActionGroup("/PersonReport")
             self.report_action.add_actions(reportactions)
             self.report_action.set_visible(True)

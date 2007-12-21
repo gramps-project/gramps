@@ -1,3 +1,13 @@
+2007-12-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/_PersonView.py: pass create_quickreport uistate
+	* src/Editors/_EditPrimary.py: pass create_quickreport uistate
+	* src/plugins/all_events.py: use SimpleTable
+	* src/plugins/siblings.py: use SimpleTable
+	* src/QuickReports.py: pass create_quickreport uistate
+	* src/Simple/_SimpleTable.py: Handles raw objects, click/doubleclick
+	* src/PageView.py: pass create_quickreport uistate
+	* src/docgen/TextBufDoc.py: need to make a managed window, transient
+
 2007-12-20  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_GraphvizReportDialog.py: Misc improvements.
 

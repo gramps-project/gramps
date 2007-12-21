@@ -854,6 +854,7 @@ class PersonView(PageView.PersonNavView):
                 (ui, reportactions) = create_quickreport_menu(
                                             CATEGORY_QR_PERSON, 
                                             self.dbstate, 
+                                            self.uistate,
                                             self.dbstate.active.handle)
             if len(reportactions) > 1 :
                 qr_menu = gtk.Menu()

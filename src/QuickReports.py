@@ -62,7 +62,7 @@ from ReportBase  import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,\
                         CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY
 
 
-def create_quickreport_menu(category,dbstate,handle) :
+def create_quickreport_menu(category,dbstate,uistate,handle) :
     #import present version of the 
     from PluginUtils import quick_report_list
     ''' This functions querries the registered quick reports with 
@@ -99,7 +99,8 @@ def create_quickreport_menu(category,dbstate,handle) :
         new_key = report[2].replace(' ', '-')
         ofile.write('<menuitem action="%s"/>' % new_key)
         actions.append((new_key, None, report[1], None, None, 
-                make_quick_report_callback(report, category, dbstate, handle)))
+                make_quick_report_callback(report, category, 
+                                           dbstate, uistate, handle)))
     ofile.write('</menu>')
     
     return (ofile.getvalue(), actions)
@@ -107,15 +108,17 @@ def create_quickreport_menu(category,dbstate,handle) :
 def by_menu_name(first, second):
     return cmp(first[1], second[1])
 
-def make_quick_report_callback(lst, category, dbstate, handle):
-    return lambda x: run_report(dbstate, category, handle, lst[0])
+def make_quick_report_callback(lst, category, dbstate, uistate, handle):
+    return lambda x: run_report(dbstate, uistate, category, handle, lst[0])
                             
-def run_report(dbstate, category,handle,func):
+def run_report(dbstate, uistate, category,handle,func):
         from TextBufDoc import TextBufDoc
         from Simple import make_basic_stylesheet
 
         if dbstate.active and handle:
             d = TextBufDoc(make_basic_stylesheet(), None, None)
+            d.dbstate = dbstate
+            d.uistate = uistate
             if category == CATEGORY_QR_PERSON :
                 obj = dbstate.db.get_person_from_handle(handle)
             elif category == CATEGORY_QR_FAMILY :

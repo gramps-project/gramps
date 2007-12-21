@@ -965,6 +965,7 @@ class ListView(BookMarkView):
                     (ui, reportactions) = create_quickreport_menu(
                                             self.QR_CATEGORY, 
                                             self.dbstate, 
+                                            self.uistate,
                                             self.first_selected())
                 if len(reportactions) > 1 :
                     qr_menu = gtk.Menu()

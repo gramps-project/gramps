@@ -34,10 +34,11 @@ def run(database, document, person):
     Loops through the families that the person is a child in, and display
     the information about the other children.
     """
-    
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
+    stab = SimpleTable(sdb, sdoc)
+
     rel_class = relationship_class()
     rel_str_m = rel_class.get_sibling_relationship_string(
                             rel_class.NORM_SIB, person.get_gender(), 
@@ -52,12 +53,10 @@ def run(database, document, person):
     # display the title
     sdoc.title(_("Siblings of %s") % sdb.name(person))
     sdoc.paragraph("")
-    st = SimpleTable(sdb, sdoc)
-    st.columns(_("Sibling"), _("Gender"), _("Birth Date"), _("Type"))
+    stab.columns(_("Sibling"), _("Gender"), _("Birth Date"), _("Type"))
 
     # grab our current id, so we can filter the active person out
     # of the data
-
     gid = sdb.gid(person)
 
     # loop through each family in which the person is a child
@@ -72,10 +71,12 @@ def run(database, document, person):
                 if rel_str == rel_str_m or rel_str == rel_str_f or \
                         rel_str == rel_str_u :
                     rel_str = ''
-                st.row(sdb.name(child), sdb.gender(child), sdb.birth_date(child), 
-                       rel_str)
-    #st.sort(_("Sibling"))
-    st.write()
+                # pass row the child object to make link:
+                stab.row(child, 
+                         sdb.gender(child), 
+                         sdb.birth_date(child), 
+                         rel_str)
+    stab.write()
                     
 #------------------------------------------------------------------------
 #
