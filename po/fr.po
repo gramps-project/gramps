@@ -582,7 +582,7 @@ msgstr "Supprimer la base de données"
 #: ../src/DbManager.py:506
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Retrait de la version %{revision}s' de '%{database}s'"
+msgstr "Retrait de la version '%(revision)s' de '%(database)s'"
 
 #: ../src/DbManager.py:510
 msgid "Removing this version will prevent you from extracting it in the future."
@@ -12740,7 +12740,7 @@ msgstr "Il eut également une relation non mariée avec %(spouse)s à %(place)s%
 #: ../src/ReportBase/_ReportUtils.py:796
 #, python-format
 msgid "She also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Elle eut également une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s à %(place)s%(endnotes)s."
+msgstr "Elle eut également une relation non mariée avec %(spouse)s à %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:800
 #, python-format
@@ -12992,7 +12992,7 @@ msgstr "Il eut également une relation avec %(spouse)s à %(place)s%(endnotes)s.
 #: ../src/ReportBase/_ReportUtils.py:899
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Elle eut également une relation avec %(spouse)s à %(place)s%(endnotes)s%(endnotes)s."
+msgstr "Elle eut également une relation avec %(spouse)s à %(place)s%(endnotes)s%."
 
 #: ../src/ReportBase/_ReportUtils.py:903
 #, python-format
