@@ -1,5 +1,8 @@
+2007-12-22 Zdenek Hatas  <zdenek.hatas@gmail.com>
+	* cs.po: Translation update
+
 2007-12-21 Frederik De Richter <frederik.de.richter@pandora.be>
-    * nl.po: Translation update Fuzzy:98 Untranslated: 4
+	* nl.po: Translation update Fuzzy:98 Untranslated: 4
 
 2007-12-20 Jerome Rapinat  <romjerome@yahoo.fr>
         * POTFILES.in : add plugins/GVRelGraph.py reference
