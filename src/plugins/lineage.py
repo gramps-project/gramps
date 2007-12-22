@@ -32,7 +32,7 @@ Display a person's father or mother lineage
 #-------------------------------------------------------------------------
 
 import gen.lib
-from Simple import SimpleAccess, SimpleDoc
+from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
@@ -57,13 +57,10 @@ def run_father(database, document, person):
         " People in this lineage all share the same Y-chromosone."
         ))
     sd.paragraph("")
-    
-    sd.header2(__FMT %(_("Name Father"), _("Birth Date"), _("Death Date")))
-    sd.paragraph("")
-    
-    make_details(gen.lib.Person.MALE, person, sa, sd, database)
-    
-    sd.paragraph("")
+    stab = SimpleTable(sa, sd)
+    stab.columns(_("Name Father"), _("Birth Date"), _("Death Date"), _("Remark"))
+    make_details(gen.lib.Person.MALE, person, sa, sd, database, stab)
+    stab.write()
     sd.paragraph("")
     
     if person.gender == gen.lib.Person.FEMALE :
@@ -91,12 +88,10 @@ def run_mother(database, document, person):
         ))
     sd.paragraph("")
     
-    sd.header2(__FMT %(_("Name Mother"), _("Birth"), _("Death Date")))
-    sd.paragraph("")
-    
-    make_details(gen.lib.Person.FEMALE, person, sa, sd, database)
-    
-    sd.paragraph("")
+    stab = SimpleTable(sa, sd)
+    stab.columns(_("Name Mother"), _("Birth"), _("Death Date"), _("Remark"))
+    make_details(gen.lib.Person.FEMALE, person, sa, sd, database, stab)
+    stab.write()
     sd.paragraph("")
     
     if person.gender == gen.lib.Person.MALE :
@@ -107,7 +102,7 @@ def run_mother(database, document, person):
     
     make_details_child(gen.lib.Person.FEMALE, person, sa, sd, database)
     
-def make_details(gender, person, sa, sd, database) :
+def make_details(gender, person, sa, sd, database, stab) :
     """ Function writing one line of ancestry on the document in 
         direct lineage
     """
@@ -118,10 +113,10 @@ def make_details(gender, person, sa, sd, database) :
     rem_str = ""
     while person:
         person_handle = person.handle
-        sd.paragraph(__FMT % (sa.name(person), sa.birth_date(person),
-                            sa.death_date(person)))
-        if rem_str:
-            sd.paragraph(__FMT_REM % (_("Remark"), rem_str))
+        stab.row(person, sa.birth_date(person),
+                 sa.death_date(person), rem_str)
+        #if rem_str:
+        #    sd.paragraph(__FMT_REM % (_("Remark"), rem_str))
 
         personsprinted += 1
         if personsprinted > __MAX_GEN :

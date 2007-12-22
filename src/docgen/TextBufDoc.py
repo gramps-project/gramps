@@ -40,6 +40,7 @@ from PluginUtils import register_text_doc
 import const
 import Errors
 import Utils
+import ManagedWindow
 
 try:
     import pangocairo
@@ -59,18 +60,30 @@ def pixels(cm):
 LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
 _WIDTH_IN_CHARS = 72
 
-
-class DisplayBuf:
-    # FIXME: make a managed window now that we have uistate
+class DisplayBuf(ManagedWindow.ManagedWindow):
     def __init__(self, title, document):
-        g = gtk.glade.XML(const.GLADE_FILE,'scrollmsg')
-        self.top = g.get_widget('scrollmsg')
-        document.text_view = g.get_widget('msg')
+        self.title = title
+        ManagedWindow.ManagedWindow.__init__(self, document.uistate, [], 
+                                             document)
+        self.set_window(gtk.Dialog("",document.uistate.window,
+                                   gtk.DIALOG_DESTROY_WITH_PARENT,
+                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+                        None, title)
+        self.window.set_size_request(600,400)
+        scrolled_window = gtk.ScrolledWindow()
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        document.text_view = gtk.TextView()
         document.text_view.set_buffer(document.buffer)
-        g.get_widget('close').connect('clicked', self.close)
+        self.window.connect('response', self.close)
+        scrolled_window.add(document.text_view)
+        self.window.vbox.add(scrolled_window)
+        self.window.show_all()
         
-    def close(self, obj):
-        self.top.destroy()
+    def build_menu_names(self, obj):
+        return ('View', 'Quick View')
+
+    def get_title(self):
+        return self.title
 
 #------------------------------------------------------------------------
 #
@@ -138,7 +151,7 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
 
             self.tag_table.add(tag)
         self.buffer = gtk.TextBuffer(self.tag_table)
-        DisplayBuf('',self)
+        DisplayBuf('Quick View',self)
         return
 
     #--------------------------------------------------------------------

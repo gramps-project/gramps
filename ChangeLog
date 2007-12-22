@@ -1,3 +1,7 @@
+2007-12-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/lineage.py: moved to new quick view format
+	* src/docgen/TextBufDoc.py: fixed transient window issue
+
 2007-12-21 Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditEventRef.py: swap around delete/share buttons, bug #1477
 
