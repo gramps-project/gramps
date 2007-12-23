@@ -1,4 +1,10 @@
 2007-12-23  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/FanChart.py:
+	Add fields to translation strings. 
+
+2007-12-23  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/Makefile.am:
 	* src/plugins/Makefile.am: updates to makefiles
 

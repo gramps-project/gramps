@@ -404,8 +404,10 @@ class DetDescendantReport(Report):
             father_name = _("unknown")
 
         self.doc.start_paragraph("DDR-ChildTitle")
-        self.doc.write_text(_("Children of %s and %s") % 
-                            (mother_name,father_name))
+        self.doc.write_text(
+                        _("Children of %(mother_name)s and %(father_name)s") % 
+                            {'mother_name': mother_name,
+                             'father_name': father_name} )
         self.doc.end_paragraph()
 
         cnt = 1

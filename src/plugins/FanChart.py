@@ -174,8 +174,9 @@ class FanChart(Report):
             block_size = min_xy / (self.max_generations * 2 - max_circular)
         else:
             block_size = min_xy / self.max_generations
-        self.doc.center_text ('t', _('%d Generation Fan Chart for %s') % (self.max_generations, n),
-                             self.doc.get_usable_width() / 2, 0)
+        text = _("%(generations)d Generation Fan Chart for %(person)s" % 
+                 { 'generations' : self.max_generations, 'person' : n } ) 
+        self.doc.center_text ('t', text, self.doc.get_usable_width() / 2, 0)
 
         for generation in range (0, min (max_circular, self.max_generations)):
             self.draw_circular (x, y, start_angle, max_angle, block_size, generation)
