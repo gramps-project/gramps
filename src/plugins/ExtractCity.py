@@ -51,9 +51,9 @@ import GrampsDisplay
 from PluginUtils import Tool, register_tool
 import Utils
 
-CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))")
-CITY_STATE = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)")
-STATE_ZIP = re.compile("(.+)\s+([\d-]+)")
+CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
+CITY_STATE = re.compile("((?:\w|\s)+(?:-(?:\w|\s)+)*),((?:\w|\s)+)", re.UNICODE)
+STATE_ZIP = re.compile("(.+)\s+([\d-]+)", re.UNICODE)
 
 COUNTRY = ( _(u"United States of America"), _(u"Canada"), _(u"France"))
 
@@ -91,7 +91,7 @@ STATE_MAP = {
     u"DC"            : (u"District of Columbia" , 0), 
     u"D.C."          : (u"District of Columbia" , 0), 
     u"DC."           : (u"District of Columbia" , 0), 
-    u"DISTRICT OF COLMBIA" : (u"District of Columbia" , 0), 
+    u"DISTRICT OF COLUMBIA" : (u"District of Columbia" , 0), 
     u"FL"            : (u"Florida" , 0), 
     u"FL."           : (u"Florida" , 0), 
     u"FLA"           : (u"Florida" , 0), 
@@ -419,7 +419,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 if match:
                     data = match.groups()
                     city = data[0] 
-                    state = data[2]
+                    state = data[1]
                     postal = None
 
                     if state:

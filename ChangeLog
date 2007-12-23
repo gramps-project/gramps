@@ -1,3 +1,7 @@
+2007-12-23 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/plugins/ExtractCity.py: Fix #0001160: Regular expressions, 
+	dash/separator and non-ASCII characters on ExtractCity
+
 2007-12-23  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/DetAncestralReport.py:
 	* src/plugins/DetDescendantReport.py:
