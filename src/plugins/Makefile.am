@@ -7,7 +7,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
 pkgdata_PYTHON = \
 	all_events.py\
-        all_relations.py\
+	all_relations.py\
 	AncestorChart.py\
 	AncestorReport.py\
 	BookReport.py\
@@ -38,6 +38,7 @@ pkgdata_PYTHON = \
 	FindDupes.py\
 	GraphViz.py\
 	GVHourGlass.py\
+	GVRelGraph.py\
 	ImportCSV.py\
 	ImportGeneWeb.py\
 	ImportvCard.py\
@@ -56,7 +57,7 @@ pkgdata_PYTHON = \
 	RebuildRefMap.py\
 	RelCalc.py\
 	rel_cs.py\
-        rel_da.py\
+	rel_da.py\
 	rel_de.py\
 	rel_es.py\
 	rel_fi.py\
@@ -81,16 +82,12 @@ pkgdata_PYTHON = \
 	Verify.py\
 	WebCal.py
 	WriteFtree.py\
-        WriteGeneWeb.py\
+	WriteGeneWeb.py\
 	WritePkg.py\
 	WriteCD.py
 
-#        Ancestors.py\
 #        DateParserDisplayTest.py\
-#        DesGraph.py\
 #        DumpGenderStats.py\
-#        FtmStyleAncestors.py\
-#        FtmStyleDescendants.py\
 #        PHPGedViewConnector.py\
 #        TestcaseGenerator.py
 

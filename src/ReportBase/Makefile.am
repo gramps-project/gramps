@@ -12,7 +12,7 @@ pkgdata_PYTHON = \
 	_DrawReportDialog.py\
 	_Endnotes.py\
 	_FileEntry.py\
-        _GraphvizReportDialog.py\
+	_GraphvizReportDialog.py\
 	__init__.py\
 	_PaperMenu.py\
 	_PrintTools.py\

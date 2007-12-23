@@ -1,3 +1,7 @@
+2007-12-23  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/Makefile.am:
+	* src/plugins/Makefile.am: updates to makefiles
+
 2007-12-22  Stéphane Charette  <stephanecharette@gmail.com>
 	* src/ReportBase/_GraphvizReportDialog.py:
 	* src/PluginUtils/__init__.py:
