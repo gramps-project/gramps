@@ -72,7 +72,17 @@ class Citation:
         @return: The key of the added reference among all the references.
         @rtype: char
         """
-        key = string.lowercase[ len(self.__ref_list) ]
+        first_letter = ''
+        second_letter = ''
+        letter_count = len(string.lowercase)
+        ref_count = len(self.__ref_list)
+        if ref_count > letter_count:
+            # If there are more than 26 references, we need to use two 
+            # characters to uniquely identify them all.
+            first_letter = string.lowercase[ ref_count / letter_count ]
+        second_letter = string.lowercase[ ref_count % letter_count ]
+        
+        key = first_letter + second_letter
         self.__ref_list.append((key,source_ref))
         return key
 
