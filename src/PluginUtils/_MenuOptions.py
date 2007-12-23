@@ -212,6 +212,7 @@ class NumberOption(Option):
         """
         value = self.get_value()
         adj = gtk.Adjustment(1,self.get_min(),self.get_max(),1)
+
         self.gobj = gtk.SpinButton(adj)
         self.gobj.set_value(value)
 
@@ -221,6 +222,42 @@ class NumberOption(Option):
         """
         return int(self.gobj.get_value_as_int())
                 
+
+#-------------------------------------------------------------------------
+#
+# FloatOption class
+#
+#-------------------------------------------------------------------------
+class FloatOption(NumberOption):
+    """
+    This class performs like NumberOption, but allows for float values
+    for the minimum/maximum/increment.
+    """
+    def __init__(self, label, value, min, max):
+        # Someone who knows python better than I will probably
+        # want to add a parameter for the caller to specify how
+        # many decimal points are needed.
+        #
+        # At the time this function was written, the only code
+        # that needed this class required 2 decimals.
+        NumberOption.__init__(self, label, value, min, max)
+
+    def make_gui_obj(self, gtk, dialog):
+        """
+        Add a FloatOption to the dialog.
+        """
+        value = self.get_value()
+        adj = gtk.Adjustment(value, lower=self.get_min(), upper=self.get_max(), step_incr=0.01)
+
+        self.gobj = gtk.SpinButton(adjustment=adj, digits=2)
+        self.gobj.set_value(value)
+
+    def parse(self):
+        """
+        Parse the object and return.
+        """
+        return float(self.gobj.get_value())
+
 
 #-------------------------------------------------------------------------
 #

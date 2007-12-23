@@ -1,3 +1,10 @@
+2007-12-22  Stéphane Charette  <stephanecharette@gmail.com>
+	* src/ReportBase/_GraphvizReportDialog.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py:
+	Work in progress to add some additional GraphViz options that can be
+	used by any GraphViz-based plugin.
+
 2007-12-21  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/lineage.py: moved to new quick view format
 	* src/docgen/TextBufDoc.py: fixed transient window issue

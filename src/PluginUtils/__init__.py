@@ -28,7 +28,7 @@
 # the list as PluginUtils.PluginMgr, or use a function that returns the pointer
 # of the list.
 from _MenuOptions import MenuOptions, \
-    NumberOption, BooleanOption, TextOption, \
+    NumberOption, FloatOption, BooleanOption, TextOption, \
     EnumeratedListOption, FilterListOption, StringOption
 from _PluginMgr import \
      register_export, register_import, \

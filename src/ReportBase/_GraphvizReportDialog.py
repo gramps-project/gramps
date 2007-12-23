@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id:  $
+# $Id$
 
 #------------------------------------------------------------------------
 #
@@ -48,7 +48,7 @@ import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
-from PluginUtils import NumberOption, EnumeratedListOption, TextOption
+from PluginUtils import NumberOption, FloatOption, EnumeratedListOption, TextOption, BooleanOption
 
 #-------------------------------------------------------------------------------
 #
@@ -108,26 +108,33 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
     """
     def __init__(self,options,paper_style):
         BaseDoc.BaseDoc.__init__(self,None,paper_style,None)
-        
-        self.options = options.handler.options_dict
-        self.dot = StringIO()
-        self.paper = paper_style
-        
-        self.fontfamily = _FONTS[ self.options['font_family'] ]['value']
-        self.fontsize = self.options['font_size']
-        self.rankdir = _RANKDIR[ self.options['rank_dir'] ]['value']
-        self.pagedir = _PAGEDIR[ self.options['page_dir'] ]['value']
-        self.hpages = self.options['h_pages']
-        self.vpages = self.options['v_pages']
-        self.ratio = _RATIO[ self.options['ratio'] ]['value']
-        self.noteloc = self.options['noteloc']
-        self.notesize = self.options['notesize']
-        self.note = self.options['note']
-        
-        paper_size = paper_style.get_size()
-        pheight = paper_size.get_height_inches()
-        pwidth = paper_size.get_width_inches()
-        
+
+        self.options        = options.handler.options_dict
+        self.dot            = StringIO()
+        self.paper          = paper_style
+
+        self.dpi            =           self.options['dpi'          ]
+        self.fontfamily     = _FONTS[   self.options['font_family'  ]]['value']
+        self.fontsize       =           self.options['font_size'    ]
+        self.hpages         =           self.options['h_pages'      ]
+        self.nodesep        =           self.options['nodesep'      ]
+        self.noteloc        =           self.options['noteloc'      ]
+        self.notesize       =           self.options['notesize'     ]
+        self.note           =           self.options['note'         ]
+        self.pagedir        = _PAGEDIR[ self.options['page_dir'     ]]['value']
+        self.rankdir        = _RANKDIR[ self.options['rank_dir'     ]]['value']
+        self.ranksep        =           self.options['ranksep'      ]
+        self.ratio          = _RATIO[   self.options['ratio'        ]]['value']
+        self.usesubgraphs   =           self.options['usesubgraphs' ]
+        self.vpages         =           self.options['v_pages'      ]
+
+        paper_size          = paper_style.get_size()
+        pheight             = paper_size.get_height_inches()
+        pwidth              = paper_size.get_width_inches()
+
+        if self.fontfamily == "":
+            self.fontfamily = "FreeSans"
+
         # graph size
         if self.paper.get_orientation() == BaseDoc.PAPER_LANDSCAPE:
             rotate = 90
@@ -150,18 +157,33 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         sizew = sizew * self.hpages         
         sizeh = sizeh * self.vpages
                       
-        self.dot.write( 'digraph GRAMPS_graph { \n' )
-        self.dot.write( '  bgcolor=white; \n' )
-        self.dot.write( '  center=1; \n' )
-        self.dot.write( '  ratio=%s; \n' % self.ratio )
-        self.dot.write( '  rankdir="%s"; \n' % self.rankdir ) 
-        self.dot.write( '  mclimit=2.0; \n' )
-        self.dot.write( '  pagedir="%s"; \n' % self.pagedir )
-        self.dot.write( '  page="%3.2f,%3.2f"; \n' % ( pwidth, pheight ) )
-        self.dot.write( '  size="%3.2f,%3.2f"; \n' % ( sizew, sizeh ) )
-        self.dot.write( '  rotate=%d; \n' % rotate )
-        self.dot.write( '  nodesep=0.25; \n'  )
-        
+        self.dot.write( 'digraph GRAMPS_graph\n'            )
+        self.dot.write( '{\n'                               )
+        self.dot.write( '  bgcolor=white;\n'                )
+        self.dot.write( '  center="true"; \n'               )
+        self.dot.write( '  charset="iso-8859-1";\n'         )
+        self.dot.write( '  concentrate="false";\n'          )
+        self.dot.write( '  dpi="%d";\n'                     % self.dpi          )
+        self.dot.write( '  graph [fontsize=%d];\n'          % self.fontsize     )
+        self.dot.write( '  mclimit="99";\n'                 )
+        self.dot.write( '  nodesep="%.2f";\n'               % self.nodesep      )
+        self.dot.write( '  outputorder="edgesfirst";\n'     )
+        self.dot.write( '  page="%3.2f,%3.2f"; \n'          % (pwidth, pheight) )
+        self.dot.write( '  pagedir="%s"; \n'                % self.pagedir      )
+        self.dot.write( '  rankdir="%s"; \n'                % self.rankdir      )
+        self.dot.write( '  ranksep="%.2f";\n'               % self.ranksep      )
+        self.dot.write( '  ratio="%s"; \n'                  % self.ratio        )
+        self.dot.write( '  rotate="%d"; \n'                 % rotate            )
+        self.dot.write( '  searchsize="100";\n'             )
+        self.dot.write( '  size="%3.2f,%3.2f"; \n'          % (sizew, sizeh)    )
+        self.dot.write( '  splines="true";\n'               )
+        self.dot.write( '\n'                                )
+#        self.dot.write( '  edge [len=0.5 style=solid arrowhead=none arrowtail=normal fontsize=12];\n')
+#        self.dot.write( '  node [style=filled fontname="FreeSans" fontsize=12];\n'   )
+        self.dot.write( '  edge [len=0.5 style=solid arrowhead=none arrowtail=normal fontsize=%d];\n' % self.fontsize )
+        self.dot.write( '  node [style=filled fontname="%s" fontsize=%d];\n' % ( self.fontfamily, self.fontsize ) )
+        self.dot.write( '\n'                                                         )
+
     def open(self, filename):
         self.filename = os.path.normpath(os.path.abspath(filename))
 
@@ -189,27 +211,22 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         Implementes BaseDoc.GVDoc.add_node().
         """
         line  = '  "%s" ['               % id
-        line += 'label="%s", '           % label
+        line += 'label="%s"'             % label
         
         if shape:
-            line += 'shape="%s", '       % shape
+            line += ', shape="%s"'       % shape
             
         if color:
-            line += 'color="%s", '       % color
+            line += ', color="%s"'       % color
             
         if fillcolor:
-            line += 'fillcolor="%s", '   % fillcolor
-        
-        if self.fontfamily:
-            line += 'fontname="%s", '    % self.fontfamily
-
-        line += 'fontsize="%0.1f", '     % self.fontsize
+            line += ', fillcolor="%s"'   % fillcolor
         
         if style:
-            line += 'style="%s", '         % style
+            line += ', style="%s"'         % style
         
         if url:
-            line += 'URL="%s", '           % url
+            line += ', URL="%s"'           % url
 
         line += '];\n'
 
@@ -221,17 +238,21 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         
         Implementes BaseDoc.GVDoc.add_link().
         """
-        self.dot.write('  "%s" -> "%s" ' % (id1, id2))
+        self.dot.write('  "%s" -> "%s"' % (id1, id2))
         
         if style or head or tail:
-            self.dot.write('[')
+            self.dot.write(' [')
             
             if style:
-                self.dot.write('style=%s, ' % style)
+                self.dot.write('style=%s' % style)
             if head:
-                self.dot.write('arrowhead=%s, ' % head)
+                if style:
+                    self.dot.write(', ')
+                self.dot.write('arrowhead=%s' % head)
             if tail:
-                self.dot.write('arrowtail=%s, ' % tail)
+                if style or head:
+                    self.dot.write(', ')
+                self.dot.write('arrowtail=%s' % tail)
                 
             self.dot.write(']')
             
@@ -625,7 +646,7 @@ class GraphvizReportDialog(ReportDialog):
                                 "FreeSans is available from: "
                                 "http://www.nongnu.org/freefont/"))
         self.options.add_menu_option(category,"font_family",font_family)
-        
+
         font_size = NumberOption(_("Font size"),14,8,128)
         font_size.set_help(_("The font size, in points."))
         self.options.add_menu_option(category,"font_size",font_size)
@@ -638,7 +659,30 @@ class GraphvizReportDialog(ReportDialog):
         rank_dir.set_help(_("Whether graph goes from top to bottom "
                             "or left to right."))
         self.options.add_menu_option(category,"rank_dir",rank_dir)
-        
+
+        dpi = NumberOption(_("DPI"), 75, 20, 1200)
+        dpi.set_help(_( "Dots per inch.  When creating images such as "
+                        ".gif or .png files for the web, try numbers "
+                        "such as 75 or 100 DPI.  For desktop printing, "
+                        "try 300 or 600 DPI."))
+        self.options.add_menu_option(category, "dpi", dpi)
+
+        nodesep = FloatOption(_("Node spacing"), 0.20, 0.01, 5.00)
+        nodesep.set_help(_( "The minimum amount of free space, in inches, "
+                            "between individual nodes.  For vertical graphs, "
+                            "this corresponds to spacing between columns.  "
+                            "For horizontal graphs, this corresponds to "
+                            "spacing between rows."))
+        self.options.add_menu_option(category, "nodesep", nodesep)
+
+        ranksep = FloatOption(_("Rank spacing"), 0.20, 0.01, 5.00)
+        ranksep.set_help(_( "The minimum amount of free space, in inches, "
+                            "between ranks.  For vertical graphs, this "
+                            "corresponds to spacing between rows.  For "
+                            "horizontal graphs, this corresponds to spacing "
+                            "between columns."))
+        self.options.add_menu_option(category, "ranksep", ranksep)
+
         aspect_ratio = EnumeratedListOption(_("Aspect ratio"), 0)
         index = 0
         for item in _RATIO:
@@ -672,7 +716,14 @@ class GraphvizReportDialog(ReportDialog):
                            "array of pages. This controls the number "
                            "pages in the array vertically."))
         self.options.add_menu_option(category,"v_pages",v_pages)
-        
+
+        usesubgraphs = BooleanOption(_('Use subgraphs'), False)
+        usesubgraphs.set_help(_("Subgraphs can help GraphViz position "
+                                "certain linked nodes closer together, "
+                                "but with non-trivial graphs will result "
+                                "in longer lines and larger graphs."))
+        self.options.add_menu_option(category, "usesubgraphs", usesubgraphs)
+
         ################################
         category = _("Notes")
         ################################
