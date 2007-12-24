@@ -186,6 +186,8 @@ class PaperFrame(gtk.HBox):
         self.paper_table.show_all()
         self.add(self.paper_table)
 
+        self.size_changed(None)
+
     def size_changed(self, obj):
         """Paper size combobox 'changed' callback."""
         size, name = self.get_paper_size()
