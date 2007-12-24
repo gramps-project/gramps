@@ -293,6 +293,7 @@ class ShellGadget(Gadget):
 class PythonGadget(Gadget):
     def init(self):
         self.env = {"dbstate": self.gui.dbstate,
+                    "uistate": self.gui.uistate,
                     "self": self,
                     }
         # GUI setup:
@@ -316,8 +317,9 @@ class PythonGadget(Gadget):
             if line.startswith("> "):
                 self.append_text("\n")
                 line = line[2:]
-            # update dbstate, in case in changed:
+            # update states, in case of change:
             self.env["dbstate"] = self.gui.dbstate
+            self.env["uistate"] = self.gui.uistate
             _retval = None
             if "_retval" in self.env:
                 del self.env["_retval"]

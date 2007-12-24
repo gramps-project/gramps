@@ -55,10 +55,10 @@ def get_gadget_opts(name, opts):
             return my_data
     return {}
 
-def make_requested_gadget(viewpage, name, opts, dbstate):
+def make_requested_gadget(viewpage, name, opts, dbstate, uistate):
     for data in AVAILABLE_GADGETS:
         if data.get("name", None) == name:
-            gui = GuiGadget(viewpage, dbstate, **opts)
+            gui = GuiGadget(viewpage, dbstate, uistate, **opts)
             if opts.get("content", None):
                 opts["content"](gui)
             return gui
@@ -161,9 +161,10 @@ class GuiGadget:
     TARGET_TYPE_FRAME = 80
     LOCAL_DRAG_TYPE   = 'GADGET'
     LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
-    def __init__(self, viewpage, dbstate, title, **kwargs):
+    def __init__(self, viewpage, dbstate, uistate, title, **kwargs):
         self.viewpage = viewpage
         self.dbstate = dbstate
+        self.uistate = uistate
         self.title = title
         ########## Set defaults
         self.expand = kwargs.get("expand", False)
@@ -304,7 +305,8 @@ class MyGrampsView(PageView.PageView):
                 cnt += 1
             all_opts["title"] = unique
             if all_opts["title"] not in self.gadget_map:
-                g = make_requested_gadget(self, name, all_opts, self.dbstate)
+                g = make_requested_gadget(self, name, all_opts, 
+                                          self.dbstate, self.uistate)
                 if g:
                     self.gadget_map[all_opts["title"]] = g
                     self.frame_map[str(g.mainframe)] = g
