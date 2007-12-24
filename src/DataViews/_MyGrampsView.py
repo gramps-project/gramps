@@ -139,6 +139,12 @@ class Gadget(object):
             return False
 
     def append_text(self, text):
+        end = self.gui.buffer.get_end_iter()
+        mark = self.gui.buffer.create_mark(None, end, True)
+        self.gui.buffer.insert(end, text)
+        self.gui.textview.scroll_to_mark(mark, 0.0, True, 0, 0)
+
+    def insert_text(self, text):
         self.gui.buffer.insert_at_cursor(text)
 
     def clear_text(self):
@@ -283,6 +289,7 @@ class MyGrampsView(PageView.PageView):
                              #('Families Gadget', {"title": "My Peeps"}),
                              ('Hello World Gadget', {}),
                              ('Log Gadget', {}),
+                             ('Shell Gadget', {}),
                              #('Events Gadget', {}),
                              ]:
             all_opts = get_gadget_opts(name, opts)

@@ -2,6 +2,8 @@ from DataViews import register, Gadget
 from BasicUtils import name_displayer
 import DateHandler
 import gen.lib
+import os
+import time
 
 #
 # Hello World, in Gramps Gadgets
@@ -20,12 +22,12 @@ def init(gui):
 register(type="gadget", # case in-senstitive keyword "gadget"
          name="Hello World Gadget", # gadget name, unique among gadgets
          height = 20,
-         content = init, # function/class; takes state and container
-         title="Sample Gadget", # default title, user changeable, unique
+         content = init, # function/class; takes guigadget
+         title="Sample Gadget", # default title, user changeable
          )
 
 # There are a number of arguments that you can provide, including:
-# name, height, content, title, expand, minimized
+# name, height, content, title, expand, state
 
 # Hereare a couple of other examples, with their register lines at the
 # bottom:
@@ -225,6 +227,66 @@ class StatsGadget(Gadget):
         self.set_text(text)
 
 
+class ShellGadget(Gadget):
+    def init(self):
+        from os import O_NONBLOCK
+        from subprocess import Popen, PIPE
+        try:
+            from fcntl import fcntl, F_SETFL, F_GETFL
+            unix = True
+        except:
+            unix = False
+        if unix:
+            command = ["/bin/bash"]
+        else:
+            command = ["cmd.exe"]
+        self.pipe = Popen(command, shell=False, bufsize=0, 
+                          stdin=PIPE, stdout=PIPE, stderr=PIPE, 
+                          close_fds=True)
+        if unix:
+            for fd in (self.pipe.stdout.fileno(), 
+                       self.pipe.stderr.fileno()):
+                fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK)
+        # GUI setup:
+        self.gui.textview.set_editable(True)
+        self.set_text("%s $ " % command[0])
+        self.gui.textview.connect('key-press-event', self.on_enter)
+
+    def write(self, text):
+        self.pipe.stdin.write("%s\n" % text)
+
+    def read(self, timeout=0.5,buffer_size=1024):
+        from errno import EAGAIN
+        end_time = time.time() + timeout
+        output = ""
+        while time.time() < end_time:
+            try:
+                output += self.pipe.stdout.read(buffer_size)
+            except IOError, e:
+                if e.errno != EAGAIN:
+                    raise
+        return output
+
+    def on_enter(self, widget, event):
+        if event.keyval == 65293: # enter, where to get this?
+            # get line, "$ ls -al "
+            buffer = widget.get_buffer()
+            line_cnt = buffer.get_line_count()
+            start = buffer.get_iter_at_line(line_cnt - 1)
+            end = buffer.get_end_iter()
+            line = buffer.get_text(start, end)
+            if line.startswith("$ "):
+                self.append_text("\n")
+                line = line[2:]
+                self.write(line)
+                output = self.read()
+                self.append_text(output)
+                self.append_text("$ ")
+            else:
+                self.append_text("\n$ ")
+            return True
+        return False
+
 register(type="gadget", 
          name="Families Gadget", 
          height=300,
@@ -258,5 +320,12 @@ register(type="gadget",
          height=230,
          content = LogGadget,
          title="Session Log",
+         )
+
+register(type="gadget", 
+         name="Shell Gadget", 
+         height=300,
+         content = ShellGadget,
+         title="Shell",
          )
 
