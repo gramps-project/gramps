@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-20 14:53+0100\n"
-"PO-Revision-Date: 2007-12-20 15:02+0100\n"
+"POT-Creation-Date: 2007-12-23 10:14-0800\n"
+"PO-Revision-Date: 2007-12-24 12:23+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -168,21 +168,21 @@ msgstr "Édition des signets"
 #. Add column with object name
 #: ../src/Bookmarks.py:206
 #: ../src/GrampsCfg.py:172
-#: ../src/ScratchPad.py:172
-#: ../src/ScratchPad.py:244
-#: ../src/ScratchPad.py:354
-#: ../src/ScratchPad.py:410
-#: ../src/ScratchPad.py:443
-#: ../src/ScratchPad.py:504
-#: ../src/ScratchPad.py:535
-#: ../src/ScratchPad.py:552
-#: ../src/ScratchPad.py:553
-#: ../src/ScratchPad.py:572
-#: ../src/ScratchPad.py:622
-#: ../src/ScratchPad.py:655
-#: ../src/ScratchPad.py:709
-#: ../src/ScratchPad.py:720
-#: ../src/ScratchPad.py:799
+#: ../src/ScratchPad.py:185
+#: ../src/ScratchPad.py:257
+#: ../src/ScratchPad.py:367
+#: ../src/ScratchPad.py:423
+#: ../src/ScratchPad.py:456
+#: ../src/ScratchPad.py:517
+#: ../src/ScratchPad.py:548
+#: ../src/ScratchPad.py:565
+#: ../src/ScratchPad.py:566
+#: ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:635
+#: ../src/ScratchPad.py:668
+#: ../src/ScratchPad.py:722
+#: ../src/ScratchPad.py:733
+#: ../src/ScratchPad.py:812
 #: ../src/ToolTips.py:173
 #: ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210
@@ -195,7 +195,7 @@ msgstr "Édition des signets"
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 #: ../src/Editors/_EditFamily.py:97
-#: ../src/Editors/_EditName.py:225
+#: ../src/Editors/_EditName.py:274
 #: ../src/Selectors/_SelectPerson.py:48
 #: ../src/Selectors/_SelectPerson.py:120
 #: ../src/Selectors/_SelectPerson.py:126
@@ -637,7 +637,7 @@ msgid "Could not make database directory: "
 msgstr "Impossible de créer le répertoire de la base de données :"
 
 #: ../src/DbManager.py:851
-#: ../src/ScratchPad.py:80
+#: ../src/ScratchPad.py:93
 #: ../src/DataViews/_RelationView.py:389
 #: ../src/DataViews/_RelationView.py:830
 #: ../src/DataViews/_RelationView.py:868
@@ -924,6 +924,15 @@ msgid "Preferences"
 msgstr "Préférences"
 
 #: ../src/GrampsCfg.py:144
+#: ../src/Editors/_EditEventRef.py:88
+#: ../src/Editors/_EditEventRef.py:94
+#: ../src/Editors/_EditMediaRef.py:83
+#: ../src/Editors/_EditMediaRef.py:89
+#: ../src/Editors/_EditName.py:123
+#: ../src/Editors/_EditRepoRef.py:82
+#: ../src/Editors/_EditRepoRef.py:88
+#: ../src/Editors/_EditSourceRef.py:77
+#: ../src/Editors/_EditSourceRef.py:83
 #: ../src/gen/lib/notetype.py:80
 #: ../src/glade/gramps.glade.h:76
 msgid "General"
@@ -952,8 +961,8 @@ msgstr "Couleurs du marqueur"
 
 #: ../src/GrampsCfg.py:173
 #: ../src/gramps_main.py:98
-#: ../src/ScratchPad.py:138
-#: ../src/ScratchPad.py:155
+#: ../src/ScratchPad.py:151
+#: ../src/ScratchPad.py:168
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
 #: ../src/Editors/_EditAddress.py:147
 #: ../src/plugins/FamilyGroup.py:295
@@ -1019,13 +1028,13 @@ msgstr "Individu"
 #. get the family events
 #: ../src/GrampsCfg.py:188
 #: ../src/gramps_main.py:107
-#: ../src/ScratchPad.py:556
+#: ../src/ScratchPad.py:569
 #: ../src/ToolTips.py:228
 #: ../src/DataViews/_RelationView.py:454
 #: ../src/DataViews/_RelationView.py:1115
 #: ../src/DataViews/_RelationView.py:1139
 #: ../src/Editors/_EditFamily.py:471
-#: ../src/plugins/all_events.py:80
+#: ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266
 #: ../src/gen/lib/eventroletype.py:57
 #: ../src/FilterEditor/_EditRule.py:269
@@ -1033,9 +1042,9 @@ msgid "Family"
 msgstr "Famille"
 
 #: ../src/GrampsCfg.py:189
-#: ../src/ScratchPad.py:234
-#: ../src/ScratchPad.py:264
-#: ../src/ScratchPad.py:342
+#: ../src/ScratchPad.py:247
+#: ../src/ScratchPad.py:277
+#: ../src/ScratchPad.py:355
 #: ../src/DataViews/_EventView.py:75
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -1054,15 +1063,15 @@ msgid "Source"
 msgstr "Source"
 
 #: ../src/GrampsCfg.py:191
-#: ../src/ScratchPad.py:606
 #: ../src/ScratchPad.py:619
+#: ../src/ScratchPad.py:632
 #: ../src/Editors/_EditPerson.py:442
 #: ../src/FilterEditor/_EditRule.py:273
 msgid "Media Object"
 msgstr "Objet média"
 
 #: ../src/GrampsCfg.py:192
-#: ../src/ScratchPad.py:231
+#: ../src/ScratchPad.py:244
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:123
 #: ../src/FilterEditor/_EditRule.py:270
 msgid "Event"
@@ -1158,7 +1167,7 @@ msgstr "Noms de famille"
 #: ../src/GrampsCfg.py:341
 #: ../src/GrampsCfg.py:342
 #: ../src/GrampsCfg.py:343
-#: ../src/ScratchPad.py:555
+#: ../src/ScratchPad.py:568
 #: ../src/Utils.py:1100
 #: ../src/BasicUtils/_NameDisplay.py:107
 msgid "Given"
@@ -1170,7 +1179,7 @@ msgstr "Prénom"
 #: ../src/GrampsCfg.py:335
 #: ../src/GrampsCfg.py:337
 #: ../src/GrampsCfg.py:342
-#: ../src/ScratchPad.py:560
+#: ../src/ScratchPad.py:573
 #: ../src/Utils.py:1103
 msgid "Suffix"
 msgstr "Suffixe"
@@ -1205,7 +1214,7 @@ msgid "SURNAME"
 msgstr "NOM DE FAMMILE"
 
 #: ../src/GrampsCfg.py:336
-#: ../src/ScratchPad.py:557
+#: ../src/ScratchPad.py:570
 #: ../src/Utils.py:1104
 msgid "Patronymic"
 msgstr "Patronyme"
@@ -1235,7 +1244,7 @@ msgstr "Format du nom"
 
 #: ../src/GrampsCfg.py:610
 #: ../src/DataViews/_RelationView.py:326
-#: ../src/DisplayTabs/_ButtonTab.py:64
+#: ../src/DisplayTabs/_ButtonTab.py:69
 #: ../src/plugins/BookReport.py:867
 msgid "Edit"
 msgstr "Éditer"
@@ -1355,8 +1364,8 @@ msgid "Family Trees"
 msgstr "Arbres familiaux"
 
 #: ../src/gramps_main.py:99
-#: ../src/ScratchPad.py:389
-#: ../src/ScratchPad.py:397
+#: ../src/ScratchPad.py:402
+#: ../src/ScratchPad.py:410
 #: ../src/Editors/_EditAttribute.py:135
 msgid "Attribute"
 msgstr "Attribut"
@@ -1366,9 +1375,9 @@ msgid "Add Bookmark"
 msgstr "Ajouter un signet"
 
 #: ../src/gramps_main.py:104
-#: ../src/ScratchPad.py:156
-#: ../src/ScratchPad.py:233
-#: ../src/ScratchPad.py:341
+#: ../src/ScratchPad.py:169
+#: ../src/ScratchPad.py:246
+#: ../src/ScratchPad.py:354
 #: ../src/DataViews/_EventView.py:74
 #: ../src/DataViews/_MediaView.py:88
 #: ../src/DisplayTabs/_AddrEmbedList.py:60
@@ -1429,7 +1438,7 @@ msgstr "Média"
 #: ../src/plugins/GraphViz.py:986
 #: ../src/plugins/IndivComplete.py:168
 #: ../src/plugins/MarkerReport.py:371
-#: ../src/ReportBase/_GraphvizReportDialog.py:676
+#: ../src/ReportBase/_GraphvizReportDialog.py:728
 msgid "Notes"
 msgstr "Notes"
 
@@ -1487,9 +1496,9 @@ msgid "Repositories"
 msgstr "Dépôts"
 
 #: ../src/gramps_main.py:123
-#: ../src/ScratchPad.py:171
-#: ../src/ScratchPad.py:409
-#: ../src/ScratchPad.py:442
+#: ../src/ScratchPad.py:184
+#: ../src/ScratchPad.py:422
+#: ../src/ScratchPad.py:455
 #: ../src/DataViews/_SourceView.py:97
 #: ../src/DisplayTabs/_SourceEmbedList.py:69
 #: ../src/plugins/IndivComplete.py:367
@@ -1681,8 +1690,8 @@ msgid "No note given, click button to select one"
 msgstr "Aucune note choisie, cliquez sur le bouton pour en sélectionner une"
 
 #: ../src/GrampsWidgets.py:1033
-#: ../src/Editors/_EditNote.py:301
-#: ../src/Editors/_EditNote.py:431
+#: ../src/Editors/_EditNote.py:354
+#: ../src/Editors/_EditNote.py:484
 msgid "Edit Note"
 msgstr "Éditer la note"
 
@@ -1843,24 +1852,24 @@ msgstr "É_diter"
 msgid "_Filter"
 msgstr "_Filtre"
 
-#: ../src/PageView.py:1003
-#: ../src/DataViews/_PersonView.py:903
+#: ../src/PageView.py:1004
+#: ../src/DataViews/_PersonView.py:904
 msgid "Export view as spreadsheet"
 msgstr "Exporter l'affichage comme tableur"
 
 # une note
-#: ../src/PageView.py:1011
-#: ../src/DataViews/_PersonView.py:911
+#: ../src/PageView.py:1012
+#: ../src/DataViews/_PersonView.py:912
 msgid "Format:"
 msgstr "Format :"
 
-#: ../src/PageView.py:1016
-#: ../src/DataViews/_PersonView.py:916
+#: ../src/PageView.py:1017
+#: ../src/DataViews/_PersonView.py:917
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1017
-#: ../src/DataViews/_PersonView.py:917
+#: ../src/PageView.py:1018
+#: ../src/DataViews/_PersonView.py:918
 msgid "Open Document Spreadsheet"
 msgstr "Classeur Open Document"
 
@@ -2115,35 +2124,36 @@ msgstr "Réorganiser les relations"
 msgid "Reorder Relationships: %s"
 msgstr "Réorganiser les relations : %s"
 
-#: ../src/ScratchPad.py:157
-#: ../src/ScratchPad.py:184
-#: ../src/ScratchPad.py:196
+#: ../src/ScratchPad.py:170
+#: ../src/ScratchPad.py:197
+#: ../src/ScratchPad.py:209
 #: ../src/ToolTips.py:142
+#: ../src/Editors/_EditPlace.py:124
 msgid "Location"
 msgstr "Endroit"
 
-#: ../src/ScratchPad.py:163
-#: ../src/ScratchPad.py:201
+#: ../src/ScratchPad.py:176
+#: ../src/ScratchPad.py:214
 #: ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Téléphone"
 
-#: ../src/ScratchPad.py:213
+#: ../src/ScratchPad.py:226
 msgid "Event Link"
 msgstr "Lien événement"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:232
-#: ../src/ScratchPad.py:340
-#: ../src/ScratchPad.py:398
-#: ../src/ScratchPad.py:431
-#: ../src/ScratchPad.py:561
-#: ../src/ScratchPad.py:621
-#: ../src/ScratchPad.py:654
-#: ../src/ScratchPad.py:800
-#: ../src/ScratchPad.py:872
-#: ../src/ScratchPad.py:878
+#: ../src/ScratchPad.py:245
+#: ../src/ScratchPad.py:353
+#: ../src/ScratchPad.py:411
+#: ../src/ScratchPad.py:444
+#: ../src/ScratchPad.py:574
+#: ../src/ScratchPad.py:634
+#: ../src/ScratchPad.py:667
+#: ../src/ScratchPad.py:813
+#: ../src/ScratchPad.py:885
+#: ../src/ScratchPad.py:891
 #: ../src/Merge/_MergePerson.py:172
 #: ../src/DataViews/_EventView.py:73
 #: ../src/DataViews/_MediaView.py:85
@@ -2161,7 +2171,7 @@ msgstr "Lien événement"
 #: ../src/Selectors/_SelectEvent.py:60
 #: ../src/Selectors/_SelectNote.py:62
 #: ../src/Selectors/_SelectObject.py:74
-#: ../src/plugins/siblings.py:62
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/BookReport.py:656
 #: ../src/plugins/BookReport.py:657
 #: ../src/plugins/MarkerReport.py:388
@@ -2173,15 +2183,15 @@ msgstr "Lien événement"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/ScratchPad.py:235
-#: ../src/ScratchPad.py:343
+#: ../src/ScratchPad.py:248
+#: ../src/ScratchPad.py:356
 #: ../src/gen/lib/attrtype.py:64
 msgid "Cause"
 msgstr "Cause"
 
-#: ../src/ScratchPad.py:236
-#: ../src/ScratchPad.py:344
-#: ../src/ScratchPad.py:378
+#: ../src/ScratchPad.py:249
+#: ../src/ScratchPad.py:357
+#: ../src/ScratchPad.py:391
 #: ../src/DataViews/_EventView.py:71
 #: ../src/DisplayTabs/_EventEmbedList.py:61
 #: ../src/DisplayTabs/_WebEmbedList.py:55
@@ -2192,19 +2202,20 @@ msgstr "Cause"
 msgid "Description"
 msgstr "Description"
 
-#: ../src/ScratchPad.py:243
-#: ../src/ScratchPad.py:353
-#: ../src/ScratchPad.py:571
-#: ../src/ScratchPad.py:719
+#: ../src/ScratchPad.py:256
+#: ../src/ScratchPad.py:366
+#: ../src/ScratchPad.py:584
+#: ../src/ScratchPad.py:732
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Source principale"
 
-#: ../src/ScratchPad.py:293
+#: ../src/ScratchPad.py:306
 #: ../src/ToolTips.py:159
 #: ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:78
 #: ../src/Editors/_EditMedia.py:140
+#: ../src/Editors/_EditNote.py:194
 #: ../src/plugins/FamilyGroup.py:313
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
@@ -2216,41 +2227,41 @@ msgstr "Source principale"
 msgid "Note"
 msgstr "Note"
 
-#: ../src/ScratchPad.py:326
 #: ../src/ScratchPad.py:339
+#: ../src/ScratchPad.py:352
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:108
 msgid "Family Event"
 msgstr "Événement familial"
 
-#: ../src/ScratchPad.py:367
-#: ../src/ScratchPad.py:375
+#: ../src/ScratchPad.py:380
+#: ../src/ScratchPad.py:388
 msgid "Url"
 msgstr "URL"
 
-#: ../src/ScratchPad.py:376
+#: ../src/ScratchPad.py:389
 #: ../src/DataViews/_MediaView.py:86
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Path"
 msgstr "Chemin"
 
-#: ../src/ScratchPad.py:400
-#: ../src/ScratchPad.py:433
-#: ../src/ScratchPad.py:874
-#: ../src/ScratchPad.py:880
+#: ../src/ScratchPad.py:413
+#: ../src/ScratchPad.py:446
+#: ../src/ScratchPad.py:887
+#: ../src/ScratchPad.py:893
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
 #: ../src/DisplayTabs/_DataEmbedList.py:50
 #: ../src/plugins/PatchNames.py:206
 msgid "Value"
 msgstr "Valeur"
 
-#: ../src/ScratchPad.py:422
-#: ../src/ScratchPad.py:430
+#: ../src/ScratchPad.py:435
+#: ../src/ScratchPad.py:443
 msgid "Family Attribute"
 msgstr "Attribut de la famille"
 
-#: ../src/ScratchPad.py:455
-#: ../src/ScratchPad.py:476
+#: ../src/ScratchPad.py:468
+#: ../src/ScratchPad.py:489
 msgid "Source Reference"
 msgstr "Référence de source"
 
@@ -2260,13 +2271,13 @@ msgstr "Référence de source"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:477
-#: ../src/ScratchPad.py:559
-#: ../src/ScratchPad.py:620
-#: ../src/ScratchPad.py:653
-#: ../src/ScratchPad.py:761
-#: ../src/ScratchPad.py:873
-#: ../src/ScratchPad.py:879
+#: ../src/ScratchPad.py:490
+#: ../src/ScratchPad.py:572
+#: ../src/ScratchPad.py:633
+#: ../src/ScratchPad.py:666
+#: ../src/ScratchPad.py:774
+#: ../src/ScratchPad.py:886
+#: ../src/ScratchPad.py:892
 #: ../src/Utils.py:1099
 #: ../src/DataViews/_MediaView.py:83
 #: ../src/DataViews/_SourceView.py:69
@@ -2283,43 +2294,43 @@ msgstr "Référence de source"
 msgid "Title"
 msgstr "Titre"
 
-#: ../src/ScratchPad.py:478
+#: ../src/ScratchPad.py:491
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
 #: ../src/plugins/NarrativeWeb.py:546
 msgid "Page"
 msgstr "Page"
 
-#: ../src/ScratchPad.py:490
 #: ../src/ScratchPad.py:503
+#: ../src/ScratchPad.py:516
 msgid "Repository Reference"
 msgstr "Référence de dépôt"
 
-#: ../src/ScratchPad.py:505
+#: ../src/ScratchPad.py:518
 #: ../src/DisplayTabs/_RepoEmbedList.py:62
 msgid "Call Number"
 msgstr "Numéro d'identifiant"
 
-#: ../src/ScratchPad.py:506
+#: ../src/ScratchPad.py:519
 msgid "Media Type"
 msgstr "Type de média"
 
-#: ../src/ScratchPad.py:518
+#: ../src/ScratchPad.py:531
 msgid "Event Reference"
 msgstr "Référence d'événement"
 
-#: ../src/ScratchPad.py:554
+#: ../src/ScratchPad.py:567
 msgid "Call Name"
 msgstr "Nom usuel"
 
-#: ../src/ScratchPad.py:558
+#: ../src/ScratchPad.py:571
 #: ../src/Utils.py:1101
 #: ../src/plugins/PatchNames.py:253
 #: ../src/plugins/PatchNames.py:265
 msgid "Prefix"
 msgstr "Préfixe"
 
-#: ../src/ScratchPad.py:585
-#: ../src/ScratchPad.py:593
+#: ../src/ScratchPad.py:598
+#: ../src/ScratchPad.py:606
 #: ../src/DisplayTabs/_TextTab.py:52
 #: ../src/plugins/MarkerReport.py:394
 #: ../src/plugins/NarrativeWeb.py:553
@@ -2331,29 +2342,29 @@ msgstr "Préfixe"
 msgid "Text"
 msgstr "Texte"
 
-#: ../src/ScratchPad.py:640
-#: ../src/ScratchPad.py:652
+#: ../src/ScratchPad.py:653
+#: ../src/ScratchPad.py:665
 msgid "Media Reference"
 msgstr "Référence de média"
 
-#: ../src/ScratchPad.py:666
+#: ../src/ScratchPad.py:679
 #: ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Référence de l'individu"
 
-#: ../src/ScratchPad.py:683
-#: ../src/ScratchPad.py:708
+#: ../src/ScratchPad.py:696
+#: ../src/ScratchPad.py:721
 msgid "Person Link"
 msgstr "Lien d'individu"
 
-#: ../src/ScratchPad.py:710
+#: ../src/ScratchPad.py:723
 #: ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:127
 #: ../src/DataViews/_RelationView.py:545
 #: ../src/plugins/all_relations.py:266
 #: ../src/plugins/FamilyGroup.py:481
 #: ../src/plugins/FamilyGroup.py:483
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 #: ../src/plugins/MarkerReport.py:131
 #: ../src/plugins/NarrativeWeb.py:697
 #: ../src/plugins/NarrativeWeb.py:835
@@ -2362,18 +2373,18 @@ msgstr "Lien d'individu"
 msgid "Birth"
 msgstr "Naissance"
 
-#: ../src/ScratchPad.py:742
-#: ../src/ScratchPad.py:760
+#: ../src/ScratchPad.py:755
+#: ../src/ScratchPad.py:773
 msgid "Source Link"
 msgstr "Lien de source"
 
-#: ../src/ScratchPad.py:762
+#: ../src/ScratchPad.py:775
 #: ../src/DataViews/_SourceView.py:72
 #: ../src/plugins/NarrativeWeb.py:1512
 msgid "Abbreviation"
 msgstr "Abréviation"
 
-#: ../src/ScratchPad.py:763
+#: ../src/ScratchPad.py:776
 #: ../src/DataViews/_SourceView.py:71
 #: ../src/DisplayTabs/_SourceEmbedList.py:62
 #: ../src/plugins/NarrativeWeb.py:1510
@@ -2381,22 +2392,22 @@ msgstr "Abréviation"
 msgid "Author"
 msgstr "Auteur"
 
-#: ../src/ScratchPad.py:764
+#: ../src/ScratchPad.py:777
 #: ../src/DataViews/_SourceView.py:73
 msgid "Publication Information"
 msgstr "Information de publication"
 
-#: ../src/ScratchPad.py:783
-#: ../src/ScratchPad.py:798
+#: ../src/ScratchPad.py:796
+#: ../src/ScratchPad.py:811
 msgid "Repository Link"
 msgstr "Lien de dépôt"
 
-#: ../src/ScratchPad.py:1168
+#: ../src/ScratchPad.py:1178
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
 msgstr "Presse-papiers"
 
-#: ../src/ScratchPad.py:1204
+#: ../src/ScratchPad.py:1214
 msgid "ScratchPad"
 msgstr "Presse-papiers"
 
@@ -2838,30 +2849,30 @@ msgid "Invalid"
 msgstr "Invalide"
 
 #: ../src/Utils.py:90
-#: ../src/Editors/_EditSourceRef.py:119
+#: ../src/Editors/_EditSourceRef.py:132
 msgid "Very High"
 msgstr "Très haut"
 
 #: ../src/Utils.py:91
-#: ../src/Editors/_EditSourceRef.py:118
+#: ../src/Editors/_EditSourceRef.py:131
 #: ../src/plugins/FindDupes.py:65
 msgid "High"
 msgstr "Haut"
 
 #: ../src/Utils.py:92
-#: ../src/Editors/_EditSourceRef.py:117
+#: ../src/Editors/_EditSourceRef.py:130
 #: ../src/plugins/NarrativeWeb.py:543
 msgid "Normal"
 msgstr "Normal"
 
 #: ../src/Utils.py:93
-#: ../src/Editors/_EditSourceRef.py:116
+#: ../src/Editors/_EditSourceRef.py:129
 #: ../src/plugins/FindDupes.py:63
 msgid "Low"
 msgstr "Bas"
 
 #: ../src/Utils.py:94
-#: ../src/Editors/_EditSourceRef.py:115
+#: ../src/Editors/_EditSourceRef.py:128
 msgid "Very Low"
 msgstr "Très bas"
 
@@ -3299,7 +3310,7 @@ msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces indi
 #: ../src/DataViews/_PersonView.py:73
 #: ../src/Editors/_EditFamily.py:98
 #: ../src/Selectors/_SelectPerson.py:50
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/IndivComplete.py:474
 #: ../src/plugins/NarrativeWeb.py:1928
 #: ../src/plugins/RelCalc.py:59
@@ -3476,7 +3487,7 @@ msgid "Delete the selected media object"
 msgstr "Supprimer l'objet média sélectionné"
 
 #: ../src/DataViews/_MediaView.py:199
-#: ../src/DisplayTabs/_GalleryTab.py:457
+#: ../src/DisplayTabs/_GalleryTab.py:458
 msgid "Drag Media Object"
 msgstr "Glisser un objet média"
 
@@ -3675,7 +3686,7 @@ msgstr "Menu Individus"
 #. Go over siblings and build their menu
 #: ../src/DataViews/_PedigreeView.py:1482
 #: ../src/DataViews/_RelationView.py:786
-#: ../src/plugins/siblings.py:98
+#: ../src/plugins/siblings.py:75
 #: ../src/plugins/NarrativeWeb.py:2058
 msgid "Siblings"
 msgstr "Frères et sœurs"
@@ -3702,7 +3713,7 @@ msgstr "Menu Famille"
 #: ../src/DataViews/_PersonView.py:74
 #: ../src/Editors/_EditFamily.py:101
 #: ../src/Selectors/_SelectPerson.py:51
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:60
 #: ../src/plugins/TimeLine.py:410
@@ -3720,7 +3731,7 @@ msgstr "Lieu de naissance"
 #: ../src/Editors/_EditFamily.py:102
 #: ../src/Selectors/_SelectPerson.py:53
 #: ../src/plugins/lineage.py:61
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 #: ../src/plugins/RelCalc.py:62
 msgid "Death Date"
 msgstr "Date de décès"
@@ -3805,15 +3816,15 @@ msgstr "_Supprimer un individu"
 msgid "Delete Person (%s)"
 msgstr "Supprimer l'individu (%s)"
 
-#: ../src/DataViews/_PersonView.py:888
+#: ../src/DataViews/_PersonView.py:889
 msgid "Go to default person"
 msgstr "Individu par défaut"
 
-#: ../src/DataViews/_PersonView.py:893
+#: ../src/DataViews/_PersonView.py:894
 msgid "Edit selected person"
 msgstr "Éditer l'individu sélectionné"
 
-#: ../src/DataViews/_PersonView.py:899
+#: ../src/DataViews/_PersonView.py:900
 msgid "Delete selected person"
 msgstr "Supprimer l'individu sélectionné"
 
@@ -4280,7 +4291,7 @@ msgstr "LaTeX"
 #: ../src/docgen/PSDrawDoc.py:58
 #: ../src/plugins/GraphViz.py:1133
 #: ../src/plugins/GraphViz.py:1189
-#: ../src/ReportBase/_GraphvizReportDialog.py:581
+#: ../src/ReportBase/_GraphvizReportDialog.py:603
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Ouvrir dans %(program_name)s"
@@ -4313,7 +4324,7 @@ msgstr "Document RTF"
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../src/docgen/TextBufDoc.py:333
+#: ../src/docgen/TextBufDoc.py:348
 msgid "TextBuffer"
 msgstr "Text tampon"
 
@@ -4332,32 +4343,32 @@ msgstr "Références"
 msgid "Edit reference"
 msgstr "Éditer la référence"
 
-#: ../src/DisplayTabs/_ButtonTab.py:62
+#: ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/CalculateEstimatedDates.py:73
 msgid "Add"
 msgstr "Ajouter"
 
 # enlever une référence à un object
-#: ../src/DisplayTabs/_ButtonTab.py:63
+#: ../src/DisplayTabs/_ButtonTab.py:68
 #: ../src/plugins/CalculateEstimatedDates.py:69
 msgid "Remove"
 msgstr "Enlever"
 
-#: ../src/DisplayTabs/_ButtonTab.py:65
+#: ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:104
 msgid "Share"
 msgstr "Partager"
 
-#: ../src/DisplayTabs/_ButtonTab.py:66
+#: ../src/DisplayTabs/_ButtonTab.py:71
 msgid "Jump To"
 msgstr "Aller à"
 
-#: ../src/DisplayTabs/_ButtonTab.py:67
+#: ../src/DisplayTabs/_ButtonTab.py:72
 msgid "Move Up"
 msgstr "Déplacer vers le haut"
 
-#: ../src/DisplayTabs/_ButtonTab.py:68
+#: ../src/DisplayTabs/_ButtonTab.py:73
 msgid "Move Down"
 msgstr "Déplacer vers le bas"
 
@@ -4419,7 +4430,7 @@ msgstr "Galerie"
 msgid "Open with %s"
 msgstr "Ouvrir avec %s"
 
-#: ../src/DisplayTabs/_GalleryTab.py:223
+#: ../src/DisplayTabs/_GalleryTab.py:224
 msgid "Unexisting media found in the Gallery"
 msgstr "Objet média inexistant trouvé dans la galerie"
 
@@ -4561,13 +4572,13 @@ msgid "Child Reference"
 msgstr "Référence d'enfant"
 
 #: ../src/Editors/_EditEvent.py:83
-#: ../src/Editors/_EditEventRef.py:208
+#: ../src/Editors/_EditEventRef.py:219
 #, python-format
 msgid "Event: %s"
 msgstr "Événement : %s"
 
 #: ../src/Editors/_EditEvent.py:85
-#: ../src/Editors/_EditEventRef.py:210
+#: ../src/Editors/_EditEventRef.py:221
 msgid "New Event"
 msgstr "Nouvel événement"
 
@@ -4590,7 +4601,7 @@ msgid "The event type cannot be empty"
 msgstr "Cet événement ne peut pas être vide"
 
 #: ../src/Editors/_EditEvent.py:226
-#: ../src/Editors/_EditEventRef.py:221
+#: ../src/Editors/_EditEventRef.py:232
 msgid "Add Event"
 msgstr "Ajouter un événement"
 
@@ -4599,12 +4610,12 @@ msgstr "Ajouter un événement"
 msgid "Delete Event (%s)"
 msgstr "Supprimer l'événement (%s)"
 
-#: ../src/Editors/_EditEventRef.py:76
-#: ../src/Editors/_EditEventRef.py:211
+#: ../src/Editors/_EditEventRef.py:77
+#: ../src/Editors/_EditEventRef.py:222
 msgid "Event Reference Editor"
 msgstr "Éditeur de référence d'événement"
 
-#: ../src/Editors/_EditEventRef.py:218
+#: ../src/Editors/_EditEventRef.py:229
 msgid "Modify Event"
 msgstr "Modifier l'événement"
 
@@ -4798,19 +4809,19 @@ msgid "Location Editor"
 msgstr "Éditeur d'endroit"
 
 #: ../src/Editors/_EditMedia.py:79
-#: ../src/Editors/_EditMediaRef.py:347
+#: ../src/Editors/_EditMediaRef.py:361
 #, python-format
 msgid "Media: %s"
 msgstr "Média : %s"
 
 #: ../src/Editors/_EditMedia.py:81
-#: ../src/Editors/_EditMediaRef.py:349
+#: ../src/Editors/_EditMediaRef.py:363
 msgid "New Media"
 msgstr "Nouveau média"
 
 #: ../src/Editors/_EditMedia.py:172
 #: ../src/Editors/_EditMedia.py:225
-#: ../src/Editors/_EditMediaRef.py:443
+#: ../src/Editors/_EditMediaRef.py:459
 msgid "Edit Media Object"
 msgstr "Éditer l'objet média"
 
@@ -4825,89 +4836,89 @@ msgid "Remove Media Object"
 msgstr "Enlever un objet média"
 
 #: ../src/Editors/_EditMediaRef.py:75
-#: ../src/Editors/_EditMediaRef.py:350
+#: ../src/Editors/_EditMediaRef.py:364
 msgid "Media Reference Editor"
 msgstr "Éditeur de référence de média"
 
-#: ../src/Editors/_EditName.py:72
-#: ../src/Editors/_EditName.py:228
+#: ../src/Editors/_EditName.py:116
+#: ../src/Editors/_EditName.py:277
 msgid "Name Editor"
 msgstr "Éditeur de nom"
 
-#: ../src/Editors/_EditName.py:227
+#: ../src/Editors/_EditName.py:276
 msgid "New Name"
 msgstr "Nouveau nom"
 
-#: ../src/Editors/_EditName.py:291
+#: ../src/Editors/_EditName.py:340
 msgid "Break global name grouping?"
 msgstr "Défaire le groupement du nom ?"
 
-#: ../src/Editors/_EditName.py:292
+#: ../src/Editors/_EditName.py:341
 #, python-format
 msgid "All people with the name of %(surname)s will no longer be grouped with the name of %(group_name)s."
 msgstr "Tous les individus portant le nom %(surname)s ne seront plus groupés avec le nom %(group_name)s."
 
-#: ../src/Editors/_EditName.py:296
+#: ../src/Editors/_EditName.py:345
 msgid "Continue"
 msgstr "Continuer"
 
-#: ../src/Editors/_EditName.py:297
+#: ../src/Editors/_EditName.py:346
 msgid "Return to Name Editor"
 msgstr "Retourner à l'éditeur de nom"
 
-#: ../src/Editors/_EditName.py:322
+#: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
 msgstr "Regrouper tous les individus ayant le même nom ?"
 
-#: ../src/Editors/_EditName.py:323
+#: ../src/Editors/_EditName.py:372
 #, python-format
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
 msgstr "Vous pouvez choisir de regrouper toutes les individus du nom de %(surname)s avec le nom de %(group_name)s, ou juste d'afficher ce nom particulier."
 
-#: ../src/Editors/_EditName.py:328
+#: ../src/Editors/_EditName.py:377
 msgid "Group all"
 msgstr "Tout grouper"
 
-#: ../src/Editors/_EditName.py:329
+#: ../src/Editors/_EditName.py:378
 msgid "Group this name only"
 msgstr "Grouper ce nom seulement"
 
-#: ../src/Editors/_EditNote.py:104
+#: ../src/Editors/_EditNote.py:150
 #, python-format
 msgid "Note: %(id)s - %(context)s"
 msgstr "Note : %(id)s - %(context)s"
 
-#: ../src/Editors/_EditNote.py:109
+#: ../src/Editors/_EditNote.py:155
 #, python-format
 msgid "Note: %s"
 msgstr "Note : %s"
 
-#: ../src/Editors/_EditNote.py:112
+#: ../src/Editors/_EditNote.py:158
 #, python-format
 msgid "New Note - %(context)s"
 msgstr "Nouvelle note - %(context)s"
 
-#: ../src/Editors/_EditNote.py:116
+#: ../src/Editors/_EditNote.py:162
 msgid "New Note"
 msgstr "Nouvelle Note"
 
-#: ../src/Editors/_EditNote.py:363
+#: ../src/Editors/_EditNote.py:416
 msgid "_Send Mail To..."
 msgstr "_Envoyer un courrier à…"
 
-#: ../src/Editors/_EditNote.py:364
+#: ../src/Editors/_EditNote.py:417
 msgid "Copy _E-mail Address"
 msgstr "Copier l'_adresse"
 
-#: ../src/Editors/_EditNote.py:366
+#: ../src/Editors/_EditNote.py:419
 msgid "_Open Link"
 msgstr "_Ouvrir le lien"
 
-#: ../src/Editors/_EditNote.py:367
+#: ../src/Editors/_EditNote.py:420
 msgid "Copy _Link Address"
 msgstr "Copier le _lien de l'adresse"
 
-#: ../src/Editors/_EditNote.py:501
+#: ../src/Editors/_EditNote.py:554
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Supprimer la note (%s)"
@@ -5003,42 +5014,42 @@ msgstr "Aucun individu sélectionné"
 msgid "You must either select a person or Cancel the edit"
 msgstr "Vous devriez plutôt sélectionner un individu ou annuler l'édition"
 
-#: ../src/Editors/_EditPlace.py:80
+#: ../src/Editors/_EditPlace.py:129
 #, python-format
 msgid "Place: %s"
 msgstr "Lieux : %s"
 
-#: ../src/Editors/_EditPlace.py:82
+#: ../src/Editors/_EditPlace.py:131
 msgid "New Place"
 msgstr "Nouveau lieu"
 
-#: ../src/Editors/_EditPlace.py:153
+#: ../src/Editors/_EditPlace.py:202
 msgid "Invalid latitude (syntax: 18°9'"
 msgstr "Latitude invalide (syntaxe : 18°9'"
 
-#: ../src/Editors/_EditPlace.py:156
+#: ../src/Editors/_EditPlace.py:205
 msgid "Invalid longitude (syntax: 18°9'"
 msgstr "Longitude invalide (syntaxe : 18°9'"
 
-#: ../src/Editors/_EditPlace.py:160
+#: ../src/Editors/_EditPlace.py:209
 msgid "Edit Place"
 msgstr "Éditer le lieu"
 
-#: ../src/Editors/_EditPlace.py:219
+#: ../src/Editors/_EditPlace.py:270
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Éditer le lieu (%s)"
 
-#: ../src/Editors/_EditPlace.py:265
+#: ../src/Editors/_EditPlace.py:316
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Supprimer le lieu (%s)"
 
-#: ../src/Editors/_EditPrimary.py:141
+#: ../src/Editors/_EditPrimary.py:142
 msgid "Save Changes?"
 msgstr "Enregistrer les modifications ?"
 
-#: ../src/Editors/_EditPrimary.py:142
+#: ../src/Editors/_EditPrimary.py:143
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Si vous fermez sans enregistrer, vous perdrez vos modifications"
 
@@ -5046,25 +5057,25 @@ msgstr "Si vous fermez sans enregistrer, vous perdrez vos modifications"
 msgid "Repository Reference Editor"
 msgstr "Éditeur de référence du dépôt"
 
-#: ../src/Editors/_EditRepoRef.py:169
+#: ../src/Editors/_EditRepoRef.py:185
 #, python-format
 msgid "Repository: %s"
 msgstr "Dépôt : %s"
 
-#: ../src/Editors/_EditRepoRef.py:171
+#: ../src/Editors/_EditRepoRef.py:187
 #: ../src/Editors/_EditRepository.py:68
 msgid "New Repository"
 msgstr "Nouveau dépôt"
 
-#: ../src/Editors/_EditRepoRef.py:172
+#: ../src/Editors/_EditRepoRef.py:188
 msgid "Repo Reference Editor"
 msgstr "Éditeur de référence du dépôt"
 
-#: ../src/Editors/_EditRepoRef.py:179
+#: ../src/Editors/_EditRepoRef.py:195
 msgid "Modify Repository"
 msgstr "Modifier le dépôt"
 
-#: ../src/Editors/_EditRepoRef.py:182
+#: ../src/Editors/_EditRepoRef.py:198
 msgid "Add Repository"
 msgstr "Ajouter un dépôt"
 
@@ -5091,7 +5102,7 @@ msgid "Delete Repository (%s)"
 msgstr "Supprimer le dépôt (%s)"
 
 #: ../src/Editors/_EditSource.py:74
-#: ../src/Editors/_EditSourceRef.py:186
+#: ../src/Editors/_EditSourceRef.py:196
 msgid "New Source"
 msgstr "Nouvelle source"
 
@@ -5118,20 +5129,20 @@ msgid "Delete Source (%s)"
 msgstr "Supprimer la source (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:67
-#: ../src/Editors/_EditSourceRef.py:187
+#: ../src/Editors/_EditSourceRef.py:197
 msgid "Source Reference Editor"
 msgstr "Éditeur de référence de la source"
 
-#: ../src/Editors/_EditSourceRef.py:184
+#: ../src/Editors/_EditSourceRef.py:194
 #, python-format
 msgid "Source: %s"
 msgstr "Source : %s"
 
-#: ../src/Editors/_EditSourceRef.py:194
+#: ../src/Editors/_EditSourceRef.py:204
 msgid "Modify Source"
 msgstr "Modifier la source"
 
-#: ../src/Editors/_EditSourceRef.py:197
+#: ../src/Editors/_EditSourceRef.py:207
 msgid "Add Source"
 msgstr "Ajouter une source"
 
@@ -5507,31 +5518,31 @@ msgid "Select Source"
 msgstr "Sélectionner la source"
 
 #. display the results
-#: ../src/plugins/all_events.py:60
+#: ../src/plugins/all_events.py:55
 #, python-format
 msgid "Sorted events of %s"
 msgstr "Événements triés pour %s"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:105
-#: ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:102
+#: ../src/plugins/all_events.py:113
 msgid "Event Type"
 msgstr "Type d'événement"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Date"
 msgstr "Date de l'événement"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Place"
 msgstr "Lieu de l'événement"
 
 #. display the results
-#: ../src/plugins/all_events.py:100
+#: ../src/plugins/all_events.py:97
 #, python-format
 msgid ""
 "Sorted events of family\n"
@@ -5540,12 +5551,12 @@ msgstr ""
 "Événements familiaux triés\n"
 " %s - %s"
 
-#: ../src/plugins/all_events.py:105
-#: ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:102
+#: ../src/plugins/all_events.py:113
 msgid "Family Member"
 msgstr "Membre de la famille"
 
-#: ../src/plugins/all_events.py:113
+#: ../src/plugins/all_events.py:112
 msgid "Personal events of the children"
 msgstr "Événements individuels des enfants"
 
@@ -5557,7 +5568,7 @@ msgstr "Tous les événements"
 #: ../src/plugins/all_events.py:145
 #: ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350
-#: ../src/plugins/siblings.py:99
+#: ../src/plugins/siblings.py:76
 #: ../src/plugins/AncestorChart.py:524
 #: ../src/plugins/AncestorReport.py:345
 #: ../src/plugins/BookReport.py:1190
@@ -5587,8 +5598,8 @@ msgstr "Tous les événements"
 #: ../src/plugins/IndivComplete.py:676
 #: ../src/plugins/KinshipReport.py:435
 #: ../src/plugins/Leak.py:131
-#: ../src/plugins/lineage.py:245
-#: ../src/plugins/lineage.py:256
+#: ../src/plugins/lineage.py:240
+#: ../src/plugins/lineage.py:251
 #: ../src/plugins/MarkerReport.py:568
 #: ../src/plugins/NarrativeWeb.py:3286
 #: ../src/plugins/PatchNames.py:357
@@ -5701,17 +5712,16 @@ msgid "Display all relationships between person and home person."
 msgstr "Affiche toutes les relations entre l'individu et la souche"
 
 #. display the title
-#: ../src/plugins/siblings.py:57
+#: ../src/plugins/siblings.py:43
 #, python-format
 msgid "Siblings of %s"
 msgstr "Frères et sœurs de %s"
 
-#. display the header of a table
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 msgid "Sibling"
 msgstr "Frère ou sœur"
 
-#: ../src/plugins/siblings.py:100
+#: ../src/plugins/siblings.py:77
 msgid "Display a person's siblings."
 msgstr "Affiche les frères et sœurs de l'individu."
 
@@ -7145,7 +7155,7 @@ msgstr "Ajouter une référence aux descendants dans la liste des enfants"
 #: ../src/plugins/DetAncestralReport.py:880
 #: ../src/plugins/DetDescendantReport.py:848
 msgid "Include Photo/Images from Gallery"
-msgstr "Inclure les média de la galerie (non disponible en PDF)"
+msgstr "Inclure les média de la galerie"
 
 #. Print alternative names
 #: ../src/plugins/DetAncestralReport.py:884
@@ -7641,7 +7651,7 @@ msgstr "Écriture des lignées familiales"
 #: ../src/plugins/GraphViz.py:887
 #: ../src/plugins/GraphViz.py:895
 #: ../src/plugins/GraphViz.py:902
-#: ../src/ReportBase/_GraphvizReportDialog.py:614
+#: ../src/ReportBase/_GraphvizReportDialog.py:636
 msgid "GraphViz Options"
 msgstr "Options de GraphViz"
 
@@ -7689,6 +7699,7 @@ msgid "Height of the graph in inches.  Final image size may be smaller than this
 msgstr "La hauteur du graphique en pouces (in). La taille finale de l'image peut être plus petite que l'originale si le type de proportion est \"Compressé\"."
 
 #: ../src/plugins/FamilyLines.py:879
+#: ../src/ReportBase/_GraphvizReportDialog.py:663
 msgid "DPI"
 msgstr "Résolution"
 
@@ -8090,32 +8101,32 @@ msgid "Searches the entire database, looking for individual entries that may rep
 msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
 
 #: ../src/plugins/GraphViz.py:85
-#: ../src/ReportBase/_GraphvizReportDialog.py:493
+#: ../src/ReportBase/_GraphvizReportDialog.py:521
 msgid "Postscript"
 msgstr "PostScript"
 
 #: ../src/plugins/GraphViz.py:86
-#: ../src/ReportBase/_GraphvizReportDialog.py:498
+#: ../src/ReportBase/_GraphvizReportDialog.py:526
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
 #: ../src/plugins/GraphViz.py:87
-#: ../src/ReportBase/_GraphvizReportDialog.py:503
+#: ../src/ReportBase/_GraphvizReportDialog.py:531
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "SVG compressé (SVGZ)"
 
 #: ../src/plugins/GraphViz.py:88
-#: ../src/ReportBase/_GraphvizReportDialog.py:508
+#: ../src/ReportBase/_GraphvizReportDialog.py:546
 msgid "PNG image"
 msgstr "Image PNG"
 
 #: ../src/plugins/GraphViz.py:89
-#: ../src/ReportBase/_GraphvizReportDialog.py:513
+#: ../src/ReportBase/_GraphvizReportDialog.py:536
 msgid "JPEG image"
 msgstr "Image JPEG"
 
 #: ../src/plugins/GraphViz.py:90
-#: ../src/ReportBase/_GraphvizReportDialog.py:518
+#: ../src/ReportBase/_GraphvizReportDialog.py:541
 msgid "GIF image"
 msgstr "Image GIF"
 
@@ -8255,7 +8266,7 @@ msgid "Descendants - Ancestors"
 msgstr "Descendants - Ascendants"
 
 #: ../src/plugins/GraphViz.py:150
-#: ../src/ReportBase/_GraphvizReportDialog.py:524
+#: ../src/ReportBase/_GraphvizReportDialog.py:516
 msgid "PDF"
 msgstr "PDF"
 
@@ -8336,12 +8347,12 @@ msgstr "Choisir le sens des flèches."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:870
-#: ../src/ReportBase/_GraphvizReportDialog.py:617
+#: ../src/ReportBase/_GraphvizReportDialog.py:639
 msgid "Font family"
 msgstr "Famille de police"
 
 #: ../src/plugins/GraphViz.py:872
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:644
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Choisissez la famille de police. Si les caractères internationaux n'apparaissent pas, utilisez les polices FreeSans disponibles sur : http://www.nongnu.org/freefont/"
 
@@ -8350,7 +8361,7 @@ msgid "Font size (in points)"
 msgstr "Taille de la police (pt)"
 
 #: ../src/plugins/GraphViz.py:883
-#: ../src/ReportBase/_GraphvizReportDialog.py:629
+#: ../src/ReportBase/_GraphvizReportDialog.py:651
 msgid "The font size, in points."
 msgstr "Taille de la police (pt)"
 
@@ -8396,12 +8407,12 @@ msgid "Whether generations go from top to bottom or left to right."
 msgstr "Générations de haut en bas ou de gauche à droite."
 
 #: ../src/plugins/GraphViz.py:919
-#: ../src/ReportBase/_GraphvizReportDialog.py:641
+#: ../src/ReportBase/_GraphvizReportDialog.py:686
 msgid "Aspect ratio"
 msgstr "Ratio d'aspect"
 
 #: ../src/plugins/GraphViz.py:921
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
+#: ../src/ReportBase/_GraphvizReportDialog.py:691
 msgid "Affects greatly how the graph is layed out on the page. Multiple pages overrides the pages settings below."
 msgstr "Affecte grandement comment le graphique est mis en place dans la page. Plusieurs pages imposent la configuration des pages ci-dessous."
 
@@ -8410,22 +8421,22 @@ msgid "Margin size"
 msgstr "Taille de la marge"
 
 #: ../src/plugins/GraphViz.py:943
-#: ../src/ReportBase/_GraphvizReportDialog.py:661
+#: ../src/ReportBase/_GraphvizReportDialog.py:706
 msgid "Number of Horizontal Pages"
 msgstr "Nombre de pages horizontales"
 
 #: ../src/plugins/GraphViz.py:945
-#: ../src/ReportBase/_GraphvizReportDialog.py:662
+#: ../src/ReportBase/_GraphvizReportDialog.py:707
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally."
 msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface horizontale."
 
 #: ../src/plugins/GraphViz.py:950
-#: ../src/ReportBase/_GraphvizReportDialog.py:668
+#: ../src/ReportBase/_GraphvizReportDialog.py:713
 msgid "Number of Vertical Pages"
 msgstr "Nombre de pages verticales"
 
 #: ../src/plugins/GraphViz.py:952
-#: ../src/ReportBase/_GraphvizReportDialog.py:669
+#: ../src/ReportBase/_GraphvizReportDialog.py:714
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically."
 msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface verticale."
 
@@ -8439,22 +8450,22 @@ msgstr "L'ordre dans lequel les pages du graphique sont produites."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:973
-#: ../src/ReportBase/_GraphvizReportDialog.py:679
+#: ../src/ReportBase/_GraphvizReportDialog.py:731
 msgid "Note to add to the graph"
 msgstr "Note à ajouter au graphique"
 
 #: ../src/plugins/GraphViz.py:975
-#: ../src/ReportBase/_GraphvizReportDialog.py:681
+#: ../src/ReportBase/_GraphvizReportDialog.py:733
 msgid "This text will be added to the graph."
 msgstr "Ce texte sera ajouté au graphique."
 
 #: ../src/plugins/GraphViz.py:979
-#: ../src/ReportBase/_GraphvizReportDialog.py:684
+#: ../src/ReportBase/_GraphvizReportDialog.py:736
 msgid "Note location"
 msgstr "Disposition de la note"
 
 #: ../src/plugins/GraphViz.py:981
-#: ../src/ReportBase/_GraphvizReportDialog.py:687
+#: ../src/ReportBase/_GraphvizReportDialog.py:739
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Quoi qu'il en soit la note apparaîtra en haut ou en bas de la page."
 
@@ -8463,7 +8474,7 @@ msgid "Note size (in points)"
 msgstr "Taille de la note (pt)"
 
 #: ../src/plugins/GraphViz.py:989
-#: ../src/ReportBase/_GraphvizReportDialog.py:692
+#: ../src/ReportBase/_GraphvizReportDialog.py:744
 msgid "The size of note text, in points."
 msgstr "La taille de la note, en points."
 
@@ -8732,61 +8743,62 @@ msgstr "Ce rapport fournit la lignée paternelle, également appelée lignée ag
 msgid "Name Father"
 msgstr "Nom du père"
 
-#: ../src/plugins/lineage.py:72
+#: ../src/plugins/lineage.py:61
+#: ../src/plugins/lineage.py:92
+#: ../src/plugins/lineage.py:180
+msgid "Remark"
+msgstr "Remarque"
+
+#: ../src/plugins/lineage.py:69
 msgid "Direct line male descendants"
 msgstr "Ligne directe des descendants masculins"
 
 #. display the results
-#: ../src/plugins/lineage.py:85
+#: ../src/plugins/lineage.py:82
 #, python-format
 msgid "Mother lineage for %s"
 msgstr "Lignée maternelle de %s"
 
-#: ../src/plugins/lineage.py:87
+#: ../src/plugins/lineage.py:84
 msgid "This report shows the mother lineage, also called matronymic lineage or M-line. People in this lineage all share the same RNA."
 msgstr "Ce rapport fournit la lignée maternelle, également appelée lignée cognatique ou lignée M. Les individus de cette lignée partagent le même ARN."
 
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 msgid "Name Mother"
 msgstr "Nom de la mère"
 
-#: ../src/plugins/lineage.py:105
+#: ../src/plugins/lineage.py:100
 msgid "Direct line female descendants"
 msgstr "Ligne directe des descendants féminins"
 
 #: ../src/plugins/lineage.py:124
-#: ../src/plugins/lineage.py:185
-msgid "Remark"
-msgstr "Remarque"
-
-#: ../src/plugins/lineage.py:129
-#: ../src/plugins/lineage.py:223
+#: ../src/plugins/lineage.py:218
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
 msgstr "ERREUR : trop de niveaux dans l'arbre (peut-être une boucle ?)."
 
-#: ../src/plugins/lineage.py:158
+#: ../src/plugins/lineage.py:153
 msgid "No birth relation with child"
 msgstr "Aucune relation de naissance avec l'enfant"
 
-#: ../src/plugins/lineage.py:162
-#: ../src/plugins/lineage.py:182
+#: ../src/plugins/lineage.py:157
+#: ../src/plugins/lineage.py:177
 #: ../src/plugins/Verify.py:948
 msgid "Unknown gender"
 msgstr "Genre inconnu"
 
-#: ../src/plugins/lineage.py:244
+#: ../src/plugins/lineage.py:239
 msgid "Father lineage"
 msgstr "Lignée paternelle"
 
-#: ../src/plugins/lineage.py:246
+#: ../src/plugins/lineage.py:241
 msgid "Display father lineage"
 msgstr "Affiche la lignée paternelle"
 
-#: ../src/plugins/lineage.py:255
+#: ../src/plugins/lineage.py:250
 msgid "Mother lineage"
 msgstr "Lignée maternelle"
 
-#: ../src/plugins/lineage.py:257
+#: ../src/plugins/lineage.py:252
 msgid "Display mother lineage"
 msgstr "Affiche la lignée maternelle"
 
@@ -10783,44 +10795,72 @@ msgstr "Annotations de fin"
 msgid "Use optimal number of pages"
 msgstr "Utiliser le nombre optimal de pages"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:487
+#: ../src/ReportBase/_GraphvizReportDialog.py:508
 msgid "Graphviz Dot File"
 msgstr "Fichier dot GraphViz"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:650
 msgid "Font size"
 msgstr "Taille de la police"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:632
+#: ../src/ReportBase/_GraphvizReportDialog.py:654
 msgid "Graph Direction"
 msgstr "Sens du graphique"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:637
+#: ../src/ReportBase/_GraphvizReportDialog.py:659
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Générations de haut en bas ou de gauche à droite."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:651
+#: ../src/ReportBase/_GraphvizReportDialog.py:664
+msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 75 or 100 DPI.  For desktop printing, try 300 or 600 DPI."
+msgstr "Points par pouces (in). Quand on veut créer une image .gif ou .png pour internet, on utilise des valeurs entre 75 ou 100 DPI pour la résolution."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:670
+msgid "Node spacing"
+msgstr "Espacement de nœud"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:671
+msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
+msgstr "L'espace libre minimum réservé, en inches, entre les nœuds. Pour les graphiques verticaux, ceci correspond à l'espace entre les colonnes. Pour les graphiques horizontaux, ceci correspond à l'espace entre les rangées."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:678
+msgid "Rank spacing"
+msgstr "Espacement de rang"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:679
+msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
+msgstr "L'espace libre minimum réservé, en inches, entre les rangs. Pour les graphiques verticaux, ceci correspond à l'espace entre les rangées. Pour les graphiques horizontaux, ceci correspond à l'espace entre les colonnes."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:696
 msgid "Paging Direction"
 msgstr "Direction de la mise en page"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:656
+#: ../src/ReportBase/_GraphvizReportDialog.py:701
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr "L'ordre dans lequel les pages du graphique sont générées. Cette option ne s'applique que pour les pages horizontales ou verticales multiples."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:691
+#: ../src/ReportBase/_GraphvizReportDialog.py:720
+msgid "Use subgraphs"
+msgstr "Utiliser les sous-graphiques"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:721
+msgid "Subgraphs can help GraphViz position certain linked nodes closer together, but with non-trivial graphs will result in longer lines and larger graphs."
+msgstr "Les sous-graphiques peuvent aider GraphViz à positionner les conjoints proches, mais peuvent également générer de longues lignes et larges graphiques. "
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:743
 msgid "Note size"
 msgstr "Taille de la note"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:704
-#: ../src/ReportBase/_GraphvizReportDialog.py:755
+#: ../src/ReportBase/_GraphvizReportDialog.py:756
+#: ../src/ReportBase/_GraphvizReportDialog.py:807
 msgid "Open with application"
 msgstr "Ouvrir avec l'application"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:712
+#: ../src/ReportBase/_GraphvizReportDialog.py:764
 msgid "Output Format"
 msgstr "Format de sortie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Paper Options"
 msgstr "Options Papier"
 
@@ -16625,7 +16665,7 @@ msgstr "_Nom du format :"
 
 #: ../src/glade/gramps.glade.h:73
 msgid "Format definition details"
-msgstr "Dé_tails de la définition du format"
+msgstr "Détails de la définition du format"
 
 #: ../src/glade/gramps.glade.h:74
 msgid "GRAMPS"
