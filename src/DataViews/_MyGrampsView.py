@@ -290,6 +290,7 @@ class MyGrampsView(PageView.PageView):
                              ('Hello World Gadget', {}),
                              ('Log Gadget', {}),
                              ('Shell Gadget', {}),
+                             ('Python Gadget', {}),
                              #('Events Gadget', {}),
                              ]:
             all_opts = get_gadget_opts(name, opts)

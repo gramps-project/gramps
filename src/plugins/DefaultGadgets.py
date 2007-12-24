@@ -2,8 +2,10 @@ from DataViews import register, Gadget
 from BasicUtils import name_displayer
 import DateHandler
 import gen.lib
+import sys
 import os
 import time
+import string
 
 #
 # Hello World, in Gramps Gadgets
@@ -290,10 +292,19 @@ class ShellGadget(Gadget):
 
 class PythonGadget(Gadget):
     def init(self):
+        self.env = {"dbstate": self.gui.dbstate,
+                    "self": self,
+                    }
         # GUI setup:
         self.gui.textview.set_editable(True)
         self.set_text("Python\n> ")
         self.gui.textview.connect('key-press-event', self.on_enter)
+
+    def format_exception(self, max_tb_level=10):
+        retval = ''
+        cla, exc, trbk = sys.exc_info()
+        retval += "ERROR: %s %s" %(cla, exc)
+        return retval
 
     def on_enter(self, widget, event):
         if event.keyval == 65293: # enter, where to get this?
@@ -305,10 +316,30 @@ class PythonGadget(Gadget):
             if line.startswith("> "):
                 self.append_text("\n")
                 line = line[2:]
-                self.append_text(output)
+            # update dbstate, in case in changed:
+            self.env["dbstate"] = self.gui.dbstate
+            _retval = "error"
+            if "_retval" in self.env:
+                del self.env["_retval"]
+            exp1 = """_retval = """ + string.strip(line)
+            exp2 = string.strip(line)
+            try:
+                _retval = eval(exp2, self.env)
+            except:
+                try:
+                    exec exp1 in self.env
+                except:
+                    try:
+                        exec exp2 in self.env
+                    except:
+                        _retval = self.format_exception()
+            if "_retval" in self.env:
+                _retval = self.env["_retval"]
+            if _retval != None:
+                self.append_text("%s\n" % _retval)
                 self.append_text("> ")
             else:
-                self.append_text("\n> ")
+                self.append_text("> ")
             return True
         return False
 
@@ -357,7 +388,7 @@ register(type="gadget",
 register(type="gadget", 
          name="Python Gadget", 
          height=250,
-         content = ShellGadget,
-         title="Shell",
+         content = PythonGadget,
+         title="Python",
          )
 
