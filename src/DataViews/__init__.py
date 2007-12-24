@@ -26,6 +26,7 @@ Package init for the DataView package
 __author__ = "Don Allingham"
 __revision__ = "$Revision: $"
 
+from _MyGrampsView import MyGrampsView, register, Gadget
 from _PersonView import PersonView
 from _RelationView import RelationshipView
 from _FamilyList import FamilyListView
@@ -37,11 +38,14 @@ from _MediaView import MediaView
 from _RepositoryView import RepositoryView
 from _NoteView import NoteView
 
-def get_views():
-    """
-    Returns a list of PageView instances
-    """
-    return [
+try:
+    import Config
+    DATA_VIEWS = eval("["+Config.get(Config.DATA_VIEWS)+"]")
+except:
+    # Fallback if bad config line, or if no Config system
+    print "Ignoring malformed 'data-views' entry"
+    DATA_VIEWS = [
+        #MyGrampsView,
         PersonView,
         RelationshipView,
         FamilyListView,
@@ -54,3 +58,9 @@ def get_views():
         RepositoryView,
         NoteView,
         ]
+
+def get_views():
+    """
+    Returns a list of PageView instances, in order
+    """
+    return DATA_VIEWS

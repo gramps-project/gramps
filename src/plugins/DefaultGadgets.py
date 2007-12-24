@@ -1,0 +1,262 @@
+from DataViews import register, Gadget
+from BasicUtils import name_displayer
+import DateHandler
+import gen.lib
+
+#
+# Hello World, in Gramps Gadgets
+#
+# First, you need a function or class that takes a single argument
+# a GuiGadget:
+
+def init(gui):
+    gui.set_text("Hello world!")
+
+# In this function, you can do some things to update the gadget,
+# like set text of the main scroll window.
+
+# Then, you need to register the gadget:
+
+register(type="gadget", # case in-senstitive keyword "gadget"
+         name="Hello World Gadget", # gadget name, unique among gadgets
+         height = 20,
+         content = init, # function/class; takes state and container
+         title="Sample Gadget", # default title, user changeable, unique
+         )
+
+# There are a number of arguments that you can provide, including:
+# name, height, content, title, expand, minimized
+
+# Hereare a couple of other examples, with their register lines at the
+# bottom:
+
+def make_family_content(gui):
+    gui.set_text("Families:")
+
+def make_event_content(gui):
+    gui.set_text("Events:")
+
+# Here is a Gadget object. It has a number of methods possibilities:
+#  init- run once, on construction
+#  db_changed- run when db-changed is triggered
+#  main- run once per db, main process (for fast code)
+#  background- run once per db, main process (for slow code)
+#  active_changed- run when active-changed is triggered
+
+# You can also call update to run main and background
+
+class LogGadget(Gadget):
+    def db_changed(self):
+        self.dbstate.connect('person-add', self.log_person_add)
+        self.dbstate.connect('person-delete', self.log_person_delete)
+        self.dbstate.connect('person-update', self.log_person_update)
+        self.dbstate.connect('family-add', self.log_family_add)
+        self.dbstate.connect('family-delete', self.log_family_delete)
+        self.dbstate.connect('family-update', self.log_family_update)
+    
+    def active_changed(self, handle):
+        self.log_active_changed(handle)
+
+    def init(self):
+        self.set_text("Log for this Session\n--------------------\n")
+
+    def log_person_add(self, handles):
+        self.append_text("person-add: ")
+        self.get_person(handles)
+    def log_person_delete(self, handles):
+        self.append_text("person-delete: ")
+        self.get_person(handles)
+    def log_person_update(self, handles):
+        self.append_text("person-update: ")
+        self.get_person(handles)
+    def log_family_add(self, handles):
+        self.append_text("family-add: %s" % handles)
+    def log_family_delete(self, handles):
+        self.append_text("family-delete: %s" % handles)
+    def log_family_update(self, handles):
+        self.append_text("family-update: %s" % handles)
+    def log_active_changed(self, handles):
+        self.append_text("active-changed: ")
+        self.get_person([handles])
+
+    def get_person(self, handles):
+        for person_handle in handles:
+            person = self.dbstate.get_person_from_handle(person_handle)
+            if person:
+                self.append_text(name_displayer.display(person))
+            else:
+                self.append_text(person_handle)
+            self.append_text("\n")
+
+class TopSurnamesGadget(Gadget):
+    def main(self):
+        self.set_text("Processing...\n")
+
+    def background(self):
+        people = self.dbstate.get_person_handles(sort_handles=False)
+        surnames = {}
+        cnt = 0
+        for person_handle in people:
+            person = self.dbstate.get_person_from_handle(person_handle)
+            if person:
+                surname = person.get_primary_name().get_surname().strip()
+                surnames[surname] = surnames.get(surname, 0) + 1
+            if cnt % 500 == 0:
+                yield True
+            cnt += 1
+        total_people = cnt
+        surname_sort = []
+        total = 0
+        cnt = 0
+        for surname in surnames:
+            surname_sort.append( (surnames[surname], surname) )
+            total += surnames[surname]
+            if cnt % 500 == 0:
+                yield True
+            cnt += 1
+        total_surnames = cnt
+        surname_sort.sort(lambda a,b: -cmp(a,b))
+        line = 0
+        ### All done!
+        self.set_text("")
+        for (count, surname) in surname_sort:
+            self.append_text("  %s, %d%%\n" % 
+                             (surname, int((float(count)/total) * 100)))
+            line += 1
+            if line >= 10:
+                break
+        self.append_text("\nTotal unique surnames: %d\n" % total_surnames)
+        self.append_text("Total people: %d" % total_people)
+        
+class StatsGadget(Gadget):
+    def db_changed(self):
+        self.dbstate.connect('person-add', self.update)
+        self.dbstate.connect('person-delete', self.update)
+        self.dbstate.connect('family-add', self.update)
+        self.dbstate.connect('family-delete', self.update)
+
+    def background(self):
+        self.set_text("Processing...")
+        database = self.dbstate
+        personList = database.get_person_handles(sort_handles=False)
+        familyList = database.get_family_handles()
+
+        with_photos = 0
+        total_photos = 0
+        incomp_names = 0
+        disconnected = 0
+        missing_bday = 0
+        males = 0
+        females = 0
+        unknowns = 0
+        bytes = 0
+        namelist = []
+        notfound = []
+
+        pobjects = len(database.get_media_object_handles())
+        for photo_id in database.get_media_object_handles():
+            photo = database.get_object_from_handle(photo_id)
+            try:
+                bytes = bytes + posixpath.getsize(photo.get_path())
+            except:
+                notfound.append(photo.get_path())
+
+        cnt = 0
+        for person_handle in personList:
+            person = database.get_person_from_handle(person_handle)
+            if not person:
+                continue
+            length = len(person.get_media_list())
+            if length > 0:
+                with_photos = with_photos + 1
+                total_photos = total_photos + length
+
+            person = database.get_person_from_handle(person_handle)
+            name = person.get_primary_name()
+            if name.get_first_name() == "" or name.get_surname() == "":
+                incomp_names = incomp_names + 1
+            if (not person.get_main_parents_family_handle()) and (not len(person.get_family_handle_list())):
+                disconnected = disconnected + 1
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = database.get_event_from_handle(birth_ref.ref)
+                if not DateHandler.get_date(birth):
+                    missing_bday = missing_bday + 1
+            else:
+                missing_bday = missing_bday + 1
+            if person.get_gender() == gen.lib.Person.FEMALE:
+                females = females + 1
+            elif person.get_gender() == gen.lib.Person.MALE:
+                males = males + 1
+            else:
+                unknowns += 1
+            if name.get_surname() not in namelist:
+                namelist.append(name.get_surname())
+            if cnt % 500 == 0:
+                yield True
+            cnt += 1
+
+        text = _("Individuals") + "\n"
+        text = text + "----------------------------\n"
+        text = text + "%s: %d\n" % (_("Number of individuals"),len(personList))
+        text = text + "%s: %d\n" % (_("Males"),males)
+        text = text + "%s: %d\n" % (_("Females"),females)
+        text = text + "%s: %d\n" % (_("Individuals with unknown gender"),unknowns)
+        text = text + "%s: %d\n" % (_("Individuals with incomplete names"),incomp_names)
+        text = text + "%s: %d\n" % (_("Individuals missing birth dates"),missing_bday)
+        text = text + "%s: %d\n" % (_("Disconnected individuals"),disconnected)
+        text = text + "\n%s\n" % _("Family Information")
+        text = text + "----------------------------\n"
+        text = text + "%s: %d\n" % (_("Number of families"),len(familyList))
+        text = text + "%s: %d\n" % (_("Unique surnames"),len(namelist))
+        text = text + "\n%s\n" % _("Media Objects")
+        text = text + "----------------------------\n"
+        text = text + "%s: %d\n" % (_("Individuals with media objects"),with_photos)
+        text = text + "%s: %d\n" % (_("Total number of media object references"),total_photos)
+        text = text + "%s: %d\n" % (_("Number of unique media objects"),pobjects)
+        text = text + "%s: %d %s\n" % (_("Total size of media objects"),bytes,\
+                                        _("bytes"))
+
+        if len(notfound) > 0:
+            text = text + "\n%s\n" % _("Missing Media Objects")
+            text = text + "----------------------------\n"
+            for p in notfound:
+                text = text + "%s\n" % p
+        self.set_text(text)
+
+
+register(type="gadget", 
+         name="Families Gadget", 
+         height=300,
+         content = make_family_content,
+         title="Favorite Families",
+         )
+
+register(type="gadget", 
+         name="Events Gadget", 
+         height=100,
+         content = make_event_content,
+         title="Favorite Events",
+         )
+
+register(type="gadget", 
+         name="Top Surnames Gadget", 
+         height=230,
+         content = TopSurnamesGadget,
+         title="Top 10 Surnames",
+         )
+
+register(type="gadget", 
+         name="Stats Gadget", 
+         height=230,
+         content = StatsGadget,
+         title="Stats",
+         )
+
+register(type="gadget", 
+         name="Log Gadget", 
+         height=230,
+         content = LogGadget,
+         title="Session Log",
+         )
+

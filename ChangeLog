@@ -1,3 +1,10 @@
+2007-12-24  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/_MyGrampsView.py: new DataView for Gadgets
+	* src/DataViews/__init__.py: import things from _MyGrampsView
+	* src/Config/_GrampsConfigKeys.py: added data-views
+	* src/glade/gramps.glade: added My Gramps Gadget gui
+	* src/plugins/DefaultGadgets.py: sample gadgets
+
 2007-12-24  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/Makefile.am: Add _DocReportDialog.py to the Makefile
 

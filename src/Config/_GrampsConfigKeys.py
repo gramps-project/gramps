@@ -160,6 +160,7 @@ MAX_SIB_AGE_DIFF     = ('behavior', 'max-sib-age-diff', 1)
 MIN_GENERATION_YEARS = ('behavior', 'min-generation-years', 1)
 AVG_GENERATION_GAP   = ('behavior', 'avg-generation-gap', 1)
 GENERATION_DEPTH     = ('behavior', 'generation-depth', 1)
+DATA_VIEWS           = ('interface','data-views', 2)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -276,4 +277,7 @@ default_value = {
     MIN_GENERATION_YEARS : 13,
     AVG_GENERATION_GAP   : 20,
     GENERATION_DEPTH     : 15,
+    DATA_VIEWS: ('PersonView,RelationshipView,FamilyListView,PedigreeView,'
+                 'EventView,SourceView,PlaceView,MediaView,RepositoryView,'
+                 'NoteView'),
 }
