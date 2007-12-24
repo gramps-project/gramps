@@ -318,7 +318,7 @@ class PythonGadget(Gadget):
                 line = line[2:]
             # update dbstate, in case in changed:
             self.env["dbstate"] = self.gui.dbstate
-            _retval = "error"
+            _retval = None
             if "_retval" in self.env:
                 del self.env["_retval"]
             exp1 = """_retval = """ + string.strip(line)
