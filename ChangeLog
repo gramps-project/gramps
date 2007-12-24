@@ -1,3 +1,6 @@
+2007-12-24  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/Makefile.am: Add _DocReportDialog.py to the Makefile
+
 2007-12-23  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_PaperMenu.py: 0001480: custom paper size is not editable 
 	for 2nd and any additional invocations of the report
