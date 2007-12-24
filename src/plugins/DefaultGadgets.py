@@ -249,7 +249,7 @@ class ShellGadget(Gadget):
                 fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK)
         # GUI setup:
         self.gui.textview.set_editable(True)
-        self.set_text("%s $ " % command[0])
+        self.set_text("%s\n$ " % command[0])
         self.gui.textview.connect('key-press-event', self.on_enter)
 
     def write(self, text):
@@ -284,6 +284,31 @@ class ShellGadget(Gadget):
                 self.append_text("$ ")
             else:
                 self.append_text("\n$ ")
+            return True
+        return False
+
+
+class PythonGadget(Gadget):
+    def init(self):
+        # GUI setup:
+        self.gui.textview.set_editable(True)
+        self.set_text("Python\n> ")
+        self.gui.textview.connect('key-press-event', self.on_enter)
+
+    def on_enter(self, widget, event):
+        if event.keyval == 65293: # enter, where to get this?
+            buffer = widget.get_buffer()
+            line_cnt = buffer.get_line_count()
+            start = buffer.get_iter_at_line(line_cnt - 1)
+            end = buffer.get_end_iter()
+            line = buffer.get_text(start, end)
+            if line.startswith("> "):
+                self.append_text("\n")
+                line = line[2:]
+                self.append_text(output)
+                self.append_text("> ")
+            else:
+                self.append_text("\n> ")
             return True
         return False
 
@@ -325,6 +350,13 @@ register(type="gadget",
 register(type="gadget", 
          name="Shell Gadget", 
          height=300,
+         content = ShellGadget,
+         title="Shell",
+         )
+
+register(type="gadget", 
+         name="Python Gadget", 
+         height=250,
          content = ShellGadget,
          title="Shell",
          )
