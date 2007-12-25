@@ -1,4 +1,8 @@
 2007-12-24  Brian Matherly <brian@gramps-project.org>
+	* src/const.py.in: Move the entire Gramps dir under "Application Data" in 
+	Windows.
+
+2007-12-24  Brian Matherly <brian@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py: Fix database dir under windows.
 
 2007-12-24  Brian Matherly <brian@gramps-project.org>

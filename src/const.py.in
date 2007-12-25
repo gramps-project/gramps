@@ -73,7 +73,10 @@ SYSCONFDIR = "@sysconfdir@"
 #-------------------------------------------------------------------------
 if os.environ.has_key('USERPROFILE'):
     USER_HOME = os.environ['USERPROFILE'] 
-    HOME_DIR = os.path.join(USER_HOME, 'gramps')
+    if os.environ.has_key('APPDATA'):
+        HOME_DIR = os.path.join(os.environ['APPDATA'], 'gramps')
+    else:
+        HOME_DIR = os.path.join(USER_HOME, 'gramps')
 else:
     USER_HOME = os.environ['HOME'] 
     HOME_DIR = os.path.join(USER_HOME, '.gramps')
