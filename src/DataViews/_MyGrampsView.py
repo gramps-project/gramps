@@ -36,6 +36,7 @@ import pango
 import Errors
 import const
 import PageView
+import ManagedWindow
 
 AVAILABLE_GADGETS = []
 
@@ -77,12 +78,46 @@ class LinkTag(gtk.TextTag):
         self.set_property('underline', pango.UNDERLINE_SINGLE)
         tag_table.add(self)
 
+# notes on building a filter: src/Filters/_FilterParser.py
+# f = GenericFilterFactory('Person')()
+# r = Rules.Person.HasNameOf
+# f.add_rule(r)
+
+class GadgetWindow(ManagedWindow.ManagedWindow):
+    def __init__(self, gadget):
+        self.title = gadget.title + " Gadget"
+        self.gadget = gadget
+        ManagedWindow.ManagedWindow.__init__(self, gadget.uistate, [], gadget)
+        self.set_window(gtk.Dialog("",gadget.uistate.window,
+                                   gtk.DIALOG_DESTROY_WITH_PARENT,
+                                   (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
+                        None, self.title)
+        self.window.set_size_request(400,300)
+        self.window.connect('response', self.close)
+        self.gadget.state = "windowed"
+        self.gadget.mainframe.reparent(self.window.vbox)
+        self.window.show_all()
+        
+    def build_menu_names(self, obj):
+        return (self.title, 'Gadget')
+
+    def get_title(self):
+        return self.title
+
+    def close(self, *args):
+        self.gadget.state = "maximized"
+        self.gadget.mainframe.reparent(self.gadget.parent)
+        ManagedWindow.ManagedWindow.close(self, *args)
+
+#------------------------------------------------------------------------
+
 class Gadget(object):
     def __init__(self, gui):
         self._idle_id = 0
         self._generator = None
         self._need_to_update = False
         self._tags = []
+        self.data = {}
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
         self.gui = gui
@@ -96,6 +131,20 @@ class Gadget(object):
                                   self.on_motion)
 
     def active_changed(self, handle):
+        pass
+
+    def on_save(self):
+        pass
+
+    def _on_save(self):
+        # save data
+        pass
+
+    def on_load(self):
+        pass
+
+    def _on_load(self):
+        # load data
         pass
 
     def _db_changed(self, db):
@@ -265,6 +314,18 @@ class GuiGadget:
         del self.viewpage.frame_map[str(self.mainframe)]
         self.mainframe.destroy()
 
+    def detach(self):
+        # keep a pointer to old parent frame:
+        self.parent = self.mainframe.get_parent()
+        # make a window, and attach it there
+        self.detached_window = GadgetWindow(self)
+
+    def attach(self):
+        # do this if you close window
+        # move this widget to old parent frame
+        # remove window
+        pass
+
     def set_state(self, state):
         self.state = state
         if state == "minimized":
@@ -290,6 +351,12 @@ class GuiGadget:
             self.set_state("maximized")
 
     def set_properties(self, obj):
+        if self.state == "windowed":
+            pass
+        else:
+            self.detach()
+        return
+        # FIXME: how to control expand/not expand and detached
         self.expand = not self.expand
         if self.state == "maximized":
             column = self.mainframe.get_parent() # column
@@ -332,6 +399,7 @@ class MyGrampsView(PageView.PageView):
         frame = gtk.ScrolledWindow()
         frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         hbox = gtk.HBox(homogeneous=True)
+        # FIXME: issue when window is scrolled down; drops in wrong place
         # Set up drag and drop
         frame.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
                             gtk.DEST_DEFAULT_HIGHLIGHT |

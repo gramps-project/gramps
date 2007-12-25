@@ -298,7 +298,7 @@ class PythonGadget(Gadget):
                     }
         # GUI setup:
         self.gui.textview.set_editable(True)
-        self.set_text("Python\n> ")
+        self.set_text("Python %s\n> " % sys.version)
         self.gui.textview.connect('key-press-event', self.on_enter)
 
     def format_exception(self, max_tb_level=10):
@@ -349,8 +349,7 @@ class TODOGadget(Gadget):
     def init(self):
         # GUI setup:
         self.gui.textview.set_editable(True)
-        self.append_text("> ")
-
+        self.append_text("Enter your TODO list here.")
 
 register(type="gadget", 
          name="Families Gadget", 
