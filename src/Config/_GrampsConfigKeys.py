@@ -20,6 +20,9 @@
 
 # $Id$
 
+import const
+import os
+
 """
 Adding a new configuration key:
 
@@ -216,7 +219,7 @@ default_value = {
     PEDVIEW_LAYOUT       : 0,
     PEDVIEW_SHOW_MARRIAGE: False,
     PEDVIEW_SHOW_IMAGES  : True,
-    DATABASE_PATH        : '~/.gramps/grampsdb', 
+    DATABASE_PATH        : os.path.join( const.HOME_DIR, 'grampsdb'), 
     FPREFIX              : 'F%04d', 
     EPREFIX              : 'E%04d', 
     RPREFIX              : 'R%04d', 

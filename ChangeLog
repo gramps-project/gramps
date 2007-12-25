@@ -1,4 +1,7 @@
 2007-12-24  Brian Matherly <brian@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: Fix database dir under windows.
+
+2007-12-24  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_GraphvizReportDialog.py: Fix default font.
 
 2007-12-24  Stéphane Charette  <stephanecharette@gmail.com>
