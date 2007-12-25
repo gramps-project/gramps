@@ -134,9 +134,6 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         pheight             = paper_size.get_height_inches()
         pwidth              = paper_size.get_width_inches()
 
-        if self.fontfamily == "":
-            self.fontfamily = "FreeSans"
-
         # graph size
         if self.paper.get_orientation() == BaseDoc.PAPER_LANDSCAPE:
             rotate = 90
@@ -183,7 +180,12 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
 #        self.dot.write( '  edge [len=0.5 style=solid arrowhead=none arrowtail=normal fontsize=12];\n')
 #        self.dot.write( '  node [style=filled fontname="FreeSans" fontsize=12];\n'   )
         self.dot.write( '  edge [len=0.5 style=solid arrowhead=none arrowtail=normal fontsize=%d];\n' % self.fontsize )
-        self.dot.write( '  node [style=filled fontname="%s" fontsize=%d];\n' % ( self.fontfamily, self.fontsize ) )
+        if self.fontfamily:
+            self.dot.write( '  node [style=filled fontname="%s" fontsize=%d];\n' 
+                            % ( self.fontfamily, self.fontsize ) )
+        else:
+            self.dot.write( '  node [style=filled fontsize=%d];\n' 
+                            % self.fontsize )
         self.dot.write( '\n'                                                         )
 
     def open(self, filename):
