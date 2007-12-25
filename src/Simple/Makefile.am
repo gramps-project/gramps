@@ -5,6 +5,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/Simple
 pkgdata_PYTHON = \
 	_SimpleDoc.py\
 	_SimpleAccess.py\
+        _SimpleTable.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Simple
