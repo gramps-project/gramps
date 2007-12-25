@@ -1,3 +1,7 @@
+2007-12-24  Stéphane Charette  <stephanecharette@gmail.com>
+	* src/ReportBase/_GraphvizReportDialog.py: more generic changes
+	to the new GraphViz base class
+
 2007-12-24  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/_MyGrampsView.py: new DataView for Gadgets
 	* src/DataViews/__init__.py: import things from _MyGrampsView

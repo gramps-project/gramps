@@ -364,7 +364,7 @@ class EnumeratedListOption(Option):
         """
         Option.__init__(self,label,value)
         self.__items = []
-        
+
     def add_item(self,value,description):
         """
         Add an item to the list of possible values.

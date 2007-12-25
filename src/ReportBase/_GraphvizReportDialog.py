@@ -55,25 +55,27 @@ from PluginUtils import NumberOption, FloatOption, EnumeratedListOption, TextOpt
 # Private Contstants
 #
 #-------------------------------------------------------------------------------
-_FONTS = [ { 'name' : _("Default"),                'value' : ""          },
-           { 'name' : _("Postscript / Helvetica"), 'value' : "Helvetica" },
-           { 'name' : _("Truetype / FreeSans"),    'value' : "FreeSans"  }  ]
+_FONTS = [ { 'name' : _("Default"),                         'value' : ""          },
+           { 'name' : _("Postscript / Helvetica"),          'value' : "Helvetica" },
+           { 'name' : _("Truetype / FreeSans"),             'value' : "FreeSans"  }  ]
 
-_RANKDIR = [ { 'name' : _("Vertical"),             'value' : "TB" },
-             { 'name' : _("Horizontal"),           'value' : "LR" } ]
+_RANKDIR = [ { 'name' : _("Vertical (top to bottom)"),      'value' : "TB" },
+             { 'name' : _("Vertical (bottom to top)"),      'value' : "BT" },
+             { 'name' : _("Horizontal (left to right)"),    'value' : "LR" },
+             { 'name' : _("Horizontal (right to left)"),    'value' : "RL" } ]
 
-_PAGEDIR = [ { 'name' : _("Bottom, left"),         'value' :"BL" },
-             { 'name' : _("Bottom, right"),        'value' :"BR" },
-             { 'name' : _("Top, left"),            'value' :"TL" },
-             { 'name' : _("Top, Right"),           'value' :"TR" },
-             { 'name' : _("Right, bottom"),        'value' :"RB" },
-             { 'name' : _("Right, top"),           'value' :"RT" },
-             { 'name' : _("Left, bottom"),         'value' :"LB" },
-             { 'name' : _("Left, top"),            'value' :"LT" } ]
+_PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
+             { 'name' : _("Bottom, right"),                 'value' :"BR" },
+             { 'name' : _("Top, left"),                     'value' :"TL" },
+             { 'name' : _("Top, Right"),                    'value' :"TR" },
+             { 'name' : _("Right, bottom"),                 'value' :"RB" },
+             { 'name' : _("Right, top"),                    'value' :"RT" },
+             { 'name' : _("Left, bottom"),                  'value' :"LB" },
+             { 'name' : _("Left, top"),                     'value' :"LT" } ]
 
-_RATIO = [ { 'name' : _("Minimal size"),                'value' : "compress" },
-           { 'name' : _("Fill the given area"),         'value': "fill"      },
-           { 'name' : _("Use optimal number of pages"), 'value': "expand"    } ]
+_RATIO = [ { 'name' : _("Minimal size"),                    'value' : "compress" },
+           { 'name' : _("Fill the given area"),             'value': "fill"      },
+           { 'name' : _("Use optimal number of pages"),     'value': "expand"    } ]
 
 
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
@@ -633,9 +635,8 @@ class GraphvizReportDialog(ReportDialog):
             self.options = option_class
 
         ################################
-        category = _("GraphViz Options")
+        category = _("GraphViz Layout")
         ################################
-        
         font_family = EnumeratedListOption(_("Font family"), 0)
         index = 0
         for item in _FONTS:
@@ -660,11 +661,55 @@ class GraphvizReportDialog(ReportDialog):
                             "or left to right."))
         self.options.add_menu_option(category,"rank_dir",rank_dir)
 
+        h_pages = NumberOption(_("Number of Horizontal Pages"),1,1,25)
+        h_pages.set_help(_("GraphViz can create very large graphs by "
+                           "spreading the graph across a rectangular "
+                           "array of pages. This controls the number "
+                           "pages in the array horizontally."))
+        self.options.add_menu_option(category,"h_pages",h_pages)
+        
+        v_pages = NumberOption(_("Number of Vertical Pages"),1,1,25)
+        v_pages.set_help(_("GraphViz can create very large graphs by "
+                           "spreading the graph across a rectangular "
+                           "array of pages. This controls the number "
+                           "pages in the array vertically."))
+        self.options.add_menu_option(category,"v_pages",v_pages)
+
+        page_dir = EnumeratedListOption(_("Paging Direction"), 0)
+        index = 0
+        for item in _PAGEDIR:
+            page_dir.add_item(index, item["name"])
+            index+=1
+        page_dir.set_help(_("The order in which the graph pages are output. "
+                            "This option only applies if the horizontal pages "
+                            "or vertical pages are greater than 1."))
+        self.options.add_menu_option(category,"page_dir",page_dir)
+
+        # the page direction option only makes sense when the
+        # number of horizontal and/or vertical pages is > 1,
+        # so we need to remember these 3 controls for later
+        self.h_pages    = h_pages
+        self.v_pages    = v_pages
+        self.page_dir   = page_dir
+
+        ################################
+        category = _("GraphViz Options")
+        ################################
+        
+        aspect_ratio = EnumeratedListOption(_("Aspect ratio"), 0)
+        index = 0
+        for item in _RATIO:
+            aspect_ratio.add_item(index, item["name"])
+            index+=1
+        aspect_ratio.set_help(_("Affects greatly how the graph is layed out "
+                                "on the page."))
+        self.options.add_menu_option(category,"ratio",aspect_ratio)
+
         dpi = NumberOption(_("DPI"), 75, 20, 1200)
         dpi.set_help(_( "Dots per inch.  When creating images such as "
                         ".gif or .png files for the web, try numbers "
-                        "such as 75 or 100 DPI.  For desktop printing, "
-                        "try 300 or 600 DPI."))
+                        "such as 75 or 100 DPI.  When printing, try"
+                        "300 or 600 DPI."))
         self.options.add_menu_option(category, "dpi", dpi)
 
         nodesep = FloatOption(_("Node spacing"), 0.20, 0.01, 5.00)
@@ -682,40 +727,6 @@ class GraphvizReportDialog(ReportDialog):
                             "horizontal graphs, this corresponds to spacing "
                             "between columns."))
         self.options.add_menu_option(category, "ranksep", ranksep)
-
-        aspect_ratio = EnumeratedListOption(_("Aspect ratio"), 0)
-        index = 0
-        for item in _RATIO:
-            aspect_ratio.add_item(index, item["name"])
-            index+=1
-        aspect_ratio.set_help(_("Affects greatly how the graph is layed out "
-                                "on the page. Multiple pages overrides the "
-                                "pages settings below."))
-        self.options.add_menu_option(category,"ratio",aspect_ratio)
-        
-        page_dir = EnumeratedListOption(_("Paging Direction"), 0)
-        index = 0
-        for item in _PAGEDIR:
-            page_dir.add_item(index, item["name"])
-            index+=1
-        page_dir.set_help(_("The order in which the graph pages are output. "
-                            "This option only applies if the horizontal pages "
-                            "or vertical pages are greater than 1."))
-        self.options.add_menu_option(category,"page_dir",page_dir)
-        
-        h_pages = NumberOption(_("Number of Horizontal Pages"),1,1,25)
-        h_pages.set_help(_("GraphViz can create very large graphs by "
-                           "spreading the graph across a rectangular "
-                           "array of pages. This controls the number "
-                           "pages in the array horizontally."))
-        self.options.add_menu_option(category,"h_pages",h_pages)
-        
-        v_pages = NumberOption(_("Number of Vertical Pages"),1,1,25)
-        v_pages.set_help(_("GraphViz can create very large graphs by "
-                           "spreading the graph across a rectangular "
-                           "array of pages. This controls the number "
-                           "pages in the array vertically."))
-        self.options.add_menu_option(category,"v_pages",v_pages)
 
         usesubgraphs = BooleanOption(_('Use subgraphs'), False)
         usesubgraphs.set_help(_("Subgraphs can help GraphViz position "
@@ -745,10 +756,25 @@ class GraphvizReportDialog(ReportDialog):
         self.options.add_menu_option(category,"notesize",notesize)
 
         self.options.load_previous_values()
+
+    def pages_changed(self, sp):
+        if self.v_pages.gobj.get_value_as_int() > 1 or self.h_pages.gobj.get_value_as_int() > 1:
+            self.page_dir.combo.set_sensitive(True)
+        else:
+            self.page_dir.combo.set_sensitive(False)
         
     def init_interface(self):
         ReportDialog.init_interface(self)
         self.doc_type_changed(self.format_menu)
+
+        # now that the controls have all been created,
+        # we can finally setup the event connections
+
+        # the page direction option only makes sense when the
+        # number of horizontal and/or vertical pages is > 1
+        self.h_pages.gobj.connect('value-changed', self.pages_changed)
+        self.v_pages.gobj.connect('value-changed', self.pages_changed)
+        self.pages_changed(self.h_pages)
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog."""
