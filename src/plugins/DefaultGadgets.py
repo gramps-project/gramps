@@ -31,7 +31,7 @@ register(type="gadget", # case in-senstitive keyword "gadget"
 # There are a number of arguments that you can provide, including:
 # name, height, content, title, expand, state
 
-# Hereare a couple of other examples, with their register lines at the
+# Here are a couple of other examples, with their register lines at the
 # bottom:
 
 def make_family_content(gui):
@@ -40,39 +40,37 @@ def make_family_content(gui):
 def make_event_content(gui):
     gui.set_text("Events:")
 
-# Here is a Gadget object. It has a number of methods possibilities:
+# Here is a Gadget object. It has a number of method possibilities:
 #  init- run once, on construction
-#  db_changed- run when db-changed is triggered
-#  main- run once per db, main process (for fast code)
-#  background- run once per db, main process (for slow code)
 #  active_changed- run when active-changed is triggered
+#  db_changed- run when db-changed is triggered
+#  main- run once per db change, main process (for fast code)
+#  background- run once per db change, main process (for slow code)
 
-# You can also call update to run main and background
+# You can also call update() to run main and background
 
 class LogGadget(Gadget):
     def db_changed(self):
-        self.dbstate.connect('person-add', self.log_person_add)
-        self.dbstate.connect('person-delete', self.log_person_delete)
-        self.dbstate.connect('person-update', self.log_person_update)
-        self.dbstate.connect('family-add', self.log_family_add)
-        self.dbstate.connect('family-delete', self.log_family_delete)
-        self.dbstate.connect('family-update', self.log_family_update)
+        self.dbstate.db.connect('person-add', self.log_person_add)
+        self.dbstate.db.connect('person-delete', self.log_person_delete)
+        self.dbstate.db.connect('person-update', self.log_person_update)
+        self.dbstate.db.connect('family-add', self.log_family_add)
+        self.dbstate.db.connect('family-delete', self.log_family_delete)
+        self.dbstate.db.connect('family-update', self.log_family_update)
     
     def active_changed(self, handle):
         self.log_active_changed(handle)
 
     def init(self):
         self.set_text("Log for this Session\n--------------------\n")
+        self.history = {}
 
     def log_person_add(self, handles):
-        self.append_text("person-add: ")
-        self.get_person(handles)
+        self.get_person(handles, "person-add")
     def log_person_delete(self, handles):
-        self.append_text("person-delete: ")
-        self.get_person(handles)
+        self.get_person(handles, "person-delete")
     def log_person_update(self, handles):
-        self.append_text("person-update: ")
-        self.get_person(handles)
+        self.get_person(handles, "person-update")
     def log_family_add(self, handles):
         self.append_text("family-add: %s" % handles)
     def log_family_delete(self, handles):
@@ -80,28 +78,30 @@ class LogGadget(Gadget):
     def log_family_update(self, handles):
         self.append_text("family-update: %s" % handles)
     def log_active_changed(self, handles):
-        self.append_text("active-changed: ")
-        self.get_person([handles])
+        self.get_person([handles], "active-changed")
 
-    def get_person(self, handles):
+    def get_person(self, handles, ltype):
         for person_handle in handles:
-            person = self.dbstate.get_person_from_handle(person_handle)
-            if person:
-                self.append_text(name_displayer.display(person))
-            else:
-                self.append_text(person_handle)
-            self.append_text("\n")
+            if ltype + ": " + person_handle not in self.history:
+                self.append_text("%s: " % ltype)
+                self.history[ltype + ": " + person_handle] = 1
+                person = self.dbstate.db.get_person_from_handle(person_handle)
+                if person:
+                    self.link(name_displayer.display(person), person_handle)
+                else:
+                    self.link("Unknown", person_handle)
+                self.append_text("\n")
 
 class TopSurnamesGadget(Gadget):
     def main(self):
         self.set_text("Processing...\n")
 
     def background(self):
-        people = self.dbstate.get_person_handles(sort_handles=False)
+        people = self.dbstate.db.get_person_handles(sort_handles=False)
         surnames = {}
         cnt = 0
         for person_handle in people:
-            person = self.dbstate.get_person_from_handle(person_handle)
+            person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 surname = person.get_primary_name().get_surname().strip()
                 surnames[surname] = surnames.get(surname, 0) + 1
@@ -134,14 +134,14 @@ class TopSurnamesGadget(Gadget):
         
 class StatsGadget(Gadget):
     def db_changed(self):
-        self.dbstate.connect('person-add', self.update)
-        self.dbstate.connect('person-delete', self.update)
-        self.dbstate.connect('family-add', self.update)
-        self.dbstate.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-add', self.update)
+        self.dbstate.db.connect('person-delete', self.update)
+        self.dbstate.db.connect('family-add', self.update)
+        self.dbstate.db.connect('family-delete', self.update)
 
     def background(self):
         self.set_text("Processing...")
-        database = self.dbstate
+        database = self.dbstate.db
         personList = database.get_person_handles(sort_handles=False)
         familyList = database.get_family_handles()
 
@@ -345,6 +345,13 @@ class PythonGadget(Gadget):
             return True
         return False
 
+class TODOGadget(Gadget):
+    def init(self):
+        # GUI setup:
+        self.gui.textview.set_editable(True)
+        self.append_text("> ")
+
+
 register(type="gadget", 
          name="Families Gadget", 
          height=300,
@@ -363,7 +370,7 @@ register(type="gadget",
          name="Top Surnames Gadget", 
          height=230,
          content = TopSurnamesGadget,
-         title="Top 10 Surnames",
+         title="Top Surnames",
          )
 
 register(type="gadget", 
@@ -392,5 +399,12 @@ register(type="gadget",
          height=250,
          content = PythonGadget,
          title="Python",
+         )
+
+register(type="gadget", 
+         name="TODO Gadget", 
+         height=300,
+         content = TODOGadget,
+         title="TODO List",
          )
 

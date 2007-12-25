@@ -28,11 +28,14 @@ __author__ = "Doug Blank"
 __revision__ = "$Revision: $"
 
 import gtk
-import PageView
-import const
 import gobject
 import traceback
 import time
+import pango
+
+import Errors
+import const
+import PageView
 
 AVAILABLE_GADGETS = []
 
@@ -64,24 +67,41 @@ def make_requested_gadget(viewpage, name, opts, dbstate, uistate):
             return gui
     return None
 
+class LinkTag(gtk.TextTag):
+    lid = 0
+    def __init__(self, buffer):
+        LinkTag.lid += 1
+        gtk.TextTag.__init__(self, str(LinkTag.lid))
+        tag_table = buffer.get_tag_table()
+        self.set_property('foreground', "#0000ff")
+        self.set_property('underline', pango.UNDERLINE_SINGLE)
+        tag_table.add(self)
+
 class Gadget(object):
     def __init__(self, gui):
         self._idle_id = 0
         self._generator = None
         self._need_to_update = False
+        self._tags = []
+        self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
+        self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
         self.gui = gui
         self.dbstate = gui.dbstate
         self.init()
         self.dbstate.connect('database-changed', self._db_changed)
         self.dbstate.connect('active-changed', self.active_changed)
+        self.gui.textview.connect('button-press-event', 
+                                  self.on_button_press) 
+        self.gui.textview.connect('motion-notify-event', 
+                                  self.on_motion)
 
     def active_changed(self, handle):
         pass
 
-    def _db_changed(self, dbstate):
+    def _db_changed(self, db):
         if debug: print "%s is _connecting" % self.gui.title
-        self.dbstate = dbstate
-        self.gui.dbstate = dbstate
+        self.dbstate.db = db
+        self.gui.dbstate.db = db
         self.db_changed()
         self.update()
 
@@ -144,6 +164,48 @@ class Gadget(object):
         self.gui.buffer.insert(end, text)
         self.gui.textview.scroll_to_mark(mark, 0.0, True, 0, 0)
 
+    def on_motion(self, view, event):
+        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+                                                       int(event.x), 
+                                                       int(event.y))
+        iter = view.get_iter_at_location(*buffer_location)
+        for (tag, person_handle) in self._tags:
+            if iter.has_tag(tag):
+                view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.link_cursor)
+                return False # handle event further, if necessary
+        view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.standard_cursor)
+        return False # handle event further, if necessary
+
+    def on_button_press(self, view, event):
+        from Editors import EditPerson
+        buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
+                                                       int(event.x), 
+                                                       int(event.y))
+        iter = view.get_iter_at_location(*buffer_location)
+        for (tag, person_handle) in self._tags:
+            if iter.has_tag(tag):
+                person = self.dbstate.db.get_person_from_handle(person_handle)
+                if event.button == 1:
+                    if event.type == gtk.gdk._2BUTTON_PRESS:
+                        try:
+                            EditPerson(self.gui.dbstate, self.gui.uistate, [], person)
+                        except Errors.WindowActiveError:
+                            pass
+                    else:
+                        self.gui.dbstate.change_active_person(person)
+                    return True # handled event
+        return False # did not handle event
+
+    def link(self, text, data):
+        buffer = self.gui.buffer
+        iter = buffer.get_end_iter()
+        offset = buffer.get_char_count()
+        self.append_text(text)
+        start = buffer.get_iter_at_offset(offset)
+        end = buffer.get_end_iter()
+        self._tags.append((LinkTag(buffer),data))
+        buffer.apply_tag(self._tags[-1][0], start, end)
+
     def insert_text(self, text):
         self.gui.buffer.insert_at_cursor(text)
 
@@ -203,21 +265,29 @@ class GuiGadget:
         del self.viewpage.frame_map[str(self.mainframe)]
         self.mainframe.destroy()
 
-    def change_state(self, obj):
-        if self.state == "maximized":
+    def set_state(self, state):
+        self.state = state
+        if state == "minimized":
             self.scrolledwindow.hide()
             self.xml.get_widget('gvstateimage').set_from_stock(gtk.STOCK_ADD,
                                                                gtk.ICON_SIZE_MENU)
-            self.state = "minimized"
+            column = self.mainframe.get_parent() # column
+            expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
+            column.set_child_packing(self.mainframe,False,fill,padding,pack)
+
         else:
             self.scrolledwindow.show()
             self.xml.get_widget('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
                                                                gtk.ICON_SIZE_MENU)
-            self.state = "maximized"
-        if self.expand:
             column = self.mainframe.get_parent() # column
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
-            column.set_child_packing(self.mainframe,(not expand),fill,padding,pack)
+            column.set_child_packing(self.mainframe,self.expand,fill,padding,pack)
+
+    def change_state(self, obj):
+        if self.state == "maximized":
+            self.set_state("minimized")
+        else:
+            self.set_state("maximized")
 
     def set_properties(self, obj):
         self.expand = not self.expand
@@ -235,7 +305,6 @@ class GuiGadget:
     def set_text(self, text):
         self.buffer.set_text(text)
         
-
 
 class MyGrampsView(PageView.PageView):
     """
@@ -284,16 +353,18 @@ class MyGrampsView(PageView.PageView):
         # get the user's gadgets from .gramps
         # and/or from open database
         # Load the user's gadgets:
-        for (name, opts) in [('Stats Gadget', {}),
-                             ('Top Surnames Gadget', {}),
-                             #('Families Gadget', {}),
-                             #('Families Gadget', {"title": "My Peeps"}),
-                             ('Hello World Gadget', {}),
-                             ('Log Gadget', {}),
-                             ('Shell Gadget', {}),
-                             ('Python Gadget', {}),
-                             #('Events Gadget', {}),
-                             ]:
+        for (name, opts) in [
+            ('Stats Gadget', {}),
+            ('Top Surnames Gadget', {}),
+            #('Families Gadget', {}),
+            #('Families Gadget', {"title": "My Peeps"}),
+            ('Hello World Gadget', {}),
+            ('Shell Gadget', {}),
+            ('Python Gadget', {}),
+            ('TODO Gadget', {}),
+            ('Log Gadget', {}),
+            #('Events Gadget', {}),
+            ]:
             all_opts = get_gadget_opts(name, opts)
             if "title" not in all_opts:
                 all_opts["title"] = "Untitled Gadget"
@@ -314,7 +385,6 @@ class MyGrampsView(PageView.PageView):
                     print "Can't make gadget of type '%s'." % name
             else:
                 print "Ignoring duplicate named gadget '%s'." % all_opts["title"]
-
         # put the gadgets where they go:
         cnt = 0
         for gadget in self.gadget_map.values():
@@ -325,13 +395,17 @@ class MyGrampsView(PageView.PageView):
             else:
                 # else, spread them out:
                 pos = cnt % len(self.columns)
-            if gadget.state == "minimized": # starts max, change to min it
-                gadget.state = "maximized"
-                gadget.change_state(gadget) # minimize it
             # to make as big as possible, set to True:
+            # GTK BUG: can't minimize:
+            #if gadget.state == "minimized": # starts max, change to min it
+            #    self.columns[pos].pack_start(gadget.mainframe, expand=False)
+            #else:
             self.columns[pos].pack_start(gadget.mainframe, expand=gadget.expand)
             # set height on gadget.scrolledwindow here:
             gadget.scrolledwindow.set_size_request(-1, gadget.height)
+            # GTK BUG: can't minimize:
+            #if gadget.state == "minimized": # starts max, change to min it
+            #gadget.set_state("minimized") # minimize it
             cnt += 1
         return frame
 
