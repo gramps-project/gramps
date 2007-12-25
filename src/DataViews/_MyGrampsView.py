@@ -345,11 +345,14 @@ class GuiGadget:
             column.set_child_packing(self.mainframe,self.expand,fill,padding,pack)
 
     def change_state(self, obj):
-        if self.state == "maximized":
-            self.set_state("minimized")
+        if self.state == "windowed":
+            pass # don't change if windowed
         else:
-            self.set_state("maximized")
-
+            if self.state == "maximized":
+                self.set_state("minimized")
+            else:
+                self.set_state("maximized")
+                
     def set_properties(self, obj):
         if self.state == "windowed":
             pass
