@@ -205,7 +205,7 @@ class DateDisplayFR(DateDisplay):
 
     formats = (
         "AAAA-MM-JJ (ISO)", "Numérique", "Mois Jour, Année", 
-        "MOI Jour, Année", "Jour Mois, Année", "Jour MOI Année"
+        "MOI Jour, Année", "Jour. Mois Année", "Jour. MOI Année"
         )
 
     def _display_gregorian(self, date_val):
