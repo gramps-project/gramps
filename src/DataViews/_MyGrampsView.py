@@ -558,7 +558,7 @@ class MyGrampsView(PageView.PageView):
             cnt += 1
 
     def load_gadgets(self):
-        self.column_count = 3
+        self.column_count = 1
         retval = []
         filename = GADGET_FILENAME
         if filename and os.path.exists(filename):
@@ -578,7 +578,8 @@ class MyGrampsView(PageView.PageView):
         else:
             # give defaults as currently known
             for item in AVAILABLE_GADGETS:
-                retval.append((item["name"], item))
+                if item["name"] == "Welcome Gadget":
+                    retval.append(("Welcome Gadget", item))
         return retval
 
     def save(self, *args):

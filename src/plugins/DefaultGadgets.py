@@ -352,6 +352,26 @@ class TODOGadget(Gadget):
         self.gui.textview.set_editable(True)
         self.append_text("Enter your TODO list here.")
 
+def make_welcome_content(gui):
+    text = """
+Welcome to GRAMPS!
+
+GRAMPS is a software package designed for genealogical research. Although similar to other genealogical programs, GRAMPS offers some unique and powerful features.
+
+GRAMPS is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make GRAMPS powerful, yet easy to use.
+
+Getting Started
+
+The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called a database) select "Family Trees" from the menu.... TODO
+
+You are currently reading from the "My Gramps" page, where you can add your own gadgets.
+
+You can right-click on the background of this page to add additional gadgets and change the number of columns. You can also drag the Properties button to reposition the gadget on this page, and detach the gadget to float above GRAMPS. If you close GRAMPS with a gadget detached, it will re-opened detached the next time you start GRAMPS.
+
+"""
+    gui.set_text(text)
+
+
 register(type="gadget", 
          name="Families Gadget", 
          height=300,
@@ -406,5 +426,13 @@ register(type="gadget",
          height=300,
          content = TODOGadget,
          title="TODO List",
+         )
+
+register(type="gadget", 
+         name="Welcome Gadget", 
+         height=300,
+         expand=True,
+         content = make_welcome_content,
+         title="Welcome to GRAMPS!",
          )
 
