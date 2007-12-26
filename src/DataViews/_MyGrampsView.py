@@ -45,7 +45,7 @@ AVAILABLE_GADGETS = []
 GADGET_FILENAME = os.path.join(const.HOME_DIR,"gadgets.ini")
 NL = "\n" 
 
-debug = False
+debug = True
 
 def register_gadget(data_dict):
     global AVAILABLE_GADGETS
