@@ -124,8 +124,9 @@ class TopSurnamesGadget(Gadget):
         ### All done!
         self.set_text("")
         for (count, surname) in surname_sort:
-            self.append_text("  %s, %d%%\n" % 
-                             (surname, int((float(count)/total) * 100)))
+            self.append_text("  %d. %s, %d%% (%d)\n" % 
+                             (line + 1, surname, 
+                              int((float(count)/total) * 100), count))
             line += 1
             if line >= 10:
                 break

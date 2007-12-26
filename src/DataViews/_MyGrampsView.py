@@ -32,19 +32,27 @@ import gobject
 import traceback
 import time
 import pango
+import os
 
 import Errors
 import const
 import PageView
 import ManagedWindow
+import ConfigParser
+import Utils
 
 AVAILABLE_GADGETS = []
+GADGET_FILENAME = os.path.join(const.HOME_DIR,"gadgets.ini")
+NL = "\n" 
 
 debug = False
 
 def register_gadget(data_dict):
     global AVAILABLE_GADGETS
-    AVAILABLE_GADGETS.append(data_dict)
+    base_opts = {"state":"maximized",
+                 "column": -1, "row": -1}
+    base_opts.update(data_dict)
+    AVAILABLE_GADGETS.append(base_opts)
 
 def register(**data):
     if "type" in data:
@@ -58,6 +66,14 @@ def get_gadget_opts(name, opts):
             my_data.update(opts)
             return my_data
     return {}
+
+def get_gadget_options_by_name(name):
+    if debug: print "name:", name
+    for opts in AVAILABLE_GADGETS:
+        gname = opts.get("name", None)
+        if gname == name:
+            return opts.copy()
+    return None
 
 def make_requested_gadget(viewpage, name, opts, dbstate, uistate):
     for data in AVAILABLE_GADGETS:
@@ -78,11 +94,6 @@ class LinkTag(gtk.TextTag):
         self.set_property('underline', pango.UNDERLINE_SINGLE)
         tag_table.add(self)
 
-# notes on building a filter: src/Filters/_FilterParser.py
-# f = GenericFilterFactory('Person')()
-# r = Rules.Person.HasNameOf
-# f.add_rule(r)
-
 class GadgetWindow(ManagedWindow.ManagedWindow):
     def __init__(self, gadget):
         self.title = gadget.title + " Gadget"
@@ -94,9 +105,8 @@ class GadgetWindow(ManagedWindow.ManagedWindow):
                         None, self.title)
         self.window.set_size_request(400,300)
         self.window.connect('response', self.close)
-        self.gadget.state = "windowed"
         self.gadget.mainframe.reparent(self.window.vbox)
-        self.window.show_all()
+        self.window.show()
         
     def build_menu_names(self, obj):
         return (self.title, 'Gadget')
@@ -105,9 +115,20 @@ class GadgetWindow(ManagedWindow.ManagedWindow):
         return self.title
 
     def close(self, *args):
+        """
+        Closes the detached GadgetWindow.
+        """
+        self.gadget.gvclose.show()
+        self.gadget.gvstate.show()
+        self.gadget.gvproperties.show()
+        self.gadget.viewpage.detached_frames.remove(self.gadget)
         self.gadget.state = "maximized"
         self.gadget.mainframe.reparent(self.gadget.parent)
+        # FIXME: need to pack as it was, not just stick it in
         ManagedWindow.ManagedWindow.close(self, *args)
+        # The save can stay here because GRAMPS doesn't run this method
+        # on exit, apparently:
+        self.gadget.viewpage.save()
 
 #------------------------------------------------------------------------
 
@@ -131,20 +152,6 @@ class Gadget(object):
                                   self.on_motion)
 
     def active_changed(self, handle):
-        pass
-
-    def on_save(self):
-        pass
-
-    def _on_save(self):
-        # save data
-        pass
-
-    def on_load(self):
-        pass
-
-    def _on_load(self):
-        # load data
         pass
 
     def _db_changed(self, db):
@@ -176,6 +183,9 @@ class Gadget(object):
                                          priority=gobject.PRIORITY_LOW)
 
     def background(self): # return false finishes
+        """
+        Generator which will be run in the background.
+        """
         if debug: print "%s dummy" % self.gui.title
         yield False
 
@@ -189,6 +199,9 @@ class Gadget(object):
             self._idle_id = 0
 
     def _updater(self):
+        """
+        Runs the generator.
+        """
         if debug: print "%s _updater" % self.gui.title
         try:
             retval = self._generator.next()
@@ -241,6 +254,19 @@ class Gadget(object):
                         except Errors.WindowActiveError:
                             pass
                     else:
+                        # Create filters on the fly:
+                        #f = GenericFilterFactory('Person')()
+                        #r = Rules.Person.HasNameOf
+                        #rule = r([person.get_primary_name.get_surname()])
+                        #f.add_rule(rule)
+                        #filter_info = (False, f)
+                        #model = self.make_model(self.dbstate.db, 0, 
+                        #                        search=filter_info)
+                        #self.list.set_model(self.model)
+                        #self.dirty = False
+                        #self.uistate.show_filter_results(self.dbstate, 
+                        #                                 self.model.displayed, 
+                        #                                 self.model.total)
                         self.gui.dbstate.change_active_person(person)
                     return True # handled event
         return False # did not handle event
@@ -264,6 +290,8 @@ class Gadget(object):
     def set_text(self, text):
         self.gui.buffer.set_text(text)
         
+def logical_true(value):
+    return value in ["True", True, 1, "1"]
 
 class GuiGadget:
     """
@@ -278,10 +306,11 @@ class GuiGadget:
         self.uistate = uistate
         self.title = title
         ########## Set defaults
-        self.expand = kwargs.get("expand", False)
-        self.height = kwargs.get("height", 200)
-        self.column = kwargs.get("column", -1)
-        self.row = kwargs.get("row", -1)
+        self.name = kwargs.get("name", "Unnamed Gadget")
+        self.expand = logical_true(kwargs.get("expand", False))
+        self.height = int(kwargs.get("height", 200))
+        self.column = int(kwargs.get("column", -1))
+        self.row = int(kwargs.get("row", -1))
         self.state = kwargs.get("state", "maximized")
         ##########
         self.xml = gtk.glade.XML(const.GLADE_FILE, 'gvgadget', "gramps")
@@ -292,10 +321,12 @@ class GuiGadget:
         self.titlelabel = self.xml.get_widget('gvtitle')
         self.titlelabel.set_text("<b><i>%s</i></b>" % self.title)
         self.titlelabel.set_use_markup(True)
-        self.xml.get_widget('gvclose').connect('clicked', self.close)
-        self.xml.get_widget('gvstate').connect('clicked', self.change_state)
-        self.xml.get_widget('gvproperties').connect('clicked', 
-                                                    self.set_properties)
+        self.gvclose = self.xml.get_widget('gvclose')
+        self.gvclose.connect('clicked', self.close)
+        self.gvstate = self.xml.get_widget('gvstate')
+        self.gvstate.connect('clicked', self.change_state)
+        self.gvproperties = self.xml.get_widget('gvproperties')
+        self.gvproperties.connect('clicked', self.set_properties)
         self.xml.get_widget('gvcloseimage').set_from_stock(gtk.STOCK_CLOSE,
                                                            gtk.ICON_SIZE_MENU)
         self.xml.get_widget('gvstateimage').set_from_stock(gtk.STOCK_REMOVE,
@@ -304,27 +335,32 @@ class GuiGadget:
                                                                 gtk.ICON_SIZE_MENU)
 
         # source:
-        drag = self.xml.get_widget('gvproperties')
+        drag = self.gvproperties
         drag.drag_source_set(gtk.gdk.BUTTON1_MASK,
                              [GuiGadget.LOCAL_DRAG_TARGET],
                              gtk.gdk.ACTION_COPY)
 
     def close(self, obj):
+        if self.state == "windowed":
+            return
         del self.viewpage.gadget_map[self.title]
         del self.viewpage.frame_map[str(self.mainframe)]
         self.mainframe.destroy()
+        self.viewpage.save()
 
-    def detach(self):
+    def detach(self, save=True):
+        # hide buttons:
+        self.gvclose.hide()
+        self.gvstate.hide()
+        self.gvproperties.hide()
         # keep a pointer to old parent frame:
         self.parent = self.mainframe.get_parent()
+        self.viewpage.detached_frames.append(self)
         # make a window, and attach it there
         self.detached_window = GadgetWindow(self)
-
-    def attach(self):
-        # do this if you close window
-        # move this widget to old parent frame
-        # remove window
-        pass
+        self.state = "windowed"
+        if save:
+            self.viewpage.save()
 
     def set_state(self, state):
         self.state = state
@@ -343,6 +379,7 @@ class GuiGadget:
             column = self.mainframe.get_parent() # column
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
             column.set_child_packing(self.mainframe,self.expand,fill,padding,pack)
+        self.viewpage.save()
 
     def change_state(self, obj):
         if self.state == "windowed":
@@ -359,7 +396,7 @@ class GuiGadget:
         else:
             self.detach()
         return
-        # FIXME: how to control expand/not expand and detached
+        # FIXME: add control for expand AND detach
         self.expand = not self.expand
         if self.state == "maximized":
             column = self.mainframe.get_parent() # column
@@ -375,6 +412,26 @@ class GuiGadget:
     def set_text(self, text):
         self.buffer.set_text(text)
         
+    def get_source_widget(self):
+        """
+        Hack to allow us to send this object to the drop_widget
+        method as a context.
+        """
+        return self.gvproperties
+
+
+class MyScrolledWindow(gtk.ScrolledWindow):
+    def show_all(self):
+        # first show them all:
+        gtk.ScrolledWindow.show_all(self)
+        # Hack to get around show_all that shows hidden items
+        # do once, the first time showing
+        if self.viewpage:
+            gadgets = [g for g in self.viewpage.gadget_map.values()]
+            self.viewpage = None
+            for gadget in gadgets:
+                if gadget.state == "minimized":
+                    gadget.set_state("minimized")
 
 class MyGrampsView(PageView.PageView):
     """
@@ -386,7 +443,7 @@ class MyGrampsView(PageView.PageView):
         Creates a MyGrampsView, with the current dbstate and uistate
         """
         PageView.PageView.__init__(self, _('My Gramps'), dbstate, uistate)
-        self.column_count = 3
+        self._popup_xy = None
 
     def change_db(self, event):
         """
@@ -399,9 +456,13 @@ class MyGrampsView(PageView.PageView):
         Builds the container widget for the interface. Must be overridden by the
         the base class. Returns a gtk container widget.
         """
-        frame = gtk.ScrolledWindow()
+        # load the user's gadgets and set columns, etc
+        user_gadgets = self.load_gadgets()
+        # build the GUI:
+        frame = MyScrolledWindow()
+        frame.viewpage = self
         frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        hbox = gtk.HBox(homogeneous=True)
+        self.hbox = gtk.HBox(homogeneous=True)
         # FIXME: issue when window is scrolled down; drops in wrong place
         # Set up drag and drop
         frame.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
@@ -410,32 +471,21 @@ class MyGrampsView(PageView.PageView):
                             [('GADGET', 0, 80)],
                             gtk.gdk.ACTION_COPY)
         frame.connect('drag_drop', self.drop_widget)
+        frame.connect('button-press-event', self._button_press)
 
-        frame.add_with_viewport(hbox)
+        frame.add_with_viewport(self.hbox)
         # Create the columns:
         self.columns = []
         for i in range(self.column_count):
             self.columns.append(gtk.VBox())
-            hbox.pack_start(self.columns[-1],expand=True)
+            self.hbox.pack_start(self.columns[-1],expand=True)
         # Load the gadgets
         self.gadget_map = {} # title->gadget
         self.frame_map = {} # frame->gadget
-        # FIXME
-        # get the user's gadgets from .gramps
-        # and/or from open database
+        self.detached_frames = [] # list of detached mainframes
+        # get the user's gadgets from ~/.gramps/gadgets.ini
         # Load the user's gadgets:
-        for (name, opts) in [
-            ('Stats Gadget', {}),
-            ('Top Surnames Gadget', {}),
-            #('Families Gadget', {}),
-            #('Families Gadget', {"title": "My Peeps"}),
-            ('Hello World Gadget', {}),
-            ('Shell Gadget', {}),
-            ('Python Gadget', {}),
-            ('TODO Gadget', {}),
-            ('Log Gadget', {}),
-            #('Events Gadget', {}),
-            ]:
+        for (name, opts) in user_gadgets:
             all_opts = get_gadget_opts(name, opts)
             if "title" not in all_opts:
                 all_opts["title"] = "Untitled Gadget"
@@ -456,31 +506,119 @@ class MyGrampsView(PageView.PageView):
                     print "Can't make gadget of type '%s'." % name
             else:
                 print "Ignoring duplicate named gadget '%s'." % all_opts["title"]
+        self.place_gadgets()
+        return frame
+
+    def clear_gadgets(self):
+        """
+        Detach all of the mainframe gadgets from the columns.
+        """
+        gadgets = [g for g in self.gadget_map.values()]
+        for gadget in gadgets:
+            column = gadget.mainframe.get_parent()
+            column.remove(gadget.mainframe)
+
+    def place_gadgets(self):
+        """
+        Place the gadget mainframes in the columns.
+        """
+        gadgets = [g for g in self.gadget_map.values()]
         # put the gadgets where they go:
+        # sort by row
+        gadgets.sort(lambda a, b: cmp(a.row, b.row))
         cnt = 0
-        for gadget in self.gadget_map.values():
+        for gadget in gadgets:
             # see if the user wants this in a particular location:
             # and if there are that many columns
-            if gadget.column >= 0 and gadget.column < len(self.columns):
+            if gadget.column >= 0 and gadget.column < self.column_count:
                 pos = gadget.column
             else:
                 # else, spread them out:
-                pos = cnt % len(self.columns)
-            # to make as big as possible, set to True:
-            # GTK BUG: can't minimize:
-            #if gadget.state == "minimized": # starts max, change to min it
-            #    self.columns[pos].pack_start(gadget.mainframe, expand=False)
-            #else:
+                pos = cnt % self.column_count
             self.columns[pos].pack_start(gadget.mainframe, expand=gadget.expand)
+            gadget.column = pos
             # set height on gadget.scrolledwindow here:
             gadget.scrolledwindow.set_size_request(-1, gadget.height)
-            # GTK BUG: can't minimize:
+            # Can't minimize here, because GRAMPS calls show_all later:
             #if gadget.state == "minimized": # starts max, change to min it
-            #gadget.set_state("minimized") # minimize it
+            #    gadget.set_state("minimized") # minimize it
+            if gadget.state == "windowed":
+                gadget.detach(save=False) # don't save on this change
             cnt += 1
-        return frame
+
+    def load_gadgets(self):
+        self.column_count = 3
+        retval = []
+        filename = GADGET_FILENAME
+        if filename and os.path.exists(filename):
+            cp = ConfigParser.ConfigParser()
+            cp.read(filename)
+            for sec in cp.sections():
+                if sec == "My Gramps View Options":
+                    if "column_count" in cp.options(sec):
+                        self.column_count = int(cp.get(sec, "column_count"))
+                else:
+                    data = {}
+                    for opt in cp.options(sec):
+                        data[opt] = cp.get(sec, opt).strip()
+                    if "name" not in data:
+                        data["name"] = "Unnamed Gadget"
+                    retval.append((data["name"], data)) # name, opts
+        else:
+            # give defaults as currently known
+            for item in AVAILABLE_GADGETS:
+                retval.append((item["name"], item))
+        return retval
+
+    def save(self, *args):
+        if debug: print "saving"
+        filename = GADGET_FILENAME
+        fp = open(filename, "w")
+        fp.write(";; Gramps gadgets file" + NL)
+        fp.write((";; Automatically created at %s" % time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
+        fp.write("[My Gramps View Options]" + NL)
+        fp.write(("column_count=%d" + NL + NL) % self.column_count)
+        for col in range(self.column_count):
+            row = 0
+            for gframe in self.columns[col]:
+                gadget = self.frame_map[str(gframe)]
+                opts = get_gadget_options_by_name(gadget.name)
+                if opts != None:
+                    base_opts = opts.copy()
+                    for key in base_opts:
+                        if key in gadget.__dict__:
+                            base_opts[key] = gadget.__dict__[key]
+                    fp.write(("[%s]" + NL) % gadget.title)
+                    for key in base_opts:
+                        if key == "content": continue
+                        if key == "title": continue
+                        if key == "column": continue
+                        if key == "row": continue
+                        fp.write(("%s=%s" + NL)% (key, base_opts[key]))
+                    fp.write(("column=%d" + NL) % col)
+                    fp.write(("row=%d" + NL) % row)
+                    fp.write(NL)
+                row += 1
+        for gadget in self.detached_frames:
+            opts = get_gadget_options_by_name(gadget.name)
+            if opts != None:
+                base_opts = opts.copy()
+                for key in base_opts:
+                    if key in gadget.__dict__:
+                        base_opts[key] = gadget.__dict__[key]
+                fp.write(("[%s]" + NL) % gadget.title)
+                for key in base_opts:
+                    if key == "content": continue
+                    if key == "title": continue
+                    fp.write(("%s=%s" + NL)% (key, base_opts[key]))
+                fp.write(NL)
+        fp.close()
 
     def drop_widget(self, source, context, x, y, timedata):
+        """
+        This is the destination method for handling drag and drop
+        of a gadget onto the main scrolled window.
+        """
         button = context.get_source_widget()
         hbox = button.get_parent()
         mainframe = hbox.get_parent()
@@ -502,6 +640,7 @@ class MyGrampsView(PageView.PageView):
                 self.columns[col].remove(gframe)
                 stack.append(gframe)
         maingadget = self.frame_map[str(mainframe)]
+        maingadget.column = col
         if maingadget.state == "maximized":
             expand = maingadget.expand
         else:
@@ -514,6 +653,7 @@ class MyGrampsView(PageView.PageView):
             else:
                 expand = False
             self.columns[col].pack_start(gframe, expand=expand)
+        self.save()
         return True
 
     def define_actions(self):
@@ -522,7 +662,77 @@ class MyGrampsView(PageView.PageView):
         View. The user typically defines self.action_list and 
         self.action_toggle_list in this function. 
         """
-        return ''
+        self.action = gtk.ActionGroup(self.title + "/Gadgets")
+        self.action.add_actions([('AddGadget',gtk.STOCK_ADD,_("_Add a gadget")),
+                                 ('Columns1',None,_("Set columns to 1"),
+                                  None,None,
+                                  lambda obj:self.set_columns(1)),
+                                 ('Columns2',None,_("Set columns to 2"),
+                                  None,None,
+                                  lambda obj:self.set_columns(2)),
+                                 ('Columns3',None,_("Set columns to 3"),
+                                  None,None,
+                                  lambda obj:self.set_columns(3)),
+                                 ])
+        self._add_action_group(self.action)
+
+    def set_columns(self, num):
+        # clear the gadgets:
+        self.clear_gadgets()
+        # clear the columns:
+        for column in self.columns:
+            frame = column.get_parent()
+            frame.remove(column)
+            del column
+        # create the new ones:
+        self.column_count = num
+        self.columns = []
+        for i in range(self.column_count):
+            self.columns.append(gtk.VBox())
+            self.columns[-1].show()
+            self.hbox.pack_start(self.columns[-1],expand=True)
+        # place the gadgets back in the new columns
+        self.place_gadgets()
+        self.widget.show()
+        self.save()
+
+    def add_gadget(self, obj):
+        name = obj.get_child().get_label()
+        all_opts = get_gadget_options_by_name(name)
+        if "title" not in all_opts:
+            all_opts["title"] = "Untitled Gadget"
+        # uniqify titles:
+        unique = all_opts["title"]
+        cnt = 1
+        while unique in self.gadget_map:
+            unique = all_opts["title"] + ("-%d" % cnt)
+            cnt += 1
+        all_opts["title"] = unique
+        if all_opts["title"] not in self.gadget_map:
+            g = make_requested_gadget(self, name, all_opts, 
+                                      self.dbstate, self.uistate)
+            if g:
+                self.gadget_map[all_opts["title"]] = g
+                self.frame_map[str(g.mainframe)] = g
+            else:
+                print "Can't make gadget of type '%s'." % name
+        else:
+            print "Ignoring duplicate named gadget '%s'." % all_opts["title"]
+
+        if g:
+            gadget = g
+            if gadget.column >= 0 and gadget.column < len(self.columns):
+                pos = gadget.column
+            else:
+                pos = 0
+            self.columns[pos].pack_start(gadget.mainframe, expand=gadget.expand)
+            # set height on gadget.scrolledwindow here:
+            gadget.scrolledwindow.set_size_request(-1, gadget.height)
+        ## now drop it in right place
+        if self._popup_xy != None:
+            self.drop_widget(self.widget, gadget, 
+                             self._popup_xy[0], self._popup_xy[1], 0)
+        self.save()
 
     def get_stock(self):
         """
@@ -533,4 +743,37 @@ class MyGrampsView(PageView.PageView):
     
     def build_tree(self):
         return 
+
+    def ui_definition(self):
+        return """
+        <ui>
+          <popup name="Popup">
+            <menuitem action="AddGadget"/>
+            <separator/>
+            <menuitem action="Columns1"/>
+            <menuitem action="Columns2"/>
+            <menuitem action="Columns3"/>
+          </popup>
+        </ui>
+        """
+        
+    def _button_press(self, obj, event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self._popup_xy = (event.x, event.y)
+            menu = self.uistate.uimanager.get_widget('/Popup')
+            qr_menu = self.uistate.uimanager.get_widget('/Popup/AddGadget').get_submenu()
+            if qr_menu == None:
+                qr_menu = gtk.Menu()
+                names = []
+                for opts in AVAILABLE_GADGETS:
+                    names.append(opts["name"])
+                names.sort()
+                for name in names:
+                    Utils.add_menuitem(qr_menu, name, 
+                                       None, self.add_gadget)
+                self.uistate.uimanager.get_widget('/Popup/AddGadget').set_submenu(qr_menu)
+            if menu:
+                menu.popup(None, None, None, event.button, event.time)
+                return True
+        return False
 
