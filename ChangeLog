@@ -1,4 +1,7 @@
 2007-12-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/_MyGrampsView.py: saves on quit only, load/save api
+
+2007-12-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/ViewManager.py: added __delete_pages called on quit
 	* src/PageView.py: added on_delete method called on quit
 

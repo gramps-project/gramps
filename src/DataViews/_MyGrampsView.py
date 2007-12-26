@@ -126,9 +126,6 @@ class GadgetWindow(ManagedWindow.ManagedWindow):
         self.gadget.mainframe.reparent(self.gadget.parent)
         # FIXME: need to pack as it was, not just stick it in
         ManagedWindow.ManagedWindow.close(self, *args)
-        # The save can stay here because GRAMPS doesn't run this method
-        # on exit, apparently:
-        self.gadget.viewpage.save()
 
 #------------------------------------------------------------------------
 
@@ -141,15 +138,32 @@ class Gadget(object):
         self.data = {}
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
-        self.gui = gui
+        # links to each other:
+        self.gui = gui   # plugin gadget has link to gui
+        gui.pui = self   # gui has link to plugin ui
         self.dbstate = gui.dbstate
         self.init()
+        self.on_load()
         self.dbstate.connect('database-changed', self._db_changed)
         self.dbstate.connect('active-changed', self.active_changed)
         self.gui.textview.connect('button-press-event', 
                                   self.on_button_press) 
         self.gui.textview.connect('motion-notify-event', 
                                   self.on_motion)
+
+    def on_load(self):
+        """
+        Gadgets should override this to take care of loading previously
+        their special data.
+        """
+        pass
+
+    def on_save(self):
+        """
+        Gadgets should override this to take care of saving their
+        special data.
+        """
+        pass
 
     def active_changed(self, handle):
         pass
@@ -346,9 +360,8 @@ class GuiGadget:
         del self.viewpage.gadget_map[self.title]
         del self.viewpage.frame_map[str(self.mainframe)]
         self.mainframe.destroy()
-        self.viewpage.save()
 
-    def detach(self, save=True):
+    def detach(self):
         # hide buttons:
         self.gvclose.hide()
         self.gvstate.hide()
@@ -359,8 +372,6 @@ class GuiGadget:
         # make a window, and attach it there
         self.detached_window = GadgetWindow(self)
         self.state = "windowed"
-        if save:
-            self.viewpage.save()
 
     def set_state(self, state):
         self.state = state
@@ -379,7 +390,6 @@ class GuiGadget:
             column = self.mainframe.get_parent() # column
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
             column.set_child_packing(self.mainframe,self.expand,fill,padding,pack)
-        self.viewpage.save()
 
     def change_state(self, obj):
         if self.state == "windowed":
@@ -418,7 +428,6 @@ class GuiGadget:
         method as a context.
         """
         return self.gvproperties
-
 
 class MyScrolledWindow(gtk.ScrolledWindow):
     def show_all(self):
@@ -543,7 +552,7 @@ class MyGrampsView(PageView.PageView):
             #if gadget.state == "minimized": # starts max, change to min it
             #    gadget.set_state("minimized") # minimize it
             if gadget.state == "windowed":
-                gadget.detach(save=False) # don't save on this change
+                gadget.detach() 
             cnt += 1
 
     def load_gadgets(self):
@@ -653,7 +662,6 @@ class MyGrampsView(PageView.PageView):
             else:
                 expand = False
             self.columns[col].pack_start(gframe, expand=expand)
-        self.save()
         return True
 
     def define_actions(self):
@@ -694,7 +702,6 @@ class MyGrampsView(PageView.PageView):
         # place the gadgets back in the new columns
         self.place_gadgets()
         self.widget.show()
-        self.save()
 
     def add_gadget(self, obj):
         name = obj.get_child().get_label()
@@ -732,7 +739,6 @@ class MyGrampsView(PageView.PageView):
         if self._popup_xy != None:
             self.drop_widget(self.widget, gadget, 
                              self._popup_xy[0], self._popup_xy[1], 0)
-        self.save()
 
     def get_stock(self):
         """
@@ -777,3 +783,9 @@ class MyGrampsView(PageView.PageView):
                 return True
         return False
 
+    def on_delete(self):
+        gadgets = [g for g in self.gadget_map.values()]
+        for gadget in gadgets:
+            # this is the only place where the gui runs user code directly
+            gadget.pui.on_save()
+        self.save()
