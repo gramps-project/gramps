@@ -626,6 +626,9 @@ class ViewManager:
         self.__backup()
         self.state.db.close()
 
+        # have each page save anything, if they need to:
+        self.__delete_pages()
+        
         # save the current window size
         (width, height) = self.window.get_size()
         Config.set(Config.WIDTH, width)
@@ -794,6 +797,13 @@ class ViewManager:
         else:
             self.tips.enable()
     
+    def __delete_pages(self):
+        """
+        Calls on_delete() for each view
+        """
+        for page in self.pages:
+            page.on_delete()
+
     def __create_pages(self):
         """
         Creates the Views

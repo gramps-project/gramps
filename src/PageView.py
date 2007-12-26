@@ -293,6 +293,13 @@ class PageView:
         else:
             return None
 
+    def on_delete(self):
+        """
+        Method called on shutdown. Data views should put code here
+        that should be called when quiting the main application.
+        """
+        pass
+
 class BookMarkView(PageView):
 
     def __init__(self, title, state, uistate, bookmarks, bm_type):
