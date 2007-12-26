@@ -41,7 +41,7 @@ import ManagedWindow
 import ConfigParser
 import Utils
 
-AVAILABLE_GADGETS = []
+AVAILABLE_GADGETS = {}
 GADGET_FILENAME = os.path.join(const.HOME_DIR,"gadgets.ini")
 NL = "\n" 
 
@@ -49,39 +49,54 @@ debug = False
 
 def register_gadget(data_dict):
     global AVAILABLE_GADGETS
-    base_opts = {"state":"maximized",
+    base_opts = {"name":"Unnamed Gadget",
+                 "state":"maximized",
                  "column": -1, "row": -1}
     base_opts.update(data_dict)
-    AVAILABLE_GADGETS.append(base_opts)
+    AVAILABLE_GADGETS[base_opts["name"]] = base_opts
 
 def register(**data):
     if "type" in data:
         if data["type"].lower() == "gadget":
             register_gadget(data)
+        else:
+            print ("Unknown plugin type: '%s'" % data["type"])
+    else:
+        print ("Plugin did not define type.")
 
 def get_gadget_opts(name, opts):
-    for data in AVAILABLE_GADGETS:
-        if data.get("name", None) == name:
-            my_data = data.copy()
-            my_data.update(opts)
-            return my_data
-    return {}
+    if name in AVAILABLE_GADGETS:
+        data = AVAILABLE_GADGETS[name]
+        my_data = data.copy()
+        my_data.update(opts)
+        return my_data
+    else:
+        print ("Unknown gadget name: '%s'" % name)
+        return {}
 
 def get_gadget_options_by_name(name):
     if debug: print "name:", name
-    for opts in AVAILABLE_GADGETS:
-        gname = opts.get("name", None)
-        if gname == name:
-            return opts.copy()
-    return None
+    if name in AVAILABLE_GADGETS:
+        return AVAILABLE_GADGETS[name].copy()
+    else:
+        print ("Unknown gadget name: '%s'" % name)
+        return None
 
 def make_requested_gadget(viewpage, name, opts, dbstate, uistate):
-    for data in AVAILABLE_GADGETS:
-        if data.get("name", None) == name:
-            gui = GuiGadget(viewpage, dbstate, uistate, **opts)
-            if opts.get("content", None):
-                opts["content"](gui)
-            return gui
+    if name in AVAILABLE_GADGETS:
+        gui = GuiGadget(viewpage, dbstate, uistate, **opts)
+        if opts.get("content", None):
+            opts["content"](gui)
+        # now that we have user code, set the tooltips
+        msg = None
+        if gui.pui:
+            msg = gui.pui.tooltip
+        if msg == None:
+            msg = _("Drag Properties Button to move and click it for setup")
+        if msg:
+            gui.tooltips = gtk.Tooltips()
+            gui.tooltips.set_tip(gui.textview, msg)
+        return gui
     return None
 
 class LinkTag(gtk.TextTag):
@@ -136,6 +151,7 @@ class Gadget(object):
         self._need_to_update = False
         self._tags = []
         self.data = {}
+        self.tooltip = None
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
         # links to each other:
@@ -150,6 +166,19 @@ class Gadget(object):
                                   self.on_button_press) 
         self.gui.textview.connect('motion-notify-event', 
                                   self.on_motion)
+
+    def init(self): # once, constructor
+        pass
+
+    def main(self): # once per db open
+        pass 
+
+    def background(self): # return false finishes
+        """
+        Generator which will be run in the background.
+        """
+        if debug: print "%s dummy" % self.gui.title
+        yield False
 
     def on_load(self):
         """
@@ -169,22 +198,39 @@ class Gadget(object):
     def active_changed(self, handle):
         pass
 
-    def _db_changed(self, db):
-        if debug: print "%s is _connecting" % self.gui.title
-        self.dbstate.db = db
-        self.gui.dbstate.db = db
-        self.db_changed()
-        self.update()
-
     def db_changed(self):
         if debug: print "%s is connecting" % self.gui.title
         pass
 
-    def init(self): # once, constructor
-        pass
+    def link(self, text, data):
+        buffer = self.gui.buffer
+        iter = buffer.get_end_iter()
+        offset = buffer.get_char_count()
+        self.append_text(text)
+        start = buffer.get_iter_at_offset(offset)
+        end = buffer.get_end_iter()
+        self._tags.append((LinkTag(buffer),data))
+        buffer.apply_tag(self._tags[-1][0], start, end)
 
-    def main(self): # once per db open
-        pass 
+    def insert_text(self, text):
+        self.gui.buffer.insert_at_cursor(text)
+
+    def clear_text(self):
+        self.gui.buffer.set_text('')
+        
+    def set_text(self, text):
+        self.gui.buffer.set_text(text)
+
+    def append_text(self, text, scroll_to="end"):
+        enditer = self.gui.buffer.get_end_iter()
+        start = self.gui.buffer.create_mark(None, enditer, True)
+        self.gui.buffer.insert(enditer, text)
+        if scroll_to == "end":
+            enditer = self.gui.buffer.get_end_iter()
+            end = self.gui.buffer.create_mark(None, enditer, True)
+            self.gui.textview.scroll_to_mark(end, 0.0, True, 0, 0)
+        else:
+            self.gui.textview.scroll_to_mark(start, 0.0, True, 0, 0)
 
     def update(self, *handles):
         self.main()
@@ -197,13 +243,6 @@ class Gadget(object):
         self._idle_id = gobject.idle_add(self._updater, 
                                          priority=gobject.PRIORITY_LOW)
 
-    def background(self): # return false finishes
-        """
-        Generator which will be run in the background.
-        """
-        if debug: print "%s dummy" % self.gui.title
-        yield False
-
     def interrupt(self):
         """
         Force the generator to stop running.
@@ -212,6 +251,13 @@ class Gadget(object):
             if debug: print "%s removing from gobject" % self.gui.title
             gobject.source_remove(self._idle_id)
             self._idle_id = 0
+
+    def _db_changed(self, db):
+        if debug: print "%s is _connecting" % self.gui.title
+        self.dbstate.db = db
+        self.gui.dbstate.db = db
+        self.db_changed()
+        self.update()
 
     def _updater(self):
         """
@@ -234,12 +280,6 @@ class Gadget(object):
         except:
             self._idle_id = 0
             return False
-
-    def append_text(self, text):
-        end = self.gui.buffer.get_end_iter()
-        mark = self.gui.buffer.create_mark(None, end, True)
-        self.gui.buffer.insert(end, text)
-        self.gui.textview.scroll_to_mark(mark, 0.0, True, 0, 0)
 
     def on_motion(self, view, event):
         buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
@@ -286,24 +326,6 @@ class Gadget(object):
                     return True # handled event
         return False # did not handle event
 
-    def link(self, text, data):
-        buffer = self.gui.buffer
-        iter = buffer.get_end_iter()
-        offset = buffer.get_char_count()
-        self.append_text(text)
-        start = buffer.get_iter_at_offset(offset)
-        end = buffer.get_end_iter()
-        self._tags.append((LinkTag(buffer),data))
-        buffer.apply_tag(self._tags[-1][0], start, end)
-
-    def insert_text(self, text):
-        self.gui.buffer.insert_at_cursor(text)
-
-    def clear_text(self):
-        self.gui.buffer.set_text('')
-        
-    def set_text(self, text):
-        self.gui.buffer.set_text(text)
         
 def logical_true(value):
     return value in ["True", True, 1, "1"]
@@ -365,6 +387,7 @@ class GuiGadget:
 
     def detach(self):
         # hide buttons:
+        self.set_state("maximized")
         self.gvclose.hide()
         self.gvstate.hide()
         self.gvproperties.hide()
@@ -471,6 +494,9 @@ class MyGrampsView(PageView.PageView):
         user_gadgets = self.load_gadgets()
         # build the GUI:
         frame = MyScrolledWindow()
+        msg = _("Right click to add gadgets")
+        self.tooltips = gtk.Tooltips()
+        self.tooltips.set_tip(frame, msg)
         frame.viewpage = self
         frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.hbox = gtk.HBox(homogeneous=True)
@@ -558,7 +584,7 @@ class MyGrampsView(PageView.PageView):
             cnt += 1
 
     def load_gadgets(self):
-        self.column_count = 1
+        self.column_count = 2 # default for new user
         retval = []
         filename = GADGET_FILENAME
         if filename and os.path.exists(filename):
@@ -577,9 +603,9 @@ class MyGrampsView(PageView.PageView):
                     retval.append((data["name"], data)) # name, opts
         else:
             # give defaults as currently known
-            for item in AVAILABLE_GADGETS:
-                if item["name"] == "Welcome Gadget":
-                    retval.append(("Welcome Gadget", item))
+            for name in ["Top Surnames Gadget", "Welcome Gadget"]:
+                if name in AVAILABLE_GADGETS:
+                    retval.append((name, AVAILABLE_GADGETS[name]))
         return retval
 
     def save(self, *args):
@@ -756,6 +782,15 @@ class MyGrampsView(PageView.PageView):
     def ui_definition(self):
         return """
         <ui>
+          <menubar name="MenuBar">
+            <menu action="ViewMenu">
+              <menuitem action="AddGadget"/>
+              <separator/>
+              <menuitem action="Columns1"/>
+              <menuitem action="Columns2"/>
+              <menuitem action="Columns3"/>
+            </menu>
+          </menubar>
           <popup name="Popup">
             <menuitem action="AddGadget"/>
             <separator/>
@@ -767,20 +802,37 @@ class MyGrampsView(PageView.PageView):
         """
         
     def _button_press(self, obj, event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+            self._popup_xy = None
+            menu = self.uistate.uimanager.get_widget('/ViewMenu')
+            ag_menu = self.uistate.uimanager.get_widget('/ViewMenu/AddGadget')
+            if ag_menu:
+                qr_menu = ag_menu.get_submenu()
+                if qr_menu == None:
+                    qr_menu = gtk.Menu()
+                    names = AVAILABLE_GADGETS.keys()
+                    names.sort()
+                    for name in names:
+                        Utils.add_menuitem(qr_menu, name, 
+                                           None, self.add_gadget)
+                    self.uistate.uimanager.get_widget('/ViewMenu/AddGadget').set_submenu(qr_menu)
+            #if menu:
+            #    menu.popup(None, None, None, event.button, event.time)
+                return True
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self._popup_xy = (event.x, event.y)
             menu = self.uistate.uimanager.get_widget('/Popup')
-            qr_menu = self.uistate.uimanager.get_widget('/Popup/AddGadget').get_submenu()
-            if qr_menu == None:
-                qr_menu = gtk.Menu()
-                names = []
-                for opts in AVAILABLE_GADGETS:
-                    names.append(opts["name"])
-                names.sort()
-                for name in names:
-                    Utils.add_menuitem(qr_menu, name, 
-                                       None, self.add_gadget)
-                self.uistate.uimanager.get_widget('/Popup/AddGadget').set_submenu(qr_menu)
+            ag_menu = self.uistate.uimanager.get_widget('/Popup/AddGadget')
+            if ag_menu:
+                qr_menu = ag_menu.get_submenu()
+                if qr_menu == None:
+                    qr_menu = gtk.Menu()
+                    names = AVAILABLE_GADGETS.keys()
+                    names.sort()
+                    for name in names:
+                        Utils.add_menuitem(qr_menu, name, 
+                                           None, self.add_gadget)
+                    self.uistate.uimanager.get_widget('/Popup/AddGadget').set_submenu(qr_menu)
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True

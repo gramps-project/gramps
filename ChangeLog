@@ -1,4 +1,9 @@
 2007-12-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/_MyGrampsView.py: added tooltips, cleanup, menu work
+	* src/plugins/DefaultGadgets.py: fine tuning
+	* src/glade/gramps.glade: added tooltips
+
+2007-12-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/_MyGrampsView.py: saves on quit only, load/save api
 
 2007-12-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>

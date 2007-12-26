@@ -93,6 +93,9 @@ class LogGadget(Gadget):
                 self.append_text("\n")
 
 class TopSurnamesGadget(Gadget):
+    def init(self):
+        self.set_text("No Family Tree loaded.")
+
     def main(self):
         self.set_text("Processing...\n")
 
@@ -105,7 +108,7 @@ class TopSurnamesGadget(Gadget):
             if person:
                 surname = person.get_primary_name().get_surname().strip()
                 surnames[surname] = surnames.get(surname, 0) + 1
-            if cnt % 500 == 0:
+            if cnt % 350 == 0:
                 yield True
             cnt += 1
         total_people = cnt
@@ -115,7 +118,7 @@ class TopSurnamesGadget(Gadget):
         for surname in surnames:
             surname_sort.append( (surnames[surname], surname) )
             total += surnames[surname]
-            if cnt % 500 == 0:
+            if cnt % 350 == 0:
                 yield True
             cnt += 1
         total_surnames = cnt
@@ -139,6 +142,9 @@ class StatsGadget(Gadget):
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
+
+    def init(self):
+        self.set_text("No Family Tree loaded.")
 
     def background(self):
         self.set_text("Processing...")
@@ -180,7 +186,8 @@ class StatsGadget(Gadget):
             name = person.get_primary_name()
             if name.get_first_name() == "" or name.get_surname() == "":
                 incomp_names = incomp_names + 1
-            if (not person.get_main_parents_family_handle()) and (not len(person.get_family_handle_list())):
+            if ((not person.get_main_parents_family_handle()) and 
+                (not len(person.get_family_handle_list()))):
                 disconnected = disconnected + 1
             birth_ref = person.get_birth_ref()
             if birth_ref:
@@ -197,7 +204,7 @@ class StatsGadget(Gadget):
                 unknowns += 1
             if name.get_surname() not in namelist:
                 namelist.append(name.get_surname())
-            if cnt % 500 == 0:
+            if cnt % 200 == 0:
                 yield True
             cnt += 1
 
@@ -396,6 +403,7 @@ register(type="gadget",
 register(type="gadget", 
          name="Stats Gadget", 
          height=230,
+         expand=True,
          content = StatsGadget,
          title="Stats",
          )
@@ -424,6 +432,7 @@ register(type="gadget",
 register(type="gadget", 
          name="TODO Gadget", 
          height=300,
+         expand=True,
          content = TODOGadget,
          title="TODO List",
          )
