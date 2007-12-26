@@ -163,7 +163,8 @@ class Gadget(object):
         Gadgets should override this to take care of saving their
         special data.
         """
-        pass
+        if debug: print ("on_save: '%s'" % self.title)
+        return
 
     def active_changed(self, handle):
         pass
@@ -327,6 +328,7 @@ class GuiGadget:
         self.row = int(kwargs.get("row", -1))
         self.state = kwargs.get("state", "maximized")
         ##########
+        self.pui = None # user code
         self.xml = gtk.glade.XML(const.GLADE_FILE, 'gvgadget', "gramps")
         self.mainframe = self.xml.get_widget('gvgadget')
         self.textview = self.xml.get_widget('gvtextview')
@@ -787,5 +789,6 @@ class MyGrampsView(PageView.PageView):
         gadgets = [g for g in self.gadget_map.values()]
         for gadget in gadgets:
             # this is the only place where the gui runs user code directly
-            gadget.pui.on_save()
+            if gadget.pui:
+                gadget.pui.on_save()
         self.save()
