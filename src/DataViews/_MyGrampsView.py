@@ -163,7 +163,7 @@ class Gadget(object):
         Gadgets should override this to take care of saving their
         special data.
         """
-        if debug: print ("on_save: '%s'" % self.title)
+        if debug: print ("on_save: '%s'" % self.gui.title)
         return
 
     def active_changed(self, handle):
