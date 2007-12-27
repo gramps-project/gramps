@@ -1,3 +1,8 @@
+2007-12-27  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/DescendReport.py:
+	* src/plugins/AncestorReport.py:
+	Convert to use MenuOption
+
 2007-12-27  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/MyGrampsView.py:
 	* src/DataViews/SourceView.py:

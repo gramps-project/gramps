@@ -36,8 +36,8 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import register_report, NumberOption
+from ReportBase import Report, ReportUtils, ReportOptions, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 import Errors
@@ -186,42 +186,24 @@ class DescendantReport(Report):
 
 #------------------------------------------------------------------------
 #
-# 
+# AncestorOptions
 #
 #------------------------------------------------------------------------
-class DescendantOptions(ReportOptions):
+class DescendantOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-        # Options specific for this report
-        self.options_dict = {
-            'gen'       :  10,
-        }
-        self.options_help = {
-            'gen'        : ("=int","Generations",
-                            "The number of generations to include in the report",
-                            True),
-        }
+        MenuReportOptions.__init__(self,name,person_id)
         
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add generations option
-        """
-        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
-        self.max_gen.set_value(self.options_dict['gen'])
-        dialog.add_option(_('Generations'),self.max_gen)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added. Set the value in the
-        options dictionary.
-        """
-        self.options_dict['gen'] = self.max_gen.get_value_as_int()
+    def add_menu_options(self,menu):
+        category_name = _("Report Options")
+        
+        gen = NumberOption(_("Generations"),10,1,15)
+        gen.set_help(_("The number of generations to include in the report"))
+        menu.add_option(category_name,"gen",gen)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Descendant Report."""

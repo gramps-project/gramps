@@ -37,8 +37,8 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import register_report, NumberOption, BooleanOption
+from ReportBase import Report, ReportUtils, ReportOptions, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 from BasicUtils import name_displayer
@@ -76,7 +76,7 @@ class AncestorReport(Report):
         Report.__init__(self,database,person,options_class)
 
         self.map = {}
-        self.max_generations = options_class.handler.options_dict['gen']
+        self.max_generations = options_class.handler.options_dict['maxgen']
         self.pgbrk = options_class.handler.options_dict['pagebbg']
         self.opt_namebrk = options_class.handler.options_dict['namebrk']
 
@@ -210,32 +210,35 @@ class AncestorReport(Report):
             self.doc.write_text(ReportUtils.buried_str(self.database,person,0))
                         
             self.doc.end_paragraph()
+        
+#------------------------------------------------------------------------
+#
+# AncestorOptions
+#
+#------------------------------------------------------------------------
+class AncestorOptions(MenuReportOptions):
 
-class AncestorOptions(ReportOptions):
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-        # Options specific for this report
-        self.options_dict = {
-            'gen'       :  10,
-            'pagebbg'   :  0,
-            'namebrk'    : 0,
-        }
-        self.options_help = {
-            'gen'        : ("=int","Generations",
-                            "The number of generations to include in the report",
-                            True),
-            'pagebbg'    : ("=0/1","Page Break Between Generations",
-                            ["No line break", "Insert line break"],
-                            False),
-            'namebrk'    : ("=0/1","Indicates if a line break should follow the name.",
-                            ["No line break", "Insert line break"],
-                            False),
-        }
+        MenuReportOptions.__init__(self,name,person_id)
+        
+    def add_menu_options(self,menu):
+        category_name = _("Report Options")
+        
+        maxgen = NumberOption(_("Generations"),10,1,15)
+        maxgen.set_help(_("The number of generations to include in the report"))
+        menu.add_option(category_name,"maxgen",maxgen)
+        
+        pagebbg = BooleanOption(_("Page break between generations"),False)
+        pagebbg.set_help(_("Whether to start a new page after each generation."))
+        menu.add_option(category_name,"pagebbg",pagebbg)
+        
+        namebrk = BooleanOption(_("Add linebreak after each name"),False)
+        namebrk.set_help(_("Indicates if a line break should follow the name."))
+        menu.add_option(category_name,"namebrk",namebrk)
 
     def make_default_style(self,default_style):
         """
@@ -303,32 +306,6 @@ class AncestorOptions(ReportOptions):
         para.set_bottom_margin(0.125)        
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("AHN-Entry",para)
-
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add a check box to 
-        the dialog that for the LineBreak option.
-        """
-        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
-        self.max_gen.set_value(self.options_dict['gen'])
-        dialog.add_option(_('Generations'),self.max_gen)
-        
-        self.cb_pagebreak = gtk.CheckButton (_("Page break between generations"))
-        self.cb_pagebreak.set_active (self.options_dict['pagebbg'])
-        dialog.add_option ('', self.cb_pagebreak)
-            
-        self.cb_break = gtk.CheckButton (_("Add linebreak after each name"))
-        self.cb_break.set_active (self.options_dict['namebrk'])
-        dialog.add_option ('', self.cb_break)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added. Set the value in the
-        options dictionary.
-        """
-        self.options_dict['gen'] = self.max_gen.get_value_as_int()
-        self.options_dict['pagebbg'] = int(self.cb_pagebreak.get_active ())
-        self.options_dict['namebrk'] = int(self.cb_break.get_active ())
 
 #------------------------------------------------------------------------
 #
