@@ -1,5 +1,8 @@
 2007-12-27  Brian Matherly <brian@gramps-project.org>
-	* src/ReportBase/_GraphvisReportDialog.py: Fix to conform to 80 columns.
+	* src/ReportBase/_GraphvizReportDialog.py: Fix Graphviz generated PDF.
+
+2007-12-27  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py: Fix to conform to 80 columns.
 	Add Graphviz generated PDF as an option (requires Graphviz 2.16 to work)
 
 2007-12-27  Brian Matherly <brian@gramps-project.org>

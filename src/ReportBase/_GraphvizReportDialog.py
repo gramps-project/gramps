@@ -538,6 +538,7 @@ class GVPdfGsDoc(GVDocBase):
 #-------------------------------------------------------------------------------
 _formats = []
 _formats += [{ 'type' : "dot",
+               'ext'  : "dot",
                'descr': _("Graphviz Dot File"), 
                'mime' : "text/x-graphviz", 
                'class': GVDotDoc }]
@@ -545,42 +546,50 @@ _formats += [{ 'type' : "dot",
 if _dot_found:
     
     if _gs_cmd != "":
-        _formats += [{ 'type' : "pdf",
+        _formats += [{ 'type' : "gspdf",
+                       'ext'  : "pdf",
                        'descr': _("PDF (Ghostscript)"), 
                        'mime' : "application/pdf", 
                        'class': GVPdfGsDoc }]
         
-    _formats += [{ 'type' : "pdf",
+    _formats += [{ 'type' : "gvpdf",
+                   'ext'  : "pdf",
                    'descr': _("PDF (Graphviz)"), 
                    'mime' : "application/pdf", 
                    'class': GVPdfGvDoc }]
     
     _formats += [{ 'type' : "ps",
+                   'ext'  : "ps",
                    'descr': _("Postscript"), 
                    'mime' : "application/postscript", 
                    'class': GVPsDoc }]
     
     _formats += [{ 'type' : "svg",
+                   'ext'  : "svg",
                    'descr': _("Structured Vector Graphics (SVG)"), 
                    'mime' : "image/svg", 
                    'class': GVSvgDoc }]
     
     _formats += [{ 'type' : "svgz",
+                   'ext'  : "svgz",
                    'descr': _("Compressed Structured Vector Graphs (SVG)"), 
                    'mime' : "image/svgz", 
                    'class': GVSvgzDoc }]
     
     _formats += [{ 'type' : "jpg",
+                   'ext'  : "jpg",
                    'descr': _("JPEG image"), 
                    'mime' : "image/jpeg", 
                    'class': GVJpegDoc }]
     
     _formats += [{ 'type' : "gif",
+                   'ext'  : "gif",
                    'descr': _("GIF image"), 
                    'mime' : "image/gif", 
                    'class': GVGifDoc }]
     
     _formats += [{ 'type' : "png",
+                   'ext'  : "png",
                    'descr': _("PNG image"), 
                    'mime' : "image/png", 
                    'class': GVPngDoc }]
@@ -627,7 +636,7 @@ class GraphvizFormatComboBox(gtk.ComboBox):
         return 0
 
     def get_ext(self):
-        return '.%s' % _formats[self.get_active()]["type"]
+        return '.%s' % _formats[self.get_active()]['ext']
 
     def get_format_str(self):
         return _formats[self.get_active()]["type"]
