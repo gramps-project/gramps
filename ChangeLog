@@ -1,4 +1,9 @@
 2007-12-27  Brian Matherly <brian@gramps-project.org>
+	* src/Config/_GrampsConfigKeys.py: Better default for report output.
+	* src/gen/db/dbconst.py: Remove constants that are duplicated in const.py.
+	* src/GrampsDb/_GrampsBSDDB.py: Use ENV_DIR from const.py.
+
+2007-12-27  Brian Matherly <brian@gramps-project.org>
 	* src/docgen/CairoDoc.py: Fix 0001431: Tried to run a statistics report:
 
 2007-12-27  Brian Matherly <brian@gramps-project.org>

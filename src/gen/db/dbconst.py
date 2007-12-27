@@ -32,17 +32,6 @@ import os
 # constants
 #
 #-------------------------------------------------------------------------
-
-if os.environ.has_key('USERPROFILE'):
-    USER_HOME = os.environ['USERPROFILE'] 
-    HOME_DIR = os.path.join(USER_HOME,'gramps')
-else:
-    USER_HOME = os.environ['HOME'] 
-    HOME_DIR = os.path.join(USER_HOME,'.gramps')
-
-ENV_DIR         = os.path.join(HOME_DIR,"env")
-
-
 APP_GRAMPS      = "application/x-gramps"
 APP_GRAMPS_XML  = "application/x-gramps-xml"
 APP_GEDCOM      = "application/x-gedcom"
