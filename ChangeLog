@@ -1,4 +1,8 @@
 2007-12-27  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py: 
+	* src/plugins/GVRelGraph.py: fix thumbnail images and HTML output.
+
+2007-12-27  Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_GraphvizReportDialog.py: Fix Graphviz generated PDF.
 
 2007-12-27  Brian Matherly <brian@gramps-project.org>

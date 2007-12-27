@@ -214,7 +214,12 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         Implementes BaseDoc.GVDoc.add_node().
         """
         line  = '  "%s" ['               % id
-        line += 'label="%s"'             % label
+        
+        if label.startswith("<"):
+            # This must be HTML
+            line += 'label=<%s>'           % label
+        else:
+            line += 'label="%s"'             % label
         
         if shape:
             line += ', shape="%s"'       % shape
