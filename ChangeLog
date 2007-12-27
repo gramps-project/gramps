@@ -1,4 +1,7 @@
 2007-12-27  Brian Matherly <brian@gramps-project.org>
+	* src/docgen/CairoDoc.py: Fix 0001431: Tried to run a statistics report:
+
+2007-12-27  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/DescendReport.py:
 	* src/plugins/AncestorReport.py:
 	Convert to use MenuOption

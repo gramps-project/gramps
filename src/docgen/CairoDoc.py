@@ -1212,19 +1212,20 @@ class CairoDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 
         # ...the text separately
         paragraph_style_name = style.get_paragraph_style()
-        paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
-        paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
-        
-        # horizontal position of the text is not included in the style,
-        # we assume that it is the size of the shadow, or 0.2mm
-        if style.get_shadow():
-            x_offset = style.get_shadow_space()
-        else:
-            x_offset = 0.2
+        if paragraph_style_name:
+            paragraph_style = style_sheet.get_paragraph_style(paragraph_style_name)
+            paragraph_style.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
             
-        new_text = GtkDocText(paragraph_style, 'center', text,
-                              x + x_offset , y + h / 2, angle=0)
-        self._active_element.add_child(new_text)
+            # horizontal position of the text is not included in the style,
+            # we assume that it is the size of the shadow, or 0.2mm
+            if style.get_shadow():
+                x_offset = style.get_shadow_space()
+            else:
+                x_offset = 0.2
+                
+            new_text = GtkDocText(paragraph_style, 'center', text,
+                                  x + x_offset , y + h / 2, angle=0)
+            self._active_element.add_child(new_text)
     
     def draw_text(self, style_name, text, x, y):
         style_sheet = self.get_style_sheet()
