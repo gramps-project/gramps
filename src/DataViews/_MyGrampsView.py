@@ -51,7 +51,8 @@ def register_gadget(data_dict):
     global AVAILABLE_GADGETS
     base_opts = {"name":"Unnamed Gadget",
                  "state":"maximized",
-                 "column": -1, "row": -1}
+                 "column": -1, "row": -1,
+                 "data": []}
     base_opts.update(data_dict)
     AVAILABLE_GADGETS[base_opts["name"]] = base_opts
 
@@ -150,7 +151,6 @@ class Gadget(object):
         self._generator = None
         self._need_to_update = False
         self._tags = []
-        self.data = {}
         self.tooltip = None
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
@@ -212,14 +212,20 @@ class Gadget(object):
         self._tags.append((LinkTag(buffer),data))
         buffer.apply_tag(self._tags[-1][0], start, end)
 
+    def get_text(self):
+        start = self.gui.buffer.get_start_iter()
+        end = self.gui.buffer.get_end_iter()
+        return self.gui.buffer.get_text(start, end)
+        
     def insert_text(self, text):
         self.gui.buffer.insert_at_cursor(text)
 
     def clear_text(self):
         self.gui.buffer.set_text('')
         
-    def set_text(self, text):
-        self.gui.buffer.set_text(text)
+    def set_text(self, text, scroll_to='start'):
+        self.gui.buffer.set_text('')
+        self.append_text(text, scroll_to)
 
     def append_text(self, text, scroll_to="end"):
         enditer = self.gui.buffer.get_end_iter()
@@ -231,6 +237,17 @@ class Gadget(object):
             self.gui.textview.scroll_to_mark(end, 0.0, True, 0, 0)
         else:
             self.gui.textview.scroll_to_mark(start, 0.0, True, 0, 0)
+
+    def load_data_to_text(self, pos=0):
+        if len(self.gui.data) >= pos + 1:
+            text = self.gui.data[pos]
+            text = text.replace("\\n", chr(10))
+            self.set_text(text, 'end')
+
+    def save_text_to_data(self):
+        text = self.get_text()
+        text = text.replace(chr(10), "\\n")
+        self.gui.data.append(text)
 
     def update(self, *handles):
         self.main()
@@ -349,6 +366,7 @@ class GuiGadget:
         self.column = int(kwargs.get("column", -1))
         self.row = int(kwargs.get("row", -1))
         self.state = kwargs.get("state", "maximized")
+        self.data = kwargs.get("data", [])
         ##########
         self.pui = None # user code
         self.xml = gtk.glade.XML(const.GLADE_FILE, 'gvgadget', "gramps")
@@ -597,7 +615,12 @@ class MyGrampsView(PageView.PageView):
                 else:
                     data = {}
                     for opt in cp.options(sec):
-                        data[opt] = cp.get(sec, opt).strip()
+                        if opt.startswith("data["):
+                            temp = data.get("data", [])
+                            temp.append(cp.get(sec, opt).strip())
+                            data["data"] = temp
+                        else:
+                            data[opt] = cp.get(sec, opt).strip()
                     if "name" not in data:
                         data["name"] = "Unnamed Gadget"
                     retval.append((data["name"], data)) # name, opts
@@ -611,7 +634,11 @@ class MyGrampsView(PageView.PageView):
     def save(self, *args):
         if debug: print "saving"
         filename = GADGET_FILENAME
-        fp = open(filename, "w")
+        try:
+            fp = open(filename, "w")
+        except:
+            print "Failed writing '%s'; gadgets not saved" % filename
+            return
         fp.write(";; Gramps gadgets file" + NL)
         fp.write((";; Automatically created at %s" % time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
         fp.write("[My Gramps View Options]" + NL)
@@ -632,7 +659,13 @@ class MyGrampsView(PageView.PageView):
                         if key == "title": continue
                         if key == "column": continue
                         if key == "row": continue
-                        fp.write(("%s=%s" + NL)% (key, base_opts[key]))
+                        if key == "data":
+                            cnt = 0
+                            for item in base_opts["data"]:
+                                fp.write(("data[%d]=%s" + NL) % (cnt, item))
+                                cnt += 1
+                        else:
+                            fp.write(("%s=%s" + NL)% (key, base_opts[key]))
                     fp.write(("column=%d" + NL) % col)
                     fp.write(("row=%d" + NL) % row)
                     fp.write(NL)

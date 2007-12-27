@@ -94,7 +94,15 @@ class LogGadget(Gadget):
 
 class TopSurnamesGadget(Gadget):
     def init(self):
+        self.top_size = 10 # will be overwritten in load
         self.set_text("No Family Tree loaded.")
+
+    def on_load(self):
+        if len(self.gui.data) > 0:
+            self.top_size = int(self.gui.data[0])
+
+    def on_save(self):
+        self.gui.data = [self.top_size]
 
     def main(self):
         self.set_text("Processing...\n")
@@ -131,7 +139,7 @@ class TopSurnamesGadget(Gadget):
                              (line + 1, surname, 
                               int((float(count)/total) * 100), count))
             line += 1
-            if line >= 10:
+            if line >= self.top_size:
                 break
         self.append_text("\nTotal unique surnames: %d\n" % total_surnames)
         self.append_text("Total people: %d" % total_people)
@@ -358,6 +366,13 @@ class TODOGadget(Gadget):
         # GUI setup:
         self.gui.textview.set_editable(True)
         self.append_text("Enter your TODO list here.")
+
+    def on_load(self):
+        self.load_data_to_text()
+
+    def on_save(self):
+        self.gui.data = [] # clear out old data
+        self.save_text_to_data()
 
 def make_welcome_content(gui):
     text = """

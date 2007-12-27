@@ -1,3 +1,7 @@
+2007-12-27  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/_MyGrampsView.py: added API for data save/load
+	* src/plugins/DefaultGadgets.py: top surnames takes count; TODO saves
+
 2007-12-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/_MyGrampsView.py: added tooltips, cleanup, menu work
 	* src/plugins/DefaultGadgets.py: fine tuning
