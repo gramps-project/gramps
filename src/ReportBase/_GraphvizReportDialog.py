@@ -48,16 +48,17 @@ import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
-from PluginUtils import NumberOption, FloatOption, EnumeratedListOption, TextOption, BooleanOption
+from PluginUtils import NumberOption, FloatOption, EnumeratedListOption, \
+    TextOption, BooleanOption
 
 #-------------------------------------------------------------------------------
 #
 # Private Contstants
 #
 #-------------------------------------------------------------------------------
-_FONTS = [ { 'name' : _("Default"),                         'value' : ""          },
-           { 'name' : _("Postscript / Helvetica"),          'value' : "Helvetica" },
-           { 'name' : _("Truetype / FreeSans"),             'value' : "FreeSans"  }  ]
+_FONTS = [ { 'name' : _("Default"),                   'value' : ""          },
+           { 'name' : _("Postscript / Helvetica"),    'value' : "Helvetica" },
+           { 'name' : _("Truetype / FreeSans"),       'value' : "FreeSans"  }  ]
 
 _RANKDIR = [ { 'name' : _("Vertical (top to bottom)"),      'value' : "TB" },
              { 'name' : _("Vertical (bottom to top)"),      'value' : "BT" },
@@ -73,10 +74,9 @@ _PAGEDIR = [ { 'name' : _("Bottom, left"),                  'value' :"BL" },
              { 'name' : _("Left, bottom"),                  'value' :"LB" },
              { 'name' : _("Left, top"),                     'value' :"LT" } ]
 
-_RATIO = [ { 'name' : _("Minimal size"),                    'value' : "compress" },
-           { 'name' : _("Fill the given area"),             'value': "fill"      },
-           { 'name' : _("Use optimal number of pages"),     'value': "expand"    } ]
-
+_RATIO = [ { 'name' : _("Minimal size"),                'value' : "compress" },
+           { 'name' : _("Fill the given area"),         'value': "fill"      },
+           { 'name' : _("Use optimal number of pages"), 'value': "expand"    } ]
 
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
@@ -156,37 +156,36 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         sizew = sizew * self.hpages         
         sizeh = sizeh * self.vpages
                       
-        self.dot.write( 'digraph GRAMPS_graph\n'            )
-        self.dot.write( '{\n'                               )
-        self.dot.write( '  bgcolor=white;\n'                )
-        self.dot.write( '  center="true"; \n'               )
-        self.dot.write( '  charset="iso-8859-1";\n'         )
-        self.dot.write( '  concentrate="false";\n'          )
-        self.dot.write( '  dpi="%d";\n'                     % self.dpi          )
-        self.dot.write( '  graph [fontsize=%d];\n'          % self.fontsize     )
-        self.dot.write( '  mclimit="99";\n'                 )
-        self.dot.write( '  nodesep="%.2f";\n'               % self.nodesep      )
-        self.dot.write( '  outputorder="edgesfirst";\n'     )
-        self.dot.write( '  page="%3.2f,%3.2f"; \n'          % (pwidth, pheight) )
-        self.dot.write( '  pagedir="%s"; \n'                % self.pagedir      )
-        self.dot.write( '  rankdir="%s"; \n'                % self.rankdir      )
-        self.dot.write( '  ranksep="%.2f";\n'               % self.ranksep      )
-        self.dot.write( '  ratio="%s"; \n'                  % self.ratio        )
-        self.dot.write( '  rotate="%d"; \n'                 % rotate            )
-        self.dot.write( '  searchsize="100";\n'             )
-        self.dot.write( '  size="%3.2f,%3.2f"; \n'          % (sizew, sizeh)    )
-        self.dot.write( '  splines="true";\n'               )
-        self.dot.write( '\n'                                )
-#        self.dot.write( '  edge [len=0.5 style=solid arrowhead=none arrowtail=normal fontsize=12];\n')
-#        self.dot.write( '  node [style=filled fontname="FreeSans" fontsize=12];\n'   )
-        self.dot.write( '  edge [len=0.5 style=solid arrowhead=none arrowtail=normal fontsize=%d];\n' % self.fontsize )
+        self.dot.write( 'digraph GRAMPS_graph\n'           )
+        self.dot.write( '{\n'                              )
+        self.dot.write( '  bgcolor=white;\n'               )
+        self.dot.write( '  center="true"; \n'              )
+        self.dot.write( '  charset="iso-8859-1";\n'        )
+        self.dot.write( '  concentrate="false";\n'         )
+        self.dot.write( '  dpi="%d";\n'                    % self.dpi          )
+        self.dot.write( '  graph [fontsize=%d];\n'         % self.fontsize     )
+        self.dot.write( '  mclimit="99";\n'                )
+        self.dot.write( '  nodesep="%.2f";\n'              % self.nodesep      )
+        self.dot.write( '  outputorder="edgesfirst";\n'    )
+        self.dot.write( '  page="%3.2f,%3.2f"; \n'         % (pwidth, pheight) )
+        self.dot.write( '  pagedir="%s"; \n'               % self.pagedir      )
+        self.dot.write( '  rankdir="%s"; \n'               % self.rankdir      )
+        self.dot.write( '  ranksep="%.2f";\n'              % self.ranksep      )
+        self.dot.write( '  ratio="%s"; \n'                 % self.ratio        )
+        self.dot.write( '  rotate="%d"; \n'                % rotate            )
+        self.dot.write( '  searchsize="100";\n'            )
+        self.dot.write( '  size="%3.2f,%3.2f"; \n'         % (sizew, sizeh)    )
+        self.dot.write( '  splines="true";\n'              )
+        self.dot.write( '\n'                               )
+        self.dot.write( '  edge [len=0.5 style=solid arrowhead=none '
+                        'arrowtail=normal fontsize=%d];\n' % self.fontsize )
         if self.fontfamily:
             self.dot.write( '  node [style=filled fontname="%s" fontsize=%d];\n' 
                             % ( self.fontfamily, self.fontsize ) )
         else:
             self.dot.write( '  node [style=filled fontsize=%d];\n' 
                             % self.fontsize )
-        self.dot.write( '\n'                                                         )
+        self.dot.write( '\n' )
 
     def open(self, filename):
         self.filename = os.path.normpath(os.path.abspath(filename))
@@ -303,7 +302,7 @@ class GVPsDoc(GVDocBase):
         dotfile.close()
 
         # Generate the PS file.
-        os.system( 'dot -Tps -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tps2 -o"%s" "%s"' % (self.filename,tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -456,13 +455,43 @@ class GVGifDoc(GVDocBase):
         if self.print_req:
             app = Mime.get_application("image/gif")
             Utils.launch(app[0], self.filename)     
+
+#-------------------------------------------------------------------------------
+#
+# GVPdfGvDoc
+#
+#-------------------------------------------------------------------------------
+class GVPdfGvDoc(GVDocBase):
+    def close(self):
+        GVDocBase.close(self)
+        
+        # Make sure the extension is correct
+        if self.filename[-4:] != ".pdf":
+            self.filename += ".pdf"
+
+        # Create a temporary dot file
+        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        dotfile = os.fdopen(handle,"w")
+        dotfile.write(self.dot.getvalue())
+        dotfile.close()
+
+        # Generate the PDF file.
+        os.system( 'dot -Tpdf -o"%s" "%s"' % (self.filename,tmp_dot) )
+        
+        # Delete the temporary dot file
+        os.remove(tmp_dot)
+        
+        if self.print_req:
+            app = Mime.get_application("application/pdf")
+            Utils.launch(app[0], self.filename)
+
      
 #-------------------------------------------------------------------------------
 #
-# GVPdfDoc
+# GVPdfGsDoc
 #
 #-------------------------------------------------------------------------------
-class GVPdfDoc(GVDocBase):
+class GVPdfGsDoc(GVDocBase):
     def close(self):
         GVDocBase.close(self)
         
@@ -517,9 +546,14 @@ if _dot_found:
     
     if _gs_cmd != "":
         _formats += [{ 'type' : "pdf",
-                       'descr': _("PDF"), 
+                       'descr': _("PDF (Ghostscript)"), 
                        'mime' : "application/pdf", 
-                       'class': GVPdfDoc }]
+                       'class': GVPdfGsDoc }]
+        
+    _formats += [{ 'type' : "pdf",
+                   'descr': _("PDF (Graphviz)"), 
+                   'mime' : "application/pdf", 
+                   'class': GVPdfGvDoc }]
     
     _formats += [{ 'type' : "ps",
                    'descr': _("Postscript"), 
@@ -760,7 +794,8 @@ class GraphvizReportDialog(ReportDialog):
         self.options.load_previous_values()
 
     def pages_changed(self, sp):
-        if self.v_pages.gobj.get_value_as_int() > 1 or self.h_pages.gobj.get_value_as_int() > 1:
+        if self.v_pages.gobj.get_value_as_int() > 1 or \
+           self.h_pages.gobj.get_value_as_int() > 1:
             self.page_dir.combo.set_sensitive(True)
         else:
             self.page_dir.combo.set_sensitive(False)
