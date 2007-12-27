@@ -1,4 +1,21 @@
 2007-12-27  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/MyGrampsView.py:
+	* src/DataViews/SourceView.py:
+	* src/DataViews/__init__.py:
+	* src/DataViews/NoteView.py:
+	* src/DataViews/PersonView.py:
+	* src/DataViews/RelationView.py:
+	* src/DataViews/MapView.py:
+	* src/DataViews/MediaView.py:
+	* src/DataViews/RepositoryView.py:
+	* src/DataViews/EventView.py:
+	* src/DataViews/FamilyList.py:
+	* src/DataViews/PedigreeView.py:
+	* src/DataViews/PlaceView.py:
+	* src/DataViews/Makefile.am:
+	Renamed DataViews views to new style
+
+2007-12-27  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/_MyGrampsView.py: added API for data save/load
 	* src/plugins/DefaultGadgets.py: top surnames takes count; TODO saves
 

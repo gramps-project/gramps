@@ -26,17 +26,17 @@ Package init for the DataView package
 __author__ = "Don Allingham"
 __revision__ = "$Revision: $"
 
-from _MyGrampsView import MyGrampsView, register, Gadget
-from _PersonView import PersonView
-from _RelationView import RelationshipView
-from _FamilyList import FamilyListView
-from _PedigreeView import PedigreeView
-from _EventView import EventView
-from _SourceView import SourceView
-from _PlaceView import PlaceView
-from _MediaView import MediaView
-from _RepositoryView import RepositoryView
-from _NoteView import NoteView
+from MyGrampsView import MyGrampsView, register, Gadget
+from PersonView import PersonView
+from RelationView import RelationshipView
+from FamilyList import FamilyListView
+from PedigreeView import PedigreeView
+from EventView import EventView
+from SourceView import SourceView
+from PlaceView import PlaceView
+from MediaView import MediaView
+from RepositoryView import RepositoryView
+from NoteView import NoteView
 
 try:
     import Config
