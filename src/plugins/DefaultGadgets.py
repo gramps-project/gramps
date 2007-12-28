@@ -41,6 +41,28 @@ import string
 
 # You can also call update() to run main and background
 
+class CalendarGadget(Gadget):
+    def init(self):
+        import gtk
+        self.gui.calendar = gtk.Calendar()
+        self.gui.calendar.connect('day-selected-double-click', self.double_click)
+        self.gui.scrolledwindow.remove(self.gui.textview)
+        self.gui.scrolledwindow.add_with_viewport(self.gui.calendar)
+        self.gui.calendar.show()
+
+    def background(self):
+        print "updating"
+        yield True
+        self.gui.calendar.clear_marks()
+        self.gui.calendar.freeze()
+        # for each day in events
+        #self.calendar.mark_day(day)
+        self.gui.calendar.thaw()
+
+    def double_click(self, obj):
+        # bring up events on this day
+        pass
+
 class LogGadget(Gadget):
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.log_person_add)
@@ -382,5 +404,12 @@ register(type="gadget",
          expand=True,
          content = make_welcome_content,
          title="Welcome to GRAMPS!",
+         )
+
+register(type="gadget", 
+         name="Calendar Gadget", 
+         height=200,
+         content = CalendarGadget,
+         title="Calendar",
          )
 
