@@ -326,7 +326,9 @@ class Gadget(object):
         for (tag, person_handle) in self._tags:
             if iter.has_tag(tag):
                 person = self.dbstate.db.get_person_from_handle(person_handle)
-                if event.button == 1:
+                if person == None:
+                    pass
+                elif event.button == 1:
                     if event.type == gtk.gdk._2BUTTON_PRESS:
                         try:
                             EditPerson(self.gui.dbstate, self.gui.uistate, [], person)
@@ -349,7 +351,6 @@ class Gadget(object):
                         self.gui.dbstate.change_active_person(person)
                     return True # handled event
         return False # did not handle event
-
         
 def logical_true(value):
     return value in ["True", True, 1, "1"]
