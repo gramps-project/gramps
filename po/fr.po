@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-24 17:49-0800\n"
-"PO-Revision-Date: 2007-12-25 12:47+0100\n"
+"POT-Creation-Date: 2007-12-28 16:55+0100\n"
+"PO-Revision-Date: 2007-12-28 17:18+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -77,7 +77,7 @@ msgstr "GRAMPS ne peut ouvrir un format externe sans créer de nouvelle base GRA
 #: ../src/DbLoader.py:298
 #: ../src/DbLoader.py:381
 #: ../src/DbLoader.py:402
-#: ../src/ViewManager.py:1089
+#: ../src/ViewManager.py:1099
 #, python-format
 msgid "Could not open file: %s"
 msgstr "Impossible d'ouvrir le fichier : %s"
@@ -113,7 +113,7 @@ msgstr "Bases GRAMPS (grdb)"
 #: ../src/Assistant.py:337
 #: ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:92
 #: ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
@@ -138,7 +138,7 @@ msgstr "Région :"
 
 #: ../src/Assistant.py:341
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:62
 #: ../src/plugins/ownereditor.glade.h:5
 msgid "Country:"
 msgstr "Pays :"
@@ -186,11 +186,11 @@ msgstr "Édition des signets"
 #: ../src/ToolTips.py:173
 #: ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210
-#: ../src/DataViews/_PersonView.py:71
-#: ../src/DataViews/_PersonView.py:513
-#: ../src/DataViews/_PersonView.py:649
-#: ../src/DataViews/_PersonView.py:655
-#: ../src/DataViews/_RepositoryView.py:70
+#: ../src/DataViews/PersonView.py:71
+#: ../src/DataViews/PersonView.py:513
+#: ../src/DataViews/PersonView.py:649
+#: ../src/DataViews/PersonView.py:655
+#: ../src/DataViews/RepositoryView.py:70
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
@@ -222,18 +222,18 @@ msgstr "Nom"
 #. GRAMPS ID
 #. Add column with object gramps_id
 #: ../src/Bookmarks.py:206
-#: ../src/PageView.py:451
-#: ../src/PageView.py:630
+#: ../src/PageView.py:458
+#: ../src/PageView.py:637
 #: ../src/Merge/_MergePerson.py:123
-#: ../src/DataViews/_EventView.py:72
-#: ../src/DataViews/_FamilyList.py:59
-#: ../src/DataViews/_MediaView.py:84
-#: ../src/DataViews/_NoteView.py:70
-#: ../src/DataViews/_PersonView.py:72
-#: ../src/DataViews/_PlaceView.py:70
-#: ../src/DataViews/_RelationView.py:535
-#: ../src/DataViews/_RepositoryView.py:71
-#: ../src/DataViews/_SourceView.py:70
+#: ../src/DataViews/EventView.py:72
+#: ../src/DataViews/FamilyList.py:59
+#: ../src/DataViews/MediaView.py:84
+#: ../src/DataViews/NoteView.py:70
+#: ../src/DataViews/PersonView.py:72
+#: ../src/DataViews/PlaceView.py:70
+#: ../src/DataViews/RelationView.py:535
+#: ../src/DataViews/RepositoryView.py:71
+#: ../src/DataViews/SourceView.py:70
 #: ../src/DisplayTabs/_BackRefList.py:57
 #: ../src/DisplayTabs/_EventEmbedList.py:62
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
@@ -279,11 +279,11 @@ msgstr "Nom de la colonne"
 msgid "Column Editor"
 msgstr "Éditeur de colonnes"
 
-#: ../src/const.py:145
+#: ../src/const.py:148
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "GRAMPS (Genealogical Research et Analysis Management Programming System) est un logiciel de généalogie."
 
-#: ../src/const.py:163
+#: ../src/const.py:166
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "Michel Guitel     (Documentation)\n"
@@ -429,22 +429,22 @@ msgstr "Impossible de créer une base de données"
 
 #: ../src/DbLoader.py:340
 #: ../src/DbLoader.py:362
-#: ../src/ViewManager.py:1071
+#: ../src/ViewManager.py:1081
 msgid "You do not have write access to the selected file."
 msgstr "Vous n'avez pas accès en écriture au fichier sélectionné."
 
 #: ../src/DbLoader.py:361
-#: ../src/ViewManager.py:1070
+#: ../src/ViewManager.py:1080
 msgid "Read only database"
 msgstr "Base de données en lecture seule"
 
 #: ../src/DbLoader.py:368
-#: ../src/ViewManager.py:1077
+#: ../src/ViewManager.py:1087
 msgid "Missing or Invalid database"
 msgstr "Base de données absente ou invalide"
 
 #: ../src/DbLoader.py:369
-#: ../src/ViewManager.py:1078
+#: ../src/ViewManager.py:1088
 #, python-format
 msgid ""
 "%s could not be found.\n"
@@ -454,7 +454,7 @@ msgstr ""
 "Il est possible que ce fichier n'existe plus ou a été déplacé."
 
 #: ../src/DbLoader.py:382
-#: ../src/ViewManager.py:1090
+#: ../src/ViewManager.py:1100
 msgid "This may be caused by an improper installation of GRAMPS."
 msgstr "Ceci peut être provoqué par une installation incorrecte de GRAMPS."
 
@@ -638,14 +638,15 @@ msgstr "Impossible de créer le répertoire de la base de données :"
 
 #: ../src/DbManager.py:851
 #: ../src/ScratchPad.py:93
-#: ../src/DataViews/_RelationView.py:389
-#: ../src/DataViews/_RelationView.py:830
-#: ../src/DataViews/_RelationView.py:868
+#: ../src/DataViews/RelationView.py:389
+#: ../src/DataViews/RelationView.py:830
+#: ../src/DataViews/RelationView.py:868
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
 #: ../src/plugins/all_relations.py:273
 #: ../src/plugins/all_relations.py:290
 #: ../src/plugins/Check.py:1310
 #: ../src/plugins/FamilyLines.py:996
+#: ../src/plugins/GVFamilyLines.py:147
 #: ../src/plugins/IndivComplete.py:480
 #: ../src/plugins/NarrativeWeb.py:542
 #: ../src/PluginUtils/_PluginMgr.py:181
@@ -934,7 +935,7 @@ msgstr "Préférences"
 #: ../src/Editors/_EditSourceRef.py:77
 #: ../src/Editors/_EditSourceRef.py:83
 #: ../src/gen/lib/notetype.py:80
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:80
 msgid "General"
 msgstr "Général"
 
@@ -971,8 +972,8 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ../src/GrampsCfg.py:174
-#: ../src/DataViews/_PlaceView.py:73
-#: ../src/DataViews/_RepositoryView.py:76
+#: ../src/DataViews/PlaceView.py:73
+#: ../src/DataViews/RepositoryView.py:76
 #: ../src/DisplayTabs/_AddrEmbedList.py:62
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
 #: ../src/plugins/ExtractCity.py:345
@@ -988,8 +989,8 @@ msgid "State/Province"
 msgstr "Région"
 
 #: ../src/GrampsCfg.py:176
-#: ../src/DataViews/_PlaceView.py:76
-#: ../src/DataViews/_RepositoryView.py:79
+#: ../src/DataViews/PlaceView.py:76
+#: ../src/DataViews/RepositoryView.py:79
 #: ../src/DisplayTabs/_AddrEmbedList.py:64
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
 #: ../src/plugins/ExtractCity.py:348
@@ -999,8 +1000,8 @@ msgid "Country"
 msgstr "Pays"
 
 #: ../src/GrampsCfg.py:177
-#: ../src/DataViews/_PlaceView.py:72
-#: ../src/DataViews/_RepositoryView.py:75
+#: ../src/DataViews/PlaceView.py:72
+#: ../src/DataViews/RepositoryView.py:75
 msgid "ZIP/Postal Code"
 msgstr "Code postal / INSEE"
 
@@ -1010,7 +1011,7 @@ msgstr "Téléphone"
 
 #: ../src/GrampsCfg.py:179
 #: ../src/ToolTips.py:150
-#: ../src/DataViews/_RepositoryView.py:80
+#: ../src/DataViews/RepositoryView.py:80
 msgid "Email"
 msgstr "Adresse électronique"
 
@@ -1030,9 +1031,9 @@ msgstr "Individu"
 #: ../src/gramps_main.py:107
 #: ../src/ScratchPad.py:569
 #: ../src/ToolTips.py:228
-#: ../src/DataViews/_RelationView.py:454
-#: ../src/DataViews/_RelationView.py:1115
-#: ../src/DataViews/_RelationView.py:1139
+#: ../src/DataViews/RelationView.py:454
+#: ../src/DataViews/RelationView.py:1115
+#: ../src/DataViews/RelationView.py:1139
 #: ../src/Editors/_EditFamily.py:471
 #: ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266
@@ -1045,7 +1046,7 @@ msgstr "Famille"
 #: ../src/ScratchPad.py:247
 #: ../src/ScratchPad.py:277
 #: ../src/ScratchPad.py:355
-#: ../src/DataViews/_EventView.py:75
+#: ../src/DataViews/EventView.py:75
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:55
@@ -1243,7 +1244,7 @@ msgid "Name format"
 msgstr "Format du nom"
 
 #: ../src/GrampsCfg.py:610
-#: ../src/DataViews/_RelationView.py:326
+#: ../src/DataViews/RelationView.py:326
 #: ../src/DisplayTabs/_ButtonTab.py:69
 #: ../src/plugins/BookReport.py:867
 msgid "Edit"
@@ -1297,7 +1298,7 @@ msgstr "Afficher l'astuce du jour"
 
 #: ../src/GrampsCfg.py:698
 msgid "Use shading in Relationship View"
-msgstr "Utiliser les nuances dans la vue relations"
+msgstr "Utiliser les nuances dans la vue Relations"
 
 #: ../src/GrampsCfg.py:700
 msgid "Display edit buttons on Relationship View"
@@ -1378,8 +1379,8 @@ msgstr "Ajouter un signet"
 #: ../src/ScratchPad.py:169
 #: ../src/ScratchPad.py:246
 #: ../src/ScratchPad.py:354
-#: ../src/DataViews/_EventView.py:74
-#: ../src/DataViews/_MediaView.py:88
+#: ../src/DataViews/EventView.py:74
+#: ../src/DataViews/MediaView.py:88
 #: ../src/DisplayTabs/_AddrEmbedList.py:60
 #: ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
@@ -1399,7 +1400,7 @@ msgstr "Éditer la date"
 
 #: ../src/gramps_main.py:106
 #: ../src/Merge/_MergePerson.py:140
-#: ../src/DataViews/_EventView.py:102
+#: ../src/DataViews/EventView.py:102
 #: ../src/DisplayTabs/_EventEmbedList.py:71
 #: ../src/plugins/MarkerReport.py:285
 #: ../src/plugins/NarrativeWeb.py:1940
@@ -1425,20 +1426,18 @@ msgid "Public"
 msgstr "Public"
 
 #: ../src/gramps_main.py:112
-#: ../src/DataViews/_MediaView.py:108
+#: ../src/DataViews/MediaView.py:108
 msgid "Media"
 msgstr "Média"
 
-#. ###############################
 #: ../src/gramps_main.py:113
-#: ../src/DataViews/_NoteView.py:96
+#: ../src/DataViews/NoteView.py:96
 #: ../src/DisplayTabs/_NoteTab.py:81
 #: ../src/plugins/GraphViz.py:972
 #: ../src/plugins/GraphViz.py:978
 #: ../src/plugins/GraphViz.py:986
 #: ../src/plugins/IndivComplete.py:168
 #: ../src/plugins/MarkerReport.py:371
-#: ../src/ReportBase/_GraphvizReportDialog.py:739
 msgid "Notes"
 msgstr "Notes"
 
@@ -1446,10 +1445,10 @@ msgstr "Notes"
 #. don't show rest
 #: ../src/gramps_main.py:114
 #: ../src/Merge/_MergePerson.py:149
-#: ../src/DataViews/_PedigreeView.py:1562
-#: ../src/DataViews/_RelationView.py:441
-#: ../src/DataViews/_RelationView.py:738
-#: ../src/DataViews/_RelationView.py:772
+#: ../src/DataViews/PedigreeView.py:1562
+#: ../src/DataViews/RelationView.py:441
+#: ../src/DataViews/RelationView.py:738
+#: ../src/DataViews/RelationView.py:772
 #: ../src/plugins/all_relations.py:301
 #: ../src/plugins/NarrativeWeb.py:706
 #: ../src/plugins/NarrativeWeb.py:841
@@ -1466,13 +1465,13 @@ msgid "Select Parents"
 msgstr "Sélectionner les parents"
 
 #: ../src/gramps_main.py:117
-#: ../src/DataViews/_PedigreeView.py:457
+#: ../src/DataViews/PedigreeView.py:457
 #: ../src/plugins/NarrativeWeb.py:1868
 msgid "Pedigree"
 msgstr "Arbre généalogique"
 
 #: ../src/gramps_main.py:119
-#: ../src/DataViews/_PlaceView.py:103
+#: ../src/DataViews/PlaceView.py:103
 #: ../src/plugins/NarrativeWeb.py:377
 #: ../src/plugins/NarrativeWeb.py:942
 #: ../src/plugins/NarrativeWeb.py:949
@@ -1481,7 +1480,7 @@ msgid "Places"
 msgstr "Lieux"
 
 #: ../src/gramps_main.py:120
-#: ../src/DataViews/_RelationView.py:115
+#: ../src/DataViews/RelationView.py:115
 msgid "Relationships"
 msgstr "Relations"
 
@@ -1490,7 +1489,7 @@ msgid "Reports"
 msgstr "Rapports"
 
 #: ../src/gramps_main.py:122
-#: ../src/DataViews/_RepositoryView.py:105
+#: ../src/DataViews/RepositoryView.py:105
 #: ../src/DisplayTabs/_RepoEmbedList.py:69
 msgid "Repositories"
 msgstr "Dépôts"
@@ -1499,7 +1498,7 @@ msgstr "Dépôts"
 #: ../src/ScratchPad.py:184
 #: ../src/ScratchPad.py:422
 #: ../src/ScratchPad.py:455
-#: ../src/DataViews/_SourceView.py:97
+#: ../src/DataViews/SourceView.py:97
 #: ../src/DisplayTabs/_SourceEmbedList.py:69
 #: ../src/plugins/IndivComplete.py:367
 #: ../src/plugins/NarrativeWeb.py:376
@@ -1523,7 +1522,7 @@ msgid "Private"
 msgstr "Privé(e)"
 
 #: ../src/gramps_main.py:127
-#: ../src/DataViews/_MediaView.py:220
+#: ../src/DataViews/MediaView.py:220
 #: ../src/ReportBase/_Constants.py:57
 msgid "View"
 msgstr "Afficher"
@@ -1646,7 +1645,7 @@ msgid "Select an existing place"
 msgstr "Sélectionner un lieu existant"
 
 #: ../src/GrampsWidgets.py:927
-#: ../src/DataViews/_PlaceView.py:83
+#: ../src/DataViews/PlaceView.py:83
 msgid "Add a new place"
 msgstr "Ajouter un nouveau lieu"
 
@@ -1672,7 +1671,7 @@ msgid "Select an existing media object"
 msgstr "Sélectionner un objet média existant"
 
 #: ../src/GrampsWidgets.py:981
-#: ../src/DataViews/_MediaView.py:91
+#: ../src/DataViews/MediaView.py:91
 msgid "Add a new media object"
 msgstr "Ajouter un nouveau média"
 
@@ -1700,7 +1699,7 @@ msgid "Select an existing note"
 msgstr "Sélectionner une note existante"
 
 #: ../src/GrampsWidgets.py:1035
-#: ../src/DataViews/_NoteView.py:76
+#: ../src/DataViews/NoteView.py:76
 msgid "Add a new note"
 msgstr "Ajouter une nouvelle note"
 
@@ -1751,125 +1750,125 @@ msgstr "Sélectionner la couleur d'arrière-plan"
 msgid "Select font"
 msgstr "Sélectionner la police"
 
-#: ../src/PageView.py:317
-#: ../src/ViewManager.py:1299
+#: ../src/PageView.py:324
+#: ../src/ViewManager.py:1309
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s a été défini comme signet"
 
-#: ../src/PageView.py:321
-#: ../src/PageView.py:615
-#: ../src/ViewManager.py:1302
-#: ../src/DataViews/_FamilyList.py:190
+#: ../src/PageView.py:328
+#: ../src/PageView.py:622
+#: ../src/ViewManager.py:1312
+#: ../src/DataViews/FamilyList.py:190
 msgid "Could Not Set a Bookmark"
 msgstr "Impossible d'établir un signet"
 
-#: ../src/PageView.py:322
-#: ../src/ViewManager.py:1303
-#: ../src/DataViews/_FamilyList.py:191
+#: ../src/PageView.py:329
+#: ../src/ViewManager.py:1313
+#: ../src/DataViews/FamilyList.py:191
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Impossible de créer un signet car aucun individu n'est sélectionné."
 
-#: ../src/PageView.py:345
+#: ../src/PageView.py:352
 msgid "_Add bookmark"
 msgstr "_Ajouter un signet"
 
-#: ../src/PageView.py:347
+#: ../src/PageView.py:354
 msgid "_Edit bookmarks"
 msgstr "É_diter les signets"
 
-#: ../src/PageView.py:376
+#: ../src/PageView.py:383
 msgid "_Forward"
 msgstr "_Suivant"
 
-#: ../src/PageView.py:377
+#: ../src/PageView.py:384
 msgid "Go to the next person in the history"
 msgstr "Aller à l'individu suivant dans l'historique"
 
-#: ../src/PageView.py:384
+#: ../src/PageView.py:391
 msgid "_Back"
 msgstr "_Précédent"
 
-#: ../src/PageView.py:385
+#: ../src/PageView.py:392
 msgid "Go to the previous person in the history"
 msgstr "Aller à l'individu précédent dans l'historique"
 
-#: ../src/PageView.py:389
+#: ../src/PageView.py:396
 msgid "_Home"
 msgstr "S_ouche"
 
-#: ../src/PageView.py:391
+#: ../src/PageView.py:398
 msgid "Go to the default person"
 msgstr "Aller à l'individu par défaut"
 
-#: ../src/PageView.py:392
+#: ../src/PageView.py:399
 msgid "Person Filter Editor"
 msgstr "Éditeur de filtre sur l'individu"
 
-#: ../src/PageView.py:397
+#: ../src/PageView.py:404
 msgid "Set _Home Person"
 msgstr "Définir comme s_ouche"
 
-#: ../src/PageView.py:441
-#: ../src/PageView.py:445
-#: ../src/PageView.py:620
-#: ../src/PageView.py:624
+#: ../src/PageView.py:448
+#: ../src/PageView.py:452
+#: ../src/PageView.py:627
+#: ../src/PageView.py:631
 msgid "Jump to by GRAMPS ID"
 msgstr "Aller à l'identifiant GRAMPS"
 
-#: ../src/PageView.py:469
-#: ../src/PageView.py:648
+#: ../src/PageView.py:476
+#: ../src/PageView.py:655
 #, python-format
 msgid "Error: %s is not a valid GRAMPS ID"
 msgstr "Erreur : %s n'est pas un ID GRAMPS valide"
 
-#: ../src/PageView.py:616
+#: ../src/PageView.py:623
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Impossible de créer un signet car aucun individu n'est sélectionné."
 
-#: ../src/PageView.py:925
-#: ../src/DataViews/_PersonView.py:161
+#: ../src/PageView.py:932
+#: ../src/DataViews/PersonView.py:161
 msgid "_Add"
 msgstr "_Ajouter"
 
 # Supprimer car efface un objet de la base
-#: ../src/PageView.py:927
-#: ../src/DataViews/_PersonView.py:163
+#: ../src/PageView.py:934
+#: ../src/DataViews/PersonView.py:163
 msgid "_Remove"
 msgstr "_Supprimer"
 
-#: ../src/PageView.py:929
-#: ../src/DataViews/_PersonView.py:171
+#: ../src/PageView.py:936
+#: ../src/DataViews/PersonView.py:171
 msgid "Export view"
 msgstr "Exporter l'affichage"
 
-#: ../src/PageView.py:934
-#: ../src/DataViews/_PersonView.py:151
+#: ../src/PageView.py:941
+#: ../src/DataViews/PersonView.py:151
 msgid "action|_Edit"
 msgstr "É_diter"
 
-#: ../src/PageView.py:939
+#: ../src/PageView.py:946
 msgid "_Filter"
 msgstr "_Filtre"
 
-#: ../src/PageView.py:1004
-#: ../src/DataViews/_PersonView.py:904
+#: ../src/PageView.py:1011
+#: ../src/DataViews/PersonView.py:904
 msgid "Export view as spreadsheet"
 msgstr "Exporter l'affichage comme tableur"
 
 # une note
-#: ../src/PageView.py:1012
-#: ../src/DataViews/_PersonView.py:912
+#: ../src/PageView.py:1019
+#: ../src/DataViews/PersonView.py:912
 msgid "Format:"
 msgstr "Format :"
 
-#: ../src/PageView.py:1017
-#: ../src/DataViews/_PersonView.py:917
+#: ../src/PageView.py:1024
+#: ../src/DataViews/PersonView.py:917
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1018
-#: ../src/DataViews/_PersonView.py:918
+#: ../src/PageView.py:1025
+#: ../src/DataViews/PersonView.py:918
 msgid "Open Document Spreadsheet"
 msgstr "Classeur Open Document"
 
@@ -1931,13 +1930,13 @@ msgstr ""
 "Sélectionnez plutôt une des options disponibles"
 
 #: ../src/QuickReports.py:85
-#: ../src/DataViews/_FamilyList.py:173
-#: ../src/DataViews/_PersonView.py:155
+#: ../src/DataViews/FamilyList.py:173
+#: ../src/DataViews/PersonView.py:155
 msgid "Quick Report"
 msgstr "Rapport express"
 
 #: ../src/Relationship.py:799
-#: ../src/DataViews/_PedigreeView.py:1261
+#: ../src/DataViews/PedigreeView.py:1261
 #: ../src/plugins/rel_pl.py:475
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
@@ -2064,8 +2063,8 @@ msgstr "le partenaire"
 #: ../src/Reorder.py:30
 #: ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:154
-#: ../src/DataViews/_FamilyList.py:60
-#: ../src/DataViews/_RelationView.py:773
+#: ../src/DataViews/FamilyList.py:60
+#: ../src/DataViews/RelationView.py:773
 #: ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/all_relations.py:296
 #: ../src/plugins/FamilyGroup.py:195
@@ -2082,8 +2081,8 @@ msgstr "Père"
 #: ../src/Reorder.py:30
 #: ../src/ToolTips.py:238
 #: ../src/Merge/_MergePerson.py:156
-#: ../src/DataViews/_FamilyList.py:61
-#: ../src/DataViews/_RelationView.py:774
+#: ../src/DataViews/FamilyList.py:61
+#: ../src/DataViews/RelationView.py:774
 #: ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/all_relations.py:293
 #: ../src/plugins/FamilyGroup.py:212
@@ -2099,8 +2098,8 @@ msgstr "Mère"
 
 #: ../src/Reorder.py:31
 #: ../src/Merge/_MergePerson.py:170
-#: ../src/DataViews/_PersonView.py:78
-#: ../src/DataViews/_RelationView.py:1141
+#: ../src/DataViews/PersonView.py:78
+#: ../src/DataViews/RelationView.py:1141
 #: ../src/Selectors/_SelectPerson.py:55
 #: ../src/plugins/FamilyGroup.py:523
 #: ../src/plugins/FamilyGroup.py:782
@@ -2109,7 +2108,7 @@ msgid "Spouse"
 msgstr "Conjoint"
 
 #: ../src/Reorder.py:31
-#: ../src/DataViews/_FamilyList.py:62
+#: ../src/DataViews/FamilyList.py:62
 #: ../src/plugins/MarkerReport.py:224
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:107
 msgid "Relationship"
@@ -2155,10 +2154,10 @@ msgstr "Lien événement"
 #: ../src/ScratchPad.py:885
 #: ../src/ScratchPad.py:891
 #: ../src/Merge/_MergePerson.py:172
-#: ../src/DataViews/_EventView.py:73
-#: ../src/DataViews/_MediaView.py:85
-#: ../src/DataViews/_NoteView.py:71
-#: ../src/DataViews/_RepositoryView.py:72
+#: ../src/DataViews/EventView.py:73
+#: ../src/DataViews/MediaView.py:85
+#: ../src/DataViews/NoteView.py:71
+#: ../src/DataViews/RepositoryView.py:72
 #: ../src/DisplayTabs/_AttrEmbedList.py:52
 #: ../src/DisplayTabs/_BackRefList.py:56
 #: ../src/DisplayTabs/_EventEmbedList.py:60
@@ -2192,7 +2191,7 @@ msgstr "Cause"
 #: ../src/ScratchPad.py:249
 #: ../src/ScratchPad.py:357
 #: ../src/ScratchPad.py:391
-#: ../src/DataViews/_EventView.py:71
+#: ../src/DataViews/EventView.py:71
 #: ../src/DisplayTabs/_EventEmbedList.py:61
 #: ../src/DisplayTabs/_WebEmbedList.py:55
 #: ../src/Selectors/_SelectEvent.py:58
@@ -2210,6 +2209,7 @@ msgstr "Description"
 msgid "Primary source"
 msgstr "Source principale"
 
+#. ###############################
 #: ../src/ScratchPad.py:306
 #: ../src/ToolTips.py:159
 #: ../src/DisplayModels/_MediaModel.py:105
@@ -2217,6 +2217,7 @@ msgstr "Source principale"
 #: ../src/Editors/_EditMedia.py:140
 #: ../src/Editors/_EditNote.py:194
 #: ../src/plugins/FamilyGroup.py:313
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
@@ -2239,7 +2240,7 @@ msgid "Url"
 msgstr "URL"
 
 #: ../src/ScratchPad.py:389
-#: ../src/DataViews/_MediaView.py:86
+#: ../src/DataViews/MediaView.py:86
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Path"
@@ -2279,8 +2280,8 @@ msgstr "Référence de source"
 #: ../src/ScratchPad.py:886
 #: ../src/ScratchPad.py:892
 #: ../src/Utils.py:1099
-#: ../src/DataViews/_MediaView.py:83
-#: ../src/DataViews/_SourceView.py:69
+#: ../src/DataViews/MediaView.py:83
+#: ../src/DataViews/SourceView.py:69
 #: ../src/DisplayTabs/_RepoEmbedList.py:61
 #: ../src/DisplayTabs/_SourceEmbedList.py:61
 #: ../src/Selectors/_SelectObject.py:72
@@ -2360,7 +2361,7 @@ msgstr "Lien d'individu"
 #: ../src/ScratchPad.py:723
 #: ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:127
-#: ../src/DataViews/_RelationView.py:545
+#: ../src/DataViews/RelationView.py:545
 #: ../src/plugins/all_relations.py:266
 #: ../src/plugins/FamilyGroup.py:481
 #: ../src/plugins/FamilyGroup.py:483
@@ -2379,13 +2380,13 @@ msgid "Source Link"
 msgstr "Lien de source"
 
 #: ../src/ScratchPad.py:775
-#: ../src/DataViews/_SourceView.py:72
+#: ../src/DataViews/SourceView.py:72
 #: ../src/plugins/NarrativeWeb.py:1512
 msgid "Abbreviation"
 msgstr "Abréviation"
 
 #: ../src/ScratchPad.py:776
-#: ../src/DataViews/_SourceView.py:71
+#: ../src/DataViews/SourceView.py:71
 #: ../src/DisplayTabs/_SourceEmbedList.py:62
 #: ../src/plugins/NarrativeWeb.py:1510
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:78
@@ -2393,7 +2394,7 @@ msgid "Author"
 msgstr "Auteur"
 
 #: ../src/ScratchPad.py:777
-#: ../src/DataViews/_SourceView.py:73
+#: ../src/DataViews/SourceView.py:73
 msgid "Publication Information"
 msgstr "Information de publication"
 
@@ -2828,14 +2829,14 @@ msgstr "féminin"
 #: ../src/Mime/_GnomeMime.py:74
 #: ../src/Mime/_PythonMime.py:53
 #: ../src/Mime/_PythonMime.py:61
-#: ../src/plugins/DetAncestralReport.py:485
-#: ../src/plugins/DetAncestralReport.py:492
-#: ../src/plugins/DetAncestralReport.py:533
-#: ../src/plugins/DetAncestralReport.py:540
-#: ../src/plugins/DetDescendantReport.py:397
-#: ../src/plugins/DetDescendantReport.py:404
-#: ../src/plugins/DetDescendantReport.py:451
-#: ../src/plugins/DetDescendantReport.py:458
+#: ../src/plugins/DetAncestralReport.py:482
+#: ../src/plugins/DetAncestralReport.py:489
+#: ../src/plugins/DetAncestralReport.py:530
+#: ../src/plugins/DetAncestralReport.py:537
+#: ../src/plugins/DetDescendantReport.py:393
+#: ../src/plugins/DetDescendantReport.py:400
+#: ../src/plugins/DetDescendantReport.py:447
+#: ../src/plugins/DetDescendantReport.py:454
 #: ../src/plugins/FamilyGroup.py:714
 #: ../src/plugins/IndivComplete.py:327
 #: ../src/plugins/NarrativeWeb.py:1677
@@ -3133,12 +3134,12 @@ msgid "_Filter sidebar"
 msgstr "_Filtres"
 
 #: ../src/ViewManager.py:475
-#: ../src/ViewManager.py:1235
+#: ../src/ViewManager.py:1245
 msgid "_Undo"
 msgstr "Ann_uler"
 
 #: ../src/ViewManager.py:480
-#: ../src/ViewManager.py:1252
+#: ../src/ViewManager.py:1262
 msgid "_Redo"
 msgstr "_Rétablir"
 
@@ -3161,39 +3162,39 @@ msgstr "Chargement des plugins…"
 msgid "Ready"
 msgstr "Prêt"
 
-#: ../src/ViewManager.py:645
+#: ../src/ViewManager.py:648
 msgid "Autobackup..."
 msgstr "Sauvegarde automatique…"
 
-#: ../src/ViewManager.py:659
+#: ../src/ViewManager.py:662
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
-#: ../src/ViewManager.py:660
+#: ../src/ViewManager.py:663
 msgid "Aborting changes will return the database to the state is was before you started this editing session."
 msgstr "Abandonner les changements ramènera la base de données à son état du début de session."
 
-#: ../src/ViewManager.py:662
+#: ../src/ViewManager.py:665
 msgid "Abort changes"
 msgstr "Abandonner les changements"
 
-#: ../src/ViewManager.py:663
+#: ../src/ViewManager.py:666
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src/ViewManager.py:672
+#: ../src/ViewManager.py:675
 msgid "Cannot abandon session's changes"
 msgstr "Impossible d'abandonner les changements de la session"
 
-#: ../src/ViewManager.py:673
+#: ../src/ViewManager.py:676
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/ViewManager.py:1181
+#: ../src/ViewManager.py:1191
 msgid "Read Only"
 msgstr "Lecture seule"
 
-#: ../src/ViewManager.py:1479
+#: ../src/ViewManager.py:1489
 msgid ""
 "Much of GRAMPS' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
@@ -3208,7 +3209,7 @@ msgstr ""
 "et partage des conditions initiales à \n"
 "l'identique 2.5."
 
-#: ../src/ViewManager.py:1492
+#: ../src/ViewManager.py:1502
 msgid "GRAMPS Homepage"
 msgstr "Page d'accueil de GRAMPS"
 
@@ -3286,10 +3287,10 @@ msgstr "Comparaison des individus"
 #: ../src/Merge/_MergePerson.py:271
 #: ../src/Merge/_MergePerson.py:302
 #: ../src/Merge/_MergePerson.py:307
-#: ../src/DataViews/_PersonView.py:194
-#: ../src/DataViews/_PersonView.py:207
-#: ../src/DataViews/_PersonView.py:218
-#: ../src/DataViews/_PersonView.py:232
+#: ../src/DataViews/PersonView.py:194
+#: ../src/DataViews/PersonView.py:207
+#: ../src/DataViews/PersonView.py:218
+#: ../src/DataViews/PersonView.py:232
 msgid "Cannot merge people"
 msgstr "Impossible de fusionner les individus"
 
@@ -3307,7 +3308,7 @@ msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces indi
 
 #. Gender
 #: ../src/Merge/_MergePerson.py:124
-#: ../src/DataViews/_PersonView.py:73
+#: ../src/DataViews/PersonView.py:73
 #: ../src/Editors/_EditFamily.py:98
 #: ../src/Selectors/_SelectPerson.py:50
 #: ../src/plugins/siblings.py:45
@@ -3320,7 +3321,7 @@ msgid "Gender"
 msgstr "Genre"
 
 #: ../src/Merge/_MergePerson.py:130
-#: ../src/DataViews/_RelationView.py:556
+#: ../src/DataViews/RelationView.py:556
 #: ../src/plugins/FamilyGroup.py:487
 #: ../src/plugins/FamilyGroup.py:489
 #: ../src/plugins/MarkerReport.py:137
@@ -3346,13 +3347,13 @@ msgstr "Aucun parent"
 
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:160
-#: ../src/DataViews/_PedigreeView.py:1448
+#: ../src/DataViews/PedigreeView.py:1448
 #: ../src/plugins/KinshipReport.py:108
 msgid "Spouses"
 msgstr "Conjoints"
 
 #: ../src/Merge/_MergePerson.py:176
-#: ../src/DataViews/_RelationView.py:1055
+#: ../src/DataViews/RelationView.py:1055
 #: ../src/plugins/FamilyGroup.py:386
 #: ../src/gen/lib/eventtype.py:123
 msgid "Marriage"
@@ -3385,157 +3386,157 @@ msgstr "Fusionner les lieux"
 msgid "Merge Sources"
 msgstr "Fusionner les sources"
 
-#: ../src/DataViews/_EventView.py:76
-#: ../src/DataViews/_FamilyList.py:64
-#: ../src/DataViews/_MediaView.py:87
-#: ../src/DataViews/_PlaceView.py:79
-#: ../src/DataViews/_RepositoryView.py:82
-#: ../src/DataViews/_SourceView.py:74
+#: ../src/DataViews/EventView.py:76
+#: ../src/DataViews/FamilyList.py:64
+#: ../src/DataViews/MediaView.py:87
+#: ../src/DataViews/PlaceView.py:79
+#: ../src/DataViews/RepositoryView.py:82
+#: ../src/DataViews/SourceView.py:74
 msgid "Last Changed"
 msgstr "Dernière modification"
 
-#: ../src/DataViews/_EventView.py:79
+#: ../src/DataViews/EventView.py:79
 #: ../src/DisplayTabs/_EventEmbedList.py:53
 msgid "Add a new event"
 msgstr "Ajouter un nouvel événement"
 
-#: ../src/DataViews/_EventView.py:80
+#: ../src/DataViews/EventView.py:80
 #: ../src/DisplayTabs/_EventEmbedList.py:55
 msgid "Edit the selected event"
 msgstr "Éditer l'événement sélectionné"
 
-#: ../src/DataViews/_EventView.py:81
+#: ../src/DataViews/EventView.py:81
 msgid "Delete the selected event"
 msgstr "Supprimer l'événement sélectionné"
 
-#: ../src/DataViews/_EventView.py:178
+#: ../src/DataViews/EventView.py:178
 msgid "Event Filter Editor"
 msgstr "Éditeur de filtre sur l'événement"
 
 # éviter le raccourci sur la majuscule accentuée
-#: ../src/DataViews/_EventView.py:181
-#: ../src/DataViews/_FamilyList.py:166
-#: ../src/DataViews/_MediaView.py:217
-#: ../src/DataViews/_NoteView.py:169
-#: ../src/DataViews/_PersonView.py:165
-#: ../src/DataViews/_PlaceView.py:120
-#: ../src/DataViews/_RepositoryView.py:123
-#: ../src/DataViews/_SourceView.py:116
+#: ../src/DataViews/EventView.py:181
+#: ../src/DataViews/FamilyList.py:166
+#: ../src/DataViews/MediaView.py:217
+#: ../src/DataViews/NoteView.py:169
+#: ../src/DataViews/PersonView.py:165
+#: ../src/DataViews/PlaceView.py:120
+#: ../src/DataViews/RepositoryView.py:123
+#: ../src/DataViews/SourceView.py:116
 msgid "_Column Editor"
 msgstr "Éditeur de colo_nne"
 
-#: ../src/DataViews/_EventView.py:197
+#: ../src/DataViews/EventView.py:197
 msgid "Select Event Columns"
 msgstr "Sélectionner les colonnes événement"
 
-#: ../src/DataViews/_EventView.py:238
+#: ../src/DataViews/EventView.py:238
 msgid "This event is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Cet événement est actuellement utilisé, le supprimer l'enlèvera de la base de données et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_EventView.py:242
+#: ../src/DataViews/EventView.py:242
 msgid "Deleting event will remove it from the database."
 msgstr "Supprimer l'événement l'enlèvera de la base de données."
 
-#: ../src/DataViews/_EventView.py:250
-#: ../src/DataViews/_NoteView.py:220
-#: ../src/DataViews/_PersonView.py:612
-#: ../src/DataViews/_PlaceView.py:267
-#: ../src/DataViews/_RepositoryView.py:221
-#: ../src/DataViews/_SourceView.py:216
+#: ../src/DataViews/EventView.py:250
+#: ../src/DataViews/NoteView.py:220
+#: ../src/DataViews/PersonView.py:612
+#: ../src/DataViews/PlaceView.py:267
+#: ../src/DataViews/RepositoryView.py:221
+#: ../src/DataViews/SourceView.py:216
 #, python-format
 msgid "Delete %s?"
 msgstr "Supprimer %s ?"
 
-#: ../src/DataViews/_EventView.py:251
+#: ../src/DataViews/EventView.py:251
 msgid "_Delete Event"
 msgstr "_Supprimer l'événement"
 
-#: ../src/DataViews/_FamilyList.py:63
+#: ../src/DataViews/FamilyList.py:63
 msgid "Marriage Date"
 msgstr "Date de mariage"
 
-#: ../src/DataViews/_FamilyList.py:67
+#: ../src/DataViews/FamilyList.py:67
 msgid "Add a new family"
 msgstr "Ajouter une nouvelle famille"
 
-#: ../src/DataViews/_FamilyList.py:68
+#: ../src/DataViews/FamilyList.py:68
 msgid "Edit the selected family"
 msgstr "Éditer la famille sélectionnée"
 
-#: ../src/DataViews/_FamilyList.py:69
+#: ../src/DataViews/FamilyList.py:69
 msgid "Delete the selected family"
 msgstr "Supprimer la famille sélectionnée"
 
-#: ../src/DataViews/_FamilyList.py:88
+#: ../src/DataViews/FamilyList.py:88
 msgid "Family List"
 msgstr "Familles"
 
-#: ../src/DataViews/_FamilyList.py:104
+#: ../src/DataViews/FamilyList.py:104
 msgid "Select Family List Columns"
 msgstr "Sélectionner les colonnes Liste de famille"
 
-#: ../src/DataViews/_FamilyList.py:168
+#: ../src/DataViews/FamilyList.py:168
 msgid "Family Filter Editor"
 msgstr "Éditeur de filtre sur la famille"
 
-#: ../src/DataViews/_MediaView.py:92
+#: ../src/DataViews/MediaView.py:92
 msgid "Edit the selected media object"
 msgstr "Éditer l'objet média sélectionné"
 
-#: ../src/DataViews/_MediaView.py:93
+#: ../src/DataViews/MediaView.py:93
 msgid "Delete the selected media object"
 msgstr "Supprimer l'objet média sélectionné"
 
-#: ../src/DataViews/_MediaView.py:199
+#: ../src/DataViews/MediaView.py:199
 #: ../src/DisplayTabs/_GalleryTab.py:458
 msgid "Drag Media Object"
 msgstr "Glisser un objet média"
 
-#: ../src/DataViews/_MediaView.py:218
+#: ../src/DataViews/MediaView.py:218
 msgid "Media Filter Editor"
 msgstr "Éditeur de filtre sur le média"
 
-#: ../src/DataViews/_MediaView.py:221
+#: ../src/DataViews/MediaView.py:221
 msgid "View in the default viewer"
 msgstr "Afficher dans le visualiseur par défaut"
 
-#: ../src/DataViews/_MediaView.py:238
+#: ../src/DataViews/MediaView.py:238
 #, python-format
 msgid "Cannot view %s"
 msgstr "Impossible d'afficher %s"
 
-#: ../src/DataViews/_MediaView.py:239
+#: ../src/DataViews/MediaView.py:239
 #, python-format
 msgid "GRAMPS cannot find an application that can view a file type of %s."
 msgstr "GRAMPS ne trouve pas d'application pour afficher un fichier %s."
 
-#: ../src/DataViews/_MediaView.py:249
+#: ../src/DataViews/MediaView.py:249
 msgid "Select Media Columns"
 msgstr "Sélectionner les colonnes média"
 
-#: ../src/DataViews/_MediaView.py:294
-#: ../src/glade/gramps.glade.h:67
+#: ../src/DataViews/MediaView.py:294
+#: ../src/glade/gramps.glade.h:69
 msgid "Double click image to view in an external viewer"
 msgstr "Cliquer deux fois sur l'image pour l'afficher dans un visualiseur externe"
 
 #. quick test for non-emptiness
-#: ../src/DataViews/_MediaView.py:397
+#: ../src/DataViews/MediaView.py:397
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
 msgstr "Ce média est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_MediaView.py:401
+#: ../src/DataViews/MediaView.py:401
 msgid "Deleting media object will remove it from the database."
 msgstr "Supprimer l'objet le supprimera de la base de données."
 
-#: ../src/DataViews/_MediaView.py:405
+#: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
 msgstr "Supprimer un média ?"
 
-#: ../src/DataViews/_MediaView.py:406
+#: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
 msgstr "Supprimer un mé_dia"
 
-#: ../src/DataViews/_NoteView.py:72
+#: ../src/DataViews/NoteView.py:72
 #: ../src/Selectors/_SelectNote.py:63
 #: ../src/plugins/MarkerReport.py:478
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
@@ -3543,40 +3544,40 @@ msgstr "Supprimer un mé_dia"
 msgid "Marker"
 msgstr "Marqueur"
 
-#: ../src/DataViews/_NoteView.py:73
+#: ../src/DataViews/NoteView.py:73
 #: ../src/DisplayTabs/_NoteTab.py:72
 #: ../src/Selectors/_SelectNote.py:64
 #: ../src/plugins/SimpleBookTitle.py:214
 msgid "Preview"
 msgstr "Aperçu"
 
-#: ../src/DataViews/_NoteView.py:77
+#: ../src/DataViews/NoteView.py:77
 #: ../src/DisplayTabs/_NoteTab.py:64
 msgid "Edit the selected note"
 msgstr "Éditer la note sélectionnée"
 
-#: ../src/DataViews/_NoteView.py:78
+#: ../src/DataViews/NoteView.py:78
 msgid "Delete the selected note"
 msgstr "Supprimer la note sélectionnée"
 
-#: ../src/DataViews/_NoteView.py:170
+#: ../src/DataViews/NoteView.py:170
 msgid "Note Filter Editor"
 msgstr "Éditeur de filtre sur la note"
 
-#: ../src/DataViews/_NoteView.py:185
+#: ../src/DataViews/NoteView.py:185
 msgid "Select Note Columns"
 msgstr "Sélectionner les colonnes note"
 
 #. quick test for non-emptiness
-#: ../src/DataViews/_NoteView.py:211
+#: ../src/DataViews/NoteView.py:211
 msgid "This note is currently being used. Deleting it will remove it from the database and from all other objects that reference it."
 msgstr "Cette note est actuellement utilisée, la supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_NoteView.py:215
+#: ../src/DataViews/NoteView.py:215
 msgid "Deleting note will remove it from the database."
 msgstr "Supprimer la note l'enlèvera de la base de données."
 
-#: ../src/DataViews/_NoteView.py:221
+#: ../src/DataViews/NoteView.py:221
 msgid "_Delete Note"
 msgstr "_Supprimer une note"
 
@@ -3585,50 +3586,50 @@ msgstr "_Supprimer une note"
 #. Constants
 #.
 #. ------------------------------------------------------------------------
-#: ../src/DataViews/_PedigreeView.py:72
+#: ../src/DataViews/PedigreeView.py:72
 #: ../src/plugins/AncestorChart.py:54
 #: ../src/plugins/DescendChart.py:53
 #: ../src/plugins/DescendReport.py:56
 msgid "b."
 msgstr "n."
 
-#: ../src/DataViews/_PedigreeView.py:73
+#: ../src/DataViews/PedigreeView.py:73
 #: ../src/plugins/AncestorChart.py:55
 #: ../src/plugins/DescendChart.py:54
 #: ../src/plugins/DescendReport.py:57
 msgid "d."
 msgstr "d."
 
-#: ../src/DataViews/_PedigreeView.py:74
+#: ../src/DataViews/PedigreeView.py:74
 msgid "bap."
 msgstr "bap."
 
 # chr. : abbréviation de "christened"
-#: ../src/DataViews/_PedigreeView.py:75
+#: ../src/DataViews/PedigreeView.py:75
 msgid "chr."
 msgstr "bap."
 
-#: ../src/DataViews/_PedigreeView.py:76
+#: ../src/DataViews/PedigreeView.py:76
 msgid "bur."
 msgstr "inh."
 
-#: ../src/DataViews/_PedigreeView.py:77
+#: ../src/DataViews/PedigreeView.py:77
 msgid "crem."
 msgstr "crém."
 
-#: ../src/DataViews/_PedigreeView.py:970
+#: ../src/DataViews/PedigreeView.py:970
 msgid "Jump to child..."
 msgstr "Aller à l'enfant…"
 
-#: ../src/DataViews/_PedigreeView.py:980
+#: ../src/DataViews/PedigreeView.py:980
 msgid "Jump to father"
 msgstr "Aller au père"
 
-#: ../src/DataViews/_PedigreeView.py:989
+#: ../src/DataViews/PedigreeView.py:989
 msgid "Jump to mother"
 msgstr "Aller à la mère"
 
-#: ../src/DataViews/_PedigreeView.py:1262
+#: ../src/DataViews/PedigreeView.py:1262
 msgid "A person was found to be his/her own ancestor."
 msgstr "Un individu est défini comme son propre ascendant."
 
@@ -3637,63 +3638,63 @@ msgstr "Un individu est défini comme son propre ascendant."
 #. FIXME: revert to stock item when German gtk translation is fixed
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
-#: ../src/DataViews/_PedigreeView.py:1305
-#: ../src/DataViews/_PedigreeView.py:1314
+#: ../src/DataViews/PedigreeView.py:1305
+#: ../src/DataViews/PedigreeView.py:1314
 #: ../src/plugins/NarrativeWeb.py:371
 #: ../src/plugins/NarrativeWeb.py:1400
 #: ../src/plugins/NarrativeWeb.py:1402
 msgid "Home"
 msgstr "Souche"
 
-#: ../src/DataViews/_PedigreeView.py:1328
+#: ../src/DataViews/PedigreeView.py:1328
 msgid "Show images"
 msgstr "Afficher les images"
 
-#: ../src/DataViews/_PedigreeView.py:1337
+#: ../src/DataViews/PedigreeView.py:1337
 msgid "Show marriage data"
 msgstr "Afficher les données du mariage"
 
-#: ../src/DataViews/_PedigreeView.py:1346
+#: ../src/DataViews/PedigreeView.py:1346
 msgid "Tree style"
 msgstr "Style de l'arbre"
 
-#: ../src/DataViews/_PedigreeView.py:1353
+#: ../src/DataViews/PedigreeView.py:1353
 msgid "Version A"
 msgstr "Version A"
 
-#: ../src/DataViews/_PedigreeView.py:1360
+#: ../src/DataViews/PedigreeView.py:1360
 msgid "Version B"
 msgstr "Version B"
 
-#: ../src/DataViews/_PedigreeView.py:1372
+#: ../src/DataViews/PedigreeView.py:1372
 msgid "Tree size"
 msgstr "Taille de l'arbre"
 
-#: ../src/DataViews/_PedigreeView.py:1379
+#: ../src/DataViews/PedigreeView.py:1379
 msgid "Automatic"
 msgstr "Automatique"
 
-#: ../src/DataViews/_PedigreeView.py:1387
+#: ../src/DataViews/PedigreeView.py:1387
 #, python-format
 msgid "%d generations"
 msgstr "%d générations"
 
-#: ../src/DataViews/_PedigreeView.py:1400
-#: ../src/DataViews/_PedigreeView.py:1420
+#: ../src/DataViews/PedigreeView.py:1400
+#: ../src/DataViews/PedigreeView.py:1420
 msgid "People Menu"
 msgstr "Menu Individus"
 
 #. Go over siblings and build their menu
-#: ../src/DataViews/_PedigreeView.py:1482
-#: ../src/DataViews/_RelationView.py:786
+#: ../src/DataViews/PedigreeView.py:1482
+#: ../src/DataViews/RelationView.py:786
 #: ../src/plugins/siblings.py:75
 #: ../src/plugins/NarrativeWeb.py:2058
 msgid "Siblings"
 msgstr "Frères et sœurs"
 
 #. Go over children and build their menu
-#: ../src/DataViews/_PedigreeView.py:1525
-#: ../src/DataViews/_RelationView.py:1152
+#: ../src/DataViews/PedigreeView.py:1525
+#: ../src/DataViews/RelationView.py:1152
 #: ../src/Editors/_EditFamily.py:113
 #: ../src/plugins/FamilyGroup.py:588
 #: ../src/plugins/IndivComplete.py:341
@@ -3702,15 +3703,15 @@ msgid "Children"
 msgstr "Enfants"
 
 #. Go over parents and build their menu
-#: ../src/DataViews/_PedigreeView.py:1599
+#: ../src/DataViews/PedigreeView.py:1599
 msgid "Related"
 msgstr "en relation avec"
 
-#: ../src/DataViews/_PedigreeView.py:1650
+#: ../src/DataViews/PedigreeView.py:1650
 msgid "Family Menu"
 msgstr "Menu Famille"
 
-#: ../src/DataViews/_PersonView.py:74
+#: ../src/DataViews/PersonView.py:74
 #: ../src/Editors/_EditFamily.py:101
 #: ../src/Selectors/_SelectPerson.py:51
 #: ../src/plugins/siblings.py:45
@@ -3720,14 +3721,14 @@ msgstr "Menu Famille"
 msgid "Birth Date"
 msgstr "Date de naissance"
 
-#: ../src/DataViews/_PersonView.py:75
+#: ../src/DataViews/PersonView.py:75
 #: ../src/Editors/_EditFamily.py:103
 #: ../src/Selectors/_SelectPerson.py:52
 #: ../src/plugins/RelCalc.py:61
 msgid "Birth Place"
 msgstr "Lieu de naissance"
 
-#: ../src/DataViews/_PersonView.py:76
+#: ../src/DataViews/PersonView.py:76
 #: ../src/Editors/_EditFamily.py:102
 #: ../src/Selectors/_SelectPerson.py:53
 #: ../src/plugins/lineage.py:61
@@ -3736,440 +3737,440 @@ msgstr "Lieu de naissance"
 msgid "Death Date"
 msgstr "Date de décès"
 
-#: ../src/DataViews/_PersonView.py:77
+#: ../src/DataViews/PersonView.py:77
 #: ../src/Editors/_EditFamily.py:104
 #: ../src/Selectors/_SelectPerson.py:54
 #: ../src/plugins/RelCalc.py:63
 msgid "Death Place"
 msgstr "Lieu de décès"
 
-#: ../src/DataViews/_PersonView.py:79
+#: ../src/DataViews/PersonView.py:79
 #: ../src/Selectors/_SelectPerson.py:56
 #: ../src/plugins/RelCalc.py:65
 msgid "Last Change"
 msgstr "Dernière modification"
 
-#: ../src/DataViews/_PersonView.py:91
+#: ../src/DataViews/PersonView.py:91
 #: ../src/plugins/MarkerReport.py:108
 msgid "People"
 msgstr "Individus"
 
-#: ../src/DataViews/_PersonView.py:149
+#: ../src/DataViews/PersonView.py:149
 msgid "Expand all nodes"
 msgstr "Déployer tous les nœuds"
 
-#: ../src/DataViews/_PersonView.py:152
+#: ../src/DataViews/PersonView.py:152
 msgid "Edit the selected person"
 msgstr "Éditer l'individu sélectionné"
 
-#: ../src/DataViews/_PersonView.py:153
+#: ../src/DataViews/PersonView.py:153
 msgid "Collapse all nodes"
 msgstr "Fermer tous les nœuds"
 
-#: ../src/DataViews/_PersonView.py:162
+#: ../src/DataViews/PersonView.py:162
 msgid "Add a new person"
 msgstr "Ajouter un nouvel individu"
 
 # supprimer pour marquer la disparition de l'objet
-#: ../src/DataViews/_PersonView.py:164
+#: ../src/DataViews/PersonView.py:164
 msgid "Remove the selected person"
 msgstr "Supprimer l'individu sélectionné"
 
-#: ../src/DataViews/_PersonView.py:167
+#: ../src/DataViews/PersonView.py:167
 msgid "_Compare and merge"
 msgstr "_Comparer et fusionner"
 
-#: ../src/DataViews/_PersonView.py:169
+#: ../src/DataViews/PersonView.py:169
 msgid "_Fast merge"
 msgstr "_Fusion rapide"
 
-#: ../src/DataViews/_PersonView.py:195
-#: ../src/DataViews/_PersonView.py:208
-#: ../src/DataViews/_PersonView.py:219
-#: ../src/DataViews/_PersonView.py:233
+#: ../src/DataViews/PersonView.py:195
+#: ../src/DataViews/PersonView.py:208
+#: ../src/DataViews/PersonView.py:219
+#: ../src/DataViews/PersonView.py:233
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on the desired person."
 msgstr "Exactement deux individus doivent être sélectionnés pour accomplir une fusion. Le deuxième individu peut être sélectionné en maintenant la touche Contrôle (Ctrl) lors du clic sur l'individu désiré."
 
-#: ../src/DataViews/_PersonView.py:241
+#: ../src/DataViews/PersonView.py:241
 msgid "Select Person Columns"
 msgstr "Sélectionner les colonnes individu"
 
-#: ../src/DataViews/_PersonView.py:504
+#: ../src/DataViews/PersonView.py:504
 msgid "Active person not visible"
 msgstr "Individu actif non visible"
 
-#: ../src/DataViews/_PersonView.py:588
+#: ../src/DataViews/PersonView.py:588
 #: ../src/Filters/_SearchBar.py:142
 msgid "Updating display..."
 msgstr "Chargement en cours…"
 
-#: ../src/DataViews/_PersonView.py:609
+#: ../src/DataViews/PersonView.py:609
 msgid "Deleting the person will remove the person from the database."
 msgstr "Supprimer l'individu l'enlèvera de la base de données."
 
-#: ../src/DataViews/_PersonView.py:614
+#: ../src/DataViews/PersonView.py:614
 msgid "_Delete Person"
 msgstr "_Supprimer un individu"
 
-#: ../src/DataViews/_PersonView.py:629
+#: ../src/DataViews/PersonView.py:629
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Supprimer l'individu (%s)"
 
-#: ../src/DataViews/_PersonView.py:889
+#: ../src/DataViews/PersonView.py:889
 msgid "Go to default person"
 msgstr "Individu par défaut"
 
-#: ../src/DataViews/_PersonView.py:894
+#: ../src/DataViews/PersonView.py:894
 msgid "Edit selected person"
 msgstr "Éditer l'individu sélectionné"
 
-#: ../src/DataViews/_PersonView.py:900
+#: ../src/DataViews/PersonView.py:900
 msgid "Delete selected person"
 msgstr "Supprimer l'individu sélectionné"
 
-#: ../src/DataViews/_PlaceView.py:69
+#: ../src/DataViews/PlaceView.py:69
 msgid "Place Name"
 msgstr "Nom du lieu"
 
-#: ../src/DataViews/_PlaceView.py:71
+#: ../src/DataViews/PlaceView.py:71
 #: ../src/plugins/NarrativeWeb.py:1021
 msgid "Church Parish"
 msgstr "Paroisse"
 
-#: ../src/DataViews/_PlaceView.py:74
-#: ../src/DataViews/_RepositoryView.py:77
+#: ../src/DataViews/PlaceView.py:74
+#: ../src/DataViews/RepositoryView.py:77
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
 #: ../src/plugins/NarrativeWeb.py:1022
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
 msgid "County"
 msgstr "Département"
 
-#: ../src/DataViews/_PlaceView.py:75
-#: ../src/DataViews/_RepositoryView.py:78
+#: ../src/DataViews/PlaceView.py:75
+#: ../src/DataViews/RepositoryView.py:78
 #: ../src/DisplayTabs/_AddrEmbedList.py:63
 #: ../src/plugins/ExtractCity.py:346
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "State"
 msgstr "Région"
 
-#: ../src/DataViews/_PlaceView.py:77
+#: ../src/DataViews/PlaceView.py:77
 #: ../src/plugins/NarrativeWeb.py:1032
 msgid "Longitude"
 msgstr "Longitude"
 
-#: ../src/DataViews/_PlaceView.py:78
+#: ../src/DataViews/PlaceView.py:78
 #: ../src/plugins/NarrativeWeb.py:1037
 msgid "Latitude"
 msgstr "Latitude"
 
-#: ../src/DataViews/_PlaceView.py:80
-#: ../src/DataViews/_RepositoryView.py:74
+#: ../src/DataViews/PlaceView.py:80
+#: ../src/DataViews/RepositoryView.py:74
 #: ../src/DisplayTabs/_LocationEmbedList.py:52
 #: ../src/plugins/NarrativeWeb.py:1019
 msgid "Street"
 msgstr "Rue"
 
-#: ../src/DataViews/_PlaceView.py:84
+#: ../src/DataViews/PlaceView.py:84
 msgid "Edit the selected place"
 msgstr "Éditer le lieu sélectionné"
 
-#: ../src/DataViews/_PlaceView.py:85
+#: ../src/DataViews/PlaceView.py:85
 msgid "Delete the selected place"
 msgstr "Supprimer le lieu sélectionné"
 
-#: ../src/DataViews/_PlaceView.py:121
-#: ../src/DataViews/_SourceView.py:117
+#: ../src/DataViews/PlaceView.py:121
+#: ../src/DataViews/SourceView.py:117
 msgid "_Merge"
 msgstr "_Fusion"
 
-#: ../src/DataViews/_PlaceView.py:123
+#: ../src/DataViews/PlaceView.py:123
 msgid "_Google Maps"
 msgstr "_Google Maps"
 
-#: ../src/DataViews/_PlaceView.py:125
+#: ../src/DataViews/PlaceView.py:125
 msgid "Attempt to map location on Google Maps"
 msgstr "Chercher un lieu avec Google Maps"
 
-#: ../src/DataViews/_PlaceView.py:126
+#: ../src/DataViews/PlaceView.py:126
 msgid "Place Filter Editor"
 msgstr "Éditeur de filtre sur le lieu"
 
-#: ../src/DataViews/_PlaceView.py:160
+#: ../src/DataViews/PlaceView.py:160
 msgid "Select Place Columns"
 msgstr "Sélectionner les colonnes lieu"
 
-#: ../src/DataViews/_PlaceView.py:255
+#: ../src/DataViews/PlaceView.py:255
 msgid "This place is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Ce lieu est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_PlaceView.py:259
+#: ../src/DataViews/PlaceView.py:259
 msgid "Deleting place will remove it from the database."
 msgstr "Supprimer le lieu l'enlèvera de la base de données."
 
-#: ../src/DataViews/_PlaceView.py:268
+#: ../src/DataViews/PlaceView.py:268
 msgid "_Delete Place"
 msgstr "Supprimer _un lieu"
 
-#: ../src/DataViews/_PlaceView.py:287
+#: ../src/DataViews/PlaceView.py:287
 msgid "Cannot merge places."
 msgstr "Impossible de fusionner les lieux."
 
-#: ../src/DataViews/_PlaceView.py:288
+#: ../src/DataViews/PlaceView.py:288
 msgid "Exactly two places must be selected to perform a merge. A second place can be selected by holding down the control key while clicking on the desired place."
 msgstr "Exactement deux lieux doivent être sélectionnés pour accomplir une fusion. Le deuxième lieu peut être sélectionné en maintenant la touche Contrôle (Ctrl) et en cliquant sur le lieu désiré."
 
-#: ../src/DataViews/_RelationView.py:320
+#: ../src/DataViews/RelationView.py:320
 msgid "_Reorder"
 msgstr "_Réorganiser"
 
-#: ../src/DataViews/_RelationView.py:321
+#: ../src/DataViews/RelationView.py:321
 msgid "Change order of parents and families"
 msgstr "Changer l'ordre des parents et familles"
 
-#: ../src/DataViews/_RelationView.py:327
+#: ../src/DataViews/RelationView.py:327
 msgid "Edit the active person"
 msgstr "Édite l'individu actif"
 
-#: ../src/DataViews/_RelationView.py:328
+#: ../src/DataViews/RelationView.py:328
 msgid "Add partner"
 msgstr "Ajouter un conjoint"
 
-#: ../src/DataViews/_RelationView.py:329
-#: ../src/DataViews/_RelationView.py:692
+#: ../src/DataViews/RelationView.py:329
+#: ../src/DataViews/RelationView.py:692
 msgid "Add a new family with person as parent"
 msgstr "Ajouter une nouvelle famille dont l'individu est le parent"
 
-#: ../src/DataViews/_RelationView.py:330
+#: ../src/DataViews/RelationView.py:330
 msgid "Add new parents"
 msgstr "Ajouter des nouveaux parents"
 
-#: ../src/DataViews/_RelationView.py:331
-#: ../src/DataViews/_RelationView.py:686
+#: ../src/DataViews/RelationView.py:331
+#: ../src/DataViews/RelationView.py:686
 msgid "Add a new set of parents"
 msgstr "Ajoute un nouveau couple de parents"
 
-#: ../src/DataViews/_RelationView.py:332
+#: ../src/DataViews/RelationView.py:332
 msgid "Add existing parents"
 msgstr "Ajouter des parents existants"
 
-#: ../src/DataViews/_RelationView.py:333
-#: ../src/DataViews/_RelationView.py:687
+#: ../src/DataViews/RelationView.py:333
+#: ../src/DataViews/RelationView.py:687
 msgid "Add person as child to an existing family"
 msgstr "Ajouter un individu comme enfant d'une famille existante "
 
-#: ../src/DataViews/_RelationView.py:340
+#: ../src/DataViews/RelationView.py:340
 msgid "Show details"
 msgstr "Afficher les détails"
 
-#: ../src/DataViews/_RelationView.py:343
+#: ../src/DataViews/RelationView.py:343
 msgid "Show siblings"
 msgstr "Afficher les frères et sœurs"
 
-#: ../src/DataViews/_RelationView.py:517
-#: ../src/DataViews/_RelationView.py:824
-#: ../src/DataViews/_RelationView.py:863
-#: ../src/DataViews/_RelationView.py:924
-#: ../src/DataViews/_RelationView.py:1022
+#: ../src/DataViews/RelationView.py:517
+#: ../src/DataViews/RelationView.py:824
+#: ../src/DataViews/RelationView.py:863
+#: ../src/DataViews/RelationView.py:924
+#: ../src/DataViews/RelationView.py:1022
 #, python-format
 msgid "Edit %s"
 msgstr "Éditer %s"
 
-#: ../src/DataViews/_RelationView.py:602
-#: ../src/DataViews/_RelationView.py:629
+#: ../src/DataViews/RelationView.py:602
+#: ../src/DataViews/RelationView.py:629
 #, python-format
 msgid "%(date)s in %(place)s"
 msgstr "%(date)s à %(place)s"
 
-#: ../src/DataViews/_RelationView.py:688
+#: ../src/DataViews/RelationView.py:688
 msgid "Edit parents"
 msgstr "Éditer les parents"
 
 # enlever une référence aux parents
-#: ../src/DataViews/_RelationView.py:689
+#: ../src/DataViews/RelationView.py:689
 msgid "Reorder parents"
 msgstr "Réorganiser les parents"
 
 # enlever la référence aux parents
-#: ../src/DataViews/_RelationView.py:690
+#: ../src/DataViews/RelationView.py:690
 msgid "Remove person as child of these parents"
 msgstr "Enlever l'individu comme enfant de ces parents"
 
-#: ../src/DataViews/_RelationView.py:694
+#: ../src/DataViews/RelationView.py:694
 msgid "Edit family"
 msgstr "Éditer la famille"
 
-#: ../src/DataViews/_RelationView.py:695
+#: ../src/DataViews/RelationView.py:695
 msgid "Reorder families"
 msgstr "Réorganiser les familles"
 
 # enlever la référence au père
-#: ../src/DataViews/_RelationView.py:696
+#: ../src/DataViews/RelationView.py:696
 msgid "Remove person as parent in this family"
 msgstr "Enlever l'individu comme parent dans cette famille"
 
-#: ../src/DataViews/_RelationView.py:748
+#: ../src/DataViews/RelationView.py:748
 #, python-format
 msgid " (%d siblings)"
 msgstr "(%d frères et sœurs)"
 
-#: ../src/DataViews/_RelationView.py:753
+#: ../src/DataViews/RelationView.py:753
 msgid " (1 brother)"
 msgstr "(1 frère)"
 
-#: ../src/DataViews/_RelationView.py:755
+#: ../src/DataViews/RelationView.py:755
 msgid " (1 sister)"
 msgstr "(1 sœur)"
 
-#: ../src/DataViews/_RelationView.py:757
+#: ../src/DataViews/RelationView.py:757
 msgid " (1 sibling)"
 msgstr "(1 frère ou sœur)"
 
-#: ../src/DataViews/_RelationView.py:759
+#: ../src/DataViews/RelationView.py:759
 msgid " (only child)"
 msgstr "(seulement l'enfant)"
 
-#: ../src/DataViews/_RelationView.py:811
+#: ../src/DataViews/RelationView.py:811
 #: ../src/plugins/all_relations.py:278
 msgid "and"
 msgstr "et"
 
-#: ../src/DataViews/_RelationView.py:974
+#: ../src/DataViews/RelationView.py:974
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
 msgstr "n. %(birthdate)s, d. %(deathdate)s"
 
-#: ../src/DataViews/_RelationView.py:979
+#: ../src/DataViews/RelationView.py:979
 #, python-format
 msgid "b. %s"
 msgstr "n. %s"
 
-#: ../src/DataViews/_RelationView.py:981
+#: ../src/DataViews/RelationView.py:981
 #, python-format
 msgid "d. %s"
 msgstr "d. %s"
 
-#: ../src/DataViews/_RelationView.py:1042
+#: ../src/DataViews/RelationView.py:1042
 #, python-format
 msgid "Relationship type: %s"
 msgstr "Type de relation : %s"
 
-#: ../src/DataViews/_RelationView.py:1082
+#: ../src/DataViews/RelationView.py:1082
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s : %(date)s à %(place)s"
 
-#: ../src/DataViews/_RelationView.py:1086
+#: ../src/DataViews/RelationView.py:1086
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s : %(date)s"
 
-#: ../src/DataViews/_RelationView.py:1090
+#: ../src/DataViews/RelationView.py:1090
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s : %(place)s"
 
-#: ../src/DataViews/_RelationView.py:1101
+#: ../src/DataViews/RelationView.py:1101
 msgid "Broken family detected"
 msgstr "Famille brisée détectée"
 
-#: ../src/DataViews/_RelationView.py:1102
+#: ../src/DataViews/RelationView.py:1102
 msgid "Please run the Check and Repair Database tool"
 msgstr "Veuillez lancer l'outil Vérifier et réparer la base de données"
 
-#: ../src/DataViews/_RelationView.py:1123
+#: ../src/DataViews/RelationView.py:1123
 #, python-format
 msgid " (%d children)"
 msgstr " (%d enfants)"
 
-#: ../src/DataViews/_RelationView.py:1125
+#: ../src/DataViews/RelationView.py:1125
 msgid " (1 child)"
 msgstr " (1 enfant)"
 
-#: ../src/DataViews/_RelationView.py:1127
+#: ../src/DataViews/RelationView.py:1127
 msgid " (no children)"
 msgstr " (pas d'enfant)"
 
-#: ../src/DataViews/_RepositoryView.py:73
+#: ../src/DataViews/RepositoryView.py:73
 msgid "Home URL"
 msgstr "URL de base"
 
-#: ../src/DataViews/_RepositoryView.py:81
+#: ../src/DataViews/RepositoryView.py:81
 msgid "Search URL"
 msgstr "Chercher URL"
 
-#: ../src/DataViews/_RepositoryView.py:85
+#: ../src/DataViews/RepositoryView.py:85
 msgid "Add a new repository"
 msgstr "Ajouter un nouveau dépôt"
 
-#: ../src/DataViews/_RepositoryView.py:86
+#: ../src/DataViews/RepositoryView.py:86
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
 msgid "Edit the selected repository"
 msgstr "Éditer le dépôt sélectionné"
 
-#: ../src/DataViews/_RepositoryView.py:87
+#: ../src/DataViews/RepositoryView.py:87
 msgid "Delete the selected repository"
 msgstr "Supprimer le dépôt sélectionné"
 
-#: ../src/DataViews/_RepositoryView.py:124
+#: ../src/DataViews/RepositoryView.py:124
 msgid "Repository Filter Editor"
 msgstr "Éditeur de filtre sur le dépôt"
 
-#: ../src/DataViews/_RepositoryView.py:131
+#: ../src/DataViews/RepositoryView.py:131
 msgid "Select Repository Columns"
 msgstr "Sélectionner les colonnes dépôt"
 
-#: ../src/DataViews/_RepositoryView.py:213
+#: ../src/DataViews/RepositoryView.py:213
 msgid "This repository is currently being used. Deleting it will remove it from the database and from all sources that reference it."
 msgstr "Cet dépôt est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_RepositoryView.py:217
+#: ../src/DataViews/RepositoryView.py:217
 msgid "Deleting repository will remove it from the database."
 msgstr "Supprimer le dépôt l'enlèvera de la base de données."
 
-#: ../src/DataViews/_RepositoryView.py:222
+#: ../src/DataViews/RepositoryView.py:222
 msgid "_Delete Repository"
 msgstr "_Supprimer un dépôt"
 
-#: ../src/DataViews/_SourceView.py:77
+#: ../src/DataViews/SourceView.py:77
 msgid "Add a new source"
 msgstr "Ajouter une nouvelle source"
 
-#: ../src/DataViews/_SourceView.py:78
+#: ../src/DataViews/SourceView.py:78
 #: ../src/DisplayTabs/_SourceEmbedList.py:55
 msgid "Edit the selected source"
 msgstr "Éditer la source sélectionnée"
 
-#: ../src/DataViews/_SourceView.py:79
+#: ../src/DataViews/SourceView.py:79
 msgid "Delete the selected source"
 msgstr "Supprimer la source sélectionnée"
 
-#: ../src/DataViews/_SourceView.py:119
+#: ../src/DataViews/SourceView.py:119
 msgid "Source Filter Editor"
 msgstr "Éditeur de filtre sur la source"
 
-#: ../src/DataViews/_SourceView.py:126
+#: ../src/DataViews/SourceView.py:126
 msgid "Select Source Columns"
 msgstr "Sélectionner les colonnes source"
 
 #. quick test for non-emptiness
-#: ../src/DataViews/_SourceView.py:204
+#: ../src/DataViews/SourceView.py:204
 msgid "This source is currently being used. Deleting it will remove it from the database and from all people and families that reference it."
 msgstr "Cette source est actuellement utilisée, la supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
-#: ../src/DataViews/_SourceView.py:208
+#: ../src/DataViews/SourceView.py:208
 msgid "Deleting source will remove it from the database."
 msgstr "Supprimer la source l'enlèvera de la base de données."
 
-#: ../src/DataViews/_SourceView.py:217
+#: ../src/DataViews/SourceView.py:217
 msgid "_Delete Source"
 msgstr "_Supprimer une source"
 
-#: ../src/DataViews/_SourceView.py:236
+#: ../src/DataViews/SourceView.py:236
 msgid "Cannot merge sources."
 msgstr "Impossible de fusionner les sources."
 
-#: ../src/DataViews/_SourceView.py:237
+#: ../src/DataViews/SourceView.py:237
 msgid "Exactly two sources must be selected to perform a merge. A second source can be selected by holding down the control key while clicking on the desired source."
 msgstr "Exactement deux sources doivent être sélectionnées pour accomplir une fusion. La deuxième source peut être sélectionnée en maintenant la touche Contrôle (Ctrl) et en cliquant sur la source désirée."
 
@@ -4291,7 +4292,7 @@ msgstr "LaTeX"
 #: ../src/docgen/PSDrawDoc.py:58
 #: ../src/plugins/GraphViz.py:1133
 #: ../src/plugins/GraphViz.py:1189
-#: ../src/ReportBase/_GraphvizReportDialog.py:605
+#: ../src/ReportBase/_GraphvizReportDialog.py:658
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Ouvrir dans %(program_name)s"
@@ -5570,7 +5571,7 @@ msgstr "Tous les événements"
 #: ../src/plugins/all_relations.py:350
 #: ../src/plugins/siblings.py:76
 #: ../src/plugins/AncestorChart.py:524
-#: ../src/plugins/AncestorReport.py:345
+#: ../src/plugins/AncestorReport.py:322
 #: ../src/plugins/BookReport.py:1190
 #: ../src/plugins/Calendar.py:900
 #: ../src/plugins/Calendar.py:913
@@ -5581,7 +5582,7 @@ msgstr "Tous les événements"
 #: ../src/plugins/CountAncestors.py:142
 #: ../src/plugins/Desbrowser.py:161
 #: ../src/plugins/DescendChart.py:476
-#: ../src/plugins/DescendReport.py:276
+#: ../src/plugins/DescendReport.py:258
 #: ../src/plugins/EndOfLineReport.py:297
 #: ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:455
@@ -5593,8 +5594,9 @@ msgstr "Tous les événements"
 #: ../src/plugins/FindDupes.py:698
 #: ../src/plugins/GraphViz.py:1327
 #: ../src/plugins/GraphViz.py:1342
+#: ../src/plugins/GVFamilyLines.py:833
 #: ../src/plugins/GVHourGlass.py:180
-#: ../src/plugins/GVRelGraph.py:505
+#: ../src/plugins/GVRelGraph.py:509
 #: ../src/plugins/IndivComplete.py:676
 #: ../src/plugins/KinshipReport.py:435
 #: ../src/plugins/Leak.py:131
@@ -5733,31 +5735,36 @@ msgstr "Arbre des ascendants de %s"
 
 #. ###############################
 #: ../src/plugins/AncestorChart.py:451
+#: ../src/plugins/AncestorReport.py:229
 #: ../src/plugins/Calendar.py:477
 #: ../src/plugins/Calendar.py:616
 #: ../src/plugins/DescendChart.py:404
+#: ../src/plugins/DescendReport.py:202
+#: ../src/plugins/DetAncestralReport.py:666
+#: ../src/plugins/DetDescendantReport.py:629
 #: ../src/plugins/FanChart.py:324
 #: ../src/plugins/GVHourGlass.py:156
-#: ../src/plugins/GVRelGraph.py:414
+#: ../src/plugins/GVRelGraph.py:418
 #: ../src/ReportBase/_BareReportDialog.py:376
 msgid "Report Options"
 msgstr "Options du rapport"
 
-#. Add new options. The first argument is the tab name for grouping options.
-#. if you want to put everyting in the generic "Options" category, use
-#. self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 #: ../src/plugins/AncestorChart.py:453
-#: ../src/plugins/AncestorReport.py:314
+#: ../src/plugins/AncestorReport.py:231
 #: ../src/plugins/DescendChart.py:406
-#: ../src/plugins/DescendReport.py:217
-#: ../src/plugins/DetAncestralReport.py:904
-#: ../src/plugins/DetDescendantReport.py:876
+#: ../src/plugins/DescendReport.py:204
+#: ../src/plugins/DetAncestralReport.py:668
+#: ../src/plugins/DetDescendantReport.py:631
 #: ../src/plugins/FanChart.py:326
 msgid "Generations"
 msgstr "Générations"
 
 #: ../src/plugins/AncestorChart.py:454
+#: ../src/plugins/AncestorReport.py:232
 #: ../src/plugins/DescendChart.py:407
+#: ../src/plugins/DescendReport.py:205
+#: ../src/plugins/DetAncestralReport.py:669
+#: ../src/plugins/DetDescendantReport.py:632
 #: ../src/plugins/FanChart.py:327
 msgid "The number of generations to include in the report"
 msgstr "Le nombre maximum de générations à inclure dans le rapport"
@@ -5803,10 +5810,10 @@ msgid "Whether to compress chart."
 msgstr "Cocher pour compresser le graphique."
 
 #: ../src/plugins/AncestorChart.py:483
-#: ../src/plugins/AncestorReport.py:304
+#: ../src/plugins/AncestorReport.py:307
 #: ../src/plugins/DescendChart.py:435
-#: ../src/plugins/DetAncestralReport.py:798
-#: ../src/plugins/DetDescendantReport.py:766
+#: ../src/plugins/DetAncestralReport.py:801
+#: ../src/plugins/DetDescendantReport.py:768
 #: ../src/plugins/EndOfLineReport.py:249
 #: ../src/plugins/EndOfLineReport.py:267
 #: ../src/plugins/FamilyGroup.py:841
@@ -5837,17 +5844,37 @@ msgid "Ahnentafel Report for %s"
 msgstr "Liste Ahnentafel (Sosa-Stradonitz) de %s"
 
 #: ../src/plugins/AncestorReport.py:176
-#: ../src/plugins/DetAncestralReport.py:168
-#: ../src/plugins/DetDescendantReport.py:199
+#: ../src/plugins/DetAncestralReport.py:165
+#: ../src/plugins/DetDescendantReport.py:195
 #: ../src/plugins/EndOfLineReport.py:156
 #, python-format
 msgid "Generation %d"
 msgstr "Génération %d"
 
-#: ../src/plugins/AncestorReport.py:281
-#: ../src/plugins/DescendReport.py:239
-#: ../src/plugins/DetAncestralReport.py:752
-#: ../src/plugins/DetDescendantReport.py:720
+#: ../src/plugins/AncestorReport.py:235
+#: ../src/plugins/DetAncestralReport.py:672
+#: ../src/plugins/DetDescendantReport.py:635
+msgid "Page break between generations"
+msgstr "Saut de page entre les générations"
+
+#: ../src/plugins/AncestorReport.py:236
+#: ../src/plugins/DetAncestralReport.py:674
+#: ../src/plugins/DetDescendantReport.py:637
+msgid "Whether to start a new page after each generation."
+msgstr "Démarrer ou non une nouvelle page après chaque génération."
+
+#: ../src/plugins/AncestorReport.py:239
+msgid "Add linebreak after each name"
+msgstr "Ajouter une ligne après chaque nom"
+
+#: ../src/plugins/AncestorReport.py:240
+msgid "Indicates if a line break should follow the name."
+msgstr "Indique si une ligne vide doit suivre le nom."
+
+#: ../src/plugins/AncestorReport.py:284
+#: ../src/plugins/DescendReport.py:221
+#: ../src/plugins/DetAncestralReport.py:755
+#: ../src/plugins/DetDescendantReport.py:722
 #: ../src/plugins/EndOfLineReport.py:231
 #: ../src/plugins/FamilyGroup.py:832
 #: ../src/plugins/IndivComplete.py:600
@@ -5859,28 +5886,18 @@ msgstr "Génération %d"
 msgid "The style used for the title of the page."
 msgstr "Le style utilisé pour les titres de page."
 
-#: ../src/plugins/AncestorReport.py:294
-#: ../src/plugins/DetAncestralReport.py:762
-#: ../src/plugins/DetDescendantReport.py:730
+#: ../src/plugins/AncestorReport.py:297
+#: ../src/plugins/DetAncestralReport.py:765
+#: ../src/plugins/DetDescendantReport.py:732
 #: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "Le style utilisé pour les en-têtes de générations."
 
-#: ../src/plugins/AncestorReport.py:316
-#: ../src/plugins/DetAncestralReport.py:838
-#: ../src/plugins/DetDescendantReport.py:806
-msgid "Page break between generations"
-msgstr "Saut de page entre les générations"
-
-#: ../src/plugins/AncestorReport.py:320
-msgid "Add linebreak after each name"
-msgstr "Ajouter une fin de ligne après chaque nom"
-
-#: ../src/plugins/AncestorReport.py:344
+#: ../src/plugins/AncestorReport.py:321
 msgid "Ahnentafel Report"
 msgstr "Liste Ahnentafel (Sosa-Stradonitz)"
 
-#: ../src/plugins/AncestorReport.py:346
+#: ../src/plugins/AncestorReport.py:323
 msgid "Produces a textual ancestral report"
 msgstr "Produit une liste généalogique de n générations"
 
@@ -5969,9 +5986,11 @@ msgid "Creates a book containing several reports."
 msgstr "Crée un livre constitué de plusieurs rapports."
 
 #. ******** OPTIONS *********
+#. ---------------------
 #: ../src/plugins/CalculateEstimatedDates.py:56
 #: ../src/plugins/CalculateEstimatedDates.py:117
 #: ../src/plugins/FamilyLines.py:1017
+#: ../src/plugins/GVFamilyLines.py:186
 msgid "Options"
 msgstr "Options"
 
@@ -5979,7 +5998,7 @@ msgstr "Options"
 #: ../src/plugins/CalculateEstimatedDates.py:58
 #: ../src/plugins/Calendar.py:483
 #: ../src/plugins/GraphViz.py:791
-#: ../src/plugins/GVRelGraph.py:417
+#: ../src/plugins/GVRelGraph.py:421
 #: ../src/plugins/StatisticsChart.py:835
 #: ../src/plugins/TimeLine.py:427
 #: ../src/plugins/WebCal.py:815
@@ -6081,8 +6100,8 @@ msgid "Calculate date estimates"
 msgstr "Estimation du calcul de date"
 
 #: ../src/plugins/CalculateEstimatedDates.py:457
-#: ../src/plugins/DetAncestralReport.py:956
-#: ../src/plugins/DetDescendantReport.py:930
+#: ../src/plugins/DetAncestralReport.py:845
+#: ../src/plugins/DetDescendantReport.py:812
 #: ../src/plugins/MediaManager.py:615
 #: ../src/plugins/OwnerEditor.py:191
 #: ../src/plugins/Summary.py:184
@@ -6092,7 +6111,7 @@ msgstr "Bêta"
 
 #: ../src/plugins/CalculateEstimatedDates.py:460
 msgid "Calculates estimated dates for birth and death."
-msgstr "Calcul des dates estimées pour les naissance et décès."
+msgstr "Calcul des dates estimées pour les naissances et décès."
 
 #: ../src/plugins/Calendar.py:148
 msgid "Calendar Report"
@@ -6958,259 +6977,181 @@ msgstr "d. %(death_date)s"
 msgid "sp. %(spouse)s"
 msgstr "ép. %(spouse)s"
 
-#: ../src/plugins/DescendReport.py:251
+#: ../src/plugins/DescendReport.py:233
 #, python-format
 msgid "The style used for the level %d display."
 msgstr "Le style utilisé pour l'affichage du niveau %d."
 
-#: ../src/plugins/DescendReport.py:260
+#: ../src/plugins/DescendReport.py:242
 #, python-format
 msgid "The style used for the spouse level %d display."
 msgstr "Le style utilisé pour l'affichage du conjoint au niveau %d."
 
-#: ../src/plugins/DescendReport.py:275
+#: ../src/plugins/DescendReport.py:257
 msgid "Descendant Report"
 msgstr "Liste simplifiée des descendants"
 
-#: ../src/plugins/DescendReport.py:277
+#: ../src/plugins/DescendReport.py:259
 msgid "Generates a list of descendants of the active person"
 msgstr "Produit une liste des descendants de l'individu actif"
 
 # de ou pour ?
-#: ../src/plugins/DetAncestralReport.py:153
+#: ../src/plugins/DetAncestralReport.py:150
 #, python-format
 msgid "Ancestral Report for %s"
 msgstr "Liste détaillée des ascendants de %s"
 
-#: ../src/plugins/DetAncestralReport.py:228
-#: ../src/plugins/DetDescendantReport.py:244
+#: ../src/plugins/DetAncestralReport.py:225
+#: ../src/plugins/DetDescendantReport.py:240
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s est le même individu que [%(id_str)s]."
 
-#: ../src/plugins/DetAncestralReport.py:276
-#: ../src/plugins/DetDescendantReport.py:520
+#: ../src/plugins/DetAncestralReport.py:273
+#: ../src/plugins/DetDescendantReport.py:516
 #, python-format
 msgid "Notes for %s"
 msgstr "Notes pour %s"
 
-#: ../src/plugins/DetAncestralReport.py:287
-#: ../src/plugins/DetAncestralReport.py:310
-#: ../src/plugins/DetAncestralReport.py:321
-#: ../src/plugins/DetAncestralReport.py:340
-#: ../src/plugins/DetDescendantReport.py:531
-#: ../src/plugins/DetDescendantReport.py:549
-#: ../src/plugins/DetDescendantReport.py:560
-#: ../src/plugins/DetDescendantReport.py:579
+#: ../src/plugins/DetAncestralReport.py:284
+#: ../src/plugins/DetAncestralReport.py:307
+#: ../src/plugins/DetAncestralReport.py:318
+#: ../src/plugins/DetAncestralReport.py:337
+#: ../src/plugins/DetDescendantReport.py:527
+#: ../src/plugins/DetDescendantReport.py:545
+#: ../src/plugins/DetDescendantReport.py:556
+#: ../src/plugins/DetDescendantReport.py:575
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Encore à propos de %(person_name)s :"
 
-#: ../src/plugins/DetAncestralReport.py:294
-#: ../src/plugins/DetDescendantReport.py:538
+#: ../src/plugins/DetAncestralReport.py:291
+#: ../src/plugins/DetDescendantReport.py:534
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s : %(name)s%(endnotes)s"
 
-#: ../src/plugins/DetAncestralReport.py:329
-#: ../src/plugins/DetDescendantReport.py:568
+#: ../src/plugins/DetAncestralReport.py:326
+#: ../src/plugins/DetDescendantReport.py:564
 msgid "Address: "
 msgstr "Adresse : "
 
-#: ../src/plugins/DetAncestralReport.py:347
-#: ../src/plugins/DetAncestralReport.py:401
-#: ../src/plugins/DetDescendantReport.py:313
-#: ../src/plugins/DetDescendantReport.py:586
+#: ../src/plugins/DetAncestralReport.py:344
+#: ../src/plugins/DetAncestralReport.py:398
+#: ../src/plugins/DetDescendantReport.py:309
+#: ../src/plugins/DetDescendantReport.py:582
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s : %(value)s%(endnotes)s"
 
-#: ../src/plugins/DetAncestralReport.py:369
-#: ../src/plugins/DetDescendantReport.py:282
+#: ../src/plugins/DetAncestralReport.py:366
+#: ../src/plugins/DetDescendantReport.py:278
 #, python-format
 msgid "%(event_name)s: %(date)s, %(place)s"
 msgstr "%(event_name)s : %(date)s à %(place)s"
 
-#: ../src/plugins/DetAncestralReport.py:374
-#: ../src/plugins/DetDescendantReport.py:287
+#: ../src/plugins/DetAncestralReport.py:371
+#: ../src/plugins/DetDescendantReport.py:283
 #, python-format
 msgid "%(event_name)s: %(date)s"
 msgstr "%(event_name)s : %(date)s"
 
-#: ../src/plugins/DetAncestralReport.py:378
-#: ../src/plugins/DetDescendantReport.py:291
+#: ../src/plugins/DetAncestralReport.py:375
+#: ../src/plugins/DetDescendantReport.py:287
 #, python-format
 msgid "%(event_name)s: %(place)s"
 msgstr "%(event_name)s : %(place)s"
 
-#: ../src/plugins/DetAncestralReport.py:382
-#: ../src/plugins/DetDescendantReport.py:295
+#: ../src/plugins/DetAncestralReport.py:379
+#: ../src/plugins/DetDescendantReport.py:291
 #, python-format
 msgid "%(event_name)s: "
 msgstr "%(event_name)s : "
 
-#: ../src/plugins/DetAncestralReport.py:390
+#: ../src/plugins/DetAncestralReport.py:387
 #, python-format
 msgid "%(endnotes)s."
 msgstr "%(endnotes)s."
 
-#: ../src/plugins/DetAncestralReport.py:496
-#: ../src/plugins/DetDescendantReport.py:408
+#: ../src/plugins/DetAncestralReport.py:493
+#: ../src/plugins/DetDescendantReport.py:404
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Enfants de %(mother_name)s et %(father_name)s"
 
-#: ../src/plugins/DetAncestralReport.py:547
-#: ../src/plugins/DetDescendantReport.py:465
+#: ../src/plugins/DetAncestralReport.py:544
+#: ../src/plugins/DetDescendantReport.py:461
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Encore à propos de %(mother_name)s et %(father_name)s :"
 
-#: ../src/plugins/DetAncestralReport.py:772
-#: ../src/plugins/DetDescendantReport.py:740
-msgid "The style used for the children list title."
-msgstr "Le style utilisé pour le titre de la liste des enfants."
-
-#: ../src/plugins/DetAncestralReport.py:782
-#: ../src/plugins/DetDescendantReport.py:750
-msgid "The style used for the children list."
-msgstr "Le style utilisé pour la liste des enfants."
-
-#: ../src/plugins/DetAncestralReport.py:805
-#: ../src/plugins/DetDescendantReport.py:773
-msgid "The style used for the first personal entry."
-msgstr "Style pour la première entrée personnelle."
-
-#: ../src/plugins/DetAncestralReport.py:815
-#: ../src/plugins/DetDescendantReport.py:783
-msgid "The style used for the More About header."
-msgstr "Le style utilisé pour l'en-tête À propos."
-
-#: ../src/plugins/DetAncestralReport.py:825
-#: ../src/plugins/DetDescendantReport.py:793
-msgid "The style used for additional detail data."
-msgstr "Style pour l'ajout de détails additionnels."
-
-#. Full date usage
-#: ../src/plugins/DetAncestralReport.py:842
-#: ../src/plugins/DetDescendantReport.py:810
-msgid "Use full dates instead of only the year"
-msgstr "Utilisez la date complète à la place de l'année seule"
-
-#. Children List
-#: ../src/plugins/DetAncestralReport.py:846
-#: ../src/plugins/DetDescendantReport.py:814
-msgid "List children"
-msgstr "Lister les enfants"
-
-#. Print notes
-#: ../src/plugins/DetAncestralReport.py:850
-#: ../src/plugins/DetDescendantReport.py:818
-msgid "Include notes"
-msgstr "Inclure les notes"
-
-#. Print attributes
-#: ../src/plugins/DetAncestralReport.py:854
-#: ../src/plugins/DetDescendantReport.py:822
-msgid "Include attributes"
-msgstr "Inclure les attributs"
-
-#. Print callname
-#: ../src/plugins/DetAncestralReport.py:858
-#: ../src/plugins/DetDescendantReport.py:826
-msgid "Use callname for common name"
-msgstr "Utiliser le nom usuel comme nom courant"
-
-#. Replace missing Place with ___________
-#: ../src/plugins/DetAncestralReport.py:862
-#: ../src/plugins/DetDescendantReport.py:830
-msgid "Replace missing places with ______"
-msgstr "Remplacer les lieux manquants par ______"
-
-#. Replace missing dates with __________
-#: ../src/plugins/DetAncestralReport.py:866
-#: ../src/plugins/DetDescendantReport.py:834
-msgid "Replace missing dates with ______"
-msgstr "Remplacer les dates manquantes par ______"
-
-#. Add "Died at the age of NN" in text
-#: ../src/plugins/DetAncestralReport.py:870
-#: ../src/plugins/DetDescendantReport.py:838
-msgid "Compute age"
-msgstr "Calculer l'âge"
-
-#. Omit duplicate persons, occurs when distant cousins marry
-#: ../src/plugins/DetAncestralReport.py:874
-#: ../src/plugins/DetDescendantReport.py:842
-msgid "Omit duplicate ancestors"
-msgstr "Omettre les ascendants dupliqués"
-
-#. Add descendant reference in child list
-#: ../src/plugins/DetAncestralReport.py:878
-#: ../src/plugins/DetDescendantReport.py:846
-msgid "Add descendant reference in child list"
-msgstr "Ajouter une référence aux descendants dans la liste des enfants"
-
-#. Add photo/image reference
-#: ../src/plugins/DetAncestralReport.py:882
-#: ../src/plugins/DetDescendantReport.py:850
-msgid "Include Photo/Images from Gallery"
-msgstr "Inclure les média de la galerie"
-
-#. Print alternative names
-#: ../src/plugins/DetAncestralReport.py:886
-#: ../src/plugins/DetDescendantReport.py:854
-msgid "Include alternative names"
-msgstr "Inclure les noms alternatifs"
-
-#. Print events
-#: ../src/plugins/DetAncestralReport.py:890
-#: ../src/plugins/DetDescendantReport.py:858
-msgid "Include events"
-msgstr "Inclure les événements"
-
-#. Print addresses
-#: ../src/plugins/DetAncestralReport.py:894
-#: ../src/plugins/DetDescendantReport.py:862
-msgid "Include addresses"
-msgstr "Inclure les adresses"
-
-#. Print sources
-#: ../src/plugins/DetAncestralReport.py:898
-#: ../src/plugins/DetDescendantReport.py:866
-msgid "Include sources"
-msgstr "Inclure les sources"
-
-#: ../src/plugins/DetAncestralReport.py:906
-#: ../src/plugins/DetAncestralReport.py:907
-#: ../src/plugins/DetAncestralReport.py:908
-#: ../src/plugins/DetAncestralReport.py:909
-#: ../src/plugins/DetAncestralReport.py:910
-#: ../src/plugins/DetAncestralReport.py:911
-#: ../src/plugins/DetDescendantReport.py:878
-#: ../src/plugins/DetDescendantReport.py:879
-#: ../src/plugins/DetDescendantReport.py:880
-#: ../src/plugins/DetDescendantReport.py:881
-#: ../src/plugins/DetDescendantReport.py:882
-#: ../src/plugins/DetDescendantReport.py:883
+#: ../src/plugins/DetAncestralReport.py:677
+#: ../src/plugins/DetDescendantReport.py:640
 msgid "Content"
 msgstr "Contenu"
 
-#: ../src/plugins/DetAncestralReport.py:912
-#: ../src/plugins/DetAncestralReport.py:913
-#: ../src/plugins/DetAncestralReport.py:914
-#: ../src/plugins/DetAncestralReport.py:915
-#: ../src/plugins/DetAncestralReport.py:916
-#: ../src/plugins/DetAncestralReport.py:917
-#: ../src/plugins/DetAncestralReport.py:918
-#: ../src/plugins/DetDescendantReport.py:884
-#: ../src/plugins/DetDescendantReport.py:885
-#: ../src/plugins/DetDescendantReport.py:886
-#: ../src/plugins/DetDescendantReport.py:887
-#: ../src/plugins/DetDescendantReport.py:888
-#: ../src/plugins/DetDescendantReport.py:889
-#: ../src/plugins/DetDescendantReport.py:890
-#: ../src/plugins/DetDescendantReport.py:891
+#: ../src/plugins/DetAncestralReport.py:679
+#: ../src/plugins/DetDescendantReport.py:642
+msgid "Use callname for common name"
+msgstr "Utiliser le nom usuel comme nom courant"
+
+#: ../src/plugins/DetAncestralReport.py:680
+#: ../src/plugins/DetDescendantReport.py:643
+msgid "Whether to use the call name as the first name."
+msgstr "Utiliser ou non le nom usuel comme prénom."
+
+#: ../src/plugins/DetAncestralReport.py:684
+#: ../src/plugins/DetDescendantReport.py:647
+msgid "Use full dates instead of only the year"
+msgstr "Utilisez la date complète à la place de l'année seule"
+
+#: ../src/plugins/DetAncestralReport.py:685
+#: ../src/plugins/DetDescendantReport.py:648
+msgid "Whether to use full dates instead of just year."
+msgstr "Utiliser ou non la date complète à la place de l'année seule."
+
+#: ../src/plugins/DetAncestralReport.py:688
+#: ../src/plugins/DetDescendantReport.py:651
+msgid "List children"
+msgstr "Lister les enfants"
+
+#: ../src/plugins/DetAncestralReport.py:689
+#: ../src/plugins/DetDescendantReport.py:652
+msgid "Whether to list children."
+msgstr "Lister ou non les enfants."
+
+#: ../src/plugins/DetAncestralReport.py:692
+#: ../src/plugins/DetDescendantReport.py:655
+msgid "Compute age"
+msgstr "Calculer l'âge"
+
+#: ../src/plugins/DetAncestralReport.py:693
+#: ../src/plugins/DetDescendantReport.py:656
+msgid "Whether to compute age."
+msgstr "Calculer ou non l'âge."
+
+#: ../src/plugins/DetAncestralReport.py:696
+#: ../src/plugins/DetDescendantReport.py:659
+msgid "Omit duplicate ancestors"
+msgstr "Omettre les ascendants dupliqués"
+
+#: ../src/plugins/DetAncestralReport.py:697
+#: ../src/plugins/DetDescendantReport.py:660
+msgid "Whether to omit duplicate ancestors."
+msgstr "Omettre ou non les ascendants dupliqués."
+
+#: ../src/plugins/DetAncestralReport.py:700
+#: ../src/plugins/DetDescendantReport.py:663
+msgid "Add descendant reference in child list"
+msgstr "Ajouter une référence aux descendants dans la liste des enfants"
+
+#: ../src/plugins/DetAncestralReport.py:702
+#: ../src/plugins/DetDescendantReport.py:665
+msgid "Whether to add descendant references in child list."
+msgstr "Ajouter ou non les références du descendant dans la liste de l'enfant."
+
+#: ../src/plugins/DetAncestralReport.py:705
+#: ../src/plugins/DetDescendantReport.py:668
 #: ../src/plugins/FamilyGroup.py:784
 #: ../src/plugins/FamilyGroup.py:785
 #: ../src/plugins/FamilyGroup.py:786
@@ -7224,38 +7165,154 @@ msgstr "Contenu"
 msgid "Include"
 msgstr "Inclure"
 
-#: ../src/plugins/DetAncestralReport.py:919
-#: ../src/plugins/DetAncestralReport.py:920
-#: ../src/plugins/DetDescendantReport.py:892
-#: ../src/plugins/DetDescendantReport.py:893
+#: ../src/plugins/DetAncestralReport.py:707
+#: ../src/plugins/DetDescendantReport.py:670
+msgid "Include notes"
+msgstr "Inclure les notes"
+
+#: ../src/plugins/DetAncestralReport.py:708
+#: ../src/plugins/DetDescendantReport.py:671
+msgid "Whether to include notes."
+msgstr "Inclure ou non les notes."
+
+#: ../src/plugins/DetAncestralReport.py:711
+#: ../src/plugins/DetDescendantReport.py:674
+msgid "Include attributes"
+msgstr "Inclure les attributs"
+
+#: ../src/plugins/DetAncestralReport.py:712
+#: ../src/plugins/DetDescendantReport.py:675
+msgid "Whether to include attributes."
+msgstr "Inclure ou non les attributs."
+
+#: ../src/plugins/DetAncestralReport.py:715
+#: ../src/plugins/DetDescendantReport.py:678
+msgid "Include Photo/Images from Gallery"
+msgstr "Inclure les média de la galerie"
+
+#: ../src/plugins/DetAncestralReport.py:716
+#: ../src/plugins/DetDescendantReport.py:679
+msgid "Whether to include images."
+msgstr "Inclure ou non les images."
+
+#: ../src/plugins/DetAncestralReport.py:719
+#: ../src/plugins/DetDescendantReport.py:682
+msgid "Include alternative names"
+msgstr "Inclure les noms alternatifs"
+
+#: ../src/plugins/DetAncestralReport.py:720
+#: ../src/plugins/DetDescendantReport.py:683
+msgid "Whether to include other names."
+msgstr "Inclure ou non les noms alternatifs."
+
+#: ../src/plugins/DetAncestralReport.py:723
+#: ../src/plugins/DetDescendantReport.py:686
+msgid "Include events"
+msgstr "Inclure les événements"
+
+#: ../src/plugins/DetAncestralReport.py:724
+#: ../src/plugins/DetDescendantReport.py:687
+msgid "Whether to include events."
+msgstr "Inclure ou non les événements."
+
+#: ../src/plugins/DetAncestralReport.py:727
+#: ../src/plugins/DetDescendantReport.py:690
+msgid "Include addresses"
+msgstr "Inclure les adresses"
+
+#: ../src/plugins/DetAncestralReport.py:728
+#: ../src/plugins/DetDescendantReport.py:691
+msgid "Whether to include addresses."
+msgstr "Inclure ou non les adresses."
+
+#: ../src/plugins/DetAncestralReport.py:731
+#: ../src/plugins/DetDescendantReport.py:694
+msgid "Include sources"
+msgstr "Inclure les sources"
+
+#: ../src/plugins/DetAncestralReport.py:732
+#: ../src/plugins/DetDescendantReport.py:695
+msgid "Whether to include source references."
+msgstr "Inclure ou non les références de la source."
+
+#: ../src/plugins/DetAncestralReport.py:735
+#: ../src/plugins/DetDescendantReport.py:702
 msgid "Missing information"
 msgstr "Informations absentes"
 
-#: ../src/plugins/DetAncestralReport.py:955
+#: ../src/plugins/DetAncestralReport.py:737
+#: ../src/plugins/DetDescendantReport.py:704
+msgid "Replace missing places with ______"
+msgstr "Remplacer les lieux manquants par ______"
+
+#: ../src/plugins/DetAncestralReport.py:738
+#: ../src/plugins/DetDescendantReport.py:705
+msgid "Whether to replace missing Places with blanks."
+msgstr "Remplacer ou non les lieux manquants par des blancs."
+
+#: ../src/plugins/DetAncestralReport.py:741
+#: ../src/plugins/DetDescendantReport.py:708
+msgid "Replace missing dates with ______"
+msgstr "Remplacer les dates manquantes par ______"
+
+#: ../src/plugins/DetAncestralReport.py:742
+#: ../src/plugins/DetDescendantReport.py:709
+msgid "Whether to replace missing Dates with blanks."
+msgstr "Remplacer ou non les dates manquantes par des blancs."
+
+#: ../src/plugins/DetAncestralReport.py:775
+#: ../src/plugins/DetDescendantReport.py:742
+msgid "The style used for the children list title."
+msgstr "Le style utilisé pour le titre de la liste des enfants."
+
+#: ../src/plugins/DetAncestralReport.py:785
+#: ../src/plugins/DetDescendantReport.py:752
+msgid "The style used for the children list."
+msgstr "Le style utilisé pour la liste des enfants."
+
+#: ../src/plugins/DetAncestralReport.py:808
+#: ../src/plugins/DetDescendantReport.py:775
+msgid "The style used for the first personal entry."
+msgstr "Style pour la première entrée personnelle."
+
+#: ../src/plugins/DetAncestralReport.py:818
+#: ../src/plugins/DetDescendantReport.py:785
+msgid "The style used for the More About header."
+msgstr "Le style utilisé pour l'en-tête À propos."
+
+#: ../src/plugins/DetAncestralReport.py:828
+#: ../src/plugins/DetDescendantReport.py:795
+msgid "The style used for additional detail data."
+msgstr "Style pour l'ajout de détails additionnels."
+
+#: ../src/plugins/DetAncestralReport.py:844
 msgid "Detailed Ancestral Report"
 msgstr "Liste détaillée des ascendants"
 
-#: ../src/plugins/DetAncestralReport.py:957
+#: ../src/plugins/DetAncestralReport.py:846
 msgid "Produces a detailed ancestral report"
 msgstr "Produit une liste détaillée des ascendants"
 
 # de ou pour ?
-#: ../src/plugins/DetDescendantReport.py:184
+#: ../src/plugins/DetDescendantReport.py:180
 #, python-format
 msgid "Descendant Report for %(person_name)s"
 msgstr "Liste détaillée des descendants de %(person_name)s"
 
-#. Print Spouses
-#: ../src/plugins/DetDescendantReport.py:870
+#: ../src/plugins/DetDescendantReport.py:698
 #: ../src/plugins/KinshipReport.py:368
 msgid "Include spouses"
 msgstr "Inclure les conjoints"
 
-#: ../src/plugins/DetDescendantReport.py:929
+#: ../src/plugins/DetDescendantReport.py:699
+msgid "Whether to include detailed spouse information."
+msgstr "Inclure ou non les informations détaillées concernant le conjoint."
+
+#: ../src/plugins/DetDescendantReport.py:811
 msgid "Detailed Descendant Report"
 msgstr "Liste détaillée des descendants"
 
-#: ../src/plugins/DetDescendantReport.py:931
+#: ../src/plugins/DetDescendantReport.py:813
 msgid "Produces a detailed descendant report"
 msgstr "Produit une liste détaillée des descendants"
 
@@ -7606,6 +7663,7 @@ msgid "Creates a family group report, showing information on a set of parents an
 msgstr "Crée un rapport sur une famille comprenant les informations sur les parents et leurs enfants."
 
 #: ../src/plugins/FamilyLines.py:672
+#: ../src/plugins/GVFamilyLines.py:766
 #, python-format
 msgid "%d children"
 msgstr "%d enfants"
@@ -7620,15 +7678,22 @@ msgstr "Nom de fichier invalide"
 msgid "The archive file must be a file, not a directory"
 msgstr "L'archive doit être un fichier, pas un répertoire"
 
+#. inherited method; called by report() in _ReportDialog.py
+#.
+#. this is where we'll do all of the work of figuring out who
+#. from the database is going to be output into the report
 #: ../src/plugins/FamilyLines.py:739
+#: ../src/plugins/GVFamilyLines.py:282
 msgid "Generate family lines"
 msgstr "Génère des lignées familiales"
 
 #: ../src/plugins/FamilyLines.py:739
+#: ../src/plugins/GVFamilyLines.py:282
 msgid "Starting"
 msgstr "Début"
 
 #: ../src/plugins/FamilyLines.py:744
+#: ../src/plugins/GVFamilyLines.py:287
 msgid "Finding ancestors and children"
 msgstr "Recherche d'ascendants et d'enfants"
 
@@ -7636,7 +7701,12 @@ msgstr "Recherche d'ascendants et d'enfants"
 #. since we know the exact number of people and families,
 #. we can then restart the progress bar with the exact
 #. number
+#. inherited method; called by report() in _ReportDialog.py
+#. since we know the exact number of people and families,
+#. we can then restart the progress bar with the exact
+#. number
 #: ../src/plugins/FamilyLines.py:760
+#: ../src/plugins/GVFamilyLines.py:307
 msgid "Writing family lines"
 msgstr "Écriture des lignées familiales"
 
@@ -7651,7 +7721,7 @@ msgstr "Écriture des lignées familiales"
 #: ../src/plugins/GraphViz.py:887
 #: ../src/plugins/GraphViz.py:895
 #: ../src/plugins/GraphViz.py:902
-#: ../src/ReportBase/_GraphvizReportDialog.py:696
+#: ../src/ReportBase/_GraphvizReportDialog.py:749
 msgid "GraphViz Options"
 msgstr "Options de GraphViz"
 
@@ -7699,7 +7769,7 @@ msgid "Height of the graph in inches.  Final image size may be smaller than this
 msgstr "La hauteur du graphique en pouces (in). La taille finale de l'image peut être plus petite que l'originale si le type de proportion est \"Compressé\"."
 
 #: ../src/plugins/FamilyLines.py:879
-#: ../src/ReportBase/_GraphvizReportDialog.py:708
+#: ../src/ReportBase/_GraphvizReportDialog.py:761
 msgid "DPI"
 msgstr "Résolution"
 
@@ -7745,19 +7815,24 @@ msgid "Subgraphs can help GraphViz position spouses closer together, but can als
 msgstr "Les sous-graphiques peuvent aider GraphViz à positionner les conjoints proches, mais peuvent également générer de longues lignes et larges graphiques. "
 
 #. ******** PEOPLE OF INTEREST **********
+#. --------------------------------
 #: ../src/plugins/FamilyLines.py:887
+#: ../src/plugins/GVFamilyLines.py:110
 msgid "People of Interest"
 msgstr "Individus recherchés"
 
 #: ../src/plugins/FamilyLines.py:925
+#: ../src/plugins/GVFamilyLines.py:117
 msgid "Follow parents to determine family lines"
 msgstr "Suivre les parents pour déterminer les lignées familiales"
 
 #: ../src/plugins/FamilyLines.py:926
+#: ../src/plugins/GVFamilyLines.py:121
 msgid "Follow children to determine family lines"
 msgstr "Suivre les enfants pour déterminer les lignées familiales"
 
 #: ../src/plugins/FamilyLines.py:927
+#: ../src/plugins/GVFamilyLines.py:125
 msgid "Try to remove extra people and families"
 msgstr "Essayer d'enlever les individus et familles non désirés"
 
@@ -7771,24 +7846,31 @@ msgstr ""
 "que\n"
 "l'on cherche"
 
+#. todo, fixme: need access to the database (3rd parm)
 #: ../src/plugins/FamilyLines.py:933
+#: ../src/plugins/GVFamilyLines.py:114
 msgid "People of interest are used as a starting point when determining \"family lines\"."
 msgstr "Les individus recherchés sont utilisés comme point de départ pour déterminer les \"lignées familiales\"."
 
 #: ../src/plugins/FamilyLines.py:934
+#: ../src/plugins/GVFamilyLines.py:118
 msgid "Parents and their ancestors will be considered when determining \"family lines\"."
 msgstr "Les parents et leurs ascendants seront estimés pour déterminer les \"lignées familiales\"."
 
 #: ../src/plugins/FamilyLines.py:935
+#: ../src/plugins/GVFamilyLines.py:122
 msgid "Children will be considered when determining \"family lines\"."
 msgstr "Les enfants seront estimés pour déterminer les \"lignées familiales\"."
 
 #: ../src/plugins/FamilyLines.py:936
+#: ../src/plugins/GVFamilyLines.py:126
 msgid "People and families not directly related to people of interest will be removed when determining \"family lines\"."
 msgstr "Les individus et familles non liés directement aux individus seront enlevés pour déterminer les \"lignées familiales\"."
 
 #. ******** FAMILY COLOURS **********
+#. ----------------------------
 #: ../src/plugins/FamilyLines.py:939
+#: ../src/plugins/GVFamilyLines.py:130
 msgid "Family Colours"
 msgstr "Couleur de la famille"
 
@@ -7797,7 +7879,11 @@ msgid "Colour"
 msgstr "Couleur"
 
 #. ******** INDIVIDUALS **********
+#. ----------------------------
+#. todo, family colours
+#. -------------------------
 #: ../src/plugins/FamilyLines.py:979
+#: ../src/plugins/GVFamilyLines.py:136
 #: ../src/plugins/NarrativeWeb.py:375
 #: ../src/plugins/NarrativeWeb.py:683
 #: ../src/plugins/NarrativeWeb.py:690
@@ -7806,47 +7892,62 @@ msgid "Individuals"
 msgstr "Individus"
 
 #: ../src/plugins/FamilyLines.py:985
+#: ../src/plugins/GVFamilyLines.py:155
 msgid "Limit the number of parents"
 msgstr "Limiter le nombre de parents"
 
 #: ../src/plugins/FamilyLines.py:988
+#: ../src/plugins/GVFamilyLines.py:163
 msgid "Limit the number of children"
 msgstr "Limiter le nombre d'enfants"
 
+#. -------------------------
 #: ../src/plugins/FamilyLines.py:994
+#: ../src/plugins/GVFamilyLines.py:139
 #: ../src/plugins/Summary.py:116
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Hommes"
 
 #: ../src/plugins/FamilyLines.py:995
+#: ../src/plugins/GVFamilyLines.py:143
 #: ../src/plugins/Summary.py:117
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Femmes"
 
 #: ../src/plugins/FamilyLines.py:997
+#: ../src/plugins/GVFamilyLines.py:151
 #: ../src/plugins/MarkerReport.py:195
 #: ../src/plugins/NarrativeWeb.py:2117
 msgid "Families"
 msgstr "Familles"
 
 #: ../src/plugins/FamilyLines.py:999
+#: ../src/plugins/GVFamilyLines.py:156
+#: ../src/plugins/GVFamilyLines.py:160
 msgid "The maximum number of ancestors to include."
 msgstr "Le nombre maximum d'ascendants à inclure."
 
 #: ../src/plugins/FamilyLines.py:1001
+#: ../src/plugins/GVFamilyLines.py:164
+#: ../src/plugins/GVFamilyLines.py:168
+#: ../src/plugins/GVFamilyLines.py:176
 msgid "The maximum number of children to include."
 msgstr "Le nombre maximum d'enfants à inclure."
 
 #. ******** IMAGES ********
+#. --------------------
 #: ../src/plugins/FamilyLines.py:1004
+#: ../src/plugins/GVFamilyLines.py:172
 msgid "Images"
 msgstr "Images"
 
+#. --------------------
 #: ../src/plugins/FamilyLines.py:1005
 #: ../src/plugins/GraphViz.py:839
-#: ../src/plugins/GVRelGraph.py:453
+#: ../src/plugins/GVFamilyLines.py:175
+#: ../src/plugins/GVRelGraph.py:457
 msgid "Include thumbnail images of people"
 msgstr "Inclure une image miniature des individus"
 
@@ -7862,7 +7963,7 @@ msgstr "Mettre la miniature en-dessous du nom"
 
 #: ../src/plugins/FamilyLines.py:1013
 #: ../src/plugins/GraphViz.py:842
-#: ../src/plugins/GVRelGraph.py:454
+#: ../src/plugins/GVRelGraph.py:458
 msgid "Whether to include thumbnails of people."
 msgstr "Où inclure les images miniatures des individus."
 
@@ -7870,23 +7971,29 @@ msgstr "Où inclure les images miniatures des individus."
 msgid "Whether the thumbnails and the names are side-by-side, or one above the other."
 msgstr "Soit les miniatures et les noms sont côte-à-côte, soit l'un est au-dessus de l'autre."
 
+#. ---------------------
 #: ../src/plugins/FamilyLines.py:1018
+#: ../src/plugins/GVFamilyLines.py:189
 msgid "Include dates"
 msgstr "Inclure les dates"
 
 #: ../src/plugins/FamilyLines.py:1019
+#: ../src/plugins/GVFamilyLines.py:193
 msgid "Include places"
 msgstr "Inclure les lieux"
 
 #: ../src/plugins/FamilyLines.py:1020
+#: ../src/plugins/GVFamilyLines.py:197
 msgid "Include the number of children"
 msgstr "Inclure le nombre d'enfants"
 
 #: ../src/plugins/FamilyLines.py:1021
+#: ../src/plugins/GVFamilyLines.py:201
 msgid "Include researcher and date"
 msgstr "Inclure le chercheur et la date"
 
 #: ../src/plugins/FamilyLines.py:1022
+#: ../src/plugins/GVFamilyLines.py:205
 msgid "Include private records"
 msgstr "Inclure les enregistrements privés"
 
@@ -7905,14 +8012,17 @@ msgstr ""
 "   dot -Tpng -oexemple.png familylines.dot"
 
 #: ../src/plugins/FamilyLines.py:1042
+#: ../src/plugins/GVFamilyLines.py:190
 msgid "Whether to include dates for people and families."
 msgstr "Où inclure les dates pour les individus et les familles."
 
 #: ../src/plugins/FamilyLines.py:1043
+#: ../src/plugins/GVFamilyLines.py:194
 msgid "Whether to include placenames for people and families."
 msgstr "Où inclure les noms de lieu pour les individus et les familles."
 
 #: ../src/plugins/FamilyLines.py:1044
+#: ../src/plugins/GVFamilyLines.py:198
 msgid "Whether to include the number of children for families with more than 1 child."
 msgstr "Où inclure le nombre d'enfants pour les familles ayant plus d'un enfant."
 
@@ -7957,10 +8067,12 @@ msgid "Also include %s as a person of interest?"
 msgstr "Inclure également %s comme individu recherché ?"
 
 #: ../src/plugins/FamilyLines.py:1432
+#: ../src/plugins/GVFamilyLines.py:837
 msgid "Generates family line graphs using GraphViz."
 msgstr "Génère des graphiques de lignée familiale avec GraphViz. "
 
 #: ../src/plugins/FamilyLines.py:1437
+#: ../src/plugins/GVFamilyLines.py:834
 msgid "Family Lines Graph"
 msgstr "Graphique de lignées familiales"
 
@@ -8101,32 +8213,32 @@ msgid "Searches the entire database, looking for individual entries that may rep
 msgstr "Recherche dans la base de données pour trouver d'éventuels doublons."
 
 #: ../src/plugins/GraphViz.py:85
-#: ../src/ReportBase/_GraphvizReportDialog.py:523
+#: ../src/ReportBase/_GraphvizReportDialog.py:571
 msgid "Postscript"
 msgstr "PostScript"
 
 #: ../src/plugins/GraphViz.py:86
-#: ../src/ReportBase/_GraphvizReportDialog.py:528
+#: ../src/ReportBase/_GraphvizReportDialog.py:577
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
 #: ../src/plugins/GraphViz.py:87
-#: ../src/ReportBase/_GraphvizReportDialog.py:533
+#: ../src/ReportBase/_GraphvizReportDialog.py:583
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "SVG compressé (SVGZ)"
 
 #: ../src/plugins/GraphViz.py:88
-#: ../src/ReportBase/_GraphvizReportDialog.py:548
+#: ../src/ReportBase/_GraphvizReportDialog.py:601
 msgid "PNG image"
 msgstr "Image PNG"
 
 #: ../src/plugins/GraphViz.py:89
-#: ../src/ReportBase/_GraphvizReportDialog.py:538
+#: ../src/ReportBase/_GraphvizReportDialog.py:589
 msgid "JPEG image"
 msgstr "Image JPEG"
 
 #: ../src/plugins/GraphViz.py:90
-#: ../src/ReportBase/_GraphvizReportDialog.py:543
+#: ../src/ReportBase/_GraphvizReportDialog.py:595
 msgid "GIF image"
 msgstr "Image GIF"
 
@@ -8137,17 +8249,17 @@ msgstr "Image GIF"
 #.
 #. -------------------------------------------------------------------------------
 #: ../src/plugins/GraphViz.py:94
-#: ../src/ReportBase/_GraphvizReportDialog.py:58
+#: ../src/ReportBase/_GraphvizReportDialog.py:60
 msgid "Default"
 msgstr "Défaut"
 
 #: ../src/plugins/GraphViz.py:95
-#: ../src/ReportBase/_GraphvizReportDialog.py:59
+#: ../src/ReportBase/_GraphvizReportDialog.py:61
 msgid "Postscript / Helvetica"
 msgstr "PostScript / Helvetica"
 
 #: ../src/plugins/GraphViz.py:96
-#: ../src/ReportBase/_GraphvizReportDialog.py:60
+#: ../src/ReportBase/_GraphvizReportDialog.py:62
 msgid "Truetype / FreeSans"
 msgstr "Truetype / FreeSans"
 
@@ -8172,12 +8284,12 @@ msgid "Color fill"
 msgstr "Remplissage avec des couleurs"
 
 #: ../src/plugins/GraphViz.py:104
-#: ../src/ReportBase/_GraphvizReportDialog.py:76
+#: ../src/ReportBase/_GraphvizReportDialog.py:78
 msgid "Minimal size"
 msgstr "Taille minimale"
 
 #: ../src/plugins/GraphViz.py:105
-#: ../src/ReportBase/_GraphvizReportDialog.py:77
+#: ../src/ReportBase/_GraphvizReportDialog.py:79
 msgid "Fill the given area"
 msgstr "Remplir le champ donné"
 
@@ -8194,52 +8306,52 @@ msgid "Horizontal"
 msgstr "Horizontal"
 
 #: ../src/plugins/GraphViz.py:114
-#: ../src/ReportBase/_GraphvizReportDialog.py:67
+#: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "Bottom, left"
 msgstr "Inférieur, gauche"
 
 #: ../src/plugins/GraphViz.py:115
-#: ../src/ReportBase/_GraphvizReportDialog.py:68
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Bottom, right"
 msgstr "Inférieur, droite"
 
 #: ../src/plugins/GraphViz.py:116
-#: ../src/ReportBase/_GraphvizReportDialog.py:69
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Top, left"
 msgstr "Supérieur, gauche"
 
 #: ../src/plugins/GraphViz.py:117
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
 msgid "Top, Right"
 msgstr "Supérieur, droite"
 
 #: ../src/plugins/GraphViz.py:118
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Right, bottom"
 msgstr "Droite, en bas"
 
 #: ../src/plugins/GraphViz.py:119
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Right, top"
 msgstr "Droite, en haut"
 
 #: ../src/plugins/GraphViz.py:120
-#: ../src/ReportBase/_GraphvizReportDialog.py:73
+#: ../src/ReportBase/_GraphvizReportDialog.py:75
 msgid "Left, bottom"
 msgstr "Gauche, en bas"
 
 #: ../src/plugins/GraphViz.py:121
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
+#: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Left, top"
 msgstr "Gauche, en haut"
 
 #: ../src/plugins/GraphViz.py:124
-#: ../src/ReportBase/_GraphvizReportDialog.py:81
+#: ../src/ReportBase/_GraphvizReportDialog.py:82
 msgid "Top"
 msgstr "Haut"
 
 #: ../src/plugins/GraphViz.py:125
-#: ../src/ReportBase/_GraphvizReportDialog.py:82
+#: ../src/ReportBase/_GraphvizReportDialog.py:83
 msgid "Bottom"
 msgstr "Bas"
 
@@ -8264,7 +8376,6 @@ msgid "Descendants - Ancestors"
 msgstr "Descendants - Ascendants"
 
 #: ../src/plugins/GraphViz.py:150
-#: ../src/ReportBase/_GraphvizReportDialog.py:518
 msgid "PDF"
 msgstr "PDF"
 
@@ -8274,37 +8385,37 @@ msgstr "Vos données contiennent des caractères ne pouvant pas être convertis 
 
 #. Content options tab
 #: ../src/plugins/GraphViz.py:794
-#: ../src/plugins/GVRelGraph.py:423
+#: ../src/plugins/GVRelGraph.py:427
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Inclure les dates de naissance, de mariage et de décès"
 
 #: ../src/plugins/GraphViz.py:799
-#: ../src/plugins/GVRelGraph.py:424
+#: ../src/plugins/GVRelGraph.py:428
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "Inclure les dates de naissance, mariage et/ou décès sur le graphique."
 
 #: ../src/plugins/GraphViz.py:803
-#: ../src/plugins/GVRelGraph.py:428
+#: ../src/plugins/GVRelGraph.py:432
 msgid "Limit dates to years only"
 msgstr "Limiter les dates à l'année seule"
 
 #: ../src/plugins/GraphViz.py:807
-#: ../src/plugins/GVRelGraph.py:429
+#: ../src/plugins/GVRelGraph.py:433
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "N'imprimer que les années des dates, pas le mois ni le jour, pas plus que les dates approximatives ou les intervalles."
 
 #: ../src/plugins/GraphViz.py:811
-#: ../src/plugins/GVRelGraph.py:434
+#: ../src/plugins/GVRelGraph.py:438
 msgid "Place/cause when no date"
 msgstr "Lieu/Cause en l'absence de date"
 
 #: ../src/plugins/GraphViz.py:815
-#: ../src/plugins/GVRelGraph.py:435
+#: ../src/plugins/GVRelGraph.py:439
 msgid "When no birth, marriage, or death date is available, the correspondent place field (or cause field when blank place) will be used."
 msgstr "Lorsque ni les dates de naissance, ni les dates de mariage, ni les dates de décès ne sont disponibles, le champ de lieu (ou de cause s'il n'y a pas de lieu) correspondant sera utilisé."
 
 #: ../src/plugins/GraphViz.py:823
-#: ../src/plugins/GVRelGraph.py:440
+#: ../src/plugins/GVRelGraph.py:444
 msgid "Include URLs"
 msgstr "Inclure les URL"
 
@@ -8313,44 +8424,44 @@ msgid "Include a URL in each graph node so that PDF and imagemap files can be ge
 msgstr "Inclure une URL dans chaque cellule du graphique afin que les fichiers PDF et les images puissent être générés avec des liens valides par le &quot; générateur de site internet &quot;."
 
 #: ../src/plugins/GraphViz.py:833
-#: ../src/plugins/GVRelGraph.py:448
+#: ../src/plugins/GVRelGraph.py:452
 msgid "Include IDs"
 msgstr "Inclure les identifiants"
 
 #: ../src/plugins/GraphViz.py:837
-#: ../src/plugins/GVRelGraph.py:449
+#: ../src/plugins/GVRelGraph.py:453
 msgid "Include individual and family IDs."
 msgstr "Inclure les identifiants individuels et familiaux."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:854
-#: ../src/plugins/GVRelGraph.py:468
+#: ../src/plugins/GVRelGraph.py:472
 msgid "Graph coloring"
 msgstr "Coloration du graphique"
 
 #: ../src/plugins/GraphViz.py:856
-#: ../src/plugins/GVRelGraph.py:471
+#: ../src/plugins/GVRelGraph.py:475
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Les hommes seront en bleu, les femmes en rouge. Si le sexe d'un individu est indéterminé, celui-ci sera en gris."
 
 #: ../src/plugins/GraphViz.py:863
-#: ../src/plugins/GVRelGraph.py:476
+#: ../src/plugins/GVRelGraph.py:480
 msgid "Arrowhead direction"
 msgstr "Sens des flèches"
 
 #: ../src/plugins/GraphViz.py:865
-#: ../src/plugins/GVRelGraph.py:479
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Choose the direction that the arrows point."
 msgstr "Choisir le sens des flèches."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:870
-#: ../src/ReportBase/_GraphvizReportDialog.py:640
+#: ../src/ReportBase/_GraphvizReportDialog.py:693
 msgid "Font family"
 msgstr "Famille de police"
 
 #: ../src/plugins/GraphViz.py:872
-#: ../src/ReportBase/_GraphvizReportDialog.py:645
+#: ../src/ReportBase/_GraphvizReportDialog.py:698
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Choisissez la famille de police. Si les caractères internationaux n'apparaissent pas, utilisez les polices FreeSans disponibles sur : http://www.nongnu.org/freefont/"
 
@@ -8359,7 +8470,7 @@ msgid "Font size (in points)"
 msgstr "Taille de la police (pt)"
 
 #: ../src/plugins/GraphViz.py:883
-#: ../src/ReportBase/_GraphvizReportDialog.py:652
+#: ../src/ReportBase/_GraphvizReportDialog.py:705
 msgid "The font size, in points."
 msgstr "Taille de la police (pt)"
 
@@ -8372,22 +8483,22 @@ msgid "If text doesn't show correctly in report, use this. Required e.g. for def
 msgstr "Si le texte n'est pas affiché correctement dans le rapport, utilisez cette option. Nécessaire par exemple avec la police par défaut et le format de sortie PostScript. Pas forcément utile pour les formats SVG ou JPEG."
 
 #: ../src/plugins/GraphViz.py:893
-#: ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVRelGraph.py:487
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indiquer les relations autres que la naissance avec des pointillés"
 
 #: ../src/plugins/GraphViz.py:897
-#: ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVRelGraph.py:488
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Les relations autres que la naissance seront en pointillé sur le graphique."
 
 #: ../src/plugins/GraphViz.py:900
-#: ../src/plugins/GVRelGraph.py:488
+#: ../src/plugins/GVRelGraph.py:492
 msgid "Show family nodes"
 msgstr "Afficher les nœuds familiaux"
 
 #: ../src/plugins/GraphViz.py:904
-#: ../src/plugins/GVRelGraph.py:489
+#: ../src/plugins/GVRelGraph.py:493
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Les familles seront affichées en cercles, reliées aux parents et aux enfants."
 
@@ -8406,7 +8517,7 @@ msgstr "Générations de haut en bas ou de gauche à droite."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:919
-#: ../src/ReportBase/_GraphvizReportDialog.py:699
+#: ../src/ReportBase/_GraphvizReportDialog.py:752
 msgid "Aspect ratio"
 msgstr "Ratio d'aspect"
 
@@ -8419,22 +8530,22 @@ msgid "Margin size"
 msgstr "Taille de la marge"
 
 #: ../src/plugins/GraphViz.py:943
-#: ../src/ReportBase/_GraphvizReportDialog.py:664
+#: ../src/ReportBase/_GraphvizReportDialog.py:717
 msgid "Number of Horizontal Pages"
 msgstr "Nombre de pages horizontales"
 
 #: ../src/plugins/GraphViz.py:945
-#: ../src/ReportBase/_GraphvizReportDialog.py:665
+#: ../src/ReportBase/_GraphvizReportDialog.py:718
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally."
 msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface horizontale."
 
 #: ../src/plugins/GraphViz.py:950
-#: ../src/ReportBase/_GraphvizReportDialog.py:671
+#: ../src/ReportBase/_GraphvizReportDialog.py:724
 msgid "Number of Vertical Pages"
 msgstr "Nombre de pages verticales"
 
 #: ../src/plugins/GraphViz.py:952
-#: ../src/ReportBase/_GraphvizReportDialog.py:672
+#: ../src/ReportBase/_GraphvizReportDialog.py:725
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically."
 msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface verticale."
 
@@ -8448,22 +8559,22 @@ msgstr "L'ordre dans lequel les pages du graphique sont produites."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:973
-#: ../src/ReportBase/_GraphvizReportDialog.py:742
+#: ../src/ReportBase/_GraphvizReportDialog.py:799
 msgid "Note to add to the graph"
 msgstr "Note à ajouter au graphique"
 
 #: ../src/plugins/GraphViz.py:975
-#: ../src/ReportBase/_GraphvizReportDialog.py:744
+#: ../src/ReportBase/_GraphvizReportDialog.py:801
 msgid "This text will be added to the graph."
 msgstr "Ce texte sera ajouté au graphique."
 
 #: ../src/plugins/GraphViz.py:979
-#: ../src/ReportBase/_GraphvizReportDialog.py:747
+#: ../src/ReportBase/_GraphvizReportDialog.py:804
 msgid "Note location"
 msgstr "Disposition de la note"
 
 #: ../src/plugins/GraphViz.py:981
-#: ../src/ReportBase/_GraphvizReportDialog.py:750
+#: ../src/ReportBase/_GraphvizReportDialog.py:807
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Quoi qu'il en soit la note apparaîtra en haut ou en bas de la page."
 
@@ -8472,13 +8583,13 @@ msgid "Note size (in points)"
 msgstr "Taille de la note (pt)"
 
 #: ../src/plugins/GraphViz.py:989
-#: ../src/ReportBase/_GraphvizReportDialog.py:755
+#: ../src/ReportBase/_GraphvizReportDialog.py:812
 msgid "The size of note text, in points."
 msgstr "La taille de la note, en points."
 
 #: ../src/plugins/GraphViz.py:1046
 #: ../src/plugins/GraphViz.py:1341
-#: ../src/plugins/GVRelGraph.py:504
+#: ../src/plugins/GVRelGraph.py:508
 msgid "Relationship Graph"
 msgstr "Graphique relationnel"
 
@@ -8493,6 +8604,54 @@ msgstr "Génère un graphique relationnel en utilisant le logiciel GraphViz (dot
 #: ../src/plugins/GraphViz.py:1326
 msgid "Relationship Graph (code)"
 msgstr "Graphique relationnel (code)"
+
+#. --------------------------------
+#: ../src/plugins/GVFamilyLines.py:113
+msgid "People of interest"
+msgstr "Individus recherchés"
+
+#: ../src/plugins/GVFamilyLines.py:140
+msgid "The colour to use to display men."
+msgstr "La couleur utilisée pour afficher les hommes."
+
+#: ../src/plugins/GVFamilyLines.py:144
+msgid "The colour to use to display women."
+msgstr "La couleur utilisée pour afficher les femmes."
+
+#: ../src/plugins/GVFamilyLines.py:148
+msgid "The colour to use when the gender is unknown."
+msgstr "La couleur utilisée quand le genre est inconnu."
+
+#: ../src/plugins/GVFamilyLines.py:152
+msgid "The colour to use to display families."
+msgstr "Sélection de la couleur pour l'affichage des familles."
+
+#: ../src/plugins/GVFamilyLines.py:179
+msgid "Thumbnail location"
+msgstr "Emplacement de la miniature"
+
+#: ../src/plugins/GVFamilyLines.py:180
+#: ../src/plugins/GVRelGraph.py:462
+msgid "Above the name"
+msgstr "Au-dessus du nom"
+
+#: ../src/plugins/GVFamilyLines.py:181
+#: ../src/plugins/GVRelGraph.py:463
+msgid "Beside the name"
+msgstr "À côté du nom"
+
+#: ../src/plugins/GVFamilyLines.py:182
+#: ../src/plugins/GVRelGraph.py:464
+msgid "Where the thumbnail image should appear relative to the name"
+msgstr "L'emplacement de la miniature associée au nom"
+
+#: ../src/plugins/GVFamilyLines.py:202
+msgid "Whether to include at the bottom the researchers name, e-mail, and the date the report was generated."
+msgstr "Inclure ou non l'en-tête pour le nom du chercheur, son e-mail, et la date de génération du rapport."
+
+#: ../src/plugins/GVFamilyLines.py:206
+msgid "Whether to include names, dates, and families that are marked as private."
+msgstr "Inclure ou non les noms, dates, et familles définis comme privés."
 
 #: ../src/plugins/GVHourGlass.py:158
 #: ../src/plugins/KinshipReport.py:378
@@ -8520,36 +8679,24 @@ msgstr "Sablier"
 msgid "Produces an hourglass graph"
 msgstr "Produit un graphique sablier"
 
-#: ../src/plugins/GVRelGraph.py:419
+#: ../src/plugins/GVRelGraph.py:423
 msgid "Select the filter to be applied to the report"
 msgstr "Sélectionne le filtre à appliquer au rapport"
 
-#: ../src/plugins/GVRelGraph.py:441
+#: ../src/plugins/GVRelGraph.py:445
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Inclure une URL dans chaque cellule du graphique afin que les fichiers PDF et les images puissent être générés avec des liens valides par le &quot; générateur de site internet &quot;."
 
-#: ../src/plugins/GVRelGraph.py:457
+#: ../src/plugins/GVRelGraph.py:461
 msgid "Thumbnail Location"
 msgstr "Emplacement de la miniature"
 
-#: ../src/plugins/GVRelGraph.py:458
-msgid "Above the name"
-msgstr "Au-dessus du nom"
-
-#: ../src/plugins/GVRelGraph.py:459
-msgid "Beside the name"
-msgstr "À côté du nom"
-
-#: ../src/plugins/GVRelGraph.py:460
-msgid "Where the thumbnail image should appear relative to the name"
-msgstr "L'emplacement de la miniature associée au nom"
-
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:465
+#: ../src/plugins/GVRelGraph.py:469
 msgid "Graph Style"
 msgstr "Style du graphique"
 
-#: ../src/plugins/GVRelGraph.py:506
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Generates a relationship graphs using Graphviz."
 msgstr "Génère des graphiques relationnels avec GraphViz. "
 
@@ -8854,7 +9001,7 @@ msgstr ""
 "\n"
 "Les fichiers contenant une image, du son, de la vidéo, etc. existent séparément sur votre disque dur. Ces fichiers ne sont pas gérés par GRAMPS et ne sont pas inclus dans la base de données GRAMPS. La base de données GRAMPS ne stocke que le chemin et les noms de fichiers.\n"
 "\n"
-"Cet outil vous permet de modifier seulement les enregistrements internes à de la base de données GRAMPS. Si vous voulez déplacer ou renommer les fichiers vous aurez besoin de le faire vous même, en dehors de GRAMPS. Alors vous pourrez ajuster les chemins en utilisant cet outil pour que les objets média conservent les bons emplacements de fichiers."
+"Cet outil vous permet de modifier seulement les enregistrements internes à la base de données GRAMPS. Si vous voulez déplacer ou renommer les fichiers vous aurez besoin de le faire vous même, en dehors de GRAMPS. Alors vous pourrez ajuster les chemins en utilisant cet outil pour que les objets média conservent les bons emplacements de fichiers."
 
 #: ../src/plugins/MediaManager.py:243
 msgid "Affected path"
@@ -9672,7 +9819,7 @@ msgid "From file..."
 msgstr "À partir du fichier…"
 
 #: ../src/plugins/SimpleBookTitle.py:211
-#: ../src/glade/gramps.glade.h:186
+#: ../src/glade/gramps.glade.h:189
 #: ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
@@ -10789,102 +10936,110 @@ msgstr "Le style de base utilisé pour afficher les annotations de la référenc
 msgid "Endnotes"
 msgstr "Annotations de fin"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:62
+#: ../src/ReportBase/_GraphvizReportDialog.py:64
 msgid "Vertical (top to bottom)"
 msgstr "Vertical (de haut en bas)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:63
+#: ../src/ReportBase/_GraphvizReportDialog.py:65
 msgid "Vertical (bottom to top)"
 msgstr "Vertical (de bas en haut)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:64
+#: ../src/ReportBase/_GraphvizReportDialog.py:66
 msgid "Horizontal (left to right)"
 msgstr "Horizontal (de gauche à droite)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:65
+#: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "Horizontal (right to left)"
 msgstr "Horizontal (de droite à gauche)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:78
+#: ../src/ReportBase/_GraphvizReportDialog.py:80
 msgid "Use optimal number of pages"
 msgstr "Utiliser le nombre optimal de pages"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:510
+#: ../src/ReportBase/_GraphvizReportDialog.py:550
 msgid "Graphviz Dot File"
 msgstr "Fichier dot GraphViz"
 
+#: ../src/ReportBase/_GraphvizReportDialog.py:559
+msgid "PDF (Ghostscript)"
+msgstr "PDF (Ghostscript)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:565
+msgid "PDF (Graphviz)"
+msgstr "PDF (GraphViz)"
+
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:638
+#: ../src/ReportBase/_GraphvizReportDialog.py:691
 msgid "GraphViz Layout"
 msgstr "Mise en page de GraphViz"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:651
+#: ../src/ReportBase/_GraphvizReportDialog.py:704
 msgid "Font size"
 msgstr "Taille de la police"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:655
+#: ../src/ReportBase/_GraphvizReportDialog.py:708
 msgid "Graph Direction"
 msgstr "Sens du graphique"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:660
+#: ../src/ReportBase/_GraphvizReportDialog.py:713
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Générations de haut en bas ou de gauche à droite."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:678
+#: ../src/ReportBase/_GraphvizReportDialog.py:731
 msgid "Paging Direction"
 msgstr "Direction de la mise en page"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:683
+#: ../src/ReportBase/_GraphvizReportDialog.py:736
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr "L'ordre dans lequel les pages du graphique sont générées. Cette option ne s'applique que pour les pages horizontales ou verticales multiples."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:704
+#: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Affecte grandement comment le graphique est mis en place dans la page."
 
 # 254 DPI pour les imprimantes standards du commerce
-#: ../src/ReportBase/_GraphvizReportDialog.py:709
+#: ../src/ReportBase/_GraphvizReportDialog.py:762
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
 msgstr "Points par pouce (inch). Quand on veut créer une image .gif ou .png pour internet, on utilise des valeurs entre 75 et 100 DPI et 300 ou 600 DPI pour l'impression."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:715
+#: ../src/ReportBase/_GraphvizReportDialog.py:768
 msgid "Node spacing"
 msgstr "Espacement de nœud"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:716
+#: ../src/ReportBase/_GraphvizReportDialog.py:769
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
 msgstr "L'espace libre minimum réservé, en inches, entre les nœuds. Pour les graphiques verticaux, ceci correspond à l'espace entre les colonnes. Pour les graphiques horizontaux, ceci correspond à l'espace entre les rangées."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:723
+#: ../src/ReportBase/_GraphvizReportDialog.py:776
 msgid "Rank spacing"
 msgstr "Espacement de rang"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:724
+#: ../src/ReportBase/_GraphvizReportDialog.py:777
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
 msgstr "L'espace libre minimum réservé, en inches, entre les rangs. Pour les graphiques verticaux, ceci correspond à l'espace entre les rangées. Pour les graphiques horizontaux, ceci correspond à l'espace entre les colonnes."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:731
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Use subgraphs"
 msgstr "Utiliser les sous-graphiques"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#: ../src/ReportBase/_GraphvizReportDialog.py:785
 msgid "Subgraphs can help GraphViz position certain linked nodes closer together, but with non-trivial graphs will result in longer lines and larger graphs."
 msgstr "Les sous-graphiques peuvent aider GraphViz à positionner les conjoints proches, mais peuvent également générer de longues lignes et larges graphiques. "
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:754
+#: ../src/ReportBase/_GraphvizReportDialog.py:811
 msgid "Note size"
 msgstr "Taille de la note"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:782
-#: ../src/ReportBase/_GraphvizReportDialog.py:833
+#: ../src/ReportBase/_GraphvizReportDialog.py:856
+#: ../src/ReportBase/_GraphvizReportDialog.py:907
 msgid "Open with application"
 msgstr "Ouvrir avec l'application"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:790
+#: ../src/ReportBase/_GraphvizReportDialog.py:864
 msgid "Output Format"
 msgstr "Format de sortie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:810
+#: ../src/ReportBase/_GraphvizReportDialog.py:884
 msgid "Paper Options"
 msgstr "Options Papier"
 
@@ -13785,11 +13940,11 @@ msgstr "Entreprise ou institution"
 
 #: ../src/gen/lib/attrtype.py:67
 msgid "Father's Age"
-msgstr "Âge du mari/homme/partenaire"
+msgstr "Âge du mari / homme / partenaire"
 
 #: ../src/gen/lib/attrtype.py:68
 msgid "Mother's Age"
-msgstr "Âge de la femme/partenaire"
+msgstr "Âge de la femme / partenaire"
 
 #: ../src/gen/lib/attrtype.py:69
 #: ../src/gen/lib/eventroletype.py:56
@@ -15798,7 +15953,7 @@ msgid "Type:"
 msgstr "Type :"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:97
 msgid "Path:"
 msgstr "Chemin :"
 
@@ -16374,7 +16529,7 @@ msgid "Gi_ven:"
 msgstr "_Prénom :"
 
 #: ../src/glade/edit_person.glade.h:15
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:83
 msgid "Indicates if the record is private"
 msgstr "Désigne si l'enregistrement est privé"
 
@@ -16387,12 +16542,12 @@ msgid "The person's given name"
 msgstr "Le prénom de l'individu"
 
 #: ../src/glade/edit_person.glade.h:18
-#: ../src/glade/gramps.glade.h:119
+#: ../src/glade/gramps.glade.h:122
 msgid "Tit_le:"
 msgstr "Tit_re :"
 
 #: ../src/glade/edit_person.glade.h:19
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:146
 msgid "_Family:"
 msgstr "_Famille :"
 
@@ -16401,23 +16556,23 @@ msgid "_Gender:"
 msgstr "_Genre :"
 
 #: ../src/glade/edit_person.glade.h:21
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:148
 msgid "_ID:"
 msgstr "_ID :"
 
 #: ../src/glade/edit_person.glade.h:22
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:154
 msgid "_Marker:"
 msgstr "_Marqueur :"
 
 #: ../src/glade/edit_person.glade.h:23
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:163
 msgid "_Prefix:"
 msgstr "Préfi_xe :"
 
 # éviter le raccourci sur le y ou le p
 #: ../src/glade/edit_person.glade.h:24
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:180
 msgid "_Type:"
 msgstr "_Type :"
 
@@ -16607,220 +16762,232 @@ msgid "Church _parish:"
 msgstr "_Paroisse :"
 
 #: ../src/glade/gramps.glade.h:51
+msgid "Click to close"
+msgstr "Cliquer pour fermer"
+
+#: ../src/glade/gramps.glade.h:52
+msgid "Click to expand/collapse"
+msgstr "Cliquer pour déployer"
+
+#: ../src/glade/gramps.glade.h:53
 #: ../src/plugins/soundex.glade.h:1
 msgid "Close Window"
 msgstr "Fermer la fenêtre"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:54
 msgid "Close _without saving"
 msgstr "Fermer _sans enregistrer"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:55
 msgid "Close window without changes"
 msgstr "Fermer la fenêtre sans modification"
 
-#: ../src/glade/gramps.glade.h:54
+#: ../src/glade/gramps.glade.h:56
 msgid "Co_unty:"
 msgstr "_Département :"
 
-#: ../src/glade/gramps.glade.h:55
+#: ../src/glade/gramps.glade.h:57
 msgid "Convert to a relative path"
 msgstr "Utiliser le chemin relatif"
 
-#: ../src/glade/gramps.glade.h:56
+#: ../src/glade/gramps.glade.h:58
 msgid "Corner 1:  X"
 msgstr "Coin 1 : X"
 
-#: ../src/glade/gramps.glade.h:57
+#: ../src/glade/gramps.glade.h:59
 msgid "Corner 2:  X"
 msgstr "Coin 2 : X"
 
-#: ../src/glade/gramps.glade.h:58
+#: ../src/glade/gramps.glade.h:60
 msgid "Cou_ntry:"
 msgstr "Pay_s :"
 
-#: ../src/glade/gramps.glade.h:59
+#: ../src/glade/gramps.glade.h:61
 msgid "Count_ry:"
 msgstr "_Pays :"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:63
 msgid "D_ay"
 msgstr "J_our"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:64
 msgid "Dat_e:"
 msgstr "_Date :"
 
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:65
 msgid "De_scription:"
 msgstr "De_scription :"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:66
 msgid "Death:"
 msgstr "Décès :"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:67
 msgid "Do not ask again"
 msgstr "Ne plus me demander"
 
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:68
 msgid "Do not show this dialog again"
 msgstr "Ne plus afficher ce dialogue"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:70
+msgid "Drag to move; click to detach"
+msgstr "Glisser pour déplacer; cliquer pour détacher"
+
+#: ../src/glade/gramps.glade.h:71
 msgid "Example:"
 msgstr "Exemple :"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:72
 msgid "Family Trees - GRAMPS"
 msgstr "Arbre familiaux - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:73
 msgid "Family:"
 msgstr "Famille :"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:74
 msgid "First li_ne:"
 msgstr "Première li_gne :"
 
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:75
 msgid "Format _definition:"
 msgstr "Définition du _format :"
 
-#: ../src/glade/gramps.glade.h:73
+#: ../src/glade/gramps.glade.h:76
 msgid "Format _name:"
 msgstr "_Nom du format :"
 
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:77
 msgid "Format definition details"
 msgstr "Détails de la définition du format"
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:78
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:79
 msgid "G_roup as:"
 msgstr "G_rouper comme :"
 
-#: ../src/glade/gramps.glade.h:78
+#: ../src/glade/gramps.glade.h:81
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
 msgstr "Si le média est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
 
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:82
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
 msgstr "Si vous valider cette option, tous les média seront automatiquement traiter selon les options actuellement retenues, aucun message ne vous avertira lors de fichiers média manquants."
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:84
 msgid "Invoke date editor"
 msgstr "Ouvrir l'éditeur de date"
 
-#: ../src/glade/gramps.glade.h:82
+#: ../src/glade/gramps.glade.h:85
 msgid "Keep reference to the missing file"
 msgstr "Conserver la référence au fichier manquant"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:86
 msgid "LDS _Temple:"
 msgstr "Temple _mormon :"
 
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:87
 msgid "L_atitude:"
 msgstr "L_atitude :"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:88
 msgid "L_eft:"
 msgstr "à g_auche :"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:89
 msgid "Le_ft"
 msgstr "à gauc_he"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:90
 msgid "Load Family Tree"
 msgstr "Charger l'arbre familial"
 
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:91
 msgid "Mo_nth"
 msgstr "Mo_is"
 
-#: ../src/glade/gramps.glade.h:90
+#: ../src/glade/gramps.glade.h:93
 msgid "O_verride"
 msgstr "Imp_oser"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:94
 msgid "Ordinance:"
 msgstr "Ordonnance :"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:95
 msgid "P_atronymic:"
 msgstr "P_atronymique :"
 
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:96
 msgid "P_hone:"
 msgstr "Télép_hone :"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:98
 msgid "Phon_e:"
 msgstr "Téléphon_e :"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:99
 msgid "R_ight:"
 msgstr "à d_roite :"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:100
 msgid "Relationship to _Father:"
 msgstr "Relation avec le _père :"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:101
 msgid "Relationship to _Mother:"
 msgstr "Relation avec la _mère :"
 
 # supprimer car efface de la base
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:102
 msgid "Remove object and all references to it from the database"
 msgstr "Supprimer l'objet et toutes ses références de la base"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:103
 msgid "Rename"
 msgstr "Renommer"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:104
 msgid "Repair"
 msgstr "Réparer"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:105
 msgid "Revision comment - GRAMPS"
 msgstr "Commentaire de révision - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:106
 msgid "Ri_ght"
 msgstr "à droi_te"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:107
 msgid "S_treet:"
 msgstr "R_ue :"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:108
 msgid "Select replacement for the missing file"
 msgstr "Sélectionner le nouvel emplacement du fichier manquant"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:109
 msgid "Show all"
 msgstr "Tout afficher"
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:110
 msgid "Style n_ame:"
 msgstr "N_om du style :"
 
-#: ../src/glade/gramps.glade.h:108
+#: ../src/glade/gramps.glade.h:111
 msgid "Suffi_x:"
 msgstr "_Suffixe :"
 
-#: ../src/glade/gramps.glade.h:109
+#: ../src/glade/gramps.glade.h:112
 msgid "Te_xt comment:"
 msgstr "Co_mmentaire :"
 
-#: ../src/glade/gramps.glade.h:111
+#: ../src/glade/gramps.glade.h:114
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -16841,7 +17008,7 @@ msgstr ""
 "  <b>%c</b> - Nom usuel       <b>%C</b> - NOM USUEL\n"
 "  <b>%y</b> - Patronyme       <b>%Y</b> - PATRONYME</tt>"
 
-#: ../src/glade/gramps.glade.h:120
+#: ../src/glade/gramps.glade.h:123
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -16856,237 +17023,237 @@ msgstr ""
 "Très élevé"
 
 # Quelle est la signification de ce Y et son utilisation ? Peut-on mettre A(nnée) ?
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:128
 msgid "Y"
 msgstr "Y"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:129
 msgid "Y_ear"
 msgstr "A_nnée"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:130
 msgid "_Association:"
 msgstr "_Association"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:131
 msgid "_Attribute:"
 msgstr "Attri_but :"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:132
 msgid "_Author:"
 msgstr "_Auteur :"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:133
 msgid "_Bold"
 msgstr "_Gras"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:134
 msgid "_Bottom"
 msgstr "En _bas"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:135
 msgid "_Call number:"
 msgstr "_Numéro d'appel :"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:136
 msgid "_Center"
 msgstr "_Centré"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:137
 msgid "_City/County:"
 msgstr "_Ville/département :"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:138
 msgid "_City:"
 msgstr "_Ville :"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:139
 msgid "_Confidence:"
 msgstr "Niveau de _confiance :"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:140
 msgid "_Date:"
 msgstr "_Date :"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:141
 msgid "_Day"
 msgstr "_Jour"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:142
 msgid "_Description:"
 msgstr "De_scription :"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:143
 msgid "_Display as:"
 msgstr "Affic_her comme :"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:144
 msgid "_Display on startup"
 msgstr "_Afficher au démarrage"
 
 # éviter le raccourci sur le y ou le p
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:145
 msgid "_Event type:"
 msgstr "_Type d'événement :"
 
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:147
 msgid "_Given:"
 msgstr "_Prénom :"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:149
 msgid "_Italic"
 msgstr "_Italique"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:150
 msgid "_Justify"
 msgstr "_Justifié"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:151
 msgid "_Keep Reference"
 msgstr "_Conserver la référence"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:152
 msgid "_Left"
 msgstr "À _gauche"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:153
 msgid "_Longitude:"
 msgstr "_Longitude :"
 
 # éviter le raccourci sur le y ou le p
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:155
 msgid "_Media Type:"
 msgstr "_Type de média :"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:156
 msgid "_Month"
 msgstr "_Mois"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:157
 #: ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Nom :"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:158
 msgid "_Padding:"
 msgstr "_Remplissage :"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:159
 msgid "_Path:"
 msgstr "_Chemin :"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:160
 msgid "_Person:"
 msgstr "_Individu :"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:161
 msgid "_Place Name:"
 msgstr "N_om du lieu :"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:162
 msgid "_Place:"
 msgstr "_Lieu :"
 
 # une note
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:164
 msgid "_Preformatted"
 msgstr "_Préformatée"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:165
 msgid "_Publication Information:"
 msgstr "Information de _publication :"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:166
 msgid "_Publication information:"
 msgstr "_Information de publication :"
 
 # supprimer car efface l'objet
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:167
 msgid "_Remove Object"
 msgstr "_Supprimer l'objet"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:168
 msgid "_Right"
 msgstr "À _droite"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:169
 msgid "_Role:"
 msgstr "_Rôle :"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:170
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:171
 msgid "_Select File"
 msgstr "_Choisir un fichier"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:172
 msgid "_Sort as:"
 msgstr "Trier _comme :"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:173
 msgid "_Spelling:"
 msgstr "_Orthographe :"
 
 # éviter le raccourci sur le g
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:174
 msgid "_State/Province:"
 msgstr "_Région :"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:175
 msgid "_State:"
 msgstr "_Région :"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:176
 msgid "_Status:"
 msgstr "_Statut :"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:177
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:178
 msgid "_Title:"
 msgstr "_Titre :"
 
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:179
 msgid "_Top"
 msgstr "_En-tête"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:181
 msgid "_Underline"
 msgstr "_Souligné"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:182
 msgid "_Use this selection for all missing media files"
 msgstr "_Utiliser cette option pour tous les fichiers média absents"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:183
 msgid "_Value:"
 msgstr "V_aleur :"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:184
 msgid "_Volume/Page:"
 msgstr "_Volume/Page :"
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:185
 msgid "_Web address:"
 msgstr "_Adresse Web :"
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:186
 msgid "_Year"
 msgstr "_Année"
 
-#: ../src/glade/gramps.glade.h:184
+#: ../src/glade/gramps.glade.h:187
 msgid "_ZIP/Postal code:"
 msgstr "_Code postal / INSEE :"
 
-#: ../src/glade/gramps.glade.h:185
+#: ../src/glade/gramps.glade.h:188
 msgid "_Zip/Postal code:"
 msgstr "_Code postal / INSEE :"
 
-#: ../src/glade/gramps.glade.h:187
+#: ../src/glade/gramps.glade.h:190
 msgid "pt"
 msgstr "pt"
 
