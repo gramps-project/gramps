@@ -853,8 +853,8 @@ class MyGrampsView(PageView.PageView):
             cnt += 1
         all_opts["title"] = unique
         if all_opts["title"] not in self.gadget_map:
-        g = make_requested_gadget(self, name, all_opts, 
-                                  self.dbstate, self.uistate)
+            g = make_requested_gadget(self, name, all_opts, 
+                                      self.dbstate, self.uistate)
         if g:
             self.gadget_map[all_opts["title"]] = g
             self.frame_map[str(g.mainframe)] = g
