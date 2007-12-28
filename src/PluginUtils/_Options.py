@@ -347,6 +347,8 @@ class OptionHandler:
                 self.options_dict[option_name] = converter(options[option_name])
             except ValueError:
                 pass
+            except TypeError:
+                pass
 
         for option_name in bad_opts:
             options.pop(option_name)
