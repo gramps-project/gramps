@@ -1,3 +1,15 @@
+2007-12-28  Stéphane Charette <stephanecharette@gmail.com>
+	* src/ReportBase/_GraphvizReportDialog.py
+	* src/plugins/GVFamilyLines.py
+	* src/plugins/GVRelGraph.py
+	* src/plugins/Makefile.am
+	* src/PluginUtils/__init__.py
+	* src/PluginUtils/_MenuOptions.py
+	* po/POTFILES.in
+	Work in progress; partial conversion of FamilyLines to the new
+	GraphViz report class.  (Doesn't yet work, keep using the old one
+	in "Code Generators" until the bugs are fully ironed out.)
+
 2007-12-27  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/DetDescendantReport.py:
 	* src/plugins/DetAncestralReport.py:

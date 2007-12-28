@@ -27,7 +27,10 @@ Abstracted option handling.
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import gobject
 import _Tool as Tool
+import GrampsWidgets
+from Selectors import selector_factory
 
 #-------------------------------------------------------------------------
 #
@@ -159,7 +162,46 @@ class StringOption(Option):
         Parse the string option (single line text).
         """
         return self.gobj.get_text()
-        
+
+#-------------------------------------------------------------------------
+#
+# ColourButtonOption class
+#
+#-------------------------------------------------------------------------
+class ColourButtonOption(Option):
+    """
+    This class describes an option that allows the selection of a colour.
+    """
+    def __init__(self,label,value):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "Males"
+        @type label: string
+        @param value: An initial value for this option.
+            Example: "#ff00a0"
+        @type value: string, interpreted as a colour by gtk.gdk.color_parse()
+        @return: nothing
+        """
+        Option.__init__(self,label,value)
+
+    def make_gui_obj(self, gtk, dialog):
+        """
+        Add a ColorButton to the dialog.
+        """
+        value = self.get_value()
+        self.gobj = gtk.ColorButton(gtk.gdk.color_parse(value))
+
+    def parse(self):
+        """
+        Parse the colour and return as a string.
+        """
+        colour = self.gobj.get_color()
+        value = '#%02x%02x%02x' % (
+            int(colour.red      * 256 / 65536),
+            int(colour.green    * 256 / 65536),
+            int(colour.blue     * 256 / 65536))
+        return value
+
 #-------------------------------------------------------------------------
 #
 # NumberOption class
@@ -542,6 +584,137 @@ class FilterListOption(Option):
         """
         self.__value = int(self.combo.get_active())
         return self.__value
+
+#-------------------------------------------------------------------------
+#
+# PeoplePickerOption class
+#
+#-------------------------------------------------------------------------
+class PeoplePickerOption(Option):
+    """
+    This class describes a widget that allows
+    people from the database to be selected.
+    """
+    def __init__(self, label, value, db):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "People of interest"
+        @type label: string
+        @param value: A set of GIDs as initial values for this option.
+            Example: "111 222 333 444"
+        @type value: set()
+        @return: nothing
+        """
+        self.db = db
+        Option.__init__(self,label,value)
+
+    def make_gui_obj(self, gtk, dialog):
+        """
+        Add a "people picker" widget to the dialog.
+        """
+        value = self.get_value()
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.treeView = gtk.TreeView(self.model)
+        self.treeView.set_size_request(150, 150)
+        col1 = gtk.TreeViewColumn(_('Name'  ), gtk.CellRendererText(), text=0)
+        col2 = gtk.TreeViewColumn(_('ID'    ), gtk.CellRendererText(), text=1)
+        col1.set_resizable(True)
+        col2.set_resizable(True)
+        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sort_column_id(0)
+        col2.set_sort_column_id(1)
+        self.treeView.append_column(col1)
+        self.treeView.append_column(col2)
+        self.scrolledWindow = gtk.ScrolledWindow()
+        self.scrolledWindow.add(self.treeView)
+        self.scrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.scrolledWindow.set_shadow_type(gtk.SHADOW_OUT)
+        self.hbox = gtk.HBox()
+        self.hbox.pack_start(self.scrolledWindow, expand=True, fill=True)
+
+        if not self.db:
+            print "PROBLEM: from where can I obtain or pass in a db parm?"
+        else:
+            for gid in value.split():
+                person = self.db.get_person_from_gramps_id(gid)
+                if person:
+                    name = _nd.display(person)
+                    self.model.append([name, gid])
+
+        # now setup the '+' and '-' pushbutton for adding/removing people from the container
+        self.addPerson = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, self.addPersonClicked)
+        self.delPerson = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, self.delPersonClicked)
+        self.vbbox = gtk.VButtonBox()
+        self.vbbox.add(self.addPerson)
+        self.vbbox.add(self.delPerson)
+        self.vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.hbox.pack_end(self.vbbox, expand=False)
+
+        # parent expects the widget as "self.gobj"
+        self.gobj = self.hbox
+
+    def parse(self):
+        """
+        Parse the object and return.
+        """
+        gidlist = ''
+        iter = self.model.get_iter_first()
+        while (iter):
+            gid = self.model.get_value(iter, 1)
+            gidlist = gidlist + gid + ' '
+            iter = self.model.iter_next(iter)
+        return gidlist
+
+    def addPersonClicked(self, obj):
+        # people we already have must be excluded
+        # so we don't list them multiple times
+        if not self.db:
+            print "PROBLEM: this method needs a db parm, and various other things like db, uistate, and track!"
+
+        skipList = set()
+        iter = self.model.get_iter_first()
+        while (iter):
+            gid = self.model.get_value(iter, 1) # get the GID stored in column #1
+            person = self.db.get_person_from_gramps_id(gid)
+            skipList.add(person.get_handle())
+            iter = self.model.iter_next(iter)
+
+        SelectPerson = selector_factory('Person')
+        sel = SelectPerson(self.dbstate, self.uistate, self.track, skip=skipList)
+        person = sel.run()
+        if person:
+            name = _nd.display(person)
+            gid = person.get_gramps_id()
+            self.model.append([name, gid])
+
+            # if this person has a spouse, ask if we should include the spouse
+            # in the list of "people of interest"
+            familyList = person.get_family_handle_list()
+            if familyList:
+                for familyHandle in familyList:
+                    family = self.db.get_family_from_handle(familyHandle)
+                    spouseHandle = ReportUtils.find_spouse(person, family)
+                    if spouseHandle:
+                        if spouseHandle not in skipList:
+                            spouse = self.db.get_person_from_handle(spouseHandle)
+                            text = _('Also include %s?') % spouse.get_primary_name().get_regular_name()
+                            prompt = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_MODAL, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO, message_format=text)
+                            prompt.set_default_response(gtk.RESPONSE_YES)
+                            prompt.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+                            prompt.set_title(_('Select Person'))
+                            button = prompt.run()
+                            prompt.destroy()
+                            if button == gtk.RESPONSE_YES:
+                                name = _nd.display(spouse)
+                                gid = spouse.get_gramps_id()
+                                self.model.append([name, gid])
+
+    def delPersonClicked(self, obj):
+        (path, column) = self.treeView.get_cursor()
+        if (path):
+            iter = self.model.get_iter(path)
+            self.model.remove(iter)
 
 #-------------------------------------------------------------------------
 #

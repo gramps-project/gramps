@@ -29,7 +29,7 @@
 # of the list.
 from _MenuOptions import MenuOptions, \
     NumberOption, FloatOption, BooleanOption, TextOption, \
-    EnumeratedListOption, FilterListOption, StringOption
+    EnumeratedListOption, FilterListOption, StringOption, ColourButtonOption, PeoplePickerOption
 from _PluginMgr import \
      register_export, register_import, \
      register_tool, register_report, \

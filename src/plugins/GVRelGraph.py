@@ -304,7 +304,14 @@ class RelGraphReport(Report):
         label = u""
         lineDelimiter = '\\n'
 
-        # if we have an image, then start an HTML table; remember to close the table afterwards!
+        # If we have an image, then start an HTML table; remember to close the table afterwards!
+        #
+        # This isn't a free-form HTML format here...just a few keywords that happen to be
+        # simillar to keywords commonly seen in HTML.  For additional information on what
+        # is allowed, see:
+        #
+        #       http://www.graphviz.org/info/shapes.html#html
+        #
         if self.bUseHtmlOutput and imagePath:
             lineDelimiter = '<BR/>'
             label += '<TABLE BORDER="0" CELLSPACING="2" CELLPADDING="0" CELLBORDER="0"><TR><TD></TD><TD><IMG SRC="%s"/></TD><TD></TD>'  % imagePath
@@ -504,3 +511,4 @@ register_report(
     author_name ="Brian G. Matherly",
     author_email ="brian@gramps-project.org"
     )
+

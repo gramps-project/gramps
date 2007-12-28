@@ -37,6 +37,7 @@ pkgdata_PYTHON = \
 	FanChart.py\
 	FindDupes.py\
 	GraphViz.py\
+	GVFamilyLines.py \
 	GVHourGlass.py\
 	GVRelGraph.py\
 	ImportCSV.py\

@@ -104,7 +104,7 @@ else:
 #-------------------------------------------------------------------------------
 class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
     """
-    Base document generator for all Graphiz codument generators. Classes that
+    Base document generator for all Graphiz document generators. Classes that
     inherit from this class will only need to implement the close function.
     The close function will generate the actual file of the appropriate type.
     """
@@ -156,29 +156,29 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         sizew = sizew * self.hpages         
         sizeh = sizeh * self.vpages
                       
-        self.dot.write( 'digraph GRAMPS_graph\n'           )
-        self.dot.write( '{\n'                              )
-        self.dot.write( '  bgcolor=white;\n'               )
-        self.dot.write( '  center="true"; \n'              )
-        self.dot.write( '  charset="iso-8859-1";\n'        )
-        self.dot.write( '  concentrate="false";\n'         )
-        self.dot.write( '  dpi="%d";\n'                    % self.dpi          )
-        self.dot.write( '  graph [fontsize=%d];\n'         % self.fontsize     )
-        self.dot.write( '  mclimit="99";\n'                )
-        self.dot.write( '  nodesep="%.2f";\n'              % self.nodesep      )
-        self.dot.write( '  outputorder="edgesfirst";\n'    )
-        self.dot.write( '  page="%3.2f,%3.2f"; \n'         % (pwidth, pheight) )
-        self.dot.write( '  pagedir="%s"; \n'               % self.pagedir      )
-        self.dot.write( '  rankdir="%s"; \n'               % self.rankdir      )
-        self.dot.write( '  ranksep="%.2f";\n'              % self.ranksep      )
-        self.dot.write( '  ratio="%s"; \n'                 % self.ratio        )
-        self.dot.write( '  rotate="%d"; \n'                % rotate            )
-        self.dot.write( '  searchsize="100";\n'            )
-        self.dot.write( '  size="%3.2f,%3.2f"; \n'         % (sizew, sizeh)    )
-        self.dot.write( '  splines="true";\n'              )
-        self.dot.write( '\n'                               )
+        self.dot.write( 'digraph GRAMPS_graph\n'        )
+        self.dot.write( '{\n'                           )
+        self.dot.write( '  bgcolor=white;\n'            )
+        self.dot.write( '  center="true"; \n'           )
+        self.dot.write( '  charset="iso-8859-1";\n'     )
+        self.dot.write( '  concentrate="false";\n'      )
+        self.dot.write( '  dpi="%d";\n'                 % self.dpi          )
+        self.dot.write( '  graph [fontsize=%d];\n'      % self.fontsize     )
+        self.dot.write( '  mclimit="99";\n'             )
+        self.dot.write( '  nodesep="%.2f";\n'           % self.nodesep      )
+        self.dot.write( '  outputorder="edgesfirst";\n' )
+        self.dot.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
+        self.dot.write( '  pagedir="%s";\n'             % self.pagedir      )
+        self.dot.write( '  rankdir="%s";\n'             % self.rankdir      )
+        self.dot.write( '  ranksep="%.2f";\n'           % self.ranksep      )
+        self.dot.write( '  ratio="%s";\n'               % self.ratio        )
+        self.dot.write( '  rotate="%d";\n'              % rotate            )
+        self.dot.write( '  searchsize="100";\n'         )
+        self.dot.write( '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh)    )
+        self.dot.write( '  splines="true";\n'           )
+        self.dot.write( '\n'                            )
         self.dot.write( '  edge [len=0.5 style=solid arrowhead=none '
-                        'arrowtail=normal fontsize=%d];\n' % self.fontsize )
+                            'arrowtail=normal fontsize=%d];\n' % self.fontsize )
         if self.fontfamily:
             self.dot.write( '  node [style=filled fontname="%s" fontsize=%d];\n' 
                             % ( self.fontfamily, self.fontsize ) )
@@ -785,8 +785,12 @@ class GraphvizReportDialog(ReportDialog):
                                 "in longer lines and larger graphs."))
         self.options.add_menu_option(category, "usesubgraphs", usesubgraphs)
 
+        # this control only affects a subset of graphviz-based reports, so we
+        # need to remember it since we'll be toggling the visibility
+        self.usesubgraphs = usesubgraphs
+
         ################################
-        category = _("Notes")
+        category = _("Note")
         ################################
         
         note = TextOption(_("Note to add to the graph"), 
@@ -808,12 +812,24 @@ class GraphvizReportDialog(ReportDialog):
         self.options.load_previous_values()
 
     def pages_changed(self, sp):
-        if self.v_pages.gobj.get_value_as_int() > 1 or \
-           self.h_pages.gobj.get_value_as_int() > 1:
+        # this method gets called every time the v_pages or h_pages
+        # spinbuttons are changed; when both vertical and horizontal
+        # pages are set to "1", then the page_dir control needs to
+        # be grayed out
+        if  self.v_pages.gobj.get_value_as_int() > 1 or \
+            self.h_pages.gobj.get_value_as_int() > 1:
             self.page_dir.combo.set_sensitive(True)
         else:
             self.page_dir.combo.set_sensitive(False)
         
+    def report_allows_subgraphs(self, state):
+        # if your report can take advantage of subgraphs, call this
+        # method to allow the users to toggle the state of subgraphs
+        if state:
+            self.usesubgraphs.gobj.show()
+        else:
+            self.usesubgraphs.gobj.hide()
+
     def init_interface(self):
         ReportDialog.init_interface(self)
         self.doc_type_changed(self.format_menu)
@@ -825,7 +841,11 @@ class GraphvizReportDialog(ReportDialog):
         # number of horizontal and/or vertical pages is > 1
         self.h_pages.gobj.connect('value-changed', self.pages_changed)
         self.v_pages.gobj.connect('value-changed', self.pages_changed)
-        self.pages_changed(self.h_pages)
+        self.pages_changed(self.h_pages.gobj)
+
+        # note that the "use subgraph" option isn't used by many reports,
+        # so we'll hide it unless a reports specifically asks for it
+        self.report_allows_subgraphs(False)
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog."""
