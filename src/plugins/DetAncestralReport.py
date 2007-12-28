@@ -44,15 +44,12 @@ import gtk
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import register_report, NumberOption, BooleanOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes
-
 import BaseDoc
-import Utils
 import DateHandler
-from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer as _nd
 
 #------------------------------------------------------------------------
@@ -653,91 +650,97 @@ class DetAncestorReport(Report):
 
 #------------------------------------------------------------------------
 #
-#
+# DetAncestorOptions
 #
 #------------------------------------------------------------------------
-class DetAncestorOptions(ReportOptions):
+class DetAncestorOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
+        MenuReportOptions.__init__(self,name,person_id)
+        
+    def add_menu_options(self,menu):
+        category_name = _("Report Options")
+        
+        gen = NumberOption(_("Generations"),10,1,100)
+        gen.set_help(_("The number of generations to include in the report"))
+        menu.add_option(category_name,"gen",gen)
+        
+        pagebbg = BooleanOption(_("Page break between generations"),False)
+        pagebbg.set_help(
+                     _("Whether to start a new page after each generation."))
+        menu.add_option(category_name,"pagebbg",pagebbg)
+        
+        category_name = _("Content")
 
-        # Options specific for this report
-        self.options_dict = {
-            'gen'           : 10,
-            'pagebbg'       : 0,
-            'fulldates'     : 1,
-            'listc'         : 1,
-            'incnotes'      : 1,
-            'incattrs'      : 0,
-            'usecall'       : 1,
-            'repplace'      : 0,
-            'repdate'       : 0,
-            'computeage'    : 1,
-            'omitda'        : 1,
-            'desref'        : 1,
-            'incphotos'     : 0,
-            'incnames'      : 0,
-            'incevents'     : 0,
-            'incaddresses'  : 0,
-            'incsources'    : 0,
-        }
-        self.options_help = {
-            'gen'           : ("=int","Generations",
-                            "The number of generations to include in the report",
-                            True),
-            'pagebbg'       : ("=0/1","Page Break Between Generations",
-                            ["No line break", "Insert line break"],
-                            False),
-            'fulldates'     : ("=0/1","Whether to use full dates instead of just year.",
-                            ["Do not use full dates","Use full dates"],
-                            True),
-            'listc'         : ("=0/1","Whether to list children.",
-                            ["Do not list children","List children"],
-                            True),
-            'incnotes'      : ("=0/1","Whether to include notes.",
-                            ["Do not include notes","Include notes"],
-                            True),
-            'incattrs'      : ("=0/1","Whether to include attributes.",
-                            ["Do not include attributes","Include attributes"],
-                            True),
-            'usecall'       : ("=0/1","Whether to use the call name as the first name.",
-                            ["Do not use call name","Use call name"],
-                            True),
-            'repplace'      : ("=0/1","Whether to replace missing Places with blanks.",
-                            ["Do not replace missing Places","Replace missing Places"],
-                            True),
-            'repdate'       : ("=0/1","Whether to replace missing Dates with blanks.",
-                            ["Do not replace missing Dates","Replace missing Dates"],
-                            True),
-            'computeage'    : ("=0/1","Whether to compute age.",
-                            ["Do not compute age","Compute age"],
-                            True),
-            'omitda'        : ("=0/1","Whether to omit duplicate ancestors.",
-                            ["Do not omit duplicates","Omit duplicates"],
-                            True),
-            'desref'        : ("=0/1","Whether to add descendant references in child list.",
-                            ["Do not add references","Add references"],
-                            True),
-            'incphotos'     : ("=0/1","Whether to include images.",
-                            ["Do not include images","Include images"],
-                            True),
-            'incnames'      : ("=0/1","Whether to include other names.",
-                            ["Do not include other names","Include other names"],
-                            True),
-            'incevents'     : ("=0/1","Whether to include events.",
-                            ["Do not include events","Include events"],
-                            True),
-            'incaddresses': ("=0/1","Whether to include addresses.",
-                            ["Do not include addresses","Include addresses"],
-                            True),
-            'incsources'    : ("=0/1","Whether to include source references.",
-                            ["Do not include sources","Include sources"],
-                            True),
-        }
+        usecall = BooleanOption(_("Use callname for common name"),False)
+        usecall.set_help(_("Whether to use the call name as the first name."))
+        menu.add_option(category_name,"usecall",usecall)
+        
+        fulldates = BooleanOption(
+                              _("Use full dates instead of only the year"),True)
+        fulldates.set_help(_("Whether to use full dates instead of just year."))
+        menu.add_option(category_name,"fulldates",fulldates)
+        
+        listc = BooleanOption(_("List children"),True)
+        listc.set_help(_("Whether to list children."))
+        menu.add_option(category_name,"listc",listc)
+        
+        computeage = BooleanOption(_("Compute age"),True)
+        computeage.set_help(_("Whether to compute age."))
+        menu.add_option(category_name,"computeage",computeage)
+        
+        omitda = BooleanOption(_("Omit duplicate ancestors"),True)
+        omitda.set_help(_("Whether to omit duplicate ancestors."))
+        menu.add_option(category_name,"omitda",omitda)
+
+        desref = BooleanOption(_("Add descendant reference in child list"),True)
+        desref.set_help(
+                    _("Whether to add descendant references in child list."))
+        menu.add_option(category_name,"desref",desref)
+
+        category_name = _("Include")
+        
+        incnotes = BooleanOption(_("Include notes"),True)
+        incnotes.set_help(_("Whether to include notes."))
+        menu.add_option(category_name,"incnotes",incnotes)
+
+        incattrs = BooleanOption(_("Include attributes"),False)
+        incattrs.set_help(_("Whether to include attributes."))
+        menu.add_option(category_name,"incattrs",incattrs)
+        
+        incphotos = BooleanOption(_("Include Photo/Images from Gallery"),False)
+        incphotos.set_help(_("Whether to include images."))
+        menu.add_option(category_name,"incphotos",incphotos)
+
+        incnames = BooleanOption(_("Include alternative names"),False)
+        incnames.set_help(_("Whether to include other names."))
+        menu.add_option(category_name,"incnames",incnames)
+
+        incevents = BooleanOption(_("Include events"),False)
+        incevents.set_help(_("Whether to include events."))
+        menu.add_option(category_name,"incevents",incevents)
+
+        incaddresses = BooleanOption(_("Include addresses"),False)
+        incaddresses.set_help(_("Whether to include addresses."))
+        menu.add_option(category_name,"incaddresses",incaddresses)
+
+        incsources = BooleanOption(_("Include sources"),False)
+        incsources.set_help(_("Whether to include source references."))
+        menu.add_option(category_name,"incsources",incsources)
+        
+        category_name = _("Missing information")        
+
+        repplace = BooleanOption(_("Replace missing places with ______"),False)
+        repplace.set_help(_("Whether to replace missing Places with blanks."))
+        menu.add_option(category_name,"repplace",repplace)
+
+        repdate = BooleanOption(_("Replace missing dates with ______"),False)
+        repdate.set_help(_("Whether to replace missing Dates with blanks."))
+        menu.add_option(category_name,"repdate",repdate)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Detailed Ancestral Report"""
@@ -826,120 +829,6 @@ class DetAncestorOptions(ReportOptions):
         default_style.add_paragraph_style("DAR-MoreDetails",para)
 
         Endnotes.add_endnote_styles(default_style)
-
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add a menu that allows
-        the user to select the sort method.
-        """
-        self.max_gen = gtk.SpinButton(gtk.Adjustment(1,1,100,1))
-        self.max_gen.set_value(self.options_dict['gen'])
-        
-        self.cb_pagebreak = gtk.CheckButton (_("Page break between generations"))
-        self.cb_pagebreak.set_active (self.options_dict['pagebbg'])
-
-        # Full date usage
-        self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
-        self.full_date_option.set_active(self.options_dict['fulldates'])
-
-        # Children List
-        self.list_children_option = gtk.CheckButton(_("List children"))
-        self.list_children_option.set_active(self.options_dict['listc'])
-
-        # Print notes
-        self.include_notes_option = gtk.CheckButton(_("Include notes"))
-        self.include_notes_option.set_active(self.options_dict['incnotes'])
-    
-        # Print attributes
-        self.include_attributes_option = gtk.CheckButton(_("Include attributes"))
-        self.include_attributes_option.set_active(self.options_dict['incattrs'])
-
-        # Print callname
-        self.usecall = gtk.CheckButton(_("Use callname for common name"))
-        self.usecall.set_active(self.options_dict['usecall'])
-
-        # Replace missing Place with ___________
-        self.place_option = gtk.CheckButton(_("Replace missing places with ______"))
-        self.place_option.set_active(self.options_dict['repplace'])
-
-        # Replace missing dates with __________
-        self.date_option = gtk.CheckButton(_("Replace missing dates with ______"))
-        self.date_option.set_active(self.options_dict['repdate'])
-
-        # Add "Died at the age of NN" in text
-        self.age_option = gtk.CheckButton(_("Compute age"))
-        self.age_option.set_active(self.options_dict['computeage'])
-
-        # Omit duplicate persons, occurs when distant cousins marry
-        self.dupPersons_option = gtk.CheckButton(_("Omit duplicate ancestors"))
-        self.dupPersons_option.set_active(self.options_dict['omitda'])
-
-        #Add descendant reference in child list
-        self.childRef_option = gtk.CheckButton(_("Add descendant reference in child list"))
-        self.childRef_option.set_active(self.options_dict['desref'])
-
-        #Add photo/image reference
-        self.image_option = gtk.CheckButton(_("Include Photo/Images from Gallery"))
-        self.image_option.set_active(self.options_dict['incphotos'])
-
-        # Print alternative names
-        self.include_names_option = gtk.CheckButton(_("Include alternative names"))
-        self.include_names_option.set_active(self.options_dict['incnames'])
-
-        # Print events
-        self.include_events_option = gtk.CheckButton(_("Include events"))
-        self.include_events_option.set_active(self.options_dict['incevents'])
-        
-        # Print addresses
-        self.include_addresses_option = gtk.CheckButton(_("Include addresses"))
-        self.include_addresses_option.set_active(self.options_dict['incaddresses'])
-
-        # Print sources
-        self.include_sources_option = gtk.CheckButton(_("Include sources"))
-        self.include_sources_option.set_active(self.options_dict['incsources'])
-
-        # Add new options. The first argument is the tab name for grouping options.
-        # if you want to put everyting in the generic "Options" category, use
-        # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
-        dialog.add_option(_('Generations'),self.max_gen)
-        dialog.add_option ('', self.cb_pagebreak)
-        dialog.add_frame_option(_('Content'),'',self.usecall)
-        dialog.add_frame_option(_('Content'),'',self.full_date_option)
-        dialog.add_frame_option(_('Content'),'',self.list_children_option)
-        dialog.add_frame_option(_('Content'),'',self.age_option)
-        dialog.add_frame_option(_('Content'),'',self.dupPersons_option)
-        dialog.add_frame_option(_('Content'),'',self.childRef_option)
-        dialog.add_frame_option(_('Include'),'',self.image_option)
-        dialog.add_frame_option(_('Include'),'',self.include_notes_option)
-        dialog.add_frame_option(_('Include'),'',self.include_attributes_option)
-        dialog.add_frame_option(_('Include'),'',self.include_names_option)
-        dialog.add_frame_option(_('Include'),'',self.include_events_option)
-        dialog.add_frame_option(_('Include'),'',self.include_addresses_option)
-        dialog.add_frame_option(_('Include'),'',self.include_sources_option)
-        dialog.add_frame_option(_('Missing information'),'',self.place_option)
-        dialog.add_frame_option(_('Missing information'),'',self.date_option)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        self.options_dict['gen'] = self.max_gen.get_value_as_int()
-        self.options_dict['pagebbg'] = int(self.cb_pagebreak.get_active ())
-        self.options_dict['fulldates'] = int(self.full_date_option.get_active())
-        self.options_dict['listc'] = int(self.list_children_option.get_active())
-        self.options_dict['incnotes'] = int(self.include_notes_option.get_active())
-        self.options_dict['incattrs'] = int(self.include_attributes_option.get_active())
-        self.options_dict['usecall'] = int(self.usecall.get_active())
-        self.options_dict['repplace'] = int(self.place_option.get_active())
-        self.options_dict['repdate'] = int(self.date_option.get_active())
-        self.options_dict['computeage'] = int(self.age_option.get_active())
-        self.options_dict['omitda'] = int(self.dupPersons_option.get_active())
-        self.options_dict['desref'] = int(self.childRef_option.get_active())
-        self.options_dict['incphotos'] = int(self.image_option.get_active())
-        self.options_dict['incnames'] = int(self.include_names_option.get_active())
-        self.options_dict['incevents'] = int(self.include_events_option.get_active())
-        self.options_dict['incaddresses'] = int(self.include_addresses_option.get_active())
-        self.options_dict['incsources'] = int(self.include_sources_option.get_active())
 
 #------------------------------------------------------------------------
 #

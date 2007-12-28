@@ -1,3 +1,8 @@
+2007-12-27  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DetAncestralReport.py:
+	Convert to use MenuOption
+
 2007-12-27  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/PluginUtils/_Options.py: Bug #1486, type error on option read
 
