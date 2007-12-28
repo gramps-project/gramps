@@ -9,14 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 2.0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-20 14:53+0100\n"
-"PO-Revision-Date: 2007-12-22 15:03+0100\n"
+"POT-Creation-Date: 2007-12-24 17:49-0800\n"
+"PO-Revision-Date: 2007-12-28 09:37+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-Language: Czech\n"
+"X-Poedit-Country: CZECH REPUBLIC\n"
+"X-Poedit-Bookmarks: 2035,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../src/AddMedia.py:97
 msgid "Select a media object"
@@ -114,7 +117,7 @@ msgstr "Databáze GRAMPSu"
 #: ../src/Assistant.py:337
 #: ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:89
 #: ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
@@ -139,7 +142,7 @@ msgstr "Stát/Provincie:"
 
 #: ../src/Assistant.py:341
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
-#: ../src/glade/gramps.glade.h:59
+#: ../src/glade/gramps.glade.h:60
 #: ../src/plugins/ownereditor.glade.h:5
 msgid "Country:"
 msgstr "Země:"
@@ -169,21 +172,21 @@ msgstr "Editace záložek"
 #. Add column with object name
 #: ../src/Bookmarks.py:206
 #: ../src/GrampsCfg.py:172
-#: ../src/ScratchPad.py:172
-#: ../src/ScratchPad.py:244
-#: ../src/ScratchPad.py:354
-#: ../src/ScratchPad.py:410
-#: ../src/ScratchPad.py:443
-#: ../src/ScratchPad.py:504
-#: ../src/ScratchPad.py:535
-#: ../src/ScratchPad.py:552
-#: ../src/ScratchPad.py:553
-#: ../src/ScratchPad.py:572
-#: ../src/ScratchPad.py:622
-#: ../src/ScratchPad.py:655
-#: ../src/ScratchPad.py:709
-#: ../src/ScratchPad.py:720
-#: ../src/ScratchPad.py:799
+#: ../src/ScratchPad.py:185
+#: ../src/ScratchPad.py:257
+#: ../src/ScratchPad.py:367
+#: ../src/ScratchPad.py:423
+#: ../src/ScratchPad.py:456
+#: ../src/ScratchPad.py:517
+#: ../src/ScratchPad.py:548
+#: ../src/ScratchPad.py:565
+#: ../src/ScratchPad.py:566
+#: ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:635
+#: ../src/ScratchPad.py:668
+#: ../src/ScratchPad.py:722
+#: ../src/ScratchPad.py:733
+#: ../src/ScratchPad.py:812
 #: ../src/ToolTips.py:173
 #: ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210
@@ -196,7 +199,7 @@ msgstr "Editace záložek"
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 #: ../src/Editors/_EditFamily.py:97
-#: ../src/Editors/_EditName.py:225
+#: ../src/Editors/_EditName.py:274
 #: ../src/Selectors/_SelectPerson.py:48
 #: ../src/Selectors/_SelectPerson.py:120
 #: ../src/Selectors/_SelectPerson.py:126
@@ -500,7 +503,7 @@ msgstr "Exportovat"
 
 #: ../src/DbManager.py:98
 #: ../src/gen/lib/repotype.py:55
-#: ../src/glade/gramps.glade.h:42
+#: ../src/glade/gramps.glade.h:43
 msgid "Archive"
 msgstr "Archiv"
 
@@ -634,7 +637,7 @@ msgid "Could not make database directory: "
 msgstr "Nemohu vytvořit adresář databáze: "
 
 #: ../src/DbManager.py:851
-#: ../src/ScratchPad.py:80
+#: ../src/ScratchPad.py:93
 #: ../src/DataViews/_RelationView.py:389
 #: ../src/DataViews/_RelationView.py:830
 #: ../src/DataViews/_RelationView.py:868
@@ -921,8 +924,17 @@ msgid "Preferences"
 msgstr "Nastavení"
 
 #: ../src/GrampsCfg.py:144
+#: ../src/Editors/_EditEventRef.py:88
+#: ../src/Editors/_EditEventRef.py:94
+#: ../src/Editors/_EditMediaRef.py:83
+#: ../src/Editors/_EditMediaRef.py:89
+#: ../src/Editors/_EditName.py:123
+#: ../src/Editors/_EditRepoRef.py:82
+#: ../src/Editors/_EditRepoRef.py:88
+#: ../src/Editors/_EditSourceRef.py:77
+#: ../src/Editors/_EditSourceRef.py:83
 #: ../src/gen/lib/notetype.py:80
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:77
 msgid "General"
 msgstr "Obecné"
 
@@ -948,8 +960,8 @@ msgstr "Barvy značek"
 
 #: ../src/GrampsCfg.py:173
 #: ../src/gramps_main.py:98
-#: ../src/ScratchPad.py:138
-#: ../src/ScratchPad.py:155
+#: ../src/ScratchPad.py:151
+#: ../src/ScratchPad.py:168
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
 #: ../src/Editors/_EditAddress.py:147
 #: ../src/plugins/FamilyGroup.py:295
@@ -1015,13 +1027,13 @@ msgstr "Osoba"
 #. get the family events
 #: ../src/GrampsCfg.py:188
 #: ../src/gramps_main.py:107
-#: ../src/ScratchPad.py:556
+#: ../src/ScratchPad.py:569
 #: ../src/ToolTips.py:228
 #: ../src/DataViews/_RelationView.py:454
 #: ../src/DataViews/_RelationView.py:1115
 #: ../src/DataViews/_RelationView.py:1139
 #: ../src/Editors/_EditFamily.py:471
-#: ../src/plugins/all_events.py:80
+#: ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266
 #: ../src/gen/lib/eventroletype.py:57
 #: ../src/FilterEditor/_EditRule.py:269
@@ -1029,9 +1041,9 @@ msgid "Family"
 msgstr "Rodina"
 
 #: ../src/GrampsCfg.py:189
-#: ../src/ScratchPad.py:234
-#: ../src/ScratchPad.py:264
-#: ../src/ScratchPad.py:342
+#: ../src/ScratchPad.py:247
+#: ../src/ScratchPad.py:277
+#: ../src/ScratchPad.py:355
 #: ../src/DataViews/_EventView.py:75
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -1050,15 +1062,15 @@ msgid "Source"
 msgstr "Pramen"
 
 #: ../src/GrampsCfg.py:191
-#: ../src/ScratchPad.py:606
 #: ../src/ScratchPad.py:619
+#: ../src/ScratchPad.py:632
 #: ../src/Editors/_EditPerson.py:442
 #: ../src/FilterEditor/_EditRule.py:273
 msgid "Media Object"
 msgstr "Objekt"
 
 #: ../src/GrampsCfg.py:192
-#: ../src/ScratchPad.py:231
+#: ../src/ScratchPad.py:244
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:123
 #: ../src/FilterEditor/_EditRule.py:270
 msgid "Event"
@@ -1154,7 +1166,7 @@ msgstr "Příjmení"
 #: ../src/GrampsCfg.py:341
 #: ../src/GrampsCfg.py:342
 #: ../src/GrampsCfg.py:343
-#: ../src/ScratchPad.py:555
+#: ../src/ScratchPad.py:568
 #: ../src/Utils.py:1100
 #: ../src/BasicUtils/_NameDisplay.py:107
 msgid "Given"
@@ -1166,7 +1178,7 @@ msgstr "Křestní jméno"
 #: ../src/GrampsCfg.py:335
 #: ../src/GrampsCfg.py:337
 #: ../src/GrampsCfg.py:342
-#: ../src/ScratchPad.py:560
+#: ../src/ScratchPad.py:573
 #: ../src/Utils.py:1103
 msgid "Suffix"
 msgstr "Přípona"
@@ -1201,7 +1213,7 @@ msgid "SURNAME"
 msgstr "PŘÍJMENÍ"
 
 #: ../src/GrampsCfg.py:336
-#: ../src/ScratchPad.py:557
+#: ../src/ScratchPad.py:570
 #: ../src/Utils.py:1104
 msgid "Patronymic"
 msgstr "Jméno po otci"
@@ -1232,7 +1244,7 @@ msgstr "Formát jména"
 
 #: ../src/GrampsCfg.py:610
 #: ../src/DataViews/_RelationView.py:326
-#: ../src/DisplayTabs/_ButtonTab.py:64
+#: ../src/DisplayTabs/_ButtonTab.py:69
 #: ../src/plugins/BookReport.py:867
 msgid "Edit"
 msgstr "Upravit"
@@ -1356,8 +1368,8 @@ msgid "Family Trees"
 msgstr "Rodokmeny"
 
 #: ../src/gramps_main.py:99
-#: ../src/ScratchPad.py:389
-#: ../src/ScratchPad.py:397
+#: ../src/ScratchPad.py:402
+#: ../src/ScratchPad.py:410
 #: ../src/Editors/_EditAttribute.py:135
 msgid "Attribute"
 msgstr "Atribut"
@@ -1367,9 +1379,9 @@ msgid "Add Bookmark"
 msgstr "Přidat záložku"
 
 #: ../src/gramps_main.py:104
-#: ../src/ScratchPad.py:156
-#: ../src/ScratchPad.py:233
-#: ../src/ScratchPad.py:341
+#: ../src/ScratchPad.py:169
+#: ../src/ScratchPad.py:246
+#: ../src/ScratchPad.py:354
 #: ../src/DataViews/_EventView.py:74
 #: ../src/DataViews/_MediaView.py:88
 #: ../src/DisplayTabs/_AddrEmbedList.py:60
@@ -1430,7 +1442,7 @@ msgstr "Média"
 #: ../src/plugins/GraphViz.py:986
 #: ../src/plugins/IndivComplete.py:168
 #: ../src/plugins/MarkerReport.py:371
-#: ../src/ReportBase/_GraphvizReportDialog.py:676
+#: ../src/ReportBase/_GraphvizReportDialog.py:739
 msgid "Notes"
 msgstr "Poznámky"
 
@@ -1488,9 +1500,9 @@ msgid "Repositories"
 msgstr "Zdroje"
 
 #: ../src/gramps_main.py:123
-#: ../src/ScratchPad.py:171
-#: ../src/ScratchPad.py:409
-#: ../src/ScratchPad.py:442
+#: ../src/ScratchPad.py:184
+#: ../src/ScratchPad.py:422
+#: ../src/ScratchPad.py:455
 #: ../src/DataViews/_SourceView.py:97
 #: ../src/DisplayTabs/_SourceEmbedList.py:69
 #: ../src/plugins/IndivComplete.py:367
@@ -1682,8 +1694,8 @@ msgid "No note given, click button to select one"
 msgstr ""
 
 #: ../src/GrampsWidgets.py:1033
-#: ../src/Editors/_EditNote.py:301
-#: ../src/Editors/_EditNote.py:431
+#: ../src/Editors/_EditNote.py:354
+#: ../src/Editors/_EditNote.py:484
 msgid "Edit Note"
 msgstr "Upravit poznámku"
 
@@ -1842,23 +1854,23 @@ msgstr "action|_Upravit"
 msgid "_Filter"
 msgstr "_Filtr"
 
-#: ../src/PageView.py:1003
-#: ../src/DataViews/_PersonView.py:903
+#: ../src/PageView.py:1004
+#: ../src/DataViews/_PersonView.py:904
 msgid "Export view as spreadsheet"
 msgstr "Exportovat náhled jako tabulku"
 
-#: ../src/PageView.py:1011
-#: ../src/DataViews/_PersonView.py:911
+#: ../src/PageView.py:1012
+#: ../src/DataViews/_PersonView.py:912
 msgid "Format:"
 msgstr "Formát:"
 
-#: ../src/PageView.py:1016
-#: ../src/DataViews/_PersonView.py:916
+#: ../src/PageView.py:1017
+#: ../src/DataViews/_PersonView.py:917
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1017
-#: ../src/DataViews/_PersonView.py:917
+#: ../src/PageView.py:1018
+#: ../src/DataViews/_PersonView.py:918
 msgid "Open Document Spreadsheet"
 msgstr "Tabulka Open Document"
 
@@ -2120,36 +2132,37 @@ msgstr "Přeskupit vazby"
 msgid "Reorder Relationships: %s"
 msgstr "Přeskupit vazby: %s"
 
-#: ../src/ScratchPad.py:157
-#: ../src/ScratchPad.py:184
-#: ../src/ScratchPad.py:196
+#: ../src/ScratchPad.py:170
+#: ../src/ScratchPad.py:197
+#: ../src/ScratchPad.py:209
 #: ../src/ToolTips.py:142
+#: ../src/Editors/_EditPlace.py:124
 msgid "Location"
 msgstr "Umístění"
 
-#: ../src/ScratchPad.py:163
-#: ../src/ScratchPad.py:201
+#: ../src/ScratchPad.py:176
+#: ../src/ScratchPad.py:214
 #: ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Telefon"
 
-#: ../src/ScratchPad.py:213
+#: ../src/ScratchPad.py:226
 #, fuzzy
 msgid "Event Link"
 msgstr "Události chybí"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:232
-#: ../src/ScratchPad.py:340
-#: ../src/ScratchPad.py:398
-#: ../src/ScratchPad.py:431
-#: ../src/ScratchPad.py:561
-#: ../src/ScratchPad.py:621
-#: ../src/ScratchPad.py:654
-#: ../src/ScratchPad.py:800
-#: ../src/ScratchPad.py:872
-#: ../src/ScratchPad.py:878
+#: ../src/ScratchPad.py:245
+#: ../src/ScratchPad.py:353
+#: ../src/ScratchPad.py:411
+#: ../src/ScratchPad.py:444
+#: ../src/ScratchPad.py:574
+#: ../src/ScratchPad.py:634
+#: ../src/ScratchPad.py:667
+#: ../src/ScratchPad.py:813
+#: ../src/ScratchPad.py:885
+#: ../src/ScratchPad.py:891
 #: ../src/Merge/_MergePerson.py:172
 #: ../src/DataViews/_EventView.py:73
 #: ../src/DataViews/_MediaView.py:85
@@ -2167,7 +2180,7 @@ msgstr "Události chybí"
 #: ../src/Selectors/_SelectEvent.py:60
 #: ../src/Selectors/_SelectNote.py:62
 #: ../src/Selectors/_SelectObject.py:74
-#: ../src/plugins/siblings.py:62
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/BookReport.py:656
 #: ../src/plugins/BookReport.py:657
 #: ../src/plugins/MarkerReport.py:388
@@ -2179,15 +2192,15 @@ msgstr "Události chybí"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/ScratchPad.py:235
-#: ../src/ScratchPad.py:343
+#: ../src/ScratchPad.py:248
+#: ../src/ScratchPad.py:356
 #: ../src/gen/lib/attrtype.py:64
 msgid "Cause"
 msgstr "Důvod"
 
-#: ../src/ScratchPad.py:236
-#: ../src/ScratchPad.py:344
-#: ../src/ScratchPad.py:378
+#: ../src/ScratchPad.py:249
+#: ../src/ScratchPad.py:357
+#: ../src/ScratchPad.py:391
 #: ../src/DataViews/_EventView.py:71
 #: ../src/DisplayTabs/_EventEmbedList.py:61
 #: ../src/DisplayTabs/_WebEmbedList.py:55
@@ -2198,19 +2211,20 @@ msgstr "Důvod"
 msgid "Description"
 msgstr "Popis"
 
-#: ../src/ScratchPad.py:243
-#: ../src/ScratchPad.py:353
-#: ../src/ScratchPad.py:571
-#: ../src/ScratchPad.py:719
+#: ../src/ScratchPad.py:256
+#: ../src/ScratchPad.py:366
+#: ../src/ScratchPad.py:584
+#: ../src/ScratchPad.py:732
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Primární pramen"
 
-#: ../src/ScratchPad.py:293
+#: ../src/ScratchPad.py:306
 #: ../src/ToolTips.py:159
 #: ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:78
 #: ../src/Editors/_EditMedia.py:140
+#: ../src/Editors/_EditNote.py:194
 #: ../src/plugins/FamilyGroup.py:313
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
@@ -2222,41 +2236,41 @@ msgstr "Primární pramen"
 msgid "Note"
 msgstr "Poznámka"
 
-#: ../src/ScratchPad.py:326
 #: ../src/ScratchPad.py:339
+#: ../src/ScratchPad.py:352
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:108
 msgid "Family Event"
 msgstr "Rodinná událost"
 
-#: ../src/ScratchPad.py:367
-#: ../src/ScratchPad.py:375
+#: ../src/ScratchPad.py:380
+#: ../src/ScratchPad.py:388
 msgid "Url"
 msgstr "Url"
 
-#: ../src/ScratchPad.py:376
+#: ../src/ScratchPad.py:389
 #: ../src/DataViews/_MediaView.py:86
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Path"
 msgstr "Cesta"
 
-#: ../src/ScratchPad.py:400
-#: ../src/ScratchPad.py:433
-#: ../src/ScratchPad.py:874
-#: ../src/ScratchPad.py:880
+#: ../src/ScratchPad.py:413
+#: ../src/ScratchPad.py:446
+#: ../src/ScratchPad.py:887
+#: ../src/ScratchPad.py:893
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
 #: ../src/DisplayTabs/_DataEmbedList.py:50
 #: ../src/plugins/PatchNames.py:206
 msgid "Value"
 msgstr "Hodnota"
 
-#: ../src/ScratchPad.py:422
-#: ../src/ScratchPad.py:430
+#: ../src/ScratchPad.py:435
+#: ../src/ScratchPad.py:443
 msgid "Family Attribute"
 msgstr "Rodinné atributy"
 
-#: ../src/ScratchPad.py:455
-#: ../src/ScratchPad.py:476
+#: ../src/ScratchPad.py:468
+#: ../src/ScratchPad.py:489
 msgid "Source Reference"
 msgstr "Odkaz na pramen"
 
@@ -2266,13 +2280,13 @@ msgstr "Odkaz na pramen"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:477
-#: ../src/ScratchPad.py:559
-#: ../src/ScratchPad.py:620
-#: ../src/ScratchPad.py:653
-#: ../src/ScratchPad.py:761
-#: ../src/ScratchPad.py:873
-#: ../src/ScratchPad.py:879
+#: ../src/ScratchPad.py:490
+#: ../src/ScratchPad.py:572
+#: ../src/ScratchPad.py:633
+#: ../src/ScratchPad.py:666
+#: ../src/ScratchPad.py:774
+#: ../src/ScratchPad.py:886
+#: ../src/ScratchPad.py:892
 #: ../src/Utils.py:1099
 #: ../src/DataViews/_MediaView.py:83
 #: ../src/DataViews/_SourceView.py:69
@@ -2289,46 +2303,46 @@ msgstr "Odkaz na pramen"
 msgid "Title"
 msgstr "Název"
 
-#: ../src/ScratchPad.py:478
+#: ../src/ScratchPad.py:491
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
 #: ../src/plugins/NarrativeWeb.py:546
 msgid "Page"
 msgstr "WWW stránka"
 
-#: ../src/ScratchPad.py:490
 #: ../src/ScratchPad.py:503
+#: ../src/ScratchPad.py:516
 msgid "Repository Reference"
 msgstr "Odkaz na zdroj"
 
-#: ../src/ScratchPad.py:505
+#: ../src/ScratchPad.py:518
 #: ../src/DisplayTabs/_RepoEmbedList.py:62
 #, fuzzy
 msgid "Call Number"
 msgstr "číslo ID"
 
-#: ../src/ScratchPad.py:506
+#: ../src/ScratchPad.py:519
 #, fuzzy
 msgid "Media Type"
 msgstr "Typ _média:"
 
-#: ../src/ScratchPad.py:518
+#: ../src/ScratchPad.py:531
 msgid "Event Reference"
 msgstr "Odkaz na událost"
 
-#: ../src/ScratchPad.py:554
+#: ../src/ScratchPad.py:567
 #, fuzzy
 msgid "Call Name"
 msgstr "číslo ID"
 
-#: ../src/ScratchPad.py:558
+#: ../src/ScratchPad.py:571
 #: ../src/Utils.py:1101
 #: ../src/plugins/PatchNames.py:253
 #: ../src/plugins/PatchNames.py:265
 msgid "Prefix"
 msgstr "Předpona"
 
-#: ../src/ScratchPad.py:585
-#: ../src/ScratchPad.py:593
+#: ../src/ScratchPad.py:598
+#: ../src/ScratchPad.py:606
 #: ../src/DisplayTabs/_TextTab.py:52
 #: ../src/plugins/MarkerReport.py:394
 #: ../src/plugins/NarrativeWeb.py:553
@@ -2340,29 +2354,29 @@ msgstr "Předpona"
 msgid "Text"
 msgstr "Text"
 
-#: ../src/ScratchPad.py:640
-#: ../src/ScratchPad.py:652
+#: ../src/ScratchPad.py:653
+#: ../src/ScratchPad.py:665
 msgid "Media Reference"
 msgstr "Odkaz na média"
 
-#: ../src/ScratchPad.py:666
+#: ../src/ScratchPad.py:679
 #: ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Odkaz na osobu"
 
-#: ../src/ScratchPad.py:683
-#: ../src/ScratchPad.py:708
+#: ../src/ScratchPad.py:696
+#: ../src/ScratchPad.py:721
 msgid "Person Link"
 msgstr "Odkaz na osobu"
 
-#: ../src/ScratchPad.py:710
+#: ../src/ScratchPad.py:723
 #: ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:127
 #: ../src/DataViews/_RelationView.py:545
 #: ../src/plugins/all_relations.py:266
 #: ../src/plugins/FamilyGroup.py:481
 #: ../src/plugins/FamilyGroup.py:483
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 #: ../src/plugins/MarkerReport.py:131
 #: ../src/plugins/NarrativeWeb.py:697
 #: ../src/plugins/NarrativeWeb.py:835
@@ -2371,19 +2385,19 @@ msgstr "Odkaz na osobu"
 msgid "Birth"
 msgstr "Narozen(a)"
 
-#: ../src/ScratchPad.py:742
-#: ../src/ScratchPad.py:760
+#: ../src/ScratchPad.py:755
+#: ../src/ScratchPad.py:773
 #, fuzzy
 msgid "Source Link"
 msgstr "Menu pramenů"
 
-#: ../src/ScratchPad.py:762
+#: ../src/ScratchPad.py:775
 #: ../src/DataViews/_SourceView.py:72
 #: ../src/plugins/NarrativeWeb.py:1512
 msgid "Abbreviation"
 msgstr "Zkratka"
 
-#: ../src/ScratchPad.py:763
+#: ../src/ScratchPad.py:776
 #: ../src/DataViews/_SourceView.py:71
 #: ../src/DisplayTabs/_SourceEmbedList.py:62
 #: ../src/plugins/NarrativeWeb.py:1510
@@ -2391,23 +2405,23 @@ msgstr "Zkratka"
 msgid "Author"
 msgstr "Autor"
 
-#: ../src/ScratchPad.py:764
+#: ../src/ScratchPad.py:777
 #: ../src/DataViews/_SourceView.py:73
 msgid "Publication Information"
 msgstr "Publikované informace"
 
-#: ../src/ScratchPad.py:783
-#: ../src/ScratchPad.py:798
+#: ../src/ScratchPad.py:796
+#: ../src/ScratchPad.py:811
 #, fuzzy
 msgid "Repository Link"
 msgstr "Editor poznámek"
 
-#: ../src/ScratchPad.py:1168
+#: ../src/ScratchPad.py:1178
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
 msgstr "Zápisník"
 
-#: ../src/ScratchPad.py:1204
+#: ../src/ScratchPad.py:1214
 msgid "ScratchPad"
 msgstr "Zápisník"
 
@@ -2842,12 +2856,12 @@ msgstr "žena"
 #: ../src/Mime/_PythonMime.py:61
 #: ../src/plugins/DetAncestralReport.py:485
 #: ../src/plugins/DetAncestralReport.py:492
-#: ../src/plugins/DetAncestralReport.py:531
-#: ../src/plugins/DetAncestralReport.py:538
+#: ../src/plugins/DetAncestralReport.py:533
+#: ../src/plugins/DetAncestralReport.py:540
 #: ../src/plugins/DetDescendantReport.py:397
 #: ../src/plugins/DetDescendantReport.py:404
-#: ../src/plugins/DetDescendantReport.py:449
-#: ../src/plugins/DetDescendantReport.py:456
+#: ../src/plugins/DetDescendantReport.py:451
+#: ../src/plugins/DetDescendantReport.py:458
 #: ../src/plugins/FamilyGroup.py:714
 #: ../src/plugins/IndivComplete.py:327
 #: ../src/plugins/NarrativeWeb.py:1677
@@ -2861,30 +2875,30 @@ msgid "Invalid"
 msgstr "Neplatné"
 
 #: ../src/Utils.py:90
-#: ../src/Editors/_EditSourceRef.py:119
+#: ../src/Editors/_EditSourceRef.py:132
 msgid "Very High"
 msgstr "Velmi vysoká"
 
 #: ../src/Utils.py:91
-#: ../src/Editors/_EditSourceRef.py:118
+#: ../src/Editors/_EditSourceRef.py:131
 #: ../src/plugins/FindDupes.py:65
 msgid "High"
 msgstr "Vysoká"
 
 #: ../src/Utils.py:92
-#: ../src/Editors/_EditSourceRef.py:117
+#: ../src/Editors/_EditSourceRef.py:130
 #: ../src/plugins/NarrativeWeb.py:543
 msgid "Normal"
 msgstr "Standardní"
 
 #: ../src/Utils.py:93
-#: ../src/Editors/_EditSourceRef.py:116
+#: ../src/Editors/_EditSourceRef.py:129
 #: ../src/plugins/FindDupes.py:63
 msgid "Low"
 msgstr "Nízká"
 
 #: ../src/Utils.py:94
-#: ../src/Editors/_EditSourceRef.py:115
+#: ../src/Editors/_EditSourceRef.py:128
 msgid "Very Low"
 msgstr "Velmi nízká"
 
@@ -3235,7 +3249,6 @@ msgid "Given Surname"
 msgstr "Křestní jméno Příjmení"
 
 #: ../src/BasicUtils/_NameDisplay.py:106
-#, fuzzy
 msgid "Patronymic, Given"
 msgstr "Jméno po otci, křestní jméno"
 
@@ -3322,7 +3335,7 @@ msgstr "Rodič a dítě nemohou být sloučeni. Chcete-li tyto osoby sloučit, m
 #: ../src/DataViews/_PersonView.py:73
 #: ../src/Editors/_EditFamily.py:98
 #: ../src/Selectors/_SelectPerson.py:50
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/IndivComplete.py:474
 #: ../src/plugins/NarrativeWeb.py:1928
 #: ../src/plugins/RelCalc.py:59
@@ -3498,7 +3511,7 @@ msgid "Delete the selected media object"
 msgstr "Odstranit vybraný mediální objekt"
 
 #: ../src/DataViews/_MediaView.py:199
-#: ../src/DisplayTabs/_GalleryTab.py:457
+#: ../src/DisplayTabs/_GalleryTab.py:458
 msgid "Drag Media Object"
 msgstr "Táhnout objekt"
 
@@ -3525,7 +3538,7 @@ msgid "Select Media Columns"
 msgstr "Vybrat sloupce"
 
 #: ../src/DataViews/_MediaView.py:294
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:67
 msgid "Double click image to view in an external viewer"
 msgstr "Pro zobrazení v externím prohlížeči dvakrát klikněte na obrázek"
 
@@ -3699,7 +3712,7 @@ msgstr "Menu osob"
 #. Go over siblings and build their menu
 #: ../src/DataViews/_PedigreeView.py:1482
 #: ../src/DataViews/_RelationView.py:786
-#: ../src/plugins/siblings.py:98
+#: ../src/plugins/siblings.py:75
 #: ../src/plugins/NarrativeWeb.py:2058
 msgid "Siblings"
 msgstr "Sourozenci"
@@ -3727,7 +3740,7 @@ msgstr "Menu rodin"
 #: ../src/DataViews/_PersonView.py:74
 #: ../src/Editors/_EditFamily.py:101
 #: ../src/Selectors/_SelectPerson.py:51
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:60
 #: ../src/plugins/TimeLine.py:410
@@ -3745,7 +3758,7 @@ msgstr "Místo narození"
 #: ../src/Editors/_EditFamily.py:102
 #: ../src/Selectors/_SelectPerson.py:53
 #: ../src/plugins/lineage.py:61
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 #: ../src/plugins/RelCalc.py:62
 msgid "Death Date"
 msgstr "Datum úmrtí"
@@ -3829,15 +3842,15 @@ msgstr "O_dstranit osobu"
 msgid "Delete Person (%s)"
 msgstr "Odstranit osobu (%s)"
 
-#: ../src/DataViews/_PersonView.py:888
+#: ../src/DataViews/_PersonView.py:889
 msgid "Go to default person"
 msgstr "Jít na výchozí osobu"
 
-#: ../src/DataViews/_PersonView.py:893
+#: ../src/DataViews/_PersonView.py:894
 msgid "Edit selected person"
 msgstr "Upravit zvolenou osobu"
 
-#: ../src/DataViews/_PersonView.py:899
+#: ../src/DataViews/_PersonView.py:900
 msgid "Delete selected person"
 msgstr "Odstranit vybranou osobu"
 
@@ -3942,7 +3955,6 @@ msgid "Change order of parents and families"
 msgstr "Změnit pořadí rodičů a rodin"
 
 #: ../src/DataViews/_RelationView.py:327
-#, fuzzy
 msgid "Edit the active person"
 msgstr "Upravit zvolenou osobu"
 
@@ -4303,7 +4315,7 @@ msgstr "LaTeX"
 #: ../src/docgen/PSDrawDoc.py:58
 #: ../src/plugins/GraphViz.py:1133
 #: ../src/plugins/GraphViz.py:1189
-#: ../src/ReportBase/_GraphvizReportDialog.py:581
+#: ../src/ReportBase/_GraphvizReportDialog.py:605
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Otevřít v programu %(program_name)s"
@@ -4336,7 +4348,7 @@ msgstr "Dokument RTF"
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../src/docgen/TextBufDoc.py:333
+#: ../src/docgen/TextBufDoc.py:348
 msgid "TextBuffer"
 msgstr "TextBuffer"
 
@@ -4355,31 +4367,31 @@ msgstr "Odkazy"
 msgid "Edit reference"
 msgstr "Upravit zdroj"
 
-#: ../src/DisplayTabs/_ButtonTab.py:62
+#: ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/CalculateEstimatedDates.py:73
 msgid "Add"
 msgstr "Přidat"
 
-#: ../src/DisplayTabs/_ButtonTab.py:63
+#: ../src/DisplayTabs/_ButtonTab.py:68
 #: ../src/plugins/CalculateEstimatedDates.py:69
 msgid "Remove"
 msgstr "Odstranit"
 
-#: ../src/DisplayTabs/_ButtonTab.py:65
+#: ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:104
 msgid "Share"
 msgstr "sdílet"
 
-#: ../src/DisplayTabs/_ButtonTab.py:66
+#: ../src/DisplayTabs/_ButtonTab.py:71
 msgid "Jump To"
 msgstr "Přejít"
 
-#: ../src/DisplayTabs/_ButtonTab.py:67
+#: ../src/DisplayTabs/_ButtonTab.py:72
 msgid "Move Up"
 msgstr "Nahoru"
 
-#: ../src/DisplayTabs/_ButtonTab.py:68
+#: ../src/DisplayTabs/_ButtonTab.py:73
 msgid "Move Down"
 msgstr "Dolů"
 
@@ -4440,7 +4452,7 @@ msgstr "Galerie"
 msgid "Open with %s"
 msgstr "Otevřít v %s"
 
-#: ../src/DisplayTabs/_GalleryTab.py:223
+#: ../src/DisplayTabs/_GalleryTab.py:224
 msgid "Unexisting media found in the Gallery"
 msgstr "V galerii bylo nalezeno neexistující médium"
 
@@ -4573,13 +4585,13 @@ msgid "Child Reference"
 msgstr "Editor mediálních odkazů"
 
 #: ../src/Editors/_EditEvent.py:83
-#: ../src/Editors/_EditEventRef.py:208
+#: ../src/Editors/_EditEventRef.py:219
 #, python-format
 msgid "Event: %s"
 msgstr "Událost: %s"
 
 #: ../src/Editors/_EditEvent.py:85
-#: ../src/Editors/_EditEventRef.py:210
+#: ../src/Editors/_EditEventRef.py:221
 msgid "New Event"
 msgstr "Nová událost"
 
@@ -4602,7 +4614,7 @@ msgid "The event type cannot be empty"
 msgstr "Typ události nemůže být prázdný"
 
 #: ../src/Editors/_EditEvent.py:226
-#: ../src/Editors/_EditEventRef.py:221
+#: ../src/Editors/_EditEventRef.py:232
 msgid "Add Event"
 msgstr "Přidat událost"
 
@@ -4611,12 +4623,12 @@ msgstr "Přidat událost"
 msgid "Delete Event (%s)"
 msgstr "Odstranit událost (%s)"
 
-#: ../src/Editors/_EditEventRef.py:76
-#: ../src/Editors/_EditEventRef.py:211
+#: ../src/Editors/_EditEventRef.py:77
+#: ../src/Editors/_EditEventRef.py:222
 msgid "Event Reference Editor"
 msgstr "Editor odkazů"
 
-#: ../src/Editors/_EditEventRef.py:218
+#: ../src/Editors/_EditEventRef.py:229
 msgid "Modify Event"
 msgstr "Upravit událost"
 
@@ -4659,9 +4671,8 @@ msgid "Maternal"
 msgstr "Mateřský"
 
 #: ../src/Editors/_EditFamily.py:118
-#, fuzzy
 msgid "Add an existing child"
-msgstr "Neexistující dítě"
+msgstr "Přidat existující dítě"
 
 #: ../src/Editors/_EditFamily.py:119
 msgid "Edit relationship"
@@ -4811,19 +4822,19 @@ msgid "Location Editor"
 msgstr "Editace umístění"
 
 #: ../src/Editors/_EditMedia.py:79
-#: ../src/Editors/_EditMediaRef.py:347
+#: ../src/Editors/_EditMediaRef.py:361
 #, python-format
 msgid "Media: %s"
 msgstr "Média: %s"
 
 #: ../src/Editors/_EditMedia.py:81
-#: ../src/Editors/_EditMediaRef.py:349
+#: ../src/Editors/_EditMediaRef.py:363
 msgid "New Media"
 msgstr "Nové médium"
 
 #: ../src/Editors/_EditMedia.py:172
 #: ../src/Editors/_EditMedia.py:225
-#: ../src/Editors/_EditMediaRef.py:443
+#: ../src/Editors/_EditMediaRef.py:459
 msgid "Edit Media Object"
 msgstr "Upravit mediální objekt"
 
@@ -4837,90 +4848,90 @@ msgid "Remove Media Object"
 msgstr "Odstranit objekt"
 
 #: ../src/Editors/_EditMediaRef.py:75
-#: ../src/Editors/_EditMediaRef.py:350
+#: ../src/Editors/_EditMediaRef.py:364
 msgid "Media Reference Editor"
 msgstr "Editor mediálních odkazů"
 
-#: ../src/Editors/_EditName.py:72
-#: ../src/Editors/_EditName.py:228
+#: ../src/Editors/_EditName.py:116
+#: ../src/Editors/_EditName.py:277
 msgid "Name Editor"
 msgstr "Editor jmen"
 
-#: ../src/Editors/_EditName.py:227
+#: ../src/Editors/_EditName.py:276
 msgid "New Name"
 msgstr "Nové jméno"
 
-#: ../src/Editors/_EditName.py:291
+#: ../src/Editors/_EditName.py:340
 msgid "Break global name grouping?"
 msgstr "Porušit globální seskupování jmen?"
 
-#: ../src/Editors/_EditName.py:292
+#: ../src/Editors/_EditName.py:341
 #, python-format
 msgid "All people with the name of %(surname)s will no longer be grouped with the name of %(group_name)s."
 msgstr ""
 
-#: ../src/Editors/_EditName.py:296
+#: ../src/Editors/_EditName.py:345
 msgid "Continue"
 msgstr "Pokračovat"
 
-#: ../src/Editors/_EditName.py:297
+#: ../src/Editors/_EditName.py:346
 #, fuzzy
 msgid "Return to Name Editor"
 msgstr "Editor jmen"
 
-#: ../src/Editors/_EditName.py:322
+#: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
 msgstr "Seskupovat všechny osoby se stejným jménem?"
 
-#: ../src/Editors/_EditName.py:323
+#: ../src/Editors/_EditName.py:372
 #, python-format
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
 msgstr "Máte na výběr buď seskupovat všechny osoby se jménem %(surname)s pod jméno %(group_name)s nebo namapovat pouze toto jméno."
 
-#: ../src/Editors/_EditName.py:328
+#: ../src/Editors/_EditName.py:377
 msgid "Group all"
 msgstr "Seskupovat vše"
 
-#: ../src/Editors/_EditName.py:329
+#: ../src/Editors/_EditName.py:378
 msgid "Group this name only"
 msgstr "Seskupit pouze toto jméno"
 
-#: ../src/Editors/_EditNote.py:104
+#: ../src/Editors/_EditNote.py:150
 #, python-format
 msgid "Note: %(id)s - %(context)s"
 msgstr "Poznámka: %(id)s - %(context)s"
 
-#: ../src/Editors/_EditNote.py:109
+#: ../src/Editors/_EditNote.py:155
 #, python-format
 msgid "Note: %s"
 msgstr "Poznámka %s"
 
-#: ../src/Editors/_EditNote.py:112
+#: ../src/Editors/_EditNote.py:158
 #, python-format
 msgid "New Note - %(context)s"
 msgstr "Nová poznámka - %(context)s"
 
-#: ../src/Editors/_EditNote.py:116
+#: ../src/Editors/_EditNote.py:162
 msgid "New Note"
 msgstr "Nová poznámka"
 
-#: ../src/Editors/_EditNote.py:363
+#: ../src/Editors/_EditNote.py:416
 msgid "_Send Mail To..."
 msgstr "Po_slat email ..."
 
-#: ../src/Editors/_EditNote.py:364
+#: ../src/Editors/_EditNote.py:417
 msgid "Copy _E-mail Address"
 msgstr "Kopírovat _emailovou adresu"
 
-#: ../src/Editors/_EditNote.py:366
+#: ../src/Editors/_EditNote.py:419
 msgid "_Open Link"
 msgstr "_Otevřít odkaz"
 
-#: ../src/Editors/_EditNote.py:367
+#: ../src/Editors/_EditNote.py:420
 msgid "Copy _Link Address"
 msgstr "Kopírovat _adresu odkazu"
 
-#: ../src/Editors/_EditNote.py:501
+#: ../src/Editors/_EditNote.py:554
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Odstranit poznámku (%s)"
@@ -5016,42 +5027,42 @@ msgstr "Nebyla zvolena žádná osoba"
 msgid "You must either select a person or Cancel the edit"
 msgstr "Musíte vybrat osobu, nebo zrušit operaci"
 
-#: ../src/Editors/_EditPlace.py:80
+#: ../src/Editors/_EditPlace.py:129
 #, python-format
 msgid "Place: %s"
 msgstr "Místo: %s"
 
-#: ../src/Editors/_EditPlace.py:82
+#: ../src/Editors/_EditPlace.py:131
 msgid "New Place"
 msgstr "Nové místo"
 
-#: ../src/Editors/_EditPlace.py:153
+#: ../src/Editors/_EditPlace.py:202
 msgid "Invalid latitude (syntax: 18°9'"
 msgstr "Neplatná zeměpisná šířka (syntax: 18°9'"
 
-#: ../src/Editors/_EditPlace.py:156
+#: ../src/Editors/_EditPlace.py:205
 msgid "Invalid longitude (syntax: 18°9'"
 msgstr "Neplatná zeměpisná výška (syntax: 18°9'"
 
-#: ../src/Editors/_EditPlace.py:160
+#: ../src/Editors/_EditPlace.py:209
 msgid "Edit Place"
 msgstr "Upravit místo"
 
-#: ../src/Editors/_EditPlace.py:219
+#: ../src/Editors/_EditPlace.py:270
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Upravit místo (%s)"
 
-#: ../src/Editors/_EditPlace.py:265
+#: ../src/Editors/_EditPlace.py:316
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Odstranit místo (%s)"
 
-#: ../src/Editors/_EditPrimary.py:141
+#: ../src/Editors/_EditPrimary.py:142
 msgid "Save Changes?"
 msgstr "Uložit změny?"
 
-#: ../src/Editors/_EditPrimary.py:142
+#: ../src/Editors/_EditPrimary.py:143
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 "Pokud zavřete dialog bez uložení, budou\n"
@@ -5061,25 +5072,25 @@ msgstr ""
 msgid "Repository Reference Editor"
 msgstr "Editor mediálních odkazů"
 
-#: ../src/Editors/_EditRepoRef.py:169
+#: ../src/Editors/_EditRepoRef.py:185
 #, python-format
 msgid "Repository: %s"
 msgstr "Zdroj: %s"
 
-#: ../src/Editors/_EditRepoRef.py:171
+#: ../src/Editors/_EditRepoRef.py:187
 #: ../src/Editors/_EditRepository.py:68
 msgid "New Repository"
 msgstr "Nový zdroj"
 
-#: ../src/Editors/_EditRepoRef.py:172
+#: ../src/Editors/_EditRepoRef.py:188
 msgid "Repo Reference Editor"
 msgstr "Editor zdrojů"
 
-#: ../src/Editors/_EditRepoRef.py:179
+#: ../src/Editors/_EditRepoRef.py:195
 msgid "Modify Repository"
 msgstr "Upravit zdroj"
 
-#: ../src/Editors/_EditRepoRef.py:182
+#: ../src/Editors/_EditRepoRef.py:198
 msgid "Add Repository"
 msgstr "Přidat zdroj"
 
@@ -5106,7 +5117,7 @@ msgid "Delete Repository (%s)"
 msgstr "Odstranit zdroj (%s)"
 
 #: ../src/Editors/_EditSource.py:74
-#: ../src/Editors/_EditSourceRef.py:186
+#: ../src/Editors/_EditSourceRef.py:196
 msgid "New Source"
 msgstr "Nový pramen"
 
@@ -5133,20 +5144,20 @@ msgid "Delete Source (%s)"
 msgstr "Odstranit pramen (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:67
-#: ../src/Editors/_EditSourceRef.py:187
+#: ../src/Editors/_EditSourceRef.py:197
 msgid "Source Reference Editor"
 msgstr "Editor pramenů"
 
-#: ../src/Editors/_EditSourceRef.py:184
+#: ../src/Editors/_EditSourceRef.py:194
 #, python-format
 msgid "Source: %s"
 msgstr "Pramen: %s"
 
-#: ../src/Editors/_EditSourceRef.py:194
+#: ../src/Editors/_EditSourceRef.py:204
 msgid "Modify Source"
 msgstr "Upravit pramen"
 
-#: ../src/Editors/_EditSourceRef.py:197
+#: ../src/Editors/_EditSourceRef.py:207
 msgid "Add Source"
 msgstr "Přidat pramen"
 
@@ -5531,43 +5542,43 @@ msgid "Select Source"
 msgstr "Vybrat pramen"
 
 #. display the results
-#: ../src/plugins/all_events.py:60
+#: ../src/plugins/all_events.py:55
 #, fuzzy, python-format
 msgid "Sorted events of %s"
 msgstr "Odstranit rodiče pro %s"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:105
-#: ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:102
+#: ../src/plugins/all_events.py:113
 msgid "Event Type"
 msgstr "Typ události"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Date"
 msgstr "Datum události"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Place"
 msgstr "Místo události"
 
 #. display the results
-#: ../src/plugins/all_events.py:100
+#: ../src/plugins/all_events.py:97
 #, python-format
 msgid ""
 "Sorted events of family\n"
 " %s - %s"
 msgstr ""
 
-#: ../src/plugins/all_events.py:105
-#: ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:102
+#: ../src/plugins/all_events.py:113
 msgid "Family Member"
 msgstr "Člen rodiny"
 
-#: ../src/plugins/all_events.py:113
+#: ../src/plugins/all_events.py:112
 msgid "Personal events of the children"
 msgstr "Osobní události dětí"
 
@@ -5579,7 +5590,7 @@ msgstr "Všechny události"
 #: ../src/plugins/all_events.py:145
 #: ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350
-#: ../src/plugins/siblings.py:99
+#: ../src/plugins/siblings.py:76
 #: ../src/plugins/AncestorChart.py:524
 #: ../src/plugins/AncestorReport.py:345
 #: ../src/plugins/BookReport.py:1190
@@ -5600,7 +5611,7 @@ msgstr "Všechny události"
 #: ../src/plugins/ExtractCity.py:585
 #: ../src/plugins/FamilyGroup.py:934
 #: ../src/plugins/FamilyLines.py:1430
-#: ../src/plugins/FanChart.py:421
+#: ../src/plugins/FanChart.py:422
 #: ../src/plugins/FindDupes.py:698
 #: ../src/plugins/GraphViz.py:1327
 #: ../src/plugins/GraphViz.py:1342
@@ -5609,8 +5620,8 @@ msgstr "Všechny události"
 #: ../src/plugins/IndivComplete.py:676
 #: ../src/plugins/KinshipReport.py:435
 #: ../src/plugins/Leak.py:131
-#: ../src/plugins/lineage.py:245
-#: ../src/plugins/lineage.py:256
+#: ../src/plugins/lineage.py:240
+#: ../src/plugins/lineage.py:251
 #: ../src/plugins/MarkerReport.py:568
 #: ../src/plugins/NarrativeWeb.py:3286
 #: ../src/plugins/PatchNames.py:357
@@ -5724,17 +5735,16 @@ msgid "Display all relationships between person and home person."
 msgstr "Zobrazit všechny vztahy mezi osobou a výchozí osobou."
 
 #. display the title
-#: ../src/plugins/siblings.py:57
+#: ../src/plugins/siblings.py:43
 #, python-format
 msgid "Siblings of %s"
 msgstr "Sourozenci osoby %s"
 
-#. display the header of a table
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 msgid "Sibling"
 msgstr "Sourozenec"
 
-#: ../src/plugins/siblings.py:100
+#: ../src/plugins/siblings.py:77
 msgid "Display a person's siblings."
 msgstr "Zobrazit sourozence osoby."
 
@@ -5748,7 +5758,7 @@ msgstr "Graf předků pro %s"
 #: ../src/plugins/Calendar.py:477
 #: ../src/plugins/Calendar.py:616
 #: ../src/plugins/DescendChart.py:404
-#: ../src/plugins/FanChart.py:323
+#: ../src/plugins/FanChart.py:324
 #: ../src/plugins/GVHourGlass.py:156
 #: ../src/plugins/GVRelGraph.py:414
 #: ../src/ReportBase/_BareReportDialog.py:376
@@ -5762,15 +5772,15 @@ msgstr "Nastavení sestavy"
 #: ../src/plugins/AncestorReport.py:314
 #: ../src/plugins/DescendChart.py:406
 #: ../src/plugins/DescendReport.py:217
-#: ../src/plugins/DetAncestralReport.py:902
-#: ../src/plugins/DetDescendantReport.py:874
-#: ../src/plugins/FanChart.py:325
+#: ../src/plugins/DetAncestralReport.py:904
+#: ../src/plugins/DetDescendantReport.py:876
+#: ../src/plugins/FanChart.py:326
 msgid "Generations"
 msgstr "Generace"
 
 #: ../src/plugins/AncestorChart.py:454
 #: ../src/plugins/DescendChart.py:407
-#: ../src/plugins/FanChart.py:326
+#: ../src/plugins/FanChart.py:327
 msgid "The number of generations to include in the report"
 msgstr "Počet generací zahrnutý v sestavě"
 
@@ -5819,12 +5829,12 @@ msgstr "Z_hustit graf"
 #: ../src/plugins/AncestorChart.py:483
 #: ../src/plugins/AncestorReport.py:304
 #: ../src/plugins/DescendChart.py:435
-#: ../src/plugins/DetAncestralReport.py:796
-#: ../src/plugins/DetDescendantReport.py:764
+#: ../src/plugins/DetAncestralReport.py:798
+#: ../src/plugins/DetDescendantReport.py:766
 #: ../src/plugins/EndOfLineReport.py:249
 #: ../src/plugins/EndOfLineReport.py:267
 #: ../src/plugins/FamilyGroup.py:841
-#: ../src/plugins/FanChart.py:381
+#: ../src/plugins/FanChart.py:382
 #: ../src/plugins/IndivComplete.py:632
 #: ../src/plugins/KinshipReport.py:420
 #: ../src/plugins/MarkerReport.py:529
@@ -5859,8 +5869,8 @@ msgstr "Generace %d"
 
 #: ../src/plugins/AncestorReport.py:281
 #: ../src/plugins/DescendReport.py:239
-#: ../src/plugins/DetAncestralReport.py:750
-#: ../src/plugins/DetDescendantReport.py:718
+#: ../src/plugins/DetAncestralReport.py:752
+#: ../src/plugins/DetDescendantReport.py:720
 #: ../src/plugins/EndOfLineReport.py:231
 #: ../src/plugins/FamilyGroup.py:832
 #: ../src/plugins/IndivComplete.py:600
@@ -5873,15 +5883,15 @@ msgid "The style used for the title of the page."
 msgstr "Styl používaný pro nadpis stránky."
 
 #: ../src/plugins/AncestorReport.py:294
-#: ../src/plugins/DetAncestralReport.py:760
-#: ../src/plugins/DetDescendantReport.py:728
+#: ../src/plugins/DetAncestralReport.py:762
+#: ../src/plugins/DetDescendantReport.py:730
 #: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "Styl používaný pro hlavičku generací"
 
 #: ../src/plugins/AncestorReport.py:316
-#: ../src/plugins/DetAncestralReport.py:836
-#: ../src/plugins/DetDescendantReport.py:804
+#: ../src/plugins/DetAncestralReport.py:838
+#: ../src/plugins/DetDescendantReport.py:806
 msgid "Page break between generations"
 msgstr "Stránkový zlom mezi generacemi"
 
@@ -6104,8 +6114,8 @@ msgid "Calculate date estimates"
 msgstr ""
 
 #: ../src/plugins/CalculateEstimatedDates.py:457
-#: ../src/plugins/DetAncestralReport.py:954
-#: ../src/plugins/DetDescendantReport.py:928
+#: ../src/plugins/DetAncestralReport.py:956
+#: ../src/plugins/DetDescendantReport.py:930
 #: ../src/plugins/MediaManager.py:615
 #: ../src/plugins/OwnerEditor.py:191
 #: ../src/plugins/Summary.py:184
@@ -6226,7 +6236,6 @@ msgid "Include birthdays"
 msgstr "včetně narozenin"
 
 #: ../src/plugins/Calendar.py:521
-#, fuzzy
 msgid "Include birthdays in the calendar"
 msgstr "včetně narozenin"
 
@@ -6236,7 +6245,6 @@ msgid "Include anniversaries"
 msgstr "včetně výročí"
 
 #: ../src/plugins/Calendar.py:525
-#, fuzzy
 msgid "Include anniversaries in the calendar"
 msgstr "včetně výročí"
 
@@ -6574,44 +6582,36 @@ msgstr ""
 "je odkazován v databázi, ale již neexistuje. Soubor mohl být smazán nebo přesunut na jiné místo. Můžete buď odstranit odkaz na soubor z databáze, ponechat odkaz na chybějící soubor nebo vybrat soubor nový."
 
 #: ../src/plugins/Check.py:591
-#, fuzzy
 msgid "Looking for empty people records"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Vyhledávám prázdné záznamy osob"
 
 #: ../src/plugins/Check.py:599
-#, fuzzy
 msgid "Looking for empty family records"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Vyhledávám prázdné záznamy rodin"
 
 #: ../src/plugins/Check.py:607
-#, fuzzy
 msgid "Looking for empty event records"
-msgstr "Hledám problémy událostí"
+msgstr "Vyhledávám prázdné záznamy událostí"
 
 #: ../src/plugins/Check.py:615
-#, fuzzy
 msgid "Looking for empty source records"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Vyhledávám prázdné záznamy pramenů"
 
 #: ../src/plugins/Check.py:623
-#, fuzzy
 msgid "Looking for empty place records"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Vyhledávám prázdné záznamy míst"
 
 #: ../src/plugins/Check.py:630
-#, fuzzy
 msgid "Looking for empty media records"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Vyhledávám prázdné záznamy médií"
 
 #: ../src/plugins/Check.py:639
-#, fuzzy
 msgid "Looking for empty repository records"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Vyhledávám prázdné záznamy zdrojů"
 
 #: ../src/plugins/Check.py:647
-#, fuzzy
 msgid "Looking for empty note records"
-msgstr "Vyhledávám prázdné rodiny"
+msgstr "Vyhledávám prázdné záznamy poznámek"
 
 #: ../src/plugins/Check.py:689
 msgid "Looking for empty families"
@@ -7021,7 +7021,7 @@ msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s je stejná osoba jako [%(id_str)s]."
 
 #: ../src/plugins/DetAncestralReport.py:276
-#: ../src/plugins/DetDescendantReport.py:518
+#: ../src/plugins/DetDescendantReport.py:520
 #, python-format
 msgid "Notes for %s"
 msgstr "%s - poznámky"
@@ -7030,29 +7030,29 @@ msgstr "%s - poznámky"
 #: ../src/plugins/DetAncestralReport.py:310
 #: ../src/plugins/DetAncestralReport.py:321
 #: ../src/plugins/DetAncestralReport.py:340
-#: ../src/plugins/DetDescendantReport.py:529
-#: ../src/plugins/DetDescendantReport.py:547
-#: ../src/plugins/DetDescendantReport.py:558
-#: ../src/plugins/DetDescendantReport.py:577
+#: ../src/plugins/DetDescendantReport.py:531
+#: ../src/plugins/DetDescendantReport.py:549
+#: ../src/plugins/DetDescendantReport.py:560
+#: ../src/plugins/DetDescendantReport.py:579
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Více o osobě %(person_name)s:"
 
 #: ../src/plugins/DetAncestralReport.py:294
-#: ../src/plugins/DetDescendantReport.py:536
+#: ../src/plugins/DetDescendantReport.py:538
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s. "
 
 #: ../src/plugins/DetAncestralReport.py:329
-#: ../src/plugins/DetDescendantReport.py:566
+#: ../src/plugins/DetDescendantReport.py:568
 msgid "Address: "
 msgstr "Adresa:"
 
 #: ../src/plugins/DetAncestralReport.py:347
 #: ../src/plugins/DetAncestralReport.py:401
 #: ../src/plugins/DetDescendantReport.py:313
-#: ../src/plugins/DetDescendantReport.py:584
+#: ../src/plugins/DetDescendantReport.py:586
 #, fuzzy, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s. "
@@ -7086,166 +7086,165 @@ msgstr "%(event_name)s: "
 msgid "%(endnotes)s."
 msgstr "Závěrečné poznámky"
 
-#: ../src/plugins/DetAncestralReport.py:495
-#: ../src/plugins/DetDescendantReport.py:407
-#, python-format
-msgid "Children of %s and %s"
-msgstr "%s a %s jsou rodiče dětí:"
+#: ../src/plugins/DetAncestralReport.py:496
+#: ../src/plugins/DetDescendantReport.py:408
+#, fuzzy, python-format
+msgid "Children of %(mother_name)s and %(father_name)s"
+msgstr "Více o %(mother_name)s a %(father_name)s:"
 
-#: ../src/plugins/DetAncestralReport.py:545
-#: ../src/plugins/DetDescendantReport.py:463
+#: ../src/plugins/DetAncestralReport.py:547
+#: ../src/plugins/DetDescendantReport.py:465
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Více o %(mother_name)s a %(father_name)s:"
 
-#: ../src/plugins/DetAncestralReport.py:770
-#: ../src/plugins/DetDescendantReport.py:738
+#: ../src/plugins/DetAncestralReport.py:772
+#: ../src/plugins/DetDescendantReport.py:740
 msgid "The style used for the children list title."
 msgstr "Styl používaný pro název seznamu dětí"
 
-#: ../src/plugins/DetAncestralReport.py:780
-#: ../src/plugins/DetDescendantReport.py:748
+#: ../src/plugins/DetAncestralReport.py:782
+#: ../src/plugins/DetDescendantReport.py:750
 msgid "The style used for the children list."
 msgstr "Styl používaný pro seznam dětí"
 
-#: ../src/plugins/DetAncestralReport.py:803
-#: ../src/plugins/DetDescendantReport.py:771
+#: ../src/plugins/DetAncestralReport.py:805
+#: ../src/plugins/DetDescendantReport.py:773
 msgid "The style used for the first personal entry."
 msgstr "Styl používaný pro první osobní záznam"
 
-#: ../src/plugins/DetAncestralReport.py:813
-#: ../src/plugins/DetDescendantReport.py:781
+#: ../src/plugins/DetAncestralReport.py:815
+#: ../src/plugins/DetDescendantReport.py:783
 #, fuzzy
 msgid "The style used for the More About header."
 msgstr "Styl použitý pro hlavičku sekce poznámek."
 
-#: ../src/plugins/DetAncestralReport.py:823
-#: ../src/plugins/DetDescendantReport.py:791
+#: ../src/plugins/DetAncestralReport.py:825
+#: ../src/plugins/DetDescendantReport.py:793
 #, fuzzy
 msgid "The style used for additional detail data."
 msgstr "Styl použitý pro všeobecná data."
 
 #. Full date usage
-#: ../src/plugins/DetAncestralReport.py:840
-#: ../src/plugins/DetDescendantReport.py:808
+#: ../src/plugins/DetAncestralReport.py:842
+#: ../src/plugins/DetDescendantReport.py:810
 msgid "Use full dates instead of only the year"
 msgstr "Používat plná data místo pouze roků"
 
 #. Children List
-#: ../src/plugins/DetAncestralReport.py:844
-#: ../src/plugins/DetDescendantReport.py:812
+#: ../src/plugins/DetAncestralReport.py:846
+#: ../src/plugins/DetDescendantReport.py:814
 msgid "List children"
 msgstr "Zobrazit děti"
 
 #. Print notes
-#: ../src/plugins/DetAncestralReport.py:848
-#: ../src/plugins/DetDescendantReport.py:816
+#: ../src/plugins/DetAncestralReport.py:850
+#: ../src/plugins/DetDescendantReport.py:818
 msgid "Include notes"
 msgstr "včetně poznámek"
 
 #. Print attributes
-#: ../src/plugins/DetAncestralReport.py:852
-#: ../src/plugins/DetDescendantReport.py:820
-#, fuzzy
+#: ../src/plugins/DetAncestralReport.py:854
+#: ../src/plugins/DetDescendantReport.py:822
 msgid "Include attributes"
-msgstr "včetně poznámek"
+msgstr "Včetně atributů"
 
 #. Print callname
-#: ../src/plugins/DetAncestralReport.py:856
-#: ../src/plugins/DetDescendantReport.py:824
+#: ../src/plugins/DetAncestralReport.py:858
+#: ../src/plugins/DetDescendantReport.py:826
 msgid "Use callname for common name"
 msgstr ""
 
 #. Replace missing Place with ___________
-#: ../src/plugins/DetAncestralReport.py:860
-#: ../src/plugins/DetDescendantReport.py:828
+#: ../src/plugins/DetAncestralReport.py:862
+#: ../src/plugins/DetDescendantReport.py:830
 msgid "Replace missing places with ______"
 msgstr "Nahradit chybějící místa s ______"
 
 #. Replace missing dates with __________
-#: ../src/plugins/DetAncestralReport.py:864
-#: ../src/plugins/DetDescendantReport.py:832
+#: ../src/plugins/DetAncestralReport.py:866
+#: ../src/plugins/DetDescendantReport.py:834
 msgid "Replace missing dates with ______"
 msgstr "Nahradit chybějící data s ______"
 
 #. Add "Died at the age of NN" in text
-#: ../src/plugins/DetAncestralReport.py:868
-#: ../src/plugins/DetDescendantReport.py:836
+#: ../src/plugins/DetAncestralReport.py:870
+#: ../src/plugins/DetDescendantReport.py:838
 msgid "Compute age"
 msgstr "Spočítat věk"
 
 #. Omit duplicate persons, occurs when distant cousins marry
-#: ../src/plugins/DetAncestralReport.py:872
-#: ../src/plugins/DetDescendantReport.py:840
+#: ../src/plugins/DetAncestralReport.py:874
+#: ../src/plugins/DetDescendantReport.py:842
 msgid "Omit duplicate ancestors"
 msgstr "Vynechat duplicitní předky"
 
 #. Add descendant reference in child list
-#: ../src/plugins/DetAncestralReport.py:876
-#: ../src/plugins/DetDescendantReport.py:844
+#: ../src/plugins/DetAncestralReport.py:878
+#: ../src/plugins/DetDescendantReport.py:846
 msgid "Add descendant reference in child list"
 msgstr "Přidat odkaz na potomky do seznamu dětí"
 
 #. Add photo/image reference
-#: ../src/plugins/DetAncestralReport.py:880
-#: ../src/plugins/DetDescendantReport.py:848
+#: ../src/plugins/DetAncestralReport.py:882
+#: ../src/plugins/DetDescendantReport.py:850
 msgid "Include Photo/Images from Gallery"
 msgstr "Včetně fotografií/obrázků z galerie"
 
 #. Print alternative names
-#: ../src/plugins/DetAncestralReport.py:884
-#: ../src/plugins/DetDescendantReport.py:852
+#: ../src/plugins/DetAncestralReport.py:886
+#: ../src/plugins/DetDescendantReport.py:854
 msgid "Include alternative names"
 msgstr "Včetně alternativních jmen"
 
 #. Print events
-#: ../src/plugins/DetAncestralReport.py:888
-#: ../src/plugins/DetDescendantReport.py:856
+#: ../src/plugins/DetAncestralReport.py:890
+#: ../src/plugins/DetDescendantReport.py:858
 msgid "Include events"
 msgstr "Včetně událostí"
 
 #. Print addresses
-#: ../src/plugins/DetAncestralReport.py:892
-#: ../src/plugins/DetDescendantReport.py:860
+#: ../src/plugins/DetAncestralReport.py:894
+#: ../src/plugins/DetDescendantReport.py:862
 msgid "Include addresses"
 msgstr "Včetně adres"
 
 #. Print sources
-#: ../src/plugins/DetAncestralReport.py:896
-#: ../src/plugins/DetDescendantReport.py:864
+#: ../src/plugins/DetAncestralReport.py:898
+#: ../src/plugins/DetDescendantReport.py:866
 msgid "Include sources"
 msgstr "Včetně zdrojů"
 
-#: ../src/plugins/DetAncestralReport.py:904
-#: ../src/plugins/DetAncestralReport.py:905
 #: ../src/plugins/DetAncestralReport.py:906
 #: ../src/plugins/DetAncestralReport.py:907
 #: ../src/plugins/DetAncestralReport.py:908
 #: ../src/plugins/DetAncestralReport.py:909
-#: ../src/plugins/DetDescendantReport.py:876
-#: ../src/plugins/DetDescendantReport.py:877
+#: ../src/plugins/DetAncestralReport.py:910
+#: ../src/plugins/DetAncestralReport.py:911
 #: ../src/plugins/DetDescendantReport.py:878
 #: ../src/plugins/DetDescendantReport.py:879
 #: ../src/plugins/DetDescendantReport.py:880
 #: ../src/plugins/DetDescendantReport.py:881
+#: ../src/plugins/DetDescendantReport.py:882
+#: ../src/plugins/DetDescendantReport.py:883
 msgid "Content"
 msgstr "Obsah"
 
-#: ../src/plugins/DetAncestralReport.py:910
-#: ../src/plugins/DetAncestralReport.py:911
 #: ../src/plugins/DetAncestralReport.py:912
 #: ../src/plugins/DetAncestralReport.py:913
 #: ../src/plugins/DetAncestralReport.py:914
 #: ../src/plugins/DetAncestralReport.py:915
 #: ../src/plugins/DetAncestralReport.py:916
-#: ../src/plugins/DetDescendantReport.py:882
-#: ../src/plugins/DetDescendantReport.py:883
+#: ../src/plugins/DetAncestralReport.py:917
+#: ../src/plugins/DetAncestralReport.py:918
 #: ../src/plugins/DetDescendantReport.py:884
 #: ../src/plugins/DetDescendantReport.py:885
 #: ../src/plugins/DetDescendantReport.py:886
 #: ../src/plugins/DetDescendantReport.py:887
 #: ../src/plugins/DetDescendantReport.py:888
 #: ../src/plugins/DetDescendantReport.py:889
+#: ../src/plugins/DetDescendantReport.py:890
+#: ../src/plugins/DetDescendantReport.py:891
 #: ../src/plugins/FamilyGroup.py:784
 #: ../src/plugins/FamilyGroup.py:785
 #: ../src/plugins/FamilyGroup.py:786
@@ -7259,18 +7258,18 @@ msgstr "Obsah"
 msgid "Include"
 msgstr "Včetně"
 
-#: ../src/plugins/DetAncestralReport.py:917
-#: ../src/plugins/DetAncestralReport.py:918
-#: ../src/plugins/DetDescendantReport.py:890
-#: ../src/plugins/DetDescendantReport.py:891
+#: ../src/plugins/DetAncestralReport.py:919
+#: ../src/plugins/DetAncestralReport.py:920
+#: ../src/plugins/DetDescendantReport.py:892
+#: ../src/plugins/DetDescendantReport.py:893
 msgid "Missing information"
 msgstr "Informace chybí"
 
-#: ../src/plugins/DetAncestralReport.py:953
+#: ../src/plugins/DetAncestralReport.py:955
 msgid "Detailed Ancestral Report"
 msgstr "Podrobná zpráva o předcích"
 
-#: ../src/plugins/DetAncestralReport.py:955
+#: ../src/plugins/DetAncestralReport.py:957
 msgid "Produces a detailed ancestral report"
 msgstr "Vytvoří podrobný seznam předků"
 
@@ -7280,16 +7279,16 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "%(person_name)s - podrobný seznam potomků"
 
 #. Print Spouses
-#: ../src/plugins/DetDescendantReport.py:868
+#: ../src/plugins/DetDescendantReport.py:870
 #: ../src/plugins/KinshipReport.py:368
 msgid "Include spouses"
 msgstr "Včetně manželů(ek)"
 
-#: ../src/plugins/DetDescendantReport.py:927
+#: ../src/plugins/DetDescendantReport.py:929
 msgid "Detailed Descendant Report"
 msgstr "Podrobná zpráva o potomcích"
 
-#: ../src/plugins/DetDescendantReport.py:929
+#: ../src/plugins/DetDescendantReport.py:931
 msgid "Produces a detailed descendant report"
 msgstr "Vytvoří detailní zprávu o potomcích"
 
@@ -7344,9 +7343,8 @@ msgid "Event comparison filter selection"
 msgstr "Výběr filtru pro porovnání událostí"
 
 #: ../src/plugins/EventCmp.py:154
-#, fuzzy
 msgid "Filter selection"
-msgstr "Výběr data"
+msgstr "Výběr filtru"
 
 #: ../src/plugins/EventCmp.py:154
 msgid "Event Comparison tool"
@@ -7705,7 +7703,7 @@ msgstr "Hledám jména rodin"
 #: ../src/plugins/GraphViz.py:887
 #: ../src/plugins/GraphViz.py:895
 #: ../src/plugins/GraphViz.py:902
-#: ../src/ReportBase/_GraphvizReportDialog.py:614
+#: ../src/ReportBase/_GraphvizReportDialog.py:696
 msgid "GraphViz Options"
 msgstr "Nastavení GraphViz"
 
@@ -7753,6 +7751,7 @@ msgid "Height of the graph in inches.  Final image size may be smaller than this
 msgstr "Výška grafu v palcích. Velikost výsledného obrázku může být menší než tato pokud je poměr nastaven na \"Komprimovat\"."
 
 #: ../src/plugins/FamilyLines.py:879
+#: ../src/ReportBase/_GraphvizReportDialog.py:708
 msgid "DPI"
 msgstr "DPI"
 
@@ -8020,71 +8019,71 @@ msgid "Family Lines Graph"
 msgstr "Seznam rodin"
 
 #: ../src/plugins/FanChart.py:177
-#, python-format
-msgid "%d Generation Fan Chart for %s"
+#, fuzzy, python-format
+msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "%d generační vějířový graf pro osobu %s"
 
-#: ../src/plugins/FanChart.py:329
+#: ../src/plugins/FanChart.py:330
 msgid "Type of graph"
 msgstr "Typ grafu"
 
-#: ../src/plugins/FanChart.py:330
+#: ../src/plugins/FanChart.py:331
 msgid "full circle"
 msgstr "celý kruh"
 
-#: ../src/plugins/FanChart.py:331
+#: ../src/plugins/FanChart.py:332
 msgid "half circle"
 msgstr "půlkruh"
 
-#: ../src/plugins/FanChart.py:332
+#: ../src/plugins/FanChart.py:333
 msgid "quarter circle"
 msgstr "čtvrt kruhu"
 
-#: ../src/plugins/FanChart.py:333
+#: ../src/plugins/FanChart.py:334
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr "Forma grafu: celý kruh, půlkruh, nebo čtvrt kruhu."
 
-#: ../src/plugins/FanChart.py:337
+#: ../src/plugins/FanChart.py:338
 msgid "Background color"
 msgstr "Barva pozadí"
 
-#: ../src/plugins/FanChart.py:338
+#: ../src/plugins/FanChart.py:339
 msgid "white"
 msgstr "bílá"
 
-#: ../src/plugins/FanChart.py:339
+#: ../src/plugins/FanChart.py:340
 msgid "generation dependent"
 msgstr "generačně závislá"
 
-#: ../src/plugins/FanChart.py:340
+#: ../src/plugins/FanChart.py:341
 msgid "Background color is either white or generation dependent"
 msgstr "Barva pozadí je buď bílá, nebo závislá na generaci"
 
-#: ../src/plugins/FanChart.py:344
+#: ../src/plugins/FanChart.py:345
 msgid "Orientation of radial texts"
 msgstr "Orientace radiálních textů"
 
-#: ../src/plugins/FanChart.py:346
+#: ../src/plugins/FanChart.py:347
 msgid "upright"
 msgstr "vpravo nahoře"
 
-#: ../src/plugins/FanChart.py:347
+#: ../src/plugins/FanChart.py:348
 msgid "roundabout"
 msgstr "nepřímý"
 
-#: ../src/plugins/FanChart.py:348
+#: ../src/plugins/FanChart.py:349
 msgid "Print raidal texts upright or roundabout"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:372
+#: ../src/plugins/FanChart.py:373
 msgid "The style used for the title."
 msgstr "Styl používaný pro název"
 
-#: ../src/plugins/FanChart.py:420
+#: ../src/plugins/FanChart.py:421
 msgid "Fan Chart"
 msgstr "Vějířový graf"
 
-#: ../src/plugins/FanChart.py:424
+#: ../src/plugins/FanChart.py:425
 msgid "Produces fan charts"
 msgstr "Vytvoří vějířové grafy"
 
@@ -8155,32 +8154,32 @@ msgid "Searches the entire database, looking for individual entries that may rep
 msgstr "Hledá v celé databázi záznamy, které mohou představovat stejnou osobu."
 
 #: ../src/plugins/GraphViz.py:85
-#: ../src/ReportBase/_GraphvizReportDialog.py:493
+#: ../src/ReportBase/_GraphvizReportDialog.py:523
 msgid "Postscript"
 msgstr "PostScript"
 
 #: ../src/plugins/GraphViz.py:86
-#: ../src/ReportBase/_GraphvizReportDialog.py:498
+#: ../src/ReportBase/_GraphvizReportDialog.py:528
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
 #: ../src/plugins/GraphViz.py:87
-#: ../src/ReportBase/_GraphvizReportDialog.py:503
+#: ../src/ReportBase/_GraphvizReportDialog.py:533
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Komprimovaný SVG"
 
 #: ../src/plugins/GraphViz.py:88
-#: ../src/ReportBase/_GraphvizReportDialog.py:508
+#: ../src/ReportBase/_GraphvizReportDialog.py:548
 msgid "PNG image"
 msgstr "obrázek PNG"
 
 #: ../src/plugins/GraphViz.py:89
-#: ../src/ReportBase/_GraphvizReportDialog.py:513
+#: ../src/ReportBase/_GraphvizReportDialog.py:538
 msgid "JPEG image"
 msgstr "obrázek JPEG"
 
 #: ../src/plugins/GraphViz.py:90
-#: ../src/ReportBase/_GraphvizReportDialog.py:518
+#: ../src/ReportBase/_GraphvizReportDialog.py:543
 msgid "GIF image"
 msgstr "Obrázek GIF"
 
@@ -8226,12 +8225,12 @@ msgid "Color fill"
 msgstr "Vyplnit barvou"
 
 #: ../src/plugins/GraphViz.py:104
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
+#: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Minimal size"
 msgstr "Minimální velikost"
 
 #: ../src/plugins/GraphViz.py:105
-#: ../src/ReportBase/_GraphvizReportDialog.py:75
+#: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Fill the given area"
 msgstr "Vyplnit daný prostor"
 
@@ -8240,62 +8239,60 @@ msgid "Automatically use optimal number of pages"
 msgstr "Automaticky použít optimální počet stran"
 
 #: ../src/plugins/GraphViz.py:110
-#: ../src/ReportBase/_GraphvizReportDialog.py:62
 msgid "Vertical"
 msgstr "Svisle"
 
 #: ../src/plugins/GraphViz.py:111
-#: ../src/ReportBase/_GraphvizReportDialog.py:63
 msgid "Horizontal"
 msgstr "Vodrovně"
 
 #: ../src/plugins/GraphViz.py:114
-#: ../src/ReportBase/_GraphvizReportDialog.py:65
+#: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "Bottom, left"
 msgstr "Dole, vlevo"
 
 #: ../src/plugins/GraphViz.py:115
-#: ../src/ReportBase/_GraphvizReportDialog.py:66
+#: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "Bottom, right"
 msgstr "Dole, vpravo"
 
 #: ../src/plugins/GraphViz.py:116
-#: ../src/ReportBase/_GraphvizReportDialog.py:67
+#: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "Top, left"
 msgstr "Nahoře, vlevo"
 
 #: ../src/plugins/GraphViz.py:117
-#: ../src/ReportBase/_GraphvizReportDialog.py:68
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Top, Right"
 msgstr "Nahoře, vpravo"
 
 #: ../src/plugins/GraphViz.py:118
-#: ../src/ReportBase/_GraphvizReportDialog.py:69
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Right, bottom"
 msgstr "Vpravo, dole"
 
 #: ../src/plugins/GraphViz.py:119
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
 msgid "Right, top"
 msgstr "Vpravo, nahoře"
 
 #: ../src/plugins/GraphViz.py:120
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Left, bottom"
 msgstr "Vlevo, dole"
 
 #: ../src/plugins/GraphViz.py:121
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Left, top"
 msgstr "Vlevo, nahoře"
 
 #: ../src/plugins/GraphViz.py:124
-#: ../src/ReportBase/_GraphvizReportDialog.py:79
+#: ../src/ReportBase/_GraphvizReportDialog.py:81
 msgid "Top"
 msgstr "Nahoře"
 
 #: ../src/plugins/GraphViz.py:125
-#: ../src/ReportBase/_GraphvizReportDialog.py:80
+#: ../src/ReportBase/_GraphvizReportDialog.py:82
 msgid "Bottom"
 msgstr "Dole"
 
@@ -8320,7 +8317,7 @@ msgid "Descendants - Ancestors"
 msgstr "Potomci - Předci"
 
 #: ../src/plugins/GraphViz.py:150
-#: ../src/ReportBase/_GraphvizReportDialog.py:524
+#: ../src/ReportBase/_GraphvizReportDialog.py:518
 msgid "PDF"
 msgstr "PDF"
 
@@ -8401,12 +8398,12 @@ msgstr "Vybere směr, kterým ukazuje šipka."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:870
-#: ../src/ReportBase/_GraphvizReportDialog.py:617
+#: ../src/ReportBase/_GraphvizReportDialog.py:640
 msgid "Font family"
 msgstr "Rodina písma"
 
 #: ../src/plugins/GraphViz.py:872
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:645
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Zvolte rodinu písem. Jestliže se nezobrazují mezinárodní znaky, použijte písmo FreeSans. FreeSans je dostupné z http://www.nongnu.org/freefont/"
 
@@ -8415,7 +8412,7 @@ msgid "Font size (in points)"
 msgstr "Velikost písma (v bodech)"
 
 #: ../src/plugins/GraphViz.py:883
-#: ../src/ReportBase/_GraphvizReportDialog.py:629
+#: ../src/ReportBase/_GraphvizReportDialog.py:652
 msgid "The font size, in points."
 msgstr "Velikost písma v bodech"
 
@@ -8460,13 +8457,13 @@ msgstr "Nastavení dokumentu"
 msgid "Whether generations go from top to bottom or left to right."
 msgstr "Zda-li jdou generace odshora dolů nebo zleva doprava."
 
+#. ###############################
 #: ../src/plugins/GraphViz.py:919
-#: ../src/ReportBase/_GraphvizReportDialog.py:641
+#: ../src/ReportBase/_GraphvizReportDialog.py:699
 msgid "Aspect ratio"
 msgstr "Poměr stran"
 
 #: ../src/plugins/GraphViz.py:921
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
 msgid "Affects greatly how the graph is layed out on the page. Multiple pages overrides the pages settings below."
 msgstr ""
 
@@ -8475,22 +8472,22 @@ msgid "Margin size"
 msgstr "Velikost okraje"
 
 #: ../src/plugins/GraphViz.py:943
-#: ../src/ReportBase/_GraphvizReportDialog.py:661
+#: ../src/ReportBase/_GraphvizReportDialog.py:664
 msgid "Number of Horizontal Pages"
 msgstr "Počet horizontálních stránek"
 
 #: ../src/plugins/GraphViz.py:945
-#: ../src/ReportBase/_GraphvizReportDialog.py:662
+#: ../src/ReportBase/_GraphvizReportDialog.py:665
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally."
 msgstr "GraphViz umí vytvořit velmi rozsáhlé grafy rozložením grafu na obdélníkové pole stránek. Toto pole určuje počet stránek vodorovně."
 
 #: ../src/plugins/GraphViz.py:950
-#: ../src/ReportBase/_GraphvizReportDialog.py:668
+#: ../src/ReportBase/_GraphvizReportDialog.py:671
 msgid "Number of Vertical Pages"
 msgstr "Počet vertikálních stránek"
 
 #: ../src/plugins/GraphViz.py:952
-#: ../src/ReportBase/_GraphvizReportDialog.py:669
+#: ../src/ReportBase/_GraphvizReportDialog.py:672
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically."
 msgstr "GraphViz umí vytvořit velmi rozsáhlé grafy rozložením grafu na obdélníkové pole stránek. Toto pole určuje počet stránek svisle."
 
@@ -8505,22 +8502,22 @@ msgstr ""
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:973
-#: ../src/ReportBase/_GraphvizReportDialog.py:679
+#: ../src/ReportBase/_GraphvizReportDialog.py:742
 msgid "Note to add to the graph"
 msgstr "Poznámka přidaná do grafu"
 
 #: ../src/plugins/GraphViz.py:975
-#: ../src/ReportBase/_GraphvizReportDialog.py:681
+#: ../src/ReportBase/_GraphvizReportDialog.py:744
 msgid "This text will be added to the graph."
 msgstr "Text bude přidán ke grafu."
 
 #: ../src/plugins/GraphViz.py:979
-#: ../src/ReportBase/_GraphvizReportDialog.py:684
+#: ../src/ReportBase/_GraphvizReportDialog.py:747
 msgid "Note location"
 msgstr "Umístění poznámky"
 
 #: ../src/plugins/GraphViz.py:981
-#: ../src/ReportBase/_GraphvizReportDialog.py:687
+#: ../src/ReportBase/_GraphvizReportDialog.py:750
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Poznámky se objeví na začátku, nebo na konci stránky."
 
@@ -8529,7 +8526,7 @@ msgid "Note size (in points)"
 msgstr "Velikost poznámky(v bodech)"
 
 #: ../src/plugins/GraphViz.py:989
-#: ../src/ReportBase/_GraphvizReportDialog.py:692
+#: ../src/ReportBase/_GraphvizReportDialog.py:755
 msgid "The size of note text, in points."
 msgstr "Velikost textu poznámky v bodech."
 
@@ -8600,14 +8597,12 @@ msgid "Thumbnail Location"
 msgstr "Publikace"
 
 #: ../src/plugins/GVRelGraph.py:458
-#, fuzzy
 msgid "Above the name"
-msgstr "Filtry událostí"
+msgstr "Nad jménem"
 
 #: ../src/plugins/GVRelGraph.py:459
-#, fuzzy
 msgid "Beside the name"
-msgstr "Informace o výzkumníku"
+msgstr "U jména"
 
 #: ../src/plugins/GVRelGraph.py:460
 msgid "Where the thumbnail image should appear relative to the name"
@@ -8615,14 +8610,12 @@ msgstr ""
 
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:465
-#, fuzzy
 msgid "Graph Style"
-msgstr "Nastavení GraphViz"
+msgstr "Styl grafu"
 
 #: ../src/plugins/GVRelGraph.py:506
-#, fuzzy
 msgid "Generates a relationship graphs using Graphviz."
-msgstr "Vytvoří graf událostí v čase"
+msgstr "Vytvoří graf vztahů s použitím Graphviz."
 
 #: ../src/plugins/ImportCSV.py:204
 #, python-format
@@ -8816,67 +8809,68 @@ msgstr ""
 msgid "Name Father"
 msgstr "Otec"
 
-#: ../src/plugins/lineage.py:72
-msgid "Direct line male descendants"
-msgstr ""
-
-#. display the results
-#: ../src/plugins/lineage.py:85
-#, fuzzy, python-format
-msgid "Mother lineage for %s"
-msgstr "Svatba: %s"
-
-#: ../src/plugins/lineage.py:87
-msgid "This report shows the mother lineage, also called matronymic lineage or M-line. People in this lineage all share the same RNA."
-msgstr ""
-
-#: ../src/plugins/lineage.py:94
-#, fuzzy
-msgid "Name Mother"
-msgstr "Matka"
-
-#: ../src/plugins/lineage.py:105
-msgid "Direct line female descendants"
-msgstr ""
-
-#: ../src/plugins/lineage.py:124
-#: ../src/plugins/lineage.py:185
+#: ../src/plugins/lineage.py:61
+#: ../src/plugins/lineage.py:92
+#: ../src/plugins/lineage.py:180
 #, fuzzy
 msgid "Remark"
 msgstr "Řádné"
 
-#: ../src/plugins/lineage.py:129
-#: ../src/plugins/lineage.py:223
+#: ../src/plugins/lineage.py:69
+msgid "Direct line male descendants"
+msgstr ""
+
+#. display the results
+#: ../src/plugins/lineage.py:82
+#, fuzzy, python-format
+msgid "Mother lineage for %s"
+msgstr "Svatba: %s"
+
+#: ../src/plugins/lineage.py:84
+msgid "This report shows the mother lineage, also called matronymic lineage or M-line. People in this lineage all share the same RNA."
+msgstr ""
+
+#: ../src/plugins/lineage.py:92
+#, fuzzy
+msgid "Name Mother"
+msgstr "Matka"
+
+#: ../src/plugins/lineage.py:100
+msgid "Direct line female descendants"
+msgstr ""
+
+#: ../src/plugins/lineage.py:124
+#: ../src/plugins/lineage.py:218
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
 msgstr ""
 
-#: ../src/plugins/lineage.py:158
+#: ../src/plugins/lineage.py:153
 #, fuzzy
 msgid "No birth relation with child"
 msgstr "Vztah matky k dítěti"
 
-#: ../src/plugins/lineage.py:162
-#: ../src/plugins/lineage.py:182
+#: ../src/plugins/lineage.py:157
+#: ../src/plugins/lineage.py:177
 #: ../src/plugins/Verify.py:948
 msgid "Unknown gender"
 msgstr "Neznámé pohlaví"
 
-#: ../src/plugins/lineage.py:244
+#: ../src/plugins/lineage.py:239
 #, fuzzy
 msgid "Father lineage"
 msgstr "Věk otce"
 
-#: ../src/plugins/lineage.py:246
+#: ../src/plugins/lineage.py:241
 #, fuzzy
 msgid "Display father lineage"
 msgstr "Zobrazovat tip dne"
 
-#: ../src/plugins/lineage.py:255
+#: ../src/plugins/lineage.py:250
 #, fuzzy
 msgid "Mother lineage"
 msgstr "Věk matky"
 
-#: ../src/plugins/lineage.py:257
+#: ../src/plugins/lineage.py:252
 #, fuzzy
 msgid "Display mother lineage"
 msgstr "Zobrazovat tip dne"
@@ -9768,7 +9762,7 @@ msgid "From file..."
 msgstr "Ze souboru..."
 
 #: ../src/plugins/SimpleBookTitle.py:211
-#: ../src/glade/gramps.glade.h:185
+#: ../src/glade/gramps.glade.h:186
 #: ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
@@ -10408,19 +10402,19 @@ msgstr "Nastavení obsahu"
 
 #: ../src/plugins/WebCal.py:803
 msgid "Check to include ONLY the living"
-msgstr "Zaškrtnout pro zahrnutí POUZE žijících"
+msgstr "POUZE žijící"
 
 #: ../src/plugins/WebCal.py:806
 msgid "Check for wives to use maiden name"
-msgstr "Zaškrtnout pro použití dívčího jména u žen"
+msgstr "Dívčí jména u žen"
 
 #: ../src/plugins/WebCal.py:809
 msgid "Check to include birthdays"
-msgstr "včetně narozenin"
+msgstr "Včetně narozenin"
 
 #: ../src/plugins/WebCal.py:812
 msgid "Check to include anniversaries"
-msgstr "včetně výročí"
+msgstr "Včetně výročí"
 
 #: ../src/plugins/WebCal.py:819
 msgid "Only include living people"
@@ -10448,9 +10442,8 @@ msgid "repeat-y"
 msgstr "Majetek"
 
 #: ../src/plugins/WebCal.py:849
-#, fuzzy
 msgid "Calendar Title"
-msgstr "Kalendář"
+msgstr "Titulek kalendáře"
 
 #: ../src/plugins/WebCal.py:850
 #, fuzzy
@@ -10458,19 +10451,16 @@ msgid "Home link"
 msgstr "Domů"
 
 #: ../src/plugins/WebCal.py:851
-#, fuzzy
 msgid "Serif font family"
-msgstr "Rodina písma"
+msgstr "Rodina písma Serif"
 
 #: ../src/plugins/WebCal.py:852
-#, fuzzy
 msgid "San-Serif font family"
-msgstr "Rodina písma"
+msgstr "Rodina písma Sans-Serif"
 
 #: ../src/plugins/WebCal.py:853
-#, fuzzy
 msgid "Background Image"
-msgstr "Barva pozadí"
+msgstr "Obrázek na pozadí"
 
 #: ../src/plugins/WebCal.py:854
 msgid "Image Repeat"
@@ -10481,62 +10471,50 @@ msgid "Mos. 1-6 Notes"
 msgstr ""
 
 #: ../src/plugins/WebCal.py:859
-#, fuzzy
 msgid "Jan Note"
-msgstr "Záznamy rodičů"
+msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:859
-#, fuzzy
 msgid "Feb Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:859
-#, fuzzy
 msgid "Mar Note"
-msgstr "Záznamy rodičů"
+msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:859
-#, fuzzy
 msgid "Apr Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:860
-#, fuzzy
 msgid "May Note"
-msgstr "Rodiny"
+msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:860
-#, fuzzy
 msgid "Jun Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:860
-#, fuzzy
 msgid "Jul Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:860
-#, fuzzy
 msgid "Aug Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:861
-#, fuzzy
 msgid "Sep Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:861
-#, fuzzy
 msgid "Oct Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:861
-#, fuzzy
 msgid "Nov Note"
 msgstr "Poznámka"
 
 #: ../src/plugins/WebCal.py:861
-#, fuzzy
 msgid "Dec Note"
 msgstr "Poznámka"
 
@@ -10869,10 +10847,10 @@ msgstr "Editor stylů"
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
 #: ../src/ReportBase/_CommandLineReport.py:154
-#: ../src/ReportBase/_PaperMenu.py:193
-#: ../src/ReportBase/_PaperMenu.py:253
-#: ../src/ReportBase/_PaperMenu.py:342
-#: ../src/ReportBase/_PaperMenu.py:364
+#: ../src/ReportBase/_PaperMenu.py:195
+#: ../src/ReportBase/_PaperMenu.py:255
+#: ../src/ReportBase/_PaperMenu.py:344
+#: ../src/ReportBase/_PaperMenu.py:366
 msgid "Custom Size"
 msgstr "Vlastní velikost"
 
@@ -10893,9 +10871,8 @@ msgid "Books"
 msgstr "Knihy"
 
 #: ../src/ReportBase/_Constants.py:59
-#, fuzzy
 msgid "Graphviz"
-msgstr "Grafické zprávy"
+msgstr "Graphviz"
 
 #: ../src/ReportBase/_Constants.py:64
 msgid "Graphics"
@@ -10915,50 +10892,106 @@ msgstr "Základní styl používaný pro zobrazení textu."
 msgid "Endnotes"
 msgstr "Závěrečné poznámky"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:76
+#: ../src/ReportBase/_GraphvizReportDialog.py:62
+msgid "Vertical (top to bottom)"
+msgstr "Vertikální (shora dolů)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:63
+msgid "Vertical (bottom to top)"
+msgstr "Vertikální (zdola nahoru)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:64
+msgid "Horizontal (left to right)"
+msgstr "Horizontální (zleva doprava)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:65
+msgid "Horizontal (right to left)"
+msgstr "Horizontální (zprava doleva)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:78
 msgid "Use optimal number of pages"
 msgstr "Použít optimální počet stran"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:487
-#, fuzzy
+#: ../src/ReportBase/_GraphvizReportDialog.py:510
 msgid "Graphviz Dot File"
+msgstr "Graphviz .dot soubor"
+
+#. ###############################
+#: ../src/ReportBase/_GraphvizReportDialog.py:638
+#, fuzzy
+msgid "GraphViz Layout"
 msgstr "Nastavení GraphViz"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:651
 msgid "Font size"
 msgstr "Velikost písma"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:632
+#: ../src/ReportBase/_GraphvizReportDialog.py:655
 msgid "Graph Direction"
 msgstr "Směr grafu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:637
+#: ../src/ReportBase/_GraphvizReportDialog.py:660
 #, fuzzy
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Zda-li jdou generace odshora dolů nebo zleva doprava."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:651
+#: ../src/ReportBase/_GraphvizReportDialog.py:678
 msgid "Paging Direction"
 msgstr "Směr stránkování"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:656
+#: ../src/ReportBase/_GraphvizReportDialog.py:683
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:691
+#: ../src/ReportBase/_GraphvizReportDialog.py:704
+msgid "Affects greatly how the graph is layed out on the page."
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:709
+#, fuzzy
+msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
+msgstr "Bodů na palec. Pokud chcete vytvořit .gif nebo .png pro web, zkuste velikost 75 nebo 100 DPI."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:715
+#, fuzzy
+msgid "Node spacing"
+msgstr "Mezera mezi řádky"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:716
+msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:723
+#, fuzzy
+msgid "Rank spacing"
+msgstr "Mezera mezi řádky"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:724
+msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:731
+msgid "Use subgraphs"
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:732
+msgid "Subgraphs can help GraphViz position certain linked nodes closer together, but with non-trivial graphs will result in longer lines and larger graphs."
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:754
 msgid "Note size"
 msgstr "Velikost poznámky"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:704
-#: ../src/ReportBase/_GraphvizReportDialog.py:755
+#: ../src/ReportBase/_GraphvizReportDialog.py:782
+#: ../src/ReportBase/_GraphvizReportDialog.py:833
 msgid "Open with application"
 msgstr "Otevřít aplikací"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:712
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Output Format"
 msgstr "Formát výstupu"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#: ../src/ReportBase/_GraphvizReportDialog.py:810
 msgid "Paper Options"
 msgstr "Nastavení papíru"
 
@@ -14541,7 +14574,6 @@ msgstr "Bez popisu"
 
 #: ../src/Filters/Rules/_HasMarkerBase.py:47
 #: ../src/FilterEditor/_EditRule.py:87
-#, fuzzy
 msgid "Marker type:"
 msgstr "Značka:"
 
@@ -15154,9 +15186,8 @@ msgid "People matching the <name>"
 msgstr "Osoby vyhovující <jménu>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:45
-#, fuzzy
 msgid "People with <marker>"
-msgstr "Osoby mající fotografii"
+msgstr "Osoby mající <marker>"
 
 #: ../src/Filters/Rules/Person/_HasMarkerOf.py:46
 #, fuzzy
@@ -15164,9 +15195,8 @@ msgid "Matches people with a marker of a particular value"
 msgstr "Vyhovují osoby s určitým datem úmrtí"
 
 #: ../src/Filters/Rules/Person/_MissingParent.py:44
-#, fuzzy
 msgid "People missing parents"
-msgstr "Vybrat existující rodiče"
+msgstr "Osoby bez rodičů"
 
 #: ../src/Filters/Rules/Person/_MissingParent.py:45
 msgid "Matches people that are children in a family with less than two parents or are not children in any family."
@@ -15177,18 +15207,16 @@ msgid "Every family"
 msgstr "Každá rodina"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
-#, fuzzy
 msgid "Matches every family in the database"
-msgstr "Vyhovují všichni v databázi"
+msgstr "Vyhovují všechny rodiny v databázi"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:43
 msgid "Families marked private"
 msgstr "Rodiny označené jako důvěrné"
 
 #: ../src/Filters/Rules/Family/_FamilyPrivate.py:44
-#, fuzzy
 msgid "Matches families that are indicated as private"
-msgstr "Vyhovují osoby označené jako důvěrné"
+msgstr "Vyhovují rodiny označené jako důvěrné"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:46
 #, fuzzy
@@ -15196,9 +15224,8 @@ msgid "Families with the family <attribute>"
 msgstr "Lidé s rodinným <atributem>"
 
 #: ../src/Filters/Rules/Family/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches families with the family attribute of a particular value"
-msgstr "Vyhovují lidé s rodinným atributem určité hodnoty"
+msgstr "Vyhovují roidny s rodinným atributem určité hodnoty"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:49
 #, fuzzy
@@ -15206,9 +15233,8 @@ msgid "Families with the <event>"
 msgstr "Rodiny s neúplnými událostmi"
 
 #: ../src/Filters/Rules/Family/_HasEvent.py:50
-#, fuzzy
 msgid "Matches families with an event of a particular value"
-msgstr "Vyhovují osoby s osobní událostí určitého druhu"
+msgstr "Vyhovují rodiny s událostí určitého druhu"
 
 #: ../src/Filters/Rules/Family/_HasIdOf.py:45
 msgid "Family with <Id>"
@@ -15571,7 +15597,7 @@ msgstr "Vyhovuje místo se zadaným GRAMPS ID"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:46
 msgid "Places with no latitude or longitude given"
-msgstr ""
+msgstr "Místa bez zeměpisných souřadnic"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
 #, fuzzy
@@ -15605,9 +15631,8 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Vyhovují osoby jejichž záznamy obsahují text vyhovující podřetězci"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:47
-#, fuzzy
 msgid "Church Parish:"
-msgstr "Farní kostel"
+msgstr "Farní kostel:"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
 #: ../src/plugins/ownereditor.glade.h:10
@@ -15827,7 +15852,7 @@ msgid "Type:"
 msgstr "Typ:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:94
 msgid "Path:"
 msgstr "Cesta:"
 
@@ -16117,9 +16142,8 @@ msgid "<b>Filter</b>"
 msgstr "<b>Filtr</b>"
 
 #: ../src/Filters/SideBar/_SidebarFilter.py:71
-#, fuzzy
 msgid "Reset"
-msgstr "Test"
+msgstr "Reset"
 
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
 msgid "Publication"
@@ -16334,7 +16358,7 @@ msgstr ""
 "UNICODE"
 
 #: ../src/glade/edit_person.glade.h:1
-#: ../src/glade/gramps.glade.h:12
+#: ../src/glade/gramps.glade.h:13
 #: ../src/plugins/verify.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>Obecné</b>"
@@ -16352,12 +16376,12 @@ msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr "Titul používaný pro osobu, např. \"Dr.\""
 
 #: ../src/glade/edit_person.glade.h:5
-#: ../src/glade/gramps.glade.h:38
+#: ../src/glade/gramps.glade.h:39
 msgid "Abandon changes and close window"
 msgstr "Zrušit změny a zavřít okno"
 
 #: ../src/glade/edit_person.glade.h:6
-#: ../src/glade/gramps.glade.h:40
+#: ../src/glade/gramps.glade.h:41
 msgid "Accept changes and close window"
 msgstr "Přijmout změny a zavřít okno"
 
@@ -16370,7 +16394,7 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Volitelná přípona ke jménu jako je \"jr.\" nebo \"III\""
 
 #: ../src/glade/edit_person.glade.h:9
-#: ../src/glade/gramps.glade.h:48
+#: ../src/glade/gramps.glade.h:49
 #, fuzzy
 msgid "Call _Name:"
 msgstr "číslo ID"
@@ -16394,7 +16418,7 @@ msgid "Gi_ven:"
 msgstr "_Křestní jméno:"
 
 #: ../src/glade/edit_person.glade.h:15
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:80
 msgid "Indicates if the record is private"
 msgstr "Označuje že záznam je důvěrný"
 
@@ -16407,12 +16431,12 @@ msgid "The person's given name"
 msgstr "Křestní jméno osoby"
 
 #: ../src/glade/edit_person.glade.h:18
-#: ../src/glade/gramps.glade.h:118
+#: ../src/glade/gramps.glade.h:119
 msgid "Tit_le:"
 msgstr "Náz_ev:"
 
 #: ../src/glade/edit_person.glade.h:19
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:143
 msgid "_Family:"
 msgstr "_Rodina:"
 
@@ -16421,22 +16445,22 @@ msgid "_Gender:"
 msgstr "Po_hlaví:"
 
 #: ../src/glade/edit_person.glade.h:21
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:145
 msgid "_ID:"
 msgstr "_ID:"
 
 #: ../src/glade/edit_person.glade.h:22
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:151
 msgid "_Marker:"
 msgstr "_Značka:"
 
 #: ../src/glade/edit_person.glade.h:23
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:160
 msgid "_Prefix:"
 msgstr "_Předpona"
 
 #: ../src/glade/edit_person.glade.h:24
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:177
 msgid "_Type:"
 msgstr "_Typ:"
 
@@ -16445,71 +16469,76 @@ msgid "\n"
 msgstr "\n"
 
 #: ../src/glade/gramps.glade.h:3
+#, fuzzy
+msgid "<b><i>Gramplet</i></b>"
+msgstr "<b>Obecné</b>"
+
+#: ../src/glade/gramps.glade.h:4
 msgid "<b>Alignment</b>"
 msgstr "<b>Zarovnání</b>"
 
-#: ../src/glade/gramps.glade.h:4
+#: ../src/glade/gramps.glade.h:5
 msgid "<b>Background color</b>"
 msgstr "<b>Barva pozadí</b>"
 
-#: ../src/glade/gramps.glade.h:5
+#: ../src/glade/gramps.glade.h:6
 msgid "<b>Borders</b>"
 msgstr "<b>Okraje</b>"
 
-#: ../src/glade/gramps.glade.h:6
+#: ../src/glade/gramps.glade.h:7
 msgid "<b>Color</b>"
 msgstr "<b>Barva</b>"
 
-#: ../src/glade/gramps.glade.h:7
+#: ../src/glade/gramps.glade.h:8
 msgid "<b>Date</b>"
 msgstr "<b>Datum</b>"
 
-#: ../src/glade/gramps.glade.h:8
+#: ../src/glade/gramps.glade.h:9
 #: ../src/glade/rule.glade.h:2
 msgid "<b>Description</b>"
 msgstr "<b>Popis</b>"
 
-#: ../src/glade/gramps.glade.h:9
+#: ../src/glade/gramps.glade.h:10
 msgid "<b>Family relationships</b>"
 msgstr "<b>Rodinné vztahy</b>"
 
-#: ../src/glade/gramps.glade.h:10
+#: ../src/glade/gramps.glade.h:11
 msgid "<b>Father</b>"
 msgstr "<b>Otec</b>"
 
-#: ../src/glade/gramps.glade.h:11
+#: ../src/glade/gramps.glade.h:12
 msgid "<b>Font options</b>"
 msgstr "<b>Nastavení písma</b>"
 
-#: ../src/glade/gramps.glade.h:13
+#: ../src/glade/gramps.glade.h:14
 msgid "<b>Indentation</b>"
 msgstr "<b>Identifikace</b>"
 
-#: ../src/glade/gramps.glade.h:14
+#: ../src/glade/gramps.glade.h:15
 msgid "<b>Location</b>"
 msgstr "<b>Informace</b>"
 
-#: ../src/glade/gramps.glade.h:15
+#: ../src/glade/gramps.glade.h:16
 msgid "<b>Mother</b>"
 msgstr "<b>Matka</b>"
 
-#: ../src/glade/gramps.glade.h:16
+#: ../src/glade/gramps.glade.h:17
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:17
+#: ../src/glade/gramps.glade.h:18
 msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:18
+#: ../src/glade/gramps.glade.h:19
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:19
+#: ../src/glade/gramps.glade.h:20
 msgid "<b>Note</b>"
 msgstr "<b>Poznámka</b>"
 
-#: ../src/glade/gramps.glade.h:20
+#: ../src/glade/gramps.glade.h:21
 #: ../src/glade/rule.glade.h:3
 #: ../src/plugins/csvexport.glade.h:1
 #: ../src/plugins/genewebexport.glade.h:2
@@ -16520,327 +16549,327 @@ msgstr "<b>Poznámka</b>"
 msgid "<b>Options</b>"
 msgstr "<b>Volby</b>"
 
-#: ../src/glade/gramps.glade.h:21
+#: ../src/glade/gramps.glade.h:22
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Nastavení odstavce</b>"
 
-#: ../src/glade/gramps.glade.h:22
+#: ../src/glade/gramps.glade.h:23
 msgid "<b>Parent relationships</b>"
 msgstr "<b>Rodičovské vztahy</b>"
 
-#: ../src/glade/gramps.glade.h:23
+#: ../src/glade/gramps.glade.h:24
 msgid "<b>Preview</b>"
 msgstr "<b>Náhled</b>"
 
-#: ../src/glade/gramps.glade.h:24
+#: ../src/glade/gramps.glade.h:25
 msgid "<b>Q_uality</b>"
 msgstr "<b>Kv_alita</b>"
 
-#: ../src/glade/gramps.glade.h:25
+#: ../src/glade/gramps.glade.h:26
 #, fuzzy
 msgid "<b>Reference information</b>"
 msgstr "<b>Informace o výzkumníku</b>"
 
-#: ../src/glade/gramps.glade.h:26
+#: ../src/glade/gramps.glade.h:27
 #, fuzzy
 msgid "<b>Referenced Region</b>"
 msgstr "<b>Informace o výzkumníku</b>"
 
-#: ../src/glade/gramps.glade.h:27
+#: ../src/glade/gramps.glade.h:28
 #, fuzzy
 msgid "<b>Relationship Information</b>"
 msgstr "<b>V_ztah</b>"
 
-#: ../src/glade/gramps.glade.h:28
+#: ../src/glade/gramps.glade.h:29
 msgid "<b>Second date</b>"
 msgstr "<b>Druhé datum</b>"
 
-#: ../src/glade/gramps.glade.h:29
+#: ../src/glade/gramps.glade.h:30
 msgid "<b>Shared Information</b>"
 msgstr "<b>Sdílená informace</b>"
 
-#: ../src/glade/gramps.glade.h:30
+#: ../src/glade/gramps.glade.h:31
 msgid "<b>Shared information</b>"
 msgstr "<b>Sdílená informace</b>"
 
-#: ../src/glade/gramps.glade.h:31
+#: ../src/glade/gramps.glade.h:32
 msgid "<b>Shared source information</b>"
 msgstr "<b>Informace sdíleného pramene</b>"
 
-#: ../src/glade/gramps.glade.h:32
+#: ../src/glade/gramps.glade.h:33
 msgid "<b>Size</b>"
 msgstr "<b>Velikost</b>"
 
-#: ../src/glade/gramps.glade.h:33
+#: ../src/glade/gramps.glade.h:34
 #, fuzzy
 msgid "<b>Spacing</b>"
 msgstr "<b>Kódování</b>"
 
-#: ../src/glade/gramps.glade.h:34
+#: ../src/glade/gramps.glade.h:35
 msgid "<b>Type face</b>"
 msgstr "<b>Druh písma</b>"
 
-#: ../src/glade/gramps.glade.h:35
+#: ../src/glade/gramps.glade.h:36
 #, fuzzy
 msgid "<b>Version description</b>"
 msgstr "<b>Popis</b>"
 
-#: ../src/glade/gramps.glade.h:36
+#: ../src/glade/gramps.glade.h:37
 msgid "<b>_Type</b>"
 msgstr "<b>_Typ</b>"
 
-#: ../src/glade/gramps.glade.h:37
+#: ../src/glade/gramps.glade.h:38
 msgid "A_bbreviation:"
 msgstr "Zkratka:"
 
-#: ../src/glade/gramps.glade.h:39
+#: ../src/glade/gramps.glade.h:40
 msgid "Abo_ve:"
 msgstr "Nad:"
 
-#: ../src/glade/gramps.glade.h:41
+#: ../src/glade/gramps.glade.h:42
 msgid "Add_ress:"
 msgstr "Ad_resa:"
 
-#: ../src/glade/gramps.glade.h:43
+#: ../src/glade/gramps.glade.h:44
 msgid "Belo_w:"
 msgstr "Pod:"
 
-#: ../src/glade/gramps.glade.h:44
+#: ../src/glade/gramps.glade.h:45
 msgid "Birth:"
 msgstr "Narození:"
 
-#: ../src/glade/gramps.glade.h:45
+#: ../src/glade/gramps.glade.h:46
 msgid "C_ity:"
 msgstr "_Město:"
 
-#: ../src/glade/gramps.glade.h:46
+#: ../src/glade/gramps.glade.h:47
 msgid "C_ounty:"
 msgstr "Kraj(okres)"
 
-#: ../src/glade/gramps.glade.h:47
+#: ../src/glade/gramps.glade.h:48
 msgid "Calenda_r:"
 msgstr "Kalendář:"
 
-#: ../src/glade/gramps.glade.h:49
+#: ../src/glade/gramps.glade.h:50
 msgid "Church _parish:"
 msgstr "Farní _kostel:"
 
-#: ../src/glade/gramps.glade.h:50
+#: ../src/glade/gramps.glade.h:51
 #: ../src/plugins/soundex.glade.h:1
 msgid "Close Window"
 msgstr "Zavřít okno"
 
-#: ../src/glade/gramps.glade.h:51
+#: ../src/glade/gramps.glade.h:52
 msgid "Close _without saving"
 msgstr "Zavřít _bez uložení"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:53
 msgid "Close window without changes"
 msgstr "Zavřít okno bez změn"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:54
 msgid "Co_unty:"
 msgstr "Kraj(okres):"
 
-#: ../src/glade/gramps.glade.h:54
+#: ../src/glade/gramps.glade.h:55
 msgid "Convert to a relative path"
 msgstr "Změnit na relativní cestu"
 
-#: ../src/glade/gramps.glade.h:55
+#: ../src/glade/gramps.glade.h:56
 msgid "Corner 1:  X"
 msgstr "Roh 1: X"
 
-#: ../src/glade/gramps.glade.h:56
+#: ../src/glade/gramps.glade.h:57
 msgid "Corner 2:  X"
 msgstr "Roh 2: X"
 
-#: ../src/glade/gramps.glade.h:57
+#: ../src/glade/gramps.glade.h:58
 msgid "Cou_ntry:"
 msgstr "Země:"
 
-#: ../src/glade/gramps.glade.h:58
+#: ../src/glade/gramps.glade.h:59
 msgid "Count_ry:"
 msgstr "Země:"
 
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:61
 msgid "D_ay"
 msgstr "_Den"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:62
 msgid "Dat_e:"
 msgstr "Datum:"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:63
 msgid "De_scription:"
 msgstr "Popi_s:"
 
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:64
 msgid "Death:"
 msgstr "Úmrtí:"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:65
 msgid "Do not ask again"
 msgstr "Příště se již neptat"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:66
 msgid "Do not show this dialog again"
 msgstr "Příště se již neptat"
 
-#: ../src/glade/gramps.glade.h:67
+#: ../src/glade/gramps.glade.h:68
 msgid "Example:"
 msgstr "Příklad:"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:69
 msgid "Family Trees - GRAMPS"
 msgstr "Rodokmeny - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:70
 msgid "Family:"
 msgstr "Rodina:"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:71
 msgid "First li_ne:"
 msgstr "Prv_ní řádek"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:72
 msgid "Format _definition:"
 msgstr "_Definice formátu:"
 
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:73
 msgid "Format _name:"
 msgstr "Jmé_no formátu:"
 
-#: ../src/glade/gramps.glade.h:73
+#: ../src/glade/gramps.glade.h:74
 #, fuzzy
 msgid "Format definition details"
 msgstr "Detaily d_efinice formátu"
 
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:75
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:76
 msgid "G_roup as:"
 msgstr "Ses_kupovat jako:"
 
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:78
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:78
+#: ../src/glade/gramps.glade.h:79
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
 msgstr "Pokud zaškrtnete, bude se všemi chybějícími soubory médií atomaticky nakládáno podle v současnosti vybrané volby. Žádné další dialogy týkající se chybějících souborů médií se neobjeví."
 
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:81
 msgid "Invoke date editor"
 msgstr "Spustit editor data"
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:82
 msgid "Keep reference to the missing file"
 msgstr "Ponechat odkaz na chybějící soubor"
 
-#: ../src/glade/gramps.glade.h:82
+#: ../src/glade/gramps.glade.h:83
 #, fuzzy
 msgid "LDS _Temple:"
 msgstr "Ch_rám SPD:"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:84
 msgid "L_atitude:"
 msgstr "Zeměpisná šířk_a:"
 
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:85
 msgid "L_eft:"
 msgstr "Vl_evo"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:86
 msgid "Le_ft"
 msgstr "V_levo"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:87
 msgid "Load Family Tree"
 msgstr "Nahrát rodokmen"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:88
 msgid "Mo_nth"
 msgstr "Mě_síc"
 
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:90
 msgid "O_verride"
 msgstr "Přepsa_t"
 
-#: ../src/glade/gramps.glade.h:90
+#: ../src/glade/gramps.glade.h:91
 msgid "Ordinance:"
 msgstr "Vysvěcení"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:92
 msgid "P_atronymic:"
 msgstr "Jméno po otci:"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:93
 msgid "P_hone:"
 msgstr "Tele_fon:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:95
 msgid "Phon_e:"
 msgstr "T_elefon:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:96
 msgid "R_ight:"
 msgstr "_Vpravo"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:97
 msgid "Relationship to _Father:"
 msgstr "Vztah k otci:"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:98
 msgid "Relationship to _Mother:"
 msgstr "Vztah k _matce:"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:99
 msgid "Remove object and all references to it from the database"
 msgstr "Odstranit objekt a všechny odkazy na něj z databáze"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:100
 msgid "Rename"
 msgstr "Přejmenovat"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:101
 msgid "Repair"
 msgstr "Opravit"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:102
 msgid "Revision comment - GRAMPS"
 msgstr "Komentář k revizi - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:103
 msgid "Ri_ght"
 msgstr "Vp_ravo"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:104
 msgid "S_treet:"
 msgstr "Ulice"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:105
 msgid "Select replacement for the missing file"
 msgstr "Vybrat náhradu pro chybějící soubor"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:106
 msgid "Show all"
 msgstr "Zobrazit vše"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:107
 msgid "Style n_ame:"
 msgstr "Jméno stylu:"
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:108
 msgid "Suffi_x:"
 msgstr "Přípon_a:"
 
-#: ../src/glade/gramps.glade.h:108
+#: ../src/glade/gramps.glade.h:109
 msgid "Te_xt comment:"
 msgstr "Te_xtový komentář:"
 
-#: ../src/glade/gramps.glade.h:110
+#: ../src/glade/gramps.glade.h:111
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -16861,7 +16890,7 @@ msgstr ""
 "··<b>%c</b>·-·Přezdívka········<b>%C</b>·-·CALL·NAME\n"
 "··<b>%y</b>·-·Jméno po otci·······<b>%Y</b>·-·PATRONYMIC</tt>"
 
-#: ../src/glade/gramps.glade.h:119
+#: ../src/glade/gramps.glade.h:120
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -16875,234 +16904,234 @@ msgstr ""
 "Vysoká\n"
 "Velmi vysoká"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:125
 msgid "Y"
 msgstr "Y"
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:126
 msgid "Y_ear"
 msgstr "R_ok"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:127
 #, fuzzy
 msgid "_Association:"
 msgstr "Asociace"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:128
 msgid "_Attribute:"
 msgstr "_Atribut:"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:129
 msgid "_Author:"
 msgstr "_Autor:"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:130
 msgid "_Bold"
 msgstr "Tučné"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:131
 msgid "_Bottom"
 msgstr "D_olů"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:132
 #, fuzzy
 msgid "_Call number:"
 msgstr "_Příjmení:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:133
 msgid "_Center"
 msgstr "Vy_centrovat"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:134
 msgid "_City/County:"
 msgstr "_Město/kraj:"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:135
 msgid "_City:"
 msgstr "_Město:"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:136
 msgid "_Confidence:"
 msgstr "Důvěryhodnost:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:137
 msgid "_Date:"
 msgstr "_Datum:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:138
 msgid "_Day"
 msgstr "_Den"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:139
 msgid "_Description:"
 msgstr "_Popis:"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:140
 msgid "_Display as:"
 msgstr "Zobrazit jako:"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display on startup"
 msgstr "Zobrazit při startu"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:142
 msgid "_Event type:"
 msgstr "Typ události:"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:144
 msgid "_Given:"
 msgstr "_Křestní jméno:"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:146
 msgid "_Italic"
 msgstr "_Kurzíva"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:147
 msgid "_Justify"
 msgstr "Zarovnat"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:148
 msgid "_Keep Reference"
 msgstr "Ponechat odkaz"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:149
 msgid "_Left"
 msgstr "V_levo"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:150
 msgid "_Longitude:"
 msgstr "Zeměpisná dé_lka:"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:152
 msgid "_Media Type:"
 msgstr "Typ _média:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:153
 msgid "_Month"
 msgstr "_Měsíc"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:154
 #: ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "Jmé_no:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:155
 msgid "_Padding:"
 msgstr "Odstup od _okrajů"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:156
 msgid "_Path:"
 msgstr "_Cesta:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:157
 msgid "_Person:"
 msgstr "_Osoba:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:158
 msgid "_Place Name:"
 msgstr "Jméno _místa:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:159
 msgid "_Place:"
 msgstr "_Místo:"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:161
 msgid "_Preformatted"
 msgstr "_Předformátováno"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:162
 msgid "_Publication Information:"
 msgstr "Informace o _publikaci:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:163
 msgid "_Publication information:"
 msgstr "Informace o _publikaci:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:164
 msgid "_Remove Object"
 msgstr "Odst_ranit objekt"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:165
 msgid "_Right"
 msgstr "Vp_ravo"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:166
 msgid "_Role:"
 msgstr "_Role:"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:167
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:168
 msgid "_Select File"
 msgstr "Vybrat soubor"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:169
 msgid "_Sort as:"
 msgstr "_Třídit podle:"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:170
 msgid "_Spelling:"
 msgstr "Pravopi_s:"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:171
 msgid "_State/Province:"
 msgstr "_Stát/Provincie:"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:172
 msgid "_State:"
 msgstr "_Stát:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:173
 msgid "_Status:"
 msgstr "_Stav:"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:174
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:175
 msgid "_Title:"
 msgstr "Titul:"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:176
 msgid "_Top"
 msgstr "_Nahoru"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:178
 msgid "_Underline"
 msgstr "Podtržené"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:179
 msgid "_Use this selection for all missing media files"
 msgstr "_Použít tento výběr pro všechny chybějící soubory médií"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:180
 msgid "_Value:"
 msgstr "Hodnota:"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:181
 msgid "_Volume/Page:"
 msgstr "_Ročník/Film/Stránka:"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:182
 msgid "_Web address:"
 msgstr "_WWW adresa:"
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:183
 msgid "_Year"
 msgstr "_Rok"
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:184
 msgid "_ZIP/Postal code:"
 msgstr "_PSČ:"
 
-#: ../src/glade/gramps.glade.h:184
+#: ../src/glade/gramps.glade.h:185
 msgid "_Zip/Postal code:"
 msgstr "_PSČ:"
 
-#: ../src/glade/gramps.glade.h:186
+#: ../src/glade/gramps.glade.h:187
 msgid "pt"
 msgstr "pt"
 
@@ -17784,11 +17813,11 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:30
 msgid "Full pathname of the default report directory."
-msgstr ""
+msgstr "Plná cesta výchozí složky zpráv."
 
 #: ../data/gramps.schemas.in.h:31
 msgid "Full pathname of the default website directory."
-msgstr ""
+msgstr "Plná cesta výchozí složky webu."
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Full pathname of the directory from which GRAMPS has last imported data."
@@ -17908,7 +17937,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:56
 msgid "Hide warning on missing database owner."
-msgstr ""
+msgstr "Skrýt upozornění o chybějícím vlastníku databáze."
 
 #: ../data/gramps.schemas.in.h:57
 msgid "If True, a new source will be created and every record without source reference will be referenced to this source"
