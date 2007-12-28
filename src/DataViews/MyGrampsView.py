@@ -768,13 +768,14 @@ class MyGrampsView(PageView.PageView):
         self.action = gtk.ActionGroup(self.title + "/Gadgets")
         self.action.add_actions([('AddGadget',gtk.STOCK_ADD,_("_Add a gadget")),
                                  ('RestoreGadget',None,_("_Restore a gadget")),
-                                 ('Columns1',None,_("Set columns to 1"),
+                                 ('DeleteGadget',None,_("_Delete a gadget")),
+                                 ('Columns1',None,_("Set columns to _1"),
                                   None,None,
                                   lambda obj:self.set_columns(1)),
-                                 ('Columns2',None,_("Set columns to 2"),
+                                 ('Columns2',None,_("Set columns to _2"),
                                   None,None,
                                   lambda obj:self.set_columns(2)),
-                                 ('Columns3',None,_("Set columns to 3"),
+                                 ('Columns3',None,_("Set columns to _3"),
                                   None,None,
                                   lambda obj:self.set_columns(3)),
                                  ])
@@ -798,6 +799,22 @@ class MyGrampsView(PageView.PageView):
         # place the gadgets back in the new columns
         self.place_gadgets()
         self.widget.show()
+
+    def delete_gadget(self, obj):
+        name = obj.get_child().get_label()
+        ############### First kind: from current session
+        for gadget in self.closed_gadgets:
+            if gadget.title == name:
+                self.closed_gadgets.remove(gadget)
+                self.gadget_map[gadget.title]
+                self.frame_map[str(gadget.mainframe)]
+                del gadget
+                return
+        ################ Second kind: from options
+        for opts in self.closed_opts:
+            if opts["title"] == name:
+                self.closed_opts.remove(opts)
+                return
 
     def restore_gadget(self, obj):
         name = obj.get_child().get_label()
@@ -890,9 +907,6 @@ class MyGrampsView(PageView.PageView):
         <ui>
           <menubar name="MenuBar">
             <menu action="ViewMenu">
-              <menuitem action="AddGadget"/>
-              <menuitem action="RestoreGadget"/>
-              <separator/>
               <menuitem action="Columns1"/>
               <menuitem action="Columns2"/>
               <menuitem action="Columns3"/>
@@ -901,6 +915,7 @@ class MyGrampsView(PageView.PageView):
           <popup name="Popup">
             <menuitem action="AddGadget"/>
             <menuitem action="RestoreGadget"/>
+            <menuitem action="DeleteGadget"/>
             <separator/>
             <menuitem action="Columns1"/>
             <menuitem action="Columns2"/>
@@ -925,10 +940,14 @@ class MyGrampsView(PageView.PageView):
                                            None, self.add_gadget)
                     self.uistate.uimanager.get_widget('/Popup/AddGadget').set_submenu(qr_menu)
             rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGadget')
+            dg_menu = self.uistate.uimanager.get_widget('/Popup/DeleteGadget')
             if rg_menu:
                 qr_menu = rg_menu.get_submenu()
                 if qr_menu != None:
                     rg_menu.remove_submenu()
+                qr2_menu = dg_menu.get_submenu()
+                if qr2_menu != None:
+                    dg_menu.remove_submenu()
                 names = []
                 for gadget in self.closed_gadgets:
                     names.append(gadget.title)
@@ -937,10 +956,14 @@ class MyGrampsView(PageView.PageView):
                 names.sort()
                 if len(names) > 0:
                     qr_menu = gtk.Menu()
+                    qr2_menu = gtk.Menu()
                     for name in names:
                         Utils.add_menuitem(qr_menu, name, 
                                            None, self.restore_gadget)
+                        Utils.add_menuitem(qr2_menu, name, 
+                                           None, self.delete_gadget)
                     self.uistate.uimanager.get_widget('/Popup/RestoreGadget').set_submenu(qr_menu)
+                    self.uistate.uimanager.get_widget('/Popup/DeleteGadget').set_submenu(qr2_menu)
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True
