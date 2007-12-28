@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-20 14:53+0100\n"
-"PO-Revision-Date: 2007-12-23 21:08+0300\n"
+"POT-Creation-Date: 2007-12-24 17:49-0800\n"
+"PO-Revision-Date: 2007-12-28 20:59+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "GRAMPS duomenų bazės"
 #: ../src/Assistant.py:337
 #: ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:88
+#: ../src/glade/gramps.glade.h:89
 #: ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
@@ -139,7 +139,7 @@ msgstr "Valstija/Provincija:"
 
 #: ../src/Assistant.py:341
 #: ../src/Filters/Rules/Place/_HasPlace.py:52
-#: ../src/glade/gramps.glade.h:59
+#: ../src/glade/gramps.glade.h:60
 #: ../src/plugins/ownereditor.glade.h:5
 msgid "Country:"
 msgstr "Šalis:"
@@ -169,21 +169,21 @@ msgstr "Redaguoti žymelę"
 #. Add column with object name
 #: ../src/Bookmarks.py:206
 #: ../src/GrampsCfg.py:172
-#: ../src/ScratchPad.py:172
-#: ../src/ScratchPad.py:244
-#: ../src/ScratchPad.py:354
-#: ../src/ScratchPad.py:410
-#: ../src/ScratchPad.py:443
-#: ../src/ScratchPad.py:504
-#: ../src/ScratchPad.py:535
-#: ../src/ScratchPad.py:552
-#: ../src/ScratchPad.py:553
-#: ../src/ScratchPad.py:572
-#: ../src/ScratchPad.py:622
-#: ../src/ScratchPad.py:655
-#: ../src/ScratchPad.py:709
-#: ../src/ScratchPad.py:720
-#: ../src/ScratchPad.py:799
+#: ../src/ScratchPad.py:185
+#: ../src/ScratchPad.py:257
+#: ../src/ScratchPad.py:367
+#: ../src/ScratchPad.py:423
+#: ../src/ScratchPad.py:456
+#: ../src/ScratchPad.py:517
+#: ../src/ScratchPad.py:548
+#: ../src/ScratchPad.py:565
+#: ../src/ScratchPad.py:566
+#: ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:635
+#: ../src/ScratchPad.py:668
+#: ../src/ScratchPad.py:722
+#: ../src/ScratchPad.py:733
+#: ../src/ScratchPad.py:812
 #: ../src/ToolTips.py:173
 #: ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210
@@ -196,7 +196,7 @@ msgstr "Redaguoti žymelę"
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 #: ../src/Editors/_EditFamily.py:97
-#: ../src/Editors/_EditName.py:225
+#: ../src/Editors/_EditName.py:274
 #: ../src/Selectors/_SelectPerson.py:48
 #: ../src/Selectors/_SelectPerson.py:120
 #: ../src/Selectors/_SelectPerson.py:126
@@ -495,7 +495,7 @@ msgstr "Ištraukti"
 
 #: ../src/DbManager.py:98
 #: ../src/gen/lib/repotype.py:55
-#: ../src/glade/gramps.glade.h:42
+#: ../src/glade/gramps.glade.h:43
 msgid "Archive"
 msgstr "Archyvas"
 
@@ -521,7 +521,7 @@ msgstr "Panaikinti '%s' duomenų bazės užrakinimą?"
 
 #: ../src/DbManager.py:344
 msgid "GRAMPS believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
-msgstr ""
+msgstr "GRAMPS įsitikinęs, kad kažkas kitas aktyviai koreguoja duomenų bazę. Kol bazė užrakinta Jūs negalite jos koreguoti. Jei niekas kitas jos nenaudoja, tai galite saugai nutraukti užrakinimą. Bet jei kažkas kitas koreguoja bazę ir Jūs nutrauksite užrakinimą, tai galite sugadinti duomenų bazę."
 
 #: ../src/DbManager.py:350
 msgid "Break lock"
@@ -628,7 +628,7 @@ msgid "Could not make database directory: "
 msgstr "Nepavyko sukurti duomenų bazės direktorijos: "
 
 #: ../src/DbManager.py:851
-#: ../src/ScratchPad.py:80
+#: ../src/ScratchPad.py:93
 #: ../src/DataViews/_RelationView.py:389
 #: ../src/DataViews/_RelationView.py:830
 #: ../src/DataViews/_RelationView.py:868
@@ -737,7 +737,7 @@ msgstr "Galutinis užsaugojimo patvirtinimas"
 
 #: ../src/ExportAssistant.py:329
 msgid "Please wait while your data is selected and exported"
-msgstr ""
+msgstr "Prašome palaukti kol Jūsų duomenys bus pažymėti ir  išeksportuoti"
 
 #: ../src/ExportAssistant.py:342
 #: ../src/PluginUtils/_PluginWindows.py:120
@@ -783,7 +783,7 @@ msgid ""
 "\n"
 "Note: the database currently opened in your GRAMPS window is NOT the file you have just saved. Future editing of the currently opened database will not alter the copy you have just made. "
 msgstr ""
-"Jūsų duomenų kopija sėkmingai užsaugota. Tęsimui Jūs galite nuspausti Pritaikyti mygtuką. \n"
+"Jūsų duomenų kopija sėkmingai užsaugota. Tęsimui Jūs galite nuspausti Gerai mygtuką. \n"
 "\n"
 "Pastaba: dabar atidaryta duomenų bazė GRAMPS lange NĖRA byla kurią jūs ką tik užsaugojote. Tolesnis duomenų keitimas nekeis duomenų kopijoje kurią ką tik padarėte. "
 
@@ -915,8 +915,17 @@ msgid "Preferences"
 msgstr "Nustatymai"
 
 #: ../src/GrampsCfg.py:144
+#: ../src/Editors/_EditEventRef.py:88
+#: ../src/Editors/_EditEventRef.py:94
+#: ../src/Editors/_EditMediaRef.py:83
+#: ../src/Editors/_EditMediaRef.py:89
+#: ../src/Editors/_EditName.py:123
+#: ../src/Editors/_EditRepoRef.py:82
+#: ../src/Editors/_EditRepoRef.py:88
+#: ../src/Editors/_EditSourceRef.py:77
+#: ../src/Editors/_EditSourceRef.py:83
 #: ../src/gen/lib/notetype.py:80
-#: ../src/glade/gramps.glade.h:76
+#: ../src/glade/gramps.glade.h:77
 msgid "General"
 msgstr "Paprastas"
 
@@ -942,8 +951,8 @@ msgstr "Žymeklių spalvos"
 
 #: ../src/GrampsCfg.py:173
 #: ../src/gramps_main.py:98
-#: ../src/ScratchPad.py:138
-#: ../src/ScratchPad.py:155
+#: ../src/ScratchPad.py:151
+#: ../src/ScratchPad.py:168
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
 #: ../src/Editors/_EditAddress.py:147
 #: ../src/plugins/FamilyGroup.py:295
@@ -1009,13 +1018,13 @@ msgstr "Asmuo"
 #. get the family events
 #: ../src/GrampsCfg.py:188
 #: ../src/gramps_main.py:107
-#: ../src/ScratchPad.py:556
+#: ../src/ScratchPad.py:569
 #: ../src/ToolTips.py:228
 #: ../src/DataViews/_RelationView.py:454
 #: ../src/DataViews/_RelationView.py:1115
 #: ../src/DataViews/_RelationView.py:1139
 #: ../src/Editors/_EditFamily.py:471
-#: ../src/plugins/all_events.py:80
+#: ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266
 #: ../src/gen/lib/eventroletype.py:57
 #: ../src/FilterEditor/_EditRule.py:269
@@ -1023,9 +1032,9 @@ msgid "Family"
 msgstr "Šeima"
 
 #: ../src/GrampsCfg.py:189
-#: ../src/ScratchPad.py:234
-#: ../src/ScratchPad.py:264
-#: ../src/ScratchPad.py:342
+#: ../src/ScratchPad.py:247
+#: ../src/ScratchPad.py:277
+#: ../src/ScratchPad.py:355
 #: ../src/DataViews/_EventView.py:75
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
@@ -1044,15 +1053,15 @@ msgid "Source"
 msgstr "Šaltinis"
 
 #: ../src/GrampsCfg.py:191
-#: ../src/ScratchPad.py:606
 #: ../src/ScratchPad.py:619
+#: ../src/ScratchPad.py:632
 #: ../src/Editors/_EditPerson.py:442
 #: ../src/FilterEditor/_EditRule.py:273
 msgid "Media Object"
 msgstr "Vaizdo/garso byla"
 
 #: ../src/GrampsCfg.py:192
-#: ../src/ScratchPad.py:231
+#: ../src/ScratchPad.py:244
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:123
 #: ../src/FilterEditor/_EditRule.py:270
 msgid "Event"
@@ -1148,7 +1157,7 @@ msgstr "Pavardė"
 #: ../src/GrampsCfg.py:341
 #: ../src/GrampsCfg.py:342
 #: ../src/GrampsCfg.py:343
-#: ../src/ScratchPad.py:555
+#: ../src/ScratchPad.py:568
 #: ../src/Utils.py:1100
 #: ../src/BasicUtils/_NameDisplay.py:107
 msgid "Given"
@@ -1160,7 +1169,7 @@ msgstr "Duotas vardas"
 #: ../src/GrampsCfg.py:335
 #: ../src/GrampsCfg.py:337
 #: ../src/GrampsCfg.py:342
-#: ../src/ScratchPad.py:560
+#: ../src/ScratchPad.py:573
 #: ../src/Utils.py:1103
 msgid "Suffix"
 msgstr "Priesaga"
@@ -1191,13 +1200,13 @@ msgstr "Vardas"
 #: ../src/GrampsCfg.py:343
 #: ../src/Utils.py:1102
 msgid "SURNAME"
-msgstr ""
+msgstr "PAVARDĖ"
 
 #: ../src/GrampsCfg.py:336
-#: ../src/ScratchPad.py:557
+#: ../src/ScratchPad.py:570
 #: ../src/Utils.py:1104
 msgid "Patronymic"
-msgstr ""
+msgstr "Tėvavardis"
 
 #: ../src/GrampsCfg.py:401
 msgid "This format exists already"
@@ -1224,7 +1233,7 @@ msgstr "Vardo formatas"
 
 #: ../src/GrampsCfg.py:610
 #: ../src/DataViews/_RelationView.py:326
-#: ../src/DisplayTabs/_ButtonTab.py:64
+#: ../src/DisplayTabs/_ButtonTab.py:69
 #: ../src/plugins/BookReport.py:867
 msgid "Edit"
 msgstr "Taisyti"
@@ -1344,8 +1353,8 @@ msgid "Family Trees"
 msgstr "Šeimos Medžiai"
 
 #: ../src/gramps_main.py:99
-#: ../src/ScratchPad.py:389
-#: ../src/ScratchPad.py:397
+#: ../src/ScratchPad.py:402
+#: ../src/ScratchPad.py:410
 #: ../src/Editors/_EditAttribute.py:135
 msgid "Attribute"
 msgstr "Požymis"
@@ -1355,9 +1364,9 @@ msgid "Add Bookmark"
 msgstr "Pritėti žymę"
 
 #: ../src/gramps_main.py:104
-#: ../src/ScratchPad.py:156
-#: ../src/ScratchPad.py:233
-#: ../src/ScratchPad.py:341
+#: ../src/ScratchPad.py:169
+#: ../src/ScratchPad.py:246
+#: ../src/ScratchPad.py:354
 #: ../src/DataViews/_EventView.py:74
 #: ../src/DataViews/_MediaView.py:88
 #: ../src/DisplayTabs/_AddrEmbedList.py:60
@@ -1418,7 +1427,7 @@ msgstr "Vaizdas/garsas"
 #: ../src/plugins/GraphViz.py:986
 #: ../src/plugins/IndivComplete.py:168
 #: ../src/plugins/MarkerReport.py:371
-#: ../src/ReportBase/_GraphvizReportDialog.py:676
+#: ../src/ReportBase/_GraphvizReportDialog.py:739
 msgid "Notes"
 msgstr "Pastabos"
 
@@ -1476,9 +1485,9 @@ msgid "Repositories"
 msgstr "Saugyklos"
 
 #: ../src/gramps_main.py:123
-#: ../src/ScratchPad.py:171
-#: ../src/ScratchPad.py:409
-#: ../src/ScratchPad.py:442
+#: ../src/ScratchPad.py:184
+#: ../src/ScratchPad.py:422
+#: ../src/ScratchPad.py:455
 #: ../src/DataViews/_SourceView.py:97
 #: ../src/DisplayTabs/_SourceEmbedList.py:69
 #: ../src/plugins/IndivComplete.py:367
@@ -1577,16 +1586,17 @@ msgid ""
 "\n"
 "GRAMPS will terminate now."
 msgstr ""
+"Python versija neatitinka reikalavimų. Norint startuoti GRAMPS reikia bent %d.%d.%d.\n"
+"\n"
+"GRAMPS dabar baigs darbą."
 
 #: ../src/GrampsWidgets.py:110
-#, fuzzy
 msgid "Expand this section"
-msgstr "Datos pasirinkimas"
+msgstr "Išplėsti šią sekciją"
 
 #: ../src/GrampsWidgets.py:113
-#, fuzzy
 msgid "Collapse this section"
-msgstr "Kolekcija"
+msgstr "Suskleisti šią sekciją"
 
 #: ../src/GrampsWidgets.py:130
 msgid ""
@@ -1634,9 +1644,8 @@ msgid "Remove place"
 msgstr "Ištrinti vietovę"
 
 #: ../src/GrampsWidgets.py:976
-#, fuzzy
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr "Vietovei pasirinkti naudokite mygtukus arba pernešimą (drag-and-drop)"
+msgstr "Audio/video objektui pasirinkti naudokite mygtukus arba pernešimą (drag-and-drop)"
 
 #: ../src/GrampsWidgets.py:978
 msgid "No image given, click button to select one"
@@ -1660,17 +1669,16 @@ msgid "Remove media object"
 msgstr "Ištrinti audio/video objektą"
 
 #: ../src/GrampsWidgets.py:1030
-#, fuzzy
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr "Vietovei pasirinkti naudokite mygtukus arba pernešimą (drag-and-drop)"
+msgstr "Pastabai pasirinkti naudokite mygtukus arba pernešimą (drag-and-drop)"
 
 #: ../src/GrampsWidgets.py:1032
 msgid "No note given, click button to select one"
 msgstr "Nenurodyta pastaba, su pele pasirinkite vieną"
 
 #: ../src/GrampsWidgets.py:1033
-#: ../src/Editors/_EditNote.py:301
-#: ../src/Editors/_EditNote.py:431
+#: ../src/Editors/_EditNote.py:354
+#: ../src/Editors/_EditNote.py:484
 msgid "Edit Note"
 msgstr "Redaguoti Pastabą"
 
@@ -1829,23 +1837,23 @@ msgstr "_Redaguoti"
 msgid "_Filter"
 msgstr "_Filtas"
 
-#: ../src/PageView.py:1003
-#: ../src/DataViews/_PersonView.py:903
+#: ../src/PageView.py:1004
+#: ../src/DataViews/_PersonView.py:904
 msgid "Export view as spreadsheet"
 msgstr "Išsaugoti vaizdą skaičiuoklės dokumentu"
 
-#: ../src/PageView.py:1011
-#: ../src/DataViews/_PersonView.py:911
+#: ../src/PageView.py:1012
+#: ../src/DataViews/_PersonView.py:912
 msgid "Format:"
 msgstr "Formatas:"
 
-#: ../src/PageView.py:1016
-#: ../src/DataViews/_PersonView.py:916
+#: ../src/PageView.py:1017
+#: ../src/DataViews/_PersonView.py:917
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1017
-#: ../src/DataViews/_PersonView.py:917
+#: ../src/PageView.py:1018
+#: ../src/DataViews/_PersonView.py:918
 msgid "Open Document Spreadsheet"
 msgstr "Atviro Dokumento Skaičiuoklė"
 
@@ -1891,7 +1899,7 @@ msgstr "Aptiktas duomenų bazės sugadinimas žemame lygyje"
 
 #: ../src/QuestionDialog.py:197
 msgid "GRAMPS has detected a problem in the underlying Berkeley database. This can be repaired by from the Family Tree Manager. Select the database and click on the Repair button"
-msgstr ""
+msgstr "GRAMPS pastebėjo problemą jos Berkeley duomenų bazėje. Ji gali būti pakoreguota iš Šeimos Medžio Redaktoriaus. Pažymėkite duomenų bazę ir nuspauskite Taisyti mygtuką"
 
 #: ../src/QuestionDialog.py:279
 #: ../src/Utils.py:1023
@@ -1924,6 +1932,8 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
+"Šeimos medis turi daugiau duomenų, nei  maksimalus ieškotas %d kartų skaičius.\n"
+"Gali būti, kad  kai kurie ryšiai buvo nepastebėti"
 
 #: ../src/Relationship.py:928
 msgid "Relationship loop detected:"
@@ -1932,7 +1942,7 @@ msgstr "Rastas ciklas ryšiuose:"
 #: ../src/Relationship.py:929
 #, python-format
 msgid "Person %s connects to himself via %s"
-msgstr ""
+msgstr "Asmuo %s susijungia su savimi per %s"
 
 #: ../src/Relationship.py:1194
 msgid "undefined"
@@ -2097,35 +2107,36 @@ msgstr "Perrūšiuoti ryšius"
 msgid "Reorder Relationships: %s"
 msgstr "Perrūšiuoti ryšius: %s"
 
-#: ../src/ScratchPad.py:157
-#: ../src/ScratchPad.py:184
-#: ../src/ScratchPad.py:196
+#: ../src/ScratchPad.py:170
+#: ../src/ScratchPad.py:197
+#: ../src/ScratchPad.py:209
 #: ../src/ToolTips.py:142
+#: ../src/Editors/_EditPlace.py:124
 msgid "Location"
 msgstr "Vieta"
 
-#: ../src/ScratchPad.py:163
-#: ../src/ScratchPad.py:201
+#: ../src/ScratchPad.py:176
+#: ../src/ScratchPad.py:214
 #: ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Telefonas"
 
-#: ../src/ScratchPad.py:213
+#: ../src/ScratchPad.py:226
 msgid "Event Link"
 msgstr "Įvykio Nuoroda"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:232
-#: ../src/ScratchPad.py:340
-#: ../src/ScratchPad.py:398
-#: ../src/ScratchPad.py:431
-#: ../src/ScratchPad.py:561
-#: ../src/ScratchPad.py:621
-#: ../src/ScratchPad.py:654
-#: ../src/ScratchPad.py:800
-#: ../src/ScratchPad.py:872
-#: ../src/ScratchPad.py:878
+#: ../src/ScratchPad.py:245
+#: ../src/ScratchPad.py:353
+#: ../src/ScratchPad.py:411
+#: ../src/ScratchPad.py:444
+#: ../src/ScratchPad.py:574
+#: ../src/ScratchPad.py:634
+#: ../src/ScratchPad.py:667
+#: ../src/ScratchPad.py:813
+#: ../src/ScratchPad.py:885
+#: ../src/ScratchPad.py:891
 #: ../src/Merge/_MergePerson.py:172
 #: ../src/DataViews/_EventView.py:73
 #: ../src/DataViews/_MediaView.py:85
@@ -2143,7 +2154,7 @@ msgstr "Įvykio Nuoroda"
 #: ../src/Selectors/_SelectEvent.py:60
 #: ../src/Selectors/_SelectNote.py:62
 #: ../src/Selectors/_SelectObject.py:74
-#: ../src/plugins/siblings.py:62
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/BookReport.py:656
 #: ../src/plugins/BookReport.py:657
 #: ../src/plugins/MarkerReport.py:388
@@ -2155,15 +2166,15 @@ msgstr "Įvykio Nuoroda"
 msgid "Type"
 msgstr "Tipas"
 
-#: ../src/ScratchPad.py:235
-#: ../src/ScratchPad.py:343
+#: ../src/ScratchPad.py:248
+#: ../src/ScratchPad.py:356
 #: ../src/gen/lib/attrtype.py:64
 msgid "Cause"
 msgstr "Priežastis"
 
-#: ../src/ScratchPad.py:236
-#: ../src/ScratchPad.py:344
-#: ../src/ScratchPad.py:378
+#: ../src/ScratchPad.py:249
+#: ../src/ScratchPad.py:357
+#: ../src/ScratchPad.py:391
 #: ../src/DataViews/_EventView.py:71
 #: ../src/DisplayTabs/_EventEmbedList.py:61
 #: ../src/DisplayTabs/_WebEmbedList.py:55
@@ -2174,19 +2185,20 @@ msgstr "Priežastis"
 msgid "Description"
 msgstr "Aprašymas"
 
-#: ../src/ScratchPad.py:243
-#: ../src/ScratchPad.py:353
-#: ../src/ScratchPad.py:571
-#: ../src/ScratchPad.py:719
+#: ../src/ScratchPad.py:256
+#: ../src/ScratchPad.py:366
+#: ../src/ScratchPad.py:584
+#: ../src/ScratchPad.py:732
 #: ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Pirminis šaltinis"
 
-#: ../src/ScratchPad.py:293
+#: ../src/ScratchPad.py:306
 #: ../src/ToolTips.py:159
 #: ../src/DisplayModels/_MediaModel.py:105
 #: ../src/Editors/_EditMedia.py:78
 #: ../src/Editors/_EditMedia.py:140
+#: ../src/Editors/_EditNote.py:194
 #: ../src/plugins/FamilyGroup.py:313
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
@@ -2198,41 +2210,41 @@ msgstr "Pirminis šaltinis"
 msgid "Note"
 msgstr "Pastaba"
 
-#: ../src/ScratchPad.py:326
 #: ../src/ScratchPad.py:339
+#: ../src/ScratchPad.py:352
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:108
 msgid "Family Event"
 msgstr "Šeimos įvykis"
 
-#: ../src/ScratchPad.py:367
-#: ../src/ScratchPad.py:375
+#: ../src/ScratchPad.py:380
+#: ../src/ScratchPad.py:388
 msgid "Url"
 msgstr "Url"
 
-#: ../src/ScratchPad.py:376
+#: ../src/ScratchPad.py:389
 #: ../src/DataViews/_MediaView.py:86
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Path"
 msgstr "Kelias"
 
-#: ../src/ScratchPad.py:400
-#: ../src/ScratchPad.py:433
-#: ../src/ScratchPad.py:874
-#: ../src/ScratchPad.py:880
+#: ../src/ScratchPad.py:413
+#: ../src/ScratchPad.py:446
+#: ../src/ScratchPad.py:887
+#: ../src/ScratchPad.py:893
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
 #: ../src/DisplayTabs/_DataEmbedList.py:50
 #: ../src/plugins/PatchNames.py:206
 msgid "Value"
 msgstr "Reikšmė"
 
-#: ../src/ScratchPad.py:422
-#: ../src/ScratchPad.py:430
+#: ../src/ScratchPad.py:435
+#: ../src/ScratchPad.py:443
 msgid "Family Attribute"
 msgstr "Šeimos Požymis"
 
-#: ../src/ScratchPad.py:455
-#: ../src/ScratchPad.py:476
+#: ../src/ScratchPad.py:468
+#: ../src/ScratchPad.py:489
 msgid "Source Reference"
 msgstr "Šaltinių nuorodos"
 
@@ -2242,13 +2254,13 @@ msgstr "Šaltinių nuorodos"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:477
-#: ../src/ScratchPad.py:559
-#: ../src/ScratchPad.py:620
-#: ../src/ScratchPad.py:653
-#: ../src/ScratchPad.py:761
-#: ../src/ScratchPad.py:873
-#: ../src/ScratchPad.py:879
+#: ../src/ScratchPad.py:490
+#: ../src/ScratchPad.py:572
+#: ../src/ScratchPad.py:633
+#: ../src/ScratchPad.py:666
+#: ../src/ScratchPad.py:774
+#: ../src/ScratchPad.py:886
+#: ../src/ScratchPad.py:892
 #: ../src/Utils.py:1099
 #: ../src/DataViews/_MediaView.py:83
 #: ../src/DataViews/_SourceView.py:69
@@ -2265,43 +2277,43 @@ msgstr "Šaltinių nuorodos"
 msgid "Title"
 msgstr "Antraštė"
 
-#: ../src/ScratchPad.py:478
+#: ../src/ScratchPad.py:491
 #: ../src/DisplayTabs/_SourceEmbedList.py:63
 #: ../src/plugins/NarrativeWeb.py:546
 msgid "Page"
 msgstr "Puslapis"
 
-#: ../src/ScratchPad.py:490
 #: ../src/ScratchPad.py:503
+#: ../src/ScratchPad.py:516
 msgid "Repository Reference"
 msgstr "Saugyklos Paminėjimas"
 
-#: ../src/ScratchPad.py:505
+#: ../src/ScratchPad.py:518
 #: ../src/DisplayTabs/_RepoEmbedList.py:62
 msgid "Call Number"
 msgstr ""
 
-#: ../src/ScratchPad.py:506
+#: ../src/ScratchPad.py:519
 msgid "Media Type"
 msgstr "Vaizdo/garso tipas"
 
-#: ../src/ScratchPad.py:518
+#: ../src/ScratchPad.py:531
 msgid "Event Reference"
 msgstr "Įvykio nuorodų redaktorius"
 
-#: ../src/ScratchPad.py:554
+#: ../src/ScratchPad.py:567
 msgid "Call Name"
 msgstr "Vardas"
 
-#: ../src/ScratchPad.py:558
+#: ../src/ScratchPad.py:571
 #: ../src/Utils.py:1101
 #: ../src/plugins/PatchNames.py:253
 #: ../src/plugins/PatchNames.py:265
 msgid "Prefix"
 msgstr "Priešdėlis"
 
-#: ../src/ScratchPad.py:585
-#: ../src/ScratchPad.py:593
+#: ../src/ScratchPad.py:598
+#: ../src/ScratchPad.py:606
 #: ../src/DisplayTabs/_TextTab.py:52
 #: ../src/plugins/MarkerReport.py:394
 #: ../src/plugins/NarrativeWeb.py:553
@@ -2313,29 +2325,29 @@ msgstr "Priešdėlis"
 msgid "Text"
 msgstr "Tekstas"
 
-#: ../src/ScratchPad.py:640
-#: ../src/ScratchPad.py:652
+#: ../src/ScratchPad.py:653
+#: ../src/ScratchPad.py:665
 msgid "Media Reference"
 msgstr "Audio/Video nuoroda"
 
-#: ../src/ScratchPad.py:666
+#: ../src/ScratchPad.py:679
 #: ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Asmenų nuorodos"
 
-#: ../src/ScratchPad.py:683
-#: ../src/ScratchPad.py:708
+#: ../src/ScratchPad.py:696
+#: ../src/ScratchPad.py:721
 msgid "Person Link"
 msgstr "Asmens  Nuoroda"
 
-#: ../src/ScratchPad.py:710
+#: ../src/ScratchPad.py:723
 #: ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:127
 #: ../src/DataViews/_RelationView.py:545
 #: ../src/plugins/all_relations.py:266
 #: ../src/plugins/FamilyGroup.py:481
 #: ../src/plugins/FamilyGroup.py:483
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 #: ../src/plugins/MarkerReport.py:131
 #: ../src/plugins/NarrativeWeb.py:697
 #: ../src/plugins/NarrativeWeb.py:835
@@ -2344,18 +2356,18 @@ msgstr "Asmens  Nuoroda"
 msgid "Birth"
 msgstr "Gimimas"
 
-#: ../src/ScratchPad.py:742
-#: ../src/ScratchPad.py:760
+#: ../src/ScratchPad.py:755
+#: ../src/ScratchPad.py:773
 msgid "Source Link"
 msgstr "Šaltinio Nuoroda"
 
-#: ../src/ScratchPad.py:762
+#: ../src/ScratchPad.py:775
 #: ../src/DataViews/_SourceView.py:72
 #: ../src/plugins/NarrativeWeb.py:1512
 msgid "Abbreviation"
 msgstr "Sutrumpinimas"
 
-#: ../src/ScratchPad.py:763
+#: ../src/ScratchPad.py:776
 #: ../src/DataViews/_SourceView.py:71
 #: ../src/DisplayTabs/_SourceEmbedList.py:62
 #: ../src/plugins/NarrativeWeb.py:1510
@@ -2363,22 +2375,22 @@ msgstr "Sutrumpinimas"
 msgid "Author"
 msgstr "Autorius"
 
-#: ../src/ScratchPad.py:764
+#: ../src/ScratchPad.py:777
 #: ../src/DataViews/_SourceView.py:73
 msgid "Publication Information"
 msgstr "Paskelbimo informacija"
 
-#: ../src/ScratchPad.py:783
-#: ../src/ScratchPad.py:798
+#: ../src/ScratchPad.py:796
+#: ../src/ScratchPad.py:811
 msgid "Repository Link"
 msgstr "Saugyklos Nuoroda"
 
-#: ../src/ScratchPad.py:1168
+#: ../src/ScratchPad.py:1178
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
 msgstr "Bloknotėlis"
 
-#: ../src/ScratchPad.py:1204
+#: ../src/ScratchPad.py:1214
 msgid "ScratchPad"
 msgstr "Bloknotėlis"
 
@@ -2744,6 +2756,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
+"Negalima nuskaityti patarimų iš išorinės bylos.\n"
+"\n"
+"%s"
 
 #: ../src/ToolTips.py:151
 msgid "Search Url"
@@ -2800,12 +2815,12 @@ msgstr "moteris"
 #: ../src/Mime/_PythonMime.py:61
 #: ../src/plugins/DetAncestralReport.py:485
 #: ../src/plugins/DetAncestralReport.py:492
-#: ../src/plugins/DetAncestralReport.py:531
-#: ../src/plugins/DetAncestralReport.py:538
+#: ../src/plugins/DetAncestralReport.py:533
+#: ../src/plugins/DetAncestralReport.py:540
 #: ../src/plugins/DetDescendantReport.py:397
 #: ../src/plugins/DetDescendantReport.py:404
-#: ../src/plugins/DetDescendantReport.py:449
-#: ../src/plugins/DetDescendantReport.py:456
+#: ../src/plugins/DetDescendantReport.py:451
+#: ../src/plugins/DetDescendantReport.py:458
 #: ../src/plugins/FamilyGroup.py:714
 #: ../src/plugins/IndivComplete.py:327
 #: ../src/plugins/NarrativeWeb.py:1677
@@ -2819,30 +2834,30 @@ msgid "Invalid"
 msgstr "Netinkamas"
 
 #: ../src/Utils.py:90
-#: ../src/Editors/_EditSourceRef.py:119
+#: ../src/Editors/_EditSourceRef.py:132
 msgid "Very High"
 msgstr "Labai aukštas"
 
 #: ../src/Utils.py:91
-#: ../src/Editors/_EditSourceRef.py:118
+#: ../src/Editors/_EditSourceRef.py:131
 #: ../src/plugins/FindDupes.py:65
 msgid "High"
 msgstr "Aukštas"
 
 #: ../src/Utils.py:92
-#: ../src/Editors/_EditSourceRef.py:117
+#: ../src/Editors/_EditSourceRef.py:130
 #: ../src/plugins/NarrativeWeb.py:543
 msgid "Normal"
 msgstr "Normalus"
 
 #: ../src/Utils.py:93
-#: ../src/Editors/_EditSourceRef.py:116
+#: ../src/Editors/_EditSourceRef.py:129
 #: ../src/plugins/FindDupes.py:63
 msgid "Low"
 msgstr "Žemas"
 
 #: ../src/Utils.py:94
-#: ../src/Editors/_EditSourceRef.py:115
+#: ../src/Editors/_EditSourceRef.py:128
 msgid "Very Low"
 msgstr "Labai žemas"
 
@@ -3275,7 +3290,7 @@ msgstr "Tėvas ir vaikas negali būti sujungti. Norint sujungti šiuos žmonės,
 #: ../src/DataViews/_PersonView.py:73
 #: ../src/Editors/_EditFamily.py:98
 #: ../src/Selectors/_SelectPerson.py:50
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/IndivComplete.py:474
 #: ../src/plugins/NarrativeWeb.py:1928
 #: ../src/plugins/RelCalc.py:59
@@ -3451,7 +3466,7 @@ msgid "Delete the selected media object"
 msgstr "Ištrinti pažymėtą audio/video bylą"
 
 #: ../src/DataViews/_MediaView.py:199
-#: ../src/DisplayTabs/_GalleryTab.py:457
+#: ../src/DisplayTabs/_GalleryTab.py:458
 msgid "Drag Media Object"
 msgstr "Pertempti vaizdo/garso bylą"
 
@@ -3478,7 +3493,7 @@ msgid "Select Media Columns"
 msgstr "Pažymėkite audio/video stulpelius"
 
 #: ../src/DataViews/_MediaView.py:294
-#: ../src/glade/gramps.glade.h:66
+#: ../src/glade/gramps.glade.h:67
 msgid "Double click image to view in an external viewer"
 msgstr "Dvigubu kairiu pelės klavišo paspaudimu žiūrėkite nuotrauką išorine peržiūros programa"
 
@@ -3649,7 +3664,7 @@ msgstr "Asmenų meniu"
 #. Go over siblings and build their menu
 #: ../src/DataViews/_PedigreeView.py:1482
 #: ../src/DataViews/_RelationView.py:786
-#: ../src/plugins/siblings.py:98
+#: ../src/plugins/siblings.py:75
 #: ../src/plugins/NarrativeWeb.py:2058
 msgid "Siblings"
 msgstr "broliai ir seserys"
@@ -3676,7 +3691,7 @@ msgstr "Šeimos meniu"
 #: ../src/DataViews/_PersonView.py:74
 #: ../src/Editors/_EditFamily.py:101
 #: ../src/Selectors/_SelectPerson.py:51
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 #: ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:60
 #: ../src/plugins/TimeLine.py:410
@@ -3694,7 +3709,7 @@ msgstr "Gimimo Vieta"
 #: ../src/Editors/_EditFamily.py:102
 #: ../src/Selectors/_SelectPerson.py:53
 #: ../src/plugins/lineage.py:61
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 #: ../src/plugins/RelCalc.py:62
 msgid "Death Date"
 msgstr "Mirties Data"
@@ -3778,15 +3793,15 @@ msgstr "_Ištrinti Asmenį"
 msgid "Delete Person (%s)"
 msgstr "Ištrinti Asmenį (%s)"
 
-#: ../src/DataViews/_PersonView.py:888
+#: ../src/DataViews/_PersonView.py:889
 msgid "Go to default person"
 msgstr "Nueiti iki asmens pagal nutylėjimą"
 
-#: ../src/DataViews/_PersonView.py:893
+#: ../src/DataViews/_PersonView.py:894
 msgid "Edit selected person"
 msgstr "Koreguoti pažymėtą asmenį"
 
-#: ../src/DataViews/_PersonView.py:899
+#: ../src/DataViews/_PersonView.py:900
 msgid "Delete selected person"
 msgstr "Ištrinti pažymėtą asmenį"
 
@@ -3887,10 +3902,9 @@ msgstr "_Perrūšiuoti"
 
 #: ../src/DataViews/_RelationView.py:321
 msgid "Change order of parents and families"
-msgstr ""
+msgstr "Pakeisti tėvų ir šeimų eiliškumą"
 
 #: ../src/DataViews/_RelationView.py:327
-#, fuzzy
 msgid "Edit the active person"
 msgstr "Koreguoja pažymėtą asmenį"
 
@@ -3900,9 +3914,8 @@ msgstr "Pridėti partnerį"
 
 #: ../src/DataViews/_RelationView.py:329
 #: ../src/DataViews/_RelationView.py:692
-#, fuzzy
 msgid "Add a new family with person as parent"
-msgstr "Pridėti naują asmenį kaip motiną"
+msgstr "Pridėti naują šeimą su asmeniu tėvu"
 
 #: ../src/DataViews/_RelationView.py:330
 msgid "Add new parents"
@@ -4252,7 +4265,7 @@ msgstr "LaTeX"
 #: ../src/docgen/PSDrawDoc.py:58
 #: ../src/plugins/GraphViz.py:1133
 #: ../src/plugins/GraphViz.py:1189
-#: ../src/ReportBase/_GraphvizReportDialog.py:581
+#: ../src/ReportBase/_GraphvizReportDialog.py:605
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Atidaryti su  %(program_name)s"
@@ -4285,9 +4298,9 @@ msgstr "RFT dokumentas"
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../src/docgen/TextBufDoc.py:333
+#: ../src/docgen/TextBufDoc.py:348
 msgid "TextBuffer"
-msgstr ""
+msgstr "TekstoTalpykla"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:59
 #: ../src/plugins/NarrativeWeb.py:1200
@@ -4304,31 +4317,31 @@ msgstr "Nuorodos"
 msgid "Edit reference"
 msgstr "Koreguoti nuorodą"
 
-#: ../src/DisplayTabs/_ButtonTab.py:62
+#: ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/CalculateEstimatedDates.py:73
 msgid "Add"
 msgstr "Pridėti"
 
-#: ../src/DisplayTabs/_ButtonTab.py:63
+#: ../src/DisplayTabs/_ButtonTab.py:68
 #: ../src/plugins/CalculateEstimatedDates.py:69
 msgid "Remove"
 msgstr "Išmesti"
 
-#: ../src/DisplayTabs/_ButtonTab.py:65
+#: ../src/DisplayTabs/_ButtonTab.py:70
 #: ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:104
 msgid "Share"
 msgstr "Dalintis"
 
-#: ../src/DisplayTabs/_ButtonTab.py:66
+#: ../src/DisplayTabs/_ButtonTab.py:71
 msgid "Jump To"
 msgstr "Šokti į"
 
-#: ../src/DisplayTabs/_ButtonTab.py:67
+#: ../src/DisplayTabs/_ButtonTab.py:72
 msgid "Move Up"
 msgstr "Perkelti aukštyn"
 
-#: ../src/DisplayTabs/_ButtonTab.py:68
+#: ../src/DisplayTabs/_ButtonTab.py:73
 msgid "Move Down"
 msgstr "Perkelti žemyn"
 
@@ -4389,7 +4402,7 @@ msgstr "Galerija"
 msgid "Open with %s"
 msgstr "Atidaryti su %s"
 
-#: ../src/DisplayTabs/_GalleryTab.py:223
+#: ../src/DisplayTabs/_GalleryTab.py:224
 msgid "Unexisting media found in the Gallery"
 msgstr "Galerijoje rastas neegzistuojantis audio/video objektas"
 
@@ -4526,13 +4539,13 @@ msgid "Child Reference"
 msgstr "Vaiko nuorodų redaktorius"
 
 #: ../src/Editors/_EditEvent.py:83
-#: ../src/Editors/_EditEventRef.py:208
+#: ../src/Editors/_EditEventRef.py:219
 #, python-format
 msgid "Event: %s"
 msgstr "Įvykis:  %s"
 
 #: ../src/Editors/_EditEvent.py:85
-#: ../src/Editors/_EditEventRef.py:210
+#: ../src/Editors/_EditEventRef.py:221
 msgid "New Event"
 msgstr "Naujas įvykis"
 
@@ -4555,7 +4568,7 @@ msgid "The event type cannot be empty"
 msgstr "Šis įvykių tipas negali būti tuščias"
 
 #: ../src/Editors/_EditEvent.py:226
-#: ../src/Editors/_EditEventRef.py:221
+#: ../src/Editors/_EditEventRef.py:232
 msgid "Add Event"
 msgstr "Pridėti Įvykį"
 
@@ -4564,12 +4577,12 @@ msgstr "Pridėti Įvykį"
 msgid "Delete Event (%s)"
 msgstr "Ištrinti Įvykį (%s)"
 
-#: ../src/Editors/_EditEventRef.py:76
-#: ../src/Editors/_EditEventRef.py:211
+#: ../src/Editors/_EditEventRef.py:77
+#: ../src/Editors/_EditEventRef.py:222
 msgid "Event Reference Editor"
 msgstr "Įvykio nuorodų redaktorius"
 
-#: ../src/Editors/_EditEventRef.py:218
+#: ../src/Editors/_EditEventRef.py:229
 msgid "Modify Event"
 msgstr "Redaguoti Įvykį"
 
@@ -4640,7 +4653,7 @@ msgstr "Šeima pasikeitė"
 
 #: ../src/Editors/_EditFamily.py:456
 msgid "The family you are editing has changed. To make sure that the database is not corrupted, GRAMPS has updated the family to reflect these changes. Any edits you have made may have been lost."
-msgstr ""
+msgstr "Šeima, kurią  koreguojate pasikeitė. Norėdami įsitikinti, kad duomenų bazė nesugadinta GRAMPS atnaujino šeimą su pasikeitimais. Visi pataisymai, kuriuos Jūs  atlikote galbūt yra pamesti."
 
 #: ../src/Editors/_EditFamily.py:470
 #: ../src/Editors/_EditFamily.py:473
@@ -4759,19 +4772,19 @@ msgid "Location Editor"
 msgstr "Vietovių redaktorius"
 
 #: ../src/Editors/_EditMedia.py:79
-#: ../src/Editors/_EditMediaRef.py:347
+#: ../src/Editors/_EditMediaRef.py:361
 #, python-format
 msgid "Media: %s"
 msgstr "Vaizdas/garsas: %s"
 
 #: ../src/Editors/_EditMedia.py:81
-#: ../src/Editors/_EditMediaRef.py:349
+#: ../src/Editors/_EditMediaRef.py:363
 msgid "New Media"
 msgstr "Naujas audio/video objektas"
 
 #: ../src/Editors/_EditMedia.py:172
 #: ../src/Editors/_EditMedia.py:225
-#: ../src/Editors/_EditMediaRef.py:443
+#: ../src/Editors/_EditMediaRef.py:459
 msgid "Edit Media Object"
 msgstr "Redaguoti vaizdo/garso bylą"
 
@@ -4785,89 +4798,89 @@ msgid "Remove Media Object"
 msgstr "Ištrinti audio/video bylą"
 
 #: ../src/Editors/_EditMediaRef.py:75
-#: ../src/Editors/_EditMediaRef.py:350
+#: ../src/Editors/_EditMediaRef.py:364
 msgid "Media Reference Editor"
 msgstr "Audio/Video nuorodų redaktorius"
 
-#: ../src/Editors/_EditName.py:72
-#: ../src/Editors/_EditName.py:228
+#: ../src/Editors/_EditName.py:116
+#: ../src/Editors/_EditName.py:277
 msgid "Name Editor"
 msgstr "Vardų redaktorius"
 
-#: ../src/Editors/_EditName.py:227
+#: ../src/Editors/_EditName.py:276
 msgid "New Name"
 msgstr "Naujos vardas"
 
-#: ../src/Editors/_EditName.py:291
+#: ../src/Editors/_EditName.py:340
 msgid "Break global name grouping?"
-msgstr ""
+msgstr "Nutraukti visuotiną vardų grupavimą?"
 
-#: ../src/Editors/_EditName.py:292
+#: ../src/Editors/_EditName.py:341
 #, python-format
 msgid "All people with the name of %(surname)s will no longer be grouped with the name of %(group_name)s."
-msgstr ""
+msgstr "Visi asmenys su pavarde %(surname)s  daugiau nebėra grupuojami naudojant grupės vardą %(group_name)s."
 
-#: ../src/Editors/_EditName.py:296
+#: ../src/Editors/_EditName.py:345
 msgid "Continue"
 msgstr "Tęsti saugojimą"
 
-#: ../src/Editors/_EditName.py:297
+#: ../src/Editors/_EditName.py:346
 msgid "Return to Name Editor"
 msgstr "Grįžti į Vardų redaktorių"
 
-#: ../src/Editors/_EditName.py:322
+#: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
 msgstr "Sugrupuoti visus asmenis su tuo pačiu vardu?"
 
-#: ../src/Editors/_EditName.py:323
+#: ../src/Editors/_EditName.py:372
 #, python-format
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
 msgstr "Jūs turite pasirinkti kaip rūšiuoti žmones: pagal vardą %(surname)s, pagal vardą %(group_name)s, ar tik šį konkretų vardą ."
 
-#: ../src/Editors/_EditName.py:328
+#: ../src/Editors/_EditName.py:377
 msgid "Group all"
 msgstr "Sugrupuoti viską"
 
-#: ../src/Editors/_EditName.py:329
+#: ../src/Editors/_EditName.py:378
 msgid "Group this name only"
 msgstr "Grupuoti tik šį vardą"
 
-#: ../src/Editors/_EditNote.py:104
+#: ../src/Editors/_EditNote.py:150
 #, python-format
 msgid "Note: %(id)s - %(context)s"
-msgstr ""
+msgstr "Pastaba: %(id)s - %(context)s"
 
-#: ../src/Editors/_EditNote.py:109
+#: ../src/Editors/_EditNote.py:155
 #, python-format
 msgid "Note: %s"
 msgstr "Pastaba: %s"
 
-#: ../src/Editors/_EditNote.py:112
+#: ../src/Editors/_EditNote.py:158
 #, python-format
 msgid "New Note - %(context)s"
-msgstr ""
+msgstr "Nauja Pastaba - %(context)s"
 
-#: ../src/Editors/_EditNote.py:116
+#: ../src/Editors/_EditNote.py:162
 msgid "New Note"
 msgstr "Nauja Pastaba"
 
-#: ../src/Editors/_EditNote.py:363
+#: ../src/Editors/_EditNote.py:416
 msgid "_Send Mail To..."
 msgstr "_Siųsti laišką ..."
 
-#: ../src/Editors/_EditNote.py:364
+#: ../src/Editors/_EditNote.py:417
 msgid "Copy _E-mail Address"
 msgstr "Kopijuoti _El. pašto adresą"
 
-#: ../src/Editors/_EditNote.py:366
+#: ../src/Editors/_EditNote.py:419
 msgid "_Open Link"
 msgstr "_Atverti  Nuorodą"
 
-#: ../src/Editors/_EditNote.py:367
+#: ../src/Editors/_EditNote.py:420
 msgid "Copy _Link Address"
-msgstr ""
+msgstr "Kopijuoti _Nuorodos Adresą"
 
-#: ../src/Editors/_EditNote.py:501
+#: ../src/Editors/_EditNote.py:554
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Ištrinti Pastabą (%s)"
@@ -4963,42 +4976,42 @@ msgstr "Nepasirinktas asmuo"
 msgid "You must either select a person or Cancel the edit"
 msgstr "Jums reikia arba pasirinkti asmenį, arba atšaukti redagavimą"
 
-#: ../src/Editors/_EditPlace.py:80
+#: ../src/Editors/_EditPlace.py:129
 #, python-format
 msgid "Place: %s"
 msgstr "Vietovė: %s"
 
-#: ../src/Editors/_EditPlace.py:82
+#: ../src/Editors/_EditPlace.py:131
 msgid "New Place"
 msgstr "Nauja Vietovė"
 
-#: ../src/Editors/_EditPlace.py:153
+#: ../src/Editors/_EditPlace.py:202
 msgid "Invalid latitude (syntax: 18°9'"
 msgstr "Bloga platuma (sintaksė: 18°9'"
 
-#: ../src/Editors/_EditPlace.py:156
+#: ../src/Editors/_EditPlace.py:205
 msgid "Invalid longitude (syntax: 18°9'"
 msgstr "Bloga ilguma (sintaksė: 18°9'"
 
-#: ../src/Editors/_EditPlace.py:160
+#: ../src/Editors/_EditPlace.py:209
 msgid "Edit Place"
 msgstr "Redaguoti Vietovę"
 
-#: ../src/Editors/_EditPlace.py:219
+#: ../src/Editors/_EditPlace.py:270
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Redaguoti Vietovę (%s)"
 
-#: ../src/Editors/_EditPlace.py:265
+#: ../src/Editors/_EditPlace.py:316
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Ištrinti Vietovę (%s)"
 
-#: ../src/Editors/_EditPrimary.py:141
+#: ../src/Editors/_EditPrimary.py:142
 msgid "Save Changes?"
 msgstr "Išsaugoti pakeitimus?"
 
-#: ../src/Editors/_EditPrimary.py:142
+#: ../src/Editors/_EditPrimary.py:143
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Jei uždarysite neužsaugoję, visi pakeitimai bus prarasti"
 
@@ -5006,25 +5019,25 @@ msgstr "Jei uždarysite neužsaugoję, visi pakeitimai bus prarasti"
 msgid "Repository Reference Editor"
 msgstr "Saugyklos nuorodų redaktorius"
 
-#: ../src/Editors/_EditRepoRef.py:169
+#: ../src/Editors/_EditRepoRef.py:185
 #, python-format
 msgid "Repository: %s"
 msgstr "Saugykla: %s"
 
-#: ../src/Editors/_EditRepoRef.py:171
+#: ../src/Editors/_EditRepoRef.py:187
 #: ../src/Editors/_EditRepository.py:68
 msgid "New Repository"
 msgstr "Nauja saugykla"
 
-#: ../src/Editors/_EditRepoRef.py:172
+#: ../src/Editors/_EditRepoRef.py:188
 msgid "Repo Reference Editor"
 msgstr "Saugyklos Nuorodų redaktorius"
 
-#: ../src/Editors/_EditRepoRef.py:179
+#: ../src/Editors/_EditRepoRef.py:195
 msgid "Modify Repository"
 msgstr "Redaguoti Saugyklą"
 
-#: ../src/Editors/_EditRepoRef.py:182
+#: ../src/Editors/_EditRepoRef.py:198
 msgid "Add Repository"
 msgstr "Pridėti Saugyklą"
 
@@ -5051,7 +5064,7 @@ msgid "Delete Repository (%s)"
 msgstr "Ištrinti Saugyklą (%s)"
 
 #: ../src/Editors/_EditSource.py:74
-#: ../src/Editors/_EditSourceRef.py:186
+#: ../src/Editors/_EditSourceRef.py:196
 msgid "New Source"
 msgstr "Naujas Šaltinis"
 
@@ -5078,20 +5091,20 @@ msgid "Delete Source (%s)"
 msgstr "Ištrinti šaltinį (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:67
-#: ../src/Editors/_EditSourceRef.py:187
+#: ../src/Editors/_EditSourceRef.py:197
 msgid "Source Reference Editor"
 msgstr "Šaltinių nuorodų redaktorius"
 
-#: ../src/Editors/_EditSourceRef.py:184
+#: ../src/Editors/_EditSourceRef.py:194
 #, python-format
 msgid "Source: %s"
 msgstr "Šaltinis:  %s"
 
-#: ../src/Editors/_EditSourceRef.py:194
+#: ../src/Editors/_EditSourceRef.py:204
 msgid "Modify Source"
 msgstr "Redaguoti Šaltinius"
 
-#: ../src/Editors/_EditSourceRef.py:197
+#: ../src/Editors/_EditSourceRef.py:207
 msgid "Add Source"
 msgstr "Pridėti Šaltinį"
 
@@ -5145,7 +5158,7 @@ msgstr "Klaida atstatant atsarginę kopiją"
 #. -------------------------------------------------------------------------
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:58
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
-msgstr ""
+msgstr "Jūsų GEDCOM byla sugadinta. Byla yra koduota UTF16 koduote, bet nėra BOM žymės."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:61
 msgid "Your GEDCOM file is empty."
@@ -5254,7 +5267,7 @@ msgstr "Negalėjau pakeisti audio/video bylų kelio"
 #: ../src/GrampsDbUtils/_ReadXML.py:679
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the database. Copy the files with non absolute path to new position or change the media path of the database in the Preferences."
-msgstr ""
+msgstr "Atverta byla turi audio/video kelią %s, kuris konfliktuoja su duomenų bazės audio/video keliu. Nukopijuokite bylas  į kitą vietą naudojant ne absoliutų kelią, arba Nustatymuose pakeiskite duomenų bazės audio/video kelią."
 
 #: ../src/GrampsDbUtils/_ReadXML.py:690
 msgid "GRAMPS XML import"
@@ -5467,31 +5480,31 @@ msgid "Select Source"
 msgstr "Pasirinkite šaltinį"
 
 #. display the results
-#: ../src/plugins/all_events.py:60
+#: ../src/plugins/all_events.py:55
 #, python-format
 msgid "Sorted events of %s"
 msgstr "%s rūšiuoti įvykiai"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:105
-#: ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:102
+#: ../src/plugins/all_events.py:113
 msgid "Event Type"
 msgstr "Įvykio Tipas"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Date"
 msgstr "Įvykio Data"
 
-#: ../src/plugins/all_events.py:63
-#: ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58
+#: ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Place"
 msgstr "Įvykio Vietovė"
 
 #. display the results
-#: ../src/plugins/all_events.py:100
+#: ../src/plugins/all_events.py:97
 #, python-format
 msgid ""
 "Sorted events of family\n"
@@ -5500,12 +5513,12 @@ msgstr ""
 "Šiemos %s - %s\n"
 "rūšiuoti įvykiai"
 
-#: ../src/plugins/all_events.py:105
-#: ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:102
+#: ../src/plugins/all_events.py:113
 msgid "Family Member"
 msgstr "Šeimos narys"
 
-#: ../src/plugins/all_events.py:113
+#: ../src/plugins/all_events.py:112
 msgid "Personal events of the children"
 msgstr "Vaikų asmeniniai įvykiai"
 
@@ -5517,7 +5530,7 @@ msgstr "Visi Įvykiai"
 #: ../src/plugins/all_events.py:145
 #: ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350
-#: ../src/plugins/siblings.py:99
+#: ../src/plugins/siblings.py:76
 #: ../src/plugins/AncestorChart.py:524
 #: ../src/plugins/AncestorReport.py:345
 #: ../src/plugins/BookReport.py:1190
@@ -5538,7 +5551,7 @@ msgstr "Visi Įvykiai"
 #: ../src/plugins/ExtractCity.py:585
 #: ../src/plugins/FamilyGroup.py:934
 #: ../src/plugins/FamilyLines.py:1430
-#: ../src/plugins/FanChart.py:421
+#: ../src/plugins/FanChart.py:422
 #: ../src/plugins/FindDupes.py:698
 #: ../src/plugins/GraphViz.py:1327
 #: ../src/plugins/GraphViz.py:1342
@@ -5547,8 +5560,8 @@ msgstr "Visi Įvykiai"
 #: ../src/plugins/IndivComplete.py:676
 #: ../src/plugins/KinshipReport.py:435
 #: ../src/plugins/Leak.py:131
-#: ../src/plugins/lineage.py:245
-#: ../src/plugins/lineage.py:256
+#: ../src/plugins/lineage.py:240
+#: ../src/plugins/lineage.py:251
 #: ../src/plugins/MarkerReport.py:568
 #: ../src/plugins/NarrativeWeb.py:3286
 #: ../src/plugins/PatchNames.py:357
@@ -5660,17 +5673,16 @@ msgid "Display all relationships between person and home person."
 msgstr "Pavaizduoti visus ryšius tarp šio asmens ir  'namų' asmens."
 
 #. display the title
-#: ../src/plugins/siblings.py:57
+#: ../src/plugins/siblings.py:43
 #, python-format
 msgid "Siblings of %s"
 msgstr " %s broliai ir seserys"
 
-#. display the header of a table
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 msgid "Sibling"
 msgstr "broliai ir seserys"
 
-#: ../src/plugins/siblings.py:100
+#: ../src/plugins/siblings.py:77
 msgid "Display a person's siblings."
 msgstr "Rodyti asmenis brolius ir seseris."
 
@@ -5684,7 +5696,7 @@ msgstr "%s Protėvių diagrama"
 #: ../src/plugins/Calendar.py:477
 #: ../src/plugins/Calendar.py:616
 #: ../src/plugins/DescendChart.py:404
-#: ../src/plugins/FanChart.py:323
+#: ../src/plugins/FanChart.py:324
 #: ../src/plugins/GVHourGlass.py:156
 #: ../src/plugins/GVRelGraph.py:414
 #: ../src/ReportBase/_BareReportDialog.py:376
@@ -5698,15 +5710,15 @@ msgstr "Ataskaitos nuostatos"
 #: ../src/plugins/AncestorReport.py:314
 #: ../src/plugins/DescendChart.py:406
 #: ../src/plugins/DescendReport.py:217
-#: ../src/plugins/DetAncestralReport.py:902
-#: ../src/plugins/DetDescendantReport.py:874
-#: ../src/plugins/FanChart.py:325
+#: ../src/plugins/DetAncestralReport.py:904
+#: ../src/plugins/DetDescendantReport.py:876
+#: ../src/plugins/FanChart.py:326
 msgid "Generations"
 msgstr "Kartos"
 
 #: ../src/plugins/AncestorChart.py:454
 #: ../src/plugins/DescendChart.py:407
-#: ../src/plugins/FanChart.py:326
+#: ../src/plugins/FanChart.py:327
 msgid "The number of generations to include in the report"
 msgstr "Didžiausias  įtraukiamų kartų skaičius"
 
@@ -5753,12 +5765,12 @@ msgstr "Ar suspausti diagramą."
 #: ../src/plugins/AncestorChart.py:483
 #: ../src/plugins/AncestorReport.py:304
 #: ../src/plugins/DescendChart.py:435
-#: ../src/plugins/DetAncestralReport.py:796
-#: ../src/plugins/DetDescendantReport.py:764
+#: ../src/plugins/DetAncestralReport.py:798
+#: ../src/plugins/DetDescendantReport.py:766
 #: ../src/plugins/EndOfLineReport.py:249
 #: ../src/plugins/EndOfLineReport.py:267
 #: ../src/plugins/FamilyGroup.py:841
-#: ../src/plugins/FanChart.py:381
+#: ../src/plugins/FanChart.py:382
 #: ../src/plugins/IndivComplete.py:632
 #: ../src/plugins/KinshipReport.py:420
 #: ../src/plugins/MarkerReport.py:529
@@ -5793,8 +5805,8 @@ msgstr "%d Karta"
 
 #: ../src/plugins/AncestorReport.py:281
 #: ../src/plugins/DescendReport.py:239
-#: ../src/plugins/DetAncestralReport.py:750
-#: ../src/plugins/DetDescendantReport.py:718
+#: ../src/plugins/DetAncestralReport.py:752
+#: ../src/plugins/DetDescendantReport.py:720
 #: ../src/plugins/EndOfLineReport.py:231
 #: ../src/plugins/FamilyGroup.py:832
 #: ../src/plugins/IndivComplete.py:600
@@ -5807,15 +5819,15 @@ msgid "The style used for the title of the page."
 msgstr "Stilius, naudojamas puslapio antraštei."
 
 #: ../src/plugins/AncestorReport.py:294
-#: ../src/plugins/DetAncestralReport.py:760
-#: ../src/plugins/DetDescendantReport.py:728
+#: ../src/plugins/DetAncestralReport.py:762
+#: ../src/plugins/DetDescendantReport.py:730
 #: ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "Stilius, naudojamas kartų antraštei."
 
 #: ../src/plugins/AncestorReport.py:316
-#: ../src/plugins/DetAncestralReport.py:836
-#: ../src/plugins/DetDescendantReport.py:804
+#: ../src/plugins/DetAncestralReport.py:838
+#: ../src/plugins/DetDescendantReport.py:806
 msgid "Page break between generations"
 msgstr "Kiekviena karta naujame puslapyje"
 
@@ -6028,8 +6040,8 @@ msgid "Calculate date estimates"
 msgstr "Skaičiuoti įvertintas datas"
 
 #: ../src/plugins/CalculateEstimatedDates.py:457
-#: ../src/plugins/DetAncestralReport.py:954
-#: ../src/plugins/DetDescendantReport.py:928
+#: ../src/plugins/DetAncestralReport.py:956
+#: ../src/plugins/DetDescendantReport.py:930
 #: ../src/plugins/MediaManager.py:615
 #: ../src/plugins/OwnerEditor.py:191
 #: ../src/plugins/Summary.py:184
@@ -6921,7 +6933,7 @@ msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s yra tas pats asmuo kaip [%(id_str)s]."
 
 #: ../src/plugins/DetAncestralReport.py:276
-#: ../src/plugins/DetDescendantReport.py:518
+#: ../src/plugins/DetDescendantReport.py:520
 #, python-format
 msgid "Notes for %s"
 msgstr "Pastabos apie %s"
@@ -6930,29 +6942,29 @@ msgstr "Pastabos apie %s"
 #: ../src/plugins/DetAncestralReport.py:310
 #: ../src/plugins/DetAncestralReport.py:321
 #: ../src/plugins/DetAncestralReport.py:340
-#: ../src/plugins/DetDescendantReport.py:529
-#: ../src/plugins/DetDescendantReport.py:547
-#: ../src/plugins/DetDescendantReport.py:558
-#: ../src/plugins/DetDescendantReport.py:577
+#: ../src/plugins/DetDescendantReport.py:531
+#: ../src/plugins/DetDescendantReport.py:549
+#: ../src/plugins/DetDescendantReport.py:560
+#: ../src/plugins/DetDescendantReport.py:579
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Daugiau apie %(person_name)s:"
 
 #: ../src/plugins/DetAncestralReport.py:294
-#: ../src/plugins/DetDescendantReport.py:536
+#: ../src/plugins/DetDescendantReport.py:538
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
 #: ../src/plugins/DetAncestralReport.py:329
-#: ../src/plugins/DetDescendantReport.py:566
+#: ../src/plugins/DetDescendantReport.py:568
 msgid "Address: "
 msgstr "Adresas: "
 
 #: ../src/plugins/DetAncestralReport.py:347
 #: ../src/plugins/DetAncestralReport.py:401
 #: ../src/plugins/DetDescendantReport.py:313
-#: ../src/plugins/DetDescendantReport.py:584
+#: ../src/plugins/DetDescendantReport.py:586
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
@@ -6986,163 +6998,163 @@ msgstr "%(event_name)s: "
 msgid "%(endnotes)s."
 msgstr "%(endnotes)s."
 
-#: ../src/plugins/DetAncestralReport.py:495
-#: ../src/plugins/DetDescendantReport.py:407
+#: ../src/plugins/DetAncestralReport.py:496
+#: ../src/plugins/DetDescendantReport.py:408
 #, python-format
-msgid "Children of %s and %s"
-msgstr "%s ir %s vaikai yra"
+msgid "Children of %(mother_name)s and %(father_name)s"
+msgstr "%(mother_name)s ir %(father_name)s vaikai"
 
-#: ../src/plugins/DetAncestralReport.py:545
-#: ../src/plugins/DetDescendantReport.py:463
+#: ../src/plugins/DetAncestralReport.py:547
+#: ../src/plugins/DetDescendantReport.py:465
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Daugiau apie %(mother_name)s ir %(father_name)s:"
 
-#: ../src/plugins/DetAncestralReport.py:770
-#: ../src/plugins/DetDescendantReport.py:738
+#: ../src/plugins/DetAncestralReport.py:772
+#: ../src/plugins/DetDescendantReport.py:740
 msgid "The style used for the children list title."
 msgstr "Stilius, naudojamas vaikų sąrašo antraštei."
 
-#: ../src/plugins/DetAncestralReport.py:780
-#: ../src/plugins/DetDescendantReport.py:748
+#: ../src/plugins/DetAncestralReport.py:782
+#: ../src/plugins/DetDescendantReport.py:750
 msgid "The style used for the children list."
 msgstr "Stilius, naudojamas vaikų sąrašui."
 
-#: ../src/plugins/DetAncestralReport.py:803
-#: ../src/plugins/DetDescendantReport.py:771
+#: ../src/plugins/DetAncestralReport.py:805
+#: ../src/plugins/DetDescendantReport.py:773
 msgid "The style used for the first personal entry."
 msgstr "Stilius, naudojamas pirmam asmeniniam įrašui."
 
-#: ../src/plugins/DetAncestralReport.py:813
-#: ../src/plugins/DetDescendantReport.py:781
+#: ../src/plugins/DetAncestralReport.py:815
+#: ../src/plugins/DetDescendantReport.py:783
 msgid "The style used for the More About header."
 msgstr "Stilius, naudojamas 'Daugiau Apie' antraštei."
 
-#: ../src/plugins/DetAncestralReport.py:823
-#: ../src/plugins/DetDescendantReport.py:791
+#: ../src/plugins/DetAncestralReport.py:825
+#: ../src/plugins/DetDescendantReport.py:793
 msgid "The style used for additional detail data."
 msgstr "Stilius, naudojamas papildomai detaliai informacijai."
 
 #. Full date usage
-#: ../src/plugins/DetAncestralReport.py:840
-#: ../src/plugins/DetDescendantReport.py:808
+#: ../src/plugins/DetAncestralReport.py:842
+#: ../src/plugins/DetDescendantReport.py:810
 msgid "Use full dates instead of only the year"
 msgstr "Vietoj metų naudoti pilnas datas"
 
 #. Children List
-#: ../src/plugins/DetAncestralReport.py:844
-#: ../src/plugins/DetDescendantReport.py:812
+#: ../src/plugins/DetAncestralReport.py:846
+#: ../src/plugins/DetDescendantReport.py:814
 msgid "List children"
 msgstr "Išvardinti vaikus"
 
 #. Print notes
-#: ../src/plugins/DetAncestralReport.py:848
-#: ../src/plugins/DetDescendantReport.py:816
+#: ../src/plugins/DetAncestralReport.py:850
+#: ../src/plugins/DetDescendantReport.py:818
 msgid "Include notes"
 msgstr "Įtraukti pastabas"
 
 #. Print attributes
-#: ../src/plugins/DetAncestralReport.py:852
-#: ../src/plugins/DetDescendantReport.py:820
+#: ../src/plugins/DetAncestralReport.py:854
+#: ../src/plugins/DetDescendantReport.py:822
 msgid "Include attributes"
 msgstr "Įtraukti požymius"
 
 #. Print callname
-#: ../src/plugins/DetAncestralReport.py:856
-#: ../src/plugins/DetDescendantReport.py:824
+#: ../src/plugins/DetAncestralReport.py:858
+#: ../src/plugins/DetDescendantReport.py:826
 msgid "Use callname for common name"
 msgstr "Vietoj bendro vardo naudoti pravardę"
 
 #. Replace missing Place with ___________
-#: ../src/plugins/DetAncestralReport.py:860
-#: ../src/plugins/DetDescendantReport.py:828
+#: ../src/plugins/DetAncestralReport.py:862
+#: ../src/plugins/DetDescendantReport.py:830
 msgid "Replace missing places with ______"
 msgstr "Pakeisti trūkstamas vietoves į  ______"
 
 #. Replace missing dates with __________
-#: ../src/plugins/DetAncestralReport.py:864
-#: ../src/plugins/DetDescendantReport.py:832
+#: ../src/plugins/DetAncestralReport.py:866
+#: ../src/plugins/DetDescendantReport.py:834
 msgid "Replace missing dates with ______"
 msgstr "Pakeisti trūkstamas datas į  ______"
 
 #. Add "Died at the age of NN" in text
-#: ../src/plugins/DetAncestralReport.py:868
-#: ../src/plugins/DetDescendantReport.py:836
+#: ../src/plugins/DetAncestralReport.py:870
+#: ../src/plugins/DetDescendantReport.py:838
 msgid "Compute age"
 msgstr "Apskaičiuoti amžių"
 
 #. Omit duplicate persons, occurs when distant cousins marry
-#: ../src/plugins/DetAncestralReport.py:872
-#: ../src/plugins/DetDescendantReport.py:840
+#: ../src/plugins/DetAncestralReport.py:874
+#: ../src/plugins/DetDescendantReport.py:842
 msgid "Omit duplicate ancestors"
 msgstr "Praleisti pasikartojančius protėvius"
 
 #. Add descendant reference in child list
-#: ../src/plugins/DetAncestralReport.py:876
-#: ../src/plugins/DetDescendantReport.py:844
+#: ../src/plugins/DetAncestralReport.py:878
+#: ../src/plugins/DetDescendantReport.py:846
 msgid "Add descendant reference in child list"
 msgstr "Pridėti palikuonių nuorodas į vaikų sąrašą"
 
 #. Add photo/image reference
-#: ../src/plugins/DetAncestralReport.py:880
-#: ../src/plugins/DetDescendantReport.py:848
+#: ../src/plugins/DetAncestralReport.py:882
+#: ../src/plugins/DetDescendantReport.py:850
 msgid "Include Photo/Images from Gallery"
 msgstr "Įtraukti nuotraukas iš  galerijos"
 
 #. Print alternative names
-#: ../src/plugins/DetAncestralReport.py:884
-#: ../src/plugins/DetDescendantReport.py:852
+#: ../src/plugins/DetAncestralReport.py:886
+#: ../src/plugins/DetDescendantReport.py:854
 msgid "Include alternative names"
 msgstr "Įtraukti kitus vardus"
 
 #. Print events
-#: ../src/plugins/DetAncestralReport.py:888
-#: ../src/plugins/DetDescendantReport.py:856
+#: ../src/plugins/DetAncestralReport.py:890
+#: ../src/plugins/DetDescendantReport.py:858
 msgid "Include events"
 msgstr "Įtraukti  įvykius"
 
 #. Print addresses
-#: ../src/plugins/DetAncestralReport.py:892
-#: ../src/plugins/DetDescendantReport.py:860
+#: ../src/plugins/DetAncestralReport.py:894
+#: ../src/plugins/DetDescendantReport.py:862
 msgid "Include addresses"
 msgstr "Įtraukti adresus"
 
 #. Print sources
-#: ../src/plugins/DetAncestralReport.py:896
-#: ../src/plugins/DetDescendantReport.py:864
+#: ../src/plugins/DetAncestralReport.py:898
+#: ../src/plugins/DetDescendantReport.py:866
 msgid "Include sources"
 msgstr "Įtraukti šaltinius"
 
-#: ../src/plugins/DetAncestralReport.py:904
-#: ../src/plugins/DetAncestralReport.py:905
 #: ../src/plugins/DetAncestralReport.py:906
 #: ../src/plugins/DetAncestralReport.py:907
 #: ../src/plugins/DetAncestralReport.py:908
 #: ../src/plugins/DetAncestralReport.py:909
-#: ../src/plugins/DetDescendantReport.py:876
-#: ../src/plugins/DetDescendantReport.py:877
+#: ../src/plugins/DetAncestralReport.py:910
+#: ../src/plugins/DetAncestralReport.py:911
 #: ../src/plugins/DetDescendantReport.py:878
 #: ../src/plugins/DetDescendantReport.py:879
 #: ../src/plugins/DetDescendantReport.py:880
 #: ../src/plugins/DetDescendantReport.py:881
+#: ../src/plugins/DetDescendantReport.py:882
+#: ../src/plugins/DetDescendantReport.py:883
 msgid "Content"
 msgstr "Turinys"
 
-#: ../src/plugins/DetAncestralReport.py:910
-#: ../src/plugins/DetAncestralReport.py:911
 #: ../src/plugins/DetAncestralReport.py:912
 #: ../src/plugins/DetAncestralReport.py:913
 #: ../src/plugins/DetAncestralReport.py:914
 #: ../src/plugins/DetAncestralReport.py:915
 #: ../src/plugins/DetAncestralReport.py:916
-#: ../src/plugins/DetDescendantReport.py:882
-#: ../src/plugins/DetDescendantReport.py:883
+#: ../src/plugins/DetAncestralReport.py:917
+#: ../src/plugins/DetAncestralReport.py:918
 #: ../src/plugins/DetDescendantReport.py:884
 #: ../src/plugins/DetDescendantReport.py:885
 #: ../src/plugins/DetDescendantReport.py:886
 #: ../src/plugins/DetDescendantReport.py:887
 #: ../src/plugins/DetDescendantReport.py:888
 #: ../src/plugins/DetDescendantReport.py:889
+#: ../src/plugins/DetDescendantReport.py:890
+#: ../src/plugins/DetDescendantReport.py:891
 #: ../src/plugins/FamilyGroup.py:784
 #: ../src/plugins/FamilyGroup.py:785
 #: ../src/plugins/FamilyGroup.py:786
@@ -7156,18 +7168,18 @@ msgstr "Turinys"
 msgid "Include"
 msgstr "Intarpas"
 
-#: ../src/plugins/DetAncestralReport.py:917
-#: ../src/plugins/DetAncestralReport.py:918
-#: ../src/plugins/DetDescendantReport.py:890
-#: ../src/plugins/DetDescendantReport.py:891
+#: ../src/plugins/DetAncestralReport.py:919
+#: ../src/plugins/DetAncestralReport.py:920
+#: ../src/plugins/DetDescendantReport.py:892
+#: ../src/plugins/DetDescendantReport.py:893
 msgid "Missing information"
 msgstr "Trūkstama informacija"
 
-#: ../src/plugins/DetAncestralReport.py:953
+#: ../src/plugins/DetAncestralReport.py:955
 msgid "Detailed Ancestral Report"
 msgstr "Detali protėvių ataskaita"
 
-#: ../src/plugins/DetAncestralReport.py:955
+#: ../src/plugins/DetAncestralReport.py:957
 msgid "Produces a detailed ancestral report"
 msgstr "Sukuria detalią protėvių ataskaitą"
 
@@ -7177,16 +7189,16 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "%(person_name)s palikuonių ataskaita"
 
 #. Print Spouses
-#: ../src/plugins/DetDescendantReport.py:868
+#: ../src/plugins/DetDescendantReport.py:870
 #: ../src/plugins/KinshipReport.py:368
 msgid "Include spouses"
 msgstr "Įtraukti sutuoktinius"
 
-#: ../src/plugins/DetDescendantReport.py:927
+#: ../src/plugins/DetDescendantReport.py:929
 msgid "Detailed Descendant Report"
 msgstr "Detali  palikuonių  ataskaita"
 
-#: ../src/plugins/DetDescendantReport.py:929
+#: ../src/plugins/DetDescendantReport.py:931
 msgid "Produces a detailed descendant report"
 msgstr "Sukuria detalią palikuonių ataskaitą"
 
@@ -7584,7 +7596,7 @@ msgstr "Rašomos šeimų linijos"
 #: ../src/plugins/GraphViz.py:887
 #: ../src/plugins/GraphViz.py:895
 #: ../src/plugins/GraphViz.py:902
-#: ../src/ReportBase/_GraphvizReportDialog.py:614
+#: ../src/ReportBase/_GraphvizReportDialog.py:696
 msgid "GraphViz Options"
 msgstr "GraphViz Parinktys"
 
@@ -7632,6 +7644,7 @@ msgid "Height of the graph in inches.  Final image size may be smaller than this
 msgstr ""
 
 #: ../src/plugins/FamilyLines.py:879
+#: ../src/ReportBase/_GraphvizReportDialog.py:708
 msgid "DPI"
 msgstr "DPI"
 
@@ -7903,70 +7916,70 @@ msgstr "Šeimos linijos diagrama"
 
 #: ../src/plugins/FanChart.py:177
 #, python-format
-msgid "%d Generation Fan Chart for %s"
-msgstr "%d kartų ventiliatoriaus diagrama. Asmuo: %s"
+msgid "%(generations)d Generation Fan Chart for %(person)s"
+msgstr "%(generations)d kartų ventiliatoriaus diagrama. Asmuo: %(person)s"
 
-#: ../src/plugins/FanChart.py:329
+#: ../src/plugins/FanChart.py:330
 msgid "Type of graph"
 msgstr "Diagramos tipas"
 
-#: ../src/plugins/FanChart.py:330
+#: ../src/plugins/FanChart.py:331
 msgid "full circle"
 msgstr "Pilnas apskritimas"
 
-#: ../src/plugins/FanChart.py:331
+#: ../src/plugins/FanChart.py:332
 msgid "half circle"
 msgstr "pusė apskritimo"
 
-#: ../src/plugins/FanChart.py:332
+#: ../src/plugins/FanChart.py:333
 msgid "quarter circle"
 msgstr "ketvirtis apskritimo"
 
-#: ../src/plugins/FanChart.py:333
+#: ../src/plugins/FanChart.py:334
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr ""
 
-#: ../src/plugins/FanChart.py:337
+#: ../src/plugins/FanChart.py:338
 msgid "Background color"
 msgstr "Fono spalva"
 
-#: ../src/plugins/FanChart.py:338
+#: ../src/plugins/FanChart.py:339
 msgid "white"
 msgstr "baltas"
 
-#: ../src/plugins/FanChart.py:339
+#: ../src/plugins/FanChart.py:340
 msgid "generation dependent"
 msgstr "priklauso nuo kartos"
 
-#: ../src/plugins/FanChart.py:340
+#: ../src/plugins/FanChart.py:341
 msgid "Background color is either white or generation dependent"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:344
+#: ../src/plugins/FanChart.py:345
 msgid "Orientation of radial texts"
 msgstr "Spindulinio teksto orientacija"
 
-#: ../src/plugins/FanChart.py:346
+#: ../src/plugins/FanChart.py:347
 msgid "upright"
 msgstr "vertikaliai"
 
-#: ../src/plugins/FanChart.py:347
+#: ../src/plugins/FanChart.py:348
 msgid "roundabout"
 msgstr "aplink"
 
-#: ../src/plugins/FanChart.py:348
+#: ../src/plugins/FanChart.py:349
 msgid "Print raidal texts upright or roundabout"
 msgstr ""
 
-#: ../src/plugins/FanChart.py:372
+#: ../src/plugins/FanChart.py:373
 msgid "The style used for the title."
 msgstr "Stilius, naudojamas antraštei."
 
-#: ../src/plugins/FanChart.py:420
+#: ../src/plugins/FanChart.py:421
 msgid "Fan Chart"
 msgstr "Ventiliatoriaus diagrama"
 
-#: ../src/plugins/FanChart.py:424
+#: ../src/plugins/FanChart.py:425
 msgid "Produces fan charts"
 msgstr "Sukuria ventiliatoriaus diagramas"
 
@@ -8037,32 +8050,32 @@ msgid "Searches the entire database, looking for individual entries that may rep
 msgstr "Paieška visoje duomenų bazėje, ieškant  įrašų, kurie gali būti apie tą patį asmenį."
 
 #: ../src/plugins/GraphViz.py:85
-#: ../src/ReportBase/_GraphvizReportDialog.py:493
+#: ../src/ReportBase/_GraphvizReportDialog.py:523
 msgid "Postscript"
 msgstr "PS (PostScript)"
 
 #: ../src/plugins/GraphViz.py:86
-#: ../src/ReportBase/_GraphvizReportDialog.py:498
+#: ../src/ReportBase/_GraphvizReportDialog.py:528
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
 #: ../src/plugins/GraphViz.py:87
-#: ../src/ReportBase/_GraphvizReportDialog.py:503
+#: ../src/ReportBase/_GraphvizReportDialog.py:533
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Suspaustas Structured Vector Graphics (SVG)"
 
 #: ../src/plugins/GraphViz.py:88
-#: ../src/ReportBase/_GraphvizReportDialog.py:508
+#: ../src/ReportBase/_GraphvizReportDialog.py:548
 msgid "PNG image"
 msgstr "PNG paveikslėlis"
 
 #: ../src/plugins/GraphViz.py:89
-#: ../src/ReportBase/_GraphvizReportDialog.py:513
+#: ../src/ReportBase/_GraphvizReportDialog.py:538
 msgid "JPEG image"
 msgstr "JPEG paveikslėlis"
 
 #: ../src/plugins/GraphViz.py:90
-#: ../src/ReportBase/_GraphvizReportDialog.py:518
+#: ../src/ReportBase/_GraphvizReportDialog.py:543
 msgid "GIF image"
 msgstr "GIF paveikslėlis"
 
@@ -8108,12 +8121,12 @@ msgid "Color fill"
 msgstr "Užpildanti spalva"
 
 #: ../src/plugins/GraphViz.py:104
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
+#: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Minimal size"
 msgstr "Minimalus dydis"
 
 #: ../src/plugins/GraphViz.py:105
-#: ../src/ReportBase/_GraphvizReportDialog.py:75
+#: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Fill the given area"
 msgstr "Užpildyti nurodytą plotą"
 
@@ -8122,62 +8135,60 @@ msgid "Automatically use optimal number of pages"
 msgstr "Pagal nutylėjimą naudoti optimalų puslapių skaičių"
 
 #: ../src/plugins/GraphViz.py:110
-#: ../src/ReportBase/_GraphvizReportDialog.py:62
 msgid "Vertical"
 msgstr "Vertikaliai"
 
 #: ../src/plugins/GraphViz.py:111
-#: ../src/ReportBase/_GraphvizReportDialog.py:63
 msgid "Horizontal"
 msgstr "Horizontaliai"
 
 #: ../src/plugins/GraphViz.py:114
-#: ../src/ReportBase/_GraphvizReportDialog.py:65
+#: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "Bottom, left"
 msgstr "Žemyn, kairėn"
 
 #: ../src/plugins/GraphViz.py:115
-#: ../src/ReportBase/_GraphvizReportDialog.py:66
+#: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "Bottom, right"
 msgstr "Žemyn, dešinėn"
 
 #: ../src/plugins/GraphViz.py:116
-#: ../src/ReportBase/_GraphvizReportDialog.py:67
+#: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "Top, left"
 msgstr "Viršun, kairėn"
 
 #: ../src/plugins/GraphViz.py:117
-#: ../src/ReportBase/_GraphvizReportDialog.py:68
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Top, Right"
 msgstr "Viršun, dešinėn"
 
 #: ../src/plugins/GraphViz.py:118
-#: ../src/ReportBase/_GraphvizReportDialog.py:69
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Right, bottom"
 msgstr "Dešinėn, žemyn"
 
 #: ../src/plugins/GraphViz.py:119
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
 msgid "Right, top"
 msgstr "Dešinėn, viršun"
 
 #: ../src/plugins/GraphViz.py:120
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Left, bottom"
 msgstr "Kairėn, žemyn"
 
 #: ../src/plugins/GraphViz.py:121
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Left, top"
 msgstr "Kairėn, viršun"
 
 #: ../src/plugins/GraphViz.py:124
-#: ../src/ReportBase/_GraphvizReportDialog.py:79
+#: ../src/ReportBase/_GraphvizReportDialog.py:81
 msgid "Top"
 msgstr "Viršuje"
 
 #: ../src/plugins/GraphViz.py:125
-#: ../src/ReportBase/_GraphvizReportDialog.py:80
+#: ../src/ReportBase/_GraphvizReportDialog.py:82
 msgid "Bottom"
 msgstr "Apačioje"
 
@@ -8202,7 +8213,7 @@ msgid "Descendants - Ancestors"
 msgstr "Palikuonys - Protėviai"
 
 #: ../src/plugins/GraphViz.py:150
-#: ../src/ReportBase/_GraphvizReportDialog.py:524
+#: ../src/ReportBase/_GraphvizReportDialog.py:518
 msgid "PDF"
 msgstr "PDF"
 
@@ -8283,12 +8294,12 @@ msgstr "Pasirinkti kryptį, kur rodys  rodyklė."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:870
-#: ../src/ReportBase/_GraphvizReportDialog.py:617
+#: ../src/ReportBase/_GraphvizReportDialog.py:640
 msgid "Font family"
 msgstr "Šriftų šeima"
 
 #: ../src/plugins/GraphViz.py:872
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:645
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Pasirinkite šriftų šeimą. Jei nematote lietuviškų simbolių naudokite FreeSans Šriftą. Jis gali būti paimtas iš http://www.nongnu.org/freefont/"
 
@@ -8297,7 +8308,7 @@ msgid "Font size (in points)"
 msgstr "Šrifto dydis (taškais)"
 
 #: ../src/plugins/GraphViz.py:883
-#: ../src/ReportBase/_GraphvizReportDialog.py:629
+#: ../src/ReportBase/_GraphvizReportDialog.py:652
 msgid "The font size, in points."
 msgstr "Šrifto dydis taškais."
 
@@ -8343,13 +8354,13 @@ msgstr "Išdėstymo nuostatos"
 msgid "Whether generations go from top to bottom or left to right."
 msgstr "Ar diagrama yra iš viršaus į apačią, ar iš kairės į dešinę."
 
+#. ###############################
 #: ../src/plugins/GraphViz.py:919
-#: ../src/ReportBase/_GraphvizReportDialog.py:641
+#: ../src/ReportBase/_GraphvizReportDialog.py:699
 msgid "Aspect ratio"
 msgstr "Proporcija"
 
 #: ../src/plugins/GraphViz.py:921
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
 msgid "Affects greatly how the graph is layed out on the page. Multiple pages overrides the pages settings below."
 msgstr "Stipriai įtakoja kaip diagrama yra išdėstyta puslapyje. Daug puslapių perrašo šiuos nustatymus."
 
@@ -8358,22 +8369,22 @@ msgid "Margin size"
 msgstr "Paraštė dydis"
 
 #: ../src/plugins/GraphViz.py:943
-#: ../src/ReportBase/_GraphvizReportDialog.py:661
+#: ../src/ReportBase/_GraphvizReportDialog.py:664
 msgid "Number of Horizontal Pages"
 msgstr "Puslapių kiekis horizontaliai"
 
 #: ../src/plugins/GraphViz.py:945
-#: ../src/ReportBase/_GraphvizReportDialog.py:662
+#: ../src/ReportBase/_GraphvizReportDialog.py:665
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally."
 msgstr "GraphViz gali sukurti labai dideles diagramas paskirstydamas diagramą po stačiakampį puslapių masyvą. Šis parametras kontroliuoja horizontalių puslapių skaičių masyve."
 
 #: ../src/plugins/GraphViz.py:950
-#: ../src/ReportBase/_GraphvizReportDialog.py:668
+#: ../src/ReportBase/_GraphvizReportDialog.py:671
 msgid "Number of Vertical Pages"
 msgstr "Vertikalių puslapių skaičius"
 
 #: ../src/plugins/GraphViz.py:952
-#: ../src/ReportBase/_GraphvizReportDialog.py:669
+#: ../src/ReportBase/_GraphvizReportDialog.py:672
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically."
 msgstr "iš.GraphViz gali sukurti labai dideles diagramas paskirstydamas diagramą po stačiakampį puslapių masyvą. Šis parametras kontroliuoja vertikalių puslapių skaičių masyve."
 
@@ -8387,22 +8398,22 @@ msgstr "Eiliškumas kuriuo diagramų  puslapiai yra išvedami."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:973
-#: ../src/ReportBase/_GraphvizReportDialog.py:679
+#: ../src/ReportBase/_GraphvizReportDialog.py:742
 msgid "Note to add to the graph"
 msgstr "I diagrama įdedama pastaba"
 
 #: ../src/plugins/GraphViz.py:975
-#: ../src/ReportBase/_GraphvizReportDialog.py:681
+#: ../src/ReportBase/_GraphvizReportDialog.py:744
 msgid "This text will be added to the graph."
 msgstr "Šis tekstas bus įtrauktas i diagramą."
 
 #: ../src/plugins/GraphViz.py:979
-#: ../src/ReportBase/_GraphvizReportDialog.py:684
+#: ../src/ReportBase/_GraphvizReportDialog.py:747
 msgid "Note location"
 msgstr "Pastabos vieta"
 
 #: ../src/plugins/GraphViz.py:981
-#: ../src/ReportBase/_GraphvizReportDialog.py:687
+#: ../src/ReportBase/_GraphvizReportDialog.py:750
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Ar pastaba bus puslapio viršuje ar apačioje."
 
@@ -8411,7 +8422,7 @@ msgid "Note size (in points)"
 msgstr "Pastabos dydis (taškais)"
 
 #: ../src/plugins/GraphViz.py:989
-#: ../src/ReportBase/_GraphvizReportDialog.py:692
+#: ../src/ReportBase/_GraphvizReportDialog.py:755
 msgid "The size of note text, in points."
 msgstr "Pastabos teksto dydis taškais."
 
@@ -8510,9 +8521,8 @@ msgid "CSV Import"
 msgstr "CSV įkėlimas"
 
 #: ../src/plugins/ImportCSV.py:256
-#, fuzzy
 msgid "Reading data..."
-msgstr "Rūšiuojami duomenys..."
+msgstr "Skaitomi duomenys..."
 
 #: ../src/plugins/ImportCSV.py:523
 #: ../src/plugins/ImportGeneWeb.py:189
@@ -8690,66 +8700,67 @@ msgstr ""
 msgid "Name Father"
 msgstr "Tėvas"
 
-#: ../src/plugins/lineage.py:72
-msgid "Direct line male descendants"
-msgstr ""
-
-#. display the results
-#: ../src/plugins/lineage.py:85
-#, fuzzy, python-format
-msgid "Mother lineage for %s"
-msgstr "%s santuoka"
-
-#: ../src/plugins/lineage.py:87
-msgid "This report shows the mother lineage, also called matronymic lineage or M-line. People in this lineage all share the same RNA."
-msgstr ""
-
-#: ../src/plugins/lineage.py:94
-#, fuzzy
-msgid "Name Mother"
-msgstr "Vardo pastaba"
-
-#: ../src/plugins/lineage.py:105
-msgid "Direct line female descendants"
-msgstr ""
-
-#: ../src/plugins/lineage.py:124
-#: ../src/plugins/lineage.py:185
+#: ../src/plugins/lineage.py:61
+#: ../src/plugins/lineage.py:92
+#: ../src/plugins/lineage.py:180
 #, fuzzy
 msgid "Remark"
 msgstr "Taisyti"
 
-#: ../src/plugins/lineage.py:129
-#: ../src/plugins/lineage.py:223
+#: ../src/plugins/lineage.py:69
+msgid "Direct line male descendants"
+msgstr ""
+
+#. display the results
+#: ../src/plugins/lineage.py:82
+#, fuzzy, python-format
+msgid "Mother lineage for %s"
+msgstr "%s santuoka"
+
+#: ../src/plugins/lineage.py:84
+msgid "This report shows the mother lineage, also called matronymic lineage or M-line. People in this lineage all share the same RNA."
+msgstr ""
+
+#: ../src/plugins/lineage.py:92
+#, fuzzy
+msgid "Name Mother"
+msgstr "Vardo pastaba"
+
+#: ../src/plugins/lineage.py:100
+msgid "Direct line female descendants"
+msgstr ""
+
+#: ../src/plugins/lineage.py:124
+#: ../src/plugins/lineage.py:218
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
 msgstr ""
 
-#: ../src/plugins/lineage.py:158
+#: ../src/plugins/lineage.py:153
 msgid "No birth relation with child"
 msgstr "Nerasta gimimo ryšio  su vaiku"
 
-#: ../src/plugins/lineage.py:162
-#: ../src/plugins/lineage.py:182
+#: ../src/plugins/lineage.py:157
+#: ../src/plugins/lineage.py:177
 #: ../src/plugins/Verify.py:948
 msgid "Unknown gender"
 msgstr "Nežinoma lytis"
 
-#: ../src/plugins/lineage.py:244
+#: ../src/plugins/lineage.py:239
 #, fuzzy
 msgid "Father lineage"
 msgstr "Tėvo amžius"
 
-#: ../src/plugins/lineage.py:246
+#: ../src/plugins/lineage.py:241
 #, fuzzy
 msgid "Display father lineage"
 msgstr "Rodyti asmenis brolius ir seseris."
 
-#: ../src/plugins/lineage.py:255
+#: ../src/plugins/lineage.py:250
 #, fuzzy
 msgid "Mother lineage"
 msgstr "Motinos amžius"
 
-#: ../src/plugins/lineage.py:257
+#: ../src/plugins/lineage.py:252
 #, fuzzy
 msgid "Display mother lineage"
 msgstr "Rodyti dienos patarimą"
@@ -8806,7 +8817,7 @@ msgstr ""
 "\n"
 "GRAMPS nuoroda į objektą - tai duomenų apie audio/video objektą kolekcija: jo bylos vardas ir/arba kelias; jo aprašymas, jo ID, pastabos, šaltinių nuorodos ir t.t. Šie duomenys <b> Neapima pačios bylos</b>.\n"
 "\n"
-"Byla, kurioje saugomas paveikslas, garsas, video ir pan.  yra atskirai nuo GRAMPS Jūsų kietajame diske. Šios bylos nera tvarkomos iš GRAMPS ir jos nėra įtrauktos į GRAMPS duomenų bazę. GRAMPS duomenų bazėje saugoma tik bylos vardas ir kelias iki tos bylos \n"
+"Byla, kurioje saugomas paveikslas, garsas, video ir pan.  yra atskirai nuo GRAMPS Jūsų kietajame diske. Šios bylos nėra tvarkomos iš GRAMPS ir jos nėra įtrauktos į GRAMPS duomenų bazę. GRAMPS duomenų bazėje saugoma tik bylos vardas ir kelias iki tos bylos \n"
 "\n"
 "Šis įrankis leidžia koreguoti įrašus GRAMPS duomenų bazėje.  Jei jums reikia perkelti ar pervardinti bylas, tai turite padaryti ne su GRAMPS įrankiais. Po to  naudodami šį įrankį Jūs galite pritaikyti kelius,kad audio/video objektai  turėtų teisingą bylos vietos informaciją."
 
@@ -9093,9 +9104,8 @@ msgid "Nickname"
 msgstr "Pravardė"
 
 #: ../src/plugins/NarrativeWeb.py:2101
-#, fuzzy
 msgid "Half Siblings"
-msgstr "broliai ir seserys"
+msgstr "Įbroliai ir įseserės"
 
 #: ../src/plugins/NarrativeWeb.py:2254
 #, python-format
@@ -9118,9 +9128,9 @@ msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2276
-#, fuzzy, python-format
+#, python-format
 msgid "<br>%(type)s: %(value)s"
-msgstr "%(type)s: %(value)s"
+msgstr "<br>%(type)s: %(value)s"
 
 #: ../src/plugins/NarrativeWeb.py:2425
 #: ../src/plugins/WebCal.py:459
@@ -9188,14 +9198,12 @@ msgid "File extension"
 msgstr "Bylos plėtinys"
 
 #: ../src/plugins/NarrativeWeb.py:2715
-#, fuzzy
 msgid "Publisher contact note"
-msgstr "Autoriaus Kontaktas/Pastabos ID"
+msgstr "Autoriaus  pastaba"
 
 #: ../src/plugins/NarrativeWeb.py:2716
-#, fuzzy
 msgid "Publisher contact image"
-msgstr "Autoriaus Kontaktas/Pastabos ID"
+msgstr "Autoriaus nuotrauka"
 
 #: ../src/plugins/NarrativeWeb.py:2717
 msgid "Include images and media objects"
@@ -9222,33 +9230,28 @@ msgid "Restrict"
 msgstr "Apriboti"
 
 #: ../src/plugins/NarrativeWeb.py:2770
-#, fuzzy
 msgid "Include link to home person on every page"
-msgstr "Įdėti nuorodą į rodyklės puslapį"
+msgstr "Kiekviename puslapyje įdėti nuorodą į pagrindinį asmenį"
 
 #: ../src/plugins/NarrativeWeb.py:2773
-#, fuzzy
 msgid "Include a column for birth dates on the index pages"
-msgstr "Įdėti nuorodą į rodyklės puslapį"
+msgstr "Rodyklės puslapyje įdėti gimimo datos stulpelį"
 
 #: ../src/plugins/NarrativeWeb.py:2776
-#, fuzzy
 msgid "Include a column for death dates on the index pages"
-msgstr "Įdėti nuorodą į rodyklės puslapį"
+msgstr "Rodyklės puslapyje įdėti mirimo datos stulpelį"
 
 #: ../src/plugins/NarrativeWeb.py:2779
-#, fuzzy
 msgid "Include a column for partners on the index pages"
-msgstr "Įdėti nuorodą į rodyklės puslapį"
+msgstr "Rodyklės puslapyje įdėti partnerių stulpelį"
 
 #: ../src/plugins/NarrativeWeb.py:2782
-#, fuzzy
 msgid "Include a column for parents on the index pages"
-msgstr "Įdėti nuorodą į rodyklės puslapį"
+msgstr "Rodyklės puslapyje įdėti tėvų stulpelį"
 
 #: ../src/plugins/NarrativeWeb.py:2785
 msgid "Include half-brothers and half-sisters as siblings"
-msgstr ""
+msgstr "Kaip brolius ir seseris įtraukti ir įbrolius ir įseseres"
 
 #: ../src/plugins/NarrativeWeb.py:2803
 #: ../src/plugins/WebCal.py:733
@@ -9318,7 +9321,7 @@ msgstr "Namų puslapio pastaba"
 
 #: ../src/plugins/NarrativeWeb.py:2911
 msgid "Home Page image"
-msgstr ""
+msgstr "Namų puslapio paveikslas"
 
 #: ../src/plugins/NarrativeWeb.py:2913
 msgid "Introduction Note"
@@ -9388,7 +9391,7 @@ msgstr "Duomenų bazės savininko redaktorius"
 #: ../src/plugins/OwnerEditor.py:156
 #: ../src/PluginUtils/_PluginWindows.py:466
 msgid "Main window"
-msgstr ""
+msgstr "Pagrindinis puslapis"
 
 #: ../src/plugins/OwnerEditor.py:156
 #: ../src/plugins/OwnerEditor.py:190
@@ -9628,7 +9631,7 @@ msgid "From file..."
 msgstr "Iš bylos ..."
 
 #: ../src/plugins/SimpleBookTitle.py:211
-#: ../src/glade/gramps.glade.h:185
+#: ../src/glade/gramps.glade.h:186
 #: ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
@@ -10687,10 +10690,10 @@ msgstr "Stilių redaktorius"
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
 #: ../src/ReportBase/_CommandLineReport.py:154
-#: ../src/ReportBase/_PaperMenu.py:193
-#: ../src/ReportBase/_PaperMenu.py:253
-#: ../src/ReportBase/_PaperMenu.py:342
-#: ../src/ReportBase/_PaperMenu.py:364
+#: ../src/ReportBase/_PaperMenu.py:195
+#: ../src/ReportBase/_PaperMenu.py:255
+#: ../src/ReportBase/_PaperMenu.py:344
+#: ../src/ReportBase/_PaperMenu.py:366
 msgid "Custom Size"
 msgstr "Pasirinktas dydis"
 
@@ -10733,49 +10736,104 @@ msgstr "Stilius, naudojamas paaiškinimams gale atvaizduoti."
 msgid "Endnotes"
 msgstr "Galutinė pastaba"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:76
-#, fuzzy
-msgid "Use optimal number of pages"
-msgstr "Pagal nutylėjimą naudoti optimalų puslapių skaičių"
+#: ../src/ReportBase/_GraphvizReportDialog.py:62
+msgid "Vertical (top to bottom)"
+msgstr "Vertikalus (Iš viršaus į apačią)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:487
+#: ../src/ReportBase/_GraphvizReportDialog.py:63
+msgid "Vertical (bottom to top)"
+msgstr "Vertikalus (Iš apačios į viršų)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:64
+msgid "Horizontal (left to right)"
+msgstr "Horizontalus (Iš kairės į dešinę)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:65
+msgid "Horizontal (right to left)"
+msgstr "Horizontalus (Iš dešinės į kairę)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:78
+msgid "Use optimal number of pages"
+msgstr "Naudoti optimalų puslapių skaičių"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:510
 msgid "Graphviz Dot File"
 msgstr "GraphViz  dot byla"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#. ###############################
+#: ../src/ReportBase/_GraphvizReportDialog.py:638
+msgid "GraphViz Layout"
+msgstr "GraphViz išdėstymas"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:651
 msgid "Font size"
 msgstr "Šrifto dydis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:632
+#: ../src/ReportBase/_GraphvizReportDialog.py:655
 msgid "Graph Direction"
 msgstr "Diagramos kryptis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:637
+#: ../src/ReportBase/_GraphvizReportDialog.py:660
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Ar diagrama yra iš viršaus į apačią, ar iš kairės į dešinę."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:651
+#: ../src/ReportBase/_GraphvizReportDialog.py:678
 msgid "Paging Direction"
 msgstr "Puslapiavimo kryptis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:656
+#: ../src/ReportBase/_GraphvizReportDialog.py:683
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:691
+#: ../src/ReportBase/_GraphvizReportDialog.py:704
+#, fuzzy
+msgid "Affects greatly how the graph is layed out on the page."
+msgstr "Stipriai įtakoja kaip diagrama yra išdėstyta puslapyje. Daug puslapių perrašo šiuos nustatymus."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:709
+msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
+msgstr "Taškai į colį (DPI). Planuojant sukurti .gif arba .png internetiniam puslapiui bandykite 75 arba 100 DPI. Spausdinimui 300 arba 600 DPI."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:715
+msgid "Node spacing"
+msgstr "Pastabų intervalas"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:716
+msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:723
+#, fuzzy
+msgid "Rank spacing"
+msgstr "Eilučių intervalas"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:724
+msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:731
+msgid "Use subgraphs"
+msgstr ""
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#, fuzzy
+msgid "Subgraphs can help GraphViz position certain linked nodes closer together, but with non-trivial graphs will result in longer lines and larger graphs."
+msgstr "Pografiai (subgraphs) gali padėti GraphViz patalpinti sutuoktinius arčiau vienas kito, bet gali sukurti ilgesnes linijas ir didesnes diagramas."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:754
 msgid "Note size"
 msgstr "Pastabos dydis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:704
-#: ../src/ReportBase/_GraphvizReportDialog.py:755
+#: ../src/ReportBase/_GraphvizReportDialog.py:782
+#: ../src/ReportBase/_GraphvizReportDialog.py:833
 msgid "Open with application"
 msgstr "Atidaryti su programa"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:712
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Output Format"
 msgstr "Išvesties Formatas"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#: ../src/ReportBase/_GraphvizReportDialog.py:810
 msgid "Paper Options"
 msgstr "Popieriaus nustatymai"
 
@@ -14850,9 +14908,8 @@ msgid "Matches people with missing date or place in an event"
 msgstr "Tai asmenys, kuriems trūksta įvykio datos arba vietovės"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
-#, fuzzy
 msgid "On date:"
-msgstr "Atidaryti Duomenų bazę"
+msgstr "data:"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "People probably alive"
@@ -15245,14 +15302,12 @@ msgstr "Atitinka įvykius, kurie atitinka nurodytą filtrą"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:48
 #: ../src/FilterEditor/_EditRule.py:484
-#, fuzzy
 msgid "Source filter name:"
-msgstr "Įvykių filtro vardas:"
+msgstr "Šaltinių filtro vardas:"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
-#, fuzzy
 msgid "Events with source matching the <source filter>"
-msgstr "Įvykiai, kurie atitinka <filter>"
+msgstr "Įvykiai, kurių šaltiniai atitinka < source filter>"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:50
 #, fuzzy
@@ -15282,7 +15337,7 @@ msgstr "Vietovės be nurodytos ilgumos arba platumos"
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:47
 #, fuzzy
 msgid "Matches places with latitude or longitude empty"
-msgstr "Tai vietovės, kurios yra pažymėtos privačiomis"
+msgstr "Tai vietovės, kurių ilguma ir platuma yra tuščios"
 
 #: ../src/Filters/Rules/Place/_HasNoLatOrLon.py:48
 #: ../src/Filters/Rules/Place/_InLatLonNeighborhood.py:54
@@ -15373,9 +15428,8 @@ msgid "Matches places matched by the specified filter name"
 msgstr "Atitinka vietoves atitinkančios nustatytą filtrą"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:52
-#, fuzzy
 msgid "Places of events matching the <event filter>"
-msgstr "Vietovės atitinkančios  <filter>"
+msgstr "Įvykių vietovės atitinkančios  <event filter>"
 
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:53
 #, fuzzy
@@ -15423,14 +15477,12 @@ msgid "Matches sources whose GRAMPS ID matches the regular expression"
 msgstr "Tai šaltiniai, kurių GRAMPS ID yra nurodyta išraiška"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Source objects with a reference count of <count>"
-msgstr "Source objects with a reference count of <count>"
+msgstr "Šaltinio objektai su  <count> nuorodų skaičiumi"
 
 #: ../src/Filters/Rules/Source/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches source objects with a certain reference count"
-msgstr "Tai audio/video objektai su konkrečiais parametrais"
+msgstr "Tai šaltinio objektai su konkrečiu nuorodų skaičiumi"
 
 #: ../src/Filters/Rules/Source/_HasSource.py:46
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:47
@@ -15511,7 +15563,7 @@ msgid "Type:"
 msgstr "Tipas:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:94
 msgid "Path:"
 msgstr "Kelias:"
 
@@ -15540,14 +15592,12 @@ msgid "Matches media objects whose notes contain text matching a regular express
 msgstr "Tai audio/video objektai, kurių pastabose dalis teksto  atitinka nurodytą išraišką"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Media objects with a reference count of <count>"
-msgstr "Media objects with a reference count of <count>"
+msgstr "Audio/video objektai su <count> nuorodų skaičiumi"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
-#, fuzzy
 msgid "Matches media objects with a certain reference count"
-msgstr "Tai audio/video objektai su konkrečiais parametrais"
+msgstr "Tai audio/video objektai su konkrečiu nuorodų skaičiumi"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -15929,7 +15979,7 @@ msgstr "Eiti į šitą tinklalapį"
 
 #: ../src/docgen/gtkprintpreview.glade.h:9
 msgid "Zooms the page out"
-msgstr ""
+msgstr "Sumažinti puslapį"
 
 #: ../src/docgen/gtkprintpreview.glade.h:10
 msgid "Zooms to fit the page width"
@@ -16002,7 +16052,7 @@ msgstr ""
 "UTF8"
 
 #: ../src/glade/edit_person.glade.h:1
-#: ../src/glade/gramps.glade.h:12
+#: ../src/glade/gramps.glade.h:13
 #: ../src/plugins/verify.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>Bendrai</b>"
@@ -16020,12 +16070,12 @@ msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr "Titulas, naudojamas aprašant asmenį, toks kaip \"Dr.\" ar \"Rev.\""
 
 #: ../src/glade/edit_person.glade.h:5
-#: ../src/glade/gramps.glade.h:38
+#: ../src/glade/gramps.glade.h:39
 msgid "Abandon changes and close window"
 msgstr "Atmesti pakeitimus ir uždaryti langą"
 
 #: ../src/glade/edit_person.glade.h:6
-#: ../src/glade/gramps.glade.h:40
+#: ../src/glade/gramps.glade.h:41
 msgid "Accept changes and close window"
 msgstr "Priimti pakeitimus ir uždaryti langą"
 
@@ -16038,7 +16088,7 @@ msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Priesaga tokia kaip \"Jr.\" ar \"III.\", nurodoma pasirinktinai"
 
 #: ../src/glade/edit_person.glade.h:9
-#: ../src/glade/gramps.glade.h:48
+#: ../src/glade/gramps.glade.h:49
 msgid "Call _Name:"
 msgstr "_Vardas:"
 
@@ -16061,7 +16111,7 @@ msgid "Gi_ven:"
 msgstr "_Duotas vardas:"
 
 #: ../src/glade/edit_person.glade.h:15
-#: ../src/glade/gramps.glade.h:79
+#: ../src/glade/gramps.glade.h:80
 msgid "Indicates if the record is private"
 msgstr "Pažymi ar įrašas neskelbtinas"
 
@@ -16074,12 +16124,12 @@ msgid "The person's given name"
 msgstr "Asmeniui duotas vardas"
 
 #: ../src/glade/edit_person.glade.h:18
-#: ../src/glade/gramps.glade.h:118
+#: ../src/glade/gramps.glade.h:119
 msgid "Tit_le:"
 msgstr "Antra_štė:"
 
 #: ../src/glade/edit_person.glade.h:19
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:143
 msgid "_Family:"
 msgstr "_Pavardė:"
 
@@ -16088,22 +16138,22 @@ msgid "_Gender:"
 msgstr "_Lytis:"
 
 #: ../src/glade/edit_person.glade.h:21
-#: ../src/glade/gramps.glade.h:144
+#: ../src/glade/gramps.glade.h:145
 msgid "_ID:"
 msgstr "_ID:"
 
 #: ../src/glade/edit_person.glade.h:22
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:151
 msgid "_Marker:"
 msgstr "_Žymeklis:"
 
 #: ../src/glade/edit_person.glade.h:23
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:160
 msgid "_Prefix:"
 msgstr "_Priešdėlis:"
 
 #: ../src/glade/edit_person.glade.h:24
-#: ../src/glade/gramps.glade.h:176
+#: ../src/glade/gramps.glade.h:177
 msgid "_Type:"
 msgstr "_Tipas:"
 
@@ -16112,71 +16162,76 @@ msgid "\n"
 msgstr "\n"
 
 #: ../src/glade/gramps.glade.h:3
+#, fuzzy
+msgid "<b><i>Gramplet</i></b>"
+msgstr "<b>Bendrai</b>"
+
+#: ../src/glade/gramps.glade.h:4
 msgid "<b>Alignment</b>"
 msgstr "<b>Lygiavimas</b>"
 
-#: ../src/glade/gramps.glade.h:4
+#: ../src/glade/gramps.glade.h:5
 msgid "<b>Background color</b>"
 msgstr "<b>Fono spalva</b>"
 
-#: ../src/glade/gramps.glade.h:5
+#: ../src/glade/gramps.glade.h:6
 msgid "<b>Borders</b>"
 msgstr "<b>Rėmeliai</b>"
 
-#: ../src/glade/gramps.glade.h:6
+#: ../src/glade/gramps.glade.h:7
 msgid "<b>Color</b>"
 msgstr "<b> Spalva</b>"
 
-#: ../src/glade/gramps.glade.h:7
+#: ../src/glade/gramps.glade.h:8
 msgid "<b>Date</b>"
 msgstr "<b>Data</b>"
 
-#: ../src/glade/gramps.glade.h:8
+#: ../src/glade/gramps.glade.h:9
 #: ../src/glade/rule.glade.h:2
 msgid "<b>Description</b>"
 msgstr "<b>Aprašymas</b>"
 
-#: ../src/glade/gramps.glade.h:9
+#: ../src/glade/gramps.glade.h:10
 msgid "<b>Family relationships</b>"
 msgstr "<b>Šeimų ryšiai</b>"
 
-#: ../src/glade/gramps.glade.h:10
+#: ../src/glade/gramps.glade.h:11
 msgid "<b>Father</b>"
 msgstr "<b>Tėvas</b>"
 
-#: ../src/glade/gramps.glade.h:11
+#: ../src/glade/gramps.glade.h:12
 msgid "<b>Font options</b>"
 msgstr "<b>Fontų nuostatos</b>"
 
-#: ../src/glade/gramps.glade.h:13
+#: ../src/glade/gramps.glade.h:14
 msgid "<b>Indentation</b>"
 msgstr "<b>Tapatybė</b>"
 
-#: ../src/glade/gramps.glade.h:14
+#: ../src/glade/gramps.glade.h:15
 msgid "<b>Location</b>"
 msgstr "<b>Vietovė</b>"
 
-#: ../src/glade/gramps.glade.h:15
+#: ../src/glade/gramps.glade.h:16
 msgid "<b>Mother</b>"
 msgstr "<b>Motina</b>"
 
-#: ../src/glade/gramps.glade.h:16
+#: ../src/glade/gramps.glade.h:17
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
 msgstr "<b>Pastaba:</b>Visi pakeitimai šioje bendro naudojimo  įvykio informacijoje matysis pačiame įvykyje, ir visiems įvykio dalyviams."
 
-#: ../src/glade/gramps.glade.h:17
+#: ../src/glade/gramps.glade.h:18
 msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
 msgstr "<b>Pastaba:</b>Visi pakeitimai šioje bendro naudojimo  saugyklos  informacijoje matysis pačioje saugykloje, ir visuose įrašuose, kurie turi nuorodą į saugyklą."
 
-#: ../src/glade/gramps.glade.h:18
+#: ../src/glade/gramps.glade.h:19
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
 msgstr "<b>Pastaba:</b>Visi pakeitimai šioje bendro naudojimo šaltinio  informacijoje matysis pačiame  šaltinyje, ir visuose įrašuose, kurie turi nuoroda į šaltinį."
 
-#: ../src/glade/gramps.glade.h:19
+#: ../src/glade/gramps.glade.h:20
 msgid "<b>Note</b>"
 msgstr "<b>Pastaba</b>"
 
-#: ../src/glade/gramps.glade.h:20
+#: ../src/glade/gramps.glade.h:21
 #: ../src/glade/rule.glade.h:3
 #: ../src/plugins/csvexport.glade.h:1
 #: ../src/plugins/genewebexport.glade.h:2
@@ -16187,323 +16242,322 @@ msgstr "<b>Pastaba</b>"
 msgid "<b>Options</b>"
 msgstr "<b>Nuostatos</b>"
 
-#: ../src/glade/gramps.glade.h:21
+#: ../src/glade/gramps.glade.h:22
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Paragrafo nustatymai</b>"
 
-#: ../src/glade/gramps.glade.h:22
+#: ../src/glade/gramps.glade.h:23
 msgid "<b>Parent relationships</b>"
 msgstr "<b>Tėvų ryšiai</b>"
 
-#: ../src/glade/gramps.glade.h:23
+#: ../src/glade/gramps.glade.h:24
 msgid "<b>Preview</b>"
 msgstr "<b>Peržiūra</b>"
 
-#: ../src/glade/gramps.glade.h:24
+#: ../src/glade/gramps.glade.h:25
 msgid "<b>Q_uality</b>"
 msgstr "<b> K_okybė</b>"
 
-#: ../src/glade/gramps.glade.h:25
+#: ../src/glade/gramps.glade.h:26
 msgid "<b>Reference information</b>"
 msgstr "<b>Nuorodų informacija</b>"
 
-#: ../src/glade/gramps.glade.h:26
+#: ../src/glade/gramps.glade.h:27
 #, fuzzy
 msgid "<b>Referenced Region</b>"
 msgstr "<b>Nuorodų informacija</b>"
 
-#: ../src/glade/gramps.glade.h:27
+#: ../src/glade/gramps.glade.h:28
 msgid "<b>Relationship Information</b>"
 msgstr "<b>Ryšių Informacija</b>"
 
-#: ../src/glade/gramps.glade.h:28
+#: ../src/glade/gramps.glade.h:29
 msgid "<b>Second date</b>"
 msgstr "<b>Antra data</b>"
 
-#: ../src/glade/gramps.glade.h:29
+#: ../src/glade/gramps.glade.h:30
 msgid "<b>Shared Information</b>"
 msgstr "<b>Dalijama Informacija</b>"
 
-#: ../src/glade/gramps.glade.h:30
+#: ../src/glade/gramps.glade.h:31
 msgid "<b>Shared information</b>"
 msgstr "<b> Dalijama informacija</b>"
 
-#: ../src/glade/gramps.glade.h:31
+#: ../src/glade/gramps.glade.h:32
 msgid "<b>Shared source information</b>"
 msgstr "<b>Dalijama šaltinio informacija</b>"
 
-#: ../src/glade/gramps.glade.h:32
+#: ../src/glade/gramps.glade.h:33
 msgid "<b>Size</b>"
 msgstr "<b>Dydis</b>"
 
-#: ../src/glade/gramps.glade.h:33
+#: ../src/glade/gramps.glade.h:34
 msgid "<b>Spacing</b>"
 msgstr "<b>Intervalas</b>"
 
-#: ../src/glade/gramps.glade.h:34
+#: ../src/glade/gramps.glade.h:35
 msgid "<b>Type face</b>"
 msgstr "<b>Šrifto pavadinimas </b>"
 
-#: ../src/glade/gramps.glade.h:35
+#: ../src/glade/gramps.glade.h:36
 msgid "<b>Version description</b>"
 msgstr "<b>Versijos aprašymas</b>"
 
-#: ../src/glade/gramps.glade.h:36
+#: ../src/glade/gramps.glade.h:37
 msgid "<b>_Type</b>"
 msgstr "<b>_Tipas</b>"
 
-#: ../src/glade/gramps.glade.h:37
+#: ../src/glade/gramps.glade.h:38
 msgid "A_bbreviation:"
 msgstr "San_trumpa:"
 
-#: ../src/glade/gramps.glade.h:39
+#: ../src/glade/gramps.glade.h:40
 msgid "Abo_ve:"
 msgstr "Auk_ščiau:"
 
-#: ../src/glade/gramps.glade.h:41
+#: ../src/glade/gramps.glade.h:42
 msgid "Add_ress:"
 msgstr "_Adresas:"
 
-#: ../src/glade/gramps.glade.h:43
+#: ../src/glade/gramps.glade.h:44
 msgid "Belo_w:"
 msgstr "Žem_iau:"
 
-#: ../src/glade/gramps.glade.h:44
+#: ../src/glade/gramps.glade.h:45
 msgid "Birth:"
 msgstr "Gimė:"
 
-#: ../src/glade/gramps.glade.h:45
+#: ../src/glade/gramps.glade.h:46
 msgid "C_ity:"
 msgstr "M_iestas:"
 
-#: ../src/glade/gramps.glade.h:46
+#: ../src/glade/gramps.glade.h:47
 msgid "C_ounty:"
 msgstr "Š_alis:"
 
-#: ../src/glade/gramps.glade.h:47
+#: ../src/glade/gramps.glade.h:48
 msgid "Calenda_r:"
 msgstr "Kalendo_rius:"
 
-#: ../src/glade/gramps.glade.h:49
+#: ../src/glade/gramps.glade.h:50
 msgid "Church _parish:"
 msgstr "Bažnyčios _parapija:"
 
-#: ../src/glade/gramps.glade.h:50
+#: ../src/glade/gramps.glade.h:51
 #: ../src/plugins/soundex.glade.h:1
 msgid "Close Window"
 msgstr "Uždaryti langą"
 
-#: ../src/glade/gramps.glade.h:51
+#: ../src/glade/gramps.glade.h:52
 msgid "Close _without saving"
 msgstr "Išeiti _neišsaugojus pakeitimų"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:53
 msgid "Close window without changes"
 msgstr "Uždaryti langą neišsaugant pakeitimų"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:54
 msgid "Co_unty:"
 msgstr "Ša_lis:"
 
-#: ../src/glade/gramps.glade.h:54
+#: ../src/glade/gramps.glade.h:55
 msgid "Convert to a relative path"
 msgstr "Pakeisti į sąlyginį kelią"
 
-#: ../src/glade/gramps.glade.h:55
-msgid "Corner 1:  X"
-msgstr ""
-
 #: ../src/glade/gramps.glade.h:56
-msgid "Corner 2:  X"
-msgstr ""
+msgid "Corner 1:  X"
+msgstr "Kampas 1 : X"
 
 #: ../src/glade/gramps.glade.h:57
+msgid "Corner 2:  X"
+msgstr "Kampas 2 : X"
+
+#: ../src/glade/gramps.glade.h:58
 msgid "Cou_ntry:"
 msgstr "Š_alis:"
 
-#: ../src/glade/gramps.glade.h:58
+#: ../src/glade/gramps.glade.h:59
 msgid "Count_ry:"
 msgstr "Ša_lis:"
 
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:61
 msgid "D_ay"
 msgstr "D_iena"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:62
 msgid "Dat_e:"
 msgstr "Dat_a:"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:63
 msgid "De_scription:"
 msgstr "Ap_rašas:"
 
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:64
 msgid "Death:"
 msgstr "Mirė:"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:65
 msgid "Do not ask again"
 msgstr "Kitą kartą nebeklausti"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:66
 msgid "Do not show this dialog again"
 msgstr "Kitą kartą nebeklausti"
 
-#: ../src/glade/gramps.glade.h:67
+#: ../src/glade/gramps.glade.h:68
 msgid "Example:"
 msgstr "Pavyzdys:"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:69
 msgid "Family Trees - GRAMPS"
 msgstr "Šeimos medžiai - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:70
 msgid "Family:"
 msgstr "Šeima:"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:71
 msgid "First li_ne:"
 msgstr "Pirma eil_utė:"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:72
 msgid "Format _definition:"
 msgstr "Formato _apibrėžimas::"
 
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:73
 msgid "Format _name:"
 msgstr "Formato _vardas:"
 
-#: ../src/glade/gramps.glade.h:73
-#, fuzzy
+#: ../src/glade/gramps.glade.h:74
 msgid "Format definition details"
 msgstr "Formato apibrėžimo detalės"
 
-#: ../src/glade/gramps.glade.h:74
+#: ../src/glade/gramps.glade.h:75
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:76
 msgid "G_roup as:"
 msgstr "G_rupuoti kaip:"
 
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:78
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:78
+#: ../src/glade/gramps.glade.h:79
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
 msgstr "Jei pažymėsite šį mygtuką, tai visos neegzistuojančios bylos bus automatiškai traktuojama pagal dabar pasirinktus parametrus. Jokiai neegzistuojančiai bylai daugiau nebus rodomi  dialogai."
 
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:81
 msgid "Invoke date editor"
 msgstr "Iškviesti  datos redaktorių"
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:82
 msgid "Keep reference to the missing file"
 msgstr "Pasilikti nuorodą į trūkstamą bylą"
 
-#: ../src/glade/gramps.glade.h:82
+#: ../src/glade/gramps.glade.h:83
 #, fuzzy
 msgid "LDS _Temple:"
 msgstr "Mormonų šventykla:"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:84
 msgid "L_atitude:"
 msgstr "Pl_atuma:"
 
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:85
 msgid "L_eft:"
 msgstr "_Kairėn:"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:86
 msgid "Le_ft"
 msgstr "Kain_ėn"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:87
 msgid "Load Family Tree"
 msgstr "Įkelti šeimos medį"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:88
 msgid "Mo_nth"
 msgstr "Mė_nuo"
 
-#: ../src/glade/gramps.glade.h:89
+#: ../src/glade/gramps.glade.h:90
 msgid "O_verride"
 msgstr "P_akeisti"
 
-#: ../src/glade/gramps.glade.h:90
+#: ../src/glade/gramps.glade.h:91
 msgid "Ordinance:"
 msgstr "Ceremonija:"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:92
 msgid "P_atronymic:"
 msgstr "Tė_vavardis:"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:93
 msgid "P_hone:"
 msgstr "T_elefonas:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:95
 msgid "Phon_e:"
 msgstr "Tele_fonas:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:96
 msgid "R_ight:"
 msgstr "D_ešinė:"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:97
 msgid "Relationship to _Father:"
 msgstr "Ryšys su _Tėvu:"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:98
 msgid "Relationship to _Mother:"
 msgstr "Ryšys su _Motina:"
 
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:99
 msgid "Remove object and all references to it from the database"
 msgstr "Išmesti objektą ir visus įrašus į jį iš duomenų bazės"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:100
 msgid "Rename"
 msgstr "Pakeisti"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:101
 msgid "Repair"
 msgstr "Taisyti"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:102
 msgid "Revision comment - GRAMPS"
 msgstr "Versijos  komentarai - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:103
 msgid "Ri_ght"
 msgstr "de_šinėn"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:104
 msgid "S_treet:"
 msgstr "G_atvė:"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:105
 msgid "Select replacement for the missing file"
 msgstr "Pasirinkti trūkstamos bylos pakeitimą"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:106
 msgid "Show all"
 msgstr "Rodyti visus"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:107
 msgid "Style n_ame:"
 msgstr "Stiliaus _vardas:"
 
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:108
 msgid "Suffi_x:"
 msgstr "Priesa_ga:"
 
-#: ../src/glade/gramps.glade.h:108
+#: ../src/glade/gramps.glade.h:109
 msgid "Te_xt comment:"
 msgstr "Te_kstinis komentaras:"
 
-#: ../src/glade/gramps.glade.h:110
+#: ../src/glade/gramps.glade.h:111
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -16524,7 +16578,7 @@ msgstr ""
 "  <b>%c</b> -  Pravardė       <b>%C</b> - PRAVARDĖ\n"
 "  <b>%y</b> - Tėvavardis       <b>%Y</b> - TĖVAVARDIS</tt>"
 
-#: ../src/glade/gramps.glade.h:119
+#: ../src/glade/gramps.glade.h:120
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -16538,232 +16592,232 @@ msgstr ""
 "Aukštas\n"
 "Labai Aukštas"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:125
 msgid "Y"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:126
 msgid "Y_ear"
 msgstr "M_etai"
 
-#: ../src/glade/gramps.glade.h:126
+#: ../src/glade/gramps.glade.h:127
 msgid "_Association:"
 msgstr "_Ryšys:"
 
-#: ../src/glade/gramps.glade.h:127
+#: ../src/glade/gramps.glade.h:128
 msgid "_Attribute:"
 msgstr "_Požymis:"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:129
 msgid "_Author:"
 msgstr "A_utorius:"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:130
 msgid "_Bold"
 msgstr "_Pastorinti tekstą"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:131
 msgid "_Bottom"
 msgstr "_Apačioje"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:132
 msgid "_Call number:"
 msgstr ""
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:133
 msgid "_Center"
 msgstr "_Centruoti"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:134
 msgid "_City/County:"
 msgstr "_Miestas/Šalis:"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:135
 msgid "_City:"
 msgstr "_Miestas:"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:136
 msgid "_Confidence:"
 msgstr "_Slaptumas:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:137
 msgid "_Date:"
 msgstr "_Data:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:138
 msgid "_Day"
 msgstr "_Diena"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:139
 msgid "_Description:"
 msgstr "_Aprašymas:"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:140
 msgid "_Display as:"
 msgstr "_Rodyti kaip:"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display on startup"
 msgstr "_Pradžioje rodyti"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:142
 msgid "_Event type:"
 msgstr "_Įvykių tipas:"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:144
 msgid "_Given:"
 msgstr "_Duotas vardas:"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:146
 msgid "_Italic"
 msgstr "_Kursyvinis"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:147
 msgid "_Justify"
 msgstr "_Lygiuoti prie kairės"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:148
 msgid "_Keep Reference"
 msgstr "_Pasilikti nuorodą"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:149
 msgid "_Left"
 msgstr "_Kairėn"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:150
 msgid "_Longitude:"
 msgstr "_Ilguma:"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:152
 msgid "_Media Type:"
 msgstr "_Vaizdo/garso tipas:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:153
 msgid "_Month"
 msgstr "_Mėnesis"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:154
 #: ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Pavadinimas:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:155
 msgid "_Padding:"
 msgstr "_Apvalkalas:"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:156
 msgid "_Path:"
 msgstr "_Kelias:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:157
 msgid "_Person:"
 msgstr "_Asmuo:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:158
 msgid "_Place Name:"
 msgstr "_Vietovės vardas:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:159
 msgid "_Place:"
 msgstr "_Vieta:"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:161
 msgid "_Preformatted"
 msgstr "_Formatuotas"
 
-#: ../src/glade/gramps.glade.h:161
+#: ../src/glade/gramps.glade.h:162
 msgid "_Publication Information:"
 msgstr "_Paskelbimo informacija:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:163
 msgid "_Publication information:"
 msgstr "_Paskelbimo informacija:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:164
 msgid "_Remove Object"
 msgstr "_Ištrinti objektą"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:165
 msgid "_Right"
 msgstr "_Dešinėje"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:166
 msgid "_Role:"
 msgstr "_Rolė:"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:167
 msgid "_Roman (Times, serif)"
 msgstr "_Roman (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:168
 msgid "_Select File"
 msgstr "_Pasirink bylą"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:169
 msgid "_Sort as:"
 msgstr "_Rūšiuoti kaip:"
 
-#: ../src/glade/gramps.glade.h:169
+#: ../src/glade/gramps.glade.h:170
 msgid "_Spelling:"
 msgstr "_Rašybos tikrinimas:"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:171
 msgid "_State/Province:"
 msgstr "_Valstija/Provincija:"
 
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:172
 msgid "_State:"
 msgstr "_Valstija:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:173
 msgid "_Status:"
 msgstr "_Būsena:"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:174
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:175
 msgid "_Title:"
 msgstr "_Antraštė:"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:176
 msgid "_Top"
 msgstr "_Viršuje"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:178
 msgid "_Underline"
 msgstr "_Pabraukti"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:179
 msgid "_Use this selection for all missing media files"
 msgstr "_Naudoti šį pasirinkimą visiems trūkstamiems vaizdo/garso failams"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:180
 msgid "_Value:"
 msgstr "_Reikšmė:"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:181
 msgid "_Volume/Page:"
 msgstr "_Tomas/Puslapis:"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:182
 msgid "_Web address:"
 msgstr "_Tinklapio adresas:"
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:183
 msgid "_Year"
 msgstr "_Metai"
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:184
 msgid "_ZIP/Postal code:"
 msgstr "_ZIP/pašto kodas:"
 
-#: ../src/glade/gramps.glade.h:184
+#: ../src/glade/gramps.glade.h:185
 msgid "_Zip/Postal code:"
 msgstr "_ZIP/pašto kodas:"
 
-#: ../src/glade/gramps.glade.h:186
+#: ../src/glade/gramps.glade.h:187
 msgid "pt"
 msgstr "pt"
 
@@ -18403,6 +18457,8 @@ msgstr "Šeimos medį galima lengvai išsaugoti internetinio puslapio formatu. P
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniame formate (įskaitant ne tekstinę informaciją) esančią informaciją."
 
+#~ msgid "Children of %s and %s"
+#~ msgstr "%s ir %s vaikai yra"
 #~ msgid "%(relationship)s of %(person)s"
 #~ msgstr " %(person)s ryšiai  %(relationship)s"
 #~ msgid "Name Display"
