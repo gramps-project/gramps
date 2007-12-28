@@ -10,7 +10,6 @@ SUBDIRS = \
 	Filters \
 	FilterEditor \
 	gen \
-	GrampsDb \
 	GrampsDbUtils \
 	GrampsLocale \
 	Merge \

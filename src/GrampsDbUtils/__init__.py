@@ -45,10 +45,9 @@ from _GrampsDbWRFactories import \
 from _GedcomParse import GedcomParser
 from _WriteGedcom import GedcomWriter
 
+from _GrampsDbWriteXML import GrampsDbXmlWriter, \
+    exportData, quick_write
 from _WriteXML import XmlWriter
 
 import _Backup as Backup
-
-#from _PrivateProxyDb import PrivateProxyDb
-#from _LivingProxyDb import LivingProxyDb
 

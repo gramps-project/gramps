@@ -46,7 +46,6 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import GrampsDb
 import GrampsDbUtils
 import Utils
 import GrampsDisplay

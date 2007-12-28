@@ -45,7 +45,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import ViewManager
-import GrampsDb
 import ArgHandler
 import Config
 import const
@@ -249,10 +248,12 @@ class Gramps:
         ah = ArgHandler.ArgHandler(state, self.vm, args)
         if ah.need_gui():
             retval = ah.handle_args()
-            self.vm.post_init_interface()
             if retval:
                 filename, filetype = retval
-                self.vm.post_load_newdb(filename, filetype)
+                self.vm.post_init_interface(show_manager=False)
+                self.vm.open_activate(filename)
+            else:
+                self.vm.post_init_interface()
         else:
             ah.handle_args()
             self.vm.post_init_interface()

@@ -1,3 +1,28 @@
+2007-12-28 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ViewManager.py: remove unused functions, add alt actions left/right
+	* src/GrampsDb: deleted with _GrampsDbWriteXML.py,
+		_GrampsDbFactories.py, _GrampsGEDDB.py, _GrampsXMLDB.py,
+		__init__.py, Makefile.am, _GrampsInMemDB.py, _GrampsBSDDB.py.
+		No more inmemory databases
+	* src/GrampsDbUtils: moved here _GrampsDbWriteXML.py and _GrampsBSDDB.py
+	* src/plugins/ReadGrdb.py:
+	* src/plugins/Checkpoint.py:
+	* src/ObjectSelector/_ObjectSelectorWindow.py:
+	* src/DbManager.py:
+	* src/GrampsDbUtils/_WriteGrdb.py:
+	* src/GrampsDbUtils/__init__.py:
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py:
+	* src/GrampsDbUtils/_WriteXML.py:
+	* src/GrampsDbUtils/Makefile.am:
+	* src/gramps_main.py:
+	* src/RecentFiles.py: recent-files-gramps.xml, don't overwrite 2.2.x data
+	* src/ArgHandler.py:
+	* src/DbLoader.py: remove unused functions
+	* src/Makefile.am:
+	* po/POTFILES.in:
+	* src/GrampsDbUtils/importdbdir.py: allow import of new database via cli
+	Remove inMem Editing, move remaining to DbUtils, fix ArgHandler
+
 2007-12-28  Stéphane Charette <stephanecharette@gmail.com>
 	* src/ReportBase/_GraphvizReportDialog.py
 	* src/plugins/GVFamilyLines.py

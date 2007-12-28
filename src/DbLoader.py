@@ -56,7 +56,6 @@ import gtk
 import const
 import Config
 import Mime
-import GrampsDb
 import gen.db
 import GrampsDbUtils
 import Utils
@@ -86,122 +85,6 @@ class DbLoader:
     def __init__(self, dbstate, uistate):
         self.dbstate = dbstate
         self.uistate = uistate
-
-    def open_file(self):
-        """
-        Presents a file open dialog and opens the corresponding exsting file
-        """
-        choose = gtk.FileChooserDialog(
-            _('GRAMPS: Open database'), 
-            self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_OPEN, 
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_OPEN, gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        add_all_files_filter(choose)
-        add_grdb_filter(choose)
-        add_xml_filter(choose)
-        add_gedcom_filter(choose)
-
-        (box, type_selector) = format_maker(OPEN_FORMATS)
-        choose.set_extra_widget(box)
-
-        choose.set_current_folder(get_default_dir())
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = Utils.get_unicode_path(choose.get_filename())
-            if self.check_errors(filename):
-                return ('','')
-
-            filetype = type_selector.get_value()
-            if filetype == 'auto':
-                filetype = Mime.get_type(filename)
-#            (the_path, the_file) = os.path.split(filename)
-            choose.destroy()
-            if filetype in OPEN_FORMATS:
-                self.read_file(filename, filetype)
-                try:
-                    os.chdir(os.path.dirname(filename))
-                except:
-                    return ('', '')
-                return (filename, filetype)
-            elif filetype in [const.APP_GRAMPS_PKG, const.APP_GENEWEB]:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename, 
-                    _('Files of type "%s" cannot be opened directly.\n\n'
-                      'Please create a new GRAMPS database and import '
-                      'the file.') % filetype)
-                return ('', '')
-            else:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename, 
-                    _('File type "%s" is unknown to GRAMPS.\n\n'
-                      'Valid types are: GRAMPS database, GRAMPS XML, '
-                      'GRAMPS package, and GEDCOM.') % filetype)
-                return ('', '')
-        choose.destroy()
-        return ('', '')
-
-    def save_as(self):
-        choose = gtk.FileChooserDialog(
-            _('GRAMPS: Create GRAMPS database'), 
-            self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_SAVE, 
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
-             gtk.STOCK_SAVE, gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        add_all_files_filter(choose)
-        add_gramps_files_filter(choose)
-        add_grdb_filter(choose)
-        add_xml_filter(choose)
-        add_gedcom_filter(choose)
-
-        (box, type_selector) = format_maker(OPEN_FORMATS)
-        choose.set_extra_widget(box)
-
-        default_dir = get_default_dir()
-        new_filename = Utils.get_new_filename('grdb', default_dir)
-        
-        choose.set_current_folder(default_dir)
-        choose.set_current_name(os.path.split(new_filename)[1])
-
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = Utils.get_unicode_path(choose.get_filename())
-            if self.check_errors(filename):
-                return ('','')
-
-            # Do not allow saving as into the currently open file
-            if filename == self.dbstate.db.full_name:
-                return ('','')
-
-            filetype = type_selector.get_value()
-            if filetype == 'auto':
-                try:
-                    the_file = open(filename,'wb')
-                    the_file.close()
-                    filetype = Mime.get_type(filename)
-                    os.remove(filename)
-                except RuntimeError, msg:
-                    QuestionDialog.ErrorDialog(
-                        _("Could not open file: %s") % filename, 
-                        str(msg))
-                    return ('','')
-            # First we try our best formats
-            if filetype not in OPEN_FORMATS:
-                QuestionDialog.ErrorDialog(
-                    _("Could not open file: %s") % filename,
-                    _("Unknown type: %s") % filetype
-                    )
-                return ('','')
-            choose.destroy()
-            self.open_saved_as(filename, filetype)
-            return (filename, filetype)
-        else:
-            choose.destroy()
-            return ('','')
 
     def import_file(self):
         # First thing first: import is a batch transaction
@@ -342,9 +225,11 @@ class DbLoader:
 
         return False
 
-    def read_file(self, filename, filetype):
+    def read_file(self, filename):
         """
         This method takes care of changing database, and loading the data.
+        In 3.0 we only allow reading of real databases of filetype 
+        'x-directory/normal'
         
         This method should only return on success.
         Returning on failure makes no sense, because we cannot recover,
@@ -363,26 +248,10 @@ class DbLoader:
                                                'to the selected file.'))
             else:
                 mode = "w"
-        elif filetype == 'unknown':
-            QuestionDialog.WarningDialog(
-                _('Missing or Invalid database'),
-                _('%s could not be found.\n'
-                  'It is possible that this file no longer exists '
-                  'or has been moved.') % filename)
-            return False
         else:
             mode = 'w'
 
-        try:
-            #dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
-            dbclass = gen.db.GrampsDBDir
-        except gen.db.GrampsDbException, msg:
-            QuestionDialog.ErrorDialog(
-                _("Could not open file: %s") % filename, 
-                _("This may be caused by an improper installation of GRAMPS.") +
-                "\n" + str(msg))
-            return
-                
+        dbclass = gen.db.GrampsDBDir
         
         self.dbstate.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
         self.dbstate.db.disable_signals()
@@ -395,38 +264,19 @@ class DbLoader:
             self.dbstate.db.set_save_path(filename)
             try:
                 os.chdir(os.path.dirname(filename))
-            except:
+            except  (OSError, IOError):
                 print "could not change directory"
         except OSError, msg:
             QuestionDialog.ErrorDialog(
                 _("Could not open file: %s") % filename, str(msg))
         except Errors.DbError, msg:
             QuestionDialog.DBErrorDialog(str(msg.value))
-            self.dbstate.db.close()
+            self.state.no_database()
         except Exception:
             _LOG.error("Failed to open database.", exc_info=True)
         return True
-    
-    def open_saved_as(self, filename, filetype):
-        dbclass = GrampsDb.gramps_db_factory(db_type = filetype)
-        new_database = dbclass()
 
-        old_database = self.dbstate.db
 
-        self.dbstate.change_database_noclose(new_database)
-        old_database.disable_signals()
-        new_database.disable_signals()
-
-        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.uistate.progress.show()
-
-        try:
-            new_database.load_from(old_database, filename,
-                                   self.uistate.pulse_progressbar)
-            old_database.close()
-        except Exception:
-            _LOG.error("Failed to open database.", exc_info=True)
-            return False
 
     def do_import(self, dialog, importer, filename):
         dialog.destroy()

@@ -186,6 +186,8 @@ UIDEFAULT = '''<ui>
 <accelerator action="<CONTROL>J"/>
 <accelerator action="<Alt>N"/>
 <accelerator action="<Alt>P"/>
+<accelerator action="<Alt>Left"/>
+<accelerator action="<Alt>Right"/>
 </ui>
 '''
 
@@ -416,9 +418,7 @@ class ViewManager:
              self.tip_of_day_activate), 
             ]
 
-        self._readonly_action_list = [
-            ('SaveAs', gtk.STOCK_SAVE_AS, _('_Save As'), "<control><shift>s", 
-             None, self.__save_as_activate), 
+        self._readonly_action_list = [ 
             ('Export', 'gramps-export', _('_Export'), "<control>e", None, 
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED, 
@@ -447,7 +447,11 @@ class ViewManager:
             ('<CONTROL>J', None, '<CONTROL>J', 
              "<CONTROL>J", None, self.__keypress), 
             ('<Alt>N', None, '<Alt>N', "<Alt>N", None, self.__next_view), 
-            ('<Alt>P', None, '<Alt>P', "<Alt>P", None, self.__prev_view), 
+            ('<Alt>P', None, '<Alt>P', "<Alt>P", None, self.__prev_view),
+            ('<Alt>Left', None, '<Alt>Left', "<Alt>Left", None,
+                self.__prev_view), 
+            ('<Alt>Right', None, '<Alt>Right', "<Alt>Right", None, 
+                self.__next_view),
             ]
 
         self._action_action_list = [
@@ -566,13 +570,13 @@ class ViewManager:
         if self.filter_menu.get_active() != Config.get(Config.FILTER):
             self.filter_menu.set_active(Config.get(Config.FILTER))
 
-    def post_init_interface(self):
+    def post_init_interface(self, show_manager=True):
         """
         Showing the main window is deferred so that
         ArgHandler can work without it always shown
         """
         self.window.show()
-        if not self.state.db.is_open():
+        if not self.state.db.is_open() and show_manager:
             self.__open_activate(None)
 
     def post_load_newdb(self, filename, filetype):
@@ -1044,98 +1048,34 @@ class ViewManager:
         if self.state.db.is_open():
             self.db_loader.import_file()
             self.__post_load()
-        
+    
+    def open_activate(self, path):
+        """
+        Open and make a family tree active
+        """
+        self.__read_recent_file(path)
+    
     def __open_activate(self, obj):
         """
-        Called when the Open button is clicked
+        Called when the Open button is clicked, opens the DbManager
         """
         import DbManager
         dialog = DbManager.DbManager(self.state, self.window)
         value = dialog.run()
         if value:
             (filename, title) = value
-            self.read_file(filename, 'x-directory/normal')
+            self.db_loader.read_file(filename)
             try:
                 os.chdir(os.path.dirname(filename))
             except (IOError, OSError):
                 pass
             self.__post_load_newdb(filename, 'x-directory/normal', title)
 
-    def read_file(self, filename, filetype):
-        """
-        This method takes care of changing database, and loading the data.
-        
-        This method should only return on success.
-        Returning on failure makes no sense, because we cannot recover, 
-        since database has already beeen changed.
-        Therefore, any errors should raise exceptions.
-
-        On success, return with the disabled signals. The post-load routine
-        should enable signals, as well as finish up with other UI goodies.
-        """
-
-        if os.path.exists(filename):
-            if not os.access(filename, os.W_OK):
-                mode = "r"
-                QuestionDialog.WarningDialog(_('Read only database'), 
-                                             _('You do not have write access '
-                                               'to the selected file.'))
-            else:
-                mode = "w"
-        elif filetype == 'unknown':
-            QuestionDialog.WarningDialog(
-                _('Missing or Invalid database'), 
-                _('%s could not be found.\n'
-                  'It is possible that this file no longer exists '
-                  'or has been moved.') % filename)
-            return False
-        else:
-            mode = 'w'
-
-        try:
-            dbclass = gen.db.dbdir.GrampsDBDir
-        except gen.db.exceptions.GrampsDbException, msg:
-            QuestionDialog.ErrorDialog(
-                _("Could not open file: %s") % filename, 
-                _("This may be caused by an improper installation of GRAMPS.") +
-                "\n" + str(msg))
-            return
-                
-        self.state.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
-        self.state.db.disable_signals()
-
-        self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-        self.uistate.progress.show()
-        
-        try:
-            self.state.db.load(filename, self.uistate.pulse_progressbar, mode)
-            self.state.db.set_save_path(filename)
-            try:
-                os.chdir(os.path.dirname(filename))
-            except (OSError, IOError):
-                print "could not change directory"
-        except Errors.DbError, msg:
-            QuestionDialog.DBErrorDialog(str(msg.value))
-            self.state.no_database()
-        except Exception:
-            LOG.error("Failed to open database.", exc_info=True)
-
-        return True
-
-    def __save_as_activate(self, obj):
-        """
-        Called when the SaveAs button is clicked
-        """
-        if self.state.db.is_open():
-            (filename, filetype) = self.db_loader.save_as()
-            self.__post_load_newdb(filename, filetype)
-
     def __read_recent_file(self, filename):
         """
         Called when the recent file is loaded
         """
-        if self.db_loader.read_file(filename, 'x-directory/normal'):
-
+        if self.db_loader.read_file(filename):
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
             try:

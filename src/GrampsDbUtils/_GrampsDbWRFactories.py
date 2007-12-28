@@ -42,6 +42,7 @@ log = logging.getLogger(".GrampDb")
 
     
 from gen.db import GrampsDbException
+from PluginUtils import import_list
 
 
 def gramps_db_writer_factory(db_type):
@@ -54,10 +55,7 @@ def gramps_db_writer_factory(db_type):
     Raises GrampsDbException if the db_type is not recognised.
     """
 
-    if db_type == const.APP_GRAMPS:
-        import _WriteGrdb as WriteGrdb
-        md = WriteGrdb.exportData
-    elif db_type == const.APP_GRAMPS_XML:
+    if db_type == const.APP_GRAMPS_XML:
         import _WriteXML as WriteXML
         md = WriteXML.exportData
     elif db_type == const.APP_GEDCOM:
@@ -71,24 +69,35 @@ def gramps_db_writer_factory(db_type):
     return md
 
 def gramps_db_reader_factory(db_type):
-    """Factory class for obtaining a Gramps database writers.
+    """Factory class for obtaining a Gramps database importers.
     
     @param db_type: the type of backend required.
     @type db_type: one of the app_* constants in const.py
 
     Raises GrampsDbException if the db_type is not recognised.
     """
-
-    if db_type == const.APP_GRAMPS_XML:
+    if db_type == const.APP_FAMTREE :
+        import importdbdir
+        md = importdbdir.importData
+    elif db_type == const.APP_GRAMPS_XML:
         import _ReadXML as ReadXML
         md = ReadXML.importData
     elif db_type == const.APP_GEDCOM:
         import _ReadGedcom as ReadGedcom
         md = ReadGedcom.importData
     else:
-        raise GrampsDbException("Attempt to create a database "
-                                "reader for unknown format: "
-                                "db_type = %s" % (str(db_type),))
+        #see if registered importer
+        found = False
+        for data in import_list:
+            if db_type == data[2]:
+                print "Found import plugin for %s" % data[4]
+                found = True
+                md = data[0]
+                break
+        if not found:
+            raise GrampsDbException("Attempt to create a database "
+                                    "reader for unknown format: "
+                                    "db_type = %s" % (str(db_type),))
 
     return md
 

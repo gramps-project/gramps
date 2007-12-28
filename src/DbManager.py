@@ -66,7 +66,7 @@ import pango
 #-------------------------------------------------------------------------
 import const
 import QuestionDialog
-import GrampsDb
+import gen.db
 import GrampsDbUtils
 import Config
 import Mime
@@ -97,7 +97,145 @@ STOCK_COL = 6
 
 RCS_BUTTON = { True : _('Extract'), False : _('Archive') }
 
-class DbManager:
+class CLIDbManager:
+    """
+    Database manager without GTK functionality, allows users to create and
+    open databases
+    """
+    def __init__(self, dbstate):
+        self.dbstate = dbstate
+        self.msg = None
+        
+        if dbstate:
+            self.active  = dbstate.db.get_save_path()
+        else:
+            self.active = None
+        
+        self.current_names = []
+        self._populate_cli()
+
+    def empty(self, val):
+        '''Callback that does nothing
+        '''
+        pass
+
+    def _populate_cli(self):
+        ''' Get the list of current names in the database dir
+        '''
+        # make the default directory if it does not exist
+        dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
+        make_dbdir(dbdir)
+
+        self.current_names = []
+        
+        for dpath in os.listdir(dbdir):
+            dirpath = os.path.join(dbdir, dpath)
+            path_name = os.path.join(dirpath, NAME_FILE)
+            if os.path.isfile(path_name):
+                name = file(path_name).readline().strip()
+
+                (tval, last) = time_val(dirpath)
+                (enable, stock_id) = icon_values(dirpath, self.active, 
+                                                 self.dbstate.db.is_open())
+
+                if (stock_id == 'gramps-lock'):
+                    last = find_locker_name(dirpath)
+
+                self.current_names.append(
+                    (name, os.path.join(dbdir, dpath), path_name,
+                     last, tval, enable, stock_id))
+
+        self.current_names.sort()
+
+    def family_tree(self, name):
+        '''Given a name, return None if name not existing or 
+            filename, filetype, name
+           if a known database name
+        '''
+        for data in self.current_names:
+            if data[0] == name:
+                return data[1], 'x-directory/normal', name
+        return None
+
+    def family_tree_list(self):
+        '''Return a list of name, dirname of the known family trees
+        '''
+        lst = [(x[0], x[1]) for x in self.current_names]
+        return lst
+
+    def __start_cursor(self, msg):
+        """
+        Do needed things to start import visually, eg busy cursor
+        """
+        print _('Starting Import, %s') % msg
+
+    def __end_cursor(self):
+        """
+        Set end of a busy cursor
+        """
+        print _('Import finished...')
+
+    def __create_new_db_cli(self, title=None):
+        """
+        Create a new database.
+        """
+        new_path = find_next_db_dir()
+
+        os.mkdir(new_path)
+        path_name = os.path.join(new_path, NAME_FILE)
+
+        if title == None:
+            name_list = [ name[0] for name in self.current_names ]
+            title = find_next_db_name(name_list)
+        
+        name_file = open(path_name, "w")
+        name_file.write(title)
+        name_file.close()
+
+        self.current_names.append(title)
+        
+        return new_path
+
+    def __create_new_db(self, title=None):
+        """
+        Create a new database, do extra stuff needed
+        """
+        return self.__create_new_db_cli(title)
+
+    def import_new_db(self, filetype, filename, callback):
+        if filetype in IMPORT_TYPES:
+            # get the name of the database from the filename of the file
+            (name, ext) = os.path.splitext(os.path.basename(filename))
+
+            # create the database
+            new_path = self.__create_new_db(name)
+            trans = Config.TRANSACTIONS
+
+            # get the import function using the filetype, but create a db
+            # based on the DBDir
+            self.__start_cursor(_("Importing data..."))
+            dbclass = gen.db.GrampsDBDir
+            dbase = dbclass(trans)
+            dbase.load(new_path, callback)
+
+            rdr = GrampsDbUtils.gramps_db_reader_factory(filetype)
+            rdr(dbase, filename, callback)
+
+            # finish up
+            self.__end_cursor()
+            dbase.close()
+            
+            path = os.path.join(new_path, "name.txt")
+            try:
+                ifile = open(path)
+                title = ifile.readline().strip()
+                ifile.close()
+            except:
+                title = new_path
+            return new_path, 'x-directory/normal', title
+        return None, None, None
+
+class DbManager(CLIDbManager):
     """
     Database Manager. Opens a database manager window that allows users to
     create, rename, delete and open databases.
@@ -108,6 +246,7 @@ class DbManager:
         Creates the top level window from the glade description, and extracts
         the GTK widgets that are needed.
         """
+        CLIDbManager.__init__(self, dbstate)
         self.glade = gtk.glade.XML(const.GLADE_FILE, "dbmanager", "gramps")
         self.top = self.glade.get_widget('dbmanager')
         if parent:
@@ -123,24 +262,16 @@ class DbManager:
         self.rcs     = self.glade.get_widget('rcs')
         self.msg     = self.glade.get_widget('msg')
         self.model   = None
-        self.dbstate = dbstate
         self.column  = None
         self.lock_file = None
         self.data_to_delete = None
 
-        if dbstate:
-            self.active  = dbstate.db.get_save_path()
-        else:
-            self.active = None
-
         self.selection = self.dblist.get_selection()
         self.dblist.set_rules_hint(True)
 
-        self.current_names = []
-
         self.__connect_signals()
         self.__build_interface()
-        self.__populate()
+        self._populate_model()
 
     def __connect_signals(self):
         """
@@ -277,36 +408,18 @@ class DbManager:
 
     def __populate(self):
         """
+        Builds the data and the display model.
+        """
+        self._populate_cli()
+        self._populate_model()
+        
+    def _populate_model(self):
+        """
         Builds the display model.
         """
         self.model = gtk.TreeStore(str, str, str, str, int, bool, str)
 
-        # make the default directory if it does not exist
-
-        dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
-
-        make_dbdir(dbdir)
-
-        self.current_names = []
-        
-        for dpath in os.listdir(dbdir):
-            dirpath = os.path.join(dbdir, dpath)
-            path_name = os.path.join(dirpath, NAME_FILE)
-            if os.path.isfile(path_name):
-                name = file(path_name).readline().strip()
-
-                (tval, last) = time_val(dirpath)
-                (enable, stock_id) = icon_values(dirpath, self.active, 
-                                                 self.dbstate.db.is_open())
-
-                if (stock_id == 'gramps-lock'):
-                    last = find_locker_name(dirpath)
-
-                self.current_names.append(
-                    (name, os.path.join(dbdir, dpath), path_name,
-                     last, tval, enable, stock_id))
-
-        self.current_names.sort()
+        #use current names to set up the model
         for items in self.current_names:
             data = [items[0], items[1], items[2], items[3], 
                     items[4], items[5], items[6]]
@@ -473,10 +586,10 @@ class DbManager:
         """
         new_path = self.__create_new_db("%s : %s" % (parent_name, name))
         trans = Config.TRANSACTIONS
-        dbtype = 'x-directory/normal'
         
         self.__start_cursor(_("Extracting archive..."))
-        dbase = GrampsDb.gramps_db_factory(dbtype)(trans)
+        dbclass = gen.db.GrampsDBDir
+        dbase = dbclass(trans)
         dbase.load(new_path, None)
         
         self.__start_cursor(_("Importing archive..."))
@@ -600,7 +713,7 @@ class DbManager:
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        dbclass = GrampsDb.gramps_db_factory(db_type = "x-directory/normal")
+        dbclass = gen.db.GrampsDBDir
         dbase = dbclass(Config.get(Config.TRANSACTIONS))
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
@@ -642,29 +755,16 @@ class DbManager:
             QuestionDialog.ErrorDialog(_("Could not create family tree"),
                                        str(msg))
 
+    
     def __create_new_db(self, title=None):
         """
-        Create a new database.
+        Create a new database, append to model
         """
-
-        new_path = find_next_db_dir()
-
-        os.mkdir(new_path)
+        new_path = self.__create_new_db_cli(title)
         path_name = os.path.join(new_path, NAME_FILE)
-
-        if title == None:
-            name_list = [ name[0] for name in self.current_names ]
-            title = find_next_db_name(name_list)
-        
-        name_file = open(path_name, "w")
-        name_file.write(title)
-        name_file.close()
-
-        self.current_names.append(title)
         node = self.model.append(None, [title, new_path, path_name, 
                                         _("Never"), 0, False, ''])
         self.selection.select_iter(node)
-
         path = self.model.get_path(node)
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
@@ -675,10 +775,11 @@ class DbManager:
         """
         Handle the reception of drag data
         """
-        
         drag_value = selection.data
         print drag_value
-
+        fname = None
+        type = None
+        title = None
         # we are only interested in this if it is a file:// URL.
         if drag_value and drag_value[0:7] == "file://":
 
@@ -687,30 +788,10 @@ class DbManager:
             # deterimine the mime type. If it is one that we are interested in,
             # we process it
             filetype = Mime.get_type(drag_value)
-            if filetype in IMPORT_TYPES:
+            fname, type, title = self.import_new_db(filetype, drag_value[7:],
+                                    None)
 
-                # get the name of the database from the filename of the file
-                (name, ext) = os.path.splitext(os.path.basename(drag_value))
-
-                # create the database
-                new_path = self.__create_new_db(name)
-                trans = Config.TRANSACTIONS
-                dbtype = 'x-directory/normal'
-
-                # get the import function using the filetype, but create a db
-                # based on the DBDir
-                self.__start_cursor(_("Importing data..."))
-                dbase = GrampsDb.gramps_db_factory(dbtype)(trans)
-                dbase.load(new_path, None)
-
-                rdr = GrampsDbUtils.gramps_db_reader_factory(filetype)
-                rdr(dbase, drag_value[7:], None)
-
-                # finish up
-                self.__end_cursor()
-                dbase.close()
-
-        return True
+        return fname, type, title
 
 def drag_motion(wid, context, xpos, ypos, time_stamp):
     """

@@ -14,7 +14,10 @@ pkgdata_PYTHON = \
 	_GedcomStageOne.py\
 	_GedcomTokens.py\
 	_GedcomUtils.py\
+	_GrampsBSDDB.py\
 	_GrampsDbWRFactories.py\
+	_GrampsDbWriteXML.py\
+	importdbdir.py\
 	__init__.py\
 	_ReadGedcom.py\
 	_ReadXML.py\

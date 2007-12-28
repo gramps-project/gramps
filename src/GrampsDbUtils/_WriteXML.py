@@ -40,8 +40,9 @@ from gettext import gettext as _
 import const
 from QuestionDialog import ErrorDialog
 
-import GrampsDb
+import GrampsDbUtils
 import ExportOptions
+from gen.db.exceptions import GrampsDbWriteFailure
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +53,7 @@ def export_data(database, filename, person, option_box, callback=None):
     """
     Calls the XML writer with the syntax expected by the export plugin
     """
-    return GrampsDb.exportData(database, filename, person, option_box, 
+    return GrampsDbUtils.exportData(database, filename, person, option_box, 
                                callback, const.VERSION)
 
 #-------------------------------------------------------------------------
@@ -60,13 +61,13 @@ def export_data(database, filename, person, option_box, callback=None):
 # XmlWriter
 #
 #-------------------------------------------------------------------------
-class XmlWriter(GrampsDb.GrampsDbXmlWriter):
+class XmlWriter(GrampsDbUtils.GrampsDbXmlWriter):
     """
     Writes a database to the XML file.
     """
 
     def __init__(self, dbase, callback, strip_photos, compress=1):
-        GrampsDb.GrampsDbXmlWriter.__init__(
+        GrampsDbUtils.GrampsDbXmlWriter.__init__(
             self, dbase, strip_photos, compress, const.VERSION, callback)
         
     def write(self, filename):
@@ -74,8 +75,8 @@ class XmlWriter(GrampsDb.GrampsDbXmlWriter):
         Write the database to the specified file.
         """
         try:
-            ret = GrampsDb.GrampsDbXmlWriter.write(self, filename)
-        except GrampsDb.GrampsDbWriteFailure, val:
+            ret = GrampsDbUtils.GrampsDbXmlWriter.write(self, filename)
+        except GrampsDbWriteFailure, val:
             ErrorDialog(val[0], val[1])
         return ret
     
@@ -85,8 +86,8 @@ class XmlWriter(GrampsDb.GrampsDbXmlWriter):
 #
 #-------------------------------------------------------------------------
 TITLE = _('GRAMPS _XML database')
-DESCRIPTION = _('The GRAMPS XML database is a format used by older '
-                'versions of GRAMPS. It is read-write compatible with '
+DESCRIPTION = _('The GRAMPS XML database is a text version of a family tree. '
+                'It is read-write compatible with '
                 'the present GRAMPS database format.')
 CONFIG = (_('GRAMPS XML export options'), ExportOptions.WriterOptionBox)
 FILENAME = 'gramps'

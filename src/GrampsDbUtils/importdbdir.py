@@ -2,13 +2,14 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
+# Copyright (C) 2007  B. Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -18,10 +19,9 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id: $
 
-# Written by Alex Roitman, 
-# largely based on ReadXML by Don Allingham
+# Based on ReadGrdb of version 2.x
 
 #-------------------------------------------------------------------------
 #
@@ -29,75 +29,51 @@
 #
 #-------------------------------------------------------------------------
 import os
-import shutil
-import tempfile
 from gettext import gettext as _
-
-#-------------------------------------------------------------------------
-#
-# GTK+ Modules
-#
-#-------------------------------------------------------------------------
-import gtk
 
 #-------------------------------------------------------------------------
 #
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from GrampsDbUtils._GrampsBSDDB import GrampsBSDDB
+from gen.db import GrampsDBDir
 from QuestionDialog import ErrorDialog
 from Errors import HandleError
 from BasicUtils import UpdateCallback
 from BasicUtils import name_displayer
-from PluginUtils import register_import
 
 #-------------------------------------------------------------------------
 #
 # Importing data into the currently open database. 
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback=None, cl=0, use_trans=True):
+def importData(database, dirname, callback=None, cl=0, use_trans=True):
+    '''
+    Import dbdir database in dirname into dbdir database. 
+    '''
+    name = os.path.normpath(dirname)
 
-    other_database = GrampsBSDDB()
-
-    # Since we don't want to modify the file being imported, 
-    # we create new temp file into which we will copy the imported file
-    orig_filename = os.path.normpath(filename)
-    new_filename = tempfile.mkstemp()[1]
-    new_env_name = tempfile.mkdtemp()
-
-    # determine old env dir and make db work with new env dir
-    orig_env_name = other_database.make_env_name(orig_filename)
-    other_database.make_env_name = lambda x: new_env_name
-
-    # Copy data
-    shutil.copyfile(orig_filename, new_filename)
-    # Copy env if we need and if it exists
-    if other_database.UseTXN and os.path.isdir(orig_env_name):
-        shutil.rmtree(new_env_name)
-        shutil.copytree(orig_env_name, new_env_name)
-
+    other_database = GrampsDBDir()
     try:
-        other_database.load(new_filename, callback)
+        other_database.load(name, callback)
     except:
         if cl:
-            print "Error: %s could not be opened. Exiting." % new_filename
+            print "Error: %s could not be opened. Exiting." % filename
         else:
-            ErrorDialog(_("%s could not be opened") % new_filename)
+            ErrorDialog(_("%s could not be opened") % filename)
         return
 
     if not other_database.version_supported():
         if cl:
             print "Error: %s could not be opened.\n%s  Exiting." \
-                  % (filename, 
+                  % (filename,
                      _("The database version is not supported "
                        "by this version of GRAMPS.\n"\
                        "Please upgrade to the corresponding version "
                        "or use XML for porting data between different "
                        "database versions."))
         else:
-            ErrorDialog(_("%s could not be opened") % filename, 
+            ErrorDialog(_("%s could not be opened") % filename,
                         _("The Database version is not supported "
                           "by this version of GRAMPS."))
         return
@@ -248,10 +224,6 @@ def importData(database, filename, callback=None, cl=0, use_trans=True):
 
     # close the other database and clean things up
     other_database.close()
-
-    # Remove temp file and env dir
-    os.unlink(new_filename)
-    shutil.rmtree(new_env_name)
     
     database.transaction_commit(trans, _("Import database"))
     database.enable_signals()
@@ -314,16 +286,3 @@ def make_peron_name_remapper(other_database, formats_map):
         remap_name(person, formats_map)
         return person
     return new_get_person
-
-#------------------------------------------------------------------------
-#
-# Register with the plugin system
-#
-#------------------------------------------------------------------------
-_mime_type = 'application/x-gramps'
-_filter = gtk.FileFilter()
-_filter.set_name(_('GRAMPS 2.x database'))
-_filter.add_mime_type(_mime_type)
-_format_name = _('GRAMPS 2.x database')
-
-register_import(importData, _filter, _mime_type, 0, _format_name)

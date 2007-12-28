@@ -193,11 +193,6 @@ src/Editors/_EditSourceRef.py
 src/Editors/_EditUrl.py
 src/Editors/__init__.py
 
-# GrampsDb package
-src/GrampsDb/_GrampsDbFactories.py
-src/GrampsDb/_GrampsDbWriteXML.py
-src/GrampsDb/__init__.py
-
 # GrampsDbUtils package
 src/GrampsDbUtils/_Backup.py
 src/GrampsDbUtils/_GedcomInfo.py
@@ -205,7 +200,10 @@ src/GrampsDbUtils/_GedcomStageOne.py
 #src/GrampsDbUtils/_GedcomLex.py
 src/GrampsDbUtils/_GedcomParse.py
 src/GrampsDbUtils/_GedcomTokens.py
+src/GrampsDbUtils/_GrampsBSDDB.py
+src/GrampsDbUtils/_GrampsDbWriteXML.py
 src/GrampsDbUtils/_GrampsDbWRFactories.py
+src/GrampsDbUtils/importdbdir.py
 src/GrampsDbUtils/_ReadGedcom.py
 src/GrampsDbUtils/_ReadXML.py
 src/GrampsDbUtils/_WriteGedcom.py

@@ -44,7 +44,7 @@ import const
 # Constants
 #
 #-------------------------------------------------------------------------
-GRAMPS_FILENAME = os.path.join(const.HOME_DIR,"recent-files.xml")
+GRAMPS_FILENAME = os.path.join(const.HOME_DIR,"recent-files-gramps.xml")
 MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------
@@ -242,7 +242,7 @@ class RecentParser:
 # Helper functions
 #
 #-------------------------------------------------------------------------
-def recent_files(filename,name):
+def recent_files(filename, name):
     """
     Add an entry to both GNOME and GRAMPS recent-items storages.
     """

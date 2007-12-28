@@ -47,7 +47,7 @@ __LOG = logging.getLogger(".GrampsDb")
 from gen.lib import *
 from gen.db.base import *
 from gen.utils import db_copy
-import const
+import gen.db.dbconst as const
 from gen.db.exceptions import FileVersionError
 from BasicUtils import UpdateCallback
 
@@ -398,7 +398,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         if self.readonly:
             self.UseTXN = False
 
-        callback(12)
+        if callback:
+            callback(12)
 
         self.full_name = os.path.abspath(name)
         self.brief_name = os.path.basename(name)
@@ -427,7 +428,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         if self.UseTXN:
             self.env.txn_checkpoint()
 
-        callback(25)
+        if callback:
+            callback(25)
         self.metadata     = self.__open_table(self.full_name, "meta")
 
         # If we cannot work with this DB version,
@@ -689,71 +691,83 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.id_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "idtrans")
-        callback(1)
+        if callback:
+            callback(1)
 
         self.surnames.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "surnames")
-        callback(2)
+        if callback:
+            callback(2)
 
         # Repair secondary indices related to family_map
         self.fid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "fidtrans")
-        callback(3)
+        if callback:
+            callback(3)
 
         # Repair secondary indices related to place_map
         self.pid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "pidtrans")
-        callback(4)
+        if callback:
+            callback(4)
 
         # Repair secondary indices related to media_map
         self.oid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "oidtrans")
-        callback(5)
+        if callback:
+            callback(5)
 
         # Repair secondary indices related to source_map
         self.sid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "sidtrans")
-        callback(6)
+        if callback:
+            callback(6)
 
         # Repair secondary indices related to event_map
         self.eid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "eidtrans")
-        callback(7)
+        if callback:
+            callback(7)
 
         # Repair secondary indices related to repository_map
         self.rid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "ridtrans")
-        callback(8)
+        if callback:
+            callback(8)
 
         # Repair secondary indices related to note_map
         self.nid_trans.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "nidtrans")
-        callback(9)
+        if callback:
+            callback(9)
 
         # Repair secondary indices related to reference_map
         self.reference_map_primary_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "reference_map_primary_map")
-        callback(10)
+        if callback:
+            callback(10)
 
         self.reference_map_referenced_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "reference_map_referenced_map")
-        callback(11)
+        if callback:
+            callback(11)
 
         # Set flag saying that we have removed secondary indices
         # and then call the creating routine
         self.secondary_connected = False
         self.connect_secondary()
-        callback(12)
+        if callback:
+            callback(12)
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -966,17 +980,20 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         self.reference_map_referenced_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "reference_map_referenced_map")
-        callback(1)
+        if callback:
+            callback(1)
 
         self.reference_map_primary_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "reference_map_primary_map")
-        callback(2)
+        if callback:
+            callback(2)
 
         self.reference_map.close()
         junk = db.DB(self.env)
         junk.remove(self.full_name, "reference_map")
-        callback(3)
+        if callback:
+            callback(3)
 
         # Open reference_map and primapry map
         self.reference_map  = self.__open_table(self.full_name, "reference_map",
@@ -1014,7 +1031,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             }
 
         transaction = self.transaction_begin(batch=True, no_magic=True)
-        callback(4)
+        if callback:
+            callback(4)
 
         # Now we use the functions and classes defined above
         # to loop through each of the primary object tables.
@@ -1044,7 +1062,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                 data = cursor.next()
 
             cursor.close()
-        callback(5)
+        if callback:
+            callback(5)
         self.transaction_commit(transaction, _("Rebuild reference map"))
 
         self.reference_map_referenced_map = db.DB(self.env)
@@ -1054,7 +1073,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             db.DB_BTREE, flags=open_flags)
         self.reference_map.associate(self.reference_map_referenced_map,
                                      find_referenced_handle, open_flags)
-        callback(6)
+        if callback:
+            callback(6)
 
         return
         
