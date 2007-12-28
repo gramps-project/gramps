@@ -553,6 +553,8 @@ class MyGrampsView(PageView.PageView):
             all_opts = get_gadget_opts(name, opts)
             if "title" not in all_opts:
                 all_opts["title"] = "Untitled Gadget"
+            if "state" not in all_opts:
+                all_opts["state"] = "maximized"
             # uniqify titles:
             unique = all_opts["title"]
             cnt = 1
@@ -673,10 +675,13 @@ class MyGrampsView(PageView.PageView):
                         elif key == "column": continue
                         elif key == "row": continue
                         elif key == "data":
-                            cnt = 0
-                            for item in base_opts["data"]:
-                                fp.write(("data[%d]=%s" + NL) % (cnt, item))
-                                cnt += 1
+                            if type(base_opts["data"]) not in [list, tuple]:
+                                fp.write(("data[0]=%s" + NL) % base_opts["data"])
+                            else:
+                                cnt = 0
+                                for item in base_opts["data"]:
+                                    fp.write(("data[%d]=%s" + NL) % (cnt, item))
+                                    cnt += 1
                         else:
                             fp.write(("%s=%s" + NL)% (key, base_opts[key]))
                     fp.write(("column=%d" + NL) % col)
@@ -695,10 +700,13 @@ class MyGrampsView(PageView.PageView):
                     if key == "content": continue
                     elif key == "title": continue
                     elif key == "data":
-                        cnt = 0
-                        for item in base_opts["data"]:
-                            fp.write(("data[%d]=%s" + NL) % (cnt, item))
-                            cnt += 1
+                        if type(base_opts["data"]) not in [list, tuple]:
+                            fp.write(("data[0]=%s" + NL) % base_opts["data"])
+                        else:
+                            cnt = 0
+                            for item in base_opts["data"]:
+                                fp.write(("data[%d]=%s" + NL) % (cnt, item))
+                                cnt += 1
                     else:
                         fp.write(("%s=%s" + NL)% (key, base_opts[key]))
                 fp.write(NL)
@@ -708,10 +716,13 @@ class MyGrampsView(PageView.PageView):
                 if key == "content": continue
                 elif key == "title": continue
                 elif key == "data":
-                    cnt = 0
-                    for item in opts["data"]:
-                        fp.write(("data[%d]=%s" + NL) % (cnt, item))
-                        cnt += 1
+                    if type(opts["data"]) not in [list, tuple]:
+                        fp.write(("data[0]=%s" + NL) % opts["data"])
+                    else:
+                        cnt = 0
+                        for item in opts["data"]:
+                            fp.write(("data[%d]=%s" + NL) % (cnt, item))
+                            cnt += 1
                 else:
                     fp.write(("%s=%s" + NL)% (key, opts[key]))
             fp.write(NL)

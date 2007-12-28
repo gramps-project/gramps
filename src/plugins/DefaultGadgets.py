@@ -13,32 +13,24 @@ import string
 # First, you need a function or class that takes a single argument
 # a GuiGadget:
 
-def init(gui):
-    gui.set_text("Hello world!")
+#from DataViews import register
+#def init(gui):
+#    gui.set_text("Hello world!")
 
 # In this function, you can do some things to update the gadget,
 # like set text of the main scroll window.
 
 # Then, you need to register the gadget:
 
-register(type="gadget", # case in-senstitive keyword "gadget"
-         name="Hello World Gadget", # gadget name, unique among gadgets
-         height = 20,
-         content = init, # function/class; takes guigadget
-         title="Sample Gadget", # default title, user changeable
-         )
+#register(type="gadget", # case in-senstitive keyword "gadget"
+#         name="Hello World Gadget", # gadget name, unique among gadgets
+#         height = 20,
+#         content = init, # function/class; takes guigadget
+#         title="Sample Gadget", # default title, user changeable
+#         )
 
 # There are a number of arguments that you can provide, including:
 # name, height, content, title, expand, state
-
-# Here are a couple of other examples, with their register lines at the
-# bottom:
-
-def make_family_content(gui):
-    gui.set_text("Families:")
-
-def make_event_content(gui):
-    gui.set_text("Events:")
 
 # Here is a Gadget object. It has a number of method possibilities:
 #  init- run once, on construction
@@ -58,6 +50,13 @@ class LogGadget(Gadget):
         self.dbstate.db.connect('family-delete', self.log_family_delete)
         self.dbstate.db.connect('family-update', self.log_family_update)
     
+    def on_load(self):
+        if len(self.gui.data) > 0:
+            self.show_duplicates = self.gui.data[0]
+
+    def on_save(self):
+        self.gui.data = [self.show_duplicates]
+
     def active_changed(self, handle):
         self.log_active_changed(handle)
 
@@ -82,7 +81,9 @@ class LogGadget(Gadget):
 
     def get_person(self, handles, ltype):
         for person_handle in handles:
-            if ltype + ": " + person_handle not in self.history:
+            if ((self.show_duplicates == "no" and 
+                 ltype + ": " + person_handle not in self.history) or
+                self.show_duplicates == "yes"):
                 self.append_text("%s: " % ltype)
                 self.history[ltype + ": " + person_handle] = 1
                 person = self.dbstate.db.get_person_from_handle(person_handle)
@@ -96,6 +97,11 @@ class TopSurnamesGadget(Gadget):
     def init(self):
         self.top_size = 10 # will be overwritten in load
         self.set_text("No Family Tree loaded.")
+
+    def db_changed(self):
+        self.dbstate.db.connect('person-add', self.update)
+        self.dbstate.db.connect('person-delete', self.update)
+        self.dbstate.db.connect('person-update', self.update)
 
     def on_load(self):
         if len(self.gui.data) > 0:
@@ -244,68 +250,6 @@ class StatsGadget(Gadget):
                 text = text + "%s\n" % p
         self.set_text(text)
 
-
-class ShellGadget(Gadget):
-    def init(self):
-        from os import O_NONBLOCK
-        from subprocess import Popen, PIPE
-        try:
-            from fcntl import fcntl, F_SETFL, F_GETFL
-            unix = True
-        except:
-            unix = False
-        if unix:
-            command = ["/bin/bash"]
-        else:
-            command = ["cmd.exe"]
-        self.pipe = Popen(command, shell=False, bufsize=0, 
-                          stdin=PIPE, stdout=PIPE, stderr=PIPE, 
-                          close_fds=True)
-        if unix:
-            for fd in (self.pipe.stdout.fileno(), 
-                       self.pipe.stderr.fileno()):
-                fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK)
-        # GUI setup:
-        self.gui.textview.set_editable(True)
-        self.set_text("%s\n$ " % command[0])
-        self.gui.textview.connect('key-press-event', self.on_enter)
-
-    def write(self, text):
-        self.pipe.stdin.write("%s\n" % text)
-
-    def read(self, timeout=0.5,buffer_size=1024):
-        from errno import EAGAIN
-        end_time = time.time() + timeout
-        output = ""
-        while time.time() < end_time:
-            try:
-                output += self.pipe.stdout.read(buffer_size)
-            except IOError, e:
-                if e.errno != EAGAIN:
-                    raise
-        return output
-
-    def on_enter(self, widget, event):
-        if event.keyval == 65293: # enter, where to get this?
-            # get line, "$ ls -al "
-            buffer = widget.get_buffer()
-            line_cnt = buffer.get_line_count()
-            start = buffer.get_iter_at_line(line_cnt - 1)
-            end = buffer.get_end_iter()
-            line = buffer.get_text(start, end)
-            if line.startswith("$ "):
-                self.append_text("\n")
-                line = line[2:]
-                self.write(line)
-                output = self.read()
-                self.append_text(output)
-                self.append_text("$ ")
-            else:
-                self.append_text("\n$ ")
-            return True
-        return False
-
-
 class PythonGadget(Gadget):
     def init(self):
         self.env = {"dbstate": self.gui.dbstate,
@@ -395,20 +339,6 @@ You can right-click on the background of this page to add additional gadgets and
 
 
 register(type="gadget", 
-         name="Families Gadget", 
-         height=300,
-         content = make_family_content,
-         title="Favorite Families",
-         )
-
-register(type="gadget", 
-         name="Events Gadget", 
-         height=100,
-         content = make_event_content,
-         title="Favorite Events",
-         )
-
-register(type="gadget", 
          name="Top Surnames Gadget", 
          height=230,
          content = TopSurnamesGadget,
@@ -426,22 +356,16 @@ register(type="gadget",
 register(type="gadget", 
          name="Log Gadget", 
          height=230,
+         data=['no'],
          content = LogGadget,
          title="Session Log",
-         )
-
-register(type="gadget", 
-         name="Shell Gadget", 
-         height=300,
-         content = ShellGadget,
-         title="Shell",
          )
 
 register(type="gadget", 
          name="Python Gadget", 
          height=250,
          content = PythonGadget,
-         title="Python",
+         title="Python Shell",
          )
 
 register(type="gadget", 
