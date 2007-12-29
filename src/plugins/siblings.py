@@ -24,7 +24,6 @@ Display a person's siblings in a report window
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gen.lib import Person
 from gettext import gettext as _
 from PluginUtils import register_quick_report, relationship_class
 from ReportBase import CATEGORY_QR_PERSON

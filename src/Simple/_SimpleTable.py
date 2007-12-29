@@ -23,8 +23,10 @@ Provides a simplified table creation interface
 """
 
 import copy
+
 import gen.lib
 import Errors
+import DateHandler
 
 class SimpleTable:
     """
@@ -125,6 +127,10 @@ class SimpleTable:
             elif isinstance(item, gen.lib.Place): pass
             elif isinstance(item, gen.lib.Repository): pass
             elif isinstance(item, gen.lib.Note): pass
+            elif isinstance(item, gen.lib.Date):
+                text = DateHandler.displayer.display(item)
+                retval.append(text)
+                #link = ('Date', item)
             else:
                 raise AttributeError, ("unknown object type: '%s': %s" % 
                                        (item, type(item)))

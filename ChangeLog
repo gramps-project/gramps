@@ -1,3 +1,11 @@
+2007-12-29  Douglas S. Blank  <dblank@saliva.brynmawr.edu>
+	* src/DataViews/MyGrampsView.py: fixme's are fixed
+	* src/DataViews/EventView.py: added quick report popup
+	* src/plugins/SameSurnames.py: removed unneeded imports
+	* src/plugins/siblings.py: removed unneeded imports
+	* src/Simple/_SimpleTable.py: add date handler
+	* src/plugins/OnThisDay.py: new event quick report
+
 2007-12-29 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ArgHandler.py: better handling of -l
 	* src/const.py.in: forgot to commit this, new constants

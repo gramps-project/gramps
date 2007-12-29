@@ -24,9 +24,8 @@ Display a people who have a person's same surname
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gen.lib import Person
 from gettext import gettext as _
-from PluginUtils import register_quick_report, relationship_class
+from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
 from Filters.Rules.Person import SearchName
 from Filters import GenericFilterFactory, Rules
@@ -40,7 +39,6 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb, sdoc)
-    rel_class = relationship_class()
     # display the title
     sdoc.title(_("People with same surname as %s") % sdb.name(person))
     sdoc.paragraph("")

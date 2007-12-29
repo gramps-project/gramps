@@ -49,6 +49,7 @@ from DdTargets import DdTargets
 from QuestionDialog import QuestionDialog
 from Editors import EditEvent, DelEventQuery
 from Filters.SideBar import EventSidebarFilter
+from ReportBase import CATEGORY_QR_EVENT
 
 #-------------------------------------------------------------------------
 #
@@ -80,6 +81,7 @@ class EventView(PageView.ListView):
     EDIT_MSG    = _("Edit the selected event")
     DEL_MSG     = _("Delete the selected event")
     FILTER_TYPE = "Event"
+    QR_CATEGORY = CATEGORY_QR_EVENT
 
     def __init__(self, dbstate, uistate):
         """
@@ -170,6 +172,10 @@ class EventView(PageView.ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
 
@@ -178,7 +184,11 @@ class EventView(PageView.ListView):
         self._add_action('FilterEdit', None, _('Event Filter Editor'),
                         callback=self.filter_editor,)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self._column_editor,)
+                         _('_Column Editor'), callback=self._column_editor,)
+        self._add_action('QuickReport', None, 
+                         _("Quick Report"), None, None, None)
+        self._add_action('Dummy', None, 
+                         '  ', None, None, self.dummy_report)
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_event_from_gramps_id(gid)
@@ -261,3 +271,11 @@ class EventView(PageView.ListView):
                 EditEvent(self.dbstate, self.uistate, [], event)
             except Errors.WindowActiveError:
                 pass
+
+    def dummy_report(self, obj):
+        ''' For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        '''
+        pass
+

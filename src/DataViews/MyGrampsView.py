@@ -142,7 +142,6 @@ class GadgetWindow(ManagedWindow.ManagedWindow):
         self.gadget.viewpage.detached_gadgets.remove(self.gadget)
         self.gadget.state = "maximized"
         self.gadget.mainframe.reparent(self.gadget.parent)
-        # FIXME: need to pack as it was, not just stick it in
         expand,fill,padding,pack =  self.gadget.parent.query_child_packing(self.gadget.mainframe)
         self.gadget.parent.set_child_packing(self.gadget.mainframe,self.gadget.expand,fill,padding,pack)
         ManagedWindow.ManagedWindow.close(self, *args)
@@ -513,7 +512,6 @@ class MyGrampsView(PageView.PageView):
         frame.viewpage = self
         frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.hbox = gtk.HBox(homogeneous=True)
-        # FIXME: issue when window is scrolled down; drops in wrong place
         # Set up drag and drop
         frame.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
                             gtk.DEST_DEFAULT_HIGHLIGHT |

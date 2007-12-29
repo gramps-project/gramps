@@ -1068,5 +1068,3 @@ class ListView(BookMarkView):
         o.end_page()
         o.close()
             
-
-        
