@@ -1,3 +1,7 @@
+2007-12-28  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/SameSurnames.py: new quick report for showing 
+	people with same surnames
+
 2007-12-28 Jim Sack <jgsack@san.rr.com>
 	* src/gen/utils/test/callback_test.py: rename dup name (fn -> fn3)
 	The dup name was harmless but confusing, and a potential future
