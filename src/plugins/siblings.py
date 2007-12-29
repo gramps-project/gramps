@@ -55,7 +55,7 @@ def run(database, document, person):
                     rel_class.get_sibling_type(database, person, child), 
                     person.get_gender(), child.get_gender())
             else:
-                rel_str = 'self'
+                rel_str = _('self')
             # pass row the child object to make link:
             stab.row(child, 
                      sdb.gender(child), 
