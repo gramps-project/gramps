@@ -331,19 +331,6 @@ class Gadget(object):
                         except Errors.WindowActiveError:
                             pass
                     else:
-                        # Create filters on the fly:
-                        #f = GenericFilterFactory('Person')()
-                        #r = Rules.Person.HasNameOf
-                        #rule = r([person.get_primary_name.get_surname()])
-                        #f.add_rule(rule)
-                        #filter_info = (False, f)
-                        #model = self.make_model(self.dbstate.db, 0, 
-                        #                        search=filter_info)
-                        #self.list.set_model(self.model)
-                        #self.dirty = False
-                        #self.uistate.show_filter_results(self.dbstate, 
-                        #                                 self.model.displayed, 
-                        #                                 self.model.total)
                         self.gui.dbstate.change_active_person(person)
                     return True # handled event
         return False # did not handle event
