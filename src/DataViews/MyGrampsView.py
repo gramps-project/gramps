@@ -31,6 +31,7 @@ import gtk
 import gobject
 import traceback
 import time
+import types
 import pango
 import os
 from gettext import gettext as _
@@ -281,6 +282,9 @@ class Gadget(object):
         Runs the generator.
         """
         if debug: print "%s _updater" % self.gui.title
+        if type(self._generator) != types.GeneratorType:
+            self._idle_id = 0
+            return False
         try:
             retval = self._generator.next()
             if retval == False:
@@ -290,11 +294,9 @@ class Gadget(object):
             self._idle_id = 0
             return False
         except Exception, e:
-            #self._error = e
+            print "Gadget gave an error"
             traceback.print_exc()
-            self._idle_id = 0
-            return False
-        except:
+            print "Continuing after gadget error..."
             self._idle_id = 0
             return False
 
