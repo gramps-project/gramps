@@ -143,6 +143,8 @@ class GadgetWindow(ManagedWindow.ManagedWindow):
         self.gadget.state = "maximized"
         self.gadget.mainframe.reparent(self.gadget.parent)
         # FIXME: need to pack as it was, not just stick it in
+        expand,fill,padding,pack =  self.gadget.parent.query_child_packing(self.gadget.mainframe)
+        self.gadget.parent.set_child_packing(self.gadget.mainframe,self.gadget.expand,fill,padding,pack)
         ManagedWindow.ManagedWindow.close(self, *args)
 
 #------------------------------------------------------------------------
@@ -595,6 +597,7 @@ class MyGrampsView(PageView.PageView):
             # Can't minimize here, because GRAMPS calls show_all later:
             #if gadget.state == "minimized": # starts max, change to min it
             #    gadget.set_state("minimized") # minimize it
+            # set minimized is called in page subclass hack (above)
             if gadget.state == "windowed":
                 gadget.detach() 
             elif gadget.state == "closed":
@@ -613,7 +616,7 @@ class MyGrampsView(PageView.PageView):
                     if "column_count" in cp.options(sec):
                         self.column_count = int(cp.get(sec, "column_count"))
                 else:
-                    data = {}
+                    data = {"title": sec}
                     for opt in cp.options(sec):
                         if opt.startswith("data["):
                             temp = data.get("data", [])

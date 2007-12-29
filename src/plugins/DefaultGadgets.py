@@ -66,7 +66,7 @@ class CalendarGadget(Gadget):
         self.update()
 
     def run_update(self, signal, *args):
-        #print "signal:", signal
+        print "signal:", signal
         self.update()
 
     def refresh(self, *obj):
@@ -74,7 +74,7 @@ class CalendarGadget(Gadget):
         self.gui.calendar.clear_marks()
         year, month, day = self.gui.calendar.get_date()
         for date in self.dates:
-            if date[1] == month - 1:
+            if date[1] != 0 and date[1] == month + 1:
                 if date[2] > 0 and date[2] <= day:
                     self.gui.calendar.mark_day(date[2])
         self.gui.calendar.thaw()
