@@ -36,10 +36,9 @@ import string
 #  init- run once, on construction
 #  active_changed- run when active-changed is triggered
 #  db_changed- run when db-changed is triggered
-#  main- run once per db change, main process (for fast code)
-#  background- run once per db change, main process (for slow code)
+#  main- run once per db change, main process (a generator)
 
-# You can also call update() to run main and background
+# You can also call update() to run main
 
 class CalendarGadget(Gadget):
     def init(self):
@@ -63,7 +62,7 @@ class CalendarGadget(Gadget):
                     self.gui.calendar.mark_day(date[2])
         self.gui.calendar.thaw()
 
-    def background(self):
+    def main(self):
         self.dates = {}
         # for each day in events
         people = self.gui.dbstate.db.get_person_handles(sort_handles=False)
@@ -161,8 +160,6 @@ class TopSurnamesGadget(Gadget):
 
     def main(self):
         self.set_text("Processing...\n")
-
-    def background(self):
         people = self.dbstate.db.get_person_handles(sort_handles=False)
         surnames = {}
         cnt = 0
@@ -209,7 +206,7 @@ class StatsGadget(Gadget):
     def init(self):
         self.set_text("No Family Tree loaded.")
 
-    def background(self):
+    def main(self):
         self.set_text("Processing...")
         database = self.dbstate.db
         personList = database.get_person_handles(sort_handles=False)

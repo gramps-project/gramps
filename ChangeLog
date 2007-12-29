@@ -1,3 +1,7 @@
+2007-12-29  Douglas S. Blank  <dblank@saliva.brynmawr.edu>
+	* src/DataViews/MyGrampsView.py: renamed background to main
+	* src/plugins/DefaultGadgets.py: call main (generator)
+
 2007-12-28  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/SameSurnames.py: new quick report for showing 
 	people with same surnames

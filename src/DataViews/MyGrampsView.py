@@ -174,10 +174,7 @@ class Gadget(object):
     def init(self): # once, constructor
         pass
 
-    def main(self): # once per db open
-        pass 
-
-    def background(self): # return false finishes
+    def main(self): # return false finishes
         """
         Generator which will be run in the background.
         """
@@ -254,12 +251,11 @@ class Gadget(object):
         self.gui.data.append(text)
 
     def update(self, *handles):
-        self.main()
         if self._idle_id != 0:
             if debug: print "%s interrupt!" % self.gui.title
             self.interrupt()
         if debug: print "%s creating generator" % self.gui.title
-        self._generator = self.background()
+        self._generator = self.main()
         if debug: print "%s adding to gobject" % self.gui.title
         self._idle_id = gobject.idle_add(self._updater, 
                                          priority=gobject.PRIORITY_LOW)
