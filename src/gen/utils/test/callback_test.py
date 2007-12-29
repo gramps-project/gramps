@@ -227,9 +227,9 @@ class TestGrampsDBCallback(unittest.TestCase):
 
         # This should fail because the type of arg1 is wrong
         res=[]
-        def fn(s,r=res):
+        def fn3(s,r=res):
             res.append(s)
-        t._warn = fn
+        t._warn = fn3
         t.connect('test-lots',fn2), t.emit('test-lots',('a','a',[1,2],t,1.2))
         assert res[0][0:6] == "Signal", "Type error not detected"
 

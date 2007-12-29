@@ -1,3 +1,8 @@
+2007-12-28 Jim Sack <jgsack@san.rr.com>
+	* src/gen/utils/test/callback_test.py: rename dup name (fn -> fn3)
+	The dup name was harmless but confusing, and a potential future
+	problem. Thanks to Raphael Ackermann for pointing this out.
+
 2007-12-28 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ViewManager.py: remove unused functions, add alt actions left/right
 	* src/GrampsDb: deleted with _GrampsDbWriteXML.py,
