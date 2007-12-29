@@ -258,7 +258,7 @@ class Gadget(object):
         self._generator = self.main()
         if debug: print "%s adding to gobject" % self.gui.title
         self._idle_id = gobject.idle_add(self._updater, 
-                                         priority=gobject.PRIORITY_LOW)
+                                         priority=gobject.PRIORITY_LOW - 10)
 
     def interrupt(self):
         """
@@ -631,6 +631,10 @@ class MyGrampsView(PageView.PageView):
 
     def save(self, *args):
         if debug: print "saving"
+        if len(self.frame_map.keys() + 
+               self.detached_gadgets + 
+               self.closed_gadgets) == 0:
+            return # something is the matter
         filename = GADGET_FILENAME
         try:
             fp = open(filename, "w")

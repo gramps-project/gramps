@@ -4,8 +4,10 @@ import DateHandler
 import gen.lib
 import sys
 import os
+import re
 import time
 import string
+import urllib
 
 #
 # Hello World, in Gramps Gadgets
@@ -64,7 +66,7 @@ class CalendarGadget(Gadget):
         self.update()
 
     def run_update(self, signal, *args):
-        print "signal:", signal
+        #print "signal:", signal
         self.update()
 
     def refresh(self, *obj):
@@ -399,6 +401,75 @@ You can right-click on the background of this page to add additional gadgets and
     gui.set_text(text)
 
 
+class NewsGadget(Gadget):
+    URL = "http://www.gramps-project.org/wiki/index.php?title=%s&action=raw"
+    def main(self):
+        continuation = self.process('News')
+        retval = True
+        while retval:
+            retval, text = continuation.next()
+            self.cleanup(text)
+            yield True
+        self.cleanup(text)
+        yield False
+
+    def cleanup(self, text):
+        # final text
+        text = text.replace("<BR>", "\n")
+        while "\n\n\n" in text:
+            text = text.replace("\n\n\n", "\n\n")
+        text = text.strip()
+        self.set_text(text)
+        
+    def process(self, title):
+        #print "processing '%s'..." % title
+        title = title.replace(" ", "_")
+        yield True, "Reading '%s'..." % title
+        fp = urllib.urlopen(self.URL % title)
+        text = fp.read()
+        #text = text.replace("\n", " ")
+        html = re.findall('<.*?>', text)
+        for exp in html:
+            text = text.replace(exp, "")
+        text = text.replace("\n", "<BR>")
+        fp.close()
+        pattern = '{{.*?}}'
+        matches = re.findall(pattern, text)
+        #print "   before:", text
+        for match in matches:
+            page = match[2:-2]
+            oldtext = match
+            if "|" in page:
+                template, heading, body = page.split("|", 2)
+                if template.lower() == "release":
+                    newtext = "GRAMPS " + heading + " released.<BR><BR>"
+                else:
+                    newtext = heading + "<BR><BR>"
+                newtext += body + "<BR>"
+                text = text.replace(oldtext, newtext)
+            else: # a macro/redirect
+                continuation = self.process("Template:" + page)
+                retval = True
+                while retval:
+                    retval, newtext = continuation.next()
+                    yield True, newtext
+                text = text.replace(oldtext, newtext)
+        #print "    after:", text
+        pattern = '#REDIRECT \[\[.*?\]\]'
+        matches = re.findall(pattern, text)
+        #print "   before:", text
+        for match in matches:
+            page = match[12:-2]
+            oldtext = match
+            continuation = self.process(page)
+            retval = True
+            while retval:
+                retval, newtext = continuation.next()
+                yield True, newtext
+            text = text.replace(oldtext, newtext)
+        #print "    after:", text
+        yield False, text
+
 register(type="gadget", 
          name="Top Surnames Gadget", 
          height=230,
@@ -450,5 +521,13 @@ register(type="gadget",
          height=200,
          content = CalendarGadget,
          title="Calendar",
+         )
+
+register(type="gadget", 
+         name="News Gadget", 
+         height=300,
+         expand=True,
+         content = NewsGadget,
+         title="News",
          )
 
