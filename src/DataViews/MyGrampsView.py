@@ -250,7 +250,7 @@ class Gadget(object):
         text = text.replace(chr(10), "\\n")
         self.gui.data.append(text)
 
-    def update(self, *handles):
+    def update(self, *args):
         if self._idle_id != 0:
             if debug: print "%s interrupt!" % self.gui.title
             self.interrupt()

@@ -30,7 +30,7 @@ import string
 #         )
 
 # There are a number of arguments that you can provide, including:
-# name, height, content, title, expand, state
+# name, height, content, title, expand, state, data
 
 # Here is a Gadget object. It has a number of method possibilities:
 #  init- run once, on construction
@@ -46,11 +46,26 @@ class CalendarGadget(Gadget):
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
         self.gui.calendar.connect('month-changed', self.refresh)
+        db_signals = ['event-add',
+                      'event-update', 
+                      'event-delete', 
+                      'event-rebuild',
+                      ]
+        for signal in db_signals:
+            self.dbstate.db.connect(signal, lambda *args: self.run_update(signal, *args))
+
         self.gui.scrolledwindow.remove(self.gui.textview)
         self.gui.scrolledwindow.add_with_viewport(self.gui.calendar)
         self.gui.calendar.show()
         self.birthdays = True
         self.dates = {}
+
+    def db_changed(self):
+        self.update()
+
+    def run_update(self, signal, *args):
+        print "signal:", signal
+        self.update()
 
     def refresh(self, *obj):
         self.gui.calendar.freeze()
