@@ -152,7 +152,6 @@ src/DisplayTabs/Makefile
 src/DisplayModels/Makefile
 src/Selectors/Makefile
 src/GrampsLogger/Makefile
-src/GrampsDb/Makefile
 src/Merge/Makefile
 src/docgen/Makefile
 src/Editors/Makefile

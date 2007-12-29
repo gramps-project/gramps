@@ -175,7 +175,7 @@ class CLIDbManager:
         """
         print _('Import finished...')
 
-    def __create_new_db_cli(self, title=None):
+    def _create_new_db_cli(self, title=None):
         """
         Create a new database.
         """
@@ -200,7 +200,7 @@ class CLIDbManager:
         """
         Create a new database, do extra stuff needed
         """
-        return self.__create_new_db_cli(title)
+        return self._create_new_db_cli(title)
 
     def import_new_db(self, filetype, filename, callback):
         if filetype in IMPORT_TYPES:
@@ -760,7 +760,7 @@ class DbManager(CLIDbManager):
         """
         Create a new database, append to model
         """
-        new_path = self.__create_new_db_cli(title)
+        new_path = self._create_new_db_cli(title)
         path_name = os.path.join(new_path, NAME_FILE)
         node = self.model.append(None, [title, new_path, path_name, 
                                         _("Never"), 0, False, ''])

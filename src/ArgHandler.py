@@ -316,7 +316,8 @@ class ArgHandler:
             print 'List of known family trees in your database path\n'
             dbman = CLIDbManager(self.state)
             for name, dirname in dbman.family_tree_list():
-                print name, ', in dir ', dirname 
+                print dirname, ', with name ', name 
+            sys.exit(0)
         if self.open_gui:
             # Filename was given as gramps FILENAME. 
             # Open a session with that file. Forget the rest of given arguments
@@ -450,8 +451,8 @@ class ArgHandler:
 
         elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
             filename = Config.get(Config.RECENT_FILE)
-            self.vm.db_loader.read_file(filename, const.APP_GRAMPS)
-            return (filename, const.APP_GRAMPS)
+            self.vm.db_loader.read_file(filename)
+            return (filename, const.APP_FAMTREE)
 
            #if os.path.isfile(rf):
            #    filetype = Mime.get_type(rf)

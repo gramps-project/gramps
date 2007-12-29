@@ -49,6 +49,7 @@ URL_MANUAL      = "http://gramps-project.org/gramps-manual/2.2/"
 # Mime Types
 #
 #-------------------------------------------------------------------------
+APP_FAMTREE     = 'x-directory/normal'
 APP_GRAMPS      = "application/x-gramps"
 APP_GRAMPS_XML  = "application/x-gramps-xml"
 APP_GEDCOM      = "application/x-gedcom"
@@ -144,7 +145,7 @@ else:
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "GRAMPS"
 VERSION        = "@VERSIONSTRING@"
-COPYRIGHT_MSG  = unicode("© 2001-2006 Donald N. Allingham", "iso-8859-1")
+COPYRIGHT_MSG  = unicode("ï¿½ 2001-2006 Donald N. Allingham", "iso-8859-1")
 COMMENTS       = _("GRAMPS (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
@@ -229,5 +230,5 @@ LONGOPTS = [
     "debug=", 
 ]
 
-SHORTOPTS = "O:i:o:f:a:p:d:?"
+SHORTOPTS = "O:i:o:f:a:p:d:?:l"
 

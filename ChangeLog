@@ -1,3 +1,10 @@
+2007-12-29 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ArgHandler.py: better handling of -l
+	* src/const.py.in: forgot to commit this, new constants
+	* configure.in: remove GrampsDb makefile
+	* src/DbManager.py: allow inheriting create_new_db_cli
+	Rerun ./autogen.sh !!
+
 2007-12-29  Douglas S. Blank  <dblank@saliva.brynmawr.edu>
 	* src/DataViews/MyGrampsView.py: renamed background to main
 	* src/plugins/DefaultGadgets.py: call main (generator)
