@@ -46,18 +46,45 @@ class CalendarGadget(Gadget):
         import gtk
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
+        self.gui.calendar.connect('month-changed', self.refresh)
         self.gui.scrolledwindow.remove(self.gui.textview)
         self.gui.scrolledwindow.add_with_viewport(self.gui.calendar)
         self.gui.calendar.show()
+        self.birthdays = True
+        self.dates = {}
+
+    def refresh(self, *obj):
+        self.gui.calendar.freeze()
+        self.gui.calendar.clear_marks()
+        year, month, day = self.gui.calendar.get_date()
+        for date in self.dates:
+            if date[1] == month - 1:
+                if date[2] > 0 and date[2] <= day:
+                    self.gui.calendar.mark_day(date[2])
+        self.gui.calendar.thaw()
 
     def background(self):
-        print "updating"
-        yield True
-        self.gui.calendar.clear_marks()
-        self.gui.calendar.freeze()
+        self.dates = {}
         # for each day in events
-        #self.calendar.mark_day(day)
-        self.gui.calendar.thaw()
+        people = self.gui.dbstate.db.get_person_handles(sort_handles=False)
+        cnt = 0
+        for person_handle in people:
+            if cnt % 350 == 0:
+                yield True
+            person = self.gui.dbstate.db.get_person_from_handle(person_handle)
+            birth_ref = person.get_birth_ref()
+            birth_date = None
+            if birth_ref:
+                birth_event = self.gui.dbstate.db.get_event_from_handle(birth_ref.ref)
+                birth_date = birth_event.get_date_object()
+            if self.birthdays and birth_date != None:
+                year = birth_date.get_year()
+                month = birth_date.get_month()
+                day = birth_date.get_day()
+                #age = self.year - year
+                self.dates[(year, month, day)] = 1
+            cnt += 1
+        self.refresh()
 
     def double_click(self, obj):
         # bring up events on this day
