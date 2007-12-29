@@ -347,7 +347,7 @@ class PythonGadget(Gadget):
             if "_retval" in self.env:
                 _retval = self.env["_retval"]
             if _retval != None:
-                self.append_text("%s\n" % _retval)
+                self.append_text("%s\n" % str(_retval))
                 self.append_text("> ")
             else:
                 self.append_text("> ")
