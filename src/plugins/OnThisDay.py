@@ -28,6 +28,13 @@ from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_EVENT
 
+def backlink(database, objclass, handle):
+    if objclass == 'Person':
+        ref = database.get_person_from_handle(handle)
+    else:
+        ref = objclass
+    return ref
+
 def run(database, document, main_event):
     """
     Loops through the families that the person is a child in, and display
@@ -45,9 +52,9 @@ def run(database, document, main_event):
     # display the title
     sdoc.title(_("Events of %s") % sdb.event_date(main_event))
     sdoc.paragraph("")
-    stab.columns(_("Date"), _("Type"), _("Place"))
-    yeartab.columns(_("Date"), _("Type"), _("Place"))
-    histab.columns(_("Date"), _("Type"), _("Place"))
+    stab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
+    yeartab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
+    histab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     
     for event_handle in database.get_event_handles():
         event = database.get_event_from_handle(event_handle)
@@ -57,18 +64,25 @@ def run(database, document, main_event):
         if (date.get_year() == main_date.get_year() and 
             date.get_month() == main_date.get_month() and
             date.get_day() == main_date.get_day()):
-            stab.row(date, 
-                     sdb.event_type(event), 
-                     sdb.event_place(event))
+            for (objclass, handle) in database.find_backlink_handles(event_handle):
+                ref = backlink(database, objclass, handle)
+                stab.row(date, 
+                         sdb.event_type(event), 
+                         sdb.event_place(event), ref)
         elif (date.get_month() == main_date.get_month() and
-              date.get_day() == main_date.get_day()):
-            histab.row(date, 
-                        sdb.event_type(event), 
-                        sdb.event_place(event))
+              date.get_day() == main_date.get_day() and
+              date.get_month() != 0):
+            for (objclass, handle) in database.find_backlink_handles(event_handle):
+                ref = backlink(database, objclass, handle)
+                histab.row(date, 
+                           sdb.event_type(event), 
+                           sdb.event_place(event), ref)
         elif (date.get_year() == main_date.get_year()):
-            yeartab.row(date, 
-                        sdb.event_type(event), 
-                        sdb.event_place(event))
+            for (objclass, handle) in database.find_backlink_handles(event_handle):
+                ref = backlink(database, objclass, handle)
+                yeartab.row(date, 
+                            sdb.event_type(event), 
+                            sdb.event_place(event), ref)
 
     stab.write()
 
