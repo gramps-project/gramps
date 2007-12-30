@@ -110,6 +110,21 @@ def by_menu_name(first, second):
 
 def make_quick_report_callback(lst, category, dbstate, uistate, handle):
     return lambda x: run_report(dbstate, uistate, category, handle, lst[0])
+
+def run_quick_report_by_name(dbstate, uistate, report_name, handle):
+    from PluginUtils import quick_report_list
+    # [0] - function 
+    # [1] - translated name
+    # [2] - category
+    # [3] - name
+    # [5] - status
+    report = None
+    for item in quick_report_list:
+        if item[3] == report_name:
+            report = item
+            break
+    if report:
+        run_report(dbstate, uistate, report[2], handle, report[0])
                             
 def run_report(dbstate, uistate, category,handle,func):
         from TextBufDoc import TextBufDoc
@@ -131,9 +146,9 @@ def run_report(dbstate, uistate, category,handle,func):
                 obj = dbstate.db.get_place_from_handle(handle)
             elif category == CATEGORY_QR_REPOSITORY :
                 obj = dbstate.db.get_repository_from_handle(handle)
-            else : 
+            else: 
                 obj = None
-            if obj :
+            if obj:
                 d.open("")
                 func(dbstate.db, d, obj)
                 d.close()

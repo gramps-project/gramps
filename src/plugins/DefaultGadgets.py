@@ -1,13 +1,15 @@
-from DataViews import register, Gadget
-from BasicUtils import name_displayer
-import DateHandler
-import gen.lib
 import sys
 import os
 import re
 import time
 import string
 import urllib
+
+import gen.lib
+from DataViews import register, Gadget
+from BasicUtils import name_displayer
+from QuickReports import run_quick_report_by_name
+import DateHandler
 
 #
 # Hello World, in Gramps Gadgets
@@ -74,9 +76,10 @@ class CalendarGadget(Gadget):
         self.gui.calendar.clear_marks()
         year, month, day = self.gui.calendar.get_date()
         for date in self.dates:
-            if date[1] != 0 and date[1] == month + 1:
-                if date[2] > 0 and date[2] <= day:
-                    self.gui.calendar.mark_day(date[2])
+            if ((date[0] == year) and
+                (date[1] == month + 1) and
+                (date[2] > 0 and date[2] <= day)):
+                self.gui.calendar.mark_day(date[2])
         self.gui.calendar.thaw()
 
     def main(self):
@@ -98,13 +101,19 @@ class CalendarGadget(Gadget):
                 month = birth_date.get_month()
                 day = birth_date.get_day()
                 #age = self.year - year
-                self.dates[(year, month, day)] = 1
+                self.dates[(year, month, day)] = birth_event.handle
             cnt += 1
         self.refresh()
 
     def double_click(self, obj):
         # bring up events on this day
-        pass
+        year, month, day = self.gui.calendar.get_date()
+        month += 1
+        if (year, month, day) in self.dates:
+            run_quick_report_by_name(self.gui.dbstate, 
+                                     self.gui.uistate, 
+                                     'onthisday', 
+                                     self.dates[(year, month, day)])
 
 class LogGadget(Gadget):
     def db_changed(self):
@@ -180,12 +189,14 @@ class TopSurnamesGadget(Gadget):
         self.set_text("Processing...\n")
         people = self.dbstate.db.get_person_handles(sort_handles=False)
         surnames = {}
+        representative_handle = {}
         cnt = 0
         for person_handle in people:
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 surname = person.get_primary_name().get_surname().strip()
                 surnames[surname] = surnames.get(surname, 0) + 1
+                representative_handle[surname] = person_handle
             if cnt % 350 == 0:
                 yield True
             cnt += 1
@@ -206,7 +217,7 @@ class TopSurnamesGadget(Gadget):
         self.set_text("")
         for (count, surname) in surname_sort:
             self.append_text("  %d. " % (line + 1))
-            self.link(surname, 'Surname', surname)
+            self.link(surname, 'Surname', representative_handle[surname])
             self.append_text(", %d%% (%d)\n" % 
                              (int((float(count)/total) * 100), count))
             line += 1

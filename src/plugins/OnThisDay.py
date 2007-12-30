@@ -39,6 +39,8 @@ def run(database, document, main_event):
     """
     Loops through the families that the person is a child in, and display
     the information about the other children.
+    
+    Takes an Event handle
     """
     # setup the simple access functions
     sdb = SimpleAccess(database)
@@ -50,7 +52,7 @@ def run(database, document, main_event):
     main_date = main_event.get_date_object()
 
     # display the title
-    sdoc.title(_("Events of %s") % sdb.event_date(main_event))
+    sdoc.title(_("Events of %s") % sdb.date_string(main_date))
     sdoc.paragraph("")
     stab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     yeartab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))

@@ -64,7 +64,7 @@ def run(database, document, person):
 #
 #------------------------------------------------------------------------
 register_quick_report(
-    name = 'surnames',
+    name = 'samesurnames',
     category = CATEGORY_QR_PERSON,
     run_func = run,
     translated_name = _("Same Surnames"),

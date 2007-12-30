@@ -42,6 +42,7 @@ import PageView
 import ManagedWindow
 import ConfigParser
 import Utils
+from QuickReports import run_quick_report_by_name
 
 AVAILABLE_GADGETS = {}
 GADGET_FILENAME = os.path.join(const.HOME_DIR,"gadgets.ini")
@@ -340,6 +341,12 @@ class Gadget(object):
                                 self.gui.dbstate.change_active_person(person)
                                 return True # handled event
                 elif link_type == 'Surname':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.gui.dbstate, 
+                                                     self.gui.uistate, 
+                                                     'samesurnames', 
+                                                     handle)
                     return True
         return False # did not handle event
         

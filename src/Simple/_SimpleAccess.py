@@ -491,6 +491,20 @@ class SimpleAccess:
         else:
             return u''
 
+    def date_string(self, date_obj):
+        """
+        Returns a string representation a date_obj
+
+        @param date_obj: Date object
+        @type date_obj: L{gen.lib.Date}
+        @return: Returns a string representation a date_obj
+        @rtype: unicode
+        """
+        if date_obj:
+            return DateHandler.displayer.display(date_obj)
+        else:
+            return u''
+
     def event_date(self, event):
         """
         Returns a string indicating the date of the event

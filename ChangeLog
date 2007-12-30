@@ -1,3 +1,11 @@
+2007-12-29  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/MyGrampsView.py: show matching surnames
+	* src/plugins/OnThisDay.py: refinement
+	* src/plugins/SameSurnames.py: changed name
+	* src/plugins/DefaultGadgets.py: calendar calls quickreport
+	* src/QuickReports.py: new function to call qr directly
+	* src/Simple/_SimpleAccess.py: new func to format dates
+
 2007-12-29  Douglas S. Blank  <dblank@saliva.brynmawr.edu>
 	* src/DataViews/MyGrampsView.py: fixme's are fixed
 	* src/DataViews/EventView.py: added quick report popup
