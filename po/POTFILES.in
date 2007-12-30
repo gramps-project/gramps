@@ -69,17 +69,17 @@ src/Merge/_MergePlace.py
 src/Merge/_MergeSource.py
 
 # DataViews package
-src/DataViews/_EventView.py
-src/DataViews/_FamilyList.py
+src/DataViews/EventView.py
+src/DataViews/FamilyList.py
 src/DataViews/__init__.py
-src/DataViews/_MediaView.py
-src/DataViews/_NoteView.py
-src/DataViews/_PedigreeView.py
-src/DataViews/_PersonView.py
-src/DataViews/_PlaceView.py
-src/DataViews/_RelationView.py
-src/DataViews/_RepositoryView.py
-src/DataViews/_SourceView.py
+src/DataViews/MediaView.py
+src/DataViews/NoteView.py
+src/DataViews/PedigreeView.py
+src/DataViews/PersonView.py
+src/DataViews/PlaceView.py
+src/DataViews/RelationView.py
+src/DataViews/RepositoryView.py
+src/DataViews/SourceView.py
 
 # DateHandler package
 src/DateHandler/_Date_cs.py
@@ -283,6 +283,7 @@ src/plugins/IndivComplete.py
 src/plugins/KinshipReport.py
 src/plugins/Leak.py
 src/plugins/lineage.py
+src/plugins/OnThisDay.py
 src/plugins/MarkerReport.py
 src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py
@@ -306,6 +307,7 @@ src/plugins/rel_sv.py
 src/plugins/rel_pl.py
 src/plugins/RemoveUnused.py
 src/plugins/ReorderIds.py
+src/plugins/SameSurnames.py
 src/plugins/SimpleBookTitle.py
 src/plugins/SoundGen.py
 src/plugins/StatisticsChart.py
