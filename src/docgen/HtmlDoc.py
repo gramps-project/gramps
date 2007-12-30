@@ -374,7 +374,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                 return
 
         try:
-            ImgManip.resize_to_jpeg(name, newfile, size, size)
+            ImgManip.resize_to_jpeg(name, refname, size, size)
         except:
             return
 
@@ -385,18 +385,12 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         else:
             xtra = ''
             
-        imgsize = img.size()
-        if imgsize[0] > imgsize[1]:
-            size_str = "width"
-        else:
-            size_str = "height"
-
         if self.image_dir:
-            self.f.write('<img src="%s/%s" border="0" %s="%d" alt="%s"%s>\n' % \
-                         (self.image_dir,refname,size_str,size,alt,xtra))
+            self.f.write('<img src="%s/%s" border="0" alt="%s"%s>\n' % \
+                         (self.image_dir, refname, alt, xtra))
         else:
-            self.f.write('<img src="%s" border="0" %s="%d" alt="%s"%s>\n' 
-                        % (refname,size_str,size,alt,xtra))
+            self.f.write('<img src="%s" border="0" alt="%s"%s>\n' 
+                        % (refname, alt, xtra))
 
     def start_table(self,name,style):
         styles = self.get_style_sheet()
