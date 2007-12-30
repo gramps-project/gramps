@@ -23,6 +23,7 @@
 
 # Written by Alex Roitman, largely based on Relationship.py by Don Allingham
 # and on valuable input from Jens Arvidsson
+# Updated to 3.0 by Peter Landgren 2007-12-30.
 
 #-------------------------------------------------------------------------
 #
@@ -48,7 +49,11 @@ _cousin_level = [ "", "kusin",
 "niomänning", "tiomänning", "elvammänning", 
 "tolvmänning", "trettonmänning", "fjortonmänning",
 "femtonmänning", "sextonmänning", "sjuttonmänning",
-"artonmänning", "nittonmänning", "tjugomänning" ] 
+"artonmänning", "nittonmänning", "tjugomänning",
+"tjugoettmänning", "tjugotvåmänning", "tjugotremänning",
+"tjugofyramänning","tjugofemmänning","tjugoexmänning",
+"tjugosjumänning","tjugoåttamänning","tjugoniomänning",
+"trettiomänning" ] 
 
 #-------------------------------------------------------------------------
 #
@@ -57,22 +62,32 @@ _cousin_level = [ "", "kusin",
 #-------------------------------------------------------------------------
 class RelationshipCalculator(Relationship.RelationshipCalculator):
 
+    #sibling strings
+    STEP= 'styv'
+    HALF = 'halv'
+    #in-law string
+    INLAW='ingift '
+        
+
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def get_parents(self,level):
+    def XXget_parents(self,level):
         if level == 1:
             return "föräldrar"
         else:
             return "anor i generation %d" % (level)
 
-    def get_cousin(self,level):
+    def _get_cousin(self,level,step,inlaw):
         if level>len(_cousin_level)-1:
-            return "distant relative"
+            return "avlägset släkt"
         else:
-            return _cousin_level[level]
+            result=inlaw + _cousin_level[level]
+            if step:
+                result = result + ' [styv]'
+            return result
 
-    def pair_up(self,rel_list):
+    def pair_up(self,rel_list,step):
         result = []
         item = ""
         for word in rel_list[:]:
@@ -97,31 +112,57 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if item:
             result.append(item)
         gen_result = [ item + 's' for item in result[0:-1] ]
-        return ' '.join(gen_result+result[-1:])
+        gen_result = ' '.join(gen_result+result[-1:])
+        if len(rel_list)>1 and step != '':
+            gen_result=gen_result + ' [styv]'
+        return gen_result
 
-    def get_direct_ancestor(self,person,rel_string):
+    def _get_direct_ancestor(self,person_gender,rel_string,step,inlaw):
         result = []
         for ix in range(len(rel_string)):
             if rel_string[ix] == 'f':
                 result.append('far')
             else:
                 result.append('mor')
-        return self.pair_up(result)
+        if person_gender == gen.lib.Person.MALE:
+            result[-1] = 'far'
+        if person_gender == gen.lib.Person.FEMALE:
+            result[-1] = 'mor'
+        if person_gender == gen.lib.Person.UNKNOWN:
+            result[-1] = 'förälder'
+        if step != '' and len(result)==1:
+            result[0]=self.STEP + result[0]
+        if inlaw != '':
+            result[-1]='svär' + result[-1]
+        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            result[-2] = result[-2] + 's '
+        return self.pair_up(result,step)
 
-    def get_direct_descendant(self,person,rel_string):
+    def _get_direct_descendant(self,person_gender,rel_string,step,inlaw):
         result = []
         for ix in range(len(rel_string)-2,-1,-1):
             if rel_string[ix] == 'f':
                 result.append('son')
             else:
                 result.append('dotter')
-        if person.get_gender() == gen.lib.Person.MALE:
+        if person_gender == gen.lib.Person.MALE:
             result.append('son')
-        else:
+        elif person_gender == gen.lib.Person.FEMALE:
             result.append('dotter')
-        return self.pair_up(result)
+        else:
+            if person_gender == gen.lib.Person.UNKNOWN and inlaw == '':
+                result.append('barn')
+            if person_gender == gen.lib.Person.UNKNOWN and inlaw != '':
+                result.append('-son/dotter')
+        if step != '' and len(result)==1:
+            result[0]=self.STEP + result[0]
+        if inlaw != '':
+            result[-1]= 'svär' + result[-1]
+        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            result[-2] = result[-2] + 's '
+        return self.pair_up(result,step)
 
-    def get_ancestors_cousin(self,rel_string_long,rel_string_short):
+    def _get_ancestors_cousin(self,rel_string_long,rel_string_short,step,inlaw):
         result = []
         removed = len(rel_string_long)-len(rel_string_short)
         level = len(rel_string_short)-1
@@ -130,15 +171,21 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('far')
             else:
                 result.append('mor')
-        result.append(self.get_cousin(level))
-        return self.pair_up(result)
+        if inlaw != '' :
+            inlaw='ingifta '
+        if inlaw != '' and len(result) % 2 !=0:
+            result[-1] = result[-1] + 's '
+        result.append(self._get_cousin(level,step,inlaw))
+        if step != '' and len(result)==1:
+            result[0]=self.STEP + result[0]
+        return self.pair_up(result,step)
 
-    def get_cousins_descendant(self,person,rel_string_long,rel_string_short):
+    def _get_cousins_descendant(self,person_gender,rel_string_long,rel_string_short,step,inlaw):
         result = []
         removed = len(rel_string_long)-len(rel_string_short)-1
         level = len(rel_string_short)-1
         if level:
-    	    result.append(self.get_cousin(level))
+    	    result.append(self._get_cousin(level,step,inlaw))
         elif rel_string_long[removed] == 'f':
         	result.append('bror')
         else:
@@ -148,13 +195,24 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('son')
             else:
                 result.append('dotter')
-        if person.get_gender() == gen.lib.Person.MALE:
+        if person_gender == gen.lib.Person.MALE:
             result.append('son')
-        else:
+        elif person_gender == gen.lib.Person.FEMALE:
             result.append('dotter')
-        return self.pair_up(result)
+        else:
+            if person_gender == gen.lib.Person.UNKNOWN and inlaw == '':
+                result.append('barn')
+            if person_gender == gen.lib.Person.UNKNOWN and inlaw != '':
+                result.append('-son/dotter')
+        if step != '' and len(result)==1:
+            result[0]=self.STEP + result[0]
+        if inlaw != '':
+            result[-1]= 'svär' + result[-1]
+        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            result[-2] = result[-2] + 's '
+        return self.pair_up(result,step)
 
-    def get_ancestors_brother(self,rel_string):
+    def _get_ancestors_brother(self,rel_string,person_gender,step,inlaw):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -162,9 +220,17 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 result.append('mor')
         result.append('bror')
-        return self.pair_up(result)
+        if person_gender == gen.lib.Person.UNKNOWN: result[-1] = 'syskon'
+        if step != '' and len(result)==1:
+            result[0]=self.STEP + result[0]
+        if inlaw != '': result[-1]='svåger'
+        if inlaw != '' and person_gender == gen.lib.Person.UNKNOWN:
+            result[-1]='svåger/svägerska'
+        if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            result[-2] = result[-2] + 's '
+        return self.pair_up(result,step)
 
-    def get_ancestors_sister(self,rel_string):
+    def _get_ancestors_sister(self,rel_string,step,inlaw):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -172,55 +238,182 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 result.append('mor')
         result.append('syster')
-        return self.pair_up(result)
+        if step != '' and len(result)==1:
+            result[0]=self.STEP + result[0]
+        if inlaw != '' : result[-1]= 'svägerska'
+        if len(result)>1 and len(result) % 2 == 0 and inlaw != '':
+            result[-2] = result[-2] + 's '
+        return self.pair_up(result,step)
 
-    def get_relationship(self,db,orig_person,other_person):
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+        """ Determine the string giving the relation between two siblings of
+            type sib_type.
+            Eg: b is the brother of a
+                Here 'brother' is the string we need to determine
+            This method gives more details about siblings than 
+            get_single_relationship_string can do.
+            DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR LANGUAGE,sib_type
+                AND SAME METHODS EXIST (get_uncle, get_aunt, get_sibling)
         """
-        Returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
+
+        #print "S:",sib_type,gender_a, gender_b,in_law_a, in_law_b
+        if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
+            typestr = ''
+        elif sib_type == self.HALF_SIB_MOTHER \
+                or sib_type == self.HALF_SIB_FATHER:
+            typestr = self.HALF
+        elif sib_type == self.STEP_SIB:
+            typestr = self.STEP
+
+        if gender_b == gen.lib.Person.MALE:
+            rel_str = "bror"
+        elif gender_b == gen.lib.Person.FEMALE:
+            rel_str = "syster"
+        else:
+           rel_str = "syskon"
+        return typestr + rel_str
+
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True, 
+                                       in_law_a=False, in_law_b=False):
+        """
+        Provides a string that describes the relationsip between a person, and
+        another person. E.g. "grandparent" or "child".
+        To be used as: 'person b is the grandparent of a', this will 
+            be in translation string :"avlägs %snephews/nieces%s" % (step, inlaw)
+                            'person b is the %(relation)s of a'
+            Note that languages with gender should add 'the' inside the 
+            translation, so eg in french:
+                            'person b est %(relation)s de a'
+            where relation will be here: le grandparent
         
-        Special cases: relation strings "", "undefined" and "spouse".
+        Ga and Gb can be used to mathematically calculate the relationship.
+        See the Wikipedia entry for more information:
+            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+        
+        Some languages need to know the specific path to the common ancestor.
+        Those languages should use reltocommon_a and reltocommon_b which is 
+        a string like 'mfmf'. The possible string codes are:
+            REL_MOTHER             # going up to mother
+            REL_FATHER             # going up to father
+            REL_MOTHER_NOTBIRTH    # going up to mother, not birth relation
+            REL_FATHER_NOTBIRTH    # going up to father, not birth relation
+            REL_FAM_BIRTH          # going up to family (mother and father)
+            REL_FAM_NONBIRTH       # going up to family, not birth relation
+            REL_FAM_BIRTH_MOTH_ONLY # going up to fam, only birth rel to mother
+            REL_FAM_BIRTH_FATH_ONLY # going up to fam, only birth rel to father
+        Prefix codes are stripped, so REL_FAM_INLAW_PREFIX is not present. 
+        If the relation starts with the inlaw of the person a, then 'in_law_a'
+        is True, if it starts with the inlaw of person b, then 'in_law_b' is
+        True.
+        Also REL_SIBLING (# going sideways to sibling (no parents)) is not 
+        passed to this routine. The collapse_relations changes this to a 
+        family relation. 
+        Hence, calling routines should always strip REL_SIBLING and 
+        REL_FAM_INLAW_PREFIX before calling get_single_relationship_string()
+        Note that only_birth=False, means that in the reltocommon one of the
+        NOTBIRTH specifiers is present.
+        The REL_FAM identifiers mean that the relation is not via a common 
+        ancestor, but via a common family (note that that is not possible for
+        direct descendants or direct ancestors!). If the relation to one of the
+        parents in that common family is by birth, then 'only_birth' is not
+        set to False. The only_birth() method is normally used for this.
+            
+        @param Ga: The number of generations between the main person and the 
+                   common ancestor.
+        @type Ga: int
+        @param Gb: The number of generations between the other person and the
+                   common ancestor
+        @type Gb: int
+        @param gender_a : gender of person a
+        @type gender_a: int gender
+        @param gender_b : gender of person b
+        @type gender_b: int gender
+        @param reltocommon_a : relation path to common ancestor or common
+                            Family for person a. 
+                            Note that length = Ga
+        @type reltocommon_a: str 
+        @param reltocommon_b : relation path to common ancestor or common
+                            Family for person b. 
+                            Note that length = Gb
+        @type reltocommon_b: str 
+        @param in_law_a : True if path to common ancestors is via the partner
+                          of person a
+        @type in_law_a: bool
+        @param in_law_b : True if path to common ancestors is via the partner
+                          of person b
+        @type in_law_b: bool
+        @param only_birth : True if relation between a and b is by birth only
+                            False otherwise
+        @type only_birth: bool
+        @returns: A string describing the relationship between the two people
+        @rtype: str
+        
+        NOTE: 1/the self.REL_SIBLING should not be passed to this routine, 
+                so we should not check on it. All other self.
+              2/for better determination of siblings, use if Ga=1=Gb 
+                get_sibling_relationship_string
         """
-
-        if orig_person == None:
-            return ("undefined",[])
-    
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db,orig_person,other_person)
-        if is_spouse:
-            return (is_spouse,[])
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = \
-                     self.get_relationship_distance(db,orig_person,other_person)
-
-        if type(common) == types.StringType or \
-           type(common) == types.UnicodeType:
-            return (common,[])
-        elif common:
-            person_handle = common[0]
+ 
+        if only_birth:
+            step = ''
         else:
-            return ("",[])
+            step = self.STEP
 
-        if not firstRel:
-            if not secondRel:
-                return ('',common)
-            else:
-                return (self.get_direct_ancestor(other_person,secondRel),common)
-        elif not secondRel:
-            return (self.get_direct_descendant(other_person,firstRel),common)
-        elif len(firstRel) == 1:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_ancestors_brother(secondRel),common)
-            else:
-                return (self.get_ancestors_sister(secondRel),common)
-        elif len(secondRel) >= len(firstRel):
-            return (self.get_ancestors_cousin(secondRel,firstRel),common)
+        if in_law_a or in_law_b :
+            inlaw = self.INLAW
         else:
-            return (self.get_cousins_descendant(other_person,firstRel,secondRel),common)
+            inlaw = ''
+        #print "N:",Ga,Gb,gender_a, gender_b,only_birth,in_law_a, in_law_b
+        #print "Z:",reltocommon_a, reltocommon_b
+        rel_str = "avlägsen %s-släkting eller %s släkting" % (step,inlaw)
+        if Ga == 0:
+            # b is descendant of a
+            if Gb == 0 :
+                rel_str = 'samma person'
+            else:
+                rel_str = self._get_direct_descendant(gender_b,reltocommon_b,step,inlaw)
+        elif Gb == 0:
+            # b is parents/grand parent of a
+            rel_str = self._get_direct_ancestor(gender_b,reltocommon_a,step,inlaw)
+        elif Gb == 1:
+            # b is sibling/aunt/uncle of a
+            # handles brother and unknown gender as second person,
+            # shows up in "testing unknown cousins same generation"                
+            if gender_b == gen.lib.Person.MALE or gender_b == gen.lib.Person.UNKNOWN:
+                rel_str = self._get_ancestors_brother(reltocommon_a,gender_b,step,inlaw)
+            elif gender_b == gen.lib.Person.FEMALE:
+                rel_str = self._get_ancestors_sister(reltocommon_a,step,inlaw)
+            #else:
+                #rel_str = self._get_ancestors_brother(reltocommon_a,gender_b)
+        #elif Ga == 1:
+            # This is taken care of at Ga>Gb and Gb>Ga below
+            # b is niece/nephew of a
+            #if gender_b == gen.lib.Person.MALE:
+            #    rel_str = self._get_nephew(Gb-1, step, inlaw)
+            #elif gender_b == gen.lib.Person.FEMALE:
+            #    rel_str = self._get_niece(Gb-1, step, inlaw)
+            #elif Gb < len(_niece_level) and Gb < len(_nephew_level):
+            #    rel_str = "%s eller %s" % (self._get_nephew(Gb-1, step, inlaw),
+            #                            self._get_niece(Gb-1, step, inlaw))
+            #else:
+            #rel_str = "XXXavlägsen %s-släkting eller %s släkting" % (step,inlaw)
+        elif Ga == Gb:
+            # a and b cousins in the same generation
+            rel_str = self._get_cousin(Ga-1,step,inlaw) 
+        elif Ga > Gb:
+            # These are cousins in different generations with the second person 
+            # being in a higher generation from the common ancestor than the 
+            # first person.
+ 	        rel_str = self._get_ancestors_cousin(reltocommon_a,reltocommon_b,step,inlaw)
+        elif Gb > Ga:
+            # These are cousins in different generations with the second person 
+            # being in a lower generation from the common ancestor than the 
+            # first person.
+ 	        rel_str = self._get_cousins_descendant(gender_b,reltocommon_b,reltocommon_a,step,inlaw)
+        return rel_str
 
 #-------------------------------------------------------------------------
 #
@@ -230,3 +423,18 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 register_relcalc(RelationshipCalculator,
     ["sv","SV","sv_SE","swedish","Swedish","sv_SE.UTF8","sv_SE@euro","sv_SE.UTF8@euro",
             "svenska","Svenska", "sv_SE.UTF-8", "sv_SE.utf-8", "sv_SE.utf8"])
+
+if __name__ == "__main__":
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src 
+    # python src/plugins/rel_fr.py 
+    # (Above not needed here)
+    
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel_xx.py
+    """
+    from Relationship import test
+    rc = RelationshipCalculator()
+    test(rc, True)
