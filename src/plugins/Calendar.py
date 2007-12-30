@@ -472,7 +472,7 @@ class CalendarReport(Calendar):
 class CalendarOptions(MenuReportOptions):
     """ Calendar options for graphic calendar """
     
-    def add_menu_options(self, menu):
+    def add_menu_options(self, menu,dbstate):
         """ Adds the options for the graphical calendar """
         category_name = _("Report Options")
 
@@ -605,14 +605,14 @@ class CalendarOptions(MenuReportOptions):
 class CalendarReportOptions(CalendarOptions):
     """ Options for the calendar (birthday and anniversary) report """
 
-    def add_menu_options(self, menu):
+    def add_menu_options(self, menu,dbstate):
         """ Adds the options for the graphical calendar """
         category_name = _("Text Options")
         titletext = StringOption(_("Title text"),
                                  _("Birthday and Anniversary Report"))
         titletext.set_help(_("Title of calendar"))
         menu.add_option(category_name,"titletext", titletext)
-        CalendarOptions.add_menu_options(self, menu)
+        CalendarOptions.add_menu_options(self, menu, dbstate)
         category_name = _("Report Options")
         option = BooleanOption(_("Include relationships to center person (slower)"),
                                False)

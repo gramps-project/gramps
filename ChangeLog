@@ -1,3 +1,28 @@
+2007-12-29  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py:
+	* src/ReportBase/_BareReportDialog.py:
+	* src/ReportBase/_ReportOptions.py:
+	* src/plugins/DescendReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/CalculateEstimatedDates.py:
+	* src/plugins/Calendar.py:
+	* src/plugins/GVFamilyLines.py:
+	* src/plugins/AncestorReport.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/EndOfLineReport.py:
+	* src/plugins/AncestorChart.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/GVRelGraph.py:
+	* src/plugins/GVHourGlass.py:
+	* src/plugins/FamilyLines.py:
+	* src/plugins/FanChart.py:
+	* src/DbState.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py:
+	* src/BaseDoc.py:
+	More updates to better support MenuOptions. FamilyLines seems to work now.
+
 2007-12-29  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/MyGrampsView.py: show matching surnames
 	* src/plugins/OnThisDay.py: refinement

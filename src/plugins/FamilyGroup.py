@@ -36,8 +36,8 @@ import gtk
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import register_report, BooleanOption, EnumeratedListOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 import DateHandler
@@ -325,41 +325,6 @@ class FamilyGroup(Report):
         self.doc.end_table()
 
     def dump_marriage(self,family):
-        if not family:
-            return
-        m = None
-        family_ref_list = family.get_event_ref_list()
-        for event_ref in family_ref_list:
-            if event_ref:
-                event = self.database.get_event_from_handle(event_ref.ref)
-                if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
-                    m = event
-                    break
-
-        if m or self.missingInfo:
-            self.doc.start_table("MarriageInfo",'FGR-ParentTable')
-            self.doc.start_row()
-            self.doc.start_cell('FGR-ParentHead',3)
-            self.doc.start_paragraph('FGR-ParentName')
-            self.doc.write_text(_("Marriage:"))
-            self.doc.end_paragraph()
-            self.doc.end_cell()
-            self.doc.end_row()
-        
-            evtName = str(gen.lib.EventType(gen.lib.EventType.MARRIAGE))
-            self.dump_parent_event(evtName,m)
-            
-            for event_ref in family_ref_list:
-                if event_ref:
-                    event = self.database.get_event_from_handle(event_ref.ref)
-                    evtType = event.get_type()
-                    if int(evtType) != gen.lib.EventType.MARRIAGE:
-                        name = Utils.format_event( evtType )
-                        self.dump_parent_event(name,event)
-            
-            self.doc.end_table()
-
-    def dump_marriage(self,family):
 
         if not family:
             return
@@ -613,82 +578,93 @@ class FamilyGroup(Report):
 
 #------------------------------------------------------------------------
 #
-# 
+# MenuReportOptions
 #
 #------------------------------------------------------------------------
-class FamilyGroupOptions(ReportOptions):
+class FamilyGroupOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
+        
+    def add_menu_options(self,menu,dbstate):
+        
+        ##########################
+        category_name = _("Report Options")
+        ##########################
+        
+        families = self.get_families(dbstate.get_database(),
+                                     dbstate.get_active_person())
 
-        # Options specific for this report
-        self.options_dict = {
-            'family_id'    : '',
-            'recursive'    : 0,
-            'missinginfo'  : 1,
-            'generations'  : 1,
-            'incParEvents' : 0,
-            'incParAddr'   : 0,
-            'incParNotes'  : 0,
-            'incattrs'     : 0,
-            'incParNames'  : 0,
-            'incParMar'    : 0,
-            'incChiMar'    : 1,            
-            'incRelDates'  : 0,
-        }
-
-        self.options_help = {
-            'family_id'    : ("=ID","Gramps ID of the person's family.",
-                            "Use show=id to get ID list.",
-                            ),
-            'recursive'    : ("=0/1","Create reports for all decendants of this family.",
-                            ["Do not create reports for decendants","Create reports for decendants"],
-                            False),
-
-            'missinginfo'  : ("=0/1","Whether to include fields for missing information.",
-                            ["Do not include missing info","Include missing info"],
-                            True),
-
-            'generations'  : ("=0/1","Whether to include the generation on each report (recursive only).",
-                            ["Do not include the generation","Include the generation"],
-                            True),
-
-            'incParEvents' : ("=0/1","Whether to include events for parents.",
-                            ["Do not include parental events","Include parental events"],
-                            True),
-
-            'incParAddr'   : ("=0/1","Whether to include addresses for parents.",
-                            ["Do not include parental addresses","Include parental addresses"],
-                            True),
-                                     
-            'incParNotes'  : ("=0/1","Whether to include notes for parents.",
-                            ["Do not include parental notes","Include parental notes"],
-                            True),
-                            
-            'incattrs'     : ("=0/1","Whether to include attributes.",
-                            ["Do not include attributes","Include attributes"],
-                            True),
-                                     
-            'incParNames'  : ("=0/1","Whether to include alternate names for parents.",
-                            ["Do not include parental names","Include parental names"],
-                            True),
-                            
-            'incParMar'    : ("=0/1","Whether to include marriage information for parents.",
-                            ["Do not include parental marriage info","Include parental marriage info"],
-                            False),
-                            
-            'incChiMar'    : ("=0/1","Whether to include marriage information for children.",
-                            ["Do not include children marriage info","Include children marriage info"],
-                            True),
-
-            'incRelDates'  : ("=0/1","Whether to include dates for relatives.",
-                            ["Do not include dates of relatives","Include dates of relatives"],
-                            True),
-        }
+        family_id = EnumeratedListOption(_("Spouse"), "")
+        for item in families:
+            family_id.add_item(item[0], item[1])
+        family_id.set_help(_("Gramps ID of the person's family."))
+        menu.add_option(category_name,"family_id",family_id)
+        
+        recursive = BooleanOption(_('Recursive'),False)
+        recursive.set_help(_("Create reports for all decendants "
+                             "of this family."))
+        menu.add_option(category_name,"recursive",recursive)
+        
+        ##########################
+        category_name = _("Include")
+        ##########################
+        
+        generations = BooleanOption(_("Generation numbers "
+                                      "(recursive only)"),True)
+        generations.set_help(_("Whether to include the generation on each "
+                               "report (recursive only)."))
+        menu.add_option(category_name,"generations",generations)
+        
+        incParEvents = BooleanOption(_("Parent Events"),False)
+        incParEvents.set_help(_("Whether to include events for parents."))
+        menu.add_option(category_name,"incParEvents",incParEvents)
+        
+        incParAddr = BooleanOption(_("Parent Addresses"),False)
+        incParAddr.set_help(_("Whether to include addresses for parents."))
+        menu.add_option(category_name,"incParAddr",incParAddr)
+        
+        incParNotes = BooleanOption(_("Parent Notes"),False)
+        incParNotes.set_help(_("Whether to include notes for parents."))
+        menu.add_option(category_name,"incParNotes",incParNotes)
+        
+        incattrs = BooleanOption(_("Parent Attributes"),False)
+        incattrs.set_help(_("Whether to include attributes."))
+        menu.add_option(category_name,"incattrs",incattrs)
+        
+        incParNames = BooleanOption(_("Alternate Parent Names"),False)
+        incParNames.set_help(_("Whether to include alternate "
+                               "names for parents."))
+        menu.add_option(category_name,"incParNames",incParNames)
+        
+        incParMar = BooleanOption(_("Parent Marriage"),False)
+        incParMar.set_help(_("Whether to include marriage information "
+                             "for parents."))
+        menu.add_option(category_name,"incParMar",incParMar)
+        
+        incRelDates = BooleanOption(_("Dates of Relatives"),False)
+        incRelDates.set_help(_("Whether to include dates for relatives "
+                               "(father, mother, spouse)."))
+        menu.add_option(category_name,"incRelDates",incRelDates)
+        
+        incChiMar = BooleanOption(_("Children Marriages"),True)
+        incChiMar.set_help(_("Whether to include marriage information "
+                             "for children."))
+        menu.add_option(category_name,"incChiMar",incChiMar)
+        
+        ##########################
+        category_name = _("Missing Information")
+        ##########################
+                
+        missinginfo = BooleanOption(_("Print fields for missing "
+                                      "information"),True)
+        missinginfo.set_help(_("Whether to include fields for missing "
+                               "information."))
+        menu.add_option(category_name,"missinginfo",missinginfo)
 
     def get_families(self,database,person):
         """
@@ -715,103 +691,6 @@ class FamilyGroupOptions(ReportOptions):
             name = "%s (%s)" % (name,family_id)
             families.append((family_id,name))
         return families
-
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add a menu that allows
-        the user to select the sort method.
-        """
-        
-        families = self.get_families(dialog.db,dialog.person)
-        family_id = self.options_dict['family_id']
-
-        self.spouse_menu = gtk.combo_box_new_text()
-        index = 0
-        family_index = 0
-        for item in families:
-            self.spouse_menu.append_text(item[1])
-            if item[0] == family_id:
-                family_index = index
-            index = index + 1
-        self.spouse_menu.set_active(family_index)
-	
-        # Recursive
-        self.recursive_option = gtk.CheckButton()
-        self.recursive_option.set_active(self.options_dict['recursive'])
-	
-        # Missing Info
-        self.missing_info_option = gtk.CheckButton(_("Print fields for missing information"))
-        self.missing_info_option.set_active(self.options_dict['missinginfo'])
-	
-        # Generations
-        self.include_generations_option = gtk.CheckButton(_("Generation numbers (recursive only)"))
-        self.include_generations_option.set_active(self.options_dict['generations'])
-	
-        # Parental Events
-        self.include_par_events_option = gtk.CheckButton(_("Parent Events"))
-        self.include_par_events_option.set_active(self.options_dict['incParEvents'])
-        
-        # Parental Addresses
-        self.include_par_addr_option = gtk.CheckButton(_("Parent Addresses"))
-        self.include_par_addr_option.set_active(self.options_dict['incParAddr'])
-	
-        # Parental Notes
-        self.include_par_notes_option = gtk.CheckButton(_("Parent Notes"))
-        self.include_par_notes_option.set_active(self.options_dict['incParNotes'])
-        
-        # Parental Attributes
-        self.include_attributes_option = gtk.CheckButton(_("Parent Attributes"))
-        self.include_attributes_option.set_active(self.options_dict['incattrs'])
-        
-        # Parental Names
-        self.include_par_names_option = gtk.CheckButton(_("Alternate Parent Names"))
-        self.include_par_names_option.set_active(self.options_dict['incParNames'])
-        
-        # Parental Marriage
-        self.include_par_marriage_option = gtk.CheckButton(_("Parent Marriage"))
-        self.include_par_marriage_option.set_active(self.options_dict['incParMar'])
-        
-        # Relatives Dates
-        self.include_rel_dates_option = gtk.CheckButton(_("Dates of Relatives (father, mother, spouse)"))
-        self.include_rel_dates_option.set_active(self.options_dict['incRelDates'])
-
-        # Children Marriages
-        self.include_chi_marriage_option = gtk.CheckButton(_("Children Marriages"))
-        self.include_chi_marriage_option.set_active(self.options_dict['incChiMar'])
-
-        dialog.add_option(_("Spouse"),self.spouse_menu)
-        dialog.add_option(_("Recursive"),self.recursive_option)
-        dialog.add_frame_option(_('Include'),'',self.include_generations_option)
-        dialog.add_frame_option(_('Include'),'',self.include_par_events_option)
-        dialog.add_frame_option(_('Include'),'',self.include_par_addr_option)
-        dialog.add_frame_option(_('Include'),'',self.include_par_notes_option)
-        dialog.add_frame_option(_('Include'),'',self.include_attributes_option)
-        dialog.add_frame_option(_('Include'),'',self.include_par_names_option)
-        dialog.add_frame_option(_('Include'),'',self.include_par_marriage_option)
-        dialog.add_frame_option(_('Include'),'',self.include_chi_marriage_option)
-        dialog.add_frame_option(_('Include'),'',self.include_rel_dates_option)
-        dialog.add_frame_option(_('Missing Information'),'',self.missing_info_option)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        families = self.get_families(dialog.db,dialog.person)
-        family_index = self.spouse_menu.get_active()
-        if families:
-            self.options_dict['family_id'] = families[family_index][0]
-	    
-        self.options_dict['recursive']    = int(self.recursive_option.get_active())
-        self.options_dict['missinginfo']  = int(self.missing_info_option.get_active())
-        self.options_dict['generations']  = int(self.include_generations_option.get_active())
-        self.options_dict['incParEvents'] = int(self.include_par_events_option.get_active())
-        self.options_dict['incParAddr']   = int(self.include_par_addr_option.get_active())
-        self.options_dict['incParNotes']  = int(self.include_par_notes_option.get_active())
-        self.options_dict['incattrs'] = int(self.include_attributes_option.get_active())
-        self.options_dict['incParNames']  = int(self.include_par_names_option.get_active())
-        self.options_dict['incParMar']    = int(self.include_par_marriage_option.get_active())
-        self.options_dict['incChiMar']    = int(self.include_chi_marriage_option.get_active())
-        self.options_dict['incRelDates']  = int(self.include_rel_dates_option.get_active())
 
     def make_default_style(self,default_style):
         """Make default output style for the Family Group Report."""

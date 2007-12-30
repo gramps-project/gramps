@@ -659,10 +659,10 @@ class DetAncestorOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        MenuReportOptions.__init__(self,name,person_id)
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
         
-    def add_menu_options(self,menu):
+    def add_menu_options(self,menu,dbstate):
         category_name = _("Report Options")
         
         gen = NumberOption(_("Generations"),10,1,100)

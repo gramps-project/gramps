@@ -315,12 +315,12 @@ class FanChart(Report):
 #------------------------------------------------------------------------
 class FanChartOptions(MenuReportOptions):
 
-    def __init__(self,name,person_id=None):
+    def __init__(self,name,dbstate=None):
         self.MAX_GENERATIONS = 8
         
-        MenuReportOptions.__init__(self,name,person_id)
+        MenuReportOptions.__init__(self,name,dbstate)
         
-    def add_menu_options(self,menu):
+    def add_menu_options(self,menu,dbstate):
         category_name = _("Report Options")
         
         max_gen = NumberOption(_("Generations"),5,1,self.MAX_GENERATIONS)

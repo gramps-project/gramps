@@ -30,7 +30,7 @@
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
 from PluginUtils import register_report, NumberOption, BooleanOption, TextOption
-from ReportBase import Report, ReportOptions, MenuReportOptions, \
+from ReportBase import Report, MenuReportOptions, \
     ReportUtils, CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
 from gettext import gettext as _
@@ -397,8 +397,8 @@ class DescendChartOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        MenuReportOptions.__init__(self,name,person_id)
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu):
         category_name = _("Report Options")

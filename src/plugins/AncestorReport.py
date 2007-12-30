@@ -38,7 +38,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import register_report, NumberOption, BooleanOption
-from ReportBase import Report, ReportUtils, ReportOptions, MenuReportOptions, \
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 from BasicUtils import name_displayer
@@ -222,10 +222,10 @@ class AncestorOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        MenuReportOptions.__init__(self,name,person_id)
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
         
-    def add_menu_options(self,menu):
+    def add_menu_options(self,menu,dbstate):
         category_name = _("Report Options")
         
         maxgen = NumberOption(_("Generations"),10,1,15)

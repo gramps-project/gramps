@@ -1435,5 +1435,6 @@ register_report(
     report_class    = FamilyLinesDialog,                    # class which will create everything needed for the report
     options_class   = None,
     translated_name = _("Family Lines Graph"),
+    unsupported     = True
     )
 

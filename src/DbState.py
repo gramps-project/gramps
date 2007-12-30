@@ -119,3 +119,9 @@ class DbState(GrampsDBCallback):
         self.active = None
         self.open = False
         self.emit('database-changed', (self.db, ))
+        
+    def get_database(self):
+        """
+        Gets a reference to the current database.
+        """
+        return self.db

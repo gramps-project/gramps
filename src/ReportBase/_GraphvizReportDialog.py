@@ -127,7 +127,6 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         self.rankdir        = _RANKDIR[ self.options['rank_dir'     ]]['value']
         self.ranksep        =           self.options['ranksep'      ]
         self.ratio          = _RATIO[   self.options['ratio'        ]]['value']
-        self.usesubgraphs   =           self.options['usesubgraphs' ]
         self.vpages         =           self.options['v_pages'      ]
 
         paper_size          = paper_style.get_size()
@@ -265,6 +264,13 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
             self.dot.write(']')
             
         self.dot.write(';\n')
+        
+    def start_subgraph(self,id):
+        self.dot.write('  subgraph cluster_%s\n' % id)
+        self.dot.write('  {\n')
+    
+    def end_subgraph(self):
+        self.dot.write('  }\n')
 
 #-------------------------------------------------------------------------------
 #
@@ -680,7 +686,7 @@ class GraphvizReportDialog(ReportDialog):
         
     def init_options(self,option_class):
         if type(option_class) == ClassType:
-            self.options = option_class(self.raw_name)
+            self.options = option_class(self.raw_name,self.dbstate)
         elif type(option_class) == InstanceType:
             self.options = option_class
 
@@ -778,17 +784,6 @@ class GraphvizReportDialog(ReportDialog):
                             "between columns."))
         self.options.add_menu_option(category, "ranksep", ranksep)
 
-        usesubgraphs = BooleanOption(_('Use subgraphs'), False)
-        usesubgraphs.set_help(_("Subgraphs can help GraphViz position "
-                                "certain linked nodes closer together, "
-                                "but with non-trivial graphs will result "
-                                "in longer lines and larger graphs."))
-        self.options.add_menu_option(category, "usesubgraphs", usesubgraphs)
-
-        # this control only affects a subset of graphviz-based reports, so we
-        # need to remember it since we'll be toggling the visibility
-        self.usesubgraphs = usesubgraphs
-
         ################################
         category = _("Note")
         ################################
@@ -821,14 +816,6 @@ class GraphvizReportDialog(ReportDialog):
             self.page_dir.combo.set_sensitive(True)
         else:
             self.page_dir.combo.set_sensitive(False)
-        
-    def report_allows_subgraphs(self, state):
-        # if your report can take advantage of subgraphs, call this
-        # method to allow the users to toggle the state of subgraphs
-        if state:
-            self.usesubgraphs.gobj.show()
-        else:
-            self.usesubgraphs.gobj.hide()
 
     def init_interface(self):
         ReportDialog.init_interface(self)
@@ -842,10 +829,6 @@ class GraphvizReportDialog(ReportDialog):
         self.h_pages.gobj.connect('value-changed', self.pages_changed)
         self.v_pages.gobj.connect('value-changed', self.pages_changed)
         self.pages_changed(self.h_pages.gobj)
-
-        # note that the "use subgraph" option isn't used by many reports,
-        # so we'll hide it unless a reports specifically asks for it
-        self.report_allows_subgraphs(False)
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog."""

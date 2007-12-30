@@ -87,7 +87,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         
     def init_options(self,option_class):
         if type(option_class) == ClassType:
-            self.options = option_class(self.raw_name)
+            self.options = option_class(self.raw_name,self.dbstate)
         elif type(option_class) == InstanceType:
             self.options = option_class
 

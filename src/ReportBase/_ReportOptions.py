@@ -663,8 +663,12 @@ class MenuReportOptions(MenuOptions,ReportOptions):
     MenuReportOptions class will worry about setting up the GUI.
 
     """
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name, person_id)
-        MenuOptions.__init__(self)
+    def __init__(self,name,dbstate=None):
+        if dbstate:
+            active_person = dbstate.get_active_person().get_gramps_id()
+        else:
+            active_person = None
+        ReportOptions.__init__(self,name,active_person)
+        MenuOptions.__init__(self,dbstate)
 
 

@@ -51,7 +51,7 @@ import Errors
 class CalcEstDateOptions(MenuToolOptions):
     """ Calculate Estimated Date options  """
     
-    def add_menu_options(self, menu):
+    def add_menu_options(self, menu, dbstate):
         """ Adds the options """
         category_name = _("Options")
 

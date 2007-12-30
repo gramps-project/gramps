@@ -58,6 +58,6 @@ class MenuToolOptions(MenuOptions,Tool.ToolOptions):
     """
     def __init__(self,name,person_id=None):
         Tool.ToolOptions.__init__(self,name, person_id)
-        MenuOptions.__init__(self)
+        MenuOptions.__init__(self,None)
 
 

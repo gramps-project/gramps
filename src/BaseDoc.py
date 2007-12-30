@@ -1599,3 +1599,22 @@ class GVDoc:
         @return: nothing
         """
         raise NotImplementedError
+    
+    def start_subgraph(self,id):
+        """
+        Start a subgraph in this graph.
+        
+        @param id: The unique identifier of the subgraph.
+            Example: "p55"
+        @type id1: string
+        @return: nothing
+        """
+        raise NotImplementedError
+    
+    def end_subgraph(self):
+        """
+        End a subgraph that was previously started in this graph.
+
+        @return: nothing
+        """
+        raise NotImplementedError

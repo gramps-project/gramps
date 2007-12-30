@@ -35,7 +35,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 from BasicUtils import name_displayer
@@ -207,13 +207,21 @@ class EndOfLineReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-class EndOfLineOptions(ReportOptions):
+#------------------------------------------------------------------------
+#
+# EndOfLineOptions
+#
+#------------------------------------------------------------------------
+class EndOfLineOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
+        
+    def add_menu_options(self,menu,dbstate):
+        pass
 
     def make_default_style(self,default_style):
         """Make the default output style for the End of Line Report."""

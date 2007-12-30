@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007  Stephane Charette
+# Copyright (C) 2007  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -101,16 +102,18 @@ class FamilyLinesOptions(MenuReportOptions):
     Defines all of the controls necessary
     to configure the FamilyLines reports.
     """
-    def __init__(self, name, person_id=None):
-        MenuReportOptions.__init__(self, name, person_id)
+    def __init__(self, name, dbstate=None):
+        MenuReportOptions.__init__(self, name, dbstate)
 
-    def add_menu_options(self, menu):
+    def add_menu_options(self, menu,dbstate):
 
         # --------------------------------
         category = _('People of Interest')
         # --------------------------------
 
-        peoplePicker = PeoplePickerOption(  _('People of interest'), '', None)  # todo, fixme: need access to the database (3rd parm)
+        peoplePicker = PeoplePickerOption(  _('People of interest'), 
+                                            '', 
+                                            dbstate )
         peoplePicker.set_help(              _('People of interest are used as a starting point when determining \"family lines\".'))
         menu.add_option(category, 'FLgidlist', peoplePicker)
 
@@ -205,6 +208,13 @@ class FamilyLinesOptions(MenuReportOptions):
         includePrivate = BooleanOption(     _('Include private records'), False)
         includePrivate.set_help(            _('Whether to include names, dates, and families that are marked as private.'))
         menu.add_option(category, 'FLincludePrivate', includePrivate)
+        
+        usesubgraphs = BooleanOption(_('Use subgraphs'), False)
+        usesubgraphs.set_help(_("Subgraphs can help GraphViz position "
+                                "certain linked nodes closer together, "
+                                "but with non-trivial graphs will result "
+                                "in longer lines and larger graphs."))
+        menu.add_option(category, "usesubgraphs", usesubgraphs)
 
 
 #------------------------------------------------------------------------
@@ -223,6 +233,7 @@ class FamilyLinesReport(Report):
         person      - currently selected person
         options     - instance of the FamilyLinesOptions class for this report
         """
+        Report.__init__(self,database,person,options)
 
         # initialize several convenient variables
         self.options            = options
@@ -232,10 +243,7 @@ class FamilyLinesReport(Report):
         self.deletedPeople      = 0
         self.deletedFamilies    = 0
 
-        # inherited from parent; see "usesubgraphs" in _GraphvizReportDialog.py
         self.useSubgraphs       = options.handler.options_dict['usesubgraphs'           ]   
-
-        # the remainder of the options are specific to this report
         self.followParents      = options.handler.options_dict['FLfollowParents'        ]
         self.followChildren     = options.handler.options_dict['FLfollowChildren'       ]
         self.removeExtraPeople  = options.handler.options_dict['FLremoveExtraPeople'    ]
@@ -714,11 +722,7 @@ class FamilyLinesReport(Report):
             if imagePath:
                 label += '</TD></TR></TABLE>'
 
-            if bUseHtmlOutput:
-                label = '<%s>' % label
-            else:
-                label = '"%s"' % label
-            self.write('  %s [shape="box", fillcolor="%s", label=%s];\n' % (person.get_gramps_id(), colour, label))
+            self.doc.add_node(person.get_gramps_id(),label,"box","","filled",colour)
 
 
     def writeFamilies(self):
@@ -778,12 +782,12 @@ class FamilyLinesReport(Report):
                 if label != '':
                     label += '\\n'
                 label += '%s' % childrenStr
-            self.write('  %s [shape="ellipse", fillcolor="%s", label="%s"];\n' % (fgid, self.colourFamilies, label))
+            self.doc.add_node(fgid,label,"ellipse","","filled",self.colourFamilies)
+            
 
         # now that we have the families written, go ahead and link the parents and children to the families
         for familyHandle in self.familiesToOutput:
             self.progress.step()
-            self.write('\n')
 
             # get the parents for this family
             family = self.db.get_family_from_handle(familyHandle)
@@ -792,29 +796,28 @@ class FamilyLinesReport(Report):
             motherHandle = family.get_mother_handle()
 
             if self.useSubgraphs and fatherHandle and motherHandle:
-                self.write('  subgraph cluster_%s\n' % fgid)
-                self.write('  {\n')
+                self.doc.start_subgraph(fgid)
 
             # see if we have a father to link to this family
             if fatherHandle:
                 if fatherHandle in self.peopleToOutput:
                     father = self.db.get_person_from_handle(fatherHandle)
-                    self.write('  %s -> %s // father: %s\n' % (fgid, father.get_gramps_id(), father.get_primary_name().get_regular_name()))
+                    self.doc.add_link(fgid, father.get_gramps_id())
 
             # see if we have a mother to link to this family
             if motherHandle:
                 if motherHandle in self.peopleToOutput:
                     mother = self.db.get_person_from_handle(motherHandle)
-                    self.write('  %s -> %s // mother: %s\n' % (fgid, mother.get_gramps_id(), mother.get_primary_name().get_regular_name()))
+                    self.doc.add_link(fgid, mother.get_gramps_id())
 
             if self.useSubgraphs and fatherHandle and motherHandle:
-                self.write('  }\n')
+                self.doc.end_subgraph()
 
             # link the children to the family
             for childRef in family.get_child_ref_list():
                 if childRef.ref in self.peopleToOutput:
                     child = self.db.get_person_from_handle(childRef.ref)
-                    self.write('  %s -> %s // child:  %s\n' % (child.get_gramps_id(), fgid, child.get_primary_name().get_regular_name()))
+                    self.doc.add_link(child.get_gramps_id(), fgid)
 
 
 #------------------------------------------------------------------------

@@ -31,6 +31,7 @@ import gobject
 import _Tool as Tool
 import GrampsWidgets
 from Selectors import selector_factory
+from BasicUtils import name_displayer as _nd
 
 #-------------------------------------------------------------------------
 #
@@ -595,7 +596,7 @@ class PeoplePickerOption(Option):
     This class describes a widget that allows
     people from the database to be selected.
     """
-    def __init__(self, label, value, db):
+    def __init__(self, label, value, dbstate):
         """
         @param label: A friendly label to be applied to this option.
             Example: "People of interest"
@@ -605,13 +606,16 @@ class PeoplePickerOption(Option):
         @type value: set()
         @return: nothing
         """
-        self.db = db
+        self.db = dbstate.get_database()
+        self.dbstate = dbstate
         Option.__init__(self,label,value)
 
     def make_gui_obj(self, gtk, dialog):
         """
         Add a "people picker" widget to the dialog.
         """
+        self.dialog = dialog
+        
         value = self.get_value()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.treeView = gtk.TreeView(self.model)
@@ -633,14 +637,11 @@ class PeoplePickerOption(Option):
         self.hbox = gtk.HBox()
         self.hbox.pack_start(self.scrolledWindow, expand=True, fill=True)
 
-        if not self.db:
-            print "PROBLEM: from where can I obtain or pass in a db parm?"
-        else:
-            for gid in value.split():
-                person = self.db.get_person_from_gramps_id(gid)
-                if person:
-                    name = _nd.display(person)
-                    self.model.append([name, gid])
+        for gid in value.split():
+            person = self.db.get_person_from_gramps_id(gid)
+            if person:
+                name = _nd.display(person)
+                self.model.append([name, gid])
 
         # now setup the '+' and '-' pushbutton for adding/removing people from the container
         self.addPerson = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, self.addPersonClicked)
@@ -669,9 +670,6 @@ class PeoplePickerOption(Option):
     def addPersonClicked(self, obj):
         # people we already have must be excluded
         # so we don't list them multiple times
-        if not self.db:
-            print "PROBLEM: this method needs a db parm, and various other things like db, uistate, and track!"
-
         skipList = set()
         iter = self.model.get_iter_first()
         while (iter):
@@ -681,7 +679,7 @@ class PeoplePickerOption(Option):
             iter = self.model.iter_next(iter)
 
         SelectPerson = selector_factory('Person')
-        sel = SelectPerson(self.dbstate, self.uistate, self.track, skip=skipList)
+        sel = SelectPerson(self.dbstate, self.dialog.uistate, self.dialog.track, skip=skipList)
         person = sel.run()
         if person:
             name = _nd.display(person)
@@ -694,12 +692,18 @@ class PeoplePickerOption(Option):
             if familyList:
                 for familyHandle in familyList:
                     family = self.db.get_family_from_handle(familyHandle)
-                    spouseHandle = ReportUtils.find_spouse(person, family)
+                    
+                    if person.get_handle() == family.get_father_handle():
+                        spouseHandle = family.get_mother_handle()
+                    else:
+                        spouseHandle = family.get_father_handle()
+
                     if spouseHandle:
                         if spouseHandle not in skipList:
+                            import gtk
                             spouse = self.db.get_person_from_handle(spouseHandle)
                             text = _('Also include %s?') % spouse.get_primary_name().get_regular_name()
-                            prompt = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_MODAL, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO, message_format=text)
+                            prompt = gtk.MessageDialog(parent=self.dialog.window, flags=gtk.DIALOG_MODAL, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO, message_format=text)
                             prompt.set_default_response(gtk.RESPONSE_YES)
                             prompt.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
                             prompt.set_title(_('Select Person'))
@@ -826,13 +830,13 @@ class Menu:
 #
 #------------------------------------------------------------------------
 class MenuOptions:
-    def __init__(self):
+    def __init__(self,dbstate):
         self.menu = Menu()
         
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}
         self.options_help = {}
-        self.add_menu_options(self.menu)
+        self.add_menu_options(self.menu,dbstate)
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
@@ -841,7 +845,7 @@ class MenuOptions:
     def make_default_style(self,default_style):
         pass
 
-    def add_menu_options(self,menu):
+    def add_menu_options(self,menu,dbstate):
         """
         Add the user defined options to the menu.
         
