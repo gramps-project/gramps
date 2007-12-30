@@ -205,14 +205,14 @@ class Gadget(object):
         if debug: print "%s is connecting" % self.gui.title
         pass
 
-    def link(self, text, data):
+    def link(self, text, link_type, data):
         buffer = self.gui.buffer
         iter = buffer.get_end_iter()
         offset = buffer.get_char_count()
         self.append_text(text)
         start = buffer.get_iter_at_offset(offset)
         end = buffer.get_end_iter()
-        self._tags.append((LinkTag(buffer),data))
+        self._tags.append((LinkTag(buffer), link_type, data))
         buffer.apply_tag(self._tags[-1][0], start, end)
 
     def get_text(self):
@@ -307,7 +307,7 @@ class Gadget(object):
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
         cursor = self.standard_cursor
-        for (tag, person_handle) in self._tags:
+        for (tag, link_type, handle) in self._tags:
             if iter.has_tag(tag):
                 tag.set_property('underline', pango.UNDERLINE_SINGLE)
                 cursor = self.link_cursor
@@ -322,20 +322,25 @@ class Gadget(object):
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
-        for (tag, person_handle) in self._tags:
+        for (tag, link_type, handle) in self._tags:
             if iter.has_tag(tag):
-                person = self.dbstate.db.get_person_from_handle(person_handle)
-                if person == None:
-                    pass
-                elif event.button == 1:
-                    if event.type == gtk.gdk._2BUTTON_PRESS:
-                        try:
-                            EditPerson(self.gui.dbstate, self.gui.uistate, [], person)
-                        except Errors.WindowActiveError:
-                            pass
-                    else:
-                        self.gui.dbstate.change_active_person(person)
-                    return True # handled event
+                if link_type == 'Person':
+                    person = self.dbstate.db.get_person_from_handle(handle)
+                    if person != None:
+                        if event.button == 1: # left mouse
+                            if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                                try:
+                                    EditPerson(self.gui.dbstate, 
+                                               self.gui.uistate, 
+                                               [], person)
+                                    return True # handled event
+                                except Errors.WindowActiveError:
+                                    pass
+                            else: # single click
+                                self.gui.dbstate.change_active_person(person)
+                                return True # handled event
+                elif link_type == 'Surname':
+                    return True
         return False # did not handle event
         
 def logical_true(value):

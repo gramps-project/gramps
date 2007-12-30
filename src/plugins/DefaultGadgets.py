@@ -153,9 +153,10 @@ class LogGadget(Gadget):
                 self.history[ltype + ": " + person_handle] = 1
                 person = self.dbstate.db.get_person_from_handle(person_handle)
                 if person:
-                    self.link(name_displayer.display(person), person_handle)
+                    self.link(name_displayer.display(person), 'Person', 
+                              person_handle)
                 else:
-                    self.link("Unknown", person_handle)
+                    self.link("Unknown", 'Person', person_handle)
                 self.append_text("\n")
 
 class TopSurnamesGadget(Gadget):
@@ -204,9 +205,10 @@ class TopSurnamesGadget(Gadget):
         ### All done!
         self.set_text("")
         for (count, surname) in surname_sort:
-            self.append_text("  %d. %s, %d%% (%d)\n" % 
-                             (line + 1, surname, 
-                              int((float(count)/total) * 100), count))
+            self.append_text("  %d. " % (line + 1))
+            self.link(surname, 'Surname', surname)
+            self.append_text(", %d%% (%d)\n" % 
+                             (int((float(count)/total) * 100), count))
             line += 1
             if line >= self.top_size:
                 break
