@@ -874,6 +874,9 @@ class MyGrampsView(PageView.PageView):
     def add_gadget(self, obj):
         name = obj.get_child().get_label()
         all_opts = get_gadget_options_by_name(name)
+        if all_opts == None:
+            print "Unknown gadget type: '%s'; bad gadgets.ini file?" % name
+            return
         if "title" not in all_opts:
             all_opts["title"] = "Untitled Gadget"
         # uniqify titles:
