@@ -67,7 +67,7 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, CATEGORY_CODE, MODE_GUI, MODE_CLI
 from ReportBase import Report, MenuReportOptions, MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from ReportBase._ReportDialog import ReportDialog
-from PluginUtils import register_report, FilterListOption, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PeoplePickerOption
+from PluginUtils import register_report, FilterListOption, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption
 from QuestionDialog import ErrorDialog, WarningDialog
 
 #from NameDisplay import displayer as _nd       # Gramps version <  3.0
@@ -111,7 +111,7 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('People of Interest')
         # --------------------------------
 
-        peoplePicker = PeoplePickerOption(  _('People of interest'), 
+        peoplePicker = PersonListOption(  _('People of interest'), 
                                             '', 
                                             dbstate )
         peoplePicker.set_help(              _('People of interest are used as a starting point when determining \"family lines\".'))

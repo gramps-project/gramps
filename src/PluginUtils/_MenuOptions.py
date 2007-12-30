@@ -588,13 +588,13 @@ class FilterListOption(Option):
 
 #-------------------------------------------------------------------------
 #
-# PeoplePickerOption class
+# PersonListOption class
 #
 #-------------------------------------------------------------------------
-class PeoplePickerOption(Option):
+class PersonListOption(Option):
     """
-    This class describes a widget that allows
-    people from the database to be selected.
+    This class describes a widget that allows multiple people from the 
+    database to be selected.
     """
     def __init__(self, label, value, dbstate):
         """
