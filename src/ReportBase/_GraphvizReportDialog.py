@@ -155,36 +155,39 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         sizew = sizew * self.hpages         
         sizeh = sizeh * self.vpages
                       
-        self.dot.write( 'digraph GRAMPS_graph\n'        )
-        self.dot.write( '{\n'                           )
-        self.dot.write( '  bgcolor=white;\n'            )
-        self.dot.write( '  center="true"; \n'           )
-        self.dot.write( '  charset="iso-8859-1";\n'     )
-        self.dot.write( '  concentrate="false";\n'      )
-        self.dot.write( '  dpi="%d";\n'                 % self.dpi          )
-        self.dot.write( '  graph [fontsize=%d];\n'      % self.fontsize     )
-        self.dot.write( '  mclimit="99";\n'             )
-        self.dot.write( '  nodesep="%.2f";\n'           % self.nodesep      )
-        self.dot.write( '  outputorder="edgesfirst";\n' )
-        self.dot.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
-        self.dot.write( '  pagedir="%s";\n'             % self.pagedir      )
-        self.dot.write( '  rankdir="%s";\n'             % self.rankdir      )
-        self.dot.write( '  ranksep="%.2f";\n'           % self.ranksep      )
-        self.dot.write( '  ratio="%s";\n'               % self.ratio        )
-        self.dot.write( '  rotate="%d";\n'              % rotate            )
-        self.dot.write( '  searchsize="100";\n'         )
-        self.dot.write( '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh)    )
-        self.dot.write( '  splines="true";\n'           )
-        self.dot.write( '\n'                            )
-        self.dot.write( '  edge [len=0.5 style=solid arrowhead=none '
+        self.write( 'digraph GRAMPS_graph\n'        )
+        self.write( '{\n'                           )
+        self.write( '  bgcolor=white;\n'            )
+        self.write( '  center="true"; \n'           )
+        self.write( '  charset="iso-8859-1";\n'     )
+        self.write( '  concentrate="false";\n'      )
+        self.write( '  dpi="%d";\n'                 % self.dpi          )
+        self.write( '  graph [fontsize=%d];\n'      % self.fontsize     )
+        self.write( '  mclimit="99";\n'             )
+        self.write( '  nodesep="%.2f";\n'           % self.nodesep      )
+        self.write( '  outputorder="edgesfirst";\n' )
+        self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
+        self.write( '  pagedir="%s";\n'             % self.pagedir      )
+        self.write( '  rankdir="%s";\n'             % self.rankdir      )
+        self.write( '  ranksep="%.2f";\n'           % self.ranksep      )
+        self.write( '  ratio="%s";\n'               % self.ratio        )
+        self.write( '  rotate="%d";\n'              % rotate            )
+        self.write( '  searchsize="100";\n'         )
+        self.write( '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh)    )
+        self.write( '  splines="true";\n'           )
+        self.write( '\n'                            )
+        self.write( '  edge [len=0.5 style=solid arrowhead=none '
                             'arrowtail=normal fontsize=%d];\n' % self.fontsize )
         if self.fontfamily:
-            self.dot.write( '  node [style=filled fontname="%s" fontsize=%d];\n' 
+            self.write( '  node [style=filled fontname="%s" fontsize=%d];\n' 
                             % ( self.fontfamily, self.fontsize ) )
         else:
-            self.dot.write( '  node [style=filled fontsize=%d];\n' 
+            self.write( '  node [style=filled fontsize=%d];\n' 
                             % self.fontsize )
-        self.dot.write( '\n' )
+        self.write( '\n' )
+
+    def write(self, text):
+        self.dot.write(text.encode('iso-8859-1','xmlcharrefreplace'))
 
     def open(self, filename):
         self.filename = os.path.normpath(os.path.abspath(filename))
@@ -195,14 +198,14 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         actually generate a file.
         """
         if self.note:
-            self.dot.write( 'labelloc="%s";\n' % self.noteloc )
-            self.dot.write( 'label="' )
+            self.write( 'labelloc="%s";\n' % self.noteloc )
+            self.write( 'label="' )
             for line in self.note:
-                self.dot.write( '%s\\n' % line.replace('"', '\\\"') )
-            self.dot.write( '";\n')
-            self.dot.write( 'fontsize="%d";\n' % self.notesize )
+                self.write( '%s\\n' % line.replace('"', '\\\"') )
+            self.write( '";\n')
+            self.write( 'fontsize="%d";\n' % self.notesize )
         
-        self.dot.write( '}'  )
+        self.write( '}'  )
     
     def add_node(self, id, label, shape="", color = "", 
                  style="", fillcolor="", url="" ):
@@ -237,7 +240,7 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
 
         line += '];\n'
 
-        self.dot.write(line)
+        self.write(line)
         
     def add_link(self, id1, id2, style="", head="", tail=""):
         """
@@ -245,32 +248,32 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         
         Implementes BaseDoc.GVDoc.add_link().
         """
-        self.dot.write('  "%s" -> "%s"' % (id1, id2))
+        self.write('  "%s" -> "%s"' % (id1, id2))
         
         if style or head or tail:
-            self.dot.write(' [')
+            self.write(' [')
             
             if style:
-                self.dot.write('style=%s' % style)
+                self.write('style=%s' % style)
             if head:
                 if style:
-                    self.dot.write(', ')
-                self.dot.write('arrowhead=%s' % head)
+                    self.write(', ')
+                self.write('arrowhead=%s' % head)
             if tail:
                 if style or head:
-                    self.dot.write(', ')
-                self.dot.write('arrowtail=%s' % tail)
+                    self.write(', ')
+                self.write('arrowtail=%s' % tail)
                 
-            self.dot.write(']')
+            self.write(']')
             
-        self.dot.write(';\n')
+        self.write(';\n')
         
     def start_subgraph(self,id):
-        self.dot.write('  subgraph cluster_%s\n' % id)
-        self.dot.write('  {\n')
+        self.write('  subgraph cluster_%s\n' % id)
+        self.write('  {\n')
     
     def end_subgraph(self):
-        self.dot.write('  }\n')
+        self.write('  }\n')
 
 #-------------------------------------------------------------------------------
 #
