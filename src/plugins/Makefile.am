@@ -19,6 +19,7 @@ pkgdata_PYTHON = \
 	Checkpoint.py\
 	CountAncestors.py\
 	CustomBookText.py\
+	DefaultGadgets.py\
 	Desbrowser.py\
 	DescendChart.py\
 	DescendReport.py\
@@ -50,6 +51,7 @@ pkgdata_PYTHON = \
 	MarkerReport.py\
 	MediaManager.py\
 	NarrativeWeb.py\
+	OnThisDay.py\
 	OwnerEditor.py\
 	PatchNames.py\
 	ReadGrdb.py\
@@ -74,6 +76,7 @@ pkgdata_PYTHON = \
 	rel_sv.py\
 	RemoveUnused.py\
 	ReorderIds.py\
+	SameSurnames.py\
 	siblings.py\
 	SimpleBookTitle.py\
 	SoundGen.py\

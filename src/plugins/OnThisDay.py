@@ -27,21 +27,39 @@ from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_EVENT
+import gen.lib
 
-def backlink(database, objclass, handle):
+def get_ref(db, objclass, handle):
+    """
+    Looks up object in database
+    """
     if objclass == 'Person':
-        ref = database.get_person_from_handle(handle)
+        ref = db.get_person_from_handle(handle)
+    elif objclass == 'Family':
+        ref = db.get_family_from_handle(handle)
+    elif objclass == 'Event':
+        ref = db.get_event_from_handle(handle)
+    elif objclass == 'Source':
+        ref = db.get_source_from_handle(handle)
+    elif objclass == 'Place':
+        ref = db.get_place_from_handle(handle)
+    elif objclass == 'Repository':
+        ref = db.get_repository_from_handle(handle)
     else:
         ref = objclass
     return ref
 
 def run(database, document, main_event):
     """
-    Loops through the families that the person is a child in, and display
-    the information about the other children.
+    Displays events on a specific date of an event (or date)
     
-    Takes an Event handle
+    Takes an Event or Date object
     """
+    if isinstance(main_event, gen.lib.Date):
+        main_date = main_event
+    else:
+        main_date = main_event.get_date_object()
+
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
@@ -49,10 +67,9 @@ def run(database, document, main_event):
     yeartab = SimpleTable(sdb, sdoc)
     histab = SimpleTable(sdb, sdoc)
 
-    main_date = main_event.get_date_object()
-
     # display the title
-    sdoc.title(_("Events of %s") % sdb.date_string(main_date))
+    sdoc.title(_("Events of %(date)s") % 
+               {"date": sdb.date_string(main_date)})
     sdoc.paragraph("")
     stab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
     yeartab.columns(_("Date"), _("Type"), _("Place"), _("Reference"))
@@ -67,7 +84,7 @@ def run(database, document, main_event):
             date.get_month() == main_date.get_month() and
             date.get_day() == main_date.get_day()):
             for (objclass, handle) in database.find_backlink_handles(event_handle):
-                ref = backlink(database, objclass, handle)
+                ref = get_ref(database, objclass, handle)
                 stab.row(date, 
                          sdb.event_type(event), 
                          sdb.event_place(event), ref)
@@ -75,32 +92,46 @@ def run(database, document, main_event):
               date.get_day() == main_date.get_day() and
               date.get_month() != 0):
             for (objclass, handle) in database.find_backlink_handles(event_handle):
-                ref = backlink(database, objclass, handle)
+                ref = get_ref(database, objclass, handle)
                 histab.row(date, 
                            sdb.event_type(event), 
                            sdb.event_place(event), ref)
         elif (date.get_year() == main_date.get_year()):
             for (objclass, handle) in database.find_backlink_handles(event_handle):
-                ref = backlink(database, objclass, handle)
+                ref = get_ref(database, objclass, handle)
                 yeartab.row(date, 
                             sdb.event_type(event), 
                             sdb.event_place(event), ref)
 
-    stab.write()
-
+    if stab.get_row_count() > 0:
+        sdoc.paragraph(_("Events on this exact date"))
+        stab.write()
+    else:
+        sdoc.paragraph(_("No events on this exact date"))
+        sdoc.paragraph("")
     sdoc.paragraph("")
+
     if histab.get_row_count() > 0:
-        sdoc.paragraph(_("Other events on this day in history"))
+        sdoc.paragraph(_("Other events on this month/day in history"))
         histab.write()
-
+    else:
+        sdoc.paragraph(_("No other events on this month/day in history"))
+        sdoc.paragraph("")
     sdoc.paragraph("")
+
     if yeartab.get_row_count() > 0:
-        sdoc.paragraph(_("Other events in %d") % main_date.get_year())
+        sdoc.paragraph(_("Other events in %(year)d") % 
+                       {"year":main_date.get_year()})
         yeartab.write()
+    else:
+        sdoc.paragraph(_("No other events in %(year)d") % 
+                       {"year":main_date.get_year()})
+        sdoc.paragraph("")
+    sdoc.paragraph("")
                     
 #------------------------------------------------------------------------
 #
-# 
+# Register the report
 #
 #------------------------------------------------------------------------
 register_quick_report(

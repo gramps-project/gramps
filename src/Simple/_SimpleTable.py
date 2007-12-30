@@ -108,6 +108,7 @@ class SimpleTable:
         """
         Add a row of data.
         """
+        # FIXME: add data and/or linkable types for all
         retval = [] 
         link   = None
         for item in data:
@@ -117,16 +118,22 @@ class SimpleTable:
                 name = self.access.name(item)
                 retval.append(name)
                 link = ('Person', item.handle)
-            elif isinstance(item, gen.lib.Family): pass
-            elif isinstance(item, gen.lib.Source): pass
+            elif isinstance(item, gen.lib.Family): 
+                retval.append(_('Family'))
+            elif isinstance(item, gen.lib.Source): 
+                retval.append(_('Source'))
             elif isinstance(item, gen.lib.Event):
                 name = self.access.event_type(item)
                 retval.append(name)
                 link = ('Event', item.handle)
-            elif isinstance(item, gen.lib.MediaObject): pass
-            elif isinstance(item, gen.lib.Place): pass
-            elif isinstance(item, gen.lib.Repository): pass
-            elif isinstance(item, gen.lib.Note): pass
+            elif isinstance(item, gen.lib.MediaObject):
+                retval.append(_('Media'))
+            elif isinstance(item, gen.lib.Place):
+                retval.append(_('Place'))
+            elif isinstance(item, gen.lib.Repository):
+                retval.append(_('Repository'))
+            elif isinstance(item, gen.lib.Note):
+                retval.append(_('Note'))
             elif isinstance(item, gen.lib.Date):
                 text = DateHandler.displayer.display(item)
                 retval.append(text)

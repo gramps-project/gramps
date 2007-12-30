@@ -73,6 +73,7 @@ src/DataViews/EventView.py
 src/DataViews/FamilyList.py
 src/DataViews/__init__.py
 src/DataViews/MediaView.py
+src/DataViews/MyGrampsView.py
 src/DataViews/NoteView.py
 src/DataViews/PedigreeView.py
 src/DataViews/PersonView.py
@@ -287,6 +288,7 @@ src/plugins/OnThisDay.py
 src/plugins/MarkerReport.py
 src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py
+src/plugins/OnThisDay.py
 src/plugins/OwnerEditor.py
 src/plugins/PatchNames.py
 src/plugins/ReadPkg.py

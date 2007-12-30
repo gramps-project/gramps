@@ -109,11 +109,12 @@ class CalendarGadget(Gadget):
         # bring up events on this day
         year, month, day = self.gui.calendar.get_date()
         month += 1
-        if (year, month, day) in self.dates:
-            run_quick_report_by_name(self.gui.dbstate, 
-                                     self.gui.uistate, 
-                                     'onthisday', 
-                                     self.dates[(year, month, day)])
+        date = gen.lib.Date()
+        date.set_yr_mon_day(year, month, day)
+        run_quick_report_by_name(self.gui.dbstate, 
+                                 self.gui.uistate, 
+                                 'onthisday', 
+                                 date)
 
 class LogGadget(Gadget):
     def db_changed(self):
@@ -135,7 +136,8 @@ class LogGadget(Gadget):
         self.log_active_changed(handle)
 
     def init(self):
-        self.set_text("Log for this Session\n--------------------\n")
+        self.set_text(_("Log for this Session"))
+        self.append_text("\n--------------------\n")
         self.history = {}
 
     def log_person_add(self, handles):
@@ -165,13 +167,13 @@ class LogGadget(Gadget):
                     self.link(name_displayer.display(person), 'Person', 
                               person_handle)
                 else:
-                    self.link("Unknown", 'Person', person_handle)
+                    self.link(_("Unknown"), 'Person', person_handle)
                 self.append_text("\n")
 
 class TopSurnamesGadget(Gadget):
     def init(self):
         self.top_size = 10 # will be overwritten in load
-        self.set_text("No Family Tree loaded.")
+        self.set_text(_("No Family Tree loaded."))
 
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
@@ -186,7 +188,7 @@ class TopSurnamesGadget(Gadget):
         self.gui.data = [self.top_size]
 
     def main(self):
-        self.set_text("Processing...\n")
+        self.set_text(_("Processing...") + "\n")
         people = self.dbstate.db.get_person_handles(sort_handles=False)
         surnames = {}
         representative_handle = {}
@@ -223,8 +225,9 @@ class TopSurnamesGadget(Gadget):
             line += 1
             if line >= self.top_size:
                 break
-        self.append_text("\nTotal unique surnames: %d\n" % total_surnames)
-        self.append_text("Total people: %d" % total_people)
+        self.append_text(("\n" + _("Total unique surnames") + ": %d\n") % 
+                         total_surnames)
+        self.append_text((_("Total people") + ": %d") % total_people)
         
 class StatsGadget(Gadget):
     def db_changed(self):
@@ -234,10 +237,10 @@ class StatsGadget(Gadget):
         self.dbstate.db.connect('family-delete', self.update)
 
     def init(self):
-        self.set_text("No Family Tree loaded.")
+        self.set_text(_("No Family Tree loaded."))
 
     def main(self):
-        self.set_text("Processing...")
+        self.set_text(_("Processing..."))
         database = self.dbstate.db
         personList = database.get_person_handles(sort_handles=False)
         familyList = database.get_family_handles()
@@ -385,7 +388,7 @@ class TODOGadget(Gadget):
     def init(self):
         # GUI setup:
         self.gui.textview.set_editable(True)
-        self.append_text("Enter your TODO list here.")
+        self.append_text(_("Enter your TODO list here."))
 
     def on_load(self):
         self.load_data_to_text()
@@ -437,7 +440,7 @@ class NewsGadget(Gadget):
     def process(self, title):
         #print "processing '%s'..." % title
         title = title.replace(" ", "_")
-        yield True, "Reading '%s'..." % title
+        yield True, (_("Reading") + " '%s'..." % title)
         fp = urllib.urlopen(self.URL % title)
         text = fp.read()
         #text = text.replace("\n", " ")
@@ -484,63 +487,63 @@ class NewsGadget(Gadget):
         yield False, text
 
 register(type="gadget", 
-         name="Top Surnames Gadget", 
+         name= _("Top Surnames Gadget"), 
          height=230,
          content = TopSurnamesGadget,
-         title="Top Surnames",
+         title=_("Top Surnames"),
          )
 
 register(type="gadget", 
-         name="Stats Gadget", 
+         name=_("Statistics Gadget"), 
          height=230,
          expand=True,
          content = StatsGadget,
-         title="Stats",
+         title=_("Statistics"),
          )
 
 register(type="gadget", 
-         name="Log Gadget", 
+         name=_("Session Log Gadget"), 
          height=230,
          data=['no'],
          content = LogGadget,
-         title="Session Log",
+         title=_("Session Log"),
          )
 
 register(type="gadget", 
-         name="Python Gadget", 
+         name=_("Python Gadget"), 
          height=250,
          content = PythonGadget,
-         title="Python Shell",
+         title=_("Python Shell"),
          )
 
 register(type="gadget", 
-         name="TODO Gadget", 
+         name=_("TODO Gadget"), 
          height=300,
          expand=True,
          content = TODOGadget,
-         title="TODO List",
+         title=_("TODO List"),
          )
 
 register(type="gadget", 
-         name="Welcome Gadget", 
+         name=_("Welcome Gadget"), 
          height=300,
          expand=True,
          content = make_welcome_content,
-         title="Welcome to GRAMPS!",
+         title=_("Welcome to GRAMPS!"),
          )
 
 register(type="gadget", 
-         name="Calendar Gadget", 
+         name=_("Calendar Gadget"), 
          height=200,
          content = CalendarGadget,
-         title="Calendar",
+         title=_("Calendar"),
          )
 
 register(type="gadget", 
-         name="News Gadget", 
+         name=_("News Gadget"), 
          height=300,
          expand=True,
          content = NewsGadget,
-         title="News",
+         title=_("News"),
          )
 

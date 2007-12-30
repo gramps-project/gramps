@@ -134,20 +134,23 @@ def run_report(dbstate, uistate, category,handle,func):
             d = TextBufDoc(make_basic_stylesheet(), None, None)
             d.dbstate = dbstate
             d.uistate = uistate
-            if category == CATEGORY_QR_PERSON :
-                obj = dbstate.db.get_person_from_handle(handle)
-            elif category == CATEGORY_QR_FAMILY :
-                obj = dbstate.db.get_family_from_handle(handle)
-            elif category == CATEGORY_QR_EVENT :
-                obj = dbstate.db.get_event_from_handle(handle)
-            elif category == CATEGORY_QR_SOURCE :
-                obj = dbstate.db.get_source_from_handle(handle)
-            elif category == CATEGORY_QR_PLACE :
-                obj = dbstate.db.get_place_from_handle(handle)
-            elif category == CATEGORY_QR_REPOSITORY :
-                obj = dbstate.db.get_repository_from_handle(handle)
-            else: 
-                obj = None
+            if type(handle) in [str, unicode]: # a handle
+                if category == CATEGORY_QR_PERSON :
+                    obj = dbstate.db.get_person_from_handle(handle)
+                elif category == CATEGORY_QR_FAMILY :
+                    obj = dbstate.db.get_family_from_handle(handle)
+                elif category == CATEGORY_QR_EVENT :
+                    obj = dbstate.db.get_event_from_handle(handle)
+                elif category == CATEGORY_QR_SOURCE :
+                    obj = dbstate.db.get_source_from_handle(handle)
+                elif category == CATEGORY_QR_PLACE :
+                    obj = dbstate.db.get_place_from_handle(handle)
+                elif category == CATEGORY_QR_REPOSITORY :
+                    obj = dbstate.db.get_repository_from_handle(handle)
+                else: 
+                    obj = None
+            else: # allow caller to send object directly
+                obj = handle
             if obj:
                 d.open("")
                 func(dbstate.db, d, obj)
