@@ -256,6 +256,7 @@ src/plugins/Checkpoint.py
 src/plugins/Check.py
 src/plugins/CountAncestors.py
 src/plugins/CustomBookText.py
+src/plugins/DefaultGadgets.py
 src/plugins/Desbrowser.py
 src/plugins/DescendChart.py
 src/plugins/DescendReport.py
@@ -284,7 +285,6 @@ src/plugins/IndivComplete.py
 src/plugins/KinshipReport.py
 src/plugins/Leak.py
 src/plugins/lineage.py
-src/plugins/OnThisDay.py
 src/plugins/MarkerReport.py
 src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py
