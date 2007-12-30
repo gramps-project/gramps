@@ -90,12 +90,12 @@ def run(database, document, main_event):
 
     sdoc.paragraph("")
     if histab.get_row_count() > 0:
-        sdoc.paragraph("Other events on this day in history")
+        sdoc.paragraph(_("Other events on this day in history"))
         histab.write()
 
     sdoc.paragraph("")
     if yeartab.get_row_count() > 0:
-        sdoc.paragraph("Other events in %d" % main_date.get_year())
+        sdoc.paragraph(_("Other events in %d") % main_date.get_year())
         yeartab.write()
                     
 #------------------------------------------------------------------------
