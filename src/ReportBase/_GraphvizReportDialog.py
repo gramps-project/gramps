@@ -207,67 +207,69 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         
         self.write( '}'  )
     
-    def add_node(self, id, label, shape="", color = "", 
-                 style="", fillcolor="", url="" ):
+    def add_node(self, id, label, shape="", color="", 
+                 style="", fillcolor="", url="", htmloutput=False ):
         """
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
         
-        Implementes BaseDoc.GVDoc.add_node().
+        Implements BaseDoc.GVDoc.add_node().
         """
-        line  = '  "%s" ['               % id
-        
-        if label.startswith("<"):
-            # This must be HTML
-            line += 'label=<%s>'           % label
-        else:
-            line += 'label="%s"'             % label
-        
+        text = '['
+
         if shape:
-            line += ', shape="%s"'       % shape
+            text += ' shape="%s"'       % shape
             
         if color:
-            line += ', color="%s"'       % color
+            text += ' color="%s"'       % color
             
         if fillcolor:
-            line += ', fillcolor="%s"'   % fillcolor
-        
+            text += ' fillcolor="%s"'   % fillcolor
+
         if style:
-            line += ', style="%s"'         % style
-        
+            text += ' style="%s"'       % style
+
+        # note that we always output a label -- even if an empty string --
+        # otherwise GraphViz uses the node ID as the label which is unlikely
+        # to be what the user wants to see in the graph
+        if label.startswith("<") or htmloutput:
+            text += ' label=<%s>'       % label
+        else:
+            text += ' label="%s"'       % label
+
         if url:
-            line += ', URL="%s"'           % url
+            text += ' URL="%s"'         % url
 
-        line += '];\n'
+        text += " ]"
+        self.write('  %s %s;\n' % (id, text))
 
-        self.write(line)
-        
-    def add_link(self, id1, id2, style="", head="", tail=""):
+    def add_link(self, id1, id2, style="", head="", tail="", comment=""):
         """
         Add a link between two nodes.
         
         Implementes BaseDoc.GVDoc.add_link().
         """
-        self.write('  "%s" -> "%s"' % (id1, id2))
+        self.write('  %s -> %s' % (id1, id2))
         
         if style or head or tail:
             self.write(' [')
             
             if style:
-                self.write('style=%s' % style)
+                self.write(' style=%s' % style)
             if head:
-                if style:
-                    self.write(', ')
-                self.write('arrowhead=%s' % head)
+                self.write(' arrowhead=%s' % head)
             if tail:
-                if style or head:
-                    self.write(', ')
-                self.write('arrowtail=%s' % tail)
+                self.write(' arrowtail=%s' % tail)
                 
-            self.write(']')
-            
-        self.write(';\n')
-        
+            self.write(' ]')
+
+        self.write(';')
+
+        if comment:
+            self.write(' // %s' % comment)
+
+        self.write('\n')
+
     def start_subgraph(self,id):
         self.write('  subgraph cluster_%s\n' % id)
         self.write('  {\n')

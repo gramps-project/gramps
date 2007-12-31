@@ -69,13 +69,11 @@ from ReportBase import Report, MenuReportOptions, MODE_GUI, MODE_CLI, CATEGORY_G
 from ReportBase._ReportDialog import ReportDialog
 from PluginUtils import register_report, FilterListOption, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption
 from QuestionDialog import ErrorDialog, WarningDialog
-
-#from NameDisplay import displayer as _nd       # Gramps version <  3.0
-from BasicUtils import name_displayer as _nd    # Gramps version >= 3.0
-
+from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
 from DateHandler import parser
 from Selectors import selector_factory
+
 
 #------------------------------------------------------------------------
 #
@@ -111,11 +109,9 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('People of Interest')
         # --------------------------------
 
-        peoplePicker = PersonListOption(  _('People of interest'), 
-                                            '', 
-                                            dbstate )
-        peoplePicker.set_help(              _('People of interest are used as a starting point when determining \"family lines\".'))
-        menu.add_option(category, 'FLgidlist', peoplePicker)
+        personList = PersonListOption(  _('People of interest'), '', dbstate)
+        personList.set_help(              _('People of interest are used as a starting point when determining \"family lines\".'))
+        menu.add_option(category, 'FLgidlist', personList)
 
         followParents = BooleanOption(      _('Follow parents to determine family lines'), True)
         followParents.set_help(             _('Parents and their ancestors will be considered when determining "family lines".'))
@@ -189,6 +185,13 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('Options')
         # ---------------------
 
+        useSubgraphs = BooleanOption(_('Use subgraphs'), False)
+        useSubgraphs.set_help(_("Subgraphs can help GraphViz position "
+                                "certain linked nodes closer together, "
+                                "but with non-trivial graphs will result "
+                                "in longer lines and larger graphs."))
+        menu.add_option(category, "FLuseSubgraphs", useSubgraphs)
+
         includeDates = BooleanOption(       _('Include dates'), True)
         includeDates.set_help(              _('Whether to include dates for people and families.'))
         menu.add_option(category, 'FLincludeDates', includeDates)
@@ -209,13 +212,6 @@ class FamilyLinesOptions(MenuReportOptions):
         includePrivate.set_help(            _('Whether to include names, dates, and families that are marked as private.'))
         menu.add_option(category, 'FLincludePrivate', includePrivate)
         
-        usesubgraphs = BooleanOption(_('Use subgraphs'), False)
-        usesubgraphs.set_help(_("Subgraphs can help GraphViz position "
-                                "certain linked nodes closer together, "
-                                "but with non-trivial graphs will result "
-                                "in longer lines and larger graphs."))
-        menu.add_option(category, "usesubgraphs", usesubgraphs)
-
 
 #------------------------------------------------------------------------
 #
@@ -243,7 +239,6 @@ class FamilyLinesReport(Report):
         self.deletedPeople      = 0
         self.deletedFamilies    = 0
 
-        self.useSubgraphs       = options.handler.options_dict['usesubgraphs'           ]   
         self.followParents      = options.handler.options_dict['FLfollowParents'        ]
         self.followChildren     = options.handler.options_dict['FLfollowChildren'       ]
         self.removeExtraPeople  = options.handler.options_dict['FLremoveExtraPeople'    ]
@@ -258,6 +253,7 @@ class FamilyLinesReport(Report):
         self.maxChildren        = options.handler.options_dict['FLmaxChildren'          ]
         self.includeImages      = options.handler.options_dict['FLincludeImages'        ]
         self.imageOnTheSide     = options.handler.options_dict['FLimageOnTheSide'       ]
+        self.useSubgraphs       = options.handler.options_dict['FLuseSubgraphs'         ]   
         self.includeDates       = options.handler.options_dict['FLincludeDates'         ] 
         self.includePlaces      = options.handler.options_dict['FLincludePlaces'        ]
         self.includeNumChildren = options.handler.options_dict['FLincludeNumChildren'   ]
@@ -319,6 +315,21 @@ class FamilyLinesReport(Report):
 
         # now that begin_report() has done the work, output what we've
         # obtained into whatever file or format the user expects to use
+
+        self.doc.write('# Number of people in database:    %d\n' % self.db.get_number_of_people())
+        self.doc.write('# Number of people of interest:    %d\n' % len(self.peopleToOutput))
+        self.doc.write('# Number of families in database:  %d\n' % self.db.get_number_of_families())
+        self.doc.write('# Number of families of interest:  %d\n' % len(self.familiesToOutput))
+        if self.removeExtraPeople:
+            self.doc.write('# Additional people removed:       %d\n' % self.deletedPeople)
+            self.doc.write('# Additional families removed:     %d\n' % self.deletedFamilies)
+        self.doc.write('# Initial list of people of interest:\n')
+        for handle in self.interestSet:
+            person = self.db.get_person_from_handle(handle)
+            gid = person.get_gramps_id()
+            name = person.get_primary_name().get_regular_name()
+            self.doc.write('# -> %s, %s\n' % (gid, name))
+
         self.writePeople()
         self.writeFamilies()
         self.progress.close()
@@ -597,6 +608,9 @@ class FamilyLinesReport(Report):
 
 
     def writePeople(self):
+
+        self.doc.write('\n')
+
         # if we're going to attempt to include images, then use the HTML style of .dot file
         bUseHtmlOutput = False
         if self.includeImages:
@@ -722,10 +736,18 @@ class FamilyLinesReport(Report):
             if imagePath:
                 label += '</TD></TR></TABLE>'
 
-            self.doc.add_node(person.get_gramps_id(),label,"box","","filled",colour)
+            self.doc.add_node(
+                id=person.get_gramps_id(),
+                label=label,
+                shape='box',
+                fillcolor=colour,
+                htmloutput=bUseHtmlOutput)
 
 
     def writeFamilies(self):
+
+        self.doc.write('\n')
+
         # loop through all the families we need to output
         for familyHandle in self.familiesToOutput:
             self.progress.step()
@@ -798,17 +820,21 @@ class FamilyLinesReport(Report):
             if self.useSubgraphs and fatherHandle and motherHandle:
                 self.doc.start_subgraph(fgid)
 
+            self.doc.write('\n')
+
             # see if we have a father to link to this family
             if fatherHandle:
                 if fatherHandle in self.peopleToOutput:
                     father = self.db.get_person_from_handle(fatherHandle)
-                    self.doc.add_link(fgid, father.get_gramps_id())
+                    comment = "father: %s" % father.get_primary_name().get_regular_name()
+                    self.doc.add_link(fgid, father.get_gramps_id(), comment=comment)
 
             # see if we have a mother to link to this family
             if motherHandle:
                 if motherHandle in self.peopleToOutput:
                     mother = self.db.get_person_from_handle(motherHandle)
-                    self.doc.add_link(fgid, mother.get_gramps_id())
+                    comment = "mother: %s" % mother.get_primary_name().get_regular_name()
+                    self.doc.add_link(fgid, mother.get_gramps_id(), comment=comment)
 
             if self.useSubgraphs and fatherHandle and motherHandle:
                 self.doc.end_subgraph()
@@ -817,7 +843,8 @@ class FamilyLinesReport(Report):
             for childRef in family.get_child_ref_list():
                 if childRef.ref in self.peopleToOutput:
                     child = self.db.get_person_from_handle(childRef.ref)
-                    self.doc.add_link(child.get_gramps_id(), fgid)
+                    comment = "child: %s" % child.get_primary_name().get_regular_name()
+                    self.doc.add_link(child.get_gramps_id(), fgid, comment=comment)
 
 
 #------------------------------------------------------------------------
@@ -829,12 +856,12 @@ class FamilyLinesReport(Report):
 #------------------------------------------------------------------------
 register_report(
     name            = 'familylines_graph',
+    translated_name = _("Family Lines Graph"),
     category        = CATEGORY_GRAPHVIZ,
     report_class    = FamilyLinesReport,    # must implement write_report(), called by report() in _ReportDialog.py
     options_class   = FamilyLinesOptions,   # must implement add_menu_options(), called by MenuOptions::__init__()
     modes           = MODE_GUI,
     status          = _("Stable"),
-    translated_name = _("Family Lines Graph"),
     author_name     = "Stephane Charette",
     author_email    = "stephanecharette@gmail.com",
     description     =_("Generates family line graphs using GraphViz."),

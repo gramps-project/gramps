@@ -1,3 +1,8 @@
+2007-12-30  Stéphane Charette <stephanecharette@gmail.com>
+	* src/ReportBase/_GraphvizReportDialog.py:
+	* src/plugins/GVFamilyLines.py: more work-in-progress on GraphViz and
+	getting FamilyLines to function in the new framework
+
 2007-12-30  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Config/_GrampsConfigKeys.py: added MyGrampsView
 	* src/Config/_GrampsGconfKeys.py: added try/excepts on get_types
