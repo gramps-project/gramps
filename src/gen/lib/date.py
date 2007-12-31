@@ -252,10 +252,19 @@ class Date:
         if type(other) == int:
             return self.copy_offset_ymd(-other)
         elif type(other) == type(self): # date
-            diff = self.sortval - other.sortval
-            years = int(diff / 365)
-            months = int((diff - (years * 365)) / 30)
-            days = (diff - (years * 365)) - (months * 30)
+            d1 = self.get_ymd()
+            d2 = other.get_ymd()
+            if d1 < d2:
+                d1, d2 = d2, d1
+            days = d1[2] - d2[2]
+            months = d1[1] - d2[1]
+            years = d1[0] - d2[0]
+            if months < 0:
+                years -= 1
+                months = 12 + months
+            if days < 0:
+                months -= 1
+                days = 31 + days
             return (years, months, days)
         elif type(other) in [tuple, list]:
             return self.copy_offset_ymd(*map(lambda x: -x, other))
@@ -605,12 +614,18 @@ class Date:
             dv[Date._POS_MON] += month
         elif month:
             dv[Date._POS_MON] = month
-        if dv[Date._POS_DAY]:
-            dv[Date._POS_DAY] += day
-        elif day:
-            dv[Date._POS_DAY] = day            
+        # Fix if month out of bounds:
+        if month != 0: # only check if changed
+            if dv[Date._POS_MON] <= 0: # subtraction
+                dv[Date._POS_YR] -= int(-dv[Date._POS_MON] / 12)
+                dv[Date._POS_MON] = 13 - dv[Date._POS_MON] % 12
+            elif dv[Date._POS_MON] > 12 or dv[Date._POS_MON] < 1:
+                dv[Date._POS_YR] += int(dv[Date._POS_MON] / 12)
+                dv[Date._POS_MON] = dv[Date._POS_MON] % 12
         self.dateval = tuple(dv)
         self._calc_sort_value()
+        if day != 0 or dv[Date_POS_DAY] > 28:
+            self.set_yr_mon_day(*self.offset(day))
 
     def copy_offset_ymd(self, year=0, month=0, day=0):
         """
@@ -844,6 +859,12 @@ class Date:
                and self.quality == Date.QUAL_NONE \
                and self.get_year_valid() and self.get_month_valid() \
                and self.get_day_valid()
+
+    def get_ymd(self):
+        """
+        Returns (year, month, day)
+        """
+        return (self.get_year(), self.get_month(), self.get_day())
 
     def offset(self, value):
         """
