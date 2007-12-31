@@ -144,11 +144,34 @@ class Date:
                          _("Persian"), 
                          _("Islamic")]
 
-    def __init__(self, source=None):
+    def __init__(self, *source):
         """
         Creates a new Date instance.
         """
-        if source:
+        #### setup None, Date, or numbers
+        if len(source) == 0:
+            source = None
+        elif len(source) == 1:
+            if type(source[0]) == int:
+                source = (source[0], 0, 0)
+            else:
+                source = source[0]
+        elif len(source) == 2:
+            source = (source[0], source[1], 0)
+        elif len(source) == 3:
+            pass # source is ok
+        else:
+            raise AttributeError, "invalid args to Date: %s" % source
+        #### ok, process either date or tuple
+        if type(source) == tuple:
+            self.calendar = Date.CAL_GREGORIAN
+            self.modifier = Date.MOD_NONE
+            self.quality  = Date.QUAL_NONE
+            self.dateval  = Date.EMPTY
+            self.text     = u""
+            self.sortval  = 0
+            self.set_yr_mon_day(*source)
+        elif source:
             self.calendar = source.calendar
             self.modifier = source.modifier
             self.quality  = source.quality
@@ -204,6 +227,40 @@ class Date:
             return cmp(self.sortval, other.sortval)
         else:
             return -1
+
+    def __add__(self, other):
+        """
+        Date artithmetic: Date() + years, or Date() + (years, [months, [days]])
+        """
+        if type(other) == int:
+            return self.copy_offset_ymd(other)
+        elif type(other) in [tuple, list]:
+            return self.copy_offset_ymd(*other)
+        else:
+            raise AttributeError, "unknown date add type: %s " % type(other)
+
+    def __radd__(self, other):
+        """
+        Add a number + Date() or (years, months, days) + Date()
+        """
+        return self + other
+
+    def __sub__(self, other):
+        """
+        Date artithmetic: Date() - years, Date - (y,m,d), or Date() - Date()
+        """
+        if type(other) == int:
+            return self.copy_offset_ymd(-other)
+        elif type(other) == type(self): # date
+            diff = self.sortval - other.sortval
+            years = int(diff / 365)
+            months = int((diff - (years * 365)) / 30)
+            days = (diff - (years * 365)) - (months * 30)
+            return (years, months, days)
+        elif type(other) in [tuple, list]:
+            return self.copy_offset_ymd(*map(lambda x: -x, other))
+        else:
+            raise AttributeError, "unknown date sub type: %s " % type(other)
 
     def is_equal(self, other):
         """
@@ -793,4 +850,10 @@ class Date:
         Returns (year, month, day) of this date +- value.
         """
         return Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value)
+
+    def offset_date(self, value):
+        """
+        Returns (year, month, day) of this date +- value.
+        """
+        return Date(Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value))
 

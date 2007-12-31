@@ -90,7 +90,6 @@ class CalendarGadget(Gadget):
         self.update()
 
     def run_update(self, signal, *args):
-        print "signal:", signal
         self.update()
 
     def refresh(self, *obj):
@@ -163,20 +162,21 @@ class LogGadget(Gadget):
     def active_changed(self, handle):
         self.log_active_changed(handle)
 
+    # FIXME: added support for family display and clicks
     def log_person_add(self, handles):
-        self.get_person(handles, "person-add")
+        self.get_person(handles, _("Added"))
     def log_person_delete(self, handles):
-        self.get_person(handles, "person-delete")
+        self.get_person(handles, _("Deleted"))
     def log_person_update(self, handles):
-        self.get_person(handles, "person-update")
+        self.get_person(handles, _("Updated"))
     def log_family_add(self, handles):
-        self.append_text("family-add: %s" % handles)
+        self.append_text(_("Added") + ": family" )
     def log_family_delete(self, handles):
-        self.append_text("family-delete: %s" % handles)
+        self.append_text(_("Deleted") + ": family" )
     def log_family_update(self, handles):
-        self.append_text("family-update: %s" % handles)
+        self.append_text(_("Updated") + ": family" )
     def log_active_changed(self, handles):
-        self.get_person([handles], "active-changed")
+        self.get_person([handles], "Selected")
 
     def get_person(self, handles, ltype):
         for person_handle in handles:
@@ -359,6 +359,7 @@ class PythonGadget(Gadget):
         self.env = {"dbstate": self.gui.dbstate,
                     "uistate": self.gui.uistate,
                     "self": self,
+                    "Date": gen.lib.Date,
                     }
         # GUI setup:
         self.gui.textview.set_editable(True)
@@ -368,7 +369,7 @@ class PythonGadget(Gadget):
     def format_exception(self, max_tb_level=10):
         retval = ''
         cla, exc, trbk = sys.exc_info()
-        retval += "ERROR: %s %s" %(cla, exc)
+        retval += _("Error") + (" : %s %s" %(cla, exc))
         return retval
 
     def on_enter(self, widget, event):
@@ -424,7 +425,7 @@ class TODOGadget(Gadget):
         self.save_text_to_data()
 
 def make_welcome_content(gui):
-    text = """
+    text = _("""
 Welcome to GRAMPS!
 
 GRAMPS is a software package designed for genealogical research. Although similar to other genealogical programs, GRAMPS offers some unique and powerful features.
@@ -439,7 +440,7 @@ You are currently reading from the "My Gramps" page, where you can add your own 
 
 You can right-click on the background of this page to add additional gadgets and change the number of columns. You can also drag the Properties button to reposition the gadget on this page, and detach the gadget to float above GRAMPS. If you close GRAMPS with a gadget detached, it will re-opened detached the next time you start GRAMPS.
 
-"""
+""")
     gui.set_text(text)
 
 
