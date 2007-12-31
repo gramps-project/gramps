@@ -623,25 +623,73 @@ class PersonOption(Option):
         gid = person.get_gramps_id()
         self.person_label = gtk.Label( "%s (%s)" % (name,gid) )
         self.person_label.set_alignment(0.0,0.5)
-        self.change_button = gtk.Button("%s..." % _('C_hange') )
-        self.change_button.connect('clicked',self.on_change_clicked)
-        self.gobj.pack_start(self.person_label, False)
-        self.gobj.pack_end(self.change_button, False)
+        
+        self.person_button   = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
+                                                      self.get_person_clicked)
+        self.bookmark_button = GrampsWidgets.SimpleButton('gramps-bookmark', 
+                                                      self.get_bookmark_clicked)
+        self.home_button     = GrampsWidgets.SimpleButton(gtk.STOCK_HOME, 
+                                                      self.get_home_clicked)
+        self.active_button   = GrampsWidgets.SimpleButton(gtk.STOCK_YES, 
+                                                      self.get_active_clicked)
+
+        self.pevt = gtk.EventBox()
+        self.pevt.add(self.person_label)
+        
+        self.gobj.pack_start(self.pevt, False)
+        self.gobj.pack_end(self.person_button, False)
+        self.gobj.pack_end(self.bookmark_button,False)
+        self.gobj.pack_end(self.home_button,False)
+        self.gobj.pack_end(self.active_button,False)
 
     def parse(self):
         return self.get_value()
 
-    def on_change_clicked(self, obj):
+    def get_person_clicked(self, obj):
         SelectPerson = selector_factory('Person')
         sel = SelectPerson(self.dbstate, self.dialog.uistate, 
                            self.dialog.track)
         person = sel.run()
+        self.update_person(person)
+            
+    def get_bookmark_clicked(self,obj):
+        from Filters import GenericFilter, Rules
+        bfilter = GenericFilter()
+        bfilter.set_name(_("Bookmarked People"))
+        bfilter.add_rule(Rules.Person.IsBookmarked([]))
+        
+        SelectPerson = selector_factory('Person')
+        sel = SelectPerson(self.dbstate, self.dialog.uistate, 
+                           self.dialog.track, 
+                           title=_('Select a Bookmarked Person'), 
+                           filter=bfilter )
+        person = sel.run()
+        self.update_person(person)
+    
+    def get_home_clicked(self,obj):
+        person = self.db.get_default_person()
+        self.update_person(person)
+    
+    def get_active_clicked(self,obj):
+        person = self.dbstate.get_active_person()
+        self.update_person(person)
+    
+    def update_person(self,person):
         if person:
             name = _nd.display(person)
             gid = person.get_gramps_id()
             self.person_label.set_text( "%s (%s)" % (name,gid) )
             self.set_value(gid)
-
+            
+    def add_tooltip(self, tooltip):
+        """
+        Add the option's help to the GUI object.
+        """
+        tooltip.set_tip(self.pevt, self.get_help())
+        tooltip.set_tip(self.bookmark_button, _('Select a bookmarked person'))
+        tooltip.set_tip(self.home_button, _('Select the "home" person'))
+        tooltip.set_tip(self.active_button, _('Select the currently active person'))
+        tooltip.set_tip(self.person_button,  _('Select any person from the database'))
 
 #-------------------------------------------------------------------------
 #

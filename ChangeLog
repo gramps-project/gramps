@@ -1,4 +1,10 @@
 2007-12-31  Brian Matherly <brian@gramps-project.org>
+	* src/gramps_main.py:
+	* src/PluginUtils/_MenuOptions.py:
+	Selection of center person for reports can now be one of: A person from the
+	database, a bookmarked person, the active person, or the home person.
+
+2007-12-31  Brian Matherly <brian@gramps-project.org>
 	* src/Editors/EditFamily.py:
 	* src/DisplayModels/_PeopleModel.py:
 	* src/Filters/_GenericFilter.py:
