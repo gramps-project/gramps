@@ -516,15 +516,18 @@ class NewsGadget(Gadget):
         #print "    after:", text
         yield False, text
 
+
 register(type="gadget", 
-         name= _("Top Surnames Gadget"), 
+         name= "Top Surnames Gadget", 
+         tname=_("1Top Surnames Gadget"), 
          height=230,
          content = TopSurnamesGadget,
          title=_("Top Surnames"),
          )
 
 register(type="gadget", 
-         name=_("Statistics Gadget"), 
+         name="Statistics Gadget", 
+         tname=_("1Statistics Gadget"), 
          height=230,
          expand=True,
          content = StatsGadget,
@@ -532,7 +535,8 @@ register(type="gadget",
          )
 
 register(type="gadget", 
-         name=_("Session Log Gadget"), 
+         name="Session Log Gadget", 
+         tname=_("1Session Log Gadget"), 
          height=230,
          data=['no'],
          content = LogGadget,
@@ -540,7 +544,8 @@ register(type="gadget",
          )
 
 register(type="gadget", 
-         name=_("Python Gadget"), 
+         name="Python Gadget", 
+         tname=_("1Python Gadget"), 
          height=250,
          content = PythonGadget,
          title=_("Python Shell"),
@@ -548,6 +553,7 @@ register(type="gadget",
 
 register(type="gadget", 
          name=_("TODO Gadget"), 
+         tname=_("1TODO Gadget"), 
          height=300,
          expand=True,
          content = TODOGadget,
@@ -555,7 +561,8 @@ register(type="gadget",
          )
 
 register(type="gadget", 
-         name=_("Welcome Gadget"), 
+         name="Welcome Gadget", 
+         tname=_("1Welcome Gadget"), 
          height=300,
          expand=True,
          content = make_welcome_content,
@@ -563,14 +570,16 @@ register(type="gadget",
          )
 
 register(type="gadget", 
-         name=_("Calendar Gadget"), 
+         name="Calendar Gadget", 
+         tname=_("1Calendar Gadget"), 
          height=200,
          content = CalendarGadget,
          title=_("Calendar"),
          )
 
 register(type="gadget", 
-         name=_("News Gadget"), 
+         name="News Gadget", 
+         tname=_("1News Gadget"), 
          height=300,
          expand=True,
          content = NewsGadget,

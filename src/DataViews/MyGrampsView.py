@@ -53,6 +53,7 @@ debug = False
 def register_gadget(data_dict):
     global AVAILABLE_GADGETS
     base_opts = {"name":"Unnamed Gadget",
+                 "tname": _("Unnamed Gadget"),
                  "state":"maximized",
                  "column": -1, "row": -1,
                  "data": []}
@@ -85,6 +86,14 @@ def get_gadget_options_by_name(name):
     else:
         print ("Unknown gadget name: '%s'" % name)
         return None
+
+def get_gadget_options_by_tname(name):
+    if debug: print "name:", name
+    for key in AVAILABLE_GADGETS:
+        if AVAILABLE_GADGETS[key]["tname"] == name:
+            return AVAILABLE_GADGETS[key].copy()
+    print ("Unknown gadget name: '%s'" % name)
+    return None
 
 def make_requested_gadget(viewpage, name, opts, dbstate, uistate):
     if name in AVAILABLE_GADGETS:
@@ -636,6 +645,7 @@ class MyGrampsView(PageView.PageView):
                             data[opt] = cp.get(sec, opt).strip()
                     if "name" not in data:
                         data["name"] = "Unnamed Gadget"
+                        data["tname"]= _("Unnamed Gadget")
                     retval.append((data["name"], data)) # name, opts
         else:
             # give defaults as currently known
@@ -872,8 +882,9 @@ class MyGrampsView(PageView.PageView):
                 self.drop_widget(self.widget, gadget, 0, 0, 0)
 
     def add_gadget(self, obj):
-        name = obj.get_child().get_label()
-        all_opts = get_gadget_options_by_name(name)
+        tname = obj.get_child().get_label()
+        all_opts = get_gadget_options_by_tname(tname)
+        name = all_opts["name"]
         if all_opts == None:
             print "Unknown gadget type: '%s'; bad gadgets.ini file?" % name
             return
@@ -950,7 +961,8 @@ class MyGrampsView(PageView.PageView):
                 qr_menu = ag_menu.get_submenu()
                 if qr_menu == None:
                     qr_menu = gtk.Menu()
-                    names = AVAILABLE_GADGETS.keys()
+                    names = [AVAILABLE_GADGETS[key]["tname"] for key 
+                             in AVAILABLE_GADGETS.keys()]
                     names.sort()
                     for name in names:
                         Utils.add_menuitem(qr_menu, name, 
