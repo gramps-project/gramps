@@ -1,3 +1,6 @@
+2007-12-30  Brian Matherly <brian@gramps-project.org>
+	* src/Bookmarks: Set dialog to modal.
+
 2007-12-30  Stéphane Charette <stephanecharette@gmail.com>
 	* src/ReportBase/_GraphvizReportDialog.py:
 	* src/plugins/GVFamilyLines.py: more work-in-progress on GraphViz and
@@ -9,8 +12,8 @@
 
 2007-12-30  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/GVFamilyLines.py:
-	* src\PluginUtils\__init__.py:
-	* src\PluginUtils\_MenuOptions.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py:
 	Rename "PeoplePickerOption" to "PersonListOption".
 
 2007-12-30  Stéphane Charette  <stephanecharette@gmail.com>
