@@ -1,3 +1,6 @@
+2007-12-30  Stéphane Charette <stephanecharette@gmail.com>
+	* src/BaseDoc.py: new parms in GVDoc::add_node() and GVDoc::add_link()
+
 2007-12-30  Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/__init__.py:
 	* src/PluginUtils/MenuOptions.py:

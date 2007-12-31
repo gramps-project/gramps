@@ -1563,7 +1563,7 @@ class GVDoc:
     for Graphviz reports must implment this interface to be used by the
     report system.
     """
-    def add_node(self, id, label, shape="box", fillcolor="white", url=""):
+    def add_node(self, id, label, shape="box", fillcolor="white", url="", htmloutput=False):
         """
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
@@ -1582,11 +1582,13 @@ class GVDoc:
         @type fillcolor: string
         @param url: A URL for the node.
         @type url: string
+        @param htmloutput: Whether the label contains HTML.
+        @type htmloutput: boolean
         @return: nothing
         """
         raise NotImplementedError
         
-    def add_link(self, id1, id2, style="", head="", tail=""):
+    def add_link(self, id1, id2, style="", head="", tail="", comment=""):
         """
         Add a link between two nodes.
         
@@ -1596,6 +1598,9 @@ class GVDoc:
         @param id2: The unique identifier of the ending node.
             Example: "p55"
         @type id2: string
+        @param comment: A text string displayed at the end of the link line.
+            Example: "person C is the son of person A and person B"
+        @type comment: string
         @return: nothing
         """
         raise NotImplementedError
