@@ -51,8 +51,13 @@ class GenericFilter:
             self.logical_op = 'and'
             self.invert = False
 
-    def match(self,handle):
-        return True
+    def match(self,handle,db):
+        """Return True or False depending on whether the handle matches the 
+        filter """
+        if self.apply(db,[handle]):
+            return True
+        else:
+            return False
 
     def is_empty(self):
         return len(self.flist) == 0 or (len(self.flist) == 1 and self.flist[0].is_empty())

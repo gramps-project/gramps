@@ -334,7 +334,7 @@ class PeopleModel(gtk.GenericTreeModel):
         while node:
             self.total += 1
             handle, d = node
-            if not (handle in skip or (dfilter and not dfilter.match(handle))):
+            if not (handle in skip or (dfilter and not dfilter.match(handle,self.db))):
                 name_data = d[PeopleModel._NAME_COL]
 
                 group_name = ngn(self.db, name_data)

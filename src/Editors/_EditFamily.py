@@ -364,7 +364,7 @@ class FastMaleFilter:
     def __init__(self,db):
         self.db = db
 
-    def match(self, handle):
+    def match(self, handle,db):
         value = self.db.get_raw_person_data(handle)
         return value[2] == gen.lib.Person.MALE
 
@@ -373,7 +373,7 @@ class FastFemaleFilter:
     def __init__(self,db):
         self.db = db
 
-    def match(self, handle):
+    def match(self, handle,db):
         value = self.db.get_raw_person_data(handle)
         return value[2] == gen.lib.Person.FEMALE
 
