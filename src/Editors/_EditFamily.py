@@ -426,6 +426,9 @@ class EditFamily(EditPrimary):
 
         self._add_db_signal('family-update', self.check_for_family_change)
         self._add_db_signal('family-delete', self.check_for_close)
+
+        # Add a signal pick up changes to events, bug #1329
+        self._add_db_signal('event-update', self.event_updated)
         
         self.added = self.obj.handle == None
         if self.added:
@@ -456,6 +459,9 @@ class EditFamily(EditPrimary):
                 _("The family you are editing has changed. To make sure that the "
                   "database is not corrupted, GRAMPS has updated the family to "
                   "reflect these changes. Any edits you have made may have been lost."))
+
+    def event_updated(self, obj):
+        self.load_data()
 
     def reload_people(self):
         fhandle = self.obj.get_father_handle()
@@ -942,14 +948,6 @@ class EditFamily(EditPrimary):
             else:
                 self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
-        else:
-            # Signal an update to allow other windows that use family data to
-            # refresh. The family-update signal is normally only emitted when
-            # the family record itself changes, however the Relationship view
-            # needs to know to refresh when related data such as the marriage
-            # event may have been altered.
-            # Bug #1416
-            self.db.emit('family-update', ([],))
 
         self.close()
 

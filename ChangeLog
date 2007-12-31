@@ -1,3 +1,9 @@
+2007-12-31 Gary Burton <gary.burton@zen.co.uk>
+	* src/DataViews/RelationView.py:
+	* src/Editors/_EditFamily.py: Add a signal handler for changes to events.
+	bug #1416 and #1329. Also remove previous attempt at fixing #1416 now that
+	I know a bit more about how signal handling works.
+
 2007-12-31  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGadgets.py: added Date to environment
 	* src/gen/lib/date.py: added new Date constructor type: Date(y,m,d)

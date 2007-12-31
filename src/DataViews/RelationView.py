@@ -161,6 +161,9 @@ class RelationshipView(PageView.PersonNavView):
         self.redraw()
             
     def connect_to_db(self, db):
+        # Add a signal to pick up event changes, bug #1416
+        db.connect('event-update', self.family_update)
+
         db.connect('person-update', self.person_update)
         db.connect('person-rebuild', self.person_rebuild)
         db.connect('family-update', self.family_update)
