@@ -99,7 +99,7 @@ def make_requested_gadget(viewpage, name, opts, dbstate, uistate):
             msg = _("Drag Properties Button to move and click it for setup")
         if msg:
             gui.tooltips = gtk.Tooltips()
-            gui.tooltips.set_tip(gui.textview, msg)
+            gui.tooltips.set_tip(gui.scrolledwindow, msg)
         return gui
     return None
 

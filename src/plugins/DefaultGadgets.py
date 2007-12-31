@@ -1,3 +1,24 @@
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000-2007  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+__author__ = "Douglas Blank <dblank@cs.brynmawr.edu>"
+__version__ = "$Revision: $"
+
 import sys
 import os
 import re
@@ -42,11 +63,12 @@ import DateHandler
 #  db_changed- run when db-changed is triggered
 #  main- run once per db change, main process (a generator)
 
-# You can also call update() to run main
+# You should call update() to run main; don't call main directly
 
 class CalendarGadget(Gadget):
     def init(self):
         import gtk
+        self.tooltip = _("Double-click a day for details")
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
         self.gui.calendar.connect('month-changed', self.refresh)
@@ -117,6 +139,12 @@ class CalendarGadget(Gadget):
                                  date)
 
 class LogGadget(Gadget):
+    def init(self):
+        self.tooltip = _("Click name to change active\nDouble-click name to edit")
+        self.set_text(_("Log for this Session"))
+        self.append_text("\n--------------------\n")
+        self.history = {}
+
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.log_person_add)
         self.dbstate.db.connect('person-delete', self.log_person_delete)
@@ -134,11 +162,6 @@ class LogGadget(Gadget):
 
     def active_changed(self, handle):
         self.log_active_changed(handle)
-
-    def init(self):
-        self.set_text(_("Log for this Session"))
-        self.append_text("\n--------------------\n")
-        self.history = {}
 
     def log_person_add(self, handles):
         self.get_person(handles, "person-add")
@@ -172,6 +195,7 @@ class LogGadget(Gadget):
 
 class TopSurnamesGadget(Gadget):
     def init(self):
+        self.tooltip = _("Double-click surname for details")
         self.top_size = 10 # will be overwritten in load
         self.set_text(_("No Family Tree loaded."))
 
@@ -230,14 +254,14 @@ class TopSurnamesGadget(Gadget):
         self.append_text((_("Total people") + ": %d") % total_people)
         
 class StatsGadget(Gadget):
+    def init(self):
+        self.set_text(_("No Family Tree loaded."))
+
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
-
-    def init(self):
-        self.set_text(_("No Family Tree loaded."))
 
     def main(self):
         self.set_text(_("Processing..."))
@@ -331,6 +355,7 @@ class StatsGadget(Gadget):
 
 class PythonGadget(Gadget):
     def init(self):
+        self.tooltip = _("Enter Python expressions")
         self.env = {"dbstate": self.gui.dbstate,
                     "uistate": self.gui.uistate,
                     "self": self,
@@ -387,6 +412,7 @@ class PythonGadget(Gadget):
 class TODOGadget(Gadget):
     def init(self):
         # GUI setup:
+        self.tooltip = _("Enter text")
         self.gui.textview.set_editable(True)
         self.append_text(_("Enter your TODO list here."))
 
@@ -419,6 +445,10 @@ You can right-click on the background of this page to add additional gadgets and
 
 class NewsGadget(Gadget):
     URL = "http://www.gramps-project.org/wiki/index.php?title=%s&action=raw"
+
+    def init(self):
+        self.tooltip = _("Read news from the GRAMPS wiki")
+
     def main(self):
         continuation = self.process('News')
         retval = True
