@@ -624,7 +624,7 @@ class Date:
                 dv[Date._POS_MON] = dv[Date._POS_MON] % 12
         self.dateval = tuple(dv)
         self._calc_sort_value()
-        if day != 0 or dv[Date_POS_DAY] > 28:
+        if day != 0 or dv[Date.POS_DAY] > 28:
             self.set_yr_mon_day(*self.offset(day))
 
     def copy_offset_ymd(self, year=0, month=0, day=0):
