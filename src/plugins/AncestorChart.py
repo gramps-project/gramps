@@ -456,7 +456,7 @@ class AncestorChartOptions(MenuReportOptions):
         if dbstate:
             id = dbstate.get_active_person().get_gramps_id()
         pid = PersonOption(_("Center Person"),id,dbstate)
-        pid.set_help(_("The center person for thereport"))
+        pid.set_help(_("The center person for the report"))
         menu.add_option("","pid",pid)
         
         category_name = _("Report Options")
