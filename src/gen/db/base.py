@@ -90,7 +90,7 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
                     NOTE_KEY: Note.__name__}
 
 _SIGBASE = ('person', 'family', 'source', 'event', 
-            'media', 'place', 'repository','note')
+            'media', 'place', 'repository', 'reference', 'note')
 
 class GrampsDbBookmarks:
     def __init__(self, default=[]):
@@ -1637,7 +1637,7 @@ class GrampsDbBase(GrampsDBCallback):
 
         mapbase = (self.person_map, self.family_map, self.source_map, 
                    self.event_map, self.media_map, self.place_map,
-                   self.repository_map, self.note_map)
+                   self.repository_map, {}, self.note_map)
 
         self.undoindex -= 1
         subitems = transaction.get_recnos()
@@ -1681,7 +1681,7 @@ class GrampsDbBase(GrampsDBCallback):
         transaction = self.translist[self.undoindex]
         mapbase = (self.person_map, self.family_map, self.source_map, 
                    self.event_map, self.media_map, self.place_map,
-                   self.repository_map, self.note_map)
+                   self.repository_map, {}, self.note_map)
 
         subitems = transaction.get_recnos()
         for record_id in subitems:

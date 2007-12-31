@@ -1,4 +1,8 @@
 2007-12-31 Gary Burton <gary.burton@zen.co.uk>
+	* src/gen/db/base.py: added missing key for reference_key in mapbase and
+	_SIGBASE. Was preventing deleted notes being undone. Bug #1507.
+
+2007-12-31 Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/RelationView.py:
 	* src/Editors/_EditFamily.py: Add a signal handler for changes to events.
 	bug #1416 and #1329. Also remove previous attempt at fixing #1416 now that
