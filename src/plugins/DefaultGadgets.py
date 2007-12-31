@@ -407,7 +407,7 @@ GRAMPS is an Open Source Software package, which means you are free to make copi
 
 Getting Started
 
-The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called a database) select "Family Trees" from the menu.... TODO
+The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called a database) select "Family Trees" from the menu, pick "Manage Family Trees", press "New" and name your database. For more details, please read the User Manual, or the on-line manual at http://gramps-project.org.
 
 You are currently reading from the "My Gramps" page, where you can add your own gadgets.
 
