@@ -88,11 +88,20 @@ def set(key, value):
 def get(key):
     token = "/apps/gramps/%s/%s" % (key[0], key[1])
     if key[2] == 0:
-        val = get_bool(token)
+        try:
+            val = get_bool(token)
+        except: 
+            val = default_value[key]
     elif key[2] == 1:
-        val = get_int(token)
+        try:
+            val = get_int(token)
+        except:
+            val = default_value[key]
     else:
-        val = get_string(token)
+        try:
+            val = get_string(token)
+        except:
+            val = default_value[key]
     if val == None:
         val = default_value[key]
     return val

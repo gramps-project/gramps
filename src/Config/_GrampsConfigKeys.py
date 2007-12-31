@@ -280,7 +280,7 @@ default_value = {
     MIN_GENERATION_YEARS : 13,
     AVG_GENERATION_GAP   : 20,
     GENERATION_DEPTH     : 15,
-    DATA_VIEWS: ('PersonView,RelationshipView,FamilyListView,PedigreeView,'
-                 'EventView,SourceView,PlaceView,MediaView,RepositoryView,'
-                 'NoteView'),
+    DATA_VIEWS: ('MyGrampsView,PersonView,RelationshipView,FamilyListView,'
+                 'PedigreeView,EventView,SourceView,PlaceView,MediaView,'
+                 'RepositoryView,NoteView'),
 }

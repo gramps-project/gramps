@@ -1,3 +1,7 @@
+2007-12-30  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/Config/_GrampsConfigKeys.py: added MyGrampsView
+	* src/Config/_GrampsGconfKeys.py: added try/excepts on get_types
+
 2007-12-30  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/GVFamilyLines.py:
 	* src\PluginUtils\__init__.py:
