@@ -553,7 +553,7 @@ register(type="gadget",
          )
 
 register(type="gadget", 
-         name=_("TODO Gadget"), 
+         name="TODO Gadget", 
          tname=_("TODO Gadget"), 
          height=300,
          expand=True,
