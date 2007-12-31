@@ -585,6 +585,63 @@ class FilterListOption(Option):
         """
         self.__value = int(self.combo.get_active())
         return self.__value
+    
+#-------------------------------------------------------------------------
+#
+# PersonOption class
+#
+#-------------------------------------------------------------------------
+class PersonOption(Option):
+    """
+    This class describes an option that allows a person from the 
+    database to be selected.
+    """
+    def __init__(self, label, value, dbstate):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "Center Person"
+        @type label: string
+        @param value: A default Gramps ID of a person for this option.
+            Example: "p11"
+        @type value: string
+        @param dbstate: The database state for the database to be used..
+        @type value: DbState
+        @return: nothing
+        """
+        self.dbstate = dbstate
+        self.db = dbstate.get_database()
+        Option.__init__(self,label,value)
+
+    def make_gui_obj(self, gtk, dialog):
+        self.dialog = dialog
+        self.gobj = gtk.HBox()
+        
+        person = self.db.get_person_from_gramps_id(self.get_value())
+        if not person:
+            person = self.dbstate.get_active_person()
+        name = _nd.display(person)
+        gid = person.get_gramps_id()
+        self.person_label = gtk.Label( "%s (%s)" % (name,gid) )
+        self.person_label.set_alignment(0.0,0.5)
+        self.change_button = gtk.Button("%s..." % _('C_hange') )
+        self.change_button.connect('clicked',self.on_change_clicked)
+        self.gobj.pack_start(self.person_label, False)
+        self.gobj.pack_end(self.change_button, False)
+
+    def parse(self):
+        return self.get_value()
+
+    def on_change_clicked(self, obj):
+        SelectPerson = selector_factory('Person')
+        sel = SelectPerson(self.dbstate, self.dialog.uistate, 
+                           self.dialog.track)
+        person = sel.run()
+        if person:
+            name = _nd.display(person)
+            gid = person.get_gramps_id()
+            self.person_label.set_text( "%s (%s)" % (name,gid) )
+            self.set_value(gid)
+
 
 #-------------------------------------------------------------------------
 #

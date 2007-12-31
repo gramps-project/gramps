@@ -39,7 +39,7 @@ from gettext import gettext as _
 import BaseDoc
 from SubstKeywords import SubstKeywords
 from PluginUtils import register_report, \
-    NumberOption, BooleanOption, TextOption
+    NumberOption, BooleanOption, TextOption, PersonOption
 from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions,\
     MODE_GUI, MODE_BKI, MODE_CLI
 from BasicUtils import name_displayer
@@ -186,7 +186,10 @@ class AncestorChart(Report):
         self.incblank = options_class.handler.options_dict['incblank']
         self.compress = options_class.handler.options_dict['compress']
         
-        name = name_displayer.display_formal(person)
+        pid = options_class.handler.options_dict['pid']
+        center_person = database.get_person_from_gramps_id(pid)
+        
+        name = name_displayer.display_formal(center_person)
         self.title = _("Ancestor Graph for %s") % name
 
         self.map = {}
@@ -197,7 +200,7 @@ class AncestorChart(Report):
         self.lines = 0
         self.scale = 1
 
-        self.apply_filter(self.start_person.get_handle(),1)
+        self.apply_filter(center_person.get_handle(),1)
 
         keys = self.map.keys()
         keys.sort()
@@ -448,6 +451,14 @@ class AncestorChartOptions(MenuReportOptions):
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
+        
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for thereport"))
+        menu.add_option("","pid",pid)
+        
         category_name = _("Report Options")
         
         max_gen = NumberOption(_("Generations"),10,1,15)

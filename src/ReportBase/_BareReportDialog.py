@@ -103,7 +103,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         return (_("Configuration"),self.report_name)
 
     def init_interface(self):
-        self.extra_menu = None
         self.widgets = []
         self.frame_names = []
         self.frames = {}
@@ -115,6 +114,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         window = gtk.Dialog('GRAMPS')
         self.set_window(window,None,self.get_title())
         self.window.set_has_separator(False)
+        self.window.set_modal(True)
 
         if self.HELP_TOPIC:
             self.help = self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
@@ -145,6 +145,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         # frame and to create other frames
         self.add_user_options()
 
+        self.setup_main_options()
         self.setup_center_person()
         self.setup_target_frame()
         self.setup_format_frame()
@@ -158,7 +159,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.setup_other_frames()
         self.notebook.set_current_page(0)
         self.show()
-        #self.window.show_all()
 
     def get_title(self):
         """The window title for this dialog"""
@@ -397,6 +397,8 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
     def setup_other_frames(self):
         for key in self.frame_names:
+            if key == "":
+                continue
             flist = self.frames[key]
             table = gtk.Table(3,len(flist))
             table.set_col_spacings(12)
@@ -419,6 +421,22 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
                     table.attach(widget, 2, 3, row, row+1,
                                  yoptions=gtk.SHRINK)
                 row = row + 1
+                
+    def setup_main_options(self):
+        if self.frames.has_key(""):
+            flist = self.frames[""]
+            for (text,widget) in flist:
+                label = gtk.Label("<b>%s</b>" % text)
+                label.set_use_markup(True)
+                label.set_alignment(0.0,0.5)
+                
+                self.tbl.set_border_width(12)
+                self.tbl.attach(label,0,4,self.col,self.col+1)
+                self.col += 1
+    
+                self.tbl.attach(widget,2,4,self.col,self.col+1)
+                self.col += 1
+
 
     #------------------------------------------------------------------------
     #

@@ -1,4 +1,13 @@
 2007-12-30  Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/MenuOptions.py:
+	* src/ReportBase/_BareReportDialog.py:
+	* src/ReportBase/_ReportDialog.py:
+	* src/plugins/AncestorChart.py:
+	Proof of concept: adding a center person option instead of 
+	using active person
+
+2007-12-30  Brian Matherly <brian@gramps-project.org>
 	* src/Bookmarks: Set dialog to modal.
 
 2007-12-30  Stéphane Charette <stephanecharette@gmail.com>
