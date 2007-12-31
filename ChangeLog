@@ -1,3 +1,7 @@
+2007-12-31  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/DefaultGadgets.py: added Date to environment
+	* src/gen/lib/date.py: added new Date constructor type: Date(y,m,d)
+
 2007-12-30  Stéphane Charette <stephanecharette@gmail.com>
 	* src/BaseDoc.py: new parms in GVDoc::add_node() and GVDoc::add_link()
 
