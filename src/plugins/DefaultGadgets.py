@@ -23,7 +23,6 @@ import sys
 import os
 import re
 import time
-import string
 import urllib
 
 import gen.lib
@@ -373,23 +372,40 @@ class PythonGadget(Gadget):
         return retval
 
     def on_enter(self, widget, event):
-        if event.keyval == 65293: # enter, where to get this?
+        import gtk
+        if event.keyval == gtk.keysyms.Return: 
+            echo = False
             buffer = widget.get_buffer()
-            line_cnt = buffer.get_line_count()
-            start = buffer.get_iter_at_line(line_cnt - 1)
-            end = buffer.get_end_iter()
+            cursor_pos = buffer.get_property("cursor-position")
+            iter = buffer.get_iter_at_offset(cursor_pos)
+            line_cnt = iter.get_line()
+            start = buffer.get_iter_at_line(line_cnt)
+            line_len = iter.get_chars_in_line()
+            buffer_cnt = buffer.get_line_count()
+            if (buffer_cnt - line_cnt) > 1:
+                line_len -= 1
+                echo = True
+            end = buffer.get_iter_at_line_offset(line_cnt, line_len)
             line = buffer.get_text(start, end)
-            if line.startswith("> "):
-                self.append_text("\n")
-                line = line[2:]
+            self.append_text("\n")
+            if line.startswith(">"):
+                line = line[1:].strip()
+            else:
+                self.append_text("> ")
+                return True
+            if echo:
+                self.append_text("> " + line)
+                end = buffer.get_end_iter()
+                buffer.place_cursor(end)
+                return True
             # update states, in case of change:
             self.env["dbstate"] = self.gui.dbstate
             self.env["uistate"] = self.gui.uistate
             _retval = None
             if "_retval" in self.env:
                 del self.env["_retval"]
-            exp1 = """_retval = """ + string.strip(line)
-            exp2 = string.strip(line)
+            exp1 = """_retval = """ + line
+            exp2 = line.strip()
             try:
                 _retval = eval(exp2, self.env)
             except:
@@ -403,10 +419,10 @@ class PythonGadget(Gadget):
             if "_retval" in self.env:
                 _retval = self.env["_retval"]
             if _retval != None:
-                self.append_text("%s\n" % str(_retval))
-                self.append_text("> ")
-            else:
-                self.append_text("> ")
+                self.append_text("%s" % str(_retval))
+            self.append_text("\n> ")
+            end = buffer.get_end_iter()
+            buffer.place_cursor(end)
             return True
         return False
 
