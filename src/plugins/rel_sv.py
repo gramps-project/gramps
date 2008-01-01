@@ -72,12 +72,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def XXget_parents(self,level):
-        if level == 1:
-            return "föräldrar"
-        else:
-            return "anor i generation %d" % (level)
-
     def _get_cousin(self,level,step,inlaw):
         if level>len(_cousin_level)-1:
             return "avlägset släkt"
@@ -114,6 +108,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         gen_result = [ item + 's' for item in result[0:-1] ]
         gen_result = ' '.join(gen_result+result[-1:])
         if len(rel_list)>1 and step != '':
+            # Indicate step relation8s) by adding ' [styv]'
             gen_result=gen_result + ' [styv]'
         return gen_result
 
@@ -131,10 +126,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if person_gender == gen.lib.Person.UNKNOWN:
             result[-1] = 'förälder'
         if step != '' and len(result)==1:
+            #Preceed with syep prefix of fatrher/mother
             result[0]=self.STEP + result[0]
         if inlaw != '':
+            #Preceed with inlaw prefix
             result[-1]='svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get correctSwedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result,step)
 
@@ -157,8 +155,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if step != '' and len(result)==1:
             result[0]=self.STEP + result[0]
         if inlaw != '':
+            #Preceed with inlaw prefix
             result[-1]= 'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get correctSwedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result,step)
 
@@ -174,6 +174,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if inlaw != '' :
             inlaw='ingifta '
         if inlaw != '' and len(result) % 2 !=0:
+            # Correct string "-1" with genitive s and add a space to get correct Swedish, if even number in result
             result[-1] = result[-1] + 's '
         result.append(self._get_cousin(level,step,inlaw))
         if step != '' and len(result)==1:
@@ -207,8 +208,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if step != '' and len(result)==1:
             result[0]=self.STEP + result[0]
         if inlaw != '':
+            #Preceed with inlaw prefix
             result[-1]= 'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result,step)
 
@@ -223,10 +226,14 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if person_gender == gen.lib.Person.UNKNOWN: result[-1] = 'syskon'
         if step != '' and len(result)==1:
             result[0]=self.STEP + result[0]
-        if inlaw != '': result[-1]='svåger'
+        if inlaw != '':
+            #Preceed with inlaw prefix
+            result[-1]='svåger'
         if inlaw != '' and person_gender == gen.lib.Person.UNKNOWN:
+            #Preceed with inlaw prefix
             result[-1]='svåger/svägerska'
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
+            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result,step)
 
@@ -240,8 +247,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         result.append('syster')
         if step != '' and len(result)==1:
             result[0]=self.STEP + result[0]
-        if inlaw != '' : result[-1]= 'svägerska'
+        if inlaw != '' :
+            #Preceed with inlaw prefix
+            result[-1]= 'svägerska'
         if len(result)>1 and len(result) % 2 == 0 and inlaw != '':
+            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result,step)
 
