@@ -2,7 +2,7 @@
 # translation of sv.po to
 # -*- coding: utf-8 -*-
 # Svenska meddelanden i Gramps.
-# Copyright (C) 2001-2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2001-2006, 2007, 2008 Free Software Foundation, Inc.
 #
 # Några tips i översättningen:
 #
@@ -24,14 +24,14 @@
 # Bo Rosén <bo.rosen@home.se>, 2001.
 # Jens Arvidsson <jya@sverige.nu>, 2002-2005.
 # Stefan Björk <betula@users.sourceforge.net>, 2005-2007.
-# Peter Landgren <peter.talken@telia.com>, 2007.
+# Peter Landgren <peter.talken@telia.com>, 2007, 2008.
 # $Id$
 msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-06 18:42+0100\n"
-"PO-Revision-Date: 2007-12-06 19:05+0100\n"
+"POT-Creation-Date: 2008-01-01 14:58+0100\n"
+"PO-Revision-Date: 2008-01-01 14:59+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,7 @@ msgstr "Redigera bokmärken"
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 #: ../src/Editors/_EditFamily.py:96 ../src/Editors/_EditName.py:228
 #: ../src/Selectors/_SelectPerson.py:106 ../src/plugins/BookReport.py:659
-#: ../src/plugins/IndivComplete.py:482 ../src/plugins/NarrativeWeb.py:664
+#: ../src/plugins/IndivComplete.py:483 ../src/plugins/NarrativeWeb.py:664
 #: ../src/plugins/NarrativeWeb.py:810 ../src/plugins/PatchNames.py:209
 #: ../src/plugins/RelCalc.py:56 ../src/plugins/RelCalc.py:110
 #: ../src/plugins/RemoveUnused.py:180 ../src/plugins/TimeLine.py:440
@@ -586,7 +586,7 @@ msgstr ""
 msgid "Father's surname"
 msgstr "Faderns efternamn"
 
-#: ../src/GrampsCfg.py:60 ../src/plugins/Check.py:1181
+#: ../src/GrampsCfg.py:60 ../src/plugins/Check.py:1199
 #: ../src/RelLib/_ChildRefType.py:47
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:148
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:202
@@ -915,7 +915,7 @@ msgstr "Arkivinstitutioner"
 #: ../src/gramps_main.py:113 ../src/ScratchPad.py:170 ../src/ScratchPad.py:375
 #: ../src/ScratchPad.py:408 ../src/DataViews/_SourceView.py:96
 #: ../src/DisplayTabs/_SourceEmbedList.py:69
-#: ../src/plugins/IndivComplete.py:385 ../src/plugins/NarrativeWeb.py:368
+#: ../src/plugins/IndivComplete.py:386 ../src/plugins/NarrativeWeb.py:368
 #: ../src/plugins/NarrativeWeb.py:1404 ../src/plugins/NarrativeWeb.py:1421
 #: ../src/plugins/NarrativeWeb.py:1453
 msgid "Sources"
@@ -947,7 +947,7 @@ msgstr "Exportera"
 
 #: ../src/gramps_main.py:125 ../src/plugins/FamilyGroup.py:363
 #: ../src/plugins/GraphViz.py:912 ../src/plugins/GraphViz.py:918
-#: ../src/plugins/GraphViz.py:927 ../src/plugins/IndivComplete.py:189
+#: ../src/plugins/GraphViz.py:927 ../src/plugins/IndivComplete.py:190
 msgid "Notes"
 msgstr "Anteckningar"
 
@@ -1257,8 +1257,8 @@ msgstr "Släktskapsslinga upptäckt"
 #: ../src/Merge/_MergePerson.py:155 ../src/DataViews/_FamilyList.py:52
 #: ../src/DataViews/_RelationView.py:704 ../src/Selectors/_SelectFamily.py:54
 #: ../src/plugins/FamilyGroup.py:247 ../src/plugins/FamilyGroup.py:258
-#: ../src/plugins/IndivComplete.py:242 ../src/plugins/IndivComplete.py:244
-#: ../src/plugins/IndivComplete.py:528 ../src/plugins/NarrativeWeb.py:2060
+#: ../src/plugins/IndivComplete.py:243 ../src/plugins/IndivComplete.py:245
+#: ../src/plugins/IndivComplete.py:529 ../src/plugins/NarrativeWeb.py:2060
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:104
 msgid "Father"
 msgstr "Far"
@@ -1267,8 +1267,8 @@ msgstr "Far"
 #: ../src/Merge/_MergePerson.py:157 ../src/DataViews/_FamilyList.py:53
 #: ../src/DataViews/_RelationView.py:705 ../src/Selectors/_SelectFamily.py:55
 #: ../src/plugins/FamilyGroup.py:264 ../src/plugins/FamilyGroup.py:275
-#: ../src/plugins/IndivComplete.py:251 ../src/plugins/IndivComplete.py:253
-#: ../src/plugins/IndivComplete.py:533 ../src/plugins/NarrativeWeb.py:2065
+#: ../src/plugins/IndivComplete.py:252 ../src/plugins/IndivComplete.py:254
+#: ../src/plugins/IndivComplete.py:534 ../src/plugins/NarrativeWeb.py:2065
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:105
 msgid "Mother"
 msgstr "Mor"
@@ -1297,7 +1297,7 @@ msgstr "Omordna relationer: %s"
 #: ../src/ScratchPad.py:79 ../src/DataViews/_RelationView.py:380
 #: ../src/DataViews/_RelationView.py:766
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
-#: ../src/Editors/_EditPerson.py:771 ../src/plugins/Check.py:1143
+#: ../src/Editors/_EditPerson.py:771 ../src/plugins/Check.py:1161
 #: ../src/plugins/NarrativeWeb.py:524 ../src/PluginUtils/_PluginMgr.py:183
 #: ../src/PluginUtils/_PluginMgr.py:185 ../src/PluginUtils/_PluginMgr.py:186
 #: ../src/PluginUtils/_PluginMgr.py:216 ../src/PluginUtils/_PluginMgr.py:217
@@ -1606,7 +1606,7 @@ msgstr "kvinna"
 #: ../src/plugins/DetDescendantReport.py:489
 #: ../src/plugins/DetDescendantReport.py:534
 #: ../src/plugins/DetDescendantReport.py:541 ../src/plugins/FamilyGroup.py:756
-#: ../src/plugins/IndivComplete.py:345 ../src/plugins/NarrativeWeb.py:1647
+#: ../src/plugins/IndivComplete.py:346 ../src/plugins/NarrativeWeb.py:1647
 #: ../src/plugins/NarrativeWeb.py:2173
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:84
 msgid "unknown"
@@ -2009,7 +2009,7 @@ msgstr ""
 
 #. Gender
 #: ../src/Merge/_MergePerson.py:125 ../src/DataViews/_PersonView.py:73
-#: ../src/Editors/_EditFamily.py:97 ../src/plugins/IndivComplete.py:493
+#: ../src/Editors/_EditFamily.py:97 ../src/plugins/IndivComplete.py:494
 #: ../src/plugins/NarrativeWeb.py:1937 ../src/plugins/RelCalc.py:58
 #: ../src/plugins/StatisticsChart.py:102
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:110
@@ -2023,7 +2023,7 @@ msgstr "Kön"
 msgid "Death"
 msgstr "Död"
 
-#: ../src/Merge/_MergePerson.py:135 ../src/plugins/IndivComplete.py:268
+#: ../src/Merge/_MergePerson.py:135 ../src/plugins/IndivComplete.py:269
 msgid "Alternate Names"
 msgstr "Alternativa namn"
 
@@ -2058,7 +2058,7 @@ msgid "No spouses or children found"
 msgstr "Inga makar eller barn hittades"
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DisplayTabs/_AddrEmbedList.py:62
-#: ../src/plugins/IndivComplete.py:298 ../src/plugins/NarrativeWeb.py:1976
+#: ../src/plugins/IndivComplete.py:299 ../src/plugins/NarrativeWeb.py:1976
 msgid "Addresses"
 msgstr "Adresser"
 
@@ -2291,7 +2291,7 @@ msgstr "Kör verktyget \"kontrollera och verifiera databasen\""
 #. Go over children and build their menu
 #: ../src/DataViews/_RelationView.py:976
 #: ../src/DataViews/_PedigreeView.py:1539 ../src/Editors/_EditFamily.py:112
-#: ../src/plugins/FamilyGroup.py:634 ../src/plugins/IndivComplete.py:359
+#: ../src/plugins/FamilyGroup.py:634 ../src/plugins/IndivComplete.py:360
 #: ../src/plugins/NarrativeWeb.py:2144
 msgid "Children"
 msgstr "Barn"
@@ -3475,11 +3475,11 @@ msgstr ""
 "Personens kön är för närvarande okänt. Detta är förmodligen ett misstag. Var "
 "vänlig ange kön."
 
-#: ../src/Editors/_EditPerson.py:769 ../src/plugins/IndivComplete.py:495
+#: ../src/Editors/_EditPerson.py:769 ../src/plugins/IndivComplete.py:496
 msgid "Male"
 msgstr "Man"
 
-#: ../src/Editors/_EditPerson.py:770 ../src/plugins/IndivComplete.py:497
+#: ../src/Editors/_EditPerson.py:770 ../src/plugins/IndivComplete.py:498
 msgid "Female"
 msgstr "Kvinna"
 
@@ -3648,28 +3648,28 @@ msgstr "Tar bort barn från familj"
 msgid "Add child to family"
 msgstr "Lägg till barn i familj"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:969
+#: ../src/GrampsDb/_GrampsBSDDB.py:972
 msgid "Rebuild reference map"
 msgstr "Återskapa referenskarta"
 
 #. witness name recorded
 #. Add name and comment to the event note
 #. Parse witnesses created by older gramps
-#: ../src/GrampsDb/_GrampsBSDDB.py:1922 ../src/GrampsDb/_ReadXML.py:735
-#: ../src/GrampsDb/_ReadXML.py:1604
+#: ../src/GrampsDb/_GrampsBSDDB.py:1926 ../src/GrampsDb/_ReadXML.py:740
+#: ../src/GrampsDb/_ReadXML.py:1625
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vittnets namn: %s"
 
-#: ../src/GrampsDb/_GrampsBSDDB.py:1924 ../src/GrampsDb/_ReadXML.py:1498
-#: ../src/GrampsDb/_ReadXML.py:1502
+#: ../src/GrampsDb/_GrampsBSDDB.py:1928 ../src/GrampsDb/_ReadXML.py:1519
+#: ../src/GrampsDb/_ReadXML.py:1523
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vittnets kommentar: %s"
 
 #. Broken witness: dangling witness handle
 #. with no corresponding person in the db
-#: ../src/GrampsDb/_GrampsBSDDB.py:1945
+#: ../src/GrampsDb/_GrampsBSDDB.py:1949
 msgid "Broken witness reference detected while upgrading database to version 9."
 msgstr "Trasig vittnesreferens upptäckt när databasen uppgraderades till version 9."
 
@@ -3690,13 +3690,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1490 ../src/GrampsDb/_GrampsDbBase.py:1560
-#: ../src/GrampsDb/_GrampsDbBase.py:1601
+#: ../src/GrampsDb/_GrampsDbBase.py:1496 ../src/GrampsDb/_GrampsDbBase.py:1566
+#: ../src/GrampsDb/_GrampsDbBase.py:1607
 #, python-format
 msgid "_Undo %s"
 msgstr "_Ångra %s"
 
-#: ../src/GrampsDb/_GrampsDbBase.py:1567 ../src/GrampsDb/_GrampsDbBase.py:1609
+#: ../src/GrampsDb/_GrampsDbBase.py:1573 ../src/GrampsDb/_GrampsDbBase.py:1615
 #, python-format
 msgid "_Redo %s"
 msgstr "Åte_rställ %s"
@@ -3798,7 +3798,16 @@ msgstr ""
 msgid "The Database version is not supported by this version of GRAMPS."
 msgstr "Databasversionen stöd inte av denna version av GRAMPS."
 
-#: ../src/GrampsDb/_ReadGrdb.py:202
+#: ../src/GrampsDb/_ReadGrdb.py:208 ../src/GrampsDb/_ReadXML.py:1129
+#, python-format
+msgid ""
+"Your family tree groups name %s together with %s, did not change this "
+"grouping to %s"
+msgstr ""
+"Ditt slätträds grupperar namnet %s tillsammans med %s, ändrade vinte denna "
+"gruppering till %s"
+
+#: ../src/GrampsDb/_ReadGrdb.py:218
 msgid "Import database"
 msgstr "Importera databas"
 
@@ -3815,14 +3824,14 @@ msgstr "Filen är antagligen antingen felaktig eller inte en giltig GRAMPS-datab
 msgid "Could not copy file"
 msgstr "Kunde inte kopiera fil"
 
-#: ../src/GrampsDb/_ReadXML.py:638
+#: ../src/GrampsDb/_ReadXML.py:643
 msgid "GRAMPS XML import"
 msgstr "GRAMPS XML-import"
 
 #: ../src/GrampsDb/_WriteGedcom.py:294 ../src/plugins/Calendar.py:671
 #: ../src/plugins/EventCmp.py:164 ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/GraphViz.py:700
-#: ../src/plugins/IndivComplete.py:594 ../src/plugins/NarrativeWeb.py:2767
+#: ../src/plugins/IndivComplete.py:595 ../src/plugins/NarrativeWeb.py:2767
 #: ../src/plugins/StatisticsChart.py:844 ../src/plugins/TimeLine.py:417
 #: ../src/plugins/WriteFtree.py:90 ../src/plugins/WriteGeneWeb.py:92
 msgid "Entire Database"
@@ -3831,7 +3840,7 @@ msgstr "Hela databasen"
 #: ../src/GrampsDb/_WriteGedcom.py:301 ../src/plugins/Calendar.py:676
 #: ../src/plugins/DescendReport.py:153 ../src/plugins/ExportVCalendar.py:95
 #: ../src/plugins/ExportVCard.py:93 ../src/plugins/GraphViz.py:704
-#: ../src/plugins/IndivComplete.py:598 ../src/plugins/NarrativeWeb.py:2771
+#: ../src/plugins/IndivComplete.py:599 ../src/plugins/NarrativeWeb.py:2771
 #: ../src/plugins/StatisticsChart.py:848 ../src/plugins/TimeLine.py:421
 #: ../src/plugins/WriteFtree.py:97 ../src/plugins/WriteGeneWeb.py:99
 #, python-format
@@ -3840,7 +3849,7 @@ msgstr "Ättlingar till %s"
 
 #: ../src/GrampsDb/_WriteGedcom.py:307 ../src/plugins/Calendar.py:686
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
-#: ../src/plugins/GraphViz.py:708 ../src/plugins/IndivComplete.py:602
+#: ../src/plugins/GraphViz.py:708 ../src/plugins/IndivComplete.py:603
 #: ../src/plugins/NarrativeWeb.py:2779 ../src/plugins/StatisticsChart.py:852
 #: ../src/plugins/TimeLine.py:425 ../src/plugins/WriteFtree.py:103
 #: ../src/plugins/WriteGeneWeb.py:105
@@ -3850,7 +3859,7 @@ msgstr "Anor för %s"
 
 #: ../src/GrampsDb/_WriteGedcom.py:313 ../src/plugins/Calendar.py:691
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
-#: ../src/plugins/GraphViz.py:712 ../src/plugins/IndivComplete.py:606
+#: ../src/plugins/GraphViz.py:712 ../src/plugins/IndivComplete.py:607
 #: ../src/plugins/NarrativeWeb.py:2783 ../src/plugins/StatisticsChart.py:856
 #: ../src/plugins/TimeLine.py:429 ../src/plugins/WriteFtree.py:109
 #: ../src/plugins/WriteGeneWeb.py:111
@@ -3930,11 +3939,11 @@ msgstr ""
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteXML.py:1089
+#: ../src/GrampsDb/_WriteXML.py:1102
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS-_XML-databas"
 
-#: ../src/GrampsDb/_WriteXML.py:1090
+#: ../src/GrampsDb/_WriteXML.py:1103
 msgid ""
 "The GRAMPS XML database is a format used by older versions of GRAMPS. It is "
 "read-write compatible with the present GRAMPS database format."
@@ -4196,7 +4205,7 @@ msgstr "Ko_mprimera tavla"
 #: ../src/plugins/AncestorChart2.py:490 ../src/plugins/AncestorReport.py:303
 #: ../src/plugins/DescendChart.py:440 ../src/plugins/DetAncestralReport.py:826
 #: ../src/plugins/DetDescendantReport.py:857 ../src/plugins/FamilyGroup.py:876
-#: ../src/plugins/FanChart.py:452 ../src/plugins/IndivComplete.py:673
+#: ../src/plugins/FanChart.py:452 ../src/plugins/IndivComplete.py:674
 msgid "The basic style used for the text display."
 msgstr "Grundläggande stil som används för textvisning."
 
@@ -4212,12 +4221,12 @@ msgstr "Antavla"
 #: ../src/plugins/BookReport.py:1182 ../src/plugins/Calendar.py:1271
 #: ../src/plugins/Calendar.py:1283 ../src/plugins/ChangeNames.py:204
 #: ../src/plugins/ChangeTypes.py:208 ../src/plugins/Checkpoint.py:442
-#: ../src/plugins/Check.py:1340 ../src/plugins/CountAncestors.py:142
+#: ../src/plugins/Check.py:1358 ../src/plugins/CountAncestors.py:142
 #: ../src/plugins/Desbrowser.py:161 ../src/plugins/DescendChart.py:464
 #: ../src/plugins/DescendReport.py:259 ../src/plugins/Eval.py:130
 #: ../src/plugins/EventCmp.py:479 ../src/plugins/FamilyGroup.py:909
 #: ../src/plugins/FanChart.py:468 ../src/plugins/GraphViz.py:1264
-#: ../src/plugins/GraphViz.py:1278 ../src/plugins/IndivComplete.py:688
+#: ../src/plugins/GraphViz.py:1278 ../src/plugins/IndivComplete.py:689
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:699
 #: ../src/plugins/NarrativeWeb.py:3317 ../src/plugins/PatchNames.py:357
 #: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:228
@@ -4246,7 +4255,7 @@ msgstr "Generation %d"
 #: ../src/plugins/AncestorReport.py:280 ../src/plugins/DescendReport.py:222
 #: ../src/plugins/DetAncestralReport.py:780
 #: ../src/plugins/DetDescendantReport.py:811 ../src/plugins/FamilyGroup.py:867
-#: ../src/plugins/IndivComplete.py:641 ../src/plugins/SimpleBookTitle.py:271
+#: ../src/plugins/IndivComplete.py:642 ../src/plugins/SimpleBookTitle.py:271
 #: ../src/plugins/StatisticsChart.py:829 ../src/plugins/TimeLine.py:404
 msgid "The style used for the title of the page."
 msgstr "Stil som används för sidans titel."
@@ -4710,44 +4719,44 @@ msgstr ""
 "Lagra undan en ögonblicksbild av aktuell databas i ett "
 "versionshanteringssystem"
 
-#: ../src/plugins/Check.py:191
+#: ../src/plugins/Check.py:192
 msgid "Check Integrity"
 msgstr "Kontrollera integritet"
 
-#: ../src/plugins/Check.py:234
+#: ../src/plugins/Check.py:235
 msgid "Checking database"
 msgstr "Kontrollerar databas"
 
-#: ../src/plugins/Check.py:251
+#: ../src/plugins/Check.py:252
 msgid "Looking for invalid name format references"
 msgstr "Söker efter felaktiga namnformatsreferenser"
 
-#: ../src/plugins/Check.py:299
+#: ../src/plugins/Check.py:300
 msgid "Looking for duplicate spouses"
 msgstr "Söker efter dubblerade makar"
 
-#: ../src/plugins/Check.py:317
+#: ../src/plugins/Check.py:318
 msgid "Looking for character encoding errors"
 msgstr "Söker efter teckenkodningsproblem"
 
-#: ../src/plugins/Check.py:344
+#: ../src/plugins/Check.py:345
 msgid "Looking for broken family links"
 msgstr "Söker efter trasiga familjelänkar"
 
-#: ../src/plugins/Check.py:467
+#: ../src/plugins/Check.py:468
 msgid "Looking for unused objects"
 msgstr "Söker efter oanvända objekt"
 
-#: ../src/plugins/Check.py:526 ../src/plugins/WriteCD.py:246
+#: ../src/plugins/Check.py:527 ../src/plugins/WriteCD.py:246
 #: ../src/plugins/WritePkg.py:147
 msgid "Select file"
 msgstr "Välj fil"
 
-#: ../src/plugins/Check.py:545 ../src/plugins/WriteCD.py:271
+#: ../src/plugins/Check.py:546 ../src/plugins/WriteCD.py:271
 msgid "Media object could not be found"
 msgstr "Medieobjektet kunde inte återfinnas"
 
-#: ../src/plugins/Check.py:546
+#: ../src/plugins/Check.py:547
 #, python-format
 msgid ""
 "The file:\n"
@@ -4764,250 +4773,250 @@ msgstr ""
 "bort referensen från databasen, behålla referensen till den saknade filen, "
 "eller välja en ny fil."
 
-#: ../src/plugins/Check.py:584
+#: ../src/plugins/Check.py:585
 msgid "Looking for empty people records"
 msgstr "Söker efter tomma personposter"
 
-#: ../src/plugins/Check.py:592
+#: ../src/plugins/Check.py:593
 msgid "Looking for empty family records"
 msgstr "Söker efter tomma familjeposter"
 
-#: ../src/plugins/Check.py:600
+#: ../src/plugins/Check.py:601
 msgid "Looking for empty event records"
 msgstr "Söker efter tomma händelseposter"
 
-#: ../src/plugins/Check.py:608
+#: ../src/plugins/Check.py:609
 msgid "Looking for empty source records"
 msgstr "Söker efter tomma källposter"
 
-#: ../src/plugins/Check.py:616
+#: ../src/plugins/Check.py:617
 msgid "Looking for empty place records"
 msgstr "Söker efter tomma platsposter"
 
-#: ../src/plugins/Check.py:623
+#: ../src/plugins/Check.py:624
 msgid "Looking for empty media records"
 msgstr "Söker efter tomma mediaposter"
 
-#: ../src/plugins/Check.py:632
+#: ../src/plugins/Check.py:633
 msgid "Looking for empty repository records"
 msgstr "Söker efter tomma arkivinstitutionsposter"
 
-#: ../src/plugins/Check.py:675
+#: ../src/plugins/Check.py:676
 msgid "Looking for families with no parents or children"
 msgstr "Söker efter familjer utan föräldrar eller barn"
 
-#: ../src/plugins/Check.py:702
+#: ../src/plugins/Check.py:703
 msgid "Looking for broken parent relationships"
 msgstr "Söker efter trasiga föräldrarelationer"
 
-#: ../src/plugins/Check.py:733
+#: ../src/plugins/Check.py:734
 msgid "Looking for event problems"
 msgstr "Söker efter problem med händelser"
 
-#: ../src/plugins/Check.py:813
+#: ../src/plugins/Check.py:814
 msgid "Looking for person reference problems"
 msgstr "Söker efter problem med personreferenser"
 
-#: ../src/plugins/Check.py:829
+#: ../src/plugins/Check.py:830
 msgid "Looking for repository reference problems"
 msgstr "Söker efter problem med arkivinstitutionsreferenser"
 
-#: ../src/plugins/Check.py:846
+#: ../src/plugins/Check.py:847
 msgid "Looking for place reference problems"
 msgstr "Söker efter problem med referenser till platser"
 
-#: ../src/plugins/Check.py:892
+#: ../src/plugins/Check.py:894
 msgid "Looking for source reference problems"
 msgstr "Söker efter problem med källhänvisningar"
 
-#: ../src/plugins/Check.py:999
+#: ../src/plugins/Check.py:1017
 msgid "Looking for media object reference problems"
 msgstr "Söker efter mediaobjekt med referensproblem"
 
-#: ../src/plugins/Check.py:1123
+#: ../src/plugins/Check.py:1141
 msgid "No errors were found"
 msgstr "Inga fel upptäcktes"
 
-#: ../src/plugins/Check.py:1124
+#: ../src/plugins/Check.py:1142
 msgid "The database has passed internal checks"
 msgstr "Databasen har klarat interna kontroller"
 
-#: ../src/plugins/Check.py:1130
+#: ../src/plugins/Check.py:1148
 msgid "1 broken child/family link was fixed\n"
 msgstr "En trasig barn-/familjelänk lagades\n"
 
-#: ../src/plugins/Check.py:1132
+#: ../src/plugins/Check.py:1150
 #, python-format
 msgid "%d broken child/family links were found\n"
 msgstr "%d brutna barn-/familjelänkar hittades\n"
 
-#: ../src/plugins/Check.py:1138
+#: ../src/plugins/Check.py:1156
 msgid "Non existing child"
 msgstr "Ickeexisterande barn"
 
-#: ../src/plugins/Check.py:1145
+#: ../src/plugins/Check.py:1163
 #, python-format
 msgid "%s was removed from the family of %s\n"
 msgstr "%s togs bort från familjen %s\n"
 
-#: ../src/plugins/Check.py:1149
+#: ../src/plugins/Check.py:1167
 msgid "1 broken spouse/family link was fixed\n"
 msgstr "En trasig maka-/make-/familjelänk lagades\n"
 
-#: ../src/plugins/Check.py:1151
+#: ../src/plugins/Check.py:1169
 #, python-format
 msgid "%d broken spouse/family links were found\n"
 msgstr "%d brutna maka-/make-/familjelänkar hittades\n"
 
-#: ../src/plugins/Check.py:1157 ../src/plugins/Check.py:1176
+#: ../src/plugins/Check.py:1175 ../src/plugins/Check.py:1194
 msgid "Non existing person"
 msgstr "Ickeexisterande person"
 
-#: ../src/plugins/Check.py:1164 ../src/plugins/Check.py:1183
+#: ../src/plugins/Check.py:1182 ../src/plugins/Check.py:1201
 #, python-format
 msgid "%s was restored to the family of %s\n"
 msgstr "%s återställdes till familjen %s\n"
 
-#: ../src/plugins/Check.py:1168
+#: ../src/plugins/Check.py:1186
 msgid "1 duplicate spouse/family link was found\n"
 msgstr "En bruten make-maka- eller familjelänk hittades\n"
 
-#: ../src/plugins/Check.py:1170
+#: ../src/plugins/Check.py:1188
 #, python-format
 msgid "%d duplicate spouse/family links were found\n"
 msgstr "%d brutna make-maka- eller familjelänkar hittades\n"
 
-#: ../src/plugins/Check.py:1186
+#: ../src/plugins/Check.py:1204
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 familj utan föräldrar eller barn hittad, borttagen.\n"
 
-#: ../src/plugins/Check.py:1189
+#: ../src/plugins/Check.py:1207
 #, python-format
 msgid "%d families with no parents or children, removed.\n"
 msgstr "%d familjer utan föräldrar eller barn hittad, borttagna.\n"
 
-#: ../src/plugins/Check.py:1192
+#: ../src/plugins/Check.py:1210
 msgid "1 corrupted family relationship fixed\n"
 msgstr "En skadad familjelänk lagad\n"
 
-#: ../src/plugins/Check.py:1194
+#: ../src/plugins/Check.py:1212
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgstr "%d skadade familjelänkar lagade\n"
 
-#: ../src/plugins/Check.py:1197
+#: ../src/plugins/Check.py:1215
 msgid "1 person was referenced but not found\n"
 msgstr "1 person som refereras till kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1199
+#: ../src/plugins/Check.py:1217
 #, python-format
 msgid "%d persons were referenced, but not found\n"
 msgstr "%d personer refererades men kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1202
+#: ../src/plugins/Check.py:1220
 msgid "1 repository was referenced but not found\n"
 msgstr "1 arkivinstitutions refererades men kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1204
+#: ../src/plugins/Check.py:1222
 #, python-format
 msgid "%d repositories were referenced, but not found\n"
 msgstr "%d arkivinstitutioner refererades men kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1207
+#: ../src/plugins/Check.py:1225
 msgid "1 media object was referenced, but not found\n"
 msgstr "Ett medieobjekt som refereras till kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1209 ../src/plugins/Check.py:1254
+#: ../src/plugins/Check.py:1227 ../src/plugins/Check.py:1272
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
 msgstr "%d medieobjekt som refereras till kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1212
+#: ../src/plugins/Check.py:1230
 msgid "Reference to 1 missing media object was kept\n"
 msgstr "Referens till 1 saknat medieobjekt behölls\n"
 
-#: ../src/plugins/Check.py:1214
+#: ../src/plugins/Check.py:1232
 #, python-format
 msgid "References to %d media objects were kept\n"
 msgstr "Referens till %d medieobjekt behölls\n"
 
-#: ../src/plugins/Check.py:1217
+#: ../src/plugins/Check.py:1235
 msgid "1 missing media object was replaced\n"
 msgstr "1 saknat medieobjekt ersattes\n"
 
-#: ../src/plugins/Check.py:1219
+#: ../src/plugins/Check.py:1237
 #, python-format
 msgid "%d missing media objects were replaced\n"
 msgstr "%d saknade medieobjekt ersattes\n"
 
-#: ../src/plugins/Check.py:1222
+#: ../src/plugins/Check.py:1240
 msgid "1 missing media object was removed\n"
 msgstr "1 saknat medieobjekt togs bort\n"
 
-#: ../src/plugins/Check.py:1224
+#: ../src/plugins/Check.py:1242
 #, python-format
 msgid "%d missing media objects were removed\n"
 msgstr "%d saknat medieobjekt togs bort\n"
 
-#: ../src/plugins/Check.py:1227
+#: ../src/plugins/Check.py:1245
 msgid "1 invalid event reference was removed\n"
 msgstr "1 ogiltig händelsereferens togs bort\n"
 
-#: ../src/plugins/Check.py:1229
+#: ../src/plugins/Check.py:1247
 #, python-format
 msgid "%d invalid event references were removed\n"
 msgstr "%d ogiltiga händelser togs bort\n"
 
-#: ../src/plugins/Check.py:1232
+#: ../src/plugins/Check.py:1250
 msgid "1 invalid birth event name was fixed\n"
 msgstr "1 ogiltigt födelsehändelsenamn lagades\n"
 
-#: ../src/plugins/Check.py:1234
+#: ../src/plugins/Check.py:1252
 #, python-format
 msgid "%d invalid birth event names were fixed\n"
 msgstr "%d ogiltiga födelsehändelsenamn rättades\n"
 
-#: ../src/plugins/Check.py:1237
+#: ../src/plugins/Check.py:1255
 msgid "1 invalid death event name was fixed\n"
 msgstr "1 ogiltigt dödshändelsenamn lagades\n"
 
-#: ../src/plugins/Check.py:1239
+#: ../src/plugins/Check.py:1257
 #, python-format
 msgid "%d invalid death event names were fixed\n"
 msgstr "%d ogiltiga dödshändelsenamn rättades\n"
 
-#: ../src/plugins/Check.py:1242
+#: ../src/plugins/Check.py:1260
 msgid "1 place was referenced but not found\n"
 msgstr "1 plats som refereras till kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1244
+#: ../src/plugins/Check.py:1262
 #, python-format
 msgid "%d places were referenced, but not found\n"
 msgstr "%d platser som refereras till kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1247
+#: ../src/plugins/Check.py:1265
 msgid "1 source was referenced but not found\n"
 msgstr "1 källhänvisning kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1249
+#: ../src/plugins/Check.py:1267
 #, python-format
 msgid "%d sources were referenced, but not found\n"
 msgstr "%d källhänvisningar kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1252
+#: ../src/plugins/Check.py:1270
 msgid "1 media object was referenced but not found\n"
 msgstr "Ett medieobjekt som refereras till kunde inte hittas\n"
 
-#: ../src/plugins/Check.py:1258
+#: ../src/plugins/Check.py:1276
 msgid "1 invalid name format reference was removed\n"
 msgstr "1 ogiltig namnformatsreferens togs bort\n"
 
-#: ../src/plugins/Check.py:1260
+#: ../src/plugins/Check.py:1278
 #, python-format
 msgid "%d invalid name format references were removed\n"
 msgstr "%d ogiltiga namnformatsreferenser togs bort\n"
 
-#: ../src/plugins/Check.py:1264
+#: ../src/plugins/Check.py:1282
 #, python-format
 msgid ""
 "%d empty objects removed:\n"
@@ -5028,19 +5037,19 @@ msgstr ""
 "   %d platsobjekt\n"
 "   %d arkivinstitutionsobjekt\n"
 
-#: ../src/plugins/Check.py:1308
+#: ../src/plugins/Check.py:1326
 msgid "Integrity Check Results"
 msgstr "Resultat av integritetskontroll"
 
-#: ../src/plugins/Check.py:1313
+#: ../src/plugins/Check.py:1331
 msgid "Check and Repair"
 msgstr "Kontrollera och reparera"
 
-#: ../src/plugins/Check.py:1339
+#: ../src/plugins/Check.py:1357
 msgid "Check and repair database"
 msgstr "Kontrollera och reparera databasen"
 
-#: ../src/plugins/Check.py:1343
+#: ../src/plugins/Check.py:1361
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Kontrollerar databasen för interna fel och lagar dessa om möjligt"
 
@@ -6151,51 +6160,51 @@ msgstr "vCard-filer"
 msgid "%(date)s in %(place)s. "
 msgstr "%(date)s i %(place)s. "
 
-#: ../src/plugins/IndivComplete.py:214
+#: ../src/plugins/IndivComplete.py:215
 msgid "Alternate Parents"
 msgstr "Alternativa föräldrar"
 
-#: ../src/plugins/IndivComplete.py:326
+#: ../src/plugins/IndivComplete.py:327
 msgid "Marriages/Children"
 msgstr "Äktenskap/Barn"
 
-#: ../src/plugins/IndivComplete.py:410
+#: ../src/plugins/IndivComplete.py:411
 msgid "Individual Facts"
 msgstr "Enstaka fakta"
 
-#: ../src/plugins/IndivComplete.py:456
+#: ../src/plugins/IndivComplete.py:457
 #, python-format
 msgid "Summary of %s"
 msgstr "Sammanfattning av %s"
 
-#: ../src/plugins/IndivComplete.py:476 ../src/plugins/NarrativeWeb.py:401
+#: ../src/plugins/IndivComplete.py:477 ../src/plugins/NarrativeWeb.py:401
 #: ../src/plugins/NarrativeWeb.py:434 ../src/plugins/NarrativeWeb.py:446
 #: ../src/plugins/NarrativeWeb.py:1330 ../src/plugins/NarrativeWeb.py:1377
 #: ../src/plugins/NarrativeWeb.py:1600 ../src/ReportBase/_ReportUtils.py:1335
 msgid "Could not add photo to page"
 msgstr "Kunde inte lägga foto till sidan"
 
-#: ../src/plugins/IndivComplete.py:477 ../src/ReportBase/_ReportUtils.py:1336
+#: ../src/plugins/IndivComplete.py:478 ../src/ReportBase/_ReportUtils.py:1336
 msgid "File does not exist"
 msgstr "Filen finns inte"
 
-#: ../src/plugins/IndivComplete.py:620
+#: ../src/plugins/IndivComplete.py:621
 msgid "Include Source Information"
 msgstr "Inkludera källinformation"
 
-#: ../src/plugins/IndivComplete.py:653
+#: ../src/plugins/IndivComplete.py:654
 msgid "The style used for category labels."
 msgstr "Stil som används för kategorietiketter."
 
-#: ../src/plugins/IndivComplete.py:664
+#: ../src/plugins/IndivComplete.py:665
 msgid "The style used for the spouse's name."
 msgstr "Stil som används för makans/makens namn."
 
-#: ../src/plugins/IndivComplete.py:687
+#: ../src/plugins/IndivComplete.py:688
 msgid "Complete Individual Report"
 msgstr "Ansedel"
 
-#: ../src/plugins/IndivComplete.py:691
+#: ../src/plugins/IndivComplete.py:692
 msgid "Produces a complete report on the selected people."
 msgstr "Skapar en fullständig rapport om de valda personerna."
 
