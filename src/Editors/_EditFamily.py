@@ -799,10 +799,13 @@ class EditFamily(EditPrimary):
             self.tooltips.set_tip(btn_obj, del_msg)
             btn_obj.add(del_image)
 
+            edit_btn = IconButton(self.edit_person,person.handle)
+            self.tooltips.set_tip(edit_btn, _('Edit %s') % name)
+
             box.pack_start(LinkBox(
                 BasicLabel(name),
-                IconButton(self.edit_person,person.handle)
-                ))
+                edit_btn)
+                )
         else:
             btn2_obj.show()
             name = ""
