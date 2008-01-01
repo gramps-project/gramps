@@ -1,0 +1,5 @@
+2008-01-01  Brian Matherly <brian@gramps-project.org>
+	* src/gramps_main.py:
+	* src/PluginUtils/_MenuOptions.py:
+	Refinement of "Center Person" selection for reports. Now only use one 
+	dialog.

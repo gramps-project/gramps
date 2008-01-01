@@ -615,63 +615,48 @@ class PersonOption(Option):
     def make_gui_obj(self, gtk, dialog):
         self.dialog = dialog
         self.gobj = gtk.HBox()
-        
-        person = self.db.get_person_from_gramps_id(self.get_value())
-        if not person:
-            person = self.dbstate.get_active_person()
-        name = _nd.display(person)
-        gid = person.get_gramps_id()
-        self.person_label = gtk.Label( "%s (%s)" % (name,gid) )
+        self.person_label = gtk.Label()
         self.person_label.set_alignment(0.0,0.5)
-        
         self.person_button   = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
                                                       self.get_person_clicked)
-        self.bookmark_button = GrampsWidgets.SimpleButton('gramps-bookmark', 
-                                                      self.get_bookmark_clicked)
-        self.home_button     = GrampsWidgets.SimpleButton(gtk.STOCK_HOME, 
-                                                      self.get_home_clicked)
-        self.active_button   = GrampsWidgets.SimpleButton(gtk.STOCK_YES, 
-                                                      self.get_active_clicked)
+        self.person_button.set_relief(gtk.RELIEF_NORMAL)
 
         self.pevt = gtk.EventBox()
         self.pevt.add(self.person_label)
         
         self.gobj.pack_start(self.pevt, False)
         self.gobj.pack_end(self.person_button, False)
-        self.gobj.pack_end(self.bookmark_button,False)
-        self.gobj.pack_end(self.home_button,False)
-        self.gobj.pack_end(self.active_button,False)
+        
+        person = self.db.get_person_from_gramps_id(self.get_value())
+        if not person:
+            person = self.dbstate.get_active_person()
+        self.update_person(person)
 
     def parse(self):
         return self.get_value()
 
     def get_person_clicked(self, obj):
-        SelectPerson = selector_factory('Person')
-        sel = SelectPerson(self.dbstate, self.dialog.uistate, 
-                           self.dialog.track)
-        person = sel.run()
-        self.update_person(person)
-            
-    def get_bookmark_clicked(self,obj):
         from Filters import GenericFilter, Rules
-        bfilter = GenericFilter()
-        bfilter.set_name(_("Bookmarked People"))
-        bfilter.add_rule(Rules.Person.IsBookmarked([]))
+        rfilter = GenericFilter()
+        rfilter.set_logical_op('or')
+        rfilter.add_rule(Rules.Person.IsBookmarked([]))
         
+        default_person = self.db.get_default_person()
+        if default_person:
+            id = default_person.get_gramps_id()
+            rfilter.add_rule(Rules.Person.HasIdOf([id]))
+            
+        active_person = self.dbstate.get_active_person()
+        if active_person:
+            id = active_person.get_gramps_id()
+            rfilter.add_rule(Rules.Person.HasIdOf([id]))
+
         SelectPerson = selector_factory('Person')
         sel = SelectPerson(self.dbstate, self.dialog.uistate, 
                            self.dialog.track, 
-                           title=_('Select a Bookmarked Person'), 
-                           filter=bfilter )
+                           title=_('Select a person for the report'), 
+                           filter=rfilter )
         person = sel.run()
-        self.update_person(person)
-    
-    def get_home_clicked(self,obj):
-        person = self.db.get_default_person()
-        self.update_person(person)
-    
-    def get_active_clicked(self,obj):
-        person = self.dbstate.get_active_person()
         self.update_person(person)
     
     def update_person(self,person):
@@ -686,10 +671,7 @@ class PersonOption(Option):
         Add the option's help to the GUI object.
         """
         tooltip.set_tip(self.pevt, self.get_help())
-        tooltip.set_tip(self.bookmark_button, _('Select a bookmarked person'))
-        tooltip.set_tip(self.home_button, _('Select the "home" person'))
-        tooltip.set_tip(self.active_button, _('Select the currently active person'))
-        tooltip.set_tip(self.person_button,  _('Select any person from the database'))
+        tooltip.set_tip(self.person_button,  _('Select a different person'))
 
 #-------------------------------------------------------------------------
 #
