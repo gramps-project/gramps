@@ -1,3 +1,6 @@
+2008-01-01  Peter Landgren <peter.talken@telia.com>
+    * src/plugins/rel_sv.py: Added some comments
+
 2008-01-01  Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditFamily.py: Enabled tooltips on person edit buttons
 	bug #1501
