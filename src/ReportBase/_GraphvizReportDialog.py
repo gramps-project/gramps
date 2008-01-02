@@ -279,7 +279,6 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         tmp = comment.split('\n')
         for line in tmp:
             text = line.strip()
-            print 'text="%s"\n' % text
             if text == "":
                 self.write('\n')
             elif text.startswith('#'):
