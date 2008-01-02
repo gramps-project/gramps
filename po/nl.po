@@ -1,4 +1,4 @@
-# translation of nieuwenl.po to nederlands
+# translation of nl.po to nederlands
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -34,10 +34,10 @@
 # lineage	lijn
 msgid ""
 msgstr ""
-"Project-Id-Version: nieuwenl\n"
+"Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-20 14:53+0100\n"
-"PO-Revision-Date: 2007-12-21 10:52+0100\n"
+"POT-Creation-Date: 2007-12-24 17:49-0800\n"
+"PO-Revision-Date: 2007-12-27 12:53+0100\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -142,7 +142,7 @@ msgstr "GRAMPS-gegevensbestanden"
 
 #: ../src/Assistant.py:337 ../src/Filters/Rules/Place/_HasPlace.py:46
 #: ../src/Filters/Rules/Repository/_HasRepo.py:47
-#: ../src/glade/gramps.glade.h:88 ../src/plugins/ownereditor.glade.h:7
+#: ../src/glade/gramps.glade.h:89 ../src/plugins/ownereditor.glade.h:7
 #: ../src/plugins/soundex.glade.h:2
 msgid "Name:"
 msgstr "Naam:"
@@ -163,7 +163,7 @@ msgid "State/Province:"
 msgstr "Deelstaat/Provincie:"
 
 #: ../src/Assistant.py:341 ../src/Filters/Rules/Place/_HasPlace.py:52
-#: ../src/glade/gramps.glade.h:59 ../src/plugins/ownereditor.glade.h:5
+#: ../src/glade/gramps.glade.h:60 ../src/plugins/ownereditor.glade.h:5
 msgid "Country:"
 msgstr "Land:"
 
@@ -186,12 +186,12 @@ msgid "Edit Bookmarks"
 msgstr "Bladwijzers bewerken"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:206 ../src/GrampsCfg.py:172 ../src/ScratchPad.py:172
-#: ../src/ScratchPad.py:244 ../src/ScratchPad.py:354 ../src/ScratchPad.py:410
-#: ../src/ScratchPad.py:443 ../src/ScratchPad.py:504 ../src/ScratchPad.py:535
-#: ../src/ScratchPad.py:552 ../src/ScratchPad.py:553 ../src/ScratchPad.py:572
-#: ../src/ScratchPad.py:622 ../src/ScratchPad.py:655 ../src/ScratchPad.py:709
-#: ../src/ScratchPad.py:720 ../src/ScratchPad.py:799 ../src/ToolTips.py:173
+#: ../src/Bookmarks.py:206 ../src/GrampsCfg.py:172 ../src/ScratchPad.py:185
+#: ../src/ScratchPad.py:257 ../src/ScratchPad.py:367 ../src/ScratchPad.py:423
+#: ../src/ScratchPad.py:456 ../src/ScratchPad.py:517 ../src/ScratchPad.py:548
+#: ../src/ScratchPad.py:565 ../src/ScratchPad.py:566 ../src/ScratchPad.py:585
+#: ../src/ScratchPad.py:635 ../src/ScratchPad.py:668 ../src/ScratchPad.py:722
+#: ../src/ScratchPad.py:733 ../src/ScratchPad.py:812 ../src/ToolTips.py:173
 #: ../src/ToolTips.py:199 ../src/ToolTips.py:210
 #: ../src/DataViews/_PersonView.py:71 ../src/DataViews/_PersonView.py:513
 #: ../src/DataViews/_PersonView.py:649 ../src/DataViews/_PersonView.py:655
@@ -199,7 +199,7 @@ msgstr "Bladwijzers bewerken"
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:59
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
-#: ../src/Editors/_EditFamily.py:97 ../src/Editors/_EditName.py:225
+#: ../src/Editors/_EditFamily.py:97 ../src/Editors/_EditName.py:274
 #: ../src/Selectors/_SelectPerson.py:48 ../src/Selectors/_SelectPerson.py:120
 #: ../src/Selectors/_SelectPerson.py:126 ../src/plugins/BookReport.py:656
 #: ../src/plugins/FamilyLines.py:893 ../src/plugins/IndivComplete.py:463
@@ -480,7 +480,7 @@ msgid "Extract"
 msgstr "Exporteren"
 
 #: ../src/DbManager.py:98 ../src/gen/lib/repotype.py:55
-#: ../src/glade/gramps.glade.h:42
+#: ../src/glade/gramps.glade.h:43
 msgid "Archive"
 msgstr "Archief"
 
@@ -541,7 +541,7 @@ msgstr ""
 
 #: ../src/DbManager.py:442
 msgid "Could not rename family tree"
-msgstr "Kon bestand de stamboom niet herbenoemen"
+msgstr "Kon de familiestamboom niet herbenoemen"
 
 #: ../src/DbManager.py:478
 msgid "Extracting archive..."
@@ -579,7 +579,7 @@ msgstr "Versie verwijderen"
 
 #: ../src/DbManager.py:541
 msgid "Could not delete family tree"
-msgstr "Kon de stamboom niet verwijderen"
+msgstr "Kon de familiestamboom niet verwijderen"
 
 #: ../src/DbManager.py:568
 msgid "Deletion failed"
@@ -602,7 +602,7 @@ msgstr "Het gegevensbestand wordt opnieuw opgebouwd vanuit opgeslagen bestanden"
 
 #: ../src/DbManager.py:642
 msgid "Could not create family tree"
-msgstr "Kon geen stamboom aanmaken"
+msgstr "Kon geen familiestamboom aanmaken"
 
 #: ../src/DbManager.py:665 ../src/DbManager.py:779
 msgid "Never"
@@ -616,9 +616,9 @@ msgstr "Importen van gegevens..."
 
 #: ../src/DbManager.py:764
 msgid "Could not make database directory: "
-msgstr "Kon geen gegevensbestandsmap aanmaken:"
+msgstr "Kon geen gegevensbestandsmap aanmaken: "
 
-#: ../src/DbManager.py:851 ../src/ScratchPad.py:80
+#: ../src/DbManager.py:851 ../src/ScratchPad.py:93
 #: ../src/DataViews/_RelationView.py:389 ../src/DataViews/_RelationView.py:830
 #: ../src/DataViews/_RelationView.py:868
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:110
@@ -731,7 +731,7 @@ msgstr ""
 "Map:\t%s\n"
 "\n"
 "Klik op Volgende om door te gaan, Annuleren om te af te breken, of Terug om "
-"uw instellingen te wijzigen."
+"uw instellingen te wijzigen"
 
 #: ../src/ExportAssistant.py:420
 msgid ""
@@ -888,8 +888,12 @@ msgstr "Naamaanpassingscherm"
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: ../src/GrampsCfg.py:144 ../src/gen/lib/notetype.py:80
-#: ../src/glade/gramps.glade.h:76
+#: ../src/GrampsCfg.py:144 ../src/Editors/_EditEventRef.py:88
+#: ../src/Editors/_EditEventRef.py:94 ../src/Editors/_EditMediaRef.py:83
+#: ../src/Editors/_EditMediaRef.py:89 ../src/Editors/_EditName.py:123
+#: ../src/Editors/_EditRepoRef.py:82 ../src/Editors/_EditRepoRef.py:88
+#: ../src/Editors/_EditSourceRef.py:77 ../src/Editors/_EditSourceRef.py:83
+#: ../src/gen/lib/notetype.py:80 ../src/glade/gramps.glade.h:77
 msgid "General"
 msgstr "Algemeen"
 
@@ -913,8 +917,8 @@ msgstr "Onderzoeker"
 msgid "Marker Colors"
 msgstr "Aanduidingskleuren"
 
-#: ../src/GrampsCfg.py:173 ../src/gramps_main.py:98 ../src/ScratchPad.py:138
-#: ../src/ScratchPad.py:155 ../src/DisplayTabs/_AddrEmbedList.py:61
+#: ../src/GrampsCfg.py:173 ../src/gramps_main.py:98 ../src/ScratchPad.py:151
+#: ../src/ScratchPad.py:168 ../src/DisplayTabs/_AddrEmbedList.py:61
 #: ../src/Editors/_EditAddress.py:147 ../src/plugins/FamilyGroup.py:295
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:88
 msgid "Address"
@@ -967,17 +971,17 @@ msgstr "Persoon"
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
 #. get the family events
-#: ../src/GrampsCfg.py:188 ../src/gramps_main.py:107 ../src/ScratchPad.py:556
+#: ../src/GrampsCfg.py:188 ../src/gramps_main.py:107 ../src/ScratchPad.py:569
 #: ../src/ToolTips.py:228 ../src/DataViews/_RelationView.py:454
 #: ../src/DataViews/_RelationView.py:1115
 #: ../src/DataViews/_RelationView.py:1139 ../src/Editors/_EditFamily.py:471
-#: ../src/plugins/all_events.py:80 ../src/plugins/all_relations.py:266
+#: ../src/plugins/all_events.py:77 ../src/plugins/all_relations.py:266
 #: ../src/gen/lib/eventroletype.py:57 ../src/FilterEditor/_EditRule.py:269
 msgid "Family"
 msgstr "Familie"
 
-#: ../src/GrampsCfg.py:189 ../src/ScratchPad.py:234 ../src/ScratchPad.py:264
-#: ../src/ScratchPad.py:342 ../src/DataViews/_EventView.py:75
+#: ../src/GrampsCfg.py:189 ../src/ScratchPad.py:247 ../src/ScratchPad.py:277
+#: ../src/ScratchPad.py:355 ../src/DataViews/_EventView.py:75
 #: ../src/DisplayTabs/_EventEmbedList.py:64
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:53
 #: ../src/DisplayTabs/_LdsEmbedList.py:55 ../src/plugins/MarkerReport.py:308
@@ -992,13 +996,13 @@ msgstr "Locatie"
 msgid "Source"
 msgstr "Bron"
 
-#: ../src/GrampsCfg.py:191 ../src/ScratchPad.py:606 ../src/ScratchPad.py:619
+#: ../src/GrampsCfg.py:191 ../src/ScratchPad.py:619 ../src/ScratchPad.py:632
 #: ../src/Editors/_EditPerson.py:442 ../src/FilterEditor/_EditRule.py:273
 msgid "Media Object"
 msgstr "Mediaobject"
 
 # Gebeuren (korter)
-#: ../src/GrampsCfg.py:192 ../src/ScratchPad.py:231
+#: ../src/GrampsCfg.py:192 ../src/ScratchPad.py:244
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:123
 #: ../src/FilterEditor/_EditRule.py:270
 msgid "Event"
@@ -1073,14 +1077,14 @@ msgstr "Achternaam"
 #: ../src/GrampsCfg.py:332 ../src/GrampsCfg.py:333 ../src/GrampsCfg.py:334
 #: ../src/GrampsCfg.py:335 ../src/GrampsCfg.py:336 ../src/GrampsCfg.py:337
 #: ../src/GrampsCfg.py:339 ../src/GrampsCfg.py:340 ../src/GrampsCfg.py:341
-#: ../src/GrampsCfg.py:342 ../src/GrampsCfg.py:343 ../src/ScratchPad.py:555
+#: ../src/GrampsCfg.py:342 ../src/GrampsCfg.py:343 ../src/ScratchPad.py:568
 #: ../src/Utils.py:1100 ../src/BasicUtils/_NameDisplay.py:107
 msgid "Given"
 msgstr "Voornaam"
 
 #: ../src/GrampsCfg.py:326 ../src/GrampsCfg.py:328 ../src/GrampsCfg.py:330
 #: ../src/GrampsCfg.py:335 ../src/GrampsCfg.py:337 ../src/GrampsCfg.py:342
-#: ../src/ScratchPad.py:560 ../src/Utils.py:1103
+#: ../src/ScratchPad.py:573 ../src/Utils.py:1103
 msgid "Suffix"
 msgstr "Achtervoegsel"
 
@@ -1092,7 +1096,7 @@ msgstr "Algemeen"
 #: ../src/GrampsCfg.py:329 ../src/GrampsCfg.py:331 ../src/GrampsCfg.py:333
 #: ../src/GrampsCfg.py:340 ../src/Utils.py:1105
 msgid "Call"
-msgstr ""
+msgstr "Call"
 
 #: ../src/GrampsCfg.py:330 ../src/GrampsCfg.py:337 ../src/GrampsCfg.py:339
 #: ../src/GrampsCfg.py:340 ../src/GrampsCfg.py:341 ../src/GrampsCfg.py:342
@@ -1101,7 +1105,7 @@ msgid "SURNAME"
 msgstr "ACHTERNAAM"
 
 # patronymisch/patroniemen
-#: ../src/GrampsCfg.py:336 ../src/ScratchPad.py:557 ../src/Utils.py:1104
+#: ../src/GrampsCfg.py:336 ../src/ScratchPad.py:570 ../src/Utils.py:1104
 msgid "Patronymic"
 msgstr "Patroniemen"
 
@@ -1127,7 +1131,7 @@ msgid "Name format"
 msgstr "Naamformaat"
 
 #: ../src/GrampsCfg.py:610 ../src/DataViews/_RelationView.py:326
-#: ../src/DisplayTabs/_ButtonTab.py:64 ../src/plugins/BookReport.py:867
+#: ../src/DisplayTabs/_ButtonTab.py:69 ../src/plugins/BookReport.py:867
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -1247,9 +1251,9 @@ msgstr "Zowel de naam en de definitie van het formaat moeten bepaald worden"
 
 #: ../src/gramps_main.py:97
 msgid "Family Trees"
-msgstr "Stambomen"
+msgstr "Familiestambomen"
 
-#: ../src/gramps_main.py:99 ../src/ScratchPad.py:389 ../src/ScratchPad.py:397
+#: ../src/gramps_main.py:99 ../src/ScratchPad.py:402 ../src/ScratchPad.py:410
 #: ../src/Editors/_EditAttribute.py:135
 msgid "Attribute"
 msgstr "Kenmerk"
@@ -1258,8 +1262,8 @@ msgstr "Kenmerk"
 msgid "Add Bookmark"
 msgstr "Bladwijzer toevoegen"
 
-#: ../src/gramps_main.py:104 ../src/ScratchPad.py:156 ../src/ScratchPad.py:233
-#: ../src/ScratchPad.py:341 ../src/DataViews/_EventView.py:74
+#: ../src/gramps_main.py:104 ../src/ScratchPad.py:169 ../src/ScratchPad.py:246
+#: ../src/ScratchPad.py:354 ../src/DataViews/_EventView.py:74
 #: ../src/DataViews/_MediaView.py:88 ../src/DisplayTabs/_AddrEmbedList.py:60
 #: ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
@@ -1307,7 +1311,7 @@ msgstr "Media"
 #: ../src/DisplayTabs/_NoteTab.py:81 ../src/plugins/GraphViz.py:972
 #: ../src/plugins/GraphViz.py:978 ../src/plugins/GraphViz.py:986
 #: ../src/plugins/IndivComplete.py:168 ../src/plugins/MarkerReport.py:371
-#: ../src/ReportBase/_GraphvizReportDialog.py:676
+#: ../src/ReportBase/_GraphvizReportDialog.py:739
 msgid "Notes"
 msgstr "Opmerkingen"
 
@@ -1356,8 +1360,8 @@ msgstr "Verslagen"
 msgid "Repositories"
 msgstr "Bibliotheken"
 
-#: ../src/gramps_main.py:123 ../src/ScratchPad.py:171 ../src/ScratchPad.py:409
-#: ../src/ScratchPad.py:442 ../src/DataViews/_SourceView.py:97
+#: ../src/gramps_main.py:123 ../src/ScratchPad.py:184 ../src/ScratchPad.py:422
+#: ../src/ScratchPad.py:455 ../src/DataViews/_SourceView.py:97
 #: ../src/DisplayTabs/_SourceEmbedList.py:69
 #: ../src/plugins/IndivComplete.py:367 ../src/plugins/NarrativeWeb.py:376
 #: ../src/plugins/NarrativeWeb.py:1446 ../src/plugins/NarrativeWeb.py:1463
@@ -1455,8 +1459,8 @@ msgid ""
 "\n"
 "GRAMPS will terminate now."
 msgstr ""
-"Uw versie van Python voldoet niet. Tenminste is python %d %d %d "
-"nodig om GRAMPS op te starten.\n"
+"Uw versie van Python voldoet niet. Tenminste is python %d %d %d nodig om "
+"GRAMPS op te starten.\n"
 "\n"
 "GRAMPS wordt nu gestopt."
 
@@ -1514,7 +1518,9 @@ msgstr "Locatie verwijderen"
 
 #: ../src/GrampsWidgets.py:976
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr "Om een mediaobject te selecteren gebruik 'drag' en 'drop' of gebruik de knoppen"
+msgstr ""
+"Om een mediaobject te selecteren gebruik 'drag' en 'drop' of gebruik de "
+"knoppen"
 
 #: ../src/GrampsWidgets.py:978
 msgid "No image given, click button to select one"
@@ -1546,8 +1552,8 @@ msgid "No note given, click button to select one"
 msgstr "Geen opmerking gekozen, klik op knop om er één te selecteren"
 
 # Bronnen vermelden/citeren
-#: ../src/GrampsWidgets.py:1033 ../src/Editors/_EditNote.py:301
-#: ../src/Editors/_EditNote.py:431
+#: ../src/GrampsWidgets.py:1033 ../src/Editors/_EditNote.py:354
+#: ../src/Editors/_EditNote.py:484
 msgid "Edit Note"
 msgstr "Opmerking bewerken"
 
@@ -1692,26 +1698,26 @@ msgstr "Exporteer scherm"
 
 #: ../src/PageView.py:934 ../src/DataViews/_PersonView.py:151
 msgid "action|_Edit"
-msgstr "actie|aanpassen"
+msgstr "Aanpassen"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
 #: ../src/PageView.py:939
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../src/PageView.py:1003 ../src/DataViews/_PersonView.py:903
+#: ../src/PageView.py:1004 ../src/DataViews/_PersonView.py:904
 msgid "Export view as spreadsheet"
 msgstr "Exporteer scherm als een rekenblad"
 
-#: ../src/PageView.py:1011 ../src/DataViews/_PersonView.py:911
+#: ../src/PageView.py:1012 ../src/DataViews/_PersonView.py:912
 msgid "Format:"
 msgstr "Formaat:"
 
-#: ../src/PageView.py:1016 ../src/DataViews/_PersonView.py:916
+#: ../src/PageView.py:1017 ../src/DataViews/_PersonView.py:917
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1017 ../src/DataViews/_PersonView.py:917
+#: ../src/PageView.py:1018 ../src/DataViews/_PersonView.py:918
 msgid "Open Document Spreadsheet"
 msgstr "Open Document Rekenblad"
 
@@ -1767,7 +1773,7 @@ msgid ""
 "on the Repair button"
 msgstr ""
 "GRAMPS heeft een probleem vastgesteld met het onderliggende 'Berkeley' "
-"gegevensbestand. Dit kan hersteld worden door middel van de stamboom- "
+"gegevensbestand. Dit kan hersteld worden door middel van de familiestamboom- "
 "beheerder. Kies het gegevensbestand en klik op de herstelknop"
 
 #: ../src/QuestionDialog.py:279 ../src/Utils.py:1023
@@ -1798,7 +1804,8 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"De familistamboom gaat verder dan de maximum %d generaties die werden doorzocht.\n"
+"De familistamboom gaat verder dan de maximum %d generaties die werden "
+"doorzocht.\n"
 "Het is dus mogelijk dat bepaalde verwantschappen werden gemist"
 
 #: ../src/Relationship.py:928
@@ -1877,19 +1884,16 @@ msgid "gender unknown,civil union|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1695
-#, fuzzy
 msgid "male,civil union|former partner"
-msgstr "partner"
+msgstr "vorige partner"
 
 #: ../src/Relationship.py:1697
-#, fuzzy
 msgid "female,civil union|former partner"
-msgstr "partner"
+msgstr "vorige partner"
 
 #: ../src/Relationship.py:1699
-#, fuzzy
 msgid "gender unknown,civil union|former partner"
-msgstr "partner"
+msgstr "vorige partner"
 
 #: ../src/Relationship.py:1702
 msgid "male,unknown relation|partner"
@@ -1904,19 +1908,16 @@ msgid "gender unknown,unknown relation|partner"
 msgstr "partner"
 
 #: ../src/Relationship.py:1711
-#, fuzzy
 msgid "male,unknown relation|former partner"
-msgstr "partner"
+msgstr "vorige partner"
 
 #: ../src/Relationship.py:1713
-#, fuzzy
 msgid "female,unknown relation|former partner"
-msgstr "partner"
+msgstr "vorige partner"
 
 #: ../src/Relationship.py:1715
-#, fuzzy
 msgid "gender unknown,unknown relation|former partner"
-msgstr "partner"
+msgstr "vorige partner"
 
 #: ../src/Reorder.py:30 ../src/ToolTips.py:233
 #: ../src/Merge/_MergePerson.py:154 ../src/DataViews/_FamilyList.py:60
@@ -1962,25 +1963,25 @@ msgstr "Relaties herschikken"
 msgid "Reorder Relationships: %s"
 msgstr "Relaties opnieuw rangschikken: %s"
 
-#: ../src/ScratchPad.py:157 ../src/ScratchPad.py:184 ../src/ScratchPad.py:196
-#: ../src/ToolTips.py:142
+#: ../src/ScratchPad.py:170 ../src/ScratchPad.py:197 ../src/ScratchPad.py:209
+#: ../src/ToolTips.py:142 ../src/Editors/_EditPlace.py:124
 msgid "Location"
 msgstr "Locatie"
 
-#: ../src/ScratchPad.py:163 ../src/ScratchPad.py:201 ../src/ToolTips.py:149
+#: ../src/ScratchPad.py:176 ../src/ScratchPad.py:214 ../src/ToolTips.py:149
 msgid "Telephone"
 msgstr "Telefoon"
 
-#: ../src/ScratchPad.py:213
+#: ../src/ScratchPad.py:226
 msgid "Event Link"
 msgstr "Gebeurtenissen koppeling"
 
 #. To hold the tooltip text
 #. Create the tree columns
-#: ../src/ScratchPad.py:232 ../src/ScratchPad.py:340 ../src/ScratchPad.py:398
-#: ../src/ScratchPad.py:431 ../src/ScratchPad.py:561 ../src/ScratchPad.py:621
-#: ../src/ScratchPad.py:654 ../src/ScratchPad.py:800 ../src/ScratchPad.py:872
-#: ../src/ScratchPad.py:878 ../src/Merge/_MergePerson.py:172
+#: ../src/ScratchPad.py:245 ../src/ScratchPad.py:353 ../src/ScratchPad.py:411
+#: ../src/ScratchPad.py:444 ../src/ScratchPad.py:574 ../src/ScratchPad.py:634
+#: ../src/ScratchPad.py:667 ../src/ScratchPad.py:813 ../src/ScratchPad.py:885
+#: ../src/ScratchPad.py:891 ../src/Merge/_MergePerson.py:172
 #: ../src/DataViews/_EventView.py:73 ../src/DataViews/_MediaView.py:85
 #: ../src/DataViews/_NoteView.py:71 ../src/DataViews/_RepositoryView.py:72
 #: ../src/DisplayTabs/_AttrEmbedList.py:52
@@ -1992,7 +1993,7 @@ msgstr "Gebeurtenissen koppeling"
 #: ../src/DisplayTabs/_RepoEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:53 ../src/Selectors/_SelectEvent.py:60
 #: ../src/Selectors/_SelectNote.py:62 ../src/Selectors/_SelectObject.py:74
-#: ../src/plugins/siblings.py:62 ../src/plugins/BookReport.py:656
+#: ../src/plugins/siblings.py:45 ../src/plugins/BookReport.py:656
 #: ../src/plugins/BookReport.py:657 ../src/plugins/MarkerReport.py:388
 #: ../src/plugins/PatchNames.py:203
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:87
@@ -2002,12 +2003,12 @@ msgstr "Gebeurtenissen koppeling"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/ScratchPad.py:235 ../src/ScratchPad.py:343
+#: ../src/ScratchPad.py:248 ../src/ScratchPad.py:356
 #: ../src/gen/lib/attrtype.py:64
 msgid "Cause"
 msgstr "Oorzaak"
 
-#: ../src/ScratchPad.py:236 ../src/ScratchPad.py:344 ../src/ScratchPad.py:378
+#: ../src/ScratchPad.py:249 ../src/ScratchPad.py:357 ../src/ScratchPad.py:391
 #: ../src/DataViews/_EventView.py:71 ../src/DisplayTabs/_EventEmbedList.py:61
 #: ../src/DisplayTabs/_WebEmbedList.py:55 ../src/Selectors/_SelectEvent.py:58
 #: ../src/plugins/MarkerReport.py:314 ../src/gen/lib/attrtype.py:57
@@ -2015,14 +2016,15 @@ msgstr "Oorzaak"
 msgid "Description"
 msgstr "Beschrijving"
 
-#: ../src/ScratchPad.py:243 ../src/ScratchPad.py:353 ../src/ScratchPad.py:571
-#: ../src/ScratchPad.py:719 ../src/ToolTips.py:209
+#: ../src/ScratchPad.py:256 ../src/ScratchPad.py:366 ../src/ScratchPad.py:584
+#: ../src/ScratchPad.py:732 ../src/ToolTips.py:209
 msgid "Primary source"
 msgstr "Primaire bron"
 
-#: ../src/ScratchPad.py:293 ../src/ToolTips.py:159
+#: ../src/ScratchPad.py:306 ../src/ToolTips.py:159
 #: ../src/DisplayModels/_MediaModel.py:105 ../src/Editors/_EditMedia.py:78
-#: ../src/Editors/_EditMedia.py:140 ../src/plugins/FamilyGroup.py:313
+#: ../src/Editors/_EditMedia.py:140 ../src/Editors/_EditNote.py:194
+#: ../src/plugins/FamilyGroup.py:313
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
@@ -2033,33 +2035,33 @@ msgstr "Primaire bron"
 msgid "Note"
 msgstr "Opmerking"
 
-#: ../src/ScratchPad.py:326 ../src/ScratchPad.py:339
+#: ../src/ScratchPad.py:339 ../src/ScratchPad.py:352
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:108
 msgid "Family Event"
 msgstr "Familiegebeurtenis"
 
-#: ../src/ScratchPad.py:367 ../src/ScratchPad.py:375
+#: ../src/ScratchPad.py:380 ../src/ScratchPad.py:388
 msgid "Url"
 msgstr "Url"
 
 # Locatie
-#: ../src/ScratchPad.py:376 ../src/DataViews/_MediaView.py:86
+#: ../src/ScratchPad.py:389 ../src/DataViews/_MediaView.py:86
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Path"
 msgstr "Pad"
 
-#: ../src/ScratchPad.py:400 ../src/ScratchPad.py:433 ../src/ScratchPad.py:874
-#: ../src/ScratchPad.py:880 ../src/DisplayTabs/_AttrEmbedList.py:53
+#: ../src/ScratchPad.py:413 ../src/ScratchPad.py:446 ../src/ScratchPad.py:887
+#: ../src/ScratchPad.py:893 ../src/DisplayTabs/_AttrEmbedList.py:53
 #: ../src/DisplayTabs/_DataEmbedList.py:50 ../src/plugins/PatchNames.py:206
 msgid "Value"
 msgstr "Waarde"
 
-#: ../src/ScratchPad.py:422 ../src/ScratchPad.py:430
+#: ../src/ScratchPad.py:435 ../src/ScratchPad.py:443
 msgid "Family Attribute"
 msgstr "Familiekenmerk"
 
-#: ../src/ScratchPad.py:455 ../src/ScratchPad.py:476
+#: ../src/ScratchPad.py:468 ../src/ScratchPad.py:489
 msgid "Source Reference"
 msgstr "Bronverwijzing"
 
@@ -2069,9 +2071,9 @@ msgstr "Bronverwijzing"
 #.
 #. -------------------------------------------------------------------------
 #. keyword, code, translated standard, translated upper
-#: ../src/ScratchPad.py:477 ../src/ScratchPad.py:559 ../src/ScratchPad.py:620
-#: ../src/ScratchPad.py:653 ../src/ScratchPad.py:761 ../src/ScratchPad.py:873
-#: ../src/ScratchPad.py:879 ../src/Utils.py:1099
+#: ../src/ScratchPad.py:490 ../src/ScratchPad.py:572 ../src/ScratchPad.py:633
+#: ../src/ScratchPad.py:666 ../src/ScratchPad.py:774 ../src/ScratchPad.py:886
+#: ../src/ScratchPad.py:892 ../src/Utils.py:1099
 #: ../src/DataViews/_MediaView.py:83 ../src/DataViews/_SourceView.py:69
 #: ../src/DisplayTabs/_RepoEmbedList.py:61
 #: ../src/DisplayTabs/_SourceEmbedList.py:61
@@ -2084,38 +2086,38 @@ msgstr "Bronverwijzing"
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/ScratchPad.py:478 ../src/DisplayTabs/_SourceEmbedList.py:63
+#: ../src/ScratchPad.py:491 ../src/DisplayTabs/_SourceEmbedList.py:63
 #: ../src/plugins/NarrativeWeb.py:546
 msgid "Page"
 msgstr "Pagina"
 
-#: ../src/ScratchPad.py:490 ../src/ScratchPad.py:503
+#: ../src/ScratchPad.py:503 ../src/ScratchPad.py:516
 msgid "Repository Reference"
 msgstr "Bibliotheekreferentie"
 
-#: ../src/ScratchPad.py:505 ../src/DisplayTabs/_RepoEmbedList.py:62
+#: ../src/ScratchPad.py:518 ../src/DisplayTabs/_RepoEmbedList.py:62
 msgid "Call Number"
 msgstr "Telefoonnummer"
 
-#: ../src/ScratchPad.py:506
+#: ../src/ScratchPad.py:519
 msgid "Media Type"
 msgstr "Media type"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../src/ScratchPad.py:518
+#: ../src/ScratchPad.py:531
 msgid "Event Reference"
 msgstr "Gebeurtenisreferentie"
 
-#: ../src/ScratchPad.py:554
+#: ../src/ScratchPad.py:567
 msgid "Call Name"
 msgstr "Roepnaam"
 
-#: ../src/ScratchPad.py:558 ../src/Utils.py:1101
+#: ../src/ScratchPad.py:571 ../src/Utils.py:1101
 #: ../src/plugins/PatchNames.py:253 ../src/plugins/PatchNames.py:265
 msgid "Prefix"
 msgstr "Voorvoegsel"
 
-#: ../src/ScratchPad.py:585 ../src/ScratchPad.py:593
+#: ../src/ScratchPad.py:598 ../src/ScratchPad.py:606
 #: ../src/DisplayTabs/_TextTab.py:52 ../src/plugins/MarkerReport.py:394
 #: ../src/plugins/NarrativeWeb.py:553 ../src/plugins/SimpleBookTitle.py:171
 #: ../src/plugins/SimpleBookTitle.py:172 ../src/plugins/SimpleBookTitle.py:173
@@ -2124,57 +2126,57 @@ msgstr "Voorvoegsel"
 msgid "Text"
 msgstr "Tekst"
 
-#: ../src/ScratchPad.py:640 ../src/ScratchPad.py:652
+#: ../src/ScratchPad.py:653 ../src/ScratchPad.py:665
 msgid "Media Reference"
 msgstr "Media-referentie"
 
-#: ../src/ScratchPad.py:666 ../src/Editors/_EditPersonRef.py:142
+#: ../src/ScratchPad.py:679 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
 msgstr "Persoonsreferentie"
 
-#: ../src/ScratchPad.py:683 ../src/ScratchPad.py:708
+#: ../src/ScratchPad.py:696 ../src/ScratchPad.py:721
 msgid "Person Link"
 msgstr "Verwijzing naar persoon"
 
-#: ../src/ScratchPad.py:710 ../src/ToolTips.py:200
+#: ../src/ScratchPad.py:723 ../src/ToolTips.py:200
 #: ../src/Merge/_MergePerson.py:127 ../src/DataViews/_RelationView.py:545
 #: ../src/plugins/all_relations.py:266 ../src/plugins/FamilyGroup.py:481
-#: ../src/plugins/FamilyGroup.py:483 ../src/plugins/lineage.py:94
+#: ../src/plugins/FamilyGroup.py:483 ../src/plugins/lineage.py:92
 #: ../src/plugins/MarkerReport.py:131 ../src/plugins/NarrativeWeb.py:697
 #: ../src/plugins/NarrativeWeb.py:835 ../src/gen/lib/childreftype.py:51
 #: ../src/gen/lib/eventtype.py:90
 msgid "Birth"
 msgstr "Geboorte"
 
-#: ../src/ScratchPad.py:742 ../src/ScratchPad.py:760
+#: ../src/ScratchPad.py:755 ../src/ScratchPad.py:773
 msgid "Source Link"
 msgstr "Verwijzing naar bron"
 
-#: ../src/ScratchPad.py:762 ../src/DataViews/_SourceView.py:72
+#: ../src/ScratchPad.py:775 ../src/DataViews/_SourceView.py:72
 #: ../src/plugins/NarrativeWeb.py:1512
 msgid "Abbreviation"
 msgstr "Afkorting"
 
-#: ../src/ScratchPad.py:763 ../src/DataViews/_SourceView.py:71
+#: ../src/ScratchPad.py:776 ../src/DataViews/_SourceView.py:71
 #: ../src/DisplayTabs/_SourceEmbedList.py:62
 #: ../src/plugins/NarrativeWeb.py:1510
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:78
 msgid "Author"
 msgstr "Auteur"
 
-#: ../src/ScratchPad.py:764 ../src/DataViews/_SourceView.py:73
+#: ../src/ScratchPad.py:777 ../src/DataViews/_SourceView.py:73
 msgid "Publication Information"
 msgstr "Publicatie-informatie"
 
-#: ../src/ScratchPad.py:783 ../src/ScratchPad.py:798
+#: ../src/ScratchPad.py:796 ../src/ScratchPad.py:811
 msgid "Repository Link"
 msgstr "Verwijzing naar bibliotheek"
 
-#: ../src/ScratchPad.py:1168 ../src/glade/scratchpad.glade.h:2
+#: ../src/ScratchPad.py:1178 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
 msgstr "Kladblok"
 
-#: ../src/ScratchPad.py:1204
+#: ../src/ScratchPad.py:1214
 msgid "ScratchPad"
 msgstr "Kladblok"
 
@@ -2587,12 +2589,12 @@ msgstr "vrouwelijk"
 #: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:53
 #: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:485
 #: ../src/plugins/DetAncestralReport.py:492
-#: ../src/plugins/DetAncestralReport.py:531
-#: ../src/plugins/DetAncestralReport.py:538
+#: ../src/plugins/DetAncestralReport.py:533
+#: ../src/plugins/DetAncestralReport.py:540
 #: ../src/plugins/DetDescendantReport.py:397
 #: ../src/plugins/DetDescendantReport.py:404
-#: ../src/plugins/DetDescendantReport.py:449
-#: ../src/plugins/DetDescendantReport.py:456 ../src/plugins/FamilyGroup.py:714
+#: ../src/plugins/DetDescendantReport.py:451
+#: ../src/plugins/DetDescendantReport.py:458 ../src/plugins/FamilyGroup.py:714
 #: ../src/plugins/IndivComplete.py:327 ../src/plugins/NarrativeWeb.py:1677
 #: ../src/plugins/NarrativeWeb.py:2155
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:93
@@ -2603,26 +2605,26 @@ msgstr "onbekend"
 msgid "Invalid"
 msgstr "Ongeldig"
 
-#: ../src/Utils.py:90 ../src/Editors/_EditSourceRef.py:119
+#: ../src/Utils.py:90 ../src/Editors/_EditSourceRef.py:132
 msgid "Very High"
 msgstr "Zeer hoog"
 
-#: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:118
+#: ../src/Utils.py:91 ../src/Editors/_EditSourceRef.py:131
 #: ../src/plugins/FindDupes.py:65
 msgid "High"
 msgstr "Hoog"
 
-#: ../src/Utils.py:92 ../src/Editors/_EditSourceRef.py:117
+#: ../src/Utils.py:92 ../src/Editors/_EditSourceRef.py:130
 #: ../src/plugins/NarrativeWeb.py:543
 msgid "Normal"
 msgstr "Normaal"
 
-#: ../src/Utils.py:93 ../src/Editors/_EditSourceRef.py:116
+#: ../src/Utils.py:93 ../src/Editors/_EditSourceRef.py:129
 #: ../src/plugins/FindDupes.py:63
 msgid "Low"
 msgstr "Laag"
 
-#: ../src/Utils.py:94 ../src/Editors/_EditSourceRef.py:115
+#: ../src/Utils.py:94 ../src/Editors/_EditSourceRef.py:128
 msgid "Very Low"
 msgstr "Zeer laag"
 
@@ -2695,7 +2697,7 @@ msgstr "PATRONIEM"
 
 #: ../src/Utils.py:1105
 msgid "CALL"
-msgstr ""
+msgstr "CALL"
 
 #: ../src/Utils.py:1106
 msgid "COMMON"
@@ -2745,11 +2747,11 @@ msgstr "Gegevensbestanden beheren"
 
 #: ../src/ViewManager.py:389
 msgid "_Family Trees"
-msgstr "Stambomen"
+msgstr "Familiestambomen"
 
 #: ../src/ViewManager.py:390
 msgid "_Manage Family Trees"
-msgstr "Stambomen beheren"
+msgstr "Familiestambomen beheren"
 
 #: ../src/ViewManager.py:392
 msgid "Open _Recent"
@@ -3014,7 +3016,7 @@ msgstr "patroniem"
 
 #: ../src/BasicUtils/_NameDisplay.py:285 ../src/BasicUtils/_NameDisplay.py:324
 msgid "call"
-msgstr ""
+msgstr "call"
 
 #: ../src/BasicUtils/_NameDisplay.py:288 ../src/BasicUtils/_NameDisplay.py:325
 msgid "common"
@@ -3058,7 +3060,7 @@ msgstr ""
 #. Gender
 #: ../src/Merge/_MergePerson.py:124 ../src/DataViews/_PersonView.py:73
 #: ../src/Editors/_EditFamily.py:98 ../src/Selectors/_SelectPerson.py:50
-#: ../src/plugins/siblings.py:61 ../src/plugins/IndivComplete.py:474
+#: ../src/plugins/siblings.py:45 ../src/plugins/IndivComplete.py:474
 #: ../src/plugins/NarrativeWeb.py:1928 ../src/plugins/RelCalc.py:59
 #: ../src/plugins/StatisticsChart.py:103
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:118
@@ -3213,7 +3215,7 @@ msgstr "Het geselecteerde media object bewerken"
 msgid "Delete the selected media object"
 msgstr "Het geselecteerde media object verwijderen"
 
-#: ../src/DataViews/_MediaView.py:199 ../src/DisplayTabs/_GalleryTab.py:457
+#: ../src/DataViews/_MediaView.py:199 ../src/DisplayTabs/_GalleryTab.py:458
 msgid "Drag Media Object"
 msgstr "mediaobject slepen"
 
@@ -3243,7 +3245,7 @@ msgstr ""
 msgid "Select Media Columns"
 msgstr "Mediakolommen selecteren"
 
-#: ../src/DataViews/_MediaView.py:294 ../src/glade/gramps.glade.h:66
+#: ../src/DataViews/_MediaView.py:294 ../src/glade/gramps.glade.h:67
 msgid "Double click image to view in an external viewer"
 msgstr ""
 "Klik tweemaal op het beeld om dit in een extern grafisch programma te "
@@ -3428,7 +3430,7 @@ msgstr "Personen menu"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/_PedigreeView.py:1482
-#: ../src/DataViews/_RelationView.py:786 ../src/plugins/siblings.py:98
+#: ../src/DataViews/_RelationView.py:786 ../src/plugins/siblings.py:75
 #: ../src/plugins/NarrativeWeb.py:2058
 msgid "Siblings"
 msgstr "Broers en zussen"
@@ -3451,7 +3453,7 @@ msgid "Family Menu"
 msgstr "Familie Menu"
 
 #: ../src/DataViews/_PersonView.py:74 ../src/Editors/_EditFamily.py:101
-#: ../src/Selectors/_SelectPerson.py:51 ../src/plugins/siblings.py:61
+#: ../src/Selectors/_SelectPerson.py:51 ../src/plugins/siblings.py:45
 #: ../src/plugins/lineage.py:61 ../src/plugins/RelCalc.py:60
 #: ../src/plugins/TimeLine.py:410
 msgid "Birth Date"
@@ -3464,7 +3466,7 @@ msgstr "Geboorteplaats"
 
 #: ../src/DataViews/_PersonView.py:76 ../src/Editors/_EditFamily.py:102
 #: ../src/Selectors/_SelectPerson.py:53 ../src/plugins/lineage.py:61
-#: ../src/plugins/lineage.py:94 ../src/plugins/RelCalc.py:62
+#: ../src/plugins/lineage.py:92 ../src/plugins/RelCalc.py:62
 msgid "Death Date"
 msgstr "Sterfdatum"
 
@@ -3550,15 +3552,15 @@ msgstr "Persoon verwijderen"
 msgid "Delete Person (%s)"
 msgstr "Persoon verwijderen (%s)"
 
-#: ../src/DataViews/_PersonView.py:888
+#: ../src/DataViews/_PersonView.py:889
 msgid "Go to default person"
 msgstr "Ga naar standaardpersoon"
 
-#: ../src/DataViews/_PersonView.py:893
+#: ../src/DataViews/_PersonView.py:894
 msgid "Edit selected person"
 msgstr "De geselecteerde persoon bewerken"
 
-#: ../src/DataViews/_PersonView.py:899
+#: ../src/DataViews/_PersonView.py:900
 msgid "Delete selected person"
 msgstr "De geselecteerde persoon verwijderen"
 
@@ -4005,7 +4007,7 @@ msgstr "LaTeX"
 
 #: ../src/docgen/ODFDoc.py:1152 ../src/docgen/PSDrawDoc.py:58
 #: ../src/plugins/GraphViz.py:1133 ../src/plugins/GraphViz.py:1189
-#: ../src/ReportBase/_GraphvizReportDialog.py:581
+#: ../src/ReportBase/_GraphvizReportDialog.py:605
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Openen met %(program_name)s"
@@ -4036,7 +4038,7 @@ msgstr "RTF-document"
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../src/docgen/TextBufDoc.py:333
+#: ../src/docgen/TextBufDoc.py:348
 msgid "TextBuffer"
 msgstr "Tekstbuffer"
 
@@ -4054,30 +4056,30 @@ msgstr "Referenties"
 msgid "Edit reference"
 msgstr "Bewerk referentie"
 
-#: ../src/DisplayTabs/_ButtonTab.py:62
+#: ../src/DisplayTabs/_ButtonTab.py:67
 #: ../src/plugins/CalculateEstimatedDates.py:73
 msgid "Add"
 msgstr "Toevoegen"
 
-#: ../src/DisplayTabs/_ButtonTab.py:63
+#: ../src/DisplayTabs/_ButtonTab.py:68
 #: ../src/plugins/CalculateEstimatedDates.py:69
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: ../src/DisplayTabs/_ButtonTab.py:65 ../src/DisplayTabs/_EmbeddedList.py:102
+#: ../src/DisplayTabs/_ButtonTab.py:70 ../src/DisplayTabs/_EmbeddedList.py:102
 #: ../src/DisplayTabs/_GalleryTab.py:104
 msgid "Share"
 msgstr "Delen"
 
-#: ../src/DisplayTabs/_ButtonTab.py:66
+#: ../src/DisplayTabs/_ButtonTab.py:71
 msgid "Jump To"
 msgstr "Spring naar"
 
-#: ../src/DisplayTabs/_ButtonTab.py:67
+#: ../src/DisplayTabs/_ButtonTab.py:72
 msgid "Move Up"
 msgstr "Naar boven"
 
-#: ../src/DisplayTabs/_ButtonTab.py:68
+#: ../src/DisplayTabs/_ButtonTab.py:73
 msgid "Move Down"
 msgstr "Naar beneden"
 
@@ -4142,7 +4144,7 @@ msgstr "Galerij"
 msgid "Open with %s"
 msgstr "Openen met %s"
 
-#: ../src/DisplayTabs/_GalleryTab.py:223
+#: ../src/DisplayTabs/_GalleryTab.py:224
 msgid "Unexisting media found in the Gallery"
 msgstr "Onbestaande media gevonden in de galerij"
 
@@ -4281,13 +4283,13 @@ msgid "Child Reference"
 msgstr "Referentie naar kind"
 
 # Gebeuren (korter)
-#: ../src/Editors/_EditEvent.py:83 ../src/Editors/_EditEventRef.py:208
+#: ../src/Editors/_EditEvent.py:83 ../src/Editors/_EditEventRef.py:219
 #, python-format
 msgid "Event: %s"
 msgstr "Gebeurtenis: %s"
 
 # Gebeuren (korter)
-#: ../src/Editors/_EditEvent.py:85 ../src/Editors/_EditEventRef.py:210
+#: ../src/Editors/_EditEvent.py:85 ../src/Editors/_EditEventRef.py:221
 msgid "New Event"
 msgstr "Nieuwe gebeurtenis"
 
@@ -4310,7 +4312,7 @@ msgstr ""
 msgid "The event type cannot be empty"
 msgstr "Een gebeurtenis type kan niet leeg zijn"
 
-#: ../src/Editors/_EditEvent.py:226 ../src/Editors/_EditEventRef.py:221
+#: ../src/Editors/_EditEvent.py:226 ../src/Editors/_EditEventRef.py:232
 msgid "Add Event"
 msgstr "Gebeurtenis toevoegen"
 
@@ -4320,11 +4322,11 @@ msgid "Delete Event (%s)"
 msgstr "Gebeurtenis verwijderen (%s)"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../src/Editors/_EditEventRef.py:76 ../src/Editors/_EditEventRef.py:211
+#: ../src/Editors/_EditEventRef.py:77 ../src/Editors/_EditEventRef.py:222
 msgid "Event Reference Editor"
 msgstr "Gebeurtenis referentie bewerken"
 
-#: ../src/Editors/_EditEventRef.py:218
+#: ../src/Editors/_EditEventRef.py:229
 msgid "Modify Event"
 msgstr "Verander gebeurtenis"
 
@@ -4531,17 +4533,17 @@ msgstr "JDS Wijding"
 msgid "Location Editor"
 msgstr "Locatie-editor"
 
-#: ../src/Editors/_EditMedia.py:79 ../src/Editors/_EditMediaRef.py:347
+#: ../src/Editors/_EditMedia.py:79 ../src/Editors/_EditMediaRef.py:361
 #, python-format
 msgid "Media: %s"
 msgstr "Media: %s"
 
-#: ../src/Editors/_EditMedia.py:81 ../src/Editors/_EditMediaRef.py:349
+#: ../src/Editors/_EditMedia.py:81 ../src/Editors/_EditMediaRef.py:363
 msgid "New Media"
 msgstr "Nieuwe media"
 
 #: ../src/Editors/_EditMedia.py:172 ../src/Editors/_EditMedia.py:225
-#: ../src/Editors/_EditMediaRef.py:443
+#: ../src/Editors/_EditMediaRef.py:459
 msgid "Edit Media Object"
 msgstr "mediaobject bewerken"
 
@@ -4553,23 +4555,23 @@ msgstr "Selecteer mediaobject"
 msgid "Remove Media Object"
 msgstr "mediaobject verwijderen"
 
-#: ../src/Editors/_EditMediaRef.py:75 ../src/Editors/_EditMediaRef.py:350
+#: ../src/Editors/_EditMediaRef.py:75 ../src/Editors/_EditMediaRef.py:364
 msgid "Media Reference Editor"
 msgstr "Media-referentie editor"
 
-#: ../src/Editors/_EditName.py:72 ../src/Editors/_EditName.py:228
+#: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
 msgstr "Naam-editor"
 
-#: ../src/Editors/_EditName.py:227
+#: ../src/Editors/_EditName.py:276
 msgid "New Name"
 msgstr "Nieuwe naam"
 
-#: ../src/Editors/_EditName.py:291
+#: ../src/Editors/_EditName.py:340
 msgid "Break global name grouping?"
 msgstr "Globale naamgroepering verbreken?"
 
-#: ../src/Editors/_EditName.py:292
+#: ../src/Editors/_EditName.py:341
 #, python-format
 msgid ""
 "All people with the name of %(surname)s will no longer be grouped with the "
@@ -4578,19 +4580,19 @@ msgstr ""
 "Alle personen met de naam %(surname)s zullen niet langer gegroepeerd worden "
 "onder de naam %(group_name)s."
 
-#: ../src/Editors/_EditName.py:296
+#: ../src/Editors/_EditName.py:345
 msgid "Continue"
 msgstr "Toch doorgaan"
 
-#: ../src/Editors/_EditName.py:297
+#: ../src/Editors/_EditName.py:346
 msgid "Return to Name Editor"
 msgstr "Terugkeren naar naamaanpasscherm"
 
-#: ../src/Editors/_EditName.py:322
+#: ../src/Editors/_EditName.py:371
 msgid "Group all people with the same name?"
 msgstr "Alle personen met dezelfde naam groeperen?"
 
-#: ../src/Editors/_EditName.py:323
+#: ../src/Editors/_EditName.py:372
 #, python-format
 msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
@@ -4599,50 +4601,50 @@ msgstr ""
 "U hebt de keuze om alle personen met naam %(surname)s te groeperen met de "
 "naam %(group_name)s, of deze specifieke naam op te slaan."
 
-#: ../src/Editors/_EditName.py:328
+#: ../src/Editors/_EditName.py:377
 msgid "Group all"
 msgstr "Alles groeperen"
 
-#: ../src/Editors/_EditName.py:329
+#: ../src/Editors/_EditName.py:378
 msgid "Group this name only"
 msgstr "Alleen deze naam groeperen"
 
-#: ../src/Editors/_EditNote.py:104
+#: ../src/Editors/_EditNote.py:150
 #, python-format
 msgid "Note: %(id)s - %(context)s"
 msgstr "Opmerking: %(id)s - %(context)s"
 
-#: ../src/Editors/_EditNote.py:109
+#: ../src/Editors/_EditNote.py:155
 #, python-format
 msgid "Note: %s"
 msgstr "Opmerking: %s"
 
-#: ../src/Editors/_EditNote.py:112
+#: ../src/Editors/_EditNote.py:158
 #, python-format
 msgid "New Note - %(context)s"
 msgstr "Nieuwe opmerking - %(context)s"
 
-#: ../src/Editors/_EditNote.py:116
+#: ../src/Editors/_EditNote.py:162
 msgid "New Note"
 msgstr "Nieuwe opmerking"
 
-#: ../src/Editors/_EditNote.py:363
+#: ../src/Editors/_EditNote.py:416
 msgid "_Send Mail To..."
 msgstr "Stuur mail naar..."
 
-#: ../src/Editors/_EditNote.py:364
+#: ../src/Editors/_EditNote.py:417
 msgid "Copy _E-mail Address"
 msgstr "Kopieer email adres"
 
-#: ../src/Editors/_EditNote.py:366
+#: ../src/Editors/_EditNote.py:419
 msgid "_Open Link"
 msgstr "Open koppeling"
 
-#: ../src/Editors/_EditNote.py:367
+#: ../src/Editors/_EditNote.py:420
 msgid "Copy _Link Address"
 msgstr "Copieer adres"
 
-#: ../src/Editors/_EditNote.py:501
+#: ../src/Editors/_EditNote.py:554
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Opmerking (%s) verwijderen"
@@ -4750,42 +4752,42 @@ msgstr "Geen persoon geselecteerd"
 msgid "You must either select a person or Cancel the edit"
 msgstr "U moet ofwel een persoon selecteren ofwel de aanpassing teniet doen"
 
-#: ../src/Editors/_EditPlace.py:80
+#: ../src/Editors/_EditPlace.py:129
 #, python-format
 msgid "Place: %s"
 msgstr "Locatie: %s"
 
-#: ../src/Editors/_EditPlace.py:82
+#: ../src/Editors/_EditPlace.py:131
 msgid "New Place"
 msgstr "Nieuwe locatie"
 
-#: ../src/Editors/_EditPlace.py:153
+#: ../src/Editors/_EditPlace.py:202
 msgid "Invalid latitude (syntax: 18°9'"
 msgstr "Ongeldige breedtegraad (syntax: 18°9'"
 
-#: ../src/Editors/_EditPlace.py:156
+#: ../src/Editors/_EditPlace.py:205
 msgid "Invalid longitude (syntax: 18°9'"
 msgstr "Ongeldige lengtegraad (syntax: 18°9'"
 
-#: ../src/Editors/_EditPlace.py:160
+#: ../src/Editors/_EditPlace.py:209
 msgid "Edit Place"
 msgstr "Locatie bewerken"
 
-#: ../src/Editors/_EditPlace.py:219
+#: ../src/Editors/_EditPlace.py:270
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Locatie (%s) bewerken"
 
-#: ../src/Editors/_EditPlace.py:265
+#: ../src/Editors/_EditPlace.py:316
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Locatie (%s) verwijderen"
 
-#: ../src/Editors/_EditPrimary.py:141
+#: ../src/Editors/_EditPrimary.py:142
 msgid "Save Changes?"
 msgstr "Wijzigingen opslaan?"
 
-#: ../src/Editors/_EditPrimary.py:142
+#: ../src/Editors/_EditPrimary.py:143
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 "Als u sluit zonder opslaan, zullen de wijzigingen die u heeft gemaakt "
@@ -4795,25 +4797,25 @@ msgstr ""
 msgid "Repository Reference Editor"
 msgstr "Bibliotheek verwijzing-editor"
 
-#: ../src/Editors/_EditRepoRef.py:169
+#: ../src/Editors/_EditRepoRef.py:185
 #, python-format
 msgid "Repository: %s"
 msgstr "Bibliotheek: %s"
 
-#: ../src/Editors/_EditRepoRef.py:171 ../src/Editors/_EditRepository.py:68
+#: ../src/Editors/_EditRepoRef.py:187 ../src/Editors/_EditRepository.py:68
 msgid "New Repository"
 msgstr "Nieuwe bibliotheek"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../src/Editors/_EditRepoRef.py:172
+#: ../src/Editors/_EditRepoRef.py:188
 msgid "Repo Reference Editor"
 msgstr "Bib Verwijzings-editor"
 
-#: ../src/Editors/_EditRepoRef.py:179
+#: ../src/Editors/_EditRepoRef.py:195
 msgid "Modify Repository"
 msgstr "Verander bibliotheek"
 
-#: ../src/Editors/_EditRepoRef.py:182
+#: ../src/Editors/_EditRepoRef.py:198
 msgid "Add Repository"
 msgstr "Bibliotheek toevoegen"
 
@@ -4841,7 +4843,7 @@ msgstr "Bibliotheek (%s) bewerken"
 msgid "Delete Repository (%s)"
 msgstr "Bibliotheek (%s) verwijderen"
 
-#: ../src/Editors/_EditSource.py:74 ../src/Editors/_EditSourceRef.py:186
+#: ../src/Editors/_EditSource.py:74 ../src/Editors/_EditSourceRef.py:196
 msgid "New Source"
 msgstr "Nieuwe bron"
 
@@ -4871,20 +4873,20 @@ msgstr "Bron (%s) bewerken"
 msgid "Delete Source (%s)"
 msgstr "Bron (%s) verwijderen"
 
-#: ../src/Editors/_EditSourceRef.py:67 ../src/Editors/_EditSourceRef.py:187
+#: ../src/Editors/_EditSourceRef.py:67 ../src/Editors/_EditSourceRef.py:197
 msgid "Source Reference Editor"
 msgstr "Bronverwijzing-editor"
 
-#: ../src/Editors/_EditSourceRef.py:184
+#: ../src/Editors/_EditSourceRef.py:194
 #, python-format
 msgid "Source: %s"
 msgstr "Bron: %s"
 
-#: ../src/Editors/_EditSourceRef.py:194
+#: ../src/Editors/_EditSourceRef.py:204
 msgid "Modify Source"
 msgstr "Bron wijzigen"
 
-#: ../src/Editors/_EditSourceRef.py:197
+#: ../src/Editors/_EditSourceRef.py:207
 msgid "Add Source"
 msgstr "Een bron toevoegen"
 
@@ -5065,6 +5067,9 @@ msgid ""
 "the database. Copy the files with non absolute path to new position or "
 "change the media path of the database in the Preferences."
 msgstr ""
+"Het geopende bestand heeft een mediapad %s. Maar dit een conflict met het mediapad van "
+"het gegevensbestand. Kopieër de bestanden die geen absoluut pad hebben naar een nieuwe "
+"map of verander het mediapad van het gegevensbestand in het menu 'voorkeuren'."
 
 #: ../src/GrampsDbUtils/_ReadXML.py:690
 msgid "GRAMPS XML import"
@@ -5080,9 +5085,7 @@ msgstr "Getuige naam: %s"
 msgid ""
 "Your family tree groups name %s together with %s, did not change this "
 "grouping to %s"
-msgstr ""
-"Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd "
-"naar %s"
+msgstr "Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd naar %s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:1700
 #, python-format
@@ -5365,28 +5368,28 @@ msgid "Select Source"
 msgstr "Bron selecteren"
 
 #. display the results
-#: ../src/plugins/all_events.py:60
+#: ../src/plugins/all_events.py:55
 #, python-format
 msgid "Sorted events of %s"
 msgstr "Gesorteerde gebeurtenissen van %s"
 
-#: ../src/plugins/all_events.py:63 ../src/plugins/all_events.py:105
-#: ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:58 ../src/plugins/all_events.py:102
+#: ../src/plugins/all_events.py:113
 msgid "Event Type"
 msgstr "Gebeurtenistype"
 
-#: ../src/plugins/all_events.py:63 ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58 ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Date"
 msgstr "Gebeurtenisdatum"
 
-#: ../src/plugins/all_events.py:63 ../src/plugins/all_events.py:106
-#: ../src/plugins/all_events.py:115
+#: ../src/plugins/all_events.py:58 ../src/plugins/all_events.py:103
+#: ../src/plugins/all_events.py:114
 msgid "Event Place"
 msgstr "Gebeurtenislocatie"
 
 #. display the results
-#: ../src/plugins/all_events.py:100
+#: ../src/plugins/all_events.py:97
 #, python-format
 msgid ""
 "Sorted events of family\n"
@@ -5395,11 +5398,11 @@ msgstr ""
 "Gesorteerde gebeurtenissen van de familie\n"
 " %s - %s"
 
-#: ../src/plugins/all_events.py:105 ../src/plugins/all_events.py:114
+#: ../src/plugins/all_events.py:102 ../src/plugins/all_events.py:113
 msgid "Family Member"
 msgstr "Familielid"
 
-#: ../src/plugins/all_events.py:113
+#: ../src/plugins/all_events.py:112
 msgid "Personal events of the children"
 msgstr "Persoonlijke gebeurtenissen van de kinderen"
 
@@ -5410,7 +5413,7 @@ msgstr "Alle gebeurtenissen"
 
 # Provincie
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
-#: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:99
+#: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:76
 #: ../src/plugins/AncestorChart.py:524 ../src/plugins/AncestorReport.py:345
 #: ../src/plugins/BookReport.py:1190 ../src/plugins/Calendar.py:900
 #: ../src/plugins/Calendar.py:913 ../src/plugins/ChangeNames.py:204
@@ -5421,12 +5424,12 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/Eval.py:130 ../src/plugins/EventCmp.py:455
 #: ../src/plugins/EventNames.py:163 ../src/plugins/ExtractCity.py:585
 #: ../src/plugins/FamilyGroup.py:934 ../src/plugins/FamilyLines.py:1430
-#: ../src/plugins/FanChart.py:421 ../src/plugins/FindDupes.py:698
+#: ../src/plugins/FanChart.py:422 ../src/plugins/FindDupes.py:698
 #: ../src/plugins/GraphViz.py:1327 ../src/plugins/GraphViz.py:1342
 #: ../src/plugins/GVHourGlass.py:180 ../src/plugins/GVRelGraph.py:505
 #: ../src/plugins/IndivComplete.py:676 ../src/plugins/KinshipReport.py:435
-#: ../src/plugins/Leak.py:131 ../src/plugins/lineage.py:245
-#: ../src/plugins/lineage.py:256 ../src/plugins/MarkerReport.py:568
+#: ../src/plugins/Leak.py:131 ../src/plugins/lineage.py:240
+#: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:568
 #: ../src/plugins/NarrativeWeb.py:3286 ../src/plugins/PatchNames.py:357
 #: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:250
 #: ../src/plugins/RemoveUnused.py:405 ../src/plugins/ReorderIds.py:227
@@ -5523,27 +5526,24 @@ msgid "The following problems where encountered:"
 msgstr "De volgende problemen werden vastgesteld:"
 
 #: ../src/plugins/all_relations.py:349
-#, fuzzy
 msgid "Relation to Home Person"
 msgstr "Relatie met de beginpersoon"
 
 #: ../src/plugins/all_relations.py:351
-#, fuzzy
 msgid "Display all relationships between person and home person."
-msgstr "Relatie met de beginpersoon"
+msgstr "Toont alle verwantschappen tussen persoon en de beginpersoon."
 
 #. display the title
-#: ../src/plugins/siblings.py:57
+#: ../src/plugins/siblings.py:43
 #, python-format
 msgid "Siblings of %s"
 msgstr "Broers en zussen van %s"
 
-#. display the header of a table
-#: ../src/plugins/siblings.py:61
+#: ../src/plugins/siblings.py:45
 msgid "Sibling"
 msgstr "Broer of zus"
 
-#: ../src/plugins/siblings.py:100
+#: ../src/plugins/siblings.py:77
 msgid "Display a person's siblings."
 msgstr "Toon de broers en de zussen van een persoon."
 
@@ -5555,7 +5555,7 @@ msgstr "Vooroudersgrafiek van %s"
 #. ###############################
 #: ../src/plugins/AncestorChart.py:451 ../src/plugins/Calendar.py:477
 #: ../src/plugins/Calendar.py:616 ../src/plugins/DescendChart.py:404
-#: ../src/plugins/FanChart.py:323 ../src/plugins/GVHourGlass.py:156
+#: ../src/plugins/FanChart.py:324 ../src/plugins/GVHourGlass.py:156
 #: ../src/plugins/GVRelGraph.py:414 ../src/ReportBase/_BareReportDialog.py:376
 msgid "Report Options"
 msgstr "Verslagopties"
@@ -5565,13 +5565,13 @@ msgstr "Verslagopties"
 #. self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
 #: ../src/plugins/AncestorChart.py:453 ../src/plugins/AncestorReport.py:314
 #: ../src/plugins/DescendChart.py:406 ../src/plugins/DescendReport.py:217
-#: ../src/plugins/DetAncestralReport.py:902
-#: ../src/plugins/DetDescendantReport.py:874 ../src/plugins/FanChart.py:325
+#: ../src/plugins/DetAncestralReport.py:904
+#: ../src/plugins/DetDescendantReport.py:876 ../src/plugins/FanChart.py:326
 msgid "Generations"
 msgstr "Generaties"
 
 #: ../src/plugins/AncestorChart.py:454 ../src/plugins/DescendChart.py:407
-#: ../src/plugins/FanChart.py:326
+#: ../src/plugins/FanChart.py:327
 msgid "The number of generations to include in the report"
 msgstr "Het aantal generaties dat gettond wordt in het verslag"
 
@@ -5608,10 +5608,10 @@ msgid "Whether to compress chart."
 msgstr "Grafiek co_mprimeren."
 
 #: ../src/plugins/AncestorChart.py:483 ../src/plugins/AncestorReport.py:304
-#: ../src/plugins/DescendChart.py:435 ../src/plugins/DetAncestralReport.py:796
-#: ../src/plugins/DetDescendantReport.py:764
+#: ../src/plugins/DescendChart.py:435 ../src/plugins/DetAncestralReport.py:798
+#: ../src/plugins/DetDescendantReport.py:766
 #: ../src/plugins/EndOfLineReport.py:249 ../src/plugins/EndOfLineReport.py:267
-#: ../src/plugins/FamilyGroup.py:841 ../src/plugins/FanChart.py:381
+#: ../src/plugins/FamilyGroup.py:841 ../src/plugins/FanChart.py:382
 #: ../src/plugins/IndivComplete.py:632 ../src/plugins/KinshipReport.py:420
 #: ../src/plugins/MarkerReport.py:529
 msgid "The basic style used for the text display."
@@ -5643,8 +5643,8 @@ msgid "Generation %d"
 msgstr "Generatie %d"
 
 #: ../src/plugins/AncestorReport.py:281 ../src/plugins/DescendReport.py:239
-#: ../src/plugins/DetAncestralReport.py:750
-#: ../src/plugins/DetDescendantReport.py:718
+#: ../src/plugins/DetAncestralReport.py:752
+#: ../src/plugins/DetDescendantReport.py:720
 #: ../src/plugins/EndOfLineReport.py:231 ../src/plugins/FamilyGroup.py:832
 #: ../src/plugins/IndivComplete.py:600 ../src/plugins/KinshipReport.py:403
 #: ../src/plugins/MarkerReport.py:509 ../src/plugins/SimpleBookTitle.py:273
@@ -5653,14 +5653,14 @@ msgid "The style used for the title of the page."
 msgstr "De gebruikte stijl voor de titel van de pagina."
 
 #: ../src/plugins/AncestorReport.py:294
-#: ../src/plugins/DetAncestralReport.py:760
-#: ../src/plugins/DetDescendantReport.py:728 ../src/ReportBase/_Endnotes.py:43
+#: ../src/plugins/DetAncestralReport.py:762
+#: ../src/plugins/DetDescendantReport.py:730 ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr "De gebruikte stijl voor de generatie-kop."
 
 #: ../src/plugins/AncestorReport.py:316
-#: ../src/plugins/DetAncestralReport.py:836
-#: ../src/plugins/DetDescendantReport.py:804
+#: ../src/plugins/DetAncestralReport.py:838
+#: ../src/plugins/DetDescendantReport.py:806
 msgid "Page break between generations"
 msgstr "Nieuwe pagina bij volgende generatie"
 
@@ -5776,11 +5776,8 @@ msgid "Filter"
 msgstr "Filter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:60
-#, fuzzy
 msgid "Select filter to restrict people"
-msgstr ""
-"Kies een filter om het aantal personen te beperken dat getoond wordt op de "
-"kalender"
+msgstr "Kies een filter om aantal personen te beperken"
 
 #: ../src/plugins/CalculateEstimatedDates.py:63 ../src/gen/lib/notetype.py:83
 msgid "Source text"
@@ -5795,25 +5792,21 @@ msgid "Source to remove and/or add"
 msgstr "Bron om te verwijderen en/of toe te voegen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:68
-#, fuzzy
 msgid "Remove previously added dates"
-msgstr "Eerder aangemaakte boeken beheren"
+msgstr "Eerder togevoegde datums verwijderen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:72
-#, fuzzy
 msgid "Add estimated birth dates"
-msgstr "Ontbrekende datums _schatten"
+msgstr "Geschatte geboortedatums toevoegen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:76
 #: ../src/plugins/CalculateEstimatedDates.py:77
-#, fuzzy
 msgid "Add estimated death dates"
-msgstr "Hij overleed %(death_date)s."
+msgstr "Geschatte overlijdensdatums toevoegen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:80
-#, fuzzy
 msgid "Display detailed results"
-msgstr "Toon filtercontroles"
+msgstr "Toon gedetailleerde resultaten"
 
 #: ../src/plugins/CalculateEstimatedDates.py:81
 msgid "Show details for every date entered"
@@ -5823,49 +5816,40 @@ msgstr "Toon details voor elke ingevoerde datum"
 # Bevestiging
 #. -----------------------------------------------------
 #: ../src/plugins/CalculateEstimatedDates.py:85
-#, fuzzy
 msgid "Config"
 msgstr "Instellingen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:86
-#, fuzzy
 msgid "Maximum age"
-msgstr "Maximum l_eeftijd"
+msgstr "Maximum leeftijd"
 
 #: ../src/plugins/CalculateEstimatedDates.py:89
-#, fuzzy
 msgid "Maximum age that one can live to"
-msgstr "Ma_ximum leeftijd om vader van een kind te zijn"
+msgstr "Maximum leeftijd die iemand kan bereiken"
 
 #: ../src/plugins/CalculateEstimatedDates.py:92
-#, fuzzy
 msgid "Maximum sibling age difference"
-msgstr "_Maximum leeftijdsverschil man-vrouw"
+msgstr "Maximum leeftijdsverschil tussen broers en zussen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:95
-#, fuzzy
 msgid "Maximum age difference between siblings"
-msgstr "Grote leeftijdsverschillen tussen kinderen"
+msgstr "Maximum leeftsijdsverschil tussen broers en zussen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:98
-#, fuzzy
 msgid "Minimum years between generations"
-msgstr "Nieuwe pagina bij volgende generatie"
+msgstr "Minimum leeftijdsverschil tussen generaties"
 
 #: ../src/plugins/CalculateEstimatedDates.py:101
-#, fuzzy
 msgid "Minimum years between two generations"
-msgstr "Nieuwe pagina bij volgende generatie"
+msgstr "Minimum leeftijdsverschil tussen twee generaties"
 
 #: ../src/plugins/CalculateEstimatedDates.py:104
-#, fuzzy
 msgid "Average years between generations"
-msgstr "Nieuwe pagina bij volgende generatie"
+msgstr "Gemiddeld leeftijdsverschil tussen generaties"
 
 #: ../src/plugins/CalculateEstimatedDates.py:107
-#, fuzzy
 msgid "Average years between two generations"
-msgstr "Nieuwe pagina bij volgende generatie"
+msgstr "Gemiddeld leeftijdsverschil tussen twee generaties"
 
 #: ../src/plugins/CalculateEstimatedDates.py:114
 #: ../src/plugins/CalculateEstimatedDates.py:456
@@ -5878,17 +5862,16 @@ msgid "Removing '%s'..."
 msgstr "Verwijder '%s'..."
 
 #: ../src/plugins/CalculateEstimatedDates.py:182
-#, fuzzy
 msgid "Calculating estimated dates..."
-msgstr "Stap 2: Bereken van mogelijke overeenkomsten"
+msgstr "Berekenen van geschatte datums..."
 
 #: ../src/plugins/CalculateEstimatedDates.py:228
 msgid "Calculate date estimates"
 msgstr "Bereken schattingen voor datums"
 
 #: ../src/plugins/CalculateEstimatedDates.py:457
-#: ../src/plugins/DetAncestralReport.py:954
-#: ../src/plugins/DetDescendantReport.py:928
+#: ../src/plugins/DetAncestralReport.py:956
+#: ../src/plugins/DetDescendantReport.py:930
 #: ../src/plugins/MediaManager.py:615 ../src/plugins/OwnerEditor.py:191
 #: ../src/plugins/Summary.py:184 ../src/plugins/WebCal.py:1418
 msgid "Beta"
@@ -5899,9 +5882,8 @@ msgid "Calculates estimated dates for birth and death."
 msgstr "Bereken geschatte datums voor geboorte en overlijden."
 
 #: ../src/plugins/Calendar.py:148
-#, fuzzy
 msgid "Calendar Report"
-msgstr "Kalender voor %s"
+msgstr "Kalenderverslag"
 
 #. initialize the dict to fill:
 #: ../src/plugins/Calendar.py:213 ../src/plugins/Calendar.py:899
@@ -5933,9 +5915,9 @@ msgid "Birthday and Anniversary Report"
 msgstr "Geboortedatum en verjaardagsverslag"
 
 #: ../src/plugins/Calendar.py:439
-#, fuzzy, python-format
+#, python-format
 msgid "Relationships shown are to %s"
-msgstr "Relatietype: %s"
+msgstr "Getoonde verwantschappen van  %s"
 
 #: ../src/plugins/Calendar.py:479 ../src/plugins/Calendar.py:480
 #: ../src/plugins/WebCal.py:816
@@ -5949,9 +5931,8 @@ msgstr ""
 "kalender"
 
 #: ../src/plugins/Calendar.py:491
-#, fuzzy
 msgid "Select the format to display names"
-msgstr "Kies getoonde achternaam van de echtgenote"
+msgstr "Kies het naamformaat"
 
 #: ../src/plugins/Calendar.py:494 ../src/plugins/WebCal.py:817
 msgid "Country for holidays"
@@ -5974,14 +5955,12 @@ msgid "Birthday surname"
 msgstr "Geboortedatum achternaam"
 
 #: ../src/plugins/Calendar.py:510
-#, fuzzy
 msgid "Wives use husband's surname (from first family listed)"
-msgstr "Vrouwen gebruiken achternaam echtgenoot"
+msgstr "Vrouwen gebruiken achternaam echtgenoot(van de eerste familie in lijst)"
 
 #: ../src/plugins/Calendar.py:511
-#, fuzzy
 msgid "Wives use husband's surname (from last family listed)"
-msgstr "Vrouwen gebruiken achternaam echtgenoot"
+msgstr "Vrouwen gebruiken achternaam echtgenoot (van de laatste familie in de lijst)"
 
 #: ../src/plugins/Calendar.py:512
 msgid "Wives use their own surname"
@@ -6092,14 +6071,12 @@ msgid "Title of calendar"
 msgstr "Kalendertitel"
 
 #: ../src/plugins/Calendar.py:617
-#, fuzzy
 msgid "Include relationships to center person (slower)"
-msgstr "Relatie met de beginpersoon"
+msgstr "Verwantschappen toevoegen van de centrale persoon (trager)"
 
 #: ../src/plugins/Calendar.py:619
-#, fuzzy
 msgid "Include relationships to center person"
-msgstr "Relatie met de beginpersoon"
+msgstr "Verwantschappen van de centrale persoon toevoegen"
 
 #: ../src/plugins/Calendar.py:625
 msgid "Title text style"
@@ -6344,44 +6321,36 @@ msgstr ""
 "nieuw bestand te kiezen."
 
 #: ../src/plugins/Check.py:591
-#, fuzzy
 msgid "Looking for empty people records"
-msgstr "Zoeken naar onvolledige families"
+msgstr "Zoeken naar lege persoonsgegevens"
 
 #: ../src/plugins/Check.py:599
-#, fuzzy
 msgid "Looking for empty family records"
-msgstr "Zoeken naar onvolledige families"
+msgstr "Zoeken naar lege familiegegevens"
 
 #: ../src/plugins/Check.py:607
-#, fuzzy
 msgid "Looking for empty event records"
-msgstr "Zoeken naar gebeurtenissen problemen"
+msgstr "Zoeken naar lege gebeurtenissengegevens"
 
 #: ../src/plugins/Check.py:615
-#, fuzzy
 msgid "Looking for empty source records"
-msgstr "Zoeken naar bron verwijzingsproblemen"
+msgstr "Zoeken naar lege bronnengegevens"
 
 #: ../src/plugins/Check.py:623
-#, fuzzy
 msgid "Looking for empty place records"
-msgstr "Zoeken naar locatievelden"
+msgstr "Zoeken naar lege locatiegegevens"
 
 #: ../src/plugins/Check.py:630
-#, fuzzy
 msgid "Looking for empty media records"
-msgstr "Zoeken naar onvolledige families"
+msgstr "Zoeken naar lege mediaobjectengegevens"
 
 #: ../src/plugins/Check.py:639
-#, fuzzy
 msgid "Looking for empty repository records"
-msgstr "Zoeken naar bibliotheekrefenrentie problemen"
+msgstr "Zoeken naar lege bibliothekengegevens"
 
 #: ../src/plugins/Check.py:647
-#, fuzzy
 msgid "Looking for empty note records"
-msgstr "Zoeken naar onvolledige families"
+msgstr "Zoeken naar lege opmerkingengegevens"
 
 #: ../src/plugins/Check.py:689
 msgid "Looking for empty families"
@@ -6401,7 +6370,7 @@ msgstr "Zoeken naar persoonsreferentie problemen"
 
 #: ../src/plugins/Check.py:846
 msgid "Looking for repository reference problems"
-msgstr "Zoeken naar bibliotheekrefenrentie problemen"
+msgstr "Zoeken naar bibliotheekreferentie problemen"
 
 #: ../src/plugins/Check.py:863
 msgid "Looking for place reference problems"
@@ -6409,17 +6378,15 @@ msgstr "Zoeken naar locatie referentie problemen"
 
 #: ../src/plugins/Check.py:910
 msgid "Looking for source reference problems"
-msgstr "Zoeken naar bron verwijzingsproblemen"
+msgstr "Zoeken naar bron referentie problemen"
 
 #: ../src/plugins/Check.py:1033
-#, fuzzy
 msgid "Looking for media object reference problems"
-msgstr "Zoeken naar locatie referentie problemen"
+msgstr "Zoeken naar mediaobject referentie problemen"
 
 #: ../src/plugins/Check.py:1125
-#, fuzzy
 msgid "Looking for note reference problems"
-msgstr "Zoeken naar bron verwijzingsproblemen"
+msgstr "Zoeken naar opmerkingen referentie problemen"
 
 #: ../src/plugins/Check.py:1290
 msgid "No errors were found"
@@ -6593,19 +6560,17 @@ msgid "%d sources were referenced, but not found\n"
 msgstr "Er waren verwijzingen naar %d bronnen, die niet zijn gevonden\n"
 
 #: ../src/plugins/Check.py:1419
-#, fuzzy
 msgid "1 media object was referenced but not found\n"
 msgstr "Er was een verwijzing naar 1 mediaobject welke niet werd gevonden\n"
 
 #: ../src/plugins/Check.py:1425
-#, fuzzy
 msgid "1 note object was referenced but not found\n"
-msgstr "Er was een verwijzing naar 1 mediaobject welke niet werd gevonden\n"
+msgstr "Er was een verwijzing naar 1 opmerking welke niet werd gevonden\n"
 
 #: ../src/plugins/Check.py:1427
-#, fuzzy, python-format
+#, python-format
 msgid "%d note objects were referenced, but not found\n"
-msgstr "Er waren verwijzingen naar %d mediaobjecten, welke niet werden gevonden\n"
+msgstr "Er waren verwijzingen naar %d opmerkingen, welke niet werden gevonden\n"
 
 #: ../src/plugins/Check.py:1431
 msgid "1 invalid name format reference was removed\n"
@@ -6799,7 +6764,7 @@ msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s is dezelfde persoon als [%(id_str)s]."
 
 #: ../src/plugins/DetAncestralReport.py:276
-#: ../src/plugins/DetDescendantReport.py:518
+#: ../src/plugins/DetDescendantReport.py:520
 #, python-format
 msgid "Notes for %s"
 msgstr "Opmerkingen bij %s"
@@ -6808,29 +6773,29 @@ msgstr "Opmerkingen bij %s"
 #: ../src/plugins/DetAncestralReport.py:310
 #: ../src/plugins/DetAncestralReport.py:321
 #: ../src/plugins/DetAncestralReport.py:340
-#: ../src/plugins/DetDescendantReport.py:529
-#: ../src/plugins/DetDescendantReport.py:547
-#: ../src/plugins/DetDescendantReport.py:558
-#: ../src/plugins/DetDescendantReport.py:577
+#: ../src/plugins/DetDescendantReport.py:531
+#: ../src/plugins/DetDescendantReport.py:549
+#: ../src/plugins/DetDescendantReport.py:560
+#: ../src/plugins/DetDescendantReport.py:579
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Meer over %(person_name)s:"
 
 #: ../src/plugins/DetAncestralReport.py:294
-#: ../src/plugins/DetDescendantReport.py:536
+#: ../src/plugins/DetDescendantReport.py:538
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
 #: ../src/plugins/DetAncestralReport.py:329
-#: ../src/plugins/DetDescendantReport.py:566
+#: ../src/plugins/DetDescendantReport.py:568
 msgid "Address: "
 msgstr "Adres: "
 
 #: ../src/plugins/DetAncestralReport.py:347
 #: ../src/plugins/DetAncestralReport.py:401
 #: ../src/plugins/DetDescendantReport.py:313
-#: ../src/plugins/DetDescendantReport.py:584
+#: ../src/plugins/DetDescendantReport.py:586
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
@@ -6864,166 +6829,166 @@ msgstr "%(event_name)s: "
 msgid "%(endnotes)s."
 msgstr "%(endnotes)s."
 
-#: ../src/plugins/DetAncestralReport.py:495
-#: ../src/plugins/DetDescendantReport.py:407
+#: ../src/plugins/DetAncestralReport.py:496
+#: ../src/plugins/DetDescendantReport.py:408
 #, python-format
-msgid "Children of %s and %s"
-msgstr "Kinderen van %s en %s"
+msgid "Children of %(mother_name)s and %(father_name)s"
+msgstr "Kinderen van %(mother_name)s en %(father_name)s"
 
-#: ../src/plugins/DetAncestralReport.py:545
-#: ../src/plugins/DetDescendantReport.py:463
+#: ../src/plugins/DetAncestralReport.py:547
+#: ../src/plugins/DetDescendantReport.py:465
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Meer over %(mother_name)s en %(father_name)s:"
 
-#: ../src/plugins/DetAncestralReport.py:770
-#: ../src/plugins/DetDescendantReport.py:738
+#: ../src/plugins/DetAncestralReport.py:772
+#: ../src/plugins/DetDescendantReport.py:740
 msgid "The style used for the children list title."
 msgstr "De gebruikte stijl voor de titel van de kinderenlijst."
 
-#: ../src/plugins/DetAncestralReport.py:780
-#: ../src/plugins/DetDescendantReport.py:748
+#: ../src/plugins/DetAncestralReport.py:782
+#: ../src/plugins/DetDescendantReport.py:750
 msgid "The style used for the children list."
 msgstr "De gebruikte stijl voor de kinderenlijst."
 
-#: ../src/plugins/DetAncestralReport.py:803
-#: ../src/plugins/DetDescendantReport.py:771
+#: ../src/plugins/DetAncestralReport.py:805
+#: ../src/plugins/DetDescendantReport.py:773
 msgid "The style used for the first personal entry."
 msgstr "De gebruikte stijl voor de eerste persoonlijke regel."
 
-#: ../src/plugins/DetAncestralReport.py:813
-#: ../src/plugins/DetDescendantReport.py:781
+#: ../src/plugins/DetAncestralReport.py:815
+#: ../src/plugins/DetDescendantReport.py:783
 msgid "The style used for the More About header."
 msgstr "De gebruikte stijl voor de sectiekop van \"meer over\"."
 
-#: ../src/plugins/DetAncestralReport.py:823
-#: ../src/plugins/DetDescendantReport.py:791
+#: ../src/plugins/DetAncestralReport.py:825
+#: ../src/plugins/DetDescendantReport.py:793
 msgid "The style used for additional detail data."
 msgstr "De gebruikte stijl voor de algemene detailgegevens."
 
 #. Full date usage
-#: ../src/plugins/DetAncestralReport.py:840
-#: ../src/plugins/DetDescendantReport.py:808
+#: ../src/plugins/DetAncestralReport.py:842
+#: ../src/plugins/DetDescendantReport.py:810
 msgid "Use full dates instead of only the year"
 msgstr "Volledige datums gebruiken in plaats van alleen het jaar"
 
 #. Children List
-#: ../src/plugins/DetAncestralReport.py:844
-#: ../src/plugins/DetDescendantReport.py:812
+#: ../src/plugins/DetAncestralReport.py:846
+#: ../src/plugins/DetDescendantReport.py:814
 msgid "List children"
 msgstr "Kinderen opsommen"
 
 #. Print notes
-#: ../src/plugins/DetAncestralReport.py:848
-#: ../src/plugins/DetDescendantReport.py:816
+#: ../src/plugins/DetAncestralReport.py:850
+#: ../src/plugins/DetDescendantReport.py:818
 msgid "Include notes"
 msgstr "Opmerkingen bijvoegen"
 
 #. Print attributes
-#: ../src/plugins/DetAncestralReport.py:852
-#: ../src/plugins/DetDescendantReport.py:820
+#: ../src/plugins/DetAncestralReport.py:854
+#: ../src/plugins/DetDescendantReport.py:822
 msgid "Include attributes"
 msgstr "Kenmerken bijvoegen"
 
 #. Print callname
-#: ../src/plugins/DetAncestralReport.py:856
-#: ../src/plugins/DetDescendantReport.py:824
+#: ../src/plugins/DetAncestralReport.py:858
+#: ../src/plugins/DetDescendantReport.py:826
 msgid "Use callname for common name"
 msgstr "Gebruik roepnaam voor gewone naam"
 
 #. Replace missing Place with ___________
-#: ../src/plugins/DetAncestralReport.py:860
-#: ../src/plugins/DetDescendantReport.py:828
+#: ../src/plugins/DetAncestralReport.py:862
+#: ../src/plugins/DetDescendantReport.py:830
 msgid "Replace missing places with ______"
 msgstr "Ontbrekende locaties vervangen door ______"
 
 # data/datums
 #. Replace missing dates with __________
-#: ../src/plugins/DetAncestralReport.py:864
-#: ../src/plugins/DetDescendantReport.py:832
+#: ../src/plugins/DetAncestralReport.py:866
+#: ../src/plugins/DetDescendantReport.py:834
 msgid "Replace missing dates with ______"
 msgstr "Ontbrekende datums vervangen door ______"
 
 #. Add "Died at the age of NN" in text
-#: ../src/plugins/DetAncestralReport.py:868
-#: ../src/plugins/DetDescendantReport.py:836
+#: ../src/plugins/DetAncestralReport.py:870
+#: ../src/plugins/DetDescendantReport.py:838
 msgid "Compute age"
 msgstr "Leeftijd berekenen"
 
 # Duplicaat-voorouders
 #. Omit duplicate persons, occurs when distant cousins marry
-#: ../src/plugins/DetAncestralReport.py:872
-#: ../src/plugins/DetDescendantReport.py:840
+#: ../src/plugins/DetAncestralReport.py:874
+#: ../src/plugins/DetDescendantReport.py:842
 msgid "Omit duplicate ancestors"
 msgstr "Voorouder-duplicaten weglaten"
 
 # Opnemen ipv toevoegen
 #. Add descendant reference in child list
-#: ../src/plugins/DetAncestralReport.py:876
-#: ../src/plugins/DetDescendantReport.py:844
+#: ../src/plugins/DetAncestralReport.py:878
+#: ../src/plugins/DetDescendantReport.py:846
 msgid "Add descendant reference in child list"
 msgstr "Afstammeling-verwijzingen in kinderen-lijst toevoegen"
 
 #. Add photo/image reference
-#: ../src/plugins/DetAncestralReport.py:880
-#: ../src/plugins/DetDescendantReport.py:848
+#: ../src/plugins/DetAncestralReport.py:882
+#: ../src/plugins/DetDescendantReport.py:850
 msgid "Include Photo/Images from Gallery"
 msgstr "Foto's/Afbeeldingen uit de galerie bijvoegen"
 
 #. Print alternative names
-#: ../src/plugins/DetAncestralReport.py:884
-#: ../src/plugins/DetDescendantReport.py:852
+#: ../src/plugins/DetAncestralReport.py:886
+#: ../src/plugins/DetDescendantReport.py:854
 msgid "Include alternative names"
 msgstr "Alternatieve namen bijvoegen"
 
 #. Print events
-#: ../src/plugins/DetAncestralReport.py:888
-#: ../src/plugins/DetDescendantReport.py:856
+#: ../src/plugins/DetAncestralReport.py:890
+#: ../src/plugins/DetDescendantReport.py:858
 msgid "Include events"
 msgstr "Gebeurtenissen bijvoegen"
 
 #. Print addresses
-#: ../src/plugins/DetAncestralReport.py:892
-#: ../src/plugins/DetDescendantReport.py:860
+#: ../src/plugins/DetAncestralReport.py:894
+#: ../src/plugins/DetDescendantReport.py:862
 msgid "Include addresses"
 msgstr "Adressen bijvoegen"
 
 #. Print sources
-#: ../src/plugins/DetAncestralReport.py:896
-#: ../src/plugins/DetDescendantReport.py:864
+#: ../src/plugins/DetAncestralReport.py:898
+#: ../src/plugins/DetDescendantReport.py:866
 msgid "Include sources"
 msgstr "Bronnen bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:904
-#: ../src/plugins/DetAncestralReport.py:905
 #: ../src/plugins/DetAncestralReport.py:906
 #: ../src/plugins/DetAncestralReport.py:907
 #: ../src/plugins/DetAncestralReport.py:908
 #: ../src/plugins/DetAncestralReport.py:909
-#: ../src/plugins/DetDescendantReport.py:876
-#: ../src/plugins/DetDescendantReport.py:877
+#: ../src/plugins/DetAncestralReport.py:910
+#: ../src/plugins/DetAncestralReport.py:911
 #: ../src/plugins/DetDescendantReport.py:878
 #: ../src/plugins/DetDescendantReport.py:879
 #: ../src/plugins/DetDescendantReport.py:880
 #: ../src/plugins/DetDescendantReport.py:881
+#: ../src/plugins/DetDescendantReport.py:882
+#: ../src/plugins/DetDescendantReport.py:883
 msgid "Content"
 msgstr "Inhoud"
 
-#: ../src/plugins/DetAncestralReport.py:910
-#: ../src/plugins/DetAncestralReport.py:911
 #: ../src/plugins/DetAncestralReport.py:912
 #: ../src/plugins/DetAncestralReport.py:913
 #: ../src/plugins/DetAncestralReport.py:914
 #: ../src/plugins/DetAncestralReport.py:915
 #: ../src/plugins/DetAncestralReport.py:916
-#: ../src/plugins/DetDescendantReport.py:882
-#: ../src/plugins/DetDescendantReport.py:883
+#: ../src/plugins/DetAncestralReport.py:917
+#: ../src/plugins/DetAncestralReport.py:918
 #: ../src/plugins/DetDescendantReport.py:884
 #: ../src/plugins/DetDescendantReport.py:885
 #: ../src/plugins/DetDescendantReport.py:886
 #: ../src/plugins/DetDescendantReport.py:887
 #: ../src/plugins/DetDescendantReport.py:888
-#: ../src/plugins/DetDescendantReport.py:889 ../src/plugins/FamilyGroup.py:784
+#: ../src/plugins/DetDescendantReport.py:889
+#: ../src/plugins/DetDescendantReport.py:890
+#: ../src/plugins/DetDescendantReport.py:891 ../src/plugins/FamilyGroup.py:784
 #: ../src/plugins/FamilyGroup.py:785 ../src/plugins/FamilyGroup.py:786
 #: ../src/plugins/FamilyGroup.py:787 ../src/plugins/FamilyGroup.py:788
 #: ../src/plugins/FamilyGroup.py:789 ../src/plugins/FamilyGroup.py:790
@@ -7032,18 +6997,18 @@ msgstr "Inhoud"
 msgid "Include"
 msgstr "Bijvoegen"
 
-#: ../src/plugins/DetAncestralReport.py:917
-#: ../src/plugins/DetAncestralReport.py:918
-#: ../src/plugins/DetDescendantReport.py:890
-#: ../src/plugins/DetDescendantReport.py:891
+#: ../src/plugins/DetAncestralReport.py:919
+#: ../src/plugins/DetAncestralReport.py:920
+#: ../src/plugins/DetDescendantReport.py:892
+#: ../src/plugins/DetDescendantReport.py:893
 msgid "Missing information"
 msgstr "Ontbrekende informatie"
 
-#: ../src/plugins/DetAncestralReport.py:953
+#: ../src/plugins/DetAncestralReport.py:955
 msgid "Detailed Ancestral Report"
 msgstr "Gedetailleerd voorouder-rapport"
 
-#: ../src/plugins/DetAncestralReport.py:955
+#: ../src/plugins/DetAncestralReport.py:957
 msgid "Produces a detailed ancestral report"
 msgstr "Levert een gedetailleerd voorouder-rapport"
 
@@ -7053,23 +7018,23 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Afstammeling-rapport voor %(person_name)s"
 
 #. Print Spouses
-#: ../src/plugins/DetDescendantReport.py:868
+#: ../src/plugins/DetDescendantReport.py:870
 #: ../src/plugins/KinshipReport.py:368
 msgid "Include spouses"
 msgstr "Echtgenoten bijvoegen"
 
-#: ../src/plugins/DetDescendantReport.py:927
+#: ../src/plugins/DetDescendantReport.py:929
 msgid "Detailed Descendant Report"
 msgstr "Gedetailleerd afstammeling-rapport"
 
-#: ../src/plugins/DetDescendantReport.py:929
+#: ../src/plugins/DetDescendantReport.py:931
 msgid "Produces a detailed descendant report"
 msgstr "Levert een gedetailleerd afstammeling-rapport"
 
 #: ../src/plugins/EndOfLineReport.py:129
-#, fuzzy, python-format
+#, python-format
 msgid "End of Line Report for %s"
-msgstr "Ahnentafel verslag voor %s"
+msgstr "Eindelijnverslag voor %s"
 
 #: ../src/plugins/EndOfLineReport.py:135
 #, python-format
@@ -7090,14 +7055,12 @@ msgid "The basic style used for generation headings."
 msgstr "De standaardstijl voor de hoofding van de generaties."
 
 #: ../src/plugins/EndOfLineReport.py:296
-#, fuzzy
 msgid "End of Line Report"
-msgstr "Stuur foutrapport"
+msgstr "Eindelijnverslag"
 
 #: ../src/plugins/EndOfLineReport.py:298
-#, fuzzy
 msgid "Produces a textual end of line report"
-msgstr "Levert een tekstueel voorouder-rapport"
+msgstr "Levert een eindeijnverslag in tekstvorm"
 
 #: ../src/plugins/Eval.py:59 ../src/plugins/Eval.py:129
 msgid "Python evaluation window"
@@ -7255,7 +7218,7 @@ msgstr "vCard exportopties"
 
 #: ../src/plugins/ExtractCity.py:58
 msgid "United States of America"
-msgstr "V.S."
+msgstr "Verenigde Staten van Amerika"
 
 #: ../src/plugins/ExtractCity.py:58
 msgid "Canada"
@@ -7463,7 +7426,7 @@ msgstr "Familielijnen schrijven"
 #: ../src/plugins/GraphViz.py:862 ../src/plugins/GraphViz.py:869
 #: ../src/plugins/GraphViz.py:880 ../src/plugins/GraphViz.py:887
 #: ../src/plugins/GraphViz.py:895 ../src/plugins/GraphViz.py:902
-#: ../src/ReportBase/_GraphvizReportDialog.py:614
+#: ../src/ReportBase/_GraphvizReportDialog.py:696
 msgid "GraphViz Options"
 msgstr "GraphViz-opties"
 
@@ -7515,6 +7478,7 @@ msgstr ""
 "zijn indien het verhoudingstype \"Comprmeren\" is."
 
 #: ../src/plugins/FamilyLines.py:879
+#: ../src/ReportBase/_GraphvizReportDialog.py:708
 msgid "DPI"
 msgstr "DPI"
 
@@ -7577,9 +7541,8 @@ msgstr ""
 
 #. ******** PEOPLE OF INTEREST **********
 #: ../src/plugins/FamilyLines.py:887
-#, fuzzy
 msgid "People of Interest"
-msgstr "Personen geboren tussen"
+msgstr "Interessante personen"
 
 #: ../src/plugins/FamilyLines.py:925
 msgid "Follow parents to determine family lines"
@@ -7627,8 +7590,8 @@ msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
-"Personen en families die niet direct gerelateerd zijn naar interessante personen "
-"zullen verwijderd worden bij het bepalen van de \"familistambomen\"."
+"Personen en families die niet direct gerelateerd zijn naar interessante "
+"personen zullen verwijderd worden bij het bepalen van de \"familistambomen\"."
 
 #. ******** FAMILY COLOURS **********
 #: ../src/plugins/FamilyLines.py:939
@@ -7699,7 +7662,7 @@ msgstr "plaats de verkleinde weergave naast de naam"
 #: ../src/plugins/FamilyLines.py:1013 ../src/plugins/GraphViz.py:842
 #: ../src/plugins/GVRelGraph.py:454
 msgid "Whether to include thumbnails of people."
-msgstr "Al of niet verkleinde weergave van personen"
+msgstr "Al of niet verkleinde weergave van personen."
 
 #: ../src/plugins/FamilyLines.py:1014
 msgid ""
@@ -7751,7 +7714,7 @@ msgstr ""
 
 #: ../src/plugins/FamilyLines.py:1042
 msgid "Whether to include dates for people and families."
-msgstr "Al of niet datums voor personen en families insluiten"
+msgstr "Al of niet datums voor personen en families insluiten."
 
 #: ../src/plugins/FamilyLines.py:1043
 msgid "Whether to include placenames for people and families."
@@ -7818,70 +7781,70 @@ msgstr "Familielijngrafiek"
 
 #: ../src/plugins/FanChart.py:177
 #, python-format
-msgid "%d Generation Fan Chart for %s"
-msgstr "%d generaties waaiergrafiek voor %s"
+msgid "%(generations)d Generation Fan Chart for %(person)s"
+msgstr "%(generations)d generatiwaaiergrafiek voor %(person)s"
 
-#: ../src/plugins/FanChart.py:329
+#: ../src/plugins/FanChart.py:330
 msgid "Type of graph"
 msgstr "Soort grafiek"
 
-#: ../src/plugins/FanChart.py:330
+#: ../src/plugins/FanChart.py:331
 msgid "full circle"
 msgstr "volle cirkel"
 
-#: ../src/plugins/FanChart.py:331
+#: ../src/plugins/FanChart.py:332
 msgid "half circle"
 msgstr "halve cirkel"
 
-#: ../src/plugins/FanChart.py:332
+#: ../src/plugins/FanChart.py:333
 msgid "quarter circle"
 msgstr "kwart cirkel"
 
-#: ../src/plugins/FanChart.py:333
+#: ../src/plugins/FanChart.py:334
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr "De grafiekvorm: hele cirkel, halve cirkel of kwart cirkel."
 
-#: ../src/plugins/FanChart.py:337
+#: ../src/plugins/FanChart.py:338
 msgid "Background color"
 msgstr "Achtergrondkleur"
 
-#: ../src/plugins/FanChart.py:338
+#: ../src/plugins/FanChart.py:339
 msgid "white"
 msgstr "wit"
 
-#: ../src/plugins/FanChart.py:339
+#: ../src/plugins/FanChart.py:340
 msgid "generation dependent"
 msgstr "Generatie afhankelijk"
 
-#: ../src/plugins/FanChart.py:340
+#: ../src/plugins/FanChart.py:341
 msgid "Background color is either white or generation dependent"
 msgstr "De achtergrondkleur is ofwel wit, ofwel generatie-afhankelijk"
 
-#: ../src/plugins/FanChart.py:344
+#: ../src/plugins/FanChart.py:345
 msgid "Orientation of radial texts"
 msgstr "Richting van de radiaalteksten"
 
-#: ../src/plugins/FanChart.py:346
+#: ../src/plugins/FanChart.py:347
 msgid "upright"
 msgstr "rechtop"
 
-#: ../src/plugins/FanChart.py:347
+#: ../src/plugins/FanChart.py:348
 msgid "roundabout"
 msgstr "omstreeks"
 
-#: ../src/plugins/FanChart.py:348
+#: ../src/plugins/FanChart.py:349
 msgid "Print raidal texts upright or roundabout"
 msgstr "Druk radiale teksten rechtop af of in een ronde vorm"
 
-#: ../src/plugins/FanChart.py:372
+#: ../src/plugins/FanChart.py:373
 msgid "The style used for the title."
 msgstr "De gebruikte stijl voor de titel."
 
-#: ../src/plugins/FanChart.py:420
+#: ../src/plugins/FanChart.py:421
 msgid "Fan Chart"
 msgstr "Waaiergrafiek"
 
-#: ../src/plugins/FanChart.py:424
+#: ../src/plugins/FanChart.py:425
 msgid "Produces fan charts"
 msgstr "Levert waaiergrafieken"
 
@@ -7958,32 +7921,32 @@ msgstr ""
 "van een en dezelfde persoon."
 
 #: ../src/plugins/GraphViz.py:85
-#: ../src/ReportBase/_GraphvizReportDialog.py:493
+#: ../src/ReportBase/_GraphvizReportDialog.py:523
 msgid "Postscript"
 msgstr "Postscript"
 
 #: ../src/plugins/GraphViz.py:86
-#: ../src/ReportBase/_GraphvizReportDialog.py:498
+#: ../src/ReportBase/_GraphvizReportDialog.py:528
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
 #: ../src/plugins/GraphViz.py:87
-#: ../src/ReportBase/_GraphvizReportDialog.py:503
+#: ../src/ReportBase/_GraphvizReportDialog.py:533
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Gecomprimeerde Structured Vector Graphs (SVG)"
 
 #: ../src/plugins/GraphViz.py:88
-#: ../src/ReportBase/_GraphvizReportDialog.py:508
+#: ../src/ReportBase/_GraphvizReportDialog.py:548
 msgid "PNG image"
 msgstr "PNG-afbeelding"
 
 #: ../src/plugins/GraphViz.py:89
-#: ../src/ReportBase/_GraphvizReportDialog.py:513
+#: ../src/ReportBase/_GraphvizReportDialog.py:538
 msgid "JPEG image"
 msgstr "JPEG-afbeelding"
 
 #: ../src/plugins/GraphViz.py:90
-#: ../src/ReportBase/_GraphvizReportDialog.py:518
+#: ../src/ReportBase/_GraphvizReportDialog.py:543
 msgid "GIF image"
 msgstr "GIF-afbeelding"
 
@@ -8023,12 +7986,12 @@ msgid "Color fill"
 msgstr "Kleuren opvulling"
 
 #: ../src/plugins/GraphViz.py:104
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
+#: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Minimal size"
 msgstr "Minimale grootte"
 
 #: ../src/plugins/GraphViz.py:105
-#: ../src/ReportBase/_GraphvizReportDialog.py:75
+#: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Fill the given area"
 msgstr "Het opgegeven bereik wordt gevuld"
 
@@ -8037,62 +8000,60 @@ msgid "Automatically use optimal number of pages"
 msgstr "Gebruik automatisch het optimaal aantal pagina's"
 
 #: ../src/plugins/GraphViz.py:110
-#: ../src/ReportBase/_GraphvizReportDialog.py:62
 msgid "Vertical"
 msgstr "Verticaal"
 
 #: ../src/plugins/GraphViz.py:111
-#: ../src/ReportBase/_GraphvizReportDialog.py:63
 msgid "Horizontal"
 msgstr "Horizontaal"
 
 #: ../src/plugins/GraphViz.py:114
-#: ../src/ReportBase/_GraphvizReportDialog.py:65
+#: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "Bottom, left"
 msgstr "Onder, links"
 
 #: ../src/plugins/GraphViz.py:115
-#: ../src/ReportBase/_GraphvizReportDialog.py:66
+#: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "Bottom, right"
 msgstr "Onder, rechts"
 
 #: ../src/plugins/GraphViz.py:116
-#: ../src/ReportBase/_GraphvizReportDialog.py:67
+#: ../src/ReportBase/_GraphvizReportDialog.py:69
 msgid "Top, left"
 msgstr "Boven, links"
 
 #: ../src/plugins/GraphViz.py:117
-#: ../src/ReportBase/_GraphvizReportDialog.py:68
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Top, Right"
 msgstr "Boven, rechts"
 
 #: ../src/plugins/GraphViz.py:118
-#: ../src/ReportBase/_GraphvizReportDialog.py:69
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Right, bottom"
 msgstr "Rechts, onder"
 
 #: ../src/plugins/GraphViz.py:119
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
 msgid "Right, top"
 msgstr "Rechts, boven"
 
 #: ../src/plugins/GraphViz.py:120
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Left, bottom"
 msgstr "Links, onder"
 
 #: ../src/plugins/GraphViz.py:121
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Left, top"
 msgstr "Links, boven"
 
 #: ../src/plugins/GraphViz.py:124
-#: ../src/ReportBase/_GraphvizReportDialog.py:79
+#: ../src/ReportBase/_GraphvizReportDialog.py:81
 msgid "Top"
 msgstr "Boven"
 
 #: ../src/plugins/GraphViz.py:125
-#: ../src/ReportBase/_GraphvizReportDialog.py:80
+#: ../src/ReportBase/_GraphvizReportDialog.py:82
 msgid "Bottom"
 msgstr "Onder"
 
@@ -8113,7 +8074,7 @@ msgid "Descendants - Ancestors"
 msgstr "Afstammelingen - Voorouders"
 
 #: ../src/plugins/GraphViz.py:150
-#: ../src/ReportBase/_GraphvizReportDialog.py:524
+#: ../src/ReportBase/_GraphvizReportDialog.py:518
 msgid "PDF"
 msgstr "PDF"
 
@@ -8210,12 +8171,12 @@ msgstr "Kies de richting van de pijlen."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:870
-#: ../src/ReportBase/_GraphvizReportDialog.py:617
+#: ../src/ReportBase/_GraphvizReportDialog.py:640
 msgid "Font family"
 msgstr "Lettertypefamilie"
 
 #: ../src/plugins/GraphViz.py:872
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:645
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -8229,7 +8190,7 @@ msgid "Font size (in points)"
 msgstr "Lettertypegrootte (in pts.)"
 
 #: ../src/plugins/GraphViz.py:883
-#: ../src/ReportBase/_GraphvizReportDialog.py:629
+#: ../src/ReportBase/_GraphvizReportDialog.py:652
 msgid "The font size, in points."
 msgstr "Lettertypegrootte in pts."
 
@@ -8275,13 +8236,13 @@ msgstr "Opmaakopties"
 msgid "Whether generations go from top to bottom or left to right."
 msgstr "Of generaties van boven naar onder gaan, of van links naar rechts."
 
+#. ###############################
 #: ../src/plugins/GraphViz.py:919
-#: ../src/ReportBase/_GraphvizReportDialog.py:641
+#: ../src/ReportBase/_GraphvizReportDialog.py:699
 msgid "Aspect ratio"
 msgstr "Weergave verhouding"
 
 #: ../src/plugins/GraphViz.py:921
-#: ../src/ReportBase/_GraphvizReportDialog.py:646
 msgid ""
 "Affects greatly how the graph is layed out on the page. Multiple pages "
 "overrides the pages settings below."
@@ -8294,12 +8255,12 @@ msgid "Margin size"
 msgstr "Marge grootte"
 
 #: ../src/plugins/GraphViz.py:943
-#: ../src/ReportBase/_GraphvizReportDialog.py:661
+#: ../src/ReportBase/_GraphvizReportDialog.py:664
 msgid "Number of Horizontal Pages"
 msgstr "Aantal horizontale pagina's"
 
 #: ../src/plugins/GraphViz.py:945
-#: ../src/ReportBase/_GraphvizReportDialog.py:662
+#: ../src/ReportBase/_GraphvizReportDialog.py:665
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -8310,12 +8271,12 @@ msgstr ""
 "horizontaal."
 
 #: ../src/plugins/GraphViz.py:950
-#: ../src/ReportBase/_GraphvizReportDialog.py:668
+#: ../src/ReportBase/_GraphvizReportDialog.py:671
 msgid "Number of Vertical Pages"
 msgstr "Aantal verticale pagina's"
 
 #: ../src/plugins/GraphViz.py:952
-#: ../src/ReportBase/_GraphvizReportDialog.py:669
+#: ../src/ReportBase/_GraphvizReportDialog.py:672
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -8335,22 +8296,22 @@ msgstr "De volgorde waarin de pagina's van de grafieken worden weergegeven."
 
 #. ###############################
 #: ../src/plugins/GraphViz.py:973
-#: ../src/ReportBase/_GraphvizReportDialog.py:679
+#: ../src/ReportBase/_GraphvizReportDialog.py:742
 msgid "Note to add to the graph"
 msgstr "Bijschrift toevoegen aan grafiek"
 
 #: ../src/plugins/GraphViz.py:975
-#: ../src/ReportBase/_GraphvizReportDialog.py:681
+#: ../src/ReportBase/_GraphvizReportDialog.py:744
 msgid "This text will be added to the graph."
 msgstr "Deze tekst wordt toegevoegd aan de grafiek."
 
 #: ../src/plugins/GraphViz.py:979
-#: ../src/ReportBase/_GraphvizReportDialog.py:684
+#: ../src/ReportBase/_GraphvizReportDialog.py:747
 msgid "Note location"
 msgstr "Opmerking locatie"
 
 #: ../src/plugins/GraphViz.py:981
-#: ../src/ReportBase/_GraphvizReportDialog.py:687
+#: ../src/ReportBase/_GraphvizReportDialog.py:750
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Of de notitie boven of onder aan de pagina zal verschijnen."
 
@@ -8359,7 +8320,7 @@ msgid "Note size (in points)"
 msgstr "Grootte van de Opmerking (in 'points')"
 
 #: ../src/plugins/GraphViz.py:989
-#: ../src/ReportBase/_GraphvizReportDialog.py:692
+#: ../src/ReportBase/_GraphvizReportDialog.py:755
 msgid "The size of note text, in points."
 msgstr "De tekstgrootte, in 'points'."
 
@@ -8393,9 +8354,8 @@ msgstr ""
 "categorie: code aanmaken."
 
 #: ../src/plugins/GraphViz.py:1326
-#, fuzzy
 msgid "Relationship Graph (code)"
-msgstr "Relatiegrafiek"
+msgstr "Relatiegrafiek (code)"
 
 #: ../src/plugins/GVHourGlass.py:158 ../src/plugins/KinshipReport.py:378
 msgid "Max Descendant Generations"
@@ -8422,12 +8382,10 @@ msgid "Produces an hourglass graph"
 msgstr "Maakt een zandlopergrafek aan"
 
 #: ../src/plugins/GVRelGraph.py:419
-#, fuzzy
 msgid "Select the filter to be applied to the report"
-msgstr "Kies een functie uit de lijst aan de linkerkant."
+msgstr "Kies een filter die gebruikt moet worden voor het verslag"
 
 #: ../src/plugins/GVRelGraph.py:441
-#, fuzzy
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -8435,38 +8393,32 @@ msgid ""
 msgstr ""
 "Een URL bij elk grafiekknoopunt voegen zodat PDF en imagemap-bestanden "
 "kunnen worden gegenereerd die actieve links bevatten naar de bestanden die "
-"gegenereerd zijn met 'Website rapport genereren'."
+"gegenereerd zijn met het 'Websiteverslag ."
 
 #: ../src/plugins/GVRelGraph.py:457
-#, fuzzy
 msgid "Thumbnail Location"
-msgstr "Publicatie"
+msgstr "Plaats van de 'thumbnails'"
 
 #: ../src/plugins/GVRelGraph.py:458
-#, fuzzy
 msgid "Above the name"
-msgstr "Gebeurtenisfilternaam:"
+msgstr "Boven de naam"
 
 #: ../src/plugins/GVRelGraph.py:459
-#, fuzzy
 msgid "Beside the name"
-msgstr "Onderzoeker naam"
+msgstr "Naast de naam"
 
 #: ../src/plugins/GVRelGraph.py:460
-#, fuzzy
 msgid "Where the thumbnail image should appear relative to the name"
-msgstr "Plaats de verkleinde weergave boven de naam"
+msgstr "Plaats waar de verkleinde weergave wordt getoond t.o.v. de de naam"
 
 #. ###############################
 #: ../src/plugins/GVRelGraph.py:465
-#, fuzzy
 msgid "Graph Style"
-msgstr "Graphviz Dot bestand"
+msgstr "Grafiekstijl"
 
 #: ../src/plugins/GVRelGraph.py:506
-#, fuzzy
 msgid "Generates a relationship graphs using Graphviz."
-msgstr "Maakt een familielijngrafiek aan met \"GraphViz\"."
+msgstr "Maakt een verwantschapsgrafiek aan met \"GraphViz\"."
 
 #: ../src/plugins/ImportCSV.py:204
 #, python-format
@@ -8474,14 +8426,12 @@ msgid "format error: file %s, line %d: %s"
 msgstr "formaatfout: bestand %s, lijn %d: %s"
 
 #: ../src/plugins/ImportCSV.py:255
-#, fuzzy
 msgid "CSV Import"
 msgstr "CSV-import"
 
 #: ../src/plugins/ImportCSV.py:256
-#, fuzzy
 msgid "Reading data..."
-msgstr "Gegevens filteren..."
+msgstr "Gegevens worden gelezen..."
 
 #: ../src/plugins/ImportCSV.py:523 ../src/plugins/ImportGeneWeb.py:189
 #: ../src/plugins/ImportvCard.py:152
@@ -8656,17 +8606,22 @@ msgstr ""
 msgid "Name Father"
 msgstr "Naam vader"
 
-#: ../src/plugins/lineage.py:72
+#: ../src/plugins/lineage.py:61 ../src/plugins/lineage.py:92
+#: ../src/plugins/lineage.py:180
+msgid "Remark"
+msgstr "Opmerking"
+
+#: ../src/plugins/lineage.py:69
 msgid "Direct line male descendants"
 msgstr "Mannelijke afstammelingen in rechte lijn"
 
 #. display the results
-#: ../src/plugins/lineage.py:85
+#: ../src/plugins/lineage.py:82
 #, python-format
 msgid "Mother lineage for %s"
 msgstr "Familielijn langs moederszijde voor %s"
 
-#: ../src/plugins/lineage.py:87
+#: ../src/plugins/lineage.py:84
 msgid ""
 "This report shows the mother lineage, also called matronymic lineage or M-"
 "line. People in this lineage all share the same RNA."
@@ -8674,44 +8629,40 @@ msgstr ""
 "Dit verslag toont de familieband langs moederszijde, ook de matronymische "
 "lijn of M- lijn. Personen in deze lijn hebben allemaal hetzelfde \"RNA\"."
 
-#: ../src/plugins/lineage.py:94
+#: ../src/plugins/lineage.py:92
 msgid "Name Mother"
 msgstr "Naam moeder"
 
-#: ../src/plugins/lineage.py:105
+#: ../src/plugins/lineage.py:100
 msgid "Direct line female descendants"
 msgstr "Vrouwelijk afstammelingen in rechte lijn"
 
-#: ../src/plugins/lineage.py:124 ../src/plugins/lineage.py:185
-msgid "Remark"
-msgstr "Opmerking"
-
-#: ../src/plugins/lineage.py:129 ../src/plugins/lineage.py:223
+#: ../src/plugins/lineage.py:124 ../src/plugins/lineage.py:218
 msgid "ERROR : Too many levels in the tree (perhaps a loop?)."
 msgstr "FOUT . Er zijn teveel onderverdelingen in de boom (misschien een lus?)."
 
-#: ../src/plugins/lineage.py:158
+#: ../src/plugins/lineage.py:153
 msgid "No birth relation with child"
 msgstr "Geen geboorterelatie met kind"
 
-#: ../src/plugins/lineage.py:162 ../src/plugins/lineage.py:182
+#: ../src/plugins/lineage.py:157 ../src/plugins/lineage.py:177
 #: ../src/plugins/Verify.py:948
 msgid "Unknown gender"
 msgstr "Onbekend geslacht"
 
-#: ../src/plugins/lineage.py:244
+#: ../src/plugins/lineage.py:239
 msgid "Father lineage"
 msgstr "Familielijn langs vaderszijde"
 
-#: ../src/plugins/lineage.py:246
+#: ../src/plugins/lineage.py:241
 msgid "Display father lineage"
 msgstr "Toont de familielijn langs vaderszijde"
 
-#: ../src/plugins/lineage.py:255
+#: ../src/plugins/lineage.py:250
 msgid "Mother lineage"
 msgstr "Familielijn langs moederszijde"
 
-#: ../src/plugins/lineage.py:257
+#: ../src/plugins/lineage.py:252
 msgid "Display mother lineage"
 msgstr "Toont familielijn langs moederszijde"
 
@@ -9153,9 +9104,9 @@ msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(date)s&nbsp;&nbsp;te&nbsp;&nbsp;%(place)s"
 
 #: ../src/plugins/NarrativeWeb.py:2276
-#, fuzzy, python-format
+#, python-format
 msgid "<br>%(type)s: %(value)s"
-msgstr "%(type)s: %(value)s"
+msgstr "<br>%(type)s: %(value)s"
 
 #: ../src/plugins/NarrativeWeb.py:2425 ../src/plugins/WebCal.py:459
 #, python-format
@@ -9221,14 +9172,12 @@ msgid "File extension"
 msgstr "Bestandsextensie"
 
 #: ../src/plugins/NarrativeWeb.py:2715
-#, fuzzy
 msgid "Publisher contact note"
-msgstr "Uitgever contactgegevens"
+msgstr "Contactgegevens uitgever"
 
 #: ../src/plugins/NarrativeWeb.py:2716
-#, fuzzy
 msgid "Publisher contact image"
-msgstr "Uitgever contactgegevens"
+msgstr "Afbeelding uitgever"
 
 #: ../src/plugins/NarrativeWeb.py:2717
 msgid "Include images and media objects"
@@ -9247,14 +9196,12 @@ msgid "Suppress GRAMPS ID"
 msgstr "Onderdrukken GRAMPS ID"
 
 #: ../src/plugins/NarrativeWeb.py:2759
-#, fuzzy
 msgid "Exclude"
-msgstr "Bijvoegen"
+msgstr "Niet toevoegen"
 
 #: ../src/plugins/NarrativeWeb.py:2760
-#, fuzzy
 msgid "Restrict"
-msgstr "Metrisch"
+msgstr "Beperk"
 
 #: ../src/plugins/NarrativeWeb.py:2770
 msgid "Include link to home person on every page"
@@ -9334,23 +9281,20 @@ msgid "Page Generation"
 msgstr "Pagina genereren"
 
 #: ../src/plugins/NarrativeWeb.py:2909
-#, fuzzy
 msgid "Home Page note"
-msgstr "Zoomt out"
+msgstr "Opmerking 'Home Page'"
 
 #: ../src/plugins/NarrativeWeb.py:2911
 msgid "Home Page image"
 msgstr "Afbeelding voor \"Home Page\""
 
 #: ../src/plugins/NarrativeWeb.py:2913
-#, fuzzy
 msgid "Introduction Note"
-msgstr "Inleiding"
+msgstr "Introductieopmerking"
 
 #: ../src/plugins/NarrativeWeb.py:2915
-#, fuzzy
 msgid "Introduction image"
-msgstr "Inleiding"
+msgstr "Introductieafbeelding"
 
 #: ../src/plugins/NarrativeWeb.py:2919
 msgid "HTML user header"
@@ -9395,9 +9339,8 @@ msgstr "Doelmap"
 
 # webstek
 #: ../src/plugins/NarrativeWeb.py:3285
-#, fuzzy
 msgid "Narrated Web Site"
-msgstr "Verhaal website"
+msgstr "Website"
 
 #: ../src/plugins/NarrativeWeb.py:3289
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
@@ -9648,7 +9591,7 @@ msgstr "Uit galerij..."
 msgid "From file..."
 msgstr "Uit bestand..."
 
-#: ../src/plugins/SimpleBookTitle.py:211 ../src/glade/gramps.glade.h:185
+#: ../src/plugins/SimpleBookTitle.py:211 ../src/glade/gramps.glade.h:186
 #: ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
@@ -10518,15 +10461,15 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteFtree.py:311
 msgid "_Web Family Tree"
-msgstr "_Web Family Tree"
+msgstr "Web familiestamboom"
 
 #: ../src/plugins/WriteFtree.py:312
 msgid "Web Family Tree format."
-msgstr "Web Familie Stamboom formaat."
+msgstr "Web familiestamboomformaat."
 
 #: ../src/plugins/WriteFtree.py:313
 msgid "Web Family Tree export options"
-msgstr "Web Familie Stamboom export opties"
+msgstr "Web familiestamboom export opties"
 
 #: ../src/plugins/WriteGeneWeb.py:264
 msgid "No families matched by selected filter"
@@ -10782,8 +10725,8 @@ msgstr "Stijleditor"
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
 #: ../src/ReportBase/_CommandLineReport.py:154
-#: ../src/ReportBase/_PaperMenu.py:193 ../src/ReportBase/_PaperMenu.py:253
-#: ../src/ReportBase/_PaperMenu.py:342 ../src/ReportBase/_PaperMenu.py:364
+#: ../src/ReportBase/_PaperMenu.py:195 ../src/ReportBase/_PaperMenu.py:255
+#: ../src/ReportBase/_PaperMenu.py:344 ../src/ReportBase/_PaperMenu.py:366
 msgid "Custom Size"
 msgstr "Aangepast formaat"
 
@@ -10816,7 +10759,6 @@ msgid "The basic style used for the endnotes source display."
 msgstr "De gebruikte basisstijl voor de tekstweergave van eindopmerkingen."
 
 #: ../src/ReportBase/_Endnotes.py:57
-#, fuzzy
 msgid "The basic style used for the endnotes reference display."
 msgstr "De gebruikte basisstijl voor de tekstweergave van eindopmerkingen."
 
@@ -10824,59 +10766,128 @@ msgstr "De gebruikte basisstijl voor de tekstweergave van eindopmerkingen."
 msgid "Endnotes"
 msgstr "Eindopmerkingen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:76
-#, fuzzy
-msgid "Use optimal number of pages"
-msgstr "Gebruik automatisch het optimaal aantal pagina's"
+#: ../src/ReportBase/_GraphvizReportDialog.py:62
+msgid "Vertical (top to bottom)"
+msgstr "Verticaal (van boven naar onder)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:487
+#: ../src/ReportBase/_GraphvizReportDialog.py:63
+msgid "Vertical (bottom to top)"
+msgstr "Verticaal (van onder naar boven)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:64
+msgid "Horizontal (left to right)"
+msgstr "Horizontaal (van links naar rechts)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:65
+msgid "Horizontal (right to left)"
+msgstr "Horizontaal (van rechts naar links)"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:78
+msgid "Use optimal number of pages"
+msgstr "Gebruik het optimaal aantal pagina's"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:510
 msgid "Graphviz Dot File"
 msgstr "Graphviz Dot bestand"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
-#, fuzzy
-msgid "Font size"
-msgstr "Lettertype"
+#. ###############################
+#: ../src/ReportBase/_GraphvizReportDialog.py:638
+msgid "GraphViz Layout"
+msgstr "GraphViz-layout"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:632
-#, fuzzy
+#: ../src/ReportBase/_GraphvizReportDialog.py:651
+msgid "Font size"
+msgstr "Lettergrootte"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:655
 msgid "Graph Direction"
 msgstr "Grafiekrichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:637
-#, fuzzy
+#: ../src/ReportBase/_GraphvizReportDialog.py:660
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr "Of generaties van boven naar onder gaan, of van links naar rechts."
+msgstr "Grafiek van boven naar onder gaan, of van links naar rechts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:651
-#, fuzzy
+#: ../src/ReportBase/_GraphvizReportDialog.py:678
 msgid "Paging Direction"
 msgstr "Paginarichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:656
+#: ../src/ReportBase/_GraphvizReportDialog.py:683
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
 "De volgorde waarin de grafiekpagina's worden verwerkt. Deze optie wordt "
-"enkel actief indien het aantal verticale of horizontale pagina's groter is dan 1."
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:691
-#, fuzzy
-msgid "Note size"
-msgstr "Opmerkingen"
+"enkel actief indien het aantal verticale of horizontale pagina's groter is "
+"dan 1."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:704
-#: ../src/ReportBase/_GraphvizReportDialog.py:755
-#, fuzzy
-msgid "Open with application"
-msgstr "Openen met %s"
+msgid "Affects greatly how the graph is layed out on the page."
+msgstr "Bepaalt in grote mate hoe grafieken geschikt worden op de pagina."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:712
+#: ../src/ReportBase/_GraphvizReportDialog.py:709
+msgid ""
+"Dots per inch.  When creating images such as .gif or .png files for the web, "
+"try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
+msgstr ""
+"Dots per inch. Indien u van plan bent om gif of png bestanden aan te maken "
+"voor een webstek, gebruik dan best 75 of 100 DPI. Voor het uitdrukken, probeer dan "
+"300 of 600 DPI."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:715
+msgid "Node spacing"
+msgstr "Spatie tussen rijen"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:716
+msgid ""
+"The minimum amount of free space, in inches, between individual nodes.  For "
+"vertical graphs, this corresponds to spacing between columns.  For "
+"horizontal graphs, this corresponds to spacing between rows."
+msgstr ""
+"De minimum vrije ruimte tussen knopen, in inches. Voor de verticale grafieken, "
+"is dit de afstand tussen de kolommen. Voor horizontale frafieken is dit de afstand tussen "
+"de rijen."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:723
+msgid "Rank spacing"
+msgstr "Spatie tussen rijen"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:724
+msgid ""
+"The minimum amount of free space, in inches, between ranks.  For vertical "
+"graphs, this corresponds to spacing between rows.  For horizontal graphs, "
+"this corresponds to spacing between columns."
+msgstr ""
+"De minimum hoeveelheid vrije ruimte, in inches, tussen de elementen. Voor verticale "
+"grafieken is dit de ruimte tussen de rijen. Voor horizontale grafieken is dit de ruimte "
+"tussen de kolommen."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:731
+msgid "Use subgraphs"
+msgstr "Gebruik van onverdeling van grafieken"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:732
+msgid ""
+"Subgraphs can help GraphViz position certain linked nodes closer together, "
+"but with non-trivial graphs will result in longer lines and larger graphs."
+msgstr ""
+"Onderverdeling van de grafieken stellen \"GraphViz\" in de mogelijkheid om echtgenoten dichter "
+"bij mekaar te plaatsen, maar dit kan resulteren in langere lijnen en grotere "
+"grafieken."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:754
+msgid "Note size"
+msgstr "Grootte opmerkingen"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:782
+#: ../src/ReportBase/_GraphvizReportDialog.py:833
+msgid "Open with application"
+msgstr "Openen met toepassing"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Output Format"
 msgstr "Uitvoerformaat"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#: ../src/ReportBase/_GraphvizReportDialog.py:810
 msgid "Paper Options"
 msgstr "Papieropties"
 
@@ -12831,8 +12842,8 @@ msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)"
 "s%(endnotes)s."
 msgstr ""
-"Hij had een relatie (geen huwelijk) met %(spouse)s op %(full_date)s te %"
-"(place) s%(endnotes)s."
+"Hij had een relatie (geen huwelijk) met %(spouse)s op %(full_date)s te "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:724
 #, python-format
@@ -14169,14 +14180,12 @@ msgid "Research"
 msgstr "Onderzoeker"
 
 #: ../src/gen/lib/notetype.py:82
-#, fuzzy
 msgid "Transcript"
-msgstr "Manuscript"
+msgstr "Afschrift"
 
 #: ../src/gen/lib/notetype.py:84
-#, fuzzy
 msgid "Citation"
-msgstr "Crematie"
+msgstr "Citaat"
 
 #: ../src/gen/lib/notetype.py:89
 msgid "Person Note"
@@ -15549,17 +15558,15 @@ msgid "Event filter name:"
 msgstr "Gebeurtenisfilternaam:"
 
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
-#, fuzzy
 msgid "Persons with events matching the <event filter>"
-msgstr "Gebeurtenissenlocaties die uit het <gebeurtenissenfilter> komen"
+msgstr "Personen waarvan de gebeurtenissen overeen komen met <gebeurtenissenfilter>"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
-#, fuzzy
 msgid "Matches persons who have events that match a certain event filter"
 msgstr ""
-"Vindt locaties waar bepaalde gebeurtenissen plaatsvonden, die overeenkomen "
-"met de opgegeven filternaam"
+"Vindt personen die gebeurtenissen hebben die overeenkomen met een "
+"bepallde gebeurtenissenfilter"
 
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
 msgid "People matching the <filter>"
@@ -15614,9 +15621,8 @@ msgstr "Vindt personen met ontbrekende datum of plaats bij een gebeurtenis"
 
 # in jaar/op jaar
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:45
-#, fuzzy
 msgid "On date:"
-msgstr "Op jaar:"
+msgstr "Op datum:"
 
 #: ../src/Filters/Rules/Person/_ProbablyAlive.py:46
 msgid "People probably alive"
@@ -16056,15 +16062,13 @@ msgid "Source filter name:"
 msgstr "Bronfilternaam:"
 
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
-#, fuzzy
 msgid "Events with source matching the <source filter>"
-msgstr "Persoonsgebeurtenissen uit <persoonsfilter>"
+msgstr "Gebeurtenissen met bronnen die overeenkomen met de <bronnenfilter>"
 
 # opgegeven ipv gespecificeerde?
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:50
-#, fuzzy
 msgid "Matches events with sources that match the specified source filter name"
-msgstr "Vindt persoonsgebeurtenissen met een opgegeven persoonsnaamfilter"
+msgstr "Vindt gebeurtenissen met bronnen die overeenkomen met een opgegeven bronnenfilternaam"
 
 #: ../src/Filters/Rules/Place/_AllPlaces.py:45
 msgid "Every place"
@@ -16334,7 +16338,7 @@ msgstr "Type:"
 
 # pad
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
-#: ../src/glade/gramps.glade.h:93
+#: ../src/glade/gramps.glade.h:94
 msgid "Path:"
 msgstr "Pad:"
 
@@ -16372,7 +16376,7 @@ msgstr "Mediaobjecten waarnaar <x aantal keer> naar verwezen wordt"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr "Vindt mediaobjecten waarnaar een bepaald aantal keer wordt verwezen."
+msgstr "Vindt mediaobjecten waarnaar een bepaald aantal keer wordt verwezen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
@@ -16436,9 +16440,8 @@ msgstr ""
 "reguliereuitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
-#, fuzzy
 msgid "Repositories with a reference count of <count>"
-msgstr "Er waren verwijzingen naar %d bronnen, die niet zijn gevonden\n"
+msgstr "Bibliotheken waarnaar <zoveel> maal naar verwezen wordt"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
@@ -16761,7 +16764,7 @@ msgstr "Toont de volgende pagina"
 
 #: ../src/docgen/gtkprintpreview.glade.h:8
 msgid "Zooms the page in"
-msgstr "Zoomt in "
+msgstr "Zoomt in"
 
 #: ../src/docgen/gtkprintpreview.glade.h:9
 msgid "Zooms the page out"
@@ -16846,7 +16849,7 @@ msgstr ""
 "ASCII\n"
 "UTF8"
 
-#: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:12
+#: ../src/glade/edit_person.glade.h:1 ../src/glade/gramps.glade.h:13
 #: ../src/plugins/verify.glade.h:3
 msgid "<b>General</b>"
 msgstr "<b>Algemeen</b>"
@@ -16863,11 +16866,11 @@ msgstr "<b>Voorkeursnaam</b>"
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
 msgstr "De titel van de persoon zoals \"Dr.\" of \"Ds.\""
 
-#: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:38
+#: ../src/glade/edit_person.glade.h:5 ../src/glade/gramps.glade.h:39
 msgid "Abandon changes and close window"
 msgstr "Veranderingen annuleren en venster sluiten"
 
-#: ../src/glade/edit_person.glade.h:6 ../src/glade/gramps.glade.h:40
+#: ../src/glade/edit_person.glade.h:6 ../src/glade/gramps.glade.h:41
 msgid "Accept changes and close window"
 msgstr "Veranderingen accepteren en venster sluiten"
 
@@ -16883,8 +16886,7 @@ msgstr ""
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr "Achtervoegsel (suffix) zoals \"Jr.\" of \"III\""
 
-#: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:48
-#, fuzzy
+#: ../src/glade/edit_person.glade.h:9 ../src/glade/gramps.glade.h:49
 msgid "Call _Name:"
 msgstr "Roepnaam:"
 
@@ -16903,11 +16905,10 @@ msgstr ""
 "Onbekend"
 
 #: ../src/glade/edit_person.glade.h:14
-#, fuzzy
 msgid "Gi_ven:"
 msgstr "Voornaam:"
 
-#: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:79
+#: ../src/glade/edit_person.glade.h:15 ../src/glade/gramps.glade.h:80
 msgid "Indicates if the record is private"
 msgstr "Aanduiding of dit gegeven als privé is gemerkt"
 
@@ -16919,34 +16920,31 @@ msgstr "_Achtervoegsel:"
 msgid "The person's given name"
 msgstr "De voornaam van de persoon"
 
-#: ../src/glade/edit_person.glade.h:18 ../src/glade/gramps.glade.h:118
-#, fuzzy
+#: ../src/glade/edit_person.glade.h:18 ../src/glade/gramps.glade.h:119
 msgid "Tit_le:"
 msgstr "Titel:"
 
-#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:142
+#: ../src/glade/edit_person.glade.h:19 ../src/glade/gramps.glade.h:143
 msgid "_Family:"
 msgstr "_Familie:"
 
 #: ../src/glade/edit_person.glade.h:20
-#, fuzzy
 msgid "_Gender:"
 msgstr "Geslacht:"
 
-#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:144
+#: ../src/glade/edit_person.glade.h:21 ../src/glade/gramps.glade.h:145
 msgid "_ID:"
 msgstr "_ID:"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:150
-#, fuzzy
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:151
 msgid "_Marker:"
 msgstr "Aanduiding:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:159
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:160
 msgid "_Prefix:"
 msgstr "_Voorvoegsel:"
 
-#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:176
+#: ../src/glade/edit_person.glade.h:24 ../src/glade/gramps.glade.h:177
 msgid "_Type:"
 msgstr "_Type:"
 
@@ -16955,54 +16953,58 @@ msgid "\n"
 msgstr "\n"
 
 #: ../src/glade/gramps.glade.h:3
+msgid "<b><i>Gramplet</i></b>"
+msgstr "<b><i>Gramplet</i></b>"
+
+#: ../src/glade/gramps.glade.h:4
 msgid "<b>Alignment</b>"
 msgstr "<b>Uitlijning</b>"
 
-#: ../src/glade/gramps.glade.h:4
+#: ../src/glade/gramps.glade.h:5
 msgid "<b>Background color</b>"
 msgstr "<b>Achtergrondkleur</b>"
 
-#: ../src/glade/gramps.glade.h:5
+#: ../src/glade/gramps.glade.h:6
 msgid "<b>Borders</b>"
 msgstr "<b>Randen</b>"
 
-#: ../src/glade/gramps.glade.h:6
+#: ../src/glade/gramps.glade.h:7
 msgid "<b>Color</b>"
 msgstr "<b>Kleur</b>"
 
-#: ../src/glade/gramps.glade.h:7
+#: ../src/glade/gramps.glade.h:8
 msgid "<b>Date</b>"
 msgstr "<b>Datum</b>"
 
-#: ../src/glade/gramps.glade.h:8 ../src/glade/rule.glade.h:2
+#: ../src/glade/gramps.glade.h:9 ../src/glade/rule.glade.h:2
 msgid "<b>Description</b>"
 msgstr "<b>Beschrijving</b>"
 
-#: ../src/glade/gramps.glade.h:9
+#: ../src/glade/gramps.glade.h:10
 msgid "<b>Family relationships</b>"
 msgstr "<b>Familierelaties</b>"
 
-#: ../src/glade/gramps.glade.h:10
+#: ../src/glade/gramps.glade.h:11
 msgid "<b>Father</b>"
 msgstr "<b>Vader</b>"
 
-#: ../src/glade/gramps.glade.h:11
+#: ../src/glade/gramps.glade.h:12
 msgid "<b>Font options</b>"
 msgstr "<b>Lettertype-opties</b>"
 
-#: ../src/glade/gramps.glade.h:13
+#: ../src/glade/gramps.glade.h:14
 msgid "<b>Indentation</b>"
 msgstr "<b>Inspringen</b>"
 
-#: ../src/glade/gramps.glade.h:14
+#: ../src/glade/gramps.glade.h:15
 msgid "<b>Location</b>"
 msgstr "<b>Locatie</b>"
 
-#: ../src/glade/gramps.glade.h:15
+#: ../src/glade/gramps.glade.h:16
 msgid "<b>Mother</b>"
 msgstr "<b>Moeder</b>"
 
-#: ../src/glade/gramps.glade.h:16
+#: ../src/glade/gramps.glade.h:17
 msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
@@ -17011,7 +17013,7 @@ msgstr ""
 "zal gereflecteerd worden in de gebeurtenis zelf, en voor alle deelnemers aan "
 "deze gebeurtenis."
 
-#: ../src/glade/gramps.glade.h:17
+#: ../src/glade/gramps.glade.h:18
 msgid ""
 "<b>Note:</b> Any changes in the shared repository information will be "
 "reflected in the repository itself, for all items that reference the "
@@ -17021,7 +17023,7 @@ msgstr ""
 "gereflecteerd worden in de bibliotheek zelf, en voor alle items die deze "
 "bibliotheek verwijzen."
 
-#: ../src/glade/gramps.glade.h:18
+#: ../src/glade/gramps.glade.h:19
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
@@ -17030,219 +17032,217 @@ msgstr ""
 "zal gereflecteerd worden in de bron zelf, en voor alle items die naar deze "
 "bron verwijzen."
 
-#: ../src/glade/gramps.glade.h:19
-#, fuzzy
+#: ../src/glade/gramps.glade.h:20
 msgid "<b>Note</b>"
-msgstr "<b>Moeder</b>"
+msgstr "<b>Opmerking</b>"
 
-#: ../src/glade/gramps.glade.h:20 ../src/glade/rule.glade.h:3
+#: ../src/glade/gramps.glade.h:21 ../src/glade/rule.glade.h:3
 #: ../src/plugins/csvexport.glade.h:1 ../src/plugins/genewebexport.glade.h:2
 #: ../src/plugins/merge.glade.h:2 ../src/plugins/vcalendarexport.glade.h:1
 #: ../src/plugins/vcardexport.glade.h:1 ../src/plugins/writeftree.glade.h:1
 msgid "<b>Options</b>"
 msgstr "<b>Opties</b>"
 
-#: ../src/glade/gramps.glade.h:21
+#: ../src/glade/gramps.glade.h:22
 msgid "<b>Paragraph options</b>"
 msgstr "<b>Alinea-opties</b>"
 
-#: ../src/glade/gramps.glade.h:22
+#: ../src/glade/gramps.glade.h:23
 msgid "<b>Parent relationships</b>"
 msgstr "<b>Ouderrelaties</b>"
 
-#: ../src/glade/gramps.glade.h:23
+#: ../src/glade/gramps.glade.h:24
 msgid "<b>Preview</b>"
 msgstr "<b>Voorbeeld</b>"
 
-#: ../src/glade/gramps.glade.h:24
+#: ../src/glade/gramps.glade.h:25
 msgid "<b>Q_uality</b>"
 msgstr "<b>K_waliteit</b>"
 
-#: ../src/glade/gramps.glade.h:25
+#: ../src/glade/gramps.glade.h:26
 msgid "<b>Reference information</b>"
 msgstr "<b>Referentie-informatie</b>"
 
-#: ../src/glade/gramps.glade.h:26
+#: ../src/glade/gramps.glade.h:27
 msgid "<b>Referenced Region</b>"
 msgstr "<b>Oppervlakte waar naar verwezen wordt</b>"
 
-#: ../src/glade/gramps.glade.h:27
+#: ../src/glade/gramps.glade.h:28
 msgid "<b>Relationship Information</b>"
 msgstr "<b>Relatie Informatie</b>"
 
-#: ../src/glade/gramps.glade.h:28
+#: ../src/glade/gramps.glade.h:29
 msgid "<b>Second date</b>"
 msgstr "<b>Tweede datum</b>"
 
-#: ../src/glade/gramps.glade.h:29
+#: ../src/glade/gramps.glade.h:30
 msgid "<b>Shared Information</b>"
 msgstr "<b>Gedeelde informatie</b>"
 
-#: ../src/glade/gramps.glade.h:30
+#: ../src/glade/gramps.glade.h:31
 msgid "<b>Shared information</b>"
 msgstr "<b>Gedeelde informatie</b>"
 
-#: ../src/glade/gramps.glade.h:31
+#: ../src/glade/gramps.glade.h:32
 msgid "<b>Shared source information</b>"
 msgstr "<b>Gedeelde bron informatie</b>"
 
 # Grootte, formaat, afmeting
-#: ../src/glade/gramps.glade.h:32
+#: ../src/glade/gramps.glade.h:33
 msgid "<b>Size</b>"
 msgstr "<b>Grootte</b>"
 
-#: ../src/glade/gramps.glade.h:33
+#: ../src/glade/gramps.glade.h:34
 msgid "<b>Spacing</b>"
 msgstr "<b>Spatiëring</b>"
 
-#: ../src/glade/gramps.glade.h:34
+#: ../src/glade/gramps.glade.h:35
 msgid "<b>Type face</b>"
 msgstr "<b>Soort lettertype</b>"
 
-#: ../src/glade/gramps.glade.h:35
+#: ../src/glade/gramps.glade.h:36
 msgid "<b>Version description</b>"
 msgstr "<b>Versiebeschrijving</b>"
 
-#: ../src/glade/gramps.glade.h:36
+#: ../src/glade/gramps.glade.h:37
 msgid "<b>_Type</b>"
 msgstr "<b>_Soort</b>"
 
-#: ../src/glade/gramps.glade.h:37
+#: ../src/glade/gramps.glade.h:38
 msgid "A_bbreviation:"
 msgstr "A_fkorting:"
 
-#: ../src/glade/gramps.glade.h:39
+#: ../src/glade/gramps.glade.h:40
 msgid "Abo_ve:"
 msgstr "Bo_ven"
 
-#: ../src/glade/gramps.glade.h:41
+#: ../src/glade/gramps.glade.h:42
 msgid "Add_ress:"
 msgstr "Ad_res:"
 
-#: ../src/glade/gramps.glade.h:43
+#: ../src/glade/gramps.glade.h:44
 msgid "Belo_w:"
 msgstr "Beneden:"
 
-#: ../src/glade/gramps.glade.h:44
+#: ../src/glade/gramps.glade.h:45
 msgid "Birth:"
 msgstr "Geboorte:"
 
 # Stad
-#: ../src/glade/gramps.glade.h:45
+#: ../src/glade/gramps.glade.h:46
 msgid "C_ity:"
 msgstr "_Stad, dorp:"
 
-#: ../src/glade/gramps.glade.h:46
+#: ../src/glade/gramps.glade.h:47
 msgid "C_ounty:"
 msgstr "_Provincie:"
 
-#: ../src/glade/gramps.glade.h:47
+#: ../src/glade/gramps.glade.h:48
 msgid "Calenda_r:"
 msgstr "_Kalender:"
 
-#: ../src/glade/gramps.glade.h:49
+#: ../src/glade/gramps.glade.h:50
 msgid "Church _parish:"
 msgstr "_Parochie:"
 
-#: ../src/glade/gramps.glade.h:50 ../src/plugins/soundex.glade.h:1
+#: ../src/glade/gramps.glade.h:51 ../src/plugins/soundex.glade.h:1
 msgid "Close Window"
 msgstr "Venster sluiten"
 
-#: ../src/glade/gramps.glade.h:51
+#: ../src/glade/gramps.glade.h:52
 msgid "Close _without saving"
 msgstr "Sluiten _zonder opslaan"
 
-#: ../src/glade/gramps.glade.h:52
+#: ../src/glade/gramps.glade.h:53
 msgid "Close window without changes"
 msgstr "Venster sluiten zonder veranderingen"
 
-#: ../src/glade/gramps.glade.h:53
+#: ../src/glade/gramps.glade.h:54
 msgid "Co_unty:"
 msgstr "_Provincie:"
 
-#: ../src/glade/gramps.glade.h:54
+#: ../src/glade/gramps.glade.h:55
 msgid "Convert to a relative path"
 msgstr "Omzetten naar relatief pad"
 
-#: ../src/glade/gramps.glade.h:55
+#: ../src/glade/gramps.glade.h:56
 msgid "Corner 1:  X"
 msgstr "Hoek 1:  X"
 
-#: ../src/glade/gramps.glade.h:56
+#: ../src/glade/gramps.glade.h:57
 msgid "Corner 2:  X"
 msgstr "Hoek 2:  X"
 
-#: ../src/glade/gramps.glade.h:57
+#: ../src/glade/gramps.glade.h:58
 msgid "Cou_ntry:"
 msgstr "_Land:"
 
-#: ../src/glade/gramps.glade.h:58
+#: ../src/glade/gramps.glade.h:59
 msgid "Count_ry:"
 msgstr "L_and:"
 
-#: ../src/glade/gramps.glade.h:60
+#: ../src/glade/gramps.glade.h:61
 msgid "D_ay"
 msgstr "D_ag"
 
-#: ../src/glade/gramps.glade.h:61
+#: ../src/glade/gramps.glade.h:62
 msgid "Dat_e:"
 msgstr "Dat_um:"
 
-#: ../src/glade/gramps.glade.h:62
+#: ../src/glade/gramps.glade.h:63
 msgid "De_scription:"
 msgstr "_Beschrijving:"
 
 # Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
-#: ../src/glade/gramps.glade.h:63
+#: ../src/glade/gramps.glade.h:64
 msgid "Death:"
 msgstr "Overlijden:"
 
-#: ../src/glade/gramps.glade.h:64
+#: ../src/glade/gramps.glade.h:65
 msgid "Do not ask again"
 msgstr "Niet opnieuw vragen"
 
-#: ../src/glade/gramps.glade.h:65
+#: ../src/glade/gramps.glade.h:66
 msgid "Do not show this dialog again"
 msgstr "Toon deze dialoog niet opnieuw"
 
-#: ../src/glade/gramps.glade.h:67
+#: ../src/glade/gramps.glade.h:68
 msgid "Example:"
 msgstr "Voorbeeld:"
 
-#: ../src/glade/gramps.glade.h:68
+#: ../src/glade/gramps.glade.h:69
 msgid "Family Trees - GRAMPS"
 msgstr "Familiestamboom - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:69
+#: ../src/glade/gramps.glade.h:70
 msgid "Family:"
 msgstr "Familie:"
 
-#: ../src/glade/gramps.glade.h:70
+#: ../src/glade/gramps.glade.h:71
 msgid "First li_ne:"
 msgstr "_Eerste regel:"
 
-#: ../src/glade/gramps.glade.h:71
+#: ../src/glade/gramps.glade.h:72
 msgid "Format _definition:"
 msgstr "Formaat _definitie:"
 
-#: ../src/glade/gramps.glade.h:72
+#: ../src/glade/gramps.glade.h:73
 msgid "Format _name:"
 msgstr "Formaat_naam:"
 
-#: ../src/glade/gramps.glade.h:73
-#, fuzzy
-msgid "Format definition details"
-msgstr "Formaat definitie d_etails"
-
 #: ../src/glade/gramps.glade.h:74
+msgid "Format definition details"
+msgstr "Details formaatdefinities"
+
+#: ../src/glade/gramps.glade.h:75
 msgid "GRAMPS"
 msgstr "GRAMPS"
 
-#: ../src/glade/gramps.glade.h:75
+#: ../src/glade/gramps.glade.h:76
 msgid "G_roup as:"
 msgstr "G_roeperen als:"
 
-#: ../src/glade/gramps.glade.h:77
+#: ../src/glade/gramps.glade.h:78
 msgid ""
 "If media is an image, select a region of the image that is referenced. Point "
 "(0,0) is the top left corner. Do this by giving two corners on a diagonal of "
@@ -17254,7 +17254,7 @@ msgstr ""
 "wilt gebruiken."
 
 # spelfout in engels: medial files
-#: ../src/glade/gramps.glade.h:78
+#: ../src/glade/gramps.glade.h:79
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
@@ -17264,119 +17264,117 @@ msgstr ""
 "worden behandeld volgens de momenteel geselecteerde opties. Er zullen geen "
 "verdere dialoogvensters worden gepresenteerd voor ontbrekende mediabestanden."
 
-#: ../src/glade/gramps.glade.h:80
+#: ../src/glade/gramps.glade.h:81
 msgid "Invoke date editor"
 msgstr "Datum-editor aanroepen"
 
-#: ../src/glade/gramps.glade.h:81
+#: ../src/glade/gramps.glade.h:82
 msgid "Keep reference to the missing file"
 msgstr "Referentie naar het ontbrekende bestand behouden"
 
-#: ../src/glade/gramps.glade.h:82
-#, fuzzy
+#: ../src/glade/gramps.glade.h:83
 msgid "LDS _Temple:"
 msgstr "LDS tempel:"
 
-#: ../src/glade/gramps.glade.h:83
+#: ../src/glade/gramps.glade.h:84
 msgid "L_atitude:"
 msgstr "_Breedtegraad:"
 
-#: ../src/glade/gramps.glade.h:84
+#: ../src/glade/gramps.glade.h:85
 msgid "L_eft:"
 msgstr "L_inks:"
 
-#: ../src/glade/gramps.glade.h:85
+#: ../src/glade/gramps.glade.h:86
 msgid "Le_ft"
 msgstr "Li_nks"
 
-#: ../src/glade/gramps.glade.h:86
+#: ../src/glade/gramps.glade.h:87
 msgid "Load Family Tree"
 msgstr "Laad familiestamboom"
 
-#: ../src/glade/gramps.glade.h:87
+#: ../src/glade/gramps.glade.h:88
 msgid "Mo_nth"
 msgstr "Maa_nd"
 
-#: ../src/glade/gramps.glade.h:89
-#, fuzzy
-msgid "O_verride"
-msgstr "_Overschrijven"
-
 #: ../src/glade/gramps.glade.h:90
+msgid "O_verride"
+msgstr "Overschrijven"
+
+#: ../src/glade/gramps.glade.h:91
 msgid "Ordinance:"
 msgstr "Wijding:"
 
-#: ../src/glade/gramps.glade.h:91
+#: ../src/glade/gramps.glade.h:92
 msgid "P_atronymic:"
 msgstr "P_atroniemen:"
 
-#: ../src/glade/gramps.glade.h:92
+#: ../src/glade/gramps.glade.h:93
 msgid "P_hone:"
 msgstr "_Tel:"
 
-#: ../src/glade/gramps.glade.h:94
+#: ../src/glade/gramps.glade.h:95
 msgid "Phon_e:"
 msgstr "_Tel:"
 
-#: ../src/glade/gramps.glade.h:95
+#: ../src/glade/gramps.glade.h:96
 msgid "R_ight:"
 msgstr "R_echts:"
 
-#: ../src/glade/gramps.glade.h:96
+#: ../src/glade/gramps.glade.h:97
 msgid "Relationship to _Father:"
 msgstr "Relatie tot _vader:"
 
-#: ../src/glade/gramps.glade.h:97
+#: ../src/glade/gramps.glade.h:98
 msgid "Relationship to _Mother:"
 msgstr "Relatie tot _moeder:"
 
 # referentie of verwijzing?
-#: ../src/glade/gramps.glade.h:98
+#: ../src/glade/gramps.glade.h:99
 msgid "Remove object and all references to it from the database"
 msgstr "Object en alle referenties ernaar, verwijderen uit het gegevensbestand"
 
-#: ../src/glade/gramps.glade.h:99
+#: ../src/glade/gramps.glade.h:100
 msgid "Rename"
 msgstr "Herbenoem"
 
-#: ../src/glade/gramps.glade.h:100
+#: ../src/glade/gramps.glade.h:101
 msgid "Repair"
 msgstr "Herstel"
 
-#: ../src/glade/gramps.glade.h:101
+#: ../src/glade/gramps.glade.h:102
 msgid "Revision comment - GRAMPS"
 msgstr "Revisiecommentaar - GRAMPS"
 
-#: ../src/glade/gramps.glade.h:102
+#: ../src/glade/gramps.glade.h:103
 msgid "Ri_ght"
 msgstr "R_echts"
 
-#: ../src/glade/gramps.glade.h:103
+#: ../src/glade/gramps.glade.h:104
 msgid "S_treet:"
 msgstr "S_traat:"
 
-#: ../src/glade/gramps.glade.h:104
+#: ../src/glade/gramps.glade.h:105
 msgid "Select replacement for the missing file"
 msgstr "Selecteer vervanging voor het ontbrekende bestand"
 
-#: ../src/glade/gramps.glade.h:105
+#: ../src/glade/gramps.glade.h:106
 msgid "Show all"
 msgstr "Alles tonen"
 
-#: ../src/glade/gramps.glade.h:106
+#: ../src/glade/gramps.glade.h:107
 msgid "Style n_ame:"
 msgstr "Stijl_naam:"
 
 # Achtervoegsel
-#: ../src/glade/gramps.glade.h:107
+#: ../src/glade/gramps.glade.h:108
 msgid "Suffi_x:"
 msgstr "Suffi_x:"
 
-#: ../src/glade/gramps.glade.h:108
+#: ../src/glade/gramps.glade.h:109
 msgid "Te_xt comment:"
 msgstr "_Tekstopmerking:"
 
-#: ../src/glade/gramps.glade.h:110
+#: ../src/glade/gramps.glade.h:111
 #, no-c-format
 msgid ""
 "The following conventions are used:\n"
@@ -17397,7 +17395,7 @@ msgstr ""
 "  <b>%c</b> - Roepnaam         <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patroniem        <b>%Y</b> - PATRONYMIC</tt>"
 
-#: ../src/glade/gramps.glade.h:119
+#: ../src/glade/gramps.glade.h:120
 msgid ""
 "Very Low\n"
 "Low\n"
@@ -17411,243 +17409,237 @@ msgstr ""
 "Hoog\n"
 "Zeer hoog"
 
-#: ../src/glade/gramps.glade.h:124
+#: ../src/glade/gramps.glade.h:125
 msgid "Y"
 msgstr "Y"
 
-#: ../src/glade/gramps.glade.h:125
+#: ../src/glade/gramps.glade.h:126
 msgid "Y_ear"
 msgstr "Jaa_r"
 
-#: ../src/glade/gramps.glade.h:126
-#, fuzzy
-msgid "_Association:"
-msgstr "Associatie"
-
 #: ../src/glade/gramps.glade.h:127
+msgid "_Association:"
+msgstr "Associatie:"
+
+#: ../src/glade/gramps.glade.h:128
 msgid "_Attribute:"
 msgstr "_Kenmerk:"
 
-#: ../src/glade/gramps.glade.h:128
+#: ../src/glade/gramps.glade.h:129
 msgid "_Author:"
 msgstr "_Auteur:"
 
-#: ../src/glade/gramps.glade.h:129
+#: ../src/glade/gramps.glade.h:130
 msgid "_Bold"
 msgstr "_Vet"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:131
 msgid "_Bottom"
 msgstr "_Onder"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:132
 msgid "_Call number:"
 msgstr "Telefoonnummer:"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:133
 msgid "_Center"
 msgstr "_Centreren"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:134
 msgid "_City/County:"
 msgstr "_Stad/Provincie:"
 
 # Stad
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:135
 msgid "_City:"
 msgstr "_Stad:"
 
 # Vertrouwen
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:136
 msgid "_Confidence:"
 msgstr "_Zekerheid:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:137
 msgid "_Date:"
 msgstr "_Datum:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:138
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:139
 msgid "_Description:"
 msgstr "_Beschrijving:"
 
 # De weergave van Datums en kalenders, werkbalk en statusbalk.
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:140
 msgid "_Display as:"
 msgstr "_Weergeven als:"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display on startup"
 msgstr "_Tonen bij opstarten"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:142
 msgid "_Event type:"
 msgstr "_Gebeurtenistype:"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:144
 msgid "_Given:"
 msgstr "Voornaam:"
 
-#: ../src/glade/gramps.glade.h:145
+#: ../src/glade/gramps.glade.h:146
 msgid "_Italic"
 msgstr "_Cursief"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:147
 msgid "_Justify"
 msgstr "_Uitlijnen"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:148
 msgid "_Keep Reference"
 msgstr "Referentie _behouden"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:149
 msgid "_Left"
 msgstr "_Links"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:150
 msgid "_Longitude:"
 msgstr "_Lengtegraad:"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:152
 msgid "_Media Type:"
 msgstr "_Media type:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:153
 msgid "_Month"
 msgstr "_Maand"
 
-#: ../src/glade/gramps.glade.h:153 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:154 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Naam:"
 
-#: ../src/glade/gramps.glade.h:154
+#: ../src/glade/gramps.glade.h:155
 msgid "_Padding:"
 msgstr "_Opvulling:"
 
 # pad
-#: ../src/glade/gramps.glade.h:155
-#, fuzzy
+#: ../src/glade/gramps.glade.h:156
 msgid "_Path:"
 msgstr "Pad:"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:157
 msgid "_Person:"
 msgstr "_Persoon:"
 
 # Plaatsnaam
-#: ../src/glade/gramps.glade.h:157
-#, fuzzy
+#: ../src/glade/gramps.glade.h:158
 msgid "_Place Name:"
 msgstr "Locatienaam:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:159
 msgid "_Place:"
 msgstr "_Locatie:"
 
-#: ../src/glade/gramps.glade.h:160
-#, fuzzy
-msgid "_Preformatted"
-msgstr "Opgemaakt"
-
 #: ../src/glade/gramps.glade.h:161
-#, fuzzy
+msgid "_Preformatted"
+msgstr "Opmaak"
+
+#: ../src/glade/gramps.glade.h:162
 msgid "_Publication Information:"
 msgstr "Publicatie-informatie:"
 
-#: ../src/glade/gramps.glade.h:162
+#: ../src/glade/gramps.glade.h:163
 msgid "_Publication information:"
 msgstr "_Publicatie-informatie:"
 
-#: ../src/glade/gramps.glade.h:163
+#: ../src/glade/gramps.glade.h:164
 msgid "_Remove Object"
 msgstr "Object _verwijderen"
 
-#: ../src/glade/gramps.glade.h:164
+#: ../src/glade/gramps.glade.h:165
 msgid "_Right"
 msgstr "_Rechts"
 
-#: ../src/glade/gramps.glade.h:165
+#: ../src/glade/gramps.glade.h:166
 msgid "_Role:"
 msgstr "_Rol:"
 
-#: ../src/glade/gramps.glade.h:166
+#: ../src/glade/gramps.glade.h:167
 msgid "_Roman (Times, serif)"
 msgstr "_Roman  (Times, serif)"
 
-#: ../src/glade/gramps.glade.h:167
+#: ../src/glade/gramps.glade.h:168
 msgid "_Select File"
 msgstr "Bestand _selecteren"
 
-#: ../src/glade/gramps.glade.h:168
+#: ../src/glade/gramps.glade.h:169
 msgid "_Sort as:"
 msgstr "_Sorteren als:"
 
-#: ../src/glade/gramps.glade.h:169
-#, fuzzy
+#: ../src/glade/gramps.glade.h:170
 msgid "_Spelling:"
 msgstr "Spelling:"
 
-#: ../src/glade/gramps.glade.h:170
+#: ../src/glade/gramps.glade.h:171
 msgid "_State/Province:"
 msgstr "Deel_staat/Provincie:"
 
 # Provincie
-#: ../src/glade/gramps.glade.h:171
+#: ../src/glade/gramps.glade.h:172
 msgid "_State:"
 msgstr "_Staat:"
 
-#: ../src/glade/gramps.glade.h:172
+#: ../src/glade/gramps.glade.h:173
 msgid "_Status:"
 msgstr "_Status:"
 
-#: ../src/glade/gramps.glade.h:173
+#: ../src/glade/gramps.glade.h:174
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr "_Zwitsers (Arial, Helvetica, sans-serif)"
 
-#: ../src/glade/gramps.glade.h:174
+#: ../src/glade/gramps.glade.h:175
 msgid "_Title:"
 msgstr "_Titel:"
 
-#: ../src/glade/gramps.glade.h:175
+#: ../src/glade/gramps.glade.h:176
 msgid "_Top"
 msgstr "_Boven"
 
-#: ../src/glade/gramps.glade.h:177
+#: ../src/glade/gramps.glade.h:178
 msgid "_Underline"
 msgstr "_Onderstreept"
 
-#: ../src/glade/gramps.glade.h:178
+#: ../src/glade/gramps.glade.h:179
 msgid "_Use this selection for all missing media files"
 msgstr "_Gebruik deze selectie voor alle ontbrekende mediabestanden"
 
-#: ../src/glade/gramps.glade.h:179
+#: ../src/glade/gramps.glade.h:180
 msgid "_Value:"
 msgstr "_Waarde:"
 
-#: ../src/glade/gramps.glade.h:180
+#: ../src/glade/gramps.glade.h:181
 msgid "_Volume/Page:"
 msgstr "_Volume/Pagina:"
 
-#: ../src/glade/gramps.glade.h:181
+#: ../src/glade/gramps.glade.h:182
 msgid "_Web address:"
 msgstr "_Web-adres:"
 
-#: ../src/glade/gramps.glade.h:182
+#: ../src/glade/gramps.glade.h:183
 msgid "_Year"
 msgstr "_Jaar"
 
-#: ../src/glade/gramps.glade.h:183
+#: ../src/glade/gramps.glade.h:184
 msgid "_ZIP/Postal code:"
 msgstr "_Postcode:"
 
-#: ../src/glade/gramps.glade.h:184
+#: ../src/glade/gramps.glade.h:185
 msgid "_Zip/Postal code:"
 msgstr "_Postcode:"
 
-#: ../src/glade/gramps.glade.h:186
+#: ../src/glade/gramps.glade.h:187
 msgid "pt"
 msgstr "pt"
 
@@ -19290,10 +19282,11 @@ msgstr ""
 "<b>Personen filteren</b>: in het personenscherm kan u personen filteren "
 "gebaseerd op vele criteria. Ga naar de filterinstellingen (klik rechts van "
 "het personenicoon) en kies één van de vele voorgedefinieerde filters. Op "
-"deze manier kunnen bv. alle geadopteerde personen gevonden worden. Ook "
-"kunnen personen met een bepaalde geboortedatum gefilterd worden. Om de "
-"resultaten te zien klik op toepassen. Wanneer u de filterinstellingen niet "
-"ziet op het scherm, ga dan naar <b>Beeld &gt; filter zijbalk</b>."
+"deze manier kunnen bv. alle geadopteerde personen in de familiestamboom "
+"gevonden worden. Ook kunnen personen met een bepaalde geboortedatum "
+"gefilterd worden. Om de resultaten te zien klik op toepassen. Wanneer u de "
+"filterinstellingen niet ziet op het scherm, ga dan naar <b>Beeld &gt; "
+"filter zijbalk</b>."
 
 #: ../src/data/tips.xml.in.h:11
 msgid ""
@@ -19328,7 +19321,7 @@ msgid ""
 msgstr ""
 "<b>GRAMPS verslagen</b>: GRAMPS biedt een brede waaier van mogelijke "
 "verslagen. De tekstverslagen zijn zeer handig indien u de resultaten van uw "
-"stamboom naar uw familieleden wilt sturen via e-mail."
+"familiestamboom naar uw familieleden wilt sturen via e-mail."
 
 #: ../src/data/tips.xml.in.h:14
 msgid ""
@@ -19468,7 +19461,7 @@ msgid ""
 "Add</b> or click on the Add button under the People menu). Then go to the "
 "Relationship View and create relationships between people."
 msgstr ""
-"<b>Aanmaken van een nieuwe familietak</b>: een goede manier om een nieuwe "
+"<b>Aanmaken van een nieuwe familiestamboom</b>: een goede manier om een nieuwe "
 "familietak aan te maken is om eerst alle familieleden in te geven in het "
 "gegevensbestand (gebruik <b>Bewerken &gt; Toevoegen</b> of klik op de '+' "
 "knop in het personenscherm). Ga vervolgens naar het relatiescherm en maak de "
@@ -19657,7 +19650,7 @@ msgid ""
 "many html files."
 msgstr ""
 "GRAMPS kan gegevens exporteren naar het 'Web Family Tree' (WFT) formaat. Dit "
-"formaat laat toe om een stamboom 'on-line' te tonen met één enkel bestand, i."
+"formaat laat toe om een familiestamboom 'on-line' te tonen met één enkel bestand, i."
 "p.v. vele HTML-bestanden."
 
 #: ../src/data/tips.xml.in.h:41
@@ -19838,7 +19831,7 @@ msgid ""
 "Make your data portable --- your family tree data and media can be exported "
 "directly to the GNOME file manager (Nautilus), for burning onto a CD."
 msgstr ""
-"Maak uw gegevens overdraagbaar --- uw familiegegevens en mediagegevens "
+"Maak uw gegevens overdraagbaar --- uw familiestamboomgegevens en mediagegevens "
 "kunnen naar een GNOME-bestandsbeheerder (Nautilus) geëxporteerd worden, om "
 "zo op een cd gebrand te worden."
 
@@ -20008,5 +20001,5 @@ msgid ""
 "file types to your GRAMPS family tree."
 msgstr ""
 "U kunt willekeurige elektronische media (ook beeld en geluid) en andere "
-"bestandstypes koppelen aan uw GRAMPS-familieboom."
+"bestandstypes koppelen aan uw GRAMPS-familiestamboom."
 
