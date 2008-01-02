@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Donald N. Allingham
+# Copyright (C) 2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,15 +59,16 @@ class SimpleTable:
         """
         Handle events on tables. obj is a treeview
         """
-        from Editors import EditPerson, EditEvent
+        from Editors import (EditPerson, EditEvent, EditFamily, EditSource,
+                             EditPlace, EditRepository)
         selection = obj.get_selection()
         store, node = selection.get_selected()
         if not node:
             return
         index = store.get_value(node, 0) # index
         if self.__link[index]:
-            htype, handle = self.__link[index]
-            if htype == 'Person':
+            objclass, handle = self.__link[index]
+            if objclass == 'Person':
                 person = self.access.dbase.get_person_from_handle(handle)
                 try:
                     EditPerson(self.simpledoc.doc.dbstate, 
@@ -75,7 +76,7 @@ class SimpleTable:
                     return True # handled event
                 except Errors.WindowActiveError:
                     pass
-            elif htype == 'Event':
+            elif objclass == 'Event':
                 event = self.access.dbase.get_event_from_handle(handle)
                 try:
                     EditEvent(self.simpledoc.doc.dbstate, 
@@ -83,6 +84,43 @@ class SimpleTable:
                     return True # handled event
                 except Errors.WindowActiveError:
                     pass
+            elif objclass == 'Family':
+                ref = self.access.dbase.get_family_from_handle(handle)
+                try:
+                    EditFamily(self.simpledoc.doc.dbstate, 
+                               self.simpledoc.doc.uistate, [], ref)
+                    return True # handled event
+                except Errors.WindowActiveError:
+                    pass
+            elif objclass == 'Source':
+                ref = self.access.dbase.get_source_from_handle(handle)
+                try:
+                    EditSource(self.simpledoc.doc.dbstate, 
+                               self.simpledoc.doc.uistate, [], ref)
+                    return True # handled event
+                except Errors.WindowActiveError:
+                    pass
+            elif objclass == 'Place':
+                ref = self.access.dbase.get_place_from_handle(handle)
+                try:
+                    EditPlace(self.simpledoc.doc.dbstate, 
+                               self.simpledoc.doc.uistate, [], ref)
+                    return True # handled event
+                except Errors.WindowActiveError:
+                    pass
+            elif objclass == 'Repository':
+                ref = self.access.dbase.get_repository_from_handle(handle)
+                try:
+                    EditRepository(self.simpledoc.doc.dbstate, 
+                               self.simpledoc.doc.uistate, [], ref)
+                    return True # handled event
+                except Errors.WindowActiveError:
+                    pass
+            elif objclass == 'Date':
+                run_quick_report_by_name(self.gui.dbstate, 
+                                         self.gui.uistate, 
+                                         'onthisday', 
+                                         date)
         return False # didn't handle event
 
     def on_table_click(self, obj):
@@ -95,23 +133,22 @@ class SimpleTable:
             return
         index = store.get_value(node, 0) # index
         if self.__link[index]:
-            htype, handle = self.__link[index]
-            if htype == 'Person':
+            objclass, handle = self.__link[index]
+            if objclass == 'Person':
                 person = self.access.dbase.get_person_from_handle(handle)
                 self.simpledoc.doc.dbstate.change_active_person(person)
                 return True
-            elif htype == 'Event':
-                pass
         return False # didn't handle event
 
     def row(self, *data):
         """
         Add a row of data.
         """
-        # FIXME: add data and/or linkable types for all
+        from QuickReports import run_quick_report_by_name
         retval = [] 
         link   = None
         for item in data:
+            # FIXME: add better text representations of these objects
             if type(item) in [str, unicode]:
                 retval.append(item)
             elif isinstance(item, gen.lib.Person):
@@ -119,25 +156,43 @@ class SimpleTable:
                 retval.append(name)
                 link = ('Person', item.handle)
             elif isinstance(item, gen.lib.Family): 
-                retval.append(_('Family'))
+                father = self.access.father(item)
+                mother = self.access.mother(item)
+                text = ""
+                if father:
+                    text += " " + self.access.name(father)
+                else:
+                    text += " " + _("Unknown father")
+                text += " and"
+                if mother:
+                    text += " " + self.access.name(mother)
+                else:
+                    text += " " + _("Unknown mother")
+                retval.append(text)
+                link = ('Family', item.handle)
             elif isinstance(item, gen.lib.Source): 
                 retval.append(_('Source'))
+                link = ('Souce', item.handle)
             elif isinstance(item, gen.lib.Event):
                 name = self.access.event_type(item)
                 retval.append(name)
                 link = ('Event', item.handle)
             elif isinstance(item, gen.lib.MediaObject):
                 retval.append(_('Media'))
+                link = ('Media', item.handle)
             elif isinstance(item, gen.lib.Place):
                 retval.append(_('Place'))
+                link = ('Place', item.handle)
             elif isinstance(item, gen.lib.Repository):
                 retval.append(_('Repository'))
+                link = ('Repository', item.handle)
             elif isinstance(item, gen.lib.Note):
                 retval.append(_('Note'))
+                link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
                 text = DateHandler.displayer.display(item)
                 retval.append(text)
-                #link = ('Date', item)
+                link = ('Date', item)
             else:
                 raise AttributeError, ("unknown object type: '%s': %s" % 
                                        (item, type(item)))

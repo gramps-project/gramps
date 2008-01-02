@@ -1,3 +1,7 @@
+2008-01-02  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/Simple/_SimpleTable.py (SimpleTable.row): added obj handlers
+	* src/plugins/References.py: new quick report for listing refs
+
 2008-01-02 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DbLoader.py: correct bug state -> dbstate
 
