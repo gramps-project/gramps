@@ -363,7 +363,7 @@ class PythonGadget(Gadget):
         # GUI setup:
         self.gui.textview.set_editable(True)
         self.set_text("Python %s\n> " % sys.version)
-        self.gui.textview.connect('key-press-event', self.on_enter)
+        self.gui.textview.connect('key-press-event', self.on_key_press)
 
     def format_exception(self, max_tb_level=10):
         retval = ''
@@ -371,9 +371,27 @@ class PythonGadget(Gadget):
         retval += _("Error") + (" : %s %s" %(cla, exc))
         return retval
 
-    def on_enter(self, widget, event):
+    def on_key_press(self, widget, event):
         import gtk
-        if event.keyval == gtk.keysyms.Return: 
+        if (event.keyval == gtk.keysyms.Home or
+            ((event.keyval == gtk.keysyms.a and 
+              event.get_state() & gtk.gdk.CONTROL_MASK))): 
+            buffer = widget.get_buffer()
+            cursor_pos = buffer.get_property("cursor-position")
+            iter = buffer.get_iter_at_offset(cursor_pos)
+            line_cnt = iter.get_line()
+            start = buffer.get_iter_at_line(line_cnt)
+            start.forward_chars(2)
+            buffer.place_cursor(start)
+            return True
+        elif (event.keyval == gtk.keysyms.End or 
+              (event.keyval == gtk.keysyms.e and 
+               event.get_state() & gtk.gdk.CONTROL_MASK)): 
+            buffer = widget.get_buffer()
+            end = buffer.get_end_iter()
+            buffer.place_cursor(end)
+            return True
+        elif event.keyval == gtk.keysyms.Return: 
             echo = False
             buffer = widget.get_buffer()
             cursor_pos = buffer.get_property("cursor-position")
