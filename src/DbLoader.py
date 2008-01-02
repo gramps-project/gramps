@@ -271,7 +271,7 @@ class DbLoader:
                 _("Could not open file: %s") % filename, str(msg))
         except Errors.DbError, msg:
             QuestionDialog.DBErrorDialog(str(msg.value))
-            self.state.no_database()
+            self.dbstate.no_database()
         except Exception:
             _LOG.error("Failed to open database.", exc_info=True)
         return True

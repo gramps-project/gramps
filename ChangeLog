@@ -1,3 +1,6 @@
+2008-01-02 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DbLoader.py: correct bug state -> dbstate
+
 2008-01-02  Stéphane Charette <stephanecharette@gmail.com>
 	* src/BaseDoc.py: definition of add_comment()
 	* src/ReportBase/_GraphvizReportDialog.py: implement add_comment()
