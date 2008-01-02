@@ -72,14 +72,14 @@ class PlaceSidebarFilter(SidebarFilter):
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-	self.generic = gtk.ComboBox()
-	cell = gtk.CellRendererText()
-	self.generic.pack_start(cell, True)
-	self.generic.add_attribute(cell, 'text', 0)
+        self.generic = gtk.ComboBox()
+        cell = gtk.CellRendererText()
+        self.generic.pack_start(cell, True)
+        self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Place')
 
         self.add_text_entry(_('ID'), self.filter_id)
-        self.add_text_entry(_('Name'), self.filter_title)
+        self.add_text_entry(_('Place Name'), self.filter_title)
         self.add_text_entry(_('Church parish'), self.filter_parish)
         self.add_text_entry(_('Zip/Postal code'), self.filter_zip)
         self.add_text_entry(_('City'), self.filter_city)
@@ -113,7 +113,7 @@ class PlaceSidebarFilter(SidebarFilter):
         country = unicode(self.filter_country.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
-	gen = self.generic.get_active() > 0
+        gen = self.generic.get_active() > 0
 
         empty = not (gid or title or parish or zipc or city or county
                      or state or country or note or regex or gen)
@@ -138,12 +138,12 @@ class PlaceSidebarFilter(SidebarFilter):
                     rule = HasNoteMatchingSubstringOf([note])
                 generic_filter.add_rule(rule)
 
-	    if self.generic.get_active() != 0:
-		model = self.generic.get_model()
-		node = self.generic.get_active_iter()
-		obj = model.get_value(node, 0)
-		rule = MatchesFilter([obj])
-		generic_filter.add_rule(rule)
+            if self.generic.get_active() != 0:
+                model = self.generic.get_model()
+                node = self.generic.get_active_iter()
+                obj = model.get_value(node, 0)
+                rule = MatchesFilter([obj])
+                generic_filter.add_rule(rule)
 
         return generic_filter
 
