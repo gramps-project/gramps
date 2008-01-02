@@ -30,7 +30,7 @@
 from _MenuOptions import MenuOptions, \
     NumberOption, FloatOption, BooleanOption, TextOption, \
     EnumeratedListOption, FilterListOption, StringOption, ColourButtonOption, \
-    PersonOption, PersonListOption
+    PersonOption, PersonListOption, SurnameColourOption
 from _PluginMgr import \
      register_export, register_import, \
      register_tool, register_report, \

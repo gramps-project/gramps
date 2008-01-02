@@ -1,3 +1,13 @@
+2008-01-02  Stéphane Charette <stephanecharette@gmail.com>
+	* src/BaseDoc.py: definition of add_comment()
+	* src/ReportBase/_GraphvizReportDialog.py: implement add_comment()
+	* src/plugins/GVFamilyLines.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py: work in progress to migrate the
+	FamilyLines plugin to the new GraphViz framework; new menu option
+	widget called "SurnameColourOption" (which is actually quite specific
+	to the FamilyLines plugin)
+
 2008-01-01  Peter Landgren <peter.talken@telia.com>
     * src/plugins/rel_sv.py: Added some comments
 

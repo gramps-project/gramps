@@ -1587,7 +1587,7 @@ class GVDoc:
         @return: nothing
         """
         raise NotImplementedError
-        
+
     def add_link(self, id1, id2, style="", head="", tail="", comment=""):
         """
         Add a link between two nodes.
@@ -1604,7 +1604,18 @@ class GVDoc:
         @return: nothing
         """
         raise NotImplementedError
-    
+
+    def add_comment(self, comment):
+        """
+        Add a comment to the source file.
+
+        @param comment: A text string to add as a comment.
+            Example: "Next comes the individuals."
+        @type comment: string
+        @return: nothing
+        """
+        raise NotImplementedError
+
     def start_subgraph(self,id):
         """
         Start a subgraph in this graph.
@@ -1615,7 +1626,7 @@ class GVDoc:
         @return: nothing
         """
         raise NotImplementedError
-    
+
     def end_subgraph(self):
         """
         End a subgraph that was previously started in this graph.

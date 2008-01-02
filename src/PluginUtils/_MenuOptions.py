@@ -27,11 +27,102 @@ Abstracted option handling.
 # gramps modules
 #
 #-------------------------------------------------------------------------
+import gtk
 import gobject
+import Utils
 import _Tool as Tool
 import GrampsWidgets
+import ManagedWindow
 from Selectors import selector_factory
 from BasicUtils import name_displayer as _nd
+
+#------------------------------------------------------------------------
+#
+# Dialog window used to select a surname
+#
+#------------------------------------------------------------------------
+class LastNameDialog(ManagedWindow.ManagedWindow):
+
+    def __init__(self, database, uistate, track, surnames, skipList=set()):
+
+        self.title = _('Select surname')
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
+        self.dlg = gtk.Dialog(
+            None,
+            uistate.window,
+            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_NO_SEPARATOR,
+            (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+        self.dlg.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+        self.set_window(self.dlg, None, self.title)
+        self.window.set_default_size(400,400)
+
+        # build up a container to display all of the people of interest
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
+        self.treeView = gtk.TreeView(self.model)
+        col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
+        col2 = gtk.TreeViewColumn(_('Count'), gtk.CellRendererText(), text=1)
+        col1.set_resizable(True)
+        col2.set_resizable(True)
+        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col1.set_sort_column_id(0)
+        col2.set_sort_column_id(1)
+        self.treeView.append_column(col1)
+        self.treeView.append_column(col2)
+        self.scrolledWindow = gtk.ScrolledWindow()
+        self.scrolledWindow.add(self.treeView)
+        self.scrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.scrolledWindow.set_shadow_type(gtk.SHADOW_OUT)
+        self.dlg.vbox.pack_start(self.scrolledWindow, expand=True, fill=True)
+        self.scrolledWindow.show_all()
+
+        if len(surnames) == 0:
+            # we could use database.get_surname_list(), but if we do that
+            # all we get is a list of names without a count...therefore
+            # we'll traverse the entire database ourself and build up a
+            # list that we can use
+#            for name in database.get_surname_list():
+#                self.model.append([name, 0])
+
+            # build up the list of surnames, keeping track of the count for each name
+            # (this can be a lengthy process, so by passing in the dictionary we can
+            # be certain we only do this once)
+            progress = Utils.ProgressMeter(_('Finding surnames'))
+            progress.set_pass(_('Finding surnames'), database.get_number_of_people())
+            for personHandle in database.get_person_handles(False):
+                progress.step()
+                person = database.get_person_from_handle(personHandle)
+                key = person.get_primary_name().get_surname()
+                count = 0
+                if key in surnames:
+                    count = surnames[key]
+                surnames[key] = count + 1
+            progress.close()
+
+        # insert the names and count into the model
+        for key in surnames:
+            if key.encode('iso-8859-1','xmlcharrefreplace') not in skipList:
+                self.model.append([key, surnames[key]])
+
+        # keep the list sorted starting with the most popular last name
+        self.model.set_sort_column_id(1, gtk.SORT_DESCENDING)
+
+        # the "OK" button should be enabled/disabled based on the selection of a row
+        self.treeSelection = self.treeView.get_selection()
+        self.treeSelection.set_mode(gtk.SELECTION_MULTIPLE)
+        self.treeSelection.select_path(0)
+
+    def run(self):
+        response = self.dlg.run()
+        surnameSet = set()
+        if response == gtk.RESPONSE_ACCEPT:
+            (mode, paths) = self.treeSelection.get_selected_rows()
+            for path in paths:
+                iter = self.model.get_iter(path)
+                surname = self.model.get_value(iter, 0)
+                surnameSet.add(surname)
+        self.dlg.destroy()
+        return surnameSet
 
 #-------------------------------------------------------------------------
 #
@@ -690,7 +781,7 @@ class PersonListOption(Option):
         @type label: string
         @param value: A set of GIDs as initial values for this option.
             Example: "111 222 333 444"
-        @type value: set()
+        @type value: string
         @return: nothing
         """
         self.db = dbstate.get_database()
@@ -775,6 +866,9 @@ class PersonListOption(Option):
 
             # if this person has a spouse, ask if we should include the spouse
             # in the list of "people of interest"
+            #
+            # NOTE: we may want to make this an optional thing, determined
+            # by the use of a parameter at the time this class is instatiated
             familyList = person.get_family_handle_list()
             if familyList:
                 for familyHandle in familyList:
@@ -802,6 +896,131 @@ class PersonListOption(Option):
                                 self.model.append([name, gid])
 
     def delPersonClicked(self, obj):
+        (path, column) = self.treeView.get_cursor()
+        if (path):
+            iter = self.model.get_iter(path)
+            self.model.remove(iter)
+
+#-------------------------------------------------------------------------
+#
+# SurnameColourOption class
+#
+#-------------------------------------------------------------------------
+class SurnameColourOption(Option):
+    """
+    This class describes a widget that allows multiple surnames to be
+    selected from the database, and to assign a colour (not necessarily
+    unique) to each one.
+    """
+    def __init__(self, label, value, dbstate):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "Family lines"
+        @type label: string
+        @param value: A set of surnames and colours.
+            Example: "surname1 colour1 surname2 colour2"
+        @type value: string
+        @return: nothing
+        """
+        self.db = dbstate.get_database()
+        self.dbstate = dbstate
+        Option.__init__(self,label,value)
+
+    def make_gui_obj(self, gtk, dialog):
+        """
+        Add a "surname-colour" widget to the dialog.
+        """
+        self.dialog = dialog
+        self.surnames = {}  # list of surnames and count
+        
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.treeView = gtk.TreeView(self.model)
+        self.treeView.set_size_request(150, 150)
+        self.treeView.connect('row-activated', self.clicked)
+        col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
+        col2 = gtk.TreeViewColumn(_('Colour'), gtk.CellRendererText(), text=1)
+        col1.set_resizable(True)
+        col2.set_resizable(True)
+        col1.set_sort_column_id(0)
+        col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
+        self.treeView.append_column(col1)
+        self.treeView.append_column(col2)
+        self.scrolledWindow = gtk.ScrolledWindow()
+        self.scrolledWindow.add(self.treeView)
+        self.scrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.scrolledWindow.set_shadow_type(gtk.SHADOW_OUT)
+        self.hbox = gtk.HBox()
+        self.hbox.pack_start(self.scrolledWindow, expand=True, fill=True)
+
+        self.addSurname = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, self.addSurnameClicked)
+        self.delSurname = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, self.delSurnameClicked)
+        self.vbbox = gtk.VButtonBox()
+        self.vbbox.add(self.addSurname)
+        self.vbbox.add(self.delSurname)
+        self.vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
+        self.hbox.pack_end(self.vbbox, expand=False)
+
+        # populate the surname/colour treeview
+        tmp = self.get_value().split()
+        while len(tmp) > 1:
+            surname = tmp.pop(0)
+            colour = tmp.pop(0)
+            self.model.append([surname, colour])
+
+        # parent expects the widget as "self.gobj"
+        self.gobj = self.hbox
+
+    def parse(self):
+        """
+        Parse the object and return.
+        """
+        surnameColours = ''
+        iter = self.model.get_iter_first()
+        while (iter):
+            surname = self.model.get_value(iter, 0) # .encode('iso-8859-1','xmlcharrefreplace')
+            colour = self.model.get_value(iter, 1)
+            # tried to use a dictionary, and tried to save it as a tuple,
+            # but coulnd't get this to work right -- this is lame, but now
+            # the surnames and colours are saved as a plain text string
+            surnameColours += surname + ' ' + colour + ' '
+            iter = self.model.iter_next(iter)
+        return surnameColours
+
+    def clicked(self, treeview, path, column):
+        # get the surname and colour value for this family
+        iter = self.model.get_iter(path)
+        surname = self.model.get_value(iter, 0)
+        colour = gtk.gdk.color_parse(self.model.get_value(iter, 1))
+
+        colourDialog = gtk.ColorSelectionDialog('Select colour for %s' % surname)
+        colourDialog.colorsel.set_current_color(colour)
+        response = colourDialog.run()
+
+        if response == gtk.RESPONSE_OK:
+            colour = colourDialog.colorsel.get_current_color()
+            colourName = '#%02x%02x%02x' % (
+                int(colour.red  *256/65536),
+                int(colour.green*256/65536),
+                int(colour.blue *256/65536))
+            self.model.set_value(iter, 1, colourName)
+
+        colourDialog.destroy()
+
+    def addSurnameClicked(self, obj):
+        skipList = set()
+        iter = self.model.get_iter_first()
+        while (iter):
+            surname = self.model.get_value(iter, 0)
+            skipList.add(surname.encode('iso-8859-1','xmlcharrefreplace'))
+            iter = self.model.iter_next(iter)
+
+        ln = LastNameDialog(self.db, self.dialog.uistate, self.dialog.track, self.surnames, skipList)
+        surnameSet = ln.run()
+        for surname in surnameSet:
+            self.model.append([surname, '#ffffff'])
+
+    def delSurnameClicked(self, obj):
         (path, column) = self.treeView.get_cursor()
         if (path):
             iter = self.model.get_iter(path)

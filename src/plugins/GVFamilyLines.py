@@ -67,7 +67,7 @@ from PluginUtils import register_report
 from ReportBase import Report, ReportUtils, ReportOptions, CATEGORY_CODE, MODE_GUI, MODE_CLI
 from ReportBase import Report, MenuReportOptions, MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from ReportBase._ReportDialog import ReportDialog
-from PluginUtils import register_report, FilterListOption, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption
+from PluginUtils import register_report, FilterListOption, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption, SurnameColourOption
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
@@ -109,8 +109,8 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('People of Interest')
         # --------------------------------
 
-        personList = PersonListOption(  _('People of interest'), '', dbstate)
-        personList.set_help(              _('People of interest are used as a starting point when determining \"family lines\".'))
+        personList = PersonListOption(      _('People of interest'), '', dbstate)
+        personList.set_help(                _('People of interest are used as a starting point when determining \"family lines\".'))
         menu.add_option(category, 'FLgidlist', personList)
 
         followParents = BooleanOption(      _('Follow parents to determine family lines'), True)
@@ -129,7 +129,9 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('Family Colours')
         # ----------------------------
 
-        # todo, family colours
+        surnameColour = SurnameColourOption(_('Family colours'), '', dbstate)
+        surnameColour.set_help(             _('Colours to use for various family lines.'))
+        menu.add_option(category, 'FLsurnameColours', surnameColour)
 
         # -------------------------
         category = _('Individuals')
@@ -270,7 +272,7 @@ class FamilyLinesReport(Report):
 
         # convert the 'surnameColours' string to a dictionary of names and colours
         self.surnameColours = {}
-        tmp = '' # TODO, FIXME options.handler.options_dict['FLsurnameColours'].split()
+        tmp = options.handler.options_dict['FLsurnameColours'].split()
         while len(tmp) > 1:
             surname = tmp.pop(0).encode('iso-8859-1','xmlcharrefreplace')
             colour = tmp.pop(0)
@@ -316,19 +318,19 @@ class FamilyLinesReport(Report):
         # now that begin_report() has done the work, output what we've
         # obtained into whatever file or format the user expects to use
 
-        self.doc.write('# Number of people in database:    %d\n' % self.db.get_number_of_people())
-        self.doc.write('# Number of people of interest:    %d\n' % len(self.peopleToOutput))
-        self.doc.write('# Number of families in database:  %d\n' % self.db.get_number_of_families())
-        self.doc.write('# Number of families of interest:  %d\n' % len(self.familiesToOutput))
+        self.doc.add_comment('# Number of people in database:    %d' % self.db.get_number_of_people())
+        self.doc.add_comment('# Number of people of interest:    %d' % len(self.peopleToOutput))
+        self.doc.add_comment('# Number of families in database:  %d' % self.db.get_number_of_families())
+        self.doc.add_comment('# Number of families of interest:  %d' % len(self.familiesToOutput))
         if self.removeExtraPeople:
-            self.doc.write('# Additional people removed:       %d\n' % self.deletedPeople)
-            self.doc.write('# Additional families removed:     %d\n' % self.deletedFamilies)
-        self.doc.write('# Initial list of people of interest:\n')
+            self.doc.add_comment('# Additional people removed:       %d' % self.deletedPeople)
+            self.doc.add_comment('# Additional families removed:     %d' % self.deletedFamilies)
+        self.doc.add_comment('# Initial list of people of interest:')
         for handle in self.interestSet:
             person = self.db.get_person_from_handle(handle)
             gid = person.get_gramps_id()
             name = person.get_primary_name().get_regular_name()
-            self.doc.write('# -> %s, %s\n' % (gid, name))
+            self.doc.add_comment('# -> %s, %s' % (gid, name))
 
         self.writePeople()
         self.writeFamilies()
@@ -609,7 +611,7 @@ class FamilyLinesReport(Report):
 
     def writePeople(self):
 
-        self.doc.write('\n')
+        self.doc.add_comment('')
 
         # if we're going to attempt to include images, then use the HTML style of .dot file
         bUseHtmlOutput = False
@@ -746,7 +748,7 @@ class FamilyLinesReport(Report):
 
     def writeFamilies(self):
 
-        self.doc.write('\n')
+        self.doc.add_comment('')
 
         # loop through all the families we need to output
         for familyHandle in self.familiesToOutput:
@@ -804,7 +806,7 @@ class FamilyLinesReport(Report):
                 if label != '':
                     label += '\\n'
                 label += '%s' % childrenStr
-            self.doc.add_node(fgid,label,"ellipse","","filled",self.colourFamilies)
+            self.doc.add_node(fgid, label, "ellipse", "", "filled", self.colourFamilies)
             
 
         # now that we have the families written, go ahead and link the parents and children to the families
@@ -820,7 +822,7 @@ class FamilyLinesReport(Report):
             if self.useSubgraphs and fatherHandle and motherHandle:
                 self.doc.start_subgraph(fgid)
 
-            self.doc.write('\n')
+            self.doc.add_comment('')
 
             # see if we have a father to link to this family
             if fatherHandle:
@@ -843,7 +845,7 @@ class FamilyLinesReport(Report):
             for childRef in family.get_child_ref_list():
                 if childRef.ref in self.peopleToOutput:
                     child = self.db.get_person_from_handle(childRef.ref)
-                    comment = "child: %s" % child.get_primary_name().get_regular_name()
+                    comment = "child:  %s" % child.get_primary_name().get_regular_name()
                     self.doc.add_link(child.get_gramps_id(), fgid, comment=comment)
 
 

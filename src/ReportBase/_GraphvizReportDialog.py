@@ -270,6 +270,23 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
 
         self.write('\n')
 
+    def add_comment(self, comment):
+        """
+        Add a comment.
+        
+        Implementes BaseDoc.GVDoc.add_comment().
+        """
+        tmp = comment.split('\n')
+        for line in tmp:
+            text = line.strip()
+            print 'text="%s"\n' % text
+            if text == "":
+                self.write('\n')
+            elif text.startswith('#'):
+                self.write('%s\n' % text)
+            else:
+                self.write('# %s\n' % text)
+
     def start_subgraph(self,id):
         self.write('  subgraph cluster_%s\n' % id)
         self.write('  {\n')
