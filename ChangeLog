@@ -1,4 +1,7 @@
-2008-1-2 Jerome Rapinat  <romjerome@yahoo.fr>
+2008-01-02 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Filters/SideBar/_PlaceSidebarFilter.py: correct string, bug #1275
+
+2008-01-02 Jerome Rapinat  <romjerome@yahoo.fr>
         * configure.in: update of bg.po
 
 2007-12-23 Benny Malengier <benny.malengier@gramps-project.org>
