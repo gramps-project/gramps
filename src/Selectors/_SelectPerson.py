@@ -79,16 +79,20 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         self.plist =  self.glade.get_widget('plist')
         self.showall =  self.glade.get_widget('showall')
         self.notebook =  self.glade.get_widget('notebook')
+        self.plist.connect('row-activated', self._on_row_activated)
+        self.plist.connect('key-press-event', self._key_press)
+        self.selection = self.plist.get_selection()
+        self.selection.set_mode(gtk.SELECTION_SINGLE)
 
         window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
         self.set_window(window,title_label,self.title)
 
-	self.filter = filter
-	if self.filter:
-	    self.showall.show()
+        self.filter = filter
+        if self.filter:
+            self.showall.show()
 
-	self.skip = skip
+        self.skip = skip
 
         self.model = PeopleModel(self.dbstate.db,
                                  (PeopleModel.FAST, filter),
@@ -100,15 +104,15 @@ class SelectPerson(ManagedWindow.ManagedWindow):
         self.show()
 
     def show_toggle(self, obj):
-	if obj.get_active():
-	    filt = None
-	else:
-	    filt = self.filter
+        if obj.get_active():
+            filt = None
+        else:
+            filt = self.filter
 
-	self.model = PeopleModel(self.dbstate.db,
-				 (PeopleModel.FAST, filt),
-				 skip=self.skip)
-	self.plist.set_model(self.model)
+        self.model = PeopleModel(self.dbstate.db,
+                     (PeopleModel.FAST, filt),
+                     skip=self.skip)
+        self.plist.set_model(self.model)
 
     def build_menu_names(self, obj):
         return (self.title, None)
@@ -164,7 +168,25 @@ class SelectPerson(ManagedWindow.ManagedWindow):
                 return_value = self.dbstate.db.get_person_from_handle(idlist[0])
             else:
                 return_value = None
-	    return return_value
+            return return_value
         elif val != gtk.RESPONSE_DELETE_EVENT:
             self.close()
             return None
+
+    def _key_press(self, obj, event):
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                store, paths = self.selection.get_selected_rows()
+                if paths and len(paths[0]) == 1 :
+                    if self.plist.row_expanded(paths[0]):
+                        self.plist.collapse_row(paths[0])
+                    else:
+                        self.plist.expand_row(paths[0], 0)
+                    return True
+                else:
+                    self.window.response(gtk.RESPONSE_OK)
+                    return True
+        return False
+
+    def _on_row_activated(self, treeview, path, view_col):
+        self.window.response(gtk.RESPONSE_OK)

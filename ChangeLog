@@ -1,3 +1,10 @@
+2008-01-01  Gary Burton <gary.burton@zen.co.uk>
+	* src/Selectors/_SelectPerson.py: the select person dialog now allows a
+	person to be selected by using the keyboard. This dialog really needs an
+	overhaul so that it can use the BaseSelector class as SelectFamily does.
+	However a PeopleModel based on BaseModel is required for this as the
+	existing PeopleModel is a custom built class. bug #1456
+
 2008-01-03 Jérôme Rapinat <romjerome@yahoo.fr>
         * src/configure.in : add bulgarian
 
