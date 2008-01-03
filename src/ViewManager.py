@@ -675,7 +675,6 @@ class ViewManager:
         about.set_documenters(const.documenters)
         about.set_logo(gtk.gdk.pixbuf_new_from_file(const.splash))
         about.set_modal(True)
-        about.show()
         about.run()
         about.destroy()
 
@@ -878,9 +877,9 @@ class ViewManager:
         self.page_is_changing = False
 
     def import_pkg(self, filename):
-	import ReadPkg
-	ReadPkg.impData(self.state.db, filename, self.uistate.pulse_progressbar)
-	self.post_load()
+        import ReadPkg
+        ReadPkg.impData(self.state.db, filename, self.uistate.pulse_progressbar)
+        self.post_load()
 
     def import_data(self, obj):
         if self.state.db.db_is_open:
@@ -970,7 +969,7 @@ class ViewManager:
         
         self.change_page(None, None)
         self.actiongroup.set_visible(True)
-	self.readonlygroup.set_visible(True)
+        self.readonlygroup.set_visible(True)
 
         self.file_loaded = True
 

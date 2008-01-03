@@ -1,4 +1,7 @@
 2008-01-02 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ViewManager.py: remove unneeded show, remove tabs
+
+2008-01-02 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Filters/SideBar/_PlaceSidebarFilter.py: correct string, bug #1275
 
 2008-01-02 Jerome Rapinat  <romjerome@yahoo.fr>
