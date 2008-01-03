@@ -54,11 +54,13 @@ class SimpleTable:
         Set the columns
         """
         self.__columns = list(copy.copy(columns))
+        self.__sort_vals = [[] for i in range(len(self.__columns))]
 
     def on_table_doubleclick(self, obj, path, view_column):
         """
         Handle events on tables. obj is a treeview
         """
+        from QuickReports import run_quick_report_by_name
         from Editors import (EditPerson, EditEvent, EditFamily, EditSource,
                              EditPlace, EditRepository)
         selection = obj.get_selection()
@@ -140,11 +142,16 @@ class SimpleTable:
                 return True
         return False # didn't handle event
 
+    def row_sort_val(self, col, val):
+        """
+        Adds a row of data to sort by.
+        """
+        self.__sort_vals[col].append(val) 
+
     def row(self, *data):
         """
         Add a row of data.
         """
-        from QuickReports import run_quick_report_by_name
         retval = [] 
         link   = None
         for item in data:
@@ -256,19 +263,30 @@ class SimpleTable:
             treeview.connect('cursor-changed', self.on_table_click)
             renderer = gtk.CellRendererText()
             types = [int] # index
+            cnt = 0
+            sort_data = []
+            sort_data_types = []
             for col in self.__columns:
                 types.append(type(col))
                 column = gtk.TreeViewColumn(col,renderer,text=model_index)
-                column.set_sort_column_id(model_index)
+                if self.__sort_vals[cnt] != []:
+                    sort_data.append(self.__sort_vals[cnt])
+                    column.set_sort_column_id(len(self.__columns) + 
+                                              len(sort_data))
+                    sort_data_types.append(int)
+                else:
+                    column.set_sort_column_id(model_index)
                 treeview.append_column(column)
                 #if model_index == sort_index:
                 # FIXME: what to set here?    
                 model_index += 1
+                cnt += 1
             if self.title:
                 self.simpledoc.paragraph(self.title)
             # Make a GUI to put the tree view in
             frame = gtk.Frame()
             frame.add(treeview)
+            types += sort_data_types
             model = gtk.ListStore(*types)
             treeview.set_model(model)
             iter = buffer.get_end_iter()
@@ -276,7 +294,7 @@ class SimpleTable:
             text_view.add_child_at_anchor(frame, anchor)
             count = 0
             for data in self.__rows:
-                model.append(row=([count] + list(data)))
+                model.append(row=([count] + list(data) + [col[count] for col in sort_data]))
                 count += 1
             frame.show_all()
             self.simpledoc.paragraph("")

@@ -59,7 +59,8 @@ import gtk
 from PluginUtils import Plugins
 from ReportBase  import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,\
                         CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,\
-                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY
+                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, \
+                        CATEGORY_QR_NOTE, CATEGORY_QR_DATE
 
 
 def create_quickreport_menu(category,dbstate,uistate,handle) :

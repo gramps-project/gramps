@@ -551,6 +551,44 @@ class NewsGadget(Gadget):
         #print "    after:", text
         yield False, text
 
+class AgeOnDateGadget(Gadget):
+    def init(self):
+        import gtk
+        # GUI setup:
+        self.tooltip = _("Enter a date, click Run")
+        vbox = gtk.VBox()
+        hbox = gtk.HBox()
+        # label, entry
+        description = gtk.TextView()
+        description.set_wrap_mode(gtk.WRAP_WORD)
+        buffer = description.get_buffer()
+        buffer.set_text(_("Enter a date in the entry below and click Run."
+                          " This will compute the ages for everyone in your"
+                          " Family Tree on that date. You can then sort by"
+                          " the age column, and double-click the row to view"
+                          " or edit."))
+        label = gtk.Label()
+        label.set_text(_("Date") + ":")
+        self.entry = gtk.Entry()
+        button = gtk.Button(_("Run"))
+        button.connect("clicked", self.run)
+        hbox.pack_start(label, False)
+        hbox.pack_start(self.entry, True)
+        vbox.pack_start(description, True)
+        vbox.pack_start(hbox, False)
+        vbox.pack_start(button, False)
+        self.gui.scrolledwindow.remove(self.gui.textview)
+        self.gui.scrolledwindow.add_with_viewport(vbox)
+        vbox.show_all()
+
+    def run(self, obj):
+        text = self.entry.get_text()
+        date = DateHandler.parser.parse(text)
+        run_quick_report_by_name(self.gui.dbstate, 
+                                 self.gui.uistate, 
+                                 'ageondate', 
+                                 date)
+
 
 register(type="gadget", 
          name= "Top Surnames Gadget", 
@@ -619,5 +657,13 @@ register(type="gadget",
          expand=True,
          content = NewsGadget,
          title=_("News"),
+         )
+
+register(type="gadget", 
+         name="Age on Date Gadget", 
+         tname=_("Age on Date Gadget"), 
+         height=200,
+         content = AgeOnDateGadget,
+         title=_("Age on Date"),
          )
 

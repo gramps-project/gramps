@@ -259,17 +259,33 @@ class Date:
             days = d1[2] - d2[2]
             months = d1[1] - d2[1]
             years = d1[0] - d2[0]
-            if months < 0:
+            while days < 0:
+                months -= 1
+                days = 30 + days
+            while months < 0:
                 years -= 1
                 months = 12 + months
-            if days < 0:
-                months -= 1
-                days = 31 + days
+            if days > 31:
+                months += days / 31
+                days = days % 31
+            if months > 11:
+                years += months / 12
+                months = months % 12
+            if years < 0: # can happen with 0 based months/days
+                years = 0
+                months = 12 - months
+                days = 31 - days
             return (years, months, days)
         elif type(other) in [tuple, list]:
             return self.copy_offset_ymd(*map(lambda x: -x, other))
         else:
             raise AttributeError, "unknown date sub type: %s " % type(other)
+
+    def __lt__(self, other):
+        return self.sortval < other.sortval
+
+    def __gt__(self, other):
+        return self.sortval > other.sortval
 
     def is_equal(self, other):
         """
