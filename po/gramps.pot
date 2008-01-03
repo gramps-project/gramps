@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-22 17:52+0100\n"
+"POT-Creation-Date: 2008-01-03 14:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,6 @@ msgstr ""
 #: ../src/plugins/RemoveUnused.py:180 ../src/plugins/TimeLine.py:440
 #: ../src/plugins/Verify.py:514
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:108
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:86
 #: ../src/FilterEditor/_EditFilter.py:83
 #: ../src/FilterEditor/_ShowResults.py:87
@@ -986,17 +985,17 @@ msgstr ""
 msgid "Given name"
 msgstr ""
 
-#: ../src/PageView.py:220 ../src/ViewManager.py:1041
+#: ../src/PageView.py:220 ../src/ViewManager.py:1040
 #, python-format
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: ../src/PageView.py:224 ../src/PageView.py:513 ../src/ViewManager.py:1044
+#: ../src/PageView.py:224 ../src/PageView.py:513 ../src/ViewManager.py:1043
 #: ../src/DataViews/_FamilyList.py:116
 msgid "Could Not Set a Bookmark"
 msgstr ""
 
-#: ../src/PageView.py:225 ../src/ViewManager.py:1045
+#: ../src/PageView.py:225 ../src/ViewManager.py:1044
 #: ../src/DataViews/_FamilyList.py:117
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
@@ -1772,11 +1771,11 @@ msgstr ""
 msgid "_Filter sidebar"
 msgstr ""
 
-#: ../src/ViewManager.py:404 ../src/ViewManager.py:991
+#: ../src/ViewManager.py:404 ../src/ViewManager.py:990
 msgid "_Undo"
 msgstr ""
 
-#: ../src/ViewManager.py:408 ../src/ViewManager.py:1005
+#: ../src/ViewManager.py:408 ../src/ViewManager.py:1004
 msgid "_Redo"
 msgstr ""
 
@@ -1838,15 +1837,15 @@ msgstr ""
 msgid "GRAMPS Homepage"
 msgstr ""
 
-#: ../src/ViewManager.py:939
+#: ../src/ViewManager.py:938
 msgid "Read Only"
 msgstr ""
 
-#: ../src/ViewManager.py:1207
+#: ../src/ViewManager.py:1206
 msgid "Database is not portable"
 msgstr ""
 
-#: ../src/ViewManager.py:1208
+#: ../src/ViewManager.py:1207
 msgid ""
 "If you need to transfer the database to another machine, export to a GRAMPS "
 "Package, and import the GRAMPS Package on the other machine."
@@ -2452,6 +2451,7 @@ msgid "Delete selected person"
 msgstr ""
 
 #: ../src/DataViews/_PlaceView.py:61
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 msgid "Place Name"
 msgstr ""
 
@@ -3610,8 +3610,8 @@ msgstr ""
 #: ../src/GrampsDb/_ReadGrdb.py:208 ../src/GrampsDb/_ReadXML.py:1129
 #, python-format
 msgid ""
-"Your family tree groups name %s together with %s, did not change this "
-"grouping to %s"
+"Your database groups name %s together with %s, did not change this grouping "
+"to %s"
 msgstr ""
 
 #: ../src/GrampsDb/_ReadGrdb.py:218

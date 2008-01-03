@@ -1126,7 +1126,7 @@ class GrampsParser(UpdateCallback):
             if self.db.has_name_group_key(key) :
                 present = self.db.get_name_group_mapping(key)
                 if not value == present:
-                    msg = _("Your family tree groups name %s together"
+                    msg = _("Your database groups name %s together"
                             " with %s, did not change this grouping to %s") % (
                                                         key, present, value)
                     self.errmsg(msg)
