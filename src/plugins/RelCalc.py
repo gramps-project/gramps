@@ -81,12 +81,6 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         Tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
-        if not self.person:
-            ErrorDialog(_('Active person has not been set'),
-                        _('You must select an active person for this '
-                          'tool to work properly.'))
-            return
-
         self.dbstate = dbstate
         self.relationship = relationship_class()
         self.relationship.connect_db_signals(dbstate)
@@ -95,7 +89,9 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         glade_file = base + os.sep + "relcalc.glade"
         self.glade = gtk.glade.XML(glade_file, "relcalc", "gramps")
 
-        name = name_displayer.display(self.person)
+        name = ''
+        if self.person:
+            name = name_displayer.display(self.person)
         self.title = _('Relationship calculator: %(person_name)s'
                        ) % {'person_name' : name}
         window = self.glade.get_widget('relcalc')
@@ -140,6 +136,14 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.changedkey = self.sel.connect('changed',self.on_apply_clicked)
         self.closebtn = self.glade.get_widget("button5")
         self.closebtn.connect('clicked', self.close)
+
+        if not self.person:
+            self.window.hide()
+            ErrorDialog(_('Active person has not been set'),
+                        _('You must select an active person for this '
+                          'tool to work properly.'))
+            self.close()
+            return
 
         self.show()
 
