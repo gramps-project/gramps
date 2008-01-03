@@ -144,7 +144,7 @@ else:
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "GRAMPS"
 VERSION        = "@VERSIONSTRING@"
-COPYRIGHT_MSG  = u"\U00A9 2001-2006 Donald N. Allingham"
+COPYRIGHT_MSG  = u"\u00A9 2001-2006 Donald N. Allingham"
 COMMENTS       = _("GRAMPS (Genealogical Research and Analysis "
                    "Management Programming System) is a personal "
                    "genealogy program.")
