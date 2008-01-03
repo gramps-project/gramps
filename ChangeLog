@@ -1,3 +1,6 @@
+2008-01-03 Jérôme Rapinat <romjerome@yahoo.fr>
+        * src/configure.in : add bulgarian
+
 2008-01-02 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ViewManager.py: remove unneeded show, remove tabs
 
