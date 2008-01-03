@@ -726,6 +726,15 @@ class XmlWriter(UpdateCallback):
             self.g.write('%s<%s>%s</%s>\n' %
                          ('  '*indent,tagname,self.fix(value),tagname))
 
+    def write_line_nofix(self,tagname,value,indent=1):
+        '''Writes a line, but does not escape characters. 
+            Use this instead of write_line is the value is already fixed,
+            this avoids &amp; becoming &amp;amp;
+        '''
+        if value:
+            self.g.write('%s<%s>%s</%s>\n' %
+                         ('  '*indent, tagname, value, tagname))
+
     def get_iso_date(self,date):
         if date[2] == 0:
             y = "????"
@@ -1024,8 +1033,8 @@ class XmlWriter(UpdateCallback):
         note = place.get_note()
 
         if title == "":
-            title = self.fix(self.build_place_title(place.get_main_location()))
-        self.write_line("ptitle",title,index+1)
+            title = self.build_place_title(place.get_main_location())
+        self.write_line_nofix("ptitle",title,index+1)
     
         if longitude or lat:
             self.g.write('%s<coord long="%s" lat="%s"/>\n'
