@@ -1,3 +1,6 @@
+2008-01-02  Brian Matherly <brian@gramps-project.org>
+	* src/DisplayModels/_PeopleModel.py: Fix filter bug.
+
 2008-01-02 Jim Sack <jgsack@san.rr.com>
 	* src/const.py.in : change embedded copyright sign to unicode \u00A9
 	(really) instead of the \U (oops) 

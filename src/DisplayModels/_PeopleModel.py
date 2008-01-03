@@ -370,7 +370,7 @@ class PeopleModel(gtk.GenericTreeModel):
         for handle in handle_list:
             status.heartbeat()
             d = self.db.get_raw_person_data(handle)
-            if not (handle in skip or (dfilter and not dfilter.match(handle))):
+            if not handle in skip:
                 name_data = d[PeopleModel._NAME_COL]
 
                 group_name = ngn(self.db, name_data)
