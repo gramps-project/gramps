@@ -1451,7 +1451,6 @@ def display_about_box(obj):
     about.set_documenters(const.DOCUMENTERS)
     about.set_logo(gtk.gdk.pixbuf_new_from_file(const.SPLASH))
     about.set_modal(True)
-    about.show()
     about.run()
     about.destroy()
 
