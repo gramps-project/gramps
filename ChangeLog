@@ -1,4 +1,7 @@
 2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/GrampsDbUtils/_GrampsDbWriteXML.py: wrong escape of &, bug 1430
+
+2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/RelCalc.py: managed window error, bug 1499
 
 2008-01-03  Douglas S. Blank  <dblank@cs.brynmawr.edu>
