@@ -1,3 +1,8 @@
+2008-01-03 Gary Burton <gary.burton@zen.co.uk>
+	* src/GrampsWidgets.py: allow MonitoredEntry widgets to be updated with
+	empty strings. I fixed this issue in trunk 2 months ago and no ill effects
+	have been reported. issue #1314
+
 2008-01-03 Jerome Rapinat  <romjerome@yahoo.fr>
         * src/GrampsDb/_ReadGrdb.py
         * src/GrampsDb/_ReadXML.py: removed "Family Tree" on translation string, used "database"

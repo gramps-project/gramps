@@ -370,7 +370,7 @@ class MonitoredEntry:
         self.obj.grab_focus()
 
     def update(self):
-        if self.get_val():
+        if self.get_val() is not None:
             self.obj.set_text(self.get_val())
 
 class MonitoredText:
