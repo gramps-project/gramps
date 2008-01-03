@@ -1,3 +1,6 @@
+2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/RelCalc.py: managed window error, bug 1499
+
 2008-01-03 Gary Burton <gary.burton@zen.co.uk>
 	* src/GrampsWidgets.py: allow MonitoredEntry widgets to be updated with
 	empty strings. I fixed this issue in trunk 2 months ago and no ill effects
