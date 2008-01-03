@@ -1,4 +1,7 @@
 2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
+	* data/gramps.desktop.in: list more mime types, item 851
+
+2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsDb/_WriteXML.py: wrong escape of &, bug 1430
 
 2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
