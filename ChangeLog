@@ -1,3 +1,6 @@
+2008-01-04 Jerome Rapinat  <romjerome@yahoo.fr>
+        * src/DateHandler/_Date_fr.py : typo
+
 2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
 	* data/gramps.desktop.in: list more mime types, item 851
 
