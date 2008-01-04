@@ -233,6 +233,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         # Draw dialog and make it handle everything
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
+        self.vr = None 
 
         self.top = gtk.glade.XML(self.glade_file,"verify_settings","gramps")
         self.top.signal_autoconnect({
@@ -322,15 +323,18 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                                                           self.top.get_widget(
             "estimate").get_active()
 
-        vr = VerifyResults(self.dbstate, self.uistate, self.track)
-        self.add_results = vr.add_results
-        vr.load_ignored(self.db.full_name)
-       
+        try:
+            self.vr = VerifyResults(self.dbstate, self.uistate, self.track)
+            self.add_results = self.vr.add_results
+            self.vr.load_ignored(self.db.full_name)
+        except Errors.WindowActiveError:
+            pass
+
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.uistate.progress.show()
         self.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         try:
-            vr.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+            self.vr.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         except AttributeError:
             pass
 
@@ -340,7 +344,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         self.uistate.window.window.set_cursor(None)
         self.window.window.set_cursor(None)
         try:
-            vr.window.window.set_cursor(None)
+            self.vr.window.window.set_cursor(None)
         except AttributeError:
             pass
         self.reset()
@@ -368,6 +372,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         oldunm = self.options.handler.options_dict['oldunm']
         estimate_age = self.options.handler.options_dict['estimate_age']
 
+        self.vr.real_model.clear()
 
         self.set_total(self.db.get_number_of_people() +
                        self.db.get_number_of_families())
@@ -578,6 +583,7 @@ class VerifyResults(ManagedWindow):
         return new_ignores
 
     def close(self,*obj):
+        self.vr = None
         new_ignores = self.get_new_marking()
         self.save_ignored(new_ignores)
 

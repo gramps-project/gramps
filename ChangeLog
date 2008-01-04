@@ -1,4 +1,8 @@
 2008-01-04  Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/Verify.py: Allow the Verify Results window to be reused if
+	it is already instantiated. Bug #1532
+
+2008-01-04  Gary Burton <gary.burton@zen.co.uk>
 	* src/GrampsDbUtils/_ReadXML.py: removed code that is adding the gramps
 	ID onto the end of pre-existing place descriptions. Bug #1502
 
