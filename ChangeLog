@@ -1,3 +1,7 @@
+2008-01-04  Gary Burton <gary.burton@zen.co.uk>
+	* src/GrampsDbUtils/_ReadXML.py: removed code that is adding the gramps
+	ID onto the end of pre-existing place descriptions. Bug #1502
+
 2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
 	* data/gramps.desktop.in: list more mime types, item 851
 
