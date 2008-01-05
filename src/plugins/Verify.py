@@ -583,7 +583,6 @@ class VerifyResults(ManagedWindow):
         return new_ignores
 
     def close(self,*obj):
-        self.vr = None
         new_ignores = self.get_new_marking()
         self.save_ignored(new_ignores)
 

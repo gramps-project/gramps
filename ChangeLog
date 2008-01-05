@@ -1,3 +1,6 @@
+2008-01-05  Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/Verify.py: Remove a line of redundant code added yesterday.
+
 2008-01-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/gen/lib/date.py (Date.__sub__): fixed date differences
 	* src/Simple/_SimpleTable.py: removed frame around textview
