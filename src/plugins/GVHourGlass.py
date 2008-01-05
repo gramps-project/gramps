@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Brian G. Matherly
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ Generate an hourglass graph using the GraphViz generator.
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, NumberOption
+from PluginUtils import register_report, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
@@ -46,15 +46,16 @@ class HourGlassReport(Report):
         Creates HourGlass object that produces the report.
         """
         Report.__init__(self,database,person,options_class)
-        self.person = person
         self.db = database
         self.max_descend = options_class.handler.options_dict['maxdescend']
         self.max_ascend  = options_class.handler.options_dict['maxascend']
+        pid = options_class.handler.options_dict['pid']
+        self.center_person = database.get_person_from_gramps_id(pid)
 
     def write_report(self):
-        self.add_person(self.person)
-        self.traverse_up(self.person,1)
-        self.traverse_down(self.person,1)
+        self.add_person(self.center_person)
+        self.traverse_up(self.center_person,1)
+        self.traverse_down(self.center_person,1)
         
     def traverse_down(self,person,gen):
         """
@@ -153,6 +154,13 @@ class HourGlassOptions(MenuReportOptions):
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
+        
         category_name = _("Report Options")
         
         max_gen = NumberOption(_('Max Descendant Generations'),10,1,15)

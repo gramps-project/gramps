@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2007      Brian G. Matherly
+# Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2007      Robert Cawley  <rjc@cawley.id.au>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -34,18 +34,12 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# Gnome/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report, NumberOption, BooleanOption
+from PluginUtils import register_report, NumberOption, \
+    BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes
@@ -95,6 +89,7 @@ class DetDescendantReport(Report):
         dupPerson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
         childRef      - Whether to add descendant references in child list.
         addImages     - Whether to include images.
+        pid           - The Gramps ID of the center person for the report.
         """
         Report.__init__(self,database,person,options_class)
 
@@ -118,6 +113,8 @@ class DetDescendantReport(Report):
         self.includeSources= options_class.handler.options_dict['incsources']
         self.includeMates  = options_class.handler.options_dict['incmates']
         self.includeAttrs  = options_class.handler.options_dict['incattrs']
+        pid = options_class.handler.options_dict['pid']
+        self.center_person = database.get_person_from_gramps_id(pid)
 
         self.gen_handles = {}
         self.prev_gen_handles= {}
@@ -158,15 +155,15 @@ class DetDescendantReport(Report):
                 index += 1
 
     def write_report(self):
-        self.apply_filter(self.start_person.get_handle(),1,"1")
+        self.apply_filter(self.center_person.get_handle(),1,"1")
 
-        name = _nd.display_name(self.start_person.get_primary_name())
+        name = _nd.display_name(self.center_person.get_primary_name())
 
         spouseName = ""
         nspouses = 0
-        for family_handle in self.start_person.get_family_handle_list():
+        for family_handle in self.center_person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
-            if self.start_person.get_gender() == gen.lib.Person.MALE:
+            if self.center_person.get_gender() == gen.lib.Person.MALE:
                 spouse_handle = family.get_mother_handle()
             else:
                 spouse_handle = family.get_father_handle()
@@ -626,6 +623,16 @@ class DetDescendantOptions(MenuReportOptions):
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
+        """
+        Add options to the menu for the detailed descendant report.
+        """
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
+        
         category_name = _("Report Options")
         
         gen = NumberOption(_("Generations"),10,1,100)

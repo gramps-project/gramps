@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2003-2006 Donald N. Allingham
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,8 +35,8 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 import BaseDoc
 from PluginUtils import register_report
-from PluginUtils import NumberOption, EnumeratedListOption
-from ReportBase import Report, ReportUtils,MenuReportOptions,CATEGORY_DRAW, \
+from PluginUtils import NumberOption, EnumeratedListOption, PersonOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
 
@@ -87,6 +87,8 @@ class FanChart(Report):
         self.circle = options_class.handler.options_dict['circle']
         self.background = options_class.handler.options_dict['background']
         self.radial = options_class.handler.options_dict['radial']
+        pid = options_class.handler.options_dict['pid']
+        self.center_person = database.get_person_from_gramps_id(pid)
 
         self.background_style = []
         self.text_style = []
@@ -143,8 +145,8 @@ class FanChart(Report):
 
         self.doc.start_page()
         
-        self.apply_filter(self.start_person.get_handle(),1)
-        n = self.start_person.get_primary_name().get_regular_name()
+        self.apply_filter(self.center_person.get_handle(),1)
+        n = self.center_person.get_primary_name().get_regular_name()
 
         if self.circle == FULL_CIRCLE:
             max_angle = 360.0
@@ -321,6 +323,16 @@ class FanChartOptions(MenuReportOptions):
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
+        """
+        Add options to the menu for the fan chart.
+        """
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
+        
         category_name = _("Report Options")
         
         max_gen = NumberOption(_("Generations"),5,1,self.MAX_GENERATIONS)

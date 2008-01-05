@@ -36,7 +36,7 @@ import time
 #
 #------------------------------------------------------------------------
 from PluginUtils import Tool, register_tool, PluginWindows, \
-    MenuToolOptions, BooleanOption, FilterListOption, StringOption, \
+    MenuToolOptions, BooleanOption, PersonFilterOption, StringOption, \
     NumberOption
 import gen.lib
 import Config
@@ -55,8 +55,7 @@ class CalcEstDateOptions(MenuToolOptions):
         """ Adds the options """
         category_name = _("Options")
 
-        filter = FilterListOption(_("Filter"), 3)
-        filter.add_item("person")
+        filter = PersonFilterOption(_("Filter"), dbstate, 3)
         filter.set_help(_("Select filter to restrict people"))
         menu.add_option(category_name,"filter", filter)
 

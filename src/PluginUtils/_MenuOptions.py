@@ -549,91 +549,65 @@ class EnumeratedListOption(Option):
 
 #-------------------------------------------------------------------------
 #
-# FilterListOption class
+# PersonFilterOption class
 #
 #-------------------------------------------------------------------------
-class FilterListOption(Option):
+class PersonFilterOption(Option):
     """
-    This class describes an option that provides a finite list of filters.
-    Each possible value is assigned a type of set of filters to use.
+    This class describes an option that provides a list of person filters.
+    Each possible value represents one of the possible filters.
     """
-    def __init__(self,label,value=0):
+    def __init__(self,label, dbstate, value=0, include_single=True):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Filter"
         @type label: string
+        @param dbstate: A DbState instance
+        @type dbstate: DbState
+        @param value: A default value for the option.
+            Example: 1
+        @type label: int
+        @param include_single: Whether a filter should be included for a 
+            single person.
+        @type include_single: bool
         @return: nothing
         """
+        from ReportBase import ReportUtils
         Option.__init__(self,label,value)
-        self.__items = []
-        self.__filters = []
-
-    def add_item(self,value):
+        self.__dbstate = dbstate
+        self.__include_single = include_single
+        self.__person = self.__dbstate.get_active_person()
+        self.__filters = ReportUtils.get_person_filters(self.__person,
+                                                        self.__include_single)
+        if self.get_value() > len(self.__filters):
+            self.set_value(0)
+            
+    def get_center_person(self):
+        return self.__person
+    
+    def get_filter(self):
         """
-        Add an item to the list of possible values.
-        
-        @param value: A name of a set of filters.
-            Example: "person"
-        @type value: string
-        @return: nothing
+        Return the filter object.
         """
-        self.__items.append(value)
-
-    def get_items(self):
-        """
-        Get all the possible values for this option.
-        
-        @return: an array of tuples containing (value,description) pairs.
-        """
-        return self.__items
-
-    def add_filter(self, filter):
-        """
-        Add a filter set to the list.
-        
-        @param filter: A filter object.
-            Example: <Filter>
-        @type value: Filter
-        @return: nothing
-        """
-        self.__filters.append(filter)
-
-    def get_filters(self):
-        """
-        Get all of the filter objects.
-        
-        @type value: Filter
-        @return: an array of filter objects
-        """
-        return self.__filters
-
-    def clear_filters(self):
-        """
-        Clear all of the filter objects.
-        
-        """
-        self.__filters = []
+        return self.__filters[self.get_value()]
 
     def make_gui_obj(self, gtk, dialog):
         """
-        Add an FilterListOption to the dialog.
+        Add an PersonFilterOption to the dialog.
         """
-        from ReportBase import ReportUtils
         self.dialog = dialog
         self.combo = gtk.combo_box_new_text()
+        self.combo.connect('changed',self.__on_value_changed)
         self.gobj = gtk.HBox()
-        for filter in self.get_items():
-            if filter in ["person"]:
-                filter_list = ReportUtils.get_person_filters(dialog.person,
-                                                             include_single=True)
-                for filter in filter_list:
-                    self.combo.append_text(filter.get_name())
-                    self.add_filter(filter)
-        self.combo.set_active(self.get_value())
         self.change_button = gtk.Button("%s..." % _('C_hange') )
         self.change_button.connect('clicked',self.on_change_clicked)
         self.gobj.pack_start(self.combo, False)
         self.gobj.pack_start(self.change_button, False)
+        
+        self.update_gui_obj()
+        
+    def __on_value_changed(self, obj):
+        self.set_value( int(self.combo.get_active()) )
 
     def on_change_clicked(self, *obj):
         from Selectors import selector_factory
@@ -643,39 +617,28 @@ class FilterListOption(Option):
                                   self.dialog.track)
         new_person = sel_person.run()
         if new_person:
-            self.dialog.person = new_person
+            self.__person = new_person
             self.update_gui_obj()
-
-    def get_center_person(self):
-        return self.dialog.person
-
-    def get_filter(self):
-        """
-        Return the filter object.
-        """
-        return self.get_filters()[int(self.combo.get_active())]
 
     def update_gui_obj(self):
         # update the gui object with new filter info
         from ReportBase import ReportUtils
-        for i in range(len(self.get_filters())):
-            self.combo.remove_text(0)
-        self.clear_filters()
-        for filter in self.get_items():
-            if filter in ["person"]:
-                filter_list = ReportUtils.get_person_filters(self.dialog.person,
-                                                             include_single=True)
-                for filter in filter_list:
-                    self.combo.append_text(filter.get_name())
-                    self.add_filter(filter)
+        self.combo.get_model().clear()
+        self.__filters = ReportUtils.get_person_filters(self.__person,
+                                                        self.__include_single)
+        for filter in self.__filters:
+            self.combo.append_text(filter.get_name())
+        
+        if self.get_value() >= len(self.__filters):
+            # Set the value to zero if it is not valid.
+            self.set_value(0)
         self.combo.set_active(self.get_value())
 
     def parse(self):
         """
         Parse the object and return.
         """
-        self.__value = int(self.combo.get_active())
-        return self.__value
+        return self.get_value()
     
 #-------------------------------------------------------------------------
 #

@@ -217,7 +217,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         # Build the list of widgets that are used to extend the Options
         # frame and to create other frames
         self.add_user_options()
-        self.setup_center_person()
         
         self.notebook = gtk.Notebook()
         self.notebook.set_border_width(6)
@@ -365,11 +364,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, True, True, self.border_pad)
-        
-    def setup_center_person(self): 
-        """Set up center person labels and change button. 
-        Should be overwritten by standalone report dialogs. """
-        pass
 
     def add_frame_option(self,frame_name,label_text,widget,tooltip=None):
         """Similar to add_option this method takes a frame_name, a

@@ -146,7 +146,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.add_user_options()
 
         self.setup_main_options()
-        self.setup_center_person()
         self.setup_target_frame()
         self.setup_format_frame()
         self.setup_style_frame()
@@ -295,27 +294,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         label.set_alignment(0.0,0.5)
         self.tbl.set_border_width(12)
         self.tbl.attach(label, 0, 4, self.col, self.col+1, gtk.FILL|gtk.EXPAND)
-        self.col += 1
-
-    def setup_center_person(self): 
-        """Set up center person labels and change button. 
-        Should be overwritten by standalone report dialogs. """
-
-        center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
-        center_label.set_use_markup(True)
-        center_label.set_alignment(0.0,0.5)
-        self.tbl.set_border_width(12)
-        self.tbl.attach(center_label,0,4,self.col,self.col+1)
-        self.col += 1
-
-        name = name_displayer.display(self.person)
-        self.person_label = gtk.Label( "%s" % name )
-        self.person_label.set_alignment(0.0,0.5)
-        self.tbl.attach(self.person_label,2,3,self.col,self.col+1)
-        
-        change_button = gtk.Button("%s..." % _('C_hange') )
-        change_button.connect('clicked',self.on_center_person_change_clicked)
-        self.tbl.attach(change_button,3,4,self.col,self.col+1,gtk.SHRINK)
         self.col += 1
 
     def setup_style_frame(self):
@@ -492,18 +470,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         menu for selecting a style."""
         StyleListDisplay(self.style_sheet_list,self.build_style_menu,
                          self.window)
-
-    def on_center_person_change_clicked(self,*obj):
-        from Selectors import selector_factory
-        SelectPerson = selector_factory('Person')
-        sel_person = SelectPerson(self.dbstate,self.uistate,self.track)
-        new_person = sel_person.run()
-        if new_person:
-            self.new_person = new_person
-            new_name = name_displayer.display(new_person)
-            if new_name:
-                self.person_label.set_text( "<i>%s</i>" % new_name )
-                self.person_label.set_use_markup(True)
 
     #------------------------------------------------------------------------
     #

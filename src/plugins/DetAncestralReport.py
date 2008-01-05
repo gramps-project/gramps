@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2007      Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,18 +33,12 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# Gnome/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report, NumberOption, BooleanOption
+from PluginUtils import register_report, NumberOption, \
+    BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes
@@ -92,6 +86,7 @@ class DetAncestorReport(Report):
         dupPerson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
         childRef      - Whether to add descendant references in child list.
         addImages     - Whether to include images.
+        pid           - The Gramps ID of the center person for the report.
         """
         Report.__init__(self,database,person,options_class)
 
@@ -114,6 +109,8 @@ class DetAncestorReport(Report):
         self.includeAddr   = options_class.handler.options_dict['incaddresses']
         self.includeSources= options_class.handler.options_dict['incsources']
         self.includeAttrs  = options_class.handler.options_dict['incattrs']
+        pid = options_class.handler.options_dict['pid']
+        self.center_person = database.get_person_from_gramps_id(pid)
 
         self.gen_handles = {}
         self.prev_gen_handles= {}
@@ -143,9 +140,9 @@ class DetAncestorReport(Report):
             self.apply_filter(family.get_mother_handle(),(index*2)+1)
 
     def write_report(self):
-        self.apply_filter(self.start_person.get_handle(),1)
+        self.apply_filter(self.center_person.get_handle(),1)
 
-        name = _nd.display_name(self.start_person.get_primary_name())
+        name = _nd.display_name(self.center_person.get_primary_name())
         self.doc.start_paragraph("DAR-Title")
         title = _("Ancestral Report for %s") % name
         mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
@@ -663,6 +660,13 @@ class DetAncestorOptions(MenuReportOptions):
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
+        
         category_name = _("Report Options")
         
         gen = NumberOption(_("Generations"),10,1,100)

@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2003-2006 Donald N. Allingham
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,13 +39,6 @@ from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
-# GNOME/gtk
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
@@ -55,7 +48,9 @@ from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import BooleanOption, PersonFilterOption, EnumeratedListOption, \
+    NumberOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from Filters import GenericFilter, Rules
 import DateHandler
@@ -479,9 +474,8 @@ class StatisticsChart(Report):
         """
         Report.__init__(self,database,person,options_class)
     
-        filter_num = options_class.handler.options_dict['filter']
-        filters = ReportUtils.get_person_filters(person,False)
-        filterfun = filters[filter_num]
+        self.filter_option =  options_class.menu.get_option_by_name('filter')
+        self.filter = self.filter_option.get_filter()
 
         options = options_class.handler.options_dict
         self.bar_items = options['bar_items']
@@ -507,7 +501,7 @@ class StatisticsChart(Report):
 
         # extract requested items from the database and count them
         self.progress.set_pass(_('Collecting data...'), 1)
-        tables = _Extract.collect_data(database, filterfun, options,
+        tables = _Extract.collect_data(database, self.filter, options,
                         gender, year_from, year_to, options['no_years'])
         self.progress.step()
 
@@ -660,55 +654,87 @@ class StatisticsChart(Report):
 
 #------------------------------------------------------------------------
 #
-# Statistics report options
+# StatisticsChartOptions
 #
 #------------------------------------------------------------------------
-class StatisticsChartOptions(ReportOptions):
-    """
-    Defines options and provides their handling interface.
-    """
-    def __init__(self,name, person_id=None):
-        ReportOptions.__init__(self, name, person_id)
+class StatisticsChartOptions(MenuReportOptions):
 
-        # Options specific for this report
-        self.options_dict = {
-            'filter'    : 0,
-            'gender'    : Person.UNKNOWN,
-            'sortby'    : _options.SORT_VALUE,
-            'reverse'   : 0,
-            'year_from' : 1700,
-            'year_to'   : time.localtime()[0],
-            'no_years'  : 0,
-            'bar_items' : 8
-        }
-        for key in _Extract.extractors:
-            self.options_dict[key] = 0
-        self.options_dict['data_gender'] = 1
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
+        
+    def add_menu_options(self,menu,dbstate):
+        """
+        Add options to the menu for the statistics report.
+        """
+        category_name = _("Report Options")
+        
+        filter = PersonFilterOption(_("Filter"),dbstate,0,False)
+        filter.set_help(_("Determines what people are included in the report"))
+        menu.add_option(category_name,"filter", filter)
+        
+        sortby = EnumeratedListOption(_('Sort chart items by'),
+                                      _options.SORT_VALUE )
+        for item_idx in range(len(_options.sorts)):
+            item = _options.sorts[item_idx]
+            sortby.add_item(item_idx,item[2])
+        sortby.set_help( _("Select how the statistical data is sorted."))
+        menu.add_option(category_name,"sortby",sortby)
 
-        filters = ReportUtils.get_person_filters(None,False)
-        self.options_help = {
-            'gender'    : ("=num", "Genders included",
-                               ["%d\t%s" % (item[0], item[1]) for item in _options.genders],
-                               False),
-            'sortby'    : ("=num", "Sort chart items by",
-                                ["%d\t%s" % (item[0], item[1]) for item in _options.sorts],
-                                False),
-            'reverse'   : ("=0/1", "Whether to sort in reverse order",
-                                ["Do not sort in reverse", "Sort in reverse"],
-                                True),
-            'year_from' : ("=num", "Birth year from which to include people",
-                                "Earlier than 'year_to' value"),
-            'year_to'   : ("=num", "Birth year until which to include people",
-                                "Smaller than %d" % self.options_dict['year_to']),
-            'no_years'  : ("=0/1", "Whether to include people without known birth years",
-                                ["Do not include", "Include"], True),
-            'bar_items' : ("=num", "Use barchart instead of piechart with this many or more items",
-                                "Number of items with which piecharts still look good...")
-        }
+        reverse = BooleanOption(_("Sort in reverse order"), False)
+        reverse.set_help(_("Check to reverse the sorting order."))
+        menu.add_option(category_name,"reverse", reverse)
+
+        this_year = time.localtime()[0]
+        year_from = NumberOption(_("People Born Before"), 
+                                 1700, 1, this_year)
+        year_from.set_help(_("Birth year from which to include people"))
+        menu.add_option(category_name,"year_from", year_from)
+        
+        year_to = NumberOption(_("People Born After"), 
+                                 this_year, 1, this_year)
+        year_to.set_help(_("Birth year until which to include people"))
+        menu.add_option(category_name,"year_to", year_to)
+        
+        no_years = BooleanOption(_("Include people without known birth years"), 
+                                 False)
+        no_years.set_help(_("Whether to include people without "
+                            "known birth years"))
+        menu.add_option(category_name,"no_years", no_years)
+
+        gender = EnumeratedListOption(_('Genders included'),
+                                      Person.UNKNOWN )
+        for item_idx in range(len(_options.genders)):
+            item = _options.genders[item_idx]
+            gender.add_item(item[0],item[2])
+        gender.set_help( _("Select which genders are included into "
+                           "statistics."))
+        menu.add_option(category_name,"gender",gender)
+
+        bar_items = NumberOption(_("Max. items for a pie"), 8, 0, 20)
+        bar_items.set_help(_("With fewer items pie chart and legend will be "
+                             "used instead of a bar chart."))
+        menu.add_option(category_name,"bar_items", bar_items)
+
+        # -------------------------------------------------
+        # List of available charts on separate option tabs
+        idx = 0
+        half = (len(_Extract.extractors))/2
+        self.charts = {}
         for key in _Extract.extractors:
-            self.options_help[key] = ("=0/1", _Extract.extractors[key][0],
-                                ["Leave chart with this data out", "Include chart with this data"],
-                                True)
+            if idx < half:
+                category_name = _("Charts 1")
+            else:
+                category_name = _("Charts 2")
+            
+            opt = BooleanOption(_Extract.extractors[key][1], False)
+            opt.set_help(_("Include charts with indicated dat"))
+            menu.add_option(category_name,key, opt)
+            idx += 1
+        
+        # Enable a couple of charts by default
+        menu.get_option_by_name("data_gender").set_value(True)
+        menu.get_option_by_name("data_ccount").set_value(True)
+        menu.get_option_by_name("data_bmonth").set_value(True)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Statistics report."""
@@ -819,121 +845,6 @@ class StatisticsChartOptions(ReportOptions):
         g.set_line_width(0)
         default_style.add_draw_style("SC-legend",g)
 
-    def add_user_options(self, dialog):
-        """
-        Override the base class add_user_options task to add
-        report specific options
-        """
-        filter_index = self.options_dict['filter']
-        filter_list = ReportUtils.get_person_filters(dialog.person,False)
-        self.filter_menu = gtk.combo_box_new_text()
-        for filter in filter_list:
-            self.filter_menu.append_text(filter.get_name())
-        if filter_index > len(filter_list):
-            filter_index = 0
-        self.filter_menu.set_active(filter_index)
-        dialog.add_option(_('Filter'),self.filter_menu)
-        
-        # how to sort the data
-        self.sort_menu = gtk.combo_box_new_text()
-        for item_idx in range(len(_options.sorts)):
-            item = _options.sorts[item_idx]
-            self.sort_menu.append_text(item[2])
-            if item[0] == self.options_dict['sortby']:
-                self.sort_menu.set_active(item_idx)
-        tip = _("Select how the statistical data is sorted.")
-        dialog.add_option(_("Sort chart items by"), self.sort_menu, tip)
-
-        # sorting order
-        tip = _("Check to reverse the sorting order.")
-        self.reverse = gtk.CheckButton(_("Sort in reverse order"))
-        self.reverse.set_active(self.options_dict['reverse'])
-        dialog.add_option(None, self.reverse, tip)
-        self.reverse.show()
-
-        # year range
-	from_adj = gtk.Adjustment(value=self.options_dict['year_from'],
-				  lower=1, upper=time.localtime()[0],
-				  step_incr=1, page_incr=100)
-        self.from_box = gtk.SpinButton(adjustment=from_adj, digits=0)
-	to_adj = gtk.Adjustment(value=self.options_dict['year_to'],
-				lower=1, upper=time.localtime()[0],
-				step_incr=1, page_incr=100)
-        self.to_box = gtk.SpinButton(adjustment=to_adj, digits=0)
-
-        box = gtk.HBox()
-        box.add(self.from_box)
-        box.add(gtk.Label("-"))
-        box.add(self.to_box)
-        tip = _("Select year range within which people need to be born to be selected for statistics.")
-        dialog.add_option(_('People born between'), box, tip)
-        box.show_all()
-
-        # include people without known birth year?
-        tip = _("Check this if you want people who have no known birth date or year to be accounted also in the statistics.")
-        self.no_years = gtk.CheckButton(_("Include people without known birth years"))
-        self.no_years.set_active(self.options_dict['no_years'])
-        dialog.add_option(None, self.no_years, tip)
-        self.no_years.show()
-
-        # gender selection
-        self.gender_menu = gtk.combo_box_new_text()
-        for item_idx in range(len(_options.genders)):
-            item = _options.genders[item_idx]
-            self.gender_menu.append_text(item[2])
-            if item[0] == self.options_dict['gender']:
-                self.gender_menu.set_active(item_idx)
-        tip = _("Select which genders are included into statistics.")
-        dialog.add_option(_("Genders included"), self.gender_menu, tip)
-
-        # max. pie item selection
-        tip = _("With fewer items pie chart and legend will be used instead of a bar chart.")
-	pie_adj = gtk.Adjustment(value=self.options_dict['bar_items'],
-				 lower=0, upper=20, step_incr=1)
-        self.bar_items = gtk.SpinButton(adjustment=pie_adj, digits=0)
-        dialog.add_option(_("Max. items for a pie"), self.bar_items, tip)
-
-        # -------------------------------------------------
-        # List of available charts on a separate option tab
-        idx = 0
-        half = (len(_Extract.extractors)+1)/2
-        hbox = gtk.HBox()
-        vbox = gtk.VBox()
-        self.charts = {}
-        for key in _Extract.extractors:
-            check = gtk.CheckButton(_Extract.extractors[key][1])
-            check.set_active(self.options_dict[key])
-            self.charts[key] = check
-            vbox.add(check)
-            idx += 1
-            if idx == half:
-                hbox.add(vbox)
-                vbox = gtk.VBox()
-        hbox.add(vbox)
-        tip = _("Mark checkboxes to add charts with indicated data")
-        dialog.add_frame_option(_("Charts"), "", hbox, tip)
-        hbox.show_all()
-
-        # Note about children
-        label = gtk.Label(_("Note that both biological and adopted children are taken into account."))
-        dialog.add_frame_option(_("Charts"), "", label)
-
-        
-    def parse_user_options(self, dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        self.options_dict['filter'] = int(self.filter_menu.get_active())
-        self.options_dict['sortby'] = _options.sorts[self.sort_menu.get_active()][0]
-        self.options_dict['reverse'] = int(self.reverse.get_active())
-        self.options_dict['year_to'] = int(self.to_box.get_value_as_int())
-        self.options_dict['year_from'] = int(self.from_box.get_value_as_int())
-        self.options_dict['no_years'] = int(self.no_years.get_active())
-        self.options_dict['gender'] = _options.genders[self.gender_menu.get_active()][0]
-        self.options_dict['bar_items'] = int(self.bar_items.get_value_as_int())
-        for key in _Extract.extractors:
-            self.options_dict[key] = int(self.charts[key].get_active())
-
 #------------------------------------------------------------------------
 #
 # Register report/options
@@ -949,6 +860,7 @@ register_report(
     status = (_("Stable")),
     author_name="Eero Tamminen",
     author_email="",
-    description= _("Generates statistical bar and pie charts of the people in the database."),
+    description= _("Generates statistical bar and pie charts of the people "
+                   "in the database."),
     require_active=False,
     )

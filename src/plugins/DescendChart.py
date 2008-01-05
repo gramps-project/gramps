@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,8 @@
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from PluginUtils import register_report, NumberOption, BooleanOption, TextOption
+from PluginUtils import register_report, NumberOption, BooleanOption, \
+    TextOption, PersonOption
 from ReportBase import Report, MenuReportOptions, \
     ReportUtils, CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 from SubstKeywords import SubstKeywords
@@ -124,8 +125,10 @@ class DescendChart(Report):
         self.max_generations = options_class.handler.options_dict['maxgen']
         self.force_fit = options_class.handler.options_dict['singlep']
         self.incblank = options_class.handler.options_dict['incblank']
+        pid = options_class.handler.options_dict['pid']
+        center_person = database.get_person_from_gramps_id(pid)
         
-        name = name_displayer.display_formal(person)
+        name = name_displayer.display_formal(center_person)
         self.title = _("Descendant Chart for %s") % name
 
         self.map = {}
@@ -139,7 +142,7 @@ class DescendChart(Report):
         
         self.genchart = GenChart(32)
         
-        self.apply_filter(self.start_person.get_handle(),0,0)
+        self.apply_filter(center_person.get_handle(),0,0)
 
         self.calc()
         
@@ -400,7 +403,17 @@ class DescendChartOptions(MenuReportOptions):
     def __init__(self,name,dbstate=None):
         MenuReportOptions.__init__(self,name,dbstate)
         
-    def add_menu_options(self,menu):
+    def add_menu_options(self,menu,dbstate):
+        """
+        Add options to the menu for the descendant report.
+        """
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
+        
         category_name = _("Report Options")
         
         max_gen = NumberOption(_("Generations"),10,1,50)

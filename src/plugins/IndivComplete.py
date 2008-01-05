@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2000-2007 Donald N. Allingham
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,13 +31,6 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# Gnome/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
@@ -47,8 +40,8 @@ import Utils
 import BaseDoc
 from Filters import GenericFilter, Rules
 import DateHandler
-from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import register_report, PersonFilterOption, BooleanOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes
 from BasicUtils import name_displayer as _nd
@@ -84,9 +77,8 @@ class IndivCompleteReport(Report):
 
         self.use_srcs = options_class.handler.options_dict['cites']
 
-        filter_num = options_class.handler.options_dict['filter']
-        filters = ReportUtils.get_person_filters(person)
-        self.filter = filters[filter_num]
+        filter_option = options_class.menu.get_option_by_name('filter')
+        self.filter = filter_option.get_filter()
         self.bibli = None
 
     def write_fact(self,event_ref):
@@ -529,61 +521,31 @@ class IndivCompleteReport(Report):
         self.write_note()
         if self.use_srcs:
             Endnotes.write_endnotes(self.bibli,self.database,self.doc)
-
+            
 #------------------------------------------------------------------------
 #
-# 
+# IndivCompleteOptions
 #
 #------------------------------------------------------------------------
-class IndivCompleteOptions(ReportOptions):
-
+class IndivCompleteOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
-
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-        # Options specific for this report
-        self.options_dict = {
-            'filter'   : 0,
-            'cites'    : 1,
-        }
-        filters = ReportUtils.get_person_filters(None)
-        self.options_help = {
-            'filter'   : ("=num","Filter number.",
-                          [ filt.get_name() for filt in filters ],
-                          True ),
-            'cites'    : ("=0/1","Whether to cite sources.",
-                          ["Do not cite sources","Cite sources"],
-                          True),
-        }
-
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add a menu that allows
-        the user to select the sort method.
-        """
-        filter_index = self.options_dict['filter']
-        filter_list = ReportUtils.get_person_filters(dialog.person)
-        self.filter_menu = gtk.combo_box_new_text()
-        for filter in filter_list:
-            self.filter_menu.append_text(filter.get_name())
-        if filter_index > len(filter_list):
-            filter_index = 0
-        self.filter_menu.set_active(filter_index)
-        dialog.add_option('Filter',self.filter_menu)
-
-        self.use_srcs = gtk.CheckButton(_('Include Source Information'))
-        self.use_srcs.set_active(self.options_dict['cites'])
-        dialog.add_option('',self.use_srcs)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        self.options_dict['filter'] = int(self.filter_menu.get_active())
-        self.options_dict['cites'] = int(self.use_srcs.get_active())
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
+        
+    def add_menu_options(self,menu,dbstate):
+        ################################
+        category_name = _("Report Options")
+        ################################
+        
+        filter = PersonFilterOption(_("Filter"),dbstate,0,True)
+        filter.set_help(_("Select the filter to be applied to the report"))
+        menu.add_option(category_name,"filter", filter)
+        
+        cites = BooleanOption(_("Include Source Information"), True)
+        cites.set_help(_("Whether to cite sources."))
+        menu.add_option(category_name,"cites", cites)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Individual Complete Report."""

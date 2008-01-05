@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -71,6 +71,7 @@ import Errors
 import BaseDoc
 from QuestionDialog import WarningDialog, ErrorDialog
 from PluginUtils import bkitems_list, register_report, Plugins
+from PluginUtils import PersonOption, PersonFilterOption
 import ManagedWindow
 
 # Import from specific modules in ReportBase
@@ -84,6 +85,35 @@ from ReportBase._ReportOptions import ReportOptions
 
 #------------------------------------------------------------------------
 #
+# Private Functions
+#
+#------------------------------------------------------------------------
+def _get_subject(options,db):
+    """
+    Attempts to determine the subject of a set of options. The subject would
+    likely be a person (using a PersonOption) or a filter (using a 
+    PersonFilterOption)
+    
+    options: The ReportOptions class
+    db: the database for which it corresponds
+    """
+    if not hasattr(options,"menu"):
+        return _("Not Applicable")
+    menu = options.menu
+    option_names = menu.get_all_option_names()
+    for name in option_names:
+        option = menu.get_option_by_name(name)
+        if isinstance(option,PersonOption):
+            from BasicUtils import name_displayer as _nd
+            gid = option.get_value()
+            person = db.get_person_from_gramps_id(gid)
+            return _nd.display(person)
+        elif isinstance(option,PersonFilterOption):
+            return option.get_filter().get_name()
+    return _("Not Applicable")
+
+#------------------------------------------------------------------------
+#
 # Book Item class
 #
 #------------------------------------------------------------------------
@@ -92,14 +122,14 @@ class BookItem:
     Interface into the book item -- a smallest element of the book.
     """
 
-    def __init__(self,name=None):
+    def __init__(self,dbstate,name=None):
         """
         Creates a new empty BookItem.
         
         name:   if not None then the book item is retreived 
                 from the book item registry using name for lookup
         """
-
+        self.dbstate = dbstate
         if name:
             self.get_registered_item(name)
         else:
@@ -137,7 +167,7 @@ class BookItem:
                     self.category = item[1]
                 self.write_item = item[2]
                 self.name = item[4]
-                self.option_class = item[3](self.name)
+                self.option_class = item[3](self.name,self.dbstate)
                 self.option_class.load_previous_values()
 
     def get_name(self):
@@ -309,14 +339,14 @@ class BookList:
     BookList is loaded from a specified XML file if it exists.
     """
 
-    def __init__(self,filename):
+    def __init__(self,filename,dbstate):
         """
         Creates a new BookList from the books that may be defined in the 
         specified file.
 
         file:   XML file that contains book items definitions
         """
-
+        self.dbstate = dbstate
         self.bookmap = {}
         self.file = os.path.join(const.HOME_DIR,filename)
         self.parse()
@@ -402,7 +432,7 @@ class BookList:
         """
         try:
             p = make_parser()
-            p.setContentHandler(BookParser(self))
+            p.setContentHandler(BookParser(self,self.dbstate))
             the_file = open(self.file)
             p.parse(the_file)
             the_file.close()
@@ -420,13 +450,14 @@ class BookParser(handler.ContentHandler):
     SAX parsing class for the Books XML file.
     """
     
-    def __init__(self,booklist):
+    def __init__(self,booklist,dbstate):
         """
         Creates a BookParser class that populates the passed booklist.
 
         booklist:   BookList to be loaded from the file.
         """
         handler.ContentHandler.__init__(self)
+        self.dbstate = dbstate
         self.booklist = booklist
         self.b = None
         self.i = None
@@ -449,7 +480,7 @@ class BookParser(handler.ContentHandler):
             self.dbname = attrs['database']
             self.b.set_dbname(self.dbname)
         elif tag == "item":
-            self.i = BookItem(attrs['name'])
+            self.i = BookItem(self.dbstate,attrs['name'])
             self.o = {}
         elif tag == "option":
             self.an_o_name = attrs['name']
@@ -587,7 +618,7 @@ class BookOptions(ReportOptions):
         }
         self.options_help = {
             'bookname'    : ("=name","Name of the book. MANDATORY",
-                            BookList('books.xml').get_book_names(),
+                            BookList('books.xml',None).get_book_names(),
                             False),
         }
 
@@ -655,7 +686,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         av_titles = [(_('Name'),0,150),(_('Type'),1,50),('',-1,0)]
         bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50),('',-1,0),
-            (_('Center person'),-1,50)]
+            (_('Subject'),-1,50)]
         
         self.av_ncols = len(av_titles)
         self.bk_ncols = len(bk_titles)
@@ -718,22 +749,15 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         self.bk_model.clear()
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
-            item = BookItem(name)
+            item = BookItem(self.dbstate,name)
             item.option_class = saved_item.option_class
-            person_id = item.option_class.handler.get_person_id()
-            if not same_db or not person_id:
-                person_id = self.person.get_gramps_id()
-                item.option_class.handler.set_person_id(person_id)
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
             
             data = [ item.get_translated_name(),
                      item.get_category(), item.get_name() ]
-            if data[2] in ('simple_book_title','custom_text'):
-                data[2]=(_("Not Applicable"))
-            else:
-                pname = self.db.get_person_from_gramps_id(person_id)
-                data[2]=(pname.get_primary_name().get_regular_name())
+            
+            data[2] = _get_subject(item.option_class,self.db)
             self.bk_model.add(data)
 
     def on_add_clicked(self,obj):
@@ -746,16 +770,9 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if not the_iter:
             return
         data = self.av_model.get_data(the_iter,range(self.av_ncols))
-        item = BookItem(data[2])
-        if data[2] in ('simple_book_title','custom_text'):
-            data[2]=(_("Not Applicable"))
-        else:
-            data[2]=(self.person.get_primary_name().get_regular_name())
+        item = BookItem(self.dbstate,data[2])
+        data[2] = _get_subject(item.option_class,self.db)
         self.bk_model.add(data)
-        person_id = item.option_class.handler.get_person_id()
-        if not person_id:
-            person_id = self.person.get_gramps_id()
-            item.option_class.handler.set_person_id(person_id)
         self.book.append_item(item)
 
     def on_remove_clicked(self,obj):
@@ -820,10 +837,9 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                                      item.get_translated_name(),
                                      self.track)
         response = item_dialog.window.run()
-        if (response == RESPONSE_OK) and (item_dialog.person) \
-               and (data[1] != _("Title")): 
-            self.bk_model.model.set_value(the_iter,2,
-                item_dialog.person.get_primary_name().get_regular_name())
+        if response == RESPONSE_OK:
+            subject = _get_subject(option_class,self.db)
+            self.bk_model.model.set_value(the_iter,2,subject)
             self.book.set_item(row,item)
         item_dialog.close()
 
@@ -914,7 +930,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Save the current book in the xml booklist file. 
         """
-        self.book_list = BookList(self.file)
+        self.book_list = BookList(self.file,dbstate)
         name = unicode(self.name_entry.get_text())
         self.book.set_name(name)
         self.book.set_dbname(self.db.get_save_path())
@@ -925,7 +941,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to open. 
         """
-        self.book_list = BookList(self.file)
+        self.book_list = BookList(self.file,self.dbstate)
         booklistdisplay = BookListDisplay(self.book_list,1,0)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
@@ -937,7 +953,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to delete. 
         """
-        self.book_list = BookList(self.file)
+        self.book_list = BookList(self.file,self.dbstate)
         booklistdisplay = BookListDisplay(self.book_list,0,1)
         booklistdisplay.top.destroy()
 
@@ -958,10 +974,7 @@ class BookItemDialog(BareReportDialog):
 
         self.database = dbstate.db
         self.option_class = option_class
-        self.person = self.database.get_person_from_gramps_id(
-            self.option_class.handler.get_person_id())
-        self.new_person = None
-        BareReportDialog.__init__(self,dbstate,uistate,self.person,
+        BareReportDialog.__init__(self,dbstate,uistate,None,
                                   option_class,name,translated_name,track)
 
     def on_ok_clicked(self, obj):
@@ -972,10 +985,6 @@ class BookItemDialog(BareReportDialog):
         self.parse_style_frame()
         self.parse_user_options()
 
-        if self.new_person:
-            self.person = self.new_person
-
-        self.option_class.handler.set_person_id(self.person.get_gramps_id())
         self.options.handler.save_options()
 
 #------------------------------------------------------------------------
@@ -1108,7 +1117,7 @@ def cl_report(database,name,category,options_str_dict):
     if clr.show:
         return
 
-    book_list = BookList('books.xml')
+    book_list = BookList('books.xml',None)
     book_name = clr.options_dict['bookname']
     book = book_list.get_book(book_name)
     selected_style = BaseDoc.StyleSheet()

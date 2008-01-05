@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2003-2007 Donald N. Allingham
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,18 +34,12 @@ from TransUtils import sgettext as _
 
 #------------------------------------------------------------------------
 #
-# GNOME/gtk
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import PersonFilterOption, EnumeratedListOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
@@ -53,6 +47,17 @@ from Filters import GenericFilter, Rules
 import Sort
 from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer
+
+#------------------------------------------------------------------------
+#
+# Private Functions
+#
+#------------------------------------------------------------------------
+def _get_sort_functions(sort):
+    return [
+        (_("Birth Date"),sort.by_birthdate),
+        (_("Name"),sort.by_last_name), 
+]
 
 #------------------------------------------------------------------------
 #
@@ -77,23 +82,19 @@ class TimeLine(Report):
         filter    - Filter to be applied to the people of the database.
                     The option class carries its number, and the function
                     returning the list of filters.
-        sort_func - function used to sort entries, that returns -1/0/1
-                    when given two personal handles (like cmp).
-                    The option class carries its number, and the function
-                    returning the list of sort functions.
+        sortby -    Sorting method to be used.
         """
 
         Report.__init__(self,database,person,options_class)
 
         filter_num = options_class.handler.options_dict['filter']
-        filters = ReportUtils.get_person_filters(person,False)
-        self.filter = filters[filter_num]
+        self.filter_option =  options_class.menu.get_option_by_name('filter')
+        self.filter = self.filter_option.get_filter()
 
-        name = name_displayer.display_formal(person)
-        self.title = _("Timeline Graph for %s") % name
+        self.title = _("Timeline Graph for %s") % self.filter.get_name()
 
         sort_func_num = options_class.handler.options_dict['sortby']
-        sort_functions = options_class.get_sort_functions(Sort.Sort(database))
+        sort_functions = _get_sort_functions(Sort.Sort(database))
         self.sort_func = sort_functions[sort_func_num][1]
 
     def write_report(self):
@@ -289,34 +290,30 @@ class TimeLine(Report):
 
 #------------------------------------------------------------------------
 #
-# 
+# TimeLineOptions
 #
 #------------------------------------------------------------------------
-class TimeLineOptions(ReportOptions):
+class TimeLineOptions(MenuReportOptions):
 
-    """
-    Defines options and provides handling interface.
-    """
-
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-        # Options specific for this report
-        self.options_dict = {
-            'filter'   : 0,
-            'sortby'    : 0,
-        }
-        filters = ReportUtils.get_person_filters(None,False)
-        self.options_help = {
-            'filter'    : ("=num","Filter number.",
-                           [ filt.get_name() for filt in filters ],
-                           True ),
-            'sortby'    : ("=num","Number of a sorting function",
-                            [item[0] for item in 
-                                    self.get_sort_functions(Sort.Sort(None))],
-                            True),
-        }
-
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
+        
+    def add_menu_options(self,menu,dbstate):
+        category_name = _("Report Options")
+        
+        filter = PersonFilterOption(_("Filter"),dbstate,0,False)
+        filter.set_help(_("Determine what people will be included in "
+                          "the report"))
+        menu.add_option(category_name,"filter", filter)
+        
+        sortby = EnumeratedListOption(_('Sort by'), 0 )
+        idx = 0
+        for item in _get_sort_functions(Sort.Sort(dbstate.get_database())):
+            sortby.add_item(idx,item[0])
+            idx += 1
+        sortby.set_help( _("Sorting method to use"))
+        menu.add_option(category_name,"sortby",sortby)
+        
     def make_default_style(self,default_style):
         """Make the default output style for the Timeline report."""
         # Paragraph Styles
@@ -404,44 +401,6 @@ class TimeLineOptions(ReportOptions):
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         default_style.add_draw_style("TLG-label",g)
-
-    def get_sort_functions(self,sort):
-        return [
-            (_("Birth Date"),sort.by_birthdate),
-            (_("Name"),sort.by_last_name), 
-        ]
-
-    def add_user_options(self,dialog):
-        """
-        Override the base class add_user_options task to add a menu that allows
-        the user to select the sort method.
-        """
-        filter_index = self.options_dict['filter']
-        filter_list = ReportUtils.get_person_filters(dialog.person,False)
-        self.filter_menu = gtk.combo_box_new_text()
-        for filter in filter_list:
-            self.filter_menu.append_text(filter.get_name())
-        if filter_index > len(filter_list):
-            filter_index = 0
-        self.filter_menu.set_active(filter_index)
-        dialog.add_option(_('Filter'),self.filter_menu)
-        
-        self.sort_menu = gtk.combo_box_new_text()
-
-        sort_functions = self.get_sort_functions(Sort.Sort(dialog.db))
-        for item in sort_functions:
-            self.sort_menu.append_text(item[0])
-
-        self.sort_menu.set_active(self.options_dict['sortby'])
-
-        dialog.add_option(_('Sort by'),self.sort_menu)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        self.options_dict['filter'] = int(self.filter_menu.get_active())
-        self.options_dict['sortby'] = self.sort_menu.get_active()
 
 #------------------------------------------------------------------------
 #

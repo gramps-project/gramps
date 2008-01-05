@@ -64,10 +64,10 @@ import DateHandler
 import GrampsWidgets
 import ManagedWindow
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, CATEGORY_CODE, MODE_GUI, MODE_CLI
+from ReportBase import Report, ReportUtils, CATEGORY_CODE, MODE_GUI, MODE_CLI
 from ReportBase import Report, MenuReportOptions, MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from ReportBase._ReportDialog import ReportDialog
-from PluginUtils import register_report, FilterListOption, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption, SurnameColourOption
+from PluginUtils import register_report, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption, SurnameColourOption
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd

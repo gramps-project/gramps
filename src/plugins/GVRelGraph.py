@@ -34,7 +34,7 @@ Create a relationship graph using Graphviz
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, FilterListOption, \
+from PluginUtils import register_report, PersonFilterOption, \
                         EnumeratedListOption, BooleanOption
 from ReportBase import Report, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
@@ -135,9 +135,7 @@ class RelGraphReport(Report):
             self.arrowtailstyle = 'none'
 
         filter_option = options_class.menu.get_option_by_name('filter')
-        filter_index = int(filter_option.get_value())
-        filters = filter_option.get_filters()
-        self.filter = filters[filter_index]
+        self.filter = filter_option.get_filter()
 
     def write_report(self):
         self.person_handles = self.filter.apply(self.database,
@@ -418,8 +416,7 @@ class RelGraphOptions(MenuReportOptions):
         category_name = _("Report Options")
         ################################
         
-        filter = FilterListOption(_("Filter"))
-        filter.add_item("person")
+        filter = PersonFilterOption(_("Filter"),dbstate,0,False)
         filter.set_help(_("Select the filter to be applied to the report"))
         menu.add_option(category_name,"filter", filter)
         

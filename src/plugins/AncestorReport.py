@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +37,8 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, NumberOption, BooleanOption
+from PluginUtils import register_report, NumberOption, \
+     BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -79,6 +80,8 @@ class AncestorReport(Report):
         self.max_generations = options_class.handler.options_dict['maxgen']
         self.pgbrk = options_class.handler.options_dict['pagebbg']
         self.opt_namebrk = options_class.handler.options_dict['namebrk']
+        pid = options_class.handler.options_dict['pid']
+        self.center_person = database.get_person_from_gramps_id(pid)
 
     def apply_filter(self,person_handle,index,generation=1):
         """
@@ -142,12 +145,12 @@ class AncestorReport(Report):
         # Call apply_filter to build the self.map array of people in the database that
         # match the ancestry.
 
-        self.apply_filter(self.start_person.get_handle(),1)
+        self.apply_filter(self.center_person.get_handle(),1)
 
         # Write the title line. Set in INDEX marker so that this section will be 
         # identified as a major category if this is included in a Book report.
 
-        name = name_displayer.display_formal(self.start_person)
+        name = name_displayer.display_formal(self.center_person)
         title = _("Ahnentafel Report for %s") % name
         mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC,1 )        
         self.doc.start_paragraph("AHN-Title")
@@ -226,6 +229,16 @@ class AncestorOptions(MenuReportOptions):
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
+        """
+        Add options to the menu for the ancestor report.
+        """
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
+        
         category_name = _("Report Options")
         
         maxgen = NumberOption(_("Generations"),10,1,15)

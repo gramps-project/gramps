@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,18 +32,12 @@ from string import capitalize
 
 #------------------------------------------------------------------------
 #
-# GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, relationship_class
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import register_report, relationship_class, NumberOption, \
+    BooleanOption, PersonOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 from BasicUtils import name_displayer
@@ -74,6 +68,7 @@ class KinshipReport(Report):
         incspouses    - Whether to include spouses.
         inccousins    - Whether to include cousins.
         incaunts      - Whether to include aunts/uncles/nephews/nieces.
+        pid           - The Gramps ID of the center person for the report.
         """
         Report.__init__(self,database,person,options_class)
 
@@ -82,8 +77,9 @@ class KinshipReport(Report):
         self.incSpouses  = options_class.handler.options_dict['incspouses']
         self.incCousins  = options_class.handler.options_dict['inccousins']
         self.incAunts   = options_class.handler.options_dict['incaunts']
-        
-        self.person = person
+        pid = options_class.handler.options_dict['pid']
+        self.person = database.get_person_from_gramps_id(pid)
+
         self.db = database
         self.relCalc = relationship_class()
         self.kinship_map = {}
@@ -113,7 +109,7 @@ class KinshipReport(Report):
         # Collect all ancestors/aunts/uncles/nephews/cousins of the person
         self.traverse_up(self.person.get_handle(),1,0)
                 
-        # Write Ancestors
+        # Write Kin
         for Ga in self.kinship_map.keys():
             for Gb in self.kinship_map[Ga]:
                 # To understand these calculations, see: 
@@ -321,72 +317,47 @@ class KinshipReport(Report):
 # KinshipOptions
 #
 #------------------------------------------------------------------------
-class KinshipOptions(ReportOptions):
+class KinshipOptions(MenuReportOptions):
+
     """
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-        self.options_dict = {
-            'maxdescend'    : 2,
-            'maxascend'     : 2,
-            'incspouses'    : 1,
-            'inccousins'    : 1,
-            'incsiblings'   : 1,
-            'incaunts' : 1,
-        }
-        self.options_help = {
-            'maxdescend'   : ("=int","Max Descendants",
-                           "The number of generations of descendants to " \
-                           "include in the report",
-                           True),
-            'maxascend'    : ("=int","Max Ancestors",
-                           "The number of generations of ancestors to " \
-                           "include in the report",
-                           True),
-            'incspouses'   : ("=0/1","Whether to include spouses",
-                           ["Do not include spouses","Include spouses"],
-                           True),
-            'inccousins'   : ("=0/1","Whether to include cousins",
-                           ["Do not include cousins","Include cousins"],
-                           True),
-            'incaunts'     : ("=0/1",
-                           "Whether to include aunts/uncles/nephews/nieces",
-                           ["Do not include aunts","Include aunts"],
-                           True),
-        }
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
         
-    def add_user_options(self,dialog):
-        self.maxdescend = gtk.SpinButton(gtk.Adjustment(1,1,20,1))
-        self.maxdescend.set_value(self.options_dict['maxdescend'])
+    def add_menu_options(self,menu,dbstate):
+        """
+        Add options to the menu for the kinship report.
+        """
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
         
-        self.maxascend = gtk.SpinButton(gtk.Adjustment(1,1,20,1))
-        self.maxascend.set_value(self.options_dict['maxascend'])
+        category_name = _("Report Options")
         
-        self.incspouses = gtk.CheckButton(_("Include spouses"))
-        self.incspouses.set_active(self.options_dict['incspouses'])
+        maxdescend = NumberOption(_("Max Descendant Generations"),2,1,20)
+        maxdescend.set_help(_("The maximum number of descendant generations"))
+        menu.add_option(category_name,"maxdescend",maxdescend)
         
-        self.inccousins = gtk.CheckButton(_("Include cousins"))
-        self.inccousins.set_active(self.options_dict['inccousins'])
+        maxascend = NumberOption(_("Max Ancestor Generations"),2,1,20)
+        maxascend.set_help(_("The maximum number of ancestor generations"))
+        menu.add_option(category_name,"maxascend",maxascend)
         
-        self.incaunts = gtk.CheckButton(
-                                       _("Include aunts/uncles/nephews/nieces"))
-        self.incaunts.set_active(self.options_dict['incaunts'])
-
-        dialog.add_option (_('Max Descendant Generations'), self.maxdescend)
-        dialog.add_option (_('Max Ancestor Generations'), self.maxascend)
-        dialog.add_option ('', self.incspouses)
-        dialog.add_option ('', self.inccousins)
-        dialog.add_option ('', self.incaunts)
-
-    def parse_user_options(self,dialog):
-        self.options_dict['maxdescend']  = self.maxdescend.get_value_as_int()
-        self.options_dict['maxascend']   = self.maxascend.get_value_as_int()
-        self.options_dict['incspouses']  = int(self.incspouses.get_active ())
-        self.options_dict['inccousins']  = int(self.inccousins.get_active())
-        self.options_dict['incaunts']    = int(self.incaunts.get_active())
+        incspouses = BooleanOption(_("Include spouses"),True)
+        incspouses.set_help(_("Whether to include spouses"))
+        menu.add_option(category_name,"incspouses",incspouses)
+        
+        inccousins = BooleanOption(_("Include cousins"),True)
+        inccousins.set_help(_("Whether to include cousins"))
+        menu.add_option(category_name,"inccousins",inccousins)
+        
+        incaunts = BooleanOption(_("Include aunts/uncles/nephews/nieces"),True)
+        incaunts.set_help(_("Whether to include aunts/uncles/nephews/nieces"))
+        menu.add_option(category_name,"incaunts",incaunts)        
 
     def make_default_style(self,default_style):
         """Make the default output style for the Kinship Report."""

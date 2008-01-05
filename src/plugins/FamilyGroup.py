@@ -596,8 +596,13 @@ class FamilyGroupOptions(MenuReportOptions):
         category_name = _("Report Options")
         ##########################
         
-        families = self.get_families(dbstate.get_database(),
-                                     dbstate.get_active_person())
+        if dbstate:
+            db = dbstate.get_database()
+            person = dbstate.get_active_person()
+        else:
+            db = None
+            person = None
+        families = self.get_families(db, person)
 
         family_id = EnumeratedListOption(_("Spouse"), "")
         for item in families:

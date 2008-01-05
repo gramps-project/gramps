@@ -45,7 +45,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, \
     CATEGORY_DRAW, CATEGORY_TEXT, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from PluginUtils import NumberOption, BooleanOption, StringOption, \
-    FilterListOption, EnumeratedListOption
+    PersonFilterOption, EnumeratedListOption
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter
@@ -480,8 +480,7 @@ class CalendarOptions(MenuReportOptions):
         year.set_help(_("Year of calendar"))
         menu.add_option(category_name,"year", year)
 
-        filter = FilterListOption(_("Filter"))
-        filter.add_item("person")
+        filter = PersonFilterOption(_("Filter"),dbstate,0,False)
         filter.set_help(_("Select filter to restrict people that appear on calendar"))
         menu.add_option(category_name,"filter", filter)
 

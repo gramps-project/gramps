@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
+from PluginUtils import register_report, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -64,7 +64,8 @@ class EndOfLineReport(Report):
         """
         Report.__init__(self,database,person,options_class)
         
-        self.person = person
+        pid = options_class.handler.options_dict['pid']
+        self.center_person = database.get_person_from_gramps_id(pid)
 
         # eol_map is a map whose:
         #   keys are the generations of the people
@@ -81,7 +82,7 @@ class EndOfLineReport(Report):
         #
         # eol_map is populated by get_eol() which calls itself recursively.
         self.eol_map = {}
-        self.get_eol(self.person,1,[])
+        self.get_eol(self.center_person,1,[])
         
     def get_eol(self,person,gen,pedigree):
         name = name_displayer.display(person)
@@ -123,7 +124,7 @@ class EndOfLineReport(Report):
         The routine the actually creates the report. At this point, the document
         is opened and ready for writing.
         """
-        pname = name_displayer.display(self.person)
+        pname = name_displayer.display(self.center_person)
         
         self.doc.start_paragraph("EOL-Title")
         title = _("End of Line Report for %s") % pname
@@ -221,7 +222,15 @@ class EndOfLineOptions(MenuReportOptions):
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
-        pass
+        """
+        Add options to the menu for the End of Line report.
+        """
+        id = ""
+        if dbstate:
+            id = dbstate.get_active_person().get_gramps_id()
+        pid = PersonOption(_("Center Person"),id,dbstate)
+        pid.set_help(_("The center person for the report"))
+        menu.add_option("","pid",pid)
 
     def make_default_style(self,default_style):
         """Make the default output style for the End of Line Report."""

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,30 +28,20 @@
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
-import copy
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import register_report, EnumeratedListOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
-import Sort
-import AutoComp
 from gen.lib import MarkerType, FamilyRelType
 from Filters import GenericFilter, GenericFilterFactory, Rules
 from BasicUtils import name_displayer
 import DateHandler
-
-#------------------------------------------------------------------------
-#
-# GTK/GNOME modules
-#
-#------------------------------------------------------------------------
-import gtk
 
 #------------------------------------------------------------------------
 #
@@ -73,18 +63,20 @@ class MarkerReport(Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        marker         - The marker each object must match to be included,
-                            an English string for normal data, otherwise custom
-                            language string.
-        marker_str     - Same as marker but now always localized.
+        marker         - The marker each object must match to be included.
         """
         Report.__init__(self,database,person,options_class)
-        self.marker = options_class.markerval
-        self.marker_str = options_class.marker_str
+        self.marker = options_class.handler.options_dict['marker']
         
     def write_report(self):
+        markerstr = self.marker
+        # Use localized name if this is not a custom marker
+        if MarkerType._E2IMAP.has_key(self.marker):
+            mtype = MarkerType._E2IMAP[self.marker]
+            markerstr = MarkerType._I2SMAP[mtype]
+        
         self.doc.start_paragraph("MR-Title")
-        title = _("Marker Report for %s Items") % self.marker_str
+        title = _("Marker Report for %s Items") % markerstr
         mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
         self.doc.write_text(title,mark)
         self.doc.end_paragraph()
@@ -427,70 +419,32 @@ class MarkerReport(Report):
 
 #------------------------------------------------------------------------
 #
-# 
+# MarkerOptions
 #
 #------------------------------------------------------------------------
-class MarkerOptions(ReportOptions):
+class MarkerOptions(MenuReportOptions):
 
-    """
-    Defines options and provides handling interface.
-    """
-
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-        # Options specific for this report
-        self.options_dict = {
-            'marker'       :  "",
-        }
-        self.options_help = {
-            'marker'        : ("=str","Marker",
-                            "The marker each item must match to be included",
-                            True),
-        }
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
         
-    def add_user_options(self,dialog):
+    def add_menu_options(self,menu,dbstate):
         """
-        Override the base class add_user_options task to add generations option
+        Add options to the menu for the marker report.
         """
-        self.marker_menu = gtk.ComboBoxEntry()
-        int_to_string_map = copy.deepcopy(MarkerType._I2SMAP)
-        #remove the None
-        del int_to_string_map[MarkerType.NONE]
-        #add custom markers
-        self.max_non_custom = max(int_to_string_map.keys())
-        nextint = self.max_non_custom+1
-        custommarkers = dialog.db.get_marker_types()
-        for item in custommarkers:
-            int_to_string_map[nextint] = item
-            nextint += 1
-
-        marker_index = 0
-        for int, str in int_to_string_map.items() :
-            if self.options_dict['marker'] == str :
-                marker_index = int
-                break
-        self.sel = AutoComp.StandardCustomSelector(int_to_string_map, 
-                                                   self.marker_menu,
-                                                   MarkerType._CUSTOM,
-                                                   marker_index)
+        category_name = _("Report Options")
         
-        dialog.add_option(_('Marker'),self.marker_menu)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added. Set the value in the
-        options dictionary.
-        """
-        self.options_dict['marker'] = self.sel.get_values()[1]
-        
-        int, str = self.sel.get_values()
-        self.marker_str =  str
-        #marker filter needs untranslated english string, skip custom entry
-        if int is not MarkerType.CUSTOM and int <= self.max_non_custom:
-            self.markerval = MarkerType._I2EMAP[int]
-        else:
-            self.markerval = str
+        marker = EnumeratedListOption(_('Marker'),0)
+        # Add built-in marker types
+        for mtype in MarkerType._I2SMAP:
+            if mtype != MarkerType.NONE and mtype != MarkerType.CUSTOM:
+                # Use translated name for built-in marker types
+                marker.add_item(MarkerType._I2EMAP[mtype],
+                                MarkerType._I2SMAP[mtype] )
+        # Add custom marker types
+        for m in dbstate.get_database().get_marker_types():
+            marker.add_item( m, m )
+        marker.set_help( _("The marker to use for the report"))
+        menu.add_option(category_name,"marker",marker)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Marker Report."""

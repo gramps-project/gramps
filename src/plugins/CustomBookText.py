@@ -41,8 +41,8 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
-from ReportBase import Report, ReportOptions, CATEGORY_TEXT, MODE_BKI
+from PluginUtils import register_report, TextOption
+from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc
 
 #------------------------------------------------------------------------
@@ -77,105 +77,52 @@ class CustomText(Report):
         
     def write_report(self):
         self.doc.start_paragraph('CBT-Initial')
-        self.doc.write_text(self.top_text)
+        for line in self.top_text:
+            self.doc.write_text(line)
+            self.doc.write_text("\n")
         self.doc.end_paragraph()
 
         self.doc.start_paragraph('CBT-Middle')
-        self.doc.write_text(self.middle_text)
+        for line in self.middle_text:
+            self.doc.write_text(line)
+            self.doc.write_text("\n")
         self.doc.end_paragraph()
 
         self.doc.start_paragraph('CBT-Final')
-        self.doc.write_text(self.bottom_text)
+        for line in self.bottom_text:
+            self.doc.write_text(line)
+            self.doc.write_text("\n")
         self.doc.end_paragraph()
 
 #------------------------------------------------------------------------
 #
-# 
+# CustomTextOptions
 #
 #------------------------------------------------------------------------
-class CustomTextOptions(ReportOptions):
+class CustomTextOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
     """
-
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-
-        # Options specific for this report
-        self.options_dict = {
-            'top'   : '',
-            'mid'   : '',
-            'bot'   : '',
-        }
-        self.options_help = {
-            'top'   : ("=str","Initial Text",
-                            "Whatever String You Wish"),
-            'mid'   : ("=str","Middle Text",
-                            "Whatever String You Wish"),
-            'bot'   : ("=str","Final Text",
-                            "Whatever String You Wish"),
-        }
+    
+    def __init__(self,name,dbstate=None):
+        MenuReportOptions.__init__(self,name,dbstate)
         
-    def do_nothing(self):
-        pass
-
-    def add_user_options(self,dialog):
-        dialog.setup_center_person = self.do_nothing #Disable center person
-        dialog.notebook = gtk.Notebook()
-        dialog.notebook.set_border_width(6)
-        dialog.window.vbox.add(dialog.notebook)
-
-        top_sw = gtk.ScrolledWindow()
-        middle_sw = gtk.ScrolledWindow()
-        bottom_sw = gtk.ScrolledWindow()
-
-        top_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        middle_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-        bottom_sw.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
-
-        self.top_text_view = gtk.TextView()
-        self.top_text_view.get_buffer().set_text(self.options_dict['top'])
-        self.middle_text_view = gtk.TextView()
-        self.middle_text_view.get_buffer().set_text(self.options_dict['mid'])
-        self.bottom_text_view = gtk.TextView()
-        self.bottom_text_view.get_buffer().set_text(self.options_dict['bot'])
-
-        top_sw.add_with_viewport(self.top_text_view)
-        middle_sw.add_with_viewport(self.middle_text_view)
-        bottom_sw.add_with_viewport(self.bottom_text_view)
-
-        dialog.add_frame_option(_('Initial Text'),"",top_sw)
-        dialog.add_frame_option(_('Middle Text'),"",middle_sw)
-        dialog.add_frame_option(_('Final Text'),"",bottom_sw)
-
-    def parse_user_options(self,dialog):
-        """
-        Parses the custom options that we have added.
-        """
-        self.options_dict['top'] = unicode(
-                self.top_text_view.get_buffer().get_text(
-                    self.top_text_view.get_buffer().get_start_iter(),
-                    self.top_text_view.get_buffer().get_end_iter(),
-                    False
-                ) 
-            ).replace('\n',' ')
-
-        self.options_dict['mid'] = unicode(
-                self.middle_text_view.get_buffer().get_text(
-                    self.middle_text_view.get_buffer().get_start_iter(),
-                    self.middle_text_view.get_buffer().get_end_iter(),
-                    False
-                )
-            ).replace('\n',' ')
-
-        self.options_dict['bot'] = unicode(
-                self.bottom_text_view.get_buffer().get_text(
-                    self.bottom_text_view.get_buffer().get_start_iter(),
-                    self.bottom_text_view.get_buffer().get_end_iter(),
-                    False
-                )
-            ).replace('\n',' ')
+    def add_menu_options(self,menu,dbstate):
+        
+        category_name = _("Text")
+        
+        top = TextOption(_("Initial Text"), [""] )
+        top.set_help(_("Text to display at the top."))
+        menu.add_option(category_name,"top",top)
+        
+        mid = TextOption(_("Middle Text"), [""] )
+        mid.set_help(_("Text to display in the middle"))
+        menu.add_option(category_name,"mid",mid)
+        
+        bot = TextOption(_("Final Text"), [""] )
+        bot.set_help(_("Text to display last."))
+        menu.add_option(category_name,"bot",bot)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Custom Text report."""

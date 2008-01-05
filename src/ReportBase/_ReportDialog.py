@@ -88,9 +88,6 @@ class ReportDialog(BareReportDialog):
     def init_interface(self):
         BareReportDialog.init_interface(self)
 
-    def setup_center_person(self):
-        pass
-
     def get_title(self):
         """The window title for this dialog"""
         name = self.report_name

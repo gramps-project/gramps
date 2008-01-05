@@ -1,3 +1,34 @@
+2008-01-05  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_ReportDialog.py:
+	* src/ReportBase/_BareReportDialog.py:
+	* src/ReportBase/_ReportOptions.py:
+	* src/plugins/KinshipReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DescendReport.py:
+	* src/plugins/IndivComplete.py:
+	* src/plugins/CalculateEstimatedDates.py:
+	* src/plugins/BookReport.py:
+	* src/plugins/TimeLine.py:
+	* src/plugins/GVFamilyLines.py:
+	* src/plugins/Calendar.py:
+	* src/plugins/AncestorReport.py:
+	* src/plugins/MarkerReport.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/EndOfLineReport.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/SimpleBookTitle.py:
+	* src/plugins/CustomBookText.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/GVRelGraph.py:
+	* src/plugins/GVHourGlass.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/FanChart.py:
+	* src/PluginUtils/_PluginWindows.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py:
+	More refactoring in the report system. More reports use MenuOptions now.
+	BareReportDialog no longer has "center person".
+
 2008-01-05  Raphael Ackermann <raphael.ackermann@gmail.com>
 2008-01-05  Brian Matherly <brian@gramps-project.org>
 	* src/DataViews/PedigreeView.py:
