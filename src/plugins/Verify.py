@@ -1404,13 +1404,19 @@ class DeadParent(FamilyRule):
             child_birth_date_ok = child_birth_date > 0
             if not child_birth_date_ok:
                 continue
-            father_broken = (father_death_date_ok
+
+            hasBirthRelToMother = child_ref.mrel == gen.lib.ChildRefType.BIRTH    
+            hasBirthRelToFather = child_ref.frel == gen.lib.ChildRefType.BIRTH
+            
+            father_broken = (hasBirthRelToFather
+                             and father_death_date_ok
                              and ((father_death_date + 294) < child_birth_date))
             if father_broken:
                 self.get_message = self.father_message
                 return True
 
-            mother_broken = (mother_death_date_ok
+            mother_broken = (hasBirthRelToMother
+                             and mother_death_date_ok
                              and (mother_death_date < child_birth_date))
             if mother_broken:
                 self.get_message = self.mother_message
