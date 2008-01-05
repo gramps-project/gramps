@@ -207,14 +207,14 @@ class DateParser:
             self.ymd = False
 
     def re_longest_first(self, keys):
-	"""
-	returns a string for a RE group which contains the given keys
+        """
+        returns a string for a RE group which contains the given keys
         sorted so that longest keys match first.  Any '.' characters
-	are quoted.
-	"""
-	keys.sort(lambda x, y: cmp(len(y), len(x)))
-	return '(' + '|'.join([key.replace('.', '\.') for key in keys]) + ')'
-	
+        are quoted.
+        """
+        keys.sort(lambda x, y: cmp(len(y), len(x)))
+        return '(' + '|'.join([key.replace('.', '\.') for key in keys]) + ')'
+
     def init_strings(self):
         """
         This method compiles regular expression strings for matching dates.
@@ -508,7 +508,7 @@ class DateParser:
         match = self._bce_re.match(text)
         bc = False
         if match:
-	    # bce is in the match.group(2)
+        # bce is in the match.group(2)
             try:
                 text = match.group(1) + match.group(3)
             except:

@@ -41,11 +41,9 @@ class FamilyPreviewFrame(PreviewFrameBase):
     __default_border_width = 5
 
     def __init__(self,dbstate,label="Preview"):
-	PreviewFrameBase.__init__(self,label)
-
+        PreviewFrameBase.__init__(self,label)
         self._dbstate = dbstate
-        
-	align = gtk.Alignment()
+        align = gtk.Alignment()
 
         # Image
         self._image_l = gtk.Image()
@@ -69,20 +67,18 @@ class FamilyPreviewFrame(PreviewFrameBase):
         box = gtk.VBox()
         box.pack_start(image_box,False,False)
         box.pack_start(label)
-        
 
         # align
         
-	align.add(box)
+        align.add(box)
         align.set_padding(self.__class__.__default_border_width,
                           self.__class__.__default_border_width,
                           self.__class__.__default_border_width,
                           self.__class__.__default_border_width)
         align.set(0.5,0.5,
                   1.0,1.0)
-                          
 
-	self.add(align)
+        self.add(align)
 
         self.clear_object()
 

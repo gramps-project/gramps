@@ -211,7 +211,7 @@ class Extract:
             if place_handle:
                 place = self.db.get_place_from_handle(place_handle).get_title()
                 if place:
-                   places.append(place)
+                    places.append(place)
             else:
                 places.append(_("Place missing"))
         return places
@@ -503,15 +503,15 @@ class StatisticsChart(Report):
             'year_from': year_from,
             'year_to': year_to
         }
-	self.progress = ProgressMeter(_('Statistics Charts'))
+        self.progress = ProgressMeter(_('Statistics Charts'))
 
         # extract requested items from the database and count them
-	self.progress.set_pass(_('Collecting data...'), 1)
+        self.progress.set_pass(_('Collecting data...'), 1)
         tables = _Extract.collect_data(database, filterfun, options,
                         gender, year_from, year_to, options['no_years'])
-	self.progress.step()
+        self.progress.step()
 
-	self.progress.set_pass(_('Sorting data...'), len(tables))
+        self.progress.set_pass(_('Sorting data...'), len(tables))
         self.data = []
         sortby = options['sortby']
         reverse = options['reverse']
@@ -525,8 +525,8 @@ class StatisticsChart(Report):
             else:
                 heading = _("Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s") % mapping
             self.data.append((heading, table[0], table[1], lookup))
-	    self.progress.step()
-	#DEBUG
+        self.progress.step()
+    #DEBUG
         #print heading
         #print table[1]
 
@@ -558,7 +558,7 @@ class StatisticsChart(Report):
     def write_report(self):
         "output the selected statistics..."
 
-	self.progress.set_pass(_('Saving charts...'), len(self.data))
+        self.progress.set_pass(_('Saving charts...'), len(self.data))
         for data in self.data:
             self.doc.start_page()
             if len(data[2]) < self.bar_items:
@@ -566,8 +566,8 @@ class StatisticsChart(Report):
             else:
                 self.output_barchart(data[0], data[1], data[2], data[3])
             self.doc.end_page()
-	    self.progress.step()
-	self.progress.close()
+        self.progress.step()
+        self.progress.close()
 
 
     def output_piechart(self, title, typename, data, lookup):
@@ -591,17 +591,17 @@ class StatisticsChart(Report):
             chart_data.append((style, data[key], text))
             color = (color+1) % 7    # There are only 7 color styles defined
         
-	margin = 1.0
-	legendx = 2.0
-	
+            margin = 1.0
+            legendx = 2.0
+    
         # output data...
         radius = middle - 2*margin
         yoffset = yoffset + margin + radius
         ReportUtils.draw_pie_chart(self.doc, middle, yoffset, radius, chart_data, -90)
         yoffset = yoffset + radius + margin
-	
-	text = _("%s (persons):") % typename
-	ReportUtils.draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
+    
+        text = _("%s (persons):") % typename
+        ReportUtils.draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
 
 
     def output_barchart(self, title, typename, data, lookup):
@@ -622,10 +622,10 @@ class StatisticsChart(Report):
         for key in lookup:
             max_value = max(data[key], max_value)
         # horizontal area for the gfx bars
-	margin = 1.0
-	middle = width/2.0
-	textx = middle + margin/2.0
-	stopx = middle - margin/2.0
+        margin = 1.0
+        middle = width/2.0
+        textx = middle + margin/2.0
+        stopx = middle - margin/2.0
         maxsize = stopx - margin
 
         # start output
@@ -634,10 +634,10 @@ class StatisticsChart(Report):
         yoffset = pt2cm(pstyle.get_font().get_size())
         #print title
 
-	# header
-	yoffset += (row_h + pad)
-	text = _("%s (persons):") % typename
-	self.doc.draw_text('SC-text', text, textx, yoffset)
+        # header
+        yoffset += (row_h + pad)
+        text = _("%s (persons):") % typename
+        self.doc.draw_text('SC-text', text, textx, yoffset)
 
         for key in lookup:
             yoffset += (row_h + pad)
@@ -651,8 +651,8 @@ class StatisticsChart(Report):
             value = data[key]
             startx = stopx - (maxsize * value / max_value)
             self.doc.draw_box('SC-bar',"",startx,yoffset,stopx-startx,row_h)
-	    # text after bar
-	    text = "%s (%d)" % (key, data[key])
+            # text after bar
+            text = "%s (%d)" % (key, data[key])
             self.doc.draw_text('SC-text', text, textx, yoffset)
             #print key + ":",
         

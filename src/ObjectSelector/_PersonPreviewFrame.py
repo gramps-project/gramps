@@ -53,11 +53,9 @@ class PersonPreviewFrame(PreviewFrameBase):
     __default_border_width = 5
 
     def __init__(self,dbstate,label="Preview"):
-	PreviewFrameBase.__init__(self,label)
-
+        PreviewFrameBase.__init__(self,label)
         self._dbstate = dbstate
-        
-	align = gtk.Alignment()
+        align = gtk.Alignment()
 
         # Image
         self._image = gtk.Image()
@@ -77,10 +75,8 @@ class PersonPreviewFrame(PreviewFrameBase):
         box.pack_start(self._image,False,False)
         box.pack_start(label)
         
-
         # align
-        
-	align.add(box)
+        align.add(box)
         align.set_padding(self.__class__.__default_border_width,
                           self.__class__.__default_border_width,
                           self.__class__.__default_border_width,
@@ -88,9 +84,7 @@ class PersonPreviewFrame(PreviewFrameBase):
         align.set(0.5,0.5,
                   1.0,1.0)
                           
-
-	self.add(align)
-
+        self.add(align)
         self._label = label
 
     def _get_text_preview(self,person):

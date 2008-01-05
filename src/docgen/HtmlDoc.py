@@ -270,7 +270,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             if style.get_bottom_border():
                 bottom = 'thin solid #000000'
             if style.get_left_border():
-	       left = 'thin solid #000000'
+                left = 'thin solid #000000'
             if style.get_right_border():
                 right = 'thin solid #000000'
             text.append('.%s {\n'
@@ -298,7 +298,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             if style.get_bottom_border():
                 bottom = 'thin solid #000000'
             if style.get_left_border():
-	       left = 'thin solid #000000'
+                left = 'thin solid #000000'
             if style.get_right_border():
                 right = 'thin solid #000000'
 
@@ -470,7 +470,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         text = text.replace('&lt;/super&gt;','</sup>')
         if text != "":
             self.empty = 0
-	self.f.write(text)
+        self.f.write(text)
 
 #------------------------------------------------------------------------
 #

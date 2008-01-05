@@ -376,7 +376,7 @@ class DescendChart(Report):
                     self.doc.draw_line('DC2-line', xlast, ystop, xnext, ystop)
                 
                 if x%2:
-                  phys_x +=1
+                    phys_x +=1
             phys_y += 1
                     
         if not self.force_fit:

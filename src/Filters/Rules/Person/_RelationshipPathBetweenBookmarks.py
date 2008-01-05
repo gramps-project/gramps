@@ -95,19 +95,19 @@ class RelationshipPathBetweenBookmarks(Rule):
         prev_generation = {}
         for handle in generation:
             try:
-                 person = self.db.get_person_from_handle(handle)
-                 if person == None:
-                     continue
-                 fam_id = person.get_main_parents_family_handle()
-                 family = self.db.get_family_from_handle(fam_id)
-                 if family == None:
-                     continue
-                 fhandle = family.get_father_handle()
-                 mhandle = family.get_mother_handle()
-                 if fhandle:
-                     prev_generation[fhandle] = generation[handle] + [fhandle]
-                 if mhandle:
-                     prev_generation[mhandle] = generation[handle] + [mhandle]
+                person = self.db.get_person_from_handle(handle)
+                if person == None:
+                    continue
+                fam_id = person.get_main_parents_family_handle()
+                family = self.db.get_family_from_handle(fam_id)
+                if family == None:
+                    continue
+                fhandle = family.get_father_handle()
+                mhandle = family.get_mother_handle()
+                if fhandle:
+                    prev_generation[fhandle] = generation[handle] + [fhandle]
+                if mhandle:
+                    prev_generation[mhandle] = generation[handle] + [mhandle]
             except:
                 pass
         return prev_generation
@@ -123,20 +123,20 @@ class RelationshipPathBetweenBookmarks(Rule):
         map1 = {}
         map2 = {}
         overlap = set( {} )
-	for rank in range(1, 50):		# Limit depth of search
+        for rank in range(1, 50):		# Limit depth of search
             try:
-                 gmap1 = self.parents(gmap1)		# Get previous generation into map
-                 gmap2 = self.parents(gmap2)		# Get previous generation into map
-                 map1.update(gmap1)			# Merge previous generation into map
-                 map2.update(gmap2)			# Merge previous generation into map
-                 overlap = set(map1).intersection(set(map2))	# Any common ancestors?
-                 if len(overlap) > 0: break		# If so, stop walking through generations
+                gmap1 = self.parents(gmap1)		# Get previous generation into map
+                gmap2 = self.parents(gmap2)		# Get previous generation into map
+                map1.update(gmap1)			# Merge previous generation into map
+                map2.update(gmap2)			# Merge previous generation into map
+                overlap = set(map1).intersection(set(map2))	# Any common ancestors?
+                if len(overlap) > 0: break		# If so, stop walking through generations
             except: pass
-	if len(overlap) < 1:			# No common ancestor found
-           rel_path[handle1] = handle1		# Results for degenerate case
-           rel_path[handle2] = handle2
-           #print "  In rel_path_for_two, returning rel_path = ", rel_path
-           return rel_path
+        if len(overlap) < 1:			# No common ancestor found
+            rel_path[handle1] = handle1		# Results for degenerate case
+            rel_path[handle2] = handle2
+            #print "  In rel_path_for_two, returning rel_path = ", rel_path
+            return rel_path
         for handle in overlap:			# Handle of common ancestor(s)
             for phandle in map1[handle] + map2[handle]:
                 rel_path[phandle] = phandle
@@ -147,7 +147,7 @@ class RelationshipPathBetweenBookmarks(Rule):
         Map = {}
         pathmap = {}
         bmarks = {}
-	#
+
         # Handle having fewer than 2 bookmarks, or unrelated people.
         nb = 0
         for handle in self.bookmarks:
@@ -157,7 +157,7 @@ class RelationshipPathBetweenBookmarks(Rule):
             #print "bmarks[", nb, "] = ", handle, self.hnm(handle)
         if nb <= 1: return
         #print "bmarks = ", bmarks
-	#
+        #
         # Go through all bookmarked individuals, and mark all
         # of the people in each of the paths betweent them.
         for i in range(1, nb):
@@ -165,12 +165,13 @@ class RelationshipPathBetweenBookmarks(Rule):
             for j in range(i+1, nb+1):
                 handle2 = bmarks[j]
                 try:
-                     pathmap = self.rel_path_for_two(handle1,handle2)	
-                     for handle in pathmap:
-                         self.map[handle] = 1
+                    pathmap = self.rel_path_for_two(handle1,handle2)	
+                    for handle in pathmap:
+                        self.map[handle] = 1
                 except:
                     pass
 
     def apply(self,db,person):
         return self.map.has_key(person.handle)
+
 

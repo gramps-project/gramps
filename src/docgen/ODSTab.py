@@ -145,7 +145,7 @@ class ODSTab(TabbedDoc):
         self.f.write('</table:table-row>\n')
 
     def write_cell(self, text):
-    	self.f.write('<table:table-cell office:value-type="string">')
+        self.f.write('<table:table-cell office:value-type="string">')
         self.f.write('>\n')
 
         self.f.write('<text:p>')
@@ -154,7 +154,7 @@ class ODSTab(TabbedDoc):
         text = text.replace('>','&gt;')
         text = text.replace('\t','<text:tab-stop/>')
         text = text.replace('\n','<text:line-break/>')
-	self.f.write(unicode(text))
+        self.f.write(unicode(text))
 
         self.f.write('</text:p>\n')
         self.f.write('</table:table-cell>\n')
@@ -342,8 +342,8 @@ class ODSTab(TabbedDoc):
 
     def start_page(self):
         self.f.write('<table:table table:name="ta1">')
-	for col in range(0,self.columns):
-	    self.f.write('<table:table-column table:style-name="co1"/>\n')
+        for col in range(0,self.columns):
+            self.f.write('<table:table-column table:style-name="co1"/>\n')
 
     def end_page(self):
         self.f.write('</table:table>\n')

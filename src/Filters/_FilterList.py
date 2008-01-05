@@ -64,17 +64,17 @@ class FilterList:
         self.filter_namespaces[namespace].append(filt)
 
     def load(self):
-       try:
-           if os.path.isfile(self.file):
-               parser = make_parser()
-               parser.setContentHandler(FilterParser(self))
-               the_file = open(self.file)
-               parser.parse(the_file)
-               the_file.close()
-       except (IOError,OSError):
-           pass
-       except SAXParseException:
-           print "Parser error"
+        try:
+            if os.path.isfile(self.file):
+                parser = make_parser()
+                parser.setContentHandler(FilterParser(self))
+                the_file = open(self.file)
+                parser.parse(the_file)
+                the_file.close()
+        except (IOError,OSError):
+            pass
+        except SAXParseException:
+            print "Parser error"
 
     def fix(self,line):
         l = line.strip()

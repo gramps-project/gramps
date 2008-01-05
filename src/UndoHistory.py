@@ -164,7 +164,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
                 self._move(nsteps)
         elif response_id == gtk.RESPONSE_APPLY:
             self._clear_clicked()
-	elif response_id == gtk.RESPONSE_DELETE_EVENT:
+        elif response_id == gtk.RESPONSE_DELETE_EVENT:
             self.close(obj)
 
     def build_menu_names(self,obj):

@@ -462,8 +462,8 @@ class MarkerOptions(ReportOptions):
         nextint = self.max_non_custom+1
         custommarkers = dialog.db.get_marker_types()
         for item in custommarkers:
-          int_to_string_map[nextint] = item
-          nextint += 1
+            int_to_string_map[nextint] = item
+            nextint += 1
 
         marker_index = 0
         for int, str in int_to_string_map.items() :

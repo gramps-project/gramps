@@ -67,10 +67,10 @@ class SourceSidebarFilter(SidebarFilter):
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-	self.generic = gtk.ComboBox()
-	cell = gtk.CellRendererText()
-	self.generic.pack_start(cell, True)
-	self.generic.add_attribute(cell, 'text', 0)
+        self.generic = gtk.ComboBox()
+        cell = gtk.CellRendererText()
+        self.generic.pack_start(cell, True)
+        self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Source')
 
         self.add_text_entry(_('ID'), self.filter_id)
@@ -96,7 +96,7 @@ class SourceSidebarFilter(SidebarFilter):
         pub = unicode(self.filter_pub.get_text()).strip()
         note = unicode(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
-	gen = self.generic.get_active() > 0
+        gen = self.generic.get_active() > 0
 
         empty = not (gid or title or author or pub or note or regex or gen)
         if empty:
@@ -120,12 +120,12 @@ class SourceSidebarFilter(SidebarFilter):
                     rule = HasNoteMatchingSubstringOf([note])
                 generic_filter.add_rule(rule)
 
-	    if self.generic.get_active() != 0:
-		model = self.generic.get_model()
-		node = self.generic.get_active_iter()
-		obj = model.get_value(node, 0)
-		rule = MatchesFilter([obj])
-		generic_filter.add_rule(rule)
+        if self.generic.get_active() != 0:
+            model = self.generic.get_model()
+            node = self.generic.get_active_iter()
+            obj = model.get_value(node, 0)
+            rule = MatchesFilter([obj])
+            generic_filter.add_rule(rule)
 
         return generic_filter
 

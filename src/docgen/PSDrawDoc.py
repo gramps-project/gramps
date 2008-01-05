@@ -155,7 +155,7 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
         self.f.close()
         if self.print_req:
             if print_label == _("Print a copy"):
-            	run_print_dialog (self.filename)
+                run_print_dialog (self.filename)
             elif print_label:
                 app = Mime.get_application(_apptype)
                 Utils.launch(app[0],self.filename)

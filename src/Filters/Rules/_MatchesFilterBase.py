@@ -54,38 +54,38 @@ class MatchesFilterBase(Rule):
     category    = _('General filters')
 
     def prepare(self,db):
-	if Filters.SystemFilters:
-	    for filt in Filters.SystemFilters.get_filters(self.namespace):
-		if filt.get_name() == self.list[0]:
-		    for rule in filt.flist:
-			rule.prepare(db)
-	if Filters.CustomFilters:
-	    for filt in Filters.CustomFilters.get_filters(self.namespace):
-		if filt.get_name() == self.list[0]:
-		    for rule in filt.flist:
-			rule.prepare(db)
+        if Filters.SystemFilters:
+            for filt in Filters.SystemFilters.get_filters(self.namespace):
+                if filt.get_name() == self.list[0]:
+                    for rule in filt.flist:
+                        rule.prepare(db)
+        if Filters.CustomFilters:
+            for filt in Filters.CustomFilters.get_filters(self.namespace):
+                if filt.get_name() == self.list[0]:
+                    for rule in filt.flist:
+                        rule.prepare(db)
 
     def reset(self):
-	if Filters.SystemFilters:
-	    for filt in Filters.SystemFilters.get_filters(self.namespace):
-		if filt.get_name() == self.list[0]:
-		    for rule in filt.flist:
-			rule.reset()
-	if Filters.CustomFilters:
-	    for filt in Filters.CustomFilters.get_filters(self.namespace):
-		if filt.get_name() == self.list[0]:
-		    for rule in filt.flist:
-			rule.reset()
+        if Filters.SystemFilters:
+            for filt in Filters.SystemFilters.get_filters(self.namespace):
+                if filt.get_name() == self.list[0]:
+                    for rule in filt.flist:
+                        rule.reset()
+        if Filters.CustomFilters:
+            for filt in Filters.CustomFilters.get_filters(self.namespace):
+                if filt.get_name() == self.list[0]:
+                    for rule in filt.flist:
+                        rule.reset()
 
     def apply(self,db,obj):
-	if Filters.SystemFilters:
-	    for filt in Filters.SystemFilters.get_filters(self.namespace):
-		if filt.get_name() == self.list[0]:
-		    return filt.check(db,obj.handle)
-	if Filters.CustomFilters:
-	    for filt in Filters.CustomFilters.get_filters(self.namespace):
-		if filt.get_name() == self.list[0]:
-		    return filt.check(db,obj.handle)
+        if Filters.SystemFilters:
+            for filt in Filters.SystemFilters.get_filters(self.namespace):
+                if filt.get_name() == self.list[0]:
+                    return filt.check(db,obj.handle)
+        if Filters.CustomFilters:
+            for filt in Filters.CustomFilters.get_filters(self.namespace):
+                if filt.get_name() == self.list[0]:
+                    return filt.check(db,obj.handle)
         return False
     
     def find_filter(self):

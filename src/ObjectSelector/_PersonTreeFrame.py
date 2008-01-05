@@ -54,7 +54,7 @@ class PersonTreeFrame(TreeFrameBase):
 
 
     def __init__(self,dbstate):
-	TreeFrameBase.__init__(self)
+        TreeFrameBase.__init__(self)
 
         self._dbstate = dbstate
         self._selection = None

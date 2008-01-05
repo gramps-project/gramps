@@ -38,7 +38,7 @@ class FamilyTreeFrame(TreeFrameBase):
 
 
     def __init__(self,dbstate):
-	TreeFrameBase.__init__(self)        
+        TreeFrameBase.__init__(self)        
 
         self._selection = None
         self._model = None

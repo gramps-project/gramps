@@ -2081,9 +2081,9 @@ class MaskedEntry(gtk.Entry):
             else:
                 # Keep the static char where it is.
                 if direction == DIRECTION_LEFT:
-                   new_text = new_text + text[i]
+                    new_text = new_text + text[i]
                 else:
-                   new_text = text[i] + new_text
+                    new_text = text[i] + new_text
             i += direction
 
         return new_text

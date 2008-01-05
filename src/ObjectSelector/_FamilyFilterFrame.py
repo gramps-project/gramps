@@ -36,34 +36,34 @@ class FamilyFilterFrame(FilterFrameBase):
     __default_border_width = 5
 
     def __init__(self,filter_spec=None,label="Filter"):
-	FilterFrameBase.__init__(self,filter_spec,label)
+        FilterFrameBase.__init__(self,filter_spec,label)
 
         # Gramps ID
-	self._id_check,self._id_label,self._id_edit = \
+        self._id_check,self._id_label,self._id_edit = \
 	    self.make_text_widget("Gramps ID")
 
         # Name
-	self._name_check,self._name_label,self._name_edit = \
+        self._name_check,self._name_label,self._name_edit = \
 	    self.make_text_widget("Name")
 
         # Mar
-	self._mar_check, self._m_edit, \
+        self._mar_check, self._m_edit, \
 	    self._m_before, self._m_after, \
 	    self._m_unknown  = self.make_year_widget("Marriage Year")
 
         # Filter
         default_filters = []
 
-	# don't currently support filters that need an attribute.	
-	filters = [ filter for filter in default_filters if \
+        # don't currently support filters that need an attribute.	
+        filters = [ filter for filter in default_filters if \
 		    not hasattr(filter,'labels') or len(filter.labels) == 0 ]
 
         self._filter_list = gtk.ListStore(str,object)
 
         for filter in filters:
-	    self._filter_list.append([filter.name,filter])
+            self._filter_list.append([filter.name,filter])
 
-	self._filter_check,self._filter_label,self._filter_combo = \
+        self._filter_check,self._filter_label,self._filter_combo = \
 	    self.make_combo_widget("Filter",self._filter_list)
         
         self._reset_widgets()

@@ -244,21 +244,21 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             self.cntnt.write('<style:paragraph-properties ')
 
             if style.get_padding() != 0.0:
-               self.cntnt.write('fo:padding="%.2fcm" ' % style.get_padding())
+                self.cntnt.write('fo:padding="%.2fcm" ' % style.get_padding())
             if style.get_header_level() > 0:
                 self.cntnt.write('fo:keep-with-next="true" ')
 
             align = style.get_alignment()
             if align == BaseDoc.PARA_ALIGN_LEFT:
-               self.cntnt.write('fo:text-align="start" ')
+                self.cntnt.write('fo:text-align="start" ')
             elif align == BaseDoc.PARA_ALIGN_RIGHT:
-               self.cntnt.write('fo:text-align="end" ')
+                self.cntnt.write('fo:text-align="end" ')
             elif align == BaseDoc.PARA_ALIGN_CENTER:
-               self.cntnt.write('fo:text-align="center" ')
-               self.cntnt.write('style:justify-single-word="false" ')
+                self.cntnt.write('fo:text-align="center" ')
+                self.cntnt.write('style:justify-single-word="false" ')
             else:
-               self.cntnt.write('fo:text-align="justify" ')
-               self.cntnt.write('style:justify-single-word="false" ')
+                self.cntnt.write('fo:text-align="justify" ')
+                self.cntnt.write('style:justify-single-word="false" ')
             font = style.get_font()
             if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                 self.cntnt.write('style:font-name="Arial" ')
@@ -288,12 +288,12 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             self.cntnt.write('<style:text-properties ')
             align = style.get_alignment()
             if align == BaseDoc.PARA_ALIGN_LEFT:
-               self.cntnt.write('fo:text-align="start" ')
+                self.cntnt.write('fo:text-align="start" ')
             elif align == BaseDoc.PARA_ALIGN_RIGHT:
-               self.cntnt.write('fo:text-align="end" ')
+                self.cntnt.write('fo:text-align="end" ')
             elif align == BaseDoc.PARA_ALIGN_CENTER:
-               self.cntnt.write('fo:text-align="center" ')
-               self.cntnt.write('style:justify-single-word="false" ')
+                self.cntnt.write('fo:text-align="center" ')
+                self.cntnt.write('style:justify-single-word="false" ')
             font = style.get_font()
             if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                 self.cntnt.write('style:font-name="Arial" ')
@@ -680,22 +680,22 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             self.sfile.write('fo:margin-bottom="0.212cm"\n')
 
             if style.get_padding() != 0.0:
-               self.sfile.write('fo:padding="%.2fcm" ' % style.get_padding())
+                self.sfile.write('fo:padding="%.2fcm" ' % style.get_padding())
             if style.get_header_level() > 0:
                 self.sfile.write('fo:keep-with-next="always" ')
 
             align = style.get_alignment()
             if align == BaseDoc.PARA_ALIGN_LEFT:
-               self.sfile.write('fo:text-align="start" ')
-               self.sfile.write('style:justify-single-word="false" ')
+                self.sfile.write('fo:text-align="start" ')
+                self.sfile.write('style:justify-single-word="false" ')
             elif align == BaseDoc.PARA_ALIGN_RIGHT:
-               self.sfile.write('fo:text-align="end" ')
+                self.sfile.write('fo:text-align="end" ')
             elif align == BaseDoc.PARA_ALIGN_CENTER:
-               self.sfile.write('fo:text-align="center" ')
-               self.sfile.write('style:justify-single-word="false" ')
+                self.sfile.write('fo:text-align="center" ')
+                self.sfile.write('style:justify-single-word="false" ')
             else:
-               self.sfile.write('fo:text-align="justify" ')
-               self.sfile.write('style:justify-single-word="false" ')
+                self.sfile.write('fo:text-align="justify" ')
+                self.sfile.write('style:justify-single-word="false" ')
             self.sfile.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
             self.sfile.write('style:auto-text-indent="false"/> ')
             self.sfile.write('<style:text-properties ')

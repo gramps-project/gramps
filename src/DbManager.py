@@ -494,7 +494,7 @@ class DbManager(CLIDbManager):
                 self.__rename_revision(path, new_text)
             else:
                 """
-	        Check in recent_files.xml if there is another database
+                Check in recent_files.xml if there is another database
                 or Family Tree with the same name as new_text.
                 """
                 if RecentFiles.check_if_recent(new_text):

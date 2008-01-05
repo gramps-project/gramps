@@ -42,7 +42,7 @@ class SpreadSheetDoc:
         self.font = BaseDoc.FontStyle()
         self.actfont = self.font
         self.style_list = {}
-	self.table_styles = {}
+        self.table_styles = {}
         self.cell_styles = {}
         self.name = ""
 

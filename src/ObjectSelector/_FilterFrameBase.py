@@ -26,7 +26,7 @@ import gobject
 from GrampsWidgets import IntEdit
 
 class FilterFrameBase(gtk.Frame):
-    
+
     __gproperties__ = {}
 
     __gsignals__ = {
@@ -234,4 +234,5 @@ class FilterFrameBase(gtk.Frame):
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(FilterFrameBase)
+
 

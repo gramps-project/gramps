@@ -24,11 +24,11 @@ class GtkHandler(logging.Handler):
 
         """
 
-	self._record = record
+        self._record = record
         ErrorView(error_detail=self,rotate_handler=self._rotate_handler)
 
     def get_formatted_log(self):
-	return self.format(self._record)
+        return self.format(self._record)
 
     def get_record(self):
-	return self._record
+        return self._record

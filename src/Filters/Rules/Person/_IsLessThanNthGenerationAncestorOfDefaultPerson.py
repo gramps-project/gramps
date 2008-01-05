@@ -52,8 +52,8 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
                     "not more than N generations away")
 
     def prepare(self,db):
-	self.db = db
-	p = db.get_default_person()
+        self.db = db
+        p = db.get_default_person()
         if p:
             self.def_handle = p.get_handle()
             self.apply = self.apply_real

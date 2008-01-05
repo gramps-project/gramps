@@ -90,7 +90,7 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         ManagedWindow.__init__(self,uistate,track,self)
 
         # Init the Window
-	gtk.Window.__init__(self)
+        gtk.Window.__init__(self)
 
         self._dbstate = dbstate
         self._uistate = dbstate
@@ -157,25 +157,25 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
 
 
         try:
-	    person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"person.svg"))
-	    flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"flist.svg"))
+            person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"person.svg"))
+            flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"flist.svg"))
+    
+            self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
+    
+            d={ObjectTypes.PERSON: [person_pixbuf,'People',ObjectTypes.PERSON],
+    	       ObjectTypes.FAMILY: [flist_pixbuf,'Families',ObjectTypes.FAMILY],
+    	       ObjectTypes.EVENT: [person_pixbuf,'Events',ObjectTypes.EVENT]}
+    
+            self._object_type_column = 2
 
-	    self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
+        except gobject.GError:
+            self._tool_list = gtk.ListStore(str,int)
 
-	    d={ObjectTypes.PERSON: [person_pixbuf,'People',ObjectTypes.PERSON],
-	       ObjectTypes.FAMILY: [flist_pixbuf,'Families',ObjectTypes.FAMILY],
-	       ObjectTypes.EVENT: [person_pixbuf,'Events',ObjectTypes.EVENT]}
-
-	    self._object_type_column = 2
-
-	except gobject.GError:
-	    self._tool_list = gtk.ListStore(str,int)
-
-	    d={ObjectTypes.PERSON: ['People',ObjectTypes.PERSON],
+        d={ObjectTypes.PERSON: ['People',ObjectTypes.PERSON],
 	       ObjectTypes.FAMILY: ['Families',ObjectTypes.FAMILY],
 	       ObjectTypes.EVENT: ['Events',ObjectTypes.EVENT]}
 
-	    self._object_type_column = 1
+        self._object_type_column = 1
 
         
         for object_type in self._object_list:        
@@ -288,7 +288,7 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         align.add(box)
         align.show()
         
-	self.add(align)
+        self.add(align)
 
         self._set_object_type(default_object_type)
         self.set_default_size(700,300)
@@ -313,9 +313,9 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         store = self._tool_list
         it = store.get_iter_first()
         while it:
-	    if store.get(it, self._object_type_column)[0] == selected_object_type:
-		    break	    
-	    it = store.iter_next(it)
+            if store.get(it, self._object_type_column)[0] == selected_object_type:
+                break	    
+            it = store.iter_next(it)
 
         if it != None:
             self._tool_combo.set_active_iter(it)
@@ -344,4 +344,5 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(ObjectSelectorWindow)
+
 

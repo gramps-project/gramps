@@ -375,7 +375,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_nephew(firstRel-secondRel,secondRel),common)
             else:
-		    return (self.get_niece(firstRel-secondRel,secondRel),common)
+                return (self.get_niece(firstRel-secondRel,secondRel),common)
         else: # obviously secondRel == firstRel
             if other_person.get_gender() == gen.lib.Person.MALE:
                 return (self.get_male_cousin(firstRel-1),common)

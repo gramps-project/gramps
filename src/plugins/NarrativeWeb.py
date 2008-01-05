@@ -232,9 +232,9 @@ class BasePage:
         return of
 
     def link_path(self,name,path):
-         path = "%s/%s/%s" % (path,name[0].lower(),name[1].lower())
-         path = self.build_name(path,name)
-         return path
+        path = "%s/%s/%s" % (path,name[0].lower(),name[1].lower())
+        path = self.build_name(path,name)
+        return path
 
     def create_link_file(self,name,path):
         self.cur_name = self.link_path(name,path)
@@ -1708,8 +1708,8 @@ class IndividualPage(BasePage):
             family = self.db.get_family_from_handle(handle)
             media_list += family.get_media_list()
             for evt_ref in family.get_event_ref_list():
-                 event = self.db.get_event_from_handle(evt_ref.ref)
-                 media_list += event.get_media_list()
+                event = self.db.get_event_from_handle(evt_ref.ref)
+                media_list += event.get_media_list()
         for evt_ref in self.person.get_primary_event_ref_list():
             event = self.db.get_event_from_handle(evt_ref.ref)
             if event:

@@ -26,31 +26,31 @@ class LongOpStatus(GrampsDBCallback):
 	}
     
         def long(self):
-	    status = LongOpStatus("doing long job", 100, 10)
+        status = LongOpStatus("doing long job", 100, 10)
 
             for i in xrange(0,99):
-	       time.sleep(0.1)
-	       status.heartbeat()
+            time.sleep(0.1)
+            status.heartbeat()
 
             status.end()
-	    
+    
 
     class MyListener(object):
 
          def __init__(self):
-	     self._op = MyClass()
-	     self._op.connect('op-start', self.start)
-	     self._current_op = None
+         self._op = MyClass()
+         self._op.connect('op-start', self.start)
+         self._current_op = None
 
          def start(self,long_op):
-	     self._current_op.connect('op-heartbeat', self.heartbeat)
-	     self._current_op.connect('op-end', self.stop)
+         self._current_op.connect('op-heartbeat', self.heartbeat)
+         self._current_op.connect('op-end', self.stop)
 
          def hearbeat(self):
-	     # update status display
+         # update status display
 
          def stop(self):
-	     # close the status display
+         # close the status display
              self._current_op = None
     """
 
@@ -121,7 +121,7 @@ class LongOpStatus(GrampsDBCallback):
     
         @return: estimated seconds to complete.
         @rtype: int
-    	"""
+        """
         return self._secs_left
 
     def cancel(self):
@@ -138,7 +138,7 @@ class LongOpStatus(GrampsDBCallback):
 
     def should_cancel(self):
         """Returns true of the user has asked for the operation to be cancelled.
-    	
+    
         @return: True of the operation should be cancelled.
         @rtype: bool
         """

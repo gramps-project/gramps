@@ -72,10 +72,10 @@ class NoteSidebarFilter(SidebarFilter):
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
-	self.generic = gtk.ComboBox()
-	cell = gtk.CellRendererText()
-	self.generic.pack_start(cell, True)
-	self.generic.add_attribute(cell, 'text', 0)
+        self.generic = gtk.ComboBox()
+        cell = gtk.CellRendererText()
+        self.generic.pack_start(cell, True)
+        self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Note')
 
         self.add_text_entry(_('ID'), self.filter_id)

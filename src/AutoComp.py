@@ -46,7 +46,7 @@ def fill_combo(combo, data_list):
 
     for data in [ item for item in data_list if item ]:
         store.append(row=[data])
-	    
+    
     combo.set_model(store)
     combo.set_text_column(0)
     completion = gtk.EntryCompletion()
@@ -89,7 +89,7 @@ class StandardCustomSelector:
 
     To set up the combo box, specify the active key at creation time,
     or later (or with custom text) use:
-       type_sel.set_values(i,s)
+        type_sel.set_values(i,s)
 
     and later, when or before the dialog is closed, do:
         (i,s) = type_sel.get_values()
@@ -231,4 +231,5 @@ class StandardCustomSelector:
             self.selector.set_active_iter(node)
             return True
         return False
+
 

@@ -57,7 +57,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
                     "not more than N generations away")
 
     def prepare(self,db):
-	self.db = db
+        self.db = db
         bookmarks = db.get_bookmarks().get()
         if len(bookmarks) == 0:
             self.apply = lambda db,p : False
@@ -66,7 +66,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
             self.bookmarks = set(bookmarks)
             self.apply = self.apply_real
             for self.bookmarkhandle in self.bookmarks:
-		self.init_ancestor_list(self.bookmarkhandle, 1)
+                self.init_ancestor_list(self.bookmarkhandle, 1)
 
 
     def init_ancestor_list(self,handle,gen):

@@ -179,11 +179,11 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                 _("No matches found"),
                 _("No potential duplicate people were found"))
         else:
-	    try:
-		ShowMatches(self.dbstate,self.uistate,self.track,
-			    self.list,self.map,self.update)
-	    except Errors.WindowActiveError:
-		pass
+            try:
+                ShowMatches(self.dbstate,self.uistate,self.track,
+                            self.list,self.map,self.update)
+            except Errors.WindowActiveError:
+                pass
     
     def find_potentials(self,thresh):
         self.progress = Utils.ProgressMeter(_('Find duplicates'),
@@ -336,12 +336,12 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             f2 = self.db.get_family_from_handle(f2_id)
             dad1_id = f1.get_father_handle()
             if dad1_id:
-            	dad1 = get_name_obj(self.db.get_person_from_handle(dad1_id))
+                dad1 = get_name_obj(self.db.get_person_from_handle(dad1_id))
             else:
                 dad1 = None
             dad2_id = f2.get_father_handle()
             if dad2_id:
-            	dad2 = get_name_obj(self.db.get_person_from_handle(dad2_id))
+                dad2 = get_name_obj(self.db.get_person_from_handle(dad2_id))
             else:
                 dad2 = None
             
@@ -354,12 +354,12 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             
             mom1_id = f1.get_mother_handle()
             if mom1_id:
-            	mom1 = get_name_obj(self.db.get_person_from_handle(mom1_id))
+                mom1 = get_name_obj(self.db.get_person_from_handle(mom1_id))
             else:
                 mom1 = None
             mom2_id = f2.get_mother_handle()
             if mom2_id:
-            	mom2 = get_name_obj(self.db.get_person_from_handle(mom2_id))
+                mom2 = get_name_obj(self.db.get_person_from_handle(mom2_id))
             else:
                 mom2 = None
 

@@ -167,21 +167,21 @@ class DateParserFR(DateParser):
         self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\s*$")
         self._span     =  re.compile(u"(de)\s+(?P<start>.+)\s+(à)\s+(?P<stop>.+)", re.IGNORECASE)
         self._range    = re.compile(u"(entre|ent\.|ent)\s+(?P<start>.+)\s+(et)\s+(?P<stop>.+)", re.IGNORECASE)
-	# This self._text are different from the base
+    # This self._text are different from the base
         # by adding ".?" after the first date and removing "\s*$" at the end
-	#gregorian and julian
+    #gregorian and julian
         self._text2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str, 
                                  re.IGNORECASE)
-	#hebrew
+    #hebrew
         self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str, 
                                   re.IGNORECASE)
-	#french
+    #french
         self._ftext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._fmon_str, 
                                   re.IGNORECASE)
-	#persian
+    #persian
         self._ptext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._pmon_str, 
                                   re.IGNORECASE)
-	#islamic
+    #islamic
         self._itext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str, 
                                   re.IGNORECASE)
         
@@ -221,8 +221,8 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = self._tformat.replace('%m', str(date_val[1]))
                     value = value.replace('%d', str(date_val[0]))
-		    # base_display :
-		    # value = value.replace('%Y', str(abs(date_val[2])))
+            # base_display :
+            # value = value.replace('%Y', str(abs(date_val[2])))
                     # value = value.replace('-', '/')
                     value = value.replace('%Y', str(date_val[2]))                      
         elif self.format == 2:
@@ -251,8 +251,8 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self._months[date_val[1]], year)
             else:
-		# base_display :
-		# value = "%d %s %s" % (date_val[0], self._months[date_val[1]], year)
+        # base_display :
+        # value = "%d %s %s" % (date_val[0], self._months[date_val[1]], year)
                 value = "%d. %s %s" % (date_val[0], self._months[date_val[1]], year)
         else:
             # Day MON Year
@@ -262,8 +262,8 @@ class DateDisplayFR(DateDisplay):
                 else:
                     value = "%s %s" % (self.MONS[date_val[1]], year)
             else:
-		# base_display :
-		# value = "%d %s %s" % (date_val[0], self.MONS[date_val[1]], year)
+        # base_display :
+        # value = "%d %s %s" % (date_val[0], self.MONS[date_val[1]], year)
                 value = "%d. %s %s" % (date_val[0], self.MONS[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value

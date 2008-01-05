@@ -1,3 +1,64 @@
+2008-01-05  Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-05  Brian Matherly <brian@gramps-project.org>
+	* src/DataViews/PedigreeView.py:
+	* src/Config/__init__.py:
+	* src/gen/utils/longop.py:
+	* src/Editors/_EditLocation.py:
+	* src/DisplayTabs/_TextTab.py:
+	* src/plugins/WebCal.py:
+	* src/plugins/NarrativeWeb.py:
+	* src/plugins/rel_sv.py:
+	* src/plugins/rel_de.py:
+	* src/plugins/MarkerReport.py:
+	* src/plugins/FindDupes.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/PHPGedViewConnector.py:
+	* src/plugins/rel_pl.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/GVRelGraph.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/WriteGeneWeb.py:
+	* src/ObjectSelector/_FilterFrameBase.py:
+	* src/ObjectSelector/_FamilyPreviewFrame.py:
+	* src/ObjectSelector/_ObjectSelectorWindow.py:
+	* src/ObjectSelector/_PersonTreeFrame.py:
+	* src/ObjectSelector/_FamilyFilterFrame.py:
+	* src/ObjectSelector/_FamilyTreeFrame.py:
+	* src/ObjectSelector/_PersonPreviewFrame.py:
+	* src/ObjectSelector/_PersonFilterFrame.py:
+	* src/GrampsWidgets.py:
+	* src/DbManager.py:
+	* src/Models/_ListCursor.py:
+	* src/Models/_PathCursor.py:
+	* src/GrampsLogger/_GtkHandler.py:
+	* src/DisplayModels/_BaseModel.py:
+	* src/AutoComp.py:
+	* src/UndoHistory.py:
+	* src/GrampsDbUtils/_GedcomUtils.py:
+	* src/docgen/HtmlDoc.py:
+	* src/docgen/SpreadSheetDoc.py:
+	* src/docgen/ODFDoc.py:
+	* src/docgen/LaTeXDoc.py:
+	* src/docgen/ODSDoc.py:
+	* src/docgen/ODSTab.py:
+	* src/docgen/PSDrawDoc.py:
+	* src/Filters/_FilterMenu.py:
+	* src/Filters/_FilterList.py:
+	* src/Filters/SideBar/_MediaSidebarFilter.py:
+	* src/Filters/SideBar/_SourceSidebarFilter.py:
+	* src/Filters/SideBar/_EventSidebarFilter.py:
+	* src/Filters/SideBar/_NoteSidebarFilter.py:
+	* src/Filters/SideBar/_RepoSidebarFilter.py:
+	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:
+	* src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:
+	* src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:
+	* src/Filters/Rules/_MatchesFilterBase.py:
+	* src/DateHandler/_DateParser.py:
+	* src/DateHandler/_Date_fi.py:
+	* src/DateHandler/_Date_fr.py:
+	Patch from Raphael Ackermann
+	Fix 0001538: tabs and spaces are mixed in some source files
+
 2008-01-05  Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/Verify.py: Remove a line of redundant code added yesterday.
 

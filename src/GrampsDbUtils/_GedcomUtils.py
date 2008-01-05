@@ -91,7 +91,7 @@ class PlaceParser:
 
     def __init__(self, line=None):
         self.parse_function = []
-	
+
         if line:
             self.parse_form(line)
 

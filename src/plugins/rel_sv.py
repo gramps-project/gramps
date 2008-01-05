@@ -93,7 +93,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     item = ""
                 result.append(word)
                 continue
-	    if item:
+            if item:
                 if word == 'syster':
                     item = item[0:-1]
                     word = 'ster'
@@ -186,11 +186,11 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         removed = len(rel_string_long)-len(rel_string_short)-1
         level = len(rel_string_short)-1
         if level:
-    	    result.append(self._get_cousin(level,step,inlaw))
+            result.append(self._get_cousin(level,step,inlaw))
         elif rel_string_long[removed] == 'f':
-        	result.append('bror')
+            result.append('bror')
         else:
-        	result.append('syster')
+            result.append('syster')
         for ix in range(removed-1,-1,-1):
             if rel_string_long[ix] == 'f':
                 result.append('son')

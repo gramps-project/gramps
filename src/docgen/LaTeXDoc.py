@@ -452,7 +452,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         if self.bborder == 1:
             self.doline = 1 
         elif self.curcol == 1: 
-           self.skipfirst = 1
+            self.skipfirst = 1
 
         if self.tborder != 0:
             self.f.write('\\hline\n')

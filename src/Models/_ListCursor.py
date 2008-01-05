@@ -31,21 +31,21 @@ class ListCursor(object):
         records. It should probably also have DB_DUPSORT if you want to
         have sorted records.
         """
-	self._cursor = cursor
+        self._cursor = cursor
         self._object_cache = {}
 
         self.top()
 
 
     def top(self):
-	self._cursor.first()
-	self._index = 0
+        self._cursor.first()
+        self._index = 0
 
     def next(self):
         """
         Move to the next record.
         """
-	data = self._cursor.next()
+        data = self._cursor.next()
 
         # If there was a next record that data will
         # not be None
@@ -54,13 +54,13 @@ class ListCursor(object):
             # they point to the current record.
             self._index+= 1
             
-	return data
+        return data
 
     def prev(self):
         """
         Move to the previous record.
         """
-	data = self._cursor.prev()
+        data = self._cursor.prev()
 
         # If there was a next record that data will
         # not be None
@@ -69,7 +69,7 @@ class ListCursor(object):
             # they point to the current record.
             self._index -= 1
             
-	return data
+        return data
 
 
     def has_children(self,path):
@@ -149,7 +149,7 @@ class ListCursor(object):
                 ret = self._unpickle(ret)
                 self._object_cache[index] = ret
             
-	return ret
+        return ret
 
     def _unpickle(self,rec):
         """
@@ -172,5 +172,6 @@ class ListCursor(object):
 
         """
         return self.lookup(path[0])
+
 
 

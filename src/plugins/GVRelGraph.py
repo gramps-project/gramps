@@ -275,9 +275,9 @@ class RelGraphReport(Report):
                 color = self.colors['unknown']
         elif self.colorize == 'filled':
             if style != "":
-                 style += ",filled"
+                style += ",filled"
             else:
-                 style = "filled"
+                style = "filled"
             if gender == person.MALE:
                 fill = self.colors['male']
             elif gender == person.FEMALE:
@@ -511,4 +511,5 @@ register_report(
     author_name ="Brian G. Matherly",
     author_email ="brian@gramps-project.org"
     )
+
 

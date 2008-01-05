@@ -473,7 +473,7 @@ class FamilyGroup(Report):
                     spouse_id = family.get_mother_handle()
                 else:
                     spouse_id = family.get_father_handle()
-    	    
+    
                 if spouse_id:
                     self.doc.start_row()
                     if m or index != families:
@@ -528,7 +528,7 @@ class FamilyGroup(Report):
         mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
         self.doc.write_text( title, mark )
         self.doc.end_paragraph()
-	
+
         family = self.database.get_family_from_handle(family_handle)
 
         self.dump_parent(_("Husband"),family.get_father_handle())

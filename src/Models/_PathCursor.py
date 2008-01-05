@@ -16,13 +16,13 @@ class PathCursor(object):
 
     For example, with the following table indexed on Surname::
 
-           Record Value      Index
-           ============      =====
+            Record Value      Index
+            ============      =====
            
-           Blogs, Jo         [0,0]
-           Blogs, Jane       [0,1]
-           Smith, Wilman     [1,0]
-           Smith, John       [1,1]
+            Blogs, Jo         [0,0]
+            Blogs, Jane       [0,1]
+            Smith, Wilman     [1,0]
+            Smith, John       [1,1]
 
     @ivar _index: The current index pointed to by the cursor.
     
@@ -43,21 +43,21 @@ class PathCursor(object):
         records. It should probably also have DB_DUPSORT if you want to
         have sorted records.
         """
-	self._cursor = cursor
+        self._cursor = cursor
         self._object_cache = {}
 
         self.top()
 
 
     def top(self):
-	self._cursor.first()
-	self._index = [0,0]
+        self._cursor.first()
+        self._index = [0,0]
 
     def next_nodup(self):
         """
         Move to the next non-duplcate record.
         """
-	data = self._cursor.next_nodup()
+        data = self._cursor.next_nodup()
 
         # If there was a next record that data will
         # not be None
@@ -67,13 +67,13 @@ class PathCursor(object):
             self._index[0] += 1
             self._index[1] = 0
             
-	return data
+        return data
 
     def prev_nodup(self):
         """
         Move to the previous non-duplicate record.
         """
-	data = self._cursor.prev_nodup()
+        data = self._cursor.prev_nodup()
 
         # If there was a next record that data will
         # not be None
@@ -83,13 +83,13 @@ class PathCursor(object):
             self._index[0] -= 1
             self._index[1] = 0
             
-	return data
+        return data
 
     def next_dup(self):
         """
         Move to the next record with a duplicate key to the current record.
         """
-	data = self._cursor.next_dup()
+        data = self._cursor.next_dup()
 
         # If there was a next record that data will
         # not be None
@@ -97,7 +97,7 @@ class PathCursor(object):
             # Update the secondary index.
             self._index[1] += 1            
             
-	return data
+        return data
 
     def has_children(self,path):
         """
@@ -228,7 +228,7 @@ class PathCursor(object):
                 ret = self._unpickle(ret)
                 self._object_cache[index] = {'primary':ret}
             
-	return ret
+        return ret
 
     def _unpickle(self,rec):
         """
@@ -321,4 +321,5 @@ class PathCursor(object):
                     self._object_cache[path[0]][path[1]] = ret
 
         return ret
+
 

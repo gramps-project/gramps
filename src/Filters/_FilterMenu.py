@@ -71,5 +71,5 @@ def build_filter_model(space, local = [], default=""):
 	CustomFilters.get_filters(space)
 
     for filt in flist:
-	model.append(row=[filt.get_name(), filt])
+        model.append(row=[filt.get_name(), filt])
     return model

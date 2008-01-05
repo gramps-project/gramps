@@ -539,9 +539,9 @@ class WebReport(Report):
                     if first:
                         first = False
                         if day_col > 1:
-                           of.write('      <td colspan="%s" class="cal_cell">&nbsp;</td>\n' % str(day_col))
+                            of.write('      <td colspan="%s" class="cal_cell">&nbsp;</td>\n' % str(day_col))
                         elif day_col == 1:
-                           of.write('      <td class="cal_cell">&nbsp;</td>\n')
+                            of.write('      <td class="cal_cell">&nbsp;</td>\n')
                     of.write('      <td class="%s">%s' % (cellclass,str(thisday.day)))
                     something_this_week = 1
                     if list > []:
@@ -570,7 +570,7 @@ class WebReport(Report):
                             if week_row == 5:
                                 of.write(' class="cal_note">')
                                 if self.Note[month-1].strip() != '':
-                                   of.write(self.Note[month-1])
+                                    of.write(self.Note[month-1])
                                 else:
                                     of.write("&nbsp;")
                                 of.write('</td>\n')

@@ -368,7 +368,7 @@ class FormattingHelper:
                 text += "\n"
                 text += self.get_place_name(event.get_place_handle())
                 if line_count < 5:
-                   return text;
+                    return text;
                 break
         if not text:
             text = str(family.get_relationship())

@@ -113,11 +113,11 @@ class ODSDoc(SpreadSheetDoc):
         self.f.write('</office:font-face-decls>\n')
         
         self.f.write('<office:automatic-styles>\n')
-    	for key in self.table_styles.keys():
-    	    table = self.table_styles[key]
-      	    self.f.write('<style:style style:name="')
-       	    self.f.write(key)
-    	    self.f.write('" style:family="table" ')
+        for key in self.table_styles.keys():
+            table = self.table_styles[key]
+            self.f.write('<style:style style:name="')
+            self.f.write(key)
+            self.f.write('" style:family="table" ')
             self.f.write('style:master-page-name="Default"> \n')
             self.f.write('<style:table-properties table:display="true" ')
             self.f.write('style:writing-mode="lr-tb" /> \n')
@@ -151,20 +151,20 @@ class ODSDoc(SpreadSheetDoc):
             self.f.write('style:text-outline="false" ')
             self.f.write('style:text-crossing-out="none" ')
             if font.get_type_face() == BaseDoc.FONT_SERIF:
-    	        self.f.write('style:font-name="Times New Roman" ')
+                self.f.write('style:font-name="Times New Roman" ')
             else:
-    	        self.f.write('style:font-name="Arial" ')
+                self.f.write('style:font-name="Arial" ')
             self.f.write('fo:font-size="%dpt" ' % font.get_size())
             if font.get_italic():
                 self.f.write('fo:font-style="italic" ')
             else:
                 self.f.write('fo:font-style="normal" ')
-      	    self.f.write('fo:text-shadow="none" ')
-    	    self.f.write('style:text-underline="none" ')
+            self.f.write('fo:text-shadow="none" ')
+            self.f.write('style:text-underline="none" ')
             if font.get_bold():
-    	        self.f.write('fo:font-weight="bold"/>\n')
+                self.f.write('fo:font-weight="bold"/>\n')
             else:
-    	        self.f.write('fo:font-weight="normal"/>\n')
+                self.f.write('fo:font-weight="normal"/>\n')
             self.f.write('</style:style>\n')
         self.f.write('</office:automatic-styles>\n')
         self.f.write('<office:body>\n')
@@ -190,19 +190,19 @@ class ODSDoc(SpreadSheetDoc):
         self.f.write('</table:table-row>\n')
 
     def start_cell(self,style_name,span=1):
-    	self.content = 0
-    	self.span = span
-    	self.f.write('<table:table-cell table:style-name="')
+        self.content = 0
+        self.span = span
+        self.f.write('<table:table-cell table:style-name="')
         self.f.write(style_name)
         self.f.write('" table:value-type="string"')
         if span > 1:
             self.f.write(' table:number-columns-spanned="' + str(span) + '">\n')
-    	else:	     
+        else:	     
             self.f.write('>\n')
 
     def end_cell(self):
         if self.content == 0:
-	        self.f.write('<text:p/>\n')
+            self.f.write('<text:p/>\n')
         else:
             self.f.write('</text:p>\n')
         self.f.write('</table:table-cell>\n')
@@ -389,22 +389,22 @@ class ODSDoc(SpreadSheetDoc):
         self.f.close()
 
     def start_page(self,name,style_name):
-	table = self.table_styles[style_name]
+        table = self.table_styles[style_name]
         self.f.write('<table:table table:name="')
-	self.f.write(name)
-	self.f.write('" table:style-name="')
-	self.f.write(style_name)
-	self.f.write('">\n')
-	for col in range(0,table.get_columns()):
-	    self.f.write('<table:table-column table:style-name="')
-  	    self.f.write(style_name + '_' + str(col) +'"/>\n')
+        self.f.write(name)
+        self.f.write('" table:style-name="')
+        self.f.write(style_name)
+        self.f.write('">\n')
+        for col in range(0,table.get_columns()):
+            self.f.write('<table:table-column table:style-name="')
+            self.f.write(style_name + '_' + str(col) +'"/>\n')
 
     def end_page(self):
         self.f.write('</table:table>\n')
         
     def write_text(self,text,mark=None):
         if text == "":
-	    return
+            return
         if self.content == 0:
             self.f.write('<text:p>')
             self.content = 1
@@ -413,7 +413,7 @@ class ODSDoc(SpreadSheetDoc):
         text = text.replace('>','&gt;')
         text = text.replace('\t','<text:tab-stop/>')
         text = text.replace('\n','<text:line-break/>')
-	self.f.write(unicode(text))
+        self.f.write(unicode(text))
 
     def _write_manifest(self):
         self.manifest_xml = tempfile.mktemp()

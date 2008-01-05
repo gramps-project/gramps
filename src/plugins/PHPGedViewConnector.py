@@ -267,7 +267,7 @@ class PHPGedViewConnector:
             result.append(line.strip())
             line = f.readline()
         if len(result) > 0:
-           return result
+            return result
         return None
 
 

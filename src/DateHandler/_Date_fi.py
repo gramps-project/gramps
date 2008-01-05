@@ -98,7 +98,7 @@ class DateParserFI(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-	# date, whitespace
+    # date, whitespace
         self._span = re.compile(u"(?P<start>.+)\s+(-)\s+(?P<stop>.+)", 
                            re.IGNORECASE)
         self._range = re.compile(
@@ -142,9 +142,9 @@ class DateDisplayFI(DateDisplay):
         if start == Date.EMPTY:
             return u""
 
-	# select numerical date format
-	self.format = 1
-	
+        # select numerical date format
+        self.format = 1
+
         if mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
@@ -167,15 +167,15 @@ class DateDisplayFI(DateDisplay):
                 text = u"noin " + text
             elif mod == Date.MOD_BEFORE:
                 text = u"ennen " + text
-	
+
         if qual:
             # prepend quality
             text = u"%s %s" % (self._qual_str[qual], text)
         if cal:
             # append calendar type
             text = u"%s %s" % (text, self.calendar[cal])
-	    
-	return text
+    
+        return text
 
 #-------------------------------------------------------------------------
 #

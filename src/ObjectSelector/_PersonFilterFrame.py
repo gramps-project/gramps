@@ -43,17 +43,17 @@ class PersonFilterFrame(FilterFrameBase):
     __default_border_width = 5
 
     def __init__(self,filter_spec=None,label="Filter"):
-	FilterFrameBase.__init__(self,filter_spec,label)
+        FilterFrameBase.__init__(self,filter_spec,label)
 
-	# Build the filter widgets, the make_* methods are
-	# in the FilterFrameBase base class.
+        # Build the filter widgets, the make_* methods are
+        # in the FilterFrameBase base class.
 
         # Gramps ID
-	self._id_check,self._id_label,self._id_edit = \
+        self._id_check,self._id_label,self._id_edit = \
 	    self.make_text_widget("Gramps ID")
 
         # Name
-	self._name_check,self._name_label,self._name_edit = \
+        self._name_check,self._name_label,self._name_edit = \
 	    self.make_text_widget("Name")
 
         # Gender
@@ -61,21 +61,21 @@ class PersonFilterFrame(FilterFrameBase):
                  [_("Female"),gen.lib.Person.FEMALE],
                  [_("Unknown"),gen.lib.Person.UNKNOWN]]
 
-	self._gender_list = gtk.ListStore(str,int)
+        self._gender_list = gtk.ListStore(str,int)
 
-	for entry in genders:
-	    self._gender_list.append(entry)
+        for entry in genders:
+            self._gender_list.append(entry)
 
-	self._gender_check,self._gender_label, self._gender_combo = \
+        self._gender_check,self._gender_label, self._gender_combo = \
 	    self.make_combo_widget("Gender",self._gender_list)
 
         # Birth
-	self._birth_check, self._b_edit, \
+        self._birth_check, self._b_edit, \
 	    self._b_before, self._b_after, \
 	    self._b_unknown  = self.make_year_widget("Birth Year")
 
         # Death
-	self._death_check, self._d_edit, \
+        self._death_check, self._d_edit, \
 	    self._d_before, self._d_after, \
 	    self._d_unknown  = self.make_year_widget("Death Year")
 
@@ -106,16 +106,16 @@ class PersonFilterFrame(FilterFrameBase):
             Rules.Person.IsFemale,
             ]
 
-	# don't currently support filters that need an attribute.	
-	filters = [ filter for filter in default_filters if \
+        # don't currently support filters that need an attribute.	
+        filters = [ filter for filter in default_filters if \
 		    not hasattr(filter,'labels') or len(filter.labels) == 0 ]
 
         self._filter_list = gtk.ListStore(str,object)
 
         for filter in filters:
-	    self._filter_list.append([filter.name,filter])
+            self._filter_list.append([filter.name,filter])
 
-	self._filter_check,self._filter_label,self._filter_combo = \
+        self._filter_check,self._filter_label,self._filter_combo = \
 	    self.make_combo_widget("Filter",self._filter_list)
 
         self._reset_widgets()
@@ -223,7 +223,7 @@ class PersonFilterFrame(FilterFrameBase):
         if self._filter_check.get_active():
             filter.add_rule(self._filter_list.get_value(self._filter_combo.get_active_iter(),1)([]))
             
-	self.emit('apply-filter',filter)
+        self.emit('apply-filter',filter)
     
 if gtk.pygtk_version < (2,8,0):
     gobject.type_register(PersonFilterFrame)
