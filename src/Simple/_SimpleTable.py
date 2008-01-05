@@ -284,18 +284,16 @@ class SimpleTable:
             if self.title:
                 self.simpledoc.paragraph(self.title)
             # Make a GUI to put the tree view in
-            frame = gtk.Frame()
-            frame.add(treeview)
             types += sort_data_types
             model = gtk.ListStore(*types)
             treeview.set_model(model)
             iter = buffer.get_end_iter()
             anchor = buffer.create_child_anchor(iter)
-            text_view.add_child_at_anchor(frame, anchor)
+            text_view.add_child_at_anchor(treeview, anchor)
             count = 0
             for data in self.__rows:
                 model.append(row=([count] + list(data) + [col[count] for col in sort_data]))
                 count += 1
-            frame.show_all()
+            text_view.show_all()
             self.simpledoc.paragraph("")
             self.simpledoc.paragraph("")

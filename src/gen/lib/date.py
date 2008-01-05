@@ -252,29 +252,32 @@ class Date:
         if type(other) == int:
             return self.copy_offset_ymd(-other)
         elif type(other) == type(self): # date
-            d1 = self.get_ymd()
-            d2 = other.get_ymd()
+            d1 = map(lambda i: i or 1, self.get_ymd())
+            d2 = map(lambda i: i or 1, other.get_ymd())
             if d1 < d2:
                 d1, d2 = d2, d1
+            # d1 - d2 (1998, 12, 32) - (1982, 12, 15) = 
+            # days:
+            if d2[2] > d1[2]:
+                # months:
+                if d2[1] > d1[1]:
+                    d1[0] -= 1
+                    d1[1] += 12
+                d1[1] -= 1
+                d1[2] += 31
+            # months:
+            if d2[1] > d1[1]:
+                d1[0] -= 1  # from years
+                d1[1] += 12 # to months
             days = d1[2] - d2[2]
             months = d1[1] - d2[1]
             years = d1[0] - d2[0]
-            while days < 0:
-                months -= 1
-                days = 30 + days
-            while months < 0:
-                years -= 1
-                months = 12 + months
             if days > 31:
                 months += days / 31
                 days = days % 31
-            if months > 11:
+            if months > 12:
                 years += months / 12
                 months = months % 12
-            if years < 0: # can happen with 0 based months/days
-                years = 0
-                months = 12 - months
-                days = 31 - days
             return (years, months, days)
         elif type(other) in [tuple, list]:
             return self.copy_offset_ymd(*map(lambda x: -x, other))

@@ -1,3 +1,7 @@
+2008-01-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/gen/lib/date.py (Date.__sub__): fixed date differences
+	* src/Simple/_SimpleTable.py: removed frame around textview
+	
 2008-01-04  Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/Verify.py: Allow the Verify Results window to be reused if
 	it is already instantiated. Bug #1532
