@@ -500,12 +500,12 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         """Write the text to the file"""
         if text == '\n':
             text = '\\newline\n'
-            text = text.replace('#','\#')
-            text = text.replace('&','\&')
-            text = text.replace('<super>','\\textsuperscript{')
-            text = text.replace('</super>','}')
-            text = text.replace('_____________','\\underline{\hspace{3cm}}')
-            self.f.write(text)
+        text = text.replace('#','\#')
+        text = text.replace('&','\&')
+        text = text.replace('<super>','\\textsuperscript{')
+        text = text.replace('</super>','}')
+        text = text.replace('_____________','\\underline{\hspace{3cm}}')
+        self.f.write(text)
 
 
 #------------------------------------------------------------------------

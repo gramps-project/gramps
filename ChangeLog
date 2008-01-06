@@ -1,3 +1,7 @@
+2008-01-06  Benny Malengier <benny.malengier@gramps-project.org>
+            Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/docgen/LaTeXDoc.py: wrong indent on write, bug #1506
+
 2008-01-06  Brian Matherly <brian@gramps-project.org>
             Raphael Ackermann <raphael.ackermann@gmail.com>
             James Friedmann <jfriedmannj@gmail.com>
