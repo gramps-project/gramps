@@ -22,7 +22,7 @@ docgen_PYTHON = \
 	TextBufDoc.py \
 	GtkPrint.py
 
-dist_pkgdata_DATA = \
+docgen_DATA = \
 	gtkprintpreview.glade
 
 # Clean up all the byte-compiled files

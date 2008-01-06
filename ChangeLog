@@ -1,3 +1,6 @@
+2008-01-06 Jerome Rapinat <romjerome@yahoo.fr>
+        * src/docgen/Makefile.am: gtkprintpreview.glade was not pasted on install 
+
 2008-01-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/MyGrampsView.py (MyGrampsView.clear_gadgets): 
 	Protect on re-columning from gadgets that have been removed
