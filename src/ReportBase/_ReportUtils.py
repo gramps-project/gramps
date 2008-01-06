@@ -62,7 +62,8 @@ born_full_date_with_place = [
     gen.lib.Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."), 
     gen.lib.Person.MALE : _("%(male_name)s was born on %(birth_date)s in %(birth_place)s."), 
     gen.lib.Person.FEMALE : _("%(female_name)s was born on %(birth_date)s in %(birth_place)s."), 
-  }, 
+  },
+  _("Born %(birth_date)s in %(birth_place)s."), 
 ]
 
 born_modified_date_with_place = [
@@ -75,7 +76,8 @@ born_modified_date_with_place = [
     gen.lib.Person.UNKNOWN : _("%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."), 
     gen.lib.Person.MALE : _("%(male_name)s was born %(modified_date)s in %(birth_place)s."), 
     gen.lib.Person.FEMALE : _("%(female_name)s was born %(modified_date)s in %(birth_place)s."), 
-  }, 
+  },
+  _("Born %(modified_date)s in %(birth_place)s."), 
 ]
 
 born_full_date_no_place = [
@@ -88,7 +90,8 @@ born_full_date_no_place = [
     gen.lib.Person.UNKNOWN : _("%(unknown_gender_name)s was born on %(birth_date)s."), 
     gen.lib.Person.MALE : _("%(male_name)s was born on %(birth_date)s."), 
     gen.lib.Person.FEMALE : _("%(female_name)s was born on %(birth_date)s."), 
-  }, 
+  },
+  _("Born %(birth_date)s."), 
 ]  
 
 born_modified_date_no_place = [
@@ -102,6 +105,7 @@ born_modified_date_no_place = [
     gen.lib.Person.MALE : _("%(male_name)s was born %(modified_date)s."), 
     gen.lib.Person.FEMALE : _("%(female_name)s was born %(modified_date)s."), 
   }, 
+   _("Born %(modified_date)s."),
 ]  
 
 born_partial_date_with_place = [
@@ -115,6 +119,7 @@ born_partial_date_with_place = [
     gen.lib.Person.MALE : _("%(male_name)s was born in %(month_year)s in %(birth_place)s."), 
     gen.lib.Person.FEMALE : _("%(female_name)s was born in %(month_year)s in %(birth_place)s."), 
   }, 
+  _("Born %(month_year)s in %(birth_place)s."),
 ]  
 
 born_partial_date_no_place = [
@@ -127,7 +132,8 @@ born_partial_date_no_place = [
     gen.lib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(month_year)s."), 
     gen.lib.Person.MALE : _("%(male_name)s was born in %(month_year)s."), 
     gen.lib.Person.FEMALE : _("%(female_name)s was born in %(month_year)s."), 
-  }
+  },
+  _("Born %(month_year)s."),
 ]  
 
 born_no_date_with_place = [
@@ -140,7 +146,8 @@ born_no_date_with_place = [
     gen.lib.Person.UNKNOWN : _("%(unknown_gender_name)s was born in %(birth_place)s."), 
     gen.lib.Person.MALE : _("%(male_name)s was born in %(birth_place)s."), 
     gen.lib.Person.FEMALE : _("%(female_name)s was born in %(birth_place)s."), 
-  }
+  },
+  _("Born in %(birth_place)s."),
 ]  
 
 #------------------------------------------------------------------------
@@ -187,7 +194,13 @@ died_full_date_with_place = [
     _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d months."), 
     _("%(female_name)s died on %(death_date)s in %(death_place)s at the age of %(age)d days."), 
     ], 
-  }, 
+  },
+  [
+  _("Died %(death_date)s in %(death_place)s."),
+  _("Died %(death_date)s in %(death_place)s (age %(age)d years)."),
+  _("Died %(death_date)s in %(death_place)s (age %(age)d months)."),
+  _("Died %(death_date)s in %(death_place)s (age %(age)d days)."),
+  ], 
 ]
 
 died_modified_date_with_place = [
@@ -228,7 +241,13 @@ died_modified_date_with_place = [
     _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d months."), 
     _("%(female_name)s died %(death_date)s in %(death_place)s at the age of %(age)d days."), 
     ], 
-  }, 
+  },
+  [
+  _("Died %(death_date)s in %(death_place)s."),
+  _("Died %(death_date)s in %(death_place)s (age %(age)d years)."),
+  _("Died %(death_date)s in %(death_place)s (age %(age)d months)."),
+  _("Died %(death_date)s in %(death_place)s (age %(age)d days)."),
+  ], 
 ]
 
 died_full_date_no_place = [
@@ -269,7 +288,13 @@ died_full_date_no_place = [
     _("%(female_name)s died on %(death_date)s at the age of %(age)d months."), 
     _("%(female_name)s died on %(death_date)s at the age of %(age)d days."), 
     ], 
-  }, 
+  },
+  [
+  _("Died %(death_date)s."),
+  _("Died %(death_date)s (age %(age)d years)."),
+  _("Died %(death_date)s (age %(age)d months)."),
+  _("Died %(death_date)s (age %(age)d days)."),
+  ], 
 ]  
 
 died_modified_date_no_place = [
@@ -310,7 +335,13 @@ died_modified_date_no_place = [
     _("%(female_name)s died %(death_date)s at the age of %(age)d months."), 
     _("%(female_name)s died %(death_date)s at the age of %(age)d days."), 
     ], 
-  }, 
+  },
+  [
+  _("Died %(death_date)s."),
+  _("Died %(death_date)s (age %(age)d years)."),
+  _("Died %(death_date)s (age %(age)d months)."),
+  _("Died %(death_date)s (age %(age)d days)."),
+  ], 
 ]  
 
 died_partial_date_with_place = [
@@ -351,7 +382,13 @@ died_partial_date_with_place = [
     _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d months."), 
     _("%(female_name)s died in %(month_year)s in %(death_place)s at the age of %(age)d days."), 
     ], 
-  }, 
+  },
+  [
+  _("Died %(month_year)s in %(death_place)s."),
+  _("Died %(month_year)s in %(death_place)s (age %(age)d years)."),
+  _("Died %(month_year)s in %(death_place)s (age %(age)d months)."),
+  _("Died %(month_year)s in %(death_place)s (age %(age)d days)."),
+  ], 
 ]  
 
 died_partial_date_no_place = [
@@ -392,7 +429,13 @@ died_partial_date_no_place = [
     _("%(female_name)s died in %(month_year)s at the age of %(age)d months."), 
     _("%(female_name)s died in %(month_year)s at the age of %(age)d days."), 
     ], 
-  }
+  },
+  [
+  _("Died %(month_year)s."),
+  _("Died %(month_year)s (age %(age)d years)."),
+  _("Died %(month_year)s (age %(age)d months)."),
+  _("Died %(month_year)s (age %(age)d days)."),
+  ],
 ]  
 
 died_no_date_with_place = [
@@ -434,7 +477,13 @@ died_no_date_with_place = [
     _("%(female_name)s died in %(death_place)s at the age of %(age)d months."), 
     _("%(female_name)s died in %(death_place)s at the age of %(age)d days."), 
     ], 
-  }
+  },
+  [
+  _("Died in %(death_place)s."),
+  _("Died in %(death_place)s (age %(age)d years)."),
+  _("Died in %(death_place)s (age %(age)d months)."),
+  _("Died in %(death_place)s (age %(age)d days)."),
+  ],
 ]  
 
 died_no_date_no_place = [
@@ -475,7 +524,13 @@ died_no_date_no_place = [
     _("%(female_name)s died at the age of %(age)d months."), 
     _("%(female_name)s died at the age of %(age)d days."), 
     ], 
-  }, 
+  },
+  [
+  _(""),
+  _("Died (age %(age)d years)."),
+  _("Died (age %(age)d months)."),
+  _("Died (age %(age)d days)."),
+  ], 
 ]
 
 #------------------------------------------------------------------------
@@ -625,6 +680,11 @@ marriage_first_date_place = {
         _('She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
         _('She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
         _('She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ],
+    'succinct' : [
+        _('Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s.'),
+        _('Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ], 
     }
 
@@ -643,7 +703,12 @@ marriage_also_date_place = {
         _('She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
         _('She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
         _('She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
-      ], 
+      ],
+    'succinct' : [
+        _('Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s.'),
+        _('Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],       
     }
 
 marriage_first_date = {
@@ -661,7 +726,12 @@ marriage_first_date = {
         _('She married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
         _('She married %(spouse)s on %(full_date)s%(endnotes)s.'), 
         _('She married %(spouse)s %(modified_date)s%(endnotes)s.'), 
-      ], 
+      ],
+    'succinct' : [
+        _('Married %(spouse)s %(partial_date)s%(endnotes)s.'),
+        _('Married %(spouse)s %(full_date)s%(endnotes)s.'),
+        _('Married %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],       
     }
 
 marriage_also_date = {
@@ -679,31 +749,40 @@ marriage_also_date = {
         _('She also married %(spouse)s in %(partial_date)s%(endnotes)s.'), 
         _('She also married %(spouse)s on %(full_date)s%(endnotes)s.'), 
         _('She also married %(spouse)s %(modified_date)s%(endnotes)s.'), 
-      ], 
+      ],
+    'succinct' : [
+        _('Also married %(spouse)s %(partial_date)s%(endnotes)s.'),
+        _('Also married %(spouse)s %(full_date)s%(endnotes)s.'),
+        _('Also married %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],       
     }
 
 marriage_first_place = {
     gen.lib.Person.UNKNOWN : _('This person married %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He married %(spouse)s in %(place)s%(endnotes)s.'), 
-    gen.lib.Person.FEMALE : _('She married %(spouse)s in %(place)s%(endnotes)s.'), 
+    gen.lib.Person.FEMALE : _('She married %(spouse)s in %(place)s%(endnotes)s.'),
+    'succinct' : _('Married %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 marriage_also_place = {
     gen.lib.Person.UNKNOWN : _('This person also married %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He also married %(spouse)s in %(place)s%(endnotes)s.'), 
-    gen.lib.Person.FEMALE : _('She also married %(spouse)s in %(place)s%(endnotes)s.'), 
+    gen.lib.Person.FEMALE : _('She also married %(spouse)s in %(place)s%(endnotes)s.'),
+    'succinct' : _('Also married %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 marriage_first_only = {
     gen.lib.Person.UNKNOWN : _('This person married %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He married %(spouse)s%(endnotes)s.'), 
-    gen.lib.Person.FEMALE : _('She married %(spouse)s%(endnotes)s.'), 
+    gen.lib.Person.FEMALE : _('She married %(spouse)s%(endnotes)s.'),
+    'succinct' : _('Married %(spouse)s%(endnotes)s.'), 
     }
 
 marriage_also_only = {
     gen.lib.Person.UNKNOWN : _('This person also married %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He also married %(spouse)s%(endnotes)s.'), 
-    gen.lib.Person.FEMALE : _('She also married %(spouse)s%(endnotes)s.'), 
+    gen.lib.Person.FEMALE : _('She also married %(spouse)s%(endnotes)s.'),
+    'succinct' : _('Also married %(spouse)s%(endnotes)s.'), 
     }
 
 #------------------------------------------------------------------------
@@ -727,7 +806,12 @@ unmarried_first_date_place = {
         _('She had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
         _('She had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
         _('She had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
-      ], 
+      ],
+      'succinct' : [
+        _('Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s.'),
+        _('Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],  
     }
 
 unmarried_also_date_place = {
@@ -745,6 +829,11 @@ unmarried_also_date_place = {
         _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
         _('She also had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
         _('She also had an unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ],
+      'succinct' : [
+        _('Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s.'),
+        _('Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ], 
     }
 
@@ -763,7 +852,12 @@ unmarried_first_date = {
         _('She had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
         _('She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
         _('She had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
-      ], 
+      ],
+      'succinct' : [
+        _('Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s.'),
+        _('Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s.'),
+        _('Unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
+      ],       
     }
 
 unmarried_also_date = {
@@ -781,6 +875,11 @@ unmarried_also_date = {
         _('She also had an unmarried relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
         _('She also had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
         _('She also had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ],
+      'succinct' : [
+        _('Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s.'),
+        _('Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s.'),
+        _('Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
       ], 
     }
 
@@ -788,24 +887,28 @@ unmarried_first_place = {
     gen.lib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    'succinct' : _('Unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 unmarried_also_place = {
     gen.lib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    'succinct' : _('Unmarried relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 unmarried_first_only = {
     gen.lib.Person.UNKNOWN : _('This person had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
-    gen.lib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
+    gen.lib.Person.FEMALE : _('She had an unmarried relationship with %(spouse)s%(endnotes)s.'),
+    'succinct' : _('Unmarried relationship with %(spouse)s%(endnotes)s.'),  
     }
 
 unmarried_also_only = {
     gen.lib.Person.UNKNOWN : _('This person also had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He also had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.FEMALE : _('She also had an unmarried relationship with %(spouse)s%(endnotes)s.'), 
+    'succinct' : _('Unmarried relationship with %(spouse)s%(endnotes)s.'), 
     }
 
 #------------------------------------------------------------------------
@@ -830,7 +933,12 @@ relationship_first_date_place = {
         _('She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
         _('She had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
         _('She had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
-      ], 
+      ],
+      'succinct' : [
+        _('Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s.'),
+        _('Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
+      ],       
     }
 
 relationship_also_date_place = {
@@ -848,6 +956,11 @@ relationship_also_date_place = {
         _('She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s.'), 
         _('She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s.'), 
         _('She also had a relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'), 
+      ],
+      'succinct' : [
+        _('Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s.'),
+        _('Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s.'),
+        _('Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s.'),
       ], 
     }
 
@@ -866,6 +979,11 @@ relationship_first_date = {
         _('She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
         _('She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
         _('She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ],
+      'succinct' : [
+        _('Relationship with %(spouse)s %(partial_date)s%(endnotes)s.'),
+        _('Relationship with %(spouse)s %(full_date)s%(endnotes)s.'),
+        _('Relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
       ], 
     }
 
@@ -884,6 +1002,11 @@ relationship_also_date = {
         _('She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s.'), 
         _('She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s.'), 
         _('She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s.'), 
+      ],
+      'succinct' : [
+        _('Also relationship with %(spouse)s %(partial_date)s%(endnotes)s.'),
+        _('Also relationship with %(spouse)s %(full_date)s%(endnotes)s.'),
+        _('Also relationship with %(spouse)s %(modified_date)s%(endnotes)s.'),
       ], 
     }
 
@@ -891,24 +1014,28 @@ relationship_first_place = {
     gen.lib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.FEMALE : _('She had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    'succinct' : _('Relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 relationship_also_place = {
     gen.lib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     gen.lib.Person.FEMALE : _('She also had a relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
+    'succinct' : _('Also relationship with %(spouse)s in %(place)s%(endnotes)s.'), 
     }
 
 relationship_first_only = {
     gen.lib.Person.UNKNOWN : _('This person had a relationship with %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He had a relationship with %(spouse)s%(endnotes)s.'), 
-    gen.lib.Person.FEMALE : _('She had a relationship with %(spouse)s%(endnotes)s.'), 
+    gen.lib.Person.FEMALE : _('She had a relationship with %(spouse)s%(endnotes)s.'),
+    'succinct' : _('Relationship with %(spouse)s%(endnotes)s.'),  
     }
 
 relationship_also_only = {
     gen.lib.Person.UNKNOWN : _('This person also had a relationship with %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.MALE : _('He also had a relationship with %(spouse)s%(endnotes)s.'), 
     gen.lib.Person.FEMALE : _('She also had a relationship with %(spouse)s%(endnotes)s.'), 
+    'succinct' : _('Also relationship with %(spouse)s%(endnotes)s.'), 
     }
 
 #-------------------------------------------------------------------------
@@ -926,7 +1053,8 @@ child_father_mother = {
       [
         _("%(male_name)s is the child of %(father)s and %(mother)s."), 
         _("%(male_name)s was the child of %(father)s and %(mother)s."), 
-      ], 
+      ],
+      _("Child of %(father)s and %(mother)s."), 
     ], 
     gen.lib.Person.MALE : [
       [
@@ -936,7 +1064,8 @@ child_father_mother = {
       [
         _("%(male_name)s is the son of %(father)s and %(mother)s."), 
         _("%(male_name)s was the son of %(father)s and %(mother)s."), 
-      ]
+      ],
+      _("Son of %(father)s and %(mother)s."),
     ], 
     gen.lib.Person.FEMALE : [
      [
@@ -946,7 +1075,8 @@ child_father_mother = {
      [
         _("%(female_name)s is the daughter of %(father)s and %(mother)s."), 
         _("%(female_name)s was the daughter of %(father)s and %(mother)s."), 
-     ], 
+     ],
+     _("Daughter of %(father)s and %(mother)s."), 
     ]
 }
 
@@ -959,7 +1089,8 @@ child_father = {
       [
         _("%(male_name)s is the child of %(father)s."), 
         _("%(male_name)s was the child of %(father)s."), 
-      ], 
+      ],
+      _("Child of %(father)s."), 
     ], 
     gen.lib.Person.MALE : [
       [
@@ -969,7 +1100,8 @@ child_father = {
       [
         _("%(male_name)s is the son of %(father)s."), 
         _("%(male_name)s was the son of %(father)s."), 
-      ], 
+      ],
+      _("Son of %(father)s."), 
     ], 
     gen.lib.Person.FEMALE : [
       [
@@ -979,7 +1111,8 @@ child_father = {
       [
         _("%(female_name)s is the daughter of %(father)s."), 
         _("%(female_name)s was the daughter of %(father)s."), 
-      ], 
+      ],
+      _("Daughter of %(father)s."), 
     ], 
 }
 
@@ -992,7 +1125,8 @@ child_mother = {
       [
         _("%(male_name)s is the child of %(mother)s."), 
         _("%(male_name)s was the child of %(mother)s."), 
-      ], 
+      ],
+      _("Child of %(mother)s."), 
     ], 
     gen.lib.Person.MALE : [
       [
@@ -1002,7 +1136,8 @@ child_mother = {
       [
         _("%(male_name)s is the son of %(mother)s."), 
         _("%(male_name)s was the son of %(mother)s."), 
-      ], 
+      ],
+      _("Son of %(mother)s."), 
     ], 
     gen.lib.Person.FEMALE : [
       [
@@ -1012,7 +1147,8 @@ child_mother = {
       [
         _("%(female_name)s is the daughter of %(mother)s."), 
         _("%(female_name)s was the daughter of %(mother)s."), 
-      ], 
+      ],
+      _("Daughter of %(mother)s."), 
    ], 
 }
 
@@ -1700,7 +1836,7 @@ def born_died_str(database, person, endnotes=None, name_object=None, person_name
 # married_str
 #
 #-------------------------------------------------------------------------
-def married_str(database, person, family, endnotes=None, 
+def married_str(database, person, family, verbose=True, endnotes=None, 
                 empty_date="", empty_place="", is_first=True):
     """
     Composes a string describing marriage of a person. Missing information will
@@ -1777,63 +1913,119 @@ def married_str(database, person, family, endnotes=None,
 #   CUSTOM will be difficult as user can supply any arbitrary string to describe type
 
     if is_first:
-        if event and date and place:
+        if event and date and place and verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_first_date_place[gender][date_full] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_first_date_place[gender][date_full] % values
             else:
                 text = relationship_first_date_place[gender][date_full] % values
-        elif event and date:
+        if event and date and place:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_first_date_place['succinct'][date_full] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_date_place['succinct'][date_full] % values
+            else:
+                text = relationship_first_date_place['succinct'][date_full] % values                
+        elif event and date and verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_first_date[gender][date_full] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_first_date[gender][date_full] % values
             else:
                 text = relationship_first_date[gender][date_full] % values
-        elif event and place:
+        elif event and date:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_first_date['succinct'][date_full] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_date['succinct'][date_full] % values
+            else:
+                text = relationship_first_date['succinct'][date_full] % values
+        elif event and place and verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_first_place[gender] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_first_place[gender] % values
             else:
                 text = relationship_first_place[gender] % values
-        else:
+        elif event and place:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_first_place['succinct'] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_place['succinct'] % values
+            else:
+                text = relationship_first_place['succinct'] % values
+        elif verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_first_only[gender] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_first_only[gender] % values
             else:
-                text = relationship_first_only[gender] % values
+                text = relationship_first_only[gender] % values                            
+        else:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_first_only['succinct'] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_first_only['succinct'] % values
+            else:
+                text = relationship_first_only['succinct'] % values
     else:
-        if event and date and place:
+        if event and date and place and verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_also_date_place[gender][date_full] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_also_date_place[gender][date_full] % values
             else:
                 text = relationship_also_date_place[gender][date_full] % values
-        elif event and date:
+        if event and date and place:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_also_date_place['succinct'][date_full] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_date_place['succinct'][date_full] % values
+            else:
+                text = relationship_also_date_place['succinct'][date_full] % values
+        elif event and date and verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_also_date[gender][date_full] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_also_date[gender][date_full] % values
             else:
                 text = relationship_also_date[gender][date_full] % values
-        elif event and place:
+        elif event and date:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_also_date['succinct'][date_full] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_date['succinct'][date_full] % values
+            else:
+                text = relationship_also_date['succinct'][date_full] % values
+        elif event and place and verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_also_place[gender] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_also_place[gender] % values
             else:
                 text = relationship_also_place[gender] % values
-        else:
+        elif event and place:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_also_place['succinct'] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_place['succinct'] % values
+            else:
+                text = relationship_also_place['succinct'] % values
+        elif verbose:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_also_only[gender] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:
                 text = unmarried_also_only[gender] % values
             else:
                 text = relationship_also_only[gender] % values
+        else:
+            if relationship == gen.lib.FamilyRelType.MARRIED:
+                text = marriage_also_only['succinct'] % values
+            elif relationship == gen.lib.FamilyRelType.UNMARRIED:
+                text = unmarried_also_only['succinct'] % values
+            else:
+                text = relationship_also_only['succinct'] % values
 
     if text:
         text = text + " "
@@ -1845,7 +2037,8 @@ def married_str(database, person, family, endnotes=None,
 # child_str
 #
 #-------------------------------------------------------------------------
-def child_str(person, father_name="", mother_name="", dead=0, person_name=0):
+def child_str(person, father_name="", mother_name="", dead=0, 
+              person_name=0, verbose=True):
     """
     Composes a string describing person being a child.
     
@@ -1882,12 +2075,18 @@ def child_str(person, father_name="", mother_name="", dead=0, person_name=0):
     gender = person.get_gender()
 
     text = ""
-    if mother_name and father_name:
+    if mother_name and father_name and verbose:
         text = child_father_mother[gender][index][dead] % values
-    elif mother_name:
+    elif mother_name and father_name:
+        text = child_father_mother[gender][2] % values
+    elif mother_name and verbose:
         text = child_mother[gender][index][dead] % values
-    elif father_name:
+    elif mother_name:
+        text = child_mother[gender][2] % values
+    elif father_name and verbose:
         text = child_father[gender][index][dead] % values
+    elif father_name:
+        text = child_father[gender][2] % values
     if text:
         text = text + " "
     return text
@@ -1921,7 +2120,8 @@ def find_marriage(database, family):
 # born_str
 #
 #-------------------------------------------------------------------------
-def born_str(database, person, person_name=None, empty_date="", empty_place=""):
+def born_str(database, person, person_name=None, verbose=True, 
+             empty_date="", empty_place=""):
     """ 
     Check birth record.
     Statement formats name precedes this
@@ -1959,23 +2159,37 @@ def born_str(database, person, person_name=None, empty_date="", empty_place=""):
 
     if bdate:
         if bdate_mod:
-            if bplace:
+            if bplace and verbose:
                 text = born_modified_date_with_place[name_index][gender] % value_map
-            else:
+            elif bplace:
+                text = born_modified_date_with_place[2] % value_map
+            elif verbose:
                 text = born_modified_date_no_place[name_index][gender] % value_map
+            else:
+                text = born_modified_date_no_place[2] % value_map
         elif bdate_full:
-            if bplace:
+            if bplace and verbose:
                 text = born_full_date_with_place[name_index][gender] % value_map
-            else:
+            elif bplace:
+                text = born_full_date_with_place[2] % value_map
+            elif verbose:
                 text = born_full_date_no_place[name_index][gender] % value_map
-        else:
-            if bplace:
-                text = born_partial_date_with_place[name_index][gender] % value_map
             else:
+                text = born_full_date_no_place[2] % value_map
+        else:
+            if bplace and verbose:
+                text = born_partial_date_with_place[name_index][gender] % value_map
+            elif bplace:
+                text = born_partial_date_with_place[2] % value_map
+            elif verbose:
                 text = born_partial_date_no_place[name_index][gender] % value_map
+            else:
+                text = born_partial_date_no_place[2] % value_map
     else:
-        if bplace:
+        if bplace and verbose:
             text = born_no_date_with_place[name_index][gender] % value_map
+        elif bplace:
+            text = born_no_date_with_place[2] % value_map
         else:
             text = ""
     if text:
@@ -1987,8 +2201,8 @@ def born_str(database, person, person_name=None, empty_date="", empty_place=""):
 # died_str
 #
 #-------------------------------------------------------------------------
-def died_str(database, person, person_name=None, empty_date="", empty_place="", 
-             age=None, age_units=0):
+def died_str(database, person, person_name=None, verbose=True, 
+             empty_date="", empty_place="", age=None, age_units=0):
     """
     Write obit sentence.
         FIRSTNAME died on Date
@@ -2044,25 +2258,41 @@ def died_str(database, person, person_name=None, empty_date="", empty_place="",
 
     if ddate:
         if ddate_mod:
-            if dplace:
+            if dplace and verbose:
                 text = died_modified_date_with_place[name_index][gender][age_units] % value_map
-            else:
+            elif dplace:
+                text = died_modified_date_with_place[2][age_units] % value_map
+            elif verbose:
                 text = died_modified_date_no_place[name_index][gender][age_units] % value_map
+            else:
+                text = died_modified_date_no_place[2][age_units] % value_map
         elif ddate_full:
-            if dplace:
+            if dplace and verbose:
                 text = died_full_date_with_place[name_index][gender][age_units] % value_map
-            else:
+            elif dplace:
+                text = died_full_date_with_place[2][age_units] % value_map
+            elif verbose:
                 text = died_full_date_no_place[name_index][gender][age_units] % value_map
-        else:
-            if dplace:
-                text = died_partial_date_with_place[name_index][gender][age_units] % value_map
             else:
-                text = died_partial_date_no_place[name_index][gender][age_units] % value_map
-    else:
-        if dplace:
-            text = died_no_date_with_place[name_index][gender][age_units] % value_map
+                text = died_full_date_no_place[2][age_units] % value_map
         else:
+            if dplace and verbose:
+                text = died_partial_date_with_place[name_index][gender][age_units] % value_map
+            elif dplace:
+                text = died_partial_date_with_place[2][age_units] % value_map
+            elif verbose:
+                text = died_partial_date_no_place[name_index][gender][age_units] % value_map
+            else:
+                text = died_partial_date_no_place[2][age_units] % value_map
+    else:
+        if dplace and verbose:
+            text = died_no_date_with_place[name_index][gender][age_units] % value_map
+        elif dplace:
+            text = died_no_date_with_place[2][age_units] % value_map
+        elif verbose:
             text = died_no_date_no_place[name_index][gender][age_units] % value_map
+        else:
+            text = died_no_date_no_place[2][age_units] % value_map
     if text:
         text = text + " "
     return text
@@ -2457,4 +2687,5 @@ def get_person_filters(person, include_single=True):
         the_filters = [all, des, df, ans, com]
     the_filters.extend(CustomFilters.get_filters('Person'))
     return the_filters
+
 

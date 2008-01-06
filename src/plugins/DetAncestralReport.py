@@ -84,6 +84,7 @@ class DetAncestorReport(Report):
         blankDate     - Whether to replace missing Dates with ___________.
         calcAgeFlag   - Whether to compute age.
         dupPerson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
+        verbose       - Whether to use complete sentences
         childRef      - Whether to add descendant references in child list.
         addImages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
@@ -102,6 +103,7 @@ class DetAncestorReport(Report):
         self.blankDate     = options_class.handler.options_dict['repdate']
         self.calcAgeFlag   = options_class.handler.options_dict['computeage']
         self.dupPerson     = options_class.handler.options_dict['omitda']
+        self.verbose       = options_class.handler.options_dict['verbose']
         self.childRef      = options_class.handler.options_dict['desref']
         self.addImages     = options_class.handler.options_dict['incphotos']
         self.includeNames  = options_class.handler.options_dict['incnames']
@@ -227,7 +229,11 @@ class DetAncestorReport(Report):
         # Check birth record
 
         first = ReportUtils.common_name(person,self.usecall)
-        text = ReportUtils.born_str(self.database,person,first,
+        
+        if not self.verbose:
+            self.write_parents(person, first)
+
+        text = ReportUtils.born_str(self.database,person,first,self.verbose,
                                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             birth_ref = person.get_birth_ref()
@@ -239,7 +245,7 @@ class DetAncestorReport(Report):
             first = 0
 
         age,units = self.calc_age(person)
-        text = ReportUtils.died_str(self.database,person,first,
+        text = ReportUtils.died_str(self.database,person,first,self.verbose,
                                     self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
         if text:
             death_ref = person.get_death_ref()
@@ -257,8 +263,11 @@ class DetAncestorReport(Report):
 
         first = ReportUtils.common_name(person,self.usecall)
 
-        self.write_parents(person, first)
-        self.write_marriage(person)
+        if self.verbose:
+            self.write_parents(person, first)
+
+        if not key % 2 or key == 1:
+            self.write_marriage(person)
         self.doc.end_paragraph()
 
         if key == 1:
@@ -435,7 +444,7 @@ class DetAncestorReport(Report):
                 
             text = ReportUtils.child_str(person, father_name, mother_name,
                                          bool(person.get_death_ref()),
-                                         firstName)
+                                         firstName,self.verbose)
             if text:
                 self.doc.write_text(text)
                 if father_mark:
@@ -456,6 +465,7 @@ class DetAncestorReport(Report):
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             
             text = ReportUtils.married_str(self.database,person,family,
+                                            self.verbose,
                                             self.endnotes,
                                             self.EMPTY_DATE,self.EMPTY_PLACE,
                                             is_first)
@@ -488,8 +498,8 @@ class DetAncestorReport(Report):
         self.doc.start_paragraph("DAR-ChildTitle")
         self.doc.write_text(
                         _("Children of %(mother_name)s and %(father_name)s") % 
-                            {'mother_name': mother_name,
-                             'father_name': father_name} )
+                            {'father_name': father_name,
+                             'mother_name': mother_name} )
         self.doc.end_paragraph()
 
         cnt = 1
@@ -507,10 +517,12 @@ class DetAncestorReport(Report):
             cnt += 1
 
             self.doc.write_text("%s. " % child_name,child_mark)
-            self.doc.write_text(ReportUtils.born_str(self.database, child, 0,
-                                                     self.EMPTY_DATE, self.EMPTY_PLACE))
-            self.doc.write_text(ReportUtils.died_str(self.database, child, 0, 
-                                                     self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(
+                        ReportUtils.born_str(self.database, child, 0, 
+                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(
+                        ReportUtils.died_str(self.database, child, 0, 
+                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
             
             self.doc.end_paragraph()
 
@@ -588,16 +600,18 @@ class DetAncestorReport(Report):
                 self.doc.start_paragraph("DAR-Entry")
 
                 self.doc.write_text(person_name,person_key)
+                self.doc.write_text(". ")
 
-                text = ReportUtils.born_str(self.database,ind,print_name,
-                    self.EMPTY_DATE,self.EMPTY_PLACE)
+                text = ReportUtils.born_str(self.database,ind,print_name, 
+                            self.verbose, self.EMPTY_DATE,self.EMPTY_PLACE)
                 if text:
                     self.doc.write_text(text)
                     print_name = 0;
 
                 age,units = self.calc_age(ind)
-                text = ReportUtils.died_str(self.database,ind,print_name,
-                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
+                text = ReportUtils.died_str(self.database,ind,print_name, 
+                           self.verbose, self.EMPTY_DATE,self.EMPTY_PLACE,
+                           age,units)
                 if text:
                     self.doc.write_text(text)
                     print_name = 0;
@@ -700,6 +714,11 @@ class DetAncestorOptions(MenuReportOptions):
         omitda = BooleanOption(_("Omit duplicate ancestors"),True)
         omitda.set_help(_("Whether to omit duplicate ancestors."))
         menu.add_option(category_name,"omitda",omitda)
+        
+        verbose = BooleanOption(_("Use Complete Sentences"),True)
+        verbose.set_help(
+                 _("Whether to use complete sentences or succinct language."))
+        menu.add_option(category_name,"verbose",verbose)
 
         desref = BooleanOption(_("Add descendant reference in child list"),True)
         desref.set_help(

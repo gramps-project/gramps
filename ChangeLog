@@ -1,5 +1,15 @@
+2008-01-06  Brian Matherly <brian@gramps-project.org>
+            Raphael Ackermann <raphael.ackermann@gmail.com>
+            James Friedmann <jfriedmannj@gmail.com>
+	* src/ReportBase/_ReportUtils.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DetAncestralReport.py:
+	0001408: Low Verbosity / Succinct option for the Detailed 
+	Ancestral/Descendant Reports (patch from James Friedmann modified by 
+	Raphael Ackermann and Brian Matherly)
+
 2008-01-05  Raphael Ackermann <raphael.ackermann@gmail.com>
-	* src/src/plugins/Verify.py:
+	* src/plugins/Verify.py:
 	Patch from Raphael Ackermann
 	Fix 0001505: Verifying database signals dead father, when he is not a father.
 

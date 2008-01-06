@@ -87,6 +87,7 @@ class DetDescendantReport(Report):
         blankDate     - Whether to replace missing Dates with ___________.
         calcAgeFlag   - Whether to compute age.
         dupPerson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
+        verbose       - Whether to use complete sentences
         childRef      - Whether to add descendant references in child list.
         addImages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
@@ -105,6 +106,7 @@ class DetDescendantReport(Report):
         self.blankDate     = options_class.handler.options_dict['repdate']
         self.calcAgeFlag   = options_class.handler.options_dict['computeage']
         self.dupPerson     = options_class.handler.options_dict['omitda']
+        self.verbose       = options_class.handler.options_dict['verbose']
         self.childRef      = options_class.handler.options_dict['desref']
         self.addImages     = options_class.handler.options_dict['incphotos']
         self.includeNames  = options_class.handler.options_dict['incnames']
@@ -346,7 +348,7 @@ class DetDescendantReport(Report):
                 
             text = ReportUtils.child_str(person, father_name, mother_name,
                                          bool(person.get_death_ref()),
-                                         firstName)
+                                         firstName,self.verbose)
             if text:
                 self.doc.write_text(text)
                 if father_mark:
@@ -367,6 +369,7 @@ class DetDescendantReport(Report):
             spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
             
             text = ReportUtils.married_str(self.database,person,family,
+                                            self.verbose,
                                             self.endnotes,
                                             self.EMPTY_DATE,self.EMPTY_PLACE,
                                             is_first)
@@ -399,8 +402,9 @@ class DetDescendantReport(Report):
         self.doc.start_paragraph("DDR-ChildTitle")
         self.doc.write_text(
                         _("Children of %(mother_name)s and %(father_name)s") % 
-                            {'mother_name': mother_name,
-                             'father_name': father_name} )
+                            {'father_name': father_name,
+                             'mother_name': mother_name
+                             } )
         self.doc.end_paragraph()
 
         cnt = 1
@@ -425,10 +429,10 @@ class DetDescendantReport(Report):
             else:
                 self.doc.write_text("%s. " % child_name,child_mark)
                 
-            self.doc.write_text(ReportUtils.born_str(
-                self.database, child, 0, self.EMPTY_DATE, self.EMPTY_PLACE))
-            self.doc.write_text(ReportUtils.died_str(
-                self.database, child, 0, self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(ReportUtils.born_str( self.database, child, 0, 
+                          self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
+            self.doc.write_text(ReportUtils.died_str( self.database, child, 0, 
+                          self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE))
             self.doc.end_paragraph()
 
     def write_family_events(self,family):
@@ -473,7 +477,11 @@ class DetDescendantReport(Report):
         self.doc.start_paragraph("DDR-Entry")
         # Check birth record
         first = ReportUtils.common_name(person,self.usecall)
-        text = ReportUtils.born_str(self.database,person,first,
+        
+        if not self.verbose:
+            self.write_parents(person, first)
+
+        text = ReportUtils.born_str(self.database,person,first, self.verbose,
                                     self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             birth_ref = person.get_birth_ref()
@@ -485,7 +493,7 @@ class DetDescendantReport(Report):
             first = 0
     
         age,units = self.calc_age(person)
-        text = ReportUtils.died_str(self.database,person,first,
+        text = ReportUtils.died_str(self.database,person,first,self.verbose,
                                     self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
         if text:
             death_ref = person.get_death_ref()
@@ -503,7 +511,8 @@ class DetDescendantReport(Report):
 
         first = ReportUtils.common_name(person,self.usecall)
 
-        self.write_parents(person, first)
+        if self.verbose:
+            self.write_parents(person, first)
         self.write_marriage(person)
         self.doc.end_paragraph()
 
@@ -666,6 +675,11 @@ class DetDescendantOptions(MenuReportOptions):
         omitda = BooleanOption(_("Omit duplicate ancestors"),True)
         omitda.set_help(_("Whether to omit duplicate ancestors."))
         menu.add_option(category_name,"omitda",omitda)
+        
+        verbose = BooleanOption(_("Use Complete Sentences"),True)
+        verbose.set_help(
+                 _("Whether to use complete sentences or succinct language."))
+        menu.add_option(category_name,"verbose",verbose)
 
         desref = BooleanOption(_("Add descendant reference in child list"),True)
         desref.set_help(
