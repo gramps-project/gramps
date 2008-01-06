@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-01 14:58+0100\n"
-"PO-Revision-Date: 2008-01-01 14:59+0100\n"
+"POT-Creation-Date: 2008-01-06 11:35+0100\n"
+"PO-Revision-Date: 2008-01-06 11:45+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -183,11 +183,10 @@ msgstr "Redigera bokmärken"
 #: ../src/Selectors/_SelectPerson.py:106 ../src/plugins/BookReport.py:659
 #: ../src/plugins/IndivComplete.py:483 ../src/plugins/NarrativeWeb.py:664
 #: ../src/plugins/NarrativeWeb.py:810 ../src/plugins/PatchNames.py:209
-#: ../src/plugins/RelCalc.py:56 ../src/plugins/RelCalc.py:110
+#: ../src/plugins/RelCalc.py:56 ../src/plugins/RelCalc.py:106
 #: ../src/plugins/RemoveUnused.py:180 ../src/plugins/TimeLine.py:440
 #: ../src/plugins/Verify.py:514
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:108
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:86
 #: ../src/FilterEditor/_EditFilter.py:83
 #: ../src/FilterEditor/_ShowResults.py:87
@@ -349,8 +348,9 @@ msgid "_Proceed with import"
 msgstr "_Fortsätt importera"
 
 #: ../src/DbLoader.py:266 ../src/PluginUtils/_Tool.py:117
+#, fuzzy
 msgid "_Stop"
-msgstr "_Stop"
+msgstr "_Stopp"
 
 #: ../src/DbLoader.py:272
 msgid "GRAMPS: Import database"
@@ -1076,17 +1076,17 @@ msgstr "Patronymikon, Förnamn"
 msgid "Given name"
 msgstr "Förnamn"
 
-#: ../src/PageView.py:220 ../src/ViewManager.py:1041
+#: ../src/PageView.py:220 ../src/ViewManager.py:1040
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s har lagts till i bokmärkena"
 
-#: ../src/PageView.py:224 ../src/PageView.py:513 ../src/ViewManager.py:1044
+#: ../src/PageView.py:224 ../src/PageView.py:513 ../src/ViewManager.py:1043
 #: ../src/DataViews/_FamilyList.py:116
 msgid "Could Not Set a Bookmark"
 msgstr "Kunde inte placera ett bokmärke"
 
-#: ../src/PageView.py:225 ../src/ViewManager.py:1045
+#: ../src/PageView.py:225 ../src/ViewManager.py:1044
 #: ../src/DataViews/_FamilyList.py:117
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Inget bokmärke kunde läggas till eftersom ingen hade valts."
@@ -1871,11 +1871,11 @@ msgstr "_Verktygsrad"
 msgid "_Filter sidebar"
 msgstr "_Filterpanel"
 
-#: ../src/ViewManager.py:404 ../src/ViewManager.py:991
+#: ../src/ViewManager.py:404 ../src/ViewManager.py:990
 msgid "_Undo"
 msgstr "_Ångra"
 
-#: ../src/ViewManager.py:408 ../src/ViewManager.py:1005
+#: ../src/ViewManager.py:408 ../src/ViewManager.py:1004
 msgid "_Redo"
 msgstr "Åte_rställ"
 
@@ -1941,15 +1941,15 @@ msgstr "Kunde inte öppna hjälp"
 msgid "GRAMPS Homepage"
 msgstr "GRAMPS hemsida"
 
-#: ../src/ViewManager.py:939
+#: ../src/ViewManager.py:938
 msgid "Read Only"
 msgstr "Skrivskyddad"
 
-#: ../src/ViewManager.py:1207
+#: ../src/ViewManager.py:1206
 msgid "Database is not portable"
 msgstr "Databasen är inte portabel"
 
-#: ../src/ViewManager.py:1208
+#: ../src/ViewManager.py:1207
 msgid ""
 "If you need to transfer the database to another machine, export to a GRAMPS "
 "Package, and import the GRAMPS Package on the other machine."
@@ -2570,6 +2570,7 @@ msgid "Delete selected person"
 msgstr "Radera vald person"
 
 #: ../src/DataViews/_PlaceView.py:61
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 msgid "Place Name"
 msgstr "Plats"
 
@@ -3801,11 +3802,9 @@ msgstr "Databasversionen stöd inte av denna version av GRAMPS."
 #: ../src/GrampsDb/_ReadGrdb.py:208 ../src/GrampsDb/_ReadXML.py:1129
 #, python-format
 msgid ""
-"Your family tree groups name %s together with %s, did not change this "
-"grouping to %s"
-msgstr ""
-"Ditt slätträds grupperar namnet %s tillsammans med %s, ändrade vinte denna "
-"gruppering till %s"
+"Your database groups name %s together with %s, did not change this grouping "
+"to %s"
+msgstr "Din databas grupperar namn %s tillsammans med %s, denna gruppering ändrades inte till %s"
 
 #: ../src/GrampsDb/_ReadGrdb.py:218
 msgid "Import database"
@@ -3939,11 +3938,11 @@ msgstr ""
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteXML.py:1102
+#: ../src/GrampsDb/_WriteXML.py:1111
 msgid "GRAMPS _XML database"
 msgstr "GRAMPS-_XML-databas"
 
-#: ../src/GrampsDb/_WriteXML.py:1103
+#: ../src/GrampsDb/_WriteXML.py:1112
 msgid ""
 "The GRAMPS XML database is a format used by older versions of GRAMPS. It is "
 "read-write compatible with the present GRAMPS database format."
@@ -4229,7 +4228,7 @@ msgstr "Antavla"
 #: ../src/plugins/GraphViz.py:1278 ../src/plugins/IndivComplete.py:689
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:699
 #: ../src/plugins/NarrativeWeb.py:3317 ../src/plugins/PatchNames.py:357
-#: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:228
+#: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:232
 #: ../src/plugins/RemoveUnused.py:406 ../src/plugins/ReorderIds.py:227
 #: ../src/plugins/SoundGen.py:145 ../src/plugins/StatisticsChart.py:980
 #: ../src/plugins/TimeLine.py:477 ../src/plugins/RebuildRefMap.py:126
@@ -7037,63 +7036,63 @@ msgstr "Rekonstruerar sekundärindex"
 msgid "Cause of Death"
 msgstr "Dödsorsak"
 
-#: ../src/plugins/RelCalc.py:84 ../src/PluginUtils/_Tool.py:138
-#: ../src/ReportBase/_ReportDialog.py:658
-msgid "Active person has not been set"
-msgstr "Ingen aktiv person har valts"
-
-#: ../src/plugins/RelCalc.py:85 ../src/PluginUtils/_Tool.py:139
-msgid "You must select an active person for this tool to work properly."
-msgstr "Du måste välja en aktiv person för att det här verktyget skall fungera."
-
-#: ../src/plugins/RelCalc.py:97
+#: ../src/plugins/RelCalc.py:93
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
 msgstr "Släktskapsberäknare: %(person_name)s"
 
-#: ../src/plugins/RelCalc.py:101
+#: ../src/plugins/RelCalc.py:97
 #, python-format
 msgid "Relationship to %(person_name)s"
 msgstr "Släktskap med %(person_name)s"
 
-#: ../src/plugins/RelCalc.py:138
+#: ../src/plugins/RelCalc.py:133 ../src/PluginUtils/_Tool.py:138
+#: ../src/ReportBase/_ReportDialog.py:658
+msgid "Active person has not been set"
+msgstr "Ingen aktiv person har valts"
+
+#: ../src/plugins/RelCalc.py:134 ../src/PluginUtils/_Tool.py:139
+msgid "You must select an active person for this tool to work properly."
+msgstr "Du måste välja en aktiv person för att det här verktyget skall fungera."
+
+#: ../src/plugins/RelCalc.py:142
 msgid "Relationship Calculator tool"
 msgstr "Verktyg för att beräkna släktskap"
 
-#: ../src/plugins/RelCalc.py:162
+#: ../src/plugins/RelCalc.py:166
 #, python-format
 msgid "Their common ancestor is %s."
 msgstr "Deras gemensamma ana är %s."
 
-#: ../src/plugins/RelCalc.py:168
+#: ../src/plugins/RelCalc.py:172
 #, python-format
 msgid "Their common ancestors are %s and %s."
 msgstr "Deras gemensamma anor är %s och %s."
 
-#: ../src/plugins/RelCalc.py:172
+#: ../src/plugins/RelCalc.py:176
 msgid "Their common ancestors are: "
 msgstr "Deras gemensamma anor är: "
 
-#: ../src/plugins/RelCalc.py:192
+#: ../src/plugins/RelCalc.py:196
 #, python-format
 msgid "%s and %s are the same person."
 msgstr "%s och %s är samma person."
 
-#: ../src/plugins/RelCalc.py:194
+#: ../src/plugins/RelCalc.py:198
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
 msgstr "%(person)s och %(active_person)s är inte släkt."
 
-#: ../src/plugins/RelCalc.py:197
+#: ../src/plugins/RelCalc.py:201
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr "%(person)s är %(relationship)s till %(active_person)s."
 
-#: ../src/plugins/RelCalc.py:227
+#: ../src/plugins/RelCalc.py:231
 msgid "Relationship calculator"
 msgstr "Släktskapsberäknare"
 
-#: ../src/plugins/RelCalc.py:231
+#: ../src/plugins/RelCalc.py:235
 msgid "Calculates the relationship between two people"
 msgstr "Beräknar släktskap mellan två personer"
 
