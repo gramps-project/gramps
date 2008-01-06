@@ -58,7 +58,7 @@ except:
         #MapView,
         RepositoryView,
         NoteView,
-        GoogleView,
+        #GoogleView,
         ]
 
 def get_views():

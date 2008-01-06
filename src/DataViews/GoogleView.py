@@ -63,7 +63,10 @@ import Errors
 #import cPickle as pickle
 #import Config
 #from QuestionDialog import RunDatabaseRepair, ErrorDialog
-import gtkmozembed
+try:
+    import gtkmozembed
+except:
+    pass
 import urlparse
 
 
