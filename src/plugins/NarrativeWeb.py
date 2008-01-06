@@ -88,6 +88,8 @@ from DateHandler import displayer as _dd
 _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
 
+MAX_IMG_WIDTH=800   # resize images that are wider than this
+MAX_IMG_HEIGHT=600  # resize images that are taller than this
 WIDTH=160
 HEIGHT=50
 VGAP=10
@@ -1049,7 +1051,10 @@ class MediaPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list,
                           photo.gramps_id)
         of = self.create_link_file(handle,"img")
-            
+
+        self.db = db
+        self.src_list = src_list
+
         mime_type = photo.get_mime_type()
 
         if mime_type:
@@ -1085,8 +1090,27 @@ class MediaPage(BasePage):
             if mime_type.startswith("image/"):
                 of.write('<div class="centered">\n')
                 if target_exists:
-                    of.write('<img ')
+                    # if the image is spectacularly large, then force the client
+                    # to resize it, and include a "<a href=" link to the actual
+                    # image; most web browsers will dynamically resize an image
+                    # and provide zoom-in/zoom-out functionality when the image
+                    # is displayed directly
+                    im = ImgManip.ImgManip(photo.get_path())
+                    (width, height) = im.size()
+                    scale = 1.0
+                    if width > MAX_IMG_WIDTH or height > MAX_IMG_HEIGHT:
+                        # image is too large -- scale it down and link to the full image
+                        scale = min(float(MAX_IMG_WIDTH)/float(width), float(MAX_IMG_HEIGHT)/float(height))
+                        width = int(width * scale)
+                        height = int(height * scale)
+                        of.write('<a href="../../../%s">\n' % newpath)
+
+                    of.write('<img width="%d" height="%d"' % (width, height))
                     of.write('src="../../../%s" alt="%s" />\n' % (newpath, self.page_title))
+
+                    if scale <> 1.0:
+                        of.write('</a>\n');
+
                 else:
                     of.write('<br /><span>(%s)</span>' % _("The file has been moved or deleted"))
                 of.write('</div>\n')
@@ -1152,9 +1176,19 @@ class MediaPage(BasePage):
         self.close_file(of)
 
     def display_media_sources(self,of,db,photo):
-        self.db = db
-        self.src_list = {}
         sreflist = photo.get_source_references()
+
+        # add the media source refs to the global list of source refs
+        for sref in sreflist:
+            msh = sref.get_reference_handle()
+            lnk = (self.cur_name, self.page_title, self.gid)
+            if self.src_list.has_key(msh):
+                if photo.handle not in self.src_list[msh]:
+                    self.src_list[msh].append(lnk)
+            else:
+                self.src_list[msh] = [lnk]
+
+        # print the media source reference
         self.display_source_refs(of,db,sreflist)
 
     def display_attr_list(self,of,attrlist=None):
@@ -2497,9 +2531,9 @@ class WebReport(Report):
         self.person_pages(ind_list, restrict_list, place_list, source_list, archive)
         self.surname_pages(ind_list, restrict_list, archive)
         self.place_pages(place_list, source_list, archive)
-        self.source_pages(source_list, self.photo_list, archive)
         if self.inc_gallery:
             self.gallery_pages(self.photo_list, source_list, archive)
+        self.source_pages(source_list, self.photo_list, archive)
         
         if archive:
             archive.close()
