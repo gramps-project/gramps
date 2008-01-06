@@ -2647,9 +2647,10 @@ def get_person_filters(person, include_single=True):
     @type person: boolean
     """
     from Filters import GenericFilter, Rules, CustomFilters
+    from BasicUtils import name_displayer
 
     if person:
-        name = person.get_primary_name().get_name()
+        name = name_displayer.display(person)
         gramps_id = person.get_gramps_id()
     else:
         # Do this in case of command line options query (show=filter)

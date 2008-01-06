@@ -1,4 +1,8 @@
 2008-01-06  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_ReportUtils.py:
+	0001543: Preferences name format not used - Timeline Graph
+
+2008-01-06  Brian Matherly <brian@gramps-project.org>
 	* src/Config/_GrampsConfigKeys.py:
 	* src/DataViews/__init__.py:
 	* src/DataViews/GoogleView.py:
