@@ -1,3 +1,7 @@
+2008-01-06  Peter Landgren <peter.talken2telia.com>
+    * src/plugins/Verify.py: Removed unneccesary
+                             print statement "print event.get_type()"
+
 2008-01-06  Benny Malengier <benny.malengier@gramps-project.org>
             Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/docgen/LaTeXDoc.py: wrong indent on write, bug #1506
