@@ -284,7 +284,7 @@ default_value = {
     GENERATION_DEPTH     : 15,
     DATA_VIEWS: ('MyGrampsView,PersonView,RelationshipView,FamilyListView,'
                  'PedigreeView,EventView,SourceView,PlaceView,MediaView,'
-                 'RepositoryView,NoteView'),
+                 'RepositoryView,NoteView,GoogleView'),
     ADDMEDIA_IMGDIR      : '',
     ADDMEDIA_RELPATH     : False,
 }

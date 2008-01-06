@@ -37,6 +37,7 @@ from PlaceView import PlaceView
 from MediaView import MediaView
 from RepositoryView import RepositoryView
 from NoteView import NoteView
+from GoogleView import GoogleView
 
 try:
     import Config
@@ -57,6 +58,7 @@ except:
         #MapView,
         RepositoryView,
         NoteView,
+        GoogleView,
         ]
 
 def get_views():
