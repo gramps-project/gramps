@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-03 14:04+0100\n"
+"POT-Creation-Date: 2008-01-06 12:09-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,7 @@ msgstr ""
 #: ../src/Selectors/_SelectPerson.py:106 ../src/plugins/BookReport.py:659
 #: ../src/plugins/IndivComplete.py:483 ../src/plugins/NarrativeWeb.py:664
 #: ../src/plugins/NarrativeWeb.py:810 ../src/plugins/PatchNames.py:209
-#: ../src/plugins/RelCalc.py:56 ../src/plugins/RelCalc.py:110
+#: ../src/plugins/RelCalc.py:56 ../src/plugins/RelCalc.py:106
 #: ../src/plugins/RemoveUnused.py:180 ../src/plugins/TimeLine.py:440
 #: ../src/plugins/Verify.py:514
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:108
@@ -3734,11 +3734,11 @@ msgstr ""
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDb/_WriteXML.py:1102
+#: ../src/GrampsDb/_WriteXML.py:1111
 msgid "GRAMPS _XML database"
 msgstr ""
 
-#: ../src/GrampsDb/_WriteXML.py:1103
+#: ../src/GrampsDb/_WriteXML.py:1112
 msgid ""
 "The GRAMPS XML database is a format used by older versions of GRAMPS. It is "
 "read-write compatible with the present GRAMPS database format."
@@ -3985,7 +3985,7 @@ msgstr ""
 #: ../src/plugins/GraphViz.py:1278 ../src/plugins/IndivComplete.py:689
 #: ../src/plugins/Leak.py:131 ../src/plugins/FindDupes.py:699
 #: ../src/plugins/NarrativeWeb.py:3317 ../src/plugins/PatchNames.py:357
-#: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:228
+#: ../src/plugins/Rebuild.py:125 ../src/plugins/RelCalc.py:232
 #: ../src/plugins/RemoveUnused.py:406 ../src/plugins/ReorderIds.py:227
 #: ../src/plugins/SoundGen.py:145 ../src/plugins/StatisticsChart.py:980
 #: ../src/plugins/TimeLine.py:477 ../src/plugins/RebuildRefMap.py:126
@@ -6659,63 +6659,63 @@ msgstr ""
 msgid "Cause of Death"
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:84 ../src/PluginUtils/_Tool.py:138
-#: ../src/ReportBase/_ReportDialog.py:658
-msgid "Active person has not been set"
-msgstr ""
-
-#: ../src/plugins/RelCalc.py:85 ../src/PluginUtils/_Tool.py:139
-msgid "You must select an active person for this tool to work properly."
-msgstr ""
-
-#: ../src/plugins/RelCalc.py:97
+#: ../src/plugins/RelCalc.py:93
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:101
+#: ../src/plugins/RelCalc.py:97
 #, python-format
 msgid "Relationship to %(person_name)s"
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:138
+#: ../src/plugins/RelCalc.py:133 ../src/PluginUtils/_Tool.py:138
+#: ../src/ReportBase/_ReportDialog.py:658
+msgid "Active person has not been set"
+msgstr ""
+
+#: ../src/plugins/RelCalc.py:134 ../src/PluginUtils/_Tool.py:139
+msgid "You must select an active person for this tool to work properly."
+msgstr ""
+
+#: ../src/plugins/RelCalc.py:142
 msgid "Relationship Calculator tool"
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:162
+#: ../src/plugins/RelCalc.py:166
 #, python-format
 msgid "Their common ancestor is %s."
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:168
+#: ../src/plugins/RelCalc.py:172
 #, python-format
 msgid "Their common ancestors are %s and %s."
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:172
+#: ../src/plugins/RelCalc.py:176
 msgid "Their common ancestors are: "
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:192
+#: ../src/plugins/RelCalc.py:196
 #, python-format
 msgid "%s and %s are the same person."
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:194
+#: ../src/plugins/RelCalc.py:198
 #, python-format
 msgid "%(person)s and %(active_person)s are not related."
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:197
+#: ../src/plugins/RelCalc.py:201
 #, python-format
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:227
+#: ../src/plugins/RelCalc.py:231
 msgid "Relationship calculator"
 msgstr ""
 
-#: ../src/plugins/RelCalc.py:231
+#: ../src/plugins/RelCalc.py:235
 msgid "Calculates the relationship between two people"
 msgstr ""
 
