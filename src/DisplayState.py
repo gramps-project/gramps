@@ -42,14 +42,14 @@ _LOG = logging.getLogger(".DisplayState")
 #
 #-------------------------------------------------------------------------
 import gobject
-import gtk
+import gtk.glade
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.db
+import gen.utils
 import Config
 from BasicUtils import name_displayer
 import const
