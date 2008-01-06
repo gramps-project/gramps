@@ -3,7 +3,6 @@
 #
 # 	Python files
 #
-src/AddMedia.py
 src/ansel_utf8.py
 src/ArgHandler.py
 src/Assistant.py
@@ -169,6 +168,7 @@ src/DisplayTabs/_WebModel.py
 src/DisplayTabs/__init__.py
 
 # Editors package
+src/Editors/AddMedia.py
 src/Editors/_EditAddress.py
 src/Editors/_EditAttribute.py
 src/Editors/_EditChildRef.py

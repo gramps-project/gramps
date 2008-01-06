@@ -993,9 +993,6 @@ class ListView(BookMarkView):
                 return True
         return False
 
-    def double_click(self, obj, event):
-        return False
-
     def change_page(self):
         if self.model:
             self.uistate.show_filter_results(self.dbstate, 

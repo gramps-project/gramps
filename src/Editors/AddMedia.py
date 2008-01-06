@@ -53,6 +53,7 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import Utils
 import gen.lib
 import Mime
@@ -65,8 +66,7 @@ import ManagedWindow
 #
 #-------------------------------------------------------------------------
 
-_last_directory = None
-_relative_path  = False
+
 
 #-------------------------------------------------------------------------
 #
@@ -76,19 +76,26 @@ _relative_path  = False
 class AddMediaObject(ManagedWindow.ManagedWindow):
     """
     Displays the Add Media Dialog window, allowing the user to select
-    a media object from the file system, while providing a description.
+    a file from the file system, while providing a description.
     """
     
-    def __init__(self, dbstate, uistate, track):
+    def __init__(self, dbstate, uistate, track, mediaobj, callback=None):
         """
         Creates and displays the dialog box
 
         db - the database in which the new object is to be stored
+        The mediaobject is updated with the information, and on save, the 
+        callback function is called
         """
-
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.dbase = dbstate.db
+        self.obj = mediaobj
+        self.callback = callback
+
+        self.last_directory = Config.get(Config.ADDMEDIA_IMGDIR)
+        self.relative_path  = Config.get(Config.ADDMEDIA_RELPATH)
+
         self.glade = gtk.glade.XML(const.GLADE_FILE, "imageSelect", "gramps")
         
         self.set_window(
@@ -99,37 +106,40 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.description = self.glade.get_widget("photoDescription")
         self.image = self.glade.get_widget("image")
         self.file_text = self.glade.get_widget("fname")
-        if _last_directory and os.path.isdir(_last_directory):
-            self.file_text.set_current_folder(_last_directory)
+        if not(self.last_directory and os.path.isdir(self.last_directory)):
+            self.last_directory = const.HOME_DIR
+        print 'test', self.last_directory
+        self.file_text.set_current_folder(self.last_directory)
 
         self.relpath = self.glade.get_widget('relpath')
-        self.relpath.set_active(_relative_path)
+        self.relpath.set_active(self.relative_path)
         self.temp_name = ""
         self.object = None
 
         self.glade.get_widget('fname').connect('update_preview',
                                                self.on_name_changed)
+        self.ok_button = self.glade.get_widget('button79')
+        self.help_button = self.glade.get_widget('button103')
+        self.cancel_button = self.glade.get_widget('button81')
+        self.ok_button.connect('clicked',self.save)
+        self.ok_button.set_sensitive(not self.dbase.readonly)
+        self.help_button.connect('clicked', lambda x: GrampsDisplay.help(
+                                                        'gramps-edit-quick'))
+        self.cancel_button.connect('clicked', self.close)
         self.show()
+        self.modal_call()
 
     def build_menu_names(self, obj):
         """
         Build the menu name for the window manager
         """
         return(_('Select media object'), None)
-        
-    def on_help_imagesel_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('gramps-edit-quick')
-        self.window.run()
 
-    def save(self):
+    def save(self, *obj):
         """
         Callback function called with the save button is pressed.
-        A new media object is created, and added to the database.
+        The media object is updated, and callback called
         """
-        
-        global _last_directory, _relative_path
-        
         description = unicode(self.description.get_text())
 
         if self.file_text.get_filename() is None:
@@ -141,13 +151,14 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         filename = Utils.get_unicode_path(self.file_text.get_filename())
         full_file = filename
 
+        pname = self.dbase.get_save_path()
+        if not os.path.isdir(pname):
+            pname = os.path.dirname(pname)
+                
         if self.relpath.get_active():
-            pname = self.dbase.get_save_path()
-            if not os.path.isdir(pname):
-                pname = os.path.dirname(pname)
             filename = Utils.relative_path(filename, pname)
 
-        if os.path.exists(filename) == 0:
+        if os.path.exists(pname) == 0:
             msgstr = _("Cannot import %s")
             msgstr2 = _("The filename supplied could not be found.")
             ErrorDialog(msgstr % filename, msgstr2)
@@ -157,21 +168,17 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         if description == "":
             description = os.path.basename(filename)
 
-        mobj = gen.lib.MediaObject()
-        mobj.set_description(description)
-        mobj.set_mime_type(mtype)
+        self.obj.set_description(description)
+        self.obj.set_mime_type(mtype)
         name = filename
-        mobj.set_path(name)
-        _last_directory = os.path.dirname(full_file)
-        _relative_path = self.relpath.get_active()
+        self.obj.set_path(name)
+        
+        self.last_directory = os.path.dirname(full_file)
+        self.relative_path = self.relpath.get_active()
 
-        mobj.set_handle(Utils.create_id())
-        if not mobj.get_gramps_id():
-            mobj.set_gramps_id(self.dbase.find_next_object_gramps_id())
-        trans = self.dbase.transaction_begin()
-        self.object = mobj
-        self.dbase.commit_media_object(mobj, trans)
-        self.dbase.transaction_commit(trans, _("Add Media Object"))
+        self._cleanup_on_exit()
+        if self.callback:
+            self.callback(self.obj)
 
     def on_name_changed(self, *obj):
         """
@@ -200,23 +207,10 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
                 image = Mime.find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
 
-    def run(self):
-        """
-        Run the dialog, returning the selected object.
-        """
-        while True:
-            val = self.window.run()
-
-            if val == gtk.RESPONSE_OK:
-                self.save()
-                self.close()
-                return self.object
-            elif val == gtk.RESPONSE_HELP: 
-                self.on_help_imagesel_clicked(None)
-            else:
-                self.close()
-                return None
-        return None
+    def _cleanup_on_exit(self):
+        Config.set(Config.ADDMEDIA_IMGDIR, self.last_directory)
+        Config.set(Config.ADDMEDIA_RELPATH, self.relative_path)
+        Config.sync()
 
 #-------------------------------------------------------------------------
 #

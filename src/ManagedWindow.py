@@ -437,7 +437,7 @@ class ManagedWindow:
         while True:
             response = self.window.run()
             if response == gtk.RESPONSE_OK:
-                # dialog will be close by connect, now continue work while
+                # dialog will be closed by connect, now continue work while
                 # rest of dialog is unresponsive, release when finished
                 self.close()
                 if after_ok_func is not None:

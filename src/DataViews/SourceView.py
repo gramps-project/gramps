@@ -180,14 +180,6 @@ class SourceView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self, obj, event):
-        handle = self.first_selected()
-        source = self.dbstate.db.get_source_from_handle(handle)
-        try:
-            EditSource(self.dbstate, self.uistate, [], source)
-        except Errors.WindowActiveError:
-            pass
-
     def add(self, obj):
         EditSource(self.dbstate, self.uistate, [], gen.lib.Source())
 

@@ -6,6 +6,7 @@
 pkgdatadir = $(datadir)/@PACKAGE@/Editors
 
 pkgdata_PYTHON = \
+	AddMedia.py\
 	__init__.py\
 	_EditAddress.py \
 	_EditAttribute.py \

@@ -45,7 +45,7 @@ from ReportBase import Report, ReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc
 from Selectors import selector_factory
 SelectObject = selector_factory('MediaObject')
-import AddMedia
+#import AddMedia
 import ThumbNails
 
 #------------------------------------------------------------------------
@@ -241,10 +241,12 @@ class SimpleBookTitleOptions(ReportOptions):
         self.setup_object(dialog.db,the_object)
 
     def select_file(self,obj,dialog):
-        a_o = AddMedia.AddMediaObject(dialog.dbstate,dialog.uistate,
-                                      dialog.track)
-        a_o.run()
-        self.setup_object(dialog.db,a_o.object)
+        print 'Deprecated use, this must be removed'
+        
+        #a_o = AddMedia.AddMediaObject(dialog.dbstate,dialog.uistate,
+        #                              dialog.track)
+        #a_o.run()
+        #self.setup_object(dialog.db,a_o.object)
 
     def setup_object(self,database,the_object):
         if not the_object:

@@ -48,6 +48,7 @@ import Mime
 import ThumbNails
 import Utils
 from _EditPrimary import EditPrimary
+from AddMedia import AddMediaObject
 
 from GrampsWidgets import *
 from DisplayTabs import SourceEmbedList,AttrEmbedList,NoteTab,MediaBackRefList
@@ -59,10 +60,14 @@ from DisplayTabs import SourceEmbedList,AttrEmbedList,NoteTab,MediaBackRefList
 #-------------------------------------------------------------------------
 class EditMedia(EditPrimary):
 
-    def __init__(self,state,uistate,track,obj):
+    def __init__(self, state, uistate, track, obj, callback=None):
 
         EditPrimary.__init__(self, state, uistate, track, obj,
-                             state.db.get_object_from_handle)
+                             state.db.get_object_from_handle, callback)
+        if not self.obj.get_handle():
+            #show the addmedia dialog immediately, with track of parent.
+            AddMediaObject(state, self.uistate, self.track, self.obj, 
+                           self._update_addmedia)
 
     def empty_object(self):
         return gen.lib.MediaObject()
@@ -94,8 +99,9 @@ class EditMedia(EditPrimary):
 
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_widget('button91'))
-        self.define_ok_button(self.glade.get_widget('ok'),self.save)
-        self.define_help_button(self.glade.get_widget('button102'),'adv-media')
+        self.define_ok_button(self.glade.get_widget('ok'), self.save)
+        self.define_help_button(self.glade.get_widget('button102'), 
+                                'adv-media')
 
     def _setup_fields(self):
         self.date_field = MonitoredDate(
@@ -122,25 +128,36 @@ class EditMedia(EditPrimary):
             self.glade.get_widget("private"),
             self.obj, self.db.readonly)
 
-        pixmap = self.glade.get_widget("pixmap")
+        self.pixmap = self.glade.get_widget("pixmap")
         ebox = self.glade.get_widget('eventbox')
         ebox.connect('button-press-event', self.button_press_event)
         
+        self.mimetext = self.glade.get_widget("type")
+        self.draw_preview()
+        self.setup_filepath()
+
+    def draw_preview(self):
         mtype = self.obj.get_mime_type()
         if mtype:
             pb = ThumbNails.get_thumbnail_image(
-                                    Utils.find_file(self.obj.get_path()),mtype)
-            pixmap.set_from_pixbuf(pb)
+                                Utils.find_file(self.obj.get_path()), mtype)
+            self.pixmap.set_from_pixbuf(pb)
             descr = Mime.get_description(mtype)
             if descr:
-                self.glade.get_widget("type").set_text(descr)
+                self.mimetext.set_text(descr)
         else:
             pb = Mime.find_mime_type_pixbuf('text/plain')
-            pixmap.set_from_pixbuf(pb)
-            self.glade.get_widget("type").set_text(_('Note'))
+            self.pixmap.set_from_pixbuf(pb)
+            self.mimetext.set_text(_('Note'))
 
-        self.setup_filepath()
-        
+    def setup_filepath(self):
+        self.select = self.glade.get_widget('file_select')
+        self.file_path = self.glade.get_widget("path")
+
+        fname = self.obj.get_path()
+        self.file_path.set_text(fname)
+        self.select.connect('clicked', self.select_file)
+
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
 
@@ -176,7 +193,6 @@ class EditMedia(EditPrimary):
             self.view_media(obj)
 
     def view_media(self, obj):
-
         ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
         mime_type = ref_obj.get_mime_type()
         app = Mime.get_application(mime_type)
@@ -184,34 +200,24 @@ class EditMedia(EditPrimary):
             import Utils
             Utils.launch(app[0],ref_obj.get_path())
 
-    def select_file(self,obj):
-        f = gtk.FileChooserDialog(
-            _('Select Media Object'),
-            action=gtk.FILE_CHOOSER_ACTION_OPEN,
-            buttons=(gtk.STOCK_CANCEL,
-                     gtk.RESPONSE_CANCEL,
-                     gtk.STOCK_OPEN,
-                     gtk.RESPONSE_OK))
+    def select_file(self, val):
+        AddMediaObject(self.dbstate, self.uistate, self.track, self.obj, 
+                       self._update_addmedia)
 
-        text = self.file_path.get_text()
-        path = os.path.dirname(text)
-
-        f.set_filename(path)
-
-        status = f.run()
-        if status == gtk.RESPONSE_OK:
-            self.file_path.set_text(Utils.get_unicode_path(f.get_filename()))
-        f.destroy()
-        
-    def setup_filepath(self):
-        self.select = self.glade.get_widget('file_select')
-        self.file_path = self.glade.get_widget("path")
-        
+    def _update_addmedia(self, obj):
+        """
+        Called when the add media dialog has been called.
+        This allows us to update the main form in response to
+        any changes: Redraw relevant fields: description, mimetype and path
+        """
+        for obj in (self.descr_window, ):
+            obj.update()
         fname = self.obj.get_path()
         self.file_path.set_text(fname)
-        self.select.connect('clicked', self.select_file)
-            
+        self.draw_preview()
+
     def save(self, *obj):
+        self.ok_button.set_sensitive(False)
         path = self.glade.get_widget('path').get_text()
 
         if path != self.obj.get_path():
@@ -221,8 +227,15 @@ class EditMedia(EditPrimary):
         self.obj.set_path(Utils.get_unicode_path(path))
 
         trans = self.db.transaction_begin()
-        self.db.commit_media_object(self.obj,trans)
-        self.db.transaction_commit(trans,_("Edit Media Object"))
+        if self.obj.get_handle():
+            self.db.commit_media_object(self.obj, trans)
+        else:
+            self.db.add_object(self.obj, trans)
+        self.db.transaction_commit(trans, _("Edit Media Object (%s)"
+                                           ) % self.obj.get_description())
+        
+        if self.callback:
+            self.callback(self.obj)
         self.close()
 
     def _cleanup_on_exit(self):

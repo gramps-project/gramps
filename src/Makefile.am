@@ -30,7 +30,6 @@ SUBDIRS = \
 gdirdir=$(prefix)/share/gramps
 
 gdir_PYTHON = \
-	AddMedia.py\
 	ansel_utf8.py\
 	ArgHandler.py\
 	Assistant.py\

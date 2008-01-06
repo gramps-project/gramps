@@ -217,14 +217,6 @@ class PlaceView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self, obj, event):
-        handle = self.first_selected()
-        place = self.dbstate.db.get_place_from_handle(handle)
-        try:
-            EditPlace(self.dbstate, self.uistate, [], place)
-        except Errors.WindowActiveError:
-            pass
-
     def add(self, obj):
         try:
             EditPlace(self.dbstate, self.uistate, [], gen.lib.Place())

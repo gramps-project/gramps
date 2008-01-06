@@ -378,9 +378,10 @@ class MediaView(PageView.ListView):
 
     def add(self, obj):
         """Add a new media object to the media list"""
-        import AddMedia
-        am = AddMedia.AddMediaObject(self.dbstate, self.uistate, [])
-        am.run()
+        try:
+            EditMedia(self.dbstate, self.uistate, [], gen.lib.MediaObject())
+        except Errors.WindowActiveError:
+            pass
 
     def remove(self, obj):
         """

@@ -164,6 +164,8 @@ MIN_GENERATION_YEARS = ('behavior', 'min-generation-years', 1)
 AVG_GENERATION_GAP   = ('behavior', 'avg-generation-gap', 1)
 GENERATION_DEPTH     = ('behavior', 'generation-depth', 1)
 DATA_VIEWS           = ('interface','data-views', 2)
+ADDMEDIA_IMGDIR      = ('behavior', 'addmedia-image-dir', 2)
+ADDMEDIA_RELPATH     = ('behavior', 'addmedia-relative-path', 0)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -283,4 +285,6 @@ default_value = {
     DATA_VIEWS: ('MyGrampsView,PersonView,RelationshipView,FamilyListView,'
                  'PedigreeView,EventView,SourceView,PlaceView,MediaView,'
                  'RepositoryView,NoteView'),
+    ADDMEDIA_IMGDIR      : '',
+    ADDMEDIA_RELPATH     : False,
 }

@@ -214,14 +214,6 @@ class EventView(PageView.ListView):
         self.dbstate.db.set_event_column_order(clist)
         self.build_columns()
 
-    def on_double_click(self, obj, event):
-        handle = self.first_selected()
-        the_event = self.dbstate.db.get_event_from_handle(handle)
-        try:
-            EditEvent(self.dbstate, self.uistate, [], the_event)
-        except Errors.WindowActiveError:
-            pass
-
     def add(self, obj):
         try:
             EditEvent(self.dbstate, self.uistate, [], gen.lib.Event())

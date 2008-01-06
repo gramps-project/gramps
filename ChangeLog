@@ -1,4 +1,26 @@
 2008-01-06  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/MediaView.py:
+	* src/DataViews/RepositoryView.py:
+	* src/DataViews/SourceView.py:
+	* src/DataViews/EventView.py:
+	* src/DataViews/PlaceView.py:
+	* src/PageView.py:
+	Remove unused double click procedure
+	* src/plugins/SimpleBookTitle.py: remove use of AddMedia
+	* src/Editors/AddMedia.py: added
+	* src/AddMedia.py: removed
+	* src/Editors/Makefile.am:
+	* src/Makefile.am:
+	* po/POTFILES.in:
+	Move AddMedia to the editors directory
+	* src/Editors/_EditMedia.py:
+	Edit Media now works as other editors, spawning AddMedia when 
+	select is clicked.
+	* src/ManagedWindow.py: typo in comment
+	* src/Config/_GrampsConfigKeys.py: Two new keys, rerun ./autogen.sh
+	Still todo: make relative path work
+
+2008-01-06  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/DefaultGadgets.py: handle long text in standard way for 
 		translation
 

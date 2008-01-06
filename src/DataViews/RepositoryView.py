@@ -182,14 +182,6 @@ class RepositoryView(PageView.ListView):
           </popup>
         </ui>'''
 
-    def on_double_click(self, obj, event):
-        handle = self.first_selected()
-        repos = self.dbstate.db.get_repository_from_handle(handle)
-        try:
-            EditRepository(self.dbstate, self.uistate, [], repos)
-        except Errors.WindowActiveError:
-            pass
-
     def add(self, obj):
         EditRepository(self.dbstate, self.uistate, [], gen.lib.Repository())
 
