@@ -590,7 +590,8 @@ class MyGrampsView(PageView.PageView):
         gadgets = [g for g in self.gadget_map.values() if g != None]
         for gadget in gadgets:
             column = gadget.mainframe.get_parent()
-            column.remove(gadget.mainframe)
+            if column:
+                column.remove(gadget.mainframe)
 
     def place_gadgets(self):
         """
