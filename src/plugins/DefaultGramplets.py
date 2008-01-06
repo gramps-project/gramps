@@ -26,37 +26,37 @@ import time
 import urllib
 
 import gen.lib
-from DataViews import register, Gadget
+from DataViews import register, Gramplet
 from BasicUtils import name_displayer
 from QuickReports import run_quick_report_by_name
 import DateHandler
 
 #
-# Hello World, in Gramps Gadgets
+# Hello World, in Gramps Gramplets
 #
 # First, you need a function or class that takes a single argument
-# a GuiGadget:
+# a GuiGramplet:
 
 #from DataViews import register
 #def init(gui):
 #    gui.set_text("Hello world!")
 
-# In this function, you can do some things to update the gadget,
+# In this function, you can do some things to update the gramplet,
 # like set text of the main scroll window.
 
-# Then, you need to register the gadget:
+# Then, you need to register the gramplet:
 
-#register(type="gadget", # case in-senstitive keyword "gadget"
-#         name="Hello World Gadget", # gadget name, unique among gadgets
+#register(type="gramplet", # case in-senstitive keyword "gramplet"
+#         name="Hello World Gramplet", # gramplet name, unique among gramplets
 #         height = 20,
-#         content = init, # function/class; takes guigadget
-#         title="Sample Gadget", # default title, user changeable
+#         content = init, # function/class; takes guigramplet
+#         title="Sample Gramplet", # default title, user changeable
 #         )
 
 # There are a number of arguments that you can provide, including:
 # name, height, content, title, expand, state, data
 
-# Here is a Gadget object. It has a number of method possibilities:
+# Here is a Gramplet object. It has a number of method possibilities:
 #  init- run once, on construction
 #  active_changed- run when active-changed is triggered
 #  db_changed- run when db-changed is triggered
@@ -64,7 +64,7 @@ import DateHandler
 
 # You should call update() to run main; don't call main directly
 
-class CalendarGadget(Gadget):
+class CalendarGramplet(Gramplet):
     def init(self):
         import gtk
         self.tooltip = _("Double-click a day for details")
@@ -136,7 +136,7 @@ class CalendarGadget(Gadget):
                                  'onthisday', 
                                  date)
 
-class LogGadget(Gadget):
+class LogGramplet(Gramplet):
     def init(self):
         self.tooltip = _("Click name to change active\nDouble-click name to edit")
         self.set_text(_("Log for this Session"))
@@ -192,7 +192,7 @@ class LogGadget(Gadget):
                     self.link(_("Unknown"), 'Person', person_handle)
                 self.append_text("\n")
 
-class TopSurnamesGadget(Gadget):
+class TopSurnamesGramplet(Gramplet):
     def init(self):
         self.tooltip = _("Double-click surname for details")
         self.top_size = 10 # will be overwritten in load
@@ -252,7 +252,7 @@ class TopSurnamesGadget(Gadget):
                          total_surnames)
         self.append_text((_("Total people") + ": %d") % total_people)
         
-class StatsGadget(Gadget):
+class StatsGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
 
@@ -352,7 +352,7 @@ class StatsGadget(Gadget):
                 text = text + "%s\n" % p
         self.set_text(text)
 
-class PythonGadget(Gadget):
+class PythonGramplet(Gramplet):
     def init(self):
         self.tooltip = _("Enter Python expressions")
         self.env = {"dbstate": self.gui.dbstate,
@@ -444,7 +444,7 @@ class PythonGadget(Gadget):
             return True
         return False
 
-class TODOGadget(Gadget):
+class TODOGramplet(Gramplet):
     def init(self):
         # GUI setup:
         self.tooltip = _("Enter text")
@@ -474,19 +474,19 @@ def make_welcome_content(gui):
         '"Family Trees" from the menu, pick "Manage Family Trees", press '
         '"New" and name your database. For more details, please read the '
         'User Manual, or the on-line manual at http://gramps-project.org.\n\n'
-        'You are currently reading from the "My Gramps" page, where you can'
-        ' add your own gadgets.\n\n'
+        'You are currently reading from the "Gramplets" page, where you can'
+        ' add your own gramplets.\n\n'
         'You can right-click on the background of this page to add additional'
-        ' gadgets and change the number of columns. You can also drag the '
-        'Properties button to reposition the gadget on this page, and detach'
-        ' the gadget to float above GRAMPS. If you close GRAMPS with a gadget'
+        ' gramplets and change the number of columns. You can also drag the '
+        'Properties button to reposition the gramplet on this page, and detach'
+        ' the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet'
         ' detached, it will re-opened detached the next time you start '
         'GRAMPS.'
             )
     gui.set_text(text)
 
 
-class NewsGadget(Gadget):
+class NewsGramplet(Gramplet):
     URL = "http://www.gramps-project.org/wiki/index.php?title=%s&action=raw"
 
     def init(self):
@@ -559,7 +559,7 @@ class NewsGadget(Gadget):
         #print "    after:", text
         yield False, text
 
-class AgeOnDateGadget(Gadget):
+class AgeOnDateGramplet(Gramplet):
     def init(self):
         import gtk
         # GUI setup:
@@ -598,80 +598,80 @@ class AgeOnDateGadget(Gadget):
                                  date)
 
 
-register(type="gadget", 
-         name= "Top Surnames Gadget", 
-         tname=_("Top Surnames Gadget"), 
+register(type="gramplet", 
+         name= "Top Surnames Gramplet", 
+         tname=_("Top Surnames Gramplet"), 
          height=230,
-         content = TopSurnamesGadget,
+         content = TopSurnamesGramplet,
          title=_("Top Surnames"),
          )
 
-register(type="gadget", 
-         name="Statistics Gadget", 
-         tname=_("Statistics Gadget"), 
+register(type="gramplet", 
+         name="Statistics Gramplet", 
+         tname=_("Statistics Gramplet"), 
          height=230,
          expand=True,
-         content = StatsGadget,
+         content = StatsGramplet,
          title=_("Statistics"),
          )
 
-register(type="gadget", 
-         name="Session Log Gadget", 
-         tname=_("Session Log Gadget"), 
+register(type="gramplet", 
+         name="Session Log Gramplet", 
+         tname=_("Session Log Gramplet"), 
          height=230,
          data=['no'],
-         content = LogGadget,
+         content = LogGramplet,
          title=_("Session Log"),
          )
 
-register(type="gadget", 
-         name="Python Gadget", 
-         tname=_("Python Gadget"), 
+register(type="gramplet", 
+         name="Python Gramplet", 
+         tname=_("Python Gramplet"), 
          height=250,
-         content = PythonGadget,
+         content = PythonGramplet,
          title=_("Python Shell"),
          )
 
-register(type="gadget", 
-         name="TODO Gadget", 
-         tname=_("TODO Gadget"), 
+register(type="gramplet", 
+         name="TODO Gramplet", 
+         tname=_("TODO Gramplet"), 
          height=300,
          expand=True,
-         content = TODOGadget,
+         content = TODOGramplet,
          title=_("TODO List"),
          )
 
-register(type="gadget", 
-         name="Welcome Gadget", 
-         tname=_("Welcome Gadget"), 
+register(type="gramplet", 
+         name="Welcome Gramplet", 
+         tname=_("Welcome Gramplet"), 
          height=300,
          expand=True,
          content = make_welcome_content,
          title=_("Welcome to GRAMPS!"),
          )
 
-register(type="gadget", 
-         name="Calendar Gadget", 
-         tname=_("Calendar Gadget"), 
+register(type="gramplet", 
+         name="Calendar Gramplet", 
+         tname=_("Calendar Gramplet"), 
          height=200,
-         content = CalendarGadget,
+         content = CalendarGramplet,
          title=_("Calendar"),
          )
 
-register(type="gadget", 
-         name="News Gadget", 
-         tname=_("News Gadget"), 
+register(type="gramplet", 
+         name="News Gramplet", 
+         tname=_("News Gramplet"), 
          height=300,
          expand=True,
-         content = NewsGadget,
+         content = NewsGramplet,
          title=_("News"),
          )
 
-register(type="gadget", 
-         name="Age on Date Gadget", 
-         tname=_("Age on Date Gadget"), 
+register(type="gramplet", 
+         name="Age on Date Gramplet", 
+         tname=_("Age on Date Gramplet"), 
          height=200,
-         content = AgeOnDateGadget,
+         content = AgeOnDateGramplet,
          title=_("Age on Date"),
          )
 

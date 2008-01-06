@@ -26,7 +26,7 @@ Package init for the DataView package
 __author__ = "Don Allingham"
 __revision__ = "$Revision: $"
 
-from MyGrampsView import MyGrampsView, register, Gadget
+from GrampletView import GrampletView, register, Gramplet
 from PersonView import PersonView
 from RelationView import RelationshipView
 from FamilyList import FamilyListView
@@ -46,7 +46,7 @@ except:
     # Fallback if bad config line, or if no Config system
     print "Ignoring malformed 'data-views' entry"
     DATA_VIEWS = [
-        #MyGrampsView,
+        GrampletView,
         PersonView,
         RelationshipView,
         FamilyListView,

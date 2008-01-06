@@ -72,7 +72,7 @@ src/DataViews/EventView.py
 src/DataViews/FamilyList.py
 src/DataViews/__init__.py
 src/DataViews/MediaView.py
-src/DataViews/MyGrampsView.py
+src/DataViews/GrampletView.py
 src/DataViews/NoteView.py
 src/DataViews/PedigreeView.py
 src/DataViews/PersonView.py
@@ -256,7 +256,7 @@ src/plugins/Checkpoint.py
 src/plugins/Check.py
 src/plugins/CountAncestors.py
 src/plugins/CustomBookText.py
-src/plugins/DefaultGadgets.py
+src/plugins/DefaultGramplets.py
 src/plugins/Desbrowser.py
 src/plugins/DescendChart.py
 src/plugins/DescendReport.py

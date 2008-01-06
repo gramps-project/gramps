@@ -1,3 +1,16 @@
+2008-01-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/MyGrampsView.py:
+	* src/DataViews/__init__.py:
+	* src/DataViews/GrampletView.py:
+	* src/DataViews/Makefile.am:
+	* src/Config/_GrampsConfigKeys.py:
+	* src/plugins/DefaultGramplets.py:
+	* src/plugins/Makefile.am:
+	* src/plugins/DefaultGadgets.py:
+	* src/glade/gramps.glade:
+	* po/POTFILES.in:
+	Renamed Gadgets -> Gramplets, MyGrampsView -> GrampletView
+
 2008-01-06  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DisplayState.py: 0001495: imports in DisplayState.py need fixed.
 

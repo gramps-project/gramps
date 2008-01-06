@@ -18,10 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _MyGrampsView.py $
+# $Id: _GrampletView.py $
 
 """
-MyGrampsView interface
+GrampletView interface
 """
 
 __author__ = "Doug Blank"
@@ -44,60 +44,60 @@ import ConfigParser
 import Utils
 from QuickReports import run_quick_report_by_name
 
-AVAILABLE_GADGETS = {}
-GADGET_FILENAME = os.path.join(const.HOME_DIR,"gadgets.ini")
+AVAILABLE_GRAMPLETS = {}
+GRAMPLET_FILENAME = os.path.join(const.HOME_DIR,"gramplets.ini")
 NL = "\n" 
 
 debug = False
 
-def register_gadget(data_dict):
-    global AVAILABLE_GADGETS
-    base_opts = {"name":"Unnamed Gadget",
-                 "tname": _("Unnamed Gadget"),
+def register_gramplet(data_dict):
+    global AVAILABLE_GRAMPLETS
+    base_opts = {"name":"Unnamed Gramplet",
+                 "tname": _("Unnamed Gramplet"),
                  "state":"maximized",
                  "column": -1, "row": -1,
                  "data": []}
     base_opts.update(data_dict)
-    AVAILABLE_GADGETS[base_opts["name"]] = base_opts
+    AVAILABLE_GRAMPLETS[base_opts["name"]] = base_opts
 
 def register(**data):
     if "type" in data:
-        if data["type"].lower() == "gadget":
-            register_gadget(data)
+        if data["type"].lower() == "gramplet":
+            register_gramplet(data)
         else:
             print ("Unknown plugin type: '%s'" % data["type"])
     else:
         print ("Plugin did not define type.")
 
-def get_gadget_opts(name, opts):
-    if name in AVAILABLE_GADGETS:
-        data = AVAILABLE_GADGETS[name]
+def get_gramplet_opts(name, opts):
+    if name in AVAILABLE_GRAMPLETS:
+        data = AVAILABLE_GRAMPLETS[name]
         my_data = data.copy()
         my_data.update(opts)
         return my_data
     else:
-        print ("Unknown gadget name: '%s'" % name)
+        print ("Unknown gramplet name: '%s'" % name)
         return {}
 
-def get_gadget_options_by_name(name):
+def get_gramplet_options_by_name(name):
     if debug: print "name:", name
-    if name in AVAILABLE_GADGETS:
-        return AVAILABLE_GADGETS[name].copy()
+    if name in AVAILABLE_GRAMPLETS:
+        return AVAILABLE_GRAMPLETS[name].copy()
     else:
-        print ("Unknown gadget name: '%s'" % name)
+        print ("Unknown gramplet name: '%s'" % name)
         return None
 
-def get_gadget_options_by_tname(name):
+def get_gramplet_options_by_tname(name):
     if debug: print "name:", name
-    for key in AVAILABLE_GADGETS:
-        if AVAILABLE_GADGETS[key]["tname"] == name:
-            return AVAILABLE_GADGETS[key].copy()
-    print ("Unknown gadget name: '%s'" % name)
+    for key in AVAILABLE_GRAMPLETS:
+        if AVAILABLE_GRAMPLETS[key]["tname"] == name:
+            return AVAILABLE_GRAMPLETS[key].copy()
+    print ("Unknown gramplet name: '%s'" % name)
     return None
 
-def make_requested_gadget(viewpage, name, opts, dbstate, uistate):
-    if name in AVAILABLE_GADGETS:
-        gui = GuiGadget(viewpage, dbstate, uistate, **opts)
+def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
+    if name in AVAILABLE_GRAMPLETS:
+        gui = GuiGramplet(viewpage, dbstate, uistate, **opts)
         if opts.get("content", None):
             opts["content"](gui)
         # now that we have user code, set the tooltips
@@ -122,43 +122,43 @@ class LinkTag(gtk.TextTag):
         #self.set_property('underline', pango.UNDERLINE_SINGLE)
         tag_table.add(self)
 
-class GadgetWindow(ManagedWindow.ManagedWindow):
-    def __init__(self, gadget):
-        self.title = gadget.title + " Gadget"
-        self.gadget = gadget
-        ManagedWindow.ManagedWindow.__init__(self, gadget.uistate, [], gadget)
-        self.set_window(gtk.Dialog("",gadget.uistate.window,
+class GrampletWindow(ManagedWindow.ManagedWindow):
+    def __init__(self, gramplet):
+        self.title = gramplet.title + " Gramplet"
+        self.gramplet = gramplet
+        ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], gramplet)
+        self.set_window(gtk.Dialog("",gramplet.uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
         self.window.set_size_request(400,300)
         self.window.connect('response', self.close)
-        self.gadget.mainframe.reparent(self.window.vbox)
+        self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.show()
         
     def build_menu_names(self, obj):
-        return (self.title, 'Gadget')
+        return (self.title, 'Gramplet')
 
     def get_title(self):
         return self.title
 
     def close(self, *args):
         """
-        Closes the detached GadgetWindow.
+        Closes the detached GrampletWindow.
         """
-        self.gadget.gvclose.show()
-        self.gadget.gvstate.show()
-        self.gadget.gvproperties.show()
-        self.gadget.viewpage.detached_gadgets.remove(self.gadget)
-        self.gadget.state = "maximized"
-        self.gadget.mainframe.reparent(self.gadget.parent)
-        expand,fill,padding,pack =  self.gadget.parent.query_child_packing(self.gadget.mainframe)
-        self.gadget.parent.set_child_packing(self.gadget.mainframe,self.gadget.expand,fill,padding,pack)
+        self.gramplet.gvclose.show()
+        self.gramplet.gvstate.show()
+        self.gramplet.gvproperties.show()
+        self.gramplet.viewpage.detached_gramplets.remove(self.gramplet)
+        self.gramplet.state = "maximized"
+        self.gramplet.mainframe.reparent(self.gramplet.parent)
+        expand,fill,padding,pack =  self.gramplet.parent.query_child_packing(self.gramplet.mainframe)
+        self.gramplet.parent.set_child_packing(self.gramplet.mainframe,self.gramplet.expand,fill,padding,pack)
         ManagedWindow.ManagedWindow.close(self, *args)
 
 #------------------------------------------------------------------------
 
-class Gadget(object):
+class Gramplet(object):
     def __init__(self, gui):
         self._idle_id = 0
         self._generator = None
@@ -168,7 +168,7 @@ class Gadget(object):
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
         # links to each other:
-        self.gui = gui   # plugin gadget has link to gui
+        self.gui = gui   # plugin gramplet has link to gui
         gui.pui = self   # gui has link to plugin ui
         self.dbstate = gui.dbstate
         self.init()
@@ -195,14 +195,14 @@ class Gadget(object):
 
     def on_load(self):
         """
-        Gadgets should override this to take care of loading previously
+        Gramplets should override this to take care of loading previously
         their special data.
         """
         pass
 
     def on_save(self):
         """
-        Gadgets should override this to take care of saving their
+        Gramplets should override this to take care of saving their
         special data.
         """
         if debug: print ("on_save: '%s'" % self.gui.title)
@@ -305,9 +305,9 @@ class Gadget(object):
             self._idle_id = 0
             return False
         except Exception, e:
-            print "Gadget gave an error"
+            print "Gramplet gave an error"
             traceback.print_exc()
-            print "Continuing after gadget error..."
+            print "Continuing after gramplet error..."
             self._idle_id = 0
             return False
 
@@ -362,12 +362,12 @@ class Gadget(object):
 def logical_true(value):
     return value in ["True", True, 1, "1"]
 
-class GuiGadget:
+class GuiGramplet:
     """
-    Class that handles the plugin interfaces for the MyGrampsView.
+    Class that handles the plugin interfaces for the GrampletView.
     """
     TARGET_TYPE_FRAME = 80
-    LOCAL_DRAG_TYPE   = 'GADGET'
+    LOCAL_DRAG_TYPE   = 'GRAMPLET'
     LOCAL_DRAG_TARGET = (LOCAL_DRAG_TYPE, 0, TARGET_TYPE_FRAME)
     def __init__(self, viewpage, dbstate, uistate, title, **kwargs):
         self.viewpage = viewpage
@@ -375,7 +375,7 @@ class GuiGadget:
         self.uistate = uistate
         self.title = title
         ########## Set defaults
-        self.name = kwargs.get("name", "Unnamed Gadget")
+        self.name = kwargs.get("name", "Unnamed Gramplet")
         self.expand = logical_true(kwargs.get("expand", False))
         self.height = int(kwargs.get("height", 200))
         self.column = int(kwargs.get("column", -1))
@@ -384,8 +384,8 @@ class GuiGadget:
         self.data = kwargs.get("data", [])
         ##########
         self.pui = None # user code
-        self.xml = gtk.glade.XML(const.GLADE_FILE, 'gvgadget', "gramps")
-        self.mainframe = self.xml.get_widget('gvgadget')
+        self.xml = gtk.glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
+        self.mainframe = self.xml.get_widget('gvgramplet')
         self.textview = self.xml.get_widget('gvtextview')
         self.buffer = self.textview.get_buffer()
         self.scrolledwindow = self.xml.get_widget('gvscrolledwindow')
@@ -408,14 +408,14 @@ class GuiGadget:
         # source:
         drag = self.gvproperties
         drag.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                             [GuiGadget.LOCAL_DRAG_TARGET],
+                             [GuiGramplet.LOCAL_DRAG_TARGET],
                              gtk.gdk.ACTION_COPY)
 
     def close(self, *obj):
         if self.state == "windowed":
             return
         self.state = "closed"
-        self.viewpage.closed_gadgets.append(self)
+        self.viewpage.closed_gramplets.append(self)
         self.mainframe.get_parent().remove(self.mainframe)
 
     def detach(self):
@@ -426,9 +426,9 @@ class GuiGadget:
         self.gvproperties.hide()
         # keep a pointer to old parent frame:
         self.parent = self.mainframe.get_parent()
-        self.viewpage.detached_gadgets.append(self)
+        self.viewpage.detached_gramplets.append(self)
         # make a window, and attach it there
-        self.detached_window = GadgetWindow(self)
+        self.detached_window = GrampletWindow(self)
         self.state = "windowed"
 
     def set_state(self, state):
@@ -494,22 +494,22 @@ class MyScrolledWindow(gtk.ScrolledWindow):
         # Hack to get around show_all that shows hidden items
         # do once, the first time showing
         if self.viewpage:
-            gadgets = [g for g in self.viewpage.gadget_map.values() if g != None]
+            gramplets = [g for g in self.viewpage.gramplet_map.values() if g != None]
             self.viewpage = None
-            for gadget in gadgets:
-                if gadget.state == "minimized":
-                    gadget.set_state("minimized")
+            for gramplet in gramplets:
+                if gramplet.state == "minimized":
+                    gramplet.set_state("minimized")
 
-class MyGrampsView(PageView.PageView):
+class GrampletView(PageView.PageView):
     """
-    MyGrampsView interface
+    GrampletView interface
     """
 
     def __init__(self, dbstate, uistate):
         """
-        Creates a MyGrampsView, with the current dbstate and uistate
+        Creates a GrampletView, with the current dbstate and uistate
         """
-        PageView.PageView.__init__(self, _('My Gramps'), dbstate, uistate)
+        PageView.PageView.__init__(self, _('Gramplets'), dbstate, uistate)
         self._popup_xy = None
 
     def change_db(self, event):
@@ -523,11 +523,11 @@ class MyGrampsView(PageView.PageView):
         Builds the container widget for the interface. Must be overridden by the
         the base class. Returns a gtk container widget.
         """
-        # load the user's gadgets and set columns, etc
-        user_gadgets = self.load_gadgets()
+        # load the user's gramplets and set columns, etc
+        user_gramplets = self.load_gramplets()
         # build the GUI:
         frame = MyScrolledWindow()
-        msg = _("Right click to add gadgets")
+        msg = _("Right click to add gramplets")
         self.tooltips = gtk.Tooltips()
         self.tooltips.set_tip(frame, msg)
         frame.viewpage = self
@@ -537,7 +537,7 @@ class MyGrampsView(PageView.PageView):
         frame.drag_dest_set(gtk.DEST_DEFAULT_MOTION |
                             gtk.DEST_DEFAULT_HIGHLIGHT |
                             gtk.DEST_DEFAULT_DROP,
-                            [('GADGET', 0, 80)],
+                            [('GRAMPLET', 0, 80)],
                             gtk.gdk.ACTION_COPY)
         frame.connect('drag_drop', self.drop_widget)
         frame.connect('button-press-event', self._button_press)
@@ -548,91 +548,91 @@ class MyGrampsView(PageView.PageView):
         for i in range(self.column_count):
             self.columns.append(gtk.VBox())
             self.hbox.pack_start(self.columns[-1],expand=True)
-        # Load the gadgets
-        self.gadget_map = {} # title->gadget
-        self.frame_map = {} # frame->gadget
-        self.detached_gadgets = [] # list of detached gadgets
-        self.closed_gadgets = []   # list of closed gadgets
+        # Load the gramplets
+        self.gramplet_map = {} # title->gramplet
+        self.frame_map = {} # frame->gramplet
+        self.detached_gramplets = [] # list of detached gramplets
+        self.closed_gramplets = []   # list of closed gramplets
         self.closed_opts = []      # list of closed options from ini file
-        # get the user's gadgets from ~/.gramps/gadgets.ini
-        # Load the user's gadgets:
-        for (name, opts) in user_gadgets:
-            all_opts = get_gadget_opts(name, opts)
+        # get the user's gramplets from ~/.gramps/gramplets.ini
+        # Load the user's gramplets:
+        for (name, opts) in user_gramplets:
+            all_opts = get_gramplet_opts(name, opts)
             if "title" not in all_opts:
-                all_opts["title"] = "Untitled Gadget"
+                all_opts["title"] = "Untitled Gramplet"
             if "state" not in all_opts:
                 all_opts["state"] = "maximized"
             # uniqify titles:
             unique = all_opts["title"]
             cnt = 1
-            while unique in self.gadget_map:
+            while unique in self.gramplet_map:
                 unique = all_opts["title"] + ("-%d" % cnt)
                 cnt += 1
             all_opts["title"] = unique
             if all_opts["state"] == "closed":
-                self.gadget_map[all_opts["title"]] = None # save closed name
+                self.gramplet_map[all_opts["title"]] = None # save closed name
                 self.closed_opts.append(all_opts)
                 continue
-            g = make_requested_gadget(self, name, all_opts, 
+            g = make_requested_gramplet(self, name, all_opts, 
                                       self.dbstate, self.uistate)
             if g:
-                self.gadget_map[all_opts["title"]] = g
+                self.gramplet_map[all_opts["title"]] = g
                 self.frame_map[str(g.mainframe)] = g
             else:
-                print "Can't make gadget of type '%s'." % name
-        self.place_gadgets()
+                print "Can't make gramplet of type '%s'." % name
+        self.place_gramplets()
         return frame
 
-    def clear_gadgets(self):
+    def clear_gramplets(self):
         """
-        Detach all of the mainframe gadgets from the columns.
+        Detach all of the mainframe gramplets from the columns.
         """
-        gadgets = [g for g in self.gadget_map.values() if g != None]
-        for gadget in gadgets:
-            column = gadget.mainframe.get_parent()
+        gramplets = [g for g in self.gramplet_map.values() if g != None]
+        for gramplet in gramplets:
+            column = gramplet.mainframe.get_parent()
             if column:
-                column.remove(gadget.mainframe)
+                column.remove(gramplet.mainframe)
 
-    def place_gadgets(self):
+    def place_gramplets(self):
         """
-        Place the gadget mainframes in the columns.
+        Place the gramplet mainframes in the columns.
         """
-        gadgets = [g for g in self.gadget_map.values() if g != None]
-        # put the gadgets where they go:
+        gramplets = [g for g in self.gramplet_map.values() if g != None]
+        # put the gramplets where they go:
         # sort by row
-        gadgets.sort(lambda a, b: cmp(a.row, b.row))
+        gramplets.sort(lambda a, b: cmp(a.row, b.row))
         cnt = 0
-        for gadget in gadgets:
+        for gramplet in gramplets:
             # see if the user wants this in a particular location:
             # and if there are that many columns
-            if gadget.column >= 0 and gadget.column < self.column_count:
-                pos = gadget.column
+            if gramplet.column >= 0 and gramplet.column < self.column_count:
+                pos = gramplet.column
             else:
                 # else, spread them out:
                 pos = cnt % self.column_count
-            self.columns[pos].pack_start(gadget.mainframe, expand=gadget.expand)
-            gadget.column = pos
-            # set height on gadget.scrolledwindow here:
-            gadget.scrolledwindow.set_size_request(-1, gadget.height)
+            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
+            gramplet.column = pos
+            # set height on gramplet.scrolledwindow here:
+            gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             # Can't minimize here, because GRAMPS calls show_all later:
-            #if gadget.state == "minimized": # starts max, change to min it
-            #    gadget.set_state("minimized") # minimize it
+            #if gramplet.state == "minimized": # starts max, change to min it
+            #    gramplet.set_state("minimized") # minimize it
             # set minimized is called in page subclass hack (above)
-            if gadget.state == "windowed":
-                gadget.detach() 
-            elif gadget.state == "closed":
-                gadget.close() 
+            if gramplet.state == "windowed":
+                gramplet.detach() 
+            elif gramplet.state == "closed":
+                gramplet.close() 
             cnt += 1
 
-    def load_gadgets(self):
+    def load_gramplets(self):
         self.column_count = 2 # default for new user
         retval = []
-        filename = GADGET_FILENAME
+        filename = GRAMPLET_FILENAME
         if filename and os.path.exists(filename):
             cp = ConfigParser.ConfigParser()
             cp.read(filename)
             for sec in cp.sections():
-                if sec == "My Gramps View Options":
+                if sec == "Gramplet View Options":
                     if "column_count" in cp.options(sec):
                         self.column_count = int(cp.get(sec, "column_count"))
                 else:
@@ -645,44 +645,44 @@ class MyGrampsView(PageView.PageView):
                         else:
                             data[opt] = cp.get(sec, opt).strip()
                     if "name" not in data:
-                        data["name"] = "Unnamed Gadget"
-                        data["tname"]= _("Unnamed Gadget")
+                        data["name"] = "Unnamed Gramplet"
+                        data["tname"]= _("Unnamed Gramplet")
                     retval.append((data["name"], data)) # name, opts
         else:
             # give defaults as currently known
-            for name in ["Top Surnames Gadget", "Welcome Gadget"]:
-                if name in AVAILABLE_GADGETS:
-                    retval.append((name, AVAILABLE_GADGETS[name]))
+            for name in ["Top Surnames Gramplet", "Welcome Gramplet"]:
+                if name in AVAILABLE_GRAMPLETS:
+                    retval.append((name, AVAILABLE_GRAMPLETS[name]))
         return retval
 
     def save(self, *args):
         if debug: print "saving"
         if len(self.frame_map.keys() + 
-               self.detached_gadgets + 
-               self.closed_gadgets) == 0:
+               self.detached_gramplets + 
+               self.closed_gramplets) == 0:
             return # something is the matter
-        filename = GADGET_FILENAME
+        filename = GRAMPLET_FILENAME
         try:
             fp = open(filename, "w")
         except:
-            print "Failed writing '%s'; gadgets not saved" % filename
+            print "Failed writing '%s'; gramplets not saved" % filename
             return
-        fp.write(";; Gramps gadgets file" + NL)
+        fp.write(";; Gramps gramplets file" + NL)
         fp.write((";; Automatically created at %s" % time.strftime("%Y/%m/%d %H:%M:%S")) + NL + NL)
-        fp.write("[My Gramps View Options]" + NL)
+        fp.write("[Gramplet View Options]" + NL)
         fp.write(("column_count=%d" + NL + NL) % self.column_count)
-        # showing gadgets:
+        # showing gramplets:
         for col in range(self.column_count):
             row = 0
             for gframe in self.columns[col]:
-                gadget = self.frame_map[str(gframe)]
-                opts = get_gadget_options_by_name(gadget.name)
+                gramplet = self.frame_map[str(gframe)]
+                opts = get_gramplet_options_by_name(gramplet.name)
                 if opts != None:
                     base_opts = opts.copy()
                     for key in base_opts:
-                        if key in gadget.__dict__:
-                            base_opts[key] = gadget.__dict__[key]
-                    fp.write(("[%s]" + NL) % gadget.title)
+                        if key in gramplet.__dict__:
+                            base_opts[key] = gramplet.__dict__[key]
+                    fp.write(("[%s]" + NL) % gramplet.title)
                     for key in base_opts:
                         if key == "content": continue
                         elif key == "title": continue
@@ -702,14 +702,14 @@ class MyGrampsView(PageView.PageView):
                     fp.write(("row=%d" + NL) % row)
                     fp.write(NL)
                 row += 1
-        for gadget in self.detached_gadgets + self.closed_gadgets:
-            opts = get_gadget_options_by_name(gadget.name)
+        for gramplet in self.detached_gramplets + self.closed_gramplets:
+            opts = get_gramplet_options_by_name(gramplet.name)
             if opts != None:
                 base_opts = opts.copy()
                 for key in base_opts:
-                    if key in gadget.__dict__:
-                        base_opts[key] = gadget.__dict__[key]
-                fp.write(("[%s]" + NL) % gadget.title)
+                    if key in gramplet.__dict__:
+                        base_opts[key] = gramplet.__dict__[key]
+                fp.write(("[%s]" + NL) % gramplet.title)
                 for key in base_opts:
                     if key == "content": continue
                     elif key == "title": continue
@@ -745,7 +745,7 @@ class MyGrampsView(PageView.PageView):
     def drop_widget(self, source, context, x, y, timedata):
         """
         This is the destination method for handling drag and drop
-        of a gadget onto the main scrolled window.
+        of a gramplet onto the main scrolled window.
         """
         button = context.get_source_widget()
         hbox = button.get_parent()
@@ -768,17 +768,17 @@ class MyGrampsView(PageView.PageView):
             if y < (rect.y + 15): # starts at 0, this allows insert before
                 self.columns[col].remove(gframe)
                 stack.append(gframe)
-        maingadget = self.frame_map.get(str(mainframe), None)
-        maingadget.column = col
-        if maingadget.state == "maximized":
-            expand = maingadget.expand
+        maingramplet = self.frame_map.get(str(mainframe), None)
+        maingramplet.column = col
+        if maingramplet.state == "maximized":
+            expand = maingramplet.expand
         else:
             expand = False
         self.columns[col].pack_start(mainframe, expand=expand)
         for gframe in stack:
-            gadget = self.frame_map[str(gframe)]
-            if gadget.state == "maximized":
-                expand = gadget.expand
+            gramplet = self.frame_map[str(gframe)]
+            if gramplet.state == "maximized":
+                expand = gramplet.expand
             else:
                 expand = False
             self.columns[col].pack_start(gframe, expand=expand)
@@ -790,10 +790,10 @@ class MyGrampsView(PageView.PageView):
         View. The user typically defines self.action_list and 
         self.action_toggle_list in this function. 
         """
-        self.action = gtk.ActionGroup(self.title + "/Gadgets")
-        self.action.add_actions([('AddGadget',gtk.STOCK_ADD,_("_Add a gadget")),
-                                 ('RestoreGadget',None,_("_Restore a gadget")),
-                                 ('DeleteGadget',None,_("_Delete a gadget")),
+        self.action = gtk.ActionGroup(self.title + "/Gramplets")
+        self.action.add_actions([('AddGramplet',gtk.STOCK_ADD,_("_Add a gramplet")),
+                                 ('RestoreGramplet',None,_("_Restore a gramplet")),
+                                 ('DeleteGramplet',None,_("_Delete a gramplet")),
                                  ('Columns1',None,_("Set columns to _1"),
                                   None,None,
                                   lambda obj:self.set_columns(1)),
@@ -807,8 +807,8 @@ class MyGrampsView(PageView.PageView):
         self._add_action_group(self.action)
 
     def set_columns(self, num):
-        # clear the gadgets:
-        self.clear_gadgets()
+        # clear the gramplets:
+        self.clear_gramplets()
         # clear the columns:
         for column in self.columns:
             frame = column.get_parent()
@@ -821,19 +821,19 @@ class MyGrampsView(PageView.PageView):
             self.columns.append(gtk.VBox())
             self.columns[-1].show()
             self.hbox.pack_start(self.columns[-1],expand=True)
-        # place the gadgets back in the new columns
-        self.place_gadgets()
+        # place the gramplets back in the new columns
+        self.place_gramplets()
         self.widget.show()
 
-    def delete_gadget(self, obj):
+    def delete_gramplet(self, obj):
         name = obj.get_child().get_label()
         ############### First kind: from current session
-        for gadget in self.closed_gadgets:
-            if gadget.title == name:
-                self.closed_gadgets.remove(gadget)
-                self.gadget_map[gadget.title]
-                self.frame_map[str(gadget.mainframe)]
-                del gadget
+        for gramplet in self.closed_gramplets:
+            if gramplet.title == name:
+                self.closed_gramplets.remove(gramplet)
+                self.gramplet_map[gramplet.title]
+                self.frame_map[str(gramplet.mainframe)]
+                del gramplet
                 return
         ################ Second kind: from options
         for opts in self.closed_opts:
@@ -841,85 +841,85 @@ class MyGrampsView(PageView.PageView):
                 self.closed_opts.remove(opts)
                 return
 
-    def restore_gadget(self, obj):
+    def restore_gramplet(self, obj):
         name = obj.get_child().get_label()
         ############### First kind: from current session
-        for gadget in self.closed_gadgets:
-            if gadget.title == name:
-                gadget.state = "maximized"
-                self.closed_gadgets.remove(gadget)
+        for gramplet in self.closed_gramplets:
+            if gramplet.title == name:
+                gramplet.state = "maximized"
+                self.closed_gramplets.remove(gramplet)
                 if self._popup_xy != None:
-                    self.drop_widget(self.widget, gadget, 
+                    self.drop_widget(self.widget, gramplet, 
                                      self._popup_xy[0], self._popup_xy[1], 0)
                 else:
-                    self.drop_widget(self.widget, gadget, 0, 0, 0)
+                    self.drop_widget(self.widget, gramplet, 0, 0, 0)
                 return
         ################ Second kind: from options
         for opts in self.closed_opts:
             if opts["title"] == name:
                 self.closed_opts.remove(opts)
-                g = make_requested_gadget(self, opts["name"], opts, 
+                g = make_requested_gramplet(self, opts["name"], opts, 
                                           self.dbstate, self.uistate)
                 if g:
-                    self.gadget_map[opts["title"]] = g
+                    self.gramplet_map[opts["title"]] = g
                     self.frame_map[str(g.mainframe)] = g
                 else:
-                    print "Can't make gadget of type '%s'." % name
+                    print "Can't make gramplet of type '%s'." % name
         if g:
-            gadget = g
-            gadget.state = "maximized"
-            if gadget.column >= 0 and gadget.column < len(self.columns):
-                pos = gadget.column
+            gramplet = g
+            gramplet.state = "maximized"
+            if gramplet.column >= 0 and gramplet.column < len(self.columns):
+                pos = gramplet.column
             else:
                 pos = 0
-            self.columns[pos].pack_start(gadget.mainframe, expand=gadget.expand)
-            # set height on gadget.scrolledwindow here:
-            gadget.scrolledwindow.set_size_request(-1, gadget.height)
+            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
+            # set height on gramplet.scrolledwindow here:
+            gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
             if self._popup_xy != None:
-                self.drop_widget(self.widget, gadget, 
+                self.drop_widget(self.widget, gramplet, 
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
-                self.drop_widget(self.widget, gadget, 0, 0, 0)
+                self.drop_widget(self.widget, gramplet, 0, 0, 0)
 
-    def add_gadget(self, obj):
+    def add_gramplet(self, obj):
         tname = obj.get_child().get_label()
-        all_opts = get_gadget_options_by_tname(tname)
+        all_opts = get_gramplet_options_by_tname(tname)
         name = all_opts["name"]
         if all_opts == None:
-            print "Unknown gadget type: '%s'; bad gadgets.ini file?" % name
+            print "Unknown gramplet type: '%s'; bad gramplets.ini file?" % name
             return
         if "title" not in all_opts:
-            all_opts["title"] = "Untitled Gadget"
+            all_opts["title"] = "Untitled Gramplet"
         # uniqify titles:
         unique = all_opts["title"]
         cnt = 1
-        while unique in self.gadget_map:
+        while unique in self.gramplet_map:
             unique = all_opts["title"] + ("-%d" % cnt)
             cnt += 1
         all_opts["title"] = unique
-        if all_opts["title"] not in self.gadget_map:
-            g = make_requested_gadget(self, name, all_opts, 
+        if all_opts["title"] not in self.gramplet_map:
+            g = make_requested_gramplet(self, name, all_opts, 
                                       self.dbstate, self.uistate)
         if g:
-            self.gadget_map[all_opts["title"]] = g
+            self.gramplet_map[all_opts["title"]] = g
             self.frame_map[str(g.mainframe)] = g
-            gadget = g
-            if gadget.column >= 0 and gadget.column < len(self.columns):
-                pos = gadget.column
+            gramplet = g
+            if gramplet.column >= 0 and gramplet.column < len(self.columns):
+                pos = gramplet.column
             else:
                 pos = 0
-            self.columns[pos].pack_start(gadget.mainframe, expand=gadget.expand)
-            # set height on gadget.scrolledwindow here:
-            gadget.scrolledwindow.set_size_request(-1, gadget.height)
+            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
+            # set height on gramplet.scrolledwindow here:
+            gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
             if self._popup_xy != None:
-                self.drop_widget(self.widget, gadget, 
+                self.drop_widget(self.widget, gramplet, 
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
-                self.drop_widget(self.widget, gadget, 0, 0, 0)
+                self.drop_widget(self.widget, gramplet, 0, 0, 0)
         else:
-            print "Can't make gadget of type '%s'." % name
+            print "Can't make gramplet of type '%s'." % name
 
     def get_stock(self):
         """
@@ -942,9 +942,9 @@ class MyGrampsView(PageView.PageView):
             </menu>
           </menubar>
           <popup name="Popup">
-            <menuitem action="AddGadget"/>
-            <menuitem action="RestoreGadget"/>
-            <menuitem action="DeleteGadget"/>
+            <menuitem action="AddGramplet"/>
+            <menuitem action="RestoreGramplet"/>
+            <menuitem action="DeleteGramplet"/>
             <separator/>
             <menuitem action="Columns1"/>
             <menuitem action="Columns2"/>
@@ -957,20 +957,20 @@ class MyGrampsView(PageView.PageView):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self._popup_xy = (event.x, event.y)
             menu = self.uistate.uimanager.get_widget('/Popup')
-            ag_menu = self.uistate.uimanager.get_widget('/Popup/AddGadget')
+            ag_menu = self.uistate.uimanager.get_widget('/Popup/AddGramplet')
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
                 if qr_menu == None:
                     qr_menu = gtk.Menu()
-                    names = [AVAILABLE_GADGETS[key]["tname"] for key 
-                             in AVAILABLE_GADGETS.keys()]
+                    names = [AVAILABLE_GRAMPLETS[key]["tname"] for key 
+                             in AVAILABLE_GRAMPLETS.keys()]
                     names.sort()
                     for name in names:
                         Utils.add_menuitem(qr_menu, name, 
-                                           None, self.add_gadget)
-                    self.uistate.uimanager.get_widget('/Popup/AddGadget').set_submenu(qr_menu)
-            rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGadget')
-            dg_menu = self.uistate.uimanager.get_widget('/Popup/DeleteGadget')
+                                           None, self.add_gramplet)
+                    self.uistate.uimanager.get_widget('/Popup/AddGramplet').set_submenu(qr_menu)
+            rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGramplet')
+            dg_menu = self.uistate.uimanager.get_widget('/Popup/DeleteGramplet')
             if rg_menu:
                 qr_menu = rg_menu.get_submenu()
                 if qr_menu != None:
@@ -979,8 +979,8 @@ class MyGrampsView(PageView.PageView):
                 if qr2_menu != None:
                     dg_menu.remove_submenu()
                 names = []
-                for gadget in self.closed_gadgets:
-                    names.append(gadget.title)
+                for gramplet in self.closed_gramplets:
+                    names.append(gramplet.title)
                 for opts in self.closed_opts:
                     names.append(opts["title"])
                 names.sort()
@@ -989,20 +989,20 @@ class MyGrampsView(PageView.PageView):
                     qr2_menu = gtk.Menu()
                     for name in names:
                         Utils.add_menuitem(qr_menu, name, 
-                                           None, self.restore_gadget)
+                                           None, self.restore_gramplet)
                         Utils.add_menuitem(qr2_menu, name, 
-                                           None, self.delete_gadget)
-                    self.uistate.uimanager.get_widget('/Popup/RestoreGadget').set_submenu(qr_menu)
-                    self.uistate.uimanager.get_widget('/Popup/DeleteGadget').set_submenu(qr2_menu)
+                                           None, self.delete_gramplet)
+                    self.uistate.uimanager.get_widget('/Popup/RestoreGramplet').set_submenu(qr_menu)
+                    self.uistate.uimanager.get_widget('/Popup/DeleteGramplet').set_submenu(qr2_menu)
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True
         return False
 
     def on_delete(self):
-        gadgets = [g for g in self.gadget_map.values() if g != None]
-        for gadget in gadgets:
+        gramplets = [g for g in self.gramplet_map.values() if g != None]
+        for gramplet in gramplets:
             # this is the only place where the gui runs user code directly
-            if gadget.pui:
-                gadget.pui.on_save()
+            if gramplet.pui:
+                gramplet.pui.on_save()
         self.save()

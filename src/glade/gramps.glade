@@ -16219,7 +16219,7 @@ Very High</property>
   <property name="urgency_hint">False</property>
 
   <child>
-    <widget class="GtkFrame" id="gvgadget">
+    <widget class="GtkFrame" id="gvgramplet">
       <property name="border_width">10</property>
       <property name="visible">True</property>
       <property name="label_xalign">0</property>

@@ -19,7 +19,7 @@ pkgdata_PYTHON = \
 	Checkpoint.py\
 	CountAncestors.py\
 	CustomBookText.py\
-	DefaultGadgets.py\
+	DefaultGramplets.py\
 	Desbrowser.py\
 	DescendChart.py\
 	DescendReport.py\
