@@ -1,5 +1,9 @@
+2008-01-06  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/DefaultGadgets.py: handle long text in standard way for 
+		translation
+
 2008-01-06  Peter Landgren <peter.talken2telia.com>
-    * src/plugins/Verify.py: Removed unneccesary
+	* src/plugins/Verify.py: Removed unneccesary
                              print statement "print event.get_type()"
 
 2008-01-06  Benny Malengier <benny.malengier@gramps-project.org>
