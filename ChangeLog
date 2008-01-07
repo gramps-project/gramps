@@ -1,4 +1,7 @@
 2008-01-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/DefaultGramplets.py: added gettext (thanks, Jim!)
+
+2008-01-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/MyGrampsView.py:
 	* src/DataViews/__init__.py:
 	* src/DataViews/GrampletView.py:

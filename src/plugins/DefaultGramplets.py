@@ -30,6 +30,7 @@ from DataViews import register, Gramplet
 from BasicUtils import name_displayer
 from QuickReports import run_quick_report_by_name
 import DateHandler
+from gettext import gettext as _
 
 #
 # Hello World, in Gramps Gramplets
