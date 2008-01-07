@@ -46,7 +46,7 @@ import gtk.glade
 from Filters import GenericFilter, build_filter_menu, Rules
 import Sort
 import Utils
-from docgen import ODSTab
+from ODSTab import ODSTab
 import const
 import Errors
 import DateHandler
@@ -389,7 +389,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         if status == gtk.RESPONSE_OK:
             name = unicode(f.get_filename(),
                            sys.getfilesystemencoding())
-            doc = ODSTab.ODSTab(len(self.row_data))
+            doc = ODSTab(len(self.row_data))
             doc.creator(self.db.get_researcher().get_name())
 
             spreadsheet = TableReport(name, doc)

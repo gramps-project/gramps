@@ -1,3 +1,9 @@
+2008-07-07 Raphael Ackermann <raphael.ackermann@gmail.com
+	* src/DataViews/PersonView.py: removed unused import
+	* src/plugins/EventCmp.py: fixed error introduced with previous change
+	* src/gramps.py: removed unused import
+	* src/PageView.py: removed unused import
+
 2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
 	* src/plugins/EventCmp.py: clean up imports and fix pylint error
 	0001496: in EventCmp.py: E:198:fix: Using variable 'l' before assignment

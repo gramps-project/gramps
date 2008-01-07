@@ -59,7 +59,6 @@ import TreeTips
 import Errors
 import Config
 import const
-import gen.utils
 from TransUtils import sgettext as _
 
 from Editors import EditPerson

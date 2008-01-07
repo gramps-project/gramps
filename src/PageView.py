@@ -51,7 +51,6 @@ import Bookmarks
 import Errors
 from Filters import SearchBar
 import Utils
-from TransUtils import sgettext as _s
 import const
 
 NAVIGATION_NONE   = -1

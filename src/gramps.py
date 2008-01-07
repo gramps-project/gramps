@@ -31,7 +31,6 @@ import locale
 import const
 import signal
 import gettext
-import exceptions
 import logging
 
 log = logging.getLogger(".")
@@ -52,8 +51,6 @@ except ImportError:
 # Miscellaneous initialization
 #
 #-------------------------------------------------------------------------
-import gtk.gdk
-import gtk
 import gtk.glade
 import gobject
 
