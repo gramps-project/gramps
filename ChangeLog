@@ -1,4 +1,8 @@
 2008-01-07  Benny Malengier <benny.malengier@gramps-project.org>
+            Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/Bookmarks.py: bookmark dup warning, bug 1346
+
+2008-01-07  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DbManager.py: bug with creation/rename
 
 2008-01-07  Benny Malengier <benny.malengier@gramps-project.org>
