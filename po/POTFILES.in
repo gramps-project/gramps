@@ -213,6 +213,7 @@ src/GrampsLogger/_RotateHandler.py
 src/Mime/_GnomeMime.py
 src/Mime/__init__.py
 src/Mime/_PythonMime.py
+src/Mime/_WinMime.py
 
 # Models package
 # src/Models/_FastFilterModel.py
@@ -361,6 +362,7 @@ src/RelLib/_Event.py
 src/RelLib/_EventRef.py
 src/RelLib/_Family.py
 src/RelLib/_GenderStats.py
+src/RelLib/_GrampsType.py
 src/RelLib/__init__.py
 src/RelLib/_LdsOrd.py
 src/RelLib/_LdsOrdBase.py

@@ -1,4 +1,7 @@
 2008-01-06  Stéphane Charette <stephanecharette@gmail.com>
+	* POTFILES.in: added src/Mime/_WinMime.py and src/RelLib/_GrampsType.py
+
+2008-01-06  Stéphane Charette <stephanecharette@gmail.com>
 	* gramps.pot: generate new grampt.pot prior to 2.2.10
 
 2008-01-06  Arturas Sleinius  <asleinius@users.sourceforge.net>
