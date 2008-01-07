@@ -926,7 +926,7 @@ class GrampletView(PageView.PageView):
         Returns image associated with the view, which is used for the 
         icon for the button.
         """
-        return 'gtk-home'
+        return 'gramps-gramplet'
     
     def build_tree(self):
         return 

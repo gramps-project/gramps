@@ -107,6 +107,7 @@ def register_stock_icons ():
         ('gramps-font', _('Font'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-font-color', _('Font Color'), gtk.gdk.CONTROL_MASK, 0, ''),        
         ('gramps-font-bgcolor', _('Font Background Color'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-gramplet', _('Gramplets'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-lock', _('Public'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-media', _('Media'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-notes', _('Notes'), gtk.gdk.CONTROL_MASK, 0, ''), 

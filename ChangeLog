@@ -1,4 +1,13 @@
-2008-07-07 Raphael Ackermann <raphael.ackermann@gmail.com
+2008-01-07  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/GrampletView.py:
+	* src/gramps_main.py:
+	* src/images/48x48/gramps-gramplet.png:
+	* src/images/scalable/gramps-gramplet.svg:
+	* src/images/48x48/Makefile.am:
+	* src/images/scalable/Makefile.am:
+	start of gramplet icon
+
+2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
 	* src/DataViews/PersonView.py: removed unused import
 	* src/plugins/EventCmp.py: fixed error introduced with previous change
 	* src/gramps.py: removed unused import

@@ -18,6 +18,7 @@ dist_pkgdata_DATA = \
 	gramps-font-bgcolor.svg \
 	gramps-font-color.svg \
 	gramps-font.svg \
+	gramps-gramplet.svg \
 	gramps-lock.svg \
 	gramps-media.svg \
 	gramps-notes.svg \
