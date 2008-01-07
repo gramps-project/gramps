@@ -1,3 +1,7 @@
+2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
+	* src/plugins/CmdRef.py: clean up unused and broken imports and vars
+	0001494: unresolved import WebPage in CmdRef.py
+
 2008-01-07  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/docgen/ODFDoc.py: remove duplicate import
 	* src/docgen/LaTeXDoc.py :added support for opening latex editor

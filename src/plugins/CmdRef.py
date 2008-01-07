@@ -38,9 +38,8 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from PluginUtils import Tool, cl_list, cli_tool_list, register_tool
-from ReportBase import Report, CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB
+from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB
 from ReportBase._CommandLineReport import CommandLineReport
-import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -72,8 +71,6 @@ class CmdRef(Tool.Tool):
             level = 1
         else:
             level = 0
-
-        cli = int(uistate == None)
 
         f = tempfile.NamedTemporaryFile()
         fname = f.name
@@ -166,10 +163,7 @@ class CmdRef(Tool.Tool):
             import GraphViz
             oclass = GraphViz.GraphVizOptions(item[0])
         elif category == CATEGORY_WEB:
-            if item[0] == "webpage":
-                import WebPage
-                oclass = WebPage.WebReportOptions(item[0])
-            elif item[0] == "navwebpage":
+            if item[0] == "navwebpage":
                 import NarrativeWeb
                 oclass = NarrativeWeb.WebReportOptions(item[0])
         elif category == True:
