@@ -1,4 +1,7 @@
 2008-01-07  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DbManager.py: bug with creation/rename
+
+2008-01-07  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/GrampletView.py:
 	* src/gramps_main.py:
 	* src/images/48x48/gramps-gramplet.png:

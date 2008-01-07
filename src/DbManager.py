@@ -194,9 +194,9 @@ class CLIDbManager:
 
         self.current_names.append(title)
         
-        return new_path
+        return new_path, title
 
-    def __create_new_db(self, title=None):
+    def _create_new_db(self, title=None):
         """
         Create a new database, do extra stuff needed
         """
@@ -208,7 +208,7 @@ class CLIDbManager:
             (name, ext) = os.path.splitext(os.path.basename(filename))
 
             # create the database
-            new_path = self.__create_new_db(name)
+            new_path, name = self._create_new_db(name)
             trans = Config.TRANSACTIONS
 
             # get the import function using the filetype, but create a db
@@ -584,7 +584,7 @@ class DbManager(CLIDbManager):
         Creates a new database, then extracts a revision from RCS and
         imports it into the db
         """
-        new_path = self.__create_new_db("%s : %s" % (parent_name, name))
+        new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
         trans = Config.TRANSACTIONS
         
         self.__start_cursor(_("Extracting archive..."))
@@ -750,17 +750,17 @@ class DbManager(CLIDbManager):
         message.
         """
         try:
-            self.__create_new_db()
+            self._create_new_db()
         except (OSError, IOError), msg:
             QuestionDialog.ErrorDialog(_("Could not create family tree"),
                                        str(msg))
 
     
-    def __create_new_db(self, title=None):
+    def _create_new_db(self, title=None):
         """
         Create a new database, append to model
         """
-        new_path = self._create_new_db_cli(title)
+        new_path, title = self._create_new_db_cli(title)
         path_name = os.path.join(new_path, NAME_FILE)
         node = self.model.append(None, [title, new_path, path_name, 
                                         _("Never"), 0, False, ''])
@@ -768,7 +768,7 @@ class DbManager(CLIDbManager):
         path = self.model.get_path(node)
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
-        return new_path
+        return new_path, title
 
     def __drag_data_received(self, widget, context, xpos, ypos, selection, 
                              info, rtime):
