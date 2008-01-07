@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2008       Raphael Ackermann
 #
 # Modifications and feature additions:
 #               2002-2003  Donald A. Peterson
@@ -45,6 +46,10 @@ import BaseDoc
 from PluginUtils import register_text_doc
 import ImgManip
 import Errors
+import Mime
+import Utils
+
+_apptype = 'text/x-tex'
 
 #------------------------------------------------------------------------
 #
@@ -298,6 +303,9 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.f.write('\\end{enumerate}\n')
         self.f.write('\n\\end{document}\n')
         self.f.close()
+        if self.print_req:
+            app = Mime.get_application(_apptype)
+            Utils.launch(app[0], self.filename)
 
     def end_page(self):
         """Issue a new page command"""
@@ -510,14 +518,19 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
 #------------------------------------------------------------------------
 #
-# Register the document generator with the system
+# Register plugins
 #
 #------------------------------------------------------------------------
-register_text_doc(
-    name=_("LaTeX"),
-    classref=LaTeXDoc,
-    table=1,
-    paper=1,
-    style=0,
-    ext=".tex"
-    )
+print_label = None
+try:
+    mprog = Mime.get_application(_apptype)
+
+    if Utils.search_for(mprog[0]):
+        print_label = _("Open in %(program_name)s") % { 'program_name':
+                                                        mprog[1]}
+    else:
+        print_label = None
+except:
+    print_label = None
+
+register_text_doc(_('LaTex'), LaTeXDoc, 1, 1, 0, ".tex", print_label)

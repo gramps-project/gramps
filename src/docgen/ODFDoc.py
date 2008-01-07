@@ -56,7 +56,6 @@ import Errors
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-from xml.sax.saxutils import escape
 
 _apptype = 'application/vnd.oasis.opendocument.text'
 
