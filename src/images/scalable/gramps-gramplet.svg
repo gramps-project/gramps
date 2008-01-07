@@ -9,16 +9,16 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="gramps-gramplet2.svg"
+   sodipodi:docname="gramps-gramplet.svg"
    sodipodi:docbase="/home/benny/programms/gramps/gramps30/src/images/scalable"
    inkscape:version="0.45.1"
    sodipodi:version="0.32"
    id="svg2963"
    height="48px"
    width="48px"
-   inkscape:export-filename="/home/benny/programms/gramps/wiki/gramps-release.png"
-   inkscape:export-xdpi="120"
-   inkscape:export-ydpi="120"
+   inkscape:export-filename="/home/benny/programms/gramps/gramps30/src/images/48x48/gramps-gramplet.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs3">
@@ -966,7 +966,7 @@
             <dc:title>B Malengier</dc:title>
           </cc:Agent>
         </dc:creator>
-        <dc:source></dc:source>
+        <dc:source />
         <dc:subject>
           <rdf:Bag>
             <rdf:li>package</rdf:li>
