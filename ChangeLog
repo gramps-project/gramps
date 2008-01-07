@@ -1,4 +1,7 @@
 2008-01-06  Stéphane Charette  <stephanecharette@gmail.com>
+	* NEWS: release candidate for version 2.2.10 "Lemon Curry?"
+
+2008-01-06  Stéphane Charette  <stephanecharette@gmail.com>
 	* src/plugins/NarrativeWeb.py: resize and link to very large images,
 	include sources (when available) for media objects
 

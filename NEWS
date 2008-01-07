@@ -1,3 +1,9 @@
+Version 2.2.10 -- the "Lemon Curry?" release
+* fixes for several database corruption issues and crashes (Benny, Gary, Jim)
+* fixes for Gedcom, ANSEL and XML import/export issues (Jim, Benny)
+* translation updates (various: bg, de, fi, fr, lt, nb, nl, no)
+* various small fixes to several reports (Stéphane, Gary, Benny)
+
 Version 2.2.9 -- the "Here's your ninepence" release
 * Many bug fixes & translation update (especially reports)
 * Brazilian Portugese translation (Luiz)
