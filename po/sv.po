@@ -1,4 +1,4 @@
-# translation of sv.po to Svenska
+# translation of svny.po to Svenska
 # translation of sv.po to
 # -*- coding: utf-8 -*-
 # Svenska meddelanden i Gramps.
@@ -28,10 +28,10 @@
 # $Id$
 msgid ""
 msgstr ""
-"Project-Id-Version: sv\n"
+"Project-Id-Version: svny\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-06 11:35+0100\n"
-"PO-Revision-Date: 2008-01-06 11:45+0100\n"
+"POT-Creation-Date: 2008-01-06 12:09-0800\n"
+"PO-Revision-Date: 2008-01-07 13:38+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -348,9 +348,8 @@ msgid "_Proceed with import"
 msgstr "_Fortsätt importera"
 
 #: ../src/DbLoader.py:266 ../src/PluginUtils/_Tool.py:117
-#, fuzzy
 msgid "_Stop"
-msgstr "_Stopp"
+msgstr "_Stoppa"
 
 #: ../src/DbLoader.py:272
 msgid "GRAMPS: Import database"
@@ -486,7 +485,7 @@ msgstr ""
 "ett format som låter dig överföra det till ett annat program.\n"
 "\n"
 "Om du ändrar dig under denna process, kan du när som helst trycka på "
-"avbrytknappen, och din aktuella databas kommer fortfarande vara intakt."
+"avbrytknappen och din aktuella databas kommer fortfarande vara intakt."
 
 #: ../src/Exporter.py:172
 #, python-format
@@ -721,7 +720,7 @@ msgstr "Händelse"
 #: ../src/Editors/_EditRepository.py:64 ../src/Editors/_EditRepository.py:66
 #: ../src/FilterEditor/_EditRule.py:235
 msgid "Repository"
-msgstr "Arkivinstitution"
+msgstr "Arkivplats"
 
 #: ../src/GrampsCfg.py:173
 msgid "Suppress warning when adding parents to a child"
@@ -830,11 +829,11 @@ msgstr "Visa dagens tips"
 
 #: ../src/GrampsCfg.py:507
 msgid "Use shading in Relationship View"
-msgstr "Använd skuggning i relationsvyn"
+msgstr "Använd skuggning i släktskapsvyn"
 
 #: ../src/GrampsCfg.py:509
 msgid "Display edit buttons on Relationship View"
-msgstr "Visa redigeringsknappar i relationsvyn"
+msgstr "Visa redigeringsknappar i släktskapsvyn"
 
 #: ../src/GrampsCfg.py:511
 msgid "Remember last view displayed"
@@ -908,7 +907,7 @@ msgstr "Antavla"
 #: ../src/gramps_main.py:111 ../src/DataViews/_RepositoryView.py:103
 #: ../src/DisplayTabs/_RepoEmbedList.py:69
 msgid "Repositories"
-msgstr "Arkivinstitutioner"
+msgstr "Arkivplater"
 
 #. some people want count to be displayed -- make it easy for them to uncomment
 #. self.show_link(of,'surnames_count',_('Count'),path)
@@ -1283,16 +1282,16 @@ msgstr "Maka/make"
 #: ../src/Reorder.py:33 ../src/DataViews/_FamilyList.py:54
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:107
 msgid "Relationship"
-msgstr "Relation"
+msgstr "Släktskap"
 
 #: ../src/Reorder.py:52
 msgid "Reorder Relationships"
-msgstr "Omordna relationer"
+msgstr "Omordna släktskap"
 
 #: ../src/Reorder.py:136
 #, python-format
 msgid "Reorder Relationships: %s"
-msgstr "Omordna relationer: %s"
+msgstr "Omordna släktskap: %s"
 
 #: ../src/ScratchPad.py:79 ../src/DataViews/_RelationView.py:380
 #: ../src/DataViews/_RelationView.py:766
@@ -1435,7 +1434,7 @@ msgstr "Kommentar"
 
 #: ../src/ScratchPad.py:451 ../src/ScratchPad.py:465
 msgid "Repository Reference"
-msgstr "Arkivinstitutionreferens"
+msgstr "Arkivplatsreferens"
 
 #: ../src/ScratchPad.py:467 ../src/DisplayTabs/_RepoEmbedList.py:62
 msgid "Call Number"
@@ -1512,7 +1511,7 @@ msgstr "Publiceringsinformation"
 
 #: ../src/ScratchPad.py:748 ../src/ScratchPad.py:763
 msgid "Repository Link"
-msgstr "Arkivinstitutionslänk"
+msgstr "Arkivplatslänk"
 
 #: ../src/ScratchPad.py:1132 ../src/glade/scratchpad.glade.h:2
 msgid "Scratch Pad"
@@ -1565,7 +1564,7 @@ msgstr "Anteckningar"
 
 #: ../src/ToolTips.py:163
 msgid "Sources in repository"
-msgstr "Källor i arkivinstitution"
+msgstr "Källor på arkivplats"
 
 #: ../src/ToolTips.py:238 ../src/Merge/_MergePerson.py:180
 #: ../src/RelLib/_LdsOrd.py:102
@@ -1640,7 +1639,7 @@ msgstr "Mycket låg"
 
 #: ../src/Utils.py:76
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr "Ett registrerat eller samboförhållande mellan man och kvinna"
+msgstr "Ett registrerat partnerskap eller samboförhållande mellan man och kvinna"
 
 #: ../src/Utils.py:78
 msgid "No legal or common-law relationship between man and woman"
@@ -1648,11 +1647,11 @@ msgstr "Inget äktenskap eller registrerat samboförhållande mellan man och kvi
 
 #: ../src/Utils.py:80
 msgid "An established relationship between members of the same sex"
-msgstr "Ett samboförhållande mellan två personer av samma kön"
+msgstr "Ett partnerskapsförhållande mellan två personer av samma kön"
 
 #: ../src/Utils.py:82
 msgid "Unknown relationship between a man and woman"
-msgstr "Okänd relation mellan man och kvinna"
+msgstr "Okänt förhållande mellan man och kvinna"
 
 #: ../src/Utils.py:84
 msgid "An unspecified relationship a man and woman"
@@ -1996,7 +1995,7 @@ msgid ""
 "relationship between them."
 msgstr ""
 "Makar kan inte slås ihop. För att slå ihop dessa personer, måste du först "
-"bryta relationen mellan dem."
+"bryta släktskapet mellan dem."
 
 #: ../src/Merge/_MergePerson.py:94 ../src/Merge/_MergePerson.py:273
 #: ../src/Merge/_MergePerson.py:309
@@ -2005,7 +2004,7 @@ msgid ""
 "break the relationship between them."
 msgstr ""
 "En förälder och ett barn kan inte slås samman. För att slå samman dessa "
-"personer, måste du först bryta relationen mellan dem."
+"personer, måste du först bryta släktskapet mellan dem."
 
 #. Gender
 #: ../src/Merge/_MergePerson.py:125 ../src/DataViews/_PersonView.py:73
@@ -2107,7 +2106,7 @@ msgid ""
 "database and from all people and families that reference it."
 msgstr ""
 "Den här händelsen används för närvarande. Om du raderar den, så kommer den "
-"att tas bort från databasen, och från alla personer och familjer som "
+"att tas bort från databasen och från alla personer och familjer som "
 "refererar till den."
 
 #: ../src/DataViews/_EventView.py:224
@@ -2151,7 +2150,7 @@ msgstr "Omo_rdna"
 
 #: ../src/DataViews/_RelationView.py:313
 msgid "Reorder the relationships"
-msgstr "Omordna relationer"
+msgstr "Omordna släktskapen"
 
 #: ../src/DataViews/_RelationView.py:318 ../src/DisplayTabs/_ButtonTab.py:64
 #: ../src/plugins/BookReport.py:870
@@ -2263,7 +2262,7 @@ msgstr "d. %s"
 #: ../src/DataViews/_RelationView.py:893
 #, python-format
 msgid "Relationship type: %s"
-msgstr "Typ av relation: %s"
+msgstr "Typ av släktskap: %s"
 
 #: ../src/DataViews/_RelationView.py:933
 #, python-format
@@ -2345,7 +2344,7 @@ msgid ""
 "will be removed from the database and from all records that reference it."
 msgstr ""
 "Detta medieobjekt används för närvarande. Om du tar bort detta objekt, så "
-"kommer det att tas bort från databasen, och från alla poster som refererar "
+"kommer det att tas bort från databasen och från alla poster som refererar "
 "till det."
 
 #: ../src/DataViews/_MediaView.py:333
@@ -2639,7 +2638,7 @@ msgid ""
 "database and from all people and families that reference it."
 msgstr ""
 "Den här platsen används för närvarande. Om du raderar den, så kommer den att "
-"tas bort från databasen, och från alla personer och familjer som refererar "
+"tas bort från databasen och från alla personer och familjer som refererar "
 "till den."
 
 #: ../src/DataViews/_PlaceView.py:252
@@ -2674,41 +2673,40 @@ msgstr "Söksida URL"
 
 #: ../src/DataViews/_RepositoryView.py:83
 msgid "Add a new repository"
-msgstr "Lägg till ny arkivinstitution"
+msgstr "Lägg till ny arkivplats"
 
 #: ../src/DataViews/_RepositoryView.py:84
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
 msgid "Edit the selected repository"
-msgstr "Redigera den valda arkivinstitutionen"
+msgstr "Redigera den valda arkivplatsen"
 
 #: ../src/DataViews/_RepositoryView.py:85
 msgid "Delete the selected repository"
-msgstr "Radera den valda arkivinstitutionen"
+msgstr "Radera den valda arkivplatsen"
 
 #: ../src/DataViews/_RepositoryView.py:122
 msgid "Repository Filter Editor"
-msgstr "Arkivinstitutionsfilter"
+msgstr "Arkivplatsfilter"
 
 #: ../src/DataViews/_RepositoryView.py:129
 msgid "Select Repository Columns"
-msgstr "Välj kolumner för arkivinstitutioner"
+msgstr "Välj kolumner för arkivplatser"
 
 #: ../src/DataViews/_RepositoryView.py:206
 msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
 msgstr ""
-"Den här arkivinstitutionen används för närvarande. Om du raderar den, så "
-"kommer den att tas bort från databasen, och från alla källor som refererar "
-"till den."
+"Den här arkivplatsen används för närvarande. Om du raderar den, så kommer "
+"den att tas bort från databasen och från alla källor som refererar till den."
 
 #: ../src/DataViews/_RepositoryView.py:210
 msgid "Deleting repository will remove it from the database."
-msgstr "Att ta bort arkivinstitutionen innebär att den tas bort från databasen."
+msgstr "Att ta bort arkivplatsen innebär att den tas bort från databasen."
 
 #: ../src/DataViews/_RepositoryView.py:215
 msgid "_Delete Repository"
-msgstr "_Ta bort arkivinstitution"
+msgstr "_Ta bort arkivplatsen"
 
 #: ../src/DataViews/_SourceView.py:76
 msgid "Add a new source"
@@ -2738,7 +2736,7 @@ msgid ""
 "database and from all people and families that reference it."
 msgstr ""
 "Den här källan används för närvarande. Om du raderar den, så kommer den att "
-"tas bort från databasen, och från alla personer och familjer som refererar "
+"tas bort från databasen och från alla personer och familjer som refererar "
 "till den."
 
 #: ../src/DataViews/_SourceView.py:201
@@ -3016,19 +3014,19 @@ msgstr "Fadder"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
 msgid "Create and add a new repository"
-msgstr "Skapa och lägg till en ny arkivinstitution"
+msgstr "Skapa och lägg till en ny arkivplats"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
 msgid "Remove the existing repository"
-msgstr "Ta bort den existerande arkivinstitutionen"
+msgstr "Ta bort den existerande arkivplatsen"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
 msgid "Add an existing repository"
-msgstr "Lägg till en existerande arkivinstitution"
+msgstr "Lägg till en existerande arkivplats"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:112
 msgid "Select repository"
-msgstr "Välj arkivinstitution"
+msgstr "Välj arkivplats"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:150
 msgid ""
@@ -3038,12 +3036,11 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Den här arkivinstitutionsreferensen kan inte redigeras just nu. Antingen "
-"redigeras den kopplade arkivinstitutionen eller en annan referens till denna "
-"i ett annat fönster.\n"
+"Den här arkivplatssreferensen kan inte redigeras just nu. Antingen redigeras "
+"den kopplade arkivplatsen eller en annan referens till denna i ett annat "
+"fönster.\n"
 "\n"
-"För att redigera den här arkivinstitutionsreferensen, måste du stänga det "
-"fönstret."
+"För att redigera den här arkivplatsreferensen, måste du stänga det fönstret."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
 msgid "Create and add a new source"
@@ -3154,7 +3151,7 @@ msgstr "Ta bort barn från familjen"
 
 #: ../src/Editors/_EditFamily.py:89
 msgid "Edit the child/family relationship"
-msgstr "Redigera relationen barn/förälder"
+msgstr "Redigera förhållandet barn/förälder"
 
 #: ../src/Editors/_EditFamily.py:90
 msgid "Add an existing person as a child of the family"
@@ -3174,7 +3171,7 @@ msgstr "Möderne"
 
 #: ../src/Editors/_EditFamily.py:121
 msgid "Edit relationship"
-msgstr "Redigera släktskap/relation"
+msgstr "Redigera släktskap"
 
 #: ../src/Editors/_EditFamily.py:122
 msgid "Edit child"
@@ -3529,52 +3526,52 @@ msgstr "Om du stänger utan att spara, så kommer de ändringar du gjort förlor
 
 #: ../src/Editors/_EditRepoRef.py:70
 msgid "Repository Reference Editor"
-msgstr "Redigera arkivinstitutionsreferenser"
+msgstr "Redigera arkivplatsreferenser"
 
 #: ../src/Editors/_EditRepoRef.py:160
 #, python-format
 msgid "Repository: %s"
-msgstr "Arkivinstitution: %s"
+msgstr "Arkivplats: %s"
 
 #: ../src/Editors/_EditRepoRef.py:162 ../src/Editors/_EditRepository.py:68
 msgid "New Repository"
-msgstr "Ny arkivinstitution"
+msgstr "Ny arkivplats"
 
 #: ../src/Editors/_EditRepoRef.py:163
 msgid "Repo Reference Editor"
-msgstr "Redigera arkivinstitutionsreferens"
+msgstr "Redigera arkivplatsreferens"
 
 #: ../src/Editors/_EditRepoRef.py:170
 msgid "Modify Repository"
-msgstr "Ändra arkivinstitution"
+msgstr "Ändra arkivplats"
 
 #: ../src/Editors/_EditRepoRef.py:173
 msgid "Add Repository"
-msgstr "Lägg till arkivinstitution"
+msgstr "Lägg till arkivplats"
 
 #: ../src/Editors/_EditRepository.py:81
 msgid "Edit Repository"
-msgstr "Redigera arkivinstitution"
+msgstr "Redigera arkivplats"
 
 #: ../src/Editors/_EditRepository.py:147
 msgid "Cannot save repository"
-msgstr "Kan inte spara arkivinstitutioner"
+msgstr "Kan inte spara arkivplats"
 
 #: ../src/Editors/_EditRepository.py:148
 msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Ingen information existerar för den här arkivinstitutionen. Ange information "
-"eller avbryt redigeringen."
+"Ingen information existerar för den här arkivplatsen. Ange information eller "
+"avbryt redigeringen."
 
 #: ../src/Editors/_EditRepository.py:158
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr "Redigera arkivinstitution (%s)"
+msgstr "Redigera arkivplats (%s)"
 
 #: ../src/Editors/_EditRepository.py:188
 #, python-format
 msgid "Delete Repository (%s)"
-msgstr "Ta bort arkivinstitution (%s)"
+msgstr "Ta bort arkivplats (%s)"
 
 #: ../src/Editors/_EditSource.py:74 ../src/Editors/_EditSourceRef.py:198
 msgid "New Source"
@@ -3804,7 +3801,9 @@ msgstr "Databasversionen stöd inte av denna version av GRAMPS."
 msgid ""
 "Your database groups name %s together with %s, did not change this grouping "
 "to %s"
-msgstr "Din databas grupperar namn %s tillsammans med %s, denna gruppering ändrades inte till %s"
+msgstr ""
+"Din databas grupperar namn %s tillsammans med %s, denna gruppering ändrades "
+"inte till %s"
 
 #: ../src/GrampsDb/_ReadGrdb.py:218
 msgid "Import database"
@@ -4174,7 +4173,7 @@ msgstr "Välj plats"
 
 #: ../src/Selectors/_SelectRepository.py:46
 msgid "Select Repository"
-msgstr "Välj arkivinstitution"
+msgstr "Välj arkivplats"
 
 #: ../src/Selectors/_SelectSource.py:46
 msgid "Select Source"
@@ -4582,7 +4581,7 @@ msgstr "Förbereder visning"
 
 #: ../src/plugins/ChangeNames.py:203
 msgid "Fix capitalization of family names"
-msgstr "Laga skiftläge för familjenamn"
+msgstr "Normera skiftläge för familjenamn"
 
 #: ../src/plugins/ChangeNames.py:207
 msgid "Searches the entire database and attempts to fix capitalization of the names."
@@ -4798,7 +4797,7 @@ msgstr "Söker efter tomma mediaposter"
 
 #: ../src/plugins/Check.py:633
 msgid "Looking for empty repository records"
-msgstr "Söker efter tomma arkivinstitutionsposter"
+msgstr "Söker efter tomma arkivplatsposter"
 
 #: ../src/plugins/Check.py:676
 msgid "Looking for families with no parents or children"
@@ -4806,7 +4805,7 @@ msgstr "Söker efter familjer utan föräldrar eller barn"
 
 #: ../src/plugins/Check.py:703
 msgid "Looking for broken parent relationships"
-msgstr "Söker efter trasiga föräldrarelationer"
+msgstr "Söker efter trasiga föräldrasläktskap"
 
 #: ../src/plugins/Check.py:734
 msgid "Looking for event problems"
@@ -4818,7 +4817,7 @@ msgstr "Söker efter problem med personreferenser"
 
 #: ../src/plugins/Check.py:830
 msgid "Looking for repository reference problems"
-msgstr "Söker efter problem med arkivinstitutionsreferenser"
+msgstr "Söker efter problem med arkivplatsreferenser"
 
 #: ../src/plugins/Check.py:847
 msgid "Looking for place reference problems"
@@ -4914,12 +4913,12 @@ msgstr "%d personer refererades men kunde inte hittas\n"
 
 #: ../src/plugins/Check.py:1220
 msgid "1 repository was referenced but not found\n"
-msgstr "1 arkivinstitutions refererades men kunde inte hittas\n"
+msgstr "1 arkivplats refererades men kunde inte hittas\n"
 
 #: ../src/plugins/Check.py:1222
 #, python-format
 msgid "%d repositories were referenced, but not found\n"
-msgstr "%d arkivinstitutioner refererades men kunde inte hittas\n"
+msgstr "%d arkivplatser refererades men kunde inte hittas\n"
 
 #: ../src/plugins/Check.py:1225
 msgid "1 media object was referenced, but not found\n"
@@ -5034,7 +5033,7 @@ msgstr ""
 "   %d källobjekt\n"
 "   %d mediaobjekt\n"
 "   %d platsobjekt\n"
-"   %d arkivinstitutionsobjekt\n"
+"   %d arkivplatsobjekt\n"
 
 #: ../src/plugins/Check.py:1326
 msgid "Integrity Check Results"
@@ -5996,11 +5995,11 @@ msgstr ""
 
 #: ../src/plugins/GraphViz.py:833
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "Indikera icke-födelserelationer med punkterade linjer"
+msgstr "Indikera icke-födelseförhållande med punkterade linjer"
 
 #: ../src/plugins/GraphViz.py:837
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "Icke-födelserelationer kommer att visas med punkterade linjer i grafen."
+msgstr "Icke-födelseförhållande kommer att visas med punkterade linjer i grafen."
 
 #: ../src/plugins/GraphViz.py:840
 msgid "Show family nodes"
@@ -6112,7 +6111,7 @@ msgid ""
 "many other formats. For more information or to get a copy of GraphViz, goto "
 "http://www.graphviz.org"
 msgstr ""
-"Skapar släktskapsdiagram, f.n. endast i GraphViz-format. GraphViz (dot) kan "
+"Skapar släktskapsdiagram, f. n. endast i GraphViz-format. GraphViz (dot) kan "
 "transformera grafen till postscript, jpeg, png, vrml, svg och många andra "
 "format. För mer information eller för att skaffa GraphViz, besök http://www."
 "graphviz.org"
@@ -6124,7 +6123,7 @@ msgid ""
 "graph. If you want the dotfile itself, please use the Code Generators "
 "category."
 msgstr ""
-"Genererar relationsdiagram med hjälp av programmet GraphViz (dot). Denna "
+"Genererar släktskapsdiagram med hjälp av programmet GraphViz (dot). Denna "
 "rapport generar en dot-fil i bakgrunden och använder sedan dot för att "
 "konvertera det till ett diagram. Om du vill ha själva dot-filen, så var "
 "snäll och använd kategorin kodgeneratorer."
@@ -7144,7 +7143,7 @@ msgstr "Sorterar om plats-ID:n"
 
 #: ../src/plugins/ReorderIds.py:130
 msgid "Reordering Repository IDs"
-msgstr "Sorterar om arkivinstitutions-ID:n"
+msgstr "Sorterar om arkivplats-ID:n"
 
 #: ../src/plugins/ReorderIds.py:145 ../src/plugins/ReorderIds.py:226
 msgid "Reorder GRAMPS IDs"
@@ -7291,7 +7290,7 @@ msgstr "Vigselort"
 
 #: ../src/plugins/StatisticsChart.py:118
 msgid "Number of relationships"
-msgstr "Antal relationer"
+msgstr "Antal förhållanden"
 
 #: ../src/plugins/StatisticsChart.py:120
 msgid "Age when first child born"
@@ -7800,7 +7799,7 @@ msgid ""
 "completely portable across different machines and binary architectures."
 msgstr ""
 "Att exportera till CD kopierar alla dina data och medieobjektfiler till CD-"
-"skaparen. Du kan senare bränna CD:n med dessa data, och kopian blir helt "
+"skaparen. Du kan senare bränna CD:n med dessa data och kopian blir helt "
 "portabel mellan olika maskiner och binära arkitekturer."
 
 #. -------------------------------------------------------------------------
@@ -10101,7 +10100,7 @@ msgstr "ogift"
 
 #: ../src/ReportBase/_ReportUtils.py:821
 msgid "civil union"
-msgstr "borgerligt äktenskap"
+msgstr "registrerat partnerskap"
 
 #: ../src/ReportBase/_ReportUtils.py:823 ../src/glade/mergedata.glade.h:10
 msgid "Other"
@@ -10123,7 +10122,7 @@ msgid ""
 "(death_endnotes)s."
 msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
-"(birth_endnotes)s, och dog %(death_date)s i %(death_place)s%(death_endnotes)"
+"(birth_endnotes)s och dog %(death_date)s i %(death_place)s%(death_endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1459
@@ -10133,7 +10132,7 @@ msgid ""
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
-"(birth_endnotes)s, och dog %(death_date)s%(death_endnotes)s."
+"(birth_endnotes)s och dog %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1464
 #, python-format
@@ -10142,7 +10141,7 @@ msgid ""
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 "%(male_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
-"(birth_endnotes)s, och dog i %(death_place)s%(death_endnotes)s."
+"(birth_endnotes)s och dog i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1468
 #, python-format
@@ -10159,7 +10158,7 @@ msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog %"
+"%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s och dog %"
 "(death_date)s i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1477
@@ -10168,7 +10167,7 @@ msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog %"
+"%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s och dog %"
 "(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1482
@@ -10177,7 +10176,7 @@ msgid ""
 "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog i "
+"%(male_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s och dog i "
 "%(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1486
@@ -10191,7 +10190,7 @@ msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
+"%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s och "
 "dog %(death_date)s i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1496
@@ -10200,7 +10199,7 @@ msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
+"%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s och "
 "dog %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1501
@@ -10209,7 +10208,7 @@ msgid ""
 "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
+"%(male_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s och "
 "dog i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1505
@@ -10249,7 +10248,7 @@ msgid ""
 "(death_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
-"(birth_endnotes)s, och dog %(death_date)s i %(death_place)s%(death_endnotes)"
+"(birth_endnotes)s och dog %(death_date)s i %(death_place)s%(death_endnotes)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:1530
@@ -10259,7 +10258,7 @@ msgid ""
 "(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
-"(birth_endnotes)s, och dog %(death_date)s%(death_endnotes)s."
+"(birth_endnotes)s och dog %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1535
 #, python-format
@@ -10268,7 +10267,7 @@ msgid ""
 "(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 "%(female_name)s%(endnotes)s föddes %(birth_date)s i %(birth_place)s%"
-"(birth_endnotes)s, och dog i %(death_place)s%(death_endnotes)s."
+"(birth_endnotes)s och dog i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1539
 #, python-format
@@ -10285,7 +10284,7 @@ msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog "
+"%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s och dog "
 "%(death_date)s i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1548
@@ -10294,7 +10293,7 @@ msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog "
+"%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s och dog "
 "%(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1553
@@ -10303,7 +10302,7 @@ msgid ""
 "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, and "
 "died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s, och dog "
+"%(female_name)s%(endnotes)s föddes %(birth_date)s%(birth_endnotes)s och dog "
 "i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1557
@@ -10317,7 +10316,7 @@ msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
+"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s och "
 "dog %(death_date)s i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1567
@@ -10326,7 +10325,7 @@ msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died %(death_date)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
+"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s och "
 "dog %(death_date)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1572
@@ -10335,7 +10334,7 @@ msgid ""
 "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
 "and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
-"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s, och "
+"%(female_name)s%(endnotes)s föddes i %(birth_place)s%(birth_endnotes)s och "
 "dog i %(death_place)s%(death_endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1576
@@ -10719,7 +10718,7 @@ msgstr "Kassaskåp"
 
 #: ../src/RelLib/_FamilyRelType.py:45
 msgid "Civil Union"
-msgstr "Borgerligt äktenskap"
+msgstr "Registrerat partnerskap"
 
 #: ../src/RelLib/_FamilyRelType.py:46
 msgid "Unmarried"
@@ -10983,7 +10982,7 @@ msgstr "Äktenskapskontrakt"
 
 #: ../src/RelLib/_EventType.py:127
 msgid "Marriage Banns"
-msgstr "Överenskommelse om äktenskap"
+msgstr "Lysning"
 
 #: ../src/RelLib/_EventType.py:128
 msgid "Engagement"
@@ -11278,7 +11277,7 @@ msgid ""
 "Matches people that have no family relationships to any other person in the "
 "database"
 msgstr ""
-"Matchar personer som inte har någon släktrelation med någon annan person i "
+"Matchar personer som inte har något släktskap med någon annan person i "
 "databasen"
 
 #: ../src/Filters/Rules/Person/_Everyone.py:45
@@ -11463,13 +11462,13 @@ msgstr "Matchar personer vars anteckningar innehåller angivet reguljärt uttryc
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:46
 msgid "Number of relationships:"
-msgstr "Antal relationer:"
+msgstr "Antal förhållanden:"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:47
 #: ../src/Filters/Rules/Family/_HasRelType.py:46
 #: ../src/FilterEditor/_EditRule.py:86
 msgid "Relationship type:"
-msgstr "Typ av relation:"
+msgstr "Typ av förhållande:"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:48
 msgid "Number of children:"
@@ -11477,11 +11476,11 @@ msgstr "Antal barn:"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:49
 msgid "People with the <relationships>"
-msgstr "Personer med <släktskapen/relationen>"
+msgstr "Personer med <släktskapen>"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:50
 msgid "Matches people with a particular relationship"
-msgstr "Matchar personer med en viss släktskap/relation"
+msgstr "Matchar personer med en viss släktskap"
 
 #: ../src/Filters/Rules/Person/_HasRelationship.py:51
 #: ../src/Filters/Rules/Person/_HaveAltFamilies.py:46
@@ -11848,7 +11847,7 @@ msgid ""
 "Matches the ancestors of two persons back to a common ancestor, producing "
 "the relationship path between two persons."
 msgstr ""
-"Matchar anorna för två personer tillbaka till en gemensam ana, och redovisar "
+"Matchar anorna för två personer tillbaka till en gemensam ana och redovisar "
 "på så vis släktskapsvägen mellan två personer."
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetweenBookmarks.py:52
@@ -11860,7 +11859,7 @@ msgid ""
 "Matches the ancestors of bookmarked individuals back to common ancestors, "
 "producing the relationship path(s) between bookmarked persons."
 msgstr ""
-"Matchar anorna för personer med bokmärken tillbaka till en gemensam ana, och "
+"Matchar anorna för personer med bokmärken, tillbaka till en gemensam ana och "
 "redovisar på så vis släktskapsvägen mellan två personer."
 
 #: ../src/Filters/Rules/Person/_SearchName.py:46
@@ -12441,35 +12440,35 @@ msgstr "Matchar medieobjekt vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
-msgstr "Alla arkivinstitutioner"
+msgstr "Alla arkivplatser"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
-msgstr "Matchar alla arkivinstitutioner i databasen"
+msgstr "Matchar alla arkivplatser i databasen"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
-msgstr "Arkivinstitution med <id>"
+msgstr "Arkivplats med <id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr "Matchar arkivinstitutioner med ett angivet GRAMPS-ID"
+msgstr "Matchar arkivplatser med ett angivet GRAMPS-ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
-msgstr "Arkivinstitutioner med <delsträng> i anteckningar"
+msgstr "Arkivplater med <delsträng> i anteckningar"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Matchar arkivinstitutioner vars anteckningar innehåller angiven delsträng"
+msgstr "Matchar arkivplatser vars anteckningar innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositoriess having notes containing <regular expression>"
-msgstr "Arkivinstitutioner med <reguljärt uttryck> i anteckningar"
+msgstr "Arkivplater med <reguljärt uttryck> i anteckningar"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Matchar arkivinstitutioner vars anteckningar matchar ett reguljärt uttryck"
+msgstr "Matchar arkplatserer vars anteckningar matchar ett reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -12477,35 +12476,35 @@ msgstr "URL:"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:52
 msgid "Repositories matching parameters"
-msgstr "Arkivinstitutioner som matchar parametrar"
+msgstr "Arkivplater som matchar parametrar"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
-msgstr "Matchar arkivinstitutioner med vissa parametrar"
+msgstr "Matchar arkivplatser med vissa parametrar"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
-msgstr "Arkivinstitutioner som matchar <filter>"
+msgstr "Arkivplater som matchar <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Matchar arkivinstitutioner som matchar det angivna filtret"
+msgstr "Matchar arkivplatser som matchar det angivna filtret"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
-msgstr "Arkivinstitutioner med <id> som matchar reguljärt uttryck"
+msgstr "Arkivplater med <id> som matchar reguljärt uttryck"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr "Matchar arkivinstitutioner vars GRAMPS-id matchar det reguljära uttrycket"
+msgstr "Matchar arkivplatser vars GRAMPS-id matchar det reguljära uttrycket"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
-msgstr "Arkivinstitutioner markerade som privata"
+msgstr "Arkivplater markerade som privata"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
 msgid "Matches repositories that are indicated as private"
-msgstr "Matchar arkivinstitutioner som indikerats som privata"
+msgstr "Matchar arkivplatser som indikerats som privata"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:95
@@ -12787,7 +12786,7 @@ msgid ""
 "below."
 msgstr ""
 "Denna GEDCOM-fil anger sig använda ANSEL-kodning. Ibland är detta fel. Om "
-"importerade data innehåller ovanliga tecken, så ångra importen, och "
+"importerade data innehåller ovanliga tecken, så ångra importen och "
 "åsidosätt teckenkodningen genom att välja en annan kodning nedan."
 
 #: ../src/GrampsDb/gedcomimport.glade.h:12
@@ -12891,11 +12890,11 @@ msgstr "T_yp:"
 msgid "The person's given name"
 msgstr "Personens förnamn"
 
-#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:144
+#: ../src/glade/edit_person.glade.h:22 ../src/glade/gramps.glade.h:143
 msgid "_Family:"
 msgstr "_Efternamn:"
 
-#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:145
+#: ../src/glade/edit_person.glade.h:23 ../src/glade/gramps.glade.h:144
 msgid "_Given:"
 msgstr "_Förnamn:"
 
@@ -12933,7 +12932,7 @@ msgstr "<b>Beskrivning</b>"
 
 #: ../src/glade/gramps.glade.h:9
 msgid "<b>Family relationships</b>"
-msgstr "<b>Familjerelationer</b>"
+msgstr "<b>Familjeförhållanden</b>"
 
 #: ../src/glade/gramps.glade.h:10
 msgid "<b>Father</b>"
@@ -12969,9 +12968,8 @@ msgid ""
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
-"<b>Notera:</b> Alla ändringar i en delad arkivinstitution kommer att "
-"återspeglas i arkivinstitutionen själv och därmed alla poster som refererar "
-"till den."
+"<b>Notera:</b> Alla ändringar i en delad arkivplats kommer att återspeglas i "
+"arkivplatsen själv och därmed alla poster som refererar till den."
 
 #: ../src/glade/gramps.glade.h:18
 msgid ""
@@ -12987,7 +12985,7 @@ msgstr "<b>Inställningar för stycken</b>"
 
 #: ../src/glade/gramps.glade.h:21
 msgid "<b>Parent relationships</b>"
-msgstr "<b>Föräldrarelationer</b>"
+msgstr "<b>Föräldraförhållanden</b>"
 
 #: ../src/glade/gramps.glade.h:22
 msgid "<b>Preview</b>"
@@ -13335,128 +13333,128 @@ msgid "Y_ear"
 msgstr "Å_r"
 
 #: ../src/glade/gramps.glade.h:128
-msgid "_Association:"
-msgstr "_Relation:"
-
-#: ../src/glade/gramps.glade.h:129
 msgid "_Attribute:"
 msgstr "_Attribut:"
 
-#: ../src/glade/gramps.glade.h:130
+#: ../src/glade/gramps.glade.h:129
 msgid "_Author:"
 msgstr "_Författare:"
 
-#: ../src/glade/gramps.glade.h:131
+#: ../src/glade/gramps.glade.h:130
 msgid "_Bold"
 msgstr "_Fetstil"
 
-#: ../src/glade/gramps.glade.h:132
+#: ../src/glade/gramps.glade.h:131
 msgid "_Bottom"
 msgstr "_Nederkant"
 
-#: ../src/glade/gramps.glade.h:133
+#: ../src/glade/gramps.glade.h:132
 msgid "_Call number:"
 msgstr "_Referensnummer:"
 
-#: ../src/glade/gramps.glade.h:134
+#: ../src/glade/gramps.glade.h:133
 msgid "_Center"
 msgstr "_Center"
 
-#: ../src/glade/gramps.glade.h:135
+#: ../src/glade/gramps.glade.h:134
 msgid "_City/County:"
 msgstr "S_tad/kommun:"
 
-#: ../src/glade/gramps.glade.h:136
+#: ../src/glade/gramps.glade.h:135
 msgid "_City:"
 msgstr "Ort/_Kommun:"
 
-#: ../src/glade/gramps.glade.h:137
+#: ../src/glade/gramps.glade.h:136
 msgid "_Confidence:"
 msgstr "_Säkerhet:"
 
-#: ../src/glade/gramps.glade.h:138
+#: ../src/glade/gramps.glade.h:137
 msgid "_Date:"
 msgstr "_Datum:"
 
-#: ../src/glade/gramps.glade.h:139
+#: ../src/glade/gramps.glade.h:138
 msgid "_Day"
 msgstr "_Dag"
 
-#: ../src/glade/gramps.glade.h:140
+#: ../src/glade/gramps.glade.h:139
 msgid "_Description:"
 msgstr "_Beskrivning:"
 
-#: ../src/glade/gramps.glade.h:141
+#: ../src/glade/gramps.glade.h:140
 msgid "_Display as:"
 msgstr "_Visa som:"
 
-#: ../src/glade/gramps.glade.h:142
+#: ../src/glade/gramps.glade.h:141
 msgid "_Display on startup"
 msgstr "_Visa vid uppstart"
 
-#: ../src/glade/gramps.glade.h:143
+#: ../src/glade/gramps.glade.h:142
 msgid "_Event type:"
 msgstr "H_ändelsetyp:"
 
-#: ../src/glade/gramps.glade.h:146
+#: ../src/glade/gramps.glade.h:145
 msgid "_ID:"
 msgstr "_ID:"
 
-#: ../src/glade/gramps.glade.h:147
+#: ../src/glade/gramps.glade.h:146
 msgid "_Italic"
 msgstr "_Kursiv"
 
-#: ../src/glade/gramps.glade.h:148
+#: ../src/glade/gramps.glade.h:147
 msgid "_Justify"
 msgstr "_Justera"
 
-#: ../src/glade/gramps.glade.h:149
+#: ../src/glade/gramps.glade.h:148
 msgid "_Keep Reference"
 msgstr "_Behåll referens"
 
-#: ../src/glade/gramps.glade.h:150
+#: ../src/glade/gramps.glade.h:149
 msgid "_Left"
 msgstr "_Vänster"
 
-#: ../src/glade/gramps.glade.h:151
+#: ../src/glade/gramps.glade.h:150
 msgid "_Longitude:"
 msgstr "Longitu_d:"
 
-#: ../src/glade/gramps.glade.h:152
+#: ../src/glade/gramps.glade.h:151
 msgid "_Media Type:"
 msgstr "_Medietyp:"
 
-#: ../src/glade/gramps.glade.h:153
+#: ../src/glade/gramps.glade.h:152
 msgid "_Month"
 msgstr "_Månad"
 
-#: ../src/glade/gramps.glade.h:154 ../src/glade/rule.glade.h:23
+#: ../src/glade/gramps.glade.h:153 ../src/glade/rule.glade.h:23
 msgid "_Name:"
 msgstr "_Namn:"
 
-#: ../src/glade/gramps.glade.h:155
+#: ../src/glade/gramps.glade.h:154
 msgid "_Override"
 msgstr "_Åsidosätt"
 
-#: ../src/glade/gramps.glade.h:156
+#: ../src/glade/gramps.glade.h:155
 msgid "_Padding:"
 msgstr "_Utfyllnad:"
 
-#: ../src/glade/gramps.glade.h:157
+#: ../src/glade/gramps.glade.h:156
 msgid "_Person:"
 msgstr "_Person:"
 
-#: ../src/glade/gramps.glade.h:158
+#: ../src/glade/gramps.glade.h:157
 msgid "_Place:"
 msgstr "_Plats:"
 
-#: ../src/glade/gramps.glade.h:159
+#: ../src/glade/gramps.glade.h:158
 msgid "_Prefix:"
 msgstr "_Prefix:"
 
-#: ../src/glade/gramps.glade.h:160
+#: ../src/glade/gramps.glade.h:159
 msgid "_Publication information:"
 msgstr "_Publiceringsinformation:"
+
+#: ../src/glade/gramps.glade.h:160
+msgid "_Relationship:"
+msgstr "_Släktskap:"
 
 #: ../src/glade/gramps.glade.h:161
 msgid "_Remove Object"
@@ -14007,7 +14005,7 @@ msgstr "Leta efter platser"
 
 #: ../src/plugins/unused.glade.h:6
 msgid "Search for repositories"
-msgstr "Leta efter arkivinstitutioner"
+msgstr "Leta efter arkivplatser"
 
 #: ../src/plugins/unused.glade.h:7
 msgid "Search for sources"
@@ -14087,7 +14085,7 @@ msgstr "Standardkatalog för rapporter"
 
 #: ../data/gramps.schemas.in.h:14
 msgid "Default repository GRAMPS ID pattern"
-msgstr "Standardmönster för GRAMPS-ID för arkivinstitutioner"
+msgstr "Standardmönster för GRAMPS-ID för arkivplatser"
 
 #: ../data/gramps.schemas.in.h:15
 msgid "Default source GRAMPS ID pattern"
@@ -14219,11 +14217,11 @@ msgstr "Platsredigerarens höjd."
 
 #: ../data/gramps.schemas.in.h:46
 msgid "Height of the repository editor interface."
-msgstr "Höjd på arkivinstitutionsredgeraren."
+msgstr "Höjd på arkivplatsredgeraren."
 
 #: ../data/gramps.schemas.in.h:47
 msgid "Height of the repository reference editor interface."
-msgstr "Höjd på arkivinstitutionsreferensredigeraren."
+msgstr "Höjd på arkivplatsreferensredigeraren."
 
 #: ../data/gramps.schemas.in.h:48
 msgid "Height of the source editor interface."
@@ -14266,7 +14264,7 @@ msgid ""
 "person to the Default Person."
 msgstr ""
 "Om 0 eller 1 kommer statusraden att visa namn och ID på aktiv person. Om 2 "
-"kommer statusraden att visa relationen mellan den aktiva personen och "
+"kommer statusraden att visa släktskapet mellan den aktiva personen och "
 "hempersonen."
 
 #: ../data/gramps.schemas.in.h:56
@@ -14571,11 +14569,11 @@ msgstr "Anger höjden på platsredigeraren."
 
 #: ../data/gramps.schemas.in.h:123
 msgid "Specifies the height of the repository editor interface."
-msgstr "Anger höjden på arkivinstitutionsredigeraren."
+msgstr "Anger höjden på arkivplatsredigeraren."
 
 #: ../data/gramps.schemas.in.h:124
 msgid "Specifies the height of the repository reference editor interface."
-msgstr "Anger höjden på arkivinstitutionsreferensredigeraren."
+msgstr "Anger höjden på arkivplatsreferensredigeraren."
 
 #: ../data/gramps.schemas.in.h:125
 msgid "Specifies the height of the source editor interface."
@@ -14647,11 +14645,11 @@ msgstr "Anger bredden på platsredigeraren."
 
 #: ../data/gramps.schemas.in.h:142
 msgid "Specifies the width of the repository editor interface."
-msgstr "Anger bredden på arkivinstitutionsredigeraren."
+msgstr "Anger bredden på arkivplatsredigeraren."
 
 #: ../data/gramps.schemas.in.h:143
 msgid "Specifies the width of the repository reference editor interface."
-msgstr "Anger bredden på arkivinstitutionsreferensredigeraren."
+msgstr "Anger bredden på arkivplatsreferensredigeraren."
 
 #: ../data/gramps.schemas.in.h:144
 msgid "Specifies the width of the source editor interface."
@@ -14703,7 +14701,7 @@ msgstr "Nya GRAMPS-ID:n för platser skapas enligt denna format sträng."
 msgid ""
 "The new GRAMPS IDs for the repositories are generated according to this "
 "format string."
-msgstr "Nya GRAMPS-ID:n för arkivinstitutioner skapas enligt denna format sträng."
+msgstr "Nya GRAMPS-ID:n för arkivplatser skapas enligt denna format sträng."
 
 #: ../data/gramps.schemas.in.h:154
 msgid ""
@@ -14718,7 +14716,7 @@ msgid ""
 "to YYYY-MM-DD (ISO format)."
 msgstr ""
 "Denna nyckel anger datum formatet. 0 motsvarar MM/DD/ÅÅÅÅ (USA), 1 motsvarar "
-"DD/MM/ÅÅÅÅ (europa), och 2 motsvarar ÅÅÅÅ-MM-DD (ISO)."
+"DD/MM/ÅÅÅÅ (europa) och 2 motsvarar ÅÅÅÅ-MM-DD (ISO)."
 
 #: ../data/gramps.schemas.in.h:156
 msgid ""
@@ -14729,7 +14727,7 @@ msgid ""
 "be used. If used, it will be changed to 1 by GRAMPS."
 msgstr ""
 "Denna nyckel anger visningsformat för namn. Använd 1 för \"Efternamn, Förnamn"
-"\", 2 för \"Förnamn Efternamn\", 3 för \"Patronymikon Förnamn\", och 4 för "
+"\", 2 för \"Förnamn Efternamn\", 3 för \"Patronymikon Förnamn\" och 4 för "
 "\"Förnamn\". För anpassade stilar, använd negativa heltal. Betydelsen av "
 "dessa är specifik för varje databas. Noll (0) är reserverad för interna "
 "syften och skall inte användas. Om 0 ändå anges, kommer det att ändras av "
@@ -14744,7 +14742,7 @@ msgid ""
 msgstr ""
 "Denna nyckel anger hur efternamn skall gissas när en ny person läggs till "
 "databasen. Använd 0 för faderns efternamn, 1 för för att inte gissa, 2 för "
-"en kombination av moderns och faderns efternamn, och 3 för den isländska "
+"en kombination av moderns och faderns efternamn och 3 för den isländska "
 "stilen."
 
 #: ../data/gramps.schemas.in.h:158
@@ -14775,7 +14773,7 @@ msgstr "Använd online-kartor"
 
 #: ../data/gramps.schemas.in.h:162
 msgid "Use shading to highlight data in Relationship View"
-msgstr "Använd skuggor för att markera data i relationsvyn"
+msgstr "Använd skuggor för att markera data i släktskapsvyn"
 
 #: ../data/gramps.schemas.in.h:163
 msgid "Warn when adding parents in a way that may cause duplicate families."
@@ -14843,11 +14841,11 @@ msgstr "Platsredigerarens bredd."
 
 #: ../data/gramps.schemas.in.h:179
 msgid "Width of the repository editor interface."
-msgstr "Arkivinstitutionsredigerarens bredd."
+msgstr "Arkivplatsredigerarens bredd."
 
 #: ../data/gramps.schemas.in.h:180
 msgid "Width of the repository reference editor interface."
-msgstr "Arkivinstitutionsreferensredigerarens bredd."
+msgstr "Arkivplatsreferensredigerarens bredd."
 
 #: ../data/gramps.schemas.in.h:181
 msgid "Width of the source editor interface."
@@ -14871,7 +14869,7 @@ msgid ""
 "is entered they will automatically be listed as a child of the Active Person."
 msgstr ""
 "<b>Att lägga till barn</b>: För att lägga till barn i GRAMPS så gör endera "
-"av föräldrarna till aktiv person, och växla sedan till familjevyn. Om barnet "
+"av föräldrarna till aktiv person och växla sedan till familjevyn. Om barnet "
 "redan finns i databasen, så klicka på den tredje knappen ned till höger om "
 "barnlistan. Om personen inte redan finns i databasen, så klicka på den andra "
 "knappen ned till höger om barnlistan. Efter att barnets information lagts in "
@@ -14957,8 +14955,8 @@ msgid ""
 "specific tasks."
 msgstr ""
 "<b>Olika vyer</b>: Det finns sex olika vyer för att navigera i din familj: "
-"Person, släktskap, antavla, källor, platser, medier och arkivinstitutioner. "
-"Var och en hjälper dig att utföra en eller flera särskilda uppgifter."
+"Person, släktskap, antavla, källor, platser, medier och arkivplatser. Var "
+"och en hjälper dig att utföra en eller flera särskilda uppgifter."
 
 #: ../src/data/tips.xml.in.h:8
 msgid ""
@@ -14982,7 +14980,7 @@ msgid ""
 "Foster, None, Sponsored, Stepchild and Unknown."
 msgstr ""
 "<b>Redigera släktskap för ett barn</b>: Alla barn är inte födda av sina "
-"föräldrar (styvbarn, adoption, etc). Du kan redigera relationen mellan "
+"föräldrar (styvbarn, adoption, etc). Du kan redigera förhållandet mellan "
 "barnet och varje förälder genom att göra barnet till aktiv person, välja "
 "släktskapsvyn och klicka på den tredje ikonen till höger om rubriken &quot;"
 "Föräldrar&quot;. Detta öppnar dialogen för att redigera familjer. Välj "
@@ -15002,7 +15000,7 @@ msgid ""
 "Filter</b>."
 msgstr ""
 "<b>Filtrera personer</b>: I personvyn kan du 'filtrera' personer baserat på "
-"många kriterier. Gå till filtret (precis till höger om personikonen), och "
+"många kriterier. Gå till filtret (precis till höger om personikonen) och "
 "välj en av ett dussintal olika förinställningar. Till exempel kan alla "
 "adopterade personer i familjeträdet lokaliseras. Personer utan noterat "
 "födelsedatum kan också filtreras. För att få resultaten, klicka på tillämpa. "
@@ -15078,7 +15076,7 @@ msgid ""
 msgstr ""
 "<b>Felaktiga datum</b>: Alla skriver någon gång in datum med ogiltiga "
 "format. Felaktiga Datumformat kommer att visas med den röda knappen vid "
-"sidan om datumet. Grönt betyder bra, och lila betyder acceptabelt. Klicka på "
+"sidan om datumet. Grönt betyder bra och lila betyder acceptabelt. Klicka på "
 "den färgade knappen för att starta dialogrutan för Datumval."
 
 #: ../src/data/tips.xml.in.h:17
@@ -15183,7 +15181,7 @@ msgstr ""
 "<b>Starta ett nytt släktträd</b>: Ett bra sätt att starta ett nytt släktträd "
 "är att lägga till alla familjemedlemmar i databasen (använd  <b>Redigera "
 "&gt; Lägg till</b> eller klicka på Lägg till-knappen under personmenyn). Gå "
-"sedan till släktskapsvyn och definiera relationerna mellan personerna."
+"sedan till släktskapsvyn och definiera släktskapet mellan personerna."
 
 #: ../src/data/tips.xml.in.h:25
 msgid ""
@@ -15252,7 +15250,7 @@ msgid ""
 msgstr ""
 "Ett alternativt namn kan väljas som föredraget namn för en person genom att "
 "välja det föredragna namnet i personens namnlista, ta fram kontextmenyn "
-"genom att klicka med höger musknapp, och välja &quot;använd som "
+"genom att klicka med höger musknapp och välja &quot;använd som "
 "standardnamn&quot;."
 
 #: ../src/data/tips.xml.in.h:31
@@ -15377,8 +15375,8 @@ msgstr ""
 "GRAMPS kommer med en rik uppsättning verktyg. Dessa låter dig genomföra "
 "uppgifter som exempelvis att kontrollera databasen efter fel och "
 "överensstämmelse, eller använda forsknings- och analysverktyg som "
-"händelsejämförelse, finn dubblerade personer, interaktiv ättlingsläsare, och "
-"andra. Alla verktyg finns åtkomliga från menyn <b>Verktyg</b>."
+"händelsejämförelse, finna dubblerade personer, interaktiv ättlingsläsare, "
+"och andra. Alla verktyg finns åtkomliga från menyn <b>Verktyg</b>."
 
 #: ../src/data/tips.xml.in.h:42
 msgid ""
@@ -15496,7 +15494,7 @@ msgid ""
 "Narratives go a long way in making your family history come alive."
 msgstr ""
 "Släktforskning handlar inte bara om datum och namn. Det handlar om personer. "
-"Beskriv utförligt. Ta med <b>varför</b> saker hände, och hur ättlingar kan "
+"Beskriv utförligt. Ta med <b>varför</b> saker hände och hur ättlingar kan "
 "ha formats av de händelser som de upplevde. Berättelser betyder mycket för "
 "att skapa liv i din familjehistoria."
 
@@ -15627,7 +15625,7 @@ msgid ""
 "source."
 msgstr ""
 "Källvyn visar en lista med alla källor i ett enda fönster. Dubbelklicka på "
-"var och en för att redigera, lägga till notiser, och för att se vilka "
+"var och en för att redigera, lägga till notiser och för att se vilka "
 "personer som refererar till källan."
 
 #: ../src/data/tips.xml.in.h:68
