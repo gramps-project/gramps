@@ -1,8 +1,8 @@
 2008-01-07  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/docgen/ODFDoc.py: remove duplicate import
-    * src/docgen/LaTeXDoc.py :added support for opening latex editor
-    0001536: not possible to select latex editor like kile to open a latex file
-    automatically 
+	* src/docgen/ODFDoc.py: remove duplicate import
+	* src/docgen/LaTeXDoc.py :added support for opening latex editor
+	0001536: not possible to select latex editor like kile to open a latex file
+	automatically 
 
 2008-01-06  Brian Matherly <brian@gramps-project.org>
 	* src/Filters/_SearchFilter.py:
