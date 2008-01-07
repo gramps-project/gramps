@@ -1,4 +1,8 @@
 2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
+	* src/plugins/EventCmp.py: clean up imports and fix pylint error
+	0001496: in EventCmp.py: E:198:fix: Using variable 'l' before assignment
+
+2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
 	* src/plugins/CmdRef.py: clean up unused and broken imports and vars
 	0001494: unresolved import WebPage in CmdRef.py
 

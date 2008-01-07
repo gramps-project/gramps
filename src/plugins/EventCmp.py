@@ -36,7 +36,6 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
 import gtk.glade
 
 #------------------------------------------------------------------------
@@ -47,7 +46,7 @@ import gtk.glade
 from Filters import GenericFilter, build_filter_menu, Rules
 import Sort
 import Utils
-import ODSTab
+from docgen import ODSTab
 import const
 import Errors
 import DateHandler
@@ -195,7 +194,7 @@ def by_value(first,second):
 #
 #-------------------------------------------------------------------------
 def fix(line):
-    l = line.strip().replace('&','&amp;').replace(l,'>','&gt;')
+    l = line.strip().replace('&','&amp;').replace('>','&gt;')
     return l.replace(l,'<','&lt;').replace(l,'"','&quot;')
 
 #-------------------------------------------------------------------------
@@ -320,7 +319,8 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                                        event.get_date_object().get_sort_value()
                             place_handle = event.get_place_handle()
                             if place_handle:
-                                place = self.db.get_place_from_handle(place_handle).get_title()
+                                place = self.db. \
+                                get_place_from_handle(place_handle).get_title()
                         tlist.append(date)
                         tlist.append(sortdate)
                         tlist.append(place)
