@@ -1,3 +1,6 @@
+2008-01-08  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ArgHandler.py: bug with tarfile exceptions
+
 2008-01-08  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/Editors/_EditFamily.py: import fixes
 	* src/plugins/FindDupes.py: variable typo fix

@@ -524,10 +524,10 @@ class ArgHandler:
                 for tarinfo in archive:
                     archive.extract(tarinfo,tmpdir_path)
                 archive.close()
-            except ReadError, msg:
+            except tarfile.ReadError, msg:
                 print "Error reading archive:", msg
                 sys.exit(1)
-            except CompressError, msg:
+            except tarfile.CompressError, msg:
                 print "Error uncompressing archive:", msg
                 sys.exit(1)
             except:
