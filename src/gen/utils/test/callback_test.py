@@ -43,6 +43,11 @@ class TestGrampsDBCallback(unittest.TestCase):
             rl.append(i)
 
         def borked(i):
+            """
+            this intentionally raises a NameError exception
+            FIXME: could use an explanation
+              or perhaps some explicit Try/Except code
+            """
             rubish.append(i)
 
         t = TestSignals()
