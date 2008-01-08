@@ -35,7 +35,6 @@ from gettext import gettext as _
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-import gtk 
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -606,7 +605,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
                 continue
             pn1 = name_displayer.display(p1)
             pn2 = name_displayer.display(p2)
-            self.list.add([c, pn1, pn2,c2],(p1key,p2key))
+            self.list.add([c1, pn1, pn2,c2],(p1key,p2key))
 
     def on_do_merge_clicked(self,obj):
         store,iter = self.list.selection.get_selected()

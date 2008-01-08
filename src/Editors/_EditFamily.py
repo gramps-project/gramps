@@ -25,9 +25,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
-import cPickle as pickle
-
+from bsddb import db as bsddb_db
 #-------------------------------------------------------------------------
 #
 # enable logging for error handling
@@ -41,23 +39,20 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 import Utils
 from BasicUtils import name_displayer
 import gen.lib
-import Config
 import Errors
 
 from _EditPrimary import EditPrimary
 from ReportBase import ReportUtils
-from DdTargets import DdTargets
 from DisplayTabs import \
      EmbeddedList,EventEmbedList,SourceEmbedList,FamilyAttrEmbedList,\
      NoteTab,GalleryTab,FamilyLdsEmbedList, ChildModel
@@ -265,7 +260,7 @@ class ChildEmbedList(EmbeddedList):
                     try:
                         EditChildRef(n, self.dbstate, self.uistate, self.track,
                                      ref, self.child_ref_edited)
-                    except Errors.WindowActiveError, msg:
+                    except Errors.WindowActiveError:
                         pass
                     break
 
@@ -484,7 +479,7 @@ class EditFamily(EditPrimary):
 
     def build_interface(self):
 
-        self.top = gtk.glade.XML(const.GLADE_FILE,"family_editor","gramps")
+        self.top = glade.XML(const.GLADE_FILE,"family_editor","gramps")
 
         self.set_window(self.top.get_widget("family_editor"), None, self.get_menu_title())
 
@@ -841,7 +836,7 @@ class EditFamily(EditPrimary):
     def save(self,*obj):
         try:
             self.__do_save()
-        except self.db.DBRunRecoveryError, msg:
+        except bsddb_db.DBRunRecoveryError, msg:
             QuestionDialog.RunDatabaseRepair(msg[1])
 
     def __do_save(self):
