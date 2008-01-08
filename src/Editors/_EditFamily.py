@@ -841,7 +841,7 @@ class EditFamily(EditPrimary):
     def save(self,*obj):
         try:
             self.__do_save()
-        except db.DBRunRecoveryError, msg:
+        except self.db.DBRunRecoveryError, msg:
             QuestionDialog.RunDatabaseRepair(msg[1])
 
     def __do_save(self):
