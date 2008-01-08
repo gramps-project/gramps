@@ -100,6 +100,8 @@ class BackRefList(EmbeddedList):
         self.del_btn = None
 
     def _selection_changed(self, obj=None):
+        if self.dirty_selection:
+            return
         if self.get_selected():
             self.edit_btn.set_sensitive(True)
         else:

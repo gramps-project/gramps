@@ -1,3 +1,6 @@
+2008-01-08  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_BackRefList.py: don't do sel change when dirty
+
 2008-01-08  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/Editors/_EditFamily.py: 0001428: In EditFamily: NameError. 
 	changed db -> self.db
