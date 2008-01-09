@@ -1,3 +1,7 @@
+2008-01-09  Gary Burton <gary.burton@zen.co.uk>
+	* src/ManagedWindow.py: Close window only if it is already open. Possible
+	fix for bug #1510
+
 2008-01-08  Benny Malengier <benny.malengier@gramps-project.org>
             Peter Landgren <peter.talken2telia.com>
 	* src/DbManager.py: rename check, issue 1562, 1569
