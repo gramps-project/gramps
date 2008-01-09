@@ -1015,7 +1015,10 @@ class Menu:
          the user.
     """
     def __init__(self):
+        # __options holds all the options by their category
         self.__options = {}
+        # __categories holds the order of all categories
+        self.__categories = []
     
     def add_option(self,category,name,option):
         """
@@ -1033,6 +1036,7 @@ class Menu:
         @return: nothing
         """
         if not self.__options.has_key(category):
+            self.__categories.append(category)
             self.__options[category] = []
         self.__options[category].append((name,option))
         
@@ -1042,10 +1046,7 @@ class Menu:
         
         @return: a list of strings
         """
-        categories = []
-        for category in self.__options:
-            categories.append(category)
-        return categories
+        return self.__categories
     
     def get_option_names(self,category):
         """
