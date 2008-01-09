@@ -228,7 +228,7 @@ class BaseModel(gtk.GenericTreeModel):
         if self.db.is_open():
             if self.search and self.search.text:
                 dlist = [h for h in self.sort_keys()\
-                             if self.search.match(h) and \
+                             if self.search.match(h,self.db) and \
                              h not in self.skip and h != ignore]
             else:
                 dlist = [h for h in self.sort_keys() \
