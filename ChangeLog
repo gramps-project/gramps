@@ -1,4 +1,9 @@
 2008-01-08  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py:
+	Fix 0001515: GraphViz reports don't register page margins on 
+	report_options.xml
+
+2008-01-08  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/AncestorChart.py:
 	* src/plugins/DescendChart.py: 
 	Fix 0001228: Descendent Chart doesn't respect the margin

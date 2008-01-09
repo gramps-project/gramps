@@ -886,7 +886,9 @@ class GraphvizReportDialog(ReportDialog):
         self.paper_label.set_use_markup(True)
 
         self.paper_frame = PaperFrame(self.options.handler.get_paper_name(),
-                                      self.options.handler.get_orientation())
+                                      self.options.handler.get_orientation(),
+                                      self.options.handler.get_margins()
+                                      )
         self.notebook.insert_page(self.paper_frame,self.paper_label,0)
         self.paper_frame.show_all()
 
@@ -945,7 +947,8 @@ class GraphvizReportDialog(ReportDialog):
         
         self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
-
+        self.options.handler.set_margins(self.paper_frame.get_paper_margins())
+        
         # Create the output document.
         self.make_document()
         
