@@ -1,3 +1,7 @@
+2008-01-09 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/plugins/ExportVCard.py: in write_person use b_date instead of date
+    0001497: small typo and imports cleanup in ExportVCard.py
+
 2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/GrampsDbUtils/_GrampsBSDDB.py: wrong const import
 

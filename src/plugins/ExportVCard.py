@@ -43,7 +43,6 @@ log = logging.getLogger(".ExportVCard")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -52,7 +51,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 from Filters import GenericFilter, Rules, build_filter_menu
-import const
 from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
@@ -213,7 +211,7 @@ class CardWriter:
                 if birth:
                     b_date = birth.get_date_object()
                     mod = b_date.get_modifier()
-                    if (date.get_modifier() != Date.MOD_TEXTONLY and 
+                    if (mod != Date.MOD_TEXTONLY and 
                         not b_date.is_empty() and 
                         not mod == Date.MOD_SPAN and 
                         not mod == Date.MOD_RANGE):
