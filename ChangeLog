@@ -1,4 +1,7 @@
 2008-01-09  Gary Burton <gary.burton@zen.co.uk>
+	* src/DisplayModels/_BaseModel.py: add self.db to match function
+
+2008-01-09  Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/__init__.py: remove message regarding malformed dataviews
 
 2008-01-09 Raphael Ackermann <raphael.ackermann@gmail.com>

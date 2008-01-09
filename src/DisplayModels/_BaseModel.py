@@ -260,7 +260,8 @@ class BaseModel(gtk.GenericTreeModel):
             self.node_map.clear_map()
         
     def add_row_by_handle(self,handle):
-        if not self.search or (self.search and self.search.match(handle)):
+        if not self.search or \
+            (self.search and self.search.match(handle, self.db)):
 
             data = self.map(handle)
             key = locale.strxfrm(self.sort_func(data))
