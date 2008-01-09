@@ -1,4 +1,7 @@
 2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/ObjectSelector/_FilterFrameBase.py: indentation and tabs/spaces fix
+
+2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/ViewManager.py: delete unneded method import_pkg
 	* src/ArgHandler.py: fix import CompressionError instead of CompressError 
 	* src/gen/proxy/filter.py: fix not needed family= line
