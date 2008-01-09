@@ -1,4 +1,9 @@
-2008-01-00  Brian Matherly <brian@gramps-project.org>
+2008-01-08  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/AncestorChart.py:
+	* src/plugins/DescendChart.py: 
+	Fix 0001228: Descendent Chart doesn't respect the margin
+
+2008-01-08  Brian Matherly <brian@gramps-project.org>
 	* src/DisplayModels/_BaseModel.py: Fix 0001554: Select Place search
 	
 2008-01-08 Jim Sack <jgsack@san.rr.com>

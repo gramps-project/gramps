@@ -293,7 +293,15 @@ class AncestorChart(Report):
             gstyle = style_sheet.get_draw_style("AC2-box")
             shadow_height = gstyle.get_shadow_space()
         else:
-            self.offset = 0
+            # Make space for the page number labels at the bottom.
+            p = style_sheet.get_paragraph_style("AC2-Normal")
+            font = p.get_font()
+            lheight = pt2cm(1.2*font.get_size())
+            lwidth = pt2cm(1.1*self.doc.string_width(font,"(00,00)"))
+            self.page_label_x_offset = self.doc.get_usable_width()  - lwidth
+            self.page_label_y_offset = self.doc.get_usable_height() - lheight
+
+            self.offset = pt2cm(1.25 * font.get_size())
             shadow_height = 0
         self.uh = self.doc.get_usable_height() - self.offset - shadow_height
         uw = self.doc.get_usable_width() - pt2cm(self.box_pad_pts)
@@ -410,8 +418,8 @@ class AncestorChart(Report):
         if not self.force_fit:
             self.doc.draw_text('AC2-box',
                                '(%d,%d)' % (colx+1,coly+1),
-                               self.doc.get_usable_width()+0.5,
-                               self.doc.get_usable_height()+0.75)
+                               self.page_label_x_offset,
+                               self.page_label_y_offset)
         self.doc.end_page()
 
     def add_lines(self):
