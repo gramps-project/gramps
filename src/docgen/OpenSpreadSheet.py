@@ -36,7 +36,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import BaseDoc
-from docgen.SpreadSheetDoc import SpreadSheetDoc
+from SpreadSheetDoc import SpreadSheetDoc
 
 import const
 
