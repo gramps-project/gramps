@@ -1,3 +1,7 @@
+2008-01-08  Benny Malengier <benny.malengier@gramps-project.org>
+            Peter Landgren <peter.talken2telia.com>
+	* src/DbManager.py: rename check, issue 1562, 1569
+
 2008-01-09  Gary Burton <gary.burton@zen.co.uk>
 	* src/DisplayModels/_NoteModel.py:
 	* src/Selectors/_SelectNote.py:

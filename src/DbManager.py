@@ -192,8 +192,8 @@ class CLIDbManager:
         name_file.write(title)
         name_file.close()
 
-        self.current_names.append(title)
-        
+        self.current_names.append((title, new_path, path_name, _("Never"), 0, 
+                                   False, ""))
         return new_path, title
 
     def _create_new_db(self, title=None):
@@ -317,17 +317,20 @@ class DbManager(CLIDbManager):
 
     def __selection_changed(self, selection):
         """
-        Called with the selection is changed in the TreeView. What we
-        are trying to detect is the selection or unselection of a row.
+        Called when the selection is changed in the TreeView. 
+        """
+        self.__update_buttons(selection)
+
+    def __update_buttons(self, selection):
+        """
+        What we are trying to detect is the selection or unselection of a row.
         When a row is unselected, the Open, Rename, and Remove buttons
         are set insensitive. If a row is selected, the rename and remove
         buttons are disabled, and the Open button is disabled if the
         row represents a open database.
         """
-
         # Get the current selection
         store, node = selection.get_selected()
-
         if not node:
             self.connect.set_sensitive(False)
             self.rename.set_sensitive(False)
@@ -335,12 +338,11 @@ class DbManager(CLIDbManager):
             self.repair.hide()
             self.remove.set_sensitive(False)
         else:
-
             is_rev = len(self.model.get_path(node)) > 1
 
             self.rcs.set_label(RCS_BUTTON[is_rev])
             self.rename.set_sensitive(True)
-        
+
             if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
                 self.connect.set_sensitive(False)
                 if RCS_FOUND:
@@ -384,6 +386,8 @@ class DbManager(CLIDbManager):
         render.set_property('editable', True)
         render.set_property('ellipsize', pango.ELLIPSIZE_END)
         render.connect('edited', self.__change_name)
+        render.connect('editing-canceled', self.__stop_edit)
+        render.connect('editing-started', self.__start_edit)
         self.column = gtk.TreeViewColumn(_('Family tree name'), render, 
                                          text=NAME_COL)
         self.column.set_sort_column_id(NAME_COL)
@@ -428,6 +432,22 @@ class DbManager(CLIDbManager):
                 data = [ rdata[2], rdata[0], items[1], rdata[1], 0, False, "" ]
                 self.model.append(node, data)
         self.dblist.set_model(self.model)
+
+    def existing_name(self, name, skippath=None):
+        """
+        Returns true if a name is present in the model already.
+        If skippath given, the name of skippath is not considered
+        """
+        iter = self.model.get_iter_first()
+        while (iter):
+            path = self.model.get_path(iter)
+            if path == skippath:
+                continue
+            itername = self.model.get_value(iter, NAME_COL)
+            if itername.strip() == name.strip():
+                return True
+            iter = self.model.iter_next(iter)
+        return False
 
     def run(self):
         """
@@ -481,7 +501,18 @@ class DbManager(CLIDbManager):
         except IOError:
             return
 
-    def __change_name(self, text, path, new_text):
+    def __stop_edit(self, *args):
+        self.__update_buttons(self.selection)
+
+    def __start_edit(self, *args):
+        """
+        Do no allow to click Load while changing name, to force users to finish
+        the action of renaming. Hack around the fact that clicking button
+        sends a 'editing-canceled' signal loosing the new name
+        """
+        self.connect.set_sensitive(False)
+
+    def __change_name(self, renderer_sel, path, new_text):
         """
         Changes the name of the database. This is a callback from the
         column, which has been marked as editable. 
@@ -489,19 +520,15 @@ class DbManager(CLIDbManager):
         If the new string is empty, do nothing. Otherwise, renaming the	
         database is simply changing the contents of the name file.
         """
-        if len(new_text) > 0 and text != new_text:
-            if len(path) > 1 :
-                self.__rename_revision(path, new_text)
-            else:
-                """
-                Check in recent_files.xml if there is another database
-                or Family Tree with the same name as new_text.
-                """
-                if RecentFiles.check_if_recent(new_text):
-                    QuestionDialog.ErrorDialog(_("Family Tree exists already"))
-
+        if len(new_text) > 0:
+            node = self.model.get_iter(path)
+            old_text = self.model.get_value(node, NAME_COL)
+            if not old_text.strip() == new_text.strip():
+                if len(path) > 1 :
+                    self.__rename_revision(path, new_text)
                 else:
                     self.__rename_database(path, new_text)
+        self.__update_buttons(self.selection)
 
     def __rename_revision(self, path, new_text):
         """
@@ -539,8 +566,14 @@ class DbManager(CLIDbManager):
         """
         Renames the database by writing the new value to the name.txt file
         """
+        new_text = new_text.strip()
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
+        if self.existing_name(new_text, skippath=path):
+            QuestionDialog.ErrorDialog(
+                    _("Could not rename the Family Tree."), 
+                    _("Family Tree already exists, choose a unique name."))
+            return
         try:
             name_file = open(filename, "r")
             old_text=name_file.read()
@@ -749,13 +782,14 @@ class DbManager(CLIDbManager):
         new database. Catch OSError and IOError and display a warning 
         message.
         """
+        self.new.set_sensitive(False)
         try:
             self._create_new_db()
         except (OSError, IOError), msg:
             QuestionDialog.ErrorDialog(_("Could not create family tree"),
                                        str(msg))
+        self.new.set_sensitive(True)
 
-    
     def _create_new_db(self, title=None):
         """
         Create a new database, append to model
@@ -776,7 +810,6 @@ class DbManager(CLIDbManager):
         Handle the reception of drag data
         """
         drag_value = selection.data
-        print drag_value
         fname = None
         type = None
         title = None
