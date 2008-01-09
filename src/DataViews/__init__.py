@@ -44,7 +44,6 @@ try:
     DATA_VIEWS = eval("["+Config.get(Config.DATA_VIEWS)+"]")
 except:
     # Fallback if bad config line, or if no Config system
-    print "Ignoring malformed 'data-views' entry"
     DATA_VIEWS = [
         GrampletView,
         PersonView,
