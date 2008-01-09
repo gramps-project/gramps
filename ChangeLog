@@ -1,4 +1,12 @@
 2008-01-09  Gary Burton <gary.burton@zen.co.uk>
+	* src/DisplayModels/_NoteModel.py:
+	* src/Selectors/_SelectNote.py:
+	* src/DisplayViews/NoteView.py:
+	* src/gen/db/base.py:
+	Change the order of columns on Note View and Select Note dialog. Also
+	fixed a crash. Bug #1529
+
+2008-01-09  Gary Burton <gary.burton@zen.co.uk>
 	* src/DisplayModels/_BaseModel.py: add self.db to match function
 
 2008-01-09  Gary Burton <gary.burton@zen.co.uk>

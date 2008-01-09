@@ -58,10 +58,10 @@ class SelectNote(BaseSelector):
 
     def get_column_titles(self):
         return [
+            (_('Preview'), 350, BaseSelector.TEXT),
             (_('ID'),     75, BaseSelector.TEXT),
-            (_('Type'), 0, BaseSelector.NONE),
-            (_('Marker'), 0, BaseSelector.NONE),
-            (_('Preview'), 350, BaseSelector.TEXT)
+            (_('Type'), 100, BaseSelector.TEXT),
+            (_('Marker'), 100, BaseSelector.TEXT)
             ]
             
     def get_from_handle_func(self):
@@ -82,4 +82,3 @@ class SelectNote(BaseSelector):
         """
         import DataViews
         return DataViews.NoteView.COLUMN_NAMES
-    

@@ -54,7 +54,7 @@ import gen.lib
 #-------------------------------------------------------------------------
 class NoteModel(BaseModel):
 
-    HANDLE_COL = 2
+    HANDLE_COL = 4
     _MARKER_COL = 6
 
     def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
@@ -62,20 +62,20 @@ class NoteModel(BaseModel):
         self.gen_cursor = db.get_note_cursor
         self.map = db.get_raw_note_data
         self.fmap = [
+            self.column_preview,
             self.column_id,
             self.column_type,
             self.column_marker,
-            self.column_preview,
             self.column_handle,
-            self.column_marker_color,
+            self.column_marker_color
             ]
         self.smap = [
+            self.column_preview,
             self.column_id,
             self.column_type,
             self.column_marker,
-            self.column_preview,
             self.column_handle,
-            self.column_marker_color,
+            self.column_marker_color
             ]
         self.marker_color_column = 5
         BaseModel.__init__(self, db, scol, order,

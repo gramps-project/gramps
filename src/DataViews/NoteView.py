@@ -67,10 +67,10 @@ from gettext import gettext as _
 class NoteView(PageView.ListView):
     
     COLUMN_NAMES = [
+        _('Preview'),
         _('ID'),
         _('Type'),
         _('Marker'),
-        _('Preview'),
         ]
 
     ADD_MSG     = _("Add a new note")
