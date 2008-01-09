@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham, A. Roitman
-# Copyright (C) 2007  B. Malengier
+# Copyright (C) 2007-2008  B. Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -527,7 +527,7 @@ class ArgHandler:
             except tarfile.ReadError, msg:
                 print "Error reading archive:", msg
                 sys.exit(1)
-            except tarfile.CompressError, msg:
+            except tarfile.CompressionError, msg:
                 print "Error uncompressing archive:", msg
                 sys.exit(1)
             except:

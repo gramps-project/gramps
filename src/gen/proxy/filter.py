@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ __revision__ = "$Revision: 8864 $"
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import *
+#from gen.lib import *
 from proxybase import ProxyDbBase
 
 class FilterProxyDb(ProxyDbBase):
@@ -64,7 +64,6 @@ class FilterProxyDb(ProxyDbBase):
         for handle in list(self.plist):
             person = self.db.get_person_from_handle(handle)
             for family_handle in person.get_family_handle_list():
-                family = self.db.get_family_from_handle(family_handle)
                 self.flist.add(family_handle)
 
     def get_person_from_handle(self, handle):

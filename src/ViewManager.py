@@ -77,7 +77,7 @@ import UndoHistory
 from DbLoader import DbLoader
 import GrampsDisplay
 from gen.utils import ProgressMonitor
-import gen.db
+#import gen.db
 
 import ProgressDialog
 
@@ -210,10 +210,10 @@ class ViewManager:
     the others. All Views are held in the DisplayViews module. Examples of
     current views include:
 
-     - Person View
-     - Relationship View
-     - Family View
-     - Source View
+    - Person View
+    - Relationship View
+    - Family View
+    - Source View
 
     The View Manager does not have to know the number of views, the type of
     views, or any other details about the views. It simply provides the 
@@ -1032,14 +1032,6 @@ class ViewManager:
                     self.uistate.disconnect(self._key)
                     self._key = self.uistate.connect(
                         'nameformat-changed', self.active_page.build_tree)
-
-    def import_pkg(self, filename):
-        """
-        Imports a GRAMPS package
-        """
-        import ReadPkg
-        ReadPkg.impData(self.state.db, filename, self.uistate.pulse_progressbar)
-        self.__post_load()
 
     def import_data(self, obj):
         """
