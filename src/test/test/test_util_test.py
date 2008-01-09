@@ -49,39 +49,39 @@ except ImportError:
 
 # some enabling infrastructure features
 class Test1(U.TestCase):
-    def test1a_custom_exception(s):
+    def test1a_custom_exception(self):
         tmsg = "testing"
         try:
             err = None
             raise tu.TestError(tmsg)
         except tu.TestError,e:
             emsg = e.value
-        s.assertEqual(emsg, tmsg,
+        self.assertEqual(emsg, tmsg,
             "raising TestError: g=%r e=%r" % (emsg, tmsg))
 
-    def test1b_msg_reporting_utility(s):
+    def test1b_msg_reporting_utility(self):
         g,e = "got this", "expected that"
         m,p = "your message here", "pfx"
         tmsg0 = m + "\n .....got:'" + g + \
             "'\n expected:'" + e +"'"
         tmsg1 = p + ": " + tmsg0
-        s.assertEqual(tu.msg(g,e,m), tmsg0, "non-prefix message")
-        s.assertEqual(tu.msg(g,e,m,p), tmsg1, "prefix message")
+        self.assertEqual(tu.msg(g,e,m), tmsg0, "non-prefix message")
+        self.assertEqual(tu.msg(g,e,m,p), tmsg1, "prefix message")
 
 
 # path-related features (note use of tu.msg tested above)
 class Test2(U.TestCase):
-    def test2a_context_via_traceback(s):
+    def test2a_context_via_traceback(self):
         e = os.path.basename(__file__).rstrip(".co")   # eg in *.py[co]
         g = os.path.basename(tu._caller_context()[0]).rstrip('co')
-        s.assertEqual(g,e, tu.msg(g,e, "_caller_context"))
+        self.assertEqual(g,e, tu.msg(g,e, "_caller_context"))
   
-    def test2b_absdir(s):
+    def test2b_absdir(self):
         here = tu.absdir();
         g=tu.absdir(__file__)
-        s.assertEqual(g,here, tu.msg(g,here, "absdir"))
+        self.assertEqual(g,here, tu.msg(g,here, "absdir"))
   
-    def test2c_path_append_parent(s):
+    def test2c_path_append_parent(self):
         here = tu.absdir();
         par = os.path.dirname(here)
         was_there = par in sys.path
@@ -91,16 +91,16 @@ class Test2(U.TestCase):
         np = len(sys.path)
         
         for p in (None, __file__):
-            s.assertFalse(par in sys.path, "par not in initial path")
+            self.assertFalse(par in sys.path, "par not in initial path")
             if not p:
                 g = tu.path_append_parent()
             else:
                 g = tu.path_append_parent(p)
-            s.assertEqual(g,par, tu.msg(g,par, "path_append_parent return"))
-            s.assertTrue(par in sys.path, "actually appends")
+            self.assertEqual(g,par, tu.msg(g,par, "path_append_parent return"))
+            self.assertTrue(par in sys.path, "actually appends")
             sys.path.remove(par)
             l= len(sys.path)
-            s.assertEqual(l,np, tu.msg(l,np,"numpaths"))
+            self.assertEqual(l,np, tu.msg(l,np,"numpaths"))
         if was_there:
             # restore entry state (but no multiples needed!)
             sys.path.append(par)
@@ -113,59 +113,59 @@ class Test3(U.TestCase):
     home= os.environ["HOME"]
     if home:
         home_junk = os.path.join(home,"test_junk")
-    def _rmsubs(s):
+    def _rmsubs(self):
         import shutil
-        for sub in s.asubs:
+        for sub in self.asubs:
             if os.path.isdir(sub):
                 shutil.rmtree(sub)
   
-    def setUp(s):
-        s._rmsubs()
-        if s.home and not os.path.isdir(s.home_junk):
-            os.mkdir(s.home_junk)
+    def setUp(self):
+        self._rmsubs()
+        if self.home and not os.path.isdir(self.home_junk):
+            os.mkdir(self.home_junk)
 
-    def tearDown(s):
-        s._rmsubs()
-        if s.home and os.path.isdir(s.home_junk):
-            os.rmdir(s.home_junk)
+    def tearDown(self):
+        self._rmsubs()
+        if self.home and os.path.isdir(self.home_junk):
+            os.rmdir(self.home_junk)
 
-    def test3a_subdir(s):
-        for sub in s.asubs:
-            s.assertFalse(os.path.isdir(sub), "init: no dir %r" % sub)
+    def test3a_subdir(self):
+        for sub in self.asubs:
+            self.assertFalse(os.path.isdir(sub), "init: no dir %r" % sub)
             b,d = os.path.dirname(sub), os.path.basename(sub)
             md = tu.make_subdir(d, b)
-            s.assertTrue(os.path.isdir(sub), "made dir %r" % sub)
-            s.assertEqual(md,sub, tu.msg(md,sub, 
+            self.assertTrue(os.path.isdir(sub), "made dir %r" % sub)
+            self.assertEqual(md,sub, tu.msg(md,sub, 
                 "make_subdir returns path"))
 
             s2 = os.path.join(sub,"sub2")
             tu.make_subdir("sub2", sub)
-            s.assertTrue(os.path.isdir(s2), "made dir %r" % s2)
+            self.assertTrue(os.path.isdir(s2), "made dir %r" % s2)
             f = os.path.join(s2,"test_file")
 
             open(f,"w").write("testing..")
-            s.assertTrue(os.path.isfile(f), "file %r exists" % f)
+            self.assertTrue(os.path.isfile(f), "file %r exists" % f)
             tu.delete_tree(sub)
-            s.assertFalse(os.path.isdir(sub), 
+            self.assertFalse(os.path.isdir(sub), 
                 "delete_tree removes subdir %r" % sub )
 
-    def test3b_delete_tree_constraint(s):
-        if s.home:
+    def test3b_delete_tree_constraint(self):
+        if self.home:
             err = None
             try:
-                tu.delete_tree(s.home_junk)
+                tu.delete_tree(self.home_junk)
             except tu.TestError, e:
                 err = e.value
-            s.assertFalse(err is None, 
-                "deltree on %r raises TestError" % (s.home_junk))
+            self.assertFalse(err is None, 
+                "deltree on %r raises TestError" % (self.home_junk))
         else:
-            s.fail("Skip deltree constraint test, no '$HOME' var")
+            self.fail("Skip deltree constraint test, no '$HOME' var")
 
 # logging (& misc?)
 class Test4(U.TestCase):
     logf = "/tmp/__tu__log__"
 
-    def test4a(s):
+    def test4a(self):
         wmsg = "a warning message"
         emsg = "an error message"
         import logging
@@ -173,13 +173,13 @@ class Test4(U.TestCase):
         tl = tu.TestLogger()
         for i in (1,2):
             # 2 passes to test clearing old file
-            tl.logfile_init(s.logf)
+            tl.logfile_init(self.logf)
             logging.warn(wmsg)
             logging.info("nada")
             logging.error(emsg)
             ll = tl.logfile_getlines()
             nl = len(ll)
-            s.assertEquals(nl,2, 
+            self.assertEquals(nl,2, 
                 tu.msg(nl,2, "pass %d: expected line count" % i))
 
 

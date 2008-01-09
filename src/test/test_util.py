@@ -166,24 +166,24 @@ class TestLogger():
     Note that existing logging will still occur, possibly
     resulting in console messages and popup dialogs
     """
-    def __init__(s, lvl=logging.WARN):
+    def __init__(self, lvl=logging.WARN):
         logging.basicConfig(level=lvl)
         
-    def logfile_init(s, lfname):
+    def logfile_init(self, lfname):
         """init or re-init a logfile"""
-        if getattr(s, "lfh", None):
-            logging.getLogger().handlers.remove(s.lfh)
+        if getattr(self, "lfh", None):
+            logging.getLogger().handlers.remove(self.lfh)
         if os.path.isfile(lfname):
             os.unlink(lfname)
-        s.lfh = logging.FileHandler(lfname)
-        logging.getLogger().addHandler(s.lfh)
-        s.lfname = lfname
+        self.lfh = logging.FileHandler(lfname)
+        logging.getLogger().addHandler(self.lfh)
+        self.lfname = lfname
     
-    def logfile_getlines(s):
+    def logfile_getlines(self):
         """get current content of logfile as list of lines"""
         txt = []
-        if s.lfname and os.path.isfile(s.lfname):
-           txt = open(s.lfname).readlines() 
+        if self.lfname and os.path.isfile(self.lfname):
+           txt = open(self.lfname).readlines() 
         return txt
 
 #===eof===

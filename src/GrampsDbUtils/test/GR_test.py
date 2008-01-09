@@ -58,28 +58,28 @@ class nc():
 
     NB: name _must_ match the X names in db get_number_of_X
     """
-    def dbncheck(s, dbcall):
+    def dbncheck(self, dbcall):
         err = None
         got = dbcall()
-        if not got == s.num:
-            err = "%s: got %d, expected %d" % (s.name, got, s.num)
+        if not got == self.num:
+            err = "%s: got %d, expected %d" % (self.name, got, self.num)
         return err    
-    def __init__(s, name, num):
-        s.name = name
-        s.num = num
-        s.getname = "get_number_of_" + name       
-    def __call__(s, db):
-        dbcall = getattr(db,s.getname)
-        s.dbncheck(dbcall)
+    def __init__(self, name, num):
+        self.name = name
+        self.num = num
+        self.getname = "get_number_of_" + name       
+    def __call__(self, db):
+        dbcall = getattr(db,self.getname)
+        self.dbncheck(dbcall)
 
 class fnci():
     """fnci (frag-numcheckset item) is a data container for:
     a fragment of gedcom 
     a sequence of nc items to check
     """
-    def __init__(s, frag, ncset):
-        s.frag = frag
-        s.ncset = ncset
+    def __init__(self, frag, ncset):
+        self.frag = frag
+        self.ncset = ncset
 
 # test data table for Test1.test1a_numchecks
 fnumchecks = (
@@ -119,28 +119,28 @@ def _checklog(tlogger, pat=None):
 
 
 class Test1(U.TestCase):
-    def setUp(s):
+    def setUp(self):
         # make a test subdir and compose some pathnames
-        s.tdir = tu.make_subdir("RG_test")
-        s.tdb = op.join(s.tdir,"test_db")
-        s.ifil = op.join(s.tdir,"test_in.ged")
-        s.lfil = op.join(s.tdir,"test.log")
+        self.tdir = tu.make_subdir("RG_test")
+        self.tdb = op.join(self.tdir,"test_db")
+        self.ifil = op.join(self.tdir,"test_in.ged")
+        self.lfil = op.join(self.tdir,"test.log")
 
-    def test1a_numchecks(s):
+    def test1a_numchecks(self):
         tl = tu.TestLogger()
         for i,f in enumerate(fnumchecks):
-            gr.make_gedcom_input(s.ifil, f.frag)
-            db = gr.create_empty_db(s.tdb)
-            tl.logfile_init(s.lfil)
-            gr.gread(db,s.ifil)
+            gr.make_gedcom_input(self.ifil, f.frag)
+            db = gr.create_empty_db(self.tdb)
+            tl.logfile_init(self.lfil)
+            gr.gread(db,self.ifil)
             errs = _checklog(tl, r"Line \d+")
-            s.assertEquals(errs, 0,
+            self.assertEquals(errs, 0,
                 "ncset(%d): got %d unexpected log messages" %
                 (i,errs))
             # ok, no log error message, check db counts
             for call in f.ncset:
                 err = call(db)
-                s.assertFalse(err, err)
+                self.assertFalse(err, err)
 
 if __name__ == "__main__":
     U.main()

@@ -169,7 +169,7 @@ class Test4(unittest.TestCase):
         self.assertEquals(A.ansel_to_utf8(""), u"", "empty a2u")
         self.assertEquals(A.utf8_to_ansel(u""), "", "empty u2a")
 
-    def test4b_unmapped_combos(s):
+    def test4b_unmapped_combos(self):
         """ 4b: (sample) unmapped (non-precomposed) combinations """
         samples = ( 
             # ansel, unicode, failure-report-message .. see function msg()
@@ -181,17 +181,17 @@ class Test4(unittest.TestCase):
         for a,u,m in samples:
             # ansel to unicode and inverse
             a2u=A.ansel_to_utf8(a)
-            s.assertEquals(a2u, u, msg(a2u, u, m, "a2u"))
+            self.assertEquals(a2u, u, msg(a2u, u, m, "a2u"))
             a2u2a = A.utf8_to_ansel(a2u)
-            s.assertEquals(a2u2a, a, msg(a2u2a, a, m, "a2u2a"))
+            self.assertEquals(a2u2a, a, msg(a2u2a, a, m, "a2u2a"))
 
             # unicode to ansel and inverse
             u2a = A.utf8_to_ansel(u)
-            s.assertEquals(u2a, a, msg(u2a, a, m, "u2a"))
+            self.assertEquals(u2a, a, msg(u2a, a, m, "u2a"))
             u2a2u = A.ansel_to_utf8(u2a)
-            s.assertEquals(u2a2u, u, msg(u2a2u, u, m, "u2a2u"))
+            self.assertEquals(u2a2u, u, msg(u2a2u, u, m, "u2a2u"))
         
-    def test4c_multiple_combos(s):
+    def test4c_multiple_combos(self):
         """ 4c: (a2u) ignore multiple combinations (include precomposed) """
         samples = (
             ("b\xF0\xE5Ze", u"bZ\u0304e", "b <cedilla> Z+macron e"),
@@ -203,9 +203,9 @@ class Test4(unittest.TestCase):
         )
         for a,u,m in samples:
             a2u=A.ansel_to_utf8(a)
-            s.assertEquals(a2u, u, msg(a2u,u,m, "a2u drop extra <combiners>"))
+            self.assertEquals(a2u, u, msg(a2u,u,m, "a2u drop extra <combiners>"))
 
-    def test4d_multiple_combos(s):
+    def test4d_multiple_combos(self):
         """ 4c: (u2a) ignore multiple combinations (include precomposed) """
         samples = (
             ("b\xE5Ze", u"bZ\u0304\u0327e", "b Z+macron <cedilla> e"),
@@ -214,23 +214,23 @@ class Test4(unittest.TestCase):
         )
         for a,u,m in samples:
             u2a=A.utf8_to_ansel(u)
-            s.assertEquals(u2a, a, msg(u2a,a,m, "u2a drop extra <combiners>"))
+            self.assertEquals(u2a, a, msg(u2a,a,m, "u2a drop extra <combiners>"))
 
 class Test99(unittest.TestCase):
     """ test regression cases """
     
-    def test_99a(s):
+    def test_99a(self):
         """ 99a: sanity check on counts """
         n1B= len(A._onebyte)
         n2B= len(A._twobyte)
         na = n1B+n2B
         nu = len(A._utoa)
-        s.assertEquals(na, nu, msg(na, nu, "basic counts: a2u=u2a"))
+        self.assertEquals(na, nu, msg(na, nu, "basic counts: a2u=u2a"))
         nac = len(A._acombiners)
         nuc = len(A._ucombiners)
-        s.assertEquals(nac, nuc, msg(nac, nuc, "combiner counts: a2u=u2a"))
+        self.assertEquals(nac, nuc, msg(nac, nuc, "combiner counts: a2u=u2a"))
 
-    def test_99b(s):
+    def test_99b(self):
         """ 99b: fix incorrect mapping for ansel 0xAE
         
         It used-to-be U+02be but was changed March 2005 to U+02bc
@@ -248,7 +248,7 @@ class Test99(unittest.TestCase):
         )
         for a, u, m in revs:
             g = A.ansel_to_utf8(a)
-            s.assertEquals(g,u, 
+            self.assertEquals(g,u, 
             msg(g, u, m, "spec change"))
 
 if __name__ == '__main__':

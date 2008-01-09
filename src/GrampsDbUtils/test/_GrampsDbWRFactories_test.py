@@ -12,9 +12,9 @@ class Test1(unittest.TestCase):
     NB: if any test fails, check imports within that module
 
     """
-    def test1a_buried_imports(s):
+    def test1a_buried_imports(self):
         import sys
-        s.assertTrue(par in sys.path, 
+        self.assertTrue(par in sys.path, 
             "par %r has to be in path!" % par)
         ilist = (
             "_WriteGrdb",
@@ -28,7 +28,7 @@ class Test1(unittest.TestCase):
                 mod = __import__(m)
             except ImportError:
                 mod = None
-            s.assertTrue(mod, "try import of module %r" % m)
+            self.assertTrue(mod, "try import of module %r" % m)
 
 if __name__ == "__main__":
     unittest.main()

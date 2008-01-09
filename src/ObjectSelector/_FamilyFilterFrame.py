@@ -72,7 +72,7 @@ class FamilyFilterFrame(FilterFrameBase):
             self._set_filter(filter_spec)
 
 
-    def _set_filter(filter_spec):
+    def _set_filter(self):
         pass
     
     def on_apply(self,button):

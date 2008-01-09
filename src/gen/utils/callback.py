@@ -454,12 +454,12 @@ class GrampsDBCallback(object):
     # Class methods
     #
 
-    def __disable_all_signals(cls):
+    def __disable_all_signals(self):
         GrampsDBCallback.__BLOCK_ALL_SIGNALS = True
 
     disable_all_signals = classmethod(__disable_all_signals)
     
-    def __enable_all_signals(cls):
+    def __enable_all_signals(self):
         GrampsDBCallback.__BLOCK_ALL_SIGNALS = False
 
     enable_all_signals = classmethod(__enable_all_signals)

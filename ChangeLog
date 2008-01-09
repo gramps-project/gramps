@@ -1,4 +1,17 @@
 2008-01-09 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/gen/utils/callback.py
+    * src/ObjectSelector/_FamilyFilterFrame.py
+    * src/test/test/test_util_test.py
+    * src/test/test/gedread_util_test.py
+    * src/test/test_util.py
+    * src/test/gramps_cli_test.py
+    * src/test/ansel_utf8_test.py
+    * src/GrampsDbUtils/test/_GedcomChar_test.py
+    * src/GrampsDbUtils/test/_GrampsDbWRFactories_test.py
+    * src/GrampsDbUtils/test/GR_test.py
+    From PEP8 Always use 'self' for the first argument to instance methods.
+
+2008-01-09 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/plugins/ExportVCard.py: in write_person use b_date instead of date
     0001497: small typo and imports cleanup in ExportVCard.py
 
