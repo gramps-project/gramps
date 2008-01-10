@@ -171,11 +171,11 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
         except gobject.GError:
             self._tool_list = gtk.ListStore(str,int)
 
-        d={ObjectTypes.PERSON: ['People',ObjectTypes.PERSON],
-	       ObjectTypes.FAMILY: ['Families',ObjectTypes.FAMILY],
-	       ObjectTypes.EVENT: ['Events',ObjectTypes.EVENT]}
-
-        self._object_type_column = 1
+            d={ObjectTypes.PERSON: ['People',ObjectTypes.PERSON],
+    	       ObjectTypes.FAMILY: ['Families',ObjectTypes.FAMILY],
+    	       ObjectTypes.EVENT: ['Events',ObjectTypes.EVENT]}
+    
+            self._object_type_column = 1
 
         
         for object_type in self._object_list:        

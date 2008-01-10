@@ -1,3 +1,7 @@
+2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/ObjectSelector/_ObjectSelectorWindow.py: fix indentation error
+    introduced through a previous patch
+
 2008-01-09  Brian Matherly <brian@gramps-project.org>
 	* src/docgen/CairoDoc.py: Fix 0001541: Box size too small - Descendant Chart
 
