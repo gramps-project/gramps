@@ -191,6 +191,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_entry(table, _('Media Object'), 4, Config.OPREFIX)
         self.add_entry(table, _('Event'), 5, Config.EPREFIX)
         self.add_entry(table, _('Repository'), 6, Config.RPREFIX)
+#added notes prefix
+        self.add_entry(table, _('Note'), 7, Config.NPREFIX)
         return table
 
     def add_advanced_panel(self):

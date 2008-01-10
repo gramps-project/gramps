@@ -1,3 +1,7 @@
+2008-01-10  Erik De richter <frederik.de.richter@pandora.be>
+	* src/GrampsCfg.py: 
+    * src/plugins/Reorderids.py: add note reordering 
+
 2008-01-10 Peter Landgren <peter.talken@telia.com>
     * src/RecentFiles.py: fix in rename_filename
 

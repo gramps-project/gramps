@@ -136,7 +136,17 @@ class ReorderIds(Tool.BatchTool):
                      db.repository_map,
                      db.commit_repository,
                      db.rprefix)
-
+#add reorder notes ID
+        if uistate:
+            self.progress.set_pass(_('Reordering Note IDs'),
+                                   db.get_number_of_notes())
+        self.reorder(gen.lib.Note,
+                     db.get_note_from_gramps_id,
+                     db.get_note_from_handle,
+                     db.find_next_note_gramps_id,
+                     db.note_map,
+                     db.commit_note,
+                     db.nprefix)
         if uistate:
             self.progress.close()
         else:
