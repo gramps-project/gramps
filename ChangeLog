@@ -1,3 +1,6 @@
+2008-01-09  Brian Matherly <brian@gramps-project.org>
+	* src/docgen/CairoDoc.py: Fix 0001541: Box size too small - Descendant Chart
+
 2008-01-09  Gary Burton <gary.burton@zen.co.uk>
 	* src/ManagedWindow.py: Close window only if it is already open. Possible
 	fix for bug #1510

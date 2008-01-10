@@ -985,7 +985,7 @@ class GtkDocText(GtkDocBaseElement):
     _allowed_children = []
 
     # line spacing is not defined in BaseDoc.ParagraphStyle
-    spacing = 1
+    spacing = 0
     
     def __init__(self, style, vertical_alignment, text, x, y, angle=0):
         GtkDocBaseElement.__init__(self, style)
