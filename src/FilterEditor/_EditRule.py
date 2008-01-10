@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _FilterEditor.py 6840 2006-06-01 22:37:13Z dallingham $
+# $Id: _EditRule.py 6840 2006-06-01 22:37:13Z dallingham $
 
 """
 Custom Filter Editor tool.

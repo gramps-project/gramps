@@ -590,11 +590,9 @@ class ListView(BookMarkView):
         if Config.get(Config.FILTER):
             self.search_bar.hide()
             self.filter_pane.show()
-            active = True
         else:
             self.search_bar.show()
             self.filter_pane.hide()
-            active = False
 
     def post(self):
         if self.filter_class:
@@ -854,7 +852,7 @@ class ListView(BookMarkView):
             self.dirty = True
 
     def object_build(self):
-        """callback, for if tree must be rebuild and bookmarks redrawn
+        """callback, for if tree must be rebuilt and bookmarks redrawn
         """
         if self.active:
             self.bookmarks.redraw()

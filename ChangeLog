@@ -1,3 +1,11 @@
+2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/MarkupText.py: in _hex_to_color removed dupe assignment to color
+    * src/PageView.py: doc typo and delete unused statements in filter_toggle
+    * src/ViewManager.py: fix typo in doc
+    * src/DataViews/PersonView.py: delete unused statements in filter_toggle
+    * src/FilterEditor/_EditRule.py: fix wrong $Id name
+    * src/FilterEditor/_ShowResults.py: fix wrong $Id name
+
 2008-01-10  Erik De richter <frederik.de.richter@pandora.be>
 	* src/GrampsCfg.py: 
     * src/plugins/Reorderids.py: add note reordering 

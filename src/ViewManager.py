@@ -766,7 +766,7 @@ class ViewManager:
 
     def toolbar_toggle(self, obj):
         """
-        Set the toobar based on the value of the toggle button. Save the 
+        Set the toolbar based on the value of the toggle button. Save the 
         results in the configuration settings
         """
         if obj.get_active():

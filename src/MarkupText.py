@@ -724,7 +724,6 @@ class MarkupBuffer(gtk.TextBuffer):
         
     def _hex_to_color(self, hex):
         """Convert hex string to gtk.gdk.Color."""
-        color = gtk.gdk.Color()
         color = gtk.gdk.color_parse(hex)
         return color
 

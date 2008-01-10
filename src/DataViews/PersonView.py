@@ -334,11 +334,9 @@ class PersonView(PageView.PersonNavView):
         if Config.get(Config.FILTER):
             self.search_bar.hide()
             self.filter_pane.show()
-            active = True
         else:
             self.search_bar.show()
             self.filter_pane.hide()
-            active = False
         self.build_tree()
         
     def drag_begin(self, widget, *data):
