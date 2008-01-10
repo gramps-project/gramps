@@ -122,7 +122,7 @@ class RecentFiles:
                 found = True
                 break
         if found:
-            self.gramps_recent_files[index].set_path(new_filename)
+            self.gramps_recent_files[index].set_name(new_filename)
 
     def remove_filename(self,filename):
         # First we need to walk the existing items to see 
