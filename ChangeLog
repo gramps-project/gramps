@@ -1,3 +1,6 @@
+2008-01-10 Peter Landgren <peter.talken@telia.com>
+    * src/RecentFiles.py: fix in rename_filename
+
 2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/ObjectSelector/_ObjectSelectorWindow.py: fix indentation error
     introduced through a previous patch
@@ -10,7 +13,7 @@
 	fix for bug #1510
 
 2008-01-08  Benny Malengier <benny.malengier@gramps-project.org>
-            Peter Landgren <peter.talken2telia.com>
+            Peter Landgren <peter.talken@telia.com>
 	* src/DbManager.py: rename check, issue 1562, 1569
 
 2008-01-09  Gary Burton <gary.burton@zen.co.uk>
