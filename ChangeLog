@@ -1,3 +1,6 @@
+2008-01-11  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/glade/gramps.glade: add alt key combo's for buttons
+
 2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/gen/db/dbdir.py: add doc, remove unused variable
     * src/GrampsDbUtils/_GrampsBSDDB.py: : add doc, remove unused variable
