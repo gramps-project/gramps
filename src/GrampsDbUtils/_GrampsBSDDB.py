@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2000-2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +21,9 @@
 # $Id$
 
 """
-Provides the Berkeley DB (BSDDB) database backend for GRAMPS
+Provides the Berkeley DB (BSDDB) database backend for GRAMPS for GRAMPS up 
+to version 2.2.x
+
 """
 
 #-------------------------------------------------------------------------
@@ -1609,10 +1611,6 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
     def gramps_upgrade(self, callback=None):
         UpdateCallback.__init__(self, callback)
-        
-        child_rel_notrans = [
-            "None",      "Birth",  "Adopted", "Stepchild", 
-            "Sponsored", "Foster", "Unknown", "Other", ]
         
         version = self.metadata.get('version', default=_MINVERSION)
 

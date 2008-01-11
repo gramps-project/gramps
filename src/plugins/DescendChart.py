@@ -226,9 +226,6 @@ class DescendChart(Report):
 
     def write_report(self):
 
-        generation = 1
-        done = 0
-        page = 1
         (maxy,maxx) = self.genchart.dimensions()
         maxx = (maxx-1)*2
         maxh = int((self.uh-0.75)/(self.box_height*1.25))
@@ -302,15 +299,13 @@ class DescendChart(Report):
             self.box_pad_pts = self.box_pad_pts/self.scale
             self.box_gap = self.box_gap/self.scale
 
-        maxh = int((self.uh)/(self.box_height+self.box_gap))
+#        maxh = int((self.uh)/(self.box_height+self.box_gap))
         maxw = int(uw/calc_width) 
 
         # build array of x indices
 
         self.generations_per_page = maxw
         
-        xstart = 0
-        ystart = self.offset-self.box_height/2.0 
         self.delta = pt2cm(self.box_pad_pts) + self.box_width + self.box_gap
         if not self.force_fit:
             calc_width = self.box_width + pt2cm(self.box_pad_pts)

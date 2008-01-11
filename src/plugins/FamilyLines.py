@@ -732,7 +732,7 @@ class FamilyLinesReport(Report):
 
         try:
             self.of = open(self.filename, "w")
-        except (OSError,IOError),value:
+        except (OSError,IOError):
             ErrorDialog(_("Could not create %s") % self.filename)
             return
 

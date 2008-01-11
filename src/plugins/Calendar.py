@@ -726,7 +726,7 @@ class Xml2Obj:
             return
 
     def Parse(self,filename):
-        'Creat a SAX parser and parse filename '
+        'Create a SAX parser and parse filename '
         Parser = expat.ParserCreate()
         # SAX event handlers
         Parser.StartElementHandler = self.StartElement

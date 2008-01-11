@@ -249,9 +249,6 @@ class AncestorChart(Report):
 
     def write_report(self):
 
-        generation = 1
-        done = 0
-        page = 1
         (maxy,maxx) = self.genchart.dimensions()
         maxh = int(self.uh/self.box_height)
         
@@ -330,12 +327,9 @@ class AncestorChart(Report):
             self.generations_per_page = int(log2(maxh))
         else:
             self.generations_per_page = maxw
-        acty = 2**self.generations_per_page
 
         # build array of x indices
 
-        xstart = 0
-        ystart = self.offset-self.box_height/2.0
         self.delta = pt2cm(self.box_pad_pts) + self.box_width + 0.2
         if not self.force_fit:
             calc_width = self.box_width + 0.2 + pt2cm(self.box_pad_pts)

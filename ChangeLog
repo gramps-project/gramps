@@ -1,4 +1,14 @@
 2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/gen/db/dbdir.py: add doc, remove unused variable
+    * src/GrampsDbUtils/_GrampsBSDDB.py: : add doc, remove unused variable
+    * src/plugins/AncestorChart.py: cleanup unused vars
+    * src/plugins/Calendar.py: typo in doc
+    * src/plugins/ChangeNames.py: cleanup unused vars
+    * src/plugins/DescendChart.py: cleanup unused vars
+    * src/plugins/FamilyLines.py: cleanup unused vars
+    * src/ReportBase/_ReportUtils.py: fix typo in variable Name
+
+2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/MarkupText.py: in _hex_to_color removed dupe assignment to color
     * src/PageView.py: doc typo and delete unused statements in filter_toggle
     * src/ViewManager.py: fix typo in doc

@@ -2556,7 +2556,7 @@ def old_calc_age(database, person):
        and birth.get_day_valid() and death.get_day_valid() \
        and birth.get_day() > death.get_day():
         age = death.get_day() + 31 - birth.get_day()
-        unit = DAYS
+        units = DAYS
 
     return (age, units)
 

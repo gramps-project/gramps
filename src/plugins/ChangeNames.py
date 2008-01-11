@@ -154,7 +154,6 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                       for node in self.iter_list
                       if self.model.get_value(node,0)]
 
-        anychange = False
         for handle in self.db.get_person_handles():
             change = False
             person = self.db.get_person_from_handle(handle)
@@ -162,7 +161,6 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 sname = name.get_surname()
                 if sname in changelist:
                     change = True
-                    anychange = True
                     name.set_surname(sname.capitalize())
             if change:
                 self.db.commit_person(person,self.trans)
