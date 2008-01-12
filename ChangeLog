@@ -1,3 +1,7 @@
+
+2008-01-12  Peter Landgren <peter.talken@telia.com>
+    * src/ViewManager.py: partial fix for #1580. Work in DisplayState.py remains.
+
 2008-01-12  Stéphane Charette <stephanecharette@gmail.com>
 	* src/Config/_GrampsConfigKeys.py:
 	* src/ReportBase/_PaperMenu.py:
