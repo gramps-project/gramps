@@ -885,9 +885,11 @@ class GraphvizReportDialog(ReportDialog):
         self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
         self.paper_label.set_use_markup(True)
 
-        self.paper_frame = PaperFrame(self.options.handler.get_paper_name(),
+        self.paper_frame = PaperFrame(self.options.handler.get_paper_metric(),
+                                      self.options.handler.get_paper_name(),
                                       self.options.handler.get_orientation(),
-                                      self.options.handler.get_margins()
+                                      self.options.handler.get_margins(),
+                                      self.options.handler.get_custom_paper_size()
                                       )
         self.notebook.insert_page(self.paper_frame,self.paper_label,0)
         self.paper_frame.show_all()
@@ -944,10 +946,12 @@ class GraphvizReportDialog(ReportDialog):
         # Preparation
         self.parse_format_frame()
         self.parse_user_options()
-        
+
+        self.options.handler.set_paper_metric(self.paper_frame.get_paper_metric())
         self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
         self.options.handler.set_margins(self.paper_frame.get_paper_margins())
+        self.options.handler.set_custom_paper_size(self.paper_frame.get_custom_paper_size())
         
         # Create the output document.
         self.make_document()

@@ -70,8 +70,10 @@ class OptionList(_Options.OptionList):
     def __init__(self):
         _Options.OptionList.__init__(self)
         self.style_name = None
+        self.paper_metric = None
         self.paper_name = None
         self.orientation = None
+        self.custom_paper_size = [29.7, 21.0]
         self.margins = [2.54, 2.54, 2.54, 2.54]
         self.template_name = None
         self.format_name = None
@@ -91,6 +93,22 @@ class OptionList(_Options.OptionList):
         @rtype: str
         """
         return self.style_name
+
+    def set_paper_metric(self,paper_metric):
+        """
+        Sets the paper metric for the OptionList.
+        @param paper_metric: whether to use metric.
+        @type paper_name: boolean
+        """
+        self.paper_metric = paper_metric
+
+    def get_paper_metric(self):
+        """
+        Returns the paper metric of the OptionList.
+        @returns: returns whether to use metric
+        @rtype: boolean
+        """
+        return self.paper_metric
 
     def set_paper_name(self,paper_name):
         """
@@ -125,6 +143,22 @@ class OptionList(_Options.OptionList):
         @rtype: int
         """
         return self.orientation
+
+    def set_custom_paper_size(self,paper_size):
+        """
+        Sets the custom paper size for the OptionList.
+        @param paper_size: paper size to set in cm.
+        @type paper_size: [float, float]
+        """
+        self.custom_paper_size = paper_size
+
+    def get_custom_paper_size(self):
+        """
+        Returns the custom paper size for the OptionList.
+        @returns: returns the custom paper size in cm
+        @rtype: [float, float]
+        """
+        return self.custom_paper_size
 
     def set_margins(self,margins):
         """
@@ -209,18 +243,38 @@ class OptionListCollection(_Options.OptionListCollection):
     def init_common(self):
         # Default values for common options
         self.default_style_name = "default"
+        self.default_paper_metric = Config.get(Config.PAPER_METRIC)
         self.default_paper_name = Config.get(Config.PAPER_PREFERENCE)
         self.default_template_name = ""
         self.default_orientation = BaseDoc.PAPER_PORTRAIT
+        self.default_custom_paper_size = [29.7, 21.0]
         self.default_margins = [2.54, 2.54, 2.54, 2.54]
         self.default_format_name = 'print'
 
+        self.last_paper_metric = self.default_paper_metric
         self.last_paper_name = self.default_paper_name
         self.last_orientation = self.default_orientation
+        self.last_custom_paper_size = copy.copy(self.default_custom_paper_size)
         self.last_margins = copy.copy(self.default_margins)
         self.last_template_name = self.default_template_name
         self.last_format_name = self.default_format_name
         self.option_list_map = {}
+
+    def set_last_paper_metric(self,paper_metric):
+        """
+        Sets the last paper metric used for the any report in this collection.
+        @param paper_metric: whether to use metric.
+        @type paper_name: boolean
+        """
+        self.last_paper_metric = paper_metric
+
+    def get_last_paper_metric(self):
+        """
+        Returns the last paper metric used for the any report in this collection.
+        @returns: returns whether or not to use metric
+        @rtype: boolean
+        """
+        return self.last_paper_metric
 
     def set_last_paper_name(self,paper_name):
         """
@@ -254,6 +308,23 @@ class OptionListCollection(_Options.OptionListCollection):
         @rtype: int
         """
         return self.last_orientation
+
+    def set_last_custom_paper_size(self,custom_paper_size):
+        """
+        Sets the last custom paper size used for the any report in this collection.
+        @param custom_paper_size: size to set in cm (width, height)
+        @type margins: [float, float]
+        """
+        self.last_custom_paper_size = copy.copy(custom_paper_size)
+
+    def get_last_custom_paper_size(self):
+        """
+        Returns the last custom paper size used for the any report in this
+        collection.
+        @returns: list of last custom paper size used in cm (width, height)
+        @rtype: [float, float]
+        """
+        return copy.copy(self.last_custom_paper_size)
 
     def set_last_margins(self,margins):
         """
@@ -323,6 +394,11 @@ class OptionListCollection(_Options.OptionListCollection):
 
     def write_common(self,f):
         f.write('<last-common>\n')
+        if self.get_last_paper_metric() != self.default_paper_metric:
+            f.write('  <metric value="%d"/>\n' % self.get_last_paper_metric() )
+        if self.get_last_custom_paper_size() != self.default_custom_paper_size:
+            size = self.get_last_custom_paper_size()
+            f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
         if self.get_last_paper_name() != self.default_paper_name:
             f.write('  <paper name="%s"/>\n' % escxml(self.get_last_paper_name()) )
         if self.get_last_template_name() != self.default_template_name:
@@ -337,6 +413,13 @@ class OptionListCollection(_Options.OptionListCollection):
         if option_list.get_style_name() \
                and option_list.get_style_name() != self.default_style_name:
             f.write('  <style name="%s"/>\n' % escxml(option_list.get_style_name()) )
+        if option_list.get_paper_metric() \
+               and option_list.get_paper_metric() != self.default_paper_metric:
+            f.write('  <metric value="%d"/>\n' % option_list.get_paper_metric() )
+        if option_list.get_custom_paper_size() \
+                and option_list.get_custom_paper_size() != self.default_custom_paper_size:
+            size = self.get_last_custom_paper_size()
+            f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
         if option_list.get_paper_name() \
                and option_list.get_paper_name() != self.default_paper_name:
             f.write('  <paper name="%s"/>\n' % escxml(option_list.get_paper_name()) )
@@ -418,6 +501,20 @@ class OptionParser(_Options.OptionParser):
                 self.collection.set_last_orientation(int(attrs['value']))
             else:
                 self.option_list.set_orientation(int(attrs['value']))
+        elif tag == "metric":
+            if self.common:
+                self.collection.set_last_paper_metric(int(attrs['value']))
+            else:
+                self.option_list.set_paper_metric(int(attrs['value']))
+        elif tag == "size":
+            width, height = attrs['value'].split()
+            width = float(width)
+            height = float(height)
+            if self.common:
+                self.collection.set_last_custom_paper_size([width, height])
+            else:
+                self.option_list.set_custom_paper_size([width, height])
+
         elif tag == "margin":
             pos, value = int(attrs['number']), float(attrs['value'])
             if self.common:
@@ -465,8 +562,10 @@ class OptionHandler(_Options.OptionHandler):
 
         # Retrieve our options from whole collection
         self.style_name = self.option_list_collection.default_style_name
+        self.paper_metric = self.option_list_collection.get_last_paper_metric()
         self.paper_name = self.option_list_collection.get_last_paper_name()
         self.orientation = self.option_list_collection.get_last_orientation()
+        self.custom_paper_size = self.option_list_collection.get_last_custom_paper_size()
         self.margins = self.option_list_collection.get_last_margins()
         self.template_name = self.option_list_collection.get_last_template_name()
         self.format_name = self.option_list_collection.get_last_format_name()
@@ -476,10 +575,14 @@ class OptionHandler(_Options.OptionHandler):
             self.style_name = self.saved_option_list.get_style_name()
         if self.saved_option_list.get_orientation():
             self.orientation = self.saved_option_list.get_orientation()
+        if self.saved_option_list.get_custom_paper_size():
+            self.custom_paper_size = self.saved_option_list.get_custom_paper_size()
         if self.saved_option_list.get_margins():
             self.margins = self.saved_option_list.get_margins()
         if self.saved_option_list.get_template_name():
             self.template_name = self.saved_option_list.get_template_name()
+        if self.saved_option_list.get_paper_metric():
+            self.paper_metric = self.saved_option_list.get_paper_metric()
         if self.saved_option_list.get_paper_name():
             self.paper_name = self.saved_option_list.get_paper_name()
         if self.saved_option_list.get_format_name():
@@ -489,8 +592,10 @@ class OptionHandler(_Options.OptionHandler):
         # First we save common options
         self.saved_option_list.set_style_name(self.style_name)
         self.saved_option_list.set_orientation(self.orientation)
+        self.saved_option_list.set_custom_paper_size(self.custom_paper_size)
         self.saved_option_list.set_margins(self.margins)
         self.saved_option_list.set_template_name(self.template_name)
+        self.saved_option_list.set_paper_metric(self.paper_metric)
         self.saved_option_list.set_paper_name(self.paper_name)
         self.saved_option_list.set_format_name(self.format_name)
         self.option_list_collection.set_option_list(self.module_name,
@@ -498,8 +603,10 @@ class OptionHandler(_Options.OptionHandler):
 
         # Then save last-common options from the current selection
         self.option_list_collection.set_last_orientation(self.orientation)
+        self.option_list_collection.set_last_custom_paper_size(self.custom_paper_size)
         self.option_list_collection.set_last_margins(self.margins)
         self.option_list_collection.set_last_template_name(self.template_name)
+        self.option_list_collection.set_last_paper_metric(self.paper_metric)
         self.option_list_collection.set_last_paper_name(self.paper_name)
         self.option_list_collection.set_last_format_name(self.format_name)
 
@@ -518,6 +625,12 @@ class OptionHandler(_Options.OptionHandler):
 
     def set_format_name(self,format_name):
         self.format_name = format_name
+
+    def get_paper_metric(self):
+        return self.paper_metric
+
+    def set_paper_metric(self,paper_metric):
+        self.paper_metric = paper_metric
 
     def get_paper_name(self):
         return self.paper_name
@@ -548,6 +661,12 @@ class OptionHandler(_Options.OptionHandler):
 
     def set_orientation(self,orientation):
         self.orientation = orientation
+
+    def get_custom_paper_size(self):
+        return copy.copy(self.custom_paper_size)
+
+    def set_custom_paper_size(self,custom_paper_size):
+        self.custom_paper_size = copy.copy(custom_paper_size)
 
     def get_margins(self):
         return copy.copy(self.margins)

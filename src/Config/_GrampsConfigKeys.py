@@ -115,6 +115,7 @@ PPREFIX              = ('preferences', 'pprefix', 2)
 SPREFIX              = ('preferences', 'sprefix', 2)
 GOUTPUT_PREFERENCE   = ('preferences', 'goutput-preference', 2)
 OUTPUT_PREFERENCE    = ('preferences', 'output-preference', 2)
+PAPER_METRIC         = ('preferences', 'paper-metric', 1)
 PAPER_PREFERENCE     = ('preferences', 'paper-preference', 2)
 RECENT_FILE          = ('paths', 'recent-file', 2)
 RECENT_IMPORT_DIR    = ('paths', 'recent-import-dir', 2)
@@ -232,6 +233,7 @@ default_value = {
     SPREFIX              : 'S%04d', 
     GOUTPUT_PREFERENCE   : 'No default format', 
     OUTPUT_PREFERENCE    : 'No default format', 
+    PAPER_METRIC         : 0, 
     PAPER_PREFERENCE     : 'Letter', 
     RECENT_FILE          : '', 
     RECENT_IMPORT_DIR    : '', 

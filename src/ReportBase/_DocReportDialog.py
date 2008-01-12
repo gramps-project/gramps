@@ -178,9 +178,11 @@ class DocReportDialog(ReportDialog):
                 self.target_fileentry.set_filename(spath)
                 
     def setup_report_options_frame(self):
-        self.paper_frame = PaperFrame(self.options.handler.get_paper_name(),
+        self.paper_frame = PaperFrame(self.options.handler.get_paper_metric(),
+                                      self.options.handler.get_paper_name(),
                                       self.options.handler.get_orientation(),
                                       self.options.handler.get_margins(),
+                                      self.options.handler.get_custom_paper_size()
                                       )
         self.setup_html_frame()
         ReportDialog.setup_report_options_frame(self)
@@ -291,10 +293,12 @@ class DocReportDialog(ReportDialog):
         self.parse_format_frame()
         self.parse_style_frame()
         self.parse_html_frame()
-        
+
+        self.options.handler.set_paper_metric(self.paper_frame.get_paper_metric())
         self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
         self.options.handler.set_margins(self.paper_frame.get_paper_margins())
+        self.options.handler.set_custom_paper_size(self.paper_frame.get_custom_paper_size())
         
         self.parse_user_options()
 

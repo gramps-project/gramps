@@ -1,3 +1,15 @@
+2008-01-12  Stéphane Charette <stephanecharette@gmail.com>
+	* src/Config/_GrampsConfigKeys.py:
+	* src/ReportBase/_PaperMenu.py:
+	* src/ReportBase/_GraphvizReportDialog.py:
+	* src/ReportBase/_DocReportDialog.py:
+	* src/ReportBase/_BareReportDialog.py:
+	* src/ReportBase/_ReportOptions.py:
+	remember if the paper options should be metric, and remember the
+	custom paper sizes (issues #1481)
+	* src/plugins/GVFamilyLines.py: small code cleanup
+	* src/plugins/GVRelGraph.py: implement post_init()
+
 2008-01-11  Stéphane Charette <stephanecharette@gmail.com>
 	* src/ReportBase/_BareReportDialog.py: allow scroll arrows on the
 	notebook if there are too many tabs to display

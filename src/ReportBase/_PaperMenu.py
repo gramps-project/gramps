@@ -142,8 +142,8 @@ class OrientationComboBox(gtk.ComboBox):
 #-------------------------------------------------------------------------  
 class PaperFrame(gtk.HBox):
     """PaperFrame provides all the entry necessary to specify a paper style. """
-    def __init__(self,default_name,default_orientation,
-                 margins=[2.54,2.54,2.54,2.54]):
+    def __init__(self,default_metric,default_name,default_orientation,
+                 margins=[2.54,2.54,2.54,2.54], custom=[29.7,21.0]):
         gtk.HBox.__init__(self)
         glade_file = os.path.join(const.GLADE_DIR, "paper_settings.glade")
         glade_xml = gtk.glade.XML(glade_file, "paper_table", "gramps")
@@ -162,6 +162,7 @@ class PaperFrame(gtk.HBox):
         # insert custom widgets
         self.papersize_menu = PaperComboBox(default_name)
         self.orientation_menu = OrientationComboBox(default_orientation)
+        self.metric.set_active(default_metric)
         
         # connect all widgets
         format_table = glade_xml.get_widget('format_table')
@@ -178,6 +179,8 @@ class PaperFrame(gtk.HBox):
         self.paper_unit = 'cm'
         self.paper_unit_multiplier = 1.0
 
+        self.pwidth.set_text("%.2f" % custom[0])
+        self.pheight.set_text("%.2f" % custom[1])
         self.lmargin.set_text("%.2f" % margins[0])
         self.rmargin.set_text("%.2f" % margins[1])
         self.tmargin.set_text("%.2f" % margins[2])
@@ -186,6 +189,7 @@ class PaperFrame(gtk.HBox):
         self.paper_table.show_all()
         self.add(self.paper_table)
 
+        self.units_changed(self.metric)
         self.size_changed(None)
 
     def size_changed(self, obj):
@@ -243,13 +247,12 @@ class PaperFrame(gtk.HBox):
         
     def get_paper_size(self):
         """Read and validate paper size values.
-        
+
         If needed update the dimensions from the width, height entries,
         and worst case fallback to A4 size.
-        
+
         """
         papersize, papername =  self.papersize_menu.get_value()
-        
         # FIXME it is wrong to use translatable text in comparison.
         # How can we distinguish custom size though?
         if papername == _('Custom Size'):
@@ -290,7 +293,17 @@ class PaperFrame(gtk.HBox):
                 paper_margins[i] = 2.54
                 
         return paper_margins
-    
+
+    def get_custom_paper_size(self):
+        width   = float(self.pwidth.get_text() ) * self.paper_unit_multiplier
+        height  = float(self.pheight.get_text()) * self.paper_unit_multiplier
+
+        paper_size = []
+        paper_size.append(max(width, 1.0))
+        paper_size.append(max(height, 1.0))
+
+        return paper_size
+
     def get_paper_style(self):
         paper_size, paper_name = self.get_paper_size()
         paper_orientation = self.orientation_menu.get_value()
@@ -301,6 +314,9 @@ class PaperFrame(gtk.HBox):
                             *paper_margins)
         return pstyle
     
+    def get_paper_metric(self):
+        return self.metric.get_active()
+
     def get_paper_name(self):
         paper_size, paper_name = self.get_paper_size()
         return paper_name

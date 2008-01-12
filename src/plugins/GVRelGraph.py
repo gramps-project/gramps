@@ -450,17 +450,17 @@ class RelGraphOptions(MenuReportOptions):
         incid.set_help(_("Include individual and family IDs."))
         menu.add_option(category_name,"incid", incid)
         
-        includeImages = BooleanOption(
+        self.includeImages = BooleanOption(
                                  _('Include thumbnail images of people'), False)
-        includeImages.set_help(_("Whether to include thumbnails of people."))
-        menu.add_option(category_name,"includeImages", includeImages)
+        self.includeImages.set_help(_("Whether to include thumbnails of people."))
+        menu.add_option(category_name,"includeImages", self.includeImages)
         
-        imageOnTheSide = EnumeratedListOption(_("Thumbnail Location"), 0)
-        imageOnTheSide.add_item(0, _('Above the name'))
-        imageOnTheSide.add_item(1, _('Beside the name'))
-        imageOnTheSide.set_help(_("Where the thumbnail image should appear "
+        self.imageOnTheSide = EnumeratedListOption(_("Thumbnail Location"), 0)
+        self.imageOnTheSide.add_item(0, _('Above the name'))
+        self.imageOnTheSide.add_item(1, _('Beside the name'))
+        self.imageOnTheSide.set_help(_("Where the thumbnail image should appear "
                                   "relative to the name"))
-        menu.add_option(category_name,"imageOnTheSide",imageOnTheSide)
+        menu.add_option(category_name,"imageOnTheSide",self.imageOnTheSide)
         
         ################################
         category_name = _("Graph Style")
@@ -490,6 +490,16 @@ class RelGraphOptions(MenuReportOptions):
         showfamily.set_help(_("Families will show up as ellipses, linked "
                               "to parents and children."))
         menu.add_option(category_name,"showfamily", showfamily)
+
+
+    def imageChanged(self, button):
+        self.imageOnTheSide.gobj.set_sensitive(self.includeImages.gobj.get_active())
+
+
+    def post_init(self, dialog):
+        self.includeImages.gobj.connect('toggled', self.imageChanged)
+        self.imageChanged(self.includeImages.gobj)
+
         
 #------------------------------------------------------------------------
 #

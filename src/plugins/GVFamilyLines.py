@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Stephane Charette
+# Copyright (C) 2007-2008  Stephane Charette
 # Copyright (C) 2007  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
@@ -30,8 +30,6 @@ Family Lines, a GraphViz-based plugin for Gramps.
 # python modules
 #
 #------------------------------------------------------------------------
-import os
-import time
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -44,35 +42,15 @@ log = logging.getLogger(".FamilyLines")
 
 #------------------------------------------------------------------------
 #
-# GNOME/gtk
-#
-#------------------------------------------------------------------------
-import gtk
-import gobject
-
-#------------------------------------------------------------------------
-#
 # GRAMPS module
 #
 #------------------------------------------------------------------------
 import gen.lib
-import Config
-import Errors
 import Utils
 import ThumbNails
-import DateHandler
-import GrampsWidgets
-import ManagedWindow
-from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, CATEGORY_CODE, MODE_GUI, MODE_CLI
-from ReportBase import Report, MenuReportOptions, MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
-from ReportBase._ReportDialog import ReportDialog
-from PluginUtils import register_report, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption, SurnameColourOption
-from QuestionDialog import ErrorDialog, WarningDialog
-from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
-from DateHandler import parser
-from Selectors import selector_factory
+from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ, MODE_GUI
+from PluginUtils import register_report, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption, SurnameColourOption
 
 
 #------------------------------------------------------------------------
@@ -226,19 +204,15 @@ class FamilyLinesOptions(MenuReportOptions):
 
     def post_init(self, dialog):
         # this method is called after all of the controls have been
-        # created, but before the notebook is shown to the user
+        # created, but before the notebook itself has been created
 
-        # re-order the notebook tabs the way we want
-#        dialog.notebook.
-
-        self.limitParents.gobj.connect('toggled', self.limitChanged)
-        self.limitChildren.gobj.connect('toggled', self.limitChanged)
-
-        self.includeImages.gobj.connect('toggled', self.imagesChanged)
+        self.limitParents.  gobj.connect('toggled', self.limitChanged   )
+        self.limitChildren. gobj.connect('toggled', self.limitChanged   )
+        self.includeImages. gobj.connect('toggled', self.imagesChanged  )
 
         # ensure things are initialized correctly when it first comes up
-        self.limitChanged(self.limitParents.gobj)
-        self.imagesChanged(self.includeImages.gobj)
+        self.limitChanged(  self.limitParents.gobj  )
+        self.imagesChanged( self.includeImages.gobj )
 
 
 #------------------------------------------------------------------------
