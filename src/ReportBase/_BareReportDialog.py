@@ -151,6 +151,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.setup_style_frame()
         
         self.notebook = gtk.Notebook()
+        self.notebook.set_scrollable(True)
         self.notebook.set_border_width(6)
         self.window.vbox.add(self.notebook)
 

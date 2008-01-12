@@ -153,35 +153,35 @@ class FamilyLinesOptions(MenuReportOptions):
         colourFamily.set_help(              _('The colour to use to display families.'))
         menu.add_option(category, 'FLcolourFamilies', colourFamily)
 
-        limitParents = BooleanOption(       _('Limit the number of parents'), False)
-        limitParents.set_help(              _('The maximum number of ancestors to include.'))
-        menu.add_option(category, 'FLlimitParents', limitParents)
+        self.limitParents = BooleanOption(  _('Limit the number of parents'), False)
+        self.limitParents.set_help(         _('The maximum number of ancestors to include.'))
+        menu.add_option(category, 'FLlimitParents', self.limitParents)
 
-        maxParents = NumberOption(          '', 50, 10, 9999)
-        maxParents.set_help(                _('The maximum number of ancestors to include.'))
-        menu.add_option(category, 'FLmaxParents', maxParents)
+        self.maxParents = NumberOption(     '', 50, 10, 9999)
+        self.maxParents.set_help(           _('The maximum number of ancestors to include.'))
+        menu.add_option(category, 'FLmaxParents', self.maxParents)
 
-        limitChildren = BooleanOption(      _('Limit the number of children'), False)
-        limitChildren.set_help(             _('The maximum number of children to include.'))
-        menu.add_option(category, 'FLlimitChildren', limitChildren)
+        self.limitChildren = BooleanOption( _('Limit the number of children'), False)
+        self.limitChildren.set_help(        _('The maximum number of children to include.'))
+        menu.add_option(category, 'FLlimitChildren', self.limitChildren)
 
-        maxChildren = NumberOption(          '', 50, 10, 9999)
-        maxChildren.set_help(               _('The maximum number of children to include.'))
-        menu.add_option(category, 'FLmaxChildren', maxChildren)
+        self.maxChildren = NumberOption(    '', 50, 10, 9999)
+        self.maxChildren.set_help(          _('The maximum number of children to include.'))
+        menu.add_option(category, 'FLmaxChildren', self.maxChildren)
 
         # --------------------
         category = _('Images')
         # --------------------
 
-        includeImages = BooleanOption(      _('Include thumbnail images of people'), True)
-        includeImages.set_help(             _('The maximum number of children to include.'))
-        menu.add_option(category, 'FLincludeImages', includeImages)
+        self.includeImages = BooleanOption( _('Include thumbnail images of people'), True)
+        self.includeImages.set_help(        _('The maximum number of children to include.'))
+        menu.add_option(category, 'FLincludeImages', self.includeImages)
 
-        imageLocation = EnumeratedListOption(_('Thumbnail location'), 0)
-        imageLocation.add_item(0,          _('Above the name'))
-        imageLocation.add_item(1,          _('Beside the name'))
-        imageLocation.set_help(            _('Where the thumbnail image should appear relative to the name'))
-        menu.add_option(category, 'FLimageOnTheSide', imageLocation)
+        self.imageLocation = EnumeratedListOption(_('Thumbnail location'), 0)
+        self.imageLocation.add_item(0,     _('Above the name'))
+        self.imageLocation.add_item(1,     _('Beside the name'))
+        self.imageLocation.set_help(       _('Where the thumbnail image should appear relative to the name'))
+        menu.add_option(category, 'FLimageOnTheSide', self.imageLocation)
 
         # ---------------------
         category = _('Options')
@@ -213,7 +213,33 @@ class FamilyLinesOptions(MenuReportOptions):
         includePrivate = BooleanOption(     _('Include private records'), False)
         includePrivate.set_help(            _('Whether to include names, dates, and families that are marked as private.'))
         menu.add_option(category, 'FLincludePrivate', includePrivate)
-        
+
+
+    def limitChanged(self, button):
+        self.maxParents.gobj.set_sensitive(self.limitParents.gobj.get_active())
+        self.maxChildren.gobj.set_sensitive(self.limitChildren.gobj.get_active())
+
+
+    def imagesChanged(self, button):
+        self.imageLocation.gobj.set_sensitive(self.includeImages.gobj.get_active())
+
+
+    def post_init(self, dialog):
+        # this method is called after all of the controls have been
+        # created, but before the notebook is shown to the user
+
+        # re-order the notebook tabs the way we want
+#        dialog.notebook.
+
+        self.limitParents.gobj.connect('toggled', self.limitChanged)
+        self.limitChildren.gobj.connect('toggled', self.limitChanged)
+
+        self.includeImages.gobj.connect('toggled', self.imagesChanged)
+
+        # ensure things are initialized correctly when it first comes up
+        self.limitChanged(self.limitParents.gobj)
+        self.imagesChanged(self.includeImages.gobj)
+
 
 #------------------------------------------------------------------------
 #

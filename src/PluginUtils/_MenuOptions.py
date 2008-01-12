@@ -1145,7 +1145,18 @@ class MenuOptions:
                 option.make_gui_obj(gtk, dialog)
                 option.add_dialog_category(dialog, category)
                 option.add_tooltip(self.tooltips)
-                
+
+        # give the reports the opportunity to tweak the
+        # controls or possibly setup some event connections
+        self.post_init(dialog)
+
+    def post_init(self, dialog):
+        """
+        Inheritable method to give reports the chance to setup
+        control event connections.
+        """
+        pass
+
     def parse_user_options(self,dialog):
         """
         Generic method to parse the user options and cache result in options_dict.

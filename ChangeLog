@@ -1,3 +1,11 @@
+2008-01-11  Stéphane Charette <stephanecharette@gmail.com>
+	* src/ReportBase/_BareReportDialog.py: allow scroll arrows on the
+	notebook if there are too many tabs to display
+	* src/plugins/GVFamilyLines.py: context-sensitive control feedback
+	based on other selected controls
+	* src/PluginUtils/_MenuOptions.py: define inheritable method that gets
+	called after all of the controls have been created
+
 2008-01-11  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/glade/gramps.glade: add alt key combo's for buttons
 
