@@ -1,3 +1,8 @@
+2008-01-12  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/const.py.in: new manual constant keys
+	* src/GrampsDisplay.py: show wiki manual, allow webpage and 
+		section to be passed
+	RERUN ./autogen.sh
 
 2008-01-12  Peter Landgren <peter.talken@telia.com>
     * src/ViewManager.py: partial fix for #1580. Work in DisplayState.py remains.

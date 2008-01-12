@@ -41,7 +41,8 @@ from gettext import gettext as _
 URL_HOMEPAGE    = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
 URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
-URL_MANUAL      = "http://gramps-project.org/gramps-manual/2.2/"
+URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
+URL_MANUAL_PAGE = "Gramps_3.0_Wiki_Manual"
 
 #-------------------------------------------------------------------------
 #

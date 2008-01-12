@@ -22,16 +22,25 @@
 
 import const
 
-def help(target):
+def help(target, webpage='', section=''):
     """
     Display the specified target in a help window. If this fails,
     open the manual on the web site.
     """
-    try:
-        import gnome
-        gnome.help_display('gramps',target)
-    except:
-        url(const.URL_MANUAL+'en/')
+    #try:
+    #    import gnome
+    #    gnome.help_display('gramps',target)
+    #except:
+    #    url(const.URL_MANUAL+'en/')
+    
+    # 3.0 Beta, direct to the wiki 3.0 Manual
+    if not webpage:
+        link = const.URL_WIKISTRING + const.URL_MANUAL_PAGE
+    else:
+        link = const.URL_WIKISTRING + webpage
+        if section:
+            link + '#' + section
+    url(link)
         
 def url(target):
     """
