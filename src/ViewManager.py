@@ -1067,6 +1067,15 @@ class ViewManager:
         """
         Called when the recent file is loaded
         """
+        # A recent database should already have a directory 
+        # If not, do nothing, just return. This can be handled better if family tree
+        # delete/rename also updated the recent file menu info in DisplayState.py
+        if not  os.path.isdir(filename):
+            QuestionDialog.ErrorDialog(
+                    _("Could not load a recent Family Tree."), 
+                    _("Family Tree does not exists, as it has been deleted."))
+            return
+
         if self.db_loader.read_file(filename):
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
