@@ -23,6 +23,7 @@
 """
 This package implements access to GRAMPS configuration.
 It provides the choice between different storage backends.
+
 """
 
 from _GrampsConfigKeys import *
@@ -37,11 +38,11 @@ def __upgrade_gconf():
         data = GconfKeys.get(key)
         set(key, data)
 
-    if not os.path.exists(INIFILE):
-        try:
-            __upgrade_gconf()
-        except ImportError:
-            print "Cannot upgrade GCONF settings"
+if not os.path.exists(INIFILE):
+    try:
+        __upgrade_gconf()
+    except ImportError:
+        print "Cannot upgrade GCONF settings"
 
 
 

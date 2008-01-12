@@ -1,3 +1,6 @@
+2008-01-12 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/Config/__init__.py: revert wrong indentation changes
+
 2008-01-12  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/const.py.in: new manual constant keys
 	* src/GrampsDisplay.py: show wiki manual, allow webpage and 
