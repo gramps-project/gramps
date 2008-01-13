@@ -1,3 +1,6 @@
+2008-01-12  Brian Matherly <brian@gramps-project.org>
+	* src/plugins/GVHourGlass.py: Clean up PyLint warnings.
+
 2008-01-12  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsDisplay.py: open url in standard way
 	* src/gramps.py: add comment on use of import gnome
