@@ -17,7 +17,6 @@ pkgdata_PYTHON = \
 	PlaceView.py\
 	MediaView.py\
 	NoteView.py\
-	GoogleView.py\
 	RepositoryView.py
 
 #	_MapView.py
