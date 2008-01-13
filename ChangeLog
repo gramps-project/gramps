@@ -1,3 +1,6 @@
+2008-01-13  Gary Burton <gary.burton@zen.co.uk>
+	* src/ManagedWindow.py: Revert last change.
+
 2008-01-13 Jerome Rapinat <romjerome@yahoo.fr>
         * gramps.spec.in: remove file
         * FAQ: update file (wiki data) #1457

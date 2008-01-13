@@ -454,10 +454,9 @@ class ManagedWindow:
 
         Takes care of closing children and removing itself from menu.
         """
-        if self.opened:
-            self.uistate.gwm.close_track(self.track)
-            self.opened = False
-            self.parent_window.present()
+        self.uistate.gwm.close_track(self.track)
+        self.opened = False
+        self.parent_window.present()
 
     def present(self):
         """
