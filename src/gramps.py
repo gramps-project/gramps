@@ -168,6 +168,12 @@ def run():
     setup_logging()
 
     try:
+        #This is GNOME initialization code that is necessary for use 
+        # with the other GNOME libraries. 
+        #It only gets called if the user has gnome installed on his/her system.
+        #There is *no* requirement for it.
+        #If you don't call this, you are not guaranteed that the other GNOME
+        #libraries will function properly. I learned this the hard way.
         import gnome
         program = gnome.program_init('gramps',const.VERSION, 
                                      gnome.libgnome_module_info_get(),
