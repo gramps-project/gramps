@@ -1,3 +1,7 @@
+2008-01-13 Jerome Rapinat <romjerome@yahoo.fr>
+        * gramps.spec.in: remove file
+        * FAQ: update file (wiki data) #1457
+
 2008-01-13 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/gramps_main.py: Add dots to list of things in Betawarning
 	to make it consistent
