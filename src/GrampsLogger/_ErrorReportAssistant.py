@@ -1,10 +1,10 @@
 from gettext import gettext as _
-
-import sys,os,bsddb
-import const
-
-import gtk
 import Assistant
+import const
+import gtk
+import sys,os,bsddb
+
+
 
 class ErrorReportAssistant:
 
@@ -28,10 +28,10 @@ class ErrorReportAssistant:
               "gather some information about the error that has "\
               "occured and the operating environment. "\
               "At the end of the assistant you will be asked to "\
-              "send an email to the Gramps bug reporting mailing list. "\
+              "file a bug report on the Gramps bug tracking system. "\
               "The assistant will place the bug report on the clip board so "\
-              "that you can paste it into your email programme and review "\
-              "exactly what information is being sent."))
+              "that you can paste it into the form on the bug tracking "\
+              "website and review exactly what information you want to include."))
 
 
         self.w.add_page(_("Report a bug: Step 1 of 5"), self.build_page1())
@@ -80,6 +80,10 @@ class ErrorReportAssistant:
                                self._final_report_text_buffer.get_start_iter(),
                                self._final_report_text_buffer.get_end_iter()))
         
+    def _start_gramps_bts_in_browser(self,obj=None):
+        import GrampsDisplay
+        GrampsDisplay.url('http://bugs.gramps-project.org/bug_report_page.php')
+
     def _get_sys_information(self):
         if hasattr(os, "uname"):
             operatingsystem = os.uname()[0]
@@ -365,9 +369,13 @@ class ErrorReportAssistant:
 
         summary_frame.add(summary_align)
 
+#		side_label = gtk.Label(_("This is the completed bug report. The next page "\
+#                                 "of the assistant will help you to send the report "\
+#                                 "to the bug report mailing list."))
+		
         side_label = gtk.Label(_("This is the completed bug report. The next page "\
-                                 "of the assistant will help you to send the report "\
-                                 "to the bug report mailing list."))
+                                 "of the assistant will help you to file a bug "\
+                                 " on the Gramps bug tracking system website."))
 
         side_label.set_line_wrap(True)
         side_label.set_size_request(124, -1)
@@ -382,27 +390,37 @@ class ErrorReportAssistant:
         return box
 
     def build_page5(self):
+#        label = gtk.Label(
+#            "%s <i>%s</i>" %
+#            (_("Use one of the two methods below to send the "\
+#               "bug report to the GRAMPS bug reporting mailing "\
+#               "list at "),
+#             "gramps-bugs@lists.sourceforge.net."))
         label = gtk.Label(
             "%s <i>%s</i>" %
-            (_("Use one of the two methods below to send the "\
-               "bug report to the GRAMPS bug reporting mailing "\
-               "list at "),
-             "gramps-bugs@lists.sourceforge.net."))
+            (_("Use the two buttons below to first copy the bug report to the "
+               "clipboard and then open a webbrowser to file a bug report at "),
+               "http://bugs.gramps-project.org/bug_report_page.php."))
         label.set_alignment(0.01,0.5)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
         label.set_use_markup(True)
 
 
-        url_label = gtk.Label(_("If your email client is configured correctly you may be able "\
-                                "to use this button to start it with the bug report ready to send. "\
-                                "(This will probably only work if you are running Gnome)"))
+#        url_label = gtk.Label(_("If your email client is configured correctly you may be able "\
+#                                "to use this button to start it with the bug report ready to send. "\
+#                                "(This will probably only work if you are running Gnome)"))
+        url_label = gtk.Label(_("Use this button to start a web browser and "
+                                "file a bug report on the Gramps bug tracking "
+                                "system."))
         url_label.set_alignment(0.01,0.5)
         url_label.set_padding(0, 4)
         url_label.set_line_wrap(True)
 
-        url_button = gtk.Button("Start email client")
-        url_button.connect('clicked', self._start_email_client)
+        url_button = gtk.Button("File bug report")
+#        url_button = gtk.Button("Start email client")
+#        url_button.connect('clicked', self._start_email_client)
+        url_button.connect('clicked', self._start_gramps_bts_in_browser)
         url_button_vbox = gtk.VBox()
         url_button_vbox.pack_start(url_button,True,False)
         
@@ -418,10 +436,15 @@ class ErrorReportAssistant:
         url_frame = gtk.Frame()
         url_frame.add(url_align)
         
-        clip_label = gtk.Label(_("If your email program fails to start you can use this button "
-                                 "to copy the bug report onto the clipboard. Then start your "
-                                 "email client, paste the report and send it to the address "
-                                 "above."))
+#        clip_label = gtk.Label(_("If your email program fails to start you can use this button "
+#                                 "to copy the bug report onto the clipboard. Then start your "
+#                                 "email client, paste the report and send it to the address "
+#                                 "above."))
+        clip_label = gtk.Label(_("Use this button "
+                                 "to copy the bug report onto the clipboard. "
+                                 "Then go to the bug tracking website by using "
+                                 "the button below, paste the report and click "
+                                 "submit report"))
         clip_label.set_alignment(0.01,0.5)
         clip_label.set_padding(0, 4)
         clip_label.set_line_wrap(True)
@@ -446,8 +469,10 @@ class ErrorReportAssistant:
 
         inner_box = gtk.VBox()
         inner_box.pack_start(label,False,False)
-        inner_box.pack_start(url_frame,False,False)
+#        inner_box.pack_start(url_frame,False,False)
+#        inner_box.pack_start(clip_frame,False,False)
         inner_box.pack_start(clip_frame,False,False)
+        inner_box.pack_start(url_frame,False,False)
 
         inner_align = gtk.Alignment(0,0,1,1)
         inner_align.set_padding(0,0,11,0)
@@ -459,9 +484,13 @@ class ErrorReportAssistant:
         outer_frame.get_label_widget().set_use_markup(True)
 
         outer_frame.add(inner_align)
-
+		
+#		side_label = gtk.Label(_("This is the final step. Use the buttons on this "
+#                                 "page to transfer the bug report to your email client."))
+		
         side_label = gtk.Label(_("This is the final step. Use the buttons on this "
-                                 "page to transfer the bug report to your email client."))
+                                 "page to start a web browser and file a bug "
+                                 "report on the Gramps bug tracking system."))
 
         side_label.set_line_wrap(True)
         side_label.set_size_request(124, -1)

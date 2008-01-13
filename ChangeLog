@@ -1,3 +1,9 @@
+2008-01-13 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/gramps_main.py: Add dots to list of things in Betawarning
+	to make it consistent
+	* src/GrampsLogger/_ErrorReportAssistant.py: Disable sending emails to the 
+	bug list and add button to file bug report on gramps issue tracker
+	
 2008-01-12  Brian Matherly <brian@gramps-project.org>
 	* src/gramps_main.py: Enable the beta warning on startup.
 
