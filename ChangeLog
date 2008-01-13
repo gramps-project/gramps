@@ -1,4 +1,7 @@
 2008-01-12  Brian Matherly <brian@gramps-project.org>
+	* src/gramps_main.py: Enable the beta warning on startup.
+
+2008-01-12  Brian Matherly <brian@gramps-project.org>
 	* src/plugins/GVHourGlass.py: Clean up PyLint warnings.
 
 2008-01-12  Benny Malengier <benny.malengier@gramps-project.org>
