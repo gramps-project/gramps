@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "Janvier 2006" "@VERSION@"
+.TH gramps 1 "@VERSION@" "Janvier 2008" "@VERSION@"
 .SH NOM
 gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
 
@@ -8,7 +8,7 @@ gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de G
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
 .RB [ \-O|\-\^\-open=
-.IR FICHIER 
+.IR BASE_DE_DONNEES 
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import=
@@ -28,6 +28,9 @@ gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de G
 .RB [
 .IR FICHIER
 .RB ]
+.if 0 .RB [ bonobo\ options ]
+.if 0 .RB [ sound\ options ]
+.RB [ \-\-version ]
 
 .SH DESCRIPTION
 .PP 
@@ -40,44 +43,49 @@ Il peut importer/exporter le format le plus utilisé par les autres logiciels de
 .SH OPTIONS
 .TP 
 .BI gramps " FICHIER" 
-Si \fIFICHIER\fR est désigné (sans autres commandes) alors une session interactive est ouverte. Les autres options sont ignorées. Ce type de lancement permet d'utiliser gramps
-pour manipuler des données comme dans un navigateur web. Les formats natifs de gramps sont acceptés, voir ci-dessous.
+Si \fIFICHIER\fR est désigné (sans autres commandes) comme arbre familial ou comme répertoire d'arbre familial, alors une session interactive est ouverte. Si FICHIER est un format de fichier supporté par GRAMPS, une base vide est créée dont le nom est celui du \fIFICHIER\fP et les données y seront importées. Les autres options sont ignorées. Ce type de lancement permet d'utiliser gramps pour manipuler des données comme dans un navigateur web. Les formats natifs de gramps sont acceptés, voir ci-dessous.
 .br
 
 .TP 
 .BI \-f,\-\^\-format= " FORMAT"
-Le format spécifique du \fIFICHIER\fR est précédé par les options \fB\-O\fR,
+Le format spécifique du \fIFICHIER\fR est précédé par les arguments
+.ig
+\fB\-O\fR,
+..
 \fB\-i\fR, ou
-\fB\-o\fR. Si l'option \fB\-f\fR n'est pas donnée pour le \fIFICHIER\fR, alors le format sera celui de l'extension.
+\fB\-o\fR. Si l'option \fB\-f\fR n'est pas donnée pour le \fIFICHIER\fR, alors le format sera celui de l'extension ou du type-MIME.
 .br
 
-Les formats disponibles pour l'ouverture sont \fBgrdb\fR (choisi si \fIFICHIER\fR se termine par
-\fB.grdb\fR), \fBgramps\-xml\fR (choisi si \fIFICHIER\fR se termine par
-\fB.gramps\fR), et \fBgedcom\fR (choisi si \fIFICHIER\fR se termine par \fB.ged\fR).
+Les formats de sortie disponibles sont \fBgramps\-xml\fR (deviné si \fIFICHIER\fR se termine par
+\fB.gramps\fR), et \fBgedcom\fR (deviné si \fIFICHIER\fR se termine par \fB.ged\fR), ou
+tout autre fichier d'exportation disponible dans le système de plugin GRAMPS.
 .br
 
 Les formats disponibles pour l'importation sont \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,  
-\fBgramps\-pkg\fR (choisi si \fIFICHIER\fR se termine par \fB.gpkg\fR), et
-\fBgeneweb\fR (choisi si \fIFICHIER\fR se termine par \fB.gw\fR). 
+\fBgramps\-pkg\fR (deviné si \fIFICHIER\fR se termine par \fB.gpkg\fR), et
+\fBgeneweb\fR (deviné si \fIFICHIER\fR se termine par \fB.gw\fR). 
 .br
 
-Les formats disponibles pour l'exportation sont  \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,
-\fBgramps\-pkg\fR, \fBwft\fR (choisi si \fIFICHIER\fR se termine par \fB.wft\fR),
+Les formats disponibles pour l'exportation sont  
+ig.
+\fBgrdb\fR,
+..
+\fBgramps\-xml\fR, \fBgedcom\fR,
+\fBgramps\-pkg\fR, \fBwft\fR (deviné si \fIFICHIER\fR se termine par \fB.wft\fR),
 \fBgeneweb\fR, et \fBiso\fR (jamais deviné, toujours spécifié avec l'option
 \fB\-f\fR).
 
 .TP 
-.BI \-O,\-\^\-open= " FICHIER"
-Ouvrir un \fIFICHIER\fR. 
-Seulement les formats \fBgrdb\fR, \fBgramps\-xml\fR, et \fBgedcom\fR peuvent être ouvert directement. Pour les autres formats, vous devez utiliser l'option d'import,
-laquelle ouvrira une base vide et importera les données.
+.BI \-O,\-\^\-open= " BASE_DE_DONNEES"
+Ouvrir une \fIBASE_DE_DONNEES\fR qui doit être une base présente dans le répertoire des bases ou le nom d'un arbre familial existant.
+Si aucune action n'est définie, les options d'import ou d'export sont données par la ligne de commande puis une session interactive est ouverte, utilisant cette base de données.
 .br
 
-Seulement un fichier peut être ouvert. Si vous utilisez plusieurs sources, vous devez utiliser l'option d'import.
+Seulement une base peut être ouverte. Si vous utilisez plusieurs sources, vous devez utiliser l'option d'import.
 
 .TP 
 .BI \-i,\-\^\-import= " FICHIER"
-Importer des données depuis un \fIFICHIER\fR.
+Importer des données depuis un \fIFICHIER\fR. Si vous n'avez pas spécifié de base de données alors une base de données temporaire est utilisée; elle sera effacée quand vous quitterez gramps.
 .br
 
 Quand plus d'un fichier doit être importé, chacun doit être précédé par la commande \fB\-i\fR. Ces fichiers sont importés dans le même ordre, 
@@ -87,7 +95,11 @@ et \fB\-i\fR \fIFICHIER2\fR \fB\-i\fR \fIFICHIER1\fR vont tous les deux produire
 .TP 
 .BI \-o,\-\^\-output= " FICHIER"
 Exporter des données dans un \fIFICHIER\fR. Pour le format \fBiso\fR, le \fIFICHIER\fR est le nom du répertoire dans lequel la base de données gramps est écrite.
-Pour \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
+Pour 
+.ig
+\fBgrdb\fR,
+..
+\fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
 et \fBgeneweb\fR, le \fIFICHIER\fR est le nom du fichier de sortie 
 .br
 
@@ -129,10 +141,45 @@ Utiliser les options ci-dessus pour trouver tout sur un rapport choisi.
 .LP
 Quand plus d'une action doit être effectuée, chacune doit être précédée par la commande \fB\-a\fR. Les actions seront réalisées une à une, dans l'ordre spécifié.
 
-.BI "Operation"
+.TP 
+.BI \-d,\-\^\-debug= " NOM_LOGGER"
+Permet les logs de debug pour le développement et les tests. Regarder le code source pour les détails.
+.TP
+.BI \-\^\-version
+Imprime le numéro de version pour gramps puis quitte.
+\" changer 0 par 1 pour permettre la sortie des options OAF
+.si 0 \{
+.PP
+Les options suivantes seront utilisées pour l'activation Bonobo.
+.TP 
+.BI \-\^\-oaf-ior-fd= "FD"
+Le descripteur de fichier pour imprimer OAF IOR
+.TP 
+.BI \-\^\-oaf-activate-iid= " IID"
+OAF IID à activer
+.TP 
+.BI \-\^\-oaf-private
+Prévenir de l'enregistrement du serveur avec OAF
+\}
+\" changer 0 par 1 pour permettre la sortie des options son de GNOME
+.si 0 \{
+.PP
+Les options suivantes seront utilisées pour contrôler le son avec les librairies GNOME.
+.TP
+.BI \-\^\-disable-sound
+Désactive l'utilisation du server son
+.TP
+.BI \-\^\-enable-sound
+Active l'utilisation du server son
+.TP
+.BI \-\^\-espeaker= " HOSTNAME:PORT"
+Host:port sur lequel le serveur son sera utilisé
+\}
+
+.SH "Operation"
 .br
 Si le premier argument de la ligne de commande ne commence pas par un tiret (i.e. pas
-d'instruction), gramps va essayer d'ouvrir le fichier avec le nom donné par le premier argument et démarrer une session interactive, en ignorant le reste de la ligne de commande.
+d'instruction), gramps va essayer d'ouvrir la base de données avec le nom donné par le premier argument et démarrer une session interactive, en ignorant le reste de la ligne de commande.
 
 .LP
 Si la commande \fB\-O\fR est notée, alors gramps va essayer le fichier défini et va travailler avec ses données, comme pour les autres paramètres de la ligne de commande.
@@ -156,7 +203,13 @@ en \fIstderr\fR (si elles ne sont pas le fait d'une manipulation). Utilisez les 
  \fIstdout\fR et \fIstderr\fR pour sauver les messages et les erreurs dans les fichiers.
 
 .SH EXEMPLES
+.TP
+Pour ouvrir un arbre familial et y importer un fichier XML, on peut saisir: 
+\fBgramps\fR \fB\-O\fR \fI'Mon Arbre Familal'\fR \fB\-i\fR \fI~/db3.gramps\fR
 .TP 
+Ceci ouvre un arbre familal, pour faire la même chose, mais importer dans un arbre familial temporaire et démarrer une session interactive, on peut saisir: 
+\fBgramps\fR \fB\-i\fR \fI'Mon Arbre Familal'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP  
 Lecture de quatre bases de données dont les formats peuvent être devinés d'après les noms, puis vérification des données: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
 .TP 
