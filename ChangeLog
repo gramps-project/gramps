@@ -1,4 +1,4 @@
-2008-01-13  Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-14  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DbLoader.py: typo
 	* src/plugins/ImportCSV.py: register text/csv as another mime type for csv
 	0001410: Import auto-detect doesn't recognize csv
