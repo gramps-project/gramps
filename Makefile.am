@@ -4,7 +4,7 @@
 SUBDIRS = m4 po src data example help
 
 EXTRA_DIST = \
-	config.rpath autogen.sh gramps.spec.in gramps.spec \
+	config.rpath autogen.sh \
 	COPYING-DOCS FAQ COPYING \
 	intltool-extract.in intltool-merge.in intltool-update.in \
 	config.sub config.guess gnome-doc-utils.make

@@ -141,7 +141,6 @@ po/Makefile.in
 m4/Makefile
 help/Makefile
 Makefile
-gramps.spec
 gramps.sh
 src/const.py
 src/Makefile

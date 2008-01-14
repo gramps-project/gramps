@@ -1,3 +1,7 @@
+2008-01-13 Jerome Rapinat <romjerome@yahoo.fr>
+        * Makefile.am
+        * configure.in: remove gramps.spec references
+
 2008-01-13  Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_MenuOptions.py: Code cleanup.
 
