@@ -111,7 +111,7 @@ class DbLoader:
              'gramps-import',gtk.RESPONSE_OK))
         choose.set_local_only(False)
 
-        # Always add automatic (macth all files) filter
+        # Always add automatic (match all files) filter
         add_all_files_filter(choose)
         add_grdb_filter(choose)
         add_xml_filter(choose)

@@ -1,16 +1,23 @@
-2008-01-14 Jerome Rapinat <romjerome@yahoo.fr>
-        * data/man/fr/gramps.1.in: new man file
+2008-01-13  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/DbLoader.py: typo
+	* src/plugins/ImportCSV.py: register text/csv as another mime type for csv
+	0001410: Import auto-detect doesn't recognize csv
+	* Changelog: fix format. Single tab before source files line, double space
+	between date and name.
+	
+2008-01-14  Jerome Rapinat <romjerome@yahoo.fr>
+	* data/man/fr/gramps.1.in: new man file
 
 2008-01-12  Cedric Scott <cedric@not2.be>
             Benny Malengier <benny.malengier@gramps-project.org>
 	* data/man/gramps.1.in: new man file
 
-2008-01-14 Peter Landgren <peter.talken@telia.com>
-        * _DateDisplay.py: ISO-date shows only year if month=0 and day=0
+2008-01-14  Peter Landgren <peter.talken@telia.com>
+	* _DateDisplay.py: ISO-date shows only year if month=0 and day=0
 
-2008-01-13 Jerome Rapinat <romjerome@yahoo.fr>
-        * Makefile.am
-        * configure.in: remove gramps.spec references
+2008-01-13  Jerome Rapinat <romjerome@yahoo.fr>
+	* Makefile.am
+	* configure.in: remove gramps.spec references
 
 2008-01-13  Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_MenuOptions.py: Code cleanup.
@@ -18,11 +25,11 @@
 2008-01-13  Gary Burton <gary.burton@zen.co.uk>
 	* src/ManagedWindow.py: Revert last change.
 
-2008-01-13 Jerome Rapinat <romjerome@yahoo.fr>
-        * gramps.spec.in: remove file
-        * FAQ: update file (wiki data) #1457
+2008-01-13  Jerome Rapinat <romjerome@yahoo.fr>
+	* gramps.spec.in: remove file
+	* FAQ: update file (wiki data) #1457
 
-2008-01-13 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-13  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/gramps_main.py: Add dots to list of things in Betawarning
 	to make it consistent
 	* src/GrampsLogger/_ErrorReportAssistant.py: Disable sending emails to the 
@@ -41,7 +48,7 @@
 	* INSTALL:
 	Remove need for gconf, add need for xdg utilities
 
-2008-01-12 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-12  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/Config/__init__.py: revert wrong indentation changes
 
 2008-01-12  Benny Malengier <benny.malengier@gramps-project.org>
@@ -76,7 +83,7 @@
 2008-01-11  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/glade/gramps.glade: add alt key combo's for buttons
 
-2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-10  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/gen/db/dbdir.py: add doc, remove unused variable
     * src/GrampsDbUtils/_GrampsBSDDB.py: : add doc, remove unused variable
     * src/plugins/AncestorChart.py: cleanup unused vars
@@ -86,7 +93,7 @@
     * src/plugins/FamilyLines.py: cleanup unused vars
     * src/ReportBase/_ReportUtils.py: fix typo in variable Name
 
-2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-10  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/MarkupText.py: in _hex_to_color removed dupe assignment to color
     * src/PageView.py: doc typo and delete unused statements in filter_toggle
     * src/ViewManager.py: fix typo in doc
@@ -98,10 +105,10 @@
 	* src/GrampsCfg.py: 
     * src/plugins/Reorderids.py: add note reordering 
 
-2008-01-10 Peter Landgren <peter.talken@telia.com>
+2008-01-10  Peter Landgren <peter.talken@telia.com>
     * src/RecentFiles.py: fix in rename_filename
 
-2008-01-10 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-10  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/ObjectSelector/_ObjectSelectorWindow.py: fix indentation error
     introduced through a previous patch
 
@@ -130,7 +137,7 @@
 2008-01-09  Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/__init__.py: remove message regarding malformed dataviews
 
-2008-01-09 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/gen/utils/callback.py
     * src/ObjectSelector/_FamilyFilterFrame.py
     * src/test/test/test_util_test.py
@@ -143,7 +150,7 @@
     * src/GrampsDbUtils/test/GR_test.py
     From PEP8 Always use 'self' for the first argument to instance methods.
 
-2008-01-09 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/plugins/ExportVCard.py: in write_person use b_date instead of date
     0001497: small typo and imports cleanup in ExportVCard.py
 
@@ -175,7 +182,7 @@
 2008-01-08  Brian Matherly <brian@gramps-project.org>
 	* src/DisplayModels/_BaseModel.py: Fix 0001554: Select Place search
 	
-2008-01-08 Jim Sack <jgsack@san.rr.com>
+2008-01-08  Jim Sack <jgsack@san.rr.com>
 	src/gen/utils/test/callback_test.py : add comment about
 	intentional Error from call to undefined function
 
@@ -210,17 +217,17 @@
 	* src/images/scalable/Makefile.am:
 	start of gramplet icon
 
-2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
+2008-01-07  Raphael Ackermann <raphael.ackermann@gmail.com
 	* src/DataViews/PersonView.py: removed unused import
 	* src/plugins/EventCmp.py: fixed error introduced with previous change
 	* src/gramps.py: removed unused import
 	* src/PageView.py: removed unused import
 
-2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
+2008-01-07  Raphael Ackermann <raphael.ackermann@gmail.com
 	* src/plugins/EventCmp.py: clean up imports and fix pylint error
 	0001496: in EventCmp.py: E:198:fix: Using variable 'l' before assignment
 
-2008-01-07 Raphael Ackermann <raphael.ackermann@gmail.com
+2008-01-07  Raphael Ackermann <raphael.ackermann@gmail.com
 	* src/plugins/CmdRef.py: clean up unused and broken imports and vars
 	0001494: unresolved import WebPage in CmdRef.py
 
