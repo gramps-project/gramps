@@ -179,12 +179,10 @@ class DateDisplay:
     def display_iso(self, date_val):
         # YYYY-MM-DD (ISO)
         year = self._slash_year(date_val[2], date_val[3])
-        # FIXME: This prodices 1789-11-00 and 1789-00-00 for incomplete dates.
-        if False:#date_val[0] == 0:
-            if date_val[1] == 0:
-                value = year
-            else:
-                value = "%s-%02d" % (year, date_val[1])
+        # This produces 1789, 1789-00-11 and 1789-11-00 for incomplete dates.
+        if date_val[0] == 0 and date_val[1] == 0:
+            # No month and no day -> year
+            value = year
         else:
             value = "%s-%02d-%02d" % (year, date_val[1], date_val[0])
         if date_val[2] < 0:
