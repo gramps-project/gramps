@@ -1,3 +1,6 @@
+2008-01-12  Cedric Scott <cedric@not2.be>
+            Benny Malengier <benny.malengier@gramps-project.org>
+	* data/man/gramps.1.in: new man file
 
 2008-01-14 Peter Landgren <peter.talken@telia.com>
         * _DateDisplay.py: ISO-date shows only year if month=0 and day=0
