@@ -1,3 +1,6 @@
+2008-01-13  Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_MenuOptions.py: Code cleanup.
+
 2008-01-13  Gary Burton <gary.burton@zen.co.uk>
 	* src/ManagedWindow.py: Revert last change.
 

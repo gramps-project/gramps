@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,13 @@
 """
 Abstracted option handling.
 """
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
+from gettext import gettext as _
+
 #-------------------------------------------------------------------------
 #
 # gramps modules
@@ -30,7 +37,6 @@ Abstracted option handling.
 import gtk
 import gobject
 import Utils
-import _Tool as Tool
 import GrampsWidgets
 import ManagedWindow
 from Selectors import selector_factory
@@ -42,23 +48,25 @@ from BasicUtils import name_displayer as _nd
 #
 #------------------------------------------------------------------------
 class LastNameDialog(ManagedWindow.ManagedWindow):
-
-    def __init__(self, database, uistate, track, surnames, skipList=set()):
+    """
+    A dialog that allows the selection of a surname from the database.
+    """
+    def __init__(self, database, uistate, track, surnames, skip_list=set()):
 
         self.title = _('Select surname')
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
-        self.dlg = gtk.Dialog(
-            None,
-            uistate.window,
-            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_NO_SEPARATOR,
-            (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+        flags = gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT | \
+                gtk.DIALOG_NO_SEPARATOR
+        buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_OK, 
+                   gtk.RESPONSE_ACCEPT)
+        self.dlg = gtk.Dialog(None, uistate.window, flags, buttons)
         self.dlg.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
         self.set_window(self.dlg, None, self.title)
-        self.window.set_default_size(400,400)
+        self.window.set_default_size(400, 400)
 
         # build up a container to display all of the people of interest
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
-        self.treeView = gtk.TreeView(self.model)
+        self.tree_view = gtk.TreeView(self.model)
         col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
         col2 = gtk.TreeViewColumn(_('Count'), gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -67,14 +75,14 @@ class LastNameDialog(ManagedWindow.ManagedWindow):
         col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
         col1.set_sort_column_id(0)
         col2.set_sort_column_id(1)
-        self.treeView.append_column(col1)
-        self.treeView.append_column(col2)
-        self.scrolledWindow = gtk.ScrolledWindow()
-        self.scrolledWindow.add(self.treeView)
-        self.scrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.scrolledWindow.set_shadow_type(gtk.SHADOW_OUT)
-        self.dlg.vbox.pack_start(self.scrolledWindow, expand=True, fill=True)
-        self.scrolledWindow.show_all()
+        self.tree_view.append_column(col1)
+        self.tree_view.append_column(col2)
+        scrolled_window = gtk.ScrolledWindow()
+        scrolled_window.add(self.tree_view)
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
+        self.dlg.vbox.pack_start(scrolled_window, expand=True, fill=True)
+        scrolled_window.show_all()
 
         if len(surnames) == 0:
             # we could use database.get_surname_list(), but if we do that
@@ -84,14 +92,15 @@ class LastNameDialog(ManagedWindow.ManagedWindow):
 #            for name in database.get_surname_list():
 #                self.model.append([name, 0])
 
-            # build up the list of surnames, keeping track of the count for each name
-            # (this can be a lengthy process, so by passing in the dictionary we can
-            # be certain we only do this once)
+            # build up the list of surnames, keeping track of the count for each
+            # name (this can be a lengthy process, so by passing in the 
+            # dictionary we can be certain we only do this once)
             progress = Utils.ProgressMeter(_('Finding surnames'))
-            progress.set_pass(_('Finding surnames'), database.get_number_of_people())
-            for personHandle in database.get_person_handles(False):
+            progress.set_pass(_('Finding surnames'), 
+                              database.get_number_of_people())
+            for person_handle in database.get_person_handles(False):
                 progress.step()
-                person = database.get_person_from_handle(personHandle)
+                person = database.get_person_from_handle(person_handle)
                 key = person.get_primary_name().get_surname()
                 count = 0
                 if key in surnames:
@@ -101,28 +110,32 @@ class LastNameDialog(ManagedWindow.ManagedWindow):
 
         # insert the names and count into the model
         for key in surnames:
-            if key.encode('iso-8859-1','xmlcharrefreplace') not in skipList:
+            if key.encode('iso-8859-1','xmlcharrefreplace') not in skip_list:
                 self.model.append([key, surnames[key]])
 
         # keep the list sorted starting with the most popular last name
         self.model.set_sort_column_id(1, gtk.SORT_DESCENDING)
 
-        # the "OK" button should be enabled/disabled based on the selection of a row
-        self.treeSelection = self.treeView.get_selection()
-        self.treeSelection.set_mode(gtk.SELECTION_MULTIPLE)
-        self.treeSelection.select_path(0)
+        # the "OK" button should be enabled/disabled based on the selection of 
+        # a row
+        self.tree_selection = self.tree_view.get_selection()
+        self.tree_selection.set_mode(gtk.SELECTION_MULTIPLE)
+        self.tree_selection.select_path(0)
 
     def run(self):
+        """
+        Display the dialog and return the selected surnames when done.
+        """
         response = self.dlg.run()
-        surnameSet = set()
+        surname_set = set()
         if response == gtk.RESPONSE_ACCEPT:
-            (mode, paths) = self.treeSelection.get_selected_rows()
+            (mode, paths) = self.tree_selection.get_selected_rows()
             for path in paths:
-                iter = self.model.get_iter(path)
-                surname = self.model.get_value(iter, 0)
-                surnameSet.add(surname)
+                i = self.model.get_iter(path)
+                surname = self.model.get_value(i, 0)
+                surname_set.add(surname)
         self.dlg.destroy()
-        return surnameSet
+        return surname_set
 
 #-------------------------------------------------------------------------
 #
@@ -135,7 +148,7 @@ class Option:
     minimally provide the services provided by this class. Options are allowed 
     to add additional functionality.
     """
-    def __init__(self,label,value):
+    def __init__(self, label, value):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Exclude living people"
@@ -157,7 +170,7 @@ class Option:
         """
         return self.__label
     
-    def set_label(self,label):
+    def set_label(self, label):
         """
         Set the friendly label for this option.
         
@@ -176,7 +189,7 @@ class Option:
         """
         return self.__value
     
-    def set_value(self,value):
+    def set_value(self, value):
         """
         Set the value of this option.
         
@@ -195,7 +208,7 @@ class Option:
         """
         return self.__help_str
         
-    def set_help(self,help):
+    def set_help(self, help_text):
         """
         Set the help information for this option.
         
@@ -205,7 +218,7 @@ class Option:
         @type value: string
         @return: nothing
         """
-        self.__help_str = help
+        self.__help_str = help_text
 
     def add_dialog_category(self, dialog, category):
         """
@@ -229,7 +242,7 @@ class StringOption(Option):
     """
     This class describes an option that is a simple one-line string.
     """
-    def __init__(self,label,value):
+    def __init__(self, label, value):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Page header"
@@ -239,9 +252,9 @@ class StringOption(Option):
         @type value: string
         @return: nothing
         """
-        Option.__init__(self,label,value)
+        Option.__init__(self, label, value)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a StringOption (single line text) to the dialog.
         """
@@ -264,7 +277,7 @@ class ColourButtonOption(Option):
     """
     This class describes an option that allows the selection of a colour.
     """
-    def __init__(self,label,value):
+    def __init__(self, label, value):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Males"
@@ -274,9 +287,9 @@ class ColourButtonOption(Option):
         @type value: string, interpreted as a colour by gtk.gdk.color_parse()
         @return: nothing
         """
-        Option.__init__(self,label,value)
+        Option.__init__(self, label, value)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a ColorButton to the dialog.
         """
@@ -304,7 +317,7 @@ class NumberOption(Option):
     This class describes an option that is a simple number with defined maximum 
     and minimum values.
     """
-    def __init__(self,label,value,min,max):
+    def __init__(self, label, value, min_val, max_val):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Number of generations to include"
@@ -320,9 +333,9 @@ class NumberOption(Option):
         @type value: int
         @return: nothing
         """
-        Option.__init__(self,label,value)
-        self.__min = min
-        self.__max = max
+        Option.__init__(self, label, value)
+        self.__min = min_val
+        self.__max = max_val
     
     def get_min(self):
         """
@@ -340,12 +353,12 @@ class NumberOption(Option):
         """
         return self.__max
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a NumberOption to the dialog.
         """
         value = self.get_value()
-        adj = gtk.Adjustment(1,self.get_min(),self.get_max(),1)
+        adj = gtk.Adjustment(1, self.get_min(), self.get_max(), 1)
 
         self.gobj = gtk.SpinButton(adj)
         self.gobj.set_value(value)
@@ -367,21 +380,22 @@ class FloatOption(NumberOption):
     This class performs like NumberOption, but allows for float values
     for the minimum/maximum/increment.
     """
-    def __init__(self, label, value, min, max):
+    def __init__(self, label, value, min_val, max_val):
         # Someone who knows python better than I will probably
         # want to add a parameter for the caller to specify how
         # many decimal points are needed.
         #
         # At the time this function was written, the only code
         # that needed this class required 2 decimals.
-        NumberOption.__init__(self, label, value, min, max)
+        NumberOption.__init__(self, label, value, min_val, max_val)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a FloatOption to the dialog.
         """
         value = self.get_value()
-        adj = gtk.Adjustment(value, lower=self.get_min(), upper=self.get_max(), step_incr=0.01)
+        adj = gtk.Adjustment(value, lower=self.get_min(), 
+                             upper=self.get_max(), step_incr=0.01)
 
         self.gobj = gtk.SpinButton(adjustment=adj, digits=2)
         self.gobj.set_value(value)
@@ -392,7 +406,6 @@ class FloatOption(NumberOption):
         """
         return float(self.gobj.get_value())
 
-
 #-------------------------------------------------------------------------
 #
 # TextOption class
@@ -402,7 +415,7 @@ class TextOption(Option):
     """
     This class describes an option that is a multi-line string.
     """
-    def __init__(self,label,value):
+    def __init__(self, label, value):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Page header"
@@ -412,9 +425,9 @@ class TextOption(Option):
         @type value: string
         @return: nothing
         """
-        Option.__init__(self,label,value)
+        Option.__init__(self, label, value)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a TextOption to the dialog.
         """
@@ -434,10 +447,10 @@ class TextOption(Option):
         """
         Parse the text option (multi-line text).
         """
-        b = self.gtext.get_buffer()
-        text_val = unicode( b.get_text( b.get_start_iter(),
-                                        b.get_end_iter(),
-                                        False)             )
+        buff = self.gtext.get_buffer()
+        text_val = unicode( buff.get_text( buff.get_start_iter(),
+                                           buff.get_end_iter(),
+                                           False)             )
         return text_val.split('\n')
         
 #-------------------------------------------------------------------------
@@ -449,7 +462,7 @@ class BooleanOption(Option):
     """
     This class describes an option that is a boolean (True or False).
     """
-    def __init__(self,label,value):
+    def __init__(self, label, value):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Exclude living people"
@@ -459,9 +472,9 @@ class BooleanOption(Option):
         @type value: boolean
         @return: nothing
         """
-        Option.__init__(self,label,value)
+        Option.__init__(self, label, value)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a BooleanOption to the dialog.
         """
@@ -486,7 +499,7 @@ class EnumeratedListOption(Option):
     This class describes an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
-    def __init__(self,label,value):
+    def __init__(self, label, value):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Paper Size"
@@ -496,10 +509,10 @@ class EnumeratedListOption(Option):
         @type value: int
         @return: nothing
         """
-        Option.__init__(self,label,value)
+        Option.__init__(self, label, value)
         self.__items = []
 
-    def add_item(self,value,description):
+    def add_item(self, value, description):
         """
         Add an item to the list of possible values.
         
@@ -521,19 +534,19 @@ class EnumeratedListOption(Option):
         """
         return self.__items
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add an EnumeratedListOption to the dialog.
         """
-        v = self.get_value()
+        cur_val = self.get_value()
         active_index = 0
         current_index = 0 
         self.combo = gtk.combo_box_new_text()
         self.gobj = gtk.EventBox()
         self.gobj.add(self.combo)
-        for (value,description) in self.get_items():
+        for (value, description) in self.get_items():
             self.combo.append_text(description)
-            if value == v:
+            if value == cur_val:
                 active_index = current_index
             current_index += 1
         self.combo.set_active( active_index )
@@ -544,7 +557,7 @@ class EnumeratedListOption(Option):
         """
         index = self.combo.get_active()
         items = self.get_items()
-        value,description = items[index]
+        value, description = items[index]
         return value
 
 #-------------------------------------------------------------------------
@@ -557,7 +570,7 @@ class PersonFilterOption(Option):
     This class describes an option that provides a list of person filters.
     Each possible value represents one of the possible filters.
     """
-    def __init__(self,label, dbstate, value=0, include_single=True):
+    def __init__(self, label, dbstate, value=0, include_single=True):
         """
         @param label: A friendly label to be applied to this option.
             Example: "Filter"
@@ -573,7 +586,7 @@ class PersonFilterOption(Option):
         @return: nothing
         """
         from ReportBase import ReportUtils
-        Option.__init__(self,label,value)
+        Option.__init__(self, label, value)
         self.__dbstate = dbstate
         self.__include_single = include_single
         self.__person = self.__dbstate.get_active_person()
@@ -583,36 +596,44 @@ class PersonFilterOption(Option):
             self.set_value(0)
             
     def get_center_person(self):
+        """
+        Get the person for whom the filters have been generated.
+        """
         return self.__person
     
     def get_filter(self):
         """
-        Return the filter object.
+        Return the currently selected filter object.
         """
         return self.__filters[self.get_value()]
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add an PersonFilterOption to the dialog.
         """
         self.dialog = dialog
         self.combo = gtk.combo_box_new_text()
-        self.combo.connect('changed',self.__on_value_changed)
+        self.combo.connect('changed', self.__on_value_changed)
         self.gobj = gtk.HBox()
         self.change_button = gtk.Button("%s..." % _('C_hange') )
-        self.change_button.connect('clicked',self.on_change_clicked)
+        self.change_button.connect('clicked', self.on_change_clicked)
         self.gobj.pack_start(self.combo, False)
         self.gobj.pack_start(self.change_button, False)
         
         self.update_gui_obj()
         
     def __on_value_changed(self, obj):
+        """
+        Handle the change of the value.
+        """
         self.set_value( int(self.combo.get_active()) )
 
     def on_change_clicked(self, *obj):
-        from Selectors import selector_factory
-        SelectPerson = selector_factory('Person')
-        sel_person = SelectPerson(self.dialog.dbstate,
+        """
+        Handle the "Change..." button press.
+        """
+        select_class = selector_factory('Person')
+        sel_person = select_class(self.dialog.dbstate,
                                   self.dialog.uistate,
                                   self.dialog.track)
         new_person = sel_person.run()
@@ -626,8 +647,8 @@ class PersonFilterOption(Option):
         self.combo.get_model().clear()
         self.__filters = ReportUtils.get_person_filters(self.__person,
                                                         self.__include_single)
-        for filter in self.__filters:
-            self.combo.append_text(filter.get_name())
+        for filt in self.__filters:
+            self.combo.append_text(filt.get_name())
         
         if self.get_value() >= len(self.__filters):
             # Set the value to zero if it is not valid.
@@ -662,16 +683,16 @@ class PersonOption(Option):
         @type value: DbState
         @return: nothing
         """
-        self.dbstate = dbstate
-        self.db = dbstate.get_database()
-        Option.__init__(self,label,value)
+        self.__dbstate = dbstate
+        self.__db = dbstate.get_database()
+        Option.__init__(self, label, value)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         self.dialog = dialog
         self.gobj = gtk.HBox()
         self.person_label = gtk.Label()
-        self.person_label.set_alignment(0.0,0.5)
-        self.person_button   = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
+        self.person_label.set_alignment(0.0, 0.5)
+        self.person_button = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
                                                       self.get_person_clicked)
         self.person_button.set_relief(gtk.RELIEF_NORMAL)
 
@@ -681,43 +702,49 @@ class PersonOption(Option):
         self.gobj.pack_start(self.pevt, False)
         self.gobj.pack_end(self.person_button, False)
         
-        person = self.db.get_person_from_gramps_id(self.get_value())
+        person = self.__db.get_person_from_gramps_id(self.get_value())
         if not person:
-            person = self.dbstate.get_active_person()
+            person = self.__dbstate.get_active_person()
         self.update_person(person)
 
     def parse(self):
         return self.get_value()
 
     def get_person_clicked(self, obj):
+        """
+        Handle the button to choose a different person.
+        """
         from Filters import GenericFilter, Rules
         rfilter = GenericFilter()
         rfilter.set_logical_op('or')
         rfilter.add_rule(Rules.Person.IsBookmarked([]))
         
-        default_person = self.db.get_default_person()
+        default_person = self.__db.get_default_person()
         if default_person:
-            id = default_person.get_gramps_id()
-            rfilter.add_rule(Rules.Person.HasIdOf([id]))
+            gid = default_person.get_gramps_id()
+            rfilter.add_rule(Rules.Person.HasIdOf([gid]))
             
-        active_person = self.dbstate.get_active_person()
+        active_person = self.__dbstate.get_active_person()
         if active_person:
-            id = active_person.get_gramps_id()
-            rfilter.add_rule(Rules.Person.HasIdOf([id]))
+            gid = active_person.get_gramps_id()
+            rfilter.add_rule(Rules.Person.HasIdOf([gid]))
 
-        SelectPerson = selector_factory('Person')
-        sel = SelectPerson(self.dbstate, self.dialog.uistate, 
+        select_class = selector_factory('Person')
+        sel = select_class(self.__dbstate, self.dialog.uistate, 
                            self.dialog.track, 
                            title=_('Select a person for the report'), 
                            filter=rfilter )
         person = sel.run()
         self.update_person(person)
     
-    def update_person(self,person):
+    def update_person(self, person):
+        """
+        Update the currently selected person.
+        """
         if person:
             name = _nd.display(person)
             gid = person.get_gramps_id()
-            self.person_label.set_text( "%s (%s)" % (name,gid) )
+            self.person_label.set_text( "%s (%s)" % (name, gid) )
             self.set_value(gid)
             
     def add_tooltip(self, tooltip):
@@ -747,11 +774,11 @@ class PersonListOption(Option):
         @type value: string
         @return: nothing
         """
-        self.db = dbstate.get_database()
-        self.dbstate = dbstate
-        Option.__init__(self,label,value)
+        self.__db = dbstate.get_database()
+        self.__dbstate = dbstate
+        Option.__init__(self, label, value)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a "people picker" widget to the dialog.
         """
@@ -759,8 +786,8 @@ class PersonListOption(Option):
         
         value = self.get_value()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        self.treeView = gtk.TreeView(self.model)
-        self.treeView.set_size_request(150, 150)
+        self.tree_view = gtk.TreeView(self.model)
+        self.tree_view.set_size_request(150, 150)
         col1 = gtk.TreeViewColumn(_('Name'  ), gtk.CellRendererText(), text=0)
         col2 = gtk.TreeViewColumn(_('ID'    ), gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -769,27 +796,31 @@ class PersonListOption(Option):
         col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
         col1.set_sort_column_id(0)
         col2.set_sort_column_id(1)
-        self.treeView.append_column(col1)
-        self.treeView.append_column(col2)
-        self.scrolledWindow = gtk.ScrolledWindow()
-        self.scrolledWindow.add(self.treeView)
-        self.scrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.scrolledWindow.set_shadow_type(gtk.SHADOW_OUT)
+        self.tree_view.append_column(col1)
+        self.tree_view.append_column(col2)
+        self.scrolled_window = gtk.ScrolledWindow()
+        self.scrolled_window.add(self.tree_view)
+        self.scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, 
+                                        gtk.POLICY_AUTOMATIC)
+        self.scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
         self.hbox = gtk.HBox()
-        self.hbox.pack_start(self.scrolledWindow, expand=True, fill=True)
+        self.hbox.pack_start(self.scrolled_window, expand=True, fill=True)
 
         for gid in value.split():
-            person = self.db.get_person_from_gramps_id(gid)
+            person = self.__db.get_person_from_gramps_id(gid)
             if person:
                 name = _nd.display(person)
                 self.model.append([name, gid])
 
-        # now setup the '+' and '-' pushbutton for adding/removing people from the container
-        self.addPerson = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, self.addPersonClicked)
-        self.delPerson = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, self.delPersonClicked)
+        # now setup the '+' and '-' pushbutton for adding/removing people from 
+        # the container
+        self.add_person = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, 
+                                                     self.add_person_clicked)
+        self.del_person = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, 
+                                                     self.del_person_clicked)
         self.vbbox = gtk.VButtonBox()
-        self.vbbox.add(self.addPerson)
-        self.vbbox.add(self.delPerson)
+        self.vbbox.add(self.add_person)
+        self.vbbox.add(self.del_person)
         self.vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.hbox.pack_end(self.vbbox, expand=False)
 
@@ -801,26 +832,30 @@ class PersonListOption(Option):
         Parse the object and return.
         """
         gidlist = ''
-        iter = self.model.get_iter_first()
-        while (iter):
-            gid = self.model.get_value(iter, 1)
+        i = self.model.get_iter_first()
+        while (i):
+            gid = self.model.get_value(i, 1)
             gidlist = gidlist + gid + ' '
-            iter = self.model.iter_next(iter)
+            i = self.model.iter_next(i)
         return gidlist
 
-    def addPersonClicked(self, obj):
+    def add_person_clicked(self, obj):
+        """
+        Handle the add person button.
+        """
         # people we already have must be excluded
         # so we don't list them multiple times
-        skipList = set()
-        iter = self.model.get_iter_first()
-        while (iter):
-            gid = self.model.get_value(iter, 1) # get the GID stored in column #1
-            person = self.db.get_person_from_gramps_id(gid)
-            skipList.add(person.get_handle())
-            iter = self.model.iter_next(iter)
+        skip_list = set()
+        i = self.model.get_iter_first()
+        while (i):
+            gid = self.model.get_value(i, 1) # get the GID stored in column #1
+            person = self.__db.get_person_from_gramps_id(gid)
+            skip_list.add(person.get_handle())
+            i = self.model.iter_next(i)
 
-        SelectPerson = selector_factory('Person')
-        sel = SelectPerson(self.dbstate, self.dialog.uistate, self.dialog.track, skip=skipList)
+        select_class = selector_factory('Person')
+        sel = select_class(self.__dbstate, self.dialog.uistate, 
+                           self.dialog.track, skip=skip_list)
         person = sel.run()
         if person:
             name = _nd.display(person)
@@ -832,37 +867,42 @@ class PersonListOption(Option):
             #
             # NOTE: we may want to make this an optional thing, determined
             # by the use of a parameter at the time this class is instatiated
-            familyList = person.get_family_handle_list()
-            if familyList:
-                for familyHandle in familyList:
-                    family = self.db.get_family_from_handle(familyHandle)
-                    
-                    if person.get_handle() == family.get_father_handle():
-                        spouseHandle = family.get_mother_handle()
-                    else:
-                        spouseHandle = family.get_father_handle()
+            family_list = person.get_family_handle_list()
+            for family_handle in family_list:
+                family = self.__db.get_family_from_handle(family_handle)
+                
+                if person.get_handle() == family.get_father_handle():
+                    spouse_handle = family.get_mother_handle()
+                else:
+                    spouse_handle = family.get_father_handle()
 
-                    if spouseHandle:
-                        if spouseHandle not in skipList:
-                            import gtk
-                            spouse = self.db.get_person_from_handle(spouseHandle)
-                            text = _('Also include %s?') % spouse.get_primary_name().get_regular_name()
-                            prompt = gtk.MessageDialog(parent=self.dialog.window, flags=gtk.DIALOG_MODAL, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO, message_format=text)
-                            prompt.set_default_response(gtk.RESPONSE_YES)
-                            prompt.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-                            prompt.set_title(_('Select Person'))
-                            button = prompt.run()
-                            prompt.destroy()
-                            if button == gtk.RESPONSE_YES:
-                                name = _nd.display(spouse)
-                                gid = spouse.get_gramps_id()
-                                self.model.append([name, gid])
+                if spouse_handle and (spouse_handle not in skip_list):
+                    spouse = self.__db.get_person_from_handle(
+                                                          spouse_handle)
+                    spouse_name = _nd.display(spouse)
+                    text = _('Also include %s?') % spouse_name
+                    prompt = gtk.MessageDialog(parent=self.dialog.window, 
+                                               flags=gtk.DIALOG_MODAL, 
+                                               type=gtk.MESSAGE_QUESTION, 
+                                               buttons=gtk.BUTTONS_YES_NO, 
+                                               message_format=text)
+                    prompt.set_default_response(gtk.RESPONSE_YES)
+                    prompt.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+                    prompt.set_title(_('Select Person'))
+                    button = prompt.run()
+                    prompt.destroy()
+                    if button == gtk.RESPONSE_YES:
+                        gid = spouse.get_gramps_id()
+                        self.model.append([spouse_name, gid])
 
-    def delPersonClicked(self, obj):
-        (path, column) = self.treeView.get_cursor()
+    def del_person_clicked(self, obj):
+        """
+        Handle the delete person button.
+        """
+        (path, column) = self.tree_view.get_cursor()
         if (path):
-            iter = self.model.get_iter(path)
-            self.model.remove(iter)
+            i = self.model.get_iter(path)
+            self.model.remove(i)
 
 #-------------------------------------------------------------------------
 #
@@ -885,11 +925,11 @@ class SurnameColourOption(Option):
         @type value: string
         @return: nothing
         """
-        self.db = dbstate.get_database()
-        self.dbstate = dbstate
-        Option.__init__(self,label,value)
+        self.__db = dbstate.get_database()
+        self.__dbstate = dbstate
+        Option.__init__(self, label, value)
 
-    def make_gui_obj(self, gtk, dialog):
+    def make_gui_obj(self, dialog):
         """
         Add a "surname-colour" widget to the dialog.
         """
@@ -897,9 +937,9 @@ class SurnameColourOption(Option):
         self.surnames = {}  # list of surnames and count
         
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        self.treeView = gtk.TreeView(self.model)
-        self.treeView.set_size_request(150, 150)
-        self.treeView.connect('row-activated', self.clicked)
+        self.tree_view = gtk.TreeView(self.model)
+        self.tree_view.set_size_request(150, 150)
+        self.tree_view.connect('row-activated', self.row_clicked)
         col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
         col2 = gtk.TreeViewColumn(_('Colour'), gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -907,20 +947,23 @@ class SurnameColourOption(Option):
         col1.set_sort_column_id(0)
         col1.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
         col2.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
-        self.treeView.append_column(col1)
-        self.treeView.append_column(col2)
-        self.scrolledWindow = gtk.ScrolledWindow()
-        self.scrolledWindow.add(self.treeView)
-        self.scrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.scrolledWindow.set_shadow_type(gtk.SHADOW_OUT)
+        self.tree_view.append_column(col1)
+        self.tree_view.append_column(col2)
+        self.scrolled_window = gtk.ScrolledWindow()
+        self.scrolled_window.add(self.tree_view)
+        self.scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, 
+                                        gtk.POLICY_AUTOMATIC)
+        self.scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
         self.hbox = gtk.HBox()
-        self.hbox.pack_start(self.scrolledWindow, expand=True, fill=True)
+        self.hbox.pack_start(self.scrolled_window, expand=True, fill=True)
 
-        self.addSurname = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, self.addSurnameClicked)
-        self.delSurname = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, self.delSurnameClicked)
+        self.add_surname = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, 
+                                                     self.add_surname_clicked)
+        self.del_surname = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, 
+                                                     self.del_surname_clicked)
         self.vbbox = gtk.VButtonBox()
-        self.vbbox.add(self.addSurname)
-        self.vbbox.add(self.delSurname)
+        self.vbbox.add(self.add_surname)
+        self.vbbox.add(self.del_surname)
         self.vbbox.set_layout(gtk.BUTTONBOX_SPREAD)
         self.hbox.pack_end(self.vbbox, expand=False)
 
@@ -938,56 +981,69 @@ class SurnameColourOption(Option):
         """
         Parse the object and return.
         """
-        surnameColours = ''
-        iter = self.model.get_iter_first()
-        while (iter):
-            surname = self.model.get_value(iter, 0) # .encode('iso-8859-1','xmlcharrefreplace')
-            colour = self.model.get_value(iter, 1)
+        surname_colours = ''
+        i = self.model.get_iter_first()
+        while (i):
+            surname = self.model.get_value(i, 0) 
+            #surname = surname.encode('iso-8859-1','xmlcharrefreplace')
+            colour = self.model.get_value(i, 1)
             # tried to use a dictionary, and tried to save it as a tuple,
             # but coulnd't get this to work right -- this is lame, but now
             # the surnames and colours are saved as a plain text string
-            surnameColours += surname + ' ' + colour + ' '
-            iter = self.model.iter_next(iter)
-        return surnameColours
+            surname_colours += surname + ' ' + colour + ' '
+            i = self.model.iter_next(i)
+        return surname_colours
 
-    def clicked(self, treeview, path, column):
+    def row_clicked(self, treeview, path, column):
+        """
+        Handle the case of a row being clicked on.
+        """
         # get the surname and colour value for this family
-        iter = self.model.get_iter(path)
-        surname = self.model.get_value(iter, 0)
-        colour = gtk.gdk.color_parse(self.model.get_value(iter, 1))
+        i = self.model.get_iter(path)
+        surname = self.model.get_value(i, 0)
+        colour = gtk.gdk.color_parse(self.model.get_value(i, 1))
 
-        colourDialog = gtk.ColorSelectionDialog('Select colour for %s' % surname)
-        colourDialog.colorsel.set_current_color(colour)
-        response = colourDialog.run()
+        title = 'Select colour for %s' % surname
+        colour_dialog = gtk.ColorSelectionDialog(title)
+        colorsel = colour_dialog.colorsel
+        colorsel.set_current_color(colour)
+        response = colour_dialog.run()
 
         if response == gtk.RESPONSE_OK:
-            colour = colourDialog.colorsel.get_current_color()
-            colourName = '#%02x%02x%02x' % (
+            colour = colorsel.get_current_color()
+            colour_name = '#%02x%02x%02x' % (
                 int(colour.red  *256/65536),
                 int(colour.green*256/65536),
                 int(colour.blue *256/65536))
-            self.model.set_value(iter, 1, colourName)
+            self.model.set_value(i, 1, colour_name)
 
-        colourDialog.destroy()
+        colour_dialog.destroy()
 
-    def addSurnameClicked(self, obj):
-        skipList = set()
-        iter = self.model.get_iter_first()
-        while (iter):
-            surname = self.model.get_value(iter, 0)
-            skipList.add(surname.encode('iso-8859-1','xmlcharrefreplace'))
-            iter = self.model.iter_next(iter)
+    def add_surname_clicked(self, obj):
+        """
+        Handle the the add surname button.
+        """
+        skip_list = set()
+        i = self.model.get_iter_first()
+        while (i):
+            surname = self.model.get_value(i, 0)
+            skip_list.add(surname.encode('iso-8859-1','xmlcharrefreplace'))
+            i = self.model.iter_next(i)
 
-        ln = LastNameDialog(self.db, self.dialog.uistate, self.dialog.track, self.surnames, skipList)
-        surnameSet = ln.run()
-        for surname in surnameSet:
+        ln_dialog = LastNameDialog(self.__db, self.dialog.uistate, 
+                                   self.dialog.track, self.surnames, skip_list)
+        surname_set = ln_dialog.run()
+        for surname in surname_set:
             self.model.append([surname, '#ffffff'])
 
-    def delSurnameClicked(self, obj):
-        (path, column) = self.treeView.get_cursor()
+    def del_surname_clicked(self, obj):
+        """
+        Handle the the delete surname button.
+        """
+        (path, column) = self.tree_view.get_cursor()
         if (path):
-            iter = self.model.get_iter(path)
-            self.model.remove(iter)
+            i = self.model.get_iter(path)
+            self.model.remove(i)
 
 #-------------------------------------------------------------------------
 #
@@ -1020,7 +1076,7 @@ class Menu:
         # __categories holds the order of all categories
         self.__categories = []
     
-    def add_option(self,category,name,option):
+    def add_option(self, category, name, option):
         """
         Add an option to the menu.
         
@@ -1038,7 +1094,7 @@ class Menu:
         if not self.__options.has_key(category):
             self.__categories.append(category)
             self.__options[category] = []
-        self.__options[category].append((name,option))
+        self.__options[category].append((name, option))
         
     def get_categories(self):
         """
@@ -1048,24 +1104,24 @@ class Menu:
         """
         return self.__categories
     
-    def get_option_names(self,category):
+    def get_option_names(self, category):
         """
         Get a list of option names for the specified category.
         
         @return: a list of strings
         """
         names = []
-        for (name,option) in self.__options[category]:
+        for (name, option) in self.__options[category]:
             names.append(name)
         return names
     
-    def get_option(self,category,name):
+    def get_option(self, category, name):
         """
         Get an option with the specified category and name.
         
         @return: an Option instance or None on failure.
         """
-        for (oname,option) in self.__options[category]:
+        for (oname, option) in self.__options[category]:
             if oname == name:
                 return option
         return None
@@ -1078,18 +1134,18 @@ class Menu:
         """
         names = []
         for category in self.__options:
-            for (name,option) in self.__options[category]:
+            for (name, option) in self.__options[category]:
                 names.append(name)
         return names
     
-    def get_option_by_name(self,name):
+    def get_option_by_name(self, name):
         """
         Get an option with the specified name.
         
         @return: an Option instance or None on failure.
         """
         for category in self.__options.keys():
-            for (oname,option) in self.__options[category]:
+            for (oname, option) in self.__options[category]:
                 if oname == name:
                     return option
         return None
@@ -1100,22 +1156,32 @@ class Menu:
 #
 #------------------------------------------------------------------------
 class MenuOptions:
-    def __init__(self,dbstate):
+    """
+    Introduction
+    ============
+    A MenuOptions is used to implement the necessary funtions for adding
+    options to a dialog.
+    """
+    def __init__(self, dbstate):
         self.menu = Menu()
         
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}
         self.options_help = {}
-        self.add_menu_options(self.menu,dbstate)
+        self.tooltips = gtk.Tooltips()
+        self.add_menu_options(self.menu, dbstate)
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
             self.options_help[name] = option.get_help()
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
+        """
+        This function is currently required by some reports.
+        """
         pass
 
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu, dbstate):
         """
         Add the user defined options to the menu.
         
@@ -1125,8 +1191,11 @@ class MenuOptions:
         """
         raise NotImplementedError
     
-    def add_menu_option(self,category,name,option):
-        self.menu.add_option(category,name, option)
+    def add_menu_option(self, category, name, option):
+        """
+        Add a single option to the menu.
+        """
+        self.menu.add_option(category, name, option)
         self.options_dict[name] = option.get_value()
         self.options_help[name] = option.get_help()
 
@@ -1134,15 +1203,13 @@ class MenuOptions:
         """
         Generic method to add user options to the gui.
         """
-        import gtk
-        self.tooltips = gtk.Tooltips()
         for category in self.menu.get_categories():
             for name in self.menu.get_option_names(category):
-                option = self.menu.get_option(category,name)
+                option = self.menu.get_option(category, name)
                 # override option default with xml-saved value:
                 if name in self.options_dict:
                     option.set_value(self.options_dict[name])
-                option.make_gui_obj(gtk, dialog)
+                option.make_gui_obj(dialog)
                 option.add_dialog_category(dialog, category)
                 option.add_tooltip(self.tooltips)
 
@@ -1157,7 +1224,7 @@ class MenuOptions:
         """
         pass
 
-    def parse_user_options(self,dialog):
+    def parse_user_options(self, dialog):
         """
         Generic method to parse the user options and cache result in options_dict.
         """
