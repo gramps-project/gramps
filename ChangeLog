@@ -1,3 +1,7 @@
+
+2008-01-14 Peter Landgren <peter.talken@telia.com>
+        * _DateDisplay.py: ISO-date shows only year if month=0 and day=0
+
 2008-01-13 Jerome Rapinat <romjerome@yahoo.fr>
         * Makefile.am
         * configure.in: remove gramps.spec references
