@@ -1,10 +1,14 @@
+2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/SameSurnames.py (IncompleteSurname.apply): 
+	can bring up people with empty surname
+
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/FilterEditor/_ShowResults.py: allow notes to be filtered
     0001607: Unreferenced filter test
 
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
-	* src/plugins/ImportCSV.py (CSVParser.process): fixed csv import with no 
-	surname (bug #1603)
+	* src/plugins/ImportCSV.py (CSVParser.process): fixed csv import with 
+	no surname (bug #1603)
 
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py (TopSurnamesGramplet.main): make

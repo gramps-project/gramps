@@ -27,8 +27,20 @@ from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
+from Filters.Rules import Rule
 from Filters.Rules.Person import SearchName
 from Filters import GenericFilterFactory, Rules
+
+class IncompleteSurname(Rule):
+    """People with incomplete surnames"""
+    name        = _('People with incomplete surnames')
+    description = _("Matches people with lastname missing")
+    category    = _('General filters')
+    def apply(self,db,person):
+        for name in [person.get_primary_name()] + person.get_alternate_names():
+            if name.get_surname() == "":
+                return True
+        return False
 
 def run(database, document, person):
     """
@@ -46,7 +58,10 @@ def run(database, document, person):
     # grab our current id (self):
     gid = sdb.gid(person)
     filter = GenericFilterFactory('Person')()
-    rule = SearchName([person.get_primary_name().get_surname()])
+    if person.get_primary_name().get_surname() != '':
+        rule = SearchName([person.get_primary_name().get_surname()])
+    else:
+        rule = IncompleteSurname([])
     filter.add_rule(rule)
     people = filter.apply(database, 
                           database.get_person_handles(sort_handles=False))
