@@ -1,3 +1,7 @@
+2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/DefaultGramplets.py (TopSurnamesGramplet.main): make
+	clicking on data easier by clicking on entire line (bug #1594)
+
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/const.py.in: added constants for help pages
     * src/ViewManager.py: support for help pages called from menu
