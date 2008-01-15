@@ -425,13 +425,13 @@ class CSVParser:
                 # if this person already exists, don't create them
                 person = self.lookup("person", person_ref)
                 if person == None:
-                    if surname == None and firstname == "":
-                        print "Error: need both firstname and surname for new person on line %d" % line_number
-                        continue # need a name if it is a new person
+                    if surname == None:
+                        print "Warning: empty surname for new person on line %d" % line_number
+                        surname = ""
                     # new person
                     person = self.create_person(firstname, surname)
                     name = gen.lib.Name()
-                    name.set_type( gen.lib.NameType(gen.lib.NameType.BIRTH))
+                    name.set_type(gen.lib.NameType(gen.lib.NameType.BIRTH))
                     name.set_first_name(firstname)
                     name.set_surname(surname)
                     person.set_primary_name(name)

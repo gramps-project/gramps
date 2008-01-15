@@ -1,4 +1,8 @@
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/ImportCSV.py (CSVParser.process): fixed csv import with no 
+	surname (bug #1603)
+
+2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py (TopSurnamesGramplet.main): make
 	clicking on data easier by clicking on entire line (bug #1594)
 
