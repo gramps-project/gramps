@@ -1,3 +1,6 @@
+2008-01-15 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/GrampsDbUtils/_GrampsDbWriteXML.py: import gzip
+
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/SameSurnames.py (IncompleteSurname.apply): 
 	can bring up people with empty surname

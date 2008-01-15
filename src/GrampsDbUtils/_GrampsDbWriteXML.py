@@ -103,6 +103,11 @@ class GrampsDbXmlWriter(UpdateCallback):
         """
         UpdateCallback.__init__(self, callback)
         self.compress = compress
+        if self.compress:
+            try:
+                import gzip
+            except:
+                self.compress = False
         self.db = db
         self.strip_photos = strip_photos
         self.version = version
@@ -137,6 +142,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.fileroot = os.path.dirname(filename)
         try:
             if self.compress:
+                import gzip
                 try:
                     g = gzip.open(filename,"wb")
                 except:
@@ -161,6 +167,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         """
 
         if self.compress:
+            import gzip
             try:
                 g = gzip.GzipFile(mode="wb",fileobj=handle)
             except:
