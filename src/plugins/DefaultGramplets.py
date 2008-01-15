@@ -242,7 +242,11 @@ class TopSurnamesGramplet(Gramplet):
         ### All done!
         self.set_text("")
         for (count, surname) in surname_sort:
-            text = "%s, %d%% (%d)\n" %  (surname, int((float(count)/total) * 100), count)
+            if len(surname) == 0:
+                text = "(%s), %d%% (%d)\n" %  (_("blank"), # as in empty, left blank
+                                               int((float(count)/total) * 100), count)
+            else:
+                text = "%s, %d%% (%d)\n" %  (surname, int((float(count)/total) * 100), count)
             self.append_text(" %d. " % (line + 1))
             self.link(text, 'Surname', representative_handle[surname])
             line += 1
