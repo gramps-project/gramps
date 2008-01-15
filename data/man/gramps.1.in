@@ -236,7 +236,7 @@ under \fB~/.gramps/import\fR directory.
 
 .LP
 The error encountered during import, export, or action, will be either 
-dumped to \fIstdout\fR (if these are exceptions handled by gramps) or or 
+dumped to \fIstdout\fR (if these are exceptions handled by gramps) or 
 to \fIstderr\fR (if these are not handled). Use usual shell redirections 
 of \fIstdout\fR and \fIstderr\fR to save messages and errors in files. 
 
