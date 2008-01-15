@@ -58,6 +58,7 @@ pkgdata_PYTHON = \
 	ReadPkg.py\
 	Rebuild.py\
 	RebuildRefMap.py\
+        References.py\
 	RelCalc.py\
 	rel_cs.py\
 	rel_da.py\

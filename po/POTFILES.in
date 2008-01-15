@@ -293,6 +293,7 @@ src/plugins/OwnerEditor.py
 src/plugins/PatchNames.py
 src/plugins/ReadPkg.py
 src/plugins/Rebuild.py
+src/plugins/References.py
 src/plugins/RelCalc.py
 src/plugins/rel_da.py
 src/plugins/rel_de.py
