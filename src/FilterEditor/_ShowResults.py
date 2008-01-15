@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2000-2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -131,6 +131,10 @@ class ShowResults(ManagedWindow.ManagedWindow):
             repo = self.db.get_repository_from_handle(handle)
             name = repo.get_name()
             gid = repo.get_gramps_id()
+        elif self.space == 'Note':
+            note = self.db.get_note_from_handle(handle)
+            name = note.get()
+            gid = note.get_gramps_id()
         return (name,gid)
         
     def sort_val_from_handle(self, handle):
@@ -155,5 +159,8 @@ class ShowResults(ManagedWindow.ManagedWindow):
             sortname = locale.strxfrm(name)
         elif self.space == 'Repository':
             name = self.db.get_repository_from_handle(handle).get_name()
+            sortname = locale.strxfrm(name)
+        elif self.space == 'Note':
+            name = self.db.get_note_from_handle(handle).get()
             sortname = locale.strxfrm(name)
         return (sortname,handle)
