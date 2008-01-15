@@ -38,15 +38,13 @@ on using these factories see the _GrampsDbUtilsFactories.py file comments.
 __version__ = "$Revision$"
 
 from _GrampsDbWRFactories import \
-     gramps_db_writer_factory, \
      gramps_db_reader_factory
      
 
 from _GedcomParse import GedcomParser
 from _WriteGedcom import GedcomWriter
 
-from _GrampsDbWriteXML import GrampsDbXmlWriter, \
-    exportData, quick_write
+from _GrampsDbWriteXML import GrampsDbXmlWriter
 from _WriteXML import XmlWriter
 
 import _Backup as Backup

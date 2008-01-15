@@ -430,13 +430,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             # Lock page, show progress bar
             self.pre_save(page)
             # save
-            self.save()
+            success = self.save()
             # Unlock page
             self.post_save()
             
             #update the label and title
-            success = True
-            if success:
+            if success is None or success:
                 conclusion_title =  _('Your data has been saved')
                 conclusion_text = _(
                 'The copy of your data has been '
@@ -449,7 +448,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 #add test, what is dir
                 conclusion_text += '\n\n' + 'Filename: %s' %self.chooser.get_filename()
             else:
-                conclusion_title =  _('Saving failed'),
+                conclusion_title =  _('Saving failed')
                 conclusion_text = _(
                 'There was an error while saving your data. '
                 'You may try starting the export again.\n\n'

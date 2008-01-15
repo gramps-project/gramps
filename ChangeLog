@@ -7,6 +7,14 @@
     but failed. How do I create man/sv in the svn repository?
 
 2008-01-15  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/gen/db/exceptions.py: wrong exception def, bug #1593
+	* src/GrampsDbUtils/_WriteXML.py: correctly catch the exception
+	* src/GrampsDbUtils/_GrampsDbWriteXML.py: remove double def of xml export
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py: remove write backend factory
+	* src/ExportAssistant.py: on fail, do not set success = True
+	* src/GrampsDbUtils/__init__.py: don't export unused stuff
+
+2008-01-15  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ArgHandler.py: on autoload, do some extra checks first.
 
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>

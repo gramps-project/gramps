@@ -30,6 +30,8 @@ GRAMPS' XML file format.
 # load standard python libraries
 #
 #-------------------------------------------------------------------------
+import shutil
+import os
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -43,6 +45,19 @@ from QuestionDialog import ErrorDialog
 import GrampsDbUtils
 import ExportOptions
 from gen.db.exceptions import GrampsDbWriteFailure
+import gen.proxy
+
+#-------------------------------------------------------------------------
+#
+# Attempt to load the GZIP library. Some version of python do not seem
+# to be compiled with this available.
+#
+#-------------------------------------------------------------------------
+try:
+    import gzip
+    _gzip_ok = 1
+except:
+    _gzip_ok = 0
 
 #-------------------------------------------------------------------------
 #
@@ -53,8 +68,32 @@ def export_data(database, filename, person, option_box, callback=None):
     """
     Calls the XML writer with the syntax expected by the export plugin
     """
-    return GrampsDbUtils.exportData(database, filename, person, option_box, 
-                               callback, const.VERSION)
+    if os.path.isfile(filename):
+        try:
+            shutil.copyfile(filename, filename + ".bak")
+            shutil.copystat(filename, filename + ".bak")
+        except:
+            pass
+
+    compress = _gzip_ok == 1
+
+    option_box.parse_options()
+
+    restrict = option_box.restrict
+    private = option_box.private
+
+    if private:
+        database = gen.proxy.PrivateProxyDb(database)
+
+    if restrict:
+        database = gen.proxy.LivingProxyDb(
+            database, gen.proxy.LivingProxyDb.MODE_RESTRICT)
+
+    if not option_box.cfilter.is_empty():
+        database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
+
+    g = XmlWriter(database, callback, 0, compress)
+    return g.write(filename)
 
 #-------------------------------------------------------------------------
 #
@@ -74,10 +113,12 @@ class XmlWriter(GrampsDbUtils.GrampsDbXmlWriter):
         """
         Write the database to the specified file.
         """
+        ret = 0 #False
         try:
             ret = GrampsDbUtils.GrampsDbXmlWriter.write(self, filename)
-        except GrampsDbWriteFailure, val:
-            ErrorDialog(val[0], val[1])
+        except GrampsDbWriteFailure, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1, m2)
         return ret
     
 #-------------------------------------------------------------------------

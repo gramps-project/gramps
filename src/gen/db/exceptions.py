@@ -26,21 +26,26 @@
 class GrampsDbException(Exception):
     
     def __init__(self, value):
+        Exception.__init__(self)
         self.value = value
         
     def __str__(self):
-        return repr(self.value)
+        return self.value
 
 class GrampsDbWriteFailure(Exception):
     """
     Error used to indicate that a write to a database has failed.
     """
-    
-    def __int__(self, value):
+    def __init__(self, value, value2=""):
+        Exception.__init__(self)
         self.value = value
+        self.value2 = value2
         
     def __str__(self):
-        return repr(self.value)
+        return self.value
+    
+    def messages(self):
+        return self.value, self.value2
     
 class FileVersionError(Exception):
     """

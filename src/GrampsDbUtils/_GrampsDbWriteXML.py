@@ -23,6 +23,8 @@
 """
 Contains the interface to allow a database to get written using
 GRAMPS' XML file format.
+This module contains all that is needed for xml write, however it does not
+provide the export plugin functionality. That is provided in _WriteXML.py
 """
 
 #-------------------------------------------------------------------------
@@ -31,7 +33,6 @@ GRAMPS' XML file format.
 #
 #-------------------------------------------------------------------------
 import time
-import shutil
 import os
 import codecs
 from xml.sax.saxutils import escape
@@ -61,62 +62,13 @@ from BasicUtils import UpdateCallback
 from gen.db.exceptions import GrampsDbWriteFailure
 #from gen.utils.longop import LongOpStatus
 
-import gen.proxy
-
-#-------------------------------------------------------------------------
-#
-# Attempt to load the GZIP library. Some version of python do not seem
-# to be compiled with this available.
-#
-#-------------------------------------------------------------------------
-try:
-    import gzip
-    _gzip_ok = 1
-except:
-    _gzip_ok = 0
-
-
 _xml_version = "1.2.0"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(9)+range(12,20))
 
-
 def escxml(d):
     return escape(d, { '"' : '&quot;' } )
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def exportData(database, filename, person, option_box, callback, version="unknown"):
-    if os.path.isfile(filename):
-        try:
-            shutil.copyfile(filename, filename + ".bak")
-            shutil.copystat(filename, filename + ".bak")
-        except:
-            pass
-
-    compress = _gzip_ok == 1
-
-    option_box.parse_options()
-
-    restrict = option_box.restrict
-    private = option_box.private
-
-    if private:
-        database = gen.proxy.PrivateProxyDb(database)
-
-    if restrict:
-        database = gen.proxy.LivingProxyDb(
-            database, gen.proxy.LivingProxyDb.MODE_RESTRICT)
-
-    if not option_box.cfilter.is_empty():
-        database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
-
-    g = GrampsDbXmlWriter(database, 0, compress, version, callback)
-    return g.write(filename)
 
 #-------------------------------------------------------------------------
 #
@@ -164,8 +116,8 @@ class GrampsDbXmlWriter(UpdateCallback):
         base = os.path.dirname(filename)
         if os.path.isdir(base):
             if not os.access(base,os.W_OK) or not os.access(base,os.R_OK):
-                raise GrampsDbWriteFailure,\
-                        (_('Failure writing %s') % filename,
+                raise GrampsDbWriteFailure(
+                         _('Failure writing %s') % filename,
                          _("The database cannot be saved because you do "
                            "not have permission to write to the directory. "
                            "Please make sure you have write access to the "
@@ -174,9 +126,9 @@ class GrampsDbXmlWriter(UpdateCallback):
             
         if os.path.exists(filename):
             if not os.access(filename,os.W_OK):
-                raise GrampsDbWriteFailure, \
-                        (_('Failure writing %s') % filename,
-                         _("The database cannot be saved because you do "
+                raise GrampsDbWriteFailure(
+                        _('Failure writing %s') % filename,
+                        _("The database cannot be saved because you do "
                            "not have permission to write to the file. "
                            "Please make sure you have write access to the "
                            "file and try again."))
@@ -193,7 +145,8 @@ class GrampsDbXmlWriter(UpdateCallback):
                 g = open(filename,"w")
         except IOError,msg:
             print str(msg)
-            raise GrampsDbWriteFailure((_('Failure writing %s') % filename,str(msg)))
+            raise GrampsDbWriteFailure((_('Failure writing %s') % filename,
+                                       str(msg)))
             return 0
 
         self.g = codecs.getwriter("utf8")(g)
@@ -1151,12 +1104,5 @@ def conf_priv(obj):
 #
 #
 #-------------------------------------------------------------------------
-_title = _('GRAMPS _XML database')
-_description = _('The GRAMPS XML database is a format used by older '
-                'versions of GRAMPS. It is read-write compatible with '
-                'the present GRAMPS database format.')
-_config = None
-_filename = 'gramps'
 
-from PluginUtils import register_export
-register_export(exportData,_title,_description,_config,_filename)
+# Don't export a writer for plugins, that is the task of _WriteXML.py
