@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Martin Hawlisch
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2006, 2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ log = logging.getLogger(".ExportVCal")
 #
 #-------------------------------------------------------------------------
 from Filters import GenericFilter, Rules, build_filter_menu
-import const
+#import const
 import Utils
 from gen.lib import Date, EventType
 import Errors
@@ -70,7 +70,7 @@ class CalendarWriterOptionBox:
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
     """
-    def __init__(self,person):
+    def __init__(self, person):
         self.person = person
 
     def get_option_box(self):
@@ -79,7 +79,7 @@ class CalendarWriterOptionBox:
         if not os.path.isfile(glade_file):
             glade_file = "plugins/vcalendarexport.glade"
 
-        self.topDialog = gtk.glade.XML(glade_file,"calendarExport","gramps")
+        self.topDialog = gtk.glade.XML(glade_file, "calendarExport", "gramps")
 
         filter_obj = self.topDialog.get_widget("filter")
         self.copy = 0
@@ -109,7 +109,7 @@ class CalendarWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
             
-            the_filters += [all,des,ans,com]
+            the_filters += [all, des, ans, com]
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
@@ -127,8 +127,8 @@ class CalendarWriterOptionBox:
 
 
 class CalendarWriter:
-    def __init__(self,database,person,cl=0,filename="",
-                 option_box=None,callback=None):
+    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+                 callback=None):
         self.db = database
         self.person = person
         self.option_box = option_box
@@ -160,8 +160,8 @@ class CalendarWriter:
                     for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
-                    (m1,m2) = msg.messages()
-                    ErrorDialog(m1,m2)
+                    (m1, m2) = msg.messages()
+                    ErrorDialog(m1, m2)
                     return
 
             self.flist = {}
@@ -191,21 +191,21 @@ class CalendarWriter:
             for family_handle in p.get_family_handle_list():
                 self.flist[family_handle] = 1
 
-    def writeln(self,text):
+    def writeln(self, text):
         self.g.write('%s\n' % (text.encode('iso-8859-1')))
 
-    def export_data(self,filename):
+    def export_data(self, filename):
 
         self.dirname = os.path.dirname (filename)
         try:
             self.g = open(filename,"w")
         except IOError,msg:
             msg2 = _("Could not create %s") % filename
-            ErrorDialog(msg2,str(msg))
-            return 0
+            ErrorDialog(msg2, str(msg))
+            return False
         except:
             ErrorDialog(_("Could not create %s") % filename)
-            return 0
+            return False
 
         self.writeln("BEGIN:VCALENDAR");
         self.writeln("PRODID:-//GNU//Gramps//EN");
@@ -226,9 +226,9 @@ class CalendarWriter:
         self.writeln("END:VCALENDAR");
         
         self.g.close()
-        return 1
+        return True
     
-    def write_family(self,family_handle):
+    def write_family(self, family_handle):
         family = self.db.get_family_from_handle(family_handle)
         if family:
             for event_ref in family.get_event_ref_list():
@@ -236,7 +236,8 @@ class CalendarWriter:
                 if event.get_type() == EventType.MARRIAGE:
                     m_date = event.get_date_object()
                     place_handle = event.get_place_handle()
-                    text = _("Marriage of %s") % Utils.family_name(family,self.db)
+                    text = _("Marriage of %s") % Utils.family_name(family, 
+                                                                   self.db)
                     if place_handle:
                         place = self.db.get_place_from_handle(place_handle)
                         self.write_vevent( text, m_date, place.get_title())
@@ -271,9 +272,9 @@ class CalendarWriter:
                         self.write_vevent(_("Death of %s") % person.get_primary_name().get_name(), d_date)
 
     
-    def format_single_date(self,subdate,thisyear,cal):
+    def format_single_date(self, subdate, thisyear, cal):
         retval = ""
-        (day,month,year,sl) = subdate
+        (day, month, year, sl) = subdate
 
         if thisyear:
             year = localtime().tm_year
@@ -288,7 +289,7 @@ class CalendarWriter:
         return retval
 
     
-    def format_date(self,date,thisyear=0):
+    def format_date(self, date, thisyear=0):
         retval = ""
         if date.get_modifier() == Date.MOD_TEXTONLY:
             return ""
@@ -296,14 +297,19 @@ class CalendarWriter:
             mod = date.get_modifier()
             cal = cal = date.get_calendar()
             if mod == Date.MOD_SPAN or mod == Date.MOD_RANGE:
-                start = self.format_single_date(date.get_start_date(),thisyear,cal)
-                end = self.format_single_date(date.get_stop_date(),thisyear,cal)
+                start = self.format_single_date(date.get_start_date(), 
+                                                thisyear, cal)
+                end = self.format_single_date(date.get_stop_date(), 
+                                              thisyear, cal)
                 if start and end:
-                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start,end)
+                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start, 
+                                                                     end)
             elif mod == Date.MOD_NONE:
-                start = self.format_single_date(date.get_start_date(),thisyear,cal)
+                start = self.format_single_date(date.get_start_date(), 
+                                                thisyear, cal)
                 if start:
-                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start,start)
+                    retval = "DTSTART:%sT000001\nDTEND:%sT235959" % (start, 
+                                                                     start)
         return retval
 
     def write_vevent(self, event_text, date, location=""):
@@ -317,7 +323,7 @@ class CalendarWriter:
             self.writeln(date_string)
             self.writeln("END:VEVENT");
 
-            date_string = self.format_date(date,1)
+            date_string = self.format_date(date, 1)
             self.writeln("");
             self.writeln("BEGIN:VEVENT");
             self.writeln("SUMMARY:"+_("Anniversary: %s") % event_text);
@@ -332,11 +338,9 @@ class CalendarWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person,option_box,callback=None):
-    ret = 0
-    cw = CalendarWriter(database,person,0,filename,option_box,callback)
-    ret = cw.export_data(filename)
-    return ret
+def exportData(database, filename, person, option_box, callback=None):
+    cw = CalendarWriter(database, person, 0, filename, option_box, callback)
+    return cw.export_data(filename)
 
 #-------------------------------------------------------------------------
 #
@@ -345,7 +349,7 @@ def exportData(database,filename,person,option_box,callback=None):
 #-------------------------------------------------------------------------
 _title = _('vCalendar')
 _description = _('vCalendar is used in many calendaring and pim applications.')
-_config = (_('vCalendar export options'),CalendarWriterOptionBox)
+_config = (_('vCalendar export options'), CalendarWriterOptionBox)
 _filename = 'vcs'
 
-register_export(exportData,_title,_description,_config,_filename)
+register_export(exportData, _title, _description, _config, _filename)

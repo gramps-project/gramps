@@ -322,7 +322,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
         self.__writeln(0, "TRLR")
         self.gedcom_file.close()
-        return 1
+        return True
 
     def __writeln(self, level, token, textlines="", limit=72):
         """
@@ -1378,7 +1378,7 @@ def export_data(database, filename, person, option_box, callback=None):
     """
     External interface used to register with the plugin system.
     """
-    ret = 0
+    ret = False
     try:
         ged_write = GedcomWriter(database, person, 0,  
                                  option_box, callback)

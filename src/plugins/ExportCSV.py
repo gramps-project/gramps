@@ -69,10 +69,8 @@ import DateHandler
 #
 #-------------------------------------------------------------------------
 def exportData(database,filename,person,option_box,callback=None):
-    ret = 0
     gw = CSVWriter(database,person,0,filename,option_box,callback)
-    ret = gw.export_data()
-    return ret
+    return gw.export_data()
 
 #-------------------------------------------------------------------------
 #
@@ -333,10 +331,10 @@ class CSVWriter:
         except IOError,msg:
             msg2 = _("Could not create %s") % self.filename
             ErrorDialog(msg2,str(msg))
-            return 0
+            return False
         except:
             ErrorDialog(_("Could not create %s") % self.filename)
-            return 0
+            return False
         ######################### initialize progress bar
         self.count = 0
         self.total = 0
@@ -490,7 +488,7 @@ class CSVWriter:
                 self.update()
             self.writeln()
         self.g.close()
-        return 1
+        return True 
     
     def format_date(self, date):
         return DateHandler.get_date(date)

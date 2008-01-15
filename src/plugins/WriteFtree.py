@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2003-2006, 2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,18 +63,16 @@ from PluginUtils import register_export
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,filename,person,option_box,callback=None):
-    ret = 0
-    writer = FtreeWriter(database,person,0,filename,option_box,callback)
-    ret = writer.export_data()
-    return ret
+def writeData(database, filename, person, option_box, callback=None):
+    writer = FtreeWriter(database, person, 0, filename, option_box, callback)
+    return writer.export_data()
     
 class FtreeWriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
     """
-    def __init__(self,person):
+    def __init__(self, person):
         self.person = person
 
     def get_option_box(self):
@@ -82,7 +80,7 @@ class FtreeWriterOptionBox:
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"writeftree.glade")
         
-        self.top = gtk.glade.XML(glade_file,"top","gramps")
+        self.top = gtk.glade.XML(glade_file, "top", "gramps")
 
         filter_obj = self.top.get_widget("filter")
 
@@ -111,7 +109,7 @@ class FtreeWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
         
-            the_filters += [all,des,ans,com]
+            the_filters += [all, des, ans, com]
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
@@ -135,8 +133,8 @@ class FtreeWriterOptionBox:
 #-------------------------------------------------------------------------
 class FtreeWriter:
 
-    def __init__(self,database,person,cl=0,filename="",
-                 option_box=None,callback = None):
+    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+                 callback = None):
         self.db = database
         self.person = person
         self.option_box = option_box
@@ -164,8 +162,8 @@ class FtreeWriter:
                     for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
-                    (m1,m2) = msg.messages()
-                    ErrorDialog(m1,m2)
+                    (m1, m2) = msg.messages()
+                    ErrorDialog(m1, m2)
                     return
 
     def update_empty(self):
@@ -197,7 +195,7 @@ class FtreeWriter:
             sn = pn.get_surname()
             items = pn.get_first_name().split()
             if len(items) > 0:
-                n = "%s %s" % (items[0],sn)
+                n = "%s %s" % (items[0], sn)
             else:
                 n = sn
 
@@ -205,7 +203,7 @@ class FtreeWriter:
             if name_map.has_key(n):
                 count = 0
                 while 1:
-                    nn = "%s%d" % (n,count)
+                    nn = "%s%d" % (n, count)
                     if not name_map.has_key(nn):
                         break;
                     count += 1
@@ -214,7 +212,7 @@ class FtreeWriter:
             else:
                 name_map[n] = key
                 id_map[key] = n
-            id_name[key] = get_name(pn,count)
+            id_name[key] = get_name(pn, count)
 
         f = open(self.filename,"w")
 
@@ -252,13 +250,13 @@ class FtreeWriter:
                 death = None
 
             if self.restrict:
-                alive = Utils.probably_alive(p,self.db)
+                alive = Utils.probably_alive(p, self.db)
             else:
                 alive = 0
                 
             if birth and not alive:
                 if death and not alive :
-                    dates = "%s-%s" % (fdate(birth),fdate(death))
+                    dates = "%s-%s" % (fdate(birth), fdate(death))
                 else:
                     dates = fdate(birth)
             else:
@@ -267,24 +265,26 @@ class FtreeWriter:
                 else:
                     dates = ""
                         
-            f.write('%s;%s;%s;%s;%s;%s\n' % (name,father,mother,email,web,dates))
+            f.write('%s;%s;%s;%s;%s;%s\n' % (name, father, mother, email, web, 
+                                             dates))
             
         f.close()
-        return 1
+        return True
 
 def fdate(val):
     if val.get_year_valid():
         if val.get_month_valid():
             if val.get_day_valid():
-                return "%d/%d/%d" % (val.get_day(),val.get_month(),val.get_year())
+                return "%d/%d/%d" % (val.get_day(), val.get_month(), 
+                                     val.get_year())
             else:
-                return "%d/%d" % (val.get_month(),val.get_year())
+                return "%d/%d" % (val.get_month(), val.get_year())
         else:
             return "%d" % val.get_year()
     else:
         return ""
 
-def get_name(name,count):
+def get_name(name, count):
     """returns a name string built from the components of the Name
     instance, in the form of Firstname Surname"""
     if count == -1:
@@ -310,7 +310,7 @@ def get_name(name,count):
 #-------------------------------------------------------------------------
 _title = _('_Web Family Tree')
 _description = _('Web Family Tree format.')
-_config = (_('Web Family Tree export options'),FtreeWriterOptionBox)
+_config = (_('Web Family Tree export options'), FtreeWriterOptionBox)
 _filename = 'wft'
 
-register_export(writeData,_title,_description,_config,_filename)
+register_export(writeData, _title, _description, _config,_filename)

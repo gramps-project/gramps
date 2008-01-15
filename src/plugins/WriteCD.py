@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2000-2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-from cStringIO import StringIO
+#from cStringIO import StringIO
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -67,8 +67,8 @@ except:
 #
 #-------------------------------------------------------------------------
 from GrampsDbUtils import XmlWriter
-import Mime
-import const
+#import Mime
+#import const
 import QuestionDialog
 from PluginUtils import register_export
 
@@ -80,9 +80,8 @@ _title_string = _("Export to CD")
 #
 #-------------------------------------------------------------------------
 def writeData(database, filename, person, option_box=None, callback=None):
-    ret = 0
     writer = PackageWriter(database, filename, callback)
-    writer.export()
+    return writer.export()
     
 #-------------------------------------------------------------------------
 #
@@ -99,9 +98,9 @@ class PackageWriter:
 
     def export(self):
         if self.cl:
-            self.cl_run()
+            return self.cl_run()
         else:
-            self.gui_run()
+            return self.gui_run()
 
     def cl_run(self):
         base = os.path.basename(self.filename)
@@ -112,12 +111,12 @@ class PackageWriter:
         except FileExistsError, msg:
             QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        "1 %s " % str(msg))
-            return
+            return False
         except:
             uri_name = "burn:///" + base
             QuestionDialog.ErrorDialog("CD export preparation failed", 
                                        'Could not create %s' % uri_name)
-            return
+            return False
 
         for obj_id in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(obj_id)
@@ -134,6 +133,7 @@ class PackageWriter:
         gfile = XmlWriter(self.db, None, 2)
         gfile.write_handle(g)
         g.close()
+        return True
 
     def gui_run(self):
         missmedia_action = 0
@@ -146,12 +146,12 @@ class PackageWriter:
         except FileExistsError:
             QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        "File already exists")
-            return
+            return False
         except:
             uri_name = "burn:///" + base
             QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        _('Could not create %s') % uri_name)
-            return
+            return False
 
         try:
             uri = URI('burn:///%s/.thumb' % base)
@@ -159,12 +159,12 @@ class PackageWriter:
         except FileExistsError, msg:
             QuestionDialog.ErrorDialog("CD export preparation failed", 
                                        "4 %s " % str(msg))
-            return
+            return False
         except:
             uri_name = "burn:///" + base + "/.thumb"
             QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
                                        _('Could not create %s') % uri_name)
-            return
+            return False
 
         #--------------------------------------------------------
         def remove_clicked():
@@ -272,7 +272,7 @@ class PackageWriter:
         gfile.write_handle(g)
         g.close()
         os.system("nautilus --no-desktop burn:///")
-        return 1
+        return True
 
     def copy_file(self, src, dest):
         original = open(src, "r")

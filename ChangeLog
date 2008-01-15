@@ -1,3 +1,16 @@
+2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/GrampsDbUtils/_GrampsDbWriteXML.py
+    * src/GrampsDbUtils/_WriteGedcom.py
+    * src/plugins/ExportCSV.py
+    * src/plugins/ExportVCalendar.py
+    * src/plugins/ExportVCard.py
+    * src/plugins/WriteCD.py
+    * src/plugins/WriteFtree.py
+    * src/plugins/WriteGeneWeb.py
+    * src/plugins/WritePkg.py
+    * src/PluginUtils/_PluginMgr.py: pylint fixes
+    pylint fixes and work on 0001597 
+    
 2008-01-14  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DbLoader.py: typo
 	* src/plugins/ImportCSV.py: register text/csv as another mime type for csv

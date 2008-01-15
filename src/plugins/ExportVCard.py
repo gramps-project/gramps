@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Martin Hawlisch
-# Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2005-2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ class CardWriterOptionBox:
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
     """
-    def __init__(self,person):
+    def __init__(self, person):
         self.person = person
 
     def get_option_box(self):
@@ -105,7 +105,7 @@ class CardWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
 
-            the_filters += [all,des,ans,com]
+            the_filters += [all, des, ans, com]
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
@@ -122,8 +122,8 @@ class CardWriterOptionBox:
         self.cfilter = self.filter_menu.get_active().get_data("filter")
 
 class CardWriter:
-    def __init__(self,database,person,cl=0,filename="",
-                 option_box=None,callback=None):
+    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+                 callback=None):
         self.db = database
         self.person = person
         self.option_box = option_box
@@ -147,11 +147,12 @@ class CardWriter:
                     self.plist[p] = 1
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
+                    for p in self.option_box.cfilter.apply(self.db, 
+                               self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
-                    (m1,m2) = msg.messages()
-                    ErrorDialog(m1,m2)
+                    (m1, m2) = msg.messages()
+                    ErrorDialog(m1, m2)
                     return
 
     def update_empty(self):
@@ -168,21 +169,21 @@ class CardWriter:
         for p in self.db.get_person_handles(sort_handles=False):
             self.plist[p] = 1
 
-    def writeln(self,text):
+    def writeln(self, text):
         self.g.write('%s\n' % (text.encode('iso-8859-1')))
 
-    def export_data(self,filename):
+    def export_data(self, filename):
 
         self.dirname = os.path.dirname (filename)
         try:
             self.g = open(filename,"w")
         except IOError,msg:
             msg2 = _("Could not create %s") % filename
-            ErrorDialog(msg2,str(msg))
-            return 0
+            ErrorDialog(msg2, str(msg))
+            return False
         except:
             ErrorDialog(_("Could not create %s") % filename)
-            return 0
+            return False
 
         self.count = 0
         self.oldval = 0
@@ -192,7 +193,7 @@ class CardWriter:
             self.update()
 
         self.g.close()
-        return 1   
+        return True   
                     
     def write_person(self, person_handle):
         person = self.db.get_person_from_handle(person_handle)
@@ -215,9 +216,10 @@ class CardWriter:
                         not b_date.is_empty() and 
                         not mod == Date.MOD_SPAN and 
                         not mod == Date.MOD_RANGE):
-                        (day,month,year,sl) = b_date.get_start_date()
+                        (day, month, year, sl) = b_date.get_start_date()
                         if day > 0 and month > 0 and year > 0:
-                            self.writeln("BDAY:%s-%02d-%02d" % (year,month,day))
+                            self.writeln("BDAY:%s-%02d-%02d" % (year, month, 
+                                                                day))
 
             address_list = person.get_address_list()
             for address in address_list:
@@ -229,7 +231,10 @@ class CardWriter:
                 zip = address.get_postal_code()
                 country = address.get_country()
                 if street or city or state or zip or country:
-                    self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % (postbox,ext,street,city,state,zip,country))
+                    self.writeln("ADR:%s;%s;%s;%s;%s;%s;%s" % (postbox, ext, 
+                                                               street, city, 
+                                                               state, zip, 
+                                                               country))
                 
                 phone = address.get_phone()
                 if phone:
@@ -249,11 +254,9 @@ class CardWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person,option_box,callback=None):
-    ret = 0
-    cw = CardWriter(database,person,0,filename,option_box,callback)
-    ret = cw.export_data(filename)
-    return ret
+def exportData(database, filename, person, option_box, callback=None):
+    cw = CardWriter(database, person, 0, filename, option_box, callback)
+    return cw.export_data(filename)
 
 #-------------------------------------------------------------------------
 #
@@ -262,7 +265,7 @@ def exportData(database,filename,person,option_box,callback=None):
 #-------------------------------------------------------------------------
 _title = _('vCard')
 _description = _('vCard is used in many addressbook and pim applications.')
-_config = (_('vCard export options'),CardWriterOptionBox)
+_config = (_('vCard export options'), CardWriterOptionBox)
 _filename = 'vcf'
 
-register_export(exportData,_title,_description,_config,_filename)
+register_export(exportData, _title, _description, _config, _filename)

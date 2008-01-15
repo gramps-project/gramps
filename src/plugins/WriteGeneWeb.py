@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Martin Hawlisch
-# Copyright (C) 2004-2006 Donald N. Allingham
+# Copyright (C) 2004-2006, 2008 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ log = logging.getLogger(".WriteGeneWeb")
 #-------------------------------------------------------------------------
 import gen.lib
 from Filters import GenericFilter, Rules, build_filter_menu
-import const
+#import const
 import Utils
 import Errors
 from QuestionDialog import ErrorDialog
@@ -69,7 +69,7 @@ class GeneWebWriterOptionBox:
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
     """
-    def __init__(self,person):
+    def __init__(self, person):
         self.person = person
 
     def get_option_box(self):
@@ -80,7 +80,7 @@ class GeneWebWriterOptionBox:
         if not os.path.isfile(glade_file):
             glade_file = "plugins/genewebexport.glade"
 
-        self.topDialog = gtk.glade.XML(glade_file,"genewebExport","gramps")
+        self.topDialog = gtk.glade.XML(glade_file, "genewebExport", "gramps")
         self.topDialog.signal_autoconnect({
                 "on_restrict_toggled": self.on_restrict_toggled
                 })
@@ -113,7 +113,7 @@ class GeneWebWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
 
-            the_filters += [all,des,ans,com]
+            the_filters += [all, des, ans, com]
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
@@ -126,7 +126,7 @@ class GeneWebWriterOptionBox:
         self.topDialog.get_widget("genewebExport").destroy()
         return the_box
 
-    def on_restrict_toggled(self,restrict):
+    def on_restrict_toggled(self, restrict):
         active = restrict.get_active ()
         map (lambda x: x.set_sensitive (active),
              [self.topDialog.get_widget("living"),
@@ -153,8 +153,8 @@ class GeneWebWriterOptionBox:
             self.images_path = ""
 
 class GeneWebWriter:
-    def __init__(self,database,person,cl=0,filename="",
-                 option_box=None,callback=None):
+    def __init__(self, database, person, cl=0, filename="", option_box=None, 
+                 callback=None):
         self.db = database
         self.person = person
         self.option_box = option_box
@@ -195,8 +195,8 @@ class GeneWebWriter:
                     for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
-                    (m1,m2) = msg.messages()
-                    ErrorDialog(m1,m2)
+                    (m1, m2) = msg.messages()
+                    ErrorDialog(m1, m2)
                     return
 
             self.flist = {}
@@ -244,25 +244,25 @@ class GeneWebWriter:
             for family_handle in p.get_family_handle_list():
                 self.flist[family_handle] = 1
 
-    def writeln(self,text):
+    def writeln(self, text):
         self.g.write(self.iso8859('%s\n' % (text)))
 
     def export_data(self):
 
         self.dirname = os.path.dirname (self.filename)
         try:
-            self.g = open(self.filename,"w")
+            self.g = open(self.filename, "w")
         except IOError,msg:
             msg2 = _("Could not create %s") % self.filename
-            ErrorDialog(msg2,str(msg))
-            return 0
+            ErrorDialog(msg2, str(msg))
+            return False
         except:
             ErrorDialog(_("Could not create %s") % self.filename)
-            return 0
+            return False
 
         if len(self.flist) < 1:
             ErrorDialog(_("No families matched by selected filter"))
-            return 0
+            return False
         
         self.count = 0
         self.oldval = 0
@@ -272,9 +272,9 @@ class GeneWebWriter:
             self.writeln("")
         
         self.g.close()
-        return 1
+        return True
     
-    def write_family(self,family_handle):
+    def write_family(self, family_handle):
         family = self.db.get_family_from_handle(family_handle)
         if family:
             self.update()
@@ -303,7 +303,7 @@ class GeneWebWriter:
                             note = note.replace('\r',' ')
                             self.writeln("comm %s" % note)
                     
-    def write_witness(self,family):
+    def write_witness(self, family):
         # FIXME: witnesses are not in events anymore
         return
         
@@ -570,9 +570,9 @@ class GeneWebWriter:
                         ret = ret + source.get_title()
         return ret
     
-    def format_single_date(self,subdate,cal,mode):
+    def format_single_date(self, subdate, cal, mode):
         retval = ""
-        (day,month,year,sl) = subdate
+        (day, month, year, sl) = subdate
         
         cal_type = ""
         if cal == gen.lib.Date.CAL_HEBREW:
@@ -625,10 +625,8 @@ class GeneWebWriter:
 #
 #-------------------------------------------------------------------------
 def exportData(database,filename,person,option_box,callback=None):
-    ret = 0
     gw = GeneWebWriter(database,person,0,filename,option_box,callback)
-    ret = gw.export_data()
-    return ret
+    return gw.export_data()
 
 #-------------------------------------------------------------------------
 #
@@ -637,7 +635,7 @@ def exportData(database,filename,person,option_box,callback=None):
 #-------------------------------------------------------------------------
 _title = _('G_eneWeb')
 _description = _('GeneWeb is a web based genealogy program.')
-_config = (_('GeneWeb export options'),GeneWebWriterOptionBox)
+_config = (_('GeneWeb export options'), GeneWebWriterOptionBox)
 _filename = 'gw'
 
-register_export(exportData,_title,_description,_config,_filename)
+register_export(exportData, _title, _description, _config, _filename)

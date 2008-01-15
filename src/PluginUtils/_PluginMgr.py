@@ -137,27 +137,27 @@ def load_plugins(direct):
 # Plugin registering
 #
 #-------------------------------------------------------------------------
-def register_export(exportData,title,description='',config=None,filename=''):
+def register_export(exportData, title, description='', config=None, filename=''):
     """
     Register an export filter, taking the task, file filter, 
     and the list of patterns for the filename matching.
     """
     if description and filename:
         del_index = -1
-        for i in range(0,len(export_list)):
+        for i in range(0, len(export_list)):
             if export_list[i][1] == title:
                 del_index = i
         if del_index != -1:
             del export_list[del_index]
 
-        export_list.append((exportData,title,description,config,filename))
+        export_list.append((exportData, title, description, config, filename))
         mod2text[exportData.__module__] = description
 
 def register_import(task, ffilter, mime=None, native_format=0, format_name=""):
     """Register an import filter, taking the task and file filter"""
     if mime:
         del_index = -1
-        for i in range(0,len(import_list)):
+        for i in range(0, len(import_list)):
             if import_list[i][2] == mime:
                 del_index = i
         if del_index != -1:

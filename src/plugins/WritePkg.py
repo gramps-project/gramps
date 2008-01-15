@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2008  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ import tarfile
 from cStringIO import StringIO
 from gettext import gettext as _
 import ExportOptions
-from BasicUtils import UpdateCallback
+#from BasicUtils import UpdateCallback
 import gen.proxy
 
 #------------------------------------------------------------------------
@@ -60,7 +60,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 from GrampsDbUtils import XmlWriter
 import Utils
-from QuestionDialog import MissingMediaDialog
+#from QuestionDialog import MissingMediaDialog
 from PluginUtils import register_export
 
 #-------------------------------------------------------------------------
@@ -69,8 +69,6 @@ from PluginUtils import register_export
 #
 #-------------------------------------------------------------------------
 def writeData(database, filename, person, option_box, callback=None):
-    ret = 0
-
     option_box.parse_options()
 
     restrict = option_box.restrict
@@ -86,10 +84,8 @@ def writeData(database, filename, person, option_box, callback=None):
     if not option_box.cfilter.is_empty():
         database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
 
-
     writer = PackageWriter(database, filename, callback)
-    ret = writer.export()
-    return ret
+    return writer.export()
     
 #-------------------------------------------------------------------------
 #
@@ -98,13 +94,13 @@ def writeData(database, filename, person, option_box, callback=None):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self,database,filename,callback):
+    def __init__(self, database, filename, callback):
         self.db = database
         self.callback = callback
         self.filename = filename
             
     def export(self):
-        missmedia_action = 0
+#        missmedia_action = 0
         #--------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
@@ -214,11 +210,11 @@ class PackageWriter:
             tarinfo.uid = os.getuid()
             tarinfo.gid = os.getgid()
         g.seek(0)
-        archive.addfile(tarinfo,g)
+        archive.addfile(tarinfo, g)
         archive.close()
         g.close()
 
-        return 1
+        return True
     
 #-------------------------------------------------------------------------
 #

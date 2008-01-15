@@ -54,12 +54,12 @@ log = logging.getLogger(".WriteXML")
 import gen.lib 
 from BasicUtils import UpdateCallback
 
-from gen.db.dbconst import \
-     PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
-     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
- 
-from gen.db.exceptions import *
-from gen.utils.longop import LongOpStatus
+#from gen.db.dbconst import \
+#     PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
+#     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
+# 
+from gen.db.exceptions import GrampsDbWriteFailure
+#from gen.utils.longop import LongOpStatus
 
 import gen.proxy
 
@@ -91,7 +91,6 @@ def escxml(d):
 #
 #-------------------------------------------------------------------------
 def exportData(database, filename, person, option_box, callback, version="unknown"):
-    ret = 0
     if os.path.isfile(filename):
         try:
             shutil.copyfile(filename, filename + ".bak")
@@ -117,8 +116,7 @@ def exportData(database, filename, person, option_box, callback, version="unknow
         database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
 
     g = GrampsDbXmlWriter(database, 0, compress, version, callback)
-    ret = g.write(filename)
-    return ret
+    return g.write(filename)
 
 #-------------------------------------------------------------------------
 #
@@ -1001,8 +999,8 @@ class GrampsDbXmlWriter(UpdateCallback):
                             (sp,corner1_x,corner1_y,corner2_x,corner2_y))
                 self.write_attribute_list(proplist,indent+1)
                 for ref in refslist:
-                    self.dump_source_ref(ref,indent+1)
-                self.write_note_list(nreflist,indent+1)
+                    self.dump_source_ref(ref, indent+1)
+                self.write_note_list(nreflist, indent+1)
                 self.g.write('%s</objref>\n' % sp)
 
     def write_data_map(self,datamap,indent=3):
@@ -1012,9 +1010,9 @@ class GrampsDbXmlWriter(UpdateCallback):
         sp = '  '*indent
         for key in datamap.keys():
             self.g.write('%s<data_item key="%s" value="%s"/>\n' %
-                         (sp,self.fix(key),self.fix(datamap[key])))
+                         (sp,self.fix(key), self.fix(datamap[key])))
 
-    def write_reporef_list(self,rrlist,index=1):
+    def write_reporef_list(self, rrlist, index=1):
         for reporef in rrlist:
             if not reporef or not reporef.ref:
                 continue
@@ -1037,16 +1035,16 @@ class GrampsDbXmlWriter(UpdateCallback):
 
             note_list = reporef.get_note_list()
             if  len(note_list) == 0:
-                self.write_ref('reporef',reporef.ref,index,close=True,
+                self.write_ref('reporef', reporef.ref, index, close=True,
                                extra_text=priv_text+callno_text+type_text)
             else:
-                self.write_ref('reporef',reporef.ref,index,close=False,
+                self.write_ref('reporef', reporef.ref, index, close=False,
                                extra_text=priv_text+callno_text+type_text)
-                self.write_note_list(note_list,index+1)
+                self.write_note_list(note_list, index+1)
                 sp = "  "*index
                 self.g.write('%s</reporef>\n' % sp)            
             
-    def write_url_list(self,list,index=1):
+    def write_url_list(self, list, index=1):
         sp = "  "*index
         for url in list:
             url_type = url.get_type().xml_str()
@@ -1062,10 +1060,10 @@ class GrampsDbXmlWriter(UpdateCallback):
                 desc_text = ''
             path_text = '  href="%s"' % self.fix(url.get_path())
             self.g.write('%s<url%s%s%s%s/>\n' % \
-                         (sp,priv_text,path_text,type_text,desc_text))
+                         (sp, priv_text, path_text, type_text, desc_text))
 
-    def write_place_obj(self,place,index=1):
-        self.write_primary_tag("placeobj",place,index)
+    def write_place_obj(self, place, index=1):
+        self.write_primary_tag("placeobj", place, index)
 
         title = self.fix(place.get_title())
         longitude = self.fix(place.get_longitude())
@@ -1081,23 +1079,23 @@ class GrampsDbXmlWriter(UpdateCallback):
 
         if title == "":
             title = self.build_place_title(place.get_main_location())
-        self.write_line_nofix("ptitle",title,index+1)
+        self.write_line_nofix("ptitle", title, index+1)
     
         if longitude or lat:
             self.g.write('%s<coord long="%s" lat="%s"/>\n'
-                         % ("  "*(index+1),longitude,lat))
+                         % ("  "*(index+1), longitude, lat))
         self.dump_location(main_loc)
         for loc in place.get_alternate_locations():
             self.dump_location(loc)
-        self.write_media_list(place.get_media_list(),index+1)
+        self.write_media_list(place.get_media_list(), index+1)
         self.write_url_list(place.get_url_list())
-        self.write_note_list(place.get_note_list(),index+1)
+        self.write_note_list(place.get_note_list(), index+1)
         for s in place.get_source_references():
-            self.dump_source_ref(s,index+1)
+            self.dump_source_ref(s, index+1)
         self.g.write("%s</placeobj>\n" % ("  "*index))
 
-    def write_object(self,obj,index=1):
-        self.write_primary_tag("object",obj,index)
+    def write_object(self, obj, index=1):
+        self.write_primary_tag("object", obj, index)
         handle = obj.get_gramps_id()
         mime_type = obj.get_mime_type()
         path = obj.get_path()
@@ -1109,18 +1107,18 @@ class GrampsDbXmlWriter(UpdateCallback):
         if self.strip_photos == 1:
             path = os.path.basename(path)
         elif self.strip_photos == 2 and (len(path)>0 and os.path.isabs(path)):
-            drive,path = os.path.splitdrive(path)
+            drive, path = os.path.splitdrive(path)
             path = path[1:]
                 
         self.g.write('%s<file src="%s" mime="%s"%s/>\n'
-                     % ("  "*(index+1),self.fix(path),mime_type,desc_text))
+                     % ("  "*(index+1), self.fix(path), mime_type, desc_text))
         self.write_attribute_list(obj.get_attribute_list())
-        self.write_note_list(obj.get_note_list(),index+1)
+        self.write_note_list(obj.get_note_list(), index+1)
         dval = obj.get_date_object()
         if not dval.is_empty():
-            self.write_date(dval,index+1)
+            self.write_date(dval, index+1)
         for s in obj.get_source_references():
-            self.dump_source_ref(s,index+1)
+            self.dump_source_ref(s, index+1)
         self.g.write("%s</object>\n" % ("  "*index))
 
 #-------------------------------------------------------------------------
