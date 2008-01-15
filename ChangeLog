@@ -1,3 +1,7 @@
+2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/SameSurnames.py (run): change description to just
+	surname, not entire person (bug #1595)
+
 2008-01-15 Benny Malengier <benny.malengier@gramps-project.org>
 	* man/Makefile.am: Swedish removed again so it builds again
 	* removed help files of version 2.x, only wiki manual now!

@@ -40,7 +40,7 @@ def run(database, document, person):
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb, sdoc)
     # display the title
-    sdoc.title(_("People with same surname as %s") % sdb.name(person))
+    sdoc.title(_("People with the surname '%s'") % sdb.surname(person))
     sdoc.paragraph("")
     stab.columns(_("Person"), _("Birth Date"), _("Name type"))
     # grab our current id (self):
