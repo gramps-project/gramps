@@ -43,6 +43,8 @@ URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
 URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
 URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_3.0_Wiki_Manual"
+WIKI_FAQ = "FAQ"
+WIKI_KEYBINDINGS = "Gramps_3.0_Wiki_Manual_-_Keybindings"
 
 #-------------------------------------------------------------------------
 #

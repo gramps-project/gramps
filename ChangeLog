@@ -1,3 +1,8 @@
+2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/const.py.in: added constants for help pages
+    * src/ViewManager.py: support for help pages called from menu
+    0001606: Help menu items not functioning
+
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/SameSurnames.py (run): change description to just
 	surname, not entire person (bug #1595)
