@@ -1,0 +1,13 @@
+For version 3.0, the manual can be found dual licenced under the GNU GPL and under GNU Free Documentation License 1.2 on our wiki: http://www.gramps-project.org/wiki/index.php?title=Gramps_3.0_Wiki_Manual
+
+For version 2.x, the manual can be found in branch22 of the SVN repository, under the GNU GPL license.
+
+As such, this manual meets citeria of Debian Free Software Guidelines 
+(DFSG) and can be distributed through Debian main (as opposed to non-free).
+
+Please see file named COPYING for exact terms of the license.
+
+Benny Malengier
+January 15, 2008
+
+$Id$

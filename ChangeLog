@@ -1,4 +1,10 @@
-
+2008-01-15 Benny Malengier <benny.malengier@gramps-project.org>
+	* man/Makefile.am: Swedish removed again so it builds again
+	* removed help files of version 2.x, only wiki manual now!
+	* COPYING-DOCS -> help/COPYING-DOCS : refers to old doc, moved
+	* Makefile.am: removed help subdir, and COPYING-DOCS
+	The idea should be that should we add documentation again, it is done
+	in the help dir with separate source packages too for translations
 
 2008-01-15  Peter Landgren <peter.talken@telia.com>
     * man/Makefail.am: Swedish added (sv).

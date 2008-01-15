@@ -29,13 +29,10 @@ No longer needed in 3.0:
 
 Documentation
 ---------------------------------
-The User Manual is now maintained, built and installed using gnome-doc-utils.
-Please see the documentation for the gnome-doc-utils package to learn
-how this works.
-
-Current HTML documentation can also be found on the gramps website,
+The User Manual is now maintained on the gramps website,
 http://www.gramps-project.org/wiki/index.php?title=User_manual
-
+We might in the future distribute again a manual via gnome-doc-utils, this has not
+been decided yet though.
 
 
 Building on non-Linux systems: i18n support and GNU make
