@@ -1,3 +1,10 @@
+2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/PluginUtils/_Tool.py (Tool.__init__): pass in dbstate
+	* src/PluginUtils/__init__.py (MenuToolOptions.__init__): 
+	pass in dbstate
+	* src/plugins/Calendar.py (CalendarOptions.add_menu_options): 
+	standard defaults
+	
 2008-01-15 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsDbUtils/_GrampsDbWriteXML.py: import gzip
 

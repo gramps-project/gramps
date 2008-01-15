@@ -55,7 +55,7 @@ class CalcEstDateOptions(MenuToolOptions):
         """ Adds the options """
         category_name = _("Options")
 
-        filter = PersonFilterOption(_("Filter"), dbstate, 3)
+        filter = PersonFilterOption(_("Filter"), dbstate, 0, False)
         filter.set_help(_("Select filter to restrict people"))
         menu.add_option(category_name,"filter", filter)
 

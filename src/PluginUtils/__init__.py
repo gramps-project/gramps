@@ -58,8 +58,8 @@ class MenuToolOptions(MenuOptions,Tool.ToolOptions):
     add_menu_options function. The user can add options to the menu
     and the MenuToolOptions class will worry about setting up the GUI.
     """
-    def __init__(self,name,person_id=None):
+    def __init__(self, name, person_id=None, dbstate=None):
         Tool.ToolOptions.__init__(self,name, person_id)
-        MenuOptions.__init__(self,None)
+        MenuOptions.__init__(self, dbstate)
 
 

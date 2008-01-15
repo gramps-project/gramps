@@ -86,9 +86,13 @@ class Tool:
     """
 
     def __init__(self, dbstate, options_class, name):
+        from PluginUtils import MenuToolOptions
         self.db = dbstate.db
         self.person = dbstate.active
-        if type(options_class) == ClassType:
+        if issubclass(options_class, MenuToolOptions):
+            # FIXME: pass in person_id
+            self.options = options_class(name, None, dbstate)
+        elif type(options_class) == ClassType:
             self.options = options_class(name)
         elif type(options_class) == InstanceType:
             self.options = options_class
