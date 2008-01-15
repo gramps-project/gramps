@@ -451,16 +451,11 @@ class ArgHandler:
 
         elif Config.get(Config.RECENT_FILE) and Config.get(Config.AUTOLOAD):
             filename = Config.get(Config.RECENT_FILE)
-            self.vm.db_loader.read_file(filename)
-            return (filename, const.APP_FAMTREE)
-
-           #if os.path.isfile(rf):
-           #    filetype = Mime.get_type(rf)
-           #    self.vm.read_recent_file(rf, filetype)
-           #elif os.path.isdir(rf):
-           #    if os.path.isfile(os.path.join(rf, "name.txt")) and \
-           #            not os.path.isfile(os.path.join(rf,"need_recover")):
-           #        self.vm.read_recent_file(rf, 'x-directory/normal')
+            if os.path.isdir(filename) and \
+                    os.path.isfile(os.path.join(filename, "name.txt")) and \
+                    not os.path.isfile(os.path.join(filename, "need_recover")):
+                self.vm.db_loader.read_file(filename)
+                return (filename, const.APP_FAMTREE)
 
     #-------------------------------------------------------------------------
     #
