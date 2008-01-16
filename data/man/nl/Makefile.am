@@ -1,4 +1,4 @@
-# This is the data/man level Makefile for Gramps
+# This is the data/man/nl level Makefile for Gramps
 # $Id: Makefile.am 9819 2008-01-15 15:42:10Z bmcage $
 
 mandir = @mandir@/nl

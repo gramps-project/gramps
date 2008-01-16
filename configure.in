@@ -190,6 +190,7 @@ data/Makefile
 data/man/Makefile
 data/man/fr/Makefile
 data/man/nl/Makefile
+data/man/sv/Makefile
 example/Makefile
 example/gramps/Makefile
 ])
