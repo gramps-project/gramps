@@ -240,21 +240,13 @@ class GalleryTab(ButtonTab):
         return None
 
     def add_button_clicked(self, obj):
-        import AddMedia
-
-        am = AddMedia.AddMediaObject(self.dbstate, self.uistate, self.track)
-        am.run()
-        src = am.object
-
-        if src:
-            sref = gen.lib.MediaRef()
-            try:
-                from Editors import EditMediaRef
-                
-                EditMediaRef(self.dbstate, self.uistate, self.track, 
-                             src, sref, self.add_callback)
-            except Errors.WindowActiveError:
-                pass
+        try:
+            from Editors import EditMediaRef
+            EditMediaRef(self.dbstate, self.uistate, self.track, 
+                         gen.lib.MediaObject(), gen.lib.MediaRef(),
+                         self.add_callback)
+        except Errors.WindowActiveError:
+            pass
 
     def add_callback(self, media_ref, media):
         media_ref.ref = media.handle
@@ -276,7 +268,6 @@ class GalleryTab(ButtonTab):
             sref = gen.lib.MediaRef()
             try:
                 from Editors import EditMediaRef
-                
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              src, sref, self.add_callback)
             except Errors.WindowActiveError:
@@ -291,10 +282,10 @@ class GalleryTab(ButtonTab):
     def edit_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
-            obj = self.dbstate.db.get_object_from_handle(ref.get_reference_handle())
+            obj = self.dbstate.db.get_object_from_handle(
+                                                ref.get_reference_handle())
             try:
                 from Editors import EditMediaRef
-                
                 EditMediaRef(self.dbstate, self.uistate, self.track, 
                              obj, ref, None)
             except Errors.WindowActiveError:

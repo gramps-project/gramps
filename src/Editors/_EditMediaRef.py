@@ -49,6 +49,7 @@ from DisplayTabs import \
      SourceEmbedList,AttrEmbedList,MediaBackRefList,NoteTab
 from GrampsWidgets import *
 from _EditReference import RefTab, EditReference
+from AddMedia import AddMediaObject
 
 #-------------------------------------------------------------------------
 #
@@ -61,9 +62,12 @@ class EditMediaRef(EditReference):
     HEIGHT_KEY = Config.MEDIA_REF_HEIGHT
 
     def __init__(self, state, uistate, track, media, media_ref, update):
-
         EditReference.__init__(self, state, uistate, track, media,
                                media_ref, update)
+        if not self.source.get_handle():
+            #show the addmedia dialog immediately, with track of parent.
+            AddMediaObject(state, self.uistate, self.track, self.source, 
+                           self._update_addmedia)
 
     def _local_init(self):
 
@@ -88,18 +92,33 @@ class EditMediaRef(EditReference):
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
                               _('General'), tblref)
 
+    def draw_preview(self):
+        """
+        Draw the two preview images. This method can be called on eg change of
+        the path.
+        """
+        self.mtype = self.source.get_mime_type()
+        self.pix = ThumbNails.get_thumbnail_image(self.source.get_path(),
+                                                  self.mtype)
+        self.pixmap.set_from_pixbuf(self.pix)
         
+        self.subpix = ThumbNails.get_thumbnail_image(self.source.get_path(),
+                                                     self.mtype,
+                                                     self.rectangle)
+        self.subpixmap.set_from_pixbuf(self.subpix)
+
+        mt = Mime.get_description(self.mtype)
+        if mt:
+            self.top.get_widget("type").set_text(mt)
+        else:
+            self.top.get_widget("type").set_text("")
+
     def _setup_fields(self):
-        
-        mtype = self.source.get_mime_type()
-        self.mtype = mtype
-        self.pix = ThumbNails.get_thumbnail_image(self.source.get_path(),mtype)
-        self.pixmap = self.top.get_widget("pixmap")
         ebox = self.top.get_widget('eventbox')
         ebox.connect('button-press-event', self.button_press_event)
-
-        self.pixmap.set_from_pixbuf(self.pix)
-
+        
+        self.pixmap = self.top.get_widget("pixmap")
+        
         coord = self.source_ref.get_rectangle()
         #upgrade path: set invalid (from eg old db) to none
         if coord is not None and ((coord[0] == None and coord[1] == None
@@ -109,14 +128,10 @@ class EditMediaRef(EditReference):
             coord[0] == coord[2] and coord[1] == coord[3]
            )):
             coord = None
-
         self.rectangle = coord
-        
         self.subpixmap = self.top.get_widget("subpixmap")
-        self.subpix = ThumbNails.get_thumbnail_image(self.source.get_path(),
-                                                     mtype,
-                                                     coord)
-        self.subpixmap.set_from_pixbuf(self.subpix)
+
+        self.draw_preview()
 
         if coord and type(coord) == tuple:
             self.top.get_widget("corner1_x").set_value(coord[0])
@@ -187,12 +202,6 @@ class EditMediaRef(EditReference):
             self.source.get_path,
             self.db.readonly)
 
-        mt = Mime.get_description(mtype)
-        if mt:
-            self.top.get_widget("type").set_text(mt)
-        else:
-            self.top.get_widget("type").set_text("")
-            
     def set_corner1_x(self, value):
         """
         Callback for the signal handling of the spinbutton for the first
@@ -367,6 +376,16 @@ class EditMediaRef(EditReference):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.view_media(obj)
 
+    def _update_addmedia(self, obj):
+        """
+        Called when the add media dialog has been called.
+        This allows us to update the main form in response to
+        any changes: Redraw relevant fields: description, mimetype and path
+        """
+        for obj in (self.descr_window, self.path_obj):
+            obj.update()
+        self.draw_preview()
+
     def view_media(self, obj):
         mime_type = self.source.get_mime_type()
         app = Mime.get_application(mime_type)
@@ -432,14 +451,24 @@ class EditMediaRef(EditReference):
         self._setup_notebook_tabs( notebook_ref)
 
     def save(self,*obj):
+        #first save primary object
+        trans = self.db.transaction_begin()
+        if self.source.handle:
+            self.db.commit_media_object(self.source, trans)
+            self.db.transaction_commit(trans, _("Edit Media Object (%s)"
+                                           ) % self.source.get_description())
+        else:
+            self.db.add_object(self.source, trans)
+            self.db.transaction_commit(trans,_("Add Media Object (%s)"
+                                           ) % self.source.get_description())
 
+        #save reference object in memory
         coord = (
             self.top.get_widget("corner1_x").get_value_as_int(),
             self.top.get_widget("corner1_y").get_value_as_int(),
             self.top.get_widget("corner2_x").get_value_as_int(),
             self.top.get_widget("corner2_y").get_value_as_int(),
             )
-
         #do not set unset or invalid coord
         if (coord[0] == None and coord[1] == None
                 and coord[2] == None and coord[3] == None) or (
@@ -448,16 +477,10 @@ class EditMediaRef(EditReference):
             coord[0] == coord[2] and coord[1] == coord[3]
            ):
             coord = None
-
         self.source_ref.set_rectangle(coord)
 
-        orig = self.db.get_object_from_handle(self.source.handle)
-
-        if cmp(orig.serialize(),self.source.serialize()):
-            trans = self.db.transaction_begin()
-            self.db.commit_media_object(self.source,trans)        
-            self.db.transaction_commit(trans,_("Edit Media Object"))
-
+        #call callback if given
         if self.update:
             self.update(self.source_ref,self.source)
+
         self.close()

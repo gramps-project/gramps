@@ -1,4 +1,9 @@
 2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditMediaRef.py:
+	* src/DisplayTabs/_GalleryTab.py:
+	Finish changes caused by Addmedia not touching database anymore, #1610
+
+2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
 	* configure.in: don't make help makefile
 	* src/FilterEditor/_ShowResults.py: shorten text, bug 1609
 
