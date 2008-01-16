@@ -82,6 +82,7 @@ Application options
   -a, --action=ACTION                    Specify action
   -p, --options=OPTIONS_STRING           Specify options
   -d, --debug=LOGGER_NAME                Enable debug logs
+  -l                                     List Family Trees
 
 """
 
