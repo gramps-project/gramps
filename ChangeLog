@@ -1,3 +1,9 @@
+2008-01-16  Peter Landgren <peter.talken@telia.com>
+    * man/Makefile.am: Swedish added (sv).
+    * man/sv/gramps.1.in: Added Swedish man page (sv).
+    * man/sv/Makefile.am: Added Swedish man page (sv).
+    * man/fr/gramps.1.in: got the French man page back, which I overwrote yesterday
+
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/docgen/Makefile.am: added line to copy gtkprintpreview.glade
 	on distcheck.
