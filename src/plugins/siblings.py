@@ -58,7 +58,7 @@ def run(database, document, person):
             # pass row the child object to make link:
             stab.row(child, 
                      sdb.gender(child), 
-                     sdb.birth_date(child), 
+                     sdb.birth_date_obj(child), 
                      rel_str)
     stab.write()
                     

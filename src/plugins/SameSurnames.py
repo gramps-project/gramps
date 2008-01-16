@@ -68,7 +68,8 @@ def run(database, document, person):
     matches = 0
     for person_handle in people:
         person = database.get_person_from_handle(person_handle)
-        stab.row(person, sdb.birth_date(person), str(person.get_primary_name().get_type()))
+        stab.row(person, sdb.birth_date_obj(person),
+                 str(person.get_primary_name().get_type()))
         matches += 1
     sdoc.paragraph(_("There are %d people with a matching name, or alternate name.\n") % matches)
     stab.write()

@@ -64,8 +64,11 @@ def run(database, document, main_event):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb, sdoc)
+    stab.set_link_col(3)
     yeartab = SimpleTable(sdb, sdoc)
+    yeartab.set_link_col(3)
     histab = SimpleTable(sdb, sdoc)
+    histab.set_link_col(3)
 
     # display the title
     sdoc.title(_("Events of %(date)s") % 

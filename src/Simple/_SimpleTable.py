@@ -45,6 +45,7 @@ class SimpleTable:
         self.__link = []
         self.__sort_col = None
         self.__sort_reverse = False
+        self.__link_col = None
 
     def get_row_count(self):
         return len(self.__rows)
@@ -60,7 +61,6 @@ class SimpleTable:
         """
         Handle events on tables. obj is a treeview
         """
-        from QuickReports import run_quick_report_by_name
         from Editors import (EditPerson, EditEvent, EditFamily, EditSource,
                              EditPlace, EditRepository)
         selection = obj.get_selection()
@@ -118,11 +118,6 @@ class SimpleTable:
                     return True # handled event
                 except Errors.WindowActiveError:
                     pass
-            elif objclass == 'Date':
-                run_quick_report_by_name(self.gui.dbstate, 
-                                         self.gui.uistate, 
-                                         'onthisday', 
-                                         date)
         return False # didn't handle event
 
     def on_table_click(self, obj):
@@ -148,20 +143,28 @@ class SimpleTable:
         """
         self.__sort_vals[col].append(val) 
 
+    def set_link_col(self, col):
+        """
+        Manually sets the column that defines link.
+        """
+        self.__link_col = col
+
     def row(self, *data):
         """
         Add a row of data.
         """
         retval = [] 
         link   = None
-        for item in data:
+        for col in range(len(data)):
+            item = data[col]
             # FIXME: add better text representations of these objects
             if type(item) in [str, unicode]:
                 retval.append(item)
             elif isinstance(item, gen.lib.Person):
                 name = self.access.name(item)
                 retval.append(name)
-                link = ('Person', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Person', item.handle)
             elif isinstance(item, gen.lib.Family): 
                 father = self.access.father(item)
                 mother = self.access.mother(item)
@@ -176,30 +179,39 @@ class SimpleTable:
                 else:
                     text += " " + _("Unknown mother")
                 retval.append(text)
-                link = ('Family', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Family', item.handle)
             elif isinstance(item, gen.lib.Source): 
                 retval.append(_('Source'))
-                link = ('Souce', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Souce', item.handle)
             elif isinstance(item, gen.lib.Event):
                 name = self.access.event_type(item)
                 retval.append(name)
-                link = ('Event', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Event', item.handle)
             elif isinstance(item, gen.lib.MediaObject):
                 retval.append(_('Media'))
-                link = ('Media', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Media', item.handle)
             elif isinstance(item, gen.lib.Place):
                 retval.append(_('Place'))
-                link = ('Place', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Place', item.handle)
             elif isinstance(item, gen.lib.Repository):
                 retval.append(_('Repository'))
-                link = ('Repository', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Repository', item.handle)
             elif isinstance(item, gen.lib.Note):
                 retval.append(_('Note'))
-                link = ('Note', item.handle)
+                if (self.__link_col == col or link == None):
+                    link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
                 text = DateHandler.displayer.display(item)
                 retval.append(text)
-                link = ('Date', item)
+                self.row_sort_val(col, item.sortval)
+                if (self.__link_col == col or link == None):
+                    link = ('Date', item)
             else:
                 raise AttributeError, ("unknown object type: '%s': %s" % 
                                        (item, type(item)))

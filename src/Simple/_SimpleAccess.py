@@ -240,6 +240,32 @@ class SimpleAccess:
                         return DateHandler.displayer.display(date_obj)
         return u''
 
+    def __event_date_obj(self, person, func):
+        """
+        Returns the date associated with the person
+
+        @param person: Person object
+        @type person: L{gen.lib.Person}
+        @param func: function used to extract the associated date information
+        @type func: function
+        @return: Returns the date
+        @rtype: l{gen.lib.Date}
+        """
+        assert(isinstance(person, (gen.lib.Person, NoneType)))
+
+        if person:
+            ref = func(person)
+            if ref:
+                event_handle = ref.get_reference_handle()
+                if event_handle:
+                    event = self.dbase.get_event_from_handle(event_handle)
+                    date_obj = event.get_date_object()
+                    if date_obj:
+                        return date_obj
+                    else:
+                        return gen.lib.Date()
+        return gen.lib.Date()
+
     def __event_place(self, person, func):
         """
         Returns a string describing the place associated with the person
@@ -441,6 +467,17 @@ class SimpleAccess:
         """
         return self.__event_date(person, gen.lib.Person.get_birth_ref)
 
+    def birth_date_obj(self, person):
+        """
+        Returns the date when the person's birth.
+
+        @param person: Person object
+        @type person: L{gen.lib.Person}
+        @return: Returns the date when the person's birth.
+        @rtype: L{gen.lib.Date}
+        """
+        return self.__event_date_obj(person, gen.lib.Person.get_birth_ref)
+
     def birth_place(self, person):
         """
         Returns a string indicating the place of the person's birth.
@@ -462,6 +499,17 @@ class SimpleAccess:
         @rtype: unicode
         """
         return self.__event_date(person, gen.lib.Person.get_death_ref)
+
+    def death_date_obj(self, person):
+        """
+        Returns the date when the person's death.
+
+        @param person: Person object
+        @type person: L{gen.lib.Person}
+        @return: Returns the date when the person's death.
+        @rtype: L{gen.lib.Date}
+        """
+        return self.__event_date_obj(person, gen.lib.Person.get_death_ref)
 
     def death_place(self, person):
         """

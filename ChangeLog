@@ -1,4 +1,12 @@
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/OnThisDay.py: date sortable
+	* src/plugins/SameSurnames.py: date sortable
+	* src/plugins/siblings.py: date sortable
+	* src/Simple/_SimpleAccess.py: simple method to get date_obj
+	* src/Simple/_SimpleTable.py: manual override of link_col;
+	removed call to quick_reports (could have been recursive)
+
+2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/PluginUtils/_Tool.py (Tool.__init__): pass in dbstate
 	* src/PluginUtils/__init__.py (MenuToolOptions.__init__): 
 	pass in dbstate
