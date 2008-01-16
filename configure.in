@@ -189,6 +189,7 @@ src/images/48x48/Makefile
 data/Makefile
 data/man/Makefile
 data/man/fr/Makefile
+data/man/nl/Makefile
 example/Makefile
 example/gramps/Makefile
 ])
