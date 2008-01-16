@@ -227,7 +227,7 @@ register_tool(
     name = 'test_for_date_parser_and_displayer',
     category = Tool.TOOL_DEBUG,
     tool_class = DateParserDisplayTest,
-    options_class = None,
+    options_class = Tool.ToolOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
     translated_name = _("Check localized date displayer and parser"),
     status = _("Beta"),
