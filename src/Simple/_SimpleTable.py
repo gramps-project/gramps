@@ -23,6 +23,7 @@ Provides a simplified table creation interface
 """
 
 import copy
+from gettext import gettext as _
 
 import gen.lib
 import Errors

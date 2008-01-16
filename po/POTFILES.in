@@ -52,6 +52,9 @@ src/Utils.py
 src/UndoHistory.py
 src/ViewManager.py
 
+# Simple API
+src/Simple/_SimpleTable.py
+
 # BasicUtils package
 src/BasicUtils/_UpdateCallback.py
 src/BasicUtils/_NameDisplay.py
@@ -332,6 +335,7 @@ src/PluginUtils/_PluginMgr.py
 src/PluginUtils/_Plugins.py
 src/PluginUtils/_Tool.py
 src/PluginUtils/_PluginWindows.py
+src/PluginUtils/_MenuOptions.py
 
 # ReportBase package
 src/ReportBase/_BareReportDialog.py

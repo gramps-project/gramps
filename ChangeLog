@@ -1,3 +1,9 @@
+2008-01-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/Simple/_SimpleTable.py: added gettext
+	* data/Makefile.am: added schema files
+	* po/POTFILES.skip: some files not in POTFILES.in
+	* po/POTFILES.in: added some missing files
+
 2008-01-16 Erik De Richter <frederik.de.richter@pandora.be>
     * data/man/nl: added 
     * data/man/nl/gramps.1.in: added
