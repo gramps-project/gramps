@@ -82,10 +82,13 @@ _ExportAssistant_pages = {
 class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     """
     This class creates a GTK assistant to guide the user through the various
-    Save as/Export options. The overall goal is to keep things simple by
-    presenting few choice options on each assistant page.
+    Save as/Export options. 
     
-    The export formats and options are obtained from the plugins
+    The overall goal is to keep things simple by presenting few choice options 
+    on each assistant page.
+    
+    The export formats and options are obtained from the plugins.
+    
     """
 
     __gsignals__ = {"apply": "override", "cancel": "override",
@@ -93,7 +96,8 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                     
     def __init__(self,dbstate,uistate):
         """
-        Set up the assistant, and build all the possible assistant pages. 
+        Set up the assistant, and build all the possible assistant pages.
+         
         Some page elements are left empty, since their contents depends
         on the user choices and on the success of the attempted save.
          
@@ -143,13 +147,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         ManagedWindow.ManagedWindow.show(self)
         
     def build_menu_names(self,obj):
-        ''' Override ManagedWindow method
-        '''
+        """Override ManagedWindow method."""
         return (self.top_title, None)
         
     def create_page_intro(self):
-        ''' Create the introduction page
-        '''
+        """Create the introduction page."""
         label = gtk.Label(self.get_intro_text())
         label.set_line_wrap(True)
         label.set_use_markup(True)
@@ -165,10 +167,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_page_type(page, gtk.ASSISTANT_PAGE_INTRO)
     
     def create_page_exporttypes(self):
-        ''' Create the export type page
-            A Title label
+        """Create the export type page.
+        
+            A Title label.
             A table of format radio buttons and their descriptions.
-        '''
+            
+        """
         self.format_buttons = []
 
         box = gtk.VBox()
@@ -224,10 +228,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
         
     def forward_func(self, pagenumber, data):
-        ''' This function is called on forward press.
+        """This function is called on forward press.
+        
             Normally, go to next page, however, before options,
             we decide if options to show
-        '''
+        """
         if pagenumber == _ExportAssistant_pages['exporttypes'] :
             #decide if options need to be shown:
             ix = self.get_selected_format_index()
@@ -240,8 +245,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             return pagenumber + 1
         
     def create_options(self):
-        ''' This method gets the option page, and fills it with the options
-        '''
+        """This method gets the option page, and fills it with the options."""
         option = self.get_selected_format_index()
         vbox = self.get_nth_page(_ExportAssistant_pages['options'])
         self.set_page_title(vbox, self.exportformats[option][3][0])
@@ -288,10 +292,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
         
     def check_fileselect(self, filechooser, event=None):
-        ''' Given a filechooser, determine if it can be marked complete
-            in the Assistant
-            Used as normal callback and event callback.
-        '''
+        """Given a filechooser, determine if it can be marked complete in 
+        the Assistant.
+        
+        Used as normal callback and event callback.
+        """
         filename = filechooser.get_filename()
         folder = filechooser.get_current_folder()
         #the file must be valid, not a folder, and folder must be valid
@@ -361,11 +366,13 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             self.close()
 
     def do_prepare(self, page):
-        '''
+        """
         The "prepare" signal is emitted when a new page is set as the 
         assistant's current page, but before making the new page visible.
-        @param page:	the new page to prepare for display
-        '''
+        
+        @param page:	the new page to prepare for display.
+        
+        """
         #determine if we go backward or forward
         page_number = self.get_current_page()
         assert page == self.get_nth_page(page_number)
@@ -435,7 +442,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             self.post_save()
             
             #update the label and title
-            if success is None or success:
+            if success:
                 conclusion_title =  _('Your data has been saved')
                 conclusion_text = _(
                 'The copy of your data has been '
@@ -473,8 +480,10 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     def obtain_export_formats(self):
         """
         This method builds its own list of available exports. 
-        The list is built from the PluginMgr.export_list list 
-        and from the locally defined exports (i.e. native export defined here).
+        
+        The list is built from the PluginMgr.export_list list and from the 
+        locally defined exports (i.e. native export defined here).
+        
         """
         self.exportformats = [item for item in export_list]
         
@@ -493,8 +502,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
              
     def get_selected_format_index(self):
         """
-        Query the format radiobuttons and return the index number 
-        of the selected one. 
+        Query the format radiobuttons and return the index number of the 
+        selected one.
+         
         """
         for ix in range(len(self.format_buttons)):
             button = self.format_buttons[ix]
@@ -504,9 +514,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             return 0
         
     def suggest_filename(self):
-        """
-        Prepare suggested filename and set it in the file chooser. 
-        """
+        """Prepare suggested filename and set it in the file chooser."""
         ix = self.get_selected_format_index()
         ext = self.exportformats[ix][4]
         
@@ -527,8 +535,10 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
     
     def save(self):
         """
-        Perform the actual Save As/Export operation. 
+        Perform the actual Save As/Export operation.
+         
         Depending on the success status, set the text for the final page.
+        
         """
         filename = unicode(self.chooser.get_filename(),
                            sys.getfilesystemencoding())
@@ -563,10 +573,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.writestarted = False
         
     def set_busy_cursor(self,value):
-        ''' set or unset the busy cursor while saving data
+        """Set or unset the busy cursor while saving data.
+        
             Note : self.window is the gtk.Assistant gtk.Window, not 
                    a part of ManagedWindow
-        '''
+                   
+        """
         if value:
             self.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
             #self.set_sensitive(0)

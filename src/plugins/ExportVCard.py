@@ -20,7 +20,7 @@
 #
 # $Id$
 
-"Export Persons to vCard"
+"Export Persons to vCard."
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +64,8 @@ from PluginUtils import register_export
 class CardWriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
-    the options. 
+    the options.
+     
     """
     def __init__(self, person):
         self.person = person
@@ -263,7 +264,7 @@ def exportData(database, filename, person, option_box, callback=None):
 #
 #
 #-------------------------------------------------------------------------
-_title = _('vCard')
+_title = _('_vCard')
 _description = _('vCard is used in many addressbook and pim applications.')
 _config = (_('vCard export options'), CardWriterOptionBox)
 _filename = 'vcf'

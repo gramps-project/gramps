@@ -20,7 +20,7 @@
 #
 # $Id$
 
-"Export Events to vCalendar"
+"Export Events to vCalendar."
 
 #-------------------------------------------------------------------------
 #
@@ -68,7 +68,8 @@ from PluginUtils import register_export
 class CalendarWriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
-    the options. 
+    the options.
+     
     """
     def __init__(self, person):
         self.person = person
@@ -347,7 +348,7 @@ def exportData(database, filename, person, option_box, callback=None):
 #
 #
 #-------------------------------------------------------------------------
-_title = _('vCalendar')
+_title = _('vC_alendar')
 _description = _('vCalendar is used in many calendaring and pim applications.')
 _config = (_('vCalendar export options'), CalendarWriterOptionBox)
 _filename = 'vcs'

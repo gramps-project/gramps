@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Douglas S. Blank
+# Copyright (C) 2007-2008  Douglas S. Blank
 # Copyright (C) 2004-2007 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
@@ -20,7 +20,7 @@
 #
 # $Id$
 
-"Export to CSV Spreadsheet"
+"Export to CSV Spreadsheet."
 
 #-------------------------------------------------------------------------
 #
@@ -93,9 +93,7 @@ def sortable_string_representation(text):
 #
 #-------------------------------------------------------------------------
 class UTF8Recoder:
-    """
-    Iterator that reads an encoded stream and reencodes the input to UTF-8
-    """
+    """Iterator that reads an encoded stream and reencodes the input to UTF-8."""
     def __init__(self, f, encoding):
         self.reader = codecs.getreader(encoding)(f)
 
@@ -107,8 +105,9 @@ class UTF8Recoder:
 
 class UnicodeReader:
     """
-    A CSV reader which will iterate over lines in the CSV file "f",
-    which is encoded in the given encoding.
+    A CSV reader which will iterate over lines in the CSV file "f", which is 
+    encoded in the given encoding.
+    
     """
 
     def __init__(self, f, encoding="utf-8", **kwds):
@@ -124,8 +123,9 @@ class UnicodeReader:
 
 class UnicodeWriter:
     """
-    A CSV writer which will write rows to CSV file "f",
-    which is encoded in the given encoding.
+    A CSV writer which will write rows to CSV file "f", which is encoded in 
+    the given encoding.
+    
     """
 
     def __init__(self, f, encoding="utf-8", **kwds):
@@ -163,6 +163,7 @@ class CSVWriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
     the options. 
+    
     """
     def __init__(self,person):
         self.person = person
@@ -498,7 +499,7 @@ class CSVWriter:
 # Register all of the plugins
 #
 #-------------------------------------------------------------------------
-_title = _('Comma Separated Values Spreadsheet (CSV)')
+_title = _('Comma _Separated Values Spreadsheet (CSV)')
 _description = _('CSV is a common spreadsheet format.')
 _config = (_('CSV spreadsheet options'),CSVWriterOptionBox)
 _filename = 'csv'

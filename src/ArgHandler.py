@@ -141,7 +141,7 @@ class ArgHandler:
         """
         Fill in lists with open, exports, imports, and actions options.
 
-        Any parsing errors lead to abort
+        Any parsing errors lead to abort.
         
         Possible: 
         1/ Just the family tree (name or database dir)
@@ -152,7 +152,9 @@ class ArgHandler:
         4/ -o, output a family tree in required format, optionally provide
             -f to indicate format (possible: 'gedcom',
                 'gramps-xml','gramps-pkg','iso','wft','geneweb')
-        5/ An action
+        5/ -a, --action:    An action (possible: 'check', 'summary', 'report', 
+                            'tool')
+                            
         """
         try:
             options, leftargs = getopt.getopt(self.args[1:],

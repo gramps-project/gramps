@@ -1,3 +1,19 @@
+2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/plugins/WriteCD.py
+	* src/plugins/vcardexport.glade
+	* src/plugins/ExportVCard.py
+	* src/plugins/writeftree.glade
+	* src/plugins/ExportCSV.py
+	* src/plugins/csvexport.glade
+	* src/plugins/vcalendarexport.glade
+	* src/plugins/ExportVCalendar.py
+	* src/plugins/genewebexport.glade
+	* src/plugins/WriteGeneWeb.py
+	* src/ExportAssistant.py
+	* src/ExportOptions.py
+	* src/ArgHandler.py
+	work on mnemonics for export dialogues and doc string fixes
+
 2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ArgHandler.py: don't crash arghandler on wrong input #1592
 	* src/const.py.in: Add -h and --help so those work for non gnome users

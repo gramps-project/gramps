@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007 Donald N. Allingham
+# Copyright (C) 2007-2008 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,9 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"""
-Provides the common export options for Exporters
-"""
+"""Provide the common export options for Exporters."""
 
 #-------------------------------------------------------------------------
 #
@@ -48,7 +46,8 @@ from Filters import GenericFilter, Rules
 class WriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
-    the options. 
+    the options.
+     
     """
     def __init__(self, person):
         self.person = person
@@ -60,16 +59,14 @@ class WriterOptionBox:
         self.filter_obj = None
 
     def get_option_box(self):
-        """
-        Builds up a gtk.Table that contains the standard options
-        """
+        """Build up a gtk.Table that contains the standard options."""
         table = gtk.Table(3, 2)
-        label = gtk.Label('Filter')
+        label = gtk.Label(_('Filt_er'))
         self.filter_obj = gtk.ComboBox()
         self.private_check = gtk.CheckButton(
-            _('Do not include records marked private'))
+            _('_Do not include records marked private'))
         self.restrict_check = gtk.CheckButton(
-            _('Restrict data on living people'))
+            _('_Restrict data on living people'))
 
         self.private_check.set_active(Config.get(Config.EXPORT_NO_PRIVATE))
         self.restrict_check.set_active(Config.get(Config.EXPORT_RESTRICT))
@@ -106,9 +103,7 @@ class WriterOptionBox:
         return table
 
     def __define_person_filters(self):
-        """
-        Add person filters if the active person is defined
-        """
+        """Add person filters if the active person is defined."""
 
         des = GenericFilter()
         des.set_name(_("Descendants of %s") %
@@ -131,8 +126,9 @@ class WriterOptionBox:
 
     def parse_options(self):
         """
-        Extract the common values from the GTK widgets. After this function
-        is called, the following variables are defined:
+        Extract the common values from the GTK widgets. 
+        
+        After this function is called, the following variables are defined:
 
            private  = privacy requested
            restrict = restrict information on living peoplel

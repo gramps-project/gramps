@@ -20,7 +20,7 @@
 #
 # $Id$
 
-"Export to GeneWeb"
+"Export to GeneWeb."
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +67,8 @@ from PluginUtils import register_export
 class GeneWebWriterOptionBox:
     """
     Create a VBox with the option widgets and define methods to retrieve
-    the options. 
+    the options.
+     
     """
     def __init__(self, person):
         self.person = person
@@ -440,7 +441,11 @@ class GeneWebWriter:
         return retval
 
     def get_full_person_info_fam(self, person):
-        """Output full person data of a family member only if the person is not listed as a child"""
+        """Output full person data of a family member.
+        
+        This is only done if the person is not listed as a child.
+         
+        """
         retval = ""
         if self.persons_details_done.count(person.get_handle()) == 0:
             is_child = 0
@@ -456,7 +461,7 @@ class GeneWebWriter:
                     
 
     def get_full_person_info_child(self, person):
-        """Output full person data for a child, if not printed somewhere else"""
+        """Output full person data for a child, if not printed somewhere else."""
         retval = ""
         if self.persons_details_done.count(person.get_handle()) == 0:
             self.persons_details_done.append(person.get_handle())
@@ -633,7 +638,7 @@ def exportData(database,filename,person,option_box,callback=None):
 #
 #
 #-------------------------------------------------------------------------
-_title = _('G_eneWeb')
+_title = _('_GeneWeb')
 _description = _('GeneWeb is a web based genealogy program.')
 _config = (_('GeneWeb export options'), GeneWebWriterOptionBox)
 _filename = 'gw'

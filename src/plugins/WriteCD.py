@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Export to CD (nautilus)"
+"Export to CD (nautilus)."
 
 #-------------------------------------------------------------------------
 #
@@ -293,7 +293,7 @@ class PackageWriter:
 # Register the plugin
 #
 #-------------------------------------------------------------------------
-_title = _('Export to CD (p_ortable XML)')
+_title = _('_Export to CD (portable XML)')
 _description = _('Exporting to CD copies all your data and media '
     'object files to the CD Creator. You may later burn the CD '
     'with this data, and that copy will be completely portable '
