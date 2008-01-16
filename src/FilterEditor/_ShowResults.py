@@ -133,9 +133,11 @@ class ShowResults(ManagedWindow.ManagedWindow):
             gid = repo.get_gramps_id()
         elif self.space == 'Note':
             note = self.db.get_note_from_handle(handle)
-            name = note.get()
+            name = note.get().replace('\n', ' ')
+            if len(name) > 80:
+                name = name[:80]+"..."
             gid = note.get_gramps_id()
-        return (name,gid)
+        return (name, gid)
         
     def sort_val_from_handle(self, handle):
         if self.space == 'Person':
@@ -161,6 +163,6 @@ class ShowResults(ManagedWindow.ManagedWindow):
             name = self.db.get_repository_from_handle(handle).get_name()
             sortname = locale.strxfrm(name)
         elif self.space == 'Note':
-            name = self.db.get_note_from_handle(handle).get()
-            sortname = locale.strxfrm(name)
+            gid = self.db.get_note_from_handle(handle).get_gramps_id()
+            sortname = locale.strxfrm(gid)
         return (sortname,handle)

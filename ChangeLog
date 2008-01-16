@@ -1,4 +1,8 @@
 2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
+	* configure.in: don't make help makefile
+	* src/FilterEditor/_ShowResults.py: shorten text, bug 1609
+
+2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsDbUtils/_GrampsDbWriteXML.py: import gzip only once
 
 2008-01-16  Peter Landgren <peter.talken@telia.com>
