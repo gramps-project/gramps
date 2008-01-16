@@ -1,6 +1,8 @@
 2008-01-16 Martin Hawlisch <martin@hawlisch.de>
 	* src/plugins/DateParserDisplayTest.py: Use Tool.ToolOptions instead of
 	None as options_class to make it no longer crash
+	* src/Mime/_PythonMime.py: Avoid crash on Windows if the mime type for
+	a folder is to be determined
 
 2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditMediaRef.py:

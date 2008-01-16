@@ -55,7 +55,7 @@ def get_description(mime_type):
 def get_type(filename):
     """Returns the mime type of the specified file"""
     value = mimetypes.guess_type(filename)
-    if value:
+    if value and value[0]:
         return value[0]
     else:
         return _('unknown')
