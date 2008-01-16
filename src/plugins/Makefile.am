@@ -85,7 +85,7 @@ pkgdata_PYTHON = \
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
-	WebCal.py
+	WebCal.py\
 	WriteFtree.py\
 	WriteGeneWeb.py\
 	WritePkg.py\

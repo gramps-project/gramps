@@ -1,3 +1,6 @@
+2008-01-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/Makefile.am (pkgdata_PYTHON): missing backslash
+
 2008-01-16 Martin Hawlisch <martin@hawlisch.de>
 	* src/DataViews/PersonView.py,
 	* src/PageView.py: Use save instead of open in the csv export file chooser
