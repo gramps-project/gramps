@@ -1,7 +1,7 @@
 # This is the data/man level Makefile for Gramps
 # $Id$
 
-SUBDIRS = fr sv
+SUBDIRS = fr sv nl
 
 man_IN_FILES = gramps.1.in
 man_MANS = $(man_IN_FILES:.1.in=.1)

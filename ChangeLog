@@ -1,3 +1,10 @@
+2008-01-16 Erik De Richter <frederik.de.richter@pandora.be>
+    * data/man/nl: added 
+    * data/man/nl/gramps.1.in: added
+    * data/man/nl/Makefile.am: added
+    * configure.in: changed to add above nl directory
+    * data/man/Makfile.am: changed to add above nl man page
+
 2008-01-16 Jerome Rapinat <romjerome@yahoo.fr>
         * src/images/Makefile.am: add missing reference for gramps-import.png
 
@@ -32,6 +39,7 @@
     * man/sv/Makefile.am: Added Swedish man page (sv).
     * man/fr/gramps.1.in: got the French man page back, which I overwrote yesterday
 
+>>>>>>> .r9846
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/docgen/Makefile.am: added line to copy gtkprintpreview.glade
 	on distcheck.
