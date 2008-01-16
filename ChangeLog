@@ -1,4 +1,8 @@
 2008-01-16 Martin Hawlisch <martin@hawlisch.de>
+	* src/DataViews/PersonView.py,
+	* src/PageView.py: Use save instead of open in the csv export file chooser
+
+2008-01-16 Martin Hawlisch <martin@hawlisch.de>
 	* src/plugins/DateParserDisplayTest.py: Use Tool.ToolOptions instead of
 	None as options_class to make it no longer crash
 	* src/Mime/_PythonMime.py: Avoid crash on Windows if the mime type for
