@@ -1,3 +1,7 @@
+2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/docgen/Makefile.am: added line to copy gtkprintpreview.glade
+	on distcheck.
+
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/OnThisDay.py: date sortable
 	* src/plugins/SameSurnames.py: date sortable

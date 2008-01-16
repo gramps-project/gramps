@@ -25,6 +25,8 @@ docgen_PYTHON = \
 docgen_DATA = \
 	gtkprintpreview.glade
 
+dist_docgen_DATA = $(docgen_DATA)
+
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
 
