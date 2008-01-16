@@ -1,3 +1,6 @@
+2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/GrampsDbUtils/_GrampsDbWriteXML.py: import gzip only once
+
 2008-01-16  Peter Landgren <peter.talken@telia.com>
     * man/Makefile.am: Swedish added (sv).
     * man/sv/gramps.1.in: Added Swedish man page (sv).

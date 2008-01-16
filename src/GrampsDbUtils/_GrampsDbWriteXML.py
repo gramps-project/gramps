@@ -54,13 +54,19 @@ log = logging.getLogger(".WriteXML")
 
 import gen.lib 
 from BasicUtils import UpdateCallback
-
-#from gen.db.dbconst import \
-#     PERSON_KEY,FAMILY_KEY,SOURCE_KEY,EVENT_KEY,\
-#     MEDIA_KEY,PLACE_KEY,REPOSITORY_KEY,NOTE_KEY
-# 
 from gen.db.exceptions import GrampsDbWriteFailure
-#from gen.utils.longop import LongOpStatus
+
+#-------------------------------------------------------------------------
+#
+# Attempt to load the GZIP library. Some version of python do not seem
+# to be compiled with this available.
+#
+#-------------------------------------------------------------------------
+try:
+    import gzip
+    _gzip_ok = 1
+except:
+    _gzip_ok = 0
 
 _xml_version = "1.2.0"
 
@@ -103,11 +109,8 @@ class GrampsDbXmlWriter(UpdateCallback):
         """
         UpdateCallback.__init__(self, callback)
         self.compress = compress
-        if self.compress:
-            try:
-                import gzip
-            except:
-                self.compress = False
+        if not _gzip_ok:
+            self.compress = False
         self.db = db
         self.strip_photos = strip_photos
         self.version = version
@@ -141,8 +144,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         
         self.fileroot = os.path.dirname(filename)
         try:
-            if self.compress:
-                import gzip
+            if self.compress and _gzip_ok:
                 try:
                     g = gzip.open(filename,"wb")
                 except:
@@ -166,8 +168,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         Write the database to the specified file handle.
         """
 
-        if self.compress:
-            import gzip
+        if self.compress and _gzip_ok:
             try:
                 g = gzip.GzipFile(mode="wb",fileobj=handle)
             except:
