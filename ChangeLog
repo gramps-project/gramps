@@ -1,3 +1,7 @@
+2008-01-16 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ArgHandler.py: don't crash arghandler on wrong input #1592
+	* src/const.py.in: Add -h and --help so those work for non gnome users
+
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
     * data/man/nl/Makefile.am: added doc
     * configure.in: added sv for swedish makefile

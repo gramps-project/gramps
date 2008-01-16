@@ -66,6 +66,25 @@ IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM,
                 const.APP_GRAMPS_PKG, const.APP_GENEWEB, 
                 const.APP_GRAMPS)
 
+_help = """
+Usage: gramps.py [OPTION...]
+  --load-modules=MODULE1,MODULE2,...     Dynamic modules to load
+
+Help options
+  -?, --help                             Show this help message
+  --usage                                Display brief usage message
+
+Application options
+  -O, --open=FAMILY_TREE                 Open family tree
+  -i, --import=FILENAME                  Import file
+  -o, --output=FILENAME                  Write file
+  -f, --format=FORMAT                    Specify format
+  -a, --action=ACTION                    Specify action
+  -p, --options=OPTIONS_STRING           Specify options
+  -d, --debug=LOGGER_NAME                Enable debug logs
+
+"""
+
 #-------------------------------------------------------------------------
 # ArgHandler
 #-------------------------------------------------------------------------
@@ -110,6 +129,7 @@ class ArgHandler:
         self.imports = []
         self.imp_db_path = None
         self.list = False
+        self.help = False
 
         self.parse_args()
 
@@ -120,7 +140,7 @@ class ArgHandler:
         """
         Fill in lists with open, exports, imports, and actions options.
 
-        Any parsing errors lead to abort via sys.exit(1).
+        Any parsing errors lead to abort
         
         Possible: 
         1/ Just the family tree (name or database dir)
@@ -136,10 +156,13 @@ class ArgHandler:
         try:
             options, leftargs = getopt.getopt(self.args[1:],
                                              const.SHORTOPTS, const.LONGOPTS)
-        except getopt.GetoptError:
+        except getopt.GetoptError, msg:
+            print msg
             # return without filling anything if we could not parse the args
-            print "Error parsing arguments: %s " % self.args[1:]
-            sys.exit(1)
+            print "Error parsing the arguments: %s " % self.args[1:]
+            print "Type gramps --help for an overview of commands, or ",
+            print "read manual pages."
+            sys.exit(0)
 
         if leftargs:
             # if there were an argument without option,
@@ -276,8 +299,10 @@ class ArgHandler:
             elif option in ('-d', '--debug'):
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
-            elif option in ('-l',) :
+            elif option in ('-l',):
                 self.list = True
+            elif option in ('-h', '-?', '--help'):
+                self.help = True
 
     #-------------------------------------------------------------------------
     # Determine the need for GUI
@@ -317,6 +342,9 @@ class ArgHandler:
             dbman = CLIDbManager(self.state)
             for name, dirname in dbman.family_tree_list():
                 print dirname, ', with name ', name 
+            sys.exit(0)
+        if self.help:
+            print _help
             sys.exit(0)
         if self.open_gui:
             # Filename was given as gramps FILENAME. 
@@ -365,7 +393,7 @@ class ArgHandler:
                         _('Not a valid Family tree given to open\n\n'
                          ))
                     print "Exiting..." 
-                    sys.exit(1)
+                    sys.exit(0)
             if success:
                 # Add the file to the recent items
                 path = os.path.join(filename, "name.txt")
@@ -401,7 +429,7 @@ class ArgHandler:
             else:
                 print "Only Family trees can be opened."
                 print "Exiting..." 
-                sys.exit(1)
+                sys.exit(0)
 
             try:
                 self.vm.open_activate(filename)
