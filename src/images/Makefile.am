@@ -60,6 +60,7 @@ dist_pkgdata_DATA = \
 	logo.png\
 	splash.jpg\
 	gramps-export.png\
+        gramps-import.png\
 	gramps-url.png\
 	stock_new-html.png\
 	gramps-undo-history.png\

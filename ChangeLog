@@ -1,3 +1,6 @@
+2008-01-16 Jerome Rapinat <romjerome@yahoo.fr>
+        * src/images/Makefile.am: add missing reference for gramps-import.png
+
 2008-01-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Makefile.am (pkgdata_PYTHON): missing backslash
 
