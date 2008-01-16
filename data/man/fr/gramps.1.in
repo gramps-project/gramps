@@ -1,272 +1,239 @@
-.TH gramps 3 "@VERSION@" "Januari 2008" "@VERSION@"
-.SH NAMN
-gramps \- Genealogical Research and Analysis Management Programming System.
+.TH gramps 1 "@VERSION@" "Janvier 2008" "@VERSION@"
+.SH NOM
+gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
 
-.SH SAMMANFATTNING
+.SH SYNOPSIS
 .B gramps
 .RB [ \-?|\-\^\-help ]
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
 .RB [ \-O|\-\^\-open=
-.IR DATABAS 
+.IR BASE_DE_DONNEES 
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import=
-.IR FIL 
+.IR FICHIER 
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
 .RB [ \-i|\-\^\-import= 
 .IR ... ] 
 .RB [ \-o|\-\^\-output= 
-.IR FIL
+.IR FICHIER
 .RB [ \-f|\-\^\-format= 
 .IR FORMAT ]] 
 .RB [ \-a|\-\^\-action= 
-.IR ÅTGÄRD ]
+.IR ACTION ]
 .RB [ \-p|\-\^\-options= 
-.IR ALTERNATIVSTRÄNG ]] 
+.IR OPTIONSTRING ]] 
 .RB [
-.IR FIL
+.IR FICHIER
 .RB ]
 .if 0 .RB [ bonobo\ options ]
 .if 0 .RB [ sound\ options ]
 .RB [ \-\-version ]
 
-.SH BESKRIVNING
+.SH DESCRIPTION
 .PP 
-\fIGramps\fP är ett Free/OpenSource släktforskningsprogram. Det är skrivet i Python, 
-med hjälp av GTK+/GNOME gränssnittet.
-Gramps bör kännas bekant för de flesta, som har använt andra släktforskningsprogram 
-tidigare, som \fIFamily Tree Maker (TM)\fR, \fIPersonal Ancestral Files (TM)\fR, 
-\fIDISGEN\fR eller GNU Geneweb.
-Det stöder import via det populära GEDCOM-formatet, som används över 
-hela världen av nästan all släktforskningsprogramvara.
+\fIGramps\fP est un programme Libre/OpenSource de généalogie. Il est écrit en python, 
+et utilise une interface GTK+/GNOME.
+Gramps est semblable à d'autres programmes de généalogie tel que \fIFamily Tree Maker (FTM)\fR,  \fIPersonal Ancestral
+Files\fR, ou le programme GNU Geneweb.
+Il peut importer/exporter le format le plus utilisé par les autres logiciels de généalogie : GEDCOM.
 
-.SH ALTERNATIV
+.SH OPTIONS
 .TP 
-.BI gramps " FIL" 
-När \fIFIL\fR ges (utan några flaggor) som namn på ett familjeträd eller som
-en mapp med familjeträd, så öppnas detta och en interaktiv session startas.
-Om FIL är en fil, vars format försås av GRAMPS, skapas ett tomt famljeträd, 
-vars namn är grundat på namnet \fIFIL\fP och vars data importeras till det. 
-Resterande alternativ ignoreras. Detta sätt att starta passar vid användning av gramps
-som en hanterare för släktforskningsdata i t. ex. en web-läsare.
-Detta startsätt accepterar alla inbyggda dataformat för gramps, se nedan.
+.BI gramps " FICHIER" 
+Si \fIFICHIER\fR est désigné (sans autres commandes) comme arbre familial ou comme répertoire d'arbre familial, alors une session interactive est ouverte. Si FICHIER est un format de fichier supporté par GRAMPS, une base vide est créée dont le nom est celui du \fIFICHIER\fP et les données y seront importées. Les autres options sont ignorées. Ce type de lancement permet d'utiliser gramps pour manipuler des données comme dans un navigateur web. Les formats natifs de gramps sont acceptés, voir ci-dessous.
 .br
 
 .TP 
 .BI \-f,\-\^\-format= " FORMAT"
-Uttryckligen specificera format på \fIFIL\fR givet av föregående 
+Le format spécifique du \fIFICHIER\fR est précédé par les arguments
 .ig
 \fB\-O\fR,
 ..
-\fB\-i\fR eller 
-\fB\-o\fR-alternativ. Om \fB\-f\fR-alternativet inte ges för någon \fIFIL\fR, 
-gissas filformat för den filen utgående från dess filändelse eller dess MIME-typ. 
+\fB\-i\fR, ou
+\fB\-o\fR. Si l'option \fB\-f\fR n'est pas donnée pour le \fIFICHIER\fR, alors le format sera celui de l'extension ou du type-MIME.
 .br
 
-De format, som är tillgängliga för utmatnig, är \fBgramps\-xml\fR (gissas om \fIFIL\fR slutar på 
-\fB.gramps\fR), \fBgedcom\fR (gissas om \fIFIL\fR slutar med \fB.ged\fR) eller
-någon filexport, som är tillgänglig via GRAMPS tilläggsprogramsystem.
+Les formats de sortie disponibles sont \fBgramps\-xml\fR (deviné si \fIFICHIER\fR se termine par
+\fB.gramps\fR), et \fBgedcom\fR (deviné si \fIFICHIER\fR se termine par \fB.ged\fR), ou
+tout autre fichier d'exportation disponible dans le système de plugin GRAMPS.
 .br
 
-De format, som är tillgängliga för inmatnig, är \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR, 
-\fBgramps\-pkg\fR (gissas om \fIFIL\fR slutar med \fB.gpkg\fR) och
-\fBgeneweb\fR (gissas om \fIFIL\fR slutar med \fB.gw\fR). 
+Les formats disponibles pour l'importation sont \fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,  
+\fBgramps\-pkg\fR (deviné si \fIFICHIER\fR se termine par \fB.gpkg\fR), et
+\fBgeneweb\fR (deviné si \fIFICHIER\fR se termine par \fB.gw\fR). 
 .br
 
-De format, som är tillgängliga för export är 
-.ig
+Les formats disponibles pour l'exportation sont  
+ig.
 \fBgrdb\fR,
 ..
 \fBgramps\-xml\fR, \fBgedcom\fR,
-\fBgramps\-pkg\fR, \fBwft\fR (gissas om \fIFIL\fR slutar med \fB.wft\fR),
-\fBgeneweb\fR och \fBiso\fR (gissas aldrig, specificeras alltid med
-\fB\-f\fR-alternativ).
+\fBgramps\-pkg\fR, \fBwft\fR (deviné si \fIFICHIER\fR se termine par \fB.wft\fR),
+\fBgeneweb\fR, et \fBiso\fR (jamais deviné, toujours spécifié avec l'option
+\fB\-f\fR).
 
 .TP 
-.BI \-O,\-\^\-open= " DATABAS"
-Öppnar \fIDATABAS\fR, som måste vara en befitlig databasmapp eller ett befintligt familjeträd.
-Om ingen åtgärd, import eller export-alternativ anges på kommandoraden så startaen interaktiv 
-session med den angivna databasen.
-
-.TP 
-.BI \-i,\-\^\-import= " FIL"
-Importera data från \fIFIL\fR. Om du inte har specificerat en databas, skapas en temporär sådan, 
-som tas bort när gramps avslutas.
+.BI \-O,\-\^\-open= " BASE_DE_DONNEES"
+Ouvrir une \fIBASE_DE_DONNEES\fR qui doit être une base présente dans le répertoire des bases ou le nom d'un arbre familial existant.
+Si aucune action n'est définie, les options d'import ou d'export sont données par la ligne de commande puis une session interactive est ouverte, utilisant cette base de données.
 .br
 
-Om mer är en indatafil anges, måste varje föregås av en \fB\-i\fR-flagga. 
-Filerna importeras i den givna ordningen, 
-t.ex. \fB\-i\fR \fIFIL1\fR \fB\-i\fR \fIFIL2\fR 
-och \fB\-i\fR \fIFIL2\fR \fB\-i\fR \fIFIL1\fR kan skapa skilda 
-gramps IDs i den resulterande databasen. 
+Seulement une base peut être ouverte. Si vous utilisez plusieurs sources, vous devez utiliser l'option d'import.
 
 .TP 
-.BI \-o,\-\^\-output= " FIL"
-Exporterar data till \fIFIL\fR. För \fBiso\fR-format, är \fIFIL\fR i själva verket namnet på den mapp, 
-som gramps databas kommer att skrivas till. 
-För
+.BI \-i,\-\^\-import= " FICHIER"
+Importer des données depuis un \fIFICHIER\fR. Si vous n'avez pas spécifié de base de données alors une base de données temporaire est utilisée; elle sera effacée quand vous quitterez gramps.
+.br
+
+Quand plus d'un fichier doit être importé, chacun doit être précédé par la commande \fB\-i\fR. Ces fichiers sont importés dans le même ordre, 
+i.e. \fB\-i\fR \fIFICHIER1\fR \fB\-i\fR \fIFICHIER2\fR  
+et \fB\-i\fR \fIFICHIER2\fR \fB\-i\fR \fIFICHIER1\fR vont tous les deux produire différents IDs gramps.
+
+.TP 
+.BI \-o,\-\^\-output= " FICHIER"
+Exporter des données dans un \fIFICHIER\fR. Pour le format \fBiso\fR, le \fIFICHIER\fR est le nom du répertoire dans lequel la base de données gramps est écrite.
+Pour 
 .ig
 \fBgrdb\fR,
 ..
-\fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR 
-och \fBgeneweb\fR, är \fIFIL\fR namnet på resultatfilen. 
+\fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
+et \fBgeneweb\fR, le \fIFICHIER\fR est le nom du fichier de sortie 
 .br
 
-Om mer är en utdatafil anges, måste varje föregås av en \fB\-o\fR-flagga. 
-Filerna skrivs en efter en i den givna ordningen.
+Quand plus d'un fichier doit être exporté, chacun doit être précédé par la commande \fB\-o\fR. Ces fichiers sont importés dans le même ordre.
 
 .TP 
-.BI \-a,\-\^\-action= " ÅTGÄRD"
-Utför \fIÅTGÄRD\fR på importerade data. Detta görs efter att all import 
-har avslutats felfritt. F. n. är följand åtgärder möjliga \fBsummary\fR 
-(samma som Rapporter->Visa->Sammanfattning av databasen), \fBcheck\fR (samma som Verktyg->Reparera databas 
-->Kontrollera och reparera) samt \fBreport\fR (skapar report, kräver en 
- \fIALTERNATIVSTRÄNG\fR lämnad via \fB\-p\fR-flaggan). 
+.BI \-a,\-\^\-action= " ACTION"
+Accomplir une \fIACTION\fR sur les données importées. C'est effectué à la fin de l'importation. Les actions possibles sont \fBsummary\fR 
+(Comme le rapport->Affichage->Résumé?), \fBcheck\fR (comme l'outil->Réparation de la base->Vérifier et réparer), et \fBreport\fR (produit un rapport, à besoin
+de \fIOPTIONSTRING\fR précédé par la commande \fB\-p\fR.
 .br
 
-Alternativsträngen för rapporten måste uppfylla följand villkor:
+Ces options de rapport doivent satisfaire ces conditions:
 .br
-Får ej innehålla några mellanslag. 
-Om några argument behöver inbegripa mellanslag, måste strängen omslutas av 
-anföringstecken.
-Alternativsträngen måste lista par av alternativnamn och värden.
-Inom ett par, måste alternativnamn och värde åtskiljas av likhetstecken.
-Olika par måste åtskiljas med komma. 
+Il ne doit pas y avoir d'espace. 
+Si certains arguments doivent utiliser des espaces, la chaîne doit être encadrée par des guillemets.
+Les options vont par paire nom et valeur.
+Une paire est séparée par un signe égal.
+Différentes paires sont séparées par une virgule.
 .br
 
-De flesta rapportalternativ är unika för varje rapport. Emellertid finns 
-det gemensamm alternativ.
+La plupart des options sont spécifiques à chaque rapport. Même s'il existe des options communes.
 
-.BI "name=rapportnamn"
+.BI "name=reportname "
 .br
-Detta är obligatoriskt och bestämmer vilken rapport som skall skapas. 
-Om det givna rapportnamnet inte motsvarar någon möjlig rapport, kommer ett 
-felmeddelande att skrivas ut, följt av möjliga namn på rapporter.
+Cette option obligatoire, elle détermine quel rapport sera généré. Si le nom du rapport saisi ne correspond à aucun rapport disponible, un message d'erreur sera ajouté.
 
 .BI "show=all"
 .br
-Detta ger en lista med namn på alla möjliga alternativ för en bestämd rapport.
+Cette option produit une liste avec les noms des options disponibles pour un rapport donné.
 
 .BI "show=optionname"
 .br
-Detta skriver beskrivning av den funktion, som \fBoptionname\fR innebär, likväl vad som 
-är godkända typer och värden för detta alternativ.
+Cette option affiche une description de toutes les fonctionnalités proposées par optionname, aussi bien les types que les valeurs pour une option.
 
 .br
-Använd alternativen ovan för att ta reda på all om en viss rapport.
+Utiliser les options ci-dessus pour trouver tout sur un rapport choisi.
 
 .LP
-Om mer än en utdataåtgärd givits måste varje föregås av en \fB\-a\fR-flagga. 
-Åtgärderna utförs en och en i den givna turordningen.
+Quand plus d'une action doit être effectuée, chacune doit être précédée par la commande \fB\-a\fR. Les actions seront réalisées une à une, dans l'ordre spécifié.
 
 .TP 
-.BI \-d,\-\^\-debug= " LOGGER_NAME"
-Kopplar på avlusningshjälpmedel för utveckling och tester. 
-För detaöljer hänvisas till källkoder
+.BI \-d,\-\^\-debug= " NOM_LOGGER"
+Permet les logs de debug pour le développement et les tests. Regarder le code source pour les détails.
 .TP
 .BI \-\^\-version
-Skriver ur gramps versionsnummer och avslutar
-\" change 0 to 1 to enable output of OAF options
-.if 0 \{
+Imprime le numéro de version pour gramps puis quitte.
+\" changer 0 par 1 pour permettre la sortie des options OAF
+.si 0 \{
 .PP
-The following options are used for Bonobo activation.
+Les options suivantes seront utilisées pour l'activation Bonobo.
 .TP 
 .BI \-\^\-oaf-ior-fd= "FD"
-File descriptor to print the OAF IOR on
+Le descripteur de fichier pour imprimer OAF IOR
 .TP 
 .BI \-\^\-oaf-activate-iid= " IID"
-OAF IID to activate
+OAF IID à activer
 .TP 
 .BI \-\^\-oaf-private
-Prevent registering of server with OAF
+Prévenir de l'enregistrement du serveur avec OAF
 \}
-\" change 0 to 1 to enable output of Gnome sound options
-.if 0 \{
+\" changer 0 par 1 pour permettre la sortie des options son de GNOME
+.si 0 \{
 .PP
-The following options are used for controlling sound using the Gnome Library.
+Les options suivantes seront utilisées pour contrôler le son avec les librairies GNOME.
 .TP
 .BI \-\^\-disable-sound
-Disable sound server usage
+Désactive l'utilisation du server son
 .TP
 .BI \-\^\-enable-sound
-Enable sound server usage
+Active l'utilisation du server son
 .TP
 .BI \-\^\-espeaker= " HOSTNAME:PORT"
-Host:port on which the sound server to use is running
+Host:port sur lequel le serveur son sera utilisé
 \}
 
 .SH "Operation"
 .br
-Om första argumentet på kommandoraden inte inledds med ett minustecken (d. v. s. ingen flagga), 
-kommer gramps att försöka öppna den fil, vars namn givits av det första argumentet samt påbörja 
-en interaktiv session utan att ta hänsyn till resten av argumenten på kommandoraden.
+Si le premier argument de la ligne de commande ne commence pas par un tiret (i.e. pas
+d'instruction), gramps va essayer d'ouvrir la base de données avec le nom donné par le premier argument et démarrer une session interactive, en ignorant le reste de la ligne de commande.
 
 .LP
-Om \fB\-O\fR-flagga givits, kommer gramps att försöka öppna den omnämnda databasen 
-och sedan arbeta med dess data, enligt ytterligare instruktioner på kommandoraden.
+Si la commande \fB\-O\fR est notée, alors gramps va essayer le fichier défini et va travailler avec ses données, comme pour les autres paramètres de la ligne de commande.
 
 .LP
-Med eller utan \fB\-O\fRflagga, kan det ske många importeringar,
-exporteringar och åtgärder beskrivna ytterligare på kommanodraden 
-genom att använda \fB\-i\fR-,
-\fB\-o\fR- samt \fB\-a\fR-flaggor. 
+Avec ou sans la commande \fB\-O\fR, il peut y avoir plusieurs imports, exports, et actions dans la ligne de commande \fB\-i\fR,
+\fB\-o\fR, et \fB\-a\fR.
 
 .LP
-Ordningen på \fB\-i\fR-, \fB\-o\fR- eller \fB\-a\fR-alternativen spelar ingen roll. 
-Den gällande ordningen är alltid: all import (om någon) -> alla åtgärder (om några)
--> all export (om någon). Men öppning måste alltid ske först!
+L'ordre des options \fB\-i\fR, \fB\-o\fR, ou \fB\-a\fR n'a pas de sens. L'ordre actuel est toujours : imports -> actions -> exports. Mais l'ouverture doit toujours être la première!
 
 .LP
-Om inget \fB\-O\fR- eller \fB\-i\fR-alternativ givits, kommer gramps att starta sitt 
-huvudfönster samt påbörja den valiga interaktiva sessionen med en tom databas,
-då hur som helst inget data finns att bearbeta.
+Si aucune option \fB\-O\fR ou \fB\-i\fR n'est donnée, gramps lancera sa propre fenêtre et demarrera avec une base vide, puisqu'il n'y a pas données.
 
 .LP
-Om inget \fB\-o\fR- eller \fB\-a\fR-alternativ givits, kommer gramps att starta sitt 
-huvudfönster samt påbörja den valiga interaktiva sessionen med den databas, som blev 
-resultet från all import. Denna databas återfinns i \fBimport_db.grdb\fR
-under \fB~/.gramps/import\fR-mappen.
+Si aucune option \fB\-o\fR ou \fB\-a\fR n'est donnée, gramps lancera sa propre fenêtre et démarrera avec la base de données issue de tout les imports. Cette base sera \fBimport_db.grdb\fR sous le répertoire \fB~/.gramps/import\fR.
 
 .LP
-De fel som inträffar under import, export eller vid åtgärder kommer antingen att skrivas till 
-\fIstdout\fR (om dessa avbrott hanteras av gramps) eller 
-till \fIstderr\fR (om dessa inte hanteras). Använd vanliga skalkommandon för att styra om 
-\fIstdout\fR och \fIstderr\fR till att spara medelanden och fel i filer. 
+Les erreurs rencontrées lors d'import, export, ou action, seront mémorisées en \fIstdout\fR (si elles sont le fait de la manipulation par gramps) ou
+en \fIstderr\fR (si elles ne sont pas le fait d'une manipulation). Utilisez les shell de redirection de
+ \fIstdout\fR et \fIstderr\fR pour sauver les messages et les erreurs dans les fichiers.
 
-.SH EXAMPEL
+.SH EXEMPLES
+.TP
+Pour ouvrir un arbre familial et y importer un fichier XML, on peut saisir: 
+\fBgramps\fR \fB\-O\fR \fI'Mon Arbre Familal'\fR \fB\-i\fR \fI~/db3.gramps\fR
 .TP 
-För att öppna ett befintligt familjeträd och importera en xml-fil till det, kan man skriva: 
-\fBgramps\fR \fB\-O\fR \fI'Mitt familjeträd'\fR \fB\-i\fR \fI~/db3.gramps\fR
+Ceci ouvre un arbre familal, pour faire la même chose, mais importer dans un arbre familial temporaire et démarrer une session interactive, on peut saisir: 
+\fBgramps\fR \fB\-i\fR \fI'Mon Arbre Familal'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP  
+Lecture de quatre bases de données dont les formats peuvent être devinés d'après les noms, puis vérification des données: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIfile4.wft\fR \fB\-a\fR \fIcheck\fR 
 .TP 
-Ovanstående ändrar det öppnade familjeträdet, för att göra samma sak, men importera bägge till ett tillfälligt familjeträd och påbörja en interaktiv session, kan man skriva:
-\fBgramps\fR \fB\-i\fR \fI'My Family Tree'\fR \fB\-i\fR \fI~/db3.gramps\fR
+Si vous voulez préciser les formats de fichiers dans l'exemple ci-dessus, complétez les noms de fichiers par les options \fB\-f\fR appropriées: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIfile4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
 .TP 
-För att importera fyra databaser (vars format kan avgöras av deras namn) och sedan felkontrollera den resulterande  databasen, kan man skriva: 
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIFIL4.wft\fR \fB\-a\fR \fIcheck\fR 
+Pour enregistrer le résultat des lectures, donnez l'option  \fB\-o\fR (utiliser \fB\-f\fR si le nom de fichier ne permet pas à gramps de deviner le format):
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
 .TP 
-För att uttryckligen specificera formaten i examplet ovan, lägg till filnamn med passande \fB\-f\fR-alternativ: 
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIFIL4.wft\fR \fB\-f\fR \fIwft\fR \fB\-a\fR \fIcheck\fR 
+Pour lire trois ensembles de données puis lancer une session interactive de gramps sur le tout : 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
 .TP 
-För att spara den databas, som är resultat av all import, ange \fB\-o\fR-flagga (använd \fB\-f\fR om filnamnet inte tillåter gramps att gissa dess format):
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
-.TP 
-För att importera tre databaser och påbörja en interaklive gramps-session med importresultatet: 
-\fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
-.TP 
-Slutligen, för att påbörja en normal interaktiv session skriv bara: 
-\fBgramps\fR 
+Enfin, pour lancer une session interactive normale, entrer : \fBgramps\fR 
 
-.SH BEGREPP
-Stöder ett python\-baserat system för tilläggsprogram, som möjliggör att import- och export-funktioner, 
-rapportgeneratorer, verktyg samt visningsfilter, kan komplettera gramps utan ändringar i huvudprogrammet.
+.SH CONCEPTS
+GRAMPS est un système basé sur le support de plugin-python, permettant d'importer et d'exporter, la saisie, 
+générer des rapports, des outils, et afficher des filtres pouvant être ajoutés sans modifier le programme.
 .LP 
-Förutom att skapa utskrift på skrivare direkt, kan rapportgeneratorer ha andra målsystem som \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML eller LaTeX så att användaren kan tillåtas att ändra format för att passa behoven. 
+Par ailleurs, gramps permet la génération directe : impression, rapports avec sortie vers d'autres formats, comme \fIOpenOffice.org\fR, \fIAbiWord\fR, HTML, 
+ou LaTeX pour permettre à l'utilisateur de choisir selon ses besoins 
 
-.SH KÄNDA FEL OCH BEGRÄNSNINGAR
+.SH BUGS CONNUS ET LIMITATIONS
 
-.SH FILER
+.SH FICHIERS
 .LP 
 \fI${PREFIX}/bin/gramps\fP 
 .br 
@@ -274,31 +241,27 @@ Förutom att skapa utskrift på skrivare direkt, kan rapportgeneratorer ha andra
 .br 
 \fI${HOME}/.gramps\fP 
 
-.SH FÖRFATTARE
+.SH AUTEURS
 Donald Allingham \fI<don@gramps-project.org>\fR
 .br 
 \fIhttp://gramps.sourceforge.net\fR
 .LP 
-Denna man-sida skrevs ursprungligen av:
+Cette page man a d'abord été écrite par:
 .br 
 Brandon L. Griffith \fI<brandon@debian.org>\fR
 .br
-till att ingå i Debians GNU/Linux-system.
+pour Debian GNU/Linux système.
 .LP 
-Denna man-sida underhålls f. n. av:
+Cette page man est maintenue par:
 .br 
 Alex Roitman \fI<shura@gramps-project.org>\fR
-.LP
-Denna man-sida har översatts till svenska av:
+.LP 
+La traduction française:
 .br 
-Peter Landgren \fI<peter.talken@telia.com>\fR
+Jérôme Rapinat \fI<romjerome@yahoo.fr>\fR
 .br 
 
 .SH DOCUMENTATION
-Användardokumentationen är tillgänglig genom GNOME's standard hjälp-bläddrare 
-i form av Gramps-handboken. Handboken finns även i XML-format
-som \fBgramps-manual.xml\fR under \fIdoc/gramps-manual/$LANG\fR i den officiella
-källdistributionen. Dock ej på svenska 
+La documentation-utilisateur est disponible par le navigateur d'aide de GNOME sous la forme du manuel Gramps. Ce manuel est également disponible sous format XML comme \fBgramps-manual.xml\fR sous \fIdoc/gramps-manual/$LANG\fR dans les sources officielles.
 .LP 
-Utvecklingsdokumentationen kan hittas på
-\fIhttp://developers.gramps-project.org\fR. 
+La documentation pour développeur est disponible sur le site \fIhttp://developers.gramps-project.org\fR.
