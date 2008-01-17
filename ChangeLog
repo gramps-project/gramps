@@ -1,3 +1,8 @@
+2008-01-18 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditNote.py: focus on text field on start
+	* src/Editors/_EditChildRef.py: add usability: name of child, edit btn
+	* src/Editors/_EditFamily.py: grab Errors.WindowActiveError
+	* src/glade/gramps.glade: add usability to childref, see #1462
 
 2008-01-17 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditChildRef.py: set focus on OK button for quick work

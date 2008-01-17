@@ -353,6 +353,9 @@ class EditNote(EditPrimary):
         """
         return (_('Edit Note'), self.get_menu_title())
 
+    def _post_init(self):
+        self.text.grab_focus()
+
     def on_textview_key_press_event(self, textview, event):
         """Handle shortcuts in the TextView."""
         return textview.get_buffer().on_key_press_event(textview, event)

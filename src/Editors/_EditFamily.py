@@ -80,7 +80,7 @@ class ChildEmbedList(EmbeddedList):
     _MSG = {
         'add'   : _('Create a new person and add the child to the family'),
         'del'   : _('Remove the child from the family'),
-        'edit'  : _('Edit the child'),
+        'edit'  : _('Edit the child reference'),
         'share' : _('Add an existing person as a child of the family'),
         'up'	: _('Move the child up in the childrens list'),
         'down'	: _('Move the child down in the childrens list'),
@@ -277,8 +277,11 @@ class ChildEmbedList(EmbeddedList):
             for ref in self.family.get_child_ref_list():
                 if ref.ref == handle:
                     p = self.dbstate.db.get_person_from_handle(handle)
-                    EditPerson(self.dbstate, self.uistate, self.track,
+                    try:
+                        EditPerson(self.dbstate, self.uistate, self.track,
                                p, self.child_ref_edited)
+                    except Errors.WindowActiveError:
+                        pass
                     break
     
     def up_button_clicked(self, obj):

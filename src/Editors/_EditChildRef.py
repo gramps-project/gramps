@@ -37,7 +37,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
@@ -47,9 +47,20 @@ import gtk.glade
 import const
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
+import Errors
 
 from DisplayTabs import SourceEmbedList, NoteTab
-from GrampsWidgets import *
+from GrampsWidgets import MonitoredDataType, PrivacyButton
+from BasicUtils import name_displayer
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+
+_RETURN = gtk.gdk.keyval_from_name("Return")
+_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
 
 #-------------------------------------------------------------------------
 #
@@ -78,6 +89,9 @@ class EditChildRef(EditSecondary):
                         self.name,
                         _('Child Reference Editor'))
         self.ok_button = self.top.get_widget('ok')
+        self.edit_button = self.top.get_widget('edit')
+        self.name_label = self.top.get_widget('name')
+        self.name_label.set_text(self.name)
 
     def _setup_fields(self):
 
@@ -106,6 +120,9 @@ class EditChildRef(EditSecondary):
         self.define_help_button(self.top.get_widget('help'), 'adv-ad')
         self.define_cancel_button(self.top.get_widget('cancel'))
         self.define_ok_button(self.ok_button, self.save)
+        self.edit_button.connect('button-press-event', self.edit_child)
+        self.edit_button.connect('key-press-event', self.edit_child)
+        self._add_db_signal('person-update', self.person_change)
 
     def _create_tabbed_pages(self):
         """
@@ -134,6 +151,27 @@ class EditChildRef(EditSecondary):
 
     def build_menu_names(self,obj):
         return (_('Child Reference'),_('Child Reference Editor'))
+
+    def edit_child(self,obj,event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+                or event.keyval in (_RETURN, _KP_ENTER):
+            from _EditPerson import EditPerson
+            handle = self.obj.ref
+            try:
+                person = self.db.get_person_from_handle(handle)
+                EditPerson(self.dbstate, self.uistate,
+                           self.track, person)
+            except Errors.WindowActiveError:
+                pass
+
+    def person_change(self, handles):
+        # check to see if the handle matches the current object
+        print handles
+        if self.obj.ref in handles:
+            p = self.dbstate.db.get_person_from_handle(self.obj.ref)
+            self.name = name_displayer.display(p)
+            print 'changed label'
+            self.name_label.set_text(self.name)
 
     def save(self,*obj):
         """
