@@ -77,6 +77,7 @@ class EditChildRef(EditSecondary):
                         self.top.get_widget("title"),
                         self.name,
                         _('Child Reference Editor'))
+        self.ok_button = self.top.get_widget('ok')
 
     def _setup_fields(self):
 
@@ -102,9 +103,9 @@ class EditChildRef(EditSecondary):
             self.db.readonly)
 
     def _connect_signals(self):
-        self.define_help_button(self.top.get_widget('help'),'adv-ad')
+        self.define_help_button(self.top.get_widget('help'), 'adv-ad')
         self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_ok_button(self.ok_button, self.save)
 
     def _create_tabbed_pages(self):
         """
@@ -127,6 +128,9 @@ class EditChildRef(EditSecondary):
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)
+
+    def _post_init(self): 
+        self.ok_button.grab_focus()
 
     def build_menu_names(self,obj):
         return (_('Child Reference'),_('Child Reference Editor'))

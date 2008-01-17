@@ -111,8 +111,8 @@ class ChildEmbedList(EmbeddedList):
         return [
             (True, True, gtk.STOCK_ADD, self.add_button_clicked),
             (True, False, _('Add an existing child'), self.share_button_clicked),
-            (False,True,  _('Edit relationship'), self.edit_relation_button_clicked),
-            (False,True,  _('Edit child'), self.edit_button_clicked),
+            (False,True,  _('Edit relationship'), self.edit_button_clicked),
+            (False,True,  _('Edit child'), self.edit_child_button_clicked),
             (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
 
@@ -214,6 +214,7 @@ class ChildEmbedList(EmbeddedList):
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
         self.rebuild()
+        self.call_edit_childref(ref.ref)
 
     def child_ref_edited(self, person):
         self.rebuild()
@@ -234,6 +235,7 @@ class ChildEmbedList(EmbeddedList):
             ref.ref = person.get_handle()
             self.family.add_child_ref(ref)
             self.rebuild()
+            self.call_edit_childref(ref.ref)
 
     def run(self,skip):
         skip_list = [ x for x in skip if x]
@@ -248,23 +250,26 @@ class ChildEmbedList(EmbeddedList):
                     self.family.remove_child_ref(ref)
             self.rebuild()
 
-    def edit_relation_button_clicked(self,obj):
+    def edit_button_clicked(self,obj):
         handle = self.get_selected()
         if handle:
-            from Editors import EditChildRef
+            self.call_edit_childref(handle)
 
-            for ref in self.family.get_child_ref_list():
-                if ref.ref == handle:
-                    p = self.dbstate.db.get_person_from_handle(handle)
-                    n = name_displayer.display(p)
-                    try:
-                        EditChildRef(n, self.dbstate, self.uistate, self.track,
-                                     ref, self.child_ref_edited)
-                    except Errors.WindowActiveError:
-                        pass
-                    break
+    def call_edit_childref(self, handle):
+        from Editors import EditChildRef
 
-    def edit_button_clicked(self, obj):
+        for ref in self.family.get_child_ref_list():
+            if ref.ref == handle:
+                p = self.dbstate.db.get_person_from_handle(handle)
+                n = name_displayer.display(p)
+                try:
+                    EditChildRef(n, self.dbstate, self.uistate, self.track,
+                                 ref, self.child_ref_edited)
+                except Errors.WindowActiveError:
+                    pass
+                break
+
+    def edit_child_button_clicked(self, obj):
         handle = self.get_selected()
         if handle:
             from Editors import EditPerson
