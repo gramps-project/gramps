@@ -4197,7 +4197,6 @@
 </widget>
 
 <widget class="GtkDialog" id="imageSelect">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -7484,7 +7483,6 @@
 </widget>
 
 <widget class="GtkDialog" id="loc_edit">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -12625,7 +12623,6 @@ Very High</property>
 </widget>
 
 <widget class="GtkDialog" id="lds_person_edit">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -13710,13 +13707,10 @@ Very High</property>
 </widget>
 
 <widget class="GtkDialog" id="pref_edit">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
   <property name="modal">False</property>
-  <property name="default_width">600</property>
-  <property name="default_height">450</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
   <property name="decorated">True</property>
@@ -13727,7 +13721,6 @@ Very High</property>
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
   <property name="has_separator">False</property>
-  <signal name="delete_event" handler="on_addr_edit_delete_event" last_modification_time="Fri, 20 Feb 2004 01:16:24 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="vbox124">
