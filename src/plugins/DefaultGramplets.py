@@ -176,7 +176,7 @@ class LogGramplet(Gramplet):
     def log_family_update(self, handles):
         self.append_text(_("Updated") + ": family" )
     def log_active_changed(self, handles):
-        self.get_person([handles], "Selected")
+        self.get_person([handles], _("Selected"))
 
     def get_person(self, handles, ltype):
         for person_handle in handles:
