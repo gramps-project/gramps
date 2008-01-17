@@ -2731,7 +2731,7 @@ class WebReportOptions(ReportOptions):
         if filter_index > len(filter_list):
             filter_index = 0
         self.filter_menu.set_active(filter_index)
-        dialog.add_option('Filter',self.filter_menu)
+        dialog.add_option(_('Filter',self.filter_menu))
 
         self.no_private = gtk.CheckButton(priv_msg)
         self.no_private.set_active(not self.options_dict['NWEBincpriv'])

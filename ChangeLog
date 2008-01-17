@@ -1,3 +1,7 @@
+2008-01-13  Jerome Rapinat <romjerome@yahoo.fr>
+	* src/plugins/NarrativeWeb.py: make Filter translatable
+	0001490: Cannot translate few 'filter' labels 
+
 2008-01-16  Stéphane Charette <stephanecharette@gmail.com>
 	* debian/changelog: skip everything related to help
 	* debian/rules: skip everything related to help
