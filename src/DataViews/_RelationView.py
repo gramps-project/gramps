@@ -1080,7 +1080,8 @@ class RelationshipView(PageView.PersonNavView):
 
         phandle = self.dbstate.get_active_person().handle
         person = self.dbstate.db.get_person_from_handle(phandle)
-        skip = set(person.get_family_handle_list())
+        skip = set(person.get_family_handle_list() +
+                   person.get_parent_family_handle_list())
             
         dialog = SelectFamily(self.dbstate, self.uistate, skip=skip)
         family = dialog.run()
