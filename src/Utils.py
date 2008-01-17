@@ -83,6 +83,7 @@ gender = {
     gen.lib.Person.FEMALE  : _("female"), 
     gen.lib.Person.UNKNOWN : _("unknown"), 
     }
+
 def format_gender( type):
     return gender.get(type[0], _("Invalid"))
 

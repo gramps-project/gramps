@@ -235,27 +235,31 @@ class ScratchPadEvent(ScratchPadWrapper):
     def tooltip(self):
         global escape
         
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Event"),
-            _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
-            _("Date"),escape(DateHander.get_date(self._obj)),
-            _("Place"),escape(place_title(self._db,self._obj)),
-            _("Cause"),escape(self._obj.get_cause()),
-            _("Description"), escape(self._obj.get_description()))
-        if len(self._obj.get_source_references()) > 0:
-            psrc_ref = self._obj.get_source_references()[0]
-            psrc_id = psrc_ref.get_reference_handle()
-            psrc = self._db.get_source_from_handle(psrc_id)
-            s += "\n<big><b>%s</b></big>\n\n"\
-                "\t<b>%s:</b>\t%s\n" % (
-                _("Primary source"),
-                _("Name"),
-                escape(short(psrc.get_title())))
+        # there  are several errors in the below which all cause gramps to 
+        # crash
+        
+#        s = "<big><b>%s</b></big>\n\n"\
+#            "\t<b>%s:</b>\t%s\n"\
+#            "\t<b>%s:</b>\t%s\n"\
+#            "\t<b>%s:</b>\t%s\n"\
+#            "\t<b>%s:</b>\t%s\n"\
+#            "\t<b>%s:</b>\t%s\n" % (
+#            _("Event"),
+#            _("Type"),escape(Utils.format_personal_event(self._obj.get_name())),
+#            _("Date"),escape(DateHander.get_date(self._obj)),
+#            _("Place"),escape(place_title(self._db,self._obj)),
+#            _("Cause"),escape(self._obj.get_cause()),
+#            _("Description"), escape(self._obj.get_description()))
+#        if len(self._obj.get_source_references()) > 0:
+#            psrc_ref = self._obj.get_source_references()[0]
+#            psrc_id = psrc_ref.get_reference_handle()
+#            psrc = self._db.get_source_from_handle(psrc_id)
+#            s += "\n<big><b>%s</b></big>\n\n"\
+#                "\t<b>%s:</b>\t%s\n" % (
+#                _("Primary source"),
+#                _("Name"),
+#                escape(short(psrc.get_title())))
+        s = ""
         return s
 
     def is_valid(self):
