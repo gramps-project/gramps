@@ -276,9 +276,9 @@ class RelationshipView(PageView.PersonNavView):
             </menu>
             <menu action="EditMenu">
               <menuitem action="Edit"/>
-              <menuitem action="AddParents"/>
-              <menuitem action="ShareFamily"/>
-              <menuitem action="AddSpouse"/>
+              <menuitem action="AddParentsMenu"/>
+              <menuitem action="ShareFamilyMenu"/>
+              <menuitem action="AddSpouseMenu"/>
               <menuitem action="ChangeOrder"/>
               <menuitem action="FilterEdit"/>
             </menu>
@@ -328,12 +328,20 @@ class RelationshipView(PageView.PersonNavView):
         self.family_action.add_actions([
             ('Edit', gtk.STOCK_EDIT, _('Edit'), None ,
                 _("Edit the active person"), self.edit_active),
-            ('AddSpouse', 'gramps-spouse', _('Add partner'), None ,
+            ('AddSpouse', 'gramps-spouse', _('Partner'), None ,
                 _("Add a new family with person as parent"), self.add_spouse),
-            ('AddParents', 'gramps-parents-add', _('Add new parents'), None ,
+            ('AddSpouseMenu', 'gramps-spouse', _('Add partner'), None ,
+                _("Add a new family with person as parent"), self.add_spouse),
+            ('AddParents', 'gramps-parents-add', _('Add'), None ,
                 _("Add a new set of parents"), self.add_parents),
-            ('ShareFamily', 'gramps-parents-open', _('Add existing parents'), 
+            ('AddParentsMenu', 'gramps-parents-add', _('Add new parents'), 
+                None, _("Add a new set of parents"), self.add_parents),
+            ('ShareFamily', 'gramps-parents-open', _('Share'), 
                 None , _("Add person as child to an existing family"), 
+                self.select_parents),
+            ('ShareFamilyMenu', 'gramps-parents-open', 
+                _('Add existing parents'), None , 
+                _("Add person as child to an existing family"), 
                 self.select_parents),
             ])
 

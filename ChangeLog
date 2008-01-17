@@ -3,6 +3,9 @@
     * src/Utils.py: cleanup
 
 2008-01-17 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/RelationView.py: shorter toolbar strings, #1553
+
+2008-01-17 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/WriteCD.py: check if gnome is the desktop, #1599
 
 2008-01-17  Raphael Ackermann <raphael.ackermann@gmail.com>
