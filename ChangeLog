@@ -1,3 +1,6 @@
+2008-01-17 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/PersonView.py: issue 1451, double click to expand nodes
+
 2008-01-13  Jerome Rapinat <romjerome@yahoo.fr>
 	* src/plugins/NarrativeWeb.py: make Filter translatable
 	0001490: Cannot translate few 'filter' labels 

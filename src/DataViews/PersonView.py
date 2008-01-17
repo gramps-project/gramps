@@ -832,6 +832,9 @@ class PersonView(PageView.PersonNavView):
                 except Errors.WindowActiveError:
                     pass
                 return True
+            else: 
+                #press on a parent node
+                return self.expand_collapse()
             
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             
@@ -871,13 +874,21 @@ class PersonView(PageView.PersonNavView):
                     self.edit(obj)
                     return True
                 else:
-                    store, paths = self.selection.get_selected_rows()
-                    if paths and len(paths[0]) == 1 :
-                        if self.tree.row_expanded(paths[0]):
-                            self.tree.collapse_row(paths[0])
-                        else:
-                            self.tree.expand_row(paths[0], 0)
-                        return True
+                    return self.expand_collapse()
+        return False
+
+    def expand_collapse(self):
+        """
+        Expand or collapse the selected parent name node.
+        Return True if change done, False otherwise
+        """
+        store, paths = self.selection.get_selected_rows()
+        if paths and len(paths[0]) == 1 :
+            if self.tree.row_expanded(paths[0]):
+                self.tree.collapse_row(paths[0])
+            else:
+                self.tree.expand_row(paths[0], 0)
+            return True
         return False
 
     def key_goto_home_person(self):
