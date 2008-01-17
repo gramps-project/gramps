@@ -1,4 +1,9 @@
 2008-01-16  Stéphane Charette <stephanecharette@gmail.com>
+	* debian/changelog: skip everything related to help
+	* debian/rules: skip everything related to help
+	* configure.in: fix up "beta" version number for next time
+
+2008-01-16  Stéphane Charette <stephanecharette@gmail.com>
 	* configure.in: changed version number scheme for beta 1
 
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>

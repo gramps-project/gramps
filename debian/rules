@@ -47,7 +47,7 @@ install: build
 	#chmod 644 debian/gramps/usr/share/pixmaps/gramps.svg
 
 	# Instal gramps-help things
-	$(MAKE) -C help install DESTDIR=`pwd`/debian/gramps-help
+	#$(MAKE) -C help install DESTDIR=`pwd`/debian/gramps-help
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -58,9 +58,9 @@ binary-indep: build install
 	dh_installman --package=gramps
 	dh_installmime -i
 	dh_installchangelogs --package=gramps ChangeLog
-	dh_installchangelogs --package=gramps-help help/ChangeLog
+	#dh_installchangelogs --package=gramps-help help/ChangeLog
 	dh_gconf --package=gramps
-	dh_scrollkeeper --package=gramps-help
+	#dh_scrollkeeper --package=gramps-help
 	dh_compress -i
 	dh_fixperms -i
 	dh_python  --package=gramps

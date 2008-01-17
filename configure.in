@@ -12,7 +12,7 @@ AC_CONFIG_MACRO_DIR([m4])
 GNOME_DOC_INIT
 
 RELEASE=0.SVN$(svnversion -n .)
-dnl RELEASE=beta
+dnl RELEASE=0beta
 dnl RELEASE=0rc1
 dnl RELEASE=1
 
