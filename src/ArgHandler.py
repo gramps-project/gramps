@@ -693,6 +693,7 @@ class ArgHandler:
         elif action == 'summary':
             import Summary
             text = Summary.build_report(self.state.db,None)
+            print text
         elif action == "report":
             try:
                 options_str_dict = dict( [ tuple(chunk.split('='))
