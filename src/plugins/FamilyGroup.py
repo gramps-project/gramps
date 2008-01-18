@@ -587,7 +587,7 @@ class FamilyGroupOptions(MenuReportOptions):
         menu.add_option(category_name, "family_id", family_id)
         
         recursive = BooleanOption(_('Recursive'),False)
-        recursive.set_help(_("Create reports for all decendants "
+        recursive.set_help(_("Create reports for all descendants "
                              "of this family."))
         menu.add_option(category_name,"recursive",recursive)
         
