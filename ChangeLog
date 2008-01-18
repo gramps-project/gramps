@@ -1,3 +1,9 @@
+2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/DefaultGramplets.py (SurnameCloudGramplet.main): 
+	moved cursor to beginning of text
+	* src/DataViews/GrampletView.py (Gramplet.append_text): 
+	new scroll_to="begin" to go to start of text area
+
 2008-01-18  Jerome Rapinat <romjerome@yahoo.fr>
          * data/man/gramps.1.in: add missing -l option
 

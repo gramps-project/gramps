@@ -252,8 +252,14 @@ class Gramplet(object):
             enditer = self.gui.buffer.get_end_iter()
             end = self.gui.buffer.create_mark(None, enditer, True)
             self.gui.textview.scroll_to_mark(end, 0.0, True, 0, 0)
-        else:
+        elif scroll_to == "start": # beginning of this append
             self.gui.textview.scroll_to_mark(start, 0.0, True, 0, 0)
+        elif scroll_to == "begin": # beginning of this append
+            begin_iter = self.gui.buffer.get_start_iter()
+            begin = self.gui.buffer.create_mark(None, begin_iter, True)
+            self.gui.textview.scroll_to_mark(begin, 0.0, True, 0, 0)
+        else:
+            raise AttributeError, ("no such cursor position: '%s'" % scroll_to)
 
     def load_data_to_text(self, pos=0):
         if len(self.gui.data) >= pos + 1:

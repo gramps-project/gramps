@@ -254,7 +254,7 @@ class TopSurnamesGramplet(Gramplet):
                 break
         self.append_text(("\n" + _("Total unique surnames") + ": %d\n") % 
                          total_surnames)
-        self.append_text((_("Total people") + ": %d") % total_people)
+        self.append_text((_("Total people") + ": %d") % total_people, "begin")
         
 def make_tag_size(n, counts, mins=8, maxs=20):
     # return font sizes mins to maxs
@@ -345,7 +345,7 @@ class SurnameCloudGramplet(Gramplet):
                 break
         self.append_text(("\n" + _("Total unique surnames") + ": %d\n") % 
                          total_surnames)
-        self.append_text((_("Total people") + ": %d") % total_people)
+        self.append_text((_("Total people") + ": %d") % total_people, "begin")
         
 class StatsGramplet(Gramplet):
     def init(self):
