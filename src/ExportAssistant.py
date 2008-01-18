@@ -110,6 +110,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         #set up Assisant
         gtk.Assistant.__init__(self)
         ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
+        self.forward_button = None
         gtk.Assistant.forall(self, self.get_forward_button)
         ## end
         
