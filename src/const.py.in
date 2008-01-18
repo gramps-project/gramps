@@ -192,6 +192,7 @@ POPT_TABLE = [
     ("action",  'a', str, None, 0, 'Specify action',    "ACTION"), 
     ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"), 
     ("debug",   'd', str, None, 0, 'Enable debug logs', "LOGGER_NAME"), 
+    ("",    'l', None, None, 0, 'List Family Trees', ""),
 ]
 
 LONGOPTS = [
