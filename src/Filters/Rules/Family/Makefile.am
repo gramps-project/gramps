@@ -13,6 +13,7 @@ pkgdata_PYTHON = \
 	_HasReferenceCountOf.py\
 	_HasRelType.py\
 	__init__.py\
+	_IsBookmarked.py\
 	_RegExpIdOf.py\
 	_MatchesFilter.py\
 	_FatherHasNameOf.py\

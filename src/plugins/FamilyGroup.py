@@ -25,23 +25,15 @@
 
 #------------------------------------------------------------------------
 #
-# Gnome/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
-
-#------------------------------------------------------------------------
-#
 # GRAMPS 
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report, BooleanOption, EnumeratedListOption
+from PluginUtils import register_report, BooleanOption, FamilyOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 import DateHandler
-import Utils
 from TransUtils import sgettext as _
 from BasicUtils import name_displayer as _nd
 
@@ -73,14 +65,8 @@ class FamilyGroup(Report):
         self.family_handle = None
 
         family_id = options_class.handler.options_dict['family_id']
-        if family_id:
-            family_list = person.get_family_handle_list()
-            for family_handle in family_list:
-                family = database.get_family_from_handle(family_handle)
-                this_family_id = family.get_gramps_id()
-                if this_family_id == family_id:
-                    self.family_handle = family_handle
-                    break
+        family = database.get_family_from_gramps_id(family_id)
+        self.family_handle = family.get_handle()
 
         self.recursive     = options_class.handler.options_dict['recursive']
         self.missingInfo   = options_class.handler.options_dict['missinginfo']
@@ -596,19 +582,9 @@ class FamilyGroupOptions(MenuReportOptions):
         category_name = _("Report Options")
         ##########################
         
-        if dbstate:
-            db = dbstate.get_database()
-            person = dbstate.get_active_person()
-        else:
-            db = None
-            person = None
-        families = self.get_families(db, person)
-
-        family_id = EnumeratedListOption(_("Spouse"), "")
-        for item in families:
-            family_id.add_item(item[0], item[1])
-        family_id.set_help(_("Gramps ID of the person's family."))
-        menu.add_option(category_name,"family_id",family_id)
+        family_id = FamilyOption(_("Center Family"))
+        family_id.set_help(_("The center family for the report"))
+        menu.add_option(category_name, "family_id", family_id)
         
         recursive = BooleanOption(_('Recursive'),False)
         recursive.set_help(_("Create reports for all decendants "
@@ -670,32 +646,6 @@ class FamilyGroupOptions(MenuReportOptions):
         missinginfo.set_help(_("Whether to include fields for missing "
                                "information."))
         menu.add_option(category_name,"missinginfo",missinginfo)
-
-    def get_families(self,database,person):
-        """
-        Create a mapping of all spouse names:families to be put
-        into the 'extra' option menu in the report options box.  If
-        the selected person has never been married then this routine
-        will return a placebo label and disable the OK button.
-        """
-        families = []
-        family_id = None
-        family_list = person.get_family_handle_list()
-        for family_handle in family_list:
-            family = database.get_family_from_handle(family_handle)
-            family_id = family.get_gramps_id()
-            if person.get_handle() == family.get_father_handle():
-                spouse_handle = family.get_mother_handle()
-            else:
-                spouse_handle = family.get_father_handle()
-            if spouse_handle:
-                spouse = database.get_person_from_handle(spouse_handle)
-                name = spouse.get_primary_name().get_name()
-            else:
-                name = _("unknown")
-            name = "%s (%s)" % (name,family_id)
-            families.append((family_id,name))
-        return families
 
     def make_default_style(self,default_style):
         """Make default output style for the Family Group Report."""

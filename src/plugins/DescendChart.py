@@ -410,14 +410,11 @@ class DescendChartOptions(MenuReportOptions):
         """
         Add options to the menu for the descendant report.
         """
-        id = ""
-        if dbstate:
-            id = dbstate.get_active_person().get_gramps_id()
-        pid = PersonOption(_("Center Person"),id,dbstate)
-        pid.set_help(_("The center person for the report"))
-        menu.add_option("","pid",pid)
-        
         category_name = _("Report Options")
+        
+        pid = PersonOption(_("Center Person"))
+        pid.set_help(_("The center person for the report"))
+        menu.add_option(category_name, "pid", pid)
         
         max_gen = NumberOption(_("Generations"),10,1,50)
         max_gen.set_help(_("The number of generations to include in the report"))

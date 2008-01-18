@@ -1,3 +1,37 @@
+2008-01-17  Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_GraphvizReportDialog.py:
+	* src/ReportBase/_ReportOptions.py:
+	* src/plugins/KinshipReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DescendReport.py:
+	* src/plugins/IndivComplete.py:
+	* src/plugins/CalculateEstimatedDates.py:
+	* src/plugins/BookReport.py:
+	* src/plugins/TimeLine.py:
+	* src/plugins/GVFamilyLines.py:
+	* src/plugins/Calendar.py:
+	* src/plugins/AncestorReport.py:
+	* src/plugins/MarkerReport.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/EndOfLineReport.py:
+	* src/plugins/AncestorChart.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/GVRelGraph.py:
+	* src/plugins/GVHourGlass.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/FanChart.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py:
+	* src/PluginUtils/_GuiOptions.py: Added
+	* src/PluginUtils/Makefile.am:
+	* src/Filters/Rules/Family/__init__.py:
+	* src/Filters/Rules/Family/_IsBookmarked.py: Added
+	* src/Filters/Rules/Family/Makefile.am:
+	* po/POTFILES.in:
+	Refactoring the report system. Decouple MenuOptions from the code that 
+	displays them. (Book Report is broken and needs to be fixed.)
+
 2008-01-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py (Gramplet.link): added size, tooltip
 	to links

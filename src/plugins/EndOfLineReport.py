@@ -225,12 +225,11 @@ class EndOfLineOptions(MenuReportOptions):
         """
         Add options to the menu for the End of Line report.
         """
-        id = ""
-        if dbstate:
-            id = dbstate.get_active_person().get_gramps_id()
-        pid = PersonOption(_("Center Person"),id,dbstate)
+        category_name = _("Report Options")
+        
+        pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
-        menu.add_option("","pid",pid)
+        menu.add_option(category_name, "pid", pid)
 
     def make_default_style(self,default_style):
         """Make the default output style for the End of Line Report."""

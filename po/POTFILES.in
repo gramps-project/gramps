@@ -330,6 +330,7 @@ src/plugins/ReadGrdb.py
 
 # PluginUtils package
 src/PluginUtils/__init__.py
+src/PluginUtils/GuiOptions.py
 src/PluginUtils/_Options.py
 src/PluginUtils/_PluginMgr.py
 src/PluginUtils/_Plugins.py
@@ -541,6 +542,7 @@ src/Filters/Rules/Family/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Family/_HasNoteRegexp.py
 src/Filters/Rules/Family/_HasReferenceCountOf.py
 src/Filters/Rules/Family/_HasRelType.py
+src/Filters/Rules/Family/_IsBookmarked.py
 src/Filters/Rules/Family/_RegExpIdOf.py
 src/Filters/Rules/Family/_MatchesFilter.py
 src/Filters/Rules/Family/_MotherHasIdOf.py

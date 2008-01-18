@@ -48,11 +48,10 @@ from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
 from PluginUtils import register_report
-from PluginUtils import BooleanOption, PersonFilterOption, EnumeratedListOption, \
-    NumberOption
+from PluginUtils import BooleanOption, PersonFilterOption, PersonOption, \
+    EnumeratedListOption, NumberOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
-from Filters import GenericFilter, Rules
 import DateHandler
 from Utils import ProgressMeter
 
@@ -660,7 +659,10 @@ class StatisticsChart(Report):
 class StatisticsChartOptions(MenuReportOptions):
 
     def __init__(self,name,dbstate=None):
-        MenuReportOptions.__init__(self,name,dbstate)
+        self.__pid = None
+        self.__filter = None
+        self.__dbstate = dbstate
+        MenuReportOptions.__init__(self, name, dbstate)
         
     def add_menu_options(self,menu,dbstate):
         """
@@ -668,9 +670,17 @@ class StatisticsChartOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
         
-        filter = PersonFilterOption(_("Filter"),dbstate,0,False)
-        filter.set_help(_("Determines what people are included in the report"))
-        menu.add_option(category_name,"filter", filter)
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter"))
+        menu.add_option(category_name, "pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+        
+        self.__filter = PersonFilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+                         _("Determines what people are included in the report"))
+        self.__update_filters()
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
         
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE )
@@ -735,6 +745,29 @@ class StatisticsChartOptions(MenuReportOptions):
         menu.get_option_by_name("data_gender").set_value(True)
         menu.get_option_by_name("data_ccount").set_value(True)
         menu.get_option_by_name("data_bmonth").set_value(True)
+        
+    def __update_filters(self):
+        """
+        Update the filter list based on the selected person
+        """
+        _db = self.__dbstate.get_database()
+        gid = self.__pid.get_value()
+        person = _db.get_person_from_gramps_id(gid)
+        filter_list = ReportUtils.get_person_filters(person, False)
+        self.__filter.set_filters(filter_list)
+        
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [1, 2, 3, 4]:
+            # Filters 1, 2, 3 and 4 rely on the center person
+            self.__pid.set_available(True)
+        else:
+            # The rest don't
+            self.__pid.set_available(False)
 
     def make_default_style(self, default_style):
         """Make the default output style for the Statistics report."""

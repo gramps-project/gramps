@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +46,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, \
     CATEGORY_DRAW, CATEGORY_TEXT, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from PluginUtils import NumberOption, BooleanOption, StringOption, \
-    PersonFilterOption, EnumeratedListOption
+    PersonFilterOption, EnumeratedListOption, PersonOption
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter
@@ -144,6 +145,7 @@ class Calendar(Report):
         self.text3 = options_class.handler.options_dict['text3']
         self.filter_option =  options_class.menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
+        self.pid = options_class.handler.options_dict['pid']
 
         self.title = _("Calendar Report") #% name
 
@@ -313,7 +315,7 @@ class Calendar(Report):
         self.progress.set_pass(_('Filtering data...'), 0)
         people = self.filter.apply(self.database,
                                    self.database.get_person_handles(sort_handles=False))
-        center_person =  self.filter_option.get_center_person()
+        center_person = self.database.get_person_from_gramps_id(self.pid)
         rel_calc = relationship_class()
         self.progress.set_pass(_('Filtering data...'), len(people))
         for person_handle in people:
@@ -471,18 +473,32 @@ class CalendarReport(Calendar):
 
 class CalendarOptions(MenuReportOptions):
     """ Calendar options for graphic calendar """
+    def __init__(self, name, dbstate=None):
+        self.__dbstate = dbstate
+        self.__pid = None
+        self.__filter = None
+        MenuReportOptions.__init__(self, name, dbstate)
     
-    def add_menu_options(self, menu,dbstate):
+    def add_menu_options(self, menu, dbstate):
         """ Adds the options for the graphical calendar """
         category_name = _("Report Options")
 
-        year = NumberOption(_("Year of calendar"), time.localtime()[0], 1000, 3000)
+        year = NumberOption(_("Year of calendar"), time.localtime()[0], 
+                            1000, 3000)
         year.set_help(_("Year of calendar"))
         menu.add_option(category_name,"year", year)
 
-        filter = PersonFilterOption(_("Filter"),dbstate,0,False)
-        filter.set_help(_("Select filter to restrict people that appear on calendar"))
-        menu.add_option(category_name,"filter", filter)
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter"))
+        menu.add_option(category_name, "pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+
+        self.__filter = PersonFilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+               _("Select filter to restrict people that appear on calendar"))
+        self.__update_filters()
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
 
         name_format = EnumeratedListOption(_("Name format"), -1)
         for num, name, fmt_str, act in name_displayer.get_name_format():
@@ -537,6 +553,29 @@ class CalendarOptions(MenuReportOptions):
         text3 = StringOption(_("Text Area 3"), "http://gramps-project.org/",)
         text3.set_help(_("Third line of text at bottom of calendar"))
         menu.add_option(category_name,"text3", text3)
+        
+    def __update_filters(self):
+        """
+        Update the filter list based on the selected person
+        """
+        _db = self.__dbstate.get_database()
+        gid = self.__pid.get_value()
+        person = _db.get_person_from_gramps_id(gid)
+        filter_list = ReportUtils.get_person_filters(person, False)
+        self.__filter.set_filters(filter_list)
+        
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [1, 2, 3, 4]:
+            # Filters 1, 2, 3 and 4 rely on the center person
+            self.__pid.set_available(True)
+        else:
+            # The rest don't
+            self.__pid.set_available(False)
 
     def make_my_style(self, default_style, name, description,
                       size=9, font=BaseDoc.FONT_SERIF, justified ="left",
@@ -603,6 +642,8 @@ class CalendarOptions(MenuReportOptions):
         
 class CalendarReportOptions(CalendarOptions):
     """ Options for the calendar (birthday and anniversary) report """
+    def __init__(self, name, dbstate=None):
+        CalendarOptions.__init__(self, name, dbstate)
 
     def add_menu_options(self, menu,dbstate):
         """ Adds the options for the graphical calendar """

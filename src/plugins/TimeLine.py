@@ -38,7 +38,8 @@ from TransUtils import sgettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import register_report
-from PluginUtils import PersonFilterOption, EnumeratedListOption
+from PluginUtils import PersonFilterOption, EnumeratedListOption, \
+    PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
@@ -296,15 +297,25 @@ class TimeLine(Report):
 class TimeLineOptions(MenuReportOptions):
 
     def __init__(self,name,dbstate=None):
+        self.__pid = None
+        self.__filter = None
+        self.__dbstate = dbstate
         MenuReportOptions.__init__(self,name,dbstate)
         
     def add_menu_options(self,menu,dbstate):
         category_name = _("Report Options")
         
-        filter = PersonFilterOption(_("Filter"),dbstate,0,False)
-        filter.set_help(_("Determine what people will be included in "
-                          "the report"))
-        menu.add_option(category_name,"filter", filter)
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter"))
+        menu.add_option(category_name, "pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+        
+        self.__filter = PersonFilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+                         _("Determines what people are included in the report"))
+        self.__update_filters()
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
         
         sortby = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
@@ -313,6 +324,29 @@ class TimeLineOptions(MenuReportOptions):
             idx += 1
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
+        
+    def __update_filters(self):
+        """
+        Update the filter list based on the selected person
+        """
+        _db = self.__dbstate.get_database()
+        gid = self.__pid.get_value()
+        person = _db.get_person_from_gramps_id(gid)
+        filter_list = ReportUtils.get_person_filters(person, False)
+        self.__filter.set_filters(filter_list)
+        
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [1, 2, 3, 4]:
+            # Filters 1, 2, 3 and 4 rely on the center person
+            self.__pid.set_available(True)
+        else:
+            # The rest don't
+            self.__pid.set_available(False)
         
     def make_default_style(self,default_style):
         """Make the default output style for the Timeline report."""

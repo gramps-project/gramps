@@ -49,8 +49,10 @@ import gen.lib
 import Utils
 import ThumbNails
 from DateHandler import displayer as _dd
-from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_GRAPHVIZ, MODE_GUI
-from PluginUtils import register_report, EnumeratedListOption, BooleanOption, NumberOption, ColourButtonOption, PersonListOption, SurnameColourOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
+    CATEGORY_GRAPHVIZ, MODE_GUI
+from PluginUtils import register_report, EnumeratedListOption, BooleanOption, \
+    NumberOption, ColourOption, PersonListOption, SurnameColourOption
 
 
 #------------------------------------------------------------------------
@@ -87,7 +89,7 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('People of Interest')
         # --------------------------------
 
-        personList = PersonListOption(      _('People of interest'), '', dbstate)
+        personList = PersonListOption(      _('People of interest'))
         personList.set_help(                _('People of interest are used as a starting point when determining \"family lines\".'))
         menu.add_option(category, 'FLgidlist', personList)
 
@@ -107,7 +109,7 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('Family Colours')
         # ----------------------------
 
-        surnameColour = SurnameColourOption(_('Family colours'), '', dbstate)
+        surnameColour = SurnameColourOption(_('Family colours'))
         surnameColour.set_help(             _('Colours to use for various family lines.'))
         menu.add_option(category, 'FLsurnameColours', surnameColour)
 
@@ -115,19 +117,19 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('Individuals')
         # -------------------------
 
-        colourMales = ColourButtonOption(   _('Males'), '#e0e0ff')
+        colourMales = ColourOption(   _('Males'), '#e0e0ff')
         colourMales.set_help(               _('The colour to use to display men.'))
         menu.add_option(category, 'FLcolourMales', colourMales)
 
-        colourFemales = ColourButtonOption( _('Females'), '#ffe0e0')
+        colourFemales = ColourOption( _('Females'), '#ffe0e0')
         colourFemales.set_help(             _('The colour to use to display women.'))
         menu.add_option(category, 'FLcolourFemales', colourFemales)
 
-        colourUnknown = ColourButtonOption( _('Unknown'), '#e0e0e0')
+        colourUnknown = ColourOption( _('Unknown'), '#e0e0e0')
         colourUnknown.set_help(             _('The colour to use when the gender is unknown.'))
         menu.add_option(category, 'FLcolourUnknown', colourUnknown)
 
-        colourFamily = ColourButtonOption(  _('Families'), '#ffffe0')
+        colourFamily = ColourOption(  _('Families'), '#ffffe0')
         colourFamily.set_help(              _('The colour to use to display families.'))
         menu.add_option(category, 'FLcolourFamilies', colourFamily)
 

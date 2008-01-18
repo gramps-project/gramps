@@ -83,6 +83,8 @@ from ReportBase._DocReportDialog import DocReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 from ReportBase._ReportOptions import ReportOptions
 
+from BasicUtils import name_displayer as _nd
+
 #------------------------------------------------------------------------
 #
 # Private Functions
@@ -103,13 +105,13 @@ def _get_subject(options,db):
     option_names = menu.get_all_option_names()
     for name in option_names:
         option = menu.get_option_by_name(name)
-        if isinstance(option,PersonOption):
-            from BasicUtils import name_displayer as _nd
+        if isinstance(option, PersonFilterOption):
+            return option.get_filter().get_name()
+        elif isinstance(option, PersonOption):
             gid = option.get_value()
             person = db.get_person_from_gramps_id(gid)
             return _nd.display(person)
-        elif isinstance(option,PersonFilterOption):
-            return option.get_filter().get_name()
+
     return _("Not Applicable")
 
 #------------------------------------------------------------------------

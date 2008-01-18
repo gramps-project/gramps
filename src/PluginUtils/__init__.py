@@ -28,10 +28,11 @@
 #Better would be to do: import _PluginMgr as PluginMgr and then access
 # the list as PluginUtils.PluginMgr, or use a function that returns the pointer
 # of the list.
-from _MenuOptions import MenuOptions, \
-    NumberOption, FloatOption, BooleanOption, TextOption, \
-    EnumeratedListOption, PersonFilterOption, StringOption, ColourButtonOption, \
-    PersonOption, PersonListOption, SurnameColourOption
+from _MenuOptions import \
+    NumberOption, BooleanOption, TextOption, \
+    EnumeratedListOption, PersonFilterOption, StringOption, ColourOption, \
+    PersonOption, PersonListOption, SurnameColourOption, FamilyOption
+from _GuiOptions import GuiMenuOptions
 from _PluginMgr import \
      register_export, register_import, \
      register_tool, register_report, \
@@ -48,7 +49,7 @@ import _Plugins as Plugins
 import _PluginWindows as PluginWindows
 
 # This needs to go above Tool and MenuOption as it needs both
-class MenuToolOptions(MenuOptions,Tool.ToolOptions):
+class MenuToolOptions(GuiMenuOptions,Tool.ToolOptions):
     """
     The MenuToolOptions class implementes the ToolOptions
     functionality in a generic way so that the user does not need to
@@ -60,6 +61,6 @@ class MenuToolOptions(MenuOptions,Tool.ToolOptions):
     """
     def __init__(self, name, person_id=None, dbstate=None):
         Tool.ToolOptions.__init__(self,name, person_id)
-        MenuOptions.__init__(self, dbstate)
+        GuiMenuOptions.__init__(self, dbstate)
 
 

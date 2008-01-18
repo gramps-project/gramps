@@ -35,12 +35,10 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-import const
-import Utils
 import BaseDoc
-from Filters import GenericFilter, Rules
 import DateHandler
-from PluginUtils import register_report, PersonFilterOption, BooleanOption
+from PluginUtils import register_report, PersonFilterOption, BooleanOption, \
+    PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes
@@ -531,21 +529,55 @@ class IndivCompleteOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
-    def __init__(self,name,dbstate=None):
-        MenuReportOptions.__init__(self,name,dbstate)
+    def __init__(self, name, dbstate=None):
+        self.__dbstate = dbstate
+        self.__pid = None
+        self.__filter = None
+        MenuReportOptions.__init__(self, name, dbstate)
         
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu, dbstate):
         ################################
         category_name = _("Report Options")
         ################################
         
-        filter = PersonFilterOption(_("Filter"),dbstate,0,True)
-        filter.set_help(_("Select the filter to be applied to the report"))
-        menu.add_option(category_name,"filter", filter)
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter"))
+        menu.add_option(category_name, "pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+        
+        self.__filter = PersonFilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+                           _("Select the filter to be applied to the report"))
+        self.__update_filters()
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
         
         cites = BooleanOption(_("Include Source Information"), True)
         cites.set_help(_("Whether to cite sources."))
         menu.add_option(category_name,"cites", cites)
+        
+    def __update_filters(self):
+        """
+        Update the filter list based on the selected person
+        """
+        _db = self.__dbstate.get_database()
+        gid = self.__pid.get_value()
+        person = _db.get_person_from_gramps_id(gid)
+        filter_list = ReportUtils.get_person_filters(person, True)
+        self.__filter.set_filters(filter_list)
+        
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [0, 2, 3, 4, 5]:
+            # Filters 0, 2, 3, 4 and 5 rely on the center person
+            self.__pid.set_available(True)
+        else:
+            # The rest don't
+            self.__pid.set_available(False)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Individual Complete Report."""

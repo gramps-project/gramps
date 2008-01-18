@@ -44,6 +44,7 @@ from _FamilyPrivate import FamilyPrivate
 from _HasAttribute import HasAttribute
 from _HasEvent import HasEvent
 from _HasMarkerOf import HasMarkerOf
+from _IsBookmarked import IsBookmarked
 from _MatchesFilter import MatchesFilter
 from _FatherHasNameOf import FatherHasNameOf
 from _FatherHasIdOf import FatherHasIdOf
@@ -64,6 +65,7 @@ editor_rule_list = [
     HasEvent,
     HasAttribute,
     HasMarkerOf,
+    IsBookmarked,
     MatchesFilter,
     FatherHasNameOf,
     FatherHasIdOf,

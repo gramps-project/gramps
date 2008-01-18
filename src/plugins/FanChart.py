@@ -326,15 +326,12 @@ class FanChartOptions(MenuReportOptions):
         """
         Add options to the menu for the fan chart.
         """
-        id = ""
-        if dbstate:
-            id = dbstate.get_active_person().get_gramps_id()
-        pid = PersonOption(_("Center Person"),id,dbstate)
-        pid.set_help(_("The center person for the report"))
-        menu.add_option("","pid",pid)
-        
         category_name = _("Report Options")
-        
+    
+        pid = PersonOption(_("Center Person"))
+        pid.set_help(_("The center person for the report"))
+        menu.add_option(category_name, "pid", pid)
+            
         max_gen = NumberOption(_("Generations"),5,1,self.MAX_GENERATIONS)
         max_gen.set_help(_("The number of generations to include in the report"))
         menu.add_option(category_name,"maxgen",max_gen)

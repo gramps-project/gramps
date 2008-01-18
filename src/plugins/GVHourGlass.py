@@ -169,14 +169,11 @@ class HourGlassOptions(MenuReportOptions):
         """
         Create all the menu options for this report.
         """
-        gid = ""
-        if dbstate:
-            gid = dbstate.get_active_person().get_gramps_id()
-        pid = PersonOption(_("Center Person"), gid, dbstate)
-        pid.set_help(_("The center person for the report"))
-        menu.add_option("", "pid", pid)
-        
         category_name = _("Report Options")
+        
+        pid = PersonOption(_("Center Person"))
+        pid.set_help(_("The center person for the report"))
+        menu.add_option(category_name, "pid", pid)
         
         max_gen = NumberOption(_('Max Descendant Generations'), 10, 1, 15)
         max_gen.set_help(_("The number of generations of descendants to " \

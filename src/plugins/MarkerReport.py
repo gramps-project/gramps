@@ -39,7 +39,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
 from gen.lib import MarkerType, FamilyRelType
-from Filters import GenericFilter, GenericFilterFactory, Rules
+from Filters import GenericFilterFactory, Rules
 from BasicUtils import name_displayer
 import DateHandler
 
@@ -433,7 +433,8 @@ class MarkerOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
         
-        marker = EnumeratedListOption(_('Marker'),0)
+        marker = EnumeratedListOption(_('Marker'),
+                                      MarkerType._I2EMAP[MarkerType.COMPLETE])
         # Add built-in marker types
         for mtype in MarkerType._I2SMAP:
             if mtype != MarkerType.NONE and mtype != MarkerType.CUSTOM:

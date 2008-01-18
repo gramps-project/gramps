@@ -55,7 +55,7 @@ except:
 import const
 import Config
 import BaseDoc
-from PluginUtils import _Options, MenuOptions
+from PluginUtils import _Options, GuiMenuOptions
 
 #-------------------------------------------------------------------------
 #
@@ -770,7 +770,7 @@ class ReportOptions(_Options.Options):
 # MenuReportOptions
 #
 #-------------------------------------------------------------------------
-class MenuReportOptions(MenuOptions,ReportOptions):
+class MenuReportOptions(GuiMenuOptions,ReportOptions):
     """
 
     The MenuReportOptions class implementes the ReportOptions
@@ -788,7 +788,7 @@ class MenuReportOptions(MenuOptions,ReportOptions):
         else:
             active_person = None
         ReportOptions.__init__(self,name,active_person)
-        MenuOptions.__init__(self,dbstate)
+        GuiMenuOptions.__init__(self,dbstate)
         
     def load_previous_values(self):
         ReportOptions.load_previous_values(self)

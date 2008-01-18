@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ import os
 from cStringIO import StringIO
 import tempfile
 from types import ClassType, InstanceType
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------------
 #
@@ -48,7 +49,7 @@ import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
-from PluginUtils import NumberOption, FloatOption, EnumeratedListOption, \
+from PluginUtils import NumberOption, EnumeratedListOption, \
     TextOption, BooleanOption
 
 #-------------------------------------------------------------------------------
@@ -769,6 +770,11 @@ class GraphvizReportDialog(ReportDialog):
         self.v_pages    = v_pages
         self.page_dir   = page_dir
 
+        # the page direction option only makes sense when the
+        # number of horizontal and/or vertical pages is > 1
+        self.h_pages.connect('value-changed', self.pages_changed)
+        self.v_pages.connect('value-changed', self.pages_changed)
+
         ################################
         category = _("GraphViz Options")
         ################################
@@ -789,7 +795,7 @@ class GraphvizReportDialog(ReportDialog):
                         "300 or 600 DPI."))
         self.options.add_menu_option(category, "dpi", dpi)
 
-        nodesep = FloatOption(_("Node spacing"), 0.20, 0.01, 5.00)
+        nodesep = NumberOption(_("Node spacing"), 0.20, 0.01, 5.00, 0.01)
         nodesep.set_help(_( "The minimum amount of free space, in inches, "
                             "between individual nodes.  For vertical graphs, "
                             "this corresponds to spacing between columns.  "
@@ -797,7 +803,7 @@ class GraphvizReportDialog(ReportDialog):
                             "spacing between rows."))
         self.options.add_menu_option(category, "nodesep", nodesep)
 
-        ranksep = FloatOption(_("Rank spacing"), 0.20, 0.01, 5.00)
+        ranksep = NumberOption(_("Rank spacing"), 0.20, 0.01, 5.00, 0.01)
         ranksep.set_help(_( "The minimum amount of free space, in inches, "
                             "between ranks.  For vertical graphs, this "
                             "corresponds to spacing between rows.  For "
@@ -827,29 +833,22 @@ class GraphvizReportDialog(ReportDialog):
 
         self.options.load_previous_values()
 
-    def pages_changed(self, sp):
-        # this method gets called every time the v_pages or h_pages
-        # spinbuttons are changed; when both vertical and horizontal
-        # pages are set to "1", then the page_dir control needs to
-        # be grayed out
-        if  self.v_pages.gobj.get_value_as_int() > 1 or \
-            self.h_pages.gobj.get_value_as_int() > 1:
-            self.page_dir.combo.set_sensitive(True)
+    def pages_changed(self):
+        """
+        This method gets called every time the v_pages or h_pages
+        options are changed; when both vertical and horizontal
+        pages are set to "1", then the page_dir control needs to
+        be unavailable
+        """
+        if  self.v_pages.get_value() > 1 or \
+            self.h_pages.get_value() > 1:
+            self.page_dir.set_available(True)
         else:
-            self.page_dir.combo.set_sensitive(False)
+            self.page_dir.set_available(False)
 
     def init_interface(self):
         ReportDialog.init_interface(self)
         self.doc_type_changed(self.format_menu)
-
-        # now that the controls have all been created,
-        # we can finally setup the event connections
-
-        # the page direction option only makes sense when the
-        # number of horizontal and/or vertical pages is > 1
-        self.h_pages.gobj.connect('value-changed', self.pages_changed)
-        self.v_pages.gobj.connect('value-changed', self.pages_changed)
-        self.pages_changed(self.h_pages.gobj)
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog."""
