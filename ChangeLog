@@ -1,3 +1,8 @@
+2008-01-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/GrampletView.py (Gramplet.link): added size, tooltip
+	to links
+	* src/plugins/DefaultGramplets.py: added SurnameCloudGramplet
+
 2008-01-18 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditNote.py: focus on text field on start
 	* src/Editors/_EditChildRef.py: add usability: name of child, edit btn

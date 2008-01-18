@@ -256,6 +256,97 @@ class TopSurnamesGramplet(Gramplet):
                          total_surnames)
         self.append_text((_("Total people") + ": %d") % total_people)
         
+def make_tag_size(n, counts, mins=8, maxs=20):
+    # return font sizes mins to maxs
+    diff = maxs - mins
+    # based on counts (biggest to smallest)
+    if len(counts) > 1:
+        position = diff - (diff * (float(counts.index(n)) / (len(counts) - 1)))
+    else:
+        position = 0
+    return int(position) + mins
+
+class SurnameCloudGramplet(Gramplet):
+    def init(self):
+        self.tooltip = _("Double-click surname for details")
+        self.top_size = 100 # will be overwritten in load
+        self.set_text(_("No Family Tree loaded."))
+
+    def db_changed(self):
+        self.dbstate.db.connect('person-add', self.update)
+        self.dbstate.db.connect('person-delete', self.update)
+        self.dbstate.db.connect('person-update', self.update)
+
+    def on_load(self):
+        if len(self.gui.data) > 0:
+            self.top_size = int(self.gui.data[0])
+
+    def on_save(self):
+        self.gui.data = [self.top_size]
+
+    def main(self):
+        self.set_text(_("Processing...") + "\n")
+        people = self.dbstate.db.get_person_handles(sort_handles=False)
+        surnames = {}
+        representative_handle = {}
+        cnt = 0
+        for person_handle in people:
+            person = self.dbstate.db.get_person_from_handle(person_handle)
+            if person:
+                surname = person.get_primary_name().get_surname().strip()
+                surnames[surname] = surnames.get(surname, 0) + 1
+                representative_handle[surname] = person_handle
+            if cnt % 350 == 0:
+                yield True
+            cnt += 1
+        total_people = cnt
+        surname_sort = []
+        total = 0
+        cnt = 0
+        for surname in surnames:
+            surname_sort.append( (surnames[surname], surname) )
+            total += surnames[surname]
+            if cnt % 350 == 0:
+                yield True
+            cnt += 1
+        total_surnames = cnt
+        surname_sort.sort(lambda a,b: -cmp(a,b))
+        cloud_names = []
+        cloud_values = []
+        cnt = 0
+        for (count, surname) in surname_sort:
+            cloud_names.append( (count, surname) )
+            cloud_values.append( count )
+            if cnt > self.top_size:
+                break
+            cnt += 1
+        cloud_names.sort(lambda a,b: cmp(a[1], b[1]))
+        counts = list(set(cloud_values))
+        counts.sort()
+        counts.reverse()
+        line = 0
+        ### All done!
+        self.set_text("")
+        for (count, surname) in cloud_names: # surname_sort:
+            if len(surname) == 0:
+                text = "(%s)" %  _("blank")
+                # int((float(count)/total) * 100), count)
+            else:
+                text = surname
+                #
+            size = make_tag_size(count, counts)
+            self.link(text, 'Surname', representative_handle[surname], size,
+                      "%s, %d%% (%d)" % (text, 
+                                        int((float(count)/total) * 100), 
+                                        count))
+            self.append_text(" ")
+            line += 1
+            if line >= self.top_size:
+                break
+        self.append_text(("\n" + _("Total unique surnames") + ": %d\n") % 
+                         total_surnames)
+        self.append_text((_("Total people") + ": %d") % total_people)
+        
 class StatsGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
@@ -608,6 +699,15 @@ register(type="gramplet",
          height=230,
          content = TopSurnamesGramplet,
          title=_("Top Surnames"),
+         )
+
+register(type="gramplet", 
+         name= "Surname Cloud Gramplet", 
+         tname=_("Surname Cloud Gramplet"), 
+         height=300,
+         expand=True,
+         content = SurnameCloudGramplet,
+         title=_("Surname Cloud"),
          )
 
 register(type="gramplet", 

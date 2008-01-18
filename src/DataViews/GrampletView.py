@@ -109,6 +109,7 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
         if msg:
             gui.tooltips = gtk.Tooltips()
             gui.tooltips.set_tip(gui.scrolledwindow, msg)
+            gui.tooltips_text = msg
         return gui
     return None
 
@@ -215,15 +216,18 @@ class Gramplet(object):
         if debug: print "%s is connecting" % self.gui.title
         pass
 
-    def link(self, text, link_type, data):
+    def link(self, text, link_type, data, size=None, tooltip=None):
         buffer = self.gui.buffer
         iter = buffer.get_end_iter()
         offset = buffer.get_char_count()
         self.append_text(text)
         start = buffer.get_iter_at_offset(offset)
         end = buffer.get_end_iter()
-        self._tags.append((LinkTag(buffer), link_type, data))
-        buffer.apply_tag(self._tags[-1][0], start, end)
+        link_data = (LinkTag(buffer), link_type, data, tooltip)
+        if size:
+            link_data[0].set_property("size-points", size)
+        self._tags.append(link_data)
+        buffer.apply_tag(link_data[0], start, end)
 
     def get_text(self):
         start = self.gui.buffer.get_start_iter()
@@ -317,13 +321,22 @@ class Gramplet(object):
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
         cursor = self.standard_cursor
-        for (tag, link_type, handle) in self._tags:
+        ttip = None
+        for (tag, link_type, handle, tooltip) in self._tags:
             if iter.has_tag(tag):
                 tag.set_property('underline', pango.UNDERLINE_SINGLE)
                 cursor = self.link_cursor
+                ttip = tooltip
             else:
                 tag.set_property('underline', pango.UNDERLINE_NONE)
         view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(cursor)
+        if self.gui.tooltips:
+            if ttip:
+                self.gui.tooltips.set_tip(self.gui.scrolledwindow, 
+                                          ttip)
+            else:
+                self.gui.tooltips.set_tip(self.gui.scrolledwindow, 
+                                          self.gui.tooltips_text)
         return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
@@ -332,7 +345,7 @@ class Gramplet(object):
                                                        int(event.x), 
                                                        int(event.y))
         iter = view.get_iter_at_location(*buffer_location)
-        for (tag, link_type, handle) in self._tags:
+        for (tag, link_type, handle, tooltip) in self._tags:
             if iter.has_tag(tag):
                 if link_type == 'Person':
                     person = self.dbstate.db.get_person_from_handle(handle)
@@ -384,6 +397,8 @@ class GuiGramplet:
         self.data = kwargs.get("data", [])
         ##########
         self.pui = None # user code
+        self.tooltips = None
+        self.tooltips_text = None
         self.xml = gtk.glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
         self.mainframe = self.xml.get_widget('gvgramplet')
         self.textview = self.xml.get_widget('gvtextview')
