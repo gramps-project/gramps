@@ -109,6 +109,9 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
         #set up Assisant
         gtk.Assistant.__init__(self)
+        ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
+        gtk.Assistant.forall(self, self.get_forward_button)
+        ## end
         
         #set up ManagedWindow
         self.top_title = _("Export Assistant")
@@ -145,7 +148,15 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         
         #ManagedWindow show method
         ManagedWindow.ManagedWindow.show(self)
-        
+
+    def get_forward_button(self, arg):
+        if isinstance(arg, gtk.HBox):
+            arg.forall(self._forward_btn)
+
+    def _forward_btn(self, arg):
+        if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-go-forward':
+            self.forward_button = arg
+
     def build_menu_names(self,obj):
         """Override ManagedWindow method."""
         return (self.top_title, None)
@@ -391,6 +402,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         elif page_number == _ExportAssistant_pages['options'] :
             self.create_options()
             self.set_page_complete(page, True)
+            ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
+            if self.forward_button:
+                self.forward_button.hide()
+                self.forward_button.show()
+            ## end
         elif page == self.chooser :
             # next page is the file chooser, reset filename, keep folder where user was
             folder, name = self.suggest_filename()

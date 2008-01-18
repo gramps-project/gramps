@@ -1,4 +1,10 @@
 2008-01-18 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ExportAssistant.py: workaround around bug
+		http://bugzilla.gnome.org/show_bug.cgi?id=56070 as indicated on
+		Ubuntu launchpad, make forward button accept click after it
+		becomes sensitive.
+
+2008-01-18 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditChildRef.py: remove debug print statements
 	* src/glade/gramps.glade: wrong visible setting in child ref widget
 
