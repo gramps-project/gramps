@@ -1,3 +1,11 @@
+2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/DefaultGramplets.py (SurnameCloudGramplet.main): 
+	use const.NO_SURNAME to display blank entries
+	* src/plugins/SameSurnames.py (SameSurname): exact match surnames
+	* src/Simple/_SimpleAccess.py (SimpleAccess.surname): 
+	surname() returns const.NO_SURNAME when left blank
+	* src/const.py.in: new NO_SURNAME constant; RERUN ./autogen.sh !
+
 2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/FilterEditor/_EditRule.py
     * src/FilterEditor/_ShowResults.py

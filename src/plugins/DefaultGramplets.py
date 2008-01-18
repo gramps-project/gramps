@@ -31,6 +31,7 @@ from BasicUtils import name_displayer
 from QuickReports import run_quick_report_by_name
 import DateHandler
 from gettext import gettext as _
+import const
 
 #
 # Hello World, in Gramps Gramplets
@@ -243,7 +244,7 @@ class TopSurnamesGramplet(Gramplet):
         self.set_text("")
         for (count, surname) in surname_sort:
             if len(surname) == 0:
-                text = "(%s), %d%% (%d)\n" %  (_("blank"), # as in empty, left blank
+                text = "%s, %d%% (%d)\n" %  (const.NO_SURNAME, 
                                                int((float(count)/total) * 100), count)
             else:
                 text = "%s, %d%% (%d)\n" %  (surname, int((float(count)/total) * 100), count)
@@ -329,11 +330,9 @@ class SurnameCloudGramplet(Gramplet):
         self.set_text("")
         for (count, surname) in cloud_names: # surname_sort:
             if len(surname) == 0:
-                text = "(%s)" %  _("blank")
-                # int((float(count)/total) * 100), count)
+                text = const.NO_SURNAME
             else:
                 text = surname
-                #
             size = make_tag_size(count, counts)
             self.link(text, 'Surname', representative_handle[surname], size,
                       "%s, %d%% (%d)" % (text, 

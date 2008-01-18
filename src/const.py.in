@@ -176,6 +176,8 @@ TRANSLATORS = _('TRANSLATORS: Translate this to your '
 #-------------------------------------------------------------------------
 THUMBSCALE   = 96.0
 XMLFILE      = "data.gramps"
+NO_SURNAME   = "(%s)" % _("none")
+NO_GIVEN     = "(%s)" % _("none")
 
 #-------------------------------------------------------------------------
 #

@@ -31,6 +31,7 @@ import Utils
 from BasicUtils import name_displayer
 from ReportBase import ReportUtils
 from gen.lib import EventType
+import const
 
 class SimpleAccess:
     """
@@ -128,7 +129,8 @@ class SimpleAccess:
         """
         assert(isinstance(person, (gen.lib.Person, NoneType)))
         if person:
-            return person.get_primary_name().get_surname()
+            surname = person.get_primary_name().get_surname()
+            return surname or const.NO_SURNAME
         else:
             return u''
         

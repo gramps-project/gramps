@@ -28,7 +28,6 @@ from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
 from Filters.Rules import Rule
-from Filters.Rules.Person import SearchName
 from Filters import GenericFilterFactory, Rules
 
 class IncompleteSurname(Rule):
@@ -39,6 +38,19 @@ class IncompleteSurname(Rule):
     def apply(self,db,person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             if name.get_surname() == "":
+                return True
+        return False
+
+class SameSurname(Rule):
+    """People with same surname"""
+    labels      = [_('Substring:')]
+    name        = _('People matching the <name>')
+    description = _("Matches people with same lastname")
+    category    = _('General filters')
+    def apply(self,db,person):
+        src = self.list[0].upper()
+        for name in [person.get_primary_name()] + person.get_alternate_names():
+            if name.surname and name.surname.upper() == src.upper():
                 return True
         return False
 
@@ -59,7 +71,7 @@ def run(database, document, person):
     gid = sdb.gid(person)
     filter = GenericFilterFactory('Person')()
     if person.get_primary_name().get_surname() != '':
-        rule = SearchName([person.get_primary_name().get_surname()])
+        rule = SameSurname([person.get_primary_name().get_surname()])
     else:
         rule = IncompleteSurname([])
     filter.add_rule(rule)
