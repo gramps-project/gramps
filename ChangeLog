@@ -1,3 +1,6 @@
+2008-01-18  Jerome Rapinat <romjerome@yahoo.fr>
+         * data/man/gramps.1.in: add missing -l option
+
 2008-01-18 Peter Landgren <peter.talken@telia.com>
     * src/const.py.in: --help and -h now gives similar messages
 

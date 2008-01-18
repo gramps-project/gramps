@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "August 2005" "@VERSION@"
+.TH gramps 1 "@VERSION@" "January 2008" "@VERSION@"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
@@ -7,6 +7,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .RB [ \-?|\-\^\-help ]
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
+.RB [ \-l]
 .RB [ \-O|\-\^\-open=
 .IR DATABASE 
 .RB [ \-f|\-\^\-format= 
@@ -24,7 +25,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .RB [ \-a|\-\^\-action= 
 .IR ACTION ]
 .RB [ \-p|\-\^\-options= 
-.IR OPTIONSTRING ]] 
+.IR OPTIONSTRING ]]
 .RB [
 .IR FILE
 .RB ]
@@ -86,6 +87,10 @@ Formats available for export are
 \fBgramps\-pkg\fR, \fBwft\fR (guessed if \fIFILE\fR ends with \fB.wft\fR),
 \fBgeneweb\fR, and \fBiso\fR (never guessed, always specify with
 \fB\-f\fR option).
+
+.TP 
+.BI \-l
+Print a list of known family trees.
 
 .TP 
 .BI \-O,\-\^\-open= " DATABASE"
@@ -295,7 +300,7 @@ for inclusion in the Debian GNU/Linux system.
 .LP 
 This man page is currently maintained by:
 .br 
-Alex Roitman \fI<shura@gramps-project.org>\fR
+Gramps project \fI<xxx@gramps-project.org>\fR
 .br 
 
 .SH DOCUMENTATION
