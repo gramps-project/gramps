@@ -94,7 +94,6 @@ class EditChildRef(EditSecondary):
         self.name_label.set_text(self.name)
 
     def _setup_fields(self):
-
         self.frel = MonitoredDataType(
             self.top.get_widget('frel'),
             self.obj.set_father_relation,
@@ -129,13 +128,12 @@ class EditChildRef(EditSecondary):
         Creates the notebook tabs and inserts them into the main
         window.
         """
-        
         notebook = gtk.Notebook()
-        
+
         self.srcref_list = self._add_tab(
             notebook,
             SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj))
-        
+
         self.note_tab = self._add_tab(
             notebook,
             NoteTab(self.dbstate, self.uistate, self.track,
@@ -166,11 +164,9 @@ class EditChildRef(EditSecondary):
 
     def person_change(self, handles):
         # check to see if the handle matches the current object
-        print handles
         if self.obj.ref in handles:
             p = self.dbstate.db.get_person_from_handle(self.obj.ref)
             self.name = name_displayer.display(p)
-            print 'changed label'
             self.name_label.set_text(self.name)
 
     def save(self,*obj):
