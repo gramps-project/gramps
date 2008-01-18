@@ -737,7 +737,7 @@ class StatisticsChartOptions(MenuReportOptions):
                 category_name = _("Charts 2")
             
             opt = BooleanOption(_Extract.extractors[key][1], False)
-            opt.set_help(_("Include charts with indicated dat"))
+            opt.set_help(_("Include charts with indicated date"))
             menu.add_option(category_name,key, opt)
             idx += 1
         
