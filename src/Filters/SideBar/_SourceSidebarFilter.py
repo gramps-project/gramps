@@ -39,12 +39,11 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsWidgets
-import gen.lib
-
-from _SidebarFilter import SidebarFilter
+from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Source import *
+from Filters.Rules.Source import (RegExpIdOf, HasIdOf, HasSource, 
+                                  HasNoteMatchingSubstringOf, HasNoteRegexp, 
+                                  MatchesFilter)
 
 GenericSourceFilter = GenericFilterFactory('Source')
 #-------------------------------------------------------------------------
@@ -55,10 +54,7 @@ GenericSourceFilter = GenericFilterFactory('Source')
 class SourceSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
-        SidebarFilter.__init__(self, dbstate, uistate)
         self.clicked_func = clicked
-
-    def create_widget(self):
         self.filter_id = gtk.Entry()
         self.filter_title = gtk.Entry()       
         self.filter_author = gtk.Entry()
@@ -68,6 +64,10 @@ class SourceSidebarFilter(SidebarFilter):
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.generic = gtk.ComboBox()
+
+        SidebarFilter.__init__(self, dbstate, uistate)
+
+    def create_widget(self):
         cell = gtk.CellRendererText()
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
@@ -110,7 +110,7 @@ class SourceSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasSource([title,author,pub])
+            rule = HasSource([title, author, pub])
             generic_filter.add_rule(rule)
                 
             if note:
@@ -129,10 +129,10 @@ class SourceSidebarFilter(SidebarFilter):
 
         return generic_filter
 
-    def on_filters_changed(self,name_space):
+    def on_filters_changed(self, name_space):
         if name_space == 'Source':
-            all = GenericSourceFilter()
-            all.set_name(_("None"))
-            all.add_rule(Rules.Source.AllSources([]))
-            self.generic.set_model(build_filter_model('Source', [all]))
+            all_filter = GenericSourceFilter()
+            all_filter.set_name(_("None"))
+            all_filter.add_rule(Rules.Source.AllSources([]))
+            self.generic.set_model(build_filter_model('Source', [all_filter]))
             self.generic.set_active(0)

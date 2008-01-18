@@ -34,7 +34,6 @@ This is used since GRAMPS version 3.0
 import cPickle as pickle
 import os
 import shutil
-import re
 import time
 from types import InstanceType
 

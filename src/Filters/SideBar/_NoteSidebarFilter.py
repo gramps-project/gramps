@@ -42,9 +42,9 @@ import gtk
 import GrampsWidgets
 from gen.lib import Note, NoteType
 
-from _SidebarFilter import SidebarFilter
+from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Note import *
+from Filters.Rules.Note import RegExpIdOf, HasIdOf, HasNote, MatchesFilter
 
 GenericNoteFilter = GenericFilterFactory('Note')
 #-------------------------------------------------------------------------
@@ -55,10 +55,7 @@ GenericNoteFilter = GenericFilterFactory('Note')
 class NoteSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
-        SidebarFilter.__init__(self, dbstate, uistate)
         self.clicked_func = clicked
-
-    def create_widget(self):
         self.filter_id = gtk.Entry()
         self.filter_text = gtk.Entry()
 
@@ -73,6 +70,10 @@ class NoteSidebarFilter(SidebarFilter):
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.generic = gtk.ComboBox()
+
+        SidebarFilter.__init__(self, dbstate, uistate)
+
+    def create_widget(self):
         cell = gtk.CellRendererText()
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
@@ -109,7 +110,7 @@ class NoteSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasNote([text,ntype])
+            rule = HasNote([text, ntype])
             generic_filter.add_rule(rule)
                 
 
@@ -122,10 +123,10 @@ class NoteSidebarFilter(SidebarFilter):
 
         return generic_filter
         
-    def on_filters_changed(self,name_space):
+    def on_filters_changed(self, name_space):
         if name_space == 'Note':
-            all = GenericNoteFilter()
-            all.set_name(_("None"))
-            all.add_rule(Rules.Note.AllNotes([]))
-            self.generic.set_model(build_filter_model('Note', [all]))
+            all_filter = GenericNoteFilter()
+            all_filter.set_name(_("None"))
+            all_filter.add_rule(Rules.Note.AllNotes([]))
+            self.generic.set_model(build_filter_model('Note', [all_filter]))
             self.generic.set_active(0)

@@ -32,7 +32,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Filters
 from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 
 #-------------------------------------------------------------------------

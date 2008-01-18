@@ -25,7 +25,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -38,7 +37,10 @@ from _HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
 # "HasTextMatchingRegexOf"
 #-------------------------------------------------------------------------
 class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
-    """This is wrapping HasTextMatchingSubstringOf to enable the regex_match parameter"""
+    """This is wrapping HasTextMatchingSubstringOf to enable the regex_match 
+    parameter.
+    
+    """
     def __init__(self,list):
         HasTextMatchingSubstringOf.__init__(self,list)
 

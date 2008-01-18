@@ -42,9 +42,14 @@ import gtk
 import GrampsWidgets
 import gen.lib
 
-from _SidebarFilter import SidebarFilter
+from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Family import *
+from Filters.Rules.Family import (RegExpIdOf, HasIdOf, RegExpFatherName, 
+                                  SearchFatherName, RegExpMotherName, 
+                                  SearchMotherName, RegExpChildName, 
+                                  SearchChildName, HasEvent, HasRelType, 
+                                  HasMarkerOf, HasNoteRegexp, 
+                                  HasNoteMatchingSubstringOf, MatchesFilter)
 
 GenericFamilyFilter = GenericFilterFactory('Family')
 #-------------------------------------------------------------------------
@@ -55,21 +60,18 @@ GenericFamilyFilter = GenericFilterFactory('Family')
 class FamilySidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
-        SidebarFilter.__init__(self, dbstate, uistate)
         self.clicked_func = clicked
-
-    def create_widget(self):
         self.filter_id = gtk.Entry()
         self.filter_father = gtk.Entry()
         self.filter_mother = gtk.Entry()
         self.filter_child = gtk.Entry()
         
         self.filter_event = gen.lib.Event()
-        self.filter_event.set_type((gen.lib.EventType.CUSTOM,u''))
+        self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
         self.etype = gtk.ComboBoxEntry()
 
         self.family_stub = gen.lib.Family()
-        self.family_stub.set_relationship((gen.lib.FamilyRelType.CUSTOM,u''))
+        self.family_stub.set_relationship((gen.lib.FamilyRelType.CUSTOM, u''))
         self.rtype = gtk.ComboBoxEntry()
         
         self.event_menu = GrampsWidgets.MonitoredDataType(
@@ -83,7 +85,7 @@ class FamilySidebarFilter(SidebarFilter):
             self.family_stub.get_relationship)
         
         self.filter_marker = gen.lib.Family()
-        self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM,u''))
+        self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM, u''))
         self.mtype = gtk.ComboBoxEntry()
         self.marker_menu = GrampsWidgets.MonitoredDataType(
             self.mtype,
@@ -95,6 +97,10 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.generic = gtk.ComboBox()
+
+        SidebarFilter.__init__(self, dbstate, uistate)
+
+    def create_widget(self):
         cell = gtk.CellRendererText()
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
@@ -132,10 +138,10 @@ class FamilySidebarFilter(SidebarFilter):
         rtype = self.family_stub.get_relationship().xml_str()
         mtype = self.filter_marker.get_marker().xml_str()
         regex = self.filter_regex.get_active()
-        gen = self.generic.get_active() > 0
+        generic = self.generic.get_active() > 0
 
         empty = not (gid or father or mother or child or note or mtype
-                     or regex or etype or rtype or gen)
+                     or regex or etype or rtype or generic)
         if empty:
             generic_filter = None
         else:
@@ -196,10 +202,10 @@ class FamilySidebarFilter(SidebarFilter):
 
         return generic_filter
 
-    def on_filters_changed(self,name_space):
+    def on_filters_changed(self, name_space):
         if name_space == 'Family':
-            all = GenericFamilyFilter()
-            all.set_name(_("None"))
-            all.add_rule(Rules.Family.AllFamilies([]))
-            self.generic.set_model(build_filter_model('Family', [all]))
+            all_filter = GenericFamilyFilter()
+            all_filter.set_name(_("None"))
+            all_filter.add_rule(Rules.Family.AllFamilies([]))
+            self.generic.set_model(build_filter_model('Family', [all_filter]))
             self.generic.set_active(0)

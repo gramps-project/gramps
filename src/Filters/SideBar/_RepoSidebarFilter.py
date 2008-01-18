@@ -42,9 +42,11 @@ import gtk
 import GrampsWidgets
 from gen.lib import Repository, RepositoryType
 
-from _SidebarFilter import SidebarFilter
+from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Repository import *
+from Filters.Rules.Repository import (RegExpIdOf, HasIdOf, HasRepo, 
+                                      HasNoteRegexp, MatchesFilter, 
+                                      HasNoteMatchingSubstringOf)
 
 GenericRepoFilter = GenericFilterFactory('Repository')
 #-------------------------------------------------------------------------
@@ -55,10 +57,7 @@ GenericRepoFilter = GenericFilterFactory('Repository')
 class RepoSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
-        SidebarFilter.__init__(self, dbstate, uistate)
         self.clicked_func = clicked
-
-    def create_widget(self):
         self.filter_id = gtk.Entry()
         self.filter_title = gtk.Entry()       
         self.filter_address = gtk.Entry()
@@ -77,6 +76,10 @@ class RepoSidebarFilter(SidebarFilter):
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.generic = gtk.ComboBox()
+
+        SidebarFilter.__init__(self, dbstate, uistate)
+
+    def create_widget(self):
         cell = gtk.CellRendererText()
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
@@ -123,7 +126,7 @@ class RepoSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasRepo([title,rtype,address,url])
+            rule = HasRepo([title, rtype, address, url])
             generic_filter.add_rule(rule)
                 
             if note:
@@ -142,10 +145,11 @@ class RepoSidebarFilter(SidebarFilter):
 
         return generic_filter
         
-    def on_filters_changed(self,name_space):
+    def on_filters_changed(self, name_space):
         if name_space == 'Repository':
-            all = GenericRepoFilter()
-            all.set_name(_("None"))
-            all.add_rule(Rules.Repository.AllRepos([]))
-            self.generic.set_model(build_filter_model('Repository', [all]))
+            all_filter = GenericRepoFilter()
+            all_filter.set_name(_("None"))
+            all_filter.add_rule(Rules.Repository.AllRepos([]))
+            self.generic.set_model(build_filter_model('Repository', 
+                                                      [all_filter]))
             self.generic.set_active(0)

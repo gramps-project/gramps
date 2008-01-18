@@ -39,12 +39,11 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsWidgets
-import gen.lib
-
-from _SidebarFilter import SidebarFilter
+from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.MediaObject import *
+from Filters.Rules.MediaObject import (RegExpIdOf, HasIdOf, HasMedia, 
+                                       HasNoteRegexp, MatchesFilter, 
+                                       HasNoteMatchingSubstringOf)
 
 GenericMediaFilter = GenericFilterFactory('MediaObject')
 #-------------------------------------------------------------------------
@@ -55,10 +54,7 @@ GenericMediaFilter = GenericFilterFactory('MediaObject')
 class MediaSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
-        SidebarFilter.__init__(self, dbstate, uistate)
         self.clicked_func = clicked
-
-    def create_widget(self):
         self.filter_id = gtk.Entry()
         self.filter_title = gtk.Entry()       
         self.filter_type = gtk.Entry()
@@ -70,6 +66,10 @@ class MediaSidebarFilter(SidebarFilter):
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))
 
         self.generic = gtk.ComboBox()
+
+        SidebarFilter.__init__(self, dbstate, uistate)
+
+    def create_widget(self):
         cell = gtk.CellRendererText()
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
@@ -116,7 +116,7 @@ class MediaSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasMedia([title,mime,path,date])
+            rule = HasMedia([title, mime, path, date])
             generic_filter.add_rule(rule)
                 
             if note:
@@ -135,10 +135,11 @@ class MediaSidebarFilter(SidebarFilter):
 
         return generic_filter
 
-    def on_filters_changed(self,name_space):
+    def on_filters_changed(self, name_space):
         if name_space == 'MediaObject':
-            all = GenericMediaFilter()
-            all.set_name(_("None"))
-            all.add_rule(Rules.MediaObject.AllMedia([]))
-            self.generic.set_model(build_filter_model('MediaObject', [all]))
+            all_filter = GenericMediaFilter()
+            all_filter.set_name(_("None"))
+            all_filter.add_rule(Rules.MediaObject.AllMedia([]))
+            self.generic.set_model(build_filter_model('MediaObject', 
+                                                      [all_filter]))
             self.generic.set_active(0)

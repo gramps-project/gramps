@@ -1,3 +1,27 @@
+2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/gen/db/dbdir.py
+    * src/plugins/ChangeNames.py
+    * src/DisplayModels/_NoteModel.py
+    * src/GrampsDbUtils/_GrampsBSDDB.py
+    * src/Filters/SideBar/_MediaSidebarFilter.py
+    * src/Filters/SideBar/_SidebarFilter.py
+    * src/Filters/SideBar/_SourceSidebarFilter.py
+    * src/Filters/SideBar/_EventSidebarFilter.py
+    * src/Filters/SideBar/_FamilySidebarFilter.py
+    * src/Filters/SideBar/_PlaceSidebarFilter.py
+    * src/Filters/SideBar/_NoteSidebarFilter.py
+    * src/Filters/SideBar/_RepoSidebarFilter.py
+    * src/Filters/SideBar/_PersonSidebarFilter.py
+    * src/Filters/Rules/Family/_HasNoteRegexp.py
+    * src/Filters/Rules/Event/_MatchesSourceFilter.py
+    * src/Filters/Rules/Event/_HasNoteRegexp.py
+    * src/Filters/Rules/Event/_MatchesPersonFilter.py
+    * src/Filters/Rules/_HasTextMatchingRegexpOf.py
+    * src/Filters/Rules/Place/_MatchesEventFilter.py
+    * src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
+    * src/Filters/Rules/Person/_MatchesEventFilter.py
+    Pylint fixes.
+
 2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py (SurnameCloudGramplet.main): 
 	moved cursor to beginning of text

@@ -34,7 +34,6 @@ to version 2.2.x
 import cPickle as pickle
 import os
 import shutil
-import re
 import time
 from gettext import gettext as _
 from bsddb import dbshelve, db

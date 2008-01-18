@@ -32,14 +32,17 @@ class SidebarFilter:
 
     def __init__(self, dbstate, uistate):
         self.position = 1
-        self.table = gtk.Table(4,11)
+        self.table = gtk.Table(4, 11)
         self.table.set_border_width(6)
         self.table.set_row_spacings(6)
-        self.table.set_col_spacing(0,6)
-        self.table.set_col_spacing(1,6)
+        self.table.set_col_spacing(0, 6)
+        self.table.set_col_spacing(1, 6)
         self.tooltips = gtk.Tooltips()
+        self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
+        self.clear_btn = gtk.Button()
+        
         self._init_interface()
-        uistate.connect('filters-changed',self.on_filters_changed)
+        uistate.connect('filters-changed', self.on_filters_changed)
         self.uistate = uistate
         self.dbstate = dbstate
 
@@ -60,7 +63,6 @@ class SidebarFilter:
 
         self.create_widget()
 
-        self.apply_btn = gtk.Button(stock=gtk.STOCK_FIND)
         self.apply_btn.connect('clicked', self.clicked)
 
         hbox = gtk.HBox()
@@ -70,11 +72,10 @@ class SidebarFilter:
         image.show()
         label = gtk.Label(_('Reset'))
         label.show()
-        hbox.pack_start(image,False,False)
-        hbox.pack_start(label,False,True)
+        hbox.pack_start(image, False, False)
+        hbox.pack_start(label, False, True)
         hbox.set_spacing(4)
         
-        self.clear_btn = gtk.Button()
         self.clear_btn.add(hbox)
         self.clear_btn.connect('clicked', self.clear)
 
@@ -112,7 +113,7 @@ class SidebarFilter:
 
     def add_text_entry(self, name, widget, tooltip=None):
         self.add_entry(name, widget)
-        widget.connect('key-press-event',self.key_press)
+        widget.connect('key-press-event', self.key_press)
         if tooltip:
             self.tooltips.set_tip(widget, tooltip)
 
@@ -131,6 +132,6 @@ class SidebarFilter:
                           xoptions=gtk.FILL, yoptions=0)
         self.position += 1
 
-    def on_filters_changed(self,namespace):
+    def on_filters_changed(self, namespace):
         pass
 
