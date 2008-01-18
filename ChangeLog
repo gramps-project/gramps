@@ -1,3 +1,6 @@
+2008-01-18 Jim Sack <jgsack@san.rr.com>
+	* src/GrampsDb/_WriteGedcom.py : #1621 use os.path.samefile in write_photo
+
 2008-01-17 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/_RelationView.py: isue #1605, not twice in same family
 
@@ -12,7 +15,7 @@
 	include sources (when available) for media objects
 
 2008-01-04 Jerome Rapinat  <romjerome@yahoo.fr>
-        * src/DateHandler/_Date_fr.py : typo
+	* src/DateHandler/_Date_fr.py : typo
 
 2008-01-03 Benny Malengier <benny.malengier@gramps-project.org>
 	* data/gramps.desktop.in: list more mime types, item 851

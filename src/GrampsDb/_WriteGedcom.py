@@ -1449,7 +1449,7 @@ class GedcomWriter(UpdateCallback):
                 return
             basename = os.path.basename(path)
             dest = os.path.join (imgdir, basename)
-            if dest != path:
+            if not os.path.samefile(dest,path):
                 try:
                     shutil.copyfile(path, dest)
                     shutil.copystat(path, dest)
