@@ -1,3 +1,6 @@
+2008-01-18 Erik De Richter <frederik.de.richter@pandora.be>
+    * po/gramps.pot: new gramps.pot generated
+
 2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py (SurnameCloudGramplet.main): 
 	use const.NO_SURNAME to display blank entries
