@@ -30,6 +30,7 @@ Package providing filtering framework for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +47,7 @@ from Filters import SystemFilters, CustomFilters
 class FilterComboBox(gtk.ComboBox):
 
     def set(self,local_filters,default=""):
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)

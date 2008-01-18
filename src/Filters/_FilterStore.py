@@ -37,7 +37,6 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _GenericFilter import GenericFilter
 from Filters import SystemFilters, CustomFilters
 
 #-------------------------------------------------------------------------
@@ -47,8 +46,8 @@ from Filters import SystemFilters, CustomFilters
 #-------------------------------------------------------------------------
 class FilterStore(gtk.ListStore):
 
-    def __init__(self,local_filters=[], namespace="generic",default=""):
-        gtk.ListStore.__init__(self,str)
+    def __init__(self, local_filters=[], namespace="generic", default=""):
+        gtk.ListStore.__init__(self, str)
         self.list_map = []
         self.def_index = 0
 
@@ -61,7 +60,8 @@ class FilterStore(gtk.ListStore):
                 self.def_index = cnt
             cnt += 1
 
-        for filt in SystemFilters.get_filters(namespace) + CustomFilters.get_filters(namespace):
+        for filt in SystemFilters.get_filters(namespace) + \
+                                        CustomFilters.get_filters(namespace):
             name = _(filt.get_name())
             self.append(row=[name])
             self.list_map.append(filt)
@@ -72,5 +72,5 @@ class FilterStore(gtk.ListStore):
     def default_index(self):
         return self.def_index
 
-    def get_filter(self,index):
+    def get_filter(self, index):
         return self.list_map[index]

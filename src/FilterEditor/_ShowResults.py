@@ -81,7 +81,7 @@ class ShowResults(ManagedWindow.ManagedWindow):
         render = gtk.CellRendererText()
         
         tree = self.get_widget('list')
-        model = gtk.ListStore(str, str)
+        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         tree.set_model(model)
 
         column_n = gtk.TreeViewColumn(_('Name'), render, text=0)

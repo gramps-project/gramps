@@ -739,9 +739,7 @@ class ListView(BookMarkView):
         return True
 
     def setup_filter(self):
-        """
-        Builds the default filters and add them to the filter menu.
-        """
+        """Build the default filters and add them to the filter menu."""
         cols = []
         for pair in [pair for pair in self.column_order() if pair[0]]:
             cols.append((self.colinfo[pair[1]], pair[1]))

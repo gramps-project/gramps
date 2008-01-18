@@ -148,7 +148,7 @@ class MyFilters(gtk.ComboBox):
             If filter_name is given, it will be excluded from the dropdown box
         """
         gtk.ComboBox.__init__(self)
-        store = gtk.ListStore(str)
+        store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)
@@ -182,7 +182,7 @@ class MyLesserEqualGreater(gtk.ComboBox):
 
     def __init__(self):
         gtk.ComboBox.__init__(self)
-        store = gtk.ListStore(str)
+        store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)
@@ -215,7 +215,7 @@ class MySource(gtk.ComboBox):
     def __init__(self, db):
         gtk.ComboBox.__init__(self)
         self.db = db
-        store = gtk.ListStore(str)
+        store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)

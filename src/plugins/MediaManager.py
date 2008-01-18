@@ -38,6 +38,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gtk
+import gobject
 
 #------------------------------------------------------------------------
 #
@@ -238,7 +239,7 @@ class MediaMan(Tool.Tool):
         scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         scrolled_window.set_shadow_type(gtk.SHADOW_IN)
         tree = gtk.TreeView()
-        model = gtk.ListStore(str)
+        model = gtk.ListStore(gobject.TYPE_STRING)
         tree.set_model(model)
         tree_view_column = gtk.TreeViewColumn(_('Affected path'),
                                               gtk.CellRendererText(),text=0)

@@ -938,10 +938,12 @@ class FamilyLinesOptions(ReportOptions):
         # ******** FAMILY COLOURS **********
         title = _("Family Colours")
 
-        self.familyLinesModel = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.familyLinesModel = gtk.ListStore(gobject.TYPE_STRING, 
+                                              gobject.TYPE_STRING)
         self.familyLinesTreeView = gtk.TreeView(self.familyLinesModel)
         self.familyLinesTreeView.set_size_request(150, 150)
-        self.familyLinesTreeView.connect('row-activated', self.dialog.familyLinesClicked)
+        self.familyLinesTreeView.connect('row-activated', 
+                                         self.dialog.familyLinesClicked)
         col1 = gtk.TreeViewColumn(_('Surname'), gtk.CellRendererText(), text=0)
         col2 = gtk.TreeViewColumn(_('Colour'), gtk.CellRendererText(), text=1)
         col1.set_resizable(True)
@@ -953,13 +955,17 @@ class FamilyLinesOptions(ReportOptions):
         self.familyLinesTreeView.append_column(col2)
         self.familyLinesScrolledWindow = gtk.ScrolledWindow()
         self.familyLinesScrolledWindow.add(self.familyLinesTreeView)
-        self.familyLinesScrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.familyLinesScrolledWindow.set_policy(gtk.POLICY_AUTOMATIC, 
+                                                  gtk.POLICY_AUTOMATIC)
         self.familyLinesScrolledWindow.set_shadow_type(gtk.SHADOW_OUT)
         self.familyLinesHbox = gtk.HBox()
-        self.familyLinesHbox.pack_start(self.familyLinesScrolledWindow, expand=True, fill=True)
+        self.familyLinesHbox.pack_start(self.familyLinesScrolledWindow, 
+                                        expand=True, fill=True)
 
-        self.addSurname = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, self.dialog.addSurnameClicked)
-        self.delSurname = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, self.dialog.delSurnameClicked)
+        self.addSurname = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, 
+                                                     self.dialog.addSurnameClicked)
+        self.delSurname = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, 
+                                                     self.dialog.delSurnameClicked)
         self.familyLinesVbbox = gtk.VButtonBox()
         self.familyLinesVbbox.add(self.addSurname)
         self.familyLinesVbbox.add(self.delSurname)

@@ -50,6 +50,7 @@ log = logging.getLogger(".GraphViz")
 #
 #------------------------------------------------------------------------
 import gtk
+import gobject
 
 #------------------------------------------------------------------------
 #
@@ -761,7 +762,7 @@ class GraphVizOptions(ReportOptions):
     def add_list(self, options, default):
         "returns compobox of given options and default value"
         box = gtk.ComboBox()
-        store = gtk.ListStore(str)
+        store = gtk.ListStore(gobject.TYPE_STRING)
         box.set_model(store)
         cell = gtk.CellRendererText()
         box.pack_start(cell,True)
@@ -1100,7 +1101,7 @@ class FormatComboBox(gtk.ComboBox):
     """
 
     def set(self,tables=0,callback=None,obj=None,active=None):
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)
@@ -1148,7 +1149,7 @@ class GraphicsFormatComboBox(gtk.ComboBox):
     """
 
     def set(self,active=None):
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)

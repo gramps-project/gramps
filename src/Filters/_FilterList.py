@@ -25,7 +25,7 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from xml.sax import make_parser,SAXParseException
+from xml.sax import make_parser, SAXParseException
 import os
 
 #-------------------------------------------------------------------------
@@ -33,7 +33,7 @@ import os
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _FilterParser import FilterParser
+from Filters._FilterParser import FilterParser
 
 #-------------------------------------------------------------------------
 #
@@ -46,17 +46,17 @@ class FilterList:
     It stores, saves, and loads the filters.
     """
     
-    def __init__(self,file):
+    def __init__(self, file):
         self.filter_namespaces = {}
         self.file = os.path.expanduser(file)
 
-    def get_filters(self,namespace='generic'):
+    def get_filters(self, namespace='generic'):
         try:
             return self.filter_namespaces[namespace]
         except KeyError:
             return []
 
-    def add(self,namespace,filt):
+    def add(self, namespace, filt):
         assert(type(namespace)==str or type(namespace)==unicode)
         
         if namespace not in self.filter_namespaces.keys():
@@ -76,15 +76,15 @@ class FilterList:
         except SAXParseException:
             print "Parser error"
 
-    def fix(self,line):
+    def fix(self, line):
         l = line.strip()
-        l = l.replace('&','&amp;')
-        l = l.replace('>','&gt;')
-        l = l.replace('<','&lt;')
-        return l.replace('"','&quot;')
+        l = l.replace('&', '&amp;')
+        l = l.replace('>', '&gt;')
+        l = l.replace('<', '&lt;')
+        return l.replace('"', '&quot;')
 
     def save(self):
-        f = open(self.file.encode('utf-8'),'w')
+        f = open(self.file.encode('utf-8'), 'w')
         
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
@@ -103,8 +103,8 @@ class FilterList:
                 for rule in the_filter.get_rules():
                     f.write('    <rule class="%s">\n'
                             % rule.__class__.__name__)
-                    for v in rule.values():
-                        f.write('      <arg value="%s"/>\n' % self.fix(v))
+                    for value in rule.values():
+                        f.write('      <arg value="%s"/>\n' % self.fix(value))
                     f.write('    </rule>\n')
                 f.write('  </filter>\n')
             f.write('</object>\n')

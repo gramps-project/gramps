@@ -58,6 +58,7 @@ log = logging.getLogger(".WebPage")
 #
 #------------------------------------------------------------------------
 import gtk
+import gobject
 
 #------------------------------------------------------------------------
 #
@@ -2821,7 +2822,7 @@ class WebReportOptions(ReportOptions):
         cset_node = None
         cset = self.options_dict['NWEBencoding']
 
-        store = gtk.ListStore(str,str)
+        store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         for data in _character_sets:
             if data[1] == cset:
                 cset_node = store.append(row=data)
@@ -2831,7 +2832,7 @@ class WebReportOptions(ReportOptions):
 
         cset_node = None
         cset = self.options_dict['NWEBcss']
-        store = gtk.ListStore(str,str)
+        store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         for data in _css_files:
             if data[1] == cset:
                 cset_node = store.append(row=data)

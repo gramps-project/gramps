@@ -39,6 +39,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -474,7 +475,10 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
               'be extracted from the place title. Select the places you '
               'wish GRAMPS to convert.'))
 
-        self.model = gtk.ListStore(bool, str, str, str, str, str, str)
+        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING, 
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING, 
+                                   gobject.TYPE_STRING)
 
         r = gtk.CellRendererToggle()
         r.connect('toggled', self.toggled)

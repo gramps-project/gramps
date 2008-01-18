@@ -29,7 +29,7 @@ Package providing filtering framework for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _GenericFilter import GenericFilter
+from Filters._GenericFilter import GenericFilter
 
 #-------------------------------------------------------------------------
 #
@@ -38,15 +38,15 @@ from _GenericFilter import GenericFilter
 #-------------------------------------------------------------------------
 class ParamFilter(GenericFilter):
 
-    def __init__(self,source=None):
-        GenericFilter.__init__(self,source)
+    def __init__(self, source=None):
+        GenericFilter.__init__(self, source)
         self.need_param = 1
         self.param_list = []
 
-    def set_parameter(self,param):
+    def set_parameter(self, param):
         self.param_list = [param]
 
-    def apply(self,db,id_list=None):
+    def apply(self, db, id_list=None):
         for rule in self.flist:
             #rule.set_list(self.param_list)
             #
@@ -59,7 +59,7 @@ class ParamFilter(GenericFilter):
             rule.set_list(new_list)
         for rule in self.flist:
             rule.prepare(db)
-        result = GenericFilter.apply(self,db,id_list)
+        result = GenericFilter.apply(self, db, id_list)
         for rule in self.flist:
             rule.reset()
         return result

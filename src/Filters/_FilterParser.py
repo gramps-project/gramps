@@ -32,8 +32,8 @@ from xml.sax import handler
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from _GenericFilter import GenericFilterFactory
-import Rules
+from Filters._GenericFilter import GenericFilterFactory
+from Filters import Rules
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +43,7 @@ import Rules
 class FilterParser(handler.ContentHandler):
     """Parses the XML file and builds the list of filters"""
     
-    def __init__(self,gfilter_list):
+    def __init__(self, gfilter_list):
         handler.ContentHandler.__init__(self)
         self.gfilter_list = gfilter_list
         self.f = None
@@ -52,10 +52,10 @@ class FilterParser(handler.ContentHandler):
         self.cname = None
         self.namespace = "Person"
         
-    def setDocumentLocator(self,locator):
+    def setDocumentLocator(self, locator):
         self.locator = locator
 
-    def startElement(self,tag,attrs):
+    def startElement(self, tag, attrs):
         if tag == "object":
             if attrs.has_key('type'):
                 self.namespace = attrs['type']
@@ -79,7 +79,7 @@ class FilterParser(handler.ContentHandler):
                 self.f.set_invert(attrs['invert'])
             if attrs.has_key('comment'):
                 self.f.set_comment(attrs['comment'])
-            self.gfilter_list.add(self.namespace,self.f)
+            self.gfilter_list.add(self.namespace, self.f)
         elif tag == "rule":
             save_name = attrs['class']
             if save_name in old_names_2_class.keys():
@@ -98,14 +98,14 @@ class FilterParser(handler.ContentHandler):
                     except (ImportError, NameError, AttributeError ):
                         print "ERROR: Filter rule '%s' in "\
                               "filter '%s' not found!"\
-                                  % (save_name,self.f.get_name())
+                                  % (save_name, self.f.get_name())
                         self.r = None
                         return
             self.a = []
         elif tag == "arg":
             self.a.append(attrs['value'])
 
-    def endElement(self,tag):
+    def endElement(self, tag):
         if tag == "rule" and self.r != None:
             if len(self.r.labels) < len(self.a):
                 print "WARNING: Invalid number of arguments in filter '%s'!" %\
@@ -114,7 +114,7 @@ class FilterParser(handler.ContentHandler):
                 rule = self.r(self.a[0:nargs])
                 self.f.add_rule(rule)
             elif len(self.r.labels) > len(self.a):
-                print "ERROR: Invalid number of arguments in filter '%s'!" %\
+                print "ERROR: Invalid number of arguments in filter '%s'!" % \
                             self.f.get_name()
             else:
                 rule = self.r(self.a)

@@ -35,7 +35,7 @@ class GenericFilter:
     
     logical_functions = ['or', 'and', 'xor', 'one']
 
-    def __init__(self,source=None):
+    def __init__(self, source=None):
         if source:
             self.need_param = source.need_param
             self.flist = source.flist[:]
@@ -51,18 +51,20 @@ class GenericFilter:
             self.logical_op = 'and'
             self.invert = False
 
-    def match(self,handle,db):
-        """Return True or False depending on whether the handle matches the 
-        filter """
-        if self.apply(db,[handle]):
+    def match(self, handle, db):
+        """
+        Return True or False depending on whether the handle matches the filter.
+        """
+        if self.apply(db, [handle]):
             return True
         else:
             return False
 
     def is_empty(self):
-        return len(self.flist) == 0 or (len(self.flist) == 1 and self.flist[0].is_empty())
+        return len(self.flist) == 0 or \
+              (len(self.flist) == 1 and self.flist[0].is_empty())
 
-    def set_logical_op(self,val):
+    def set_logical_op(self, val):
         if val in GenericFilter.logical_functions:
             self.logical_op = val
         else:
@@ -71,7 +73,7 @@ class GenericFilter:
     def get_logical_op(self):
         return self.logical_op
 
-    def set_invert(self,val):
+    def set_invert(self, val):
         self.invert = bool(val)
 
     def get_invert(self):
@@ -80,22 +82,22 @@ class GenericFilter:
     def get_name(self):
         return self.name
     
-    def set_name(self,name):
+    def set_name(self, name):
         self.name = name
 
-    def set_comment(self,comment):
+    def set_comment(self, comment):
         self.comment = comment
 
     def get_comment(self):
         return self.comment
     
-    def add_rule(self,rule):
+    def add_rule(self, rule):
         self.flist.append(rule)
 
-    def delete_rule(self,rule):
+    def delete_rule(self, rule):
         self.flist.remove(rule)
 
-    def set_rules(self,rules):
+    def set_rules(self, rules):
         self.flist = rules
 
     def get_rules(self):
@@ -110,7 +112,7 @@ class GenericFilter:
     def find_from_handle(self, db, handle):
         return db.get_person_from_handle(handle)
 
-    def check_func(self,db,id_list,task):
+    def check_func(self, db, id_list, task):
         final_list = []
         
         if id_list == None:
@@ -119,18 +121,18 @@ class GenericFilter:
             while data:
                 person = self.make_obj()
                 person.unserialize(data[1])
-                if task(db,person) != self.invert:
+                if task(db, person) != self.invert:
                     final_list.append(data[0])
                 data = cursor.next()
             cursor.close()
         else:
             for handle in id_list:
                 person = self.find_from_handle(db, handle)
-                if task(db,person) != self.invert:
+                if task(db, person) != self.invert:
                     final_list.append(handle)
         return final_list
 
-    def check_and(self,db,id_list):
+    def check_and(self, db, id_list):
         final_list = []
         flist = self.flist
         if id_list == None:
@@ -141,7 +143,7 @@ class GenericFilter:
                 person.unserialize(data[1])
                 val = True
                 for rule in flist:
-                    if not rule.apply(db,person):
+                    if not rule.apply(db, person):
                         val = False
                         break
                 if val != self.invert:
@@ -153,40 +155,40 @@ class GenericFilter:
                 person = self.find_from_handle(db, handle)
                 val = True
                 for rule in flist:
-                    if not rule.apply(db,person):
+                    if not rule.apply(db, person):
                         val = False
                         break
                 if val != self.invert:
                     final_list.append(handle)
         return final_list
 
-    def check_or(self,db,id_list):
-        return self.check_func(db,id_list,self.or_test)
+    def check_or(self, db, id_list):
+        return self.check_func(db, id_list, self.or_test)
 
-    def check_one(self,db,id_list):
-        return self.check_func(db,id_list,self.one_test)
+    def check_one(self, db, id_list):
+        return self.check_func(db, id_list, self.one_test)
 
-    def check_xor(self,db,id_list):
-        return self.check_func(db,id_list,self.xor_test)
+    def check_xor(self, db, id_list):
+        return self.check_func(db, id_list, self.xor_test)
 
-    def xor_test(self,db,person):
+    def xor_test(self, db, person):
         test = False
         for rule in self.flist:
-            test = test ^ rule.apply(db,person)
+            test = test ^ rule.apply(db, person)
         return test
 
-    def one_test(self,db,person):
+    def one_test(self, db, person):
         count = 0
         for rule in self.flist:
-            if rule.apply(db,person):
+            if rule.apply(db, person):
                 if count:
                     return False
                 count += 1
         return count == 1
 
-    def or_test(self,db,person):
+    def or_test(self, db, person):
         for rule in self.flist:
-            if rule.apply(db,person):
+            if rule.apply(db, person):
                 return True
         return False
     
@@ -197,14 +199,14 @@ class GenericFilter:
             m = self.check_and
         return m
 
-    def check(self,db,handle):
-        return self.get_check_func()(db,[handle])
+    def check(self, db, handle):
+        return self.get_check_func()(db, [handle])
 
-    def apply(self,db,id_list=None):
+    def apply(self, db, id_list=None):
         m = self.get_check_func()
         for rule in self.flist:
             rule.prepare(db)
-        res = m(db,id_list)
+        res = m(db, id_list)
         for rule in self.flist:
             rule.reset()
         return res

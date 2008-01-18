@@ -160,7 +160,9 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
             person_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"person.svg"))
             flist_pixbuf = gtk.gdk.pixbuf_new_from_file(os.path.join(const.IMAGE_DIR,"flist.svg"))
     
-            self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, str,int)
+            self._tool_list = gtk.ListStore(gtk.gdk.Pixbuf, 
+                                            gobject.TYPE_STRING, 
+                                            gobject.TYPE_INT)
     
             d={ObjectTypes.PERSON: [person_pixbuf,'People',ObjectTypes.PERSON],
     	       ObjectTypes.FAMILY: [flist_pixbuf,'Families',ObjectTypes.FAMILY],
@@ -169,7 +171,8 @@ class ObjectSelectorWindow(gtk.Window,ManagedWindow):
             self._object_type_column = 2
 
         except gobject.GError:
-            self._tool_list = gtk.ListStore(str,int)
+            self._tool_list = gtk.ListStore(gobject.TYPE_STRING, 
+                                            gobject.TYPE_INT)
 
             d={ObjectTypes.PERSON: ['People',ObjectTypes.PERSON],
     	       ObjectTypes.FAMILY: ['Families',ObjectTypes.FAMILY],

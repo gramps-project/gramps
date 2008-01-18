@@ -68,7 +68,7 @@ def build_filter_model(space, local = [], default=""):
     model = gtk.ListStore(str, object)
 
     flist = local + SystemFilters.get_filters(space) + \
-	CustomFilters.get_filters(space)
+	                                           CustomFilters.get_filters(space)
 
     for filt in flist:
         model.append(row=[filt.get_name(), filt])

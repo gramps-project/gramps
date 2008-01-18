@@ -17,6 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+import gobject
 
 # $Id$
 
@@ -47,29 +48,33 @@ class SearchBar:
         self.dbstate = dbstate
         self.uistate = uistate
         self.apply_text = ''
+
+        self.filterbar = gtk.HBox()
+        self.filter_text = gtk.Entry()
+        self.filter_button = gtk.Button(stock=gtk.STOCK_FIND)
+        self.clear_button = gtk.Button(stock=gtk.STOCK_CLEAR)
+        self.filter_list = gtk.ComboBox()
+        self.filter_model = gtk.ListStore(gobject.TYPE_STRING, 
+                                          gobject.TYPE_INT, 
+                                          gobject.TYPE_BOOLEAN)
         
     def build( self):
-        self.filterbar = gtk.HBox()
         self.filterbar.set_spacing(4)
-        self.filter_list = gtk.ComboBox()
         self.filter_list.connect('changed', self.filter_changed)
 
-        self.filter_text = gtk.Entry()
-        self.filter_text.connect('key-press-event',self.key_press)
-        self.filter_text.connect('changed',self.text_changed)
+        self.filter_text.connect('key-press-event', self.key_press)
+        self.filter_text.connect('changed', self.text_changed)
 
-        self.filter_button = gtk.Button(stock=gtk.STOCK_FIND)
-        self.filter_button.connect( 'clicked',self.apply_filter_clicked)
+        self.filter_button.connect( 'clicked', self.apply_filter_clicked)
         self.filter_button.set_sensitive(False)
 
-        self.clear_button = gtk.Button(stock=gtk.STOCK_CLEAR)
-        self.clear_button.connect( 'clicked',self.apply_clear)
+        self.clear_button.connect( 'clicked', self.apply_clear)
         self.clear_button.set_sensitive(False)
 
-        self.filterbar.pack_start(self.filter_list,False)
-        self.filterbar.pack_start(self.filter_text,True)
-        self.filterbar.pack_end(self.clear_button,False)
-        self.filterbar.pack_end(self.filter_button,False)
+        self.filterbar.pack_start(self.filter_list, False)
+        self.filterbar.pack_start(self.filter_text, True)
+        self.filterbar.pack_end(self.clear_button, False)
+        self.filterbar.pack_end(self.filter_button, False)
 
         return self.filterbar
         
@@ -78,18 +83,17 @@ class SearchBar:
         
         cell = gtk.CellRendererText()
         self.filter_list.clear()
-        self.filter_list.pack_start(cell,True)
-        self.filter_list.add_attribute(cell,'text',0)
+        self.filter_list.pack_start(cell, True)
+        self.filter_list.add_attribute(cell, 'text', 0)
 
-        self.filter_model = gtk.ListStore(str, int, bool)
 
         maxval = 0
-        for col,index in column_data:
+        for col, index in column_data:
             rule = _("%s contains") % col
-            self.filter_model.append(row=[rule,index,False])
+            self.filter_model.append(row=[rule, index, False])
             maxval += 1
             rule = _("%s does not contain") % col
-            self.filter_model.append(row=[rule,index,True])
+            self.filter_model.append(row=[rule, index, True])
             maxval += 1
             
         self.filter_list.set_model(self.filter_model)
@@ -132,8 +136,8 @@ class SearchBar:
     def get_value(self):
         text = unicode(self.filter_text.get_text()).strip()
         node = self.filter_list.get_active_iter()
-        index = self.filter_model.get_value(node,1)
-        inv = self.filter_model.get_value(node,2)
+        index = self.filter_model.get_value(node, 1)
+        inv = self.filter_model.get_value(node, 2)
         return (index, text, inv)
         
     def apply_filter(self, current_model=None):

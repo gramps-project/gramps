@@ -61,7 +61,8 @@ class PersonFilterFrame(FilterFrameBase):
                  [_("Female"),gen.lib.Person.FEMALE],
                  [_("Unknown"),gen.lib.Person.UNKNOWN]]
 
-        self._gender_list = gtk.ListStore(str,int)
+        self._gender_list = gtk.ListStore(gobject.TYPE_STRING, 
+                                          gobject.TYPE_INT)
 
         for entry in genders:
             self._gender_list.append(entry)
@@ -110,7 +111,7 @@ class PersonFilterFrame(FilterFrameBase):
         filters = [ filter for filter in default_filters if \
 		    not hasattr(filter,'labels') or len(filter.labels) == 0 ]
 
-        self._filter_list = gtk.ListStore(str,object)
+        self._filter_list = gtk.ListStore(str, gobject)
 
         for filter in filters:
             self._filter_list.append([filter.name,filter])

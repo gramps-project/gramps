@@ -58,7 +58,7 @@ class FamilyFilterFrame(FilterFrameBase):
         filters = [ filter for filter in default_filters if \
 		    not hasattr(filter,'labels') or len(filter.labels) == 0 ]
 
-        self._filter_list = gtk.ListStore(str,object)
+        self._filter_list = gtk.ListStore(str, object)
 
         for filter in filters:
             self._filter_list.append([filter.name,filter])

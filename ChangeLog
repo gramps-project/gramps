@@ -1,4 +1,29 @@
 2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/FilterEditor/_EditRule.py
+    * src/FilterEditor/_ShowResults.py
+    * src/plugins/ExtractCity.py
+    * src/plugins/NarrativeWeb.py
+    * src/plugins/ChangeNames.py
+    * src/plugins/GraphViz.py
+    * src/plugins/MediaManager.py
+    * src/plugins/FamilyLines.py
+    * src/Selectors/_BaseSelector.py
+    * src/ObjectSelector/_ObjectSelectorWindow.py
+    * src/ObjectSelector/_FamilyFilterFrame.py
+    * src/ObjectSelector/_PersonFilterFrame.py
+    * src/PageView.py
+    * src/Filters/_FilterMenu.py
+    * src/Filters/_SearchBar.py
+    * src/Filters/_FilterComboBox.py
+    * src/Filters/_FilterList.py
+    * src/Filters/_FilterParser.py
+    * src/Filters/_FilterStore.py
+    * src/Filters/_GenericFilter.py
+    * src/Filters/_ParamFilter.py
+    pylint fixes + init gtk.ListStore() with gobject.TYPE_BOOLEAN types etc
+
+
+2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/gen/db/dbdir.py
     * src/plugins/ChangeNames.py
     * src/DisplayModels/_NoteModel.py

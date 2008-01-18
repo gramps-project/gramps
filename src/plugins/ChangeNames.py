@@ -104,7 +104,8 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.list = self.top.get_widget("list")
         self.set_window(window,self.top.get_widget('title'),self.label)
 
-        self.model = gtk.ListStore(bool, str, str)
+        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
+                                   gobject.TYPE_STRING)
 
         r = gtk.CellRendererToggle()
         r.connect('toggled',self.toggled)

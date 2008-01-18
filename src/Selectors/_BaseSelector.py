@@ -78,8 +78,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         
         self.colinfo = self.column_view_names()
         #add the search bar
-        self.search_bar = SearchBar(dbstate, uistate, 
-                                    self.build_tree)
+        self.search_bar = SearchBar(dbstate, uistate, self.build_tree)
         filter_box = self.search_bar.build()
         self.setup_filter()
         vbox.pack_start(filter_box, False, False)
