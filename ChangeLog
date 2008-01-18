@@ -1,3 +1,6 @@
+2008-01-18 Peter Landgren <peter.talken@telia.com>
+    * src/const.py.in: --help and -h now gives similar messages
+
 2008-01-18 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ExportAssistant.py: workaround around bug
 		http://bugzilla.gnome.org/show_bug.cgi?id=56070 as indicated on
