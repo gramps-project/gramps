@@ -330,7 +330,7 @@ src/plugins/ReadGrdb.py
 
 # PluginUtils package
 src/PluginUtils/__init__.py
-src/PluginUtils/GuiOptions.py
+src/PluginUtils/_GuiOptions.py
 src/PluginUtils/_Options.py
 src/PluginUtils/_PluginMgr.py
 src/PluginUtils/_Plugins.py
