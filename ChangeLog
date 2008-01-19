@@ -1,3 +1,13 @@
+2008-01-19  Gary Burton <gary.burton@zen.co.uk>
+	* src/GrampsDbUtils/_ReadXML.py: Remove print debugging statements
+
+2008-01-19  Gary Burton <gary.burton@zen.co.uk>
+	* src/DbManager.py: Fix date regular expression used to find rcs
+	revisions also found in Bug #1622
+
+2008-01-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DbManager.py: Test for missing path. Bug #1622
+
 2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/ImportCSV.py (cleanup_column_name): 
 	use given, givenname as aliases for firstname;

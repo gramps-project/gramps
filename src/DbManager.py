@@ -338,7 +338,10 @@ class DbManager(CLIDbManager):
             self.repair.hide()
             self.remove.set_sensitive(False)
         else:
-            is_rev = len(self.model.get_path(node)) > 1
+            path = self.model.get_path(node)
+            if path == None:
+                return
+            is_rev = len(path) > 1
 
             self.rcs.set_label(RCS_BUTTON[is_rev])
             self.rename.set_sensitive(True)
@@ -914,7 +917,7 @@ def find_revisions(name):
     import re
 
     rev  = re.compile("\s*revision\s+([\d\.]+)")
-    date = re.compile("date:\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)-\d\d;")
+    date = re.compile("date:\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)[-+]\d\d;")
 
     if not os.path.isfile(name):
         return []

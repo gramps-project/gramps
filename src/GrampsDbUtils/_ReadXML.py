@@ -757,7 +757,6 @@ class GrampsParser(UpdateCallback):
         
         # GRAMPS LEGACY: title in the placeobj tag
         self.placeobj.title = attrs.get('title', '')
-        print attrs.get('ptitle')
         self.locations = 0
         self.update(self.p.CurrentLineNumber)
             
@@ -1726,7 +1725,6 @@ class GrampsParser(UpdateCallback):
 
     def stop_ptitle(self, tag):
         self.placeobj.title = tag
-        print tag
 
     def stop_placeobj(self, *tag):
         if self.placeobj.title == "":
