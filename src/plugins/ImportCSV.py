@@ -141,7 +141,7 @@ def rd(line_number, row, col, key, default = None):
     """ Return Row data by column name """
     if key in col:
         if col[key] >= len(row):
-            print "Error: invalid column reference on line", line_number
+            print "Warning: missing '%s' on line %d" % (key, line_number)
             return default
         retval = row[col[key]].strip()
         if retval == "":
@@ -164,6 +164,8 @@ def cleanup_column_name(column):
         retval = "husband"
     elif retval == "parent2":
         retval = "wife"
+    elif retval in ["given", "givenname"]:
+        retval = "firstname"
     return retval
 
 def importData(db, filename, callback=None):

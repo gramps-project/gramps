@@ -1,3 +1,8 @@
+2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/ImportCSV.py (cleanup_column_name): 
+	use given, givenname as aliases for firstname;
+	give better warning for missing data on row
+
 2008-01-18 Erik De Richter <frederik.de.richter@pandora.be>
    * /po/nl.po: new translations
 
