@@ -171,11 +171,11 @@ class LogGramplet(Gramplet):
     def log_person_update(self, handles):
         self.get_person(handles, _("Updated"))
     def log_family_add(self, handles):
-        self.append_text(_("Added") + ": family" )
+        self.append_text(_("Added") + ": family\n" )
     def log_family_delete(self, handles):
-        self.append_text(_("Deleted") + ": family" )
+        self.append_text(_("Deleted") + ": family\n" )
     def log_family_update(self, handles):
-        self.append_text(_("Updated") + ": family" )
+        self.append_text(_("Updated") + ": family\n" )
     def log_active_changed(self, handles):
         self.get_person([handles], _("Selected"))
 
