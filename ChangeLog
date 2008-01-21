@@ -1,3 +1,6 @@
+2008-01-18 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/DbLoader.py: added import gobject
+
 2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/FilterEditor/_ShowResults.py
 	* src/GrampsCfg.py
