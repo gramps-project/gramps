@@ -1,4 +1,8 @@
 2008-01-20 Brian Matherly <brian@gramps-project.org>
+	* src/Mime/_WinMime.py: 
+	0001483: Cannot display media files within GRAMPS (running on MS Vista)
+
+2008-01-20 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/Makefile.am:
 	* po/POTFILES.in:
 	Remove FamilyLines and GraphVis.py from distribution and translation.

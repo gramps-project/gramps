@@ -18,7 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: 
+# $Id$
+
+"""
+Mime utility functions for the MS Windows platform
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -31,38 +35,30 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# GNOME/GTK
-#
-#-------------------------------------------------------------------------
-import gtk
-
-#-------------------------------------------------------------------------
-#
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import const
 import _PythonMime
 
 
-def get_application(type):
+def get_application(mime_type):
     """Returns the application command and application name of the
     specified mime type"""
-    extension = _get_extension(type)
-    progId = _get_prog_id(extension)
+    extension = _get_extension(mime_type)
+    progid = _get_prog_id(extension)
 
-    if not progId:
+    if not progid:
         return None
 
     # Find the application associated with this program ID
-    aReg = ConnectRegistry(None,HKEY_CLASSES_ROOT)
-    subkey = OpenKey(aReg, "%s\shell\open\command" % progId)
+    hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
+    subkey = OpenKey(hcr, "%s\shell\open\command" % progid)
     if subkey:
-        n,command,type = EnumValue(subkey, 0)
-        if type == REG_EXPAND_SZ:
+        name, command, data_type = EnumValue(subkey, 0)
+        if data_type == REG_EXPAND_SZ:
             command = command.replace( '%SystemRoot%', 
                                        os.getenv('SystemRoot') )
-        CloseKey(aReg)
+        CloseKey(hcr)
     else:
         return None
     CloseKey(subkey)
@@ -76,32 +72,36 @@ def get_application(type):
     else:
         app = command.split()[0]
 
-    hcu = ConnectRegistry(None,HKEY_CURRENT_USER)
-    subkey = OpenKey(hcu, "Software\Microsoft\Windows\ShellNoRoam\MUICache")
+    hcu = ConnectRegistry(None, HKEY_CURRENT_USER)
+    try:
+        subkey = OpenKey(hcu, "Software\Microsoft\Windows\ShellNoRoam\MUICache")
+    except WindowsError:
+        subkey = None
+        
     desc = None
     if subkey:
         try:
-            desc,ValType = QueryValueEx(subkey, app)
-        except:
-            # No friendly name exists. Use progId
-            desc = progId
+            desc, data_type = QueryValueEx(subkey, app)
+        except WindowsError:
+            # No friendly name exists. Use progid
+            desc = progid
         CloseKey(subkey)
     else:
-        desc = progId
+        desc = progid
     CloseKey(hcu)
 
-    return (command,desc)
+    return (command, desc)
 
 def get_description(mime_type):
     """Returns the description of the specfied mime type"""
     desc = None
     extension = _get_extension(mime_type)
-    progId = _get_prog_id(extension)
+    progid = _get_prog_id(extension)
     
-    if progId:
-        aReg = ConnectRegistry(None,HKEY_CLASSES_ROOT)
-        desc = QueryValue(aReg, progId)
-        CloseKey(aReg)
+    if progid:
+        hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
+        desc = QueryValue(hcr, progid)
+        CloseKey(hcr)
 
     if not desc:
         desc = _("unknown")
@@ -121,8 +121,6 @@ def mime_type_is_defined(mime_type):
         return True
     else:
         return _PythonMime.mime_type_is_defined(mime_type)
-    
-_icon_theme = gtk.icon_theme_get_default()
 
 def find_mime_type_pixbuf(mime_type):
     return _PythonMime.find_mime_type_pixbuf(mime_type)
@@ -139,14 +137,14 @@ def _get_extension(mime_type):
     """
     extension = None
     try:
-        aReg = ConnectRegistry(None,HKEY_CLASSES_ROOT)
-        subkey = OpenKey(aReg, "MIME\DataBase\Content Type")
+        hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
+        subkey = OpenKey(hcr, "MIME\DataBase\Content Type")
         mimekey = OpenKey(subkey, mime_type)
-        extension,type = QueryValueEx(mimekey, "Extension")
+        extension, value_type = QueryValueEx(mimekey, "Extension")
         CloseKey(mimekey)
         CloseKey(subkey)
-        CloseKey(aReg)
-    except:
+        CloseKey(hcr)
+    except WindowsError:
         extension = None
     
     if not extension:
@@ -160,7 +158,6 @@ def _get_extension(mime_type):
     
     return extension
         
-    
 def _get_prog_id(extension):
     """
     Return the program ID associated with this extension
@@ -170,10 +167,10 @@ def _get_prog_id(extension):
         return None
     
     try:
-        aReg = ConnectRegistry(None,HKEY_CLASSES_ROOT)
-        progId = QueryValue(aReg, extension)
-        CloseKey(aReg)
-        return progId
-    except:
+        hcr = ConnectRegistry(None, HKEY_CLASSES_ROOT)
+        progid = QueryValue(hcr, extension)
+        CloseKey(hcr)
+        return progid
+    except WindowsError:
         return None
     
