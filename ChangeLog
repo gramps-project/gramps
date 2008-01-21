@@ -1,3 +1,6 @@
+2008-01-21 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/Check.py: bug (buglist) wrong method call
+
 2008-01-20 Brian Matherly <brian@gramps-project.org>
 	* src/docgen/SvgDrawDoc.py: 
 	0001321: Ancester Graph SVG Export dosn't show text
