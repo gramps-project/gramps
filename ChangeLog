@@ -1,3 +1,6 @@
+2008-01-21 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/docgen/SvgDrawDoc.py: backport patch so that text in svgbox shows
+
 2008-01-18 Jim Sack <jgsack@san.rr.com>
 	* src/GrampsDb/_WriteGedcom.py : #1621 use os.path.samefile in write_photo
 
