@@ -1,3 +1,7 @@
+2008-01-21  Gary Burton <gary.burton@zen.co.uk>
+	* src/DbManager.py: Localise revision last modification dates so that they
+	are presented the same as database last modification dates.
+
 2008-01-21 Benny Malengier <benny.malengier@gramps-project.org>
 	*  part 2 of workaround around bug
 		http://bugzilla.gnome.org/show_bug.cgi?id=56070, make forward

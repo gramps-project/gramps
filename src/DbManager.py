@@ -890,7 +890,6 @@ def time_val(dirpath):
     if os.path.isfile(meta):
         tval = os.stat(meta)[9]
         last = time.strftime('%x %X', time.localtime(tval))
-        #last = time.strftime('%a %b %d %X %Y', time.localtime(tval))
     else:
         tval = 0
         last = _("Never")
@@ -941,8 +940,8 @@ def find_revisions(name):
                 continue
             match = date.match(line)
             if match:
-                date_str = time.asctime(time.strptime(match.groups()[0],
-                                                      '%Y-%m-%d %H:%M:%S'))
+                date_str = time.strftime('%x %X',
+                        time.strptime(match.groups()[0], '%Y-%m-%d %H:%M:%S'))
                 
                 get_next = True
                 continue
