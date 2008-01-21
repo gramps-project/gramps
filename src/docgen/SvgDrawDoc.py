@@ -211,7 +211,7 @@ class SvgDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
                 else:
                     self.t.write(' font-family:serif;')
                 self.t.write('">')
-                self.f.write(lines[i])
+                self.t.write(lines[i])
                 self.t.write('</text>\n')
 
     def draw_text(self,style,text,x,y):

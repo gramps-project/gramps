@@ -1,4 +1,8 @@
 2008-01-20 Brian Matherly <brian@gramps-project.org>
+	* src/docgen/SvgDrawDoc.py: 
+	0001321: Ancester Graph SVG Export dosn't show text
+
+2008-01-20 Brian Matherly <brian@gramps-project.org>
 	* src/Mime/_WinMime.py: 
 	0001483: Cannot display media files within GRAMPS (running on MS Vista)
 
