@@ -20,7 +20,19 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# GTK libraries
+#
+#-------------------------------------------------------------------------
 import gtk
+import gobject
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS classes
+#
+#-------------------------------------------------------------------------
 import Config
 import PluginUtils
 
@@ -32,7 +44,7 @@ import PluginUtils
 class BookFormatComboBox(gtk.ComboBox):
 
     def set(self,tables,callback,obj=None,active=None):
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)

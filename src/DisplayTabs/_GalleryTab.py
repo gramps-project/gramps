@@ -37,6 +37,7 @@ import urlparse
 import gtk
 import pango
 import os
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +50,7 @@ import ThumbNails
 import Errors
 import Mime
 from DdTargets import DdTargets
-from _ButtonTab import ButtonTab
+from DisplayTabs._ButtonTab import ButtonTab
 
 #-------------------------------------------------------------------------
 #
@@ -70,6 +71,8 @@ class GalleryTab(ButtonTab):
     _DND_EXTRA  = DdTargets.URI_LIST
 
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
+        self.iconlist = gtk.IconView()
+        
         ButtonTab.__init__(self, dbstate, uistate, track, _('Gallery'), True)
         self.media_list = media_list
         self.update = update
@@ -87,8 +90,10 @@ class GalleryTab(ButtonTab):
 
     def double_click(self, obj, event):
         """
-        Handles the double click on list. If the double click occurs, 
-        the Edit button handler is called
+        Handle the double click on list. 
+        
+        If the double click occurs, the Edit button handler is called.
+        
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
@@ -141,7 +146,8 @@ class GalleryTab(ButtonTab):
         return len(self.media_list)==0
 
     def _build_icon_model(self):
-        self.iconmodel= gtk.ListStore(gtk.gdk.Pixbuf, str, object)
+        self.iconmodel = gtk.ListStore(gtk.gdk.Pixbuf, gobject.TYPE_STRING, 
+                                      object)
 
     def _connect_icon_model(self):
         self.iconlist.set_model(self.iconmodel)
@@ -160,7 +166,6 @@ class GalleryTab(ButtonTab):
         self._build_icon_model()
         
         # build the icon view
-        self.iconlist = gtk.IconView()
         self.iconlist.set_pixbuf_column(0)
         # set custom text cell renderer for better control
         text_renderer = gtk.CellRendererText()
@@ -221,7 +226,7 @@ class GalleryTab(ButtonTab):
                 #notify user of error
                 from QuestionDialog import RunDatabaseRepair
                 RunDatabaseRepair(
-                            _('Unexisting media found in the Gallery'))
+                            _('Non existing media found in the Gallery'))
             else :
                 pixbuf = ThumbNails.get_thumbnail_image(obj.get_path(), 
                                                     obj.get_mime_type(),
@@ -256,13 +261,15 @@ class GalleryTab(ButtonTab):
 
     def share_button_clicked(self, obj):
         """
-        Function called with the Add button is clicked. This function
-        should be overridden by the derived class.
+        Function called when the Add button is clicked. 
+        
+        This function should be overridden by the derived class.
+        
         """
         from Selectors import selector_factory
         SelectObject = selector_factory('MediaObject')
 
-        sel = SelectObject(self.dbstate,self.uistate,self.track)
+        sel = SelectObject(self.dbstate, self.uistate, self.track)
         src = sel.run()
         if src:
             sref = gen.lib.MediaRef()
@@ -371,7 +378,8 @@ class GalleryTab(ButtonTab):
                 return
             
             # pickle the data, and build the tuple to be passed
-            value = (self._DND_TYPE.drag_type, id(self), obj, self.find_index(obj))
+            value = (self._DND_TYPE.drag_type, id(self), obj, 
+                     self.find_index(obj))
             data = pickle.dumps(value)
 
             # pass as a string (8 bits)
@@ -394,7 +402,7 @@ class GalleryTab(ButtonTab):
                 if mytype == self._DND_TYPE.drag_type:
                     
                     # determine the destination row
-                    data = self.iconlist.get_dest_item_at_pos(x,y)
+                    data = self.iconlist.get_dest_item_at_pos(x, y)
                     if data:
                         (path, pos) = data
                         row = path[0]
@@ -426,7 +434,7 @@ class GalleryTab(ButtonTab):
                     self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
                 d = Utils.fix_encoding(sel_data.data.replace('\0',' ').strip())
-                protocol,site,mfile,j,k,l = urlparse.urlparse(d)
+                protocol, site, mfile, j, k, l = urlparse.urlparse(d)
                 if protocol == "file":
                     name = Utils.fix_encoding(mfile)
                     mime = Mime.get_type(name)
@@ -436,7 +444,7 @@ class GalleryTab(ButtonTab):
                     photo.set_path(name)
                     photo.set_mime_type(mime)
                     basename = os.path.basename(name)
-                    (root,ext) = os.path.splitext(basename)
+                    (root, ext) = os.path.splitext(basename)
                     photo.set_description(root)
                     trans = self.dbstate.db.transaction_begin()
                     self.dbstate.db.add_object(photo, trans)

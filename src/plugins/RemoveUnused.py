@@ -45,6 +45,7 @@ log = logging.getLogger(".RemoveUnused")
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -150,7 +151,11 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.invert_button = self.top.get_widget('invert_button')
         self.invert_button.connect('clicked',self.invert_clicked)
 
-        self.real_model = gtk.ListStore(bool,str,str,str,str)
+        self.real_model = gtk.ListStore(gobject.TYPE_BOOLEAN, 
+                                        gobject.TYPE_STRING, 
+                                        gobject.TYPE_STRING, 
+                                        gobject.TYPE_STRING, 
+                                        gobject.TYPE_STRING)
         self.sort_model = gtk.TreeModelSort(self.real_model)
         self.warn_tree.set_model(self.sort_model)
 

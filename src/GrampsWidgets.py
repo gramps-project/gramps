@@ -305,7 +305,7 @@ class TypeCellRenderer(gtk.CellRendererCombo):
     def __init__(self, values):
         gtk.CellRendererCombo.__init__(self)
 
-        model = gtk.ListStore(str, int)
+        model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
         for key in values:
             model.append(row=[values[key], key])
         self.set_property('editable', True)
@@ -679,7 +679,7 @@ class MonitoredMenu:
 
     def change_menu(self, mapping):
         self.data = {}
-        self.model = gtk.ListStore(str, int)
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT)
         index = 0
         for t, v in mapping:
             self.model.append(row=[t, v])
@@ -700,7 +700,7 @@ class MonitoredStrMenu:
         self.get_val = get_val
 
         self.obj = obj
-        self.model = gtk.ListStore(str)
+        self.model = gtk.ListStore(gobject.TYPE_STRING)
         
         if len(mapping) > 20:
             self.obj.set_wrap_width(3)
@@ -2195,7 +2195,7 @@ class MaskedEntry(gtk.Entry):
         gtk.Entry.set_completion(self, completion)
         # FIXME objects not supported yet, should it be at all?
         #completion.set_model(gtk.ListStore(str, object))
-        completion.set_model(gtk.ListStore(str))
+        completion.set_model(gtk.ListStore(gobject.TYPE_STRING))
         completion.set_text_column(0)
         #completion.connect("match-selected", 
                            #self._on_completion__match_selected)

@@ -36,6 +36,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------------
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------------
 #
@@ -637,7 +638,7 @@ class GraphvizFormatComboBox(gtk.ComboBox):
     Format combo box class for Graphviz report.
     """
     def set(self,active=None):
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)

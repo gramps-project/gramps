@@ -36,6 +36,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -83,7 +84,8 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         scrolled_window = gtk.ScrolledWindow()
         scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
         self.tree = gtk.TreeView()
-        self.model = gtk.ListStore(str,str,str,str)
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
+                                   gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.selection = self.tree.get_selection()
 
         self.renderer = gtk.CellRendererText()

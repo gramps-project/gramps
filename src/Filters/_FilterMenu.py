@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import gtk
 from gettext import gettext as _
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +66,7 @@ def build_filter_menu(local_filters = [], default=""):
 def build_filter_model(space, local = [], default=""):
     from Filters import SystemFilters, CustomFilters
 
-    model = gtk.ListStore(str, object)
+    model = gtk.ListStore(gobject.TYPE_STRING, object)
 
     flist = local + SystemFilters.get_filters(space) + \
 	                                           CustomFilters.get_filters(space)

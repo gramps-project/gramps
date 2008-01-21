@@ -111,7 +111,7 @@ class PersonFilterFrame(FilterFrameBase):
         filters = [ filter for filter in default_filters if \
 		    not hasattr(filter,'labels') or len(filter.labels) == 0 ]
 
-        self._filter_list = gtk.ListStore(str, gobject)
+        self._filter_list = gtk.ListStore(gobject.TYPE_STRING, gobject)
 
         for filter in filters:
             self._filter_list.append([filter.name,filter])

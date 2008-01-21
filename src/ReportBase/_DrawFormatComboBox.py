@@ -21,6 +21,7 @@
 # $Id$
 
 import gtk
+import gobject
 import Config
 import PluginUtils
 
@@ -32,7 +33,7 @@ import PluginUtils
 class DrawFormatComboBox(gtk.ComboBox):
 
     def set(self,tables,callback,obj=None,active=None):
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)

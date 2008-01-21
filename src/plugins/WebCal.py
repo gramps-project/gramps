@@ -62,6 +62,7 @@ log = logging.getLogger(".WebPage")
 #
 #------------------------------------------------------------------------
 import gtk
+import gobject
 
 #------------------------------------------------------------------------
 #
@@ -751,7 +752,7 @@ class WebReportOptions(ReportOptions):
         cset_node = None
         cset = self.options_dict['WCencoding']
 
-        store = gtk.ListStore(str,str)
+        store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         for data in _character_sets:
             if data[1] == cset:
                 cset_node = store.append(row=data)
@@ -791,7 +792,7 @@ class WebReportOptions(ReportOptions):
 
         self.Country_options = map(lambda c: ("", c, c), _countries)
         self.Country = gtk.ComboBox()
-        store = gtk.ListStore(str)
+        store = gtk.ListStore(gobject.TYPE_STRING)
         self.Country.set_model(store)
         cell = gtk.CellRendererText()
         self.Country.pack_start(cell,True)
@@ -1390,7 +1391,7 @@ class GrampsNoteComboBox(gtk.ComboBox):
         return handle
 
 def mk_combobox(media_list,select_value):
-    store = gtk.ListStore(str,str)
+    store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
     node = None
     
     for data in media_list:

@@ -37,12 +37,13 @@ import locale
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 def fill_combo(combo, data_list):
     """
     Fill a combo box with completion data
     """
-    store = gtk.ListStore(str)
+    store = gtk.ListStore(gobject.TYPE_STRING)
 
     for data in [ item for item in data_list if item ]:
         store.append(row=[data])
@@ -59,7 +60,7 @@ def fill_entry(entry, data_list):
     """
     Fill a entry with completion data
     """
-    store = gtk.ListStore(str)
+    store = gtk.ListStore(gobject.TYPE_STRING)
 
     for data in [ item for item in data_list if item ]:
         store.append(row=[data])
@@ -128,7 +129,7 @@ class StandardCustomSelector:
         self.additional = additional
         
         # make model
-        self.store = gtk.ListStore(int, str)
+        self.store = gtk.ListStore(gobject.TYPE_INT, gobject.TYPE_STRING)
 
         # fill it up using mapping
         self.fill()

@@ -34,6 +34,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -71,7 +72,7 @@ class PaperComboBox(gtk.ComboBox):
     def __init__(self,default_name):
         gtk.ComboBox.__init__(self)
         
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)
@@ -106,7 +107,7 @@ class OrientationComboBox(gtk.ComboBox):
     def __init__(self,default=BaseDoc.PAPER_PORTRAIT):
         gtk.ComboBox.__init__(self)
         
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell,True)

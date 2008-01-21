@@ -35,6 +35,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import pango
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +70,8 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         
         scrolled_window = gtk.ScrolledWindow()
         self.list = gtk.TreeView()
-        self.model = gtk.ListStore(str, str, str, object)
+        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING, 
+                                   gobject.TYPE_STRING, object)
         self.selection = self.list.get_selection()
         
         self.list.set_model(self.model)

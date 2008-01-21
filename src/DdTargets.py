@@ -74,15 +74,17 @@ class _DdType:
         container.insert(self)
 
     def _calculate_id(self):
-        """return the next available app_id."""
+        """Return the next available app_id."""
         
         idval = _DdType._APP_ID_OFFSET
         _DdType._APP_ID_OFFSET += 1
         return idval
 
     def target(self):
-        """return the full target information in the format
-        required by the Gtk functions."""
+        """Return the full target information in the format required by the 
+        Gtk functions.
+        
+        """
         return (self.drag_type, self.target_flags, self.app_id)
         
         

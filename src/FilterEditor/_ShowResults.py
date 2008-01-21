@@ -48,6 +48,7 @@ log = logging.getLogger(".FilterEdit")
 #
 #-------------------------------------------------------------------------
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -90,26 +91,26 @@ class ShowResults(ManagedWindow.ManagedWindow):
         column_n = gtk.TreeViewColumn(_('ID'), render, text=1)
         tree.append_column(column_n)
 
-        self.get_widget('close').connect('clicked',self.close)
+        self.get_widget('close').connect('clicked', self.close)
 
         new_list = [self.sort_val_from_handle(h) for h in handle_list]
         new_list.sort()
         handle_list = [ h[1] for h in new_list ]
 
         for handle in handle_list:
-            name,gid = self.get_name_id(handle)
+            name, gid = self.get_name_id(handle)
             model.append(row=[name, gid])
 
         self.show()
 
-    def get_name_id(self,handle):
+    def get_name_id(self, handle):
         if self.space == 'Person':
             person = self.db.get_person_from_handle(handle)
             name = _nd.sorted(person)
             gid = person.get_gramps_id()
         elif self.space == 'Family':
             family = self.db.get_family_from_handle(handle)
-            name = Utils.family_name(family,self.db)
+            name = Utils.family_name(family, self.db)
             gid = family.get_gramps_id()
         elif self.space == 'Event':
             event = self.db.get_event_from_handle(handle)
@@ -165,4 +166,4 @@ class ShowResults(ManagedWindow.ManagedWindow):
         elif self.space == 'Note':
             gid = self.db.get_note_from_handle(handle).get_gramps_id()
             sortname = locale.strxfrm(gid)
-        return (sortname,handle)
+        return (sortname, handle)

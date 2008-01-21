@@ -379,7 +379,7 @@ class GrampsFormatWidget(gtk.ComboBox):
         gtk.ComboBox.__init__(self, model=None)
 
     def set(self, format_list):
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
         self.pack_start(cell, True)

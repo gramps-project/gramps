@@ -43,6 +43,7 @@ import Errors
 #------------------------------------------------------------------------
 import gtk
 import gtk.glade 
+import gobject
 
 #------------------------------------------------------------------------
 #
@@ -486,8 +487,15 @@ class VerifyResults(ManagedWindow):
         self.invert_button = self.top.get_widget('invert_all')
         self.invert_button.connect('clicked',self.invert_clicked)
 
-        self.real_model = gtk.ListStore(bool,str,str,str,str,object,str,str,
-                                        bool,bool)
+        self.real_model = gtk.ListStore(gobject.TYPE_BOOLEAN, 
+                                        gobject.TYPE_STRING, 
+                                        gobject.TYPE_STRING, 
+                                        gobject.TYPE_STRING, 
+                                        gobject.TYPE_STRING, object, 
+                                        gobject.TYPE_STRING, 
+                                        gobject.TYPE_STRING,
+                                        gobject.TYPE_BOOLEAN, 
+                                        gobject.TYPE_BOOLEAN)
         self.filt_model = self.real_model.filter_new()
         self.filt_model.set_visible_column(VerifyResults.TRUE_COL)
         self.sort_model = gtk.TreeModelSort(self.filt_model)

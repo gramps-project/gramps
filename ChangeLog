@@ -1,3 +1,31 @@
+2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/FilterEditor/_ShowResults.py
+	* src/GrampsCfg.py
+	* src/ReportBase/_StyleComboBox.py
+	* src/ReportBase/_PaperMenu.py
+	* src/ReportBase/_BookFormatComboBox.py
+	* src/ReportBase/_DrawFormatComboBox.py
+	* src/ReportBase/_GraphvizReportDialog.py
+	* src/ReportBase/_TextFormatComboBox.py
+	* src/DisplayTabs/_GalleryTab.py
+	* src/ColumnOrder.py
+	* src/plugins/WebCal.py
+	* src/plugins/RemoveUnused.py
+	* src/plugins/Verify.py
+	* src/plugins/PatchNames.py
+ 	* src/ObjectSelector/_FamilyFilterFrame.py
+	* src/ObjectSelector/_PersonFilterFrame.py
+	* src/GrampsWidgets.py
+	* src/ExportOptions.py
+	* src/DdTargets.py
+	* src/AutoComp.py
+	* src/UndoHistory.py
+	* src/PluginUtils/_PluginWindows.py
+	* src/DbLoader.py
+	* src/Filters/_FilterMenu.py
+	pylint fixes + init gtk.ListStore() with gobject.TYPE_BOOLEAN types 
+	instead of str, int, bool etc + Documentation fixes 
+
 2008-01-21  Gary Burton <gary.burton@zen.co.uk>
 	* src/DbManager.py: Localise revision last modification dates so that they
 	are presented the same as database last modification dates.

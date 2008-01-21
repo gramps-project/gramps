@@ -309,7 +309,10 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         """
         Create a common model for ComboBox and TreeView
         """
-        name_format_model = gtk.ListStore(int, str, str, str)
+        name_format_model = gtk.ListStore(gobject.TYPE_INT, 
+                                          gobject.TYPE_STRING, 
+                                          gobject.TYPE_STRING, 
+                                          gobject.TYPE_STRING)
         index = 0        
         the_index = 0
         for num, name, fmt_str, act in _nd.get_name_format():

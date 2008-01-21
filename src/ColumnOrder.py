@@ -36,6 +36,7 @@ import logging
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -72,7 +73,8 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         self.arglist = arglist
         self.callback = callback
 
-        self.model = gtk.ListStore( bool , str , int , object )
+        self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING, 
+                                   gobject.TYPE_INT, object)
         
         self.tree.set_model(self.model)
 

@@ -23,6 +23,7 @@
 from gettext import gettext as _
 
 import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -55,7 +56,7 @@ class StyleComboBox(gtk.ComboBox):
         @param default: Default selection in the ComboBox
         @type default: str
         """
-        self.store = gtk.ListStore(str)
+        self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         self.style_map = style_map
         keys = style_map.keys()

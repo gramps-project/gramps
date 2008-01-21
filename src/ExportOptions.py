@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import gtk
 from gettext import gettext as _
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +90,7 @@ class WriterOptionBox:
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
 
-        model = gtk.ListStore(str, object)
+        model = gtk.ListStore(gobject.TYPE_STRING, object)
         for item in the_filters:
             model.append(row=[item.get_name(), item])
 
