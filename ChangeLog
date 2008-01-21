@@ -1,4 +1,9 @@
 2008-01-21 Benny Malengier <benny.malengier@gramps-project.org>
+	*  part 2 of workaround around bug
+		http://bugzilla.gnome.org/show_bug.cgi?id=56070, make forward
+		button accept click after it becomes sensitive.
+
+2008-01-21 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/Check.py: bug (buglist) wrong method call
 
 2008-01-20 Brian Matherly <brian@gramps-project.org>

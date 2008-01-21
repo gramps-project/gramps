@@ -303,11 +303,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         self.check_fileselect(page)
         self.set_page_type(page, gtk.ASSISTANT_PAGE_CONTENT)
         
-    def check_fileselect(self, filechooser, event=None):
+    def check_fileselect(self, filechooser, event=None, show=True):
         """Given a filechooser, determine if it can be marked complete in 
         the Assistant.
         
-        Used as normal callback and event callback.
+        Used as normal callback and event callback. For callback, we will have
+        show=True
         """
         filename = filechooser.get_filename()
         folder = filechooser.get_current_folder()
@@ -316,6 +317,11 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                     and folder and Utils.find_folder(folder): 
             #this page of the assistant is complete
             self.set_page_complete(filechooser, True)
+            ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
+            if self.forward_button and show:
+                self.forward_button.hide()
+                self.forward_button.show()
+            ## end
             
         else :
             self.set_page_complete(filechooser, False)
@@ -418,7 +424,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
                 page.set_current_folder(folder)
                 self.folder_is_set = True
             # see if page is complete with above
-            self.check_fileselect(page)
+            self.check_fileselect(page, show=True)
             
         elif self.get_page_type(page) ==  gtk.ASSISTANT_PAGE_CONFIRM :
             # The confirm page with apply button
@@ -427,7 +433,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
             format = self.exportformats[ix][1].replace('_','')
 
             #Allow for exotic error: file is still not correct
-            self.check_fileselect(self.chooser)
+            self.check_fileselect(self.chooser, show=False)
             if self.get_page_complete(self.chooser) :
                 filename = unicode(self.chooser.get_filename(),
                            sys.getfilesystemencoding())
