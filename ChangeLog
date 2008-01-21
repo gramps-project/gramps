@@ -1,3 +1,8 @@
+2008-01-20 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/Makefile.am:
+	* po/POTFILES.in:
+	Remove FamilyLines and GraphVis.py from distribution and translation.
+
 2008-01-19  Gary Burton <gary.burton@zen.co.uk>
 	* src/GrampsDbUtils/_ReadXML.py: Remove print debugging statements
 

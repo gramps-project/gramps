@@ -34,10 +34,8 @@ pkgdata_PYTHON = \
 	ExportVCard.py\
 	ExtractCity.py\
 	FamilyGroup.py\
-	FamilyLines.py\
 	FanChart.py\
 	FindDupes.py\
-	GraphViz.py\
 	GVFamilyLines.py \
 	GVHourGlass.py\
 	GVRelGraph.py\
@@ -58,7 +56,7 @@ pkgdata_PYTHON = \
 	ReadPkg.py\
 	Rebuild.py\
 	RebuildRefMap.py\
-        References.py\
+	References.py\
 	RelCalc.py\
 	rel_cs.py\
 	rel_da.py\
