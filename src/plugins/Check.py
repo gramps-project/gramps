@@ -970,7 +970,7 @@ class CheckIntegrity:
                             item[1] not in known_handles ]
             if bad_handles:
                 obj.remove_source_references(bad_handles)
-                self.db.commit_object(obj,self.trans)
+                self.db.commit_media_object(obj,self.trans)
                 new_bad_handles = [handle for handle in bad_handles if handle
                                    not in self.invalid_source_references]
                 self.invalid_source_references += new_bad_handles
