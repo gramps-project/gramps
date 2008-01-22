@@ -25,7 +25,7 @@ Manages the main window and the pluggable views
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9821 $"
 
 #-------------------------------------------------------------------------
 #
