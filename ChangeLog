@@ -1,3 +1,6 @@
+2008-01-22 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditPerson.py: callback for gallerytab no longer needed
+
 2008-01-21 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/Check.py: bug (buglist) wrong method call
 
