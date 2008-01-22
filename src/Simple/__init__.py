@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 7972 2007-01-24 19:45:57Z pez4brian $
+# $Id$
 
 "Simple access routines"
 

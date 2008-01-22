@@ -6,7 +6,7 @@
 # Id: $Id$
 """A tooltip class for TreeViews
 """
-__revision__ = "$Rev$"
+__revision__ = "$Rev: 5482 $"
 
 
 #

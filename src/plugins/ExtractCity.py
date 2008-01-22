@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: ExtractCity.py 8023 2007-02-01 17:26:51Z rshura $
+# $Id$
 
 "Database Processing/Fix capitalization of family names"
 

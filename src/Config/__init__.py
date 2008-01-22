@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 5872 2006-02-03 15:49:59Z hippy $
+# $Id$
 
 """
 This package implements access to GRAMPS configuration.

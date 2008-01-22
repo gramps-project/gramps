@@ -1,13 +1,29 @@
+2008-01-22 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/* Everything but src/images/* and src/data/* add correct svn 
+	properties with the commands:
+	svn propset -R svn:mime-type text/plain src/
+	svn propset -R svn:eol-style native src/
+	svn propset -R svn:keywords Id src/
+	See below why the Id keyword is enough. From svn help propset
+	svn:keywords   - Keywords to be expanded.  Valid keywords are:
+      URL, HeadURL             - The URL for the head version of the object.
+      Author, LastChangedBy    - The last person to modify the file.
+      Date, LastChangedDate    - The date/time the object was last modified.
+      Rev, Revision,           - The last revision the object changed.
+      LastChangedRevision
+      Id                       - A compressed summary of the previous
+                                   4 keywords.
+
 2008-01-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ExportAssistant.py: part 3 of bug #1584
 
 2008-01-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditPerson.py: callback for gallerytab no longer needed
 
-2008-01-18 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-21 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DbLoader.py: added import gobject
 
-2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-21  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/FilterEditor/_ShowResults.py
 	* src/GrampsCfg.py
 	* src/ReportBase/_StyleComboBox.py

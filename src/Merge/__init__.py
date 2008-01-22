@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 6169 2006-03-18 01:30:23Z dallingham $
+# $Id$
 
 """
 """

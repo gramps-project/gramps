@@ -23,8 +23,8 @@
 """The core library of GRAMPS objects"""
 
 __author__ = "Donald N. Allingham"
-__version__ = "$Revision$"
-__revision__ = "$Revision$"
+__version__ = "$Revision: 9101 $"
+__revision__ = "$Revision: 9101 $"
 
 # Dates
 from date import Date, DateError

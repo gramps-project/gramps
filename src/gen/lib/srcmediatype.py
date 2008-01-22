@@ -23,7 +23,7 @@
 SourceMedia types
 """
 
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9101 $"
 
 from grampstype import GrampsType, init_map
 from gettext import gettext as _

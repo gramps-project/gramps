@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: rel_nl.py 6775 2006-12-16 05:52:17Z erikderichter $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

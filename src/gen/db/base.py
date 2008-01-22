@@ -26,7 +26,7 @@ from this class.
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9770 $"
 
 #-------------------------------------------------------------------------
 #

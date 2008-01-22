@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _DateHandler.py 6136 2006-03-11 04:58:58Z rshura $
+# $Id$
 
 """
 Class handling language-specific selection for date parser and displayer.

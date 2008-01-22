@@ -18,6 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: FilterEditor.py 6835 2006-06-01 03:24:44Z dallingham $
+# $Id$
 
 from _FilterEditor import FilterEditor

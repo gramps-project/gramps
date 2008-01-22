@@ -24,7 +24,7 @@
 Gender statistics kept in GRAMPS database.
 """
 
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9101 $"
 
 #-------------------------------------------------------------------------
 #

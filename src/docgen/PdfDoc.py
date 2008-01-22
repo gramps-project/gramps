@@ -23,7 +23,7 @@
 """PDF output generator based on Cairo.
 """
 
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9516 $"
 __author__   = "Zsolt Foldvari"
 
 #------------------------------------------------------------------------

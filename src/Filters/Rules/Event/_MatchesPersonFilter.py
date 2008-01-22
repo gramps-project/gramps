@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _MatchesFilter.py 6932 2006-06-21 16:30:35Z dallingham $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

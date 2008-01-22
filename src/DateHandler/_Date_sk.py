@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: Date_sk.py, v 1.1.2.4 2006/04/16 03:20:06 rshura Exp $
+# $Id$
 
 """
 Slovak-specific classes for parsing and displaying dates.

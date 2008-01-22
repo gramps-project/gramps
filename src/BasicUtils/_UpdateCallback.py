@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: __init__.py 6086 2006-03-06 03:54:58Z dallingham $
+# $Id$
 
 """
 A set of basic utilities that everything in GRAMPS can depend upon.

@@ -22,7 +22,7 @@
 
 "Handling formatted ('rich text') strings"
 
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9778 $"
 __author__   = "Zsolt Foldvari"
 
 #-------------------------------------------------------------------------

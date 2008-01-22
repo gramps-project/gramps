@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 __author__ = "Douglas Blank <dblank@cs.brynmawr.edu>"
-__version__ = "$Revision$"
+__version__ = "$Revision: 9875 $"
 
 #------------------------------------------------------------------------
 #

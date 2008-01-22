@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _PrivateProxyDb.py 8864 2007-08-25 05:03:23Z dallingham $
+# $Id$
 
 """
 Proxy class for the GRAMPS databases. Filter out all data marked private.

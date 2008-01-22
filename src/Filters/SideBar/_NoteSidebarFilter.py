@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _RepoSidebarFilter.py 7866 2007-01-04 05:09:41Z dallingham $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

@@ -23,7 +23,7 @@
 "ToolGeneration Framework"
 
 __author__ =  "Alex Roitman"
-__version__ = "$Revision$"
+__version__ = "$Revision: 9830 $"
 
 #-------------------------------------------------------------------------
 #

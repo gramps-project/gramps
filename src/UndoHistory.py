@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: ScratchPad.py 6485 2006-04-28 16:56:19Z rshura $
+# $Id$
 
 # Written by Alex Roitman
 

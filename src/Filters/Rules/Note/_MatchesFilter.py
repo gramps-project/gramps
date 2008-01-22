@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _MatchesFilter.py 7686 2006-11-24 23:14:25Z romjerome $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

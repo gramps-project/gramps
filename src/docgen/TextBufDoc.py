@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: TextBufDoc.py 8431 2007-04-30 01:56:34Z pez4brian $
+# $Id$
 
 #------------------------------------------------------------------------
 #

@@ -25,7 +25,7 @@
 "Report Generation Framework"
 
 __author__ =  "David R. Hampton, Donald N. Allingham"
-__version__ = "$Revision$"
+__version__ = "$Revision: 9433 $"
 
 from _Constants import *
 

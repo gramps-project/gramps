@@ -24,7 +24,7 @@
 Place object for GRAMPS
 """
 
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9507 $"
 
 from types import InstanceType
 

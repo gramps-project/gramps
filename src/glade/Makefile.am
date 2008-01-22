@@ -1,5 +1,5 @@
 # This is the src/data level Makefile
-# $Id: Makefile.am 6075 2006-03-04 22:53:46Z dallingham $
+# $Id$
 #
 pkgdatadir = $(datadir)/@PACKAGE@/glade
 

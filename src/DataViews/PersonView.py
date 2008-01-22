@@ -25,7 +25,7 @@ PersonView interface
 """
 
 __author__ = "Don Allingham"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9861 $"
 
 #------------------------------------------------------------------------
 #

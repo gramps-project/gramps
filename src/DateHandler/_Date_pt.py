@@ -21,7 +21,7 @@
 # Portuguese version translated by Duarte Loreto <happyguy_pt@hotmail.com>, 2007.
 # Based on the Spanish file.
 
-# $Id: _Date_es.py 6504 2006-05-01 21:11:26Z rshura $
+# $Id$
 
 """
 Portuguese-specific classes for parsing and displaying dates.

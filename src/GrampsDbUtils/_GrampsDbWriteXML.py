@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _WriteXML.py 8081 2007-02-10 23:40:48Z zfoldvar $
+# $Id$
 
 """
 Contains the interface to allow a database to get written using

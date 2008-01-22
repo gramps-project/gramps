@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _SecondaryObject.py 6386 2006-04-21 00:03:27Z rshura $
+# $Id$
 
 """
 Secondary Object class for GRAMPS

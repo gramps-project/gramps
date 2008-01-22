@@ -33,7 +33,7 @@ Mary Smith was born on 3/28/1923.
 """
 
 __author__ = "Donald N. Allingham"
-__version__ = "$Revision$"
+__version__ = "$Revision: 9101 $"
 
 #------------------------------------------------------------------------
 #

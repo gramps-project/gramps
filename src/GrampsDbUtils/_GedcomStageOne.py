@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _ReadGedcom.py 8032 2007-02-03 17:11:05Z hippy $
+# $Id$
 
 """
 Import from GEDCOM

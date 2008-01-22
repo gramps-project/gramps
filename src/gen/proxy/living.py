@@ -25,7 +25,7 @@ Proxy class for the GRAMPS databases. Filter out all living people.
 """
 
 __author__ = "Brian Matherly"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9381 $"
 
 #-------------------------------------------------------------------------
 #

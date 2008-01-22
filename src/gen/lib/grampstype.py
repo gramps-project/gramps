@@ -24,7 +24,7 @@
 Base type for all gramps types
 """
 
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9101 $"
 
 from gettext import gettext as _
 

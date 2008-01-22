@@ -26,7 +26,7 @@ the history changes, the UI XML string and the action groups are updated.
 """
 
 __author__ = "Donald N. Allingham"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 8680 $"
 
 
 #-------------------------------------------------------------------

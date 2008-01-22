@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasNoteMatchingSubstringOf.py 6634 2006-05-12 22:38:48Z dallingham $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

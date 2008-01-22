@@ -26,7 +26,7 @@ Paragraph/Font style editor
 """
 
 __author__ = "Donald N. Allingham"
-__version__ = "$Revision$"
+__version__ = "$Revision: 8948 $"
 
 #------------------------------------------------------------------------
 #

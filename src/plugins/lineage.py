@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _FamilyList.py 8897 2007-08-30 19:49:04Z bmcage $
+# $Id$
 
 """
 Display a person's father or mother lineage

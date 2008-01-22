@@ -24,7 +24,7 @@
 Source Reference class for GRAMPS
 """
 
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9101 $"
 
 from warnings import warn
 

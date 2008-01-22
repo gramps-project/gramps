@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasNoteMatchingSubstringOf.py 7144 2006-08-07 20:16:00Z rshura $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

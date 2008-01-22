@@ -35,7 +35,7 @@ on using these factories see the _GrampsDbUtilsFactories.py file comments.
 
 """
 
-__version__ = "$Revision$"
+__version__ = "$Revision: 9818 $"
 
 from _GrampsDbWRFactories import \
      gramps_db_reader_factory

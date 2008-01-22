@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _GrampsDBDir.py 8221 2007-02-24 00:24:57Z rshura $
+# $Id$
 
 """
 Provides the Berkeley DB (DBDir) database backend for GRAMPS

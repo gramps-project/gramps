@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _HasEvent.py 7607 2006-11-10 21:27:08Z loshawlos $
+# $Id$
 
 #-------------------------------------------------------------------------
 #

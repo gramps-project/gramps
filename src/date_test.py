@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: date_test.py,v 1.1.2.5 2006/04/20 04:04:31 rshura Exp $
+# $Id$
 
 """Testscript for date displayer/parser"""
 

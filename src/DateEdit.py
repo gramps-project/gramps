@@ -34,7 +34,7 @@ unambiguously built using UI controls such as menus and spin buttons.
 """
 
 __author__ = "Donald N. Allingham"
-__version__ = "$Revision$"
+__version__ = "$Revision: 9101 $"
 
 #-------------------------------------------------------------------------
 #

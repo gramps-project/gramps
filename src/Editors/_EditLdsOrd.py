@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _EditAttribute.py 6248 2006-03-31 23:46:34Z dallingham $ 
+# $Id$ 
 
 """
 The EditLdsOrd module provides the EditLdsOrd class. This provides a

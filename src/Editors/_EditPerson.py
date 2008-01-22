@@ -26,7 +26,7 @@ to edit information about a particular Person.
 """
 
 __author__ = "Don Allingham"
-__revision__ = "$Revision$"
+__revision__ = "$Revision: 9908 $"
 
 #-------------------------------------------------------------------------
 #

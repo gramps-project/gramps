@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: Report.py 6044 2006-03-03 00:10:52Z rshura $
+# $Id$
 
 #The following is bad, we import lists here, and obtain pointers to them
 #If in _PluginMgr the list changes, that is ok, if however the list is

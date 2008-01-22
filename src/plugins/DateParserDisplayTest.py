@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: DateParserDisplayTest.py 9289 2007-11-01 21:41:18Z LosHawlos $
+# $Id$
 
 "Validate localized date parser and displayer"
 

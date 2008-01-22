@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _Date_nb.py 9101 2007-10-08 16:41:39Z dallingham $
+# $Id$
 
 """
 Norwegian-specific classes for parsing and displaying dates.

@@ -23,7 +23,7 @@
 "Handle bookmarks for the gramps interface"
 
 __author__ = "Donald N. Allingham"
-__version__ = "$Revision$"
+__version__ = "$Revision: 9748 $"
 
 #-------------------------------------------------------------------------
 #
