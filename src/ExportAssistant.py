@@ -491,7 +491,13 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         else :
             #whatever other page, if we show it, it is complete to
             self.set_page_complete(page, True)
-            
+            if page_number == _ExportAssistant_pages['exporttypes'] :
+                ##workaround around bug http://bugzilla.gnome.org/show_bug.cgi?id=56070
+                if self.forward_button:
+                    self.forward_button.hide()
+                    self.forward_button.show()
+                ## end
+
         #remember previous page for next time
         self.__previous_page = page_number
         
