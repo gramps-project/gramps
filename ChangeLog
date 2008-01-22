@@ -1,3 +1,6 @@
+2008-01-22 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditPerson.py: callback for gallerytab no longer needed
+
 2008-01-18 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DbLoader.py: added import gobject
 

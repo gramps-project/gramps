@@ -400,7 +400,6 @@ class EditPerson(EditPrimary):
         the updating image on the main form which has just been modified. 
         """
         self.load_photo(obj.get_path(), ref.get_rectangle())
-        self.gallery_tab.edit_callback(ref, obj)
 
     def _image_button_press(self, obj, event):
         """
