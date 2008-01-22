@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: DisplayState.py 6085 2006-03-05 23:39:20Z dallingham $
+# $Id$
 
 """
 Provides the managed window interface, which allows GRAMPS to track
