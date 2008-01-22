@@ -1,4 +1,17 @@
 2008-01-22 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/ReportBase/_Bibliography.py
+	* src/ReportBase/_Endnotes.py
+	* src/GrampsLocale/__init__.py
+	* src/gen/db/dbconst.py
+	* src/gen/lib/test/date_test.py
+	* src/plugins/CalculateEstimatedDates.py
+	* src/BasicUtils/__init__.py
+	* src/test/utils_test.py
+	* src/GrampsDbUtils/importdbdir.py
+	* po/test/po_test.py
+	add filename to $Id: $ to allow automatic filling in of svn properties
+
+2008-01-22 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/* Everything but src/images/* and src/data/* add correct svn 
 	properties with the commands:
 	svn propset -R svn:mime-type text/plain src/
