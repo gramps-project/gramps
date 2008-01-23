@@ -668,7 +668,6 @@ class EditPerson(EditPrimary):
         self._check_for_unknown_gender()
 
         set_birth_death_index(self.db, self.obj)
-        self.window.hide()
 
         trans = self.db.transaction_begin()
 
