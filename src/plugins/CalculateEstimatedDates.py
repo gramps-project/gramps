@@ -37,7 +37,7 @@ import time
 #
 #------------------------------------------------------------------------
 from PluginUtils import Tool, register_tool, PluginWindows, \
-    MenuToolOptions, BooleanOption, PersonFilterOption, StringOption, \
+    MenuToolOptions, BooleanOption, FilterOption, StringOption, \
     NumberOption, PersonOption
 import gen.lib
 import Config
@@ -59,16 +59,17 @@ class CalcEstDateOptions(MenuToolOptions):
         """ Adds the options """
         category_name = _("Options")
         
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(_("Select filter to restrict people"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+        
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
-        self.__filter = PersonFilterOption(_("Filter"), 0)
-        self.__filter.set_help(_("Select filter to restrict people"))
         self.__update_filters()
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
 
         source_text = StringOption(_("Source text"), 
                                    _("Calculated Date Estimates"))

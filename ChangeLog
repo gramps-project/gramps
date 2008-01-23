@@ -1,3 +1,28 @@
+2008-01-22 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/KinshipReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/DescendReport.py:
+	* src/plugins/IndivComplete.py:
+	* src/plugins/CalculateEstimatedDates.py:
+	* src/plugins/BookReport.py:
+	* src/plugins/TimeLine.py:
+	* src/plugins/Calendar.py:
+	* src/plugins/AncestorReport.py:
+	* src/plugins/MarkerReport.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/EndOfLineReport.py:
+	* src/plugins/AncestorChart.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/CustomBookText.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/GVRelGraph.py:
+	* src/plugins/GVHourGlass.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/FanChart.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py:
+	More refactoring in the report system. Book report should work again.
+
 2008-01-22 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/ReportBase/_Bibliography.py
 	* src/ReportBase/_Endnotes.py

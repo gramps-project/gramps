@@ -62,9 +62,10 @@ class EndOfLineReport(Report):
         that come in the options class.
 
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
         
-        pid = options_class.handler.options_dict['pid']
+        menu = options_class.menu
+        pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
 
         # eol_map is a map whose:
@@ -82,9 +83,12 @@ class EndOfLineReport(Report):
         #
         # eol_map is populated by get_eol() which calls itself recursively.
         self.eol_map = {}
-        self.get_eol(self.center_person,1,[])
+        self.get_eol(self.center_person, 1, [])
         
-    def get_eol(self,person,gen,pedigree):
+    def get_eol(self, person, gen, pedigree):
+        """
+        Recursively find the end of the line for each person
+        """
         name = name_displayer.display(person)
         pedigree = pedigree + [name]
         person_is_eol = False
@@ -99,10 +103,10 @@ class EndOfLineReport(Report):
             mother_handle = family.get_mother_handle()
             if father_handle: 
                 father = self.database.get_person_from_handle(father_handle)
-                self.get_eol(father,gen+1,pedigree)
+                self.get_eol(father, gen+1, pedigree)
             if mother_handle:
                 mother =  self.database.get_person_from_handle(mother_handle)
-                self.get_eol(mother,gen+1,pedigree)
+                self.get_eol(mother, gen+1, pedigree)
         
             if not father_handle or not mother_handle:
                 person_is_eol = True
@@ -128,8 +132,8 @@ class EndOfLineReport(Report):
         
         self.doc.start_paragraph("EOL-Title")
         title = _("End of Line Report for %s") % pname
-        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
-        self.doc.write_text(title,mark)
+        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
         self.doc.start_paragraph("EOL-Subtitle")
@@ -147,19 +151,19 @@ class EndOfLineReport(Report):
                     self.write_pedigree_row(pedigree)
         self.doc.end_table()
 
-    def write_generation_row(self,generation):
+    def write_generation_row(self, generation):
         """
         Write out a row in the table showing the generation.
         """
         self.doc.start_row()
-        self.doc.start_cell('EOL_GenerationCell',2)
+        self.doc.start_cell('EOL_GenerationCell', 2)
         self.doc.start_paragraph('EOL-Generation')
         self.doc.write_text( _("Generation %d") % generation )
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
         
-    def write_person_row(self,person_handle):
+    def write_person_row(self, person_handle):
         """
         Write a row in the table with information about the given person.
         """
@@ -183,15 +187,15 @@ class EndOfLineReport(Report):
                                             'death_date' : death_date }
         
         self.doc.start_row()
-        self.doc.start_cell('EOL-TableCell',2)
+        self.doc.start_cell('EOL-TableCell', 2)
         self.doc.start_paragraph('EOL-Normal')
-        self.doc.write_text(name,mark)
+        self.doc.write_text(name, mark)
         self.doc.write_text(dates)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
         
-    def write_pedigree_row(self,pedigree):
+    def write_pedigree_row(self, pedigree):
         """
         Write a row in the table with with the person's family line.
         
@@ -218,10 +222,10 @@ class EndOfLineOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,dbstate=None):
-        MenuReportOptions.__init__(self,name,dbstate)
+    def __init__(self, name, dbstate=None):
+        MenuReportOptions.__init__(self, name, dbstate)
         
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu, dbstate):
         """
         Add options to the menu for the End of Line report.
         """
@@ -231,7 +235,7 @@ class EndOfLineOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the End of Line Report."""
         # Paragraph Styles
         f = BaseDoc.FontStyle()
@@ -245,16 +249,16 @@ class EndOfLineOptions(MenuReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("EOL-Title",p)
+        default_style.add_paragraph_style("EOL-Title", p)
         
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=12, italic=1)
         p = BaseDoc.ParagraphStyle()
         p.set_bottom_margin(ReportUtils.pt2cm(6))
         p.set_font(font)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_('The style used for the section headers.'))
-        default_style.add_paragraph_style("EOL-Subtitle",p)
+        default_style.add_paragraph_style("EOL-Subtitle", p)
         
         font = BaseDoc.FontStyle()
         font.set_size(10)
@@ -263,7 +267,7 @@ class EndOfLineOptions(MenuReportOptions):
         p.set_top_margin(ReportUtils.pt2cm(6))
         p.set_bottom_margin(ReportUtils.pt2cm(6))
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("EOL-Normal",p)
+        default_style.add_paragraph_style("EOL-Normal", p)
         
         font = BaseDoc.FontStyle()
         font.set_size(12)
@@ -272,7 +276,7 @@ class EndOfLineOptions(MenuReportOptions):
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(6))
         p.set_description(_('The basic style used for generation headings.'))
-        default_style.add_paragraph_style("EOL-Generation",p)
+        default_style.add_paragraph_style("EOL-Generation", p)
         
         font = BaseDoc.FontStyle()
         font.set_size(8)
@@ -281,22 +285,22 @@ class EndOfLineOptions(MenuReportOptions):
         p.set_top_margin(0)
         p.set_bottom_margin(ReportUtils.pt2cm(6))
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("EOL-Pedigree",p)
+        default_style.add_paragraph_style("EOL-Pedigree", p)
         
         #Table Styles
         cell = BaseDoc.TableCellStyle()
-        default_style.add_cell_style('EOL-TableCell',cell)
+        default_style.add_cell_style('EOL-TableCell', cell)
         
         cell = BaseDoc.TableCellStyle()
         cell.set_bottom_border(1)
-        default_style.add_cell_style('EOL_GenerationCell',cell)
+        default_style.add_cell_style('EOL_GenerationCell', cell)
 
         table = BaseDoc.TableStyle()
         table.set_width(100)
         table.set_columns(2)
-        table.set_column_width(0,10)
-        table.set_column_width(1,90)
-        default_style.add_table_style('EOL-Table',table)
+        table.set_column_width(0, 10)
+        table.set_column_width(1, 90)
+        default_style.add_table_style('EOL-Table', table)
 
 #------------------------------------------------------------------------
 #

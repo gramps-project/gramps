@@ -69,11 +69,12 @@ class CustomText(Report):
         mid   - Text in the middle.
         bot   - Text on the bottom.
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
 
-        self.top_text = options_class.handler.options_dict['top']
-        self.middle_text = options_class.handler.options_dict['mid']
-        self.bottom_text = options_class.handler.options_dict['bot']
+        menu = options_class.menu
+        self.top_text = menu.get_option_by_name('top').get_value()
+        self.middle_text = menu.get_option_by_name('mid').get_value()
+        self.bottom_text = menu.get_option_by_name('bot').get_value()
         
     def write_report(self):
         self.doc.start_paragraph('CBT-Initial')

@@ -60,7 +60,7 @@ EMPTY_ENTRY = "_____________"
 #------------------------------------------------------------------------
 class DetAncestorReport(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, person, options_class):
         """
         Creates the DetAncestorReport object that produces the report.
         
@@ -76,53 +76,54 @@ class DetAncestorReport(Report):
         gen           - Maximum number of generations to include.
         pagebgg       - Whether to include page breaks between generations.
         firstName     - Whether to use first names instead of pronouns.
-        fullDate      - Whether to use full dates instead of just year.
-        listChildren  - Whether to list children.
-        includeNotes  - Whether to include notes.
-        includeAttrs  - Whether to include attributes
-        blankPlace    - Whether to replace missing Places with ___________.
+        fulldate      - Whether to use full dates instead of just year.
+        listchildren  - Whether to list children.
+        includenotes  - Whether to include notes.
+        incattrs      - Whether to include attributes
+        blankplace    - Whether to replace missing Places with ___________.
         blankDate     - Whether to replace missing Dates with ___________.
-        calcAgeFlag   - Whether to compute age.
-        dupPerson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
+        calcageflag   - Whether to compute age.
+        dupperson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
         verbose       - Whether to use complete sentences
-        childRef      - Whether to add descendant references in child list.
-        addImages     - Whether to include images.
+        childref      - Whether to add descendant references in child list.
+        addimages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
 
         self.map = {}
 
-        self.max_generations = options_class.handler.options_dict['gen']
-        self.pgbrk         = options_class.handler.options_dict['pagebbg']
-        self.fullDate      = options_class.handler.options_dict['fulldates']
-        self.listChildren  = options_class.handler.options_dict['listc']
-        self.includeNotes  = options_class.handler.options_dict['incnotes']
-        self.usecall       = options_class.handler.options_dict['usecall']
-        self.blankPlace    = options_class.handler.options_dict['repplace']
-        self.blankDate     = options_class.handler.options_dict['repdate']
-        self.calcAgeFlag   = options_class.handler.options_dict['computeage']
-        self.dupPerson     = options_class.handler.options_dict['omitda']
-        self.verbose       = options_class.handler.options_dict['verbose']
-        self.childRef      = options_class.handler.options_dict['desref']
-        self.addImages     = options_class.handler.options_dict['incphotos']
-        self.includeNames  = options_class.handler.options_dict['incnames']
-        self.includeEvents = options_class.handler.options_dict['incevents']
-        self.includeAddr   = options_class.handler.options_dict['incaddresses']
-        self.includeSources= options_class.handler.options_dict['incsources']
-        self.includeAttrs  = options_class.handler.options_dict['incattrs']
-        pid = options_class.handler.options_dict['pid']
+        menu = options_class.menu
+        self.max_generations = menu.get_option_by_name('gen').get_value()
+        self.pgbrk         = menu.get_option_by_name('pagebbg').get_value()
+        self.fulldate      = menu.get_option_by_name('fulldates').get_value()
+        self.listchildren  = menu.get_option_by_name('listc').get_value()
+        self.includenotes  = menu.get_option_by_name('incnotes').get_value()
+        self.usecall       = menu.get_option_by_name('usecall').get_value()
+        blankplace         = menu.get_option_by_name('repplace').get_value()
+        blankdate          = menu.get_option_by_name('repdate').get_value()
+        self.calcageflag   = menu.get_option_by_name('computeage').get_value()
+        self.dupperson     = menu.get_option_by_name('omitda').get_value()
+        self.verbose       = menu.get_option_by_name('verbose').get_value()
+        self.childref      = menu.get_option_by_name('desref').get_value()
+        self.addimages     = menu.get_option_by_name('incphotos').get_value()
+        self.inc_names     = menu.get_option_by_name('incnames').get_value()
+        self.inc_events    = menu.get_option_by_name('incevents').get_value()
+        self.inc_addr      = menu.get_option_by_name('incaddresses').get_value()
+        self.inc_sources   = menu.get_option_by_name('incsources').get_value()
+        self.inc_attrs     = menu.get_option_by_name('incattrs').get_value()
+        pid                = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
 
         self.gen_handles = {}
-        self.prev_gen_handles= {}
+        self.prev_gen_handles = {}
         
-        if self.blankDate:
+        if blankdate:
             self.EMPTY_DATE = EMPTY_ENTRY
         else:
             self.EMPTY_DATE = ""
 
-        if self.blankPlace:
+        if blankplace:
             self.EMPTY_PLACE = EMPTY_ENTRY
         else:
             self.EMPTY_PLACE = ""
@@ -166,26 +167,26 @@ class DetAncestorReport(Report):
                 self.doc.write_text(text,mark)
                 self.doc.end_paragraph()
                 generation = generation + 1
-                if self.childRef:
+                if self.childref:
                     self.prev_gen_handles= self.gen_handles.copy()
                     self.gen_handles.clear()
 
             person_handle = self.map[key]
             person = self.database.get_person_from_handle(person_handle)
             self.gen_handles[person_handle] = key
-            dupPerson = self.write_person(key)
-            if dupPerson == 0:      # Is this a duplicate ind record
-                if self.listChildren or self.includeEvents:
+            dupperson = self.write_person(key)
+            if dupperson == 0:      # Is this a duplicate ind record
+                if self.listchildren or self.inc_events:
                     for family_handle in person.get_family_handle_list():
                         family = self.database.get_family_from_handle(family_handle)
                         mother_handle = family.get_mother_handle()
                         if mother_handle == None or                            \
                            person.get_gender() == gen.lib.Person.FEMALE:
-                            if self.listChildren:
+                            if self.listchildren:
                                 self.write_children(family)
-                            if self.includeEvents:
+                            if self.inc_events:
                                 self.write_family_events(family)
-        if self.includeSources:
+        if self.inc_sources:
             Endnotes.write_endnotes(self.bibli,self.database,self.doc)
 
     def write_person(self, key):
@@ -195,7 +196,7 @@ class DetAncestorReport(Report):
         person = self.database.get_person_from_handle(person_handle)
         plist = person.get_media_list()
         
-        if self.addImages and len(plist) > 0:
+        if self.addimages and len(plist) > 0:
             photo = plist[0]
             ReportUtils.insert_image(self.database,self.doc,photo)
 
@@ -212,7 +213,7 @@ class DetAncestorReport(Report):
             self.doc.write_text("%s. " % self.endnotes(person))
         self.doc.end_bold()
 
-        if self.dupPerson:
+        if self.dupperson:
             # Check for duplicate record (result of distant cousins marrying)
             keys = self.map.keys()
             keys.sort()
@@ -274,7 +275,7 @@ class DetAncestorReport(Report):
             self.write_mate(person)
 
         notelist = person.get_note_list()
-        if len(notelist) > 0 and self.includeNotes:
+        if len(notelist) > 0 and self.includenotes:
             self.doc.start_paragraph("DAR-NoteHeader")
             self.doc.write_text(_("Notes for %s") % name)
             self.doc.end_paragraph()
@@ -283,7 +284,7 @@ class DetAncestorReport(Report):
                 self.doc.write_note(note.get(),note.get_format(),"DAR-Entry")
 
         first = True
-        if self.includeNames:
+        if self.inc_names:
             for alt_name in person.get_alternate_names():
                 if first:
                     self.doc.start_paragraph('DAR-MoreHeader')
@@ -301,7 +302,7 @@ class DetAncestorReport(Report):
                     })
                 self.doc.end_paragraph()
 
-        if self.includeEvents:
+        if self.inc_events:
             birth_ref = person.get_birth_ref()
             death_ref = person.get_death_ref()
             for event_ref in person.get_primary_event_ref_list():
@@ -317,7 +318,7 @@ class DetAncestorReport(Report):
                     
                 self.write_event(event_ref)
                 
-        if self.includeAddr:
+        if self.inc_addr:
             for addr in person.get_address_list():
                 if first:
                     self.doc.start_paragraph('DAR-MoreHeader')
@@ -336,7 +337,7 @@ class DetAncestorReport(Report):
                 self.doc.write_text( self.endnotes(addr) )
                 self.doc.end_paragraph()
                 
-        if self.includeAttrs:
+        if self.inc_attrs:
             attrs = person.get_attribute_list()
             if first and attrs:
                 self.doc.start_paragraph('DAR-MoreHeader')
@@ -394,7 +395,7 @@ class DetAncestorReport(Report):
         
         self.doc.write_text(text)
         
-        if self.includeAttrs:
+        if self.inc_attrs:
             text = ""
             attr_list = event.get_attribute_list()
             attr_list.extend(event_ref.get_attribute_list())
@@ -410,7 +411,7 @@ class DetAncestorReport(Report):
         
         self.doc.end_paragraph()
 
-        if self.includeNotes:
+        if self.includenotes:
             # if the event or event reference has a note attached to it,
             # get the text and format it correctly
             notelist = event.get_note_list()
@@ -509,7 +510,7 @@ class DetAncestorReport(Report):
             child_name = _nd.display(child)
             child_mark = ReportUtils.get_person_mark(self.database,child)
 
-            if self.childRef and self.prev_gen_handles.get(child_handle):
+            if self.childref and self.prev_gen_handles.get(child_handle):
                 value = str(self.prev_gen_handles.get(child_handle))
                 child_name += " [%s]" % value
 
@@ -629,9 +630,9 @@ class DetAncestorReport(Report):
                 self.doc.end_paragraph()
 
             if person_name and mate.get_gender()==gen.lib.Person.MALE:
-                if self.listChildren:
+                if self.listchildren:
                     self.write_children(family)
-                if self.includeEvents:
+                if self.inc_events:
                     self.write_family_events(family)
 
     def calc_age(self,ind):
@@ -645,13 +646,13 @@ class DetAncestorReport(Report):
             months:         2
             days:           3
         """
-        if self.calcAgeFlag:
+        if self.calcageflag:
             return ReportUtils.old_calc_age(self.database,ind)
         else:
             return (0,0)
 
     def endnotes(self,obj):
-        if not obj or not self.includeSources:
+        if not obj or not self.inc_sources:
             return ""
         
         txt = Endnotes.cite_source(self.bibli,obj)

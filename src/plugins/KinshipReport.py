@@ -70,18 +70,19 @@ class KinshipReport(Report):
         incaunts      - Whether to include aunts/uncles/nephews/nieces.
         pid           - The Gramps ID of the center person for the report.
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
 
-        self.max_descend = options_class.handler.options_dict['maxdescend']
-        self.max_ascend  = options_class.handler.options_dict['maxascend']
-        self.incSpouses  = options_class.handler.options_dict['incspouses']
-        self.incCousins  = options_class.handler.options_dict['inccousins']
-        self.incAunts   = options_class.handler.options_dict['incaunts']
-        pid = options_class.handler.options_dict['pid']
+        menu = options_class.menu
+        self.max_descend = menu.get_option_by_name('maxdescend').get_value()
+        self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
+        self.inc_spouses = menu.get_option_by_name('incspouses').get_value()
+        self.inc_cousins = menu.get_option_by_name('inccousins').get_value()
+        self.inc_aunts   = menu.get_option_by_name('incaunts').get_value()
+        pid              = menu.get_option_by_name('pid').get_value()
         self.person = database.get_person_from_gramps_id(pid)
 
-        self.db = database
-        self.relCalc = relationship_class()
+        self.__db = database
+        self.rel_calc = relationship_class()
         self.kinship_map = {}
         self.spouse_map = {}
 
@@ -94,20 +95,20 @@ class KinshipReport(Report):
         
         self.doc.start_paragraph("KIN-Title")
         title = _("Kinship Report for %s") % pname
-        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
-        self.doc.write_text(title,mark)
+        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
-        if self.incSpouses:
+        if self.inc_spouses:
             spouse_handles = self.get_spouse_handles(self.person.get_handle())
             if spouse_handles:
-                self.write_people(_("Spouses"),spouse_handles)
+                self.write_people(_("Spouses"), spouse_handles)
 
         # Collect all descendants of the person
-        self.traverse_down(self.person.get_handle(),0,1)
+        self.traverse_down(self.person.get_handle(), 0, 1)
         
         # Collect all ancestors/aunts/uncles/nephews/cousins of the person
-        self.traverse_up(self.person.get_handle(),1,0)
+        self.traverse_up(self.person.get_handle(), 1, 0)
                 
         # Write Kin
         for Ga in self.kinship_map.keys():
@@ -117,21 +118,21 @@ class KinshipReport(Report):
                 x = min (Ga,Gb)
                 y = abs(Ga-Gb)
                 # Skip unrequested people
-                if x == 1 and y > 0 and not self.incAunts:
+                if x == 1 and y > 0 and not self.inc_aunts:
                     continue
-                elif x > 1 and not self.incCousins:
+                elif x > 1 and not self.inc_cousins:
                     continue
                 
-                title = self.relCalc.get_plural_relationship_string(Ga,Gb)
+                title = self.rel_calc.get_plural_relationship_string(Ga,Gb)
                 self.write_people(title,self.kinship_map[Ga][Gb])
                 
-                if self.incSpouses and \
+                if self.inc_spouses and \
                    self.spouse_map.has_key(Ga) and \
                    self.spouse_map[Ga].has_key(Gb):
                     title = _("spouses of %s") % title
                     self.write_people(title,self.spouse_map[Ga][Gb])
 
-    def traverse_down(self,person_handle,Ga,Gb,skip_handle=None):
+    def traverse_down(self, person_handle, Ga, Gb, skip_handle=None):
         """
         Populate a map of arrays containing person handles for the descendants
         of the passed person. This function calls itself recursively until it
@@ -153,14 +154,14 @@ class KinshipReport(Report):
             if child_handle != skip_handle:
                 self.add_kin(child_handle,Ga,Gb)
             
-                if self.incSpouses:
+                if self.inc_spouses:
                     for spouse_handle in self.get_spouse_handles(child_handle):
                         self.add_spouse(spouse_handle,Ga,Gb)
                     
                 if Gb < self.max_descend:
                     self.traverse_down(child_handle,Ga,Gb+1)
                     
-    def traverse_up(self,person_handle,Ga,Gb):
+    def traverse_up(self, person_handle, Ga, Gb):
         """
         Populate a map of arrays containing person handles for the ancestors
         of the passed person. This function calls itself recursively until it
@@ -182,7 +183,7 @@ class KinshipReport(Report):
             if Ga < self.max_ascend:
                 self.traverse_up(parent_handle,Ga+1,0)
                 
-    def add_kin(self,person_handle,Ga,Gb):
+    def add_kin(self, person_handle, Ga, Gb):
         """
         Add a person handle to the kin map.
         """
@@ -193,7 +194,7 @@ class KinshipReport(Report):
         if person_handle not in self.kinship_map[Ga][Gb]:
             self.kinship_map[Ga][Gb].append(person_handle)
         
-    def add_spouse(self,spouse_handle,Ga,Gb):
+    def add_spouse(self, spouse_handle, Ga, Gb):
         """
         Add a person handle to the spouse map.
         """
@@ -204,16 +205,16 @@ class KinshipReport(Report):
         if spouse_handle not in self.spouse_map[Ga][Gb]:
             self.spouse_map[Ga][Gb].append(spouse_handle)
                 
-    def get_parent_handles(self,person_handle):
+    def get_parent_handles(self, person_handle):
         """
         Return an array of handles for all the parents of the 
         given person handle.
         """
         parent_handles = []
-        person = self.db.get_person_from_handle(person_handle)
+        person = self.__db.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.db.get_family_from_handle(family_handle)
+            family = self.__db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             if father_handle:
                 parent_handles.append(father_handle)
@@ -222,15 +223,15 @@ class KinshipReport(Report):
                 parent_handles.append(mother_handle)
         return parent_handles
                 
-    def get_spouse_handles(self,person_handle):
+    def get_spouse_handles(self, person_handle):
         """
         Return an array of handles for all the spouses of the 
         given person handle.
         """
         spouses = []
-        person = self.db.get_person_from_handle(person_handle)
+        person = self.__db.get_person_from_handle(person_handle)
         for family_handle in person.get_family_handle_list():
-            family = self.db.get_family_from_handle(family_handle)
+            family = self.__db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             spouse_handle = None
@@ -243,36 +244,36 @@ class KinshipReport(Report):
                 spouses.append(spouse_handle)
         return spouses
     
-    def get_children_handles(self,person_handle):
+    def get_children_handles(self, person_handle):
         """
         Return an array of handles for all the children of the 
         given person handle.
         """
         children = []
-        person = self.db.get_person_from_handle(person_handle)
+        person = self.__db.get_person_from_handle(person_handle)
         for family_handle in person.get_family_handle_list():
-            family = self.db.get_family_from_handle(family_handle)
+            family = self.__db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 children.append(child_ref.get_reference_handle())
         return children
     
-    def get_sibling_handles(self,person_handle):
+    def get_sibling_handles(self, person_handle):
         """
         Return an array of handles for all the siblings of the 
         given person handle.
         """
         siblings = []
-        person = self.db.get_person_from_handle(person_handle)
+        person = self.__db.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.db.get_family_from_handle(family_handle)
+            family = self.__db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 sibling_handle = child_ref.get_reference_handle()
                 if sibling_handle != person_handle:
                     siblings.append(sibling_handle)
         return siblings
     
-    def write_people(self,title,people_handles):
+    def write_people(self, title, people_handles):
         """
         Write information about a group of people - including the title.
         """
@@ -284,7 +285,7 @@ class KinshipReport(Report):
         for person_handle in people_handles:
             self.write_person(person_handle)
 
-    def write_person(self,person_handle):
+    def write_person(self, person_handle):
         """
         Write information about the given person.
         """
@@ -308,7 +309,7 @@ class KinshipReport(Report):
                                             'death_date' : death_date }
         
         self.doc.start_paragraph('KIN-Normal')
-        self.doc.write_text(name,mark)
+        self.doc.write_text(name, mark)
         self.doc.write_text(dates)
         self.doc.end_paragraph()
 
@@ -323,10 +324,10 @@ class KinshipOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,dbstate=None):
-        MenuReportOptions.__init__(self,name,dbstate)
+    def __init__(self, name, dbstate=None):
+        MenuReportOptions.__init__(self, name, dbstate)
         
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu, dbstate):
         """
         Add options to the menu for the kinship report.
         """

@@ -357,10 +357,10 @@ class EnumeratedListOption(Option):
 
 #-------------------------------------------------------------------------
 #
-# PersonFilterOption class
+# FilterOption class
 #
 #-------------------------------------------------------------------------
-class PersonFilterOption(EnumeratedListOption):
+class FilterOption(EnumeratedListOption):
     """
     This class describes an option that provides a list of person filters.
     Each possible value represents one of the possible filters.

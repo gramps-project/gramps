@@ -28,7 +28,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import gtk
 import math
 from gettext import gettext as _
 
@@ -52,10 +51,15 @@ from gen.lib import ChildRefType
 #
 #------------------------------------------------------------------------
 def log2(val):
+    """
+    Calculate the log base 2 of a number
+    """
     return int(math.log10(val)/math.log10(2))
 
 class AncestorReport(Report):
-
+    """
+    Ancestor Report class
+    """
     def __init__(self, database, person, options_class):
         """
         Creates the AncestorReport object that produces the Ahnentafel report.
@@ -74,16 +78,18 @@ class AncestorReport(Report):
 
         """
 
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
 
         self.map = {}
-        self.max_generations = options_class.handler.options_dict['maxgen']
-        self.pgbrk = options_class.handler.options_dict['pagebbg']
-        self.opt_namebrk = options_class.handler.options_dict['namebrk']
-        pid = options_class.handler.options_dict['pid']
+        
+        menu = options_class.menu
+        self.max_generations = menu.get_option_by_name('maxgen').get_value()
+        self.pgbrk = menu.get_option_by_name('pagebbg').get_value()
+        self.opt_namebrk = menu.get_option_by_name('namebrk').get_value()
+        pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
 
-    def apply_filter(self,person_handle,index,generation=1):
+    def apply_filter(self, person_handle, index, generation=1):
         """
         Recursive function to walk back all parents of the current person.
         When max_generations are hit, we stop the traversal.
@@ -125,34 +131,36 @@ class AncestorReport(Report):
                 # people defined as the birth parents, we will select based on
                 # priority in the list
 
-                if not father_handle and ref[0].get_father_relation() == ChildRefType.BIRTH:
+                if not father_handle and \
+                   ref[0].get_father_relation() == ChildRefType.BIRTH:
                     father_handle = family.get_father_handle()
-                if not mother_handle and ref[0].get_mother_relation() == ChildRefType.BIRTH:
+                if not mother_handle and \
+                   ref[0].get_mother_relation() == ChildRefType.BIRTH:
                     mother_handle = family.get_mother_handle()
 
-        # Recursively call the function. It is okay if the handle is None, since 
-        # routine handles a handle of None
+        # Recursively call the function. It is okay if the handle is None,  
+        # since routine handles a handle of None
 
         self.apply_filter(father_handle, index*2, generation+1)
         self.apply_filter(mother_handle, (index*2)+1, generation+1)
 
     def write_report(self):
         """
-        The routine the actually creates the report. At this point, the document is 
-        opened and ready for writing.
+        The routine the actually creates the report. At this point, the document
+        is opened and ready for writing.
         """
 
-        # Call apply_filter to build the self.map array of people in the database that
-        # match the ancestry.
+        # Call apply_filter to build the self.map array of people in the 
+        # database that match the ancestry.
 
-        self.apply_filter(self.center_person.get_handle(),1)
+        self.apply_filter(self.center_person.get_handle(), 1)
 
-        # Write the title line. Set in INDEX marker so that this section will be 
+        # Write the title line. Set in INDEX marker so that this section will be
         # identified as a major category if this is included in a Book report.
 
         name = name_displayer.display_formal(self.center_person)
         title = _("Ahnentafel Report for %s") % name
-        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC,1 )        
+        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)        
         self.doc.start_paragraph("AHN-Title")
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -174,9 +182,9 @@ class AncestorReport(Report):
                 generation += 1
 
                 # Create the Generation title, set an index marker
-                mark =  BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,2)  
+                mark =  BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 2)  
                 self.doc.start_paragraph("AHN-Generation")
-                self.doc.write_text(_("Generation %d") % generation,mark)
+                self.doc.write_text(_("Generation %d") % generation, mark)
                 self.doc.end_paragraph()
 
             # Build the entry
@@ -191,8 +199,8 @@ class AncestorReport(Report):
             self.doc.write_text(name.strip(), mark)
             self.doc.end_bold()
 
-            # terminate with a period if it is not already terminated. This can happen
-            # if the person's name ends with something 'Jr.'
+            # terminate with a period if it is not already terminated. 
+            # This can happen if the person's name ends with something 'Jr.'
             if name[-1:] == '.':
                 self.doc.write_text(" ")
             else:
@@ -208,9 +216,12 @@ class AncestorReport(Report):
             primary_name = person.get_primary_name()
             first = primary_name.get_first_name()
 
-            self.doc.write_text(ReportUtils.born_str(self.database,person,first))
-            self.doc.write_text(ReportUtils.died_str(self.database,person,0))
-            self.doc.write_text(ReportUtils.buried_str(self.database,person,0))
+            self.doc.write_text( 
+                            ReportUtils.born_str(self.database, person, first))
+            self.doc.write_text(
+                            ReportUtils.died_str(self.database, person, 0))
+            self.doc.write_text(
+                            ReportUtils.buried_str(self.database, person, 0))
                         
             self.doc.end_paragraph()
         
@@ -225,10 +236,10 @@ class AncestorOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,dbstate=None):
-        MenuReportOptions.__init__(self,name,dbstate)
+    def __init__(self, name, dbstate=None):
+        MenuReportOptions.__init__(self, name, dbstate)
         
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu, dbstate):
         """
         Add options to the menu for the ancestor report.
         """
@@ -236,21 +247,22 @@ class AncestorOptions(MenuReportOptions):
         
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name,"pid",pid)
+        menu.add_option(category_name, "pid", pid)
         
-        maxgen = NumberOption(_("Generations"),10,1,15)
+        maxgen = NumberOption(_("Generations"), 10, 1, 15)
         maxgen.set_help(_("The number of generations to include in the report"))
-        menu.add_option(category_name,"maxgen",maxgen)
+        menu.add_option(category_name, "maxgen", maxgen)
         
-        pagebbg = BooleanOption(_("Page break between generations"),False)
-        pagebbg.set_help(_("Whether to start a new page after each generation."))
-        menu.add_option(category_name,"pagebbg",pagebbg)
+        pagebbg = BooleanOption(_("Page break between generations"), False)
+        pagebbg.set_help(
+                     _("Whether to start a new page after each generation."))
+        menu.add_option(category_name, "pagebbg", pagebbg)
         
-        namebrk = BooleanOption(_("Add linebreak after each name"),False)
+        namebrk = BooleanOption(_("Add linebreak after each name"), False)
         namebrk.set_help(_("Indicates if a line break should follow the name."))
-        menu.add_option(category_name,"namebrk",namebrk)
+        menu.add_option(category_name, "namebrk", namebrk)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """
         Make the default output style for the Ahnentafel report.
 
@@ -284,7 +296,7 @@ class AncestorOptions(MenuReportOptions):
         # AHN-Title
         #
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, bold=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
@@ -292,30 +304,30 @@ class AncestorOptions(MenuReportOptions):
         para.set_bottom_margin(0.25)
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
         para.set_description(_('The style used for the title of the page.'))
-        default_style.add_paragraph_style("AHN-Title",para)
+        default_style.add_paragraph_style("AHN-Title", para)
     
         #
         # AHN-Generation
         #
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)        
         para.set_description(_('The style used for the generation header.'))
-        default_style.add_paragraph_style("AHN-Generation",para)
+        default_style.add_paragraph_style("AHN-Generation", para)
     
         #
         # AHN-Entry
         #
         para = BaseDoc.ParagraphStyle()
-        para.set(first_indent=-1.0,lmargin=1.0)
+        para.set(first_indent=-1.0, lmargin=1.0)
         para.set_top_margin(0.125)
         para.set_bottom_margin(0.125)        
         para.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("AHN-Entry",para)
+        default_style.add_paragraph_style("AHN-Entry", para)
 
 #------------------------------------------------------------------------
 #

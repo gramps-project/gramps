@@ -179,14 +179,15 @@ class AncestorChart(Report):
         compress  - Whether to compress chart.
         """
         Report.__init__(self,database,person,options_class)
-
-        self.display = options_class.handler.options_dict['dispf']
-        self.max_generations = options_class.handler.options_dict['maxgen']
-        self.force_fit = options_class.handler.options_dict['singlep']
-        self.incblank = options_class.handler.options_dict['incblank']
-        self.compress = options_class.handler.options_dict['compress']
         
-        pid = options_class.handler.options_dict['pid']
+        menu = options_class.menu
+        self.display = menu.get_option_by_name('dispf').get_value()
+        self.max_generations = menu.get_option_by_name('maxgen').get_value()
+        self.force_fit = menu.get_option_by_name('singlep').get_value()
+        self.incblank = menu.get_option_by_name('incblank').get_value()
+        self.compress = menu.get_option_by_name('compress').get_value()
+        
+        pid = menu.get_option_by_name('pid').get_value()
         center_person = database.get_person_from_gramps_id(pid)
         
         name = name_displayer.display_formal(center_person)

@@ -64,7 +64,7 @@ pt2cm = ReportUtils.pt2cm
 #------------------------------------------------------------------------
 class FanChart(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, person, options_class):
         """
         Creates the FanChart object that produces the report.
         
@@ -83,11 +83,12 @@ class FanChart(Report):
         radial          - Print radial texts roundabout or as upright as possible.
         """
 
-        self.max_generations = options_class.handler.options_dict['maxgen']
-        self.circle = options_class.handler.options_dict['circle']
-        self.background = options_class.handler.options_dict['background']
-        self.radial = options_class.handler.options_dict['radial']
-        pid = options_class.handler.options_dict['pid']
+        menu = options_class.menu
+        self.max_generations = menu.get_option_by_name('maxgen').get_value()
+        self.circle          = menu.get_option_by_name('circle').get_value()
+        self.background      = menu.get_option_by_name('background').get_value()
+        self.radial          = menu.get_option_by_name('radial').get_value()
+        pid                  = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
 
         self.background_style = []
@@ -101,13 +102,13 @@ class FanChart(Report):
             text_style_name = 'text_style' + '%d' % i
             self.text_style.append(text_style_name)
 
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
 
         self.height = 0
         self.lines = 0
         self.display = "%n"
         self.map = [None] * 2**self.max_generations
-        self.text= {}
+        self.text = {}
         self.box_width = 0
 
     def apply_filter(self,person_handle,index):

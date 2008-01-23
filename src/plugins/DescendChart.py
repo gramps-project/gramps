@@ -36,7 +36,6 @@ from ReportBase import Report, MenuReportOptions, \
 from SubstKeywords import SubstKeywords
 from gettext import gettext as _
 import BaseDoc
-import math
 
 #------------------------------------------------------------------------
 #
@@ -119,13 +118,14 @@ class DescendChart(Report):
         singlep   - Whether to scale to fit on a single page.
         maxgen    - Maximum number of generations to include.
         """
-        Report.__init__(self,database,person,options_class)
-
-        self.display = options_class.handler.options_dict['dispf']
-        self.max_generations = options_class.handler.options_dict['maxgen']
-        self.force_fit = options_class.handler.options_dict['singlep']
-        self.incblank = options_class.handler.options_dict['incblank']
-        pid = options_class.handler.options_dict['pid']
+        Report.__init__(self, database, person, options_class)
+        
+        menu = options_class.menu
+        self.display = menu.get_option_by_name('dispf').get_value()
+        self.max_generations = menu.get_option_by_name('maxgen').get_value()
+        self.force_fit = menu.get_option_by_name('singlep').get_value()
+        self.incblank = menu.get_option_by_name('incblank').get_value()
+        pid = menu.get_option_by_name('pid').get_value()
         center_person = database.get_person_from_gramps_id(pid)
         
         name = name_displayer.display_formal(center_person)

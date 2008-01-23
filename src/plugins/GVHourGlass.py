@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id:  $
+# $Id$
 
 """
 Generate an hourglass graph using the GraphViz generator.
@@ -55,9 +55,11 @@ class HourGlassReport(Report):
         """
         Report.__init__(self, database, person, options_class)
         self.__db = database
-        self.max_descend = options_class.handler.options_dict['maxdescend']
-        self.max_ascend  = options_class.handler.options_dict['maxascend']
-        pid = options_class.handler.options_dict['pid']
+        
+        menu = options_class.menu
+        self.max_descend = menu.get_option_by_name('maxdescend').get_value()
+        self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
+        pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
 
     def write_report(self):

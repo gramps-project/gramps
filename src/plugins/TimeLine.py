@@ -38,13 +38,12 @@ from TransUtils import sgettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import register_report
-from PluginUtils import PersonFilterOption, EnumeratedListOption, \
+from PluginUtils import FilterOption, EnumeratedListOption, \
     PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
 pt2cm = ReportUtils.pt2cm
 import BaseDoc
-from Filters import GenericFilter, Rules
 import Sort
 from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer
@@ -67,7 +66,7 @@ def _get_sort_functions(sort):
 #------------------------------------------------------------------------
 class TimeLine(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, person, options_class):
         """
         Creates the Timeline object that produces the report.
         
@@ -86,15 +85,13 @@ class TimeLine(Report):
         sortby -    Sorting method to be used.
         """
 
-        Report.__init__(self,database,person,options_class)
-
-        filter_num = options_class.handler.options_dict['filter']
-        self.filter_option =  options_class.menu.get_option_by_name('filter')
-        self.filter = self.filter_option.get_filter()
+        Report.__init__(self, database, person, options_class)
+        menu = options_class.menu
+        self.filter = menu.get_option_by_name('filter').get_filter()
 
         self.title = _("Timeline Graph for %s") % self.filter.get_name()
 
-        sort_func_num = options_class.handler.options_dict['sortby']
+        sort_func_num = menu.get_option_by_name('sortby').get_value()
         sort_functions = _get_sort_functions(Sort.Sort(database))
         self.sort_func = sort_functions[sort_func_num][1]
 
@@ -304,18 +301,19 @@ class TimeLineOptions(MenuReportOptions):
         
     def add_menu_options(self,menu,dbstate):
         category_name = _("Report Options")
+
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+                         _("Determines what people are included in the report"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
         
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
-        self.__filter = PersonFilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-                         _("Determines what people are included in the report"))
         self.__update_filters()
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
         
         sortby = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0

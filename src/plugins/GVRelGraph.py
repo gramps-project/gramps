@@ -23,7 +23,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:  $
+# $Id$
 
 """
 Create a relationship graph using Graphviz
@@ -41,7 +41,7 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, PersonFilterOption, \
+from PluginUtils import register_report, FilterOption, \
                         EnumeratedListOption, BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
@@ -72,7 +72,7 @@ _ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd'  },
 #------------------------------------------------------------------------
 class RelGraphReport(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, person, options_class):
         """
         Creates ComprehensiveAncestorsReport object that produces the report.
         
@@ -100,7 +100,7 @@ class RelGraphReport(Report):
         color      - Whether to use outline, colored outline or filled color in graph
         dashed     - Whether to use dashed lines for non-birth relationships.
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
         
         colored = {
             'male': 'dodgerblue4',
@@ -116,22 +116,22 @@ class RelGraphReport(Report):
         }
         self.database = database
 
-        options = options_class.handler.options_dict
-        self.includeid = options['incid']
-        self.includedates = options['incdate']
-        self.includeurl = options['url']
-        self.includeimg = options['includeImages']
-        self.imgpos     = options['imageOnTheSide']
-        self.adoptionsdashed = options['dashed']
-        self.show_families = options['showfamily']
-        self.just_years = options['justyears']
-        self.placecause = options['placecause']
-        self.colorize = options['color']
+        menu = options_class.menu
+        self.includeid = menu.get_option_by_name('incid').get_value()
+        self.includedates = menu.get_option_by_name('incdate').get_value()
+        self.includeurl = menu.get_option_by_name('url').get_value()
+        self.includeimg = menu.get_option_by_name('includeImages').get_value()
+        self.imgpos     = menu.get_option_by_name('imageOnTheSide').get_value()
+        self.adoptionsdashed = menu.get_option_by_name('dashed').get_value()
+        self.show_families = menu.get_option_by_name('showfamily').get_value()
+        self.just_years = menu.get_option_by_name('justyears').get_value()
+        self.placecause = menu.get_option_by_name('placecause').get_value()
+        self.colorize = menu.get_option_by_name('color').get_value()
         if self.colorize == 'colored':
             self.colors = colored
         elif self.colorize == 'filled':
             self.colors = filled
-        arrow_str = options['arrow']
+        arrow_str = menu.get_option_by_name('arrow').get_value()
         if arrow_str.find('a') + 1:
             self.arrowheadstyle = 'normal'
         else:
@@ -142,10 +142,10 @@ class RelGraphReport(Report):
             self.arrowtailstyle = 'none'
 
         filter_option = options_class.menu.get_option_by_name('filter')
-        self.filter = filter_option.get_filter()
+        self._filter = filter_option.get_filter()
 
     def write_report(self):
-        self.person_handles = self.filter.apply(self.database,
+        self.person_handles = self._filter.apply(self.database,
                     self.database.get_person_handles(sort_handles=False))
         
         if len(self.person_handles) > 1:
@@ -428,17 +428,18 @@ class RelGraphOptions(MenuReportOptions):
         category_name = _("Report Options")
         ################################
 
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+                         _("Determines what people are included in the graph"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+        
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
-        self.__filter = PersonFilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-                         _("Determines what people are included in the graph"))
         self.__update_filters()
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
         
         incdate = BooleanOption(
                             _("Include Birth, Marriage and Death dates"), True)

@@ -30,7 +30,7 @@
 # of the list.
 from _MenuOptions import \
     NumberOption, BooleanOption, TextOption, \
-    EnumeratedListOption, PersonFilterOption, StringOption, ColourOption, \
+    EnumeratedListOption, FilterOption, StringOption, ColourOption, \
     PersonOption, PersonListOption, SurnameColourOption, FamilyOption
 from _GuiOptions import GuiMenuOptions
 from _PluginMgr import \

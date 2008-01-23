@@ -28,7 +28,6 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -40,18 +39,9 @@ from PluginUtils import register_report, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
-import Errors
 import Sort
-from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer
 import DateHandler
-
-#------------------------------------------------------------------------
-#
-# GTK/GNOME modules
-#
-#------------------------------------------------------------------------
-import gtk
 
 _BORN = _('b.')
 _DIED = _('d.')
@@ -63,7 +53,7 @@ _DIED = _('d.')
 #------------------------------------------------------------------------
 class DescendantReport(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, person, options_class):
         """
         Creates the DescendantReport object that produces the report.
         
@@ -80,10 +70,11 @@ class DescendantReport(Report):
 
         """
 
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
 
-        self.max_generations = options_class.handler.options_dict['gen']
-        pid = options_class.handler.options_dict['pid']
+        menu = options_class.menu
+        self.max_generations = menu.get_option_by_name('gen').get_value()
+        pid = menu.get_option_by_name('pid').get_value()
         self.center_person = database.get_person_from_gramps_id(pid)
         sort = Sort.Sort(self.database)
         self.by_birthdate = sort.by_birthdate

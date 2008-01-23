@@ -46,7 +46,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, \
     CATEGORY_DRAW, CATEGORY_TEXT, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from PluginUtils import NumberOption, BooleanOption, StringOption, \
-    PersonFilterOption, EnumeratedListOption, PersonOption
+    FilterOption, EnumeratedListOption, PersonOption
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter
@@ -120,32 +120,34 @@ class Calendar(Report):
     """
     Creates the Calendar object that produces the report.
     """
-    def __init__(self,database,person,options_class):
-        Report.__init__(self,database,person,options_class)
-        if 'titletext' in options_class.handler.options_dict.keys():
+    def __init__(self, database, person, options_class):
+        Report.__init__(self, database, person, options_class)
+        menu = options_class.menu
+        if 'titletext' in menu.get_all_option_names():
             # report and graphic share most of the same code
             # but calendar doesn't have a title
-            self.titletext = options_class.handler.options_dict['titletext']
-        if 'relationships' in options_class.handler.options_dict.keys():
+            self.titletext = menu.get_option_by_name('titletext').get_value()
+        if 'relationships' in menu.get_all_option_names():
             # report and graphic share most of the same code
             # but calendar doesn't show relationships
-            self.relationships = options_class.handler.options_dict['relationships']
+            self.relationships = \
+                        menu.get_option_by_name('relationships').get_value()
         else:
             self.relationships = False
-        self.year = options_class.handler.options_dict['year']
-        self.name_format = options_class.handler.options_dict['name_format']
-        self.country = options_class.handler.options_dict['country']
-        self.anniversaries = options_class.handler.options_dict['anniversaries']
-        self.start_dow = options_class.handler.options_dict['start_dow']
-        self.maiden_name = options_class.handler.options_dict['maiden_name']
-        self.alive = options_class.handler.options_dict['alive']
-        self.birthdays = options_class.handler.options_dict['birthdays']
-        self.text1 = options_class.handler.options_dict['text1']
-        self.text2 = options_class.handler.options_dict['text2']
-        self.text3 = options_class.handler.options_dict['text3']
-        self.filter_option =  options_class.menu.get_option_by_name('filter')
+        self.year = menu.get_option_by_name('year').get_value()
+        self.name_format = menu.get_option_by_name('name_format').get_value()
+        self.country = menu.get_option_by_name('country').get_value()
+        self.anniversaries = menu.get_option_by_name('anniversaries').get_value()
+        self.start_dow = menu.get_option_by_name('start_dow').get_value()
+        self.maiden_name = menu.get_option_by_name('maiden_name').get_value()
+        self.alive = menu.get_option_by_name('alive').get_value()
+        self.birthdays = menu.get_option_by_name('birthdays').get_value()
+        self.text1 = menu.get_option_by_name('text1').get_value()
+        self.text2 = menu.get_option_by_name('text2').get_value()
+        self.text3 = menu.get_option_by_name('text3').get_value()
+        self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
-        self.pid = options_class.handler.options_dict['pid']
+        self.pid = menu.get_option_by_name('pid').get_value()
 
         self.title = _("Calendar Report") #% name
 
@@ -488,17 +490,18 @@ class CalendarOptions(MenuReportOptions):
         year.set_help(_("Year of calendar"))
         menu.add_option(category_name,"year", year)
 
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+               _("Select filter to restrict people that appear on calendar"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+        
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
-
-        self.__filter = PersonFilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-               _("Select filter to restrict people that appear on calendar"))
+        
         self.__update_filters()
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
 
         name_format = EnumeratedListOption(_("Name format"), -1)
         for num, name, fmt_str, act in name_displayer.get_name_format():

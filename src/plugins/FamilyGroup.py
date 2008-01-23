@@ -44,7 +44,7 @@ from BasicUtils import name_displayer as _nd
 #------------------------------------------------------------------------
 class FamilyGroup(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, person, options_class):
         """
         Creates the DetAncestorReport object that produces the report.
         
@@ -60,25 +60,26 @@ class FamilyGroup(Report):
         family_handle - Handle of the family to write report on.
         includeAttrs  - Whether to include attributes
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
+        menu = options_class.menu
 
         self.family_handle = None
 
-        family_id = options_class.handler.options_dict['family_id']
+        family_id = menu.get_option_by_name('family_id').get_value()
         family = database.get_family_from_gramps_id(family_id)
         self.family_handle = family.get_handle()
 
-        self.recursive     = options_class.handler.options_dict['recursive']
-        self.missingInfo   = options_class.handler.options_dict['missinginfo']
-        self.generations   = options_class.handler.options_dict['generations']
-        self.incParEvents  = options_class.handler.options_dict['incParEvents']
-        self.incParAddr    = options_class.handler.options_dict['incParAddr']
-        self.incParNotes   = options_class.handler.options_dict['incParNotes']
-        self.incParNames   = options_class.handler.options_dict['incParNames']
-        self.incParMar     = options_class.handler.options_dict['incParMar']
-        self.incRelDates   = options_class.handler.options_dict['incRelDates']
-        self.incChiMar     = options_class.handler.options_dict['incChiMar']
-        self.includeAttrs  = options_class.handler.options_dict['incattrs']
+        self.recursive     = menu.get_option_by_name('recursive').get_value()
+        self.missingInfo   = menu.get_option_by_name('missinginfo').get_value()
+        self.generations   = menu.get_option_by_name('generations').get_value()
+        self.incParEvents  = menu.get_option_by_name('incParEvents').get_value()
+        self.incParAddr    = menu.get_option_by_name('incParAddr').get_value()
+        self.incParNotes   = menu.get_option_by_name('incParNotes').get_value()
+        self.incParNames   = menu.get_option_by_name('incParNames').get_value()
+        self.incParMar     = menu.get_option_by_name('incParMar').get_value()
+        self.incRelDates   = menu.get_option_by_name('incRelDates').get_value()
+        self.incChiMar     = menu.get_option_by_name('incChiMar').get_value()
+        self.includeAttrs  = menu.get_option_by_name('incattrs').get_value()
 
     def dump_parent_event(self,name,event):
         place = ""

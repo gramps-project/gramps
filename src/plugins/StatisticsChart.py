@@ -48,7 +48,7 @@ from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
 from PluginUtils import register_report
-from PluginUtils import BooleanOption, PersonFilterOption, PersonOption, \
+from PluginUtils import BooleanOption, FilterOption, PersonOption, \
     EnumeratedListOption, NumberOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
@@ -389,7 +389,7 @@ class Extract:
                     chart[1][key] = 1
 
     
-    def collect_data(self, db, filter_func, options, genders,
+    def collect_data(self, db, filter_func, menu, genders,
                      year_from, year_to, no_years):
         """goes through the database and collects the selected personal
         data persons fitting the filter and birth year criteria. The
@@ -412,10 +412,10 @@ class Extract:
         data = []
         ext = self.extractors
         # which methods to use
-        for key in options:
-            if options[key] and key in self.extractors:
+        for name in menu.get_all_option_names():
+            if name in self.extractors:
                 # localized data title, value dict, type and data method
-                data.append((ext[key][1], {}, ext[key][2], ext[key][3]))
+                data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
         
         # go through the people and collect data
         for person_handle in filter_func.apply(db, db.get_person_handles(sort_handles=False)):
@@ -471,16 +471,16 @@ class StatisticsChart(Report):
 
         To see what the options are, check the options help in the options class.
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
     
         self.filter_option =  options_class.menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
 
-        options = options_class.handler.options_dict
-        self.bar_items = options['bar_items']
-        year_from = options['year_from']
-        year_to = options['year_to']
-        gender = options['gender']
+        menu = options_class.menu
+        self.bar_items = menu.get_option_by_name('bar_items').get_value()
+        year_from = menu.get_option_by_name('year_from').get_value()
+        year_to = menu.get_option_by_name('year_to').get_value()
+        gender = menu.get_option_by_name('gender').get_value()
 
         # title needs both data extraction method name + gender name
         if gender == Person.MALE:
@@ -500,14 +500,15 @@ class StatisticsChart(Report):
 
         # extract requested items from the database and count them
         self.progress.set_pass(_('Collecting data...'), 1)
-        tables = _Extract.collect_data(database, self.filter, options,
-                        gender, year_from, year_to, options['no_years'])
+        tables = _Extract.collect_data(database, self.filter, menu,
+                        gender, year_from, year_to, 
+                        menu.get_option_by_name('no_years').get_value())
         self.progress.step()
 
         self.progress.set_pass(_('Sorting data...'), len(tables))
         self.data = []
-        sortby = options['sortby']
-        reverse = options['reverse']
+        sortby = menu.get_option_by_name('sortby').get_value()
+        reverse = menu.get_option_by_name('reverse').get_value()
         for table in tables:
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
@@ -670,17 +671,18 @@ class StatisticsChartOptions(MenuReportOptions):
         """
         category_name = _("Report Options")
         
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+                         _("Determines what people are included in the report"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+        
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
-        self.__filter = PersonFilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-                         _("Determines what people are included in the report"))
         self.__update_filters()
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
         
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE )

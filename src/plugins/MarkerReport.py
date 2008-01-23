@@ -65,8 +65,9 @@ class MarkerReport(Report):
         
         marker         - The marker each object must match to be included.
         """
-        Report.__init__(self,database,person,options_class)
-        self.marker = options_class.handler.options_dict['marker']
+        Report.__init__(self, database, person, options_class)
+        menu = options_class.menu
+        self.marker = menu.get_option_by_name('marker').get_value()
         
     def write_report(self):
         markerstr = self.marker

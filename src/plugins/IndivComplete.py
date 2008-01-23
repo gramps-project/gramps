@@ -37,7 +37,7 @@ from gettext import gettext as _
 import gen.lib
 import BaseDoc
 import DateHandler
-from PluginUtils import register_report, PersonFilterOption, BooleanOption, \
+from PluginUtils import register_report, FilterOption, BooleanOption, \
     PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
@@ -52,7 +52,7 @@ from QuestionDialog import WarningDialog
 #------------------------------------------------------------------------
 class IndivCompleteReport(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, person, options_class):
         """
         Creates the IndivCompleteReport object that produces the report.
         
@@ -71,9 +71,10 @@ class IndivCompleteReport(Report):
         cites     - Whether or not to include source informaiton.
         """
 
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, person, options_class)
 
-        self.use_srcs = options_class.handler.options_dict['cites']
+        menu = options_class.menu
+        self.use_srcs = menu.get_option_by_name('cites').get_value()
 
         filter_option = options_class.menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -109,10 +110,10 @@ class IndivCompleteReport(Report):
 
         description = event.get_description()
         if description:
-            text = '%s%s. ' % (text,description)
+            text = '%s%s. ' % (text, description)
         endnotes = ""
         if self.use_srcs:
-            endnotes = Endnotes.cite_source(self.bibli,event)
+            endnotes = Endnotes.cite_source(self.bibli, event)
 
         self.doc.start_row()
         self.normal_cell(name)
@@ -129,12 +130,12 @@ class IndivCompleteReport(Report):
             note = self.database.get_note_from_handle(notehandle)
             text = note.get()
             format = note.get_format()
-            self.doc.write_note(text,format,'IDS-Normal')
+            self.doc.write_note(text,format, 'IDS-Normal')
         
         self.doc.end_cell()
         self.doc.end_row()
 
-    def write_p_entry(self,label,parent,rel,pmark=None):
+    def write_p_entry(self, label, parent, rel, pmark=None):
         self.doc.start_row()
         self.normal_cell(label)
 
@@ -153,7 +154,7 @@ class IndivCompleteReport(Report):
             return
         self.doc.start_table('note','IDS-IndTable')
         self.doc.start_row()
-        self.doc.start_cell('IDS-TableHead',2)
+        self.doc.start_cell('IDS-TableHead', 2)
         self.doc.start_paragraph('IDS-TableTitle')
         self.doc.write_text(_('Notes'))
         self.doc.end_paragraph()
@@ -165,8 +166,8 @@ class IndivCompleteReport(Report):
             text = note.get()
             format = note.get_format()
             self.doc.start_row()
-            self.doc.start_cell('IDS-NormalCell',2)
-            self.doc.write_note(text,format,'IDS-Normal')
+            self.doc.start_cell('IDS-NormalCell', 2)
+            self.doc.write_note(text,format, 'IDS-Normal')
             self.doc.end_cell()
             self.doc.end_row()
 
@@ -181,7 +182,7 @@ class IndivCompleteReport(Report):
         
         self.doc.start_table("altparents","IDS-IndTable")
         self.doc.start_row()
-        self.doc.start_cell("IDS-TableHead",2)
+        self.doc.start_cell("IDS-TableHead", 2)
         self.doc.start_paragraph("IDS-TableTitle")
         self.doc.write_text(_("Alternate Parents"))
         self.doc.end_paragraph()
@@ -293,7 +294,7 @@ class IndivCompleteReport(Report):
         
         self.doc.start_table("three","IDS-IndTable")
         self.doc.start_row()
-        self.doc.start_cell("IDS-TableHead",2)
+        self.doc.start_cell("IDS-TableHead", 2)
         self.doc.start_paragraph("IDS-TableTitle")
         self.doc.write_text(_("Marriages/Children"))
         self.doc.end_paragraph()
@@ -307,16 +308,16 @@ class IndivCompleteReport(Report):
             else:
                 spouse_id = family.get_father_handle()
             self.doc.start_row()
-            self.doc.start_cell("IDS-NormalCell",2)
+            self.doc.start_cell("IDS-NormalCell", 2)
             self.doc.start_paragraph("IDS-Spouse")
             if spouse_id:
                 spouse = self.database.get_person_from_handle(spouse_id)
                 text = _nd.display(spouse)
-                mark = ReportUtils.get_person_mark(self.database,spouse)
+                mark = ReportUtils.get_person_mark(self.database, spouse)
             else:
                 text = _("unknown")
                 mark = None
-            self.doc.write_text(text,mark)
+            self.doc.write_text(text, mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
@@ -336,43 +337,14 @@ class IndivCompleteReport(Report):
                     self.doc.start_paragraph("IDS-Normal")
                     child = self.database.get_person_from_handle(child_ref.ref)
                     name = _nd.display(child)
-                    mark = ReportUtils.get_person_mark(self.database,child)
-                    self.doc.write_text(name,mark)
+                    mark = ReportUtils.get_person_mark(self.database, child)
+                    self.doc.write_text(name, mark)
                     self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()
         self.doc.end_table()
         self.doc.start_paragraph('IDS-Normal')
         self.doc.end_paragraph()
-
-    def write_sources(self):
-        keys = self.sref_map.keys()
-        if not keys:
-            return
-        
-        self.doc.start_table("three","IDS-IndTable")
-        self.doc.start_row()
-        self.doc.start_cell("IDS-TableHead",2)
-        self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(_("Sources"))
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
-
-        keys.sort()
-        for key in keys:
-            srcref = self.sref_map[key]
-            base = self.database.get_source_from_handle(
-                srcref.get_reference_handle())
-            self.doc.start_row()
-            self.doc.start_cell('IDS-NormalCell',2)
-            self.doc.start_paragraph("IDS-Normal","%d." % key)
-            self.doc.write_text(base.get_title())
-            self.doc.end_paragraph()
-            self.doc.end_cell()
-            self.doc.end_row()
-
-        self.doc.end_table()
 
     def write_facts(self):
         self.doc.start_table("two","IDS-IndTable")
@@ -540,21 +512,22 @@ class IndivCompleteOptions(MenuReportOptions):
         category_name = _("Report Options")
         ################################
         
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+                           _("Select the filter to be applied to the report"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
-        self.__filter = PersonFilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-                           _("Select the filter to be applied to the report"))
         self.__update_filters()
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
         
         cites = BooleanOption(_("Include Source Information"), True)
         cites.set_help(_("Whether to cite sources."))
-        menu.add_option(category_name,"cites", cites)
+        menu.add_option(category_name, "cites", cites)
         
     def __update_filters(self):
         """

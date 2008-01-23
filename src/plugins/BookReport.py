@@ -46,9 +46,9 @@ log = logging.getLogger(".BookReport")
 #
 #-------------------------------------------------------------------------
 try:
-    from xml.sax import make_parser,handler,SAXParseException
+    from xml.sax import make_parser, handler, SAXParseException
 except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
+    from _xmlplus.sax import make_parser, handler, SAXParseException
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +63,6 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import Person
 import const
 import Utils
 import ListModel
@@ -71,14 +70,13 @@ import Errors
 import BaseDoc
 from QuestionDialog import WarningDialog, ErrorDialog
 from PluginUtils import bkitems_list, register_report, Plugins
-from PluginUtils import PersonOption, PersonFilterOption
+from PluginUtils import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 
 # Import from specific modules in ReportBase
 from ReportBase._Constants import CATEGORY_BOOK, MODE_GUI, MODE_CLI
 from ReportBase._BookFormatComboBox import BookFormatComboBox
 from ReportBase._BareReportDialog import BareReportDialog
-from ReportBase._ReportDialog import ReportDialog
 from ReportBase._DocReportDialog import DocReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 from ReportBase._ReportOptions import ReportOptions
@@ -90,28 +88,83 @@ from BasicUtils import name_displayer as _nd
 # Private Functions
 #
 #------------------------------------------------------------------------
-def _get_subject(options,db):
+def _initialize_options(options, dbstate):
+    """
+    Validates all options by making sure that their values are consistent with
+    the database.
+    
+    menu: The Menu class
+    dbase: the database the options will be applied to
+    """
+    dbase = dbstate.get_database()
+    if not hasattr(options, "menu"):
+        return
+    menu = options.menu
+    
+    for name in menu.get_all_option_names():
+        option = menu.get_option_by_name(name)
+
+        if isinstance(option, PersonOption):
+            person = dbstate.get_active_person()
+            option.set_value(person.get_gramps_id())
+        
+        elif isinstance(option, FamilyOption):
+            person = dbstate.get_active_person()
+            family_list = person.get_family_handle_list()
+            if family_list:
+                family_handle = family_list[0]
+            else:
+                family_handle = dbase.get_family_handles()[0]
+            family = dbase.get_family_from_handle(family_handle)
+            option.set_value(family.get_gramps_id())
+
+def _get_subject(options, dbase):
     """
     Attempts to determine the subject of a set of options. The subject would
     likely be a person (using a PersonOption) or a filter (using a 
-    PersonFilterOption)
+    FilterOption)
     
     options: The ReportOptions class
-    db: the database for which it corresponds
+    dbase: the database for which it corresponds
     """
-    if not hasattr(options,"menu"):
+    if not hasattr(options, "menu"):
         return _("Not Applicable")
     menu = options.menu
+    
     option_names = menu.get_all_option_names()
+
     for name in option_names:
         option = menu.get_option_by_name(name)
-        if isinstance(option, PersonFilterOption):
+        
+        if isinstance(option, FilterOption):
             return option.get_filter().get_name()
+        
         elif isinstance(option, PersonOption):
             gid = option.get_value()
-            person = db.get_person_from_gramps_id(gid)
+            person = dbase.get_person_from_gramps_id(gid)
             return _nd.display(person)
-
+        
+        elif isinstance(option, FamilyOption):
+            family = dbase.get_family_from_gramps_id(option.get_value())
+            family_id = family.get_gramps_id()
+            fhandle = family.get_father_handle()
+            mhandle = family.get_mother_handle()
+            
+            if fhandle:
+                father = dbase.get_person_from_handle(fhandle)
+                father_name = _nd.display(father)
+            else:
+                father_name = _("unknown father")
+                
+            if mhandle:
+                mother = dbase.get_person_from_handle(mhandle)
+                mother_name = _nd.display(mother)
+            else:
+                mother_name = _("unknown mother")
+                
+            name = _("%s and %s (%s)") % (father_name, mother_name, family_id)
+            return name
+        
     return _("Not Applicable")
 
 #------------------------------------------------------------------------
@@ -124,7 +177,7 @@ class BookItem:
     Interface into the book item -- a smallest element of the book.
     """
 
-    def __init__(self,dbstate,name=None):
+    def __init__(self, dbstate, name=None):
         """
         Creates a new empty BookItem.
         
@@ -152,7 +205,7 @@ class BookItem:
         self.make_default_style = None
         self.name = ""
 
-    def get_registered_item(self,name):
+    def get_registered_item(self, name):
         """ 
         Retrieve the item from the book item registry.
         
@@ -169,7 +222,7 @@ class BookItem:
                     self.category = item[1]
                 self.write_item = item[2]
                 self.name = item[4]
-                self.option_class = item[3](self.name,self.dbstate)
+                self.option_class = item[3](self.name, self.dbstate)
                 self.option_class.load_previous_values()
 
     def get_name(self):
@@ -196,7 +249,7 @@ class BookItem:
         """
         return self.write_item
 
-    def set_style_name(self,style_name):
+    def set_style_name(self, style_name):
         """
         Sets the style name for the item.
         
@@ -232,7 +285,7 @@ class Book:
     Interface into the user-defined book -- a collection of book items.
     """
 
-    def __init__(self,obj=None):
+    def __init__(self, obj=None):
         """
         Creates a new empty Book.
 
@@ -247,7 +300,7 @@ class Book:
         else:
             self.item_list = []
         
-    def set_name(self,name):
+    def set_name(self, name):
         """
         Sets the name of the book.
         
@@ -267,7 +320,7 @@ class Book:
         """
         return self.dbname
 
-    def set_dbname(self,name):
+    def set_dbname(self, name):
         """
         Sets the name of the database file used for the book.
 
@@ -281,7 +334,7 @@ class Book:
         """
         self.item_list = []
 
-    def append_item(self,item):
+    def append_item(self, item):
         """
         Adds an item to the book.
         
@@ -289,16 +342,16 @@ class Book:
         """
         self.item_list.append(item)
 
-    def insert_item(self,index,item):
+    def insert_item(self, index, item):
         """
         Inserts an item into the given position in the book.
         
         index:  a position index. 
         item:   an item to append.
         """
-        self.item_list.insert(index,item)
+        self.item_list.insert(index, item)
 
-    def pop_item(self,index):
+    def pop_item(self, index):
         """
         Pop an item from given position in the book.
         
@@ -306,7 +359,7 @@ class Book:
         """
         return self.item_list.pop(index)
 
-    def get_item(self,index):
+    def get_item(self, index):
         """
         Returns an item at a given position in the book.
         
@@ -314,7 +367,7 @@ class Book:
         """
         return self.item_list[index]
 
-    def set_item(self,index,item):
+    def set_item(self, index, item):
         """
         Sets an item at a given position in the book.
         
@@ -341,7 +394,7 @@ class BookList:
     BookList is loaded from a specified XML file if it exists.
     """
 
-    def __init__(self,filename,dbstate):
+    def __init__(self, filename, dbstate):
         """
         Creates a new BookList from the books that may be defined in the 
         specified file.
@@ -350,10 +403,10 @@ class BookList:
         """
         self.dbstate = dbstate
         self.bookmap = {}
-        self.file = os.path.join(const.HOME_DIR,filename)
+        self.file = os.path.join(const.HOME_DIR, filename)
         self.parse()
     
-    def delete_book(self,name):
+    def delete_book(self, name):
         """
         Removes a book from the list. Since each book must have a
         unique name, the name is used to delete the book.
@@ -368,7 +421,7 @@ class BookList:
         """
         return self.bookmap
 
-    def get_book(self,name):
+    def get_book(self, name):
         """
         Returns the Book associated with the name
 
@@ -380,7 +433,7 @@ class BookList:
         "Returns a list of all the book names in the BookList"
         return self.bookmap.keys()
 
-    def set_book(self,name,book):
+    def set_book(self, name, book):
         """
         Adds or replaces a Book in the BookList. 
 
@@ -393,21 +446,21 @@ class BookList:
         """
         Saves the current BookList to the associated file.
         """
-        f = open(self.file,"w")
+        f = open(self.file, "w")
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<booklist>\n')
 
         for name in self.bookmap.keys():
             book = self.get_book(name)
             dbname = book.get_dbname()
-            f.write('<book name="%s" database="%s">\n' % (name,dbname) )
+            f.write('<book name="%s" database="%s">\n' % (name, dbname) )
             for item in book.get_item_list():
                 f.write('  <item name="%s" trans_name="%s">\n' % 
                             (item.get_name(),item.get_translated_name() ) )
                 option_handler = item.option_class.handler
                 for option_name in option_handler.options_dict.keys():
                     option_value = option_handler.options_dict[option_name]
-                    if type(option_value) in (list,tuple):
+                    if type(option_value) in (list, tuple):
                         f.write('    <option name="%s" length="%d">\n' % (
                                 option_name, len(option_value) ) )
                         for list_index in range(len(option_value)):
@@ -434,7 +487,7 @@ class BookList:
         """
         try:
             p = make_parser()
-            p.setContentHandler(BookParser(self,self.dbstate))
+            p.setContentHandler(BookParser(self, self.dbstate))
             the_file = open(self.file)
             p.parse(the_file)
             the_file.close()
@@ -452,7 +505,7 @@ class BookParser(handler.ContentHandler):
     SAX parsing class for the Books XML file.
     """
     
-    def __init__(self,booklist,dbstate):
+    def __init__(self, booklist, dbstate):
         """
         Creates a BookParser class that populates the passed booklist.
 
@@ -471,7 +524,7 @@ class BookParser(handler.ContentHandler):
         self.bname = None
         self.iname = None
         
-    def startElement(self,tag,attrs):
+    def startElement(self, tag, attrs):
         """
         Overridden class that handles the start of a XML element
         """
@@ -482,7 +535,7 @@ class BookParser(handler.ContentHandler):
             self.dbname = attrs['database']
             self.b.set_dbname(self.dbname)
         elif tag == "item":
-            self.i = BookItem(self.dbstate,attrs['name'])
+            self.i = BookItem(self.dbstate, attrs['name'])
             self.o = {}
         elif tag == "option":
             self.an_o_name = attrs['name']
@@ -499,7 +552,7 @@ class BookParser(handler.ContentHandler):
         elif tag == "person":
             self.p = attrs['gramps_id']
 
-    def endElement(self,tag):
+    def endElement(self, tag):
         "Overridden class that handles the end of a XML element"
         if tag == "option":
             self.o[self.an_o_name] = self.an_o_value
@@ -509,7 +562,7 @@ class BookParser(handler.ContentHandler):
             self.i.set_style_name(self.s)
             self.b.append_item(self.i)
         elif tag == "book":
-            self.booklist.set_book(self.bname,self.b)
+            self.booklist.set_book(self.bname, self.b)
 
 #------------------------------------------------------------------------
 #
@@ -523,7 +576,7 @@ class BookListDisplay:
     Allows the user to select and/or delete a book from the list.
     """
 
-    def __init__(self,booklist,nodelete=0,dosave=0):
+    def __init__(self, booklist, nodelete=0, dosave=0):
         """
         Creates a BookListDisplay object that displays the books in BookList.
 
@@ -536,7 +589,7 @@ class BookListDisplay:
         self.dosave = dosave
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
-        self.xml = gtk.glade.XML(glade_file,"booklist","gramps")
+        self.xml = gtk.glade.XML(glade_file, "booklist", "gramps")
         self.top = self.xml.get_widget('booklist')
 
         ManagedWindow.set_titles(self.top,
@@ -574,30 +627,30 @@ class BookListDisplay:
         if the_iter:
             self.blist.selection.select_iter(the_iter)
 
-    def on_booklist_ok_clicked(self,obj):
+    def on_booklist_ok_clicked(self, obj):
         """Returns selected book. Saves the current list into xml file."""
-        store,the_iter = self.blist.get_selected()
+        store, the_iter = self.blist.get_selected()
         if the_iter:
-            data = self.blist.get_data(the_iter,[0])
+            data = self.blist.get_data(the_iter, [0])
             self.selection = self.booklist.get_book(unicode(data[0]))
         if self.dosave:
             self.booklist.save()
 
-    def on_booklist_delete_clicked(self,obj):
+    def on_booklist_delete_clicked(self, obj):
         """
         Deletes selected book from the list.
         
         This change is not final. OK button has to be clicked to save the list.
         """
-        store,the_iter = self.blist.get_selected()
+        store, the_iter = self.blist.get_selected()
         if not the_iter:
             return
-        data = self.blist.get_data(the_iter,[0])
+        data = self.blist.get_data(the_iter, [0])
         self.booklist.delete_book(data[0])
         self.blist.remove(the_iter)
         self.top.run()
 
-    def on_booklist_cancel_clicked(self,obj):
+    def on_booklist_cancel_clicked(self, obj):
         pass
 
 #------------------------------------------------------------------------
@@ -611,8 +664,8 @@ class BookOptions(ReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
+    def __init__(self, name, person_id=None):
+        ReportOptions.__init__(self, name, person_id)
 
         # Options specific for this report
         self.options_dict = {
@@ -637,7 +690,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
     and to clear/load/save/edit whole books.
     """
 
-    def __init__(self,dbstate,uistate,person):
+    def __init__(self, dbstate, uistate, person):
         self.db = dbstate.db
         self.dbstate = dbstate
         self.uistate = uistate
@@ -645,15 +698,15 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         self.title = _('Book Report')
         self.file = "books.xml"
 
-        ManagedWindow.ManagedWindow.__init__(self,uistate, [], self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
 
-        self.xml = gtk.glade.XML(glade_file,"top","gramps")
+        self.xml = gtk.glade.XML(glade_file, "top", "gramps")
         window = self.xml.get_widget("top")
         title_label = self.xml.get_widget('title')
-        self.set_window(window,title_label,self.title)
+        self.set_window(window, title_label, self.title)
     
         self.xml.signal_autoconnect({
             "on_add_clicked"        : self.on_add_clicked,
@@ -671,8 +724,8 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         self.avail_tree = self.xml.get_widget("avail_tree")
         self.book_tree = self.xml.get_widget("book_tree")
-        self.avail_tree.connect('button-press-event',self.av_button_press)
-        self.book_tree.connect('button-press-event',self.bk_button_press)
+        self.avail_tree.connect('button-press-event', self.av_button_press)
+        self.book_tree.connect('button-press-event', self.bk_button_press)
 
         self.name_entry = self.xml.get_widget("name_entry")
         self.name_entry.set_text(_('New Book'))
@@ -686,21 +739,26 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         book_label.set_use_underline(True)
         book_label.set_use_markup(True)
 
-        av_titles = [(_('Name'),0,150),(_('Type'),1,50),('',-1,0)]
-        bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50),('',-1,0),
-            (_('Subject'),-1,50)]
+        av_titles = [ (_('Name'), 0, 150),
+                      (_('Type'), 1, 50 ),
+                      (  '' ,    -1, 0  ) ]
+        
+        bk_titles = [ (_('Item name'), -1, 150),
+                      (_('Type'),      -1, 50 ),
+                      (  '',           -1, 0  ),
+                      (_('Subject'),   -1, 50 ) ]
         
         self.av_ncols = len(av_titles)
         self.bk_ncols = len(bk_titles)
 
-        self.av_model = ListModel.ListModel(self.avail_tree,av_titles)
-        self.bk_model = ListModel.ListModel(self.book_tree,bk_titles)
+        self.av_model = ListModel.ListModel(self.avail_tree, av_titles)
+        self.bk_model = ListModel.ListModel(self.book_tree, bk_titles)
         self.draw_avail_list()
 
         self.book = Book()
 
-    def build_menu_names(self,obj):
-        return (_("Book selection list"),self.title)
+    def build_menu_names(self, obj):
+        return (_("Book selection list"), self.title)
 
     def draw_avail_list(self):
         """
@@ -727,9 +785,9 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
             self.av_model.selection.select_iter(new_iter)
             path = self.av_model.model.get_path(new_iter)
             col = self.avail_tree.get_column(0)
-            self.avail_tree.scroll_to_cell(path,col,1,1,0.0)
+            self.avail_tree.scroll_to_cell(path, col, 1, 1, 0.0)
 
-    def open_book(self,book):
+    def open_book(self, book):
         """
         Open the book: set the current set of selections to this book's items.
         
@@ -751,101 +809,104 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         self.bk_model.clear()
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
-            item = BookItem(self.dbstate,name)
+            item = BookItem(self.dbstate, name)
             item.option_class = saved_item.option_class
+            _initialize_options(item.option_class, self.dbstate)
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
             
             data = [ item.get_translated_name(),
                      item.get_category(), item.get_name() ]
             
-            data[2] = _get_subject(item.option_class,self.db)
+            data[2] = _get_subject(item.option_class, self.db)
             self.bk_model.add(data)
 
-    def on_add_clicked(self,obj):
+    def on_add_clicked(self, obj):
         """
         Add an item to the current selections. 
         
         Use the selected available item to get the item's name in the registry.
         """
-        store,the_iter = self.av_model.get_selected()
+        store, the_iter = self.av_model.get_selected()
         if not the_iter:
             return
-        data = self.av_model.get_data(the_iter,range(self.av_ncols))
-        item = BookItem(self.dbstate,data[2])
-        data[2] = _get_subject(item.option_class,self.db)
+        data = self.av_model.get_data(the_iter, range(self.av_ncols))
+        item = BookItem(self.dbstate, data[2])
+        _initialize_options(item.option_class, self.dbstate)
+        data[2] = _get_subject(item.option_class, self.db)
         self.bk_model.add(data)
         self.book.append_item(item)
 
-    def on_remove_clicked(self,obj):
+    def on_remove_clicked(self, obj):
         """
         Remove the item from the current list of selections.
         """
-        store,the_iter = self.bk_model.get_selected()
+        store, the_iter = self.bk_model.get_selected()
         if not the_iter:
             return
         row = self.bk_model.get_selected_row()
         self.book.pop_item(row)
         self.bk_model.remove(the_iter)
 
-    def on_clear_clicked(self,obj):
+    def on_clear_clicked(self, obj):
         """
         Clear the whole current book.
         """
         self.bk_model.clear()
         self.book.clear()
 
-    def on_up_clicked(self,obj):
+    def on_up_clicked(self, obj):
         """
         Move the currently selected item one row up in the selection list.
         """
         row = self.bk_model.get_selected_row()
         if not row or row == -1:
             return
-        store,the_iter = self.bk_model.get_selected()
-        data = self.bk_model.get_data(the_iter,range(self.bk_ncols))
+        store, the_iter = self.bk_model.get_selected()
+        data = self.bk_model.get_data(the_iter, range(self.bk_ncols))
         self.bk_model.remove(the_iter)
-        self.bk_model.insert(row-1,data,None,1)
+        self.bk_model.insert(row-1, data, None, 1)
         item = self.book.pop_item(row)
-        self.book.insert_item(row-1,item)
+        self.book.insert_item(row-1, item)
 
-    def on_down_clicked(self,obj):
+    def on_down_clicked(self, obj):
         """
         Move the currently selected item one row down in the selection list.
         """
         row = self.bk_model.get_selected_row()
         if row + 1 >= self.bk_model.count or row == -1:
             return
-        store,the_iter = self.bk_model.get_selected()
-        data = self.bk_model.get_data(the_iter,range(self.bk_ncols))
+        store, the_iter = self.bk_model.get_selected()
+        data = self.bk_model.get_data(the_iter, range(self.bk_ncols))
         self.bk_model.remove(the_iter)
-        self.bk_model.insert(row+1,data,None,1)
+        self.bk_model.insert(row+1, data, None, 1)
         item = self.book.pop_item(row)
-        self.book.insert_item(row+1,item)
+        self.book.insert_item(row+1, item)
 
-    def on_setup_clicked(self,obj):
+    def on_setup_clicked(self, obj):
         """
         Configure currently selected item.
         """
-        store,the_iter = self.bk_model.get_selected()
+        store, the_iter = self.bk_model.get_selected()
         if not the_iter:
             return
-        data = self.bk_model.get_data(the_iter,range(self.bk_ncols))
+        data = self.bk_model.get_data(the_iter, range(self.bk_ncols))
         row = self.bk_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
-        item_dialog = BookItemDialog(self.dbstate,self.uistate,option_class,
+        item_dialog = BookItemDialog(self.dbstate, self.uistate, option_class,
                                      item.get_name(),
                                      item.get_translated_name(),
                                      self.track)
         response = item_dialog.window.run()
         if response == RESPONSE_OK:
-            subject = _get_subject(option_class,self.db)
-            self.bk_model.model.set_value(the_iter,2,subject)
-            self.book.set_item(row,item)
+            _initialize_options(option_class, self.dbstate)
+            subject = _get_subject(option_class, self.db)
+            self.bk_model.model.set_value(the_iter, 2, subject)
+            self.book.set_item(row, item)
         item_dialog.close()
 
-    def bk_button_press(self,obj,event):
+    def bk_button_press(self, obj, event):
         """
         Double-click on the current book selection is the same as setup.
         Right click evokes the context menu. 
@@ -855,7 +916,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_bk_context_menu(event)
 
-    def av_button_press(self,obj,event):
+    def av_button_press(self, obj, event):
         """
         Double-click on the available selection is the same as add.
         Right click evokes the context menu. 
@@ -865,10 +926,10 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_av_context_menu(event)
 
-    def build_bk_context_menu(self,event):
+    def build_bk_context_menu(self, event):
         """Builds the menu with item-centered and book-centered options."""
         
-        store,the_iter = self.bk_model.get_selected()
+        store, the_iter = self.bk_model.get_selected()
         if the_iter:
             sensitivity = 1 
         else:
@@ -887,19 +948,19 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         menu = gtk.Menu()
         menu.set_title(_('Book Menu'))
-        for stock_id,callback,sensitivity in entries:
+        for stock_id, callback, sensitivity in entries:
             item = gtk.ImageMenuItem(stock_id)
             if callback:
-                item.connect("activate",callback)
+                item.connect("activate", callback)
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,event.button,event.time)
+        menu.popup(None, None, None, event.button, event.time)
 
-    def build_av_context_menu(self,event):
+    def build_av_context_menu(self, event):
         """Builds the menu with the single Add option."""
         
-        store,the_iter = self.av_model.get_selected()
+        store, the_iter = self.av_model.get_selected()
         if the_iter:
             sensitivity = 1 
         else:
@@ -910,53 +971,53 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         menu = gtk.Menu()
         menu.set_title(_('Available Items Menu'))
-        for stock_id,callback,sensitivity in entries:
+        for stock_id, callback, sensitivity in entries:
             item = gtk.ImageMenuItem(stock_id)
             if callback:
-                item.connect("activate",callback)
+                item.connect("activate", callback)
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,event.button,event.time)
+        menu.popup(None, None, None, event.button, event.time)
 
-    def on_book_ok_clicked(self,obj): 
+    def on_book_ok_clicked(self, obj): 
         """
         Run final BookReportDialog with the current book. 
         """
         if self.book.item_list:
-            BookReportDialog(self.dbstate,self.uistate,self.person,
-                             self.book,BookOptions)
+            BookReportDialog(self.dbstate, self.uistate, self.person,
+                             self.book, BookOptions)
         self.close()
 
-    def on_save_clicked(self,obj):
+    def on_save_clicked(self, obj):
         """
         Save the current book in the xml booklist file. 
         """
-        self.book_list = BookList(self.file,dbstate)
+        self.book_list = BookList(self.file, self.dbstate)
         name = unicode(self.name_entry.get_text())
         self.book.set_name(name)
         self.book.set_dbname(self.db.get_save_path())
-        self.book_list.set_book(name,self.book)
+        self.book_list.set_book(name, self.book)
         self.book_list.save()
 
-    def on_open_clicked(self,obj):
+    def on_open_clicked(self, obj):
         """
         Run the BookListDisplay dialog to present the choice of books to open. 
         """
-        self.book_list = BookList(self.file,self.dbstate)
-        booklistdisplay = BookListDisplay(self.book_list,1,0)
+        self.book_list = BookList(self.file, self.dbstate)
+        booklistdisplay = BookListDisplay(self.book_list, 1, 0)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
         if book:
             self.open_book(book)
             self.name_entry.set_text(book.get_name())
 
-    def on_edit_clicked(self,obj):
+    def on_edit_clicked(self, obj):
         """
         Run the BookListDisplay dialog to present the choice of books to delete. 
         """
-        self.book_list = BookList(self.file,self.dbstate)
-        booklistdisplay = BookListDisplay(self.book_list,0,1)
+        self.book_list = BookList(self.file, self.dbstate)
+        booklistdisplay = BookListDisplay(self.book_list, 0, 1)
         booklistdisplay.top.destroy()
 
 #------------------------------------------------------------------------
@@ -971,13 +1032,13 @@ class BookItemDialog(BareReportDialog):
     in a way specific for this report. This is a book item dialog.
     """
 
-    def __init__(self,dbstate,uistate,option_class,name,translated_name,
+    def __init__(self, dbstate, uistate, option_class, name, translated_name,
                  track=[]):
 
         self.database = dbstate.db
         self.option_class = option_class
-        BareReportDialog.__init__(self,dbstate,uistate,None,
-                                  option_class,name,translated_name,track)
+        BareReportDialog.__init__(self, dbstate, uistate, None,
+                                  option_class, name, translated_name, track)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
@@ -1001,11 +1062,11 @@ class BookReportDialog(DocReportDialog):
     Creates a dialog selecting target, format, and paper/HTML options.
     """
 
-    def __init__(self,dbstate,uistate,person,book,options):
+    def __init__(self, dbstate, uistate, person, book, options):
         self.options = options
         self.page_html_added = False
-        DocReportDialog.__init__(self,dbstate,uistate,person,options,
-                                  'book',_("Book Report"))
+        DocReportDialog.__init__(self, dbstate, uistate, person, options,
+                                  'book', _("Book Report"))
         self.book = book
         self.database = dbstate.db
         self.person = person
@@ -1019,7 +1080,7 @@ class BookReportDialog(DocReportDialog):
 
             # Read all style sheets available for this item
             style_file = item.option_class.handler.get_stylesheet_savefile()
-            style_list = BaseDoc.StyleSheetList(style_file,default_style)
+            style_list = BaseDoc.StyleSheetList(style_file, default_style)
 
             # Get the selected stylesheet
             style_name = item.option_class.handler.get_default_stylesheet_name()
@@ -1066,7 +1127,7 @@ class BookReportDialog(DocReportDialog):
         """Needed solely for forming sane filename for the output."""
         return "book.xml"
 
-    def make_doc_menu(self,active=None):
+    def make_doc_menu(self, active=None):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
@@ -1083,8 +1144,8 @@ class BookReportDialog(DocReportDialog):
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
-            obj = write_book_item(self.database,self.person,
-                                  report_class,item.option_class)
+            obj = write_book_item(self.database, self.person,
+                                  report_class, item.option_class)
             self.rptlist.append(obj)
         self.doc.open(self.target_path)
         
@@ -1110,16 +1171,16 @@ class BookReportDialog(DocReportDialog):
 # Function to write books from command line
 #
 #------------------------------------------------------------------------
-def cl_report(database,name,category,options_str_dict):
+def cl_report(database, name, category, options_str_dict):
 
-    clr = CommandLineReport(database,name,category,
-                            BookOptions,options_str_dict)
+    clr = CommandLineReport(database, name, category,
+                            BookOptions, options_str_dict)
 
     # Exit here if show option was given
     if clr.show:
         return
 
-    book_list = BookList('books.xml',None)
+    book_list = BookList('books.xml', None)
     book_name = clr.options_dict['bookname']
     book = book_list.get_book(book_name)
     selected_style = BaseDoc.StyleSheet()
@@ -1132,24 +1193,25 @@ def cl_report(database,name,category,options_str_dict):
 
         # Read all style sheets available for this item
         style_file = item.option_class.handler.get_stylesheet_savefile()
-        style_list = BaseDoc.StyleSheetList(style_file,default_style)
+        style_list = BaseDoc.StyleSheetList(style_file, default_style)
 
         # Get the selected stylesheet
         style_name = item.option_class.handler.get_default_stylesheet_name()
         style_sheet = style_list.get_style_sheet(style_name)
 
-        for this_style_name in style_sheet.get_names():
-            selected_style.add_style(
-                    this_style_name,style_sheet.get_style(this_style_name))
+        for this_style_name in style_sheet.get_paragraph_style_names():
+            selected_style.add_paragraph_style(
+                    this_style_name, 
+                    style_sheet.get_paragraph_style(this_style_name))
 
     # write report
-    doc = clr.format(selected_style,clr.paper,clr.template_name,clr.orien)
+    doc = clr.format(selected_style, clr.paper, clr.template_name, clr.orien)
     rptlist = []
     for item in book.get_item_list():
         item.option_class.set_document(doc)
         report_class = item.get_write_item()
-        obj = write_book_item(database,clr.person,
-                              report_class,item.option_class)
+        obj = write_book_item(database, clr.person,
+                              report_class, item.option_class)
         rptlist.append(obj)
 
     doc.open(clr.option_class.get_output())
@@ -1168,20 +1230,20 @@ def cl_report(database,name,category,options_str_dict):
 # Generic task function for book report
 #
 #------------------------------------------------------------------------
-def write_book_item(database,person,report_class,options_class):
+def write_book_item(database, person, report_class, options_class):
     """Write the Timeline Graph using options set.
     All user dialog has already been handled and the output file opened."""
     try:
         if options_class.handler.get_person_id():
             person = database.get_person_from_gramps_id(
                 options_class.handler.get_person_id())
-        return report_class(database,person,options_class)
+        return report_class(database, person, options_class)
     except Errors.ReportError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
+        (m1, m2) = msg.messages()
+        ErrorDialog(m1, m2)
     except Errors.FilterError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
+        (m1, m2) = msg.messages()
+        ErrorDialog(m1, m2)
     except:
         log.error("Failed to write book item.", exc_info=True)
     return None
