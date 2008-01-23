@@ -1,3 +1,9 @@
+2008-01-23 Brian Matherly <brian@gramps-project.org>
+           Benny Malengier <benny.malengier@gramps-project.org>: backport trunk
+	* src/ReportBase/_StyleComboBox.py:
+	* src/ReportBase/_StyleEditor.py:
+	Modify the style editor to properly handle unicode style names.
+
 2008-01-22 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditPerson.py: callback for gallerytab no longer needed
 

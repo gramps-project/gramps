@@ -149,7 +149,7 @@ class StyleListDisplay:
         if not node:
             return
         
-        name = self.list.model.get_value(node,0)
+        name = unicode(self.list.model.get_value(node,0))
         style = self.sheetlist.get_style_sheet(name)
         StyleEditor(name,style,self)
 
@@ -158,7 +158,7 @@ class StyleListDisplay:
         store,node = self.list.selection.get_selected()
         if not node:
             return
-        name = self.list.model.get_value(node,0)
+        name = unicode(self.list.model.get_value(node,0))
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
