@@ -245,8 +245,9 @@ class RecentDocsMenu:
         self.uimanager.ensure_update()
         buf.close()
 
-        new_menu.show()
-        self.uistate.set_open_recent_menu(new_menu)
+        if len(rfiles) > 0:
+            new_menu.show()
+            self.uistate.set_open_recent_menu(new_menu)
 
 def make_callback(val, func):
     return lambda x: func(val)

@@ -1,3 +1,7 @@
+2008-01-23 Gary Burton <gary.burton@zen.co.uk>
+	* src/DisplayState.py: Display the Recent Databases menu only if there
+	are some recently opened databases.
+
 2008-01-23 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditPerson.py: remove hide in save method.
 
