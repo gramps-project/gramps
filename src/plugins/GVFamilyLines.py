@@ -638,23 +638,32 @@ class FamilyLinesReport(Report):
             if surname in self.surnameColours:
                 colour = self.surnameColours[surname]
 
-            # see if we have a birth date we can use
+            # see if we have a birth/death or fallback dates we can use
+            if self.includeDates or self.includePlaces:
+                bth_event = ReportUtils.get_birth_or_fallback(self.db, person)
+                dth_event = ReportUtils.get_death_or_fallback(self.db, person)
+            else:
+                bth_event = None
+                dth_event = None
+
+            # output the birth or fallback event
             birthStr = None
-            if self.includeDates and person.get_birth_ref():
-                event = self.db.get_event_from_handle(person.get_birth_ref().ref)
-                if (event.private and self.includePrivate) or not event.private:
-                    date = event.get_date_object()
-                    if date.get_day_valid() and date.get_month_valid() and date.get_year_valid():
+            if bth_event and self.includeDates:
+                if (bth_event.private and self.includePrivate) or \
+                        not bth_event.private:
+                    date = bth_event.get_date_object()
+                    if date.get_day_valid() and date.get_month_valid() and \
+                            date.get_year_valid():
                         birthStr = _dd.display(date)
                     elif date.get_year_valid():
                         birthStr = '%d' % date.get_year()
 
-            # see if we have a birth place (one of:  city, state, or country) we can use
+            # get birth place (one of:  city, state, or country) we can use
             birthplace = None
-            if self.includePlaces and person.get_birth_ref():
-                event = self.db.get_event_from_handle(person.get_birth_ref().ref)
-                if (event.private and self.includePrivate) or not event.private:
-                    place = self.db.get_place_from_handle(event.get_place_handle())
+            if bth_event and self.includePlaces:
+                if (bth_event.private and self.includePrivate) or \
+                        not bth_event.private:
+                    place = self.db.get_place_from_handle(bth_event.get_place_handle())
                     if place:
                         location = place.get_main_location()
                         if location.get_city:
@@ -666,21 +675,22 @@ class FamilyLinesReport(Report):
 
             # see if we have a deceased date we can use
             deathStr = None
-            if self.includeDates and person.get_death_ref():
-                event = self.db.get_event_from_handle(person.get_death_ref().ref)
-                if (event.private and self.includePrivate) or not event.private:
-                    date = event.get_date_object()
-                    if date.get_day_valid() and date.get_month_valid() and date.get_year_valid():
+            if dth_event and self.includeDates:
+                if (dth_event.private and self.includePrivate) or \
+                        not dth_event.private:
+                    date = dth_event.get_date_object()
+                    if date.get_day_valid() and date.get_month_valid() and \
+                            date.get_year_valid():
                         deathStr = _dd.display(date)
                     elif date.get_year_valid():
                         deathStr = '%d' % date.get_year()
 
-            # see if we have a place of death (one of:  city, state, or country) we can use
+            # get death place (one of:  city, state, or country) we can use
             deathplace = None
-            if self.includePlaces and person.get_death_ref():
-                event = self.db.get_event_from_handle(person.get_death_ref().ref)
-                if (event.private and self.includePrivate) or not event.private:
-                    place = self.db.get_place_from_handle(event.get_place_handle())
+            if dth_event and self.includePlaces:
+                if (dth_event.private and self.includePrivate) or \
+                        not dth_event.private:
+                    place = self.db.get_place_from_handle(dth_event.get_place_handle())
                     if place:
                         location = place.get_main_location()
                         if location.get_city:

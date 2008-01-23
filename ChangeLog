@@ -1,4 +1,8 @@
 2008-01-23 Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/GVFamilyLines.py: Use fallback events e.g. baptism/burial
+	when no birth or death events are available.
+
+2008-01-23 Gary Burton <gary.burton@zen.co.uk>
 	* src/DisplayState.py: Display the Recent Databases menu only if there
 	are some recently opened databases.
 
