@@ -1,3 +1,8 @@
+2008-01-23 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_StyleComboBox.py:
+	* src/ReportBase/_StyleEditor.py:
+	Modify the style editor to properly handle unicode style names.
+
 2008-01-22 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/KinshipReport.py:
 	* src/plugins/DetDescendantReport.py:
