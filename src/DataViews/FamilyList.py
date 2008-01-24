@@ -20,11 +20,8 @@
 # $Id$
 
 """
-FamilyList View
+FamilyList View.
 """
-
-__author__ = "Don Allingham"
-__revision__ = "$Revision: 9598 $"
 
 #-------------------------------------------------------------------------
 #
@@ -85,7 +82,7 @@ class FamilyListView(PageView.ListView):
             }
 
         PageView.ListView.__init__(
-            self, _('Family List'), dbstate, uistate,
+            self, _('Families'), dbstate, uistate,
             FamilyListView.COLUMN_NAMES, len(FamilyListView.COLUMN_NAMES), 
             DisplayModels.FamilyModel,
             signal_map, dbstate.db.get_family_bookmarks(),
@@ -101,7 +98,7 @@ class FamilyListView(PageView.ListView):
         import ColumnOrder
 
         ColumnOrder.ColumnOrder(
-            _('Select Family List Columns'),
+            _('Select Family Columns'),
             self.uistate,
             self.dbstate.db.get_family_list_column_order(),
             FamilyListView.COLUMN_NAMES,
@@ -157,9 +154,7 @@ class FamilyListView(PageView.ListView):
         </ui>'''
 
     def define_actions(self):
-        """
-        add the Forward action group to handle the Forward button
-        """
+        """Add the Forward action group to handle the Forward button."""
 
         PageView.ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,

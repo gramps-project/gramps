@@ -1,3 +1,7 @@
+2008-01-22 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/PageView.py: import sgettext instead of gettext
+	* src/DataViews.py: rename Family List View to Families View
+
 2008-01-24 Peter landgren <peter.talken@telia.com>
     * src/plugin/rel_sv.py: Works also for kinship report now.
 

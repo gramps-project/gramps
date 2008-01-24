@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:PageView.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Provide the base classes for GRAMPS' DataView classes
@@ -29,7 +29,6 @@ Provide the base classes for GRAMPS' DataView classes
 # python modules
 #
 #----------------------------------------------------------------
-from gettext import gettext as _
 import cPickle as pickle
 
 #----------------------------------------------------------------
@@ -52,6 +51,7 @@ import Errors
 from Filters import SearchBar
 import Utils
 import const
+from TransUtils import sgettext as _
 
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
