@@ -23,9 +23,6 @@ Provides the management of databases. This includes opening, renaming,
 creating, and deleting of databases.
 """
 
-__author__   = "Donald N. Allingham"
-__revision__ = "$Revision: 8197 $"
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules

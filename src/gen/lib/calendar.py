@@ -24,8 +24,6 @@
 Provides calendar to sdn (serial date number) conversion.
 """
 
-__revision__ = "$Revision: 9101 $"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

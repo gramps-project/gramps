@@ -22,9 +22,6 @@
 
 "ToolGeneration Framework"
 
-__author__ =  "Alex Roitman"
-__version__ = "$Revision: 9830 $"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

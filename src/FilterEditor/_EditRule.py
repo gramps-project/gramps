@@ -24,8 +24,6 @@
 Custom Filter Editor tool.
 """
 
-__author__ = "Don Allingham"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

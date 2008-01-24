@@ -23,9 +23,6 @@
 """Handling of selection dialog for selecting notes
 """
 
-__author__ = "Benny Malengier"	 
-__revision__ = "$Revision$"
-
 #-------------------------------------------------------------------------
 #
 # Python Modules

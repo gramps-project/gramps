@@ -25,9 +25,6 @@ The EditLdsOrd module provides the EditLdsOrd class. This provides a
 mechanism for the user to edit personal LDS information.
 """
 
-__author__ = "Donald N. Allingham"
-__version__ = "$Revision: 6248 $"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

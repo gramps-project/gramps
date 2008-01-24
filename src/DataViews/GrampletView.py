@@ -21,11 +21,8 @@
 # $Id$
 
 """
-GrampletView interface
+GrampletView interface.
 """
-
-__author__ = "Doug Blank"
-__revision__ = "$Revision: $"
 
 import gtk
 import gobject

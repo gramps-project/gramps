@@ -27,9 +27,6 @@ date parsing class. The default, base class provides parsing for
 English.
 """
 
-__author__ = "Donald N. Allingham"
-__version__ = "$Revision: 9713 $"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

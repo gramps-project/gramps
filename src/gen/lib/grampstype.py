@@ -24,8 +24,6 @@
 Base type for all gramps types
 """
 
-__revision__ = "$Revision: 9101 $"
-
 from gettext import gettext as _
 
 def init_map(data, key_col, data_col):

@@ -33,9 +33,6 @@ The DateEdit.DateEditor provides a dialog in which the date can be
 unambiguously built using UI controls such as menus and spin buttons.
 """
 
-__author__ = "Donald N. Allingham"
-__version__ = "$Revision: 9101 $"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

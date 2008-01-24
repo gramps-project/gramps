@@ -20,9 +20,6 @@
 
 "Import from GEDCOM"
 
-__revision__ = "$Revision: $"
-__author__ = "Don Allingham"
-
 #-------------------------------------------------------------------------
 #
 # standard python modules

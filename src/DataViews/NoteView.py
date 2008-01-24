@@ -20,11 +20,8 @@
 # $Id$
 
 """
-Place View
+Place View.
 """
-
-__author__ = "Don Allingham"
-__revision__ = "$Revision: 9770 $"
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +44,7 @@ import Config
 import ColumnOrder
 from gen.lib import Note
 from DdTargets import DdTargets
-from QuestionDialog import QuestionDialog, ErrorDialog
+from QuestionDialog import QuestionDialog
 from Filters.SideBar import NoteSidebarFilter
 from Editors import EditNote, DeleteNoteQuery
 

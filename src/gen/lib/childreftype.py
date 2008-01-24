@@ -27,8 +27,6 @@ Provides the different child reference types
 from grampstype import GrampsType, init_map
 from gettext import gettext as _
 
-__revision__ = "$Revision: 9101 $"
-
 class ChildRefType(GrampsType):
     """
     Provides the different ChildRef types.

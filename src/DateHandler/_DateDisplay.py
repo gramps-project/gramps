@@ -25,9 +25,6 @@ U.S English date display class. Should serve as the base class for all
 localized tasks.
 """
 
-__author__ = "Donald N. Allingham"
-__version__ = "$Revision: 9806 $"
-
 #-------------------------------------------------------------------------
 #
 # set up logging

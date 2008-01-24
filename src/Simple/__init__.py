@@ -23,9 +23,6 @@
 
 "Simple access routines"
 
-__author__ =  "Donald N. Allingham"
-__version__ = "$Revision: 7972 $"
-
 from _SimpleAccess import *
 from _SimpleDoc import *
 from _SimpleTable import *

@@ -23,9 +23,6 @@
 Source View
 """
 
-__author__ = "Don Allingham"
-__revision__ = "$Revision: 9722 $"
-
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules

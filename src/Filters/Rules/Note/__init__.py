@@ -25,8 +25,6 @@
 Package providing filter rules for GRAMPS.
 """
 
-__author__ = "Don Allingham"
-
 from _AllNotes import AllNotes
 from _HasIdOf import HasIdOf
 from _HasMarkerOf import HasMarkerOf

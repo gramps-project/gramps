@@ -32,9 +32,6 @@ Will return a value such as:
 Mary Smith was born on 3/28/1923.
 """
 
-__author__ = "Donald N. Allingham"
-__version__ = "$Revision: 9101 $"
-
 #------------------------------------------------------------------------
 #
 # Gramps modules

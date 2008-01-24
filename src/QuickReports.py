@@ -24,9 +24,6 @@
 This module provides the functions to build the quick report context menu's
 """
 
-__author__ = "B. Malengier"
-__revision__ = "$Revision: 8857 $"
-
 #------------------------------------------------------------------------
 #
 # python modules

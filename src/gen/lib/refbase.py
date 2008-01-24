@@ -24,8 +24,6 @@
 Base Reference class for GRAMPS.
 """
 
-__revision__ = "$Revision: 9101 $"
-
 #-------------------------------------------------------------------------
 #
 # RefBase class

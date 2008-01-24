@@ -23,9 +23,6 @@
 Relationship View
 """
 
-__author__ = "Don Allingham"
-__revision__ = "$Revision: 9870 $"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

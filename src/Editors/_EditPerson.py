@@ -25,9 +25,6 @@ EditPerson Dialog. Provides the interface to allow the GRAMPS program
 to edit information about a particular Person.
 """
 
-__author__ = "Don Allingham"
-__revision__ = "$Revision: 9908 $"
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules

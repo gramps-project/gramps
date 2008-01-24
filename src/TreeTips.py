@@ -4,10 +4,9 @@
 # Copyright: Toshio Kuratomi
 # License: GPL
 # Id: $Id$
+
 """A tooltip class for TreeViews
 """
-__revision__ = "$Rev: 5482 $"
-
 
 #
 # Support for text markup added: March 05 - rjt-gramps <at> thegrindstone.me.uk

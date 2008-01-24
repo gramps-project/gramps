@@ -20,11 +20,8 @@
 # $Id$
 
 """
-Provides the event view
+Provides the event view.
 """
-
-__author__ = "Don Allingham"
-__revision__ = "$Revision: 9722 $"
 
 #-------------------------------------------------------------------------
 #
@@ -233,8 +230,8 @@ class EventView(PageView.ListView):
             
             event = db.get_event_from_handle(ehandle)
 
-            ans = DelEventQuery(self.dbstate,self.uistate,
-                                event,person_list,family_list)
+            ans = DelEventQuery(self.dbstate, self.uistate, event, 
+                                person_list, family_list)
 
             if len(person_list) + len(family_list) > 0:
                 msg = _('This event is currently being used. Deleting it '

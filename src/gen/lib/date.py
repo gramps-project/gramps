@@ -23,9 +23,6 @@
 """Support for dates
 """
 
-__author__ = "Donald N. Allingham"
-__revision__ = "$Revision: 9709 $"
-
 #------------------------------------------------------------------------
 #
 # Python modules

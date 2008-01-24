@@ -24,9 +24,6 @@
 TreeModel for the GRAMPS Person tree.
 """
 
-__author__ = "Donald N. Allingham"
-__revision__ = "$Revision: 9689 $"
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules

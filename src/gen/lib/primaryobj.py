@@ -24,8 +24,6 @@
 Basic Primary Object class for GRAMPS
 """
 
-__revision__ = "$Revision: 9121 $"
-
 #-------------------------------------------------------------------------
 #
 # standard python modules

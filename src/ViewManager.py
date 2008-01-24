@@ -18,14 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:ViewManager.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Manages the main window and the pluggable views
 """
-
-__author__ = "Donald N. Allingham"
-__revision__ = "$Revision: 9821 $"
 
 #-------------------------------------------------------------------------
 #

@@ -22,9 +22,6 @@
 
 """ Unittest for testing dates """
 
-__author__   = "Douglas S. Blank <dblank@cs.brynmawr.edu>"
-__revision__ = "$Revision: $"
-
 import unittest
 from test import test_util
 test_util.path_append_parent() 

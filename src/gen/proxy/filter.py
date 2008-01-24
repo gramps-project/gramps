@@ -24,9 +24,6 @@
 Proxy class for the GRAMPS databases. Apply filter
 """
 
-__author__ = "Don Allingham"
-__revision__ = "$Revision: 8864 $"
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS libraries

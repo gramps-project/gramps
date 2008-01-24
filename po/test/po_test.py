@@ -22,9 +22,6 @@
 
 """ Unittest for testing POTFILES.in and Makefile contents """
 
-__author__   = "Douglas S. Blank <dblank@cs.brynmawr.edu>"
-__revision__ = "$Revision: $"
-
 import unittest
 import os
 import glob

@@ -24,8 +24,6 @@
 Event object for GRAMPS
 """
 
-__revision__ = "$Revision: 9507 $"
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

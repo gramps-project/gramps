@@ -20,11 +20,8 @@
 # $Id$
 
 """
-Package init for the DataView package
+Package init for the DataViews package.
 """
-
-__author__ = "Don Allingham"
-__revision__ = "$Revision: $"
 
 from GrampletView import GrampletView, register, Gramplet
 from PersonView import PersonView

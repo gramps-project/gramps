@@ -24,8 +24,6 @@
 Witness class for GRAMPS
 """
 
-__revision__ = "$Revision: 9101 $"
-
 #-------------------------------------------------------------------------
 #
 # Witness class

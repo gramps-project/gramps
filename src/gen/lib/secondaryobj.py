@@ -24,8 +24,6 @@
 Secondary Object class for GRAMPS
 """
 
-__revision__ = "$Revision: $"
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

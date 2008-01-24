@@ -24,8 +24,6 @@
 AttributeBase class for GRAMPS
 """
 
-__revision__ = "$Revision: 9102 $"
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

@@ -23,9 +23,6 @@
 """Report output generator based on Cairo.
 """
 
-__revision__ = "$Revision: 9773 $"
-__author__   = "Zsolt Foldvari"
-
 #------------------------------------------------------------------------
 #
 # Python modules

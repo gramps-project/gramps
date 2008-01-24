@@ -25,9 +25,6 @@ The EditAttribute module provides the AttributeEditor class. This provides a
 mechanism for the user to edit attribute information.
 """
 
-__author__ = "Donald N. Allingham"
-__version__ = "$Revision: 9101 $"
-
 #-------------------------------------------------------------------------
 #
 # Python modules

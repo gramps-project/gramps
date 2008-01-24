@@ -25,9 +25,6 @@ Base class for the GRAMPS databases. All database interfaces should inherit
 from this class.
 """
 
-__author__ = "Donald N. Allingham"
-__revision__ = "$Revision: 9770 $"
-
 #-------------------------------------------------------------------------
 #
 # libraries

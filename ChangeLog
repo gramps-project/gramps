@@ -1,4 +1,7 @@
-2008-01-22 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-24 Raphael Ackermann <raphael.ackermann@gmail.com>
+	Removed all the __author__, __revision__ and __version__ statements
+
+2008-01-24 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/PageView.py: import sgettext instead of gettext
 	* src/DataViews.py: rename Family List View to Families View
 

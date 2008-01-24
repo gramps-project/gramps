@@ -27,7 +27,6 @@ Provides the different Attribute Types for GRAMPS
 from grampstype import GrampsType, init_map
 from gettext import gettext as _
 
-__revision__ = "$Revision: 9101 $"
 
 class AttributeType(GrampsType):
 

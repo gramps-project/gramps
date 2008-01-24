@@ -23,9 +23,6 @@
 """Printing interface based on gtk.Print* classes.
 """
 
-__revision__ = "$Revision: 9044 $"
-__author__   = "Zsolt Foldvari"
-
 #------------------------------------------------------------------------
 #
 # Python modules

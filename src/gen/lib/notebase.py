@@ -24,8 +24,6 @@
 NoteBase class for GRAMPS
 """
 
-__revision__ = "$Revision: 9532 $"
-
 #-------------------------------------------------------------------------
 #
 # NoteBase class

@@ -81,9 +81,6 @@ all lines until the next level 2 token is found (in this case, skipping the
 "3 NOTE DATA" line.
 """
 
-__revision__ = "$Revision: $"
-__author__   = "Don Allingham"
-
 #-------------------------------------------------------------------------
 #
 # standard python modules

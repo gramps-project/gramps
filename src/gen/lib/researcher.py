@@ -24,8 +24,6 @@
 Researcher informaiton for GRAMPS.
 """
 
-__revision__ = "$Revision: 9104 $"
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

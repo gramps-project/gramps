@@ -24,8 +24,6 @@
 Package providing filter rules for GRAMPS.
 """
 
-__author__ = "Don Allingham"
-
 from _AllRepos import AllRepos
 from _HasIdOf import HasIdOf
 from _RegExpIdOf import RegExpIdOf

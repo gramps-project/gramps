@@ -24,8 +24,6 @@
 Note class for GRAMPS
 """
 
-__revision__ = "$Revision: 9161 $"
-
 #-------------------------------------------------------------------------
 #
 # standard python modules
