@@ -55,6 +55,13 @@ _cousin_level = [ "", "kusin",
 "tjugosjumänning","tjugoåttamänning","tjugoniomänning",
 "trettiomänning" ] 
 
+_children_level = 20
+
+_level_name = [ "", "första", "andra", "tredje", "fjärde", "femte",
+"sjätte", "sjunde", "åttonde", "nionde", "tionde",
+"elfte", "tolfte", "trettonde", "fjortonde", "femtonde",
+"sextonde", "sjuttonde", "artonde", "nittonde", "tjugonde" ]
+
 #-------------------------------------------------------------------------
 #
 #
@@ -126,7 +133,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if person_gender == gen.lib.Person.UNKNOWN:
             result[-1] = 'förälder'
         if step != '' and len(result)==1:
-            #Preceed with syep prefix of fatrher/mother
+            #Preceed with step prefix of father/mother
             result[0]=self.STEP + result[0]
         if inlaw != '':
             #Preceed with inlaw prefix
@@ -158,7 +165,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             #Preceed with inlaw prefix
             result[-1]= 'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
-            # Correct string "-2" with genitive s and add a space to get correctSwedish, if even number in result
+            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
         return self.pair_up(result,step)
 
@@ -267,7 +274,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 AND SAME METHODS EXIST (get_uncle, get_aunt, get_sibling)
         """
 
-        #print "S:",sib_type,gender_a, gender_b,in_law_a, in_law_b
         if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
             typestr = ''
         elif sib_type == self.HALF_SIB_MOTHER \
@@ -284,6 +290,101 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
            rel_str = "syskon"
         return typestr + rel_str
 
+# kinship report
+
+    def _get_cousin_kinship(self,Ga):
+        rel_str = self._get_cousin(Ga-1,False,'')
+        if Ga == 2 :
+            rel_str = rel_str + "er"
+        else:
+            rel_str = rel_str + "ar"
+        return rel_str
+
+
+    def get_plural_relationship_string(self, Ga, Gb):
+        """
+        Provides a string that describes the relationsip between a person, and
+        a group of people with the same relationship. E.g. "grandparents" or
+        "children".
+        
+        Ga and Gb can be used to mathematically calculate the relationship.
+        See the Wikipedia entry for more information:
+            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+        
+        @param Ga: The number of generations between the main person and the 
+        common ancestor.
+        @type Ga: int
+        @param Gb: The number of generations between the group of people and the
+        common ancestor
+        @type Gb: int
+        @returns: A string describing the relationship between the person and
+        the group.
+        @rtype: str
+        """
+
+        rel_str = "avlägsna släktingar"
+        if Ga == 0:
+            result=[]
+            # These are descendants
+            if Gb < _children_level:
+                for AntBarn in range(Gb):
+                    result.append("barn")
+                rel_str = self.pair_up(result,'')                
+            else:
+                rel_str = "avlägsna ättlingar"
+        elif Gb == 0:
+            # These are parents/grand parents
+            if Ga < len(_level_name):
+                if Ga == 1:
+                    rel_str = "föräldrar"
+                else:
+                    rel_str = "far- och morföräldrar i %s generationen"  % _level_name[Ga]
+            else:
+                rel_str = "avlägsna förfäder"
+        elif Gb == 1:
+            # These are siblings/aunts/uncles
+            if Ga < len(_level_name):
+                if Ga == 1:
+                    rel_str = "syskon"
+                else:
+                    rel_str = "förfäders syskon i %s generationen" % _level_name[Ga-1]
+            else:
+                rel_str = "avlägsna farbröder/morbröder/fastrar/mostrar"
+        elif Ga == 1:
+            # These are nieces/nephews
+            if Gb < len(_level_name):
+                result = []
+                result.append("syskonbarn")
+                for AntBarn in range(Gb-2):
+                    result.append("barn")
+                rel_str = self.pair_up(result,'')                
+            else:
+                rel_str = "avlägsna brorsöner/systersöner/brorsdöttrar/systerdöttrar"
+        elif Ga > 1 and Ga == Gb:
+            # These are cousins in the same generation
+            rel_str = self._get_cousin_kinship(Ga)
+        elif Ga > 1 and Ga > Gb:
+            # These are cousins in different generations with the second person 
+            # being in a higher generation from the common ancestor than the 
+            # first person.
+            if Gb <= len(_level_name):
+                rel_str = "förfäders " + self._get_cousin_kinship(Ga) + " i "+ _level_name[Gb] +  " generationen" 
+            else:
+                rel_str =  "avlägsna kusiner"
+        elif Gb > 1 and Gb > Ga:
+            # These are cousins in different generations with the second person 
+            # being in a lower generation from the common ancestor than the 
+            # first person.
+            if Ga <= len(_level_name):
+                result = []
+                result.append(self._get_cousin(Ga-1,False,''))
+                for AntBarn in range(Gb-Ga):
+                    result.append("barn")
+                rel_str = self.pair_up(result,'')                
+            else:
+                rel_str =  "avlägsna kusiner"
+        return rel_str
+
     def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
                                        reltocommon_a, reltocommon_b,
                                        only_birth=True, 
@@ -292,7 +393,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Provides a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
         To be used as: 'person b is the grandparent of a', this will 
-            be in translation string :"avlägs %snephews/nieces%s" % (step, inlaw)
+            be in translation string :
                             'person b is the %(relation)s of a'
             Note that languages with gender should add 'the' inside the 
             translation, so eg in french:
@@ -366,7 +467,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
               2/for better determination of siblings, use if Ga=1=Gb 
                 get_sibling_relationship_string
         """
- 
+
         if only_birth:
             step = ''
         else:
@@ -376,8 +477,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             inlaw = self.INLAW
         else:
             inlaw = ''
-        #print "N:",Ga,Gb,gender_a, gender_b,only_birth,in_law_a, in_law_b
-        #print "Z:",reltocommon_a, reltocommon_b
         rel_str = "avlägsen %s-släkting eller %s släkting" % (step,inlaw)
         if Ga == 0:
             # b is descendant of a
