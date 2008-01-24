@@ -659,13 +659,13 @@ class StatisticsChart(Report):
 #------------------------------------------------------------------------
 class StatisticsChartOptions(MenuReportOptions):
 
-    def __init__(self,name,dbstate=None):
+    def __init__(self, name, dbase):
         self.__pid = None
         self.__filter = None
-        self.__dbstate = dbstate
-        MenuReportOptions.__init__(self, name, dbstate)
+        self.__db = dbase
+        MenuReportOptions.__init__(self, name, dbase)
         
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu):
         """
         Add options to the menu for the statistics report.
         """
@@ -752,9 +752,8 @@ class StatisticsChartOptions(MenuReportOptions):
         """
         Update the filter list based on the selected person
         """
-        _db = self.__dbstate.get_database()
         gid = self.__pid.get_value()
-        person = _db.get_person_from_gramps_id(gid)
+        person = self.__db.get_person_from_gramps_id(gid)
         filter_list = ReportUtils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)
         

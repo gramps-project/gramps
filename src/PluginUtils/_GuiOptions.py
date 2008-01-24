@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id:  $
+# $Id$
 
 """
 Specific option handling for a GUI.
@@ -861,7 +861,7 @@ class GuiMenuOptions:
         self.options_dict = {}
         self.options_help = {}
         self.__tooltips = gtk.Tooltips()
-        self.add_menu_options(self.menu, dbstate)
+        self.add_menu_options(self.menu)
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
@@ -873,7 +873,7 @@ class GuiMenuOptions:
         """
         pass
 
-    def add_menu_options(self, menu, dbstate):
+    def add_menu_options(self, menu):
         """
         Add the user defined options to the menu.
         

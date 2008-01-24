@@ -80,10 +80,10 @@ class FamilyLinesOptions(MenuReportOptions):
     Defines all of the controls necessary
     to configure the FamilyLines reports.
     """
-    def __init__(self, name, dbstate=None):
-        MenuReportOptions.__init__(self, name, dbstate)
+    def __init__(self, name, dbase):
+        MenuReportOptions.__init__(self, name, dbase)
 
-    def add_menu_options(self, menu,dbstate):
+    def add_menu_options(self, menu):
 
         # --------------------------------
         category = _('People of Interest')

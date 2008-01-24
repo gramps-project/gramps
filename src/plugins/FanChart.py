@@ -318,12 +318,12 @@ class FanChart(Report):
 #------------------------------------------------------------------------
 class FanChartOptions(MenuReportOptions):
 
-    def __init__(self,name,dbstate=None):
+    def __init__(self, name, dbase):
         self.MAX_GENERATIONS = 8
         
-        MenuReportOptions.__init__(self,name,dbstate)
+        MenuReportOptions.__init__(self, name, dbase)
         
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu):
         """
         Add options to the menu for the fan chart.
         """

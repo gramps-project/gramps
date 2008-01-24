@@ -782,13 +782,9 @@ class MenuReportOptions(GuiMenuOptions,ReportOptions):
     MenuReportOptions class will worry about setting up the GUI.
 
     """
-    def __init__(self,name,dbstate=None):
-        if dbstate:
-            active_person = dbstate.get_active_person().get_gramps_id()
-        else:
-            active_person = None
-        ReportOptions.__init__(self,name,active_person)
-        GuiMenuOptions.__init__(self,dbstate)
+    def __init__(self, name, dbase):
+        ReportOptions.__init__(self, name, None)
+        GuiMenuOptions.__init__(self, dbase)
         
     def load_previous_values(self):
         ReportOptions.load_previous_values(self)

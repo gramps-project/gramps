@@ -425,10 +425,11 @@ class MarkerReport(Report):
 #------------------------------------------------------------------------
 class MarkerOptions(MenuReportOptions):
 
-    def __init__(self,name,dbstate=None):
-        MenuReportOptions.__init__(self,name,dbstate)
+    def __init__(self, name, dbase):
+        self.__db = dbase
+        MenuReportOptions.__init__(self, name, dbase)
         
-    def add_menu_options(self,menu,dbstate):
+    def add_menu_options(self, menu):
         """
         Add options to the menu for the marker report.
         """
@@ -443,7 +444,7 @@ class MarkerOptions(MenuReportOptions):
                 marker.add_item(MarkerType._I2EMAP[mtype],
                                 MarkerType._I2SMAP[mtype] )
         # Add custom marker types
-        for m in dbstate.get_database().get_marker_types():
+        for m in self.__db.get_marker_types():
             marker.add_item( m, m )
         marker.set_help( _("The marker to use for the report"))
         menu.add_option(category_name,"marker",marker)

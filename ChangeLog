@@ -1,3 +1,30 @@
+2008-01-24 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_CommandLineReport.py:
+	* src/ReportBase/_ReportOptions.py:
+	* src/plugins/DescendReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/KinshipReport.py:
+	* src/plugins/IndivComplete.py:
+	* src/plugins/CalculateEstimatedDates.py:
+	* src/plugins/BookReport.py:
+	* src/plugins/TimeLine.py:
+	* src/plugins/Calendar.py:
+	* src/plugins/GVFamilyLines.py:
+	* src/plugins/AncestorReport.py:
+	* src/plugins/MarkerReport.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/EndOfLineReport.py:
+	* src/plugins/AncestorChart.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/CustomBookText.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/GVRelGraph.py:
+	* src/plugins/GVHourGlass.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/FanChart.py:
+	* src/PluginUtils/_GuiOptions.py:
+	Refactoring the report system: reports no longer require dbstate.
+
 2008-01-23 Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/GVFamilyLines.py: Use fallback events e.g. baptism/burial
 	when no birth or death events are available.

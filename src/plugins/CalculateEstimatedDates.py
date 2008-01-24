@@ -52,9 +52,11 @@ from ReportBase import ReportUtils
 #------------------------------------------------------------------------
 class CalcEstDateOptions(MenuToolOptions):
     """ Calculate Estimated Date options  """
-    
-    def add_menu_options(self, menu, dbstate):
+    def __init__(self, name, person_id=None, dbstate=None):
         self.__db = dbstate.get_database()
+        MenuToolOptions.__init__(self, name, person_id, dbstate)
+    
+    def add_menu_options(self, menu):
         
         """ Adds the options """
         category_name = _("Options")

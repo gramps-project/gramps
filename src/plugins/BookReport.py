@@ -177,14 +177,14 @@ class BookItem:
     Interface into the book item -- a smallest element of the book.
     """
 
-    def __init__(self, dbstate, name=None):
+    def __init__(self, dbase, name=None):
         """
         Creates a new empty BookItem.
         
         name:   if not None then the book item is retreived 
                 from the book item registry using name for lookup
         """
-        self.dbstate = dbstate
+        self.dbase = dbase
         if name:
             self.get_registered_item(name)
         else:
@@ -222,7 +222,7 @@ class BookItem:
                     self.category = item[1]
                 self.write_item = item[2]
                 self.name = item[4]
-                self.option_class = item[3](self.name, self.dbstate)
+                self.option_class = item[3](self.name, self.dbase)
                 self.option_class.load_previous_values()
 
     def get_name(self):
@@ -394,14 +394,14 @@ class BookList:
     BookList is loaded from a specified XML file if it exists.
     """
 
-    def __init__(self, filename, dbstate):
+    def __init__(self, filename, dbase):
         """
         Creates a new BookList from the books that may be defined in the 
         specified file.
 
         file:   XML file that contains book items definitions
         """
-        self.dbstate = dbstate
+        self.dbase = dbase
         self.bookmap = {}
         self.file = os.path.join(const.HOME_DIR, filename)
         self.parse()
@@ -487,7 +487,7 @@ class BookList:
         """
         try:
             p = make_parser()
-            p.setContentHandler(BookParser(self, self.dbstate))
+            p.setContentHandler(BookParser(self, self.dbase))
             the_file = open(self.file)
             p.parse(the_file)
             the_file.close()
@@ -505,14 +505,14 @@ class BookParser(handler.ContentHandler):
     SAX parsing class for the Books XML file.
     """
     
-    def __init__(self, booklist, dbstate):
+    def __init__(self, booklist, dbase):
         """
         Creates a BookParser class that populates the passed booklist.
 
         booklist:   BookList to be loaded from the file.
         """
         handler.ContentHandler.__init__(self)
-        self.dbstate = dbstate
+        self.dbase = dbase
         self.booklist = booklist
         self.b = None
         self.i = None
@@ -535,7 +535,7 @@ class BookParser(handler.ContentHandler):
             self.dbname = attrs['database']
             self.b.set_dbname(self.dbname)
         elif tag == "item":
-            self.i = BookItem(self.dbstate, attrs['name'])
+            self.i = BookItem(self.dbase, attrs['name'])
             self.o = {}
         elif tag == "option":
             self.an_o_name = attrs['name']
@@ -809,7 +809,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         self.bk_model.clear()
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
-            item = BookItem(self.dbstate, name)
+            item = BookItem(self.dbase, name)
             item.option_class = saved_item.option_class
             _initialize_options(item.option_class, self.dbstate)
             item.set_style_name(saved_item.get_style_name())
@@ -831,7 +831,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         if not the_iter:
             return
         data = self.av_model.get_data(the_iter, range(self.av_ncols))
-        item = BookItem(self.dbstate, data[2])
+        item = BookItem(self.db, data[2])
         _initialize_options(item.option_class, self.dbstate)
         data[2] = _get_subject(item.option_class, self.db)
         self.bk_model.add(data)
@@ -993,7 +993,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Save the current book in the xml booklist file. 
         """
-        self.book_list = BookList(self.file, self.dbstate)
+        self.book_list = BookList(self.file, self.db)
         name = unicode(self.name_entry.get_text())
         self.book.set_name(name)
         self.book.set_dbname(self.db.get_save_path())
@@ -1004,7 +1004,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to open. 
         """
-        self.book_list = BookList(self.file, self.dbstate)
+        self.book_list = BookList(self.file, self.db)
         booklistdisplay = BookListDisplay(self.book_list, 1, 0)
         booklistdisplay.top.destroy()
         book = booklistdisplay.selection
@@ -1016,7 +1016,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         """
         Run the BookListDisplay dialog to present the choice of books to delete. 
         """
-        self.book_list = BookList(self.file, self.dbstate)
+        self.book_list = BookList(self.file, self.db)
         booklistdisplay = BookListDisplay(self.book_list, 0, 1)
         booklistdisplay.top.destroy()
 
@@ -1180,7 +1180,7 @@ def cl_report(database, name, category, options_str_dict):
     if clr.show:
         return
 
-    book_list = BookList('books.xml', None)
+    book_list = BookList('books.xml', database)
     book_name = clr.options_dict['bookname']
     book = book_list.get_book(book_name)
     selected_style = BaseDoc.StyleSheet()

@@ -222,10 +222,10 @@ class EndOfLineOptions(MenuReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name, dbstate=None):
-        MenuReportOptions.__init__(self, name, dbstate)
+    def __init__(self, name, dbase):
+        MenuReportOptions.__init__(self, name, dbase)
         
-    def add_menu_options(self, menu, dbstate):
+    def add_menu_options(self, menu):
         """
         Add options to the menu for the End of Line report.
         """
