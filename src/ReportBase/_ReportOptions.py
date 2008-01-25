@@ -784,11 +784,12 @@ class MenuReportOptions(GuiMenuOptions,ReportOptions):
     """
     def __init__(self, name, dbase):
         ReportOptions.__init__(self, name, None)
-        GuiMenuOptions.__init__(self, dbase)
+        GuiMenuOptions.__init__(self)
         
     def load_previous_values(self):
         ReportOptions.load_previous_values(self)
-        # Pass the loaded values to the menu options so they will be displayed properly.
+        # Pass the loaded values to the menu options so they will be displayed 
+        # properly.
         for optname in self.options_dict:
             menu_option = self.menu.get_option_by_name(optname)
             menu_option.set_value(self.options_dict[optname])

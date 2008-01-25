@@ -853,9 +853,8 @@ class GuiMenuOptions:
     A GuiMenuOptions is used to implement the necessary funtions for adding
     options to a GTK dialog.
     """
-    def __init__(self, dbstate):
+    def __init__(self):
         self.menu = _MenuOptions.Menu()
-        self.__dbstate = dbstate
         
         # Fill options_dict with report/tool defaults:
         self.options_dict = {}
@@ -906,44 +905,44 @@ class GuiMenuOptions:
                 found = True
                 label = True
                 if isinstance(option, _MenuOptions.PersonOption):
-                    widget = GuiPersonOption(option, self.__dbstate, 
+                    widget = GuiPersonOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.NumberOption):
-                    widget = GuiNumberOption(option, self.__dbstate, 
+                    widget = GuiNumberOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.BooleanOption):
-                    widget = GuiBooleanOption(option, self.__dbstate, 
+                    widget = GuiBooleanOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                     label = False
                 elif isinstance(option, _MenuOptions.StringOption):
-                    widget = GuiStringOption(option, self.__dbstate, 
+                    widget = GuiStringOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.EnumeratedListOption):
-                    widget = GuiEnumeratedListOption(option, self.__dbstate, 
+                    widget = GuiEnumeratedListOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.TextOption):
-                    widget = GuiTextOption(option, self.__dbstate, 
+                    widget = GuiTextOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.FamilyOption):
-                    widget = GuiFamilyOption(option, self.__dbstate, 
+                    widget = GuiFamilyOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.PersonListOption):
-                    widget = GuiPersonListOption(option, self.__dbstate, 
+                    widget = GuiPersonListOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.ColourOption):
-                    widget = GuiColourOption(option, self.__dbstate, 
+                    widget = GuiColourOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.SurnameColourOption):
-                    widget = GuiSurnameColourOption(option, self.__dbstate, 
+                    widget = GuiSurnameColourOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 else:

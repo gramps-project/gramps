@@ -1,3 +1,9 @@
+2008-01-24 Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_GuiOptions.py:
+	* src/ReportBase/_BareReportDialog.py:
+	* src/ReportBase/_ReportOptions.py:
+	Remove the use of dbstate.
+
 2008-01-24  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/GrampsCfg.py: missing const; added Text tab
 	* src/Config/_GrampsConfigKeys.py: added missing and private text
