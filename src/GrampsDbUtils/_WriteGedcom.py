@@ -79,10 +79,16 @@ CALENDAR_MAP = {
     }
 
 DATE_MODIFIER = {
-    gen.lib.Date.MOD_ABOUT : "ABT", 
-    gen.lib.Date.MOD_BEFORE : "BEF", 
-    gen.lib.Date.MOD_AFTER : "AFT", 
+    gen.lib.Date.MOD_ABOUT   : "ABT", 
+    gen.lib.Date.MOD_BEFORE  : "BEF", 
+    gen.lib.Date.MOD_AFTER   : "AFT", 
+    #RelLib.Date.MOD_INTERPRETED : "INT",
     }
+
+DATE_QUALITY = {
+    RelLib.Date.QUAL_CALCULATED : "CAL", 
+    RelLib.Date.QUAL_ESTIMATED  : "EST", 
+}    
 
 LDS_ORD_NAME = {
     gen.lib.LdsOrd.BAPTISM         : 'BAPL', 
@@ -175,7 +181,7 @@ def sort_handles_by_id(handle_list, handle_to_object):
 # make_date
 #
 #-------------------------------------------------------------------------
-def make_date(subdate, calendar, mode):
+def make_date(subdate, calendar, mode, quality):
     """
     Converts a GRAMPS date structure into a GEDCOM compatible date
     """
@@ -200,7 +206,10 @@ def make_date(subdate, calendar, mode):
         retval = "%s %s" % (prefix, retval)
 
     if DATE_MODIFIER.has_key(mode):
-        retval = "%s %s"  % (DATE_MODIFIER[mode], retval)
+        retval = "%s %s" % (DATE_MODIFIER[mode], retval)
+
+    if DATE_QUALITY.has_key(quality):
+        retval = "%s %s" % (DATE_QUALITY[quality], retval)
         
     return retval
 
@@ -1202,16 +1211,17 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         if start != gen.lib.Date.EMPTY:
             cal = date.get_calendar()
             mod = date.get_modifier()
-            if date.get_modifier() == gen.lib.Date.MOD_SPAN:
+            quality = date.get_quality()
+            if mod == RelLib.Date.MOD_SPAN:
                 val = "FROM %s TO %s" % (
-                    make_date(start, cal, mod), 
-                    make_date(date.get_stop_date(), cal, mod))
-            elif date.get_modifier() == gen.lib.Date.MOD_RANGE:
+                    make_date(start, cal, mod, quality), 
+                    make_date(date.get_stop_date(), cal, mod, quality))
+            elif mod == RelLib.Date.MOD_RANGE:
                 val = "BET %s AND %s" % (
-                    make_date(start, cal, mod), 
-                    make_date(date.get_stop_date(), cal, mod))
+                    make_date(start, cal, mod, quality), 
+                    make_date(date.get_stop_date(), cal, mod, quality))
             else:
-                val = make_date(start, cal, mod)
+                val = make_date(start, cal, mod, quality)
             self.__writeln(level, 'DATE', val)
         elif date.get_text():
             self.__writeln(level, 'DATE', date.get_text())

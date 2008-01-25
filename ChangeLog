@@ -1,3 +1,7 @@
+2008-01-25  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/GrampsDbUtils/_WriteGedcom.py (GedcomWriter.__date): 
+	applied quality patch (with fixes) from issue #1210
+
 2008-01-24 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/KinshipReport.py: Include count for each category.
 	
