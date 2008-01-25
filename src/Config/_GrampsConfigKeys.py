@@ -20,8 +20,10 @@
 
 # $Id$
 
-import const
 import os
+from gettext import gettext as _
+
+import const
 
 """
 Adding a new configuration key:
