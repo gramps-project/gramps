@@ -28,7 +28,7 @@ from BasicUtils import name_displayer
 from QuickReports import run_quick_report_by_name
 import DateHandler
 from gettext import gettext as _
-import const
+import Config
 
 #
 # Hello World, in Gramps Gramplets
@@ -241,10 +241,12 @@ class TopSurnamesGramplet(Gramplet):
         self.set_text("")
         for (count, surname) in surname_sort:
             if len(surname) == 0:
-                text = "%s, %d%% (%d)\n" %  (const.NO_SURNAME, 
-                                               int((float(count)/total) * 100), count)
+                text = "%s, %d%% (%d)\n" %  (Config.get(Config.NO_SURNAME_TEXT),
+                                             int((float(count)/total) * 100),
+                                             count)
             else:
-                text = "%s, %d%% (%d)\n" %  (surname, int((float(count)/total) * 100), count)
+                text = "%s, %d%% (%d)\n" %  (surname, int((float(count)/total) * 100), 
+                                             count)
             self.append_text(" %d. " % (line + 1))
             self.link(text, 'Surname', representative_handle[surname])
             line += 1
@@ -327,7 +329,7 @@ class SurnameCloudGramplet(Gramplet):
         self.set_text("")
         for (count, surname) in cloud_names: # surname_sort:
             if len(surname) == 0:
-                text = const.NO_SURNAME
+                text = Config.get(Config.NO_SURNAME_TEXT)
             else:
                 text = surname
             size = make_tag_size(count, counts)
@@ -671,6 +673,7 @@ class AgeOnDateGramplet(Gramplet):
         self.entry = gtk.Entry()
         button = gtk.Button(_("Run"))
         button.connect("clicked", self.run)
+        ##self.filter = 
         hbox.pack_start(label, False)
         hbox.pack_start(self.entry, True)
         vbox.pack_start(description, True)

@@ -167,6 +167,12 @@ GENERATION_DEPTH     = ('behavior', 'generation-depth', 1)
 DATA_VIEWS           = ('interface','data-views', 2)
 ADDMEDIA_IMGDIR      = ('behavior', 'addmedia-image-dir', 2)
 ADDMEDIA_RELPATH     = ('behavior', 'addmedia-relative-path', 0)
+NO_SURNAME_TEXT      = ('preferences', 'no-surname-text', 2)
+NO_GIVEN_TEXT        = ('preferences', 'no-given-text', 2)
+NO_RECORD_TEXT       = ('preferences', 'no-record-text', 2)
+PRIVATE_SURNAME_TEXT = ('preferences', 'private-surname-text', 2)
+PRIVATE_GIVEN_TEXT   = ('preferences', 'private-given-text', 2)
+PRIVATE_RECORD_TEXT  = ('preferences', 'private-record-text', 2)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -289,4 +295,10 @@ default_value = {
                  'RepositoryView,NoteView'),
     ADDMEDIA_IMGDIR      : '',
     ADDMEDIA_RELPATH     : False,
+    NO_SURNAME_TEXT      : "[%s]" % _("Missing Surname"),
+    NO_GIVEN_TEXT        : "[%s]" % _("Missing Given Name"),
+    NO_RECORD_TEXT       : "[%s]" % _("Missing Record"),
+    PRIVATE_SURNAME_TEXT : "[%s]" % _("Living"),
+    PRIVATE_GIVEN_TEXT   : "[%s]" % _("Living"),
+    PRIVATE_RECORD_TEXT  : "[%s]" % _("Private Record"),
 }

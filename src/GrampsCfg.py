@@ -42,6 +42,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Config
+import const
 import DateHandler
 from BasicUtils import name_displayer as _nd
 import Utils
@@ -146,8 +147,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           MarkupLabel(_('Database')))
         panel.append_page(self.add_formats_panel(), 
                           MarkupLabel(_('Display')))
-        #panel.append_page(self.add_name_panel(), 
-        #                  MarkupLabel(_('Name Display')))
+        panel.append_page(self.add_text_panel(), 
+                          MarkupLabel(_('Text')))
         panel.append_page(self.add_prefix_panel(), 
                           MarkupLabel(_('ID Formats')))
         panel.append_page(self.add_advanced_panel(), 
@@ -644,7 +645,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         obox.connect('changed', 
                      lambda obj: Config.set(Config.SURNAME_GUESSING, 
                                             obj.get_active()))
-        lwidget = BasicLabel("%s: " % _('Surname Guessing'))
+        lwidget = BasicLabel("%s: " % _('Surname guessing'))
         table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
         table.attach(obox, 1, 3, row, row+1, yoptions=0)
         row += 1
@@ -671,7 +672,32 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.add_checkbox(table, _("Show text in sidebar buttons (takes effect on restart)"), 
                           row, Config.SIDEBAR_TEXT)
         row += 1
-                     
+        return table
+
+    def add_text_panel(self):
+        row = 0
+        table = gtk.Table(6, 8)
+        table.set_border_width(12)
+        table.set_col_spacings(6)
+        table.set_row_spacings(6)
+        self.add_entry(table, _('Missing surname'), row, 
+                       Config.NO_SURNAME_TEXT)
+        row += 1
+        self.add_entry(table, _('Missing given name'), row, 
+                       Config.NO_GIVEN_TEXT)
+        row += 1
+        self.add_entry(table, _('Missing record'), row, 
+                       Config.NO_RECORD_TEXT)
+        row += 1
+        self.add_entry(table, _('Private surname'), row, 
+                       Config.PRIVATE_SURNAME_TEXT)
+        row += 1
+        self.add_entry(table, _('Private given name'), row, 
+                       Config.PRIVATE_GIVEN_TEXT)
+        row += 1
+        self.add_entry(table, _('Private record'), row, 
+                       Config.PRIVATE_RECORD_TEXT)
+        row += 1
         return table
 
     def cb_name_dialog(self, obj):
