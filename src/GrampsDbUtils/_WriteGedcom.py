@@ -86,8 +86,8 @@ DATE_MODIFIER = {
     }
 
 DATE_QUALITY = {
-    RelLib.Date.QUAL_CALCULATED : "CAL", 
-    RelLib.Date.QUAL_ESTIMATED  : "EST", 
+    gen.lib.Date.QUAL_CALCULATED : "CAL", 
+    gen.lib.Date.QUAL_ESTIMATED  : "EST", 
 }    
 
 LDS_ORD_NAME = {
@@ -1212,11 +1212,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             cal = date.get_calendar()
             mod = date.get_modifier()
             quality = date.get_quality()
-            if mod == RelLib.Date.MOD_SPAN:
+            if mod == gen.lib.Date.MOD_SPAN:
                 val = "FROM %s TO %s" % (
                     make_date(start, cal, mod, quality), 
                     make_date(date.get_stop_date(), cal, mod, quality))
-            elif mod == RelLib.Date.MOD_RANGE:
+            elif mod == gen.lib.Date.MOD_RANGE:
                 val = "BET %s AND %s" % (
                     make_date(start, cal, mod, quality), 
                     make_date(date.get_stop_date(), cal, mod, quality))
