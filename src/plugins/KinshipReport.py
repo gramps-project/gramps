@@ -278,9 +278,10 @@ class KinshipReport(Report):
         Write information about a group of people - including the title.
         """
         cap_title = capitalize(title)
+        subtitle = "%s (%d)" % (cap_title, len(people_handles))
         self.doc.start_paragraph("KIN-Subtitle")
-        mark = BaseDoc.IndexMark(cap_title,BaseDoc.INDEX_TYPE_TOC,2)
-        self.doc.write_text(cap_title,mark)
+        mark = BaseDoc.IndexMark(cap_title, BaseDoc.INDEX_TYPE_TOC, 2)
+        self.doc.write_text(subtitle, mark)
         self.doc.end_paragraph()
         for person_handle in people_handles:
             self.write_person(person_handle)
