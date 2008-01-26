@@ -264,7 +264,8 @@ class CSVWriter:
                     self.plist[p] = 1
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
+                    for p in self.option_box.cfilter.apply(self.db, 
+                                                           self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
                     (m1,m2) = msg.messages()
@@ -362,11 +363,12 @@ class CSVWriter:
         plist = [data[2] for data in sortorder]
         ###########################
         if self.include_individuals:
-            self.write_csv("Person", "Lastname", "Firstname", "Callname", "Suffix",
-                           "Prefix", "Title", "Gender",
-                           "Birthdate", "Birthplace", "Birthsource",
-                           "Deathdate", "Deathplace", "Deathsource",
-                           "Note")
+            self.write_csv(_("Person"), _("Surname"), _("Given"), 
+                           _("Call"), _("Suffix"), _("Prefix"), 
+                           _("Title"), _("Gender"), _("Birth date"), 
+                           _("Birth place"), _("Birth source"),
+                           _("Death date"), _("Death place"), 
+                           _("Death source"), _("Note"))
             for key in plist:
                 person = self.db.get_person_from_handle(key)
                 if person:
@@ -431,8 +433,8 @@ class CSVWriter:
         flist = [data[1] for data in sortorder]
         ########################### 
         if self.include_marriages:
-            self.write_csv("Marriage", "Husband", "Wife", "Date", "Place",
-                           "Source", "Note")
+            self.write_csv(_("Marriage"), _("Husband"), _("Wife"), 
+                           _("Date"), _("Place"), _("Source"), _("Note"))
             for key in flist:
                 family = self.db.get_family_from_handle(key)
                 if family:
@@ -471,7 +473,7 @@ class CSVWriter:
                 self.update()
             self.writeln()
         if self.include_children:
-            self.write_csv("Family", "Child")
+            self.write_csv(_("Family"), _("Child"))
             for key in flist:
                 family = self.db.get_family_from_handle(key)
                 if family:

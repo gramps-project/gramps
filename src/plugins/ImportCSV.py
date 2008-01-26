@@ -153,19 +153,134 @@ def rd(line_number, row, col, key, default = None):
 
 def cleanup_column_name(column):
     """ Handle column aliases """
-    retval = string.lower(column)
-    if retval == "lastname":
-        retval = "surname"
-    elif retval == "mother":
-        retval = "wife"
-    elif retval == "father":
-        retval = "husband"
-    elif retval == "parent1":
-        retval = "husband"
-    elif retval == "parent2":
-        retval = "wife"
-    elif retval in ["given", "givenname"]:
-        retval = "firstname"
+    if retval in ["Lastname", 
+                  "Surname", _("Surname")]:
+        return "surname"
+    elif retval in ["Firstname", 
+                    "Given name", _("Given name"), 
+                    "Given", _("Given")]:
+        return "firstname"
+    elif retval in ["Callname", 
+                    "Call name", _("Call name"),
+                    "Call", _("Call")]:
+        return "callname"
+    elif retval in ["Title", _("Title")]:
+        return "title"
+    elif retval in ["Prefix", _("Prefix")]:
+        return "prefix"
+    elif retval in ["Suffix", _("Suffix")]:
+        return "suffix"
+    elif retval in ["Gender", _("Gender")]:
+        return "gender"
+    elif retval in ["Source", _("Source")]:
+        return "source"
+    elif retval in ["Note", _("Note")]:
+        return "note"
+    elif retval in ["Birthplace", "Birth place", _("Birth place")]:
+        return "birthplace"
+    elif retval in ["Birthdate", "Birth date", _("Birth date")]:
+        return "birthdate"
+    elif retval in ["Birthsource", "Birth source", _("Birth source")]:
+        return "birthsource"
+    elif retval in ["Deathplace", "Death place", _("Death place")]:
+        return "deathplace"
+    elif retval in ["Deathdate", "Death date", _("Death date")]:
+        return "deathdate"
+    elif retval in ["Deathsource", "Death source", _("Death source")]:
+        return "deathsource"
+    elif retval in ["Deathcause", "Death cause", _("Death cause")]:
+        return "deathcause"
+    elif retval in ["Grampsid", "Gramps id", _("Gramps id")]:
+        return "grampsid"
+    elif retval in ["Person", _("Person")]:
+        return "person"
+    # ----------------------------------
+    elif retval in ["Child", _("Child")]:
+        return "child"
+    elif retval in ["Source", _("Source")]:
+        return "source"
+    elif retval in ["Family", _("Family")]:
+        return "family"
+    # ----------------------------------
+    elif retval in ["Mother", _("Mother"), 
+                    "Wife", _("Wife"),
+                    "Parent2", _("Parent2")):
+        return "wife"
+    elif retval in ["Father", _("Father"), 
+                    "Husband", _("Husband"),
+                    "Parent1", _("Parent1")]:
+        return "husband"
+    elif retval in ["Marriage", _("Marriage")]:
+        return "marriage"
+    elif retval in ["Date", _("Date")]:
+        return "date"
+    elif retval in ["Place", _("Place")]:
+        return "place"
+    # lowercase
+    elif retval in ["lastname", 
+                  "surname", _("surname")]:
+        return "surname"
+    elif retval in ["firstname", 
+                    "given name", _("given name"), 
+                    "given", _("given")]:
+        return "firstname"
+    elif retval in ["callname", 
+                    "call name", _("call name"),
+                    "call", _("call")]:
+        return "callname"
+    elif retval in ["title", _("title")]:
+        return "title"
+    elif retval in ["prefix", _("prefix")]:
+        return "prefix"
+    elif retval in ["suffix", _("suffix")]:
+        return "suffix"
+    elif retval in ["gender", _("gender")]:
+        return "gender"
+    elif retval in ["source", _("source")]:
+        return "source"
+    elif retval in ["note", _("note")]:
+        return "note"
+    elif retval in ["birthplace", "birth place", _("birth place")]:
+        return "birthplace"
+    elif retval in ["birthdate", "birth date", _("birth date")]:
+        return "birthdate"
+    elif retval in ["birthsource", "birth source", _("birth source")]:
+        return "birthsource"
+    elif retval in ["deathplace", "death place", _("death place")]:
+        return "deathplace"
+    elif retval in ["deathdate", "death date", _("death date")]:
+        return "deathdate"
+    elif retval in ["deathsource", "death source", _("death source")]:
+        return "deathsource"
+    elif retval in ["deathcause", "death cause", _("death cause")]:
+        return "deathcause"
+    elif retval in ["grampsid", "gramps id", _("gramps id")]:
+        return "grampsid"
+    elif retval in ["person", _("person")]:
+        return "person"
+    # ----------------------------------
+    elif retval in ["child", _("child")]:
+        return "child"
+    elif retval in ["source", _("source")]:
+        return "source"
+    elif retval in ["family", _("family")]:
+        return "family"
+    # ----------------------------------
+    elif retval in ["mother", _("mother"), 
+                    "wife", _("wife"),
+                    "parent2", _("parent2")):
+        return "wife"
+    elif retval in ["father", _("father"), 
+                    "husband", _("husband"),
+                    "parent1", _("parent1")]:
+        return "husband"
+    elif retval in ["marriage", _("marriage")]:
+        return "marriage"
+    elif retval in ["date", _("date")]:
+        return "date"
+    elif retval in ["place", _("place")]:
+        return "place"
+    #----------------------------------------------------
     return retval
 
 def importData(db, filename, callback=None):

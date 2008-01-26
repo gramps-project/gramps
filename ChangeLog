@@ -1,4 +1,9 @@
 2008-01-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/ExportCSV.py: 
+	* src/plugins/ImportCSV.py: 
+	fix international/translation issues
+
+2008-01-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/PersonView.py (PersonView.write_tabbed_file): 
 	reverted previous change
 
