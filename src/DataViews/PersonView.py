@@ -957,7 +957,7 @@ class PersonView(PageView.PersonNavView):
                                for pair in self.dbstate.db.get_person_column_order() \
                                if pair[0]]
 
-        cnames = [column_names[i] for i in data_cols]
+        cnames = [_(column_names[i]) for i in data_cols]
 
         # create the output tabbed document, and open it
 
