@@ -153,6 +153,7 @@ def rd(line_number, row, col, key, default = None):
 
 def cleanup_column_name(column):
     """ Handle column aliases """
+    retval = column
     if retval in ["Lastname", 
                   "Surname", _("Surname")]:
         return "surname"
@@ -204,7 +205,7 @@ def cleanup_column_name(column):
     # ----------------------------------
     elif retval in ["Mother", _("Mother"), 
                     "Wife", _("Wife"),
-                    "Parent2", _("Parent2")):
+                    "Parent2", _("Parent2")]:
         return "wife"
     elif retval in ["Father", _("Father"), 
                     "Husband", _("Husband"),
@@ -268,7 +269,7 @@ def cleanup_column_name(column):
     # ----------------------------------
     elif retval in ["mother", _("mother"), 
                     "wife", _("wife"),
-                    "parent2", _("parent2")):
+                    "parent2", _("parent2")]:
         return "wife"
     elif retval in ["father", _("father"), 
                     "husband", _("husband"),
