@@ -95,7 +95,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         window = top_xml.get_widget("top")
         self.set_window(window,
                         top_xml.get_widget("title"),
-                        _("Database owner editor"))
+                        _("Database Owner Editor"))
 
         # move help button to the left side
         action_area = top_xml.get_widget("action_area")
@@ -187,7 +187,8 @@ register_tool(
     tool_class = OwnerEditor,
     options_class = OwnerEditorOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Edit database owner information"),
+#   translated_name = _("Database Owner Information"),
+    translated_name = _("Edit Database Owner Information"),
     status = _("Beta"),
     author_name = "Zsolt Foldvari",
     author_email = "zfoldvar@users.sourceforge.net",

@@ -1401,7 +1401,7 @@ if __debug__:
         tool_class = TestcaseGenerator,
         options_class = TestcaseGeneratorOptions,
         modes = Tool.MODE_GUI | Tool.MODE_CLI,
-        translated_name = _("Generate Testcases for persons and families"),
+        translated_name = _("Generate Testcases for Persons and Families..."),
         status = _("Beta"),
         author_name = "Martin Hawlisch",
         author_email = "martin@hawlisch.de",

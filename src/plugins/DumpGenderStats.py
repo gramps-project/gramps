@@ -111,7 +111,7 @@ if __debug__:
         tool_class = DumpGenderStats,
         options_class = DumpGenderStatsOptions,
         modes = Tool.MODE_GUI | Tool.MODE_CLI,
-        translated_name = _("Dumps gender statistics"),
+        translated_name = _("Dump Gender Statistics"),
         description = _("Will dump the statistics for the gender guessing "
                         "from the first name.")
         )

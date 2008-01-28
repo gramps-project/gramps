@@ -282,7 +282,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.progress_bar.close()
 
     def build_row_data(self):
-        self.progress_bar = Utils.ProgressMeter(_('Comparing events'),'')
+        self.progress_bar = Utils.ProgressMeter(_('Comparing Events'),'')
         self.progress_bar.set_pass(_('Building data'),len(self.my_list))
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)
@@ -451,7 +451,7 @@ register_tool(
     tool_class = EventComparison,
     options_class = EventComparisonOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Compare individual events"),
+    translated_name = _("Compare Individual Events..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

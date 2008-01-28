@@ -138,7 +138,7 @@ register_report(
     report_class = CountAncestors,
     options_class = None,
     modes = MODE_GUI,
-    translated_name = _("Number of ancestors"),
+    translated_name = _("Number of Ancestors"),
     status = _("Stable"),
     description= _("Counts number of ancestors of selected person")
     )

@@ -638,7 +638,7 @@ register_report(
     report_class = IndivCompleteReport,
     options_class = IndivCompleteOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Complete Individual Report"),
+    translated_name = _("Complete Individual Report..."),
     status=(_("Stable")),
     author_name="Donald N. Allingham",
     author_email="don@gramps-project.org",

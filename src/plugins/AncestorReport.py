@@ -340,7 +340,7 @@ register_report(
     report_class = AncestorReport,
     options_class = AncestorOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Ahnentafel Report"),
+    translated_name = _("Ahnentafel Report..."),
     status=(_("Stable")),
     description= _("Produces a textual ancestral report"),
     author_name="Donald N. Allingham",

@@ -180,7 +180,7 @@ register_report(
     report_class = SummaryReport,
     options_class = None,
     modes = MODE_GUI,
-    translated_name = _("Summary of the database"),
+    translated_name = _("Summary of the Database"),
     status = _("Beta"),
     description= _("Provides a summary of the current database"),
     require_active=False,

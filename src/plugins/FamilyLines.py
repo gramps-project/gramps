@@ -736,7 +736,7 @@ class FamilyLinesReport(Report):
             ErrorDialog(_("Could not create %s") % self.filename)
             return
 
-        self.progress = Utils.ProgressMeter(_('Generate family lines'),_('Starting'))
+        self.progress = Utils.ProgressMeter(_('Generate Family Lines'),_('Starting'))
 
         # starting with the people of interest, we then add parents and children:
         self.peopleToOutput.clear()
@@ -1221,7 +1221,7 @@ class LastNameDialog(ManagedWindow.ManagedWindow):
             # (this can be a lengthy process, so by passing in the dictionary we can
             # be certain we only do this once)
             progress = Utils.ProgressMeter(_('Family Lines'))
-            progress.set_pass(_('Finding surnames'), database.get_number_of_people())
+            progress.set_pass(_('Finding Surnames'), database.get_number_of_people())
             for personHandle in database.get_person_handles(False):
                 progress.step()
                 person = database.get_person_from_handle(personHandle)
@@ -1440,7 +1440,7 @@ register_report(
     author_email    = "stephanecharette@gmail.com",
     report_class    = FamilyLinesDialog,                    # class which will create everything needed for the report
     options_class   = None,
-    translated_name = _("Family Lines Graph"),
+    translated_name = _("Family Lines Graph..."),
     unsupported     = True
     )
 

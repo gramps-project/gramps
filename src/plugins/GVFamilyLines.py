@@ -298,7 +298,7 @@ class FamilyLinesReport(Report):
         # this is where we'll do all of the work of figuring out who
         # from the database is going to be output into the report
 
-        self.progress = Utils.ProgressMeter(_('Generate family lines'),_('Starting'))
+        self.progress = Utils.ProgressMeter(_('Generating Family Lines'),_('Starting'))
 
         # starting with the people of interest, we then add parents:
         self.peopleToOutput.clear()
@@ -881,7 +881,7 @@ class FamilyLinesReport(Report):
 #------------------------------------------------------------------------
 register_report(
     name            = 'familylines_graph',
-    translated_name = _("Family Lines Graph"),
+    translated_name = _("Family Lines Graph..."),
     category        = CATEGORY_GRAPHVIZ,
     report_class    = FamilyLinesReport,    # must implement write_report(), called by report() in _ReportDialog.py
     options_class   = FamilyLinesOptions,   # must implement add_menu_options(), called by MenuOptions::__init__()

@@ -412,7 +412,7 @@ if __debug__:
         tool_class = Reload,
         options_class = ReloadOptions,
         modes = _Tool.MODE_GUI,
-        translated_name = _("Reload plugins"),
+        translated_name = _("Reload Plugins"),
         description=_("Attempt to reload plugins. "
                       "Note: This tool itself is not reloaded!"),
         )

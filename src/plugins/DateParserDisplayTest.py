@@ -62,7 +62,7 @@ class DateParserDisplayTest(Tool.Tool):
 
 
     def run_tool(self):
-        self.progress = Utils.ProgressMeter(_('Running date test'),'')
+        self.progress = Utils.ProgressMeter(_('Running Date Test'),'')
         self.progress.set_pass(_('Generating dates'),
                                4)
         dates = []
@@ -229,7 +229,7 @@ register_tool(
     tool_class = DateParserDisplayTest,
     options_class = Tool.ToolOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Check localized date displayer and parser"),
+    translated_name = _("Check Localized Date Displayer and Parser..."),
     status = _("Beta"),
     author_name = "Martin Hawlisch",
     author_email = "martin@hawlisch.de",

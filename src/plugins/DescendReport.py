@@ -251,7 +251,7 @@ register_report(
     report_class = DescendantReport,
     options_class = DescendantOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Descendant Report"),
+    translated_name = _("Descendant Report..."),
     status=(_("Stable")),
     description=_("Generates a list of descendants of the active person"),
     author_name="Donald N. Allingham",

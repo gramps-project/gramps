@@ -555,7 +555,7 @@ register_report(
     report_class = RelGraphReport,
     options_class = RelGraphOptions,
     modes = MODE_GUI | MODE_CLI,
-    translated_name = _("Relationship Graph"),
+    translated_name = _("Relationship Graph..."),
     status = _("Stable"),
     description = _("Generates a relationship graphs using Graphviz."),
     author_name ="Brian G. Matherly",

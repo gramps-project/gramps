@@ -348,9 +348,9 @@ class BookMarkView(PageView):
     def define_actions(self):
         self.book_action = gtk.ActionGroup(self.title + '/Bookmark')
         self.book_action.add_actions([
-            ('AddBook', 'gramps-bookmark-new', _('_Add bookmark'), 
+            ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
              '<control>d', None, self.add_bookmark), 
-            ('EditBook', 'gramps-bookmark-edit', _('_Edit bookmarks'), 
+            ('EditBook', 'gramps-bookmark-edit', _('_Edit Bookmarks'), 
              '<control>b', None, 
              self.edit_bookmarks), 
             ])
@@ -924,16 +924,16 @@ class ListView(BookMarkView):
 
         self.edit_action = gtk.ActionGroup(self.title + '/ChangeOrder')
         self.edit_action.add_actions([
-                ('Add', gtk.STOCK_ADD, _("_Add"), "<control>Insert", 
+                ('Add', gtk.STOCK_ADD, _("_Add..."), "<control>Insert", 
 		 self.ADD_MSG, self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
 		 self.DEL_MSG, self.remove), 
-                ('ExportTab', None, _('Export view'), None, None, self.export), 
+                ('ExportTab', None, _('Export View...'), None, None, self.export), 
                 ])
 
         self._add_action_group(self.edit_action)
 
-        self._add_action('Edit', gtk.STOCK_EDIT, _("action|_Edit"), 
+        self._add_action('Edit', gtk.STOCK_EDIT, _("action|_Edit..."), 
                          accel="<control>Return", 
                          tip=self.EDIT_MSG, 
                          callback=self.edit)
@@ -1000,7 +1000,7 @@ class ListView(BookMarkView):
 
     def export(self, obj):
         chooser = gtk.FileChooserDialog(
-            _("Export view as spreadsheet"), 
+            _("Export View as Spreadsheet"), 
             self.uistate.window, 
             gtk.FILE_CHOOSER_ACTION_SAVE, 
             (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 

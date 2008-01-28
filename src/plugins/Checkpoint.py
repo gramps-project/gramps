@@ -435,7 +435,7 @@ register_tool(
     tool_class = Checkpoint, 
     options_class = CheckpointOptions, 
     modes = Tool.MODE_GUI | Tool.MODE_CLI, 
-    translated_name = _("Checkpoint the database"), 
+    translated_name = _("Checkpoint the Database..."), 
     status = _("Stable"), 
     author_name = "Alex Roitman", 
     author_email = "shura@gramps-project.org", 

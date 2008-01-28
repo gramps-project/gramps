@@ -2467,7 +2467,7 @@ class WebReport(Report):
                             value)
                 return
 
-        self.progress = Utils.ProgressMeter(_("Generate HTML reports"),'')
+        self.progress = Utils.ProgressMeter(_("Generate HTML Reports"),'')
 
         # Build the person list
         ind_list = self.build_person_list()
@@ -3283,7 +3283,7 @@ register_report(
     report_class = WebReportDialog,
     options_class = cl_report,
     modes = MODE_GUI | MODE_CLI,
-    translated_name = _("Narrated Web Site"),
+    translated_name = _("Narrated Web Site..."),
     status = _("Stable"),
     author_name="Donald N. Allingham",
     author_email="don@gramps-project.org",

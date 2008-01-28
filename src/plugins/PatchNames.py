@@ -104,7 +104,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.prefix2_list = []
 
         self.progress = Utils.ProgressMeter(
-            _('Extracting information from names'),'')
+            _('Extracting Information from Names'),'')
         self.progress.set_pass(_('Analyzing names'),
                                self.db.get_number_of_people())
 
@@ -356,7 +356,7 @@ register_tool(
     tool_class = PatchNames,
     options_class = PatchNamesOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Extract information from names"),
+    translated_name = _("Extract Information from Names..."),
     status=(_("Stable")),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

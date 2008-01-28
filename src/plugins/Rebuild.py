@@ -121,7 +121,7 @@ register_tool(
     tool_class = Rebuild,
     options_class = RebuildOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Rebuild secondary indices"),
+    translated_name = _("Rebuild Secondary Indices"),
     status=(_("Stable")),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

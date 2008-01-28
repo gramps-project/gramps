@@ -862,7 +862,7 @@ register_report(
     report_class = DetAncestorReport,
     options_class = DetAncestorOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Detailed Ancestral Report"),
+    translated_name = _("Detailed Ancestral Report..."),
     status=(_("Beta")),
     description= _("Produces a detailed ancestral report"),
     author_name="Bruce DeGrasse",

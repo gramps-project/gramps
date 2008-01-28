@@ -157,7 +157,7 @@ register_tool(
     tool_class = DesBrowse,
     options_class = DesBrowseOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Interactive descendant browser"),
+    translated_name = _("Interactive Descendant Browser"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

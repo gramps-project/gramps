@@ -121,7 +121,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         if not cli:
-            progress = Utils.ProgressMeter(_('Analyzing events'),'')
+            progress = Utils.ProgressMeter(_('Analyzing Events'),'')
             progress.set_pass('',self.db.get_number_of_events())
             
         for event_handle in self.db.get_event_handles():
@@ -203,7 +203,7 @@ register_tool(
     tool_class = ChangeTypes,
     options_class = ChangeTypesOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Rename event types"),
+    translated_name = _("Rename Event Types..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

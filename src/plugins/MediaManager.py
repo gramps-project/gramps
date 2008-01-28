@@ -612,7 +612,7 @@ register_tool(
     tool_class = MediaMan,
     options_class = MediaManOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Media manager"),
+    translated_name = _("Media Manager..."),
     status=(_("Beta")),
     author_name = "Alex Roitman",
     author_email = "shura@gramps-project.org",

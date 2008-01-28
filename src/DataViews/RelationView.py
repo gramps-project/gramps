@@ -323,21 +323,21 @@ class RelationshipView(PageView.PersonNavView):
 
         self.family_action = gtk.ActionGroup(self.title + '/Family')
         self.family_action.add_actions([
-            ('Edit', gtk.STOCK_EDIT, _('Edit'), None ,
+            ('Edit', gtk.STOCK_EDIT, _('Edit...'), "<control>Return",
                 _("Edit the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Partner'), None ,
                 _("Add a new family with person as parent"), self.add_spouse),
-            ('AddSpouseMenu', 'gramps-spouse', _('Add partner'), None ,
+            ('AddSpouseMenu', 'gramps-spouse', _('Add Partner...'), None ,
                 _("Add a new family with person as parent"), self.add_spouse),
             ('AddParents', 'gramps-parents-add', _('Add'), None ,
                 _("Add a new set of parents"), self.add_parents),
-            ('AddParentsMenu', 'gramps-parents-add', _('Add new parents'), 
+            ('AddParentsMenu', 'gramps-parents-add', _('Add New Parents...'), 
                 None, _("Add a new set of parents"), self.add_parents),
             ('ShareFamily', 'gramps-parents-open', _('Share'), 
                 None , _("Add person as child to an existing family"), 
                 self.select_parents),
             ('ShareFamilyMenu', 'gramps-parents-open', 
-                _('Add existing parents'), None , 
+                _('Add Existing Parents...'), None , 
                 _("Add person as child to an existing family"), 
                 self.select_parents),
             ])
@@ -345,10 +345,10 @@ class RelationshipView(PageView.PersonNavView):
         self._add_action_group(self.order_action)
         self._add_action_group(self.family_action)
 
-        self._add_toggle_action('Details', None, _('Show details'), 
+        self._add_toggle_action('Details', None, _('Show Details'), 
                                 None, None, self.details_toggle, 
                                 self.show_details)
-        self._add_toggle_action('Siblings', None, _('Show siblings'), 
+        self._add_toggle_action('Siblings', None, _('Show Siblings'), 
                                 None, None, self.siblings_toggle, 
                                 self.show_siblings)
 

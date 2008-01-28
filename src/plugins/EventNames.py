@@ -159,7 +159,7 @@ register_tool(
     tool_class = EventNames, 
     options_class = EventNamesOptions, 
     modes = Tool.MODE_GUI, 
-    translated_name = _("Extract event descriptions from event data"), 
+    translated_name = _("Extract Event Descriptions from Event Data"), 
     status = _("Stable"), 
     author_name = "Donald N. Allingham", 
     author_email = "don@gramps-project.org", 

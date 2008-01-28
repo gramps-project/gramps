@@ -765,7 +765,7 @@ register_report(
     report_class = FamilyGroup,
     options_class = FamilyGroupOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Family Group Report"),
+    translated_name = _("Family Group Report..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

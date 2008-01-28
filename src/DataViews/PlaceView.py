@@ -115,7 +115,7 @@ class PlaceView(PageView.ListView):
         PageView.ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
                          _('_Column Editor'), callback=self._column_editor)
-        self._add_action('FastMerge', None, _('_Merge'),
+        self._add_action('FastMerge', None, _('_Merge...'),
                          callback=self.fast_merge)
         self._add_action('GoogleMaps', gtk.STOCK_JUMP_TO, _('_Google Maps'),
                          callback=self.google,

@@ -21,6 +21,7 @@
 
 """
 Generate an hourglass graph using the GraphViz generator.
+/Reports/GraphViz/Hourglass Graph...
 """
 #------------------------------------------------------------------------
 #
@@ -198,7 +199,7 @@ register_report(
     report_class    = HourGlassReport,
     options_class   = HourGlassOptions,
     modes           = MODE_GUI | MODE_CLI,
-    translated_name = _("Hourglass Graph"),
+    translated_name = _("Hourglass Graph..."),
     status          = _("Stable"),
     author_name     = "Brian G. Matherly",
     author_email    = "brian@gramps-project.org",

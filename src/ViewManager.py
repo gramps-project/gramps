@@ -386,7 +386,7 @@ class ViewManager:
         """
         self._file_action_list = [
             ('FileMenu', None, _('_Family Trees')), 
-            ('Open', 'gramps-db', _('_Manage Family Trees'), "<control>o", 
+            ('Open', 'gramps-db', _('_Manage Family Trees...'), "<control>o", 
              _("Manage databases"), self.__open_activate), 
             ('OpenRecent', None, _('Open _Recent'), None, 
              _("Open an existing database")), 
@@ -397,29 +397,29 @@ class ViewManager:
             ('Preferences', gtk.STOCK_PREFERENCES, _('_Preferences'), None,
              None, self.preferences_activate), 
             ('HelpMenu', None, _('_Help')), 
-            ('HomePage', None, _('GRAMPS _home page'), None, None, 
+            ('HomePage', None, _('GRAMPS _Home Page'), None, None, 
              home_page_activate),
-            ('MailingLists', None, _('GRAMPS _mailing lists'), None, None, 
+            ('MailingLists', None, _('GRAMPS _Mailing Lists'), None, None, 
              mailing_lists_activate), 
-            ('ReportBug', None, _('_Report a bug'), None, None, 
+            ('ReportBug', None, _('_Report a Bug'), None, None, 
              report_bug_activate), 
             ('About', gtk.STOCK_ABOUT, _('_About'), None, None, 
              display_about_box),
-            ('PluginStatus', None, _('_Plugin status'), None, None, 
+            ('PluginStatus', None, _('_Plugin Status'), None, None, 
              self.plugin_status), 
             ('FAQ', None, _('_FAQ'), None, None, faq_activate), 
             ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
             ('UserManual', gtk.STOCK_HELP, _('_User Manual'), 'F1', None, 
              manual_activate), 
-            ('TipOfDay', None, _('Tip of the day'), None, None, 
+            ('TipOfDay', None, _('Tip of the Day'), None, None, 
              self.tip_of_day_activate), 
             ]
 
         self._readonly_action_list = [ 
-            ('Export', 'gramps-export', _('_Export'), "<control>e", None, 
+            ('Export', 'gramps-export', _('_Export...'), "<control>e", None, 
              self.export_data), 
             ('Abandon', gtk.STOCK_REVERT_TO_SAVED, 
-             _('_Abandon changes and quit'), None, None, self.abort), 
+             _('_Abandon Changes and Quit'), None, None, self.abort), 
             ('Reports', 'gramps-reports', _('_Reports'), None, 
              _("Open the reports dialog"), self.reports_clicked), 
             ('GoMenu', None, _('_Go')), 
@@ -452,9 +452,9 @@ class ViewManager:
             ]
 
         self._action_action_list = [
-            ('ScratchPad', gtk.STOCK_PASTE, _('_ScratchPad'), "<alt>s", 
-             _("Open the ScratchPad dialog"), self.scratchpad), 
-            ('Import', 'gramps-import', _('_Import'), "<control>i", None, 
+            ('ScratchPad', gtk.STOCK_PASTE, _('_Clipboard'), "<alt>s", 
+             _("Open the Clipboard dialog"), self.scratchpad), 
+            ('Import', 'gramps-import', _('_Import...'), "<control>i", None, 
              self.import_data), 
             ('Tools', 'gramps-tools', _('_Tools'), None, 
              _("Open the tools dialog"), self.tools_clicked), 
@@ -468,7 +468,7 @@ class ViewManager:
              self.show_sidebar ), 
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle, 
              self.show_toolbar ), 
-            ('Filter', None, _('_Filter sidebar'), None, None, 
+            ('Filter', None, _('_Filter Sidebar'), None, None, 
              filter_toggle, self.show_filter), 
             ]
 
@@ -484,7 +484,7 @@ class ViewManager:
 
         self._undo_history_action_list = [
             ('UndoHistory', 'gramps-undo-history', 
-             _('Undo History'), "<control>H", None, self.undo_history), 
+             _('Undo History...'), "<control>H", None, self.undo_history), 
             ]
 
         self._navigation_type = {
@@ -1277,7 +1277,7 @@ class ViewManager:
         
     def scratchpad(self, obj):
         """
-        Displays the scratchpad
+        Displays the Clipboard (was scratchpad)
         """
         import ScratchPad
         try:

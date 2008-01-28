@@ -521,7 +521,7 @@ register_report(
     report_class = MarkerReport,
     options_class = MarkerOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Marker Report"),
+    translated_name = _("Marker Report..."),
     status=(_("Stable")),
     description=_("Generates a list of people with a specified marker"),
     author_name="Brian G. Matherly",

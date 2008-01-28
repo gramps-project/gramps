@@ -128,7 +128,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
 
         window = top.get_widget('dialog')
         self.set_window(window, top.get_widget('title'),
-                        _('Find possible duplicate people'))
+                        _('Find Possible Duplicate People'))
 
         top.signal_autoconnect({
             "on_merge_ok_clicked"   : self.on_merge_ok_clicked,
@@ -185,7 +185,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                 pass
     
     def find_potentials(self,thresh):
-        self.progress = Utils.ProgressMeter(_('Find duplicates'),
+        self.progress = Utils.ProgressMeter(_('Find Duplicates'),
                                             _('Looking for duplicate people'))
 
         index = 0
@@ -693,7 +693,7 @@ register_tool(
     tool_class = Merge,
     options_class = MergeOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Find possible duplicate people"),
+    translated_name = _("Find Possible Duplicate People..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

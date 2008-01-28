@@ -890,7 +890,7 @@ register_report(
     report_class = StatisticsChart,
     options_class = StatisticsChartOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Statistics Chart"),
+    translated_name = _("Statistics Chart..."),
     status = (_("Stable")),
     author_name="Eero Tamminen",
     author_email="",

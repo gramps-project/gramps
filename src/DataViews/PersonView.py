@@ -142,11 +142,11 @@ class PersonView(PageView.PersonNavView):
         self.edit_action = gtk.ActionGroup(self.title + "/PersonEdit")
 
         self.all_action.add_actions([
-                ('OpenAllNodes', None, _("Expand all nodes"), None, None, 
+                ('OpenAllNodes', None, _("Expand all Nodes"), None, None, 
                  self.open_all_nodes), 
-                ('Edit', gtk.STOCK_EDIT, _("action|_Edit"), "<control>Return", 
+                ('Edit', gtk.STOCK_EDIT, _("action|_Edit..."), "<control>Return", 
                  _("Edit the selected person"), self.edit), 
-                ('CloseAllNodes', None, _("Collapse all nodes"), None, None, 
+                ('CloseAllNodes', None, _("Collapse all Nodes"), None, None, 
                  self.close_all_nodes), 
                 ('QuickReport', None, _("Quick Report"), None, None, None), 
                 ('Dummy', None, '  ', None, None, self.dummy_report), 
@@ -154,17 +154,17 @@ class PersonView(PageView.PersonNavView):
 
         self.edit_action.add_actions(
             [
-                ('Add', gtk.STOCK_ADD, _("_Add"), "<control>Insert", 
+                ('Add', gtk.STOCK_ADD, _("_Add..."), "<control>Insert", 
 		 _("Add a new person"), self.add), 
                 ('Remove', gtk.STOCK_REMOVE, _("_Remove"), "<control>Delete", 
-                 _("Remove the selected person"), self.remove), 
-                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor'), None, 
-                 None, self._column_editor), 
-                ('CmpMerge', None, _('_Compare and merge'), None, None, 
+                 _("Remove the Selected Person"), self.remove), 
+                ('ColumnEdit', gtk.STOCK_PROPERTIES, _('_Column Editor...'), None, 
+                 None, self._column_editor),  
+                ('CmpMerge', None, _('_Compare and Merge...'), None, None, 
                  self.cmp_merge), 
-                ('FastMerge', None, _('_Fast merge'), None, None, 
+                ('FastMerge', None, _('_Fast Merge...'), None, None, 
                  self.fast_merge), 
-                ('ExportTab', None, _('Export view'), None, None, self.export), 
+                ('ExportTab', None, _('Export View...'), None, None, self.export), 
                 ])
 
         self._add_action_group(self.edit_action)
@@ -906,7 +906,7 @@ class PersonView(PageView.PersonNavView):
 
     def export(self, obj):
         chooser = gtk.FileChooserDialog(
-            _("Export view as spreadsheet"), 
+            _("Export View as Spreadsheet"), 
             self.uistate.window, 
             gtk.FILE_CHOOSER_ACTION_SAVE, 
             (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 

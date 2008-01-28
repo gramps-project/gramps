@@ -444,7 +444,7 @@ register_report(
     report_class = TimeLine,
     options_class = TimeLineOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Timeline Graph"),
+    translated_name = _("Timeline Graph..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

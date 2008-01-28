@@ -236,7 +236,7 @@ class CheckIntegrity:
                               'repos'   : [],
                               'notes'   : [],
                              }
-        self.progress = Utils.ProgressMeter(_('Checking database'),'')
+        self.progress = Utils.ProgressMeter(_('Checking Database'),'')
 
     def family_errors(self):
         return len(self.broken_parent_links) + \
@@ -1512,7 +1512,7 @@ register_tool(
     tool_class = Check,
     options_class = CheckOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Check and repair database"),
+    translated_name = _("Check and Repair Database"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

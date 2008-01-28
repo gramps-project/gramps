@@ -383,7 +383,7 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
         Performs the actual extraction of information
         """
 
-        self.progress = Utils.ProgressMeter(_('Checking place titles'), '')
+        self.progress = Utils.ProgressMeter(_('Checking Place Titles'), '')
         self.progress.set_pass(_('Looking for place fields'), 
                                len(self.db.get_place_handles()))
 
@@ -585,7 +585,7 @@ register_tool(
     tool_class = ExtractCity, 
     options_class = ExtractCityOptions, 
     modes = Tool.MODE_GUI, 
-    translated_name = _("Extract place data from a place title"), 
+    translated_name = _("Extract Place Data from a Place Title..."), 
     status = _("Stable"), 
     author_name = "Donald N. Allingham", 
     author_email = "don@gramps-project.org", 

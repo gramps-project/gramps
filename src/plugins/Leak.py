@@ -127,7 +127,7 @@ if __debug__:
         tool_class = Leak,
         options_class = LeakOptions,
         modes = Tool.MODE_GUI,
-        translated_name = _("Show uncollected objects"),
+        translated_name = _("Show Uncollected Objects"),
         status = _("Stable"),
         author_name = "Donald N. Allingham",
         author_email = "don@gramps-project.org",

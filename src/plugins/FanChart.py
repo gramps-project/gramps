@@ -428,7 +428,7 @@ register_report(
     report_class = FanChart,
     options_class = FanChartOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Fan Chart"),
+    translated_name = _("Fan Chart..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

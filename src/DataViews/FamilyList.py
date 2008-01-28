@@ -158,7 +158,7 @@ class FamilyListView(PageView.ListView):
 
         PageView.ListView.define_actions(self)
         self._add_action('ColumnEdit', gtk.STOCK_PROPERTIES,
-                        _('_Column Editor'), callback=self._column_editor)
+                        _('_Column Editor...'), callback=self._column_editor)
 
         self._add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)

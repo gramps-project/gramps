@@ -72,7 +72,7 @@ BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 #-------------------------------------------------------------------------
 #
-# The file used to store the state of the scratchpad between sessions
+# The file used to store the state of the Clipboard (was scratchpad) between sessions
 #
 #-------------------------------------------------------------------------
 SCRATCHPAD_FILE = os.path.join(const.HOME_DIR,"scratchpad.dat")
@@ -854,7 +854,7 @@ class ScratchPersonLinkList(ScratchDropList):
 #-------------------------------------------------------------------------
 #
 # ScratchPadListModel class
-#
+# Now shown as 'Clipboard'
 #-------------------------------------------------------------------------
 class ScratchPadListModel(gtk.ListStore):
 
@@ -869,7 +869,7 @@ class ScratchPadListModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 #
 # ScratchPadListView class
-#
+# Now shown as 'Clipboard'
 #-------------------------------------------------------------------------
 class ScratchPadListView:
 
@@ -1143,7 +1143,8 @@ class ScratchPadListView:
 #-------------------------------------------------------------------------
 class ScratchPadWindow(ManagedWindow.ManagedWindow):
     """
-        The ScratchPad provides a temporary area to hold objects that can
+        The Clipboard (was ScratchPad) provides a temporary area to hold objects
+        that can
         be reused accross multiple Person records. The pad provides a window
         onto which objects can be dropped and then dragged into new Person
         dialogs. The objects are stored as the pickles that are built by the
@@ -1160,9 +1161,9 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         """
     
     # Class attribute used to hold the content of the
-    # ScratchPad. A class attribute is used so that the content
-    # it preserved even when the ScratchPad window is closed.
-    # As there is only ever one ScratchPad we do not need to
+    # Clipboard (was ScratchPad). A class attribute is used so that the content
+    # it preserved even when the Clipboard window is closed.
+    # As there is only ever one Clipboard we do not need to
     # maintain a list of these.
     otree = None
     
@@ -1179,7 +1180,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
 
         self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
         self.set_window(self.top.get_widget("scratch_pad"),
-                        None, None, msg=_("Scratch Pad"))
+                        None, None, msg=_("Clipboard"))
 
         self.clear_all_btn = self.top.get_widget("btn_clear_all")
         self.clear_btn = self.top.get_widget("btn_clear")

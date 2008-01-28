@@ -531,7 +531,7 @@ register_report(
     report_class = AncestorChart,
     options_class = AncestorChartOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Ancestor Graph"),
+    translated_name = _("Ancestor Graph..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

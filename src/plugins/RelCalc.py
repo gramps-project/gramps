@@ -250,7 +250,7 @@ register_tool(
     tool_class = RelCalc,
     options_class = RelCalcOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Relationship calculator"),
+    translated_name = _("Relationship Calculator..."),
     status=(_("Stable")),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

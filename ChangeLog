@@ -1,6 +1,10 @@
+2008-01-28 Duncan Lithgow <dlithgow@gmail.com>
+	* various: add capitalization fixes according to HIG (plus ellipsis ...)
+	http://library.gnome.org/devel/hig-book/stable/design-text-labels.html.en	
+
 2008-01-28 Jerome Rapinat <romjerome@yahoo.fr>
-        * data/man/fr/gramps.1.in: updates for -u and -l options
-        * data/man/gramps.1.in: updates for -u options
+	* data/man/fr/gramps.1.in: updates for -u and -l options
+	* data/man/gramps.1.in: updates for -u options
 
 2008-01-28 Peter Landgren <peter.talken@telia.com>
     * data/man/sv/gramps.1.in: updates for -u option

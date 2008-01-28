@@ -69,7 +69,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         if self.fail:
             return
 
-        self.progress = Utils.ProgressMeter(_('Checking family names'),'')
+        self.progress = Utils.ProgressMeter(_('Checking Family Names'),'')
         self.progress.set_pass(_('Searching family names'),
                                len(self.db.get_surname_list()))
         self.name_list = []
@@ -198,7 +198,7 @@ register_tool(
     tool_class = ChangeNames,
     options_class = ChangeNamesOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Fix capitalization of family names"),
+    translated_name = _("Fix Capitalization of Family Names..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

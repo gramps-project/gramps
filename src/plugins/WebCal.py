@@ -474,7 +474,7 @@ class WebReport(Report):
         
         # initialize the dict to fill:
         self.calendar = {}
-        self.progress = Utils.ProgressMeter(_("Generate HTML calendars"),'')
+        self.progress = Utils.ProgressMeter(_("Generate HTML Calendars"),'')
 
         # Generate the CSS file
         self.write_css()
@@ -1415,7 +1415,7 @@ register_report(
     report_class = WebReportDialog,
     options_class = WebReportOptions,
     modes = MODE_GUI,
-    translated_name = _("Web Calendar"),
+    translated_name = _("Web Calendar..."),
     status = _("Beta"),
     author_name="Thom Sturgill",
     author_email="thsturgill@yahoo.com",
