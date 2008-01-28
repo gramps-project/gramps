@@ -1,3 +1,6 @@
+2008-01-28 Peter Landgren <peter.talken@telia.com>
+    * data/man/sv/gramps.1.in: updates for -u option
+
 2008-01-28 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_GuiOptions.py:
 	* src/plugins/GVFamilyLines.py:
