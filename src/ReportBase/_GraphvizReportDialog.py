@@ -699,17 +699,18 @@ class GraphvizFormatComboBox(gtk.ComboBox):
 #-----------------------------------------------------------------------
 class GraphvizReportDialog(ReportDialog):
     """A class of ReportDialog customized for graphviz based reports."""
-    def __init__(self,dbstate,uistate,person,opt,name,translated_name):
+    def __init__(self, dbstate, uistate, person, opt, name, translated_name):
         """Initialize a dialog to request that the user select options
         for a graphiz report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_GRAPHVIZ
-        ReportDialog.__init__(self,dbstate,uistate,person,opt,
-                              name,translated_name)
+        ReportDialog.__init__(self, dbstate, uistate, person,opt,
+                              name, translated_name)
         
-    def init_options(self,option_class):
+    def init_options(self, option_class):
         if type(option_class) == ClassType:
-            self.options = option_class(self.raw_name,self.dbstate)
+            self.options = option_class(self.raw_name,
+                                        self.dbstate.get_database())
         elif type(option_class) == InstanceType:
             self.options = option_class
 
@@ -720,49 +721,49 @@ class GraphvizReportDialog(ReportDialog):
         index = 0
         for item in _FONTS:
             font_family.add_item(index, item["name"])
-            index+=1
+            index += 1
         font_family.set_help(_("Choose the font family. If international "
                                 "characters don't show, use FreeSans font. "
                                 "FreeSans is available from: "
                                 "http://www.nongnu.org/freefont/"))
-        self.options.add_menu_option(category,"font_family",font_family)
+        self.options.add_menu_option(category, "font_family", font_family)
 
-        font_size = NumberOption(_("Font size"),14,8,128)
+        font_size = NumberOption(_("Font size"), 14, 8, 128)
         font_size.set_help(_("The font size, in points."))
-        self.options.add_menu_option(category,"font_size",font_size)
+        self.options.add_menu_option(category,"font_size", font_size)
         
         rank_dir = EnumeratedListOption(_("Graph Direction"), 0)
         index = 0
         for item in _RANKDIR:
             rank_dir.add_item(index, item["name"])
-            index+=1
+            index += 1
         rank_dir.set_help(_("Whether graph goes from top to bottom "
                             "or left to right."))
-        self.options.add_menu_option(category,"rank_dir",rank_dir)
+        self.options.add_menu_option(category, "rank_dir", rank_dir)
 
-        h_pages = NumberOption(_("Number of Horizontal Pages"),1,1,25)
+        h_pages = NumberOption(_("Number of Horizontal Pages"), 1, 1, 25)
         h_pages.set_help(_("GraphViz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
                            "pages in the array horizontally."))
-        self.options.add_menu_option(category,"h_pages",h_pages)
+        self.options.add_menu_option(category, "h_pages", h_pages)
         
-        v_pages = NumberOption(_("Number of Vertical Pages"),1,1,25)
+        v_pages = NumberOption(_("Number of Vertical Pages"), 1, 1, 25)
         v_pages.set_help(_("GraphViz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
                            "pages in the array vertically."))
-        self.options.add_menu_option(category,"v_pages",v_pages)
+        self.options.add_menu_option(category, "v_pages", v_pages)
 
         page_dir = EnumeratedListOption(_("Paging Direction"), 0)
         index = 0
         for item in _PAGEDIR:
             page_dir.add_item(index, item["name"])
-            index+=1
+            index += 1
         page_dir.set_help(_("The order in which the graph pages are output. "
                             "This option only applies if the horizontal pages "
                             "or vertical pages are greater than 1."))
-        self.options.add_menu_option(category,"page_dir",page_dir)
+        self.options.add_menu_option(category, "page_dir", page_dir)
 
         # the page direction option only makes sense when the
         # number of horizontal and/or vertical pages is > 1,
@@ -784,10 +785,10 @@ class GraphvizReportDialog(ReportDialog):
         index = 0
         for item in _RATIO:
             aspect_ratio.add_item(index, item["name"])
-            index+=1
+            index += 1
         aspect_ratio.set_help(_("Affects greatly how the graph is layed out "
                                 "on the page."))
-        self.options.add_menu_option(category,"ratio",aspect_ratio)
+        self.options.add_menu_option(category, "ratio", aspect_ratio)
 
         dpi = NumberOption(_("DPI"), 75, 20, 1200)
         dpi.set_help(_( "Dots per inch.  When creating images such as "
@@ -819,18 +820,18 @@ class GraphvizReportDialog(ReportDialog):
         note = TextOption(_("Note to add to the graph"), 
                            [""] )
         note.set_help(_("This text will be added to the graph."))
-        self.options.add_menu_option(category,"note",note)
+        self.options.add_menu_option(category, "note", note)
         
         noteloc = EnumeratedListOption(_("Note location"), 't')
         for i in range( 0, len(_NOTELOC) ):
             noteloc.add_item(_NOTELOC[i]["value"], _NOTELOC[i]["name"])
         noteloc.set_help(_("Whether note will appear on top "
                                 "or bottom of the page."))
-        self.options.add_menu_option(category,"noteloc",noteloc)
+        self.options.add_menu_option(category, "noteloc", noteloc)
         
-        notesize = NumberOption(_("Note size"),32,8,128)
+        notesize = NumberOption(_("Note size"), 32, 8, 128)
         notesize.set_help(_("The size of note text, in points."))
-        self.options.add_menu_option(category,"notesize",notesize)
+        self.options.add_menu_option(category, "notesize", notesize)
 
         self.options.load_previous_values()
 
