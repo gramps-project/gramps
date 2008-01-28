@@ -7,6 +7,8 @@ gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de G
 .RB [ \-?|\-\^\-help ]
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
+.RB [ \-l]
+.RB [ \-u|\-\^\-force-unlock ]
 .RB [ \-O|\-\^\-open=
 .IR BASE_DE_DONNEES 
 .RB [ \-f|\-\^\-format= 
@@ -74,6 +76,14 @@ ig.
 \fBgramps\-pkg\fR, \fBwft\fR (deviné si \fIFICHIER\fR se termine par \fB.wft\fR),
 \fBgeneweb\fR, et \fBiso\fR (jamais deviné, toujours spécifié avec l'option
 \fB\-f\fR).
+
+.TP 
+.BI \-l
+Imprime une liste des arbres familiaux disponibles.
+
+.TP
+.BI \-u,\-\^\-force-unlock
+Débloquer une base de données vérouillée.
 
 .TP 
 .BI \-O,\-\^\-open= " BASE_DE_DONNEES"

@@ -1,3 +1,7 @@
+2008-01-28 Jerome Rapinat <romjerome@yahoo.fr>
+        * data/man/fr/gramps.1.in: updates for -u and -l options
+        * data/man/gramps.1.in: updates for -u options
+
 2008-01-28 Peter Landgren <peter.talken@telia.com>
     * data/man/sv/gramps.1.in: updates for -u option
 

@@ -8,6 +8,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
 .RB [ \-l]
+.RB [ \-u|\-\^\-force-unlock ]
 .RB [ \-O|\-\^\-open=
 .IR DATABASE 
 .RB [ \-f|\-\^\-format= 
@@ -91,6 +92,10 @@ Formats available for export are
 .TP 
 .BI \-l
 Print a list of known family trees.
+
+.TP
+.BI \-u,\-\^\-force-unlock
+Unlock a locked database.
 
 .TP 
 .BI \-O,\-\^\-open= " DATABASE"
