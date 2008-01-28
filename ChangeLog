@@ -1,4 +1,8 @@
 2008-01-27 Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_GuiOptions.py: 
+	Fix 0001659: NumberOption fields on report dialogs
+
+2008-01-27 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_GraphvizReportDialog.py: Fix 0001656: New menu item
 
 2008-01-26  Douglas S. Blank  <dblank@cs.brynmawr.edu>

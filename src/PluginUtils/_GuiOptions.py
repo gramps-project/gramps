@@ -219,16 +219,18 @@ class GuiNumberOption(gtk.SpinButton):
             decimals = int(math.log10(step) * -1)
             
         gtk.SpinButton.__init__(self, adj, digits=decimals)
+        gtk.SpinButton.set_numeric(self, True)
 
         self.set_value(self.__option.get_value())
-        self.connect('changed', self.__value_changed)
+        self.connect('value_changed', self.__value_changed)
         tooltip.set_tip(self, self.__option.get_help())
         
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
         Handle the change of the value.
         """
-        self.__option.set_value( int(self.get_value_as_int()) )
+        vtype = type(self.__option.get_value())
+        self.__option.set_value( vtype(self.get_value()) )
 
 #-------------------------------------------------------------------------
 #
