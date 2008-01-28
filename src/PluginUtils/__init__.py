@@ -60,7 +60,7 @@ class MenuToolOptions(GuiMenuOptions,Tool.ToolOptions):
     and the MenuToolOptions class will worry about setting up the GUI.
     """
     def __init__(self, name, person_id=None, dbstate=None):
-        Tool.ToolOptions.__init__(self,name, person_id)
-        GuiMenuOptions.__init__(self, dbstate)
+        Tool.ToolOptions.__init__(self, name, person_id)
+        GuiMenuOptions.__init__(self)
 
 

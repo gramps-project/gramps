@@ -1,4 +1,8 @@
 2008-01-27 Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/__init__.py: 
+	Remove the use of dbstate for GuiMenuOptions in tools.
+
+2008-01-27 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_GuiOptions.py: 
 	Fix 0001659: NumberOption fields on report dialogs
 
