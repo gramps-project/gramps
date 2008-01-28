@@ -57,7 +57,7 @@ import Config
 import RecentFiles
 import Utils
 import gen.db.exceptions as GX
-from DbManager import CLIDbManager, NAME_FILE
+from DbManager import CLIDbManager, NAME_FILE, find_locker_name
 
 from PluginUtils import Tool, cl_list, cli_tool_list
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
@@ -83,7 +83,7 @@ Application options
   -p, --options=OPTIONS_STRING           Specify options
   -d, --debug=LOGGER_NAME                Enable debug logs
   -l                                     List Family Trees
-
+  -u                                     Force unlock of family tree
 """
 
 #-------------------------------------------------------------------------
@@ -131,6 +131,8 @@ class ArgHandler:
         self.imp_db_path = None
         self.list = False
         self.help = False
+        self.force_unlock = False
+        self.dbman = CLIDbManager(self.state)
 
         self.parse_args()
 
@@ -154,6 +156,8 @@ class ArgHandler:
                 'gramps-xml','gramps-pkg','iso','wft','geneweb')
         5/ -a, --action:    An action (possible: 'check', 'summary', 'report', 
                             'tool')
+        6/ -u, --force-unlock: A locked database can be unlocked by given this
+                argument when opening it
                             
         """
         try:
@@ -172,6 +176,12 @@ class ArgHandler:
             # use it as a file to open and return
             self.open_gui = leftargs[0]
             print "Trying to open: %s ..." % leftargs[0]
+            #see if force open is on
+            for opt_ix in range(len(options)):
+                option, value = options[opt_ix]
+                if option in ('-u', '--force-unlock'):
+                    self.force_unlock = True
+                    break
             return
 
         # Go over all given option and place them into appropriate lists
@@ -185,8 +195,7 @@ class ArgHandler:
                 ftype = Mime.get_type(fullpath)
                 if not os.path.exists(fullpath):
                     #see if not just a name of a database is given
-                    dbman = CLIDbManager(self.state)
-                    data = dbman.family_tree(fname)
+                    data = self.dbman.family_tree(fname)
                     if data is not None:
                         fname, ftype, title = data
                     else:
@@ -208,8 +217,7 @@ class ArgHandler:
                 ftype = Mime.get_type(fullpath)
                 if not os.path.exists(fullpath):
                     #see if not just a name of a database is given
-                    dbman = CLIDbManager(self.state)
-                    data = dbman.family_tree(fname)
+                    data = self.dbman.family_tree(fname)
                     if data is not None:
                         fname, ftype, title = data
                     else:
@@ -306,6 +314,8 @@ class ArgHandler:
                 self.list = True
             elif option in ('-h', '-?', '--help'):
                 self.help = True
+            elif option in ('-u', '--force-unlock'):
+                self.force_unlock = True
 
     #-------------------------------------------------------------------------
     # Determine the need for GUI
@@ -342,8 +352,7 @@ class ArgHandler:
 
         if self.list:
             print 'List of known family trees in your database path\n'
-            dbman = CLIDbManager(self.state)
-            for name, dirname in dbman.family_tree_list():
+            for name, dirname in self.dbman.family_tree_list():
                 print dirname, ', with name ', name 
             sys.exit(0)
         if self.help:
@@ -379,14 +388,12 @@ class ArgHandler:
                 elif filetype == const.APP_GRAMPS_PKG:
                     print "Type: GRAMPS XML package"
 
-                dbman = CLIDbManager(self.state)
-                filename, filetype, name = dbman.import_new_db(filetype, 
+                filename, filetype, name = self.dbman.import_new_db(filetype, 
                                                                filename, None)
                 success = True
             else:
                 #see if not just a name of a database is given
-                dbman = CLIDbManager(self.state)
-                data = dbman.family_tree(self.open_gui)
+                data = self.dbman.family_tree(self.open_gui)
                 if data is not None:
                     filename, filetype= data[0], data[1]
                     success = True
@@ -398,6 +405,9 @@ class ArgHandler:
                     print "Exiting..." 
                     sys.exit(0)
             if success:
+                # Test if not locked or problematic
+                if not self.__check_db(filename, self.force_unlock):
+                    sys.exit(0)
                 # Add the file to the recent items
                 path = os.path.join(filename, "name.txt")
                 try:
@@ -424,6 +434,8 @@ class ArgHandler:
                 if os.path.isfile(path_name):
                     filetype = const.APP_FAMTREE
                     filename = name
+                    if not self.__check_db(filename, self.force_unlock):
+                        sys.exit(0)
                     success = True
                 else:
                     print "No valid Family tree given, cannot be opened."
@@ -484,9 +496,22 @@ class ArgHandler:
             filename = Config.get(Config.RECENT_FILE)
             if os.path.isdir(filename) and \
                     os.path.isfile(os.path.join(filename, "name.txt")) and \
-                    not os.path.isfile(os.path.join(filename, "need_recover")):
+                    self.__check_db(filename):
                 self.vm.db_loader.read_file(filename)
                 return (filename, const.APP_FAMTREE)
+
+    def __check_db(self, dbpath, force_unlock = False):
+        # Test if not locked or problematic
+        if force_unlock:
+            self.dbman.break_lock(dbpath)
+        if self.dbman.is_locked(dbpath):
+            print _("Database is locked, cannot open it!")
+            print _("  Info: %s") % find_locker_name(dbpath)
+            return False
+        if self.dbman.needs_recovery(dbpath):
+            print _("Database needs recovery, cannot open it!")
+            return False
+        return True
 
     #-------------------------------------------------------------------------
     #
@@ -500,6 +525,8 @@ class ArgHandler:
         """
         if format == 'famtree':
             #3.x database
+            if not self.__check_db(filename):
+                    sys.exit(0)
             try:
                 GrampsDbUtils.gramps_db_reader_factory(const.APP_FAMTREE)(
                     self.state.db, filename, empty)

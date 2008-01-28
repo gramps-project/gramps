@@ -232,6 +232,29 @@ class CLIDbManager:
             return new_path, 'x-directory/normal', title
         return None, None, None
 
+    def is_locked(self, dbpath):
+        """
+        returns True if there is a lock file in the dirpath
+        """
+        if os.path.isfile(os.path.join(dbpath,"lock")):
+            return True
+        return False
+
+    def needs_recovery(self, dbpath):
+        """
+        returns True if the database in dirpath needs recovery
+        """
+        if os.path.isfile(os.path.join(dbpath,"need_recover")):
+            return True
+        return False
+
+    def break_lock(self, dbpath):
+        """
+        Breaks the lock on a database
+        """
+        if os.path.exists(os.path.join(dbpath, "lock")):
+            os.unlink(os.path.join(dbpath, "lock"))
+
 class DbManager(CLIDbManager):
     """
     Database Manager. Opens a database manager window that allows users to
@@ -489,8 +512,7 @@ class DbManager(CLIDbManager):
         the display appropriately.
         """
         try:
-            if os.path.exists(os.path.join(self.lock_file, "lock")):
-                os.unlink(os.path.join(self.lock_file, "lock"))
+            self.break_lock(self.lock_file)
             store, node = self.selection.get_selected()
             dbpath = store.get_value(node, PATH_COL)
             (tval, last) = time_val(dbpath)
@@ -953,7 +975,9 @@ def find_revisions(name):
 def find_locker_name(dirpath):
     """
     Opens the lock file if it exists, reads the contexts and returns 
-    the contents. If a file is encountered, we return 'Unknown'
+    the contents, which should be like "Locked by USERNAME". 
+    If a file is encountered with errors, we return 'Unknown'
+    This data is displayed in the time column of the manager
     """
     try:
         fname = os.path.join(dirpath, "lock")

@@ -1,3 +1,9 @@
+2008-01-28 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ArgHandler.py:
+	* src/DbManager.py:
+	* src/const.py.in: run ./autogen !!
+	fix #1445, don't open locked/unrepaired dbs, new option -u to unlock
+
 2008-01-27 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/__init__.py: 
 	Remove the use of dbstate for GuiMenuOptions in tools.
