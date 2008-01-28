@@ -83,7 +83,7 @@ Imprime une liste des arbres familiaux disponibles.
 
 .TP
 .BI \-u,\-\^\-force-unlock
-Débloquer une base de données vérouillée.
+Débloquer une base de données verrouillée.
 
 .TP 
 .BI \-O,\-\^\-open= " BASE_DE_DONNEES"
