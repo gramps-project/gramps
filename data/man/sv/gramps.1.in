@@ -25,7 +25,8 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .IR ÅTGÄRD ]
 .RB [ \-p|\-\^\-options= 
 .IR ALTERNATIVSTRÄNG ]] 
-.RB [
+.RB [ \-l ] 
+.RB [ \-u|\-\^\-force-unlock ]
 .IR FIL
 .RB ]
 .if 0 .RB [ bonobo\ options ]
@@ -156,6 +157,14 @@ Detta skriver beskrivning av den funktion, som \fBoptionname\fR innebär, likvä
 
 .br
 Använd alternativen ovan för att ta reda på all om en viss rapport.
+
+.TP 
+.BI \-l
+Listar alla databaser/familjeträd.
+
+.TP 
+.BI \-u,\-\^\-force-unlock
+Tvingar upplåsning av databas.
 
 .LP
 Om mer än en utdataåtgärd givits måste varje föregås av en \fB\-a\fR-flagga. 
