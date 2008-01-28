@@ -81,6 +81,12 @@ class FamilyLinesOptions(MenuReportOptions):
     to configure the FamilyLines reports.
     """
     def __init__(self, name, dbase):
+        self.limit_parents = None
+        self.max_parents = None
+        self.limit_children = None
+        self.max_children = None
+        self.include_images = None
+        self.image_location = None
         MenuReportOptions.__init__(self, name, dbase)
 
     def add_menu_options(self, menu):
@@ -133,35 +139,47 @@ class FamilyLinesOptions(MenuReportOptions):
         colourFamily.set_help(              _('The colour to use to display families.'))
         menu.add_option(category, 'FLcolourFamilies', colourFamily)
 
-        self.limitParents = BooleanOption(  _('Limit the number of parents'), False)
-        self.limitParents.set_help(         _('The maximum number of ancestors to include.'))
-        menu.add_option(category, 'FLlimitParents', self.limitParents)
+        self.limit_parents = BooleanOption(_('Limit the number of parents'), 
+                                           False)
+        self.limit_parents.set_help(
+                            _('The maximum number of ancestors to include.'))
+        menu.add_option(category, 'FLlimitParents', self.limit_parents)
+        self.limit_parents.connect('value-changed', self.limit_changed)
 
-        self.maxParents = NumberOption(     '', 50, 10, 9999)
-        self.maxParents.set_help(           _('The maximum number of ancestors to include.'))
-        menu.add_option(category, 'FLmaxParents', self.maxParents)
+        self.max_parents = NumberOption('', 50, 10, 9999)
+        self.max_parents.set_help(
+                              _('The maximum number of ancestors to include.'))
+        menu.add_option(category, 'FLmaxParents', self.max_parents)
 
-        self.limitChildren = BooleanOption( _('Limit the number of children'), False)
-        self.limitChildren.set_help(        _('The maximum number of children to include.'))
-        menu.add_option(category, 'FLlimitChildren', self.limitChildren)
+        self.limit_children = BooleanOption(_('Limit the number of children'), 
+                                            False)
+        self.limit_children.set_help(
+                             _('The maximum number of children to include.'))
+        menu.add_option(category, 'FLlimitChildren', self.limit_children)
+        self.limit_children.connect('value-changed', self.limit_changed)
 
-        self.maxChildren = NumberOption(    '', 50, 10, 9999)
-        self.maxChildren.set_help(          _('The maximum number of children to include.'))
-        menu.add_option(category, 'FLmaxChildren', self.maxChildren)
+        self.max_children = NumberOption('', 50, 10, 9999)
+        self.max_children.set_help(
+                               _('The maximum number of children to include.'))
+        menu.add_option(category, 'FLmaxChildren', self.max_children)
 
         # --------------------
         category = _('Images')
         # --------------------
 
-        self.includeImages = BooleanOption( _('Include thumbnail images of people'), True)
-        self.includeImages.set_help(        _('The maximum number of children to include.'))
-        menu.add_option(category, 'FLincludeImages', self.includeImages)
+        self.include_images = BooleanOption(
+                                  _('Include thumbnail images of people'), True)
+        self.include_images.set_help(
+                                _('The maximum number of children to include.'))
+        menu.add_option(category, 'FLincludeImages', self.include_images)
+        self.include_images.connect('value-changed', self.images_changed)
 
-        self.imageLocation = EnumeratedListOption(_('Thumbnail location'), 0)
-        self.imageLocation.add_item(0,     _('Above the name'))
-        self.imageLocation.add_item(1,     _('Beside the name'))
-        self.imageLocation.set_help(       _('Where the thumbnail image should appear relative to the name'))
-        menu.add_option(category, 'FLimageOnTheSide', self.imageLocation)
+        self.image_location = EnumeratedListOption(_('Thumbnail location'), 0)
+        self.image_location.add_item(0, _('Above the name'))
+        self.image_location.add_item(1, _('Beside the name'))
+        self.image_location.set_help(
+             _('Where the thumbnail image should appear relative to the name'))
+        menu.add_option(category, 'FLimageOnTheSide', self.image_location)
 
         # ---------------------
         category = _('Options')
@@ -193,29 +211,22 @@ class FamilyLinesOptions(MenuReportOptions):
         includePrivate = BooleanOption(     _('Include private records'), False)
         includePrivate.set_help(            _('Whether to include names, dates, and families that are marked as private.'))
         menu.add_option(category, 'FLincludePrivate', includePrivate)
+        
+        self.limit_changed()
+        self.images_changed()
 
+    def limit_changed(self):
+        """
+        Handle the change of limiting parents and children.
+        """
+        self.max_parents.set_available(self.limit_parents.get_value())
+        self.max_children.set_available(self.limit_children.get_value())
 
-    def limitChanged(self, button):
-        self.maxParents.gobj.set_sensitive(self.limitParents.gobj.get_active())
-        self.maxChildren.gobj.set_sensitive(self.limitChildren.gobj.get_active())
-
-
-    def imagesChanged(self, button):
-        self.imageLocation.gobj.set_sensitive(self.includeImages.gobj.get_active())
-
-
-    def post_init(self, dialog):
-        # this method is called after all of the controls have been
-        # created, but before the notebook itself has been created
-
-        self.limitParents.  gobj.connect('toggled', self.limitChanged   )
-        self.limitChildren. gobj.connect('toggled', self.limitChanged   )
-        self.includeImages. gobj.connect('toggled', self.imagesChanged  )
-
-        # ensure things are initialized correctly when it first comes up
-        self.limitChanged(  self.limitParents.gobj  )
-        self.imagesChanged( self.includeImages.gobj )
-
+    def images_changed(self):
+        """
+        Handle the change of including images.
+        """
+        self.image_location.set_available(self.include_images.get_value())
 
 #------------------------------------------------------------------------
 #

@@ -225,12 +225,22 @@ class GuiNumberOption(gtk.SpinButton):
         self.connect('value_changed', self.__value_changed)
         tooltip.set_tip(self, self.__option.get_help())
         
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+        
     def __value_changed(self, obj): # IGNORE:W0613 - obj is unused
         """
         Handle the change of the value.
         """
         vtype = type(self.__option.get_value())
         self.__option.set_value( vtype(self.get_value()) )
+        
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
 
 #-------------------------------------------------------------------------
 #

@@ -1,3 +1,9 @@
+2008-01-28 Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_GuiOptions.py:
+	* src/plugins/GVFamilyLines.py:
+	Change the availability of some options in FamilyLines depending on the 
+	value of other options.
+
 2008-01-28 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ArgHandler.py:
 	* src/DbManager.py:
