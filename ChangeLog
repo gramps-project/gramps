@@ -1,3 +1,7 @@
+2008-01-29 Peter Landgren <peter.talken@telia.com>
+    * src/plugins/ChangeNames.py: Improved capitalization rules for names with
+    one prefix and multiple surnames with or without hyphen(s)
+
 2008-01-28 Duncan Lithgow <dlithgow@gmail.com>
 		   Raphael Ackermann <raphael.ackermann@gmail.com>
 	*  src/plugins/Summary.py
