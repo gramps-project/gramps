@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -171,7 +172,8 @@ class CardWriter:
             self.plist[p] = 1
 
     def writeln(self, text):
-        self.g.write('%s\n' % (text.encode('iso-8859-1')))
+        #self.g.write('%s\n' % (text.encode('iso-8859-1')))
+        self.g.write('%s\n' % (text.encode(sys.getfilesystemencoding())))
 
     def export_data(self, filename):
 
