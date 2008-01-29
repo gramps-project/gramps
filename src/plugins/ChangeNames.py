@@ -53,6 +53,21 @@ from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
+# constants
+#
+#-------------------------------------------------------------------------
+
+prefix_list = [
+    "de", "van", "von", "di", "le", "du", "dela", "della",
+    "des", "vande", "ten", "da", "af", "den", "das", "dello",
+    "del", "en", "ein", "el" "et", "les", "lo", "los", "un",
+    "um", "una", "uno",
+    ]
+
+
+
+#-------------------------------------------------------------------------
+#
 # ChangeNames
 #
 #-------------------------------------------------------------------------
@@ -75,8 +90,50 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.name_list = []
         
         for name in self.db.get_surname_list():
-            if name != name.capitalize():
-                self.name_list.append(name)
+            name.strip()            
+            namesplitSP= name.split()
+            lSP = len(namesplitSP)
+            namesplitHY= name.split('-')
+            lHY = len(namesplitHY)
+            if lSP == 1 and lHY == 1:
+                if name != name.capitalize():
+                    # Single surname without hyphen(s)
+                    self.name_list.append(name)
+            #if lSP == 1 and lHY > 1:
+                #print "LSP==1",name,name.capitalize()
+                #if name != name.capitalize():
+                    # Single surname with hyphen(s)
+                    #self.name_list.append(name)
+            if lSP>1 and lHY == 1:
+                # more than one string in surname but no hyphen
+                # check if first string is in prefix_list, if so test for cap in rest
+                s1 = 0
+                if namesplitSP[0].lower() in prefix_list:
+                    s1 = 1
+                for x in range(len(namesplitSP)-s1):
+                    # check if any subsurname is not cap
+                    notcap = False
+                    if namesplitSP[s1+x] != namesplitSP[s1+x].capitalize():
+                        notcap = True
+                        break
+                if notcap:
+                    # Multiple surnames possibly after prefix
+                    self.name_list.append(name)
+            if lHY > 1:
+                # more than one string in surname but hyphen(s) exists
+                # check if first string is in prefix_list, if so test for cap
+                if namesplitSP[0].lower() in prefix_list:
+                    namesplitHY[0] = namesplitHY[0].replace(namesplitSP[0],'').strip()
+                for x in range(len(namesplitHY)):
+                    # check if any subsurname is not cap
+                    notcap = False
+                    if namesplitHY[x] != namesplitHY[x].capitalize():
+                        notcap = True
+                        break
+                if notcap:
+                    # Multiple surnames possibly after frefix
+                    self.name_list.append(name)
+                    
             if uistate:
                 self.progress.step()
         
@@ -87,6 +144,34 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.close()
             OkDialog(_('No modifications made'),
                      _("No capitalization changes were detected."))
+
+    def name_cap(self,name):
+        name.strip()            
+        namesplitSP = name.split()
+        lSP = len(namesplitSP)
+        lHY = len(name.split('-'))
+        namesep = ' '
+        if lHY > 1:
+            namesep = '-'
+            namesplitSP = name.replace(namesep,' ').split()
+            lSP= len(namesplitSP)
+        if lSP == 1 and lHY == 1:
+            #if name != name.capitalize():
+            # Single surname without space(s) or hyphen(s), normal case
+            return name.capitalize()
+        else: 
+            # more than one string in surname but no hyphen
+            # check if first string is in prefix_list, if so CAP the rest
+            # Names like (von) Kohl(-)Brandt 
+            result = ""
+            s1 = 0
+            if namesplitSP[0].lower() in prefix_list:
+                s1 = 1
+                result = namesplitSP[0].lower()+ ' '
+            for x in range(lSP-s1):
+                # CAP all subsurnames
+                result = result + namesplitSP[s1+x].capitalize() + namesep
+            return result[:-1]
 
     def display(self):
 
@@ -128,7 +213,8 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             handle = self.model.append()
             self.model.set_value(handle,0,True)
             self.model.set_value(handle,1,name)
-            self.model.set_value(handle,2,name.capitalize())
+            namecap = self.name_cap(name)
+            self.model.set_value(handle,2,namecap)
             self.iter_list.append(handle)
             self.progress.step()
         self.progress.close()
@@ -161,7 +247,8 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                 sname = name.get_surname()
                 if sname in changelist:
                     change = True
-                    name.set_surname(sname.capitalize())
+                    sname = self.name_cap(sname)
+                    name.set_surname(sname)
             if change:
                 self.db.commit_person(person,self.trans)
 
