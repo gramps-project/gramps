@@ -28,21 +28,19 @@
 #Better would be to do: import _PluginMgr as PluginMgr and then access
 # the list as PluginUtils.PluginMgr, or use a function that returns the pointer
 # of the list.
-from _MenuOptions import \
-    NumberOption, BooleanOption, TextOption, \
-    EnumeratedListOption, FilterOption, StringOption, ColourOption, \
-    PersonOption, PersonListOption, SurnameColourOption, FamilyOption
+from _MenuOptions import (NumberOption, BooleanOption, TextOption, 
+                          EnumeratedListOption, FilterOption, StringOption, 
+                          ColourOption, PersonOption, PersonListOption, 
+                          SurnameColourOption, FamilyOption)
 from _GuiOptions import GuiMenuOptions
-from _PluginMgr import \
-     register_export, register_import, \
-     register_tool, register_report, \
-     register_relcalc, relationship_class, \
-     textdoc_list, drawdoc_list, bookdoc_list, \
-     bkitems_list, cl_list, cli_tool_list, \
-     load_plugins, import_list, export_list,\
-     report_list, quick_report_list, tool_list, \
-     register_text_doc, register_draw_doc, register_book_doc,\
-     register_quick_report
+from _PluginMgr import (register_export, register_import, register_tool, 
+                        register_report, register_relcalc, relationship_class, 
+                        textdoc_list, drawdoc_list, bookdoc_list, 
+                        bkitems_list, cl_list, cli_tool_list, load_plugins, 
+                        import_list, export_list, report_list, 
+                        quick_report_list, tool_list, register_text_doc, 
+                        register_draw_doc, register_book_doc, 
+                        register_quick_report)
 
 import _Tool as Tool
 import _Plugins as Plugins

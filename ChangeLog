@@ -1,7 +1,14 @@
+2008-01-29  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/ViewManager.py: 0001641: add ... ellipsis to menu items. 
+	* src/plugins/Calendar.py: 0001641: add ... ellipsis to menu items. 
+	* src/PluginUtils/__init__.py: pep8 fixes
+	* src/PluginUtils/_PluginMgr.py: pylint and doc fixes
+
 2008-01-29 Peter Landgren <peter.talken@telia.com>
     * src/plugins/ExportVCalendar.py: 
     * src/plugins/ExportVCard.py:
-      Encoding according to sys.getfilesystemencoding() in stead of hardcoded iso-8859-1
+      Encoding according to sys.getfilesystemencoding() in stead of hardcoded 
+      iso-8859-1
 
 2008-01-29  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/plugins/EventNames.py: doc fixes and removal of self.label
@@ -16,7 +23,7 @@
     one prefix and multiple surnames with or without hyphen(s)
 
 2008-01-28 Duncan Lithgow <dlithgow@gmail.com>
-		   Raphael Ackermann <raphael.ackermann@gmail.com>
+           Raphael Ackermann <raphael.ackermann@gmail.com>
 	*  src/plugins/Summary.py
 	*  src/plugins/WebCal.py
 	*  src/plugins/KinshipReport.py

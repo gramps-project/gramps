@@ -394,7 +394,7 @@ class ViewManager:
              self.quit), 
             ('ViewMenu', None, _('_View')), 
             ('EditMenu', None, _('_Edit')), 
-            ('Preferences', gtk.STOCK_PREFERENCES, _('_Preferences'), None,
+            ('Preferences', gtk.STOCK_PREFERENCES, _('_Preferences...'), None,
              None, self.preferences_activate), 
             ('HelpMenu', None, _('_Help')), 
             ('HomePage', None, _('GRAMPS _Home Page'), None, None, 

@@ -287,19 +287,12 @@ def register_report(
         _register_cl_report(name,category,report_class,options_class,
                             translated_name,unsupported, require_active)
 
-def _register_standalone(report_class,
-                         options_class,
-                         translated_name, 
-                         name,
-                         category,
-                         description=_unavailable,
-                         status=_("Unknown"),
-                         author_name=_("Unknown"),
-                         author_email=_("Unknown"),
-                         unsupported=False,
-                         require_active=True,
-                         ):
-    """Register a report with the plugin system"""
+def _register_standalone(report_class, options_class, translated_name, name,
+                         category, description=_unavailable, 
+                         status=_("Unknown"), author_name=_("Unknown"),
+                         author_email=_("Unknown"), unsupported=False,
+                         require_active=True):
+    """Register a report with the plugin system."""
     
     del_index = -1
     for i in range(0,len(report_list)):
@@ -310,14 +303,13 @@ def _register_standalone(report_class,
         del report_list[del_index]
 
     report_list.append((report_class, options_class, translated_name, 
-                        category, name, description, status,
-                        author_name, author_email, unsupported,
-                        require_active))
+                        category, name, description, status, author_name, 
+                        author_email, unsupported, require_active))
     mod2text[report_class.__module__] = description
 
 def register_book_item(translated_name, category, report_class,
                         option_class, name, unsupported, require_active):
-    """Register a book item"""
+    """Register a book item."""
     
     del_index = -1
     for i in range(0,len(bkitems_list)):
@@ -330,8 +322,8 @@ def register_book_item(translated_name, category, report_class,
     bkitems_list.append((translated_name, category, report_class,
                          option_class, name, unsupported, require_active))
 
-def _register_cl_report(name,category,report_class,options_class,
-                        translated_name,unsupported, require_active):
+def _register_cl_report(name, category, report_class, options_class,
+                        translated_name, unsupported, require_active):
     del_index = -1
     for i in range(0,len(cl_list)):
         val = cl_list[i]
@@ -339,8 +331,8 @@ def _register_cl_report(name,category,report_class,options_class,
             del_index = i
     if del_index != -1:
         del cl_list[del_index]
-    cl_list.append((name,category,report_class,options_class,
-                    translated_name,unsupported, require_active))
+    cl_list.append((name, category, report_class, options_class,
+                    translated_name, unsupported, require_active))
 
 #-------------------------------------------------------------------------
 #
@@ -348,8 +340,8 @@ def _register_cl_report(name,category,report_class,options_class,
 #
 #-------------------------------------------------------------------------
 def register_text_doc(name,classref, table, paper, style, ext,
-                      print_report_label=None,clname=''):
-    """Register a text document generator"""
+                      print_report_label=None, clname=''):
+    """Register a text document generator."""
     del_index = -1
     for i in range(0,len(textdoc_list)):
         val = textdoc_list[i]
