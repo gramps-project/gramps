@@ -21,7 +21,7 @@
 
 # $Id$
 
-"Text Reports/Ahnentafel Report"
+"""Reports/Text Reports/Ahnentafel Report..."""
 
 #------------------------------------------------------------------------
 #

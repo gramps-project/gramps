@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Exploration/Compare individual events"
+"""Tools/Analysis and Exploration/Compare Individual Events..."""
 
 #------------------------------------------------------------------------
 #

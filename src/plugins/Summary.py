@@ -20,7 +20,7 @@
 
 # $Id$
 
-"View/Summary of the database"
+"""Reports/View/Summary of the Database"""
 
 #------------------------------------------------------------------------
 #

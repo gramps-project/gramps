@@ -1,4 +1,40 @@
 2008-01-28 Duncan Lithgow <dlithgow@gmail.com>
+		   Raphael Ackermann <raphael.ackermann@gmail.com>
+	*  src/plugins/Summary.py
+	*  src/plugins/WebCal.py
+	*  src/plugins/KinshipReport.py
+	*  src/plugins/DescendReport.py
+	*  src/plugins/DetDescendantReport.py
+	*  src/plugins/ExtractCity.py
+	*  src/plugins/EventNames.py
+	*  src/plugins/DumpGenderStats.py
+	*  src/plugins/Desbrowser.py
+	*  src/plugins/Checkpoint.py
+	*  src/plugins/OwnerEditor.py
+	*  src/plugins/ChangeNames.py
+	*  src/plugins/AncestorReport.py
+	*  src/plugins/MarkerReport.py
+	*  src/plugins/DateParserDisplayTest.py
+	*  src/plugins/FindDupes.py
+	*  src/plugins/SoundGen.py
+	*  src/plugins/TestcaseGenerator.py
+	*  src/plugins/Rebuild.py
+	*  src/plugins/DescendChart.py
+	*  src/plugins/EndOfLineReport.py
+	*  src/plugins/AncestorChart.py
+	*  src/plugins/DetAncestralReport.py
+	*  src/plugins/CountAncestors.py
+	*  src/plugins/Check.py
+	*  src/plugins/EventCmp.py
+	*  src/plugins/FamilyGroup.py
+	*  src/plugins/RelCalc.py
+	*  src/plugins/MediaManager.py
+	*  src/plugins/ChangeTypes.py
+	*  src/plugins/StatisticsChart.py
+	*  src/plugins/FamilyLines.py
+	*  src/plugins/PatchNames.py
+	
+2008-01-28 Duncan Lithgow <dlithgow@gmail.com>
 	* various: add capitalization fixes according to HIG (plus ellipsis ...)
 	http://library.gnome.org/devel/hig-book/stable/design-text-labels.html.en	
 

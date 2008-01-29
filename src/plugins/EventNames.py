@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Fix capitalization of family names"
+"""Tools/Database Processing/Extract Event Descriptions from Event Data"""
 
 #-------------------------------------------------------------------------
 #

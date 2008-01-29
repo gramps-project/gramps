@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Edit database owner information"
+"""Tools/Database Processing/Edit Database Owner Information"""
 
 #-------------------------------------------------------------------------
 #

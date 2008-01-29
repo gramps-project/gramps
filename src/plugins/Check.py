@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Check and repair database"
+"""Tools/Database Repair/Check and Repair Database"""
 
 #-------------------------------------------------------------------------
 #

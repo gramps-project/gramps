@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Merge people"
+"""Tools/Database Processing/Find Possible Duplicate People..."""
 
 #-------------------------------------------------------------------------
 #

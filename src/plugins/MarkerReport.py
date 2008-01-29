@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Generate files/Marker Report"
+"""Reports/Text Reports/Marker Report..."""
 
 #------------------------------------------------------------------------
 #

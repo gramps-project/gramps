@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Text Reports/Kinship Report"
+"""Reports/Text Reports/Kinship Report..."""
 
 #------------------------------------------------------------------------
 #

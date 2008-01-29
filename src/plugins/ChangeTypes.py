@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Rename event types"
+"""Database Processing/Rename Event Types..."""
 
 #------------------------------------------------------------------------
 #

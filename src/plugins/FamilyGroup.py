@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Generate files/Family Group Report"""
+"""Reports/Text Reports/Family Group Report..."""
 
 #------------------------------------------------------------------------
 #

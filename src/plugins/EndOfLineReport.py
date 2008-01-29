@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Text Reports/End of Line Report"
+"""Reports/Text Reports/End of Line Report..."""
 
 #------------------------------------------------------------------------
 #

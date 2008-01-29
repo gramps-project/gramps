@@ -22,7 +22,7 @@
 
 # $Id$
 
-"Generate files/Detailed Ancestral Report"
+"""Reports/Text Reports/Detailed Ancestral Report..."""
 
 #------------------------------------------------------------------------
 #

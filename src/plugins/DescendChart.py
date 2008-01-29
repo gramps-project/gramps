@@ -21,7 +21,7 @@
 
 # $Id$
 
-"Graphical Reports/Ancestor Chart"
+"""Reports/Graphical Reports/Ancestor Chart..."""
 
 #------------------------------------------------------------------------
 #

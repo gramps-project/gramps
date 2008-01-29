@@ -21,7 +21,10 @@
 
 # $Id$
 
-"Validate localized date parser and displayer"
+"""Validate localized date parser and displayer.
+
+    Tools/Debug/Check Localized Date Parser and Displayer...
+"""
 
 #-------------------------------------------------------------------------
 #

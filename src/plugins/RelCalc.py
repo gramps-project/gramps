@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Utilities/Relationship calculator"
+"""Tools/Utilities/Relationship Calculator..."""
 
 #-------------------------------------------------------------------------
 #

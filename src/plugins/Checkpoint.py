@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Extract information from names"
+"""Tools/Revision Control/Checkpoint the Database..."""
 
 #-------------------------------------------------------------------------
 #

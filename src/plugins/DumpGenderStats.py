@@ -20,7 +20,10 @@
 
 # $Id$
 
-"Dump gender stats"
+""" Dump Gender Statistics.
+    
+    Tools/Debug/Dump Gender Statistics
+"""
 
 import gtk
 import ListModel

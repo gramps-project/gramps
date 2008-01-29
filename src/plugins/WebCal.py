@@ -23,8 +23,11 @@
 
 """
 Web Calendar generator.
+
 Created 4/22/07 by Thom Sturgill based on Calendar.py (with patches) 
 by Doug Blank with input dialog based on NarrativeWeb.py by Don Allingham.
+
+Reports/Web Page/Web Calendar...
 """
 
 #------------------------------------------------------------------------
@@ -35,9 +38,8 @@ by Doug Blank with input dialog based on NarrativeWeb.py by Don Allingham.
 import os
 import time
 import datetime
-import const
+#import const
 import codecs
-import locale
 import shutil
 from gettext import gettext as _
 from xml.parsers import expat
@@ -74,16 +76,14 @@ import const
 import BaseDoc
 from GrampsCfg import get_researcher
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
-     CATEGORY_WEB, CATEGORY_TEXT, MODE_GUI
+from ReportBase import (Report, ReportUtils, ReportOptions, CATEGORY_WEB, 
+                        MODE_GUI)
 from ReportBase._ReportDialog import ReportDialog
 import Errors
 import Utils
 import GrampsLocale
-from QuestionDialog import ErrorDialog, WarningDialog
+from QuestionDialog import ErrorDialog
 from Utils import probably_alive
-from FontScale import string_trim, string_width
-
 
 #------------------------------------------------------------------------
 #

@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Utilities/Generate SoundEx codes"
+"""Tools/Utilities/Generate SoundEx Codes..."""
 
 #------------------------------------------------------------------------
 #

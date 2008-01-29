@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Analysis and Exploration/Interactive descendant browser"
+"""Tools/Analysis and Exploration/Interactive Descendant Browser"""
 
 #------------------------------------------------------------------------
 #

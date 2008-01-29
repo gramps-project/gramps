@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Extract information from names"
+"""Tools/Database Processing/Extract Information from Names..."""
 
 #-------------------------------------------------------------------------
 #

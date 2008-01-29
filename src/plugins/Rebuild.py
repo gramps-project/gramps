@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Check and repair database"
+"""Tools/Database Processing/Rebuild Secondary Indices"""
 
 #-------------------------------------------------------------------------
 #

@@ -21,7 +21,7 @@
 
 # $Id$
 
-"Database Processing/Fix capitalization of family names"
+"""Tools/Database Processing/Extract Place Data from a Place Title..."""
 
 #-------------------------------------------------------------------------
 #

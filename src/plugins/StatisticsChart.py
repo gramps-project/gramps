@@ -25,9 +25,7 @@
 #
 # $Id$
 
-"""
-Statistics Chart report
-"""
+"""Reports/Graphical Reports/Statistics Chart..."""
 
 #------------------------------------------------------------------------
 #

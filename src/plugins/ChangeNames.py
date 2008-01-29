@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Database Processing/Fix capitalization of family names"
+"""Tools/Database Processing/Fix Capitalization of Family Names..."""
 
 #-------------------------------------------------------------------------
 #

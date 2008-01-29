@@ -21,7 +21,7 @@
 
 # $Id$
 
-"Create person and family testcases"
+"""Tools/Debug/Generate Testcases for Persons and Families..."""
 
 #-------------------------------------------------------------------------
 #

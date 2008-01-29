@@ -20,8 +20,10 @@
 
 # $Id$
 
-"""
-Family Lines, a plugin for Gramps.
+""" 
+    Family Lines, a plugin for Gramps.
+
+    Reports/Graphviz/Family Lines Graph...
 """
 
 #------------------------------------------------------------------------

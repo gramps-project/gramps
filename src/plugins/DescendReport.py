@@ -21,7 +21,7 @@
 
 # $Id$
 
-"Generate files/Descendant Report"
+"""Reports/Text Reports/Descendant Report..."""
 
 #------------------------------------------------------------------------
 #

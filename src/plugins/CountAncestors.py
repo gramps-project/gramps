@@ -22,7 +22,7 @@
 
 # $Id$
 
-"View/Number of ancestors"
+"""Reports/View/Number of Ancestors"""
 
 #------------------------------------------------------------------------
 #
