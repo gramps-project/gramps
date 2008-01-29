@@ -1,3 +1,8 @@
+2008-01-29 Peter Landgren <peter.talken@telia.com>
+    * src/plugins/ExportVCalendar.py: 
+    * src/plugins/ExportVCard.py:
+      Encoding according to sys.getfilesystemencoding() in stead of hardcoded iso-8859-1
+
 2008-01-29  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/plugins/EventNames.py: doc fixes and removal of self.label
 
