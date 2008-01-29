@@ -1,3 +1,6 @@
+2008-01-29  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/plugins/EventNames.py: doc fixes and removal of self.label
+
 2008-01-29 Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/TimeLine.py:
 	* src/Sort.py: Use fallback events e.g. baptism/burial when no birth or

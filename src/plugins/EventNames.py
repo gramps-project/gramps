@@ -34,8 +34,6 @@ from gettext import gettext as _
 # gnome/gtk
 #
 #-------------------------------------------------------------------------
-import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -56,15 +54,15 @@ from BasicUtils import name_displayer
 #-------------------------------------------------------------------------
 class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
     """
-    Looks for events that do not have a description, and builds the 
-    description from the item that contains it. Looks for a PRIMARY role
-    type for events attached to a persons, and a FAMILY role for an event
-    that is attached to a family.
+    Look for events that do not have a description, and build the description 
+    from the item that contains it. 
+    
+    Looks for a PRIMARY role type for events attached to a persons, and a 
+    FAMILY role for an event that is attached to a family.
+    
     """
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        self.label = _('Capitalization changes')
-        
         Tool.BatchTool.__init__(self, dbstate, options_class, name)
 
         if not self.fail:
@@ -74,7 +72,7 @@ class EventNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def run(self):
         """
-        Performs the actual extraction of information
+        Perform the actual extraction of information.
         """
         trans = self.db.transaction_begin("", batch=True)
         self.db.disable_signals()
@@ -115,7 +113,7 @@ EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 
 def person_event_name(event, person):
     """
-    Builds a name for an event based on the primary person's information
+    Build a name for an event based on the primary person's information.
     """
     if not event.get_description():
         text = EVENT_PERSON_STR % {
@@ -126,7 +124,7 @@ def person_event_name(event, person):
 
 def family_event_name(event, family, dbase):
     """
-    Builds a name for an event based on the family's information
+    Build a name for an event based on the family's information.
     """
     if not event.get_description():
         text = EVENT_FAMILY_STR % {
@@ -142,7 +140,7 @@ def family_event_name(event, family, dbase):
 #------------------------------------------------------------------------
 class EventNamesOptions(Tool.ToolOptions):
     """
-    Defines options and provides handling interface.
+    Define options and provides handling interface.
     """
 
     def __init__(self, name, person_id=None):
