@@ -132,16 +132,14 @@ class TimeLine(Report):
         
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            b_ref = p.get_birth_ref()
-            if b_ref:
-                birth = self.database.get_event_from_handle(b_ref.ref)
+            birth = ReportUtils.get_birth_or_fallback(self.database, p)
+            if birth:
                 b = birth.get_date_object().get_year()
             else:
                 b = None
 
-            d_ref = p.get_death_ref()
-            if d_ref:
-                death = self.database.get_event_from_handle(d_ref.ref)
+            death = ReportUtils.get_death_or_fallback(self.database, p)
+            if death:
                 d = death.get_date_object().get_year()
             else:
                 d = None
@@ -232,16 +230,14 @@ class TimeLine(Report):
 
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
-            b_ref = p.get_birth_ref()
-            if b_ref:
-                birth = self.database.get_event_from_handle(b_ref.ref)
+            birth = ReportUtils.get_birth_or_fallback(self.database, p)
+            if birth:
                 b = birth.get_date_object().get_year()
             else:
                 b = None
 
-            d_ref = p.get_death_ref()
-            if d_ref:
-                death = self.database.get_event_from_handle(d_ref.ref)
+            death = ReportUtils.get_death_or_fallback(self.database, p)
+            if death:
                 d = death.get_date_object().get_year()
             else:
                 d = None

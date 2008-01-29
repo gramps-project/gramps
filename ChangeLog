@@ -1,3 +1,8 @@
+2008-01-29 Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/TimeLine.py:
+	* src/Sort.py: Use fallback events e.g. baptism/burial when no birth or
+	death events are available.
+
 2008-01-29 Peter Landgren <peter.talken@telia.com>
     * src/plugins/ChangeNames.py: Improved capitalization rules for names with
     one prefix and multiple surnames with or without hyphen(s)

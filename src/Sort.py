@@ -41,6 +41,7 @@ import locale
 #-------------------------------------------------------------------------
 from gen.lib import Date
 from BasicUtils import name_displayer as _nd
+from ReportBase import ReportUtils
 
 #-------------------------------------------------------------------------
 #
@@ -94,15 +95,15 @@ class Sort:
         first = self.database.get_person_from_handle(first_id)
         second = self.database.get_person_from_handle(second_id)
 
-        birth_ref1 = first.get_birth_ref()
-        if birth_ref1:
-            date1 = self.database.get_event_from_handle(birth_ref1.ref).get_date_object()
+        birth1 = ReportUtils.get_birth_or_fallback(self.database, first)
+        if birth1:
+            date1 = birth1.get_date_object()
         else:
             date1 = Date()
 
-        birth_ref2 = second.get_birth_ref()
-        if birth_ref2:
-            date2 = self.database.get_event_from_handle(birth_ref2.ref).get_date_object()
+        birth2 = ReportUtils.get_birth_or_fallback(self.database, second)
+        if birth2:
+            date2 = birth2.get_date_object()
         else:
             date2 = Date()
 
