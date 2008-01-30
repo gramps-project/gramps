@@ -454,7 +454,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         if not media_list_item in self.media_list:
             self.media_list.append(media_list_item)
 
-        base = os.path.basename(name)
+        base = escape(os.path.basename(name))
         tag = base.replace('.', '_')
         
         if self.new_cell:
@@ -904,7 +904,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self.mfile.write('manifest:full-path="/"/>')
         for image in self.media_list:
             i = image[0]
-            base = os.path.basename(i)
+            base = escape(os.path.basename(i))
             self.mfile.write('<manifest:file-entry manifest:media-type="" ')
             self.mfile.write('manifest:full-path="Pictures/')
             self.mfile.write(base)

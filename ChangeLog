@@ -1,3 +1,6 @@
+2008-01-29 Brian Matherly <brian@gramps-project.org>
+	* src/docgen.ODFDoc.py: escape characters in image names for ODF output.
+
 2008-01-29  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/ViewManager.py: 0001641: add ... ellipsis to menu items. 
 	* src/plugins/Calendar.py: 0001641: add ... ellipsis to menu items. 
