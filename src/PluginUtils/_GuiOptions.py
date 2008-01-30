@@ -395,11 +395,9 @@ class GuiPersonOption(gtk.HBox):
         self.pack_start(pevt, False)
         self.pack_end(person_button, False)
         
-        person = self.__db.get_person_from_gramps_id(self.__option.get_value())
+        person = self.__dbstate.get_active_person()
         if not person:
-            person = self.__dbstate.get_active_person()
-            if not person:
-                person = self.__db.get_default_person()
+            person = self.__db.get_default_person()
         self.__update_person(person)
         
         tooltip.set_tip(pevt, self.__option.get_help())
@@ -488,14 +486,12 @@ class GuiFamilyOption(gtk.HBox):
         self.pack_start(pevt, False)
         self.pack_end(family_button, False)
         
-        family = self.__db.get_family_from_gramps_id(self.__option.get_value())
-        if not family:
-            person = self.__dbstate.get_active_person()
+        person = self.__dbstate.get_active_person()
+        family_list = person.get_family_handle_list()
+        if not family_list:
+            person = self.__db.get_default_person()
             family_list = person.get_family_handle_list()
-            if not family_list:
-                person = self.__db.get_default_person()
-                family_list = person.get_family_handle_list()
-            family = self.__db.get_family_from_handle(family_list[0])
+        family = self.__db.get_family_from_handle(family_list[0])
         self.__update_family(family)
         
         tooltip.set_tip(pevt, self.__option.get_help())
