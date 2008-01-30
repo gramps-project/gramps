@@ -1,3 +1,7 @@
+2008-01-30 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/FilterEditor/_FilterEditor.py: pylint fixes and 
+	work on 0001660: Title for all Edit Filter windows not translated correctly 
+
 2008-01-30  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/FilterEditor/_EditFilter.py: self.space --> self.namespace
 	* src/FilterEditor/_FilterEditor.py: self.space --> self.namespace
