@@ -384,12 +384,12 @@ class MyEntry(gtk.Entry):
 #
 #-------------------------------------------------------------------------
 class EditRule(ManagedWindow.ManagedWindow):
-    def __init__(self, space, dbstate, uistate, track, filterdb, val,
+    def __init__(self, namespace, dbstate, uistate, track, filterdb, val,
                  label, update, filter_name):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, EditRule)
 
-        self.space = space
+        self.namespace = namespace
         self.dbstate = dbstate
         self.db = dbstate.db
         self.filterdb = filterdb
@@ -416,21 +416,21 @@ class EditRule(ManagedWindow.ManagedWindow):
         self.class2page = {}
         the_map = {}
 
-        if self.space == "Person":
+        if self.namespace == 'Person':
             class_list = Rules.Person.editor_rule_list
-        elif self.space == "Family":
+        elif self.namespace == 'Family':
             class_list = Rules.Family.editor_rule_list
-        elif self.space == "Event":
+        elif self.namespace == 'Event':
             class_list = Rules.Event.editor_rule_list
-        elif self.space == 'Source':
+        elif self.namespace == 'Source':
             class_list = Rules.Source.editor_rule_list
-        elif self.space == 'Place':
+        elif self.namespace == 'Place':
             class_list = Rules.Place.editor_rule_list
-        elif self.space == 'MediaObject':
+        elif self.namespace == 'MediaObject':
             class_list = Rules.MediaObject.editor_rule_list
-        elif self.space == 'Repository':
+        elif self.namespace == 'Repository':
             class_list = Rules.Repository.editor_rule_list
-        elif self.space == 'Note':
+        elif self.namespace == 'Note':
             class_list = Rules.Note.editor_rule_list
         
         for class_obj in class_list:
@@ -468,11 +468,11 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Number of generations:'):
                     t = MyInteger(1,32)
                 elif v == _('ID:'):
-                    t = MyID(self.dbstate,self.uistate,self.track,self.space)
+                    t = MyID(self.dbstate,self.uistate,self.track,self.namespace)
                 elif v == _('Source ID:'):
                     t = MySource(self.db)
                 elif v == _('Filter name:'):
-                    t = MyFilters(self.filterdb.get_filters(self.space),
+                    t = MyFilters(self.filterdb.get_filters(self.namespace),
                                   self.filter_name)
                 # filters of another namespace, name may be same as caller!
                 elif v == _('Person filter name:'):

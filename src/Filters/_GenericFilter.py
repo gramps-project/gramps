@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_GenericFilter.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Package providing filtering framework for GRAMPS.
@@ -31,7 +31,7 @@ import gen.lib
 #
 #-------------------------------------------------------------------------
 class GenericFilter:
-    """Filter class that consists of several rules"""
+    """Filter class that consists of several rules."""
     
     logical_functions = ['or', 'and', 'xor', 'one']
 

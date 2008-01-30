@@ -52,8 +52,8 @@ import GrampsDisplay
 #
 #-------------------------------------------------------------------------
 import const
-from Filters import GenericFilterFactory, FilterList, \
-     reload_custom_filters, reload_system_filters
+from Filters import (GenericFilterFactory, FilterList, reload_custom_filters, 
+                     reload_system_filters)
 from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 import ListModel
 import ManagedWindow
@@ -65,15 +65,14 @@ from QuestionDialog import QuestionDialog
 #
 #-------------------------------------------------------------------------
 class FilterEditor(ManagedWindow.ManagedWindow):
-    def __init__(self, space, filterdb, dbstate, uistate):
+    def __init__(self, namespace, filterdb, dbstate, uistate):
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [],
-                                             FilterEditor)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], FilterEditor)
         self.dbstate = dbstate
         self.db = dbstate.db
         self.filterdb = FilterList(filterdb)
         self.filterdb.load()
-        self.space = space
+        self.namespace = namespace
 
         self.define_glade('filter_list', const.RULE_GLADE)
         self.filter_list = self.get_widget('filters')
@@ -89,7 +88,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
 
         self.set_window(self.get_widget('filter_list'),
                         self.get_widget('title'),
-                        _('%s filters') % _(self.space))
+                        _('%s filters') % _(self.namespace))
 
         self.edit.connect('clicked', self.edit_filter)
         self.clone.connect('clicked', self.clone_filter)
@@ -134,19 +133,19 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.filterdb.save()
         reload_custom_filters()
         reload_system_filters()
-        self.uistate.emit('filters-changed',(self.space,))
+        self.uistate.emit('filters-changed',(self.namespace,))
         ManagedWindow.ManagedWindow.close(self,*obj)
         
     def draw_filters(self):
         self.clist.clear()
-        for f in self.filterdb.get_filters(self.space):
+        for f in self.filterdb.get_filters(self.namespace):
             self.clist.add([f.get_name(),f.get_comment()],f)
 
     def add_new_filter(self,obj):
         from _EditFilter import EditFilter
 
-        the_filter = GenericFilterFactory(self.space)()
-        EditFilter(self.space, self.dbstate, self.uistate, self.track,
+        the_filter = GenericFilterFactory(self.namespace)()
+        EditFilter(self.namespace, self.dbstate, self.uistate, self.track,
                    the_filter, self.filterdb, self.draw_filters)
 
     def edit_filter(self,obj):
@@ -155,7 +154,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             from _EditFilter import EditFilter
             
             gfilter = self.clist.get_object(node)
-            EditFilter(self.space, self.dbstate, self.uistate, self.track,
+            EditFilter(self.namespace, self.dbstate, self.uistate, self.track,
                        gfilter, self.filterdb, self.draw_filters)
 
     def clone_filter(self,obj):
@@ -164,9 +163,9 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             from _EditFilter import EditFilter
             
             old_filter = self.clist.get_object(node)
-            the_filter = GenericFilterFactory(self.space)(old_filter)
+            the_filter = GenericFilterFactory(self.namespace)(old_filter)
             the_filter.set_name('')
-            EditFilter(self.space, self.dbstate, self.uistate, self.track,
+            EditFilter(self.namespace, self.dbstate, self.uistate, self.track,
                        the_filter, self.filterdb, self.draw_filters)
 
     def test_clicked(self,obj):
@@ -177,14 +176,14 @@ class FilterEditor(ManagedWindow.ManagedWindow):
             filt = self.clist.get_object(node)
             handle_list = filt.apply(self.db,self.get_all_handles())
             ShowResults(self.db, self.uistate, self.track, handle_list,
-                        filt.get_name(),self.space)
+                        filt.get_name(),self.namespace)
 
     def delete_filter(self,obj):
         store,node = self.clist.get_selected()
         if node:
             gfilter = self.clist.get_object(node)
             name = gfilter.get_name()
-            if self.check_recursive_filters(self.space,name):
+            if self.check_recursive_filters(self.namespace,name):
                 QuestionDialog( _('Delete Filter?'),
                                 _('This filter is currently being used '
                                   'as the base for other filters. Deleting'
@@ -200,7 +199,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         store,node = self.clist.get_selected()
         if node:
             gfilter = self.clist.get_object(node)
-            self._do_delete_filter(self.space,gfilter)
+            self._do_delete_filter(self.namespace,gfilter)
             self.draw_filters()
 
     def _do_delete_filter(self,space,gfilter):
@@ -234,21 +233,21 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         filter_set.add(gfilter)
 
     def get_all_handles(self):
-        if self.space == 'Person':
+        if self.namespace == 'Person':
             return self.db.get_person_handles(sort_handles=False)
-        elif self.space == 'Family':
+        elif self.namespace == 'Family':
             return self.db.get_family_handles()
-        elif self.space == 'Event':
+        elif self.namespace == 'Event':
             return self.db.get_event_handles()
-        elif self.space == 'Source':
+        elif self.namespace == 'Source':
             return self.db.get_source_handles()
-        elif self.space == 'Place':
+        elif self.namespace == 'Place':
             return self.db.get_place_handles()
-        elif self.space == 'MediaObject':
+        elif self.namespace == 'MediaObject':
             return self.db.get_media_object_handles()
-        elif self.space == 'Repository':
+        elif self.namespace == 'Repository':
             return self.db.get_repository_handles()
-        elif self.space == 'Note':
+        elif self.namespace == 'Note':
             return self.db.get_note_handles()
 
     def clean_after_rename(self,space,old_name,new_name):

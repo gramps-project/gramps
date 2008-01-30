@@ -64,13 +64,13 @@ import Utils
 #
 #-------------------------------------------------------------------------
 class ShowResults(ManagedWindow.ManagedWindow):
-    def __init__(self, db, uistate, track, handle_list, filtname, space):
+    def __init__(self, db, uistate, track, handle_list, filtname, namespace):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.db = db
         self.filtname = filtname
-        self.space = space
+        self.namespace = namespace
         self.define_glade('test', const.RULE_GLADE,)
         self.set_window(
             self.get_widget('test'),
@@ -102,35 +102,35 @@ class ShowResults(ManagedWindow.ManagedWindow):
         self.show()
 
     def get_name_id(self, handle):
-        if self.space == 'Person':
+        if self.namespace == 'Person':
             person = self.db.get_person_from_handle(handle)
             name = _nd.sorted(person)
             gid = person.get_gramps_id()
-        elif self.space == 'Family':
+        elif self.namespace == 'Family':
             family = self.db.get_family_from_handle(handle)
             name = Utils.family_name(family, self.db)
             gid = family.get_gramps_id()
-        elif self.space == 'Event':
+        elif self.namespace == 'Event':
             event = self.db.get_event_from_handle(handle)
             name = event.get_description()
             gid = event.get_gramps_id()
-        elif self.space == 'Source':
+        elif self.namespace == 'Source':
             source = self.db.get_source_from_handle(handle)
             name = source.get_title()
             gid = source.get_gramps_id()
-        elif self.space == 'Place':
+        elif self.namespace == 'Place':
             place = self.db.get_place_from_handle(handle)
             name = place.get_title()
             gid = place.get_gramps_id()
-        elif self.space == 'MediaObject':
+        elif self.namespace == 'MediaObject':
             obj = self.db.get_object_from_handle(handle)
             name = obj.get_description()
             gid = obj.get_gramps_id()
-        elif self.space == 'Repository':
+        elif self.namespace == 'Repository':
             repo = self.db.get_repository_from_handle(handle)
             name = repo.get_name()
             gid = repo.get_gramps_id()
-        elif self.space == 'Note':
+        elif self.namespace == 'Note':
             note = self.db.get_note_from_handle(handle)
             name = note.get().replace('\n', ' ')
             if len(name) > 80:
@@ -139,29 +139,29 @@ class ShowResults(ManagedWindow.ManagedWindow):
         return (name, gid)
         
     def sort_val_from_handle(self, handle):
-        if self.space == 'Person':
+        if self.namespace == 'Person':
             name = self.db.get_person_from_handle(handle).get_primary_name()
             sortname = locale.strxfrm(_nd.sort_string(name))
-        elif self.space == 'Family':
+        elif self.namespace == 'Family':
             name = Utils.family_name(
                 self.db.get_family_from_handle(handle),self.db)
             sortname = locale.strxfrm(name)
-        elif self.space == 'Event':
+        elif self.namespace == 'Event':
             name = self.db.get_event_from_handle(handle).get_description()
             sortname = locale.strxfrm(name)
-        elif self.space == 'Source':
+        elif self.namespace == 'Source':
             name = self.db.get_source_from_handle(handle).get_title()
             sortname = locale.strxfrm(name)
-        elif self.space == 'Place':
+        elif self.namespace == 'Place':
             name = self.db.get_place_from_handle(handle).get_title()
             sortname = locale.strxfrm(name)
-        elif self.space == 'MediaObject':
+        elif self.namespace == 'MediaObject':
             name = self.db.get_object_from_handle(handle).get_description()
             sortname = locale.strxfrm(name)
-        elif self.space == 'Repository':
+        elif self.namespace == 'Repository':
             name = self.db.get_repository_from_handle(handle).get_name()
             sortname = locale.strxfrm(name)
-        elif self.space == 'Note':
+        elif self.namespace == 'Note':
             gid = self.db.get_note_from_handle(handle).get_gramps_id()
             sortname = locale.strxfrm(gid)
         return (sortname, handle)

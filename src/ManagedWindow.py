@@ -362,7 +362,7 @@ class ManagedWindow:
                 self.parent_window = self.uistate.window
 
     def set_window(self, window, title, text, msg=None, isWindow=False):
-        '''
+        """
         Set the window that is managed.
         
         @param window   if isWindow=False window must be a gtk.Window() object, otherwise None
@@ -376,7 +376,7 @@ class ManagedWindow:
                             and after this method self.window stores it.
                         }
         
-        '''
+        """
         self.isWindow = isWindow
         if self.isWindow :
             set_titles(self, title, text, msg)

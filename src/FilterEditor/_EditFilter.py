@@ -57,12 +57,12 @@ import Errors
 #-------------------------------------------------------------------------
 class EditFilter(ManagedWindow.ManagedWindow):
     
-    def __init__(self, space, dbstate, uistate, track, gfilter,
+    def __init__(self, namespace, dbstate, uistate, track, gfilter,
                  filterdb, update):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.space = space
+        self.namespace = namespace
         self.update = update
         self.dbstate = dbstate
         self.db = dbstate.db
@@ -128,7 +128,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         # Make sure that the name is not empty
         # and not in the list of existing filters (excluding this one)
         names = [filt.get_name()
-                 for filt in self.filterdb.get_filters(self.space)
+                 for filt in self.filterdb.get_filters(self.namespace)
                  if filt != self.filter]
         self.ok_btn.set_sensitive((len(name) != 0) and (name not in names))
     
@@ -152,12 +152,12 @@ class EditFilter(ManagedWindow.ManagedWindow):
             return
         if n != self.filter.get_name():
             self.uistate.emit('filter-name-changed',
-                              (self.space,unicode(self.filter.get_name()),n))
+                              (self.namespace,unicode(self.filter.get_name()),n))
         self.filter.set_name(n)
         self.filter.set_comment(unicode(self.comment.get_text()).strip())
-        for f in self.filterdb.get_filters(self.space)[:]:
+        for f in self.filterdb.get_filters(self.namespace)[:]:
             if n == f.get_name():
-                self.filterdb.get_filters(self.space).remove(f)
+                self.filterdb.get_filters(self.namespace).remove(f)
                 break
         val = self.logical.get_active() 
         if val == 1:
@@ -168,7 +168,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
             op = 'and'
         self.filter.set_logical_op(op)
         self.filter.set_invert(self.logical_not.get_active())
-        self.filterdb.add(self.space,self.filter)
+        self.filterdb.add(self.namespace,self.filter)
         self.update()
         self.close()
         
@@ -176,7 +176,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         from _EditRule import EditRule
         
         try:
-            EditRule(self.space, self.dbstate, self.uistate, self.track,
+            EditRule(self.namespace, self.dbstate, self.uistate, self.track,
                      self.filterdb, None, _('Add Rule'), self.update_rule,
                      self.filter.get_name())
         except Errors.WindowActiveError:
@@ -190,7 +190,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
             d = self.rlist.get_object(node)
 
             try:
-                EditRule(self.space, self.dbstate, self.uistate, self.track,
+                EditRule(self.namespace, self.dbstate, self.uistate, self.track,
                          self.filterdb, d, _('Edit Rule'), self.update_rule,
                          self.filter.get_name())
             except Errors.WindowActiveError:

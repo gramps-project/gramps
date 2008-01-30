@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_FilterParser.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +50,7 @@ class FilterParser(handler.ContentHandler):
         self.r = None
         self.a = []
         self.cname = None
-        self.namespace = "Person"
+        self.namespace = 'Person'
         
     def setDocumentLocator(self, locator):
         self.locator = locator

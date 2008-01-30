@@ -37,8 +37,8 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
+from gtk import glade
 import gtk
-import gtk.glade
 
 #------------------------------------------------------------------------
 #
@@ -75,22 +75,21 @@ class CalendarWriterOptionBox:
     def __init__(self, person):
         self.person = person
 
-    def get_option_box(self):
-
         glade_file = "%s/vcalendarexport.glade" % os.path.dirname(__file__)
         if not os.path.isfile(glade_file):
             glade_file = "plugins/vcalendarexport.glade"
-
-        self.topDialog = gtk.glade.XML(glade_file, "calendarExport", "gramps")
-
-        filter_obj = self.topDialog.get_widget("filter")
+        self.topDialog = glade.XML(glade_file, "calendarExport", "gramps")
         self.copy = 0
+        self.filter_menu = gtk.Menu()
+        
+    def get_option_box(self):
+        filter_obj = self.topDialog.get_widget("filter")
 
-        all = GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(Rules.Person.Everyone([]))
+        everyone_filter = GenericFilter()
+        everyone_filter.set_name(_("Entire Database"))
+        everyone_filter.add_rule(Rules.Person.Everyone([]))
 
-        the_filters = [all]
+        the_filters = [everyone_filter]
 
         if self.person:
             des = GenericFilter()
@@ -111,7 +110,7 @@ class CalendarWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
             
-            the_filters += [all, des, ans, com]
+            the_filters += [everyone_filter, des, ans, com]
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))
@@ -145,6 +144,9 @@ class CalendarWriter:
         self.plist = {}
         self.flist = {}
         
+        self.count = 0
+        self.oldval = 0
+        
         self.persons_details_done = []
         self.persons_notes_done = []
         self.person_ids = {}
@@ -177,7 +179,7 @@ class CalendarWriter:
 
     def update_real(self):
         self.count += 1
-        newval = int(100*self.count/self.total)
+        newval = int(100 * self.count / self.total)
         if newval != self.oldval:
             self.callback(newval)
             self.oldval = newval
@@ -210,12 +212,10 @@ class CalendarWriter:
             ErrorDialog(_("Could not create %s") % filename)
             return False
 
-        self.writeln("BEGIN:VCALENDAR");
-        self.writeln("PRODID:-//GNU//Gramps//EN");
-        self.writeln("VERSION:1.0");
+        self.writeln("BEGIN:VCALENDAR")
+        self.writeln("PRODID:-//GNU//Gramps//EN")
+        self.writeln("VERSION:1.0")
 
-        self.count = 0
-        self.oldval = 0
         self.total = len(self.plist) + len(self.flist)
         for key in self.plist:
             self.write_person(key)
@@ -225,8 +225,8 @@ class CalendarWriter:
             self.write_family(key)
             self.update()
 
-        self.writeln("");
-        self.writeln("END:VCALENDAR");
+        self.writeln("")
+        self.writeln("END:VCALENDAR")
         
         self.g.close()
         return True
@@ -260,7 +260,8 @@ class CalendarWriter:
                         place = self.db.get_place_from_handle(place_handle)
                         self.write_vevent(_("Birth of %s") % person.get_primary_name().get_name(), b_date, place.get_title())
                     else:
-                        self.write_vevent(_("Birth of %s") % person.get_primary_name().get_name(), b_date)
+                        self.write_vevent(_("Birth of %s") 
+                                % person.get_primary_name().get_name(), b_date)
                         
             death_ref = person.get_death_ref()
             if death_ref:
@@ -318,23 +319,23 @@ class CalendarWriter:
     def write_vevent(self, event_text, date, location=""):
         date_string = self.format_date(date)
         if date_string is not "":
-            self.writeln("");
-            self.writeln("BEGIN:VEVENT");
-            self.writeln("SUMMARY:%s" % event_text);
+            self.writeln("")
+            self.writeln("BEGIN:VEVENT")
+            self.writeln("SUMMARY:%s" % event_text)
             if location:
-                self.writeln("LOCATION:%s" % location);
+                self.writeln("LOCATION:%s" % location)
             self.writeln(date_string)
-            self.writeln("END:VEVENT");
+            self.writeln("END:VEVENT")
 
             date_string = self.format_date(date, 1)
-            self.writeln("");
-            self.writeln("BEGIN:VEVENT");
-            self.writeln("SUMMARY:"+_("Anniversary: %s") % event_text);
+            self.writeln("")
+            self.writeln("BEGIN:VEVENT")
+            self.writeln("SUMMARY:"+_("Anniversary: %s") % event_text)
             if location:
-                self.writeln("LOCATION:%s" % location);
+                self.writeln("LOCATION:%s" % location)
             self.writeln("RRULE:YD1 #0")
             self.writeln(date_string)
-            self.writeln("END:VEVENT");
+            self.writeln("END:VEVENT")
 
 #-------------------------------------------------------------------------
 #

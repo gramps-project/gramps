@@ -168,14 +168,9 @@ class CommandLineTool:
         self.parse_option_str()
         self.show_options()
 
-    def init_options(self,noopt):
-        self.options_dict = {
-            'id'        : ''
-            }
-
-        self.options_help = {
-            'id'        : ["=ID","Gramps ID of a central person."],
-            }
+    def init_options(self, noopt):
+        self.options_dict = {'id' : ''}
+        self.options_help = {'id' : ["=ID","Gramps ID of a central person."], }
 
         if noopt:
             return

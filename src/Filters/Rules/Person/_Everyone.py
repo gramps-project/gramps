@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_Everyone.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -40,7 +40,7 @@ from Filters.Rules._Rule import Rule
 #
 #-------------------------------------------------------------------------
 class Everyone(Rule):
-    """Matches Everyone"""
+    """Match Everyone."""
 
     name        = _('Everyone')
     category    = _('General filters')

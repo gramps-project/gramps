@@ -1,3 +1,15 @@
+2008-01-30  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/FilterEditor/_EditFilter.py: self.space --> self.namespace
+	* src/FilterEditor/_FilterEditor.py: self.space --> self.namespace
+	* src/FilterEditor/_EditRule.py: self.space --> self.namespace
+	* src/FilterEditor/_ShowResults.py: self.space --> self.namespace
+	* src/plugins/ExportVCalendar.py: pylint fixes
+	* src/PluginUtils/_Tool.py: pylint fixes
+	* src/Filters/_FilterParser.py: cleanup
+	* src/Filters/_GenericFilter.py: doc fix
+	* src/Filters/Rules/Person/_Everyone.py
+	* src/ManagedWindow.py: doc fix
+
 2008-01-29 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_GuiOptions.py: Default GuiOptions to use active person.
 
@@ -11,13 +23,13 @@
 	* src/PluginUtils/_PluginMgr.py: pylint and doc fixes
 
 2008-01-29 Peter Landgren <peter.talken@telia.com>
-    * src/plugins/ExportVCalendar.py: 
-    * src/plugins/ExportVCard.py:
-      Encoding according to sys.getfilesystemencoding() in stead of hardcoded 
-      iso-8859-1
+	* src/plugins/ExportVCalendar.py: 
+	* src/plugins/ExportVCard.py:
+	Encoding according to sys.getfilesystemencoding() in stead of hardcoded 
+	iso-8859-1
 
 2008-01-29  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/plugins/EventNames.py: doc fixes and removal of self.label
+	* src/plugins/EventNames.py: doc fixes and removal of self.label
 
 2008-01-29 Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/TimeLine.py:
@@ -25,44 +37,44 @@
 	death events are available.
 
 2008-01-29 Peter Landgren <peter.talken@telia.com>
-    * src/plugins/ChangeNames.py: Improved capitalization rules for names with
-    one prefix and multiple surnames with or without hyphen(s)
+	* src/plugins/ChangeNames.py: Improved capitalization rules for names with
+	one prefix and multiple surnames with or without hyphen(s)
 
 2008-01-28 Duncan Lithgow <dlithgow@gmail.com>
            Raphael Ackermann <raphael.ackermann@gmail.com>
-	*  src/plugins/Summary.py
-	*  src/plugins/WebCal.py
-	*  src/plugins/KinshipReport.py
-	*  src/plugins/DescendReport.py
-	*  src/plugins/DetDescendantReport.py
-	*  src/plugins/ExtractCity.py
-	*  src/plugins/EventNames.py
-	*  src/plugins/DumpGenderStats.py
-	*  src/plugins/Desbrowser.py
-	*  src/plugins/Checkpoint.py
-	*  src/plugins/OwnerEditor.py
-	*  src/plugins/ChangeNames.py
-	*  src/plugins/AncestorReport.py
-	*  src/plugins/MarkerReport.py
-	*  src/plugins/DateParserDisplayTest.py
-	*  src/plugins/FindDupes.py
-	*  src/plugins/SoundGen.py
-	*  src/plugins/TestcaseGenerator.py
-	*  src/plugins/Rebuild.py
-	*  src/plugins/DescendChart.py
-	*  src/plugins/EndOfLineReport.py
-	*  src/plugins/AncestorChart.py
-	*  src/plugins/DetAncestralReport.py
-	*  src/plugins/CountAncestors.py
-	*  src/plugins/Check.py
-	*  src/plugins/EventCmp.py
-	*  src/plugins/FamilyGroup.py
-	*  src/plugins/RelCalc.py
-	*  src/plugins/MediaManager.py
-	*  src/plugins/ChangeTypes.py
-	*  src/plugins/StatisticsChart.py
-	*  src/plugins/FamilyLines.py
-	*  src/plugins/PatchNames.py
+	* src/plugins/Summary.py
+	* src/plugins/WebCal.py
+	* src/plugins/KinshipReport.py
+	* src/plugins/DescendReport.py
+	* src/plugins/DetDescendantReport.py
+	* src/plugins/ExtractCity.py
+	* src/plugins/EventNames.py
+	* src/plugins/DumpGenderStats.py
+	* src/plugins/Desbrowser.py
+	* src/plugins/Checkpoint.py
+	* src/plugins/OwnerEditor.py
+	* src/plugins/ChangeNames.py
+	* src/plugins/AncestorReport.py
+	* src/plugins/MarkerReport.py
+	* src/plugins/DateParserDisplayTest.py
+	* src/plugins/FindDupes.py
+	* src/plugins/SoundGen.py
+	* src/plugins/TestcaseGenerator.py
+	* src/plugins/Rebuild.py
+	* src/plugins/DescendChart.py
+	* src/plugins/EndOfLineReport.py
+	* src/plugins/AncestorChart.py
+	* src/plugins/DetAncestralReport.py
+	* src/plugins/CountAncestors.py
+	* src/plugins/Check.py
+	* src/plugins/EventCmp.py
+	* src/plugins/FamilyGroup.py
+	* src/plugins/RelCalc.py
+	* src/plugins/MediaManager.py
+	* src/plugins/ChangeTypes.py
+	* src/plugins/StatisticsChart.py
+	* src/plugins/FamilyLines.py
+	* src/plugins/PatchNames.py
 	
 2008-01-28 Duncan Lithgow <dlithgow@gmail.com>
 	* various: add capitalization fixes according to HIG (plus ellipsis ...)
@@ -138,7 +150,7 @@
 	* src/DataViews.py: rename Family List View to Families View
 
 2008-01-24 Peter landgren <peter.talken@telia.com>
-    * src/plugin/rel_sv.py: Works also for kinship report now.
+	* src/plugin/rel_sv.py: Works also for kinship report now.
 
 2008-01-24 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_CommandLineReport.py:
