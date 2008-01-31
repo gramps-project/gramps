@@ -97,7 +97,6 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         self.set_window(self.get_widget('filter_list'),
                         self.get_widget('title'),
                         _TITLES[self.namespace]) 
-#                        _('%s filters') % _(self.namespace))
 
         self.edit.connect('clicked', self.edit_filter)
         self.clone.connect('clicked', self.clone_filter)
