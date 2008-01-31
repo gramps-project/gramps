@@ -38,7 +38,7 @@ from PluginUtils import register_report, EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
-from gen.lib import MarkerType, FamilyRelType
+from gen.lib import MarkerType
 from Filters import GenericFilterFactory, Rules
 from BasicUtils import name_displayer
 import DateHandler
@@ -254,7 +254,7 @@ class MarkerReport(Report):
             self.doc.start_cell('MR-TableCell')
             self.doc.start_paragraph('MR-Normal')
             relation = family.get_relationship()
-            self.doc.write_text( str(FamilyRelType(relation)) )
+            self.doc.write_text(str(relation) )
             self.doc.end_paragraph()
             self.doc.end_cell()
             

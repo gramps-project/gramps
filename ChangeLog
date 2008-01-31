@@ -1,3 +1,6 @@
+2008-01-28 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/MarkerReport.py: fix bug #1669 with None type cmp
+
 2008-01-30 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_GuiOptions.py:
 	Intelligent selection of default family for family option in reports.
