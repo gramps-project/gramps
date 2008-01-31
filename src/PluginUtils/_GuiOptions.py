@@ -486,19 +486,38 @@ class GuiFamilyOption(gtk.HBox):
         self.pack_start(pevt, False)
         self.pack_end(family_button, False)
         
-        person = self.__dbstate.get_active_person()
-        family_list = person.get_family_handle_list()
-        if not family_list:
-            person = self.__db.get_default_person()
-            family_list = person.get_family_handle_list()
-        family = self.__db.get_family_from_handle(family_list[0])
-        self.__update_family(family)
+        self.__initialize_family()
         
         tooltip.set_tip(pevt, self.__option.get_help())
         tooltip.set_tip(family_button,  _('Select a different family'))
         
         self.__option.connect('avail-changed', self.__update_avail)
         self.__update_avail()
+        
+    def __initialize_family(self):
+        """
+        Find a family to initialize the option with. Any family will do, but
+        try to find a family that the user is likely interested in.
+        """
+        family_list = []
+        
+        # First try the family of the active person
+        person = self.__dbstate.get_active_person()
+        if person:
+            family_list = person.get_family_handle_list()
+            
+        if not family_list:
+            # Next try the family of the default person in the database.
+            person = self.__db.get_default_person()
+            if person:
+                family_list = person.get_family_handle_list()
+                
+        if not family_list:
+            # Finally, take any family you can find.
+            family_list = self.__db.get_family_handles()
+            
+        family = self.__db.get_family_from_handle(family_list[0])
+        self.__update_family(family)
 
     def __get_family_clicked(self, obj): # IGNORE:W0613 - obj is unused
         """

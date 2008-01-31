@@ -1,3 +1,7 @@
+2008-01-30 Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_GuiOptions.py:
+	Intelligent selection of default family for family option in reports.
+
 2008-01-30 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/FilterEditor/_FilterEditor.py: pylint fixes and 
 	work on 0001660: Title for all Edit Filter windows not translated correctly 
