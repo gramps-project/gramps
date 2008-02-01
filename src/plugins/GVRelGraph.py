@@ -93,7 +93,7 @@ class RelGraphReport(Report):
         incid      - Whether to include IDs.
         incdate    - Whether to include dates.
         justyears  - Use years only.
-        placecause - Whether to replace missing dates with place or cause
+        use_place  - Whether to replace missing dates with place
         url        - Whether to include URLs.
         inclimg    - Include images or not
         imgpos     - Image position, above/beside name
@@ -125,7 +125,7 @@ class RelGraphReport(Report):
         self.adoptionsdashed = menu.get_option_by_name('dashed').get_value()
         self.show_families = menu.get_option_by_name('showfamily').get_value()
         self.just_years = menu.get_option_by_name('justyears').get_value()
-        self.placecause = menu.get_option_by_name('placecause').get_value()
+        self.use_place = menu.get_option_by_name('use_place').get_value()
         self.colorize = menu.get_option_by_name('color').get_value()
         if self.colorize == 'colored':
             self.colors = colored
@@ -387,7 +387,6 @@ class RelGraphReport(Report):
             year only
             complete date
             place name
-            cause
             empty string
         """
         if event:
@@ -396,13 +395,11 @@ class RelGraphReport(Report):
                     return '%i' % event.get_date_object().get_year()
                 else:
                     return DateHandler.get_date(event)
-            elif self.placecause:
+            elif self.use_place:
                 place_handle = event.get_place_handle()
                 place = self.database.get_place_from_handle(place_handle)
                 if place and place.get_title():
                     return place.get_title()
-                else:
-                    return '' #event.get_cause()
         return ''
 
 
@@ -453,11 +450,11 @@ class RelGraphOptions(MenuReportOptions):
                              "or interval are shown."))
         menu.add_option(category_name, "justyears", justyears)
         
-        placecause = BooleanOption(_("Place/cause when no date"), True)
-        placecause.set_help(_("When no birth, marriage, or death date is "
-                              "available, the correspondent place field (or "
-                              "cause field when blank place) will be used."))
-        menu.add_option(category_name, "placecause", placecause)
+        use_place = BooleanOption(_("Use place when no date"), True)
+        use_place.set_help(_("When no birth, marriage, or death date is "
+                              "available, the correspondent place field "
+                              "will be used."))
+        menu.add_option(category_name, "use_place", use_place)
         
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(_("Include a URL in each graph node so "

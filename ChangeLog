@@ -1,3 +1,7 @@
+2008-02-01 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/GVRelGraph.py: Fix 0001617: place/cause option: cause is 
+	never included
+
 2008-01-31 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_Bibliography.py: Fix 0001624: Source reference hyperlinks 
 	do not always work in Narrated Web Site
