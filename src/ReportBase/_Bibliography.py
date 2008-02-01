@@ -24,6 +24,8 @@ Contain and organize bibliographic information.
 """
 import string
 
+from gen.lib import SourceRef as SourceRef
+
 class Citation:
     """
     Store information about a citation and all of its references.
@@ -44,7 +46,7 @@ class Citation:
         """
         return self.__src_handle
     
-    def set_source_handle(self,handle):
+    def set_source_handle(self, handle):
         """
         Set the handle for the source that this citation is for.
 
@@ -83,7 +85,7 @@ class Citation:
         second_letter = string.lowercase[ ref_count % letter_count ]
         
         key = first_letter + second_letter
-        self.__ref_list.append((key,source_ref))
+        self.__ref_list.append((key, source_ref))
         return key
 
 class Bibliography:
@@ -96,7 +98,7 @@ class Bibliography:
     MODE_NOTE = 2**3
     MODE_ALL = MODE_DATE | MODE_PAGE | MODE_CONF | MODE_NOTE
 
-    def __init__(self,mode=MODE_ALL):
+    def __init__(self, mode=MODE_ALL):
         """
         A bibliography will store citations (sources) and references to those
         citations (source refs). Duplicate entries will not be added. To change
@@ -132,7 +134,7 @@ class Bibliography:
         """
         source_handle = source_ref.get_reference_handle()
         cindex = 0
-        rkey = None
+        rkey = ""
         citation = None
         citation_found = False
         for citation in self.__citation_list:
@@ -148,13 +150,14 @@ class Bibliography:
             self.__citation_list.append(citation)
 
         if self.__sref_has_info(source_ref):
-            for key,ref in citation.get_ref_list():
-                if self.__srefs_are_equal(ref,source_ref):
-                    # if a reference like this already exists, don't add another one
-                    return (cindex,key)
+            for key, ref in citation.get_ref_list():
+                if self.__srefs_are_equal(ref, source_ref):
+                    # if a reference like this already exists, don't add 
+                    # another one
+                    return (cindex, key)
             rkey = citation.add_reference(source_ref)
         
-        return (cindex,rkey)
+        return (cindex, rkey)
     
     def get_citation_count(self):
         """
@@ -174,15 +177,21 @@ class Bibliography:
         """
         return self.__citation_list
 
-    def __sref_has_info(self,source_ref):
+    def __sref_has_info(self, source_ref):
+        """
+        Determine if this source_ref has any useful information based on the 
+        current mode.
+        """
         if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:
             if source_ref.get_page() != "":
                 return True
         if ( self.mode & self.MODE_DATE ) == self.MODE_DATE:
-            if source_ref.get_date_object() != None:
+            date = source_ref.get_date_object()
+            if date != None and not date.is_empty():
                 return True
         if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
-            if source_ref.get_confidence_level() != None:
+            confidence = source_ref.get_confidence_level()
+            if confidence != None and confidence != SourceRef.CONF_NORMAL:
                 return True
         if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
             if len(source_ref.get_note_list()) != 0:
@@ -190,7 +199,11 @@ class Bibliography:
         # Can't find anything interesting.
         return False
         
-    def __srefs_are_equal(self,source_ref1,source_ref2):
+    def __srefs_are_equal(self, source_ref1, source_ref2):
+        """
+        Determine if two source references are equal based on the 
+        current mode.
+        """
         if self.mode == self.MODE_ALL:
             return source_ref1.is_equal(source_ref2)
         if ( self.mode & self.MODE_PAGE ) == self.MODE_PAGE:

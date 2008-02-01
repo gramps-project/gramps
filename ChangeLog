@@ -1,3 +1,7 @@
+2008-01-31 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_Bibliography.py: Fix 0001624: Source reference hyperlinks 
+	do not always work in Narrated Web Site
+
 2008-01-28 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/MarkerReport.py: fix bug #1669 with None type cmp
 
