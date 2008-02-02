@@ -1,4 +1,7 @@
 2008-02-02 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/GraphViz.py: Deleted - superceeded by GVRelGraph.py.
+
+2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/WebCal.py: 
 	0001663: webcal options show Mos. 1-6 Notes and Mos. 7-12 Notes
 
