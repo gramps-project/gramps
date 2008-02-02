@@ -707,7 +707,7 @@ class WebReportOptions(ReportOptions):
              'Note_text11'     : _('This prints in November'),
              'Note_text12'     : _('This prints in December'),
              'Year'            : time.localtime()[0],
-             'Country'         : 4,
+             'Country'         : 0,
              'Surname'         : 1,
              'alive'           : 1,
              'birthdays'       : 1,
@@ -855,7 +855,7 @@ class WebReportOptions(ReportOptions):
         dialog.add_frame_option(title,_('Image Repeat'),self.Month_repeat)
 
     
-        title = _("Mos. 1-6 Notes")
+        title = _("Months 1-6 Notes")
 
         note_msg  = [_('Jan Note'),_('Feb Note'),_('Mar Note'),_('Apr Note'),
                      _('May Note'),_('Jun Note'),_('Jul Note'),_('Aug Note'),
@@ -886,7 +886,7 @@ class WebReportOptions(ReportOptions):
         dialog.add_frame_option(title,note_msg[4],self.Note_text5)
         dialog.add_frame_option(title,note_msg[5],self.Note_text6)
     
-        title = _("Mos. 7-12 Notes")
+        title = _("Months 7-12 Notes")
 
         self.Note_text7 = gtk.Entry()
         self.Note_text7.set_text(str(self.options_dict['Note_text7']))

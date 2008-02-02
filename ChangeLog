@@ -1,4 +1,8 @@
 2008-02-02 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/WebCal.py: 
+	0001663: webcal options show Mos. 1-6 Notes and Mos. 7-12 Notes
+
+2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/CmdRef.py: 0001688: BUG when I clicked generate commandline 
 	plugin reference tool
 
