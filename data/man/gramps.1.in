@@ -7,7 +7,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .RB [ \-?|\-\^\-help ]
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
-.RB [ \-l]
+.RB [ \-l ]
 .RB [ \-u|\-\^\-force-unlock ]
 .RB [ \-O|\-\^\-open=
 .IR DATABASE 
