@@ -131,41 +131,43 @@ by \fB\-o\fR flag. The files are written one by one, in the specified order.
 .TP 
 .BI \-a,\-\^\-action= " ACTION"
 Perform \fIACTION\fR on the imported data. This is done after all imports
-are successfully completed. Currently available actions are \fBsummary\fR 
-(same as Reports->View->Summary), \fBcheck\fR (same as Tools->Database 
-Processing->Check and Repair), and \fBreport\fR (generates report, needs
-the \fIOPTIONSTRING\fR supplied by the \fB\-p\fR flag). 
+are successfully completed. Currently available actions are 
+\fBsummary\fR (same as Reports->View->Summary), 
+\fBcheck\fR (same as Tools->Database Processing->Check and Repair), 
+\fBreport\fR (generates report), and
+\fBtool\fR (runs a plugin tool).
+Both \fBreport\fR and \fBtool\fR need the \fIOPTIONSTRING\fR supplied by the 
+\fB\-p\fR flag). 
 .br
 
-The report option string should satisfy the following conditions:
+The \fIOPTIONSTRING\fR should satisfy the following conditions:
 .br
 It must not contain any spaces. 
 If some arguments need to include spaces, the string should
-be enclosed with quotation marks.
-Option string must list pairs of option names and values.
-Withing a pair, option name and value must be separated by the equality sign.
-Different pairs must be separated by commas.  
+be enclosed with quotation marks, i.e., follow the shell syntax.
+Option string is a list of pairs with name and value (separated by the 
+equality sign). The name and value pairs must be separated by commas.  
 .br
 
-Most of the report options are specific for every report. However, there some
-common options.
+Most of the report or tools options are specific for each report or tool. 
+However, there are some common options.
 
-.BI "name=reportname"
+.BI "name=name"
 .br
-This mandatory option determines which report
-will be generated. If the supplied report_name does not correspond to any
-available report, the error message will be printed followed by the list of
-available reports.
+This mandatory option determines which report or tool will be run.
+If the supplied \fIname\fR does not correspond to any available report or 
+tool, an error message will be printed followed by the list of
+available reports or tools (depending on the \fIACTION\fR).
 
 .BI "show=all"
 .br
-This will produce the list of names for all options
-available for a given report.
+This will produce the list of names for all options available for a given 
+report or tool.
 
-.BI "show=optionname"
+.BI "show="optionname
 .br
 This will print the description of
-the functionality supplied by \fBoptionname\fR, as well as what are the
+the functionality supplied by \fIoptionname\fR, as well as what are the
 acceptable types and values for this option.
 
 .br
@@ -269,6 +271,9 @@ To record the database resulting from all imports, supply \fB\-o\fR flag (use \f
 .TP 
 To import three databases and start interactive gramps session with the result: 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
+.TP 
+To run the Verify tool from the commandline and output the result to stdout: 
+\fBgramps\fR \fB\-O\fR \fIfile.grdb\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
 .TP 
 Finally, to start normal interactive session type: 
 \fBgramps\fR 

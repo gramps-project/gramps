@@ -1,4 +1,9 @@
 2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
+		   keestux <?@?>
+	* data/man/gramps.1.in: patch applied for 
+	0000966: Suggestion for man page changes wrt -a and -p options 
+
+2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/plugins/WriteGeneWeb.py: "Living" is not translated -->fixed
 
 2008-02-01 Brian Matherly <brian@gramps-project.org>
