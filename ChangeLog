@@ -1,4 +1,6 @@
-
+2008-02-02 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_Endnotes.py:
+	0001704: Det. anc. report - newline needed after endnote entries.
 
 2008-02-02 Peter LAndgren <peter.talken@telia.com>
     * data/man/gramps.in.1: [ \-l] -> [ \-l ]

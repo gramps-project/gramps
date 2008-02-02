@@ -124,7 +124,7 @@ def write_endnotes(bibliography, database, doc):
                     doc.write_text(txt)
                     first = False
                 else:
-                    doc.write_text('; %s' % txt)
+                    doc.write_text('\n%s' % txt)
                 
                 rindex += 1
             doc.end_paragraph()
