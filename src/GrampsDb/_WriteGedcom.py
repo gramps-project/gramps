@@ -883,7 +883,7 @@ class GedcomWriter(UpdateCallback):
         nickname = ""
         if restricted and self.living:
             primaryname = RelLib.Name (primaryname)
-            primaryname.set_first_name ("Living")
+            primaryname.set_first_name (_("Living"))
             #nickname = ""
         else:
             primaryname = person.get_primary_name ()

@@ -1,3 +1,8 @@
+2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/GrampsDb/_WriteGedcom.py
+	* src/plugins/WriteGeneWeb.py
+	0001414: "Living" is not translated in GEDCOM export file 
+
 2008-01-23 Brian Matherly <brian@gramps-project.org>
            Benny Malengier <benny.malengier@gramps-project.org>: backport trunk
 	* src/ReportBase/_StyleComboBox.py:
