@@ -67,7 +67,10 @@ class FamilyGroup(Report):
 
         family_id = menu.get_option_by_name('family_id').get_value()
         family = database.get_family_from_gramps_id(family_id)
-        self.family_handle = family.get_handle()
+        if family:
+            self.family_handle = family.get_handle()
+        else:
+            self.family_handle = None
 
         self.recursive     = menu.get_option_by_name('recursive').get_value()
         self.missingInfo   = menu.get_option_by_name('missinginfo').get_value()

@@ -1,4 +1,9 @@
 2008-02-02 Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_GuiOptions.py:
+	* src/plugins/FamilyGroup.py:
+	0001702: invoking family group reports crashes gramps
+
+2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_Endnotes.py:
 	0001704: Det. anc. report - newline needed after endnote entries.
 
