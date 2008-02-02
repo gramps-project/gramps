@@ -61,7 +61,7 @@ _tags = [
 class CmdRef(Tool.Tool):
     def __init__(self,dbstate, uistate, options_class, name, callback=None):
         Tool.Tool.__init__(self,dbstate,options_class,name)
-        db = dbstate.db
+        self.__db = dbstate.db
 
         # retrieve options
         include = self.options.handler.options_dict['include']
@@ -95,14 +95,17 @@ class CmdRef(Tool.Tool):
 
         # Common report options
         item = cl_list[0]
-        clr = CommandLineReport(db,item[0],item[1],item[3],{},True)
+        clr = CommandLineReport(self.__db, item[0], item[1], item[3], {}, True)
         self.write_ref(f,clr,level+2,id_counter,True)
         id_counter = id_counter + 1
 
         for item in cl_list:
+            unsupported = item[5]
+            if unsupported is True:
+                continue
+            print item[0], item[3], item[5]
             category = item[1]
             if category in (CATEGORY_BOOK,
-                            CATEGORY_CODE,
                             CATEGORY_WEB):
                 self.write_ref(f,item,level+2,id_counter,category)
             else:
@@ -116,7 +119,8 @@ class CmdRef(Tool.Tool):
 
         # Common tool options
         item = cli_tool_list[0]
-        clr = Tool.CommandLineTool(db,item[0],item[1],item[3],{},True)
+        clr = Tool.CommandLineTool(self.__db, item[0], 
+                                   item[1], item[3], {}, True)
         self.write_ref(f,clr,level+2,id_counter,True)
         id_counter = id_counter + 1
 
@@ -155,13 +159,10 @@ class CmdRef(Tool.Tool):
 
         # Instantiate options class
         if category == None:
-            oclass = item[3]( item[0])
+            oclass = item[3](item[0], self.__db)
         elif category == CATEGORY_BOOK:
             import BookReport
             oclass = BookReport.BookOptions(item[0])
-        elif category == CATEGORY_CODE:
-            import GraphViz
-            oclass = GraphViz.GraphVizOptions(item[0])
         elif category == CATEGORY_WEB:
             if item[0] == "navwebpage":
                 import NarrativeWeb
