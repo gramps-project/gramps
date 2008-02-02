@@ -7,6 +7,8 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .RB [ \-?|\-\^\-help ]
 .RB [ \-\^\-usage ]
 .RB [ \-\^\-version ]
+.RB [ \-l ] 
+.RB [ \-u|\-\^\-force-unlock ]
 .RB [ \-O|\-\^\-open=
 .IR DATABAS 
 .RB [ \-f|\-\^\-format= 
@@ -25,8 +27,7 @@ gramps \- Genealogical Research and Analysis Management Programming System.
 .IR ÅTGÄRD ]
 .RB [ \-p|\-\^\-options= 
 .IR ALTERNATIVSTRÄNG ]] 
-.RB [ \-l ] 
-.RB [ \-u|\-\^\-force-unlock ]
+.RB [
 .IR FIL
 .RB ]
 .if 0 .RB [ bonobo\ options ]
@@ -86,9 +87,17 @@ De format, som är tillgängliga för export är
 \fB\-f\fR-alternativ).
 
 .TP 
+.BI \-l
+Listar alla databaser/familjeträd.
+
+.TP 
+.BI \-u,\-\^\-force-unlock
+Tvingar upplåsning av databas.
+
+.TP 
 .BI \-O,\-\^\-open= " DATABAS"
 Öppnar \fIDATABAS\fR, som måste vara en befitlig databasmapp eller ett befintligt familjeträd.
-Om ingen åtgärd, import eller export-alternativ anges på kommandoraden så startaen interaktiv 
+Om ingen åtgärd, import eller export-alternativ anges på kommandoraden så startas en interaktiv 
 session med den angivna databasen.
 
 .TP 
@@ -127,44 +136,35 @@ har avslutats felfritt. F. n. är följand åtgärder möjliga \fBsummary\fR
  \fIALTERNATIVSTRÄNG\fR lämnad via \fB\-p\fR-flaggan). 
 .br
 
-Alternativsträngen för rapporten måste uppfylla följand villkor:
+\fIALTERNATIVSTRÄNG\fR-en måste uppfylla följand villkor:
 .br
 Får ej innehålla några mellanslag. 
 Om några argument behöver inbegripa mellanslag, måste strängen omslutas av 
 anföringstecken.
-Alternativsträngen måste lista par av alternativnamn och värden.
-Inom ett par, måste alternativnamn och värde åtskiljas av likhetstecken.
-Olika par måste åtskiljas med komma. 
+Alternativsträngen är en lista med par av namn och värden (åtskiljda av likhetstecken).
+Namn och värde måste åtskiljas med komma. 
 .br
 
-De flesta rapportalternativ är unika för varje rapport. Emellertid finns 
+De flesta rapportalternativ är unika för varje rapport eller verktyg. Emellertid finns 
 det gemensamm alternativ.
 
 .BI "name=rapportnamn"
 .br
 Detta är obligatoriskt och bestämmer vilken rapport som skall skapas. 
-Om det givna rapportnamnet inte motsvarar någon möjlig rapport, kommer ett 
-felmeddelande att skrivas ut, följt av möjliga namn på rapporter.
+Om det givna \fInamn\fR inte motsvarar någon möjlig rapport eller verktyg, kommer ett 
+felmeddelande att skrivas ut, följt av möjliga namn på rapporter eller verktyg.
 
 .BI "show=all"
 .br
-Detta ger en lista med namn på alla möjliga alternativ för en bestämd rapport.
+Detta ger en lista med namn på alla möjliga alternativ för en bestämd rapport eller verktyg.
 
 .BI "show=optionname"
 .br
-Detta skriver beskrivning av den funktion, som \fBoptionname\fR innebär, likväl vad som 
+Detta skriver ut beskrivningen av den funktion, som \fBoptionname\fR innebär, likväl vad som 
 är godkända typer och värden för detta alternativ.
 
 .br
 Använd alternativen ovan för att ta reda på all om en viss rapport.
-
-.TP 
-.BI \-l
-Listar alla databaser/familjeträd.
-
-.TP 
-.BI \-u,\-\^\-force-unlock
-Tvingar upplåsning av databas.
 
 .LP
 Om mer än en utdataåtgärd givits måste varje föregås av en \fB\-a\fR-flagga. 
@@ -173,7 +173,7 @@ Om mer än en utdataåtgärd givits måste varje föregås av en \fB\-a\fR-flagg
 .TP 
 .BI \-d,\-\^\-debug= " LOGGER_NAME"
 Kopplar på avlusningshjälpmedel för utveckling och tester. 
-För detaöljer hänvisas till källkoder
+För detaljer hänvisas till källkoder
 .TP
 .BI \-\^\-version
 Skriver ur gramps versionsnummer och avslutar
@@ -264,6 +264,9 @@ För att spara den databas, som är resultat av all import, ange \fB\-o\fR-flagg
 För att importera tre databaser och påbörja en interaklive gramps-session med importresultatet: 
 \fBgramps\fR \fB\-i\fR \fIFIL1.ged\fR \fB\-i\fR \fIFIL2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
 .TP 
+För att köra verifieringsverktyget från kommandoraden och mata ut resultatet till stdout: 
+\fBgramps\fR \fB\-O\fR \fIfile.grdb\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
+.TP 
 Slutligen, för att påbörja en normal interaktiv session skriv bara: 
 \fBgramps\fR 
 
@@ -307,7 +310,7 @@ Peter Landgren \fI<peter.talken@telia.com>\fR
 Användardokumentationen är tillgänglig genom GNOME's standard hjälp-bläddrare 
 i form av Gramps-handboken. Handboken finns även i XML-format
 som \fBgramps-manual.xml\fR under \fIdoc/gramps-manual/$LANG\fR i den officiella
-källdistributionen. Dock ej på svenska 
+källdistributionen. Dock ej på svenska. 
 .LP 
 Utvecklingsdokumentationen kan hittas på
 \fIhttp://developers.gramps-project.org\fR. 
