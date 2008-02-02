@@ -1,3 +1,9 @@
+
+
+2008-02-02 Peter LAndgren <peter.talken@telia.com>
+    * data/man/gramps.in.1: [ \-l] -> [ \-l ]
+    * data/man/sv/gramps.in.1: Update, due to update of English gramps.
+
 2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: Deleted - superceeded by GVRelGraph.py.
 
