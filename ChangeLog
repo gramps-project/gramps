@@ -1,3 +1,6 @@
+2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/plugins/WriteGeneWeb.py: "Living" is not translated -->fixed
+
 2008-02-01 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/GVRelGraph.py: Fix 0001617: place/cause option: cause is 
 	never included

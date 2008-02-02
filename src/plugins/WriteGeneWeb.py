@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id:WriteGeneWeb.py 9912 2008-01-22 09:17:46Z acraphae $
 
 "Export to GeneWeb."
 
@@ -473,7 +473,7 @@ class GeneWebWriter:
     
     def get_ref_name(self,person):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
-        firstname = "Living"
+        firstname = _("Living")
         if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if not self.person_ids.has_key(person.get_handle()):
@@ -483,7 +483,7 @@ class GeneWebWriter:
 
     def get_child_ref_name(self,person,father_lastname):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
-        firstname = "Living"
+        firstname = _("Living")
         if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if not self.person_ids.has_key(person.get_handle()):
