@@ -1,5 +1,9 @@
 2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* po/POTFILES.in:
+	0001689: Text: Generato commadline plugin interface not localised
+
+2008-02-02 Brian Matherly <brian@gramps-project.org>
+	* po/POTFILES.in:
 	0001694: Descendant report -untranslated text
 
 2008-02-02 Brian Matherly <brian@gramps-project.org>
