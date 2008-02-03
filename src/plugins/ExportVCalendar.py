@@ -110,7 +110,7 @@ class CalendarWriterOptionBox:
             com.add_rule(Rules.Person.HasCommonAncestorWith(
                 [self.person.get_gramps_id()]))
             
-            the_filters += [everyone_filter, des, ans, com]
+            the_filters += [des, ans, com]
 
         from Filters import CustomFilters
         the_filters.extend(CustomFilters.get_filters('Person'))

@@ -1,4 +1,13 @@
 2008-02-02 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/ExportVCard.py:
+	* src/plugins/ExportCSV.py:
+	* src/plugins/ExportVCalendar.py:
+	* src/plugins/WriteFtree.py:
+	* src/plugins/WriteGeneWeb.py:
+	0001674: when exporting, filter dropdown menu has to 
+	"Entire Database" entries
+
+2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* po/POTFILES.in:
 	0001689: Text: Generato commadline plugin interface not localised
 
