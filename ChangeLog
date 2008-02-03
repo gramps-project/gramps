@@ -1,3 +1,6 @@
+2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/ExportOptions.py: fix mnemonics for filter
+
 2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/ExportVCard.py:
 	* src/plugins/ExportCSV.py:

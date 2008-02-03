@@ -62,8 +62,12 @@ class WriterOptionBox:
     def get_option_box(self):
         """Build up a gtk.Table that contains the standard options."""
         table = gtk.Table(3, 2)
-        label = gtk.Label(_('Filt_er'))
+        
         self.filter_obj = gtk.ComboBox()
+        label = gtk.Label(_('Filt_er'))
+        label.set_use_underline(True)
+        label.set_mnemonic_widget(self.filter_obj)
+
         self.private_check = gtk.CheckButton(
             _('_Do not include records marked private'))
         self.restrict_check = gtk.CheckButton(
