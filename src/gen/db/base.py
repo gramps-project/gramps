@@ -109,7 +109,7 @@ class GrampsDbBookmarks:
         self.bookmarks.remove(item)
 
     def pop(self, item):
-        self.bookmarks.pop(item)
+        return self.bookmarks.pop(item)
 
     def insert(self, pos, item):
         self.bookmarks.insert(pos, item)
