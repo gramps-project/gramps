@@ -1,4 +1,8 @@
 2008-02-02 Brian Matherly <brian@gramps-project.org>
+	* po/POTFILES.in:
+	0001694: Descendant report -untranslated text
+
+2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_GuiOptions.py:
 	* src/plugins/FamilyGroup.py:
 	0001702: invoking family group reports crashes gramps

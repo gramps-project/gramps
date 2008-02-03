@@ -342,6 +342,7 @@ src/ReportBase/_BareReportDialog.py
 src/ReportBase/_BookFormatComboBox.py
 src/ReportBase/_CommandLineReport.py
 src/ReportBase/_Constants.py
+src/ReportBase/_DocReportDialog.py
 src/ReportBase/_DrawFormatComboBox.py
 src/ReportBase/_DrawReportDialog.py
 src/ReportBase/_Endnotes.py
