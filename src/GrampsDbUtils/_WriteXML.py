@@ -66,7 +66,7 @@ except:
 #-------------------------------------------------------------------------
 def export_data(database, filename, person, option_box, callback=None):
     """
-    Calls the XML writer with the syntax expected by the export plugin
+    Call the XML writer with the syntax expected by the export plugin.
     """
     if os.path.isfile(filename):
         try:
