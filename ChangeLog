@@ -1,3 +1,6 @@
+2008-02-04 Jerome Rapinat <romjerome@yahoo.fr>
+	* data/man/fr/gramps.1.in: update
+
 2008-02-03 Gary Burton <gary.burton@zen.co.uk>
 	* src/gen/db/base.py: Functions using the pop function expect a return
 	value. Bug #1632

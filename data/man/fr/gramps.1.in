@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "Janvier 2008" "@VERSION@"
+.TH gramps 1 "@VERSION@" "Février 2008" "@VERSION@"
 .SH NOM
 gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
 
@@ -26,7 +26,7 @@ gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de G
 .RB [ \-a|\-\^\-action= 
 .IR ACTION ]
 .RB [ \-p|\-\^\-options= 
-.IR OPTIONSTRING ]] 
+.IR OPTION ]] 
 .RB [
 .IR FICHIER
 .RB ]
@@ -118,11 +118,12 @@ Quand plus d'un fichier doit être exporté, chacun doit être précédé par la
 .TP 
 .BI \-a,\-\^\-action= " ACTION"
 Accomplir une \fIACTION\fR sur les données importées. C'est effectué à la fin de l'importation. Les actions possibles sont \fBsummary\fR 
-(Comme le rapport->Affichage->Résumé?), \fBcheck\fR (comme l'outil->Réparation de la base->Vérifier et réparer), et \fBreport\fR (produit un rapport, à besoin
-de \fIOPTIONSTRING\fR précédé par la commande \fB\-p\fR.
+(comme le rapport -> Afficher -> Statistiques sur la base), \fBcheck\fR (comme l'outil -> Réparation de la base -> Vérifier et réparer), \fBreport\fR (produit un rapport) et
+\fBtool\fR (utilise un outil), ces derniers ont besoin
+de \fIOPTION\fR précédé par la commande \fB\-p\fR.
 .br
 
-Ces options de rapport doivent satisfaire ces conditions:
+L'\fIOPTION\fR doit satisfaire ces conditions:
 .br
 Il ne doit pas y avoir d'espace. 
 Si certains arguments doivent utiliser des espaces, la chaîne doit être encadrée par des guillemets.
@@ -133,17 +134,17 @@ Différentes paires sont séparées par une virgule.
 
 La plupart des options sont spécifiques à chaque rapport. Même s'il existe des options communes.
 
-.BI "name=reportname "
+.BI "name=name"
 .br
-Cette option obligatoire, elle détermine quel rapport sera généré. Si le nom du rapport saisi ne correspond à aucun rapport disponible, un message d'erreur sera ajouté.
+Cette option est obligatoire, elle détermine quel rapport ou outil sera utilisé. Si le \fIname\fR saisi ne correspond à aucun module disponible, un message d'erreur sera ajouté.
 
 .BI "show=all"
 .br
 Cette option produit une liste avec les noms des options disponibles pour un rapport donné.
 
-.BI "show=optionname"
+.BI "show="optionname
 .br
-Cette option affiche une description de toutes les fonctionnalités proposées par optionname, aussi bien les types que les valeurs pour une option.
+Cette option affiche une description de toutes les fonctionnalités proposées par \fIoptionname\fR, aussi bien les types que les valeurs pour une option.
 
 .br
 Utiliser les options ci-dessus pour trouver tout sur un rapport choisi.
@@ -232,6 +233,9 @@ Pour enregistrer le résultat des lectures, donnez l'option  \fB\-o\fR (utiliser
 Pour lire trois ensembles de données puis lancer une session interactive de gramps sur le tout : 
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
 .TP 
+Pour lancer l'outil de vérification de la base de données depuis la ligne de commande et obtenir le résultat: 
+\fBgramps\fR \fB\-O\fR \fIfile.grdb\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
+.TP
 Enfin, pour lancer une session interactive normale, entrer : \fBgramps\fR 
 
 .SH CONCEPTS
@@ -264,7 +268,7 @@ pour Debian GNU/Linux système.
 .LP 
 Cette page man est maintenue par:
 .br 
-Alex Roitman \fI<shura@gramps-project.org>\fR
+Gramps project \fI<xxx@gramps-project.org>\fR
 .LP 
 La traduction française:
 .br 
