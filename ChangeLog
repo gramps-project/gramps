@@ -1,3 +1,7 @@
+2008-02-05 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/GrampsWidgets.py: remove conditional test on pygtk 2.6, 3.0 
+	  requires 2.10+, so 2.6 code should never be used.
+
 2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DataViews/GrampletView.py
 	* src/ReportBase/_ReportUtils.py

@@ -1750,8 +1750,6 @@ class IconEntry(object):
         self._locked = False
 
 
-HAVE_2_6 = gtk.pygtk_version[:2] == (2, 6)
-
 (DIRECTION_LEFT, DIRECTION_RIGHT) = (1, -1)
 
 (INPUT_ASCII_LETTER, 
@@ -1830,24 +1828,12 @@ class MaskedEntry(gtk.Entry):
         self._block_insert = False
         self._block_delete = False
 
-    # Virtual methods
-    # PyGTK 2.6 does not support the virtual method do_size_allocate so
-    # we have to use the signal instead
-    # PyGTK 2.9.0 and later (bug #327715) does not work using the old code, 
-    # so we have to make this conditionally
-    if HAVE_2_6:
-        gsignal('size-allocate', 'override')
-        def do_size_allocate(self, allocation):
-            self.chain(allocation)
+    # Virtual methods, note do_size_alloc needs gtk 2.9 +
+    def do_size_allocate(self, allocation):
+        gtk.Entry.do_size_allocate(self, allocation)
 
-            if self.flags() & gtk.REALIZED:
-                self._icon.resize_windows()
-    else:
-        def do_size_allocate(self, allocation):
-            gtk.Entry.do_size_allocate(self, allocation)
-
-            if self.flags() & gtk.REALIZED:
-                self._icon.resize_windows()
+        if self.flags() & gtk.REALIZED:
+            self._icon.resize_windows()
 
     def do_expose_event(self, event):
         gtk.Entry.do_expose_event(self, event)
