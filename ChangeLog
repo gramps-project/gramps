@@ -1,3 +1,8 @@
+2008-02-03 Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/Checkpoint.py:
+	* src/plugins/checkpoint.glade: remove this plugin as it is superceded by
+	functionality built in to the Family Tree Manager.
+
 2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* example/gramps/data.gramps: replace example.gramps to one generated with
 	trunk.
