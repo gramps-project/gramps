@@ -16,7 +16,6 @@ pkgdata_PYTHON = \
 	ChangeTypes.py\
 	ChangeNames.py\
 	Check.py\
-	Checkpoint.py\
 	CountAncestors.py\
 	CustomBookText.py\
 	DefaultGramplets.py\
@@ -119,7 +118,6 @@ GLADEFILES = \
 	genewebexport.glade\
 	vcardexport.glade\
 	vcalendarexport.glade\
-	checkpoint.glade\
 	unused.glade
 
 GRAPHICS = 

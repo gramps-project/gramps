@@ -256,7 +256,6 @@ src/plugins/CalculateEstimatedDates.py
 src/plugins/Calendar.py
 src/plugins/ChangeNames.py
 src/plugins/ChangeTypes.py
-src/plugins/Checkpoint.py
 src/plugins/Check.py
 src/plugins/CmdRef.py
 src/plugins/CountAncestors.py

@@ -1,9 +1,14 @@
-2008-02-03 Gary Burton <gary.burton@zen.co.uk>
+2008-02-05 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/data/tips.xml.in: remove checkpoint reference
+	* src/plugins/Makefile.am: remove checkpoint reference
+	* po/POTFILES.in: remove checkpoint reference
+
+2008-02-05 Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/Checkpoint.py:
 	* src/plugins/checkpoint.glade: remove this plugin as it is superceded by
 	functionality built in to the Family Tree Manager.
 
-2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-02-05 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* example/gramps/data.gramps: replace example.gramps to one generated with
 	trunk.
 	0001721: update data.gramps so that it conforms to new style notes. 
@@ -12,7 +17,7 @@
 	* src/GrampsWidgets.py: remove conditional test on pygtk 2.6, 3.0 
 	  requires 2.10+, so 2.6 code should never be used.
 
-2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-02-05 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DataViews/GrampletView.py
 	* src/ReportBase/_ReportUtils.py
 	* src/gen/proxy/private.py

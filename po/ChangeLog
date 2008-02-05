@@ -1,60 +1,63 @@
+2008-02-05 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* POTFILES.in: remove checkpoint reference
+
 2008-02-02 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation
+	* lt.po: updated Lithuanian translation
 
 2008-02-02 Łukasz Rymarczyk <yenidai@poczta.onet.pl>
-        * pl.po: Translation update
+	* pl.po: Translation update
 
 2008-01-31 Mirko Leonhaeuser <mirko@leonhaeuser.de>
-        * de.po: Translation update
+	* de.po: Translation update
 
 2008-01-29 Jerome Rapinat <romjerome@yahoo.fr>
-        * gramps.pot: update template
-        * fr.po: Translation update
+	* gramps.pot: update template
+	* fr.po: Translation update
 
 2008-01-28 Łukasz Rymarczyk <yenidai@poczta.onet.pl>
-        * pl.po: Translation update
+	* pl.po: Translation update
 
 2008-01-28 Jerome Rapinat <romjerome@yahoo.fr>
-        * fr.po: use correct translation for beta
+	* fr.po: use correct translation for beta
 
 2008-01-24 Boril Gourinov <boril.gourinov@gmail.com>
-        * bg.po: Translation update
+	* bg.po: Translation update
 
 2008-01-15 Jerome Rapinat <romjerome@yahoo.fr>
-        * POTFILE.in : add missing plugins/References.py
-        * fr.po: Translation update
+	* POTFILE.in : add missing plugins/References.py
+	* fr.po: Translation update
 
 2008-01-14 Mirko Leonhaeuser <mirko@leonhaeuser.de>
-        * de.po: Translation update
+	* de.po: Translation update
 
 2008-01-13 Josip <josip@pisoj.com>
-        * hr.po: Translation update
+	* hr.po: Translation update
 
 2008-01-07 Jerome Rapinat  <romjerome@yahoo.fr>
-        * fr.po: Translation update
+	* fr.po: Translation update
 
 2008-01-05 Josip <josip@pisoj.com>
-        * hr.po New language, Croatian
+	* hr.po New language, Croatian
 
 2008-01-02 Frederik De Richter <frederik.de.richter@pandora.be>
 	* nl.po: Translation update Fuzzy:0 Untranslated: 0
 
 2007-12-31 Boril Gourinov <boril.gourinov@gmail.com>
-        * bg.po: New language, bulgarian
+	* bg.po: New language, bulgarian
 
 2007-12-30 Jerome Rapinat  <romjerome@yahoo.fr>
-        * POTFILES.in : update
-        * gramps.pot : update template
+	* POTFILES.in : update
+	* gramps.pot : update template
 	* fr.po: Translation update
 
 2007-12-28 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation
+	* lt.po: updated Lithuanian translation
 
 2007-12-24 Jerome Rapinat  <romjerome@yahoo.fr>
-        * fr.po: Translation update
+	* fr.po: Translation update
 
 2007-12-23 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation
+	* lt.po: updated Lithuanian translation
 
 2007-12-23 Stéphane Charette  <stephanecharette@gmail.com>
 	* gramps.po: update to get ready for 3.0.0 beta
@@ -66,8 +69,8 @@
 	* nl.po: Translation update Fuzzy:98 Untranslated: 4
 
 2007-12-20 Jerome Rapinat  <romjerome@yahoo.fr>
-        * POTFILES.in : add plugins/GVRelGraph.py reference
-        * gramps.pot : update template
+	* POTFILES.in : add plugins/GVRelGraph.py reference
+	* gramps.pot : update template
 	* fr.po: Translation update
 
 2007-12-19 Jerome Rapinat  <romjerome@yahoo.fr>
