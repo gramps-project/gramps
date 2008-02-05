@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_ReportUtils.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 A collection of utilities to aid in the generation of reports.
@@ -2657,7 +2657,7 @@ def get_person_filters(person, include_single=True):
         name = 'PERSON'
         gramps_id = ''
     
-    if include_single == True:
+    if include_single:
         filt_id = GenericFilter()
         filt_id.set_name(name)
         filt_id.add_rule(Rules.Person.HasIdOf([gramps_id]))
@@ -2682,7 +2682,7 @@ def get_person_filters(person, include_single=True):
     com.set_name(_("People with common ancestor with %s") % name)
     com.add_rule(Rules.Person.HasCommonAncestorWith([gramps_id]))
 
-    if include_single == True:
+    if include_single:
         the_filters = [filt_id, all, des, df, ans, com]
     else:
         the_filters = [all, des, df, ans, com]

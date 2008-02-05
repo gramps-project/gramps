@@ -1,3 +1,17 @@
+2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/DataViews/GrampletView.py
+	* src/ReportBase/_ReportUtils.py
+	* src/gen/proxy/private.py
+	* src/plugins/WebCal.py
+	* src/plugins/CmdRef.py
+	* src/Models/_ListCursor.py
+	* src/Models/_PathCursor.py
+	PEP 8 fixes. Change 
+	if var == True --> if var 
+	if var is True --> if var
+	if var == False --> if not var
+	if var == None --> if var is None
+
 2008-02-04 Jerome Rapinat <romjerome@yahoo.fr>
 	* data/man/fr/gramps.1.in: update
 

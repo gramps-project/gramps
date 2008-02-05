@@ -560,7 +560,7 @@ class WebReport(Report):
                     # at bottom of calendar
                     if thisday.month > month and thisday.year >= year:
                         # only do it once per row
-                        if last == True:
+                        if last:
                             last = False
                             of.write('      <td colspan="')
                             of.write(str(7 - day_col))

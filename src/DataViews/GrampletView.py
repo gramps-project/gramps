@@ -305,7 +305,7 @@ class Gramplet(object):
             return False
         try:
             retval = self._generator.next()
-            if retval == False:
+            if not retval:
                 self._idle_id = 0
             return retval
         except StopIteration:

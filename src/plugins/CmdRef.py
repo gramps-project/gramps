@@ -140,7 +140,7 @@ class CmdRef(Tool.Tool):
     def write_ref(self,f,item,level,id_counter,category=None):
         # Section and title
         f.write('<%s id="cmdplug-id%d">\n' % (_tags[level],id_counter) )
-        if category == True:
+        if category:
             title = 'Common Options'
         else:
             title = item[4]
@@ -149,7 +149,7 @@ class CmdRef(Tool.Tool):
         # Show command-line name
         f.write('    <variablelist>\n')
 
-        if category != True:
+        if not category:
             f.write('        <varlistentry>\n')
             f.write('          <term><command>name</command>:</term>\n')
             f.write('          <listitem>\n')
@@ -158,7 +158,7 @@ class CmdRef(Tool.Tool):
             f.write('        </varlistentry>\n')
 
         # Instantiate options class
-        if category == None:
+        if category is None:
             oclass = item[3](item[0], self.__db)
         elif category == CATEGORY_BOOK:
             import BookReport
@@ -167,7 +167,7 @@ class CmdRef(Tool.Tool):
             if item[0] == "navwebpage":
                 import NarrativeWeb
                 oclass = NarrativeWeb.WebReportOptions(item[0])
-        elif category == True:
+        elif category:
             # This is the common options case
             # so class is already instantiated
             oclass = item

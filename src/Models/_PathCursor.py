@@ -167,7 +167,7 @@ class PathCursor(object):
         """
 
         # See if the record is in the cache.
-        if self._object_cache.has_key(index) and use_cache is True:
+        if self._object_cache.has_key(index) and use_cache:
             ret = self._object_cache[index]['primary']
 
         # If the record is not in the cache or we are ignoring the

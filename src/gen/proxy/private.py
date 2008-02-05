@@ -50,7 +50,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_handle(handle)
-        if person and person.get_privacy() == False:
+        if person and not person.get_privacy():
             return sanitize_person(self.db,person)
         return None
 
@@ -60,7 +60,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_handle(handle)
-        if source and source.get_privacy() == False:
+        if source and not source.get_privacy():
             return sanitize_source(self.db,source)
         return None
 
@@ -70,7 +70,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Object exists, None is returned.
         """
         media = self.db.get_object_from_handle(handle)
-        if media and media.get_privacy() == False:
+        if media and not media.get_privacy():
             return sanitize_media(self.db,media)
         return None
 
@@ -80,7 +80,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_handle(handle)
-        if place and place.get_privacy() == False:
+        if place and not place.get_privacy():
             return sanitize_place(self.db,place)
         return None
 
@@ -90,7 +90,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_handle(handle)
-        if event and event.get_privacy() == False:
+        if event and not event.get_privacy():
             return sanitize_event(self.db,event)
         return None
 
@@ -100,7 +100,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_handle(handle)
-        if family and family.get_privacy() == False:
+        if family and not family.get_privacy():
             return sanitize_family(self.db,family)
         return None
 
@@ -110,7 +110,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Repository exists, None is returned.
         """
         repository = self.db.get_repository_from_handle(handle)
-        if repository and repository.get_privacy() == False:
+        if repository and not repository.get_privacy():
             return sanitize_repository(self.db,repository)
         return None
 
@@ -120,7 +120,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Note exists, None is returned.
         """
         note = self.db.get_note_from_handle(handle)
-        if note and note.get_privacy() == False:
+        if note and not note.get_privacy():
             return note
         return None
 
@@ -130,7 +130,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
-        if person.get_privacy() == False:
+        if not person.get_privacy():
             return sanitize_person(self.db,person)
         return None
 
@@ -140,7 +140,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_gramps_id(val)
-        if family.get_privacy() == False:
+        if not family.get_privacy():
             return sanitize_family(self.db,family)
         return None
 
@@ -150,7 +150,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_gramps_id(val)
-        if event.get_privacy() == False:
+        if not event.get_privacy():
             return sanitize_event(self.db,event)
         return None
 
@@ -160,7 +160,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_gramps_id(val)
-        if place.get_privacy() == False:
+        if not place.get_privacy():
             return sanitize_place(self.db,place)
         return None
 
@@ -170,7 +170,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_gramps_id(val)
-        if source.get_privacy() == False:
+        if not source.get_privacy():
             return sanitize_source(self.db,source)
         return None
 
@@ -180,7 +180,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such MediaObject exists, None is returned.
         """
         object = self.db.get_object_from_gramps_id(val)
-        if object.get_privacy() == False:
+        if not object.get_privacy():
             return sanitize_media(self.db,object)
         return None
 
@@ -190,7 +190,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Repository exists, None is returned.
         """
         repository = self.db.get_repository_from_gramps_id(val)
-        if repository.get_privacy() == False:
+        if not repository.get_privacy():
             return sanitize_repository(self.db,repository)
         return None
 
@@ -200,7 +200,7 @@ class PrivateProxyDb(ProxyDbBase):
         If no such Note exists, None is returned.
         """
         note = self.db.get_note_from_gramps_id(val)
-        if note.get_privacy() == False:
+        if not note.get_privacy():
             return note
         return None
 
@@ -212,7 +212,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_person_handles(sort_handles):
             person = self.db.get_person_from_handle(handle)
-            if person.get_privacy() == False:
+            if not person.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -225,7 +225,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_place_handles(sort_handles):
             place = self.db.get_place_from_handle(handle)
-            if place.get_privacy() == False:
+            if not place.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -238,7 +238,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_source_handles(sort_handles):
             source = self.db.get_source_from_handle(handle)
-            if source.get_privacy() == False:
+            if not source.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -250,7 +250,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_media_object_handles(sort_handles):
             object = self.db.get_object_from_handle(handle)
-            if object.get_privacy() == False:
+            if not object.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -262,7 +262,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
-            if event.get_privacy() == False:
+            if not event.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -274,7 +274,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
-            if family.get_privacy() == False:
+            if not family.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -286,7 +286,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_repository_handles():
             repository = self.db.get_repository_from_handle(handle)
-            if repository.get_privacy() == False:
+            if not repository.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -298,7 +298,7 @@ class PrivateProxyDb(ProxyDbBase):
         handles = []
         for handle in self.db.get_note_handles():
             note = self.db.get_note_from_handle(handle)
-            if note.get_privacy() == False:
+            if not note.get_privacy():
                 handles.append(handle)
         return handles
 
@@ -310,7 +310,7 @@ class PrivateProxyDb(ProxyDbBase):
     def get_default_person(self):
         """returns the default Person of the database"""
         person = self.db.get_default_person()
-        if person and person.get_privacy() == False:
+        if person and not person.get_privacy():
             return sanitize_person(self.db,person)
         return None
 
@@ -318,7 +318,7 @@ class PrivateProxyDb(ProxyDbBase):
         """returns the default Person of the database"""
         handle = self.db.get_default_handle()
         person = self.db.get_person_from_handle(handle)
-        if person and person.get_privacy() == False:
+        if person and not person.get_privacy():
             return handle
         return None
     
@@ -450,7 +450,7 @@ class PrivateProxyDb(ProxyDbBase):
             else:
                 raise NotImplementedError
             
-            if obj.get_privacy() == False:
+            if not obj.get_privacy():
                 yield (class_name,handle)
         return
 
@@ -469,10 +469,10 @@ def copy_media_ref_list(db,original_obj,clean_obj):
     @returns: Nothing
     """
     for media_ref in original_obj.get_media_list():
-        if media_ref.get_privacy() == False:
+        if not media_ref.get_privacy():
             handle = media_ref.get_reference_handle()
             media_object = db.get_object_from_handle(handle)
-            if media_object.get_privacy() == False:
+            if not media_object.get_privacy():
                 clean_obj.add_media_reference(MediaRef(media_ref))
 
 def copy_source_ref_list(db,original_obj,clean_obj):
@@ -492,7 +492,7 @@ def copy_source_ref_list(db,original_obj,clean_obj):
         if not ref.get_privacy():
             handle = ref.get_reference_handle()
             source = db.get_source_from_handle(handle)
-            if source.get_privacy() == False:
+            if not source.get_privacy():
                 clean_obj.add_source_reference(SourceRef(ref))
                 
 def copy_notes(db,original_obj,clean_obj):
@@ -510,7 +510,7 @@ def copy_notes(db,original_obj,clean_obj):
     """     
     for note_handle in original_obj.get_note_list():
         note = db.get_note_from_handle(note_handle)
-        if note.get_privacy() == False:
+        if not note.get_privacy():
             clean_obj.add_note(note_handle)
             
 def copy_attributes(db,original_obj,clean_obj):
@@ -566,7 +566,7 @@ def copy_lds_ords(db,original_obj,clean_obj):
     @returns: Nothing
     """         
     for lds_ord in original_obj.get_lds_ord_list():
-        if lds_ord.get_privacy() == False:
+        if not lds_ord.get_privacy():
            clean_obj.add_lds_ord( lds_ord )
            
 def copy_addresses(db,original_obj,clean_obj):
@@ -676,18 +676,18 @@ def sanitize_person(db,person):
     # copy Family reference list
     for handle in person.get_family_handle_list():
         family = db.get_family_from_handle(handle)
-        if family.get_privacy() == False:
+        if not family.get_privacy():
             new_person.add_family_handle(handle)
 
     # copy Family reference list
     for handle in person.get_parent_family_handle_list():
         family = db.get_family_from_handle(handle)
-        if family.get_privacy() == True:
+        if family.get_privacy():
             continue
         child_ref_list = family.get_child_ref_list()
         for child_ref in child_ref_list:
             if child_ref.get_reference_handle() == person.get_handle():
-                if child_ref.get_privacy() == False:
+                if not child_ref.get_privacy():
                     new_person.add_parent_family_handle(handle)
                 break
 
@@ -700,7 +700,7 @@ def sanitize_person(db,person):
 
     # copy event list
     for event_ref in person.get_event_ref_list():
-        if event_ref and event_ref.get_privacy() == False:
+        if event_ref and not event_ref.get_privacy():
             event = db.get_event_from_handle(event_ref.ref)
             if not event.get_privacy():
                 new_person.add_event_ref(sanitize_event_ref(db,event_ref))
@@ -708,14 +708,14 @@ def sanitize_person(db,person):
     # Copy birth and death after event list to maintain the order.
     # copy birth event
     event_ref = person.get_birth_ref()
-    if event_ref and event_ref.get_privacy() == False:
+    if event_ref and not event_ref.get_privacy():
         event = db.get_event_from_handle(event_ref.ref)
         if not event.get_privacy():
             new_person.set_birth_ref(sanitize_event_ref(db,event_ref))
 
     # copy death event
     event_ref = person.get_death_ref()
-    if event_ref and event_ref.get_privacy() == False:
+    if event_ref and not event_ref.get_privacy():
         event = db.get_event_from_handle(event_ref.ref)
         if not event.get_privacy():
             new_person.set_death_ref(sanitize_event_ref(db,event_ref))
@@ -759,7 +759,7 @@ def sanitize_source(db,source):
         if not repo_ref.get_privacy():
             handle = repo_ref.get_reference_handle()
             repo = db.get_repository_from_handle(handle)
-            if repo.get_privacy() == False:
+            if not repo.get_privacy():
                 new_source.add_repo_reference(RepoRef(repo_ref))
 
     copy_media_ref_list(db,source,new_source)
@@ -859,7 +859,7 @@ def sanitize_event(db,event):
     
     place_handle = event.get_place_handle()
     place = db.get_place_from_handle(place_handle)
-    if place and place.get_privacy() == False:
+    if place and not place.get_privacy():
         new_event.set_place_handle(place_handle)
     
     return new_event
@@ -889,23 +889,23 @@ def sanitize_family(db,family):
     father_handle = family.get_father_handle()
     if father_handle:
         father = db.get_person_from_handle(father_handle)
-        if father.get_privacy() == False:
+        if not father.get_privacy():
             new_family.set_father_handle(father_handle)
 
     # Copy the mother handle.
     mother_handle = family.get_mother_handle()
     if mother_handle:
         mother = db.get_person_from_handle(mother_handle)
-        if mother.get_privacy() == False:
+        if not mother.get_privacy():
             new_family.set_mother_handle(mother_handle)
         
     # Copy child references.
     for child_ref in family.get_child_ref_list():
-        if child_ref.get_privacy() == True:
+        if child_ref.get_privacy():
             continue
         child_handle = child_ref.get_reference_handle()
         child = db.get_person_from_handle(child_handle)
-        if child.get_privacy() == True:
+        if child.get_privacy():
             continue
         # Copy this reference
         new_ref = ChildRef()
@@ -918,7 +918,7 @@ def sanitize_family(db,family):
         
     # Copy event ref list.
     for event_ref in family.get_event_ref_list():
-        if event_ref and event_ref.get_privacy() == False:
+        if event_ref and not event_ref.get_privacy():
             event = db.get_event_from_handle(event_ref.ref)
             if not event.get_privacy():
                 new_family.add_event_ref(sanitize_event_ref(db,event_ref))
