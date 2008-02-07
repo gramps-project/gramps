@@ -273,7 +273,7 @@ To import three databases and start interactive gramps session with the result:
 \fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
 .TP 
 To run the Verify tool from the commandline and output the result to stdout: 
-\fBgramps\fR \fB\-O\fR \fIfile.grdb\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
+\fBgramps\fR \fB\-O\fR \fI'My Family Tree'\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
 .TP 
 Finally, to start normal interactive session type: 
 \fBgramps\fR 
