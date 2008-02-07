@@ -1,3 +1,7 @@
+2008-02-07 Jerome Rapinat <romjerome@yahoo.fr>
+        * src/DateHandler/_Date_fr.py : fix issue with french calendar and 
+        year only #1733
+
 2008-02-07 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/Editors/_EditPerson.py: pylint fixes & doc fixes
 	fixed 0001347: double gid should not be allowed for Person View

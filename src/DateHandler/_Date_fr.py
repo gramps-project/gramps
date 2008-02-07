@@ -274,7 +274,7 @@ class DateDisplayFR(DateDisplay):
         year = date_val[2]          
         if date_val[0] == 0:
             if date_val[1] == 0:
-                value = year
+                return year
             else:
                 value = u"%s %d" % (self.french[date_val[1]], year) 
         # convertion mistake before 22.9.1792        
