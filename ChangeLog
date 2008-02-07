@@ -1,3 +1,8 @@
+2008-02-07 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/Editors/_EditPerson.py: pylint fixes & doc fixes
+	fixed 0001347: double gid should not be allowed for Person View
+	Still open for all the other list views.
+
 2008-02-05 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/data/tips.xml.in: remove checkpoint reference
 	* src/plugins/Makefile.am: remove checkpoint reference

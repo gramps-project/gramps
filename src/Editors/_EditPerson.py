@@ -39,6 +39,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -55,12 +56,14 @@ import Errors
 
 from gen.utils import set_birth_death_index
 
-from _EditPrimary import EditPrimary
-from QuestionDialog import *
-from DisplayTabs import \
-     PersonEventEmbedList,NameEmbedList,SourceEmbedList,AttrEmbedList,\
-     AddrEmbedList,NoteTab,GalleryTab,WebEmbedList,PersonRefEmbedList, \
-     LdsEmbedList,PersonBackRefList
+from Editors._EditPrimary import EditPrimary
+import Config
+from QuestionDialog import ErrorDialog, ICON
+
+from DisplayTabs import (PersonEventEmbedList, NameEmbedList, SourceEmbedList, 
+                         AttrEmbedList, AddrEmbedList, NoteTab, GalleryTab, 
+                         WebEmbedList, PersonRefEmbedList, LdsEmbedList, 
+                         PersonBackRefList)
 from ReportBase import CATEGORY_QR_PERSON
     
 #-------------------------------------------------------------------------
@@ -79,8 +82,10 @@ _use_patronymic = set(
 
 class EditPerson(EditPrimary):
     """
-    The EditPerson dialog is derived from the EditPrimary class. It
-    allos for the editing of the primary object type of Person.
+    The EditPerson dialog is derived from the EditPrimary class. 
+    
+    It allows for the editing of the primary object type of Person.
+    
     """
 
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
@@ -88,15 +93,20 @@ class EditPerson(EditPrimary):
 
     def __init__(self, state, uistate, track, person, callback=None):
         """
-        Creates an EditPerson window.  Associates a person with the window.
+        Create an EditPerson window.  
+        
+        Associates a person with the window.
+        
         """
         EditPrimary.__init__(self, state, uistate, track, person, 
                              state.db.get_person_from_handle, callback)
 
     def empty_object(self):
         """
-        Returns an empty Person object for comparison for changes. This
-        is used by the base class (EditPrimary)
+        Return an empty Person object for comparison for changes. 
+        
+        This is used by the base class (EditPrimary).
+        
         """
         return gen.lib.Person()
 
@@ -110,9 +120,12 @@ class EditPerson(EditPrimary):
 
     def _local_init(self):
         """
-        Local initialization function. Performs basic initialization,
-        including setting up widgets and the glade interface. This is called
-        by the base class of EditPrimary, and overridden here.
+        Performs basic initialization, including setting up widgets and the 
+        glade interface. 
+        
+        Local initialization function. 
+        This is called by the base class of EditPrimary, and overridden here.
+        
         """
         self.pname = self.obj.get_primary_name()
         self.should_guess_gender = (not self.obj.get_gramps_id() and
@@ -121,9 +134,10 @@ class EditPerson(EditPrimary):
 
         self.load_obj = None
         self.load_rect = None
-        self.top = gtk.glade.XML(const.PERSON_GLADE, "edit_person", "gramps")
+        self.top = glade.XML(const.PERSON_GLADE, "edit_person", "gramps")
 
-        self.set_window(self.top.get_widget("edit_person"), None, self.get_menu_title())
+        self.set_window(self.top.get_widget("edit_person"), None, 
+                        self.get_menu_title())
         width = Config.get(Config.PERSON_WIDTH)
         height = Config.get(Config.PERSON_HEIGHT)
         self.window.set_default_size(width, height)
@@ -136,10 +150,13 @@ class EditPerson(EditPrimary):
 
     def _post_init(self):
         """
-        Post initalization function. Handles any initialization that
-        needs to be done after the interface is brought up. This called
-        by _EditPrimary's init routine, and overridden in the derived
-        class (this class)
+        Handle any initialization that needs to be done after the interface is 
+        brought up.
+         
+        Post initalization function. 
+        This is called by _EditPrimary's init routine, and overridden in the 
+        derived class (this class).
+        
         """
         self.load_person_image()
         if self.pname.get_surname() and not self.pname.get_first_name():
@@ -149,8 +166,10 @@ class EditPerson(EditPrimary):
 
     def _connect_signals(self):
         """
-        Connects any signals that need to be connected. Called by the
-        init routine of the base class (_EditPrimary).
+        Connect any signals that need to be connected. 
+        
+        Called by the init routine of the base class (_EditPrimary).
+        
         """
         self.define_cancel_button(self.top.get_widget("button15"))
         self.define_ok_button(self.top.get_widget("ok"), self.save)
@@ -169,7 +188,10 @@ class EditPerson(EditPrimary):
         self._add_db_signal('family-add', self.family_change)
 
     def family_change(self, handle_list=[]):
-        """Callback for family change signals. This should rebuild the 
+        """
+        Callback for family change signals. 
+        
+        This should rebuild the 
            backreferences to family in person when:
             1)a family the person is parent of changes. Person could have 
               been removed
@@ -177,6 +199,7 @@ class EditPerson(EditPrimary):
               removed
             3)a family is changed. The person could be added as child or
               parent
+            
         """
         #As this would be an extensive check, we choose the easy path and
         #   rebuild family backreferences on all family changes
@@ -193,9 +216,11 @@ class EditPerson(EditPrimary):
 
     def _setup_fields(self):
         """
-        Connects the GrampsWidget objects to field in the interface. This
-        allows the widgets to keep the data in the attached Person object
+        Connect the GrampsWidget objects to field in the interface. 
+        
+        This allows the widgets to keep the data in the attached Person object
         up to date at all times, eliminating a lot of need in 'save' routine.
+        
         """
 
         self.private = GrampsWidgets.PrivacyButton(
@@ -285,9 +310,7 @@ class EditPerson(EditPrimary):
 
     def _create_tabbed_pages(self):
         """
-        Creates the notebook tabs and inserts them into the main
-        window.
-        
+        Create the notebook tabs and insert them into the main window.
         """
         notebook = gtk.Notebook()
 
@@ -333,7 +356,8 @@ class EditPerson(EditPrimary):
             WebEmbedList(self.dbstate, self.uistate, self.track, 
                          self.obj.get_url_list()))
 
-        self.person_ref_list = PersonRefEmbedList(self.dbstate, self.uistate, self.track, 
+        self.person_ref_list = PersonRefEmbedList(self.dbstate, self.uistate, 
+                                                  self.track, 
                                                   self.obj.get_person_ref_list())
         self.pref_list = self._add_tab(notebook, self.person_ref_list)
         self.lds_list = self._add_tab(
@@ -386,23 +410,29 @@ class EditPerson(EditPrimary):
 
     def build_menu_names(self, person):
         """
-        Provides the information need by the base class to define the
+        Provide the information needed by the base class to define the
         window management menu entries.
         """
         return (_('Edit Person'), self.get_menu_title())
 
     def _image_callback(self, ref, obj):
         """
-        Called when a media reference had been edited. This allows for
-        the updating image on the main form which has just been modified. 
+        Called when a media reference had been edited. 
+        
+        This allows for the updating image on the main form which has just 
+        been modified.
+         
         """
         self.load_photo(obj.get_path(), ref.get_rectangle())
 
     def _image_button_press(self, obj, event):
         """
-        Button press event that is caught when a button has been
-        pressed while on the image on the main form. This does not apply
-        to the images in galleries, just the image on the main form.
+        Button press event that is caught when a button has been pressed while 
+        on the image on the main form. 
+        
+        This does not apply to the images in galleries, just the image on the 
+        main form.
+        
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
 
@@ -417,7 +447,7 @@ class EditPerson(EditPrimary):
                 try:
                     EditMediaRef(self.dbstate, self.uistate, self.track, 
                                  media_obj, media_ref, self._image_callback)
-                except Errors.WindowActiveError, msg:
+                except Errors.WindowActiveError:
                     pass
 
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
@@ -430,8 +460,8 @@ class EditPerson(EditPrimary):
 
     def _show_popup(self, photo, event):
         """
-        Look for right-clicks on a picture and create a popup
-        menu of the available actions.
+        Look for right-clicks on a picture and create a popup menu of the 
+        available actions.
         """
         
         menu = gtk.Menu()
@@ -449,7 +479,7 @@ class EditPerson(EditPrimary):
 
     def _popup_view_photo(self, obj):
         """
-        Open this picture in the default picture viewer
+        Open this picture in the default picture viewer.
         """
         media_list = self.obj.get_media_list()
         if media_list:
@@ -459,7 +489,7 @@ class EditPerson(EditPrimary):
 
     def _popup_change_description(self, obj):
         """
-        Brings up the EditMediaRef dialog for the image on the main form.
+        Bring up the EditMediaRef dialog for the image on the main form.
         """
         media_list = self.obj.get_media_list()
         if media_list:
@@ -472,9 +502,10 @@ class EditPerson(EditPrimary):
                          media_obj, media_ref, self._image_callback)
                         
     def _top_contextmenu(self):
-        '''override from base class, the menuitems and actiongroups for the
-           top of context menu
-        '''
+        """
+        Override from base class, the menuitems and actiongroups for the top 
+        of context menu.
+        """
         self.all_action    = gtk.ActionGroup("/PersonAll")
         self.home_action   = gtk.ActionGroup("/PersonHome")
         
@@ -497,8 +528,9 @@ class EditPerson(EditPrimary):
         return ui_top_cm, [self.all_action, self.home_action]
     
     def _post_build_popup_ui(self):
-        '''override base class, make inactive home action if not needed
-        '''
+        """
+        Override base class, make inactive home action if not needed.
+        """
         if self.dbstate.db.get_default_person() and \
                 self.obj.get_handle() == \
                             self.dbstate.db.get_default_person().get_handle():
@@ -531,7 +563,9 @@ class EditPerson(EditPrimary):
         return False
 
     def load_photo(self, path, rectangle=None):
-        """loads, scales, and displays the person's main photo from the path"""
+        """
+        Load, scale and display the person's main photo from the path.
+        """
         self.load_obj = path
         self.load_rect = rectangle
         if path == None:
@@ -572,21 +606,22 @@ class EditPerson(EditPrimary):
             if gender >= 0:
                 self.obj.set_gender(gender)
 
-    def _check_and_update_id(self):
-        original = self.db.get_person_from_handle(self.obj.get_handle())
+    def _person_uses_duplicate_id(self):
+        """
+        Check whether a changed or added person ID already exists in the DB.
         
-        if original and original.get_gramps_id() != self.obj.get_gramps_id():
+        Return True if a duplicate person ID has been detected.
+        """
+        original = self.db.get_person_from_handle(self.obj.get_handle())
+        if original and original.get_gramps_id() == self.obj.get_gramps_id():
+            return (False, '', '')
+        else:
             idval = self.obj.get_gramps_id()
             person = self.db.get_person_from_gramps_id(idval)
             if person:
                 name = self.nd.display(person)
-                msg1 = _("GRAMPS ID value was not changed.")
-                msg2 = _("You have attempted to change the GRAMPS ID "
-                         "to a value of %(grampsid)s. This value is "
-                         "already used by %(person)s.") % {
-                    'grampsid' : idval, 
-                    'person' : name }
-                WarningDialog(msg1, msg2)
+                return (True, idval, name)
+            return (False, '', '')
 
     def _update_family_ids(self, trans):
         # Update each of the families child lists to reflect any
@@ -668,7 +703,18 @@ class EditPerson(EditPrimary):
 
         trans = self.db.transaction_begin()
 
-        self._check_and_update_id()
+        (uses_dupe_id, person_id, name) = self._person_uses_duplicate_id()
+        if uses_dupe_id:
+            msg1 = _("Cannot save person. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(person_id)s. This value is already used by " 
+                         "%(person)s. Please enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'person_id' : person_id, 'person' : name }
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
+            
         self._update_family_ids(trans)
 
         if not self.obj.get_handle():
@@ -686,19 +732,23 @@ class EditPerson(EditPrimary):
 
     def _edit_name_clicked(self, obj):
         """
+        Bring up the EditName dialog for this name.
+        
         Called when the edit name button is clicked for the primary name
-        on the main form (not in the names tab). Brings up the EditName
-        dialog for this name.
+        on the main form (not in the names tab).
+         
         """
         from Editors import EditName
         EditName(self.dbstate, self.uistate, self.track, 
                  self.pname, self._update_name)
 
-    def _update_name(self, name):
+    def _update_name(self):
         """
         Called when the primary name has been changed by the EditName
-        dialog. This allows us to update the main form in response to
-        any changes.
+        dialog. 
+        
+        This allows us to update the main form in response to any changes.
+        
         """
         for obj in (self.suffix, self.prefix, self.given, self.title, 
                     self.ntype_field, self.surname_field, self.call):
@@ -706,8 +756,10 @@ class EditPerson(EditPrimary):
 
     def load_person_image(self):
         """
-        Loads the primary image into the main form if it exists.
+        Load the primary image into the main form if it exists.
+        
         Used as callback on Gallery Tab too.
+        
         """
         media_list = self.obj.get_media_list()
         if media_list:
@@ -726,8 +778,10 @@ class EditPerson(EditPrimary):
             self.load_photo(None)
 
     def birth_dates_in_order(self, child_ref_list):
-        """Check any *valid* birthdates in the list to insure that they are in
-        numerically increasing order."""
+        """
+        Check any *valid* birthdates in the list to insure that they are in
+        numerically increasing order.
+        """
         inorder = True
         prev_date = 0
         handle_list = [ref.ref for ref in child_ref_list]
@@ -747,9 +801,14 @@ class EditPerson(EditPrimary):
         return inorder
 
     def reorder_child_ref_list(self, person, child_ref_list):
-        """Reorder the child list to put the specified person in his/her
-        correct birth order.  Only check *valid* birthdates.  Move the person
-        as short a distance as possible."""
+        """
+        Reorder the child list to put the specified person in his/her
+        correct birth order.  
+        
+        Only check *valid* birthdates.  Move the person as short a distance as 
+        possible.
+        
+        """
 
         if self.birth_dates_in_order(child_ref_list):
             return(child_ref_list)
@@ -774,7 +833,7 @@ class EditPerson(EditPrimary):
                 event = self.db.get_event_from_handle(event_ref.ref)
                 other_bday = event.get_date_object().get_sort_value()
                 if other_bday == 0:
-                    continue;
+                    continue
                 if person_bday < other_bday:
                     target = i
             else:
@@ -789,7 +848,7 @@ class EditPerson(EditPrimary):
                     event = self.db.get_event_from_handle(event_ref.ref)
                     other_bday = event.get_date_object().get_sort_value()
                     if other_bday == "99999999":
-                        continue;
+                        continue
                     if person_bday > other_bday:
                         target = i
                 else:
@@ -809,7 +868,7 @@ class EditPerson(EditPrimary):
 
 
 class GenderDialog(gtk.MessageDialog):
-    def __init__(self,parent=None):
+    def __init__(self, parent=None):
         gtk.MessageDialog.__init__(self,
                                 parent, 
                                 flags=gtk.DIALOG_MODAL,
