@@ -227,12 +227,16 @@ class EditMedia(EditPrimary):
         self.obj.set_path(Utils.get_unicode_path(path))
 
         trans = self.db.transaction_begin()
-        if self.obj.get_handle():
-            self.db.commit_media_object(self.obj, trans)
-        else:
+        if not self.obj.get_handle():
             self.db.add_object(self.obj, trans)
-        self.db.transaction_commit(trans, _("Edit Media Object (%s)"
-                                           ) % self.obj.get_description())
+            msg = _("Add Media Object (%s)") % self.obj.get_description()
+        else:
+            if not self.obj.get_gramps_id():
+                self.obj.set_gramps_id(self.db.find_next_object_gramps_id())
+            self.db.commit_media_object(self.obj, trans)
+            msg = _("Edit Media Object (%s)") % self.obj.get_description()
+            
+        self.db.transaction_commit(trans, msg)
         
         if self.callback:
             self.callback(self.obj)

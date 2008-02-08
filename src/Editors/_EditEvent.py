@@ -220,14 +220,16 @@ class EditEvent(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        if self.obj.handle == None:
+        if not self.obj.handle:
             trans = self.db.transaction_begin()
-            self.db.add_event(self.obj,trans)
-            self.db.transaction_commit(trans,_("Add Event"))
+            self.db.add_event(self.obj, trans)
+            self.db.transaction_commit(trans, _("Add Event"))
         else:
-            orig = self.dbstate.db.get_event_from_handle(self.obj.handle)
+            orig = self.get_from_handle(self.obj.handle)
             if cmp(self.obj.serialize(),orig.serialize()):
                 trans = self.db.transaction_begin()
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
                 self.commit_event(self.obj,trans)
                 self.db.transaction_commit(trans,_("Edit Event"))
 

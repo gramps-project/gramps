@@ -141,7 +141,7 @@ class EditRepository(EditPrimary):
         self.define_cancel_button(self.glade.get_widget('cancel'))
         self.define_ok_button(self.glade.get_widget('ok'), self.save)
 
-    def save(self,*obj):
+    def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             from QuestionDialog import ErrorDialog
@@ -152,12 +152,16 @@ class EditRepository(EditPrimary):
             return
 
         trans = self.db.transaction_begin()
-        if self.obj.get_handle() == None:
-            self.db.add_repository(self.obj,trans)
+        if not self.obj.get_handle():
+            self.db.add_repository(self.obj, trans)
+            msg = _("Add Repository (%s)") % self.obj.get_name()
         else:
-            self.db.commit_repository(self.obj,trans)
-        msg = _("Edit Repository (%s)") % self.obj.get_name()
-        self.db.transaction_commit(trans,msg)
+            if not self.obj.get_gramps_id():
+                self.obj.set_gramps_id(self.db.find_next_repository_gramps_id())
+            self.db.commit_repository(self.obj, trans)
+            msg = _("Edit Repository (%s)") % self.obj.get_name()
+            
+        self.db.transaction_commit(trans, msg)
         self.close()
 
     def _cleanup_on_exit(self):

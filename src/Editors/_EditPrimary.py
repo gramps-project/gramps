@@ -39,7 +39,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
 
         self.dp  = DateHandler.parser
         self.dd  = DateHandler.displayer
-        self.nd  = name_displayer
+        self.name_displayer  = name_displayer
         self.obj = obj
         self.dbstate = state
         self.uistate = uistate

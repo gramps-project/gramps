@@ -160,7 +160,7 @@ class EditSource(EditPrimary):
     def build_menu_names(self,source):
         return (_('Edit Source'), self.get_menu_title())        
 
-    def save(self,*obj):
+    def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             from QuestionDialog import ErrorDialog
@@ -172,12 +172,16 @@ class EditSource(EditPrimary):
             return
 
         trans = self.db.transaction_begin()
-        if self.obj.get_handle() == None:
-            self.db.add_source(self.obj,trans)
+        if not self.obj.get_handle():
+            self.db.add_source(self.obj, trans)
+            msg = _("Add Source (%s)") % self.obj.get_title()
         else:
-            self.db.commit_source(self.obj,trans)
-        self.db.transaction_commit(trans,
-                                   _("Edit Source (%s)") % self.obj.get_title())
+            if not self.obj.get_gramps_id():
+                self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
+            self.db.commit_source(self.obj, trans)
+            msg = _("Edit Source (%s)") % self.obj.get_title()
+                        
+        self.db.transaction_commit(trans, msg)
         self.close()
 
     def _cleanup_on_exit(self):

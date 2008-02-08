@@ -943,7 +943,7 @@ class EditFamily(EditPrimary):
                 person.remove_parent_family_handle(self.obj.handle)
                 self.db.commit_person(person,trans)
             
-            # add the family from children which have been addedna
+            # add the family to children which have been added
             for ref in new_set.difference(orig_set):
                 person = self.db.get_person_from_handle(ref.ref)
                 person.add_parent_family_handle(self.obj.handle)
@@ -952,6 +952,8 @@ class EditFamily(EditPrimary):
             if self.object_is_empty():
                 self.db.remove_family(self.obj.handle,trans)
             else:
+                if not self.obj.get_gramps_id():
+                    self.obj.set_gramps_id(self.db.find_next_family_gramps_id())
                 self.db.commit_family(self.obj,trans)
             self.db.transaction_commit(trans,_("Edit Family"))
 

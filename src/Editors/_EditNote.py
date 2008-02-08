@@ -480,11 +480,16 @@ class EditNote(EditPrimary):
 
         self.update_note()
 
-        if self.obj.get_handle():
-            self.db.commit_note(self.obj,trans)
-        else:
+        if not self.obj.get_handle():
             self.db.add_note(self.obj,trans)
-        self.db.transaction_commit(trans, _("Edit Note"))
+            msg = _("Add Note")
+        else:
+            if not self.obj.get_gramps_id():
+                self.obj.set_gramps_id(self.db.find_next_note_gramps_id())
+            self.db.commit_note(self.obj,trans)
+            msg = _("Edit Note")
+            
+        self.db.transaction_commit(trans, msg)
         
         if self.callback:
             self.callback(self.obj.get_handle())

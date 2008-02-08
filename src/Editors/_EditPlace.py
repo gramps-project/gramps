@@ -262,12 +262,15 @@ class EditPlace(EditPrimary):
         title = self.obj.get_title()
 
         trans = self.db.transaction_begin()
-        if self.obj.get_handle():
-            self.db.commit_place(self.obj,trans)
-        else:
+        if not self.obj.get_handle():
             self.db.add_place(self.obj,trans)
-        self.db.transaction_commit(
-            trans, _("Edit Place (%s)") % self.obj.get_title())
+            msg = _("Add Place (%s)") % self.obj.get_title()
+        else:
+            if not self.obj.get_gramps_id():
+                self.obj.set_gramps_id(self.db.find_next_place_gramps_id())
+            self.db.commit_place(self.obj, trans)
+            msg = _("Edit Place (%s)") % self.obj.get_title()
+        self.db.transaction_commit(trans, msg)
         
         if self.callback:
             self.callback(self.obj)

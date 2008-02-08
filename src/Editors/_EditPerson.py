@@ -619,7 +619,7 @@ class EditPerson(EditPrimary):
             idval = self.obj.get_gramps_id()
             person = self.db.get_person_from_gramps_id(idval)
             if person:
-                name = self.nd.display(person)
+                name = self.name_displayer.display(person)
                 return (True, idval, name)
             return (False, '', '')
 
@@ -688,7 +688,6 @@ class EditPerson(EditPrimary):
         """
         Save the data.
         """
-
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             ErrorDialog(_("Cannot save person"), 
@@ -719,12 +718,13 @@ class EditPerson(EditPrimary):
 
         if not self.obj.get_handle():
             self.db.add_person(self.obj, trans)
+            msg = _("Add Person (%s)") % self.name_displayer.display(self.obj)
         else:
             if not self.obj.get_gramps_id():
                 self.obj.set_gramps_id(self.db.find_next_person_gramps_id())
             self.db.commit_person(self.obj, trans)
+            msg = _("Edit Person (%s)") % self.name_displayer.display(self.obj)
 
-        msg = _("Edit Person (%s)") % self.nd.display(self.obj)
         self.db.transaction_commit(trans, msg)
         self.close()
         if self.callback:
