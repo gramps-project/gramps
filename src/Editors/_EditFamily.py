@@ -26,6 +26,9 @@
 #
 #-------------------------------------------------------------------------
 from bsddb import db as bsddb_db
+from gettext import gettext as _
+from DdTargets import DdTargets
+import pickle
 #-------------------------------------------------------------------------
 #
 # enable logging for error handling
@@ -39,7 +42,9 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gtk
 from gtk import glade
+from gtk import gdk
 
 #-------------------------------------------------------------------------
 #
@@ -47,26 +52,27 @@ from gtk import glade
 #
 #-------------------------------------------------------------------------
 import Utils
+import const
+import Config
 from BasicUtils import name_displayer
 import gen.lib
 import Errors
 
-from _EditPrimary import EditPrimary
+from Editors import EditPrimary
 from ReportBase import ReportUtils
-from DisplayTabs import \
-     EmbeddedList,EventEmbedList,SourceEmbedList,FamilyAttrEmbedList,\
-     NoteTab,GalleryTab,FamilyLdsEmbedList, ChildModel
-from GrampsWidgets import *
+from DisplayTabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
+                         FamilyAttrEmbedList, NoteTab, GalleryTab, 
+                         FamilyLdsEmbedList, ChildModel)
+from GrampsWidgets import (PrivacyButton, MonitoredEntry, MonitoredDataType, 
+                           IconButton, LinkBox, BasicLabel)
 from ReportBase import CATEGORY_QR_FAMILY
 import QuestionDialog
-
-#from ObjectSelector import PersonSelector,PersonFilterSpec
 
 from Selectors import selector_factory
 SelectPerson = selector_factory('Person')
 
-_RETURN = gtk.gdk.keyval_from_name("Return")
-_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_RETURN = gdk.keyval_from_name("Return")
+_KP_ENTER = gdk.keyval_from_name("KP_Enter")
 
 class ChildEmbedList(EmbeddedList):
     """
@@ -116,33 +122,33 @@ class ChildEmbedList(EmbeddedList):
             (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
 
-    def find_index(self,obj):
+    def find_index(self, obj):
         """
         returns the index of the object within the associated data
         """
         reflist = [ref.ref for ref in self.family.get_child_ref_list()]
         return reflist.index(obj)
 
-    def _find_row(self,x,y):
-        row = self.tree.get_path_at_pos(x,y)
+    def _find_row(self, x, y):
+        row = self.tree.get_path_at_pos(x, y)
         if row == None:
             return len(self.family.get_child_ref_list())
         else:
             return row[0][0]
 
     def _handle_drag(self, row, obj):
-        self.family.get_child_ref_list().insert(row,obj)
+        self.family.get_child_ref_list().insert(row, obj)
         self.changed = True
         self.rebuild()
 
     def _move(self, row_from, row_to, obj):
         dlist = self.family.get_child_ref_list()
         if row_from < row_to:
-            dlist.insert(row_to,obj)
+            dlist.insert(row_to, obj)
             del dlist[row_from]
         else:
             del dlist[row_from]
-            dlist.insert(row_to-1,obj)
+            dlist.insert(row_to-1, obj)
         self.changed = True
         self.rebuild()
 
@@ -187,9 +193,10 @@ class ChildEmbedList(EmbeddedList):
         return self.family
 
     def column_order(self):
-        return [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(0,8),(0,9)]
+        return [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), 
+                (0, 8), (0, 9)]
 
-    def add_button_clicked(self,obj):
+    def add_button_clicked(self, obj):
         from Editors import EditPerson
         person = gen.lib.Person()
         autoname = Config.get(Config.SURNAME_GUESSING)
@@ -206,7 +213,7 @@ class ChildEmbedList(EmbeddedList):
         person.get_primary_name().set_surname(name[1])
         person.get_primary_name().set_surname_prefix(name[0])
 
-        EditPerson(self.dbstate, self.uistate, self.track,person,
+        EditPerson(self.dbstate, self.uistate, self.track, person,
                    self.new_child_added)
 
     def new_child_added(self, person):
@@ -219,7 +226,7 @@ class ChildEmbedList(EmbeddedList):
     def child_ref_edited(self, person):
         self.rebuild()
 
-    def share_button_clicked(self,obj):
+    def share_button_clicked(self, obj):
         # it only makes sense to skip those who are already in the family
         
         skip_list = [self.family.get_father_handle(), \
@@ -237,12 +244,12 @@ class ChildEmbedList(EmbeddedList):
             self.rebuild()
             self.call_edit_childref(ref.ref)
 
-    def run(self,skip):
+    def run(self, skip):
         skip_list = [ x for x in skip if x]
         SelectPerson(self.dbstate, self.uistate, self.track,
                      _("Select Child"), skip=skip_list)
 
-    def del_button_clicked(self,obj):
+    def del_button_clicked(self, obj):
         handle = self.get_selected()
         if handle:
             for ref in self.family.get_child_ref_list():
@@ -250,7 +257,7 @@ class ChildEmbedList(EmbeddedList):
                     self.family.remove_child_ref(ref)
             self.rebuild()
 
-    def edit_button_clicked(self,obj):
+    def edit_button_clicked(self, obj):
         handle = self.get_selected()
         if handle:
             self.call_edit_childref(handle)
@@ -289,16 +296,16 @@ class ChildEmbedList(EmbeddedList):
         if handle:
             pos = self.find_index(handle)
             if pos > 0 :
-                self._move_up(pos,self.family.get_child_ref_list()[pos]
-                        ,selmethod=self.family.get_child_ref_list)
+                self._move_up(pos,self.family.get_child_ref_list()[pos], 
+                              selmethod=self.family.get_child_ref_list)
                 
     def down_button_clicked(self, obj):
         ref = self.get_selected()
         if ref:
             pos = self.find_index(ref)
             if pos >=0 and pos < len(self.family.get_child_ref_list())-1:
-                self._move_down(pos,self.family.get_child_ref_list()[pos]
-                        ,selmethod=self.family.get_child_ref_list)
+                self._move_down(pos,self.family.get_child_ref_list()[pos], 
+                                selmethod=self.family.get_child_ref_list)
     
 
     def drag_data_received(self, widget, context, x, y, sel_data, info, time):
@@ -337,7 +344,7 @@ class ChildEmbedList(EmbeddedList):
         if father_handle:
             father = self.dbstate.db.get_person_from_handle(father_handle)
             pname = father.get_primary_name()
-            return (pname.get_surname_prefix(),pname.get_surname())
+            return (pname.get_surname_prefix(), pname.get_surname())
         return ("","")
 
     def no_name(self):
@@ -356,27 +363,27 @@ class ChildEmbedList(EmbeddedList):
             fsn = father.get_primary_name().get_surname()
             msn = mother.get_primary_name().get_surname()
             try:
-                return ("","%s %s" % (fsn.split()[0],msn.split()[0]))
+                return ("", "%s %s" % (fsn.split()[0], msn.split()[0]))
             except:
-                return ("","")
+                return ("", "")
         else:
-            return ("","")
+            return ("", "")
 
 class FastMaleFilter:
 
-    def __init__(self,db):
+    def __init__(self, db):
         self.db = db
 
-    def match(self, handle,db):
+    def match(self, handle, db):
         value = self.db.get_raw_person_data(handle)
         return value[2] == gen.lib.Person.MALE
 
 class FastFemaleFilter:
 
-    def __init__(self,db):
+    def __init__(self, db):
         self.db = db
 
-    def match(self, handle,db):
+    def match(self, handle, db):
         value = self.db.get_raw_person_data(handle)
         return value[2] == gen.lib.Person.FEMALE
 
@@ -389,7 +396,7 @@ class EditFamily(EditPrimary):
 
     QR_CATEGORY = CATEGORY_QR_FAMILY
     
-    def __init__(self,dbstate, uistate, track, family):
+    def __init__(self, dbstate, uistate, track, family):
         
         self.tooltips = gtk.Tooltips()
         EditPrimary.__init__(self, dbstate, uistate, track,
@@ -482,12 +489,12 @@ class EditFamily(EditPrimary):
             dialog_title = _("New Family")
         return dialog_title
 
-    def build_menu_names(self,family):
+    def build_menu_names(self, family):
         return (_('Edit Family'), self.get_menu_title())
 
     def build_interface(self):
 
-        self.top = glade.XML(const.GLADE_FILE,"family_editor","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "family_editor", "gramps")
 
         self.set_window(self.top.get_widget("family_editor"), None, self.get_menu_title())
 
@@ -503,9 +510,9 @@ class EditFamily(EditPrimary):
         self.mdeath  = self.top.get_widget('mdeath')
 
         self.mbutton = self.top.get_widget('mbutton')
-        self.mbutton2= self.top.get_widget('mbutton2')
+        self.mbutton2 = self.top.get_widget('mbutton2')
         self.fbutton = self.top.get_widget('fbutton')
-        self.fbutton2= self.top.get_widget('fbutton2')
+        self.fbutton2 = self.top.get_widget('fbutton2')
 
         self.tooltips.set_tip(self.mbutton2,
                               _("Add a new person as the mother"))
@@ -527,7 +534,7 @@ class EditFamily(EditPrimary):
 
     def _setup_fields(self):
         
-        self.private= PrivacyButton(
+        self.private = PrivacyButton(
             self.top.get_widget('private'),
             self.obj,
             self.db.readonly)
@@ -566,10 +573,10 @@ class EditFamily(EditPrimary):
         
         self.phandles = [handle for handle in self.phandles if handle]
 
-        self.mbutton.connect('clicked',self.mother_clicked)
-        self.mbutton2.connect('clicked',self.add_mother_clicked)
-        self.fbutton.connect('clicked',self.father_clicked)
-        self.fbutton2.connect('clicked',self.add_father_clicked)
+        self.mbutton.connect('clicked', self.mother_clicked)
+        self.mbutton2.connect('clicked', self.add_mother_clicked)
+        self.fbutton.connect('clicked', self.father_clicked)
+        self.fbutton2.connect('clicked', self.add_father_clicked)
 
     def _create_tabbed_pages(self):
 
@@ -579,13 +586,16 @@ class EditFamily(EditPrimary):
             notebook,
             ChildEmbedList(self.dbstate,self.uistate, self.track, self.obj))
         
-        self.event_embed = EventEmbedList(self.dbstate,self.uistate, self.track,self.obj)
+        self.event_embed = EventEmbedList(self.dbstate, self.uistate, 
+                                          self.track,self.obj)
         self.event_list = self._add_tab(notebook, self.event_embed)
             
-        self.source_embed = SourceEmbedList(self.dbstate,self.uistate,self.track,self.obj)
+        self.source_embed = SourceEmbedList(self.dbstate, self.uistate, 
+                                            self.track, self.obj)
         self.src_list = self._add_tab(notebook, self.source_embed)
             
-        self.attr_embed = FamilyAttrEmbedList(self.dbstate, self.uistate, self.track,
+        self.attr_embed = FamilyAttrEmbedList(self.dbstate, self.uistate, 
+                                              self.track,
                                               self.obj.get_attribute_list())
         self.attr_list = self._add_tab(notebook, self.attr_embed)
             
@@ -600,7 +610,8 @@ class EditFamily(EditPrimary):
             GalleryTab(self.dbstate, self.uistate, self.track,
                        self.obj.get_media_list()))
 
-        self.lds_embed = FamilyLdsEmbedList(self.dbstate, self.uistate, self.track,
+        self.lds_embed = FamilyLdsEmbedList(self.dbstate, self.uistate, 
+                                            self.track,
                                             self.obj.get_lds_ord_list())
         self.lds_list = self._add_tab(notebook, self.lds_embed)
 
@@ -608,15 +619,15 @@ class EditFamily(EditPrimary):
         notebook.show_all()
 
         self.hidden = (notebook, self.top.get_widget('info'))
-        self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_widget('vbox').pack_start(notebook, True)
 
-    def update_father(self,handle):
+    def update_father(self, handle):
         self.load_parent(handle, self.fbox, self.fbirth,
                          self.fdeath, self.fbutton, self.fbutton2,
                          _("Select a person as the father"),
                          _("Remove the person as the father"))
 
-    def update_mother(self,handle):
+    def update_mother(self, handle):
         self.load_parent(handle, self.mbox, self.mbirth,
                          self.mdeath, self.mbutton, self.mbutton2,
                          _("Select a person as the mother"),
@@ -762,7 +773,7 @@ class EditFamily(EditPrimary):
                               'you cancel the editing of this window, and '
                               'select the existing family'))
 
-    def edit_person(self,obj,event,handle):
+    def edit_person(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
             or event.keyval in (_RETURN, _KP_ENTER):
             from _EditPerson import EditPerson
@@ -792,17 +803,17 @@ class EditFamily(EditPrimary):
             person = db.get_person_from_handle(handle)
             name = "%s [%s]" % (name_displayer.display(person),
                                 person.gramps_id)
-            data = ReportUtils.get_birth_death_strings(db,person)
+            data = ReportUtils.get_birth_death_strings(db, person)
             birth = data[0]
             death = data[4]
 
             del_image = gtk.Image()
             del_image.show()
-            del_image.set_from_stock(gtk.STOCK_REMOVE,gtk.ICON_SIZE_BUTTON)
+            del_image.set_from_stock(gtk.STOCK_REMOVE, gtk.ICON_SIZE_BUTTON)
             self.tooltips.set_tip(btn_obj, del_msg)
             btn_obj.add(del_image)
 
-            edit_btn = IconButton(self.edit_person,person.handle)
+            edit_btn = IconButton(self.edit_person, person.handle)
             self.tooltips.set_tip(edit_btn, _('Edit %s') % name)
 
             box.pack_start(LinkBox(
@@ -817,31 +828,31 @@ class EditFamily(EditPrimary):
 
             add_image = gtk.Image()
             add_image.show()
-            add_image.set_from_stock(gtk.STOCK_INDEX,gtk.ICON_SIZE_BUTTON)
+            add_image.set_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON)
             self.tooltips.set_tip(btn_obj, add_msg)
             btn_obj.add(add_image)
 
         birth_obj.set_text(birth)
         death_obj.set_text(death)
 
-    def fix_parent_handles(self,orig_handle, new_handle, trans):
+    def fix_parent_handles(self, orig_handle, new_handle, trans):
         if orig_handle != new_handle:
             if orig_handle:
                 person = self.db.get_person_from_handle(orig_handle)
                 person.family_list.remove(self.obj.handle)
-                self.db.commit_person(person,trans)
+                self.db.commit_person(person, trans)
             if new_handle:
                 person = self.db.get_person_from_handle(new_handle)
                 if self.obj.handle not in person.family_list:
                     person.family_list.append(self.obj.handle)
-                self.db.commit_person(person,trans)
+                self.db.commit_person(person, trans)
 
     def object_is_empty(self):
         return self.obj.get_father_handle() == None and \
                self.obj.get_mother_handle() == None and \
                len(self.obj.get_child_ref_list()) == 0
             
-    def save(self,*obj):
+    def save(self, *obj):
         try:
             self.__do_save()
         except bsddb_db.DBRunRecoveryError, msg:
@@ -903,36 +914,36 @@ class EditFamily(EditPrimary):
             if handle:
                 parent = self.db.get_person_from_handle(handle)
                 parent.add_family_handle(self.obj.handle)
-                self.db.commit_person(parent,trans)
+                self.db.commit_person(parent, trans)
 
             # find the mother, add the family handle to the mother
             handle = self.obj.get_mother_handle()
             if handle:
                 parent = self.db.get_person_from_handle(handle)
                 parent.add_family_handle(self.obj.handle)
-                self.db.commit_person(parent,trans)
+                self.db.commit_person(parent, trans)
                 
             # for each child, add the family handle to the child
             for ref in self.obj.get_child_ref_list():
                 child = self.db.get_person_from_handle(ref.ref)
                 # fix - relationships need to be extracted from the list
                 child.add_parent_family_handle(self.obj.handle)
-                self.db.commit_person(child,trans)
+                self.db.commit_person(child, trans)
 
-            self.db.add_family(self.obj,trans)
-            self.db.transaction_commit(trans,_("Add Family"))
+            self.db.add_family(self.obj, trans)
+            self.db.transaction_commit(trans, _("Add Family"))
         elif original and self.object_is_empty():
             trans = self.db.transaction_begin()
-            self.db.remove_family(self.obj.handle,trans)
-            self.db.transaction_commit(trans,_("Remove Family"))
+            self.db.remove_family(self.obj.handle, trans)
+            self.db.transaction_commit(trans, _("Remove Family"))
         elif cmp(original.serialize(),self.obj.serialize()):
 
             trans = self.db.transaction_begin()
 
             self.fix_parent_handles(original.get_father_handle(),
-                                    self.obj.get_father_handle(),trans)
+                                    self.obj.get_father_handle(), trans)
             self.fix_parent_handles(original.get_mother_handle(),
-                                    self.obj.get_mother_handle(),trans)
+                                    self.obj.get_mother_handle(), trans)
 
             orig_set = set(original.get_child_ref_list())
             new_set = set(self.obj.get_child_ref_list())
@@ -941,21 +952,21 @@ class EditFamily(EditPrimary):
             for ref in orig_set.difference(new_set):
                 person = self.db.get_person_from_handle(ref.ref)
                 person.remove_parent_family_handle(self.obj.handle)
-                self.db.commit_person(person,trans)
+                self.db.commit_person(person, trans)
             
             # add the family to children which have been added
             for ref in new_set.difference(orig_set):
                 person = self.db.get_person_from_handle(ref.ref)
                 person.add_parent_family_handle(self.obj.handle)
-                self.db.commit_person(person,trans)
+                self.db.commit_person(person, trans)
 
             if self.object_is_empty():
-                self.db.remove_family(self.obj.handle,trans)
+                self.db.remove_family(self.obj.handle, trans)
             else:
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(self.db.find_next_family_gramps_id())
-                self.db.commit_family(self.obj,trans)
-            self.db.transaction_commit(trans,_("Edit Family"))
+                self.db.commit_family(self.obj, trans)
+            self.db.transaction_commit(trans, _("Edit Family"))
 
         self.close()
 
@@ -981,8 +992,8 @@ class EditFamily(EditPrimary):
             child = self.db.get_person_from_handle(ref.ref)
             if child:
                 pname = child.get_primary_name()
-                return (pname.get_surname_prefix(),pname.get_surname())
-        return ("","")
+                return (pname.get_surname_prefix(), pname.get_surname())
+        return ("", "")
 
     def latin_american_child(self, parent):
         """
@@ -1003,9 +1014,9 @@ class EditFamily(EditPrimary):
                 else:
                     fsn, msn = surname, surname
                 if parent == "father":
-                    return prefix,fsn
+                    return prefix, fsn
                 elif parent == "mother":    
-                    return prefix,msn
+                    return prefix, msn
                 else:    
-                    return ("","")
-        return ("","")
+                    return ("", "")
+        return ("", "")

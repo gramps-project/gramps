@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -43,13 +44,13 @@ import const
 import Config
 import gen.lib
 
-from GrampsWidgets import *
-from DisplayTabs import AddrEmbedList,WebEmbedList,NoteTab,SourceBackRefList
-from _EditPrimary import EditPrimary
+from GrampsWidgets import MonitoredEntry, MonitoredDataType, PrivacyButton
+from DisplayTabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
+from Editors._EditPrimary import EditPrimary
 
 class EditRepository(EditPrimary):
 
-    def __init__(self,dbstate,uistate,track,repository):
+    def __init__(self, dbstate, uistate, track, repository):
 
         EditPrimary.__init__(self, dbstate, uistate, track,
                              repository, dbstate.db.get_repository_from_handle)
@@ -69,15 +70,16 @@ class EditRepository(EditPrimary):
         return title
 
     def _local_init(self):
-        self.glade = gtk.glade.XML(const.GLADE_FILE,"repository_editor","gramps")
+        self.glade = glade.XML(const.GLADE_FILE, "repository_editor","gramps")
 
-        self.set_window(self.glade.get_widget("repository_editor"), None, self.get_menu_title())
+        self.set_window(self.glade.get_widget("repository_editor"), None, 
+                        self.get_menu_title())
 
         width = Config.get(Config.REPO_WIDTH)
         height = Config.get(Config.REPO_HEIGHT)
         self.window.resize(width, height)
 
-    def build_menu_names(self,source):
+    def build_menu_names(self, source):
         return (_('Edit Repository'), self.get_menu_title())        
 
     def _setup_fields(self):
@@ -134,7 +136,7 @@ class EditRepository(EditPrimary):
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.glade.get_widget("vbox").pack_start(notebook,True,True)
+        self.glade.get_widget("vbox").pack_start(notebook, True, True)
 
     def _connect_signals(self):
         self.define_help_button(self.glade.get_widget('help'),'adv-src')
@@ -172,7 +174,7 @@ class EditRepository(EditPrimary):
         Config.sync()
 
 class DelRepositoryQuery:
-    def __init__(self,dbstate,uistate,repository,sources):
+    def __init__(self, dbstate, uistate, repository, sources):
         self.obj = repository
         self.db = dbstate.db
         self.uistate = uistate
@@ -186,8 +188,8 @@ class DelRepositoryQuery:
         for handle in self.sources:
             source = self.db.get_source_from_handle(handle)
             source.remove_repo_references(repos_handle_list)
-            self.db.commit_source(source,trans)
+            self.db.commit_source(source, trans)
 
-        self.db.remove_repository(self.obj.get_handle(),trans)
+        self.db.remove_repository(self.obj.get_handle(), trans)
         self.db.transaction_commit(
-            trans,_("Delete Repository (%s)") % self.obj.get_name())
+            trans, _("Delete Repository (%s)") % self.obj.get_name())

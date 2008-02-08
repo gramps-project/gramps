@@ -34,7 +34,8 @@ class EditPrimary(ManagedWindow.ManagedWindow):
 
     QR_CATEGORY = -1
     
-    def __init__(self, state, uistate, track, obj, get_from_handle, callback=None):
+    def __init__(self, state, uistate, track, obj, get_from_handle, 
+                 callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
         self.dp  = DateHandler.parser
@@ -73,7 +74,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         pass
 
     def _add_db_signal(self, name, callback):
-        self.signal_keys.append(self.db.connect(name,callback))
+        self.signal_keys.append(self.db.connect(name, callback))
         
     def _connect_signals(self):
         pass
@@ -84,7 +85,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
     def _create_tabbed_pages(self):
         pass
 
-    def build_window_key(self,obj):
+    def build_window_key(self, obj):
         if obj and obj.get_handle():
             return obj.get_handle()
         else:
@@ -101,11 +102,12 @@ class EditPrimary(ManagedWindow.ManagedWindow):
                           page_no)
             child.set_parent_notebook(notebook)
 
-    def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, page_no):
+    def _switch_page_on_dnd(self, widget, context, x, y, time, notebook, 
+                            page_no):
         if notebook.get_current_page() != page_no:
             notebook.set_current_page(page_no)
 
-    def _add_tab(self,notebook,page):
+    def _add_tab(self, notebook, page):
         notebook.insert_page(page, page.get_tab_widget())
         page.add_db_signal_callback(self._add_db_signal)
         return page
@@ -122,19 +124,19 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         button.connect('clicked', function)
         button.set_sensitive(not self.db.readonly)
 
-    def define_cancel_button(self,button):
-        button.connect('clicked',self.close)
+    def define_cancel_button(self, button):
+        button.connect('clicked', self.close)
 
-    def define_help_button(self,button,tag):
+    def define_help_button(self, button, tag):
         button.connect('clicked', lambda x: GrampsDisplay.help(tag))
 
-    def _do_close(self,*obj):
+    def _do_close(self, *obj):
         for key in self.signal_keys:
             self.db.disconnect(key)
         self._cleanup_on_exit()
         ManagedWindow.ManagedWindow.close(self)
 
-    def close(self,*obj):
+    def close(self, *obj):
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if not Config.get(Config.DONT_ASK) and self.data_has_changed():
@@ -169,7 +171,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
             return cmp(cmp_obj.serialize()[1:],
                        self.obj.serialize()[1:]) != 0
 
-    def save(self,*obj):
+    def save(self, *obj):
         pass
         
     def set_contexteventbox(self, eventbox):
@@ -237,7 +239,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         Derived class can create a ui with menuitems and corresponding list of 
         actiongroups
         """
-        return "",[]
+        return "", []
         
     def _post_build_popup_ui(self):
         """

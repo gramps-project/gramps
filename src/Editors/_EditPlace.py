@@ -36,6 +36,7 @@ log = logging.getLogger(".")
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -45,10 +46,11 @@ import gtk
 import const
 import Config
 import gen.lib
-from _EditPrimary import EditPrimary
-
-from DisplayTabs import *
-from GrampsWidgets import *
+from Editors._EditPrimary import EditPrimary
+from DisplayTabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
+                         GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
+from GrampsWidgets import MonitoredEntry, PrivacyButton
+from Errors import ValidationError
 from PlaceUtils import conv_lat_lon
 
 #-------------------------------------------------------------------------
@@ -101,7 +103,7 @@ class MainLocTab(GrampsTab):
 #-------------------------------------------------------------------------
 class EditPlace(EditPrimary):
 
-    def __init__(self,dbstate,uistate,track,place,callback=None):
+    def __init__(self, dbstate, uistate, track, place, callback=None):
         EditPrimary.__init__(self, dbstate, uistate, track, place,
                              dbstate.db.get_place_from_handle, callback)
 
@@ -109,7 +111,7 @@ class EditPlace(EditPrimary):
         return gen.lib.Place()
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE,"place_editor","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "place_editor","gramps")
 
         self.set_window(self.top.get_widget("place_editor"), None,
                         self.get_menu_title())
@@ -132,7 +134,7 @@ class EditPlace(EditPrimary):
         return dialog_title
 
     def _connect_signals(self):
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_ok_button(self.top.get_widget('ok'), self.save)
         self.define_cancel_button(self.top.get_widget('cancel'))
         self.define_help_button(self.top.get_widget('help'),'adv-plc')
 
@@ -205,7 +207,7 @@ class EditPlace(EditPrimary):
             return ValidationError(_(u"Invalid longitude (syntax: 18\u00b09'" +
                                    '48.21"E, -18.2412 or -18:9:48.21)'))
 
-    def build_menu_names(self,place):
+    def build_menu_names(self, place):
         return (_('Edit Place'), self.get_menu_title())
 
     def _create_tabbed_pages(self):
@@ -257,13 +259,12 @@ class EditPlace(EditPrimary):
         Config.set(Config.PLACE_HEIGHT, height)
         Config.sync()
 
-    def save(self,*obj):
+    def save(self, *obj):
         self.ok_button.set_sensitive(False)
-        title = self.obj.get_title()
 
         trans = self.db.transaction_begin()
         if not self.obj.get_handle():
-            self.db.add_place(self.obj,trans)
+            self.db.add_place(self.obj, trans)
             msg = _("Add Place (%s)") % self.obj.get_title()
         else:
             if not self.obj.get_gramps_id():
@@ -283,8 +284,8 @@ class EditPlace(EditPrimary):
 #-------------------------------------------------------------------------
 class DeletePlaceQuery:
 
-    def __init__(self,dbstate,uistate,
-                 place,person_list,family_list,event_list):
+    def __init__(self, dbstate, uistate, place, person_list, family_list, 
+                 event_list):
         self.db = dbstate.db
         self.uistate = uistate
         self.obj = place
@@ -300,20 +301,20 @@ class DeletePlaceQuery:
 
         for handle in self.person_list:
             person = self.db.get_person_from_handle(handle)
-            person.remove_handle_references('Place',place_handle)
-            self.db.commit_person(person,trans)
+            person.remove_handle_references('Place', place_handle)
+            self.db.commit_person(person, trans)
 
         for handle in self.family_list:
             family = self.db.get_family_from_handle(handle)
-            family.remove_handle_references('Place',place_handle)
-            self.db.commit_family(family,trans)
+            family.remove_handle_references('Place', place_handle)
+            self.db.commit_family(family, trans)
 
         for handle in self.event_list:
             event = self.db.get_event_from_handle(handle)
-            event.remove_handle_references('Place',place_handle)
-            self.db.commit_event(event,trans)
+            event.remove_handle_references('Place', place_handle)
+            self.db.commit_event(event, trans)
 
         self.db.enable_signals()
-        self.db.remove_place(place_handle,trans)
+        self.db.remove_place(place_handle, trans)
         self.db.transaction_commit(
             trans,_("Delete Place (%s)") % self.obj.get_title())

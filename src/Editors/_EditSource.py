@@ -35,7 +35,8 @@ log = logging.getLogger(".")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -45,11 +46,11 @@ import gtk.glade
 import const
 import Config
 import gen.lib
-from _EditPrimary import EditPrimary
+from Editors._EditPrimary import EditPrimary
 
-from DisplayTabs import \
-     NoteTab,GalleryTab,DataEmbedList,SourceBackRefList,RepoEmbedList
-from GrampsWidgets import *
+from DisplayTabs import (NoteTab, GalleryTab, DataEmbedList,
+                         SourceBackRefList, RepoEmbedList)
+from GrampsWidgets import MonitoredEntry, PrivacyButton
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +59,7 @@ from GrampsWidgets import *
 #-------------------------------------------------------------------------
 class EditSource(EditPrimary):
 
-    def __init__(self,dbstate,uistate,track,source):
+    def __init__(self, dbstate, uistate, track,source):
 
         EditPrimary.__init__(self, dbstate, uistate, track,
                              source, dbstate.db.get_source_from_handle)
@@ -77,9 +78,10 @@ class EditSource(EditPrimary):
     def _local_init(self):
 
         assert(self.obj)
-        self.glade = gtk.glade.XML(const.GLADE_FILE,"source_editor","gramps")
+        self.glade = glade.XML(const.GLADE_FILE, "source_editor","gramps")
 
-        self.set_window(self.glade.get_widget("source_editor"), None, self.get_menu_title())
+        self.set_window(self.glade.get_widget("source_editor"), None, 
+                        self.get_menu_title())
         width = Config.get(Config.SOURCE_WIDTH)
         height = Config.get(Config.SOURCE_HEIGHT)
         self.window.resize(width, height)
@@ -155,9 +157,9 @@ class EditSource(EditPrimary):
         
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.glade.get_widget('vbox').pack_start(notebook,True)
+        self.glade.get_widget('vbox').pack_start(notebook, True)
 
-    def build_menu_names(self,source):
+    def build_menu_names(self, source):
         return (_('Edit Source'), self.get_menu_title())        
 
     def save(self, *obj):
@@ -192,7 +194,7 @@ class EditSource(EditPrimary):
         Config.sync()
 
 class DelSrcQuery:
-    def __init__(self,dbstate,uistate,source,the_lists):
+    def __init__(self, dbstate, uistate, source, the_lists):
         self.source = source
         self.db = dbstate.db
         self.uistate = uistate
@@ -202,47 +204,47 @@ class DelSrcQuery:
         trans = self.db.transaction_begin()
         self.db.disable_signals()
         
-        (person_list,family_list,event_list,place_list,source_list,
-         media_list,repo_list) = self.the_lists
+        (person_list, family_list, event_list, place_list, source_list, 
+         media_list, repo_list) = self.the_lists
 
         src_handle_list = [self.source.get_handle()]
 
         for handle in person_list:
             person = self.db.get_person_from_handle(handle)
             person.remove_source_references(src_handle_list)
-            self.db.commit_person(person,trans)
+            self.db.commit_person(person, trans)
 
         for handle in family_list:
             family = self.db.get_family_from_handle(handle)
             family.remove_source_references(src_handle_list)
-            self.db.commit_family(family,trans)
+            self.db.commit_family(family, trans)
 
         for handle in event_list:
             event = self.db.get_event_from_handle(handle)
             event.remove_source_references(src_handle_list)
-            self.db.commit_event(event,trans)
+            self.db.commit_event(event, trans)
 
         for handle in place_list:
             place = self.db.get_place_from_handle(handle)
             place.remove_source_references(src_handle_list)
-            self.db.commit_place(place,trans)
+            self.db.commit_place(place, trans)
 
         for handle in source_list:
             source = self.db.get_source_from_handle(handle)
             source.remove_source_references(src_handle_list)
-            self.db.commit_source(source,trans)
+            self.db.commit_source(source, trans)
 
         for handle in media_list:
             media = self.db.get_object_from_handle(handle)
             media.remove_source_references(src_handle_list)
-            self.db.commit_media_object(media,trans)
+            self.db.commit_media_object(media, trans)
 
         for handle in repo_list:
             repo = self.db.get_repository_from_handle(handle)
             repo.remove_source_references(src_handle_list)
-            self.db.commit_repository(repo,trans)
+            self.db.commit_repository(repo, trans)
 
         self.db.enable_signals()
-        self.db.remove_source(self.source.get_handle(),trans)
+        self.db.remove_source(self.source.get_handle(), trans)
         self.db.transaction_commit(
-            trans,_("Delete Source (%s)") % self.source.get_title())
+            trans, _("Delete Source (%s)") % self.source.get_title())

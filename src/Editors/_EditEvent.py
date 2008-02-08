@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -43,11 +44,13 @@ import const
 import Config
 import gen.lib
 import GrampsDisplay
-from _EditPrimary import EditPrimary
+from Editors import EditPrimary
 
 from QuestionDialog import ErrorDialog
-from DisplayTabs import SourceEmbedList, NoteTab, GalleryTab, EventBackRefList, AttrEmbedList
-from GrampsWidgets import *
+from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
+                         EventBackRefList, AttrEmbedList)
+from GrampsWidgets import (MonitoredEntry, PlaceEntry, PrivacyButton, 
+                           MonitoredDataType, MonitoredDate)
 
 #-------------------------------------------------------------------------
 #
@@ -62,7 +65,7 @@ from GrampsWidgets import *
 #-------------------------------------------------------------------------
 class EditEvent(EditPrimary):
 
-    def __init__(self,dbstate,uistate,track,event,callback=None):
+    def __init__(self, dbstate, uistate, track, event, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track,
                              event, dbstate.db.get_event_from_handle)
@@ -90,7 +93,7 @@ class EditEvent(EditPrimary):
                self.dbstate.db.get_family_event_types()
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE, "event_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "event_edit","gramps")
         self.set_window(self.top.get_widget("event_edit"), None, 
                         self.get_menu_title())
 
@@ -103,12 +106,12 @@ class EditEvent(EditPrimary):
         self.window.resize(width, height)
 
     def _connect_signals(self):
-        self.top.get_widget('button111').connect('clicked',self.close)
-        self.top.get_widget('button126').connect('clicked',self.help_clicked)
+        self.top.get_widget('button111').connect('clicked', self.close)
+        self.top.get_widget('button126').connect('clicked', self.help_clicked)
 
         self.ok_button = self.top.get_widget('ok')
         self.ok_button.set_sensitive(not self.db.readonly)
-        self.ok_button.connect('clicked',self.save)
+        self.ok_button.connect('clicked', self.save)
 
     def _setup_fields(self):
 
@@ -187,7 +190,7 @@ class EditEvent(EditPrimary):
         self._setup_notebook_tabs( notebook)
         
         notebook.show_all()
-        self.top.get_widget('vbox').pack_start(notebook,True)
+        self.top.get_widget('vbox').pack_start(notebook, True)
 
     def _cleanup_on_exit(self):
         self.backref_tab.close()
@@ -196,14 +199,14 @@ class EditEvent(EditPrimary):
         Config.set(Config.EVENT_HEIGHT, height)
         Config.sync()
 
-    def build_menu_names(self,event):
+    def build_menu_names(self, event):
         return (_('Edit Event'), self.get_menu_title())
 
-    def help_clicked(self,obj):
+    def help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-ev')
 
-    def save(self,*obj):
+    def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
             ErrorDialog(_("Cannot save event"),
@@ -226,12 +229,12 @@ class EditEvent(EditPrimary):
             self.db.transaction_commit(trans, _("Add Event"))
         else:
             orig = self.get_from_handle(self.obj.handle)
-            if cmp(self.obj.serialize(),orig.serialize()):
+            if cmp(self.obj.serialize(), orig.serialize()):
                 trans = self.db.transaction_begin()
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(self.db.find_next_event_gramps_id())
-                self.commit_event(self.obj,trans)
-                self.db.transaction_commit(trans,_("Edit Event"))
+                self.commit_event(self.obj, trans)
+                self.db.transaction_commit(trans, _("Edit Event"))
 
         if self.callback:
             self.callback(self.obj)
@@ -289,7 +292,7 @@ class EditFamilyEvent(EditEvent):
 #
 #-------------------------------------------------------------------------
 class DelEventQuery:
-    def __init__(self,dbstate,uistate,event,person_list,family_list):
+    def __init__(self, dbstate, uistate, event, person_list, family_list):
         self.event = event
         self.db = dbstate.db
         self.uistate = uistate
@@ -304,15 +307,15 @@ class DelEventQuery:
 
         for handle in self.person_list:
             person = self.db.get_person_from_handle(handle)
-            person.remove_handle_references('Event',ev_handle_list)
-            self.db.commit_person(person,trans)
+            person.remove_handle_references('Event', ev_handle_list)
+            self.db.commit_person(person, trans)
 
         for handle in self.family_list:
             family = self.db.get_family_from_handle(handle)
-            family.remove_handle_references('Event',ev_handle_list)
-            self.db.commit_family(family,trans)
+            family.remove_handle_references('Event', ev_handle_list)
+            self.db.commit_family(family, trans)
 
         self.db.enable_signals()
-        self.db.remove_event(self.event.get_handle(),trans)
+        self.db.remove_event(self.event.get_handle(), trans)
         self.db.transaction_commit(
             trans,_("Delete Event (%s)") % self.event.get_gramps_id())

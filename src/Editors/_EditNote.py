@@ -27,13 +27,17 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
+import logging
+log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 #
 # GTK libraries
 #
 #-------------------------------------------------------------------------
 import gtk
-from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
+from gtk import glade
+import gobject
+from pango import UNDERLINE_SINGLE
 
 #-------------------------------------------------------------------------
 #
@@ -45,9 +49,10 @@ import Spell
 import Config
 import GrampsDisplay
 import MarkupText
-from _EditPrimary import EditPrimary
+from Editors._EditPrimary import EditPrimary
 from DisplayTabs import GrampsTab, NoteBackRefList
-from GrampsWidgets import *
+from GrampsWidgets import (MonitoredDataType, MonitoredCheckbox, 
+                           MonitoredEntry, PrivacyButton)
 from gen.lib import Note
 
 #-------------------------------------------------------------------------
@@ -174,7 +179,7 @@ class EditNote(EditPrimary):
         and overridden here.
         
         """
-        self.top = gtk.glade.XML(const.GLADE_FILE, "edit_note", "gramps")
+        self.top = glade.XML(const.GLADE_FILE, "edit_note", "gramps")
         win = self.top.get_widget("edit_note")
         self.set_window(win, None, self.get_menu_title())
 
@@ -236,7 +241,7 @@ class EditNote(EditPrimary):
         Called by the init routine of the base class (_EditPrimary).
         
         """
-        self.define_ok_button(self.top.get_widget('ok'),self.save)
+        self.define_ok_button(self.top.get_widget('ok'), self.save)
         self.define_cancel_button(self.top.get_widget('cancel'))
         self.define_help_button(self.top.get_widget('help'), '')
     
@@ -275,22 +280,22 @@ class EditNote(EditPrimary):
         </ui>
         '''
 
-        buffer = MarkupText.MarkupBuffer()
-        buffer.create_tag('hyperlink',
+        buffer_ = MarkupText.MarkupBuffer()
+        buffer_.create_tag('hyperlink',
                           underline=UNDERLINE_SINGLE,
                           foreground='blue')
-        buffer.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
+        buffer_.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
                          ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", HTTP)
-        buffer.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
+        buffer_.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
                          "(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
-        buffer.match_add(SCHEME + "//(" + USER + "@)?[" + HOSTCHARS + ".]+" +
+        buffer_.match_add(SCHEME + "//(" + USER + "@)?[" + HOSTCHARS + ".]+" +
                              "(:[0-9]+)?(" + URLPATH + ")?/?", GENERAL)
         self.match = None
         self.last_match = None
 
         self.text = self.top.get_widget('text')
         self.text.set_editable(not self.dbstate.db.readonly)
-        self.text.set_buffer(buffer)
+        self.text.set_buffer(buffer_)
         self.text.connect('key-press-event',
                           self.on_textview_key_press_event)
         self.text.connect('insert-at-cursor',
@@ -328,7 +333,7 @@ class EditNote(EditPrimary):
         # create a formatting toolbar
         if not self.dbstate.db.readonly:
             uimanager = gtk.UIManager()
-            uimanager.insert_action_group(buffer.format_action_group, 0)
+            uimanager.insert_action_group(buffer_.format_action_group, 0)
             uimanager.add_ui_from_string(FORMAT_TOOLBAR)
             uimanager.ensure_update()
 
@@ -337,12 +342,12 @@ class EditNote(EditPrimary):
             vbox = self.top.get_widget('container')
             vbox.pack_start(toolbar)
                 
-        # setup initial values for textview and buffer
+        # setup initial values for textview and buffer_
         if self.obj:
             self.empty = False
             self.flow_changed(self.obj.get_format())
-            buffer.set_text(self.obj.get(markup=True))
-            log.debug("Initial Note: %s" % buffer.get_text())
+            buffer_.set_text(self.obj.get(markup=True))
+            log.debug("Initial Note: %s" % buffer_.get_text())
         else:
             self.empty = True
             
@@ -374,20 +379,20 @@ class EditNote(EditPrimary):
         x, y = textview.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
                                                 int(event.x), int(event.y))
         iter = textview.get_iter_at_location(x, y)
-        buffer = textview.get_buffer()
-        self.match = buffer.match_check(iter.get_offset())
+        buffer_ = textview.get_buffer()
+        self.match = buffer_.match_check(iter.get_offset())
         
         if self.match != self.last_match:
-            start, end = buffer.get_bounds()
-            buffer.remove_tag_by_name('hyperlink', start, end)
+            start, end = buffer_.get_bounds()
+            buffer_.remove_tag_by_name('hyperlink', start, end)
             if self.match:
                 start_offset = self.match[MarkupText.MATCH_START]
                 end_offset = self.match[MarkupText.MATCH_END]
                 
-                start = buffer.get_iter_at_offset(start_offset)
-                end = buffer.get_iter_at_offset(end_offset)
+                start = buffer_.get_iter_at_offset(start_offset)
+                end = buffer_.get_iter_at_offset(end_offset)
 
-                buffer.apply_tag_by_name('hyperlink', start, end)
+                buffer_.apply_tag_by_name('hyperlink', start, end)
                 window.set_cursor(self.hand_cursor)
             else:
                 window.set_cursor(self.regular_cursor)
@@ -462,9 +467,9 @@ class EditNote(EditPrimary):
     def update_note(self):
         """Update the Note object with current value."""
         if self.obj:
-            buffer = self.text.get_buffer()
-            (start, stop) = buffer.get_bounds()
-            text = buffer.get_text(start, stop)
+            buffer_ = self.text.get_buffer()
+            (start, stop) = buffer_.get_bounds()
+            text = buffer_.get_text(start, stop)
             self.obj.set(text)
             log.debug(text)
 
@@ -481,12 +486,12 @@ class EditNote(EditPrimary):
         self.update_note()
 
         if not self.obj.get_handle():
-            self.db.add_note(self.obj,trans)
+            self.db.add_note(self.obj, trans)
             msg = _("Add Note")
         else:
             if not self.obj.get_gramps_id():
                 self.obj.set_gramps_id(self.db.find_next_note_gramps_id())
-            self.db.commit_note(self.obj,trans)
+            self.db.commit_note(self.obj, trans)
             msg = _("Edit Note")
             
         self.db.transaction_commit(trans, msg)
@@ -524,37 +529,37 @@ class DeleteNoteQuery:
         for handle in person_list:
             person = self.db.get_person_from_handle(handle)
             person.remove_note(note_handle)
-            self.db.commit_person(person,trans)
+            self.db.commit_person(person, trans)
 
         for handle in family_list:
             family = self.db.get_family_from_handle(handle)
             family.remove_note(note_handle)
-            self.db.commit_family(family,trans)
+            self.db.commit_family(family, trans)
 
         for handle in event_list:
             event = self.db.get_event_from_handle(handle)
             event.remove_note(note_handle)
-            self.db.commit_event(event,trans)
+            self.db.commit_event(event, trans)
 
         for handle in place_list:
             place = self.db.get_place_from_handle(handle)
             place.remove_note(note_handle)
-            self.db.commit_place(place,trans)
+            self.db.commit_place(place, trans)
 
         for handle in source_list:
             source = self.db.get_source_from_handle(handle)
             source.remove_note(note_handle)
-            self.db.commit_source(source,trans)
+            self.db.commit_source(source, trans)
 
         for handle in media_list:
             media = self.db.get_object_from_handle(handle)
             media.remove_note(note_handle)
-            self.db.commit_media_object(media,trans)
+            self.db.commit_media_object(media, trans)
 
         for handle in repo_list:
             repo = self.db.get_repository_from_handle(handle)
             repo.remove_note(note_handle)
-            self.db.commit_repository(repo,trans)
+            self.db.commit_repository(repo, trans)
 
         self.db.enable_signals()
         self.db.remove_note(note_handle, trans)

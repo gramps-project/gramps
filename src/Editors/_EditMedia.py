@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 import os
-import sys
 
 #-------------------------------------------------------------------------
 #
@@ -35,6 +34,7 @@ import sys
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -47,12 +47,11 @@ import gen.lib
 import Mime
 import ThumbNails
 import Utils
-from _EditPrimary import EditPrimary
-from AddMedia import AddMediaObject
-
-from GrampsWidgets import *
-from DisplayTabs import SourceEmbedList,AttrEmbedList,NoteTab,MediaBackRefList
-
+from Editors import EditPrimary
+from GrampsWidgets import MonitoredDate, MonitoredEntry, PrivacyButton
+from DisplayTabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
+                         MediaBackRefList)
+from Editors.AddMedia import AddMediaObject
 #-------------------------------------------------------------------------
 #
 # EditMedia
@@ -88,7 +87,7 @@ class EditMedia(EditPrimary):
 
     def _local_init(self):
         assert(self.obj)
-        self.glade = gtk.glade.XML(const.GLADE_FILE,
+        self.glade = glade.XML(const.GLADE_FILE,
                                    "change_global","gramps")
 
         self.set_window(self.glade.get_widget('change_global'), 
@@ -183,13 +182,13 @@ class EditMedia(EditPrimary):
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()
-        self.glade.get_widget('vbox').pack_start(notebook,True)
+        self.glade.get_widget('vbox').pack_start(notebook, True)
 
-    def build_menu_names(self,person):
+    def build_menu_names(self, person):
         return (_('Edit Media Object'), self.get_menu_title())
 
     def button_press_event(self, obj, event):
-        if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
+        if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.view_media(obj)
 
     def view_media(self, obj):
@@ -197,8 +196,7 @@ class EditMedia(EditPrimary):
         mime_type = ref_obj.get_mime_type()
         app = Mime.get_application(mime_type)
         if app:
-            import Utils
-            Utils.launch(app[0],ref_obj.get_path())
+            Utils.launch(app[0], ref_obj.get_path())
 
     def select_file(self, val):
         AddMediaObject(self.dbstate, self.uistate, self.track, self.obj, 
@@ -251,7 +249,7 @@ class EditMedia(EditPrimary):
 
 class DeleteMediaQuery:
 
-    def __init__(self,dbstate,uistate,media_handle,the_lists):
+    def __init__(self, dbstate, uistate, media_handle, the_lists):
         self.db = dbstate.db
         self.uistate = uistate
         self.media_handle = media_handle
@@ -261,7 +259,7 @@ class DeleteMediaQuery:
         trans = self.db.transaction_begin()
         self.db.disable_signals()
         
-        (person_list,family_list,event_list,
+        (person_list, family_list, event_list,
                 place_list,source_list) = self.the_lists
 
         for handle in person_list:
@@ -269,36 +267,36 @@ class DeleteMediaQuery:
             new_list = [ photo for photo in person.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             person.set_media_list(new_list)
-            self.db.commit_person(person,trans)
+            self.db.commit_person(person, trans)
 
         for handle in family_list:
             family = self.db.get_family_from_handle(handle)
             new_list = [ photo for photo in family.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             family.set_media_list(new_list)
-            self.db.commit_family(family,trans)
+            self.db.commit_family(family, trans)
 
         for handle in event_list:
             event = self.db.get_event_from_handle(handle)
             new_list = [ photo for photo in event.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             event.set_media_list(new_list)
-            self.db.commit_event(event,trans)
+            self.db.commit_event(event, trans)
 
         for handle in place_list:
             place = self.db.get_place_from_handle(handle)
             new_list = [ photo for photo in place.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             place.set_media_list(new_list)
-            self.db.commit_place(place,trans)
+            self.db.commit_place(place, trans)
 
         for handle in source_list:
             source = self.db.get_source_from_handle(handle)
             new_list = [ photo for photo in source.get_media_list() \
                         if photo.get_reference_handle() != self.media_handle ]
             source.set_media_list(new_list)
-            self.db.commit_source(source,trans)
+            self.db.commit_source(source, trans)
 
         self.db.enable_signals()
-        self.db.remove_object(self.media_handle,trans)
-        self.db.transaction_commit(trans,_("Remove Media Object"))
+        self.db.remove_object(self.media_handle, trans)
+        self.db.transaction_commit(trans, _("Remove Media Object"))
