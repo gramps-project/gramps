@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-30 15:15+0100\n"
-"PO-Revision-Date: 2008-02-02 16:49+0300\n"
+"PO-Revision-Date: 2008-02-08 22:29+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: ../src/DbLoader.py:161
 #: ../src/DbLoader.py:182
 #: ../src/DbLoader.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "Could not open file: %s"
 msgstr "Negaliu atidaryti bylos:  %s"
 
@@ -41,7 +41,7 @@ msgstr "Duomenų bazė užrakinta, negalima jos atidaryti!"
 #: ../src/ArgHandler.py:509
 #, python-format
 msgid "  Info: %s"
-msgstr ""
+msgstr "  Informacija: %s"
 
 #: ../src/ArgHandler.py:512
 msgid "Database needs recovery, cannot open it!"
@@ -234,9 +234,8 @@ msgstr "Artūras Šleinius"
 
 #: ../src/const.py:179
 #: ../src/const.py:180
-#, fuzzy
 msgid "none"
-msgstr "Niekas"
+msgstr "niekas"
 
 #: ../src/DateEdit.py:76
 #: ../src/DateEdit.py:85
@@ -1189,9 +1188,8 @@ msgstr "Priesaga"
 #: ../src/GrampsCfg.py:344
 #: ../src/GrampsCfg.py:345
 #: ../src/Utils.py:1107
-#, fuzzy
 msgid "Common"
-msgstr "Komentaras"
+msgstr "Dažniausiai naudojamas"
 
 #: ../src/GrampsCfg.py:335
 #: ../src/GrampsCfg.py:337
@@ -1287,14 +1285,12 @@ msgid "Missing record"
 msgstr "Trūksta įrašo"
 
 #: ../src/GrampsCfg.py:692
-#, fuzzy
 msgid "Private surname"
-msgstr "Vardas"
+msgstr "Privati pavardė"
 
 #: ../src/GrampsCfg.py:695
-#, fuzzy
 msgid "Private given name"
-msgstr "Užpildyti nurodytą plotą"
+msgstr "Privatus vardas"
 
 #: ../src/GrampsCfg.py:698
 msgid "Private record"
@@ -1453,9 +1449,8 @@ msgstr "Šrifto fono spalva"
 
 #: ../src/gramps_main.py:110
 #: ../src/DataViews/GrampletView.py:530
-#, fuzzy
 msgid "Gramplets"
-msgstr "Gramplets"
+msgstr "Grampletai"
 
 #: ../src/gramps_main.py:111
 msgid "Public"
@@ -2504,7 +2499,7 @@ msgstr "Vokiečių"
 
 #: ../src/Spell.py:90
 msgid "German - Old Spelling"
-msgstr ""
+msgstr "Vokiečių - senovinis"
 
 #: ../src/Spell.py:91
 msgid "Greek"
@@ -2658,11 +2653,11 @@ msgstr "Maltiečių"
 
 #: ../src/Spell.py:128
 msgid "Norwegian Bokmal"
-msgstr ""
+msgstr "Norvegų bokmal"
 
 #: ../src/Spell.py:129
 msgid "Low Saxon"
-msgstr ""
+msgstr "Žemutinių saksų"
 
 #: ../src/Spell.py:130
 msgid "Dutch"
@@ -3321,9 +3316,8 @@ msgstr ""
 
 #: ../src/BasicUtils/_NameDisplay.py:288
 #: ../src/BasicUtils/_NameDisplay.py:325
-#, fuzzy
 msgid "common"
-msgstr "Komentaras"
+msgstr "dažniausiai naudojamas"
 
 #: ../src/BasicUtils/_NameDisplay.py:292
 #: ../src/BasicUtils/_NameDisplay.py:327
@@ -3622,33 +3616,28 @@ msgstr "_Ištrinti vaizdo/garso bylą"
 
 #: ../src/DataViews/GrampletView.py:53
 #: ../src/DataViews/GrampletView.py:667
-#, fuzzy
 msgid "Unnamed Gramplet"
-msgstr "Neaprašytas Gramplet"
+msgstr "Neaprašytas Grampletas"
 
 #: ../src/DataViews/GrampletView.py:105
 msgid "Drag Properties Button to move and click it for setup"
-msgstr ""
+msgstr "Perneškite Nustatymu Mygtuką, jei norite pajudinti, išsirinkite nustatymams pakeisti"
 
 #: ../src/DataViews/GrampletView.py:548
-#, fuzzy
 msgid "Right click to add gramplets"
-msgstr "Gramplet pridėti du kartus paspauskite pelės kairįjį klavišą"
+msgstr "Grampletams pridėti du kartus paspauskite pelės kairįjį klavišą"
 
 #: ../src/DataViews/GrampletView.py:812
-#, fuzzy
 msgid "_Add a gramplet"
-msgstr "_Pridėti gramplet"
+msgstr "_Pridėti grampletą"
 
 #: ../src/DataViews/GrampletView.py:813
-#, fuzzy
 msgid "_Restore a gramplet"
-msgstr "_Atstatyti gramplet"
+msgstr "_Atstatyti grampletą"
 
 #: ../src/DataViews/GrampletView.py:814
-#, fuzzy
 msgid "_Delete a gramplet"
-msgstr "_Ištrinti gramplet"
+msgstr "_Ištrinti grampletą"
 
 #: ../src/DataViews/GrampletView.py:815
 msgid "Set Columns to _1"
@@ -3740,7 +3729,7 @@ msgstr "palaid."
 
 #: ../src/DataViews/PedigreeView.py:77
 msgid "crem."
-msgstr ""
+msgstr "krem."
 
 #: ../src/DataViews/PedigreeView.py:970
 msgid "Jump to child..."
@@ -6011,7 +6000,7 @@ msgstr "Atvaizdavimo Formatas"
 #: ../src/plugins/AncestorChart.py:470
 #: ../src/plugins/DescendChart.py:425
 msgid "Display format for the outputbox."
-msgstr ""
+msgstr "Išvesties lango ataskaitų vaizdavimo formatas."
 
 #: ../src/plugins/AncestorChart.py:473
 #: ../src/plugins/DescendChart.py:428
@@ -6127,9 +6116,8 @@ msgid "The style used for the generation header."
 msgstr "Stilius, naudojamas kartų antraštei."
 
 #: ../src/plugins/AncestorReport.py:343
-#, fuzzy
 msgid "Ahnentafel Report..."
-msgstr "Protėvių Ataskaita..."
+msgstr "Ahnentafel tipo Protėvių Ataskaita..."
 
 #: ../src/plugins/AncestorReport.py:345
 msgid "Produces a textual ancestral report"
@@ -7217,10 +7205,12 @@ msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
 msgstr ""
+"Kairiu pelės klavišu aktyvuokite asmenį\n"
+"Dvigubu paspaudimu- norėdami iškviesti redagavimo meniu"
 
 #: ../src/plugins/DefaultGramplets.py:141
 msgid "Log for this Session"
-msgstr ""
+msgstr "Šios sesijos žurnalas"
 
 #: ../src/plugins/DefaultGramplets.py:165
 #: ../src/plugins/DefaultGramplets.py:171
@@ -7235,7 +7225,7 @@ msgstr "Ištrinti"
 #: ../src/plugins/DefaultGramplets.py:169
 #: ../src/plugins/DefaultGramplets.py:175
 msgid "Updated"
-msgstr ""
+msgstr "Atnaujinta"
 
 #: ../src/plugins/DefaultGramplets.py:177
 msgid "Selected"
@@ -7244,7 +7234,7 @@ msgstr "Pasirinktas"
 #: ../src/plugins/DefaultGramplets.py:196
 #: ../src/plugins/DefaultGramplets.py:271
 msgid "Double-click surname for details"
-msgstr ""
+msgstr "Dvigubu pelės paspaudimu ant pavardės sužinokite detales"
 
 #. will be overwritten in load
 #: ../src/plugins/DefaultGramplets.py:198
@@ -7375,7 +7365,7 @@ msgstr "Įveskite Python išraiškas"
 
 #: ../src/plugins/DefaultGramplets.py:464
 msgid "Error"
-msgstr ""
+msgstr "Klaida"
 
 #. GUI setup:
 #: ../src/plugins/DefaultGramplets.py:543
@@ -7384,7 +7374,7 @@ msgstr "Įveskite tekstą"
 
 #: ../src/plugins/DefaultGramplets.py:545
 msgid "Enter your TODO list here."
-msgstr ""
+msgstr "Čia įveskite ką dar reikia padaryti (TODO) sąrašą."
 
 #: ../src/plugins/DefaultGramplets.py:556
 msgid ""
@@ -7402,10 +7392,23 @@ msgid ""
 "\n"
 "You can right-click on the background of this page to add additional gramplets and change the number of columns. You can also drag the Properties button to reposition the gramplet on this page, and detach the gramplet to float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-opened detached the next time you start GRAMPS."
 msgstr ""
+"Sveiki atvykę į GRAMPS!\n"
+"\n"
+"GRAMPS programų paketas skirtas genealoginiams tyrinėjimams. Nors ir panašus į kitas genealogijos programas, GRAMPS turi ir kai kurių  galingų išskirtinių savybių.\n"
+"\n"
+"GRAMPS yra atviro kodo programų paketas, o tai reiškia, kad galima laisvai  kopijuoti ir platinti ją kam tik norite. Jis sukurtas ir palaikomas pasaulinės savanorių komandos, kurios tikslas yra sukurti GRAMPS galingu ir paprastu naudojimui.\n"
+"\n"
+"Įvadas\n"
+"\n"
+" Pirmiausia turite susikurti naują Šeimos Medį. Naujam Šeimos medžiui (kartais dar vadinamu duomenų baze) sukurti pasirinkite  iš meniu \"Šeimos Medžiai\" ir išsirinkite \"Valdyti Šeimos Medžius\", nuspauskite \"Naujas\" ir pavadinkite savo duomenų bazę. Detalesnė informacija Vartotojo instrukcijoje arba instrukcijoje internete http://gramps-project.org.\n"
+"\n"
+"Šiuo metu Jūs skaitote \"Grampletų\" puslapį, kuriame galite pridįti savo grampletus.\n"
+"\n"
+"Dešiniu pelės paspaudimu šio puslapio fone galite pridėti grampletus arba keisti stulpelių skaičių. Taip pat pernešant Savybių mygtuką šio puslapio grampletams, galima atskirti grampletą nuo GRAMPS. Jei esant atskirtam grampletui uždarysite GRAMPS, kitą kartą paleidžiant GRAMPS  jis atsidarys atjungtas."
 
 #: ../src/plugins/DefaultGramplets.py:586
 msgid "Read news from the GRAMPS wiki"
-msgstr ""
+msgstr "Skaitykite naujienas iš GRAMPS wiki"
 
 #: ../src/plugins/DefaultGramplets.py:609
 msgid "Reading"
@@ -7425,36 +7428,32 @@ msgid "Run"
 msgstr "Paleisti"
 
 #: ../src/plugins/DefaultGramplets.py:697
-#, fuzzy
 msgid "Top Surnames Gramplet"
-msgstr "Dažniausių pavardžių gramplet"
+msgstr "Dažniausių pavardžių grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:700
 msgid "Top Surnames"
 msgstr "Dažniausios pavardės"
 
 #: ../src/plugins/DefaultGramplets.py:705
-#, fuzzy
 msgid "Surname Cloud Gramplet"
-msgstr "Pavardžių Gramplet"
+msgstr "Pavardžių Grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:709
 msgid "Surname Cloud"
 msgstr "Pavardžių debesis"
 
 #: ../src/plugins/DefaultGramplets.py:714
-#, fuzzy
 msgid "Statistics Gramplet"
-msgstr "Statistikos gramplet"
+msgstr "Statistikos grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:718
 msgid "Statistics"
 msgstr "Statistika"
 
 #: ../src/plugins/DefaultGramplets.py:723
-#, fuzzy
 msgid "Session Log Gramplet"
-msgstr "Sesijos žurnalo gramplet"
+msgstr "Sesijos žurnalo grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:727
 msgid "Session Log"
@@ -7462,48 +7461,43 @@ msgstr "Sesijos žurnalas"
 
 #: ../src/plugins/DefaultGramplets.py:732
 msgid "Python Gramplet"
-msgstr ""
+msgstr "Python'o Grampet"
 
 #: ../src/plugins/DefaultGramplets.py:735
 msgid "Python Shell"
 msgstr "Python komandų eilutė"
 
 #: ../src/plugins/DefaultGramplets.py:740
-#, fuzzy
 msgid "TODO Gramplet"
-msgstr "Dar padaryti (TODO) Gramplet"
+msgstr "Dar padaryti (TODO) Grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:744
 msgid "TODO List"
 msgstr "Sąrašas ką dar padaryti (TODO)"
 
 #: ../src/plugins/DefaultGramplets.py:749
-#, fuzzy
 msgid "Welcome Gramplet"
-msgstr "Pasisveikinimo Gramplet"
+msgstr "Pasisveikinimo Grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:753
 msgid "Welcome to GRAMPS!"
 msgstr "Sveiki atvykę į GRAMPS!"
 
 #: ../src/plugins/DefaultGramplets.py:758
-#, fuzzy
 msgid "Calendar Gramplet"
-msgstr "Kalendoriaus gramplet"
+msgstr "Kalendoriaus grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:766
-#, fuzzy
 msgid "News Gramplet"
-msgstr "Naujienų gramplet"
+msgstr "Naujienų grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:770
 msgid "News"
 msgstr "Naujienos"
 
 #: ../src/plugins/DefaultGramplets.py:775
-#, fuzzy
 msgid "Age on Date Gramplet"
-msgstr "Amžiaus nurodyta datą Gramplet"
+msgstr "Amžiaus nurodyta datą Grampletas"
 
 #: ../src/plugins/DefaultGramplets.py:778
 msgid "Age on Date"
@@ -7906,9 +7900,9 @@ msgid "Produces a detailed descendant report"
 msgstr "Sukuria detalią palikuonių ataskaitą"
 
 #: ../src/plugins/EndOfLineReport.py:134
-#, fuzzy, python-format
+#, python-format
 msgid "End of Line Report for %s"
-msgstr " %s  Protėvių, Ahnentafel tipo  ataskaita"
+msgstr " %s Giminystės Linijos Ataskaita"
 
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
@@ -7931,14 +7925,12 @@ msgid "The basic style used for generation headings."
 msgstr "Stilius, naudojamas kartų antraštei."
 
 #: ../src/plugins/EndOfLineReport.py:316
-#, fuzzy
 msgid "End of Line Report..."
-msgstr "Pateikti klaidos ataskaitą"
+msgstr "Giminystės Linijos Ataskaita..."
 
 #: ../src/plugins/EndOfLineReport.py:318
-#, fuzzy
 msgid "Produces a textual end of line report"
-msgstr "Sukuria tekstinę protėvių ataskaitą"
+msgstr "Sukuria tekstinę giminystės linijos ataskaitą"
 
 #: ../src/plugins/Eval.py:59
 msgid "Python evaluation window"
@@ -8842,9 +8834,8 @@ msgid "Given name"
 msgstr "Duotas vardas"
 
 #: ../src/plugins/ImportCSV.py:165
-#, fuzzy
 msgid "Call name"
-msgstr "Vardas"
+msgstr "Vardas, kuriuo vadinamas"
 
 #: ../src/plugins/ImportCSV.py:192
 msgid "Death cause"
@@ -9123,14 +9114,12 @@ msgid "Whether to include aunts/uncles/nephews/nieces"
 msgstr "Įtraukti tetas/dėdes/sūnėnus/dukterėčias"
 
 #: ../src/plugins/KinshipReport.py:382
-#, fuzzy
 msgid "The basic style used for sub-headings."
-msgstr "Stilius, naudojamas paaiškinimams gale atvaizduoti."
+msgstr "Pagrindinis stilius, naudojamas poantraštės atvaizdavimui."
 
 #: ../src/plugins/KinshipReport.py:404
-#, fuzzy
 msgid "Kinship Report..."
-msgstr "Giminaičių ataskaita"
+msgstr "Giminaičių Ataskaita.."
 
 #: ../src/plugins/KinshipReport.py:406
 msgid "Produces a textual report of kinship for a given person"
@@ -9246,14 +9235,12 @@ msgid "Id"
 msgstr "Id"
 
 #: ../src/plugins/MarkerReport.py:449
-#, fuzzy
 msgid "The marker to use for the report"
-msgstr "Šis stilius yra naudojamas poraštėms."
+msgstr "Žymeklis, naudojamas ataskaitai"
 
 #: ../src/plugins/MarkerReport.py:497
-#, fuzzy
 msgid "The basic style used for table headings."
-msgstr "Stilius, naudojamas paaiškinimams gale atvaizduoti."
+msgstr "Pagrindinis stilius, naudojamas lentelės antraščių atvaizdavimui."
 
 #: ../src/plugins/MarkerReport.py:524
 msgid "Marker Report..."
@@ -15255,7 +15242,7 @@ msgstr ""
 
 #: ../src/gen/lib/ldsord.py:111
 msgid "Uncleared"
-msgstr ""
+msgstr "Neišaiškintas"
 
 #: ../src/gen/utils/dbutils.py:117
 msgid "Remove father from family"
@@ -17273,9 +17260,8 @@ msgid "\n"
 msgstr "\n"
 
 #: ../src/glade/gramps.glade.h:3
-#, fuzzy
 msgid "<b><i>Gramplet</i></b>"
-msgstr "<b><i>Gramplet</i></b>"
+msgstr "<b><i>Grampletai</i></b>"
 
 #: ../src/glade/gramps.glade.h:4
 msgid "<b>Alignment</b>"
