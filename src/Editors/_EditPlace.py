@@ -52,6 +52,7 @@ from DisplayTabs import (GrampsTab, LocationEmbedList, SourceEmbedList,
 from GrampsWidgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError
 from PlaceUtils import conv_lat_lon
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -105,7 +106,8 @@ class EditPlace(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, place, callback=None):
         EditPrimary.__init__(self, dbstate, uistate, track, place,
-                             dbstate.db.get_place_from_handle, callback)
+                             dbstate.db.get_place_from_handle, 
+                             dbstate.db.get_place_from_gramps_id, callback)
 
     def empty_object(self):
         return gen.lib.Place()
@@ -141,51 +143,48 @@ class EditPlace(EditPrimary):
     def _setup_fields(self):
         mloc = self.obj.get_main_location()
         
-        self.title = MonitoredEntry(
-            self.top.get_widget("place_title"),
-            self.obj.set_title, self.obj.get_title,
-            self.db.readonly)
+        self.title = MonitoredEntry(self.top.get_widget("place_title"),
+                                    self.obj.set_title, self.obj.get_title,
+                                    self.db.readonly)
         
-        self.street = MonitoredEntry(
-            self.top.get_widget("street"),
-            mloc.set_street, mloc.get_street, self.db.readonly)
+        self.street = MonitoredEntry(self.top.get_widget("street"),
+                                     mloc.set_street, mloc.get_street, 
+                                     self.db.readonly)
 
-        self.city = MonitoredEntry(
-            self.top.get_widget("city"),
-            mloc.set_city, mloc.get_city, self.db.readonly)
+        self.city = MonitoredEntry(self.top.get_widget("city"),
+                                   mloc.set_city, mloc.get_city, 
+                                   self.db.readonly)
         
-        self.gid = MonitoredEntry(
-            self.top.get_widget("gid"),
-            self.obj.set_gramps_id,
-            self.obj.get_gramps_id, self.db.readonly)
+        self.gid = MonitoredEntry(self.top.get_widget("gid"),
+                                  self.obj.set_gramps_id, 
+                                  self.obj.get_gramps_id, self.db.readonly)
         
-        self.privacy = PrivacyButton(
-            self.top.get_widget("private"),
-            self.obj, self.db.readonly)
+        self.privacy = PrivacyButton(self.top.get_widget("private"), self.obj, 
+                                     self.db.readonly)
 
-        self.parish = MonitoredEntry(
-            self.top.get_widget("parish"),
-            mloc.set_parish, mloc.get_parish, self.db.readonly)
+        self.parish = MonitoredEntry(self.top.get_widget("parish"),
+                                     mloc.set_parish, mloc.get_parish, 
+                                     self.db.readonly)
         
-        self.county = MonitoredEntry(
-            self.top.get_widget("county"),
-            mloc.set_county, mloc.get_county, self.db.readonly)
+        self.county = MonitoredEntry(self.top.get_widget("county"),
+                                     mloc.set_county, mloc.get_county, 
+                                     self.db.readonly)
         
-        self.state = MonitoredEntry(
-            self.top.get_widget("state"),
-            mloc.set_state, mloc.get_state, self.db.readonly)
+        self.state = MonitoredEntry(self.top.get_widget("state"),
+                                    mloc.set_state, mloc.get_state, 
+                                    self.db.readonly)
 
-        self.phone = MonitoredEntry(
-            self.top.get_widget("phone"),
-            mloc.set_phone, mloc.get_phone, self.db.readonly)
+        self.phone = MonitoredEntry(self.top.get_widget("phone"),
+                                    mloc.set_phone, mloc.get_phone, 
+                                    self.db.readonly)
         
-        self.postal = MonitoredEntry(
-            self.top.get_widget("postal"),
-            mloc.set_postal_code, mloc.get_postal_code, self.db.readonly)
+        self.postal = MonitoredEntry(self.top.get_widget("postal"),
+                                     mloc.set_postal_code, 
+                                     mloc.get_postal_code, self.db.readonly)
 
-        self.country = MonitoredEntry(
-            self.top.get_widget("country"),
-            mloc.set_country, mloc.get_country, self.db.readonly)
+        self.country = MonitoredEntry(self.top.get_widget("country"),
+                                      mloc.set_country, mloc.get_country, 
+                                      self.db.readonly)
 
         self.longitude = MonitoredEntry(
             self.top.get_widget("lon_entry"),
@@ -261,6 +260,26 @@ class EditPlace(EditPrimary):
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
+        if self.object_is_empty():
+            ErrorDialog(_("Cannot save place"),
+                        _("No data exists for this place. Please "
+                          "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+
+        (uses_dupe_id, id) = self._uses_duplicate_id()
+        if uses_dupe_id:
+            prim_object = self.get_from_gramps_id(id)
+            name = prim_object.get_title()
+            msg1 = _("Cannot save place. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(id)s. This value is already used by '" 
+                         "%(prim_object)s'. Please enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'id' : id, 'prim_object' : name }
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
 
         trans = self.db.transaction_begin()
         if not self.obj.get_handle():

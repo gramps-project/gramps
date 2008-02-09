@@ -68,7 +68,8 @@ class EditEvent(EditPrimary):
     def __init__(self, dbstate, uistate, track, event, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track,
-                             event, dbstate.db.get_event_from_handle)
+                             event, dbstate.db.get_event_from_handle, 
+                             dbstate.db.get_event_from_gramps_id)
 
         self._init_event()
 
@@ -117,44 +118,34 @@ class EditEvent(EditPrimary):
 
         # place, select_place, add_del_place
         
-        self.place_field = PlaceEntry(
-            self.dbstate,
-            self.uistate,
-            self.track,
-            self.top.get_widget("place"),
-            self.obj.set_place_handle,
-            self.obj.get_place_handle,
-            self.add_del_btn,
-            self.share_btn)
+        self.place_field = PlaceEntry(self.dbstate, self.uistate, self.track,
+                                      self.top.get_widget("place"),
+                                      self.obj.set_place_handle,
+                                      self.obj.get_place_handle,
+                                      self.add_del_btn, self.share_btn)
         
-        self.descr_field = MonitoredEntry(
-            self.top.get_widget("event_description"),
-            self.obj.set_description,
-            self.obj.get_description, self.db.readonly)
+        self.descr_field = MonitoredEntry(self.top.get_widget("event_description"),
+                                          self.obj.set_description,
+                                          self.obj.get_description, 
+                                          self.db.readonly)
 
-        self.gid = MonitoredEntry(
-            self.top.get_widget("gid"),
-            self.obj.set_gramps_id,
-            self.obj.get_gramps_id,
-            self.db.readonly)
+        self.gid = MonitoredEntry(self.top.get_widget("gid"),
+                                  self.obj.set_gramps_id,
+                                  self.obj.get_gramps_id, self.db.readonly)
 
-        self.priv = PrivacyButton(
-            self.top.get_widget("private"),
-            self.obj, self.db.readonly)
+        self.priv = PrivacyButton( self.top.get_widget("private"),
+                                   self.obj, self.db.readonly)
 
-        self.event_menu = MonitoredDataType(
-            self.top.get_widget("personal_events"),
-            self.obj.set_type,
-            self.obj.get_type,
-            custom_values=self.get_custom_events())
+        self.event_menu = MonitoredDataType(self.top.get_widget("personal_events"),
+                                            self.obj.set_type,
+                                            self.obj.get_type,
+                                            custom_values=self.get_custom_events())
 
-        self.date_field = MonitoredDate(
-            self.top.get_widget("date_entry"),
-            self.top.get_widget("date_stat"),
-            self.obj.get_date_object(),
-            self.uistate,
-            self.track,
-            self.db.readonly)
+        self.date_field = MonitoredDate(self.top.get_widget("date_entry"),
+                                        self.top.get_widget("date_stat"),
+                                        self.obj.get_date_object(),
+                                        self.uistate, self.track, 
+                                        self.db.readonly)
 
     def _create_tabbed_pages(self):
         """
@@ -212,6 +203,20 @@ class EditEvent(EditPrimary):
             ErrorDialog(_("Cannot save event"),
                         _("No data exists for this event. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+        
+        (uses_dupe_id, id) = self._uses_duplicate_id()
+        if uses_dupe_id:
+            prim_object = self.get_from_gramps_id(id)
+            name = prim_object.get_description()
+            msg1 = _("Cannot save event. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(id)s. This value is already used by '" 
+                         "%(prim_object)s'. Please enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'id' : id, 'prim_object' : name }
+            ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
 

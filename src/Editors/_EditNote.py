@@ -54,6 +54,7 @@ from DisplayTabs import GrampsTab, NoteBackRefList
 from GrampsWidgets import (MonitoredDataType, MonitoredCheckbox, 
                            MonitoredEntry, PrivacyButton)
 from gen.lib import Note
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -126,8 +127,8 @@ class EditNote(EditPrimary):
     hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
     regular_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
 
-    def __init__(self, state, uistate, track, note, callback=None
-                     , callertitle = None, extratype = None):
+    def __init__(self, dbstate, uistate, track, note, callback=None, 
+                 callertitle = None, extratype = None):
         """Create an EditNote window. Associate a note with the window.
         
         @param callertitle: a text passed by calling object to add to title 
@@ -138,8 +139,9 @@ class EditNote(EditPrimary):
         """
         self.callertitle = callertitle
         self.extratype = extratype
-        EditPrimary.__init__(self, state, uistate, track, note, 
-                             state.db.get_note_from_handle, callback)
+        EditPrimary.__init__(self, dbstate, uistate, track, note, 
+                             dbstate.db.get_note_from_handle, 
+                             dbstate.db.get_note_from_gramps_id, callback)
 
     def empty_object(self):
         """Return an empty Note object for comparison for changes.
@@ -481,6 +483,26 @@ class EditNote(EditPrimary):
 
     def save(self, *obj):
         """Save the data."""
+        self.ok_button.set_sensitive(False)
+        if self.object_is_empty():
+            ErrorDialog(_("Cannot save note"), 
+                        _("No data exists for this note. Please "
+                          "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+        
+        (uses_dupe_id, id) = self._uses_duplicate_id()
+        if uses_dupe_id:
+            msg1 = _("Cannot save note. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(id)s. This value is already used. Please "
+                         "enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'id' : id }
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
+        
         trans = self.db.transaction_begin()
 
         self.update_note()

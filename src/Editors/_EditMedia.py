@@ -52,6 +52,7 @@ from GrampsWidgets import MonitoredDate, MonitoredEntry, PrivacyButton
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from Editors.AddMedia import AddMediaObject
+from QuestionDialog import ErrorDialog
 #-------------------------------------------------------------------------
 #
 # EditMedia
@@ -59,13 +60,14 @@ from Editors.AddMedia import AddMediaObject
 #-------------------------------------------------------------------------
 class EditMedia(EditPrimary):
 
-    def __init__(self, state, uistate, track, obj, callback=None):
+    def __init__(self, dbstate, uistate, track, obj, callback=None):
 
-        EditPrimary.__init__(self, state, uistate, track, obj,
-                             state.db.get_object_from_handle, callback)
+        EditPrimary.__init__(self, dbstate, uistate, track, obj,
+                             dbstate.db.get_object_from_handle, 
+                             dbstate.db.get_object_from_gramps_id, callback)
         if not self.obj.get_handle():
             #show the addmedia dialog immediately, with track of parent.
-            AddMediaObject(state, self.uistate, self.track, self.obj, 
+            AddMediaObject(dbstate, self.uistate, self.track, self.obj, 
                            self._update_addmedia)
 
     def empty_object(self):
@@ -103,29 +105,23 @@ class EditMedia(EditPrimary):
                                 'adv-media')
 
     def _setup_fields(self):
-        self.date_field = MonitoredDate(
-            self.glade.get_widget("date_entry"),
-            self.glade.get_widget("date_edit"),
-            self.obj.get_date_object(),
-            self.uistate,
-            self.track,
-            self.db.readonly)
+        self.date_field = MonitoredDate(self.glade.get_widget("date_entry"),
+                                        self.glade.get_widget("date_edit"),
+                                        self.obj.get_date_object(),
+                                        self.uistate, self.track,
+                                        self.db.readonly)
 
-        self.descr_window = MonitoredEntry(
-            self.glade.get_widget("description"),
-            self.obj.set_description,
-            self.obj.get_description,
-            self.db.readonly)
+        self.descr_window = MonitoredEntry(self.glade.get_widget("description"),
+                                           self.obj.set_description,
+                                           self.obj.get_description,
+                                           self.db.readonly)
         
-        self.gid = MonitoredEntry(
-            self.glade.get_widget("gid"),
-            self.obj.set_gramps_id,
-            self.obj.get_gramps_id,
-            self.db.readonly)
+        self.gid = MonitoredEntry(self.glade.get_widget("gid"),
+                                  self.obj.set_gramps_id, 
+                                  self.obj.get_gramps_id, self.db.readonly)
 
-        self.privacy = PrivacyButton(
-            self.glade.get_widget("private"),
-            self.obj, self.db.readonly)
+        self.privacy = PrivacyButton(self.glade.get_widget("private"),
+                                     self.obj, self.db.readonly)
 
         self.pixmap = self.glade.get_widget("pixmap")
         ebox = self.glade.get_widget('eventbox')
@@ -216,6 +212,27 @@ class EditMedia(EditPrimary):
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
+        if self.object_is_empty():
+            ErrorDialog(_("Cannot save media object"),
+                        _("No data exists for this media object. Please "
+                          "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+
+        (uses_dupe_id, id) = self._uses_duplicate_id()
+        if uses_dupe_id:
+            prim_object = self.get_from_gramps_id(id)
+            name = prim_object.get_description()
+            msg1 = _("Cannot save media object. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(id)s. This value is already used by '" 
+                         "%(prim_object)s'. Please enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'id' : id, 'prim_object' : name }
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
+        
         path = self.glade.get_widget('path').get_text()
 
         if path != self.obj.get_path():

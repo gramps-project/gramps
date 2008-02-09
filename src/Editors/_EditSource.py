@@ -51,6 +51,7 @@ from Editors._EditPrimary import EditPrimary
 from DisplayTabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList)
 from GrampsWidgets import MonitoredEntry, PrivacyButton
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -59,10 +60,11 @@ from GrampsWidgets import MonitoredEntry, PrivacyButton
 #-------------------------------------------------------------------------
 class EditSource(EditPrimary):
 
-    def __init__(self, dbstate, uistate, track,source):
+    def __init__(self, dbstate, uistate, track, source):
 
-        EditPrimary.__init__(self, dbstate, uistate, track,
-                             source, dbstate.db.get_source_from_handle)
+        EditPrimary.__init__(self, dbstate, uistate, track, source, 
+                             dbstate.db.get_source_from_handle, 
+                             dbstate.db.get_source_from_gramps_id)
 
     def empty_object(self):
         return gen.lib.Source()
@@ -92,39 +94,30 @@ class EditSource(EditPrimary):
         self.define_help_button(self.glade.get_widget('help'),'adv-src')
 
     def _setup_fields(self):
-        self.author = MonitoredEntry(
-            self.glade.get_widget("author"),
-            self.obj.set_author,
-            self.obj.get_author,
-            self.db.readonly)
+        self.author = MonitoredEntry(self.glade.get_widget("author"),
+                                     self.obj.set_author, self.obj.get_author,
+                                     self.db.readonly)
 
-        self.pubinfo = MonitoredEntry(
-            self.glade.get_widget("pubinfo"),
-            self.obj.set_publication_info,
-            self.obj.get_publication_info,
-            self.db.readonly)
+        self.pubinfo = MonitoredEntry(self.glade.get_widget("pubinfo"),
+                                      self.obj.set_publication_info,
+                                      self.obj.get_publication_info,
+                                      self.db.readonly)
 
-        self.gid = MonitoredEntry(
-            self.glade.get_widget("gid"),
-            self.obj.set_gramps_id,
-            self.obj.get_gramps_id,
-            self.db.readonly)
+        self.gid = MonitoredEntry(self.glade.get_widget("gid"),
+                                  self.obj.set_gramps_id, 
+                                  self.obj.get_gramps_id, self.db.readonly)
 
-        self.priv = PrivacyButton(
-            self.glade.get_widget("private"),
-            self.obj, self.db.readonly)
+        self.priv = PrivacyButton(self.glade.get_widget("private"), self.obj, 
+                                  self.db.readonly)
 
-        self.abbrev = MonitoredEntry(
-            self.glade.get_widget("abbrev"),
-            self.obj.set_abbreviation,
-            self.obj.get_abbreviation,
-            self.db.readonly)
+        self.abbrev = MonitoredEntry(self.glade.get_widget("abbrev"),
+                                     self.obj.set_abbreviation,
+                                     self.obj.get_abbreviation, 
+                                     self.db.readonly)
 
-        self.title = MonitoredEntry(
-            self.glade.get_widget("source_title"),
-            self.obj.set_title,
-            self.obj.get_title,
-            self.db.readonly)
+        self.title = MonitoredEntry(self.glade.get_widget("source_title"),
+                                    self.obj.set_title, self.obj.get_title,
+                                    self.db.readonly)
 
     def _create_tabbed_pages(self):
         notebook = gtk.Notebook()
@@ -165,11 +158,23 @@ class EditSource(EditPrimary):
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():
-            from QuestionDialog import ErrorDialog
-            
             ErrorDialog(_("Cannot save source"),
                         _("No data exists for this source. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+        
+        (uses_dupe_id, id) = self._uses_duplicate_id()
+        if uses_dupe_id:
+            prim_object = self.get_from_gramps_id(id)
+            name = prim_object.get_title()
+            msg1 = _("Cannot save source. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(id)s. This value is already used by '" 
+                         "%(prim_object)s'. Please enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'id' : id, 'prim_object' : name }
+            ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
 

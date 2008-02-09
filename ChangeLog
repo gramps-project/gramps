@@ -4,6 +4,16 @@
     * src/Editors/_EditMedia.py:
     * src/Editors/_EditNote.py:
     * src/Editors/_EditPlace.py:
+    * src/Editors/_EditRepository.py:
+    * src/Editors/_EditSource.py:
+    fixed: 0001347: double gid should not be allowed 
+
+2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/Editors/_EditEvent.py:
+    * src/Editors/_EditFamily.py:
+    * src/Editors/_EditMedia.py:
+    * src/Editors/_EditNote.py:
+    * src/Editors/_EditPlace.py:
     * src/Editors/_EditPrimary.py:
     * src/Editors/_EditRepository.py:
     * src/Editors/_EditSource.py:

@@ -91,15 +91,16 @@ class EditPerson(EditPrimary):
     use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
     QR_CATEGORY = CATEGORY_QR_PERSON
 
-    def __init__(self, state, uistate, track, person, callback=None):
+    def __init__(self, dbstate, uistate, track, person, callback=None):
         """
         Create an EditPerson window.  
         
-        Associates a person with the window.
+        Associate a person with the window.
         
         """
-        EditPrimary.__init__(self, state, uistate, track, person, 
-                             state.db.get_person_from_handle, callback)
+        EditPrimary.__init__(self, dbstate, uistate, track, person, 
+                             dbstate.db.get_person_from_handle, 
+                             dbstate.db.get_person_from_gramps_id, callback)
 
     def empty_object(self):
         """
@@ -606,23 +607,6 @@ class EditPerson(EditPrimary):
             if gender >= 0:
                 self.obj.set_gender(gender)
 
-    def _person_uses_duplicate_id(self):
-        """
-        Check whether a changed or added person ID already exists in the DB.
-        
-        Return True if a duplicate person ID has been detected.
-        """
-        original = self.db.get_person_from_handle(self.obj.get_handle())
-        if original and original.get_gramps_id() == self.obj.get_gramps_id():
-            return (False, '', '')
-        else:
-            idval = self.obj.get_gramps_id()
-            person = self.db.get_person_from_gramps_id(idval)
-            if person:
-                name = self.name_displayer.display(person)
-                return (True, idval, name)
-            return (False, '', '')
-
     def _update_family_ids(self, trans):
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
@@ -696,23 +680,26 @@ class EditPerson(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
         
+        (uses_dupe_id, id) = self._uses_duplicate_id()
+        if uses_dupe_id:
+            prim_object = self.get_from_gramps_id(id)
+            name = self.name_displayer.display(prim_object)
+            msg1 = _("Cannot save person. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(id)s. This value is already used by '" 
+                         "%(prim_object)s'. Please enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'id' : id, 'prim_object' : name }
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
+        
         self._check_for_unknown_gender()
 
         set_birth_death_index(self.db, self.obj)
 
         trans = self.db.transaction_begin()
 
-        (uses_dupe_id, person_id, name) = self._person_uses_duplicate_id()
-        if uses_dupe_id:
-            msg1 = _("Cannot save person. ID already exists.")
-            msg2 = _("You have attempted to use the existing GRAMPS ID with "
-                         "value %(person_id)s. This value is already used by " 
-                         "%(person)s. Please enter a different ID or leave "
-                         "blank to get the next available ID value.") % {
-                         'person_id' : person_id, 'person' : name }
-            ErrorDialog(msg1, msg2)
-            self.ok_button.set_sensitive(True)
-            return
             
         self._update_family_ids(trans)
 
