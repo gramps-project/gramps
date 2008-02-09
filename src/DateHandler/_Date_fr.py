@@ -276,7 +276,7 @@ class DateDisplayFR(DateDisplay):
             if date_val[1] == 0:
                 return year
             else:
-                value = u"%s %d" % (self.french[date_val[1]], year) 
+                return u"%s %d" % (self.french[date_val[1]], year) 
         # convertion mistake before 22.9.1792        
         elif date_val[2] == 0 and date_val[1] == 13:
             # from 17.9.1792 to 21.9.1792 : trap for Extra months, we cannot date back
