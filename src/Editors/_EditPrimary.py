@@ -35,7 +35,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
     QR_CATEGORY = -1
     
     def __init__(self, state, uistate, track, obj, get_from_handle, 
-                 callback=None):
+                 get_from_gramps_id, callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
         self.dp  = DateHandler.parser
@@ -49,6 +49,7 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         self.signal_keys = []
         self.ok_button = None
         self.get_from_handle = get_from_handle
+        self.get_from_gramps_id = get_from_gramps_id
         self.contexteventbox = None
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, obj)

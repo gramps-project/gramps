@@ -1,3 +1,6 @@
+2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/Editors/_EditPrimary.py: 0001347: double gid. fix previous commit
+
 2008-02-09 Brian Matherly <brian@gramps-project.org>
     * src/ReportBase/_WebReportDialog.py:
     * src/ReportBase/_ReportDialog.py:
