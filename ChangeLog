@@ -1,4 +1,8 @@
 2008-02-10 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/FanChart.py: 
+	0001751: Translation of string in FanCaaart.py does not work.
+
+2008-02-10 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py:
 	* src/PluginUtils/_GuiOptions.py:
 	0001750: Some problems with web pages
