@@ -533,6 +533,26 @@ class OptionParser(_Options.OptionParser):
         else:
             # Tag is not report-specific, so we let the base class handle it.
             _Options.OptionParser.endElement(self,tag)
+            
+#------------------------------------------------------------------------
+#
+# Empty class to keep the BaseDoc-targeted format happy
+# Yes, this is a hack. Find some other way to pass around documents so that
+# we don't have to handle them for reports that don't use documents (web)
+#
+#------------------------------------------------------------------------
+class EmptyDoc:
+    def init(self):
+        pass
+
+    def set_creator(self, creator):
+        pass
+    
+    def open(self, filename):
+        pass
+    
+    def close(self):
+        pass
 
 #-------------------------------------------------------------------------
 #
@@ -557,7 +577,7 @@ class OptionHandler(_Options.OptionHandler):
         """
         # These are needed for running reports.
         # We will not need to save/retreive them, just keep around.
-        self.doc = None
+        self.doc = EmptyDoc() # Nasty hack. Text reports replace this
         self.output = None
 
         # Retrieve our options from whole collection

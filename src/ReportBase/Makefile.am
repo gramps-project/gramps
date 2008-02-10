@@ -25,7 +25,8 @@ pkgdata_PYTHON = \
 	_StyleEditor.py\
 	_TemplateParser.py\
 	_TextFormatComboBox.py\
-	_TextReportDialog.py
+	_TextReportDialog.py\
+	_WebReportDialog.py
 
 pkgpyexecdir = @pkgpyexecdir@/ReportBase
 pkgpythondir = @pkgpythondir@/ReportBase

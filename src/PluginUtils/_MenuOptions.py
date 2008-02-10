@@ -404,7 +404,7 @@ class FilterOption(EnumeratedListOption):
         """
         Return the currently selected filter object.
         
-        @return: A person filter object.
+        @return: A filter object.
         """
         return self.__filters[self.get_value()]
     
@@ -413,7 +413,7 @@ class FilterOption(EnumeratedListOption):
 # PersonOption class
 #
 #-------------------------------------------------------------------------
-class PersonOption(Option):
+class PersonOption(StringOption):
     """
     This class describes an option that allows a person from the 
     database to be selected.
@@ -423,19 +423,19 @@ class PersonOption(Option):
         @param label: A friendly label to be applied to this option.
             Example: "Center Person"
         @type label: string
-        @param value: A default Gramps ID of a person for this option.
+        @param value: A Gramps ID of a person for this option.
             Example: "p11"
         @type value: string
         @return: nothing
         """
-        Option.__init__(self, label, "")
+        StringOption.__init__(self, label, "")
 
 #-------------------------------------------------------------------------
 #
 # FamilyOption class
 #
 #-------------------------------------------------------------------------
-class FamilyOption(Option):
+class FamilyOption(StringOption):
     """
     This class describes an option that allows a family from the 
     database to be selected.
@@ -445,14 +445,57 @@ class FamilyOption(Option):
         @param label: A friendly label to be applied to this option.
             Example: "Center Family"
         @type label: string
-        @param value: A default Gramps ID of a family for this option.
+        @param value: A Gramps ID of a family for this option.
             Example: "f11"
         @type value: string
-        @param dbstate: The database state for the database to be used..
-        @type value: DbState
         @return: nothing
         """
-        Option.__init__(self, label, "")
+        StringOption.__init__(self, label, "")
+        
+#-------------------------------------------------------------------------
+#
+# NoteOption class
+#
+#-------------------------------------------------------------------------
+class NoteOption(StringOption):
+    """
+    This class describes an option that allows a note from the 
+    database to be selected.
+    """
+    def __init__(self, label):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "Title Note"
+        @type label: string
+        @param value: A Gramps ID of a note for this option.
+            Example: "n11"
+        @type value: string
+        @return: nothing
+        """
+        StringOption.__init__(self, label, "")
+        
+#-------------------------------------------------------------------------
+#
+# MediaOption class
+#
+#-------------------------------------------------------------------------
+class MediaOption(StringOption):
+    """
+    This class describes an option that allows a media object from the 
+    database to be selected.
+    """
+    def __init__(self, label):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "Image"
+        @type label: string
+        @param value: A Gramps ID of a media object for this option.
+            Example: "m11"
+        @type value: string
+        @return: nothing
+        """
+        StringOption.__init__(self, label, "")
+
 #-------------------------------------------------------------------------
 #
 # PersonListOption class
@@ -498,6 +541,69 @@ class SurnameColourOption(Option):
         """
         Option.__init__(self, label, "")
 
+#-------------------------------------------------------------------------
+#
+# DestinationOption class
+#
+#-------------------------------------------------------------------------
+class DestinationOption(StringOption):
+    """
+    This class describes an option that specifies a destination file or path.
+    The destination can be a directory or a file. If the destination is a file,
+    the extension can be specified.
+    """
+    
+    __signals__ = { 'options-changed' : None }
+    
+    def __init__(self, label, value):
+        """
+        @param label: A friendly label to be applied to this option.
+            Example: "File Name"
+        @type label: string
+        @param value: A default destination for this option.
+            Example: "/home/username/Desktop/"
+            Example: "/home/username/Desktop/report.pdf"
+        @type value: string
+        @param is_directory: Specifies whether the destination is a directory 
+        or a file.
+        @type value: bool
+        @return: nothing
+        """
+        StringOption.__init__(self, label, value)
+        self.__is_directory = False
+        self.__extension = ""
+        
+    def set_directory_entry(self, is_directory):
+        """
+        @param is_directory: Specifies whether the destination is a directory 
+        or a file.
+        @type value: bool
+        @return: nothing
+        """
+        self.__is_directory = is_directory
+        self.emit('options-changed')
+        
+    def get_directory_entry(self):
+        """
+        @return: True if the destination is a directory. False if the 
+        destination is a file.
+        """
+        return self.__is_directory
+
+    def set_extension(self, extension):
+        """
+        @param extension: Specifies the extension for the destination file. 
+        @type value: str
+        @return: nothing
+        """
+        self.__extension = extension
+        
+    def get_extension(self):
+        """
+        @return: The extension for the destination file.
+        """
+        return self.__extension
+        
 #-------------------------------------------------------------------------
 #
 # Menu class

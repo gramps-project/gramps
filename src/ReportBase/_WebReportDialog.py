@@ -1,0 +1,55 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2008  Brian G. Matherly
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id:$
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from _ReportDialog import ReportDialog
+from ReportBase import CATEGORY_WEB
+
+#-------------------------------------------------------------------------
+#
+# WebReportDialog class
+#
+#-------------------------------------------------------------------------
+class WebReportDialog(ReportDialog):
+    """
+    The WebReportDialog base class.  This is a base class for generating
+    dialogs for web page reports.
+    """
+
+    def __init__(self, dbstate, uistate, person, 
+                 option_class, name, trans_name):
+        """Initialize a dialog"""
+        self.category = CATEGORY_WEB
+        ReportDialog.__init__(self, dbstate, uistate, person, option_class,
+                                  name, trans_name)
+
+    def setup_target_frame(self):
+        """Target frame is not used."""
+        pass
+    
+    def parse_target_frame(self):
+        """Target frame is not used."""
+        return 1

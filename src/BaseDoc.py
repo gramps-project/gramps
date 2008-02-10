@@ -1052,6 +1052,18 @@ class StyleSheet:
         self.draw_styles = {}
         self.table_styles = {}
         self.cell_styles = {}
+        
+    def is_empty(self):
+        "Checks if any styles are defined"
+        style_count = len(self.para_styles)  + \
+                      len(self.draw_styles)  + \
+                      len(self.table_styles) + \
+                      len(self.cell_styles)
+        print style_count
+        if style_count > 0:
+            return False
+        else:
+            return True      
 
     def add_paragraph_style(self, name, style):
         """

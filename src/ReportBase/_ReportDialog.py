@@ -291,7 +291,10 @@ def report(dbstate,uistate,person,report_class,options_class,
     elif category == CATEGORY_GRAPHVIZ:
         from _GraphvizReportDialog import GraphvizReportDialog
         dialog_class = GraphvizReportDialog
-    elif category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_VIEW,CATEGORY_WEB):
+    elif category == CATEGORY_WEB:
+        from _WebReportDialog import WebReportDialog
+        dialog_class = WebReportDialog
+    elif category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_VIEW):
         try:
             report_class(dbstate,uistate,person)
         except Errors.WindowActiveError:

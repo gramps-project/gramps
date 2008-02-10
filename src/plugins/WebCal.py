@@ -1,8 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Thom Sturgill
-# Copyright (C) 2007  Brian G. Matherly
+# Copyright (C) 2007      Thom Sturgill
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -60,14 +60,6 @@ log = logging.getLogger(".WebPage")
 
 #------------------------------------------------------------------------
 #
-# GNOME/gtk
-#
-#------------------------------------------------------------------------
-import gtk
-import gobject
-
-#------------------------------------------------------------------------
-#
 # GRAMPS module
 #
 #------------------------------------------------------------------------
@@ -76,10 +68,10 @@ import const
 import BaseDoc
 from GrampsCfg import get_researcher
 from PluginUtils import register_report
-from ReportBase import (Report, ReportUtils, ReportOptions, CATEGORY_WEB, 
+from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, 
                         MODE_GUI)
-from ReportBase._ReportDialog import ReportDialog
-import Errors
+from PluginUtils import FilterOption, EnumeratedListOption, PersonOption, \
+    BooleanOption, NumberOption, StringOption, DestinationOption
 import Utils
 import GrampsLocale
 from QuestionDialog import ErrorDialog
@@ -92,7 +84,7 @@ from Utils import probably_alive
 #------------------------------------------------------------------------
 _CALENDAR = "calendar.css"
 
-_character_sets = [
+_CHARACTER_SETS = [
     [_('Unicode (recommended)'), 'utf-8'],
     ['ISO-8859-1',  'iso-8859-1' ],
     ['ISO-8859-2',  'iso-8859-2' ],
@@ -110,14 +102,47 @@ _character_sets = [
     ['koi8_r',      'koi8_r',     ],
     ]
 
-_cc = [
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License - By attribution" title="Creative Commons License - By attribution" src="somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License - By attribution, No derivations" title="Creative Commons License - By attribution, No derivations" src="somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License - By attribution, Share-alike" title="Creative Commons License - By attribution, Share-alike" src="somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License - By attribution, Non-commercial" title="Creative Commons License - By attribution, Non-commercial" src="somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License - By attribution, Non-commercial, No derivations" title="Creative Commons License - By attribution, Non-commercial, No derivations" src="somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License - By attribution, Non-commerical, Share-alike" title="Creative Commons License - By attribution, Non-commerical, Share-alike" src="somerights20.gif" /></a>',
+_CC = [
+    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/">'
+    '<img alt="Creative Commons License - By attribution" title="Creative '
+    'Commons License - By attribution" src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/">'
+    '<img alt="Creative Commons License - By attribution, No derivations" '
+    'title="Creative Commons License - By attribution, No derivations" '
+    'src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Share-alike" '
+    'title="Creative Commons License - By attribution, Share-alike" '
+    'src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Non-commercial" '
+    'title="Creative Commons License - By attribution, Non-commercial" '
+    'src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Non-commercial, No '
+    'derivations" title="Creative Commons License - By attribution, '
+    'Non-commercial, No derivations" src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Non-commerical, '
+    'Share-alike" title="Creative Commons License - By attribution, '
+    'Non-commerical, Share-alike" src="somerights20.gif" /></a>'
     ]
+
+_COPY_OPTIONS = [
+        _('Standard copyright'),
+        _('Creative Commons - By attribution'),
+        _('Creative Commons - By attribution, No derivations'),
+        _('Creative Commons - By attribution, Share-alike'),
+        _('Creative Commons - By attribution, Non-commercial'),
+        _('Creative Commons - By attribution, Non-commercial, No derivations'),
+        _('Creative Commons - By attribution, Non-commercial, Share-alike'),
+        _('No copyright notice'),
+        ]
 
 def make_date(year, month, day):
     """
@@ -129,75 +154,52 @@ def make_date(year, month, day):
 
 #------------------------------------------------------------------------
 #
-# WebReport
+# WebCalReport
 #
 #------------------------------------------------------------------------
-class WebReport(Report):
-    def __init__(self,database,person,options):
-        """
-        Creates WebReport object that produces the report.
-        
-        The arguments are:
-
-        database        - the GRAMPS database instance
-        person          - currently selected person
-        options   - instance of the Options class for this report
-
-        This report needs the following parameters (class variables)
-        that come in the options class.
-        
-        filter        Surname
-        od        Country
-        WCext        Year
-        WCencoding    Alive
-        WCod        Birthday
-        WCcopyright    Anniv
-        Month_image    Month_repeat
-        WCtitle
-        Note_text1
-        Note_text2
-        Note_text3
-        Note_text4
-        Note_text5
-        Note_text6
-        Note_text7
-        Note_text8
-        Note_text9
-        Note_text10
-        Note_text11
-        Note_text12
-        """
+class WebCalReport(Report):
+    """
+    Creates WebCalReport object that produces the report.
+    """
+    def __init__(self, database, person, options):
+        Report.__init__(self, database, person, options)
+        menu = options.menu
         
         self.database = database
-        self.start_person = person
         self.options = options
-
-        filter_num = options.handler.options_dict['WCfilter']
-        filters = ReportUtils.get_person_filters(person)
-        self.filter = filters[filter_num]
-
-        self.ext = options.handler.options_dict['WCext']
-        self.html_dir = options.handler.options_dict['WCod']
-        self.copy = options.handler.options_dict['WCcopyright']
-        self.encoding = options.handler.options_dict['WCencoding']
-        self.Title_text  = options.handler.options_dict['WCtitle']
-        self.Note  = [options.handler.options_dict['Note_text1'],options.handler.options_dict['Note_text2'],
-             options.handler.options_dict['Note_text3'], options.handler.options_dict['Note_text4'],
-             options.handler.options_dict['Note_text5'], options.handler.options_dict['Note_text6'],
-             options.handler.options_dict['Note_text7'], options.handler.options_dict['Note_text8'],
-             options.handler.options_dict['Note_text9'], options.handler.options_dict['Note_text10'],
-             options.handler.options_dict['Note_text11'],options.handler.options_dict['Note_text12']]
-        self.Month_image = options.handler.options_dict['Month_image']
-        self.Month_repeat = options.handler.options_dict['Month_repeat']
-        self.Country = options.handler.options_dict['Country']
-        self.Year = options.handler.options_dict['Year']
-        self.Surname = options.handler.options_dict['Surname']
-        self.Alive = options.handler.options_dict['alive']
-        self.Birthday = options.handler.options_dict['birthdays']
-        self.Anniv = options.handler.options_dict['anniversaries']
-        self.Serif_fonts = options.handler.options_dict['Serif_fonts']
-        self.SanSerif_fonts = options.handler.options_dict['SanSerif_fonts']
-        self.Home_link = options.handler.options_dict['Home_link']
+        
+        self.html_dir = menu.get_option_by_name('target').get_value()
+        filter_option =  menu.get_option_by_name('filter')
+        self.filter = filter_option.get_filter()
+        self.ext = menu.get_option_by_name('ext').get_value()
+        self.copy = menu.get_option_by_name('cright').get_value()
+        self.encoding = menu.get_option_by_name('encoding').get_value()
+        self.Country = menu.get_option_by_name('country').get_value()
+        self.Year = menu.get_option_by_name('year').get_value()
+        self.Surname = menu.get_option_by_name('surname').get_value()
+        self.Alive = menu.get_option_by_name('alive').get_value()
+        self.Birthday = menu.get_option_by_name('birthdays').get_value()
+        self.Anniv = menu.get_option_by_name('anniversaries').get_value()
+        self.Title_text  = menu.get_option_by_name('title').get_value()
+        self.Month_image = menu.get_option_by_name('background').get_value()
+        self.Month_repeat = menu.get_option_by_name('repeat').get_value()
+        self.Serif_fonts = menu.get_option_by_name('serif_fonts').get_value()
+        self.SanSerif_fonts = \
+                        menu.get_option_by_name('sanserif_fonts').get_value()
+        self.Home_link = menu.get_option_by_name('home_link').get_value()
+        
+        self.Note  = [ menu.get_option_by_name('note_jan').get_value(), 
+                       menu.get_option_by_name('note_feb').get_value(),
+                       menu.get_option_by_name('note_mar').get_value(),
+                       menu.get_option_by_name('note_apr').get_value(),
+                       menu.get_option_by_name('note_may').get_value(),
+                       menu.get_option_by_name('note_jun').get_value(),
+                       menu.get_option_by_name('note_jul').get_value(),
+                       menu.get_option_by_name('note_aug').get_value(),
+                       menu.get_option_by_name('note_sep').get_value(),
+                       menu.get_option_by_name('note_oct').get_value(),
+                       menu.get_option_by_name('note_nov').get_value(),
+                       menu.get_option_by_name('note_dec').get_value()]
 
     def get_short_name(self, person, maiden_name = None):
         """ Returns person's name, unless maiden_name given, unless married_name listed. """
@@ -410,7 +412,7 @@ class WebReport(Report):
         of.write('src="http://www.w3.org/Icons/valid-xhtml10" ')
         of.write('alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></p>\n')
         if self.copy > 0 and self.copy <= 6:
-            text = _cc[self.copy-1]
+            text = _CC[self.copy-1]
             from_path = os.path.join(const.IMAGE_DIR,"somerights20.gif")
             shutil.copyfile(from_path,os.path.join(self.html_dir,"somerights20.gif"))
         else:
@@ -481,7 +483,7 @@ class WebReport(Report):
 
         # get the information, first from holidays:
         if self.Country != 0: # Don't include holidays
-            self.get_holidays(self.Year, _countries[self.Country]) # _country is currently global
+            self.get_holidays(self.Year, _COUNTRIES[self.Country]) # _country is currently global
         # get data from database:
         self.collect_data()
         # generate the report:
@@ -668,295 +670,228 @@ class WebReport(Report):
                                         }
                                     self.add_day_item(text, year, month, day)
 
-        
 #------------------------------------------------------------------------
 #
-# 
+# WebCalOptions
 #
 #------------------------------------------------------------------------
-class WebReportOptions(ReportOptions):
-
+class WebCalOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
+    
+    def __init__(self, name, dbase):
+        self.__db = dbase
+        self.__pid = None
+        self.__filter = None
+        MenuReportOptions.__init__(self, name, dbase)
 
-    def __init__(self,name,database=None,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-        self.db = database
-
-        # Options specific for this report
-        self.options_dict = {
-             'WCfilter'        : 0,
-             'WCod'            : os.path.join(const.USER_HOME,"WEBCAL"),
-             'WCcopyright'     : 0,
-             'WCtitle'         : _('My Family Calendar'), 
-             'WCext'           : 'html',
-             'WCencoding'      : 'utf-8',
-             'Month_image'     : '',
-             'Month_repeat'    : 1,
-             'Note_text1'      : _('This prints in January'),                 
-             'Note_text2'      : _('This prints in February'),
-             'Note_text3'      : _('This prints in March'),
-             'Note_text4'      : _('This prints in April'),
-             'Note_text5'      : _('This prints in May'),
-             'Note_text6'      : _('This prints in June'),
-             'Note_text7'      : _('This prints in July'),
-             'Note_text8'      : _('This prints in August'),
-             'Note_text9'      : _('This prints in September'),
-             'Note_text10'     : _('This prints in October'),
-             'Note_text11'     : _('This prints in November'),
-             'Note_text12'     : _('This prints in December'),
-             'Year'            : time.localtime()[0],
-             'Country'         : 0,
-             'Surname'         : 1,
-             'alive'           : 1,
-             'birthdays'       : 1,
-             'anniversaries'   : 1,
-             'SanSerif_fonts'  : '"Verdana","Helvetica","Arial",sans-serif',
-             'Serif_fonts'     : '"Georgia","Times New Roman","Times",serif',
-             'Home_link'       : '../index.html',
-        }
-
-        self.options_help = {
-        }
-
-    def add_user_options(self,dialog):
-
-        ext_msg = _("File extension")
-
-        self.ext = gtk.combo_box_new_text()
-        self.ext_options = ['.html','.htm','.shtml','.php','.php3','.cgi']
-        for text in self.ext_options:
-            self.ext.append_text(text)
-
-        self.copy = gtk.combo_box_new_text()
-        self.copy_options = [
-            _('Standard copyright'),
-            _('Creative Commons - By attribution'),
-            _('Creative Commons - By attribution, No derivations'),
-            _('Creative Commons - By attribution, Share-alike'),
-            _('Creative Commons - By attribution, Non-commercial'),
-            _('Creative Commons - By attribution, Non-commercial, No derivations'),
-            _('Creative Commons - By attribution, Non-commercial, Share-alike'),
-            _('No copyright notice'),
-            ]
-        for text in self.copy_options:
-            self.copy.append_text(text)
-
-        def_ext = "." + self.options_dict['WCext']
-        self.ext.set_active(self.ext_options.index(def_ext))
-
-        index = self.options_dict['WCcopyright']
-        self.copy.set_active(index)
-
-        cset_node = None
-        cset = self.options_dict['WCencoding']
-
-        store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        for data in _character_sets:
-            if data[1] == cset:
-                cset_node = store.append(row=data)
-            else:
-                store.append(row=data)
-        self.encoding = GrampsNoteComboBox(store,cset_node)
-
-        dialog.add_option(ext_msg,self.ext)
-        dialog.add_option(_('Character set encoding'),self.encoding)
-        dialog.add_option(_('Copyright'),self.copy)
-
-
-        title = _("Content Options")
-
-#       year_msg = "Year of calendar"
-#       country_msg = "Country for holidays"
-#       surname_msg = "Birthday surname"
-#       alive_msg = "Only include living people"
-#       birthday_msg = "Include birthdays"
-#       anniversary_msg = "Include anniversaries"
+    def add_menu_options(self, menu):
+        """
+        Add options to the menu for the web calendar.
+        """
+        self.__add_report_options(menu)
+        self.__add_content_options(menu)
+        self.__add_misc_options(menu)
+        self.__add_notes_options(menu)
+    
+    def __add_report_options(self, menu):
+        """
+        Options on the "Report Options" tab.
+        """
+        category_name = _("Report Options")
         
-        filter_index = self.options_dict['WCfilter']
-        filter_list = ReportUtils.get_person_filters(dialog.person)
-        self.filter_menu = gtk.combo_box_new_text()
-        for filter in filter_list:
-            self.filter_menu.append_text(filter.get_name())
-        if filter_index > len(filter_list):
-            filter_index = 0
-        self.filter_menu.set_active(filter_index)
-
-        self.year = gtk.SpinButton()
-        self.year.set_digits(0)
-        self.year.set_increments(1,2)
-        self.year.set_range(0,2100)
-        self.year.set_numeric(True)
-        self.year.set_value(self.options_dict['Year'])
-
-        self.Country_options = map(lambda c: ("", c, c), _countries)
-        self.Country = gtk.ComboBox()
-        store = gtk.ListStore(gobject.TYPE_STRING)
-        self.Country.set_model(store)
-        cell = gtk.CellRendererText()
-        self.Country.pack_start(cell,True)
-        self.Country.add_attribute(cell,'text',0)
-        for item in self.Country_options:
-            store.append(row=[item[2]])
-        self.Country.set_active(self.options_dict['Country'])
-
-        self.alive = gtk.CheckButton(_('Check to include ONLY the living'))
-        self.alive.set_active(self.options_dict['alive'])
-
-        self.surname = gtk.CheckButton(_('Check for wives to use maiden name'))
-        self.surname.set_active(self.options_dict['Surname'])
-
-        self.birthday = gtk.CheckButton(_('Check to include birthdays'))
-        self.birthday.set_active(self.options_dict['birthdays'])
-
-        self.anniversary = gtk.CheckButton(_('Check to include anniversaries'))
-        self.anniversary.set_active(self.options_dict['anniversaries'])
-
-        dialog.add_frame_option(title,_('Filter'),self.filter_menu)
-        dialog.add_frame_option(title,_('Year of calendar'),self.year)
-        dialog.add_frame_option(title,_('Country for holidays'),self.Country)
-        dialog.add_frame_option(title,_('Birthday surname'),self.surname)
-        dialog.add_frame_option(title,_('Only include living people'),self.alive)
-        dialog.add_frame_option(title,_('Include birthdays'),self.birthday)
-        dialog.add_frame_option(title,_('Include anniversaries'),self.anniversary)
-
-
-        title = _("Misc Options")
-    
-        self.Serif_fonts = gtk.Entry()
-        self.Serif_fonts.set_text(str(self.options_dict['Serif_fonts']))
-
-        self.SanSerif_fonts = gtk.Entry()
-        self.SanSerif_fonts.set_text(str(self.options_dict['SanSerif_fonts']))
-
-        self.Month_image = gtk.Entry()
-        self.Month_image.set_text(str(self.options_dict['Month_image']))
-
-        self.Home_link = gtk.Entry()
-        self.Home_link.set_text(str(self.options_dict['Home_link']))
-
-        self.repeat_options = [_('no-repeat'),_('repeat'),
-                               _('repeat-x'),_('repeat-y')]
-        self.Month_repeat = gtk.combo_box_new_text()
-        for text in self.repeat_options:
-            self.Month_repeat.append_text(text)
-        index = self.options_dict['Month_repeat']
-        self.Month_repeat.set_active(index)
-
-        self.Title_text = gtk.Entry()
-        self.Title_text.set_text(self.options_dict['WCtitle'])
-
-        dialog.add_frame_option(title,_('Calendar Title'),self.Title_text)
-        dialog.add_frame_option(title,_('Home link'),self.Home_link)
-        dialog.add_frame_option(title,_('Serif font family'),self.Serif_fonts)
-        dialog.add_frame_option(title,_('San-Serif font family'),self.SanSerif_fonts)
-        dialog.add_frame_option(title,_('Background Image'),self.Month_image)
-        dialog.add_frame_option(title,_('Image Repeat'),self.Month_repeat)
-
-    
-        title = _("Months 1-6 Notes")
-
-        note_msg  = [_('Jan Note'),_('Feb Note'),_('Mar Note'),_('Apr Note'),
-                     _('May Note'),_('Jun Note'),_('Jul Note'),_('Aug Note'),
-                     _('Sep Note'),_('Oct Note'),_('Nov Note'),_('Dec Note')]
-
-        self.Note_text1 = gtk.Entry()
-        self.Note_text1.set_text(str(self.options_dict['Note_text1']))
-    
-        self.Note_text2 = gtk.Entry()
-        self.Note_text2.set_text(str(self.options_dict['Note_text2']))
-    
-        self.Note_text3 = gtk.Entry()
-        self.Note_text3.set_text(str(self.options_dict['Note_text3']))
-    
-        self.Note_text4 = gtk.Entry()
-        self.Note_text4.set_text(str(self.options_dict['Note_text4']))
-    
-        self.Note_text5 = gtk.Entry()
-        self.Note_text5.set_text(str(self.options_dict['Note_text5']))
-    
-        self.Note_text6 = gtk.Entry()
-        self.Note_text6.set_text(str(self.options_dict['Note_text6']))
-
-        dialog.add_frame_option(title,note_msg[0],self.Note_text1)
-        dialog.add_frame_option(title,note_msg[1],self.Note_text2)
-        dialog.add_frame_option(title,note_msg[2],self.Note_text3)
-        dialog.add_frame_option(title,note_msg[3],self.Note_text4)
-        dialog.add_frame_option(title,note_msg[4],self.Note_text5)
-        dialog.add_frame_option(title,note_msg[5],self.Note_text6)
-    
-        title = _("Months 7-12 Notes")
-
-        self.Note_text7 = gtk.Entry()
-        self.Note_text7.set_text(str(self.options_dict['Note_text7']))
-    
-        self.Note_text8 = gtk.Entry()
-        self.Note_text8.set_text(str(self.options_dict['Note_text8']))
-    
-        self.Note_text9 = gtk.Entry()
-        self.Note_text9.set_text(str(self.options_dict['Note_text9']))
-    
-        self.Note_text10 = gtk.Entry()
-        self.Note_text10.set_text(str(self.options_dict['Note_text10']))
-    
-        self.Note_text11 = gtk.Entry()
-        self.Note_text11.set_text(str(self.options_dict['Note_text11']))
-    
-        self.Note_text12 = gtk.Entry()
-        self.Note_text12.set_text(str(self.options_dict['Note_text12']))
-    
-        dialog.add_frame_option(title,note_msg[6],self.Note_text7)
-        dialog.add_frame_option(title,note_msg[7],self.Note_text8)
-        dialog.add_frame_option(title,note_msg[8],self.Note_text9)
-        dialog.add_frame_option(title,note_msg[9],self.Note_text10)
-        dialog.add_frame_option(title,note_msg[10],self.Note_text11)
-        dialog.add_frame_option(title,note_msg[11],self.Note_text12)
-
-    def parse_user_options(self,dialog):
-        """ Save the user selected choices for later use."""
+        target = DestinationOption( _("Destination"), 
+                                    os.path.join(const.USER_HOME,"WEBCAL"))
+        target.set_help( _("The destination directory for the web files"))
+        target.set_directory_entry(True)
+        menu.add_option(category_name, "target", target)
         
-        index = self.ext.get_active()
-        if index >= 0:
-            html_ext = self.ext_options[index]
+        ext = EnumeratedListOption(_("File extension"), ".html" )
+        for etype in ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']:
+            ext.add_item(etype, etype)
+        ext.set_help( _("The extension to be used for the web files"))
+        menu.add_option(category_name, "ext", ext)
+        
+        cright = EnumeratedListOption(_('Copyright'), 0 )
+        index = 0
+        for copt in _COPY_OPTIONS:
+            cright.add_item(index, copt)
+            index += 1
+        cright.set_help( _("The copyright to be used for the web files"))
+        menu.add_option(category_name, "cright", cright)
+        
+        encoding = EnumeratedListOption(_('Character set encoding'), 'utf-8' )
+        for eopt in _CHARACTER_SETS:
+            encoding.add_item(eopt[1], eopt[0])
+        encoding.set_help( _("The encoding to be used for the web files"))
+        menu.add_option(category_name, "encoding", encoding)
+        
+    def __add_content_options(self, menu):
+        """
+        Options on the "Content Options" tab.
+        """
+        category_name = _("Content Options")
+        
+        year = NumberOption(_("Year of calendar"), time.localtime()[0], 
+                            1000, 3000)
+        year.set_help(_("Year of calendar"))
+        menu.add_option(category_name, "year", year)
+
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+               _("Select filter to restrict people that appear on calendar"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+        
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter"))
+        menu.add_option(category_name, "pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+        
+        self.__update_filters()
+
+        country = EnumeratedListOption(_('Country for holidays'), 0 )
+        index = 0
+        for item in _COUNTRIES:
+            country.add_item(index, item)
+            index += 1
+        country.set_help( _("Holidays will be included for the selected "
+                            "country"))
+        menu.add_option(category_name, "country", country)
+
+        alive = BooleanOption(_("Include only living people"), True)
+        alive.set_help(_("Include only living people in the calendar"))
+        menu.add_option(category_name, "alive", alive)
+
+        birthdays = BooleanOption(_("Include birthdays"), True)
+        birthdays.set_help(_("Include birthdays in the calendar"))
+        menu.add_option(category_name, "birthdays", birthdays)
+
+        anniversaries = BooleanOption(_("Include anniversaries"), True)
+        anniversaries.set_help(_("Include anniversaries in the calendar"))
+        menu.add_option(category_name, "anniversaries", anniversaries)
+        
+        surname = BooleanOption(_('Check for wives to use maiden name'), True)
+        surname.set_help(_("Attempt to use maiden names of women"))
+        menu.add_option(category_name, "surname", surname)
+
+    def __add_misc_options(self, menu):
+        """
+        Options on the "Misc Options" tab.
+        """
+        category_name = _("Misc Options")
+        
+        title = StringOption(_('Calendar Title'), _('My Family Calendar')) 
+        title.set_help(_("The title of the calendar"))
+        menu.add_option(category_name, "title", title)
+        
+        home_link = StringOption(_('Home link'), '../index.html') 
+        home_link.set_help(_("The link to be included to direct the user to "
+                         "the main page of the web site"))
+        menu.add_option(category_name, "home_link", home_link)
+        
+        serif_fonts = StringOption(_('Serif font family'), 
+                             '"Georgia","Times New Roman","Times",serif') 
+        serif_fonts.set_help(_("Serif font family"))
+        menu.add_option(category_name, "serif_fonts", serif_fonts)
+    
+        sanserif_fonts = StringOption(_('San-Serif font family'), 
+                             '"Verdana","Helvetica","Arial",sans-serif') 
+        sanserif_fonts.set_help(_('San-Serif font family'))
+        menu.add_option(category_name, "sanserif_fonts", sanserif_fonts)
+        
+        background = StringOption(_('Background Image'), "") 
+        background.set_help(_('The image to be used as the page background'))
+        menu.add_option(category_name, "background", background)
+
+        repeat = EnumeratedListOption(_('Image Repeat'), 1 )
+        repeat.add_item(0, _('no-repeat'))
+        repeat.add_item(1, _('repeat'))
+        repeat.add_item(2, _('repeat-x'))
+        repeat.add_item(3, _('repeat-y'))
+        repeat.set_help( _("Whether to repeat the background image"))
+        menu.add_option(category_name, "repeat", repeat)
+        
+    def __add_notes_options(self, menu):
+        """
+        Options on the "Months Notes" tabs.
+        """
+        category_name = _("Months 1-6 Notes")
+
+        note_jan = StringOption(_('Jan Note'), _('This prints in January')) 
+        note_jan.set_help(_("The note for the month of January"))
+        menu.add_option(category_name, "note_jan", note_jan)
+        
+        note_feb = StringOption(_('Feb Note'), _('This prints in February')) 
+        note_feb.set_help(_("The note for the month of February"))
+        menu.add_option(category_name, "note_feb", note_feb)
+        
+        note_mar = StringOption(_('Mar Note'), _('This prints in March')) 
+        note_mar.set_help(_("The note for the month of March"))
+        menu.add_option(category_name, "note_mar", note_mar)
+        
+        note_apr = StringOption(_('Apr Note'), _('This prints in April')) 
+        note_apr.set_help(_("The note for the month of April"))
+        menu.add_option(category_name, "note_apr", note_apr)
+        
+        note_may = StringOption(_('May Note'), _('This prints in May')) 
+        note_may.set_help(_("The note for the month of May"))
+        menu.add_option(category_name, "note_may", note_may)
+        
+        note_jun = StringOption(_('Jun Note'), _('This prints in June')) 
+        note_jun.set_help(_("The note for the month of June"))
+        menu.add_option(category_name, "note_jun", note_jun)
+        
+        category_name = _("Months 7-12 Notes")
+
+        note_jul = StringOption(_('Jul Note'), _('This prints in July')) 
+        note_jul.set_help(_("The note for the month of July"))
+        menu.add_option(category_name, "note_jul", note_jul)
+        
+        note_aug = StringOption(_('Aug Note'), _('This prints in August')) 
+        note_aug.set_help(_("The note for the month of August"))
+        menu.add_option(category_name, "note_aug", note_aug)
+        
+        note_sep = StringOption(_('Sep Note'), _('This prints in September')) 
+        note_sep.set_help(_("The note for the month of September"))
+        menu.add_option(category_name, "note_sep", note_sep)
+        
+        note_oct = StringOption(_('Oct Note'), _('This prints in October')) 
+        note_oct.set_help(_("The note for the month of October"))
+        menu.add_option(category_name, "note_oct", note_oct)
+        
+        note_nov = StringOption(_('Nov Note'), _('This prints in November')) 
+        note_nov.set_help(_("The note for the month of November"))
+        menu.add_option(category_name, "note_nov", note_nov)
+        
+        note_dec = StringOption(_('Dec Note'), _('This prints in December')) 
+        note_dec.set_help(_("The note for the month of December"))
+        menu.add_option(category_name, "note_dec", note_dec)
+
+    def __update_filters(self):
+        """
+        Update the filter list based on the selected person
+        """
+        gid = self.__pid.get_value()
+        person = self.__db.get_person_from_gramps_id(gid)
+        filter_list = ReportUtils.get_person_filters(person, False)
+        self.__filter.set_filters(filter_list)
+        
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [1, 2, 3, 4]:
+            # Filters 1, 2, 3 and 4 rely on the center person
+            self.__pid.set_available(True)
         else:
-            html_ext = "html"
-        if html_ext[0] == '.':
-            html_ext = html_ext[1:]
-        self.options_dict['WCext']           = html_ext
-        self.options_dict['WCfilter']        = int(self.filter_menu.get_active())
-        self.options_dict['WCencoding']      = self.encoding.get_handle()
-        self.options_dict['WCod']            = dialog.target_path
-        self.options_dict['WCcopyright']     = self.copy.get_active()
-        self.options_dict['WCtitle']         = unicode(self.Title_text.get_text())
-        self.options_dict['Note_text1']      = unicode(self.Note_text1.get_text())
-        self.options_dict['Note_text2']      = unicode(self.Note_text2.get_text())
-        self.options_dict['Note_text3']      = unicode(self.Note_text3.get_text())
-        self.options_dict['Note_text4']      = unicode(self.Note_text4.get_text())
-        self.options_dict['Note_text5']      = unicode(self.Note_text5.get_text())
-        self.options_dict['Note_text6']      = unicode(self.Note_text6.get_text())
-        self.options_dict['Note_text7']      = unicode(self.Note_text7.get_text())
-        self.options_dict['Note_text8']      = unicode(self.Note_text8.get_text())
-        self.options_dict['Note_text9']      = unicode(self.Note_text9.get_text())
-        self.options_dict['Note_text10']     = unicode(self.Note_text10.get_text())
-        self.options_dict['Note_text11']     = unicode(self.Note_text11.get_text())
-        self.options_dict['Note_text12']     = unicode(self.Note_text12.get_text())
-        self.options_dict['Year']            = self.year.get_value_as_int()
-        self.options_dict['Country']         = self.Country.get_active()
-        self.options_dict['Surname']         = int(self.surname.get_active())
-        self.options_dict['alive']           = int(self.alive.get_active())
-        self.options_dict['birthdays']       = int(self.birthday.get_active())
-        self.options_dict['anniversaries']   = int(self.anniversary.get_active())
-        self.options_dict['SanSerif_fonts']  = unicode(self.SanSerif_fonts.get_text())
-        self.options_dict['Serif_fonts']     = unicode(self.Serif_fonts.get_text())
-        self.options_dict['Home_link']       = unicode(self.Home_link.get_text())
+            # The rest don't
+            self.__pid.set_available(False)
 
-    #------------------------------------------------------------------------
-    #
-    # Callback functions from the dialog
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Web Calendar
         There are 5 named styles for this report.
 
@@ -966,139 +901,83 @@ class WebReportOptions(ReportOptions):
         WC-Note  - The text placed at the bottom of each calendar.
         WC-Table - controls the overall appearance of the calendar table.
 
-    """
+        """
         #
         # WC-Title
         #
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF,size=24,bold=1,italic=1,color=(0x80,0x0,0x0))
+        font.set(face=BaseDoc.FONT_SERIF, size=24, bold=1, 
+                 italic=1, color=(0x80, 0x0, 0x0))
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(bgcolor=((0xb0,0xc4,0xde)))
+        para.set(bgcolor=((0xb0, 0xc4, 0xde)))
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the title ("My Family Calendar") of the page. The background color sets the PAGE background. Borders DO NOT work.'))
-        default_style.add_paragraph_style("WC-Title",para)
+        para.set_description(_('The style used for the title ("My Family '
+                               'Calendar") of the page. The background color '
+                               'sets the PAGE background. Borders DO NOT '
+                               'work.'))
+        default_style.add_paragraph_style("WC-Title", para)
         #
         # WC-Month
         #
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF,size=48,bold=1,italic=1,color=((0x80,0x0,0x0)))
+        font.set(face=BaseDoc.FONT_SERIF, size=48, bold=1, 
+                 italic=1, color=((0x80, 0x0, 0x0)))
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(bgcolor=((0xf0,0xe6,0x8c)))
+        para.set(bgcolor=((0xf0, 0xe6, 0x8c)))
         para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the month name and year, it controls the font face, size, style, color and the background color of the block, including the day-name area. Inclusion of a graphic does not cover the day-name area.'))
-        default_style.add_paragraph_style("WC-Month",para)
+        para.set_description(_('The style used for the month name and year, it'
+                               ' controls the font face, size, style, color '
+                               'and the background color of the block, '
+                               'including the day-name area. Inclusion of a '
+                               'graphic does not cover the day-name area.'))
+        default_style.add_paragraph_style("WC-Month", para)
         #
         # WC-Text
         #
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF,size=16,italic=1,color=((0x80,0x0,0x0)))
+        font.set(face=BaseDoc.FONT_SERIF, size=16, 
+                 italic=1, color=((0x80, 0x0, 0x0)))
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(bgcolor=((0xf0,0xf8,0xff)))
+        para.set(bgcolor=((0xf0, 0xf8, 0xff)))
         para.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
-        para.set_description(_('The style used for text in the body of the calendar, it controls font size, face, style, color, and alignment. The background color is used ONLY for cells containing text, allowing for high-lighting of dates.'))
-        default_style.add_paragraph_style("WC-Text",para)
+        para.set_description(_('The style used for text in the body of the '
+                               'calendar, it controls font size, face, style, '
+                               'color, and alignment. The background color is '
+                               'used ONLY for cells containing text, allowing '
+                               'for high-lighting of dates.'))
+        default_style.add_paragraph_style("WC-Text", para)
         #
         # WC-Note
         #
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,color=((0x0,0x0,0x0)))
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, color=((0x0, 0x0, 0x0)))
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(bgcolor=((0xff,0xff,0xff)))
+        para.set(bgcolor=((0xff, 0xff, 0xff)))
         para.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
-        para.set_description(_('The style used for notes at the bottom of the calendar, it controls font size, face, style, color and positioning. The background color setting affect all EMPTY calendar cells.'))
-        default_style.add_paragraph_style("WC-Note",para)
+        para.set_description(_('The style used for notes at the bottom of the '
+                               'calendar, it controls font size, face, style, '
+                               'color and positioning. The background color '
+                               'setting affect all EMPTY calendar cells.'))
+        default_style.add_paragraph_style("WC-Note", para)
         #
         # WC-Table
         #
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF,size=24,color=((0x80,0x0,0x0)))
+        font.set(face=BaseDoc.FONT_SERIF, size=24, color=((0x80, 0x0, 0x0)))
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
-        para.set(bgcolor=((0xff,0xff,0xff)))
+        para.set(bgcolor=((0xff, 0xff, 0xff)))
         para.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)
-        para.set_description(_('The style used for the table itself. This affects the color of the table lines and the color, font, size, and positioning of the calendar date numbers. It also controls the color of the day names.'))
-        default_style.add_paragraph_style("WC-Table",para)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class WebReportDialog(ReportDialog):
-
-    HELP_TOPIC = "rep-web"
-
-    def __init__(self,dbstate,uistate,person):
-        self.database = dbstate.db
-        self.person = person
-        name = "WebCal"
-        translated_name = _("Generate Web Calendar")
-        self.options = WebReportOptions(name,self.database)
-        self.category = CATEGORY_WEB
-         
-        ReportDialog.__init__(self,dbstate,uistate,person,self.options,
-                              name,translated_name)
-        # test - ths
-    #self.style_name = None
-
-        while True:
-            response = self.window.run()
-            if response == gtk.RESPONSE_OK:
-                self.make_report()
-                break
-            elif response != gtk.RESPONSE_HELP:
-                break
-        self.close()
-
-    def dummy_toggle(self,obj):
-        pass
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - GRAMPS" % (_("Generate Web Calendar"))
-
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Target Directory")
-
-    def get_target_is_directory(self):
-        """This report creates a directory full of files, not a single file."""
-        return 1
-    
-    def get_default_directory(self):
-        """Get the name of the directory to which the target dialog
-        box should default.  This value can be set in the preferences
-        panel."""
-        return self.options.handler.options_dict['WCod']    
-
-    def make_document(self):
-        """Do Nothing.  This document will be created in the
-        make_report routine."""
-        pass
-
-    def setup_format_frame(self):
-        """Do nothing, since we don't want a format frame """
-        pass
-
-    def parse_format_frame(self):
-        """The format frame is not used in this dialog."""
-        self.options.handler.set_format_name("html")
-
-    def make_report(self):
-        """Create the object that will produce the web pages."""
-
-        try:
-            MyReport = WebReport(self.database,self.person,
-                                 self.options)
-            MyReport.write_report()
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
+        para.set_description(_('The style used for the table itself. This '
+                               'affects the color of the table lines and the '
+                               'color, font, size, and positioning of the '
+                               'calendar date numbers. It also controls the '
+                               'color of the day names.'))
+        default_style.add_paragraph_style("WC-Table", para)
 
 #------------------------------------------------------------------------
 #
@@ -1156,7 +1035,6 @@ class Element:
         else:
             retval += ">\n" + c + ("</%s>\n" % self.name)
         return retval
-
 
 
 class Xml2Obj:
@@ -1308,7 +1186,18 @@ class Holidays:
                 retval.append(rule["name"])
         return retval
 
-def get_countries():
+def process_holiday_file(filename):
+    """ This will process a holiday file for country names """
+    parser = Xml2Obj()
+    element = parser.Parse(filename)
+    country_list = []
+    for country_set in element.children:
+        if country_set.name == "country":
+            if country_set.attributes["name"] not in country_list:
+                country_list.append(country_set.attributes["name"])
+    return country_list
+
+def _get_countries():
     """ Looks in multiple places for holidays.xml files """
     locations = [const.PLUGINS_DIR, const.USER_PLUGINS]
     holiday_file = 'holidays.xml'
@@ -1324,86 +1213,10 @@ def get_countries():
     country_list.insert(0, _("Don't include holidays"))
     return country_list
 
-def process_holiday_file(filename):
-    """ This will process a holiday file for country names """
-    parser = Xml2Obj()
-    element = parser.Parse(filename)
-    country_list = []
-    for country_set in element.children:
-        if country_set.name == "country":
-            if country_set.attributes["name"] not in country_list:
-                country_list.append(country_set.attributes["name"])
-    return country_list
+# TODO: Only load this once the first time it is actually needed so Gramps 
+# doesn't take so long to start up.
+_COUNTRIES = _get_countries()
 
-## Currently reads the XML file on load. Could move this someplace else
-## so it only loads when needed.
-
-_countries = get_countries()
-
-#------------------------------------------------------------------------
-#
-# Empty class to keep the BaseDoc-targeted format happy
-#
-#------------------------------------------------------------------------
-class EmptyDoc:
-    def __init__(self,styles,type,template,orientation,source=None):
-        pass
-
-    def init(self):
-        pass
-
-#-------------------------------------------------------------------------
-#
-# GrampsNoteComboBox
-#
-#-------------------------------------------------------------------------
-class GrampsNoteComboBox(gtk.ComboBox):
-    """
-    Derived from the ComboBox, this widget provides handling of Report
-    Styles.
-    """
-
-    def __init__(self,model=None,node=None):
-        """
-        Initializes the combobox, building the display column.
-        """
-        gtk.ComboBox.__init__(self,model)
-        cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
-        if node:
-            self.set_active_iter(node)
-        else:
-            self.set_active(0)
-        self.local_store = model
-
-    def get_handle(self):
-        """
-        Returns the selected key (style sheet name).
-
-        @returns: Returns the name of the selected style sheet
-        @rtype: str
-        """
-        active = self.get_active_iter()
-        handle = u""
-        if active:
-            handle = self.local_store.get_value(active,1)
-        return handle
-
-def mk_combobox(media_list,select_value):
-    store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-    node = None
-    
-    for data in media_list:
-        if data[1] == select_value:
-            node = store.append(row=data)
-        else:
-            store.append(row=data)
-    widget = GrampsNoteComboBox(store,node)
-    if len(media_list) == 0:
-        widget.set_sensitive(False)
-    return widget
-    
 #-------------------------------------------------------------------------
 #
 #
@@ -1412,8 +1225,8 @@ def mk_combobox(media_list,select_value):
 register_report(
     name = 'WebCal',
     category = CATEGORY_WEB,
-    report_class = WebReportDialog,
-    options_class = WebReportOptions,
+    report_class = WebCalReport,
+    options_class = WebCalOptions,
     modes = MODE_GUI,
     translated_name = _("Web Calendar..."),
     status = _("Beta"),

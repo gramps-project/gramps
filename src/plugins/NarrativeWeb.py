@@ -54,34 +54,23 @@ log = logging.getLogger(".WebPage")
 
 #------------------------------------------------------------------------
 #
-# GNOME/gtk
-#
-#------------------------------------------------------------------------
-import gtk
-import gobject
-
-#------------------------------------------------------------------------
-#
 # GRAMPS module
 #
 #------------------------------------------------------------------------
 import gen.lib
 import const
 from GrampsCfg import get_researcher
-from Filters import GenericFilter, Rules
 import Sort
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, \
+from PluginUtils import FilterOption, EnumeratedListOption, PersonOption, \
+    BooleanOption, NumberOption, StringOption, DestinationOption, NoteOption, \
+    MediaOption
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_WEB, MODE_GUI, MODE_CLI
 from ReportBase import Bibliography
-from ReportBase._ReportDialog import ReportDialog
-from ReportBase._CommandLineReport import CommandLineReport
-import Errors
 import Utils
 import ThumbNails
 import ImgManip
-import GrampsLocale
-import GrampsWidgets
 import Mime
 from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
@@ -99,16 +88,16 @@ from gen.lib.eventroletype import EventRoleType
 _NARRATIVE = "narrative.css"
 _NAME_COL  = 3
 
-MAX_IMG_WIDTH=800   # resize images that are wider than this
-MAX_IMG_HEIGHT=600  # resize images that are taller than this
-WIDTH=160
-HEIGHT=50
-VGAP=10
-HGAP=30
-SHADOW=5
-XOFFSET=5
+_MAX_IMG_WIDTH = 800   # resize images that are wider than this
+_MAX_IMG_HEIGHT = 600  # resize images that are taller than this
+_WIDTH = 160
+_HEIGHT = 50
+_VGAP = 10
+_HGAP = 30
+_SHADOW = 5
+_XOFFSET = 5
 
-_css_files = [
+_CSS_FILES = [
     [_("Modern"),         'main1.css'],
     [_("Business"),       'main2.css'],
     [_("Certificate"),    'main3.css'],
@@ -118,7 +107,7 @@ _css_files = [
     [_("No style sheet"), ''],
     ]
 
-_character_sets = [
+_CHARACTER_SETS = [
     [_('Unicode (recommended)'), 'utf-8'],
     ['ISO-8859-1',  'iso-8859-1' ],
     ['ISO-8859-2',  'iso-8859-2' ],
@@ -136,14 +125,48 @@ _character_sets = [
     ['koi8_r',      'koi8_r',     ],
     ]
 
-_cc = [
-    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/"><img alt="Creative Commons License - By attribution" title="Creative Commons License - By attribution" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/"><img alt="Creative Commons License - By attribution, No derivations" title="Creative Commons License - By attribution, No derivations" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/"><img alt="Creative Commons License - By attribution, Share-alike" title="Creative Commons License - By attribution, Share-alike" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License - By attribution, Non-commercial" title="Creative Commons License - By attribution, Non-commercial" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/"><img alt="Creative Commons License - By attribution, Non-commercial, No derivations" title="Creative Commons License - By attribution, Non-commercial, No derivations" src="#PATH#images/somerights20.gif" /></a>',
-    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License - By attribution, Non-commerical, Share-alike" title="Creative Commons License - By attribution, Non-commerical, Share-alike" src="#PATH#images/somerights20.gif" /></a>',
+_CC = [
+    '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/">'
+    '<img alt="Creative Commons License - By attribution" title="Creative '
+    'Commons License - By attribution" src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/">'
+    '<img alt="Creative Commons License - By attribution, No derivations" '
+    'title="Creative Commons License - By attribution, No derivations" '
+    'src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Share-alike" '
+    'title="Creative Commons License - By attribution, Share-alike" '
+    'src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Non-commercial" '
+    'title="Creative Commons License - By attribution, Non-commercial" '
+    'src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Non-commercial, No '
+    'derivations" title="Creative Commons License - By attribution, '
+    'Non-commercial, No derivations" src="somerights20.gif" /></a>',
+    
+    '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/">'
+    '<img alt="Creative Commons License - By attribution, Non-commerical, '
+    'Share-alike" title="Creative Commons License - By attribution, '
+    'Non-commerical, Share-alike" src="somerights20.gif" /></a>'
     ]
+
+_COPY_OPTIONS = [
+        _('Standard copyright'),
+        _('Creative Commons - By attribution'),
+        _('Creative Commons - By attribution, No derivations'),
+        _('Creative Commons - By attribution, Share-alike'),
+        _('Creative Commons - By attribution, Non-commercial'),
+        _('Creative Commons - By attribution, Non-commercial, No derivations'),
+        _('Creative Commons - By attribution, Non-commercial, Share-alike'),
+        _('No copyright notice'),
+        ]
+
 
 wrapper = TextWrapper()
 wrapper.break_log_words = True
@@ -153,33 +176,33 @@ class BasePage:
     def __init__(self, title, options, archive, photo_list, gid):
         self.title_str = title
         self.gid = gid
-        self.inc_download = options.handler.options_dict['NWEBdownload']
-        self.html_dir = options.handler.options_dict['NWEBod']
-        self.copyright = options.handler.options_dict['NWEBcopyright']
+        self.inc_download = options['incdownload']
+        self.html_dir = options['target']
+        self.copyright = options['cright']
         self.options = options
         self.archive = archive
-        self.ext = options.handler.options_dict['NWEBext']
-        self.encoding = options.handler.options_dict['NWEBencoding']
-        self.css = options.handler.options_dict['NWEBcss']
-        self.noid = options.handler.options_dict['NWEBnoid']
-        self.linkhome = options.handler.options_dict['NWEBlinkhome']
-        self.showbirth = options.handler.options_dict['NWEBshowbirth']
-        self.showdeath = options.handler.options_dict['NWEBshowdeath']
-        self.showspouse = options.handler.options_dict['NWEBshowspouse']
-        self.showparents = options.handler.options_dict['NWEBshowparents']
-        self.showhalfsiblings = options.handler.options_dict['NWEBshowhalfsiblings']
-        self.use_intro = options.handler.options_dict['NWEBintronote'] != u""\
-                    or options.handler.options_dict['NWEBintropic'] != u""
-        self.use_contact = options.handler.options_dict['NWEBcontact'] != u""\
-                    or options.handler.options_dict['NWEBcontactpic'] != u""
-        self.use_gallery = options.handler.options_dict['NWEBgallery']
-        self.header = options.handler.options_dict['NWEBheader']
-        self.footer = options.handler.options_dict['NWEBfooter']
+        self.ext = options['ext']
+        self.encoding = options['encoding']
+        self.css = options['css']
+        self.noid = options['nogid']
+        self.linkhome = options['linkhome']
+        self.showbirth = options['showbirth']
+        self.showdeath = options['showdeath']
+        self.showspouse = options['showspouse']
+        self.showparents = options['showparents']
+        self.showhalfsiblings = options['showhalfsiblings']
+        self.use_intro = options['intronote'] != u""\
+                    or options['introimg'] != u""
+        self.use_contact = options['contactnote'] != u""\
+                    or options['contactimg'] != u""
+        self.use_gallery = options['gallery']
+        self.header = options['headernote']
+        self.footer = options['footernote']
         self.photo_list = photo_list
-        self.usegraph = options.handler.options_dict['NWEBgraph']
-        self.graphgens = options.handler.options_dict['NWEBgraphgens']
-        self.use_home = self.options.handler.options_dict['NWEBhomenote'] != "" or \
-                        self.options.handler.options_dict['NWEBhomepic'] != ""
+        self.usegraph = options['graph']
+        self.graphgens = options['graphgens']
+        self.use_home = self.options['homenote'] != "" or \
+                        self.options['homeimg'] != ""
         self.page_title = ""
         self.warn_dir = True
 
@@ -285,7 +308,7 @@ class BasePage:
                 of.write('<br />%s\n' % cright)
         elif self.copyright <=6:
             of.write('<div id="copyright">')
-            text = _cc[self.copyright-1]
+            text = _CC[self.copyright-1]
             if self.up:
                 text = text.replace('#PATH#','../../../')
             else:
@@ -295,7 +318,7 @@ class BasePage:
         of.write('<div class="fullclear"></div>\n')
         of.write('</div>\n')
         if self.footer:
-            note = db.get_note_from_handle(self.footer)
+            note = db.get_note_from_gramps_id(self.footer)
             of.write('<div class="user_footer">\n')
             of.write(note.get(markup=True))
             of.write('</div>\n')
@@ -329,7 +352,7 @@ class BasePage:
         of.write('</head>\n')
         of.write('<body>\n')
         if self.header:
-            note = db.get_note_from_handle(self.header)
+            note = db.get_note_from_gramps_id(self.header)
             of.write('  <div class="user_header">\n')
             of.write(note.get(markup=True))
             of.write('  </div>\n')
@@ -1111,9 +1134,9 @@ class MediaPage(BasePage):
                     # is displayed directly
                     (width, height) = ImgManip.image_size(photo.get_path())
                     scale = 1.0
-                    if width > MAX_IMG_WIDTH or height > MAX_IMG_HEIGHT:
+                    if width > _MAX_IMG_WIDTH or height > _MAX_IMG_HEIGHT:
                         # image is too large -- scale it down and link to the full image
-                        scale = min(float(MAX_IMG_WIDTH)/float(width), float(MAX_IMG_HEIGHT)/float(height))
+                        scale = min(float(_MAX_IMG_WIDTH)/float(width), float(_MAX_IMG_HEIGHT)/float(height))
                         width = int(width * scale)
                         height = int(height * scale)
                         of.write('<a href="../../../%s">\n' % newpath)
@@ -1343,8 +1366,8 @@ class IntroductionPage(BasePage):
 
     def __init__(self, db, title, options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
-        note_id = options.handler.options_dict['NWEBintronote']
-        pic_id =  options.handler.options_dict['NWEBintropic']
+        note_id = options['intronote']
+        pic_id =  options['introimg']
 
         if self.use_home:
             of = self.create_file("introduction")
@@ -1357,7 +1380,7 @@ class IntroductionPage(BasePage):
         of.write('<h3>%s</h3>\n' % _('Introduction'))
 
         if pic_id:
-            obj = db.get_object_from_handle(pic_id)
+            obj = db.get_object_from_gramps_id(pic_id)
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 try:
@@ -1372,7 +1395,7 @@ class IntroductionPage(BasePage):
                 except (IOError, OSError), msg:
                     WarningDialog(_("Could not add photo to page"), str(msg))
         if note_id:
-            note_obj = db.get_note_from_handle(note_id)
+            note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
             if note_obj.get_format():
                 of.write('<pre>\n%s\n</pre>\n' % text)
@@ -1394,8 +1417,8 @@ class HomePage(BasePage):
     def __init__(self, db, title, options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
-        note_id = options.handler.options_dict['NWEBhomenote']
-        pic_id =  options.handler.options_dict['NWEBhomepic']
+        note_id = options['homenote']
+        pic_id =  options['homeimg']
         of = self.create_file("index")
         author = get_researcher().get_name()
         self.display_header(of,db,_('Home'),author)
@@ -1403,7 +1426,7 @@ class HomePage(BasePage):
         of.write('<h3>%s</h3>\n' % _('Home'))
 
         if pic_id:
-            obj = db.get_object_from_handle(pic_id)
+            obj = db.get_object_from_gramps_id(pic_id)
 
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
@@ -1420,7 +1443,7 @@ class HomePage(BasePage):
                     WarningDialog(_("Could not add photo to page"), str(msg))
 
         if note_id:
-            note_obj = db.get_note_from_handle(note_id)
+            note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
             if note_obj.get_format():
                 of.write('<pre>\n%s\n</pre>\n' % text)
@@ -1610,10 +1633,10 @@ class ContactPage(BasePage):
         of.write('<div id="summaryarea">\n')
         of.write('<h3>%s</h3>\n' % _('Contact'))
 
-        note_id = options.handler.options_dict['NWEBcontact']
-        pic_id = options.handler.options_dict['NWEBcontactpic']
+        note_id = options['contactnote']
+        pic_id = options['contactimg']
         if pic_id:
-            obj = db.get_object_from_handle(pic_id)
+            obj = db.get_object_from_gramps_id(pic_id)
             mime_type = obj.get_mime_type()
         
             if mime_type and mime_type.startswith("image"):
@@ -1652,7 +1675,7 @@ class ContactPage(BasePage):
         of.write('<div class="fullclear"></div>\n')
 
         if note_id:
-            note_obj = db.get_note_from_handle(note_id)
+            note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
             if note_obj.get_format():
                 text = u"<pre>%s</pre>" % text
@@ -1743,8 +1766,8 @@ class IndividualPage(BasePage):
         of.write('</div>\n')
 
     def draw_box(self,of,center,col,person):
-        top = center - HEIGHT/2
-        xoff = XOFFSET+col*(WIDTH+HGAP)
+        top = center - _HEIGHT/2
+        xoff = _XOFFSET+col*(_WIDTH+_HGAP)
         
         of.write('<div class="boxbg" style="top: %dpx; left: %dpx;">\n' % (top,xoff+1))
         of.write('<table><tr><td class="box">')
@@ -1758,14 +1781,14 @@ class IndividualPage(BasePage):
             of.write(_nd.display(person))
         of.write('</td></tr></table>\n')
         of.write('</div>\n')
-        of.write('<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' % (top+SHADOW,xoff+SHADOW))
+        of.write('<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' % (top+_SHADOW,xoff+_SHADOW))
         of.write('<div class="border" style="top: %dpx; left: %dpx;"></div>\n' % (top-1, xoff))
 
     def extend_line(self,of,y0,x0):
         of.write('<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
-                 (y0,x0,HGAP/2))
+                 (y0,x0,_HGAP/2))
         of.write('<div class="gvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' % 
-                 (y0+SHADOW,x0,HGAP/2+SHADOW))
+                 (y0+_SHADOW,x0,_HGAP/2+_SHADOW))
 
     def connect_line(self,of,y0,y1,col):
         if y0 < y1:
@@ -1773,15 +1796,15 @@ class IndividualPage(BasePage):
         else:
             y = y1
             
-        x0 = XOFFSET + col * WIDTH + (col-1)*HGAP + HGAP/2
+        x0 = _XOFFSET + col * _WIDTH + (col-1)*_HGAP + _HGAP/2
         of.write('<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
-                 (y1,x0,HGAP/2))
+                 (y1,x0,_HGAP/2))
         of.write('<div class="gvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
-                 (y1+SHADOW,x0+SHADOW,HGAP/2+SHADOW))
+                 (y1+_SHADOW,x0+_SHADOW,_HGAP/2+_SHADOW))
         of.write('<div class="bhline" style="top: %dpx; left: %dpx; height: %dpx;"></div>\n' %
                  (y,x0,abs(y0-y1)))
         of.write('<div class="ghline" style="top: %dpx; left: %dpx; height: %dpx;"></div>\n' %
-                 (y+SHADOW,x0+SHADOW,abs(y0-y1)))
+                 (y+_SHADOW,x0+_SHADOW,abs(y0-y1)))
 
     def draw_connected_box(self,of,center1,center2,col,handle):
         if not handle:
@@ -1802,14 +1825,14 @@ class IndividualPage(BasePage):
         generations = self.graphgens
         
         max_in_col = 1 <<(generations-1)
-        max_size = HEIGHT*max_in_col + VGAP*(max_in_col+1)
+        max_size = _HEIGHT*max_in_col + _VGAP*(max_in_col+1)
         center = int(max_size/2)
         self.draw_tree(of,1,generations,max_size,0,center,self.person.handle)
 
         of.write('</div>\n')
         of.write('</div>\n')
         of.write('<table style="height: %dpx; width: %dpx;"><tr><td></td></tr></table>\n' %
-                 (max_size,XOFFSET+(generations)*WIDTH+(generations-1)*HGAP))
+                 (max_size,_XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP))
     
     def draw_tree(self,of,gen,maxgen,max_size,old_center,new_center,phandle):
         if gen > maxgen:
@@ -1829,7 +1852,7 @@ class IndividualPage(BasePage):
 
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            line_offset = XOFFSET + (gen)*WIDTH + (gen-1)*HGAP
+            line_offset = _XOFFSET + (gen)*_WIDTH + (gen-1)*_HGAP
             self.extend_line(of,new_center,line_offset)
 
             gen = gen + 1
@@ -2324,11 +2347,11 @@ class IndividualPage(BasePage):
             
 #------------------------------------------------------------------------
 #
-# WebReport
+# NavWebReport
 #
 #------------------------------------------------------------------------
-class WebReport(Report):
-    def __init__(self,database,person,options):
+class NavWebReport(Report):
+    def __init__(self, database, person, options):
         """
         Creates WebReport object that produces the report.
         
@@ -2336,40 +2359,23 @@ class WebReport(Report):
 
         database        - the GRAMPS database instance
         person          - currently selected person
-        options   - instance of the Options class for this report
-
-        This report needs the following parameters (class variables)
-        that come in the options class.
-        
-        filter
-        od
-        NWEBlivinginfo
-        NWEByearsafterdeath
-        NWEBincpriv
-        NWEBnonames
-        NWEBidxcol
-        NWEBincid
-        NWEBext
-        NWEBencoding
-        NWEBintronote
-        NWEBhomenote
-        NWEBhomepic
-        NWEBnoid
-        NWEBlinkhome
-        NWEBshowbirth
-        NWEBshowdeath
-        NWEBshowspouse
-        NWEBshowparents
-        NWEBshowhalfsiblings
+        options         - instance of the Options class for this report
         """
+        Report.__init__(self, database, person, options)
+        menu = options.menu
+        self.opts = {}
 
-        if not options.handler.options_dict['NWEBincpriv']:
+        for optname in menu.get_all_option_names():
+            menuopt = menu.get_option_by_name(optname)
+            self.opts[optname] = menuopt.get_value()
+
+        if not self.opts['incpriv']:
             self.database = PrivateProxyDb(database)
         else:
             self.database = database
             
-        livinginfo = options.handler.options_dict['NWEBlivinginfo']
-        yearsafterdeath = options.handler.options_dict['NWEByearsafterdeath']
+        livinginfo = self.opts['living']
+        yearsafterdeath = self.opts['yearsafterdeath']
         
         if livinginfo == LivingProxyDb.MODE_EXCLUDE:
             self.database = LivingProxyDb(self.database,
@@ -2381,39 +2387,33 @@ class WebReport(Report):
                                           LivingProxyDb.MODE_RESTRICT,
                                           None,
                                           yearsafterdeath)
-            
-        self.start_person = person
-        self.options = options
 
-        filter_num = options.handler.options_dict['NWEBfilter']
-        filters = ReportUtils.get_person_filters(person,include_single=False)
-        self.filter = filters[filter_num]
+        filters_option = menu.get_option_by_name('filter')
+        self.filter = filters_option.get_filter()
 
-        self.target_path = options.handler.options_dict['NWEBod']
-        self.copyright = options.handler.options_dict['NWEBcopyright']
-        self.ext = options.handler.options_dict['NWEBext']
-        self.encoding = options.handler.options_dict['NWEBencoding']
-        self.css = options.handler.options_dict['NWEBcss']
-        self.noid = options.handler.options_dict['NWEBnoid']
-        self.linkhome = options.handler.options_dict['NWEBlinkhome']
-        self.showbirth = options.handler.options_dict['NWEBshowbirth']
-        self.showdeath = options.handler.options_dict['NWEBshowdeath']
-        self.showspouse = options.handler.options_dict['NWEBshowspouse']
-        self.showparents = options.handler.options_dict['NWEBshowparents']
-        self.showhalfsiblings = options.handler.options_dict['NWEBshowhalfsiblings']
-        self.title = options.handler.options_dict['NWEBtitle']
+        self.target_path = self.opts['target']
+        self.copyright = self.opts['cright']
+        self.ext = self.opts['ext']
+        self.encoding = self.opts['encoding']
+        self.css = self.opts['css']
+        self.noid = self.opts['nogid']
+        self.linkhome = self.opts['linkhome']
+        self.showbirth = self.opts['showbirth']
+        self.showdeath = self.opts['showdeath']
+        self.showspouse = self.opts['showspouse']
+        self.showparents = self.opts['showparents']
+        self.showhalfsiblings = self.opts['showhalfsiblings']
+        self.title = self.opts['title']
         self.sort = Sort.Sort(self.database)
-        self.inc_gallery = options.handler.options_dict['NWEBgallery']
-        self.inc_contact = options.handler.options_dict['NWEBcontact'] != u""\
-                       or options.handler.options_dict['NWEBcontactpic'] != u""
-        self.inc_download = options.handler.options_dict['NWEBdownload']
-        #self.user_header = options.handler.options_dict['NWEBheader']
-        #self.user_footer = options.handler.options_dict['NWEBfooter']
-        self.use_archive = options.handler.options_dict['NWEBarchive']
-        self.use_intro = options.handler.options_dict['NWEBintronote'] != u""\
-                    or options.handler.options_dict['NWEBintropic'] != u""
-        self.use_home = options.handler.options_dict['NWEBhomenote'] != u"" or\
-                        options.handler.options_dict['NWEBhomepic'] != u""
+        self.inc_gallery = self.opts['gallery']
+        self.inc_contact = self.opts['contactnote'] != u""\
+                       or self.opts['contactimg'] != u""
+        self.inc_download = self.opts['incdownload']
+        self.use_archive = self.opts['archive']
+        self.use_intro = self.opts['intronote'] != u""\
+                    or self.opts['introimg'] != u""
+        self.use_home = self.opts['homenote'] != u"" or\
+                        self.opts['homeimg'] != u""
         
     def write_report(self):
         if not self.use_archive:
@@ -2535,7 +2535,7 @@ class WebReport(Report):
 
         IndividualListPage(
             self.database, self.title, ind_list, 
-            self.options, archive, self.photo_list)
+            self.opts, archive, self.photo_list)
 
         for person_handle in ind_list:
             self.progress.step()
@@ -2543,7 +2543,7 @@ class WebReport(Report):
 
             IndividualPage(
                 self.database, person, self.title, ind_list,
-                place_list, source_list, self.options, archive, self.photo_list)
+                place_list, source_list, self.opts, archive, self.photo_list)
             
     def surname_pages(self, ind_list, archive):
         """
@@ -2560,16 +2560,16 @@ class WebReport(Report):
             defname="index"
 
         SurnameListPage(
-            self.database, self.title, ind_list, self.options, archive,
+            self.database, self.title, ind_list, self.opts, archive,
             self.photo_list, SurnameListPage.ORDER_BY_NAME,defname)
         
         SurnameListPage(
-            self.database, self.title, ind_list, self.options, archive,
+            self.database, self.title, ind_list, self.opts, archive,
             self.photo_list, SurnameListPage.ORDER_BY_COUNT,"surnames_count")
 
         for (surname,handle_list) in local_list:
             SurnamePage(self.database, surname, handle_list,
-                        self.options, archive, self.photo_list)
+                        self.opts, archive, self.photo_list)
             self.progress.step()
         
     def source_pages(self, source_list, photo_list, archive):
@@ -2577,11 +2577,11 @@ class WebReport(Report):
         self.progress.set_pass(_("Creating source pages"),len(source_list))
 
         SourcesPage(self.database,self.title, source_list.keys(),
-                    self.options, archive, photo_list)
+                    self.opts, archive, photo_list)
 
         for key in list(source_list):
             SourcePage(self.database, self.title, key, source_list,
-                       self.options, archive, photo_list)
+                       self.opts, archive, photo_list)
             self.progress.step()
         
 
@@ -2590,13 +2590,13 @@ class WebReport(Report):
         self.progress.set_pass(_("Creating place pages"),len(place_list))
 
         PlaceListPage(
-            self.database, self.title, place_list, source_list, self.options,
+            self.database, self.title, place_list, source_list, self.opts,
             archive, self.photo_list)
 
         for place in place_list.keys():
             PlacePage(
                 self.database, self.title, place, source_list, place_list,
-                self.options, archive, self.photo_list)
+                self.opts, archive, self.photo_list)
             self.progress.step()
 
     def gallery_pages(self, photo_list, source_list, archive):
@@ -2604,7 +2604,7 @@ class WebReport(Report):
         self.progress.set_pass(_("Creating media pages"),len(photo_list))
 
         GalleryPage(self.database, self.title, source_list,
-                    self.options, archive, self.photo_list)
+                    self.opts, archive, self.photo_list)
 
         prev = None
         total = len(self.photo_list)
@@ -2620,7 +2620,7 @@ class WebReport(Report):
             else:
                 next = photo_keys[index]
             MediaPage(self.database, self.title, photo_handle, source_list,
-                      self.options, archive, self.photo_list[photo_handle],
+                      self.opts, archive, self.photo_list[photo_handle],
                       (prev, next, index, total))
             self.progress.step()
             prev = photo_handle
@@ -2629,16 +2629,18 @@ class WebReport(Report):
     def base_pages(self, photo_list, archive):
 
         if self.use_home:
-            HomePage(self.database, self.title, self.options, archive, photo_list)
+            HomePage(self.database, self.title, self.opts, archive, photo_list)
 
         if self.inc_contact:
-            ContactPage(self.database, self.title, self.options, archive, photo_list)
+            ContactPage(self.database, self.title, self.opts, 
+                        archive, photo_list)
             
         if self.inc_download:
-            DownloadPage(self.database, self.title, self.options, archive, photo_list)
+            DownloadPage(self.database, self.title, self.opts, 
+                         archive, photo_list)
         
         if self.use_intro:
-            IntroductionPage(self.database, self.title, self.options,
+            IntroductionPage(self.database, self.title, self.opts,
                              archive, photo_list)
 
     def store_file(self,archive,html_dir,from_path,to_path):
@@ -2650,514 +2652,286 @@ class WebReport(Report):
         else:
             shutil.copyfile(from_path,os.path.join(html_dir,to_path))
 
-    def add_styles(self,doc):
-        pass
-
 #------------------------------------------------------------------------
 #
-# 
+# NavWebOptions
 #
 #------------------------------------------------------------------------
-class WebReportOptions(ReportOptions):
-
+class NavWebOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
+    __INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 
-    def __init__(self,name,database=None,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
-        self.db = database
-
-        # Options specific for this report
-        self.options_dict = {
-            'NWEBfilter'        : 0,
-            'NWEBarchive'       : 0,
-            'NWEBgraph'         : 1,
-            'NWEBgraphgens'     : 4,
-            'NWEBod'            : os.path.join(const.USER_HOME,"NWEB"),
-            'NWEBcopyright'     : 0,
-            'NWEBlivinginfo'    : 2,
-            'NWEByearsafterdeath' : 30,
-            'NWEBincpriv'       : 0,
-            'NWEBnonames'       : 0,
-            'NWEBnoid'          : 0,
-            'NWEBlinkhome'      : 0,
-            'NWEBshowbirth'     : 1,
-            'NWEBshowdeath'     : 0,
-            'NWEBshowspouse'    : 0,
-            'NWEBshowparents'   : 0,
-            'NWEBshowhalfsiblings' : 0,
-            'NWEBcontact'       : '', 
-            'NWEBcontactpic'    : '', 
-            'NWEBgallery'       : 1, 
-            'NWEBheader'        : '', 
-            'NWEBfooter'        : '', 
-            'NWEBdownload'      : 0, 
-            'NWEBtitle'         : _('My Family Tree'), 
-            'NWEBincid'         : 0,
-            'NWEBext'           : 'html',
-            'NWEBencoding'      : 'utf-8',
-            'NWEBcss'           : 'main0.css',
-            'NWEBintronote'     : '',
-            'NWEBintropic'      : '',
-            'NWEBhomenote'      : '',
-            'NWEBhomepic'       : '',
-        }
-
-        self.options_help = {
-        }
-
-    def add_user_options(self, dialog):
-        priv_msg = _("Do not include records marked private")
-        living_msg = _("Living People")
-        death_msg = _("Years from death to consider living")
-        title_msg = _("Web site title")
-        ext_msg = _("File extension")
-        contact_msg = _("Publisher contact note")
-        contactpic_msg = _("Publisher contact image")
-        gallery_msg = _("Include images and media objects")
-        download_msg = _("Include download page")
-        graph_msg = _("Include ancestor graph")
+    def __init__(self, name, dbase, person_id=None):
+        self.__db = dbase
+        self.__archive = None
+        self.__target = None
+        self.__pid = None
+        self.__filter = None
+        self.__graph = None
+        self.__graphgens = None
+        self.__living = None
+        self.__yearsafterdeath = None
+        MenuReportOptions.__init__(self, name, person_id)
         
-        filter_index = self.options_dict['NWEBfilter']
-        filter_list = ReportUtils.get_person_filters(dialog.person,
-                                                     include_single=False)
-        self.filter_menu = gtk.combo_box_new_text()
-        for filter in filter_list:
-            #cut name filter so as not to make dialog too large
-            if len(filter.get_name()) > 60:
-                self.filter_menu.append_text(filter.get_name()[:60]+'...')
-            else:
-                self.filter_menu.append_text(filter.get_name())
-        if filter_index > len(filter_list):
-            filter_index = 0
-        self.filter_menu.set_active(filter_index)
-        dialog.add_option(_('Filter'),self.filter_menu)
-
-        self.no_private = gtk.CheckButton(priv_msg)
-        self.no_private.set_active(not self.options_dict['NWEBincpriv'])
-
-        self.inc_graph = gtk.CheckButton(graph_msg)
-        self.inc_graph.set_active(self.options_dict['NWEBgraph'])
+    def add_menu_options(self, menu):
+        """
+        Add options to the menu for the web calendar.
+        """
+        self.__add_report_options(menu)
+        self.__add_page_generation_options(menu)
+        self.__add_privacy_options(menu)
+        self.__add_advanced_options(menu)
         
-        self.graph_gens = gtk.combo_box_new_text()
-        self.graph_gens_options = ['2','3','4','5']
-        for text in self.graph_gens_options:
-            self.graph_gens.append_text(text)
-        def_gens = str(self.options_dict['NWEBgraphgens'])
-        if def_gens in self.graph_gens_options:
-            self.graph_gens.set_active(self.graph_gens_options.index(def_gens))
+    def __add_report_options(self, menu):
+        """
+        Options on the "Report Options" tab.
+        """
+        category_name = _("Report Options")
+        
+        self.__archive = BooleanOption(_('Store web pages in .tar.gz archive'), 
+                                       False)
+        self.__archive.set_help(_('Whether to store the web pages in an '
+                                  'archive file'))
+        menu.add_option(category_name, 'archive', self.__archive)
+        self.__archive.connect('value-changed', self.__archive_changed)
+        
+        self.__target = DestinationOption(_("Destination"), 
+                                    os.path.join(const.USER_HOME,"NAVWEB"))
+        self.__target.set_help( _("The destination directory for the web "
+                                  "files"))
+        menu.add_option(category_name, "target", self.__target)
+        
+        self.__archive_changed()
+        
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+               _("Select filter to restrict people that appear on calendar"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+        
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter"))
+        menu.add_option(category_name, "pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+        
+        self.__update_filters()
+        
+        title = StringOption(_("Web site title"), _('My Family Tree')) 
+        title.set_help(_("The of the web site"))
+        menu.add_option(category_name, "title", title)
+        
+        ext = EnumeratedListOption(_("File extension"), ".html" )
+        for etype in ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']:
+            ext.add_item(etype, etype)
+        ext.set_help( _("The extension to be used for the web files"))
+        menu.add_option(category_name, "ext", ext)
+        
+        cright = EnumeratedListOption(_('Copyright'), 0 )
+        index = 0
+        for copt in _COPY_OPTIONS:
+            cright.add_item(index, copt)
+            index += 1
+        cright.set_help( _("The copyright to be used for the web files"))
+        menu.add_option(category_name, "cright", cright)
+        
+        encoding = EnumeratedListOption(_('Character set encoding'), 'utf-8' )
+        for eopt in _CHARACTER_SETS:
+            encoding.add_item(eopt[1], eopt[0])
+        encoding.set_help( _("The encoding to be used for the web files"))
+        menu.add_option(category_name, "encoding", encoding)
+        
+        css = EnumeratedListOption(_('Stylesheet'), 'main1.css' )
+        for style in _CSS_FILES:
+            css.add_item(style[1], style[0])
+        css.set_help( _("The style sheet to be used for the web page"))
+        menu.add_option(category_name, "css", css)
+        
+        self.__graph = BooleanOption(_("Include ancestor graph"), True)
+        self.__graph.set_help(_('Whether to include an ancestor graph '
+                                      'on each individual page'))
+        menu.add_option(category_name, 'graph', self.__graph)
+        self.__graph.connect('value-changed', self.__graph_changed)
+        
+        self.__graphgens = EnumeratedListOption(_('Graph generations'), 4)
+        self.__graphgens.add_item(2, "2")
+        self.__graphgens.add_item(3, "3")
+        self.__graphgens.add_item(4, "4")
+        self.__graphgens.add_item(5, "5")
+        self.__graphgens.set_help( _("The number of generations to include in "
+                                     "the ancestor graph"))
+        menu.add_option(category_name, "graphgens", self.__graphgens)
+        
+        self.__graph_changed()
+
+    def __add_page_generation_options(self, menu):
+        """
+        Options on the "Page Generation" tab.
+        """
+        category_name = _("Page Generation")
+        
+        homenote = NoteOption(_('Home page note'))
+        homenote.set_help( _("A note to be used on the home page"))
+        menu.add_option(category_name, "homenote", homenote)
+
+        homeimg = MediaOption(_('Home page image'))
+        homeimg.set_help( _("An image to be used on the home page"))
+        menu.add_option(category_name, "homeimg", homeimg)
+        
+        intronote = NoteOption(_('Introduction note'))
+        intronote.set_help( _("A note to be used as the introduction"))
+        menu.add_option(category_name, "intronote", intronote)
+
+        introimg = MediaOption(_('Introduction image'))
+        introimg.set_help( _("An image to be used as the introduction"))
+        menu.add_option(category_name, "introimg", introimg)
+
+        contactnote = NoteOption(_("Publisher contact note"))
+        contactnote.set_help( _("A note to be used as the publisher contact"))
+        menu.add_option(category_name, "contactnote", contactnote)
+
+        contactimg = MediaOption(_("Publisher contact image"))
+        contactimg.set_help( _("An image to be used as the publisher contact"))
+        menu.add_option(category_name, "contactimg", contactimg)
+
+        headernote = NoteOption(_('HTML user header'))
+        headernote.set_help( _("A note to be used as the page header"))
+        menu.add_option(category_name, "headernote", headernote)
+        
+        footernote = NoteOption(_('HTML user footer'))
+        footernote.set_help( _("A note to be used as the page footer"))
+        menu.add_option(category_name, "footernote", footernote)
+
+        gallery = BooleanOption(_("Include images and media objects"), True)
+        gallery.set_help(_('Whether to include a gallery of media objects'))
+        menu.add_option(category_name, 'gallery', gallery)
+        
+        incdownload = BooleanOption(_("Include download page"), False)
+        incdownload.set_help(_('Whether to include a database download option'))
+        menu.add_option(category_name, 'incdownload', incdownload)
+        
+        nogid = BooleanOption(_('Suppress GRAMPS ID'), False)
+        nogid.set_help(_('Whether to include the Gramps ID of objects'))
+        menu.add_option(category_name, 'nogid', nogid)
+
+    def __add_privacy_options(self, menu):
+        """
+        Options on the "Privacy" tab.
+        """
+        category_name = _("Privacy")
+        
+        incpriv = BooleanOption(_("Include records marked private"), False)
+        incpriv.set_help(_('Whether to include private objects'))
+        menu.add_option(category_name, 'incpriv', incpriv)
+        
+        self.__living = EnumeratedListOption(_("Living People"), 
+                                             self.__INCLUDE_LIVING_VALUE )
+        self.__living.add_item(LivingProxyDb.MODE_EXCLUDE, _("Exclude"))
+        self.__living.add_item(LivingProxyDb.MODE_RESTRICT, _("Restrict"))
+        self.__living.add_item(self.__INCLUDE_LIVING_VALUE, _("Include"))
+        self.__living.set_help(_("How to handle living people"))
+        menu.add_option(category_name, "living", self.__living)
+        self.__living.connect('value-changed', self.__living_changed)
+
+        self.__yearsafterdeath = NumberOption(_("Years from death to consider "
+                                                 "living"), 30, 0, 100)
+        self.__yearsafterdeath.set_help(_("This allows you to restrict "
+                                          "information on people who have not "
+                                          "been dead for very long"))
+        menu.add_option(category_name, 'yearsafterdeath', 
+                        self.__yearsafterdeath)
+        
+        self.__living_changed()
+
+    def __add_advanced_options(self, menu):
+        """
+        Options on the "Advanced" tab.
+        """
+        category_name = _("Advanced")
+
+        linkhome = BooleanOption(_('Include link to home person on every '
+                                   'page'), False)
+        linkhome.set_help(_('Whether to include a link to the home person'))
+        menu.add_option(category_name, 'linkhome', linkhome)
+
+        showbirth = BooleanOption(_("Include a column for birth dates on the "
+                                    "index pages"), True)
+        showbirth.set_help(_('Whether to include a birth column'))
+        menu.add_option(category_name, 'showbirth', showbirth)
+
+        showdeath = BooleanOption(_("Include a column for death dates on the "
+                                    "index pages"), False)
+        showdeath.set_help(_('Whether to include a death column'))
+        menu.add_option(category_name, 'showdeath', showdeath)
+        
+        showspouse = BooleanOption(_("Include a column for partners on the "
+                                    "index pages"), False)
+        showspouse.set_help(_('Whether to include a partners column'))
+        menu.add_option(category_name, 'showspouse', showspouse)
+        
+        showparents = BooleanOption(_("Include a column for parents on the "
+                                      "index pages"), False)
+        showparents.set_help(_('Whether to include a parents column'))
+        menu.add_option(category_name, 'showparents', showparents)
+        
+        showhalfsiblings = BooleanOption(_("Include a column for half-siblings"
+                                           " on the index pages"), False)
+        showhalfsiblings.set_help(_("Whether to include a half-siblings "
+                                    "column"))
+        menu.add_option(category_name, 'showhalfsiblings', showhalfsiblings)
+
+    def __archive_changed(self):
+        """
+        Update the change of storage: archive or directory
+        """
+        if self.__archive.get_value() == True:
+            self.__target.set_extension(".tar.gz")
+            self.__target.set_directory_entry(False)
         else:
-            self.graph_gens.set_active(0)
+            self.__target.set_directory_entry(True)
 
-        self.noid = gtk.CheckButton(_('Suppress GRAMPS ID'))
-        self.noid.set_active(self.options_dict['NWEBnoid'])
-
-        self.include_gallery = gtk.CheckButton(gallery_msg)
-        self.include_gallery.set_active(self.options_dict['NWEBgallery'])
-
-        self.living = gtk.combo_box_new_text()
-        self.living.append_text(_("Exclude"))
-        self.living.append_text(_("Restrict"))
-        self.living.append_text(_("Include"))
-        self.living.set_active(self.options_dict['NWEBlivinginfo'])
+    def __update_filters(self):
+        """
+        Update the filter list based on the selected person
+        """
+        gid = self.__pid.get_value()
+        person = self.__db.get_person_from_gramps_id(gid)
+        filter_list = ReportUtils.get_person_filters(person, False)
+        self.__filter.set_filters(filter_list)
         
-        self.restrict_years = gtk.SpinButton(gtk.Adjustment(1,0,100,1))
-        self.restrict_years.set_value(self.options_dict['NWEByearsafterdeath'])
-
-        self.inc_download = gtk.CheckButton(download_msg)
-        self.inc_download.set_active(self.options_dict['NWEBdownload'])
-
-        self.linkhome = gtk.CheckButton(_('Include link to home person on every page'))
-        self.linkhome.set_active(self.options_dict['NWEBlinkhome'])
-
-        self.showbirth = gtk.CheckButton(_('Include a column for birth dates on the index pages'))
-        self.showbirth.set_active(self.options_dict['NWEBshowbirth'])
-
-        self.showdeath = gtk.CheckButton(_('Include a column for death dates on the index pages'))
-        self.showdeath.set_active(self.options_dict['NWEBshowdeath'])
-
-        self.showspouse = gtk.CheckButton(_('Include a column for partners on the index pages'))
-        self.showspouse.set_active(self.options_dict['NWEBshowspouse'])
-
-        self.showparents = gtk.CheckButton(_('Include a column for parents on the index pages'))
-        self.showparents.set_active(self.options_dict['NWEBshowparents'])
-
-        self.showhalfsiblings = gtk.CheckButton(_('Include half-brothers and half-sisters as siblings'))
-        self.showhalfsiblings.set_active(self.options_dict['NWEBshowhalfsiblings'])
-
-        # FIXME: document this:
-        # 0 -- no images of any kind
-        # 1 -- no living images, but some images
-        # 2 -- any images
-
-        self.title = gtk.Entry()
-        self.title.set_text(self.options_dict['NWEBtitle'])
-
-        self.ext = gtk.combo_box_new_text()
-        self.ext_options = ['.html','.htm','.shtml','.php','.php3','.cgi']
-        for text in self.ext_options:
-            self.ext.append_text(text)
-
-        self.copy = gtk.combo_box_new_text()
-        self.copy_options = [
-            _('Standard copyright'),
-            _('Creative Commons - By attribution'),
-            _('Creative Commons - By attribution, No derivations'),
-            _('Creative Commons - By attribution, Share-alike'),
-            _('Creative Commons - By attribution, Non-commercial'),
-            _('Creative Commons - By attribution, Non-commercial, No derivations'),
-            _('Creative Commons - By attribution, Non-commercial, Share-alike'),
-            _('No copyright notice'),
-            ]
-        for text in self.copy_options:
-            self.copy.append_text(text)
-
-        def_ext = "." + self.options_dict['NWEBext']
-        self.ext.set_active(self.ext_options.index(def_ext))
-
-        index = self.options_dict['NWEBcopyright']
-        self.copy.set_active(index)
-
-        cset_node = None
-        cset = self.options_dict['NWEBencoding']
-
-        store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        for data in _character_sets:
-            if data[1] == cset:
-                cset_node = store.append(row=data)
-            else:
-                store.append(row=data)
-        self.encoding = GrampsNoteComboBox(store,cset_node)
-
-        cset_node = None
-        cset = self.options_dict['NWEBcss']
-        store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        for data in _css_files:
-            if data[1] == cset:
-                cset_node = store.append(row=data)
-            else:
-                store.append(row=data)
-        self.css = GrampsNoteComboBox(store,cset_node)
-
-        dialog.add_option(title_msg,self.title)
-        dialog.add_option(ext_msg,self.ext)
-        dialog.add_option(_('Character set encoding'),self.encoding)
-        dialog.add_option(_('Stylesheet'),self.css)
-        dialog.add_option(_('Copyright'),self.copy)
-        dialog.add_option(_('Ancestor graph generations'),self.graph_gens)
-        dialog.add_option(None,self.inc_graph)
-
-        title = _("Page Generation")
-
-        self.home_nt_box, self.home_nt_label, self.home_nt_share_btn \
-                    = mk_object_entry()
-        self.home_note = GrampsWidgets.NoteEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.home_nt_label, 
-                    self.set_home_nt_val, self.get_home_nt_val, 
-                    None, self.home_nt_share_btn)
-        self.home_pic_box, self.home_pic_label, self.home_pic_share_btn \
-                    = mk_object_entry()
-        self.home_pic = GrampsWidgets.MediaEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.home_pic_label, 
-                    self.set_home_pic_val, self.get_home_pic_val, 
-                    None, self.home_pic_share_btn)
-        self.intro_nt_box, self.intro_nt_label, self.intro_nt_share_btn \
-                    = mk_object_entry()
-        self.intro_note = GrampsWidgets.NoteEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.intro_nt_label, 
-                    self.set_intro_nt_val, self.get_intro_nt_val, 
-                    None, self.intro_nt_share_btn)
-        self.intro_pic_box, self.intro_pic_label, self.intro_pic_share_btn \
-                    = mk_object_entry()
-        self.intro_pic = GrampsWidgets.MediaEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.intro_pic_label, 
-                    self.set_intro_pic_val, self.get_intro_pic_val, 
-                    None, self.intro_pic_share_btn)
-        self.contact_nt_box, self.contact_nt_label, self.contact_nt_share_btn \
-                    = mk_object_entry()
-        self.contact = GrampsWidgets.NoteEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.contact_nt_label, 
-                    self.set_contact_nt_val, self.get_contact_nt_val, 
-                    None, self.contact_nt_share_btn)
-        self.contact_pic_box, self.contact_pic_label, \
-                    self.contact_pic_share_btn = mk_object_entry()
-        self.contact_pic = GrampsWidgets.MediaEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.contact_pic_label, 
-                    self.set_contact_pic_val, self.get_contact_pic_val, 
-                    None, self.contact_pic_share_btn)
-        self.header_nt_box, self.header_nt_label, self.header_nt_share_btn \
-                    = mk_object_entry()
-        self.header = GrampsWidgets.NoteEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.header_nt_label, 
-                    self.set_header_nt_val, self.get_header_nt_val, 
-                    None, self.header_nt_share_btn)
-        self.footer_nt_box, self.footer_nt_label, self.footer_nt_share_btn \
-                    = mk_object_entry()
-        self.footer = GrampsWidgets.NoteEntry(dialog.dbstate, 
-                    dialog.uistate, dialog.track, 
-                    self.footer_nt_label, 
-                    self.set_footer_nt_val, self.get_footer_nt_val, 
-                    None, self.footer_nt_share_btn)
-
-        dialog.add_frame_option(title,_('Home Page note'),
-                                self.home_nt_box)
-        dialog.add_frame_option(title,_('Home Page image'),
-                                self.home_pic_box)
-        dialog.add_frame_option(title,_('Introduction Note'),
-                                self.intro_nt_box)
-        dialog.add_frame_option(title,_('Introduction image'),
-                                self.intro_pic_box)
-        dialog.add_frame_option(title, contact_msg, self.contact_nt_box)
-        dialog.add_frame_option(title, contactpic_msg, self.contact_pic_box)
-        dialog.add_frame_option(title, _('HTML user header'), 
-                                self.header_nt_box)
-        dialog.add_frame_option(title, _('HTML user footer'),
-                                self.footer_nt_box)
-        dialog.add_frame_option(title, '', self.include_gallery)
-        dialog.add_frame_option(title, None, self.inc_download)
-        dialog.add_frame_option(title, None, self.noid)
-
-        title = _("Privacy")
-        dialog.add_frame_option(title,None,self.no_private)
-        dialog.add_frame_option(title,living_msg,self.living)
-        dialog.add_frame_option(title,death_msg,self.restrict_years)
-
-        title = _("Advanced Options")
-        dialog.add_frame_option(title,None,self.linkhome,)
-        dialog.add_frame_option(title,None,self.showbirth)
-        dialog.add_frame_option(title,None,self.showdeath)
-        dialog.add_frame_option(title,None,self.showspouse)
-        dialog.add_frame_option(title,None,self.showparents)
-        dialog.add_frame_option(title,None,self.showhalfsiblings)
-
-    def set_nt_val(self, opt, val):
-        ''' store the note handle in options
-        '''
-        if val is None:
-            self.options_dict[opt] = u''
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [1, 2, 3, 4]:
+            # Filters 1, 2, 3 and 4 rely on the center person
+            self.__pid.set_available(True)
         else:
-            self.options_dict[opt] = unicode(val)
-
-    def get_nt_val(self, opt):
-        ''' obtain note handle
-        '''
-        val = self.options_dict[opt] 
-        if val == "":
-            return None
-        else:
-            return val
-
-    def set_home_nt_val(self, val):
-        self.set_nt_val('NWEBhomenote', val)
-
-    def get_home_nt_val(self):
-        return self.get_nt_val('NWEBhomenote')
-
-    def set_home_pic_val(self, val):
-        self.set_nt_val('NWEBhomepic', val)
-
-    def get_home_pic_val(self):
-        return self.get_nt_val('NWEBhomepic')
-
-    def set_intro_nt_val(self, val):
-        self.set_nt_val('NWEBintronote', val)
-
-    def get_intro_nt_val(self):
-        return self.get_nt_val('NWEBintronote')
-
-    def set_intro_pic_val(self, val):
-        self.set_nt_val('NWEBintropic', val)
-
-    def get_intro_pic_val(self):
-        return self.get_nt_val('NWEBintropic')
-
-    def set_contact_nt_val(self, val):
-        self.set_nt_val('NWEBcontact', val)
-
-    def get_contact_nt_val(self):
-        return self.get_nt_val('NWEBcontact')
-
-    def set_contact_pic_val(self, val):
-        self.set_nt_val('NWEBcontactpic', val)
-
-    def get_contact_pic_val(self):
-        return self.get_nt_val('NWEBcontactpic')
-
-    def set_header_nt_val(self, val):
-        self.set_nt_val('NWEBheader', val)
-
-    def get_header_nt_val(self):
-        return self.get_nt_val('NWEBheader')
-
-    def set_footer_nt_val(self, val):
-        self.set_nt_val('NWEBfooter', val)
-
-    def get_footer_nt_val(self):
-        return self.get_nt_val('NWEBfooter')
-
-    def parse_user_options(self, dialog):
-        """Parse the privacy options frame of the dialog.  Save the
-        user selected choices for later use."""
+            # The rest don't
+            self.__pid.set_available(False)
+            
+    def __graph_changed(self):
+        """
+        Handle enabling or disabling the ancestor graph
+        """
+        self.__graphgens.set_available(self.__graph.get_value())
         
-        self.options_dict['NWEBfilter'] = int(self.filter_menu.get_active())
-        self.options_dict['NWEBlivinginfo'] = int(self.living.get_active())
-        self.options_dict['NWEByearsafterdeath'] =  \
-                                             int(self.restrict_years.get_text())
-        self.options_dict['NWEBincpriv'] = int(not self.no_private.get_active())
-        self.options_dict['NWEBnoid'] = int(self.noid.get_active())
-        self.options_dict['NWEBlinkhome'] = int(self.linkhome.get_active())
-        self.options_dict['NWEBshowbirth'] = int(self.showbirth.get_active())
-        self.options_dict['NWEBshowdeath'] = int(self.showdeath.get_active())
-        self.options_dict['NWEBshowspouse'] = int(self.showspouse.get_active())
-        self.options_dict['NWEBshowparents'] = int(self.showparents.get_active())
-        self.options_dict['NWEBshowhalfsiblings'] = int(self.showhalfsiblings.get_active())
-        self.options_dict['NWEBgallery'] = int(self.include_gallery.get_active())
-        self.options_dict['NWEBdownload'] = int(self.inc_download.get_active())
-        self.options_dict['NWEBtitle'] = unicode(self.title.get_text())
-        self.options_dict['NWEBgraph'] = int(self.inc_graph.get_active())
-        
-        index = self.graph_gens.get_active()
-        generations = 4
-        if index >= 0:
-            generations = int(self.graph_gens_options[index])
-        self.options_dict['NWEBgraphgens'] = generations
-
-        index = self.ext.get_active()
-        if index >= 0:
-            html_ext = self.ext_options[index]
+    def __living_changed(self):
+        """
+        Handle a change in the living option
+        """
+        if self.__living.get_value() == self.__INCLUDE_LIVING_VALUE:
+            self.__yearsafterdeath.set_available(False)
         else:
-            html_ext = "html"
-        if html_ext[0] == '.':
-            html_ext = html_ext[1:]
-        self.options_dict['NWEBext'] = html_ext
+            self.__yearsafterdeath.set_available(True) 
 
-        self.options_dict['NWEBencoding'] = self.encoding.get_handle()
-        self.options_dict['NWEBcss'] = self.css.get_handle()
-        self.options_dict['NWEBod'] = dialog.target_path
-        self.options_dict['NWEBcopyright'] = self.copy.get_active()
-
-    #------------------------------------------------------------------------
-    #
-    # Callback functions from the dialog
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Web Pages Report."""
         pass
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class WebReportDialog(ReportDialog):
-
-    HELP_TOPIC = "rep-web"
-
-    def __init__(self, dbstate, uistate, person):
-        self.database = dbstate.db
-        self.person = person
-        name = "navwebpage"
-        translated_name = _("Generate Web Site")
-        self.options = WebReportOptions(name,self.database)
-        self.category = CATEGORY_WEB
-        ReportDialog.__init__(self, dbstate, uistate, person, self.options,
-                              name, translated_name)
-        self.style_name = None
-
-        self.modal_call(self.make_report)
-
-    def on_cancel(self, *obj):
-        self.close(*obj)
-
-    def setup_style_frame(self):
-        """The style frame is not used in this dialog."""
-        pass
-
-    def parse_style_frame(self):
-        """The style frame is not used in this dialog."""
-        self.options.handler.options_dict['NWEBarchive'] = int(
-            self.archive.get_active())
-    
-    def setup_report_options_frame(self):
-        self.archive = gtk.CheckButton(_('Store web pages in .tar.gz archive'))
-        self.archive.set_alignment(0.0,0.5)
-        self.archive.set_active(
-            self.options.handler.options_dict['NWEBarchive'])
-        self.archive.connect('toggled',self.archive_toggle)
-        self.add_option(None,self.archive)
-        ReportDialog.setup_report_options_frame(self)
-
-    def archive_toggle(self,obj):
-        if obj.get_active():
-            # The .tar.gz box is on
-            # Set doc label, mark file vs dir, add '.tar.gz' to the path
-            self.target_fileentry.set_directory_entry(False)
-            self.doc_label.set_label("%s:" % _("Filename"))
-            fname = self.target_fileentry.get_full_path(0)
-            if fname[-7:] != '.tar.gz':
-                fname = fname + '.tar.gz'
-                self.target_fileentry.set_filename(fname)
-        else:
-            # The .tar.gz box is off
-            # Set doc label, mark dir vs file, remove '.tar.gz' from path
-            self.target_fileentry.set_directory_entry(True)
-            self.doc_label.set_label("%s:" % _("Directory"))
-            fname = self.target_fileentry.get_full_path(0)
-            if fname[-7:] == '.tar.gz':
-                fname = fname[:-7]
-                self.target_fileentry.set_filename(fname)
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Generate Web Site"),_("Web Page"))
-
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Target Directory")
-
-    def get_target_is_directory(self):
-        """This report creates a directory full of files, not a single file."""
-        return 1
-    
-    def get_default_directory(self):
-        """Get the name of the directory to which the target dialog
-        box should default.  This value can be set in the preferences
-        panel."""
-        return self.options.handler.options_dict['NWEBod']    
-
-    def make_document(self):
-        """Do Nothing.  This document will be created in the
-        make_report routine."""
-        pass
-
-    def setup_format_frame(self):
-        """Do nothing, since we don't want a format frame (NWEB only)"""
-        pass
-
-    def parse_format_frame(self):
-        """The format frame is not used in this dialog."""
-        pass
-
-    def make_report(self):
-        """Create the object that will produce the web pages."""
-
-        try:
-            MyReport = WebReport(self.database,self.person,
-                                 self.options)
-            MyReport.write_report()
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
 
 def sort_people(db,handle_list):
     flist = set(handle_list)
@@ -3191,87 +2965,6 @@ def sort_people(db,handle_list):
         sorted_lists.append((name,entries))
     return sorted_lists
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def cl_report(database,name,category,options_str_dict):
-
-    clr = CommandLineReport(database,name,category,WebReportOptions,
-                            options_str_dict)
-
-    # Exit here if show option was given
-    if clr.show:
-        return
-
-    MyReport = WebReport(database,clr.person,clr.option_class)
-    MyReport.write_report()
-
-#------------------------------------------------------------------------
-#
-# Empty class to keep the BaseDoc-targeted format happy
-#
-#------------------------------------------------------------------------
-class EmptyDoc:
-    def __init__(self,styles,type,template,orientation,source=None):
-        pass
-
-    def init(self):
-        pass
-
-
-#-------------------------------------------------------------------------
-#
-# GrampsNoteComboBox
-#
-#-------------------------------------------------------------------------
-class GrampsNoteComboBox(gtk.ComboBox):
-    """
-    Derived from the ComboBox, this widget provides handling of Report
-    Styles.
-    """
-
-    def __init__(self,model=None,node=None):
-        """
-        Initializes the combobox, building the display column.
-        """
-        gtk.ComboBox.__init__(self,model)
-        cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
-        if node:
-            self.set_active_iter(node)
-        else:
-            self.set_active(0)
-        self.local_store = model
-
-    def get_handle(self):
-        """
-        Returns the selected key (style sheet name).
-
-        @returns: Returns the name of the selected style sheet
-        @rtype: str
-        """
-        active = self.get_active_iter()
-        handle = u""
-        if active:
-            handle = self.local_store.get_value(active,1)
-        return handle
-
-def mk_object_entry():
-    ''' return a vbox widget with fields for object selection
-    '''
-    box = gtk.HBox()
-    label = gtk.Label()
-    label.set_justify(gtk.JUSTIFY_LEFT)
-    labelexpand = gtk.Label()
-    button_sel = gtk.Button()
-    box.pack_start(label, expand=False, fill=True)
-    box.pack_start(labelexpand, expand=True, fill=True)
-    box.pack_start(button_sel, expand=False, fill=False)
-    return (box, label, button_sel)
-
 #-------------------------------------------------------------------------
 #
 #
@@ -3280,12 +2973,13 @@ def mk_object_entry():
 register_report(
     name = 'navwebpage',
     category = CATEGORY_WEB,
-    report_class = WebReportDialog,
-    options_class = cl_report,
+    report_class = NavWebReport,
+    options_class = NavWebOptions,
     modes = MODE_GUI | MODE_CLI,
     translated_name = _("Narrated Web Site..."),
     status = _("Stable"),
-    author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org",
-    description=_("Generates web (HTML) pages for individuals, or a set of individuals."),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
+    description = _("Generates web (HTML) pages for individuals, or a set of "
+                    "individuals."),
     )

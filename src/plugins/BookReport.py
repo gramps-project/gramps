@@ -76,7 +76,7 @@ import ManagedWindow
 # Import from specific modules in ReportBase
 from ReportBase._Constants import CATEGORY_BOOK, MODE_GUI, MODE_CLI
 from ReportBase._BookFormatComboBox import BookFormatComboBox
-from ReportBase._BareReportDialog import BareReportDialog
+from ReportBase._ReportDialog import ReportDialog
 from ReportBase._DocReportDialog import DocReportDialog
 from ReportBase._CommandLineReport import CommandLineReport
 from ReportBase._ReportOptions import ReportOptions
@@ -809,7 +809,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         self.bk_model.clear()
         for saved_item in book.get_item_list():
             name = saved_item.get_name()
-            item = BookItem(self.dbase, name)
+            item = BookItem(self.db, name)
             item.option_class = saved_item.option_class
             _initialize_options(item.option_class, self.dbstate)
             item.set_style_name(saved_item.get_style_name())
@@ -1025,7 +1025,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 # Book Item Options dialog
 #
 #------------------------------------------------------------------------
-class BookItemDialog(BareReportDialog):
+class BookItemDialog(ReportDialog):
 
     """
     This class overrides the interface methods common for different reports
@@ -1037,7 +1037,7 @@ class BookItemDialog(BareReportDialog):
 
         self.database = dbstate.db
         self.option_class = option_class
-        BareReportDialog.__init__(self, dbstate, uistate, None,
+        ReportDialog.__init__(self, dbstate, uistate, None,
                                   option_class, name, translated_name, track)
 
     def on_ok_clicked(self, obj):

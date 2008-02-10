@@ -28,14 +28,22 @@ Specific option handling for a GUI.
 #
 #------------------------------------------------------------------------
 from gettext import gettext as _
+import os
+import sys
+
+#-------------------------------------------------------------------------
+#
+# gtk modules
+#
+#-------------------------------------------------------------------------
+import gtk
+import gobject
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gobject
 import Utils
 import GrampsWidgets
 import ManagedWindow
@@ -164,7 +172,7 @@ class GuiStringOption(gtk.Entry):
         """
         Handle the change of the value.
         """
-        self.__option.set_value( self.__entry.get_text() )
+        self.__option.set_value( self.get_text() )
 
 #-------------------------------------------------------------------------
 #
@@ -593,6 +601,165 @@ class GuiFamilyOption(gtk.HBox):
 
 #-------------------------------------------------------------------------
 #
+# GuiNoteOption class
+#
+#-------------------------------------------------------------------------
+class GuiNoteOption(gtk.HBox):
+    """
+    This class displays an option that allows a note from the 
+    database to be selected.
+    """
+    def __init__(self, option, dbstate, uistate, track, tooltip):
+        """
+        @param option: The option to display.
+        @type option: MenuOption.NoteOption
+        @return: nothing
+        """
+        gtk.HBox.__init__(self)
+        self.__option = option
+        self.__dbstate = dbstate
+        self.__db = dbstate.get_database()
+        self.__uistate = uistate
+        self.__track = track
+        self.__note_label = gtk.Label()
+        self.__note_label.set_alignment(0.0, 0.5)
+        
+        pevt = gtk.EventBox()
+        pevt.add(self.__note_label)
+        note_button = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
+                                                   self.__get_note_clicked)
+        note_button.set_relief(gtk.RELIEF_NORMAL)
+
+        self.pack_start(pevt, False)
+        self.pack_end(note_button, False)
+        
+        # Initialize to the current value
+        nid = self.__option.get_value()
+        note = self.__db.get_note_from_gramps_id(nid)
+        self.__update_note(note)
+        
+        tooltip.set_tip(pevt, self.__option.get_help())
+        tooltip.set_tip(note_button, _('Select an existing note'))
+        
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+
+    def __get_note_clicked(self, obj): # IGNORE:W0613 - obj is unused
+        """
+        Handle the button to choose a different note.
+        """
+        select_class = selector_factory('Note')
+        sel = select_class(self.__dbstate, self.__uistate, self.__track)
+        note = sel.run()
+        self.__update_note(note)
+    
+    def __update_note(self, note):
+        """
+        Update the currently selected note.
+        """
+        if note:
+            note_id = note.get_gramps_id()
+            txt = " ".join(note.get(markup=False).split())
+            if len(txt) > 35:
+                txt = txt[:35]+"..."
+            else:
+                txt = txt
+            txt = "%s [%s]" % (txt, note_id)
+
+            self.__note_label.set_text( txt )
+            self.__option.set_value(note_id)
+        else:
+            txt = "<i>%s</i>" % _('No note given, click button to select one')
+            self.__note_label.set_text( txt )
+            self.__note_label.set_use_markup(True)
+            self.__option.set_value("")
+    
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
+        
+#-------------------------------------------------------------------------
+#
+# GuiMediaOption class
+#
+#-------------------------------------------------------------------------
+class GuiMediaOption(gtk.HBox):
+    """
+    This class displays an option that allows a media object from the 
+    database to be selected.
+    """
+    def __init__(self, option, dbstate, uistate, track, tooltip):
+        """
+        @param option: The option to display.
+        @type option: MenuOption.MediaOption
+        @return: nothing
+        """
+        gtk.HBox.__init__(self)
+        self.__option = option
+        self.__dbstate = dbstate
+        self.__db = dbstate.get_database()
+        self.__uistate = uistate
+        self.__track = track
+        self.__media_label = gtk.Label()
+        self.__media_label.set_alignment(0.0, 0.5)
+        
+        pevt = gtk.EventBox()
+        pevt.add(self.__media_label)
+        media_button = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
+                                                   self.__get_media_clicked)
+        media_button.set_relief(gtk.RELIEF_NORMAL)
+
+        self.pack_start(pevt, False)
+        self.pack_end(media_button, False)
+        
+        # Initialize to the current value
+        mid = self.__option.get_value()
+        media = self.__db.get_object_from_gramps_id(mid)
+        self.__update_media(media)
+        
+        tooltip.set_tip(pevt, self.__option.get_help())
+        tooltip.set_tip(media_button, _('Select an existing media object'))
+        
+        self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+
+    def __get_media_clicked(self, obj): # IGNORE:W0613 - obj is unused
+        """
+        Handle the button to choose a different note.
+        """
+        select_class = selector_factory('MediaObject')
+        sel = select_class(self.__dbstate, self.__uistate, self.__track)
+        media = sel.run()
+        self.__update_media(media)
+    
+    def __update_media(self, media):
+        """
+        Update the currently selected media.
+        """
+        if media:
+            media_id = media.get_gramps_id()
+            txt = "%s [%s]" % (media.get_description(), media_id)
+
+            self.__media_label.set_text( txt )
+            self.__option.set_value(media_id)
+        else:
+            txt = "<i>%s</i>" % _('No image given, click button to select one')
+            self.__media_label.set_text( txt )
+            self.__media_label.set_use_markup(True)
+            self.__option.set_value("")
+    
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
+        
+#-------------------------------------------------------------------------
+#
 # GuiPersonListOption class
 #
 #-------------------------------------------------------------------------
@@ -868,6 +1035,102 @@ class GuiSurnameColourOption(gtk.HBox):
             i = self.__model.get_iter(path)
             self.__model.remove(i)
             self.__value_changed()
+            
+#-------------------------------------------------------------------------
+#
+# GuiDestinationOption class
+#
+#-------------------------------------------------------------------------
+class GuiDestinationOption(gtk.HBox):
+    """
+    This class displays an option that is a simple one-line string.
+    """
+    def __init__(self, option, dbstate, uistate, track, tooltip):
+        """
+        @param option: The option to display.
+        @type option: MenuOption.StringOption
+        @return: nothing
+        """
+        gtk.HBox.__init__(self)
+        self.__option = option
+        self.__entry = gtk.Entry()
+        self.__entry.set_text( self.__option.get_value() )
+        self.__entry.connect('changed', self.__text_changed)
+        
+        self.__button = gtk.Button()
+        img = gtk.Image()
+        img.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        self.__button.add(img)
+        self.__button.connect('clicked', self.__select_file)
+        
+        self.pack_start(self.__entry, True, True)
+        self.pack_end(self.__button, False, False)
+        
+        tooltip.set_tip(self, self.__option.get_help())
+        
+        self.__option.connect('options-changed', self.__option_changed)
+        
+    def __text_changed(self, obj): # IGNORE:W0613 - obj is unused
+        """
+        Handle the change of the value.
+        """
+        self.__option.set_value( self.__entry.get_text() )
+
+    def __select_file(self, obj):
+        """
+        Handle the user's request to select a file (or directory).
+        """
+        if self.__option.get_directory_entry():
+            my_action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER
+        else:
+            my_action = gtk.FILE_CHOOSER_ACTION_SAVE
+        
+        fcd = gtk.FileChooserDialog(_("Save As"), action=my_action,
+                                    buttons=(gtk.STOCK_CANCEL,
+                                             gtk.RESPONSE_CANCEL,
+                                             gtk.STOCK_OPEN,
+                                             gtk.RESPONSE_OK))
+
+        name = os.path.abspath(self.__option.get_value())
+        if self.__option.get_directory_entry():
+            while not os.path.isdir(name):
+                # Keep looking up levels to find a valid drive.
+                name, tail = os.path.split(name)
+                if not name:
+                    # Avoid infinite loops
+                    name = os.getcwd()
+            fcd.set_current_folder(name)
+        else:
+            fcd.set_current_name(name)
+
+        status = fcd.run()
+        if status == gtk.RESPONSE_OK:
+            path = unicode(fcd.get_filename(), sys.getfilesystemencoding())
+            print path
+            if path:
+                if not self.__option.get_directory_entry() and \
+                   not path.endswith(self.__option.get_extension()):
+                    path = path + self.__option.get_extension()
+                self.__entry.set_text(path)
+                self.__option.set_value(path)
+        fcd.destroy()
+        
+    def __option_changed(self):
+        """
+        Handle a change of the option.
+        """
+        extension = self.__option.get_extension()
+        directory = self.__option.get_directory_entry()
+        value = self.__option.get_value()
+        
+        if not directory and not value.endswith(extension):
+            value = value + extension
+            self.__option.set_value(value)
+        elif directory and value.endswith(extension):
+            value = value[:-len(extension)]
+            self.__option.set_value(value)
+        
+        self.__entry.set_text( self.__option.get_value() )
 
 #------------------------------------------------------------------------
 #
@@ -932,8 +1195,25 @@ class GuiMenuOptions:
                     
                 found = True
                 label = True
+                
                 if isinstance(option, _MenuOptions.PersonOption):
                     widget = GuiPersonOption(option, dialog.dbstate, 
+                                             dialog.uistate, dialog.track, 
+                                             self.__tooltips)
+                elif isinstance(option, _MenuOptions.FamilyOption):
+                    widget = GuiFamilyOption(option, dialog.dbstate, 
+                                             dialog.uistate, dialog.track, 
+                                             self.__tooltips)
+                elif isinstance(option, _MenuOptions.NoteOption):
+                    widget = GuiNoteOption(option, dialog.dbstate, 
+                                             dialog.uistate, dialog.track, 
+                                             self.__tooltips)
+                elif isinstance(option, _MenuOptions.MediaOption):
+                    widget = GuiMediaOption(option, dialog.dbstate, 
+                                             dialog.uistate, dialog.track, 
+                                             self.__tooltips)
+                elif isinstance(option, _MenuOptions.PersonListOption):
+                    widget = GuiPersonListOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.NumberOption):
@@ -945,6 +1225,10 @@ class GuiMenuOptions:
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                     label = False
+                elif isinstance(option, _MenuOptions.DestinationOption):
+                    widget = GuiDestinationOption(option, dialog.dbstate, 
+                                             dialog.uistate, dialog.track, 
+                                             self.__tooltips)
                 elif isinstance(option, _MenuOptions.StringOption):
                     widget = GuiStringOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
@@ -955,14 +1239,6 @@ class GuiMenuOptions:
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.TextOption):
                     widget = GuiTextOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.FamilyOption):
-                    widget = GuiFamilyOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.PersonListOption):
-                    widget = GuiPersonListOption(option, dialog.dbstate, 
                                              dialog.uistate, dialog.track, 
                                              self.__tooltips)
                 elif isinstance(option, _MenuOptions.ColourOption):

@@ -31,7 +31,8 @@
 from _MenuOptions import (NumberOption, BooleanOption, TextOption, 
                           EnumeratedListOption, FilterOption, StringOption, 
                           ColourOption, PersonOption, PersonListOption, 
-                          SurnameColourOption, FamilyOption)
+                          SurnameColourOption, FamilyOption, DestinationOption,
+                          NoteOption, MediaOption)
 from _GuiOptions import GuiMenuOptions
 from _PluginMgr import (register_export, register_import, register_tool, 
                         register_report, register_relcalc, relationship_class, 

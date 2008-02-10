@@ -303,6 +303,13 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         and to read in any user defined styles for this report.  It
         the builds a menu of all the available styles for the user to
         choose from."""
+        # Build the default style set for this report.
+        self.default_style = BaseDoc.StyleSheet()
+        self.options.make_default_style(self.default_style)
+
+        if self.default_style.is_empty():
+            # Don't display the option of no styles are used
+            return
 
         # Styles Frame
         label = gtk.Label("%s:" % _("Style"))
@@ -319,10 +326,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
                         xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
         self.col += 1
         
-        # Build the default style set for this report.
-        self.default_style = BaseDoc.StyleSheet()
-        self.options.make_default_style(self.default_style)
-
         # Build the initial list of available styles sets.  This
         # includes the default style set and any style sets saved from
         # previous invocations of gramps.
@@ -437,8 +440,9 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         retrieves a value whether or not the menu is displayed on the
         screen.  The subclass will know whether this menu was enabled.
         This is for simplicity of programming."""
-        (style_name,self.selected_style) = self.style_menu.get_value()
-        self.options.handler.set_default_stylesheet_name(style_name)
+        if not self.default_style.is_empty():
+            (style_name, self.selected_style) = self.style_menu.get_value()
+            self.options.handler.set_default_stylesheet_name(style_name)
 
     #------------------------------------------------------------------------
     #
