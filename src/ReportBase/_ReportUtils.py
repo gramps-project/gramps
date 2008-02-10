@@ -1920,7 +1920,7 @@ def married_str(database, person, family, verbose=True, endnotes=None,
                 text = unmarried_first_date_place[gender][date_full] % values
             else:
                 text = relationship_first_date_place[gender][date_full] % values
-        if event and date and place:
+        elif event and date and place:
             if relationship == gen.lib.FamilyRelType.MARRIED:
                 text = marriage_first_date_place['succinct'][date_full] % values
             elif relationship == gen.lib.FamilyRelType.UNMARRIED:

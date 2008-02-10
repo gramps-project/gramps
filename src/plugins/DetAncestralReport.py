@@ -595,7 +595,7 @@ class DetAncestorReport(Report):
             else:
                 firstName = 0
 
-            print_name = ""
+            print_name = ReportUtils.common_name(ind, self.usecall)
             
             if person_name and has_info:
                 self.doc.start_paragraph("DAR-Entry")
@@ -603,8 +603,8 @@ class DetAncestorReport(Report):
                 self.doc.write_text(person_name,person_key)
                 self.doc.write_text(". ")
 
-                text = ReportUtils.born_str(self.database,ind,print_name, 
-                            self.verbose, self.EMPTY_DATE,self.EMPTY_PLACE)
+                text = ReportUtils.born_str(self.database, ind, print_name, 
+                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE)
                 if text:
                     self.doc.write_text(text)
                     print_name = 0;

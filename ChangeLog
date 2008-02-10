@@ -1,6 +1,7 @@
 2008-02-10 Brian Matherly <brian@gramps-project.org>
-	* src/plugins/FanChart.py: 
-	0001751: Translation of string in FanCaaart.py does not work.
+	* src/plugins/DetAncestralReport.py: 
+	* src/ReportBase/_ReportUtils.py:
+	0001731: Wrong dot in Ancestral Report
 
 2008-02-10 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py:
