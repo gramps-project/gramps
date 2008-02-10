@@ -410,9 +410,9 @@ class BasePage:
 
     def show_link(self,of,lpath,title,path):
         if path:
-            of.write('<a href="%s/%s.%s">%s</a>\n' % (path,lpath,self.ext,title))
+            of.write('<a href="%s/%s%s">%s</a>\n' % (path,lpath,self.ext,title))
         else:
-            of.write('<a href="%s.%s">%s</a>\n' % (lpath,self.ext,title))
+            of.write('<a href="%s%s">%s</a>\n' % (lpath,self.ext,title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
 
@@ -619,9 +619,9 @@ class BasePage:
             
     def build_name(self,path,base):
         if path:
-            return path + "/" + base + "." + self.ext
+            return path + "/" + base + self.ext
         else:
-            return base + "." + self.ext
+            return base + self.ext
 
     def person_link(self,of,path,name,gid="",up=True):
         if up:
@@ -636,20 +636,20 @@ class BasePage:
         handle = self.lnkfmt(name)
         dirpath = self.build_path(handle,'srn',up)
 
-        of.write('<a href="%s/%s.%s">%s' % (dirpath,handle,self.ext,name))
+        of.write('<a href="%s/%s%s">%s' % (dirpath,handle,self.ext,name))
         if opt_val != None:
             of.write('&nbsp;(%d)' % opt_val)
         of.write('</a>')
 
     def media_ref_link(self,of,handle,name,up=False):
         dirpath = self.build_path(handle,'img',up)
-        of.write('<a href="%s/%s.%s">%s</a>' % (
+        of.write('<a href="%s/%s%s">%s</a>' % (
             dirpath,handle,self.ext,name))
 
     def media_link(self,of,handle,path,name,up,usedescr=True):
         dirpath = self.build_path(handle,'img',up)
         of.write('<div class="thumbnail">\n')
-        of.write('<p><a href="%s/%s.%s">' % (dirpath,handle,self.ext))
+        of.write('<p><a href="%s/%s%s">' % (dirpath,handle,self.ext))
         of.write('<img src="../../../%s" ' % path)
         of.write('alt="%s" /></a></p>\n' % name)
         if usedescr:
@@ -660,7 +660,7 @@ class BasePage:
         path = os.path.join('images','document.png')
         dirpath = self.build_path(handle,'img',up)
         of.write('<div class="thumbnail">\n')
-        of.write('<p><a href="%s/%s.%s">' % (dirpath,handle,self.ext))
+        of.write('<p><a href="%s/%s%s">' % (dirpath,handle,self.ext))
         of.write('<img src="../../../%s" ' % path)
         of.write('alt="%s" /></a>' % name)
         of.write('</p>\n')
@@ -670,7 +670,7 @@ class BasePage:
 
     def source_link(self,of,handle,name,gid="",up=False):
         dirpath = self.build_path(handle,'src',up)
-        of.write('<a href="%s/%s.%s">%s' % (
+        of.write('<a href="%s/%s%s">%s' % (
             dirpath,handle,self.ext,name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
@@ -678,7 +678,7 @@ class BasePage:
 
     def place_link(self,of,handle,name,gid="",up=False):
         dirpath = self.build_path(handle,'plc',up)
-        of.write('<a href="%s/%s.%s">%s' % (
+        of.write('<a href="%s/%s%s">%s' % (
             dirpath,handle,self.ext,name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
@@ -686,7 +686,7 @@ class BasePage:
 
     def place_link_str(self,handle,name,gid="",up=False):
         dirpath = self.build_path(handle,'plc',up)
-        retval = '<a href="%s/%s.%s">%s' % (
+        retval = '<a href="%s/%s%s">%s' % (
             dirpath,handle,self.ext,name)
         if not self.noid and gid != "":
             retval = retval + '&nbsp;<span class="grampsid">[%s]</span>' % gid
@@ -1306,13 +1306,13 @@ class SurnameListPage(BasePage):
         of.write('<th>%s</th>\n' % _('Letter'))
 
         if not self.use_home and not self.use_intro:
-            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("index", self.ext, 
+            of.write('<th><a href="%s%s">%s</a></th>\n' % ("index", self.ext, 
                                                             _('Surname')))
         else:
-            of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames", 
+            of.write('<th><a href="%s%s">%s</a></th>\n' % ("surnames", 
                                                     self.ext, _('Surname')))
 
-        of.write('<th><a href="%s.%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
+        of.write('<th><a href="%s%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
         of.write('</tr></thead>\n<tbody>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
@@ -2719,7 +2719,7 @@ class NavWebOptions(MenuReportOptions):
         self.__update_filters()
         
         title = StringOption(_("Web site title"), _('My Family Tree')) 
-        title.set_help(_("The of the web site"))
+        title.set_help(_("The title of the web site"))
         menu.add_option(category_name, "title", title)
         
         ext = EnumeratedListOption(_("File extension"), ".html" )

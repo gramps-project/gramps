@@ -1,20 +1,25 @@
+2008-02-10 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/NarrativeWeb.py:
+	* src/PluginUtils/_GuiOptions.py:
+	0001750: Some problems with web pages
+
 2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/Editors/_EditPrimary.py: 0001347: double gid. fix previous commit
 
 2008-02-09 Brian Matherly <brian@gramps-project.org>
-    * src/ReportBase/_WebReportDialog.py:
-    * src/ReportBase/_ReportDialog.py:
-    * src/ReportBase/Makefile.am
-    * src/ReportBase/_BareReportDialog.py:
-    * src/ReportBase/_ReportOptions.py:
-    * src/plugins/WebCal.py:
-    * src/plugins/BookReport.py:
-    * src/plugins/NarrativeWeb.py:
-    * src/PluginUtils/__init__.py:
-    * src/PluginUtils/_MenuOptions.py:
-    * src/PluginUtils/_GuiOptions.py:
-    * src/BaseDoc.py:
-    Web Calendar and Narrative Web report now use Menu Options.
+	* src/ReportBase/_WebReportDialog.py:
+	* src/ReportBase/_ReportDialog.py:
+	* src/ReportBase/Makefile.am
+	* src/ReportBase/_BareReportDialog.py:
+	* src/ReportBase/_ReportOptions.py:
+	* src/plugins/WebCal.py:
+	* src/plugins/BookReport.py:
+	* src/plugins/NarrativeWeb.py:
+	* src/PluginUtils/__init__.py:
+	* src/PluginUtils/_MenuOptions.py:
+	* src/PluginUtils/_GuiOptions.py:
+	* src/BaseDoc.py:
+	Web Calendar and Narrative Web report now use Menu Options.
 
 2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/Editors/_EditEvent.py:
