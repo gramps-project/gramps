@@ -248,3 +248,9 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         """
         pass
 
+    def _uses_duplicate_id(self):
+        """
+        Fix problem for now
+        """
+        return (False, 0)
+
