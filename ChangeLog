@@ -1,3 +1,6 @@
+2008-02-11 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditFamily.py: call editprimary correctly, double gid
+
 2008-02-10 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/DetAncestralReport.py: 
 	* src/ReportBase/_ReportUtils.py:

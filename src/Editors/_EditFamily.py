@@ -400,7 +400,8 @@ class EditFamily(EditPrimary):
         
         self.tooltips = gtk.Tooltips()
         EditPrimary.__init__(self, dbstate, uistate, track,
-                             family, dbstate.db.get_family_from_handle)
+                             family, dbstate.db.get_family_from_handle,
+                             dbstate.db.get_family_from_gramps_id)
 
         # look for the scenerio of a child and no parents on a new
         # family
