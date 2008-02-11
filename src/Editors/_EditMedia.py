@@ -128,22 +128,40 @@ class EditMedia(EditPrimary):
         ebox.connect('button-press-event', self.button_press_event)
         
         self.mimetext = self.glade.get_widget("type")
-        self.draw_preview()
         self.setup_filepath()
+        self.determine_mime()
+        self.draw_preview()
+
+    def determine_mime(self):
+        descr = Mime.get_description(self.obj.get_mime_type())
+        if descr:
+            self.mimetext.set_text(descr)
+
+        path = self.file_path.get_text()
+        path_full = Utils.media_path_full(self.db, path)
+        if path != self.obj.get_path() and path_full != self.obj.get_path():
+            #redetermine mime
+            mime = Mime.get_type(Utils.find_file(path_full))
+            self.obj.set_mime_type(mime)
+            descr = Mime.get_description(mime)
+            if descr:
+                self.mimetext.set_text(descr)
+            else:
+                self.mimetext.set_text(_('Unknown'))
+        #if mime type not set, is note
+        if not self.obj.get_mime_type():
+            self.mimetext.set_text(_('Note'))
 
     def draw_preview(self):
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ThumbNails.get_thumbnail_image(
-                                Utils.find_file(self.obj.get_path()), mtype)
+            pb = ThumbNails.get_thumbnail_image(Utils.find_file(
+                        Utils.media_path_full(self.db, self.obj.get_path())), 
+                        mtype)
             self.pixmap.set_from_pixbuf(pb)
-            descr = Mime.get_description(mtype)
-            if descr:
-                self.mimetext.set_text(descr)
         else:
             pb = Mime.find_mime_type_pixbuf('text/plain')
             self.pixmap.set_from_pixbuf(pb)
-            self.mimetext.set_text(_('Note'))
 
     def setup_filepath(self):
         self.select = self.glade.get_widget('file_select')
@@ -192,9 +210,13 @@ class EditMedia(EditPrimary):
         mime_type = ref_obj.get_mime_type()
         app = Mime.get_application(mime_type)
         if app:
-            Utils.launch(app[0], ref_obj.get_path())
+            Utils.launch(app[0], Utils.media_path_full(self.dbstate.db,
+                                                       ref_obj.get_path()))
 
     def select_file(self, val):
+        self.determine_mime()
+        path = self.file_path.get_text()
+        self.obj.set_path(Utils.get_unicode_path(path))
         AddMediaObject(self.dbstate, self.uistate, self.track, self.obj, 
                        self._update_addmedia)
 
@@ -208,10 +230,12 @@ class EditMedia(EditPrimary):
             obj.update()
         fname = self.obj.get_path()
         self.file_path.set_text(fname)
+        self.determine_mime()
         self.draw_preview()
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
+
         if self.object_is_empty():
             ErrorDialog(_("Cannot save media object"),
                         _("No data exists for this media object. Please "
@@ -233,11 +257,8 @@ class EditMedia(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
         
-        path = self.glade.get_widget('path').get_text()
-
-        if path != self.obj.get_path():
-            mime = Mime.get_type(Utils.find_file(os.path.abspath(path)))
-            self.obj.set_mime_type(mime)
+        path = self.file_path.get_text()
+        self.determine_mime()
 
         self.obj.set_path(Utils.get_unicode_path(path))
 

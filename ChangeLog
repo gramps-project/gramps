@@ -1,4 +1,13 @@
 2008-02-11 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/MediaManager.py: conversion functions of path
+	* src/Utils.py: general methods to convert abs to rel
+	* src/Editors/AddMedia.py: show existing descr and select file if pos
+	* src/Editors/_EditPerson.py: view photo needs db for media path
+	* src/Editors/_EditMedia.py: better path/mime handling
+	* src/DataViews/MediaView.py: use full path to view
+	Start of issue #1208
+
+2008-02-11 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditFamily.py: call editprimary correctly, double gid
 
 2008-02-10 Brian Matherly <brian@gramps-project.org>

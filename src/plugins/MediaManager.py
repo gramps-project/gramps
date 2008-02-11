@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008  B. Malengier
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,6 +52,7 @@ import Errors
 from gen.lib import MediaObject
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
+from Utils import media_path_full, relative_path, media_path
 
 #-------------------------------------------------------------------------
 #
@@ -483,8 +485,9 @@ class PathChange(BatchOp):
 class Convert2Abs(BatchOp):
     title       = _('Convert paths from relative to _absolute')
     description = _('This tool allows converting relative media paths '
-                    'to the absolute ones. An absolute path allows to '
-                    'fix the file location while moving the database.')
+                    'to the absolute ones. It does this by prepending '
+                    'the base path as given in the Preferences, or if '
+                    'that is not set, it prepends your home directory.')
 
     def _prepare(self):
         cursor = self.db.get_media_cursor()
@@ -508,7 +511,7 @@ class Convert2Abs(BatchOp):
         self.set_total(len(self.handle_list))
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
-            new_path = os.path.abspath(obj.path)
+            new_path = media_path_full(self.db, obj.path)
             obj.set_path(new_path)
             self.db.commit_media_object(obj,self.trans)
             self.update()
@@ -520,8 +523,11 @@ class Convert2Abs(BatchOp):
 class Convert2Rel(BatchOp):
     title       = _('Convert paths from absolute to r_elative')
     description = _('This tool allows converting absolute media paths '
-                    'to the relative ones. A relative path allows to '
-                    'tie the file location to that of the database.')
+                    'to the a relative path. The relative path is relative '
+                    'viz-a-viz the base path as given in the Preferences, '
+                    'or if that is not set, your home directory. '
+                    'A relative path allows to tie the file location to a '
+                    'base path that can change to your needs.')
 
     def _prepare(self):
         cursor = self.db.get_media_cursor()
@@ -543,50 +549,14 @@ class Convert2Rel(BatchOp):
         if not self.prepared:
             self.prepare()
         self.set_total(len(self.handle_list))
-        db_dir = os.path.normpath(os.path.dirname(self.db.full_name))
+        base_dir = media_path(self.db)
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
-            new_path = get_rel_path(db_dir,obj.path)
+            new_path = relative_path(obj.path, base_dir)
             obj.set_path(new_path)
             self.db.commit_media_object(obj,self.trans)
             self.update()
         return True
-
-#------------------------------------------------------------------------
-#
-# Helper functions
-#
-#------------------------------------------------------------------------
-def get_rel_path(db_dir,obj_path):
-    obj_dir = os.path.dirname(os.path.normpath(obj_path))
-    obj_name = os.path.basename(os.path.normpath(obj_path))
-    
-    # If the db_dir and obj_dir are on different drives (win only)
-    # then there cannot be a relative path. Return original obj_path
-    (db_drive,db_dir) = os.path.splitdrive(db_dir) 
-    (obj_drive,obj_dir) = os.path.splitdrive(obj_dir)
-    if db_drive.upper() != obj_drive.upper():
-        return obj_path
-   
-    # Get the list of dirnames for each
-    db_dir_list = [word for word in db_dir.split(os.path.sep) if word]
-    obj_dir_list = [word for word in obj_dir.split(os.path.sep) if word]
-
-    # The worst case scenario: nothing in common:
-    # we would need to go ndirs up and then use the full obj path
-    ndirs = len(db_dir_list)
-
-    # Compare words in both lists
-    for word_ix in range(min(len(db_dir_list),len(obj_dir_list))):
-        # A common word reduces the trip by one '../' and one word
-        if db_dir_list[word_ix] == obj_dir_list[word_ix]:
-            ndirs -= 1
-        else:
-            break
-
-    up_from_db = '../'*ndirs
-    obj_dir_rem = os.path.sep.join(obj_dir_list[len(db_dir_list)-ndirs:])
-    return os.path.join(up_from_db,obj_dir_rem,obj_name)
 
 #------------------------------------------------------------------------
 #

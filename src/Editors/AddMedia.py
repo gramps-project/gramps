@@ -107,9 +107,20 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.image = self.glade.get_widget("image")
         self.file_text = self.glade.get_widget("fname")
         if not(self.last_directory and os.path.isdir(self.last_directory)):
-            self.last_directory = const.HOME_DIR
-        print 'test', self.last_directory
-        self.file_text.set_current_folder(self.last_directory)
+            self.last_directory = const.USER_HOME
+        #if existing path, use dir of path
+        if not self.obj.get_path() == "":
+            fullname = Utils.media_path_full(self.dbase, self.obj.get_path())
+            dir = os.path.dirname(fullname)
+            if os.path.isdir(dir):
+                self.last_directory = dir
+                self.file_text.select_filename(fullname)
+            else:
+                self.file_text.set_current_folder(self.last_directory)
+        else:
+            self.file_text.set_current_folder(self.last_directory)
+        if not self.obj.get_description() == "":
+            self.description.set_text(self.obj.get_description())
 
         self.relpath = self.glade.get_widget('relpath')
         self.relpath.set_active(self.relative_path)
@@ -151,10 +162,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         filename = Utils.get_unicode_path(self.file_text.get_filename())
         full_file = filename
 
-        pname = self.dbase.get_save_path()
-        if not os.path.isdir(pname):
-            pname = os.path.dirname(pname)
-                
+        pname = Utils.media_path(self.dbase)
         if self.relpath.get_active():
             filename = Utils.relative_path(filename, pname)
 

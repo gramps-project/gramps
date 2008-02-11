@@ -51,7 +51,7 @@ import gen.lib
 import Errors
 from QuestionDialog import WarningDialog
 
-from const import TEMP_DIR
+from const import TEMP_DIR, USER_HOME
 import shutil
 
 #-------------------------------------------------------------------------
@@ -262,14 +262,17 @@ def add_menuitem(menu, msg, obj, func):
 #
 #
 #-------------------------------------------------------------------------
-def view_photo(photo):
+def view_photo(photo, db):
+    """
+    photo is a mediaobject, this utility launches a viewing application
+    """
     mime_type = photo.get_mime_type()
     try:
         data = Mime.get_application(mime_type)
         prog = data[0]
     except:
         return
-    launch(prog, photo.get_path())
+    launch(prog, media_path_full(db, photo.get_path()))
 
 def find_file( filename):
     # try the filename we got
@@ -937,21 +940,65 @@ def get_type_converter_by_name(val_str):
     return unicode
 
 def relative_path(original, base):
-    if not os.path.exists(original) or  not os.path.isdir(base):
+    """
+    Calculate the relative path from base to original, with base a directory,
+    and original an absolute path
+    On problems, original is returned unchanged
+    """
+    if not os.path.isdir(base):
         return original
-
-    base_list = (os.path.abspath(base)).split(os.sep)
-    target_list = (os.path.abspath(original)).split(os.sep)
+    #original and base must be absolute paths
+    if not os.path.isabs(base):
+        return original
+    if not os.path.isabs(original):
+        return original
+    original = os.path.normpath(original)
+    base = os.path.normpath(base)
+    
+    # If the db_dir and obj_dir are on different drives (win only)
+    # then there cannot be a relative path. Return original obj_path
+    (base_drive, base) = os.path.splitdrive(base) 
+    (orig_drive, orig_name) = os.path.splitdrive(original)
+    if base_drive.upper() != orig_drive.upper():
+        return original
 
     # Starting from the filepath root, work out how much of the filepath is
     # shared by base and target.
-
+    base_list = (base).split(os.sep)
+    target_list = (orig_name).split(os.sep)
+    # make sure '/home/person' and 'c:/home/person' both give 
+    #   list ['home', 'person']
+    base_list = [word for word in base_list if word]
+    target_list = [word for word in target_list if word]
+    i = -1
     for i in range(min(len(base_list), len(target_list))):
         if base_list[i] <> target_list[i]: break
     else:
+        #if break did not happen we are here at end, and add 1.
         i += 1
     rel_list = [os.pardir] * (len(base_list)-i) + target_list[i:]
     return os.path.join(*rel_list)
+
+def media_path(db):
+    """
+    Given a database, return the mediapath to use as basedir for media
+    """
+    mpath = db.get_mediapath()
+    if mpath is None:
+        #use home dir
+        mpath = USER_HOME
+    return mpath
+
+def media_path_full(db, filename):
+    """
+    Given a database and a filename of a media, return the media filename
+    is full form, eg 'graves/tomb.png' becomes '/home/me/genea/graves/tomb.png
+    """
+    if os.path.isabs(filename):
+        return filename
+    mpath = media_path(db)
+    return os.path.join(mpath, filename)
+    
 
 class ProgressMeter:
     """

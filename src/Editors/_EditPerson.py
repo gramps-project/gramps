@@ -486,7 +486,8 @@ class EditPerson(EditPrimary):
         if media_list:
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
-            Utils.view_photo(self.db.get_object_from_handle(object_handle))
+            Utils.view_photo(self.db.get_object_from_handle(object_handle), 
+                             self.db)
 
     def _popup_change_description(self, obj):
         """

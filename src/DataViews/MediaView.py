@@ -230,7 +230,8 @@ class MediaView(PageView.ListView):
             mime_type = ref_obj.get_mime_type()
             app = Mime.get_application(mime_type)
             if app:
-                Utils.launch(app[0], ref_obj.get_path())
+                Utils.launch(app[0], Utils.media_path_full(self.dbstate.db, 
+                                                           ref_obj.get_path()))
             else:
                 ErrorDialog(_("Cannot view %s") % ref_obj.get_path(), 
                             _("GRAMPS cannot find an application that can view "
@@ -325,7 +326,8 @@ class MediaView(PageView.ListView):
             self.ttips.disable()
         else:
             obj = self.dbstate.db.get_object_from_handle(handle)
-            pix = ThumbNails.get_thumbnail_image(obj.get_path())
+            pix = ThumbNails.get_thumbnail_image(
+                        Utils.media_path_full(self.dbstate.db, obj.get_path()))
             self.image.set_from_pixbuf(pix)
             self.ttips.enable()
     
