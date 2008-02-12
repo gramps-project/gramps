@@ -125,6 +125,9 @@ class ChildEmbedList(EmbeddedList):
             (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
 
+    def get_middle_click(self):
+        return self.edit_child_button_clicked
+
     def find_index(self, obj):
         """
         returns the index of the object within the associated data

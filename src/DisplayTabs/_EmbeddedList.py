@@ -90,10 +90,17 @@ class EmbeddedList(ButtonTab):
         self.show_all()
 
     def _on_button_press(self, obj, event):
+        """
+        Handle button press, not double-click, that is done in init_interface
+        """
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             ref = self.get_selected()
             if ref:
                 self.right_click(obj, event)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 2:
+                fun = self.get_middle_click()
+                if fun:
+                    fun(obj)
 
     def get_popup_menu_items(self):
         """
@@ -120,6 +127,9 @@ class EmbeddedList(ButtonTab):
                 (True, True, gtk.STOCK_REMOVE, self.del_button_clicked),
             ]
         return itemlist
+
+    def get_middle_click(self):
+        return None
 
     def right_click(self, obj, event):
         """

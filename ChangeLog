@@ -1,4 +1,8 @@
 2008-02-12 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_EmbeddedList.py: allow to define middle click
+	* src/Editors/_EditFamily.py: middle click on child calls edit child
+
+2008-02-12 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/Editors/_EditFamily.py: popup: edit child at top, add images.
 	* src/DisplayTabs/_EmbeddedList.py: allow popup with image/custom text
 	* src/DisplayModels/_BaseModel.py: add comment to function
