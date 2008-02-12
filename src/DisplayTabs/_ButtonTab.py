@@ -179,6 +179,7 @@ class ButtonTab(GrampsTab):
         the Edit button handler is called
         """
         if event.type == gtk.gdk.KEY_PRESS:
+            print 'key pressed', event.keyval, event.state, gtk.gdk.MOD1_MASK, _RIGHT
             if  event.keyval in (_RETURN, _KP_ENTER):
                 try:
                     self.edit_button_clicked(obj)
@@ -193,13 +194,16 @@ class ButtonTab(GrampsTab):
                     return
                 self.add_button_clicked(obj)
             elif event.keyval in (_OPEN,) and self.share_btn and \
-                    event.state in (gtk.gdk.CONTROL_MASK,):
+                    event.state in (gtk.gdk.CONTROL_MASK, 
+                                    gtk.gdk.CONTROL_MASK | gtk.gdk.MOD2_MASK):
                 self.share_button_clicked(obj)
             elif event.keyval in (_LEFT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK,):
+                    event.state in (gtk.gdk.MOD1_MASK, 
+                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
                 self.prev_page()
             elif event.keyval in (_RIGHT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK,):
+                    event.state in (gtk.gdk.MOD1_MASK, 
+                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
                 self.next_page()
 
     def add_button_clicked(self, obj):

@@ -1,4 +1,8 @@
 2008-02-12 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_ButtonTab.py: some accel keys don't work on keyboard
+	with numlock as MOD_MASK2, enable the keys for those keyboards
+
+2008-02-12 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_EmbeddedList.py: allow to define middle click
 	* src/Editors/_EditFamily.py: middle click on child calls edit child
 
