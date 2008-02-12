@@ -1,4 +1,9 @@
 2008-02-11 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/StatisticsChart.py:
+	0001754: Capitalization in Statistics chart
+	0001755: Selection of contents in statistics chart does not work
+
+2008-02-11 Brian Matherly <brian@gramps-project.org>
 	* src/Editors/_EditNote.py: Fix saving notes without marker being set.
 
 2008-02-11 Benny Malengier <benny.malengier@gramps-project.org>

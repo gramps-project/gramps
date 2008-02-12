@@ -143,7 +143,7 @@ class Extract:
         # TODO: return all forenames, not just primary ones...
         firstnames = person.get_primary_name().get_first_name().strip()
         if firstnames:
-            return [name.capitalize() for name in firstnames.split()]
+            return firstnames.split()
         else:
             return [_("(Preferred) forename missing")]
         
@@ -152,7 +152,7 @@ class Extract:
         # TODO: return all surnames, not just primary ones...
         surnames = person.get_primary_name().get_surname().strip()
         if surnames:
-            return [name.capitalize() for name in surnames.split()]
+            return surnames.split()
         else:
             return [_("(Preferred) surname missing")]
         
@@ -410,8 +410,9 @@ class Extract:
         data = []
         ext = self.extractors
         # which methods to use
-        for name in menu.get_all_option_names():
-            if name in self.extractors:
+        for name in self.extractors.keys():
+            option = menu.get_option_by_name(name)
+            if option.get_value() == True:
                 # localized data title, value dict, type and data method
                 data.append((ext[name][1], {}, ext[name][2], ext[name][3]))
         
@@ -470,11 +471,11 @@ class StatisticsChart(Report):
         To see what the options are, check the options help in the options class.
         """
         Report.__init__(self, database, person, options_class)
+        menu = options_class.menu
     
-        self.filter_option =  options_class.menu.get_option_by_name('filter')
+        self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
 
-        menu = options_class.menu
         self.bar_items = menu.get_option_by_name('bar_items').get_value()
         year_from = menu.get_option_by_name('year_from').get_value()
         year_to = menu.get_option_by_name('year_to').get_value()
@@ -737,7 +738,7 @@ class StatisticsChartOptions(MenuReportOptions):
                 category_name = _("Charts 2")
             
             opt = BooleanOption(_Extract.extractors[key][1], False)
-            opt.set_help(_("Include charts with indicated date"))
+            opt.set_help(_("Include charts with indicated data"))
             menu.add_option(category_name,key, opt)
             idx += 1
         
