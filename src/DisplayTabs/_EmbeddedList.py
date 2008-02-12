@@ -96,6 +96,16 @@ class EmbeddedList(ButtonTab):
                 self.right_click(obj, event)
 
     def get_popup_menu_items(self):
+        """
+        Create the list needed to populate the right popup action
+        An entry is
+            ( needs_write_access, image, title, function)
+        If image == False, then only text label with title is shown
+        If image == True, and image is a tuple (stock_id, text), the image
+            of the stock id (eg 'gramps-family') is shown, and the label text
+            If image is not a tuple, then it should be a stock_id, and the 
+            image is shown, with label the default stock_id label.
+        """
         if self.share_btn:
             itemlist = [
                 (True, True, gtk.STOCK_ADD, self.add_button_clicked),
@@ -112,11 +122,21 @@ class EmbeddedList(ButtonTab):
         return itemlist
 
     def right_click(self, obj, event):
-
+        """
+        On right click show a popup menu.
+        This is populated with get_popup_menu_items
+        """
         menu = gtk.Menu()
         for (needs_write_access, image, title, func) in self.get_popup_menu_items():
             if image:
-                item = gtk.ImageMenuItem(stock_id=title)
+                if isinstance(title, tuple):
+                    img_stock, txt = title
+                    item = gtk.ImageMenuItem(txt)
+                    img = gtk.Image()
+                    img.set_from_stock(img_stock, gtk.ICON_SIZE_MENU)
+                    item.set_image(img)
+                else:
+                    item = gtk.ImageMenuItem(stock_id=title)
             else:
                 item = gtk.MenuItem(title)
             item.connect('activate', func)

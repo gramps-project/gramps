@@ -1,3 +1,9 @@
+2008-02-12 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/Editors/_EditFamily.py: popup: edit child at top, add images.
+	* src/DisplayTabs/_EmbeddedList.py: allow popup with image/custom text
+	* src/DisplayModels/_BaseModel.py: add comment to function
+	* src/DisplayModels/_NoteModel.py: test, UTF-8 for preview
+
 2008-02-11 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/StatisticsChart.py:
 	0001754: Capitalization in Statistics chart

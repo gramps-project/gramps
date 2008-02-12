@@ -164,6 +164,7 @@ class BaseModel(gtk.GenericTreeModel):
                 self.rebuild_data = self._rebuild_filter
             else:
                 if search[1]:
+                    # we have search[1] = (index, text_unicode, inversion)
                     col = search[1][0]
                     text = search[1][1]
                     inv = search[1][2]
