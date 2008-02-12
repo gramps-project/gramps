@@ -484,6 +484,9 @@ class EditNote(EditPrimary):
     def save(self, *obj):
         """Save the data."""
         self.ok_button.set_sensitive(False)
+        
+        self.update_note()
+        
         if self.object_is_empty():
             ErrorDialog(_("Cannot save note"), 
                         _("No data exists for this note. Please "
@@ -504,8 +507,6 @@ class EditNote(EditPrimary):
             return
         
         trans = self.db.transaction_begin()
-
-        self.update_note()
 
         if not self.obj.get_handle():
             self.db.add_note(self.obj, trans)
