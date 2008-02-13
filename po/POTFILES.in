@@ -672,7 +672,6 @@ src/plugins/book.glade
 src/plugins/cdexport.glade
 src/plugins/changenames.glade
 src/plugins/changetype.glade
-src/plugins/checkpoint.glade
 src/plugins/csvexport.glade
 src/plugins/desbrowse.glade
 src/plugins/eval.glade
