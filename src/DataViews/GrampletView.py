@@ -343,7 +343,6 @@ class Gramplet(object):
         return False # handle event further, if necessary
 
     def on_button_press(self, view, event):
-        from Editors import EditPerson
         buffer_location = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, 
                                                        int(event.x), 
                                                        int(event.y))
@@ -356,13 +355,14 @@ class Gramplet(object):
                         if event.button == 1: # left mouse
                             if event.type == gtk.gdk._2BUTTON_PRESS: # double
                                 try:
+                                    from Editors import EditPerson
                                     EditPerson(self.gui.dbstate, 
                                                self.gui.uistate, 
                                                [], person)
                                     return True # handled event
                                 except Errors.WindowActiveError:
                                     pass
-                            else: # single click
+                            elif event.type == gtk.gdk.BUTTON_PRESS: # single click
                                 self.gui.dbstate.change_active_person(person)
                                 return True # handled event
                 elif link_type == 'Surname':

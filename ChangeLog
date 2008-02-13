@@ -1,4 +1,9 @@
 2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/GrampletView.py: minor change
+	* src/plugins/DefaultGramplets.py: new RelativesGramplet
+	  Response to issue #1758
+
+2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/plugins/WritePkg.py: add callback=None, issue #1398
 
 2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
