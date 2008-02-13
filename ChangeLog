@@ -1,4 +1,7 @@
 2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/plugins/WritePkg.py: add callback=None, issue #1398
+
+2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
 	* po/POTFILES.in: remove checkpoint.glade
 
 2008-02-13 Peter Landgren <peter.talken@telia.com>

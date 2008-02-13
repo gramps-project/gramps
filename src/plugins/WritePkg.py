@@ -94,7 +94,7 @@ def writeData(database, filename, person, option_box, callback=None):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self, database, filename, callback):
+    def __init__(self, database, filename, callback=None):
         self.db = database
         self.callback = callback
         self.filename = filename
