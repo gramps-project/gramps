@@ -1,3 +1,6 @@
+2008-02-13 Peter Landgren <peter.talken@telia.com>
+    *src/BaseDoc.py: Removal on debug print
+
 2008-02-12 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_ButtonTab.py: some accel keys don't work on keyboard
 	with numlock as MOD_MASK2, enable the keys for those keyboards
