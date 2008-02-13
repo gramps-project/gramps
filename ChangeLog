@@ -1,4 +1,8 @@
 2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/GrampletView.py: Gramplet key for detached min size
+	* src/plugins/DefaultGramplets.py: RelativesGramplet detached size
+
+2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/GrampletView.py: minor change
 	* src/plugins/DefaultGramplets.py: new RelativesGramplet
 	  Response to issue #1758

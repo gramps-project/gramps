@@ -881,4 +881,6 @@ register(type="gramplet",
          height=200,
          content = RelativesGramplet,
          title=_("Active Person's Relatives"),
+         detached_width = 250,
+         detached_height = 300,
          )

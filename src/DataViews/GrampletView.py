@@ -129,7 +129,8 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
-        self.window.set_size_request(400,300)
+        self.window.set_size_request(gramplet.detached_width,
+                                     gramplet.detached_height)
         self.window.connect('response', self.close)
         self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.show()
@@ -395,6 +396,8 @@ class GuiGramplet:
         self.expand = logical_true(kwargs.get("expand", False))
         self.height = int(kwargs.get("height", 200))
         self.column = int(kwargs.get("column", -1))
+        self.detached_height = int(kwargs.get("detached_height", 300))
+        self.detached_width = int(kwargs.get("detached_width", 400))
         self.row = int(kwargs.get("row", -1))
         self.state = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
