@@ -1059,7 +1059,6 @@ class StyleSheet:
                       len(self.draw_styles)  + \
                       len(self.table_styles) + \
                       len(self.cell_styles)
-        print style_count
         if style_count > 0:
             return False
         else:
