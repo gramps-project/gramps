@@ -1,3 +1,6 @@
+2008-02-14  Peter Landgren  <peter.talken@telia.com>
+    * src/plugins/DefaultGramplets.py: fixed two strings to be translatabel
+
 2008-02-14 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayModels/_NoteModel.py: use unicode object internally, #1739
 
