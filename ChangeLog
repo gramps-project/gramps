@@ -1,3 +1,6 @@
+2008-02-14 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayModels/_NoteModel.py: use unicode object internally, #1739
+
 2008-02-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py: right-click on name link edits
 	* src/plugins/DefaultGramplets.py: change tooltip of relation gramplet

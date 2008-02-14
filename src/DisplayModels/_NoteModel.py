@@ -100,7 +100,9 @@ class NoteModel(BaseModel):
         return unicode(str(temp))
     
     def column_preview(self,data):
-        note = " ".join(data[2].encode('utf-8').split())
+        #data is the encoding in the database, make it a unicode object
+        #for universal work
+        note = " ".join(unicode(data[2]).split())
         note = re.sub(r'(<.*?>)', '', note)
         note = note.replace('&amp;', '&')
         note = note.replace('&lt;', '<')
