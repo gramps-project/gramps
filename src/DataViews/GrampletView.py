@@ -366,6 +366,16 @@ class Gramplet(object):
                             elif event.type == gtk.gdk.BUTTON_PRESS: # single click
                                 self.gui.dbstate.change_active_person(person)
                                 return True # handled event
+                        elif event.button == 3: # right mouse
+                            #FIXME: add a popup menu with options
+                            try:
+                                from Editors import EditPerson
+                                EditPerson(self.gui.dbstate, 
+                                           self.gui.uistate, 
+                                           [], person)
+                                return True # handled event
+                            except Errors.WindowActiveError:
+                                pass
                 elif link_type == 'Surname':
                     if event.button == 1: # left mouse
                         if event.type == gtk.gdk._2BUTTON_PRESS: # double

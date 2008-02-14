@@ -352,7 +352,8 @@ class RelativesGramplet(Gramplet):
     """
     def init(self):
         self.set_text(_("No Family Tree loaded."))
-        self.tooltip = _("Click name to make person active")
+        self.tooltip = _("Click name to make person active\n" +
+                         "Right-click name to edit person")
 
     def db_changed(self):
         """

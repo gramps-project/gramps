@@ -1,3 +1,8 @@
+2008-02-13  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/GrampletView.py: right-click on name link edits
+	* src/plugins/DefaultGramplets.py: change tooltip of relation gramplet
+	to indicate the right-click edit option
+
 2008-02-13 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/GrampletView.py: Gramplet key for detached min size
 	* src/plugins/DefaultGramplets.py: RelativesGramplet detached size
