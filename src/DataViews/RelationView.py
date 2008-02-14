@@ -786,28 +786,48 @@ class RelationshipView(PageView.PersonNavView):
 
                 child_list = [ref.ref for ref in family.get_child_ref_list()]
 
-                if child_list:
-                    eventbox = gtk.EventBox()
-                    if self.use_shade:
-                        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
-                    vbox = gtk.VBox()
-                    label_cell = self.build_label_cell(_('Siblings'))
-                    label_cell.set_alignment(0, 0)
-                    self.attach.attach(
-                        label_cell, _CLABEL_START, _CLABEL_STOP, self.row, 
-                        self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                        yoptions=gtk.FILL)
+                label_cell = self.build_label_cell(_('Siblings'))
+                label_cell.set_alignment(0, 0)
+                self.attach.attach(
+                    label_cell, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
+                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                    yoptions=gtk.FILL)
 
-                    i = 1
-                    for child_handle in child_list:
-                        child_should_be_linked = (child_handle != active)
-                        self.write_child(vbox, child_handle, i, child_should_be_linked)
-                        i += 1
+                hbox = gtk.HBox()
+                addchild = GrampsWidgets.IconButton(
+                                self.add_child_to_fam, 
+                                family.handle, 
+                                gtk.STOCK_ADD)
+                self.tooltips.set_tip(addchild, 
+                                      _('Add new child to family'))
+                selchild = GrampsWidgets.IconButton(
+                                self.sel_child_to_fam, 
+                                family.handle, 
+                                gtk.STOCK_INDEX)
+                self.tooltips.set_tip(selchild, 
+                                      _('Add existing child to family'))
+                hbox.pack_start(addchild, False)
+                hbox.pack_start(selchild, False)
 
-                    eventbox.add(vbox)
-                    self.attach.attach(
-                        eventbox, _CDATA_START, _CDATA_STOP, self.row,
-                        self.row+1)
+                self.attach.attach(
+                    hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
+                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                    yoptions=gtk.FILL)
+
+                self.row += 1
+                vbox = gtk.VBox()
+                i = 1
+                for child_handle in child_list:
+                    child_should_be_linked = (child_handle != active)
+                    self.write_child(vbox, child_handle, i, child_should_be_linked)
+                    i += 1
+                eventbox = gtk.EventBox()
+                if self.use_shade:
+                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                eventbox.add(vbox)
+                self.attach.attach(
+                    eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
+                    self.row+1)
 
             self.row += 1
 
@@ -1152,27 +1172,48 @@ class RelationshipView(PageView.PersonNavView):
                     self.write_relationship(box, family)
 
             child_list = family.get_child_ref_list()
-            if child_list:
-                eventbox = gtk.EventBox()
-                if self.use_shade:
-                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
-                vbox = gtk.VBox()
-                label_cell = self.build_label_cell(_('Children'))
-                label_cell.set_alignment(0, 0)
-                self.attach.attach(
-                    label_cell, _CLABEL_START, _CLABEL_STOP, self.row, 
-                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                    yoptions=gtk.FILL)
 
-                i = 1
-                for child_ref in child_list:
-                    self.write_child(vbox, child_ref.ref, i, True)
-                    i += 1
+            label_cell = self.build_label_cell(_('Children'))
+            label_cell.set_alignment(0, 0)
+            self.attach.attach(
+                label_cell, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
+                self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                yoptions=gtk.FILL)
 
-                eventbox.add(vbox)
-                self.attach.attach(
-                    eventbox, _CDATA_START, _CDATA_STOP, self.row,
-                    self.row+1)
+            hbox = gtk.HBox()
+            addchild = GrampsWidgets.IconButton(
+                            self.add_child_to_fam, 
+                            family.handle, 
+                            gtk.STOCK_ADD)
+            self.tooltips.set_tip(addchild, 
+                                  _('Add new child to family'))
+            selchild = GrampsWidgets.IconButton(
+                            self.sel_child_to_fam, 
+                            family.handle, 
+                            gtk.STOCK_INDEX)
+            self.tooltips.set_tip(selchild, 
+                                  _('Add existing child to family'))
+            hbox.pack_start(addchild, False)
+            hbox.pack_start(selchild, False)
+            self.attach.attach(
+                hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
+                self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                yoptions=gtk.FILL)
+
+            vbox = gtk.VBox()
+            i = 1
+            for child_ref in child_list:
+                self.write_child(vbox, child_ref.ref, i, True)
+                i += 1
+
+            self.row += 1
+            eventbox = gtk.EventBox()
+            if self.use_shade:
+                eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+            eventbox.add(vbox)
+            self.attach.attach(
+                eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
+                self.row+1)
             self.row += 1
 
     def edit_button_press(self, obj, event, handle):
@@ -1237,6 +1278,53 @@ class RelationshipView(PageView.PersonNavView):
     def edit_active(self, obj):
         phandle = self.dbstate.get_active_person().handle
         self.edit_person(obj, phandle)
+
+    def add_child_to_fam(self, obj, event, handle):
+        callback = lambda x: self.callback_add_child(x, handle)
+        from Editors import EditPerson
+        person = gen.lib.Person()
+        family = self.dbstate.db.get_family_from_handle(handle)
+        father = self.dbstate.db.get_person_from_handle(
+                                    family.get_father_handle())
+        if father:
+            name = father.get_primary_name().get_surname()
+            person.get_primary_name().set_surname(name)
+        try:
+            EditPerson(self.dbstate, self.uistate, [], person, 
+                       callback=callback)
+        except Errors.WindowActiveError:
+            pass
+
+    def callback_add_child(self, person, family_handle):
+        ref = gen.lib.ChildRef()
+        ref.ref = person.get_handle()
+        family = self.dbstate.db.get_family_from_handle(family_handle)
+        family.add_child_ref(ref)
+        
+        trans = self.dbstate.db.transaction_begin()
+        #add parentref to child
+        person.add_parent_family_handle(family_handle)
+        #default relationship is used
+        self.dbstate.db.commit_person(person, trans)
+        #add child to family
+        self.dbstate.db.commit_family(family, trans)
+        self.dbstate.db.transaction_commit(trans, _("Add Child to Family"))
+
+    def sel_child_to_fam(self, obj, event, handle):
+        from Selectors import selector_factory
+        SelectPerson = selector_factory('Person')
+        family = self.dbstate.db.get_family_from_handle(handle)
+        # it only makes sense to skip those who are already in the family
+        skip_list = [family.get_father_handle(), \
+                     family.get_mother_handle()] + \
+                    [x.ref for x in family.get_child_ref_list() ]
+
+        sel = SelectPerson(self.dbstate, self.uistate, [],
+                           _("Select Child"), skip=skip_list)
+        person = sel.run()
+        
+        if person:
+            self.callback_add_child(person, handle)
 
     def select_family(self, obj, event, handle):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \

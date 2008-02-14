@@ -1,3 +1,8 @@
+2008-02-14  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/RelationView.py (RelationshipView.write_parents): 
+	added Sibling/Children add buttons; rearranged display;
+	lost a bit of vertical space
+
 2008-02-14  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/ObjectSelector/* : #1744: src/ObjectSelector is not used anmyore
     * src/TreeViews/* : #1744: src/TreeViews is not used anmyore
