@@ -352,8 +352,8 @@ class RelativesGramplet(Gramplet):
     """
     def init(self):
         self.set_text(_("No Family Tree loaded."))
-        self.tooltip = _("Click name to make person active\n" +
-                         "Right-click name to edit person")
+        self.tooltip = _("Click name to make person active\n") + \
+                         _("Right-click name to edit person")
 
     def db_changed(self):
         """
@@ -412,7 +412,7 @@ class RelativesGramplet(Gramplet):
             yield True
         #obtain parent families
         self.append_text("\n")
-        self.append_text("Parents:")
+        self.append_text(_("Parents:"))
         self.append_text("\n")
         famc = 0
         for family_handle in active_person.get_parent_family_handle_list():
