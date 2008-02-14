@@ -5,8 +5,7 @@
 # License: GPL
 # Id: $Id$
 
-"""A tooltip class for TreeViews
-"""
+"""A tooltip class."""
 
 #
 # Support for text markup added: March 05 - rjt-gramps <at> thegrindstone.me.uk
@@ -17,12 +16,12 @@ import gtk
 import gobject
 
 class TreeTips(gtk.Widget):
-    ''' A tooltips widget specialized to work with gtk.TreeView's.
+    """ A tooltips widget specialized to work with gtk.TreeView's.
 
     TreeTips associates a column in a TreeStore with tooltips that will be
     displayed when the mouse is over the row the column is for.  Each row can
     have one treetip.
-    ''' 
+    """ 
     __gproperties__ = {
         'tip_window' : (gobject.TYPE_PYOBJECT,
                 'The window that the tooltip is displayed in.',
@@ -64,7 +63,7 @@ class TreeTips(gtk.Widget):
     }
 
     def __init__(self, treeview=None, column=None, markup_enabled=False):
-        '''Create a new TreeTips Group.
+        """Create a new TreeTips Group.
 
         :Parameters:
             treeview : gtk.TreeView === Treeview for which the tips display,
@@ -73,7 +72,7 @@ class TreeTips(gtk.Widget):
                     text, default is None.
             markup_enabled : bool === If True the tooltips are in Pango Markup,
                     if False the tooltips are in plain text.
-        '''
+        """
         if treeview:
             try:
                 treeview.connect('leave-notify-event', self.__tree_leave_notify)
@@ -106,15 +105,15 @@ class TreeTips(gtk.Widget):
         self.screenHeight = gtk.gdk.screen_height()
 
     def enable(self):
-        '''Enable showing of tooltips'''
+        """Enable showing of tooltips"""
         self.enabled = True
 
     def disable(self):
-        '''Disable showing tooltips'''
+        """Disable showing tooltips"""
         self.enabled = False
        
     def do_get_property(self, prop):
-        '''Return the gproperty's value.'''
+        """Return the gproperty's value."""
         if prop.name == 'delay':
             return self.delay
         elif prop.name == 'enabled':
@@ -135,9 +134,9 @@ class TreeTips(gtk.Widget):
             raise AttributeError, 'unknown property %s' % prop.name
 
     def do_set_property(self, prop, value):
-        '''Set the property of writable properties.
+        """Set the property of writable properties.
 
-        '''
+        """
         if prop.name == 'delay':
             self.delay = value
         elif prop.name == 'view':
@@ -162,14 +161,14 @@ class TreeTips(gtk.Widget):
                 'tooltip', 0, 0, -1, -1)
         
     def __tree_leave_notify(self, tree, event):
-        '''Hide tooltips when we leave the tree.'''
+        """Hide tooltips when we leave the tree."""
 
         self.timeoutID = 0
         self.path = None
         self.tip_window.hide()
 
     def __tree_motion_notify(self, tree, event):
-        '''Decide which tooltip to display when we move within the tree.'''
+        """Decide which tooltip to display when we move within the tree."""
 
         if not self.enabled:
             return
@@ -181,7 +180,7 @@ class TreeTips(gtk.Widget):
                 int(event.x), int(event.y), self.timeoutID)
 
     def __treetip_show(self, tree, xEvent, yEvent, ID):
-        '''Show the treetip window.'''
+        """Show the treetip window."""
         if self.timeoutID != ID:
             return False
         pathReturn = tree.get_path_at_pos(xEvent, yEvent)
@@ -223,7 +222,7 @@ class TreeTips(gtk.Widget):
         return False
 
     def __compute_tooltip_position(self, cellInfo, popupWidth, popupHeight):
-        '''Figures out where the tooltip should be placed on the page::
+        """Figures out where the tooltip should be placed on the page::
 
           [p] = pointer
           x =      [p]
@@ -237,7 +236,7 @@ class TreeTips(gtk.Widget):
               +------------+
               |____________|
                    [p]
-        '''
+        """
 
         xOrigin, yOrigin = self.view.get_bin_window().get_origin()
         x = xOrigin + cellInfo.x + cellInfo.width/2 - popupWidth/2

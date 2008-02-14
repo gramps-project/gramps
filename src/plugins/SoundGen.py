@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Tools/Utilities/Generate SoundEx Codes..."""
+"""Tools/Utilities/Generate SoundEx Codes"""
 
 #------------------------------------------------------------------------
 #
@@ -36,7 +36,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gtk
-import gtk.glade
+from gtk import glade
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -63,7 +63,7 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "soundex.glade"
 
-        self.glade = gtk.glade.XML(glade_file,"soundEx","gramps")
+        self.glade = glade.XML(glade_file,"soundEx","gramps")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
@@ -141,7 +141,7 @@ register_tool(
     tool_class = SoundGen,
     options_class = SoundGenOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Generate SoundEx Codes..."),
+    translated_name = _("Generate SoundEx Codes"),
     status=(_("Stable")),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
