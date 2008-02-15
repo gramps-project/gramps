@@ -234,7 +234,6 @@ class ChildEmbedList(EmbeddedList):
 
     def share_button_clicked(self, obj):
         # it only makes sense to skip those who are already in the family
-        
         skip_list = [self.family.get_father_handle(), \
                      self.family.get_mother_handle()] + \
                     [x.ref for x in self.family.get_child_ref_list() ]

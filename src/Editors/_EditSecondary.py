@@ -113,8 +113,9 @@ class EditSecondary(ManagedWindow.ManagedWindow):
     def define_cancel_button(self,button):
         button.connect('clicked',self.close)
 
-    def define_help_button(self,button,tag):
-        button.connect('clicked', lambda x: GrampsDisplay.help(tag))
+    def define_help_button(self, button, tag, webpage='', section=''):
+        button.connect('clicked', lambda x: GrampsDisplay.help(tag, webpage,
+                                                               section))
 
     def close(self,*obj):
         for key in self.signal_keys:

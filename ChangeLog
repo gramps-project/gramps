@@ -1,3 +1,11 @@
+2008-02-15 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DateEdit.py: example use of help
+	* src/GrampsDisplay.py: internationalization of help system
+	* src/Editors/_EditPrimary.py: define_help_button link to webpage
+	* src/Editors/_EditSecondary.py: define_help_button link to webpage
+	* src/Editors/_EditReference.py: define_help_button link to webpage
+	* src/Editors/_EditFamily.py: remove empty line
+
 2008-02-14  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/RelationView.py (RelationshipView.write_parents): 
 	added Sibling/Children add buttons; rearranged display;

@@ -38,7 +38,7 @@ unambiguously built using UI controls such as menus and spin buttons.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -94,6 +94,8 @@ CAL_TO_MONTHS_NAMES = {
     Date.CAL_PERSIAN    : DateHandler.displayer.persian,
     Date.CAL_ISLAMIC    : DateHandler.displayer.islamic }
 
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed'
+WIKI_HELP_SEC = _('manual|Editing_Dates')
 #-------------------------------------------------------------------------
 #
 # DateEdit
@@ -259,7 +261,8 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         while True:
             response = self.window.run()
             if response == gtk.RESPONSE_HELP:
-                GrampsDisplay.help('adv-dates')
+                GrampsDisplay.help('adv-dates', webpage=WIKI_HELP_PAGE, 
+                                   section=WIKI_HELP_SEC)
             elif response == gtk.RESPONSE_DELETE_EVENT:
                 break
             else:
