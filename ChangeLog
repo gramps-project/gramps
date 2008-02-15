@@ -1,3 +1,9 @@
+2008-02-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/ViewManager.py (ViewManager.__build_main_window):pass self to DS
+	* src/DisplayState.py (DisplayState): added vm param
+	DS now has a reference to the VM which allows uistate
+	to have access to most of a running GRAMPS application
+
 2008-02-15 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DateEdit.py: example use of help
 	* src/GrampsDisplay.py: internationalization of help system

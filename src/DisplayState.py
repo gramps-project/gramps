@@ -302,9 +302,10 @@ class DisplayState(gen.utils.GrampsDBCallback):
         }
 
     def __init__(self, window, status, progress, warnbtn, uimanager, 
-                 progress_monitor):
+                 progress_monitor, viewmanager=None):
 
         self.busy = False
+        self.viewmanager = viewmanager
         self.uimanager = uimanager
         self.progress_monitor = progress_monitor
         self.window = window

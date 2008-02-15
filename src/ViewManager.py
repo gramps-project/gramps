@@ -282,7 +282,7 @@ class ViewManager:
 
         self.uistate = DisplayState.DisplayState(
             self.window, self.statusbar, self.progress, self.warnbtn, 
-            self.uimanager, self.progress_monitor)
+            self.uimanager, self.progress_monitor, self)
 
         self.state.connect('database-changed', self.uistate.db_changed)
 
