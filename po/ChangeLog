@@ -1,11 +1,15 @@
+2008-02-15 Espen Berg <espenbe@gmail.com>
+	* nb.po: some updates on Norwegian translation (still a lot to do)
+	* no.po: some updates on Norwegian translation (still a lot to do)
+
 2008-02-15 Jerome Rapinat <romjerome@yahoo.fr>
-        * fr.po: Translation update
+	* fr.po: Translation update
 
 2008-02-14 Frederik De Richter <frederik.de.richter@pandora.be>
 	* gramps.pot: update 
 
 2008-02-08 Arturas Sleinius  <asleinius@users.sourceforge.net>
-        * lt.po: updated Lithuanian translation
+	* lt.po: updated Lithuanian translation
 
 2008-02-05 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* POTFILES.in: remove checkpoint reference
