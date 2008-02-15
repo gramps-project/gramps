@@ -1217,7 +1217,7 @@ class RelationshipView(PageView.PersonNavView):
             self.row += 1
 
     def edit_button_press(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+        if event.type == gtk.gdk.BUTTON_PRESS \
             or event.keyval in (_RETURN, _KP_ENTER):
             self.edit_person(obj, handle)
         
@@ -1230,7 +1230,7 @@ class RelationshipView(PageView.PersonNavView):
             pass
 
     def edit_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+        if event.type == gtk.gdk.BUTTON_PRESS \
             or event.keyval in (_RETURN, _KP_ENTER):
             from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
@@ -1240,7 +1240,8 @@ class RelationshipView(PageView.PersonNavView):
                 pass
 
     def add_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if event.type == gtk.gdk.BUTTON_PRESS \
+            or event.keyval in (_RETURN, _KP_ENTER):
             from Editors import EditFamily
             family = gen.lib.Family()
             person = self.dbstate.active
@@ -1280,20 +1281,22 @@ class RelationshipView(PageView.PersonNavView):
         self.edit_person(obj, phandle)
 
     def add_child_to_fam(self, obj, event, handle):
-        callback = lambda x: self.callback_add_child(x, handle)
-        from Editors import EditPerson
-        person = gen.lib.Person()
-        family = self.dbstate.db.get_family_from_handle(handle)
-        father = self.dbstate.db.get_person_from_handle(
-                                    family.get_father_handle())
-        if father:
-            name = father.get_primary_name().get_surname()
-            person.get_primary_name().set_surname(name)
-        try:
-            EditPerson(self.dbstate, self.uistate, [], person, 
-                       callback=callback)
-        except Errors.WindowActiveError:
-            pass
+        if event.type == gtk.gdk.BUTTON_PRESS \
+            or event.keyval in (_RETURN, _KP_ENTER):
+            callback = lambda x: self.callback_add_child(x, handle)
+            from Editors import EditPerson
+            person = gen.lib.Person()
+            family = self.dbstate.db.get_family_from_handle(handle)
+            father = self.dbstate.db.get_person_from_handle(
+                                        family.get_father_handle())
+            if father:
+                name = father.get_primary_name().get_surname()
+                person.get_primary_name().set_surname(name)
+            try:
+                EditPerson(self.dbstate, self.uistate, [], person, 
+                           callback=callback)
+            except Errors.WindowActiveError:
+                pass
 
     def callback_add_child(self, person, family_handle):
         ref = gen.lib.ChildRef()
@@ -1312,22 +1315,24 @@ class RelationshipView(PageView.PersonNavView):
 
     def sel_child_to_fam(self, obj, event, handle):
         from Selectors import selector_factory
-        SelectPerson = selector_factory('Person')
-        family = self.dbstate.db.get_family_from_handle(handle)
-        # it only makes sense to skip those who are already in the family
-        skip_list = [family.get_father_handle(), \
-                     family.get_mother_handle()] + \
-                    [x.ref for x in family.get_child_ref_list() ]
+        if event.type == gtk.gdk.BUTTON_PRESS \
+            or event.keyval in (_RETURN, _KP_ENTER):
+            SelectPerson = selector_factory('Person')
+            family = self.dbstate.db.get_family_from_handle(handle)
+            # it only makes sense to skip those who are already in the family
+            skip_list = [family.get_father_handle(), \
+                         family.get_mother_handle()] + \
+                        [x.ref for x in family.get_child_ref_list() ]
 
-        sel = SelectPerson(self.dbstate, self.uistate, [],
-                           _("Select Child"), skip=skip_list)
-        person = sel.run()
-        
-        if person:
-            self.callback_add_child(person, handle)
+            sel = SelectPerson(self.dbstate, self.uistate, [],
+                               _("Select Child"), skip=skip_list)
+            person = sel.run()
+            
+            if person:
+                self.callback_add_child(person, handle)
 
     def select_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+        if event.type == gtk.gdk.BUTTON_PRESS \
             or event.keyval in (_RETURN, _KP_ENTER):
             from Selectors import selector_factory
             SelectFamily = selector_factory('Family')

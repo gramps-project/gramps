@@ -1,3 +1,8 @@
+2008-02-15 Gary Burton <gary.burton@zen.co.uk>
+	* src/DataViews/RelationView.py:
+	* src/Editors/_EditFamily.py: prevent right mouse button causing crash.
+	Bug #1729
+
 2008-02-15 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_SourceEmbedList.py:
 	* src/DisplayTabs/_PersonRefEmbedList.py:

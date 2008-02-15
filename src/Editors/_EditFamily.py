@@ -780,7 +780,7 @@ class EditFamily(EditPrimary):
                               'select the existing family'))
 
     def edit_person(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
+        if event.type == gtk.gdk.BUTTON_PRESS \
             or event.keyval in (_RETURN, _KP_ENTER):
             from _EditPerson import EditPerson
             try:
