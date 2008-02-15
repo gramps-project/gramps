@@ -150,11 +150,16 @@ class GrampsTab(gtk.HBox):
         """
         if event.type == gtk.gdk.KEY_PRESS:
             if event.keyval in (_LEFT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK,):
+                    event.state in (gtk.gdk.MOD1_MASK, 
+                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
                 self.prev_page()
             elif event.keyval in (_RIGHT,) and \
-                    event.state in (gtk.gdk.MOD1_MASK,):
+                    event.state in (gtk.gdk.MOD1_MASK, 
+                                    gtk.gdk.MOD1_MASK | gtk.gdk.MOD2_MASK):
                 self.next_page()
+            else:
+                return
+            return True
 
     def add_db_signal_callback(self, add_db_signal):
         """
@@ -186,6 +191,7 @@ class GrampsTab(gtk.HBox):
         else:
             self.tab_image.hide()
             self.label.set_text(self.tab_name)
+        self.label.set_use_underline(True)
 
     def build_interface(self):
         """

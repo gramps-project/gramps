@@ -43,7 +43,7 @@ import const
 import gen.lib
 
 from DisplayTabs import \
-     NoteTab,TextTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
+     NoteTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
 from GrampsWidgets import *
 from _EditReference import RefTab, EditReference
 

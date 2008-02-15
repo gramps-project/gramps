@@ -31,7 +31,6 @@ pkgdata_PYTHON = \
 	_NoteBackRefList.py \
 	_NoteTab.py \
 	_NoteModel.py \
-	_TextTab.py \
 	_PersonBackRefList.py \
 	_PersonEventEmbedList.py \
 	_PersonRefEmbedList.py \

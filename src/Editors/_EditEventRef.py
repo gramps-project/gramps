@@ -91,7 +91,7 @@ class EditEventRef(EditReference):
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
-                              _('General'), tblref)
+                              _('_General'), tblref)
 
     def _init_event(self):
         self.commit_event = self.db.commit_personal_event

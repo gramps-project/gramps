@@ -66,7 +66,7 @@ class RepoEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Repositories'), RepoRefModel, True)
+                              _('_Repositories'), RepoRefModel, True)
 
     def get_icon_name(self):
         return 'gramps-repository'

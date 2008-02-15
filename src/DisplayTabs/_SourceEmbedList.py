@@ -66,7 +66,7 @@ class SourceEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Sources'), SourceRefModel, True)
+                              _('_Sources'), SourceRefModel, True)
 
     def get_icon_name(self):
         return 'gramps-source'

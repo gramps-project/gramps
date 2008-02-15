@@ -67,7 +67,7 @@ class AddrEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Addresses'), AddressModel)
+                              _('_Addresses'), AddressModel)
                             
     def get_icon_name(self):
         """

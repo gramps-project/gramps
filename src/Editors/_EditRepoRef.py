@@ -85,7 +85,7 @@ class EditRepoRef(EditReference):
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
-                              _('General'), tblref)
+                              _('_General'), tblref)
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)

@@ -120,7 +120,7 @@ class EditName(EditSecondary):
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.gennam = GeneralNameTab(self.dbstate, self.uistate, self.track, 
-                              _('General'), tblgnam)
+                              _('_General'), tblgnam)
 
         self.original_group_as = self.obj.get_group_as()
         self.original_group_set = not (self.original_group_as == '')

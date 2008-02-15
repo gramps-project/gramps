@@ -58,7 +58,7 @@ class LdsEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('LDS'), LdsModel)
+                              _('_LDS'), LdsModel)
 
     def get_editor(self):
         from Editors import EditLdsOrd

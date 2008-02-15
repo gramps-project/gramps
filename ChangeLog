@@ -1,3 +1,40 @@
+2008-02-15 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DisplayTabs/_SourceEmbedList.py:
+	* src/DisplayTabs/_PersonRefEmbedList.py:
+	* src/DisplayTabs/_RepoEmbedList.py:
+	* src/DisplayTabs/__init__.py:
+	* src/DisplayTabs/_AddrEmbedList.py:
+	* src/DisplayTabs/_WebEmbedList.py:
+	* src/DisplayTabs/_NameEmbedList.py:
+	* src/DisplayTabs/_EventEmbedList.py:
+	* src/DisplayTabs/_EmbeddedList.py:
+	* src/DisplayTabs/_GalleryTab.py:
+	* src/DisplayTabs/_BackRefList.py:
+	* src/DisplayTabs/_NoteTab.py:
+	* src/DisplayTabs/_LocationEmbedList.py:
+	* src/DisplayTabs/_ButtonTab.py:
+	* src/DisplayTabs/_DataEmbedList.py:
+	* src/DisplayTabs/_AttrEmbedList.py:
+	* src/DisplayTabs/_LdsEmbedList.py:
+	* src/DisplayTabs/_GrampsTab.py:
+	* src/Editors/_EditPrimary.py:
+	* src/Editors/_EditPlace.py:
+	* src/Editors/_EditSecondary.py:
+	* src/Editors/_EditSourceRef.py:
+	* src/Editors/_EditReference.py:
+	* src/Editors/_EditRepoRef.py:
+	* src/Editors/_EditNote.py:
+	* src/Editors/_EditMediaRef.py:
+	* src/Editors/_EditEventRef.py:
+	* src/Editors/_EditName.py:
+	* src/Editors/_EditFamily.py:
+	Add mnemonics for all tabs, eg ALT+S and INSERT to move to sources and
+	insert a new source.
+	* src/DisplayTabs/_TextTab.py:
+	* src/DisplayTabs/Makefile.am:
+	* po/POTFILES.in:
+	Remove unused TextTab
+
 2008-02-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/ViewManager.py (ViewManager.__build_main_window):pass self to DS
 	* src/DisplayState.py (DisplayState): added vm param

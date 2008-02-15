@@ -78,7 +78,7 @@ class NoteTab(EmbeddedList):
         self.callertitle = callertitle
         self.notetype = notetype
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _("Notes"), NoteModel, share=True, move=True)
+                              _("_Notes"), NoteModel, share=True, move=True)
 
     def connect_db_signals(self):
         #connect external remove/change of object to rebuild of grampstab

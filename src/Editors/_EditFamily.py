@@ -111,7 +111,7 @@ class ChildEmbedList(EmbeddedList):
         """
         self.family = family
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Children'), ChildModel, True, True)
+                              _('_Children'), ChildModel, True, True)
 
     def get_popup_menu_items(self):
         return [

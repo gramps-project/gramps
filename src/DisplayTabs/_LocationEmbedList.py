@@ -59,7 +59,7 @@ class LocationEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Alternate Locations'), LocationModel)
+                              _('Alternate _Locations'), LocationModel)
 
     def get_data(self):
         return self.data

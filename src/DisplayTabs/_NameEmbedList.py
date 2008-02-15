@@ -66,7 +66,7 @@ class NameEmbedList(EmbeddedList):
         self.callback = callback
         
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Names'), NameModel)
+                              _('_Names'), NameModel)
 
     def get_data(self):
         return self.data

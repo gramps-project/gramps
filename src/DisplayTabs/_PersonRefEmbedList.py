@@ -57,7 +57,7 @@ class PersonRefEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Associations'), PersonRefModel)
+                              _('Ass_ociations'), PersonRefModel)
 
     def get_ref_editor(self):
         from Editors import EditPersonRef

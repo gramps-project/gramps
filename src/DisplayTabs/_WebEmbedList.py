@@ -58,7 +58,7 @@ class WebEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Internet'), WebModel, jump=True)
+                              _('_Internet'), WebModel, jump=True)
 
     def get_icon_name(self):
         return 'gramps-url'

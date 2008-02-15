@@ -90,7 +90,7 @@ class EditMediaRef(EditReference):
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.primtab = RefTab(self.dbstate, self.uistate, self.track, 
-                              _('General'), tblref)
+                              _('_General'), tblref)
 
     def draw_preview(self):
         """
@@ -447,8 +447,8 @@ class EditMediaRef(EditReference):
                     self.source.get_note_list(),
                     notetype=NoteType.MEDIA))
 
-        self._setup_notebook_tabs( notebook_src)
-        self._setup_notebook_tabs( notebook_ref)
+        self._setup_notebook_tabs(notebook_src)
+        self._setup_notebook_tabs(notebook_ref)
 
     def save(self,*obj):
         #first save primary object

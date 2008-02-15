@@ -61,7 +61,7 @@ class BackRefList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, obj, refmodel, callback=None):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('References'), refmodel)
+                              _('_References'), refmodel)
         self._callback = callback
         self.model.connect('row-inserted', self.update_label)
 

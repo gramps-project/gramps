@@ -67,7 +67,6 @@ class EmbeddedList(ButtonTab):
         """
         ButtonTab.__init__(self, dbstate, uistate, track, name, share, move, jump)
 
-        
         self.changed = False
         self.build_model = build_model
 
@@ -448,3 +447,4 @@ class EmbeddedList(ButtonTab):
         #model and tree are reset, allow _selection_changed again, and force it
         self.dirty_selection = False
         self._selection_changed()
+

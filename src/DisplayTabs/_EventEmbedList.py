@@ -68,7 +68,7 @@ class EventEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('Events'), EventRefModel, True)
+                              _('_Events'), EventRefModel, True)
 
     def get_ref_editor(self):
         from Editors import EditFamilyEventRef

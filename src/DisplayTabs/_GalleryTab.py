@@ -73,7 +73,7 @@ class GalleryTab(ButtonTab):
     def __init__(self, dbstate, uistate, track,  media_list, update=None):
         self.iconlist = gtk.IconView()
         
-        ButtonTab.__init__(self, dbstate, uistate, track, _('Gallery'), True)
+        ButtonTab.__init__(self, dbstate, uistate, track, _('_Gallery'), True)
         self.media_list = media_list
         self.update = update
 

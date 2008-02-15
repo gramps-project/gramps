@@ -88,7 +88,7 @@ class MainLocTab(GrampsTab):
         eventbox.add(widget)
         self.pack_start(eventbox)
         self._set_label(show_image=False)
-        widget.connect('key_press_event', self.key_pressed)
+        eventbox.connect('key_press_event', self.key_pressed)
         self.show_all()
 
     def is_empty(self):
@@ -125,7 +125,7 @@ class EditPlace(EditPrimary):
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.mloc = MainLocTab(self.dbstate, self.uistate, self.track, 
-                              _('Location'), tblmloc)
+                              _('_Location'), tblmloc)
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():

@@ -50,7 +50,6 @@ from _MediaBackRefList import MediaBackRefList
 from _NameEmbedList import NameEmbedList
 from _NoteBackRefList import NoteBackRefList
 from _NoteTab import NoteTab
-from _TextTab import TextTab
 from _PersonEventEmbedList import PersonEventEmbedList
 from _PersonRefEmbedList import PersonRefEmbedList
 from _PersonBackRefList import PersonBackRefList

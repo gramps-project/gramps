@@ -198,7 +198,7 @@ class EditNote(EditPrimary):
         #recreate start page as GrampsTab
         notebook.remove_page(0)
         self.ntab = NoteTab(self.dbstate, self.uistate, self.track, 
-                              _('Note'), vboxnote)
+                              _('_Note'), vboxnote)
         
         self.build_interface()
         
