@@ -135,5 +135,65 @@ def suite():
         count += 1
     return suite
 
+def assert_func(exp1, exp2):
+    Date = date.Date
+    e1 = eval(exp1)
+    e2 = eval(exp2)
+    assert e1 == e2, "%s should be %s but was %s" % (exp1, e2, e1)
+
+class Assert(unittest.TestCase):
+    def __init__(self, method_name, part, exp1, exp2):
+        self.__dict__[method_name + ("-%d" % part)] = \
+            lambda: assert_func(exp1, exp2)
+        unittest.TestCase.__init__(self, method_name + ("-%d" % part))
+
+def suite2():
+    """ interface to automated test runner test/regrtest.py """
+    Config.set(Config.DATE_BEFORE_RANGE, 9999)
+    Config.set(Config.DATE_AFTER_RANGE, 9999)
+    Config.set(Config.DATE_ABOUT_RANGE, 10)
+    tests = [
+        # Date +/- int/tuple -> Date
+        ("Date(2008, 1, 1) - 1", "Date(2007, 1, 1)"),
+        ("Date(2008, 1, 1) + 1", "Date(2009, 1, 1)"),
+        ("Date(2008, 1, 1) - (0,0,1)", "Date(2007, 12, 31)"),
+        ("Date(2008, 1, 1) - (0,0,2)", "Date(2007, 12, 30)"),
+        ("Date(2008) - (0,0,1)", "Date(2007, 12, 31)"),
+        ("Date(2008) - 1", "Date(2007, 1, 1)"),
+        ("Date(2008, 12, 31) + (0, 0, 1)", "Date(2009, 1, 1)"),
+        ("Date(2000,1,1) - (0,11,0)", "Date(1999,02,01)"),
+        ("Date(2000,1,1) - (0,1,0)", "Date(1999, 12, 1)"),
+        ("Date(2008, 1, 1) + (0, 0, 32)", "Date(2008, 02, 02)"),
+        ("Date(2008, 2, 1) + (0, 0, 32)", "Date(2008, 03, 04)"),
+        ("Date(2000) - (0, 1, 0)", "Date(1999, 12, 1)"),
+        ("Date(2000) + (0, 1, 0)", "Date(2000, 1, 0)"), # Ok?
+        ("Date(2000, 1, 1) - (0, 1, 0)", "Date(1999, 12, 1)"),
+        ("Date(2000, 1, 1) - 1", "Date(1999, 1, 1)"),
+        ("Date(2000) - 1", "Date(1999)"),
+        ("Date(2000) + 1", "Date(2001)"),
+
+#My great great grandfather died on 1876-05-07.
+#He died at an age of 65 years, 5 month 17 days according to the books:
+#> Date(1876,5,7)-(65,5,17)
+#1811-12-21
+#> Date(1876,5,7)-Date(1811,12,21)
+#(64, 4, 17)
+#But his correct birth date is 1810-11-20:
+#("Date(1876,5,7)-Date(1810,11,20)", "(65, 5, 18)")
+        ("Date(1876,5,7) - Date(1876,5,1)", "(0, 0, 6)"),
+        ("Date(1876,5,7) - Date(1876,4,30)", "(0, 0, 7)"),
+        ("Date(2000,1,1) - Date(1999,2,1)", "(0, 11, 0)"),
+        ("Date(2000,1,1) - Date(1999,12,1)", "(0, 1, 0)"),
+        # Date +/- Date -> tuple
+        ("Date(2007, 12, 23) - Date(1963, 12, 4)", "(44, 0, 19)"),
+        ]
+    suite = unittest.TestSuite()            
+    count = 1
+    for (exp1, exp2) in tests:
+        suite.addTest(Assert('test_assert%04d' % count, 1, exp1, exp2))
+        count += 1
+    return suite
+
 if __name__ == "__main__":
     unittest.TextTestRunner().run(suite())
+    unittest.TextTestRunner().run(suite2())

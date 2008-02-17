@@ -246,13 +246,20 @@ class Date:
         """
         Date artithmetic: Date() - years, Date - (y,m,d), or Date() - Date()
         """
-        if type(other) == int:
+        if type(other) == int:                # Date - value -> Date
             return self.copy_offset_ymd(-other)
-        elif type(other) == type(self): # date
+        elif type(other) in [tuple, list]:    # Date - (y, m, d) -> Date
+            return self.copy_offset_ymd(*map(lambda x: -x, other))
+        elif type(other) == type(self):       # Date1 - Date2 -> tuple
+            # We should make sure that Date2 + tuple -> Date1 and
+            #                          Date1 - tuple -> Date2
             d1 = map(lambda i: i or 1, self.get_ymd())
             d2 = map(lambda i: i or 1, other.get_ymd())
+            date1 = self
+            date2 = other
             if d1 < d2:
                 d1, d2 = d2, d1
+                date1, date2 = date2, date1
             # d1 - d2 (1998, 12, 32) - (1982, 12, 15) = 
             # days:
             if d2[2] > d1[2]:
@@ -269,17 +276,38 @@ class Date:
             days = d1[2] - d2[2]
             months = d1[1] - d2[1]
             years = d1[0] - d2[0]
-            if days > 31:
+            if days > 31: 
                 months += days / 31
                 days = days % 31
             if months > 12:
                 years += months / 12
                 months = months % 12
-            return (years, months, days)
-        elif type(other) in [tuple, list]:
-            return self.copy_offset_ymd(*map(lambda x: -x, other))
+            # estimate: (years, months, days)
+            # Check transitivity:
+            eDate = date1 - (years, months, days)
+            if eDate < date2: # too small
+                diff = 0
+                while eDate < date2 and diff < 60:
+                    diff += 1
+                    eDate = eDate + (0, 0, diff)
+                if diff == 60:
+                    return (0, 0, 0)
+                return (years, months, days - diff)
+            elif eDate > date2:
+                diff = 0
+                while eDate > date2 and diff > -60:
+                    diff -= 1
+                    eDate = eDate - (0, 0, abs(diff))
+                if diff == -60:
+                    return (0, 0, 0)
+                return (years, months, days + diff)
+            else:
+                return (years, months, days)
         else:
             raise AttributeError, "unknown date sub type: %s " % type(other)
+
+    def __eq__(self, other):
+        return self.sortval == other.sortval
 
     def __lt__(self, other):
         return self.sortval < other.sortval
@@ -629,12 +657,18 @@ class Date:
         if dv[Date._POS_MON]:
             dv[Date._POS_MON] += month
         elif month:
-            dv[Date._POS_MON] = month
+            if month < 0:
+                dv[Date._POS_MON] = 1 + month
+            else:
+                dv[Date._POS_MON] = month
         # Fix if month out of bounds:
         if month != 0: # only check if changed
-            if dv[Date._POS_MON] <= 0: # subtraction
-                dv[Date._POS_YR] -= int(-dv[Date._POS_MON] / 12)
-                dv[Date._POS_MON] = 13 - dv[Date._POS_MON] % 12
+            if dv[Date._POS_MON] == 0: # subtraction
+                dv[Date._POS_MON] = 12
+                dv[Date._POS_YR] -= 1
+            elif dv[Date._POS_MON] < 0: # subtraction
+                dv[Date._POS_YR] -= int((-dv[Date._POS_MON]) / 12) + 1
+                dv[Date._POS_MON] = (dv[Date._POS_MON] % 12)
             elif dv[Date._POS_MON] > 12 or dv[Date._POS_MON] < 1:
                 dv[Date._POS_YR] += int(dv[Date._POS_MON] / 12)
                 dv[Date._POS_MON] = dv[Date._POS_MON] % 12
