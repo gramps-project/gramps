@@ -306,8 +306,9 @@ class Date:
         else:
             raise AttributeError, "unknown date sub type: %s " % type(other)
 
-    def __eq__(self, other):
-        return self.sortval == other.sortval
+    # Can't use this (as is) as this breaks comparing dates to None
+    #def __eq__(self, other):
+    #    return self.sortval == other.sortval
 
     def __lt__(self, other):
         return self.sortval < other.sortval
