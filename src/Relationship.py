@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:Relationship.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -395,16 +395,16 @@ class RelationshipCalculator:
             pass
 
     def set_depth(self, depth):
-        ''' set how deep relationships must be searched. Input must be an 
+        """ set how deep relationships must be searched. Input must be an 
             integer > 0
-        '''
+        """
         if not depth == self.depth:
             self.depth = depth
             self.dirtymap = True
 
     def get_depth(self):
-        ''' obtain depth of relationship search
-        '''
+        """ obtain depth of relationship search
+        """
         return self.depth
     
 
@@ -877,7 +877,7 @@ class RelationshipCalculator:
     
     def __apply_filter(self, db, person, rel_str, rel_fam, pmap,
                             depth=1, stoprecursemap=None):
-        '''Typically this method is called recursively in two ways:
+        """Typically this method is called recursively in two ways:
             First method is stoprecursemap= None 
             In this case a recursemap is builded by storing all data.
             
@@ -888,7 +888,7 @@ class RelationshipCalculator:
             of first contains loops, and parents
             will be looked up anyway an stored if common. At end the doubles
             are filtered out
-        '''
+        """
         if person == None or not person.handle :
             return
         

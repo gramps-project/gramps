@@ -148,9 +148,9 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.show()
 
     def close(self, *obj):
-        ''' Close relcalc tool. Remove non-gtk connections so garbage
+        """ Close relcalc tool. Remove non-gtk connections so garbage
             collection can do its magic.
-        '''
+        """
         self.relationship.disconnect_db_signals(self.dbstate)
         self.sel.disconnect(self.changedkey)
         ManagedWindow.ManagedWindow.close(self, *obj)

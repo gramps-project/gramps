@@ -744,7 +744,7 @@ class ObjEntry:
     """
     def __init__(self, dbstate, uistate, track, label, set_val, 
                  get_val, add_edt, share):
-        '''Pass the dbstate and uistate and present track.
+        """Pass the dbstate and uistate and present track.
             label is a gtk.Label that shows the persent value
             set_val is function that is called when handle changes, use it
                 to update the calling module
@@ -753,7 +753,7 @@ class ObjEntry:
             share is the gtk.Button to call the object selector or del connect
             add_edt is the gtk.Button with add or edit value. Pass None if 
                 this button should not be present.
-        '''
+        """
         self.label = label
         self.add_edt = add_edt
         self.share = share
@@ -808,25 +808,25 @@ class ObjEntry:
             self.label.set_text(name)
 
     def _init_dnd(self):
-        '''inheriting objects must set this
-        '''
+        """inheriting objects must set this
+        """
         pass
 
     def _init_object(self):
-        '''inheriting objects can use this to set extra variables
-        '''
+        """inheriting objects can use this to set extra variables
+        """
         pass
 
     def get_from_handle(self, handle):
-        ''' return the object given the hande
+        """ return the object given the hande
             inheriting objects must set this
-        '''
+        """
         pass
 
     def get_label(self, object):
-        ''' return the label
+        """ return the label
             inheriting objects must set this
-        '''
+        """
         pass
 
     def after_edit(self, obj):
@@ -834,8 +834,8 @@ class ObjEntry:
         self.label.set_text(name)
 
     def add_edt_clicked(self, obj):
-        ''' if value, edit, if no value, call editor on new object
-        '''
+        """ if value, edit, if no value, call editor on new object
+        """
         if self.get_val():
             obj = self.get_from_handle(self.get_val())
             self.call_editor(obj)
@@ -843,13 +843,13 @@ class ObjEntry:
             self.call_editor()
 
     def call_editor(self, obj):
-        '''inheriting objects must set this
-        '''
+        """inheriting objects must set this
+        """
         pass
 
     def call_selector(self):
-        '''inheriting objects must set this
-        '''
+        """inheriting objects must set this
+        """
         pass
 
     def drag_data_received(self, widget, context, x, y, selection, info, time):
@@ -859,14 +859,14 @@ class ObjEntry:
         self.obj_added(data)
         
     def obj_added(self, data):
-        ''' callback from adding an object to the entry'''
+        """ callback from adding an object to the entry"""
         self.set_val(data.handle)
         self.label.set_text(self.get_label(data))
         self.set_button(True)
 
     def share_clicked(self, obj):
-        ''' if value, delete connect, in no value, select existing object
-        '''
+        """ if value, delete connect, in no value, select existing object
+        """
         if self.get_val():
             self.set_val(None)
             self.label.set_text(self.EMPTY_TEXT)
@@ -879,10 +879,10 @@ class ObjEntry:
                 self.obj_added(obj)
 
     def set_button(self, use_add):
-        ''' This sets the correct image to the two buttons.
+        """ This sets the correct image to the two buttons.
             If False: select icon and add icon
             If True:  remove icon and edit icon
-        '''
+        """
         if self.add_edt is not None:
             for i in self.add_edt.get_children():
                 self.add_edt.remove(i)
@@ -933,15 +933,15 @@ class PlaceEntry(ObjEntry):
                  get_val, add_edt, share)
 
     def _init_dnd(self):
-        '''connect drag and drop of places
-        '''
+        """connect drag and drop of places
+        """
         self.label.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.PLACE_LINK.target()], 
                                gtk.gdk.ACTION_COPY)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
-        ''' return the object given the hande
-        '''
+        """ return the object given the hande
+        """
         return self.db.get_place_from_handle(handle)
 
     def get_label(self, place):
@@ -987,15 +987,15 @@ class MediaEntry(ObjEntry):
                  get_val, add_edt, share)
 
     def _init_dnd(self):
-        '''connect drag and drop of places
-        '''
+        """connect drag and drop of places
+        """
         self.label.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.MEDIAOBJ.target()], 
                                gtk.gdk.ACTION_COPY)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
-        ''' return the object given the hande
-        '''
+        """ return the object given the hande
+        """
         return self.db.get_object_from_handle(handle)
 
     def get_label(self, object):
@@ -1042,25 +1042,25 @@ class NoteEntry(ObjEntry):
         self.notetype = None
 
     def set_notetype(self, type):
-        ''' set a notetype to use in new notes
-        '''
+        """ set a notetype to use in new notes
+        """
         self.notetype = type
 
     def get_notetype(self):
-        ''' return the set notetype
-        '''
+        """ return the set notetype
+        """
         return self.notetype
 
     def _init_dnd(self):
-        '''connect drag and drop of places
-        '''
+        """connect drag and drop of places
+        """
         self.label.drag_dest_set(gtk.DEST_DEFAULT_ALL, [DdTargets.NOTE_LINK.target()], 
                                gtk.gdk.ACTION_COPY)
         self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
-        ''' return the object given the hande
-        '''
+        """ return the object given the hande
+        """
         return self.db.get_note_from_handle(handle)
 
     def get_label(self, note):
@@ -1142,16 +1142,16 @@ class Statusbar(gtk.HBox):
     # Virtual methods
 
     def do_get_property(self, prop):
-        '''Return the gproperty's value.
-        '''
+        """Return the gproperty's value.
+        """
         if prop.name == 'has-resize-grip':
             return self.__has_resize_grip
         else:
             raise AttributeError, 'unknown property %s' % prop.name
 
     def do_set_property(self, prop, value):
-        '''Set the property of writable properties.
-        '''
+        """Set the property of writable properties.
+        """
         if prop.name == 'has-resize-grip':
             self.__has_resize_grip = value
             self._set_resize_grip()
@@ -1389,7 +1389,7 @@ if gtk.pygtk_version < (2, 8, 0):
     gobject.type_register(FadeOut)
 
 class Tooltip(gtk.Window):
-    '''Tooltip for the Icon in the MaskedEntry'''
+    """Tooltip for the Icon in the MaskedEntry"""
     
     DEFAULT_DELAY = 500
     BORDER_WIDTH = 4
@@ -2191,14 +2191,14 @@ class MaskedEntry(gtk.Entry):
         return
 
     def set_completion_mode(self, popup=None, inline=None):
-        '''
+        """
         Set the way how completion is presented.
         
         @param popup: enable completion in popup window
         @type popup: boolean
         @param inline: enable inline completion
         @type inline: boolean
-        '''
+        """
         completion = self._get_completion()
         if popup is not None:
             completion.set_popup_completion(popup)
@@ -2683,7 +2683,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.validate()
 
     def do_get_property(self, prop):
-        '''Return the gproperty's value.'''
+        """Return the gproperty's value."""
         
         if prop.name == 'data-type':
             return self.data_type
@@ -2693,7 +2693,7 @@ class ValidatableMaskedEntry(MaskedEntry):
             raise AttributeError, 'unknown property %s' % prop.name
 
     def do_set_property(self, prop, value):
-        '''Set the property of writable properties.'''
+        """Set the property of writable properties."""
         
         if prop.name == 'data-type':
             if value is None:

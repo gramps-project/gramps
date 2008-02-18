@@ -765,11 +765,11 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def add_path_box(self, table, label, index, entry, path, callback_label, 
                      callback_sel):
-        ''' Add an entry to give in path and a select button to open a 
+        """ Add an entry to give in path and a select button to open a 
             dialog. 
             Changing entry calls callback_label
             Clicking open button call callback_sel
-        '''
+        """
         lwidget = BasicLabel("%s: " %label)
         hbox = gtk.HBox()
         if path:
@@ -797,8 +797,8 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
 
     def add_pos_int_entry(self, table, label, index, constant, callback=None):
-        ''' entry field for positive integers
-        '''
+        """ entry field for positive integers
+        """
         lwidget = BasicLabel("%s: " % label)
         entry = gtk.Entry()
         entry.set_text(str(Config.get(constant)))

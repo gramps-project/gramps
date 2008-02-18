@@ -417,15 +417,15 @@ class PeopleModel(gtk.GenericTreeModel):
         self.mapper.assign_data()
 
     def on_get_flags(self):
-        '''returns the GtkTreeModelFlags for this particular type of model'''
+        """returns the GtkTreeModelFlags for this particular type of model"""
         return gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
         return len(PeopleModel.COLUMN_DEFS)
 
     def on_get_path(self,  node):
-        '''returns the tree path (a tuple of indices at the various
-        levels) for a particular node.'''
+        """returns the tree path (a tuple of indices at the various
+        levels) for a particular node."""
         return self.mapper.get_path(node)
 
     def is_visable(self, handle):
@@ -465,7 +465,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 return None
 
     def on_iter_next(self,  node):
-        '''returns the next node at this level of the tree'''
+        """returns the next node at this level of the tree"""
         return self.mapper.find_next_node(node)
 
     def on_iter_children(self, node):
@@ -473,7 +473,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return self.mapper.first_child(node)
 
     def on_iter_has_child(self, node):
-        '''returns true if this node has children'''
+        """returns true if this node has children"""
         return self.mapper.has_child(node)
 
     def on_iter_n_children(self, node):
@@ -483,7 +483,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return self.mapper.get_nth_child(node, n)
 
     def on_iter_parent(self, node):
-        '''returns the parent of this node'''
+        """returns the parent of this node"""
         return self.mapper.get_parent_of(node)
 
     def column_sort_name(self, data, node):

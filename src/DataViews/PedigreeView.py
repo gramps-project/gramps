@@ -287,7 +287,7 @@ class PersonBoxWidget( gtk.DrawingArea, _PersonWidget_base):
         self.set_size_request(max(xmin,120),max(ymin,25))
     
     def on_enter_cb(self,widget,event):
-        ''' On mouse-over hightlight border'''
+        """ On mouse-over hightlight border"""
         self.border_gc.line_width = 3
         self.queue_draw()
         

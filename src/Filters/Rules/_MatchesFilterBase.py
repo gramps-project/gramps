@@ -89,9 +89,9 @@ class MatchesFilterBase(Rule):
         return False
     
     def find_filter(self):
-        ''' helper function that can be usefull, returning the filter
+        """ helper function that can be usefull, returning the filter
             selected or None
-        '''
+        """
         if Filters.SystemFilters:
             for filt in Filters.SystemFilters.get_filters(self.namespace):
                 if filt.get_name() == self.list[0]:

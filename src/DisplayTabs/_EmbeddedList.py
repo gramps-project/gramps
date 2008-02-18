@@ -263,10 +263,10 @@ class EmbeddedList(ButtonTab):
         self.rebuild()
     
     def _move_up(self, row_from, obj,selmethod=None):
-        ''' 
+        """ 
         Move the item a position up in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2
-        '''
+        """
         if selmethod :
             dlist = selmethod()
         else :
@@ -280,10 +280,10 @@ class EmbeddedList(ButtonTab):
         self.tree.get_selection().select_path(path)
         
     def _move_down(self, row_from, obj,selmethod=None):
-        ''' 
+        """ 
         Move the item a position down in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 1
-        '''
+        """
         if selmethod :
             dlist = selmethod()
         else :

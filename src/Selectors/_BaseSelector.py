@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_BaseSelector.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -54,11 +54,11 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, track=[], filter=None, skip=set(),
                  show_search_bar = True):
-        '''Set up the dialog with the dbstate and uistate, track of parent
+        """Set up the dialog with the dbstate and uistate, track of parent
             windows for ManagedWindow, initial filter for the model, skip with
             set of handles to skip in the view, and search_bar to show the 
             SearchBar at the top or not. 
-        '''
+        """
         self.title = self.get_window_title()
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
@@ -179,8 +179,8 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         assert False, "Must be defined in the subclass"
         
     def set_show_search_bar(self, value):
-        '''make the search bar at the top shown
-        '''
+        """make the search bar at the top shown
+        """
         self.show_search_bar = value
         if not self.search_bar :
             return

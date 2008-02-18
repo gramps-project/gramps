@@ -419,7 +419,7 @@ class ManagedWindow:
             self.window.show_all()
 
     def  modal_call(self, after_ok_func=None):
-        ''' 
+        """ 
             Method to do modal run of the ManagedWindow.
             Connect the OK button to a method that checks if all is ok, 
                 Do not call close, close is called here.
@@ -432,7 +432,7 @@ class ManagedWindow:
             Do not generete RESPONSE_OK/CANCEL/DELETE_EVENT on button clicks 
             of other buttons
             after_ok_func is called on ok click in this method
-        '''
+        """
         #self.show()
         while True:
             response = self.window.run()

@@ -198,9 +198,9 @@ class EditPrimary(ManagedWindow.ManagedWindow):
         pass
         
     def set_contexteventbox(self, eventbox):
-        '''Set the contextbox that grabs button presses if not grabbed
+        """Set the contextbox that grabs button presses if not grabbed
             by overlying widgets.
-        '''
+        """
         self.contexteventbox = eventbox
         self.contexteventbox.connect('button-press-event',
                                 self._contextmenu_button_press)

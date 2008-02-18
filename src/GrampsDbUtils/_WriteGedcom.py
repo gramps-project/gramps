@@ -154,7 +154,7 @@ QUALITY_MAP = {
 #-------------------------------------------------------------------------
 def sort_by_gramps_id(first, second):
     """
-    Sorts objects by their GRAMPS ID
+    Sort objects by their GRAMPS ID.
     """
     return cmp(first.gramps_id, second.gramps_id)
 
@@ -165,9 +165,11 @@ def sort_by_gramps_id(first, second):
 #-------------------------------------------------------------------------
 def sort_handles_by_id(handle_list, handle_to_object):
     """
-    Sorts a list of handles by the GRAMPS ID. The function that returns the
-    object from the handle needs to be supplied so that we get the right 
-    object.
+    Sort a list of handles by the GRAMPS ID. 
+    
+    The function that returns the object from the handle needs to be supplied 
+    so that we get the right object.
+    
     """
     sorted_list = []
     for handle in handle_list:
@@ -184,7 +186,7 @@ def sort_handles_by_id(handle_list, handle_to_object):
 #-------------------------------------------------------------------------
 def make_date(subdate, calendar, mode, quality):
     """
-    Converts a GRAMPS date structure into a GEDCOM compatible date
+    Convert a GRAMPS date structure into a GEDCOM compatible date.
     """
     retval = ""
     (day, mon, year) = subdate[0:3]
@@ -221,7 +223,7 @@ def make_date(subdate, calendar, mode, quality):
 #-------------------------------------------------------------------------
 def __build_date_string(day, mon, year, bce, mmap):
     """
-    Builds a date string from the supplied information
+    Build a date string from the supplied information.
     """
     if day == 0:
         if mon == 0:
@@ -246,7 +248,7 @@ def __build_date_string(day, mon, year, bce, mmap):
 #-------------------------------------------------------------------------
 def breakup(txt, limit):
     """
-    Breaks a line of text into a list of strings that conform to the 
+    Break a line of text into a list of strings that conform to the 
     maximum length specified, while breaking words in the middle of a word
     to avoid issues with spaces.
     """
@@ -283,10 +285,6 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         self.dirname = None
         self.gedcom_file = None
         
-        self.slist = set()
-        self.rlist = set()
-        self.nlist = set()
-
         self.setup(option_box)
 
     def setup(self, option_box):
@@ -316,7 +314,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def write_gedcom_file(self, filename):
         """
-        Writes the actual GEDCOM file to the specfied filename
+        Write the actual GEDCOM file to the specfied filename.
         """
 
         self.dirname = os.path.dirname (filename)
@@ -336,17 +334,16 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __writeln(self, level, token, textlines="", limit=72):
         """
-        Writes a line of text to the output file in the form of:
+        Write a line of text to the output file in the form of:
 
-          LEVEL TOKEN text
+            LEVEL TOKEN text
 
         If the line contains newlines, it is broken into multiple lines using
         the CONT token. If any line is greater than the limit, it will broken
         into multiple lines using CONC.
+        
         """
-
         assert(token)
-
         if textlines:
             # break the line into multiple lines if a newline is found
             textlist = textlines.split('\n')
@@ -365,35 +362,36 @@ class GedcomWriter(BasicUtils.UpdateCallback):
     
     def __header(self, filename):
         """
-        Writes the GEDCOM header. 
+        Write the GEDCOM header. 
 
-          HEADER:=
-          n HEAD {1:1}
-          +1 SOUR <APPROVED_SYSTEM_ID> {1:1} 
-          +2 VERS <VERSION_NUMBER> {0:1} 
-          +2 NAME <NAME_OF_PRODUCT> {0:1} 
-          +2 CORP <NAME_OF_BUSINESS> {0:1}           # Not used
-          +3 <<ADDRESS_STRUCTURE>> {0:1}             # Not used
-          +2 DATA <NAME_OF_SOURCE_DATA> {0:1}        # Not used
-          +3 DATE <PUBLICATION_DATE> {0:1}           # Not used
-          +3 COPR <COPYRIGHT_SOURCE_DATA> {0:1}      # Not used
-          +1 DEST <RECEIVING_SYSTEM_NAME> {0:1*}     # Not used
-          +1 DATE <TRANSMISSION_DATE> {0:1} 
-          +2 TIME <TIME_VALUE> {0:1} 
-          +1 SUBM @XREF:SUBM@ {1:1} 
-          +1 SUBN @XREF:SUBN@ {0:1} 
-          +1 FILE <FILE_NAME> {0:1} 
-          +1 COPR <COPYRIGHT_GEDCOM_FILE> {0:1} 
-          +1 GEDC {1:1}
-          +2 VERS <VERSION_NUMBER> {1:1} 
-          +2 FORM <GEDCOM_FORM> {1:1} 
-          +1 CHAR <CHARACTER_SET> {1:1} 
-          +2 VERS <VERSION_NUMBER> {0:1} 
-          +1 LANG <LANGUAGE_OF_TEXT> {0:1} 
-          +1 PLAC {0:1}
-          +2 FORM <PLACE_HIERARCHY> {1:1} 
-          +1 NOTE <GEDCOM_CONTENT_DESCRIPTION> {0:1} 
-          +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION> {0:M}
+            HEADER:=
+            n HEAD {1:1}
+            +1 SOUR <APPROVED_SYSTEM_ID> {1:1} 
+            +2 VERS <VERSION_NUMBER> {0:1} 
+            +2 NAME <NAME_OF_PRODUCT> {0:1} 
+            +2 CORP <NAME_OF_BUSINESS> {0:1}           # Not used
+            +3 <<ADDRESS_STRUCTURE>> {0:1}             # Not used
+            +2 DATA <NAME_OF_SOURCE_DATA> {0:1}        # Not used
+            +3 DATE <PUBLICATION_DATE> {0:1}           # Not used
+            +3 COPR <COPYRIGHT_SOURCE_DATA> {0:1}      # Not used
+            +1 DEST <RECEIVING_SYSTEM_NAME> {0:1*}     # Not used
+            +1 DATE <TRANSMISSION_DATE> {0:1} 
+            +2 TIME <TIME_VALUE> {0:1} 
+            +1 SUBM @XREF:SUBM@ {1:1} 
+            +1 SUBN @XREF:SUBN@ {0:1} 
+            +1 FILE <FILE_NAME> {0:1} 
+            +1 COPR <COPYRIGHT_GEDCOM_FILE> {0:1} 
+            +1 GEDC {1:1}
+            +2 VERS <VERSION_NUMBER> {1:1} 
+            +2 FORM <GEDCOM_FORM> {1:1} 
+            +1 CHAR <CHARACTER_SET> {1:1} 
+            +2 VERS <VERSION_NUMBER> {0:1} 
+            +1 LANG <LANGUAGE_OF_TEXT> {0:1} 
+            +1 PLAC {0:1}
+            +2 FORM <PLACE_HIERARCHY> {1:1} 
+            +1 NOTE <GEDCOM_CONTENT_DESCRIPTION> {0:1} 
+            +2 [CONT|CONC] <GEDCOM_CONTENT_DESCRIPTION> {0:M}
+        
         """
         local_time = time.localtime(time.time())
         (year, mon, day, hour, minutes, sec) = local_time[0:6]
@@ -426,14 +424,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __submitter(self):
         """
-          n @<XREF:SUBM>@ SUBM {1:1}
-          +1 NAME <SUBMITTER_NAME> {1:1} 
-          +1 <<ADDRESS_STRUCTURE>> {0:1}
-          +1 <<MULTIMEDIA_LINK>> {0:M}              # not used
-          +1 LANG <LANGUAGE_PREFERENCE> {0:3}       # not used
-          +1 RFN <SUBMITTER_REGISTERED_RFN> {0:1}   # not used
-          +1 RIN <AUTOMATED_RECORD_ID> {0:1}        # not used
-          +1 <<CHANGE_DATE>> {0:1}                  # not used
+        n @<XREF:SUBM>@ SUBM {1:1}
+        +1 NAME <SUBMITTER_NAME> {1:1} 
+        +1 <<ADDRESS_STRUCTURE>> {0:1}
+        +1 <<MULTIMEDIA_LINK>> {0:M}              # not used
+        +1 LANG <LANGUAGE_PREFERENCE> {0:3}       # not used
+        +1 RFN <SUBMITTER_REGISTERED_RFN> {0:1}   # not used
+        +1 RIN <AUTOMATED_RECORD_ID> {0:1}        # not used
+        +1 <<CHANGE_DATE>> {0:1}                  # not used
         """
         owner = self.dbase.get_researcher()
         name = owner.get_name()
@@ -472,10 +470,12 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __individuals(self):
         """
-        Writes the individual people to the gedcom file. Since people like to 
-        have the list sorted by ID value, we need to go through a sorting step.
-        We need to reset the progress bar, otherwise, people will be confused
-        when the progress bar is idle.
+        Write the individual people to the gedcom file. 
+        
+        Since people like to have the list sorted by ID value, we need to go 
+        through a sorting step. We need to reset the progress bar, otherwise, 
+        people will be confused when the progress bar is idle.
+        
         """
         phandles = self.dbase.get_person_handles()
 
@@ -499,31 +499,31 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __person(self, person):
         """
-        Writes out a single person
+        Write out a single person.
 
-          n @XREF:INDI@ INDI {1:1}
-          +1 RESN <RESTRICTION_NOTICE> {0:1}            # not used
-          +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}          
-          +1 SEX <SEX_VALUE> {0:1} 
-          +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M} 
-          +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M} 
-          +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M} 
-          +1 <<CHILD_TO_FAMILY_LINK>> {0:M} 
-          +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M} 
-          +1 SUBM @<XREF:SUBM>@ {0:M} 
-          +1 <<ASSOCIATION_STRUCTURE>> {0:M} 
-          +1 ALIA @<XREF:INDI>@ {0:M} 
-          +1 ANCI @<XREF:SUBM>@ {0:M} 
-          +1 DESI @<XREF:SUBM>@ {0:M} 
-          +1 <<SOURCE_CITATION>> {0:M} 
-          +1 <<MULTIMEDIA_LINK>> {0:M} ,*
-          +1 <<NOTE_STRUCTURE>> {0:M} 
-          +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1} 
-          +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1} 
-          +1 REFN <USER_REFERENCE_NUMBER> {0:M} 
-          +2 TYPE <USER_REFERENCE_TYPE> {0:1} 
-          +1 RIN <AUTOMATED_RECORD_ID> {0:1} 
-          +1 <<CHANGE_DATE>> {0:1} 
+        n @XREF:INDI@ INDI {1:1}
+        +1 RESN <RESTRICTION_NOTICE> {0:1}            # not used
+        +1 <<PERSONAL_NAME_STRUCTURE>> {0:M}          
+        +1 SEX <SEX_VALUE> {0:1} 
+        +1 <<INDIVIDUAL_EVENT_STRUCTURE>> {0:M} 
+        +1 <<INDIVIDUAL_ATTRIBUTE_STRUCTURE>> {0:M} 
+        +1 <<LDS_INDIVIDUAL_ORDINANCE>> {0:M} 
+        +1 <<CHILD_TO_FAMILY_LINK>> {0:M} 
+        +1 <<SPOUSE_TO_FAMILY_LINK>> {0:M} 
+        +1 SUBM @<XREF:SUBM>@ {0:M} 
+        +1 <<ASSOCIATION_STRUCTURE>> {0:M} 
+        +1 ALIA @<XREF:INDI>@ {0:M} 
+        +1 ANCI @<XREF:SUBM>@ {0:M} 
+        +1 DESI @<XREF:SUBM>@ {0:M} 
+        +1 <<SOURCE_CITATION>> {0:M} 
+        +1 <<MULTIMEDIA_LINK>> {0:M} ,*
+        +1 <<NOTE_STRUCTURE>> {0:M} 
+        +1 RFN <PERMANENT_RECORD_FILE_NUMBER> {0:1} 
+        +1 AFN <ANCESTRAL_FILE_NUMBER> {0:1} 
+        +1 REFN <USER_REFERENCE_NUMBER> {0:M} 
+        +2 TYPE <USER_REFERENCE_TYPE> {0:1} 
+        +1 RIN <AUTOMATED_RECORD_ID> {0:1} 
+        +1 <<CHANGE_DATE>> {0:1} 
         """
         self.__writeln(0, "@%s@" % person.get_gramps_id(),  "INDI")
 
@@ -546,10 +546,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __assoc(self, person, level):
         """
-          n ASSO @<XREF:INDI>@ {0:M} 
-          +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}
-          +1 <<NOTE_STRUCTURE>> {0:M} 
-          +1 <<SOURCE_CITATION>> {0:M} 
+        n ASSO @<XREF:INDI>@ {0:M} 
+        +1 RELA <RELATION_IS_DESCRIPTOR> {1:1}
+        +1 <<NOTE_STRUCTURE>> {0:M} 
+        +1 <<SOURCE_CITATION>> {0:M} 
         """
         for ref in person.get_person_ref_list():
             person = self.dbase.get_person_from_handle(ref.ref)
@@ -560,20 +560,19 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __note_references(self, notelist, level):
         """
-        Write out the list of note handles to the current level. We use the
-        GRAMPS ID as the XREF for the GEDCOM file.
+        Write out the list of note handles to the current level. 
+        
+        We use the GRAMPS ID as the XREF for the GEDCOM file.
 
-        Add the note_handle to the nlist set so what we know which notes to 
-        write to the output GEDCOM file.
         """
         for note_handle in notelist:
             note = self.dbase.get_note_from_handle(note_handle)
             self.__writeln(level, 'NOTE', '@%s@' % note.get_gramps_id())
-            self.nlist.add(note_handle)
 
     def __names(self, person):
         """
-        Write the names associated with the person to the current level. 
+        Write the names associated with the person to the current level.
+         
         Since nicknames are now separate from the name structure, we search
         the attribute list to see if we can find a nickname. Because we do
         not know the mappings, we just take the first nickname we find, and 
@@ -581,6 +580,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
         All other names are assumed to not  have a nickname, even if other 
         nicknames exist in the attribute list.
+        
         """
         nicknames = [ attr.get_value() for attr in person.get_attribute_list()
                       if int(attr.get_type()) == gen.lib.AttributeType.NICKNAME ]
@@ -595,9 +595,12 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __gender(self, person):
         """
-        Writes out the gender of the person to the file. If the gender is not
-        male or female, simply do not output anything. The only valid values are
-        M (male) or F (female). So if the geneder is unknown, we output nothing.
+        Write out the gender of the person to the file. 
+        
+        If the gender is not male or female, simply do not output anything. 
+        The only valid values are M (male) or F (female). So if the geneder is 
+        unknown, we output nothing.
+        
         """
         if person.get_gender() == gen.lib.Person.MALE:
             self.__writeln(1, "SEX", "M")
@@ -607,7 +610,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
     def __lds_ords(self, obj, level):
         """
         Simply loop through the list of LDS ordinances, and call the function 
-        that write the LDS ordinance structure.
+        that writes the LDS ordinance structure.
         """
         for lds_ord in obj.get_lds_ord_list():
             self.write_ord(lds_ord, level)
@@ -615,8 +618,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
     def __remaining_events(self, person):
         """
         Output all events associated with the person that are not BIRTH or
-        DEATH events. Because all we have are event references, we have to
+        DEATH events. 
+        
+        Because all we have are event references, we have to
         extract the real event to discover the event type.
+        
         """
         for event_ref in person.get_event_ref_list():
             event = self.dbase.get_event_from_handle(event_ref.ref)
@@ -657,12 +663,13 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __adoption_records(self, person):
         """
-        Writes Adoption events for each child that has been adopted.
+        Write Adoption events for each child that has been adopted.
 
-         n ADOP
+        n ADOP
         +1 <<INDIVIDUAL_EVENT_DETAIL>>
         +1 FAMC @<XREF:FAM>@
-          +2 ADOP <ADOPTED_BY_WHICH_PARENT>
+        +2 ADOP <ADOPTED_BY_WHICH_PARENT>
+        
         """
         
         adoptions = []
@@ -687,12 +694,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __attributes(self, person):
         """
-        Writes out the attributes to the GEDCOM file. Since we have already
-        looked at nicknames when we generated the names, we filter them out 
-        here.
+        Write out the attributes to the GEDCOM file. 
+        
+        Since we have already looked at nicknames when we generated the names, 
+        we filter them out here.
 
         We use the GEDCOM 5.5.1 FACT command to write out attributes not
         built in to GEDCOM.
+        
         """
         
         # filter out the nicknames
@@ -798,11 +807,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __url_list(self, obj, level):
         """
-          n OBJE {1:1}
-          +1 FORM <MULTIMEDIA_FORMAT> {1:1} 
-          +1 TITL <DESCRIPTIVE_TITLE> {0:1} 
-          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
-          +1 <<NOTE_STRUCTURE>> {0:M}
+        n OBJE {1:1}
+        +1 FORM <MULTIMEDIA_FORMAT> {1:1} 
+        +1 TITL <DESCRIPTIVE_TITLE> {0:1} 
+        +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+        +1 <<NOTE_STRUCTURE>> {0:M}
         """
         for url in obj.get_url_list():
             self.__writeln(level, 'OBJE')
@@ -814,7 +823,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __families(self):
         """
-        Writes out the list of families, sorting by GRAMPS ID
+        Write out the list of families, sorting by GRAMPS ID.
         """
 
         # generate a list of (GRAMPS_ID, HANDLE) pairs. This list
@@ -830,16 +839,16 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __family(self, family):
         """
-           n @<XREF:FAM>@ FAM {1:1}
-          +1 RESN <RESTRICTION_NOTICE> {0:1)
-          +1 <<FAMILY_EVENT_STRUCTURE>> {0:M} 
-          +1 HUSB @<XREF:INDI>@ {0:1}
-          +1 WIFE @<XREF:INDI>@ {0:1}
-          +1 CHIL @<XREF:INDI>@ {0:M}
-          +1 NCHI <COUNT_OF_CHILDREN> {0:1}
-          +1 SUBM @<XREF:SUBM>@ {0:M}
-          +1 <<LDS_SPOUSE_SEALING>> {0:M}
-          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+        n @<XREF:FAM>@ FAM {1:1}
+        +1 RESN <RESTRICTION_NOTICE> {0:1)
+        +1 <<FAMILY_EVENT_STRUCTURE>> {0:M} 
+        +1 HUSB @<XREF:INDI>@ {0:1}
+        +1 WIFE @<XREF:INDI>@ {0:1}
+        +1 CHIL @<XREF:INDI>@ {0:M}
+        +1 NCHI <COUNT_OF_CHILDREN> {0:1}
+        +1 SUBM @<XREF:SUBM>@ {0:M}
+        +1 <<LDS_SPOUSE_SEALING>> {0:M}
+        +1 REFN <USER_REFERENCE_NUMBER> {0:M}
         """
         gramps_id = family.get_gramps_id()
 
@@ -860,8 +869,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __family_child_list(self, child_ref_list):
         """
-        Write the child XREF values to the GEDCOM file. Sorts the child
-        list by ID value before writing.
+        Write the child XREF values to the GEDCOM file. 
+        
+        Sorts the child list by ID value before writing.
+        
         """
 
         # sort the childlist by GRAMPS ID
@@ -875,8 +886,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __family_reference(self, token, person_handle):
         """
-        Write the family reference to the file. This is either 'WIFE' or
-        'HUSB'. As usual, we use the GRAMPS ID as the XREF value.
+        Write the family reference to the file. 
+        
+        This is either 'WIFE' or 'HUSB'. As usual, we use the GRAMPS ID as the 
+        XREF value.
+        
         """
         if person_handle:
             person = self.dbase.get_person_from_handle(person_handle)
@@ -884,8 +898,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __family_events(self, family):
         """
-        Output the events associated with the family. Because all we have are event 
-        references, we have to extract the real event to discover the event type.
+        Output the events associated with the family. 
+        
+        Because all we have are event references, we have to extract the real 
+        event to discover the event type.
+        
         """
         for event_ref in [ ref for ref in family.get_event_ref_list()]:
             event = self.dbase.get_event_from_handle(event_ref.ref)
@@ -920,9 +937,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __family_event_attrs(self, attr_list, level):
         """
-        Writes the attributes assocated with the family event. The only ones we 
-        really care about are FATHER_AGE and MOTHER_AGE which we translate
-        to WIFE/HUSB AGE attributes.
+        Write the attributes assocated with the family event. 
+        
+        The only ones we really care about are FATHER_AGE and MOTHER_AGE which 
+        we translate to WIFE/HUSB AGE attributes.
+        
         """
         for attr in attr_list:
             if attr.get_type() == gen.lib.AttributeType.FATHER_AGE:
@@ -934,12 +953,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __family_attributes(self, attr_list, level):
         """
-        Writes out the attributes associated with a family to the GEDCOM file. 
+        Write out the attributes associated with a family to the GEDCOM file.
+         
         Since we have already looked at nicknames when we generated the names, 
         we filter them out here.
 
         We use the GEDCOM 5.5.1 FACT command to write out attributes not
         built in to GEDCOM.
+        
         """
 
         for attr in attr_list:
@@ -965,9 +986,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __sources(self):
         """
-        Writes out the list of sources, sorting by GRAMPS ID
+        Write out the list of sources, sorting by GRAMPS ID.
         """
-        sorted_list = sort_handles_by_id(self.slist, 
+        sorted_list = sort_handles_by_id(self.dbase.get_source_handles(),
                                          self.dbase.get_source_from_handle)
 
         for (source_id, handle) in sorted_list:
@@ -996,9 +1017,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __notes(self):
         """
-        Writes out the list of notes, sorting by GRAMPS ID
+        Write out the list of notes, sorting by GRAMPS ID.
         """
-        sorted_list = sort_handles_by_id(self.nlist,
+        sorted_list = sort_handles_by_id(self.dbase.get_note_handles(),
                                          self.dbase.get_note_from_handle)
 
         for note_handle in [hndl[1] for hndl in sorted_list]:
@@ -1007,32 +1028,32 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             
     def __note_record(self, note):
         """
-          n @<XREF:NOTE>@ NOTE <SUBMITTER_TEXT> {1:1} 
-          +1 [ CONC | CONT] <SUBMITTER_TEXT> {0:M}
-          +1 <<SOURCE_CITATION>> {0:M} 
-          +1 REFN <USER_REFERENCE_NUMBER> {0:M} 
-          +2 TYPE <USER_REFERENCE_TYPE> {0:1} 
-          +1 RIN <AUTOMATED_RECORD_ID> {0:1} 
-          +1 <<CHANGE_DATE>> {0:1} 
+        n @<XREF:NOTE>@ NOTE <SUBMITTER_TEXT> {1:1} 
+        +1 [ CONC | CONT] <SUBMITTER_TEXT> {0:M}
+        +1 <<SOURCE_CITATION>> {0:M} 
+        +1 REFN <USER_REFERENCE_NUMBER> {0:M} 
+        +2 TYPE <USER_REFERENCE_TYPE> {0:1} 
+        +1 RIN <AUTOMATED_RECORD_ID> {0:1} 
+        +1 <<CHANGE_DATE>> {0:1} 
         """
 
         self.__writeln(0, '@%s@' % note.get_gramps_id(),  'NOTE ' + note.get())
 
     def __repos(self):
         """
-        Writes out the list of repositories, sorting by GRAMPS ID
+        Write out the list of repositories, sorting by GRAMPS ID.
 
         REPOSITORY_RECORD:=
-           n @<XREF:REPO>@ REPO {1:1}
-          +1 NAME <NAME_OF_REPOSITORY> {1:1}
-          +1 <<ADDRESS_STRUCTURE>> {0:1}
-          +1 <<NOTE_STRUCTURE>> {0:M}
-          +1 REFN <USER_REFERENCE_NUMBER> {0:M}
-          +2 TYPE <USER_REFERENCE_TYPE> {0:1}
-          +1 RIN <AUTOMATED_RECORD_ID> {0:1}
-          +1 <<CHANGE_DATE>> {0:1}
+        n @<XREF:REPO>@ REPO {1:1}
+        +1 NAME <NAME_OF_REPOSITORY> {1:1}
+        +1 <<ADDRESS_STRUCTURE>> {0:1}
+        +1 <<NOTE_STRUCTURE>> {0:M}
+        +1 REFN <USER_REFERENCE_NUMBER> {0:M}
+        +2 TYPE <USER_REFERENCE_TYPE> {0:1}
+        +1 RIN <AUTOMATED_RECORD_ID> {0:1}
+        +1 <<CHANGE_DATE>> {0:1}
         """
-        sorted_list = sort_handles_by_id(self.rlist,
+        sorted_list = sort_handles_by_id(self.dbase.get_repository_handles(),
                                          self.dbase.get_repository_from_handle)
 
         # GEDCOM only allows for a single repository per source
@@ -1058,17 +1079,14 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __reporef(self, reporef, level):
         """
-           n REPO [ @XREF:REPO@ | <NULL>] {1:1}
-          +1 <<NOTE_STRUCTURE>> {0:M}
-          +1 CALN <SOURCE_CALL_NUMBER> {0:M}
-            +2 MEDI <SOURCE_MEDIA_TYPE> {0:1}
+        n REPO [ @XREF:REPO@ | <NULL>] {1:1}
+        +1 <<NOTE_STRUCTURE>> {0:M}
+        +1 CALN <SOURCE_CALL_NUMBER> {0:M}
+        +2 MEDI <SOURCE_MEDIA_TYPE> {0:1}
         """
 
         if reporef.ref == None:
             return
-
-        # Append handle to the list for exporting REPOs later
-        self.rlist.add(reporef.ref)
 
         repo = self.dbase.get_repository_from_handle(reporef.ref)
         repo_id = repo.get_gramps_id()
@@ -1084,7 +1102,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __person_event_ref(self, key, event_ref):
         """
-        Writes out the BIRTH and DEATH events for the person.
+        Write out the BIRTH and DEATH events for the person.
         """
         if event_ref:
             event = self.dbase.get_event_from_handle(event_ref.ref)
@@ -1099,8 +1117,8 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __change(self, timeval, level):
         """
-          CHANGE_DATE:=
-             n CHAN {1:1}
+        CHANGE_DATE:=
+            n CHAN {1:1}
             +1 DATE <CHANGE_DATE> {1:1}
             +2 TIME <TIME_VALUE> {0:1}
             +1 <<NOTE_STRUCTURE>>          # not used
@@ -1114,9 +1132,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __dump_event_stats(self, event, event_ref):
         """
-        Writes the event details for the event, using the event and event 
-        reference information. GEDCOM does not make a distinction between the 
-        two.
+        Write the event details for the event, using the event and event 
+        reference information. 
+        
+        GEDCOM does not make a distinction between the two.
+        
         """
         dateobj = event.get_date_object()
         self.__date(2, dateobj)
@@ -1205,7 +1225,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __date(self, level, date):
         """
-        Writes the 'DATE' GEDCOM token, along with the date in GEDCOM's
+        Write the 'DATE' GEDCOM token, along with the date in GEDCOM's
         expected formta.
         """
         start = date.get_start_date()
@@ -1229,15 +1249,15 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __person_name(self, name, nick):
         """
-          n NAME <NAME_PERSONAL> {1:1} 
-          +1 NPFX <NAME_PIECE_PREFIX> {0:1} 
-          +1 GIVN <NAME_PIECE_GIVEN> {0:1} 
-          +1 NICK <NAME_PIECE_NICKNAME> {0:1} 
-          +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1} 
-          +1 SURN <NAME_PIECE_SURNAME> {0:1} 
-          +1 NSFX <NAME_PIECE_SUFFIX> {0:1} 
-          +1 <<SOURCE_CITATION>> {0:M} 
-          +1 <<NOTE_STRUCTURE>> {0:M} 
+        n NAME <NAME_PERSONAL> {1:1} 
+        +1 NPFX <NAME_PIECE_PREFIX> {0:1} 
+        +1 GIVN <NAME_PIECE_GIVEN> {0:1} 
+        +1 NICK <NAME_PIECE_NICKNAME> {0:1} 
+        +1 SPFX <NAME_PIECE_SURNAME_PREFIX {0:1} 
+        +1 SURN <NAME_PIECE_SURNAME> {0:1} 
+        +1 NSFX <NAME_PIECE_SUFFIX> {0:1} 
+        +1 <<SOURCE_CITATION>> {0:M} 
+        +1 <<NOTE_STRUCTURE>> {0:M} 
         """
         firstname = name.get_first_name().strip()
         patron = name.get_patronymic().strip()
@@ -1280,17 +1300,17 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __source_ref_record(self, level, ref):
         """
-          n SOUR @<XREF:SOUR>@ /* pointer to source record */ {1:1} 
-          +1 PAGE <WHERE_WITHIN_SOURCE> {0:1} 
-          +1 EVEN <EVENT_TYPE_CITED_FROM> {0:1} 
-          +2 ROLE <ROLE_IN_EVENT> {0:1} 
-          +1 DATA {0:1}
-          +2 DATE <ENTRY_RECORDING_DATE> {0:1} 
-          +2 TEXT <TEXT_FROM_SOURCE> {0:M} 
-          +3 [ CONC | CONT ] <TEXT_FROM_SOURCE> {0:M}
-          +1 QUAY <CERTAINTY_ASSESSMENT> {0:1} 
-          +1 <<MULTIMEDIA_LINK>> {0:M} ,*
-          +1 <<NOTE_STRUCTURE>> {0:M} 
+        n SOUR @<XREF:SOUR>@ /* pointer to source record */ {1:1} 
+        +1 PAGE <WHERE_WITHIN_SOURCE> {0:1} 
+        +1 EVEN <EVENT_TYPE_CITED_FROM> {0:1} 
+        +2 ROLE <ROLE_IN_EVENT> {0:1} 
+        +1 DATA {0:1}
+        +2 DATE <ENTRY_RECORDING_DATE> {0:1} 
+        +2 TEXT <TEXT_FROM_SOURCE> {0:M} 
+        +3 [ CONC | CONT ] <TEXT_FROM_SOURCE> {0:M}
+        +1 QUAY <CERTAINTY_ASSESSMENT> {0:1} 
+        +1 <<MULTIMEDIA_LINK>> {0:M} ,*
+        +1 <<NOTE_STRUCTURE>> {0:M} 
         """
 
         src_handle = ref.get_reference_handle()
@@ -1298,7 +1318,6 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             return
 
         src = self.dbase.get_source_from_handle(src_handle)
-        self.slist.add(src_handle)
 
         # Reference to the source
         self.__writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
@@ -1335,11 +1354,11 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __photo(self, photo, level):
         """
-          n OBJE {1:1}
-          +1 FORM <MULTIMEDIA_FORMAT> {1:1} 
-          +1 TITL <DESCRIPTIVE_TITLE> {0:1} 
-          +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
-          +1 <<NOTE_STRUCTURE>> {0:M}
+        n OBJE {1:1}
+        +1 FORM <MULTIMEDIA_FORMAT> {1:1} 
+        +1 TITL <DESCRIPTIVE_TITLE> {0:1} 
+        +1 FILE <MULTIMEDIA_FILE_REFERENCE> {1:1}
+        +1 <<NOTE_STRUCTURE>> {0:M}
         """
         photo_obj_id = photo.get_reference_handle()
         photo_obj = self.dbase.get_object_from_handle(photo_obj_id)
@@ -1359,16 +1378,16 @@ class GedcomWriter(BasicUtils.UpdateCallback):
 
     def __place(self, place, level):
         """
-          PLACE_STRUCTURE:=
-             n PLAC <PLACE_NAME> {1:1}
+        PLACE_STRUCTURE:=
+            n PLAC <PLACE_NAME> {1:1}
             +1 FORM <PLACE_HIERARCHY> {0:1}
             +1 FONE <PLACE_PHONETIC_VARIATION> {0:M}  # not used
-              +2 TYPE <PHONETIC_TYPE> {1:1}
+            +2 TYPE <PHONETIC_TYPE> {1:1}
             +1 ROMN <PLACE_ROMANIZED_VARIATION> {0:M} # not used
-              +2 TYPE <ROMANIZED_TYPE> {1:1}
+            +2 TYPE <ROMANIZED_TYPE> {1:1}
             +1 MAP {0:1}
-              +2 LATI <PLACE_LATITUDE> {1:1}
-              +2 LONG <PLACE_LONGITUDE> {1:1}
+            +2 LATI <PLACE_LATITUDE> {1:1}
+            +2 LONG <PLACE_LONGITUDE> {1:1}
             +1 <<NOTE_STRUCTURE>> {0:M} 
         """
         place_name = place.get_title()

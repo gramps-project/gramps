@@ -63,7 +63,7 @@ from ReportBase  import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,\
 def create_quickreport_menu(category,dbstate,uistate,handle) :
     #import present version of the 
     from PluginUtils import quick_report_list
-    ''' This functions querries the registered quick reports with 
+    """ This functions querries the registered quick reports with 
             quick_report_list of _PluginMgr.py
         It collects the reports of the requested category, which must be one of
                         CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
@@ -74,7 +74,7 @@ def create_quickreport_menu(category,dbstate,uistate,handle) :
             handle as input method.
         A tuple is returned, containing the ui string of the quick report menu,
         and its associated actions
-    '''
+    """
 
     actions = []
     ofile = StringIO()

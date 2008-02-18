@@ -727,10 +727,10 @@ class GrampsDbXmlWriter(UpdateCallback):
                          ('  '*indent,tagname,self.fix(value),tagname))
 
     def write_line_nofix(self,tagname,value,indent=1):
-        '''Writes a line, but does not escape characters. 
+        """Writes a line, but does not escape characters. 
             Use this instead of write_line is the value is already fixed,
             this avoids &amp; becoming &amp;amp;
-        '''
+        """
         if value:
             self.g.write('%s<%s>%s</%s>\n' %
                          ('  '*indent, tagname, value, tagname))

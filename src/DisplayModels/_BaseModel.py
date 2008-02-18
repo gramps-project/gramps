@@ -295,15 +295,15 @@ class BaseModel(gtk.GenericTreeModel):
         self.row_changed(index,node)
 
     def on_get_flags(self):
-        '''returns the GtkTreeModelFlags for this particular type of model'''
+        """returns the GtkTreeModelFlags for this particular type of model"""
         return gtk.TREE_MODEL_LIST_ONLY | gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
         return 1
 
     def on_get_path(self, node):
-        '''returns the tree path (a tuple of indices at the various
-        levels) for a particular node.'''
+        """returns the tree path (a tuple of indices at the various
+        levels) for a particular node."""
         return self.node_map.get_path(node)
 
     def on_get_column_type(self,index):
@@ -327,7 +327,7 @@ class BaseModel(gtk.GenericTreeModel):
             return u''
 
     def on_iter_next(self, node):
-        '''returns the next node at this level of the tree'''
+        """returns the next node at this level of the tree"""
         return self.node_map.find_next_handle(node)
 
     def on_iter_children(self,node):
@@ -337,7 +337,7 @@ class BaseModel(gtk.GenericTreeModel):
         return None
 
     def on_iter_has_child(self, node):
-        '''returns true if this node has children'''
+        """returns true if this node has children"""
         if node == None:
             return len(self.node_map) > 0
         return False
@@ -353,5 +353,5 @@ class BaseModel(gtk.GenericTreeModel):
         return None
 
     def on_iter_parent(self, node):
-        '''returns the parent of this node'''
+        """returns the parent of this node"""
         return None

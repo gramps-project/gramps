@@ -262,9 +262,9 @@ class EventView(PageView.ListView):
                 pass
 
     def dummy_report(self, obj):
-        ''' For the xml UI definition of popup to work, the submenu 
+        """ For the xml UI definition of popup to work, the submenu 
             Quick Report must have an entry in the xml
             As this submenu will be dynamically built, we offer a dummy action
-        '''
+        """
         pass
 

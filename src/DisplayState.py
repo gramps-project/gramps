@@ -147,9 +147,9 @@ class History(gen.utils.GrampsDBCallback):
             return u""
         
     def present(self):
-        '''
+        """
         return the person handle that is now active in the history
-        '''
+        """
         try :
             if self.history :
                 return self.history[self.index]
@@ -354,7 +354,7 @@ class DisplayState(gen.utils.GrampsDBCallback):
         self.relationship.set_depth(value)
         
     def display_relationship(self, dbstate):
-        ''' Construct the relationship in order to show it in the statusbar
+        """ Construct the relationship in order to show it in the statusbar
             This can be a time intensive calculation, so we only want to do
             it if persons are different than before.
             Eg: select a person, then double click, will result in calling
@@ -362,7 +362,7 @@ class DisplayState(gen.utils.GrampsDBCallback):
                 to obtain relationship once!
             This means the relationship part of statusbar only changes on
             change of row.
-        '''
+        """
         self.relationship.connect_db_signals(dbstate)
         default_person = dbstate.db.get_default_person()
         active = dbstate.get_active_person()
@@ -384,11 +384,11 @@ class DisplayState(gen.utils.GrampsDBCallback):
             return u""
 
     def clear_history(self, handle=None):
-        '''Clear the history. If handle is given, then the history is 
+        """Clear the history. If handle is given, then the history is 
             immediately initialized with a first entry 
             (you'd eg want active person you view there as History contains the 
              present object too!)
-        '''
+        """
         self.phistory.clear()
         if handle :
             self.phistory.push(handle)

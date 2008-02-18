@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:gramps_main.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -63,10 +63,10 @@ from QuestionDialog import ErrorDialog
 
 
 def register_stock_icons ():
-    '''
+    """
     Add the gramps names for its icons (eg gramps-person) to the GTK icon
     factory. This allows all gramps modules to call up the icons by their name
-    '''
+    """
         
     #iconpath to the base image. The front of the list has highest priority 
     if platform.system() == "Windows":

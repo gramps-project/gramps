@@ -112,13 +112,13 @@ class CLIDbManager:
         self._populate_cli()
 
     def empty(self, val):
-        '''Callback that does nothing
-        '''
+        """Callback that does nothing
+        """
         pass
 
     def _populate_cli(self):
-        ''' Get the list of current names in the database dir
-        '''
+        """ Get the list of current names in the database dir
+        """
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(Config.get(Config.DATABASE_PATH))
         make_dbdir(dbdir)
@@ -145,18 +145,18 @@ class CLIDbManager:
         self.current_names.sort()
 
     def family_tree(self, name):
-        '''Given a name, return None if name not existing or 
+        """Given a name, return None if name not existing or 
             filename, filetype, name
            if a known database name
-        '''
+        """
         for data in self.current_names:
             if data[0] == name:
                 return data[1], 'x-directory/normal', name
         return None
 
     def family_tree_list(self):
-        '''Return a list of name, dirname of the known family trees
-        '''
+        """Return a list of name, dirname of the known family trees
+        """
         lst = [(x[0], x[1]) for x in self.current_names]
         return lst
 
