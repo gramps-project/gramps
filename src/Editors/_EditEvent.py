@@ -25,8 +25,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
-
+from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -57,7 +56,8 @@ from GrampsWidgets import (MonitoredEntry, PlaceEntry, PrivacyButton,
 # Constants
 #
 #-------------------------------------------------------------------------
-
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed'
+WIKI_HELP_SEC = _('manual|Editing_Information_About_Events')
 #-------------------------------------------------------------------------
 #
 # EditEvent class
@@ -195,8 +195,8 @@ class EditEvent(EditPrimary):
 
     def help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-ev')
-
+        GrampsDisplay.help('adv-ev', webpage=WIKI_HELP_PAGE, 
+                                   section=WIKI_HELP_SEC)
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():

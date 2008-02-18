@@ -1,3 +1,7 @@
+2008-02-18 Frederik De Richter <frederik.de.richter@pandora.be>
+        * src/Editors/_EditEvent.py
+        link to wiki manual
+
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DataViews/EventView.py
 	* src/DataViews/FamilyList.py
@@ -39,7 +43,7 @@
 	* src/DataViews/RelationView.py
 	* src/DataViews/PedigreeView.py
 	* src/ReportBase/_ReportUtils.py
-	* src/Editors/_EditPerson.py
+	* 
 	* src/Editors/_EditMediaRef.py
 	* src/DisplayTabs/_GalleryTab.py: also correct wrong popup menu
 	* src/plugins/Summary.py
