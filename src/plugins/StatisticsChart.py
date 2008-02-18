@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2003-2006 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2008      Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -442,6 +443,10 @@ class Extract:
                         if not no_years:
                             # do not accept people who are not known to be in range
                             continue
+                    else:
+                        continue
+            else:
+                continue
 
             self.get_person_data(person, data)
         return data
@@ -566,10 +571,12 @@ class StatisticsChart(Report):
     def output_piechart(self, title, typename, data, lookup):
 
         # set layout variables
-        middle = self.doc.get_usable_width() / 2
+        middle_w = self.doc.get_usable_width() / 2
+        middle_h = self.doc.get_usable_height() / 2
+        middle = min(middle_w,middle_h)
         
         # start output
-        self.doc.center_text('SC-title', title, middle, 0)
+        self.doc.center_text('SC-title', title, middle_w, 0)
         style_sheet = self.doc.get_style_sheet()
         pstyle = style_sheet.get_paragraph_style('SC-Title')
         yoffset = ReportUtils.pt2cm(pstyle.get_font().get_size())
@@ -584,14 +591,17 @@ class StatisticsChart(Report):
             chart_data.append((style, data[key], text))
             color = (color+1) % 7    # There are only 7 color styles defined
         
-            margin = 1.0
-            legendx = 2.0
+        margin = 1.0
+        legendx = 2.0
     
         # output data...
         radius = middle - 2*margin
         yoffset = yoffset + margin + radius
-        ReportUtils.draw_pie_chart(self.doc, middle, yoffset, radius, chart_data, -90)
-        yoffset = yoffset + radius + margin
+        ReportUtils.draw_pie_chart(self.doc, middle_w, yoffset, radius, chart_data, -90)
+        yoffset = yoffset + radius + 2*margin
+        if middle == middle_h:   # Landscape
+            legendx = 1.0
+            yoffset = margin
     
         text = _("%s (persons):") % typename
         ReportUtils.draw_legend(self.doc, legendx, yoffset, chart_data, text,'SC-legend')
@@ -696,12 +706,12 @@ class StatisticsChartOptions(MenuReportOptions):
         menu.add_option(category_name,"reverse", reverse)
 
         this_year = time.localtime()[0]
-        year_from = NumberOption(_("People Born Before"), 
+        year_from = NumberOption(_("People Born After"), 
                                  1700, 1, this_year)
         year_from.set_help(_("Birth year from which to include people"))
         menu.add_option(category_name,"year_from", year_from)
         
-        year_to = NumberOption(_("People Born After"), 
+        year_to = NumberOption(_("People Born Before"), 
                                  this_year, 1, this_year)
         year_to.set_help(_("Birth year until which to include people"))
         menu.add_option(category_name,"year_to", year_to)

@@ -1,3 +1,8 @@
+2008-02-17  Peter Landgren <peter.talken@telia.com>
+	* src/plugins/StatisticsChart.py:
+	0001756: Very strange results with statistics report.
+	0001760: Pie charts are clipped if paper in landscape mode.
+
 2008-02-17  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/gen/lib/date.py (Date.__sub__): fixed some date math (#1649)
 	* src/gen/lib/test/date_test.py: added some unit tests for date math
