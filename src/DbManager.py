@@ -62,7 +62,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import const
-import QuestionDialog
+from QuestionDialog import ErrorDialog, QuestionDialog
 import gen.db
 import GrampsDbUtils
 import Config
@@ -495,7 +495,7 @@ class DbManager(CLIDbManager):
         path = store.get_path(node)
         self.lock_file = store[path][PATH_COL]
 
-        QuestionDialog.QuestionDialog(
+        QuestionDialog(
             _("Break the lock on the '%s' database?") % store[path][0],
             _("GRAMPS believes that someone else is actively editing "
               "this database. You cannot edit this database while it "
@@ -574,8 +574,6 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            from QuestionDialog import ErrorDialog
-            
             ErrorDialog(
                 _("Rename failed"),
                 _("An attempt to rename a version failed "
@@ -592,7 +590,7 @@ class DbManager(CLIDbManager):
         node = self.model.get_iter(path)
         filename = self.model.get_value(node, FILE_COL)
         if self.existing_name(new_text, skippath=path):
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                     _("Could not rename the Family Tree."), 
                     _("Family Tree already exists, choose a unique name."))
             return
@@ -606,7 +604,7 @@ class DbManager(CLIDbManager):
             RecentFiles.rename_filename(old_text, new_text)
             self.model.set_value(node, NAME_COL, new_text)
         except (OSError, IOError), msg:
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Could not rename family tree"),
                 str(msg))
 
@@ -662,7 +660,7 @@ class DbManager(CLIDbManager):
         self.data_to_delete = store[path]
 
         if len(path) == 1:
-            QuestionDialog.QuestionDialog(
+            QuestionDialog(
                 _("Remove the '%s' database?") % self.data_to_delete[0],
                 _("Removing this database will permanently destroy the data."),
                 _("Remove database"),
@@ -670,7 +668,7 @@ class DbManager(CLIDbManager):
         else:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
-            QuestionDialog.QuestionDialog(
+            QuestionDialog(
                 _("Remove the '%(revision)s' version of '%(database)s'") % {
                     'revision' : rev, 
                     'database' : parent
@@ -706,7 +704,7 @@ class DbManager(CLIDbManager):
                     os.unlink(os.path.join(top, filename))
             os.rmdir(self.data_to_delete[1])
         except (IOError, OSError), msg:
-            QuestionDialog.ErrorDialog(_("Could not delete family tree"),
+            ErrorDialog(_("Could not delete family tree"),
                                        str(msg))
         # rebuild the display
         self.__populate()
@@ -730,8 +728,6 @@ class DbManager(CLIDbManager):
         del proc
 
         if status != 0:
-            from QuestionDialog import ErrorDialog
-            
             ErrorDialog(
                 _("Deletion failed"),
                 _("An attempt to delete a version failed "
@@ -808,7 +804,7 @@ class DbManager(CLIDbManager):
         try:
             self._create_new_db()
         except (OSError, IOError), msg:
-            QuestionDialog.ErrorDialog(_("Could not create family tree"),
+            ErrorDialog(_("Could not create family tree"),
                                        str(msg))
         self.new.set_sensitive(True)
 
@@ -1003,8 +999,6 @@ def check_out(dbase, rev, path, callback):
     del proc
 
     if status != 0:
-        from QuestionDialog import ErrorDialog
-
         ErrorDialog(
             _("Retrieve failed"),
             _("An attempt to retrieve the data failed "
@@ -1057,8 +1051,6 @@ def check_in(dbase, filename, callback, cursor_func = None):
     del proc
 
     if status != 0:
-        from QuestionDialog import ErrorDialog
-
         ErrorDialog(
             _("Archiving failed"),
             _("An attempt to archive the data failed "

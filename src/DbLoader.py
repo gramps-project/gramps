@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:DbLoader.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Handling of loading new/existing databases.
@@ -61,7 +61,8 @@ import gen.db
 import GrampsDbUtils
 import Utils
 from PluginUtils import import_list
-import QuestionDialog
+from QuestionDialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
+                            WarningDialog)
 import Errors
 
 #-------------------------------------------------------------------------
@@ -92,7 +93,7 @@ class DbLoader:
         # so we will lose the undo history. Warn the user.
 
         if self.dbstate.db.get_number_of_people() > 0:
-            warn_dialog = QuestionDialog.QuestionDialog2(
+            warn_dialog = QuestionDialog2(
                 _('Undo history warning'),
                 _('Proceeding with import will erase the undo history '
                   'for this session. In particular, you will not be able '
@@ -157,7 +158,7 @@ class DbLoader:
                 try:
                     filetype = Mime.get_type(filename)
                 except RuntimeError, msg:
-                    QuestionDialog.ErrorDialog(
+                    ErrorDialog(
                         _("Could not open file: %s") % filename, 
                         str(msg))
                     return False
@@ -178,7 +179,7 @@ class DbLoader:
                     return True
 
             # Finally, we give up and declare this an unknown format
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Could not open file: %s") % filename, 
                 _('File type "%s" is unknown to GRAMPS.\n\n'
                   'Valid types are: GRAMPS database, GRAMPS XML, '
@@ -201,14 +202,14 @@ class DbLoader:
         if len(filename) == 0:
             return True
         elif os.path.isdir(filename):
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _('Cannot open database'), 
                 _('The selected file is a directory, not '
                   'a file.\nA GRAMPS database must be a file.'))
             return True
         elif os.path.exists(filename):
             if not os.access(filename, os.R_OK):
-                QuestionDialog.ErrorDialog(
+                ErrorDialog(
                     _('Cannot open database'), 
                     _('You do not have read access to the selected '
                       'file.'))
@@ -219,7 +220,7 @@ class DbLoader:
                 f.close()
                 os.remove(filename)
             except IOError:
-                QuestionDialog.ErrorDialog(
+                ErrorDialog(
                     _('Cannot create database'), 
                     _('You do not have write access to the selected file.'))
                 return True
@@ -244,7 +245,7 @@ class DbLoader:
         if os.path.exists(filename):
             if not os.access(filename, os.W_OK):
                 mode = "r"
-                QuestionDialog.WarningDialog(_('Read only database'), 
+                WarningDialog(_('Read only database'), 
                                              _('You do not have write access '
                                                'to the selected file.'))
             else:
@@ -268,10 +269,10 @@ class DbLoader:
             except  (OSError, IOError):
                 print "could not change directory"
         except OSError, msg:
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Could not open file: %s") % filename, str(msg))
         except Errors.DbError, msg:
-            QuestionDialog.DBErrorDialog(str(msg.value))
+            DBErrorDialog(str(msg.value))
             self.dbstate.no_database()
         except Exception:
             _LOG.error("Failed to open database.", exc_info=True)
@@ -289,7 +290,7 @@ class DbLoader:
             dirname = os.path.dirname(filename) + os.path.sep
             Config.set(Config.RECENT_IMPORT_DIR, dirname)
         except UnicodeError, msg:
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Could not import file: %s") % filename, 
                 _("This GEDCOM file incorrectly identifies its character "
                   "set, so it cannot be accurately imported. Please fix the "

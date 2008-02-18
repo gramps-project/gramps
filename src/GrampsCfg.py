@@ -49,7 +49,7 @@ import Utils
 from gen.lib import Name
 import ManagedWindow
 from GrampsWidgets import *
-import QuestionDialog
+from QuestionDialog import ErrorDialog, QuestionDialog2
 from Errors import NameDisplayError
 
 #-------------------------------------------------------------------------
@@ -404,7 +404,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
             oldname = self.fmt_model.get_value(node, COL_NAME)
             # check to see if this pattern already exists
             if self.__check_for_name(translation, node):
-                QuestionDialog.ErrorDialog(_("This format exists already"), 
+                ErrorDialog(_("This format exists already"), 
                                            translation)
                 self.edit_button.emit('clicked')
                 return
@@ -928,7 +928,7 @@ class NameFormatEditDlg:
             
             if self.response == gtk.RESPONSE_OK:
                 if not self.valid:
-                    q = QuestionDialog.QuestionDialog2(
+                    q = QuestionDialog2(
                         _('The format definition is invalid'), 
                         _('What would you like to do?'), 
                         _('_Continue anyway'), _('_Modify format'), 
@@ -938,7 +938,7 @@ class NameFormatEditDlg:
                 elif self.fmt_name == '' and self.fmt_str == '':
                     self.response = gtk.RESPONSE_CANCEL
                 elif (self.fmt_name == '') ^ (self.fmt_str == ''):
-                    QuestionDialog.ErrorDialog(
+                    ErrorDialog(
                         _('Both Format name and definition have to be defined'), 
                         parent=self.dlg)
                     running = True

@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:HtmlDoc.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #------------------------------------------------------------------------
 #
@@ -42,7 +42,7 @@ import tarfile
 import const
 import Errors
 import BaseDoc
-import QuestionDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 import Mime
 import Utils
 
@@ -156,7 +156,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
-            QuestionDialog.ErrorDialog(_("Template Error"),mymsg)
+            ErrorDialog(_("Template Error"),mymsg)
 
     def load_html(self):
         start = re.compile(r"<!--\s*START\s*-->")
@@ -181,7 +181,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
-            QuestionDialog.ErrorDialog(_("Template Error"),mymsg)
+            ErrorDialog(_("Template Error"),mymsg)
             
     def load_template(self):
         if self.template:
@@ -193,13 +193,13 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             except IOError,msg:
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
-                QuestionDialog.WarningDialog(mymsg,str(msg))
+                WarningDialog(mymsg,str(msg))
                 self.bottom = _bottom
                 self.top = _top
             except:
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
-                QuestionDialog.WarningDialog(mymsg)
+                WarningDialog(mymsg)
                 self.bottom = _bottom
                 self.top = _top
         else:

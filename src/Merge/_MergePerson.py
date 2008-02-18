@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_MergePerson.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +45,7 @@ from ReportBase import ReportUtils
 from BasicUtils import name_displayer
 import const
 import DateHandler
-import QuestionDialog
+from QuestionDialog import ErrorDialog
 import GrampsDisplay
 import ManagedWindow
 import gen.utils
@@ -83,12 +83,12 @@ class PersonCompare(ManagedWindow.ManagedWindow):
 
     def merge(self, obj):
         if check_for_spouse(self.p1, self.p2):
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Cannot merge people"), 
                 _("Spouses cannot be merged. To merge these people, "
                   "you must first break the relationship between them."))
         elif check_for_child(self.p1, self.p2):
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Cannot merge people"), 
                 _("A parent and child cannot be merged. To merge these "
                   "people, you must first break the relationship between "
@@ -260,14 +260,14 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
     def __init__(self, dbstate, uistate, person1, person2, update=None):
 
         if check_for_spouse(person1, person2):
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Cannot merge people"), 
                 _("Spouses cannot be merged. To merge these people, "
                   "you must first break the relationship between them."))
             return
 
         if check_for_child(person1, person2):
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Cannot merge people"), 
                 _("A parent and child cannot be merged. To merge these "
                   "people, you must first break the relationship between "
@@ -298,12 +298,12 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
         if ret == gtk.RESPONSE_OK:
 
             if check_for_spouse(person1, person2):
-                QuestionDialog.ErrorDialog(
+                ErrorDialog(
                     _("Cannot merge people"), 
                     _("Spouses cannot be merged. To merge these people, "
                       "you must first break the relationship between them."))
             elif check_for_child(person1, person2):
-                QuestionDialog.ErrorDialog(
+                ErrorDialog(
                     _("Cannot merge people"), 
                     _("A parent and child cannot be merged. To merge these "
                       "people, you must first break the relationship between "

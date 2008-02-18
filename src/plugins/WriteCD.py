@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:WriteCD.py 9912 2008-01-22 09:17:46Z acraphae $
 
 "Export to CD (nautilus)."
 
@@ -29,7 +29,6 @@
 #-------------------------------------------------------------------------
 import os
 import sys
-#from cStringIO import StringIO
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -75,9 +74,7 @@ except:
 #
 #-------------------------------------------------------------------------
 from GrampsDbUtils import XmlWriter
-#import Mime
-#import const
-import QuestionDialog
+from QuestionDialog import ErrorDialog, MissingMediaDialog
 from PluginUtils import register_export
 
 _title_string = _("Export to CD")
@@ -117,12 +114,12 @@ class PackageWriter:
             uri = URI('burn:///%s' % base)
             make_directory(uri, OPEN_WRITE)
         except FileExistsError, msg:
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
+            ErrorDialog(_("CD export preparation failed"), 
                                        "1 %s " % str(msg))
             return False
         except:
             uri_name = "burn:///" + base
-            QuestionDialog.ErrorDialog("CD export preparation failed", 
+            ErrorDialog("CD export preparation failed", 
                                        'Could not create %s' % uri_name)
             return False
 
@@ -152,12 +149,12 @@ class PackageWriter:
             uri = URI('burn:///%s' % base)
             make_directory(uri, OPEN_WRITE)
         except FileExistsError:
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
+            ErrorDialog(_("CD export preparation failed"), 
                                        "File already exists")
             return False
         except:
             uri_name = "burn:///" + base
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
+            ErrorDialog(_("CD export preparation failed"), 
                                        _('Could not create %s') % uri_name)
             return False
 
@@ -165,12 +162,12 @@ class PackageWriter:
             uri = URI('burn:///%s/.thumb' % base)
             make_directory(uri, OPEN_WRITE)
         except FileExistsError, msg:
-            QuestionDialog.ErrorDialog("CD export preparation failed", 
+            ErrorDialog("CD export preparation failed", 
                                        "4 %s " % str(msg))
             return False
         except:
             uri_name = "burn:///" + base + "/.thumb"
-            QuestionDialog.ErrorDialog(_("CD export preparation failed"), 
+            ErrorDialog(_("CD export preparation failed"), 
                                        _('Could not create %s') % uri_name)
             return False
 
@@ -257,7 +254,7 @@ class PackageWriter:
                 # File is lost => ask what to do
                 self.object_handle = obj.get_handle()
                 if missmedia_action == 0:
-                    mmd = QuestionDialog.MissingMediaDialog(_("Media object could not be found"), 
+                    mmd = MissingMediaDialog(_("Media object could not be found"), 
                         _("%(file_name)s is referenced in the database, but no longer exists. " 
                             "The file may have been deleted or moved to a different location. " 
                             "You may choose to either remove the reference from the database, " 

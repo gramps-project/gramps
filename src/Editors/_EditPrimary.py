@@ -29,6 +29,7 @@ from BasicUtils import name_displayer
 import Config
 import GrampsDisplay
 from QuestionDialog import SaveDialog
+import gen.lib
 
 class EditPrimary(ManagedWindow.ManagedWindow):
 
@@ -36,8 +37,12 @@ class EditPrimary(ManagedWindow.ManagedWindow):
     
     def __init__(self, state, uistate, track, obj, get_from_handle, 
                  get_from_gramps_id, callback=None):
-        """Creates an edit window.  Associates a person with the window."""
-
+        """
+        Create an edit window.  
+        
+        Associate a person with the window.
+        
+        """
         self.dp  = DateHandler.parser
         self.dd  = DateHandler.displayer
         self.name_displayer  = name_displayer
@@ -166,7 +171,11 @@ class EditPrimary(ManagedWindow.ManagedWindow):
             return False
 
     def empty_object(self):
-        return None
+        #empty_object should be overridden in base class and will throw an 
+        #exception if it is not because self.empty_object().serialize() is 
+        #called and PrimaryObject does not implement serialize(). See
+        #BaseObject.serialize()
+        return gen.lib.PrimaryObject
 
     def data_has_changed(self):
 
@@ -263,7 +272,17 @@ class EditPrimary(ManagedWindow.ManagedWindow):
 
     def _uses_duplicate_id(self):
         """
-        Fix problem for now
+        Check whether a changed or added GRAMPS ID already exists in the DB.
+        
+        Return True if a duplicate GRAMPS ID has been detected.
+        
         """
-        return (False, 0)
-
+        original = self.get_from_handle(self.obj.get_handle())
+        if original and original.get_gramps_id() == self.obj.get_gramps_id():
+            return (False, 0)
+        else:
+            idval = self.obj.get_gramps_id()
+            if self.get_from_gramps_id(idval):
+                return (True, idval)
+            return (False, 0)
+            

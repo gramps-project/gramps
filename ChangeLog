@@ -1,3 +1,21 @@
+2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/DataViews/PersonView.py
+	* src/ViewManager.py
+	* src/GrampsCfg.py
+	* src/plugins/WriteCD.py
+	* src/plugins/FindDupes.py
+	* src/Merge/_MergePerson.py
+	* src/DbManager.py
+	* src/ArgHandler.py
+	* src/docgen/HtmlDoc.py
+	* src/DbLoader.py
+	use from QuestionDialog import ErrorDialog etc to bring in line with
+	rest of gramps
+	* src/Editors/_EditPrimary.py: EditPrimary._uses_duplicate_id() check
+	for duplicates and give error dialog if id is already used. #0001347
+	* src/Editors/_EditFamily.py: EditFamily.__do_save(), add call to 
+	_uses_duplicate_id(). #0001347 
+
 2008-02-17  Peter Landgren <peter.talken@telia.com>
 	* src/plugins/StatisticsChart.py:
 	0001756: Very strange results with statistics report.

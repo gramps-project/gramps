@@ -66,7 +66,8 @@ from DisplayTabs import (EmbeddedList, EventEmbedList, SourceEmbedList,
 from GrampsWidgets import (PrivacyButton, MonitoredEntry, MonitoredDataType, 
                            IconButton, LinkBox, BasicLabel)
 from ReportBase import CATEGORY_QR_FAMILY
-import QuestionDialog
+from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
+                            MessageHideDialog)
 
 from Selectors import selector_factory
 SelectPerson = selector_factory('Person')
@@ -419,7 +420,7 @@ class EditFamily(EditPrimary):
                 for i in self.hidden:
                     i.set_sensitive(False)
 
-                QuestionDialog.MessageHideDialog(
+                MessageHideDialog(
                     _("Adding parents to a person"),
                     _("It is possible to accidentally create multiple "
                       "families with the same parents. To help avoid "
@@ -470,7 +471,7 @@ class EditFamily(EditPrimary):
             self.lds_embed.data = self.obj.get_lds_ord_list()
             self.lds_embed.rebuild()
 
-            QuestionDialog.WarningDialog(
+            WarningDialog(
                 _("Family has changed"),
                 _("The family you are editing has changed. To make sure that the "
                   "database is not corrupted, GRAMPS has updated the family to "
@@ -771,7 +772,7 @@ class EditFamily(EditPrimary):
                 common = list(mfam.intersection(ffam))
                 if len(common) > 0:
                     if self.add_parent or self.obj.handle not in common:
-                        QuestionDialog.WarningDialog(
+                        WarningDialog(
                             _('Duplicate Family'),
                             _('A family with these parents already exists '
                               'in the database. If you save, you will create '
@@ -862,7 +863,7 @@ class EditFamily(EditPrimary):
         try:
             self.__do_save()
         except bsddb_db.DBRunRecoveryError, msg:
-            QuestionDialog.RunDatabaseRepair(msg[1])
+            RunDatabaseRepair(msg[1])
 
     def __do_save(self):
         self.ok_button.set_sensitive(False)
@@ -881,7 +882,7 @@ class EditFamily(EditPrimary):
             father = self.db.get_person_from_handle(self.obj.get_father_handle())
             name = "%s [%s]" % (name_displayer.display(father),
                                 father.gramps_id)
-            QuestionDialog.ErrorDialog(_("A father cannot be his own child"),
+            ErrorDialog(_("A father cannot be his own child"),
                                        _("%s is listed as both the father and child "
                                          "of the family.") % name)
             self.ok_button.set_sensitive(True)
@@ -891,17 +892,29 @@ class EditFamily(EditPrimary):
             mother = self.db.get_person_from_handle(self.obj.get_mother_handle())
             name = "%s [%s]" % (name_displayer.display(mother),
                                 mother.gramps_id)
-            QuestionDialog.ErrorDialog(_("A mother cannot be her own child"),
+            ErrorDialog(_("A mother cannot be her own child"),
                                        _("%s is listed as both the mother and child "
                                          "of the family.") % name)
             self.ok_button.set_sensitive(True)
             return
 
         if not original and self.object_is_empty():
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("Cannot save family"),
                 _("No data exists for this family. "
                   "Please enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+        
+        (uses_dupe_id, id) = self._uses_duplicate_id()
+        if uses_dupe_id:
+            msg1 = _("Cannot save family. ID already exists.")
+            msg2 = _("You have attempted to use the existing GRAMPS ID with "
+                         "value %(id)s. This value is already used. Please "
+                         "enter a different ID or leave "
+                         "blank to get the next available ID value.") % {
+                         'id' : id}
+            ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
 

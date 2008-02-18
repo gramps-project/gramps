@@ -51,7 +51,7 @@ from DisplayModels import PeopleModel
 import PageView
 from BasicUtils import name_displayer
 import Utils
-import QuestionDialog
+from QuestionDialog import ErrorDialog, QuestionDialog
 import TreeTips
 import Errors
 import Config
@@ -186,7 +186,7 @@ class PersonView(PageView.PersonNavView):
         mlist = self.get_selected_objects()
 
         if len(mlist) != 2:
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
 		_("Cannot merge people"), 
 		_("Exactly two people must be selected to perform a merge. "
 		  "A second person can be selected by holding down the "
@@ -199,7 +199,7 @@ class PersonView(PageView.PersonNavView):
                 Merge.PersonCompare(self.dbstate, self.uistate, person1, 
                                     person2, self.build_tree)
             else:
-                QuestionDialog.ErrorDialog(
+                ErrorDialog(
                     _("Cannot merge people"), 
                     _("Exactly two people must be selected to perform a "
                       "merge. A second person can be selected by holding "
@@ -210,7 +210,7 @@ class PersonView(PageView.PersonNavView):
         mlist = self.get_selected_objects()
 
         if len(mlist) != 2:
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
 		_("Cannot merge people"), 
 		_("Exactly two people must be selected to perform a merge. "
 		  "A second person can be selected by holding down the "
@@ -224,7 +224,7 @@ class PersonView(PageView.PersonNavView):
                 Merge.MergePeopleUI(self.dbstate, self.uistate, person1, 
                                     person2, self.build_tree)
             else:
-                QuestionDialog.ErrorDialog(
+                ErrorDialog(
 		    _("Cannot merge people"), 
 		    _("Exactly two people must be selected to perform a merge. "
 		      "A second person can be selected by holding down the "
@@ -603,7 +603,7 @@ class PersonView(PageView.PersonNavView):
             msg = _('Deleting the person will remove the person '
                              'from the database.')
             msg = "%s %s" % (msg, Utils.data_recover_msg)
-            QuestionDialog.QuestionDialog(_('Delete %s?') % name, 
+            QuestionDialog(_('Delete %s?') % name, 
                                           msg, 
                                           _('_Delete Person'), 
                                           self.delete_person_response)

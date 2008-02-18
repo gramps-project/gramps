@@ -52,6 +52,7 @@ from Merge import PersonCompare
 import GrampsDisplay
 import ManagedWindow
 from PluginUtils import Tool, register_tool
+from QuestionDialog import ErrorDialog, RunDatabaseRepair
 
 #-------------------------------------------------------------------------
 #
@@ -163,8 +164,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         try:
             self.find_potentials(threshold)
         except AttributeError, msg:
-            import QuestionDialog
-            QuestionDialog.RunDatabaseRepair(str(msg))
+            RunDatabaseRepair(str(msg))
             return
 
         self.options.handler.options_dict['threshold'] = threshold
@@ -173,8 +173,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         self.options.handler.save_options()
 
         if len(self.map) == 0:
-            import QuestionDialog
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                 _("No matches found"),
                 _("No potential duplicate people were found"))
         else:

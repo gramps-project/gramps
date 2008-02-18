@@ -52,7 +52,7 @@ import glob
 import const
 import GrampsDbUtils
 import Mime
-import QuestionDialog
+from QuestionDialog import ErrorDialog
 import Config
 import RecentFiles
 import Utils
@@ -398,7 +398,7 @@ class ArgHandler:
                     filename, filetype= data[0], data[1]
                     success = True
                 else:
-                    QuestionDialog.ErrorDialog( 
+                    ErrorDialog( 
                         _("Could not open file: %s") % filename,
                         _('Not a valid Family tree given to open\n\n'
                          ))

@@ -64,7 +64,7 @@ import const
 import Config
 import GrampsCfg
 import Errors
-import QuestionDialog
+from QuestionDialog import ErrorDialog, WarningDialog, QuestionDialog2
 import PageView
 import Navigation
 import RecentFiles
@@ -74,7 +74,6 @@ import UndoHistory
 from DbLoader import DbLoader
 import GrampsDisplay
 from gen.utils import ProgressMonitor
-#import gen.db
 
 import ProgressDialog
 
@@ -655,8 +654,6 @@ class ViewManager:
         """
         Abandon changes and quit.
         """
-        from QuestionDialog import QuestionDialog2, WarningDialog
-
         if self.state.db.abort_possible:
 
             dialog = QuestionDialog2(
@@ -1068,7 +1065,7 @@ class ViewManager:
         # If not, do nothing, just return. This can be handled better if family tree
         # delete/rename also updated the recent file menu info in DisplayState.py
         if not  os.path.isdir(filename):
-            QuestionDialog.ErrorDialog(
+            ErrorDialog(
                     _("Could not load a recent Family Tree."), 
                     _("Family Tree does not exists, as it has been deleted."))
             return
@@ -1246,7 +1243,7 @@ class ViewManager:
             self.uistate.push_message(self.state, 
                                       _("%s has been bookmarked") % name)
         else:
-            QuestionDialog.WarningDialog(
+            WarningDialog(
                 _("Could Not Set a Bookmark"), 
                 _("A bookmark could not be set because "
                   "no one was selected."))
