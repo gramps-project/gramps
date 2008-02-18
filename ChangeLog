@@ -1,4 +1,12 @@
-2008-02-15 Benny Malengier <benny.malengier@gramps-project.org>
+2008-02-18  Duncan Lithgow <dlithgow@gmail.com>
+			Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/plugins/AncestorChart.py
+	* src/plugins/DescendChart.py
+	* src/plugins/StatisticsChart.py
+	* src/plugins/TimeLine.py
+	work on 0001711: Inconsistant names for graphical reports 
+
+2008-02-18 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/RelationView.py
 	* src/DataViews/PedigreeView.py
 	* src/ReportBase/_ReportUtils.py

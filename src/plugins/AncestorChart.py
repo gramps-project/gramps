@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Reports/Graphical Reports/Ancestor Chart..."""
+"""Reports/Graphical Reports/Ancestor Tree..."""
 
 #------------------------------------------------------------------------
 #
@@ -531,9 +531,9 @@ register_report(
     report_class = AncestorChart,
     options_class = AncestorChartOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Ancestor Graph..."),
+    translated_name = _("Ancestor Tree..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description = _("Produces a graphical ancestral tree graph"),
+    description = _("Produces a graphical ancestral tree"),
     )

@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Reports/Graphical Reports/Ancestor Chart..."""
+"""Reports/Graphical Reports/Descendant Tree..."""
 
 #------------------------------------------------------------------------
 #
@@ -485,7 +485,7 @@ register_report(
     report_class = DescendChart,
     options_class = DescendChartOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Descendant Chart..."),
+    translated_name = _("Descendant Tree..."),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
