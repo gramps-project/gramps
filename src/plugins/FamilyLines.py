@@ -582,7 +582,9 @@ class FamilyLinesReport(Report):
                     media = self.db.get_object_from_handle(mediaHandle)
                     mediaMimeType = media.get_mime_type()
                     if mediaMimeType[0:5] == "image":
-                        imagePath = ThumbNails.get_thumbnail_path(media.get_path())
+                        imagePath = ThumbNails.get_thumbnail_path(
+                                        Utils.media_path_full(self.db, 
+                                                              media.get_path()))
 
             # put the label together and ouput this person
             label = u""

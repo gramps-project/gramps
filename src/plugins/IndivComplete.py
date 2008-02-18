@@ -43,6 +43,7 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from ReportBase import Bibliography, Endnotes
 from BasicUtils import name_displayer as _nd
+from Utils import media_path_full
 from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------
@@ -410,7 +411,7 @@ class IndivCompleteReport(Report):
             object = self.database.get_object_from_handle(object_handle)
             mime_type = object.get_mime_type()
             if mime_type and mime_type.startswith("image"):
-                filename = object.get_path()
+                filename = media_path_full(self.database, object.get_path())
                 if os.path.exists(filename):
                     self.doc.start_paragraph("IDS-Normal")
                     self.doc.add_media_object(filename, "center", 4.0, 4.0)

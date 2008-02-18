@@ -540,7 +540,7 @@ class CheckIntegrity:
         
         for ObjectId in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(ObjectId)
-            photo_name = obj.get_path()
+            photo_name = Utils.media_path_full(self.db, obj.get_path())
             if photo_name is not None and photo_name != "" and not Utils.find_file(photo_name):
                 if cl:
                     print "Warning: media file %s was not found." \

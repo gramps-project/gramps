@@ -175,7 +175,7 @@ class PackageWriter:
         # during the process (i.e. when removing object)
         for m_id in self.db.get_media_object_handles():
             mobject = self.db.get_object_from_handle(m_id)
-            filename = str(mobject.get_path())
+            filename = str(Utils.media_path_full(self.db, mobject.get_path()))
             if os.path.isfile(filename):
                 archive.add(filename)
 #             else:

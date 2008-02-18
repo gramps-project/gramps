@@ -25,6 +25,7 @@ import urllib
 import gen.lib
 from DataViews import register, Gramplet
 from BasicUtils import name_displayer
+from Utils import media_path_full
 from QuickReports import run_quick_report_by_name
 import DateHandler
 from gettext import gettext as _
@@ -474,8 +475,9 @@ class StatsGramplet(Gramplet):
         pobjects = len(database.get_media_object_handles())
         for photo_id in database.get_media_object_handles():
             photo = database.get_object_from_handle(photo_id)
+            fullname = media_path_full(database, photo.get_path())
             try:
-                bytes = bytes + posixpath.getsize(photo.get_path())
+                bytes = bytes + posixpath.getsize(fullname)
             except:
                 notfound.append(photo.get_path())
 

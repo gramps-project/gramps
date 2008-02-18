@@ -1,3 +1,25 @@
+2008-02-15 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/RelationView.py
+	* src/DataViews/PedigreeView.py
+	* src/ReportBase/_ReportUtils.py
+	* src/Editors/_EditPerson.py
+	* src/Editors/_EditMediaRef.py
+	* src/DisplayTabs/_GalleryTab.py: also correct wrong popup menu
+	* src/plugins/Summary.py
+	* src/plugins/WriteCD.py
+	* src/plugins/IndivComplete.py
+	* src/plugins/NarrativeWeb.py
+	* src/plugins/WritePkg.py
+	* src/plugins/GVFamilyLines.py
+	* src/plugins/DefaultGramplets.py
+	* src/plugins/SimpleBookTitle.py
+	* src/plugins/Check.py
+	* src/plugins/GVRelGraph.py
+	* src/plugins/FamilyLines.py
+	* src/Selectors/_SelectObject.py
+	* src/GrampsDbUtils/_WriteGedcom.py
+	#1787, #1208: use relative path correctly
+
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/GrampsDbUtils/_GedcomParse.py: remove encode_filename() as filename 
 	is already unicode encoded.

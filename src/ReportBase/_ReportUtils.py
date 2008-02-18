@@ -43,6 +43,7 @@ from gettext import gettext as _
 import DateHandler
 import gen.lib
 from BasicUtils import name_displayer as _nd
+from Utils import media_path_full
 from QuestionDialog import WarningDialog
 import BaseDoc
 
@@ -1566,7 +1567,7 @@ def insert_image(database, doc, photo, w_cm=4.0, h_cm=4.0):
     media_object = database.get_object_from_handle(object_handle)
     mime_type = media_object.get_mime_type()
     if mime_type and mime_type.startswith("image"):
-        filename = media_object.get_path()
+        filename = media_path_full(database, media_object.get_path())
         if os.path.exists(filename):
             doc.add_media_object(filename, "right", w_cm, h_cm)
         else:

@@ -46,6 +46,7 @@ import gtk
 import gen.lib
 import PageView
 from BasicUtils import name_displayer
+from Utils import media_path_full
 import DateHandler
 import ThumbNails
 import Config
@@ -577,8 +578,10 @@ class RelationshipView(PageView.PersonNavView):
         if image_list:
             mobj = self.dbstate.db.get_object_from_handle(image_list[0].ref)
             if mobj and mobj.get_mime_type()[0:5] == "image":
-                pixbuf = ThumbNails.get_thumbnail_image(mobj.get_path(),
-                                                        rectangle=image_list[0].get_rectangle())
+                pixbuf = ThumbNails.get_thumbnail_image(
+                                media_path_full(self.dbstate.db, 
+                                                mobj.get_path()),
+                                rectangle=image_list[0].get_rectangle())
                 image = gtk.Image()
                 image.set_from_pixbuf(pixbuf)
                 image.show()

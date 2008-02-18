@@ -41,6 +41,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 from PluginUtils import register_report
+from Utils import media_path_full
 from ReportBase import Report, ReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc
 from Selectors import selector_factory
@@ -95,7 +96,7 @@ class SimpleBookTitle(Report):
 
         if self.object_id:
             the_object = self.database.get_object_from_gramps_id(self.object_id)
-            name = the_object.get_path()
+            name = media_path_full(self.database, the_object.get_path())
             if self.image_size:
                 image_size = self.image_size
             else:
@@ -253,8 +254,9 @@ class SimpleBookTitleOptions(ReportOptions):
             return
         self.options_dict['imgid'] = the_object.get_gramps_id()
         self.obj_title.set_text(the_object.get_description())
-        icon_image = ThumbNails.get_thumbnail_image(the_object.get_path(),
-                                                    the_object.get_mime_type())
+        icon_image = ThumbNails.get_thumbnail_image(
+                            media_path_full(database, the_object.get_path()),
+                            the_object.get_mime_type())
         self.preview.set_from_pixbuf(icon_image)
         self.remove_obj_button.set_sensitive(True)
         self.size.set_sensitive(True)

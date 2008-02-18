@@ -857,8 +857,11 @@ class PedigreeView(PageView.PersonNavView):
                         if obj:
                             mtype = obj.get_mime_type()
                             if mtype and mtype[0:5] == "image":
-                                image = ThumbNails.get_thumbnail_path(obj.get_path(),
-                                                                      rectangle=ph.get_rectangle())
+                                image = ThumbNails.get_thumbnail_path(
+                                            Utils.media_path_full(
+                                                        self.dbstate.db,
+                                                        obj.get_path()),
+                                            rectangle=ph.get_rectangle())
                 if cairo_available:
                     pw = PersonBoxWidget_cairo( self.format_helper, lst[i][0], lst[i][3], positions[i][0][3], image);
                 else:

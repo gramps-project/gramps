@@ -45,6 +45,7 @@ import gtk.glade
 #------------------------------------------------------------------------
 import gen.lib
 from PluginUtils import register_report
+from Utils import media_path_full
 from ReportBase import CATEGORY_VIEW, MODE_GUI
 import DateHandler
 import ManagedWindow
@@ -75,7 +76,8 @@ def build_report(database,person):
     for photo_id in database.get_media_object_handles():
         photo = database.get_object_from_handle(photo_id)
         try:
-            bytes = bytes + posixpath.getsize(photo.get_path())
+            bytes = bytes + posixpath.getsize(media_path_full(database, 
+                                                            photo.get_path()))
         except:
             notfound.append(photo.get_path())
         

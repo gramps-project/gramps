@@ -90,18 +90,19 @@ class GalleryTab(ButtonTab):
 
     def double_click(self, obj, event):
         """
-        Handle the double click on list. 
-        
+        Handle the button press event: double click or right click on iconlist. 
         If the double click occurs, the Edit button handler is called.
-        
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.edit_button_clicked(obj)
+            return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             reflist = self.iconlist.get_selected_items()
             if len(reflist) == 1:
                 ref = self.media_list[reflist[0][0]]
                 self.right_click(ref, event)
+                return True
+        return
 
     def right_click(self, obj, event):
         itemlist = [
@@ -119,8 +120,9 @@ class GalleryTab(ButtonTab):
             app = Mime.get_application(mime_type)
             if app:
                 item = gtk.MenuItem(_('Open with %s') % app[1])
-                item.connect('activate', make_launcher(app[0], 
-                                                      ref_obj.get_path()))
+                item.connect('activate', make_launcher(app[0],
+                                    Utils.media_path_full(self.dbstate.db, 
+                                                          ref_obj.get_path())))
                 item.show()
                 menu.append(item)
                 item = gtk.SeparatorMenuItem()
@@ -228,9 +230,11 @@ class GalleryTab(ButtonTab):
                 RunDatabaseRepair(
                             _('Non existing media found in the Gallery'))
             else :
-                pixbuf = ThumbNails.get_thumbnail_image(obj.get_path(), 
-                                                    obj.get_mime_type(),
-                                                    ref.get_rectangle())
+                pixbuf = ThumbNails.get_thumbnail_image(
+                                Utils.media_path_full(self.dbstate.db, 
+                                                      obj.get_path()), 
+                                obj.get_mime_type(),
+                                ref.get_rectangle())
                 self.iconmodel.append(row=[pixbuf, obj.get_description(), ref])
         self._connect_icon_model()
         self._set_label()

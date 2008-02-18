@@ -74,6 +74,7 @@ except:
 #
 #-------------------------------------------------------------------------
 from GrampsDbUtils import XmlWriter
+from Utils import media_path_full
 from QuestionDialog import ErrorDialog, MissingMediaDialog
 from PluginUtils import register_export
 
@@ -125,7 +126,7 @@ class PackageWriter:
 
         for obj_id in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(obj_id)
-            oldfile = obj.get_path()
+            oldfile = media_path_full(self.db, obj.get_path())
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 self.copy_file(oldfile, 'burn:///%s/%s' % (base, root))
@@ -246,7 +247,7 @@ class PackageWriter:
 
         for obj_id in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(obj_id)
-            oldfile = obj.get_path()
+            oldfile = media_path_full(self.db, obj.get_path())
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 self.copy_file(oldfile, 'burn:///%s/%s' % (base, root))

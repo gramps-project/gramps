@@ -43,6 +43,7 @@ import const
 import Config
 import Mime
 import ThumbNails
+from Utils import media_path_full
 from gen.lib import NoteType
 
 from DisplayTabs import \
@@ -98,11 +99,12 @@ class EditMediaRef(EditReference):
         the path.
         """
         self.mtype = self.source.get_mime_type()
-        self.pix = ThumbNails.get_thumbnail_image(self.source.get_path(),
+        fullpath = media_path_full(self.db, self.source.get_path())
+        self.pix = ThumbNails.get_thumbnail_image(fullpath,
                                                   self.mtype)
         self.pixmap.set_from_pixbuf(self.pix)
         
-        self.subpix = ThumbNails.get_thumbnail_image(self.source.get_path(),
+        self.subpix = ThumbNails.get_thumbnail_image(fullpath,
                                                      self.mtype,
                                                      self.rectangle)
         self.subpixmap.set_from_pixbuf(self.subpix)
@@ -336,7 +338,8 @@ class EditMediaRef(EditReference):
             self.subpixmap.hide()
         else:
             try:
-                pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+                fullpath = media_path_full(self.db, path)
+                pixbuf = gtk.gdk.pixbuf_new_from_file(fullpath)
                 width = pixbuf.get_width()
                 height = pixbuf.get_height()
                 upper_x = min(self.rectangle[0], self.rectangle[2])/100.
@@ -390,8 +393,8 @@ class EditMediaRef(EditReference):
         mime_type = self.source.get_mime_type()
         app = Mime.get_application(mime_type)
         if app:
-            import Utils
-            Utils.launch(app[0],self.source.get_path())
+            from Utils import launch
+            launch(app[0], media_path_full(self.db, self.source.get_path()))
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('button84'))

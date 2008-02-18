@@ -41,6 +41,7 @@ import _GedcomInfo as GedcomInfo
 import Errors
 import ExportOptions
 import BasicUtils
+from Utils import media_path_full
 import gen.proxy
 from QuestionDialog import ErrorDialog
 
@@ -1345,7 +1346,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         if photo_obj:
             mime = photo_obj.get_mime_type()
             form = MIME2GED.get(mime, mime)
-            path = photo_obj.get_path()
+            path = media_path_full(self.dbase, photo_obj.get_path())
             if not os.path.isfile(path):
                 return
             self.__writeln(level, 'OBJE')

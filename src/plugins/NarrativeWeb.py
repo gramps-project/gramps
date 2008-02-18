@@ -1132,7 +1132,8 @@ class MediaPage(BasePage):
                     # image; most web browsers will dynamically resize an image
                     # and provide zoom-in/zoom-out functionality when the image
                     # is displayed directly
-                    (width, height) = ImgManip.image_size(photo.get_path())
+                    (width, height) = ImgManip.image_size(
+                            Utils.media_path_full(self.db, photo.get_path()))
                     scale = 1.0
                     if width > _MAX_IMG_WIDTH or height > _MAX_IMG_HEIGHT:
                         # image is too large -- scale it down and link to the full image
@@ -1155,7 +1156,10 @@ class MediaPage(BasePage):
 
                 dirname = tempfile.mkdtemp()
                 thmb_path = os.path.join(dirname,"temp.png")
-                if ThumbNails.run_thumbnailer(mime_type, photo.get_path(), thmb_path, 320):
+                if ThumbNails.run_thumbnailer(mime_type, 
+                                              Utils.media_path_full(self.db, 
+                                                            photo.get_path()), 
+                                              thmb_path, 320):
                     try:
                         path = "%s/%s.png" % (self.build_path(photo.handle,"preview"),photo.handle)
                         self.store_file(archive, self.html_dir, thmb_path, path)
@@ -1236,14 +1240,15 @@ class MediaPage(BasePage):
         to_dir = self.build_path(handle,'images')
         newpath = to_dir + "/" + handle + ext
 
+        fullpath = Utils.media_path_full(self.db, photo.get_path())
         try:
             if self.archive:
-                self.archive.add(photo.get_path(),str(newpath))
+                self.archive.add(fullpath,str(newpath))
             else:
                 to_dir = os.path.join(self.html_dir,to_dir)
                 if not os.path.isdir(to_dir):
                     os.makedirs(to_dir)
-                shutil.copyfile(photo.get_path(),
+                shutil.copyfile(fullpath,
                                 os.path.join(self.html_dir,newpath))
             return newpath
         except (IOError,OSError),msg:
@@ -1256,7 +1261,10 @@ class MediaPage(BasePage):
         to_dir = self.build_path(handle,'thumb')
         to_path = os.path.join(to_dir,handle+".png")
         if photo.get_mime_type():
-            from_path = ThumbNails.get_thumbnail_path(photo.get_path(),photo.get_mime_type())
+            from_path = ThumbNails.get_thumbnail_path(Utils.media_path_full(
+                                                            self.db, 
+                                                            photo.get_path()),
+                                                      photo.get_mime_type())
             if not os.path.isfile(from_path):
                 from_path = os.path.join(const.IMAGE_DIR,"document.png")
         else:
@@ -1385,7 +1393,9 @@ class IntroductionPage(BasePage):
             if mime_type and mime_type.startswith("image"):
                 try:
                     (newpath, thumb_path) = self.copy_media(obj, False)
-                    self.store_file(archive, self.html_dir, obj.get_path(),
+                    self.store_file(archive, self.html_dir, 
+                                    Utils.media_path_full(db, 
+                                                          obj.get_path()),
                                     newpath)
                     of.write('<div class="centered">\n')
                     of.write('<img ')
@@ -1432,7 +1442,9 @@ class HomePage(BasePage):
             if mime_type and mime_type.startswith("image"):
                 try:
                     (newpath,thumb_path) = self.copy_media(obj,False)
-                    self.store_file(archive, self.html_dir, obj.get_path(),
+                    self.store_file(archive, self.html_dir,
+                                    Utils.media_path_full(db, 
+                                                          obj.get_path()),
                                     newpath)
                     of.write('<div class="centered">\n')
                     of.write('<img ')
@@ -1642,7 +1654,9 @@ class ContactPage(BasePage):
             if mime_type and mime_type.startswith("image"):
                 try:
                     (newpath, thumb_path) = self.copy_media(obj, False)
-                    self.store_file(archive, self.html_dir, obj.get_path(),
+                    self.store_file(archive, self.html_dir, 
+                                    Utils.media_path_full(db, 
+                                                          obj.get_path()),
                                     newpath)
 
                     of.write('<div class="rightwrap">\n')

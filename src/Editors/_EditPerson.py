@@ -424,7 +424,8 @@ class EditPerson(EditPrimary):
         been modified.
          
         """
-        self.load_photo(obj.get_path(), ref.get_rectangle())
+        self.load_photo(Utils.media_path_full(self.dbstate.db, obj.get_path()),
+                        ref.get_rectangle())
 
     def _image_button_press(self, obj, event):
         """
@@ -754,12 +755,13 @@ class EditPerson(EditPrimary):
             photo = media_list[0]
             object_handle = photo.get_reference_handle()
             obj = self.db.get_object_from_handle(object_handle)
+            full_path = Utils.media_path_full(self.dbstate.db, obj.get_path())
             #reload if different media, or different rectangle
-            if self.load_obj != obj.get_path() or \
+            if self.load_obj != full_path or \
                     self.load_rect != photo.get_rectangle():
                 mime_type = obj.get_mime_type()
                 if mime_type and mime_type.startswith("image"):
-                    self.load_photo(obj.get_path(), photo.get_rectangle())
+                    self.load_photo(full_path, photo.get_rectangle())
                 else:
                     self.load_photo(None)
         else:
