@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -43,8 +43,10 @@ import const
 import Config
 import gen.lib
 
-from DisplayTabs import SourceEmbedList,NoteTab,GalleryTab,EventBackRefList,AttrEmbedList
-from GrampsWidgets import *
+from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
+                         EventBackRefList, AttrEmbedList)
+from GrampsWidgets import (PrivacyButton, MonitoredEntry, PlaceEntry, 
+                           MonitoredDate, MonitoredDataType)
 from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------
@@ -71,7 +73,7 @@ class EditEventRef(EditReference):
 
     def _local_init(self):
 
-        self.top = gtk.glade.XML(const.GLADE_FILE, "event_eref_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "event_eref_edit","gramps")
         self.set_window(self.top.get_widget('event_eref_edit'),
                         self.top.get_widget('eer_title'),
                         _('Event Reference Editor'))

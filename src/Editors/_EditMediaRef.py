@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -46,9 +47,9 @@ import ThumbNails
 from Utils import media_path_full
 from gen.lib import NoteType
 
-from DisplayTabs import \
-     SourceEmbedList,AttrEmbedList,MediaBackRefList,NoteTab
-from GrampsWidgets import *
+from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
+                         NoteTab)
+from GrampsWidgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from _EditReference import RefTab, EditReference
 from AddMedia import AddMediaObject
 
@@ -72,7 +73,7 @@ class EditMediaRef(EditReference):
 
     def _local_init(self):
 
-        self.top = gtk.glade.XML(const.GLADE_FILE,
+        self.top = glade.XML(const.GLADE_FILE,
                                  "change_description","gramps")
 
         self.set_window(self.top.get_widget('change_description'),

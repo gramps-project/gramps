@@ -29,7 +29,7 @@
 #------------------------------------------------------------------------
 import os
 from gettext import gettext as _
-import gtk
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -84,7 +84,7 @@ def importData(database, filename, callback=None, use_trans=False):
 
     if not gramps and ansel:
         glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
-        top = gtk.glade.XML(glade_file, 'encoding', 'gramps')
+        top = glade.XML(glade_file, 'encoding','gramps')
         code = top.get_widget('codeset')
         code.set_active(0)
         dialog = top.get_widget('encoding')

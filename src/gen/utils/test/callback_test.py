@@ -3,9 +3,7 @@ import unittest
 from test import test_util as tu
 tu.path_append_parent()
 
-import sys
-
-from callback import GrampsDBCallback, log
+from gen.utils import GrampsDBCallback
 
 class TestGrampsDBCallback(unittest.TestCase):
 

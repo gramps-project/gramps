@@ -24,7 +24,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import os
 import time
 from TransUtils import sgettext as _
 

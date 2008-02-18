@@ -35,19 +35,16 @@ from gettext import gettext as _
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-import gtk.glade
-from gtk import TextBuffer
+from gtk import glade
+import gtk
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
 from BasicUtils import name_displayer
 import ManagedWindow
-import ListModel
-import DateHandler
 from DisplayModels import PeopleModel
 
 from QuestionDialog import ErrorDialog
@@ -87,7 +84,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "relcalc.glade"
-        self.glade = gtk.glade.XML(glade_file, "relcalc", "gramps")
+        self.glade = glade.XML(glade_file, "relcalc", "gramps")
 
         name = ''
         if self.person:
@@ -103,7 +100,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
     
         self.tree = self.glade.get_widget("peopleList")
         self.text = self.glade.get_widget("text1")
-        self.textbuffer = TextBuffer()
+        self.textbuffer = gtk.TextBuffer()
         self.text.set_buffer(self.textbuffer)
         
         self.model = PeopleModel(self.db,None)

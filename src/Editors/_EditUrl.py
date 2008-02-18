@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -42,8 +42,7 @@ import gtk.glade
 import const
 import Config
 from _EditSecondary import EditSecondary
-
-from GrampsWidgets import *
+from GrampsWidgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +60,7 @@ class EditUrl(EditSecondary):
                                url, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE, "url_edit", "gramps")
+        self.top = glade.XML(const.GLADE_FILE, "url_edit", "gramps")
         self.jump = self.top.get_widget('jump')
 
         self.set_window(self.top.get_widget("url_edit"),
@@ -80,26 +79,20 @@ class EditUrl(EditSecondary):
             GrampsDisplay.url(self.obj.get_path())
 
     def _setup_fields(self):
-        self.des  = MonitoredEntry(
-            self.top.get_widget("url_des"),
-            self.obj.set_description,
-            self.obj.get_description,
-            self.db.readonly)
+        self.des  = MonitoredEntry(self.top.get_widget("url_des"),
+                                   self.obj.set_description, 
+                                   self.obj.get_description, self.db.readonly)
 
-        self.addr  = MonitoredEntry(
-            self.top.get_widget("url_addr"),
-            self.obj.set_path,
-            self.obj.get_path,
-            self.db.readonly)
+        self.addr  = MonitoredEntry(self.top.get_widget("url_addr"), 
+                                    self.obj.set_path, self.obj.get_path, 
+                                    self.db.readonly)
         
         self.priv = PrivacyButton(self.top.get_widget("priv"),
                                   self.obj, self.db.readonly)
 
-        self.type_sel = MonitoredDataType(
-            self.top.get_widget("type"),
-            self.obj.set_type,
-            self.obj.get_type,
-            self.db.readonly)
+        self.type_sel = MonitoredDataType(self.top.get_widget("type"), 
+                                          self.obj.set_type, 
+                                          self.obj.get_type, self.db.readonly)
             
     def build_menu_names(self,obj):
         etitle =_('Internet Address Editor')

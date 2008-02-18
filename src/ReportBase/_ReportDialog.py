@@ -46,19 +46,12 @@ import gtk
 #-------------------------------------------------------------------------
 import Config
 import Errors
-import Utils
-import const
-
-from QuestionDialog import ErrorDialog, OptionDialog, RunDatabaseRepair
-
-from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
-     CATEGORY_VIEW, CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ, \
-     standalone_categories
+from QuestionDialog import ErrorDialog, OptionDialog
+from _Constants import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, 
+                        CATEGORY_VIEW, CATEGORY_CODE, CATEGORY_WEB, 
+                        CATEGORY_GRAPHVIZ, standalone_categories)
 from _BareReportDialog import BareReportDialog
 from _FileEntry import FileEntry
-from _PaperMenu import PaperComboBox, OrientationComboBox, paper_sizes
-from _TemplateParser import _template_map, _default_template, _user_template
-from BaseDoc import PaperStyle
 
 #-------------------------------------------------------------------------
 #

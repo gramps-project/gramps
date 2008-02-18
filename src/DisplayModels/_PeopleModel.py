@@ -32,7 +32,6 @@ TreeModel for the GRAMPS Person tree.
 from gettext import gettext as _
 import time
 import cgi
-import sys
 import locale
 
 #-------------------------------------------------------------------------
@@ -56,7 +55,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-from gen.lib import *
+from gen.lib import Name, EventRef, EventType, EventRoleType, MarkerType
 from BasicUtils import name_displayer
 import DateHandler
 import ToolTips

@@ -25,7 +25,7 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -36,7 +36,7 @@ import const
 import Config
 from _EditSecondary import EditSecondary
 
-from GrampsWidgets import *
+from GrampsWidgets import MonitoredEntry
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -54,7 +54,7 @@ class EditLocation(EditSecondary):
                                location, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE, "loc_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "loc_edit","gramps")
         self.set_window(self.top.get_widget("loc_edit"), None,
                         _('Location Editor'))
 

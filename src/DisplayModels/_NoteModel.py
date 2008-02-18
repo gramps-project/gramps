@@ -40,9 +40,6 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import ToolTips
-import GrampsLocale
 from _BaseModel import BaseModel
 import gen.lib
 

@@ -42,7 +42,7 @@ import Errors
 #
 #------------------------------------------------------------------------
 import gtk
-import gtk.glade 
+from gtk import glade
 import gobject
 
 #------------------------------------------------------------------------
@@ -236,7 +236,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         self.glade_file = base + os.sep + "verify.glade"
         self.vr = None 
 
-        self.top = gtk.glade.XML(self.glade_file,"verify_settings","gramps")
+        self.top = glade.XML(self.glade_file,"verify_settings","gramps")
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,
@@ -462,7 +462,7 @@ class VerifyResults(ManagedWindow):
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
 
-        self.top = gtk.glade.XML(self.glade_file,"verify_result","gramps")
+        self.top = glade.XML(self.glade_file,"verify_result","gramps")
         window = self.top.get_widget("verify_result")
         self.set_window(window,self.top.get_widget('title'),self.title)
     

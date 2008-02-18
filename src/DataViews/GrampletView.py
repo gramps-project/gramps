@@ -24,12 +24,19 @@
 GrampletView interface.
 """
 
+#-------------------------------------------------------------------------
+#
+# gtk modules
+#
+#-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 import gobject
+import pango
+
 import traceback
 import time
 import types
-import pango
 import os
 from gettext import gettext as _
 
@@ -415,7 +422,7 @@ class GuiGramplet:
         self.pui = None # user code
         self.tooltips = None
         self.tooltips_text = None
-        self.xml = gtk.glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
+        self.xml = glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
         self.mainframe = self.xml.get_widget('gvgramplet')
         self.textview = self.xml.get_widget('gvtextview')
         self.buffer = self.textview.get_buffer()

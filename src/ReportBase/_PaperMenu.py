@@ -34,6 +34,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -147,7 +148,7 @@ class PaperFrame(gtk.HBox):
                  margins=[2.54,2.54,2.54,2.54], custom=[29.7,21.0]):
         gtk.HBox.__init__(self)
         glade_file = os.path.join(const.GLADE_DIR, "paper_settings.glade")
-        glade_xml = gtk.glade.XML(glade_file, "paper_table", "gramps")
+        glade_xml = glade.XML(glade_file, "paper_table", "gramps")
 
         self.paper_table = glade_xml.get_widget('paper_table')
 

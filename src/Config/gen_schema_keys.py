@@ -27,7 +27,7 @@ copy = """#
 
 """
 
-from xml.parsers.expat import ExpatError, ParserCreate
+from xml.parsers.expat import ParserCreate
 
 class SchemaHandler:
 

@@ -47,7 +47,8 @@ LOG = logging.getLogger(".GrampsDb")
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import *
+from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
+                     Repository, Note, GenderStats, Researcher)
 from gen.utils.callback import GrampsDBCallback
 from iterator import CursorIterator
 
@@ -56,8 +57,12 @@ from iterator import CursorIterator
 # constants
 #
 #-------------------------------------------------------------------------
-from dbconst import *
-from cursor import GrampsCursor
+from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
+                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, 
+                            REFERENCE_KEY, PERSON_COL_KEY, FAMILY_COL_KEY, 
+                            CHILD_COL_KEY, PLACE_COL_KEY, SOURCE_COL_KEY, 
+                            MEDIA_COL_KEY, EVENT_COL_KEY, REPOSITORY_COL_KEY, 
+                            NOTE_COL_KEY)
 
 _UNDO_SIZE = 1000
 

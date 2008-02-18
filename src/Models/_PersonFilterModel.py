@@ -1,14 +1,4 @@
 
-import gtk
-import time
-import bsddb
-import cPickle
-import logging
-log = logging.getLogger(".")
-
-from _PathCursor import PathCursor
-from _ListCursor import ListCursor
-
 from _FastFilterModel import FastFilterModel
 import gen.lib
 

@@ -1122,7 +1122,7 @@ def launch(prog_str, path):
         os.spawnvpe(os.P_NOWAIT, prog, prog_list, os.environ)
 
 def profile(func, *args):
-    import hotshot, hotshot.stats
+    import hotshot.stats
 
     prf = hotshot.Profile('mystats.profile')
     print "Start"

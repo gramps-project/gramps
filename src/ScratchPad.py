@@ -44,6 +44,7 @@ except:
 #-------------------------------------------------------------------------
 import gtk
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, ACTION_MOVE
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -1178,7 +1179,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
 
         self.glade_file = os.path.join(const.GLADE_DIR, "scratchpad.glade")
 
-        self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
+        self.top = glade.XML(self.glade_file,"scratch_pad","gramps")
         self.set_window(self.top.get_widget("scratch_pad"),
                         None, None, msg=_("Clipboard"))
 

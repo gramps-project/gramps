@@ -39,11 +39,10 @@ log = logging.getLogger(".")
 #-------------------------------------------------------------------------
 import const
 import Utils
-from Filters import CustomFilters
 from BasicUtils import name_displayer
 import Errors
-from _Options import *
-
+from PluginUtils import (Options, OptionHandler, OptionList, 
+                         OptionListCollection)
 #-------------------------------------------------------------------------
 #
 # Constants

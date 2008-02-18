@@ -38,7 +38,7 @@ from math import pow
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -65,7 +65,7 @@ class CountAncestors(ManagedWindow.ManagedWindow):
         database = dbstate.db        
         text = ""
         glade_file = "%s/summary.glade" % os.path.dirname(__file__)
-        topDialog = gtk.glade.XML(glade_file,"summary","gramps")
+        topDialog = glade.XML(glade_file,"summary","gramps")
         topDialog.signal_autoconnect({
             "destroy_passed_object" : self.close,
             })

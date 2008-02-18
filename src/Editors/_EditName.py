@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -41,13 +41,12 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Config
-import Utils
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
-
 from DisplayTabs import GrampsTab,SourceEmbedList,NoteTab
-from GrampsWidgets import *
+from GrampsWidgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
+                           MonitoredDataType, PrivacyButton)
 
 
 #-------------------------------------------------------------------------
@@ -110,7 +109,7 @@ class EditName(EditSecondary):
 
     def _local_init(self):
         
-        self.top = gtk.glade.XML(const.GLADE_FILE, "name_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "name_edit","gramps")
         self.set_window(self.top.get_widget("name_edit"),
                         self.top.get_widget("title"),
                         _("Name Editor"))

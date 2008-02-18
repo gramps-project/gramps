@@ -37,17 +37,16 @@ import os
 #------------------------------------------------------------------------
 import BaseDoc
 from BasicUtils import name_displayer
-from DateHandler import displayer
 from PluginUtils import register_report, relationship_class
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-    CATEGORY_DRAW, CATEGORY_TEXT, \
-    MODE_GUI, MODE_BKI, MODE_CLI
-from PluginUtils import NumberOption, BooleanOption, StringOption, \
-    FilterOption, EnumeratedListOption, PersonOption
+from ReportBase import (Report, ReportUtils, MenuReportOptions, 
+                        CATEGORY_DRAW, CATEGORY_TEXT, 
+                        MODE_GUI, MODE_BKI, MODE_CLI)
+from PluginUtils import (NumberOption, BooleanOption, StringOption, 
+                         FilterOption, EnumeratedListOption, PersonOption)
 import GrampsLocale
 import gen.lib
 from Utils import probably_alive, ProgressMeter
-from FontScale import string_trim, string_width
+from FontScale import string_trim
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
 

@@ -26,24 +26,20 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import cPickle as pickle
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-import Spell
 import Errors
 import gen.lib
-from DisplayTabs import log
 from _NoteModel import NoteModel
 from _EmbeddedList import EmbeddedList
 from DdTargets import DdTargets

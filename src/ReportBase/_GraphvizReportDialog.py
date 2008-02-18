@@ -50,8 +50,7 @@ import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
-from PluginUtils import NumberOption, EnumeratedListOption, \
-    TextOption, BooleanOption
+from PluginUtils import NumberOption, EnumeratedListOption, TextOption
 
 #-------------------------------------------------------------------------------
 #

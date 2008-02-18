@@ -53,11 +53,10 @@ import gtk
 #
 #-------------------------------------------------------------------------
 
-from PluginUtils import Plugins
-from ReportBase  import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,\
-                        CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,\
-                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, \
-                        CATEGORY_QR_NOTE, CATEGORY_QR_DATE
+#from PluginUtils import Plugins
+from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
+                        CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
+                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
 
 
 def create_quickreport_menu(category,dbstate,uistate,handle) :
@@ -125,7 +124,7 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle):
         run_report(dbstate, uistate, report[2], handle, report[0])
                             
 def run_report(dbstate, uistate, category,handle,func):
-        from TextBufDoc import TextBufDoc
+        from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
 
         if dbstate.active and handle:

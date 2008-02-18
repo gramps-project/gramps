@@ -47,7 +47,7 @@ log = logging.getLogger(".CheckRepair")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -56,7 +56,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import gen.lib
 import Utils
-import const
+#import const
 import ManagedWindow
 
 from PluginUtils import Tool, register_tool
@@ -109,8 +109,9 @@ def _table_low_level(db,table):
         print "    No dupes found for this table"
         return True
 
-    import gen.db
-    table_cursor = gen.db.GrampsDBDirDupCursor(table)
+#    import gen.db
+    from gen.db import GrampsDBDirDupCursor
+    table_cursor = GrampsDBDirDupCursor(table)
     for handle in dup_handles:
         print "    Duplicates found for handle: %s" % handle
         try:
@@ -1472,7 +1473,7 @@ class Report(ManagedWindow.ManagedWindow):
         
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
-        topDialog = gtk.glade.XML(glade_file,"summary","gramps")
+        topDialog = glade.XML(glade_file,"summary","gramps")
         topDialog.get_widget("close").connect('clicked',self.close)
 
         window = topDialog.get_widget("summary")

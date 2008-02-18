@@ -6,7 +6,6 @@ import sys, os
 sys.path.append("../src")
 
 #from Models import PersonModel,PersonFilterModel
-from TreeViews import PersonTreeView
 import GenericFilter
 
 ## class ProxyPerson(object):

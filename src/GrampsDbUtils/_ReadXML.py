@@ -28,7 +28,6 @@
 import os
 import sys
 import sets
-import shutil
 from xml.parsers.expat import ExpatError, ParserCreate
 from gettext import gettext as _
 import re
@@ -41,13 +40,11 @@ import re
 from QuestionDialog import ErrorDialog
 import Mime
 import gen.lib
-import const
 import Utils
 import DateHandler
 from BasicUtils import name_displayer
-from gen.db.dbconst import \
-     PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, \
-     MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY
+from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
+                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY)
 from BasicUtils import UpdateCallback
 
 #-------------------------------------------------------------------------

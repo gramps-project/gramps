@@ -46,7 +46,6 @@ import ManagedWindow
 import Errors
 import _PluginMgr as PluginMgr
 import _Tool as Tool
-from BasicUtils import name_displayer
 
 #-------------------------------------------------------------------------
 #

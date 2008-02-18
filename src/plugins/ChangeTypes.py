@@ -35,15 +35,13 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-import gtk.glade
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const
 import Utils
 import locale
 import ManagedWindow
@@ -78,7 +76,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
         
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
-        self.glade = gtk.glade.XML(glade_file,"top","gramps")
+        self.glade = glade.XML(glade_file,"top","gramps")
             
         self.auto1 = self.glade.get_widget("original")
         self.auto2 = self.glade.get_widget("new")

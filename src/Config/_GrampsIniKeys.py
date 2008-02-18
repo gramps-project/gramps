@@ -23,13 +23,12 @@
 """
 Low-level handling of .ini keys. 
 """
-
 import os
 import time
 import ConfigParser
 import errno
 import const
-from _GrampsConfigKeys import *
+from Config import DATE_FORMAT, NAME_FORMAT, default_value
 
 NL = "\n" # FIX: newlines on Mac/Windows, if different?
 

@@ -35,7 +35,8 @@ import logging
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+import gtk
+from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -65,7 +66,7 @@ class ColumnOrder(ManagedWindow.ManagedWindow):
         """
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        self.glade = gtk.glade.XML(const.GLADE_FILE, "columns", "gramps")
+        self.glade = glade.XML(const.GLADE_FILE, "columns", "gramps")
 
         self.set_window(self.glade.get_widget('columns'), None, win_name)
 

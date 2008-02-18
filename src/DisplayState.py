@@ -41,8 +41,9 @@ _LOG = logging.getLogger(".DisplayState")
 # GNOME python modules
 #
 #-------------------------------------------------------------------------
+import gtk
+from gtk import glade
 import gobject
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -282,7 +283,7 @@ class WarnHandler(RotateHandler):
 
     def display(self, obj):
         obj.hide()
-        xml = gtk.glade.XML(const.GLADE_FILE, 'scrollmsg')
+        xml = glade.XML(const.GLADE_FILE, 'scrollmsg')
         top = xml.get_widget('scrollmsg')
         msg = xml.get_widget('msg')
         buf = msg.get_buffer()

@@ -28,7 +28,6 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gettext import gettext as _
 from math import radians
 
 #------------------------------------------------------------------------
@@ -38,7 +37,6 @@ from math import radians
 #------------------------------------------------------------------------
 import BaseDoc
 from ReportBase import ReportUtils
-##rgb_color = ReportUtils.rgb_color
 
 #------------------------------------------------------------------------
 #
@@ -54,7 +52,6 @@ log = logging.getLogger(".CairoDoc")
 #
 #-------------------------------------------------------------------------
 import gtk
-import cairo
 import pango
 import pangocairo
 

@@ -34,7 +34,6 @@ import gen.lib
 import Relationship
 from PluginUtils import register_relcalc
 import types
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

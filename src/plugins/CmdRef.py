@@ -38,7 +38,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from PluginUtils import Tool, cl_list, cli_tool_list, register_tool
-from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB
+from ReportBase import CATEGORY_BOOK, CATEGORY_WEB
 from ReportBase._CommandLineReport import CommandLineReport
 
 #-------------------------------------------------------------------------

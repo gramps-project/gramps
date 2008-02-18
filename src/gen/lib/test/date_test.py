@@ -27,8 +27,6 @@ from test import test_util
 test_util.path_append_parent() 
 
 import Config
-from gen.lib import date
-##import date
 from DateHandler import parser as df
 
 class Tester(unittest.TestCase):

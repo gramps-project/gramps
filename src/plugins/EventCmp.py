@@ -36,7 +36,8 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk.glade
+import gtk
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -46,7 +47,7 @@ import gtk.glade
 from Filters import GenericFilter, build_filter_menu, Rules
 import Sort
 import Utils
-from ODSTab import ODSTab
+from docgen import ODSTab
 import const
 import Errors
 import DateHandler
@@ -114,7 +115,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         self.glade_file = base + os.sep + "eventcmp.glade"
         self.qual = 0
 
-        self.filterDialog = gtk.glade.XML(self.glade_file,"filters","gramps")
+        self.filterDialog = glade.XML(self.glade_file,"filters","gramps")
         self.filterDialog.signal_autoconnect({
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_editor_clicked"      : self.filter_editor_clicked,
@@ -217,7 +218,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "eventcmp.glade"
 
-        self.topDialog = gtk.glade.XML(self.glade_file,"view","gramps")
+        self.topDialog = glade.XML(self.glade_file,"view","gramps")
         self.topDialog.signal_autoconnect({
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : self.close,

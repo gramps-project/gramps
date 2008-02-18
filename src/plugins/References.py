@@ -22,11 +22,13 @@
 """
 Display references for any object
 """
+from ReportBase import (CATEGORY_QR_SOURCE, CATEGORY_QR_PERSON, 
+                        CATEGORY_QR_FAMILY, CATEGORY_QR_EVENT, 
+                        CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from PluginUtils import register_quick_report
-from ReportBase import *
 
 def get_ref(db, objclass, handle):
     """

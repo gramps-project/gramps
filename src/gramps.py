@@ -51,7 +51,8 @@ except ImportError:
 # Miscellaneous initialization
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+import gtk
+from gtk import glade
 import gobject
 
 gobject.threads_init()
@@ -77,10 +78,10 @@ except ValueError:
     pass
 
 gettext.bindtextdomain("gramps",loc)
-gtk.glade.bindtextdomain("gramps",loc)
+glade.bindtextdomain("gramps",loc)
 
 try:
-    gtk.glade.textdomain("gramps")
+    glade.textdomain("gramps")
 except:
     pass
 
@@ -109,8 +110,6 @@ if not sys.version_info >= MIN_PYTHON_VERSION :
 # gramps libraries
 #
 #-------------------------------------------------------------------------
-import gobject
-
 try:
     signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 except:
@@ -121,7 +120,6 @@ args = sys.argv
 def setup_logging():
     """Setup basic logging support."""
 
-    import logging
     from GrampsLogger import RotateHandler, GtkHandler
 
     # Setup a formatter

@@ -36,7 +36,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gtk
-import gtk.glade
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -72,7 +72,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "desbrowse.glade"
 
-        self.glade = gtk.glade.XML(glade_file,"top","gramps")
+        self.glade = glade.XML(glade_file,"top","gramps")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : self.close,
             "on_help_clicked"       : self.on_help_clicked,

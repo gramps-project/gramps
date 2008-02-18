@@ -37,7 +37,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -49,9 +49,8 @@ import Config
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
-
+from GrampsWidgets import MonitoredEntry, PrivacyButton
 from DisplayTabs import SourceEmbedList, NoteTab
-from GrampsWidgets import *
 
 #-------------------------------------------------------------------------
 #
@@ -76,7 +75,7 @@ class EditPersonRef(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE, "pref_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "pref_edit","gramps")
         self.set_window(self.top.get_widget("pref_edit"),
                         self.top.get_widget("title"),
                         _('Person Reference Editor'))

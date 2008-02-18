@@ -44,7 +44,7 @@ log = logging.getLogger(".ExportVCard")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -77,7 +77,7 @@ class CardWriterOptionBox:
         if not os.path.isfile(glade_file):
             glade_file = "plugins/vcardexport.glade"
 
-        self.topDialog = gtk.glade.XML(glade_file,"vcardExport","gramps")
+        self.topDialog = glade.XML(glade_file,"vcardExport","gramps")
 
         filter_obj = self.topDialog.get_widget("filter")
         self.copy = 0

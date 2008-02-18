@@ -43,6 +43,8 @@ from _PluginMgr import (register_export, register_import, register_tool,
                         register_draw_doc, register_book_doc, 
                         register_quick_report)
 
+from _Options import Options, OptionListCollection, OptionList, OptionHandler
+
 import _Tool as Tool
 import _Plugins as Plugins
 import _PluginWindows as PluginWindows

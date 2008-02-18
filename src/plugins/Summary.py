@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -157,7 +157,7 @@ class SummaryReport(ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         glade_file = "%s/summary.glade" % base
 
-        topDialog = gtk.glade.XML(glade_file,"summary","gramps")
+        topDialog = glade.XML(glade_file,"summary","gramps")
         topDialog.signal_autoconnect({
             "destroy_passed_object" : self.close,
         })

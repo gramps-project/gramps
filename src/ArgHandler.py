@@ -42,7 +42,6 @@ import sys
 import getopt
 from gettext import gettext as _
 import logging
-import glob
 
 #-------------------------------------------------------------------------
 #

@@ -39,11 +39,10 @@ import sys
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
 import gen.lib
 from PluginUtils import Tool, register_tool
 import Utils
-from QuestionDialog import QuestionDialog,ErrorDialog
+from QuestionDialog import QuestionDialog
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
 

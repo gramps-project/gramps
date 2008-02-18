@@ -44,8 +44,7 @@ log = logging.getLogger(".WriteFtree")
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -80,7 +79,7 @@ class FtreeWriterOptionBox:
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"writeftree.glade")
         
-        self.top = gtk.glade.XML(glade_file, "top", "gramps")
+        self.top = glade.XML(glade_file, "top", "gramps")
 
         filter_obj = self.top.get_widget("filter")
 

@@ -50,7 +50,10 @@ log = logging.getLogger(".Date")
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gen.lib.calendar import *
+from gen.lib.calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
+                              french_sdn, persian_sdn, islamic_sdn, 
+                              gregorian_ymd, julian_ymd, hebrew_ymd, 
+                              french_ymd, persian_ymd, islamic_ymd)
 import Config
 
 #-------------------------------------------------------------------------

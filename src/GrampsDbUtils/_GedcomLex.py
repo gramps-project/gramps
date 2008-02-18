@@ -34,7 +34,8 @@ import re
 #
 #-------------------------------------------------------------------------
 
-from _GedcomInfo import *
+from GrampsDbUtils import (personalConstantEvents, personalConstantAttributes, 
+                           familyConstantEvents)
 import _GedcomTokens as GedcomTokens
 import gen.lib
 from DateHandler._DateParser import DateParser

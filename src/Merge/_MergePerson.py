@@ -33,6 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 import pango
 
 #-------------------------------------------------------------------------
@@ -58,7 +59,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
-        self.glade = gtk.glade.XML(const.MERGE_GLADE, "merge")
+        self.glade = glade.XML(const.MERGE_GLADE, "merge")
         window = self.glade.get_widget('merge')
         self.text1 = self.glade.get_widget('text1')
         self.text2 = self.glade.get_widget('text2')
@@ -276,7 +277,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         
-        glade = gtk.glade.XML(const.MERGE_GLADE, 'merge_people')
+        glade = glade.XML(const.MERGE_GLADE, 'merge_people')
         window = glade.get_widget('merge_people')
 
         self.set_window(window, glade.get_widget('title'), _("Merge People"))

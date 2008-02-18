@@ -55,15 +55,12 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
 import gen.lib
-import const
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
 from PluginUtils import register_import
 from Utils import gender as gender_map
 from Utils import ProgressMeter
-from htmlentitydefs import name2codepoint
 
 #-------------------------------------------------------------------------
 #

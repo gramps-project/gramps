@@ -61,13 +61,12 @@ import gen.lib
 import const
 from GrampsCfg import get_researcher
 import Sort
-from PluginUtils import register_report
-from PluginUtils import FilterOption, EnumeratedListOption, PersonOption, \
-    BooleanOption, NumberOption, StringOption, DestinationOption, NoteOption, \
-    MediaOption
-from ReportBase import Report, ReportUtils, MenuReportOptions, \
-     CATEGORY_WEB, MODE_GUI, MODE_CLI
-from ReportBase import Bibliography
+from PluginUtils import (register_report, FilterOption, EnumeratedListOption, 
+                         PersonOption, BooleanOption, NumberOption, 
+                         StringOption, DestinationOption, NoteOption, 
+                         MediaOption)
+from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, 
+                        MODE_GUI, MODE_CLI, Bibliography)
 import Utils
 import ThumbNails
 import ImgManip
@@ -76,8 +75,7 @@ from QuestionDialog import ErrorDialog, WarningDialog
 from BasicUtils import name_displayer as _nd
 from DateHandler import displayer as _dd
 from DateHandler import parser as _dp
-from gen.proxy import PrivateProxyDb
-from gen.proxy import LivingProxyDb
+from gen.proxy import PrivateProxyDb, LivingProxyDb
 from gen.lib.eventroletype import EventRoleType
 
 #------------------------------------------------------------------------

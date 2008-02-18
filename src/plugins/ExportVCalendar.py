@@ -37,8 +37,8 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-from gtk import glade
 import gtk
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -54,7 +54,6 @@ log = logging.getLogger(".ExportVCal")
 #
 #-------------------------------------------------------------------------
 from Filters import GenericFilter, Rules, build_filter_menu
-#import const
 import Utils
 from gen.lib import Date, EventType
 import Errors

@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import gtk
 import pango
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -67,7 +68,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.renderer.set_property('ellipsize',pango.ELLIPSIZE_END)
 
         self.db = dbstate.db
-        self.glade = gtk.glade.XML(const.GLADE_FILE,"select_person","gramps")
+        self.glade = glade.XML(const.GLADE_FILE,"select_person","gramps")
         window = self.glade.get_widget('select_person')
         title_label = self.glade.get_widget('title')
         vbox = self.glade.get_widget('select_person_vbox')

@@ -45,7 +45,6 @@ log = logging.getLogger(".WriteCD")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 import Errors
 
 #This is a GNOME only plugin
@@ -62,11 +61,11 @@ except ImportError:
           "for GNOME are not installed"))
 
 try:
-    from gnomevfs import URI, create, OPEN_WRITE, make_directory, \
-                            FileExistsError
+    from gnomevfs import (URI, create, OPEN_WRITE, make_directory, 
+                          FileExistsError)
 except:
-    from gnome.vfs import URI, create, OPEN_WRITE, make_directory, \
-                            FileExistsError
+    from gnome.vfs import (URI, create, OPEN_WRITE, make_directory, 
+                           FileExistsError)
 
 #-------------------------------------------------------------------------
 #

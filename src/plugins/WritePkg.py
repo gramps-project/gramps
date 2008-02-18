@@ -51,7 +51,6 @@ log = logging.getLogger(".WritePkg")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -59,8 +58,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 from GrampsDbUtils import XmlWriter
-import Utils
-#from QuestionDialog import MissingMediaDialog
 from PluginUtils import register_export
 
 #-------------------------------------------------------------------------

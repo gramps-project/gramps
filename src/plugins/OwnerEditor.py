@@ -36,7 +36,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +89,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         glade_file = os.path.join(base, "ownereditor.glade")
 
         # get the main window from glade
-        top_xml = gtk.glade.XML(glade_file, "top", "gramps")
+        top_xml = glade.XML(glade_file, "top", "gramps")
 
         # set gramps style title for the window
         window = top_xml.get_widget("top")
@@ -111,7 +111,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
         })
 
         # fetch the popup menu
-        popup_xml = gtk.glade.XML(glade_file, "popup-menu", "gramps")
+        popup_xml = glade.XML(glade_file, "popup-menu", "gramps")
         self.menu = popup_xml.get_widget("popup-menu")
         popup_xml.signal_connect("on_menu_activate", self.on_menu_activate)
 

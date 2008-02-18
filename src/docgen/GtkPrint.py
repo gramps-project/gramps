@@ -60,6 +60,7 @@ log = logging.getLogger(".GtkPrint")
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 import cairo
 
 if gtk.pygtk_version < (2, 10, 0):
@@ -200,7 +201,7 @@ class PrintPreview:
         glade_file = os.path.join(os.path.dirname(__file__),
                                   'gtkprintpreview.glade')
 
-        glade_xml = gtk.glade.XML(glade_file, 'window', 'gramps')
+        glade_xml = glade.XML(glade_file, 'window', 'gramps')
         self._window = glade_xml.get_widget('window')
         #self._window.set_transient_for(parent)
  

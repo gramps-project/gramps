@@ -26,13 +26,10 @@
 import httplib
 import urllib2
 import gtk
-import gtk.glade
+from gtk import glade
 import os
-from random import randint
-from tempfile import NamedTemporaryFile
 from tempfile import mkstemp
 from gettext import gettext as _
-from PluginUtils import register_tool
 #
 # Interface to phpGedView
 #
@@ -284,7 +281,7 @@ class phpGedViewImporter:
         self.connector = None
         
         glade_file = "%s/phpgedview.glade" % os.path.dirname(__file__)
-        top = gtk.glade.XML(glade_file,'importer','gramps')
+        top = glade.XML(glade_file,'importer','gramps')
         self.url_entry = top.get_widget('url_entry')
         self.version_label = top.get_widget('version_label')
         self.version_label.set_text("")
@@ -319,7 +316,7 @@ class phpGedViewImporter:
             gtk.main_iteration()
         
     def on_next_pressed_cb(self, widget, event=None, data=None):
-        import GedcomParser
+        from GrampsDbUtils import GedcomParser
         if event:
             print event.type
         

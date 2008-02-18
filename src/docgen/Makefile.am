@@ -5,8 +5,9 @@
 docgendir=$(prefix)/share/gramps/docgen
 
 docgen_PYTHON = \
+	__init__.py\
 	AsciiDoc.py\
-        CairoDoc.py\
+    CairoDoc.py\
 	CSVTab.py\
 	HtmlDoc.py\
 	LaTeXDoc.py\

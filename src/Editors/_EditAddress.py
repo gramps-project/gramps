@@ -37,7 +37,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +50,7 @@ from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 
 from DisplayTabs import SourceEmbedList, NoteTab
-from GrampsWidgets import *
+from GrampsWidgets import MonitoredDate, MonitoredEntry, PrivacyButton
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +75,7 @@ class EditAddress(EditSecondary):
         EditSecondary.__init__(self, dbstate, uistate, track, addr, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE, "addr_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "addr_edit","gramps")
         self.set_window(self.top.get_widget("addr_edit"),
                         self.top.get_widget("title"),
                         _('Address Editor'))

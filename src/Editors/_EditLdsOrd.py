@@ -17,6 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+import gtk
 
 # $Id$ 
 
@@ -37,7 +38,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +54,8 @@ import LdsUtils
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList,NoteTab
-from GrampsWidgets import *
+from GrampsWidgets import (PrivacyButton, MonitoredDate, PlaceEntry, 
+                           MonitoredMenu, MonitoredStrMenu)
 
 _DATA_MAP = {
     gen.lib.LdsOrd.BAPTISM : [
@@ -143,7 +145,7 @@ class EditLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
         self.set_window(self.top.get_widget("lds_person_edit"),
                         self.top.get_widget('title'),
                         _('LDS Ordinance Editor'))
@@ -329,7 +331,7 @@ class EditFamilyLdsOrd(EditSecondary):
         EditSecondary.__init__(self, state, uistate, track, attrib, callback)
 
     def _local_init(self):
-        self.top = gtk.glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "lds_person_edit","gramps")
         self.set_window(self.top.get_widget("lds_person_edit"),
                         self.top.get_widget('title'),
                         _('LDS Ordinance Editor'))

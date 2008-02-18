@@ -38,8 +38,7 @@ import codecs
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gtk.glade
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -56,7 +55,6 @@ log = logging.getLogger(".ExportCSV")
 #-------------------------------------------------------------------------
 import gen.lib
 from Filters import GenericFilter, Rules, build_filter_menu
-import const
 import Utils
 import Errors
 from QuestionDialog import ErrorDialog
@@ -177,7 +175,7 @@ class CSVWriterOptionBox:
         if not os.path.isfile(glade_file):
             glade_file = "plugins/csvexport.glade"
 
-        self.topDialog = gtk.glade.XML(glade_file,"csvExport","gramps")
+        self.topDialog = glade.XML(glade_file,"csvExport","gramps")
         filter_obj = self.topDialog.get_widget("filter")
 
         all = GenericFilter()

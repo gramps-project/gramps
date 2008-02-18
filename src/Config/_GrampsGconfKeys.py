@@ -37,7 +37,6 @@ except ImportError:
     import gnome.gconf
     gconf = gnome.gconf
 
-import gobject
 import Errors
 from _GrampsConfigKeys import default_value
 

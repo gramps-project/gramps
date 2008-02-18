@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import unittest
-import os, os.path
+import os.path
 import codecs
 import struct
 

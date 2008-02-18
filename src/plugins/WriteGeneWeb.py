@@ -35,8 +35,7 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gtk.glade
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -81,7 +80,7 @@ class GeneWebWriterOptionBox:
         if not os.path.isfile(glade_file):
             glade_file = "plugins/genewebexport.glade"
 
-        self.topDialog = gtk.glade.XML(glade_file, "genewebExport", "gramps")
+        self.topDialog = glade.XML(glade_file, "genewebExport", "gramps")
         self.topDialog.signal_autoconnect({
                 "on_restrict_toggled": self.on_restrict_toggled
                 })

@@ -33,7 +33,6 @@ to version 2.2.x
 #-------------------------------------------------------------------------
 import cPickle as pickle
 import os
-import shutil
 import time
 from gettext import gettext as _
 from bsddb import dbshelve, db
@@ -45,14 +44,20 @@ __LOG = logging.getLogger(".GrampsDb")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import *
-from gen.db.base import *
+from gen.lib import (GenderStats, Source, Person, Family, Event, Place, 
+                     MediaObject, Repository, Note, Attribute, AttributeType, 
+                     NoteType)
+from gen.db.base import (GrampsDbBase, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP, 
+                         Transaction)
+from gen.db.cursor import GrampsCursor
+from gen.db.dbconst import (REFERENCE_KEY, PERSON_COL_KEY, EVENT_COL_KEY, 
+                            EVENT_KEY, FAMILY_KEY, SOURCE_KEY, PLACE_KEY, 
+                            MEDIA_KEY, REPOSITORY_KEY, PERSON_KEY, NOTE_KEY)
+from gen.db.exceptions import FileVersionError
 from gen.utils import db_copy
 import const
-from gen.db.exceptions import FileVersionError
 from BasicUtils import UpdateCallback
 
-from gen.db.cursor import GrampsCursor
 
 _MINVERSION = 9
 _DBVERSION = 13

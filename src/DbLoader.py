@@ -30,7 +30,6 @@ Handling of loading new/existing databases.
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 from gettext import gettext as _
 import logging
 

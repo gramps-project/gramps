@@ -28,8 +28,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import traceback
-import sys
 from random import randint,choice,random
 from gettext import gettext as _
 
@@ -39,20 +37,16 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk 
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import Errors
 import gen.lib
 from PluginUtils import Tool, register_tool
-import const
 import Utils
 import LdsUtils
-from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #

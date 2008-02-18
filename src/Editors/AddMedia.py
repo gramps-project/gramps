@@ -30,7 +30,6 @@ Provides the interface to allow a person to add a media object to the database.
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 
 #-------------------------------------------------------------------------
 #
@@ -44,8 +43,8 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog, WarningDialog
-import gtk.glade
+import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -55,10 +54,10 @@ import gtk.glade
 import const
 import Config
 import Utils
-import gen.lib
 import Mime
 import GrampsDisplay
 import ManagedWindow
+from QuestionDialog import ErrorDialog, WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -96,7 +95,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
         self.last_directory = Config.get(Config.ADDMEDIA_IMGDIR)
         self.relative_path  = Config.get(Config.ADDMEDIA_RELPATH)
 
-        self.glade = gtk.glade.XML(const.GLADE_FILE, "imageSelect", "gramps")
+        self.glade = glade.XML(const.GLADE_FILE, "imageSelect", "gramps")
         
         self.set_window(
             self.glade.get_widget("imageSelect"),

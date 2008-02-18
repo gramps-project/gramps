@@ -44,7 +44,7 @@ log = logging.getLogger(".RemoveUnused")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
+from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -117,7 +117,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "unused.glade"
 
-        self.top = gtk.glade.XML(self.glade_file,"unused","gramps")
+        self.top = glade.XML(self.glade_file,"unused","gramps")
         window = self.top.get_widget("unused")
         self.set_window(window,self.top.get_widget('title'),self.title)
 

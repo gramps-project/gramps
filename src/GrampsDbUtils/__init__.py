@@ -35,10 +35,10 @@ on using these factories see the _GrampsDbUtilsFactories.py file comments.
 
 """
 
-from _GrampsDbWRFactories import \
-     gramps_db_reader_factory
+from _GedcomInfo import (personalConstantEvents, familyConstantEvents, 
+                         personalConstantAttributes)
+from _GrampsDbWRFactories import gramps_db_reader_factory
      
-
 from _GedcomParse import GedcomParser
 from _WriteGedcom import GedcomWriter
 

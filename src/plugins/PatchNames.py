@@ -37,7 +37,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
+from gtk import glade
 import gobject
 
 #-------------------------------------------------------------------------
@@ -180,7 +180,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"patchnames.glade")
         
-        self.top = gtk.glade.XML(glade_file,"top","gramps")
+        self.top = glade.XML(glade_file,"top","gramps")
         window = self.top.get_widget('top')
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.close,

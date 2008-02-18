@@ -25,8 +25,8 @@ Class handling language-specific selection for date parser and displayer.
 """
 
 # import prerequisites for localized handlers
-from _DateHandler import LANG, LANG_SHORT, \
-    LANG_TO_PARSER, LANG_TO_DISPLAY, register_datehandler
+from _DateHandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
+                          register_datehandler)
 
 # Import all the localized handlers
 import _Date_cs
@@ -37,11 +37,11 @@ import _Date_fr
 import _Date_lt
 import _Date_nb
 import _Date_nl
-import _Date_ru
-import _Date_sv
-import _Date_sk
 import _Date_pl
 import _Date_pt
+import _Date_ru
+import _Date_sk
+import _Date_sv
 
 # Initialize global parser
 try:

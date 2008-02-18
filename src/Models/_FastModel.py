@@ -1,6 +1,5 @@
 
 import gtk
-import time
 import logging
 log = logging.getLogger(".")
 

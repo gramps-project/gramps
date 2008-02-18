@@ -27,8 +27,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import os
-import cStringIO
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -44,16 +42,12 @@ log = logging.getLogger(".Rebuild")
 # gtk modules
 #
 #-------------------------------------------------------------------------
-import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import gen.lib
-import const
 from PluginUtils import Tool, register_tool
 from QuestionDialog import OkDialog
 from BasicUtils import UpdateCallback

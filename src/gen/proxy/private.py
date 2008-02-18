@@ -29,7 +29,9 @@ Proxy class for the GRAMPS databases. Filter out all data marked private.
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from gen.lib import *
+from gen.lib import (MediaRef, SourceRef, Attribute, Address, EventRef, 
+                     Person, Name, Source, RepoRef, MediaObject, Place, Event, 
+                     Family, ChildRef, Repository)
 from proxybase import ProxyDbBase
 
 class PrivateProxyDb(ProxyDbBase):

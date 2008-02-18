@@ -65,15 +65,15 @@ import DateHandler
 import GrampsWidgets
 import ManagedWindow
 from PluginUtils import register_report
-from ReportBase import Report, ReportUtils, ReportOptions, CATEGORY_CODE, MODE_GUI, MODE_CLI
+from ReportBase import (Report, ReportUtils, ReportOptions, CATEGORY_CODE, 
+                        MODE_GUI)
 from ReportBase._ReportDialog import ReportDialog
-from QuestionDialog import ErrorDialog, WarningDialog
+from QuestionDialog import ErrorDialog
 
 #from NameDisplay import displayer as _nd       # Gramps version <  3.0
 from BasicUtils import name_displayer as _nd    # Gramps version >= 3.0
 
 from DateHandler import displayer as _dd
-from DateHandler import parser
 from Selectors import selector_factory
 
 #------------------------------------------------------------------------

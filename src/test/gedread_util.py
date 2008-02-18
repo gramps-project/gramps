@@ -9,8 +9,6 @@ import shutil
 
 from test import test_util as tu
 from GrampsDbUtils import _ReadGedcom as RG
-from GrampsDbUtils import _GedcomStageOne as S1
-from GrampsDbUtils import _GedcomParse as GP
 import DbState
 import gen.db
 import Config

@@ -45,7 +45,6 @@ log = logging.getLogger(".ImportGeneWeb")
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -56,7 +55,6 @@ import Errors
 import gen.lib
 import const
 from QuestionDialog import ErrorDialog
-from DateHandler import parser as _dp
 from PluginUtils import register_import
 from htmlentitydefs import name2codepoint
 

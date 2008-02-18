@@ -20,8 +20,9 @@
 
 from gettext import gettext as _
 
+from gtk import glade
+
 import const
-import gtk
 
 from BasicUtils import name_displayer
 import ListModel
@@ -34,7 +35,7 @@ FAMILY_TITLES = [(_('Spouse'), -1, 200), (_('Relationship'), -1, 200), ('', -1, 
 class Reorder(ManagedWindow.ManagedWindow):
     
     def __init__(self, state, uistate, track, handle):
-        xml = gtk.glade.XML(const.GLADE_FILE, "reorder", "gramps")
+        xml = glade.XML(const.GLADE_FILE, "reorder", "gramps")
         top = xml.get_widget('reorder')
 
         self.dbstate = state

@@ -52,7 +52,7 @@ else:
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.glade
+from gtk import glade
 from gtk.gdk import ACTION_COPY
 import pango
 
@@ -267,7 +267,7 @@ class DbManager(CLIDbManager):
         the GTK widgets that are needed.
         """
         CLIDbManager.__init__(self, dbstate)
-        self.glade = gtk.glade.XML(const.GLADE_FILE, "dbmanager", "gramps")
+        self.glade = glade.XML(const.GLADE_FILE, "dbmanager", "gramps")
         self.top = self.glade.get_widget('dbmanager')
         if parent:
             self.top.set_transient_for(parent)
@@ -1018,7 +1018,7 @@ def check_in(dbase, filename, callback, cursor_func = None):
     init   = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
     ci_cmd = [ "ci", "-q", "-f" ]
 
-    glade = gtk.glade.XML(const.GLADE_FILE, "comment", "gramps")
+    glade = glade.XML(const.GLADE_FILE, "comment", "gramps")
     top = glade.get_widget('comment')
     text = glade.get_widget('description')
 

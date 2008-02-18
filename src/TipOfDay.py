@@ -39,7 +39,7 @@ import os
 # GTK/GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +61,7 @@ class TipOfDay(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
         
-        xml = gtk.glade.XML(const.GLADE_FILE, "tod_window", "gramps")
+        xml = glade.XML(const.GLADE_FILE, "tod_window", "gramps")
         window = xml.get_widget("tod_window")
         self.set_window(window, 
                         xml.get_widget("title"), 

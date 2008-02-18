@@ -27,7 +27,6 @@
 #-------------------------------------------------------------------------
 
 import gen.lib
-import types
 from TransUtils import sgettext as _
 
     

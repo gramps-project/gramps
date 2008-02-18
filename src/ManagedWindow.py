@@ -38,6 +38,7 @@ from cStringIO import StringIO
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -395,7 +396,7 @@ class ManagedWindow:
     def define_glade(self, top_module, glade_file=None):
         if glade_file == None:
             glade_file = const.GLADE_FILE
-        self._gladeobj = gtk.glade.XML(glade_file, top_module, "gramps")
+        self._gladeobj = glade.XML(glade_file, top_module, "gramps")
         return self._gladeobj
 
     def get_widget(self, name):

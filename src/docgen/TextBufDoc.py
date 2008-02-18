@@ -37,9 +37,6 @@ import pango
 #------------------------------------------------------------------------
 import BaseDoc
 from PluginUtils import register_text_doc
-import const
-import Errors
-import Utils
 import ManagedWindow
 
 try:

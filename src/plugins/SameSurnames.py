@@ -28,7 +28,7 @@ from gettext import gettext as _
 from PluginUtils import register_quick_report
 from ReportBase import CATEGORY_QR_PERSON
 from Filters.Rules import Rule
-from Filters import GenericFilterFactory, Rules
+from Filters import GenericFilterFactory
 
 class IncompleteSurname(Rule):
     """People with incomplete surnames"""

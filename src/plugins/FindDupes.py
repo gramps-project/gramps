@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-import gtk.glade
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -104,7 +104,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")
-        top = gtk.glade.XML(self.glade_file,"dialog","gramps")
+        top = glade.XML(self.glade_file,"dialog","gramps")
 
         # retrieve options
         threshold = self.options.handler.options_dict['threshold']
@@ -556,7 +556,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")
-        top = gtk.glade.XML(self.glade_file,"mergelist","gramps")
+        top = glade.XML(self.glade_file,"mergelist","gramps")
         window = top.get_widget("mergelist")
         self.set_window(window, top.get_widget('title'),
                         _('Potential Merges'))

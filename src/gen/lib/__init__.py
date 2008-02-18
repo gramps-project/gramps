@@ -34,7 +34,6 @@ from eventref import EventRef
 from ldsord import LdsOrd
 from mediaref import MediaRef 
 from name import Name
-from note import Note
 from reporef import RepoRef
 from srcref import SourceRef
 from url import Url
@@ -51,6 +50,7 @@ from place import Place
 from src import Source
 from mediaobj import MediaObject
 from repo import Repository
+from note import Note
 
 # These are actually metadata
 from genderstats import GenderStats

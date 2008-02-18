@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import random
 from gettext import gettext as _
+import os
 from xml.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
@@ -35,6 +36,8 @@ from xml.sax.saxutils import escape
 #
 #-------------------------------------------------------------------------
 import gtk
+from gtk import glade
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -48,7 +51,7 @@ from BasicUtils import name_displayer as _nd
 import Utils
 from gen.lib import Name
 import ManagedWindow
-from GrampsWidgets import *
+from GrampsWidgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2
 from Errors import NameDisplayError
 
@@ -884,7 +887,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return (_('Preferences'), None)
 
     # FIXME: is this needed?
-    def _set_button(stock):
+    def _set_button(self, stock):
         button = gtk.Button()
         image = gtk.Image()
         image.set_from_stock(stock, gtk.ICON_SIZE_BUTTON)
@@ -903,7 +906,7 @@ class NameFormatEditDlg:
         self.name = name
         self.valid = True
 
-        self.top = gtk.glade.XML(const.GLADE_FILE, 'namefmt_edit', 'gramps')
+        self.top = glade.XML(const.GLADE_FILE, 'namefmt_edit', 'gramps')
         self.dlg = self.top.get_widget('namefmt_edit')
         ManagedWindow.set_titles(self.dlg, None, _('Name Format Editor'))
         

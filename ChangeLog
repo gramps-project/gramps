@@ -1,6 +1,12 @@
+2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/* 143 files
+    * test/try_tree_model.py
+    * windows/nsis/gcheck.py
+    imports cleanup
+
 2008-02-18 Frederik De Richter <frederik.de.richter@pandora.be>
-        * src/Editors/_EditEvent.py
-        link to wiki manual
+    * src/Editors/_EditEvent.py
+    link to wiki manual
 
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DataViews/EventView.py

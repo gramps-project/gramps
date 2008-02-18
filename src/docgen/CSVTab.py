@@ -18,20 +18,26 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: $
+# $Id$
 
-import os
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
 import csv
-import codecs
 
-from gettext import gettext as _
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
+from docgen import TabbedDoc
 
-import TabbedDoc
-
-class CSVTab(TabbedDoc.TabbedDoc):
+class CSVTab(TabbedDoc):
 
     def __init__(self, columns):
-        TabbedDoc.TabbedDoc.__init__(self, columns)
+        TabbedDoc.__init__(self, columns)
         self.filename = None
         self.f = None
         self.dlist = []

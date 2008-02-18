@@ -38,8 +38,7 @@ from bsddb.db import DBError
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-import gtk.glade
+from gtk import glade
 import gc
 
 #------------------------------------------------------------------------
@@ -47,7 +46,6 @@ import gc
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
 from PluginUtils import Tool, register_tool
 import ManagedWindow
 
@@ -64,7 +62,7 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         glade_file = os.path.dirname(__file__) + os.sep + "leak.glade"
-        self.glade = gtk.glade.XML(glade_file,"top","gramps")
+        self.glade = glade.XML(glade_file,"top","gramps")
 
         window = self.glade.get_widget("top")
         self.eval = self.glade.get_widget("eval")

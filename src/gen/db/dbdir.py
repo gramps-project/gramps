@@ -33,7 +33,6 @@ This is used since GRAMPS version 3.0
 #-------------------------------------------------------------------------
 import cPickle as pickle
 import os
-import shutil
 import time
 from types import InstanceType
 
@@ -48,9 +47,10 @@ log = logging.getLogger(".GrampsDb")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gen.lib import *
-from base import *
-import dbconst as const
+from gen.lib import (GenderStats, Person, Family, Event, Place, Source, 
+                     MediaObject, Repository, Note)
+from gen.db import (GrampsDbBase, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP, 
+                    REFERENCE_KEY, Transaction)
 from exceptions import FileVersionError
 from BasicUtils import UpdateCallback
 from cursor import GrampsCursor
@@ -612,7 +612,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
     def load_from(self, other_database, filename, callback):
         try:
             self.load(filename,callback)
-            from GrampsDb import db_copy
+            from gen.utils import db_copy
             db_copy(other_database,self,callback)
             return 1
         except DBERRS, msg:
@@ -1764,7 +1764,6 @@ def write_lock_file(name):
     if os.name == 'nt':
         text = os.environ['USERNAME']
     else:
-        import pwd
         host = os.uname()[1]
         # An ugly workaround for os.getlogin() issue with Konsole
         try:

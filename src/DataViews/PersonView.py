@@ -940,16 +940,13 @@ class PersonView(PageView.PersonNavView):
 
     def write_tabbed_file(self, name, type):
         """
-        Writes a tabbed file to the specified name. The output file type is determined
-        by the type variable.
+        Write a tabbed file to the specified name. 
+        
+        The output file type is determined by the type variable.
         """
         
-        # Select the correct output format
-        if type == 0:
-            from CSVTab import CSVTab as tabgen
-        else:
-            from ODSTab import ODSTab as tabgen
-
+        from docgen import CSVTab, ODSTab
+        ofile = None
         # build the active data columns, prepending 0 for the name column, then
         # derive the column names fromt the active data columns
 
@@ -958,10 +955,13 @@ class PersonView(PageView.PersonNavView):
                                if pair[0]]
 
         cnames = [column_names[i] for i in data_cols]
-
+        # Select the correct output format
+        if type == 0:
+            ofile = CSVTab(len(cnames))                        
+        else:
+            ofile = ODSTab(len(cnames))
+        
         # create the output tabbed document, and open it
-
-        ofile = tabgen(len(cnames))
         ofile.open(name)
 
         # start the current page

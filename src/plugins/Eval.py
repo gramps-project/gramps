@@ -38,8 +38,7 @@ from gettext import gettext as _
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-import gtk
-import gtk.glade
+from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -62,7 +61,7 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         glade_file = "%s/%s" % (os.path.dirname(__file__),"eval.glade")
-        self.glade = gtk.glade.XML(glade_file,"top","gramps")
+        self.glade = glade.XML(glade_file,"top","gramps")
 
         window = self.glade.get_widget("top")
         self.dbuf = self.glade.get_widget("display").get_buffer()

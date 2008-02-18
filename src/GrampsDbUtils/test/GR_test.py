@@ -18,7 +18,7 @@ A controlling principle for such structures is that they should be
 designed for maximum ease (and intuitiveness) of data declaration
 """
 
-import sys, os, os.path as op
+import os.path as op
 
 import unittest as U
 import re

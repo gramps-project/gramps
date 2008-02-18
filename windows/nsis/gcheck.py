@@ -18,7 +18,7 @@ except ImportError:
     f.write('pygtkver=no\n')
 
 try:
-    import gtk.glade
+    from gtk import glade
     f.write('glade=yes\n')
 except ImportError:
     f.write('glade=no\n')

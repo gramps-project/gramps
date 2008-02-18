@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gtk import glade
 
 #-------------------------------------------------------------------------
 #
@@ -42,9 +42,10 @@ import gtk
 import const
 import gen.lib
 
-from DisplayTabs import \
-     NoteTab,GalleryTab,SourceBackRefList,DataEmbedList,RepoEmbedList
-from GrampsWidgets import *
+from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList, 
+                         DataEmbedList, RepoEmbedList)
+from GrampsWidgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
+                           MonitoredDate)
 from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------
@@ -60,7 +61,7 @@ class EditSourceRef(EditReference):
 
     def _local_init(self):
         
-        self.top = gtk.glade.XML(const.GLADE_FILE, "source_ref_edit","gramps")
+        self.top = glade.XML(const.GLADE_FILE, "source_ref_edit","gramps")
         
         self.set_window(self.top.get_widget('source_ref_edit'),
                         self.top.get_widget('source_title'),        

@@ -55,8 +55,9 @@ except:
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gtk
+from gtk import glade
 from gtk import RESPONSE_OK
-import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -589,7 +590,7 @@ class BookListDisplay:
         self.dosave = dosave
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
-        self.xml = gtk.glade.XML(glade_file, "booklist", "gramps")
+        self.xml = glade.XML(glade_file, "booklist", "gramps")
         self.top = self.xml.get_widget('booklist')
 
         ManagedWindow.set_titles(self.top,
@@ -703,7 +704,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         base = os.path.dirname(__file__)
         glade_file = os.path.join(base,"book.glade")
 
-        self.xml = gtk.glade.XML(glade_file, "top", "gramps")
+        self.xml = glade.XML(glade_file, "top", "gramps")
         window = self.xml.get_widget("top")
         title_label = self.xml.get_widget('title')
         self.set_window(window, title_label, self.title)

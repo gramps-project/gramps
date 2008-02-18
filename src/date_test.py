@@ -30,8 +30,6 @@ import traceback
 import locale
 import gettext
 
-import gtk
-
 if os.environ.has_key("GRAMPSI18N"):
     loc = os.environ["GRAMPSI18N"]
 else:

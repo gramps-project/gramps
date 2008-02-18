@@ -1033,30 +1033,33 @@ class ListView(BookMarkView):
         self.write_tabbed_file(fn, fl)
 
     def write_tabbed_file(self, name, type):
-
-        if type == 0:
-            from CSVTab import CSVTab as tabgen
-        else:
-            from ODSTab import ODSTab as tabgen
-
+        """
+        Write a tabbed file to the specified name. 
+        
+        The output file type is determined by the type variable.
+        """
+        from docgen import CSVTab, ODSTab
+        ofile = None
         data_cols = [pair[1] for pair in self.column_order() if pair[0]]
 
         column_names = [self.colinfo[i] for i in data_cols]
-
-        o = tabgen(len(column_names))
+        if type == 0:
+            ofile = CSVTab(len(column_names))                        
+        else:
+            ofile = ODSTab(len(column_names))
         
-        o.open(name)
-        o.start_page()
-        o.start_row()
+        ofile.open(name)
+        ofile.start_page()
+        ofile.start_row()
         for name in column_names:
-            o.write_cell(name)
-        o.end_row()
+            ofile.write_cell(name)
+        ofile.end_row()
 
         for row in self.model:
-            o.start_row()
+            ofile.start_row()
             for index in data_cols:
-                o.write_cell(row[index])
-            o.end_row()
-        o.end_page()
-        o.close()
+                ofile.write_cell(row[index])
+            ofile.end_row()
+        ofile.end_page()
+        ofile.close()
             
