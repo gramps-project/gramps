@@ -1,4 +1,14 @@
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/Editors/_EditAddress.py
+    * src/Editors/_EditName.py
+    * src/Editors/_EditPersonRef.py
+    * src/plugins/FindDupers.py
+    * src/ReportBase/_StyleEditor.py
+    * src/MarkupText.py
+    Fix import issues introduce through previous commit.
+    #0001791 fixed
+
+2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/* 143 files
     * test/try_tree_model.py
     * windows/nsis/gcheck.py

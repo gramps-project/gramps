@@ -50,6 +50,7 @@ log = logging.getLogger(".MarkupText")
 #-------------------------------------------------------------------------
 import gtk
 from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
+import gobject
 
 #-------------------------------------------------------------------------
 #
