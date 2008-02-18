@@ -1,3 +1,32 @@
+2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/DataViews/EventView.py
+	* src/DataViews/FamilyList.py
+	* src/DataViews/PedigreeView.py
+	* src/DataViews/PersonView.py
+	* src/GrampsCfg.py
+	* src/Editors/_EditPrimary.py
+	* src/DisplayTabs/_EmbeddedList.py
+	* src/DisplayTabs/_BackRefList.py
+	* src/plugins/RelCalc.py
+	* src/QuickReports.py
+	* src/Relationship.py
+	* src/Selectors/_BaseSelector.py
+	* src/GrampsWidgets.py
+	* src/DbManager.py
+	* src/DisplayState.py
+	* src/DisplayModels/_BaseModel.py
+	* src/DisplayModels/_PeopleModel.py
+	* src/GrampsDbUtils/_GrampsDbWriteXML.py
+	* src/gramps_main.py
+	* src/Filters/Rules/_MatchesFilterBase.py
+	* src/ManagedWindow.py
+	pep8 updates. replace ''' with """ for comments
+	* src/GrampsDbUtils/_WriteGedcom.py: doc fixes
+	added support for exportin source, notes and repos that are not linked to 
+	other records.
+	0001707: export to gedcom doesn't include source, if source is the only 
+	thing in the db 
+
 2008-02-18  Duncan Lithgow <dlithgow@gmail.com>
 			Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/plugins/AncestorChart.py
