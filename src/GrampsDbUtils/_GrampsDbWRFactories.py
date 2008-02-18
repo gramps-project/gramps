@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_GrampsDbWRFactories.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 This module contains factory methods for accessing the different
@@ -46,7 +46,7 @@ from gen.db import GrampsDbException
 from PluginUtils import import_list
 
 def gramps_db_reader_factory(db_type):
-    """Factory class for obtaining a Gramps database importers.
+    """Factory class for obtaining a Gramps database importer.
     
     @param db_type: the type of backend required.
     @type db_type: one of the app_* constants in const.py

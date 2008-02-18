@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_ReadGedcom.py 9912 2008-01-22 09:17:46Z acraphae $
 
 "Import from GEDCOM"
 
@@ -84,7 +84,7 @@ def importData(database, filename, callback=None, use_trans=False):
 
     if not gramps and ansel:
         glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
-        top = gtk.glade.XML(glade_file, 'encoding','gramps')
+        top = gtk.glade.XML(glade_file, 'encoding', 'gramps')
         code = top.get_widget('codeset')
         code.set_active(0)
         dialog = top.get_widget('encoding')
@@ -103,13 +103,13 @@ def importData(database, filename, callback=None, use_trans=False):
 #-------------------------------------------------------------------------
 def import2(database, filename, callback, code_set, use_trans):
     """
-    Do the actual import of data
+    Import the gedcom file.
     """
 
     assert(type(code_set) == str or type(code_set) == unicode)
 
     try:
-        ifile = open(filename,"rU")
+        ifile = open(filename, "rU")
         stage_one = StageOne(ifile)
         stage_one.parse()
 

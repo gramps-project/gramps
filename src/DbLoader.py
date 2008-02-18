@@ -105,19 +105,18 @@ class DbLoader:
             if not warn_dialog.run():
                 return False
 
-        choose = gtk.FileChooserDialog(
-            _('GRAMPS: Import database'), 
-            self.uistate.window, 
-            gtk.FILE_CHOOSER_ACTION_OPEN, 
-            (gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL, 
-             'gramps-import',gtk.RESPONSE_OK))
-        choose.set_local_only(False)
+        choose_db_dialog = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
+                                       self.uistate.window, 
+                                       gtk.FILE_CHOOSER_ACTION_OPEN, 
+                                       (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, 
+                                        'gramps-import', gtk.RESPONSE_OK))
+        choose_db_dialog.set_local_only(False)
 
         # Always add automatic (match all files) filter
-        add_all_files_filter(choose)
-        add_grdb_filter(choose)
-        add_xml_filter(choose)
-        add_gedcom_filter(choose)
+        add_all_files_filter(choose_db_dialog)
+        add_grdb_filter(choose_db_dialog)
+        add_xml_filter(choose_db_dialog)
+        add_gedcom_filter(choose_db_dialog)
 
         format_list = OPEN_FORMATS[:]
 
@@ -129,12 +128,12 @@ class DbLoader:
             format_name = data[4]
 
             if not native_format:
-                choose.add_filter(mime_filter)
+                choose_db_dialog.add_filter(mime_filter)
                 format_list.append(mime_type)
                 _KNOWN_FORMATS[mime_type] = format_name
 
         (box, type_selector) = format_maker(format_list)
-        choose.set_extra_widget(box)
+        choose_db_dialog.set_extra_widget(box)
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
@@ -142,10 +141,10 @@ class DbLoader:
         if len(default_dir)<=1:
             default_dir = get_default_dir()
 
-        choose.set_current_folder(default_dir)
-        response = choose.run()
+        choose_db_dialog.set_current_folder(default_dir)
+        response = choose_db_dialog.run()
         if response == gtk.RESPONSE_OK:
-            filename = Utils.get_unicode_path(choose.get_filename())
+            filename = Utils.get_unicode_path(choose_db_dialog.get_filename())
             if self.check_errors(filename):
                 return False
 
@@ -158,15 +157,14 @@ class DbLoader:
                 try:
                     filetype = Mime.get_type(filename)
                 except RuntimeError, msg:
-                    ErrorDialog(
-                        _("Could not open file: %s") % filename, 
-                        str(msg))
+                    ErrorDialog(_("Could not open file: %s") % filename, 
+                                str(msg))
                     return False
                     
             # First we try our best formats
             if filetype in OPEN_FORMATS:
                 importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
-                self.do_import(choose, importer, filename)
+                self.do_import(choose_db_dialog, importer, filename)
                 return True
 
             # Then we try all the known plugins
@@ -175,7 +173,7 @@ class DbLoader:
             for (importData, mime_filter, mime_type, native_format, 
                  format_name) in import_list:
                 if filetype == mime_type or the_file == mime_type:
-                    self.do_import(choose, importData, filename)
+                    self.do_import(choose_db_dialog, importData, filename)
                     return True
 
             # Finally, we give up and declare this an unknown format
@@ -185,13 +183,15 @@ class DbLoader:
                   'Valid types are: GRAMPS database, GRAMPS XML, '
                   'GRAMPS package, and GEDCOM.') % filetype)
 
-        choose.destroy()
+        choose_db_dialog.destroy()
         return False
 
     def check_errors(self, filename):
         """
-        This methods runs common error checks and returns True if any found.
-        In this process, warning dialog can pop up.
+        Run common error checks and return True if any found.
+        
+        In this process, a warning dialog can pop up.
+        
         """
 
         if type(filename) not in (str, unicode):

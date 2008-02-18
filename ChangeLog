@@ -1,4 +1,15 @@
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/GrampsDbUtils/_GedcomParse.py: remove encode_filename() as filename 
+	is already unicode encoded.
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py: doc fix
+	* src/GrampsDbUtils/_ReadGedcom.py: doc and pylint fixes
+	* src/GrampsDbUtils/importdbdir.py: pep8 fix  ''' --> """
+	* src/ArgHandler.py: in method cl_import(self, filename, format): add call 
+	filename = Utils.get_unicode_path(filename) before calling 
+	ReadGedcom._import2(...,filename,...). +pylint fixes
+	* src/DbLoader.py: doc fix. change variable choose to choose_db_dialog
+
+2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DataViews/PersonView.py
 	* src/ViewManager.py
 	* src/GrampsCfg.py

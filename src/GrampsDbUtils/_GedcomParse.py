@@ -275,8 +275,7 @@ class GedcomParser(UpdateCallback):
         if self.use_def_src:
             self.def_src = gen.lib.Source()
             fname = os.path.basename(filename).split('\\')[-1]
-            self.def_src.set_title(_("Import from GEDCOM (%s)") % 
-                                   encode_filename(fname))
+            self.def_src.set_title(_("Import from GEDCOM (%s)") % fname)
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
         self.is_ancestry_com = False
@@ -4423,10 +4422,3 @@ def family_event_name(event, family, dbase):
             'family' : Utils.family_name(family, dbase), 
             }
         event.set_description(text)
-
-def encode_filename(name):
-    enc = sys.getfilesystemencoding()
-    if enc == "UTF-8":
-        return name
-    else:
-        return unicode(name, encoding=enc, errors='replace')

@@ -48,9 +48,9 @@ from BasicUtils import name_displayer
 #
 #-------------------------------------------------------------------------
 def importData(database, dirname, callback=None, cl=0, use_trans=True):
-    '''
+    """
     Import dbdir database in dirname into dbdir database. 
-    '''
+    """
     name = os.path.normpath(dirname)
 
     other_database = GrampsDBDir()

@@ -224,8 +224,8 @@ class ArgHandler:
                         print "Input file does not exist:  %s" % fullpath
                         continue
                 elif os.path.isdir(fullpath):
-                        ftype = const.APP_FAMTREE
-                        fname = fullpath
+                    ftype = const.APP_FAMTREE
+                    fname = fullpath
                 elif opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     format = options[opt_ix+1][1]
@@ -267,7 +267,7 @@ class ArgHandler:
                     else:
                         print "Will skip the output file: %s" % fullpath
                         continue
-                if opt_ix<len(options)-1 \
+                if opt_ix < len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     outformat = options[opt_ix+1][1]
                     if outformat not in ('gedcom',
@@ -296,17 +296,17 @@ class ArgHandler:
                     print "Unrecognized format for output file %s" % outfname
                     print "Ignoring output file:  %s" % outfname
                     continue
-                self.exports.append((fullpath,outformat))
+                self.exports.append((fullpath, outformat))
             elif option in ( '-a', '--action' ):
                 action = value
                 if action not in ( 'check', 'summary', 'report', 'tool' ):
                     print "Unknown action: %s. Ignoring." % action
                     continue
                 options_str = ""
-                if opt_ix<len(options)-1 \
+                if opt_ix < len(options)-1 \
                             and options[opt_ix+1][0] in ( '-p', '--options' ): 
                     options_str = options[opt_ix+1][1]
-                self.actions.append((action,options_str))
+                self.actions.append((action, options_str))
             elif option in ('-d', '--debug'):
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
@@ -395,7 +395,7 @@ class ArgHandler:
                 #see if not just a name of a database is given
                 data = self.dbman.family_tree(self.open_gui)
                 if data is not None:
-                    filename, filetype= data[0], data[1]
+                    filename, filetype = data[0], data[1]
                     success = True
                 else:
                     ErrorDialog( 
@@ -474,15 +474,15 @@ class ArgHandler:
             print "Launching interactive session..."
 
         if self.cl:
-            for (action,options_str) in self.actions:
+            for (action, options_str) in self.actions:
                 print "Performing action: %s." % action
                 if options_str:
                     print "Using options string: %s" % options_str
-                self.cl_action(action,options_str)
+                self.cl_action(action, options_str)
 
             for expt in self.exports:
                 print "Exporting: file %s, format %s." % expt
-                self.cl_export(expt[0],expt[1])
+                self.cl_export(expt[0], expt[1])
 
             print "Cleaning up."
             # remove files in import db subdir after use
@@ -526,7 +526,7 @@ class ArgHandler:
         if format == 'famtree':
             #3.x database
             if not self.__check_db(filename):
-                    sys.exit(0)
+                sys.exit(0)
             try:
                 GrampsDbUtils.gramps_db_reader_factory(const.APP_FAMTREE)(
                     self.state.db, filename, empty)
@@ -547,10 +547,11 @@ class ArgHandler:
                 sys.exit(1)
         elif format == 'gedcom':
             filename = os.path.normpath(os.path.abspath(filename))
+            filename = Utils.get_unicode_path(filename)
             try:
                 # Cheating here to use default encoding
                 from GrampsDbUtils._ReadGedcom import import2
-                import2(self.state.db,filename,None,"",False)
+                import2(self.state.db, filename, None, "", False)
             except:
                 print "Error importing %s" % filename
                 sys.exit(1)
@@ -565,7 +566,7 @@ class ArgHandler:
             import ImportGeneWeb
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                ImportGeneWeb.importData(self.state.db,filename,None)
+                ImportGeneWeb.importData(self.state.db, filename, None)
             except:
                 print "Error importing %s" % filename
                 sys.exit(1)
@@ -575,7 +576,7 @@ class ArgHandler:
                 import tarfile
                 archive = tarfile.open(filename)
                 for tarinfo in archive:
-                    archive.extract(tarinfo,tmpdir_path)
+                    archive.extract(tarinfo, tmpdir_path)
                 archive.close()
             except tarfile.ReadError, msg:
                 print "Error reading archive:", msg
@@ -587,7 +588,7 @@ class ArgHandler:
                 print "Error extracting into %s" % tmpdir_path
                 sys.exit(1)
 
-            dbname = os.path.join(tmpdir_path,const.XMLFILE)
+            dbname = os.path.join(tmpdir_path, const.XMLFILE)
 
             try:
                 GrampsDbUtils.gramps_db_reader_factory(const.APP_GRAMPS_XML)(
@@ -625,7 +626,7 @@ class ArgHandler:
     # Export handler
     #
     #-------------------------------------------------------------------------
-    def cl_export(self,filename,format):
+    def cl_export(self, filename, format):
         """
         Command-line export routine. 
         Try to write into filename using the format.
@@ -647,7 +648,7 @@ class ArgHandler:
             filename = os.path.normpath(os.path.abspath(filename))
             if filename:
                 try:
-                    g = GrampsDbUtils.XmlWriter(self.state.db,None,0,1)
+                    g = GrampsDbUtils.XmlWriter(self.state.db, None, 0, 1)
                     ret = g.write(filename)
                     print "... finished writing %s" % filename
                 except:
@@ -702,14 +703,14 @@ class ArgHandler:
     # Action handler
     #
     #-------------------------------------------------------------------------
-    def cl_action(self,action,options_str):
+    def cl_action(self, action, options_str):
         """
         Command-line action routine. Try to perform specified action.
         Any errors will cause the sys.exit(1) call.
         """
         if action == 'check':
             import Check
-            checker = Check.CheckIntegrity(self.state.db,None,None)
+            checker = Check.CheckIntegrity(self.state.db, None, None)
             checker.check_for_broken_family_links()
             checker.cleanup_missing_photos(1)
             checker.check_parent_relationships()
@@ -719,7 +720,7 @@ class ArgHandler:
                 checker.report(1)
         elif action == 'summary':
             import Summary
-            text = Summary.build_report(self.state.db,None)
+            text = Summary.build_report(self.state.db, None)
             print text
         elif action == "report":
             try:
@@ -729,7 +730,7 @@ class ArgHandler:
                 options_str_dict = {}
                 print "Ignoring invalid options string."
 
-            name = options_str_dict.pop('name',None)
+            name = options_str_dict.pop('name', None)
             if not name:
                 print "Report name not given. Please use name=reportname"
                 sys.exit(1)
@@ -739,13 +740,12 @@ class ArgHandler:
                     category = item[1]
                     report_class = item[2]
                     options_class = item[3]
-                    if category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_WEB):
-                        options_class(self.state.db,name,
-                                      category,options_str_dict)
+                    if category in (CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB):
+                        options_class(self.state.db, name, category, 
+                                      options_str_dict)
                     else:
-                        cl_report(self.state.db,name,category,
-                                  report_class,options_class,
-                                  options_str_dict)
+                        cl_report(self.state.db, name, category, report_class, 
+                                  options_class, options_str_dict)
                     return
 
             print "Unknown report name. Available names are:"
@@ -759,7 +759,7 @@ class ArgHandler:
                 options_str_dict = {}
                 print "Ignoring invalid options string."
 
-            name = options_str_dict.pop('name',None)
+            name = options_str_dict.pop('name', None)
             if not name:
                 print "Tool name not given. Please use name=toolname"
                 sys.exit(1)
@@ -769,8 +769,8 @@ class ArgHandler:
                     category = item[1]
                     tool_class = item[2]
                     options_class = item[3]
-                    Tool.cli_tool(self.state,name,category,
-                                  tool_class,options_class,options_str_dict)
+                    Tool.cli_tool(self.state, name, category, tool_class, 
+                                  options_class, options_str_dict)
                     return
 
             print "Unknown tool name. Available names are:"
