@@ -184,12 +184,13 @@ class Date:
             self.sortval  = 0
             self.set_yr_mon_day(*source)
         elif type(source) == str:
+            if (calendar != None or 
+                modifier != None or 
+                quality != None):
+                raise AttributeError("can't set calendar, modifier, or quality with string date")
             import DateHandler
             source = DateHandler.parser.parse(source)
-            if calendar == None:
-                self.calendar = Date.CAL_GREGORIAN
-            else:
-                self.calendar = self.lookup_calendar(calendar)
+            self.calendar = source.calendar
             self.modifier = source.modifier
             self.quality  = source.quality
             self.dateval  = source.dateval
@@ -287,7 +288,10 @@ class Date:
             if d1 < d2:
                 d1, d2 = d2, d1
                 date1, date2 = date2, date1
-            # d1 - d2 (1998, 12, 32) - (1982, 12, 15) = 
+            # d1 - d2 (1998, 12, 32) - (1982, 12, 15)
+            if self.calendar != other.calendar:
+                diff = date1.sortval - date2.sortval
+                return (diff/365, (diff % 365)/30, (diff % 365) % 30)
             # days:
             if d2[2] > d1[2]:
                 # months:
