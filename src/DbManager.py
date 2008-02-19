@@ -73,6 +73,9 @@ IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM,
                 const.APP_GRAMPS_PKG, const.APP_GENEWEB, 
                 const.APP_GRAMPS)
 
+_RETURN = gtk.gdk.keyval_from_name("Return")
+_KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+
 #-------------------------------------------------------------------------
 #
 # constants
@@ -306,6 +309,7 @@ class DbManager(CLIDbManager):
         self.repair.connect('clicked', self.__repair_db)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
+        self.dblist.connect('key-press-event', self.__key_press)
         self.top.connect('drag_data_received', self.__drag_data_received)
         self.top.connect('drag_motion', drag_motion)
         self.top.connect('drag_drop', drop_cb)
@@ -320,19 +324,36 @@ class DbManager(CLIDbManager):
         to make sure that an item was selected first.
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            store, node = self.selection.get_selected()
-            if not node:
-                return
-            # don't open a locked file
-            if store.get_value(node, STOCK_COL) == 'gramps-lock':
-                self.__ask_to_break_lock(store, node)
-                return
-            # don't open a version
-            if len(store.get_path(node)) > 1:
-                return
-            if store.get_value(node, PATH_COL):
-                self.top.response(gtk.RESPONSE_OK)
-            return True
+            return self.__load_selected()
+        return False
+
+    def __load_selected(self):
+        """
+        Load the selected family tree if possible, return True
+        if ok, and set RESPONSE_OK
+        """
+        store, node = self.selection.get_selected()
+        if not node:
+            return
+        # don't open a locked file
+        if store.get_value(node, STOCK_COL) == 'gramps-lock':
+            self.__ask_to_break_lock(store, node)
+            return
+        # don't open a version
+        if len(store.get_path(node)) > 1:
+            return
+        if store.get_value(node, PATH_COL):
+            self.top.response(gtk.RESPONSE_OK)
+        return True
+
+    def __key_press(self, obj, event):
+        """
+        Grab ENTER so it does not start editing the cell, but behaves
+        like double click instead
+        """
+        if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
+            if event.keyval in (_RETURN, _KP_ENTER):
+                return self.__load_selected()
         return False
 
     def __selection_changed(self, selection):
