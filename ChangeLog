@@ -1,3 +1,8 @@
+2008-02-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/gen/lib/date.py (Date.__init__): 
+	added Date("Jan 1, 2000") string constructor and
+	calendar, quality, and modifier keywords to Date()
+
 2008-02-18 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/CmdRef.py:
 	0001688: BUG when I clicked generate commandline plugin reference tool

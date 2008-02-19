@@ -144,10 +144,13 @@ class Date:
                          _("Persian"), 
                          _("Islamic")]
 
-    def __init__(self, *source):
+    def __init__(self, *source, **kwargs):
         """
         Creates a new Date instance.
         """
+        calendar=kwargs.get("calendar", None)
+        modifier=kwargs.get("modifier", None)
+        quality=kwargs.get("quality", None)
         #### setup None, Date, or numbers
         if len(source) == 0:
             source = None
@@ -164,13 +167,34 @@ class Date:
             raise AttributeError, "invalid args to Date: %s" % source
         #### ok, process either date or tuple
         if type(source) == tuple:
-            self.calendar = Date.CAL_GREGORIAN
-            self.modifier = Date.MOD_NONE
-            self.quality  = Date.QUAL_NONE
+            if calendar == None:
+                self.calendar = Date.CAL_GREGORIAN
+            else:
+                self.calendar = self.lookup_calendar(calendar)
+            if modifier == None:
+                self.modifier = Date.MOD_NONE
+            else:
+                self.modifier = self.lookup_modifier(modifier)
+            if quality == None:
+                self.quality  = Date.QUAL_NONE
+            else:
+                self.quality = self.lookup_quality(quality)
             self.dateval  = Date.EMPTY
             self.text     = u""
             self.sortval  = 0
             self.set_yr_mon_day(*source)
+        elif type(source) == str:
+            import DateHandler
+            source = DateHandler.parser.parse(source)
+            if calendar == None:
+                self.calendar = Date.CAL_GREGORIAN
+            else:
+                self.calendar = self.lookup_calendar(calendar)
+            self.modifier = source.modifier
+            self.quality  = source.quality
+            self.dateval  = source.dateval
+            self.text     = source.text
+            self.sortval  = source.sortval
         elif source:
             self.calendar = source.calendar
             self.modifier = source.modifier
@@ -450,7 +474,8 @@ class Date:
             # If all > all
             return self_start > other_stop
         else:
-            raise AttributeError, ("invalid match comparison operator: '%s'" % comparison)
+            raise AttributeError, ("invalid match comparison operator: '%s'" % 
+                                   comparison)
             
     def __str__(self):
         """
@@ -932,3 +957,45 @@ class Date:
         """
         return Date(Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value))
 
+    def lookup_calendar(self, calendar):
+        """
+        Lookup calendar name in the list of known calendars, 
+        even if translated.
+        """
+        calendar_lower = [n.lower() for n in Date.calendar_names]
+        ui_lower = [n.lower() for n in Date.ui_calendar_names]
+        if calendar.lower() in calendar_lower:
+            return calendar_lower.index(calendar.lower())
+        elif calendar.lower() in ui_lower:
+            return ui_lower.index(calendar.lower())
+        else:
+            raise AttributeError("invalid calendar: '%s'" % calendar)
+
+    def lookup_quality(self, quality):
+        """
+        Lookup date quality keyword, even if translated.
+        """
+        qualities = ["none", "estimated", "calculated"]
+        ui_qualities = [_("none"), _("estimated"), _("calculated")]
+        if quality.lower() in qualities:
+            return qualities.index(quality.lower())
+        elif quality.lower() in ui_qualities:
+            return ui_qualities.index(quality.lower())
+        else:
+            raise AttributeError("invalid quality: '%s'" % quality)
+
+    def lookup_modifier(self, modifier):
+        """
+        Lookup date modifier keyword, even if translated.
+        """
+        mods = ["none", "before", "after", "about", 
+                "range", "span", "textonly"]
+        ui_mods = [_("none"), _("before"), _("after"), _("about"), 
+                   _("range"), _("span"), _("textonly")]
+        if modifier.lower() in mods:
+            return mods.index(modifier.lower())
+        elif modifier.lower() in ui_mods:
+            return ui_mods.index(modifier.lower())
+        else:
+            raise AttributeError("invalid modifier: '%s'" % modifier)
+    
