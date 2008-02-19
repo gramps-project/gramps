@@ -1,3 +1,6 @@
+2008-02-19  Peter Landgren <peter.talken@telia.com>
+    * src/plugins/ExtractCity.py: Works for Swedish laen if the laen letter is within ()
+
 2008-02-19 Benny Malengier c <benny.malengier@gramps-project.org>
 	* src/plugins/SimpleBookTitle.py: remove select file button
 
