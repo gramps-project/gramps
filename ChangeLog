@@ -1,4 +1,9 @@
 2008-02-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/glade/gramps.glade: enlarged dbmanager by 70 pixels
+	so that all of the date can show in window. Note: glade-3
+	will change this glade file indentation. I edited it by hand.
+
+2008-02-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/gen/lib/date.py (Date.__init__): 
 	added Date("Jan 1, 2000") string constructor and
 	calendar, quality, and modifier keywords to Date()
