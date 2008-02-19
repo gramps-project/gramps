@@ -1,3 +1,6 @@
+2008-02-19 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ViewManager.py: CTRL+B as accel for clipboard
+
 2008-02-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/glade/gramps.glade: enlarged dbmanager by 70 pixels
 	so that all of the date can show in window. Note: glade-3

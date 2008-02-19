@@ -451,7 +451,7 @@ class ViewManager:
             ]
 
         self._action_action_list = [
-            ('ScratchPad', gtk.STOCK_PASTE, _('_Clipboard'), "<alt>s", 
+            ('ScratchPad', gtk.STOCK_PASTE, _('Clip_board'), "<control>b", 
              _("Open the Clipboard dialog"), self.scratchpad), 
             ('Import', 'gramps-import', _('_Import...'), "<control>i", None, 
              self.import_data), 
