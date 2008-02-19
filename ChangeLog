@@ -1,3 +1,6 @@
+2008-02-19 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ViewManager.py: #1559, use CTRL+N/P not ALT+N/P to avoid problems
+
 2008-02-19  Peter Landgren <peter.talken@telia.com>
     * src/plugins/ExtractCity.py: Works for Swedish laen if the laen letter is within ()
 

@@ -180,10 +180,8 @@ UIDEFAULT = '''<ui>
 <accelerator action="F12"/>
 <accelerator action="<CONTROL>BackSpace"/>
 <accelerator action="<CONTROL>J"/>
-<accelerator action="<Alt>N"/>
-<accelerator action="<Alt>P"/>
-<accelerator action="<Alt>Left"/>
-<accelerator action="<Alt>Right"/>
+<accelerator action="<CONTROL>N"/>
+<accelerator action="<CONTROL>P"/>
 </ui>
 '''
 
@@ -442,12 +440,10 @@ class ViewManager:
             ('F12', None, 'F12', "F12", None, self.__keypress), 
             ('<CONTROL>J', None, '<CONTROL>J', 
              "<CONTROL>J", None, self.__keypress), 
-            ('<Alt>N', None, '<Alt>N', "<Alt>N", None, self.__next_view), 
-            ('<Alt>P', None, '<Alt>P', "<Alt>P", None, self.__prev_view),
-            ('<Alt>Left', None, '<Alt>Left', "<Alt>Left", None,
-                self.__prev_view), 
-            ('<Alt>Right', None, '<Alt>Right', "<Alt>Right", None, 
-                self.__next_view),
+            ('<CONTROL>N', None, '<CONTROL>N', "<CONTROL>N", None, 
+             self.__next_view), 
+            ('<CONTROL>P', None, '<CONTROL>P', "<CONTROL>P", None, 
+             self.__prev_view),
             ]
 
         self._action_action_list = [
