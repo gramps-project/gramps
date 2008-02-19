@@ -103,10 +103,8 @@ class CmdRef(Tool.Tool):
             unsupported = item[5]
             if unsupported is True:
                 continue
-            print item[0], item[3], item[5]
             category = item[1]
-            if category in (CATEGORY_BOOK,
-                            CATEGORY_WEB):
+            if category in [CATEGORY_BOOK]:
                 self.write_ref(f,item,level+2,id_counter,category)
             else:
                 self.write_ref(f,item,level+2,id_counter,None)
@@ -163,10 +161,6 @@ class CmdRef(Tool.Tool):
         elif category == CATEGORY_BOOK:
             import BookReport
             oclass = BookReport.BookOptions(item[0])
-        elif category == CATEGORY_WEB:
-            if item[0] == "navwebpage":
-                import NarrativeWeb
-                oclass = NarrativeWeb.WebReportOptions(item[0])
         elif category:
             # This is the common options case
             # so class is already instantiated
