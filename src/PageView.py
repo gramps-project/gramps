@@ -350,8 +350,9 @@ class BookMarkView(PageView):
         self.book_action.add_actions([
             ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
              '<control>d', None, self.add_bookmark), 
-            ('EditBook', 'gramps-bookmark-edit', _('_Edit Bookmarks'), 
-             '<control>b', None, 
+            ('EditBook', 'gramps-bookmark-edit', 
+             _("%(title)s...") % {'title': _("Organize Bookmarks")}, 
+             '<shift><control>b', None, 
              self.edit_bookmarks), 
             ])
 

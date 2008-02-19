@@ -98,7 +98,7 @@ def register_stock_icons ():
         ('gramps-attribute', _('Attribute'), gtk.gdk.CONTROL_MASK, 0, ''), 
         #('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''), 
         #('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''), 
-        ('gramps-bookmark-edit', _('Edit Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''), 
+        ('gramps-bookmark-edit', _('Organize Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-bookmark-new', _('Add Bookmark'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-date', _('Date'), gtk.gdk.CONTROL_MASK, 0, ''), 
         ('gramps-date-edit', _('Edit Date'), gtk.gdk.CONTROL_MASK, 0, ''), 

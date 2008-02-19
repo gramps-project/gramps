@@ -189,14 +189,14 @@ class Bookmarks :
 
     def draw_window(self):
         """Draws the bookmark dialog box"""
-        title = "%s - GRAMPS" % _("Edit Bookmarks")
+        title = _("%(title)s - GRAMPS") % {'title': _("Organize Bookmarks")}
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400, 350)
         self.top.set_modal(True)
         self.top.set_has_separator(False)
         self.top.vbox.set_spacing(5)
         label = gtk.Label('<span size="larger" weight="bold">%s</span>'
-                          % _("Edit Bookmarks"))
+                          % _("Organize Bookmarks"))
         label.set_use_markup(True)
         self.top.vbox.pack_start(label, 0, 0, 5)
         box = gtk.HBox()
