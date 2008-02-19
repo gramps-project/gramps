@@ -185,16 +185,16 @@ class SimpleBookTitleOptions(ReportOptions):
 
         select_obj_button = gtk.Button(_('From gallery...'))
         select_obj_button.connect('clicked',self.select_obj,dialog)
-        select_file_button = gtk.Button(_('From file...'))
-        select_file_button.connect('clicked',self.select_file,dialog)
-        select_table = gtk.Table(1,3)
+        #select_file_button = gtk.Button(_('From file...'))
+        #select_file_button.connect('clicked',self.select_file,dialog)
+        select_table = gtk.Table(1,2)
         select_table.set_col_spacings(10)
         select_table.attach(select_obj_button,
                 0,1,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
-        select_table.attach(select_file_button,
-                1,2,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+        #select_table.attach(select_file_button,
+        #        1,2,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
         select_table.attach(self.remove_obj_button,
-                2,3,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+                1,2,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
 
         self.size = gtk.SpinButton()
         self.size.set_digits(2)

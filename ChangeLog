@@ -1,3 +1,6 @@
+2008-02-19 Benny Malengier c <benny.malengier@gramps-project.org>
+	* src/plugins/SimpleBookTitle.py: remove select file button
+
 2008-02-19 Benny Malengier b <benny.malengier@gramps-project.org>
 	* src/Bookmarks.py:
 	* src/gramps_main.py:
