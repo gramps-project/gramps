@@ -511,7 +511,11 @@ class ViewManager:
             new_page = 0
         else:
             new_page = current_page + 1
-        self.buttons[new_page].set_active(True)
+        if self.show_sidebar:
+            #cause a click signal
+            self.buttons[new_page].set_active(True)
+        else:
+            self.notebook.set_current_page(new_page)
 
     def __prev_view(self, action):
         """
@@ -524,7 +528,11 @@ class ViewManager:
             new_page = len(self.pages)-1
         else:
             new_page = current_page - 1
-        self.buttons[new_page].set_active(True)
+        if self.show_sidebar:
+            #cause a click signal
+            self.buttons[new_page].set_active(True)
+        else:
+            self.notebook.set_current_page(new_page)
 
     def init_interface(self):
         """
@@ -748,10 +756,12 @@ class ViewManager:
             self.ebox.show()
             self.notebook.set_show_tabs(False)
             Config.set(Config.VIEW, True)
+            self.show_sidebar = True
         else:
             self.ebox.hide()
             self.notebook.set_show_tabs(True)
             Config.set(Config.VIEW, False)
+            self.show_sidebar = False
         Config.sync()
 
     def toolbar_toggle(self, obj):
