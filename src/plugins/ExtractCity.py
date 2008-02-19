@@ -54,9 +54,10 @@ import Utils
 
 CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
 CITY_STATE = re.compile("((?:\w|\s)+(?:-(?:\w|\s)+)*),((?:\w|\s)+)", re.UNICODE)
+CITY_LAEN =  re.compile("((?:\w|\s)+(?:-(?:\w|\s)+)*)\(((?:\w|\s)+)", re.UNICODE)
 STATE_ZIP = re.compile("(.+)\s+([\d-]+)", re.UNICODE)
 
-COUNTRY = ( _(u"United States of America"), _(u"Canada"), _(u"France"))
+COUNTRY = ( _(u"United States of America"), _(u"Canada"), _(u"France"),_(u"Sweden"))
 
 STATE_MAP = {
     u"AL"            : (u"Alabama", 0), 
@@ -339,6 +340,31 @@ STATE_MAP = {
     u"COM"           : (u"COM-Collectivité Territoriale d'Outre-Mer", 2),  
     u"DOM"           : (u"DOM-Départements d'Outre-Mer", 2), 
     u"TOM"           : (u"TOM-Territoires d'Outre-Mer", 2),
+    u"(A)"           : (u"Stockholms stad", 3),
+    u"(AB)"          : (u"Stockholms stad/län", 3),
+    u"(B)"           : (u"Stockholms län", 3),
+    u"(C)"           : (u"Uppsala län", 3),
+    u"(D)"           : (u"Södermanlands län", 3),
+    u"(E)"           : (u"Östergötlands län", 3),
+    u"(F)"           : (u"Jönköpings län", 3),
+    u"(G)"           : (u"Kronobergs län", 3),
+    u"(H)"           : (u"Kalmar län", 3),
+    u"(I)"           : (u"Gotlands län", 3),
+    u"(K)"           : (u"Blekinge län", 3),
+    u"(L)"           : (u"Kristianstads län", 3),
+    u"(M)"           : (u"Malmöhus län", 3),
+    u"(N)"           : (u"Hallands län", 3),
+    u"(O)"           : (u"Göteborgs- och Bohuslän", 3),
+    u"(P)"           : (u"Älvsborgs län", 3),
+    u"(R)"           : (u"Skaraborg län", 3),
+    u"(S)"           : (u"Värmlands län", 3),
+    u"(T)"           : (u"Örebro län", 3),
+    u"(U)"           : (u"Västmanlands län", 3),
+    u"(W)"           : (u"Kopparbergs län", 3),
+    u"(X)"           : (u"Gävleborgs län", 3),
+    u"(Y)"           : (u"Västernorrlands län", 3),
+    u"(AC)"          : (u"Västerbottens län", 3),
+    u"(BD)"          : (u"Norrbottens län", 3),
 }
 
 COLS = [ 
@@ -363,6 +389,9 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     Sorry for those not in the US or Canada. I doubt this will work for any
     other locales.
+    Works for Sweden if the decriptions is like
+        Stockholm (A)
+    where the letter A is the abbreviation letter for laen.
     """
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
@@ -393,7 +422,6 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
             place = db.get_place_from_handle(handle)
             descr = place.get_title()
             loc = place.get_main_location()
-
             self.progress.step()
 
             if loc.get_street() == "" and loc.get_city() == "" \
@@ -416,13 +444,27 @@ class ExtractCity(Tool.BatchTool, ManagedWindow.ManagedWindow):
                                           COUNTRY[new_state[1]])))
                     continue
 
+                # Check if there is a left parant. in the string, might be Swedish laen.
+                match = CITY_LAEN.match(descr.strip().replace(","," "))
+                if match:
+                    data = match.groups()
+                    city = data[0] 
+                    state = '(' + data[1] + ')'
+                    postal = None
+                    val = " ".join(state.strip().split()).upper()
+                    if state:
+                        new_state = STATE_MAP.get(val.upper())
+                        if new_state:
+                            self.name_list.append(
+                                (handle, (city, new_state[0], postal, 
+                                          COUNTRY[new_state[1]])))
+                    continue
                 match = CITY_STATE.match(descr.strip())
                 if match:
                     data = match.groups()
                     city = data[0] 
                     state = data[1]
                     postal = None
-
                     if state:
                         m0 = STATE_ZIP.match(state)
                         if m0:
