@@ -1035,7 +1035,7 @@ class BookItemDialog(ReportDialog):
 
     def __init__(self, dbstate, uistate, option_class, name, translated_name,
                  track=[]):
-
+        self.category = CATEGORY_BOOK
         self.database = dbstate.db
         self.option_class = option_class
         ReportDialog.__init__(self, dbstate, uistate, None,
@@ -1050,6 +1050,14 @@ class BookItemDialog(ReportDialog):
         self.parse_user_options()
 
         self.options.handler.save_options()
+        
+    def setup_target_frame(self):
+        """Target frame is not used."""
+        pass
+    
+    def parse_target_frame(self):
+        """Target frame is not used."""
+        return 1
 
 #------------------------------------------------------------------------
 #

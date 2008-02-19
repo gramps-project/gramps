@@ -66,14 +66,15 @@ class ReportDialog(BareReportDialog):
     dialog for a stand-alone report.
     """
 
-    def __init__(self,dbstate,uistate,person,option_class,name,trans_name):
+    def __init__(self, dbstate, uistate, person, option_class, name, trans_name,
+                 track=[]):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
         self.page_html_added = False
-        BareReportDialog.__init__(self,dbstate,uistate,person,option_class,
-                                  name,trans_name)
+        BareReportDialog.__init__(self, dbstate, uistate, person, option_class,
+                                  name, trans_name, track)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
