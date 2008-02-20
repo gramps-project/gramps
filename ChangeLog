@@ -1,3 +1,7 @@
+
+2008-02-20  Peter Landgren <peter.talken@telia.com>
+    * src/plugins/rel_sv.py: pylint clean up
+
 2008-02-20  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/DisplayTabs/_PersonRefEmbedList.py: change _o mnemonic to not 
     interfere with OK button.
