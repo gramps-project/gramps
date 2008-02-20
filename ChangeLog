@@ -1,3 +1,6 @@
+2008-02-20 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DbManager.py: #1725, ENTER, double-click if OK button sensitive only
+
 2008-02-19 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/Summary.py:
 	* src/plugins/CountAncestors.py:

@@ -324,7 +324,8 @@ class DbManager(CLIDbManager):
         to make sure that an item was selected first.
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            return self.__load_selected()
+            if self.connect.get_property('sensitive'):
+                return self.__load_selected()
         return False
 
     def __load_selected(self):
@@ -353,7 +354,8 @@ class DbManager(CLIDbManager):
         """
         if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
             if event.keyval in (_RETURN, _KP_ENTER):
-                return self.__load_selected()
+                if self.connect.get_property('sensitive'):
+                    return self.__load_selected()
         return False
 
     def __selection_changed(self, selection):
