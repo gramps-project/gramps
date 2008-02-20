@@ -1,3 +1,8 @@
+2008-02-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DbLoader.py (DbLoader.import_file): 
+	Importer will stay on dialog until cancel or success. Errors
+	will remain in dialog until fixed, or cancel.
+
 2008-02-19 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_WebReportDialog.py:
 	* src/ReportBase/_ReportDialog.py:
@@ -34,6 +39,7 @@
 	* src/plugins/FanChart.py:
 	Remove the "person" option from reports, report options, and report dialogs.
 	Person is selected by the user for all reports.
+
 
 2008-02-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py: News renders text with styles

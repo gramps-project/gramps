@@ -141,46 +141,51 @@ class DbLoader:
             default_dir = get_default_dir()
 
         choose_db_dialog.set_current_folder(default_dir)
-        response = choose_db_dialog.run()
-        if response == gtk.RESPONSE_OK:
-            filename = Utils.get_unicode_path(choose_db_dialog.get_filename())
-            if self.check_errors(filename):
-                return False
+        while True:
+            response = choose_db_dialog.run()
+            if response == gtk.RESPONSE_CANCEL:
+                break
+            elif response == gtk.RESPONSE_OK:
+                filename = Utils.get_unicode_path(choose_db_dialog.get_filename())
+                if self.check_errors(filename):
+                    # displays errors if any
+                    continue
 
-            # Do not allow importing from the currently open file
-            if filename == self.dbstate.db.full_name:
-                return False
-            
-            filetype = type_selector.get_value()
-            if filetype == 'auto':
-                try:
-                    filetype = Mime.get_type(filename)
-                except RuntimeError, msg:
-                    ErrorDialog(_("Could not open file: %s") % filename, 
-                                str(msg))
-                    return False
-                    
-            # First we try our best formats
-            if filetype in OPEN_FORMATS:
-                importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
-                self.do_import(choose_db_dialog, importer, filename)
-                return True
+                # Do not allow importing from the currently open file
+                if filename == self.dbstate.db.full_name:
+                    ErrorDialog(_("Cannot import from current file")) 
+                    continue
 
-            # Then we try all the known plugins
-            (the_path, the_file) = os.path.split(filename)
-            Config.set(Config.RECENT_IMPORT_DIR, the_path)
-            for (importData, mime_filter, mime_type, native_format, 
-                 format_name) in import_list:
-                if filetype == mime_type or the_file == mime_type:
-                    self.do_import(choose_db_dialog, importData, filename)
+                filetype = type_selector.get_value()
+                if filetype == 'auto':
+                    try:
+                        filetype = Mime.get_type(filename)
+                    except RuntimeError, msg:
+                        ErrorDialog(_("Could not open file: %s") % filename, 
+                                    str(msg))
+                        continue
+
+                # First we try our best formats
+                if filetype in OPEN_FORMATS:
+                    importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
+                    self.do_import(choose_db_dialog, importer, filename)
                     return True
 
-            # Finally, we give up and declare this an unknown format
-            ErrorDialog(
-                _("Could not open file: %s") % filename, 
-                _('File type "%s" is unknown to GRAMPS.\n\n'
-                  'Valid types are: GRAMPS database, GRAMPS XML, '
-                  'GRAMPS package, and GEDCOM.') % filetype)
+                # Then we try all the known plugins
+                (the_path, the_file) = os.path.split(filename)
+                Config.set(Config.RECENT_IMPORT_DIR, the_path)
+                for (importData, mime_filter, mime_type, native_format, 
+                     format_name) in import_list:
+                    if filetype == mime_type or the_file == mime_type:
+                        self.do_import(choose_db_dialog, importData, filename)
+                        return True
+
+                # Finally, we give up and declare this an unknown format
+                ErrorDialog(
+                    _("Could not open file: %s") % filename, 
+                    _('File type "%s" is unknown to GRAMPS.\n\n'
+                      'Valid types are: GRAMPS database, GRAMPS XML, '
+                      'GRAMPS package, and GEDCOM.') % filetype)
 
         choose_db_dialog.destroy()
         return False
