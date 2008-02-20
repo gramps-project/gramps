@@ -56,7 +56,8 @@ import ManagedWindow
 #------------------------------------------------------------------------
 class CountAncestors(ManagedWindow.ManagedWindow):
     
-    def __init__(self,dbstate,uistate,person):
+    def __init__(self, dbstate, uistate):
+        person = dbstate.get_active_person()
         self.title = _('Ancestors of "%s"') \
                      % person.get_primary_name().get_name()
 

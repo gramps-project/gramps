@@ -1,3 +1,8 @@
+2008-02-19 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/Summary.py:
+	* src/plugins/CountAncestors.py:
+	Remove person parameter.
+
 2008-02-19  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DbLoader.py (DbLoader.import_file): 
 	Importer will stay on dialog until cancel or success. Errors

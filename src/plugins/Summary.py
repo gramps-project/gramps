@@ -55,7 +55,7 @@ import ManagedWindow
 # Build the text of the report
 #
 #------------------------------------------------------------------------
-def build_report(database,person):
+def build_report(database):
 
     personList = database.get_person_handles(sort_handles=False)
     familyList = database.get_family_handles()
@@ -147,12 +147,12 @@ def build_report(database,person):
 #
 #------------------------------------------------------------------------
 class SummaryReport(ManagedWindow.ManagedWindow):
-    def __init__(self,dbstate,uistate,person):
+    def __init__(self, dbstate, uistate):
         self.title = _('Database summary')
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
 
         database = dbstate.db
-        text = build_report(database,person)
+        text = build_report(database)
     
         base = os.path.dirname(__file__)
         glade_file = "%s/summary.glade" % base
