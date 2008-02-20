@@ -68,25 +68,25 @@ _level_name = [ "", "första", "andra", "tredje", "fjärde", "femte",
 class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     #sibling strings
-    STEP= 'styv'
+    STEP = 'styv'
     HALF = 'halv'
     #in-law string
-    INLAW='ingift '
+    INLAW = 'ingift '
         
 
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def _get_cousin(self,level,step,inlaw):
-        if level>len(_cousin_level)-1:
+    def _get_cousin(self, level, step, inlaw):
+        if level > len(_cousin_level)-1:
             return "avlägset släkt"
         else:
-            result=inlaw + _cousin_level[level]
+            result = inlaw + _cousin_level[level]
             if step:
                 result = result + ' [styv]'
             return result
 
-    def pair_up(self,rel_list,step):
+    def pair_up(self, rel_list, step):
         result = []
         item = ""
         for word in rel_list[:]:
@@ -114,10 +114,10 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         gen_result = ' '.join(gen_result+result[-1:])
         if len(rel_list)>1 and step != '':
             # Indicate step relation8s) by adding ' [styv]'
-            gen_result=gen_result + ' [styv]'
+            gen_result = gen_result + ' [styv]'
         return gen_result
 
-    def _get_direct_ancestor(self,person_gender,rel_string,step,inlaw):
+    def _get_direct_ancestor(self, person_gender, rel_string, step, inlaw):
         result = []
         for ix in range(len(rel_string)):
             if rel_string[ix] == 'f':
@@ -132,18 +132,18 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             result[-1] = 'förälder'
         if step != '' and len(result)==1:
             #Preceed with step prefix of father/mother
-            result[0]=self.STEP + result[0]
+            result[0] = self.STEP + result[0]
         if inlaw != '':
             #Preceed with inlaw prefix
-            result[-1]='svär' + result[-1]
+            result[-1] = 'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get correctSwedish, if even number in result
             result[-2] = result[-2] + 's '
-        return self.pair_up(result,step)
+        return self.pair_up(result, step)
 
-    def _get_direct_descendant(self,person_gender,rel_string,step,inlaw):
+    def _get_direct_descendant(self, person_gender, rel_string, step, inlaw):
         result = []
-        for ix in range(len(rel_string)-2,-1,-1):
+        for ix in range(len(rel_string)-2, -1, -1):
             if rel_string[ix] == 'f':
                 result.append('son')
             else:
@@ -158,16 +158,16 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             if person_gender == gen.lib.Person.UNKNOWN and inlaw != '':
                 result.append('-son/dotter')
         if step != '' and len(result)==1:
-            result[0]=self.STEP + result[0]
+            result[0] = self.STEP + result[0]
         if inlaw != '':
             #Preceed with inlaw prefix
-            result[-1]= 'svär' + result[-1]
+            result[-1] = 'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
-        return self.pair_up(result,step)
+        return self.pair_up(result, step)
 
-    def _get_ancestors_cousin(self,rel_string_long,rel_string_short,step,inlaw):
+    def _get_ancestors_cousin(self, rel_string_long, rel_string_short, step, inlaw):
         result = []
         removed = len(rel_string_long)-len(rel_string_short)
         level = len(rel_string_short)-1
@@ -177,26 +177,26 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 result.append('mor')
         if inlaw != '' :
-            inlaw='ingifta '
+            inlaw = 'ingifta '
         if inlaw != '' and len(result) % 2 !=0:
             # Correct string "-1" with genitive s and add a space to get correct Swedish, if even number in result
             result[-1] = result[-1] + 's '
-        result.append(self._get_cousin(level,step,inlaw))
+        result.append(self._get_cousin(level, step, inlaw))
         if step != '' and len(result)==1:
-            result[0]=self.STEP + result[0]
-        return self.pair_up(result,step)
+            result[0] = self.STEP + result[0]
+        return self.pair_up(result, step)
 
-    def _get_cousins_descendant(self,person_gender,rel_string_long,rel_string_short,step,inlaw):
+    def _get_cousins_descendant(self, person_gender, rel_string_long, rel_string_short, step, inlaw):
         result = []
         removed = len(rel_string_long)-len(rel_string_short)-1
         level = len(rel_string_short)-1
         if level:
-            result.append(self._get_cousin(level,step,inlaw))
+            result.append(self._get_cousin(level, step, inlaw))
         elif rel_string_long[removed] == 'f':
             result.append('bror')
         else:
             result.append('syster')
-        for ix in range(removed-1,-1,-1):
+        for ix in range(removed-1, -1, -1):
             if rel_string_long[ix] == 'f':
                 result.append('son')
             else:
@@ -210,17 +210,17 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('barn')
             if person_gender == gen.lib.Person.UNKNOWN and inlaw != '':
                 result.append('-son/dotter')
-        if step != '' and len(result)==1:
-            result[0]=self.STEP + result[0]
+        if step != '' and len(result) == 1:
+            result[0] = self.STEP + result[0]
         if inlaw != '':
             #Preceed with inlaw prefix
-            result[-1]= 'svär' + result[-1]
+            result[-1] = 'svär' + result[-1]
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
-        return self.pair_up(result,step)
+        return self.pair_up(result, step)
 
-    def _get_ancestors_brother(self,rel_string,person_gender,step,inlaw):
+    def _get_ancestors_brother(self, rel_string, person_gender, step, inlaw):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -230,19 +230,19 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         result.append('bror')
         if person_gender == gen.lib.Person.UNKNOWN: result[-1] = 'syskon'
         if step != '' and len(result)==1:
-            result[0]=self.STEP + result[0]
+            result[0] = self.STEP + result[0]
         if inlaw != '':
             #Preceed with inlaw prefix
-            result[-1]='svåger'
+            result[-1] = 'svåger'
         if inlaw != '' and person_gender == gen.lib.Person.UNKNOWN:
             #Preceed with inlaw prefix
-            result[-1]='svåger/svägerska'
+            result[-1] = 'svåger/svägerska'
         if len(result)>1 and len(result) % 2 == 0 and (person_gender == gen.lib.Person.UNKNOWN or inlaw != ''):
             # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
-        return self.pair_up(result,step)
+        return self.pair_up(result, step)
 
-    def _get_ancestors_sister(self,rel_string,step,inlaw):
+    def _get_ancestors_sister(self, rel_string, step, inlaw):
         result = []
         for ix in range(len(rel_string)-1):
             if rel_string[ix] == 'f':
@@ -251,14 +251,15 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('mor')
         result.append('syster')
         if step != '' and len(result)==1:
-            result[0]=self.STEP + result[0]
+            result[0] = self.STEP + result[0]
         if inlaw != '' :
             #Preceed with inlaw prefix
-            result[-1]= 'svägerska'
+            result[-1] = 'svägerska'
         if len(result)>1 and len(result) % 2 == 0 and inlaw != '':
-            # Correct string "-2" with genitive s and add a space to get correct Swedish, if even number in result
+            # Correct string "-2" with genitive s and add a space to get
+            # correct Swedish, if even number in result
             result[-2] = result[-2] + 's '
-        return self.pair_up(result,step)
+        return self.pair_up(result, step)
 
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
@@ -285,13 +286,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif gender_b == gen.lib.Person.FEMALE:
             rel_str = "syster"
         else:
-           rel_str = "syskon"
+            rel_str = "syskon"
         return typestr + rel_str
 
 # kinship report
 
-    def _get_cousin_kinship(self,Ga):
-        rel_str = self._get_cousin(Ga-1,False,'')
+    def _get_cousin_kinship(self, Ga):
+        rel_str = self._get_cousin(Ga-1, False, '')
         if Ga == 2 :
             rel_str = rel_str + "er"
         else:
@@ -322,7 +323,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
         rel_str = "avlägsna släktingar"
         if Ga == 0:
-            result=[]
+            result = []
             # These are descendants
             if Gb < _children_level:
                 for AntBarn in range(Gb):
@@ -375,7 +376,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             # first person.
             if Ga <= len(_level_name):
                 result = []
-                result.append(self._get_cousin(Ga-1,False,''))
+                result.append(self._get_cousin(Ga-1, False, ''))
                 for AntBarn in range(Gb-Ga):
                     result.append("barn")
                 rel_str = self.pair_up(result,'')                
@@ -475,51 +476,37 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             inlaw = self.INLAW
         else:
             inlaw = ''
-        rel_str = "avlägsen %s-släkting eller %s släkting" % (step,inlaw)
+        rel_str = "avlägsen %s-släkting eller %s släkting" % (step, inlaw)
         if Ga == 0:
             # b is descendant of a
             if Gb == 0 :
                 rel_str = 'samma person'
             else:
-                rel_str = self._get_direct_descendant(gender_b,reltocommon_b,step,inlaw)
+                rel_str = self._get_direct_descendant(gender_b, reltocommon_b, step, inlaw)
         elif Gb == 0:
             # b is parents/grand parent of a
-            rel_str = self._get_direct_ancestor(gender_b,reltocommon_a,step,inlaw)
+            rel_str = self._get_direct_ancestor(gender_b, reltocommon_a, step, inlaw)
         elif Gb == 1:
             # b is sibling/aunt/uncle of a
             # handles brother and unknown gender as second person,
             # shows up in "testing unknown cousins same generation"                
             if gender_b == gen.lib.Person.MALE or gender_b == gen.lib.Person.UNKNOWN:
-                rel_str = self._get_ancestors_brother(reltocommon_a,gender_b,step,inlaw)
+                rel_str = self._get_ancestors_brother(reltocommon_a, gender_b, step, inlaw)
             elif gender_b == gen.lib.Person.FEMALE:
-                rel_str = self._get_ancestors_sister(reltocommon_a,step,inlaw)
-            #else:
-                #rel_str = self._get_ancestors_brother(reltocommon_a,gender_b)
-        #elif Ga == 1:
-            # This is taken care of at Ga>Gb and Gb>Ga below
-            # b is niece/nephew of a
-            #if gender_b == gen.lib.Person.MALE:
-            #    rel_str = self._get_nephew(Gb-1, step, inlaw)
-            #elif gender_b == gen.lib.Person.FEMALE:
-            #    rel_str = self._get_niece(Gb-1, step, inlaw)
-            #elif Gb < len(_niece_level) and Gb < len(_nephew_level):
-            #    rel_str = "%s eller %s" % (self._get_nephew(Gb-1, step, inlaw),
-            #                            self._get_niece(Gb-1, step, inlaw))
-            #else:
-            #rel_str = "XXXavlägsen %s-släkting eller %s släkting" % (step,inlaw)
+                rel_str = self._get_ancestors_sister(reltocommon_a, step, inlaw)
         elif Ga == Gb:
             # a and b cousins in the same generation
-            rel_str = self._get_cousin(Ga-1,step,inlaw) 
+            rel_str = self._get_cousin(Ga-1, step, inlaw) 
         elif Ga > Gb:
             # These are cousins in different generations with the second person 
             # being in a higher generation from the common ancestor than the 
             # first person.
- 	        rel_str = self._get_ancestors_cousin(reltocommon_a,reltocommon_b,step,inlaw)
+            rel_str = self._get_ancestors_cousin(reltocommon_a, reltocommon_b, step, inlaw)
         elif Gb > Ga:
             # These are cousins in different generations with the second person 
             # being in a lower generation from the common ancestor than the 
             # first person.
- 	        rel_str = self._get_cousins_descendant(gender_b,reltocommon_b,reltocommon_a,step,inlaw)
+            rel_str = self._get_cousins_descendant(gender_b, reltocommon_b, reltocommon_a, step, inlaw)
         return rel_str
 
 #-------------------------------------------------------------------------
