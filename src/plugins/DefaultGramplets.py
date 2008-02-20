@@ -26,7 +26,7 @@ from BasicUtils import name_displayer
 from Utils import media_path_full
 from QuickReports import run_quick_report_by_name
 import DateHandler
-from gettext import gettext as _
+from TransUtils import sgettext as _
 import Config
 
 #
@@ -549,7 +549,7 @@ class PythonGramplet(Gramplet):
         self.env = {"dbstate": self.gui.dbstate,
                     "uistate": self.gui.uistate,
                     "self": self,
-                    "Date": gen.lib.Date,
+                    _("class name|Date"): gen.lib.Date,
                     }
         # GUI setup:
         self.gui.textview.set_editable(True)
@@ -676,7 +676,6 @@ def make_welcome_content(gui):
             )
     gui.set_text(text)
 
-
 class NewsGramplet(Gramplet):
     URL = "http://www.gramps-project.org/wiki/index.php?title=%s&action=raw"
 
@@ -688,7 +687,7 @@ class NewsGramplet(Gramplet):
         retval = True
         while retval:
             retval, text = continuation.next()
-            self.cleanup(text)
+            self.set_text(text)
             yield True
         self.cleanup(text)
         yield False
@@ -699,7 +698,26 @@ class NewsGramplet(Gramplet):
         while "\n\n\n" in text:
             text = text.replace("\n\n\n", "\n\n")
         text = text.strip()
-        self.set_text(text)
+        ## Wiki text:
+        pattern = re.compile('\[\[(.*?)\|(.*?)\]\]')
+        matches = pattern.findall(text)
+        for (g1, g2) in matches:
+            text = text.replace("[[%s|%s]]" % (g1, g2), "<U>%s</U>" % g2)
+        pattern = re.compile('\[\[(.*?)\]\]')
+        matches = pattern.findall(text)
+        for match in matches:
+            text = text.replace("[[%s]]" % match, "<U>%s</U>" % match)
+        pattern = re.compile('\[(.*?) (.*?)\]')
+        matches = pattern.findall(text)
+        for (g1, g2) in matches:
+            text = text.replace("[%s %s]" % (g1, g2), "<U>%s</U>" % g2)
+        pattern = re.compile("'''(.*?)'''")
+        matches = pattern.findall(text)
+        for match in matches:
+            text = text.replace("'''%s'''" % match, "<B>%s</B>" % match)
+        text = "News from <I>www.gramps-project.org</I>:\n\n" + text
+        self.set_use_markup(True)
+        self.render_text(text)
         
     def process(self, title):
         #print "processing '%s'..." % title

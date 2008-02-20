@@ -123,7 +123,7 @@ class LinkTag(gtk.TextTag):
         LinkTag.lid += 1
         gtk.TextTag.__init__(self, str(LinkTag.lid))
         tag_table = buffer.get_tag_table()
-        self.set_property('foreground', "#0000ff")
+        self.set_property('foreground', "blue")
         #self.set_property('underline', pango.UNDERLINE_SINGLE)
         tag_table.add(self)
 
@@ -234,37 +234,33 @@ class Gramplet(object):
         self._tags.append(link_data)
         buffer.apply_tag(link_data[0], start, end)
 
+    # Shortcuts to the gui functionality:
+
     def get_text(self):
-        start = self.gui.buffer.get_start_iter()
-        end = self.gui.buffer.get_end_iter()
-        return self.gui.buffer.get_text(start, end)
+        return self.gui.get_text()
         
     def insert_text(self, text):
-        self.gui.buffer.insert_at_cursor(text)
+        self.gui.insert_text(text)
+
+    def render_text(self, text):
+        self.gui.render_text(text)
 
     def clear_text(self):
-        self.gui.buffer.set_text('')
+        self.gui.clear_text()
         
     def set_text(self, text, scroll_to='start'):
-        self.gui.buffer.set_text('')
-        self.append_text(text, scroll_to)
+        self.gui.set_text(text, scroll_to)
 
     def append_text(self, text, scroll_to="end"):
-        enditer = self.gui.buffer.get_end_iter()
-        start = self.gui.buffer.create_mark(None, enditer, True)
-        self.gui.buffer.insert(enditer, text)
-        if scroll_to == "end":
-            enditer = self.gui.buffer.get_end_iter()
-            end = self.gui.buffer.create_mark(None, enditer, True)
-            self.gui.textview.scroll_to_mark(end, 0.0, True, 0, 0)
-        elif scroll_to == "start": # beginning of this append
-            self.gui.textview.scroll_to_mark(start, 0.0, True, 0, 0)
-        elif scroll_to == "begin": # beginning of this append
-            begin_iter = self.gui.buffer.get_start_iter()
-            begin = self.gui.buffer.create_mark(None, begin_iter, True)
-            self.gui.textview.scroll_to_mark(begin, 0.0, True, 0, 0)
-        else:
-            raise AttributeError, ("no such cursor position: '%s'" % scroll_to)
+        self.gui.append_text(text, scroll_to)
+
+    def render_text(self, text):
+        self.gui.render_text(text)
+
+    def set_use_markup(self, value):
+        self.gui.set_use_markup(value)
+
+    # Other functions of the gramplet:
 
     def load_data_to_text(self, pos=0):
         if len(self.gui.data) >= pos + 1:
@@ -419,6 +415,7 @@ class GuiGramplet:
         self.state = kwargs.get("state", "maximized")
         self.data = kwargs.get("data", [])
         ##########
+        self.use_markup = False
         self.pui = None # user code
         self.tooltips = None
         self.tooltips_text = None
@@ -509,15 +506,95 @@ class GuiGramplet:
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
             column.set_child_packing(self.mainframe,self.expand,fill,padding,pack)
 
-    def append_text(self, text):
-        self.buffer.insert_at_cursor(text)
+    def append_text(self, text, scroll_to="end"):
+        enditer = self.buffer.get_end_iter()
+        start = self.buffer.create_mark(None, enditer, True)
+        self.buffer.insert(enditer, text)
+        if scroll_to == "end":
+            enditer = self.buffer.get_end_iter()
+            end = self.buffer.create_mark(None, enditer, True)
+            self.textview.scroll_to_mark(end, 0.0, True, 0, 0)
+        elif scroll_to == "start": # beginning of this append
+            self.textview.scroll_to_mark(start, 0.0, True, 0, 0)
+        elif scroll_to == "begin": # beginning of this append
+            begin_iter = self.buffer.get_start_iter()
+            begin = self.buffer.create_mark(None, begin_iter, True)
+            self.textview.scroll_to_mark(begin, 0.0, True, 0, 0)
+        else:
+            raise AttributeError, ("no such cursor position: '%s'" % scroll_to)
 
     def clear_text(self):
         self.buffer.set_text('')
-        
-    def set_text(self, text):
-        self.buffer.set_text(text)
-        
+
+    def get_text(self):
+        start = self.buffer.get_start_iter()
+        end = self.buffer.get_end_iter()
+        return self.buffer.get_text(start, end)
+
+    def insert_text(self, text):
+        self.buffer.insert_at_cursor(text)
+
+    def render_text(self, text):
+        markup_pos = {"B": [], "I": [], "U": []}
+        retval = ""
+        i = 0
+        r = 0
+        while i < len(text):
+            if text[i] == "<":
+                if text[i+1] == "/" and text[i+3] == ">":
+                    markup = text[i+2].upper()
+                    markup_pos[markup][-1].append(r)
+                    i += 4
+                elif text[i+2] == ">":
+                    markup = text[i+1].upper()
+                    markup_pos[markup].append([r])
+                    i += 3
+                else:
+                    retval += text[i]
+                    r += 1
+                    i += 1
+            elif text[i] == "\\":
+                retval += text[i+1]
+                r += 1
+                i += 2
+            elif ord(text[i]) > 126:
+                while ord(text[i]) > 126:
+                    retval += text[i]
+                    i += 1
+                r += 1
+            else:
+                retval += text[i]
+                r += 1
+                i += 1
+        self.set_text(retval)
+        for (a,b) in markup_pos["B"]:
+            start = self.buffer.get_iter_at_offset(a)
+            stop = self.buffer.get_iter_at_offset(b)
+            self.buffer.apply_tag_by_name("bold", start, stop)
+        for (a,b) in markup_pos["I"]:
+            start = self.buffer.get_iter_at_offset(a)
+            stop = self.buffer.get_iter_at_offset(b)
+            self.buffer.apply_tag_by_name("italic", start, stop)
+        for (a,b) in markup_pos["U"]:
+            start = self.buffer.get_iter_at_offset(a)
+            stop = self.buffer.get_iter_at_offset(b)
+            self.buffer.apply_tag_by_name("underline", start, stop)
+
+    def set_use_markup(self, value):
+        if self.use_markup == value: return
+        self.use_markup = value
+        if value:
+            self.buffer.create_tag("bold",weight=pango.WEIGHT_HEAVY)
+            self.buffer.create_tag("italic",style=pango.STYLE_ITALIC)
+            self.buffer.create_tag("underline",underline=pango.UNDERLINE_SINGLE)
+        else:
+            tag_table = self.buffer.get_tag_table()
+            tag_table.foreach(lambda tag, data: tag_table.remove(tag))
+
+    def set_text(self, text, scroll_to='start'):
+        self.buffer.set_text('')
+        self.append_text(text, scroll_to)
+
     def get_source_widget(self):
         """
         Hack to allow us to send this object to the drop_widget
