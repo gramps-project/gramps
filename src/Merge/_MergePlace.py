@@ -25,7 +25,8 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,6 +42,13 @@ from gtk import glade
 import const
 import GrampsDisplay
 import ManagedWindow
+#-------------------------------------------------------------------------
+#
+# GRAMPS constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed'
+WIKI_HELP_SEC = _('manual|Merge_Places')
 
 #-------------------------------------------------------------------------
 #
@@ -89,7 +97,7 @@ class MergePlaces(ManagedWindow.ManagedWindow):
 
     def help(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-merge-places')
+        GrampsDisplay.help('adv-merge-places', webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
     def merge(self,obj):
         """

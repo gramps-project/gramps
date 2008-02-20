@@ -25,7 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -35,6 +35,14 @@ from gettext import gettext as _
 import gtk
 from gtk import glade
 import pango
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed'
+WIKI_HELP_SEC = _('manual|Merge_People')
 
 #-------------------------------------------------------------------------
 #
@@ -80,7 +88,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
 
     def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-merge-people')
+        GrampsDisplay.help('adv-merge-people', webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
     def merge(self, obj):
         if check_for_spouse(self.p1, self.p2):
@@ -324,7 +332,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 
     def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-merge-people')
+        GrampsDisplay.help('adv-merge-people', webpage=WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
 
 def name_of(p):
