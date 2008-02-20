@@ -44,7 +44,7 @@ from BasicUtils import name_displayer as _nd
 #------------------------------------------------------------------------
 class FamilyGroup(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the DetAncestorReport object that produces the report.
         
@@ -60,7 +60,7 @@ class FamilyGroup(Report):
         family_handle - Handle of the family to write report on.
         includeAttrs  - Whether to include attributes
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
         menu = options_class.menu
 
         self.family_handle = None

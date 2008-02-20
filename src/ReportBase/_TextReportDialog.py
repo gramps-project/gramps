@@ -32,13 +32,13 @@ from _TextFormatComboBox import TextFormatComboBox
 class TextReportDialog(DocReportDialog):
     """A class of ReportDialog customized for text based reports."""
 
-    def __init__(self,dbstate,uistate,person,options,name,translated_name):
+    def __init__(self, dbstate, uistate, options, name, translated_name):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
         self.category = CATEGORY_TEXT
-        DocReportDialog.__init__(self,dbstate,uistate,person,options,
-                              name,translated_name)
+        DocReportDialog.__init__(self, dbstate, uistate, options, 
+                                 name, translated_name)
 
     #------------------------------------------------------------------------
     #

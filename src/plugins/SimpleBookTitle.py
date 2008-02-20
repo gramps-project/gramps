@@ -55,7 +55,7 @@ import ThumbNails
 #------------------------------------------------------------------------
 class SimpleBookTitle(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, options_class):
         """
         Creates SimpleBookTitle object that produces the report.
         
@@ -75,7 +75,7 @@ class SimpleBookTitle(Report):
         footer    - Footer string.
         """
 
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, options_class)
 
         self.title_string = options_class.handler.options_dict['title']
         self.image_size = options_class.handler.options_dict['imgsize']
@@ -119,8 +119,8 @@ class SimpleBookTitleOptions(ReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        ReportOptions.__init__(self,name,person_id)
+    def __init__(self, name, dbase):
+        ReportOptions.__init__(self, name, dbase)
 
         # Options specific for this report
         self.options_dict = {

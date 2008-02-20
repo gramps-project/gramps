@@ -2363,7 +2363,7 @@ class IndividualPage(BasePage):
 #
 #------------------------------------------------------------------------
 class NavWebReport(Report):
-    def __init__(self, database, person, options):
+    def __init__(self, database, options):
         """
         Creates WebReport object that produces the report.
         
@@ -2373,7 +2373,7 @@ class NavWebReport(Report):
         person          - currently selected person
         options         - instance of the Options class for this report
         """
-        Report.__init__(self, database, person, options)
+        Report.__init__(self, database, options)
         menu = options.menu
         self.opts = {}
 
@@ -2675,7 +2675,7 @@ class NavWebOptions(MenuReportOptions):
     """
     __INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 
-    def __init__(self, name, dbase, person_id=None):
+    def __init__(self, name, dbase):
         self.__db = dbase
         self.__archive = None
         self.__target = None
@@ -2685,7 +2685,7 @@ class NavWebOptions(MenuReportOptions):
         self.__graphgens = None
         self.__living = None
         self.__yearsafterdeath = None
-        MenuReportOptions.__init__(self, name, person_id)
+        MenuReportOptions.__init__(self, name, dbase)
         
     def add_menu_options(self, menu):
         """

@@ -34,9 +34,8 @@ class Report:
     sub-classed to create a functional report generator.
     """
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         self.database = database
-        self.start_person = person
         self.options_class = options_class
 
         self.doc = options_class.get_document()

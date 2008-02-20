@@ -60,7 +60,7 @@ class AncestorReport(Report):
     """
     Ancestor Report class
     """
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the AncestorReport object that produces the Ahnentafel report.
         
@@ -78,7 +78,7 @@ class AncestorReport(Report):
 
         """
 
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
 
         self.map = {}
         

@@ -50,11 +50,11 @@ class HourGlassReport(Report):
     """
     An hourglass report displays ancestors and descendants of a center person.
     """
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates HourGlass object that produces the report.
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
         self.__db = database
         
         menu = options_class.menu

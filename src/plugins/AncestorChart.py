@@ -158,7 +158,7 @@ class GenChart:
 #------------------------------------------------------------------------
 class AncestorChart(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, options_class):
         """
         Creates AncestorChart object that produces the report.
         
@@ -178,7 +178,7 @@ class AncestorChart(Report):
         indblank  - Whether to include blank pages.
         compress  - Whether to compress chart.
         """
-        Report.__init__(self,database,person,options_class)
+        Report.__init__(self, database, options_class)
         
         menu = options_class.menu
         self.display = menu.get_option_by_name('dispf').get_value()

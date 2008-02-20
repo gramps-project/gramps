@@ -60,7 +60,7 @@ EMPTY_ENTRY = "_____________"
 #------------------------------------------------------------------------
 class DetAncestorReport(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the DetAncestorReport object that produces the report.
         
@@ -89,7 +89,7 @@ class DetAncestorReport(Report):
         addimages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
 
         self.map = {}
 

@@ -66,7 +66,7 @@ def _get_sort_functions(sort):
 #------------------------------------------------------------------------
 class TimeLine(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the Timeline object that produces the report.
         
@@ -85,7 +85,7 @@ class TimeLine(Report):
         sortby -    Sorting method to be used.
         """
 
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
         menu = options_class.menu
         self.filter = menu.get_option_by_name('filter').get_filter()
 

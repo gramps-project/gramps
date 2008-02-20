@@ -50,7 +50,7 @@ import DateHandler
 #------------------------------------------------------------------------
 class MarkerReport(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, options_class):
         """
         Creates the MarkerReport object that produces the report.
         
@@ -65,7 +65,7 @@ class MarkerReport(Report):
         
         marker         - The marker each object must match to be included.
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
         menu = options_class.menu
         self.marker = menu.get_option_by_name('marker').get_value()
         

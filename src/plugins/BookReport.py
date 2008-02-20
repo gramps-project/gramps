@@ -473,8 +473,6 @@ class BookList:
                         option_type = Utils.type_name(option_value)
                         f.write('    <option name="%s" type="%s" value="%s"/>\n' % (
                                 option_name,option_type,option_value) )
-                f.write('    <person gramps_id="%s"/>\n' % 
-                                        option_handler.get_person_id() )
                 f.write('    <style name="%s"/>\n' % item.get_style_name() )
                 f.write('  </item>\n')
             f.write('</book>\n')
@@ -521,7 +519,6 @@ class BookParser(handler.ContentHandler):
         self.an_o_name = None
         self.an_o_value = None
         self.s = None
-        self.p = None
         self.bname = None
         self.iname = None
         
@@ -550,8 +547,8 @@ class BookParser(handler.ContentHandler):
             self.an_o_value.append(converter(attrs['value']))
         elif tag == "style":
             self.s = attrs['name']
-        elif tag == "person":
-            self.p = attrs['gramps_id']
+        else:
+            pass
 
     def endElement(self, tag):
         "Overridden class that handles the end of a XML element"
@@ -559,7 +556,6 @@ class BookParser(handler.ContentHandler):
             self.o[self.an_o_name] = self.an_o_value
         elif tag == "item":
             self.i.option_class.handler.options_dict.update(self.o)
-            self.i.option_class.handler.set_person_id(self.p)
             self.i.set_style_name(self.s)
             self.b.append_item(self.i)
         elif tag == "book":
@@ -665,8 +661,8 @@ class BookOptions(ReportOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self, name, person_id=None):
-        ReportOptions.__init__(self, name, person_id)
+    def __init__(self, name, dbase):
+        ReportOptions.__init__(self, name, dbase)
 
         # Options specific for this report
         self.options_dict = {
@@ -691,11 +687,10 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
     and to clear/load/save/edit whole books.
     """
 
-    def __init__(self, dbstate, uistate, person):
+    def __init__(self, dbstate, uistate):
         self.db = dbstate.db
         self.dbstate = dbstate
         self.uistate = uistate
-        self.person = person
         self.title = _('Book Report')
         self.file = "books.xml"
 
@@ -986,7 +981,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         Run final BookReportDialog with the current book. 
         """
         if self.book.item_list:
-            BookReportDialog(self.dbstate, self.uistate, self.person,
+            BookReportDialog(self.dbstate, self.uistate,
                              self.book, BookOptions)
         self.close()
 
@@ -1038,7 +1033,7 @@ class BookItemDialog(ReportDialog):
         self.category = CATEGORY_BOOK
         self.database = dbstate.db
         self.option_class = option_class
-        ReportDialog.__init__(self, dbstate, uistate, None,
+        ReportDialog.__init__(self, dbstate, uistate,
                                   option_class, name, translated_name, track)
 
     def on_ok_clicked(self, obj):
@@ -1071,14 +1066,13 @@ class BookReportDialog(DocReportDialog):
     Creates a dialog selecting target, format, and paper/HTML options.
     """
 
-    def __init__(self, dbstate, uistate, person, book, options):
+    def __init__(self, dbstate, uistate, book, options):
         self.options = options
         self.page_html_added = False
-        DocReportDialog.__init__(self, dbstate, uistate, person, options,
+        DocReportDialog.__init__(self, dbstate, uistate, options,
                                   'book', _("Book Report"))
         self.book = book
         self.database = dbstate.db
-        self.person = person
         self.selected_style = BaseDoc.StyleSheet()
 
         for item in self.book.get_item_list():
@@ -1153,7 +1147,7 @@ class BookReportDialog(DocReportDialog):
         for item in self.book.get_item_list():
             item.option_class.set_document(self.doc)
             report_class = item.get_write_item()
-            obj = write_book_item(self.database, self.person,
+            obj = write_book_item(self.database,
                                   report_class, item.option_class)
             self.rptlist.append(obj)
         self.doc.open(self.target_path)
@@ -1219,7 +1213,7 @@ def cl_report(database, name, category, options_str_dict):
     for item in book.get_item_list():
         item.option_class.set_document(doc)
         report_class = item.get_write_item()
-        obj = write_book_item(database, clr.person,
+        obj = write_book_item(database,
                               report_class, item.option_class)
         rptlist.append(obj)
 
@@ -1239,14 +1233,11 @@ def cl_report(database, name, category, options_str_dict):
 # Generic task function for book report
 #
 #------------------------------------------------------------------------
-def write_book_item(database, person, report_class, options_class):
+def write_book_item(database, report_class, options_class):
     """Write the Timeline Graph using options set.
     All user dialog has already been handled and the output file opened."""
     try:
-        if options_class.handler.get_person_id():
-            person = database.get_person_from_gramps_id(
-                options_class.handler.get_person_id())
-        return report_class(database, person, options_class)
+        return report_class(database, options_class)
     except Errors.ReportError, msg:
         (m1, m2) = msg.messages()
         ErrorDialog(m1, m2)

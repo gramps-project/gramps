@@ -53,7 +53,7 @@ from QuestionDialog import WarningDialog
 #------------------------------------------------------------------------
 class IndivCompleteReport(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the IndivCompleteReport object that produces the report.
         
@@ -72,7 +72,7 @@ class IndivCompleteReport(Report):
         cites     - Whether or not to include source informaiton.
         """
 
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
 
         menu = options_class.menu
         self.use_srcs = menu.get_option_by_name('cites').get_value()
@@ -150,7 +150,7 @@ class IndivCompleteReport(Report):
         self.doc.end_row()
 
     def write_note(self):
-        notelist = self.start_person.get_note_list()
+        notelist = self.person.get_note_list()
         if not notelist:
             return
         self.doc.start_table('note','IDS-IndTable')
@@ -178,7 +178,7 @@ class IndivCompleteReport(Report):
 
     def write_alt_parents(self):
 
-        if len(self.start_person.get_parent_family_handle_list()) < 2:
+        if len(self.person.get_parent_family_handle_list()) < 2:
             return
         
         self.doc.start_table("altparents","IDS-IndTable")
@@ -190,10 +190,10 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        family_handle_list = self.start_person.get_parent_family_handle_list()
+        family_handle_list = self.person.get_parent_family_handle_list()
         for family_handle in family_handle_list:
             if family_handle == \
-                   self.start_person.get_main_parents_family_handle():
+                   self.person.get_main_parents_family_handle():
                 continue
             
             family = self.database.get_family_from_handle(family_handle)
@@ -201,7 +201,7 @@ class IndivCompleteReport(Report):
             # Get the mother and father relationships
             frel = ""
             mrel = ""
-            child_handle = self.start_person.get_handle()
+            child_handle = self.person.get_handle()
             child_ref_list = family.get_child_ref_list()
             for child_ref in child_ref_list:
                 if child_ref.ref == child_handle:
@@ -232,7 +232,7 @@ class IndivCompleteReport(Report):
 
     def write_alt_names(self):
 
-        if len(self.start_person.get_alternate_names()) < 1:
+        if len(self.person.get_alternate_names()) < 1:
             return
         
         self.doc.start_table("altnames","IDS-IndTable")
@@ -244,7 +244,7 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        for name in self.start_person.get_alternate_names():
+        for name in self.person.get_alternate_names():
             name_type = str( name.get_type() )
             self.doc.start_row()
             self.normal_cell(name_type)
@@ -260,7 +260,7 @@ class IndivCompleteReport(Report):
         
     def write_addresses(self):
         
-        alist = self.start_person.get_address_list()
+        alist = self.person.get_address_list()
 
         if len(alist) == 0:
             return
@@ -290,7 +290,7 @@ class IndivCompleteReport(Report):
         
     def write_families(self):
 
-        if not len(self.start_person.get_family_handle_list()):
+        if not len(self.person.get_family_handle_list()):
             return
         
         self.doc.start_table("three","IDS-IndTable")
@@ -302,9 +302,9 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        for family_handle in self.start_person.get_family_handle_list():
+        for family_handle in self.person.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
-            if self.start_person.get_handle() == family.get_father_handle():
+            if self.person.get_handle() == family.get_father_handle():
                 spouse_id = family.get_mother_handle()
             else:
                 spouse_id = family.get_father_handle()
@@ -357,7 +357,7 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        event_ref_list = self.start_person.get_event_ref_list()
+        event_ref_list = self.person.get_event_ref_list()
         for event_ref in event_ref_list:
             if event_ref:
                 self.write_fact(event_ref)
@@ -385,7 +385,7 @@ class IndivCompleteReport(Report):
             
         count = 0
         for person_handle in ind_list:
-            self.start_person = self.database.get_person_from_handle(
+            self.person = self.database.get_person_from_handle(
                 person_handle)
             self.write_person(count)
             count = count + 1
@@ -395,8 +395,8 @@ class IndivCompleteReport(Report):
             self.doc.page_break()
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
         
-        media_list = self.start_person.get_media_list()
-        name = _nd.display(self.start_person)
+        media_list = self.person.get_media_list()
+        name = _nd.display(self.person)
         title = _("Summary of %s") % name
         mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
         self.doc.start_paragraph("IDS-Title")
@@ -424,9 +424,9 @@ class IndivCompleteReport(Report):
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Name"))
-        name = self.start_person.get_primary_name()
+        name = self.person.get_primary_name()
         text = _nd.display_name(name)
-        mark = ReportUtils.get_person_mark(self.database, self.start_person)
+        mark = ReportUtils.get_person_mark(self.database, self.person)
         endnotes = ""
         if self.use_srcs:
             endnotes = Endnotes.cite_source(self.bibli,name)
@@ -435,15 +435,15 @@ class IndivCompleteReport(Report):
 
         self.doc.start_row()
         self.normal_cell("%s:" % _("Gender"))
-        if self.start_person.get_gender() == gen.lib.Person.MALE:
+        if self.person.get_gender() == gen.lib.Person.MALE:
             self.normal_cell(_("Male"))
-        elif self.start_person.get_gender() == gen.lib.Person.FEMALE:
+        elif self.person.get_gender() == gen.lib.Person.FEMALE:
             self.normal_cell(_("Female"))
         else:
             self.normal_cell(_("Unknown"))
         self.doc.end_row()
 
-        family_handle = self.start_person.get_main_parents_family_handle()
+        family_handle = self.person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
             father_inst_id = family.get_father_handle()

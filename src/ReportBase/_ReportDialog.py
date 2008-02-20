@@ -66,14 +66,14 @@ class ReportDialog(BareReportDialog):
     dialog for a stand-alone report.
     """
 
-    def __init__(self, dbstate, uistate, person, option_class, name, trans_name,
+    def __init__(self, dbstate, uistate, option_class, name, trans_name,
                  track=[]):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
         self.page_html_added = False
-        BareReportDialog.__init__(self, dbstate, uistate, person, option_class,
+        BareReportDialog.__init__(self, dbstate, uistate, option_class,
                                   name, trans_name, track)
 
         # Allow for post processing of the format frame, since the
@@ -290,21 +290,21 @@ def report(dbstate,uistate,person,report_class,options_class,
         dialog_class = WebReportDialog
     elif category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_VIEW):
         try:
-            report_class(dbstate,uistate,person)
+            report_class(dbstate,uistate)
         except Errors.WindowActiveError:
             pass
         return        
     else:
         dialog_class = ReportDialog
 
-    dialog = dialog_class(dbstate,uistate,person,options_class,name,trans_name)
+    dialog = dialog_class(dbstate, uistate, options_class, name, trans_name)
 
     while True:
         response = dialog.window.run()
         if response == gtk.RESPONSE_OK:
             dialog.close()
             try:
-                MyReport = report_class(dialog.db,dialog.person,dialog.options)
+                MyReport = report_class(dialog.db, dialog.options)
                 MyReport.doc.init()
                 MyReport.begin_report()
                 MyReport.write_report()

@@ -462,7 +462,7 @@ _Extract = Extract()
 #------------------------------------------------------------------------
 class StatisticsChart(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the Statistics object that produces the report.
         Uses the Extractor class to extract the data from the database.
@@ -475,7 +475,7 @@ class StatisticsChart(Report):
 
         To see what the options are, check the options help in the options class.
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
         menu = options_class.menu
     
         self.filter_option =  menu.get_option_by_name('filter')

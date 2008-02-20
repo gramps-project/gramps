@@ -116,8 +116,8 @@ class Calendar(Report):
     """
     Creates the Calendar object that produces the report.
     """
-    def __init__(self, database, person, options_class):
-        Report.__init__(self, database, person, options_class)
+    def __init__(self, database, options_class):
+        Report.__init__(self, database, options_class)
         menu = options_class.menu
         if 'titletext' in menu.get_all_option_names():
             # report and graphic share most of the same code

@@ -229,7 +229,7 @@ def cl_report(database,name,category,report_class,
                     clr.selected_style,
                     BaseDoc.PaperStyle(clr.paper,clr.orien),
                     clr.template_name)
-        MyReport = report_class(database, clr.person, clr.option_class)
+        MyReport = report_class(database, clr.option_class)
         MyReport.doc.init()
         MyReport.begin_report()
         MyReport.write_report()

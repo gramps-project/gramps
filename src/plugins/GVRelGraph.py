@@ -72,7 +72,7 @@ _ARROWS = [ { 'name' : _("Descendants <- Ancestors"),  'value' : 'd'  },
 #------------------------------------------------------------------------
 class RelGraphReport(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates ComprehensiveAncestorsReport object that produces the report.
         
@@ -100,7 +100,7 @@ class RelGraphReport(Report):
         color      - Whether to use outline, colored outline or filled color in graph
         dashed     - Whether to use dashed lines for non-birth relationships.
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
         
         colored = {
             'male': 'dodgerblue4',

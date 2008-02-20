@@ -53,7 +53,7 @@ _DIED = _('d.')
 #------------------------------------------------------------------------
 class DescendantReport(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the DescendantReport object that produces the report.
         
@@ -70,7 +70,7 @@ class DescendantReport(Report):
 
         """
 
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
 
         menu = options_class.menu
         self.max_generations = menu.get_option_by_name('gen').get_value()

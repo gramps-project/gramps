@@ -64,7 +64,7 @@ pt2cm = ReportUtils.pt2cm
 #------------------------------------------------------------------------
 class FanChart(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the FanChart object that produces the report.
         
@@ -102,7 +102,7 @@ class FanChart(Report):
             text_style_name = 'text_style' + '%d' % i
             self.text_style.append(text_style_name)
 
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
 
         self.height = 0
         self.lines = 0

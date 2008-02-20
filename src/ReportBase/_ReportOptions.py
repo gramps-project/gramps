@@ -563,8 +563,8 @@ class OptionHandler(_Options.OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
-    def __init__(self,module_name,options_dict,person_id=None):
-        _Options.OptionHandler.__init__(self,module_name,options_dict,person_id)
+    def __init__(self,module_name,options_dict):
+        _Options.OptionHandler.__init__(self, module_name, options_dict, None)
 
     def init_subclass(self):
         self.collection_class = OptionListCollection
@@ -707,21 +707,20 @@ class ReportOptions(_Options.Options):
     This is a base Options class for the reports. All reports' options
     classes should derive from it.
     """
-    def __init__(self,name,person_id=None):
+    def __init__(self, name, dbase):
         """
         Initializes the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
         """
         self.name = name
-        self.person_id = person_id
         self.options_dict = {}
         self.options_help = {}
         self.handler = None
         
     def load_previous_values(self):
-        self.handler = OptionHandler(self.name,self.options_dict,self.person_id)
+        self.handler = OptionHandler(self.name, self.options_dict)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """
         Defines default style for this report.
         
@@ -803,7 +802,7 @@ class MenuReportOptions(GuiMenuOptions,ReportOptions):
 
     """
     def __init__(self, name, dbase):
-        ReportOptions.__init__(self, name, None)
+        ReportOptions.__init__(self, name, dbase)
         GuiMenuOptions.__init__(self)
         
     def load_previous_values(self):

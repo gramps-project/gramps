@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id:$
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -39,11 +39,10 @@ class WebReportDialog(ReportDialog):
     dialogs for web page reports.
     """
 
-    def __init__(self, dbstate, uistate, person, 
-                 option_class, name, trans_name):
+    def __init__(self, dbstate, uistate, option_class, name, trans_name):
         """Initialize a dialog"""
         self.category = CATEGORY_WEB
-        ReportDialog.__init__(self, dbstate, uistate, person, option_class,
+        ReportDialog.__init__(self, dbstate, uistate, option_class,
                                   name, trans_name)
 
     def setup_target_frame(self):

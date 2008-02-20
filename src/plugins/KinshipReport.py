@@ -50,7 +50,7 @@ import DateHandler
 #------------------------------------------------------------------------
 class KinshipReport(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the KinshipReport object that produces the report.
         
@@ -70,7 +70,7 @@ class KinshipReport(Report):
         incaunts      - Whether to include aunts/uncles/nephews/nieces.
         pid           - The Gramps ID of the center person for the report.
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
 
         menu = options_class.menu
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()

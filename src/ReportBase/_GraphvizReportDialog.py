@@ -698,12 +698,12 @@ class GraphvizFormatComboBox(gtk.ComboBox):
 #-----------------------------------------------------------------------
 class GraphvizReportDialog(ReportDialog):
     """A class of ReportDialog customized for graphviz based reports."""
-    def __init__(self, dbstate, uistate, person, opt, name, translated_name):
+    def __init__(self, dbstate, uistate, opt, name, translated_name):
         """Initialize a dialog to request that the user select options
         for a graphiz report.  See the ReportDialog class for
         more information."""
         self.category = CATEGORY_GRAPHVIZ
-        ReportDialog.__init__(self, dbstate, uistate, person,opt,
+        ReportDialog.__init__(self, dbstate, uistate, opt,
                               name, translated_name)
         
     def init_options(self, option_class):

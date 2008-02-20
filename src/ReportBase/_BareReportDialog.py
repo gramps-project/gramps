@@ -70,14 +70,13 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
     border_pad = 6
     HELP_TOPIC = None
 
-    def __init__(self,dbstate,uistate,person,option_class,
-                 name,translated_name,track=[]):
+    def __init__(self, dbstate, uistate, option_class,
+                 name, translated_name, track=[]):
         """Initialize a dialog to request that the user select options
         for a basic *bare* report."""
         self.raw_name = name
         self.dbstate = dbstate
         self.db = dbstate.db
-        self.person = person
         self.report_name = translated_name
         
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
@@ -95,8 +94,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
     def build_window_key(self,obj):
         key = self.raw_name
-        if self.person:
-            key += self.person.get_handle()
         return key
 
     def build_menu_names(self,obj):
@@ -268,10 +265,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
         should be."""
-        if self.person:
-            self.name = name_displayer.display(self.person)
-        else:
-            self.name = ''
+        self.name = ''
         self.window.set_title(self.get_title())
 
     def setup_header(self):

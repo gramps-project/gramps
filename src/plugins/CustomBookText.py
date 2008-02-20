@@ -51,7 +51,7 @@ import BaseDoc
 #------------------------------------------------------------------------
 class CustomText(Report):
 
-    def __init__(self,database,person,options_class):
+    def __init__(self, database, options_class):
         """
         Creates CustomText object that produces the report.
         
@@ -68,7 +68,7 @@ class CustomText(Report):
         mid   - Text in the middle.
         bot   - Text on the bottom.
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
 
         menu = options_class.menu
         self.top_text = menu.get_option_by_name('top').get_value()

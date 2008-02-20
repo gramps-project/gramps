@@ -161,8 +161,8 @@ class WebCalReport(Report):
     """
     Creates WebCalReport object that produces the report.
     """
-    def __init__(self, database, person, options):
-        Report.__init__(self, database, person, options)
+    def __init__(self, database, options):
+        Report.__init__(self, database, options)
         menu = options.menu
         
         self.database = database

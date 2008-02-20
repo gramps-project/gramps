@@ -48,7 +48,7 @@ import DateHandler
 #------------------------------------------------------------------------
 class EndOfLineReport(Report):
 
-    def __init__(self, database, person, options_class):
+    def __init__(self, database, options_class):
         """
         Creates the EndOfLineReport object that produces the report.
         
@@ -62,7 +62,7 @@ class EndOfLineReport(Report):
         that come in the options class.
 
         """
-        Report.__init__(self, database, person, options_class)
+        Report.__init__(self, database, options_class)
         
         menu = options_class.menu
         pid = menu.get_option_by_name('pid').get_value()

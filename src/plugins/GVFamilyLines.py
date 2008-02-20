@@ -234,7 +234,7 @@ class FamilyLinesOptions(MenuReportOptions):
 #
 #------------------------------------------------------------------------
 class FamilyLinesReport(Report):
-    def __init__(self, database, person, options):
+    def __init__(self, database, options):
         """
         Creates FamilyLinesReport object that eventually produces the report.
         
@@ -244,7 +244,7 @@ class FamilyLinesReport(Report):
         person      - currently selected person
         options     - instance of the FamilyLinesOptions class for this report
         """
-        Report.__init__(self,database,person,options)
+        Report.__init__(self, database, options)
 
         # initialize several convenient variables
         self.options            = options
