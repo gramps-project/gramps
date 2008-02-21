@@ -1,3 +1,10 @@
+2008-02-20 Frederik De Richter <frederik.de.richter@pandora.be>
+    * src/Merge/_MergePerson.py
+    * src/Merge/_MergeSource.py
+    * src/Merge/_MergePlace.py
+    * src/DateEdit.py
+    links to wiki manual correction
+
 2008-02-20  Stéphane Charette <stephanecharette@gmail.com>
 	* po/POTFILES.in: added Report->View->Not Related
 	* src/plugins/Makefile.am: added Report->View->Not Related

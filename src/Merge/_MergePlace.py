@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 
-from TransUtils import sgettext as _
+
 
 #-------------------------------------------------------------------------
 #
@@ -39,6 +39,7 @@ from gtk import glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from TransUtils import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow

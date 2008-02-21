@@ -25,7 +25,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +45,7 @@ WIKI_HELP_SEC = _('manual|Merge_Sources')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from TransUtils import sgettext as _
 import const
 import GrampsDisplay
 import ManagedWindow

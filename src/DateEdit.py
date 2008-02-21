@@ -38,7 +38,7 @@ unambiguously built using UI controls such as menus and spin buttons.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+
 
 #-------------------------------------------------------------------------
 #
@@ -61,6 +61,7 @@ from gtk import glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from TransUtils import sgettext as _
 from gen.lib import Date
 import DateHandler
 import const

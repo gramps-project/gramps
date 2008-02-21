@@ -25,7 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from TransUtils import sgettext as _
+
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +49,7 @@ WIKI_HELP_SEC = _('manual|Merge_People')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from TransUtils import sgettext as _
 import gen.lib
 from ReportBase import ReportUtils
 from BasicUtils import name_displayer
