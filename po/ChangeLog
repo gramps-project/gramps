@@ -1,3 +1,7 @@
+2008-02-21 Stéphane Charette <stephanecharette@gmail.com>
+	* gramps.pot
+	* POTFILES.in: fixed typo (plubins versus plugins)
+
 2008-02-20 Zdeněk Hataš <zdenek.hatas@gmail.com>
 	* cs.po Corrections and update of cs translation.
 

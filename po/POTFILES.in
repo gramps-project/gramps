@@ -289,7 +289,7 @@ src/plugins/lineage.py
 src/plugins/MarkerReport.py
 src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py
-src/plubins/NotRelated.py
+src/plugins/NotRelated.py
 src/plugins/OnThisDay.py
 src/plugins/OwnerEditor.py
 src/plugins/PatchNames.py
@@ -668,7 +668,7 @@ src/glade/plugins.glade
 src/glade/rule.glade
 src/glade/scratchpad.glade
 src/glade/paper_settings.glade
-src/plubins/NotRelated.glade
+src/plugins/NotRelated.glade
 src/plugins/book.glade
 src/plugins/cdexport.glade
 src/plugins/changenames.glade
