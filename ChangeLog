@@ -1,3 +1,7 @@
+2008-02-20  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/GrampsDbUtils/_GedcomUtils.py: (IdMapper.get_translate()) return 
+	value of dict instead of boolean. Fix #0001708
+
 2008-02-20 Frederik De Richter <frederik.de.richter@pandora.be>
     * src/Merge/_MergePerson.py
     * src/Merge/_MergeSource.py

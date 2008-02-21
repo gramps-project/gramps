@@ -35,11 +35,11 @@ SURNAME_RE = re.compile(r"/([^/]*)/([^/]*)")
 #-------------------------------------------------------------------------
 class CurrentState:
     """
-    Keeps track of the current state variables
+    Keep track of the current state variables.
     """
     def __init__(self, person=None, level=0, event=None, event_ref=None):
         """
-        Initializes the object
+        Initialize the object.
         """
         self.name_cnt = 0
         self.person = person
@@ -183,9 +183,8 @@ class IdMapper:
         
     def get_translate(self, gid):
         gid = self.clean(gid)
-        new_id = self.swap.has_key(gid)
-        if new_id:
-            return new_id
+        if self.swap.has_key(gid):
+            return self.swap[gid]
         else:
             if self.trans.get(str(gid)):
                 new_val = self.find_next()
