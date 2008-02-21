@@ -48,6 +48,7 @@ pkgdata_PYTHON = \
 	MarkerReport.py\
 	MediaManager.py\
 	NarrativeWeb.py\
+	NotRelated.py\
 	OnThisDay.py\
 	OwnerEditor.py\
 	PatchNames.py\
@@ -98,6 +99,7 @@ pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
 
 GLADEFILES = \
+	NotRelated.glade\
 	changetype.glade\
 	csvexport.glade\
 	desbrowse.glade\

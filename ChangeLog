@@ -1,3 +1,10 @@
+2008-02-20  Stéphane Charette <stephanecharette@gmail.com>
+	* po/POTFILES.in: added Report->View->Not Related
+	* src/plugins/Makefile.am: added Report->View->Not Related
+	* src/plugins/NotRelated.py: added Report->View->Not Related
+	* src/plugins/NotRelated.glade: added Report->View->Not Related
+	* src/plugins/FamilyLines.py: deleted (replaced by GVFamilyLines.py)
+
 2008-02-20  Don Allingham  <don@gramps-project.org>
 	* src/GrampsCfg.py: refactoring
 	* src/gen/utils/test/callback_test.py: refactoring
