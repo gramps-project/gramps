@@ -189,6 +189,7 @@ def get_n_children(db,person):
     for family_handle in person.get_family_handle_list():
         family = find_family(db,family_handle)
         n += len(family.get_child_ref_list())
+    return n
 
 def get_marriage_date(db,family):
     if not family:
@@ -1072,14 +1073,25 @@ class SameSurnameFamily(FamilyRule):
     ID = 16
     SEVERITY = Rule.WARNING
     def broken(self):
-        mother = get_mother(self.db,self.obj)
-        father = get_father(self.db,self.obj)
-        same_surname = (father and mother and
-                        (mother.get_primary_name().get_surname() ==
-                         father.get_primary_name().get_surname()))
-        empty_surname = mother and \
-                        (len(mother.get_primary_name().get_surname())==0)
-        return (same_surname and not empty_surname)
+        mother = get_mother(self.db, self.obj)
+        father = get_father(self.db, self.obj)
+        _broken = False
+        
+        # Make sure both mother and father exist.
+        if mother and father:
+            mname = mother.get_primary_name()
+            fname = father.get_primary_name()
+            # Only compare birth names (not married names).
+            if mname.get_type() == gen.lib.NameType.BIRTH and \
+               fname.get_type() == gen.lib.NameType.BIRTH:
+                # Empty names don't count.
+                if len(mname.get_surname()) != 0 and \
+                   len(fname.get_surname()) != 0:
+                    # Finally, check if the names are the same.
+                    if mname.get_surname() == fname.get_surname():
+                        _broken = True
+
+        return _broken
 
     def get_message(self):
         return _("Husband and wife with the same surname")
