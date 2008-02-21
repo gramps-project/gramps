@@ -96,6 +96,14 @@ class ListModel:
             self.double_click = event_func
             self.tree.connect('event', self.__button_press)
 
+    def __build_image_column(self, cnum, name, renderer, column):
+        renderer = gtk.CellRendererPixbuf()
+        column = gtk.TreeViewColumn(name[0], renderer)
+        column.add_attribute(renderer, 'pixbuf', cnum)
+        renderer.set_property('height', const.THUMBSCALE / 2)
+        return renderer, column
+
+
     def __build_columns(self, dlist):
         """
         Builds the columns based of the data in dlist
@@ -114,10 +122,7 @@ class ListModel:
                 column = gtk.TreeViewColumn(name[0], renderer)
                 column.add_attribute(renderer, 'active', cnum)
             elif name[0] and name[3] == IMAGE:
-                renderer = gtk.CellRendererPixbuf()
-                column = gtk.TreeViewColumn(name[0], renderer)
-                column.add_attribute(renderer, 'pixbuf', cnum)
-                renderer.set_property('height', const.THUMBSCALE/2)
+                renderer, column = self.__build_image_column(cnum, name, renderer, column)
             else:
                 renderer = gtk.CellRendererText()
                 renderer.set_fixed_height_from_font(True)

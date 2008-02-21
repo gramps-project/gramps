@@ -1,8 +1,8 @@
 import time
 
-from callback import GrampsDBCallback
+from callback import Callback
 
-class LongOpStatus(GrampsDBCallback):
+class LongOpStatus(Callback):
     """LongOpStatus provides a way of communicating the status of a long
     running operations. The intended use is that when a long running operation
     is about to start it should create an instance of this class and emit
@@ -19,7 +19,7 @@ class LongOpStatus(GrampsDBCallback):
     
     Example usage:
 
-    class MyClass(GrampsDBCallback):
+    class MyClass(Callback):
 
         __signals__ = {
 	   'op-start'   : object
@@ -80,7 +80,7 @@ class LongOpStatus(GrampsDBCallback):
         the operation.
         @type can_cancel:
         """
-        GrampsDBCallback.__init__(self)
+        Callback.__init__(self)
         self._msg = msg
         self._total_steps = total_steps
         # don't allow intervals less that 1

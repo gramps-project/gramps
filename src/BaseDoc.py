@@ -187,11 +187,13 @@ class PaperSize:
 #
 #------------------------------------------------------------------------
 class PaperStyle:
-    """Define the various options for a sheet of paper.
+    """
+    Define the various options for a sheet of paper.
     """
     def __init__(self, size, orientation,
                  lmargin=2.54, rmargin=2.54, tmargin=2.54, bmargin=2.54):
-        """Create a new paper style.
+        """
+        Create a new paper style.
 
         @param size: size of the new style
         @type size: PaperSize
@@ -215,7 +217,8 @@ class PaperStyle:
         self.__bmargin = bmargin
         
     def get_size(self):
-        """Return the size of the paper.
+        """
+        Return the size of the paper.
 
         @returns: object indicating the paper size
         @rtype: PaperSize
@@ -224,7 +227,8 @@ class PaperStyle:
         return self.__size
         
     def get_orientation(self):
-        """Return the orientation of the page.
+        """
+        Return the orientation of the page.
 
         @returns: PAPER_PORTRIAT or PAPER_LANDSCAPE
         @rtype: int
@@ -233,7 +237,8 @@ class PaperStyle:
         return self.__orientation
         
     def get_usable_width(self):
-        """Return the width of the page area in centimeters.
+        """
+        Return the width of the page area in centimeters.
         
         The value is the page width less the margins.
         
@@ -241,7 +246,8 @@ class PaperStyle:
         return self.__size.get_width() - (self.__rmargin + self.__lmargin)
 
     def get_usable_height(self):
-        """Return the height of the page area in centimeters.
+        """
+        Return the height of the page area in centimeters.
         
         The value is the page height less the margins.
         
@@ -249,7 +255,8 @@ class PaperStyle:
         return self.__size.get_height() - (self.__tmargin + self.__bmargin)
 
     def get_right_margin(self):
-        """Return the right margin.
+        """
+        Return the right margin.
 
         @returns: Right margin in centimeters
         @rtype: float
@@ -258,7 +265,8 @@ class PaperStyle:
         return self.__rmargin
 
     def get_left_margin(self):
-        """Return the left margin.
+        """
+        Return the left margin.
 
         @returns: Left margin in centimeters
         @rtype: float
@@ -267,7 +275,8 @@ class PaperStyle:
         return self.__lmargin
 
     def get_top_margin(self):
-        """Return the top margin.
+        """
+        Return the top margin.
 
         @returns: Top margin in centimeters
         @rtype: float
@@ -276,7 +285,8 @@ class PaperStyle:
         return self.__tmargin
 
     def get_bottom_margin(self):
-        """Return the bottom margin.
+        """
+        Return the bottom margin.
 
         @returns: Bottom margin in centimeters
         @rtype: float

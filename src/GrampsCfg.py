@@ -132,6 +132,7 @@ class DisplayNameEditor(ManagedWindow.ManagedWindow):
         return (_(" Name Editor"), _("Preferences"))
 
 class GrampsPreferences(ManagedWindow.ManagedWindow):
+
     def __init__(self, uistate, dbstate):
         self.dbstate = dbstate
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], GrampsPreferences)

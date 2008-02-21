@@ -34,7 +34,7 @@ import gen.utils
 # Option class
 #
 #-------------------------------------------------------------------------
-class Option(gen.utils.GrampsDBCallback):
+class Option(gen.utils.Callback):
     """
     This class serves as a base class for all options. All Options must 
     minimally provide the services provided by this class. Options are allowed 
@@ -54,7 +54,7 @@ class Option(gen.utils.GrampsDBCallback):
         @type value: The type will depend on the type of option.
         @return: nothing
         """
-        gen.utils.GrampsDBCallback.__init__(self)
+        gen.utils.Callback.__init__(self)
         self.__value = value
         self.__label = label
         self.__help_str = ""

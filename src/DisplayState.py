@@ -64,7 +64,7 @@ DISABLED = -1
 # History manager
 #
 #-------------------------------------------------------------------------
-class History(gen.utils.GrampsDBCallback):
+class History(gen.utils.Callback):
     """ History manages the objects of a certain type that have been viewed, 
         with ability to go back, or forward. 
         When accessing an object, it should be pushed on the History.
@@ -76,7 +76,7 @@ class History(gen.utils.GrampsDBCallback):
         }
 
     def __init__(self):
-        gen.utils.GrampsDBCallback.__init__(self)
+        gen.utils.Callback.__init__(self)
         self.clear()
 
     def clear(self):
@@ -293,7 +293,7 @@ class WarnHandler(RotateHandler):
         top.run()
         top.destroy()
 
-class DisplayState(gen.utils.GrampsDBCallback):
+class DisplayState(gen.utils.Callback):
 
     __signals__ = {
         'filters-changed' : (str, ), 
@@ -310,7 +310,7 @@ class DisplayState(gen.utils.GrampsDBCallback):
         self.uimanager = uimanager
         self.progress_monitor = progress_monitor
         self.window = window
-        gen.utils.GrampsDBCallback.__init__(self)
+        gen.utils.Callback.__init__(self)
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
         self.progress = progress

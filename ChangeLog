@@ -1,3 +1,17 @@
+2008-02-20  Don Allingham  <don@gramps-project.org>
+	* src/GrampsCfg.py: refactoring
+	* src/gen/utils/test/callback_test.py: refactoring
+	* src/gen/utils/callback.py: refactoring
+	* src/gen/utils/longop.py: refactoring
+	* src/gen/utils/__init__.py: refactoring
+	* src/gen/db/base.py: refactoring
+	* src/gen/Makefile.am: refactoring
+	* src/DisplayState.py: refactoring
+	* src/DbState.py: refactoring
+	* src/PluginUtils/_MenuOptions.py: refactoring
+	* src/ListModel.py: refactoring
+	* src/BaseDoc.py: refactoring
+
 2008-02-20 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/Verify.py:
 	0001792: Tools->Utilities->Verify the Data (exclude married names)

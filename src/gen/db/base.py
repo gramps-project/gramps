@@ -49,7 +49,7 @@ LOG = logging.getLogger(".GrampsDb")
 #-------------------------------------------------------------------------
 from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
                      Repository, Note, GenderStats, Researcher)
-from gen.utils.callback import GrampsDBCallback
+from gen.utils.callback import Callback
 from iterator import CursorIterator
 
 #-------------------------------------------------------------------------
@@ -119,7 +119,7 @@ class GrampsDbBookmarks:
     def insert(self, pos, item):
         self.bookmarks.insert(pos, item)
 
-class GrampsDbBase(GrampsDBCallback):
+class GrampsDbBase(Callback):
     """
     GRAMPS database object. This object is a base class for all
     database interfaces.
@@ -181,7 +181,7 @@ class GrampsDbBase(GrampsDBCallback):
         be created.
         """
 
-        GrampsDBCallback.__init__(self)
+        Callback.__init__(self)
 
         self.set_person_id_prefix('I%04d')
         self.set_object_id_prefix('O%04d')

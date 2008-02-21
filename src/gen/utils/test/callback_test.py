@@ -3,13 +3,13 @@ import unittest
 from test import test_util as tu
 tu.path_append_parent()
 
-from gen.utils import GrampsDBCallback
+from gen.utils import Callback
 
-class TestGrampsDBCallback(unittest.TestCase):
+class TestCallback(unittest.TestCase):
 
     def test_simple(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
                         'test-signal' : (int,)
@@ -30,7 +30,7 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_exception_catch(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
                         'test-signal' : (int,)
@@ -68,7 +68,7 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_disconnect(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
                         'test-signal' : (int,)
@@ -95,7 +95,7 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_noargs(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
                         'test-noargs' : None
@@ -115,7 +115,7 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_no_callback(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
                         'test-noargs' : None
@@ -126,7 +126,7 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_subclassing(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
             __signals__ = {
                         'test-signal' : (int,)
                         }
@@ -155,7 +155,7 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_signal_block(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
                         'test-signal' : (int,)
@@ -172,11 +172,11 @@ class TestGrampsDBCallback(unittest.TestCase):
         assert len(rl) == 1, "No signal emitted"
         assert rl[0] == 1, "Wrong argument recieved"
 
-        GrampsDBCallback.disable_all_signals()
+        Callback.disable_all_signals()
         t.emit('test-signal',(1,))    
         assert len(rl) == 1, "Signal emitted while class blocked"
 
-        GrampsDBCallback.enable_all_signals()
+        Callback.enable_all_signals()
         t.emit('test-signal',(1,))    
         assert len(rl) == 2, "Signals not class unblocked"
 
@@ -190,7 +190,7 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_type_checking(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
             __signals__ = {
                         'test-int' : (int,),
                         'test-list': (list,),
@@ -238,10 +238,10 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_recursion_block(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
-                        'test-recursion' : (GrampsDBCallback,)
+                        'test-recursion' : (Callback,)
                         }
 
         def fn(cb):
@@ -265,12 +265,12 @@ class TestGrampsDBCallback(unittest.TestCase):
 
     def test_multisignal_recursion_block(self):
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
-                        'test-top' : (GrampsDBCallback,),
-                        'test-middle' : (GrampsDBCallback,),
-                        'test-bottom' : (GrampsDBCallback,)
+                        'test-top' : (Callback,),
+                        'test-middle' : (Callback,),
+                        'test-bottom' : (Callback,)
                         }
 
         def top(cb):

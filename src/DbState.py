@@ -23,10 +23,10 @@ Provides the database state class
 """
 
 from gen.db import GrampsDbBase
-from gen.utils import GrampsDBCallback
+from gen.utils import Callback
 import Config
 
-class DbState(GrampsDBCallback):
+class DbState(Callback):
     """
     Provides a class to encapsulate the state of the database..
     """
@@ -42,7 +42,7 @@ class DbState(GrampsDBCallback):
         Initalize the state with an empty (and useless) GrampsDbBase. This is
         just a place holder until a real DB is assigned.
         """
-        GrampsDBCallback.__init__(self)
+        Callback.__init__(self)
         self.db      = GrampsDbBase()
         self.open    = False
         self.active  = None

@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
+# This program is distributed in the hope that it will be useful, 
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -36,7 +36,6 @@
     or the UI code.
 """
 import sys
-import os
 import types
 import traceback
 import inspect
@@ -49,28 +48,28 @@ log = sys.stderr.write
 #
 #-------------------------------------------------------------------------
 
-class GrampsDBCallback(object):
+class Callback(object):
     """
-    Callback and signal support for non-gtk parts of gramps.
+    Callback and signal support objects.
 
     Declaring signals
     =================
     
     Classes that want to emit signals need to inherit from the
-    GrampsDBCallback class and ensure that its __init__ method
+    DBCallback class and ensure that its __init__ method
     is called. They then need to declare the signals that they
     can emit and the types of each callbacks arguments. For
     example::
 
-        class TestSignals(GrampsDBCallback):
+        class TestSignals(Callback):
 
             __signals__ = {
-                      'test-signal' : (int,),
+                      'test-signal' : (int, ), 
                       'test-noarg'  : None
                      }
 
             def __init__(self):
-                GrampsDBCallback.__init__(self)
+                Callback.__init__(self)
 
     The type signature is a tuple of types or classes. The type
     checking code uses the isinstance method to check that the
@@ -90,7 +89,7 @@ class GrampsDBCallback(object):
     Signals are emitted using the emit method. e.g.::
 
             def emit_signal(self):
-                self.emit('test-signal',(1,))
+                self.emit('test-signal', (1, ))
 
     The parameters are passed as a tuple so a single parameter
     must be passed as a 1 element tuple.
@@ -147,25 +146,25 @@ class GrampsDBCallback(object):
     =============================
 
     Signals can be blocked on a per instance bassis or they can be blocked
-    for all instances of the GrampsDBCallback class. disable_signals() can
+    for all instances of the Callback class. disable_signals() can
     be used to block the signals for a single instance and disable_all_signals()
     can be used to block signals for the class:
 
     e.g.::
 
 
-           class TestSignals(GrampsDBCallback):
+           class TestSignals(Callback):
 
             __signals__ = {
-                      'test-signal' : (int,),
+                      'test-signal' : (int, ), 
                       'test-noarg'  : None
                      }
 
             def __init__(self):
-                GrampsDBCallback.__init__(self)
+                Callback.__init__(self)
 
             def emit_signal(self):
-                self.emit('test-signal',(1,))
+                self.emit('test-signal', (1, ))
 
             t = TestSignals()
 
@@ -178,15 +177,15 @@ class GrampsDBCallback(object):
             t.enable_signals()
 
             # block all signals
-            GrampsDBCallback.disable_all_signals()
+            Callback.disable_all_signals()
 
             ...
             
             # unblock all signals
-            GrampsDBCallback.enable_all_signals()
+            Callback.enable_all_signals()
 
 
-    Any signals emited whilst signals are blocked will be lost. 
+    Any signals emitted whilst signals are blocked will be lost. 
             
             
     Debugging signal callbacks
@@ -197,7 +196,7 @@ class GrampsDBCallback(object):
     lots of logging information. To switch on logging for a single
     instance call self.enable_logging(), to switch it off again call
     self.disable_logging(). To switch on logging for all instance
-    you can toggle GrampsDBCallback.__LOG_ALL to True.
+    you can toggle Callback.__LOG_ALL to True.
     
     """
 
@@ -205,15 +204,8 @@ class GrampsDBCallback(object):
     # any class derived from this class. This should be toggled using
     # the class methods, dissable_all_signals() and enable_all_signals().
     __BLOCK_ALL_SIGNALS = False
+    __LOG_ALL = False
 
-
-    # If this is True logging will be turned on for all instances
-    # whether or not instance based logging is enabled.
-    try:
-        __LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL',"0")) == 1
-    except:
-        __LOG_ALL = False
-    
     def __init__(self):
         self.__enable_logging = False # controls whether lots of debug
                                       # information will be produced.
@@ -222,7 +214,7 @@ class GrampsDBCallback(object):
         self.__callback_map = {} # dictionary containing all the connected
                                  # callback functions. The keys are the
                                  # signal names and the values are tuples
-                                 # of the form (key,bound_method), where
+                                 # of the form (key, bound_method), where
                                  # the key is unique within the instance
                                  # and the bound_method is the callback
                                  # that will be called when the signal is
@@ -232,7 +224,7 @@ class GrampsDBCallback(object):
                                  # signal names and the values are tuples
                                  # containing the list of types of the arguments
                                  # that the callback methods must accept.
-        self._current_key = 0    # counter to give a unique key to each callback.
+        self._current_key = 0    # counter to give a unique key to each callback
         self._current_signals = [] # list of all the signals that are currently
                                    # being emitted by this instance. This is
                                    # used to prevent recursive emittion of the
@@ -261,17 +253,17 @@ class GrampsDBCallback(object):
 
         # Build a signal dict from the list of signal dicts
         for s in trav(self.__class__):
-            for (k,v) in s.items():
+            for (k, v) in s.items():
                 if self.__signal_map.has_key(k):
                     # signal name clash
-                    sys.err.write("Warning: signal name clash: %s\n" % str(k))
+                    sys.stderr.write("Warning: signal name clash: %s\n" % str(k))
                 self.__signal_map[k] = v
 
         # self.__signal_map now contains the connonical list
         # of signals that this instance can emit.
 
-        self._log("registed signals: \n   %s\n" %
-                  "\n   ".join([ "%s: %s" % (k,v) for (k,v)
+        self._log("registered signals: \n   %s\n" %
+                  "\n   ".join([ "%s: %s" % (k, v) for (k, v)
                                  in self.__signal_map.items() ]))
         
 
@@ -295,12 +287,12 @@ class GrampsDBCallback(object):
         self._current_key += 1
         self._log("Connecting callback to signal: "
                   "%s with key: %s\n"
-                  % (signal_name,str(self._current_key)))
-        self.__callback_map[signal_name].append((self._current_key,callback))
+                  % (signal_name, str(self._current_key)))
+        self.__callback_map[signal_name].append((self._current_key, callback))
 
         return self._current_key
 
-    def disconnect(self,key):
+    def disconnect(self, key):
         """
         Disconnect a callback.
         """
@@ -308,11 +300,11 @@ class GrampsDBCallback(object):
         # Find the key in the callback map.
         for signal_name in self.__callback_map.keys():
             for cb in self.__callback_map[signal_name]:
-                (skey,fn) = cb
+                (skey, fn) = cb
                 if skey == key:
                     # delete the callback from the map.
                     self._log("Disconnecting callback from signal"
-                              ": %s with key: %s\n" % (signal_name,
+                              ": %s with key: %s\n" % (signal_name, 
                                                        str(key)))
                     self.__callback_map[signal_name].remove(cb)
                     
@@ -323,7 +315,7 @@ class GrampsDBCallback(object):
         arguments that match the types declared for the signals signature.
         """
         # Check that signals are not blocked
-        if GrampsDBCallback.__BLOCK_ALL_SIGNALS or \
+        if self.__BLOCK_ALL_SIGNALS or \
                self.__block_instance_signals:
             return
         
@@ -333,36 +325,36 @@ class GrampsDBCallback(object):
                        "         from: file: %s\n"
                        "               line: %d\n"
                        "               func: %s\n"
-                       % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                       % ((str(signal_name), ) + inspect.stack()[1][1:4]))
             return
 
         # check that the signal is not already being emitted. This prevents
-        # against recursive signal emmissions.
+        # against recursive signal emissions.
         if signal_name in self._current_signals:
             self._warn("Signal recursion blocked. "
                        "Signals was : %s\n"
                        "        from: file: %s\n"
                        "              line: %d\n"
                        "              func: %s\n"
-                       % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                       % ((str(signal_name), ) + inspect.stack()[1][1:4]))
             return 
 
         try:
             self._current_signals.append(signal_name)
 
             # check that args is a tuple. This is a common programming error.
-            if not (isinstance(args,tuple) or args == None):
+            if not (isinstance(args, tuple) or args == None):
                 self._warn("Signal emitted with argument that is not a tuple.\n"
                            "  emit() takes two arguments, the signal name and a \n"
                            "  tuple that contains the arguments that are to be \n"
                            "  passed to the callbacks. If you are passing a signal \n"
                            "  argument it must be done as a single element tuple \n"
-                           "  e.g. emit('my-signal',(1,)) \n"
+                           "  e.g. emit('my-signal', (1, )) \n"
                            "         signal was: %s\n"
                            "         from: file: %s\n"
                            "               line: %d\n"
                            "               func: %s\n"
-                           % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                           % ((str(signal_name), ) + inspect.stack()[1][1:4]))
                 return
 
             # type check arguments
@@ -373,7 +365,7 @@ class GrampsDBCallback(object):
                            "         from: file: %s\n"
                            "               line: %d\n"
                            "               func: %s\n"
-                           % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                           % ((str(signal_name), ) + inspect.stack()[1][1:4]))
                 return
 
             if len(args) > 0:
@@ -383,42 +375,36 @@ class GrampsDBCallback(object):
                                "         from: file: %s\n"
                                "               line: %d\n"
                                "               func: %s\n"
-                               % ((str(signal_name),) + inspect.stack()[1][1:4]))
+                               % ((str(signal_name), ) + inspect.stack()[1][1:4]))
                     return
 
                 if arg_types != None:
-                    for i in range(0,len(arg_types)):
-                        if not isinstance(args[i],arg_types[i]):
+                    for i in range(0, len(arg_types)):
+                        if not isinstance(args[i], arg_types[i]):
                             self._warn("Signal emitted with "
                                        "wrong arg types: %s\n"
                                        "         from: file: %s\n"
                                        "               line: %d\n"
                                        "               func: %s\n"
                                        "    arg passed was: %s, type of arg passed %s,  type should be: %s\n"
-                                       % ((str(signal_name),) + inspect.stack()[1][1:4] +\
-                                          (args[i],repr(type(args[i])),repr(arg_types[i]))))                   
+                                       % ((str(signal_name), ) + inspect.stack()[1][1:4] +\
+                                          (args[i], repr(type(args[i])), repr(arg_types[i]))))                   
                             return 
 
             if signal_name in self.__callback_map.keys():
-                self._log("emmitting signal: %s\n" % (signal_name,))
+                self._log("emitting signal: %s\n" % (signal_name, ))
                 # Don't bother if there are no callbacks.
-                for (key,fn) in self.__callback_map[signal_name]:
-                    self._log("Calling callback with key: %s\n" % (key,))
+                for (key, fn) in self.__callback_map[signal_name]:
+                    self._log("Calling callback with key: %s\n" % (key, ))
                     try:
-                        if type(fn) == tuple: # call class method
-                            cb[0](fn[1],*args)
-                        elif type(fn) == types.FunctionType or \
-                                 type(fn) == types.MethodType: # call func
-                            fn(*args)
-#                             try:
-#                                 fn(*args)
-#                             except Errors.DbError:
-#                                 display_error()
+                        if type(fn) == types.FunctionType or \
+                                type(fn) == types.MethodType: # call func
+                            fn(*args)                        
                         else:
                             self._warn("Badly formed entry in callback map.\n")
                     except:
-                        self._warn("Exception occured in callback function.\n"
-                                   "%s" % ("".join(traceback.format_exception(*sys.exc_info())),))
+                        self._warn("Exception occurred in callback function.\n"
+                                   "%s" % ("".join(traceback.format_exception(*sys.exc_info())), ))
         finally:
             self._current_signals.remove(signal_name)
 
@@ -431,7 +417,6 @@ class GrampsDBCallback(object):
     def enable_signals(self):
         self.__block_instance_signals = False
 
-
     # logging methods
 
     def disable_logging(self):
@@ -440,36 +425,26 @@ class GrampsDBCallback(object):
     def enable_logging(self):
         self.__enable_logging = True
 
-    def _log(self,msg):
-        if GrampsDBCallback.__LOG_ALL or self.__enable_logging:
+    def _log(self, msg):
+        if self.__LOG_ALL or self.__enable_logging:
             log("%s: %s" % (self.__class__.__name__, str(msg)))
 
-    def _warn(self,msg):
+    def _warn(self, msg):
         log("Warning: %s: %s" % (self.__class__.__name__, str(msg)))
 
     #
     # Class methods
     #
 
-    def __disable_all_signals(self):
-        GrampsDBCallback.__BLOCK_ALL_SIGNALS = True
+    @classmethod
+    def log_all(cls, enable):
+        cls.__LOG_ALL = enable
 
-    disable_all_signals = classmethod(__disable_all_signals)
-    
-    def __enable_all_signals(self):
-        GrampsDBCallback.__BLOCK_ALL_SIGNALS = False
+    @classmethod
+    def disable_all_signals(cls):
+        cls.__BLOCK_ALL_SIGNALS = True
 
-    enable_all_signals = classmethod(__enable_all_signals)
-
-
-# def display_error():
-#     from QuestionDialog import ErrorDialog
-#     ErrorDialog(
-#         _('Database error'),
-#         _('A problem as been detected in your database. '
-#           'This is probably caused by opening a database that was '
-#           'created with one transaction setting when the database was '
-#           'created with another, or by moving a non-portable database '
-#           'to a different machine.'))
-    
+    @classmethod
+    def enable_all_signals(cls):
+        cls.__BLOCK_ALL_SIGNALS = False
 
