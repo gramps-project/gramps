@@ -1,3 +1,8 @@
+2008-02-22  Douglas S. Blank <dblank@cs.brynmawr.edu>
+	* src/DataViews/GrampletView.py: translate "Gramplet"
+	* src/plugins/Makefile.am : add AgeOnDate.py QR
+	* po/POTFILES.in: add AgeOnDate.py QR
+
 2008-02-22  Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/FilterEditor/_EditRule.py
     * src/Filters/Rules/_HasAttributeBase.py

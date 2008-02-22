@@ -129,7 +129,7 @@ class LinkTag(gtk.TextTag):
 
 class GrampletWindow(ManagedWindow.ManagedWindow):
     def __init__(self, gramplet):
-        self.title = gramplet.title + " Gramplet"
+        self.title = gramplet.title + " " + _("Gramplet")
         self.gramplet = gramplet
         ManagedWindow.ManagedWindow.__init__(self, gramplet.uistate, [], gramplet)
         self.set_window(gtk.Dialog("",gramplet.uistate.window,

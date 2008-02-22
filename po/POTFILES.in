@@ -248,6 +248,7 @@ src/Selectors/__init__.py
 src/plugins/all_events.py
 src/plugins/all_relations.py
 src/plugins/siblings.py
+src/plugins/AgeOnDate.py
 src/plugins/AncestorChart.py
 src/plugins/AncestorReport.py
 src/plugins/BookReport.py

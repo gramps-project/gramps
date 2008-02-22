@@ -8,6 +8,7 @@ pkgdatadir = $(datadir)/@PACKAGE@/plugins
 pkgdata_PYTHON = \
 	all_events.py\
 	all_relations.py\
+	AgeOnDate.py\
 	AncestorChart.py\
 	AncestorReport.py\
 	BookReport.py\
