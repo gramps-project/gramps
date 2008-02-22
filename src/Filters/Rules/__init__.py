@@ -26,19 +26,14 @@ Package providing filter rules for GRAMPS.
 
 # Need to expose this to be available for filter plugins:
 # the plugins should say: from Filters.Rules import Rule
-from _Rule import Rule
+from Filters.Rules._Rule import Rule
 
-from _Everything import Everything
-from _HasGrampsId import HasGrampsId
-from _IsPrivate import IsPrivate
-from _HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
-from _HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
+from Filters.Rules._Everything import Everything
+from Filters.Rules._HasGrampsId import HasGrampsId
+from Filters.Rules._IsPrivate import IsPrivate
+from Filters.Rules._HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
+from Filters.Rules._HasTextMatchingRegexpOf import HasTextMatchingRegexpOf
+from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 
-import Person
-import Family
-import Event
-import Source
-import Place
-import MediaObject
-import Repository
-import Note
+from Filters.Rules import (Person, Family, Event, Source, Place, MediaObject, 
+                           Repository, Note)

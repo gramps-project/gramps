@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.lib import AttributeType
-from Filters.Rules._Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +41,9 @@ from Filters.Rules._Rule import Rule
 #
 #-------------------------------------------------------------------------
 class HasAttributeBase(Rule):
-    """Rule that checks for an object with a particular attribute"""
+    """
+    Rule that checks for an object with a particular attribute.
+    """
 
     labels      = [ _('Attribute:'), _('Value:') ]
     name        = _('Objects with the <attribute>')
@@ -49,7 +51,7 @@ class HasAttributeBase(Rule):
                     "of a particular value")
     category    = _('General filters')
 
-    def apply(self,db,obj):
+    def apply(self, db, obj):
         if not self.list[0]:
             return False
         for attr in obj.get_attribute_list():

@@ -1,3 +1,33 @@
+2008-02-22  Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/FilterEditor/_EditRule.py
+    * src/Filters/Rules/_HasAttributeBase.py
+    * src/Filters/Rules/Family/_MatchesFilter.py
+    * src/Filters/Rules/Event/_MatchesFilter.py
+    * src/Filters/Rules/Event/_MatchesSourceFilter.py
+    * src/Filters/Rules/Event/_HasType.py
+    * src/Filters/Rules/Event/_MatchesPersonFilter.py
+    * src/Filters/Rules/_HasTextMatchingRegexpOf.py
+    * src/Filters/Rules/_HasReferenceCountBase.py
+    * src/Filters/Rules/_HasNoteSubstrBase.py
+    * src/Filters/Rules/__init__.py
+    * src/Filters/Rules/_HasGrampsId.py
+    * src/Filters/Rules/_RegExpIdBase.py
+    * src/Filters/Rules/_IsPrivate.py
+    * src/Filters/Rules/_Rule.py
+    * src/Filters/Rules/_HasMarkerBase.py
+    * src/Filters/Rules/_HasEventBase.py
+    * src/Filters/Rules/Note/_MatchesFilter.py
+    * src/Filters/Rules/Person/_MatchesFilter.py
+    * src/Filters/Rules/Person/_MatchesEventFilter.py
+    * src/Filters/Rules/MediaObject/_MatchesFilter.py
+    * src/Filters/Rules/_HasTextMatchingSubstringOf.py
+    * src/Filters/Rules/_Everything.py
+    * src/Filters/Rules/_MatchesFilterBase.py
+    * src/Filters/Rules/_HasNoteRegexBase.py
+    * src/DateHandler/_DateUtils.py
+    pylint and doc fixes.
+    
+
 2008-02-20 Frederik De Richter <frederik.de.richter@pandora.be>
     * src/Merge/_MergePerson.py
     * src/Merge/_MergeSource.py

@@ -32,17 +32,17 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 # "People marked private"
 #-------------------------------------------------------------------------
 class IsPrivate(Rule):
-    """Objects marked private"""
+    """Objects marked private."""
 
     name        = _('Objects marked private')
     description = _("Matches objects that are indicated as private")
     category    = _('General filters')
 
-    def apply(self,db,obj):
+    def apply(self, db, obj):
         return obj.get_privacy()

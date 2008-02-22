@@ -32,13 +32,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 # "HasTextMatchingSubstringOf"
 #-------------------------------------------------------------------------
 class HasTextMatchingSubstringOf(Rule):
-    """Rule that checks for string matches in any textual information"""
+    """Rule that checks for string matches in any textual information."""
 
     labels      = [ _('Substring:'),
                     _('Case sensitive:'), 

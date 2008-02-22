@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -40,7 +40,7 @@ from _Rule import Rule
 #
 #-------------------------------------------------------------------------
 class Everything(Rule):
-    """Matches Everyone"""
+    """Match Everyone."""
 
     name        = _('Every object')
     category    = _('General filters')
@@ -49,5 +49,5 @@ class Everything(Rule):
     def is_empty(self):
         return True
 
-    def apply(self,db,obj):
+    def apply(self, db, obj):
         return True

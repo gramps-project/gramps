@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._MatchesFilterBase import MatchesFilterBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +45,7 @@ class MatchesPersonFilter(MatchesFilterBase):
 
     This is a base rule for subclassing by specific objects.
     Subclasses need to define the namespace class attribute.
+    
     """
 
     labels      = [_('Person filter name:'), _('Include Family events:')]
@@ -52,10 +53,11 @@ class MatchesPersonFilter(MatchesFilterBase):
     description = _("Matches events of persons matched by the specified "
                     "person filter name")
     category    = _('General filters')
+    
     # we want to have this filter show person filters
     namespace   = 'Person'
     
-    def prepare(self,db):
+    def prepare(self, db):
         MatchesFilterBase.prepare(self, db)
         
         try :
@@ -67,7 +69,7 @@ class MatchesPersonFilter(MatchesFilterBase):
             self.MPF_famevents = False
 
 
-    def apply(self,db,event):
+    def apply(self, db, event):
         filt = self.find_filter()
         if filt:
             for (classname, handle) in db.find_backlink_handles(

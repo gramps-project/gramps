@@ -31,18 +31,17 @@
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _HasTextMatchingSubstringOf import HasTextMatchingSubstringOf
+from Filters.Rules import HasTextMatchingSubstringOf
 
 #-------------------------------------------------------------------------
 # "HasTextMatchingRegexOf"
 #-------------------------------------------------------------------------
 class HasTextMatchingRegexpOf(HasTextMatchingSubstringOf):
-    """This is wrapping HasTextMatchingSubstringOf to enable the regex_match 
-    parameter.
-    
     """
-    def __init__(self,list):
-        HasTextMatchingSubstringOf.__init__(self,list)
+    Wrap HasTextMatchingSubstringOf to enable the regex_match parameter.
+    """
+    def __init__(self, list):
+        HasTextMatchingSubstringOf.__init__(self, list)
 
     # FIXME: This needs to be written for an arbitrary object
     # if possible

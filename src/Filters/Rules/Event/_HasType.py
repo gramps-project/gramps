@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.lib import EventType
-from Filters.Rules._Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +41,7 @@ from Filters.Rules._Rule import Rule
 #
 #-------------------------------------------------------------------------
 class HasType(Rule):
-    """Rule that checks for an event of a particular type"""
+    """Rule that checks for an event of a particular type."""
 
     labels      = [ _('Event type:') ]
     name        = _('Event with the particular type')

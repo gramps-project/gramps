@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from gen.lib import MarkerType
-from Filters.Rules._Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +41,7 @@ from Filters.Rules._Rule import Rule
 #
 #-------------------------------------------------------------------------
 class HasMarkerBase(Rule):
-    """Rule that checks for a person with a particular value"""
+    """Rule that checks for a person with a particular value."""
 
 
     labels      = [ _('Marker type:')]
@@ -49,7 +49,7 @@ class HasMarkerBase(Rule):
     description =  _("Matches markers of a partikular type")
     category    = _('General filters')
     
-    def apply(self,db,obj):
+    def apply(self, db, obj):
         specified_type = MarkerType()
         specified_type.set_from_xml_str(self.list[0])
         return obj.get_marker() == specified_type

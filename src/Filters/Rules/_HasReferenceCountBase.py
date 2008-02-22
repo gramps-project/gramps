@@ -32,13 +32,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 # "Objects with a certain reference count"
 #-------------------------------------------------------------------------
 class HasReferenceCountBase(Rule):
-    """Objects with a reference count of <count>"""
+    """Objects with a reference count of <count>."""
 
     labels      = [ _('Reference count must be:'), _('Reference count:')]
     name        = _('Objects with a reference count of <count>')
@@ -46,27 +46,27 @@ class HasReferenceCountBase(Rule):
     category    = _('General filters')
 
 
-    def prepare(self,db):
+    def prepare(self, db):
         # things we want to do just once, not for every handle
         if  self.list[0] == _('lesser than'):
-            self.countType = 0
+            self.count_type = 0
         elif self.list[0] == _('greater than'):
-            self.countType = 2
+            self.count_type = 2
         else:
-            self.countType = 1 # "equal to"
+            self.count_type = 1 # "equal to"
 
         self.userSelectedCount = int(self.list[1])
 
 
-    def apply(self,db,object):
-        handle = object.get_handle()
+    def apply(self, db, obj):
+        handle = obj.get_handle()
         count = 0
         for item in db.find_backlink_handles(handle):
             count += 1
 
-        if self.countType == 0:     # "lesser than"
+        if self.count_type == 0:     # "lesser than"
             return count < self.userSelectedCount
-        elif self.countType == 2:   # "greater than"
+        elif self.count_type == 2:   # "greater than"
             return count > self.userSelectedCount
         # "equal to"
         return count == self.userSelectedCount

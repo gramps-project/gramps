@@ -67,8 +67,8 @@ import ManagedWindow
 # Sorting function for the filter rules
 #
 #-------------------------------------------------------------------------
-def by_rule_name(f,s):
-    return cmp(f.name,s.name)
+def by_rule_name(f, s):
+    return cmp(f.name, s.name)
 
 #-------------------------------------------------------------------------
 #
@@ -93,22 +93,25 @@ _name2typeclass = {
 #-------------------------------------------------------------------------
 class MyBoolean(gtk.CheckButton):
 
-    def __init__(self,label=None):
-        gtk.CheckButton.__init__(self,label)
+    def __init__(self, label=None):
+        gtk.CheckButton.__init__(self, label)
         self.show()
 
     def get_text(self):
         """
-        This method returns the text to save. It should be the same
-        no matter the present locale (English or numeric types).
+        Return the text to save. 
+        
+        It should be the same no matter the present locale (English or numeric 
+        types).
         This class sets this to get_display_text, but when localization
         is an issue (events/attr/etc types) then it has to be overridden.
+        
         """
         return str(int(self.get_active()))
 
-    def set_text(self,val):
+    def set_text(self, val):
         """
-        This method sets the selector state to display the passed value.
+        Set the selector state to display the passed value.
         """
         is_active = bool(int(val))
         self.set_active(is_active)
@@ -120,15 +123,15 @@ class MyBoolean(gtk.CheckButton):
 #-------------------------------------------------------------------------
 class MyInteger(gtk.SpinButton):
 
-    def __init__(self,min,max):
+    def __init__(self, min, max):
         gtk.SpinButton.__init__(self)
-        self.set_adjustment(gtk.Adjustment(min,min,max,1))
+        self.set_adjustment(gtk.Adjustment(min, min, max, 1))
         self.show()
 
     def get_text(self):
         return str(self.get_value_as_int())
 
-    def set_text(self,val):
+    def set_text(self, val):
         self.set_value(int(val))
 
 #-------------------------------------------------------------------------
@@ -137,20 +140,23 @@ class MyInteger(gtk.SpinButton):
 #
 #-------------------------------------------------------------------------
 class MyFilters(gtk.ComboBox):
-    """Class to present a combobox of selectable filters
+    """
+    Class to present a combobox of selectable filters.
     """
     def __init__(self, filters, filter_name=None):
-        """ Construct the combobox from the entries of 
-            the filters list. 
-            filter_name is name of calling filter
-            If filter_name is given, it will be excluded from the dropdown box
+        """
+        Construct the combobox from the entries of the filters list.
+        
+        Filter_name is name of calling filter.
+        If filter_name is given, it will be excluded from the dropdown box.
+        
         """
         gtk.ComboBox.__init__(self)
         store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(store)
         cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
         #remove own name from the list if given.
         self.flist = [ f.get_name() for f in filters if \
             (filter_name is None or f.get_name() != filter_name)]
@@ -167,7 +173,7 @@ class MyFilters(gtk.ComboBox):
             return ""
         return self.flist[active]
 
-    def set_text(self,val):
+    def set_text(self, val):
         if val in self.flist:
             self.set_active(self.flist.index(val))
 
@@ -183,8 +189,8 @@ class MyLesserEqualGreater(gtk.ComboBox):
         store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(store)
         cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
         self.clist = [_('lesser than'), _('equal to'), _('greater than')]
         for name in self.clist:
             store.append(row=[name])
@@ -197,7 +203,7 @@ class MyLesserEqualGreater(gtk.ComboBox):
             return _('equal to')
         return self.clist[active]
 
-    def set_text(self,val):
+    def set_text(self, val):
         if val in self.clist:
             self.set_active(self.clist.index(val))
         else:
@@ -216,8 +222,8 @@ class MySource(gtk.ComboBox):
         store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(store)
         cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
 
         self.slist = []
         for src_handle in self.db.get_source_handles(sort_handles=True):
@@ -226,7 +232,7 @@ class MySource(gtk.ComboBox):
             title = src.get_title()
             if len(title) > 44:
                 title = title[:40] + "..."
-            store.append(row=["%s [%s]" % (title,src.get_gramps_id())])
+            store.append(row=["%s [%s]" % (title, src.get_gramps_id())])
 
         self.set_active(0)
         self.show()
@@ -237,7 +243,7 @@ class MySource(gtk.ComboBox):
             return ""
         return self.slist[active]
 
-    def set_text(self,val):
+    def set_text(self, val):
         if val in self.slist:
             self.set_active(self.slist.index(val))
 
@@ -249,10 +255,10 @@ class MySource(gtk.ComboBox):
 #-------------------------------------------------------------------------
 class MyPlaces(gtk.Entry):
     
-    def __init__(self,places):
+    def __init__(self, places):
         gtk.Entry.__init__(self)
         
-        AutoComp.fill_entry(self,places)
+        AutoComp.fill_entry(self, places)
         self.show()
         
 #-------------------------------------------------------------------------
@@ -274,7 +280,7 @@ class MyID(gtk.HBox):
         }
     
     def __init__(self, dbstate, uistate, track, namespace='Person'):
-        gtk.HBox.__init__(self,False,6)
+        gtk.HBox.__init__(self, False, 6)
         self.dbstate = dbstate
         self.db = dbstate.db
         self.uistate = uistate
@@ -285,18 +291,18 @@ class MyID(gtk.HBox):
         self.entry.show()
         self.button = gtk.Button()
         self.button.set_label(_('Select...'))
-        self.button.connect('clicked',self.button_press)
+        self.button.connect('clicked', self.button_press)
         self.button.show()
         self.pack_start(self.entry)
         self.add(self.button)
         self.tooltips = gtk.Tooltips()
-        self.tooltips.set_tip(self.button,_('Select %s from a list')
+        self.tooltips.set_tip(self.button, _('Select %s from a list')
                               % self.obj_name[namespace])
         self.tooltips.enable()
         self.show()
         self.set_text('')
 
-    def button_press(self,obj):
+    def button_press(self, obj):
         obj_class = self.namespace
         selector = selector_factory(obj_class)
         inst = selector(self.dbstate, self.uistate, self.track)
@@ -309,7 +315,7 @@ class MyID(gtk.HBox):
     def get_text(self):
         return unicode(self.entry.get_text())
 
-    def name_from_gramps_id(self,gramps_id):
+    def name_from_gramps_id(self, gramps_id):
         if self.namespace == 'Person':
             person = self.db.get_person_from_gramps_id(gramps_id)
             name = _nd.display_name(person.get_primary_name())
@@ -336,12 +342,12 @@ class MyID(gtk.HBox):
             name = note.get()
         return name
 
-    def set_text(self,val):
+    def set_text(self, val):
         try:
             name = self.name_from_gramps_id(val)
-            self.tooltips.set_tip(self.entry,name)
+            self.tooltips.set_tip(self.entry, name)
         except AttributeError:
-            self.tooltips.set_tip(self.entry,_('Not a valid ID'))
+            self.tooltips.set_tip(self.entry, _('Not a valid ID'))
         self.entry.set_text(val)
 
 #-------------------------------------------------------------------------
@@ -362,10 +368,10 @@ class MySelect(gtk.ComboBoxEntry):
     def get_text(self):
         return self.type_class(self.sel.get_values()).xml_str()
 
-    def set_text(self,val):
+    def set_text(self, val):
         tc = self.type_class()
         tc.set_from_xml_str(val)
-        self.sel.set_values((tc.val,tc.string))
+        self.sel.set_values((tc.val, tc.string))
 
 #-------------------------------------------------------------------------
 #
@@ -437,27 +443,27 @@ class EditRule(ManagedWindow.ManagedWindow):
             arglist = class_obj.labels
             vallist = []
             tlist = []
-            self.page.append((class_obj,vallist,tlist))
+            self.page.append((class_obj, vallist, tlist))
             pos = 0
             l2 = gtk.Label(class_obj.name)
-            l2.set_alignment(0,0.5)
+            l2.set_alignment(0, 0.5)
             l2.show()
             c = gtk.TreeView()
-            c.set_data('d',pos)
+            c.set_data('d', pos)
             c.show()
             the_map[class_obj] = c
             # Only add a table with parameters if there are any parameters
             if arglist:
-                table = gtk.Table(3,len(arglist))
+                table = gtk.Table(3, len(arglist))
             else:
-                table = gtk.Table(1,1)
+                table = gtk.Table(1, 1)
             table.set_border_width(6)
             table.set_col_spacings(6)
             table.set_row_spacings(6)
             table.show()
             for v in arglist:
                 l = gtk.Label(v)
-                l.set_alignment(1,0.5)
+                l.set_alignment(1, 0.5)
                 l.show()
                 if v == _('Place:'):
                     t = MyPlaces([])
@@ -466,9 +472,10 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Reference count must be:'):
                     t = MyLesserEqualGreater()
                 elif v == _('Number of generations:'):
-                    t = MyInteger(1,32)
+                    t = MyInteger(1, 32)
                 elif v == _('ID:'):
-                    t = MyID(self.dbstate,self.uistate,self.track,self.namespace)
+                    t = MyID(self.dbstate, self.uistate, self.track, 
+                             self.namespace)
                 elif v == _('Source ID:'):
                     t = MySource(self.db)
                 elif v == _('Filter name:'):
@@ -490,20 +497,22 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Regular-Expression matching:'):
                     t = MyBoolean(_('Use regular expression'))
                 elif v == _('Include Family events:'):
-                    t = MyBoolean(_('Also family events where person is wife/husband'))
+                    t = MyBoolean(_('Also family events where person is '
+                                    'wife/husband'))
                 else:                    
                     t = MyEntry()
                 tlist.append(t)
-                table.attach(l,1,2,pos,pos+1,gtk.FILL,0,5,5)
-                table.attach(t,2,3,pos,pos+1,gtk.EXPAND|gtk.FILL,0,5,5)
+                table.attach(l, 1, 2, pos, pos+1, gtk.FILL, 0, 5, 5)
+                table.attach(t, 2, 3, pos, pos+1, gtk.EXPAND|gtk.FILL, 0, 5, 5)
                 pos = pos + 1
-            self.notebook.append_page(table,gtk.Label(class_obj.name))
+            self.notebook.append_page(table, gtk.Label(class_obj.name))
             self.class2page[class_obj] = self.page_num
             self.page_num = self.page_num + 1
         self.page_num = 0
-        self.store = gtk.TreeStore(gobject.TYPE_STRING,gobject.TYPE_PYOBJECT)
+        self.store = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
         self.selection = self.rname.get_selection()
-        col = gtk.TreeViewColumn(_('Rule Name'),gtk.CellRendererText(),text=0)
+        col = gtk.TreeViewColumn(_('Rule Name'), gtk.CellRendererText(), 
+                                 text=0)
         self.rname.append_column(col)
         self.rname.set_model(self.store)
 
@@ -533,16 +542,16 @@ class EditRule(ManagedWindow.ManagedWindow):
         catlist.sort()
 
         for category in catlist:
-            top_node[category] = self.store.insert_after(None,last_top)
+            top_node[category] = self.store.insert_after(None, last_top)
             top_level[category] = []
             last_top = top_node[category]
-            self.store.set(last_top,0,category,1,None)
+            self.store.set(last_top, 0, category, 1, None)
 
         for class_obj in keys:
             category = class_obj.category
             top_level[category].append(class_obj.name)
-            node = self.store.insert_after(top_node[category],prev)
-            self.store.set(node,0,class_obj.name,1,class_obj)
+            node = self.store.insert_after(top_node[category], prev)
+            self.store.set(node, 0, class_obj.name, 1, class_obj)
 
             #
             # if this is an edit rule, save the node
@@ -554,53 +563,57 @@ class EditRule(ManagedWindow.ManagedWindow):
             page = self.class2page[self.active_rule.__class__]
             self.notebook.set_current_page(page)
             self.display_values(self.active_rule.__class__)
-            (class_obj,vallist,tlist) = self.page[page]
+            (class_obj, vallist, tlist) = self.page[page]
             r = self.active_rule.values()
-            for i in range(0,len(tlist)):
+            for i in range(0, len(tlist)):
                 tlist[i].set_text(r[i])
             
         self.selection.connect('changed', self.on_node_selected)
-        self.get_widget('ok').connect('clicked',self.rule_ok)
+        self.get_widget('ok').connect('clicked', self.rule_ok)
         self.get_widget('cancel').connect('clicked', self.close_window)
-        self.get_widget('help').connect('clicked',self.on_help_clicked)
+        self.get_widget('help').connect('clicked', self.on_help_clicked)
 
         self.show()
 
-    def on_help_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
+    def on_help_clicked(self, obj):
+        """
+        Display the relevant portion of GRAMPS manual.
+        """
         GrampsDisplay.help('append-filtref')
 
-    def close_window(self,obj):
+    def close_window(self, obj):
         self.close()
 
-    def on_node_selected(self,obj):
-        """Updates the informational display on the right hand side of
-        the dialog box with the description of the selected report"""
+    def on_node_selected(self, obj):
+        """
+        Update the informational display on the right hand side of the dialog 
+        box with the description of the selected report.
+        """
 
-        store,node = self.selection.get_selected()
+        store, node = self.selection.get_selected()
         if node:
             try:
-                class_obj = store.get_value(node,1)
+                class_obj = store.get_value(node, 1)
                 self.display_values(class_obj)
             except:
                 self.valuebox.set_sensitive(0)
                 self.rule_name.set_text(_('No rule selected'))
                 self.get_widget('description').set_text('')
 
-    def display_values(self,class_obj):
+    def display_values(self, class_obj):
         page = self.class2page[class_obj]
         self.notebook.set_current_page(page)
         self.valuebox.set_sensitive(1)
         self.rule_name.set_text(class_obj.name)
         self.get_widget('description').set_text(class_obj.description)
 
-    def rule_ok(self,obj):
+    def rule_ok(self, obj):
         if self.rule_name.get_text() == _('No rule selected'):
             return
 
         try:
             page = self.notebook.get_current_page()
-            (class_obj,vallist,tlist) = self.page[page]
+            (class_obj, vallist, tlist) = self.page[page]
             value_list = []
             for selector_class in tlist:
                 value_list.append(unicode(selector_class.get_text()))

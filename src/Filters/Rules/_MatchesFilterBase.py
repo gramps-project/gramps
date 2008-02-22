@@ -33,7 +33,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import Filters
-from _Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -46,6 +46,7 @@ class MatchesFilterBase(Rule):
 
     This is a base rule for subclassing by specific objects.
     Subclasses need to define the namespace class attribute.
+    
     """
 
     labels      = [_('Filter name:')]
@@ -53,7 +54,7 @@ class MatchesFilterBase(Rule):
     description = _("Matches objects matched by the specified filter name")
     category    = _('General filters')
 
-    def prepare(self,db):
+    def prepare(self, db):
         if Filters.SystemFilters:
             for filt in Filters.SystemFilters.get_filters(self.namespace):
                 if filt.get_name() == self.list[0]:
@@ -77,7 +78,7 @@ class MatchesFilterBase(Rule):
                     for rule in filt.flist:
                         rule.reset()
 
-    def apply(self,db,obj):
+    def apply(self, db, obj):
         if Filters.SystemFilters:
             for filt in Filters.SystemFilters.get_filters(self.namespace):
                 if filt.get_name() == self.list[0]:
@@ -89,8 +90,8 @@ class MatchesFilterBase(Rule):
         return False
     
     def find_filter(self):
-        """ helper function that can be usefull, returning the filter
-            selected or None
+        """
+        Return the selected filter or None.
         """
         if Filters.SystemFilters:
             for filt in Filters.SystemFilters.get_filters(self.namespace):

@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._MatchesFilterBase import MatchesFilterBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +45,7 @@ class MatchesEventFilter(MatchesFilterBase):
 
     This is a base rule for subclassing by specific objects.
     Subclasses need to define the namespace class attribute.
+    
     """
 
     labels      = [_('Event filter name:')]
@@ -52,6 +53,7 @@ class MatchesEventFilter(MatchesFilterBase):
     description = _("Matches persons who have events that match a certain"
                     " event filter")
     category    = _('General filters')
+
     # we want to have this filter show event filters
     namespace   = 'Event'
 
@@ -67,5 +69,5 @@ class MatchesEventFilter(MatchesFilterBase):
         for eventhandle in eventlist:
             #check if event in event filter
             if self.MEF_filt.check(db, eventhandle):
-                    return True
+                return True
         return False

@@ -33,13 +33,13 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 # "People having notes that contain a substring"
 #-------------------------------------------------------------------------
 class HasNoteRegexBase(Rule):
-    """People having notes containing <subtring>"""
+    """People having notes containing <substring>."""
 
     labels      = [ _('Regular expression:')]
     name        = _('Objects having notes containing <regular expression>')
@@ -55,7 +55,7 @@ class HasNoteRegexBase(Rule):
         except:
             self.match = re.compile('')
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         notelist = person.get_note_list()
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)

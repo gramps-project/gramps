@@ -33,26 +33,26 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class Rule:
-    """Base rule class"""
+    """Base rule class."""
 
     labels      = []
     name        = ''
     category    = _('Miscellaneous filters')
     description = _('No description')
 
-    def __init__(self,list):
+    def __init__(self, list):
         self.set_list(list)
 
     def is_empty(self):
         return False
     
-    def prepare(self,db):
+    def prepare(self, db):
         pass
 
     def reset(self):
         pass
 
-    def set_list(self,list):
+    def set_list(self, list):
         assert type(list) == type([]) or list == None, "Argument is not a list"
         assert len(list) == len(self.labels), \
                "Number of arguments does not match number of labels.\n"\
@@ -65,7 +65,7 @@ class Rule:
     def check(self):
         return len(self.list) == len(self.labels)
 
-    def apply(self,db,person):
+    def apply(self, db, person):
         return True
 
     def display_values(self):
@@ -74,7 +74,7 @@ class Rule:
 
         return ';'.join(v)
 
-    def match_substring(self,param_index,str_var):
+    def match_substring(self, param_index, str_var):
         if self.list[param_index] and \
                (str_var.upper().find(self.list[param_index].upper()) == -1):
             return False

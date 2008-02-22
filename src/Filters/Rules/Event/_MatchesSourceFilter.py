@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._MatchesFilterBase import MatchesFilterBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
@@ -49,6 +49,7 @@ class MatchesSourceFilter(MatchesFilterBase):
     description = _("Matches events with sources that match the "
                     "specified source filter name")
     category    = _('General filters')
+
     # we want to have this filter show source filters
     namespace   = 'Source'
 
@@ -64,5 +65,5 @@ class MatchesSourceFilter(MatchesFilterBase):
         for sourcehandle in sourcelist:
             #check if source in source filter
             if self.MSF_filt.check(db, sourcehandle):
-                    return True
+                return True
         return False

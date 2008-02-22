@@ -34,7 +34,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import DateHandler
 from gen.lib import EventType
-from Filters.Rules._Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -42,7 +42,7 @@ from Filters.Rules._Rule import Rule
 #
 #-------------------------------------------------------------------------
 class HasEventBase(Rule):
-    """Rule that checks for an event with a particular value"""
+    """Rule that checks for an event with a particular value."""
 
 
     labels      = [ _('Event type:'), 
@@ -53,7 +53,7 @@ class HasEventBase(Rule):
     description =  _("Matches events with particular parameters")
     category    = _('Event filters')
     
-    def prepare(self,db):
+    def prepare(self, db):
         self.date = None
         if self.list[0]:
             self.etype = self.list[0]
@@ -64,7 +64,7 @@ class HasEventBase(Rule):
                 self.date = DateHandler.parser.parse(self.list[1])
         except: pass
 
-    def apply(self,db,event):
+    def apply(self, db, event):
         if self.etype:
             specified_type = EventType()
             specified_type.set_from_xml_str(self.etype)
@@ -79,11 +79,11 @@ class HasEventBase(Rule):
                 return False
 
         if self.list[2]:
-            pl_id = event.get_place_handle()
-            if pl_id:
-                pl = db.get_place_from_handle(pl_id)
-                pn = pl.get_title()
-                if pn.upper().find(self.list[2].upper()) == -1:
+            place_id = event.get_place_handle()
+            if place_id:
+                place = db.get_place_from_handle(place_id)
+                place_name = place.get_title()
+                if place_name.upper().find(self.list[2].upper()) == -1:
                     return False
             else:
                 return False

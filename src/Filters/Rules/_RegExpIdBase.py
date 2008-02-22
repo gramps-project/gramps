@@ -33,7 +33,7 @@ import re
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from _Rule import Rule
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
 #
@@ -42,8 +42,7 @@ from _Rule import Rule
 #-------------------------------------------------------------------------
 class RegExpIdBase(Rule):
     """
-    Rule that checks for an object whose GRAMPS ID
-    matches regular expression.
+    Rule that checks for an object whose GRAMPS ID matches regular expression.
     """
 
     labels      = [ _('Regular expression:') ]
@@ -56,9 +55,9 @@ class RegExpIdBase(Rule):
         Rule.__init__(self, list)
         
         try:
-            self.match = re.compile(list[0],re.I|re.U|re.L)
+            self.match = re.compile(list[0], re.I|re.U|re.L)
         except:
             self.match = re.compile('')
 
-    def apply(self,db,obj):
+    def apply(self, db, obj):
         return self.match.match(obj.gramps_id) != None

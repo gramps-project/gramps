@@ -32,7 +32,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._MatchesFilterBase import MatchesFilterBase
+from Filters.Rules import MatchesFilterBase
 
 #-------------------------------------------------------------------------
 #
@@ -40,7 +40,7 @@ from Filters.Rules._MatchesFilterBase import MatchesFilterBase
 #
 #-------------------------------------------------------------------------
 class MatchesFilter(MatchesFilterBase):
-    """Rule that checks against another filter"""
+    """Rule that checks against another filter."""
 
     name        = _('Events matching the <filter>')
     description = _("Matches events matched by the specified filter name")
