@@ -1,4 +1,8 @@
 2008-02-22 Gary Burton <gary.burton@zen.co.uk>
+	* src/Editors/_EditFamily.py: Add fallback dates for birth and death
+	Bug #1785
+
+2008-02-22 Gary Burton <gary.burton@zen.co.uk>
 	* src/DataViews/RelationView.py:
 	* src/Editors/_EditFamily.py:
 	* src/Editors/_EditChildRef.py

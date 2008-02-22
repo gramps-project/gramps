@@ -57,6 +57,7 @@ import Config
 from BasicUtils import name_displayer
 import gen.lib
 import Errors
+import DateHandler
 
 from Editors import EditPrimary
 from ReportBase import ReportUtils
@@ -514,9 +515,13 @@ class EditFamily(EditPrimary):
 
         self.fbirth  = self.top.get_widget('fbirth')
         self.fdeath  = self.top.get_widget('fdeath')
+        self.fbirth_label = self.top.get_widget('label578')
+        self.fdeath_label = self.top.get_widget('label579')
         
         self.mbirth  = self.top.get_widget('mbirth')
         self.mdeath  = self.top.get_widget('mdeath')
+        self.mbirth_label = self.top.get_widget('label567')
+        self.mdeath_label = self.top.get_widget('label568')
 
         self.mbutton = self.top.get_widget('mbutton')
         self.mbutton2 = self.top.get_widget('mbutton2')
@@ -631,14 +636,16 @@ class EditFamily(EditPrimary):
         self.top.get_widget('vbox').pack_start(notebook, True)
 
     def update_father(self, handle):
-        self.load_parent(handle, self.fbox, self.fbirth,
-                         self.fdeath, self.fbutton, self.fbutton2,
+        self.load_parent(handle, self.fbox, self.fbirth, self.fbirth_label,
+                         self.fdeath, self.fdeath_label, self.fbutton,
+                         self.fbutton2,
                          _("Select a person as the father"),
                          _("Remove the person as the father"))
 
     def update_mother(self, handle):
-        self.load_parent(handle, self.mbox, self.mbirth,
-                         self.mdeath, self.mbutton, self.mbutton2,
+        self.load_parent(handle, self.mbox, self.mbirth, self.mbirth_label,
+                         self.mdeath, self.mdeath_label, self.mbutton,
+                         self.mbutton2,
                          _("Select a person as the mother"),
                          _("Remove the person as the mother"))
 
@@ -792,8 +799,8 @@ class EditFamily(EditPrimary):
             except Errors.WindowActiveError:
                 pass
 
-    def load_parent(self, handle, box, birth_obj, death_obj,
-                    btn_obj, btn2_obj, add_msg, del_msg):
+    def load_parent(self, handle, box, birth_obj, birth_label, death_obj,
+                    death_label, btn_obj, btn2_obj, add_msg, del_msg):
 
         is_used = handle != None
 
@@ -811,9 +818,13 @@ class EditFamily(EditPrimary):
             person = db.get_person_from_handle(handle)
             name = "%s [%s]" % (name_displayer.display(person),
                                 person.gramps_id)
-            data = ReportUtils.get_birth_death_strings(db, person)
-            birth = data[0]
-            death = data[4]
+            birth = ReportUtils.get_birth_or_fallback(db, person)
+            if birth and birth.get_type() == gen.lib.EventType.BAPTISM:
+                birth_label.set_label(_("Baptism:"))
+
+            death = ReportUtils.get_death_or_fallback(db, person)
+            if death and death.get_type() == gen.lib.EventType.BURIAL:
+                death_label.set_label(_("Burial:"))
 
             del_image = gtk.Image()
             del_image.show()
@@ -831,8 +842,8 @@ class EditFamily(EditPrimary):
         else:
             btn2_obj.show()
             name = ""
-            birth = ""
-            death = ""
+            birth = None
+            death = None
 
             add_image = gtk.Image()
             add_image.show()
@@ -840,8 +851,13 @@ class EditFamily(EditPrimary):
             self.tooltips.set_tip(btn_obj, add_msg)
             btn_obj.add(add_image)
 
-        birth_obj.set_text(birth)
-        death_obj.set_text(death)
+        if birth:
+            birth_str = DateHandler.displayer.display(birth.get_date_object())
+            birth_obj.set_text(birth_str)
+
+        if death:
+            death_str = DateHandler.displayer.display(death.get_date_object())
+            death_obj.set_text(death_str)
 
     def fix_parent_handles(self, orig_handle, new_handle, trans):
         if orig_handle != new_handle:
