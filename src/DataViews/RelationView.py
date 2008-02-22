@@ -89,6 +89,8 @@ _SDATA_START  = 2
 _SDATA_STOP   = 4
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_LEFT_BUTTON = 1
+_RIGHT_BUTTON = 3
 
 class AttachList:
 
@@ -1024,7 +1026,7 @@ class RelationshipView(PageView.PersonNavView):
             the collapse state must change, so a parent, siblings id, 
             family id, family children id, etc
         """
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if button_activated(event, _LEFT_BUTTON):
             person, handle = pair
             if self.collapsed_items.has_key(person.handle):
                 if handle in self.collapsed_items[person.handle]:
@@ -1036,9 +1038,9 @@ class RelationshipView(PageView.PersonNavView):
             self.redraw()
 
     def _button_press(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if button_activated(event, _LEFT_BUTTON):
             self.dbstate.change_active_handle(handle)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+        elif button_activated(event, _RIGHT_BUTTON):
             myMenu = gtk.Menu()
             myMenu.append(self.build_menu_item(handle))
             myMenu.popup(None, None, None, event.button, event.time)
@@ -1220,8 +1222,7 @@ class RelationshipView(PageView.PersonNavView):
             self.row += 1
 
     def edit_button_press(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS \
-            or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             self.edit_person(obj, handle)
         
     def edit_person(self, obj, handle):
@@ -1233,8 +1234,7 @@ class RelationshipView(PageView.PersonNavView):
             pass
 
     def edit_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS \
-            or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:
@@ -1243,8 +1243,7 @@ class RelationshipView(PageView.PersonNavView):
                 pass
 
     def add_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS \
-            or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             from Editors import EditFamily
             family = gen.lib.Family()
             person = self.dbstate.active
@@ -1284,8 +1283,7 @@ class RelationshipView(PageView.PersonNavView):
         self.edit_person(obj, phandle)
 
     def add_child_to_fam(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS \
-            or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             callback = lambda x: self.callback_add_child(x, handle)
             from Editors import EditPerson
             person = gen.lib.Person()
@@ -1318,8 +1316,7 @@ class RelationshipView(PageView.PersonNavView):
 
     def sel_child_to_fam(self, obj, event, handle):
         from Selectors import selector_factory
-        if event.type == gtk.gdk.BUTTON_PRESS \
-            or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             SelectPerson = selector_factory('Person')
             family = self.dbstate.db.get_family_from_handle(handle)
             # it only makes sense to skip those who are already in the family
@@ -1335,8 +1332,7 @@ class RelationshipView(PageView.PersonNavView):
                 self.callback_add_child(person, handle)
 
     def select_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS \
-            or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             from Selectors import selector_factory
             SelectFamily = selector_factory('Family')
 
@@ -1395,7 +1391,7 @@ class RelationshipView(PageView.PersonNavView):
             pass
             
     def add_parent_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if button_activated(event, _LEFT_BUTTON):
             from Editors import EditFamily
             family = gen.lib.Family()
             person = self.dbstate.active
@@ -1410,13 +1406,13 @@ class RelationshipView(PageView.PersonNavView):
                 pass
 
     def delete_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if button_activated(event, _LEFT_BUTTON):
             gen.utils.remove_parent_from_family(self.dbstate.db, 
                                                 self.dbstate.active.handle, 
                                                 handle)
 
     def delete_parent_family(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
+        if button_activated(event, _LEFT_BUTTON):
             gen.utils.remove_child_from_family(self.dbstate.db, 
                                                self.dbstate.active.handle, 
                                                handle)
@@ -1448,3 +1444,13 @@ def has_children(db,p):
         if childlist and len(childlist) > 0:
             return True
     return False
+
+def button_activated(event, mouse_button):
+    if (event.type == gtk.gdk.BUTTON_PRESS and \
+        event.button == mouse_button) or \
+       (event.type == gtk.gdk.KEY_PRESS and \
+        event.keyval in (_RETURN, _KP_ENTER)):
+        return True
+    else:
+        return False
+

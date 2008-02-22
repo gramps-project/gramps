@@ -1,3 +1,9 @@
+2008-02-22 Gary Burton <gary.burton@zen.co.uk>
+	* src/DataViews/RelationView.py:
+	* src/Editors/_EditFamily.py:
+	* src/Editors/_EditChildRef.py
+	Fix crash on doubleclicking buttons. Bug #1802
+
 2008-02-22  Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py: translate "Gramplet"
 	* src/plugins/Makefile.am : add AgeOnDate.py QR

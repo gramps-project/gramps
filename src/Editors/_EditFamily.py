@@ -74,6 +74,8 @@ SelectPerson = selector_factory('Person')
 
 _RETURN = gdk.keyval_from_name("Return")
 _KP_ENTER = gdk.keyval_from_name("KP_Enter")
+_LEFT_BUTTON = 1
+_RIGHT_BUTTON = 3
 
 class ChildEmbedList(EmbeddedList):
     """
@@ -781,8 +783,7 @@ class EditFamily(EditPrimary):
                               'select the existing family'))
 
     def edit_person(self, obj, event, handle):
-        if event.type == gtk.gdk.BUTTON_PRESS \
-            or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             from _EditPerson import EditPerson
             try:
                 person = self.db.get_person_from_handle(handle)
@@ -1039,3 +1040,13 @@ class EditFamily(EditPrimary):
                 else:    
                     return ("", "")
         return ("", "")
+
+def button_activated(event, mouse_button):
+    if (event.type == gtk.gdk.BUTTON_PRESS and \
+        event.button == mouse_button) or \
+       (event.type == gtk.gdk.KEY_PRESS and \
+        event.keyval in (_RETURN, _KP_ENTER)):
+        return True
+    else:
+        return False
+

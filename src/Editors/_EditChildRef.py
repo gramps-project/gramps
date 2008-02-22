@@ -62,6 +62,8 @@ from BasicUtils import name_displayer
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
 _KP_ENTER = gtk.gdk.keyval_from_name("KP_Enter")
+_LEFT_BUTTOGN = 1
+_RIGHT_BUTTON = 3
 
 #-------------------------------------------------------------------------
 #
@@ -152,8 +154,7 @@ class EditChildRef(EditSecondary):
         return (_('Child Reference'),_('Child Reference Editor'))
 
     def edit_child(self,obj,event):
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1 \
-                or event.keyval in (_RETURN, _KP_ENTER):
+        if button_activated(event, _LEFT_BUTTON):
             from _EditPerson import EditPerson
             handle = self.obj.ref
             try:
@@ -178,3 +179,13 @@ class EditChildRef(EditSecondary):
         if self.callback:
             self.callback(self.obj)
         self.close()
+
+def button_activated(event, mouse_button):
+    if (event.type == gtk.gdk.BUTTON_PRESS and \
+        event.button == mouse_button) or \
+       (event.type == gtk.gdk.KEY_PRESS and \
+        event.keyval in (_RETURN, _KP_ENTER)):
+        return True
+    else:
+        return False
+
