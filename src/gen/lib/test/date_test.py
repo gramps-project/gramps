@@ -23,11 +23,199 @@
 """ Unittest for testing dates """
 
 import unittest
+import os
+import sys
+import traceback
+import locale
+import gettext
+
+if os.environ.has_key("GRAMPSI18N"):
+    loc = os.environ["GRAMPSI18N"]
+else:
+    loc = "/usr/share/locale"
+
+try:
+    locale.setlocale(locale.LC_ALL,'C')
+    locale.setlocale(locale.LC_ALL,'')
+except locale.Error:
+    pass
+except ValueError:
+    pass
+
 from test import test_util
 test_util.path_append_parent() 
 
 import Config
-from DateHandler import parser as df
+import DateHandler
+from DateHandler import parser as _dp
+from DateHandler import displayer as _dd
+from gen.lib import Date
+
+gettext.textdomain("gramps")
+gettext.install("gramps",loc,unicode=1)
+
+date_tests = {}
+
+# first the "basics".
+testset = "basic test"
+dates = []
+calendar = Date.CAL_GREGORIAN
+for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+    for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+        for month in range(1,13):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
+            dates.append( d)
+    for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+        for month1 in range(1,13):
+            for month2 in range(1,13):
+                d = Date()
+                d.set(quality,modifier,calendar,(4,month1,1789,False,5,month2,1876,False),"Text comment")
+                dates.append( d)
+    modifier = Date.MOD_TEXTONLY
+    d = Date()
+    d.set(quality,modifier,calendar,Date.EMPTY,"This is a textual date")
+    dates.append( d)
+date_tests[testset] = dates
+
+# incomplete dates (day or month missing)
+testset = "partial date"
+dates = []
+calendar = Date.CAL_GREGORIAN
+for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+    for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+        d = Date()
+        d.set(quality,modifier,calendar,(0,11,1789,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(0,0,1789,False),"Text comment")
+        dates.append( d)
+    for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+        d = Date()
+        d.set(quality,modifier,calendar,(4,10,1789,False,0,11,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(4,10,1789,False,0,0,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(0,10,1789,False,5,11,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(0,10,1789,False,0,11,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(0,10,1789,False,0,0,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(0,0,1789,False,5,11,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(0,0,1789,False,0,11,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(0,0,1789,False,0,0,1876,False),"Text comment")
+        dates.append( d)
+date_tests[testset] = dates
+
+# slash-dates
+testset = "slash-dates"
+dates = []
+calendar = Date.CAL_GREGORIAN
+for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+    for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+        # normal date
+        d = Date()
+        d.set(quality,modifier,calendar,(4,11,1789,True),"Text comment")
+        dates.append( d)
+    for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+        d = Date()
+        d.set(quality,modifier,calendar,(4,11,1789,True,5,10,1876,False),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(4,11,1789,False,5,10,1876,True),"Text comment")
+        dates.append( d)
+        d = Date()
+        d.set(quality,modifier,calendar,(4,11,1789,True,5,10,1876,True),"Text comment")
+        dates.append( d)
+date_tests[testset] = dates
+
+# BCE
+testset = "B. C. E."
+dates = []
+calendar = Date.CAL_GREGORIAN
+for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+    for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+        # normal date
+        d = Date()
+        d.set(quality,modifier,calendar,(4,11,-90,False),"Text comment")
+        dates.append( d)
+    for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+        d = Date()
+        d.set(quality,modifier,calendar,(5,10,-90,False,4,11,-90,False),"Text comment")
+        dates.append( d)
+        d = Date()
+date_tests[testset] = dates
+
+# test for all other different calendars
+testset = "Non-gregorian"
+dates = []
+for calendar in (Date.CAL_JULIAN, Date.CAL_HEBREW, Date.CAL_ISLAMIC, Date.CAL_FRENCH, Date.CAL_PERSIAN):
+    for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, Date.QUAL_CALCULATED):
+        for modifier in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, Date.MOD_ABOUT):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,11,1789,False),"Text comment")
+            dates.append( d)
+        for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,10,1789,False,5,11,1876,False),"Text comment")
+            dates.append( d)
+quality = Date.QUAL_NONE
+modifier = Date.MOD_NONE
+for calendar in (Date.CAL_JULIAN, Date.CAL_ISLAMIC, Date.CAL_PERSIAN):
+    for month in range(1,13):
+        d = Date()
+        d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
+        dates.append( d)
+for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
+    for month in range(1,14):
+        d = Date()
+        d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
+        dates.append( d)
+date_tests[testset] = dates
+
+# now run the tests using all available date formats
+cal_str = [ "CAL_GREGORIAN", "CAL_JULIAN", "CAL_HEBREW", "CAL_FRENCH", "CAL_PERSIAN", "CAL_ISLAMIC"]
+mod_str = ["MOD_NONE", "MOD_BEFORE", "MOD_AFTER", "MOD_ABOUT", "MOD_RANGE", "MOD_SPAN", "MOD_TEXTONLY"]
+qua_str = ["QUAL_NONE", "QUAL_ESTIMATED", "QUAL_CALCULATED"]
+formats = DateHandler.get_date_formats()
+
+class Eval(unittest.TestCase):
+    def __init__(self, method_name, dateval, e1, e2, e3):
+        self.__dict__[method_name] = lambda: eval_func(dateval, e1, e2, e3)
+        unittest.TestCase.__init__(self, method_name)
+
+def eval_func(dateval, e1, e2, e3):
+    exec(e1)
+    exec(e2)
+    exec(e3)
+    #print datestr, ndate, ntxt
+    assert(dateval.is_equal(ndate), "dates are not the same")
+
+def suite3():
+    suite = unittest.TestSuite()            
+    count = 1
+    for testset in date_tests.keys():
+        for format in range( len( DateHandler.get_date_formats())):
+            DateHandler.set_format(format)
+            for dateval in date_tests[testset]:
+                if dateval.modifier != Date.MOD_TEXTONLY:
+                    dateval.text = "Comment. Format: %s" % DateHandler.get_date_formats()[format]
+                suite.addTest(Eval("test_eval%04d" % count, dateval, 
+                                      "datestr = _dd.display(dateval)", 
+                                      "ndate = _dp.parse(datestr)", 
+                                      "ntxt = _dd.display(ndate)"))
+                count += 1
+    return suite
 
 class Tester(unittest.TestCase):
     def __init__(self, method_name, part, testdata):
@@ -46,15 +234,14 @@ class Tester(unittest.TestCase):
         pos2 = 1
         if expected2 :
             pos2 = 0
-        date1 = df.parse(d1)
-        date2 = df.parse(d2)
+        date1 = _dp.parse(d1)
+        date2 = _dp.parse(d2)
         if part == 1:
             val = date2.match(date1)
             self.assertTrue(val == expected1, "'%s' and '%s' did not match" % (d1, d2))
         else:
             val = date1.match(date2)
             self.assertTrue(val == expected2, "'%s' and '%s' did not match" % (d2, d1))
-
 
 def suite():
     """ interface to automated test runner test/regrtest.py """
@@ -134,7 +321,6 @@ def suite():
     return suite
 
 def assert_func(exp1, exp2):
-    Date = date.Date
     e1 = eval(exp1)
     e2 = eval(exp2)
     assert e1 == e2, "%s should be %s but was %s" % (exp1, e2, e1)
@@ -169,20 +355,11 @@ def suite2():
         ("Date(2000, 1, 1) - 1", "Date(1999, 1, 1)"),
         ("Date(2000) - 1", "Date(1999)"),
         ("Date(2000) + 1", "Date(2001)"),
-
-#My great great grandfather died on 1876-05-07.
-#He died at an age of 65 years, 5 month 17 days according to the books:
-#> Date(1876,5,7)-(65,5,17)
-#1811-12-21
-#> Date(1876,5,7)-Date(1811,12,21)
-#(64, 4, 17)
-#But his correct birth date is 1810-11-20:
-#("Date(1876,5,7)-Date(1810,11,20)", "(65, 5, 18)")
+        # Date +/- Date -> tuple
         ("Date(1876,5,7) - Date(1876,5,1)", "(0, 0, 6)"),
         ("Date(1876,5,7) - Date(1876,4,30)", "(0, 0, 7)"),
         ("Date(2000,1,1) - Date(1999,2,1)", "(0, 11, 0)"),
         ("Date(2000,1,1) - Date(1999,12,1)", "(0, 1, 0)"),
-        # Date +/- Date -> tuple
         ("Date(2007, 12, 23) - Date(1963, 12, 4)", "(44, 0, 19)"),
         ]
     suite = unittest.TestSuite()            
@@ -195,3 +372,4 @@ def suite2():
 if __name__ == "__main__":
     unittest.TextTestRunner().run(suite())
     unittest.TextTestRunner().run(suite2())
+    unittest.TextTestRunner().run(suite3())

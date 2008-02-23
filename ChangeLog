@@ -1,3 +1,8 @@
+2008-02-23  Douglas S. Blank <dblank@cs.brynmawr.edu>
+	* src/date_test.py: removed file; moved tests to:
+	* src/gen/lib/test/date_test.py (suite3): new tests
+	moved tests from src/date_test.py into unit-test framework
+
 2008-02-22 Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditFamily.py: Add fallback dates for birth and death
 	Bug #1785
