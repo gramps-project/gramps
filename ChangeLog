@@ -1,3 +1,6 @@
+2008-02-23 Jerome Rapinat <romjerome@yahoo.fr>
+        * configure.in : allow Slovenian support
+
 2008-02-22  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* ViewManager.py
 	* gen/db/iterator.py
