@@ -50,7 +50,7 @@ LOG = logging.getLogger(".GrampsDb")
 from gen.lib import (MediaObject, Person, Family, Source, Event, Place, 
                      Repository, Note, GenderStats, Researcher)
 from gen.utils.callback import Callback
-from iterator import CursorIterator
+from gen.db.iterator import CursorIterator
 
 #-------------------------------------------------------------------------
 #
@@ -176,9 +176,10 @@ class GrampsDbBase(Callback):
 
     def __init__(self):
         """
-        Creates a new GrampsDbBase instance. A new GrampDbBase class should
-        never be directly created. Only classes derived from this class should
-        be created.
+        Create a new GrampsDbBase instance. 
+        
+        A new GrampDbBase class should never be directly created. Only classes 
+        derived from this class should be created.
         """
 
         Callback.__init__(self)
@@ -268,20 +269,20 @@ class GrampsDbBase(Callback):
 
     def set_prefixes(self, person, media, family, source, place, event,
                      repository, note):
-        self.iprefix = person
-        self.oprefix = media
-        self.fprefix = family
-        self.sprefix = source
-        self.pprefix = place
-        self.eprefix = event
-        self.rprefix = repository
-        self.nprefix = note
+        self.person_prefix = person
+        self.mediaobject_prefix = media
+        self.family_prefix = family
+        self.source_prefix = source
+        self.place_prefix = place
+        self.event_prefix = event
+        self.repository_prefix = repository
+        self.note_prefix = note
 
     def rebuild_secondary(self, callback):
         pass
 
     def version_supported(self):
-        """ Returns True when the file has a supported version"""
+        """Return True when the file has a supported version."""
         return True
 
     def need_upgrade(self):
@@ -382,14 +383,16 @@ class GrampsDbBase(Callback):
 
     def load(self, name, callback, mode="w"):
         """
-        Opens the specified database. The method needs to be overridden
-        in the derived class.
+        Open the specified database. 
+        
+        The method needs to be overridden in the derived class.
         """
         raise NotImplementedError
 
     def load_from(self, other_database, filename, callback):
         """
-        Loads data from the other database into itself.
+        Load data from the other database into itself.
+        
         The filename is the name of the file for the newly created database.
         The method needs to be overridden in the derived class.
         """
@@ -397,20 +400,21 @@ class GrampsDbBase(Callback):
 
     def close(self):
         """
-        Closes the specified database. The method needs to be overridden
-        in the derived class.
+        Close the specified database. 
+        
+        The method needs to be overridden in the derived class.
         """
         pass
         
     def is_open(self):
         """
-        Returns 1 if the database has been opened.
+        Return 1 if the database has been opened.
         """
         return self.db_is_open
 
     def request_rebuild(self):
         """
-        Notifies clients that the data has changed significantly, and that all
+        Notify clients that the data has changed significantly, and that all
         internal data dependent on the database should be rebuilt.
         """
         self.emit('person-rebuild')
@@ -425,8 +429,8 @@ class GrampsDbBase(Callback):
     def commit_base(self, obj, data_map, key, update_list, add_list, 
                      transaction, change_time):
         """
-        Commits the specified Person to the database, storing the changes
-        as part of the transaction.
+        Commit the specified Person to the database, storing the changes as 
+        part of the transaction.
         """
         if self.readonly or not obj or not obj.handle:
             return 
@@ -454,8 +458,8 @@ class GrampsDbBase(Callback):
 
     def commit_person(self, person, transaction, change_time=None):
         """
-        Commits the specified Person to the database, storing the changes
-        as part of the transaction.
+        Commit the specified Person to the database, storing the changes as 
+        part of the transaction.
         """
 
         old_data = self.commit_base(
@@ -501,7 +505,7 @@ class GrampsDbBase(Callback):
 
     def commit_media_object(self, obj, transaction, change_time=None):
         """
-        Commits the specified MediaObject to the database, storing the changes
+        Commit the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
         
@@ -514,8 +518,8 @@ class GrampsDbBase(Callback):
             
     def commit_source(self, source, transaction, change_time=None):
         """
-        Commits the specified Source to the database, storing the changes
-        as part of the transaction.
+        Commit the specified Source to the database, storing the changes as 
+        part of the transaction.
         """
 
         self.commit_base(source, self.source_map, SOURCE_KEY, 
@@ -534,8 +538,8 @@ class GrampsDbBase(Callback):
 
     def commit_place(self, place, transaction, change_time=None):
         """
-        Commits the specified Place to the database, storing the changes
-        as part of the transaction.
+        Commit the specified Place to the database, storing the changes as 
+        part of the transaction.
         """
 
         self.commit_base(place, self.place_map, PLACE_KEY, 
@@ -563,8 +567,8 @@ class GrampsDbBase(Callback):
 
     def commit_event(self, event, transaction, change_time=None):
         """
-        Commits the specified Event to the database, storing the changes
-        as part of the transaction.
+        Commit the specified Event to the database, storing the changes as 
+        part of the transaction.
         """
         self.commit_base(event, self.event_map, EVENT_KEY, 
                           transaction.event_update, transaction.event_add, 
@@ -578,8 +582,8 @@ class GrampsDbBase(Callback):
 
     def commit_family(self, family, transaction, change_time=None):
         """
-        Commits the specified Family to the database, storing the changes
-        as part of the transaction.
+        Commit the specified Family to the database, storing the changes as 
+        part of the transaction.
         """
 
         self.commit_base(family, self.family_map, FAMILY_KEY, 
@@ -613,7 +617,7 @@ class GrampsDbBase(Callback):
 
     def commit_repository(self, repository, transaction, change_time=None):
         """
-        Commits the specified Repository to the database, storing the changes
+        Commit the specified Repository to the database, storing the changes
         as part of the transaction.
         """
         self.commit_base(repository, self.repository_map, REPOSITORY_KEY, 
@@ -629,8 +633,8 @@ class GrampsDbBase(Callback):
 
     def commit_note(self, note, transaction, change_time=None):
         """
-        Commits the specified Note to the database, storing the changes
-        as part of the transaction.
+        Commit the specified Note to the database, storing the changes as part 
+        of the transaction.
         """
         self.commit_base(note, self.note_map, NOTE_KEY, 
                           transaction.note_update,
@@ -642,97 +646,97 @@ class GrampsDbBase(Callback):
 
     def find_next_person_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a Person object based
-        off the person ID prefix.
+        Return the next available GRAMPS' ID for a Person object based off the 
+        person ID prefix.
         """
-        index = self.iprefix % self.pmap_index
+        index = self.person_prefix % self.pmap_index
         while self.id_trans.has_key(str(index)):
             self.pmap_index += 1
-            index = self.iprefix % self.pmap_index
+            index = self.person_prefix % self.pmap_index
         self.pmap_index += 1
         return index
 
     def find_next_place_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a Place object based
-        off the person ID prefix.
+        Return the next available GRAMPS' ID for a Place object based off the 
+        place ID prefix.
         """
-        index = self.pprefix % self.lmap_index
+        index = self.place_prefix % self.lmap_index
         while self.pid_trans.has_key(str(index)):
             self.lmap_index += 1
-            index = self.pprefix % self.lmap_index
+            index = self.place_prefix % self.lmap_index
         self.lmap_index += 1
         return index
 
     def find_next_event_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a Event object based
-        off the person ID prefix.
+        Return the next available GRAMPS' ID for a Event object based off the 
+        event ID prefix.
         """
-        index = self.eprefix % self.emap_index
+        index = self.event_prefix % self.emap_index
         while self.eid_trans.has_key(str(index)):
             self.emap_index += 1
-            index = self.eprefix % self.emap_index
+            index = self.event_prefix % self.emap_index
         self.emap_index += 1
         return index
 
     def find_next_object_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a MediaObject object based
-        off the person ID prefix.
+        Return the next available GRAMPS' ID for a MediaObject object based
+        off the media object ID prefix.
         """
-        index = self.oprefix % self.omap_index
+        index = self.mediaobject_prefix % self.omap_index
         while self.oid_trans.has_key(str(index)):
             self.omap_index += 1
-            index = self.oprefix % self.omap_index
+            index = self.mediaobject_prefix % self.omap_index
         self.omap_index += 1
         return index
 
     def find_next_source_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a Source object based
-        off the person ID prefix.
+        Return the next available GRAMPS' ID for a Source object based off the 
+        source ID prefix.
         """
-        index = self.sprefix % self.smap_index
+        index = self.source_prefix % self.smap_index
         while self.sid_trans.has_key(str(index)):
             self.smap_index += 1
-            index = self.sprefix % self.smap_index
+            index = self.source_prefix % self.smap_index
         self.smap_index += 1
         return index
 
     def find_next_family_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a Family object based
-        off the person ID prefix.
+        Return the next available GRAMPS' ID for a Family object based off the 
+        family ID prefix.
         """
-        index = self.fprefix % self.fmap_index
+        index = self.family_prefix % self.fmap_index
         while self.fid_trans.has_key(str(index)):
             self.fmap_index += 1
-            index = self.fprefix % self.fmap_index
+            index = self.family_prefix % self.fmap_index
         self.fmap_index += 1
         return index
 
     def find_next_repository_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a Respository object based
+        Return the next available GRAMPS' ID for a Respository object based 
         off the repository ID prefix.
         """
-        index = self.rprefix % self.rmap_index
+        index = self.repository_prefix % self.rmap_index
         while self.rid_trans.has_key(str(index)):
             self.rmap_index += 1
-            index = self.rprefix % self.rmap_index
+            index = self.repository_prefix % self.rmap_index
         self.rmap_index += 1
         return index
 
     def find_next_note_gramps_id(self):
         """
-        Returns the next available GRAMPS' ID for a Note object based
-        off the repository ID prefix.
+        Return the next available GRAMPS' ID for a Note object based off the 
+        note ID prefix.
         """
-        index = self.nprefix % self.nmap_index
+        index = self.note_prefix % self.nmap_index
         while self.nid_trans.has_key(str(index)):
             self.nmap_index += 1
-            index = self.nprefix % self.nmap_index
+            index = self.note_prefix % self.nmap_index
         self.nmap_index += 1
         return index
 
@@ -746,56 +750,64 @@ class GrampsDbBase(Callback):
 
     def get_person_from_handle(self, handle):
         """
-        Finds a Person in the database from the passed gramps' ID.
+        Find a Person in the database from the passed gramps' ID.
+        
         If no such Person exists, None is returned.
         """
         return self.get_from_handle(handle, Person, self.person_map)
 
     def get_source_from_handle(self, handle):
         """
-        Finds a Source in the database from the passed gramps' ID.
+        Find a Source in the database from the passed gramps' ID.
+        
         If no such Source exists, None is returned.
         """
         return self.get_from_handle(handle, Source, self.source_map)
 
     def get_object_from_handle(self, handle):
         """
-        Finds an Object in the database from the passed gramps' ID.
+        Find an Object in the database from the passed gramps' ID.
+        
         If no such Object exists, None is returned.
         """
         return self.get_from_handle(handle, MediaObject, self.media_map)
 
     def get_place_from_handle(self, handle):
         """
-        Finds a Place in the database from the passed gramps' ID.
+        Find a Place in the database from the passed gramps' ID.
+        
         If no such Place exists, None is returned.
         """
         return self.get_from_handle(handle, Place, self.place_map)
 
     def get_event_from_handle(self, handle):
         """
-        Finds a Event in the database from the passed gramps' ID.
+        Find a Event in the database from the passed gramps' ID.
+        
         If no such Event exists, None is returned.
         """
         return self.get_from_handle(handle, Event, self.event_map)
 
     def get_family_from_handle(self, handle):
         """
-        Finds a Family in the database from the passed gramps' ID.
+        Find a Family in the database from the passed gramps' ID.
+        
         If no such Family exists, None is returned.
         """
         return self.get_from_handle(handle, Family, self.family_map)
 
     def get_repository_from_handle(self, handle):
         """
-        Finds a Repository in the database from the passed gramps' ID.
+        Find a Repository in the database from the passed gramps' ID.
+        
         If no such Repository exists, None is returned.
         """
         return self.get_from_handle(handle, Repository, self.repository_map)
 
     def get_note_from_handle(self, handle):
         """
-        Finds a Note in the database from the passed gramps' ID.
+        Find a Note in the database from the passed gramps' ID.
+        
         If no such Note exists, None is returned.
         """
         return self.get_from_handle(handle, Note, self.note_map)
@@ -821,7 +833,8 @@ class GrampsDbBase(Callback):
 
     def find_person_from_handle(self, handle, transaction):
         """
-        Finds a Person in the database from the passed GRAMPS ID.
+        Find a Person in the database from the passed handle.
+        
         If no such Person exists, a new Person is added to the database.
         """
         return self.find_from_handle(handle, transaction, Person, 
@@ -829,7 +842,8 @@ class GrampsDbBase(Callback):
 
     def find_source_from_handle(self, handle, transaction):
         """
-        Finds a Source in the database from the passed handle.
+        Find a Source in the database from the passed handle.
+        
         If no such Source exists, a new Source is added to the database.
         """
         return self.find_from_handle(handle, transaction, Source, 
@@ -837,7 +851,8 @@ class GrampsDbBase(Callback):
 
     def find_event_from_handle(self, handle, transaction):
         """
-        Finds a Event in the database from the passed handle.
+        Find a Event in the database from the passed handle.
+        
         If no such Event exists, a new Event is added to the database.
         """
         return self.find_from_handle(handle, transaction, Event, 
@@ -845,7 +860,8 @@ class GrampsDbBase(Callback):
 
     def find_object_from_handle(self, handle, transaction):
         """
-        Finds an MediaObject in the database from the passed handle.
+        Find a MediaObject in the database from the passed handle.
+        
         If no such MediaObject exists, a new Object is added to the database.
         """
         return self.find_from_handle(handle, transaction, MediaObject, 
@@ -853,7 +869,8 @@ class GrampsDbBase(Callback):
 
     def find_place_from_handle(self, handle, transaction):
         """
-        Finds a Place in the database from the passed handle.
+        Find a Place in the database from the passed handle.
+        
         If no such Place exists, a new Place is added to the database.
         """
         return self.find_from_handle(handle, transaction, Place, 
@@ -861,7 +878,8 @@ class GrampsDbBase(Callback):
 
     def find_family_from_handle(self, handle, transaction):
         """
-        Finds a Family in the database from the passed handle.
+        Find a Family in the database from the passed handle.
+        
         If no such Family exists, a new Family is added to the database.
         """
         return self.find_from_handle(handle, transaction, Family, 
@@ -869,7 +887,8 @@ class GrampsDbBase(Callback):
 
     def find_repository_from_handle(self, handle, transaction):
         """
-        Finds a Repository in the database from the passed handle.
+        Find a Repository in the database from the passed handle.
+        
         If no such Repository exists, a new Repository is added to the database.
         """
         return self.find_from_handle(handle, transaction, Repository, 
@@ -877,7 +896,8 @@ class GrampsDbBase(Callback):
 
     def find_note_from_handle(self, handle, transaction):
         """
-        Finds a Note in the database from the passed handle.
+        Find a Note in the database from the passed handle.
+        
         If no such Note exists, a new Note is added to the database.
         """
         return self.find_from_handle(handle, transaction, Note, 
@@ -885,7 +905,8 @@ class GrampsDbBase(Callback):
 
     def check_person_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether a Person with the passed handle exists in the database.
+        Check whether a Person with the passed handle exists in the database.
+        
         If no such Person exists, a new Person is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
@@ -895,7 +916,8 @@ class GrampsDbBase(Callback):
 
     def check_source_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether a Source with the passed handle exists in the database.
+        Check whether a Source with the passed handle exists in the database.
+        
         If no such Source exists, a new Source is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
@@ -905,7 +927,8 @@ class GrampsDbBase(Callback):
                                 
     def check_event_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether an Event with the passed handle exists in the database.
+        Check whether an Event with the passed handle exists in the database.
+        
         If no such Event exists, a new Event is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
@@ -915,9 +938,10 @@ class GrampsDbBase(Callback):
 
     def check_object_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether a MediaObject with the passed handle exists in
-        the database. If no such MediaObject exists, a new Object is
-        added to the database.
+        Check whether a MediaObject with the passed handle exists in the 
+        database. 
+        
+        If no such MediaObject exists, a new Object is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
 
@@ -927,7 +951,8 @@ class GrampsDbBase(Callback):
 
     def check_place_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether a Place with the passed handle exists in the database.
+        Check whether a Place with the passed handle exists in the database.
+        
         If no such Place exists, a new Place is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
@@ -937,7 +962,8 @@ class GrampsDbBase(Callback):
 
     def check_family_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether a Family with the passed handle exists in the database.
+        Check whether a Family with the passed handle exists in the database.
+        
         If no such Family exists, a new Family is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
@@ -947,9 +973,10 @@ class GrampsDbBase(Callback):
 
     def check_repository_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether a Repository with the passed handle exists in the
-        database. If no such Repository exists, a new Repository is added
-        to the database.
+        Check whether a Repository with the passed handle exists in the
+        database. 
+        
+        If no such Repository exists, a new Repository is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Repository, 
@@ -958,9 +985,9 @@ class GrampsDbBase(Callback):
 
     def check_note_from_handle(self, handle, transaction, set_gid=True):
         """
-        Checks whether a Note with the passed handle exists in the
-        database. If no such Note exists, a new Note is added
-        to the database.
+        Check whether a Note with the passed handle exists in the database. 
+        
+        If no such Note exists, a new Note is added to the database.
         If set_gid then a new gramps_id is created, if not, None is used.
         """
         self.__check_from_handle(handle, transaction, Note, 
@@ -969,72 +996,72 @@ class GrampsDbBase(Callback):
 
     def get_person_from_gramps_id(self, val):
         """
-        Finds a Person in the database from the passed GRAMPS ID.
+        Find a Person in the database from the passed GRAMPS ID.
+        
         If no such Person exists, None is returned.
-
         Needs to be overridden by the derrived class.
         """
         raise NotImplementedError
 
     def get_family_from_gramps_id(self, val):
         """
-        Finds a Family in the database from the passed GRAMPS ID.
+        Find a Family in the database from the passed GRAMPS ID.
+        
         If no such Family exists, None is returned.
-
-        Needs to be overridden by the derrived class.
+        Need to be overridden by the derrived class.
         """
         raise NotImplementedError
 
     def get_event_from_gramps_id(self, val):
         """
-        Finds an Event in the database from the passed GRAMPS ID.
+        Find an Event in the database from the passed GRAMPS ID.
+        
         If no such Event exists, None is returned.
-
         Needs to be overridden by the derrived class.
         """
         raise NotImplementedError
 
     def get_place_from_gramps_id(self, val):
         """
-        Finds a Place in the database from the passed gramps' ID.
+        Find a Place in the database from the passed gramps' ID.
+        
         If no such Place exists, None is returned.
-
         Needs to be overridden by the derrived class.
         """
         raise NotImplementedError
 
     def get_source_from_gramps_id(self, val):
         """
-        Finds a Source in the database from the passed gramps' ID.
+        Find a Source in the database from the passed gramps' ID.
+        
         If no such Source exists, None is returned.
-
         Needs to be overridden by the derrived class.
         """
         raise NotImplementedError
 
     def get_object_from_gramps_id(self, val):
         """
-        Finds a MediaObject in the database from the passed gramps' ID.
-        If no such MediaObject exists, None is returned.
+        Find a MediaObject in the database from the passed gramps' ID.
 
+        If no such MediaObject exists, None is returned.
         Needs to be overridden by the derrived class.
         """
         raise NotImplementedError
 
     def get_repository_from_gramps_id(self, val):
         """
-        Finds a Repository in the database from the passed gramps' ID.
-        If no such Repository exists, None is returned.
+        Find a Repository in the database from the passed gramps' ID.
 
+        If no such Repository exists, None is returned.
         Needs to be overridden by the derrived class.
         """
         raise NotImplementedError
 
     def get_note_from_gramps_id(self, val):
         """
-        Finds a Note in the database from the passed gramps' ID.
-        If no such Note exists, None is returned.
+        Find a Note in the database from the passed gramps' ID.
 
+        If no such Note exists, None is returned.
         Needs to be overridden by the derrived class.
         """
         raise NotImplementedError
@@ -1051,9 +1078,10 @@ class GrampsDbBase(Callback):
 
     def add_person(self, person, transaction, set_gid=True):
         """
-        Adds a Person to the database, assigning internal IDs if they have
+        Add a Person to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(person, transaction, 
@@ -1066,9 +1094,10 @@ class GrampsDbBase(Callback):
 
     def add_family(self, family, transaction, set_gid=True):
         """
-        Adds a Family to the database, assigning internal IDs if they have
+        Add a Family to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(family, transaction, 
@@ -1081,9 +1110,10 @@ class GrampsDbBase(Callback):
 
     def add_source(self, source, transaction, set_gid=True):
         """
-        Adds a Source to the database, assigning internal IDs if they have
+        Add a Source to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(source, transaction, 
@@ -1096,9 +1126,10 @@ class GrampsDbBase(Callback):
 
     def add_event(self, event, transaction, set_gid=True):
         """
-        Adds an Event to the database, assigning internal IDs if they have
+        Add an Event to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(event, transaction, 
@@ -1111,7 +1142,7 @@ class GrampsDbBase(Callback):
 
     def add_person_event(self, event, transaction):
         """
-        Adds an Event to the database, assigning internal IDs if they have
+        Add an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
         if event.type.is_custom():
@@ -1120,7 +1151,7 @@ class GrampsDbBase(Callback):
 
     def add_family_event(self, event, transaction):
         """
-        Adds an Event to the database, assigning internal IDs if they have
+        Add an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
         if event.type.is_custom():
@@ -1129,9 +1160,10 @@ class GrampsDbBase(Callback):
 
     def add_place(self, place, transaction, set_gid=True):
         """
-        Adds a Place to the database, assigning internal IDs if they have
+        Add a Place to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(place, transaction, 
@@ -1144,9 +1176,10 @@ class GrampsDbBase(Callback):
 
     def add_object(self, obj, transaction, set_gid=True):
         """
-        Adds a MediaObject to the database, assigning internal IDs if they have
+        Add a MediaObject to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(obj, transaction, 
@@ -1159,9 +1192,10 @@ class GrampsDbBase(Callback):
 
     def add_repository(self, obj, transaction, set_gid=True):
         """
-        Adds a Repository to the database, assigning internal IDs if they have
+        Add a Repository to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(obj, transaction, 
@@ -1174,9 +1208,10 @@ class GrampsDbBase(Callback):
 
     def add_note(self, obj, transaction, set_gid=True):
         """
-        Adds a Note to the database, assigning internal IDs if they have
+        Add a Note to the database, assigning internal IDs if they have
         not already been defined.
-        If not set_gid, then gramps_id is not set
+        
+        If not set_gid, then gramps_id is not set.
         """
         if set_gid:
             return self.__add_object(obj, transaction, 
@@ -1189,32 +1224,33 @@ class GrampsDbBase(Callback):
 
     def get_name_group_mapping(self, name):
         """
-        Returns the default grouping name for a surname
+        Return the default grouping name for a surname.
         """
         return unicode(self.name_group.get(str(name), name))
 
     def get_name_group_keys(self):
         """
-        Returns the defined names that have been assigned to a default grouping
+        Return the defined names that have been assigned to a default grouping.
         """
         return [unicode(k) for k in self.name_group.keys()]
 
     def has_name_group_key(self, name):
         """
-        Return if a key exists in the name_group table
+        Return if a key exists in the name_group table.
         """
         return self.name_group.has_key(str(name))
 
     def set_name_group_mapping(self, name, group):
         """
-        Sets the default grouping name for a surname. Needs to be overridden
-        in the derived class.
+        Set the default grouping name for a surname. 
+        
+        Needs to be overridden in the derived class.
         """
         raise NotImplementedError
 
     def get_number_of_people(self):
         """
-        Returns the number of people currently in the databse.
+        Return the number of people currently in the database.
         """
         if self.db_is_open:
             return len(self.person_map)
@@ -1223,43 +1259,43 @@ class GrampsDbBase(Callback):
 
     def get_number_of_families(self):
         """
-        Returns the number of families currently in the databse.
+        Return the number of families currently in the database.
         """
         return len(self.family_map)
 
     def get_number_of_events(self):
         """
-        Returns the number of events currently in the databse.
+        Return the number of events currently in the database.
         """
         return len(self.event_map)
 
     def get_number_of_places(self):
         """
-        Returns the number of places currently in the databse.
+        Return the number of places currently in the database.
         """
         return len(self.place_map)
 
     def get_number_of_sources(self):
         """
-        Returns the number of sources currently in the databse.
+        Return the number of sources currently in the database.
         """
         return len(self.source_map)
 
     def get_number_of_media_objects(self):
         """
-        Returns the number of media objects currently in the databse.
+        Return the number of media objects currently in the database.
         """
         return len(self.media_map)
 
     def get_number_of_repositories(self):
         """
-        Returns the number of source repositories currently in the databse.
+        Return the number of source repositories currently in the database.
         """
         return len(self.repository_map)
 
     def get_number_of_notes(self):
         """
-        Returns the number of notes currently in the databse.
+        Return the number of notes currently in the database.
         """
         return len(self.note_map)
 
@@ -1268,8 +1304,10 @@ class GrampsDbBase(Callback):
 
     def get_person_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Person in
-        the database. If sort_handles is True, the list is sorted by surnames
+        Return a list of database handles, one handle for each Person in
+        the database. 
+        
+        If sort_handles is True, the list is sorted by surnames.
         """
         if self.db_is_open:
             if sort_handles:
@@ -1288,9 +1326,10 @@ class GrampsDbBase(Callback):
 
     def get_place_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Place in
-        the database. If sort_handles is True, the list is sorted by
-        Place title.
+        Return a list of database handles, one handle for each Place in
+        the database. 
+        
+        If sort_handles is True, the list is sorted by Place title.
         """
         if self.db_is_open:
             if sort_handles:
@@ -1310,9 +1349,10 @@ class GrampsDbBase(Callback):
 
     def get_source_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Source in
-        the database. If sort_handles is True, the list is sorted by
-        Source title.
+        Return a list of database handles, one handle for each Source in
+        the database.
+        
+         If sort_handles is True, the list is sorted by Source title.
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.source_map)
@@ -1323,8 +1363,10 @@ class GrampsDbBase(Callback):
 
     def get_media_object_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each MediaObject in
-        the database. If sort_handles is True, the list is sorted by title.
+        Return a list of database handles, one handle for each MediaObject in
+        the database. 
+        
+        If sort_handles is True, the list is sorted by title.
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.media_map)
@@ -1335,8 +1377,8 @@ class GrampsDbBase(Callback):
 
     def get_event_handles(self):
         """
-        Returns a list of database handles, one handle for each Event in
-        the database. 
+        Return a list of database handles, one handle for each Event in the 
+        database. 
         """
         if self.db_is_open:
             return self.all_handles(self.event_map)
@@ -1344,7 +1386,7 @@ class GrampsDbBase(Callback):
 
     def get_family_handles(self):
         """
-        Returns a list of database handles, one handle for each Family in
+        Return a list of database handles, one handle for each Family in
         the database.
         """
         if self.db_is_open:
@@ -1353,7 +1395,7 @@ class GrampsDbBase(Callback):
 
     def get_repository_handles(self):
         """
-        Returns a list of database handles, one handle for each Repository in
+        Return a list of database handles, one handle for each Repository in
         the database.
         """
         if self.db_is_open:
@@ -1362,8 +1404,8 @@ class GrampsDbBase(Callback):
 
     def get_note_handles(self):
         """
-        Returns a list of database handles, one handle for each Note in
-        the database.
+        Return a list of database handles, one handle for each Note in the 
+        database.
         """
         if self.db_is_open:
             return self.all_handles(self.note_map)
@@ -1425,80 +1467,88 @@ class GrampsDbBase(Callback):
     
     def set_person_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Person ID values. The string is
-        expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as I%d
-        or I%04d.
+        Set the naming template for GRAMPS Person ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as I%d or I%04d.
         """
-        self.iprefix = self._validated_id_prefix(val, "I")
+        self.person_prefix = self._validated_id_prefix(val, "I")
             
     def set_source_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Source ID values. The string is
-        expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as S%d
-        or S%04d.
+        Set the naming template for GRAMPS Source ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as S%d or S%04d.
         """
-        self.sprefix = self._validated_id_prefix(val, "S")
+        self.source_prefix = self._validated_id_prefix(val, "S")
             
     def set_object_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS MediaObject ID values. The string
-        is expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as O%d
-        or O%04d.
+        Set the naming template for GRAMPS MediaObject ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as O%d or O%04d.
         """
-        self.oprefix = self._validated_id_prefix(val, "O")
+        self.mediaobject_prefix = self._validated_id_prefix(val, "O")
 
     def set_place_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Place ID values. The string is
-        expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as P%d
-        or P%04d.
+        Set the naming template for GRAMPS Place ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as P%d or P%04d.
         """
-        self.pprefix = self._validated_id_prefix(val, "P")
+        self.place_prefix = self._validated_id_prefix(val, "P")
 
     def set_family_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Family ID values. The string is
+        Set the naming template for GRAMPS Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
         """
-        self.fprefix = self._validated_id_prefix(val, "F")
+        self.family_prefix = self._validated_id_prefix(val, "F")
 
     def set_event_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Event ID values. The string is
-        expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as E%d
-        or E%04d.
+        Set the naming template for GRAMPS Event ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as E%d or E%04d.
         """
-        self.eprefix = self._validated_id_prefix(val, "E")
+        self.event_prefix = self._validated_id_prefix(val, "E")
 
     def set_repository_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Repository ID values. The string is
-        expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as R%d
-        or R%04d.
+        Set the naming template for GRAMPS Repository ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as R%d or R%04d.
         """
-        self.rprefix = self._validated_id_prefix(val, "R")
+        self.repository_prefix = self._validated_id_prefix(val, "R")
 
     def set_note_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Note ID values. The string is
-        expected to be in the form of a simple text string, or in a format
-        that contains a C/Python style format string using %d, such as N%d
-        or N%04d.
+        Set the naming template for GRAMPS Note ID values. 
+        
+        The string is expected to be in the form of a simple text string, or 
+        in a format that contains a C/Python style format string using %d, 
+        such as N%d or N%04d.
         """
-        self.nprefix = self._validated_id_prefix(val, "N")
+        self.note_prefix = self._validated_id_prefix(val, "N")
 
     def transaction_begin(self, msg="", batch=False, no_magic=False):
         """
-        Creates a new Transaction tied to the current UNDO database. The
-        transaction has no effect until it is committed using the
+        Create a new Transaction tied to the current UNDO database. 
+        
+        The transaction has no effect until it is committed using the
         transaction_commit function of the this database object.
         """
         if self._LOG_ALL:
@@ -1516,7 +1566,7 @@ class GrampsDbBase(Callback):
 
     def transaction_commit(self, transaction, msg):
         """
-        Commits the transaction to the assocated UNDO database.
+        Commit the transaction to the assocated UNDO database.
         """
         if self._LOG_ALL:
             LOG.debug("%s: Transaction commit '%s'\n"
@@ -1609,7 +1659,7 @@ class GrampsDbBase(Callback):
 
     def undo_available(self):
         """
-        returns boolean of whether or not there's a possibility of undo
+        Return boolean of whether or not there's a possibility of undo.
         """
         if self.undoindex == -1 or self.readonly:
             return False
@@ -1617,7 +1667,7 @@ class GrampsDbBase(Callback):
         
     def redo_available(self):
         """
-        returns boolean of whether or not there's a possibility of redo
+        Return boolean of whether or not there's a possibility of redo.
         """
         if self.undoindex >= _UNDO_SIZE or self.readonly:
             return False
@@ -1629,8 +1679,8 @@ class GrampsDbBase(Callback):
         
     def undo(self, update_history=True):
         """
-        Accesses the last committed transaction, and reverts the data to
-        the state before the transaction was committed.
+        Access the last committed transaction, and revert the data to the 
+        state before the transaction was committed.
         """
         if not self.undo_available():
             return False
@@ -1672,8 +1722,8 @@ class GrampsDbBase(Callback):
 
     def redo(self, update_history=True):
         """
-        Accesses the last undone transaction, and reverts the data to
-        the state before the transaction was undone.
+        Accesse the last undone transaction, and revert the data to the state 
+        before the transaction was undone.
         """
 
         if not self.redo_available():
@@ -1729,29 +1779,34 @@ class GrampsDbBase(Callback):
     
     def set_undo_callback(self, callback):
         """
-        Defines the callback function that is called whenever an undo operation
-        is executed. The callback function recieves a single argument that is a
-        text string that defines the operation.
+        Define the callback function that is called whenever an undo operation
+        is executed. 
+        
+        The callback function receives a single argument that is a text string 
+        that defines the operation.
         """
         self.undo_callback = callback
 
     def set_redo_callback(self, callback):
         """
-        Defines the callback function that is called whenever an redo operation
-        is executed. The callback function recieves a single argument that is a
-        text string that defines the operation.
+        Define the callback function that is called whenever an redo operation
+        is executed. 
+        
+        The callback function receives a single argument that is a text string 
+        that defines the operation.
         """
         self.redo_callback = callback
 
     def get_surname_list(self):
         """
-        Returns the list of locale-sorted surnames contained in the database.
+        Return the list of locale-sorted surnames contained in the database.
         """
         return self.surname_list
 
     def build_surname_list(self):
         """
-        Builds the list of locale-sorted surnames contained in the database.
+        Build the list of locale-sorted surnames contained in the database.
+        
         The function must be overridden in the derived class.
         """
         raise NotImplementedError
@@ -1772,59 +1827,63 @@ class GrampsDbBase(Callback):
     def remove_from_surname_list(self, person):
         """
         Check whether there are persons with the same surname left in
-        the database. If not then we need to remove the name from the list.
+        the database. 
+        
+        If not then we need to remove the name from the list.
         The function must be overridden in the derived class.
         """
         raise NotImplementedError
 
     def get_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """Return the list of Person handles in the bookmarks."""
         return self.bookmarks
 
     def get_family_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """Return the list of Person handles in the bookmarks."""
         return self.family_bookmarks
 
     def get_event_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """Return the list of Person handles in the bookmarks."""
         return self.event_bookmarks
 
     def get_place_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """Return the list of Person handles in the bookmarks."""
         return self.place_bookmarks
 
     def get_source_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """Return the list of Person handles in the bookmarks."""
         return self.source_bookmarks
 
     def get_media_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """Return the list of Person handles in the bookmarks."""
         return self.media_bookmarks
 
     def get_repo_bookmarks(self):
-        """returns the list of Person handles in the bookmarks"""
+        """Return the list of Person handles in the bookmarks."""
         return self.repo_bookmarks
 
     def get_note_bookmarks(self):
-        """returns the list of Note handles in the bookmarks"""
+        """Return the list of Note handles in the bookmarks."""
         return self.note_bookmarks
 
     def set_researcher(self, owner):
-        """sets the information about the owner of the database"""
+        """Set the information about the owner of the database."""
         self.owner.set_from(owner)
 
     def get_researcher(self):
-        """returns the Researcher instance, providing information about
-        the owner of the database"""
+        """
+        Return the Researcher instance, providing information about the owner 
+        of the database.
+        """
         return self.owner
 
     def set_default_person_handle(self, handle):
-        """sets the default Person to the passed instance"""
+        """Set the default Person to the passed instance."""
         if (self.metadata != None) and (not self.readonly):
             self.metadata['default'] = str(handle)
 
     def get_default_person(self):
-        """returns the default Person of the database"""
+        """Return the default Person of the database."""
         person = self.get_person_from_handle(self.get_default_handle())
         if person:
             return person
@@ -1833,93 +1892,122 @@ class GrampsDbBase(Callback):
         return None
 
     def get_default_handle(self):
-        """returns the default Person of the database"""
+        """Return the default Person of the database."""
         if self.metadata != None:
             return self.metadata.get('default')
         return None
 
     def get_save_path(self):
-        """returns the save path of the file, or "" if one does not exist"""
+        """Return the save path of the file, or "" if one does not exist."""
         return self.path
 
     def set_save_path(self, path):
-        """sets the save path for the database"""
+        """Set the save path for the database."""
         self.path = path
 
     def get_person_event_types(self):
-        """returns a list of all Event types assocated with Person
-        instances in the database"""
+        """
+        Return a list of all Event types assocated with Person instances in 
+        the database.
+        """
         return list(self.individual_event_names)
 
     def get_person_attribute_types(self):
-        """returns a list of all Attribute types assocated with Person
-        instances in the database"""
+        """
+        Return a list of all Attribute types assocated with Person instances 
+        in the database.
+        """
         return list(self.individual_attributes)
 
     def get_family_attribute_types(self):
-        """returns a list of all Attribute types assocated with Family
-        instances in the database"""
+        """
+        Return a list of all Attribute types assocated with Family instances 
+        in the database.
+        """
         return list(self.family_attributes)
 
     def get_family_event_types(self):
-        """returns a list of all Event types assocated with Family
-        instances in the database"""
+        """
+        Return a list of all Event types assocated with Family instances in 
+        the database.
+        """
         return list(self.family_event_names)
 
     def get_marker_types(self):
-        """return a list of all marker types available in the database"""
+        """
+        Return a list of all marker types available in the database.
+        """
         return list(self.marker_names)
         
     def get_media_attribute_types(self):
-        """returns a list of all Attribute types assocated with Media
-        and MediaRef instances in the database"""
+        """
+        Return a list of all Attribute types assocated with Media and MediaRef 
+        instances in the database.
+        """
         return list(self.media_attributes)
 
     def get_family_relation_types(self):
-        """returns a list of all relationship types assocated with Family
-        instances in the database"""
+        """
+        Return a list of all relationship types assocated with Family
+        instances in the database.
+        """
         return list(self.family_rel_types)
 
     def get_child_reference_types(self):
-        """returns a list of all child reference types assocated with Family
-        instances in the database"""
+        """
+        Return a list of all child reference types assocated with Family
+        instances in the database.
+        """
         return list(self.child_ref_types)
 
     def get_event_roles(self):
-        """returns a list of all custom event role names assocated with Event
-        instances in the database"""
+        """
+        Return a list of all custom event role names assocated with Event
+        instances in the database.
+        """
         return list(self.event_role_names)
 
     def get_name_types(self):
-        """returns a list of all custom names types assocated with Person
-        instances in the database"""
+        """
+        Return a list of all custom names types assocated with Person
+        instances in the database.
+        """
         return list(self.name_types)
 
     def get_repository_types(self):
-        """returns a list of all custom repository types assocated with
-        Repository instances in the database"""
+        """
+        Return a list of all custom repository types assocated with Repository 
+        instances in the database.
+        """
         return list(self.repository_types)
 
     def get_note_types(self):
-        """returns a list of all custom note types assocated with
-        Note instances in the database"""
+        """
+        Return a list of all custom note types assocated with Note instances 
+        in the database.
+        """
         return list(self.note_types)
 
     def get_source_media_types(self):
-        """returns a list of all custom source media types assocated with
-        Source instances in the database"""
+        """
+        Return a list of all custom source media types assocated with Source 
+        instances in the database.
+        """
         return list(self.source_media_types)
 
     def get_url_types(self):
-        """returns a list of all custom names types assocated with Url
-        instances in the database"""
+        """
+        Return a list of all custom names types assocated with Url instances 
+        in the database.
+        """
         return list(self.url_types)
 
     def remove_person(self, handle, transaction):
         """
-        Removes the Person specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the Person specified by the database handle from the database, 
+        preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
 
         if self.readonly or not handle:
@@ -1963,63 +2051,70 @@ class GrampsDbBase(Callback):
 
     def remove_source(self, handle, transaction):
         """
-        Removes the Source specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the Source specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         self.do_remove_object(handle, transaction, self.source_map, 
                               SOURCE_KEY, transaction.source_del)
 
     def remove_event(self, handle, transaction):
         """
-        Removes the Event specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the Event specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         self.do_remove_object(handle, transaction, self.event_map, 
                               EVENT_KEY, transaction.event_del)
 
     def remove_object(self, handle, transaction):
         """
-        Removes the MediaObjectPerson specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the MediaObjectPerson specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         self.do_remove_object(handle, transaction, self.media_map, 
                               MEDIA_KEY, transaction.media_del)
 
     def remove_place(self, handle, transaction):
         """
-        Removes the Place specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the Place specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         self.do_remove_object(handle, transaction, self.place_map, 
                               PLACE_KEY, transaction.place_del)
 
     def remove_family(self, handle, transaction):
         """
-        Removes the Family specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the Family specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         self.do_remove_object(handle, transaction, self.family_map, 
                               FAMILY_KEY, transaction.family_del)
 
     def remove_repository(self, handle, transaction):
         """
-        Removes the Repository specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the Repository specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         self.do_remove_object(handle, transaction, self.repository_map, 
                               REPOSITORY_KEY, transaction.repository_del)
 
     def remove_note(self, handle, transaction):
         """
-        Removes the Note specified by the database handle from the
-        database, preserving the change in the passed transaction. This
-        method must be overridden in the derived class.
+        Remove the Note specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        
+        This method must be overridden in the derived class.
         """
         self.do_remove_object(handle, transaction, self.note_map, 
                               NOTE_KEY, transaction.note_del)
@@ -2050,49 +2145,49 @@ class GrampsDbBase(Callback):
 
     def has_person_handle(self, handle):
         """
-        returns True if the handle exists in the current Person database.
+        Return True if the handle exists in the current Person database.
         """
         return self.person_map.has_key(str(handle))
 
     def has_event_handle(self, handle):
         """
-        returns True if the handle exists in the current Event database.
+        Return True if the handle exists in the current Event database.
         """
         return self.event_map.has_key(str(handle))
 
     def has_source_handle(self, handle):
         """
-        returns True if the handle exists in the current Source database.
+        Return True if the handle exists in the current Source database.
         """
         return self.source_map.has_key(str(handle))
 
     def has_place_handle(self, handle):
         """
-        returns True if the handle exists in the current Place database.
+        Return True if the handle exists in the current Place database.
         """
         return self.place_map.has_key(str(handle))
 
     def has_family_handle(self, handle):            
         """
-        returns True if the handle exists in the current Family database.
+        Return True if the handle exists in the current Family database.
         """
         return self.family_map.has_key(str(handle))
 
     def has_object_handle(self, handle):
         """
-        returns True if the handle exists in the current MediaObjectdatabase.
+        Return True if the handle exists in the current MediaObjectdatabase.
         """
         return self.media_map.has_key(str(handle))
 
     def has_repository_handle(self, handle):
         """
-        returns True if the handle exists in the current Repository database.
+        Return True if the handle exists in the current Repository database.
         """
         return self.repository_map.has_key(str(handle))
 
     def has_note_handle(self, handle):
         """
-        returns True if the handle exists in the current Note database.
+        Return True if the handle exists in the current Note database.
         """
         return self.note_map.has_key(str(handle))
 
@@ -2111,12 +2206,12 @@ class GrampsDbBase(Callback):
         return locale.strcoll(media1, media2)
 
     def set_mediapath(self, path):
-        """sets the default media path for database, path should be utf-8"""
+        """Set the default media path for database, path should be utf-8."""
         if (self.metadata != None) and (not self.readonly):
             self.metadata['mediapath'] = path
 
     def get_mediapath(self):
-        """returns the default media path of the database"""
+        """Return the default media path of the database."""
         if self.metadata != None:
             return self.metadata.get('mediapath', None)
         return None
@@ -2127,64 +2222,56 @@ class GrampsDbBase(Callback):
 
     def set_person_column_order(self, col_list):
         """
-        Stores the Person display common information in the
-        database's metadata.
+        Store the Person display common information in the database's metadata.
         """
         self.set_column_order(col_list, PERSON_COL_KEY)
 
     def set_family_list_column_order(self, col_list):
         """
-        Stores the Person display common information in the
-        database's metadata.
+        Store the Person display common information in the database's metadata.
         """
         self.set_column_order(col_list, FAMILY_COL_KEY)
 
     def set_child_column_order(self, col_list):
         """
-        Stores the Person display common information in the
-        database's metadata.
+        Store the Person display common information in the database's metadata.
         """
         self.set_column_order(col_list, CHILD_COL_KEY)
 
     def set_place_column_order(self, col_list):
         """
-        Stores the Place display common information in the
-        database's metadata.
+        Store the Place display common information in the database's metadata.
         """
         self.set_column_order(col_list, PLACE_COL_KEY)
 
     def set_source_column_order(self, col_list):
         """
-        Stores the Source display common information in the
-        database's metadata.
+        Store the Source display common information in the database's metadata.
         """
         self.set_column_order(col_list, SOURCE_COL_KEY)
 
     def set_media_column_order(self, col_list):
         """
-        Stores the Media display common information in the
-        database's metadata.
+        Store the Media display common information in the database's metadata.
         """
         self.set_column_order(col_list, MEDIA_COL_KEY)
 
     def set_event_column_order(self, col_list):
         """
-        Stores the Event display common information in the
-        database's metadata.
+        Store the Event display common information in the database's metadata.
         """
         self.set_column_order(col_list, EVENT_COL_KEY)
 
     def set_repository_column_order(self, col_list):
         """
-        Stores the Repository display common information in the
-        database's metadata.
+        Store the Repository display common information in the database's 
+        metadata.
         """
         self.set_column_order(col_list, REPOSITORY_COL_KEY)
 
     def set_note_column_order(self, col_list):
         """
-        Stores the Note display common information in the
-        database's metadata.
+        Store the Note display common information in the database's metadata.
         """
         self.set_column_order(col_list, NOTE_COL_KEY)
 
@@ -2200,8 +2287,8 @@ class GrampsDbBase(Callback):
 
     def get_person_column_order(self):
         """
-        Returns the Person display common information stored in the
-        database's metadata.
+        Return the Person display common information stored in the database's 
+        metadata.
         """
         default = [(1, 1, 100), (1, 2, 100), (1, 3, 150), (0, 4, 150),
                    (1, 5, 150), (0, 6, 150), (0, 7, 100), (0, 8, 100),
@@ -2223,8 +2310,8 @@ class GrampsDbBase(Callback):
         
     def get_family_list_column_order(self):
         """
-        Returns the Person display common information stored in the
-        database's metadata.
+        Return the Person display common information stored in the database's 
+        metadata.
         """
         default = [(1, 0, 75), (1, 1, 200), (1, 2, 200), (1, 3, 100),
                    (0, 4, 100)]
@@ -2232,8 +2319,8 @@ class GrampsDbBase(Callback):
 
     def get_child_column_order(self):
         """
-        Returns the Person display common information stored in the
-        database's metadata.
+        Return the Person display common information stored in the database's 
+        metadata.
         """
         default = [(1, 0), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
                    (0, 6), (0, 7)]
@@ -2241,8 +2328,8 @@ class GrampsDbBase(Callback):
 
     def get_place_column_order(self):
         """
-        Returns the Place display common information stored in the
-        database's metadata.
+        Return the Place display common information stored in thedatabase's 
+        metadata.
         """
         default = [(1, 0, 250), (1, 1, 75), (1, 11, 100), (0, 3, 100),
                    (1, 4, 100, ), (0, 5, 150), (1, 6, 150), (0, 7, 150),
@@ -2251,8 +2338,8 @@ class GrampsDbBase(Callback):
 
     def get_source_column_order(self):
         """
-        Returns the Source display common information stored in the
-        database's metadata.
+        Return the Source display common information stored in the database's 
+        metadata.
         """
         default = [(1, 0, 200), (1, 1, 75), (1, 2, 150), (0, 3, 100),
                    (1, 4, 150), (0, 5, 100)]
@@ -2260,7 +2347,7 @@ class GrampsDbBase(Callback):
 
     def get_media_column_order(self):
         """
-        Returns the MediaObject display common information stored in the
+        Return the MediaObject display common information stored in the
         database's metadata.
         """
         default = [(1, 0, 200, ), (1, 1, 75), (1, 2, 100), (1, 3, 200),
@@ -2269,8 +2356,8 @@ class GrampsDbBase(Callback):
 
     def get_event_column_order(self):
         """
-        Returns the Event display common information stored in the
-        database's metadata.
+        Return the Event display common information stored in the database's 
+        metadata.
         """
         default = [(1, 0, 200), (1, 1, 75), (1, 2, 100), (1, 3, 150),
                    (1, 4, 200), (0, 5, 100)]
@@ -2278,7 +2365,7 @@ class GrampsDbBase(Callback):
 
     def get_repository_column_order(self):
         """
-        Returns the Repository display common information stored in the
+        Return the Repository display common information stored in the
         database's metadata.
         """
         default = [(1, 0, 200), (1, 1, 75), (0, 5, 100), (0, 6, 100),
@@ -2288,34 +2375,40 @@ class GrampsDbBase(Callback):
 
     def get_note_column_order(self):
         """
-        Returns the Note display common information stored in the
-        database's metadata.
+        Return the Note display common information stored in the database's 
+        metadata.
         """
         default = [(1, 0, 350), (1, 1, 75), (1, 2, 100), (1, 3, 100)]
         return self.__get_columns(NOTE_COL_KEY, default)
 
     def delete_primary_from_reference_map(self, handle, transaction):
-        """Called each time an object is removed from the database. This can
-        be used by subclasses to update any additional index tables that might
-        need to be changed."""
+        """
+        Called each time an object is removed from the database. 
+        
+        This can be used by subclasses to update any additional index tables 
+        that might need to be changed.
+        """
         pass
 
     def update_reference_map(self, obj, transaction):
-        """Called each time an object is writen to the database. This can
-        be used by subclasses to update any additional index tables that might
-        need to be changed."""
+        """
+        Called each time an object is writen to the database. 
+        
+        This can be used by subclasses to update any additional index tables 
+        that might need to be changed.
+        """
         pass
 
     def reindex_reference_map(self, callback):
         """
         Reindex all primary records in the database.
-
         """
         pass
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.
+        
         Returns an interator over alist of (class_name, handle) tuples.
 
         @param handle: handle of the object to search for.
@@ -2391,27 +2484,29 @@ class GrampsDbBase(Callback):
         return
 
     def report_bm_change(self):
-        """method that adds 1 to the number of bookmark changes during this session
         """
-        self._bm_changes += 1;
+        Add 1 to the number of bookmark changes during this session.
+        """
+        self._bm_changes += 1
 
     def db_has_bm_changes(self):
-        """method that returns True if there where bookmark changes during the session
+        """
+        Return whethere there were bookmark changes during the session.
         """
         return self._bm_changes > 0
         
 class Transaction:
     """
-    Defines a group of database commits that define a single logical
-    operation.
+    Define a group of database commits that define a single logical operation.
     """
     def __init__(self, msg, db, batch=False, no_magic=False):
         """
-        Creates a new transaction. A Transaction instance should not be
-        created directly, but by the GrampsDbBase class or classes derived
-        from GrampsDbBase. The db parameter is a list-like interface that
-        stores the commit data. This could be a simple list, or a RECNO-style
-        database object.
+        Create a new transaction. 
+        
+        A Transaction instance should not be created directly, but by the 
+        GrampsDbBase class or classes derived from GrampsDbBase. The db 
+        parameter is a list-like interface that stores the commit data. This 
+        could be a simple list, or a RECNO-style database object.
 
         The batch parameter is set to True for large transactions. For such
         transactions, the list of changes is not maintained, and no undo
@@ -2465,24 +2560,25 @@ class Transaction:
 
     def get_description(self):
         """
-        Returns the text string that describes the logical operation
-        performed by the Transaction.
+        Return the text string that describes the logical operation performed 
+        by the Transaction.
         """
         return self.msg
 
     def set_description(self, msg):
         """
-        Sets the text string that describes the logical operation
-        performed by the Transaction.
+        Set the text string that describes the logical operation performed by 
+        the Transaction.
         """
         self.msg = msg
 
     def add(self, obj_type, handle, old_data, new_data):
         """
-        Adds a commit operation to the Transaction. The obj_type is a constant
-        that indicates what type of PrimaryObject is being added. The handle
-        is the object's database handle, and the data is the tuple returned
-        by the object's serialize method.
+        Add a commit operation to the Transaction. 
+        
+        The obj_type is a constant that indicates what type of PrimaryObject 
+        is being added. The handle is the object's database handle, and the 
+        data is the tuple returned by the object's serialize method.
         """
         self.last = self.db.append(
             cPickle.dumps((obj_type, handle, old_data, new_data), 1))
@@ -2491,7 +2587,8 @@ class Transaction:
 
     def get_recnos(self):
         """
-        Returns a list of record numbers associated with the transaction.
+        Return a list of record numbers associated with the transaction.
+        
         While the list is an arbitrary index of integers, it can be used
         to indicate record numbers for a database.
         """
@@ -2499,7 +2596,7 @@ class Transaction:
 
     def get_record(self, recno):
         """
-        Returns a tuple representing the PrimaryObject type, database handle
+        Return a tuple representing the PrimaryObject type, database handle
         for the PrimaryObject, and a tuple representing the data created by
         the object's serialize method.
         """
@@ -2507,7 +2604,7 @@ class Transaction:
 
     def __len__(self):
         """
-        Returns the number of commits associated with the Transaction.
+        Return the number of commits associated with the Transaction.
         """
         if self.last and self.first:
             return self.last - self.first + 1

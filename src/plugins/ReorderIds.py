@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:ReorderIds.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Change id IDs of all the elements in the database to conform to the
@@ -50,8 +50,8 @@ _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 #
 #-------------------------------------------------------------------------
 class ReorderIds(Tool.BatchTool):
-    def __init__(self,dbstate,uistate,options_class,name,callback=None):
-        Tool.BatchTool.__init__(self,dbstate,options_class,name)
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        Tool.BatchTool.__init__(self, dbstate, options_class, name)
         if self.fail:
             return
 
@@ -62,7 +62,7 @@ class ReorderIds(Tool.BatchTool):
         else:
             print "Reordering GRAMPS IDs..."
 
-        self.trans = db.transaction_begin("",batch=True)
+        self.trans = db.transaction_begin("", batch=True)
         db.disable_signals()
 
         if uistate:
@@ -74,7 +74,7 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_person_gramps_id,
                      db.person_map,
                      db.commit_person,
-                     db.iprefix)
+                     db.person_prefix)
 
         if uistate:
             self.progress.set_pass(_('Reordering Family IDs'),
@@ -85,7 +85,7 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_family_gramps_id,
                      db.family_map,
                      db.commit_family,
-                     db.fprefix)
+                     db.family_prefix)
         if uistate:
             self.progress.set_pass(_('Reordering Event IDs'),
                                    db.get_number_of_events())
@@ -95,7 +95,7 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_event_gramps_id,
                      db.event_map,
                      db.commit_event,
-                     db.eprefix)
+                     db.event_prefix)
         if uistate:
             self.progress.set_pass(_('Reordering Media Object IDs'),
                                    db.get_number_of_media_objects())
@@ -105,7 +105,7 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_object_gramps_id,
                      db.media_map,
                      db.commit_media_object,
-                     db.oprefix)
+                     db.mediaobject_prefix)
         if uistate:
             self.progress.set_pass(_('Reordering Source IDs'),
                                    db.get_number_of_sources())
@@ -115,7 +115,7 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_source_gramps_id,
                      db.source_map,
                      db.commit_source,
-                     db.sprefix)
+                     db.source_prefix)
         if uistate:
             self.progress.set_pass(_('Reordering Place IDs'),
                                    db.get_number_of_places())
@@ -125,7 +125,7 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_place_gramps_id,
                      db.place_map,
                      db.commit_place,
-                     db.pprefix)
+                     db.place_prefix)
         if uistate:
             self.progress.set_pass(_('Reordering Repository IDs'),
                                    db.get_number_of_repositories())
@@ -135,7 +135,7 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_repository_gramps_id,
                      db.repository_map,
                      db.commit_repository,
-                     db.rprefix)
+                     db.repository_prefix)
 #add reorder notes ID
         if uistate:
             self.progress.set_pass(_('Reordering Note IDs'),
@@ -146,13 +146,13 @@ class ReorderIds(Tool.BatchTool):
                      db.find_next_note_gramps_id,
                      db.note_map,
                      db.commit_note,
-                     db.nprefix)
+                     db.note_prefix)
         if uistate:
             self.progress.close()
         else:
             print "Done."
 
-        db.transaction_commit(self.trans,_("Reorder GRAMPS IDs"))
+        db.transaction_commit(self.trans, _("Reorder GRAMPS IDs"))
         db.enable_signals()
         db.request_rebuild()
         
@@ -189,7 +189,7 @@ class ReorderIds(Tool.BatchTool):
                         dups.append(obj.get_handle())
                     else:
                         obj.set_gramps_id(newgramps_id)
-                        commit(obj,self.trans)
+                        commit(obj, self.trans)
                         newids[newgramps_id] = gramps_id
                 except:
                     dups.append(handle)
@@ -207,7 +207,7 @@ class ReorderIds(Tool.BatchTool):
                 self.progress.step()
             obj = find_from_handle(handle)
             obj.set_gramps_id(find_next_id())
-            commit(obj,self.trans)
+            commit(obj, self.trans)
     
 #------------------------------------------------------------------------
 #
@@ -219,8 +219,8 @@ class ReorderIdsOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name, person_id=None):
+        Tool.ToolOptions.__init__(self, name, person_id)
 
 #-------------------------------------------------------------------------
 #

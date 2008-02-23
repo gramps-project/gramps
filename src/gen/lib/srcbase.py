@@ -80,7 +80,7 @@ class SourceBase:
 
     def get_source_references(self) :
         """
-        Returns the list of source references associated with the object.
+        Return the list of source references associated with the object.
 
         @return: Returns the list of L{SourceRef} objects assocated with
             the object.

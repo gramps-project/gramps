@@ -36,7 +36,7 @@ APP_GRAMPS_XML  = "application/x-gramps-xml"
 APP_GEDCOM      = "application/x-gedcom"
 APP_GRAMPS_PKG  = "application/x-gramps-package"
 APP_GENEWEB     = "application/x-geneweb"
-APP_VCARD       = ["text/x-vcard","text/x-vcalendar"]
+APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1

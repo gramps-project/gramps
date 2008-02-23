@@ -21,9 +21,10 @@
 class GrampsCursor:
     """
     Provides a basic iterator that allows the user to cycle through
-    the elements in a particular map. A cursor should never be
-    directly instantiated. Instead, in should be created by the
-    database class.
+    the elements in a particular map. 
+    
+    A cursor should never be directly instantiated. Instead, in should be 
+    created by the database class.
 
     A cursor should only be used for a single pass through the
     database. If multiple passes are needed, multiple cursors
@@ -32,12 +33,12 @@ class GrampsCursor:
 
     def first(self):
         """
-        Returns the first (index, data) pair in the database. This
-        should be called before the first call to next(). Note that
-        the data return is in the format of the serialized format
-        stored in the database, not in the more usable class object.
-        The data should be converted to a class using the class's
-        unserialize method.
+        Return the first (index, data) pair in the database. 
+        
+        This should be called before the first call to next(). Note that the 
+        data return is in the format of the serialized format stored in the 
+        database, not in the more usable class object. The data should be 
+        converted to a class using the class's unserialize method.
 
         If no data is available, None is returned.
         """
@@ -45,11 +46,12 @@ class GrampsCursor:
 
     def next(self):
         """
-        Returns the next (index, data) pair in the database. Like
-        the first() method, the data return is in the format of the
-        serialized format stored in the database, not in the more
-        usable class object. The data should be converted to a class
-        using the class's unserialize method.
+        Return the next (index, data) pair in the database. 
+        
+        Like the first() method, the data return is in the format of the 
+        serialized format stored in the database, not in the more usable class 
+        object. The data should be converted to a class using the class's 
+        unserialize method.
 
         None is returned when no more data is available.
         """
@@ -57,15 +59,16 @@ class GrampsCursor:
 
     def close(self):
         """
-        Closes the cursor. This should be called when the user is
-        finished using the cursor, freeing up the cursor's resources.
+        Close the cursor. 
+        
+        This should be called when the user is finished using the cursor, 
+        freeing up the cursor's resources.
         """
         raise NotImplementedError
     
     def get_length(self):
         """
-        Returns the number of records in the table referenced by the
-        cursor
+        Return the number of records in the table referenced by the cursor.
         """
         raise NotImplementedError
 

@@ -1,3 +1,17 @@
+2008-02-22  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* ViewManager.py
+	* gen/db/iterator.py
+	* gen/db/base.py
+	* gen/db/dbconst.py
+	* gen/db/cursor.py
+	* gen/db/__init__.py
+	* gen/db/exceptions.py
+	* gen/db/dbdir.py
+	* gen/lib/srcbase.py
+	* gen/callback: deleted unused directory
+	* plugins/ReorderIds.py:
+	pylint and pep8 doc fixes
+	
 2008-02-23  Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/date_test.py: removed file; moved tests to:
 	* src/gen/lib/test/date_test.py (suite3): new tests
@@ -19,41 +33,41 @@
 	* po/POTFILES.in: add AgeOnDate.py QR
 
 2008-02-22  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/FilterEditor/_EditRule.py
-    * src/Filters/Rules/_HasAttributeBase.py
-    * src/Filters/Rules/Family/_MatchesFilter.py
-    * src/Filters/Rules/Event/_MatchesFilter.py
-    * src/Filters/Rules/Event/_MatchesSourceFilter.py
-    * src/Filters/Rules/Event/_HasType.py
-    * src/Filters/Rules/Event/_MatchesPersonFilter.py
-    * src/Filters/Rules/_HasTextMatchingRegexpOf.py
-    * src/Filters/Rules/_HasReferenceCountBase.py
-    * src/Filters/Rules/_HasNoteSubstrBase.py
-    * src/Filters/Rules/__init__.py
-    * src/Filters/Rules/_HasGrampsId.py
-    * src/Filters/Rules/_RegExpIdBase.py
-    * src/Filters/Rules/_IsPrivate.py
-    * src/Filters/Rules/_Rule.py
-    * src/Filters/Rules/_HasMarkerBase.py
-    * src/Filters/Rules/_HasEventBase.py
-    * src/Filters/Rules/Note/_MatchesFilter.py
-    * src/Filters/Rules/Person/_MatchesFilter.py
-    * src/Filters/Rules/Person/_MatchesEventFilter.py
-    * src/Filters/Rules/MediaObject/_MatchesFilter.py
-    * src/Filters/Rules/_HasTextMatchingSubstringOf.py
-    * src/Filters/Rules/_Everything.py
-    * src/Filters/Rules/_MatchesFilterBase.py
-    * src/Filters/Rules/_HasNoteRegexBase.py
-    * src/DateHandler/_DateUtils.py
-    pylint and doc fixes.
-    
+	* src/FilterEditor/_EditRule.py
+	* src/Filters/Rules/_HasAttributeBase.py
+	* src/Filters/Rules/Family/_MatchesFilter.py
+	* src/Filters/Rules/Event/_MatchesFilter.py
+	* src/Filters/Rules/Event/_MatchesSourceFilter.py
+	* src/Filters/Rules/Event/_HasType.py
+	* src/Filters/Rules/Event/_MatchesPersonFilter.py
+	* src/Filters/Rules/_HasTextMatchingRegexpOf.py
+	* src/Filters/Rules/_HasReferenceCountBase.py
+	* src/Filters/Rules/_HasNoteSubstrBase.py
+	* src/Filters/Rules/__init__.py
+	* src/Filters/Rules/_HasGrampsId.py
+	* src/Filters/Rules/_RegExpIdBase.py
+	* src/Filters/Rules/_IsPrivate.py
+	* src/Filters/Rules/_Rule.py
+	* src/Filters/Rules/_HasMarkerBase.py
+	* src/Filters/Rules/_HasEventBase.py
+	* src/Filters/Rules/Note/_MatchesFilter.py
+	* src/Filters/Rules/Person/_MatchesFilter.py
+	* src/Filters/Rules/Person/_MatchesEventFilter.py
+	* src/Filters/Rules/MediaObject/_MatchesFilter.py
+	* src/Filters/Rules/_HasTextMatchingSubstringOf.py
+	* src/Filters/Rules/_Everything.py
+	* src/Filters/Rules/_MatchesFilterBase.py
+	* src/Filters/Rules/_HasNoteRegexBase.py
+	* src/DateHandler/_DateUtils.py
+	pylint and doc fixes.
+	
 
 2008-02-20 Frederik De Richter <frederik.de.richter@pandora.be>
-    * src/Merge/_MergePerson.py
-    * src/Merge/_MergeSource.py
-    * src/Merge/_MergePlace.py
-    * src/DateEdit.py
-    links to wiki manual correction
+	* src/Merge/_MergePerson.py
+	* src/Merge/_MergeSource.py
+	* src/Merge/_MergePlace.py
+	* src/DateEdit.py
+	links to wiki manual correction
 
 2008-02-20  Stéphane Charette <stephanecharette@gmail.com>
 	* po/POTFILES.in: added Report->View->Not Related
@@ -85,17 +99,17 @@
 	value of dict instead of boolean. Fix #0001708
 
 2008-02-20 Frederik De Richter <frederik.de.richter@pandora.be>
-    * src/Merge/_MergePerson.py
-    * src/Merge/_MergeSource.py
-    * src/Merge/_MergePlace.py
-    links to wiki manual
+	* src/Merge/_MergePerson.py
+	* src/Merge/_MergeSource.py
+	* src/Merge/_MergePlace.py
+	links to wiki manual
 
 2008-02-20  Peter Landgren <peter.talken@telia.com>
-    * src/plugins/rel_sv.py: pylint clean up
+	* src/plugins/rel_sv.py: pylint clean up
 
 2008-02-20  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/DisplayTabs/_PersonRefEmbedList.py: change _o mnemonic to not 
-    interfere with OK button.
+	* src/DisplayTabs/_PersonRefEmbedList.py: change _o mnemonic to not 
+	interfere with OK button.
 
 2008-02-20 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DbManager.py: #1725, ENTER, double-click if OK button sensitive only
@@ -163,8 +177,8 @@
 	* src/ViewManager.py: #1559, use CTRL+N/P not ALT+N/P to avoid problems
 
 2008-02-19  Peter Landgren <peter.talken@telia.com>
-    * src/plugins/ExtractCity.py: Works for Swedish laen if the laen letter is 
-    within ()
+	* src/plugins/ExtractCity.py: Works for Swedish laen if the laen letter is 
+	within ()
 
 2008-02-19 Benny Malengier c <benny.malengier@gramps-project.org>
 	* src/plugins/SimpleBookTitle.py: remove select file button
@@ -198,24 +212,24 @@
 	0001788: Book report crash
 
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/Editors/_EditAddress.py
-    * src/Editors/_EditName.py
-    * src/Editors/_EditPersonRef.py
-    * src/plugins/FindDupers.py
-    * src/ReportBase/_StyleEditor.py
-    * src/MarkupText.py
-    Fix import issues introduce through previous commit.
-    #0001791 fixed
+	* src/Editors/_EditAddress.py
+	* src/Editors/_EditName.py
+	* src/Editors/_EditPersonRef.py
+	* src/plugins/FindDupers.py
+	* src/ReportBase/_StyleEditor.py
+	* src/MarkupText.py
+	Fix import issues introduce through previous commit.
+	#0001791 fixed
 
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/* 143 files
-    * test/try_tree_model.py
-    * windows/nsis/gcheck.py
-    imports cleanup
+	* src/* 143 files
+	* test/try_tree_model.py
+	* windows/nsis/gcheck.py
+	imports cleanup
 
 2008-02-18 Frederik De Richter <frederik.de.richter@pandora.be>
-    * src/Editors/_EditEvent.py
-    link to wiki manual
+	* src/Editors/_EditEvent.py
+	link to wiki manual
 
 2008-02-18  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DataViews/EventView.py
@@ -376,13 +390,13 @@
 	lost a bit of vertical space
 
 2008-02-14  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/ObjectSelector/* : #1744: src/ObjectSelector is not used anmyore
-    * src/TreeViews/* : #1744: src/TreeViews is not used anmyore
-    * src/Treetips.py : changed class comment. pep8 fix for doc: ''' --> """
-    * src/plugins/SoundGen.py: remove ... in menu. imports cleanup
+	* src/ObjectSelector/* : #1744: src/ObjectSelector is not used anmyore
+	* src/TreeViews/* : #1744: src/TreeViews is not used anmyore
+	* src/Treetips.py : changed class comment. pep8 fix for doc: ''' --> """
+	* src/plugins/SoundGen.py: remove ... in menu. imports cleanup
 
 2008-02-14  Peter Landgren  <peter.talken@telia.com>
-    * src/plugins/DefaultGramplets.py: fixed two strings to be translatabel
+	* src/plugins/DefaultGramplets.py: fixed two strings to be translatabel
 
 2008-02-14 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayModels/_NoteModel.py: use unicode object internally, #1739
@@ -408,7 +422,7 @@
 	* po/POTFILES.in: remove checkpoint.glade
 
 2008-02-13 Peter Landgren <peter.talken@telia.com>
-    *src/BaseDoc.py: Removal on debug print
+	*src/BaseDoc.py: Removal on debug print
 
 2008-02-12 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DisplayTabs/_ButtonTab.py: some accel keys don't work on keyboard
@@ -455,7 +469,7 @@
 	0001750: Some problems with web pages
 
 2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/Editors/_EditPrimary.py: 0001347: double gid. fix previous commit
+	* src/Editors/_EditPrimary.py: 0001347: double gid. fix previous commit
 
 2008-02-09 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_WebReportDialog.py:
@@ -473,42 +487,42 @@
 	Web Calendar and Narrative Web report now use Menu Options.
 
 2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/Editors/_EditEvent.py:
-    * src/Editors/_EditFamily.py:
-    * src/Editors/_EditMedia.py:
-    * src/Editors/_EditNote.py:
-    * src/Editors/_EditPlace.py:
-    * src/Editors/_EditRepository.py:
-    * src/Editors/_EditSource.py:
-    fixed: 0001347: double gid should not be allowed 
+	* src/Editors/_EditEvent.py:
+	* src/Editors/_EditFamily.py:
+	* src/Editors/_EditMedia.py:
+	* src/Editors/_EditNote.py:
+	* src/Editors/_EditPlace.py:
+	* src/Editors/_EditRepository.py:
+	* src/Editors/_EditSource.py:
+	fixed: 0001347: double gid should not be allowed 
 
 2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/Editors/_EditEvent.py:
-    * src/Editors/_EditFamily.py:
-    * src/Editors/_EditMedia.py:
-    * src/Editors/_EditNote.py:
-    * src/Editors/_EditPlace.py:
-    * src/Editors/_EditPrimary.py:
-    * src/Editors/_EditRepository.py:
-    * src/Editors/_EditSource.py:
-    pylint fixes
+	* src/Editors/_EditEvent.py:
+	* src/Editors/_EditFamily.py:
+	* src/Editors/_EditMedia.py:
+	* src/Editors/_EditNote.py:
+	* src/Editors/_EditPlace.py:
+	* src/Editors/_EditPrimary.py:
+	* src/Editors/_EditRepository.py:
+	* src/Editors/_EditSource.py:
+	pylint fixes
 
 2008-02-08 Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/Editors/_EditEvent.py:
-    * src/Editors/_EditFamily.py:
-    * src/Editors/_EditMedia.py:
-    * src/Editors/_EditNote.py:
-    * src/Editors/_EditPerson.py:
-    * src/Editors/_EditPlace.py:
-    * src/Editors/_EditPrimary.py:
-    * src/Editors/_EditRepository.py:
-    * src/Editors/_EditSource.py:
-    0001745: fix where on update empty ID field would not be filled 
-    automatically
+	* src/Editors/_EditEvent.py:
+	* src/Editors/_EditFamily.py:
+	* src/Editors/_EditMedia.py:
+	* src/Editors/_EditNote.py:
+	* src/Editors/_EditPerson.py:
+	* src/Editors/_EditPlace.py:
+	* src/Editors/_EditPrimary.py:
+	* src/Editors/_EditRepository.py:
+	* src/Editors/_EditSource.py:
+	0001745: fix where on update empty ID field would not be filled 
+	automatically
 
 2008-02-07 Jerome Rapinat <romjerome@yahoo.fr>
-    * src/DateHandler/_Date_fr.py : fix issue with french calendar and 
-    year only #1733
+	* src/DateHandler/_Date_fr.py : fix issue with french calendar and 
+	year only #1733
 
 2008-02-07 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/Editors/_EditPerson.py: pylint fixes & doc fixes
@@ -585,8 +599,8 @@
 	0001704: Det. anc. report - newline needed after endnote entries.
 
 2008-02-02 Peter LAndgren <peter.talken@telia.com>
-    * data/man/gramps.in.1: [ \-l] -> [ \-l ]
-    * data/man/sv/gramps.in.1: Update, due to update of English gramps.
+	* data/man/gramps.in.1: [ \-l] -> [ \-l ]
+	* data/man/sv/gramps.in.1: Update, due to update of English gramps.
 
 2008-02-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/GraphViz.py: Deleted - superceeded by GVRelGraph.py.
@@ -713,7 +727,7 @@
 	* data/man/gramps.1.in: updates for -u options
 
 2008-01-28 Peter Landgren <peter.talken@telia.com>
-    * data/man/sv/gramps.1.in: updates for -u option
+	* data/man/sv/gramps.1.in: updates for -u option
 
 2008-01-28 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_GuiOptions.py:
@@ -964,7 +978,7 @@
    * /src/plugins/FamilyGroup.py: typo :590
 
 2008-01-18 Erik De Richter <frederik.de.richter@pandora.be>
-    * po/gramps.pot: new gramps.pot generated
+	* po/gramps.pot: new gramps.pot generated
 
 2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py (SurnameCloudGramplet.main): 
@@ -975,53 +989,53 @@
 	* src/const.py.in: new NO_SURNAME constant; RERUN ./autogen.sh !
 
 2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/FilterEditor/_EditRule.py
-    * src/FilterEditor/_ShowResults.py
-    * src/plugins/ExtractCity.py
-    * src/plugins/NarrativeWeb.py
-    * src/plugins/ChangeNames.py
-    * src/plugins/GraphViz.py
-    * src/plugins/MediaManager.py
-    * src/plugins/FamilyLines.py
-    * src/Selectors/_BaseSelector.py
-    * src/ObjectSelector/_ObjectSelectorWindow.py
-    * src/ObjectSelector/_FamilyFilterFrame.py
-    * src/ObjectSelector/_PersonFilterFrame.py
-    * src/PageView.py
-    * src/Filters/_FilterMenu.py
-    * src/Filters/_SearchBar.py
-    * src/Filters/_FilterComboBox.py
-    * src/Filters/_FilterList.py
-    * src/Filters/_FilterParser.py
-    * src/Filters/_FilterStore.py
-    * src/Filters/_GenericFilter.py
-    * src/Filters/_ParamFilter.py
-    pylint fixes + init gtk.ListStore() with gobject.TYPE_BOOLEAN types etc
+	* src/FilterEditor/_EditRule.py
+	* src/FilterEditor/_ShowResults.py
+	* src/plugins/ExtractCity.py
+	* src/plugins/NarrativeWeb.py
+	* src/plugins/ChangeNames.py
+	* src/plugins/GraphViz.py
+	* src/plugins/MediaManager.py
+	* src/plugins/FamilyLines.py
+	* src/Selectors/_BaseSelector.py
+	* src/ObjectSelector/_ObjectSelectorWindow.py
+	* src/ObjectSelector/_FamilyFilterFrame.py
+	* src/ObjectSelector/_PersonFilterFrame.py
+	* src/PageView.py
+	* src/Filters/_FilterMenu.py
+	* src/Filters/_SearchBar.py
+	* src/Filters/_FilterComboBox.py
+	* src/Filters/_FilterList.py
+	* src/Filters/_FilterParser.py
+	* src/Filters/_FilterStore.py
+	* src/Filters/_GenericFilter.py
+	* src/Filters/_ParamFilter.py
+	pylint fixes + init gtk.ListStore() with gobject.TYPE_BOOLEAN types etc
 
 
 2008-01-18  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/gen/db/dbdir.py
-    * src/plugins/ChangeNames.py
-    * src/DisplayModels/_NoteModel.py
-    * src/GrampsDbUtils/_GrampsBSDDB.py
-    * src/Filters/SideBar/_MediaSidebarFilter.py
-    * src/Filters/SideBar/_SidebarFilter.py
-    * src/Filters/SideBar/_SourceSidebarFilter.py
-    * src/Filters/SideBar/_EventSidebarFilter.py
-    * src/Filters/SideBar/_FamilySidebarFilter.py
-    * src/Filters/SideBar/_PlaceSidebarFilter.py
-    * src/Filters/SideBar/_NoteSidebarFilter.py
-    * src/Filters/SideBar/_RepoSidebarFilter.py
-    * src/Filters/SideBar/_PersonSidebarFilter.py
-    * src/Filters/Rules/Family/_HasNoteRegexp.py
-    * src/Filters/Rules/Event/_MatchesSourceFilter.py
-    * src/Filters/Rules/Event/_HasNoteRegexp.py
-    * src/Filters/Rules/Event/_MatchesPersonFilter.py
-    * src/Filters/Rules/_HasTextMatchingRegexpOf.py
-    * src/Filters/Rules/Place/_MatchesEventFilter.py
-    * src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
-    * src/Filters/Rules/Person/_MatchesEventFilter.py
-    Pylint fixes.
+	* src/gen/db/dbdir.py
+	* src/plugins/ChangeNames.py
+	* src/DisplayModels/_NoteModel.py
+	* src/GrampsDbUtils/_GrampsBSDDB.py
+	* src/Filters/SideBar/_MediaSidebarFilter.py
+	* src/Filters/SideBar/_SidebarFilter.py
+	* src/Filters/SideBar/_SourceSidebarFilter.py
+	* src/Filters/SideBar/_EventSidebarFilter.py
+	* src/Filters/SideBar/_FamilySidebarFilter.py
+	* src/Filters/SideBar/_PlaceSidebarFilter.py
+	* src/Filters/SideBar/_NoteSidebarFilter.py
+	* src/Filters/SideBar/_RepoSidebarFilter.py
+	* src/Filters/SideBar/_PersonSidebarFilter.py
+	* src/Filters/Rules/Family/_HasNoteRegexp.py
+	* src/Filters/Rules/Event/_MatchesSourceFilter.py
+	* src/Filters/Rules/Event/_HasNoteRegexp.py
+	* src/Filters/Rules/Event/_MatchesPersonFilter.py
+	* src/Filters/Rules/_HasTextMatchingRegexpOf.py
+	* src/Filters/Rules/Place/_MatchesEventFilter.py
+	* src/Filters/Rules/Person/_HasTextMatchingRegexpOf.py
+	* src/Filters/Rules/Person/_MatchesEventFilter.py
+	Pylint fixes.
 
 2008-01-18  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py (SurnameCloudGramplet.main): 
@@ -1030,10 +1044,10 @@
 	new scroll_to="begin" to go to start of text area
 
 2008-01-18  Jerome Rapinat <romjerome@yahoo.fr>
-         * data/man/gramps.1.in: add missing -l option
+	* data/man/gramps.1.in: add missing -l option
 
 2008-01-18 Peter Landgren <peter.talken@telia.com>
-    * src/const.py.in: --help and -h now gives similar messages
+	* src/const.py.in: --help and -h now gives similar messages
 
 2008-01-18 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ExportAssistant.py: workaround around bug
@@ -1096,8 +1110,8 @@
                choosing existing child, brings up child ref editor, #1462
 
 2008-01-17  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/ScratchPad.py: remove tooltip for events as it crashes.
-    * src/Utils.py: cleanup
+	* src/ScratchPad.py: remove tooltip for events as it crashes.
+	* src/Utils.py: cleanup
 
 2008-01-17 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/DataViews/RelationView.py: shorter toolbar strings, #1553
@@ -1106,7 +1120,7 @@
 	* src/plugins/WriteCD.py: check if gnome is the desktop, #1599
 
 2008-01-17  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/ArgHandler.py: 0001588: -a summary does nothing
+	* src/ArgHandler.py: 0001588: -a summary does nothing
 
 2008-01-17 Jim Sack <jgsack@san.rr.com>
 	* src/plugins/NarrativeWeb.py : fix parens typo/error
@@ -1153,8 +1167,8 @@
 	* src/const.py.in: Add -h and --help so those work for non gnome users
 
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * data/man/nl/Makefile.am: added doc
-    * configure.in: added sv for swedish makefile
+	* data/man/nl/Makefile.am: added doc
+	* configure.in: added sv for swedish makefile
 
 2008-01-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Simple/_SimpleTable.py: added gettext
@@ -1163,14 +1177,14 @@
 	* po/POTFILES.in: added some missing files
 
 2008-01-16 Erik De Richter <frederik.de.richter@pandora.be>
-    * data/man/nl: added 
-    * data/man/nl/gramps.1.in: added
-    * data/man/nl/Makefile.am: added
-    * configure.in: changed to add above nl directory
-    * data/man/Makfile.am: changed to add above nl man page
+	* data/man/nl: added 
+	* data/man/nl/gramps.1.in: added
+	* data/man/nl/Makefile.am: added
+	* configure.in: changed to add above nl directory
+	* data/man/Makfile.am: changed to add above nl man page
 
 2008-01-16 Jerome Rapinat <romjerome@yahoo.fr>
-        * src/images/Makefile.am: add missing reference for gramps-import.png
+	* src/images/Makefile.am: add missing reference for gramps-import.png
 
 2008-01-16  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/Makefile.am (pkgdata_PYTHON): missing backslash
@@ -1198,12 +1212,12 @@
 	* src/GrampsDbUtils/_GrampsDbWriteXML.py: import gzip only once
 
 2008-01-16  Peter Landgren <peter.talken@telia.com>
-    * man/Makefile.am: Swedish added (sv).
-    * man/sv/gramps.1.in: Added Swedish man page (sv).
-    * man/sv/Makefile.am: Added Swedish man page (sv).
-    * man/fr/gramps.1.in: got the French man page back, which I overwrote yesterday
+	* man/Makefile.am: Swedish added (sv).
+	* man/sv/gramps.1.in: Added Swedish man page (sv).
+	* man/sv/Makefile.am: Added Swedish man page (sv).
+	* man/fr/gramps.1.in: got the French man page back, which I overwrote yesterday
 
-    2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/docgen/Makefile.am: added line to copy gtkprintpreview.glade
 	on distcheck.
 
@@ -1230,8 +1244,8 @@
 	can bring up people with empty surname
 
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/FilterEditor/_ShowResults.py: allow notes to be filtered
-    0001607: Unreferenced filter test
+	* src/FilterEditor/_ShowResults.py: allow notes to be filtered
+	0001607: Unreferenced filter test
 
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/ImportCSV.py (CSVParser.process): fixed csv import with 
@@ -1242,9 +1256,9 @@
 	clicking on data easier by clicking on entire line (bug #1594)
 
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/const.py.in: added constants for help pages
-    * src/ViewManager.py: support for help pages called from menu
-    0001606: Help menu items not functioning
+	* src/const.py.in: added constants for help pages
+	* src/ViewManager.py: support for help pages called from menu
+	0001606: Help menu items not functioning
 
 2008-01-15  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/SameSurnames.py (run): change description to just
@@ -1259,10 +1273,10 @@
 	in the help dir with separate source packages too for translations
 
 2008-01-15  Peter Landgren <peter.talken@telia.com>
-    * man/Makefail.am: Swedish added (sv).
-    * man/gramps.1.in: typo changed (sv).
-    * man/sv/gramps.1.in: tried to add Swedish man page (sv).
-    but failed. How do I create man/sv in the svn repository?
+	* man/Makefail.am: Swedish added (sv).
+	* man/gramps.1.in: typo changed (sv).
+	* man/sv/gramps.1.in: tried to add Swedish man page (sv).
+	but failed. How do I create man/sv in the svn repository?
 
 2008-01-15  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/gen/db/exceptions.py: wrong exception def, bug #1593
@@ -1276,18 +1290,18 @@
 	* src/ArgHandler.py: on autoload, do some extra checks first.
 
 2008-01-15  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/GrampsDbUtils/_GrampsDbWriteXML.py
-    * src/GrampsDbUtils/_WriteGedcom.py
-    * src/plugins/ExportCSV.py
-    * src/plugins/ExportVCalendar.py
-    * src/plugins/ExportVCard.py
-    * src/plugins/WriteCD.py
-    * src/plugins/WriteFtree.py
-    * src/plugins/WriteGeneWeb.py
-    * src/plugins/WritePkg.py
-    * src/PluginUtils/_PluginMgr.py: pylint fixes
-    pylint fixes and work on 0001597 
-    
+	* src/GrampsDbUtils/_GrampsDbWriteXML.py
+	* src/GrampsDbUtils/_WriteGedcom.py
+	* src/plugins/ExportCSV.py
+	* src/plugins/ExportVCalendar.py
+	* src/plugins/ExportVCard.py
+	* src/plugins/WriteCD.py
+	* src/plugins/WriteFtree.py
+	* src/plugins/WriteGeneWeb.py
+	* src/plugins/WritePkg.py
+	* src/PluginUtils/_PluginMgr.py: pylint fixes
+	pylint fixes and work on 0001597 
+	
 2008-01-14  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/DbLoader.py: typo
 	* src/plugins/ImportCSV.py: register text/csv as another mime type for csv
@@ -1339,7 +1353,7 @@
 	Remove need for gconf, add need for xdg utilities
 
 2008-01-12  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/Config/__init__.py: revert wrong indentation changes
+	* src/Config/__init__.py: revert wrong indentation changes
 
 2008-01-12  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/const.py.in: new manual constant keys
@@ -1348,7 +1362,7 @@
 	RERUN ./autogen.sh
 
 2008-01-12  Peter Landgren <peter.talken@telia.com>
-    * src/ViewManager.py: partial fix for #1580. Work in DisplayState.py remains.
+	* src/ViewManager.py: partial fix for #1580. Work in DisplayState.py remains.
 
 2008-01-12  Stéphane Charette <stephanecharette@gmail.com>
 	* src/Config/_GrampsConfigKeys.py:
@@ -1374,33 +1388,33 @@
 	* src/glade/gramps.glade: add alt key combo's for buttons
 
 2008-01-10  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/gen/db/dbdir.py: add doc, remove unused variable
-    * src/GrampsDbUtils/_GrampsBSDDB.py: : add doc, remove unused variable
-    * src/plugins/AncestorChart.py: cleanup unused vars
-    * src/plugins/Calendar.py: typo in doc
-    * src/plugins/ChangeNames.py: cleanup unused vars
-    * src/plugins/DescendChart.py: cleanup unused vars
-    * src/plugins/FamilyLines.py: cleanup unused vars
-    * src/ReportBase/_ReportUtils.py: fix typo in variable Name
+	* src/gen/db/dbdir.py: add doc, remove unused variable
+	* src/GrampsDbUtils/_GrampsBSDDB.py: : add doc, remove unused variable
+	* src/plugins/AncestorChart.py: cleanup unused vars
+	* src/plugins/Calendar.py: typo in doc
+	* src/plugins/ChangeNames.py: cleanup unused vars
+	* src/plugins/DescendChart.py: cleanup unused vars
+	* src/plugins/FamilyLines.py: cleanup unused vars
+	* src/ReportBase/_ReportUtils.py: fix typo in variable Name
 
 2008-01-10  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/MarkupText.py: in _hex_to_color removed dupe assignment to color
-    * src/PageView.py: doc typo and delete unused statements in filter_toggle
-    * src/ViewManager.py: fix typo in doc
-    * src/DataViews/PersonView.py: delete unused statements in filter_toggle
-    * src/FilterEditor/_EditRule.py: fix wrong $Id name
-    * src/FilterEditor/_ShowResults.py: fix wrong $Id name
+	* src/MarkupText.py: in _hex_to_color removed dupe assignment to color
+	* src/PageView.py: doc typo and delete unused statements in filter_toggle
+	* src/ViewManager.py: fix typo in doc
+	* src/DataViews/PersonView.py: delete unused statements in filter_toggle
+	* src/FilterEditor/_EditRule.py: fix wrong $Id name
+	* src/FilterEditor/_ShowResults.py: fix wrong $Id name
 
 2008-01-10  Erik De richter <frederik.de.richter@pandora.be>
 	* src/GrampsCfg.py: 
-    * src/plugins/Reorderids.py: add note reordering 
+	* src/plugins/Reorderids.py: add note reordering 
 
 2008-01-10  Peter Landgren <peter.talken@telia.com>
-    * src/RecentFiles.py: fix in rename_filename
+	* src/RecentFiles.py: fix in rename_filename
 
 2008-01-10  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/ObjectSelector/_ObjectSelectorWindow.py: fix indentation error
-    introduced through a previous patch
+	* src/ObjectSelector/_ObjectSelectorWindow.py: fix indentation error
+	introduced through a previous patch
 
 2008-01-09  Brian Matherly <brian@gramps-project.org>
 	* src/docgen/CairoDoc.py: Fix 0001541: Box size too small - Descendant Chart
@@ -1428,21 +1442,21 @@
 	* src/DataViews/__init__.py: remove message regarding malformed dataviews
 
 2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/gen/utils/callback.py
-    * src/ObjectSelector/_FamilyFilterFrame.py
-    * src/test/test/test_util_test.py
-    * src/test/test/gedread_util_test.py
-    * src/test/test_util.py
-    * src/test/gramps_cli_test.py
-    * src/test/ansel_utf8_test.py
-    * src/GrampsDbUtils/test/_GedcomChar_test.py
-    * src/GrampsDbUtils/test/_GrampsDbWRFactories_test.py
-    * src/GrampsDbUtils/test/GR_test.py
-    From PEP8 Always use 'self' for the first argument to instance methods.
+	* src/gen/utils/callback.py
+	* src/ObjectSelector/_FamilyFilterFrame.py
+	* src/test/test/test_util_test.py
+	* src/test/test/gedread_util_test.py
+	* src/test/test_util.py
+	* src/test/gramps_cli_test.py
+	* src/test/ansel_utf8_test.py
+	* src/GrampsDbUtils/test/_GedcomChar_test.py
+	* src/GrampsDbUtils/test/_GrampsDbWRFactories_test.py
+	* src/GrampsDbUtils/test/GR_test.py
+	From PEP8 Always use 'self' for the first argument to instance methods.
 
 2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/plugins/ExportVCard.py: in write_person use b_date instead of date
-    0001497: small typo and imports cleanup in ExportVCard.py
+	* src/plugins/ExportVCard.py: in write_person use b_date instead of date
+	0001497: small typo and imports cleanup in ExportVCard.py
 
 2008-01-09  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/GrampsDbUtils/_GrampsBSDDB.py: wrong const import
@@ -1562,7 +1576,7 @@
 	don't have Gnome.
 
 2008-01-06 Jerome Rapinat <romjerome@yahoo.fr>
-        * src/docgen/Makefile.am: gtkprintpreview.glade was not pasted on install 
+	* src/docgen/Makefile.am: gtkprintpreview.glade was not pasted on install 
 
 2008-01-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/MyGrampsView.py (MyGrampsView.clear_gadgets): 
@@ -1749,7 +1763,7 @@
 	existing PeopleModel is a custom built class. bug #1456
 
 2008-01-03 Jérôme Rapinat <romjerome@yahoo.fr>
-        * src/configure.in : add bulgarian
+	* src/configure.in : add bulgarian
 
 2008-01-02 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ViewManager.py: remove unneeded show, remove tabs
@@ -1787,7 +1801,7 @@
 	to the FamilyLines plugin)
 
 2008-01-01  Peter Landgren <peter.talken@telia.com>
-    * src/plugins/rel_sv.py: Added some comments
+	* src/plugins/rel_sv.py: Added some comments
 
 2008-01-01  Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditFamily.py: Enabled tooltips on person edit buttons
