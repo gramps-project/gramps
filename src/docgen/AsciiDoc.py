@@ -166,7 +166,7 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     # Force a section page break
     #
     #--------------------------------------------------------------------
-    def end_page(self):
+    def page_break(self):
         self.f.write('\012')
 
     def start_bold(self):
