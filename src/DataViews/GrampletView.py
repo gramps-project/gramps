@@ -773,8 +773,7 @@ class GrampletView(PageView.PageView):
     def save(self, *args):
         if debug: print "saving"
         if len(self.frame_map.keys() + 
-               self.detached_gramplets + 
-               self.closed_gramplets) == 0:
+               self.detached_gramplets) == 0:
             return # something is the matter
         filename = GRAMPLET_FILENAME
         try:
@@ -817,7 +816,7 @@ class GrampletView(PageView.PageView):
                     fp.write(("row=%d" + NL) % row)
                     fp.write(NL)
                 row += 1
-        for gramplet in self.detached_gramplets + self.closed_gramplets:
+        for gramplet in self.detached_gramplets:
             opts = get_gramplet_options_by_name(gramplet.name)
             if opts != None:
                 base_opts = opts.copy()
@@ -839,22 +838,6 @@ class GrampletView(PageView.PageView):
                     else:
                         fp.write(("%s=%s" + NL)% (key, base_opts[key]))
                 fp.write(NL)
-        for opts in self.closed_opts:
-            fp.write(("[%s]" + NL) % opts["title"])
-            for key in opts:
-                if key == "content": continue
-                elif key == "title": continue
-                elif key == "data":
-                    if type(opts["data"]) not in [list, tuple]:
-                        fp.write(("data[0]=%s" + NL) % opts["data"])
-                    else:
-                        cnt = 0
-                        for item in opts["data"]:
-                            fp.write(("data[%d]=%s" + NL) % (cnt, item))
-                            cnt += 1
-                else:
-                    fp.write(("%s=%s" + NL)% (key, opts[key]))
-            fp.write(NL)
         fp.close()
 
     def drop_widget(self, source, context, x, y, timedata):
@@ -907,8 +890,7 @@ class GrampletView(PageView.PageView):
         """
         self.action = gtk.ActionGroup(self.title + "/Gramplets")
         self.action.add_actions([('AddGramplet',gtk.STOCK_ADD,_("_Add a gramplet")),
-                                 ('RestoreGramplet',None,_("_Restore a gramplet")),
-                                 ('DeleteGramplet',None,_("_Delete a gramplet")),
+                                 ('RestoreGramplet',None,_("_Undelete gramplet")),
                                  ('Columns1',None,_("Set Columns to _1"),
                                   None,None,
                                   lambda obj:self.set_columns(1)),
@@ -1059,7 +1041,6 @@ class GrampletView(PageView.PageView):
           <popup name="Popup">
             <menuitem action="AddGramplet"/>
             <menuitem action="RestoreGramplet"/>
-            <menuitem action="DeleteGramplet"/>
             <separator/>
             <menuitem action="Columns1"/>
             <menuitem action="Columns2"/>
@@ -1085,14 +1066,10 @@ class GrampletView(PageView.PageView):
                                            None, self.add_gramplet)
                     self.uistate.uimanager.get_widget('/Popup/AddGramplet').set_submenu(qr_menu)
             rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGramplet')
-            dg_menu = self.uistate.uimanager.get_widget('/Popup/DeleteGramplet')
             if rg_menu:
                 qr_menu = rg_menu.get_submenu()
                 if qr_menu != None:
                     rg_menu.remove_submenu()
-                qr2_menu = dg_menu.get_submenu()
-                if qr2_menu != None:
-                    dg_menu.remove_submenu()
                 names = []
                 for gramplet in self.closed_gramplets:
                     names.append(gramplet.title)
@@ -1101,14 +1078,10 @@ class GrampletView(PageView.PageView):
                 names.sort()
                 if len(names) > 0:
                     qr_menu = gtk.Menu()
-                    qr2_menu = gtk.Menu()
                     for name in names:
                         Utils.add_menuitem(qr_menu, name, 
                                            None, self.restore_gramplet)
-                        Utils.add_menuitem(qr2_menu, name, 
-                                           None, self.delete_gramplet)
                     self.uistate.uimanager.get_widget('/Popup/RestoreGramplet').set_submenu(qr_menu)
-                    self.uistate.uimanager.get_widget('/Popup/DeleteGramplet').set_submenu(qr2_menu)
             if menu:
                 menu.popup(None, None, None, event.button, event.time)
                 return True
