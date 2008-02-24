@@ -1,3 +1,7 @@
+2008-02-24 Gary Burton <gary.burton@zen.co.uk>
+	* src/Selectors/_SelectPerson.py: Let return key close search field.
+	Bug #1728
+
 2008-02-24  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* Editors/_EditRepository.py
 	* Editors/_EditFamily.py
@@ -19,7 +23,7 @@
 	add Up and Down buttons to the tabs. Added individual tooltips for buttons
 	0001807: Missing buttons MoveUp, MoveDown on a Events list in a person... 
 
-2008-02-22 Gary Burton <gary.burton@zen.co.uk>
+2008-02-24 Gary Burton <gary.burton@zen.co.uk>
 	* src/Editors/_EditPerson.py: Fixed crash on clicking OK to save name
 	change. Bug #1783
 

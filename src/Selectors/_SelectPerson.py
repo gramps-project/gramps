@@ -184,10 +184,9 @@ class SelectPerson(ManagedWindow.ManagedWindow):
                     else:
                         self.plist.expand_row(paths[0], 0)
                     return True
-                else:
-                    self.window.response(gtk.RESPONSE_OK)
-                    return True
         return False
 
     def _on_row_activated(self, treeview, path, view_col):
-        self.window.response(gtk.RESPONSE_OK)
+        store, paths = self.selection.get_selected_rows()
+        if paths and len(paths[0]) == 2 :
+            self.window.response(gtk.RESPONSE_OK)
