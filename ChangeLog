@@ -1,4 +1,8 @@
 2008-02-24  Douglas S. Blank <dblank@cs.brynmawr.edu>
+	* src/DataViews/GrampletView.py (GrampletView.restore_gramplet): 
+	Fixed restore minimized gramplet
+
+2008-02-24  NOT Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/ViewManager.py:
 	* src/DbLoader.py:
 	Remove os.chdir, no longer needed for relative path

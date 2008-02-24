@@ -943,13 +943,14 @@ class GrampletView(PageView.PageView):
         ############### First kind: from current session
         for gramplet in self.closed_gramplets:
             if gramplet.title == name:
-                gramplet.state = "maximized"
+                #gramplet.state = "maximized"
                 self.closed_gramplets.remove(gramplet)
                 if self._popup_xy != None:
                     self.drop_widget(self.widget, gramplet, 
                                      self._popup_xy[0], self._popup_xy[1], 0)
                 else:
                     self.drop_widget(self.widget, gramplet, 0, 0, 0)
+                gramplet.set_state("maximized")
                 return
         ################ Second kind: from options
         for opts in self.closed_opts:
