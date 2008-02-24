@@ -731,7 +731,7 @@ class EditPerson(EditPrimary):
         EditName(self.dbstate, self.uistate, self.track, 
                  self.pname, self._update_name)
 
-    def _update_name(self):
+    def _update_name(self, name):
         """
         Called when the primary name has been changed by the EditName
         dialog. 
