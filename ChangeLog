@@ -1,4 +1,8 @@
 2008-02-24 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_CommandLineReport.py:
+	0001587: Command line reports do not work
+
+2008-02-24 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/CmdRef.py:
 	0001808: Bug when I click on a Generate Commandline Plugin Reference
 

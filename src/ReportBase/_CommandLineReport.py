@@ -54,6 +54,7 @@ class CommandLineReport:
                  noopt=False):
         self.database = database
         self.category = category
+        self.format = None
         self.option_class = option_class(name, database)
         self.option_class.load_previous_values()
         self.show = options_str_dict.pop('show',None)
@@ -129,6 +130,9 @@ class CommandLineReport:
             for item in PluginUtils.textdoc_list:
                 if item[7] == self.options_dict['off']:
                     self.format = item[1]
+            if self.format is None:
+                # Pick the first one as the default.
+                self.format = PluginUtils.textdoc_list[0][1]
             self.options_help['off'].append(
                 [ item[7] for item in PluginUtils.textdoc_list ]
             )
@@ -137,6 +141,9 @@ class CommandLineReport:
             for item in PluginUtils.drawdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
+            if self.format is None:
+                # Pick the first one as the default.
+                self.format = PluginUtils.drawdoc_list[0][1]
             self.options_help['off'].append(
                 [ item[6] for item in PluginUtils.drawdoc_list ]
             )
@@ -145,6 +152,9 @@ class CommandLineReport:
             for item in PluginUtils.bookdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
+            if self.format is None:
+                # Pick the first one as the default.
+                self.format = PluginUtils.bookdoc_list[0][1]
             self.options_help['off'].append(
                 [ item[6] for item in PluginUtils.bookdoc_list ]
             )
