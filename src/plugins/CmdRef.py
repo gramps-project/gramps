@@ -160,7 +160,7 @@ class CmdRef(Tool.Tool):
             oclass = item[3](item[0], self.__db)
         elif category == CATEGORY_BOOK:
             import BookReport
-            oclass = BookReport.BookOptions(item[0])
+            oclass = BookReport.BookOptions(item[0], self.__db)
         elif category:
             # This is the common options case
             # so class is already instantiated
