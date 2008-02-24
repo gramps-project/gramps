@@ -1,4 +1,9 @@
 2008-02-24  Douglas S. Blank <dblank@cs.brynmawr.edu>
+	* src/ViewManager.py:
+	* src/DbLoader.py:
+	Remove os.chdir, no longer needed for relative path
+
+2008-02-24  Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py: don't save deleted gramplets
 	* src/glade/gramps.glade: changed tooltip from "close" to "delete"
 	Gramplets are either undeleted before exit, or they go away

@@ -268,10 +268,6 @@ class DbLoader:
         try:
             self.dbstate.db.load(filename, self.uistate.pulse_progressbar, mode)
             self.dbstate.db.set_save_path(filename)
-            try:
-                os.chdir(os.path.dirname(filename))
-            except  (OSError, IOError):
-                print "could not change directory"
         except OSError, msg:
             ErrorDialog(
                 _("Could not open file: %s") % filename, str(msg))

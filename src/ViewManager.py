@@ -1057,10 +1057,6 @@ class ViewManager:
         if value:
             (filename, title) = value
             self.db_loader.read_file(filename)
-            try:
-                os.chdir(os.path.dirname(filename))
-            except (IOError, OSError):
-                pass
             self.__post_load_newdb(filename, 'x-directory/normal', title)
 
     def __read_recent_file(self, filename):
