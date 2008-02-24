@@ -322,7 +322,7 @@ class Date:
                     diff += 1
                     eDate = eDate + (0, 0, diff)
                 if diff == 60:
-                    return (0, 0, 0)
+                    return None
                 return (years, months, days - diff)
             elif eDate > date2:
                 diff = 0
@@ -330,7 +330,7 @@ class Date:
                     diff -= 1
                     eDate = eDate - (0, 0, abs(diff))
                 if diff == -60:
-                    return (0, 0, 0)
+                    return None
                 return (years, months, days + diff)
             else:
                 return (years, months, days)
@@ -1003,3 +1003,13 @@ class Date:
         else:
             raise AttributeError("invalid modifier: '%s'" % modifier)
     
+    def to_calendar(self, calendar_name):
+        """
+        Return a new Date object in the calendar calendar_name.
+        >>> Date("Jan 1 1591").to_calendar("julian")
+        1590-12-22 (Julian)
+        """
+        cal = self.lookup_calendar(calendar_name)
+        retval = Date(self)
+        retval.convert_calendar(cal)
+        return retval
