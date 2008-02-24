@@ -198,17 +198,17 @@ def register_tool(
 
     (junk,gui_task) = divmod(modes,2**_Tool.MODE_GUI)
     if gui_task:
-        _register_gui_tool(tool_class,options_class,translated_name,
+        _register_gui_tool(tool_class, options_class,translated_name,
                            name,category,description,
                            status,author_name,author_email,unsupported,
                            require_active)
 
     (junk,cli_task) = divmod(modes-gui_task,2**_Tool.MODE_CLI)
     if cli_task:
-        _register_cli_tool(name,category,tool_class,options_class,
+        _register_cli_tool(name,category,tool_class, options_class,
                            translated_name,unsupported)
 
-def _register_gui_tool(tool_class,options_class,translated_name,
+def _register_gui_tool(tool_class, options_class,translated_name,
                        name,category,
                        description=_unavailable,
                        status=_("Unknown"),
@@ -224,11 +224,11 @@ def _register_gui_tool(tool_class,options_class,translated_name,
     if del_index != -1:
         del tool_list[del_index]
     mod2text[tool_class.__module__] = description
-    tool_list.append((tool_class,options_class,translated_name,
-                      category,name,description,status,
+    tool_list.append((tool_class, options_class,translated_name,
+                      category, name,description,status,
                       author_name,author_email,unsupported, require_active))
 
-def _register_cli_tool(name,category,tool_class,options_class,
+def _register_cli_tool(name,category,tool_class, options_class,
                        translated_name,unsupported=False):
     del_index = -1
     for i in range(0,len(cli_tool_list)):
@@ -237,7 +237,7 @@ def _register_cli_tool(name,category,tool_class,options_class,
             del_index = i
     if del_index != -1:
         del cli_tool_list[del_index]
-    cli_tool_list.append((name,category,tool_class,options_class,
+    cli_tool_list.append((name,category,tool_class, options_class,
                           translated_name,unsupported, None))
 
 #-------------------------------------------------------------------------
@@ -269,7 +269,7 @@ def register_report(
     """
     (junk,standalone_task) = divmod(modes,2**MODE_GUI)
     if standalone_task:
-        _register_standalone(report_class,options_class,translated_name,
+        _register_standalone(report_class, options_class,translated_name,
                              name,category,description,
                              status,author_name,author_email,unsupported,
                              require_active)
@@ -278,13 +278,13 @@ def register_report(
     if book_item_task:
         book_item_category = book_categories[category]
         register_book_item(translated_name,book_item_category,
-                           report_class,options_class,name,unsupported,
+                           report_class, options_class, name,unsupported,
                            require_active)
 
     (junk,command_line_task) = divmod(modes-standalone_task-book_item_task,
                                         2**MODE_CLI)
     if command_line_task:
-        _register_cl_report(name,category,report_class,options_class,
+        _register_cl_report(name,category,report_class, options_class,
                             translated_name,unsupported, require_active)
 
 def _register_standalone(report_class, options_class, translated_name, name,

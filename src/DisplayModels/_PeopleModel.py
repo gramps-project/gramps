@@ -378,7 +378,7 @@ class PeopleModel(gtk.GenericTreeModel):
         
     def calculate_data(self, dfilter=None, skip=[]):
         """
-        Calculates the new path to node values for the model.
+        Calculate the new path to node values for the model.
         """
         self.in_build  = True
         self.lru_data  = LRU(_CACHE_SIZE)
@@ -532,7 +532,7 @@ class PeopleModel(gtk.GenericTreeModel):
         try:
             value = self.lru_bdate[node]
         except:
-            value = self._get_birth_data(data,node)
+            value = self._get_birth_data(data, node)
             if not self.in_build:
                 self.lru_bdate[node] = value
         return value
@@ -568,7 +568,7 @@ class PeopleModel(gtk.GenericTreeModel):
         try:
             value = self.lru_ddate[node]
         except:
-            value = self._get_death_data(data,node)
+            value = self._get_death_data(data, node)
             if not self.in_build:
                 self.lru_ddate[node] = value
         return value

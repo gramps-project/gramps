@@ -21,7 +21,7 @@
 # $Id$
 
 """
-AddressBase class for GRAMPS
+AddressBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,7 @@ AddressBase class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from address import Address
+from gen.lib.address import Address
 
 #-------------------------------------------------------------------------
 #
@@ -43,8 +43,10 @@ class AddressBase:
 
     def __init__(self, source=None):
         """
-        Initialize a AddressBase. If the source is not None, then object
-        is initialized from values of the source object.
+        Initialize a AddressBase. 
+        
+        If the source is not None, then object is initialized from values of 
+        the source object.
 
         @param source: Object used to initialize the new object
         @type source: AddressBase
@@ -57,19 +59,19 @@ class AddressBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return [addr.serialize() for addr in self.address_list]
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.address_list = [Address().unserialize(item) for item in data]
 
     def add_address(self, address):
         """
-        Adds the L{Address} instance to the object's list of addresses
+        Add the L{Address} instance to the object's list of addresses.
 
         @param address: L{Address} instance to add to the object's address list
         @type address: list
@@ -78,7 +80,8 @@ class AddressBase:
 
     def remove_address(self, address):
         """
-        Removes the specified L{Address} instance from the address list
+        Remove the specified L{Address} instance from the address list.
+        
         If the instance does not exist in the list, the operation has
         no effect.
 
@@ -96,7 +99,7 @@ class AddressBase:
 
     def get_address_list(self):
         """
-        Returns the list of L{Address} instances associated with the object
+        Return the list of L{Address} instances associated with the object.
 
         @return: Returns the list of L{Address} instances
         @rtype: list
@@ -105,7 +108,8 @@ class AddressBase:
 
     def set_address_list(self, address_list):
         """
-        Assigns the passed list to the object's list of L{Address} instances.
+        Assign the passed list to the object's list of L{Address} instances.
+        
         @param address_list: List of L{Address} instances to be associated
             with the object
         @type address_list: list

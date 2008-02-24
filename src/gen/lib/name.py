@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Name class for GRAMPS
+Name class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,12 +29,12 @@ Name class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from srcbase import SourceBase
-from notebase import NoteBase
-from datebase import DateBase
-from nametype import NameType
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.datebase import DateBase
+from gen.lib.nametype import NameType
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +43,7 @@ from nametype import NameType
 #-------------------------------------------------------------------------
 class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
     """
-    Provides name information about a person.
+    Provide name information about a person.
 
     A person may have more that one name throughout his or her life.
     """
@@ -55,7 +55,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
     FN   = 4  # first name
 
     def __init__(self, source=None, data=None):
-        """creates a new Name instance, copying from the source if provided"""
+        """Create a new Name instance, copying from the source if provided."""
         PrivacyBase.__init__(self, source)
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)
@@ -97,7 +97,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
@@ -109,7 +109,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def is_empty(self):
         """
-        Indicates if the name is empty
+        Indicate if the name is empty.
         """
         return (self.first_name == u"" and self.surname == u"" and
                 self.suffix == u"" and self.title == u"" and 
@@ -117,7 +117,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (privacy, source_list, note_list, date,
          self.first_name, self.surname, self.suffix, self.title,
@@ -132,7 +132,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -142,7 +142,7 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -151,17 +151,18 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.source_list
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -170,19 +171,22 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return self.get_referenced_note_handles()
 
     def set_group_as(self, name):
         """
-        Sets the grouping name for a person. Normally, this is the person's
-        surname. However, some locales group equivalent names (e.g. Ivanova
-        and Ivanov in Russian are usually considered equivalent.
+        Set the grouping name for a person. 
+        
+        Normally, this is the person's surname. However, some locales group 
+        equivalent names (e.g. Ivanova and Ivanov in Russian are usually 
+        considered equivalent.
+        
         Note that there is also a database wide grouping set_name_group_mapping
           So one might map a name Smith to SmithNew, and have one person still
           grouped with name Smith. Hence, group_as can be equal to surname!
@@ -191,13 +195,13 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def get_group_as(self):
         """
-        Returns the grouping name, which is used to group equivalent surnames.
+        Return the grouping name, which is used to group equivalent surnames.
         """
         return self.group_as
 
     def get_group_name(self):
         """
-        Returns the grouping name, which is used to group equivalent surnames.
+        Return the grouping name, which is used to group equivalent surnames.
         """
         if self.group_as:
             return self.group_as
@@ -206,117 +210,131 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
 
     def set_sort_as(self, value):
         """
-        Specifies the sorting method for the specified name. Typically the
-        locale's default should be used. However, there may be names where
-        a specific sorting structure is desired for a name. 
+        Specifies the sorting method for the specified name. 
+        
+        Typically the locale's default should be used. However, there may be 
+        names where a specific sorting structure is desired for a name. 
         """
         self.sort_as = value
 
     def get_sort_as(self):
         """
-        Returns the selected sorting method for the name. The options are
-        LNFN (last name, first name), FNLN (first name, last name), etc.
+        Return the selected sorting method for the name. 
+        
+        The options are LNFN (last name, first name), FNLN (first name, last 
+        name), etc.
         """
         return self.sort_as 
 
     def set_display_as(self, value):
         """
-        Specifies the display format for the specified name. Typically the
-        locale's default should be used. However, there may be names where
-        a specific display format is desired for a name. 
+        Specifies the display format for the specified name. 
+        
+        Typically the locale's default should be used. However, there may be 
+        names where a specific display format is desired for a name. 
         """
         self.display_as = value
 
     def get_display_as(self):
         """
-        Returns the selected display format for the name. The options are
-        LNFN (last name, first name), FNLN (first name, last name), etc.
+        Return the selected display format for the name. 
+        
+        The options are LNFN (last name, first name), FNLN (first name, last 
+        name), etc.
         """
         return self.display_as
 
     def get_call_name(self):
         """
-        Returns the call name. The call name's exact definition is not predetermined,
-        and may be locale specific.
+        Return the call name. 
+        
+        The call name's exact definition is not predetermined, and may be 
+        locale specific.
         """
         return self.call
 
     def set_call_name(self, val):
         """
-        Returns the call name. The call name's exact definition is not predetermined,
-        and may be locale specific.
+        Set the call name. 
+        
+        The call name's exact definition is not predetermined, and may be 
+        locale specific.
         """
         self.call = val
 
     def get_surname_prefix(self):
         """
-        Returns the prefix (or article) of a surname. The prefix is not
-        used for sorting or grouping.
+        Return the prefix (or article) of a surname. 
+        
+        The prefix is not used for sorting or grouping.
         """
         return self.prefix
 
     def set_surname_prefix(self, val):
         """
-        Sets the prefix (or article) of a surname. Examples of articles
-        would be 'de' or 'van'.
+        Set the prefix (or article) of a surname. 
+        
+        Examples of articles would be 'de' or 'van'.
         """
         self.prefix = val
 
     def set_type(self, the_type):
-        """sets the type of the Name instance"""
+        """Set the type of the Name instance."""
         self.type.set(the_type)
 
     def get_type(self):
-        """returns the type of the Name instance"""
+        """Return the type of the Name instance."""
         return self.type
 
     def set_first_name(self, name):
-        """sets the given name for the Name instance"""
+        """Set the given name for the Name instance."""
         self.first_name = name
 
     def set_patronymic(self, name):
-        """sets the patronymic name for the Name instance"""
+        """Set the patronymic name for the Name instance."""
         self.patronymic = name
 
     def set_surname(self, name):
-        """sets the surname (or last name) for the Name instance"""
+        """Set the surname (or last name) for the Name instance."""
         self.surname = name
 
     def set_suffix(self, name):
-        """sets the suffix (such as Jr., III, etc.) for the Name instance"""
+        """Set the suffix (such as Jr., III, etc.) for the Name instance."""
         self.suffix = name
 
     def get_first_name(self):
-        """returns the given name for the Name instance"""
+        """Return the given name for the Name instance."""
         return self.first_name
 
     def get_patronymic(self):
-        """returns the patronymic name for the Name instance"""
+        """Return the patronymic name for the Name instance."""
         return self.patronymic
 
     def get_surname(self):
-        """returns the surname (or last name) for the Name instance"""
+        """Return the surname (or last name) for the Name instance."""
         return self.surname
 
     def get_upper_surname(self):
-        """returns the surname (or last name) for the Name instance"""
+        """Return the surname (or last name) for the Name instance."""
         return self.surname.upper()
 
     def get_suffix(self):
-        """returns the suffix for the Name instance"""
+        """Return the suffix for the Name instance."""
         return self.suffix
 
     def set_title(self, title):
-        """sets the title (Dr., Reverand, Captain) for the Name instance"""
+        """Set the title (Dr., Reverand, Captain) for the Name instance."""
         self.title = title
 
     def get_title(self):
-        """returns the title for the Name instance"""
+        """Return the title for the Name instance."""
         return self.title
 
     def get_name(self):
-        """returns a name string built from the components of the Name
-        instance, in the form of surname, Firstname"""
+        """
+        Return a name string built from the components of the Name instance, 
+        in the form of surname, Firstname.
+        """
 
         if self.patronymic:
             first = "%s %s" % (self.first_name, self.patronymic)
@@ -335,8 +353,10 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
                 return "%s, %s" % (self.surname, first)
 
     def get_upper_name(self):
-        """returns a name string built from the components of the Name
-        instance, in the form of surname, Firstname"""
+        """
+        Return a name string built from the components of the Name instance, 
+        in the form of surname, Firstname.
+        """
         
         if self.patronymic:
             first = "%s %s" % (self.first_name, self.patronymic)
@@ -358,8 +378,10 @@ class Name(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase):
                 return "%s, %s" % (self.surname.upper(), first)
 
     def get_regular_name(self):
-        """returns a name string built from the components of the Name
-        instance, in the form of Firstname surname"""
+        """
+        Return a name string built from the components of the Name instance, 
+        in the form of Firstname surname.
+        """
         if self.patronymic:
             first = "%s %s" % (self.first_name, self.patronymic)
         else:

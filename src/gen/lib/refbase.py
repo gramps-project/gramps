@@ -44,23 +44,24 @@ class RefBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return self.ref
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.ref = str(data)
         return self
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Returns the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: Returns the list of (classname, handle) tuples for referenced 
+                objects.
         @rtype: list
         """
         assert False, "Must be overridden in the derived class"

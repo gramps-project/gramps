@@ -21,7 +21,7 @@
 # $Id$
 
 """
-AttributeBase class for GRAMPS
+AttributeBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,7 @@ AttributeBase class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from attribute import Attribute
+from gen.lib.attribute import Attribute
 
 #-------------------------------------------------------------------------
 #
@@ -43,8 +43,10 @@ class AttributeBase:
 
     def __init__(self, source=None):
         """
-        Initialize a AttributeBase. If the source is not None, then object
-        is initialized from values of the source object.
+        Initialize a AttributeBase. 
+        
+        If the source is not None, then object is initialized from values of 
+        the source object.
 
         @param source: Object used to initialize the new object
         @type source: AttributeBase
@@ -57,19 +59,19 @@ class AttributeBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return [attr.serialize() for attr in self.attribute_list]
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.attribute_list = [Attribute().unserialize(item) for item in data]
 
     def add_attribute(self, attribute):
         """
-        Adds the L{Attribute} instance to the object's list of attributes
+        Add the L{Attribute} instance to the object's list of attributes.
 
         @param attribute: L{Attribute} instance to add.
         @type attribute: L{Attribute}
@@ -79,7 +81,8 @@ class AttributeBase:
 
     def remove_attribute(self, attribute):
         """
-        Removes the specified L{Attribute} instance from the attribute list
+        Remove the specified L{Attribute} instance from the attribute list.
+        
         If the instance does not exist in the list, the operation has
         no effect.
 
@@ -98,7 +101,7 @@ class AttributeBase:
 
     def get_attribute_list(self):
         """
-        Returns the list of L{Attribute} instances associated with the object.
+        Return the list of L{Attribute} instances associated with the object.
         
         @returns: Returns the list of L{Attribute} instances.
         @rtype: list
@@ -107,7 +110,7 @@ class AttributeBase:
 
     def set_attribute_list(self, attribute_list):
         """
-        Assigns the passed list to the Person's list of L{Attribute} instances.
+        Assign the passed list to the Person's list of L{Attribute} instances.
 
         @param attribute_list: List of L{Attribute} instances to ba associated
             with the Person

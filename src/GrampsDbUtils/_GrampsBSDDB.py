@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provides the Berkeley DB (BSDDB) database backend for GRAMPS for GRAMPS up 
+Provide the Berkeley DB (BSDDB) database backend for GRAMPS for GRAMPS up 
 to version 2.2.x
 
 """
@@ -70,14 +70,14 @@ _DBVERSION = 13
 
 def find_surname(key, data):
     """
-    Returns the surname from the data stream. Used for building a secondary 
+    Return the surname from the data stream. Used for building a secondary 
     index.
     """
     return str(data[3][5])
 
 def find_idmap(key, data):
     """
-    Returns the ID from the data stream. Used for building a secondary 
+    Return the ID from the data stream. Used for building a secondary 
     index.
     """
     return str(data[1])
@@ -871,7 +871,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         """
         
         # Add references to the reference_map for all primary object referenced
-        # from the primary object 'obj' or any of its secondary objects.
+        # from the primary object 'obj, or any of its secondary objects.
 
         handle = obj.handle
         update = self.reference_map_primary_map.has_key(str(handle))
@@ -945,7 +945,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
     def __remove_reference(self, key, transaction, txn=None):
         """
-        Removes the reference specified by the key,
+        Remove the reference specified by the key,
         preserving the change in the passed transaction.
         """
         if not self.readonly:
@@ -960,7 +960,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
     def __add_reference(self, key, data, transaction, txn=None):
         """
-        Adds the reference specified by the key and the data,
+        Add the reference specified by the key and the data,
         preserving the change in the passed transaction.
         """
 
@@ -1485,7 +1485,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
     def transaction_begin(self, msg="", batch=False, no_magic=False):
         """
-        Creates a new Transaction tied to the current UNDO database. The
+        Create a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
         transaction_commit function of the this database object.
         """
@@ -2036,7 +2036,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
 
         print "Done upgrading to DB version 13"
 
-    def commit_13(self,data_tuple,data_key_name,data_map,note_handles=None):
+    def commit_13(self,data_tuple,data_key_name,data_map, note_handles=None):
         """
         Commits the specified object to the data_map table in the database, 
         add a reference to each note handle.
@@ -2060,7 +2060,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         if the_txn:
             the_txn.commit()
 
-    def convert_notes_13(self,name,obj,nttype=NoteType._DEFAULT,private=False):
+    def convert_notes_13(self, name, obj, nttype=NoteType._DEFAULT,private=False):
         """
         This is the function for conversion all notes in all objects
         and their child objects to the top-level notes and handle references.
@@ -2258,7 +2258,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             note_handles += [item[1] for item in tuples]
             new_obj = (handle, gramps_id, fh, mh, new_child_ref_list,
                        the_type, new_event_ref_list, new_media_list,
-                       new_attr_list,new_lds_list, new_source_list, note_list, 
+                       new_attr_list, new_lds_list, new_source_list, note_list, 
                        change, marker, priv)
         elif name == 'MediaObject':
             (handle, gramps_id, path, mime, desc, attr_list, source_list,

@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id:_PlaceModel.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -54,7 +54,7 @@ class PlaceModel(BaseModel):
 
     HANDLE_COL = 12
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
+    def __init__(self,db,scol=0, order=gtk.SORT_ASCENDING,search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_place_cursor
         self.map = db.get_raw_place_data

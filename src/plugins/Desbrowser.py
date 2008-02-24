@@ -92,7 +92,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.active_name,_("Descendant Browser tool"))
 
     def make_new_model(self):
@@ -101,7 +101,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
         self.add_to_tree(None, None, self.active.get_handle())
         self.tree.expand_all()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-ae')
 
@@ -118,7 +118,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
                 prev_id = self.add_to_tree(item_id, prev_id, child_ref.ref)
         return item_id
     
-    def button_press_event(self,obj,event):
+    def button_press_event(self, obj,event):
         from Editors import EditPerson
 
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -143,8 +143,8 @@ class DesBrowseOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #------------------------------------------------------------------------
 #

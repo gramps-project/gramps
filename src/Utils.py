@@ -445,7 +445,7 @@ def set_titles(window, title, t, msg=None):
     warn('The Utils.set_titles is deprecated. Use ManagedWindow methods')
 
 def gfloat(val):
-    """Converts to floating number, taking care of possible locale differences.
+    """Convert to floating number, taking care of possible locale differences.
     
     Useful for reading float values from text entry fields 
     while under non-English locale.
@@ -568,7 +568,7 @@ def create_id():
 #
 #-------------------------------------------------------------------------
 def probably_alive(person, db, current_date=None, limit=0):
-    """Returns true if the person may be alive on current_date.
+    """Return true if the person may be alive on current_date.
 
     This works by a process of emlimination. If we can't find a good
     reason to believe that someone is dead then we assume they must
@@ -894,7 +894,7 @@ def cast_to_bool(val):
 
 def get_type_converter(val):
     """
-    Returns function that converts strings into the type of val.
+    Return function that converts strings into the type of val.
     """
     val_type = type(val)
     if val_type in (str, unicode):
@@ -910,7 +910,7 @@ def get_type_converter(val):
 
 def type_name(val):
     """
-    Returns the name the type of val.
+    Return the name the type of val.
     
     Only numbers and strings are supported.
     The rest becomes strings (unicode).
@@ -926,7 +926,7 @@ def type_name(val):
 
 def get_type_converter_by_name(val_str):
     """
-    Returns function that converts strings into the type given by val_str.
+    Return function that converts strings into the type given by val_str.
     
     Only numbers and strings are supported.
     The rest becomes strings (unicode).

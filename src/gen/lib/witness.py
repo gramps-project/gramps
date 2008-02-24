@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Witness class for GRAMPS
+Witness class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -30,6 +30,6 @@ Witness class for GRAMPS
 #
 #-------------------------------------------------------------------------
 class Witness:
-    """this class is only present to enable db upgrade"""
+    """This class is only present to enable db upgrade."""
     def __init__(self):
         pass

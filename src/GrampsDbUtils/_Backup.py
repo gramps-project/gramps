@@ -90,7 +90,7 @@ def backup(database):
 
 def __mk_backup_name(database, base):
     """
-    Returns the backup name of the database table
+    Return the backup name of the database table
 
     @param database: database instance 
     @type database: GrampsDbDir
@@ -101,7 +101,7 @@ def __mk_backup_name(database, base):
 
 def __mk_tmp_name(database, base):
     """
-    Returns the temporary backup name of the database table
+    Return the temporary backup name of the database table
 
     @param database: database instance 
     @type database: GrampsDbDir
@@ -177,7 +177,7 @@ def __do_restore(database):
 
 def __load_tbl_no_txn(backup_table, tbl):
     """
-    Returns the temporary backup name of the database table
+    Return the temporary backup name of the database table
 
     @param backup_table: file containing the backup data
     @type backup_table: file
@@ -194,7 +194,7 @@ def __load_tbl_no_txn(backup_table, tbl):
 
 def __load_tbl_txn(database, backup_table, tbl):
     """
-    Returns the temporary backup name of the database table
+    Return the temporary backup name of the database table
 
     @param database: database instance 
     @type database: GrampsDbDir

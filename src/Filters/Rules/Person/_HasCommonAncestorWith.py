@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_HasCommonAncestorWith.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -65,7 +65,7 @@ class HasCommonAncestorWith(Rule):
         try:
             handle = db.get_person_from_gramps_id(self.list[0]).get_handle()
             if handle:
-                def init(self,handle): self.ancestor_cache[handle] = 1
+                def init(self, handle): self.ancestor_cache[handle] = 1
                 for_each_ancestor(db,[handle],init,self)
         except:
             pass
@@ -79,5 +79,5 @@ class HasCommonAncestorWith(Rule):
         handle = person.handle
         return for_each_ancestor(
             db,[handle],
-            lambda self,handle: self.ancestor_cache.has_key(handle),
+            lambda self, handle: self.ancestor_cache.has_key(handle),
             self);

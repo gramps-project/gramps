@@ -173,8 +173,8 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
 #-------------------------------------------------------------------------
 class OwnerEditorOptions(Tool.ToolOptions):
     """Defines options and provides handling interface."""
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #-------------------------------------------------------------------------
 #

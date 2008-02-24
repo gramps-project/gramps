@@ -107,14 +107,14 @@ class MergeSources(ManagedWindow.ManagedWindow):
         self.glade.get_widget('help').connect('clicked',self.help)
         self.show()
 
-    def close_window(self,obj):
+    def close_window(self, obj):
         self.close()
 
-    def help(self,obj):
+    def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-merge-sources', webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
-    def merge(self,obj):
+    def merge(self, obj):
         """
         Performs the merge of the sources when the merge button is clicked.
         """

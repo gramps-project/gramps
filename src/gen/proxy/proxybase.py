@@ -39,7 +39,7 @@ class ProxyDbBase(DbBase):
 
     def __init__(self, db):
         """
-        Creates a new PrivateProxyDb instance. 
+        Create a new PrivateProxyDb instance. 
         """
         self.db = db
         self.name_formats = db.name_formats
@@ -54,13 +54,13 @@ class ProxyDbBase(DbBase):
 
     def is_open(self):
         """
-        Returns 1 if the database has been opened.
+        Return 1 if the database has been opened.
         """
         return self.db.is_open
 
     def get_name_group_mapping(self, name):
         """
-        Returns the default grouping name for a surname
+        Return the default grouping name for a surname
         """
         return self.db.get_name_group_mapping(name)
 
@@ -72,55 +72,55 @@ class ProxyDbBase(DbBase):
 
     def get_name_group_keys(self):
         """
-        Returns the defined names that have been assigned to a default grouping
+        Return the defined names that have been assigned to a default grouping
         """
         return self.db.get_name_group_keys()
 
     def get_number_of_people(self):
         """
-        Returns the number of people currently in the databse.
+        Return the number of people currently in the databse.
         """
         return len(self.get_person_handles())
 
     def get_number_of_families(self):
         """
-        Returns the number of families currently in the databse.
+        Return the number of families currently in the databse.
         """
         return len(self.get_family_handles())
 
     def get_number_of_events(self):
         """
-        Returns the number of events currently in the databse.
+        Return the number of events currently in the databse.
         """
         return len(self.get_event_handles())
 
     def get_number_of_places(self):
         """
-        Returns the number of places currently in the databse.
+        Return the number of places currently in the databse.
         """
         return len(self.get_place_handles())
 
     def get_number_of_sources(self):
         """
-        Returns the number of sources currently in the databse.
+        Return the number of sources currently in the databse.
         """
         return len(self.get_source_handles())
 
     def get_number_of_media_objects(self):
         """
-        Returns the number of media objects currently in the databse.
+        Return the number of media objects currently in the databse.
         """
         return len(self.get_media_object_handles())
 
     def get_number_of_repositories(self):
         """
-        Returns the number of source repositories currently in the databse.
+        Return the number of source repositories currently in the databse.
         """
         return len(self.get_repository_handles())
 
     def get_number_of_notes(self):
         """
-        Returns the number of notes currently in the databse.
+        Return the number of notes currently in the databse.
         """
         return self.db.get_number_of_notes()
 
@@ -341,63 +341,63 @@ class ProxyDbBase(DbBase):
 
     def get_person_column_order(self):
         """
-        Returns the Person display common information stored in the
+        Return the Person display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
         
     def get_family_list_column_order(self):
         """
-        Returns the Person display common information stored in the
+        Return the Person display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_child_column_order(self):
         """
-        Returns the Person display common information stored in the
+        Return the Person display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_place_column_order(self):
         """
-        Returns the Place display common information stored in the
+        Return the Place display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_source_column_order(self):
         """
-        Returns the Source display common information stored in the
+        Return the Source display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_media_column_order(self):
         """
-        Returns the MediaObject display common information stored in the
+        Return the MediaObject display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_event_column_order(self):
         """
-        Returns the Event display common information stored in the
+        Return the Event display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_repository_column_order(self):
         """
-        Returns the Repository display common information stored in the
+        Return the Repository display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_note_column_order(self):
         """
-        Returns the Note display common information stored in the
+        Return the Note display common information stored in the
         database's metadata.
         """
         raise NotImplementedError

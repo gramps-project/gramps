@@ -90,7 +90,7 @@ class BaseNavigation:
         
     def disable(self):
         """
-        Removes the UI and action groups if the navigation is enabled
+        Remove the UI and action groups if the navigation is enabled
         """
         if self.active != DISABLED:
             self.uistate.uimanager.remove_ui(self.active)

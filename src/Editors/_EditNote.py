@@ -249,7 +249,7 @@ class EditNote(EditPrimary):
     
     def _create_tabbed_pages(self):
         """
-        Creates the notebook tabs and inserts them into the main
+        Create the notebook tabs and inserts them into the main
         window.
         """
         notebook = self.top.get_widget("note_notebook")
@@ -355,7 +355,7 @@ class EditNote(EditPrimary):
             
     def build_menu_names(self, person):
         """
-        Provides the information needed by the base class to define the
+        Provide the information needed by the base class to define the
         window management menu entries.
         """
         return (_('Edit Note'), self.get_menu_title())

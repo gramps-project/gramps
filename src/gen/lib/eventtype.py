@@ -21,15 +21,25 @@
 # $Id$
 
 """
-Provides the different event types
+Provide the different event types
 """
 
-from grampstype import GrampsType, init_map
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from gettext import gettext as _
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib.grampstype import GrampsType, init_map
 
 class EventType(GrampsType):
     """
-    Event types
+    Event types.
     """
     UNKNOWN        = -1
     CUSTOM         = 0

@@ -275,7 +275,7 @@ class MissingMediaDialog:
             self.default_action = 0
         self.top.destroy()
 
-    def warn(self,obj,obj2):
+    def warn(self, obj, obj2):
         WarningDialog(
             _("Attempt to force closing the dialog"),
             _("Please do not force closing this important dialog.\n"

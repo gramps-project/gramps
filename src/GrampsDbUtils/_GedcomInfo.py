@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_GedcomInfo.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -157,7 +157,7 @@ lds_status = {
 from xml.parsers.expat import ParserCreate
 
 class GedcomDescription:
-    def __init__(self,name):
+    def __init__(self, name):
         self.name = name
         self.dest = ""
         self.adopt = ADOPT_STD
@@ -263,15 +263,15 @@ class GedcomInfoDB:
         parser.parse(f)
         f.close()
 
-    def add_description(self,name,obj):
+    def add_description(self, name, obj):
         self.map[name] = obj
 
-    def get_description(self,name):
+    def get_description(self, name):
         if self.map.has_key(name):
             return self.map[name]
         return self.standard
 
-    def get_from_source_tag(self,name):
+    def get_from_source_tag(self, name):
         for k in self.map.keys():
             val = self.map[k]
             if val.get_dest() == name:

@@ -387,7 +387,7 @@ class NotRelated(ManagedWindow.ManagedWindow) :
             self.model.append(iter, [name, gid, parentNames, marker, familygid])
 
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title, None)
 
 #-------------------------------------------------------------------------

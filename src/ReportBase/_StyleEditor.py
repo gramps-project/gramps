@@ -67,7 +67,7 @@ class StyleListDisplay:
 
     def __init__(self, stylesheetlist, callback, parent_window):
         """
-        Creates a StyleListDisplay object that displays the styles in the
+        Create a StyleListDisplay object that displays the styles in the
         StyleSheet.
 
         stylesheetlist - styles that can be editied
@@ -177,7 +177,7 @@ class StyleEditor:
     
     def __init__(self, name, style, parent):
         """
-        Creates the StyleEditor.
+        Create the StyleEditor.
 
         name - name of the style that is to be edited
         style - style object that is to be edited

@@ -204,10 +204,10 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
 
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title,None)
 
-    def find(self,obj):
+    def find(self, obj):
         self.options.handler.options_dict['events'] = \
                                         int(self.events_box.get_active())
         self.options.handler.options_dict['sources'] = \
@@ -268,13 +268,13 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
 
                 hlist = [x for x in self.db.find_backlink_handles(handle)]
                 if len(hlist) == 0:
-                    self.add_results((the_type,handle,data))
+                    self.add_results((the_type, handle,data))
                 item = cursor.next()
                 self.update()
             cursor.close()
             self.reset()
 
-    def do_remove(self,obj):
+    def do_remove(self, obj):
         trans = self.db.transaction_begin("",batch=False)
         self.db.disable_signals()
 
@@ -320,9 +320,9 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
             row = self.real_model[path]
             row[RemoveUnused.MARK_COL] = not row[RemoveUnused.MARK_COL]
 
-    def double_click(self,obj,event):
+    def double_click(self, obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            (model,node) = self.selection.get_selected()
+            (model, node) = self.selection.get_selected()
             if not node:
                 return
             sort_path = self.sort_model.get_path(node)
@@ -330,9 +330,9 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
             row = self.real_model[real_path]
             the_type = row[RemoveUnused.OBJ_TYPE_COL]
             handle = row[RemoveUnused.OBJ_HANDLE_COL]
-            self.call_editor(the_type,handle)
+            self.call_editor(the_type, handle)
 
-    def call_editor(self,the_type,handle):
+    def call_editor(self,the_type, handle):
         try:
             obj = self.tables[the_type]['get_func'](handle)
             editor_str = 'from Editors import %s as editor' \
@@ -348,13 +348,13 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         cell.set_property('stock-id', the_stock)
 
     def add_results(self,results):
-        (the_type,handle,data) = results
+        (the_type, handle,data) = results
 
         gramps_id = data[1]
         name_ix = self.tables[the_type]['name_ix']
         name = data[name_ix]
         
-        self.real_model.append(row=[False,gramps_id,name,the_type,handle])
+        self.real_model.append(row=[False,gramps_id, name,the_type, handle])
         
 #------------------------------------------------------------------------
 #
@@ -366,8 +366,8 @@ class CheckOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

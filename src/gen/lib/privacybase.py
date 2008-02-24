@@ -21,7 +21,7 @@
 # $Id$
 
 """
-PrivacyBase Object class for GRAMPS
+PrivacyBase Object class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -36,8 +36,10 @@ class PrivacyBase:
 
     def __init__(self, source=None):
         """
-        Initialize a PrivacyBase. If the source is not None, then object
-        is initialized from values of the source object.
+        Initialize a PrivacyBase. 
+        
+        If the source is not None, then object is initialized from values of 
+        the source object.
 
         @param source: Object used to initialize the new object
         @type source: PrivacyBase
@@ -50,30 +52,30 @@ class PrivacyBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return self.private
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.private = data
         return self
 
     def set_privacy(self, val):
         """
-        Sets or clears the privacy flag of the data
+        Set or clears the privacy flag of the data.
 
-        @param val: value to assign to the privacy flag. True indicates that the
-           record is private, False indicates that it is public.
+        @param val: value to assign to the privacy flag. True indicates that 
+            the record is private, False indicates that it is public.
         @type val: bool
         """
         self.private = val
 
     def get_privacy(self):
         """
-        Returns the privacy level of the data. 
+        Return the privacy level of the data. 
 
         @returns: True indicates that the record is private
         @rtype: bool

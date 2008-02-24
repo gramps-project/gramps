@@ -42,19 +42,19 @@ class LRU:
 
     def __contains__(self, obj):
         """
-        Returns True if the object is contained in the LRU
+        Return True if the object is contained in the LRU
         """
         return obj in self.data
 
     def __getitem__(self, obj):
         """
-        Returns item assocated with Obj
+        Return item assocated with Obj
         """
         return self.data[obj].value[1]
 
     def __setitem__(self, obj, val):
         """
-        Sets the item in the LRU, removing an old entry if needed
+        Set the item in the LRU, removing an old entry if needed
         """
         if obj in self.data:
             del self[obj]

@@ -20,11 +20,22 @@
 # $Id$
 
 """
-Provides the different event roles
+Provide the different event roles.
 """
 
-from grampstype import GrampsType, init_map
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib.grampstype import GrampsType, init_map
 
 class EventRoleType(GrampsType):
 

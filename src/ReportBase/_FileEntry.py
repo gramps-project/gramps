@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_FileEntry.py 9912 2008-01-22 09:17:46Z acraphae $
 
 import os
 import sys
@@ -43,7 +43,7 @@ class FileEntry(gtk.HBox):
         self.pack_start(self.entry,True,True)
         self.pack_end(self.button,False,False)
 
-    def select_file(self,obj):
+    def select_file(self, obj):
         if self.dir:
             my_action = gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER
         else:
@@ -90,5 +90,5 @@ class FileEntry(gtk.HBox):
     def get_full_path(self,val):
         return self.entry.get_text()
 
-    def set_directory_entry(self,opt):
+    def set_directory_entry(self, opt):
         self.dir = opt

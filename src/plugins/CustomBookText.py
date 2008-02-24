@@ -53,7 +53,7 @@ class CustomText(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates CustomText object that produces the report.
+        Create CustomText object that produces the report.
         
         The arguments are:
 

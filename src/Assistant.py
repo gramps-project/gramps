@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:Assistant.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -273,7 +273,7 @@ class Assistant(gtk.Object, ManagedWindow.ManagedWindow):
     def add_page(self, title, child):
         """
         Add page with the title and child widget.
-        Returns index number of the new page.
+        Return index number of the new page.
         """
         self.title_text.append(_format % title)
         return self.notebook.append_page(child)

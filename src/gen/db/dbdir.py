@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provides the Berkeley DB (DBDir) database backend for GRAMPS.
+Provide the Berkeley DB (DBDir) database backend for GRAMPS.
 This is used since GRAMPS version 3.0
 """
 
@@ -1150,7 +1150,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             _mkname(self.full_name, REF_REF),
             REF_REF, db.DB_BTREE,flags=open_flags)
         self.reference_map.associate(self.reference_map_referenced_map,
-                                     find_referenced_handle,open_flags)
+                                     find_referenced_handle, open_flags)
         callback(6)
 
     def __close_metadata(self):
@@ -1687,7 +1687,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                     _mkname(self.full_name, REF_REF),
                     REF_REF, db.DB_BTREE,flags=open_flags)
                 self.reference_map.associate(self.reference_map_referenced_map,
-                                             find_referenced_handle,open_flags)
+                                             find_referenced_handle, open_flags)
 
             # Only build surname list after surname index is surely back
             self.build_surname_list()

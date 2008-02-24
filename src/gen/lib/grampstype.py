@@ -21,14 +21,19 @@
 # $Id$
 
 """
-Base type for all gramps types
+Base type for all gramps types.
 """
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from gettext import gettext as _
 
 def init_map(data, key_col, data_col):
     """
-    Initializes the map, building a new map from the specified columns.
+    Initialize the map, building a new map from the specified columns.
     """
     new_data = {}
     for item in data:
@@ -49,7 +54,8 @@ class GrampsType:
 
     def __init__(self, value=None):
         """
-        Creates a new type, initialize the value from one of several possible states.
+        Create a new type, initialize the value from one of several possible 
+        states.
         """
         if value:
             self.set(value)
@@ -91,8 +97,8 @@ class GrampsType:
 
     def set_from_xml_str(self, value):
         """
-        This method sets the type instance based on the untranslated
-        string (obtained e.g. from XML).
+        This method sets the type instance based on the untranslated string 
+        (obtained e.g. from XML).
         """
         if self._E2IMAP.has_key(value):
             self.val = self._E2IMAP[value]
@@ -103,8 +109,8 @@ class GrampsType:
 
     def xml_str(self):
         """
-        This method returns the untranslated string (e.g. suitable for XML)
-        corresponding to the type.
+        Return the untranslated string (e.g. suitable for XML) corresponding 
+        to the type.
         """
         if self.val == self._CUSTOM:
             return self.string
@@ -113,13 +119,13 @@ class GrampsType:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (self.val, self.string)
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.val, self.string = data
 

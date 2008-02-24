@@ -21,7 +21,7 @@
 # $Id$
 
 """
-LDS Ordinance class for GRAMPS
+LDS Ordinance class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -37,12 +37,12 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from srcbase import SourceBase
-from notebase import NoteBase
-from datebase import DateBase
-from placebase import PlaceBase
-from privacybase import PrivacyBase
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.datebase import DateBase
+from gen.lib.placebase import PlaceBase
+from gen.lib.privacybase import PrivacyBase
 
 #-------------------------------------------------------------------------
 #
@@ -52,8 +52,9 @@ from privacybase import PrivacyBase
 class LdsOrd(SecondaryObject, SourceBase, NoteBase,
              DateBase, PlaceBase, PrivacyBase):
     """
-    Class that contains information about LDS Ordinances. LDS
-    ordinances are similar to events, but have very specific additional
+    Class that contains information about LDS Ordinances. 
+    
+    LDS ordinances are similar to events, but have very specific additional
     information related to data collected by the Church of Jesus Christ
     of Latter Day Saints (Mormon church). The LDS church is the largest
     source of genealogical information in the United States.
@@ -112,7 +113,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         ]
 
     def __init__(self, source=None):
-        """Creates a LDS Ordinance instance"""
+        """Create a LDS Ordinance instance."""
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)
         DateBase.__init__(self, source)
@@ -132,7 +133,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (SourceBase.serialize(self),
                 NoteBase.serialize(self),
@@ -142,7 +143,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (source_list, note_list, date, self.type, self.place,
          self.famc, self.temple, self.status, self.private) = data
@@ -153,7 +154,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -163,7 +164,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -172,19 +173,20 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.source_list
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -194,8 +196,8 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -204,7 +206,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def get_type(self):
         """
-        Returns the type of the Event.
+        Return the type of the Event.
 
         @return: Type of the Event
         @rtype: tuple
@@ -213,7 +215,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
 
     def set_type(self, ord_type):
         """
-        Sets the type of the LdsOrd to the passed (int,str) tuple.
+        Set the type of the LdsOrd to the passed (int,str) tuple.
 
         @param ord_type: Type to assign to the LdsOrd
         @type ord_type: tuple
@@ -221,33 +223,35 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
         self.type = ord_type
 
     def set_family_handle(self, family):
-        """Sets the Family database handle associated with the LDS ordinance"""
+        """Set the Family database handle associated with the LDS ordinance."""
         self.famc = family
 
     def get_family_handle(self):
-        """Gets the Family database handle associated with the LDS ordinance"""
+        """Get the Family database handle associated with the LDS ordinance."""
         return self.famc
 
     def set_status(self, val):
         """
-        Sets the status of the LDS ordinance. The status is a text string
-        that matches a predefined set of strings."""
+        Set the status of the LDS ordinance. 
+        
+        The status is a text string that matches a predefined set of strings.
+        """
         self.status = val
 
     def get_status(self):
-        """Gets the status of the LDS ordinance"""
+        """Get the status of the LDS ordinance."""
         return self.status
 
     def set_temple(self, temple):
-        """Sets the temple assocated with the ordinance"""
+        """Set the temple assocated with the ordinance."""
         self.temple = temple
 
     def get_temple(self):
-        """Gets the temple assocated with the ordinance"""
+        """Get the temple assocated with the ordinance."""
         return self.temple
 
     def is_empty(self):
-        """Returns 1 if the ordidance is actually empty"""
+        """Return 1 if the ordinance is actually empty."""
         if (self.famc or 
                 (self.date and not self.date.is_empty()) or 
                 self.temple or 
@@ -258,7 +262,7 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
             return True
         
     def are_equal(self, other):
-        """returns 1 if the specified ordinance is the same as the instance"""
+        """Return 1 if the specified ordinance is the same as the instance."""
         warn( "Use is_equal instead are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
 
@@ -283,7 +287,8 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
     def set_type_from_xml(self, xml_str):
         """
         Set type based on a given string from XML.
-        Return boolean of success.
+        
+        Return boolean on success.
         """
         for item in LdsOrd._TYPE_MAP:
             if item[2] == xml_str:
@@ -312,7 +317,8 @@ class LdsOrd(SecondaryObject, SourceBase, NoteBase,
     def set_status_from_xml(self, xml_str):
         """
         Set status based on a given string from XML.
-        Return boolean of success.
+        
+        Return boolean on success.
         """
         for item in LdsOrd._STATUS_MAP:
             if item[2] == xml_str:

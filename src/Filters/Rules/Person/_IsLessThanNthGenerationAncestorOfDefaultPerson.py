@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_IsLessThanNthGenerationAncestorOfDefaultPerson.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -62,7 +62,7 @@ class IsLessThanNthGenerationAncestorOfDefaultPerson(Rule):
         else:
             self.apply = lambda db,p: False
 
-    def init_ancestor_list(self,handle,gen):
+    def init_ancestor_list(self, handle,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
         if not handle:

@@ -46,7 +46,7 @@ class FamilyGroup(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the DetAncestorReport object that produces the report.
+        Create the DetAncestorReport object that produces the report.
         
         The arguments are:
 
@@ -84,7 +84,7 @@ class FamilyGroup(Report):
         self.incChiMar     = menu.get_option_by_name('incChiMar').get_value()
         self.includeAttrs  = menu.get_option_by_name('incattrs').get_value()
 
-    def dump_parent_event(self,name,event):
+    def dump_parent_event(self, name,event):
         place = ""
         date = ""
         descr = ""
@@ -212,7 +212,7 @@ class FamilyGroup(Report):
         elif self.missingInfo:
             self.dump_parent_line(_("Mother"),"")
 
-    def dump_parent_line(self,name,text):
+    def dump_parent_line(self, name,text):
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
         self.doc.start_paragraph('FGR-Normal')
@@ -300,7 +300,7 @@ class FamilyGroup(Report):
         if self.incParNotes:
             for notehandle in person.get_note_list():
                 note = self.database.get_note_from_handle(notehandle)
-                self.dump_parent_line(_("Note"),note.get(False))
+                self.dump_parent_line(_("Note"), note.get(False))
                 
         if self.includeAttrs:
             for attr in person.get_attribute_list():
@@ -310,7 +310,7 @@ class FamilyGroup(Report):
             for alt_name in person.get_alternate_names():
                 name_type = str( alt_name.get_type() )
                 name = _nd.display_name(alt_name)
-                self.dump_parent_line(name_type,name)
+                self.dump_parent_line(name_type, name)
 
         self.doc.end_table()
 
@@ -348,7 +348,7 @@ class FamilyGroup(Report):
             
             self.doc.end_table()
 
-    def dump_child_event(self,text,name,event):
+    def dump_child_event(self,text, name,event):
         date = ""
         place = ""
         if event:

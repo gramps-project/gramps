@@ -138,7 +138,7 @@ def rd(line_number, row, col, key, default = None):
     """ Return Row data by column name """
     if key in col:
         if col[key] >= len(row):
-            print "Warning: missing '%s' on line %d" % (key, line_number)
+            print "Warning: missing '%s, on line %d" % (key, line_number)
             return default
         retval = row[col[key]].strip()
         if retval == "":

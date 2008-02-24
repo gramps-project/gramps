@@ -5,7 +5,7 @@ log = logging.getLogger(".")
 
 class PathCursor(object):
     """
-    Provides a wrapper around the cursor class that provides fast
+    Provide a wrapper around the cursor class that provides fast
     traversal using treeview paths.
 
     It keeps track of the current index that the cursor is pointing

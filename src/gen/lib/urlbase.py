@@ -21,7 +21,7 @@
 # $Id$
 
 """
-UrlBase class for GRAMPS
+UrlBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,7 @@ UrlBase class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from url import Url
+from gen.lib.url import Url
 
 #-------------------------------------------------------------------------
 #
@@ -43,8 +43,10 @@ class UrlBase:
 
     def __init__(self, source=None):
         """
-        Initialize an UrlBase. If the source is not None, then object
-        is initialized from values of the source object.
+        Initialize an UrlBase. 
+        
+        If the source is not None, then object is initialized from values of 
+        the source object.
 
         @param source: Object used to initialize the new object
         @type source: UrlBase
@@ -57,19 +59,19 @@ class UrlBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data
         """
         return [url.serialize() for url in self.urls]
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.urls = [Url().unserialize(item) for item in data]
 
     def get_url_list(self):
         """
-        Returns the list of L{Url} instances associated with the object.
+        Return the list of L{Url} instances associated with the object.
 
         @returns: List of L{Url} instances
         @rtype: list
@@ -78,7 +80,7 @@ class UrlBase:
 
     def set_url_list(self, url_list):
         """
-        Sets the list of L{Url} instances to passed the list.
+        Set the list of L{Url} instances to passed the list.
 
         @param url_list: List of L{Url} instances
         @type url_list: list
@@ -87,7 +89,7 @@ class UrlBase:
 
     def add_url(self, url):
         """
-        Adds a L{Url} instance to the object's list of L{Url} instances
+        Add a L{Url} instance to the object's list of L{Url} instances.
 
         @param url: L{Url} instance to be added to the Person's list of
             related web sites.
@@ -97,9 +99,9 @@ class UrlBase:
     
     def remove_url(self, url):
         """
-        Removes the specified L{Url} instance from the url list
-        If the instance does not exist in the list, the operation has
-        no effect.
+        Remove the specified L{Url} instance from the url list.
+        
+        If the instance does not exist in the list, the operation has no effect.
 
         @param url: L{Url} instance to remove from the list
         @type url: L{Url}

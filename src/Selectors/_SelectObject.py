@@ -85,7 +85,7 @@ class SelectObject(BaseSelector):
         self.preview.show()
         self.selection.connect('changed',self._row_change)
 
-    def _row_change(self,obj):
+    def _row_change(self, obj):
         id_list = self.get_selected_ids()
         if not (id_list and id_list[0]):
             return

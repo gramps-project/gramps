@@ -21,9 +21,13 @@
 # $Id$
 
 """
-Person object for GRAMPS
+Person object for GRAMPS.
 """
-
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -31,20 +35,20 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from srcbase import SourceBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from attrbase import AttributeBase
-from addressbase import AddressBase
-from ldsordbase import LdsOrdBase
-from urlbase import UrlBase
-from name import Name
-from eventref import EventRef
-from personref import PersonRef
-from attrtype import AttributeType
-from eventroletype import EventRoleType
-from markertype import MarkerType
+from gen.lib.primaryobj import PrimaryObject
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.mediabase import MediaBase
+from gen.lib.attrbase import AttributeBase
+from gen.lib.addressbase import AddressBase
+from gen.lib.ldsordbase import LdsOrdBase
+from gen.lib.urlbase import UrlBase
+from gen.lib.name import Name
+from gen.lib.eventref import EventRef
+from gen.lib.personref import PersonRef
+from gen.lib.attrtype import AttributeType
+from gen.lib.eventroletype import EventRoleType
+from gen.lib.markertype import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -64,10 +68,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
     =====
     Person objects are usually created in one of two ways.
 
-      1. Creating a new person object, which is then initialized and
-         added to the database.
-      2. Retrieving an object from the database using the records
-         handle.
+    1. Creating a new person object, which is then initialized and added to 
+        the database.
+    2. Retrieving an object from the database using the records handle.
 
     Once a Person object has been modified, it must be committed
     to the database using the database object's commit_person function, 
@@ -81,8 +84,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
     
     def __init__(self, data=None):
         """
-        Creates a new Person instance. After initialization, most
-        data items have empty or null values, including the database
+        Create a new Person instance. 
+        
+        After initialization, most data items have empty or null values, 
+        including the database
         handle.
         """
         PrimaryObject.__init__(self)
@@ -112,9 +117,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         
     def serialize(self):
         """
-        Converts the data held in the Person to a Python tuple that
-        represents all the data elements. This method is used to convert
-        the object into a form that can easily be saved to a database.
+        Convert the data held in the Person to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
 
         These elements may be primative Python types (string, integers), 
         complex Python types (lists or tuples, or Python objects. If the
@@ -152,7 +159,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def unserialize(self, data):
         """
-        Converts the data held in a tuple created by the serialize method
+        Convert the data held in a tuple created by the serialize method
         back into the data in a Person object.
 
         @param data: tuple containing the persistent data associated the
@@ -202,14 +209,15 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             
     def _has_handle_reference(self, classname, handle):
         """
-        Returns True if the object has reference to a given handle
-        of given primary object type.
+        Return True if the object has reference to a given handle of given 
+        primary object type.
         
         @param classname: The name of the primary object class.
         @type classname: str
         @param handle: The handle to be checked.
         @type handle: str
-        @return: Returns whether the object has reference to this handle of this object type.
+        @return: Returns whether the object has reference to this handle of 
+                this object type.
         @rtype: bool
         """
         if classname == 'Event':
@@ -294,7 +302,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -303,7 +311,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -318,9 +326,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_sourcref_child_list(self):
         """
-        Returns the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may refer sources.
+        @return: Returns the list of child secondary child objects that may 
+                refer sources.
         @rtype: list
         """
         return [self.primary_name] + self.media_list + \
@@ -330,9 +339,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return [self.primary_name] + self.media_list + \
@@ -343,7 +353,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname, handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
         @return: List of (classname, handle) tuples for referenced objects.
@@ -355,8 +365,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -366,8 +376,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_primary_name(self, name):
         """
-        Sets the primary name of the Person to the specified
-        L{Name} instance
+        Set the primary name of the Person to the specified L{Name} instance.
 
         @param name: L{Name} to be assigned to the person
         @type name: L{Name}
@@ -376,7 +385,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_primary_name(self):
         """
-        Returns the L{Name} instance marked as the Person's primary name
+        Return the L{Name} instance marked as the Person's primary name.
 
         @return: Returns the primary name
         @rtype: L{Name}
@@ -385,7 +394,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_alternate_names(self):
         """
-        Returns the list of alternate L{Name} instances
+        Return the list of alternate L{Name} instances.
 
         @return: List of L{Name} instances
         @rtype: list
@@ -394,7 +403,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_alternate_names(self, alt_name_list):
         """
-        Changes the list of alternate names to the passed list. 
+        Change the list of alternate names to the passed list.
+         
         @param alt_name_list: List of L{Name} instances
         @type alt_name_list: list
         """
@@ -402,7 +412,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def add_alternate_name(self, name):
         """
-        Adds a L{Name} instance to the list of alternative names
+        Add a L{Name} instance to the list of alternative names.
 
         @param name: L{Name} to add to the list
         @type name: L{Name}
@@ -419,7 +429,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_gender(self, gender) :
         """
-        Sets the gender of the Person.
+        Set the gender of the Person.
 
         @param gender: Assigns the Person's gender to one of the
             following constants::
@@ -432,7 +442,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_gender(self) :
         """
-        Returns the gender of the Person
+        Return the gender of the Person.
 
         @returns: Returns one of the following constants::
             Person.MALE
@@ -444,9 +454,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_birth_ref(self, event_ref):
         """
-        Assigns the birth event to the Person object. This is accomplished
-        by assigning the L{EventRef} of the birth event in the current
-        database.
+        Assign the birth event to the Person object. 
+        
+        This is accomplished by assigning the L{EventRef} of the birth event 
+        in the current database.
 
         @param event_ref: the L{EventRef} object associated with
             the Person's birth.
@@ -467,9 +478,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_death_ref(self, event_ref):
         """
-        Assigns the death event to the Person object. This is accomplished
-        by assigning the L{EventRef} of the death event in the current
-        database.
+        Assign the death event to the Person object. 
+        
+        This is accomplished by assigning the L{EventRef} of the death event 
+        in the current database.
 
         @param event_ref: the L{EventRef} object associated with
             the Person's death.
@@ -490,8 +502,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_birth_ref(self):
         """
-        Returns the L{EventRef} for Person's birth event. This
-        should correspond to an L{Event} in the database's L{Event} list.
+        Return the L{EventRef} for Person's birth event. 
+        
+        This should correspond to an L{Event} in the database's L{Event} list.
 
         @returns: Returns the birth L{EventRef} or None if no birth
             L{Event} has been assigned.
@@ -507,8 +520,9 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_death_ref(self):
         """
-        Returns the L{EventRef} for the Person's death event. This
-        should correspond to an L{Event} in the database's L{Event} list.
+        Return the L{EventRef} for the Person's death event. 
+        
+        This should correspond to an L{Event} in the database's L{Event} list.
 
         @returns: Returns the death L{EventRef} or None if no death
             L{Event} has been assigned.
@@ -524,7 +538,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def add_event_ref(self, event_ref):
         """
-        Adds the L{EventRef} to the Person instance's L{EventRef} list.
+        Add the L{EventRef} to the Person instance's L{EventRef} list.
+        
         This is accomplished by assigning the L{EventRef} of a valid
         L{Event} in the current database.
         
@@ -541,7 +556,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_event_ref_list(self):
         """
-        Returns the list of L{EventRef} objects associated with L{Event}
+        Return the list of L{EventRef} objects associated with L{Event}
         instances.
 
         @returns: Returns the list of L{EventRef} objects associated with
@@ -552,7 +567,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_primary_event_ref_list(self):
         """
-        Returns the list of L{EventRef} objects associated with L{Event}
+        Return the list of L{EventRef} objects associated with L{Event}
         instances that have been marked as primary events.
 
         @returns: Returns the list of L{EventRef} objects associated with
@@ -564,7 +579,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_event_ref_list(self, event_ref_list):
         """
-        Sets the Person instance's L{EventRef} list to the passed list.
+        Set the Person instance's L{EventRef} list to the passed list.
 
         @param event_ref_list: List of valid L{EventRef} objects
         @type event_ref_list: list
@@ -573,7 +588,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def add_family_handle(self, family_handle):
         """
-        Adds the L{Family} handle to the Person instance's L{Family} list.
+        Add the L{Family} handle to the Person instance's L{Family} list.
+        
         This is accomplished by assigning the handle of a valid L{Family}
         in the current database.
 
@@ -591,7 +607,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_preferred_family_handle(self, family_handle):
         """
-        Sets the family_handle specified to be the preferred L{Family}.
+        Set the family_handle specified to be the preferred L{Family}.
+        
         The preferred L{Family} is determined by the first L{Family} in the
         L{Family} list, and is typically used to indicate the preferred
         L{Family} for navigation or reporting.
@@ -615,8 +632,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_family_handle_list(self) :
         """
-        Returns the list of L{Family} handles in which the person is a
-        parent or spouse.
+        Return the list of L{Family} handles in which the person is a parent 
+        or spouse.
 
         @return: Returns the list of handles corresponding to the
         L{Family} records with which the person is associated.
@@ -626,10 +643,10 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_family_handle_list(self, family_list) :
         """
-        Assigns the passed list to the Person's list of families in
-        which it is a parent or spouse.
+        Assign the passed list to the Person's list of families in which it is 
+        a parent or spouse.
 
-        @param family_list: List of L{Family} handles to ba associated
+        @param family_list: List of L{Family} handles to be associated
             with the Person
         @type family_list: list 
         """
@@ -637,15 +654,16 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def clear_family_handle_list(self):
         """
-        Removes all L{Family} handles from the L{Family} list.
+        Remove all L{Family} handles from the L{Family} list.
         """
         self.family_list = []
 
     def remove_family_handle(self, family_handle):
         """
-        Removes the specified L{Family} handle from the list
-        of marriages/partnerships. If the handle does not
-        exist in the list, the operation has no effect.
+        Remove the specified L{Family} handle from the list of 
+        marriages/partnerships. 
+        
+        If the handle does not exist in the list, the operation has no effect.
 
         @param family_handle: L{Family} handle to remove from the list
         @type family_handle: str
@@ -662,8 +680,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_parent_family_handle_list(self):
         """
-        Returns the list of L{Family} handles in which the person is a
-        child.
+        Return the list of L{Family} handles in which the person is a child.
 
         @return: Returns the list of handles corresponding to the
         L{Family} records with which the person is a child.
@@ -673,8 +690,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_parent_family_handle_list(self, family_list):
         """
-        Returns the list of L{Family} handles in which the person is a
-        child.
+        Return the list of L{Family} handles in which the person is a child.
 
         @return: Returns the list of handles corresponding to the
         L{Family} records with which the person is a child.
@@ -684,9 +700,11 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def add_parent_family_handle(self, family_handle):
         """
-        Adds the L{Family} handle to the Person instance's list of
-        families in which it is a child. This is accomplished by
-        assigning the handle of a valid L{Family} in the current database.
+        Add the L{Family} handle to the Person instance's list of families in 
+        which it is a child. 
+        
+        This is accomplished by assigning the handle of a valid L{Family} in 
+        the current database.
 
         Adding a L{Family} handle to a Person does not automatically update
         the corresponding L{Family}. The developer is responsible to make
@@ -704,15 +722,16 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def clear_parent_family_handle_list(self):
         """
-        Removes all L{Family} handles from the parent L{Family} list.
+        Remove all L{Family} handles from the parent L{Family} list.
         """
         self.parent_family_list = []
 
     def remove_parent_family_handle(self, family_handle):
         """
-        Removes the specified L{Family} handle from the list of parent
-        families (families in which the parent is a child). If the
-        handle does not exist in the list, the operation has no effect.
+        Remove the specified L{Family} handle from the list of parent
+        families (families in which the parent is a child). 
+        
+        If the handle does not exist in the list, the operation has no effect.
 
         @param family_handle: L{Family} handle to remove from the list
         @type family_handle: str
@@ -731,11 +750,12 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_main_parent_family_handle(self, family_handle):
         """
-        Sets the main L{Family} in which the Person is a child. The
-        main L{Family} is the L{Family} typically used for reports and
-        navigation. This is accomplished by moving the L{Family} to
-        the beginning of the list. The family_handle must be in
-        the list for this to have any effect.
+        Set the main L{Family} in which the Person is a child. 
+        
+        The main L{Family} is the L{Family} typically used for reports and
+        navigation. This is accomplished by moving the L{Family} to the 
+        beginning of the list. The family_handle must be in the list for this 
+        to have any effect.
 
         @param family_handle: handle of the L{Family} to be marked
             as the main L{Family}
@@ -752,8 +772,8 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
         
     def get_main_parents_family_handle(self):
         """
-        Returns the handle of the L{Family} considered to be the main
-        L{Family} in which the Person is a child.
+        Return the handle of the L{Family} considered to be the main L{Family} 
+        in which the Person is a child.
 
         @return: Returns the family_handle if a family_handle exists, 
             If no L{Family} is assigned, None is returned
@@ -766,7 +786,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def add_person_ref(self, person_ref):
         """
-        Adds the L{PersonRef} to the Person instance's L{PersonRef} list.
+        Add the L{PersonRef} to the Person instance's L{PersonRef} list.
         
         @param person_ref: the L{PersonRef} to be added to the
             Person's L{PersonRef} list.
@@ -778,7 +798,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def get_person_ref_list(self):
         """
-        Returns the list of L{PersonRef} objects.
+        Return the list of L{PersonRef} objects.
 
         @returns: Returns the list of L{PersonRef} objects.
         @rtype: list
@@ -787,7 +807,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
 
     def set_person_ref_list(self, person_ref_list):
         """
-        Sets the Person instance's L{PersonRef} list to the passed list.
+        Set the Person instance's L{PersonRef} list to the passed list.
 
         @param person_ref_list: List of valid L{PersonRef} objects
         @type person_ref_list: list

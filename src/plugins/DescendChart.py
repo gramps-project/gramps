@@ -103,7 +103,7 @@ class DescendChart(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates DescendChart object that produces the report.
+        Create DescendChart object that produces the report.
         
         The arguments are:
 
@@ -213,14 +213,14 @@ class DescendChart(Report):
 
                 last = y
                 for newy in range(y+1,maxy+1):
-                    if self.genchart.get_xy(x,newy):
+                    if self.genchart.get_xy(x, newy):
                         break
 
                     # if the next position is occupied, we need an
                     # angle, otherwise, we may need a vertical line.
-                    if self.genchart.get_xy(x+2,newy):
-                        self.genchart.set_xy(x+1,newy,_LINE_ANGLE)
-                        for tempy in range(last+1,newy):
+                    if self.genchart.get_xy(x+2, newy):
+                        self.genchart.set_xy(x+1, newy,_LINE_ANGLE)
+                        for tempy in range(last+1, newy):
                             self.genchart.set_xy(x+1,tempy,_LINE_VERTICAL)
                         last = newy
 

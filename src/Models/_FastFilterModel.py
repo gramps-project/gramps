@@ -166,7 +166,7 @@ class FastFilterModel(gtk.GenericTreeModel):
 
     def on_iter_nth_child(self, parent, n):
         if parent:
-            ret = [parent[0],n]
+            ret = [parent[0], n]
         else:
             ret = [n,]
         return ret

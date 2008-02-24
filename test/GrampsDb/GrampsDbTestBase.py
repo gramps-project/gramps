@@ -49,7 +49,7 @@ class GrampsDbBaseTest(unittest.TestCase):
 
         # start with sources
         sources = []
-        for i in xrange(0,num_sources):
+        for i in xrange(0, num_sources):
             sources.append(self._add_source())
 
         # now for each of the other tables. Give each entry a link
@@ -63,11 +63,11 @@ class GrampsDbBaseTest(unittest.TestCase):
                               (num_media_objects, self._add_media_object_with_sources)):
                                    
             source_idx = 1
-            for person_idx in xrange(0,num):
+            for person_idx in xrange(0, num):
 
                 # Get the list of sources to link
                 lnk_sources = set()
-                for i in xrange(0,num_links):
+                for i in xrange(0, num_links):
                     lnk_sources.add(sources[source_idx-1])
                     source_idx = (source_idx+1) % len(sources)
 
@@ -107,7 +107,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         return repos
 
                            
-    def _add_object_with_source(self,sources,object_class,add_method,commit_method):
+    def _add_object_with_source(self,sources, object_class,add_method,commit_method):
 
         object = object_class()
 

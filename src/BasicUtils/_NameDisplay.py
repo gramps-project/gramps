@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_NameDisplay.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Class handling language-specific displaying of names.
@@ -163,32 +163,32 @@ class NameDisplay:
             Name.FN   : self._raw_fn,
             }
 
-        for (num,name,fmt_str,act) in formats:
+        for (num, name,fmt_str,act) in formats:
             func = self._format_fn(fmt_str)
             func_raw = raw_func_dict.get(num)
             if func_raw == None:
                 func_raw = self._format_raw_fn(fmt_str)
             self.name_formats[num] = (name,fmt_str,act,func,func_raw)
 
-    def add_name_format(self,name,fmt_str):
+    def add_name_format(self, name,fmt_str):
         num = -1
         while num in self.name_formats:
             num -= 1
-        self.set_name_format([(num,name,fmt_str,_ACT)])
+        self.set_name_format([(num, name,fmt_str,_ACT)])
         return num
     
-    def edit_name_format(self,num,name,fmt_str):
-        self.set_name_format([(num,name,fmt_str,_ACT)])
+    def edit_name_format(self, num, name,fmt_str):
+        self.set_name_format([(num, name,fmt_str,_ACT)])
         if self.default_format == num:
             self.set_default_format(num)
         
-    def del_name_format(self,num):
+    def del_name_format(self, num):
         try:
             del self.name_formats[num]
         except:
             pass
         
-    def set_default_format(self,num):
+    def set_default_format(self, num):
         if num not in self.name_formats:
             num = Name.LNFN
             
@@ -203,7 +203,7 @@ class NameDisplay:
     def get_default_format(self):
         return self.default_format
 
-    def set_format_inactive(self,num):
+    def set_format_inactive(self, num):
         try:
             self.name_formats[num] = (self.name_formats[num][_F_NAME],
                                       self.name_formats[num][_F_FMT],
@@ -217,7 +217,7 @@ class NameDisplay:
                         only_custom=False,
                         only_active=True):
         """
-        Get a list of tuples (num,name,fmt_str,act)
+        Get a list of tuples (num, name,fmt_str,act)
         """
         the_list = []
 
@@ -240,7 +240,7 @@ class NameDisplay:
             if y<0: return -x+y
             else: return x-y
         
-    def _is_format_valid(self,num):
+    def _is_format_valid(self, num):
         try:
             if not self.name_formats[num][_F_ACT]:
                 num = 0
@@ -331,7 +331,7 @@ class NameDisplay:
 
     def _make_fn(self, format_str, d, args):
         """
-        Creates the name display function and handles dependent
+        Create the name display function and handles dependent
         punctuation.
         """
         # First, go through and do internationalization-based
@@ -411,9 +411,9 @@ def fn(%s):
 
         return fn
 
-    def format_str(self,name,format_str):
-        return self._format_str_base(name.first_name,name.surname,name.prefix,
-                                     name.suffix,name.patronymic,name.title,
+    def format_str(self, name,format_str):
+        return self._format_str_base(name.first_name, name.surname, name.prefix,
+                                     name.suffix, name.patronymic, name.title,
                                      name.call,format_str)
 
     def format_str_raw(self,raw_data,format_str):
@@ -465,12 +465,12 @@ def fn(%s):
     
     #-------------------------------------------------------------------------
 
-    def sort_string(self,name):
-        return u"%-25s%-30s%s" % (name.surname,name.first_name,name.suffix)
+    def sort_string(self, name):
+        return u"%-25s%-30s%s" % (name.surname, name.first_name, name.suffix)
 
     def sorted(self,person):
         """
-        Returns a text string representing the L{gen.lib.Person} instance's
+        Return a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for displaying a sorted
         name.
 
@@ -484,9 +484,9 @@ def fn(%s):
         name = person.get_primary_name()
         return self.sorted_name(name)
 
-    def sorted_name(self,name):
+    def sorted_name(self, name):
         """
-        Returns a text string representing the L{Name} instance
+        Return a text string representing the L{Name} instance
         in a manner that should be used for displaying a sorted
         name.
 
@@ -500,7 +500,7 @@ def fn(%s):
 
     def raw_sorted_name(self,raw_data):
         """
-        Returns a text string representing the L{Name} instance
+        Return a text string representing the L{Name} instance
         in a manner that should be used for displaying a sorted
         name.
 
@@ -514,7 +514,7 @@ def fn(%s):
 
     def display(self,person):
         """
-        Returns a text string representing the L{gen.lib.Person} instance's
+        Return a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for normal displaying.
 
         @param person: L{gen.lib.Person} instance that contains the
@@ -529,7 +529,7 @@ def fn(%s):
 
     def display_formal(self,person):
         """
-        Returns a text string representing the L{gen.lib.Person} instance's
+        Return a text string representing the L{gen.lib.Person} instance's
         L{Name} in a manner that should be used for normal displaying.
 
         @param person: L{gen.lib.Person} instance that contains the
@@ -543,9 +543,9 @@ def fn(%s):
         name = person.get_primary_name()
         return self.display_name(name)
 
-    def display_name(self,name):
+    def display_name(self, name):
         """
-        Returns a text string representing the L{Name} instance
+        Return a text string representing the L{Name} instance
         in a manner that should be used for normal displaying.
 
         @param name: L{Name} instance that is to be displayed.

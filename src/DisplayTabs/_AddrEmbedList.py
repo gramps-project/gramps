@@ -71,19 +71,19 @@ class AddrEmbedList(EmbeddedList):
                             
     def get_icon_name(self):
         """
-        Returns the stock-id icon name associated with the display tab
+        Return the stock-id icon name associated with the display tab
         """
         return 'gramps-address'
 
     def get_data(self):
         """
-        Returns the data associated with display tab
+        Return the data associated with display tab
         """
         return self.data
 
     def column_order(self):
         """
-        Returns the column order of the columns in the display tab.
+        Return the column order of the columns in the display tab.
         """
         return ((1, 0), (1, 1), (1, 2), (1, 3), (1, 4))
 

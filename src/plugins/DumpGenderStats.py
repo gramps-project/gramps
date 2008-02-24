@@ -84,7 +84,7 @@ class DumpGenderStats(Tool.Tool, ManagedWindow.ManagedWindow):
             for entry in stats_list:
                 print "\t%s\t%s\t%s\t%s\t%s" % entry
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.label,None)
             
 #------------------------------------------------------------------------
@@ -97,8 +97,8 @@ class DumpGenderStatsOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #-------------------------------------------------------------------------
 #

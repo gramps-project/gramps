@@ -135,7 +135,7 @@ class DateDisplay:
 
     def display(self, date):
         """
-        Returns a text string representing the date.
+        Return a text string representing the date.
         """
         mod = date.get_modifier()
         cal = date.get_calendar()
@@ -313,7 +313,7 @@ class DateDisplayEn(DateDisplay):
 
     def __init__(self, format=None):
         """
-        Creates a DateDisplay class that converts a Date object to a string
+        Create a DateDisplay class that converts a Date object to a string
         of the desired format. The format value must correspond to the format
         list value (DateDisplay.format[]).
         """
@@ -322,7 +322,7 @@ class DateDisplayEn(DateDisplay):
 
     def display(self, date):
         """
-        Returns a text string representing the date.
+        Return a text string representing the date.
         """
         mod = date.get_modifier()
         cal = date.get_calendar()

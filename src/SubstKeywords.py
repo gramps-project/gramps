@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provides the SubstKeywords class that will replace keywords in a passed
+Provide the SubstKeywords class that will replace keywords in a passed
 string with informatin about the person. For sample:
 
 foo = SubstKeywords(person)
@@ -49,7 +49,7 @@ import gen.lib
 #------------------------------------------------------------------------
 class SubstKeywords:
     """
-    Produces an object that will substitute information about a person
+    Produce an object that will substitute information about a person
     into a passed string.
 
     $n -> Name - FirstName LastName
@@ -66,7 +66,7 @@ class SubstKeywords:
     """
     
     def __init__(self, database, person_handle):
-        """Creates a new object and associates a person with it."""
+        """Create a new object and associates a person with it."""
 
         person = database.get_person_from_handle(person_handle)
         self.n = name_displayer.display(person)
@@ -122,7 +122,7 @@ class SubstKeywords:
                         self.M = database.get_place_from_handle(mplace_handle).get_title()
 
     def replace(self, line):
-        """Returns a new line of text with the substitutions performed."""
+        """Return a new line of text with the substitutions performed."""
         array = [ ("$n", self.n), ("$N", self.N), ("$b", self.b), 
                   ("$B", self.B), ("$d", self.d), ("$D", self.D), 
                   ("$i", self.i), ("$S", self.S), ("$s", self.s), 

@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id:_Options.py 9912 2008-01-22 09:17:46Z acraphae $
 
 # Written by Alex Roitman
 
@@ -38,10 +38,10 @@ import os
 #
 #-------------------------------------------------------------------------
 try:
-    from xml.sax import make_parser,handler,SAXParseException
+    from xml.sax import make_parser, handler,SAXParseException
     from xml.sax.saxutils import escape
 except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
+    from _xmlplus.sax import make_parser, handler,SAXParseException
     from _xmlplus.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
@@ -64,9 +64,9 @@ class OptionList:
     def __init__(self):
         self.options = {}
     
-    def set_options(self,options):
+    def set_options(self, options):
         """
-        Sets the whole bunch of options for the OptionList.
+        Set the whole bunch of options for the OptionList.
         @param options: list of options to set.
         @type options: list
         """
@@ -74,15 +74,15 @@ class OptionList:
 
     def get_options(self):
         """
-        Returns the whole bunch of  options for the OptionList.
+        Return the whole bunch of  options for the OptionList.
         @returns: list of options
         @rtype: list
         """
         return self.options
 
-    def set_option(self,name,value):
+    def set_option(self, name,value):
         """
-        Sets a particular option in the OptionList.
+        Set a particular option in the OptionList.
         @param name: name of the option to set.
         @type name: str
         @param value: value of the option to set.
@@ -90,18 +90,18 @@ class OptionList:
         """
         self.options[name] = value
 
-    def remove_option(self,name):
+    def remove_option(self, name):
         """
-        Removes a particular option from the OptionList.
+        Remove a particular option from the OptionList.
         @param name: name of the option to remove.
         @type name: str
         """
         if self.options.has_key(name):
             del self.options[name]
 
-    def get_option(self,name):
+    def get_option(self, name):
         """
-        Returns the value of a particular option in the OptionList.
+        Return the value of a particular option in the OptionList.
         @param name: name of the option to retrieve
         @type name: str
         @returns: value associated with the passed option
@@ -121,7 +121,7 @@ class OptionListCollection:
 
     def __init__(self,filename):
         """
-        Creates an OptionListCollection instance from the list defined
+        Create an OptionListCollection instance from the list defined
         in the specified file.
         @param filename: XML file that contains option definitions
         @type filename: str
@@ -137,15 +137,15 @@ class OptionListCollection:
     
     def get_option_list_map(self):
         """
-        Returns the map of module names to option lists.
+        Return the map of module names to option lists.
         @returns: Returns the map of module names to option lists.
         @rtype: dictionary
         """
         return self.option_list_map
 
-    def get_option_list(self,name):
+    def get_option_list(self, name):
         """
-        Returns the option_list associated with the module name
+        Return the option_list associated with the module name
         @param name: name associated with the desired module.
         @type name: str
         @returns: returns the option list associated with the name,
@@ -156,15 +156,15 @@ class OptionListCollection:
 
     def get_module_names(self):
         """
-        Returns a list of all the module names in the OptionListCollection
+        Return a list of all the module names in the OptionListCollection
         @returns: returns the list of module names
         @rtype: list
         """
         return self.option_list_map.keys()
 
-    def set_option_list(self,name,option_list):
+    def set_option_list(self, name, option_list):
         """
-        Adds or replaces an option_list in the OptionListCollection. 
+        Add or replaces an option_list in the OptionListCollection. 
         @param name: name assocated with the module to add or replace.
         @type name: str
         @param option_list: list of options
@@ -178,7 +178,7 @@ class OptionListCollection:
         """
         pass
 
-    def write_module_common(self,f,option_list):
+    def write_module_common(self,f, option_list):
         """
         Stub function for common options. Overridden by reports.
         """
@@ -213,7 +213,7 @@ class OptionListCollection:
                             escape(option_name),
                             escape(unicode(options[option_name]))) )
 
-            self.write_module_common(f,option_list)
+            self.write_module_common(f, option_list)
 
             f.write('</module>\n')
 
@@ -244,7 +244,7 @@ class OptionParser(handler.ContentHandler):
     
     def __init__(self,collection):
         """
-        Creates a OptionParser class that populates the passed collection.
+        Create a OptionParser class that populates the passed collection.
 
         collection:   OptionListCollection to be loaded from the file.
         """
@@ -293,7 +293,7 @@ class OptionHandler:
     Implements handling of the options for the plugins.
     """
 
-    def __init__(self,module_name,options_dict,person_id=None):
+    def __init__(self,module_name, options_dict,person_id=None):
         self.module_name = module_name
         self.default_options_dict = options_dict.copy()
         self.options_dict = options_dict
@@ -324,7 +324,7 @@ class OptionHandler:
 
     def set_options(self):
         """
-        Sets options to be used in this plugin according to the passed
+        Set options to be used in this plugin according to the passed
         options dictionary.
         
         Dictionary values are all strings, since they were read from XML.
@@ -399,13 +399,13 @@ class Options:
     """
     Defines options and provides handling interface.
     
-    This is a base Options class for the modules. All modules' options
+    This is a base Options class for the modules. All modules, options
     classes should derive from it.
     """
 
-    def __init__(self,name,person_id=None):
+    def __init__(self, name,person_id=None):
         """
-        Initializes the class, performing usual house-keeping tasks.
+        Initialize the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
         
         Modules that need custom options need to override this method.
@@ -442,7 +442,7 @@ class Options:
 
     def add_user_options(self,dialog):
         """
-        Sets up UI controls (widgets) for the options specific for this modul.
+        Set up UI controls (widgets) for the options specific for this modul.
 
         This method MUST be overridden by modules that define new options.
         The single argument 'dialog' is the Report.BareReportDialog instance.

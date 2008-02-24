@@ -42,7 +42,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def __init__(self,db):
         """
-        Creates a new PrivateProxyDb instance. 
+        Create a new PrivateProxyDb instance. 
         """
         ProxyDbBase.__init__(self, db)
 
@@ -183,7 +183,7 @@ class PrivateProxyDb(ProxyDbBase):
         """
         object = self.db.get_object_from_gramps_id(val)
         if not object.get_privacy():
-            return sanitize_media(self.db,object)
+            return sanitize_media(self.db, object)
         return None
 
     def get_repository_from_gramps_id(self, val):
@@ -208,7 +208,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_person_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Person in
+        Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
         handles = []
@@ -220,7 +220,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_place_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Place in
+        Return a list of database handles, one handle for each Place in
         the database. If sort_handles is True, the list is sorted by
         Place title.
         """
@@ -233,7 +233,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_source_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Source in
+        Return a list of database handles, one handle for each Source in
         the database. If sort_handles is True, the list is sorted by
         Source title.
         """
@@ -246,7 +246,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_media_object_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each MediaObject in
         the database. If sort_handles is True, the list is sorted by title.
         """
         handles = []
@@ -258,7 +258,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_event_handles(self):
         """
-        Returns a list of database handles, one handle for each Event in
+        Return a list of database handles, one handle for each Event in
         the database. 
         """
         handles = []
@@ -270,7 +270,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_family_handles(self):
         """
-        Returns a list of database handles, one handle for each Family in
+        Return a list of database handles, one handle for each Family in
         the database.
         """
         handles = []
@@ -282,7 +282,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_repository_handles(self):
         """
-        Returns a list of database handles, one handle for each Repository in
+        Return a list of database handles, one handle for each Repository in
         the database.
         """
         handles = []
@@ -294,7 +294,7 @@ class PrivateProxyDb(ProxyDbBase):
 
     def get_note_handles(self):
         """
-        Returns a list of database handles, one handle for each Note in
+        Return a list of database handles, one handle for each Note in
         the database.
         """
         handles = []
@@ -453,11 +453,11 @@ class PrivateProxyDb(ProxyDbBase):
                 raise NotImplementedError
             
             if not obj.get_privacy():
-                yield (class_name,handle)
+                yield (class_name, handle)
         return
 
 
-def copy_media_ref_list(db,original_obj,clean_obj):
+def copy_media_ref_list(db, original_obj,clean_obj):
     """
     Copies media references from one object to another - excluding private 
     references and references to private objects.
@@ -477,7 +477,7 @@ def copy_media_ref_list(db,original_obj,clean_obj):
             if not media_object.get_privacy():
                 clean_obj.add_media_reference(MediaRef(media_ref))
 
-def copy_source_ref_list(db,original_obj,clean_obj):
+def copy_source_ref_list(db, original_obj,clean_obj):
     """
     Copies source references from one object to another - excluding private 
     references and references to private objects.
@@ -497,7 +497,7 @@ def copy_source_ref_list(db,original_obj,clean_obj):
             if not source.get_privacy():
                 clean_obj.add_source_reference(SourceRef(ref))
                 
-def copy_notes(db,original_obj,clean_obj):
+def copy_notes(db, original_obj,clean_obj):
     """
     Copies notes from one object to another - excluding references to private
     notes.
@@ -515,7 +515,7 @@ def copy_notes(db,original_obj,clean_obj):
         if not note.get_privacy():
             clean_obj.add_note(note_handle)
             
-def copy_attributes(db,original_obj,clean_obj):
+def copy_attributes(db, original_obj,clean_obj):
     """
     Copies attributes from one object to another - excluding references to 
     private attributes.
@@ -533,11 +533,11 @@ def copy_attributes(db,original_obj,clean_obj):
             new_attribute = Attribute()
             new_attribute.set_type(attribute.get_type())
             new_attribute.set_value(attribute.get_value())
-            copy_notes(db,attribute,new_attribute)
-            copy_source_ref_list(db,attribute,new_attribute)
+            copy_notes(db,attribute, new_attribute)
+            copy_source_ref_list(db,attribute, new_attribute)
             clean_obj.add_attribute(new_attribute)
       
-def copy_urls(db,original_obj,clean_obj):
+def copy_urls(db, original_obj,clean_obj):
     """
     Copies urls from one object to another - excluding references to 
     private urls.
@@ -554,7 +554,7 @@ def copy_urls(db,original_obj,clean_obj):
         if not url.get_privacy():
             clean_obj.add_url(url)
             
-def copy_lds_ords(db,original_obj,clean_obj):
+def copy_lds_ords(db, original_obj,clean_obj):
     """
     Copies LDS ORDs from one object to another - excluding references to 
     private LDS ORDs.
@@ -571,7 +571,7 @@ def copy_lds_ords(db,original_obj,clean_obj):
         if not lds_ord.get_privacy():
            clean_obj.add_lds_ord( lds_ord )
            
-def copy_addresses(db,original_obj,clean_obj):
+def copy_addresses(db, original_obj,clean_obj):
     """
     Copies addresses from one object to another - excluding references to 
     private addresses.
@@ -588,9 +588,9 @@ def copy_addresses(db,original_obj,clean_obj):
         if not address.get_privacy():
             clean_obj.add_address(Address(address))
             
-def sanitize_name(db,name):
+def sanitize_name(db, name):
     """
-    Creates a new Name instance based off the passed Name
+    Create a new Name instance based off the passed Name
     instance. The returned instance has all private records
     removed from it.
     
@@ -616,14 +616,14 @@ def sanitize_name(db,name):
     new_name.set_title(name.get_title())
     new_name.set_date_object(name.get_date_object())
     
-    copy_source_ref_list(db,name,new_name)
-    copy_notes(db,name,new_name)
+    copy_source_ref_list(db, name, new_name)
+    copy_notes(db, name, new_name)
     
     return new_name
     
 def sanitize_event_ref(db,event_ref):
     """
-    Creates a new EventRef instance based off the passed EventRef
+    Create a new EventRef instance based off the passed EventRef
     instance. The returned instance has all private records
     removed from it.
     
@@ -639,14 +639,14 @@ def sanitize_event_ref(db,event_ref):
     
     new_ref.set_reference_handle(event_ref.get_reference_handle())
     new_ref.set_role(event_ref.get_role())
-    copy_notes(db,event_ref,new_ref)
-    copy_attributes(db,event_ref,new_ref)
+    copy_notes(db,event_ref, new_ref)
+    copy_attributes(db,event_ref, new_ref)
     
     return new_ref
 
 def sanitize_person(db,person):
     """
-    Creates a new Person instance based off the passed Person
+    Create a new Person instance based off the passed Person
     instance. The returned instance has all private records
     removed from it.
     
@@ -672,7 +672,7 @@ def sanitize_person(db,person):
         name = Name()
         name.set_surname(_('Private'))
     else:
-        name = sanitize_name(db,name)
+        name = sanitize_name(db, name)
     new_person.set_primary_name(name)
 
     # copy Family reference list
@@ -695,7 +695,7 @@ def sanitize_person(db,person):
 
     for name in person.get_alternate_names():
         if not name.get_privacy():
-            new_person.add_alternate_name(sanitize_name(db,name))
+            new_person.add_alternate_name(sanitize_name(db, name))
 
     # set complete flag
     new_person.set_marker(person.get_marker())
@@ -722,19 +722,19 @@ def sanitize_person(db,person):
         if not event.get_privacy():
             new_person.set_death_ref(sanitize_event_ref(db,event_ref))
 
-    copy_addresses(db,person,new_person)
-    copy_attributes(db,person,new_person)
-    copy_source_ref_list(db,person,new_person)
-    copy_urls(db,person,new_person)
-    copy_media_ref_list(db,person,new_person)
-    copy_lds_ords(db,person,new_person)
-    copy_notes(db,person,new_person)
+    copy_addresses(db,person, new_person)
+    copy_attributes(db,person, new_person)
+    copy_source_ref_list(db,person, new_person)
+    copy_urls(db,person, new_person)
+    copy_media_ref_list(db,person, new_person)
+    copy_lds_ords(db,person, new_person)
+    copy_notes(db,person, new_person)
     
     return new_person
 
 def sanitize_source(db,source):
     """
-    Creates a new Source instance based off the passed Source
+    Create a new Source instance based off the passed Source
     instance. The returned instance has all private records
     removed from it.
     
@@ -764,14 +764,14 @@ def sanitize_source(db,source):
             if not repo.get_privacy():
                 new_source.add_repo_reference(RepoRef(repo_ref))
 
-    copy_media_ref_list(db,source,new_source)
-    copy_notes(db,source,new_source)
+    copy_media_ref_list(db,source, new_source)
+    copy_notes(db,source, new_source)
     
     return new_source
 
 def sanitize_media(db,media):
     """
-    Creates a new MediaObject instance based off the passed Media
+    Create a new MediaObject instance based off the passed Media
     instance. The returned instance has all private records
     removed from it.
     
@@ -793,15 +793,15 @@ def sanitize_media(db,media):
     new_media.set_date_object(media.get_date_object())
     new_media.set_marker(media.get_marker())
 
-    copy_source_ref_list(db,media,new_media)
-    copy_attributes(db,media,new_media)
-    copy_notes(db,media,new_media)
+    copy_source_ref_list(db,media, new_media)
+    copy_attributes(db,media, new_media)
+    copy_notes(db,media, new_media)
     
     return new_media
 
 def sanitize_place(db,place):
     """
-    Creates a new Place instance based off the passed Place
+    Create a new Place instance based off the passed Place
     instance. The returned instance has all private records
     removed from it.
     
@@ -824,16 +824,16 @@ def sanitize_place(db,place):
     new_place.set_alternate_locations(place.get_alternate_locations())
     new_place.set_marker(place.get_marker())
 
-    copy_source_ref_list(db,place,new_place)
-    copy_notes(db,place,new_place)
-    copy_media_ref_list(db,place,new_place)
-    copy_urls(db,place,new_place)
+    copy_source_ref_list(db,place, new_place)
+    copy_notes(db,place, new_place)
+    copy_media_ref_list(db,place, new_place)
+    copy_urls(db,place, new_place)
     
     return new_place
 
 def sanitize_event(db,event):
     """
-    Creates a new Event instance based off the passed Event
+    Create a new Event instance based off the passed Event
     instance. The returned instance has all private records
     removed from it.
     
@@ -854,10 +854,10 @@ def sanitize_event(db,event):
     new_event.set_date_object(event.get_date_object())
     new_event.set_marker(event.get_marker())
 
-    copy_source_ref_list(db,event,new_event)
-    copy_notes(db,event,new_event)
-    copy_media_ref_list(db,event,new_event)
-    copy_attributes(db,event,new_event)
+    copy_source_ref_list(db,event, new_event)
+    copy_notes(db,event, new_event)
+    copy_media_ref_list(db,event, new_event)
+    copy_attributes(db,event, new_event)
     
     place_handle = event.get_place_handle()
     place = db.get_place_from_handle(place_handle)
@@ -868,7 +868,7 @@ def sanitize_event(db,event):
             
 def sanitize_family(db,family):
     """
-    Creates a new Family instance based off the passed Family
+    Create a new Family instance based off the passed Family
     instance. The returned instance has all private records
     removed from it.
     
@@ -914,8 +914,8 @@ def sanitize_family(db,family):
         new_ref.set_reference_handle(child_ref.get_reference_handle())
         new_ref.set_father_relation(child_ref.get_father_relation())
         new_ref.set_mother_relation(child_ref.get_mother_relation())
-        copy_notes(db,child_ref,new_ref)
-        copy_source_ref_list(db,child_ref,new_ref)
+        copy_notes(db,child_ref, new_ref)
+        copy_source_ref_list(db,child_ref, new_ref)
         new_family.add_child_ref(new_ref)
         
     # Copy event ref list.
@@ -925,17 +925,17 @@ def sanitize_family(db,family):
             if not event.get_privacy():
                 new_family.add_event_ref(sanitize_event_ref(db,event_ref))
 
-    copy_source_ref_list(db,family,new_family)
-    copy_notes(db,family,new_family)
-    copy_media_ref_list(db,family,new_family)
-    copy_attributes(db,family,new_family)
-    copy_lds_ords(db,family,new_family)
+    copy_source_ref_list(db,family, new_family)
+    copy_notes(db,family, new_family)
+    copy_media_ref_list(db,family, new_family)
+    copy_attributes(db,family, new_family)
+    copy_lds_ords(db,family, new_family)
     
     return new_family
 
 def sanitize_repository(db,repository):
     """
-    Creates a new Repository instance based off the passed Repository
+    Create a new Repository instance based off the passed Repository
     instance. The returned instance has all private records
     removed from it.
     
@@ -955,8 +955,8 @@ def sanitize_repository(db,repository):
     new_repository.set_handle(repository.get_handle())
     new_repository.set_marker(repository.get_marker())
 
-    copy_notes(db,repository,new_repository)
-    copy_addresses(db,repository,new_repository)
-    copy_urls(db,repository,new_repository)
+    copy_notes(db,repository, new_repository)
+    copy_addresses(db,repository, new_repository)
+    copy_urls(db,repository, new_repository)
     
     return new_repository

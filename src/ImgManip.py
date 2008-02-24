@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:ImgManip.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Image manipulation routines.
@@ -47,7 +47,7 @@ import gobject
 #-------------------------------------------------------------------------
 def resize_to_jpeg(source, destination, width, height):
     """
-    Creates the destination, derived from the source, resizing it to the
+    Create the destination, derived from the source, resizing it to the
     specified size, while converting to JPEG.
 
     @param source: source image file, in any format that gtk recognizes
@@ -70,7 +70,7 @@ def resize_to_jpeg(source, destination, width, height):
 #-------------------------------------------------------------------------
 def image_size(source):
     """
-    Returns the width and size of the specified image.
+    Return the width and size of the specified image.
 
     @param source: source image file, in any format that gtk recongizes
     @type source: unicode

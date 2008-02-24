@@ -29,7 +29,7 @@ Gender statistics kept in GRAMPS database.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from person import Person
+from gen.lib.person import Person
 
 #-------------------------------------------------------------------------
 #
@@ -38,9 +38,10 @@ from person import Person
 #-------------------------------------------------------------------------
 class GenderStats:
     """
-    Class for keeping track of statistics related to Given Name vs.
-    Gender. This allows the tracking of the liklihood of a person's
-    given name indicating the gender of the person.
+    Class for keeping track of statistics related to Given Name vs. Gender. 
+    
+    This allows the tracking of the liklihood of a person's given name 
+    indicating the gender of the person.
     """
     def __init__ (self, stats={}):
         if stats == None:

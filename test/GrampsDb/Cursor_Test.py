@@ -25,7 +25,7 @@ import GrampsDb
 
 class Data(object):
 
-    def __init__(self,handle,surname,name):
+    def __init__(self, handle,surname, name):
         self.handle = handle
         self.surname = surname
         self.name = name

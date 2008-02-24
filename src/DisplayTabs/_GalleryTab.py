@@ -340,7 +340,7 @@ class GalleryTab(ButtonTab):
 
     def _set_dnd(self):
         """
-        Sets up drag-n-drop. The source and destionation are set by calling .target()
+        Set up drag-n-drop. The source and destionation are set by calling .target()
         on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
         variable defined that points to an entry in DdTargets.
         """
@@ -464,7 +464,7 @@ class GalleryTab(ButtonTab):
 #                     import urllib
 #                     u = urllib.URLopener()
 #                     try:
-#                         tfile,headers = u.retrieve(d)
+#                         tfile, headers = u.retrieve(d)
 #                     except (IOError,OSError), msg:
 #                         t = _("Could not import %s") % d
 #                         ErrorDialog(t,str(msg))

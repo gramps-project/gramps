@@ -20,6 +20,14 @@
 
 # $Id$
 
+
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
 import logging
 log = logging.getLogger(".")
 
@@ -39,11 +47,10 @@ import const
 #------------------------------------------------------------------------
 class CommandLineReport:
     """
-    Provides a way to generate report from the command line.
-    
+    Provide a way to generate report from the command line.
     """
 
-    def __init__(self,database,name,category,option_class,options_str_dict,
+    def __init__(self,database, name,category, option_class, options_str_dict,
                  noopt=False):
         self.database = database
         self.category = category
@@ -55,7 +62,7 @@ class CommandLineReport:
         self.parse_option_str()
         self.show_options()
 
-    def init_options(self,noopt):
+    def init_options(self, noopt):
         self.options_dict = {
             'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
@@ -213,11 +220,11 @@ class CommandLineReport:
 # Command-line report generic task
 #
 #------------------------------------------------------------------------
-def cl_report(database,name,category,report_class,
-              options_class,options_str_dict):
+def cl_report(database, name, category, report_class, options_class, 
+              options_str_dict):
     
-    clr = CommandLineReport(database,name,category,
-                            options_class,options_str_dict)
+    clr = CommandLineReport(database, name, category, options_class, 
+                            options_str_dict)
 
     # Exit here if show option was given
     if clr.show:

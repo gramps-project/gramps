@@ -98,7 +98,7 @@ class GrampsDbXmlWriter(UpdateCallback):
     def __init__(self, db, strip_photos=0, compress=1, version="unknown", 
                  callback=None):
         """
-        Initializes, but does not write, an XML file.
+        Initialize, but does not write, an XML file.
 
         db - database to write
         strip_photos - remove paths off of media object paths
@@ -123,7 +123,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         """
         base = os.path.dirname(filename)
         if os.path.isdir(base):
-            if not os.access(base,os.W_OK) or not os.access(base,os.R_OK):
+            if not os.access(base, os.W_OK) or not os.access(base, os.R_OK):
                 raise GrampsDbWriteFailure(
                          _('Failure writing %s') % filename,
                          _("The database cannot be saved because you do "
@@ -133,7 +133,7 @@ class GrampsDbXmlWriter(UpdateCallback):
                 return 0
             
         if os.path.exists(filename):
-            if not os.access(filename,os.W_OK):
+            if not os.access(filename, os.W_OK):
                 raise GrampsDbWriteFailure(
                         _('Failure writing %s') % filename,
                         _("The database cannot be saved because you do "
@@ -163,7 +163,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         g.close()
         return 1
 
-    def write_handle(self,handle):
+    def write_handle(self, handle):
         """
         Write the database to the specified file handle.
         """
@@ -214,14 +214,14 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.g.write(" version=\"" + self.version + "\"")
         self.g.write("/>\n")
         self.g.write("    <researcher>\n")
-        self.write_line("resname",owner.get_name(),3)
-        self.write_line("resaddr",owner.get_address(),3)
-        self.write_line("rescity",owner.get_city(),3)
-        self.write_line("resstate",owner.get_state(),3)
-        self.write_line("rescountry",owner.get_country(),3)
-        self.write_line("respostal",owner.get_postal_code(),3)
-        self.write_line("resphone",owner.get_phone(),3)
-        self.write_line("resemail",owner.get_email(),3)
+        self.write_line("resname", owner.get_name(),3)
+        self.write_line("resaddr", owner.get_address(),3)
+        self.write_line("rescity", owner.get_city(),3)
+        self.write_line("resstate", owner.get_state(),3)
+        self.write_line("rescountry", owner.get_country(),3)
+        self.write_line("respostal", owner.get_postal_code(),3)
+        self.write_line("resphone", owner.get_phone(),3)
+        self.write_line("resemail", owner.get_email(),3)
         self.g.write("    </researcher>\n")
         self.write_metadata()
         self.g.write("  </header>\n")
@@ -374,10 +374,10 @@ class GrampsDbXmlWriter(UpdateCallback):
     def write_name_formats(self):
         if len(self.db.name_formats) > 0:
             self.g.write("  <name-formats>\n")
-            for number,name,fmt_str,active in self.db.name_formats:
+            for number, name,fmt_str,active in self.db.name_formats:
                 self.g.write('%s<format number="%d" name="%s" '
                              'fmt_str="%s" active="%d"/>\n'
-                             % ('    ',number,name,fmt_str,int(active)) )
+                             % ('    ', number, name,fmt_str,int(active)) )
             self.g.write("  </name-formats>\n")
 
     def fix(self,line):
@@ -388,15 +388,15 @@ class GrampsDbXmlWriter(UpdateCallback):
         l = l.strip().translate(strip_dict)
         return escxml(l)
 
-    def write_note_list(self,note_list,indent=0):
+    def write_note_list(self, note_list,indent=0):
         for handle in note_list:
-            self.write_ref("noteref",handle,indent)
+            self.write_ref("noteref", handle,indent)
 
-    def write_note(self,note,index=1):
+    def write_note(self, note,index=1):
         if not note:
             return
 
-        self.write_primary_tag("note",note,2,close=False)
+        self.write_primary_tag("note", note,2,close=False)
 
         ntype = escxml(note.get_type().xml_str())
         format = note.get_format()
@@ -514,7 +514,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.write_note_list(repo.get_note_list(),index+1)
         self.g.write("%s</repository>\n" % sp)
 
-    def write_address_list(self,obj,index=1):
+    def write_address_list(self, obj,index=1):
         if len(obj.get_address_list()) == 0:
             return
         sp = "  "*index
@@ -622,7 +622,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.write_media_list(event.get_media_list(),index+1)
         self.g.write("%s</event>\n" % sp)
 
-    def dump_ordinance(self,ord,index=1):
+    def dump_ordinance(self, ord,index=1):
 
         name = ord.type2xml()
 
@@ -630,16 +630,16 @@ class GrampsDbXmlWriter(UpdateCallback):
         sp2 = "  " * (index+1)
 
         priv = conf_priv(ord)
-        self.g.write('%s<lds_ord type="%s"%s>\n' % (sp,name,priv))
+        self.g.write('%s<lds_ord type="%s"%s>\n' % (sp, name,priv))
         dateobj = ord.get_date_object()
         if dateobj and not dateobj.is_empty():
             self.write_date(dateobj,index+1)
         if ord.get_temple():
             self.g.write('%s<temple val="%s"/>\n'
                          % (sp2,self.fix(ord.get_temple())))
-        self.write_ref("place",ord.get_place_handle(),index+1)
+        self.write_ref("place", ord.get_place_handle(),index+1)
         if ord.get_status() != 0:
-            self.g.write('%s<status val="%s"/>\n' % (sp2,ord.status2xml()))
+            self.g.write('%s<status val="%s"/>\n' % (sp2, ord.status2xml()))
         if ord.get_family_handle():
             self.g.write('%s<sealed_to hlink="%s"/>\n' % 
                          (sp2,"_"+ord.get_family_handle()))
@@ -673,7 +673,7 @@ class GrampsDbXmlWriter(UpdateCallback):
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))
 
-    def write_ref(self,tagname,handle,index=1,close=True,extra_text=''):
+    def write_ref(self,tagname, handle,index=1,close=True,extra_text=''):
         if handle:
             if close:
                 close_tag = "/"
@@ -681,9 +681,9 @@ class GrampsDbXmlWriter(UpdateCallback):
                 close_tag = ""
             sp = "  "*index
             self.g.write('%s<%s hlink="_%s"%s%s>\n'
-                         % (sp,tagname,handle,extra_text,close_tag))
+                         % (sp,tagname, handle,extra_text,close_tag))
 
-    def write_primary_tag(self,tagname,obj,index=1,close=True):
+    def write_primary_tag(self,tagname, obj,index=1,close=True):
         if not obj:
             return
         sp = "  "*index
@@ -694,7 +694,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             marker_text = ''
         priv_text = conf_priv(obj)
         change_text = ' change="%d"' % obj.get_change_time()
-        handle_id_text = ' id="%s" handle="_%s"' % (obj.gramps_id,obj.handle)
+        handle_id_text = ' id="%s" handle="_%s"' % (obj.gramps_id, obj.handle)
         obj_text = '%s<%s' % (sp,tagname)
 
         self.g.write(obj_text + handle_id_text + priv_text + marker_text +
@@ -710,7 +710,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             if rel != "":
                 self.g.write('  %s<rel type="%s"/>\n' % (sp,rel) )
 
-    def write_last(self,name,indent=1):
+    def write_last(self, name,indent=1):
         p = name.get_surname_prefix()
         n = name.get_surname()
         g = name.get_group_as()
@@ -813,7 +813,7 @@ class GrampsDbXmlWriter(UpdateCallback):
         if value != None:
             self.g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,self.fix(value),label))
 
-    def dump_name(self,name,alternative=False,index=1):
+    def dump_name(self, name,alternative=False,index=1):
         sp = "  "*index
         name_type = name.get_type().xml_str()
         self.g.write('%s<name' % sp)
@@ -828,12 +828,12 @@ class GrampsDbXmlWriter(UpdateCallback):
         if name.get_display_as() != 0:
             self.g.write(' display="%d"' % name.get_display_as())
         self.g.write('>\n')
-        self.write_line("first",name.get_first_name(),index+1)
-        self.write_line("call",name.get_call_name(),index+1)
+        self.write_line("first", name.get_first_name(),index+1)
+        self.write_line("call", name.get_call_name(),index+1)
         self.write_last(name,index+1)
-        self.write_line("suffix",name.get_suffix(),index+1)
-        self.write_line("patronymic",name.get_patronymic(),index+1)
-        self.write_line("title",name.get_title(),index+1)
+        self.write_line("suffix", name.get_suffix(),index+1)
+        self.write_line("patronymic", name.get_patronymic(),index+1)
+        self.write_line("title", name.get_title(),index+1)
         if name.date:
             self.write_date(name.date,4)
         self.write_note_list(name.get_note_list(),index+1)
@@ -842,7 +842,7 @@ class GrampsDbXmlWriter(UpdateCallback):
     
         self.g.write('%s</name>\n' % sp)
 
-    def append_value(self,orig,val):
+    def append_value(self, orig,val):
         if orig:
             return "%s, %s" % (orig,val)
         else:

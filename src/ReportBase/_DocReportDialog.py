@@ -187,7 +187,7 @@ class DocReportDialog(ReportDialog):
         self.setup_html_frame()
         ReportDialog.setup_report_options_frame(self)
 
-    def html_file_enable(self,obj):
+    def html_file_enable(self, obj):
         active = obj.get_active()
         text = unicode(obj.get_model()[active][0])
         if _template_map.has_key(text):
@@ -274,7 +274,7 @@ class DocReportDialog(ReportDialog):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
             else:
-                self.template_name = "%s%s%s" % (const.TEMPLATE_DIR,os.path.sep,
+                self.template_name = "%s%s%s" % (const.TEMPLATE_DIR, os.path.sep,
                                                 _template_map[text])
         else:
             self.template_name = ""

@@ -19,18 +19,18 @@
 #
 
 """
-Provides a simplified database access interface to the GRAMPS database.
+Provide a simplified database access interface to the GRAMPS database.
 """
 import BaseDoc
 
 class SimpleDoc:
     """
-    Provides a simplified database access interface to the GRAMPS database.
+    Provide a simplified database access interface to the GRAMPS database.
     """
 
     def __init__(self, doc):
         """
-        Initializes the class with the real document
+        Initialize the class with the real document
         """
         self.doc = doc
 
@@ -74,7 +74,7 @@ class SimpleDoc:
 
 def make_basic_stylesheet():
     """
-    Creates the basic style sheet for the SimpleDoc class
+    Create the basic style sheet for the SimpleDoc class
     """
     sheet = BaseDoc.StyleSheet()
 

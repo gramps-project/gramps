@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Media object for GRAMPS
+Media object for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -37,12 +37,12 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from srcbase import SourceBase
-from notebase import NoteBase
-from datebase import DateBase
-from attrbase import AttributeBase
-from markertype import MarkerType
+from gen.lib.primaryobj import PrimaryObject
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.datebase import DateBase
+from gen.lib.attrbase import AttributeBase
+from gen.lib.markertype import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -53,13 +53,15 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
                   PrimaryObject):
     """
     Containter for information about an image file, including location,
-    description and privacy
+    description and privacy.
     """
     
     def __init__(self, source=None):
         """
-        Initialize a MediaObject. If source is not None, then object
-        is initialized from values of the source object.
+        Initialize a MediaObject. 
+        
+        If source is not None, then object is initialized from values of the 
+        source object.
 
         @param source: Object used to initialize the new object
         @type source: MediaObject
@@ -83,9 +85,11 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
 
     def serialize(self):
         """
-        Converts the data held in the event to a Python tuple that
-        represents all the data elements. This method is used to convert
-        the object into a form that can easily be saved to a database.
+        Convert the data held in the event to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
 
         These elements may be primative Python types (string, integers),
         complex Python types (lists or tuples, or Python objects. If the
@@ -108,7 +112,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
 
     def unserialize(self, data):
         """
-        Converts the data held in a tuple created by the serialize method
+        Convert the data held in a tuple created by the serialize method
         back into the data in an Event structure.
 
         @param data: tuple containing the persistent data associated the object
@@ -127,7 +131,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -136,7 +140,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -145,36 +149,38 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
 
     def get_sourcref_child_list(self):
         """
-        Returns the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may refer sources.
+        @return: Returns the list of child secondary child objects that may 
+                refer sources.
         @rtype: list
         """
         return self.attribute_list
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.attribute_list + self.source_list
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return self.get_referenced_note_handles()
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -183,7 +189,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
 
     def set_mime_type(self, mime_type):
         """
-        Sets the MIME type associated with the MediaObject
+        Set the MIME type associated with the MediaObject.
 
         @param mime_type: MIME type to be assigned to the object
         @type mime_type: str
@@ -192,7 +198,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
 
     def get_mime_type(self):
         """
-        Returns the MIME type associated with the MediaObject
+        Return the MIME type associated with the MediaObject.
 
         @returns: Returns the associated MIME type
         @rtype: str
@@ -200,17 +206,17 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
         return self.mime
     
     def set_path(self, path):
-        """set the file path to the passed path"""
+        """Set the file path to the passed path."""
         self.path = os.path.normpath(path)
 
     def get_path(self):
-        """return the file path"""
+        """Return the file path."""
         return self.path
 
     def set_description(self, text):
-        """sets the description of the image"""
+        """Set the description of the image."""
         self.desc = text
 
     def get_description(self):
-        """returns the description of the image"""
+        """Return the description of the image."""
         return self.desc

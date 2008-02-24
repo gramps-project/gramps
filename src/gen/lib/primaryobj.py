@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Basic Primary Object class for GRAMPS
+Basic Primary Object class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -37,11 +37,11 @@ import locale
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from baseobj import BaseObject
-from privacybase import PrivacyBase
-from markertype import MarkerType
-from srcbase import SourceBase
-from mediabase import MediaBase
+from gen.lib.baseobj import BaseObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.markertype import MarkerType
+from gen.lib.srcbase import SourceBase
+from gen.lib.mediabase import MediaBase
 
 #-------------------------------------------------------------------------
 #
@@ -61,6 +61,7 @@ except:
 class BasicPrimaryObject(BaseObject, PrivacyBase):
     """
     The BasicPrimaryObject is the base class for Note objects.
+    
     It is also the base class for the PrimaryObject class.    
     
     The PrimaryObject is the base class for all other primary objects in the
@@ -72,9 +73,11 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
     
     def __init__(self, source=None):
         """
-        Initialize a PrimaryObject. If source is None, both the ID and handle
-        are assigned as empty strings. If source is not None, then object
-        is initialized from values of the source object.
+        Initialize a PrimaryObject. 
+        
+        If source is None, both the ID and handle are assigned as empty 
+        strings. If source is not None, then object is initialized from values 
+        of the source object.
 
         @param source: Object used to initialize the new object
         @type source: PrimaryObject
@@ -93,18 +96,19 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def get_change_time(self):
         """
-        Returns the time that the data was last changed. The value
-        in the format returned by the time.time() command.
+        Return the time that the data was last changed. 
+        
+        The value in the format returned by the time.time() command.
            
-        @returns: Time that the data was last changed. The value
-           in the format returned by the time.time() command.
+        @returns: Time that the data was last changed. The value in the format 
+                returned by the time.time() command.
         @rtype: int
         """
         return self.change
 
     def get_change_display(self):
         """
-        Returns the string representation of the last change time.
+        Return the string representation of the last change time.
 
         @returns: string representation of the last change time.
         @rtype: str
@@ -118,7 +122,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def set_handle(self, handle):
         """
-        Sets the database handle for the primary object
+        Set the database handle for the primary object.
 
         @param handle: object database handle
         @type handle: str
@@ -127,7 +131,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def get_handle(self):
         """
-        Returns the database handle for the primary object
+        Return the database handle for the primary object.
 
         @returns: database handle associated with the object
         @rtype: str
@@ -136,7 +140,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def set_gramps_id(self, gramps_id):
         """
-        Sets the GRAMPS ID for the primary object
+        Set the GRAMPS ID for the primary object.
         
         @param gramps_id: GRAMPS ID
         @type gramps_id: str
@@ -145,7 +149,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def get_gramps_id(self):
         """
-        Returns the GRAMPS ID for the primary object
+        Return the GRAMPS ID for the primary object.
 
         @returns: GRAMPS ID associated with the object
         @rtype: str
@@ -154,21 +158,22 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def has_handle_reference(self, classname, handle):
         """
-        Returns True if the object has reference to a given handle
-        of given primary object type.
+        Return True if the object has reference to a given handle of given 
+        primary object type.
         
         @param classname: The name of the primary object class.
         @type classname: str
         @param handle: The handle to be checked.
         @type handle: str
-        @return: Returns whether the object has reference to this handle of this object type.
+        @return: Returns whether the object has reference to this handle of 
+                this object type.
         @rtype: bool
         """
         return False
 
     def remove_handle_references(self, classname, handle_list):
         """
-        Removes all references in this object to object handles in the list.
+        Remove all references in this object to object handles in the list.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -179,7 +184,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def replace_handle_reference(self, classname, old_handle, new_handle):
         """
-        Replaces all references to old handle with those to the new handle.
+        Replace all references to old handle with those to the new handle.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -192,7 +197,7 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def set_marker(self, marker):
         """
-        Sets the marker for the object.
+        Set the marker for the object.
 
         @param marker: marker assigned to the object
         @type marker: MarkerType
@@ -201,8 +206,9 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
     
     def get_marker(self):
         """
-        Returns the marker for the object. The exact type depends on the
-        derived class type.
+        Return the marker for the object. 
+        
+        The exact type depends on the derived class type.
 
         @return: Returns the marker for the object.
         @rtype: MarkerType
@@ -211,33 +217,37 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 
     def has_source_reference(self, handle):
         """
-        Indicates if the object has a source references. In the base class,
-        no such references exist. Derived classes should override this if they
-        provide source references.
+        Indicate if the object has a source references. 
+        
+        In the base class, no such references exist. Derived classes should 
+        override this if they provide source references.
         """
         return False
 
     def has_media_reference(self, handle):
         """
-        Indicates if the object has a media references. In the base class,
-        no such references exist. Derived classes should override this if they
-        provide media references.
+        Indicate if the object has a media references. 
+        
+        In the base class, no such references exist. Derived classes should 
+        override this if they provide media references.
         """
         return False
 
     def remove_source_references(self, handle_list):
         """
-        Removes the specified source references from the object. In the base class
-        no such references exist. Derived classes should override this if they
-        provide source references.
+        Remove the specified source references from the object. 
+        
+        In the base class no such references exist. Derived classes should 
+        override this if they provide source references.
         """
         pass
 
     def remove_media_references(self, handle_list):
         """
-        Removes the specified media references from the object. In the base class
-        no such references exist. Derived classes should override this if they
-        provide media references.
+        Remove the specified media references from the object. 
+        
+        In the base class no such references exist. Derived classes should 
+        override this if they provide media references.
         """
         pass
 
@@ -255,7 +265,9 @@ class BasicPrimaryObject(BaseObject, PrivacyBase):
 class PrimaryObject(BasicPrimaryObject):
     """
     The PrimaryObject is the base class for all primary objects in the
-    database. Primary objects are the core objects in the database.
+    database. 
+    
+    Primary objects are the core objects in the database.
     Each object has a database handle and a GRAMPS ID value. The database
     handle is used as the record number for the database, and the GRAMPS
     ID is the user visible version.
@@ -263,9 +275,11 @@ class PrimaryObject(BasicPrimaryObject):
     
     def __init__(self, source=None):
         """
-        Initialize a PrimaryObject. If source is None, both the ID and handle
-        are assigned as empty strings. If source is not None, then object
-        is initialized from values of the source object.
+        Initialize a PrimaryObject. 
+        
+        If source is None, both the ID and handle are assigned as empty 
+        strings. If source is not None, then object is initialized from values 
+        of the source object.
 
         @param source: Object used to initialize the new object
         @type source: PrimaryObject
@@ -274,8 +288,8 @@ class PrimaryObject(BasicPrimaryObject):
 
     def has_handle_reference(self, classname, handle):
         """
-        Returns True if the object has reference to a given handle
-        of given primary object type.
+        Return True if the object has reference to a given handle of given 
+        primary object type.
         
         @param classname: The name of the primary object class.
         @type classname: str
@@ -294,7 +308,7 @@ class PrimaryObject(BasicPrimaryObject):
 
     def remove_handle_references(self, classname, handle_list):
         """
-        Removes all references in this object to object handles in the list.
+        Remove all references in this object to object handles in the list.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -310,7 +324,7 @@ class PrimaryObject(BasicPrimaryObject):
 
     def replace_handle_reference(self, classname, old_handle, new_handle):
         """
-        Replaces all references to old handle with those to the new handle.
+        Replace all references to old handle with those to the new handle.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -328,19 +342,19 @@ class PrimaryObject(BasicPrimaryObject):
 
     def _has_handle_reference(self, classname, handle):
         """
-        returns True if the handle is referenced by the object
+        Return True if the handle is referenced by the object.
         """
         return False
 
     def _remove_handle_references(self, classname, handle_list):
         """
-        removes the handle references from the object
+        Remove the handle references from the object.
         """
         pass
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
-        replaces the handle reference with the new reference
+        Replace the handle reference with the new reference.
         """
         pass
         

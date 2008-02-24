@@ -21,11 +21,11 @@
 # $Id$
 
 """
-PrivateSourceNote class for GRAMPS
+PrivateSourceNote class for GRAMPS.
 """
 
-from srcnote import SourceNote
-from privacybase import PrivacyBase
+from gen.lib.srcnote import SourceNote
+from gen.lib.privacybase import PrivacyBase
 
 #-------------------------------------------------------------------------
 #

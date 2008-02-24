@@ -49,8 +49,8 @@ import Errors
 #-------------------------------------------------------------------------
 class ODSDoc(SpreadSheetDoc):
 
-    def __init__(self,type,orientation):
-        SpreadSheetDoc.__init__(self,type,orientation)
+    def __init__(self,type, orientation):
+        SpreadSheetDoc.__init__(self,type, orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -388,7 +388,7 @@ class ODSDoc(SpreadSheetDoc):
         self.f.write('</office:document-styles>\n')
         self.f.close()
 
-    def start_page(self,name,style_name):
+    def start_page(self, name,style_name):
         table = self.table_styles[style_name]
         self.f.write('<table:table table:name="')
         self.f.write(name)

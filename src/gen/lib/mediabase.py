@@ -21,7 +21,7 @@
 # $Id$
 
 """
-MediaBase class for GRAMPS
+MediaBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,7 @@ MediaBase class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from mediaref import MediaRef
+from gen.lib.mediaref import MediaRef
 
 #-------------------------------------------------------------------------
 #
@@ -38,12 +38,12 @@ from mediaref import MediaRef
 #-------------------------------------------------------------------------
 class MediaBase:
     """
-    Base class for storing media references
+    Base class for storing media references.
     """
     
     def __init__(self, source=None):
         """
-        Create a new MediaBase, copying from source if not None
+        Create a new MediaBase, copying from source if not None.
         
         @param source: Object used to initialize the new object
         @type source: MediaBase
@@ -56,19 +56,19 @@ class MediaBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return [mref.serialize() for mref in self.media_list]
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.media_list = [MediaRef().unserialize(item) for item in data]
 
     def add_media_reference(self, media_ref):
         """
-        Adds a L{MediaRef} instance to the object's media list.
+        Add a L{MediaRef} instance to the object's media list.
 
         @param media_ref: L{MediaRef} instance to be added to the object's
             media list.
@@ -78,7 +78,7 @@ class MediaBase:
 
     def get_media_list(self):
         """
-        Returns the list of L{MediaRef} instances associated with the object.
+        Return the list of L{MediaRef} instances associated with the object.
 
         @returns: list of L{MediaRef} instances associated with the object
         @rtype: list
@@ -87,7 +87,7 @@ class MediaBase:
 
     def set_media_list(self, media_ref_list):
         """
-        Sets the list of L{MediaRef} instances associated with the object.
+        Set the list of L{MediaRef} instances associated with the object.
         It replaces the previous list.
 
         @param media_ref_list: list of L{MediaRef} instances to be assigned
@@ -98,19 +98,20 @@ class MediaBase:
 
     def has_media_reference(self, obj_handle) :
         """
-        Returns True if the object or any of it's child objects has reference
+        Return True if the object or any of it's child objects has reference
         to this media object handle.
 
         @param obj_handle: The media handle to be checked.
         @type obj_handle: str
-        @return: Returns whether the object or any of it's child objects has reference to this media handle.
+        @return: Returns whether the object or any of it's child objects has 
+                reference to this media handle.
         @rtype: bool
         """
         return obj_handle in [media_ref.ref for media_ref in self.media_list]
 
     def remove_media_references(self, obj_handle_list):
         """
-        Removes references to all media handles in the list.
+        Remove references to all media handles in the list.
 
         @param obj_handle_list: The list of media handles to be removed.
         @type obj_handle_list: list
@@ -121,7 +122,7 @@ class MediaBase:
 
     def replace_media_references(self, old_handle, new_handle):
         """
-        Replaces all references to old media handle with the new handle.
+        Replace all references to old media handle with the new handle.
 
         @param old_handle: The media handle to be replaced.
         @type old_handle: str

@@ -165,7 +165,7 @@ class EditEventRef(EditReference):
 
     def _create_tabbed_pages(self):
         """
-        Creates the notebook tabs and inserts them into the main
+        Create the notebook tabs and inserts them into the main
         window.
         """
 
@@ -223,7 +223,7 @@ class EditEventRef(EditReference):
             submenu_label = _('New Event')
         return (_('Event Reference Editor'),submenu_label)
         
-    def ok_clicked(self,obj):
+    def ok_clicked(self, obj):
 
         trans = self.db.transaction_begin()
         if self.source.handle:

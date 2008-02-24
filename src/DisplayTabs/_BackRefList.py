@@ -82,7 +82,7 @@ class BackRefList(EmbeddedList):
 
     def create_buttons(self, share=False, move=False, jump=False):
         """
-        Creates a button box consisting of one button: Edit. 
+        Create a button box consisting of one button: Edit. 
         This button box is then appended hbox (self).
         Method has signature of, and overrides create_buttons from _ButtonTab.py
         """

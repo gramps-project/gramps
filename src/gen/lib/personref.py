@@ -29,11 +29,11 @@ Person Reference class for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from srcbase import SourceBase
-from notebase import NoteBase
-from refbase import RefBase
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.refbase import RefBase
 
 #-------------------------------------------------------------------------
 #
@@ -61,7 +61,7 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
@@ -71,7 +71,7 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (privacy, source_list, note_list, ref, self.rel) = data
         PrivacyBase.unserialize(self, privacy)
@@ -82,7 +82,7 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -91,7 +91,7 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -100,19 +100,20 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.source_list
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -122,7 +123,7 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
+        Return the list of child objects which may, directly or through
         their children, reference primary objects..
         
         @return: Returns the list of objects refereincing primary objects.
@@ -131,9 +132,9 @@ class PersonRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         return self.source_list
 
     def set_relation(self, rel):
-        """Sets relation to a person"""
+        """Set relation to a person."""
         self.rel = rel
 
     def get_relation(self):
-        """Returns the relation to a person"""
+        """Return the relation to a person."""
         return self.rel

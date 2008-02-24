@@ -55,7 +55,7 @@ class DescendantReport(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the DescendantReport object that produces the report.
+        Create the DescendantReport object that produces the report.
         
         The arguments are:
 

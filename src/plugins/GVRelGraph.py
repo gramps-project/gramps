@@ -74,7 +74,7 @@ class RelGraphReport(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates ComprehensiveAncestorsReport object that produces the report.
+        Create ComprehensiveAncestorsReport object that produces the report.
         
         The arguments are:
 
@@ -223,7 +223,7 @@ class RelGraphReport(Report):
                 h = person_handle
                 dirpath = "ppl/%s/%s" % (h[0], h[1])
                 dirpath = dirpath.lower()
-                url = "%s/%s.html" % (dirpath,h)
+                url = "%s/%s.html" % (dirpath, h)
                 
             self.doc.add_node(p_id,label,shape,color,style,fill)
   

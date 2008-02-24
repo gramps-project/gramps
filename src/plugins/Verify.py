@@ -67,7 +67,7 @@ _person_cache = {}
 _family_cache = {}
 _event_cache = {}
 
-def find_event(db,handle):
+def find_event(db, handle):
     try:
         obj = _event_cache[handle]
     except KeyError:
@@ -75,7 +75,7 @@ def find_event(db,handle):
         _event_cache[handle] = obj
     return obj
 
-def find_person(db,handle):
+def find_person(db, handle):
     try:
         obj = _person_cache[handle]
     except KeyError:
@@ -83,7 +83,7 @@ def find_person(db,handle):
         _person_cache[handle] = obj
     return obj
 
-def find_family(db,handle):
+def find_family(db, handle):
     try:
         obj = _family_cache[handle]
     except KeyError:
@@ -223,13 +223,13 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
     def add_results_cli(self,results):
         # print data for the user, no GUI
-        (msg,gramps_id,name,the_type,rule_id,severity,handle) = results
+        (msg,gramps_id, name,the_type,rule_id,severity, handle) = results
         if severity == Rule.WARNING:
-            print "W: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
+            print "W: %s, %s: %s, %s" % (msg,the_type,gramps_id, name)
         elif severity == Rule.ERROR:
-            print "E: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
+            print "E: %s, %s: %s, %s" % (msg,the_type,gramps_id, name)
         else:
-            print "S: %s, %s: %s, %s" % (msg,the_type,gramps_id,name)
+            print "S: %s, %s: %s, %s" % (msg,the_type,gramps_id, name)
 
     def init_gui(self):
         # Draw dialog and make it handle everything
@@ -282,14 +282,14 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                                                           
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Tool settings"),self.label)
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-other')
 
-    def on_apply_clicked(self,obj):
+    def on_apply_clicked(self, obj):
         self.options.handler.options_dict['oldage'] = self.top.get_widget(
             "oldage").get_value_as_int()
         self.options.handler.options_dict['hwdif']  = self.top.get_widget(
@@ -389,11 +389,11 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 DeathAfterBury(self.db,person),
                 BirthAfterDeath(self.db,person),
                 BaptAfterBury(self.db,person),
-                OldAge(self.db,person,oldage,estimate_age),
+                OldAge(self.db,person, oldage,estimate_age),
                 UnknownGender(self.db,person),
                 MultipleParents(self.db,person),
                 MarriedOften(self.db,person,wedder),
-                OldUnmarried(self.db,person,oldunm,estimate_age),
+                OldUnmarried(self.db,person, oldunm,estimate_age),
                 TooManyChildren(self.db,person,mxchilddad,mxchildmom),
                 Disconnected(self.db,person),
                 ]
@@ -415,12 +415,12 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 FemaleHusband(self.db,family),
                 MaleWife(self.db,family),
                 SameSurnameFamily(self.db,family),
-                LargeAgeGapFamily(self.db,family,hwdif,estimate_age),
+                LargeAgeGapFamily(self.db,family, hwdif,estimate_age),
                 MarriageBeforeBirth(self.db,family,estimate_age),
                 MarriageAfterDeath(self.db,family,estimate_age),
                 EarlyMarriage(self.db,family,yngmar,estimate_age),
-                LateMarriage(self.db,family,oldmar,estimate_age),
-                OldParent(self.db,family,oldmom,olddad,estimate_age),
+                LateMarriage(self.db,family, oldmar,estimate_age),
+                OldParent(self.db,family, oldmom, olddad,estimate_age),
                 YoungParent(self.db,family,yngmom,yngdad,estimate_age),
                 UnbornParent(self.db,family,estimate_age),
                 DeadParent(self.db,family,estimate_age),
@@ -558,7 +558,7 @@ class VerifyResults(ManagedWindow):
         except IOError:
             return False
 
-    def save_ignored(self,new_ignores):
+    def save_ignored(self, new_ignores):
         self.ignores = new_ignores
         self._save_ignored(self.ignores_filename)
 
@@ -571,7 +571,7 @@ class VerifyResults(ManagedWindow):
         except IOError:
             return False
 
-    def get_marking(self,handle,rule_id):
+    def get_marking(self, handle,rule_id):
         try:
             return (rule_id in self.ignores[handle])
         except KeyError:
@@ -644,9 +644,9 @@ class VerifyResults(ManagedWindow):
             row[VerifyResults.SHOW_COL] = not row[VerifyResults.SHOW_COL]
         self.filt_model.refilter()
 
-    def double_click(self,obj,event):
+    def double_click(self, obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            (model,node) = self.selection.get_selected()
+            (model, node) = self.selection.get_selected()
             if not node:
                 return
             sort_path = self.sort_model.get_path(node)
@@ -678,7 +678,7 @@ class VerifyResults(ManagedWindow):
             cell.set_property('stock-id', 'gramps-family' )
 
     def add_results(self,results):
-        (msg,gramps_id,name,the_type,rule_id,severity,handle) = results
+        (msg,gramps_id, name,the_type,rule_id,severity, handle) = results
         ignore = self.get_marking(handle,rule_id)
         if severity == Rule.ERROR:
             fg = 'red'
@@ -687,15 +687,15 @@ class VerifyResults(ManagedWindow):
             #     fg = '#008b00' # green
         else:
             fg = None
-        self.real_model.append(row=[ignore,msg,gramps_id,name,
-                                    the_type,rule_id,handle,fg,
+        self.real_model.append(row=[ignore,msg,gramps_id, name,
+                                    the_type,rule_id, handle,fg,
                                     True, not ignore])
         
         if not self.window_shown:
             self.show()
             self.window_shown = True
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title,None)
 
 #------------------------------------------------------------------------
@@ -708,8 +708,8 @@ class VerifyOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {
@@ -785,7 +785,7 @@ class Rule:
 
     SEVERITY = WARNING
 
-    def __init__(self,db,obj):
+    def __init__(self,db, obj):
         self.db = db
         self.obj = obj
 
@@ -825,7 +825,7 @@ class Rule:
         name = self.get_name()
         gramps_id = self.get_id()
         msg = self.get_message()
-        return (msg,gramps_id,name,the_type,rule_id,severity,handle)
+        return (msg,gramps_id, name,the_type,rule_id,severity, handle)
 
 class PersonRule(Rule):
     """
@@ -935,7 +935,7 @@ class BaptAfterBury(PersonRule):
 class OldAge(PersonRule):
     ID = 7
     SEVERITY = Rule.WARNING
-    def __init__(self,db,person,old_age,est):
+    def __init__(self,db,person, old_age,est):
         PersonRule.__init__(self,db,person)
         self.old_age = old_age
         self.est = est
@@ -991,7 +991,7 @@ class MarriedOften(PersonRule):
 class OldUnmarried(PersonRule):
     ID = 11
     SEVERITY = Rule.WARNING
-    def __init__(self,db,person,old_unm,est):
+    def __init__(self,db,person, old_unm,est):
         PersonRule.__init__(self,db,person)
         self.old_unm = old_unm
         self.est = est
@@ -1010,8 +1010,8 @@ class OldUnmarried(PersonRule):
 class TooManyChildren(PersonRule):
     ID = 12
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,mx_child_dad,mx_child_mom):
-        PersonRule.__init__(self,db,obj)
+    def __init__(self,db, obj,mx_child_dad,mx_child_mom):
+        PersonRule.__init__(self,db, obj)
         self.mx_child_dad = mx_child_dad
         self.mx_child_mom = mx_child_mom
 
@@ -1099,8 +1099,8 @@ class SameSurnameFamily(FamilyRule):
 class LargeAgeGapFamily(FamilyRule):
     ID = 17
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,hw_diff,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj, hw_diff,est):
+        FamilyRule.__init__(self,db, obj)
         self.hw_diff = hw_diff
         self.est = est
 
@@ -1124,8 +1124,8 @@ class LargeAgeGapFamily(FamilyRule):
 class MarriageBeforeBirth(FamilyRule):
     ID = 18
     SEVERITY = Rule.ERROR
-    def __init__(self,db,obj,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,est):
+        FamilyRule.__init__(self,db, obj)
         self.est = est
 
     def _get_params(self):
@@ -1155,8 +1155,8 @@ class MarriageBeforeBirth(FamilyRule):
 class MarriageAfterDeath(FamilyRule):
     ID = 19
     SEVERITY = Rule.ERROR
-    def __init__(self,db,obj,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,est):
+        FamilyRule.__init__(self,db, obj)
         self.est = est
 
     def _get_params(self):
@@ -1186,8 +1186,8 @@ class MarriageAfterDeath(FamilyRule):
 class EarlyMarriage(FamilyRule):
     ID = 20
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,yng_mar,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,yng_mar,est):
+        FamilyRule.__init__(self,db, obj)
         self.yng_mar = yng_mar
         self.est = est
 
@@ -1220,8 +1220,8 @@ class EarlyMarriage(FamilyRule):
 class LateMarriage(FamilyRule):
     ID = 21
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,old_mar,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj, old_mar,est):
+        FamilyRule.__init__(self,db, obj)
         self.old_mar = old_mar
         self.est = est
 
@@ -1271,8 +1271,8 @@ class LateMarriage(FamilyRule):
 class OldParent(FamilyRule):
     ID = 22
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,old_mom,old_dad,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj, old_mom, old_dad,est):
+        FamilyRule.__init__(self,db, obj)
         self.old_mom = old_mom
         self.old_dad = old_dad
         self.est = est
@@ -1316,8 +1316,8 @@ class OldParent(FamilyRule):
 class YoungParent(FamilyRule):
     ID = 23
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,yng_mom,yng_dad,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,yng_mom,yng_dad,est):
+        FamilyRule.__init__(self,db, obj)
         self.yng_dad = yng_dad
         self.yng_mom = yng_mom
         self.est = est
@@ -1361,8 +1361,8 @@ class YoungParent(FamilyRule):
 class UnbornParent(FamilyRule):
     ID = 24
     SEVERITY = Rule.ERROR
-    def __init__(self,db,obj,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,est):
+        FamilyRule.__init__(self,db, obj)
         self.est = est
 
     def _get_params(self):
@@ -1403,8 +1403,8 @@ class UnbornParent(FamilyRule):
 class DeadParent(FamilyRule):
     ID = 25
     SEVERITY = Rule.ERROR
-    def __init__(self,db,obj,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,est):
+        FamilyRule.__init__(self,db, obj)
         self.est = est
 
     def _get_params(self):
@@ -1451,8 +1451,8 @@ class DeadParent(FamilyRule):
 class LargeChildrenSpan(FamilyRule):
     ID = 26
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,cb_span,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,cb_span,est):
+        FamilyRule.__init__(self,db, obj)
         self.cb_span = cb_span
         self.est = est
 
@@ -1473,8 +1473,8 @@ class LargeChildrenSpan(FamilyRule):
 class LargeChildrenAgeDiff(FamilyRule):
     ID = 27
     SEVERITY = Rule.WARNING
-    def __init__(self,db,obj,c_space,est):
-        FamilyRule.__init__(self,db,obj)
+    def __init__(self,db, obj,c_space,est):
+        FamilyRule.__init__(self,db, obj)
         self.c_space = c_space
         self.est = est
 

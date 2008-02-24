@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Event object for GRAMPS
+Event object for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,15 +29,15 @@ Event object for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from srcbase import SourceBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from attrbase import AttributeBase
-from datebase import DateBase
-from placebase import PlaceBase
-from eventtype import EventType
-from markertype import MarkerType
+from gen.lib.primaryobj import PrimaryObject
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.mediabase import MediaBase
+from gen.lib.attrbase import AttributeBase
+from gen.lib.datebase import DateBase
+from gen.lib.placebase import PlaceBase
+from gen.lib.eventtype import EventType
+from gen.lib.markertype import MarkerType
 
 from types import InstanceType
 
@@ -58,7 +58,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def __init__(self, source=None):
         """
-        Creates a new Event instance, copying from the source if present
+        Create a new Event instance, copying from the source if present.
 
         @param source: An event used to initialize the new event
         @type source: Event
@@ -81,9 +81,11 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def serialize(self, no_text_date = False):
         """
-        Converts the data held in the event to a Python tuple that
-        represents all the data elements. This method is used to convert
-        the object into a form that can easily be saved to a database.
+        Convert the data held in the event to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
 
         These elements may be primative Python types (string, integers),
         complex Python types (lists or tuples, or Python objects. If the
@@ -106,7 +108,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def unserialize(self, data):
         """
-        Converts the data held in a tuple created by the serialize method
+        Convert the data held in a tuple created by the serialize method
         back into the data in an Event structure.
 
         @param data: tuple containing the persistent data associated the
@@ -130,14 +132,15 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def _has_handle_reference(self, classname, handle):
         """
-        Returns True if the object has reference to a given handle
-        of given primary object type.
+        Return True if the object has reference to a given handle of given 
+        primary object type.
         
         @param classname: The name of the primary object class.
         @type classname: str
         @param handle: The handle to be checked.
         @type handle: str
-        @return: Returns whether the object has reference to this handle of this object type.
+        @return: Returns whether the object has reference to this handle of 
+                this object type.
         @rtype: bool
         """
         if classname == 'Place':
@@ -146,7 +149,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def _remove_handle_references(self, classname, handle_list):
         """
-        Removes all references in this object to object handles in the list.
+        Remove all references in this object to object handles in the list.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -158,7 +161,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
-        Replaces all references to old handle with those to the new handle.
+        Replace all references to old handle with those to the new handle.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -172,7 +175,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -181,7 +184,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -190,28 +193,30 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def get_sourcref_child_list(self):
         """
-        Returns the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may refer sources.
+        @return: Returns the list of child secondary child objects that may 
+                refer sources.
         @rtype: list
         """
         return self.media_list + self.attribute_list
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.media_list + self.attribute_list + self.source_list
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -221,8 +226,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -231,7 +236,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def is_empty(self):
         """
-        Returns True if the Event is an empty object (no values set).
+        Return True if the Event is an empty object (no values set).
 
         @returns: True if the Event is empty
         @rtype: bool
@@ -245,7 +250,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def are_equal(self, other):
         """
-        Returns True if the passed Event is equivalent to the current Event.
+        Return True if the passed Event is equivalent to the current Event.
 
         @param other: Event to compare against
         @type other: Event
@@ -274,7 +279,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         
     def set_type(self, the_type):
         """
-        Sets the type of the Event to the passed (int,str) tuple.
+        Set the type of the Event to the passed (int,str) tuple.
 
         @param the_type: Type to assign to the Event
         @type the_type: tuple
@@ -283,7 +288,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def get_type(self):
         """
-        Returns the type of the Event.
+        Return the type of the Event.
 
         @return: Type of the Event
         @rtype: tuple
@@ -292,8 +297,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def set_description(self, description):
         """
-        Sets the description of the Event to the passed string. The string
-        may contain any information.
+        Set the description of the Event to the passed string. 
+        
+        The string may contain any information.
 
         @param description: Description to assign to the Event
         @type description: str
@@ -302,7 +308,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
 
     def get_description(self) :
         """
-        Returns the description of the Event.
+        Return the description of the Event.
 
         @return: Returns the description of the Event
         @rtype: str

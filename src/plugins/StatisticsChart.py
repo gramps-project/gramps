@@ -262,7 +262,7 @@ class Extract:
         return [_("Children missing")]
 
     def get_handle_count(self, data):
-        "return number of handles in given (person,handle_list) used for child count, family count"
+        "return number of handles in given (person, handle_list) used for child count, family count"
         return [str(len(data[1]))]
 
     # ------------------- utility methods -------------------------
@@ -368,7 +368,7 @@ class Extract:
     # ----------------- data collection methods --------------------
 
     def get_person_data(self, person, collect):
-        """Adds data from the database to 'collect' for the given person,
+        """Add data from the database to 'collect' for the given person,
            using methods rom the 'collect' data dict tuple
         """
         for chart in collect:
@@ -464,7 +464,7 @@ class StatisticsChart(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the Statistics object that produces the report.
+        Create the Statistics object that produces the report.
         Uses the Extractor class to extract the data from the database.
 
         The arguments are:

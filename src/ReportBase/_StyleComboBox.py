@@ -38,7 +38,7 @@ class StyleComboBox(gtk.ComboBox):
 
     def __init__(self,model=None):
         """
-        Initializes the combobox, building the display column.
+        Initialize the combobox, building the display column.
         """
         gtk.ComboBox.__init__(self,model)
         cell = gtk.CellRendererText()
@@ -47,7 +47,7 @@ class StyleComboBox(gtk.ComboBox):
         
     def set(self,style_map,default):
         """
-        Sets the options for the ComboBox, using the passed style
+        Set the options for the ComboBox, using the passed style
         map as the data.
 
         @param style_map: dictionary of style names and the corresponding
@@ -76,7 +76,7 @@ class StyleComboBox(gtk.ComboBox):
 
     def get_value(self):
         """
-        Returns the selected key (style sheet name).
+        Return the selected key (style sheet name).
 
         @returns: Returns the name of the selected style sheet
         @rtype: str

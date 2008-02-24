@@ -702,7 +702,7 @@ class RelationshipCalculator:
                                       all_dist=False, 
                                       only_birth=True):
         """
-        Returns if all_dist == True a 'tuple, string':
+        Return if all_dist == True a 'tuple, string':
             (rank, person handle, firstRel_str, firstRel_fam,
              secondRel_str, secondRel_fam), msg 
         or if all_dist == True a 'list of tuple, string': 
@@ -819,7 +819,7 @@ class RelationshipCalculator:
                 #  if shorter links, check if not subset
                 #  if longer links, check if not superset
                 pos=0
-                for ranknew,handlenew,rel1new,fam1new,rel2new,fam2new in com :
+                for ranknew, handlenew,rel1new,fam1new,rel2new,fam2new in com :
                     insert = True
                     for rank, handle, rel1, fam1, rel2, fam2 in common :
                         if ranknew < rank : 
@@ -842,7 +842,7 @@ class RelationshipCalculator:
                         #now check if superset must be deleted from common
                         deletelist=[]
                         index = pos+1
-                        for rank,handle,rel1,fam1,rel2,fam2 in common[pos+1:]:
+                        for rank, handle,rel1,fam1,rel2,fam2 in common[pos+1:]:
                             if rel1new == rel1[:len(rel1new)] and \
                                     rel2new == rel2[:len(rel2new)] :
                                 deletelist.append(index)
@@ -866,7 +866,7 @@ class RelationshipCalculator:
             return (rank,person_handle,firstRel,firstFam,secondRel,secondFam),\
                         self.__msg
         if common : 
-            #list with tuples (rank,handle person,rel_str_orig,rel_fam_orig,
+            #list with tuples (rank, handle person,rel_str_orig,rel_fam_orig,
             #       rel_str_other,rel_fam_str) and messages
             return common, self.__msg
         if not self.__all_dist :
@@ -1308,7 +1308,7 @@ class RelationshipCalculator:
             return rel_str
 
     def get_all_relationships(self, db, orig_person, other_person):
-        """ Returns a tuple, of which the first entry is a list with all
+        """ Return a tuple, of which the first entry is a list with all
             relationships in text, and the second a list of lists of all common
             ancestors that have that text as relationship
         """
@@ -1389,7 +1389,7 @@ class RelationshipCalculator:
         
     def get_plural_relationship_string(self, Ga, Gb):
         """
-        Provides a string that describes the relationsip between a person, and
+        Provide a string that describes the relationsip between a person, and
         a group of people with the same relationship. E.g. "grandparents" or
         "children".
         
@@ -1463,7 +1463,7 @@ class RelationshipCalculator:
                                        only_birth=True, 
                                        in_law_a=False, in_law_b=False):
         """
-        Provides a string that describes the relationsip between a person, and
+        Provide a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
         To be used as: 'person b is the grandparent of a', this will 
             be in translation string :

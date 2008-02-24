@@ -22,7 +22,7 @@
 # Portuguese version by Duarte Loreto <happyguy_pt@hotmail.com>, 2007.
 # Based on the Spanish version by Julio Sanchez <julio.sanchez@gmail.com>
 
-# $Id$
+# $Id:rel_pt.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -243,7 +243,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return "%dª sobrinha neta" % (level-1)
 
-    def get_relationship(self,orig_person,other_person):
+    def get_relationship(self, orig_person, other_person):
         """
         returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
@@ -255,13 +255,13 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        is_spouse = self.is_spouse(orig_person,other_person)
+        is_spouse = self.is_spouse(orig_person, other_person)
         if is_spouse:
             return (is_spouse,[])
 
         #get_relationship_distance changed, first data is relation to 
         #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = self.get_relationship_distance(orig_person,other_person)
+        (secondRel,firstRel,common) = self.get_relationship_distance(orig_person, other_person)
 
         if type(common) == types.StringType or type(common) == types.UnicodeType:
             return (common,[])

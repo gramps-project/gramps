@@ -21,9 +21,14 @@
 # $Id$
 
 """
-Source Reference class for GRAMPS
+Source Reference class for GRAMPS.
 """
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from warnings import warn
 
 #-------------------------------------------------------------------------
@@ -31,11 +36,11 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from datebase import DateBase
-from privacybase import PrivacyBase
-from notebase import NoteBase
-from refbase import RefBase
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.datebase import DateBase
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.notebase import NoteBase
+from gen.lib.refbase import RefBase
 
 #-------------------------------------------------------------------------
 #
@@ -43,8 +48,10 @@ from refbase import RefBase
 #
 #-------------------------------------------------------------------------
 class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
-    """Source reference, containing detailed information about how a
-    referenced source relates to it"""
+    """
+    Source reference, containing detailed information about how a referenced 
+    source relates to it.
+    """
     
     CONF_VERY_HIGH = 4
     CONF_HIGH      = 3
@@ -53,7 +60,7 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
     CONF_VERY_LOW  = 0
 
     def __init__(self, source=None):
-        """creates a new SourceRef, copying from the source if present"""
+        """Create a new SourceRef, copying from the source if present."""
         DateBase.__init__(self, source)
         PrivacyBase.__init__(self, source)
         NoteBase.__init__(self, source)
@@ -67,7 +74,7 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (DateBase.serialize(self),
                 PrivacyBase.serialize(self),
@@ -78,7 +85,7 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (date, privacy, note_list,
          self.confidence, ref, self.page) = data
@@ -90,7 +97,7 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -99,10 +106,10 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -111,22 +118,22 @@ class SourceRef(SecondaryObject, DateBase, PrivacyBase, NoteBase, RefBase):
         return ret
 
     def set_confidence_level(self, val):
-        """Sets the confidence level"""
+        """Set the confidence level."""
         self.confidence = val
 
     def get_confidence_level(self):
-        """Returns the confidence level"""
+        """Return the confidence level."""
         return self.confidence
         
     def set_page(self, page):
-        """sets the page indicator of the SourceRef"""
+        """Set the page indicator of the SourceRef."""
         self.page = page
 
     def get_page(self):
-        """gets the page indicator of the SourceRef"""
+        """Get the page indicator of the SourceRef."""
         return self.page
 
     def are_equal(self, other):
-        """deprecated function - use are_equal instead"""
+        """Deprecated function - use are_equal instead."""
         warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)

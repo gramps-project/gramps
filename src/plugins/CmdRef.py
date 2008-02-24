@@ -60,7 +60,7 @@ _tags = [
 #-------------------------------------------------------------------------
 class CmdRef(Tool.Tool):
     def __init__(self,dbstate, uistate, options_class, name, callback=None):
-        Tool.Tool.__init__(self,dbstate,options_class,name)
+        Tool.Tool.__init__(self,dbstate, options_class, name)
         self.__db = dbstate.db
 
         # retrieve options
@@ -210,8 +210,8 @@ class CmdRefOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

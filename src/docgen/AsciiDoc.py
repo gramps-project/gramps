@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:AsciiDoc.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #------------------------------------------------------------------------
 #
@@ -257,7 +257,7 @@ class AsciiDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     # Start a table. Grab the table style, and store it. 
     #
     #--------------------------------------------------------------------
-    def start_table(self,name,style_name):
+    def start_table(self, name,style_name):
         styles = self.get_style_sheet()
         self.tbl_style = styles.get_table_style(style_name)
         self.ncols = self.tbl_style.get_columns()

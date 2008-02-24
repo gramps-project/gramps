@@ -20,8 +20,7 @@
 
 # $Id$
 
-"""Support for dates
-"""
+"""Support for dates."""
 
 #------------------------------------------------------------------------
 #
@@ -62,7 +61,7 @@ import Config
 #
 #-------------------------------------------------------------------------
 class DateError(Exception):
-    """Error used to report Date errors"""
+    """Error used to report Date errors."""
     def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
@@ -77,10 +76,10 @@ class DateError(Exception):
 #-------------------------------------------------------------------------
 class Date:
     """
-    The core date handling class for GRAMPs. Supports partial dates, 
-    compound dates and alternate calendars.
+    The core date handling class for GRAMPs. 
+    
+    Supports partial dates, compound dates and alternate calendars.
     """
-
     MOD_NONE       = 0
     MOD_BEFORE     = 1
     MOD_AFTER      = 2
@@ -146,11 +145,11 @@ class Date:
 
     def __init__(self, *source, **kwargs):
         """
-        Creates a new Date instance.
+        Create a new Date instance.
         """
-        calendar=kwargs.get("calendar", None)
-        modifier=kwargs.get("modifier", None)
-        quality=kwargs.get("quality", None)
+        calendar = kwargs.get("calendar", None)
+        modifier = kwargs.get("modifier", None)
+        quality = kwargs.get("quality", None)
         #### setup None, Date, or numbers
         if len(source) == 0:
             source = None
@@ -187,7 +186,8 @@ class Date:
             if (calendar != None or 
                 modifier != None or 
                 quality != None):
-                raise AttributeError("can't set calendar, modifier, or quality with string date")
+                raise AttributeError("can't set calendar, modifier, or "
+                                     "quality with string date")
             import DateHandler
             source = DateHandler.parser.parse(source)
             self.calendar = source.calendar
@@ -213,7 +213,7 @@ class Date:
 
     def serialize(self, no_text_date=False):
         """
-        Convert to a series of tuples for data storage
+        Convert to a series of tuples for data storage.
         """
         if no_text_date:
             text = u''
@@ -225,7 +225,7 @@ class Date:
 
     def unserialize(self, data):
         """
-        Load from the format created by serialize
+        Load from the format created by serialize.
         """
         (self.calendar, self.modifier, self.quality, 
          self.dateval, self.text, self.sortval) = data
@@ -233,8 +233,8 @@ class Date:
 
     def copy(self, source):
         """
-        Copy all the attributes of the given Date instance
-        to the present instance, without creating a new object.
+        Copy all the attributes of the given Date instance to the present 
+        instance, without creating a new object.
         """
         self.calendar = source.calendar
         self.modifier = source.modifier
@@ -245,6 +245,8 @@ class Date:
 
     def __cmp__(self, other):
         """
+        Compare two dates.
+        
         Comparison function. Allows the usage of equality tests.
         This allows you do run statements like 'date1 <= date2'
         """
@@ -255,7 +257,7 @@ class Date:
 
     def __add__(self, other):
         """
-        Date artithmetic: Date() + years, or Date() + (years, [months, [days]])
+        Date arithmetic: Date() + years, or Date() + (years, [months, [days]]).
         """
         if type(other) == int:
             return self.copy_offset_ymd(other)
@@ -266,13 +268,13 @@ class Date:
 
     def __radd__(self, other):
         """
-        Add a number + Date() or (years, months, days) + Date()
+        Add a number + Date() or (years, months, days) + Date().
         """
         return self + other
 
     def __sub__(self, other):
         """
-        Date artithmetic: Date() - years, Date - (y,m,d), or Date() - Date()
+        Date arithmetic: Date() - years, Date - (y,m,d), or Date() - Date().
         """
         if type(other) == int:                # Date - value -> Date
             return self.copy_offset_ymd(-other)
@@ -350,8 +352,10 @@ class Date:
     def is_equal(self, other):
         """
         Return 1 if the given Date instance is the same as the present
-        instance IN ALL REGARDS. Needed, because the __cmp__ only looks
-        at the sorting value, and ignores the modifiers/comments.
+        instance IN ALL REGARDS. 
+        
+        Needed, because the __cmp__ only looks at the sorting value, and 
+        ignores the modifiers/comments.
         """
         if self.modifier == other.modifier \
                and self.modifier == Date.MOD_TEXTONLY:
@@ -365,18 +369,21 @@ class Date:
 
     def get_start_stop_range(self):
         """
-        Returns the minimal start_date, and a maximal
-        stop_date corresponding to this date, given in Gregorian calendar.
+        Return the minimal start_date, and a maximal stop_date corresponding 
+        to this date, given in Gregorian calendar.
+        
         Useful in doing range overlap comparisons between different dates.
 
         Note that we stay in (YR,MON,DAY) 
         """
         
         def yr_mon_day(dateval):
-            """ Local function to swap order for easy comparisons,
-                and correct year of slash date.
-                Slash date is given as year1/year2, where year1 is Julian
-                year, and year2=year1+1 the Gregorian year
+            """
+            Local function to swap order for easy comparisons, and correct 
+            year of slash date.
+            
+            Slash date is given as year1/year2, where year1 is Julian year, 
+            and year2=year1+1 the Gregorian year.
             """
             if dateval[Date._POS_SL] :
                 return (dateval[Date._POS_YR]+1, dateval[Date._POS_MON], 
@@ -385,8 +392,9 @@ class Date:
                 return (dateval[Date._POS_YR], dateval[Date._POS_MON], 
                         dateval[Date._POS_DAY])
         def date_offset(dateval, offset):
-            """ Local function to do date arithmetic: add the offset,
-                return (year,month,day) in the Gregorian calendar
+            """
+            Local function to do date arithmetic: add the offset, return 
+            (year,month,day) in the Gregorian calendar.
             """
             new_date = Date()
             new_date.set_yr_mon_day(dateval[0], dateval[1], dateval[2])
@@ -432,10 +440,12 @@ class Date:
         
     def match(self, other_date, comparison="="):
         """
-        The other comparisons for Date don't actually look for anything
-        other than a straight match, or a simple comparison of the sortval.
-        This method allows a more sophisticated comparison looking for
-        any match between two possible dates, date spans, and qualities.
+        Compare two dates using sophisticated techniques looking for any match 
+        between two possible dates, date spans and qualities.
+        
+        The other comparisons for Date (is_equal() and __cmp() don't actually 
+        look for anything other than a straight match, or a simple comparison 
+        of the sortval.
 
         comparison =,== :
             Returns True if any part of other_date matches any part of self
@@ -483,8 +493,9 @@ class Date:
             
     def __str__(self):
         """
-        Produces a string representation of the Date object. If the
-        date is not valid, the text representation is displayed. If
+        Produce a string representation of the Date object. 
+        
+        If the date is not valid, the text representation is displayed. If
         the date is a range or a span, a string in the form of
         'YYYY-MM-DD - YYYY-MM-DD' is returned. Otherwise, a string in
         the form of 'YYYY-MM-DD' is returned.
@@ -525,9 +536,11 @@ class Date:
 
     def get_sort_value(self):
         """
-        Returns the sort value of Date object. If the value is a
-        text string, 0 is returned. Otherwise, the calculated sort
-        date is returned. The sort date is rebuilt on every assignment.
+        Return the sort value of Date object. 
+        
+        If the value is a text string, 0 is returned. Otherwise, the 
+        calculated sort date is returned. The sort date is rebuilt on every 
+        assignment.
 
         The sort value is an integer representing the value. A date of
         March 5, 1990 would have the value of 19900305.
@@ -536,8 +549,9 @@ class Date:
 
     def get_modifier(self):
         """
-        Returns an integer indicating the calendar selected. The valid
-        values are::
+        Return an integer indicating the calendar selected. 
+        
+        The valid values are::
         
            MOD_NONE       = no modifier (default)
            MOD_BEFORE     = before
@@ -551,7 +565,7 @@ class Date:
 
     def set_modifier(self, val):
         """
-        Sets the modifier for the date.
+        Set the modifier for the date.
         """
         if val not in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, 
                        Date.MOD_ABOUT, Date.MOD_RANGE, Date.MOD_SPAN, 
@@ -561,8 +575,9 @@ class Date:
 
     def get_quality(self):
         """
-        Returns an integer indicating the calendar selected. The valid
-        values are::
+        Return an integer indicating the calendar selected. 
+        
+        The valid values are::
         
            QUAL_NONE       = normal (default)
            QUAL_ESTIMATED  = estimated
@@ -572,7 +587,7 @@ class Date:
 
     def set_quality(self, val):
         """
-        Sets the quality selected for the date.
+        Set the quality selected for the date.
         """
         if val not in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, 
                        Date.QUAL_CALCULATED):
@@ -581,8 +596,9 @@ class Date:
     
     def get_calendar(self):
         """
-        Returns an integer indicating the calendar selected. The valid
-        values are::
+        Return an integer indicating the calendar selected. 
+        
+        The valid values are::
 
            CAL_GREGORIAN  - Gregorian calendar
            CAL_JULIAN     - Julian calendar
@@ -595,7 +611,7 @@ class Date:
 
     def set_calendar(self, val):
         """
-        Sets the calendar selected for the date.
+        Set the calendar selected for the date.
         """
         if val not in (Date.CAL_GREGORIAN, Date.CAL_JULIAN, Date.CAL_HEBREW, 
                        Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_ISLAMIC):
@@ -604,9 +620,10 @@ class Date:
 
     def get_start_date(self):
         """
-        Returns a tuple representing the start date. If the date is a
-        compound date (range or a span), it is the first part of the
-        compound date. If the date is a text string, a tuple of
+        Return a tuple representing the start date. 
+        
+        If the date is a compound date (range or a span), it is the first part 
+        of the compound date. If the date is a text string, a tuple of
         (0, 0, 0, False) is returned. Otherwise, a date of (DD, MM, YY, slash)
         is returned. If slash is True, then the date is in the form of 1530/1.
         """
@@ -618,7 +635,8 @@ class Date:
 
     def get_stop_date(self):
         """
-        Returns a tuple representing the second half of a compound date. 
+        Return a tuple representing the second half of a compound date. 
+        
         If the date is not a compound date, (including text strings) a tuple
         of (0, 0, 0, False) is returned. Otherwise, a date of (DD, MM, YY, slash)
         is returned. If slash is True, then the date is in the form of 1530/1.
@@ -631,7 +649,7 @@ class Date:
 
     def _get_low_item(self, index):
         """
-        Returns the item specified
+        Return the item specified.
         """
         if self.modifier == Date.MOD_TEXTONLY:
             val = 0
@@ -641,7 +659,7 @@ class Date:
 
     def _get_low_item_valid(self, index):
         """
-        Determines if the item specified is valid
+        Determine if the item specified is valid.
         """
         if self.modifier == Date.MOD_TEXTONLY:
             val = False
@@ -651,7 +669,7 @@ class Date:
         
     def _get_high_item(self, index):
         """
-        Returns the item specified
+        Return the item specified.
         """
         if self.modifier == Date.MOD_SPAN or self.modifier == Date.MOD_RANGE:
             val = self.dateval[index]
@@ -661,15 +679,16 @@ class Date:
 
     def get_year(self):
         """
-        Returns the year associated with the date. If the year is
-        not defined, a zero is returned. If the date is a compound
-        date, the lower date year is returned.
+        Return the year associated with the date. 
+        
+        If the year is not defined, a zero is returned. If the date is a 
+        compound date, the lower date year is returned.
         """
         return self._get_low_item(Date._POS_YR)
 
     def set_yr_mon_day(self, year, month, day):
         """
-        Sets the year, month, and day values
+        Set the year, month, and day values.
         """
         dv = list(self.dateval)
         dv[Date._POS_YR] = year
@@ -680,7 +699,7 @@ class Date:
 
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
-        Sets the year, month, and day values by offset
+        Set the year, month, and day values by offset.
         """
         dv = list(self.dateval)
         if dv[Date._POS_YR]:
@@ -712,7 +731,7 @@ class Date:
 
     def copy_offset_ymd(self, year=0, month=0, day=0):
         """
-        Returns a Date copy based on year, month, and day offset
+        Return a Date copy based on year, month, and day offset.
         """
         retval = Date(self)
         retval.set_yr_mon_day_offset(year, month, day)
@@ -720,7 +739,7 @@ class Date:
 
     def copy_ymd(self, year=0, month=0, day=0):
         """
-        Returns a Date copy with year, month, and day set
+        Return a Date copy with year, month, and day set.
         """
         retval = Date(self)
         retval.set_yr_mon_day(year, month, day)
@@ -728,78 +747,86 @@ class Date:
 
     def set_year(self, year):
         """
-        Sets the year value
+        Set the year value.
         """
         self.dateval = self.dateval[0:2] + (year, ) + self.dateval[3:]
         self._calc_sort_value()
 
     def get_year_valid(self):
         """
-        Returns true if the year is valid
+        Return true if the year is valid.
         """
         return self._get_low_item_valid(Date._POS_YR)
 
     def get_month(self):
         """
-        Returns the month associated with the date. If the month is
-        not defined, a zero is returned. If the date is a compound
-        date, the lower date month is returned.
+        Return the month associated with the date. 
+        
+        If the month is not defined, a zero is returned. If the date is a 
+        compound date, the lower date month is returned.
         """
         return self._get_low_item(Date._POS_MON)
 
     def get_month_valid(self):
         """
-        Returns true if the month is valid
+        Return true if the month is valid
         """
         return self._get_low_item_valid(Date._POS_MON)
 
     def get_day(self):
         """
-        Returns the day of the month associated with the date. If
-        the day is not defined, a zero is returned. If the date is
-        a compound date, the lower date day is returned.
+        Return the day of the month associated with the date. 
+        
+        If the day is not defined, a zero is returned. If the date is a 
+        compound date, the lower date day is returned.
         """
         return self._get_low_item(Date._POS_DAY)
 
     def get_day_valid(self):
         """
-        Returns true if the day is valid
+        Return true if the day is valid.
         """
         return self._get_low_item_valid(Date._POS_DAY)
 
     def get_valid(self):
-        """ Returns true if any part of the date is valid"""
+        """ 
+        Return true if any part of the date is valid.
+        """
         return self.modifier != Date.MOD_TEXTONLY
 
     def get_stop_year(self):
         """
-        Returns the day of the year associated with the second
-        part of a compound date. If the year is not defined, a zero
-        is returned. 
+        Return the day of the year associated with the second part of a 
+        compound date. 
+        
+        If the year is not defined, a zero is returned. 
         """
         return self._get_high_item(Date._POS_RYR)
 
     def get_stop_month(self):
         """
-        Returns the month of the month associated with the second
-        part of a compound date. If the month is not defined, a zero
-        is returned. 
+        Return the month of the month associated with the second part of a 
+        compound date. 
+        
+        If the month is not defined, a zero is returned. 
         """
         return self._get_high_item(Date._POS_RMON)
 
     def get_stop_day(self):
         """
-        Returns the day of the month associated with the second
-        part of a compound date. If the day is not defined, a zero
-        is returned. 
+        Return the day of the month associated with the second part of a 
+        compound date. 
+        
+        If the day is not defined, a zero is returned. 
         """
         return self._get_high_item(Date._POS_RDAY)
 
     def get_high_year(self):
         """
-        Returns the high year estimate. For compound dates with non-zero 
-        stop year, the stop year is returned. Otherwise, the start year 
-        is returned.
+        Return the high year estimate. 
+        
+        For compound dates with non-zero stop year, the stop year is returned. 
+        Otherwise, the start year is returned.
         """
         if self.is_compound():
             ret = self.get_stop_year()
@@ -810,13 +837,15 @@ class Date:
 
     def get_text(self):
         """
-        Returns the text value associated with an invalid date.
+        Return the text value associated with an invalid date.
         """
         return self.text
 
     def set(self, quality, modifier, calendar, value, text=None):
         """
-        Sets the date to the specified value. Parameters are::
+        Set the date to the specified value. 
+        
+        Parameters are::
 
           quality  - The date quality for the date (see get_quality
                      for more information)
@@ -869,7 +898,7 @@ class Date:
 
     def _calc_sort_value(self):
         """
-        Calculates the numerical sort value associated with the date
+        Calculate the numerical sort value associated with the date.
         """
         year = max(self.dateval[Date._POS_YR], 1)
         month = max(self.dateval[Date._POS_MON], 1)
@@ -882,8 +911,7 @@ class Date:
 
     def convert_calendar(self, calendar):
         """
-        Converts the date from the current calendar to the specified
-        calendar.
+        Convert the date from the current calendar to the specified calendar.
         """
         if calendar == self.calendar:
             return
@@ -902,8 +930,7 @@ class Date:
 
     def set_as_text(self, text):
         """
-        Sets the day to a text string, and assigns the sort value
-        to zero.
+        Set the day to a text string, and assign the sort value to zero.
         """
         self.modifier = Date.MOD_TEXTONLY
         self.text = text
@@ -911,13 +938,13 @@ class Date:
 
     def set_text_value(self, text):
         """
-        Sets the text string to a given text.
+        Set the text string to a given text.
         """
         self.text = text
 
     def is_empty(self):
         """
-        Returns True if the date contains no information (empty text).
+        Return True if the date contains no information (empty text).
         """
         return (self.modifier == Date.MOD_TEXTONLY and not self.text) or \
                (self.get_start_date()==Date.EMPTY
@@ -925,14 +952,14 @@ class Date:
         
     def is_compound(self):
         """
-        Returns True if the date is a date range or a date span.
+        Return True if the date is a date range or a date span.
         """
         return self.modifier == Date.MOD_RANGE \
                or self.modifier == Date.MOD_SPAN
 
     def is_regular(self):
         """
-        Returns True if the date is a regular date.
+        Return True if the date is a regular date.
         
         The regular date is a single exact date, i.e. not text-only, not 
         a range or a span, not estimated/calculated, not about/before/after 
@@ -945,26 +972,25 @@ class Date:
 
     def get_ymd(self):
         """
-        Returns (year, month, day)
+        Return (year, month, day).
         """
         return (self.get_year(), self.get_month(), self.get_day())
 
     def offset(self, value):
         """
-        Returns (year, month, day) of this date +- value.
+        Return (year, month, day) of this date +- value.
         """
         return Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value)
 
     def offset_date(self, value):
         """
-        Returns (year, month, day) of this date +- value.
+        Return (year, month, day) of this date +- value.
         """
         return Date(Date._calendar_change[Date.CAL_GREGORIAN](self.sortval + value))
 
     def lookup_calendar(self, calendar):
         """
-        Lookup calendar name in the list of known calendars, 
-        even if translated.
+        Lookup calendar name in the list of known calendars, even if translated.
         """
         calendar_lower = [n.lower() for n in Date.calendar_names]
         ui_lower = [n.lower() for n in Date.ui_calendar_names]
@@ -1006,6 +1032,7 @@ class Date:
     def to_calendar(self, calendar_name):
         """
         Return a new Date object in the calendar calendar_name.
+        
         >>> Date("Jan 1 1591").to_calendar("julian")
         1590-12-22 (Julian)
         """

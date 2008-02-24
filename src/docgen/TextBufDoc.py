@@ -216,7 +216,7 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
     # Start a table. Grab the table style, and store it. 
     #
     #--------------------------------------------------------------------
-    def start_table(self,name,style_name):
+    def start_table(self, name,style_name):
         return
         styles = self.get_style_sheet()
         self.tbl_style = styles.get_table_style(style_name)

@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_TemplateParser.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-----------------------------------------------------------------------
 #
@@ -35,9 +35,9 @@ import os
 #
 #-----------------------------------------------------------------------
 try:
-    from xml.sax import make_parser,handler,SAXParseException
+    from xml.sax import make_parser, handler,SAXParseException
 except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
+    from _xmlplus.sax import make_parser, handler,SAXParseException
 
 #-----------------------------------------------------------------------
 #
@@ -57,7 +57,7 @@ class TemplateParser(handler.ContentHandler):
     """
     def __init__(self,data,fpath):
         """
-        Creates a template parser. The parser loads map of tempate names
+        Create a template parser. The parser loads map of tempate names
         to the file containing the tempate.
 
         data - dictionary that holds the name to path mappings
@@ -68,7 +68,7 @@ class TemplateParser(handler.ContentHandler):
         self.path = fpath
     
     def setDocumentLocator(self,locator):
-        """Sets the XML document locator"""
+        """Set the XML document locator"""
         self.locator = locator
 
     def startElement(self,tag,attrs):

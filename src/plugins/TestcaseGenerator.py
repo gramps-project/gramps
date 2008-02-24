@@ -611,7 +611,7 @@ class TestcaseGenerator(Tool.Tool):
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
 
-    def generate_person(self,gender=None,lastname=None,note=None, alive_in_year=None):
+    def generate_person(self,gender=None,lastname=None, note=None, alive_in_year=None):
         if not self.cli:
             self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.options.handler.options_dict['person_count'])))
             if self.person_count % 10 == 0:
@@ -871,7 +871,7 @@ class TestcaseGenerator(Tool.Tool):
         self.db.commit_person(child,self.trans)
         self.commit_transaction()   # COMMIT TRANSACTION STEP
 
-    def add_defaults(self,object):
+    def add_defaults(self, object):
         self.fill_object( object)
     
     def rand_name( self, lastname=None, gender=None):
@@ -1334,8 +1334,8 @@ class TestcaseGeneratorOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

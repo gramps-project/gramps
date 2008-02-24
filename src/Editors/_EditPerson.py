@@ -21,7 +21,7 @@
 # $Id$
 
 """
-EditPerson Dialog. Provides the interface to allow the GRAMPS program
+EditPerson Dialog. Provide the interface to allow the GRAMPS program
 to edit information about a particular Person.
 """
 

@@ -55,7 +55,7 @@ class IndivCompleteReport(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the IndivCompleteReport object that produces the report.
+        Create the IndivCompleteReport object that produces the report.
         
         The arguments are:
 
@@ -251,7 +251,7 @@ class IndivCompleteReport(Report):
             text = _nd.display_name(name)
             endnotes = ""
             if self.use_srcs:
-                endnotes = Endnotes.cite_source(self.bibli,name)
+                endnotes = Endnotes.cite_source(self.bibli, name)
             self.normal_cell(text,endnotes)
             self.doc.end_row()
         self.doc.end_table()
@@ -429,7 +429,7 @@ class IndivCompleteReport(Report):
         mark = ReportUtils.get_person_mark(self.database, self.person)
         endnotes = ""
         if self.use_srcs:
-            endnotes = Endnotes.cite_source(self.bibli,name)
+            endnotes = Endnotes.cite_source(self.bibli, name)
         self.normal_cell(text,endnotes,mark)
         self.doc.end_row()
 

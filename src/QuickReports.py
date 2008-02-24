@@ -59,7 +59,7 @@ from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                         CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
 
 
-def create_quickreport_menu(category,dbstate,uistate,handle) :
+def create_quickreport_menu(category,dbstate,uistate, handle) :
     #import present version of the 
     from PluginUtils import quick_report_list
     """ This functions querries the registered quick reports with 
@@ -123,7 +123,7 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle):
     if report:
         run_report(dbstate, uistate, report[2], handle, report[0])
                             
-def run_report(dbstate, uistate, category,handle,func):
+def run_report(dbstate, uistate, category, handle,func):
         from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
 

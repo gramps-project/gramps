@@ -180,7 +180,7 @@ class BookItem:
 
     def __init__(self, dbase, name=None):
         """
-        Creates a new empty BookItem.
+        Create a new empty BookItem.
         
         name:   if not None then the book item is retreived 
                 from the book item registry using name for lookup
@@ -228,31 +228,31 @@ class BookItem:
 
     def get_name(self):
         """
-        Returns the name of the item.
+        Return the name of the item.
         """
         return self.name
 
     def get_translated_name(self):
         """
-        Returns the translated name of the item.
+        Return the translated name of the item.
         """
         return self.translated_name
 
     def get_category(self):
         """
-        Returns the category of the item.
+        Return the category of the item.
         """
         return self.category
 
     def get_write_item(self):
         """
-        Returns the report-writing function of the item.
+        Return the report-writing function of the item.
         """
         return self.write_item
 
     def set_style_name(self, style_name):
         """
-        Sets the style name for the item.
+        Set the style name for the item.
         
         style_name: name of the style to set.
         """
@@ -260,19 +260,19 @@ class BookItem:
 
     def get_style_name(self):
         """
-        Returns the style name of the item.
+        Return the style name of the item.
         """
         return self.style_name
 
     def get_style_file(self):
         """
-        Returns the style file name for the item.
+        Return the style file name for the item.
         """
         return self.style_file
 
     def get_make_default_style(self):
         """
-        Returns the function to make default style for the item.
+        Return the function to make default style for the item.
         """
         return self.make_default_style
 
@@ -288,7 +288,7 @@ class Book:
 
     def __init__(self, obj=None):
         """
-        Creates a new empty Book.
+        Create a new empty Book.
 
         obj:    if not None, creates the Book from the values in
                 obj, instead of creating an empty Book.
@@ -303,7 +303,7 @@ class Book:
         
     def set_name(self, name):
         """
-        Sets the name of the book.
+        Set the name of the book.
         
         name:   the name to set.
         """
@@ -311,19 +311,19 @@ class Book:
 
     def get_name(self):
         """
-        Returns the name of the book.
+        Return the name of the book.
         """
         return self.name
 
     def get_dbname(self):
         """
-        Returns the name of the database file used for the book.
+        Return the name of the database file used for the book.
         """
         return self.dbname
 
     def set_dbname(self, name):
         """
-        Sets the name of the database file used for the book.
+        Set the name of the database file used for the book.
 
         name:   a filename to set.
         """
@@ -337,7 +337,7 @@ class Book:
 
     def append_item(self, item):
         """
-        Adds an item to the book.
+        Add an item to the book.
         
         item:   an item to append.
         """
@@ -362,7 +362,7 @@ class Book:
 
     def get_item(self, index):
         """
-        Returns an item at a given position in the book.
+        Return an item at a given position in the book.
         
         index:  a position index. 
         """
@@ -370,7 +370,7 @@ class Book:
 
     def set_item(self, index, item):
         """
-        Sets an item at a given position in the book.
+        Set an item at a given position in the book.
         
         index:  a position index. 
         item:   an item to set.
@@ -379,7 +379,7 @@ class Book:
 
     def get_item_list(self):
         """
-        Returns list of items in the current book.
+        Return list of items in the current book.
         """
         return self.item_list
 
@@ -397,7 +397,7 @@ class BookList:
 
     def __init__(self, filename, dbase):
         """
-        Creates a new BookList from the books that may be defined in the 
+        Create a new BookList from the books that may be defined in the 
         specified file.
 
         file:   XML file that contains book items definitions
@@ -409,7 +409,7 @@ class BookList:
     
     def delete_book(self, name):
         """
-        Removes a book from the list. Since each book must have a
+        Remove a book from the list. Since each book must have a
         unique name, the name is used to delete the book.
 
         name:   name of the book to delete
@@ -418,25 +418,25 @@ class BookList:
 
     def get_book_map(self):
         """
-        Returns the map of names to books.
+        Return the map of names to books.
         """
         return self.bookmap
 
     def get_book(self, name):
         """
-        Returns the Book associated with the name
+        Return the Book associated with the name
 
         name:   name associated with the desired Book.
         """
         return self.bookmap[name]
 
     def get_book_names(self):
-        "Returns a list of all the book names in the BookList"
+        "Return a list of all the book names in the BookList"
         return self.bookmap.keys()
 
     def set_book(self, name, book):
         """
-        Adds or replaces a Book in the BookList. 
+        Add or replaces a Book in the BookList. 
 
         name:   name assocated with the Book to add or replace.
         book:   definition of the Book
@@ -472,7 +472,7 @@ class BookList:
                     else:
                         option_type = Utils.type_name(option_value)
                         f.write('    <option name="%s" type="%s" value="%s"/>\n' % (
-                                option_name,option_type,option_value) )
+                                option_name, option_type, option_value) )
                 f.write('    <style name="%s"/>\n' % item.get_style_name() )
                 f.write('  </item>\n')
             f.write('</book>\n')
@@ -506,7 +506,7 @@ class BookParser(handler.ContentHandler):
     
     def __init__(self, booklist, dbase):
         """
-        Creates a BookParser class that populates the passed booklist.
+        Create a BookParser class that populates the passed booklist.
 
         booklist:   BookList to be loaded from the file.
         """
@@ -575,7 +575,7 @@ class BookListDisplay:
 
     def __init__(self, booklist, nodelete=0, dosave=0):
         """
-        Creates a BookListDisplay object that displays the books in BookList.
+        Create a BookListDisplay object that displays the books in BookList.
 
         booklist:   books that are displayed
         nodelete:   if not 0 then the Delete button is hidden
@@ -625,7 +625,7 @@ class BookListDisplay:
             self.blist.selection.select_iter(the_iter)
 
     def on_booklist_ok_clicked(self, obj):
-        """Returns selected book. Saves the current list into xml file."""
+        """Return selected book. Saves the current list into xml file."""
         store, the_iter = self.blist.get_selected()
         if the_iter:
             data = self.blist.get_data(the_iter, [0])
@@ -1063,7 +1063,7 @@ class BookReportDialog(DocReportDialog):
     """
     A usual Report.Dialog subclass. 
     
-    Creates a dialog selecting target, format, and paper/HTML options.
+    Create a dialog selecting target, format, and paper/HTML options.
     """
 
     def __init__(self, dbstate, uistate, book, options):
@@ -1123,7 +1123,7 @@ class BookReportDialog(DocReportDialog):
     def get_title(self):
         return _("Book Report")
 
-    def get_header(self,name):
+    def get_header(self, name):
         return _("GRAMPS Book")
 
     def get_stylesheet_savefile(self):

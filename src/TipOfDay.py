@@ -130,7 +130,7 @@ class TipParser:
     """
     def __init__(self):
         """
-        Creates a template parser. The parser loads map of tempate names
+        Create a template parser. The parser loads map of tempate names
         to the file containing the tempate.
 
         data - dictionary that holds the name to path mappings
@@ -150,12 +150,12 @@ class TipParser:
 
     def get(self):
         """
-        Returns the list of tips
+        Return the list of tips
         """
         return self.mylist
     
     def setDocumentLocator(self, locator):
-        """Sets the XML document locator"""
+        """Set the XML document locator"""
         self.locator = locator
 
     def startElement(self, tag, attrs):

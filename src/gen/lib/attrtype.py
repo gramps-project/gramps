@@ -21,12 +21,21 @@
 # $Id$
 
 """
-Provides the different Attribute Types for GRAMPS
+Provide the different Attribute Types for GRAMPS.
 """
 
-from grampstype import GrampsType, init_map
+#-------------------------------------------------------------------------
+#
+# Standard Python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
-
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib.grampstype import GrampsType, init_map
 
 class AttributeType(GrampsType):
 

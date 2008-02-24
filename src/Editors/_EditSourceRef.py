@@ -143,7 +143,7 @@ class EditSourceRef(EditReference):
 
     def _create_tabbed_pages(self):
         """
-        Creates the notebook tabs and inserts them into the main
+        Create the notebook tabs and inserts them into the main
         window.
         """
         notebook_src = self.top.get_widget('notebook_src')
@@ -197,7 +197,7 @@ class EditSourceRef(EditReference):
             submenu_label = _('New Source')
         return (_('Source Reference Editor'),submenu_label)
         
-    def ok_clicked(self,obj):
+    def ok_clicked(self, obj):
 
         trans = self.db.transaction_begin()
         if self.source.handle:

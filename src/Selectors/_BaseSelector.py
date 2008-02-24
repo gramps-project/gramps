@@ -128,7 +128,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
             self.columns.append(column)
             tree.append_column(column)           
         
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title, None)
 
     def get_selected_ids(self):
@@ -138,7 +138,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
 
     def select_function(self,store,path,iter,id_list):
         handle_column = self.get_handle_column()
-        id_list.append(self.model.get_value(iter,handle_column))
+        id_list.append(self.model.get_value(iter, handle_column))
 
     def run(self):
         val = self.window.run()

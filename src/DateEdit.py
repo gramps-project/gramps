@@ -109,7 +109,7 @@ class DateEdit:
 
     def __init__(self, date_obj, text_obj, button_obj, uistate, track):
         """
-        Creates a connection between the date_obj, text_obj and the pixmap_obj.
+        Create a connection between the date_obj, text_obj and the pixmap_obj.
         Assigns callbacks to parse and change date when the text
         in text_obj is changed, and to invoke Date Editor when the LED
         button_obj is pressed. 

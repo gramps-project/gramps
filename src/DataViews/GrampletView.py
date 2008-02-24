@@ -622,7 +622,7 @@ class GrampletView(PageView.PageView):
 
     def __init__(self, dbstate, uistate):
         """
-        Creates a GrampletView, with the current dbstate and uistate
+        Create a GrampletView, with the current dbstate and uistate
         """
         PageView.PageView.__init__(self, _('Gramplets'), dbstate, uistate)
         self._popup_xy = None
@@ -1038,7 +1038,7 @@ class GrampletView(PageView.PageView):
 
     def get_stock(self):
         """
-        Returns image associated with the view, which is used for the 
+        Return image associated with the view, which is used for the 
         icon for the button.
         """
         return 'gramps-gramplet'

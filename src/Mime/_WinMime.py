@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_WinMime.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Mime utility functions for the MS Windows platform
@@ -42,7 +42,7 @@ import _PythonMime
 
 
 def get_application(mime_type):
-    """Returns the application command and application name of the
+    """Return the application command and application name of the
     specified mime type"""
     extension = _get_extension(mime_type)
     progid = _get_prog_id(extension)
@@ -93,7 +93,7 @@ def get_application(mime_type):
     return (command, desc)
 
 def get_description(mime_type):
-    """Returns the description of the specfied mime type"""
+    """Return the description of the specfied mime type"""
     desc = None
     extension = _get_extension(mime_type)
     progid = _get_prog_id(extension)
@@ -109,7 +109,7 @@ def get_description(mime_type):
     return desc
 
 def get_type(file):
-    """Returns the mime type of the specified file"""
+    """Return the mime type of the specified file"""
     return _PythonMime.get_type(file)
 
 def mime_type_is_defined(mime_type):

@@ -146,7 +146,7 @@ _COPY_OPTIONS = [
 
 def make_date(year, month, day):
     """
-    Returns a Date object of the particular year/month/day.
+    Return a Date object of the particular year/month/day.
     """
     retval = gen.lib.Date()
     retval.set_yr_mon_day(year, month, day)
@@ -159,7 +159,7 @@ def make_date(year, month, day):
 #------------------------------------------------------------------------
 class WebCalReport(Report):
     """
-    Creates WebCalReport object that produces the report.
+    Create WebCalReport object that produces the report.
     """
     def __init__(self, database, options):
         Report.__init__(self, database, options)
@@ -202,7 +202,7 @@ class WebCalReport(Report):
                        menu.get_option_by_name('note_dec').get_value()]
 
     def get_short_name(self, person, maiden_name = None):
-        """ Returns person's name, unless maiden_name given, unless married_name listed. """
+        """ Return person's name, unless maiden_name given, unless married_name listed. """
         # Get all of a person's names:
         primary_name = person.get_primary_name()
         married_name = None
@@ -399,7 +399,7 @@ class WebCalReport(Report):
         of.close()
 
 
-    def write_footer(self,of):
+    def write_footer(self, of):
         author = get_researcher().get_name()
         value = unicode(time.strftime('%x',time.localtime(time.time())),
                         GrampsLocale.codeset)
@@ -414,7 +414,7 @@ class WebCalReport(Report):
         if self.copy > 0 and self.copy <= 6:
             text = _CC[self.copy-1]
             from_path = os.path.join(const.IMAGE_DIR,"somerights20.gif")
-            shutil.copyfile(from_path,os.path.join(self.html_dir,"somerights20.gif"))
+            shutil.copyfile(from_path, os.path.join(self.html_dir,"somerights20.gif"))
         else:
             text = "&copy; %s %s" % (time.localtime()[0], author) 
         of.write(text)
@@ -422,7 +422,7 @@ class WebCalReport(Report):
         of.write('  </body>\n')
         of.write('</html>\n')
 
-    def write_header(self,of):
+    def write_header(self, of):
         author = get_researcher().get_name()
         of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n')
         of.write('        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">\n')
@@ -446,12 +446,12 @@ class WebCalReport(Report):
             of.write('      <li><a href="Calendar_%s%d.html">%s</a></li>\n' % (GrampsLocale.short_months[month],self.Year,GrampsLocale.short_months[month]))
         of.write('    </ul>\n')
 
-    def create_file(self,name):
-        page_name = os.path.join(self.html_dir,name)
+    def create_file(self, name):
+        page_name = os.path.join(self.html_dir, name)
         of = codecs.EncodedFile(open(page_name, "w"),'utf-8',self.encoding,'xmlcharrefreplace')
         return of
 
-    def close_file(self,of):
+    def close_file(self, of):
         of.close()
 
     def write_report(self):
@@ -986,7 +986,7 @@ class WebCalOptions(MenuReportOptions):
 #------------------------------------------------------------------------
 class Element:
     """ A parsed XML element """
-    def __init__(self,name,attributes):
+    def __init__(self, name,attributes):
         'Element constructor'
         # The element's tag name
         self.name = name
@@ -1009,7 +1009,7 @@ class Element:
         'Get the cdata'
         return self.cdata
 
-    def getElements(self,name=''):
+    def getElements(self, name=''):
         'Get a list of child elements'
         #If no tag name is specified, return the all children
         if not name:
@@ -1043,7 +1043,7 @@ class Xml2Obj:
         self.root = None
         self.nodeStack = []
 
-    def StartElement(self,name,attributes):
+    def StartElement(self, name,attributes):
         'SAX start element even handler'
         # Instantiate an Element object
         element = Element(name.encode(),attributes)
@@ -1055,7 +1055,7 @@ class Xml2Obj:
             self.root = element
         self.nodeStack.append(element)
 
-    def EndElement(self,name):
+    def EndElement(self, name):
         'SAX end element event handler'
         self.nodeStack = self.nodeStack[:-1]
 

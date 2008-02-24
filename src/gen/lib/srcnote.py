@@ -21,7 +21,7 @@
 # $Id$
 
 """
-SourceNote class for GRAMPS
+SourceNote class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -30,7 +30,7 @@ SourceNote class for GRAMPS
 #
 #-------------------------------------------------------------------------
 class SourceNote:
-    """this class is only present to enable db upgrade"""
+    """This class is only present to enable db upgrade."""
 
     def __init__(self):
         pass

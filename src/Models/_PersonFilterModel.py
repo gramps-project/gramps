@@ -4,7 +4,7 @@ import gen.lib
 
 
 class PersonFilterModel(FastFilterModel):
-    """Provides a fast model interface to the Person table.
+    """Provide a fast model interface to the Person table.
     """
         
     def __init__(self,db,apply_filter):

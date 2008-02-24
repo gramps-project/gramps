@@ -118,7 +118,7 @@ class EditPersonRef(EditSecondary):
 
     def _create_tabbed_pages(self):
         """
-        Creates the notebook tabs and inserts them into the main
+        Create the notebook tabs and inserts them into the main
         window.
         """
         
@@ -138,7 +138,7 @@ class EditPersonRef(EditSecondary):
         notebook.show_all()
         self.top.get_widget('vbox').pack_start(notebook,True)
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_('Person Reference'),_('Person Reference Editor'))
 
     def save(self,*obj):

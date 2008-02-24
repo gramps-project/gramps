@@ -53,7 +53,7 @@ class NoteModel(BaseModel):
     HANDLE_COL = 4
     _MARKER_COL = 6
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
+    def __init__(self,db,scol=0, order=gtk.SORT_ASCENDING,search=None,
                  skip=set(), sort_map=None):
         self.gen_cursor = db.get_note_cursor
         self.map = db.get_raw_note_data

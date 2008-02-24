@@ -20,11 +20,21 @@
 # $Id$
 
 """
-Provides the different family reference types
+Provide the different family reference types.
 """
-
-from grampstype import GrampsType, init_map
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib.grampstype import GrampsType, init_map
 
 class FamilyRelType(GrampsType):
 

@@ -116,14 +116,14 @@ class EditFilter(ManagedWindow.ManagedWindow):
 
         self.show()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-cfe')
 
-    def close_window(self,obj):
+    def close_window(self, obj):
         self.close()
 
-    def filter_name_changed(self,obj):
+    def filter_name_changed(self, obj):
         name = unicode(self.fname.get_text())
         # Make sure that the name is not empty
         # and not in the list of existing filters (excluding this one)
@@ -132,8 +132,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
                  if filt != self.filter]
         self.ok_btn.set_sensitive((len(name) != 0) and (name not in names))
     
-    def select_row(self,obj):
-        store,node = self.rlist.get_selected()
+    def select_row(self, obj):
+        store, node = self.rlist.get_selected()
         if node:
             self.edit_btn.set_sensitive(True)
             self.del_btn.set_sensitive(True)
@@ -146,13 +146,13 @@ class EditFilter(ManagedWindow.ManagedWindow):
         for r in self.filter.get_rules():
             self.rlist.add([r.name,r.display_values()],r)
             
-    def on_ok_clicked(self,obj):
+    def on_ok_clicked(self, obj):
         n = unicode(self.fname.get_text()).strip()
         if n == '':
             return
         if n != self.filter.get_name():
             self.uistate.emit('filter-name-changed',
-                              (self.namespace,unicode(self.filter.get_name()),n))
+                              (self.namespace,unicode(self.filter.get_name()), n))
         self.filter.set_name(n)
         self.filter.set_comment(unicode(self.comment.get_text()).strip())
         for f in self.filterdb.get_filters(self.namespace)[:]:
@@ -172,7 +172,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.update()
         self.close()
         
-    def on_add_clicked(self,obj):
+    def on_add_clicked(self, obj):
         from _EditRule import EditRule
         
         try:
@@ -182,7 +182,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
         except Errors.WindowActiveError:
             pass
 
-    def on_edit_clicked(self,obj):
+    def on_edit_clicked(self, obj):
         store, node = self.rlist.get_selected()
         if node:
             from _EditRule import EditRule
@@ -202,8 +202,8 @@ class EditFilter(ManagedWindow.ManagedWindow):
         self.filter.add_rule(new_rule)
         self.draw_rules()
 
-    def on_delete_clicked(self,obj):
-        store,node = self.rlist.get_selected()
+    def on_delete_clicked(self, obj):
+        store, node = self.rlist.get_selected()
         if node:
             gfilter = self.rlist.get_object(node)
             self.filter.delete_rule(gfilter)

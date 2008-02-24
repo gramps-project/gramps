@@ -71,7 +71,7 @@ class Bookmarks :
     
     def __init__(self, dbstate, uistate, bookmarks, callback=None):
         """
-        Creates a the bookmark editor.
+        Create a the bookmark editor.
 
         bookmarks - list of People
         menu - parent menu to attach users
@@ -173,7 +173,7 @@ class Bookmarks :
 
     def remove_handles(self, handle_list):
         """
-        Removes people from the list of bookmarked people.
+        Remove people from the list of bookmarked people.
 
         This function is for use *outside* the bookmark editor
         (removal when person is deleted or merged away).
@@ -254,7 +254,7 @@ class Bookmarks :
         self.top.destroy()
 
     def delete_clicked(self, obj):
-        """Removes the current selection from the list"""
+        """Remove the current selection from the list"""
         store, the_iter = self.namemodel.get_selected()
         if not the_iter:
             return

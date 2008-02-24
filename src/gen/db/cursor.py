@@ -20,7 +20,7 @@
 
 class GrampsCursor:
     """
-    Provides a basic iterator that allows the user to cycle through
+    Provide a basic iterator that allows the user to cycle through
     the elements in a particular map. 
     
     A cursor should never be directly instantiated. Instead, in should be 

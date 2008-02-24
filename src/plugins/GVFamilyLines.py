@@ -236,7 +236,7 @@ class FamilyLinesOptions(MenuReportOptions):
 class FamilyLinesReport(Report):
     def __init__(self, database, options):
         """
-        Creates FamilyLinesReport object that eventually produces the report.
+        Create FamilyLinesReport object that eventually produces the report.
         
         The arguments are:
 

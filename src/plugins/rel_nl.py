@@ -422,7 +422,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                        only_birth=True, 
                                        in_law_a=False, in_law_b=False):
         """
-        Returns a string representing the relationship between the two people,
+        Return a string representing the relationship between the two people,
         see english method, eg b is father of a
         """
         if only_birth:

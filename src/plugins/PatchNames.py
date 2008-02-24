@@ -145,7 +145,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             if match:
                 groups = match.groups()
                 self.prefix1_list.append((key,groups[0],
-                                          " ".join([groups[1],old_prefix]))
+                                          " ".join([groups[1], old_prefix]))
                                          )
                 continue
             
@@ -166,7 +166,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             OkDialog(_('No modifications made'),
                      _("No titles or nicknames were found"))
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.label,None)
 
     def toggled(self,cell,path_string):
@@ -230,7 +230,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.model.set_value(handle,0,1)
             self.model.set_value(handle,1,gid)
             self.model.set_value(handle,2,_('Nickname'))
-            self.model.set_value(handle,3,nick)
+            self.model.set_value(handle,3, nick)
             self.model.set_value(handle,4,p.get_primary_name().get_name())
             self.nick_hash[pid] = handle
             self.progress.step()
@@ -274,11 +274,11 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.progress.close()
         self.show()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
 
-    def on_ok_clicked(self,obj):
+    def on_ok_clicked(self, obj):
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         for grp in self.nick_list:
@@ -342,8 +342,8 @@ class PatchNamesOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #-------------------------------------------------------------------------
 #

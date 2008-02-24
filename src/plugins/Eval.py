@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provides a python evaluation window
+Provide a python evaluation window
 """
 #------------------------------------------------------------------------
 #
@@ -77,10 +77,10 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         self.set_window(window,self.glade.get_widget('title'),self.title)
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title,None)
 
-    def apply_clicked(self,obj):
+    def apply_clicked(self, obj):
         text = unicode(self.ebuf.get_text(self.ebuf.get_start_iter(),
                                           self.ebuf.get_end_iter(),False))
 
@@ -94,7 +94,7 @@ class Eval(Tool.Tool,ManagedWindow.ManagedWindow):
         sys.stdout = sys.__stdout__
         sys.stderr = sys.__stderr__
 
-    def clear_clicked(self,obj):
+    def clear_clicked(self, obj):
         self.dbuf.set_text("")
         self.ebuf.set_text("")
         self.error.set_text("")
@@ -109,8 +109,8 @@ class EvalOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #------------------------------------------------------------------------
 #

@@ -136,7 +136,7 @@ class PageView:
 
     def additional_ui_definitions(self):
         """
-        Returns any additional interfaces for the UIManager that the view
+        Return any additional interfaces for the UIManager that the view
         needs to define.
         """
         return self.additional_uis
@@ -157,14 +157,14 @@ class PageView:
 
     def get_stock(self):
         """
-        Returns image associated with the view, which is used for the 
+        Return image associated with the view, which is used for the 
         icon for the button.
         """
         return gtk.STOCK_MISSING_IMAGE
         
     def get_title(self):
         """
-        Returns the title of the view. This is used to define the text for the
+        Return the title of the view. This is used to define the text for the
         button, and for the tab label.
         """
         return self.title
@@ -196,7 +196,7 @@ class PageView:
 
     def __build_action_group(self):
         """
-        Creates an UIManager ActionGroup from the values in self.action_list
+        Create an UIManager ActionGroup from the values in self.action_list
         and self.action_toggle_list. The user should define these in 
         self.define_actions
         """
@@ -209,21 +209,21 @@ class PageView:
     def _add_action(self, name, stock_icon, label, accel=None, tip=None, 
                    callback=None):
         """
-        Adds an action to the action list for the current view. 
+        Add an action to the action list for the current view. 
         """
         self.action_list.append((name, stock_icon, label, accel, tip, callback))
 
     def _add_toggle_action(self, name, stock_icon, label, accel=None, 
                            tip=None, callback=None, value=False):
         """
-        Adds a toggle action to the action list for the current view. 
+        Add a toggle action to the action list for the current view. 
         """
         self.action_toggle_list.append((name, stock_icon, label, accel, 
                                         tip, callback, value))
 
     def get_actions(self):
         """
-        Returns the actions that should be used for the view. This includes the
+        Return the actions that should be used for the view. This includes the
         standard action group (which handles the main toolbar), along with 
         additional action groups.
 

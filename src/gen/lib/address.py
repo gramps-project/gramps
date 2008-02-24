@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Address class for GRAMPS
+Address class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,12 +29,12 @@ Address class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from srcbase import SourceBase
-from notebase import NoteBase
-from datebase import DateBase
-from locationbase import LocationBase
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.datebase import DateBase
+from gen.lib.locationbase import LocationBase
 
 #-------------------------------------------------------------------------
 #
@@ -43,11 +43,12 @@ from locationbase import LocationBase
 #-------------------------------------------------------------------------
 class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
               LocationBase):
-    """Provides address information."""
+    """Provide address information."""
 
     def __init__(self, source=None):
-        """Creates a new Address instance, copying from the source
-        if provided"""
+        """
+        Create a new Address instance, copying from the source if provided.
+        """
         PrivacyBase.__init__(self, source)
         SourceBase.__init__(self, source)
         NoteBase.__init__(self, source)
@@ -56,7 +57,7 @@ class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
@@ -66,7 +67,7 @@ class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (privacy, source_list, note_list, date, location) = data
         
@@ -79,7 +80,7 @@ class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -88,7 +89,7 @@ class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -97,7 +98,7 @@ class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
         @return: Returns the list of child secondary child objects that may refer notes.
         @rtype: list
@@ -106,20 +107,20 @@ class Address(SecondaryObject, PrivacyBase, SourceBase, NoteBase, DateBase,
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
+        Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
-        @return: Returns the list of objects refereincing primary objects.
+        @return: Returns the list of objects referencing primary objects.
         @rtype: list
         """
         return self.source_list
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return self.get_referenced_note_handles()

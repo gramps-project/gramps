@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:RTFDoc.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #------------------------------------------------------------------------
 #
@@ -274,7 +274,7 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     # table, since a table is treated as a bunch of rows.
     #
     #--------------------------------------------------------------------
-    def start_table(self,name,style_name):
+    def start_table(self, name,style_name):
         self.in_table = 1
         styles = self.get_style_sheet()
         self.tbl_style = styles.get_table_style(style_name)
@@ -361,14 +361,14 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     # dumped as a string of HEX numbers.
     #
     #--------------------------------------------------------------------
-    def add_media_object(self,name,pos,x_cm,y_cm):
+    def add_media_object(self, name,pos,x_cm,y_cm):
 
-        nx,ny = ImgManip.image_size(name)
+        nx, ny = ImgManip.image_size(name)
 
-        if (nx,ny) == (0,0):
+        if (nx, ny) == (0,0):
             return
 
-        if (nx,ny) == (0,0):
+        if (nx, ny) == (0,0):
             return
 
         ratio = float(x_cm)*float(ny)/(float(y_cm)*float(nx))

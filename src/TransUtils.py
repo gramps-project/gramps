@@ -18,10 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:TransUtils.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
-Provides translation assistance
+Provide translation assistance
 """
 
 from gettext import gettext

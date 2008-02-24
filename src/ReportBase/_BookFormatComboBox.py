@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_BookFormatComboBox.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +43,7 @@ import PluginUtils
 #-------------------------------------------------------------------------
 class BookFormatComboBox(gtk.ComboBox):
 
-    def set(self,tables,callback,obj=None,active=None):
+    def set(self,tables,callback, obj=None,active=None):
         self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()

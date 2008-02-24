@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provides the managed window interface, which allows GRAMPS to track
+Provide the managed window interface, which allows GRAMPS to track
 the create/deletion of dialog windows.
 """
 
@@ -94,7 +94,7 @@ class GrampsWindowManager:
         
     def disable(self):
         """
-        Removes the UI and action groups if the navigation is enabled
+        Remove the UI and action groups if the navigation is enabled
         """
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
@@ -320,7 +320,7 @@ class ManagedWindow:
         @param track    {list of parent windows, [] if the main GRAMPS window 
                             is the parent}
         @param obj      The object that is used to id the managed window, 
-                            The inheriting object needs a method build_menu_names(self,obj)
+                            The inheriting object needs a method build_menu_names(self, obj)
                             which works on this obj and creates menu labels
                             for use in the Gramps Window Menu.
                             If self.submenu_label ='' then leaf, otherwise branch

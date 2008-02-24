@@ -57,6 +57,6 @@ except:
 
 def get_views():
     """
-    Returns a list of PageView instances, in order
+    Return a list of PageView instances, in order
     """
     return DATA_VIEWS

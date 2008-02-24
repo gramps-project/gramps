@@ -69,7 +69,7 @@ from DdTargets import DdTargets
 #-------------------------------------------------------------------------
 class MediaView(PageView.ListView):
     """
-    Provides the Media View interface on the GRAMPS main window. This allows
+    Provide the Media View interface on the GRAMPS main window. This allows
     people to manage all media items in their database. This is very similar
     to the other list based views, with the exeception that it also has a
     thumbnail image at the top of the view that must be updated when the
@@ -118,7 +118,7 @@ class MediaView(PageView.ListView):
 
     def _set_dnd(self):
         """
-        Sets up drag-n-drop. The source and destionation are set by calling .target()
+        Set up drag-n-drop. The source and destionation are set by calling .target()
         on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
         variable defined that points to an entry in DdTargets.
         """
@@ -155,7 +155,7 @@ class MediaView(PageView.ListView):
 
     def drag_info(self):
         """
-        Returns the type of DND targetst that this view will accept. For Media 
+        Return the type of DND targetst that this view will accept. For Media 
         View, we will accept media objects.
         """
         return DdTargets.MEDIAOBJ
@@ -198,7 +198,7 @@ class MediaView(PageView.ListView):
                 
     def get_bookmarks(self):
         """
-        Returns the booksmarks associated with this view
+        Return the booksmarks associated with this view
         """
         return self.dbstate.db.get_media_bookmarks()
 
@@ -259,7 +259,7 @@ class MediaView(PageView.ListView):
 
     def column_order(self):
         """
-        Gets the column order from the database
+        Get the column order from the database
         """
         return self.dbstate.db.get_media_column_order()
 
@@ -333,7 +333,7 @@ class MediaView(PageView.ListView):
     
     def ui_definition(self):
         """
-        Returns the UIManager XML description of the menus
+        Return the UIManager XML description of the menus
         """
         return '''<ui>
           <menubar name="MenuBar">
@@ -384,7 +384,7 @@ class MediaView(PageView.ListView):
 
     def remove(self, obj):
         """
-        Removes the selected object from the database after getting
+        Remove the selected object from the database after getting
         user verification.
         """
         handle = self.first_selected()

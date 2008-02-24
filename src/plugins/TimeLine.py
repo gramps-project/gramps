@@ -68,7 +68,7 @@ class TimeLine(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the Timeline object that produces the report.
+        Create the Timeline object that produces the report.
         
         The arguments are:
 
@@ -97,7 +97,7 @@ class TimeLine(Report):
 
     def write_report(self):
 
-        (low,high) = self.find_year_range()
+        (low, high) = self.find_year_range()
 
         if low == high:
             if self.standalone:
@@ -145,7 +145,7 @@ class TimeLine(Report):
                 d = None
 
             n = name_displayer.display_formal(p)
-            self.doc.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
+            self.doc.draw_text('TLG-text', n,incr+pad,self.header + (incr+pad)*index)
             
             y1 = self.header + (pad+incr)*index
             y2 = self.header + ((pad+incr)*index)+incr
@@ -174,17 +174,17 @@ class TimeLine(Report):
 
             if (y2 + incr) >= self.doc.get_usable_height():
                 if current != length:
-                    self.build_grid(low,high,start,stop)
+                    self.build_grid(low, high,start,stop)
                     self.doc.end_page()
                     self.doc.start_page()
-                    self.build_grid(low,high,start,stop)
+                    self.build_grid(low, high,start,stop)
                 index = 1
                 x1,x2,y1,y2 = (0,0,0,0)
             else:
                 index += 1;
             current += 1
             
-        self.build_grid(low,high,start,stop)
+        self.build_grid(low, high,start,stop)
         self.doc.end_page()    
 
     def build_grid(self,year_low,year_high,start_pos,stop_pos):
@@ -263,7 +263,7 @@ class TimeLine(Report):
         if high == None:
             high = low
         
-        return (low,high)
+        return (low, high)
 
     def name_size(self):
         self.plist = self.filter.apply(self.database,
@@ -279,7 +279,7 @@ class TimeLine(Report):
         for p_id in self.plist:
             p = self.database.get_person_from_handle(p_id)
             n = name_displayer.display_formal(p)
-            size = max(self.doc.string_width(font,n),size)
+            size = max(self.doc.string_width(font, n),size)
         return pt2cm(size)
 
 #------------------------------------------------------------------------

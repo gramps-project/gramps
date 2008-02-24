@@ -78,7 +78,7 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
         self.display()
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title,None)
 
     def display(self):
@@ -96,7 +96,7 @@ class Leak(Tool.Tool,ManagedWindow.ManagedWindow):
             self.ebuf.set_text(_("No uncollected objects\n")
                                + str(gc.get_debug()))
 
-    def apply_clicked(self,obj):
+    def apply_clicked(self, obj):
         self.display()
         
 #------------------------------------------------------------------------
@@ -109,8 +109,8 @@ class LeakOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #------------------------------------------------------------------------
 #

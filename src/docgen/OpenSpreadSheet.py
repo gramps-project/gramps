@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:OpenSpreadSheet.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -49,8 +49,8 @@ import Errors
 #-------------------------------------------------------------------------
 class OpenSpreadSheet(SpreadSheetDoc):
 
-    def __init__(self,type,orientation):
-        SpreadSheetDoc.__init__(self,type,orientation)
+    def __init__(self,type, orientation):
+        SpreadSheetDoc.__init__(self,type, orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -373,7 +373,7 @@ class OpenSpreadSheet(SpreadSheetDoc):
         self.f.write('</office:document-styles>\n')
         self.f.close()
 
-    def start_page(self,name,style_name):
+    def start_page(self, name,style_name):
         table = self.table_styles[style_name]
         self.f.write('<table:table table:name="')
         self.f.write(name)

@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Secondary Object class for GRAMPS
+Secondary Object class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Secondary Object class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from baseobj import BaseObject
+from gen.lib.baseobj import BaseObject
 
 #-------------------------------------------------------------------------
 #
@@ -38,11 +38,8 @@ from baseobj import BaseObject
 #-------------------------------------------------------------------------
 class SecondaryObject(BaseObject):
     """
-    The SecondaryObject is the base class for all primary objects in the
-    database. Secondary objects are the core objects in the database.
-    Each object has a database handle and a GRAMPS ID value. The database
-    handle is used as the record number for the database, and the GRAMPS
-    ID is the user visible version.
+    The SecondaryObject is the base class for all secondary objects in the
+    database. 
     """
     
     def is_equal(self, source):

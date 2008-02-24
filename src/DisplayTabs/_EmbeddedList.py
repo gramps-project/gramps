@@ -62,7 +62,7 @@ class EmbeddedList(ButtonTab):
     def __init__(self, dbstate, uistate, track, name, build_model,
                  share=False, move=False, jump=False):
         """
-        Creates a new list, using the passed build_model to
+        Create a new list, using the passed build_model to
         populate the list.
         """
         ButtonTab.__init__(self, dbstate, uistate, track, name, share, move, jump)
@@ -163,7 +163,7 @@ class EmbeddedList(ButtonTab):
 
     def _set_dnd(self):
         """
-        Sets up drag-n-drop. The source and destionation are set by calling .target()
+        Set up drag-n-drop. The source and destionation are set by calling .target()
         on the _DND_TYPE. Obviously, this means that there must be a _DND_TYPE
         variable defined that points to an entry in DdTargets.
         """
@@ -364,14 +364,14 @@ class EmbeddedList(ButtonTab):
 
     def is_empty(self):
         """
-        Returns True if the get_data returns a length greater than
+        Return True if the get_data returns a length greater than
         0. Typically, get_data returns the list of associated data.
         """
         return len(self.get_data()) == 0
     
     def get_data(self):
         """
-        Returns the data associated with the list. This is typically
+        Return the data associated with the list. This is typically
         a list of objects.
 
         This should be overridden in the derrived classes.

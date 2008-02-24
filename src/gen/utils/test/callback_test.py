@@ -198,7 +198,7 @@ class TestCallback(unittest.TestCase):
                         'test-str': (str,),
                         'test-float': (float,),
                         'test-dict': (dict,),
-                        'test-lots': (int,str,list,object,float)
+                        'test-lots': (int,str,list, object,float)
                         }
 
         rl = []
@@ -213,7 +213,7 @@ class TestCallback(unittest.TestCase):
         assert type(rl[1]) == list, "not list"
 
         t.connect('test-object',fn), t.emit('test-object',(t,))
-        assert isinstance(rl[2],object), "not object"
+        assert isinstance(rl[2], object), "not object"
 
         t.connect('test-float',fn), t.emit('test-float',(2.3,))
         assert type(rl[3]) == float, "not float"
@@ -222,7 +222,7 @@ class TestCallback(unittest.TestCase):
         assert type(rl[4]) == dict, "not dict"
 
         rl = []
-        def fn2(i,s,l,o,f,r=rl):
+        def fn2(i,s,l, o,f,r=rl):
             rl.append(i)
 
         t.connect('test-lots',fn2), t.emit('test-lots',(1,'a',[1,2],t,1.2))

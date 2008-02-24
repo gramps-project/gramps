@@ -152,11 +152,11 @@ class ActivePersonTool(Tool):
 #------------------------------------------------------------------------
 class CommandLineTool:
     """
-    Provides a way to run tool from the command line.
+    Provide a way to run tool from the command line.
     
     """
 
-    def __init__(self,database,name,category,option_class,options_str_dict,
+    def __init__(self,database, name,category, option_class, options_str_dict,
                  noopt=False):
         self.database = database
         self.category = category
@@ -254,10 +254,10 @@ def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
         log.error("Failed to start tool.", exc_info=True)
 
 # Command-line generic task
-def cli_tool(dbstate,name,category,tool_class,options_class,options_str_dict):
+def cli_tool(dbstate, name,category,tool_class, options_class, options_str_dict):
     
-    clt = CommandLineTool(dbstate.db,name,category,
-                          options_class,options_str_dict)
+    clt = CommandLineTool(dbstate.db, name,category,
+                          options_class, options_str_dict)
 
     # Exit here if show option was given
     if clt.show:
@@ -265,7 +265,7 @@ def cli_tool(dbstate,name,category,tool_class,options_class,options_str_dict):
 
     # run tool
     try:
-        tool_class(dbstate,None,options_class,name,None)
+        tool_class(dbstate,None, options_class, name,None)
     except:
         log.error("Failed to start tool.", exc_info=True)
 
@@ -278,8 +278,8 @@ class ToolOptionHandler(OptionHandler):
     """
     Implements handling of the options for the plugins.
     """
-    def __init__(self,module_name,options_dict,person_id=None):
-        OptionHandler.__init__(self,module_name,options_dict,person_id)
+    def __init__(self,module_name, options_dict,person_id=None):
+        OptionHandler.__init__(self,module_name, options_dict,person_id)
 
     def init_subclass(self):
         self.collection_class = OptionListCollection
@@ -296,13 +296,13 @@ class ToolOptions(Options):
     """
     Defines options and provides handling interface.
     
-    This is a base Options class for the tools. All tools' options
+    This is a base Options class for the tools. All tools, options
     classes should derive from it.
     """
 
-    def __init__(self,name,person_id=None):
+    def __init__(self, name,person_id=None):
         """
-        Initializes the class, performing usual house-keeping tasks.
+        Initialize the class, performing usual house-keeping tasks.
         Subclasses MUST call this in their __init__() method.
         """
         self.name = name

@@ -26,7 +26,7 @@ import BaseDoc
 #
 #------------------------------------------------------------------------
 class SpreadSheetDoc:
-    def __init__(self,type,orientation=BaseDoc.PAPER_PORTRAIT):
+    def __init__(self,type, orientation=BaseDoc.PAPER_PORTRAIT):
         self.orientation = orientation
         if orientation == BaseDoc.PAPER_PORTRAIT:
             self.width = type.get_width()
@@ -52,16 +52,16 @@ class SpreadSheetDoc:
     def get_usable_height(self):
         return self.height - (self.tmargin + self.bmargin)
 
-    def creator(self,name):
+    def creator(self, name):
         self.name = name
 
-    def add_style(self,name,style):
+    def add_style(self, name,style):
         self.style_list[name] = BaseDoc.ParagraphStyle(style)
 
-    def add_table_style(self,name,style):
+    def add_table_style(self, name,style):
         self.table_styles[name] = BaseDoc.TableStyle(style)
 
-    def add_cell_style(self,name,style):
+    def add_cell_style(self, name,style):
         self.cell_styles[name] = BaseDoc.TableCellStyle(style)
 
     def change_font(self,font):
@@ -82,7 +82,7 @@ class SpreadSheetDoc:
     def close(self):
         pass
 
-    def start_page(self,name,style_name):
+    def start_page(self, name,style_name):
         pass
 
     def end_page(self):
@@ -94,7 +94,7 @@ class SpreadSheetDoc:
     def end_paragraph(self):
         pass
 
-    def start_table(self,name,style_name):
+    def start_table(self, name,style_name):
         pass
 
     def end_table(self):

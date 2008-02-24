@@ -40,7 +40,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def __init__(self, db, person_filter=None, event_filter=None):
         """
-        Creates a new PrivateProxyDb instance. 
+        Create a new PrivateProxyDb instance. 
         """
         ProxyDbBase.__init__(self, db)
         self.person_filter = person_filter
@@ -236,14 +236,14 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_person_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Person in
+        Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
         return list(self.plist)
 
     def get_place_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Place in
+        Return a list of database handles, one handle for each Place in
         the database. If sort_handles is True, the list is sorted by
         Place title.
         """
@@ -251,7 +251,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_source_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Source in
+        Return a list of database handles, one handle for each Source in
         the database. If sort_handles is True, the list is sorted by
         Source title.
         """
@@ -259,35 +259,35 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_media_object_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each MediaObject in
         the database. If sort_handles is True, the list is sorted by title.
         """
         return self.db.get_media_object_handles(sort_handles)
 
     def get_event_handles(self):
         """
-        Returns a list of database handles, one handle for each Event in
+        Return a list of database handles, one handle for each Event in
         the database. 
         """
         return list(self.elist)
 
     def get_family_handles(self):
         """
-        Returns a list of database handles, one handle for each Family in
+        Return a list of database handles, one handle for each Family in
         the database.
         """
         return list(self.flist)
 
     def get_repository_handles(self):
         """
-        Returns a list of database handles, one handle for each Repository in
+        Return a list of database handles, one handle for each Repository in
         the database.
         """
         return self.db.get_repository_handles()
 
     def get_note_handles(self):
         """
-        Returns a list of database handles, one handle for each Note in
+        Return a list of database handles, one handle for each Note in
         the database.
         """
         return self.db.get_note_handles()

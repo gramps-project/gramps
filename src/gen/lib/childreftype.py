@@ -21,15 +21,25 @@
 # $Id$
 
 """
-Provides the different child reference types
+Provide the different child reference types.
 """
-
-from grampstype import GrampsType, init_map
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib.grampstype import GrampsType, init_map
 
 class ChildRefType(GrampsType):
     """
-    Provides the different ChildRef types.
+    Provide the different ChildRef types.
     """
 
     NONE      = 0

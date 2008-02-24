@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:ToolTips.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #------------------------------------------------------------------------
 #
@@ -105,7 +105,7 @@ class TipFromFunction:
         # check if we have a handler for the object type returned
         for cls in CLASS_MAP.keys():
             if isinstance(o,cls):
-                return CLASS_MAP[cls](self._db,o)()
+                return CLASS_MAP[cls](self._db, o)()
 
         return "no tip"
 
@@ -215,7 +215,7 @@ class PersonTip:
     __call__ = get_tip
 
 class FamilyTip:
-    def __init__(self,db,obj):
+    def __init__(self,db, obj):
         self._db = db
         self._obj = obj
 

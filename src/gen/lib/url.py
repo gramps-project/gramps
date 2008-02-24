@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Url class for GRAMPS
+Url class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -36,9 +36,9 @@ from warnings import warn
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from urltype import UrlType
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.urltype import UrlType
 
 #-------------------------------------------------------------------------
 #
@@ -46,11 +46,13 @@ from urltype import UrlType
 #
 #-------------------------------------------------------------------------
 class Url(SecondaryObject, PrivacyBase):
-    """Contains information related to internet Uniform Resource Locators,
-    allowing gramps to store information about internet resources"""
+    """
+    Contains information related to internet Uniform Resource Locators,
+    allowing gramps to store information about internet resources.
+    """
 
     def __init__(self, source=None):
-        """creates a new URL instance, copying from the source if present"""
+        """Create a new URL instance, copying from the source if present."""
         PrivacyBase.__init__(self, source)
         if source:
             self.path = source.path
@@ -62,7 +64,7 @@ class Url(SecondaryObject, PrivacyBase):
             self.type = UrlType()
 
     def serialize(self):
-        return (self.private,self.path,self.desc,self.type.serialize())
+        return (self.private, self.path, self.desc, self.type.serialize())
 
     def unserialize(self, data):
         (self.private, self.path, self.desc, type_value) = data
@@ -71,7 +73,7 @@ class Url(SecondaryObject, PrivacyBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -79,19 +81,19 @@ class Url(SecondaryObject, PrivacyBase):
         return [self.path, self.desc]
 
     def set_path(self, path):
-        """sets the URL path"""
+        """Set the URL path."""
         self.path = path
 
     def get_path(self):
-        """returns the URL path"""
+        """Return the URL path."""
         return self.path
 
     def set_description(self, description):
-        """sets the description of the URL"""
+        """Set the description of the URL."""
         self.desc = description
 
     def get_description(self):
-        """returns the description of the URL"""
+        """Return the description of the URL."""
         return self.desc
 
     def set_type(self, the_type):
@@ -109,7 +111,7 @@ class Url(SecondaryObject, PrivacyBase):
         return self.type
 
     def are_equal(self, other):
-        """Deprecated - use is_equal instead"""
+        """Deprecated - use is_equal instead."""
 
         warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)

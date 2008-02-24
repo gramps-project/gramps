@@ -367,7 +367,7 @@ class EditMediaRef(EditReference):
 
     def build_menu_names(self, person):
         """
-        Provides the information needed by the base class to define the
+        Provide the information needed by the base class to define the
         window management menu entries.
         """
         if self.source:
@@ -403,7 +403,7 @@ class EditMediaRef(EditReference):
 
     def _create_tabbed_pages(self):
         """
-        Creates the notebook tabs and inserts them into the main
+        Create the notebook tabs and inserts them into the main
         window.
         """
         notebook_ref = self.top.get_widget('notebook_ref')

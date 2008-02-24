@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_HasCommonAncestorWithFilterMatch.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +58,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
     def init_ancestor_cache(self,db):
         filt = MatchesFilter(self.list)
         filt.prepare(db)
-        def init(self,h): self.ancestor_cache[h] = 1
+        def init(self, h): self.ancestor_cache[h] = 1
         for handle in db.get_person_handles(sort_handles=False):
             if (not self.ancestor_cache.has_key (handle)
                 and filt.apply (db, db.get_person_from_handle(handle))):

@@ -91,7 +91,7 @@ class MediaMan(Tool.Tool):
     def complete(self):
         pass
 
-    def on_before_page_next(self,obj,page,data=None):
+    def on_before_page_next(self, obj,page,data=None):
         if page == self.selection_page:
             self.build_settings_page()
         elif page == self.settings_page:
@@ -150,7 +150,7 @@ class MediaMan(Tool.Tool):
         box.add(table)
         return box
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-other')
 
@@ -568,8 +568,8 @@ class MediaManOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #-------------------------------------------------------------------------
 #

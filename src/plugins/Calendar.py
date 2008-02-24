@@ -84,7 +84,7 @@ def g2iso(dow):
 
 def dst(year, area="us"):
     """
-    Returns Daylight Saving Time start/stop in a given area ("us", "eu").
+    Return Daylight Saving Time start/stop in a given area ("us", "eu").
     US calculation valid 1976-2099; EU 1996-2099
     """
     if area == "us":
@@ -101,7 +101,7 @@ def dst(year, area="us"):
 
 def make_date(year, month, day):
     """
-    Returns a Date object of the particular year/month/day.
+    Return a Date object of the particular year/month/day.
     """
     retval = gen.lib.Date()
     retval.set_yr_mon_day(year, month, day)
@@ -114,7 +114,7 @@ def make_date(year, month, day):
 #------------------------------------------------------------------------
 class Calendar(Report):
     """
-    Creates the Calendar object that produces the report.
+    Create the Calendar object that produces the report.
     """
     def __init__(self, database, options_class):
         Report.__init__(self, database, options_class)
@@ -148,7 +148,7 @@ class Calendar(Report):
         self.title = _("Calendar Report") #% name
 
     def get_name(self, person, maiden_name = None):
-        """ Returns person's name, unless maiden_name given, unless married_name listed. """
+        """ Return person's name, unless maiden_name given, unless married_name listed. """
         # Get all of a person's names:
         primary_name = person.get_primary_name()
         married_name = None
@@ -179,7 +179,7 @@ class Calendar(Report):
 ### The rest of these all have to deal with calendar specific things
 
     def add_day_item(self, text, year, month, day):
-        """ Adds an item to a day. """
+        """ Add an item to a day. """
         month_dict = self.calendar.get(month, {})
         day_list = month_dict.get(day, [])
         day_list.append(text)
@@ -478,7 +478,7 @@ class CalendarOptions(MenuReportOptions):
         MenuReportOptions.__init__(self, name, dbase)
     
     def add_menu_options(self, menu):
-        """ Adds the options for the graphical calendar """
+        """ Add the options for the graphical calendar """
         category_name = _("Report Options")
 
         year = NumberOption(_("Year of calendar"), time.localtime()[0], 
@@ -579,7 +579,7 @@ class CalendarOptions(MenuReportOptions):
                       size=9, font=BaseDoc.FONT_SERIF, justified ="left",
                       color=None, align=BaseDoc.PARA_ALIGN_CENTER,
                       shadow = None, italic=0, bold=0, borders=0, indent=None):
-        """ Creates paragraph and graphic styles of the same name """
+        """ Create paragraph and graphic styles of the same name """
         # Paragraph:
         f = BaseDoc.FontStyle()
         f.set_size(size)
@@ -615,7 +615,7 @@ class CalendarOptions(MenuReportOptions):
         default_style.add_draw_style(name,g)
         
     def make_default_style(self, default_style):
-        """ Adds the styles used in this report """
+        """ Add the styles used in this report """
         self.make_my_style(default_style, "CAL-Title",
                            _('Title text and background color'), 20,
                            bold=1, italic=1,
@@ -644,7 +644,7 @@ class CalendarReportOptions(CalendarOptions):
         CalendarOptions.__init__(self, name, dbstate)
 
     def add_menu_options(self, menu):
-        """ Adds the options for the graphical calendar """
+        """ Add the options for the graphical calendar """
         category_name = _("Text Options")
         titletext = StringOption(_("Title text"),
                                  _("Birthday and Anniversary Report"))
@@ -658,7 +658,7 @@ class CalendarReportOptions(CalendarOptions):
         menu.add_option(category_name,"relationships", option)
 
     def make_default_style(self, default_style):
-        """ Adds the options for the textual report """
+        """ Add the options for the textual report """
         self.make_my_style(default_style, "BIR-Title",
                            _('Title text style'), 14,
                            bold=1, justified="center")
@@ -683,7 +683,7 @@ class CalendarReportOptions(CalendarOptions):
 #------------------------------------------------------------------------
 class Element:
     """ A parsed XML element """
-    def __init__(self,name,attributes):
+    def __init__(self, name,attributes):
         'Element constructor'
         # The element's tag name
         self.name = name
@@ -706,7 +706,7 @@ class Element:
         'Get the cdata'
         return self.cdata
         
-    def getElements(self,name=''):
+    def getElements(self, name=''):
         'Get a list of child elements'
         #If no tag name is specified, return the all children
         if not name:
@@ -720,7 +720,7 @@ class Element:
             return elements
 
     def toString(self, level=0):
-        """ Converts item at level to a XML string """
+        """ Convert item at level to a XML string """
         retval = " " * level
         retval += "<%s" % self.name
         for attribute in self.attributes:
@@ -740,7 +740,7 @@ class Xml2Obj:
         self.root = None
         self.nodeStack = []
         
-    def StartElement(self,name,attributes):
+    def StartElement(self, name,attributes):
         'SAX start element even handler'
         # Instantiate an Element object
         element = Element(name.encode(),attributes)
@@ -752,7 +752,7 @@ class Xml2Obj:
             self.root = element
         self.nodeStack.append(element)
         
-    def EndElement(self,name):
+    def EndElement(self, name):
         'SAX end element event handler'
         self.nodeStack = self.nodeStack[:-1]
 
@@ -818,7 +818,7 @@ class Holidays:
         if self.debug: print "dow=", dow, "days=", retval
         return retval
     def check_date(self, date):
-        """ Returns items that match rules """
+        """ Return items that match rules """
         retval = []
         for rule in self.dates:
             if self.debug: print "Checking ", rule["name"], "..."

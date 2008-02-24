@@ -102,7 +102,7 @@ class ButtonTab(GrampsTab):
 
     def create_buttons(self, share_button, move_buttons, jump_button):
         """
-        Creates a button box consisting of three buttons, one for Add,
+        Create a button box consisting of three buttons, one for Add,
         one for Edit, and one for Delete. This button box is then appended
         hbox (self).
         """

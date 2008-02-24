@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provides the interface to allow a person to add a media object to the database.
+Provide the interface to allow a person to add a media object to the database.
 """
 
 #-------------------------------------------------------------------------
@@ -80,7 +80,7 @@ class AddMediaObject(ManagedWindow.ManagedWindow):
     
     def __init__(self, dbstate, uistate, track, mediaobj, callback=None):
         """
-        Creates and displays the dialog box
+        Create and displays the dialog box
 
         db - the database in which the new object is to be stored
         The mediaobject is updated with the information, and on save, the 

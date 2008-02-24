@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:MapView.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -142,7 +142,7 @@ class GuideMap(gtk.DrawingArea):
                 gtk.gdk.INTERP_BILINEAR)
             gc.collect()
 
-    def map_to_screen( self, x,y,w=None,h=None):
+    def map_to_screen( self, x,y,w=None, h=None):
         px = int((float(x) + 180.0) / 360.0 * self.backbuf.get_width())
         py = int((90-float(y)) / 180.0 * self.backbuf.get_height())
         if w and h:
@@ -197,7 +197,7 @@ class MapTile:
                     print "Source-Map origin: %f x %f, %f, %f" % (self.map_x,self.map_y,self.map_width,self.map_height)
                     print "Source-Map pixels: %f x %f" % (self.map_pixel_width,self.map_pixel_height)
                     print "Source-Map scale: %f" % self.source_scale
-                    print "Target origin: %f x %f, %f, %f" % (x,y,w,h)
+                    print "Target origin: %f x %f, %f, %f" % (x,y,w, h)
                     print "Target scale: %f" % target_scale
                     print "Target crop: %f x %f, %f x %f" % (xoffset,yoffset,xmax,ymax)
                     print "Origin of crop: %f x %f" % (self.scaled_map_x,self.scaled_map_y)
@@ -412,16 +412,16 @@ class ZoomMap( gtk.DrawingArea):
         
     def motion_notify_event_cb(self,widget,event):
         self.textlayout.set_text( "Position: %03.0f,%03.0f pixel" % (event.x,event.y))
-        (w,h) = self.textlayout.get_pixel_size()
+        (w, h) = self.textlayout.get_pixel_size()
         self.gc.set_foreground( self.get_colormap().alloc_color("white"))
-        self.window.draw_rectangle( self.gc, True, 10,50,w,h)
+        self.window.draw_rectangle( self.gc, True, 10,50,w, h)
         self.gc.set_foreground( self.get_colormap().alloc_color("red"))
         self.window.draw_layout( self.gc, 10, 50, self.textlayout)
         (lon,lat) = self.screen_to_map(event.x,event.y)
         self.textlayout.set_text( "Position: %03.0f,%03.0f degree" % (lon,lat))
-        (w,h) = self.textlayout.get_pixel_size()
+        (w, h) = self.textlayout.get_pixel_size()
         self.gc.set_foreground( self.get_colormap().alloc_color("white"))
-        self.window.draw_rectangle( self.gc, True, 10,70,w,h)
+        self.window.draw_rectangle( self.gc, True, 10,70,w, h)
         self.gc.set_foreground( self.get_colormap().alloc_color("red"))
         self.window.draw_layout( self.gc, 10, 70, self.textlayout)
         
@@ -643,7 +643,7 @@ class MapView(PageView.PageView):
 
     def get_stock(self):
         """
-        Returns the name of the stock icon to use for the display.
+        Return the name of the stock icon to use for the display.
         This assumes that this icon has already been registered with
         GNOME as a stock icon.
         """
@@ -812,7 +812,7 @@ class MapView(PageView.PageView):
         db.connect('place-rebuild',self.rebuild_places)
         db.connect('place-update',self.rebuild_places)
     
-    def rebuild_places(self,handle_list=None):
+    def rebuild_places(self, handle_list=None):
         d = glob_loc_data
         try:
             d = d + self.get_xearth_markers()
@@ -831,14 +831,14 @@ class MapView(PageView.PageView):
                                     model.get_value(iter,2))
             break
 
-    def zoom_in_cb(self,obj):
+    def zoom_in_cb(self, obj):
         self.zoom_map.zoom_in()
 
-    def zoom_out_cb(self,obj):
+    def zoom_out_cb(self, obj):
         self.zoom_map.zoom_out()
 
-    def zoom_100_cb(self,obj):
+    def zoom_100_cb(self, obj):
         self.zoom_map.zoom_normal()
 
-    def zoom_fit_cb(self,obj):
+    def zoom_fit_cb(self, obj):
         self.zoom_map.zoom_fit()

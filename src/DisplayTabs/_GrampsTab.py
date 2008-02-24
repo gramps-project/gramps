@@ -88,7 +88,7 @@ class GrampsTab(gtk.HBox):
 
     def is_empty(self):
         """
-        Indicates if the tab contains any data. This is used to determine
+        Indicate if the tab contains any data. This is used to determine
         how the label should be displayed.
         """
         return True
@@ -124,7 +124,7 @@ class GrampsTab(gtk.HBox):
 
     def get_icon_name(self):
         """
-        Provides the name of the registered stock icon to be used as the
+        Provide the name of the registered stock icon to be used as the
         icon in the label. This is typically overridden by the derrived
         class to provide the new name.
         @returns: stock icon name
@@ -134,7 +134,7 @@ class GrampsTab(gtk.HBox):
 
     def get_tab_widget(self):
         """
-        Provides the widget to be used for the notebook tab label. A
+        Provide the widget to be used for the notebook tab label. A
         container class is provided, and the object may manipulate the
         child widgets contained in the container.
         @returns: gtk widget

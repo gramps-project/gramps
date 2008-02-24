@@ -221,7 +221,7 @@ class RelationshipView(PageView.PersonNavView):
             
     def get_stock(self):
         """
-        Returns the name of the stock icon to use for the display.
+        Return the name of the stock icon to use for the display.
         This assumes that this icon has already been registered with
         GNOME as a stock icon.
         """
@@ -1017,7 +1017,7 @@ class RelationshipView(PageView.PersonNavView):
         return value
 
     def check_collapsed(self, person, handle):
-        """ Returns true if collapsed. """
+        """ Return true if collapsed. """
         return (handle in self.collapsed_items.get(person.handle, []))
 
     def expand_collapse_press(self, obj, event, pair):
@@ -1436,7 +1436,7 @@ class RelationshipView(PageView.PersonNavView):
 #-------------------------------------------------------------------------
 def has_children(db,p):
     """
-    Returns if a person has children.
+    Return if a person has children.
     """
     for family_handle in p.get_family_handle_list():
         family = db.get_family_from_handle(family_handle)

@@ -93,14 +93,14 @@ class MergePlaces(ManagedWindow.ManagedWindow):
     def close_window(self, obj):
         self.close()
         
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_('Merge Places'),None)
 
-    def help(self,obj):
+    def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('adv-merge-places', webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
-    def merge(self,obj):
+    def merge(self, obj):
         """
         Performs the merge of the places when the merge button is clicked.
         """

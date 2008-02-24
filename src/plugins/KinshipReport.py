@@ -52,7 +52,7 @@ class KinshipReport(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the KinshipReport object that produces the report.
+        Create the KinshipReport object that produces the report.
         
         The arguments are:
 

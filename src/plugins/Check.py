@@ -73,7 +73,7 @@ def low_level(db):
     This is a low-level repair routine.
 
     It is fixing DB inconsistencies such as duplicates.
-    Returns a (status,name) tuple.
+    Returns a (status, name) tuple.
     The boolean status indicates the success of the procedure.
     The name indicates the problematic table (empty if status is True).
     """
@@ -257,7 +257,7 @@ class CheckIntegrity:
         self.progress.set_pass(_('Looking for invalid name format references'),
                                self.db.get_number_of_people())
         
-        deleted_name_formats = [number for (number,name,fmt_str,act)
+        deleted_name_formats = [number for (number, name,fmt_str,act)
                                 in self.db.name_formats if not act]
         
         # remove the invalid references from all Name objects
@@ -1499,8 +1499,8 @@ class CheckOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #------------------------------------------------------------------------
 #

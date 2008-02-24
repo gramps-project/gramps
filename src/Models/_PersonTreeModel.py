@@ -9,7 +9,7 @@ import gen.lib
 
 
 class PersonTreeModel(FastModel):
-    """Provides a fast model interface to the Person table.
+    """Provide a fast model interface to the Person table.
     """
         
     def __init__(self,db):

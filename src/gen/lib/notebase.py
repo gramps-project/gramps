@@ -21,7 +21,7 @@
 # $Id$
 
 """
-NoteBase class for GRAMPS
+NoteBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -39,7 +39,7 @@ class NoteBase:
     """
     def __init__(self, source=None):
         """
-        Create a new NoteBase, copying from source if not None
+        Create a new NoteBase, copying from source if not None.
         
         @param source: Object used to initialize the new object
         @type source: NoteBase
@@ -52,19 +52,19 @@ class NoteBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return self.note_list
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         self.note_list = [handle for handle in data]
 
-    def add_note(self,handle):
+    def add_note(self, handle):
         """
-        Adds the L{Note} handle to the list of note handles.
+        Add the L{Note} handle to the list of note handles.
 
         @param handle: L{Note} handle to add the list of notes
         @type handle: str
@@ -78,10 +78,10 @@ class NoteBase:
             self.note_list.append(handle)
             return True
 
-    def remove_note(self,handle):
+    def remove_note(self, handle):
         """
-        Removes the specified handle from the list of note handles, and all
-            and all secondary child objects.
+        Remove the specified handle from the list of note handles, and all
+        secondary child objects.
 
         @param handle: L{Note} handle to remove from the list of notes
         @type handle: str
@@ -93,25 +93,28 @@ class NoteBase:
     
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
+        
         All methods which inherit from NoteBase and have other child objects
-        with notes, should return here a list of child objects which are NoteBase
+        with notes, should return here a list of child objects which are 
+        NoteBase
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return []
 
     def get_note_list(self):
         """
-        Returns the list of L{Note} handles associated with the object
+        Return the list of L{Note} handles associated with the object.
 
         @return: The list of L{Note} handles
         @rtype: list
         """
         return self.note_list
 
-    def set_note_list(self,note_list):
+    def set_note_list(self, note_list):
         """
         Assign the passed list to be object's list of L{Note} handles.
 
@@ -122,11 +125,12 @@ class NoteBase:
 
     def get_referenced_note_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all referenced notes.
+        Return the list of (classname, handle) tuples for all referenced notes.
+        
         This method should be used to get the L{Note} portion of the list
         by objects that store note lists.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
-        return [('Note',handle) for handle in self.note_list]
+        return [('Note', handle) for handle in self.note_list]

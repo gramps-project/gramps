@@ -117,7 +117,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
             if data:
                 PluginTrace(self.uistate, self.track, data, name)
                 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return ( _('Summary'),self.title)
 
 #-------------------------------------------------------------------------
@@ -130,7 +130,7 @@ class PluginTrace(ManagedWindow.ManagedWindow):
     
     def __init__(self, uistate, track, data, name):
         self.name = name
-        title = "%s: %s" % (_("Plugin Status"),name)
+        title = "%s: %s" % (_("Plugin Status"), name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
         self.set_window(gtk.Dialog("",uistate.window,
@@ -150,7 +150,7 @@ class PluginTrace(ManagedWindow.ManagedWindow):
         self.window.vbox.add(scrolled_window)
         self.window.show_all()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.name, None)
 
 
@@ -467,7 +467,7 @@ class ToolManagedWindowBatch(Tool.BatchTool, ToolManagedWindowBase):
         # This constructor will ask a question, set self.fail:
         self.dbstate = dbstate
         self.uistate = uistate
-        Tool.BatchTool.__init__(self,dbstate,options_class,name)
+        Tool.BatchTool.__init__(self,dbstate, options_class, name)
         if not self.fail:
             ToolManagedWindowBase.__init__(self, dbstate, uistate, 
                                            options_class, name, callback)
@@ -476,6 +476,6 @@ class ToolManagedWindow(Tool.Tool, ToolManagedWindowBase):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.dbstate = dbstate
         self.uistate = uistate
-        Tool.Tool.__init__(self,dbstate,options_class,name)
+        Tool.Tool.__init__(self,dbstate, options_class, name)
         ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
                                        name, callback)

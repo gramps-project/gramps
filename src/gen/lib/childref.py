@@ -23,7 +23,11 @@
 """
 Child Reference class for GRAMPS.
 """
-
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -31,12 +35,12 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from srcbase import SourceBase
-from notebase import NoteBase
-from refbase import RefBase
-from childreftype import ChildRefType
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.refbase import RefBase
+from gen.lib.childreftype import ChildRefType
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +70,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
@@ -77,7 +81,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (privacy, source_list, note_list, ref, frel, mrel) = data
         PrivacyBase.unserialize(self, privacy)
@@ -92,7 +96,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -101,7 +105,7 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -110,19 +114,20 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.source_list
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -132,8 +137,8 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through their 
+        children, reference primary objects..
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -141,17 +146,17 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         return self.source_list
 
     def set_mother_relation(self, rel):
-        """Sets relation between the person and mother"""
+        """Set relation between the person and mother."""
         self.mrel.set(rel)
 
     def get_mother_relation(self):
-        """Returns the relation between the person and mother"""
+        """Return the relation between the person and mother."""
         return self.mrel
 
     def set_father_relation(self, frel):
-        """Sets relation between the person and father"""
+        """Set relation between the person and father."""
         self.frel.set(frel)
 
     def get_father_relation(self):
-        """Returns the relation between the person and father"""
+        """Return the relation between the person and father."""
         return self.frel

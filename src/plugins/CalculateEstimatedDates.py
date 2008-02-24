@@ -58,7 +58,7 @@ class CalcEstDateOptions(MenuToolOptions):
     
     def add_menu_options(self, menu):
         
-        """ Adds the options """
+        """ Add the options """
         category_name = _("Options")
         
         self.__filter = FilterOption(_("Filter"), 0)

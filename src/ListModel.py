@@ -19,7 +19,7 @@
 #
 
 """
-Provides the basic functionality for a list view
+Provide the basic functionality for a list view
 """
 
 #-------------------------------------------------------------------------
@@ -165,7 +165,7 @@ class ListModel:
 
     def unselect(self):
         """
-        Removes the selection from the view
+        Remove the selection from the view
         """
         self.selection.unselect_all()
 
@@ -177,7 +177,7 @@ class ListModel:
         
     def new_model(self):
         """
-        Creates a new model instance 
+        Create a new model instance 
         """
         if self.model:
             self.cid = self.model.get_sort_column_id()
@@ -222,13 +222,13 @@ class ListModel:
         
     def get_selected(self):
         """
-        Returns the selected items
+        Return the selected items
         """
         return self.selection.get_selected()
 
     def get_row_at(self, xpos, ypos):
         """
-        Returns the row at the specified (x,y) coordinates
+        Return the row at the specified (x,y) coordinates
         """
         path = self.tree.get_path_at_pos(xpos, ypos)
         if path == None:
@@ -238,7 +238,7 @@ class ListModel:
 
     def get_selected_row(self):
         """
-        Gets the selected row number
+        Get the selected row number
         """
         store, node = self.selection.get_selected()
         if node:
@@ -249,7 +249,7 @@ class ListModel:
 
     def get_selected_objects(self):
         """
-        Returns the list of selected objects in the list
+        Return the list of selected objects in the list
         """
         if self.count == 0:
             return []
@@ -266,7 +266,7 @@ class ListModel:
 
     def get_icon(self):
         """
-        Returns an icond to be used for Drag and drop.
+        Return an icond to be used for Drag and drop.
         """
         if self.mode == gtk.SELECTION_SINGLE:
             store, node = self.selection.get_selected()
@@ -292,14 +292,14 @@ class ListModel:
 
     def remove(self, node):
         """
-        Removes the item from the model
+        Remove the item from the model
         """
         self.model.remove(node)
         self.count -= 1
         
     def get_row(self, node):
         """
-        Returns the row associated with the selected node
+        Return the row associated with the selected node
         """
         row = self.model.get_path(node)
         return row[0]
@@ -318,7 +318,7 @@ class ListModel:
     
     def get_object(self, node):
         """
-        Returns the object associated with the node. This is controlled
+        Return the object associated with the node. This is controlled
         by extracting the data from the associated data index
         """
         return self.model.get_value(node, self.data_index)
@@ -342,13 +342,13 @@ class ListModel:
     
     def get_data(self, node, cols):
         """
-        Returns a list of data from the model associated with the node
+        Return a list of data from the model associated with the node
         """
         return [ self.model.get_value(node, c) for c in cols ]
     
     def add(self, data, info=None, select=0):
         """
-        Adds the data to the model at the end of the model
+        Add the data to the model at the end of the model
         """
         self.count += 1
         node = self.model.append()
@@ -366,7 +366,7 @@ class ListModel:
 
     def set(self, node, data, info=None, select=0):
         """
-        Changes the data associated with the specific node. It does not
+        Change the data associated with the specific node. It does not
         add any data, just alters an existing row.
         """
         col = 0

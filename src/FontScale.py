@@ -19,7 +19,7 @@
 #
 
 """
-Provides a rough estimate of the width of a text string.
+Provide a rough estimate of the width of a text string.
 """
 
 SWISS = [

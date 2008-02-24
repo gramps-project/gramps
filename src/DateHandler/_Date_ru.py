@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_Date_ru.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Russian-specific classes for parsing and displaying dates.
@@ -272,7 +272,7 @@ class DateDisplayRU(DateDisplay):
 
     def display(self, date):
         """
-        Returns a text string representing the date.
+        Return a text string representing the date.
         """
         mod = date.get_modifier()
         cal = date.get_calendar()

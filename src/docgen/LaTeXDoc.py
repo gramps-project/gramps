@@ -26,7 +26,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:LaTeXDoc.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """LaTeX document generator"""
 
@@ -373,7 +373,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         elif self.in_table:
             newline = ('')
     
-        self.f.write('%s%s' % (self.fend,newline))
+        self.f.write('%s%s' % (self.fend, newline))
         if self.fix_indent == 1:
             self.fix_indent = 0
             self.f.write('\\grampsindent{0cm}\n')
@@ -392,7 +392,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
     def end_superscript(self):
         self.f.write('}')
 
-    def start_table(self,name,style_name):
+    def start_table(self, name,style_name):
         """Begin new table"""
         self.in_table = 1
         self.currow = 0
@@ -472,7 +472,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         if self.curcol < self.numcols:
             self.f.write('& ')
 
-    def add_media_object(self,name,pos,x,y):
+    def add_media_object(self, name,pos,x,y):
         """Add photo to report"""
         return
 
@@ -486,7 +486,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         pic.eps_convert(picf)
         
         # x and y will be maximum width OR height in units of cm
-        mysize = 'width=%dcm,height=%dcm,keepaspectratio' % (x,y)
+        mysize = 'width=%dcm, height=%dcm,keepaspectratio' % (x,y)
         if pos == "right":
             self.f.write('\\hfill\\includegraphics[%s]{%s}\n' % (mysize,picf))
         elif pos == "left":

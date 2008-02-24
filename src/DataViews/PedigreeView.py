@@ -506,7 +506,7 @@ class PedigreeView(PageView.PersonNavView):
         
     def get_stock(self):
         """
-        Returns the name of the stock icon to use for the display.
+        Return the name of the stock icon to use for the display.
         This assumes that this icon has already been registered with
         GNOME as a stock icon.
         """
@@ -630,7 +630,7 @@ class PedigreeView(PageView.PersonNavView):
             self.bookmarks.redraw()
         self.build_tree()
 
-    def goto_active_person(self,handle=None):
+    def goto_active_person(self, handle=None):
         self.dirty = True
         if handle:
             self.rebuild_trees(handle)
@@ -1083,12 +1083,12 @@ class PedigreeView(PageView.PersonNavView):
         area.window.draw_line(gc, alloc.width/2, alloc.height/2, alloc.width/2,alloc.height-gap)
         area.window.draw_line(gc, alloc.width/2, alloc.height-gap, alloc.width,alloc.height-gap)
 
-    def home(self,obj):
+    def home(self, obj):
         defperson = self.dbstate.db.get_default_person()
         if defperson:
             self.dbstate.change_active_person(defperson)
 
-    def edit_person_cb(self,obj,person_handle):
+    def edit_person_cb(self, obj,person_handle):
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
             try:
@@ -1098,7 +1098,7 @@ class PedigreeView(PageView.PersonNavView):
             return True
         return False
 
-    def edit_family_cb(self,obj,family_handle):
+    def edit_family_cb(self, obj,family_handle):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family:
             try:
@@ -1108,7 +1108,7 @@ class PedigreeView(PageView.PersonNavView):
             return True
         return False
 
-    def add_parents_cb(self,obj,person_handle, family_handle):
+    def add_parents_cb(self, obj,person_handle, family_handle):
         if family_handle:   # one parent already exists -> Edit current family
             family = self.dbstate.db.get_family_from_handle(family_handle)
         else:   # no parents -> create new family
@@ -1121,7 +1121,7 @@ class PedigreeView(PageView.PersonNavView):
         except Errors.WindowActiveError:
             pass
 
-    def copy_person_to_clipboard_cb(self,obj,person_handle):
+    def copy_person_to_clipboard_cb(self, obj,person_handle):
         """Renders the person data into some lines of text and puts that into the clipboard"""
         person = self.dbstate.db.get_person_from_handle(person_handle)
         if person:
@@ -1130,7 +1130,7 @@ class PedigreeView(PageView.PersonNavView):
             return True
         return False
 
-    def copy_family_to_clipboard_cb(self,obj,family_handle):
+    def copy_family_to_clipboard_cb(self, obj,family_handle):
         """Renders the family data into some lines of text and puts that into the clipboard"""
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if family:
@@ -1139,41 +1139,41 @@ class PedigreeView(PageView.PersonNavView):
             return True
         return False
 
-    def on_show_option_menu_cb(self,obj,data=None):
+    def on_show_option_menu_cb(self, obj,data=None):
         myMenu = gtk.Menu()
         self.add_nav_portion_to_menu(myMenu)
         self.add_settings_to_menu(myMenu)
         myMenu.popup(None,None,None,0,0)
         return(True);
 
-    def bg_button_press_cb(self,obj,event):
+    def bg_button_press_cb(self, obj,event):
         if event.button != 1:
             self.on_show_option_menu_cb(obj)
             return True
         return False
         
-    def person_button_press_cb(self,obj,event,person_handle):
+    def person_button_press_cb(self, obj,event,person_handle):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.edit_person_cb( obj, person_handle)
         elif event.button!=1:
             self.build_full_nav_menu_cb(obj,event,person_handle)
         return True
 
-    def relation_button_press_cb(self,obj,event,family_handle):
+    def relation_button_press_cb(self, obj,event,family_handle):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.edit_family_cb( obj, family_handle)
         elif event.button!=1:
             self.build_relation_nav_menu_cb(obj,event,family_handle)
         return True
 
-    def missing_parent_button_press_cb(self,obj,event,person_handle,family_handle):
+    def missing_parent_button_press_cb(self, obj,event,person_handle,family_handle):
         if event.button==1 and event.type == gtk.gdk._2BUTTON_PRESS:
             self.add_parents_cb(obj,person_handle,family_handle)
         elif event.button!=1:
             self.build_missing_parent_nav_menu_cb(obj,event,person_handle,family_handle)
         return True
 
-    def on_show_child_menu(self,obj):
+    def on_show_child_menu(self, obj):
         """User clicked button to move to child of active person"""
 
         if self.dbstate.active:
@@ -1210,7 +1210,7 @@ class PedigreeView(PageView.PersonNavView):
             return 1
         return 0
 
-    def on_childmenu_changed(self,obj,person_handle):
+    def on_childmenu_changed(self, obj,person_handle):
         """Callback for the pulldown menu selection, changing to the person
            attached with menu item."""
         self.dbstate.change_active_handle(person_handle)
@@ -1390,7 +1390,7 @@ class PedigreeView(PageView.PersonNavView):
             entry = gtk.ImageMenuItem(_("%d generations") % n)
             if self.force_size == n:
                 entry.set_image(current_size_image)
-            entry.connect("activate", self.change_force_size_cb,n)
+            entry.connect("activate", self.change_force_size_cb, n)
             entry.show()
             size_menu.append(entry)
         
@@ -1398,7 +1398,7 @@ class PedigreeView(PageView.PersonNavView):
         item.show()
         menu.append(item)
         
-    def build_missing_parent_nav_menu_cb(self,obj,event,person_handle,family_handle):
+    def build_missing_parent_nav_menu_cb(self, obj,event,person_handle,family_handle):
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
 
@@ -1413,7 +1413,7 @@ class PedigreeView(PageView.PersonNavView):
         menu.popup(None,None,None,event.button,event.time)
         return 1
 
-    def build_full_nav_menu_cb(self,obj,event,person_handle):
+    def build_full_nav_menu_cb(self, obj,event,person_handle):
         """
         Builds the full menu (including Siblings, Spouses, Children, 
         and Parents) with navigation.
@@ -1645,7 +1645,7 @@ class PedigreeView(PageView.PersonNavView):
         menu.popup(None,None,None,event.button,event.time)
         return 1
 
-    def build_relation_nav_menu_cb(self,obj,event,family_handle):
+    def build_relation_nav_menu_cb(self, obj,event,family_handle):
         """
         Builds the menu for a parents-child relation line.
         """
@@ -1686,7 +1686,7 @@ class PedigreeView(PageView.PersonNavView):
 #-------------------------------------------------------------------------
 def find_children(db,p):
     """
-    Returns the list of all children's IDs for a person.
+    Return the list of all children's IDs for a person.
     """
     childlist = []
     for family_handle in p.get_family_handle_list():
@@ -1702,7 +1702,7 @@ def find_children(db,p):
 #-------------------------------------------------------------------------
 def find_parents(db,p):
     """
-    Returns the unique list of all parents' IDs for a person.
+    Return the unique list of all parents' IDs for a person.
     """
     parentlist = []
     for f in p.get_parent_family_handle_list():

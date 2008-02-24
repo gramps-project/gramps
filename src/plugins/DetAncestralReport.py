@@ -62,7 +62,7 @@ class DetAncestorReport(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the DetAncestorReport object that produces the report.
+        Create the DetAncestorReport object that produces the report.
         
         The arguments are:
 
@@ -281,7 +281,7 @@ class DetAncestorReport(Report):
             self.doc.end_paragraph()
             for notehandle in notelist:
                 note = self.database.get_note_from_handle(notehandle)
-                self.doc.write_note(note.get(),note.get_format(),"DAR-Entry")
+                self.doc.write_note(note.get(), note.get_format(),"DAR-Entry")
 
         first = True
         if self.inc_names:
@@ -651,11 +651,11 @@ class DetAncestorReport(Report):
         else:
             return (0,0)
 
-    def endnotes(self,obj):
+    def endnotes(self, obj):
         if not obj or not self.inc_sources:
             return ""
         
-        txt = Endnotes.cite_source(self.bibli,obj)
+        txt = Endnotes.cite_source(self.bibli, obj)
         if txt:
             txt = '<super>' + txt + '</super>'
         return txt
@@ -711,7 +711,7 @@ class DetAncestorOptions(MenuReportOptions):
         
         omitda = BooleanOption(_("Omit duplicate ancestors"),True)
         omitda.set_help(_("Whether to omit duplicate ancestors."))
-        menu.add_option(category_name,"omitda",omitda)
+        menu.add_option(category_name,"omitda", omitda)
         
         verbose = BooleanOption(_("Use Complete Sentences"),True)
         verbose.set_help(

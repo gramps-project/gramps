@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Note types
+Note types.
 """
 
 #-------------------------------------------------------------------------
@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from grampstype import GrampsType, init_map
+from gen.lib.grampstype import GrampsType, init_map
 
 class NoteType(GrampsType):
 
@@ -49,7 +49,7 @@ class NoteType(GrampsType):
     PERSON     = 4
     ATTRIBUTE  = 5
     ADDRESS    = 6
-    ASSOCIATION= 7
+    ASSOCIATION = 7
     LDS        = 8
     FAMILY     = 9
     EVENT      = 10
@@ -116,7 +116,8 @@ class NoteType(GrampsType):
         
     def get_ignore_list(self, exception):
         """
-        Return a list of the types to ignore and not include in default lists
+        Return a list of the types to ignore and not include in default lists.
+        
         Exception is a sublist of types that may not be ignored
         
         @param exception: list of integer values corresponding with types that

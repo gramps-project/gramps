@@ -29,7 +29,7 @@ Researcher informaiton for GRAMPS.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from locationbase import LocationBase
+from gen.lib.locationbase import LocationBase
 
 #-------------------------------------------------------------------------
 #
@@ -37,11 +37,12 @@ from locationbase import LocationBase
 #
 #-------------------------------------------------------------------------
 class Researcher(LocationBase):
-    """Contains the information about the owner of the database"""
+    """Contains the information about the owner of the database."""
     
     def __init__(self, source=None):
-        """Initializes the Researcher object,
-        copying from the source if provided"""
+        """
+        Initialize the Researcher object, copying from the source if provided.
+        """
 
         LocationBase.__init__(self, source)
         if source:
@@ -55,14 +56,14 @@ class Researcher(LocationBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (LocationBase.serialize(self),
                 self.name, self.addr, self.email)
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (location, self.name, self.addr, self.email) = data
         LocationBase.unserialize(self, location)
@@ -70,31 +71,31 @@ class Researcher(LocationBase):
         return self
 
     def set_name(self, data):
-        """sets the database owner's name"""
+        """Set the database owner's name."""
         self.name = data
         
     def get_name(self):
-        """returns the database owner's name"""
+        """Return the database owner's name."""
         return self.name
 
     def set_address(self, data):
-        """sets the database owner's address"""
+        """Set the database owner's address."""
         self.addr = data
         
     def get_address(self):
-        """returns the database owner's address"""
+        """Return the database owner's address."""
         return self.addr
 
     def set_email(self, data):
-        """ sets the database owner's email"""
+        """ Set the database owner's email."""
         self.email = data
         
     def get_email(self):
-        """returns the database owner's email"""
+        """Return the database owner's email."""
         return self.email
 
-    def set_from(self,other_researcher):
-        """set all attributes from another instance"""
+    def set_from(self, other_researcher):
+        """Set all attributes from another instance."""
         self.street = other_researcher.street
         self.city = other_researcher.city
         self.county = other_researcher.county

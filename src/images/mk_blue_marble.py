@@ -26,12 +26,12 @@ def process_file( imagefile, image_width, image_height, map_x, map_y, map_width,
 			outfile = outfilepattern % (y,x)
 			if not os.path.isfile( outfile):
 				cmd = "jpegtran -optimize -crop %dx%d+%d+%d -outfile %s %s" %\
-					(tile_size,tile_size,x*tile_size,y*tile_size,outfile,imagefile)
+					(tile_size,tile_size,x*tile_size,y*tile_size, outfile,imagefile)
 				print cmd
 				if os.system( cmd):
 					print("WARNING: lossless crop using jpegtran (part of libjpeg-progs) failed. Trying lossy fallback")
 					cmd = "convert %s -crop %dx%d+%d+%d %s" %\
-						(imagefile,tile_size,tile_size,x*tile_size,y*tile_size,outfile)
+						(imagefile,tile_size,tile_size,x*tile_size,y*tile_size, outfile)
 					print cmd
 					if os.system( cmd):
 						sys.exit("ERROR, image crop using jpegtran (part of libjpeg-progs) and imagemagick failed.")
@@ -49,7 +49,7 @@ def process_file( imagefile, image_width, image_height, map_x, map_y, map_width,
 
 def scale_down( infile, outfile, new_width):
 	if not os.path.isfile( outfile):
-		cmd = "convert %s -resize %d %s" % (infile,new_width,outfile)
+		cmd = "convert %s -resize %d %s" % (infile, new_width, outfile)
 		print cmd
 		if os.system( cmd):
 			sys.exit("ERROR. Scaling down using imagemagick failed.")

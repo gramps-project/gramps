@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provides sorting routines for use in GRAMPS. Since these functions are
+Provide sorting routines for use in GRAMPS. Since these functions are
 intended to provide fast sorting, they tend to bypass access methods, 
 and directly use class members. For this reason, care needs to be taken
 to make sure these remain in sync with the rest of the design.

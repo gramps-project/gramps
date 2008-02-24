@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_PersonRefModel.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -49,5 +49,5 @@ class PersonRefModel(gtk.ListStore):
             if p:
                 data = [name_displayer.display(p), p.gramps_id, obj.rel, obj]
             else:
-                data = ['unknown','unknown',obj.rel,obj]
+                data = ['unknown','unknown', obj.rel, obj]
             self.append(row=data)

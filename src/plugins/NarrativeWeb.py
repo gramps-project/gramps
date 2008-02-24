@@ -204,7 +204,7 @@ class BasePage:
         self.page_title = ""
         self.warn_dir = True
 
-    def store_file(self,archive,html_dir,from_path,to_path):
+    def store_file(self,archive, html_dir,from_path,to_path):
         if archive:
             archive.add(str(from_path),str(to_path))
         else:
@@ -237,12 +237,12 @@ class BasePage:
                 self.photo_list[handle] = [lnk]
 
         ext = os.path.splitext(photo.get_path())[1]
-        real_path = "%s/%s" % (self.build_path(handle,'images'),handle+ext)
-        thumb_path = "%s/%s.png" % (self.build_path(handle,'thumb'),handle)
+        real_path = "%s/%s" % (self.build_path(handle,'images'), handle+ext)
+        thumb_path = "%s/%s.png" % (self.build_path(handle,'thumb'), handle)
         return (real_path,thumb_path)
 
-    def create_file(self,name):
-        self.cur_name = self.build_name("",name)
+    def create_file(self, name):
+        self.cur_name = self.build_name("", name)
         if self.archive:
             self.string_io = StringIO()
             of = codecs.EncodedFile(self.string_io,'utf-8',self.encoding,
@@ -253,12 +253,12 @@ class BasePage:
                                     self.encoding,'xmlcharrefreplace')
         return of
 
-    def link_path(self,name,path):
-        path = "%s/%s/%s" % (path,name[0].lower(),name[1].lower())
-        path = self.build_name(path,name)
+    def link_path(self, name,path):
+        path = "%s/%s/%s" % (path, name[0].lower(), name[1].lower())
+        path = self.build_name(path, name)
         return path
 
-    def create_link_file(self,name,path):
+    def create_link_file(self, name,path):
         self.cur_name = self.link_path(name,path)
         if self.archive:
             self.string_io = StringIO()
@@ -266,16 +266,16 @@ class BasePage:
                                     self.encoding,'xmlcharrefreplace')
         else:
             dirname = os.path.join(self.html_dir,
-                                   path,name[0].lower(),
+                                   path, name[0].lower(),
                                    name[1].lower())
             if not os.path.isdir(dirname):
                 os.makedirs(dirname)
-            page_name = self.build_name(dirname,name)
+            page_name = self.build_name(dirname, name)
             of = codecs.EncodedFile(open(page_name, "w"),'utf-8',
                                     self.encoding,'xmlcharrefreplace')
         return of
 
-    def close_file(self,of):
+    def close_file(self, of):
         if self.archive:
             tarinfo = tarfile.TarInfo(self.cur_name)
             tarinfo.size = len(self.string_io.getvalue())
@@ -292,7 +292,7 @@ class BasePage:
     def lnkfmt(self,text):
         return md5.new(text).hexdigest()
 
-    def display_footer(self,of,db):
+    def display_footer(self, of,db):
 
         of.write('</div>\n')
         of.write('<div id="footer">\n')
@@ -323,7 +323,7 @@ class BasePage:
         of.write('</body>\n')
         of.write('</html>\n')
     
-    def display_header(self,of,db,title,author="",up=False):
+    def display_header(self, of,db,title,author="",up=False):
         self.up = up
         if up:
             path = "../../.."
@@ -406,7 +406,7 @@ class BasePage:
         of.write('</div>\n</div>\n')
         of.write('<div id="content">\n')
 
-    def show_link(self,of,lpath,title,path):
+    def show_link(self, of,lpath,title,path):
         if path:
             of.write('<a href="%s/%s%s">%s</a>\n' % (path,lpath,self.ext,title))
         else:
@@ -423,9 +423,9 @@ class BasePage:
 
         if mime_type:
             try:
-                (real_path,newpath) = self.copy_media(photo)
+                (real_path, newpath) = self.copy_media(photo)
                 of.write('<div class="snapshot">\n')
-                self.media_link(of,photo_handle,newpath,'',up=True)
+                self.media_link(of,photo_handle, newpath,'',up=True)
                 of.write('</div>\n')
             except (IOError,OSError),msg:
                 WarningDialog(_("Could not add photo to page"),str(msg))
@@ -457,7 +457,7 @@ class BasePage:
                 title = "(untitled)"
             if mime_type:
                 try:
-                    (real_path,newpath) = self.copy_media(photo)
+                    (real_path, newpath) = self.copy_media(photo)
                     descr = " ".join(wrapper.wrap(title))
                     self.media_link(of, photo_handle, newpath, descr, up=True)
                 except (IOError,OSError),msg:
@@ -478,7 +478,7 @@ class BasePage:
         of.write('<br clear="all" />\n')
         of.write('</div>\n')
 
-    def display_note_list(self,of,db,notelist=None):
+    def display_note_list(self, of,db, notelist=None):
         if not notelist:
             return
         
@@ -501,7 +501,7 @@ class BasePage:
                 of.write('<p>%s</p>\n' % text)
                 of.write('</div>\n')
 
-    def display_url_list(self,of,urllist=None):
+    def display_url_list(self, of,urllist=None):
         if not urllist:
             return
         of.write('<div id="weblinks">\n')
@@ -572,7 +572,7 @@ class BasePage:
                 notelist = sref.get_note_list()
                 for notehandle in notelist:
                     note = self.db.get_note_from_handle(notehandle)
-                    tmp.append("%s: %s" % (_('Text'),note.get(True)))
+                    tmp.append("%s: %s" % (_('Text'), note.get(True)))
                 if len(tmp) > 0:
                     of.write('\t<tr><td></td>')
                     of.write('<td class="field">')
@@ -585,7 +585,7 @@ class BasePage:
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def display_references(self,of,db,handlelist):
+    def display_references(self, of,db, handlelist):
         if not handlelist:
             return
         of.write('<div id="references">\n')
@@ -597,22 +597,22 @@ class BasePage:
                           cmp = locale.strcoll)
 
         index = 1
-        for (path,name,gid) in sortlist:
+        for (path, name,gid) in sortlist:
             of.write('<tr><td class="field">%d. ' % index)
-            self.person_link(of,path,name,gid)
+            self.person_link(of,path, name,gid)
             of.write('</td></tr>\n')
             index = index + 1
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def build_path(self,handle,dirroot,up=False):
+    def build_path(self, handle,dirroot,up=False):
         path = ""
         if up:
             path = '../../../%s/%s/%s' % (dirroot,
                                           handle[0].lower(),
                                           handle[1].lower())
         else:
-            path = "%s/%s/%s" % (dirroot,handle[0].lower(),handle[1].lower())           
+            path = "%s/%s/%s" % (dirroot, handle[0].lower(), handle[1].lower())           
         return path
             
     def build_name(self,path,base):
@@ -621,44 +621,44 @@ class BasePage:
         else:
             return base + self.ext
 
-    def person_link(self,of,path,name,gid="",up=True):
+    def person_link(self, of,path, name,gid="",up=True):
         if up:
             path = "../../../" + path
 
-        of.write('<a href="%s">%s' % (path,name))
+        of.write('<a href="%s">%s' % (path, name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         of.write('</a>')
 
-    def surname_link(self,of,name,opt_val=None,up=False):
+    def surname_link(self, of, name, opt_val=None,up=False):
         handle = self.lnkfmt(name)
         dirpath = self.build_path(handle,'srn',up)
 
-        of.write('<a href="%s/%s%s">%s' % (dirpath,handle,self.ext,name))
+        of.write('<a href="%s/%s%s">%s' % (dirpath, handle,self.ext, name))
         if opt_val != None:
             of.write('&nbsp;(%d)' % opt_val)
         of.write('</a>')
 
-    def media_ref_link(self,of,handle,name,up=False):
+    def media_ref_link(self, of, handle, name,up=False):
         dirpath = self.build_path(handle,'img',up)
         of.write('<a href="%s/%s%s">%s</a>' % (
-            dirpath,handle,self.ext,name))
+            dirpath, handle,self.ext, name))
 
-    def media_link(self,of,handle,path,name,up,usedescr=True):
+    def media_link(self, of, handle,path, name,up,usedescr=True):
         dirpath = self.build_path(handle,'img',up)
         of.write('<div class="thumbnail">\n')
-        of.write('<p><a href="%s/%s%s">' % (dirpath,handle,self.ext))
+        of.write('<p><a href="%s/%s%s">' % (dirpath, handle,self.ext))
         of.write('<img src="../../../%s" ' % path)
         of.write('alt="%s" /></a></p>\n' % name)
         if usedescr:
             of.write('<p>%s</p>\n' % name)
         of.write('</div>\n')
 
-    def doc_link(self,of,handle,name,up,usedescr=True):
+    def doc_link(self, of, handle, name,up,usedescr=True):
         path = os.path.join('images','document.png')
         dirpath = self.build_path(handle,'img',up)
         of.write('<div class="thumbnail">\n')
-        of.write('<p><a href="%s/%s%s">' % (dirpath,handle,self.ext))
+        of.write('<p><a href="%s/%s%s">' % (dirpath, handle,self.ext))
         of.write('<img src="../../../%s" ' % path)
         of.write('alt="%s" /></a>' % name)
         of.write('</p>\n')
@@ -666,26 +666,26 @@ class BasePage:
             of.write('<p>%s</p>\n' % name)
         of.write('</div>\n')
 
-    def source_link(self,of,handle,name,gid="",up=False):
+    def source_link(self, of, handle, name,gid="",up=False):
         dirpath = self.build_path(handle,'src',up)
         of.write('<a href="%s/%s%s">%s' % (
-            dirpath,handle,self.ext,name))
+            dirpath, handle,self.ext, name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         of.write('</a>')
 
-    def place_link(self,of,handle,name,gid="",up=False):
+    def place_link(self, of, handle, name,gid="",up=False):
         dirpath = self.build_path(handle,'plc',up)
         of.write('<a href="%s/%s%s">%s' % (
-            dirpath,handle,self.ext,name))
+            dirpath, handle,self.ext, name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         of.write('</a>')
 
-    def place_link_str(self,handle,name,gid="",up=False):
+    def place_link_str(self, handle, name,gid="",up=False):
         dirpath = self.build_path(handle,'plc',up)
         retval = '<a href="%s/%s%s">%s' % (
-            dirpath,handle,self.ext,name)
+            dirpath, handle,self.ext, name)
         if not self.noid and gid != "":
             retval = retval + '&nbsp;<span class="grampsid">[%s]</span>' % gid
         return retval + '</a>'
@@ -731,7 +731,7 @@ class IndividualListPage(BasePage):
 
         person_handle_list = sort_people(db,person_handle_list)
 
-        for (surname,handle_list) in person_handle_list:
+        for (surname, handle_list) in person_handle_list:
             first = True
             of.write('<tr><td colspan="%d">&nbsp;</td></tr>\n' % column_count)
             for person_handle in handle_list:
@@ -983,24 +983,24 @@ class PlaceListPage(BasePage):
         
         for handle in handle_list:
             place = db.get_place_from_handle(handle)
-            n = ReportUtils.place_name(db,handle)
+            n = ReportUtils.place_name(db, handle)
 
             if not n or len(n) == 0:
                 continue
             
-            letter = normalize('NFD',n)[0].upper()
+            letter = normalize('NFD', n)[0].upper()
             
             if letter != last_letter:
                 last_letter = letter
                 of.write('<tr><td colspan="2">&nbsp;</td></tr>\n')
                 of.write('<tr><td class="category">%s</td>' % last_letter)
                 of.write('<td class="data">')
-                self.place_link(of,place.handle,n,place.gramps_id)
+                self.place_link(of,place.handle, n,place.gramps_id)
                 of.write('</td></tr>')
             else:
                 of.write('<tr><td class="category">&nbsp;</td>')
                 of.write('<td class="data">')
-                self.place_link(of,place.handle,n,place.gramps_id)
+                self.place_link(of,place.handle, n,place.gramps_id)
                 of.write('</td></tr>')
             
         of.write('</tbody>\n</table>\n')
@@ -1117,7 +1117,7 @@ class MediaPage(BasePage):
             'page_number' : page_number, 'total_pages' : total_pages }
         of.write('&nbsp;&nbsp;%s&nbsp;&nbsp;' % data)
         if next:
-            self.media_ref_link(of,next,_('Next'),True)
+            self.media_ref_link(of, next,_('Next'),True)
 
         of.write('</div>\n')
 
@@ -1219,7 +1219,7 @@ class MediaPage(BasePage):
             self.bibli.add_reference(sref)
         self.display_source_refs(of, db)
 
-    def display_attr_list(self,of,attrlist=None):
+    def display_attr_list(self, of,attrlist=None):
         if not attrlist:
             return
         of.write('<div id="attributes">\n')
@@ -1233,7 +1233,7 @@ class MediaPage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def copy_source_file(self,handle,photo):
+    def copy_source_file(self, handle,photo):
         ext = os.path.splitext(photo.get_path())[1]
         to_dir = self.build_path(handle,'images')
         newpath = to_dir + "/" + handle + ext
@@ -1247,7 +1247,7 @@ class MediaPage(BasePage):
                 if not os.path.isdir(to_dir):
                     os.makedirs(to_dir)
                 shutil.copyfile(fullpath,
-                                os.path.join(self.html_dir,newpath))
+                                os.path.join(self.html_dir, newpath))
             return newpath
         except (IOError,OSError),msg:
             error = _("Missing media object:") +                               \
@@ -1255,9 +1255,9 @@ class MediaPage(BasePage):
             WarningDialog(error,str(msg))            
             return None
 
-    def copy_thumbnail(self,handle,photo):
+    def copy_thumbnail(self, handle,photo):
         to_dir = self.build_path(handle,'thumb')
-        to_path = os.path.join(to_dir,handle+".png")
+        to_path = os.path.join(to_dir, handle+".png")
         if photo.get_mime_type():
             from_path = ThumbNails.get_thumbnail_path(Utils.media_path_full(
                                                             self.db, 
@@ -1503,7 +1503,7 @@ class SourcesPage(BasePage):
             (source, handle) = source_dict[key]
             of.write('<tr><td class="category">%d.</td>\n' % index)
             of.write('<td class="data">')
-            self.source_link(of,handle,source.get_title(),source.gramps_id)
+            self.source_link(of, handle,source.get_title(),source.gramps_id)
             of.write('</td></tr>\n')
             index += 1
             
@@ -1594,7 +1594,7 @@ class GalleryPage(BasePage):
             of.write('<td class="category">%d.</td>\n' % index)
             
             of.write('<td class="data">')
-            self.media_ref_link(of,handle,title)
+            self.media_ref_link(of, handle,title)
             of.write('</td>\n')
 
             of.write('<td class="data">%s</td>\n' % date)
@@ -1761,7 +1761,7 @@ class IndividualPage(BasePage):
         self.display_footer(of,db)
         self.close_file(of)
 
-    def display_attr_list(self,of,attrlist=None):
+    def display_attr_list(self, of,attrlist=None):
         if not attrlist:
             return
         of.write('<div id="attributes">\n')
@@ -1777,7 +1777,7 @@ class IndividualPage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def draw_box(self,of,center,col,person):
+    def draw_box(self, of,center,col,person):
         top = center - _HEIGHT/2
         xoff = _XOFFSET+col*(_WIDTH+_HGAP)
         
@@ -1796,13 +1796,13 @@ class IndividualPage(BasePage):
         of.write('<div class="shadow" style="top: %dpx; left: %dpx;"></div>\n' % (top+_SHADOW,xoff+_SHADOW))
         of.write('<div class="border" style="top: %dpx; left: %dpx;"></div>\n' % (top-1, xoff))
 
-    def extend_line(self,of,y0,x0):
+    def extend_line(self, of,y0,x0):
         of.write('<div class="bvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' %
                  (y0,x0,_HGAP/2))
         of.write('<div class="gvline" style="top: %dpx; left: %dpx; width: %dpx;"></div>\n' % 
                  (y0+_SHADOW,x0,_HGAP/2+_SHADOW))
 
-    def connect_line(self,of,y0,y1,col):
+    def connect_line(self, of,y0,y1,col):
         if y0 < y1:
             y = y0
         else:
@@ -1818,7 +1818,7 @@ class IndividualPage(BasePage):
         of.write('<div class="ghline" style="top: %dpx; left: %dpx; height: %dpx;"></div>\n' %
                  (y+_SHADOW,x0+_SHADOW,abs(y0-y1)))
 
-    def draw_connected_box(self,of,center1,center2,col,handle):
+    def draw_connected_box(self, of,center1,center2,col, handle):
         if not handle:
             return None
         person = self.db.get_person_from_handle(handle)
@@ -1826,7 +1826,7 @@ class IndividualPage(BasePage):
         self.connect_line(of,center1,center2,col)
         return person
     
-    def display_tree(self,of):
+    def display_tree(self, of):
         if not self.person.get_main_parents_family_handle():
             return
         
@@ -1846,7 +1846,7 @@ class IndividualPage(BasePage):
         of.write('<table style="height: %dpx; width: %dpx;"><tr><td></td></tr></table>\n' %
                  (max_size,_XOFFSET+(generations)*_WIDTH+(generations-1)*_HGAP))
     
-    def draw_tree(self,of,gen,maxgen,max_size,old_center,new_center,phandle):
+    def draw_tree(self, of,gen,maxgen,max_size, old_center, new_center,phandle):
         if gen > maxgen:
             return
         gen_offset = int(max_size / pow(2,gen+1))
@@ -1855,9 +1855,9 @@ class IndividualPage(BasePage):
             return
 
         if gen == 1:
-            self.draw_box(of,new_center,0,person)
+            self.draw_box(of, new_center,0,person)
         else:
-            self.draw_connected_box(of,old_center,new_center,gen-1,phandle)
+            self.draw_connected_box(of, old_center, new_center,gen-1,phandle)
         
         if gen == maxgen:
             return
@@ -1865,27 +1865,27 @@ class IndividualPage(BasePage):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             line_offset = _XOFFSET + (gen)*_WIDTH + (gen-1)*_HGAP
-            self.extend_line(of,new_center,line_offset)
+            self.extend_line(of, new_center,line_offset)
 
             gen = gen + 1
             family = self.db.get_family_from_handle(family_handle)
             
             f_center = new_center-gen_offset
             f_handle = family.get_father_handle()
-            self.draw_tree(of,gen,maxgen,max_size,new_center,f_center,f_handle)
+            self.draw_tree(of,gen,maxgen,max_size, new_center,f_center,f_handle)
 
             m_center = new_center+gen_offset
             m_handle = family.get_mother_handle()
-            self.draw_tree(of,gen,maxgen,max_size,new_center,m_center,m_handle)
+            self.draw_tree(of,gen,maxgen,max_size, new_center,m_center,m_handle)
 
-    def display_ind_sources(self,of):
+    def display_ind_sources(self, of):
         for sref in self.person.get_source_references():
             self.bibli.add_reference(sref)
         if self.bibli.get_citation_count() == 0:
             return
         self.display_source_refs(of, self.db)
 
-    def display_ind_pedigree(self,of):
+    def display_ind_pedigree(self, of):
 
         parent_handle_list = self.person.get_parent_family_handle_list()
         if parent_handle_list:
@@ -1928,7 +1928,7 @@ class IndividualPage(BasePage):
             of.write('</div>\n')
         of.write('</div>\n</div>\n')
 
-    def display_ind_general(self,of):
+    def display_ind_general(self, of):
         self.page_title = self.sort_name
         self.display_first_image_as_thumbnail(of, self.db,
                                               self.person.get_media_list())
@@ -1966,7 +1966,7 @@ class IndividualPage(BasePage):
         of.write('<td class="data">%s</td>\n' % gender)
         of.write('</tr>\n</table>\n</div>\n')
 
-    def display_ind_events(self,of):
+    def display_ind_events(self, of):
         evt_ref_list = self.person.get_event_ref_list()
         
         if not evt_ref_list:
@@ -1994,7 +1994,7 @@ class IndividualPage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
         
-    def display_addresses(self,of):        
+    def display_addresses(self, of):        
         alist = self.person.get_address_list()
 
         if len(alist) == 0:
@@ -2037,7 +2037,7 @@ class IndividualPage(BasePage):
         val = person.gramps_id
         if use_link:
             path = self.build_path(handle,"ppl",False)
-            fname = self.build_name(path,handle)
+            fname = self.build_name(path, handle)
             self.person_link(of, fname, _nd.display(person),
                              val)
         else:
@@ -2046,7 +2046,7 @@ class IndividualPage(BasePage):
             of.write('&nbsp;&nbsp;&nbsp;(%s)' % str(rel))
         of.write('</td>\n')
 
-    def display_ind_parents(self,of):
+    def display_ind_parents(self, of):
         parent_list = self.person.get_parent_family_handle_list()
 
         if not parent_list:
@@ -2144,7 +2144,7 @@ class IndividualPage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def display_ind_relationships(self,of):
+    def display_ind_relationships(self, of):
         family_list = self.person.get_family_handle_list()
         if not family_list:
             return
@@ -2169,7 +2169,7 @@ class IndividualPage(BasePage):
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def display_spouse(self,of,family,first=True):
+    def display_spouse(self, of,family,first=True):
         gender = self.person.get_gender()
         reltype = family.get_relationship()
 
@@ -2236,7 +2236,7 @@ class IndividualPage(BasePage):
                         of.write( u"<br>".join(text.split("\n")))
                     of.write('</td>\n</tr>\n')
             
-    def pedigree_person(self,of,person,is_spouse=False):
+    def pedigree_person(self, of,person,is_spouse=False):
         person_link = person.handle in self.ind_list
         if is_spouse:
             of.write('<span class="spouse">')
@@ -2251,7 +2251,7 @@ class IndividualPage(BasePage):
             of.write('</span>')
         of.write('<br />\n')
 
-    def pedigree_family(self,of):
+    def pedigree_family(self, of):
         for family_handle in self.person.get_family_handle_list():
             rel_family = self.db.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(self.person,rel_family)
@@ -2365,7 +2365,7 @@ class IndividualPage(BasePage):
 class NavWebReport(Report):
     def __init__(self, database, options):
         """
-        Creates WebReport object that produces the report.
+        Create WebReport object that produces the report.
         
         The arguments are:
 
@@ -2527,7 +2527,7 @@ class NavWebReport(Report):
         ind_list = self.filter.apply(self.database,ind_list)
         return ind_list
 
-    def write_css(self,archive,html_dir,css_file):
+    def write_css(self,archive, html_dir,css_file):
         """
         Copy the CSS file to the destination.
         """
@@ -2579,7 +2579,7 @@ class NavWebReport(Report):
             self.database, self.title, ind_list, self.opts, archive,
             self.photo_list, SurnameListPage.ORDER_BY_COUNT,"surnames_count")
 
-        for (surname,handle_list) in local_list:
+        for (surname, handle_list) in local_list:
             SurnamePage(self.database, surname, handle_list,
                         self.opts, archive, self.photo_list)
             self.progress.step()
@@ -2655,14 +2655,14 @@ class NavWebReport(Report):
             IntroductionPage(self.database, self.title, self.opts,
                              archive, photo_list)
 
-    def store_file(self,archive,html_dir,from_path,to_path):
+    def store_file(self,archive, html_dir,from_path,to_path):
         """
         Store the file in the destination.
         """
         if archive:
             archive.add(from_path,to_path)
         else:
-            shutil.copyfile(from_path,os.path.join(html_dir,to_path))
+            shutil.copyfile(from_path, os.path.join(html_dir,to_path))
 
 #------------------------------------------------------------------------
 #
@@ -2945,7 +2945,7 @@ class NavWebOptions(MenuReportOptions):
         pass
 
 
-def sort_people(db,handle_list):
+def sort_people(db, handle_list):
     flist = set(handle_list)
 
     sname_sub = {}

@@ -210,7 +210,7 @@ def tabstops_to_tabarray(tab_stops, dpi):
 
     ##def set_column_width(self, index, width):
         ##"""
-        ##Sets the width of a specified column to the specified width.
+        ##Set the width of a specified column to the specified width.
 
         ##@param index: column being set (index starts at 0)
         ##@param width: percentage of the table width assigned to the column
@@ -219,7 +219,7 @@ def tabstops_to_tabarray(tab_stops, dpi):
 
     ##def get_column_width(self, index):
         ##"""
-        ##Returns the column width of the specified column as a percentage of
+        ##Return the column width of the specified column as a percentage of
         ##the entire table width.
 
         ##@param index: column to return (index starts at 0)

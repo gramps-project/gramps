@@ -17,7 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
+# $Id:_SourceModel.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +52,7 @@ from _BaseModel import BaseModel
 #-------------------------------------------------------------------------
 class SourceModel(BaseModel):
 
-    def __init__(self,db,scol=0,order=gtk.SORT_ASCENDING,search=None,
+    def __init__(self,db,scol=0, order=gtk.SORT_ASCENDING,search=None,
                  skip=set(), sort_map=None):
         self.map = db.get_raw_source_data
         self.gen_cursor = db.get_source_cursor
@@ -74,7 +74,7 @@ class SourceModel(BaseModel):
             self.column_pubinfo,
             self.sort_change,
             ]
-        BaseModel.__init__(self,db,scol,order,tooltip_column=7,search=search,
+        BaseModel.__init__(self,db,scol, order,tooltip_column=7,search=search,
                            skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):

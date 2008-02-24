@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Family object for GRAMPS
+Family object for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -37,16 +37,16 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from srcbase import SourceBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from attrbase import AttributeBase
-from eventref import EventRef
-from ldsordbase import LdsOrdBase
-from childref import ChildRef
-from familyreltype import FamilyRelType
-from markertype import MarkerType
+from gen.lib.primaryobj import PrimaryObject
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.mediabase import MediaBase
+from gen.lib.attrbase import AttributeBase
+from gen.lib.eventref import EventRef
+from gen.lib.ldsordbase import LdsOrdBase
+from gen.lib.childref import ChildRef
+from gen.lib.familyreltype import FamilyRelType
+from gen.lib.markertype import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -66,10 +66,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
     =====
     Family objects are usually created in one of two ways.
 
-      1. Creating a new Family object, which is then initialized and
-         added to the database.
-      2. Retrieving an object from the database using the records
-         handle.
+    1. Creating a new Family object, which is then initialized and
+        added to the database.
+    2. Retrieving an object from the database using the records
+        handle.
 
     Once a Family object has been modified, it must be committed
     to the database using the database object's commit_family function,
@@ -78,9 +78,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def __init__(self):
         """
-        Creates a new Family instance. After initialization, most
-        data items have empty or null values, including the database
-        handle.
+        Create a new Family instance. 
+        
+        After initialization, most data items have empty or null values, 
+        including the database handle.
         """
         PrimaryObject.__init__(self)
         SourceBase.__init__(self)
@@ -97,9 +98,11 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def serialize(self):
         """
-        Converts the data held in the event to a Python tuple that
-        represents all the data elements. This method is used to convert
-        the object into a form that can easily be saved to a database.
+        Convert the data held in the event to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
 
         These elements may be primative Python types (string, integers),
         complex Python types (lists or tuples, or Python objects. If the
@@ -125,7 +128,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def unserialize(self, data):
         """
-        Converts the data held in a tuple created by the serialize method
+        Convert the data held in a tuple created by the serialize method
         back into the data in a Family structure.
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
@@ -149,14 +152,15 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def _has_handle_reference(self, classname, handle):
         """
-        Returns True if the object has reference to a given handle
-        of given primary object type.
+        Return True if the object has reference to a given handle of given 
+        primary object type.
         
         @param classname: The name of the primary object class.
         @type classname: str
         @param handle: The handle to be checked.
         @type handle: str
-        @return: Returns whether the object has reference to this handle of this object type.
+        @return: Returns whether the object has reference to this handle of 
+                this object type.
         @rtype: bool
         """
         if classname == 'Event':
@@ -170,7 +174,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def _remove_handle_references(self, classname, handle_list):
         """
-        Removes all references in this object to object handles in the list.
+        Remove all references in this object to object handles in the list.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -196,7 +200,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
-        Replaces all references to old handle with those to the new handle.
+        Replace all references to old handle with those to the new handle.
 
         @param classname: The name of the primary object class.
         @type classname: str
@@ -228,7 +232,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -237,7 +241,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -248,9 +252,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_sourcref_child_list(self):
         """
-        Returns the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may refer sources.
+        @return: Returns the list of child secondary child objects that may 
+                refer sources.
         @rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
@@ -259,9 +264,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
@@ -270,10 +276,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -286,8 +292,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through their 
+        children, reference primary objects..
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -296,10 +302,11 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def set_relationship(self, relationship_type):
         """
-        Sets the relationship type between the people identified as the
-        father and mother in the relationship. The type is a tuple whose
-        first item is an integer constant and whose second item is
-        the string. The valid values are:
+        Set the relationship type between the people identified as the
+        father and mother in the relationship. 
+        
+        The type is a tuple whose first item is an integer constant and whose 
+        second item is the string. The valid values are:
 
             - C{FamilyRelType.MARRIED} : indicates a legally recognized married
                 relationship between two individuals. This may be either
@@ -323,16 +330,18 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_relationship(self):
         """
-        Returns the relationship type between the people identified as the
+        Return the relationship type between the people identified as the
         father and mother in the relationship.
         """
         return self.type
     
     def set_father_handle(self, person_handle):
         """
-        Sets the database handle for L{Person} that corresponds to
-        male of the relationship. For a same sex relationship, this
-        can represent either of people involved in the relationship.
+        Set the database handle for L{Person} that corresponds to male of the 
+        relationship. 
+        
+        For a same sex relationship, this can represent either of people 
+        involved in the relationship.
 
         @param person_handle: L{Person} database handle
         @type person_handle: str
@@ -341,8 +350,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_father_handle(self):
         """
-        Returns the database handle of the L{Person} identified as
-        the father of the Family.
+        Return the database handle of the L{Person} identified as the father 
+        of the Family.
 
         @returns: L{Person} database handle
         @rtype: str
@@ -351,9 +360,11 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def set_mother_handle(self, person_handle):
         """
-        Sets the database handle for L{Person} that corresponds to
-        male of the relationship. For a same sex relationship, this
-        can represent either of people involved in the relationship.
+        Set the database handle for L{Person} that corresponds to male of the 
+        relationship. 
+        
+        For a same sex relationship, this can represent either of people 
+        involved in the relationship.
 
         @param person_handle: L{Person} database handle
         @type person_handle: str
@@ -362,8 +373,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_mother_handle(self):
         """
-        Returns the database handle of the L{Person} identified as
-        the mother of the Family.
+        Return the database handle of the L{Person} identified as the mother 
+        of the Family.
 
         @returns: L{Person} database handle
         @rtype: str
@@ -372,8 +383,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def add_child_ref(self, child_ref):
         """
-        Adds the database handle for L{Person} to the Family's list
-        of children.
+        Add the database handle for L{Person} to the Family's list of children.
 
         @param child_ref: Child Reference instance
         @type  child_ref: ChildRef
@@ -384,8 +394,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             
     def remove_child_ref(self, child_ref):
         """
-        Removes the database handle for L{Person} to the Family's list
-        of children if the L{Person} is already in the list.
+        Remove the database handle for L{Person} to the Family's list of 
+        children if the L{Person} is already in the list.
 
         @param child_ref: Child Reference instance
         @type child_ref: ChildRef
@@ -401,8 +411,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def remove_child_handle(self, child_handle):
         """
-        Removes the database handle for L{Person} to the Family's list
-        of children if the L{Person} is already in the list.
+        Remove the database handle for L{Person} to the Family's list of 
+        children if the L{Person} is already in the list.
 
         @param child_handle: L{Person} database handle
         @type  child_handle: str
@@ -416,8 +426,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_child_ref_list(self):
         """
-        Returns the list of L{ChildRef} handles identifying the children
-        of the Family.
+        Return the list of L{ChildRef} handles identifying the children of the 
+        Family.
 
         @return: Returns the list of L{ChildRef} handles assocated with
             the Family.
@@ -427,7 +437,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def set_child_ref_list(self, child_ref_list):
         """
-        Assigns the passed list to the Family's list children.
+        Assign the passed list to the Family's list children.
 
         @param child_ref_list: List of Child Reference instances to be
                                associated as the Family's list of children.
@@ -437,7 +447,8 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def add_event_ref(self, event_ref):
         """
-        Adds the L{EventRef} to the Family instance's L{EventRef} list.
+        Add the L{EventRef} to the Family instance's L{EventRef} list.
+        
         This is accomplished by assigning the L{EventRef} for the valid
         L{Event}in the current database.
         
@@ -461,7 +472,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_event_ref_list(self) :
         """
-        Returns the list of L{EventRef} objects associated with L{Event}
+        Return the list of L{EventRef} objects associated with L{Event}
         instances.
 
         @returns: Returns the list of L{EventRef} objects associated with
@@ -472,7 +483,7 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def set_event_ref_list(self, event_ref_list) :
         """
-        Sets the Family instance's L{EventRef} list to the passed list.
+        Set the Family instance's L{EventRef} list to the passed list.
 
         @param event_ref_list: List of valid L{EventRef} objects
         @type event_ref_list: list

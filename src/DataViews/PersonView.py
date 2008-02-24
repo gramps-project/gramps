@@ -82,7 +82,7 @@ class PersonView(PageView.PersonNavView):
 
     def __init__(self, dbstate, uistate):
         """
-        Creates the new PersonView interface, with the current dbstate and uistate
+        Create the new PersonView interface, with the current dbstate and uistate
         """
         PageView.PersonNavView.__init__(self, _('People'), dbstate, uistate)
         
@@ -247,7 +247,7 @@ class PersonView(PageView.PersonNavView):
 
     def get_stock(self):
         """
-        Returns the name of the stock icon to use for the display.
+        Return the name of the stock icon to use for the display.
         This assumes that this icon has already been registered with
         GNOME as a stock icon.
         """
@@ -514,7 +514,7 @@ class PersonView(PageView.PersonNavView):
 
     def build_tree(self, skip=[]):
         """
-        Creates a new PeopleModel instance. Essentially creates a complete
+        Create a new PeopleModel instance. Essentially creates a complete
         rebuild of the data. We need to temporarily store the active person, 
         since it can change when rows are unselected when the model is set.
         """

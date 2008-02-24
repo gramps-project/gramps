@@ -102,13 +102,13 @@ class NoteView(PageView.ListView):
 
     def get_bookmarks(self):
         """
-        Returns the bookmark object
+        Return the bookmark object
         """
         return self.dbstate.db.get_note_bookmarks()
 
     def drag_info(self):
         """
-        Indicates that the drag type is an EVENT
+        Indicate that the drag type is an EVENT
         """
         return DdTargets.NOTE_LINK
 

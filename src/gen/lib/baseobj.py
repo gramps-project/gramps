@@ -39,26 +39,28 @@ import re
 class BaseObject:
     """
     The BaseObject is the base class for all data objects in GRAMPS,
-    whether primary or not. Its main goal is to provide common capabilites
-    to all objects, such as searching through all available information.
+    whether primary or not. 
+    
+    Its main goal is to provide common capabilites to all objects, such as 
+    searching through all available information.
     """
     
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         assert False, "Needs to be overridden in the derived class"
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         assert False, "Needs to be overridden in the derived class"
         return self
     
     def matches_string(self, pattern, case_sensitive=False):
         """
-        Returns True if any text data in the object or any of it's child
+        Return True if any text data in the object or any of it's child
         objects matches a given pattern.
 
         @param pattern: The pattern to match.
@@ -89,7 +91,7 @@ class BaseObject:
 
     def matches_regexp(self, pattern, case_sensitive=False):
         """
-        Returns True if any text data in the object or any of it's child
+        Return True if any text data in the object or any of it's child
         objects matches a given regular expression.
 
         @param pattern: The pattern to match.
@@ -116,7 +118,7 @@ class BaseObject:
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -125,7 +127,7 @@ class BaseObject:
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -134,17 +136,17 @@ class BaseObject:
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: Returns the list of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return []
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
+        Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
@@ -154,10 +156,10 @@ class BaseObject:
 
     def get_referenced_handles_recursively(self):
         """
-        Returns the list of (classname,handle) tuples for all referenced
+        Return the list of (classname, handle) tuples for all referenced
         primary objects, whether directly or through child objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: Returns the list of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_handles()

@@ -51,8 +51,8 @@ class HasNote(Rule):
     description = _("Matches Notes with particular parameters")
     category    = _('General filters')
 
-    def apply(self,db,note):
-        if not self.match_substring(0,note.get()):
+    def apply(self,db, note):
+        if not self.match_substring(0, note.get()):
             return False
 
         if self.list[1]:

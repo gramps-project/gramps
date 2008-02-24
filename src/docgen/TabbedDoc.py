@@ -28,7 +28,7 @@ class TabbedDoc:
         self.columns = columns
         self.name = ""
 
-    def creator(self,name):
+    def creator(self, name):
         self.name = name
 
     def open(self,filename):

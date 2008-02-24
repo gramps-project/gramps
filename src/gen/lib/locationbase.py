@@ -21,7 +21,7 @@
 # $Id$
 
 """
-LocationBase class for GRAMPS
+LocationBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -36,8 +36,8 @@ class LocationBase:
     
     def __init__(self, source=None):
         """
-        Creates a LocationBase object,
-        copying from the source object if it exists.
+        Create a LocationBase object, copying from the source object if it 
+        exists.
         """
         if source:
             self.street = source.street
@@ -58,14 +58,14 @@ class LocationBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (self.street, self.city, self.county, self.state,
                 self.country, self.postal, self.phone)
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (self.street, self.city, self.county, self.state, self.country,
          self.postal, self.phone) = data
@@ -73,7 +73,7 @@ class LocationBase:
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -81,57 +81,57 @@ class LocationBase:
         return [self.city, self.state, self.country, self.postal, self.phone]
 
     def set_street(self, val):
-        """sets the street portion of the Location"""
+        """Set the street portion of the Location."""
         self.street = val
 
     def get_street(self):
-        """returns the street portion of the Location"""
+        """Return the street portion of the Location."""
         return self.street
 
     def set_city(self, data):
-        """sets the city name of the LocationBase object"""
+        """Set the city name of the LocationBase object."""
         self.city = data
 
     def get_city(self):
-        """returns the city name of the LocationBase object"""
+        """Return the city name of the LocationBase object."""
         return self.city
 
     def set_postal_code(self, data):
-        """sets the postal code of the LocationBase object"""
+        """Set the postal code of the LocationBase object."""
         self.postal = data
 
     def get_postal_code(self):
-        """returns the postal code of the LocationBase object"""
+        """Return the postal code of the LocationBase object."""
         return self.postal
 
     def set_phone(self, data):
-        """sets the phone number of the LocationBase object"""
+        """Set the phone number of the LocationBase object."""
         self.phone = data
 
     def get_phone(self):
-        """returns the phone number of the LocationBase object"""
+        """Return the phone number of the LocationBase object."""
         return self.phone
 
     def set_state(self, data):
-        """sets the state name of the LocationBase object"""
+        """Set the state name of the LocationBase object."""
         self.state = data
 
     def get_state(self):
-        """returns the state name of the LocationBase object"""
+        """Return the state name of the LocationBase object."""
         return self.state
 
     def set_country(self, data):
-        """sets the country name of the LocationBase object"""
+        """Set the country name of the LocationBase object."""
         self.country = data
 
     def get_country(self):
-        """returns the country name of the LocationBase object"""
+        """Return the country name of the LocationBase object."""
         return self.country
 
     def set_county(self, data):
-        """sets the county name of the LocationBase object"""
+        """Set the county name of the LocationBase object."""
         self.county = data
 
     def get_county(self):
-        """returns the county name of the LocationBase object"""
+        """Return the county name of the LocationBase object."""
         return self.county

@@ -24,6 +24,11 @@
 Repository Reference class for GRAMPS
 """
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -31,11 +36,11 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from notebase import NoteBase
-from refbase import RefBase
-from srcmediatype import SourceMediaType
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.notebase import NoteBase
+from gen.lib.refbase import RefBase
+from gen.lib.srcmediatype import SourceMediaType
 
 #-------------------------------------------------------------------------
 #
@@ -60,7 +65,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (
             NoteBase.serialize(self),
@@ -71,7 +76,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (note_list, ref, self.call_number, media_type, privacy) = data
         self.media_type = InstanceType(SourceMediaType)
@@ -83,7 +88,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -92,10 +97,10 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()

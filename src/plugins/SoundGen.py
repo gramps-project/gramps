@@ -102,14 +102,14 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
             
         self.show()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-other')
 
     def build_menu_names(self, obj):
         return (self.label,None)
 
-    def on_apply_clicked(self,obj):
+    def on_apply_clicked(self, obj):
         try:
             se_text = soundex.soundex(unicode(obj.get_text()))
         except UnicodeEncodeError:
@@ -126,8 +126,8 @@ class SoundGenOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #-------------------------------------------------------------------------
 #

@@ -158,9 +158,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('søster')
         return self.pair_up(result)
 
-    def get_relationship(self,db,orig_person,other_person):
+    def get_relationship(self,db, orig_person, other_person):
         """
-        Returns a string representing the relationshp between the two people,
+        Return a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
     
         Special cases: relation strings "", "undefined" and "spouse".
@@ -172,14 +172,14 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         if orig_person.get_handle() == other_person.get_handle():
             return ('', [])
 
-        is_spouse = self.is_spouse(db,orig_person,other_person)
+        is_spouse = self.is_spouse(db, orig_person, other_person)
         if is_spouse:
             return (is_spouse,[])
 
         #get_relationship_distance changed, first data is relation to 
         #orig person, apperently secondRel in this function
         (secondRel,firstRel,common) = \
-                     self.get_relationship_distance(db,orig_person,other_person)
+                     self.get_relationship_distance(db, orig_person, other_person)
 
         if type(common) == types.StringType or \
            type(common) == types.UnicodeType:

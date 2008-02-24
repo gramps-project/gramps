@@ -20,7 +20,7 @@
 # $Id$
 
 """
-Provides the event view.
+Provide the event view.
 """
 
 #-------------------------------------------------------------------------
@@ -109,13 +109,13 @@ class EventView(PageView.ListView):
 
     def get_bookmarks(self):
         """
-        Returns the bookmark object
+        Return the bookmark object
         """
         return self.dbstate.db.get_event_bookmarks()
 
     def drag_info(self):
         """
-        Indicates that the drag type is an EVENT
+        Indicate that the drag type is an EVENT
         """
         return DdTargets.EVENT
 

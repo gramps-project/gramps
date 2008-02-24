@@ -21,9 +21,14 @@
 # $Id$
 
 """
-Place object for GRAMPS
+Place object for GRAMPS.
 """
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -31,13 +36,13 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from srcbase import SourceBase
-from notebase import NoteBase
-from mediabase import MediaBase
-from urlbase import UrlBase
-from location import Location
-from markertype import MarkerType
+from gen.lib.primaryobj import PrimaryObject
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.mediabase import MediaBase
+from gen.lib.urlbase import UrlBase
+from gen.lib.location import Location
+from gen.lib.markertype import MarkerType
 
 _EMPTY_LOC = Location().serialize()
 
@@ -50,12 +55,12 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
     """
     Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
-    a collection of images and URLs, a note and a source
+    a collection of images and URLs, a note and a source.
     """
     
     def __init__(self, source=None):
         """
-        Creates a new Place object, copying from the source if present.
+        Create a new Place object, copying from the source if present.
 
         @param source: A Place object used to initialize the new Place
         @type source: Place
@@ -80,9 +85,11 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def serialize(self):
         """
-        Converts the data held in the Place to a Python tuple that
-        represents all the data elements. This method is used to convert
-        the object into a form that can easily be saved to a database.
+        Convert the data held in the Place to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
 
         These elements may be primative Python types (string, integers),
         complex Python types (lists or tuples, or Python objects. If the
@@ -110,7 +117,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def unserialize(self, data):
         """
-        Converts the data held in a tuple created by the serialize method
+        Convert the data held in a tuple created by the serialize method
         back into the data in a Place object.
 
         @param data: tuple containing the persistent data associated the
@@ -136,7 +143,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -145,7 +152,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -158,7 +165,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_sourcref_child_list(self):
         """
-        Returns the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer sources.
 
         @return: List of child secondary child objects that may refer sources.
         @rtype: list
@@ -167,17 +174,18 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.media_list + self.source_list
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -186,17 +194,17 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return self.get_referenced_note_handles()
 
     def set_title(self, title):
         """
-        Sets the descriptive title of the Place object
+        Set the descriptive title of the Place object.
 
         @param title: descriptive title to assign to the Place
         @type title: str
@@ -205,7 +213,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_title(self):
         """
-        Returns the descriptive title of the Place object
+        Return the descriptive title of the Place object.
 
         @returns: Returns the descriptive title of the Place
         @rtype: str
@@ -214,7 +222,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def set_longitude(self, longitude):
         """
-        Sets the longitude of the Place object
+        Set the longitude of the Place object.
 
         @param longitude: longitude to assign to the Place
         @type longitude: str
@@ -223,7 +231,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_longitude(self):
         """
-        Returns the longitude of the Place object
+        Return the longitude of the Place object.
 
         @returns: Returns the longitude of the Place
         @rtype: str
@@ -232,7 +240,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def set_latitude(self, latitude):
         """
-        Sets the latitude of the Place object
+        Set the latitude of the Place object.
 
         @param latitude: latitude to assign to the Place
         @type latitude: str
@@ -241,7 +249,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_latitude(self):
         """
-        Returns the latitude of the Place object
+        Return the latitude of the Place object.
 
         @returns: Returns the latitude of the Place
         @rtype: str
@@ -250,12 +258,13 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_main_location(self):
         """
-        Returns the L{Location} object representing the primary information for the
-        Place instance. If a L{Location} hasn't been assigned yet, an empty one is
-        created.
+        Return the L{Location} object representing the primary information for 
+        the Place instance. 
+        
+        If a L{Location} hasn't been assigned yet, an empty one is created.
 
-        @returns: Returns the L{Location} instance representing the primary location
-            information about the Place
+        @returns: Returns the L{Location} instance representing the primary 
+                location information about the Place.
         @rtype: L{Location}
         """
         if not self.main_loc:
@@ -264,20 +273,22 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def set_main_location(self, location):
         """
-        Assigns the main location information about the Place to the L{Location}
-        object passed
+        Assign the main location information about the Place to the L{Location}
+        object passed.
 
-        @param location: L{Location} instance to assign to as the main information for
-            the Place
+        @param location: L{Location} instance to assign to as the main 
+                information for the Place.
         @type location: L{Location}
         """
         self.main_loc = location
 
     def get_alternate_locations(self):
         """
-        Returns a list of alternate L{Location} objects the present alternate information
-        about the current Place. A Place can have more than one L{Location}, since names
-        and jurisdictions can change over time for the same place.
+        Return a list of alternate L{Location} objects the present alternate 
+        information about the current Place. 
+        
+        A Place can have more than one L{Location}, since names and 
+        jurisdictions can change over time for the same place.
 
         @returns: Returns the alternate L{Location}s for the Place
         @rtype: list of L{Location} objects
@@ -286,17 +297,17 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def set_alternate_locations(self, location_list):
         """
-        Replaces the current alternate L{Location} object list with the new one.
+        Replace the current alternate L{Location} object list with the new one.
 
-        @param location_list: The list of L{Location} objects to assign to the Place's
-            internal list
+        @param location_list: The list of L{Location} objects to assign to the 
+                Place's internal list.
         @type location_list: list of L{Location} objects
         """
         self.alt_loc = location_list
 
     def add_alternate_locations(self, location):
         """
-        Adds a L{Location} object to the alternate location list
+        Add a L{Location} object to the alternate location list.
 
         @param location: L{Location} instance to add
         @type location: L{Location}
@@ -306,7 +317,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_display_info(self):
         """
-        Gets the display information associated with the object.
+        Get the display information associated with the object.
 
         This includes the information that is used for display and for sorting.
         Returns a list consisting of 13 strings. These are:
@@ -315,7 +326,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Main Location City, Main Location State/Province,
         Main Location Country, upper case Place Title, upper case Parish,
         upper case city, upper case county, upper case state,
-        upper case country
+        upper case country.
         """
         
         if self.main_loc:

@@ -48,7 +48,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def __init__(self,db,mode,current_year=None,years_after_death=0):
         """
-        Creates a new LivingProxyDb instance.
+        Create a new LivingProxyDb instance.
         
         @param db: The database to be a proxy for
         @type db: DbBase
@@ -204,7 +204,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_person_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Person in
+        Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
         handles = []
@@ -219,7 +219,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_place_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Place in
+        Return a list of database handles, one handle for each Place in
         the database. If sort_handles is True, the list is sorted by
         Place title.
         """
@@ -227,7 +227,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_source_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Source in
+        Return a list of database handles, one handle for each Source in
         the database. If sort_handles is True, the list is sorted by
         Source title.
         """
@@ -235,35 +235,35 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_media_object_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each MediaObject in
         the database. If sort_handles is True, the list is sorted by title.
         """
         return self.db.get_media_object_handles(sort_handles)
 
     def get_event_handles(self):
         """
-        Returns a list of database handles, one handle for each Event in
+        Return a list of database handles, one handle for each Event in
         the database. 
         """
         return self.db.get_event_handles()
 
     def get_family_handles(self):
         """
-        Returns a list of database handles, one handle for each Family in
+        Return a list of database handles, one handle for each Family in
         the database.
         """
         return self.db.get_family_handles()
 
     def get_repository_handles(self):
         """
-        Returns a list of database handles, one handle for each Repository in
+        Return a list of database handles, one handle for each Repository in
         the database.
         """
         return self.db.get_repository_handles()
 
     def get_note_handles(self):
         """
-        Returns a list of database handles, one handle for each Note in
+        Return a list of database handles, one handle for each Note in
         the database.
         """
         return self.db.get_note_handles()
@@ -361,7 +361,7 @@ class LivingProxyDb(ProxyDbBase):
             if class_name == 'Person':
                 if not self.get_person_from_handle(handle):
                     continue
-            yield (class_name,handle)
+            yield (class_name, handle)
         return
     
     def __is_living(self,person):

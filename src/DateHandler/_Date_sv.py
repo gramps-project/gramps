@@ -19,7 +19,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_Date_sv.py 9912 2008-01-22 09:17:46Z acraphae $
 
 """
 Swedish-specific classes for parsing and displaying dates.
@@ -49,7 +49,7 @@ from _DateHandler import register_datehandler
 #-------------------------------------------------------------------------
 class DateParserSv(DateParser):
     """
-    Converts a text string into a Date object, expecting a date
+    Convert a text string into a Date object, expecting a date
     notation in the swedish language. If the date cannot be converted, 
     the text string is assigned.
     """
@@ -135,7 +135,7 @@ class DateDisplaySv(DateDisplay):
 
     def display(self, date):
         """
-        Returns a text string representing the date.
+        Return a text string representing the date.
         """
         mod = date.get_modifier()
         cal = date.get_calendar()

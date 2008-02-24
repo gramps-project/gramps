@@ -84,7 +84,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.init_options(option_class)
         self.init_interface()
         
-    def init_options(self,option_class):
+    def init_options(self, option_class):
         if type(option_class) == ClassType:
             self.options = option_class(self.raw_name, self.db)
         elif type(option_class) == InstanceType:
@@ -92,11 +92,11 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
         self.options.load_previous_values()
 
-    def build_window_key(self,obj):
+    def build_window_key(self, obj):
         key = self.raw_name
         return key
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Configuration"),self.report_name)
 
     def init_interface(self):
@@ -490,7 +490,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
     #
     #------------------------------------------------------------------------
     def add_tooltip(self,widget,string):
-        """Adds a tooltip to the specified widget"""
+        """Add a tooltip to the specified widget"""
         if not widget or not string:
             return
         tip = gtk.Tooltips()

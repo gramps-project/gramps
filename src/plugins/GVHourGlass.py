@@ -52,7 +52,7 @@ class HourGlassReport(Report):
     """
     def __init__(self, database, options_class):
         """
-        Creates HourGlass object that produces the report.
+        Create HourGlass object that produces the report.
         """
         Report.__init__(self, database, options_class)
         self.__db = database

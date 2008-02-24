@@ -30,7 +30,7 @@ class EditSecondary(ManagedWindow.ManagedWindow):
     HEIGHT_KEY = None
 
     def __init__(self, state, uistate, track, obj, callback=None):
-        """Creates an edit window.  Associates a person with the window."""
+        """Create an edit window.  Associates a person with the window."""
 
         self.obj = obj
         self.dbstate = state
@@ -80,7 +80,7 @@ class EditSecondary(ManagedWindow.ManagedWindow):
     def _create_tabbed_pages(self):
         pass
 
-    def build_window_key(self,obj):
+    def build_window_key(self, obj):
         return id(obj)
         
     def _setup_notebook_tabs(self, notebook):
@@ -108,7 +108,7 @@ class EditSecondary(ManagedWindow.ManagedWindow):
         if notebook.get_current_page() != page_no:
             notebook.set_current_page(page_no)
 
-    def _add_tab(self,notebook,page):
+    def _add_tab(self, notebook,page):
         notebook.insert_page(page, page.get_tab_widget())
         page.add_db_signal_callback(self._add_db_signal)
         page.label.set_use_underline(True)

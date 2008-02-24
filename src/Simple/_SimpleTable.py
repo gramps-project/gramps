@@ -19,7 +19,7 @@
 #
 
 """
-Provides a simplified table creation interface
+Provide a simplified table creation interface
 """
 
 import copy
@@ -31,12 +31,12 @@ import DateHandler
 
 class SimpleTable:
     """
-    Provides a simplified table creation interface.
+    Provide a simplified table creation interface.
     """
 
     def __init__(self, access, doc, title=None):
         """
-        Initializes the class with a simpledb, and simpledoc
+        Initialize the class with a simpledb, and simpledoc
         """
         self.access = access
         self.simpledoc = doc # simpledoc; simpledoc.doc = docgen object
@@ -140,7 +140,7 @@ class SimpleTable:
 
     def row_sort_val(self, col, val):
         """
-        Adds a row of data to sort by.
+        Add a row of data to sort by.
         """
         self.__sort_vals[col].append(val) 
 

@@ -152,11 +152,11 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.sel.disconnect(self.changedkey)
         ManagedWindow.ManagedWindow.close(self, *obj)
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Relationship Calculator tool"),None)
 
-    def on_apply_clicked(self,obj):
-        model,node = self.tree.get_selection().get_selected()
+    def on_apply_clicked(self, obj):
+        model, node = self.tree.get_selection().get_selected()
         if not node:
             return
         
@@ -233,8 +233,8 @@ class RelCalcOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #-------------------------------------------------------------------------
 #

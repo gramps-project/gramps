@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_WriteGrdb.py 9912 2008-01-22 09:17:46Z acraphae $
 
 # Written by Alex Roitman
 
@@ -64,6 +64,6 @@ def exportData(database, filename, person=None, callback=None, cl=False):
         return
     
     # copy all data from new_database to database
-    db_copy(database,new_database,callback)
+    db_copy(database, new_database,callback)
 
     new_database.close()

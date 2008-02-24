@@ -20,11 +20,22 @@
 # $Id$
 
 """
-Marker types
+Marker types.
 """
 
-from grampstype import GrampsType, init_map
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib.grampstype import GrampsType, init_map
 
 class MarkerType(GrampsType):
     """
@@ -56,7 +67,7 @@ class MarkerType(GrampsType):
 
     def set(self, value):
         """
-        sets the marker value
+        Set the marker value.
         """
         if isinstance(value, self.__class__):
             if value.val == self.CUSTOM and value.string == u'':

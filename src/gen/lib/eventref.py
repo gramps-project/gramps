@@ -24,6 +24,11 @@
 Event Reference class for GRAMPS
 """
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -31,12 +36,12 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from notebase import NoteBase
-from attrbase import AttributeBase
-from refbase import RefBase
-from eventroletype import EventRoleType
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.notebase import NoteBase
+from gen.lib.attrbase import AttributeBase
+from gen.lib.refbase import RefBase
+from gen.lib.eventroletype import EventRoleType
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +58,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def __init__(self, source=None):
         """
-        Creates a new EventRef instance, copying from the source if present.
+        Create a new EventRef instance, copying from the source if present.
         """
         PrivacyBase.__init__(self, source)
         NoteBase.__init__(self, source)
@@ -66,7 +71,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (
             PrivacyBase.serialize(self),
@@ -78,7 +83,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (privacy, note_list, attribute_list, ref, role) = data
         PrivacyBase.unserialize(self, privacy)
@@ -91,7 +96,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -100,7 +105,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -109,28 +114,31 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def get_sourcref_child_list(self):
         """
-        Returns the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may refer sources.
+        @return: Returns the list of child secondary child objects that may 
+                refer sources.
         @rtype: list
         """
         return self.attribute_list
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.attribute_list
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: Returns the list of (classname,handle) tuples for referenced objects.
+        @return: Returns the list of (classname, handle) tuples for referenced 
+                objects.
         @rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -140,8 +148,8 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through their 
+        children, reference primary objects..
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -150,12 +158,13 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def has_source_reference(self, src_handle) :
         """
-        Returns True if any of the child objects has reference
-        to this source handle.
+        Return True if any of the child objects has reference to this source 
+        handle.
 
         @param src_handle: The source handle to be checked.
         @type src_handle: str
-        @return: Returns whether any of it's child objects has reference to this source handle.
+        @return: Returns whether any of it's child objects has reference to 
+                this source handle.
         @rtype: bool
         """
         for item in self.get_sourcref_child_list():
@@ -166,8 +175,8 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def remove_source_references(self, src_handle_list):
         """
-        Removes references to all source handles in the list
-        in all child objects.
+        Remove references to all source handles in the list in all child 
+        objects.
 
         @param src_handle_list: The list of source handles to be removed.
         @type src_handle_list: list
@@ -177,8 +186,8 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def replace_source_references(self, old_handle, new_handle):
         """
-        Replaces references to source handles in the list
-        in this object and all child objects.
+        Replace references to source handles in the list in this object and 
+        all child objects.
 
         @param old_handle: The source handle to be replaced.
         @type old_handle: str
@@ -190,12 +199,12 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
 
     def get_role(self):
         """
-        Returns the tuple corresponding to the preset role.
+        Return the tuple corresponding to the preset role.
         """
         return self.role
 
     def set_role(self, role):
         """
-        Sets the role according to the given argument.
+        Set the role according to the given argument.
         """
         self.role.set(role)

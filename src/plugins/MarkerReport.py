@@ -52,7 +52,7 @@ class MarkerReport(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the MarkerReport object that produces the report.
+        Create the MarkerReport object that produces the report.
         
         The arguments are:
 
@@ -355,7 +355,7 @@ class MarkerReport(Report):
         FilterClass = GenericFilterFactory('Note')
         filter = FilterClass()
         filter.add_rule(Rules.Note.HasMarkerOf([self.marker]))
-        note_list = filter.apply(self.database,nlist)
+        note_list = filter.apply(self.database, nlist)
         
         if not note_list:
             return

@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:PlaceUtils.py 9912 2008-01-22 09:17:46Z acraphae $
 
 # Written by Benny Malengier
 
@@ -74,7 +74,7 @@ if 'N' == South or 'S' == North or 'E' == West or 'W' == East:
 
 def conv_lat_lon(latitude, longitude, format="D.D4"):
     """
-    Converts given string latitude and longitude to a required format. 
+    Convert given string latitude and longitude to a required format. 
     Possible formats:
         'D.D4'    : degree notation, 4 decimals 
                     eg +12.0154 , -124.3647

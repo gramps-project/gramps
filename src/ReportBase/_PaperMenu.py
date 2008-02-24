@@ -52,9 +52,9 @@ import Utils
 #
 #-------------------------------------------------------------------------
 try:
-    from xml.sax import make_parser,handler,SAXParseException
+    from xml.sax import make_parser, handler,SAXParseException
 except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
+    from _xmlplus.sax import make_parser, handler,SAXParseException
 
 #-------------------------------------------------------------------------
 #
@@ -346,7 +346,7 @@ class PageSizeParser(handler.ContentHandler):
             name = attrs['name']
             height = Utils.gfloat(attrs['height'])
             width = Utils.gfloat(attrs['width'])
-            self.paper_list.append(BaseDoc.PaperSize(name,height,width))
+            self.paper_list.append(BaseDoc.PaperSize(name, height,width))
 
 #-------------------------------------------------------------------------
 #

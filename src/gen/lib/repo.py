@@ -21,9 +21,14 @@
 # $Id$
 
 """
-Repository object for GRAMPS
+Repository object for GRAMPS.
 """
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -31,12 +36,12 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import PrimaryObject
-from notebase import NoteBase
-from addressbase import AddressBase
-from urlbase import UrlBase
-from repotype import RepositoryType
-from markertype import MarkerType
+from gen.lib.primaryobj import PrimaryObject
+from gen.lib.notebase import NoteBase
+from gen.lib.addressbase import AddressBase
+from gen.lib.urlbase import UrlBase
+from gen.lib.repotype import RepositoryType
+from gen.lib.markertype import MarkerType
 
 #-------------------------------------------------------------------------
 #
@@ -44,10 +49,12 @@ from markertype import MarkerType
 #
 #-------------------------------------------------------------------------
 class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
-    """A location where collections of Sources are found"""
+    """A location where collections of Sources are found."""
     
     def __init__(self):
-        """creates a new Repository instance"""
+        """
+        Create a new Repository instance.
+        """
         PrimaryObject.__init__(self)
         NoteBase.__init__(self)
         AddressBase.__init__(self)
@@ -57,7 +64,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (self.handle, self.gramps_id, self.type.serialize(),
                 unicode(self.name),
@@ -68,8 +75,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
     def unserialize(self, data):
         """
-        Converts the data held in a tuple created by the serialize method
-        back into the data in an Repository structure.
+        Convert the data held in a tuple created by the serialize method
+        back into the data in a Repository structure.
         """
         (self.handle, self.gramps_id, the_type, self.name, note_list,
          address_list, urls, self.change, marker, self.private) = data
@@ -84,7 +91,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -93,7 +100,7 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -102,25 +109,27 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
     def get_sourcref_child_list(self):
         """
-        Returns the list of child secondary objects that may refer sources.
+        Return the list of child secondary objects that may refer sources.
 
-        @return: Returns the list of child secondary child objects that may refer sources.
+        @return: Returns the list of child secondary child objects that may 
+                refer sources.
         @rtype: list
         """
         return self.address_list
 
     def get_note_child_list(self):
         """
-        Returns the list of child secondary objects that may refer notes.
+        Return the list of child secondary objects that may refer notes.
 
-        @return: Returns the list of child secondary child objects that may refer notes.
+        @return: Returns the list of child secondary child objects that may 
+                refer notes.
         @rtype: list
         """
         return self.address_list
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
+        Return the list of child objects which may, directly or through
         their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
@@ -130,22 +139,23 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return self.get_referenced_note_handles()
 
     def has_source_reference(self, src_handle) :
         """
-        Returns True if any of the child objects has reference
-        to this source handle.
+        Return True if any of the child objects has reference to this source 
+        handle.
 
         @param src_handle: The source handle to be checked.
         @type src_handle: str
-        @return: Returns whether any of it's child objects has reference to this source handle.
+        @return: Returns whether any of it's child objects has reference to 
+                this source handle.
         @rtype: bool
         """
         for item in self.get_sourcref_child_list():
@@ -156,8 +166,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
     def remove_source_references(self, src_handle_list):
         """
-        Removes references to all source handles in the list
-        in all child objects.
+        Remove references to all source handles in the list in all child 
+        objects.
 
         @param src_handle_list: The list of source handles to be removed.
         @type src_handle_list: list
@@ -167,8 +177,8 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
 
     def replace_source_references(self, old_handle, new_handle):
         """
-        Replaces references to source handles in the list
-        in this object and all child objects.
+        Replace references to source handles in the list in this object and 
+        all child objects.
 
         @param old_handle: The source handle to be replaced.
         @type old_handle: str

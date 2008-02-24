@@ -141,10 +141,10 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
 
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Tool settings"),_("Find Duplicates tool"))
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
 
@@ -159,7 +159,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             self.ancestors_of(f1.get_father_handle(),id_list)
             self.ancestors_of(f1.get_mother_handle(),id_list)
 
-    def on_merge_ok_clicked(self,obj):
+    def on_merge_ok_clicked(self, obj):
         threshold = self.menu.get_menu().get_active().get_data("v")
         self.use_soundex = int(self.soundex_obj.get_active())
         try:
@@ -265,7 +265,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
         name1 = p1.get_primary_name()
         name2 = p2.get_primary_name()
 
-        chance = self.name_match(name1,name2)
+        chance = self.name_match(name1, name2)
         if chance == -1  :
             return -1
 
@@ -454,7 +454,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             else:
                 return -1
 
-    def name_match(self,name,name1):
+    def name_match(self, name, name1):
 
         if not name1 or not name:
             return 0
@@ -511,7 +511,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                 if name == name2:
                     value = value + 0.5
                     break
-                if name[0] == name2[0] and self.name_compare(name,name2):
+                if name[0] == name2[0] and self.name_compare(name, name2):
                     value = value + 0.25
                     break
         if value == 0:
@@ -532,7 +532,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                 if name == name2:
                     value = value + 0.5
                     break
-                if name[0] == name2[0] and self.name_compare(name,name2):
+                if name[0] == name2[0] and self.name_compare(name, name2):
                     value = value + 0.25
                     break
         if value == 0:
@@ -578,10 +578,10 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         self.redraw()
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Merge candidates"),None)
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
 
@@ -607,7 +607,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
             pn2 = name_displayer.display(p2)
             self.list.add([c1, pn1, pn2,c2],(p1key,p2key))
 
-    def on_do_merge_clicked(self,obj):
+    def on_do_merge_clicked(self, obj):
         store,iter = self.list.selection.get_selected()
         if not iter:
             return
@@ -626,7 +626,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
         self.update()
         self.redraw()
         
-    def update_and_destroy(self,obj):
+    def update_and_destroy(self, obj):
         self.update(1)
         self.close()
         
@@ -666,8 +666,8 @@ class MergeOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

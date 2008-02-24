@@ -108,7 +108,7 @@ def __get_gconf_bool(key):
 #-------------------------------------------------------------------------
 def __build_thumb_path(path, rectangle=None):
     """
-    Converts the specified path into a corresponding path for the thumbnail
+    Convert the specified path into a corresponding path for the thumbnail
     image. We do this by converting the original path into an MD5SUM value
     (which should be unique), adding the '.png' extension, and prepending
     with the GRAMPS thumbnail directory.
@@ -238,7 +238,7 @@ def run_thumbnailer(mime_type, src_file, dest_file, size=const.THUMBSCALE):
 #-------------------------------------------------------------------------
 def get_thumbnail_image(src_file, mtype=None, rectangle=None):
     """
-    Returns the thumbnail image (in GTK Pixbuf format) associated with the
+    Return the thumbnail image (in GTK Pixbuf format) associated with the
     source file passed to the function. If no thumbnail could be found, 
     the associated icon for the mime type is returned, or if that cannot be
     found, a generic document icon is returned.
@@ -272,7 +272,7 @@ def get_thumbnail_image(src_file, mtype=None, rectangle=None):
 #-------------------------------------------------------------------------
 def get_thumbnail_path(src_file, mtype=None, rectangle=None):
     """
-    Returns the path to the thumbnail image associated with the
+    Return the path to the thumbnail image associated with the
     source file passed to the function. If the thumbnail does not exist, 
     or if it is older than the source file, we create a new thumbnail image.
 

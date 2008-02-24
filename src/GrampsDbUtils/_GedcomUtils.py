@@ -50,13 +50,13 @@ class CurrentState:
 
     def __getattr__(self, name):
         """
-        Returns the value associated with the specified attribute.
+        Return the value associated with the specified attribute.
         """
         return self.__dict__.get(name)
 
     def __setattr__(self, name, value):
         """
-        Sets the value associated with the specified attribute.
+        Set the value associated with the specified attribute.
         """
         self.__dict__[name] = value
 
@@ -67,7 +67,7 @@ class CurrentState:
 #-------------------------------------------------------------------------
 class PlaceParser:
     """
-    Provides the ability to parse GEDCOM FORM statements for places, and
+    Provide the ability to parse GEDCOM FORM statements for places, and
     the parse the line of text, mapping the text components to Location
     values based of the FORM statement.
     """
@@ -130,11 +130,11 @@ class PlaceParser:
 #-------------------------------------------------------------------------
 class IdFinder:
     """
-    Provides method of finding the next available ID.
+    Provide method of finding the next available ID.
     """
     def __init__(self, keys, prefix):
         """
-        Initializes the object.
+        Initialize the object.
         """
         self.ids = set(keys)
         self.index = 0
@@ -142,7 +142,7 @@ class IdFinder:
 
     def find_next(self):
         """
-        Returns the next available GRAMPS' ID for a Event object based
+        Return the next available GRAMPS' ID for a Event object based
         off the person ID prefix.
 
         @return: Returns the next available index

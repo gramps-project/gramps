@@ -66,7 +66,7 @@ class FanChart(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the FanChart object that produces the report.
+        Create the FanChart object that produces the report.
         
         The arguments are:
 

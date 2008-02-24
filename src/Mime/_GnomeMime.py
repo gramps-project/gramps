@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_GnomeMime.py 9912 2008-01-22 09:17:46Z acraphae $
 
 import gtk
 import const
@@ -33,7 +33,7 @@ except:
 from gettext import gettext as _
 
 def get_application(type):
-    """Returns the application command and application name of the
+    """Return the application command and application name of the
     specified mime type"""
     try:
         applist = mime_get_short_list_applications(type)
@@ -60,14 +60,14 @@ def _is_good_command(cmd):
     return True
 
 def get_description(type):
-    """Returns the description of the specfied mime type"""
+    """Return the description of the specfied mime type"""
     try:
         return mime_get_description(type)
     except:
         return _("unknown")
 
 def get_type(file):
-    """Returns the mime type of the specified file"""
+    """Return the mime type of the specified file"""
     try:
         return get_mime_type(file)
     except:

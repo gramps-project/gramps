@@ -137,7 +137,7 @@ class LongOpStatus(Callback):
         self._running = False
 
     def should_cancel(self):
-        """Returns true of the user has asked for the operation to be cancelled.
+        """Return true of the user has asked for the operation to be cancelled.
     
         @return: True of the operation should be cancelled.
         @rtype: bool

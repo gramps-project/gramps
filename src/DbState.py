@@ -19,7 +19,7 @@
 #
 
 """
-Provides the database state class
+Provide the database state class
 """
 
 from gen.db import GrampsDbBase
@@ -28,7 +28,7 @@ import Config
 
 class DbState(Callback):
     """
-    Provides a class to encapsulate the state of the database..
+    Provide a class to encapsulate the state of the database..
     """
 
     __signals__ = {
@@ -50,7 +50,7 @@ class DbState(Callback):
 
     def change_active_person(self, person):
         """
-        Changes the active person and emits a signal to notify those who
+        Change the active person and emits a signal to notify those who
         are interested.
         """
         self.active = person
@@ -62,13 +62,13 @@ class DbState(Callback):
 
     def change_active_handle(self, handle):
         """
-        Changes the active person based on the person's handle
+        Change the active person based on the person's handle
         """
         self.change_active_person(self.db.get_person_from_handle(handle))
 
     def get_active_person(self):
         """
-        Gets the current active person. Creates a new instance to make sure that
+        Get the current active person. Creates a new instance to make sure that
         the data is active.
         """
         if self.active: 
@@ -84,7 +84,7 @@ class DbState(Callback):
 
     def change_database_noclose(self, database):
         """
-        Changes the current database. and resets the configuration prefixes.
+        Change the current database. and resets the configuration prefixes.
         """
         self.db = database
         self.db.set_prefixes(
@@ -119,6 +119,6 @@ class DbState(Callback):
         
     def get_database(self):
         """
-        Gets a reference to the current database.
+        Get a reference to the current database.
         """
         return self.db

@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Location class for GRAMPS
+Location class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,8 +29,8 @@ Location class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from locationbase import LocationBase
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.locationbase import LocationBase
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +39,7 @@ from locationbase import LocationBase
 #-------------------------------------------------------------------------
 class Location(SecondaryObject, LocationBase):
     """
-    Provides information about a place.
+    Provide information about a place.
 
     The data including city, county, state, and country.
     Multiple Location objects can represent the same place, since names
@@ -48,7 +48,7 @@ class Location(SecondaryObject, LocationBase):
     
     def __init__(self, source=None):
         """
-        Creates a Location object, copying from the source object if it exists.
+        Create a Location object, copying from the source object if it exists.
         """
         LocationBase.__init__(self, source)
         if source:
@@ -58,13 +58,13 @@ class Location(SecondaryObject, LocationBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (LocationBase.serialize(self), self.parish)
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (lbase, self.parish) = data
         LocationBase.unserialize(self, lbase)
@@ -72,7 +72,7 @@ class Location(SecondaryObject, LocationBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -84,9 +84,9 @@ class Location(SecondaryObject, LocationBase):
                not self.country and not self.postal and not self.phone
         
     def set_parish(self, data):
-        """sets the religious parish name"""
+        """Set the religious parish name."""
         self.parish = data
 
     def get_parish(self):
-        """gets the religious parish name"""
+        """Get the religious parish name."""
         return self.parish

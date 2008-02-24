@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Note class for GRAMPS
+Note class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -37,9 +37,9 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from primaryobj import BasicPrimaryObject
-from notetype import NoteType
-from markertype import MarkerType
+from gen.lib.primaryobj import BasicPrimaryObject
+from gen.lib.notetype import NoteType
+from gen.lib.markertype import MarkerType
 
 ROOT_START_TAG = '<gramps>'
 
@@ -62,7 +62,7 @@ class Note(BasicPrimaryObject):
 
     def __init__(self, text = ""):
         """
-        Creates a new Note object, initializing from the passed string.
+        Create a new Note object, initializing from the passed string.
         """
         BasicPrimaryObject.__init__(self)
         self.text = text
@@ -71,7 +71,7 @@ class Note(BasicPrimaryObject):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (self.handle, self.gramps_id, self.text, self.format,
                 self.type.serialize(), self.change, self.marker.serialize(),
@@ -79,7 +79,7 @@ class Note(BasicPrimaryObject):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (self.handle, self.gramps_id, self.text, self.format,
          the_type, self.change, the_marker, self.private) = data
@@ -91,7 +91,7 @@ class Note(BasicPrimaryObject):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -100,7 +100,7 @@ class Note(BasicPrimaryObject):
 
     def set(self, text):
         """
-        Sets the text associated with the note to the passed string.
+        Set the text associated with the note to the passed string.
 
         @param text: Text string defining the note contents.
         @type text: str
@@ -125,8 +125,8 @@ class Note(BasicPrimaryObject):
             
     def delete_tags(self, markup_text):
         """
-        Creates a plain text version of the note text by removing all 
-        pango markup tags.
+        Create a plain text version of the note text by removing all pango 
+        markup tags.
 
         @param markup_text: Pango style markup text
         @type markup_text: str
@@ -143,7 +143,7 @@ class Note(BasicPrimaryObject):
 
     def append(self, text):
         """
-        Appends the specified text to the text associated with the note.
+        Append the specified text to the text associated with the note.
 
         @param text: Text string to be appended to the note.
         @type text: str
@@ -152,9 +152,9 @@ class Note(BasicPrimaryObject):
 
     def set_format(self, format):
         """
-        Sets the format of the note to the passed value. The value can
-        either indicate Flowed or Preformatted.
-
+        Set the format of the note to the passed value. 
+        
+        The value can either indicate Flowed or Preformatted.
 
         @type format: int
         """
@@ -162,8 +162,9 @@ class Note(BasicPrimaryObject):
 
     def get_format(self):
         """
-        Returns the format of the note. The value can either indicate
-        Flowed or Preformatted.
+        Return the format of the note. 
+        
+        The value can either indicate Flowed or Preformatted.
 
         @returns: 0 indicates Flowed, 1 indicates Preformated
         @rtype: int
@@ -172,6 +173,8 @@ class Note(BasicPrimaryObject):
 
     def set_type(self, the_type):
         """
+        Set descriptive type of the Note.
+        
         @param the_type: descriptive type of the Note
         @type the_type: str
         """
@@ -179,6 +182,8 @@ class Note(BasicPrimaryObject):
 
     def get_type(self):
         """
+        Get descriptive type of the Note.
+        
         @returns: the descriptive type of the Note
         @rtype: str
         """

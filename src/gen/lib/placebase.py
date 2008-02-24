@@ -21,7 +21,7 @@
 # $Id$
 
 """
-PlaceBase class for GRAMPS
+PlaceBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -35,8 +35,10 @@ class PlaceBase:
     """
     def __init__(self, source=None):
         """
-        Initialize a PlaceBase. If the source is not None, then object
-        is initialized from values of the source object.
+        Initialize a PlaceBase. 
+        
+        If the source is not None, then object is initialized from values of 
+        the source object.
 
         @param source: Object used to initialize the new object
         @type source: PlaceBase
@@ -48,7 +50,7 @@ class PlaceBase:
 
     def set_place_handle(self, place_handle):
         """
-        Sets the database handle for L{Place} associated with the object.
+        Set the database handle for L{Place} associated with the object.
 
         @param place_handle: L{Place} database handle
         @type place_handle: str
@@ -57,8 +59,7 @@ class PlaceBase:
 
     def get_place_handle(self):
         """
-        Returns the database handle of the L{Place} assocated with
-        the Event.
+        Return the database handle of the L{Place} assocated with the Event.
 
         @returns: L{Place} database handle
         @rtype: str

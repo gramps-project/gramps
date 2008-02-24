@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:RecentFiles.py 9912 2008-01-22 09:17:46Z acraphae $
 
 # Written by Alex Roitman
 
@@ -57,7 +57,7 @@ class RecentItem:
     Interface to a single GRAMPS recent-items item
     """
 
-    def __init__(self,p="",n="",t=0):
+    def __init__(self,p="", n="",t=0):
         self.path = p
         self.name = n
         self.time = t
@@ -80,8 +80,8 @@ class RecentItem:
     def get_time(self):
         return self.time
 
-    def __cmp__(self,other_item):
-        return cmp(self.time,other_item.time)
+    def __cmp__(self, other_item):
+        return cmp(self.time, other_item.time)
 
 #-------------------------------------------------------------------------
 #
@@ -112,7 +112,7 @@ class RecentFiles:
 
 
 
-    def rename_filename(self,filename,new_filename):
+    def rename_filename(self,filename, new_filename):
          # First we need to walk the existing items to see 
          # if our item is already there
         found = False
@@ -261,9 +261,9 @@ def remove_filename(filename):
     gramps_rf.remove_filename(filename)
     gramps_rf.save()
 
-def rename_filename(filename,new_filename):
+def rename_filename(filename, new_filename):
     gramps_rf = RecentFiles()
-    gramps_rf.rename_filename(filename,new_filename)
+    gramps_rf.rename_filename(filename, new_filename)
     gramps_rf.save()
 
 def check_if_recent(filename):

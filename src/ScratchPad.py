@@ -86,7 +86,7 @@ SCRATCHPAD_FILE = os.path.join(const.HOME_DIR,"scratchpad.dat")
 
 class ScratchPadWrapper(object):
 
-    def __init__(self,dbstate,obj):
+    def __init__(self,dbstate, obj):
         dbstate.connect('database-changed', self.database_changed)
         self.database_changed(dbstate.db)
 
@@ -115,8 +115,8 @@ class ScratchPadWrapper(object):
 
 class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
         
-    def __init__(self,dbstate,obj):
-        ScratchPadWrapper.__init__(self,dbstate,obj)
+    def __init__(self,dbstate, obj):
+        ScratchPadWrapper.__init__(self,dbstate, obj)
 
         #unpack object
         (drag_type, idval, self._obj, val) = pickle.loads(obj)
@@ -133,7 +133,7 @@ class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
                           'MediaObject': self._db.get_object_from_handle,
                           'Source': self._db.get_source_from_handle}
 
-        for (classname,handle) in self._obj.get_referenced_handles_recursively():
+        for (classname, handle) in self._obj.get_referenced_handles_recursively():
             if classname in valid_func_map.keys():
                 if not valid_func_map[classname](handle):
                     return False
@@ -147,8 +147,8 @@ class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.ADDRESS
     ICON         = BLANK_PIC
     
-    def __init__(self,dbstate,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
+    def __init__(self,dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
         self._type  = _("Address")
         self._title = DateHandler.get_date(self._obj)
         self._value = "%s %s %s %s" % (self._obj.get_street(),self._obj.get_city(),
@@ -193,8 +193,8 @@ class ScratchPadLocation(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.LOCATION
     ICON         = BLANK_PIC
     
-    def __init__(self,dbstate,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
+    def __init__(self,dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
         self._type  = _("Location")
         self._value = "%s %s %s" % (self._obj.get_city(),
                                     self._obj.get_state(),self._obj.get_country())
@@ -222,8 +222,8 @@ class ScratchPadEvent(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.EVENT
     ICON         = LINK_PIC
 
-    def __init__(self,dbstate,obj):
-        ScratchPadWrapper.__init__(self,dbstate,obj)
+    def __init__(self,dbstate, obj):
+        ScratchPadWrapper.__init__(self,dbstate, obj)
         self._type  = _("Event Link")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
@@ -277,8 +277,8 @@ class ScratchPadPlace(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.PLACE_LINK
     ICON         = LINK_PIC
 
-    def __init__(self,dbstate,obj):
-        ScratchPadWrapper.__init__(self,dbstate,obj)
+    def __init__(self,dbstate, obj):
+        ScratchPadWrapper.__init__(self,dbstate, obj)
         self._type  = _("Place")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
@@ -306,8 +306,8 @@ class ScratchPadNote(ScratchPadWrapper):
     DRAG_TARGET  = DdTargets.NOTE_LINK
     ICON         = LINK_PIC
 
-    def __init__(self,dbstate,obj):
-        ScratchPadWrapper.__init__(self,dbstate,obj)
+    def __init__(self,dbstate, obj):
+        ScratchPadWrapper.__init__(self,dbstate, obj)
         self._type  = _("Note")
 
         (drag_type, idval, handle, val) = pickle.loads(obj)
@@ -380,8 +380,8 @@ class ScratchPadUrl(ScratchPadGrampsTypeWrapper):
     DRAG_TARGET  = DdTargets.URL
     ICON         = BLANK_PIC
 
-    def __init__(self,dbstate,obj):
-        ScratchPadGrampsTypeWrapper.__init__(self,dbstate,obj)
+    def __init__(self,dbstate, obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,dbstate, obj)
         self._type  = _("Url")
         self._title = self._obj.get_path()
         self._value = self._obj.get_description()
@@ -834,20 +834,20 @@ class ScratchRepositoryLink(ScratchPadWrapper):
 
 class ScratchDropList(object):
 
-    def __init__(self,model,obj_list):
+    def __init__(self,model, obj_list):
         self._model = model
         self._obj_list = pickle.loads(obj_list)
 
     def get_objects(self):
-        return [self._cls(self._model,obj) for obj in self._obj_list]
+        return [self._cls(self._model, obj) for obj in self._obj_list]
 
 class ScratchPersonLinkList(ScratchDropList):
 
     DROP_TARGETS = [DdTargets.PERSON_LINK_LIST]
     DRAG_TARGET  = None
 
-    def __init__(self,model,obj_list):
-        ScratchDropList.__init__(self,model,obj_list)
+    def __init__(self,model, obj_list):
+        ScratchDropList.__init__(self,model, obj_list)
         self._cls = ScratchPersonLink
     
 
@@ -1039,9 +1039,9 @@ class ScratchPadListView:
 
     # handlers for the drag and drop events.
     
-    def on_object_select_row(self,obj):        
+    def on_object_select_row(self, obj):        
         tree_selection = self._widget.get_selection()
-        model,node = tree_selection.get_selected()
+        model, node = tree_selection.get_selected()
 
         self._widget.unset_rows_drag_source()
 
@@ -1058,7 +1058,7 @@ class ScratchPadListView:
 
     def object_drag_data_get(self, widget, context, sel_data, info, time):
         tree_selection = widget.get_selection()
-        model,node = tree_selection.get_selected()
+        model, node = tree_selection.get_selected()
         o = model.get_value(node,1)
         
         sel_data.set(sel_data.target, 8, o.pack())
@@ -1109,11 +1109,11 @@ class ScratchPadListView:
                 node = model.get_iter(path)
                 if (position == gtk.TREE_VIEW_DROP_BEFORE
                     or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
-                    model.insert_before(node,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+                    model.insert_before(node,[o.__class__.DRAG_TARGET.drag_type, o, o.tooltip])
                 else:
-                    model.insert_after(node,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+                    model.insert_after(node,[o.__class__.DRAG_TARGET.drag_type, o, o.tooltip])
             else:
-                model.append([o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+                model.append([o.__class__.DRAG_TARGET.drag_type, o, o.tooltip])
 
             if context.action == ACTION_MOVE:
                 context.finish(True, True, time)
@@ -1169,7 +1169,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
     otree = None
     
     def __init__(self, dbstate, uistate):
-        """Initializes the ScratchPad class, and displays the window"""
+        """Initialize the ScratchPad class, and displays the window"""
 
         ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
         self.dbstate = dbstate
@@ -1216,7 +1216,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_('ScratchPad'),None)
 
     def database_changed(self,database):
@@ -1235,11 +1235,11 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         else:
             self.clear_btn.set_sensitive(True)
         
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-util-scratch-pad')
 
-    def on_clear_clicked(self,obj):
+    def on_clear_clicked(self, obj):
         """Deletes the selected object from the object list"""
         selection = self.object_list.get_selection()
         model, node = selection.get_selected()

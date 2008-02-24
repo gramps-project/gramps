@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_EventSidebarFilter.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -145,7 +145,7 @@ class EventSidebarFilter(SidebarFilter):
 
         return generic_filter
 
-    def on_filters_changed(self,name_space):
+    def on_filters_changed(self, name_space):
         if name_space == 'Event':
             all_filter = GenericEventFilter()
             all_filter.set_name(_("None"))

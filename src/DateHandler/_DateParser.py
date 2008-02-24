@@ -82,7 +82,7 @@ def gregorian_valid(date_tuple):
 #-------------------------------------------------------------------------
 class DateParser:
     """
-    Converts a text string into a Date object. If the date cannot be
+    Convert a text string into a Date object. If the date cannot be
     converted, the text string is assigned.
     """
 
@@ -285,7 +285,7 @@ class DateParser:
 
     def _get_int(self, val):
         """
-        Converts the string to an integer if the value is not None. If the
+        Convert the string to an integer if the value is not None. If the
         value is None, a zero is returned
         """
         if val == None:
@@ -360,7 +360,7 @@ class DateParser:
     
     def _parse_subdate(self, text, subparser=None):
         """
-        Converts only the date portion of a date.
+        Convert only the date portion of a date.
         """
         if subparser == None:
             subparser = self._parse_greg_julian

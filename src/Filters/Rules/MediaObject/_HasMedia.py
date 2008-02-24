@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_HasMedia.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -61,14 +61,14 @@ class HasMedia(Rule):
         except:
             pass
 
-    def apply(self,db,obj):
-        if not self.match_substring(0,obj.get_description()):
+    def apply(self,db, obj):
+        if not self.match_substring(0, obj.get_description()):
             return False
 
-        if not self.match_substring(1,obj.get_mime_type()):
+        if not self.match_substring(1, obj.get_mime_type()):
             return False
 
-        if not self.match_substring(2,obj.get_path()):
+        if not self.match_substring(2, obj.get_path()):
             return False
 
         if self.date:

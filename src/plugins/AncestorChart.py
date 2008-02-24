@@ -160,7 +160,7 @@ class AncestorChart(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates AncestorChart object that produces the report.
+        Create AncestorChart object that produces the report.
         
         The arguments are:
 

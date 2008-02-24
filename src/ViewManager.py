@@ -79,7 +79,7 @@ import ProgressDialog
 
 def show_url(dialog, link, user_data):
     """
-    Sets the about dialog callback for showing the URL. Call the GrampsDisplay
+    Set the about dialog callback for showing the URL. Call the GrampsDisplay
     function to display the link
     """
     GrampsDisplay.url(link)
@@ -316,7 +316,7 @@ class ViewManager:
 
     def __setup_statusbar(self):
         """
-        Creates the statusbar that sits at the bottom of the window
+        Create the statusbar that sits at the bottom of the window
         """
         self.progress = gtk.ProgressBar()
         self.progress.set_size_request(100, -1)
@@ -379,7 +379,7 @@ class ViewManager:
 
     def __init_lists(self):
         """
-        Initializes the actions lists for the UIManager
+        Initialize the actions lists for the UIManager
         """
         self._file_action_list = [
             ('FileMenu', None, _('_Family Trees')), 
@@ -536,7 +536,7 @@ class ViewManager:
 
     def init_interface(self):
         """
-        Initializes the interface, creating the pages
+        Initialize the interface, creating the pages
         """
         self.__init_lists()
         self.__create_pages()
@@ -681,7 +681,7 @@ class ViewManager:
 
     def __init_action_group(self, name, actions, sensitive=True, toggles=None):
         """
-        Initializes an action group for the UIManager
+        Initialize an action group for the UIManager
         """
         new_group = gtk.ActionGroup(name)
         new_group.add_actions(actions)
@@ -810,7 +810,7 @@ class ViewManager:
 
     def __create_pages(self):
         """
-        Creates the Views
+        Create the Views
         """
         self.pages = []
         self.prev_nav = PageView.NAVIGATION_NONE
@@ -871,7 +871,7 @@ class ViewManager:
 
     def __make_sidebar_button(self, use_text, index, page_title, page_stock):
         """
-        Creates the sidebar button. The page_title is the text associated with
+        Create the sidebar button. The page_title is the text associated with
         the button.
         """
 
@@ -940,7 +940,7 @@ class ViewManager:
 
     def __set_active_button(self, num):
         """
-        Sets the corresponding button active, while setting the others
+        Set the corresponding button active, while setting the others
         inactive
         """
         for idx in range(len(self.buttons)):
@@ -978,7 +978,7 @@ class ViewManager:
 
     def __setup_navigation(self):
         """
-        Initializes the navigation scheme
+        Initialize the navigation scheme
         """
         old_nav = self._navigation_type[self.prev_nav]
         if old_nav[0] != None:
@@ -1174,7 +1174,7 @@ class ViewManager:
 
     def __change_undo_label(self, label):
         """
-        Changes the UNDO label
+        Change the UNDO label
         """
         self.uimanager.remove_action_group(self.undoactions)
         self.undoactions = gtk.ActionGroup('Undo')
@@ -1190,7 +1190,7 @@ class ViewManager:
 
     def __change_redo_label(self, label):
         """
-        Changes the REDO label
+        Change the REDO label
         """
         self.uimanager.remove_action_group(self.redoactions)
         self.redoactions = gtk.ActionGroup('Redo')
@@ -1232,7 +1232,7 @@ class ViewManager:
  
     def setup_bookmarks(self):
         """
-        Initializes the bookmarks based of the database. This needs to
+        Initialize the bookmarks based of the database. This needs to
         be called anytime the database changes.
         """
         import Bookmarks
@@ -1241,7 +1241,7 @@ class ViewManager:
 
     def add_bookmark(self, obj):
         """
-        Adds a bookmark to the bookmark list
+        Add a bookmark to the bookmark list
         """
         if self.state.active:
             self.bookmarks.add(self.state.active.get_handle())

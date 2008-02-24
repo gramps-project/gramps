@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_RelationshipPathBetween.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +75,7 @@ class RelationshipPathBetween(Rule):
                     if child_ref.ref:
                         self.desc_list(child_ref.ref,map,0)
     
-    def apply_filter(self,rank,handle,plist,pmap):
+    def apply_filter(self,rank, handle,plist,pmap):
         person = self.db.get_person_from_handle(handle)
         if person == None:
             return
@@ -116,9 +116,9 @@ class RelationshipPathBetween(Rule):
 
         for person_handle in common:
             new_map = {}
-            self.desc_list(person_handle,new_map,1)
-            self.get_intersection(path1,firstMap,new_map)
-            self.get_intersection(path2,secondMap,new_map)
+            self.desc_list(person_handle, new_map,1)
+            self.get_intersection(path1,firstMap, new_map)
+            self.get_intersection(path2,secondMap, new_map)
 
         for e in path1:
             self.map[e] = 1

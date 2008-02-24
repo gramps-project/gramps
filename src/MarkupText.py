@@ -932,7 +932,7 @@ class MarkupBuffer(gtk.TextBuffer):
                         self.apply_tag(tag, start_iter, end_iter)
 
     def get_text(self, start=None, end=None, include_hidden_chars=True):
-        """Returns the buffer text with xml markup tags.
+        """Return the buffer text with xml markup tags.
         
         If no markup was applied returns clean text
         (i.e. without even root tags).

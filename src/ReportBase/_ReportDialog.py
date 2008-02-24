@@ -201,7 +201,7 @@ class ReportDialog(BareReportDialog):
                    and self.get_target_is_directory():
 
                 # check whether the dir has rwx permissions
-                if not os.access(self.target_path,os.R_OK|os.W_OK|os.X_OK):
+                if not os.access(self.target_path, os.R_OK|os.W_OK|os.X_OK):
                     ErrorDialog(_('Permission problem'),
                                 _("You do not have permission to write "
                                   "under the directory %s\n\n"
@@ -227,7 +227,7 @@ class ReportDialog(BareReportDialog):
             # we will need to create the file/dir
             # need to make sure we can create in the parent dir
             parent_dir = os.path.dirname(os.path.normpath(self.target_path))
-            if not os.access(parent_dir,os.W_OK):
+            if not os.access(parent_dir, os.W_OK):
                 ErrorDialog(_('Permission problem'),
                             _("You do not have permission to create "
                               "%s\n\n"
@@ -261,8 +261,8 @@ class ReportDialog(BareReportDialog):
 # Generic task function a standalone GUI report
 #
 #------------------------------------------------------------------------
-def report(dbstate,uistate,person,report_class,options_class,
-           trans_name,name,category, require_active):
+def report(dbstate,uistate,person,report_class, options_class,
+           trans_name, name,category, require_active):
     """
     report - task starts the report. The plugin system requires that the
     task be in the format of task that takes a database and a person as

@@ -5,7 +5,7 @@ log = logging.getLogger(".")
 
 class ListCursor(object):
     """
-    Provides a wrapper around the cursor class that provides fast
+    Provide a wrapper around the cursor class that provides fast
     traversal using treeview paths for models that are LISTONLY, i.e.
     they have no tree structure.
 

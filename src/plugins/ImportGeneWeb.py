@@ -206,7 +206,7 @@ class GeneWebParser:
         idx = 1;
         
         self.debug("\nHusband:")
-        (idx,husband) = self.parse_person(fields,idx,gen.lib.Person.MALE,None)
+        (idx, husband) = self.parse_person(fields,idx,gen.lib.Person.MALE,None)
         if husband:
             self.current_husband_handle = husband.get_handle()
             self.current_family.set_father_handle(husband.get_handle())
@@ -379,7 +379,7 @@ class GeneWebParser:
         self.db.commit_family(self.current_family,self.trans)
         return None
 
-    def _read_notes_lines(self,note_tag):
+    def _read_notes_lines(self, note_tag):
         note_txt = ""
         while True:
             line = self.get_next_line()
@@ -904,7 +904,7 @@ class GeneWebParser:
                     nchar = unichr(int(match.group(3),16))
                 else:   # Decimal
                     nchar = unichr(int(match.group(3)))
-                s = s.replace(match.group(0),nchar)
+                s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass
         
@@ -914,7 +914,7 @@ class GeneWebParser:
             try:
                 if match.group(2) in name2codepoint:
                     nchar = unichr(name2codepoint[match.group(2)])
-                s = s.replace(match.group(0),nchar)
+                s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass
         

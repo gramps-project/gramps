@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Attribute class for GRAMPS
+Attribute class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,11 +29,11 @@ Attribute class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from secondaryobj import SecondaryObject
-from privacybase import PrivacyBase
-from srcbase import SourceBase
-from notebase import NoteBase
-from attrtype import AttributeType
+from gen.lib.secondaryobj import SecondaryObject
+from gen.lib.privacybase import PrivacyBase
+from gen.lib.srcbase import SourceBase
+from gen.lib.notebase import NoteBase
+from gen.lib.attrtype import AttributeType
 
 #-------------------------------------------------------------------------
 #
@@ -41,12 +41,15 @@ from attrtype import AttributeType
 #
 #-------------------------------------------------------------------------
 class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
-    """Provides a simple key/value pair for describing properties. Used
-    by the Person and Family objects to store descriptive information."""
+    """
+    Provide a simple key/value pair for describing properties. 
+    
+    Used by the Person and Family objects to store descriptive information.
+    """
     
     def __init__(self, source=None):
         """
-        Creates a new Attribute object, copying from the source if provided.
+        Create a new Attribute object, copying from the source if provided.
         """
         PrivacyBase.__init__(self, source)
         SourceBase.__init__(self, source)
@@ -61,7 +64,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return (PrivacyBase.serialize(self),
                 SourceBase.serialize(self),
@@ -70,7 +73,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         (privacy, source_list, note_list, the_type, self.value) = data
         PrivacyBase.unserialize(self, privacy)
@@ -81,7 +84,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
 
     def get_text_data_list(self):
         """
-        Returns the list of all textual attributes of the object.
+        Return the list of all textual attributes of the object.
 
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
@@ -90,7 +93,7 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
 
     def get_text_data_child_list(self):
         """
-        Returns the list of child objects that may carry textual data.
+        Return the list of child objects that may carry textual data.
 
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
@@ -99,8 +102,8 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
 
     def get_handle_referents(self):
         """
-        Returns the list of child objects which may, directly or through
-        their children, reference primary objects..
+        Return the list of child objects which may, directly or through
+        their children, reference primary objects.
         
         @return: Returns the list of objects refereincing primary objects.
         @rtype: list
@@ -109,26 +112,26 @@ class Attribute(SecondaryObject, PrivacyBase, SourceBase, NoteBase):
 
     def get_referenced_handles(self):
         """
-        Returns the list of (classname,handle) tuples for all directly
+        Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        @return: List of (classname,handle) tuples for referenced objects.
+        @return: List of (classname, handle) tuples for referenced objects.
         @rtype: list
         """
         return self.get_referenced_note_handles()
 
     def set_type(self, val):
-        """sets the type (or key) of the Attribute instance"""
+        """Set the type (or key) of the Attribute instance."""
         self.type.set(val)
 
     def get_type(self):
-        """returns the type (or key) or the Attribute instance"""
+        """Return the type (or key) or the Attribute instance."""
         return self.type
 
     def set_value(self, val):
-        """sets the value of the Attribute instance"""
+        """Set the value of the Attribute instance."""
         self.value = val
 
     def get_value(self):
-        """returns the value of the Attribute instance"""
+        """Return the value of the Attribute instance."""
         return self.value

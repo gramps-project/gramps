@@ -184,7 +184,7 @@ class PHPGedViewConnector:
             if not gedname:
                 gedname = "temp.ged"
             filenameparts = gedname.split(".")
-            (outfiled,outfilename) = mkstemp("."+filenameparts[1],filenameparts[0]+"_")
+            (outfiled, outfilename) = mkstemp("."+filenameparts[1],filenameparts[0]+"_")
             outfile = os.fdopen(outfiled,"w")
         else:
             outfilename = outfile.name

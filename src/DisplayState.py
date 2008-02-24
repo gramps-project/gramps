@@ -90,7 +90,7 @@ class History(gen.utils.Callback):
 
     def remove(self, handle, old_id=None):
         """
-        Removes a handle from the history list
+        Remove a handle from the history list
         """
         if old_id:
             del_id = old_id

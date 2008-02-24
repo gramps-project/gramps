@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+# $Id:_IsLessThanNthGenerationAncestorOfBookmarked.py 9912 2008-01-22 09:17:46Z acraphae $
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +69,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
                 self.init_ancestor_list(self.bookmarkhandle, 1)
 
 
-    def init_ancestor_list(self,handle,gen):
+    def init_ancestor_list(self, handle,gen):
 #        if self.map.has_key(p.get_handle()) == 1:
 #            loop_error(self.orig,p)
         if not handle:

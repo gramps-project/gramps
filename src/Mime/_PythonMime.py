@@ -44,16 +44,16 @@ mimetypes.add_type('application/x-gramps-package','.GPKG')
 mimetypes.add_type('text/x-comma-separated-values', '.csv')
 
 def get_application(mime_type):
-    """Returns the application command and application name of the
+    """Return the application command and application name of the
     specified mime type"""
     return None
 
 def get_description(mime_type):
-    """Returns the description of the specfied mime type"""
+    """Return the description of the specfied mime type"""
     return _type_map.get(mime_type,_("unknown"))
 
 def get_type(filename):
-    """Returns the mime type of the specified file"""
+    """Return the mime type of the specified file"""
     value = mimetypes.guess_type(filename)
     if value and value[0]:
         return value[0]

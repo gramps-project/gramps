@@ -50,7 +50,7 @@ class EndOfLineReport(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates the EndOfLineReport object that produces the report.
+        Create the EndOfLineReport object that produces the report.
         
         The arguments are:
 

@@ -108,7 +108,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         self.dbstate = dbstate
         self.uistate = uistate
         
-        Tool.Tool.__init__(self,dbstate,options_class,name)
+        Tool.Tool.__init__(self,dbstate, options_class, name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self)
 
         base = os.path.dirname(__file__)
@@ -146,14 +146,14 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
         self.show()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         help('tools-util')
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Filter selection"),_("Event Comparison tool"))
 
-    def filter_editor_clicked(self,obj):
+    def filter_editor_clicked(self, obj):
         import FilterEditor
         try:
             FilterEditor.FilterEditor('Person',const.CUSTOM_FILTERS,
@@ -161,7 +161,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
         except Errors.WindowActiveError:
             pass
 
-    def on_apply_clicked(self,obj):
+    def on_apply_clicked(self, obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
 
         progress_bar = Utils.ProgressMeter(_('Comparing events'),'')
@@ -245,11 +245,11 @@ class DisplayChart(ManagedWindow.ManagedWindow):
         self.draw_display()
         self.show()
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         help('tools-ae')
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_("Event Comparison Results"),None)
 
     def draw_display(self):
@@ -342,7 +342,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
     def make_event_titles(self):
         """
-        Creates the list of unique event types, along with the person's
+        Create the list of unique event types, along with the person's
         name, birth, and death.
         This should be the column titles of the report.
         """
@@ -375,7 +375,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
         return sort_list
 
-    def on_write_table(self,obj):
+    def on_write_table(self, obj):
         f = gtk.FileChooserDialog(_("Select filename"),
                                   action=gtk.FILE_CHOOSER_ACTION_SAVE,
                                   buttons=(gtk.STOCK_CANCEL,
@@ -427,8 +427,8 @@ class EventComparisonOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

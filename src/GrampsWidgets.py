@@ -460,7 +460,7 @@ class MonitoredSpinButton:
 
     def set_value(self, value):
         """
-        Sets the value of the monitored widget to the specified value.
+        Set the value of the monitored widget to the specified value.
 
         @param value: Value to be set.
         """
@@ -491,7 +491,7 @@ class MonitoredSpinButton:
 
     def force_value(self, value):
         """
-        Sets the value of the monitored widget to the specified value.
+        Set the value of the monitored widget to the specified value.
 
         @param value: Value to be set.
         """
@@ -500,7 +500,7 @@ class MonitoredSpinButton:
 
     def get_value(self):
         """
-        Gets the current value of the monitored widget.
+        Get the current value of the monitored widget.
 
         @returns: Current value of monitored widget.
         """
@@ -509,7 +509,7 @@ class MonitoredSpinButton:
 
     def enable(self, value):
         """
-        Changes the property editable and sensitive of the monitored widget to value.
+        Change the property editable and sensitive of the monitored widget to value.
 
         @param value: If widget should be editable or deactivated.
         @type value: bool
@@ -1221,7 +1221,7 @@ class Statusbar(gtk.HBox):
         return new_bar_id
     
     def get_context_id(self, context_description, bar_id=0):
-        """Returns a new or existing context identifier.
+        """Return a new or existing context identifier.
         
         The target statusbar is identified by bar_id created when statusbar
         was added.
@@ -1853,7 +1853,7 @@ class MaskedEntry(gtk.Entry):
 
     def set_mask(self, mask):
         """
-        Sets the mask of the Entry.
+        Set the mask of the Entry.
         
         Supported format characters are:
           - '0' digit
@@ -1947,7 +1947,7 @@ class MaskedEntry(gtk.Entry):
 
     def get_empty_mask(self, start=None, end=None):
         """
-        Gets the empty mask between start and end
+        Get the empty mask between start and end
 
         @param start:
         @param end:
@@ -2784,7 +2784,7 @@ class ValidatableMaskedEntry(MaskedEntry):
             return None
 
     def set_valid(self):
-        """Changes the validation state to valid, which will remove icons and
+        """Change the validation state to valid, which will remove icons and
         reset the background color
         """
 
@@ -2795,7 +2795,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.set_pixbuf(None)
 
     def set_invalid(self, text=None, fade=True):
-        """Changes the validation state to invalid.
+        """Change the validation state to invalid.
         @param text: text of tooltip of None
         @param fade: if we should fade the background
         """
@@ -2853,7 +2853,7 @@ class ValidatableMaskedEntry(MaskedEntry):
             self.set_pixbuf(None)
 
     def set_blank(self):
-        """Changes the validation state to blank state, this only applies
+        """Change the validation state to blank state, this only applies
         for mandatory widgets, draw an icon and set a tooltip"""
 
         ##log.debug('Setting state for %s to BLANK' % self.model_attribute)
@@ -2871,7 +2871,7 @@ class ValidatableMaskedEntry(MaskedEntry):
 
     def set_text(self, text):
         """
-        Sets the text of the entry
+        Set the text of the entry
 
         @param text:
         """

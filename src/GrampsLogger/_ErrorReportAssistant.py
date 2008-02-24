@@ -2,7 +2,7 @@ from gettext import gettext as _
 import Assistant
 import const
 import gtk
-import sys,os,bsddb
+import sys, os,bsddb
 
 
 
@@ -53,14 +53,14 @@ class ErrorReportAssistant:
 
         self.w.show()
 
-    def on_page_changed(self,obj,page,data=None):
+    def on_page_changed(self, obj,page,data=None):
         if self.cb.has_key(page):
             self.cb[page]()
             
     def complete(self):
         pass
 
-    def _copy_to_clipboard(self,obj=None):
+    def _copy_to_clipboard(self, obj=None):
         clipboard = gtk.Clipboard()
         clipboard.set_text(
             self._final_report_text_buffer.get_text(
@@ -73,14 +73,14 @@ class ErrorReportAssistant:
               self._final_report_text_buffer.get_start_iter(),
               self._final_report_text_buffer.get_end_iter()))
 
-    def _start_email_client(self,obj=None):
+    def _start_email_client(self, obj=None):
         import GrampsDisplay
         GrampsDisplay.url('mailto:gramps-bugs@lists.sourceforge.net?subject="bug report"&body="%s"' \
                           % self._final_report_text_buffer.get_text(
                                self._final_report_text_buffer.get_start_iter(),
                                self._final_report_text_buffer.get_end_iter()))
         
-    def _start_gramps_bts_in_browser(self,obj=None):
+    def _start_gramps_bts_in_browser(self, obj=None):
         import GrampsDisplay
         GrampsDisplay.url('http://bugs.gramps-project.org/bug_report_page.php')
 
@@ -105,26 +105,26 @@ class ErrorReportAssistant:
                   operatingsystem,
                   distribution)
 
-    def _reset_error_details_text_buffer(self,obj=None):
+    def _reset_error_details_text_buffer(self, obj=None):
         self._error_details_text_buffer.set_text(
 	    "\n".join(self._rotate_handler.get_formatted_log(self._error_detail.get_record())) +
 	    self._error_detail.get_formatted_log())
 
-    def _clear_error_details_text_buffer(self,obj=None):
+    def _clear_error_details_text_buffer(self, obj=None):
         self._error_details_text_buffer.delete(
             self._error_details_text_buffer.get_start_iter(),
             self._error_details_text_buffer.get_end_iter())
 
-    def _reset_sys_information_text_buffer(self,obj=None):
+    def _reset_sys_information_text_buffer(self, obj=None):
         self._sys_information_text_buffer.set_text(
             self._get_sys_information())
 
-    def _clear_sys_information_text_buffer(self,obj=None):
+    def _clear_sys_information_text_buffer(self, obj=None):
         self._sys_information_text_buffer.delete(
             self._sys_information_text_buffer.get_start_iter(),
             self._sys_information_text_buffer.get_end_iter())
 
-    def _clear_user_information_text_buffer(self,obj=None):
+    def _clear_user_information_text_buffer(self, obj=None):
         self._user_information_text_buffer.delete(
             self._user_information_text_buffer.get_start_iter(),
             self._user_information_text_buffer.get_end_iter())

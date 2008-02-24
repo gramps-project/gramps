@@ -21,11 +21,22 @@
 # $Id$
 
 """
-Name types
+Name types.
 """
 
-from grampstype import GrampsType, init_map
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib.grampstype import GrampsType, init_map
 
 class NameType(GrampsType):
 

@@ -82,11 +82,11 @@ class MatchesFilterBase(Rule):
         if Filters.SystemFilters:
             for filt in Filters.SystemFilters.get_filters(self.namespace):
                 if filt.get_name() == self.list[0]:
-                    return filt.check(db,obj.handle)
+                    return filt.check(db, obj.handle)
         if Filters.CustomFilters:
             for filt in Filters.CustomFilters.get_filters(self.namespace):
                 if filt.get_name() == self.list[0]:
-                    return filt.check(db,obj.handle)
+                    return filt.check(db, obj.handle)
         return False
     
     def find_filter(self):

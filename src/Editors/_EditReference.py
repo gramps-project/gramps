@@ -162,7 +162,7 @@ class EditReference(ManagedWindow.ManagedWindow):
         if notebook.get_current_page() != page_no:
             notebook.set_current_page(page_no)
 
-    def _add_tab(self,notebook,page):
+    def _add_tab(self, notebook,page):
         notebook.insert_page(page, page.get_tab_widget())
         page.add_db_signal_callback(self._add_db_signal)
         page.label.set_use_underline(True)

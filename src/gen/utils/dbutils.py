@@ -99,7 +99,7 @@ def remove_family_relationships(db, family_handle, trans=None):
 
 def remove_parent_from_family(db, person_handle, family_handle, trans=None):
     """
-    Removes a person as either the father or mother of a family,
+    Remove a person as either the father or mother of a family,
     deleting the family if it becomes empty.
     """
     person = db.get_person_from_handle(person_handle)
@@ -136,7 +136,7 @@ def remove_parent_from_family(db, person_handle, family_handle, trans=None):
 
 def remove_child_from_family(db, person_handle, family_handle, trans=None):
     """
-    Removes a person as a child of the family, deleting the family if
+    Remove a person as a child of the family, deleting the family if
     it becomes empty.
     """
     person = db.get_person_from_handle(person_handle)

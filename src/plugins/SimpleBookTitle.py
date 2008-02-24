@@ -57,7 +57,7 @@ class SimpleBookTitle(Report):
 
     def __init__(self, database, options_class):
         """
-        Creates SimpleBookTitle object that produces the report.
+        Create SimpleBookTitle object that produces the report.
         
         The arguments are:
 
@@ -235,12 +235,12 @@ class SimpleBookTitleOptions(ReportOptions):
         self.remove_obj_button.set_sensitive(False)
         self.size.set_sensitive(False)
 
-    def select_obj(self,obj,dialog):
+    def select_obj(self, obj,dialog):
         s_o = SelectObject(dialog.dbstate,dialog.uistate,dialog.track)
         the_object = s_o.run()
         self.setup_object(dialog.db,the_object)
 
-    def select_file(self,obj,dialog):
+    def select_file(self, obj,dialog):
         print 'Deprecated use, this must be removed'
         
         #a_o = AddMedia.AddMediaObject(dialog.dbstate,dialog.uistate,

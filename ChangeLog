@@ -1,9 +1,13 @@
+2008-02-22  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* various (294 files)
+	pep8 doc fixes & pylint fixes
+
 2008-02-23  Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/gen/lib/date.py (Date.get_stop_date): 
 	added new method Date.to_calendar; dates return None if error
 
 2008-02-23 Jerome Rapinat <romjerome@yahoo.fr>
-        * configure.in : allow Slovenian support
+	* configure.in : allow Slovenian support
 
 2008-02-22  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* ViewManager.py

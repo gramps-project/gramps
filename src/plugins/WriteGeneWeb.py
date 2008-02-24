@@ -628,8 +628,8 @@ class GeneWebWriter:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database,filename,person,option_box,callback=None):
-    gw = GeneWebWriter(database,person,0,filename,option_box,callback)
+def exportData(database,filename,person, option_box,callback=None):
+    gw = GeneWebWriter(database,person,0,filename, option_box,callback)
     return gw.export_data()
 
 #-------------------------------------------------------------------------

@@ -73,7 +73,7 @@ The function parsing the individual at level 1, would encounter the BIRT tag.
 It would look up the BIRT token in the table to see if a function as defined 
 for this TOKEN, and pass control to this function. This function would then
 start parsing level 2. It would encounter the DATE tag, look up the 
-corresponding function the in level 2 table, and pass control to its 
+corresponding function in the level 2 table, and pass control to its 
 associated function. This function would terminate, and return control back to
 the level 2 parser, which would then encounter the "UKNOWN" tag. Since this is
 not a valid token, it would not be in the table, and a function that would skip
@@ -229,9 +229,11 @@ PERSON_RE  = re.compile(r"\s*\d+\s+\@(\S+)\@\s+INDI(.*)$")
 #-------------------------------------------------------------------------
 def find_from_handle(gramps_id, table):
     """
-    Finds a handle corresponding the the specified GRAMPS ID. The passed
-    table contains the mapping. If the value is found, we return it, 
-    otherwise we create a new handle, store it, and return it.
+    Find a handle corresponding to the specified GRAMPS ID. 
+    
+    The passed table contains the mapping. If the value is found, we return 
+    it, otherwise we create a new handle, store it, and return it.
+    
     """
     intid = table.get(gramps_id)
     if not intid:
@@ -836,25 +838,25 @@ class GedcomParser(UpdateCallback):
         
     def __find_person_handle(self, gramps_id):
         """
-        Returns the database handle associated with the person's GRAMPS ID
+        Return the database handle associated with the person's GRAMPS ID
         """
         return find_from_handle(gramps_id, self.gid2id)
 
     def __find_family_handle(self, gramps_id):
         """
-        Returns the database handle associated with the family's GRAMPS ID
+        Return the database handle associated with the family's GRAMPS ID
         """
         return find_from_handle(gramps_id, self.fid2id)
         
     def __find_object_handle(self, gramps_id):
         """
-        Returns the database handle associated with the media object's GRAMPS ID
+        Return the database handle associated with the media object's GRAMPS ID
         """
         return find_from_handle(gramps_id, self.oid2id)
 
     def __find_note_handle(self, gramps_id):
         """
-        Returns the database handle associated with the media object's GRAMPS ID
+        Return the database handle associated with the media object's GRAMPS ID
         """
         return find_from_handle(gramps_id, self.nid2id)
 
@@ -908,9 +910,11 @@ class GedcomParser(UpdateCallback):
 
     def __find_or_create_source(self, gramps_id):
         """
-        Finds or creates a source based on the GRAMPS ID. If the ID is
-        already used (is in the db), we return the item in the db. Otherwise, 
-        we create a new source, assign the handle and GRAMPS ID.
+        Find or create a source based on the GRAMPS ID. 
+        
+        If the ID is already used (is in the db), we return the item in the 
+        db. Otherwise, we create a new source, assign the handle and GRAMPS ID.
+        
         """
         obj = gen.lib.Source()
         intid = self.sid2id.get(gramps_id)
@@ -1057,7 +1061,7 @@ class GedcomParser(UpdateCallback):
 
     def __get_next_line(self):
         """
-        Gets the next line for analysis from the lexical analyzer. Return the
+        Get the next line for analysis from the lexical analyzer. Return the
         same value if the _backup flag is set.
         """
         if not self.backoff:
@@ -1097,7 +1101,7 @@ class GedcomParser(UpdateCallback):
 
     def _backup(self):
         """
-        Sets the _backup flag so that the current line can be accessed by the
+        Set the _backup flag so that the current line can be accessed by the
         next level up.
         """
         self.backoff = True
@@ -1134,7 +1138,7 @@ class GedcomParser(UpdateCallback):
 
     def __parse_record(self):
         """
-        Parses the top level (0 level) instances.
+        Parse the top level (0 level) instances.
         """
         while True:
             line = self.__get_next_line()
@@ -1178,9 +1182,12 @@ class GedcomParser(UpdateCallback):
 
     def __parse_level(self, state, __map, default):
         """
-        Loops trough the current GEDCOM level level, calling the appropriate 
-        functions associated with the TOKEN. If no matching function for the 
-        token is found, the default function is called instead.
+        Loop trough the current GEDCOM level, calling the appropriate 
+        functions associated with the TOKEN. 
+        
+        If no matching function for the token is found, the default function 
+        is called instead.
+        
         """
         while True:
             line = self.__get_next_line()
@@ -1854,7 +1861,7 @@ class GedcomParser(UpdateCallback):
 
     def __person_resi_date(self, line, state): 
         """
-        Sets the date on the address associated with and Address.
+        Set the date on the address associated with and Address.
 
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -4188,21 +4195,25 @@ class GedcomParser(UpdateCallback):
         self.__skip_subordinate_levels(level)
 
     def __parse_source_reference(self, src_ref, level, handle):
-        """Reads the data associated with a SOUR reference"""
+        """
+        Read the data associated with a SOUR reference.
+        """
         state = GedcomUtils.CurrentState(level=level+1)
         state.src_ref = src_ref
         state.handle = handle
         self.__parse_level(state, self.srcref_parse_tbl, self.__ignore)
     
     def __parse_header_head(self):
-        """validiates that this is a valid GEDCOM file"""
+        """
+        Validate that this is a valid GEDCOM file.
+        """
         line = self.__get_next_line()
         if line.token != TOKEN_HEAD:
             raise Errors.GedcomError("%s is not a GEDCOM file" % self.filename)
     
     def __skip_subordinate_levels(self, level):
         """
-        Skips add lines of the specified level or lower.
+        Skip add lines of the specified level or lower.
         """
         while True:
             line = self.__get_next_line()
@@ -4211,7 +4222,7 @@ class GedcomParser(UpdateCallback):
     
     def handle_source(self, line, level):
         """
-        Handles the specified source, building a source reference to
+        Handle the specified source, building a source reference to
         the object.
         """
         source_ref = gen.lib.SourceRef()
@@ -4393,7 +4404,7 @@ class GedcomParser(UpdateCallback):
 
     def __add_default_source(self, obj):
         """
-        Adds the default source to the object.
+        Add the default source to the object.
         """
         if self.use_def_src and len(obj.get_source_references()) == 0:
             sref = gen.lib.SourceRef()

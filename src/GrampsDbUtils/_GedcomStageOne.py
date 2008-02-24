@@ -64,7 +64,7 @@ EMPTY_GED = _("Your GEDCOM file is empty.")
 #-------------------------------------------------------------------------
 def is_xref_value(value):
     """
-    Returns True if value is in the form of a XREF value. We assume that
+    Return True if value is in the form of a XREF value. We assume that
     if we have a leading '@' character, then we are okay.
     """
     return value and value[0] == '@'
@@ -76,7 +76,7 @@ def is_xref_value(value):
 #-------------------------------------------------------------------------
 def add_to_list(table, key, value):
     """
-    Adds the value to the table entry associated with key. If the entry 
+    Add the value to the table entry associated with key. If the entry 
     does not exist, it is added.
     """
     if table.has_key(key):
@@ -170,19 +170,19 @@ class StageOne:
 
     def get_famc_map(self):
         """
-        Returns the Person to Child Family map
+        Return the Person to Child Family map
         """
         return self.famc
 
     def get_fams_map(self):
         """
-        Returns the Person to Family map (where the person is a spouse)
+        Return the Person to Family map (where the person is a spouse)
         """
         return self.fams
 
     def get_encoding(self):
         """
-        Returns the detected encoding
+        Return the detected encoding
         """
         return self.enc.upper()
 
@@ -195,12 +195,12 @@ class StageOne:
 
     def get_person_count(self):
         """
-        Returns the number of INDI records found
+        Return the number of INDI records found
         """
         return self.pcnt
 
     def get_line_count(self):
         """
-        Returns the number of lines in the file
+        Return the number of lines in the file
         """
         return self.lcnt

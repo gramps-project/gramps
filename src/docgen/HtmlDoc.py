@@ -346,7 +346,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             for name in self.map.keys():
                 if name == 'template.html':
                     continue
-                fname = '%s%s%s' % (self.base,os.path.sep,name)
+                fname = '%s%s%s' % (self.base, os.path.sep, name)
                 try:
                     f = open(fname, 'wb')
                     f.write(self.map[name].read())
@@ -357,13 +357,13 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                 except:
                     raise Errors.ReportError(_("Could not create %s") % fname)
             
-    def add_media_object(self,name,pos,x,y,alt=''):
+    def add_media_object(self, name,pos,x,y,alt=''):
         self.empty = 0
         size = int(max(x,y) * float(150.0/2.54))
         refname = "is%s" % os.path.basename(name)
 
         if self.image_dir:
-            imdir = '%s%s%s' % (self.base,os.path.sep,self.image_dir)
+            imdir = '%s%s%s' % (self.base, os.path.sep,self.image_dir)
         else:
             imdir = self.base
 
@@ -392,7 +392,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.f.write('<img src="%s" border="0" alt="%s"%s>\n' 
                         % (refname, alt, xtra))
 
-    def start_table(self,name,style):
+    def start_table(self, name,style):
         styles = self.get_style_sheet()
         self.tbl = styles.get_table_style(style)
         self.f.write('<table width="%d%%" ' % self.tbl.get_width())

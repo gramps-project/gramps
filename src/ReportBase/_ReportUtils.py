@@ -1172,7 +1172,7 @@ _rtype = {
 #-------------------------------------------------------------------------
 def pt2cm(pt):
     """
-    Converts points to centimeters. Fonts are typically specified in points, 
+    Convert points to centimeters. Fonts are typically specified in points, 
     but the BaseDoc classes use centimeters.
 
     @param pt: points
@@ -1184,7 +1184,7 @@ def pt2cm(pt):
 
 def cm2pt(cm):
     """
-    Converts centimeters to points. Fonts are typically specified in points, 
+    Convert centimeters to points. Fonts are typically specified in points, 
     but the BaseDoc classes use centimeters.
 
     @param cm: centimeters
@@ -1196,7 +1196,7 @@ def cm2pt(cm):
 
 def rgb_color(color):
     """
-    Converts color value from 0-255 integer range into 0-1 float range.
+    Convert color value from 0-255 integer range into 0-1 float range.
 
     @param color: list or tuple of integer values for red, green, and blue
     @type color: int
@@ -1585,7 +1585,7 @@ def empty_notes(whatever):
 
 def get_birth_death_strings(database, person, empty_date="", empty_place=""):
     """
-    Returns strings for dates and places of birth and death.
+    Return strings for dates and places of birth and death.
     """
 
     bplace = dplace = empty_place
@@ -2575,7 +2575,7 @@ def common_name(person, use_call=False):
 #-------------------------------------------------------------------------
 def get_person_mark(db, person):
     """
-    Returns a IndexMark that can be used to index a person in a report
+    Return a IndexMark that can be used to index a person in a report
     
     @param db: the GRAMPS database instance
     @param person: the the key is for
@@ -2612,7 +2612,7 @@ def get_person_mark(db, person):
 #-------------------------------------------------------------------------
 def get_address_str(addr):
     """
-    Returns a string that combines the elements of an addres
+    Return a string that combines the elements of an addres
     
     @param addr: the GRAMPS address instance
     """
@@ -2640,7 +2640,7 @@ def get_address_str(addr):
 #-------------------------------------------------------------------------
 def get_person_filters(person, include_single=True):
     """
-    Returns a list of filters that are relevant for the given person
+    Return a list of filters that are relevant for the given person
 
     @param person: the person the filters should apply to.
     @type person: L{gen.lib.Person}

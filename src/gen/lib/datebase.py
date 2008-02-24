@@ -21,9 +21,14 @@
 # $Id$
 
 """
-DateBase class for GRAMPS
+DateBase class for GRAMPS.
 """
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -31,7 +36,7 @@ from types import InstanceType
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from date import Date
+from gen.lib.date import Date
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +50,7 @@ class DateBase:
 
     def __init__(self, source=None):
         """
-        Create a new DateBase, copying from source if not None
+        Create a new DateBase, copying from source if not None.
         
         @param source: Object used to initialize the new object
         @type source: DateBase
@@ -57,7 +62,7 @@ class DateBase:
 
     def serialize(self, no_text_date=False):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         if self.date == None or (self.date.is_empty() and not self.date.text):
             date = None
@@ -67,7 +72,7 @@ class DateBase:
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object.
         """
         if data == None:
             self.date = Date()
@@ -77,7 +82,7 @@ class DateBase:
 
     def get_date_object(self):
         """
-        Returns the L{Date} object associated with the DateBase.
+        Return the L{Date} object associated with the DateBase.
 
         @return: Returns a DateBase L{Date} instance.
         @rtype: L{Date}
@@ -88,7 +93,7 @@ class DateBase:
 
     def set_date_object(self, date):
         """
-        Sets the L{Date} object associated with the DateBase.
+        Set the L{Date} object associated with the DateBase.
 
         @param date: L{Date} instance to be assigned to the DateBase
         @type date: L{Date}

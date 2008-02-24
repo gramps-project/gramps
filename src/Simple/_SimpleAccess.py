@@ -19,7 +19,7 @@
 #
 
 """
-Provides a simplified database access interface to the GRAMPS database.
+Provide a simplified database access interface to the GRAMPS database.
 """
 
 from types import NoneType
@@ -35,7 +35,7 @@ import Config
 
 class SimpleAccess:
     """
-    Provides a simplified database access system. This system has been designed to
+    Provide a simplified database access system. This system has been designed to
     ease the development of reports. 
     
     The user needs to take care when using this interface. Since it returns real 
@@ -96,7 +96,7 @@ class SimpleAccess:
 
     def __init__(self, dbase):
         """
-        Initializes the SimpleAccess object with the database that will be used.
+        Initialize the SimpleAccess object with the database that will be used.
         
         @param dbase: GRAMPS database object
         @type dbase: GrampsDbBase
@@ -105,7 +105,7 @@ class SimpleAccess:
 
     def name(self, person):
         """
-        Returns the name of the person, or and empty string if the person is None
+        Return the name of the person, or and empty string if the person is None
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -120,7 +120,7 @@ class SimpleAccess:
 
     def surname(self, person):
         """
-        Returns the name of the person, or and empty string if the person is None
+        Return the name of the person, or and empty string if the person is None
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -136,7 +136,7 @@ class SimpleAccess:
         
     def first_name(self, person):
         """
-        Returns the first name of the person, or and empty string if the person is None
+        Return the first name of the person, or and empty string if the person is None
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -151,7 +151,7 @@ class SimpleAccess:
 
     def gid(self, obj):
         """
-        Returns the GRAMPS ID of the person or family
+        Return the GRAMPS ID of the person or family
 
         @param obj: Person or Family object
         @type obj: L{gen.lib.Person} or L{gen.lib.Family}
@@ -166,7 +166,7 @@ class SimpleAccess:
 
     def gender(self, person):
         """
-        Returns a string representing the gender of the person
+        Return a string representing the gender of the person
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -180,7 +180,7 @@ class SimpleAccess:
 
     def __parent(self, person, func):
         """
-        Returns a person associated as a parent of the person
+        Return a person associated as a parent of the person
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -201,7 +201,7 @@ class SimpleAccess:
 
     def __family_parent(self, family, func):
         """
-        Returns a person associated as a parent of the family
+        Return a person associated as a parent of the family
 
         @param family: Family object
         @type family: L{gen.lib.Family}
@@ -220,7 +220,7 @@ class SimpleAccess:
 
     def __event_date(self, person, func):
         """
-        Returns a string describing the date associated with the person
+        Return a string describing the date associated with the person
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -244,7 +244,7 @@ class SimpleAccess:
 
     def __event_date_obj(self, person, func):
         """
-        Returns the date associated with the person
+        Return the date associated with the person
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -270,7 +270,7 @@ class SimpleAccess:
 
     def __event_place(self, person, func):
         """
-        Returns a string describing the place associated with the person
+        Return a string describing the place associated with the person
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -293,7 +293,7 @@ class SimpleAccess:
 
     def spouse(self, person):
         """
-        Returns the primary spouse of the person
+        Return the primary spouse of the person
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -317,7 +317,7 @@ class SimpleAccess:
 
     def marriage_type(self, person):
         """
-        Returns a string describing the relationship between the person and
+        Return a string describing the relationship between the person and
         his/per primary spouse.
 
         @param person: Person object
@@ -339,7 +339,7 @@ class SimpleAccess:
 
     def marriage_place(self, person):
         """
-        Returns a string describing the place where the person and his/her spouse
+        Return a string describing the place where the person and his/her spouse
         where married.
 
         @param person: Person object
@@ -369,7 +369,7 @@ class SimpleAccess:
 
     def marriage_date(self, person):
         """
-        Returns a string indicating the date when the person and his/her spouse
+        Return a string indicating the date when the person and his/her spouse
         where married.
 
         @param person: Person object
@@ -400,7 +400,7 @@ class SimpleAccess:
 
     def children(self, obj):
         """
-        Returns a list of the children as the children of the primary spouse.
+        Return a list of the children as the children of the primary spouse.
 
         @param obj: Person or Family object
         @type obj: L{gen.lib.Person} or L{gen.lib.Family}
@@ -424,7 +424,7 @@ class SimpleAccess:
 
     def father(self, obj):
         """
-        Returns the primary father of the person or the father of the associated
+        Return the primary father of the person or the father of the associated
         family.
 
         @param obj: Person or Family object
@@ -460,7 +460,7 @@ class SimpleAccess:
         
     def birth_date(self, person):
         """
-        Returns a string indicating the date when the person's birth.
+        Return a string indicating the date when the person's birth.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -471,7 +471,7 @@ class SimpleAccess:
 
     def birth_date_obj(self, person):
         """
-        Returns the date when the person's birth.
+        Return the date when the person's birth.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -482,7 +482,7 @@ class SimpleAccess:
 
     def birth_place(self, person):
         """
-        Returns a string indicating the place of the person's birth.
+        Return a string indicating the place of the person's birth.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -493,7 +493,7 @@ class SimpleAccess:
 
     def death_date(self, person):
         """
-        Returns a string indicating the date when the person's death.
+        Return a string indicating the date when the person's death.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -504,7 +504,7 @@ class SimpleAccess:
 
     def death_date_obj(self, person):
         """
-        Returns the date when the person's death.
+        Return the date when the person's death.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -515,7 +515,7 @@ class SimpleAccess:
 
     def death_place(self, person):
         """
-        Returns a string indicating the place of the person's death.
+        Return a string indicating the place of the person's death.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -526,7 +526,7 @@ class SimpleAccess:
 
     def event_place(self, event):
         """
-        Returns a string indicating the place of the event
+        Return a string indicating the place of the event
 
         @param event: Event object
         @type event: L{gen.lib.Event}
@@ -543,7 +543,7 @@ class SimpleAccess:
 
     def date_string(self, date_obj):
         """
-        Returns a string representation a date_obj
+        Return a string representation a date_obj
 
         @param date_obj: Date object
         @type date_obj: L{gen.lib.Date}
@@ -557,7 +557,7 @@ class SimpleAccess:
 
     def event_date(self, event):
         """
-        Returns a string indicating the date of the event
+        Return a string indicating the date of the event
 
         @param event: Event object
         @type event: L{gen.lib.Event}
@@ -573,7 +573,7 @@ class SimpleAccess:
 
     def event_type(self, event):
         """
-        Returns a string indicating the type of the event
+        Return a string indicating the type of the event
 
         @param event: Event object
         @type event: L{gen.lib.Event}
@@ -588,7 +588,7 @@ class SimpleAccess:
 
     def events(self, obj, restrict=None):
         """
-        Returns a list of events associated with the object. This object
+        Return a list of events associated with the object. This object
         can be either a L{gen.lib.Person} or L{gen.lib.Family}.
 
         @param obj: Person or Family
@@ -616,7 +616,7 @@ class SimpleAccess:
 
     def sources(self, obj):
         """
-        Returns a list of events associated with the object. This object
+        Return a list of events associated with the object. This object
         can be either a L{gen.lib.Person} or L{gen.lib.Family}.
 
         @param obj: Person or Family
@@ -634,7 +634,7 @@ class SimpleAccess:
 
     def parent_in(self, person):
         """
-        Returns a list of families in which the person is listed as a parent.
+        Return a list of families in which the person is listed as a parent.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -651,7 +651,7 @@ class SimpleAccess:
 
     def child_in(self, person):
         """
-        Returns a list of families in which the person is listed as a child.
+        Return a list of families in which the person is listed as a child.
 
         @param person: Person object
         @type person: L{gen.lib.Person}
@@ -668,7 +668,7 @@ class SimpleAccess:
 
     def __all_objects(self, gen_cursor, get_object):
         """
-        Returns a all the objects of a particular type in the database, one 
+        Return a all the objects of a particular type in the database, one 
         at a time as an iterator. The user can treat this just like a list. 
 
         @return: list of objects of a particular type in the database
@@ -687,7 +687,7 @@ class SimpleAccess:
 
     def all_people(self):
         """
-        Returns a all the people in the database, one at a time as an iterator.
+        Return a all the people in the database, one at a time as an iterator.
         The user can treat this just like a list. For example::
 
            for person in sa.all_people():
@@ -710,7 +710,7 @@ class SimpleAccess:
 
     def all_families(self):
         """
-        Returns all the families in the database, one at a time as an iterator.
+        Return all the families in the database, one at a time as an iterator.
         The user can treat this just like a list. For example::
 
            for person in sa.all_families():
@@ -724,7 +724,7 @@ class SimpleAccess:
 
     def all_events(self):
         """
-        Returns all the events in the database, one at a time as an iterator.
+        Return all the events in the database, one at a time as an iterator.
         The user can treat this just like a list. For example::
 
            for person in sa.all_events():
@@ -738,7 +738,7 @@ class SimpleAccess:
 
     def all_sources(self):
         """
-        Returns all the sources in the database, one at a time as an iterator.
+        Return all the sources in the database, one at a time as an iterator.
         The user can treat this just like a list. For example::
 
         @return: list of sources in the database
@@ -749,7 +749,7 @@ class SimpleAccess:
 
     def title(self, source):
         """
-        Returns the title of the source.
+        Return the title of the source.
 
         @param source: Source object
         @type source: L{gen.lib.Source}
@@ -763,7 +763,7 @@ class SimpleAccess:
 
     def author(self, source):
         """
-        Returns the author of the source.
+        Return the author of the source.
 
         @param source: Source object
         @type source: L{gen.lib.Source}

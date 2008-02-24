@@ -168,7 +168,7 @@ class SummaryReport(ManagedWindow.ManagedWindow):
         textwindow.get_buffer().set_text(text)
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title,None)
 
 #-------------------------------------------------------------------------

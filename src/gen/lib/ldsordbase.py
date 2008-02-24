@@ -21,7 +21,7 @@
 # $Id$
 
 """
-LdsOrdBase class for GRAMPS
+LdsOrdBase class for GRAMPS.
 """
 
 #-------------------------------------------------------------------------
@@ -29,7 +29,7 @@ LdsOrdBase class for GRAMPS
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ldsord import LdsOrd
+from gen.lib.ldsord import LdsOrd
 
 #-------------------------------------------------------------------------
 #
@@ -43,8 +43,10 @@ class LdsOrdBase:
 
     def __init__(self, source=None):
         """
-        Initialize a LdsOrdBase. If the source is not None, then object
-        is initialized from values of the source object.
+        Initialize a LdsOrdBase. 
+        
+        If the source is not None, then object is initialized from values of 
+        the source object.
 
         @param source: Object used to initialize the new object
         @type source: LdsOrdBase
@@ -58,19 +60,19 @@ class LdsOrdBase:
 
     def serialize(self):
         """
-        Converts the object to a serialized tuple of data
+        Convert the object to a serialized tuple of data.
         """
         return [lds_ord.serialize() for lds_ord in self.lds_ord_list]
 
     def unserialize(self, data):
         """
-        Converts a serialized tuple of data to an object
+        Convert a serialized tuple of data to an object
         """
         self.lds_ord_list = [LdsOrd().unserialize(item) for item in data]
 
     def add_lds_ord(self, lds_ord):
         """
-        Adds the L{LdsOrd} instance to the object's list of lds_ordes
+        Add the L{LdsOrd} instance to the object's list of lds_ordes.
 
         @param lds_ord: L{LdsOrd} instance to add to the object's lds_ord list
         @type lds_ord: list
@@ -79,9 +81,9 @@ class LdsOrdBase:
 
     def remove_lds_ord(self, lds_ord):
         """
-        Removes the specified L{LdsOrd} instance from the lds_ord list
-        If the instance does not exist in the list, the operation has
-        no effect.
+        Remove the specified L{LdsOrd} instance from the lds_ord list.
+        
+        If the instance does not exist in the list, the operation has no effect.
 
         @param lds_ord: L{LdsOrd} instance to remove from the list
         @type lds_ord: L{LdsOrd}
@@ -97,7 +99,7 @@ class LdsOrdBase:
 
     def get_lds_ord_list(self):
         """
-        Returns the list of L{LdsOrd} instances associated with the object
+        Return the list of L{LdsOrd} instances associated with the object.
 
         @return: Returns the list of L{LdsOrd} instances
         @rtype: list
@@ -106,7 +108,8 @@ class LdsOrdBase:
 
     def set_lds_ord_list(self, lds_ord_list):
         """
-        Assigns the passed list to the object's list of L{LdsOrd} instances.
+        Assign the passed list to the object's list of L{LdsOrd} instances.
+        
         @param lds_ord_list: List of L{LdsOrd} instances to be associated
             with the object
         @type lds_ord_list: list

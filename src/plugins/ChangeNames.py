@@ -100,7 +100,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
                     # Single surname without hyphen(s)
                     self.name_list.append(name)
             #if lSP == 1 and lHY > 1:
-                #print "LSP==1",name,name.capitalize()
+                #print "LSP==1", name, name.capitalize()
                 #if name != name.capitalize():
                     # Single surname with hyphen(s)
                     #self.name_list.append(name)
@@ -145,7 +145,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             OkDialog(_('No modifications made'),
                      _("No capitalization changes were detected."))
 
-    def name_cap(self,name):
+    def name_cap(self, name):
         name.strip()            
         namesplitSP = name.split()
         lSP = len(namesplitSP)
@@ -212,9 +212,9 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         for name in self.name_list:
             handle = self.model.append()
             self.model.set_value(handle,0,True)
-            self.model.set_value(handle,1,name)
+            self.model.set_value(handle,1, name)
             namecap = self.name_cap(name)
-            self.model.set_value(handle,2,namecap)
+            self.model.set_value(handle,2, namecap)
             self.iter_list.append(handle)
             self.progress.step()
         self.progress.close()
@@ -226,14 +226,14 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         row = self.model[path]
         row[0] = not row[0]
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.label,None)
 
-    def on_help_clicked(self,obj):
+    def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         GrampsDisplay.help('tools-db')
 
-    def on_ok_clicked(self,obj):
+    def on_ok_clicked(self, obj):
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         changelist = [self.model.get_value(node,1)
@@ -271,8 +271,8 @@ class ChangeNamesOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
 #------------------------------------------------------------------------
 #

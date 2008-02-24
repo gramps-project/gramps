@@ -19,7 +19,7 @@
 #
 
 """
-Provides the management of databases. This includes opening, renaming,
+Provide the management of databases. This includes opening, renaming,
 creating, and deleting of databases.
 """
 
@@ -266,7 +266,7 @@ class DbManager(CLIDbManager):
 
     def __init__(self, dbstate, parent=None):
         """
-        Creates the top level window from the glade description, and extracts
+        Create the top level window from the glade description, and extracts
         the GTK widgets that are needed.
         """
         CLIDbManager.__init__(self, dbstate)
@@ -481,7 +481,7 @@ class DbManager(CLIDbManager):
 
     def existing_name(self, name, skippath=None):
         """
-        Returns true if a name is present in the model already.
+        Return true if a name is present in the model already.
         If skippath given, the name of skippath is not considered
         """
         iter = self.model.get_iter_first()
@@ -559,7 +559,7 @@ class DbManager(CLIDbManager):
 
     def __change_name(self, renderer_sel, path, new_text):
         """
-        Changes the name of the database. This is a callback from the
+        Change the name of the database. This is a callback from the
         column, which has been marked as editable. 
 
         If the new string is empty, do nothing. Otherwise, renaming the	
@@ -657,7 +657,7 @@ class DbManager(CLIDbManager):
         
     def __checkout_copy(self, parent_name, name, revision, db_path):
         """
-        Creates a new database, then extracts a revision from RCS and
+        Create a new database, then extracts a revision from RCS and
         imports it into the db
         """
         new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
@@ -802,7 +802,7 @@ class DbManager(CLIDbManager):
 
     def __start_cursor(self, msg):
         """
-        Sets the cursor to the busy state, and displays the associated
+        Set the cursor to the busy state, and displays the associated
         message
         """
         self.msg.set_label(msg)
@@ -812,7 +812,7 @@ class DbManager(CLIDbManager):
 
     def __end_cursor(self):
         """
-        Sets the cursor back to normal and clears the message
+        Set the cursor back to normal and clears the message
         """
         self.top.window.set_cursor(None)
         self.msg.set_label("")
@@ -910,7 +910,7 @@ def find_next_db_dir():
 
 def make_dbdir(dbdir):
     """
-    Creates the default database directory, as defined by dbdir
+    Create the default database directory, as defined by dbdir
     """
     try:
         if not os.path.isdir(dbdir):

@@ -73,7 +73,7 @@ class RelationshipPathBetweenBookmarks(Rule):
 
     #
     # Returns a name, given a handle.
-    def hnm(self,handle):
+    def hnm(self, handle):
         try:
             person = self.db.get_person_from_handle(handle)
         except:
@@ -115,7 +115,7 @@ class RelationshipPathBetweenBookmarks(Rule):
     #
     # Given two handles for individuals, a list of all individuals
     # in the relationship path between the two.
-    def rel_path_for_two(self,handle1,handle2):
+    def rel_path_for_two(self, handle1, handle2):
         #print "rel_path_for_two (", handle1, self.hnm(handle1), ",", handle2, self.hnm(handle2), ")"
         rel_path = {}				# Result map
         gmap1 = { handle1 : [ handle1 ] }	# Key is ancestor, value is the path
@@ -165,7 +165,7 @@ class RelationshipPathBetweenBookmarks(Rule):
             for j in range(i+1, nb+1):
                 handle2 = bmarks[j]
                 try:
-                    pathmap = self.rel_path_for_two(handle1,handle2)	
+                    pathmap = self.rel_path_for_two(handle1, handle2)	
                     for handle in pathmap:
                         self.map[handle] = 1
                 except:

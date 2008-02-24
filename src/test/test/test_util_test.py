@@ -79,7 +79,7 @@ class Test2(U.TestCase):
     def test2b_absdir(self):
         here = tu.absdir();
         g=tu.absdir(__file__)
-        self.assertEqual(g,here, tu.msg(g,here, "absdir"))
+        self.assertEqual(g, here, tu.msg(g, here, "absdir"))
   
     def test2c_path_append_parent(self):
         here = tu.absdir();
@@ -100,7 +100,7 @@ class Test2(U.TestCase):
             self.assertTrue(par in sys.path, "actually appends")
             sys.path.remove(par)
             l= len(sys.path)
-            self.assertEqual(l,np, tu.msg(l,np,"numpaths"))
+            self.assertEqual(l, np, tu.msg(l, np,"numpaths"))
         if was_there:
             # restore entry state (but no multiples needed!)
             sys.path.append(par)

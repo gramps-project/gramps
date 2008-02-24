@@ -48,7 +48,7 @@ class DbBase:
         raise NotImplementedError
 
     def version_supported(self):
-        """ Returns True when the file has a supported version"""
+        """ Return True when the file has a supported version"""
         raise NotImplementedError
 
     def need_upgrade(self):
@@ -162,7 +162,7 @@ class DbBase:
         
     def is_open(self):
         """
-        Returns 1 if the database has been opened.
+        Return 1 if the database has been opened.
         """
         raise NotImplementedError
 
@@ -456,77 +456,77 @@ class DbBase:
 
     def add_person(self, person, transaction):
         """
-        Adds a Person to the database, assigning internal IDs if they have
+        Add a Person to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_family(self, family, transaction):
         """
-        Adds a Family to the database, assigning internal IDs if they have
+        Add a Family to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_source(self, source, transaction):
         """
-        Adds a Source to the database, assigning internal IDs if they have
+        Add a Source to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_event(self, event, transaction):
         """
-        Adds an Event to the database, assigning internal IDs if they have
+        Add an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_person_event(self, event, transaction):
         """
-        Adds an Event to the database, assigning internal IDs if they have
+        Add an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_family_event(self, event, transaction):
         """
-        Adds an Event to the database, assigning internal IDs if they have
+        Add an Event to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_place(self, place, transaction):
         """
-        Adds a Place to the database, assigning internal IDs if they have
+        Add a Place to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_object(self, obj, transaction):
         """
-        Adds a MediaObject to the database, assigning internal IDs if they have
+        Add a MediaObject to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_repository(self, obj, transaction):
         """
-        Adds a Repository to the database, assigning internal IDs if they have
+        Add a Repository to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def add_note(self, obj, transaction):
         """
-        Adds a Note to the database, assigning internal IDs if they have
+        Add a Note to the database, assigning internal IDs if they have
         not already been defined.
         """
         raise NotImplementedError
 
     def get_name_group_mapping(self, name):
         """
-        Returns the default grouping name for a surname
+        Return the default grouping name for a surname
         """
         raise NotImplementedError
 
@@ -538,75 +538,75 @@ class DbBase:
 
     def get_name_group_keys(self):
         """
-        Returns the defined names that have been assigned to a default grouping
+        Return the defined names that have been assigned to a default grouping
         """
         raise NotImplementedError
 
     def set_name_group_mapping(self, name, group):
         """
-        Sets the default grouping name for a surname. Needs to be overridden
+        Set the default grouping name for a surname. Needs to be overridden
         in the derived class.
         """
         raise NotImplementedError
 
     def get_number_of_people(self):
         """
-        Returns the number of people currently in the databse.
+        Return the number of people currently in the databse.
         """
         raise NotImplementedError
 
     def get_number_of_families(self):
         """
-        Returns the number of families currently in the databse.
+        Return the number of families currently in the databse.
         """
         raise NotImplementedError
 
     def get_number_of_events(self):
         """
-        Returns the number of events currently in the databse.
+        Return the number of events currently in the databse.
         """
         raise NotImplementedError
 
     def get_number_of_places(self):
         """
-        Returns the number of places currently in the databse.
+        Return the number of places currently in the databse.
         """
         raise NotImplementedError
 
     def get_number_of_sources(self):
         """
-        Returns the number of sources currently in the databse.
+        Return the number of sources currently in the databse.
         """
         raise NotImplementedError
 
     def get_number_of_media_objects(self):
         """
-        Returns the number of media objects currently in the databse.
+        Return the number of media objects currently in the databse.
         """
         raise NotImplementedError
 
     def get_number_of_repositories(self):
         """
-        Returns the number of source repositories currently in the databse.
+        Return the number of source repositories currently in the databse.
         """
         raise NotImplementedError
 
     def get_number_of_notes(self):
         """
-        Returns the number of notes currently in the databse.
+        Return the number of notes currently in the databse.
         """
         raise NotImplementedError
 
     def get_person_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Person in
+        Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
         raise NotImplementedError
 
     def get_place_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Place in
+        Return a list of database handles, one handle for each Place in
         the database. If sort_handles is True, the list is sorted by
         Place title.
         """
@@ -614,7 +614,7 @@ class DbBase:
 
     def get_source_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each Source in
+        Return a list of database handles, one handle for each Source in
         the database. If sort_handles is True, the list is sorted by
         Source title.
         """
@@ -622,35 +622,35 @@ class DbBase:
 
     def get_media_object_handles(self, sort_handles=True):
         """
-        Returns a list of database handles, one handle for each MediaObject in
+        Return a list of database handles, one handle for each MediaObject in
         the database. If sort_handles is True, the list is sorted by title.
         """
         raise NotImplementedError
 
     def get_event_handles(self):
         """
-        Returns a list of database handles, one handle for each Event in
+        Return a list of database handles, one handle for each Event in
         the database. 
         """
         raise NotImplementedError
 
     def get_family_handles(self):
         """
-        Returns a list of database handles, one handle for each Family in
+        Return a list of database handles, one handle for each Family in
         the database.
         """
         raise NotImplementedError
 
     def get_repository_handles(self):
         """
-        Returns a list of database handles, one handle for each Repository in
+        Return a list of database handles, one handle for each Repository in
         the database.
         """
         raise NotImplementedError
 
     def get_note_handles(self):
         """
-        Returns a list of database handles, one handle for each Note in
+        Return a list of database handles, one handle for each Note in
         the database.
         """
         raise NotImplementedError
@@ -666,7 +666,7 @@ class DbBase:
 
     def set_person_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Person ID values. The string is
+        Set the naming template for GRAMPS Person ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as I%d
         or I%04d.
@@ -675,7 +675,7 @@ class DbBase:
             
     def set_source_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Source ID values. The string is
+        Set the naming template for GRAMPS Source ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as S%d
         or S%04d.
@@ -684,7 +684,7 @@ class DbBase:
             
     def set_object_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS MediaObject ID values. The string
+        Set the naming template for GRAMPS MediaObject ID values. The string
         is expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as O%d
         or O%04d.
@@ -693,7 +693,7 @@ class DbBase:
 
     def set_place_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Place ID values. The string is
+        Set the naming template for GRAMPS Place ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as P%d
         or P%04d.
@@ -702,7 +702,7 @@ class DbBase:
 
     def set_family_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Family ID values. The string is
+        Set the naming template for GRAMPS Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
@@ -711,7 +711,7 @@ class DbBase:
 
     def set_event_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Event ID values. The string is
+        Set the naming template for GRAMPS Event ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as E%d
         or E%04d.
@@ -720,7 +720,7 @@ class DbBase:
 
     def set_repository_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Repository ID values. The string is
+        Set the naming template for GRAMPS Repository ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as R%d
         or R%04d.
@@ -729,7 +729,7 @@ class DbBase:
 
     def set_note_id_prefix(self, val):
         """
-        Sets the naming template for GRAMPS Note ID values. The string is
+        Set the naming template for GRAMPS Note ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as N%d
         or N%04d.
@@ -738,7 +738,7 @@ class DbBase:
 
     def transaction_begin(self, msg="", batch=False, no_magic=False):
         """
-        Creates a new Transaction tied to the current UNDO database. The
+        Create a new Transaction tied to the current UNDO database. The
         transaction has no effect until it is committed using the
         transaction_commit function of the this database object.
         """
@@ -800,7 +800,7 @@ class DbBase:
 
     def get_surname_list(self):
         """
-        Returns the list of locale-sorted surnames contained in the database.
+        Return the list of locale-sorted surnames contained in the database.
         """
         raise NotImplementedError
 
@@ -954,7 +954,7 @@ class DbBase:
 
     def remove_person(self, handle, transaction):
         """
-        Removes the Person specified by the database handle from the
+        Remove the Person specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -962,7 +962,7 @@ class DbBase:
 
     def remove_source(self, handle, transaction):
         """
-        Removes the Source specified by the database handle from the
+        Remove the Source specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -970,7 +970,7 @@ class DbBase:
 
     def remove_event(self, handle, transaction):
         """
-        Removes the Event specified by the database handle from the
+        Remove the Event specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -978,7 +978,7 @@ class DbBase:
 
     def remove_object(self, handle, transaction):
         """
-        Removes the MediaObjectPerson specified by the database handle from the
+        Remove the MediaObjectPerson specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -986,7 +986,7 @@ class DbBase:
 
     def remove_place(self, handle, transaction):
         """
-        Removes the Place specified by the database handle from the
+        Remove the Place specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -994,7 +994,7 @@ class DbBase:
 
     def remove_family(self, handle, transaction):
         """
-        Removes the Family specified by the database handle from the
+        Remove the Family specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -1002,7 +1002,7 @@ class DbBase:
 
     def remove_repository(self, handle, transaction):
         """
-        Removes the Repository specified by the database handle from the
+        Remove the Repository specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -1010,7 +1010,7 @@ class DbBase:
 
     def remove_note(self, handle, transaction):
         """
-        Removes the Note specified by the database handle from the
+        Remove the Note specified by the database handle from the
         database, preserving the change in the passed transaction. This
         method must be overridden in the derived class.
         """
@@ -1164,63 +1164,63 @@ class DbBase:
 
     def get_person_column_order(self):
         """
-        Returns the Person display common information stored in the
+        Return the Person display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
         
     def get_family_list_column_order(self):
         """
-        Returns the Person display common information stored in the
+        Return the Person display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_child_column_order(self):
         """
-        Returns the Person display common information stored in the
+        Return the Person display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_place_column_order(self):
         """
-        Returns the Place display common information stored in the
+        Return the Place display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_source_column_order(self):
         """
-        Returns the Source display common information stored in the
+        Return the Source display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_media_column_order(self):
         """
-        Returns the MediaObject display common information stored in the
+        Return the MediaObject display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_event_column_order(self):
         """
-        Returns the Event display common information stored in the
+        Return the Event display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_repository_column_order(self):
         """
-        Returns the Repository display common information stored in the
+        Return the Repository display common information stored in the
         database's metadata.
         """
         raise NotImplementedError
 
     def get_note_column_order(self):
         """
-        Returns the Note display common information stored in the
+        Return the Note display common information stored in the
         database's metadata.
         """
         raise NotImplementedError

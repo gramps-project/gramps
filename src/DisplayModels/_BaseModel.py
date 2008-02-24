@@ -48,7 +48,7 @@ import Config
 #-------------------------------------------------------------------------
 class NodeMap:
     """
-    Provides the Path to Iter mappings for a TreeView model. The implementation
+    Provide the Path to Iter mappings for a TreeView model. The implementation
     provides a list of nodes and a dictionary of handles. The datalist provides
     the path (index) to iter (handle) mapping, while the the indexmap provides
     the handle to index mappings
@@ -81,14 +81,14 @@ class NodeMap:
 
     def get_path(self, handle):
         """
-        Returns the path from the passed handle. This is accomplished by
+        Return the path from the passed handle. This is accomplished by
         indexing into the index_map to get the index (path)
         """
         return self.index_map.get(handle)
 
     def get_handle(self, path):
         """
-        Returns the handle from the path. The path is assumed to be an integer.
+        Return the handle from the path. The path is assumed to be an integer.
         This is accomplished by indexing into the data_list
         """
         return self.data_list[path]
@@ -119,13 +119,13 @@ class NodeMap:
         
     def __len__(self):
         """
-        Returns the number of entries in the map.
+        Return the number of entries in the map.
         """
         return len(self.data_list)
 
     def get_first_handle(self):
         """
-        Returns the first handle in the map.
+        Return the first handle in the map.
         """
         return self.data_list[0]
 
@@ -260,13 +260,13 @@ class BaseModel(gtk.GenericTreeModel):
             self.displayed = 0
             self.node_map.clear_map()
         
-    def add_row_by_handle(self,handle):
+    def add_row_by_handle(self, handle):
         if not self.search or \
             (self.search and self.search.match(handle, self.db)):
 
             data = self.map(handle)
             key = locale.strxfrm(self.sort_func(data))
-            self.sort_data.append((key,handle))
+            self.sort_data.append((key, handle))
             self.sort_data.sort(reverse=self.reverse)
             self.node_map.set_path_map([ x[1] for x in self.sort_data ])
 
@@ -275,7 +275,7 @@ class BaseModel(gtk.GenericTreeModel):
                 node = self.get_iter(index)
                 self.row_inserted(index, node)
 
-    def delete_row_by_handle(self,handle):
+    def delete_row_by_handle(self, handle):
         index = self.node_map.get_path(handle)
 
         # remove from sort array
@@ -289,10 +289,10 @@ class BaseModel(gtk.GenericTreeModel):
         self.node_map.delete_by_index(index)
         self.row_deleted(index)
 
-    def update_row_by_handle(self,handle):
+    def update_row_by_handle(self, handle):
         index = self.node_map.get_path(handle)
         node = self.get_iter(index)
-        self.row_changed(index,node)
+        self.row_changed(index, node)
 
     def on_get_flags(self):
         """returns the GtkTreeModelFlags for this particular type of model"""
@@ -330,7 +330,7 @@ class BaseModel(gtk.GenericTreeModel):
         """returns the next node at this level of the tree"""
         return self.node_map.find_next_handle(node)
 
-    def on_iter_children(self,node):
+    def on_iter_children(self, node):
         """Return the first child of the node"""
         if node == None and len(self.node_map):
             return self.node_map.get_first_handle()
@@ -342,12 +342,12 @@ class BaseModel(gtk.GenericTreeModel):
             return len(self.node_map) > 0
         return False
 
-    def on_iter_n_children(self,node):
+    def on_iter_n_children(self, node):
         if node == None:
             return len(self.node_map)
         return 0
 
-    def on_iter_nth_child(self,node,n):
+    def on_iter_nth_child(self, node, n):
         if node == None:
             return self.node_map.get_handle(n)
         return None

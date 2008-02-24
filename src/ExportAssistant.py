@@ -157,7 +157,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         if isinstance(arg, gtk.Button) and arg.get_label() == 'gtk-go-forward':
             self.forward_button = arg
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         """Override ManagedWindow method."""
         return (self.top_title, None)
         
@@ -570,7 +570,7 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         """
         filename = unicode(self.chooser.get_filename(),
                            sys.getfilesystemencoding())
-        Config.set(Config.RECENT_EXPORT_DIR,os.path.split(filename)[0])
+        Config.set(Config.RECENT_EXPORT_DIR, os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         Config.set(Config.RECENT_EXPORT_TYPE, ix)
         if self.exportformats[ix][3]:

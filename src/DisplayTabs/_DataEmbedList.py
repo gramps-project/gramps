@@ -63,7 +63,7 @@ class DataEmbedList(EmbeddedList):
         # and connect renderers to the 'edited' signal
         for colno in range(len(self.columns)):
             for renderer in self.columns[colno].get_cell_renderers():
-                renderer.set_property('editable',not self.dbstate.db.readonly)
+                renderer.set_property('editable', not self.dbstate.db.readonly)
                 renderer.connect('edited',self.edit_inline,colno)
 
     def get_data(self):
@@ -100,18 +100,18 @@ class DataEmbedList(EmbeddedList):
                                      start_editing=True)
 
     def del_button_clicked(self, obj):
-        (model,node) = self.selection.get_selected()
+        (model, node) = self.selection.get_selected()
         if node:
             self.model.remove(node)
             self.update()
 
     def edit_inline(self, cell, path, new_text, data):
         node = self.model.get_iter(path)
-        self.model.set_value(node,data,new_text)
+        self.model.set_value(node,data, new_text)
         self.update()
             
     def edit_button_clicked(self, obj):
-        (model,node) = self.selection.get_selected()
+        (model, node) = self.selection.get_selected()
         if node:
             path = self.model.get_path(node)
             self.tree.set_cursor_on_cell(path,

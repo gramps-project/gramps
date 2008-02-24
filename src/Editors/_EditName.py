@@ -157,7 +157,7 @@ class EditName(EditSecondary):
             else :
                 self.group_as.force_value(self.obj.get_surname())
             
-        format_list = [(name,number) for (number,name,fmt_str,act)
+        format_list = [(name, number) for (number, name,fmt_str,act)
                        in name_displayer.get_name_format(also_default=True)]
             
         self.sort_as = MonitoredMenu(
@@ -268,16 +268,16 @@ class EditName(EditSecondary):
             self.global_group_set = True
             
 
-    def build_menu_names(self,name):
+    def build_menu_names(self, name):
         if name:
             ntext = name_displayer.display_name(name)
-            submenu_label = '%s: %s' % (_('Name'),ntext)
+            submenu_label = '%s: %s' % (_('Name'), ntext)
         else:
             submenu_label = _('New Name')
         menu_label = _('Name Editor')
         return (menu_label,submenu_label)
 
-    def update_group_as(self,obj):
+    def update_group_as(self, obj):
         """Callback if surname changes on GUI
             If overwrite is not set, we change the group name too
         """
@@ -302,7 +302,7 @@ class EditName(EditSecondary):
                 self.group_over.set_active(False)
                 self.group_as.enable(False)
         
-    def on_group_over_toggled(self,obj):
+    def on_group_over_toggled(self, obj):
         """ group over changes, if activated, enable edit,
             if unactivated, go back to surname.
         """

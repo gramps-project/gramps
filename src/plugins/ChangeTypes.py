@@ -105,7 +105,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
             
         self.show()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title,None)
 
     def run_tool(self,cli=False):
@@ -147,7 +147,7 @@ class ChangeTypes(Tool.BatchTool, ManagedWindow.ManagedWindow):
             print "Done: ", msg
         return (bool(modified),msg)
 
-    def on_apply_clicked(self,obj):
+    def on_apply_clicked(self, obj):
         # Need to store English names for later comparison
         the_type = EventType()
 
@@ -175,8 +175,8 @@ class ChangeTypesOptions(Tool.ToolOptions):
     Defines options and provides handling interface.
     """
 
-    def __init__(self,name,person_id=None):
-        Tool.ToolOptions.__init__(self,name,person_id)
+    def __init__(self, name,person_id=None):
+        Tool.ToolOptions.__init__(self, name,person_id)
 
         # Options specific for this report
         self.options_dict = {

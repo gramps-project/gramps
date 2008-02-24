@@ -49,7 +49,7 @@ from _DateHandler import register_datehandler
 #-------------------------------------------------------------------------
 class DateParserNb(DateParser):
     """
-    Converts a text string into a Date object, expecting a date
+    Convert a text string into a Date object, expecting a date
     notation in the Norwegian language. If the date cannot be converted, 
     the text string is assigned.
     """
@@ -130,7 +130,7 @@ class DateDisplayNb(DateDisplay):
 
     def display(self, date):
         """
-        Returns a text string representing the date.
+        Return a text string representing the date.
         """
         mod = date.get_modifier()
         cal = date.get_calendar()

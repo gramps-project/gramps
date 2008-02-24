@@ -128,7 +128,7 @@ class EditChildRef(EditSecondary):
 
     def _create_tabbed_pages(self):
         """
-        Creates the notebook tabs and inserts them into the main
+        Create the notebook tabs and inserts them into the main
         window.
         """
         notebook = gtk.Notebook()
@@ -150,10 +150,10 @@ class EditChildRef(EditSecondary):
     def _post_init(self): 
         self.ok_button.grab_focus()
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (_('Child Reference'),_('Child Reference Editor'))
 
-    def edit_child(self,obj,event):
+    def edit_child(self, obj,event):
         if button_activated(event, _LEFT_BUTTON):
             from _EditPerson import EditPerson
             handle = self.obj.ref

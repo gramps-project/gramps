@@ -302,7 +302,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def get_plural_relationship_string(self, Ga, Gb):
         """
-        Provides a string that describes the relationsip between a person, and
+        Provide a string that describes the relationsip between a person, and
         a group of people with the same relationship. E.g. "grandparents" or
         "children".
         
@@ -389,7 +389,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                        only_birth=True, 
                                        in_law_a=False, in_law_b=False):
         """
-        Provides a string that describes the relationsip between a person, and
+        Provide a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
         To be used as: 'person b is the grandparent of a', this will 
             be in translation string :

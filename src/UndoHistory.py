@@ -108,8 +108,8 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         self.selection.connect('changed',self._selection_changed)
         self.show()
 
-    def _selection_changed(self,obj):
-        (model,node) = self.selection.get_selected()
+    def _selection_changed(self, obj):
+        (model, node) = self.selection.get_selected()
         if not node:
             return
         path = self.model.get_path(node)
@@ -141,11 +141,11 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             self.model.set(the_iter,2,fg)
             self.model.set(the_iter,3,bg)
             
-    def _response(self,obj,response_id):
+    def _response(self, obj,response_id):
         if response_id == gtk.RESPONSE_CLOSE:
             self.close(obj)
         elif response_id == gtk.RESPONSE_REJECT:
-            (model,node) = self.selection.get_selected()
+            (model, node) = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node)
@@ -155,7 +155,7 @@ class UndoHistory(ManagedWindow.ManagedWindow):
             else:
                 self._move(nsteps)
         elif response_id == gtk.RESPONSE_ACCEPT:
-            (model,node) = self.selection.get_selected()
+            (model, node) = self.selection.get_selected()
             if not node:
                 return
             path = self.model.get_path(node)
@@ -169,10 +169,10 @@ class UndoHistory(ManagedWindow.ManagedWindow):
         elif response_id == gtk.RESPONSE_DELETE_EVENT:
             self.close(obj)
 
-    def build_menu_names(self,obj):
+    def build_menu_names(self, obj):
         return (self.title,None)
 
-    def _clear_clicked(self,obj=None):
+    def _clear_clicked(self, obj=None):
         QuestionDialog(_("Delete confirmation"),
                        _("Are you sure you want to clear the Undo history?"),
                        _("Clear"),

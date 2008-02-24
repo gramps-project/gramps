@@ -19,7 +19,7 @@
 #
 
 """
-Provides soundex calculation
+Provide soundex calculation
 """
 
 #-------------------------------------------------------------------------

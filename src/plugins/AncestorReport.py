@@ -62,7 +62,7 @@ class AncestorReport(Report):
     """
     def __init__(self, database, options_class):
         """
-        Creates the AncestorReport object that produces the Ahnentafel report.
+        Create the AncestorReport object that produces the Ahnentafel report.
         
         The arguments are:
 
