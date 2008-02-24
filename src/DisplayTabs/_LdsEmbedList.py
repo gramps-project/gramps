@@ -47,6 +47,14 @@ class LdsEmbedList(EmbeddedList):
     _HANDLE_COL = 5
 #    _DND_TYPE   = DdTargets.ADDRESS
 
+    _MSG = {
+        'add'   : _('Create and add a new LDS ordinance'),
+        'del'   : _('Remove the existing LDS ordinance'),
+        'edit'  : _('Edit the selected LDS ordinance'),
+        'up'    : _('Move the selected LDS ordinance upwards'),
+        'down'  : _('Move the selected LDS ordinance downwards'),
+    }
+
     _column_names = [
         (_('Type'),    0, 150), 
         (_('Date'),    1, 150), 
@@ -57,8 +65,8 @@ class LdsEmbedList(EmbeddedList):
     
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_LDS'), LdsModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_LDS'), 
+                              LdsModel, move_buttons=True)
 
     def get_editor(self):
         from Editors import EditLdsOrd

@@ -76,7 +76,8 @@ class ButtonTab(GrampsTab):
     def __init__(self, dbstate, uistate, track, name, share_button=False,
                     move_buttons=False, jump_button=False):
         """
-        Similar to the base class, except after Build
+        Similar to the base class, except after Build.
+        
         @param dbstate: The database state. Contains a reference to
         the database, along with other state information. The GrampsTab
         uses this to access the database and to pass to and created
@@ -103,8 +104,10 @@ class ButtonTab(GrampsTab):
     def create_buttons(self, share_button, move_buttons, jump_button):
         """
         Create a button box consisting of three buttons, one for Add,
-        one for Edit, and one for Delete. This button box is then appended
-        hbox (self).
+        one for Edit, and one for Delete. 
+        
+        Add buttons for Share, Move and Jump depending on parameters. This 
+        button box is then appended hbox (self).
         """
         self.add_btn  = SimpleButton(gtk.STOCK_ADD, self.add_button_clicked)
         self.edit_btn = SimpleButton(gtk.STOCK_EDIT, self.edit_button_clicked)

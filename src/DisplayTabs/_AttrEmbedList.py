@@ -35,8 +35,8 @@ from gettext import gettext as _
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from _AttrModel import AttrModel
-from _EmbeddedList import EmbeddedList
+from DisplayTabs._AttrModel import AttrModel
+from DisplayTabs._EmbeddedList import EmbeddedList
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +48,14 @@ class AttrEmbedList(EmbeddedList):
     _HANDLE_COL = 2
     _DND_TYPE   = DdTargets.ATTRIBUTE
 
+    _MSG = {
+        'add'   : _('Create and add a new attribute'),
+        'del'   : _('Remove the existing attribute'),
+        'edit'  : _('Edit the selected attribute'),
+        'up'    : _('Move the selected attribute upwards'),
+        'down'  : _('Move the selected attribute downwards'),
+    }
+
     _column_names = [
         (_('Type'), 0, 250), 
         (_('Value'), 1, 200), 
@@ -55,8 +63,8 @@ class AttrEmbedList(EmbeddedList):
     
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Attributes'), AttrModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Attributes'), 
+                              AttrModel, move_buttons=True)
 
     def get_editor(self):
         from Editors import EditAttribute

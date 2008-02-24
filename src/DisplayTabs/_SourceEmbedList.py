@@ -54,6 +54,8 @@ class SourceEmbedList(EmbeddedList):
         'del'   : _('Remove the existing source'),
         'edit'  : _('Edit the selected source'),
         'share' : _('Add an existing source'),
+        'up'    : _('Move the selected source upwards'),
+        'down'  : _('Move the selected source downwards'),
         }
 
     _column_names = [
@@ -65,8 +67,9 @@ class SourceEmbedList(EmbeddedList):
     
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Sources'), SourceRefModel, True)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Sources'), 
+                              SourceRefModel, share_button=True, 
+                              move_buttons=True)
 
     def get_icon_name(self):
         return 'gramps-source'

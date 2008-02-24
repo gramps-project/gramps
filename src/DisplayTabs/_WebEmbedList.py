@@ -49,6 +49,15 @@ class WebEmbedList(EmbeddedList):
     _HANDLE_COL = 3
     _DND_TYPE   = DdTargets.URL
 
+    _MSG = {
+        'add'   : _('Create and add a new web address'),
+        'del'   : _('Remove the existing web address'),
+        'edit'  : _('Edit the selected web address'),
+        'up'    : _('Move the selected web address upwards'),
+        'down'  : _('Move the selected web address downwards'),
+        'jump'  : _('Jump to the selected web address'),
+    }
+
     _column_names = [
         (_('Type')       , 0, 100), 
         (_('Path')       , 1, 200), 
@@ -57,8 +66,8 @@ class WebEmbedList(EmbeddedList):
     
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Internet'), WebModel, jump=True)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Internet'), 
+                              WebModel, move_buttons=True, jump_button=True)
 
     def get_icon_name(self):
         return 'gramps-url'

@@ -54,6 +54,8 @@ class EventEmbedList(EmbeddedList):
         'del'   : _('Remove the selected event'),
         'edit'  : _('Edit the selected event'),
         'share' : _('Share an existing event'),
+        'up'    : _('Move the selected event upwards'),
+        'down'  : _('Move the selected event downwards'),
         }
 
     _column_names = [
@@ -67,8 +69,9 @@ class EventEmbedList(EmbeddedList):
     
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('_Events'), EventRefModel, True)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Events'), 
+                              EventRefModel, share_button=True, 
+                              move_buttons=True)
 
     def get_ref_editor(self):
         from Editors import EditFamilyEventRef

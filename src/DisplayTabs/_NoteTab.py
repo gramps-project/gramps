@@ -50,6 +50,11 @@ from DdTargets import DdTargets
 #
 #-------------------------------------------------------------------------
 class NoteTab(EmbeddedList):
+    """
+    Note List display tab for edit dialogs. 
+    
+    Derives from the EmbeddedList class.
+    """
 
     _HANDLE_COL = 2
     _DND_TYPE = DdTargets.NOTE_LINK
@@ -74,7 +79,8 @@ class NoteTab(EmbeddedList):
         self.callertitle = callertitle
         self.notetype = notetype
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _("_Notes"), NoteModel, share=True, move=True)
+                              _("_Notes"), NoteModel, share_button=True, 
+                              move_buttons=True)
 
     def connect_db_signals(self):
         #connect external remove/change of object to rebuild of grampstab
@@ -89,12 +95,26 @@ class NoteTab(EmbeddedList):
         return []
 
     def get_data(self):
+        """
+        Return the data associated with display tab
+        """
         return self.data
 
     def column_order(self):
+        """
+        Return the column order of the columns in the display tab.
+        """
         return ((1, 0), (1, 1))
 
     def add_button_clicked(self, obj):
+        """
+        Create a new Note instance and call the EditNote editor with the new 
+        note. 
+        
+        Called when the Add button is clicked. 
+        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        This prevents the dialog from coming up twice on the same object.
+        """
         note = gen.lib.Note()
         if self.notetype :
             note.set_type(self.notetype)
@@ -107,11 +127,22 @@ class NoteTab(EmbeddedList):
             pass
 
     def add_callback(self, name):
+        """
+        Called to update the screen when a new note is added
+        """
         self.get_data().append(name)
         self.changed = True
         self.rebuild()
 
     def edit_button_clicked(self, obj):
+        """
+        Get the selected Note instance and call the EditNote editor with the 
+        note. 
+        
+        Called when the Edit button is clicked. 
+        If the window already exists (Errors.WindowActiveError), we ignore it. 
+        This prevents the dialog from coming up twice on the same object.
+        """
         handle = self.get_selected()
         if handle:
             note = self.dbstate.db.get_note_from_handle(handle)
@@ -133,6 +164,9 @@ class NoteTab(EmbeddedList):
             self.add_callback(note.handle)
     
     def get_icon_name(self):
+        """
+        Return the stock-id icon name associated with the display tab
+        """
         return 'gramps-notes'
         
     def note_delete(self, del_note_handle_list):
@@ -140,7 +174,7 @@ class NoteTab(EmbeddedList):
         Outside of this tab note objects have been deleted. Check if tab
         and object must be changed.
         Note: delete of object will cause reference on database to be removed,
-              so this method need not do this
+            so this method need not do this
         """
         rebuild = False
         for handle in del_note_handle_list :
@@ -155,7 +189,6 @@ class NoteTab(EmbeddedList):
         Outside of this tab note objects have been updated. Check if tab
         and object must be updated.
         """
-        ref_handles = self.data
         for handle in upd_note_handle_list :
             if handle in self.data:
                 self.rebuild()

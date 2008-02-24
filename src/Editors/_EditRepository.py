@@ -109,25 +109,25 @@ class EditRepository(EditPrimary):
         notebook = gtk.Notebook()
 
         self.addr_tab = self._add_tab(
-            notebook,
-            AddrEmbedList(self.dbstate, self.uistate, self.track,
-                          self.obj.get_address_list()))
+                        notebook,
+                        AddrEmbedList(self.dbstate, self.uistate, self.track,
+                                      self.obj.get_address_list()))
 
         self.url_tab = self._add_tab(
-            notebook,
-            WebEmbedList(self.dbstate, self.uistate, self.track,
-                         self.obj.get_url_list()))
+                        notebook,
+                        WebEmbedList(self.dbstate, self.uistate, self.track,
+                                     self.obj.get_url_list()))
         
         self.note_tab = self._add_tab(
-            notebook,
-            NoteTab(self.dbstate, self.uistate, self.track,
-                    self.obj.get_note_list(), self.get_menu_title(),
-                    notetype=gen.lib.NoteType.REPO))
+                        notebook,
+                        NoteTab(self.dbstate, self.uistate, self.track,
+                                self.obj.get_note_list(), self.get_menu_title(),
+                                notetype=gen.lib.NoteType.REPO))
 
         self.backref_tab = self._add_tab(
-            notebook,
-            SourceBackRefList(self.dbstate, self.uistate, self.track,
-                              self.db.find_backlink_handles(self.obj.handle)))
+                        notebook,
+                        SourceBackRefList(self.dbstate, self.uistate, self.track,
+                               self.db.find_backlink_handles(self.obj.handle)))
 
         self._setup_notebook_tabs( notebook)
         notebook.show_all()

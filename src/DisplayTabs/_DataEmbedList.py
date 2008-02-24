@@ -32,8 +32,8 @@ from gettext import gettext as _
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from _DataModel import DataModel
-from _EmbeddedList import EmbeddedList
+from DisplayTabs._DataModel import DataModel
+from DisplayTabs._EmbeddedList import EmbeddedList
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +45,14 @@ class DataEmbedList(EmbeddedList):
     _HANDLE_COL = 0
     _DND_TYPE   = None
     
+    _MSG = {
+        'add'   : _('Create and add a new data entry'),
+        'del'   : _('Remove the existing data entry'),
+        'edit'  : _('Edit the selected data entry'),
+        'up'    : _('Move the selected data entry upwards'),
+        'down'  : _('Move the selected data entry downwards'),
+    }
+    
     _column_names = [
         (_('Key'), 0, 150), 
         (_('Value'), 1, 250), 
@@ -53,8 +61,8 @@ class DataEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Data'), DataModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Data'), 
+                              DataModel, move_buttons=True)
 
     def build_columns(self):
         EmbeddedList.build_columns(self)

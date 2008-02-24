@@ -47,7 +47,7 @@ class LocationEmbedList(EmbeddedList):
 
     _HANDLE_COL = 5
     _DND_TYPE   = DdTargets.LOCATION
-
+    
     _column_names = [
         (_('Street'),         0, 150), 
         (_('City'),           1, 100), 
@@ -59,7 +59,8 @@ class LocationEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Alternate _Locations'), LocationModel)
+                              _('Alternate _Locations'), LocationModel, 
+                              move_buttons=True)
 
     def get_data(self):
         return self.data

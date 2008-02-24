@@ -48,6 +48,14 @@ class PersonRefEmbedList(EmbeddedList):
     _HANDLE_COL = 3
     _DND_TYPE   = DdTargets.PERSONREF
 
+    _MSG = {
+        'add'   : _('Create and add a new association'),
+        'del'   : _('Remove the existing association'),
+        'edit'  : _('Edit the selected association'),
+        'up'    : _('Move the selected association upwards'),
+        'down'  : _('Move the selected association downwards'),
+    }
+
     _column_names = [
         (_('Name'),    0, 250), 
         (_('ID'),  1, 100), 
@@ -57,7 +65,8 @@ class PersonRefEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Associations'), PersonRefModel)
+                              _('_Associations'), PersonRefModel, 
+                              move_buttons=True)
 
     def get_ref_editor(self):
         from Editors import EditPersonRef

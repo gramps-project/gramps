@@ -114,8 +114,8 @@ class ChildEmbedList(EmbeddedList):
         Create the object, storing the passed family value
         """
         self.family = family
-        EmbeddedList.__init__(self, dbstate, uistate, track,
-                              _('_Children'), ChildModel, True, True)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Children'), 
+                              ChildModel, share_button=True, move_buttons=True)
 
     def get_popup_menu_items(self):
         return [

@@ -39,9 +39,10 @@ _RIGHT = gtk.gdk.keyval_from_name("Right")
 class GrampsTab(gtk.HBox):
     """
     This class provides the base level class for 'tabs', which are used to
-    fill in notebook tabs for GRAMPS edit dialogs. Each tab returns a
-    gtk container widget which can be inserted into a gtk.Notebook by the
-    instantiating object.
+    fill in notebook tabs for GRAMPS edit dialogs. 
+    
+    Each tab returns a gtk container widget which can be inserted into a 
+    gtk.Notebook by the instantiating object.
 
     All tab classes should inherit from GrampsTab
     """

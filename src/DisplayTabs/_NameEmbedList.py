@@ -42,8 +42,8 @@ from gettext import gettext as _
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from _NameModel import NameModel
-from _EmbeddedList import EmbeddedList
+from DisplayTabs._NameModel import NameModel
+from DisplayTabs._EmbeddedList import EmbeddedList
 
 #-------------------------------------------------------------------------
 #
@@ -55,6 +55,14 @@ class NameEmbedList(EmbeddedList):
     _HANDLE_COL = 2
     _DND_TYPE   = DdTargets.NAME
 
+    _MSG = {
+        'add'   : _('Create and add a new name'),
+        'del'   : _('Remove the existing name'),
+        'edit'  : _('Edit the selected name'),
+        'up'    : _('Move the selected name upwards'),
+        'down'  : _('Move the selected name downwards'),
+    }
+
     _column_names = [
         (_('Name'), 0, 250), 
         (_('Type'), 1, 100), 
@@ -65,8 +73,8 @@ class NameEmbedList(EmbeddedList):
         self.person = person
         self.callback = callback
         
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Names'), NameModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Names'), 
+                              NameModel, move_buttons=True)
 
     def get_data(self):
         return self.data

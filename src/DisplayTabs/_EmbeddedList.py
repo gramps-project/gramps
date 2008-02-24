@@ -41,7 +41,7 @@ import pango
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
-from _ButtonTab import ButtonTab
+from DisplayTabs._ButtonTab import ButtonTab
 
 #-------------------------------------------------------------------------
 #
@@ -50,9 +50,9 @@ from _ButtonTab import ButtonTab
 #-------------------------------------------------------------------------
 class EmbeddedList(ButtonTab):
     """
-    This class provides the base class for all the list tabs. It
-    maintains a gtk.TreeView, including the selection and button
-    sensitivity.
+    This class provides the base class for all the list tabs. 
+    
+    It maintains a gtk.TreeView, including the selection and button sensitivity.
     """
     
     _HANDLE_COL = -1
@@ -60,12 +60,12 @@ class EmbeddedList(ButtonTab):
     _DND_EXTRA  = None
     
     def __init__(self, dbstate, uistate, track, name, build_model,
-                 share=False, move=False, jump=False):
+                 share_button=False, move_buttons=False, jump_button=False):
         """
-        Create a new list, using the passed build_model to
-        populate the list.
+        Create a new list, using the passed build_model to populate the list.
         """
-        ButtonTab.__init__(self, dbstate, uistate, track, name, share, move, jump)
+        ButtonTab.__init__(self, dbstate, uistate, track, name, share_button, 
+                           move_buttons, jump_button)
 
         self.changed = False
         self.build_model = build_model
@@ -262,7 +262,7 @@ class EmbeddedList(ButtonTab):
         self.changed = True
         self.rebuild()
     
-    def _move_up(self, row_from, obj,selmethod=None):
+    def _move_up(self, row_from, obj, selmethod=None):
         """ 
         Move the item a position up in the EmbeddedList.
         Eg: 0,1,2,3 needs to become 0,2,1,3, here row_from = 2

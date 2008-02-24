@@ -54,6 +54,8 @@ class RepoEmbedList(EmbeddedList):
         'del'   : _('Remove the existing repository'),
         'edit'  : _('Edit the selected repository'),
         'share' : _('Add an existing repository'),
+        'up'    : _('Move the selected repository upwards'),
+        'down'  : _('Move the selected repository downwards'),
         }
 
     _column_names = [
@@ -66,7 +68,8 @@ class RepoEmbedList(EmbeddedList):
     def __init__(self, dbstate, uistate, track, obj):
         self.obj = obj
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Repositories'), RepoRefModel, True)
+                              _('_Repositories'), RepoRefModel, 
+                              share_button=True, move_buttons=True)
 
     def get_icon_name(self):
         return 'gramps-repository'

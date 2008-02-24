@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Address List display tab
+Address List display tab.
 """
 
 #-------------------------------------------------------------------------
@@ -39,8 +39,8 @@ from gettext import gettext as _
 import gen.lib
 import Errors
 from DdTargets import DdTargets
-from _AddressModel import AddressModel
-from _EmbeddedList import EmbeddedList
+from DisplayTabs._AddressModel import AddressModel
+from DisplayTabs._EmbeddedList import EmbeddedList
 
 #-------------------------------------------------------------------------
 #
@@ -49,12 +49,21 @@ from _EmbeddedList import EmbeddedList
 #-------------------------------------------------------------------------
 class AddrEmbedList(EmbeddedList):
     """
-    Address List display tab for edit dialogs. Derives from the EmbeddedList
-    class.
+    Address List display tab for edit dialogs. 
+    
+    Derives from the EmbeddedList class.
     """
 
     _HANDLE_COL = 5
     _DND_TYPE   = DdTargets.ADDRESS
+
+    _MSG = {
+        'add'   : _('Create and add a new address'),
+        'del'   : _('Remove the existing address'),
+        'edit'  : _('Edit the selected address'),
+        'up'    : _('Move the selected address upwards'),
+        'down'  : _('Move the selected address downwards'),
+    }
 
     _column_names = [
         (_('Date'),    0, 150), 
@@ -66,8 +75,8 @@ class AddrEmbedList(EmbeddedList):
     
     def __init__(self, dbstate, uistate, track, data):
         self.data = data
-        EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('_Addresses'), AddressModel)
+        EmbeddedList.__init__(self, dbstate, uistate, track, _('_Addresses'), 
+                              AddressModel, move_buttons=True)
                             
     def get_icon_name(self):
         """
@@ -89,7 +98,7 @@ class AddrEmbedList(EmbeddedList):
 
     def add_button_clicked(self, obj):
         """
-        Called with the Add button is clicked. Creates a new Address instance
+        Called when the Add button is clicked. Creates a new Address instance
         and calls the EditAddress editor with the new address. If the window
         already exists (Errors.WindowActiveError), we ignore it. This prevents 
         the dialog from coming up twice on the same object.
