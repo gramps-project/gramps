@@ -1,3 +1,7 @@
+2008-02-25 Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
+	* src/ArgHandler.py: add UI Report Names to output 
+	0001826: Command line - viewing available reports nicer to read
+
 2008-02-25  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/plugins/GrampsCfg.py: new (GrampsPreferences.update_idformat_entry):
 	add method that sets new ID format preferences in db. 

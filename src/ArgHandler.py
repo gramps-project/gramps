@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham, A. Roitman
 # Copyright (C) 2007-2008  B. Malengier
+# Copyright (C) 2008 Lukasz Rymarczyk
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -749,7 +750,12 @@ class ArgHandler:
 
             print "Unknown report name. Available names are:"
             for item in cl_list:
-                print "   %s" % item[0]
+                # Print cli report name ([item[0]) and GUI report name (item[4])
+                if len(item[0]) <= 25:
+                    print "   %s%s- %s" % (item[0], 
+                                           " " * (26 - len(item[0])), item[4])
+                else:
+                    print "   %s\t- %s" % (item[0], item[4])
         elif action == "tool":
             try:
                 options_str_dict = dict( [ tuple(chunk.split('=')) for
