@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
+# Copyright (C) 2008 Lukasz Rymarczyk
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -198,14 +199,27 @@ class CommandLineReport:
             self.options_help['style'].append(False)
 
     def show_options(self):
+        """
+        Print available options on the CLI.
+        """
         if not self.show:
             return
         elif self.show == 'all':
             print "   Available options:"
             for key in self.options_dict.keys():
-                print "      %s" % key
-            print \
-                "   Use 'show=option' to see description and acceptable values"
+                if key in self.options_dict.keys():
+                # Make the output nicer to read, assume that tab has 8 spaces
+                    if len(key) < 10:
+                        print "      %s\t\t%s (%s)" % (key, 
+                                                    self.options_help[key][1], 
+                                                    self.options_help[key][0])
+                    else:
+                        print "      %s\t%s (%s)" % (key, 
+                                                     self.options_help[key][1], 
+                                                     self.options_help[key][0])
+                else:
+                    print " %s" % key
+            print "   Use 'show=option' to see description and acceptable values"
         elif self.show in self.options_dict.keys():
             print '   %s%s\t%s' % (self.show,
                                     self.options_help[self.show][0],

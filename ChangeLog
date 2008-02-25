@@ -1,4 +1,9 @@
 2008-02-25 Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
+	* src/ReportBase/_CommandLineReport.py: add user friendly output to cli 
+	gramps.py -u --open=merge --action=report -p "name=indiv_complete,show=all"
+	#0001823
+
+2008-02-25 Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
 	* src/ArgHandler.py: add UI Report Names to output 
 	0001826: Command line - viewing available reports nicer to read
 
