@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham, A. Roitman
 # Copyright (C) 2007-2008  B. Malengier
 # Copyright (C) 2008 Lukasz Rymarczyk
+# Copyright (C) 2008 Raphael Ackermann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -706,7 +707,6 @@ class ArgHandler:
     def cl_action(self, action, options_str):
         """
         Command-line action routine. Try to perform specified action.
-        Any errors will cause the sys.exit(1) call.
         """
         if action == 'check':
             import Check
@@ -731,24 +731,25 @@ class ArgHandler:
                 print "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
-            if not name:
-                print "Report name not given. Please use name=reportname"
-                sys.exit(1)
-
-            for item in cl_list:
-                if name == item[0]:
-                    category = item[1]
-                    report_class = item[2]
-                    options_class = item[3]
-                    if category in (CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB):
-                        options_class(self.state.db, name, category, 
-                                      options_str_dict)
-                    else:
-                        cl_report(self.state.db, name, category, report_class, 
-                                  options_class, options_str_dict)
-                    return
-
-            print "Unknown report name. Available names are:"
+            if name:
+                for item in cl_list:
+                    if name == item[0]:
+                        category = item[1]
+                        report_class = item[2]
+                        options_class = item[3]
+                        if category in (CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB):
+                            options_class(self.state.db, name, category, 
+                                          options_str_dict)
+                        else:
+                            cl_report(self.state.db, name, category, report_class, 
+                                      options_class, options_str_dict)
+                        return
+                # name exists, but is not in the list of valid report names
+                msg = "Unknown report name."
+            else:
+                msg = "Report name not given. Please use -p name=reportname."
+            
+            print "%s\n Available names are:" % msg
             for item in cl_list:
                 # Print cli report name ([item[0]) and GUI report name (item[4])
                 if len(item[0]) <= 25:
@@ -756,6 +757,7 @@ class ArgHandler:
                                            " " * (26 - len(item[0])), item[4])
                 else:
                     print "   %s\t- %s" % (item[0], item[4])
+
         elif action == "tool":
             try:
                 options_str_dict = dict( [ tuple(chunk.split('=')) for
@@ -765,20 +767,20 @@ class ArgHandler:
                 print "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
-            if not name:
-                print "Tool name not given. Please use name=toolname"
-                sys.exit(1)
-
-            for item in cli_tool_list:
-                if name == item[0]:
-                    category = item[1]
-                    tool_class = item[2]
-                    options_class = item[3]
-                    Tool.cli_tool(self.state, name, category, tool_class, 
-                                  options_class, options_str_dict)
-                    return
-
-            print "Unknown tool name. Available names are:"
+            if name:
+                for item in cli_tool_list:
+                    if name == item[0]:
+                        category = item[1]
+                        tool_class = item[2]
+                        options_class = item[3]
+                        Tool.cli_tool(self.state, name, category, tool_class, 
+                                      options_class, options_str_dict)
+                        return
+                msg = "Unknown tool name."
+            else:
+                msg = "Tool name not given. Please use -p name=toolname."
+            
+            print "%s\n Available names are:" % msg
             for item in cli_tool_list:
                 print "   %s" % item[0]
         else:

@@ -1,3 +1,9 @@
+2008-02-25  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/ReportBase/_ArgHandler.py (ArgHandler.cl_action): improve output
+	when no report or tool name is given. Remove call to sys.exit(1) as it 
+	means that gui error report handler is called (locks db).
+	addresses part of #0001821
+
 2008-02-25 Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
 	* src/ReportBase/_CommandLineReport.py: add user friendly output to cli 
 	gramps.py -u --open=merge --action=report -p "name=indiv_complete,show=all"
