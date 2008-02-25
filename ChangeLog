@@ -1,3 +1,8 @@
+2008-02-25 Douglas S. Blank <dblank@cs.brynmawr.edu>
+	* src/gen/lib/test/date_test.py: new slash date tests
+	* src/gen/lib/date.py: new get_slash(), fix slash conversions
+	* src/DateHandler/_DateParser.py: parser sets slash date to Julian
+
 2008-02-24 Brian Matherly <brian@gramps-project.org>
 	* src/GrampsDbUtils/_ReadXML.py:
 	* src/GrampsDbUtils/_GrmapsDbWriteXML.py:

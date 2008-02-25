@@ -384,13 +384,11 @@ class Date:
             
             Slash date is given as year1/year2, where year1 is Julian year, 
             and year2=year1+1 the Gregorian year.
+
+            Slash date is already taken care of.
             """
-            if dateval[Date._POS_SL] :
-                return (dateval[Date._POS_YR]+1, dateval[Date._POS_MON], 
-                        dateval[Date._POS_DAY])
-            else :
-                return (dateval[Date._POS_YR], dateval[Date._POS_MON], 
-                        dateval[Date._POS_DAY])
+            return (dateval[Date._POS_YR], dateval[Date._POS_MON], 
+                    dateval[Date._POS_DAY])
         def date_offset(dateval, offset):
             """
             Local function to do date arithmetic: add the offset, return 
@@ -733,9 +731,18 @@ class Date:
         """
         Return a Date copy based on year, month, and day offset.
         """
-        retval = Date(self)
+        orig_cal = self.calendar
+        if self.calendar != 0:
+            new_date = self.to_calendar("gregorian")
+        else:
+            new_date = self
+        retval = Date(new_date)
         retval.set_yr_mon_day_offset(year, month, day)
-        return retval
+        if orig_cal == 0:
+            return retval
+        else:
+            retval.convert_calendar(orig_cal)
+            return retval
 
     def copy_ymd(self, year=0, month=0, day=0):
         """
@@ -915,6 +922,13 @@ class Date:
         """
         if calendar == self.calendar:
             return
+        if self.get_slash():
+            if (self.calendar == Date.CAL_JULIAN and 
+                calendar == Date.CAL_GREGORIAN):
+                self.set_year(self.get_year() + 1)
+            elif (self.calendar == Date.CAL_GREGORIAN and 
+                calendar == Date.CAL_JULIAN):
+                self.set_year(self.get_year() - 1)
         (year, month, day) = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
             ryear = max(self.dateval[Date._POS_RYR], 1)
@@ -1040,3 +1054,11 @@ class Date:
         retval = Date(self)
         retval.convert_calendar(cal)
         return retval
+
+    def get_slash(self):
+        """
+        Return true if the date is a slash-date.
+        """
+        return self._get_low_item_valid(Date._POS_SL)
+
+

@@ -593,6 +593,10 @@ class DateParser:
         else:
             date.set(qual, Date.MOD_NONE, cal, subdate)
 
+        if date.get_slash():
+            date.set_calendar(Date.CAL_JULIAN)
+            date.set_year(date.get_year()) # forces recalc
+
     def invert_year(self, subdate):
         return (subdate[0], subdate[1], -subdate[2], subdate[3])
     
