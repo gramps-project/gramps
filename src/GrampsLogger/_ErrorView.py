@@ -1,9 +1,26 @@
-from gettext import gettext as _
-
+#-------------------------------------------------------------------------
+#
+# GNOME modules
+#
+#-------------------------------------------------------------------------
 import gtk
 
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
+from TransUtils import sgettext as _
 from _ErrorReportAssistant import ErrorReportAssistant
 import GrampsDisplay
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_FAQ'
+WIKI_HELP_SEC = _('manual|General')
 
 class ErrorView(object):
     """
@@ -34,8 +51,8 @@ class ErrorView(object):
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""
-        # FIXME: replace tag when relevant help page is available
-        GrampsDisplay.help('faq')
+        
+        GrampsDisplay.help('faq', WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def draw_window(self):
         title = "%s - GRAMPS" % _("Error Report")

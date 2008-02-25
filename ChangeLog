@@ -1,3 +1,7 @@
+2008-02-20 Frederik De Richter <frederik.de.richter@pandora.be>
+	* src/GrampsLogger/_ErrorView.py
+	links to wiki manual 
+
 2008-02-25  Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/ReportBase/_ArgHandler.py (ArgHandler.cl_action): improve output
 	when no report or tool name is given. Remove call to sys.exit(1) as it 
