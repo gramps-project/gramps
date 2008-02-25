@@ -1,5 +1,8 @@
+2008-02-25 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* POTFILES.in : add missing plugins/DateParserDisplayTest.py #0001819
+
 2008-02-23 Bernard Banko <bernard.banko@siol.net>
-        * sl.po: Translation update
+	* sl.po: Translation update
 
 2008-02-22 Frederik De Richter <frederik.de.richter@pandora.be>
 	* gramps.pot: update to include manual strings

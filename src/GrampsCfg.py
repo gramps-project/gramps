@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008  Raphael Ackermann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -185,19 +186,29 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return table
 
     def add_prefix_panel(self):
+        """
+        Add the ID prefix tab to the preferences.
+        """
         table = gtk.Table(3, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
-        self.add_entry(table, _('Person'), 0, Config.IPREFIX)
-        self.add_entry(table, _('Family'), 1, Config.FPREFIX)
-        self.add_entry(table, _('Place'), 2, Config.PPREFIX)
-        self.add_entry(table, _('Source'), 3, Config.SPREFIX)
-        self.add_entry(table, _('Media Object'), 4, Config.OPREFIX)
-        self.add_entry(table, _('Event'), 5, Config.EPREFIX)
-        self.add_entry(table, _('Repository'), 6, Config.RPREFIX)
-#added notes prefix
-        self.add_entry(table, _('Note'), 7, Config.NPREFIX)
+        self.add_entry(table, _('Person'), 0, Config.IPREFIX, 
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Family'), 1, Config.FPREFIX,
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Place'), 2, Config.PPREFIX,
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Source'), 3, Config.SPREFIX,
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Media Object'), 4, Config.OPREFIX,
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Event'), 5, Config.EPREFIX,
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Repository'), 6, Config.RPREFIX,
+                       self.update_idformat_entry)
+        self.add_entry(table, _('Note'), 7, Config.NPREFIX,
+                       self.update_idformat_entry)
         return table
 
     def add_advanced_panel(self):
@@ -791,11 +802,13 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                      xoptions=gtk.FILL)
         table.attach(hbox, 2, 3, index, index+1, yoptions=0)
 
-    def add_entry(self, table, label, index, constant):
+    def add_entry(self, table, label, index, constant, callback=None):
+        if not callback:
+            callback = self.update_entry
         lwidget = BasicLabel("%s: " % label)
         entry = gtk.Entry()
         entry.set_text(Config.get(constant))
-        entry.connect('changed', self.update_entry, constant)
+        entry.connect('changed', callback, constant)
         table.attach(lwidget, 0, 1, index, index+1, yoptions=0, 
                      xoptions=gtk.FILL)
         table.attach(entry, 1, 2, index, index+1, yoptions=0)
@@ -853,6 +866,18 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
 
     def update_entry(self, obj, constant):
         Config.set(constant, unicode(obj.get_text()))
+
+    def update_idformat_entry(self, obj, constant):
+        Config.set(constant, unicode(obj.get_text()))
+        self.dbstate.db.set_prefixes(
+            Config.get(Config.IPREFIX),
+            Config.get(Config.OPREFIX),
+            Config.get(Config.FPREFIX),
+            Config.get(Config.SPREFIX),
+            Config.get(Config.PPREFIX),
+            Config.get(Config.EPREFIX),
+            Config.get(Config.RPREFIX),
+            Config.get(Config.NPREFIX) )
 
     def update_gen_depth(self, obj, constant):
         ok = True

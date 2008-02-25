@@ -260,6 +260,7 @@ src/plugins/Check.py
 src/plugins/CmdRef.py
 src/plugins/CountAncestors.py
 src/plugins/CustomBookText.py
+src/plugins/DateParserDisplayTest.py
 src/plugins/DefaultGramplets.py
 src/plugins/Desbrowser.py
 src/plugins/DescendChart.py

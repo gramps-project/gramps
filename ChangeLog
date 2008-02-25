@@ -1,3 +1,10 @@
+2008-02-25  Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/plugins/GrampsCfg.py: new (GrampsPreferences.update_idformat_entry):
+	add method that sets new ID format preferences in db. 
+	(GrampsPreferences.add_prefix_panel): use callback update_idformat.entry 
+	0001817: Make preference changes take immediate effect. 
+	* po/POTFILES.in: add DateParserDisplayTest.py. #0001819
+
 2008-02-25 Douglas S. Blank <dblank@cs.brynmawr.edu>
 	* src/gen/lib/test/date_test.py: new slash date tests
 	* src/gen/lib/date.py: new get_slash(), fix slash conversions
