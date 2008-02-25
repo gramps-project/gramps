@@ -68,7 +68,7 @@ try:
 except:
     _gzip_ok = 0
 
-_xml_version = "1.2.0"
+XML_VERSION = "1.2.0"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(9)+range(12,20))
@@ -205,9 +205,9 @@ class GrampsDbXmlWriter(UpdateCallback):
         self.g.write('<!DOCTYPE database '
                      'PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"\n'
                      '"http://gramps-project.org/xml/%s/grampsxml.dtd">\n'
-                     % (_xml_version,_xml_version))
+                     % (XML_VERSION, XML_VERSION))
         self.g.write('<database xmlns="http://gramps-project.org/xml/%s/">\n'
-                     % _xml_version)
+                     % XML_VERSION)
         self.g.write("  <header>\n")
         self.g.write('    <created date="%04d-%02d-%02d\"' %
                      (date[0],date[1],date[2]) )

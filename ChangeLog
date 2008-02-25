@@ -1,4 +1,10 @@
 2008-02-24 Brian Matherly <brian@gramps-project.org>
+	* src/GrampsDbUtils/_ReadXML.py:
+	* src/GrampsDbUtils/_GrmapsDbWriteXML.py:
+	Partial fix for 0001722: add dialog that on import gives a warning if the 
+	xml is made with an older version
+
+2008-02-24 Brian Matherly <brian@gramps-project.org>
 	* src/docgen/AsciiDoc.py:
 	Fix page_break()
 

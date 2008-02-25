@@ -37,7 +37,7 @@ import re
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, QuestionDialog2
 import Mime
 import gen.lib
 import Utils
@@ -46,6 +46,8 @@ from BasicUtils import name_displayer
 from gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, 
                             MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, NOTE_KEY)
 from BasicUtils import UpdateCallback
+import _GrampsDbWriteXML
+import const
 
 #-------------------------------------------------------------------------
 #
@@ -95,41 +97,18 @@ def importData(database, filename, callback=None, cl=0, use_trans=False):
     
     read_only = database.readonly
     database.readonly = False
+    
+    xml_file = open_file(filename, cl)
 
-    if GZIP_OK:
-        use_gzip = True
-        try:
-            ofile = gzip.open(filename, "r")
-            ofile.read(1)
-            ofile.close()
-        except IOError, msg:
-            use_gzip = False
-        except ValueError, msg:
-            use_gzip = True
-    else:
-        use_gzip = False
-
-    try:
-        if use_gzip:
-            xml_file = gzip.open(filename, "rb")
-        else:
-            xml_file = open(filename, "r")
-    except IOError, msg:
+    if xml_file is None or \
+       version_is_valid(xml_file, cl) is False:
         if cl:
-            print "Error: %s could not be opened Exiting." % filename
-            print msg
             sys.exit(1)
         else:
-            ErrorDialog(_("%s could not be opened") % filename, str(msg))
             return
-    except:
-        if cl:
-            print "Error: %s could not be opened. Exiting." % filename
-            sys.exit(1)
-        else:
-            ErrorDialog(_("%s could not be opened") % filename)
-            return
+        
     try:
+        xml_file.seek(0)
         parser.parse(xml_file, use_trans, line_cnt, person_cnt)
     except IOError, msg:
         if cl:
@@ -2140,3 +2119,108 @@ def build_place_title(loc):
     if loc.country:
         value = append_value(value, loc.country)
     return value
+
+#-------------------------------------------------------------------------
+#
+# VersionParser
+#
+#-------------------------------------------------------------------------
+class VersionParser:
+    """
+    Utility class to quickly get the versions from an XML file.
+    """
+    def __init__(self, xml_file):
+        """
+        xml_file must be a file object that is already open.
+        """
+        self.__p = ParserCreate()
+        self.__p.StartElementHandler = self.__element_handler
+        self.__gramps_version = 'unknown'
+        self.__xml_version = '1.0.0'
+        
+        xml_file.seek(0)
+        self.__p.ParseFile(xml_file)
+        
+    def __element_handler(self, tag, attrs):
+        " Handle XML elements "
+        if tag == "database" and attrs.has_key('xmlns'):
+            xmlns = attrs.get('xmlns')
+            self.__xml_version = xmlns.split('/')[4]
+        elif tag == "created" and attrs.has_key('version'):
+            self.__gramps_version = attrs.get('version')
+
+    def get_xmlns_version(self):
+        " Get the namespace version of the file "
+        return self.__xml_version
+    
+    def get_gramps_version(self):
+        " Get the version of Gramps that created the file "
+        return self.__gramps_version
+
+def open_file(filename, cli):
+    """ 
+    Open the xml file.
+    Return a valid file handle if the file opened sucessfully.
+    Return None if the file was not able to be opened.
+    """
+    if GZIP_OK:
+        use_gzip = True
+        try:
+            ofile = gzip.open(filename, "r")
+            ofile.read(1)
+            ofile.close()
+        except IOError, msg:
+            use_gzip = False
+        except ValueError, msg:
+            use_gzip = True
+    else:
+        use_gzip = False
+
+    try:
+        if use_gzip:
+            xml_file = gzip.open(filename, "rb")
+        else:
+            xml_file = open(filename, "r")
+    except IOError, msg:
+        if cli:
+            print "Error: %s could not be opened Exiting." % filename
+            print msg
+        else:
+            ErrorDialog(_("%s could not be opened") % filename, str(msg))
+        xml_file = None
+    except:
+        if cli:
+            print "Error: %s could not be opened. Exiting." % filename
+        else:
+            ErrorDialog(_("%s could not be opened") % filename)
+        xml_file = None
+        
+    return xml_file
+    
+def version_is_valid(filename, cli):
+    """ 
+    Validate the xml version.
+    """
+    parser = VersionParser(filename)
+    
+    if parser.get_xmlns_version() > _GrampsDbWriteXML.XML_VERSION:
+        msg = _("The .gramps file you are importing was made by version %s of "
+                "GRAMPS, while you are running an older version %s. "
+                "The file might include parts which cannot be understood by "
+                "this version of GRAMPS and will be discarded upon import." 
+                ) % (parser.get_gramps_version(), const.VERSION)
+        if cli:
+            print msg
+            print _('Enter "Yes" to continue with import.')
+            response = sys.stdin.read()
+            if response not in ["Yes", "yes"]:
+                return False
+        else:
+            prompt = QuestionDialog2( _("Import Newer File?"), msg,
+                                      _("Continue with import"),
+                                      _("Do not import newer file") )
+            response = prompt.run()
+            if response is False:
+                return False
+            
+    return True
