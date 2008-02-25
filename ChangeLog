@@ -1,4 +1,8 @@
-2008-02-20 Frederik De Richter <frederik.de.richter@pandora.be>
+2008-02-25  Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
+	* src/const.py.in: query os.environ for GRAMPSHOME env and use it
+	0001831: A patch allowing using a different home folder than default 
+
+2008-02-25 Frederik De Richter <frederik.de.richter@pandora.be>
 	* src/GrampsLogger/_ErrorView.py
 	links to wiki manual 
 

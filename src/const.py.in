@@ -74,7 +74,10 @@ SYSCONFDIR = "@sysconfdir@"
 # Windows apparently uses USERPROFILE
 #
 #-------------------------------------------------------------------------
-if os.environ.has_key('USERPROFILE'):
+if os.environ.has_key('GRAMPSHOME'):
+    USER_HOME = os.environ['GRAMPSHOME'] 
+    HOME_DIR = os.path.join(USER_HOME, 'gramps')
+elif os.environ.has_key('USERPROFILE'):
     USER_HOME = os.environ['USERPROFILE'] 
     if os.environ.has_key('APPDATA'):
         HOME_DIR = os.path.join(os.environ['APPDATA'], 'gramps')
