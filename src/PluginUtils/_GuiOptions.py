@@ -1154,7 +1154,7 @@ class GuiMenuOptions:
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
-            self.options_help[name] = option.get_help()
+            self.options_help[name] = [ "", option.get_help() ]
 
     def make_default_style(self, default_style):
         """
@@ -1178,7 +1178,7 @@ class GuiMenuOptions:
         """
         self.menu.add_option(category, name, option)
         self.options_dict[name] = option.get_value()
-        self.options_help[name] = option.get_help()
+        self.options_help[name] = [ "", option.get_help() ]
 
     def add_user_options(self, dialog):
         """

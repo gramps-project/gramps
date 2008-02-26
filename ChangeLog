@@ -1,3 +1,13 @@
+2008-02-25 Brian Matherly <brian@gramps-project.org>
+	* src/PluginUtils/_GuiOptions.py:
+	* src/ArgHandler.py:
+	* src/ReportBase/_CommandLineReport.py:
+	Improvements to CLI reports - 
+	0001824: Bug in command line - gramps does not show right error.
+	0001821: A command "python src/gramps.py --open=DG1 --action=report" cause 
+	a crash
+	Fix help strings.
+
 2008-02-25  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DateHandler/_DateParser.py: set year += 1
 	* src/gen/lib/date.py: removed slash-date fix

@@ -36,10 +36,51 @@ import PluginUtils
 from BasicUtils import name_displayer
 import Utils
 import BaseDoc
-from _Constants import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK
+from ReportBase import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
+    CATEGORY_GRAPHVIZ
 from _PaperMenu import paper_sizes
 import os
 import const
+
+#------------------------------------------------------------------------
+#
+# Private Functions
+#
+#------------------------------------------------------------------------
+def _initialize_options(options, dbase):
+    """
+    Validates all options by making sure that their values are consistent with
+    the database.
+    
+    menu: The Menu class
+    dbase: the database the options will be applied to
+    """
+    if not hasattr(options, "menu"):
+        return
+    menu = options.menu
+    
+    for name in menu.get_all_option_names():
+        option = menu.get_option_by_name(name)
+
+        if isinstance(option, PluginUtils.PersonOption):
+            pid = option.get_value()
+            person = dbase.get_person_from_gramps_id(pid)
+            if not person:
+                person = dbase.get_default_person()
+                option.set_value(person.get_gramps_id())
+        
+        elif isinstance(option, PluginUtils.FamilyOption):
+            fid = option.get_value()
+            family = dbase.get_family_from_gramps_id(fid)
+            if not family:
+                person = dbase.get_default_person()
+                family_list = person.get_family_handle_list()
+                if family_list:
+                    family_handle = family_list[0]
+                else:
+                    family_handle = dbase.get_family_handles()[0]
+                family = dbase.get_family_from_handle(family_handle)
+                option.set_value(family.get_gramps_id())
 
 #------------------------------------------------------------------------
 #
@@ -58,7 +99,8 @@ class CommandLineReport:
         self.format = None
         self.option_class = option_class(name, database)
         self.option_class.load_previous_values()
-        self.show = options_str_dict.pop('show',None)
+        _initialize_options(self.option_class, database)
+        self.show = options_str_dict.pop('show', None)
         self.options_str_dict = options_str_dict
         self.init_options(noopt)
         self.parse_option_str()
@@ -73,7 +115,6 @@ class CommandLineReport:
             'papers'    : self.option_class.handler.get_paper_name(),
             'papero'    : self.option_class.handler.get_orientation(),
             'template'  : self.option_class.handler.get_template_name(),
-            'id'        : ''
             }
 
         self.options_help = {
@@ -83,9 +124,6 @@ class CommandLineReport:
             'papers'    : ["=name","Paper size name."],
             'papero'    : ["=num","Paper orientation number."],
             'template'  : ["=name","Template name (HTML only)."],
-            'id'        : ["=ID","Gramps ID of a central person. MANDATORY"],
-            'gen'       : ["=num","Number of generations to follow."],
-            'pagebbg'   : ["=0/1","Page break between generations."],
             }
 
         if noopt:
@@ -111,17 +149,6 @@ class CommandLineReport:
                                                         self.options_dict[opt]
             else:
                 print "Ignoring unknown option: %s" % opt
-
-        person_id = self.options_dict['id']
-        self.person = self.database.get_person_from_gramps_id(person_id)
-        id_list = []
-        for person_handle in self.database.get_person_handles():
-            person = self.database.get_person_from_handle(person_handle)
-            id_list.append("%s\t%s" % (
-                person.get_gramps_id(),
-                name_displayer.display(person)))
-        self.options_help['id'].append(id_list)
-        self.options_help['id'].append(False)
 
         self.option_class.handler.output = self.options_dict['of']
         self.options_help['of'].append(os.path.join(const.USER_HOME,
@@ -256,10 +283,12 @@ def cl_report(database, name, category, report_class, options_class,
 
     # write report
     try:
-        clr.option_class.handler.doc = clr.format(
-                    clr.selected_style,
-                    BaseDoc.PaperStyle(clr.paper,clr.orien),
-                    clr.template_name)
+        if category in [CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
+                        CATEGORY_GRAPHVIZ]:
+            clr.option_class.handler.doc = clr.format(
+                        clr.selected_style,
+                        BaseDoc.PaperStyle(clr.paper,clr.orien),
+                        clr.template_name)
         MyReport = report_class(database, clr.option_class)
         MyReport.doc.init()
         MyReport.begin_report()

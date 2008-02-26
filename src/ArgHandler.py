@@ -737,7 +737,7 @@ class ArgHandler:
                         category = item[1]
                         report_class = item[2]
                         options_class = item[3]
-                        if category in (CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB):
+                        if category in (CATEGORY_BOOK, CATEGORY_CODE):
                             options_class(self.state.db, name, category, 
                                           options_str_dict)
                         else:
