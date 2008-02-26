@@ -1,3 +1,6 @@
+2008-02-26 Peter Landgren <peter.talken@telia.com>
+    * src/plugins/FanChart.py: Fix for printing in landscape issue #1753
+
 2008-02-25 Brian Matherly <brian@gramps-project.org>
 	* src/PluginUtils/_GuiOptions.py:
 	* src/ArgHandler.py:
