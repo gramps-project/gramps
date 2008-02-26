@@ -301,6 +301,7 @@ def suite():
              ("jan 1, 2000/1", "jan 1, 2001", False),
              ("jan 1, 2000/1", "jan 1, 2000/1", True),
              ("jan 1, 2000/1", "jan 14, 2001", True),
+             ("jan 1, 2000/1", "jan 1, 2001 (julian)", True),
              ("about 1984", "about 2005", False),
              ("about 1990", "about 2005", True), 
              ("about 2007", "about 2006", True), 
@@ -372,6 +373,6 @@ def suite2():
     return suite
 
 if __name__ == "__main__":
-    unittest.TextTestRunner().run(suite())
-    unittest.TextTestRunner().run(suite2())
     unittest.TextTestRunner().run(suite3())
+    unittest.TextTestRunner().run(suite2())
+    unittest.TextTestRunner().run(suite())

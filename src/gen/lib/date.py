@@ -922,13 +922,6 @@ class Date:
         """
         if calendar == self.calendar:
             return
-        if self.get_slash():
-            if (self.calendar == Date.CAL_JULIAN and 
-                calendar == Date.CAL_GREGORIAN):
-                self.set_year(self.get_year() + 1)
-            elif (self.calendar == Date.CAL_GREGORIAN and 
-                calendar == Date.CAL_JULIAN):
-                self.set_year(self.get_year() - 1)
         (year, month, day) = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
             ryear = max(self.dateval[Date._POS_RYR], 1)
