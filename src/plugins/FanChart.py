@@ -173,6 +173,17 @@ class FanChart(Report):
             y = self.doc.get_usable_height()
             min_xy = min (self.doc.get_usable_width(), y)
 
+        if self.circle == FULL_CIRCLE or self.circle == QUAR_CIRCLE:
+            # adjust only if full circle or 1/4 circle in landscape mode
+            if self.doc.get_usable_height() <= self.doc.get_usable_width():
+                # Should be in Landscape now
+                style_sheet = self.doc.get_style_sheet()
+                fontsize = pt2cm(style_sheet.get_paragraph_style('FC-Title').get_font().get_size())
+                # y is vertical distance to center of circle, move center down 1 fontsize
+                y = y + fontsize
+                # min_XY is the diamter of the circle, subtract two fontsize
+                # so we dont draw outside bottom of the paper
+                min_xy = min(min_xy,y-2*fontsize)
         if self.max_generations > max_circular:
             block_size = min_xy / (self.max_generations * 2 - max_circular)
         else:
