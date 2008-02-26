@@ -28,7 +28,6 @@
 import cPickle as pickle
 import os
 from xml.sax.saxutils import escape
-from gettext import gettext as _
 from time import strftime as strftime
 
 try:
@@ -57,6 +56,7 @@ import TreeTips
 import DateHandler
 import GrampsDisplay
 import ManagedWindow
+from TransUtils import sgettext as _
 
 from DdTargets import DdTargets
 
@@ -480,10 +480,18 @@ class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
         srctxtlist = [ note for note in notelist 
                        if note.get_type() == gen.lib.NoteType.SOURCE_TEXT]
 
+        page = self._obj.get_page()
+        if not page:
+            page = _('not available|NA')
+        text = ""
         if len(srctxtlist) > 0:
-            self._value = srctxtlist[0].get_text()
-        else:
-            self._value = u""
+            text = " ".join(srctxtlist[0].get().split())
+            if len(text) > 60:
+                text =  text[:60]+"..."
+        self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {
+                            'pag'        : page,
+                            'sourcetext' : text,
+                            }
 
     def tooltip(self):
         global escape

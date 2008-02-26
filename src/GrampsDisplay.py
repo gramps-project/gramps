@@ -67,9 +67,7 @@ def help(target, webpage='', section=''):
     #    url(const.URL_MANUAL+'en/')
     
     # 3.0 Beta, direct to the wiki 3.0 Manual
-    
-    
-        
+
     if not webpage:
         link = const.URL_WIKISTRING + const.URL_MANUAL_PAGE + EXTENSION
     else:

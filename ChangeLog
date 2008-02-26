@@ -1,3 +1,7 @@
+2008-02-26 Benny Malengier <benny.malengier@gramps-project.org>
+    * src/ScratchPad.py: bug when dragging sourceref #1833
+    * src/GrampsDisplay.py: remove whitespace
+
 2008-02-26 Peter Landgren <peter.talken@telia.com>
     * src/plugins/FanChart.py: Fix for printing in landscape issue #1753
 
@@ -102,7 +106,7 @@
 	* src/DataViews/GrampletView.py (GrampletView.restore_gramplet): 
 	Fixed restore minimized gramplet
 
-2008-02-24  NOT Douglas S. Blank <dblank@cs.brynmawr.edu>
+2008-02-24 Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ViewManager.py:
 	* src/DbLoader.py:
 	Remove os.chdir, no longer needed for relative path
