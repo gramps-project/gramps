@@ -1,5 +1,9 @@
 2008-02-26 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_CommandLineReport.py:
+	0001828: update cli handling of new options. (new in 3.0?)
+
+2008-02-26 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_CommandLineReport.py:
 	0001835: cli crashes for all reports. NoneType has no attribute 
 	get_gramps_id
 

@@ -41,6 +41,7 @@ log = logging.getLogger(".")
 import PluginUtils
 import Utils
 import BaseDoc
+from BasicUtils import name_displayer
 from ReportBase import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
     CATEGORY_GRAPHVIZ
 from _PaperMenu import paper_sizes
@@ -52,7 +53,7 @@ import const
 # Private Functions
 #
 #------------------------------------------------------------------------
-def _initialize_options(options, dbase):
+def _validate_options(options, dbase):
     """
     Validates all options by making sure that their values are consistent with
     the database.
@@ -100,21 +101,25 @@ class CommandLineReport:
     Provide a way to generate report from the command line.
     """
 
-    def __init__(self,database, name,category, option_class, options_str_dict,
+    def __init__(self, database, name, category, option_class, options_str_dict,
                  noopt=False):
         self.database = database
         self.category = category
         self.format = None
         self.option_class = option_class(name, database)
         self.option_class.load_previous_values()
-        _initialize_options(self.option_class, database)
+        _validate_options(self.option_class, database)
         self.show = options_str_dict.pop('show', None)
         self.options_str_dict = options_str_dict
-        self.init_options(noopt)
-        self.parse_option_str()
+        self.init_standard_options(noopt)
+        self.init_report_options()
+        self.parse_options()
         self.show_options()
 
-    def init_options(self, noopt):
+    def init_standard_options(self, noopt):
+        """
+        Initialize the options that are hard-coded into the report system.
+        """
         self.options_dict = {
             'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
@@ -136,27 +141,6 @@ class CommandLineReport:
 
         if noopt:
             return
-
-        # Add report-specific options
-        for key in self.option_class.handler.options_dict.keys():
-            if key not in self.options_dict.keys():
-                self.options_dict[key] = \
-                                   self.option_class.handler.options_dict[key]
-
-        # Add help for report-specific options
-        for key in self.option_class.options_help.keys():
-            if key not in self.options_help.keys():
-                self.options_help[key] = self.option_class.options_help[key]
-
-    def parse_option_str(self):
-        for opt in self.options_str_dict.keys():
-            if opt in self.options_dict.keys():
-                converter = Utils.get_type_converter(self.options_dict[opt])
-                self.options_dict[opt] = converter(self.options_str_dict[opt])
-                self.option_class.handler.options_dict[opt] = \
-                                                        self.options_dict[opt]
-            else:
-                print "Ignoring unknown option: %s" % opt
 
         self.option_class.handler.output = self.options_dict['of']
         self.options_help['of'].append(os.path.join(const.USER_HOME,
@@ -217,7 +201,7 @@ class CommandLineReport:
         self.options_help['template'].append(os.path.join(const.USER_HOME,
                                                           "whatever_name"))
 
-        if self.category in (CATEGORY_TEXT,CATEGORY_DRAW):
+        if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
             default_style = BaseDoc.StyleSheet()
             self.option_class.make_default_style(default_style)
 
@@ -226,13 +210,95 @@ class CommandLineReport:
             self.style_list = BaseDoc.StyleSheetList(style_file,default_style)
 
             # Get the selected stylesheet
-            style_name =self.option_class.handler.get_default_stylesheet_name()
+            style_name = self.option_class.handler.get_default_stylesheet_name()
             self.selected_style = self.style_list.get_style_sheet(style_name)
             
-            self.options_help['style'].append(
-                self.style_list.get_style_names() )
+            self.options_help['style'].append(self.style_list.get_style_names())
             self.options_help['style'].append(False)
-
+            
+    def init_report_options(self):
+        """
+        Initialize the options that are defined by each report.
+        """
+        if not hasattr(self.option_class, "menu"):
+            return
+        menu = self.option_class.menu
+        for name in menu.get_all_option_names():
+            option = menu.get_option_by_name(name)
+            self.options_dict[name] = option.get_value()
+            self.options_help[name] = [ "", option.get_help() ]
+            
+            if isinstance(option, PluginUtils.PersonOption):
+                id_list = []
+                for person_handle in self.database.get_person_handles():
+                    person = self.database.get_person_from_handle(person_handle)
+                    id_list.append("%s\t%s" % (
+                        person.get_gramps_id(),
+                        name_displayer.display(person)))
+                self.options_help[name].append(id_list)
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.FamilyOption):
+                id_list = []
+                for fhandle in self.database.get_family_handles():
+                    family = self.database.get_person_from_handle(fhandle)
+                    id_list.append(family.get_gramps_id())
+                self.options_help[name].append(id_list)
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.NoteOption):
+                id_list = []
+                for nhandle in self.database.get_note_handles():
+                    note = self.database.get_note_from_handle(nhandle)
+                    id_list.append(note.get_gramps_id())
+                self.options_help[name].append(id_list)
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.MediaOption):
+                id_list = []
+                for mhandle in self.database.get_media_object_handles():
+                    mobject = self.database.get_object_from_handle(mhandle)
+                    id_list.append(mobject.get_gramps_id())
+                self.options_help[name].append(id_list)
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.PersonListOption):
+                self.options_help[name].append("")
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.NumberOption):
+                self.options_help[name].append("A number")
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.BooleanOption):
+                self.options_help[name].append(["0\tno", "1\tyes"])
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.DestinationOption):
+                self.options_help[name].append("A file system path")
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.StringOption):
+                self.options_help[name].append("Any text")
+                self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.EnumeratedListOption):
+                ilist = []
+                for (value, description) in option.get_items():
+                    ilist.append("%s\t%s" % (value, description))
+                self.options_help[name].append(ilist)
+                self.options_help[name].append(False)
+                
+    def parse_options(self):
+        """
+        Load the options that the user has entered.
+        """
+        if not hasattr(self.option_class, "menu"):
+            return
+        menu = self.option_class.menu
+        for opt in self.options_str_dict.keys():
+            if opt in self.options_dict.keys():
+                converter = Utils.get_type_converter(self.options_dict[opt])
+                self.options_dict[opt] = converter(self.options_str_dict[opt])
+                self.option_class.handler.options_dict[opt] = \
+                                                        self.options_dict[opt]
+                option = menu.get_option_by_name(opt)
+                option.set_value(self.options_dict[opt])
+                
+            else:
+                print "Ignoring unknown option: %s" % opt
+                
     def show_options(self):
         """
         Print available options on the CLI.
