@@ -1041,9 +1041,9 @@ def check_in(dbase, filename, callback, cursor_func = None):
     init   = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
     ci_cmd = [ "ci", "-q", "-f" ]
 
-    glade = glade.XML(const.GLADE_FILE, "comment", "gramps")
-    top = glade.get_widget('comment')
-    text = glade.get_widget('description')
+    glade_xml_file = glade.XML(const.GLADE_FILE, "comment", "gramps")
+    top = glade_xml_file.get_widget('comment')
+    text = glade_xml_file.get_widget('description')
 
     top.run()
     comment = text.get_text()

@@ -1,3 +1,6 @@
+2008-02-27 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/DbManager.py: rename glade variable to glade_xml_file
+
 2008-02-25 Frederik De Richter <frederik.de.richter@pandora.be>
 	* src/plugins/SoundGen.py
 	links to wiki manual 
