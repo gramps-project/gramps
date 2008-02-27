@@ -37,7 +37,7 @@ import re
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from QuestionDialog import ErrorDialog, QuestionDialog2
+from QuestionDialog import ErrorDialog
 import Mime
 import gen.lib
 import Utils
@@ -2206,21 +2206,14 @@ def version_is_valid(filename, cli):
     if parser.get_xmlns_version() > _GrampsDbWriteXML.XML_VERSION:
         msg = _("The .gramps file you are importing was made by version %s of "
                 "GRAMPS, while you are running an older version %s. "
-                "The file might include parts which cannot be understood by "
-                "this version of GRAMPS and will be discarded upon import." 
+                "The file will not be imported. Please upgrade to the latest "
+                "version of GRAMPS and try again." 
                 ) % (parser.get_gramps_version(), const.VERSION)
         if cli:
             print msg
-            print _('Enter "Yes" to continue with import.')
-            response = sys.stdin.read()
-            if response not in ["Yes", "yes"]:
-                return False
+            return False
         else:
-            prompt = QuestionDialog2( _("Import Newer File?"), msg,
-                                      _("Continue with import"),
-                                      _("Do not import newer file") )
-            response = prompt.run()
-            if response is False:
-                return False
+            ErrorDialog(msg)
+            return False
             
     return True

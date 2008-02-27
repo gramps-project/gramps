@@ -1,3 +1,7 @@
+2008-02-27 Brian Matherly <brian@gramps-project.org>
+	* src/GrampsDbUtils/_ReadXML.py:
+	Don't allow newer Gramps files to be imported (#0001722).
+
 2008-02-27 Stéphane Charette <stephanecharette@gmail.com>
 	* src/plugins/GVFamilyLines.py:
 	0001549: use standard date formats for FamilyLines
