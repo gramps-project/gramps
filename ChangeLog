@@ -1,3 +1,7 @@
+2008-02-27 Benny Malengier <benny.malengier@gramps-project.org>
+	* src/GrampsDb/_ReadXML.py: don't create empty objects in bookmarks
+	* src/Bookmarks.py: don't store duplicates, backport
+
 2008-02-02 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/GrampsDb/_WriteGedcom.py
 	* src/plugins/WriteGeneWeb.py
