@@ -663,11 +663,7 @@ class FamilyLinesReport(Report):
                 if (bth_event.private and self.includePrivate) or \
                         not bth_event.private:
                     date = bth_event.get_date_object()
-                    if date.get_day_valid() and date.get_month_valid() and \
-                            date.get_year_valid():
-                        birthStr = _dd.display(date)
-                    elif date.get_year_valid():
-                        birthStr = '%d' % date.get_year()
+                    birthStr = _dd.display(date)
 
             # get birth place (one of:  city, state, or country) we can use
             birthplace = None
@@ -690,11 +686,7 @@ class FamilyLinesReport(Report):
                 if (dth_event.private and self.includePrivate) or \
                         not dth_event.private:
                     date = dth_event.get_date_object()
-                    if date.get_day_valid() and date.get_month_valid() and \
-                            date.get_year_valid():
-                        deathStr = _dd.display(date)
-                    elif date.get_year_valid():
-                        deathStr = '%d' % date.get_year()
+                    deathStr = _dd.display(date)
 
             # get death place (one of:  city, state, or country) we can use
             deathplace = None
@@ -793,10 +785,7 @@ class FamilyLinesReport(Report):
                         if (event.private and self.includePrivate) or not event.private:
                             if self.includeDates:
                                 date = event.get_date_object()
-                                if date.get_day_valid() and date.get_month_valid() and date.get_year_valid():
-                                    weddingDate = _dd.display(date)
-                                elif date.get_year_valid():
-                                    weddingDate = '%d' % date.get_year()
+                                weddingDate = _dd.display(date)
                             # get the wedding location
                             if self.includePlaces:
                                 place = self.db.get_place_from_handle(event.get_place_handle())

@@ -1,3 +1,7 @@
+2008-02-27 Stéphane Charette <stephanecharette@gmail.com>
+	* src/plugins/GVFamilyLines.py:
+	0001549: use standard date formats for FamilyLines
+
 2008-02-26 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_CommandLineReport.py:
 	0001828: update cli handling of new options. (new in 3.0?)
