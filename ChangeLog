@@ -1,3 +1,8 @@
+2008-02-26 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_CommandLineReport.py:
+	0001835: cli crashes for all reports. NoneType has no attribute 
+	get_gramps_id
+
 2008-02-26 Benny Malengier <benny.malengier@gramps-project.org>
     * src/ScratchPad.py: bug when dragging sourceref #1833
     * src/GrampsDisplay.py: remove whitespace

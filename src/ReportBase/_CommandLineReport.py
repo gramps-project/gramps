@@ -28,12 +28,17 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import sys
 
 import logging
 log = logging.getLogger(".")
 
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import PluginUtils
-from BasicUtils import name_displayer
 import Utils
 import BaseDoc
 from ReportBase import CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, \
@@ -68,6 +73,9 @@ def _initialize_options(options, dbase):
             if not person:
                 person = dbase.get_default_person()
                 option.set_value(person.get_gramps_id())
+                if not person:
+                    print "Please specify a person"
+                    sys.exit(0)
         
         elif isinstance(option, PluginUtils.FamilyOption):
             fid = option.get_value()
