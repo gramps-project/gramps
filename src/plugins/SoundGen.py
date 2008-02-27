@@ -28,7 +28,6 @@
 #
 #------------------------------------------------------------------------
 import os
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -45,13 +44,22 @@ import soundex
 import GrampsDisplay
 import ManagedWindow
 import AutoComp
-
+from TransUtils import sgettext as _
 from PluginUtils import Tool, register_tool
 
 #-------------------------------------------------------------------------
 #
+# Constants
 #
 #-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Generate_SoundEx_codes')
+#-------------------------------------------------------------------------
+#
+# SoundGen.py
+#
+#-------------------------------------------------------------------------
+
 class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
@@ -104,7 +112,7 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-other')
+        GrampsDisplay.help('tools-util-other', WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (self.label,None)
