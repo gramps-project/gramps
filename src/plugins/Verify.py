@@ -21,7 +21,7 @@
 # $Id$
 
 """
-A plugin to verify the data against user-adjsted tests.
+A plugin to verify the data against user-adjusted tests.
 This is the research tool, not the low-level data ingerity check.
 """
 
@@ -31,7 +31,6 @@ This is the research tool, not the low-level data ingerity check.
 #
 #------------------------------------------------------------------------
 import os
-from gettext import gettext as _
 import cPickle
 import md5
 import Errors
@@ -57,6 +56,14 @@ import GrampsDisplay
 from ManagedWindow import ManagedWindow
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
+from TransUtils import sgettext as _
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Verify_the_Data...')
 
 #-------------------------------------------------------------------------
 #
@@ -287,7 +294,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-other')
+        GrampsDisplay.help('tools-util-other', webpage=WIKI_HELP_PAGE, 
+                                   section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):
         self.options.handler.options_dict['oldage'] = self.top.get_widget(

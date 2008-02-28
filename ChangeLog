@@ -1,3 +1,7 @@
+2008-02-28 Frederik De Richter <frederik.de.richter@pandora.be>
+	* src/plugins/Verify.py
+	links to wiki manual 
+
 2008-02-28  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/DefaultGramplets.py: 
 	made detached_width, height larger for the pedigree gramplet
