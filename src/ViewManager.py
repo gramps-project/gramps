@@ -64,7 +64,8 @@ import const
 import Config
 import GrampsCfg
 import Errors
-from QuestionDialog import ErrorDialog, WarningDialog, QuestionDialog2
+from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2, 
+                            InfoDialog)
 import PageView
 import Navigation
 import RecentFiles
@@ -91,11 +92,6 @@ gtk.about_dialog_set_url_hook(show_url, None)
 # Constants
 #
 #-------------------------------------------------------------------------
-_KNOWN_FORMATS = { 
-    const.APP_GRAMPS        : _('GRAMPS (grdb)'), 
-    const.APP_GRAMPS_XML    : _('GRAMPS XML'), 
-    const.APP_GEDCOM        : _('GEDCOM'), 
-}
 
 UIDEFAULT = '''<ui>
 <menubar name="MenuBar">
@@ -1039,6 +1035,9 @@ class ViewManager:
         """
         if self.state.db.is_open():
             self.db_loader.import_file()
+            infotxt = self.db_loader.import_info_text()
+            if infotxt:
+                InfoDialog(_('Import Statistics'), infotxt, self.window)
             self.__post_load()
     
     def open_activate(self, path):

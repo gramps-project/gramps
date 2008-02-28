@@ -787,6 +787,7 @@ _mime_type_rfc_4180 = "text/csv" # CSV Document   See rfc4180 for mime type
 _filter = gtk.FileFilter()
 _filter.set_name(_('CSV spreadsheet files'))
 _filter.add_mime_type(_mime_type)
+_filter.add_mime_type(_mime_type_rfc_4180)
 _format_name = _('CSV Spreadheet')
-register_import(importData, _filter, _mime_type, 0, _format_name)
-register_import(importData, _filter, _mime_type_rfc_4180, 0, _format_name)
+register_import(importData, _filter, [_mime_type, _mime_type_rfc_4180],
+                0, _format_name)

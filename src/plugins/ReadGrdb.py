@@ -326,4 +326,4 @@ _filter.set_name(_('GRAMPS 2.x database'))
 _filter.add_mime_type(_mime_type)
 _format_name = _('GRAMPS 2.x database')
 
-register_import(importData, _filter, _mime_type, 0, _format_name)
+register_import(importData, _filter, [_mime_type], 0, _format_name)

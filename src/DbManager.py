@@ -684,9 +684,9 @@ class DbManager(CLIDbManager):
 
         if len(path) == 1:
             QuestionDialog(
-                _("Remove the '%s' database?") % self.data_to_delete[0],
-                _("Removing this database will permanently destroy the data."),
-                _("Remove database"),
+                _("Remove the '%s' family tree?") % self.data_to_delete[0],
+                _("Removing this family tree will permanently destroy the data."),
+                _("Remove family tree"),
                 self.__really_delete_db)
         else:
             rev = self.data_to_delete[0]

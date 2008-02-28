@@ -66,7 +66,7 @@ def gramps_db_reader_factory(db_type):
         #see if registered importer
         found = False
         for data in import_list:
-            if db_type == data[2]:
+            if db_type in data[2]:
                 print "Found import plugin for %s" % data[4]
                 found = True
                 md = data[0]

@@ -67,9 +67,9 @@ class SaveDialog:
         label2 = self.xml.get_widget('label2')
         label2.set_text(msg2)
         label2.set_use_markup(True)
-        self.top.show()
         if parent:
             self.top.set_transient_for(parent)
+        self.top.show()
         response = self.top.run()
         if response == gtk.RESPONSE_NO:
             self.task1()
@@ -96,9 +96,9 @@ class QuestionDialog:
 
         self.xml.get_widget('okbutton').set_label(label)
 
-        self.top.show()
         if parent:
             self.top.set_transient_for(parent)
+        self.top.show()
         response = self.top.run()
         self.top.destroy()
         if response == gtk.RESPONSE_ACCEPT:
@@ -123,9 +123,10 @@ class QuestionDialog2:
         self.xml.get_widget('okbutton').set_use_underline(True)
         self.xml.get_widget('no').set_label(label_msg2)
         self.xml.get_widget('no').set_use_underline(True)
-        self.top.show()
+        
         if parent:
             self.top.set_transient_for(parent)
+        self.top.show()
 
     def run(self):
         response = self.top.run()
@@ -149,9 +150,9 @@ class OptionDialog:
 
         self.xml.get_widget('option1').set_label(btnmsg1)
         self.xml.get_widget('option2').set_label(btnmsg2)
-        self.top.show()
         if parent:
             self.top.set_transient_for(parent)
+        self.top.show()
         self.response = self.top.run()
         if self.response == gtk.RESPONSE_NO:
             if task1:
@@ -188,7 +189,7 @@ class RunDatabaseRepair(ErrorDialog):
               'usually be resolved by running the "Check and Repair Database" '
               'tool.\n\nIf this problem continues to exist after running this '
               'tool, please file a bug report at '
-              'http://bugs.gramps-project.org\n\n') + str(msg))
+              'http://bugs.gramps-project.org\n\n') + str(msg), parent)
 
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
@@ -198,7 +199,7 @@ class DBErrorDialog(ErrorDialog):
             _("GRAMPS has detected a problem in the underlying "
               "Berkeley database. This can be repaired by from "
               "the Family Tree Manager. Select the database and "
-              'click on the Repair button') + '\n\n' + str(msg))
+              'click on the Repair button') + '\n\n' + str(msg), parent)
 
 class WarningDialog(gtk.MessageDialog):
     def __init__(self,msg1,msg2="",parent=None):
@@ -230,6 +231,35 @@ class OkDialog(gtk.MessageDialog):
         self.run()
         self.destroy()
 
+class InfoDialog:
+    """
+    Dialog to show selectable info in a scrolled window
+    """
+    def __init__(self, msg1, infotext, parent=None):
+        self.xml = glade.XML(const.GLADE_FILE, "infodialog", "gramps")
+        self.top = self.xml.get_widget('infodialog')
+        self.top.set_icon(ICON)
+        self.top.set_title("%s - GRAMPS" % msg1)
+
+        label = self.xml.get_widget('toplabel')
+        label.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+        label.set_use_markup(True)
+        
+        infoview = self.xml.get_widget('infoview')
+        infobuffer = gtk.TextBuffer()
+        infobuffer.set_text(infotext)
+        infoview.set_buffer(infobuffer)
+
+        if parent:
+            self.top.set_transient_for(parent)
+        self.top.show()
+        self.response = self.top.run()
+        #no matter how it finishes, destroy dialog
+        self.top.destroy()
+
+    def get_response(self):
+        return self.response
+
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3,parent=None):
         self.xml = glade.XML(const.GLADE_FILE,"missmediadialog","gramps")
@@ -251,9 +281,9 @@ class MissingMediaDialog:
 
         check_button = self.xml.get_widget('use_always')
 
-        self.top.show()
         if parent:
             self.top.set_transient_for(parent)
+        self.top.show()
         self.top.connect('delete_event',self.warn)
         response = gtk.RESPONSE_DELETE_EVENT
 

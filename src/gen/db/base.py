@@ -816,12 +816,16 @@ class GrampsDbBase(Callback):
                           add_func):
         obj = class_type()
         handle = str(handle)
+        new = True
         if dmap.has_key(handle):
             obj.unserialize(dmap.get(handle))
+            #references create object with id None before object is really made
+            if obj.gramps_id is not None:
+                new = False
         else:
             obj.set_handle(handle)
             add_func(obj, transaction)
-        return obj
+        return obj, new
 
     def __check_from_handle(self, handle, transaction, class_type, dmap,
                             add_func, set_gid=True):

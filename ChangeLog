@@ -1,3 +1,23 @@
+2008-02-28  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/ViewManager.py: allow for info dialog after import
+	* src/gen/db/base.py: find returns if new object or not
+	* src/gen/db/dbdir.py: find returns if new object or not
+	* src/plugins/ImportGeneWeb.py: allow multiple mime types
+	* src/plugins/ImportvCard.py: allow multiple mime types
+	* src/plugins/ReadGrdb.py: allow multiple mime types
+	* src/plugins/ReadPkg.py: allow multiple mime types
+	* src/plugins/ImportCSV.py: allow multiple mime types
+	* src/DbManager.py: use family tree string, not database
+	* src/glade/gramps.glade: add info dialog
+	* src/QuestionDialog.py: add info dialog, clean up set transient errors
+	* src/GrampsDbUtils/_GrampsDbWriteXML.py: improve comment
+	* src/GrampsDbUtils/_ReadXML.py: fix change dates problems, fix 
+	 creation of empty objects in bookmarks, add info dialog, clean up
+	 relative media import, remove unneeded parameters
+	* src/GrampsDbUtils/_GrampsDbWRFactories.py: 
+	* src/GrampsDbUtils/_GrampsBSDDB.py: allow multiple mime types
+	* src/DbLoader.py: fix up import filters and some mime type issues
+
 2008-02-28 Frederik De Richter <frederik.de.richter@pandora.be>
 	* src/plugins/Verify.py
 	links to wiki manual 

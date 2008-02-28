@@ -934,4 +934,4 @@ _filter.set_name(_('GeneWeb files'))
 _filter.add_mime_type(_mime_type)
 _format_name = _('GeneWeb')
 
-register_import(importData,_filter,_mime_type,0,_format_name)
+register_import(importData, _filter, [_mime_type], 0, _format_name)

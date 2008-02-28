@@ -69,10 +69,12 @@ import Errors
 # Constants
 #
 #-------------------------------------------------------------------------
+
+#connection between main mime type, name, and list of alternative mime types
 _KNOWN_FORMATS = { 
-    const.APP_GRAMPS        : _('GRAMPS (grdb)'), 
-    const.APP_GRAMPS_XML    : _('GRAMPS XML'), 
-    const.APP_GEDCOM        : _('GEDCOM'), 
+    const.APP_GRAMPS        : [_('GRAMPS (grdb)'), []], 
+    const.APP_GRAMPS_XML    : [_('GRAMPS XML'), []], 
+    const.APP_GEDCOM        : [_('GEDCOM'), []], 
 }
 
 OPEN_FORMATS = [const.APP_GRAMPS_XML, const.APP_GEDCOM]
@@ -86,6 +88,7 @@ class DbLoader:
     def __init__(self, dbstate, uistate):
         self.dbstate = dbstate
         self.uistate = uistate
+        self.import_info = None
 
     def import_file(self):
         # First thing first: import is a batch transaction
@@ -112,24 +115,24 @@ class DbLoader:
         choose_db_dialog.set_local_only(False)
 
         # Always add automatic (match all files) filter
-        add_all_files_filter(choose_db_dialog)
-        add_grdb_filter(choose_db_dialog)
-        add_xml_filter(choose_db_dialog)
-        add_gedcom_filter(choose_db_dialog)
+        add_all_files_filter(choose_db_dialog)   # *
+        #add_grdb_filter(choose_db_dialog)        # .grdb no longer native!
+        add_xml_filter(choose_db_dialog)         # .gramps
+        add_gedcom_filter(choose_db_dialog)      # .ged
 
         format_list = OPEN_FORMATS[:]
 
         # Add more data type selections if opening existing db
         for data in import_list:
             mime_filter = data[1]
-            mime_type = data[2]
+            mime_types = data[2]
             native_format = data[3]
             format_name = data[4]
 
             if not native_format:
                 choose_db_dialog.add_filter(mime_filter)
-                format_list.append(mime_type)
-                _KNOWN_FORMATS[mime_type] = format_name
+                format_list.append(mime_types[0])
+                _KNOWN_FORMATS[mime_types[0]] = [format_name, mime_types[1:]]
 
         (box, type_selector) = format_maker(format_list)
         choose_db_dialog.set_extra_widget(box)
@@ -166,17 +169,17 @@ class DbLoader:
                         continue
 
                 # First we try our best formats
-                if filetype in OPEN_FORMATS:
+                if filetype in OPEN_FORMATS or filetype in _KNOWN_FORMATS:
                     importer = GrampsDbUtils.gramps_db_reader_factory(filetype)
                     self.do_import(choose_db_dialog, importer, filename)
                     return True
 
-                # Then we try all the known plugins
                 (the_path, the_file) = os.path.split(filename)
                 Config.set(Config.RECENT_IMPORT_DIR, the_path)
-                for (importData, mime_filter, mime_type, native_format, 
+                # Then we try all the known plugins
+                for (importData, mime_filter, mime_types, native_format, 
                      format_name) in import_list:
-                    if filetype == mime_type or the_file == mime_type:
+                    if filetype in mime_types:
                         self.do_import(choose_db_dialog, importData, filename)
                         return True
 
@@ -281,12 +284,16 @@ class DbLoader:
 
 
     def do_import(self, dialog, importer, filename):
+        self.import_info = None
         dialog.destroy()
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
         self.uistate.progress.show()
 
         try:
-            importer(self.dbstate.db, filename, self.uistate.pulse_progressbar)
+            #an importer can return an object with info, object.info_text() 
+            #returns that info. Otherwise None is set to import_info
+            self.import_info = importer(self.dbstate.db, filename,
+                            self.uistate.pulse_progressbar)
             dirname = os.path.dirname(filename) + os.path.sep
             Config.set(Config.RECENT_IMPORT_DIR, dirname)
         except UnicodeError, msg:
@@ -297,6 +304,16 @@ class DbLoader:
                   "encoding, and import again") + "\n\n %s" % msg)
         except Exception:
             _LOG.error("Failed to import database.", exc_info=True)
+    
+    def import_info_text(self):
+        """
+        On import the importer can construct an info object about the import.
+        If so, this method will return this text, otherwise the empty string
+        is returned
+        """
+        if self.import_info is None:
+            return u""
+        return self.import_info.info_text()
 
 #-------------------------------------------------------------------------
 #
@@ -348,7 +365,7 @@ def add_grdb_filter(chooser):
     Add a GRDB filter to the file chooser dialog.
     """
     mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GRAMPS databases'))
+    mime_filter.set_name(_('GRAMPS 2.x databases'))
     mime_filter.add_mime_type(const.APP_GRAMPS)
     chooser.add_filter(mime_filter)
 
@@ -409,7 +426,7 @@ def format_maker(formats):
     format_list = [ ('auto', _('Automatically detected')) ]
     for format in formats:
         if _KNOWN_FORMATS.has_key(format):
-            format_list.append( (format, _KNOWN_FORMATS[format]) )
+            format_list.append( (format, _KNOWN_FORMATS[format][0]) )
 
     type_selector = GrampsFormatWidget()
     type_selector.set(format_list)

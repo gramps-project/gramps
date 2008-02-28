@@ -89,7 +89,7 @@ def importData(database, filename, callback=None, cl=0, use_trans=False):
     database.fmap = {}
 
     change = os.path.getmtime(filename)
-    parser = GrampsParser(database, callback, basefile, change, filename)
+    parser = GrampsParser(database, callback, change)
 
     linecounter = LineParser(filename)
     line_cnt = linecounter.get_count()
@@ -109,7 +109,7 @@ def importData(database, filename, callback=None, cl=0, use_trans=False):
         
     try:
         xml_file.seek(0)
-        parser.parse(xml_file, use_trans, line_cnt, person_cnt)
+        info = parser.parse(xml_file, use_trans, line_cnt, person_cnt)
     except IOError, msg:
         if cl:
             print "Error reading %s" % filename
@@ -135,6 +135,8 @@ def importData(database, filename, callback=None, cl=0, use_trans=False):
     xml_file.close()
 
     database.readonly = read_only
+    
+    return info
 
 ##  TODO - WITH MEDIA PATH, IS THIS STILL NEEDED? 
 ##         BETTER LEAVE ALL RELATIVE TO NEW RELATIVE PATH
@@ -183,6 +185,108 @@ def fix_spaces(text_list):
 # 
 #
 #-------------------------------------------------------------------------
+
+class ImportInfo:
+    """
+    Class object that can hold information about the import
+    """
+    keyorder = [PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, 
+                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY]
+    key2data = {
+            PERSON_KEY : 0,
+            FAMILY_KEY : 1,
+            SOURCE_KEY: 2, 
+            EVENT_KEY: 3, 
+            MEDIA_KEY: 4, 
+            PLACE_KEY: 5, 
+            REPOSITORY_KEY: 6, 
+            NOTE_KEY: 7
+            }
+    
+    def __init__(self):
+        """
+        Init of the import class.
+        
+        This creates the datastructures to hold info
+        """
+        self.data_mergeoverwrite = [{},{},{},{},{},{},{},{}]
+        self.data_newobject = [0,0,0,0,0,0,0,0]
+        self.data_relpath = False
+        
+
+    def add(self, category, key, obj):
+        """
+        Add info of a certain category. Key is one of the predefined keys,
+        while obj is an object of which information will be extracted
+        """
+        if category == 'merge-overwrite':
+            self.data_mergeoverwrite[self.key2data[key]][obj.handle] = \
+                    self._extract_mergeinfo(key, obj)
+        elif category == 'new-object':
+            self.data_newobject[self.key2data[key]] += 1
+        elif category == 'relative-path':
+            self.data_relpath = True
+
+    def _extract_mergeinfo(self, key, obj):
+        """
+        Extract info from obj about 'merge-overwrite', Key is one of the 
+        predefined keys.
+        """
+        if key == PERSON_KEY:
+            return _("  %(id)s - %(text)s\n") % {'id': obj.gramps_id, 
+                        'text' : name_displayer.display(obj)
+                        }
+        elif key == FAMILY_KEY :
+            return _("  Family %(id)s\n") % {'id': obj.gramps_id}
+        elif key ==SOURCE_KEY:
+            return _("  Source %(id)s\n") % {'id': obj.gramps_id}
+        elif key == EVENT_KEY:
+            return _("  Event %(id)s\n") % {'id': obj.gramps_id}
+        elif key == MEDIA_KEY:
+            return _("  Media Object %(id)s\n") % {'id': obj.gramps_id}
+        elif key == PLACE_KEY:
+            return _("  Place %(id)s\n") % {'id': obj.gramps_id}
+        elif key == REPOSITORY_KEY:
+            return _("  Repository %(id)s\n") % {'id': obj.gramps_id}
+        elif key == NOTE_KEY:
+            return _("  Note %(id)s\n") % {'id': obj.gramps_id}
+
+    def info_text(self):
+        """
+        Construct an info message from the data in the class.
+        """
+        key2string = {
+            PERSON_KEY      : _('  People: %d\n'),
+            FAMILY_KEY      : _('  Families: %d\n'),
+            SOURCE_KEY      : _('  Sources: %d\n'),
+            EVENT_KEY       : _('  Events: %d\n'),
+            MEDIA_KEY       : _('  Media Objects: %d\n'),
+            PLACE_KEY       : _('  Places: %d\n'),
+            REPOSITORY_KEY  : _('  Repositories: %d\n'),
+            NOTE_KEY        : _('  Notes: %d\n'),
+            }
+        txt = _("Number of new objects imported:\n")
+        for key in self.keyorder:
+            txt += key2string[key] % self.data_newobject[self.key2data[key]]
+        merged = False
+        for key in self.keyorder:
+            if self.data_mergeoverwrite[self.key2data[key]]:
+                merged = True
+                break
+        if merged:
+            txt += _("\n\nObjects merged-overwritten on import:\n")
+            for key in self.keyorder:
+                datakey = self.key2data[key]
+                for handle in self.data_mergeoverwrite[datakey].keys():
+                    txt += self.data_mergeoverwrite[datakey][handle]
+        if self.data_relpath:
+            txt += _("\nMedia objects with relative paths have been\n"
+                     "imported. These paths are considered relative to\n"
+                     "the media directory you can set in the preferences,\n"
+                     "or, if not set, relative to the user directory.\n"
+                    )
+        return txt
+
 class LineParser:
     def __init__(self, filename):
 
@@ -231,9 +335,8 @@ class LineParser:
 #-------------------------------------------------------------------------
 class GrampsParser(UpdateCallback):
 
-    def __init__(self, database, callback, base, change, filename):
+    def __init__(self, database, callback, change):
         UpdateCallback.__init__(self, callback)
-        self.filename = filename
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
@@ -251,6 +354,8 @@ class GrampsParser(UpdateCallback):
         self.change = change
         self.dp = DateHandler.parser
         self.place_names = sets.Set()
+        self.info = ImportInfo()
+        self.all_abs = True
         cursor = database.get_place_cursor()
         data = cursor.next()
         while data:
@@ -271,7 +376,6 @@ class GrampsParser(UpdateCallback):
         self.in_scomments = 0
         self.in_witness = False
         self.db = database
-        self.base = base
         self.photo = None
         self.person = None
         self.family = None
@@ -311,7 +415,6 @@ class GrampsParser(UpdateCallback):
         self.childref = None
         self.personref = None
         self.name = None
-        self.tempDefault = None
         self.home = None
         self.owner = gen.lib.Researcher()
         self.func_list = [None]*50
@@ -434,120 +537,132 @@ class GrampsParser(UpdateCallback):
 
     def find_person_by_gramps_id(self, gramps_id):
         intid = self.gid2id.get(gramps_id)
+        new = True
         if intid:
             person = self.db.get_person_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             person = gen.lib.Person()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
             self.db.add_person(person, self.trans)
+            #set correct change time
+            self.db.commit_person(person, self.trans, self.change)
             self.gid2id[gramps_id] = intid
-        return person
+        return person, new
 
     def find_family_by_gramps_id(self, gramps_id):
         intid = self.gid2fid.get(gramps_id)
+        new = True
         if intid:
             family = self.db.get_family_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             family = gen.lib.Family()
             family.set_handle(intid)
             family.set_gramps_id(gramps_id)
             self.db.add_family(family, self.trans)
+            self.db.commit_family(family, self.trans, self.change)
             self.gid2fid[gramps_id] = intid
-        return family
+        return family, new
 
     def find_event_by_gramps_id(self, gramps_id):
         intid = self.gid2eid.get(gramps_id)
+        new = True
         if intid:
             event = self.db.get_event_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             event = gen.lib.Event()
             event.set_handle(intid)
             event.set_gramps_id(gramps_id)
             self.db.add_event(event, self.trans)
+            self.db.commit_event(event, self.trans, self.change)
             self.gid2eid[gramps_id] = intid
-        return event
+        return event, new
 
     def find_place_by_gramps_id(self, gramps_id):
         intid = self.gid2pid.get(gramps_id)
+        new = True
         if intid:
             place = self.db.get_place_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             place = gen.lib.Place()
             place.set_handle(intid)
             place.set_gramps_id(gramps_id)
             self.db.add_place(place, self.trans)
+            self.db.commit_place(place, self.trans, self.change)
             self.gid2pid[gramps_id] = intid
-        return place
+        return place, new
 
     def find_source_by_gramps_id(self, gramps_id):
         intid = self.gid2sid.get(gramps_id)
+        new = True
         if intid:
             source = self.db.get_source_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             source = gen.lib.Source()
             source.set_handle(intid)
             source.set_gramps_id(gramps_id)
             self.db.add_source(source, self.trans)
+            self.db.commit_source(source, self.trans, self.change)
             self.gid2sid[gramps_id] = intid
-        return source
+        return source, new
 
     def find_object_by_gramps_id(self, gramps_id):
         intid = self.gid2oid.get(gramps_id)
+        new = True
         if intid:
             obj = self.db.get_object_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             obj = gen.lib.MediaObject()
             obj.set_handle(intid)
             obj.set_gramps_id(gramps_id)
             self.db.add_object(obj, self.trans)
+            self.db.commit_media_object(obj, self.trans, self.change)
             self.gid2oid[gramps_id] = intid
-        return obj
+        return obj, new
 
     def find_repository_by_gramps_id(self, gramps_id):
         intid = self.gid2rid.get(gramps_id)
+        new = True
         if intid:
             repo = self.db.get_repository_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             repo = gen.lib.Repository()
             repo.set_handle(intid)
             repo.set_gramps_id(gramps_id)
             self.db.add_repository(repo, self.trans)
+            self.db.commit_repository(repo, self.trans, self.change)
             self.gid2rid[gramps_id] = intid
-        return repo
+        return repo, new
 
     def find_note_by_gramps_id(self, gramps_id):
         intid = self.gid2nid.get(gramps_id)
+        new = True
         if intid:
             note = self.db.get_note_from_handle(intid)
+            new = False
         else:
             intid = Utils.create_id()
             note = gen.lib.Note()
             note.set_handle(intid)
             note.set_gramps_id(gramps_id)
             self.db.add_note(note, self.trans)
+            self.db.commit_note(note, self.trans, self.change)
             self.gid2nid[gramps_id] = intid
-        return note
-
-    def find_repo_by_gramps_id(self, gramps_id):
-        intid = self.gid2rid.get(gramps_id)
-        if intid:
-            repo = self.db.get_repository_from_handle(intid)
-        else:
-            intid = Utils.create_id()
-            repo = gen.lib.Repository()
-            repo.set_handle(intid)
-            repo.set_gramps_id(gramps_id)
-            self.db.add_repository(repo, self.trans)
-            self.gid2rid[gramps_id] = intid
-        return repo
+        return note, new
 
     def map_gid(self, gramps_id):
         if not self.idswap.get(gramps_id):
@@ -637,13 +752,9 @@ class GrampsParser(UpdateCallback):
 
         self.db.set_researcher(self.owner)
         if self.home != None:
-            person = self.db.find_person_from_handle(self.home, self.trans)
+            person = self.db.get_person_from_handle(self.home)
             self.db.set_default_person_handle(person.handle)
-        if self.tempDefault != None:
-            gramps_id = self.map_gid(self.tempDefault)
-            person = self.find_person_by_gramps_id(gramps_id)
-            if person:
-                self.db.set_default_person_handle(person.handle)
+
         #set media path, this should really do some parsing to convert eg
         # windows path to unix ?
         if self.mediapath:
@@ -653,9 +764,10 @@ class GrampsParser(UpdateCallback):
             elif not oldpath == self.mediapath:
                 ErrorDialog(_("Could not change media path"), 
                     _("The opened file has media path %s, which conflicts with"
-                      " the media path of the database. Copy the files with "
-                      "non absolute path to new position or change the media "
-                      "path of the database in the Preferences."
+                      " the media path of the family tree you import into. "
+                      "The original media path has been retained. Copy the "
+                      "files to a correct directory or change the media "
+                      "path in the Preferences."
                      ) % self.mediapath )
 
         for key in self.func_map.keys():
@@ -666,6 +778,7 @@ class GrampsParser(UpdateCallback):
         self.db.transaction_commit(self.trans, _("GRAMPS XML import"))
         self.db.enable_signals()
         self.db.request_rebuild()
+        return self.info
 
     def start_lds_ord(self, attrs):
         self.ord = gen.lib.LdsOrd()
@@ -710,7 +823,7 @@ class GrampsParser(UpdateCallback):
         except KeyError:
             #legacy, before  hlink there was ref
             gramps_id = self.map_pid(attrs['ref'])
-            place = self.find_place_by_gramps_id(gramps_id)
+            place, new = self.find_place_by_gramps_id(gramps_id)
             handle = place.handle
         
         if self.ord:
@@ -723,13 +836,20 @@ class GrampsParser(UpdateCallback):
     def start_placeobj(self, attrs):
         gramps_id = self.map_pid(attrs['id'])
         try:
-            self.placeobj = self.db.find_place_from_handle(
+            self.placeobj, new = self.db.find_place_from_handle(
                 attrs['handle'].replace('_', ''), self.trans)
             self.placeobj.set_gramps_id(gramps_id)
         except KeyError:
-            self.placeobj = self.find_place_by_gramps_id(gramps_id)
+            self.placeobj, new = self.find_place_by_gramps_id(gramps_id)
             
         self.placeobj.private = bool(attrs.get("priv"))
+        if new:
+            #keep change time from xml file
+            self.placeobj.change = int(attrs.get('change',self.change))
+            self.info.add('new-object', PLACE_KEY, self.placeobj)
+        else:
+            self.placeobj.change = self.change
+            self.info.add('merge-overwrite', PLACE_KEY, self.placeobj)
         
         # GRAMPS LEGACY: title in the placeobj tag
         self.placeobj.title = attrs.get('title', '')
@@ -766,15 +886,19 @@ class GrampsParser(UpdateCallback):
             note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
+            #set correct change time
+            self.db.commit_note(note, self.trans, self.change)
+            self.info.add('new-object', NOTE_KEY, note)
             self.event.add_note(note.handle)
             return
 
         try:
             handle = attrs['hlink'].replace('_', '')
-            person = self.db.find_person_from_handle(handle, self.trans)
+            person, new = self.db.find_person_from_handle(handle, self.trans)
         except KeyError:
             if attrs.has_key('ref'):
-                person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+                person, new = self.find_person_by_gramps_id(
+                                    self.map_gid(attrs["ref"]))
             else:
                 person = None
 
@@ -800,17 +924,27 @@ class GrampsParser(UpdateCallback):
             self.event.type = gen.lib.EventType()
             self.event.type.set_from_xml_str(attrs['type'])
             self.db.add_event(self.event, self.trans)
+            #set correct change time
+            self.db.commit_event(self.event, self.trans, self.change)
+            self.info.add('new-object', EVENT_KEY, self.event)
         else:
             # This is new event, with ID and handle already existing
             self.update(self.p.CurrentLineNumber)
             gramps_id = self.map_eid(attrs["id"])
             try:
-                self.event = self.db.find_event_from_handle(
+                self.event, new = self.db.find_event_from_handle(
                     attrs['handle'].replace('_', ''), self.trans)
                 self.event.gramps_id = gramps_id
             except KeyError:
-                self.event = self.find_event_by_gramps_id(gramps_id)
+                self.event, new = self.find_event_by_gramps_id(gramps_id)
             self.event.private = bool(attrs.get("priv"))
+            if new:
+                #keep change time from xml file
+                self.event.change = int(attrs.get('change',self.change))
+                self.info.add('new-object', EVENT_KEY, self.event)
+            else:
+                self.event.change = self.change
+                self.info.add('merge-overwrite', EVENT_KEY, self.event)
 
     def start_eventref(self, attrs):
         self.eventref = gen.lib.EventRef()
@@ -877,7 +1011,7 @@ class GrampsParser(UpdateCallback):
                 self.db.check_person_from_handle(handle, self.trans)
             except KeyError:
                 gramps_id = self.map_gid(attrs["ref"])
-                person = self.find_person_by_gramps_id(gramps_id)
+                person, new = self.find_person_by_gramps_id(gramps_id)
                 handle = person.handle
             self.db.bookmarks.append(handle)
             return
@@ -888,35 +1022,35 @@ class GrampsParser(UpdateCallback):
         # Make sure those are filtered out.
         # Bookmarks are at end, so all handle must exist before we do bookmrks
         if target == 'person':
-            if (self.db.find_person_from_handle(handle,self.trans) is not None
+            if (self.db.get_person_from_handle(handle) is not None
                     and handle not in self.db.bookmarks.get() ):
                 self.db.bookmarks.append(handle)
         elif target == 'family':
-            if (self.db.find_family_from_handle(handle,self.trans) is not None
+            if (self.db.get_family_from_handle(handle) is not None
                     and handle not in self.db.family_bookmarks.get() ):
                 self.db.family_bookmarks.append(handle)
         elif target == 'event':
-            if (self.db.find_event_from_handle(handle,self.trans) is not None
+            if (self.db.get_event_from_handle(handle) is not None
                     and handle not in self.db.event_bookmarks.get() ):
                 self.db.event_bookmarks.append(handle)
         elif target == 'source':
-            if (self.db.find_source_from_handle(handle,self.trans) is not None
+            if (self.db.get_source_from_handle(handle) is not None
                     and handle not in self.db.source_bookmarks.get() ):
                 self.db.source_bookmarks.append(handle)
         elif target == 'place':
-            if (self.db.find_place_from_handle(handle,self.trans) is not None
+            if (self.db.get_place_from_handle(handle) is not None
                     and handle not in self.db.place_bookmarks.get() ):
                 self.db.place_bookmarks.append(handle)
         elif target == 'media':
-            if (self.db.find_object_from_handle(handle,self.trans) is not None
+            if (self.db.get_object_from_handle(handle) is not None
                     and handle not in self.db.media_bookmarks.get() ):
                 self.db.media_bookmarks.append(handle)
         elif target == 'repository':
-            if (self.db.find_repository_from_handle(handle,self.trans) 
+            if (self.db.get_repository_from_handle(handle) 
                     is not None and handle not in self.db.repo_bookmarks.get()):
                 self.db.repo_bookmarks.append(handle)
         elif target == 'note':
-            if (self.db.find_note_from_handle(handle, self.trans) is not None
+            if (self.db.get_note_from_handle(handle) is not None
                     and handle not in self.db.note_bookmarks.get() ):
                 self.db.note_bookmarks.append(handle)
 
@@ -949,13 +1083,20 @@ class GrampsParser(UpdateCallback):
         self.update(self.p.CurrentLineNumber)
         new_id = self.map_gid(attrs['id'])
         try:
-            self.person = self.db.find_person_from_handle(
+            self.person, new = self.db.find_person_from_handle(
                 attrs['handle'].replace('_', ''), self.trans)
             self.person.set_gramps_id(new_id)
         except KeyError:
-            self.person = self.find_person_by_gramps_id(new_id)
+            self.person, new = self.find_person_by_gramps_id(new_id)
 
         self.person.private = bool(attrs.get("priv"))
+        if new:
+            #keep change time from xml file
+            self.person.change = int(attrs.get('change',self.change))
+            self.info.add('new-object', PERSON_KEY, self.person)
+        else:
+            self.person.change = self.change
+            self.info.add('merge-overwrite', PERSON_KEY, self.person)
         # Old and new markers: complete=1 and marker=word both have to work
         if attrs.get('complete'): # this is only true for complete=1
             self.person.marker.set(gen.lib.MarkerType.COMPLETE)
@@ -972,7 +1113,7 @@ class GrampsParser(UpdateCallback):
             #all persons exist before father tag is encountered
             self.db.check_person_from_handle(handle, self.trans)
         except KeyError:
-            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+            person, new = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
             handle = person.handle
         self.family.set_father_handle(handle)
 
@@ -982,16 +1123,17 @@ class GrampsParser(UpdateCallback):
             #all persons exist before mother tag is encountered
             self.db.check_person_from_handle(handle, self.trans)
         except KeyError:
-            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+            person, new = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
             handle = person.handle
         self.family.set_mother_handle(handle)
     
     def start_child(self, attrs):
         try:
             handle = attrs['hlink'].replace('_', '')
+            #all persons exist before child tag is encountered
             self.db.check_person_from_handle(handle, self.trans)
         except KeyError:
-            person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+            person, new = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
             handle = person.handle
 
         # Here we are handling the old XML, in which
@@ -1003,7 +1145,7 @@ class GrampsParser(UpdateCallback):
 
     def start_childref(self, attrs):
         # Here we are handling the new XML, in which frel and mrel
-        # belong to the "child" tag under family.
+        # belong to the "childref" tag under family.
         self.childref = gen.lib.ChildRef()
         self.childref.ref = attrs['hlink'].replace('_', '')
         self.childref.private = bool(attrs.get('priv'))
@@ -1047,13 +1189,20 @@ class GrampsParser(UpdateCallback):
         self.update(self.p.CurrentLineNumber)
         gramps_id = self.map_fid(attrs["id"])
         try:
-            self.family = self.db.find_family_from_handle(
+            self.family, new = self.db.find_family_from_handle(
                 attrs['handle'].replace('_', ''), self.trans)
             self.family.set_gramps_id(gramps_id)
         except KeyError:
-            self.family = self.find_family_by_gramps_id(gramps_id)
+            self.family, new = self.find_family_by_gramps_id(gramps_id)
         
         self.family.private = bool(attrs.get("priv"))
+        if new:
+            #keep change time from xml file
+            self.family.change = int(attrs.get('change',self.change))
+            self.info.add('new-object', FAMILY_KEY, self.family)
+        else:
+            self.family.change = self.change
+            self.info.add('merge-overwrite', FAMILY_KEY, self.family)
         
         # GRAMPS LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
@@ -1076,12 +1225,13 @@ class GrampsParser(UpdateCallback):
             self.object.desc = attrs['description']
         else:
             self.object.desc = ""
-        drive, src = os.path.splitdrive(attrs["src"])
+        #keep value of path, no longer make absolute paths on import
+        src = attrs["src"]
         if src:
-            if not drive and not os.path.isabs(src):
-                fullpath = os.path.abspath(self.filename)
-                src = os.path.join(os.path.dirname(fullpath), src)
             self.object.path = src
+            if self.all_abs and not os.path.isabs(src):
+                self.all_abs = False
+                self.info.add('relative-path', None, None)
 
     def start_childof(self, attrs):
         try:
@@ -1089,7 +1239,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_family_from_handle(handle, self.trans,
                                              set_gid = False)
         except KeyError:
-            family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
+            family, new = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             handle = family.handle
 
         # Here we are handling the old XML, in which
@@ -1116,7 +1266,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_family_from_handle(handle, self.trans,
                                              set_gid = False)
         except KeyError:
-            family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
+            family, new = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
             handle = family.handle
         self.person.add_family_handle(handle)
 
@@ -1174,12 +1324,19 @@ class GrampsParser(UpdateCallback):
             self.update(self.p.CurrentLineNumber)
             gramps_id = self.map_nid(attrs["id"])
             try:
-                self.note = self.db.find_note_from_handle(
+                self.note, new = self.db.find_note_from_handle(
                     attrs['handle'].replace('_', ''), self.trans)
                 self.note.gramps_id = gramps_id
             except KeyError:
-                self.note = self.find_note_by_gramps_id(gramps_id)
+                self.note, new = self.find_note_by_gramps_id(gramps_id)
             self.note.private = bool(attrs.get("priv"))
+            if new:
+                #keep change time from xml file
+                self.note.change = int(attrs.get('change',self.change))
+                self.info.add('new-object', NOTE_KEY, self.note)
+            else:
+                self.note.change = self.change
+                self.info.add('merge-overwrite', NOTE_KEY, self.note)
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
         else:
@@ -1246,6 +1403,9 @@ class GrampsParser(UpdateCallback):
                 self.note.private = self.reporef.private
  
             self.db.add_note(self.note, self.trans)
+            #set correct change time
+            self.db.commit_note(self.note, self.trans, self.change)
+            self.info.add('new-object', NOTE_KEY, self.note)
 
     def start_noteref(self, attrs):
         handle = attrs['hlink'].replace('_', '')
@@ -1296,7 +1456,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_source_from_handle(handle, self.trans,
                                              set_gid = False)
         except KeyError:
-            source = self.find_source_by_gramps_id(self.map_sid(attrs["ref"]))
+            source, new = self.find_source_by_gramps_id(self.map_sid(attrs["ref"]))
             handle = source.handle
 
         self.source_ref.ref = handle
@@ -1334,12 +1494,19 @@ class GrampsParser(UpdateCallback):
         self.update(self.p.CurrentLineNumber)
         gramps_id = self.map_sid(attrs["id"]) #avoid double id's on import
         try:
-            self.source = self.db.find_source_from_handle(
+            self.source, new = self.db.find_source_from_handle(
                 attrs['handle'].replace('_', ''), self.trans)
             self.source.set_gramps_id(gramps_id)
         except KeyError:
-            self.source = self.find_source_by_gramps_id(gramps_id)
+            self.source, new = self.find_source_by_gramps_id(gramps_id)
         self.source.private = bool(attrs.get("priv"))
+        if new:
+            #keep change time from xml file
+            self.source.change = int(attrs.get('change',self.change))
+            self.info.add('new-object', SOURCE_KEY, self.source)
+        else:
+            self.source.change = self.change
+            self.info.add('merge-overwrite', SOURCE_KEY, self.source)
 
     def start_reporef(self, attrs):
         self.reporef = gen.lib.RepoRef()
@@ -1348,7 +1515,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_repository_from_handle(handle, self.trans,
                                                  set_gid = False)
         except KeyError:
-            repo = self.find_repo_by_gramps_id(self.map_rid(attrs['ref']))
+            repo, new = self.find_repository_by_gramps_id(self.map_rid(attrs['ref']))
             handle = repo.handle
         
         self.reporef.ref = handle
@@ -1366,7 +1533,7 @@ class GrampsParser(UpdateCallback):
             self.db.check_object_from_handle(handle, self.trans,
                                              set_gid = False)
         except KeyError:
-            obj = self.find_object_by_gramps_id(self.map_oid(attrs['ref']))
+            obj, new = self.find_object_by_gramps_id(self.map_oid(attrs['ref']))
             handle = obj.handle
             
         self.objref.ref = handle
@@ -1392,35 +1559,47 @@ class GrampsParser(UpdateCallback):
     def start_object(self, attrs):
         gramps_id = self.map_oid(attrs['id'])
         try:
-            self.object = self.db.find_object_from_handle(
+            self.object, new = self.db.find_object_from_handle(
                 attrs['handle'].replace('_', ''), self.trans)
             self.object.set_gramps_id(gramps_id)
         except KeyError:
-            self.object = self.find_object_by_gramps_id(gramps_id)
+            self.object, new = self.find_object_by_gramps_id(gramps_id)
+
+        self.object.private = bool(attrs.get("priv"))
+        if new:
+            #keep change time from xml file
+            self.object.change = int(attrs.get('change',self.change))
+            self.info.add('new-object', MEDIA_KEY, self.object)
+        else:
+            self.object.change = self.change
+            self.info.add('merge-overwrite', MEDIA_KEY, self.object)
 
         # GRAMPS LEGACY: src, mime, and description attributes
         # now belong to the <file> tag. Here we are supporting
         # the old format of <object src="blah"...>
         self.object.mime = attrs.get('mime', '')
         self.object.desc = attrs.get('description', '')
-        self.object.private = bool(attrs.get("priv"))
         src = attrs.get("src", '')
         if src:
-            if not os.path.isabs(src):
-                fullpath = os.path.abspath(self.filename)
-                src = os.path.join(os.path.dirname(fullpath), src)
             self.object.path = src
 
     def start_repo(self, attrs):
         gramps_id = self.map_rid(attrs['id'])
         try:
-            self.repo = self.db.find_repository_from_handle(
+            self.repo, new = self.db.find_repository_from_handle(
                 attrs['handle'].replace('_', ''), self.trans)
             self.repo.set_gramps_id(gramps_id)
         except KeyError:
-            self.repo = self.find_repository_by_gramps_id(gramps_id)
+            self.repo, new = self.find_repository_by_gramps_id(gramps_id)
         
         self.repo.private = bool(attrs.get("priv"))
+        if new:
+            #keep change time from xml file
+            self.repo.change = int(attrs.get('change',self.change))
+            self.info.add('new-object', REPOSITORY_KEY, self.repo)
+        else:
+            self.repo.change = self.change
+            self.info.add('merge-overwrite', REPOSITORY_KEY, self.repo)
 
     def stop_people(self, *tag):
         pass
@@ -1429,14 +1608,16 @@ class GrampsParser(UpdateCallback):
         self.update(self.p.CurrentLineNumber)
 
     def stop_object(self, *tag):
-        self.db.commit_media_object(self.object, self.trans, self.change)
+        self.db.commit_media_object(self.object, self.trans, 
+                                    self.object.get_change_time())
         self.object = None
 
     def stop_objref(self, *tag):
         self.objref = None
         
     def stop_repo(self, *tag):
-        self.db.commit_repository(self.repo, self.trans, self.change)
+        self.db.commit_repository(self.repo, self.trans, 
+                                  self.repo.get_change_time())
         self.repo = None
 
     def stop_reporef(self, *tag):
@@ -1455,17 +1636,17 @@ class GrampsParser(UpdateCallback):
                 self.photo.set_privacy(int(attrs[key]))
             elif key == "src":
                 src = attrs["src"]
-                if not os.path.isabs(src):
-                    self.photo.set_path(os.path.join(self.base, src))
-                else:
-                    self.photo.set_path(src)
+                self.photo.set_path(src)
             else:
                 attr = gen.lib.Attribute()
                 attr.set_type(key)
                 attr.set_value(attrs[key])
                 self.photo.add_attribute(attr)
         self.photo.set_mime_type(Mime.get_type(self.photo.get_path()))
-        self.db.add_object(self.photo)
+        self.db.add_object(self.photo, self.trans)
+        #set correct change time
+        self.db.commit_media_object(self.photo, self.trans, self.change)
+        self.info.add('new-object', MEDIA_KEY, self.photo)
         if self.family:
             self.family.add_media_reference(self.pref)
         elif self.source:
@@ -1677,6 +1858,9 @@ class GrampsParser(UpdateCallback):
             note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
+            #set correct change time
+            self.db.commit_note(note, self.trans, self.change)
+            self.info.add('new-object', NOTE_KEY, note)
             self.event.add_note(note.handle)
         self.in_witness = False
 
@@ -1710,11 +1894,13 @@ class GrampsParser(UpdateCallback):
         # if self.placeobj.title in self.place_names:
         #    self.placeobj.title += " [%s]" % self.placeobj.gramps_id
 
-        self.db.commit_place(self.placeobj, self.trans, self.change)
+        self.db.commit_place(self.placeobj, self.trans, 
+                             self.placeobj.get_change_time())
         self.placeobj = None
 
     def stop_family(self, *tag):
-        self.db.commit_family(self.family, self.trans, self.change)
+        self.db.commit_family(self.family, self.trans,
+                              self.family.get_change_time())
         self.family = None
         
     def stop_type(self, tag):
@@ -1771,7 +1957,8 @@ class GrampsParser(UpdateCallback):
                 text = u''
             self.event.set_description(text)
 
-        self.db.commit_event(self.event, self.trans, self.change)
+        self.db.commit_event(self.event, self.trans,
+                             self.event.get_change_time())
         self.event = None
 
     def stop_name(self, tag):
@@ -1783,6 +1970,9 @@ class GrampsParser(UpdateCallback):
             note.type.set(gen.lib.NoteType.EVENT)
             note.private = self.event.private
             self.db.add_note(note, self.trans)
+            #set correct change time
+            self.db.commit_note(note, self.trans, self.change)
+            self.info.add('new-object', NOTE_KEY, note)
             self.event.add_note(note.handle)
         elif self.alt_name:
             # former aka tag -- alternate name
@@ -1801,7 +1991,7 @@ class GrampsParser(UpdateCallback):
 
     def stop_ref(self, tag):
         # Parse witnesses created by older gramps
-        person = self.find_person_by_gramps_id(self.map_gid(tag))
+        person, new = self.find_person_by_gramps_id(self.map_gid(tag))
         # Add an EventRef from that person
         # to this event using ROLE_WITNESS role
         event_ref = gen.lib.EventRef()
@@ -1855,7 +2045,8 @@ class GrampsParser(UpdateCallback):
         self.family = None
 
     def stop_person(self, *tag):
-        self.db.commit_person(self.person, self.trans, self.change)
+        self.db.commit_person(self.person, self.trans,
+                              self.person.get_change_time())
         self.person = None
 
     def stop_description(self, tag):
@@ -1884,7 +2075,8 @@ class GrampsParser(UpdateCallback):
         self.source_ref = None
 
     def stop_source(self, *tag):
-        self.db.commit_source(self.source, self.trans, self.change)
+        self.db.commit_source(self.source, self.trans,
+                              self.source.get_change_time())
         self.source = None
 
     def stop_sauthor(self, tag):
@@ -1936,7 +2128,10 @@ class GrampsParser(UpdateCallback):
         note.private = self.source_ref.private
         note.set(text)
         note.type.set(gen.lib.NoteType.SOURCE_TEXT)
-        self.db.add_note(note, self.trans)       
+        self.db.add_note(note, self.trans)   
+        #set correct change time
+        self.db.commit_note(note, self.trans, self.change)
+        self.info.add('new-object', NOTE_KEY, note) 
         self.source_ref.add_note(note.handle)
 
     def stop_scomments(self, tag):
@@ -1951,6 +2146,9 @@ class GrampsParser(UpdateCallback):
         note.set(text)
         note.type.set(gen.lib.NoteType.SOURCEREF)
         self.db.add_note(note, self.trans)
+        #set correct change time
+        self.db.commit_note(note, self.trans, self.change)
+        self.info.add('new-object', NOTE_KEY, note)
         self.source_ref.add_note(note.handle)
 
     def stop_last(self, tag):
@@ -2020,7 +2218,7 @@ class GrampsParser(UpdateCallback):
         elif self.reporef:
             self.reporef.add_note(self.note.handle)
 
-        self.db.commit_note(self.note, self.trans, self.change)
+        self.db.commit_note(self.note, self.trans, self.note.get_change_time())
         self.note = None
 
     def stop_research(self, tag):

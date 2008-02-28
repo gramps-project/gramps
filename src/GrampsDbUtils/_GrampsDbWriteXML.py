@@ -103,8 +103,8 @@ class GrampsDbXmlWriter(UpdateCallback):
         db - database to write
         strip_photos - remove paths off of media object paths
         >              0: do not touch the paths
-        >              1: remove everything expect the filename
-        >              2: remove leading slash
+        >              1: remove everything expect the filename (eg gpkg)
+        >              2: remove leading slash (quick write)
         compress - attempt to compress the database
         """
         UpdateCallback.__init__(self, callback)
