@@ -820,6 +820,8 @@ class PersonView(PageView.PersonNavView):
             self.selection.select_path(path)
 
     def _button_press(self, obj, event):
+        if not self.dbstate.open:
+            return False
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             handle = self.first_selected()
             person = self.dbstate.db.get_person_from_handle(handle)
@@ -865,6 +867,8 @@ class PersonView(PageView.PersonNavView):
         return False
 
     def _key_press(self, obj, event):
+        if not self.dbstate.open:
+            return False
         if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
             if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
                 if self.dbstate.active:

@@ -1,4 +1,8 @@
 2008-02-28  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/DataViews/PersonView.py: don't crash on click, 1794
+	* src/PageView.py: don't crash on click, #1794
+
+2008-02-28  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/ViewManager.py: allow for info dialog after import
 	* src/gen/db/base.py: find returns if new object or not
 	* src/gen/db/dbdir.py: find returns if new object or not
