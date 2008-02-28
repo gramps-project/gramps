@@ -282,6 +282,14 @@ class Gramplet(object):
     def set_use_markup(self, value):
         self.gui.set_use_markup(value)
 
+    def no_wrap(self):
+        """
+        The view in gramplet should not wrap.
+        """
+        self.gui.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, 
+                                           gtk.POLICY_AUTOMATIC)
+        self.gui.textview.set_wrap_mode(gtk.WRAP_NONE)
+
     # Other functions of the gramplet:
 
     def load_data_to_text(self, pos=0):

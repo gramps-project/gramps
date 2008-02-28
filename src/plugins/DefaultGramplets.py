@@ -462,14 +462,19 @@ class PedigreeGramplet(Gramplet):
     def active_changed(self, handle):
         self.update()
 
-    def get_boxes(self, generation):
+    def get_boxes(self, generation, what):
         retval = ""
         for i in range(generation+1):
             if self._boxes[i]:
-                retval += " |"
+                retval += "    |"
             else:
-                retval += "  "
-        return retval + "--"
+                retval += "     "
+        if retval[-1] == ' ':
+            if what == 'sf':
+                return retval[:-6] + r'      /-'
+            elif what == 'sm':
+                return retval[:-6] + r'      \-'
+        return retval + '--'
 
     def process_person(self, handle, generation, what):
         if generation > self.max_generations:
@@ -483,10 +488,10 @@ class PedigreeGramplet(Gramplet):
                 if father:
                     self.process_person(father, generation + 1, "f")
                     self._boxes[generation] = 1
-                    self.process_person(father, generation + 1, "s")
+                    self.process_person(father, generation + 1, "sf")
                     self.process_person(father, generation + 1, "m")
-        if what == "s":
-            self.append_text(self.get_boxes(generation))
+        if what[0] == "s":
+            self.append_text(self.get_boxes(generation, what))
             self.link(name_displayer.display_name(person.get_primary_name()),
                       'Person', person.handle)
             self.append_text("\n")
@@ -496,7 +501,7 @@ class PedigreeGramplet(Gramplet):
                 mother = family.get_mother_handle()
                 if mother:
                     self.process_person(mother, generation + 1, "f")
-                    self.process_person(mother, generation + 1, "s")
+                    self.process_person(mother, generation + 1, "sm")
                     self._boxes[generation] = 0
                     self.process_person(mother, generation + 1, "m")
 
@@ -509,8 +514,10 @@ class PedigreeGramplet(Gramplet):
         active_person = self.dbstate.get_active_person()
         if not active_person:
             return False
+        #no wrap in Gramplet
+        self.no_wrap()
         self.process_person(active_person.handle, 1, "f")
-        self.process_person(active_person.handle, 1, "s")
+        self.process_person(active_person.handle, 0, "s")
         self.process_person(active_person.handle, 1, "m")
         self.append_text("", scroll_to="begin")
 
