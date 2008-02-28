@@ -989,4 +989,6 @@ register(type="gramplet",
          height=300,
          content = PedigreeGramplet,
          title=_("Pedigree"),
+         detached_width = 600,
+         detached_height = 400,
          )
