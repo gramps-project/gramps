@@ -53,7 +53,7 @@ from Editors._EditPrimary import EditPrimary
 from DisplayTabs import GrampsTab, NoteBackRefList
 from GrampsWidgets import (MonitoredDataType, MonitoredCheckbox, 
                            MonitoredEntry, PrivacyButton)
-from gen.lib import Note
+import gen.lib
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -147,9 +147,11 @@ class EditNote(EditPrimary):
         """Return an empty Note object for comparison for changes.
         
         It is used by the base class (EditPrimary).
-        
         """
-        return Note()
+        empty_note = gen.lib.Note();
+        if self.extratype:
+            empty_note.set_type(self.extratype[0])
+        return empty_note
 
     def get_menu_title(self):
         if self.obj.get_handle():
@@ -203,7 +205,7 @@ class EditNote(EditPrimary):
         self.build_interface()
         
     def _setup_fields(self):
-        """Get control widgets and attached them to Note's attributes."""
+        """Get control widgets and attach them to Note's attributes."""
         self.type_selector = MonitoredDataType(
             self.top.get_widget('type'),
             self.obj.set_type,
