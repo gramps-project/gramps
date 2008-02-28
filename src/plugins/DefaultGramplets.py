@@ -442,6 +442,78 @@ class RelativesGramplet(Gramplet):
                 self.append_text(_("Unknown"))
                 self.append_text("\n")
 
+class PedigreeGramplet(Gramplet):
+    def init(self):
+        self.set_text(_("No Family Tree loaded."))
+        self.tooltip = _("Click name to make person active\n") + \
+                         _("Right-click name to edit person")
+        self.max_generations = 100
+
+    def db_changed(self):
+        """
+        If person or family changes, the relatives of active person might have
+        changed
+        """
+        self.dbstate.db.connect('person-add', self.update)
+        self.dbstate.db.connect('person-delete', self.update)
+        self.dbstate.db.connect('family-add', self.update)
+        self.dbstate.db.connect('family-delete', self.update)
+
+    def active_changed(self, handle):
+        self.update()
+
+    def get_boxes(self, generation):
+        retval = ""
+        for i in range(generation+1):
+            if self._boxes[i]:
+                retval += " |"
+            else:
+                retval += "  "
+        return retval + "--"
+
+    def process_person(self, handle, generation, what):
+        if generation > self.max_generations:
+            return
+        person = self.dbstate.db.get_person_from_handle(handle)
+        family_list = person.get_parent_family_handle_list()
+        if what == "f":
+            if len(family_list) > 0:
+                family = self.dbstate.db.get_family_from_handle(family_list[0])
+                father = family.get_father_handle()
+                if father:
+                    self.process_person(father, generation + 1, "f")
+                    self._boxes[generation] = 1
+                    self.process_person(father, generation + 1, "s")
+                    self.process_person(father, generation + 1, "m")
+        if what == "s":
+            self.append_text(self.get_boxes(generation))
+            self.link(name_displayer.display_name(person.get_primary_name()),
+                      'Person', person.handle)
+            self.append_text("\n")
+        if what == "m":
+            if len(family_list) > 0:
+                family = self.dbstate.db.get_family_from_handle(family_list[0])
+                mother = family.get_mother_handle()
+                if mother:
+                    self.process_person(mother, generation + 1, "f")
+                    self.process_person(mother, generation + 1, "s")
+                    self._boxes[generation] = 0
+                    self.process_person(mother, generation + 1, "m")
+
+    def main(self): # return false finishes
+        """
+        Generator which will be run in the background.
+        """
+        self._boxes = [0] * self.max_generations
+        self.set_text("")
+        active_person = self.dbstate.get_active_person()
+        if not active_person:
+            return False
+        self.process_person(active_person.handle, 1, "f")
+        self.process_person(active_person.handle, 1, "s")
+        self.process_person(active_person.handle, 1, "m")
+        self.append_text("", scroll_to="begin")
+
 class StatsGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
@@ -902,4 +974,12 @@ register(type="gramplet",
          title=_("Active Person's Relatives"),
          detached_width = 250,
          detached_height = 300,
+         )
+
+register(type="gramplet", 
+         name="Pedigree Gramplet", 
+         tname=_("Pedigree Gramplet"), 
+         height=300,
+         content = PedigreeGramplet,
+         title=_("Pedigree"),
          )

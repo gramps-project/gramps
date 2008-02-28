@@ -47,7 +47,20 @@ import ManagedWindow
 import ConfigParser
 import Utils
 from QuickReports import run_quick_report_by_name
+import GrampsDisplay
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Gramplets'
+
+#-------------------------------------------------------------------------
+#
+# Globals
+#
+#-------------------------------------------------------------------------
 AVAILABLE_GRAMPLETS = {}
 GRAMPLET_FILENAME = os.path.join(const.HOME_DIR,"gramplets.ini")
 NL = "\n" 
@@ -136,11 +149,20 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
+        self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
         self.window.set_size_request(gramplet.detached_width,
                                      gramplet.detached_height)
-        self.window.connect('response', self.close)
+        self.window.connect('response', self.handle_response)
         self.gramplet.mainframe.reparent(self.window.vbox)
         self.window.show()
+
+    def handle_response(self, object, response):
+        if response == gtk.RESPONSE_CLOSE:
+            self.close()
+        else:
+            # translated name:
+            GrampsDisplay.help('gramplet', WIKI_HELP_PAGE, 
+                               self.gramplet.tname.replace(" ", "_"))
         
     def build_menu_names(self, obj):
         return (self.title, 'Gramplet')
@@ -406,6 +428,7 @@ class GuiGramplet:
         self.title = title
         ########## Set defaults
         self.name = kwargs.get("name", "Unnamed Gramplet")
+        self.tname = kwargs.get("tname", "Unnamed Gramplet")
         self.expand = logical_true(kwargs.get("expand", False))
         self.height = int(kwargs.get("height", 200))
         self.column = int(kwargs.get("column", -1))
@@ -516,7 +539,7 @@ class GuiGramplet:
             self.textview.scroll_to_mark(end, 0.0, True, 0, 0)
         elif scroll_to == "start": # beginning of this append
             self.textview.scroll_to_mark(start, 0.0, True, 0, 0)
-        elif scroll_to == "begin": # beginning of this append
+        elif scroll_to == "begin": # beginning of the buffer
             begin_iter = self.buffer.get_start_iter()
             begin = self.buffer.create_mark(None, begin_iter, True)
             self.textview.scroll_to_mark(begin, 0.0, True, 0, 0)
