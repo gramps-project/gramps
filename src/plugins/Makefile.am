@@ -17,8 +17,10 @@ pkgdata_PYTHON = \
 	ChangeTypes.py\
 	ChangeNames.py\
 	Check.py\
+	CmdRef.py\
 	CountAncestors.py\
 	CustomBookText.py\
+	DateParserDisplayTest.py\
 	DefaultGramplets.py\
 	Desbrowser.py\
 	DescendChart.py\

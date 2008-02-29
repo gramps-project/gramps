@@ -1,3 +1,7 @@
+2008-02-27 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/plugins/Makefile.am: add CmdRef.py and DateParserDisplayTest.py to
+    get make distcheck to run through.
+
 2008--2-28 Jim Sack <jgsack@san.rr.com>
 	* src/GrampsDbUtils/_GedcomParse.py fix oversight from r10099
 	where eprefix was changed to event_prefix in gen/db/base.py
