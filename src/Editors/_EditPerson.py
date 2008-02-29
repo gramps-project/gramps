@@ -609,17 +609,17 @@ class EditPerson(EditPrimary):
             if gender >= 0:
                 self.obj.set_gender(gender)
 
-    def _update_family_ids(self, trans):
+    def _update_family_ids(self):
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
         family = self.obj.get_main_parents_family_handle()
         if (family):
-            f = self.db.find_family_from_handle(family, trans)
+            f = self.db.get_family_from_handle(family)
             new_order = self.reorder_child_ref_list(self.obj,
                                                 f.get_child_ref_list())
             f.set_child_ref_list(new_order)
         for family in self.obj.get_parent_family_handle_list():
-            f = self.db.find_family_from_handle(family, trans)
+            f = self.db.get_family_from_handle(family)
             new_order = self.reorder_child_ref_list(self.obj,
                                                 f.get_child_ref_list())
             f.set_child_ref_list(new_order)
@@ -703,7 +703,7 @@ class EditPerson(EditPrimary):
         trans = self.db.transaction_begin()
 
             
-        self._update_family_ids(trans)
+        self._update_family_ids()
 
         if not self.obj.get_handle():
             self.db.add_person(self.obj, trans)

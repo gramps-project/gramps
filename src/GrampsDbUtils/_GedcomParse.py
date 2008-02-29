@@ -2191,7 +2191,7 @@ class GedcomParser(UpdateCallback):
                 state.person.add_parent_family_handle(handle)
 
             # search childrefs
-            family = self.dbase.find_family_from_handle(handle, self.trans)
+            family, new = self.dbase.find_family_from_handle(handle, self.trans)
             family.set_gramps_id(gid)
                 
             for ref in family.get_child_ref_list():
@@ -3258,7 +3258,7 @@ class GedcomParser(UpdateCallback):
         
         frel = mrel = gen.lib.ChildRefType.BIRTH
 
-        family = self.dbase.find_family_from_handle(handle, self.trans)
+        family, new = self.dbase.find_family_from_handle(handle, self.trans)
         reflist = [ ref for ref in family.get_child_ref_list() \
                         if ref.ref == state.person.handle ]
         if reflist:
