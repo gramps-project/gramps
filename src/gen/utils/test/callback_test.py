@@ -5,6 +5,12 @@ tu.path_append_parent()
 
 from gen.utils import Callback
 
+try:
+    log
+except NameError:
+    log = None
+
+
 class TestCallback(unittest.TestCase):
 
     def test_simple(self):

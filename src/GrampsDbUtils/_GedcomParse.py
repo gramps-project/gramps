@@ -264,7 +264,7 @@ class GedcomParser(UpdateCallback):
         self.maxpeople = stage_one.get_person_count()
         self.dbase = dbase
         self.emapper = GedcomUtils.IdFinder(dbase.get_gramps_ids(EVENT_KEY), 
-                                            dbase.eprefix)
+                                            dbase.event_prefix)
         self.famc_map = stage_one.get_famc_map()
         self.fams_map = stage_one.get_fams_map()
 
