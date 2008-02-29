@@ -1,3 +1,6 @@
+2008-02-29 Jerome Rapinat <romjerome@yahoo.fr>
+        * fr.po : update, will clean up old references soon (RC)
+
 2008-02-25 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* POTFILES.in : add missing plugins/DateParserDisplayTest.py #0001819
 
