@@ -1,4 +1,8 @@
 2008-02-28 Jim Sack <jgsack@san.rr.com>
+	* src/GrampsDbUtils/test/ged_skip_notes_test.py: add unittest
+	for empty notes and skipped subordinate blocks (#1851)
+
+2008-02-28 Jim Sack <jgsack@san.rr.com>
 	* src/test/gedread_util.py: add some comments
 	* src/test/test/gedread_util_test.py: update per changes to
 	_GedcomParse warning messages for skipped subordinates
