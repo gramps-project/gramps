@@ -1,3 +1,12 @@
+2008-02-28 Jim Sack <jgsack@san.rr.com>
+	* src/test/gedread_util.py: add some comments
+	* src/test/test/gedread_util_test.py: update per changes to
+	_GedcomParse warning messages for skipped subordinates
+	* src/GrampsDbUtils/_GedcomParse.py: #1851 discard empty notes
+	and emit a warning message. Also add warnings for skipped
+	subordinates in the same spirit (warn about bad/lost data)
+	See self.want_parse_warnings for disabling those warnings.
+
 2008-02-27 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/NarrativeWeb.py:
 	Cleanup.

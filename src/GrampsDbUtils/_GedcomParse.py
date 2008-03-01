@@ -282,6 +282,7 @@ class GedcomParser(UpdateCallback):
         self.is_ftw = False
         self.is_ancestry_com = False
         self.groups = None
+        self.want_parse_warnings = True
 
         self.pid_map = GedcomUtils.IdMapper(
             self.dbase.id_trans, 
@@ -818,7 +819,9 @@ class GedcomParser(UpdateCallback):
 
         self.dbase.disable_signals()
         self.__parse_header_head()
+        self.want_parse_warnings = False
         self.__parse_header_source()
+        self.want_parse_warnings = True
         self.__parse_submitter()
         if self.use_def_src:
             self.dbase.add_source(self.def_src, self.trans)
@@ -1173,7 +1176,9 @@ class GedcomParser(UpdateCallback):
                 try:
                     line.data = line.data[5:]
                 except:
-                    pass
+                    # don't think this path is ever taken, but if it is..
+                    # ensure a message is emitted & subordinates skipped
+                    line.data = None
                 self.__parse_inline_note(line, 1)
             else:
                 self.__not_recognized(line, 1)
@@ -3048,11 +3053,19 @@ class GedcomParser(UpdateCallback):
         if line.data[0:13] == "Description: ":
             state.event.set_description(line.data[13:])
         else:
-            new_note = gen.lib.Note(line.data)
-            new_note.set_handle(Utils.create_id())
-            self.dbase.add_note(new_note, self.trans)
-            self.__skip_subordinate_levels(state.level+2)
-            state.event.add_note(new_note.get_handle())
+            if not line.data:
+                # empty: discard, with warning and skip subs
+                # Note: level+2
+                msg = _("Line %d: empty event note was ignored.")\
+                        % line.line
+                self.__warn(msg)
+                self.__skip_subordinate_levels(state.level+2)
+            else:
+                new_note = gen.lib.Note(line.data)
+                new_note.set_handle(Utils.create_id())
+                self.dbase.add_note(new_note, self.trans)
+                self.__skip_subordinate_levels(state.level+2)
+                state.event.add_note(new_note.get_handle())
                 
     def __event_source(self, line, state):
         """
@@ -4171,26 +4184,36 @@ class GedcomParser(UpdateCallback):
 ###############################################################################
 
     def __parse_note(self, line, obj, level):
-        # reference to a named note defined elsewhere
         if line.token == TOKEN_RNOTE:
+            # reference to a named note defined elsewhere
             gid = line.data.strip()
             obj.add_note(self.__find_note_handle(self.nid_map[gid]))
         else:
-            new_note = gen.lib.Note(line.data)
-            new_note.set_handle(Utils.create_id())
-            self.dbase.add_note(new_note, self.trans)
-            self.__skip_subordinate_levels(level+1)
-            obj.add_note(new_note.get_handle())
+            if not line.data:
+                msg = _("Line %d: empty note was ignored.") % line.line
+                self.__warn(msg)
+                self.__skip_subordinate_levels(level+1)
+            else:
+                new_note = gen.lib.Note(line.data)
+                new_note.set_handle(Utils.create_id())
+                self.dbase.add_note(new_note, self.trans)
+                self.__skip_subordinate_levels(level+1)
+                obj.add_note(new_note.get_handle())
 
     def __parse_inline_note(self, line, level):
-        new_note = gen.lib.Note(line.data)
-        gid = self.nid_map[line.token_text]
-        handle = self.nid2id.get(gid)
-        new_note.set_handle(handle)
-        new_note.set_gramps_id(gid)
-        self.dbase.add_note(new_note, self.trans)
-        self.nid2id[new_note.gramps_id] = new_note.handle
-        self.__skip_subordinate_levels(level)
+        if not line.data:
+            msg = _("Line %d: empty note was ignored.") % line.line
+            self.__warn(msg)
+            self.__skip_subordinate_levels(level)
+        else:
+            new_note = gen.lib.Note(line.data)
+            gid = self.nid_map[line.token_text]
+            handle = self.nid2id.get(gid)
+            new_note.set_handle(handle)
+            new_note.set_gramps_id(gid)
+            self.dbase.add_note(new_note, self.trans)
+            self.nid2id[new_note.gramps_id] = new_note.handle
+            self.__skip_subordinate_levels(level)
 
     def __parse_source_reference(self, src_ref, level, handle):
         """
@@ -4213,10 +4236,16 @@ class GedcomParser(UpdateCallback):
         """
         Skip add lines of the specified level or lower.
         """
+        skips = 0;
         while True:
             line = self.__get_next_line()
             if self.__level_is_finished(line, level):
+                if skips and self.want_parse_warnings:
+                    msg = _("skipped %d subordinate(s) at line %d")\
+                            % (skips, line.line - skips)
+                    self.__warn(msg)
                 return
+            skips += 1
     
     def handle_source(self, line, level):
         """

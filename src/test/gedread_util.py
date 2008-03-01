@@ -44,6 +44,8 @@ _head ="""
 # _tail is presently a single (SUBM) record plus the trailer
 # to satisfy the "one or more records" in the spec
 # it also provides a target for the xref in the header
+# it also gives a "skipping 1 subordinate.." message error
+#   which presumeably will be fixed someday
 _tail = """
 0 @SUBM1@ SUBM
 1 NAME test /gedread/
@@ -65,6 +67,8 @@ def make_gedcom_input(gfile, fragment):
 
 # code patterned after contents of ReadGedcom.import2,
 #  but avoiding the occurrence of a popup DialogError.
+# NOTE: may need rewrite to track mods in ReadGedcom 
+#  test this code via src/test/test/gedread_util_test.py 
 # -------------------------------------------------------
 def gread(db, fname):
     """read gedcom file into a test db
