@@ -528,15 +528,15 @@ class BasePage:
         of.write('</table>\n')
         of.write('</div>\n')
 
-    def display_source_refs(self, of, db):
-        if self.bibli.get_citation_count() == 0:
+    def display_source_refs(self, of, db, bibli):
+        if bibli.get_citation_count() == 0:
             return
         of.write('<div id="sourcerefs">\n')
         of.write('<h4>%s</h4>\n' % _('Source References'))
         of.write('<table class="infolist">\n')
 
         cindex = 0
-        for citation in self.bibli.get_citation_list():
+        for citation in bibli.get_citation_list():
             cindex += 1
             # Add this source to the global list of sources to be displayed
             # on each source page.
@@ -549,35 +549,35 @@ class BasePage:
                 self.src_list[shandle] = [lnk]
                 
             # Add this source and its references to the page
-            source = self.db.get_source_from_handle(shandle)
+            source = db.get_source_from_handle(shandle)
             title = source.get_title()
             of.write('<tr><td class="field">')
-            of.write('<a name="sref%d"></a>%d.</td>' % (cindex,cindex))
+            of.write('<a name="sref%d"></a>%d.</td>' % (cindex, cindex))
             of.write('<td class="field" colspan=2>')
-            self.source_link(of,source.handle,title,source.gramps_id,True)
+            self.source_link(of, source.handle, title, source.gramps_id, True)
             of.write('<p/>')
             of.write('</td></tr>\n')
 
-            for key,sref in citation.get_ref_list():
+            for key, sref in citation.get_ref_list():
 
                 tmp = []
                 confidence = Utils.confidence.get(sref.confidence, _('Unknown'))
                 if confidence == _('Normal'):
                     confidence = None
-                for (label,data) in [(_('Date'),_dd.display(sref.date)),
-                                     (_('Page'),sref.page),
-                                     (_('Confidence'),confidence)]:
+                for (label, data) in [(_('Date'), _dd.display(sref.date)),
+                                      (_('Page'), sref.page),
+                                      (_('Confidence'), confidence)]:
                     if data:
-                        tmp.append("%s: %s" % (label,data))
+                        tmp.append("%s: %s" % (label, data))
                 notelist = sref.get_note_list()
                 for notehandle in notelist:
-                    note = self.db.get_note_from_handle(notehandle)
+                    note = db.get_note_from_handle(notehandle)
                     tmp.append("%s: %s" % (_('Text'), note.get(True)))
                 if len(tmp) > 0:
                     of.write('\t<tr><td></td>')
                     of.write('<td class="field">')
-                    of.write('<a name="sref%d%s">' % (cindex,key))
-                    of.write('</a>%d%s.</td>' % (cindex,key))
+                    of.write('<a name="sref%d%s">' % (cindex, key))
+                    of.write('</a>%d%s.</td>' % (cindex, key))
                     of.write('<td>')
                     of.write('<br />'.join(tmp))
                     of.write('<p/>')
@@ -1217,7 +1217,7 @@ class MediaPage(BasePage):
         self.bibli = Bibliography()
         for sref in photo.get_source_references():
             self.bibli.add_reference(sref)
-        self.display_source_refs(of, db)
+        self.display_source_refs(of, db, self.bibli)
 
     def display_attr_list(self, of,attrlist=None):
         if not attrlist:
@@ -1883,7 +1883,7 @@ class IndividualPage(BasePage):
             self.bibli.add_reference(sref)
         if self.bibli.get_citation_count() == 0:
             return
-        self.display_source_refs(of, self.db)
+        self.display_source_refs(of, self.db, self.bibli)
 
     def display_ind_pedigree(self, of):
 
