@@ -1,3 +1,8 @@
+2008-02-26 Brian Matherly <brian@gramps-project.org>
+	* src/ReportBase/_CommandLineReport.py:
+	0001855: BUG when running family_group report from command line 
+	(no attribute get_gramps_id)
+
 2008-02-28 Jim Sack <jgsack@san.rr.com>
 	* src/GrampsDbUtils/test/ged_skip_notes_test.py: add unittest
 	for empty notes and skipped subordinate blocks (#1851)

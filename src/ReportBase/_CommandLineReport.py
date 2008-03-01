@@ -240,8 +240,22 @@ class CommandLineReport:
             elif isinstance(option, PluginUtils.FamilyOption):
                 id_list = []
                 for fhandle in self.database.get_family_handles():
-                    family = self.database.get_person_from_handle(fhandle)
-                    id_list.append(family.get_gramps_id())
+                    family = self.database.get_family_from_handle(fhandle)
+                    mname = ""
+                    fname = ""
+                    mhandle = family.get_mother_handle()
+                    if mhandle:
+                        mother = self.database.get_person_from_handle(mhandle)
+                        if mother:
+                            mname = name_displayer.display(mother)
+                    fhandle = family.get_father_handle()
+                    if fhandle:
+                        father = self.database.get_person_from_handle(fhandle)
+                        if father:
+                            fname = name_displayer.display(father)
+                    text = "%s:\t%s, %s" % \
+                        (family.get_gramps_id(), fname, mname)
+                    id_list.append(text)
                 self.options_help[name].append(id_list)
                 self.options_help[name].append(False)
             elif isinstance(option, PluginUtils.NoteOption):
