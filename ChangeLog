@@ -1,4 +1,9 @@
-2008-02-26 Brian Matherly <brian@gramps-project.org>
+2008-03-01 Bob Ham <rah@bash.sh>
+	* src/ManagedWindow.py (ManagedWindow.present): fixed check for
+	attribute 'window' by using has_attribute()
+	0001867: Patch containing fixes (for reporting and general)
+
+2008-03-01 Brian Matherly <brian@gramps-project.org>
 	* src/ReportBase/_CommandLineReport.py:
 	0001855: BUG when running family_group report from command line 
 	(no attribute get_gramps_id)
