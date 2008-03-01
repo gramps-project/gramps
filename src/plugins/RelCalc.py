@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Tools/Utilities/Relationship Calculator..."""
+"""Tools/Utilities/Relationship Calculator"""
 
 #-------------------------------------------------------------------------
 #
@@ -247,9 +247,9 @@ register_tool(
     tool_class = RelCalc,
     options_class = RelCalcOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Relationship Calculator..."),
-    status=(_("Stable")),
+    translated_name = _("Relationship Calculator"),
+    status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description=_("Calculates the relationship between two people")
+    description = _("Calculates the relationship between two people")
     )

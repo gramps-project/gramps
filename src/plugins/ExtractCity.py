@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Tools/Database Processing/Extract Place Data from a Place Title..."""
+"""Tools/Database Processing/Extract Place Data from a Place Title"""
 
 #-------------------------------------------------------------------------
 #
@@ -627,7 +627,7 @@ register_tool(
     tool_class = ExtractCity, 
     options_class = ExtractCityOptions, 
     modes = Tool.MODE_GUI, 
-    translated_name = _("Extract Place Data from a Place Title..."), 
+    translated_name = _("Extract Place Data from a Place Title"), 
     status = _("Stable"), 
     author_name = "Donald N. Allingham", 
     author_email = "don@gramps-project.org", 

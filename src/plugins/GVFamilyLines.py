@@ -205,7 +205,7 @@ class FamilyLinesOptions(MenuReportOptions):
         menu.add_option(category, 'FLincludeNumChildren', includeNumChildren)
 
         includeResearcher = BooleanOption(  _('Include researcher and date'), True)
-        includeResearcher.set_help(         _('Whether to include at the bottom the researcher''s name, e-mail, and the date the report was generated.'))
+        includeResearcher.set_help(         _('Whether to include at the bottom the researcher''s name, e-mail, and the date the graph was generated.'))
         menu.add_option(category, 'FLincludeResearcher', includeResearcher)
 
         includePrivate = BooleanOption(     _('Include private records'), False)
@@ -873,14 +873,14 @@ class FamilyLinesReport(Report):
 #------------------------------------------------------------------------
 register_report(
     name            = 'familylines_graph',
-    translated_name = _("Family Lines Graph..."),
+    translated_name = _("Family Lines Graph"),
     category        = CATEGORY_GRAPHVIZ,
-    report_class    = FamilyLinesReport,    # must implement write_report(), called by report() in _ReportDialog.py
-    options_class   = FamilyLinesOptions,   # must implement add_menu_options(), called by MenuOptions::__init__()
+    report_class    = FamilyLinesReport,
+    options_class   = FamilyLinesOptions,
     modes           = MODE_GUI,
     status          = _("Stable"),
     author_name     = "Stephane Charette",
     author_email    = "stephanecharette@gmail.com",
-    description     =_("Generates family line graphs using GraphViz."),
+    description     = _("Produces family line graphs using GraphViz"),
     )
 

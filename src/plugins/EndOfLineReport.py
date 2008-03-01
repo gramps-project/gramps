@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/End of Line Report..."""
+"""Reports/Text Reports/End of Line Report"""
 
 #------------------------------------------------------------------------
 #
@@ -313,9 +313,9 @@ register_report(
     report_class = EndOfLineReport,
     options_class = EndOfLineOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("End of Line Report..."),
-    status=(_("Stable")),
-    description= _("Produces a textual end of line report"),
-    author_name="Brian G. Matherly",
-    author_email="brian@gramps-project.org"
+    translated_name = _("End of Line Report"),
+    status = _("Stable"),
+    description = _("Produces a textual end of line report"),
+    author_name = "Brian G. Matherly",
+    author_email = "brian@gramps-project.org"
     )

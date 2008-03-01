@@ -249,7 +249,7 @@ src/plugins/all_events.py
 src/plugins/all_relations.py
 src/plugins/siblings.py
 src/plugins/AgeOnDate.py
-src/plugins/AncestorChart.py
+src/plugins/AncestorTree.py
 src/plugins/AncestorReport.py
 src/plugins/BookReport.py
 src/plugins/CalculateEstimatedDates.py
@@ -263,7 +263,7 @@ src/plugins/CustomBookText.py
 src/plugins/DateParserDisplayTest.py
 src/plugins/DefaultGramplets.py
 src/plugins/Desbrowser.py
-src/plugins/DescendChart.py
+src/plugins/DescendTree.py
 src/plugins/DescendReport.py
 src/plugins/DetAncestralReport.py
 src/plugins/DetDescendantReport.py

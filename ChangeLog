@@ -1,5 +1,57 @@
+2008-03-01 Brian Matherly <brian@gramps-project.org>
+	* src/ViewManager.py:
+	* src/ReportBase/_Constants.py:
+	* src/plugins/WebCal.py:
+	* src/plugins/DescendReport.py:
+	* src/plugins/DetDescendantReport.py:
+	* src/plugins/KinshipReport.py:
+	* src/plugins/ReorderIds.py:
+	* src/plugins/IndivComplete.py:
+	* src/plugins/ExtractCity.py:
+	* src/plugins/CalculateEstimatedDates.py:
+	* src/plugins/BookReport.py:
+	* src/plugins/Eval.py:
+	* src/plugins/NarrativeWeb.py:
+	* src/plugins/CmdRef.py:
+	* src/plugins/NotRelated.py:
+	* src/plugins/TimeLine.py:
+	* src/plugins/ChangeNames.py:
+	* src/plugins/Calendar.py:
+	* src/plugins/GVFamilyLines.py:
+	* src/plugins/AncestorReport.py:
+	* src/plugins/MarkerReport.py:
+	* src/plugins/DateParserDisplayTest.py:
+	* src/plugins/RemoveUnused.py:
+	* src/plugins/RebuildRefMap.py:
+	* src/plugins/FindDupes.py:
+	* src/plugins/TestcaseGenerator.py:
+	* src/plugins/SoundGen.py:
+	* src/plugins/Rebuild.py:
+	* src/plugins/DescendChart.py:
+	* src/plugins/EndOfLineReport.py:
+	* src/plugins/AncestorChart.py:
+	* src/plugins/DetAncestralReport.py:
+	* src/plugins/Check.py:
+	* src/plugins/EventCmp.py:
+	* src/plugins/FamilyGroup.py:
+	* src/plugins/AncestorTree.py:
+	* src/plugins/GVRelGraph.py:
+	* src/plugins/Verify.py:
+	* src/plugins/GVHourGlass.py:
+	* src/plugins/RelCalc.py:
+	* src/plugins/MediaManager.py:
+	* src/plugins/ChangeTypes.py:
+	* src/plugins/StatisticsChart.py:
+	* src/plugins/Makefile.am
+	* src/plugins/PatchNames.py:
+	* src/plugins/DescendTree.py:
+	* src/plugins/FanChart.py:
+	* po/POTFILES.in
+	0001711: Inconsistant names for graphical reports
+	All reports now use the term "Produces" in the description.
+
 2008-03-01 Bob Ham <rah@bash.sh>
-	* src/ManagedWindow.py (ManagedWindow.present): fixed check for
+	* src/ManagedWindow.py: (ManagedWindow.present): fixed check for
 	attribute 'window' by using has_attribute()
 	0001867: Patch containing fixes (for reporting and general)
 

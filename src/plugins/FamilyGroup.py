@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/Family Group Report..."""
+"""Reports/Text Reports/Family Group Report"""
 
 #------------------------------------------------------------------------
 #
@@ -768,10 +768,10 @@ register_report(
     report_class = FamilyGroup,
     options_class = FamilyGroupOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Family Group Report..."),
+    translated_name = _("Family Group Report"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description=_("Creates a family group report, showing information "
-                  "on a set of parents and their children."),
+    description = _("Produces a family group report showing information "
+                    "on a set of parents and their children."),
     )

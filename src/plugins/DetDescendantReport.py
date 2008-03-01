@@ -23,7 +23,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/Detailed Descendant Report..."""
+"""Reports/Text Reports/Detailed Descendant Report"""
 
 #------------------------------------------------------------------------
 #
@@ -827,9 +827,9 @@ register_report(
     report_class = DetDescendantReport,
     options_class = DetDescendantOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Detailed Descendant Report..."),
-    status=(_("Beta")),
-    description= _("Produces a detailed descendant report"),
-    author_name="Bruce DeGrasse",
-    author_email="bdegrasse1@attbi.com"
+    translated_name = _("Detailed Descendant Report"),
+    status = _("Beta"),
+    description = _("Produces a detailed descendant report"),
+    author_name = "Bruce DeGrasse",
+    author_email = "bdegrasse1@attbi.com"
     )

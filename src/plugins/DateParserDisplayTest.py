@@ -24,7 +24,7 @@
 """
 Validate localized date parser and displayer.
 
-Tools/Debug/Check Localized Date Parser and Displayer...
+Tools/Debug/Check Localized Date Parser and Displayer
 """
 
 #-------------------------------------------------------------------------
@@ -232,7 +232,7 @@ register_tool(
     tool_class = DateParserDisplayTest,
     options_class = Tool.ToolOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Check Localized Date Displayer and Parser..."),
+    translated_name = _("Check Localized Date Displayer and Parser"),
     status = _("Beta"),
     author_name = "Martin Hawlisch",
     author_email = "martin@hawlisch.de",

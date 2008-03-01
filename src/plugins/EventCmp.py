@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Tools/Analysis and Exploration/Compare Individual Events..."""
+"""Tools/Analysis and Exploration/Compare Individual Events"""
 
 #------------------------------------------------------------------------
 #
@@ -452,11 +452,11 @@ register_tool(
     tool_class = EventComparison,
     options_class = EventComparisonOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Compare Individual Events..."),
+    translated_name = _("Compare Individual Events"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description=_("Aids in the analysis of data by allowing the "
-                  "development of custom filters that can be applied "
-                  "to the database to find similar events")
+    description = _("Aids in the analysis of data by allowing the "
+                    "development of custom filters that can be applied "
+                    "to the database to find similar events")
     )

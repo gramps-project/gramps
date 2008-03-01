@@ -406,9 +406,9 @@ register_tool(
     tool_class = RemoveUnused,
     options_class = CheckOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Remove Unused Objects..."),
+    translated_name = _("Remove Unused Objects"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description=_("Removes unused objects from the database")
+    description = _("Removes unused objects from the database")
     )

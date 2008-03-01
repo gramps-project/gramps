@@ -9,7 +9,7 @@ pkgdata_PYTHON = \
 	all_events.py\
 	all_relations.py\
 	AgeOnDate.py\
-	AncestorChart.py\
+	AncestorTree.py\
 	AncestorReport.py\
 	BookReport.py\
 	CalculateEstimatedDates.py\
@@ -23,7 +23,7 @@ pkgdata_PYTHON = \
 	DateParserDisplayTest.py\
 	DefaultGramplets.py\
 	Desbrowser.py\
-	DescendChart.py\
+	DescendTree.py\
 	DescendReport.py\
 	DetAncestralReport.py\
 	DetDescendantReport.py\

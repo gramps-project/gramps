@@ -125,9 +125,9 @@ if __debug__:
         tool_class = Eval,
         options_class = EvalOptions,
         modes = Tool.MODE_GUI,
-        translated_name = _("Python Evaluation Window..."),
+        translated_name = _("Python Evaluation Window"),
         status = _("Stable"),
         author_name = "Donald N. Allingham",
         author_email = "don@gramps-project.org",
-        description=_("Provides a window that can evaluate python code")
+        description = _("Provides a window that can evaluate python code")
         )

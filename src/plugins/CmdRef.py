@@ -244,6 +244,6 @@ if __debug__:
         status = _("Stable"),
         author_name = "Martin Hawlisch",
         author_email = "martin@hawlisch.de",
-        description=_("Generates a DocBook XML file that contains "
-                      "a parameter reference of Reports and Tools.")
+        description= _("Produces a DocBook XML file that contains "
+                       "a parameter reference of Reports and Tools.")
         )

@@ -488,9 +488,9 @@ register_tool(
     tool_class = CalcToolManagedWindow,
     options_class = CalcEstDateOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Calculate Estimated Dates..."),
+    translated_name = _("Calculate Estimated Dates"),
     status = _("Beta"),
     author_name = "Douglas S. Blank",
     author_email = "dblank@cs.brynmawr.edu",
-    description=_("Calculates estimated dates for birth and death.")
+    description= _("Calculates estimated dates for birth and death.")
     )

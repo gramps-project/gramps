@@ -1259,9 +1259,9 @@ register_report(
     report_class = BookReportSelector,
     options_class = cl_report,
     modes = MODE_GUI | MODE_CLI,
-    translated_name = _("Book Report..."),
+    translated_name = _("Book Report"),
     status = _("Stable"),
-    description = _("Creates a book containing several reports."),
+    description = _("Produces a book containing several reports."),
     author_name = "Alex Roitman",
     author_email = "shura@gramps-project.org"
     )

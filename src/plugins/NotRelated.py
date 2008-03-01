@@ -403,6 +403,7 @@ register_report(
     modes = MODE_GUI,
     translated_name = _("Not Related"),
     status = _("Stable"),
-    description= _("Find people who are not in any way related to the selected person")
+    description = _("Find people who are not in any way related to the "
+                    "selected person")
     )
 

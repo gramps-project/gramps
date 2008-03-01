@@ -27,7 +27,7 @@ Web Calendar generator.
 Created 4/22/07 by Thom Sturgill based on Calendar.py (with patches) 
 by Doug Blank with input dialog based on NarrativeWeb.py by Don Allingham.
 
-Reports/Web Page/Web Calendar...
+Reports/Web Page/Web Calendar
 """
 
 #------------------------------------------------------------------------
@@ -1228,9 +1228,9 @@ register_report(
     report_class = WebCalReport,
     options_class = WebCalOptions,
     modes = MODE_GUI,
-    translated_name = _("Web Calendar..."),
+    translated_name = _("Web Calendar"),
     status = _("Beta"),
-    author_name="Thom Sturgill",
-    author_email="thsturgill@yahoo.com",
-    description=_("Generates web (HTML) calendars."),
+    author_name = "Thom Sturgill",
+    author_email = "thsturgill@yahoo.com",
+    description = _("Produces web (HTML) calendars."),
     )

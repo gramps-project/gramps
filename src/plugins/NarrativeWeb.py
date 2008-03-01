@@ -2988,10 +2988,10 @@ register_report(
     report_class = NavWebReport,
     options_class = NavWebOptions,
     modes = MODE_GUI | MODE_CLI,
-    translated_name = _("Narrated Web Site..."),
+    translated_name = _("Narrated Web Site"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description = _("Generates web (HTML) pages for individuals, or a set of "
-                    "individuals."),
+    description = _("Produces web (HTML) pages for individuals, or a set of "
+                    "individuals"),
     )

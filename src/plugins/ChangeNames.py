@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Tools/Database Processing/Fix Capitalization of Family Names..."""
+"""Tools/Database Processing/Fix Capitalization of Family Names"""
 
 #-------------------------------------------------------------------------
 #
@@ -285,7 +285,7 @@ register_tool(
     tool_class = ChangeNames,
     options_class = ChangeNamesOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Fix Capitalization of Family Names..."),
+    translated_name = _("Fix Capitalization of Family Names"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

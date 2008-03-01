@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/Ahnentafel Report..."""
+"""Reports/Text Reports/Ahnentafel Report"""
 
 #------------------------------------------------------------------------
 #
@@ -340,9 +340,9 @@ register_report(
     report_class = AncestorReport,
     options_class = AncestorOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Ahnentafel Report..."),
-    status=(_("Stable")),
-    description= _("Produces a textual ancestral report"),
-    author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org"
+    translated_name = _("Ahnentafel Report"),
+    status = _("Stable"),
+    description = _("Produces a textual ancestral report"),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org"
     )

@@ -23,7 +23,7 @@
 
 # $Id$
 
-"""Tools/Utilities/Media Manager..."""
+"""Tools/Utilities/Media Manager"""
 
 #------------------------------------------------------------------------
 #
@@ -582,9 +582,9 @@ register_tool(
     tool_class = MediaMan,
     options_class = MediaManOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Media Manager..."),
-    status=(_("Beta")),
+    translated_name = _("Media Manager"),
+    status = _("Beta"),
     author_name = "Alex Roitman",
     author_email = "shura@gramps-project.org",
-    description=_("Manages batch operations on media files")
+    description = _("Manages batch operations on media files")
     )

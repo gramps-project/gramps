@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/Detailed Ancestral Report..."""
+"""Reports/Text Reports/Detailed Ancestral Report"""
 
 #------------------------------------------------------------------------
 #
@@ -862,7 +862,7 @@ register_report(
     report_class = DetAncestorReport,
     options_class = DetAncestorOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Detailed Ancestral Report..."),
+    translated_name = _("Detailed Ancestral Report"),
     status=(_("Beta")),
     description= _("Produces a detailed ancestral report"),
     author_name="Bruce DeGrasse",

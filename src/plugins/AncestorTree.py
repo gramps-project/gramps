@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Reports/Graphical Reports/Ancestor Tree..."""
+"""Reports/Graphical Reports/Ancestor Tree"""
 
 #------------------------------------------------------------------------
 #
@@ -40,7 +40,7 @@ import BaseDoc
 from SubstKeywords import SubstKeywords
 from PluginUtils import register_report, \
     NumberOption, BooleanOption, TextOption, PersonOption
-from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions,\
+from ReportBase import Report, ReportUtils, CATEGORY_DRAW, MenuReportOptions, \
     MODE_GUI, MODE_BKI, MODE_CLI
 from BasicUtils import name_displayer
 pt2cm = ReportUtils.pt2cm
@@ -153,14 +153,14 @@ class GenChart:
 
 #------------------------------------------------------------------------
 #
-# AncestorChart
+# AncestorTree
 #
 #------------------------------------------------------------------------
-class AncestorChart(Report):
+class AncestorTree(Report):
 
     def __init__(self, database, options_class):
         """
-        Create AncestorChart object that produces the report.
+        Create AncestorTree object that produces the report.
         
         The arguments are:
 
@@ -441,10 +441,10 @@ class AncestorChart(Report):
 
 #------------------------------------------------------------------------
 #
-# 
+# AncestorTreeOptions
 #
 #------------------------------------------------------------------------
-class AncestorChartOptions(MenuReportOptions):
+class AncestorTreeOptions(MenuReportOptions):
 
     """
     Defines options and provides handling interface.
@@ -455,35 +455,35 @@ class AncestorChartOptions(MenuReportOptions):
         
     def add_menu_options(self, menu):
         
-        category_name = _("Report Options")
+        category_name = _("Tree Options")
 
         pid = PersonOption(_("Center Person"))
-        pid.set_help(_("The center person for the report"))
-        menu.add_option(category_name,"pid",pid)
+        pid.set_help(_("The center person for the tree"))
+        menu.add_option(category_name,"pid", pid)
         
-        max_gen = NumberOption(_("Generations"),10,1,15)
-        max_gen.set_help(_("The number of generations to include in the report"))
-        menu.add_option(category_name,"maxgen",max_gen)
+        max_gen = NumberOption(_("Generations"), 10, 1, 15)
+        max_gen.set_help(_("The number of generations to include in the tree"))
+        menu.add_option(category_name, "maxgen", max_gen)
         
         disp = TextOption(_("Display Format"), 
                            ["$n","%s $b" % _BORN,"%s $d" %_DIED] )
         disp.set_help(_("Display format for the outputbox."))
-        menu.add_option(category_name,"dispf",disp)
+        menu.add_option(category_name, "dispf", disp)
         
-        scale = BooleanOption(_('Sc_ale to fit on a single page'),True)
+        scale = BooleanOption(_('Sc_ale to fit on a single page'), True)
         scale.set_help(_("Whether to scale to fit on a single page."))
-        menu.add_option(category_name,"singlep",scale)
+        menu.add_option(category_name, "singlep", scale)
         
-        blank = BooleanOption(_('Include Blank Pages'),True)
+        blank = BooleanOption(_('Include Blank Pages'), True)
         blank.set_help(_("Whether to include pages that are blank."))
-        menu.add_option(category_name,"incblank",blank)
+        menu.add_option(category_name, "incblank", blank)
         
-        compress = BooleanOption(_('Co_mpress chart'),True)
-        compress.set_help(_("Whether to compress chart."))
-        menu.add_option(category_name,"compress",compress)
+        compress = BooleanOption(_('Co_mpress tree'), True)
+        compress.set_help(_("Whether to compress tree."))
+        menu.add_option(category_name, "tree", compress)
 
     def make_default_style(self,default_style):
-        """Make the default output style for the Ancestor Chart report."""
+        """Make the default output style for the Ancestor Tree."""
         
         ## Paragraph Styles:
         f = BaseDoc.FontStyle()
@@ -528,10 +528,10 @@ class AncestorChartOptions(MenuReportOptions):
 register_report(
     name = 'ancestor_chart',
     category = CATEGORY_DRAW,
-    report_class = AncestorChart,
-    options_class = AncestorChartOptions,
+    report_class = AncestorTree,
+    options_class = AncestorTreeOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Ancestor Tree..."),
+    translated_name = _("Ancestor Tree"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

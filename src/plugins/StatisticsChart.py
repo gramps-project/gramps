@@ -26,7 +26,7 @@
 #
 # $Id$
 
-"""Reports/Graphical Reports/Statistics Report..."""
+"""Reports/Graphical Reports/Statistics Report"""
 
 #------------------------------------------------------------------------
 #
@@ -899,11 +899,11 @@ register_report(
     report_class = StatisticsChart,
     options_class = StatisticsChartOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Statistics Report..."),
-    status = (_("Stable")),
-    author_name="Eero Tamminen",
-    author_email="",
-    description= _("Generates statistical bar and pie charts of the people "
-                   "in the database."),
-    require_active=False,
+    translated_name = _("Statistics Charts"),
+    status = _("Stable"),
+    author_name = "Eero Tamminen",
+    author_email = "",
+    description = _("Produces statistical bar and pie charts of the people "
+                    "in the database"),
+    require_active = False,
     )

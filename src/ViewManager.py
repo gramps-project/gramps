@@ -1390,8 +1390,9 @@ class ViewManager:
             lst.sort(by_menu_name)
             for name in lst:
                 new_key = name[3].replace(' ', '-')
+                menu_name = ("%s...") % name[2]
                 ofile.write('<menuitem action="%s"/>' % new_key)
-                actions.append((new_key, None, name[2], None, None, 
+                actions.append((new_key, None, menu_name, None, None, 
                                 func(name, self.state, self.uistate)))
             ofile.write('</menu>')
 

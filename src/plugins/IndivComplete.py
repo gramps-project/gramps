@@ -48,7 +48,7 @@ from QuestionDialog import WarningDialog
 
 #------------------------------------------------------------------------
 #
-# IndivComplete
+# IndivCompleteReport
 #
 #------------------------------------------------------------------------
 class IndivCompleteReport(Report):
@@ -639,9 +639,9 @@ register_report(
     report_class = IndivCompleteReport,
     options_class = IndivCompleteOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Complete Individual Report..."),
-    status=(_("Stable")),
-    author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org",
-    description=_("Produces a complete report on the selected people."),
+    translated_name = _("Complete Individual Report"),
+    status = _("Stable"),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org",
+    description = _("Produces a complete report on the selected people"),
     )

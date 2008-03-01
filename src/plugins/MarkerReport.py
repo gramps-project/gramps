@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/Marker Report..."""
+"""Reports/Text Reports/Marker Report"""
 
 #------------------------------------------------------------------------
 #
@@ -78,8 +78,8 @@ class MarkerReport(Report):
         
         self.doc.start_paragraph("MR-Title")
         title = _("Marker Report for %s Items") % markerstr
-        mark = BaseDoc.IndexMark(title,BaseDoc.INDEX_TYPE_TOC,1)
-        self.doc.write_text(title,mark)
+        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
         self.write_people()
@@ -92,15 +92,15 @@ class MarkerReport(Report):
         FilterClass = GenericFilterFactory('Person')
         filter = FilterClass()
         filter.add_rule(Rules.Person.HasMarkerOf([self.marker]))
-        ind_list = filter.apply(self.database,plist)
+        ind_list = filter.apply(self.database, plist)
         
         if not ind_list:
             return
         
         self.doc.start_paragraph("MR-Heading")
         header = _("People")
-        mark = BaseDoc.IndexMark(header,BaseDoc.INDEX_TYPE_TOC,2)
-        self.doc.write_text(header,mark)
+        mark = BaseDoc.IndexMark(header, BaseDoc.INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
         self.doc.start_table('PeopleTable','MR-Table')
@@ -148,7 +148,7 @@ class MarkerReport(Report):
             mark = ReportUtils.get_person_mark(self.database, person)
             self.doc.start_cell('MR-TableCell')
             self.doc.start_paragraph('MR-Normal')
-            self.doc.write_text(name,mark)
+            self.doc.write_text(name, mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
             
@@ -179,15 +179,15 @@ class MarkerReport(Report):
         FilterClass = GenericFilterFactory('Family')
         filter = FilterClass()
         filter.add_rule(Rules.Family.HasMarkerOf([self.marker]))
-        fam_list = filter.apply(self.database,flist)
+        fam_list = filter.apply(self.database, flist)
         
         if not fam_list:
             return
         
         self.doc.start_paragraph("MR-Heading")
         header = _("Families")
-        mark = BaseDoc.IndexMark(header,BaseDoc.INDEX_TYPE_TOC,2)
-        self.doc.write_text(header,mark)
+        mark = BaseDoc.IndexMark(header,BaseDoc.INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
         self.doc.start_table('FamilyTable','MR-Table')
@@ -237,7 +237,7 @@ class MarkerReport(Report):
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
                 mark = ReportUtils.get_person_mark(self.database, father)
-                self.doc.write_text(name_displayer.display(father),mark)
+                self.doc.write_text(name_displayer.display(father), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
             
@@ -247,7 +247,7 @@ class MarkerReport(Report):
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 mark = ReportUtils.get_person_mark(self.database, mother)
-                self.doc.write_text(name_displayer.display(mother),mark)
+                self.doc.write_text(name_displayer.display(mother), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
             
@@ -269,15 +269,15 @@ class MarkerReport(Report):
         FilterClass = GenericFilterFactory('Event')
         filter = FilterClass()
         filter.add_rule(Rules.Event.HasMarkerOf([self.marker]))
-        event_list = filter.apply(self.database,elist)
+        event_list = filter.apply(self.database, elist)
         
         if not event_list:
             return
         
         self.doc.start_paragraph("MR-Heading")
         header = _("Events")
-        mark = BaseDoc.IndexMark(header,BaseDoc.INDEX_TYPE_TOC,2)
-        self.doc.write_text(header,mark)
+        mark = BaseDoc.IndexMark(header, BaseDoc.INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header, mark)
         self.doc.end_paragraph()
 
         self.doc.start_table('EventTable','MR-Table')
@@ -332,7 +332,7 @@ class MarkerReport(Report):
             self.doc.start_cell('MR-TableCell')
             self.doc.start_paragraph('MR-Normal')
             place_handle = event.get_place_handle()
-            place = ReportUtils.place_name(self.database,place_handle)
+            place = ReportUtils.place_name(self.database, place_handle)
             if place:
                 self.doc.write_text(place)
             self.doc.end_paragraph()
@@ -362,8 +362,8 @@ class MarkerReport(Report):
         
         self.doc.start_paragraph("MR-Heading")
         header = _("Notes")
-        mark = BaseDoc.IndexMark(header,BaseDoc.INDEX_TYPE_TOC,2)
-        self.doc.write_text(header,mark)
+        mark = BaseDoc.IndexMark(header, BaseDoc.INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header ,mark)
         self.doc.end_paragraph()
 
         self.doc.start_table('NoteTable','MR-Table')
@@ -382,7 +382,7 @@ class MarkerReport(Report):
         self.doc.end_paragraph()
         self.doc.end_cell()
         
-        self.doc.start_cell('MR-TableCell',2)
+        self.doc.start_cell('MR-TableCell', 2)
         self.doc.start_paragraph('MR-Normal-Bold')
         self.doc.write_text(_("Text"))
         self.doc.end_paragraph()
@@ -408,7 +408,7 @@ class MarkerReport(Report):
             self.doc.end_paragraph()
             self.doc.end_cell()
             
-            self.doc.start_cell('MR-TableCell',2)
+            self.doc.start_cell('MR-TableCell', 2)
             self.doc.start_paragraph('MR-Normal')
             self.doc.write_text(note.get(True))
             self.doc.end_paragraph()
@@ -464,50 +464,50 @@ class MarkerOptions(MenuReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_("The style used for the title of the page."))
-        default_style.add_paragraph_style("MR-Title",p)
+        default_style.add_paragraph_style("MR-Title", p)
         
         font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        font.set(face=BaseDoc.FONT_SANS_SERIF, size=14, italic=1)
         para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(2)
         para.set_top_margin(0.25)
         para.set_bottom_margin(0.25)
         para.set_description(_('The style used for the section headers.'))
-        default_style.add_paragraph_style("MR-Heading",para)
+        default_style.add_paragraph_style("MR-Heading", para)
         
         font = BaseDoc.FontStyle()
         font.set_size(12)
         p = BaseDoc.ParagraphStyle()
-        p.set(first_indent=-0.75,lmargin=.75)
+        p.set(first_indent=-0.75, lmargin=.75)
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("MR-Normal",p)
+        default_style.add_paragraph_style("MR-Normal", p)
         
         font = BaseDoc.FontStyle()
         font.set_size(12)
         font.set_bold(True)
         p = BaseDoc.ParagraphStyle()
-        p.set(first_indent=-0.75,lmargin=.75)
+        p.set(first_indent=-0.75, lmargin=.75)
         p.set_font(font)
         p.set_top_margin(ReportUtils.pt2cm(3))
         p.set_bottom_margin(ReportUtils.pt2cm(3))
         p.set_description(_('The basic style used for table headings.'))
-        default_style.add_paragraph_style("MR-Normal-Bold",p)
+        default_style.add_paragraph_style("MR-Normal-Bold", p)
         
         #Table Styles
         cell = BaseDoc.TableCellStyle()
-        default_style.add_cell_style('MR-TableCell',cell)
+        default_style.add_cell_style('MR-TableCell', cell)
 
         table = BaseDoc.TableStyle()
         table.set_width(100)
         table.set_columns(4)
-        table.set_column_width(0,10)
-        table.set_column_width(1,30)
-        table.set_column_width(2,30)
-        table.set_column_width(3,30)
+        table.set_column_width(0, 10)
+        table.set_column_width(1, 30)
+        table.set_column_width(2, 30)
+        table.set_column_width(3, 30)
         default_style.add_table_style('MR-Table',table)
 
 #------------------------------------------------------------------------
@@ -521,9 +521,9 @@ register_report(
     report_class = MarkerReport,
     options_class = MarkerOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Marker Report..."),
-    status=(_("Stable")),
-    description=_("Generates a list of people with a specified marker"),
-    author_name="Brian G. Matherly",
-    author_email="brian@gramps-project.org"
+    translated_name = _("Marker Report"),
+    status = _("Stable"),
+    description = _("Produces a list of people with a specified marker"),
+    author_name = "Brian G. Matherly",
+    author_email = "brian@gramps-project.org"
     )

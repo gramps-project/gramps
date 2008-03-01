@@ -1521,6 +1521,6 @@ register_tool(
     tool_class = Verify,
     options_class = VerifyOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Verify the Data..."),
+    translated_name = _("Verify the Data"),
     description = _("Verifies the data against user-defined tests")
     )

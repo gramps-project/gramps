@@ -53,10 +53,10 @@ standalone_categories = {
     CATEGORY_TEXT     : _("Text Reports"),
     CATEGORY_DRAW     : _("Graphical Reports"),
     CATEGORY_CODE     : _("Code Generators"),
-    CATEGORY_WEB      : _("Web Page"),
+    CATEGORY_WEB      : _("Web Pages"),
     CATEGORY_VIEW     : _("View"),
     CATEGORY_BOOK     : _("Books"),
-    CATEGORY_GRAPHVIZ : _("Graphviz"),
+    CATEGORY_GRAPHVIZ : _("Graphs"),
 }
 
 book_categories = {

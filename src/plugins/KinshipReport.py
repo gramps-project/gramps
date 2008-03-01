@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/Kinship Report..."""
+"""Reports/Text Reports/Kinship Report"""
 
 #------------------------------------------------------------------------
 #
@@ -401,9 +401,9 @@ register_report(
     report_class = KinshipReport,
     options_class = KinshipOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Kinship Report..."),
-    status=(_("Stable")),
-    description= _("Produces a textual report of kinship for a given person"),
-    author_name="Brian G. Matherly",
-    author_email="brian@gramps-project.org"
+    translated_name = _("Kinship Report"),
+    status = _("Stable"),
+    description = _("Produces a textual report of kinship for a given person"),
+    author_name = "Brian G. Matherly",
+    author_email = "brian@gramps-project.org"
     )

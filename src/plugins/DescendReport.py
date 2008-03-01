@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""Reports/Text Reports/Descendant Report..."""
+"""Reports/Text Reports/Descendant Report"""
 
 #------------------------------------------------------------------------
 #
@@ -251,9 +251,9 @@ register_report(
     report_class = DescendantReport,
     options_class = DescendantOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Descendant Report..."),
-    status=(_("Stable")),
-    description=_("Generates a list of descendants of the active person"),
-    author_name="Donald N. Allingham",
-    author_email="don@gramps-project.org"
+    translated_name = _("Descendant Report"),
+    status = _("Stable"),
+    description = _("Produces a list of descendants of the active person"),
+    author_name = "Donald N. Allingham",
+    author_email = "don@gramps-project.org"
     )

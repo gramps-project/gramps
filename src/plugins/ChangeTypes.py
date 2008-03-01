@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Database Processing/Rename Event Types..."""
+"""Database Processing/Rename Event Types"""
 
 #------------------------------------------------------------------------
 #
@@ -201,7 +201,7 @@ register_tool(
     tool_class = ChangeTypes,
     options_class = ChangeTypesOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
-    translated_name = _("Rename Event Types..."),
+    translated_name = _("Rename Event Types"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",

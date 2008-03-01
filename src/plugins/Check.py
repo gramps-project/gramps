@@ -1517,5 +1517,6 @@ register_tool(
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description=_("Checks the database for integrity problems, fixing the problems that it can")
+    description =_("Checks the database for integrity problems, fixing the "
+                   "problems that it can")
     )

@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Tools/Database Processing/Find Possible Duplicate People..."""
+"""Tools/Database Processing/Find Possible Duplicate People"""
 
 #-------------------------------------------------------------------------
 #
@@ -693,10 +693,10 @@ register_tool(
     tool_class = Merge,
     options_class = MergeOptions,
     modes = Tool.MODE_GUI,
-    translated_name = _("Find Possible Duplicate People..."),
+    translated_name = _("Find Possible Duplicate People"),
     status = _("Stable"),
     author_name = "Donald N. Allingham",
     author_email = "don@gramps-project.org",
-    description=_("Searches the entire database, looking for "
-                  "individual entries that may represent the same person.")
+    description = _("Searches the entire database, looking for "
+                    "individual entries that may represent the same person.")
     )
