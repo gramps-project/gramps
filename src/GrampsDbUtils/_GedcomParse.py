@@ -1072,7 +1072,6 @@ class GedcomParser(UpdateCallback):
             if not self.groups:
                 self.backoff = False
                 self.__warn(TRUNC_MSG)
-                self.error_count += 1
                 self.groups = None
                 raise Errors.GedcomError(TRUNC_MSG)
 
@@ -1089,7 +1088,6 @@ class GedcomParser(UpdateCallback):
         """
         msg = _("Line %d was not understood, so it was ignored.") % line.line
         self.__warn(msg)
-        self.error_count += 1
         self.__skip_subordinate_levels(level)
 
     def __warn(self, msg):

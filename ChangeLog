@@ -1,3 +1,8 @@
+2008-02-28 Jim Sack <jgsack@san.rr.com>
+	* src/GrampsDbUtils/_GedcomParse.py minor: remove redundant
+	counting of errors dating to r8912 patch, I think. I don't believe
+	this actually affects anything, but it is "clearly" an oversight
+
 2008-02-29  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/GrampsDbUtils/_GedcomParse.py: find_family_from_handle returns tuple
 	* src/Editors/_EditPerson.py: don't use find_person but get_person
