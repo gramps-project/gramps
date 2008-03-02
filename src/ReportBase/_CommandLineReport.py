@@ -73,11 +73,14 @@ def _validate_options(options, dbase):
             person = dbase.get_person_from_gramps_id(pid)
             if not person:
                 person = dbase.get_default_person()
-                option.set_value(person.get_gramps_id())
                 if not person:
-                    print "Please specify a person"
-                    sys.exit(0)
-        
+                    phandle = dbase.get_person_handles()[0]
+                    person = dbase.get_person_from_handle(phandle)
+                    if not person:
+                        print "Please specify a person"
+            if person:
+                option.set_value(person.get_gramps_id())
+            
         elif isinstance(option, PluginUtils.FamilyOption):
             fid = option.get_value()
             family = dbase.get_family_from_gramps_id(fid)

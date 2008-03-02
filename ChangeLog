@@ -1,4 +1,9 @@
 2008-03-02 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/CmdRef.py:
+	0001873: AttributeError: 'NoneType' object has no attribute
+	'get_gramps_id'
+
+2008-03-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/AncestorTree.py:
 	0001876: BUG during output creation in Ancestor Tree report.
 

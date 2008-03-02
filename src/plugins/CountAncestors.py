@@ -141,7 +141,7 @@ register_report(
     modes = MODE_GUI,
     translated_name = _("Number of Ancestors"),
     status = _("Stable"),
-    description= _("Counts number of ancestors of selected person")
-    author_name="Brian G. Matherly",
-    author_email="brian@gramps-project.org",
+    description = _("Counts number of ancestors of selected person"),
+    author_name = "Brian G. Matherly",
+    author_email = "brian@gramps-project.org",
     )
