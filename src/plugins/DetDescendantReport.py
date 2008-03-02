@@ -828,7 +828,7 @@ register_report(
     options_class = DetDescendantOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Detailed Descendant Report"),
-    status = _("Beta"),
+    status = _("Stable"),
     description = _("Produces a detailed descendant report"),
     author_name = "Bruce DeGrasse",
     author_email = "bdegrasse1@attbi.com"
