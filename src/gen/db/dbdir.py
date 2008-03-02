@@ -179,19 +179,15 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
     This object is a base class for other objects.
     """
 
-    def __init__(self, use_txn = True):
+    def __init__(self):
         """Create a new GrampsDB."""
         
         GrampsDbBase.__init__(self)
         self.txn = None
         self.secondary_connected = False
-        self.UseTXN = use_txn
 
     def __open_flags(self):
-        if self.UseTXN:
-            return db.DB_CREATE | db.DB_AUTO_COMMIT
-        else:
-            return db.DB_CREATE
+        return db.DB_CREATE | db.DB_AUTO_COMMIT
 
     def __open_table(self, file_name, table_name, dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
@@ -376,16 +372,10 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
     def __set_default_person_handle(self, handle):
         """Set the default Person to the passed instance."""
         if not self.readonly:
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            # Start transaction
+            the_txn = self.env.txn_begin()
             self.metadata.put('default', str(handle), txn=the_txn)
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
+            the_txn.commit()
 
     def get_default_person(self):
         try:
@@ -400,44 +390,26 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         if person:
             return person
         elif (self.metadata) and (not self.readonly):
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            # Start transaction
+            the_txn = self.env.txn_begin()
             self.metadata.put('default', None, txn=the_txn)
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
+            the_txn.commit()
         return None
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
         if self.metadata and not self.readonly:
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            # Start transaction
+            the_txn = self.env.txn_begin()
             self.metadata.put('mediapath', path, txn=the_txn)
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
+            the_txn.commit()
 
     def set_column_order(self, col_list, name):
         if self.metadata and not self.readonly: 
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            # Start transaction
+            the_txn = self.env.txn_begin()
             self.metadata.put(name, col_list, txn=the_txn)
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
+            the_txn.commit()
 
     def version_supported(self):
         try:
@@ -479,8 +451,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             self.close()
 
         self.readonly = mode == "r"
-        if self.readonly:
-            self.UseTXN = False
 
         if callback:
             callback(12)
@@ -492,30 +462,25 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.env = db.DBEnv()
         self.env.set_cachesize(0, 0x4000000)         # 32MB
 
-        if self.UseTXN:
-            # These env settings are only needed for Txn environment
-            self.env.set_lk_max_locks(25000)
-            self.env.set_lk_max_objects(25000)
-            self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1)  # clean up unused logs
+        # These env settings are only needed for Txn environment
+        self.env.set_lk_max_locks(25000)
+        self.env.set_lk_max_objects(25000)
+        self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1)  # clean up unused logs
 
-            # The DB_PRIVATE flag must go if we ever move to multi-user setup
-            env_flags = db.DB_CREATE | db.DB_PRIVATE |\
-                        db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
-                        db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
+        # The DB_PRIVATE flag must go if we ever move to multi-user setup
+        env_flags = db.DB_CREATE | db.DB_PRIVATE |\
+                    db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
+                    db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
 
-            # As opposed to before, we always try recovery on databases
-            #  in _GrampsBSDDB.py we only do that on existing filenames
-            env_flags = env_flags | db.DB_RECOVER
+        # As opposed to before, we always try recovery on databases
+        #  in _GrampsBSDDB.py we only do that on existing filenames
+        env_flags = env_flags | db.DB_RECOVER
 
-            # Environment name is now based on the filename
-            env_name = name
-        else:
-            env_flags = db.DB_CREATE | db.DB_PRIVATE | db.DB_INIT_MPOOL
-            env_name = os.path.expanduser('~')
+        # Environment name is now based on the filename
+        env_name = name
 
         self.env.open(env_name, env_flags)
-        if self.UseTXN:
-            self.env.txn_checkpoint()
+        self.env.txn_checkpoint()
 
         if callback:
             callback(25)
@@ -553,11 +518,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         gstats = self.metadata.get('gender_stats', default=None)
 
         if not self.readonly:
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            # Start transaction
+            the_txn = self.env.txn_begin()
 
             if gstats == None:
                 # New database. Set up the current version.
@@ -567,10 +529,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                 # Use 0, but it is likely to fail anyway.
                 self.metadata.put('version', 0, txn=the_txn)
 
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
+            the_txn.commit()
             
         self.genderStats = GenderStats(gstats)
 
@@ -1021,8 +980,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         if not self.readonly:
             if transaction.batch:
                 self.reference_map.delete(str(key), txn=txn)
-                if not self.UseTXN:
-                    self.reference_map.sync()
             else:
                 old_data = self.reference_map.get(str(key), txn=self.txn)
                 transaction.add(REFERENCE_KEY, str(key), old_data, None)
@@ -1039,8 +996,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         
         if transaction.batch:
             self.reference_map.put(str(key), data, txn=txn)
-            if not self.UseTXN:
-                self.reference_map.sync()
         else:
             transaction.add(REFERENCE_KEY, str(key), None, data)
             transaction.reference_add.append((str(key), data))
@@ -1128,13 +1083,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                 obj = InstanceType(class_func)
                 obj.unserialize(val)
 
-                if self.UseTXN:
-                    the_txn = self.env.txn_begin()
-                else:
-                    the_txn = None
+                the_txn = self.env.txn_begin()
                 self.update_reference_map(obj, transaction, the_txn)
-                if not self.UseTXN:
-                    self.reference_map.sync()
                 if the_txn:
                     the_txn.commit()
                 
@@ -1155,11 +1105,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def __close_metadata(self):
         if not self.readonly:
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            # Start transaction
+            the_txn = self.env.txn_begin()
 
             # name display formats
             self.metadata.put('name_formats', self.name_formats, txn=the_txn)
@@ -1220,10 +1167,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             # name display formats
             self.metadata.put('surname_list', self.surname_list, txn=the_txn)
 
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.metadata.sync()
+            the_txn.commit()
 
         self.metadata.close()
 
@@ -1258,8 +1202,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         if not self.db_is_open:
             return
 
-        if self.UseTXN:
-            self.env.txn_checkpoint()
+        self.env.txn_checkpoint()
 
         self.__close_metadata()
         self.name_group.close()
@@ -1313,15 +1256,10 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
         handle = str(handle)
         if transaction.batch:
-            if self.UseTXN:
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            the_txn = self.env.txn_begin()
             self.delete_primary_from_reference_map(handle, transaction,
                                                     txn=the_txn)
             data_map.delete(handle, txn=the_txn)
-            if not self.UseTXN:
-                data_map.sync()
             if the_txn:
                 the_txn.commit()
         else:
@@ -1332,43 +1270,27 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def del_person(self, handle):
         self.person_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.person_map.sync()
 
     def del_source(self, handle):
         self.source_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.source_map.sync()
 
     def del_repository(self, handle):
         self.repository_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.repository_map.sync()
 
     def del_note(self, handle):
         self.note_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.note_map.sync()
 
     def del_place(self, handle):
         self.place_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.place_map.sync()
 
     def del_media(self, handle):
         self.media_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.media_map.sync()
 
     def del_family(self, handle):
         self.family_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.family_map.sync()
 
     def del_event(self, handle):
         self.event_map.delete(str(handle), txn=self.txn)
-        if not self.UseTXN:
-            self.event_map.sync()
 
     def set_name_group_mapping(self, name, group):
         """
@@ -1384,21 +1306,16 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             
     def __set_name_group_mapping(self, name, group):
         if not self.readonly:
-            if self.UseTXN:
-                # Start transaction if needed
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            # Start transaction
+            the_txn = self.env.txn_begin()
+
             name = str(name)
             data = self.name_group.get(name, txn=the_txn)
             if data is not None:
                 self.name_group.delete(name, txn=the_txn)
             if group is not None:
                 self.name_group.put(name, group, txn=the_txn)
-            if self.UseTXN:
-                the_txn.commit()
-            else:
-                self.name_group.sync()
+            the_txn.commit()
             self.emit('person-rebuild')
 
     def build_surname_list(self):
@@ -1536,14 +1453,9 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         handle = str(obj.handle)
         
         if transaction.batch:
-            if self.UseTXN:
-                the_txn = self.env.txn_begin()
-            else:
-                the_txn = None
+            the_txn = self.env.txn_begin()
             self.update_reference_map(obj, transaction, txn=the_txn)
             data_map.put(handle, obj.serialize(), txn=the_txn)
-            if not self.UseTXN:
-                data_map.sync()
             if the_txn:
                 the_txn.commit()
             old_data = None
@@ -1562,8 +1474,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         retlist = []
         for (handle, data) in add_list:
             db_map.put(handle, data, self.txn)
-            if not self.UseTXN:
-                db_map.sync()
             retlist.append(str(handle))
         return retlist
 
@@ -1621,9 +1531,8 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             self.translist = [None] * len(self.translist)
         transaction = BdbTransaction(msg, self.undodb, batch, no_magic)
         if transaction.batch:
-            if self.UseTXN:
-                self.env.txn_checkpoint()
-                self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
+            self.env.txn_checkpoint()
+            self.env.set_flags(db.DB_TXN_NOSYNC, 1)      # async txn
 
             if self.secondary_connected and not transaction.no_magic:
                 # Disconnect unneeded secondary indices
@@ -1647,10 +1556,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
     def __transaction_commit(self, transaction, msg):
 
         # Start BSD DB transaction -- DBTxn
-        if self.UseTXN:
-            self.txn = self.env.txn_begin()
-        else:
-            self.txn = None
+        self.txn = self.env.txn_begin()
 
         GrampsDbBase.transaction_commit(self, transaction, msg)
 
@@ -1660,17 +1566,11 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         for key in transaction.reference_del:
             self.reference_map.delete(str(key), txn=self.txn)
 
-        if (len(transaction.reference_add)+len(transaction.reference_del)) > 0\
-               and not self.UseTXN:
-            self.reference_map.sync()
-
         # Commit BSD DB transaction -- DBTxn
-        if self.UseTXN:
-            self.txn.commit()
+        self.txn.commit()
         if transaction.batch:
-            if self.UseTXN:
-                self.env.txn_checkpoint()
-                self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
+            self.env.txn_checkpoint()
+            self.env.set_flags(db.DB_TXN_NOSYNC, 0)      # sync txn
 
             if not transaction.no_magic:
                 # create new secondary indices to replace the ones removed
@@ -1700,14 +1600,12 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def undo(self, update_history=True):
         try:
-            if self.UseTXN:
-                self.txn = self.env.txn_begin()
+            self.txn = self.env.txn_begin()
             status = GrampsDbBase.undo(self, update_history)
-            if self.UseTXN:
-                if status:
-                    self.txn.commit()
-                else:
-                    self.txn.abort()
+            if status:
+                self.txn.commit()
+            else:
+                self.txn.abort()
             self.txn = None
             return status
         except DBERRS, msg:
@@ -1716,14 +1614,12 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def redo(self, update_history=True):
         try:
-            if self.UseTXN:
-                self.txn = self.env.txn_begin()
+            self.txn = self.env.txn_begin()
             status = GrampsDbBase.redo(self, update_history)
-            if self.UseTXN:
-                if status:
-                    self.txn.commit()
-                else:
-                    self.txn.abort()
+            if status:
+                self.txn.commit()
+            else:
+                self.txn.abort()
             self.txn = None
             return status
         except DBERRS, msg:

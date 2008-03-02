@@ -143,7 +143,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                        buttons=(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)), 
             None, _('Preferences'), None)
         panel = gtk.Notebook()
-        self.original = Config.get(Config.TRANSACTIONS)
         self.window.vbox.add(panel)
         self.window.connect('response', self.done)
         panel.append_page(self.add_behavior_panel(), 
@@ -166,8 +165,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         self.show()
 
     def done(self, obj, value):
-        if not self.original and Config.get(Config.TRANSACTIONS):
-            Config.set(Config.PORT_WARN, True)
         self.close()
 
     def add_researcher_panel(self):
@@ -758,7 +755,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         return table
 
     def add_database_panel(self):
-        table = gtk.Table(3, 8)
+        table = gtk.Table(2, 8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -768,8 +765,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
                           1, Config.ENABLE_AUTOBACKUP)
         self.add_checkbox(table, _('Automatically load last database'), 
                           2, Config.AUTOLOAD)
-        self.add_checkbox(table, _('Enable database transactions'), 
-                          3, Config.TRANSACTIONS)
         return table
 
     def add_checkbox(self, table, label, index, constant):

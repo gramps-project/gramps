@@ -143,8 +143,6 @@ POP_PLUGIN_STATUS    = ('behavior', 'pop-plugin-status', 0)
 VIEW                 = ('interface', 'view', 0)
 SIDEBAR_TEXT         = ('interface', 'sidebar-text', 0)
 WEBSITE_DIRECTORY    = ('paths', 'website-directory', 2)
-PORT_WARN            = ('preferences', 'port-warn', 0)
-TRANSACTIONS         = ('behavior', 'transactions', 0)
 LDS_HEIGHT           = ('interface', 'lds-height', 1)
 LDS_WIDTH            = ('interface', 'lds-width', 1)
 LOCATION_HEIGHT      = ('interface', 'location-height', 1)
@@ -267,8 +265,6 @@ default_value = {
     VIEW                 : True, 
     SIDEBAR_TEXT         : True, 
     WEBSITE_DIRECTORY    : const.USER_HOME, 
-    PORT_WARN            : False, 
-    TRANSACTIONS         : True, 
     LDS_HEIGHT           : 450, 
     LDS_WIDTH            : 600, 
     LOCATION_HEIGHT      : 250, 

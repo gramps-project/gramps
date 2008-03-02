@@ -262,7 +262,7 @@ class DbLoader:
 
         dbclass = gen.db.GrampsDBDir
         
-        self.dbstate.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
+        self.dbstate.change_database(dbclass())
         self.dbstate.db.disable_signals()
 
         self.uistate.window.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))

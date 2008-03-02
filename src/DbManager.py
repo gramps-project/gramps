@@ -209,13 +209,12 @@ class CLIDbManager:
 
             # create the database
             new_path, name = self._create_new_db(name)
-            trans = Config.TRANSACTIONS
 
             # get the import function using the filetype, but create a db
             # based on the DBDir
             self.__start_cursor(_("Importing data..."))
             dbclass = gen.db.GrampsDBDir
-            dbase = dbclass(trans)
+            dbase = dbclass()
             dbase.load(new_path, callback)
 
             rdr = GrampsDbUtils.gramps_db_reader_factory(filetype)
@@ -661,11 +660,10 @@ class DbManager(CLIDbManager):
         imports it into the db
         """
         new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
-        trans = Config.TRANSACTIONS
         
         self.__start_cursor(_("Extracting archive..."))
         dbclass = gen.db.GrampsDBDir
-        dbase = dbclass(trans)
+        dbase = dbclass()
         dbase.load(new_path, None)
         
         self.__start_cursor(_("Importing archive..."))
@@ -788,7 +786,7 @@ class DbManager(CLIDbManager):
                 os.unlink(fname)
 
         dbclass = gen.db.GrampsDBDir
-        dbase = dbclass(Config.get(Config.TRANSACTIONS))
+        dbase = dbclass()
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
 
