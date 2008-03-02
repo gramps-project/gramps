@@ -43,7 +43,11 @@ def run(database, document, date):
         sdoc.paragraph("Date is not a valid date.")
         return
     # display the title
-    sdoc.title(_("People probably alive and their ages on %s") % 
+    if date.get_day_valid():
+        sdoc.title(_("People probably alive and their ages the %s") % 
+               DateHandler.displayer.display(date))
+    else:
+        sdoc.title(_("People probably alive and their ages on %s") % 
                DateHandler.displayer.display(date))
     sdoc.paragraph("\n")
     stab.columns(_("Person"), _("Age")) # Actual Date makes column unicode
