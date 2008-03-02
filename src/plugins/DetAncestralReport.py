@@ -601,7 +601,7 @@ class DetAncestorReport(Report):
                 self.doc.start_paragraph("DAR-Entry")
 
                 self.doc.write_text(person_name,person_key)
-                self.doc.write_text(". ")
+                #self.doc.write_text(". ")
 
                 text = ReportUtils.born_str(self.database, ind, print_name, 
                             self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE)
@@ -863,7 +863,7 @@ register_report(
     options_class = DetAncestorOptions,
     modes = MODE_GUI | MODE_BKI | MODE_CLI,
     translated_name = _("Detailed Ancestral Report"),
-    status=(_("Beta")),
+    status=(_("Stable")),
     description= _("Produces a detailed ancestral report"),
     author_name="Bruce DeGrasse",
     author_email="bdegrasse1@attbi.com"
