@@ -466,7 +466,8 @@ class ManagedWindow:
         if self.isWindow :
             self.present(self)
         else :
-            assert self.has_attribute('window'), "ManagedWindow: self.window does not exist!"
+            assert hasattr(self, 'window'), \
+                   "ManagedWindow: self.window does not exist!"
             self.window.present()
 
 #-------------------------------------------------------------------------

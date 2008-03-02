@@ -1,4 +1,9 @@
 2008-03-02 Brian Matherly <brian@gramps-project.org>
+	* src/ManagedWindow.py:
+  	 0001878: bug: AttributeError: BookReportDialog instance has no
+	 attribute 'has_attribute'
+
+2008-03-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/BookReport.py:
 	* src/Utils.py
 	Save and load books properly.
