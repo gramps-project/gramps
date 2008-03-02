@@ -1,3 +1,7 @@
+2008-03-02  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/DefaultGramplets.py (PedigreeGramplet.get_boxes): 
+	Fixed a bug in turning off vertical lines; other refinements
+
 2008-03-01 Brian Matherly <brian@gramps-project.org>
 	* src/ViewManager.py:
 	* src/ReportBase/_Constants.py:

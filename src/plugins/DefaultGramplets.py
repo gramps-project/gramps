@@ -451,8 +451,8 @@ class PedigreeGramplet(Gramplet):
 
     def db_changed(self):
         """
-        If person or family changes, the relatives of active person might have
-        changed
+        If a person or family changes, the ancestors of active person might have
+        changed.
         """
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-delete', self.update)
@@ -471,10 +471,15 @@ class PedigreeGramplet(Gramplet):
                 retval += "     "
         if retval[-1] == ' ':
             if what == 'sf':
-                return retval[:-6] + r'      /-'
+                retval = retval[:-6] + " /"
             elif what == 'sm':
-                return retval[:-6] + r'      \-'
-        return retval + '--'
+                retval = retval[:-6] + " \\"
+        elif retval.endswith("|    |"):
+            retval = retval[:-6] + "+"
+        return retval + "---"
+
+    def set_box(self, pos, value):
+        self._boxes[pos] = value
 
     def process_person(self, handle, generation, what):
         if generation > self.max_generations:
@@ -487,23 +492,34 @@ class PedigreeGramplet(Gramplet):
                 father = family.get_father_handle()
                 if father:
                     self.process_person(father, generation + 1, "f")
-                    self._boxes[generation] = 1
+                    self.set_box(generation, 1)
                     self.process_person(father, generation + 1, "sf")
                     self.process_person(father, generation + 1, "m")
-        if what[0] == "s":
-            self.append_text(self.get_boxes(generation, what))
+        elif what[0] == "s":
+            boxes = self.get_boxes(generation, what)
+            if what[-1] == 'f':
+                boxes = boxes.replace("+", "/")
+            else:
+                boxes = boxes.replace("+", "\\")
+            self.append_text(boxes)
             self.link(name_displayer.display_name(person.get_primary_name()),
                       'Person', person.handle)
             self.append_text("\n")
-        if what == "m":
+        elif what == "a":
+            self.append_text("o------")
+            self.link(name_displayer.display_name(person.get_primary_name()),
+                      'Person', person.handle)
+            self.append_text("\n")
+        elif what == "m":
             if len(family_list) > 0:
                 family = self.dbstate.db.get_family_from_handle(family_list[0])
                 mother = family.get_mother_handle()
                 if mother:
                     self.process_person(mother, generation + 1, "f")
                     self.process_person(mother, generation + 1, "sm")
-                    self._boxes[generation] = 0
+                    self.set_box(generation, 0)
                     self.process_person(mother, generation + 1, "m")
+            self.set_box(generation, 0) # regardless, turn off line if on
 
     def main(self): # return false finishes
         """
@@ -516,9 +532,9 @@ class PedigreeGramplet(Gramplet):
             return False
         #no wrap in Gramplet
         self.no_wrap()
-        self.process_person(active_person.handle, 1, "f")
-        self.process_person(active_person.handle, 0, "s")
-        self.process_person(active_person.handle, 1, "m")
+        self.process_person(active_person.handle, 1, "f") # father
+        self.process_person(active_person.handle, 0, "a") # active
+        self.process_person(active_person.handle, 1, "m") # mother
         self.append_text("", scroll_to="begin")
 
 class StatsGramplet(Gramplet):
