@@ -1229,7 +1229,7 @@ register_report(
     options_class = WebCalOptions,
     modes = MODE_GUI,
     translated_name = _("Web Calendar"),
-    status = _("Beta"),
+    status = _("Stable"),
     author_name = "Thom Sturgill",
     author_email = "thsturgill@yahoo.com",
     description = _("Produces web (HTML) calendars."),
