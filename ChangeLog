@@ -1,3 +1,8 @@
+2008-03-02 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/BookReport.py:
+	* src/Utils.py
+	Save and load books properly.
+
 2008-03-02 Gary Burton <gary.burton@zen.co.uk>
 	* src/GrampsDbUtils/_Backup.py: Restore databases with transactions
 	enabled.

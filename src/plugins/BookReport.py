@@ -670,7 +670,7 @@ class BookOptions(ReportOptions):
         }
         self.options_help = {
             'bookname'    : ("=name","Name of the book. MANDATORY",
-                            BookList('books.xml',None).get_book_names(),
+                            BookList('books.xml',dbase).get_book_names(),
                             False),
         }
 

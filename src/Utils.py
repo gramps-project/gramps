@@ -920,6 +920,8 @@ def type_name(val):
         return 'int'
     elif val_type == float:
         return 'float'
+    elif val_type == bool:
+        return 'bool'
     elif val_type in (str, unicode):
         return 'unicode'
     return 'unicode'
@@ -935,6 +937,8 @@ def get_type_converter_by_name(val_str):
         return int
     elif val_str == 'float':
         return float
+    elif val_str == 'bool':
+        return bool
     elif val_str in ('str', 'unicode'):
         return unicode
     return unicode
