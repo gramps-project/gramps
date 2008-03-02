@@ -1,3 +1,11 @@
+2008-03-02 Peter Landgren <peter.talken@telia.com>
+	* src/plugins/WebCal.py:
+	* src/plugins/CountAncestors.py
+	* src/plugins/Summary.py
+	* src/plugins/DetDescendantReport.py
+	* src/plugins/DetAncestralReport.py
+	Issue #1795 author information update
+
 2008-03-02 Gary Burton <gary.burton@zen.co.uk>
 	* src/plugins/RelCalc.py: Allow the tree view to be navigated via the
 	keyboard. Bug #1777
