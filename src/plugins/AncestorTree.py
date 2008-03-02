@@ -459,7 +459,7 @@ class AncestorTreeOptions(MenuReportOptions):
 
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the tree"))
-        menu.add_option(category_name,"pid", pid)
+        menu.add_option(category_name, "pid", pid)
         
         max_gen = NumberOption(_("Generations"), 10, 1, 15)
         max_gen.set_help(_("The number of generations to include in the tree"))
@@ -479,10 +479,10 @@ class AncestorTreeOptions(MenuReportOptions):
         menu.add_option(category_name, "incblank", blank)
         
         compress = BooleanOption(_('Co_mpress tree'), True)
-        compress.set_help(_("Whether to compress tree."))
-        menu.add_option(category_name, "tree", compress)
+        compress.set_help(_("Whether to compress the tree."))
+        menu.add_option(category_name, "compress", compress)
 
-    def make_default_style(self,default_style):
+    def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
         
         ## Paragraph Styles:
@@ -492,7 +492,7 @@ class AncestorTreeOptions(MenuReportOptions):
         p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         p.set_description(_('The basic style used for the text display.'))
-        default_style.add_paragraph_style("AC2-Normal",p)
+        default_style.add_paragraph_style("AC2-Normal", p)
 
         f = BaseDoc.FontStyle()
         f.set_size(16)
@@ -501,24 +501,24 @@ class AncestorTreeOptions(MenuReportOptions):
         p.set_font(f)
         p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
         p.set_description(_('The basic style used for the title display.'))
-        default_style.add_paragraph_style("AC2-Title",p)
+        default_style.add_paragraph_style("AC2-Title", p)
         
         ## Draw styles
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("AC2-Normal")
-        g.set_shadow(1,0.2)
-        g.set_fill_color((255,255,255))
-        default_style.add_draw_style("AC2-box",g)
+        g.set_shadow(1, 0.2)
+        g.set_fill_color((255, 255, 255))
+        default_style.add_draw_style("AC2-box", g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("AC2-Title")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
+        g.set_color((0, 0, 0))
+        g.set_fill_color((255, 255, 255))
         g.set_line_width(0)
-        default_style.add_draw_style("AC2-title",g)
+        default_style.add_draw_style("AC2-title", g)
 
         g = BaseDoc.GraphicsStyle()
-        default_style.add_draw_style("AC2-line",g)
+        default_style.add_draw_style("AC2-line", g)
 
 #------------------------------------------------------------------------
 #

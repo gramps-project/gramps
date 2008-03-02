@@ -1,3 +1,7 @@
+2008-03-02 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/AncestorTree.py:
+	0001876: BUG during output creation in Ancestor Tree report.
+
 2008-03-02 Peter Landgren <peter.talken@telia.com>
 	* src/plugins/WebCal.py:
 	* src/plugins/CountAncestors.py
