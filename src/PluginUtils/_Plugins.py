@@ -414,6 +414,9 @@ if __debug__:
         options_class = ReloadOptions,
         modes = _Tool.MODE_GUI,
         translated_name = _("Reload Plugins"),
+        status=(_("Stable")),
+        author_name = "Donald N. Allingham",
+        author_email = "don@gramps-project.org",
         description=_("Attempt to reload plugins. "
                       "Note: This tool itself is not reloaded!"),
         )
