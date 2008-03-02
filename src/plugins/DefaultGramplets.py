@@ -448,6 +448,7 @@ class PedigreeGramplet(Gramplet):
         self.tooltip = _("Click name to make person active\n") + \
                          _("Right-click name to edit person")
         self.max_generations = 100
+        self.set_use_markup(True)
 
     def db_changed(self):
         """
@@ -507,8 +508,7 @@ class PedigreeGramplet(Gramplet):
             self.append_text("\n")
         elif what == "a":
             self.append_text("o------")
-            self.link(name_displayer.display_name(person.get_primary_name()),
-                      'Person', person.handle)
+            self.render_text("<b>%s</b>" % name_displayer.display_name(person.get_primary_name()))
             self.append_text("\n")
         elif what == "m":
             if len(family_list) > 0:
@@ -811,6 +811,7 @@ class NewsGramplet(Gramplet):
         for match in matches:
             text = text.replace("'''%s'''" % match, "<B>%s</B>" % match)
         text = "News from <I>www.gramps-project.org</I>:\n\n" + text
+        self.clear_text()
         self.set_use_markup(True)
         self.render_text(text)
         

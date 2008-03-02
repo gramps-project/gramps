@@ -597,18 +597,19 @@ class GuiGramplet:
                 retval += text[i]
                 r += 1
                 i += 1
-        self.set_text(retval)
+        offset = len(self.get_text())
+        self.append_text(retval)
         for (a,b) in markup_pos["B"]:
-            start = self.buffer.get_iter_at_offset(a)
-            stop = self.buffer.get_iter_at_offset(b)
+            start = self.buffer.get_iter_at_offset(a + offset)
+            stop = self.buffer.get_iter_at_offset(b + offset)
             self.buffer.apply_tag_by_name("bold", start, stop)
         for (a,b) in markup_pos["I"]:
-            start = self.buffer.get_iter_at_offset(a)
-            stop = self.buffer.get_iter_at_offset(b)
+            start = self.buffer.get_iter_at_offset(a + offset)
+            stop = self.buffer.get_iter_at_offset(b + offset)
             self.buffer.apply_tag_by_name("italic", start, stop)
         for (a,b) in markup_pos["U"]:
-            start = self.buffer.get_iter_at_offset(a)
-            stop = self.buffer.get_iter_at_offset(b)
+            start = self.buffer.get_iter_at_offset(a + offset)
+            stop = self.buffer.get_iter_at_offset(b + offset)
             self.buffer.apply_tag_by_name("underline", start, stop)
 
     def set_use_markup(self, value):
