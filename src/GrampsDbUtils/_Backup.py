@@ -167,30 +167,9 @@ def __do_restore(database):
     for (base, tbl) in __build_tbl_map(database):
         backup_name = __mk_backup_name(database, base)
         backup_table = open(backup_name, 'rb')
-
-        if database.UseTXN:
-            __load_tbl_txn(database, backup_table, tbl)
-        else:
-            __load_tbl_no_txn(backup_table, tbl)
+        __load_tbl_txn(database, backup_table, tbl)
 
     database.rebuild_secondary()
-
-def __load_tbl_no_txn(backup_table, tbl):
-    """
-    Return the temporary backup name of the database table
-
-    @param backup_table: file containing the backup data
-    @type backup_table: file
-    @param tbl: Berkeley db database table
-    @type tbl: Berkeley db database table
-    """
-    try:
-        while True:
-            data = pickle.load(backup_table)
-            tbl.put(data[0], data[1], txn=None)
-    except EOFError:
-        tbl.sync()
-        backup_table.close()
 
 def __load_tbl_txn(database, backup_table, tbl):
     """

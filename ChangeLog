@@ -1,4 +1,8 @@
 2008-03-02 Gary Burton <gary.burton@zen.co.uk>
+	* src/GrampsDbUtils/_Backup.py: Restore databases with transactions
+	enabled.
+
+2008-03-02 Gary Burton <gary.burton@zen.co.uk>
 	* src/GrampsCfg.py:
 	* src/Config/_GrampsConfigKeys.py:
 	* src/gen/db/dbdir.py:
