@@ -1522,5 +1522,8 @@ register_tool(
     options_class = VerifyOptions,
     modes = Tool.MODE_GUI | Tool.MODE_CLI,
     translated_name = _("Verify the Data"),
+    status=(_("Stable")),
+    author_name = "Alex Roitman",
+    author_email = "shura@gramps-project.org",
     description = _("Verifies the data against user-defined tests")
     )
