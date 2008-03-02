@@ -183,7 +183,9 @@ register_report(
     options_class = None,
     modes = MODE_GUI,
     translated_name = _("Summary of the Database"),
-    status = _("Beta"),
+    status = _("Stable"),
     description= _("Provides a summary of the current database"),
-    require_active=False,
+    author_name="Brian G. Matherly",
+    author_email="brian@gramps-project.org",
+    require_active=False
     )
