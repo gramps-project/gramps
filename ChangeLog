@@ -1,3 +1,7 @@
+2008-03-02 Gary Burton <gary.burton@zen.co.uk>
+	* src/plugins/RelCalc.py: Allow the tree view to be navigated via the
+	keyboard. Bug #1777
+
 2008-03-02 Jerome Rapinat <romjerome@yahoo.fr>
         * src/plugins/AgeOnDate.py : minor change for better translations
 

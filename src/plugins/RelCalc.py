@@ -106,6 +106,10 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         self.model = PeopleModel(self.db,None)
         self.tree.set_model(self.model)
 
+        self.tree.connect('key-press-event', self._key_press)
+        self.selection = self.tree.get_selection()
+        self.selection.set_mode(gtk.SELECTION_SINGLE)
+
         column = gtk.TreeViewColumn(_('Name'), gtk.CellRendererText(),text=0)
         column.set_resizable(True)
         column.set_min_width(225)
@@ -223,6 +227,18 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
             textval += "%s %s\n" % (val[0], val[1])
         self.textbuffer.set_text(textval)
     
+    def _key_press(self, obj, event):
+        if not event.state or event.state  in (gtk.gdk.MOD2_MASK, ):
+            if event.keyval in (gtk.keysyms.Return, gtk.keysyms.KP_Enter):
+                store, paths = self.selection.get_selected_rows()
+                if paths and len(paths[0]) == 1 :
+                    if self.tree.row_expanded(paths[0]):
+                        self.tree.collapse_row(paths[0])
+                    else:
+                        self.tree.expand_row(paths[0], 0)
+                    return True
+        return False
+
 #------------------------------------------------------------------------
 #
 # 
