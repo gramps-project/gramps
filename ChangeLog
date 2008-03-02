@@ -5,7 +5,7 @@
 	* src/DbManager.py:
 	* src/DbLoader.py: Gramps databases run with transactions enabled. The
 	option to switch off transactions is now removed. The "transactions" and 
-	"port_warn" settings are ignored in the config file.
+	"port_warn" settings are ignored in the config file. Bug #1813
 
 2008-03-02 Brian Matherly <brian@gramps-project.org>
 	* src/plugins/CmdRef.py:
