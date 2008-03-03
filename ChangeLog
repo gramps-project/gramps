@@ -1,4 +1,8 @@
 2008-03-02 Brian Matherly <brian@gramps-project.org>
+	* src/plugins/Calendar.py:
+	0001880: Birthday and Anniversary Report does not work
+
+2008-03-02 Brian Matherly <brian@gramps-project.org>
 	* src/ManagedWindow.py:
   	 0001878: bug: AttributeError: BookReportDialog instance has no
 	 attribute 'has_attribute'

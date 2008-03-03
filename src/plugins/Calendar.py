@@ -73,7 +73,7 @@ def easter(year):
     j = j - 7 * (j / 7)
     l = i - j
     month = 3 + (l + 40) / 44
-    day = l + 28 - 31 * ( month / 4 )
+    day = l + 28 - 31 * (month / 4)
     return "%d/%d/%d" % (year, month, day)
 
 def g2iso(dow):
@@ -92,11 +92,11 @@ def dst(year, area="us"):
             start = "%d/%d/%d" % (year, 3, 14 - (math.floor(1 + year * 5 / 4) % 7)) # March
             stop = "%d/%d/%d" % (year, 11, 7 - (math.floor(1 + year * 5 / 4) % 7)) # November
         else:
-            start = "%d/%d/%d" % (year, 4, (2 + 6 * year - math.floor(year / 4) ) % 7 + 1) # April
-            stop =  "%d/%d/%d" % (year, 10,(31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
+            start = "%d/%d/%d" % (year, 4, (2 + 6 * year - math.floor(year / 4)) % 7 + 1) # April
+            stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
     elif area == "eu":
-        start = "%d/%d/%d" % (year, 3,(31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
-        stop =  "%d/%d/%d" % (year, 10,(31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
+        start = "%d/%d/%d" % (year, 3, (31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
+        stop =  "%d/%d/%d" % (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
     return (start, stop)
 
 def make_date(year, month, day):
@@ -143,7 +143,8 @@ class Calendar(Report):
         self.text3 = menu.get_option_by_name('text3').get_value()
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
-        self.pid = menu.get_option_by_name('pid').get_value()
+        pid = menu.get_option_by_name('pid').get_value()
+        self.center_person = database.get_person_from_gramps_id(pid)
 
         self.title = _("Calendar Report") #% name
 
@@ -202,10 +203,10 @@ class Calendar(Report):
         calendar = Holidays(element, country)
         date = datetime.date(year, 1, 1)
         while date.year == year:
-            holidays = calendar.check_date( date )
+            holidays = calendar.check_date(date)
             for text in holidays:
                 self.add_day_item(text, date.year, date.month, date.day)
-            date = date.fromordinal( date.toordinal() + 1)
+            date = date.fromordinal(date.toordinal() + 1)
 
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
@@ -254,7 +255,7 @@ class Calendar(Report):
             # Go back to previous first day of week, and start from there
             current_ord = (current_date.toordinal() -
                            ((current_date.isoweekday() + 7) -
-                            g2iso(self.start_dow + 1) ) % 7)
+                            g2iso(self.start_dow + 1)) % 7)
         else:
             current_ord = current_date.toordinal()
         for day_col in range(7):
@@ -262,8 +263,8 @@ class Calendar(Report):
             self.doc.center_text("CAL-Daynames", 
                                  GrampsLocale.long_days[(day_col+
                                                          g2iso(self.start_dow + 1))
-                                                        % 7 + 1].capitalize(),
-                                 day_col * cell_width + cell_width/2,
+                                                        % 7 + 1].capitalize(), 
+                                 day_col * cell_width + cell_width/2, 
                                  header - font_height * 1.5)
         for week_row in range(6):
             something_this_week = 0
@@ -271,13 +272,13 @@ class Calendar(Report):
                 thisday = current_date.fromordinal(current_ord)
                 if thisday.month == month:
                     something_this_week = 1
-                    self.draw_rectangle("CAL-Border", day_col * cell_width,
-                                        header + week_row * cell_height,
-                                        (day_col + 1) * cell_width,
+                    self.draw_rectangle("CAL-Border", day_col * cell_width, 
+                                        header + week_row * cell_height, 
+                                        (day_col + 1) * cell_width, 
                                         header + (week_row + 1) * cell_height)
                     last_edge = (day_col + 1) * cell_width
-                    self.doc.center_text("CAL-Numbers", str(thisday.day),
-                                         day_col * cell_width + cell_width/2,
+                    self.doc.center_text("CAL-Numbers", str(thisday.day), 
+                                         day_col * cell_width + cell_width/2, 
                                          header + week_row * cell_height)
                     list = self.calendar.get(month, {}).get(thisday.day, [])
                     position = 0.0 
@@ -293,7 +294,7 @@ class Calendar(Report):
                             font = ptext.get_font()
                             line = string_trim(font, line, cm2pt(cell_width + 0.2))
                             self.doc.draw_text("CAL-Text", line, 
-                                              day_col * cell_width + 0.1,
+                                              day_col * cell_width + 0.1, 
                                               header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1)
                             current += 1
                 current_ord += 1
@@ -311,9 +312,8 @@ class Calendar(Report):
         and text.
         """
         self.progress.set_pass(_('Filtering data...'), 0)
-        people = self.filter.apply(self.database,
+        people = self.filter.apply(self.database, 
                                    self.database.get_person_handles(sort_handles=False))
-        center_person = self.database.get_person_from_gramps_id(self.pid)
         rel_calc = relationship_class()
         self.progress.set_pass(_('Filtering data...'), len(people))
         for person_handle in people:
@@ -353,7 +353,10 @@ class Calendar(Report):
                     if ((self.alive and alive) or not self.alive):
                         comment = ""
                         if self.relationships:
-                            relation = rel_calc.get_one_relationship(self.database, center_person, person)
+                            relation = rel_calc.get_one_relationship(
+                                                             self.database, 
+                                                             self.center_person, 
+                                                             person)
                             if relation:
                                 comment = " --- %s" % relation
                         self.add_day_item("%s, %d%s" % (short_name, age, comment), self.year, month, day)
@@ -378,11 +381,11 @@ class Calendar(Report):
                             are_married = None
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
-                                if int(event.get_type()) in [gen.lib.EventType.MARRIAGE,
+                                if int(event.get_type()) in [gen.lib.EventType.MARRIAGE, 
                                                              gen.lib.EventType.MARR_ALT]:
                                     are_married = event
-                                elif int(event.get_type()) in [gen.lib.EventType.DIVORCE,
-                                                               gen.lib.EventType.ANNULMENT,
+                                elif int(event.get_type()) in [gen.lib.EventType.DIVORCE, 
+                                                               gen.lib.EventType.ANNULMENT, 
                                                                gen.lib.EventType.DIV_FILING]:
                                     are_married = None
                             if are_married != None:
@@ -395,12 +398,12 @@ class Calendar(Report):
                                     years = self.year - year
                                     if years >= 0:
                                         text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
-                                            'spouse' : spouse_name,
-                                            'person' : short_name,
-                                            'nyears' : years,
+                                            'spouse' : spouse_name, 
+                                            'person' : short_name, 
+                                            'nyears' : years, 
                                             }
-                                        alive1 = probably_alive(person,self.database,make_date(self.year,month,day))
-                                        alive2 = probably_alive(spouse,self.database,make_date(self.year,month,day))
+                                        alive1 = probably_alive(person, self.database, make_date(self.year, month, day))
+                                        alive2 = probably_alive(spouse, self.database, make_date(self.year, month, day))
                                         if ((self.alive and alive1 and alive2) or not self.alive):
                                             self.add_day_item(text, self.year, month, day)
                                             
@@ -433,8 +436,7 @@ class CalendarReport(Calendar):
             self.doc.write_text(str(self.text3))
             self.doc.end_paragraph()
         if self.relationships:
-            center_person =  self.filter_option.get_center_person()
-            name = center_person.get_primary_name()
+            name = self.center_person.get_primary_name()
             self.doc.start_paragraph('BIR-Text3style')
             self.doc.write_text(_("Relationships shown are to %s") % name_displayer.display_name(name))
             self.doc.end_paragraph()
@@ -484,16 +486,15 @@ class CalendarOptions(MenuReportOptions):
         year = NumberOption(_("Year of calendar"), time.localtime()[0], 
                             1000, 3000)
         year.set_help(_("Year of calendar"))
-        menu.add_option(category_name,"year", year)
+        menu.add_option(category_name, "year", year)
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                _("Select filter to restrict people that appear on calendar"))
         menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
         
-        self.__pid = PersonOption(_("Filter Person"))
-        self.__pid.set_help(_("The center person for the filter"))
+        self.__pid = PersonOption(_("Center Person"))
+        self.__pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
         
@@ -503,7 +504,7 @@ class CalendarOptions(MenuReportOptions):
         for num, name, fmt_str, act in name_displayer.get_name_format():
             name_format.add_item(num, name)
         name_format.set_help(_("Select the format to display names"))
-        menu.add_option(category_name,"name_format", name_format)
+        menu.add_option(category_name, "name_format", name_format)
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         count = 0
@@ -511,10 +512,10 @@ class CalendarOptions(MenuReportOptions):
             country.add_item(count, c)
             count += 1
         country.set_help(_("Select the country to see associated holidays"))
-        menu.add_option(category_name,"country", country)
+        menu.add_option(category_name, "country", country)
 
         start_dow = EnumeratedListOption(_("First day of week"), 1)
-        for count in range(1,8):
+        for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, GrampsLocale.long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
@@ -525,33 +526,33 @@ class CalendarOptions(MenuReportOptions):
         maiden_name.add_item("spouse_last", _("Wives use husband's surname (from last family listed)"))
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
-        menu.add_option(category_name,"maiden_name", maiden_name)
+        menu.add_option(category_name, "maiden_name", maiden_name)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the calendar"))
-        menu.add_option(category_name,"alive", alive)
+        menu.add_option(category_name, "alive", alive)
 
         birthdays = BooleanOption(_("Include birthdays"), True)
         birthdays.set_help(_("Include birthdays in the calendar"))
-        menu.add_option(category_name,"birthdays", birthdays)
+        menu.add_option(category_name, "birthdays", birthdays)
 
         anniversaries = BooleanOption(_("Include anniversaries"), True)
         anniversaries.set_help(_("Include anniversaries in the calendar"))
-        menu.add_option(category_name,"anniversaries", anniversaries)
+        menu.add_option(category_name, "anniversaries", anniversaries)
 
         category_name = _("Text Options")
 
         text1 = StringOption(_("Text Area 1"), _("My Calendar")) 
         text1.set_help(_("First line of text at bottom of calendar"))
-        menu.add_option(category_name,"text1", text1)
+        menu.add_option(category_name, "text1", text1)
 
         text2 = StringOption(_("Text Area 2"), _("Produced with GRAMPS"))
         text2.set_help(_("Second line of text at bottom of calendar"))
-        menu.add_option(category_name,"text2", text2)
+        menu.add_option(category_name, "text2", text2)
 
         text3 = StringOption(_("Text Area 3"), "http://gramps-project.org/",)
         text3.set_help(_("Third line of text at bottom of calendar"))
-        menu.add_option(category_name,"text3", text3)
+        menu.add_option(category_name, "text3", text3)
         
     def __update_filters(self):
         """
@@ -561,23 +562,10 @@ class CalendarOptions(MenuReportOptions):
         person = self.__db.get_person_from_gramps_id(gid)
         filter_list = ReportUtils.get_person_filters(person, False)
         self.__filter.set_filters(filter_list)
-        
-    def __filter_changed(self):
-        """
-        Handle filter change. If the filter is not specific to a person,
-        disable the person option
-        """
-        filter_value = self.__filter.get_value()
-        if filter_value in [1, 2, 3, 4]:
-            # Filters 1, 2, 3 and 4 rely on the center person
-            self.__pid.set_available(True)
-        else:
-            # The rest don't
-            self.__pid.set_available(False)
 
-    def make_my_style(self, default_style, name, description,
-                      size=9, font=BaseDoc.FONT_SERIF, justified ="left",
-                      color=None, align=BaseDoc.PARA_ALIGN_CENTER,
+    def make_my_style(self, default_style, name, description, 
+                      size=9, font=BaseDoc.FONT_SERIF, justified ="left", 
+                      color=None, align=BaseDoc.PARA_ALIGN_CENTER, 
                       shadow = None, italic=0, bold=0, borders=0, indent=None):
         """ Create paragraph and graphic styles of the same name """
         # Paragraph:
@@ -602,7 +590,7 @@ class CalendarOptions(MenuReportOptions):
             p.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)       
         elif justified == "center":
             p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)       
-        default_style.add_paragraph_style(name,p)
+        default_style.add_paragraph_style(name, p)
         # Graphics:
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style(name)
@@ -612,30 +600,30 @@ class CalendarOptions(MenuReportOptions):
             g.set_fill_color(color)
         if not borders:
             g.set_line_width(0)
-        default_style.add_draw_style(name,g)
+        default_style.add_draw_style(name, g)
         
     def make_default_style(self, default_style):
         """ Add the styles used in this report """
-        self.make_my_style(default_style, "CAL-Title",
-                           _('Title text and background color'), 20,
-                           bold=1, italic=1,
-                           color=(0xEA,0xEA,0xEA))
-        self.make_my_style(default_style, "CAL-Numbers",
-                           _('Calendar day numbers'), 13,
+        self.make_my_style(default_style, "CAL-Title", 
+                           _('Title text and background color'), 20, 
+                           bold=1, italic=1, 
+                           color=(0xEA, 0xEA, 0xEA))
+        self.make_my_style(default_style, "CAL-Numbers", 
+                           _('Calendar day numbers'), 13, 
                            bold=1)
-        self.make_my_style(default_style, "CAL-Text",
+        self.make_my_style(default_style, "CAL-Text", 
                            _('Daily text display'), 9)
-        self.make_my_style(default_style,"CAL-Daynames",
-                           _('Days of the week text'), 12,
-                           italic=1, bold=1,
-                           color = (0xEA,0xEA,0xEA))
-        self.make_my_style(default_style,"CAL-Text1style",
+        self.make_my_style(default_style, "CAL-Daynames", 
+                           _('Days of the week text'), 12, 
+                           italic=1, bold=1, 
+                           color = (0xEA, 0xEA, 0xEA))
+        self.make_my_style(default_style, "CAL-Text1style", 
                            _('Text at bottom, line 1'), 12)
-        self.make_my_style(default_style,"CAL-Text2style",
+        self.make_my_style(default_style, "CAL-Text2style", 
                            _('Text at bottom, line 2'), 12)
-        self.make_my_style(default_style,"CAL-Text3style",
+        self.make_my_style(default_style, "CAL-Text3style", 
                            _('Text at bottom, line 3'), 9)
-        self.make_my_style(default_style,"CAL-Border",
+        self.make_my_style(default_style, "CAL-Border", 
                            _('Borders'), borders=True)
         
 class CalendarReportOptions(CalendarOptions):
@@ -646,34 +634,34 @@ class CalendarReportOptions(CalendarOptions):
     def add_menu_options(self, menu):
         """ Add the options for the graphical calendar """
         category_name = _("Text Options")
-        titletext = StringOption(_("Title text"),
+        titletext = StringOption(_("Title text"), 
                                  _("Birthday and Anniversary Report"))
         titletext.set_help(_("Title of calendar"))
-        menu.add_option(category_name,"titletext", titletext)
+        menu.add_option(category_name, "titletext", titletext)
         CalendarOptions.add_menu_options(self, menu)
         category_name = _("Report Options")
-        option = BooleanOption(_("Include relationships to center person (slower)"),
+        option = BooleanOption(_("Include relationships to center person"), 
                                False)
-        option.set_help(_("Include relationships to center person"))
-        menu.add_option(category_name,"relationships", option)
+        option.set_help(_("Include relationships to center person (slower)"))
+        menu.add_option(category_name, "relationships", option)
 
     def make_default_style(self, default_style):
         """ Add the options for the textual report """
-        self.make_my_style(default_style, "BIR-Title",
-                           _('Title text style'), 14,
+        self.make_my_style(default_style, "BIR-Title", 
+                           _('Title text style'), 14, 
                            bold=1, justified="center")
-        self.make_my_style(default_style, "BIR-Datastyle",
+        self.make_my_style(default_style, "BIR-Datastyle", 
                            _('Data text display'), 12, indent=1.0)
-        self.make_my_style(default_style,"BIR-Daystyle",
-                           _('Day text style'), 12, indent=.5,
+        self.make_my_style(default_style, "BIR-Daystyle", 
+                           _('Day text style'), 12, indent=.5, 
                            italic=1, bold=1)
-        self.make_my_style(default_style,"BIR-Monthstyle",
+        self.make_my_style(default_style, "BIR-Monthstyle", 
                            _('Month text style'), 14, bold=1)
-        self.make_my_style(default_style,"BIR-Text1style",
+        self.make_my_style(default_style, "BIR-Text1style", 
                            _('Text at bottom, line 1'), 12, justified="center")
-        self.make_my_style(default_style,"BIR-Text2style",
+        self.make_my_style(default_style, "BIR-Text2style", 
                            _('Text at bottom, line 2'), 12, justified="center")
-        self.make_my_style(default_style,"BIR-Text3style",
+        self.make_my_style(default_style, "BIR-Text3style", 
                            _('Text at bottom, line 3'), 12, justified="center")
 
 #------------------------------------------------------------------------
@@ -683,7 +671,7 @@ class CalendarReportOptions(CalendarOptions):
 #------------------------------------------------------------------------
 class Element:
     """ A parsed XML element """
-    def __init__(self, name,attributes):
+    def __init__(self, name, attributes):
         'Element constructor'
         # The element's tag name
         self.name = name
@@ -694,11 +682,11 @@ class Element:
         # The element's child element list (sequence)
         self.children = []
         
-    def AddChild(self,element):
+    def AddChild(self, element):
         'Add a reference to a child element'
         self.children.append(element)
         
-    def getAttribute(self,key):
+    def getAttribute(self, key):
         'Get an attribute value'
         return self.attributes.get(key)
     
@@ -740,10 +728,10 @@ class Xml2Obj:
         self.root = None
         self.nodeStack = []
         
-    def StartElement(self, name,attributes):
+    def StartElement(self, name, attributes):
         'SAX start element even handler'
         # Instantiate an Element object
-        element = Element(name.encode(),attributes)
+        element = Element(name.encode(), attributes)
         # Push element onto the stack and make it a child of parent
         if len(self.nodeStack) > 0:
             parent = self.nodeStack[-1]
@@ -756,7 +744,7 @@ class Xml2Obj:
         'SAX end element event handler'
         self.nodeStack = self.nodeStack[:-1]
 
-    def CharacterData(self,data):
+    def CharacterData(self, data):
         'SAX character data event handler'
         if data.strip():
             data = data.encode()
@@ -764,7 +752,7 @@ class Xml2Obj:
             element.cdata += data
             return
 
-    def Parse(self,filename):
+    def Parse(self, filename):
         'Create a SAX parser and parse filename '
         Parser = expat.ParserCreate()
         # SAX event handlers
@@ -772,7 +760,7 @@ class Xml2Obj:
         Parser.EndElementHandler = self.EndElement
         Parser.CharacterDataHandler = self.CharacterData
         # Parse the XML File
-        ParserStatus = Parser.Parse(open(filename,'r').read(), 1)
+        ParserStatus = Parser.Parse(open(filename, 'r').read(), 1)
         return self.root
 
 class Holidays:
@@ -794,11 +782,11 @@ class Holidays:
             if country_set.name == "country" and country_set.attributes["name"] == self.country:
                 for date in country_set.children:
                     if date.name == "date":
-                        data = {"value" : "",
-                                "name" : "",
-                                "offset": "",
-                                "type": "",
-                                "if": "",
+                        data = {"value" : "", 
+                                "name" : "", 
+                                "offset": "", 
+                                "type": "", 
+                                "if": "", 
                                 } # defaults
                         for attr in date.attributes:
                             data[attr] = date.attributes[attr]
@@ -814,7 +802,7 @@ class Holidays:
             except ValueError:
                 continue
             if date.weekday() == dow:
-                retval.append( d )
+                retval.append(d)
         if self.debug: print "dow=", dow, "days=", retval
         return retval
     def check_date(self, date):
@@ -826,7 +814,7 @@ class Holidays:
             if rule["offset"] != "":
                 if rule["offset"].isdigit():
                     offset = int(rule["offset"])
-                elif rule["offset"][0] in ["-","+"] and rule["offset"][1:].isdigit():
+                elif rule["offset"][0] in ["-", "+"] and rule["offset"][1:].isdigit():
                     offset = int(rule["offset"])
                 else:
                     # must be a dayname
@@ -847,7 +835,7 @@ class Holidays:
                 elif mon == "*":
                     m = date.month
                 else:
-                    m = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
+                    m = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 
                          'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].index(mon) + 1
                 dates_of_dayname = self.get_daynames(y, m, dayname)
                 if self.debug: print "num =", num
@@ -929,27 +917,27 @@ _countries = get_countries()
 #
 #------------------------------------------------------------------------
 register_report(
-    name = 'calendar',
-    category = CATEGORY_DRAW,
-    report_class = Calendar,
-    options_class = CalendarOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Calendar"),
-    status = _("Stable"),
-    author_name = "Douglas S. Blank",
-    author_email = "dblank@cs.brynmawr.edu",
-    description = _("Produces a graphical calendar"),
+    name = 'calendar', 
+    category = CATEGORY_DRAW, 
+    report_class = Calendar, 
+    options_class = CalendarOptions, 
+    modes = MODE_GUI | MODE_BKI | MODE_CLI, 
+    translated_name = _("Calendar"), 
+    status = _("Stable"), 
+    author_name = "Douglas S. Blank", 
+    author_email = "dblank@cs.brynmawr.edu", 
+    description = _("Produces a graphical calendar"), 
     )
 
 register_report(
-    name = 'birthday_report',
-    category = CATEGORY_TEXT,
-    report_class = CalendarReport,
-    options_class = CalendarReportOptions,
-    modes = MODE_GUI | MODE_BKI | MODE_CLI,
-    translated_name = _("Birthday and Anniversary Report"),
-    status = _("Stable"),
-    author_name = "Douglas S. Blank",
-    author_email = "dblank@cs.brynmawr.edu",
-    description = _("Produces a report of birthdays and anniversaries"),
+    name = 'birthday_report', 
+    category = CATEGORY_TEXT, 
+    report_class = CalendarReport, 
+    options_class = CalendarReportOptions, 
+    modes = MODE_GUI | MODE_BKI | MODE_CLI, 
+    translated_name = _("Birthday and Anniversary Report"), 
+    status = _("Stable"), 
+    author_name = "Douglas S. Blank", 
+    author_email = "dblank@cs.brynmawr.edu", 
+    description = _("Produces a report of birthdays and anniversaries"), 
     )
