@@ -336,11 +336,3 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
     def write_text(self,text,mark=None):
         self.text = self.text + text
 
-#------------------------------------------------------------------------
-#
-# Register the document generator with the GRAMPS plugin system
-#
-#------------------------------------------------------------------------
-print_label = None
-register_text_doc(_("TextBuffer"), TextBufDoc, 1, 1, 1, ".xyz", None)
-
