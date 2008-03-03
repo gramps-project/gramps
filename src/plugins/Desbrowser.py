@@ -28,7 +28,6 @@
 #
 #------------------------------------------------------------------------
 import os
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -47,12 +46,19 @@ from BasicUtils import name_displayer
 from PluginUtils import Tool, register_tool
 import GrampsDisplay
 import ManagedWindow
+from TransUtils import sgettext as _
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser')
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
+
+
+
+
 class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
@@ -103,7 +109,8 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-ae')
+        GrampsDisplay.help('tools-ae',webpage=WIKI_HELP_PAGE, 
+                                   section=WIKI_HELP_SEC)
 
     def add_to_tree(self, parent_id, sib_id, person_handle):
         item_id = self.model.insert_after(parent_id, sib_id)

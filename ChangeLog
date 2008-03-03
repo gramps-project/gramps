@@ -1,3 +1,7 @@
+2008-03-03 Frederik De Richter <frederik.de.richter@pandora.be>
+	* src/plugins/Desbrowser.py
+	links to wiki manual 
+
 2008-03-02 Brian Matherly <brian@gramps-project.org>
 	* src/docgen/TextBufDoc.py:
 	0001882: Reports->Text Reports->Kinship Report output to 
