@@ -472,6 +472,9 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.empty = 0
         self.f.write(text)
 
+   def page_break(self):
+        pass
+
 #------------------------------------------------------------------------
 #
 # Register the document generator with the GRAMPS plugin system
