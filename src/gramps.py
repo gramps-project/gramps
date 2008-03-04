@@ -147,7 +147,7 @@ def setup_logging():
     l.addHandler(gtkh)
     l.addHandler(stderrh)
 
-    # put a hook on to catch any completly unhandled exceptions.
+    # put a hook on to catch any completely unhandled exceptions.
     def exc_hook(type, value, tb):
         if type == KeyboardInterrupt:
             # Ctrl-C is not a bug.

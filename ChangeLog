@@ -1,3 +1,9 @@
+2008-03-04 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/Bookmarks.py: 0001770: Bookmark Editor window and deleting entries 
+    Set focus on bookmark right above the deleted bookmark
+    * src/gramps.py: comment typo
+    * src/ListModel.py: fix, changed func((param)) to func(param)
+
 2008-03-04 Peter Landgren <peter.talken2telia.com>
     * src/docgen/HtmlDoc.py: Issues 1875 and 1879#
 

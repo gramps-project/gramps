@@ -20,7 +20,7 @@
 
 # $Id$
 
-"Handle bookmarks for the gramps interface"
+"Handle bookmarks for the gramps interface."
 
 #-------------------------------------------------------------------------
 #
@@ -67,11 +67,11 @@ BTM = '''</menu></menubar></ui>'''
 DISABLED = -1
 
 class Bookmarks :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     
     def __init__(self, dbstate, uistate, bookmarks, callback=None):
         """
-        Create a the bookmark editor.
+        Create the bookmark editor.
 
         bookmarks - list of People
         menu - parent menu to attach users
@@ -105,14 +105,13 @@ class Bookmarks :
 
     def display(self):
         """
-
-        Redraw the display
+        Redraw the display.
         """
         self.redraw()
 
     def undisplay(self):
         """
-        Update the uimanager
+        Update the uimanager.
         """
         if self.active != DISABLED:
             self.uistate.uimanager.remove_ui(self.active)
@@ -121,12 +120,12 @@ class Bookmarks :
             self.active = DISABLED
 
     def redraw_and_report_change(self):
-        """Create the pulldown menu and set bookmarks to changed"""
+        """Create the pulldown menu and set bookmarks to changed."""
         self.dbstate.db.report_bm_change()
         self.redraw()
 
     def redraw(self):
-        """Create the pulldown menu"""
+        """Create the pulldown menu."""
         text = StringIO()
         text.write(TOP)
 
@@ -166,7 +165,7 @@ class Bookmarks :
         return make_callback(handle, self.dbstate.change_active_handle)
 
     def add(self, person_handle):
-        """appends the person to the bottom of the bookmarks"""
+        """Append the person to the bottom of the bookmarks."""
         if person_handle not in self.bookmarks.get():
             self.bookmarks.append(person_handle)
             self.redraw_and_report_change()
@@ -188,7 +187,7 @@ class Bookmarks :
             self.redraw_and_report_change()
 
     def draw_window(self):
-        """Draws the bookmark dialog box"""
+        """Draw the bookmark dialog box."""
         title = _("%(title)s - GRAMPS") % {'title': _("Organize Bookmarks")}
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400, 350)
@@ -230,7 +229,7 @@ class Bookmarks :
         
     def edit(self):
         """
-        display the bookmark editor.
+        Display the bookmark editor.
 
         The current bookmarked people are inserted into the namelist,
         attaching the person object to the corresponding row. The currently
@@ -254,7 +253,7 @@ class Bookmarks :
         self.top.destroy()
 
     def delete_clicked(self, obj):
-        """Remove the current selection from the list"""
+        """Remove the current selection from the list."""
         store, the_iter = self.namemodel.get_selected()
         if not the_iter:
             return
@@ -262,9 +261,12 @@ class Bookmarks :
         self.bookmarks.pop(row)
         self.namemodel.remove(the_iter)
         self.modified = True
+        if row > 0:
+            row = row - 1
+        self.namemodel.select_row(row)
 
     def up_clicked(self, obj):
-        """Moves the current selection up one row"""
+        """Move the current selection up one row."""
         row = self.namemodel.get_selected_row()
         if not row or row == -1:
             return
@@ -277,7 +279,7 @@ class Bookmarks :
         self.modified = True
 
     def down_clicked(self, obj):
-        """Moves the current selection down one row"""
+        """Move the current selection down one row."""
         row = self.namemodel.get_selected_row()
         if row + 1 >= self.namemodel.count or row == -1:
             return
@@ -290,7 +292,7 @@ class Bookmarks :
         self.modified = True
 
     def help_clicked(self):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of GRAMPS manual."""
         GrampsDisplay.help('gramps-nav')
         self.response = self.top.run()
 
@@ -307,7 +309,7 @@ class ListBookmarks(Bookmarks):
         self.goto_handle(handle)
 
 class FamilyBookmarks(ListBookmarks) :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     
     def __init__(self, dbstate, uistate, bookmarks, goto_handle):
         ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
@@ -322,7 +324,7 @@ class FamilyBookmarks(ListBookmarks) :
         self.dbstate.db.connect('family-delete', self.remove_handles)
 
 class EventBookmarks(ListBookmarks) :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     
     def __init__(self, dbstate, uistate, bookmarks, goto_handle):
         ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
@@ -340,7 +342,7 @@ class EventBookmarks(ListBookmarks) :
         self.dbstate.db.connect('event-delete', self.remove_handles)
 
 class SourceBookmarks(ListBookmarks) :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     def __init__(self, dbstate, uistate, bookmarks, goto_handle):
         ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
                                goto_handle)
@@ -354,7 +356,7 @@ class SourceBookmarks(ListBookmarks) :
         self.dbstate.db.connect('source-delete', self.remove_handles)
 
 class MediaBookmarks(ListBookmarks) :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     
     def __init__(self, dbstate, uistate, bookmarks, goto_handle):
         ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
@@ -369,7 +371,7 @@ class MediaBookmarks(ListBookmarks) :
         self.dbstate.db.connect('media-delete', self.remove_handles)
 
 class RepoBookmarks(ListBookmarks) :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     
     def __init__(self, dbstate, uistate, bookmarks, goto_handle):
         ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
@@ -384,7 +386,7 @@ class RepoBookmarks(ListBookmarks) :
         self.dbstate.db.connect('repository-delete', self.remove_handles)
 
 class PlaceBookmarks(ListBookmarks) :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     
     def __init__(self, dbstate, uistate, bookmarks, goto_handle):
         ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
@@ -399,7 +401,7 @@ class PlaceBookmarks(ListBookmarks) :
         self.dbstate.db.connect('place-delete', self.remove_handles)
 
 class NoteBookmarks(ListBookmarks) :
-    "Handle the bookmarks interface for Gramps"
+    "Handle the bookmarks interface for Gramps."
     
     def __init__(self, dbstate, uistate, bookmarks, goto_handle):
         ListBookmarks.__init__(self, dbstate, uistate, bookmarks,
@@ -417,6 +419,6 @@ class NoteBookmarks(ListBookmarks) :
 
 def make_callback(handle, function):
     """
-    Builds a unique call to the function with the associated handle
+    Build a unique call to the function with the associated handle.
     """
     return lambda x: function(handle)

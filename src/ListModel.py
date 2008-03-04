@@ -308,7 +308,7 @@ class ListModel:
         """
         Selects the item based on path
         """
-        self.selection.select_path((row))
+        self.selection.select_path(row)
 
     def select_iter(self, node):
         """
