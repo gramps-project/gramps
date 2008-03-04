@@ -1192,66 +1192,10 @@ class GuiMenuOptions:
                 if name in self.options_dict:
                     option.set_value(self.options_dict[name])
                     
-                found = True
-                label = True
-                
-                if isinstance(option, _MenuOptions.PersonOption):
-                    widget = GuiPersonOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.FamilyOption):
-                    widget = GuiFamilyOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.NoteOption):
-                    widget = GuiNoteOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.MediaOption):
-                    widget = GuiMediaOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.PersonListOption):
-                    widget = GuiPersonListOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.NumberOption):
-                    widget = GuiNumberOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.BooleanOption):
-                    widget = GuiBooleanOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                    label = False
-                elif isinstance(option, _MenuOptions.DestinationOption):
-                    widget = GuiDestinationOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.StringOption):
-                    widget = GuiStringOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.EnumeratedListOption):
-                    widget = GuiEnumeratedListOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.TextOption):
-                    widget = GuiTextOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.ColourOption):
-                    widget = GuiColourOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                elif isinstance(option, _MenuOptions.SurnameColourOption):
-                    widget = GuiSurnameColourOption(option, dialog.dbstate, 
-                                             dialog.uistate, dialog.track, 
-                                             self.__tooltips)
-                else:
-                    found = False
-                    
-                if not found:
+                widget, label = make_gui_option(option, dialog, 
+                                                self.__tooltips)
+
+                if widget == None:
                     print "UNKNOWN OPTION: ", option
                 else:
                     if label:
@@ -1268,4 +1212,66 @@ class GuiMenuOptions:
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
+
+def make_gui_option(option, dialog, tooltips):
+    """
+    Stand-alone function so that Options can be used in other
+    ways, too. Takes an Option and returns a GuiOption.
+    """
+    widget = None
+    label = True
+    if isinstance(option, _MenuOptions.PersonOption):
+        widget = GuiPersonOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.FamilyOption):
+        widget = GuiFamilyOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.NoteOption):
+        widget = GuiNoteOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.MediaOption):
+        widget = GuiMediaOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.PersonListOption):
+        widget = GuiPersonListOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.NumberOption):
+        widget = GuiNumberOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.BooleanOption):
+        widget = GuiBooleanOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+        label = False
+    elif isinstance(option, _MenuOptions.DestinationOption):
+        widget = GuiDestinationOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.StringOption):
+        widget = GuiStringOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.EnumeratedListOption):
+        widget = GuiEnumeratedListOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.TextOption):
+        widget = GuiTextOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.ColourOption):
+        widget = GuiColourOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    elif isinstance(option, _MenuOptions.SurnameColourOption):
+        widget = GuiSurnameColourOption(option, dialog.dbstate, 
+                                 dialog.uistate, dialog.track, 
+                                 tooltips)
+    return widget, label
 
