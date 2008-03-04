@@ -149,11 +149,12 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
-        self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
         self.window.set_size_request(gramplet.detached_width,
                                      gramplet.detached_height)
-        self.window.connect('response', self.handle_response)
+        self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        # add gramplet:
         self.gramplet.mainframe.reparent(self.window.vbox)
+        self.window.connect('response', self.handle_response)
         self.window.show()
 
     def handle_response(self, object, response):
@@ -177,11 +178,16 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet.gvclose.show()
         self.gramplet.gvstate.show()
         self.gramplet.gvproperties.show()
+        self.gramplet.gvoptions.hide()
         self.gramplet.viewpage.detached_gramplets.remove(self.gramplet)
         self.gramplet.state = "maximized"
         self.gramplet.mainframe.reparent(self.gramplet.parent)
         expand,fill,padding,pack =  self.gramplet.parent.query_child_packing(self.gramplet.mainframe)
-        self.gramplet.parent.set_child_packing(self.gramplet.mainframe,self.gramplet.expand,fill,padding,pack)
+        self.gramplet.parent.set_child_packing(self.gramplet.mainframe,
+                                               self.gramplet.expand,
+                                               fill,
+                                               padding,
+                                               pack)
         ManagedWindow.ManagedWindow.close(self, *args)
 
 #------------------------------------------------------------------------
@@ -192,6 +198,7 @@ class Gramplet(object):
         self._generator = None
         self._need_to_update = False
         self._tags = []
+        self.option_dict = {}
         self.tooltip = None
         self.link_cursor = gtk.gdk.Cursor(gtk.gdk.LEFT_PTR)
         self.standard_cursor = gtk.gdk.Cursor(gtk.gdk.XTERM)
@@ -207,6 +214,10 @@ class Gramplet(object):
                                   self.on_button_press) 
         self.gui.textview.connect('motion-notify-event', 
                                   self.on_motion)
+        # Add options to section on detached view
+        # FIXME: too many options will expand section: need scrollable area
+        for item in self.option_dict:
+            self.gui.option_vbox.add(gtk.Label(item))
         if self.dbstate.active: # already changed
             self._db_changed(self.dbstate.db)
             self.active_changed(self.dbstate.active.handle)
@@ -418,6 +429,9 @@ class Gramplet(object):
                                                      handle)
                     return True
         return False # did not handle event
+
+    def set_options(self, option_dict):
+        self.option_dict = option_dict
         
 def logical_true(value):
     return value in ["True", True, 1, "1"]
@@ -452,6 +466,8 @@ class GuiGramplet:
         self.tooltips_text = None
         self.xml = glade.XML(const.GLADE_FILE, 'gvgramplet', "gramps")
         self.mainframe = self.xml.get_widget('gvgramplet')
+        self.gvoptions = self.xml.get_widget('gvoptions')
+        self.option_vbox = self.xml.get_widget('option_vbox')
         self.textview = self.xml.get_widget('gvtextview')
         self.buffer = self.textview.get_buffer()
         self.scrolledwindow = self.xml.get_widget('gvscrolledwindow')
@@ -490,6 +506,8 @@ class GuiGramplet:
         self.gvclose.hide()
         self.gvstate.hide()
         self.gvproperties.hide()
+        if len(self.pui.option_dict) > 0:
+            self.gvoptions.show()
         # keep a pointer to old parent frame:
         self.parent = self.mainframe.get_parent()
         self.viewpage.detached_gramplets.append(self)
@@ -513,7 +531,11 @@ class GuiGramplet:
                                                                gtk.ICON_SIZE_MENU)
             column = self.mainframe.get_parent() # column
             expand,fill,padding,pack =  column.query_child_packing(self.mainframe)
-            column.set_child_packing(self.mainframe,self.expand,fill,padding,pack)
+            column.set_child_packing(self.mainframe,
+                                     self.expand,
+                                     fill,
+                                     padding,
+                                     pack)
 
     def change_state(self, obj):
         if self.state == "windowed":
@@ -644,6 +666,7 @@ class MyScrolledWindow(gtk.ScrolledWindow):
             gramplets = [g for g in self.viewpage.gramplet_map.values() if g != None]
             self.viewpage = None
             for gramplet in gramplets:
+                gramplet.gvoptions.hide()
                 if gramplet.state == "minimized":
                     gramplet.set_state("minimized")
 

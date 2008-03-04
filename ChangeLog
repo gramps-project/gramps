@@ -1,4 +1,8 @@
 2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/GrampletView.py: added infrastructure for 
+	editing options from the gui.
+
+2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/PluginUtils/_GuiOptions.py (make_gui_option): 
 	new stand-alone function that takes Option, returns GuiOption
 	(attempting to make Options useable in additional ways)
