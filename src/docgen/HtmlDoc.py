@@ -472,7 +472,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             self.empty = 0
         self.f.write(text)
 
-   def page_break(self):
+    def page_break(self):
         pass
 
 #------------------------------------------------------------------------

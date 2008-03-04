@@ -1,3 +1,7 @@
+2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/docgen/HtmlDoc.py (HtmlDoc.page_break): 
+	Fixed indentation issue
+
 2008-03-04 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/Bookmarks.py: 0001770: Bookmark Editor window and deleting entries 
     Set focus on bookmark right above the deleted bookmark
