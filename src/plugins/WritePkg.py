@@ -59,6 +59,7 @@ import gtk
 #-------------------------------------------------------------------------
 from GrampsDbUtils import XmlWriter
 from PluginUtils import register_export
+import Utils
 
 #-------------------------------------------------------------------------
 #

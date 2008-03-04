@@ -1,3 +1,6 @@
+2008-03-04 Raphael Ackermann <raphael.ackermann@gmail.com>
+    * src/plugins/WritePkg.py: added import Utils to prevent crash on export
+
 2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py: added infrastructure for 
 	editing options from the gui.
