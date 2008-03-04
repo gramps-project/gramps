@@ -22,6 +22,7 @@ import urllib
 
 import gen.lib
 from DataViews import register, Gramplet
+from PluginUtils import *
 from BasicUtils import name_displayer
 from Utils import media_path_full
 from QuickReports import run_quick_report_by_name
@@ -449,6 +450,15 @@ class PedigreeGramplet(Gramplet):
                          _("Right-click name to edit person")
         self.max_generations = 100
         self.set_use_markup(True)
+        #self.set_options( {"max_generations": 
+        #                   NumberOption(_("Maximum generations"), 
+        #                                100, -1, 500),
+        #                   "expand": 
+        #                   BooleanOption(_("Expandable"), False),
+        #                   "height": 
+        #                   NumberOption(_("Height"), 
+        #                                300, 1, 1024),
+        #                   } )
 
     def db_changed(self):
         """
