@@ -1,3 +1,6 @@
+2008-03-04 Peter Landgren <peter.talken2telia.com>
+    * src/docgen/HtmlDoc.py: Issues 1875 and 1879#
+
 2008-03-04 Raphael Ackermann <raphael.ackermann@gmail.com>
     * src/plugins/WritePkg.py: added import Utils to prevent crash on export
 
