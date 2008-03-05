@@ -1,3 +1,7 @@
+2008-03-05  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/GrampletView.py (make_requested_gramplet): 
+	fixed bug in showing options with new gramplets
+
 2008-03-05 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/ReportBase/_CommandLineReport.py: print warning if show=option is 
 	not a valid option. Addresses some of 0001891.

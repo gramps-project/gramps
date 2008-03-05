@@ -127,6 +127,7 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
             gui.tooltips = gtk.Tooltips()
             gui.tooltips.set_tip(gui.scrolledwindow, msg)
             gui.tooltips_text = msg
+        gui.gvoptions.hide()
         return gui
     return None
 
