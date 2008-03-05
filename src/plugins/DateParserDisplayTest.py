@@ -59,7 +59,7 @@ class DateParserDisplayTest(Tool.Tool):
         Tool.Tool.__init__(self, dbstate, options_class, name)
         if uistate:
             # Running with gui -> Show message
-            QuestionDialog("Start date test?","This test will create many persons and events in the current database. Do you really want to run this test?","Run test",self.run_tool)
+            QuestionDialog(_("Start date test?"),_("This test will create many persons and events in the current database. Do you really want to run this test?"),_("Run test"),self.run_tool)
         else:
             self.run_tool()
 

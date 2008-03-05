@@ -1,3 +1,6 @@
+2008-03-05 Jerome Rapinat <romjerome@yahoo.fr>
+        * src/plugins/DateParserDisplayTest.py: allow to translate QuestionDialog 
+
 2008-03-05  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/docgen/TextBufDoc.py: fixed translations of Quick View
 	* src/plugins/References.py: fixed translations of ref types
