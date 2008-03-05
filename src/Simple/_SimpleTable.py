@@ -174,7 +174,7 @@ class SimpleTable:
             # FIXME: add better text representations of these objects
             if type(item) in [str, unicode]:
                 retval.append(item)
-            elif type(item) in [int, float]:
+            elif type(item) in [int, float, long]:
                 retval.append(item)
                 self.row_sort_val(col, item)
             elif isinstance(item, gen.lib.Person):

@@ -19,6 +19,7 @@
 import sys
 import re
 import urllib
+import posixpath
 
 import gen.lib
 from DataViews import register, Gramplet
@@ -550,6 +551,7 @@ class PedigreeGramplet(Gramplet):
 class StatsGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
+        self.tooltip = _("Double-click item to see matches")
 
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
@@ -674,12 +676,14 @@ class StatsGramplet(Gramplet):
                   'Filter', 'unique media')
         self.append_text(" %s" % pobjects)
         self.append_text("\n")
-        self.append_text("%s: %d %s\n" % (_("Total size of media objects"),
-                                          bytes,
-                                          _("bytes")))
+
+        self.link("%s:" % _("Total size of media objects"),
+                  'Filter', 'media by size')
+        self.append_text(" %d %s" % (bytes, _("bytes")))
+        self.append_text("\n")
         self.link("%s:" % _("Missing Media Objects"),
                   'Filter', 'missing media')
-        self.append_text(" %s\n" % total_photos)
+        self.append_text(" %s\n" % len(notfound))
         self.append_text("", scroll_to="begin")
 
 class PythonGramplet(Gramplet):

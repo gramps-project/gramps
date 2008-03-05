@@ -24,12 +24,14 @@ Display filtered data
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from gettext import gettext as _
 from PluginUtils import register_quick_report
 from Utils import media_path_full
 from QuickReports import run_quick_report_by_name_direct
 from gen.lib import Person
 import DateHandler
+
+import posixpath
+from gettext import gettext as _
 
 def run(database, document, filter_name):
     """
@@ -182,10 +184,22 @@ def run(database, document, filter_name):
             photo = database.get_object_from_handle(photo_id)
             fullname = media_path_full(database, photo.get_path())
             try:
-                bytes = bytes + posixpath.getsize(fullname)
+                posixpath.getsize(fullname)
             except:
                 stab.row(fullname)
                 matches += 1
+    elif (filter_name == 'media by size'):
+        stab.columns(_("Media"), _("Size in bytes"))
+        pobjects = database.get_media_object_handles()
+        for photo_id in database.get_media_object_handles():
+            photo = database.get_object_from_handle(photo_id)
+            fullname = media_path_full(database, photo.get_path())
+            try:
+                bytes = posixpath.getsize(fullname)
+                stab.row(fullname, bytes)
+                matches += 1
+            except:
+                pass
     else:
         raise AttributeError, ("invalid filter name: '%s'" % filter_name)
     sdoc.paragraph(_("Filter matched %d records.") % matches)
