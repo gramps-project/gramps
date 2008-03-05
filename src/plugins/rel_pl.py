@@ -19,7 +19,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# Written by Piotr Czubaszek, largely based on rel_de.py by Alex Roitman.
+# Rewritten in 2008 for 3.x version by Łukasz Rymarczyk
+# Written in 2007 by Piotr Czubaszek, largely based on rel_de.py by Alex Roitman.
+
+# PL: Po objaśnienia oznaczania relacji zobacz Relationship.py
+# EN: For more information see Relationship.py
+#
+
+
 
 #-------------------------------------------------------------------------
 #
@@ -39,7 +46,17 @@ from PluginUtils import register_relcalc
 #
 #-------------------------------------------------------------------------
 
-_father_level = [ "", "ojciec", 
+
+# określa liczebnik porządkowy 
+
+_level_name = [ "pierwszego", "drugiego", "trzeciego", "czwartego", "piątego", 
+    "szóstego", "siódmego", "ósmego", "dziewiątego", "dziesiątego", 
+    "jedenastego", "dwunastego","trzynastego", "czternastego", "piętnastego", 
+    "szesnastego", "siedemnastego", "osiemnastego","dziewiętnastego", "dwudziestego", ]
+
+  
+_father_level = [ "", 
+  "ojciec", 
   "dziadek", 
   "pradziadek", 
   "prapradziadek", 
@@ -49,11 +66,11 @@ _father_level = [ "", "ojciec",
   "prapraprapraprapradziadek",
   "praprapraprapraprapradziadek",
   "prapraprapraprapraprapradziadek",
-  "praprapraprapraprapraprapradziadek",
-  "prapraprapraprapraprapraprapradziadek",
 ]
 
-_mother_level = [ "", "matka", 
+
+_mother_level = [ "", 
+  "matka", 
   "babcia", 
   "prababcia", 
   "praprababcia", 
@@ -63,11 +80,10 @@ _mother_level = [ "", "matka",
   "praprapraprapraprababcia",
   "prapraprapraprapraprababcia",
   "praprapraprapraprapraprababcia",
-  "prapraprapraprapraprapraprababcia",
-  "praprapraprapraprapraprapraprababcia",
 ]
 
-_son_level = [ "", "syn", 
+_son_level = [ "", 
+  "syn", 
   "wnuk",
   "prawnuk",
   "praprawnuk",
@@ -77,11 +93,10 @@ _son_level = [ "", "syn",
   "praprapraprapraprawnuk",
   "prapraprapraprapraprawnuk",
   "praprapraprapraprapraprawnuk",
-  "prapraprapraprapraprapraprawnuk",
-  "praprapraprapraprapraprapraprawnuk",
 ]
 
-_daughter_level = [ "", "córka", 
+_daughter_level = [ "", 
+  "córka", 
   "wnuczka", 
   "prawnuczka", 
   "praprawnuczka", 
@@ -91,11 +106,9 @@ _daughter_level = [ "", "córka",
   "praprapraprapraprawnuczka", 
   "prapraprapraprapraprawnuczka", 
   "praprapraprapraprapraprawnuczka", 
-  "prapraprapraprapraprapraprawnuczka", 
-  "praprapraprapraprapraprapraprawnuczka", 
 ]
 
-_sister_level_of_male = [ "", "siostra", "ciotka", 
+_sister_level_of_male = [ "", "siostra", "ciotka stryjeczna", 
   "babcia stryjeczna", 
   "prababcia stryjeczna", 
   "praprababcia stryjeczna", 
@@ -105,8 +118,6 @@ _sister_level_of_male = [ "", "siostra", "ciotka",
   "praprapraprapraprababcia stryjeczna", 
   "prapraprapraprapraprababcia stryjeczna", 
   "praprapraprapraprapraprababcia stryjeczna", 
-  "prapraprapraprapraprapraprababcia stryjeczna", 
-  "praprapraprapraprapraprapraprababcia stryjeczna", 
 ]
 
 _sister_level_of_female = [ "", "siostra", "ciotka", 
@@ -119,8 +130,6 @@ _sister_level_of_female = [ "", "siostra", "ciotka",
   "praprapraprapraprababcia cioteczna", 
   "prapraprapraprapraprababcia cioteczna", 
   "praprapraprapraprapraprababcia cioteczna", 
-  "prapraprapraprapraprapraprababcia cioteczna", 
-  "praprapraprapraprapraprapraprababcia cioteczna", 
 ]
 
 _brother_level_of_male = [ "", "brat", "stryj", 
@@ -133,8 +142,6 @@ _brother_level_of_male = [ "", "brat", "stryj",
   "prapraprapraprapradziadek stryjeczny", 
   "praprapraprapraprapradziadek stryjeczny", 
   "prapraprapraprapraprapradziadek stryjeczny", 
-  "praprapraprapraprapraprapradziadek stryjeczny", 
-  "prapraprapraprapraprapraprapradziadek stryjeczny", 
 ]
 
 _brother_level_of_female = [ "", "brat", "wuj", 
@@ -147,8 +154,6 @@ _brother_level_of_female = [ "", "brat", "wuj",
   "prapraprapraprapradziadek cioteczny", 
   "praprapraprapraprapradziadek cioteczny", 
   "prapraprapraprapraprapradziadek cioteczny", 
-  "praprapraprapraprapraprapradziadek cioteczny", 
-  "prapraprapraprapraprapraprapradziadek cioteczny", 
 ]
 
 _nephew_level_of_brothers_son = [ "", "bratanek", 
@@ -161,11 +166,9 @@ _nephew_level_of_brothers_son = [ "", "bratanek",
   "prapraprapraprawnuk bratanka", 
   "praprapraprapraprawnuk bratanka", 
   "prapraprapraprapraprawnuk bratanka", 
-  "praprapraprapraprapraprawnuk bratanka", 
-  "prapraprapraprapraprapraprawnuk bratanka", 
 ]
 
-_nephew_level_of_brothers_daughter = [ "", "bratanek", 
+_nephew_level_of_brothers_daughter = [ "", "bratanica", 
   "syn bratanicy", 
   "wnuk bratanicy", 
   "prawnuk bratanicy", 
@@ -176,8 +179,6 @@ _nephew_level_of_brothers_daughter = [ "", "bratanek",
   "praprapraprapraprawnuk bratanicy", 
   "prapraprapraprapraprawnuk bratanicy", 
   "praprapraprapraprapraprawnuk bratanicy", 
-  "prapraprapraprapraprapraprawnuk bratanicy", 
-  "praprapraprapraprapraprapraprawnuk bratanicy", 
 ]
 
 _nephew_level_of_sisters_son = [ "", "siostrzeniec", 
@@ -190,11 +191,9 @@ _nephew_level_of_sisters_son = [ "", "siostrzeniec",
   "prapraprapraprawnuk siostrzeńca", 
   "praprapraprapraprawnuk siostrzeńca", 
   "prapraprapraprapraprawnuk siostrzeńca", 
-  "praprapraprapraprapraprawnuk siostrzeńca", 
-  "prapraprapraprapraprapraprawnuk siostrzeńca", 
 ]
 
-_nephew_level_of_sisters_daughter = [ "", "siostrzeniec", 
+_nephew_level_of_sisters_daughter = [ "", "siostrzenica", 
   "syn siostrzenicy", 
   "wnuk siostrzenicy", 
   "prawnuk siostrzenicy", 
@@ -204,8 +203,6 @@ _nephew_level_of_sisters_daughter = [ "", "siostrzeniec",
   "prapraprapraprawnuk siostrzenicy", 
   "praprapraprapraprawnuk siostrzenicy", 
   "prapraprapraprapraprawnuk siostrzenicy", 
-  "praprapraprapraprapraprawnuk siostrzenicy", 
-  "prapraprapraprapraprapraprawnuk siostrzenicy", 
 ]
 
 _niece_level_of_brothers_son = [ "", "bratanica", 
@@ -217,8 +214,6 @@ _niece_level_of_brothers_son = [ "", "bratanica",
   "praprapraprawnuczka bratanka", 
   "prapraprapraprawnuczka bratanka", 
   "praprapraprapraprawnuczka bratanka", 
-  "prapraprapraprapraprawnuczka bratanka", 
-  "praprapraprapraprapraprawnuczka bratanka", 
 ]
 
 _niece_level_of_brothers_daughter = [ "", "bratanica", 
@@ -230,8 +225,6 @@ _niece_level_of_brothers_daughter = [ "", "bratanica",
   "praprapraprawnuczka bratanicy", 
   "prapraprapraprawnuczka bratanicy", 
   "praprapraprapraprawnuczka bratanicy", 
-  "prapraprapraprapraprawnuczka bratanicy", 
-  "praprapraprapraprapraprawnuczka bratanicy", 
 ]
 
 _niece_level_of_sisters_son = [ "", "siostrzenica", 
@@ -243,8 +236,6 @@ _niece_level_of_sisters_son = [ "", "siostrzenica",
   "praprapraprawnuczka siostrzeńca", 
   "prapraprapraprawnuczka siostrzeńca", 
   "praprapraprapraprawnuczka siostrzeńca", 
-  "prapraprapraprapraprawnuczka siostrzeńca", 
-  "praprapraprapraprapraprawnuczka siostrzeńca", 
 ]
 
 _niece_level_of_sisters_daughter = [ "", "siostrzenica", 
@@ -256,8 +247,6 @@ _niece_level_of_sisters_daughter = [ "", "siostrzenica",
   "praprapraprawnuczka siostrzenicy", 
   "prapraprapraprawnuczka siostrzenicy", 
   "praprapraprapraprawnuczka siostrzenicy", 
-  "prapraprapraprapraprawnuczka siostrzenicy", 
-  "praprapraprapraprapraprawnuczka siostrzenicy", 
 ]
 
 #-------------------------------------------------------------------------
@@ -267,475 +256,656 @@ _niece_level_of_sisters_daughter = [ "", "siostrzenica",
 #-------------------------------------------------------------------------
 
 class RelationshipCalculator(Relationship.RelationshipCalculator):
-
+   
+    
     def __init__(self):
-        Relationship.RelationshipCalculator.__init__(self)
-
-    # other_level+orig_level=stopień pokrewieństwa (degree of kinship)
-
-    def get_junior_male_cousin_father_uncle(self, other_level, orig_level):
-        if other_level == orig_level == 2:
-            return "brat stryjeczny"
-        else:
-            return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
-
-    def get_junior_male_cousin_mother_uncle(self, other_level, orig_level):
-        if other_level == orig_level == 2:
-            return "brat wujeczny"
-        else:
-            return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
-
-    def get_junior_male_cousin_aunt(self, other_level, orig_level):
-        if other_level == orig_level == 2:
-            return "brat cioteczny"
-        else:
-            return "daleki kuzyn (%d. stopień pokrewieństwa)" % (other_level+orig_level)
-
-    def get_senior_male_cousin_of_male(self,level, orig_level, other_level):
-        if level>len(_brother_level_of_male)-1:
-            return "daleki pra*dziadek stryjeczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return "daleki %s (%d. stopień pokrewieństwa)" % (_brother_level_of_male[level], other_level+orig_level)
-
-    def get_senior_male_cousin_of_female(self,level, orig_level, other_level):
-        if level>len(_brother_level_of_female)-1:
-            return "daleki pra*dziadek cioteczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return "daleki %s (%d. stopień pokrewieństwa)" % (_brother_level_of_female[level], other_level+orig_level)
-
-    def get_junior_female_cousin_father_uncle(self, other_level, orig_level):
-        if other_level == orig_level == 2:
-            return "siostra stryjeczna"
-        else:
-            return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
-
-    def get_junior_female_cousin_mother_uncle(self, other_level, orig_level):
-        if other_level == orig_level == 2:
-            return "siostra wujeczna"
-        else:
-            return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
-
-    def get_junior_female_cousin_aunt(self, other_level, orig_level):
-        if other_level == orig_level == 2:
-            return "siostra cioteczna"
-        else:
-            return "daleka kuzynka (%d. stopień pokrewieństwa)" % (other_level+orig_level)
-
-    def get_senior_female_cousin_of_male(self,level, orig_level, other_level):
-        if level>len(_sister_level_of_male)-1:
-            return "daleka pra*babcia stryjeczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return "daleka %s (%d. stopień pokrewieństwa)" % (_sister_level_of_male[level], other_level+orig_level)
-
-    def get_senior_female_cousin_of_female(self,level, orig_level, other_level):
-        if level>len(_sister_level_of_female)-1:
-            return "daleka pra*babcia cioteczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return "daleka %s (%d. stopień pokrewieństwa)" % (_sister_level_of_female[level], other_level+orig_level)
-
-    def get_father(self, other_level, orig_level):
-        level=other_level
-        if level>len(_father_level)-1:
-            return "oddalony pra*dziadek (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _father_level[level]
-
-    def get_son(self, other_level, orig_level):
-        level=orig_level
-        if level>len(_son_level)-1:
-            return "oddalony pra*wnuk (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _son_level[level]
-
-    def get_mother(self, other_level, orig_level):
-        level=other_level
-        if level>len(_mother_level)-1:
-            return "oddalona pra*babcia (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _mother_level[level]
-
-    def get_daughter(self, other_level, orig_level):
-        level=orig_level
-        if level>len(_daughter_level)-1:
-            return "oddalona pra*wnuczka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _daughter_level[level]
-
-    def get_aunt_of_male(self, other_level, orig_level):
-        level=other_level
-        if level>len(_sister_level_of_male)-1:
-            return "oddalona pra*babcia stryjeczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _sister_level_of_male[level]
-
-    def get_aunt_of_female(self, other_level, orig_level):
-        level=other_level
-        if level>len(_sister_level_of_female)-1:
-            return "oddalona pra*babcia cioteczna (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _sister_level_of_female[level]
-
-    def get_uncle_of_male(self, other_level, orig_level):
-        level=other_level
-        if level>len(_brother_level_of_male)-1:
-            return "oddalony pra*dziadek stryjeczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _brother_level_of_male[level]
-
-    def get_uncle_of_female(self, other_level, orig_level):
-        level=other_level
-        if level>len(_brother_level_of_female)-1:
-            return "oddalony pra*dziadek cioteczny (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _brother_level_of_female[level]
-
-    def get_nephew_of_brothers_son(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_nephew_level_of_brothers_son)-1:
-            return "oddalony pra*wnuk bratanka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _nephew_level_of_brothers_son[level]
-
-    def get_nephew_of_brothers_daughter(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_nephew_level_of_brothers_daughter)-1:
-            return "oddalony pra*wnuk bratanicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _nephew_level_of_brothers_daughter[level]
-
-    def get_nephew_of_sisters_son(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_nephew_level_of_sisters_son)-1:
-            return "oddalony pra*wnuk siostrzeńca (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _nephew_level_of_sisters_son[level]
-
-    def get_nephew_of_sisters_daughter(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_nephew_level_of_sisters_daughter)-1:
-            return "oddalony pra*wnuk siostrzenicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _nephew_level_of_sisters_daughter[level]
-
-    def get_niece_of_brothers_son(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_niece_level_of_brothers_son)-1:
-            return "oddalona pra*wnuczka bratanka (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _niece_level_of_brothers_son[level]
-
-    def get_niece_of_brothers_daughter(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_niece_level_of_brothers_daughter)-1:
-            return "oddalona pra*wnuczka bratanicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _niece_level_of_brothers_daughter[level]
-
-    def get_niece_of_sisters_son(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_niece_level_of_sisters_son)-1:
-            return "oddalona pra*wnuczka siostrzeńca (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _niece_level_of_sisters_son[level]
-
-    def get_niece_of_sisters_daughter(self, other_level, orig_level):
-        level=orig_level-1
-        if level>len(_niece_level_of_sisters_daughter)-1:
-            return "oddalona pra*wnuczka siostrzenicy (%d. stopień pokrewieństwa)" %(other_level+orig_level)
-        else:
-            return _niece_level_of_sisters_daughter[level]
-
-    def get_relationship_distance_pl(self,db, orig_person, other_person):
-        """
-        Return a tuple (firstRel,secondRel,common):
+        Relationship.RelationshipCalculator.__init__(self)    
         
-        firstRel    Number of generations from the orig_person to their
-                    closest common ancestor
-        secondRel   Number of generations from the other_person to their
-                    closest common ancestor
-        common      list of their common ancestors, the closest is the first
-        
-        is returned
-        """
-        
-        firstRel = -1
-        secondRel = -1
-        common = []
-
-        firstMap = {}
-        firstList = []
-        secondMap = {}
-        secondList = []
-        rank = 9999999
-
-        try:
-            self.__apply_filter_old(db, orig_person,'',firstList,firstMap)
-            self.__apply_filter_old(db, other_person,'',secondList,secondMap)
-        except RuntimeError:
-            return (firstRel,secondRel,_("Relationship loop detected"))
-
-        for person_handle in firstList:
-            if person_handle in secondList:
-                new_rank = len(firstMap[person_handle])
-                if new_rank < rank:
-                    rank = new_rank
-                    common = [ person_handle ]
-                elif new_rank == rank:
-                    common.append(person_handle)
-
-        if common:
-            person_handle = common[0]
-            secondRel = firstMap[person_handle]
-            firstRel = secondMap[person_handle]
-
-        return (firstRel,secondRel,common,firstList,secondList)
-
-    def __apply_filter_old(self, db, person, rel_str, plist, pmap, depth=1):
-        """ DEPRECATED -- DO NOT USE
-                copied here from Relationship.py as no longer needed elsewhere
-        """
-        if person == None or depth > 15:
-            return
-        depth += 1
-        plist.append(person.handle)
-        pmap[person.handle] = rel_str  # ?? this overwrites if person is double!
-
-        family_handle = person.get_main_parents_family_handle()
-        try:
-            if family_handle:
-                family = db.get_family_from_handle(family_handle)
-                fhandle = family.father_handle
-                if fhandle:
-                    father = db.get_person_from_handle(fhandle)
-                    self.__apply_filter_old(db, father, rel_str+'f', plist, pmap,
-                                        depth)
-                mhandle = family.mother_handle
-                if mhandle:
-                    mother = db.get_person_from_handle(mhandle)
-                    self.__apply_filter_old(db, mother, rel_str+'m', plist, pmap,
-                                        depth)
-        except:
-            return
-
-    def get_relationship(self,db, orig_person, other_person):
-        """
-        Return a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-        
-        Special cases: relation strings "", "undefined" and "spouse".
-        """
-
-        if orig_person == None:
-            return ("undefined",[])
     
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return (is_spouse,[])
-
-        (firstRel,secondRel,common,firstList,secondList) = \
-                self.get_relationship_distance_pl(db, orig_person, other_person)
+    #--------------------------------------------------
+    #
+    #
+    #
+    #--------------------------------------------------
+    def get_son(self, level, inlaw=''):
+        """
+        Podaje tekst zawierający informację, jak bardzo potomek męski 
+        (np. syn) jest spokrewniony do danej osoby
+        """
         
-        if type(common) == types.StringType or \
-           type(common) == types.UnicodeType:
-            return (common,[])
-        elif common:
-            person_handle = common[0]
+        # Określ, czy osoba jest przybraną, czy rodzoną
+        if inlaw == '':
+            t_inlaw =""
         else:
-            return ("",[])
-
-        firstRel = len(firstRel)
-        secondRelatives = secondRel
-        secondRel = len(secondRel)
-
-        if firstRel == 0:
-            if secondRel == 0:
-                return ('',common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_father(secondRel,firstRel),common)
-            else:
-                return (self.get_mother(secondRel,firstRel),common)
-        elif secondRel == 0:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_son(secondRel,firstRel),common)
-            else:
-                return (self.get_daughter(secondRel,firstRel),common)
-        elif firstRel == 1:
-            families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
-            families2 = None
-            if len(common) >1:
-                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
-            for ancFamily_handle in families1:
-                if families2:
-                    if ancFamily_handle in families2:
-                        ancFamily = db.get_family_from_handle(ancFamily_handle)
-                    else:
-                        continue
-                else:
-                    ancFamily = db.get_family_from_handle(ancFamily_handle)
-                children = ancFamily.get_child_ref_list()
-                for sibling in children:
-                    if sibling.ref in firstList:
-                        # discriminate between siblings/uncles etc. and stepsiblings/stepuncles etc.
-                        if other_person.get_main_parents_family_handle() == db.get_person_from_handle(sibling.ref).get_main_parents_family_handle():
-                            if other_person.get_gender() == gen.lib.Person.MALE:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
-                                    # brat / stryj / (pra)dziadek stryjeczny
-                                    return (self.get_uncle_of_male(secondRel,firstRel),common)
-                                else:
-                                    # brat / wuj / (pra)dziadek cioteczny
-                                    return (self.get_uncle_of_female(secondRel,firstRel),common)
-                            else:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
-                                    # siostra / ciotka / (pra)babcia stryjeczna
-                                    return (self.get_aunt_of_male(secondRel,firstRel),common)
-                                else:
-                                    # siostra / ciotka / (pra)babcia cioteczna
-                                    return (self.get_aunt_of_female(secondRel,firstRel),common)
-                        else:
-                            if other_person.get_gender() == gen.lib.Person.MALE:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
-                                    # brat / stryj / (pra)dziadek stryjeczny
-                                    return (self.get_uncle_of_male(secondRel,firstRel)+" (przyrodni)",common)
-                                else:
-                                    # brat / wuj / (pra)dziadek cioteczny
-                                    return (self.get_uncle_of_female(secondRel,firstRel)+" (przyrodni)",common)
-                            else:
-                                if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
-                                    # siostra / ciotka / (pra)babcia stryjeczna
-                                    return (self.get_aunt_of_male(secondRel,firstRel)+" (przyrodnia)",common)
-                                else:
-                                    # siostra / ciotka / (pra)babcia cioteczna
-                                    return (self.get_aunt_of_female(secondRel,firstRel)+" (przyrodnia)",common)
-        elif secondRel == 1:
-            families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
-            families2 = None
-            if len(common) >1:
-                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
-            for ancFamily_handle in families1:
-                if families2:
-                    if ancFamily_handle in families2:
-                        ancFamily = db.get_family_from_handle(ancFamily_handle)
-                    else:
-                        continue
-                else:
-                    ancFamily = db.get_family_from_handle(ancFamily_handle)
-                children = ancFamily.get_child_ref_list()
-                for sibling_handle in children:
-                    if sibling_handle.ref in secondList:
-                        sibling = db.get_person_from_handle(sibling_handle.ref)
-                        families = sibling.get_family_handle_list()
-                        for sibFamily in families:
-                            for child_handle in db.get_family_from_handle(sibFamily).get_child_ref_list():
-                                if child_handle.ref in secondList:
-                                    child = db.get_person_from_handle(child_handle.ref)
-                                    if other_person.get_gender() == gen.lib.Person.MALE:
-                                        if sibling.get_gender() == gen.lib.Person.MALE:
-                                            if child.get_gender() == gen.lib.Person.MALE:
-                                                # bratanek / syn bratanka
-                                                return (self.get_nephew_of_brothers_son(secondRel,firstRel),common)
-                                            else:
-                                                # bratanek / syn bratanicy
-                                                return (self.get_nephew_of_brothers_daughter(secondRel,firstRel),common)
-                                        else:
-                                            if child.get_gender() == gen.lib.Person.MALE:
-                                                # siostrzeniec / syn siostrzeńca
-                                                return (self.get_nephew_of_sisters_son(secondRel,firstRel),common)
-                                            else:
-                                                # siostrzniec / syn siostrzenicy
-                                                return (self.get_nephew_of_sisters_daughter(secondRel,firstRel),common)
-                                    else:
-                                        if sibling.get_gender() == gen.lib.Person.MALE:
-                                            if child.get_gender() == gen.lib.Person.MALE:
-                                                # bratanica / córka bratanka
-                                                return (self.get_niece_of_brothers_son(secondRel,firstRel),common)
-                                            else:
-                                                # bratanica / córka bratanicy
-                                                return (self.get_niece_of_brothers_daughter(secondRel,firstRel),common)
-                                        else:
-                                            if child.get_gender() == gen.lib.Person.MALE:
-                                                # siostrzenica / córka siostrzeńca
-                                                return (self.get_niece_of_sisters_son(secondRel,firstRel),common)
-                                            else:
-                                                # siostrzenica / córka siostrzenicy
-                                                return (self.get_niece_of_sisters_daughter(secondRel,firstRel),common)
-        elif secondRel > firstRel:
-            families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
-            families2 = None
-            if len(common) >1:
-                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
-            for ancFamily_handle in families1:
-                if families2:
-                    if ancFamily_handle in families2:
-                        ancFamily = db.get_family_from_handle(ancFamily_handle)
-                    else:
-                        continue
-                else:
-                    ancFamily = db.get_family_from_handle(ancFamily_handle)
-                children = ancFamily.get_child_ref_list()
-                for sibling in children:
-                    if sibling.ref in firstList:
-                        if other_person.get_gender() == gen.lib.Person.MALE:
-                            if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
-                                return (self.get_senior_male_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
-                            else:
-                                return (self.get_senior_male_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
-                        else:
-                            if db.get_person_from_handle(sibling.ref).get_gender() == gen.lib.Person.MALE:
-                                return (self.get_senior_female_cousin_of_male(secondRel-firstRel+1,firstRel,secondRel),common)
-                            else:
-                                return (self.get_senior_female_cousin_of_female(secondRel-firstRel+1,firstRel,secondRel),common)
+            t_inlaw ="przybrany "
+            
+        # TODO: dodać rozpoznawanie pasierb/pasierbica
+        if level >= 0 and level < len(_son_level):
+            return t_inlaw +_son_level[level]
+        
+        elif level >= len(_son_level) \
+				and (level - 1) < len(_level_name):            
+            return t_inlaw + \
+					"potomek męski %s pokolenia" % _level_name[level - 1]
+        
         else:
-            families1 = db.get_person_from_handle(common[0]).get_family_handle_list()
-            families2 = None
-            if len(common) >1:
-                families2 = db.get_person_from_handle(common[1]).get_family_handle_list()
-            for ancFamily_handle in families1:
-                if families2:
-                    if ancFamily_handle in families2:
-                        ancFamily = db.get_family_from_handle(ancFamily_handle)
-                    else:
-                        continue
-                else:
-                    ancFamily = db.get_family_from_handle(ancFamily_handle)
+            return t_inlaw + \
+					"potomek męski w %d pokoleniu" % level
+
+
+
+    def get_daughter(self, level, inlaw=''):
+        """
+        Podaje tekst zawierający informację, jak bardzo potomek żeński 
+        (np. córka) jest spokrewniony do danej osoby
+        """
+        
+        # Określ, czy osoba jest przybraną, czy rodzoną 
+        #   + stwórz obie formy (męską i żeńską)
+        if inlaw == '':
+            t_inlaw =""
+            t_inlawM =""
+        else:
+            t_inlaw ="przybrana "
+            t_inlawM ="przybrany "
+        
+        # TODO: dodać rozpoznawanie pasierb/pasierbica
+        if level >= 0 and level < len(_daughter_level):
+            return t_inlaw + _daughter_level[level]
+        
+        elif level >= len(_daughter_level) \
+				and (level - 1) < len(_level_name):            
+            return t_inlawM + \
+						"potomek żeński %s pokolenia" % _level_name[level - 1]
+        else:
+            return t_inlawM + \
+						"potomek żeński w %d pokoleniu" % level
+
+
+    def get_child_unknown(self, level, inlaw=''):
+        """
+        Podaje tekst zawierający informację, jak bardzo potomek 
+        o nieokreślonej płci jest spokrewniony dodanej osoby
+        """
+        
+        # Określ, czy osoba jest przybraną, czy rodzoną
+        if inlaw == '':
+            t_inlaw =""
+        else:
+            t_inlaw ="przybrany "
+                    
+        if level == 1:
+            if inlaw == '' :
+                return "dziecko"
+            else:
+                return "przybrane dziecko"
+            
+        elif level >= 1 and  (level - 1) < len(_level_name):            
+            return t_inlaw + "potomek %s pokolenia" %  _level_name[level - 1]
+        
+        else:
+            return t_inlaw + "potomek w %d pokoleniu" % level
+        
+      
+    def get_sword_distaff(self, level, reltocommon, spacebefore = ""):
+        """
+        PL: Generuje relację po mieczu/po kądzieli
+        EN: Generate relation 'by sword' or 'by distaff', polish specific
+        """
+        if level <=1:
+            return ""
+        
+        elif level == 2:
+            # dziadek/babcia
+            
+            if reltocommon[0] == self.REL_FATHER: 
+                # ze strony rodzonego ojca
+                return spacebefore + "po mieczu"
+            elif reltocommon[0] == self.REL_MOTHER: 
+                # ze strony rodzonej matki
+                return spacebefore + "po kądzieli"
+            else:
+                # relacja inna niż rodzona
+                return ""
+            
+        elif level == 3:
+            # pradziadek/prababcia
                 
-                children = ancFamily.get_child_ref_list()    		
-                for sibling_handle in children:
-                    if sibling_handle.ref in firstList:
-                        for other_sibling_handle in children:
-                            if other_sibling_handle.ref in secondList:
-                                sibling = db.get_person_from_handle(sibling_handle.ref)
-                                other_sibling = db.get_person_from_handle(other_sibling_handle.ref)
-                                if other_person.get_gender() == gen.lib.Person.MALE:
-                                    if other_sibling.get_gender() == gen.lib.Person.MALE:
-                                        if sibling.get_gender() == gen.lib.Person.MALE:
-                                            # brat stryjeczny
-                                            return (self.get_junior_male_cousin_father_uncle(secondRel,firstRel),common)
-                                        else:
-                                            # brat wujeczny
-                                            return (self.get_junior_male_cousin_mother_uncle(secondRel,firstRel),common)
-                                    else:
-                                        # brat cioteczny
-                                        return (self.get_junior_male_cousin_aunt(secondRel,firstRel),common)
-                                else:
-                                    if other_sibling.get_gender() == gen.lib.Person.MALE:
-                                        if sibling.get_gender() == gen.lib.Person.MALE:
-                                            # siostra stryjeczna
-                                            return (self.get_junior_female_cousin_father_uncle(secondRel,firstRel),common)
-                                        else:
-                                            # siostra wujeczna
-                                            return (self.get_junior_female_cousin_mother_uncle(secondRel,firstRel),common)
-                                    else:
-                                        # siostra cioteczna
-                                        return (self.get_junior_female_cousin_aunt(secondRel,firstRel),common)
+            if (reltocommon[0] == self.REL_FATHER) \
+                & (reltocommon[1] == self.REL_FATHER):
+                # pradziadek od dziadka ze strony ojca
+                return spacebefore + "podwójnego miecza"
+            
+            elif (reltocommon[0] == self.REL_FATHER) \
+                & (reltocommon[1] == self.REL_MOTHER):
+                # pradziadek od babci ze strony ojca
+                return spacebefore + "raz po mieczu, dalej po kądzieli"
+
+            elif (reltocommon[0] == self.REL_MOTHER) \
+                & (reltocommon[1] == self.REL_FATHER):
+                # pradziadek od dziadka ze strony matki
+                return spacebefore + "raz po kądzieli, dalej po mieczu"
+
+            elif (reltocommon[0] == self.REL_MOTHER) \
+                & (reltocommon[1] == self.REL_MOTHER):
+                # pradziadek od babci ze strony matki
+                return spacebefore + "podwójnej kądzieli"
+            
+            else:
+                # relacja inna niż rodzona
+                return ""
+                
+        elif level == 4:
+            # prapradziadek/praprababcia
+            
+            if (reltocommon[0] == self.REL_FATHER) \
+                & (reltocommon[1] == self.REL_FATHER) \
+                & (reltocommon[2] == self.REL_FATHER):
+                # tzw. linia męska
+                return spacebefore + "potrójnego miecza"
+            
+            if (reltocommon[0] == self.REL_FATHER) \
+                & (reltocommon[1] == self.REL_FATHER) \
+                & (reltocommon[2] == self.REL_FATHER):
+                # tzw. linia żeńska
+                return spacebefore + "potrójnego miecza"
+            
+            else:
+                return ""
+            
+        else:
+            return ""
+        
+        
     
+    def get_father(self, level, reltocommon, inlaw=''):
+        """
+        Podaje tekst zawierający informację, jak bardzo przodek męski 
+        (np. ojciec) jest spokrewniony do danej osoby
+        """
+        if inlaw == '':
+            t_inlaw =""
+        else:
+            t_inlaw ="przybrany "
+                    
+        if level >= 0 and level < len(_father_level):
+            # Jeśli znasz bezpośrednią nazwę relacji, to ją zastosuj
+            
+            if level == 1:
+                # ojciec
+                return t_inlaw + _father_level[level]
+            
+            elif (level >= 2) & (level <= 4):
+                # dziadek, pradziadek, prapradziadek
+                return t_inlaw + _father_level[level] \
+                    + self.get_sword_distaff(level, reltocommon, ' ')
+  
+            else:
+                return t_inlaw + _father_level[level]
+        
+        elif level >= len(_father_level) \
+				and (level - 1) < len(_level_name):            
+            # jeśli istnieje liczebnik dla danej liczby
+            return t_inlaw + \
+					"przodek męski %s pokolenia" % (_level_name[level - 1])
+        
+        else:
+            # dla pozostałych przypadków wypisz relację liczbowo
+            return t_inlaw + \
+					"przodek męski w %d pokoleniu" % level                
+                
+
+    def get_mother(self, level, reltocommon, inlaw=''):
+        """
+        Podaje tekst zawierający informację, jak bardzo przodek żeński
+        (np. matka) jest spokrewniony do danej osoby      
+        """
+        
+        if inlaw == '':
+            t_inlaw =""
+        else:
+            t_inlaw ="przybrana "
+                    
+        if level >= 0 and level < len(_mother_level):
+            # Jeśli znasz bezpośrednią nazwę relacji, to ją zastosuj
+            
+            if level == 1:
+                # matka
+                return t_inlaw + _mother_level[level]
+            
+            elif (level >= 2) & (level <= 4):
+                # babcia, prababcia, praprababcia
+                return t_inlaw + _mother_level[level] \
+                    + self.get_sword_distaff(level, reltocommon, ' ')
+  
+            else:
+                return t_inlaw + _mother_level[level]
+        
+        elif level >= len(_mother_level) \
+				and (level - 1) < len(_level_name):            
+            # jeśli istnieje liczebnik dla danej liczby
+            return t_inlaw + \
+					"przodek żeński %s pokolenia" % (_level_name[level - 1])
+        
+        else:
+            # dla pozostałych przypadków wypisz relację liczbowo
+            return t_inlaw +"przodek żeński w %d pokoleniu" % level
+                
+
+
+    def get_parent_unknown(self, level, inlaw=''):
+        """
+        Podaje tekst zawierający informację, jak bardzo przodek 
+        o nieokreślonej płci jest spokrewniony dodanej osoby        
+        """
+        
+        if inlaw == '':
+            t_inlaw =""
+        else:
+            t_inlaw ="przybrany "
+                    
+        if level == 1:
+            return t_inlaw + "rodzic"
+        
+        elif level > 1 and (level - 1) < len(_level_name):
+            if (level >= 2) & (level <= 4):
+                # babcia, prababcia, praprababcia 
+                # (albo dziadek, pradziadek, prapradziadek)
+                tmp = t_inlaw +\
+                    "przodek %s pokolenia" % (_level_name[level - 1])
+                # TODO: try to recognize a gender...
+                return tmp                         
+                # +  self.get_sword_distaff(level, reltocommon, ' ') 
+            else:
+               return t_inlaw + \
+                   "przodek %s pokolenia" % (_level_name[level - 1])
+        else:
+            return t_inlaw +"przodek w %d pokoleniu" % level
+        
+
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True, 
+                                       in_law_a=False, in_law_b=False):
+        """
+        Provide a string that describes the relationsip between a person, and
+        another person. E.g. "grandparent" or "child".
+        """            
+        
+        if only_birth:
+            step = ''
+        else:
+            step = self.STEP
+            
+        if in_law_a or in_law_b :
+            inlaw = self.INLAW
+        else:
+            inlaw = ''
+            
+            
+        # b is the same person as a
+        if Ga == 0 and Gb == 0:
+            rel_str = 'ta sama osoba'
+
+        elif Ga == 0:
+            # b is son/descendant of a
+            
+            if gender_b == gen.lib.Person.MALE:
+                if inlaw and Gb == 1 and not step:
+                    rel_str = "zięć"
+                else:
+                    rel_str = self.get_son(Gb, inlaw)
+                    
+            elif gender_b == gen.lib.Person.FEMALE:
+                if inlaw and Gb == 1 and not step:
+                    rel_str = "synowa"
+                else:
+                    rel_str = self.get_daughter(Gb, inlaw)
+                    
+            else:
+                rel_str = self.get_child_unknown(Gb, inlaw)
+                
+                 
+        elif Gb == 0:
+            # b is parent/grand parent of a
+            
+            if gender_b == gen.lib.Person.MALE:
+                if inlaw and Gb == 1 and not step:
+                    # TODO: znaleźć odpowiedniki w zależności czy to syn/córka
+                    rel_str = "teść"
+                else:
+                    rel_str = self.get_father(Ga, reltocommon_a, inlaw)
+                    
+            elif gender_b == gen.lib.Person.FEMALE:
+                if inlaw and Gb == 1 and not step:
+                    # TODO: znaleźć odpowiedniki w zależności czy to syn/córka
+                    rel_str = "teściowa"
+                else:
+                    rel_str = self.get_mother(Ga, reltocommon_a, inlaw)
+                    
+            else:
+                rel_str = self.get_parent_unknown(Ga, inlaw)
+
+
+        elif Ga == 1 and Gb == 1:
+            # rodzeństwo
+            if gender_b == gen.lib.Person.MALE:                
+                if inlaw and not step:
+                    rel_str = "brat przyrodni"
+                else:
+                    rel_str = "brat rodzony"
+
+            elif gender_b == gen.lib.Person.FEMALE:                
+                if inlaw and not step:
+                    rel_str = "siostra przyrodnia"
+                else:
+                    rel_str = "siostra rodzony"
+            else:
+                rel_str = "brat/siostra"
+
+        elif Gb == 1 and Ga > 1:           
+            
+            # Przyjmij, że nie rozróżniamy osób prawnie i nieprawnie przybranych...
+            
+            if Ga == 2:
+                # rodzeństwo rodziców
+                
+                # brat ojca, czyli stryj
+                if (gender_b == gen.lib.Person.MALE) \
+                    & (reltocommon_a[0] == self.REL_FATHER):
+                    rel_str = "stryj"
+
+                # siostra ojca, czyli ciotka ??? 
+                elif (gender_b == gen.lib.Person.FEMALE) \
+                    & (reltocommon_a[0] == self.REL_FATHER):
+                    rel_str = "ciotka (tzw. stryjna)"
+                   
+                # brat matki, czyli wuj/wujek 
+                elif (gender_b == gen.lib.Person.MALE) \
+                    & (reltocommon_a[0] == self.REL_MOTHER):
+                    rel_str = "wuj (wujek)"
+
+                # siostra matki, czyli ciotka
+                elif (gender_b == gen.lib.Person.FEMALE) \
+                    & (reltocommon_a[0] == self.REL_MOTHER):
+                    rel_str = "ciotka"
+                    
+                else:
+                    rel_str = "brat lub siostra rodzica"
+                
+            elif Ga == 3:
+                # rodzeństwo dziadków rodziców osoby sprawdzanej
+                
+                # rodzeństwo dziadka po mieczu (ojca ojca)
+                if (reltocommon_a[0] == self.REL_FATHER) \
+                    & (reltocommon_a[1] == self.REL_FATHER):
+
+                    if  (gender_b == gen.lib.Person.MALE):
+                        rel_str = "dziadek stryjeczny (tzw przestryj, stary stryj)"
+                    elif (gender_b == gen.lib.Person.FEMALE):
+                        rel_str = "babcia stryjeczna"
+                    else:
+                        rel_str = "rodzeństwo przodka w 2 pokoleniu"
+                
+                # rodzeństwo babki po mieczu (matki ojca)
+                elif (reltocommon_a[0] == self.REL_FATHER) \
+                    & (reltocommon_a[1] == self.REL_MOTHER):
+
+                    # TODO: Należy sprawdzić, czy w staropolszczyźnie nie ma 
+                    #            dokładniejszych określeń dla tego typu relacji
+                    # TODO: EN: Try to check, whether in old polish language 
+                    #      are more specific word for this kind of relation
+                    if  (gender_b == gen.lib.Person.MALE):
+                        rel_str = "dziadek stryjeczny (tzw przestryj, stary stryj)"
+                    elif (gender_b == gen.lib.Person.FEMALE):
+                        rel_str = "babcia stryjeczna"
+                    else:
+                        rel_str = "rodzeństwo przodka w 2 pokoleniu"
+
+                # rodzeństwo dziadka po kądzieli (ojca matki)
+                elif (reltocommon_a[0] == self.REL_MOTHER) \
+                    & (reltocommon_a[1] == self.REL_FATHER):
+
+                    # TODO: Należy sprawdzić, czy w staropolszczyźnie nie ma 
+                    #            dokładniejszych określeń dla tego typu relacji
+                    # TODO: EN: Try to check, whether in old polish language 
+                    #      are more specific word for this kind of relation
+                    if  (gender_b == gen.lib.Person.MALE):
+                        rel_str = "dziadek cioteczny (starop. prapociot)"
+                    elif (gender_b == gen.lib.Person.FEMALE):
+                        rel_str = "babcia cioteczna (starop. praciota)"
+                    else:
+                        rel_str = "rodzeństwo przodka w 2 pokoleniu"
+                
+                    
+                # rodzeństwo babki po kądzieli (matki matki)
+                elif (reltocommon_a[0] == self.REL_MOTHER) \
+                    & (reltocommon_a[1] == self.REL_MOTHER):
+
+                    # TODO: Należy sprawdzić, czy w staropolszczyźnie nie ma 
+                    #           dokładniejszych określeń dla tego typu relacji
+                    # TODO: EN: Try to check, whether in old polish language 
+                    #      are more specific word for this kind of relation
+                    if  (gender_b == gen.lib.Person.MALE):
+                        rel_str = "dziadek cioteczny (starop. prapociot)"
+                    elif (gender_b == gen.lib.Person.FEMALE):
+                        rel_str = "babcia cioteczna  (starop. praciota)"
+                    else:
+                        rel_str = "rodzeństwo przodka w 2 pokoleniu"
+                                
+                else:
+                    if  (gender_b == gen.lib.Person.MALE):
+                        rel_str = "rodzeństwo dziadka"
+                    elif (gender_b == gen.lib.Person.FEMALE):
+                        rel_str = "rodzeństwo babci"
+                    else:
+                        rel_str = "rodzeństwo przodka w 2 pokoleniu"
+                    
+            elif Ga > 3:
+                # pradziadkowie...  (grandparents)
+                
+                if (gender_b == gen.lib.Person.MALE) \
+                    & (reltocommon_a[0] == self.REL_FATHER):
+                
+                    if Ga >= 0 and Ga < len(_brother_level_of_male):
+                        rel_str = _brother_level_of_male[Ga]
+                    else:
+                        rel_str = "rodzeństwo przodka męskiego %d pokolenia" % Ga
+
+                elif (gender_b == gen.lib.Person.FEMALE) \
+                    & (reltocommon_a[0] == self.REL_FATHER):
+                    if Ga >= 0 and Ga < len(_sister_level_of_male):
+                        rel_str = _sister_level_of_male[Ga]
+                    else:
+                        rel_str = "rodzeństwo przodka żeńskiego %d pokolenia" % Ga
+                    
+                elif (gender_b == gen.lib.Person.MALE) \
+                    & (reltocommon_a[0] == self.REL_MOTHER):
+                
+                    if Ga >= 0 and Ga < len(_brother_level_of_female):
+                        rel_str = _brother_level_of_male[Ga]
+                    else:
+                        rel_str = "rodzeństwo przodka męskiego %d pokolenia" % Ga
+
+                elif (gender_b == gen.lib.Person.FEMALE) \
+                    & (reltocommon_a[0] == self.REL_MOTHER):
+                    if Ga >= 0 and Ga < len(_sister_level_of_female):
+                        rel_str = _sister_level_of_male[Ga]
+                    else:
+                        rel_str = "rodzeństwo przodka żeńskiego %d pokolenia" % Ga
+            
+                else:
+                    rel_str = "rodzeństwo przodka %d pokolenia" % Ga
+            else:
+                # A program should never goes there, but...
+                rel_str = "Relacja nie określona"                
+
+        elif Ga  ==1 and Gb > 1:
+            
+            # syn brata
+            if (gender_b == gen.lib.Person.MALE) \
+                & (reltocommon_b[0] == self.REL_FATHER):
+                    if Gb < len(_nephew_level_of_brothers_son):
+                        rel_str = _nephew_level_of_brothers_son[Gb]
+                    else:
+                        rel_str = "męski potomek w %d pokoleniu brata" % Gb
+                        
+            # córka brata
+            elif (gender_b == gen.lib.Person.FEMALE) \
+                & (reltocommon_b[0] == self.REL_FATHER):
+                    if Gb < len(_nephew_level_of_brothers_daughter):
+                        rel_str = _nephew_level_of_brothers_daughter[Gb]
+                    else:
+                        rel_str = "żeński potomek w %d pokoleniu brata" % Gb
+                        
+            # syn siostry
+            if (gender_b == gen.lib.Person.MALE) \
+                & (reltocommon_b[0] == self.REL_MOTHER):
+                    if Gb < len(_nephew_level_of_sisters_son):
+                        rel_str = _nephew_level_of_sisters_son[Gb]
+                    else:
+                        rel_str = "męski potomek w %d pokoleniu brata" % Gb
+                        
+            # córka siostry
+            elif (gender_b == gen.lib.Person.FEMALE) \
+                & (reltocommon_b[0] == self.REL_MOTHER):
+                    if Gb < len(_nephew_level_of_sisters_daughter):
+                        rel_str = _nephew_level_of_sisters_daughter[Gb]
+                    else:
+                        rel_str = "żeński potomek w %d pokoleniu brata" % Gb
+
+            # potomek brata
+            elif (reltocommon_b[0] == self.REL_FATHER):
+                rel_str = "potomek w %d pokoleniu brata" % Gb
+                
+            # potomek brata
+            elif (reltocommon_b[0] == self.REL_MOTHER):
+                rel_str = "potomek w %d pokoleniu brata" % Gb
+                
+            else :
+                rel_str = "potomek w %d pokoleniu rodzeństwa" % Gb
+                
+        elif Ga > 1 and Gb > 1:
+            if (gender_b == gen.lib.Person.MALE):
+                if Ga==2 and Gb==2:
+                    rel_str = "kuzyn"
+                else:
+                    rel_str = "daleki kuzyn (%d. stopień pokrewieństwa)" % (Ga+Gb) 
+                
+            elif (gender_b == gen.lib.Person.FEMALE):
+                if Ga==2 and Gb==2:
+                    rel_str = "kuzynka"
+                else:                
+                    rel_str = "daleka kuzynka (%d. stopień pokrewieństwa)" % (Ga+Gb)   
+                         
+            else:
+                if Ga==2 and Gb==2:
+                    rel_str = "kuzyn(ka)"
+                else:                   
+                    rel_str = "daleki członek rodziny (%d. stopień pokrewieństwa)" % (Ga+Gb)            
+
+        else:            
+            # A program should never goes there, but...
+            rel_str ="nieokreślony stopień pokrewieństwa"
+        
+        return rel_str
+    
+    
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+                                        
+        if in_law_a or in_law_b :
+            inlaw = self.INLAW
+        else:
+            inlaw = ''
+            
+        if sib_type == self.NORM_SIB:
+            if not inlaw:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'brat (rodzony)'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'siostra (rodzona)'
+                else:
+                    rel_str = 'brat lub siostra (rodzeni)'
+            else:
+                if gender_b == gen.lib.Person.MALE:
+                    # TODO: znaleźć odpowiednik
+                    rel_str = "brat (pasierb)"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    # TODO: znaleźć odpowiednik
+                    rel_str = "siostra (pasierbica)"
+                else:
+                    # TODO: znaleźć odpowiednik
+                    rel_str = "brat lub siostra (pasierb/pasierbica)"
+        elif sib_type == self.UNKNOWN_SIB:
+            if not inlaw:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = 'brat'
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = 'siostra'
+                else:
+                    rel_str = 'brat lub siostra'
+            else:
+                if gender_b == gen.lib.Person.MALE:
+                    # TODO: znaleźć odpowiednik
+                    rel_str = "brat (brat/szwagier)"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    # TODO: znaleźć odpowiednik
+                    rel_str = "siostra (bratowa/szwagierka)"
+                else:
+                    # TODO: znaleźć odpowiednik
+                    rel_str = "brat lub siostra (szwagier/szagierka)"
+        elif sib_type == self.HALF_SIB_FATHER:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "brat przyrodni"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "siostra przyrodnia"
+                else:
+                    rel_str = "brat/siostra przyrodni"
+        elif sib_type == self.HALF_SIB_MOTHER:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "brat przyrodni"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "siostra przyrodnia"
+                else:
+                    rel_str = "brat/siostra przyrodni"
+        elif sib_type == self.STEP_SIB:
+                if gender_b == gen.lib.Person.MALE:
+                    rel_str = "brat przyrodni"
+                elif gender_b == gen.lib.Person.FEMALE:
+                    rel_str = "siostra przyrodnia"
+                else:
+                    rel_str = "brat lub siostra przyrodnia"
+        else:
+            rel_str = "nieokreślona relacja rodzeństwa"
+        return rel_str            
+
+
 #-------------------------------------------------------------------------
 #
 # Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
 register_relcalc(RelationshipCalculator,
-    ["pl","PL","pl_PL","polski","Polski","pl_PL.UTF-8", "pl_PL.UTF8", "pl_PL.utf-8", "pl_PL.utf8", "pl_PL.iso-8859-2", "pl_PL.iso8859-2", "pl_PL.cp1250", "pl_PL.cp-1250"])
+    ["pl", "PL", "pl_PL", "polski", "Polski", 
+        "pl_PL.UTF-8", "pl_PL.UTF8", "pl_PL.utf-8", "pl_PL.utf8", 
+        "pl_PL.iso-8859-2", "pl_PL.iso8859-2", 
+        "pl_PL.cp1250", "pl_PL.cp-1250"] )
+        
+        
+if __name__ == "__main__":
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src 
+    #    python src/plugins/rel_pl.py 
     
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel_xx.py
+    """
+    from Relationship import test
+    rc = RelationshipCalculator()
+    test(rc, True)
+
+# Local variables:
+# buffer-file-coding-system: utf-8

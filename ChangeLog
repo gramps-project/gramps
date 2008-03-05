@@ -1,3 +1,7 @@
+2008-03-05  Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
+    * src/plugins/rel_pl.py: 0001776: Relationship calculator, update Polish
+    Rewritten for 3.x version
+
 2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Simple/_SimpleTable.py: 
 	added callback for click/doubleclick manual override for rows
