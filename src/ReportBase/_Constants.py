@@ -65,6 +65,7 @@ book_categories = {
 }
 
 # Quick Report categories
+CATEGORY_QR_MISC       = -1
 CATEGORY_QR_PERSON     = 0
 CATEGORY_QR_FAMILY     = 1
 CATEGORY_QR_EVENT      = 2
