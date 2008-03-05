@@ -428,6 +428,14 @@ class Gramplet(object):
                                                      'samesurnames', 
                                                      handle)
                     return True
+                elif link_type == 'Filter':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.gui.dbstate, 
+                                                     self.gui.uistate, 
+                                                     'filterbyname', 
+                                                     handle)
+                    return True
         return False # did not handle event
 
     def set_options(self, option_dict):
@@ -902,7 +910,8 @@ class GrampletView(PageView.PageView):
         """
         button = context.get_source_widget()
         hbox = button.get_parent()
-        mainframe = hbox.get_parent()
+        mframe = hbox.get_parent()
+        mainframe = mframe.get_parent() # actually a vbox
         rect = source.get_allocation()
         sx, sy = rect.width, rect.height
         # first, find column:

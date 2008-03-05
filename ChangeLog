@@ -1,4 +1,19 @@
 2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/Simple/_SimpleTable.py: 
+	added callback for click/doubleclick manual override for rows
+	added numeric sorting
+	* src/QuickReports.py: added run_quick_report_by_name_direct
+	that allows one quick report to run another
+	* src/plugins/DefaultGramplets.py: made stats gramplet show 
+	details when drilling down with double-click
+	* src/plugins/SameSurnames.py: allow running by string rather than 
+	person object
+	* src/DataViews/GrampletView.py: added Filter type of link; fixed
+	bug in drag and drop from earlier option infrastructure
+	* src/plugins/FilterByName.py: quick report that runs a filter by
+	name
+
+2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/docgen/HtmlDoc.py (HtmlDoc.page_break): 
 	Fixed indentation issue
 

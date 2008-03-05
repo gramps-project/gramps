@@ -55,7 +55,7 @@ import gtk
 
 #from PluginUtils import Plugins
 from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
-                        CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE,
+                        CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
                         CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
 
 
@@ -122,6 +122,31 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle):
             break
     if report:
         run_report(dbstate, uistate, report[2], handle, report[0])
+    else:
+        raise AttributeError, ("No such quick report '%s'" % report_name)
+
+def run_quick_report_by_name_direct(report_name, database, document, handle):
+    """
+    Useful for running one quick report from another
+    """
+    from PluginUtils import quick_report_list
+    from docgen import TextBufDoc
+    from Simple import make_basic_stylesheet
+    report = None
+    for item in quick_report_list:
+        if item[3] == report_name:
+            report = item
+            break
+    if report:
+        # FIXME: allow auto lookup of obj like below?
+        d = TextBufDoc(make_basic_stylesheet(), None, None)
+        d.dbstate = document.dbstate
+        d.uistate = document.uistate
+        d.open("")
+        report[0](database, d, handle)
+        d.close()
+    else:
+        raise AttributeError, ("No such quick report '%s'" % report_name)
                             
 def run_report(dbstate, uistate, category, handle,func):
         from docgen import TextBufDoc
@@ -144,6 +169,8 @@ def run_report(dbstate, uistate, category, handle,func):
                     obj = dbstate.db.get_place_from_handle(handle)
                 elif category == CATEGORY_QR_REPOSITORY :
                     obj = dbstate.db.get_repository_from_handle(handle)
+                elif category == CATEGORY_QR_MISC:
+                    obj = handle
                 else: 
                     obj = None
             else: # allow caller to send object directly

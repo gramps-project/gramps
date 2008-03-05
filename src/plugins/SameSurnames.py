@@ -63,15 +63,19 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb, sdoc)
+    if type(person) == str:
+        surname = person
+        rsurname = person
+    else:
+        surname = sdb.surname(person)
+        rsurname = person.get_primary_name().get_surname()
     # display the title
-    sdoc.title(_("People with the surname '%s'") % sdb.surname(person))
+    sdoc.title(_("People with the surname '%s'") % surname)
     sdoc.paragraph("")
     stab.columns(_("Person"), _("Birth Date"), _("Name type"))
-    # grab our current id (self):
-    gid = sdb.gid(person)
     filter = GenericFilterFactory('Person')()
-    if person.get_primary_name().get_surname() != '':
-        rule = SameSurname([person.get_primary_name().get_surname()])
+    if rsurname != '':
+        rule = SameSurname([rsurname])
     else:
         rule = IncompleteSurname([])
     filter.add_rule(rule)

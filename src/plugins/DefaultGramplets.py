@@ -595,9 +595,12 @@ class StatsGramplet(Gramplet):
                 total_photos = total_photos + length
 
             person = database.get_person_from_handle(person_handle)
-            name = person.get_primary_name()
-            if name.get_first_name() == "" or name.get_surname() == "":
-                incomp_names = incomp_names + 1
+            names = [person.get_primary_name()] + person.get_alternate_names()
+            for name in names:
+                if name.get_first_name() == "" or name.get_surname() == "":
+                    incomp_names = incomp_names + 1
+                if name.get_surname() not in namelist:
+                    namelist.append(name.get_surname())
             if ((not person.get_main_parents_family_handle()) and 
                 (not len(person.get_family_handle_list()))):
                 disconnected = disconnected + 1
@@ -614,39 +617,70 @@ class StatsGramplet(Gramplet):
                 males = males + 1
             else:
                 unknowns += 1
-            if name.get_surname() not in namelist:
-                namelist.append(name.get_surname())
             if cnt % 200 == 0:
                 yield True
             cnt += 1
 
-        text = _("Individuals") + "\n"
-        text = text + "----------------------------\n"
-        text = text + "%s: %d\n" % (_("Number of individuals"),len(personList))
-        text = text + "%s: %d\n" % (_("Males"),males)
-        text = text + "%s: %d\n" % (_("Females"),females)
-        text = text + "%s: %d\n" % (_("Individuals with unknown gender"),unknowns)
-        text = text + "%s: %d\n" % (_("Individuals with incomplete names"),incomp_names)
-        text = text + "%s: %d\n" % (_("Individuals missing birth dates"),missing_bday)
-        text = text + "%s: %d\n" % (_("Disconnected individuals"),disconnected)
-        text = text + "\n%s\n" % _("Family Information")
-        text = text + "----------------------------\n"
-        text = text + "%s: %d\n" % (_("Number of families"),len(familyList))
-        text = text + "%s: %d\n" % (_("Unique surnames"),len(namelist))
-        text = text + "\n%s\n" % _("Media Objects")
-        text = text + "----------------------------\n"
-        text = text + "%s: %d\n" % (_("Individuals with media objects"),with_photos)
-        text = text + "%s: %d\n" % (_("Total number of media object references"),total_photos)
-        text = text + "%s: %d\n" % (_("Number of unique media objects"),pobjects)
-        text = text + "%s: %d %s\n" % (_("Total size of media objects"),bytes,\
-                                        _("bytes"))
-
-        if len(notfound) > 0:
-            text = text + "\n%s\n" % _("Missing Media Objects")
-            text = text + "----------------------------\n"
-            for p in notfound:
-                text = text + "%s\n" % p
-        self.set_text(text)
+        self.clear_text()
+        self.append_text(_("Individuals") + "\n")
+        self.append_text("----------------------------\n")
+        self.link(_("Number of individuals") + ":",
+                  'Filter', 'all people')
+        self.append_text(" %s" % len(personList))
+        self.append_text("\n")
+        self.link("%s:" % _("Males"), 'Filter', 'males')
+        self.append_text(" %s" % males)
+        self.append_text("\n")
+        self.link("%s:" % _("Females"), 'Filter', 'females')
+        self.append_text(" %s" % females)
+        self.append_text("\n")
+        self.link("%s:" % _("Individuals with unknown gender"),
+                  'Filter', 'people with unknown gender')
+        self.append_text(" %s" % unknowns)
+        self.append_text("\n")
+        self.link("%s:" % _("Individuals with incomplete names"),
+                  'Filter', 'people with incomplete names')
+        self.append_text(" %s" % incomp_names)
+        self.append_text("\n")
+        self.link("%s:" % _("Individuals missing birth dates"),
+                  'Filter', 'people with missing birth dates')
+        self.append_text(" %s" % missing_bday)
+        self.append_text("\n")
+        self.link("%s:" % _("Disconnected individuals"),
+                  'Filter', 'disconnected people')
+        self.append_text(" %s" % disconnected)
+        self.append_text("\n")
+        self.append_text("\n%s\n" % _("Family Information"))
+        self.append_text("----------------------------\n")
+        self.link("%s:" % _("Number of families"),
+                  'Filter', 'all families')
+        self.append_text(" %s" % len(familyList))
+        self.append_text("\n")
+        self.link("%s:" % _("Unique surnames"), 
+                  'Filter', 'unique surnames')
+        self.append_text(" %s" % len(namelist))
+        self.append_text("\n")
+        self.append_text("\n%s\n" % _("Media Objects"))
+        self.append_text("----------------------------\n")
+        self.link("%s:" % _("Individuals with media objects"),
+                  'Filter', 'people with media')
+        self.append_text(" %s" % with_photos)
+        self.append_text("\n")
+        self.link("%s:" % _("Total number of media object references"),
+                  'Filter', 'media references')
+        self.append_text(" %s" % total_photos)
+        self.append_text("\n")
+        self.link("%s:" % _("Number of unique media objects"),
+                  'Filter', 'unique media')
+        self.append_text(" %s" % pobjects)
+        self.append_text("\n")
+        self.append_text("%s: %d %s\n" % (_("Total size of media objects"),
+                                          bytes,
+                                          _("bytes")))
+        self.link("%s:" % _("Missing Media Objects"),
+                  'Filter', 'missing media')
+        self.append_text(" %s\n" % total_photos)
+        self.append_text("", scroll_to="begin")
 
 class PythonGramplet(Gramplet):
     def init(self):

@@ -47,6 +47,8 @@ class SimpleTable:
         self.__sort_col = None
         self.__sort_reverse = False
         self.__link_col = None
+        self.__callback_leftclick = None
+        self.__callback_leftdouble = None
 
     def get_row_count(self):
         return len(self.__rows)
@@ -57,6 +59,15 @@ class SimpleTable:
         """
         self.__columns = list(copy.copy(columns))
         self.__sort_vals = [[] for i in range(len(self.__columns))]
+
+    def set_callback(self, which, callback):
+        """
+        Override (or add) a function for click/double-click
+        """
+        if which == "leftclick":
+            self.__callback_leftclick = callback
+        elif which == "leftdouble":
+            self.__callback_leftdouble = callback
 
     def on_table_doubleclick(self, obj, path, view_column):
         """
@@ -69,7 +80,9 @@ class SimpleTable:
         if not node:
             return
         index = store.get_value(node, 0) # index
-        if self.__link[index]:
+        if self.__callback_leftdouble:
+            self.__callback_leftdouble(store.get_value(node, 1))
+        elif self.__link[index]:
             objclass, handle = self.__link[index]
             if objclass == 'Person':
                 person = self.access.dbase.get_person_from_handle(handle)
@@ -161,6 +174,9 @@ class SimpleTable:
             # FIXME: add better text representations of these objects
             if type(item) in [str, unicode]:
                 retval.append(item)
+            elif type(item) in [int, float]:
+                retval.append(item)
+                self.row_sort_val(col, item)
             elif isinstance(item, gen.lib.Person):
                 name = self.access.name(item)
                 retval.append(name)
