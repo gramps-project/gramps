@@ -1,13 +1,17 @@
+2008-03-05 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/ReportBase/_CommandLineReport.py: print warning if show=option is 
+	not a valid option. Addresses some of 0001891.
+
 2008-03-05 Jerome Rapinat <romjerome@yahoo.fr>
-        * src/plugins/DateParserDisplayTest.py: allow to translate QuestionDialog 
+	* src/plugins/DateParserDisplayTest.py: allow to translate QuestionDialog 
 
 2008-03-05  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/docgen/TextBufDoc.py: fixed translations of Quick View
 	* src/plugins/References.py: fixed translations of ref types
 
 2008-03-05  Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
-    * src/plugins/rel_pl.py: 0001776: Relationship calculator, update Polish
-    Rewritten for 3.x version
+	* src/plugins/rel_pl.py: 0001776: Relationship calculator, update Polish
+	Rewritten for 3.x version
 
 2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/Simple/_SimpleTable.py: 
@@ -29,16 +33,16 @@
 	Fixed indentation issue
 
 2008-03-04 Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/Bookmarks.py: 0001770: Bookmark Editor window and deleting entries 
-    Set focus on bookmark right above the deleted bookmark
-    * src/gramps.py: comment typo
-    * src/ListModel.py: fix, changed func((param)) to func(param)
+	* src/Bookmarks.py: 0001770: Bookmark Editor window and deleting entries 
+	Set focus on bookmark right above the deleted bookmark
+	* src/gramps.py: comment typo
+	* src/ListModel.py: fix, changed func((param)) to func(param)
 
 2008-03-04 Peter Landgren <peter.talken2telia.com>
-    * src/docgen/HtmlDoc.py: Issues 1875 and 1879#
+	* src/docgen/HtmlDoc.py: Issues 1875 and 1879#
 
 2008-03-04 Raphael Ackermann <raphael.ackermann@gmail.com>
-    * src/plugins/WritePkg.py: added import Utils to prevent crash on export
+	* src/plugins/WritePkg.py: added import Utils to prevent crash on export
 
 2008-03-04  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py: added infrastructure for 

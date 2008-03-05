@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
 # Copyright (C) 2008 Lukasz Rymarczyk
+# Copyright (C) 2008 Raphael Ackermann
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,7 +56,7 @@ import const
 #------------------------------------------------------------------------
 def _validate_options(options, dbase):
     """
-    Validates all options by making sure that their values are consistent with
+    Validate all options by making sure that their values are consistent with
     the database.
     
     menu: The Menu class
@@ -355,7 +356,9 @@ class CommandLineReport:
                 print "      %s" % self.options_help[self.show][2]
 
         else:
-            self.show = None
+            #there was a show option given, but the option is invalid
+            print ("option %s not valid. Use 'show=all' to see all valid "  
+                  "options." % self.show)
 
 #------------------------------------------------------------------------
 #
