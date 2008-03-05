@@ -37,6 +37,7 @@ pkgdata_PYTHON = \
 	ExtractCity.py\
 	FamilyGroup.py\
 	FanChart.py\
+	FilterByName.py\
 	FindDupes.py\
 	GVFamilyLines.py \
 	GVHourGlass.py\
