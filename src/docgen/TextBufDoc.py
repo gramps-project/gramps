@@ -77,7 +77,7 @@ class DisplayBuf(ManagedWindow.ManagedWindow):
         self.window.show_all()
         
     def build_menu_names(self, obj):
-        return ('View', 'Quick View')
+        return ('View', _('Quick View'))
 
     def get_title(self):
         return self.title
@@ -148,7 +148,7 @@ class TextBufDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc):
 
             self.tag_table.add(tag)
         self.buffer = gtk.TextBuffer(self.tag_table)
-        DisplayBuf('Quick View',self)
+        DisplayBuf(_('Quick View'), self)
         return
 
     #--------------------------------------------------------------------

@@ -30,6 +30,10 @@ from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
 from PluginUtils import register_quick_report
 
+# mention so that will be translated for below
+[_('Person'), _('Family'), _('Event'), _('Source'), 
+ _('Place'), _('Repository')]
+
 def get_ref(db, objclass, handle):
     """
     Looks up object in database
@@ -67,7 +71,7 @@ def run(database, document, object, item, trans):
     
     for (objclass, handle) in database.find_backlink_handles(object.handle):
         ref = get_ref(database, objclass, handle)
-        stab.row(objclass, ref)
+        stab.row(_(objclass), ref) # translation are explicit (above)
 
     if stab.get_row_count() > 0:
         stab.write()

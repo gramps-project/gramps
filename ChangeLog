@@ -1,3 +1,7 @@
+2008-03-05  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/docgen/TextBufDoc.py: fixed translations of Quick View
+	* src/plugins/References.py: fixed translations of ref types
+
 2008-03-05  Łukasz Rymarczyk <yenidai(at)poczta(dot)onet(dot)pl>
     * src/plugins/rel_pl.py: 0001776: Relationship calculator, update Polish
     Rewritten for 3.x version
