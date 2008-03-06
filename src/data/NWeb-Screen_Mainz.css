@@ -1,0 +1,876 @@
+/* ---------------------------------------------------------------------------- */
+/* GRAMPS Cascading Style Sheet */
+/* Style Name: Mainz */
+/* Style Author: Jason Simanek (2008) */
+/* ---------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------- */
+/* Color Palette */
+/* ---------------------------------------------------------------------------- */
+/*
+black							#000
+brown							#7D5925
+brown light					#D8C19F
+green							#767D25
+yellow							#FFF2C6
+yellow light					#FFFCE7
+*/
+/* ---------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------- */
+/* Style Images */
+/* ---------------------------------------------------------------------------- */
+/*
+Body							images/NWeb_Mainz_Bkgd.png
+Header							images/NWeb_Mainz_Header.png
+Middle							images/NWeb_Mainz_Mid.png
+Middle Light				images/NWeb_Mainz_MidLight.png
+*/
+/* ---------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------- */
+/* General Element Styles */
+/* ---------------------------------------------------------------------------- */
+body {
+	font-family:Georgia, serif;
+	color:#7D5925;
+	margin:0;
+	padding:0;
+	background:url(images/NWeb_Certificate_Bkgd.png) #000 repeat;
+}
+div {
+	margin:0;
+	padding:0;
+}
+img {
+	border:none;
+	margin:0;
+}
+.thumbnail a:hover {
+	background:none;
+}
+.content {
+	width:900px;
+	margin:0 auto;
+	padding-bottom:.5em;
+	background:url(images/NWeb_Certificate_Mid.png) #FFF2C6 repeat;
+}
+.content div.snapshot {
+	margin:0;
+	padding:0;
+	background:none;
+}
+.content div.snapshot div.thumbnail {
+	margin:0;
+	padding:2em 0 0 0;
+	background:none;
+}
+.content div.snapshot div.thumbnail a {
+	display:block;
+	width:96px;
+	margin:0 auto;
+}
+.fullclear {
+	width:100%;
+	height:1px;
+	margin:0;
+	padding:0;
+	clear:both;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* General Text Styles */
+/* ------------------------------------------------------------------------------ */
+h1 {
+	font-size:1.8em;
+	font-weight:normal;
+	font-style:italic;
+}
+h2 {
+	display:none;
+}
+h3 {
+	font-size:2em;
+	line-height:1.3em;
+	font-weight:normal;
+	font-style:italic;
+	color:#767D25;
+	text-align:center;
+	margin:0;
+	padding:.3em 20px 0 20px;
+}
+h4 {
+	font-size:1.4em;
+	font-weight:normal;
+	font-style:italic;
+	color:#767D25;
+	text-align:center;
+	margin:0;
+	padding:.5em 0 .2em 0;
+	border-bottom:dashed 1px #7D5925;
+}
+h5, h6 {
+	font-style:italic;
+	margin:1.3em 0 .5em 1em;
+}
+p {
+	font-size:14px;
+	line-height:17px;
+}
+p#description {
+	padding:0 15px 1em 15px;
+}
+p a:link {
+	text-decoration:underline;
+}
+sup {
+	line-height:0;
+}
+ol {
+}
+ol li a {
+	text-decoration:none;
+}
+a:link {
+	color:#7D5925;
+	text-decoration:underline;
+}
+a:hover, a:active {
+	color:#7D5925;
+	text-decoration:underline;
+	background-color:#FFFCE7;
+}
+a:visited {
+	color:#7D5925;
+	text-decoration:underline;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Header/Navigation Styles */
+/* ------------------------------------------------------------------------------ */
+#Header {
+	width:900px;
+	margin:0 auto;
+	padding:5em 0 2px 0;
+	background:url(images/NWeb_Certificate_Header.png) no-repeat top;
+}
+#SiteTitle {
+	color:#7D5925;
+	margin:0 0 7px 50px;
+}
+#Header p {
+	font-size:1em;
+	font-weight:bold;
+	font-style:italic;
+	color:#7D5925;
+	margin:0 0 5px 50px;
+}
+#GRAMPSinfo {
+	font-size:14px;
+	line-height:120%;
+	font-style:italic;
+	float:right;
+	margin:0 20px 2px 2px;
+	padding:0;
+}
+.grampsid {
+	font:normal .8em/1.2em monospace;
+}
+#Navigation {
+	font-family:sans-serif;
+	width:900px;
+	margin:0 auto;
+	padding:0;
+	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6;
+}
+#Navigation ol {
+	list-style:none;
+	min-width:770px;
+	height:22px;
+	margin:0;
+	padding:0 0 0 12px;
+}
+#Navigation ol li {
+	margin:0;
+	padding:0;
+	float:left;
+}
+#Navigation ol li a {
+	display:block;
+	font-size:12px;
+	line-height:100%;
+	font-weight:normal;
+	color:#7D5925;
+	text-decoration:none;
+	margin:0;
+	padding:6px 8px 5px 8px;
+}
+#Navigation ol li a:hover {
+	background-color:#FFFCE7;
+}
+#Navigation ol li#CurrentSection a {
+	font-family:Georgia, serif;
+	font-weight:bold;
+	font-style:italic;
+	padding:5px 15px 5px 15px;
+	border-top:solid 1px yellow;
+	border-bottom:solid 1px yellow;
+	border-style:dashed;
+	border-width:1px;
+	border-color:#7D5925;
+}
+#Navigation ol li#CurrentSection a:hover {
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Footer Styles */
+/* ------------------------------------------------------------------------------ */
+#footer {
+	width:900px;
+	margin:0 auto;
+	padding:0;
+	clear:both;
+	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6;
+	border-top:dashed 1px #7D5925;
+}
+#user_footer {
+	width:70%;
+	float:left;
+	margin:1em;
+}
+#user_footer p {
+	margin:0;
+}
+#copyright {
+	margin:1em;
+	float:right;
+}
+#copyright p {
+	margin:0;
+}
+#copyright a:hover {
+	background:none;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Main Table Styles - infolist variations */
+/* ------------------------------------------------------------------------------ */
+table {
+	font-size:14px;
+	margin:0 15px 1em 15px;
+	padding:0;
+	border:none;
+	border-collapse:collapse;
+}
+table tr th {
+	font-weight: bold;
+	text-align: left;
+	margin:0;
+	padding:.1em 10px;
+	border-bottom:double 4px #7D5925;
+}
+table.infolist tr th a {
+	text-decoration:none;
+}
+table tr td {
+	vertical-align:middle;
+	padding:.1em 10px;
+}
+table.infolist tr td a {
+	display:block;
+	text-decoration:none;
+}
+table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
+	border-top:dashed 1px #D8C19F;
+}
+table.infolist tr th.ColumnQuantity {
+	width:30%;
+}
+table.infolist tr td.ColumnLetter {
+	font-weight:bold;
+}
+table.infolist tbody tr td.ColumnBirth {
+	font-size:.9em;
+	width:10%;
+}
+table.infolist tbody tr td.ColumnDeath {
+	font-size:.9em;
+	width:10%;
+}
+table.infolist tbody tr td.ColumnRowLabel {
+	font-weight:bold;
+	width:2%;
+}
+table.infolist tbody tr td.ColumnType {
+	width:6%;
+	padding-left:20px;
+}
+table.infolist tbody tr td.ColumnPartner {
+	font-size:.9em;
+}
+table.infolist tbody tr td.ColumnParents {
+	font-size:.9em;
+}
+table.infolist tbody tr td.ColumnParents span.father, table.infolist tbody tr td.ColumnParents span.mother {
+	display:block;
+}
+table.infolist tbody tr td.ColumnParents span.mother:before {
+	content:"+ ";
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Surnames Styles */
+/* ------------------------------------------------------------------------------ */
+#Surnames {  }
+#SurnameDetail p#description { padding-top:0; }
+table.surnamelist {
+	margin-left:auto;
+	margin-right:auto;
+}
+table.surnamelist tbody tr td.ColumnSurname {
+	width:50%;
+}
+table.surnamelist thead tr th.ColumnSurname {
+	padding:0;
+}
+table.surnamelist thead tr th.ColumnQuantity {
+	width:40%;
+	padding:0;
+}
+table.infolist thead tr th.ColumnSurname a, table.infolist thead tr th.ColumnQuantity a {
+	display:block;
+	padding:.1em 10px;
+}
+table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr th.ColumnQuantity a:after {
+	content:" ↓";
+}
+table.infolist tbody tr td.ColumnSurname {
+	padding:0;
+	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6 repeat;
+}
+table.infolist tbody tr td.ColumnSurname a {
+	padding:.1em 10px;
+}
+table.infolist tbody tr td.ColumnSurname a:hover {
+	padding:.1em 10px;
+}
+table.surname tbody tr td {
+	border-bottom:dashed 1px #D8C19F;
+}
+table.surname tbody tr:last-child td {
+	border:none;
+}
+table.surname tbody tr td.ColumnName {
+	width:20%;
+	padding:0;
+	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6 repeat;
+}
+table.surname tbody tr td.ColumnName a {
+	display:block;
+	padding:.6em 10px .6em 20px;
+}
+table.surname tbody tr td.ColumnName a span.grampsid {
+	display:none;
+}
+table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents {
+	width:25%;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Individuals Styles */
+/* ------------------------------------------------------------------------------ */
+#Individuals {  }
+#Individuals table.individuallist tbody tr td {
+	border-bottom:dashed 1px #D8C19F;
+}
+#Individuals table.individuallist tbody tr:last-child td {
+	border:none;
+}
+#Individuals table.individuallist tbody tr td a:hover {
+	text-decoration:none;
+}
+table.individuallist tbody tr td.ColumnSurname {
+	background:none;
+}
+table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbody tr td.ColumnSurname a:active {
+	cursor:default;
+	color:black;
+	background:none;
+}
+table.individuallist tbody tr td.ColumnName {
+	padding:0;
+	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6 repeat;
+}
+table.individuallist tbody tr td.ColumnName a {
+	display:block;
+	padding:.6em 10px;
+	vertical-align:middle;
+}
+#IndividualDetail div table.infolist tr td, #Individuals div table.infolist tr td p {
+	vertical-align:top;
+}
+#IndividualDetail div table.infolist tr td a, #Individuals div table.infolist tr td p a {
+	display:inline;
+}
+#IndividualDetail table.infolist tr td a:hover {
+	text-decoration:underline;
+}
+#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+	width:10%;
+	color:#767D25;
+	padding-left:5px;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Sources Styles */
+/* ------------------------------------------------------------------------------ */
+#Sources table.infolist tbody tr td.ColumnRowLabel {
+	padding-bottom:0;
+}
+#Sources table.infolist tbody tr td.ColumnName {
+	padding:0;
+}
+#Sources table.infolist tbody tr td.ColumnName a {
+	padding:.1em 10px .3em 10px;
+}
+#SourceDetail div#references ol li {
+	padding-bottom:.5em;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Places Styles */
+/* ------------------------------------------------------------------------------ */
+#Places table.infolist {
+	margin:0 auto;
+}
+#Places table.infolist tbody tr td.ColumnName {
+	padding:0;
+}
+#Places table.infolist tbody tr td.ColumnName a {
+	padding:.1em 10px .3em 10px;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Gallery Styles */
+/* ------------------------------------------------------------------------------ */
+#Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
+	padding-bottom:0;
+}
+#Gallery table.infolist tbody tr td.ColumnName {
+	padding:0;
+}
+#Gallery table.infolist tbody tr td.ColumnName a {
+	padding:.1em 10px .3em 10px;
+}
+#GalleryNav {
+	font-size:.8em;
+	margin:0;
+	padding:2.2em 0 0 0;
+	text-align:center;
+}
+#GalleryNav a {
+	font-weight:bold;
+	font-style:italic;
+	color:#FFF2C6;
+	text-decoration:none;
+	background:url(images/NWeb_Certificate_Bkgd.png) #7D5925 repeat;
+	border:outset 3px #000;
+}
+#GalleryNav a:hover {
+	border:outset 3px #7D5925;
+}
+#GalleryNav a:active {
+	border:solid 3px #000;
+}
+#GalleryNav a#Previous {
+	padding:.4em .7em .3em .7em;
+}
+#GalleryNav a#Next {
+	padding:.4em 1.9em .3em 1.9em;
+}
+#GalleryPages {
+	margin:0 1em;
+}
+#GalleryCurrent {
+	font-size:2em;
+	font-weight:normal;
+	font-style:italic;
+}
+#GalleryTotal {
+	font-weight:normal;
+}
+#GalleryDisplay {
+	text-align:center;
+}
+#GalleryDisplay img {
+	margin:0 auto;
+	border:solid 1px #7D5925;
+}
+#GalleryDetail div#summaryarea{
+	margin:0;
+	padding:1.4em 0 0 0;
+}
+#GalleryDetail div#summaryarea h3 {
+	text-align:center;
+}
+#GalleryDetail div h4 {
+	margin-top:0;
+}
+#GalleryDetail div#summaryarea table.gallery {
+	width:100%;
+	margin-top:1.5em;
+	margin-bottom:0;
+	padding-bottom:0;
+	border-style:double;
+	border-width:4px 0 0 0;
+	border-color:#7D5925;
+}
+#GalleryDetail div#summaryarea table.gallery tbody tr td.ColumnAttribute {
+	color:#767D25;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Contact Styles */
+/* ------------------------------------------------------------------------------ */
+#Contact #summaryarea {
+	width:500px;
+	margin:0 auto;
+	padding:1em 3em;
+}
+#Contact #summaryarea img {
+	display:block;
+	margin:0 auto;
+	padding:0;
+	border:solid 1px #7D5925;
+}
+#researcher {
+	text-align:center;
+	margin-top:.7em;
+}
+#researcher h3 {
+	padding:0;
+}
+#streetaddress {
+	display:block;
+}
+#city:after {
+	content:",";
+}
+#country {  }
+#email {
+	display:block;
+}
+#email a {
+	text-decoration:none;
+}
+#email a:hover {
+	text-decoration:underline;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* SubSection Styles */
+/* ------------------------------------------------------------------------------ */
+#Home, #Introduction, #Download, #Contact {
+	min-height:500px;
+	padding:1.5em 0 3em 0;
+}
+#Home p, #Introduction p, #Surnames p, #Individuals p, #Sources p, #Places p, #Gallery p, #Download p, #Contact p {
+	margin:0 20px 1em 20px;
+	padding-top:1em;
+}
+#Home img, #Introduction img, #Download img {
+	float:right;
+	margin:0;
+	padding:0 20px 3em 20px;
+}
+div.subsection{
+	padding-bottom:.5em;
+}
+div.subsection h4 {
+	margin-bottom:.5em;
+}
+div.subsection table, div.subsection ol, div.subsection p {
+	font-size:.9em;
+}
+div.subsection a {
+	text-decoration:none;
+}
+div.subsection a:hover {
+	text-decoration:underline;
+	background:none;
+}
+div.subsection table.infolist {
+	width:100%;
+	margin:0;
+}
+#IndividualDetail div.subsection table tr td:first-child {
+	padding-left:20px;
+}
+
+/* SubSection Styles : Summary Area */
+/* ------------------------------------------------------------------------------ */
+div#summaryarea {
+	min-height:100px;
+	background:none;
+}
+div#summaryarea table.infolist {
+	width:100%;
+	margin:1.5em 0 0 0;
+	padding:0;
+	border-style:double;
+	border-width:4px 0 0 0;
+	border-color:#7D5925;
+}
+div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
+	vertical-align:top;
+}
+div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
+	display:inline;
+}
+div#summaryarea table.infolist tbody tr td.ColumnAttribute {
+	width:14%;
+	padding-left:20px;
+}
+
+/* SubSection Styles : Events */
+/* ------------------------------------------------------------------------------ */
+div#events {
+	padding-bottom:0;
+}
+div#events h4 {
+	margin-bottom:0;
+}
+div#events table.infolist tbody tr td {
+	padding-top:.2em;
+	padding-bottom:.2em;
+}
+div#events table.infolist tbody tr td.ColumnAttribute {
+	border-bottom:dashed 1px #D8C19F;
+}
+div#events table.infolist tbody tr td.ColumnValue {
+	border-bottom:dashed 1px #D8C19F;
+}
+div#events table.infolist tbody tr td.ColumnValue p {
+	margin:.1em 2em;
+}
+
+/* SubSection Styles : Parents */
+/* ------------------------------------------------------------------------------ */
+div#parents table.infolist tbody tr td.ColumnValue ol {
+	margin:0;
+	padding-top:0;
+}
+div#parents table.infolist tbody tr td.ColumnValue ol li {
+	padding-bottom:.2em;
+}
+
+/* SubSection Styles : Families */
+/* ------------------------------------------------------------------------------ */
+div#families table.infolist tbody tr td.ColumnValue p {
+	margin-top:0;
+}
+div#families table.infolist tbody tr td.ColumnValue ol {
+	margin:0;
+	padding-top:0;
+}
+div#families table.infolist tbody tr td.ColumnValue ol li {
+	padding-bottom:.2em;
+}
+
+/* SubSection Styles : Addresses */
+/* ------------------------------------------------------------------------------ */
+div#addresses {
+	padding-bottom:0;
+}
+div#addresses h4 {
+	margin-bottom:0;
+}
+div#addresses table.infolist tbody tr td {
+	padding-top:.2em;
+	padding-bottom:.2em;
+}
+div#addresses table.infolist tbody tr td.ColumnAttribute {
+	width:30%;
+	border-bottom:dashed 1px #D8C19F;
+}
+div#addresses table.infolist tbody tr td.ColumnValue {
+	border-bottom:dashed 1px #D8C19F;
+}
+
+/* SubSection Styles : Attributes */
+/* ------------------------------------------------------------------------------ */
+
+/* SubSection Styles : Gallery */
+/* ------------------------------------------------------------------------------ */
+#indivgallery h4 {
+	margin-bottom:1em;
+}
+#indivgallery .thumbnail {
+	margin:0;
+    float:left;
+    width:130px;
+    height:150px;
+    text-align:center;
+}
+#indivgallery .thumbnail a {
+	display:block;
+	margin:0;
+	padding:0;
+	background:none;
+}
+#indivgallery .thumbnail a img {
+	margin:0;
+	padding:0;
+	border:solid 1px #7D5925;
+}
+#indivgallery div.thumbnail p {
+	font-size:.6em;
+	text-align:center;
+	width:80%;
+	margin:0 auto;
+	padding:0;
+}
+
+/* SubSection Styles : Narrative */
+/* ------------------------------------------------------------------------------ */
+div#narrative {
+	padding-bottom:0;
+}
+#narrative p {
+	margin-top:.5em;
+	margin-bottom:0;
+	padding:0 20px 1em 20px;
+}
+
+/* SubSection Styles : References */
+/* ------------------------------------------------------------------------------ */
+#references ol {
+	margin-top:0;
+	margin-bottom:0;
+}
+
+/* SubSection Styles : Source References */
+/* ------------------------------------------------------------------------------ */
+
+/* SubSection Styles : Weblinks */
+/* ------------------------------------------------------------------------------ */
+
+/* SubSection Styles : Pedigree */
+/* ------------------------------------------------------------------------------ */
+.pedigreegen {
+	font-size:.9em;
+	list-style:none;
+	margin:.5em 0 0 0;
+	padding:0 0 .7em 20px;
+}
+.pedigreegen li ol {
+	list-style:none;
+	margin-left:.5em;
+}
+.pedigreegen li ol li {
+	padding-bottom:.2em;
+}
+.pedigreegen li ol li ol {
+	list-style:decimal;
+	margin-left:1.6em;
+}
+.pedigreegen li ol li ol li ol.spouselist {
+	font-size:1em;
+	list-style:none;
+	margin-left:0;
+}
+.spouselist li.spouse ol {
+	font-size:1em;
+	list-style:decimal;
+	margin-left:1.6em;
+}
+.spouse a {
+	font-weight:normal;
+}
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight:bold;
+}
+
+/* SubSection Styles : Ancestors Tree */
+/* ------------------------------------------------------------------------------ */
+#tree {
+	page-break-before:always;
+	margin:0;
+	padding:0;
+}
+#treeContainer {
+	position:relative;
+	z-index:1;
+	padding-bottom:1.4em;
+}
+.boxbg {
+	position:absolute;
+	margin:0;
+	padding:0;
+	background:none;
+}
+.boxbg div a {
+	position:relative;
+	z-index:10;
+	display:block;
+	font-size:.8em;
+	color:#7D5925;
+	text-align:center;
+	text-decoration:none;
+	width:148px;
+	padding:5px 5px 7px 5px;
+	margin-top:1em;
+	margin-left:16px;
+	background-color:#FFFCE7;
+	border:dotted 2px #7D5925;
+}
+.boxbg div a:hover {
+	position:relative;
+	z-index:999;
+	font-size:1em;
+	text-decoration:none;
+	width:210px;
+	margin-top:.5em;
+	margin-left:0;
+	padding:10px 4px 12px 4px;
+	background-color:#FFFCE7;
+	border:solid 2px #7D5925;
+}
+.shadow {
+	
+}
+#tree div div.bvline {
+	position:absolute;
+	z-index:2;
+	height:2px;
+	margin:2px 0 0 16px;
+	padding:0;
+	background-color:#D8C19F;
+}
+#tree div div.bhline {
+	position:absolute;
+	z-index:2;
+	width:1px;
+	margin:2px 0 0 16px;
+	padding:0;
+	background-color:#D8C19F;
+}
+#tree div div.gvline {
+	position:absolute;
+	z-index:1;
+	height:2px;
+	margin:0 0 0 14px;
+	padding:0;
+	background:none;
+}
+#tree div div.ghline {
+	position:absolute;
+	z-index:1;
+	width:1px;
+	margin:0 0 0 14px;
+	padding:0;
+	background:none;
+}

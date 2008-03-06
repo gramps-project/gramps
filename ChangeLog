@@ -1,3 +1,29 @@
+2008-03-06 Jason Simanek <jsimanek@gmail.com>
+	* src/NarrativeWeb.py: 
+	* src/images/NWeb_Mainz_Header.png: added
+	* src/images/somerights20.gif: modified
+	* src/images/NWeb_Mainz_MidLight.png: added
+	* src/images/favicon.ico: added
+	* src/images/NWeb_Mainz_Bkgd.png: added
+	* src/images/NWeb_Mainz_Mid.png: added
+	* src/data/NWeb-Print_Default.css: added
+	* src/data/NWeb-Screen_Basic-Lilac.css: added
+	* src/data/NWeb-Screen_Basic-Cypress.css: added
+	* src/data/NWeb-Screen_Sharp.css: added
+	* src/data/main1.css: removed
+	* src/data/NWeb-Screen_Mainz.css: added
+	* src/data/main2.css: removed
+	* src/data/main3.css: removed
+	* src/data/main4.css: removed
+	* src/data/NWeb-Screen_Basic-Spruce.css: added
+	* src/data/main5.css: removed
+	* src/data/main6.css: removed
+	* src/data/NWeb-Screen_Nebraska.css: added
+	* src/data/NWeb-Screen_Basic-Ash.css: added
+	* src/data/NWeb-Screen_Basic-Peach.css: added
+	0001803: Narrative Web Report Update
+	Multiple updates to improve the narrative web report.
+
 2008-03-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/SameSurnames.py:
 	* src/plugins/DefaultGramplets.py:
