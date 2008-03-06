@@ -1,3 +1,9 @@
+2008-03-06  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/plugins/SameSurnames.py:
+	* src/plugins/DefaultGramplets.py:
+	* src/plugins/FilterByName.py:
+	Fixes for proper surname grouping; fix for all of a person's name
+
 2008-03-05  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/plugins/FilterByName.py (run): 
 	fixed a couple of missing translations; name counts were slightly off

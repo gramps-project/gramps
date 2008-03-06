@@ -37,7 +37,7 @@ class IncompleteSurname(Rule):
     category    = _('General filters')
     def apply(self,db,person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            if name.get_surname() == "":
+            if name.get_group_name() == "":
                 return True
         return False
 
@@ -68,7 +68,7 @@ def run(database, document, person):
         rsurname = person
     else:
         surname = sdb.surname(person)
-        rsurname = person.get_primary_name().get_surname()
+        rsurname = person.get_primary_name().get_group_name()
     # display the title
     sdoc.title(_("People with the surname '%s'") % surname)
     sdoc.paragraph("")

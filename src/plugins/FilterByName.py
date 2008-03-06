@@ -87,7 +87,7 @@ def run(database, document, filter_name):
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             for name in [person.get_primary_name()] + person.get_alternate_names():
-                if name.get_surname() == "" or name.get_first_name() == "":
+                if name.get_group_name() == "" or name.get_first_name() == "":
                     stab.row(person, sdb.birth_date_obj(person),
                              str(person.get_primary_name().get_type()))
                     matches += 1
@@ -132,7 +132,7 @@ def run(database, document, filter_name):
             person = database.get_person_from_handle(person_handle)
             if person:
                 names = [person.get_primary_name()] + person.get_alternate_names()
-                surnames = list(set([name.get_surname() for name in names]))
+                surnames = list(set([name.get_group_name() for name in names]))
                 for surname in surnames:
                     namelist[surname] = namelist.get(surname, 0) + 1
         surnames = namelist.keys()

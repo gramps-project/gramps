@@ -219,9 +219,11 @@ class TopSurnamesGramplet(Gramplet):
         for person_handle in people:
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
-                surname = person.get_primary_name().get_surname().strip()
-                surnames[surname] = surnames.get(surname, 0) + 1
-                representative_handle[surname] = person_handle
+                allnames = [person.get_primary_name()] + person.get_alternate_names()
+                for name in allnames:
+                    surname = name.get_group_name().strip()
+                    surnames[surname] = surnames.get(surname, 0) + 1
+                    representative_handle[surname] = person_handle
             if cnt % 350 == 0:
                 yield True
             cnt += 1
@@ -294,9 +296,11 @@ class SurnameCloudGramplet(Gramplet):
         for person_handle in people:
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
-                surname = person.get_primary_name().get_surname().strip()
-                surnames[surname] = surnames.get(surname, 0) + 1
-                representative_handle[surname] = person_handle
+                allnames = [person.get_primary_name()] + person.get_alternate_names()
+                for name in allnames:
+                    surname = name.get_group_name().strip()
+                    surnames[surname] = surnames.get(surname, 0) + 1
+                    representative_handle[surname] = person_handle
             if cnt % 350 == 0:
                 yield True
             cnt += 1
@@ -599,10 +603,10 @@ class StatsGramplet(Gramplet):
             person = database.get_person_from_handle(person_handle)
             names = [person.get_primary_name()] + person.get_alternate_names()
             for name in names:
-                if name.get_first_name() == "" or name.get_surname() == "":
+                if name.get_first_name() == "" or name.get_group_name() == "":
                     incomp_names = incomp_names + 1
-                if name.get_surname() not in namelist:
-                    namelist.append(name.get_surname())
+                if name.get_group_name() not in namelist:
+                    namelist.append(name.get_group_name())
             if ((not person.get_main_parents_family_handle()) and 
                 (not len(person.get_family_handle_list()))):
                 disconnected = disconnected + 1
