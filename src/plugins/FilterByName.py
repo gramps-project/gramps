@@ -101,10 +101,10 @@ def run(database, document, filter_name):
                 if birth_ref:
                     birth = database.get_event_from_handle(birth_ref.ref)
                     if not DateHandler.get_date(birth):
-                        stab.row(person, "birth event but no date")
+                        stab.row(person, _("birth event but no date"))
                         matches += 1
                 else:
-                    stab.row(person, "missing birth event")
+                    stab.row(person, _("missing birth event"))
                     matches += 1
     elif (filter_name == 'disconnected people'):
         stab.columns(_("Person"), _("Birth Date"), _("Name type"))
@@ -131,11 +131,10 @@ def run(database, document, filter_name):
         for person_handle in people:
             person = database.get_person_from_handle(person_handle)
             if person:
-                name = person.get_primary_name()
-                if name:
-                    surname = name.get_surname()
-                    if surname:
-                        namelist[surname] = namelist.get(surname, 0) + 1
+                names = [person.get_primary_name()] + person.get_alternate_names()
+                surnames = list(set([name.get_surname() for name in names]))
+                for surname in surnames:
+                    namelist[surname] = namelist.get(surname, 0) + 1
         surnames = namelist.keys()
         surnames.sort()
         stab.columns(_("Surname"), _("Count"))
@@ -167,7 +166,7 @@ def run(database, document, filter_name):
                 continue
             medialist = person.get_media_list()
             for item in medialist:
-                stab.row(person, "media")
+                stab.row(person, _("media"))
                 matches += 1
     elif (filter_name == 'unique media'):
         stab.columns(_("Unique Media"))
