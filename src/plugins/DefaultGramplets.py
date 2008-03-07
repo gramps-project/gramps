@@ -891,6 +891,7 @@ class NewsGramplet(Gramplet):
         self.clear_text()
         self.set_use_markup(True)
         self.render_text(text)
+        self.append_text("", scroll_to="begin")
         
     def process(self, title):
         #print "processing '%s'..." % title
