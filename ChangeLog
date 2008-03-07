@@ -1,3 +1,8 @@
+2008-03-05 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/data/Makefile.am: add new css files and delete old ones.
+	* src/images/Makefile.am: add new images for Narrative web report
+	0001912: make fails 
+
 2008-03-07  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/const.py.in : new const for third party plugin page
 	* src/ViewManager.py: in help, menu option for the third party plugins

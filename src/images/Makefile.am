@@ -60,7 +60,7 @@ dist_pkgdata_DATA = \
 	logo.png\
 	splash.jpg\
 	gramps-export.png\
-        gramps-import.png\
+    gramps-import.png\
 	gramps-url.png\
 	stock_new-html.png\
 	gramps-undo-history.png\
@@ -68,7 +68,12 @@ dist_pkgdata_DATA = \
 	stock_notes.png\
 	somerights20.gif \
 	document.png \
-	image-missing.png
+	image-missing.png\
+	favicon.ico\
+    NWeb_Mainz_Bkgd.png\
+    NWeb_Mainz_Header.png\
+    NWeb_Mainz_MidLight.png\
+    NWeb_Mainz_Mid.png
 
 EXTRA_DIST = gramps.svg 
 
