@@ -515,7 +515,7 @@ class GuiGramplet:
         self.gvclose.hide()
         self.gvstate.hide()
         self.gvproperties.hide()
-        if len(self.pui.option_dict) > 0:
+        if self.pui and len(self.pui.option_dict) > 0:
             self.gvoptions.show()
         # keep a pointer to old parent frame:
         self.parent = self.mainframe.get_parent()
