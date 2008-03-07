@@ -1,3 +1,9 @@
+2008-03-07  Peter Landgren  <peter.talken@telia.com>
+    * src/GrampsCfg.py
+    * src/Config/_GrampsConfigKeys.py
+    * data/gramps.schemas.in
+    Removal of xml-autobackup issue #1897
+
 2008-03-07  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py (GrampletView): 
 	turned GrampletView into a PersonNavView to get Forward/Next/Home
