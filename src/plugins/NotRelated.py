@@ -403,6 +403,8 @@ register_report(
     modes = MODE_GUI,
     translated_name = _("Not Related"),
     status = _("Stable"),
+    author_name = "Stéphane Charette",
+    author_email = "stephanecharette@gmail.com",
     description = _("Find people who are not in any way related to the "
                     "selected person")
     )
