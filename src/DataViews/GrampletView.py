@@ -679,7 +679,7 @@ class MyScrolledWindow(gtk.ScrolledWindow):
                 if gramplet.state == "minimized":
                     gramplet.set_state("minimized")
 
-class GrampletView(PageView.PageView):
+class GrampletView(PageView.PersonNavView): 
     """
     GrampletView interface
     """
@@ -688,14 +688,8 @@ class GrampletView(PageView.PageView):
         """
         Create a GrampletView, with the current dbstate and uistate
         """
-        PageView.PageView.__init__(self, _('Gramplets'), dbstate, uistate)
+        PageView.PersonNavView.__init__(self, _('Gramplets'), dbstate, uistate)
         self._popup_xy = None
-
-    def change_db(self, event):
-        """
-        """
-        # FIXME: remove/add widgets from new db ini file
-        pass
 
     def build_widget(self):
         """
@@ -967,6 +961,47 @@ class GrampletView(PageView.PageView):
                                   lambda obj:self.set_columns(3)),
                                  ])
         self._add_action_group(self.action)
+        # Back, Forward, Home
+        self.fwd_action = gtk.ActionGroup(self.title + '/Forward')
+        self.fwd_action.add_actions([
+            ('Forward', gtk.STOCK_GO_FORWARD, _("_Forward"), 
+             "<ALT>Right", _("Go to the next person in the history"), 
+             self.fwd_clicked)
+            ])
+
+        # add the Backward action group to handle the Forward button
+        self.back_action = gtk.ActionGroup(self.title + '/Backward')
+        self.back_action.add_actions([
+            ('Back', gtk.STOCK_GO_BACK, _("_Back"), 
+             "<ALT>Left", _("Go to the previous person in the history"), 
+             self.back_clicked)
+            ])
+        self._add_action('HomePerson', gtk.STOCK_HOME, _("_Home"), 
+                         accel="<Alt>Home", 
+                         tip=_("Go to the default person"), callback=self.home)
+        self.other_action = gtk.ActionGroup(self.title + '/PersonOther')
+        self.other_action.add_actions([
+                ('SetActive', gtk.STOCK_HOME, _("Set _Home Person"), None, 
+                 None, self.set_default_person), 
+                ])
+        self._add_action_group(self.back_action)
+        self._add_action_group(self.fwd_action)
+        self._add_action_group(self.other_action)
+
+    def set_active(self):
+        PageView.PersonNavView.set_active(self)
+        self.key_active_changed = self.dbstate.connect('active-changed',
+                                                       self.goto_active_person)
+    
+    def set_inactive(self):
+        PageView.PersonNavView.set_inactive(self)
+        self.dbstate.disconnect(self.key_active_changed)
+        
+    def goto_active_person(self, handle=None):
+        self.dirty = True
+        if handle:
+            self.handle_history(handle)
+        self.uistate.modify_statusbar(self.dbstate)
 
     def set_columns(self, num):
         # clear the gramplets:
@@ -986,22 +1021,6 @@ class GrampletView(PageView.PageView):
         # place the gramplets back in the new columns
         self.place_gramplets()
         self.widget.show()
-
-    def delete_gramplet(self, obj):
-        name = obj.get_child().get_label()
-        ############### First kind: from current session
-        for gramplet in self.closed_gramplets:
-            if gramplet.title == name:
-                self.closed_gramplets.remove(gramplet)
-                self.gramplet_map[gramplet.title]
-                self.frame_map[str(gramplet.mainframe)]
-                del gramplet
-                return
-        ################ Second kind: from options
-        for opts in self.closed_opts:
-            if opts["title"] == name:
-                self.closed_opts.remove(opts)
-                return
 
     def restore_gramplet(self, obj):
         name = obj.get_child().get_label()
@@ -1098,12 +1117,28 @@ class GrampletView(PageView.PageView):
         return """
         <ui>
           <menubar name="MenuBar">
+            <menu action="GoMenu">
+              <placeholder name="CommonGo">
+                <menuitem action="Back"/>
+                <menuitem action="Forward"/>
+                <separator/>
+                <menuitem action="HomePerson"/>
+                <separator/>
+              </placeholder>
+            </menu>
             <menu action="ViewMenu">
               <menuitem action="Columns1"/>
               <menuitem action="Columns2"/>
               <menuitem action="Columns3"/>
             </menu>
           </menubar>
+          <toolbar name="ToolBar">
+            <placeholder name="CommonNavigation">
+              <toolitem action="Back"/>  
+              <toolitem action="Forward"/>  
+              <toolitem action="HomePerson"/>
+            </placeholder>
+          </toolbar>
           <popup name="Popup">
             <menuitem action="AddGramplet"/>
             <menuitem action="RestoreGramplet"/>
