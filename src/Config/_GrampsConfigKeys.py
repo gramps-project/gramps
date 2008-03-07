@@ -66,7 +66,6 @@ LAST_VIEW            = ('preferences', 'last-view', 1)
 USE_LAST_VIEW        = ('preferences', 'use-last-view', 0)
 FAMILY_SIBLINGS      = ('preferences', 'family-siblings', 0)
 AUTOLOAD             = ('behavior', 'autoload', 0)
-ENABLE_AUTOBACKUP    = ('behavior', 'enable-autobackup', 0)
 SPELLCHECK           = ('behavior', 'spellcheck', 0)
 BETAWARN             = ('behavior', 'betawarn', 0)
 WELCOME              = ('behavior', 'welcome', 1)
@@ -188,7 +187,6 @@ default_value = {
     USE_LAST_VIEW        : True, 
     FAMILY_SIBLINGS      : True, 
     AUTOLOAD             : False, 
-    ENABLE_AUTOBACKUP    : True, 
     SPELLCHECK           : False, 
     BETAWARN             : False, 
     WELCOME              : 100, 
