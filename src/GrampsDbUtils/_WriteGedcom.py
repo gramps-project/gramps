@@ -263,6 +263,26 @@ def breakup(txt, limit):
         data.append(txt)
     return data
 
+
+#-------------------------------------------------------------------------
+#
+# event_has_subordinate_data
+#   may want to compare description w/ auto-generated one, and
+#   if so, treat it same as if it were empty for this purpose
+#
+#-------------------------------------------------------------------------
+def event_has_subordinate_data(event, event_ref):
+    gotany = event.get_description().strip() or\
+        not event.get_date_object().is_empty() or\
+        event.get_place_handle() or\
+        event.get_attribute_list() or\
+        event_ref.get_attribute_list() or\
+        event.get_note_list() or\
+        event.get_source_references() or\
+        event.get_media_list()
+    return gotany
+
+
 #-------------------------------------------------------------------------
 #
 # GedcomWriter class
@@ -641,8 +661,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
                     else:
                         self.__writeln(1, val)
                 else:
-                    if (not event.get_date_object().is_empty()) \
-                            or event.get_place_handle():
+                    if event_has_subordinate_data(event, event_ref):
                         self.__writeln(1, val)
                     else:
                         self.__writeln(1, val, 'Y')
@@ -910,8 +929,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             val = GedcomInfo.familyConstantEvents.get(etype)
             
             if val:
-                if (not event.get_date_object().is_empty() 
-                    or event.get_place_handle()):
+                if event_has_subordinate_data(event, event_ref):
                     self.__writeln(1, val)
                 else:
                     self.__writeln(1, val, 'Y')
@@ -1106,8 +1124,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         """
         if event_ref:
             event = self.dbase.get_event_from_handle(event_ref.ref)
-            if (not event.get_date_object().is_empty()) \
-                    or event.get_place_handle():
+            if event_has_subordinate_data(event, event_ref):
                 self.__writeln(1, key)
             else:
                 self.__writeln(1, key, 'Y')

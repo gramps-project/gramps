@@ -1,4 +1,8 @@
 2008.03.06 Jim Sack <jgsack@san.rr.com>
+	src/GrampsDbUtils/_WriteGedcom.py: #1849 gedcom output: omit 'Y'
+	when there is subpordinate data in event (person or family)
+
+2008.03.06 Jim Sack <jgsack@san.rr.com>
 	src/test/gedread_util.py: update test utility per r10169 changes that
 	removed the "TRANSACTIONS" option. 
 
