@@ -45,6 +45,7 @@ URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_3.0_Wiki_Manual"
 WIKI_FAQ = "FAQ"
 WIKI_KEYBINDINGS = "Gramps_3.0_Wiki_Manual_-_Keybindings"
+WIKI_EXTRAPLUGINS= "3.0.x_Third-party_Plugins"
 
 #-------------------------------------------------------------------------
 #

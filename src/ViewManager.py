@@ -151,6 +151,7 @@ UIDEFAULT = '''<ui>
     <menuitem action="HomePage"/>
     <menuitem action="MailingLists"/>
     <menuitem action="ReportBug"/>
+    <menuitem action="ExtraPlugins"/>
     <separator/>
     <menuitem action="About"/>
   </menu>
@@ -395,7 +396,9 @@ class ViewManager:
             ('MailingLists', None, _('GRAMPS _Mailing Lists'), None, None, 
              mailing_lists_activate), 
             ('ReportBug', None, _('_Report a Bug'), None, None, 
-             report_bug_activate), 
+             report_bug_activate),
+            ('ExtraPlugins', None, _('_Extra Reports/Tools'), None, None, 
+             extra_plugins_activate),
             ('About', gtk.STOCK_ABOUT, _('_About'), None, None, 
              display_about_box),
             ('PluginStatus', None, _('_Plugin Status'), None, None, 
@@ -1486,7 +1489,13 @@ def mailing_lists_activate(obj):
     """
     Display the mailing list web page
     """
-    GrampsDisplay.url( const.URL_MAILINGLIST)
+    GrampsDisplay.url(const.URL_MAILINGLIST)
+
+def extra_plugins_activate(obj):
+    """
+    Display the wiki page with extra plugins
+    """
+    GrampsDisplay.url(const.URL_WIKISTRING+const.WIKI_EXTRAPLUGINS)
 
 def faq_activate(obj):
     """

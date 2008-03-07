@@ -1,3 +1,7 @@
+2008-03-07  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/const.py.in : new const for third party plugin page
+	* src/ViewManager.py: in help, menu option for the third party plugins
+
 2008-03-07  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/QuickReports.py: optionally pass in kwargs
 	* src/plugins/DefaultGramplets.py: added generation summary to pedigree
