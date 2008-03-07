@@ -436,6 +436,14 @@ class Gramplet(object):
                                                      self.gui.uistate, 
                                                      'filterbyname', 
                                                      handle)
+                elif link_type == 'PersonList':
+                    if event.button == 1: # left mouse
+                        if event.type == gtk.gdk._2BUTTON_PRESS: # double
+                            run_quick_report_by_name(self.gui.dbstate, 
+                                                     self.gui.uistate, 
+                                                     'filterbyname', 
+                                                     'list of people',
+                                                     handles=handle)
                     return True
         return False # did not handle event
 

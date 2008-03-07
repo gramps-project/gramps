@@ -521,10 +521,16 @@ class PedigreeGramplet(Gramplet):
             self.link(name_displayer.display_name(person.get_primary_name()),
                       'Person', person.handle)
             self.append_text("\n")
+            if generation not in self._generations:
+                self._generations[generation] = []
+            self._generations[generation].append(handle)
         elif what == "a":
             self.append_text("o------")
             self.render_text("<b>%s</b>" % name_displayer.display_name(person.get_primary_name()))
             self.append_text("\n")
+            if generation not in self._generations:
+                self._generations[generation] = []
+            self._generations[generation].append(handle)
         elif what == "m":
             if len(family_list) > 0:
                 family = self.dbstate.db.get_family_from_handle(family_list[0])
@@ -541,6 +547,7 @@ class PedigreeGramplet(Gramplet):
         Generator which will be run in the background.
         """
         self._boxes = [0] * self.max_generations
+        self._generations = {}
         self.set_text("")
         active_person = self.dbstate.get_active_person()
         if not active_person:
@@ -548,8 +555,26 @@ class PedigreeGramplet(Gramplet):
         #no wrap in Gramplet
         self.no_wrap()
         self.process_person(active_person.handle, 1, "f") # father
-        self.process_person(active_person.handle, 0, "a") # active
+        self.process_person(active_person.handle, 0, "a") # active #FIXME: should be 1?
         self.process_person(active_person.handle, 1, "m") # mother
+        gens = self._generations.keys()
+        gens.sort()
+        self.append_text(_("\nBreakdown by generation:\n"))
+        all = [active_person.handle]
+        for g in gens:
+            count = len(self._generations[g])
+            handles = self._generations[g]
+            self.append_text("     ")
+            if g == 0:
+                self.link(_("Generation 1"), 'PersonList', handles)
+                self.append_text(_(" has 1 of 1 individual (100.00% complete)\n"))
+            else:
+                all.extend(handles)
+                self.link(_("Generation %d") % g, 'PersonList', handles)
+                self.append_text(_(" has %d of %d individuals (%.2f%% complete)\n") % 
+                                 (count, 2**(g-1), float(count)/2**(g-1) * 100))
+        self.link(_("All generations"), 'PersonList', all)
+        self.append_text(_(" have %d individuals\n") % len(all))
         self.append_text("", scroll_to="begin")
 
 class StatsGramplet(Gramplet):

@@ -1,3 +1,9 @@
+2008-03-07  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/QuickReports.py: optionally pass in kwargs
+	* src/plugins/DefaultGramplets.py: added generation summary to pedigree
+	* src/plugins/FilterByName.py: new filter "people by list"
+	* src/DataViews/GrampletView.py: handle "people by list" links
+
 2008-03-07  Peter Landgren  <peter.talken@telia.com>
     * src/GrampsCfg.py
     * src/Config/_GrampsConfigKeys.py

@@ -108,7 +108,7 @@ def by_menu_name(first, second):
 def make_quick_report_callback(lst, category, dbstate, uistate, handle):
     return lambda x: run_report(dbstate, uistate, category, handle, lst[0])
 
-def run_quick_report_by_name(dbstate, uistate, report_name, handle):
+def run_quick_report_by_name(dbstate, uistate, report_name, handle, **kwargs):
     from PluginUtils import quick_report_list
     # [0] - function 
     # [1] - translated name
@@ -121,7 +121,7 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle):
             report = item
             break
     if report:
-        run_report(dbstate, uistate, report[2], handle, report[0])
+        run_report(dbstate, uistate, report[2], handle, report[0], **kwargs)
     else:
         raise AttributeError, ("No such quick report '%s'" % report_name)
 
@@ -148,7 +148,7 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
     else:
         raise AttributeError, ("No such quick report '%s'" % report_name)
                             
-def run_report(dbstate, uistate, category, handle,func):
+def run_report(dbstate, uistate, category, handle, func, **kwargs):
         from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
 
@@ -177,6 +177,6 @@ def run_report(dbstate, uistate, category, handle,func):
                 obj = handle
             if obj:
                 d.open("")
-                func(dbstate.db, d, obj)
+                func(dbstate.db, d, obj, **kwargs)
                 d.close()
 

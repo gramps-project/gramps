@@ -33,7 +33,7 @@ import DateHandler
 import posixpath
 from gettext import gettext as _
 
-def run(database, document, filter_name):
+def run(database, document, filter_name, *args, **kwargs):
     """
     Loops through the families that the person is a child in, and display
     the information about the other children.
@@ -199,6 +199,14 @@ def run(database, document, filter_name):
                 matches += 1
             except:
                 pass
+    elif (filter_name == 'list of people'):
+        stab.columns(_("Person"), _("Birth Date"), _("Name type"))
+        people = kwargs["handles"]
+        for person_handle in people:
+            person = database.get_person_from_handle(person_handle)
+            stab.row(person, sdb.birth_date_obj(person),
+                     str(person.get_primary_name().get_type()))
+            matches += 1
     else:
         raise AttributeError, ("invalid filter name: '%s'" % filter_name)
     sdoc.paragraph(_("Filter matched %d records.") % matches)
