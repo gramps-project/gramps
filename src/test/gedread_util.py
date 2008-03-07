@@ -118,7 +118,7 @@ def create_empty_db(dbpath):
     """create an empty db for the test caller"""
     state =  DbState.DbState()
     dbclass = gen.db.dbdir.GrampsDBDir
-    state.change_database(dbclass(Config.get(Config.TRANSACTIONS)))
+    state.change_database(dbclass())
     # create empty db (files) via load()
     cback = None
     mode = "rw"
