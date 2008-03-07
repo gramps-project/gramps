@@ -1,3 +1,7 @@
+2008.03.06 Jim Sack <jgsack@san.rr.com>
+	src/test/gedread_util.py: update test utility per r10169 changes that
+	removed the "TRANSACTIONS" option. 
+
 2008-03-06 Jason Simanek <jsimanek@gmail.com>
 	* src/NarrativeWeb.py: 
 	* src/images/NWeb_Mainz_Header.png: added
