@@ -761,8 +761,6 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         table.set_row_spacings(6)
 
         self.add_entry(table, _('Database path'), 0, Config.DATABASE_PATH)
-        self.add_checkbox(table, _('Automatically backup database on exit'), 
-                          1, Config.ENABLE_AUTOBACKUP)
         self.add_checkbox(table, _('Automatically load last database'), 
                           2, Config.AUTOLOAD)
         return table
