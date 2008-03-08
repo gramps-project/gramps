@@ -100,14 +100,14 @@ _XOFFSET = 5
 #This information defines the list of styles in the Narrative Web options dialog as well as the location of the corresponding SCREEN stylesheets.
 _CSS_FILES = [
 
-    [_("Basic - Ash"),            'NWeb-Screen_Basic-Ash.css'],
-    [_("Basic - Cypress"),            'NWeb-Screen_Basic-Cypress.css'],
-    [_("Basic - Lilac"),            'NWeb-Screen_Basic-Lilac.css'],
-    [_("Basic - Peach"),            'NWeb-Screen_Basic-Peach.css'],
-    [_("Basic - Spruce"),            'NWeb-Screen_Basic-Spruce.css'],
-    [_("Mainz"),            'NWeb-Screen_Mainz.css'],
-    [_("Nebraska"),          'NWeb-Screen_Nebraska.css'],
-    [_("No style sheet"), ''],
+    [_("Basic - Ash"),     'NWeb-Screen_Basic-Ash.css'],
+    [_("Basic - Cypress"), 'NWeb-Screen_Basic-Cypress.css'],
+    [_("Basic - Lilac"),   'NWeb-Screen_Basic-Lilac.css'],
+    [_("Basic - Peach"),   'NWeb-Screen_Basic-Peach.css'],
+    [_("Basic - Spruce"),  'NWeb-Screen_Basic-Spruce.css'],
+    [_("Mainz"),           'NWeb-Screen_Mainz.css'],
+    [_("Nebraska"),        'NWeb-Screen_Nebraska.css'],
+    [_("No style sheet"),  ''],
     ]
 
 _CHARACTER_SETS = [
@@ -175,8 +175,8 @@ wrapper = TextWrapper()
 wrapper.break_log_words = True
 wrapper.width = 20
 
-#This list of characters defines which hexadecimal entity certain 'special characters' with be transformed into for valid HTML rendering.
-#The variety of quotes with spaces are to assist in appropriately typesetting curly quotes and apostrophes.
+# This list of characters defines which hexadecimal entity certain 'special characters' with be transformed into for valid HTML rendering.
+# The variety of quotes with spaces are to assist in appropriately typesetting curly quotes and apostrophes.
 html_escape_table = {
     "&": "&#38;",
     ' "': " &#8220;",
@@ -189,7 +189,7 @@ html_escape_table = {
     ">": "&gt;",
     "<": "&lt;",
     }
-#This command then defines the 'html_escape' option for escaping special characters for presentation in HTML based on the above list.
+# This command then defines the 'html_escape' option for escaping special characters for presentation in HTML based on the above list.
 def html_escape(text):
     """Produce entities within text."""
     L=[]
@@ -264,8 +264,8 @@ class BasePage:
                 self.photo_list[handle] = [lnk]
 
         ext = os.path.splitext(photo.get_path())[1]
-        real_path = "%s/%s" % (self.build_path(handle,'images'), handle+ext)
-        thumb_path = "%s/%s.png" % (self.build_path(handle,'thumb'), handle)
+        real_path = "%s/%s" % (self.build_path(handle, 'images'), handle+ext)
+        thumb_path = "%s/%s.png" % (self.build_path(handle, 'thumb'), handle)
         return (real_path,thumb_path)
 
     def create_file(self, name):
@@ -320,16 +320,18 @@ class BasePage:
         return md5.new(text).hexdigest()
 
     def display_footer(self, of,db):
-
         of.write('</div>\n\n')
         of.write('<div id="footer">\n')
         if self.footer:
             note = db.get_note_from_gramps_id(self.footer)
-            of.write('\t<div id="user_footer">\n\t\t<p>')
+            of.write('\t<div id="user_footer">\n')
+            of.write('\t\t<p>')
             of.write(note.get(markup=True))
-            of.write('</p>\n\t</div>\n')
+            of.write('</p>\n')
+            of.write('\t</div>\n')
         if self.copyright == 0:
-            of.write('\t<div id="copyright">\n\t\t<p>')
+            of.write('\t<div id="copyright">\n')
+            of.write('\t\t<p>')
             if self.author:
                 self.author = self.author.replace(',,,','')
                 year = time.localtime(time.time())[0]
@@ -337,7 +339,8 @@ class BasePage:
                     'person' : self.author,
                     'year' : year }
                 of.write('%s' % cright)
-            of.write('</p>\n\t</div>\n')
+            of.write('</p>\n')
+            of.write('\t</div>\n')
         elif self.copyright <=6:
             of.write('\t<div id="copyright">')
             text = _CC[self.copyright-1]
@@ -366,24 +369,26 @@ class BasePage:
         of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
         xmllang = Utils.xml_lang()
-        of.write('xml:lang="%s" lang="%s">\n\n<head>\n' % (xmllang,xmllang))
+        of.write('xml:lang="%s" lang="%s">\n\n' % (xmllang,xmllang))
+        of.write('<head>\n')
         of.write('<title>%s - %s</title>\n' % (html_escape(self.title_str), html_escape(title)))
         of.write('<meta http-equiv="Content-Type" content="text/html; ')
         of.write('charset=%s" />\n' % self.encoding)
-# Link to narrative.css
+        # Link to narrative.css
         if path:
             of.write('<link href="%s/%s" ' % (path,_NARRATIVE))
         else:
             of.write('<link href="%s" ' % _NARRATIVE)
         of.write('rel="stylesheet" type="text/css" title="GRAMPS Style" media="screen" />\n')
 
-# Link to narrativePrint.css
+        # Link to narrativePrint.css
         if path:
             of.write('<link href="%s/%s" ' % (path,_NARRATIVEPRINT))
         else:
             of.write('<link href="%s" ' % _NARRATIVEPRINT)
         of.write('rel="stylesheet" type="text/css" media="print" />\n')
-# Link to favicon.ico
+
+        # Link to favicon.ico
         if path:
             of.write('<link href="%s/images/favicon.ico" rel="Shortcut Icon" />\n' % path)
         else:
@@ -436,8 +441,10 @@ class BasePage:
             surname_page = "index"
             intro_page = ""
 
-# Define 'self.currentsection' to correctly set navlink item CSS id 'CurrentSection' for Navigation styling
-# Use 'self.cur_name' to determine 'CurrentSection' for individual elements for Navigation styling
+        # Define 'self.currentsection' to correctly set navlink item CSS id
+        # 'CurrentSection' for Navigation styling.
+        # Use 'self.cur_name' to determine 'CurrentSection' for individual
+        # elements for Navigation styling.
         self.currentsection = title
 
         if self.use_home:
@@ -456,117 +463,77 @@ class BasePage:
             self.show_navlink(of,'contact',_('Contact'),path)
         of.write('\t</ol>\n</div>\n\n')
 
-# Give unique ID to 'content' div for styling specific sections separately
-# Because of how this script was originally written, the appropriate section ID is determined by looking for a directory or HTML file name to associate with that section
+        # Give unique ID to 'content' div for styling specific sections separately.
+        # Because of how this script was originally written, the appropriate section
+        # ID is determined by looking for a directory or HTML file name to associate
+        # with that section.
         if "index" in self.cur_name:
-                of.write('<div id="Home" class="content">\n')
+            divid = "Home"
         elif "introduction" in self.cur_name:
-                of.write('<div id="Introduction" class="content">\n')
+            divid = "Introduction"
         elif "surnames" in self.cur_name:
-                of.write('<div id="Surnames" class="content">\n')
+            divid = "Surnames"
         elif "srn" in self.cur_name:
-                of.write('<div id="SurnameDetail" class="content">\n')
+            divid = "SurnameDetail"
         elif "individuals" in self.cur_name:
-                of.write('<div id="Individuals" class="content">\n')
+            divid = "Individuals"
         elif "ppl" in self.cur_name:
-                of.write('<div id="IndividualDetail" class="content">\n')
+            divid = "IndividualDetail"
         elif "sources" in self.cur_name:
-                of.write('<div id="Sources" class="content">\n')
+            divid = "Sources"
         elif "src" in self.cur_name:
-                of.write('<div id="SourceDetail" class="content">\n')
+            divid = "SourceDetail"
         elif "places" in self.cur_name:
-                of.write('<div id="Places" class="content">\n')
+            divid = "Places"
         elif "plc" in self.cur_name:
-                of.write('<div id="PlaceDetail" class="content">\n')
+            divid = "PlaceDetail"
         elif "gallery" in self.cur_name:
-                of.write('<div id="Gallery" class="content">\n')
+            divid = "Gallery"
         elif "img" in self.cur_name:
-                of.write('<div id="GalleryDetail" class="content">\n')
+            divid = "GalleryDetail"
         elif "download" in self.cur_name:
-                of.write('<div id="Download" class="content">\n')
+            divid = "Download"
         elif "contact" in self.cur_name:
-                of.write('<div id="Contact" class="content">\n')
+            divid = "Contact"
         else:
-                of.write('<div class="content">\n')
+            divid = ''
+        if divid:
+            divid = ' id="%s"' % divid
+        of.write('<div%s class="content">\n' % divid)
 
     def show_link(self,of,lpath,title,path):
-
         if path:
-            of.write('<a href="%s/%s%s">%s</a>\n' % (path,lpath,self.ext,title))
-        else:
-            of.write('<a href="%s%s">%s</a>\n' % (lpath,self.ext,title))
+            lpath = path + '/' + lpath
+        of.write('<a href="%s%s">%s</a>\n' % (lpath,self.ext,title))
 
     def show_navlink(self,of,lpath,title,path):
+        if path:
+            lpath = path + '/' + lpath
+
+        # Figure out if we need <li id="CurrentSection"> of just plain <li>
+        cs = False
         if self.currentsection == title:
-                if path:
-                    of.write('\t\t<li id="CurrentSection"><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                else:
-                    of.write('\t\t<li id="CurrentSection"><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
+            cs = True
         elif title == "Surnames":
-                if "srn" in self.cur_name:
-                        if path:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
-                elif "Surnames" in self.currentsection:
-                        if path:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
-                else:
-                        if path:
-                            of.write('\t\t<li><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
+            if "srn" in self.cur_name:
+                cs = True
+            elif "Surnames" in self.currentsection:
+                cs = True
         elif title == "Individuals":
-                if "ppl" in self.cur_name:
-                        if path:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
-                else:
-                        if path:
-                            of.write('\t\t<li><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
+            if "ppl" in self.cur_name:
+                cs = True
         elif title == "Sources":
-                if "src" in self.cur_name:
-                        if path:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
-                else:
-                        if path:
-                            of.write('\t\t<li><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
+            if "src" in self.cur_name:
+                cs = True
         elif title == "Places":
-                if "plc" in self.cur_name:
-                        if path:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
-                else:
-                        if path:
-                            of.write('\t\t<li><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
+            if "plc" in self.cur_name:
+                cs = True
         elif title == "Gallery":
-                if "img" in self.cur_name:
-                        if path:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li id="CurrentSection"><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
-                else:
-                        if path:
-                            of.write('\t\t<li><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                        else:
-                            of.write('\t\t<li><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
-        else:
-                if path:
-                    of.write('\t\t<li><a href="%s/%s%s">%s</a></li>\n' % (path,lpath,self.ext,title))
-                else:
-                    of.write('\t\t<li><a href="%s%s">%s</a></li>\n' % (lpath,self.ext,title))
+            if "img" in self.cur_name:
+                cs = True
+
+        cs = cs and ' id="CurrentSection"' or ''
+        of.write('\t\t<li%s><a href="%s%s">%s</a></li>\n' % (cs,lpath,self.ext,title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
 
@@ -709,7 +676,8 @@ class BasePage:
             of.write('\t\t\t<li><a name="sref%d"' % cindex)
             self.source_link(of, source.handle, title, source.gramps_id, True)
 
-            of.write('\n\t\t\t\t<ol>\n')
+            of.write('\n')
+            of.write('\t\t\t\t<ol>\n')
             for key,sref in citation.get_ref_list():
 
                 tmp = []
@@ -863,7 +831,9 @@ class IndividualListPage(BasePage):
 
         of.write('\t<h2>%s</h2>\n' % _('Individuals'))
         of.write('\t<p id="description">%s</p>\n' % msg)
-        of.write('\t<table class="infolist individuallist">\n\t<thead>\n\t\t<tr>\n')
+        of.write('\t<table class="infolist individuallist">\n')
+        of.write('\t<thead>\n')
+        of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnSurname">%s</th>\n' % _('Surname'))
         of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
         column_count = 2
@@ -879,7 +849,9 @@ class IndividualListPage(BasePage):
         if self.showparents:
             of.write('\t\t\t<th class="ColumnParents">%s</th>\n' % _('Parents'))
             column_count += 1
-        of.write('\t\t</tr>\n\t</thead>\n\t<tbody>\n')
+        of.write('\t\t</tr>\n')
+        of.write('\t</thead>\n')
+        of.write('\t<tbody>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
 
@@ -890,9 +862,11 @@ class IndividualListPage(BasePage):
 
                 # surname column
                 if first:
-                    of.write('\t\t<tr class="BeginSurname">\n\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' % (self.lnkfmt(surname),surname))
+                    of.write('\t\t<tr class="BeginSurname">\n')
+                    of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' % (self.lnkfmt(surname),surname))
                 else:
-                    of.write('\t\t<tr>\n\t\t\t<td class="ColumnSurname">&nbsp;')
+                    of.write('\t\t<tr>\n')
+                    of.write('\t\t\t<td class="ColumnSurname">&nbsp;')
                 of.write('</td>\n')
 
                 # firstname column
@@ -976,7 +950,8 @@ class IndividualListPage(BasePage):
                 of.write('\t\t</tr>\n')
                 first = False
             
-        of.write('\t</tbody>\n\t</table>\n')
+        of.write('\t</tbody>\n')
+        of.write('\t</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -1001,7 +976,9 @@ class SurnamePage(BasePage):
         of.write('\t<h2>Surnames:</h2>\n')
         of.write('\t<h3>%s</h3>\n' % html_escape(title))
         of.write('\t<p id="description">%s</p>\n' % msg)
-        of.write('\t<table class="infolist surname">\n\t<thead>\n\t\t<tr>\n')
+        of.write('\t<table class="infolist surname">\n')
+        of.write('\t<thead>\n')
+        of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
         if self.showbirth:
             of.write('\t\t\t<th class="ColumnBirth">%s</th>\n' % _('Birth'))
@@ -1011,13 +988,16 @@ class SurnamePage(BasePage):
             of.write('\t\t\t<th class="ColumnPartner">%s</th>\n' % _('Partner'))
         if self.showparents:
             of.write('\t\t\t<th class="ColumnParents">%s</th>\n' % _('Parents'))
-        of.write('\t\t</tr>\n\t</thead>\n\t<tbody>\n')
+        of.write('\t\t</tr>\n')
+        of.write('\t</thead>\n')
+        of.write('\t<tbody>\n')
 
         for person_handle in person_handle_list:
 
             # firstname column
             person = db.get_person_from_handle(person_handle)
-            of.write('\t\t<tr>\n\t\t\t<td class="ColumnName">')
+            of.write('\t\t<tr>\n')
+            of.write('\t\t\t<td class="ColumnName">')
             path = self.build_path(person.handle,"ppl",True)
             self.person_link(of, self.build_name(path,person.handle),
                              person.get_primary_name().get_first_name(),
@@ -1096,7 +1076,8 @@ class SurnamePage(BasePage):
 
             # finished writing all columns
             of.write('\t\t</tr>\n')
-        of.write('\t</tbody>\n\t</table>\n')
+        of.write('\t</tbody>\n')
+        of.write('\t</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -1121,10 +1102,14 @@ class PlaceListPage(BasePage):
         of.write('\t<h2>%s</h2>\n' % _('Places'))
         of.write('\t<p id="description">%s</p>\n' % msg )
 
-        of.write('\t<table class="infolist placelist">\n\t<thead>\n\t\t<tr>\n')
+        of.write('\t<table class="infolist placelist">\n')
+        of.write('\t<thead>\n')
+        of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnLetter">%s</th>\n' % _('Letter'))
         of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
-        of.write('\t\t</tr>\n\t</thead>\n\t<tbody>\n\n')
+        of.write('\t\t</tr>\n')
+        of.write('\t</thead>\n')
+        of.write('\t<tbody>\n\n')
 
         self.sort = Sort.Sort(db)
         handle_list = place_handles.keys()
@@ -1142,17 +1127,22 @@ class PlaceListPage(BasePage):
             
             if letter != last_letter:
                 last_letter = letter
-                of.write('\t\t<tr class="BeginLetter">\n\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
+                of.write('\t\t<tr class="BeginLetter">\n')
+                of.write('\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
                 of.write('\t\t\t<td class="ColumnName">')
                 self.place_link(of,place.handle, n,place.gramps_id)
-                of.write('</td>\n\t\t</tr>\n')
+                of.write('</td>\n')
+                of.write('\t\t</tr>\n')
             else:
-                of.write('\t\t<tr>\n\t\t\t<td class="ColumnLetter">&nbsp;</td>\n')
+                of.write('\t\t<tr>\n')
+                of.write('\t\t\t<td class="ColumnLetter">&nbsp;</td>\n')
                 of.write('\t\t\t<td class="ColumnName">')
                 self.place_link(of,place.handle, n,place.gramps_id)
-                of.write('</td>\n\t\t</tr>\n')
+                of.write('</td>\n')
+                of.write('\t\t</tr>\n')
             
-        of.write('\t</tbody>\n\t</table>\n')
+        of.write('\t</tbody>\n')
+        of.write('\t</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
 
@@ -1181,7 +1171,8 @@ class PlacePage(BasePage):
         of.write('\t\t<table class="infolist place">\n')
 
         if not self.noid:
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('GRAMPS ID'))
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('GRAMPS ID'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % place.gramps_id)
             of.write('\t\t\t</tr>\n')
 
@@ -1195,17 +1186,20 @@ class PlacePage(BasePage):
                         (_('Postal Code'),ml.postal),
                         (_('Country'),ml.country)]:
                 if val[1]:
-                    of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % val[0])
+                    of.write('\t\t\t<tr>\n')
+                    of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % val[0])
                     of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % val[1])
                     of.write('\t\t\t</tr>\n')
                 
         if place.long:
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Longitude'))
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Longitude'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % place.long)
             of.write('\t\t\t</tr>\n')
 
         if place.lat:
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Latitude'))
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Latitude'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % place.lat)
             of.write('\t\t\t</tr>\n')
 
@@ -1254,7 +1248,8 @@ class MediaPage(BasePage):
         of.write('\t<h2>Gallery:</h2>\n')
 
         # gallery navigation
-        of.write('\t<div id="GalleryNav">\n\t\t')
+        of.write('\t<div id="GalleryNav">\n')
+        of.write('\t\t')
         if prev:
             self.galleryNav_link(of,prev,_('Previous'),True)
         data = _('<strong id="GalleryCurrent">%(page_number)d</strong> of <strong id="GalleryTotal">%(total_pages)d</strong>' ) % {
@@ -1262,7 +1257,8 @@ class MediaPage(BasePage):
         of.write(' <span id="GalleryPages">%s</span> ' % data)
         if next:
             self.galleryNav_link(of,next,_('Next'),True)
-        of.write('\n\t</div>\n\n')
+        of.write('\n')
+        of.write('\t</div>\n\n')
 
         of.write('\t<div id="summaryarea">\n')
         if mime_type:
@@ -1370,8 +1366,10 @@ class MediaPage(BasePage):
 
         for attr in attrlist:
             atType = str( attr.get_type() )
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % atType)
-            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n\t\t\t</tr>\n' % attr.get_value())
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % atType)
+            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % attr.get_value())
+            of.write('\t\t\t</tr>\n')
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
 
@@ -1451,9 +1449,13 @@ class SurnameListPage(BasePage):
             'database with this same surname.'))
 
         if order_by == self.ORDER_BY_COUNT:
-            of.write('\t<table id="SortByCount" class="infolist surnamelist">\n\t<thead>\n\t\t<tr>\n')
+            of.write('\t<table id="SortByCount" class="infolist surnamelist">\n')
+            of.write('\t<thead>\n')
+            of.write('\t\t<tr>\n')
         else:
-            of.write('\t<table id="SortByName" class="infolist surnamelist">\n\t<thead>\n\t\t<tr>\n')
+            of.write('\t<table id="SortByName" class="infolist surnamelist">\n')
+            of.write('\t<thead>\n')
+            of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnLetter">%s</th>\n' % _('Letter'))
 
         if not self.use_home and not self.use_intro:
@@ -1461,7 +1463,9 @@ class SurnameListPage(BasePage):
         else:
             of.write('\t\t\t<th class="ColumnSurname"><a href="%s%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
         of.write('\t\t\t<th class="ColumnQuantity"><a href="%s%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
-        of.write('\t\t</tr>\n\t</thead>\n\t<tbody>\n')
+        of.write('\t\t</tr>\n')
+        of.write('\t</thead>\n')
+        of.write('\t<tbody>\n')
 
         person_handle_list = sort_people(db,person_handle_list)
         if order_by == self.ORDER_BY_COUNT:
@@ -1488,19 +1492,23 @@ class SurnameListPage(BasePage):
             
             if letter != last_letter:
                 last_letter = letter
-                of.write('\t\t<tr class="BeginLetter">\n\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
+                of.write('\t\t<tr class="BeginLetter">\n')
+                of.write('\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
                 of.write('\t\t\t<td class="ColumnSurname">')
                 self.surname_link(of,surname)
                 of.write('</td>\n')
             elif surname != last_surname:
-                of.write('\t\t<tr>\n\t\t\t<td class="ColumnLetter">&nbsp;</td>\n')
+                of.write('\t\t<tr>\n')
+                of.write('\t\t\t<td class="ColumnLetter">&nbsp;</td>\n')
                 of.write('\t\t\t<td class="ColumnSurname">')
                 self.surname_link(of,surname)
                 of.write('</td>\n')
                 last_surname = surname
-            of.write('\t\t\t<td class="ColumnQuantity">%d</td>\n\t\t</tr>\n' % len(data_list))
+            of.write('\t\t\t<td class="ColumnQuantity">%d</td>\n' % len(data_list))
+            of.write('\t\t</tr>\n')
             
-        of.write('\t</tbody>\n\t</table>\n')
+        of.write('\t</tbody>\n')
+        of.write('\t</table>\n')
         self.display_footer(of,db)
         self.close_file(of)
         return
@@ -1546,10 +1554,11 @@ class IntroductionPage(BasePage):
             note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
             if note_obj.get_format():
-                of.write('\t<pre>\n%s\n\t</pre>\n' % text)
+                of.write('\t<pre>\n%s\n' % text)
+                of.write('\t</pre>\n')
             else:
                 of.write('\t<p>')
-                of.write( u'</p>\n\t<p>'.join(text.split("\n")))
+                of.write(u'</p>\n\t<p>'.join(text.split("\n")))
                 of.write('</p>\n')
 
         self.display_footer(of,db)
@@ -1594,10 +1603,11 @@ class HomePage(BasePage):
             note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
             if note_obj.get_format():
-                of.write('\t<pre>\n%s\n\t</pre>\n' % text)
+                of.write('\t<pre>\n%s\n' % text)
+                of.write('\t</pre>\n')
             else:
                 of.write('\t<p>')
-                of.write( u'</p>\n\t<p>'.join(text.split("\n")))
+                of.write(u'</p>\n\t<p>'.join(text.split("\n")))
                 of.write('</p>\n')
 
         self.display_footer(of,db)
@@ -1632,23 +1642,31 @@ class SourcesPage(BasePage):
                 "database, sorted by their title. Clicking on a source&#8217;s "
                 "title will take you to that source&#8217;s page.")
 
-        of.write('\t<h2>%s</h2>\n\t<p id="description">' % _('Sources'))
+        of.write('\t<h2>%s</h2>\n' % _('Sources'))
+        of.write('\t<p id="description">')
         of.write(msg)
-        of.write('</p>\n\t<table class="infolist sourcelist">\n')
-        of.write('\t<thead>\n\t\t<tr>\n')
+        of.write('</p>\n')
+        of.write('\t<table class="infolist sourcelist">\n')
+        of.write('\t<thead>\n')
+        of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnLabel">&nbsp;</th>\n')
         of.write('\t\t\t<th class="ColumnName">Name</th>\n')
-        of.write('\t\t</tr>\n\t</thead>\n\t<tbody>\n')
+        of.write('\t\t</tr>\n')
+        of.write('\t</thead>\n')
+        of.write('\t<tbody>\n')
         index = 1
         for key in keys:
             (source, handle) = source_dict[key]
-            of.write('\t\t<tr>\n\t\t\t<td class="ColumnRowLabel">%d.</td>\n' % index)
+            of.write('\t\t<tr>\n')
+            of.write('\t\t\t<td class="ColumnRowLabel">%d.</td>\n' % index)
             of.write('\t\t\t<td class="ColumnName"><a ')
             self.source_link(of, handle,source.get_title(),source.gramps_id)
-            of.write('</td>\n\t\t</tr>\n')
+            of.write('</td>\n')
+            of.write('\t\t</tr>\n')
             index += 1
             
-        of.write('\t</tbody>\n\t</table>\n')
+        of.write('\t</tbody>\n')
+        of.write('\t</table>\n')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -1687,11 +1705,13 @@ class SourcePage(BasePage):
                             (_('Publication information'),source.pubinfo),
                             (_('Abbreviation'),source.abbrev)]:
             if val:
-                of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % label)
+                of.write('\t\t\t<tr>\n')
+                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % label)
                 of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % val)
                 of.write('\t\t\t</tr>\n')
 
-        of.write('\t\t</table>\n\t</div>\n\n')
+        of.write('\t\t</table>\n')
+        of.write('\t</div>\n\n')
 
         self.display_additional_images_as_gallery(of, db, media_list)
         self.display_note_list(of, db, source.get_note_list())
@@ -1712,17 +1732,22 @@ class GalleryPage(BasePage):
         of = self.create_file("gallery")
         self.display_header(of,db, _('Gallery'), get_researcher().get_name())
 
-        of.write('\t<h2>%s</h2>\n\n\t<p id="description">' % _('Gallery'))
+        of.write('\t<h2>%s</h2>\n\n' % _('Gallery'))
+        of.write('\t<p id="description">')
 
         of.write(_("This page contains an index of all the media objects "
                    "in the database, sorted by their title. Clicking on "
                    "the title will take you to that media object&#8217;s page."))
-        of.write('</p>\n\n\t<table class="infolist gallerylist">\n')
-        of.write('\t<thead>\n\t\t<tr>\n')
+        of.write('</p>\n\n')
+        of.write('\t<table class="infolist gallerylist">\n')
+        of.write('\t<thead>\n')
+        of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnRowLabel">&nbsp;</th>\n')
         of.write('\t\t\t<th class="ColumnName">Name</th>\n')
         of.write('\t\t\t<th class="ColumnDate">Date</th>\n')
-        of.write('\t\t</tr>\n\t</thead>\n\t<tbody>\n')
+        of.write('\t\t</tr>\n')
+        of.write('\t</thead>\n')
+        of.write('\t<tbody>\n')
         self.db = db
 
         index = 1
@@ -1748,7 +1773,8 @@ class GalleryPage(BasePage):
             of.write('\t\t</tr>\n')
             index += 1
             
-        of.write('\t</tbody>\n\t</table>\n')
+        of.write('\t</tbody>\n')
+        of.write('\t</table>\n')
 
         self.display_footer(of,db)
         self.close_file(of)
@@ -1818,7 +1844,9 @@ class ContactPage(BasePage):
             of.write('\t\t\t<span id="streetaddress">%s</span>\n' % r.addr)
         text = "".join([r.city,r.state,r.postal])
         if text:
-            of.write('\t\t\t<span id="city">%s</span>\n\t\t\t<span id="state">%s</span>\n\t\t\t<span id="postalcode">%s</span>\n' % (r.city,r.state,r.postal))
+            of.write('\t\t\t<span id="city">%s</span>\n' % r.city)
+            of.write('\t\t\t<span id="state">%s</span>\n' % r.state)
+            of.write('\t\t\t<span id="postalcode">%s</span>\n' % r.postal)
         if r.country:
             of.write('\t\t\t<span id="country">%s</span>\n' % r.country)
         if r.email:
@@ -1910,10 +1938,12 @@ class IndividualPage(BasePage):
 
         for attr in attrlist:
             atType = str( attr.get_type() )
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % atType)
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % atType)
             value = attr.get_value()
             value += self.get_citation_links( attr.get_source_references() )
-            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n\t\t\t</tr>\n' % value)
+            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % value)
+            of.write('\t\t\t</tr>\n')
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
 
@@ -2039,42 +2069,50 @@ class IndividualPage(BasePage):
         
         of.write('\t<div id="pedigree" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('Pedigree'))
-        of.write('\t\t<ol class="pedigreegen">\n\t\t\t')
+        of.write('\t\t<ol class="pedigreegen">\n')
+        of.write('\t\t\t')
+
         if father and mother:
-                self.pedigree_person(of,father)
-                of.write('\n\t\t\t\t<ol>\n\t\t\t\t\t')
-                self.pedigree_person(of,mother,True)
-                of.write('\n')
-                of.write('\t\t\t\t\t\t<ol>\n')
-        else:
-            if father:
-                self.pedigree_person(of,father)
-                of.write('\n')
-                of.write('\t\t\t\t<ol>\n')
-            if mother:
-                self.pedigree_person(of,mother,True)
-                of.write('\n')
-                of.write('\t\t\t\t<ol>\n')
+            self.pedigree_person(of,father)
+            of.write('\n')
+            of.write('\t\t\t\t<ol>\n')
+            of.write('\t\t\t\t\t')
+            self.pedigree_person(of,mother,True)
+            of.write('\n')
+            of.write('\t\t\t\t\t\t<ol>\n')
+        elif father:
+            self.pedigree_person(of,father)
+            of.write('\n')
+            of.write('\t\t\t\t<ol>\n')
+        elif mother:
+            self.pedigree_person(of,mother,True)
+            of.write('\n')
+            of.write('\t\t\t\t<ol>\n')
 
         if family:
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.ref
                 if child_handle == self.person.handle:
                     of.write('\t\t\t\t\t\t\t<li class="thisperson">%s\n' % self.name)
-                    of.write('\t\t\t\t\t\t\t\t<ol class="spouselist">\n\t\t\t\t\t\t\t\t\t')
+                    of.write('\t\t\t\t\t\t\t\t<ol class="spouselist">\n')
+                    of.write('\t\t\t\t\t\t\t\t\t')
                     self.pedigree_family(of)
-                    of.write('\t\t\t\t\t\t\t\t</ol>\n\t\t\t\t\t\t\t</li>\n')
+                    of.write('\t\t\t\t\t\t\t\t</ol>\n')
+                    of.write('\t\t\t\t\t\t\t</li>\n')
                 else:
                     of.write('\t\t\t\t\t\t\t')
                     child = self.db.get_person_from_handle(child_handle)
                     self.pedigree_person(of,child)
                     of.write('</li>\n')
-            of.write('\t\t\t\t\t\t</ol>\n\t\t\t\t\t</li>\n')
+            of.write('\t\t\t\t\t\t</ol>\n')
+            of.write('\t\t\t\t\t</li>\n')
         else:
             of.write('<li class="thisperson">%s\n' % self.name)
-            of.write('\t\t\t\t<ol class="spouselist">\n\t\t\t\t\t\t')
+            of.write('\t\t\t\t<ol class="spouselist">\n')
+            of.write('\t\t\t\t\t\t')
             self.pedigree_family(of)
-        of.write('\t\t\t\t</ol>\n\t\t\t</li>\n')
+        of.write('\t\t\t\t</ol>\n')
+        of.write('\t\t\t</li>\n')
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n\n')
 
@@ -2090,7 +2128,8 @@ class IndividualPage(BasePage):
 
         # GRAMPS ID
         if not self.noid:
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('GRAMPS ID'))
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('GRAMPS ID'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % self.person.gramps_id)
             of.write('\t\t\t</tr>\n')
 
@@ -2099,22 +2138,28 @@ class IndividualPage(BasePage):
             pname = _nd.display_name(name)
             pname += self.get_citation_links( name.get_source_references() )
             type = str( name.get_type() )
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _(type))
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _(type))
             of.write('\t\t\t\t<td class="ColumnValue">%s' % pname)
-            of.write('</td>\n\t\t\t</tr>\n')
+            of.write('</td>\n')
+            of.write('\t\t\t</tr>\n')
 
         # Gender
         nick = self.person.get_nick_name()
         if nick:
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Nickname'))
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Nickname'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % nick)
             of.write('\t\t\t</tr>\n')
 
         # Gender
-        of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Gender'))
+        of.write('\t\t\t<tr>\n')
+        of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Gender'))
         gender = self.gender_map[self.person.gender]
         of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % gender)
-        of.write('\t\t\t</tr>\n\t\t</table>\n\t</div>\n\n')
+        of.write('\t\t\t</tr>\n')
+        of.write('\t\t</table>\n')
+        of.write('\t</div>\n\n')
 
     def display_ind_events(self, of):
         evt_ref_list = self.person.get_event_ref_list()
@@ -2132,9 +2177,11 @@ class IndividualPage(BasePage):
                 evt_name = str(event.get_type())
 
                 if event_ref.get_role() == EventRoleType.PRIMARY:
-                    of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % evt_name)
+                    of.write('\t\t\t<tr>\n')
+                    of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % evt_name)
                 else:
-                    of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s (%s)</td>\n' \
+                    of.write('\t\t\t<tr>\n')
+                    of.write('\t\t\t\t<td class="ColumnAttribute">%s (%s)</td>\n' \
                         % (evt_name, event_ref.get_role()))
 
                 of.write('\t\t\t\t<td class="ColumnValue">')
@@ -2159,7 +2206,8 @@ class IndividualPage(BasePage):
             location += self.get_citation_links( addr.get_source_references() )
             date = _dd.display(addr.get_date_object())
 
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % date)
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % date)
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % location)
             of.write('\t\t\t</tr>\n')
 
@@ -2225,7 +2273,9 @@ class IndividualPage(BasePage):
                         mrel = str(child_ref.get_mother_relation())
 
                 if not first:
-                    of.write('\t\t\t<tr>\n\t\t\t\t<td colspan="2">&nbsp;</td>\n\t\t\t</tr>\n')
+                    of.write('\t\t\t<tr>\n')
+                    of.write('\t\t\t\t<td colspan="2">&nbsp;</td>\n')
+                    of.write('\t\t\t</tr>\n')
                 else:
                     first = False
 
@@ -2244,13 +2294,16 @@ class IndividualPage(BasePage):
                 if len(child_ref_list) > 1:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Siblings"))
-                    of.write('\t\t\t\t<td class="ColumnValue">\n\t\t\t\t\t<ol>\n')
+                    of.write('\t\t\t\t<td class="ColumnValue">\n')
+                    of.write('\t\t\t\t\t<ol>\n')
                     for child_ref in child_ref_list:
                         child_handle = child_ref.ref
                         sibling.add(child_handle)   # remember that we've already "seen" this child
                         if child_handle != self.person.handle:
                             self.display_child_link(of,child_handle)
-                    of.write('\t\t\t\t\t</ol>\n\t\t\t\t</td>\n\t\t\t</tr>\n')
+                    of.write('\t\t\t\t\t</ol>\n')
+                    of.write('\t\t\t\t</td>\n')
+                    of.write('\t\t\t</tr>\n')
 
                 # Also try to identify half-siblings
                 other_siblings = set()
@@ -2287,10 +2340,13 @@ class IndividualPage(BasePage):
                 if len(other_siblings) > 0:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Half Siblings"))
-                    of.write('\t\t\t\t<td class="ColumnValue">\n\t\t\t\t\t<ol>\n')
+                    of.write('\t\t\t\t<td class="ColumnValue">\n')
+                    of.write('\t\t\t\t\t<ol>\n')
                     for child_handle in other_siblings:
                         self.display_child_link(of, child_handle)
-                    of.write('\t\t\t\t\t</ol>\n\t\t\t\t</td>\n\t\t\t</tr>\n')
+                    of.write('\t\t\t\t\t</ol>\n')
+                    of.write('\t\t\t\t</td>\n')
+                    of.write('\t\t\t</tr>\n')
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
 
@@ -2310,12 +2366,16 @@ class IndividualPage(BasePage):
             first = False
             childlist = family.get_child_ref_list()
             if childlist:
-                of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
+                of.write('\t\t\t<tr>\n')
+                of.write('\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
                 of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Children"))
-                of.write('\t\t\t\t<td class="ColumnValue">\n\t\t\t\t\t<ol>\n')
+                of.write('\t\t\t\t<td class="ColumnValue">\n')
+                of.write('\t\t\t\t\t<ol>\n')
                 for child_ref in childlist:
                     self.display_child_link(of,child_ref.ref)
-                of.write('\t\t\t\t\t</ol>\n\t\t\t\t</td>\n\t\t\t</tr>\n')
+                of.write('\t\t\t\t\t</ol>\n')
+                of.write('\t\t\t\t</td>\n')
+                of.write('\t\t\t</tr>\n')
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
 
@@ -2340,7 +2400,8 @@ class IndividualPage(BasePage):
         else:
             name = _("unknown")
         rtype = str(family.get_relationship())
-        of.write('\t\t\t<tr class="BeginFamily">\n\t\t\t\t<td class="ColumnType">%s</td>\n' % rtype)
+        of.write('\t\t\t<tr class="BeginFamily">\n')
+        of.write('\t\t\t\t<td class="ColumnType">%s</td>\n' % rtype)
         of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % relstr)
         of.write('\t\t\t\t<td class="ColumnValue">')
         if spouse_id:
@@ -2353,21 +2414,26 @@ class IndividualPage(BasePage):
                 self.person_link(of, fname, spouse_name, gid)
             else:
                 of.write(name)
-        of.write('</td>\n\t\t\t</tr>\n')
+        of.write('</td>\n')
+        of.write('\t\t\t</tr>\n')
         
         for event_ref in family.get_event_ref_list():
             event = self.db.get_event_from_handle(event_ref.ref)
             evtType = str(event.get_type())
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
             of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % evtType)
             of.write('\t\t\t\t<td class="ColumnValue">')
             of.write(self.format_event(event, event_ref))
-            of.write('</td>\n\t\t\t</tr>\n')
+            of.write('</td>\n')
+            of.write('\t\t\t</tr>\n')
         for attr in family.get_attribute_list():
             attrType = str(attr.get_type())
-            of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
             of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>' % attrType)
-            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n\t\t\t</tr>\n' % attr.get_value())
+            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % attr.get_value())
+            of.write('\t\t\t</tr>\n')
         notelist = family.get_note_list()
         for notehandle in notelist:
             nobj = self.db.get_note_from_handle(notehandle)
@@ -2375,29 +2441,32 @@ class IndividualPage(BasePage):
                 text = nobj.get(markup=True)
                 format = nobj.get_format()
                 if text:
-                    of.write('\t\t\t<tr>\n\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
+                    of.write('\t\t\t<tr>\n')
+                    of.write('\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Narrative'))
-                    of.write('\t\t\t\t<td class="ColumnValue">\n\t\t\t\t\t<p>')
+                    of.write('\t\t\t\t<td class="ColumnValue">\n')
+                    of.write('\t\t\t\t\t<p>')
                     if format:
-                        of.write( u"<pre>%s</pre>" % text )
+                        of.write(u"<pre>%s</pre>" % text )
                     else:
-                        of.write( u"</p>\n\t\t\t\t\t<p>".join(text.split("\n")))
-                    of.write('</p>\n\t\t\t\t</td>\n\t\t\t</tr>\n')
-            
-    def pedigree_person(self, of,person,is_spouse=False):
-        person_link = person.handle in self.ind_list
+                        of.write(u"</p>\n\t\t\t\t\t<p>".join(text.split("\n")))
+                    of.write('</p>\n')
+                    of.write('\t\t\t\t</td>\n')
+                    of.write('\t\t\t</tr>\n')
+
+    def pedigree_person(self, of, person, is_spouse=False):
         if is_spouse:
             of.write('<li class="spouse">')
         else:
             of.write('<li>')
+        person_link = person.handle in self.ind_list
+        person_name = _nd.display(person)
         if person_link:
-            person_name = _nd.display(person)
-            path = self.build_path(person.handle,"ppl",False)
-            fname = self.build_name(path,person.handle)
+            path = self.build_path(person.handle, "ppl", False)
+            fname = self.build_name(path, person.handle)
             self.person_link(of, fname, person_name)
         else:
-            of.write('<li>')
-            of.write(_nd.display(person))
+            of.write(person_name)
 
     def pedigree_family(self, of):
         for family_handle in self.person.get_family_handle_list():
@@ -2408,7 +2477,8 @@ class IndividualPage(BasePage):
                 self.pedigree_person(of,spouse,True)
             childlist = rel_family.get_child_ref_list()
             if childlist:
-                of.write('\n\t\t\t\t\t\t\t\t\t\t<ol>\n')
+                of.write('\n')
+                of.write('\t\t\t\t\t\t\t\t\t\t<ol>\n')
                 for child_ref in childlist:
                     of.write('\t\t\t\t\t\t\t\t\t\t\t')
                     child = self.db.get_person_from_handle(child_ref.ref)
@@ -2641,37 +2711,21 @@ class NavWebReport(Report):
             self.write_css(archive,self.target_path,self.css)
 
         # Copy Mainz Style Images
-        from_path = os.path.join(const.IMAGE_DIR,"NWeb_Mainz_Bkgd.png")
-        to_path = os.path.join("images","NWeb_Mainz_Bkgd.png")
-        self.store_file(archive,self.target_path,from_path,to_path)
-
-        from_path = os.path.join(const.IMAGE_DIR,"NWeb_Mainz_Header.png")
-        to_path = os.path.join("images","NWeb_Mainz_Header.png")
-        self.store_file(archive,self.target_path,from_path,to_path)
-
-        from_path = os.path.join(const.IMAGE_DIR,"NWeb_Mainz_Mid.png")
-        to_path = os.path.join("images","NWeb_Mainz_Mid.png")
-        self.store_file(archive,self.target_path,from_path,to_path)
-
-        from_path = os.path.join(const.IMAGE_DIR,"NWeb_Mainz_MidLight.png")
-        to_path = os.path.join("images","NWeb_Mainz_MidLight.png")
-        self.store_file(archive,self.target_path,from_path,to_path)
-
+        imgs = ["NWeb_Mainz_Bkgd.png",
+                "NWeb_Mainz_Header.png",
+                "NWeb_Mainz_Mid.png",
+                "NWeb_Mainz_MidLight.png",
+                "document.png",
+                "favicon.ico"]
         # Copy the Creative Commons icon if the a Creative Commons
         # license is requested
         if 0 < self.copyright < 7:
-            from_path = os.path.join(const.IMAGE_DIR,"somerights20.gif")
-            to_path = os.path.join("images","somerights20.gif")
-            self.store_file(archive,self.target_path,from_path,to_path)
+            imgs += ["somerights20.gif"]
 
-        from_path = os.path.join(const.IMAGE_DIR,"document.png")
-        to_path = os.path.join("images","document.png")
-        self.store_file(archive,self.target_path,from_path,to_path)
-
-        # Copy GRAMPS favicon.ico to images directory
-        from_path = os.path.join(const.IMAGE_DIR,"favicon.ico")
-        to_path = os.path.join("images","favicon.ico")
-        self.store_file(archive,self.target_path,from_path,to_path)
+        for f in imgs:
+            from_path = os.path.join(const.IMAGE_DIR, f)
+            to_path = os.path.join("images", f)
+            self.store_file(archive, self.target_path, from_path, to_path)
 
         place_list = {}
         source_list = {}
