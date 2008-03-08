@@ -176,9 +176,6 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         """
         Closes the detached GrampletWindow.
         """
-        self.gramplet.gvclose.show()
-        self.gramplet.gvstate.show()
-        self.gramplet.gvproperties.show()
         self.gramplet.gvoptions.hide()
         self.gramplet.viewpage.detached_gramplets.remove(self.gramplet)
         self.gramplet.state = "maximized"
@@ -189,6 +186,9 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
                                                fill,
                                                padding,
                                                pack)
+        self.gramplet.gvclose.show()
+        self.gramplet.gvstate.show()
+        self.gramplet.gvproperties.show()
         ManagedWindow.ManagedWindow.close(self, *args)
 
 #------------------------------------------------------------------------

@@ -1,6 +1,10 @@
+2008-03-08  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/DataViews/GrampletView.py (GrampletWindow.close): 
+	Fixed issue exhibited on Windows with buttons becoming dead
+
 2008-03-07 Peter Landgren <peter.talken@telia.com>
 	* src/plgins/NotRelated.py: Issue #1795 author information update
-    * src/plgins/rel_sv.py: Fixed issues #1881 and 1910
+	* src/plgins/rel_sv.py: Fixed issues #1881 and 1910
 
 2008-03-05 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/data/Makefile.am: add new css files and delete old ones.
