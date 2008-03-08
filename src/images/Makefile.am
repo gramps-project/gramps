@@ -67,13 +67,13 @@ dist_pkgdata_DATA = \
 	stock_link.png\
 	stock_notes.png\
 	somerights20.gif \
-	document.png \
+	document.png\
 	image-missing.png\
 	favicon.ico\
-    NWeb_Mainz_Bkgd.png\
-    NWeb_Mainz_Header.png\
-    NWeb_Mainz_MidLight.png\
-    NWeb_Mainz_Mid.png
+	NWeb_Mainz_Bkgd.png\
+	NWeb_Mainz_Header.png\
+	NWeb_Mainz_MidLight.png\
+	NWeb_Mainz_Mid.png
 
 EXTRA_DIST = gramps.svg 
 
