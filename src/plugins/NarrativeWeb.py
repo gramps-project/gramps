@@ -2986,7 +2986,7 @@ class NavWebOptions(MenuReportOptions):
         encoding.set_help( _("The encoding to be used for the web files"))
         menu.add_option(category_name, "encoding", encoding)
         
-        css = EnumeratedListOption(_('Stylesheet'), 'main1.css' )
+        css = EnumeratedListOption(_('Stylesheet'), _CSS_FILES[0][1])
         for style in _CSS_FILES:
             css.add_item(style[1], style[0])
         css.set_help( _("The style sheet to be used for the web page"))
