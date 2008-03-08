@@ -1,5 +1,6 @@
 2008-03-08  Douglas S. Blank  <dblank@saliva.brynmawr.edu>
 	* src/DataViews/GrampletView.py (GrampletWindow.close): 
+	fixed issue with reattaching detached gramplet after a col change
 
 2008-03-08  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/DataViews/GrampletView.py (GrampletWindow.close): 
