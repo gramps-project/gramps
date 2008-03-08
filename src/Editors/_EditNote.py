@@ -37,7 +37,7 @@ log = logging.getLogger(".")
 import gtk
 from gtk import glade
 import gobject
-from pango import UNDERLINE_SINGLE
+import pango
 
 #-------------------------------------------------------------------------
 #
@@ -61,16 +61,16 @@ from QuestionDialog import ErrorDialog
 # Constants
 #
 #-------------------------------------------------------------------------
-USERCHARS = "-A-Za-z0-9"
-PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
-HOSTCHARS = "-A-Za-z0-9"
-PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
-#SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
-SCHEME = "(file:/|https?:|ftps?:|webcal:)"
-USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
-URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
-
-(GENERAL, HTTP, MAIL) = range(3)
+#USERCHARS = "-A-Za-z0-9"
+#PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
+#HOSTCHARS = "-A-Za-z0-9"
+#PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
+##SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+#SCHEME = "(file:/|https?:|ftps?:|webcal:)"
+#USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
+#URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
+#
+#(GENERAL, HTTP, MAIL) = range(3)
 
 
 
@@ -267,53 +267,102 @@ class EditNote(EditPrimary):
         
         self._setup_notebook_tabs( notebook)
 
-    def build_interface(self):
-        FORMAT_TOOLBAR = '''
-        <ui>
-        <toolbar name="ToolBar">
-          <toolitem action="italic"/>  
-          <toolitem action="bold"/>  
-          <toolitem action="underline"/>
-          <separator/>
-          <toolitem action="font"/>
-          <toolitem action="foreground"/>
-          <toolitem action="background"/>
-          <separator/>
-          <toolitem action="clear"/>
-        </toolbar>
-        </ui>
-        '''
+# THIS IS THE MARKUP VERSION - enable for markup
+#    def build_interface(self):
+#        FORMAT_TOOLBAR = '''
+#        <ui>
+#        <toolbar name="ToolBar">
+#          <toolitem action="italic"/>  
+#          <toolitem action="bold"/>  
+#          <toolitem action="underline"/>
+#          <separator/>
+#          <toolitem action="font"/>
+#          <toolitem action="foreground"/>
+#          <toolitem action="background"/>
+#          <separator/>
+#          <toolitem action="clear"/>
+#        </toolbar>
+#        </ui>
+#        '''
+#
+#        buffer_ = MarkupText.MarkupBuffer()
+#        buffer_.create_tag('hyperlink',
+#                          underline=pango.UNDERLINE_SINGLE,
+#                          foreground='blue')
+#        buffer_.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
+#                         ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", HTTP)
+#        buffer_.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
+#                         "(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
+#        buffer_.match_add(SCHEME + "//(" + USER + "@)?[" + HOSTCHARS + ".]+" +
+#                             "(:[0-9]+)?(" + URLPATH + ")?/?", GENERAL)
+#        self.match = None
+#        self.last_match = None
+#
+#        self.text = self.top.get_widget('text')
+#        self.text.set_editable(not self.dbstate.db.readonly)
+#        self.text.set_buffer(buffer_)
+#        self.text.connect('key-press-event',
+#                          self.on_textview_key_press_event)
+#        self.text.connect('insert-at-cursor',
+#                          self.on_textview_insert_at_cursor)
+#        self.text.connect('delete-from-cursor',
+#                          self.on_textview_delete_from_cursor)
+#        self.text.connect('paste-clipboard',
+#                          self.on_textview_paste_clipboard)
+#        self.text.connect('motion-notify-event',
+#                          self.on_textview_motion_notify_event)
+#        self.text.connect('button-press-event',
+#                          self.on_textview_button_press_event)
+#        self.text.connect('populate-popup',
+#                          self.on_textview_populate_popup)
+#        
+#        # setup spell checking interface
+#        spellcheck = Spell.Spell(self.text)
+#        liststore = gtk.ListStore(gobject.TYPE_STRING)
+#        cell = gtk.CellRendererText()
+#        lang_selector = self.top.get_widget('spell')
+#        lang_selector.set_model(liststore)
+#        lang_selector.pack_start(cell, True)
+#        lang_selector.add_attribute(cell, 'text', 0)
+#        act_lang = spellcheck.get_active_language()
+#        idx = 0
+#        for lang in spellcheck.get_all_languages():
+#            lang_selector.append_text(lang)
+#            if lang == act_lang:
+#                act_idx = idx
+#            idx = idx + 1
+#        lang_selector.set_active(act_idx)
+#        lang_selector.connect('changed', self.on_spell_change, spellcheck)
+#        #lang_selector.set_sensitive(Config.get(Config.SPELLCHECK))
+#
+#        # create a formatting toolbar
+#        if not self.dbstate.db.readonly:
+#            uimanager = gtk.UIManager()
+#            uimanager.insert_action_group(buffer_.format_action_group, 0)
+#            uimanager.add_ui_from_string(FORMAT_TOOLBAR)
+#            uimanager.ensure_update()
+#
+#            toolbar = uimanager.get_widget('/ToolBar')      
+#            toolbar.set_style(gtk.TOOLBAR_ICONS)
+#            vbox = self.top.get_widget('container')
+#            vbox.pack_start(toolbar)
+#                
+#        # setup initial values for textview and buffer_
+#        if self.obj:
+#            self.empty = False
+#            self.flow_changed(self.obj.get_format())
+#            buffer_.set_text(self.obj.get(markup=True))
+#            log.debug("Initial Note: %s" % buffer_.get_text())
+#        else:
+#            self.empty = True
 
-        buffer_ = MarkupText.MarkupBuffer()
-        buffer_.create_tag('hyperlink',
-                          underline=UNDERLINE_SINGLE,
-                          foreground='blue')
-        buffer_.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
-                         ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", HTTP)
-        buffer_.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
-                         "(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
-        buffer_.match_add(SCHEME + "//(" + USER + "@)?[" + HOSTCHARS + ".]+" +
-                             "(:[0-9]+)?(" + URLPATH + ")?/?", GENERAL)
-        self.match = None
-        self.last_match = None
+# NON-MARKUP VERSION - Disable for markup
+    def build_interface(self):
+        buffer_ = gtk.TextBuffer()
 
         self.text = self.top.get_widget('text')
         self.text.set_editable(not self.dbstate.db.readonly)
         self.text.set_buffer(buffer_)
-        self.text.connect('key-press-event',
-                          self.on_textview_key_press_event)
-        self.text.connect('insert-at-cursor',
-                          self.on_textview_insert_at_cursor)
-        self.text.connect('delete-from-cursor',
-                          self.on_textview_delete_from_cursor)
-        self.text.connect('paste-clipboard',
-                          self.on_textview_paste_clipboard)
-        self.text.connect('motion-notify-event',
-                          self.on_textview_motion_notify_event)
-        self.text.connect('button-press-event',
-                          self.on_textview_button_press_event)
-        self.text.connect('populate-popup',
-                          self.on_textview_populate_popup)
         
         # setup spell checking interface
         spellcheck = Spell.Spell(self.text)
@@ -333,25 +382,12 @@ class EditNote(EditPrimary):
         lang_selector.set_active(act_idx)
         lang_selector.connect('changed', self.on_spell_change, spellcheck)
         #lang_selector.set_sensitive(Config.get(Config.SPELLCHECK))
-
-        # create a formatting toolbar
-        if not self.dbstate.db.readonly:
-            uimanager = gtk.UIManager()
-            uimanager.insert_action_group(buffer_.format_action_group, 0)
-            uimanager.add_ui_from_string(FORMAT_TOOLBAR)
-            uimanager.ensure_update()
-
-            toolbar = uimanager.get_widget('/ToolBar')      
-            toolbar.set_style(gtk.TOOLBAR_ICONS)
-            vbox = self.top.get_widget('container')
-            vbox.pack_start(toolbar)
                 
         # setup initial values for textview and buffer_
         if self.obj:
             self.empty = False
             self.flow_changed(self.obj.get_format())
             buffer_.set_text(self.obj.get(markup=True))
-            log.debug("Initial Note: %s" % buffer_.get_text())
         else:
             self.empty = True
             
@@ -365,108 +401,110 @@ class EditNote(EditPrimary):
     def _post_init(self):
         self.text.grab_focus()
 
-    def on_textview_key_press_event(self, textview, event):
-        """Handle shortcuts in the TextView."""
-        return textview.get_buffer().on_key_press_event(textview, event)
-    
-    def on_textview_insert_at_cursor(self, textview, string):
-        log.debug("Textview insert '%s'" % string)
-        
-    def on_textview_delete_from_cursor(self, textview, type, count):
-        log.debug("Textview delete type %d count %d" % (type, count))
-        
-    def on_textview_paste_clipboard(self, textview):
-        log.debug("Textview paste clipboard")
-    
-    def on_textview_motion_notify_event(self, textview, event):
-        window = textview.get_window(gtk.TEXT_WINDOW_TEXT)
-        x, y = textview.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
-                                                int(event.x), int(event.y))
-        iter = textview.get_iter_at_location(x, y)
-        buffer_ = textview.get_buffer()
-        self.match = buffer_.match_check(iter.get_offset())
-        
-        if self.match != self.last_match:
-            start, end = buffer_.get_bounds()
-            buffer_.remove_tag_by_name('hyperlink', start, end)
-            if self.match:
-                start_offset = self.match[MarkupText.MATCH_START]
-                end_offset = self.match[MarkupText.MATCH_END]
-                
-                start = buffer_.get_iter_at_offset(start_offset)
-                end = buffer_.get_iter_at_offset(end_offset)
-
-                buffer_.apply_tag_by_name('hyperlink', start, end)
-                window.set_cursor(self.hand_cursor)
-            else:
-                window.set_cursor(self.regular_cursor)
-
-        self.last_match = self.match
-        
-        textview.window.get_pointer()
-        return False
-
-    def on_textview_button_press_event(self, textview, event):
-        if ((event.type == gtk.gdk.BUTTON_PRESS) and
-            (event.button == 1) and
-            (event.state and gtk.gdk.CONTROL_MASK) and
-            (self.match)):
-            
-            flavor = self.match[MarkupText.MATCH_FLAVOR]
-            url = self.match[MarkupText.MATCH_STRING]
-            self.open_url_cb(None, url, flavor)
-            
-        return False
-        
-    def on_textview_populate_popup(self, textview, menu):
-        """Insert extra menuitems according to matched pattern."""
-        if self.match:
-            flavor = self.match[MarkupText.MATCH_FLAVOR]
-            url = self.match[MarkupText.MATCH_STRING]
-            
-            if flavor == MAIL:
-                open_menu = gtk.MenuItem(_('_Send Mail To...'))
-                copy_menu = gtk.MenuItem(_('Copy _E-mail Address'))
-            else:
-                open_menu = gtk.MenuItem(_('_Open Link'))
-                copy_menu = gtk.MenuItem(_('Copy _Link Address'))
-
-            copy_menu.connect('activate', self.copy_url_cb, url, flavor)
-            copy_menu.show()
-            menu.prepend(copy_menu)
-            
-            open_menu.connect('activate', self.open_url_cb, url, flavor)
-            open_menu.show()
-            menu.prepend(open_menu)
+# enable for markup
+#    def on_textview_key_press_event(self, textview, event):
+#        """Handle shortcuts in the TextView."""
+#        return textview.get_buffer().on_key_press_event(textview, event)
+#    
+#    def on_textview_insert_at_cursor(self, textview, string):
+#        log.debug("Textview insert '%s'" % string)
+#        
+#    def on_textview_delete_from_cursor(self, textview, type, count):
+#        log.debug("Textview delete type %d count %d" % (type, count))
+#        
+#    def on_textview_paste_clipboard(self, textview):
+#        log.debug("Textview paste clipboard")
+#    
+#    def on_textview_motion_notify_event(self, textview, event):
+#        window = textview.get_window(gtk.TEXT_WINDOW_TEXT)
+#        x, y = textview.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+#                                                int(event.x), int(event.y))
+#        iter = textview.get_iter_at_location(x, y)
+#        buffer_ = textview.get_buffer()
+#        self.match = buffer_.match_check(iter.get_offset())
+#        
+#        if self.match != self.last_match:
+#            start, end = buffer_.get_bounds()
+#            buffer_.remove_tag_by_name('hyperlink', start, end)
+#            if self.match:
+#                start_offset = self.match[MarkupText.MATCH_START]
+#                end_offset = self.match[MarkupText.MATCH_END]
+#                
+#                start = buffer_.get_iter_at_offset(start_offset)
+#                end = buffer_.get_iter_at_offset(end_offset)
+#
+#                buffer_.apply_tag_by_name('hyperlink', start, end)
+#                window.set_cursor(self.hand_cursor)
+#            else:
+#                window.set_cursor(self.regular_cursor)
+#
+#        self.last_match = self.match
+#        
+#        textview.window.get_pointer()
+#        return False
+#
+#    def on_textview_button_press_event(self, textview, event):
+#        if ((event.type == gtk.gdk.BUTTON_PRESS) and
+#            (event.button == 1) and
+#            (event.state and gtk.gdk.CONTROL_MASK) and
+#            (self.match)):
+#            
+#            flavor = self.match[MarkupText.MATCH_FLAVOR]
+#            url = self.match[MarkupText.MATCH_STRING]
+#            self.open_url_cb(None, url, flavor)
+#            
+#        return False
+#        
+#    def on_textview_populate_popup(self, textview, menu):
+#        """Insert extra menuitems according to matched pattern."""
+#        if self.match:
+#            flavor = self.match[MarkupText.MATCH_FLAVOR]
+#            url = self.match[MarkupText.MATCH_STRING]
+#            
+#            if flavor == MAIL:
+#                open_menu = gtk.MenuItem(_('_Send Mail To...'))
+#                copy_menu = gtk.MenuItem(_('Copy _E-mail Address'))
+#            else:
+#                open_menu = gtk.MenuItem(_('_Open Link'))
+#                copy_menu = gtk.MenuItem(_('Copy _Link Address'))
+#
+#            copy_menu.connect('activate', self.copy_url_cb, url, flavor)
+#            copy_menu.show()
+#            menu.prepend(copy_menu)
+#            
+#            open_menu.connect('activate', self.open_url_cb, url, flavor)
+#            open_menu.show()
+#            menu.prepend(open_menu)
 
     def on_spell_change(self, combobox, spell):
         """Set spell checker language according to user selection."""
         lang = combobox.get_active_text()
         spell.set_active_language(lang)
-        
-    def open_url_cb(self, menuitem, url, flavor):
-        if not url:
-            return
-        
-        if flavor == HTTP:
-            url = 'http:' + url
-        elif flavor == MAIL:
-            if not url.startswith('mailto:'):
-                url = 'mailto:' + url
-        elif flavor == GENERAL:
-            pass
-        else:
-            return
-        
-        GrampsDisplay.url(url)
-    
-    def copy_url_cb(self, menuitem, url, flavor):
-        """Copy url to both useful selections."""
-        clipboard = gtk.Clipboard(selection="CLIPBOARD")
-        clipboard.set_text(url)
-        
-        clipboard = gtk.Clipboard(selection="PRIMARY")
-        clipboard.set_text(url)
+
+# enable for markup
+#    def open_url_cb(self, menuitem, url, flavor):
+#        if not url:
+#            return
+#        
+#        if flavor == HTTP:
+#            url = 'http:' + url
+#        elif flavor == MAIL:
+#            if not url.startswith('mailto:'):
+#                url = 'mailto:' + url
+#        elif flavor == GENERAL:
+#            pass
+#        else:
+#            return
+#        
+#        GrampsDisplay.url(url)
+#    
+#    def copy_url_cb(self, menuitem, url, flavor):
+#        """Copy url to both useful selections."""
+#        clipboard = gtk.Clipboard(selection="CLIPBOARD")
+#        clipboard.set_text(url)
+#        
+#        clipboard = gtk.Clipboard(selection="PRIMARY")
+#        clipboard.set_text(url)
     
     def update_note(self):
         """Update the Note object with current value."""
@@ -479,9 +517,13 @@ class EditNote(EditPrimary):
 
     def flow_changed(self, active):
         if active:
+            # Set the text style to monospace
             self.text.set_wrap_mode(gtk.WRAP_NONE)
+            self.text.modify_font(pango.FontDescription("monospace"))
         else:
+            # Set the text style to normal
             self.text.set_wrap_mode(gtk.WRAP_WORD)
+            self.text.modify_font(pango.FontDescription("normal"))
 
     def save(self, *obj):
         """Save the data."""

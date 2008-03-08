@@ -41,7 +41,7 @@ from gen.lib.primaryobj import BasicPrimaryObject
 from gen.lib.notetype import NoteType
 from gen.lib.markertype import MarkerType
 
-ROOT_START_TAG = '<gramps>'
+#ROOT_START_TAG = '<gramps>'
 
 #-------------------------------------------------------------------------
 #
@@ -96,7 +96,7 @@ class Note(BasicPrimaryObject):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.delete_tags(self.text)]
+        return [self.text]
 
     def set(self, text):
         """
@@ -117,29 +117,29 @@ class Note(BasicPrimaryObject):
         @rtype: str
         """
         text = self.text
-
-        if not markup and text.startswith(ROOT_START_TAG):
-            text = self.delete_tags(text)
+#
+#        if not markup and text.startswith(ROOT_START_TAG):
+#            text = self.delete_tags(text)
         
         return text
-            
-    def delete_tags(self, markup_text):
-        """
-        Create a plain text version of the note text by removing all pango 
-        markup tags.
-
-        @param markup_text: Pango style markup text
-        @type markup_text: str
-        @return: Plain text
-        @rtype: str
-        """
-        text = re.sub(r'(<.*?>)', '', markup_text)
-        
-        text = text.replace('&amp;', '&')
-        text = text.replace('&lt;', '<')
-        text = text.replace('&gt;', '>')
-        
-        return text
+#            
+#    def delete_tags(self, markup_text):
+#        """
+#        Create a plain text version of the note text by removing all pango 
+#        markup tags.
+#
+#        @param markup_text: Pango style markup text
+#        @type markup_text: str
+#        @return: Plain text
+#        @rtype: str
+#        """
+#        text = re.sub(r'(<.*?>)', '', markup_text)
+#        
+#        text = text.replace('&amp;', '&')
+#        text = text.replace('&lt;', '<')
+#        text = text.replace('&gt;', '>')
+#        
+#        return text
 
     def append(self, text):
         """

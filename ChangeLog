@@ -1,3 +1,12 @@
+2008-03-08 Brian Matherly <brian@gramps-project.org>
+	* src/gen/lib/note.py:
+	* src/Editors/_EditNote.py:
+	* src/DisplayModels/_NoteModel.py:
+	0001863: <gramps> tags in notes, consistency. This should be in all 
+	notes or only in the ones that have markup
+	Markup has been disabled for notes. A new strategy is being worked
+	on to allow styles for notes.
+
 2008-03-08  Douglas S. Blank  <dblank@saliva.brynmawr.edu>
 	* src/DataViews/GrampletView.py (GrampletWindow.close): 
 	fixed issue with reattaching detached gramplet after a col change

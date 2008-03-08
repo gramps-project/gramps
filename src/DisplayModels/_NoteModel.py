@@ -100,11 +100,6 @@ class NoteModel(BaseModel):
         #data is the encoding in the database, make it a unicode object
         #for universal work
         note = " ".join(unicode(data[2]).split())
-        note = re.sub(r'(<.*?>)', '', note)
-        note = note.replace('&amp;', '&')
-        note = note.replace('&lt;', '<')
-        note = note.replace('&gt;', '>')
-
         if len(note) > 80:
             return note[:80]+"..."
         else:
