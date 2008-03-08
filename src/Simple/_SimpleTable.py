@@ -82,6 +82,7 @@ class SimpleTable:
         index = store.get_value(node, 0) # index
         if self.__callback_leftdouble:
             self.__callback_leftdouble(store.get_value(node, 1))
+            return True
         elif self.__link[index]:
             objclass, handle = self.__link[index]
             if objclass == 'Person':
@@ -143,7 +144,10 @@ class SimpleTable:
         if not node:
             return
         index = store.get_value(node, 0) # index
-        if self.__link[index]:
+        if self.__callback_leftclick:
+            self.__callback_leftclick(store.get_value(node, 1))
+            return True
+        elif self.__link[index]:
             objclass, handle = self.__link[index]
             if objclass == 'Person':
                 person = self.access.dbase.get_person_from_handle(handle)
