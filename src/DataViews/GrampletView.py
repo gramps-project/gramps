@@ -179,13 +179,14 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.gramplet.gvoptions.hide()
         self.gramplet.viewpage.detached_gramplets.remove(self.gramplet)
         self.gramplet.state = "maximized"
-        self.gramplet.mainframe.reparent(self.gramplet.parent)
-        expand,fill,padding,pack =  self.gramplet.parent.query_child_packing(self.gramplet.mainframe)
-        self.gramplet.parent.set_child_packing(self.gramplet.mainframe,
-                                               self.gramplet.expand,
-                                               fill,
-                                               padding,
-                                               pack)
+        parent = self.gramplet.viewpage.get_column_frame(self.gramplet.column)
+        self.gramplet.mainframe.reparent(parent)
+        expand,fill,padding,pack =  parent.query_child_packing(self.gramplet.mainframe)
+        parent.set_child_packing(self.gramplet.mainframe,
+                                 self.gramplet.expand,
+                                 fill,
+                                 padding,
+                                 pack)
         self.gramplet.gvclose.show()
         self.gramplet.gvstate.show()
         self.gramplet.gvproperties.show()
@@ -525,8 +526,6 @@ class GuiGramplet:
         self.gvproperties.hide()
         if self.pui and len(self.pui.option_dict) > 0:
             self.gvoptions.show()
-        # keep a pointer to old parent frame:
-        self.parent = self.mainframe.get_parent()
         self.viewpage.detached_gramplets.append(self)
         # make a window, and attach it there
         self.detached_window = GrampletWindow(self)
@@ -764,17 +763,25 @@ class GrampletView(PageView.PersonNavView):
         self.place_gramplets()
         return frame
 
+    def get_column_frame(self, column_num):
+        if column_num < len(self.columns):
+            return self.columns[column_num]
+        else:
+            return self.columns[-1] # it was too big, so select largest
+
     def clear_gramplets(self):
         """
         Detach all of the mainframe gramplets from the columns.
         """
         gramplets = [g for g in self.gramplet_map.values() if g != None]
         for gramplet in gramplets:
+            if (gramplet.state == "windowed" or gramplet.state == "closed"):
+                continue
             column = gramplet.mainframe.get_parent()
             if column:
                 column.remove(gramplet.mainframe)
 
-    def place_gramplets(self):
+    def place_gramplets(self, recolumn=False):
         """
         Place the gramplet mainframes in the columns.
         """
@@ -791,8 +798,10 @@ class GrampletView(PageView.PersonNavView):
             else:
                 # else, spread them out:
                 pos = cnt % self.column_count
-            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
             gramplet.column = pos
+            if recolumn and (gramplet.state == "windowed" or gramplet.state == "closed"):
+                continue
+            self.columns[pos].pack_start(gramplet.mainframe, expand=gramplet.expand)
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             # Can't minimize here, because GRAMPS calls show_all later:
@@ -1027,7 +1036,7 @@ class GrampletView(PageView.PersonNavView):
             self.columns[-1].show()
             self.hbox.pack_start(self.columns[-1],expand=True)
         # place the gramplets back in the new columns
-        self.place_gramplets()
+        self.place_gramplets(recolumn=True)
         self.widget.show()
 
     def restore_gramplet(self, obj):
