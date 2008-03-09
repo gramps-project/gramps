@@ -1,3 +1,7 @@
+2008-03-09  Benny Malengier <benny.malengier@gramps-project.org>
+	* src/gen/db/base.py: add docstring to find functions, #1866
+	* src/gen/db/dbdir.py: add docstring to find functions, #1866
+
 2008-03-08 Brian Matherly <brian@gramps-project.org>
 	* src/docgen/PdfDoc.py: 
 	0001917: UI font gets small when creating PDF documents.

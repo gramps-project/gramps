@@ -1493,6 +1493,15 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         return None
 
     def find_from_handle(self, handle, transaction, class_type, dmap, add_func):
+        """
+        Find a object of class_type in the database from the passed handle.
+        
+        If no object exists, a new object is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
+        """
         obj = class_type()
         handle = str(handle)
         new = True
