@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Zsolt Foldvari
+# Copyright (C) 2007 Zsolt Foldvari
+# Copyright (C) 2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,6 +92,7 @@ class PdfDoc(CairoDoc):
         cr = pangocairo.CairoContext(cairo.Context(surface))
 
         fontmap = pangocairo.cairo_font_map_get_default()
+        saved_resolution = fontmap.get_resolution()
         fontmap.set_resolution(DPI)
         
         pango_context = fontmap.create_context()
@@ -117,6 +119,10 @@ class PdfDoc(CairoDoc):
             
         # close the surface (file)
         surface.finish()
+        
+        # Restore the resolution. On windows, Gramps UI fonts will be smaller
+        # if we don't restore the resolution.
+        fontmap.set_resolution(saved_resolution)
 
         # load the result into an external viewer
         if self.print_req:
