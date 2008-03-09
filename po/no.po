@@ -1,21 +1,22 @@
+# translation of nb.po to Norsk Bokmål
 # translation of nb.po to
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
 #
-# Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005, 2006.
+#: ../src/ReportBase/_ReportUtils.py:530
+# Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004, 2005, 2006, 2008.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
 # Espen Berg <espenbe@gmail.com>, 2006, 2007.
-#: ../src/ReportBase/_ReportUtils.py:530
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-29 22:21+0100\n"
-"PO-Revision-Date: 2008-03-06 09:20+0100\n"
-"Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"PO-Revision-Date: 2008-03-09 13:01+0100\n"
+"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
+"Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1637,8 +1638,9 @@ msgid "Export View..."
 msgstr "Eksporter visningsresultat..."
 
 #: ../src/PageView.py:937 ../src/DataViews/PersonView.py:147
+#, fuzzy
 msgid "action|_Edit..."
-msgstr ""
+msgstr "aksjon|Rediger..."
 
 #: ../src/PageView.py:942
 msgid "_Filter"
@@ -1980,8 +1982,9 @@ msgid "Source Reference"
 msgstr "Kildehenvisning"
 
 #: ../src/ScratchPad.py:485
+#, fuzzy
 msgid "not available|NA"
-msgstr ""
+msgstr "Utilgjengelig"
 
 #: ../src/ScratchPad.py:491
 #, python-format
@@ -4061,24 +4064,29 @@ msgid "Move Down"
 msgstr "Flytt ned"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
+#, fuzzy
 msgid "Create and add a new data entry"
-msgstr ""
+msgstr "Opprett og legg til et nytt datafelt"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:50
+#, fuzzy
 msgid "Remove the existing data entry"
-msgstr ""
+msgstr "Fjern eksisterende datafelt"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:51
+#, fuzzy
 msgid "Edit the selected data entry"
-msgstr ""
+msgstr "Rediger det valgte datafelt"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:52
+#, fuzzy
 msgid "Move the selected data entry upwards"
-msgstr ""
+msgstr "Flytt det valgte datafeltet opp"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:53
+#, fuzzy
 msgid "Move the selected data entry downwards"
-msgstr ""
+msgstr "Flytt det valgte datafeltet ned"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:57
 msgid "Key"
@@ -4229,32 +4237,38 @@ msgid "_Notes"
 msgstr "_Notater"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
+#, fuzzy
 msgid "Create and add a new association"
-msgstr ""
+msgstr "Opprett og legg til en ny relasjon"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
+#, fuzzy
 msgid "Remove the existing association"
-msgstr ""
+msgstr "Fjern eksisterende relasjon"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
+#, fuzzy
 msgid "Edit the selected association"
-msgstr ""
+msgstr "Rediger den valgte relasjonen"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:55
+#, fuzzy
 msgid "Move the selected association upwards"
-msgstr ""
+msgstr "Flytt den valgte relasjonen opp"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:56
+#, fuzzy
 msgid "Move the selected association downwards"
-msgstr ""
+msgstr "Flytt den valgte relasjonen ned"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:62
 msgid "Association"
 msgstr "Forening"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:68
+#, fuzzy
 msgid "_Associations"
-msgstr ""
+msgstr "_Relasjoner"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:86
 msgid "Godfather"
@@ -5197,8 +5211,9 @@ msgstr "Database versjonen er ikke supportert av denne versjonen av GRAMPS."
 #: ../src/GrampsDbUtils/importdbdir.py:218
 #: ../src/GrampsDbUtils/_ReadXML.py:1309 ../src/plugins/ReadGrdb.py:242
 #, python-format
+#, fuzzy
 msgid "Your family tree groups name %s together with %s, did not change this grouping to %s"
-msgstr ""
+msgstr "Ditt familietre grupperer navn %s sammen med %s, endret ikke denne grupperingen til %s"
 
 #: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:256
 msgid "Import database"
@@ -5367,8 +5382,9 @@ msgstr "Vitners kommentar: %s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:2405
 #, python-format
+#, fuzzy
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
-msgstr ""
+msgstr "GRAMPS-filen du importerer ble laget med GRAMPS versjon %s, men du kjører en eldre versjon %s. Filen vil ikke bli importert. Vennligst oppgrader til siste versjon av GRAMPS og prøv på nytt."
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:484
 msgid "Sorting"
@@ -5724,8 +5740,9 @@ msgid "Partial"
 msgstr "Delvis"
 
 #: ../src/plugins/all_relations.py:328
+#, fuzzy
 msgid "Remarks with inlaw family"
-msgstr ""
+msgstr "Kommentar for inngiftet slekt"
 
 #: ../src/plugins/all_relations.py:330
 msgid "Remarks"
@@ -5754,8 +5771,9 @@ msgid "Sibling"
 msgstr "Søsken"
 
 #: ../src/plugins/siblings.py:57
+#, fuzzy
 msgid "self"
-msgstr ""
+msgstr "selv"
 
 #: ../src/plugins/siblings.py:76
 msgid "Display a person's siblings."
@@ -6076,8 +6094,9 @@ msgstr "Velg filter for å begrense antall personer"
 #: ../src/plugins/GVRelGraph.py:436 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2726 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
+#, fuzzy
 msgid "Filter Person"
-msgstr ""
+msgstr "Filtrere person"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70 ../src/plugins/Calendar.py:496
 #: ../src/plugins/GVRelGraph.py:437 ../src/plugins/IndivComplete.py:523
@@ -6926,8 +6945,9 @@ msgid "Custom Text"
 msgstr "Tilpasset tekst"
 
 #: ../src/plugins/DateParserDisplayTest.py:68
+#, fuzzy
 msgid "Running Date Test"
-msgstr ""
+msgstr "Kjøre datotest"
 
 #: ../src/plugins/DateParserDisplayTest.py:69
 #: ../src/plugins/DateParserDisplayTest.py:157
@@ -6939,12 +6959,14 @@ msgid "Date Test Plugin"
 msgstr "Programtillegg for Datotest"
 
 #: ../src/plugins/DateParserDisplayTest.py:235
+#, fuzzy
 msgid "Check Localized Date Displayer and Parser..."
-msgstr ""
+msgstr "Sjekk lokalisert datofremviser og -tolker..."
 
 #: ../src/plugins/DateParserDisplayTest.py:239
+#, fuzzy
 msgid "This test tool will create many people showing all different date variants as birth. The death date is created by parsing the result of the date displayer for the birth date. This way you can ensure that dates printed can be parsed back in correctly."
-msgstr ""
+msgstr "Dette testeverktøyet vil lage mange personer, for å vise frem alle mulige dato varianter som fødselsdato. Dødsdatoen blir laget ved å tolke resultatet av datofremviseren for fødselsdatoen. På denne måten kan du forsikre deg om at datoene som blir vist frem kan tolkes tilbake riktig."
 
 #: ../src/plugins/DefaultGramplets.py:68
 msgid "Double-click a day for details"
@@ -7211,12 +7233,14 @@ msgid "Top Surnames"
 msgstr "Mest brukte etternavn"
 
 #: ../src/plugins/DefaultGramplets.py:900
+#, fuzzy
 msgid "Surname Cloud Gramplet"
-msgstr ""
+msgstr "Etternavnstatistikk-vindu"
 
 #: ../src/plugins/DefaultGramplets.py:904
+#, fuzzy
 msgid "Surname Cloud"
-msgstr ""
+msgstr "Etternavnstatistikk"
 
 #: ../src/plugins/DefaultGramplets.py:909
 msgid "Statistics Gramplet"
@@ -7243,8 +7267,9 @@ msgid "Python Shell"
 msgstr "Pythonskall"
 
 #: ../src/plugins/DefaultGramplets.py:935
+#, fuzzy
 msgid "TODO Gramplet"
-msgstr ""
+msgstr "Gjøremåls-vindu"
 
 #: ../src/plugins/DefaultGramplets.py:939
 msgid "TODO List"
@@ -7271,20 +7296,23 @@ msgid "News"
 msgstr "Nyheter"
 
 #: ../src/plugins/DefaultGramplets.py:970
+#, fuzzy
 msgid "Age on Date Gramplet"
-msgstr ""
+msgstr "Alder ved vist dato - vindu"
 
 #: ../src/plugins/DefaultGramplets.py:978
+#, fuzzy
 msgid "Relatives Gramplet"
-msgstr ""
+msgstr "Slektninger-vindu"
 
 #: ../src/plugins/DefaultGramplets.py:981
 msgid "Active Person's Relatives"
 msgstr "Den aktive personens slektninger"
 
 #: ../src/plugins/DefaultGramplets.py:988
+#, fuzzy
 msgid "Pedigree Gramplet"
-msgstr ""
+msgstr "Anetavlevindu"
 
 #: ../src/plugins/Desbrowser.py:67
 #, python-format
@@ -7704,8 +7732,9 @@ msgid "The basic style used for generation headings."
 msgstr "Basisstilen som brukes til generasjonsoverskriftene."
 
 #: ../src/plugins/EndOfLineReport.py:316
+#, fuzzy
 msgid "End of Line Report..."
-msgstr ""
+msgstr "Sluttlinje-rapport..."
 
 #: ../src/plugins/EndOfLineReport.py:318
 msgid "Produces a textual end of line report"
@@ -8093,8 +8122,9 @@ msgid "The style used for the parent's name"
 msgstr "Stil som blir brukt på foreldrenes navn"
 
 #: ../src/plugins/FamilyGroup.py:771
+#, fuzzy
 msgid "Family Group Report..."
-msgstr ""
+msgstr "Familiegruppe-rapport"
 
 #: ../src/plugins/FamilyGroup.py:775
 msgid "Creates a family group report, showing information on a set of parents and their children."
@@ -8983,8 +9013,9 @@ msgid "Id"
 msgstr "Id"
 
 #: ../src/plugins/MarkerReport.py:449
+#, fuzzy
 msgid "The marker to use for the report"
-msgstr ""
+msgstr "Den markeringen som skal brukes for rapporten"
 
 #: ../src/plugins/MarkerReport.py:497
 msgid "The basic style used for table headings."
@@ -9103,16 +9134,18 @@ msgid "Convert paths from relative to _absolute"
 msgstr "Konverter fra relativ til _absolutt sti"
 
 #: ../src/plugins/MediaManager.py:487
+#, fuzzy
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends your home directory."
-msgstr ""
+msgstr "Dette verktøyet kan gjøre om fra relativ til absolutt stinavn for dine media. Det gjør dette ved å legge til grunn-stien eller ditt hjemme området, først på stien, alt etter hva som er oppgitt i egenskapene."
 
 #: ../src/plugins/MediaManager.py:524
 msgid "Convert paths from absolute to r_elative"
 msgstr "Konverter fra absolutt til relativ sti"
 
 #: ../src/plugins/MediaManager.py:525
+#, fuzzy
 msgid "This tool allows converting absolute media paths to the a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, your home directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr ""
+msgstr "Dette verktøyet kan gjøre om fra absolutt til relativ stinavn for dine media. Den relative stien er relativ vis-a-vis grunn-stien som er oppgitt i egenskapene, eller hvis den ikke er satt, ditt hjemmeområdet. En relativ sti gir deg muligheten til å binne fillokasjon til en grunn-sti som kan endres etter dine behov."
 
 #: ../src/plugins/MediaManager.py:585
 msgid "Media Manager..."
@@ -9489,8 +9522,9 @@ msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Ta med en anetavle på hver personside"
 
 #: ../src/plugins/NarrativeWeb.py:2769
+#, fuzzy
 msgid "Graph generations"
-msgstr ""
+msgstr "Generasjoner i anetavlen"
 
 #: ../src/plugins/NarrativeWeb.py:2774
 msgid "The number of generations to include in the ancestor graph"
@@ -9691,8 +9725,9 @@ msgstr "Ikke i slekt med \"%s\""
 
 #: ../src/plugins/NotRelated.py:210
 #, python-format
+#, fuzzy
 msgid "Setting marker for %d people"
-msgstr ""
+msgstr "Setter markering for %d personer"
 
 #: ../src/plugins/NotRelated.py:242
 #, python-format
