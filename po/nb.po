@@ -1,4 +1,3 @@
-# translation of nb.po to Norsk Bokmål
 # translation of nb.po to
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
@@ -14,9 +13,9 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-29 22:21+0100\n"
-"PO-Revision-Date: 2008-03-09 19:38+0100\n"
-"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
-"Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
+"PO-Revision-Date: 2008-03-09 21:49+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -237,9 +236,8 @@ msgid "Calculated"
 msgstr "Beregnet"
 
 #: ../src/DateEdit.py:100
-#, fuzzy
 msgid "manual|Editing_Dates"
-msgstr "Editer_datoer"
+msgstr "Redigere_datoer"
 
 #: ../src/DateEdit.py:149
 msgid "Bad Date"
@@ -1639,9 +1637,8 @@ msgid "Export View..."
 msgstr "Eksporter visningsresultat..."
 
 #: ../src/PageView.py:937 ../src/DataViews/PersonView.py:147
-#, fuzzy
 msgid "action|_Edit..."
-msgstr "Redigere..."
+msgstr "R_edigere..."
 
 #: ../src/PageView.py:942
 msgid "_Filter"
@@ -1983,9 +1980,8 @@ msgid "Source Reference"
 msgstr "Kildehenvisning"
 
 #: ../src/ScratchPad.py:485
-#, fuzzy
 msgid "not available|NA"
-msgstr "Utilgjengelig"
+msgstr "utilgjengelig"
 
 #: ../src/ScratchPad.py:491
 #, python-format
@@ -2968,7 +2964,6 @@ msgid "Private Record"
 msgstr "Privat forekomst"
 
 #: ../src/Merge/_MergePerson.py:45
-#, fuzzy
 msgid "manual|Merge_People"
 msgstr "Flett_sammen_personer"
 
@@ -3050,7 +3045,6 @@ msgid "Merge People"
 msgstr "Flett sammen personer"
 
 #: ../src/Merge/_MergePlace.py:52
-#, fuzzy
 msgid "manual|Merge_Places"
 msgstr "Flett_sammen_steder"
 
@@ -3060,7 +3054,6 @@ msgid "Merge Places"
 msgstr "Flett sammen steder"
 
 #: ../src/Merge/_MergeSource.py:42
-#, fuzzy
 msgid "manual|Merge_Sources"
 msgstr "Flett_sammen_kilder"
 
@@ -4068,27 +4061,22 @@ msgid "Move Down"
 msgstr "Flytt ned"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
-#, fuzzy
 msgid "Create and add a new data entry"
 msgstr "Opprett og legg til et nytt datafelt"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:50
-#, fuzzy
 msgid "Remove the existing data entry"
 msgstr "Fjern eksisterende datafelt"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:51
-#, fuzzy
 msgid "Edit the selected data entry"
 msgstr "Rediger det valgte datafelt"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:52
-#, fuzzy
 msgid "Move the selected data entry upwards"
 msgstr "Flytt det valgte datafeltet opp"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:53
-#, fuzzy
 msgid "Move the selected data entry downwards"
 msgstr "Flytt det valgte datafeltet ned"
 
@@ -4241,27 +4229,22 @@ msgid "_Notes"
 msgstr "_Notater"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
-#, fuzzy
 msgid "Create and add a new association"
 msgstr "Opprett og legg til en ny relasjon"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
-#, fuzzy
 msgid "Remove the existing association"
 msgstr "Fjern eksisterende relasjon"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
-#, fuzzy
 msgid "Edit the selected association"
 msgstr "Rediger den valgte relasjonen"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:55
-#, fuzzy
 msgid "Move the selected association upwards"
 msgstr "Flytt den valgte relasjonen opp"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:56
-#, fuzzy
 msgid "Move the selected association downwards"
 msgstr "Flytt den valgte relasjonen ned"
 
@@ -4270,7 +4253,6 @@ msgid "Association"
 msgstr "Forening"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:68
-#, fuzzy
 msgid "_Associations"
 msgstr "_Relasjoner"
 
@@ -4437,9 +4419,8 @@ msgid "Child Reference"
 msgstr "Behandler for barnereferanser"
 
 #: ../src/Editors/_EditEvent.py:60
-#, fuzzy
 msgid "manual|Editing_Information_About_Events"
-msgstr "Editer_informasjon_om_hendelser"
+msgstr "Rediger_informasjon_om_hendelser"
 
 #: ../src/Editors/_EditEvent.py:87 ../src/Editors/_EditEventRef.py:221
 #, python-format
@@ -5216,7 +5197,6 @@ msgstr "Database versjonen er ikke supportert av denne versjonen av GRAMPS."
 #: ../src/GrampsDbUtils/importdbdir.py:218
 #: ../src/GrampsDbUtils/_ReadXML.py:1309 ../src/plugins/ReadGrdb.py:242
 #, python-format
-#, fuzzy
 msgid "Your family tree groups name %s together with %s, did not change this grouping to %s"
 msgstr "Ditt familietre grupperer navn %s sammen med %s, endret ikke denne grupperingen til %s"
 
@@ -5387,7 +5367,6 @@ msgstr "Vitners kommentar: %s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:2405
 #, python-format
-#, fuzzy
 msgid "The .gramps file you are importing was made by version %s of GRAMPS, while you are running an older version %s. The file will not be imported. Please upgrade to the latest version of GRAMPS and try again."
 msgstr "GRAMPS-filen du importerer ble laget med GRAMPS versjon %s, men du kjører en eldre versjon %s. Filen vil ikke bli importert. Vennligst oppgrader til siste versjon av GRAMPS og prøv på nytt."
 
@@ -5552,7 +5531,6 @@ msgid "This is the final step. Use the buttons on this page to start a web brows
 msgstr "Dette er siste steg. Bruk knappene på denne siden for å starte en nettleser og legg inn en feilrapport i Gramps' feilhåndteringssystem."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
-#, fuzzy
 msgid "manual|General"
 msgstr "Generell"
 
@@ -5746,7 +5724,6 @@ msgid "Partial"
 msgstr "Delvis"
 
 #: ../src/plugins/all_relations.py:328
-#, fuzzy
 msgid "Remarks with inlaw family"
 msgstr "Kommentar for inngiftet slekt"
 
@@ -5777,7 +5754,6 @@ msgid "Sibling"
 msgstr "Søsken"
 
 #: ../src/plugins/siblings.py:57
-#, fuzzy
 msgid "self"
 msgstr "selv"
 
@@ -6100,7 +6076,6 @@ msgstr "Velg filter for å begrense antall personer"
 #: ../src/plugins/GVRelGraph.py:436 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2726 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
-#, fuzzy
 msgid "Filter Person"
 msgstr "Filtrere person"
 
@@ -6951,7 +6926,6 @@ msgid "Custom Text"
 msgstr "Tilpasset tekst"
 
 #: ../src/plugins/DateParserDisplayTest.py:68
-#, fuzzy
 msgid "Running Date Test"
 msgstr "Kjøre datotest"
 
@@ -6965,14 +6939,12 @@ msgid "Date Test Plugin"
 msgstr "Programtillegg for Datotest"
 
 #: ../src/plugins/DateParserDisplayTest.py:235
-#, fuzzy
 msgid "Check Localized Date Displayer and Parser..."
-msgstr "Sjekk lokalisert datofremviser og -tolker..."
+msgstr " Sjekk lokalisert datofremviser og -tolker..."
 
 #: ../src/plugins/DateParserDisplayTest.py:239
-#, fuzzy
 msgid "This test tool will create many people showing all different date variants as birth. The death date is created by parsing the result of the date displayer for the birth date. This way you can ensure that dates printed can be parsed back in correctly."
-msgstr "Dette testeverktøyet vil lage mange personer, for å vise frem alle mulige dato varianter som fødselsdato. Dødsdatoen blir laget ved å tolke resultatet av datofremviseren for fødselsdatoen. På denne måten kan du forsikre deg om at datoene som blir vist frem kan tolkes tilbake riktig."
+msgstr "Dette testeverktøyet vil lage mange personer for å vise frem alle mulige datovarianter som fødselsdato. Dødsdatoen blir laget ved å tolke resultatet av datofremviseren for fødselsdatoen. På denne måten kan du forsikre deg om at datoene som blir vist frem kan tolkes tilbake riktig."
 
 #: ../src/plugins/DefaultGramplets.py:68
 msgid "Double-click a day for details"
@@ -7163,7 +7135,6 @@ msgid "Enter Python expressions"
 msgstr "Skriv inn Python-uttrykk"
 
 #: ../src/plugins/DefaultGramplets.py:631
-#, fuzzy
 msgid "class name|Date"
 msgstr "Dato"
 
@@ -7240,12 +7211,10 @@ msgid "Top Surnames"
 msgstr "Mest brukte etternavn"
 
 #: ../src/plugins/DefaultGramplets.py:900
-#, fuzzy
 msgid "Surname Cloud Gramplet"
-msgstr "Etternavnstatistikk-vindu"
+msgstr "Vindu for etternavnstatistikk"
 
 #: ../src/plugins/DefaultGramplets.py:904
-#, fuzzy
 msgid "Surname Cloud"
 msgstr "Etternavnstatistikk"
 
@@ -7274,9 +7243,8 @@ msgid "Python Shell"
 msgstr "Pythonskall"
 
 #: ../src/plugins/DefaultGramplets.py:935
-#, fuzzy
 msgid "TODO Gramplet"
-msgstr "Gjøremåls-vindu"
+msgstr "Gjøremålsvindu"
 
 #: ../src/plugins/DefaultGramplets.py:939
 msgid "TODO List"
@@ -7303,21 +7271,18 @@ msgid "News"
 msgstr "Nyheter"
 
 #: ../src/plugins/DefaultGramplets.py:970
-#, fuzzy
 msgid "Age on Date Gramplet"
-msgstr "Alder ved vist dato - vindu"
+msgstr "Vindu for alder ved vist dato"
 
 #: ../src/plugins/DefaultGramplets.py:978
-#, fuzzy
 msgid "Relatives Gramplet"
-msgstr "Slektninger-vindu"
+msgstr "Slektningervindu"
 
 #: ../src/plugins/DefaultGramplets.py:981
 msgid "Active Person's Relatives"
 msgstr "Den aktive personens slektninger"
 
 #: ../src/plugins/DefaultGramplets.py:988
-#, fuzzy
 msgid "Pedigree Gramplet"
 msgstr "Anetavlevindu"
 
@@ -7739,9 +7704,8 @@ msgid "The basic style used for generation headings."
 msgstr "Basisstilen som brukes til generasjonsoverskriftene."
 
 #: ../src/plugins/EndOfLineReport.py:316
-#, fuzzy
 msgid "End of Line Report..."
-msgstr "Sluttlinje-rapport..."
+msgstr "Sluttlinjerapport..."
 
 #: ../src/plugins/EndOfLineReport.py:318
 msgid "Produces a textual end of line report"
@@ -8129,9 +8093,8 @@ msgid "The style used for the parent's name"
 msgstr "Stil som blir brukt på foreldrenes navn"
 
 #: ../src/plugins/FamilyGroup.py:771
-#, fuzzy
 msgid "Family Group Report..."
-msgstr "Familiegruppe-rapport"
+msgstr "Familiegrupperapport..."
 
 #: ../src/plugins/FamilyGroup.py:775
 msgid "Creates a family group report, showing information on a set of parents and their children."
@@ -9020,7 +8983,6 @@ msgid "Id"
 msgstr "Id"
 
 #: ../src/plugins/MarkerReport.py:449
-#, fuzzy
 msgid "The marker to use for the report"
 msgstr "Den markeringen som skal brukes for rapporten"
 
@@ -9141,18 +9103,16 @@ msgid "Convert paths from relative to _absolute"
 msgstr "Konverter fra relativ til _absolutt sti"
 
 #: ../src/plugins/MediaManager.py:487
-#, fuzzy
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends your home directory."
-msgstr "Dette verktøyet kan gjøre om fra relativ til absolutt stinavn for dine media. Det gjør dette ved å legge til grunn-stien eller ditt hjemme området, først på stien, alt etter hva som er oppgitt i egenskapene."
+msgstr "Dette verktøyet kan gjøre om fra relativ til absolutt stinavn for dine media. Det gjør dette ved å legge til grunnstien eller ditt hjemme området, først på stien, alt etter hva som er oppgitt i egenskapene."
 
 #: ../src/plugins/MediaManager.py:524
 msgid "Convert paths from absolute to r_elative"
 msgstr "Konverter fra absolutt til relativ sti"
 
 #: ../src/plugins/MediaManager.py:525
-#, fuzzy
 msgid "This tool allows converting absolute media paths to the a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, your home directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Dette verktøyet kan gjøre om fra absolutt til relativ stinavn for dine media. Den relative stien er relativ vis-a-vis grunn-stien som er oppgitt i egenskapene, eller hvis den ikke er satt, ditt hjemmeområdet. En relativ sti gir deg muligheten til å binne fillokasjon til en grunn-sti som kan endres etter dine behov."
+msgstr "Dette verktøyet kan gjøre om fra absolutt til relativ stinavn for dine media. Den relative stien er relativ vis-a-vis grunnstien som er oppgitt i egenskapene, eller hvis den ikke er satt, ditt hjemmeområdet. En relativ sti gir deg muligheten til å binde filplasseringen til en grunnsti som kan endres etter dine behov."
 
 #: ../src/plugins/MediaManager.py:585
 msgid "Media Manager..."
@@ -9529,7 +9489,6 @@ msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Ta med en anetavle på hver personside"
 
 #: ../src/plugins/NarrativeWeb.py:2769
-#, fuzzy
 msgid "Graph generations"
 msgstr "Generasjoner i anetavlen"
 
@@ -9732,7 +9691,6 @@ msgstr "Ikke i slekt med \"%s\""
 
 #: ../src/plugins/NotRelated.py:210
 #, python-format
-#, fuzzy
 msgid "Setting marker for %d people"
 msgstr "Setter markering for %d personer"
 
@@ -10208,7 +10166,6 @@ msgid "Title Page"
 msgstr "Tittelside"
 
 #: ../src/plugins/SoundGen.py:56
-#, fuzzy
 msgid "manual|Generate_SoundEx_codes"
 msgstr "Lage_SoundEx_koder"
 
@@ -10449,7 +10406,6 @@ msgid "Charts 2"
 msgstr "Diagrammer 2"
 
 #: ../src/plugins/StatisticsChart.py:751
-#, fuzzy
 msgid "Include charts with indicated data"
 msgstr "Ta med diagram med markerte data"
 
@@ -10516,7 +10472,6 @@ msgid "Generates a timeline graph."
 msgstr "Lager en tidslinjegraf."
 
 #: ../src/plugins/Verify.py:66
-#, fuzzy
 msgid "manual|Verify_the_Data..."
 msgstr "Verifiser_dataene..."
 
@@ -11533,14 +11488,12 @@ msgid "The minimum amount of free space, in inches, between individual nodes.  F
 msgstr "Minste størrelse på tomrom, i tommer, mellom individuelle knutepunkt.  For loddrette grafer samsvarer dette med avstand mellom kolonner.  For vannrette grafer samsvarer dette med avstand mellom rader."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:807
-#, fuzzy
 msgid "Rank spacing"
 msgstr "Rangordningsavstand"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:808
-#, fuzzy
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
-msgstr "Minimumsmellomrommet, i tommer, mellom nivåer. For vertikale diagrammer tilsvarer dette mellomrommet mellom rader. For horisontale diagrammer tilsvarer dette mellomrommet mellom kolonner."
+msgstr "Det minste mellomrommet, i tommer, mellom nivåer. For vertikale diagrammer tilsvarer dette mellomrommet mellom rader. For horisontale diagrammer tilsvarer dette mellomrommet mellom kolonner."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:819
@@ -17561,7 +17514,6 @@ msgid "Mo_nth"
 msgstr "Må_ned"
 
 #: ../src/glade/gramps.glade.h:89
-#, fuzzy
 msgid "Name Child:"
 msgstr "Navn på barn:"
 
@@ -18099,7 +18051,6 @@ msgid "Width:"
 msgstr "Bredde:"
 
 #: ../src/plugins/NotRelated.glade.h:1
-#, fuzzy
 msgid ""
 "\n"
 "ToDo\n"
