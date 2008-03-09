@@ -1,4 +1,8 @@
 2008-03-08 Brian Matherly <brian@gramps-project.org>
+	* src/docgen/PdfDoc.py: 
+	0001917: UI font gets small when creating PDF documents.
+
+2008-03-08 Brian Matherly <brian@gramps-project.org>
 	* src/gen/lib/note.py:
 	* src/Editors/_EditNote.py:
 	* src/DisplayModels/_NoteModel.py:
