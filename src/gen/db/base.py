@@ -814,6 +814,15 @@ class GrampsDbBase(Callback):
 
     def find_from_handle(self, handle, transaction, class_type, dmap,
                           add_func):
+        """
+        Find a object of class_type in the database from the passed handle.
+        
+        If no object exists, a new object is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
+        """
         obj = class_type()
         handle = str(handle)
         new = True
@@ -840,6 +849,10 @@ class GrampsDbBase(Callback):
         Find a Person in the database from the passed handle.
         
         If no such Person exists, a new Person is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, Person, 
                                      self.person_map, self.add_person)
@@ -849,6 +862,10 @@ class GrampsDbBase(Callback):
         Find a Source in the database from the passed handle.
         
         If no such Source exists, a new Source is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, Source, 
                                      self.source_map, self.add_source)
@@ -858,6 +875,10 @@ class GrampsDbBase(Callback):
         Find a Event in the database from the passed handle.
         
         If no such Event exists, a new Event is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, Event, 
                                      self.event_map, self.add_event)
@@ -867,6 +888,10 @@ class GrampsDbBase(Callback):
         Find a MediaObject in the database from the passed handle.
         
         If no such MediaObject exists, a new Object is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, MediaObject, 
                                      self.media_map, self.add_object)
@@ -876,6 +901,10 @@ class GrampsDbBase(Callback):
         Find a Place in the database from the passed handle.
         
         If no such Place exists, a new Place is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, Place, 
                                      self.place_map, self.add_place)
@@ -885,6 +914,10 @@ class GrampsDbBase(Callback):
         Find a Family in the database from the passed handle.
         
         If no such Family exists, a new Family is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, Family, 
                                      self.family_map, self.add_family)
@@ -894,6 +927,10 @@ class GrampsDbBase(Callback):
         Find a Repository in the database from the passed handle.
         
         If no such Repository exists, a new Repository is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, Repository, 
                                      self.repository_map, self.add_repository)
@@ -903,6 +940,10 @@ class GrampsDbBase(Callback):
         Find a Note in the database from the passed handle.
         
         If no such Note exists, a new Note is added to the database.
+        
+        @return: Returns a tuple, first the object, second a bool which is True
+                 if the object is new
+        @rtype: tuple
         """
         return self.find_from_handle(handle, transaction, Note, 
                                      self.note_map, self.add_note)
