@@ -1,3 +1,7 @@
+2008-03-09 Raphael Ackermann <raphael.ackermann@gmail.com>
+	* src/gen/lib/data.py (Date.get_sort_value):Add updated description to 
+	what a sortval is. Also add reference to Julian Day on Wikipedia.
+
 2008-03-09  Douglas S. Blank  <dblank@cs.brynmawr.edu>
 	* src/ReportBase/_WebReportDialog.py:
 	* src/ReportBase/_ReportDialog.py:
@@ -35,7 +39,7 @@
 	* src/plgins/NotRelated.py: Issue #1795 author information update
 	* src/plgins/rel_sv.py: Fixed issues #1881 and 1910
 
-2008-03-05 Raphael Ackermann <raphael.ackermann@gmail.com>
+2008-03-07 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/data/Makefile.am: add new css files and delete old ones.
 	* src/images/Makefile.am: add new images for Narrative web report
 	0001912: make fails 

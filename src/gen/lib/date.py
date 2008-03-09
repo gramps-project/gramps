@@ -540,8 +540,10 @@ class Date:
         calculated sort date is returned. The sort date is rebuilt on every 
         assignment.
 
-        The sort value is an integer representing the value. A date of
-        March 5, 1990 would have the value of 19900305.
+        The sort value is an integer representing the value. The sortval is 
+        the integer number of days that have elapsed since Monday, January 1, 
+        4713 BC in the proleptic Julian calendar. 
+        See http://en.wikipedia.org/wiki/Julian_day
         """
         return self.sortval
 
