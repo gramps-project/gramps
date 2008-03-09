@@ -151,19 +151,19 @@ class DocReportDialog(ReportDialog):
         relies on the make_doc_menu() function to do all the hard
         work."""
 
-        self.print_report = gtk.CheckButton (_("Print a copy"))
-        self.tbl.attach(self.print_report,2,4,self.col,self.col+1,
-                        yoptions=gtk.SHRINK)
-        self.col += 1
-
         self.make_doc_menu(self.options.handler.get_format_name())
         self.format_menu.connect('changed',self.doc_type_changed)
         label = gtk.Label("%s:" % _("Output Format"))
         label.set_alignment(0.0,0.5)
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1,
+        self.tbl.attach(label,1,2,self.row,self.row+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.format_menu,2,4,self.row,self.row+1,
                         yoptions=gtk.SHRINK)
-        self.col += 1
+        self.row += 1
+
+        self.print_report = gtk.CheckButton (_("Print a copy"))
+        self.tbl.attach(self.print_report,2,4,self.row,self.row+1,
+                        yoptions=gtk.SHRINK)
+        self.row += 1
 
         ext = self.format_menu.get_ext()
         if ext == None:

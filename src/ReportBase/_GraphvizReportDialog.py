@@ -49,6 +49,7 @@ import BaseDoc
 import Config
 from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
+from _FileEntry import FileEntry
 from _PaperMenu import PaperFrame
 from PluginUtils import NumberOption, EnumeratedListOption, TextOption
 
@@ -853,21 +854,20 @@ class GraphvizReportDialog(ReportDialog):
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog."""
-
-        self.print_report = gtk.CheckButton (_("Open with application"))
-        self.tbl.attach(self.print_report,2,4,self.col,self.col+1,
-                        yoptions=gtk.SHRINK)
-        self.col += 1
-
         self.format_menu = GraphvizFormatComboBox()
         self.format_menu.set(self.options.handler.get_format_name())
         self.format_menu.connect('changed',self.doc_type_changed)
         label = gtk.Label("%s:" % _("Output Format"))
         label.set_alignment(0.0,0.5)
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1,
+        self.tbl.attach(label,1,2,self.row,self.row+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.format_menu,2,4,self.row,self.row+1,
                         yoptions=gtk.SHRINK)
-        self.col += 1
+        self.row += 1
+
+        self.print_report = gtk.CheckButton (_("Open with application"))
+        self.tbl.attach(self.print_report,2,4,self.row,self.row+1,
+                        yoptions=gtk.SHRINK)
+        self.row += 1
 
         ext = self.format_menu.get_ext()
         if ext == None:

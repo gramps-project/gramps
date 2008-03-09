@@ -1,3 +1,11 @@
+2008-03-09  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/ReportBase/_WebReportDialog.py:
+	* src/ReportBase/_ReportDialog.py:
+	* src/ReportBase/_GraphvizReportDialog.py:
+	* src/ReportBase/_DocReportDialog.py:
+	* src/ReportBase/_BareReportDialog.py:
+	0001814: Applied patch to move print options below option tabs
+
 2008-03-09  Benny Malengier <benny.malengier@gramps-project.org>
 	* src/gen/db/base.py: add docstring to find functions, #1866
 	* src/gen/db/dbdir.py: add docstring to find functions, #1866

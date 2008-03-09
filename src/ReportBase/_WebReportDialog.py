@@ -45,6 +45,9 @@ class WebReportDialog(ReportDialog):
         ReportDialog.__init__(self, dbstate, uistate, option_class,
                                   name, trans_name)
 
+    def setup_init(self):
+        pass
+
     def setup_target_frame(self):
         """Target frame is not used."""
         pass

@@ -135,16 +135,16 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.tbl.set_col_spacings(12)
         self.tbl.set_row_spacings(6)
         self.tbl.set_border_width(6)
-        self.col = 0
-        self.window.vbox.add(self.tbl)
+        self.row = 0
 
         # Build the list of widgets that are used to extend the Options
         # frame and to create other frames
         self.add_user_options()
 
         self.setup_main_options()
-        self.setup_target_frame()
+        self.setup_init()
         self.setup_format_frame()
+        self.setup_target_frame()
         self.setup_style_frame()
 
         self.notebook = gtk.Notebook()
@@ -155,6 +155,8 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.notebook.set_current_page(0)
+
+        self.window.vbox.add(self.tbl)
         self.show()
 
     def get_title(self):
@@ -288,8 +290,8 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         label.set_use_markup(1)
         label.set_alignment(0.0,0.5)
         self.tbl.set_border_width(12)
-        self.tbl.attach(label, 0, 4, self.col, self.col+1, gtk.FILL|gtk.EXPAND)
-        self.col += 1
+        self.tbl.attach(label, 0, 4, self.row, self.row+1, gtk.FILL|gtk.EXPAND)
+        self.row += 1
 
     def setup_style_frame(self):
         """Set up the style frame of the dialog.  This function relies
@@ -313,12 +315,12 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.style_button = gtk.Button("%s..." % _("Style Editor"))
         self.style_button.connect('clicked',self.on_style_edit_clicked)
 
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1,
+        self.tbl.attach(label,1,2,self.row,self.row+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.style_menu,2,3,self.row,self.row+1,
                         yoptions=gtk.SHRINK)
-        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,
+        self.tbl.attach(self.style_button,3,4,self.row,self.row+1,
                         xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
-        self.col += 1
+        self.row += 1
         
         # Build the initial list of available styles sets.  This
         # includes the default style set and any style sets saved from
@@ -397,6 +399,9 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
                     table.attach(widget, 2, 3, row, row+1,
                                  yoptions=gtk.SHRINK)
                 row = row + 1
+
+    def setup_init(self):
+        pass
                 
     def setup_main_options(self):
         if self.frames.has_key(""):
@@ -407,11 +412,11 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
                 label.set_alignment(0.0,0.5)
                 
                 self.tbl.set_border_width(12)
-                self.tbl.attach(label,0,4,self.col,self.col+1)
-                self.col += 1
+                self.tbl.attach(label,0,4,self.row,self.row+1)
+                self.row += 1
     
-                self.tbl.attach(widget,2,4,self.col,self.col+1)
-                self.col += 1
+                self.tbl.attach(widget,2,4,self.row,self.row+1)
+                self.row += 1
 
 
     #------------------------------------------------------------------------

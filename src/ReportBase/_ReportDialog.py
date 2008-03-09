@@ -139,6 +139,23 @@ class ReportDialog(BareReportDialog):
     # Functions related to setting up the dialog window.
     #
     #------------------------------------------------------------------------
+    def setup_init(self):
+        # add any elements that we are going to need:
+        hid = self.get_stylesheet_savefile()
+        if hid[-4:]==".xml":
+            hid = hid[0:-4]
+        self.target_fileentry = FileEntry(hid,_("Save As"))
+        spath = self.get_default_directory()
+        self.target_fileentry.set_filename(spath)
+        self.target_fileentry.gtk_entry().set_position(len(spath))
+        # need any labels at top:
+        label = gtk.Label("<b>%s</b>" % _('Document Options'))
+        label.set_use_markup(1)
+        label.set_alignment(0.0,0.5)
+        self.tbl.set_border_width(12)
+        self.tbl.attach(label, 0, 4, self.row, self.row+1, gtk.FILL)
+        self.row += 1
+        
     def setup_target_frame(self):
         """Set up the target frame of the dialog.  This function
         relies on several target_xxx() customization functions to
@@ -147,19 +164,6 @@ class ReportDialog(BareReportDialog):
         directory should be used."""
 
         # Save Frame
-
-        label = gtk.Label("<b>%s</b>" % _('Document Options'))
-        label.set_use_markup(1)
-        label.set_alignment(0.0,0.5)
-        self.tbl.set_border_width(12)
-        self.tbl.attach(label, 0, 4, self.col, self.col+1, gtk.FILL)
-        self.col += 1
-        
-        hid = self.get_stylesheet_savefile()
-        if hid[-4:]==".xml":
-            hid = hid[0:-4]
-        self.target_fileentry = FileEntry(hid,_("Save As"))
-
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
             self.doc_label = gtk.Label("%s:" % _("Directory"))
@@ -167,17 +171,12 @@ class ReportDialog(BareReportDialog):
             self.doc_label = gtk.Label("%s:" % _("Filename"))
         self.doc_label.set_alignment(0.0,0.5)
 
-        self.tbl.attach(self.doc_label, 1, 2, self.col, self.col+1,
+        self.tbl.attach(self.doc_label, 1, 2, self.row, self.row+1,
                         xoptions=gtk.SHRINK|gtk.FILL,yoptions=gtk.SHRINK)
-        self.tbl.attach(self.target_fileentry, 2, 4, self.col, self.col+1,
+        self.tbl.attach(self.target_fileentry, 2, 4, self.row, self.row+1,
                         xoptions=gtk.EXPAND|gtk.FILL,yoptions=gtk.SHRINK)
-        self.col += 1
+        self.row += 1
         
-        spath = self.get_default_directory()
-
-        self.target_fileentry.set_filename(spath)
-        self.target_fileentry.gtk_entry().set_position(len(spath))
-
     #------------------------------------------------------------------------
     #
     # Functions related to retrieving data from the dialog window
