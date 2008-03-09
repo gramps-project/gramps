@@ -1,0 +1,366 @@
+.TH gramps 1 "@VERSION@" "January 2008" "@VERSION@"
+.SH NAME
+gramps \- Genealogical Research and Analysis Management Programming System.
+.br
+(w wolnym tłumaczeniu: System Wspomagania Badań Genealogicznych 
+i Programowego Zarządzania Tą Informacją)
+
+.SH SYNOPSIS
+.B gramps
+.RB [ \-?|\-\^\-help ]
+.RB [ \-\^\-usage ]
+.RB [ \-\^\-version ]
+.RB [ \-l ]
+.RB [ \-u|\-\^\-force-unlock ]
+.RB [ \-O|\-\^\-open=
+.IR BAZA_DANYCH 
+.RB [ \-f|\-\^\-format= 
+.IR FORMAT ]] 
+.RB [ \-i|\-\^\-import=
+.IR PLIK 
+.RB [ \-f|\-\^\-format= 
+.IR FORMAT ]] 
+.RB [ \-i|\-\^\-import= 
+.IR ... ] 
+.RB [ \-o|\-\^\-output= 
+.IR PLIK
+.RB [ \-f|\-\^\-format= 
+.IR FORMAT ]] 
+.RB [ \-a|\-\^\-action= 
+.IR AKCJA ]
+.RB [ \-p|\-\^\-options= 
+.IR CIĄG_OPCJI ]]
+.RB [
+.IR PLIK
+.RB ]
+.if 0 .RB [ bonobo\ options ]
+.if 0 .RB [ sound\ options ]
+.RB [ \-\-version ]
+
+.SH OPIS 
+.PP 
+\fIGramps\fP jest wolnym, darmowym programem genealogicznym OpenSource. Jest
+napisany w Python, przy użyciu interfejsu GTK+/GNOME.
+Dla każdego, kto wcześniej używał innego programu genealogicznego (np.
+\fIFamily Tree Maker (TM)\fR,  \fIPersonal Ancestral Files (TM)\fR, 
+lub GNU Geneweb), zapoznanie się z interfejsem Gramps'a będzie natychmiastowe.
+Program obsługuje także import i eksport w popularnym formacie GEDCOM, który 
+jest używany przez większość programów genealogicznych na świecie.
+
+.SH OPCJE
+.TP 
+.BI gramps " PLIK" 
+Kiedy \fIPLIK\fR jest podany (bez żadnych flag) jako nazwa drzewa rodzinnego
+albo nazwa katalogu z drzewem, to wybrane drzewo jest otwierane i rozpoczynana
+jest sesja interaktywna. Jeśli PLIK jest formatem rozpoznawanym przez GRAMPS,
+to tworzone jest puste drzewo, którego nazwa bazuje na nazwie \fIPLIKU\fP
+i dane są do niego importowane. Pozostałe opcje są wtedy ignorowane.
+Jest to sposób na używanie programu jako uchwytu obsługującego
+dane genealogiczne, np. w przeglądarce internetowej. Takie wywołanie akceptuje
+każdy format natywny dla grampsa, zobacz poniżej.
+.br
+
+.TP 
+.BI \-f,\-\^\-format= " FORMAT"
+Jawne określenie formatu \fIPLIKU\fR przez poprzedzenie opcji 
+.ig
+\fB\-O\fR,
+..
+\fB\-i\fR, lub \fB\-o\fR. 
+Jeśli opcja \fB\-f\fR nie jest podana dla żadnego \fIPLIKU\fR, 
+to format pliku jest określany na podstawie rozszerzenia albo typu MIME.
+.br
+
+Dostępne formaty wyjściowe to:
+.br
+\fBgramps\-xml\fR (używany jeśli \fIPLIK\fR kończy się na \fB.gramps\fR),
+.br
+\fBgedcom\fR (przyjmowany jeśli \fIPLIK\fR kończy się na \fB.ged\fR),
+.br 
+lub dowolny plik eksportu obsługiwany przez system wtyczek GRAMPS.
+.br
+
+Formaty
+dostępne dla importu to:
+\fBgrdb\fR, \fBgramps\-xml\fR, \fBgedcom\fR,  
+.br
+\fBgramps\-pkg\fR (przyjmowany jeśli \fIPLIK\fR kończy się na \fB.gpkg\fR),
+.br
+oraz \fBgeneweb\fR (przyjmowany jeśli \fIPLIK\fR ma rozszerzenie \fB.gw\fR). 
+.br
+
+Formats dostępne dla eksportu to:
+.ig
+\fBgrdb\fR,
+..
+\fBgramps\-xml\fR, \fBgedcom\fR,
+\fBgramps\-pkg\fR, \fBwft\fR (jeśli rozszerzenie \fIPLIKU\fR to \fB.wft\fR),
+\fBgeneweb\fR, i \fBiso\fR (używany tylko, jeśli jawnie określony przez 
+parametr \fB\-f\fR ).
+
+.TP 
+.BI \-l
+Wyświetla listę dosŧępnych drzew genealogicznych.
+
+.TP
+.BI \-u,\-\^\-force-unlock
+Wymusza odblokowanie bazy danych.
+
+.TP 
+.BI \-O,\-\^\-open= " BAZA_DANYCH"
+Otwiera \fIBAZĘ_DANYCH\fR, która musi istnieć w katalogu baz lub być nazwą 
+istniejącego drzewa rodzinnego. Jeśli nie podano akcji, to opcje eksportu 
+albo importu są wykonywane, a następnie jest uruchamiana sesja interaktywna 
+z otwarciem wybranej bazy.
+
+.TP 
+.BI \-i,\-\^\-import= " PLIK"
+Importuje dane z \fIPLIKU\fR. Jeśli nie określono bazy danych, to 
+tworzona jest tymczasowa baza kasowana po zamknięciu programu.
+.br
+
+Kiedy podany jest więcej niż jeden plik do importu, to każdy z nich musi być 
+poprzedzony flagą \fB\-i\fR. Pliki są importowane w kolejności podanej w linii
+poleceń, np.:  \fB\-i\fR \fIPLIK1\fR \fB\-i\fR \fIPLIK2\fR oraz 
+\fB\-i\fR \fIPLIK2\fR \fB\-i\fR \fIPLIK1\fR mogą utworzyć inne identyfikatory 
+(gramps ID) w bazie wynikowej.
+
+.TP 
+.BI \-o,\-\^\-output= " PLIK"
+Eksportuje dane do \fIPLIKU\fR. Dla formatu \fBiso\fR, \fIPLIK\fR natomiast
+nazwą katalogu, do którego baza danych gramps zostanie zapisana.
+Dla
+.ig
+\fBgrdb\fR,
+..
+\fBgramps\-xml\fR, \fBgedcom\fR, \fBwft\fR, \fBgramps\-pkg\fR, 
+oraz \fBgeneweb\fR, \fIPLIK\fR jest nazwą pliku wynikowego.
+.br
+
+Kiedy więcej niż jeden plik wyjściowy jest podany, każdy musi być poprzedzony
+flagą \fB\-o\fR. Pliki będą zapisywane kolejno, w podanej przez parametry
+kolejności.
+
+.TP 
+.BI \-a,\-\^\-action= " AKCJA"
+Wykonuje \fIAKCJĘ\fR na zaimportowanych danych. Działanie to jest wykonywane
+dopiero, gdy wszystkie określone importy zakończą się powodzeniem. Aktualnie
+dostępne akcje to:
+.br
+\fBsummary\fR (taka sama jak Raporty->Wyświetl->Podsumowanie bazy danych), 
+.br
+\fBcheck\fR (tożsama z Narzędzia->Naprawa bazy danych->Sprawdź i napraw bazę), 
+.br
+\fBreport\fR (generuje raport), oraz
+.br
+\fBtool\fR (uruchamia narzędzie/wtyczkę).
+Zarówno \fBreport\fR jak i \fBtool\fR wymagają podania \fICIĄGU_OPCJI\fR 
+poprzedzonego flagą \fB\-p\fR ). 
+.br
+
+\fICIĄG_OPCJI\fR powinien spełniać następujące warunki:
+.br
+Nie może zawierać spacji. 
+Jeśli niektóre argumenty wymagają spacji, ciąg powinien być enkapsulowany 
+w znakach cudzysłowu, (zobacz składnię powłoki). Ciąg opcji jest listą
+parametrów z nazwą i wartością oddzielonymi znakiem równości. Kolejne
+parametry muszą być oddzielone od siebie znakiem przecinka.
+.br
+
+Większość opcji dla raportów czy narzędzi jest specyficzna dla konkretnej opcji,
+jednak część z opcji jest wspólna, szczególnie dla raportów.
+
+.BI "name=nazwa"
+.br
+Opcja wymagana, określający który raport czy narzędzie będzie uruchamiane.
+Jeśli podana wartość \fInazwy\fR nie pasuje do żadnego dostępnego raportu czy
+narzędzia, zostanie wyświetlony komunikat o błędzie oraz lista dostępnych
+raportów albo opcji (w zależności od wartości parametru \fIAKCJA\fR).
+
+.BI "show=all"
+.br
+Wyświetla listę wszystkich nazw dostępnych opcji wraz z krótkim opisem dla 
+danego raportu albo narzędzia.
+
+.BI "show=nazwa_opcji"
+.br
+Wyświetla opis funkcji udostępnianej przez daną \fInazwę_opcji\fR, jak również
+listę parametrów, które akceptuje dana opcja.
+
+.br
+Używając powyższych opcji jesteś w stanie dowiedzieć się o wszystkich
+możliwościach danego raportu.
+
+.LP
+Kiedy więcej niż jeden akcja wyjściowa jest podana, każda musi być poprzedzona
+flagą \fB\-a\fR. Akcje są wykonywane jedna po drugiej, w kolejności w jakiej
+występują w linii poleceń.
+
+.TP 
+.BI \-d,\-\^\-debug= " NAZWA_LOGGERA"
+Włącza logi debuggowania dla celów programistycznych i testowych. Zobacz
+do kodu źródłowego po szczegóły.
+
+.TP
+.BI \-\^\-version
+Wyświetla wersję programu i kończy działanie.
+\" change 0 to 1 to enable output of OAF options
+.if 1 \{
+.PP
+Następujące opcje są używane przy aktywacji Bonobo:
+.TP 
+.BI \-\^\-oaf-ior-fd= "FD"
+Deskryptor pliku, do którego wpisać OAF IOR.
+.TP 
+.BI \-\^\-oaf-activate-iid= " IID"
+OAF IID do aktywacji.
+.TP 
+.BI \-\^\-oaf-private
+Wstgrzymuje rejestrację serwera przez OAF.
+\}
+\" change 0 to 1 to enable output of Gnome sound options
+.if 1 \{
+.PP
+Następujące opcje są używane do kontroli dźwięku generowanego za pomocą 
+Gnome Library.
+.TP
+.BI \-\^\-disable-sound
+Wyłącza użycie serwera dźwięku.
+.TP
+.BI \-\^\-enable-sound
+Włącza użycie serwera dźwięku.
+.TP
+.BI \-\^\-espeaker= " HOSTNAME:PORT"
+Host:port na którym jest uruchomiony serwer dźwięku.
+\}
+
+.SH "Działanie"
+.br
+Jeśli pierwszy argument nie rozpoczyna się znakiem myślnik, (nie jest flagą),
+to gramps będzie próbował otworzyć plik podany przez pierwszy argument, a 
+następnie sesję interaktywną a pozostałą część parametrów w linii poleceń
+zignoruje.
+
+.LP
+Jeśli podana jest flaga \fB\-O\fR, będzie próbował otworzyć podaną bazę 
+i pracować na danych w niej zawartych realizując podane później polecenia
+z linii komend.
+
+.LP
+Z flagą \fB\-O\fR czy bez, może występować wiele importów, eksportów oraz
+akcji określonych za pomocą flag \fB\-i\fR, \fB\-o\fR, oraz \fB\-a\fR .  
+
+.LP
+Kolejność podawania opcji \fB\-i\fR, \fB\-o\fR, czy \fB\-a\fR nie ma znaczenia.
+Wykonywane są one zawsze w kolejności: wszystkie importy (jeśli podane) -> 
+wszystkie akcje (jeśli podane) -> wszystkie eksporty (jeśli podane)
+Ale otwarcie bazy zawsze musi być na pierwszym parametrem !
+
+.LP
+Jeśli nie podano opcji \fB\-O\fR lub \fB\-i\fR, gramps uruchomi swoje główne
+okno i rozpocznie normalną sesję interaktywną z pustą bazą danych (ponieważ
+nie zdołał przetworzyć do niej żadnych danych).
+
+.LP
+Jeśli nie podano opcji\fB\-o\fR albo \fB\-a\fR gramps uruchomi swoje głowne 
+okno i rozpocznie normalną sesję interaktywną z bazą będącą wynikiem wszystkich importów. Ta baza będzie znajdować się w pliku \fBimport_db.grdb\fR
+w katalogu \fB~/.gramps/import\fR.
+
+.LP
+Błąd podczas importu, eksportu albo dowolnej akcji będzie przekierowany na
+\fIstdout\fR (jeśli wyjątek zostanie obsłużony przez gramps) albo na
+\fIstderr\fR (jeśli nie jest obsłużony). Użyj standardowych przekierowań
+strumieni \fIstdout\fR oraz \fIstderr\fR jeśli chcesz zapisać wyświetlane 
+informacje i błędy do pliku. 
+
+.SH PRZYKŁADY
+.TP 
+Aby otworzyć istniejące drzewo rodzinne i zaimportować dane do niego, można wpisać: 
+\fBgramps\fR \fB\-O\fR \fI'Moje drzewo'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP 
+Powyższa opcja otwiera istniejące drzewo, ale gdy chcesz zrobić wykonać taką
+samą akcję tworząc tymczasowe drzewo: wystarczy wpisać:
+\fBgramps\fR \fB\-i\fR \fI'Moje drzewo'\fR \fB\-i\fR \fI~/db3.gramps\fR
+.TP 
+Aby zaimportować cztery bazy (których formaty zostaną określone na podstawie
+ich nazw) i następnie sprawdić powstałą bazę pod kątem błędów, należy wpisać:
+\fBgramps\fR \fB\-i\fR \fIplik1.ged\fR \fB\-i\fR \fIplik2.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-i\fR \fIplik4.wft\fR \fB\-a\fR \fIcheck\fR 
+.TP 
+Aby jawnie określić formaty w powyższym przykładzie, należy dodać nazwy plików
+z odpowiednimi opcjami \fB\-f\fR options: 
+\fBgramps\fR \fB\-i\fR \fIplik1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIplik2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/db3.gramps\fR \fB\-f\fR \fIgramps-xml\fR \fB\-i\fR \fIplik4.wft\fR \fB\-f\fR \fIwft\fR  \fB\-a\fR \fIcheck\fR 
+.TP 
+Aby zachować bazę z wynikami wszystkich importów, należy dodać flagę \fB\-o\fR (należy użyć \fB\-f\fR jeśli nazwa pliku nie pozwala gramps'owi na odgadnięcie formatu wyjściowego):
+\fBgramps\fR \fB\-i\fR \fIplik1.ged\fR \fB\-i\fR \fIplik2.tgz\fR \fB\-o\fR \fI~/nowy-pakiet\fR \fB\-f\fR \fIgramps-pkg\fR 
+.TP 
+W celu zaimportwania trzech baz i rozpoczęcia sesji interaktywnej z wynikiem 
+importu należy użyć polecenia podobnego do poniższego: 
+\fBgramps\fR \fB\-i\fR \fIplik1.ged\fR \fB\-i\fR \fIplik22.tgz\fR \fB\-i\fR \fI~/db3.gramps\fR 
+.TP 
+Aby uruchomić narzędzie weryfikacji z linii poleceń i wyświetlić wyniki na 
+stdout: 
+\fBgramps\fR \fB\-O\fR \fI'Moje drzewo'\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
+.TP 
+Zawsze można też po prostu uruchomić sesję interaktywną wpisująć: 
+\fBgramps\fR 
+
+.SH ZMIENNE ŚRODOWISKOWE
+Program sprawdza w systemie istnienie i wartości następujących zmiennych:
+
+\fBLANG\fR - określa ustawienia, jaki język zostanie wybrany. 
+Np.: polski to pl_PL.UTF-8.
+
+\fBGRAMPSHOME\fR - określa folder, w którym będzie zapisywane ustawienia i bazy
+programu. Domyślnie jest on nieustawiony, a program przyjmuje, że katalog
+z danymi zostanie utworzony w profilu użytkownika (zmienna HOME pod Linuxem 
+albo USERPROFILE pod Windows 2000/XP).
+
+
+.SH KONCEPCJA
+Obsługa systemu rozszerzeń bazującego na pythonie, pozwalającego na dodawanie 
+formatów importu i eksportu zapisów, generatorów raportów, narzędzi i filtrów
+wyświetlania bez modyfikowania głównego programu
+.LP 
+Dodatkowo oprócz generowania standardowego wyjścia na drukarkę, raporty mogą
+także być generowane dla innch systemów i do innych formatów, takich jak:
+\fIOpenOffice.org\fR, \fIAbiWord\fR, HTML, lub LaTeX aby umożliwić użytkownikm
+wybór formatu wyjściowego w zależności od ich potrzeb.
+
+.SH ZNANE BŁĘDY I OGRANICZENIA
+Prawdopodobne. Lista błędów i propozycji znajduje się na:
+\fIhttp://developers.gramps-project.org\fR. 
+
+.SH PLIKI
+.LP 
+\fI${PREFIX}/bin/gramps\fP 
+.br 
+\fI${PREFIX}/share/gramps\fP
+.br 
+\fI${HOME}/.gramps\fP (jeśli nie użyta została zmienna środowiskowa GRAMPSHOME)
+
+.SH AUTORZY
+Donald Allingham \fI<don@gramps-project.org>\fR
+.br 
+\fIhttp://gramps.sourceforge.net\fR
+.LP 
+Ta strona man jest tłumaczeniem strony man napisanej przez:
+.br 
+Brandon L. Griffith \fI<brandon@debian.org>\fR
+.br
+dla systemu Debian GNU/Linux.
+.LP 
+Ta strona aktualnie jest pod opeką:
+.br 
+Projekt Gramps\fI<xxx@gramps-project.org>\fR
+.br 
+Tłumaczenie na polski: Łukasz Rymarczyk <yenidai@poczta.onet.pl>
+.br
+
+.SH DOCUMENTATION
+Dokumentacja użytkownika jest dostępna poprzez standardową przeglądarkę
+pomocy systemu GNOME. Dokumentacja dostępna jest także w formacie XML jako
+plik \fBgramps-manual.xml\fR w folderze \fIdoc/gramps-manual/$LANG\fR
+w głównym źródle dystrybucji.
+.LP 
+Dokumentacja dla programistów jest dostępna na stronie projektu:
+\fIhttp://developers.gramps-project.org\fR. 

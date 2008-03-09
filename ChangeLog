@@ -1,3 +1,11 @@
+2008-03-09 Łukasz Rymarczyk <yenidai@poczta.onet.pl>
+	* data/man/Makefile.am
+	* data/man/pl/gramps.1.in
+	* data/man/pl/Makefile.am
+	* configure.in
+	Added Polish man page file
+	0001914: Polish man page for gramps 3.x
+
 2008-03-09 Raphael Ackermann <raphael.ackermann@gmail.com>
 	* src/gen/lib/data.py (Date.get_sort_value):Add updated description to 
 	what a sortval is. Also add reference to Julian Day on Wikipedia.
