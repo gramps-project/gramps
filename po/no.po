@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-29 22:21+0100\n"
-"PO-Revision-Date: 2008-03-09 13:01+0100\n"
+"PO-Revision-Date: 2008-03-09 19:38+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål <Norwegian Bokmaal <i18n-nb@lister.ping.uio.no>>\n"
 "MIME-Version: 1.0\n"
@@ -237,8 +237,9 @@ msgid "Calculated"
 msgstr "Beregnet"
 
 #: ../src/DateEdit.py:100
+#, fuzzy
 msgid "manual|Editing_Dates"
-msgstr ""
+msgstr "Editer_datoer"
 
 #: ../src/DateEdit.py:149
 msgid "Bad Date"
@@ -1640,7 +1641,7 @@ msgstr "Eksporter visningsresultat..."
 #: ../src/PageView.py:937 ../src/DataViews/PersonView.py:147
 #, fuzzy
 msgid "action|_Edit..."
-msgstr "aksjon|Rediger..."
+msgstr "Redigere..."
 
 #: ../src/PageView.py:942
 msgid "_Filter"
@@ -2967,8 +2968,9 @@ msgid "Private Record"
 msgstr "Privat forekomst"
 
 #: ../src/Merge/_MergePerson.py:45
+#, fuzzy
 msgid "manual|Merge_People"
-msgstr ""
+msgstr "Flett_sammen_personer"
 
 #: ../src/Merge/_MergePerson.py:82
 msgid "Compare People"
@@ -3048,8 +3050,9 @@ msgid "Merge People"
 msgstr "Flett sammen personer"
 
 #: ../src/Merge/_MergePlace.py:52
+#, fuzzy
 msgid "manual|Merge_Places"
-msgstr ""
+msgstr "Flett_sammen_steder"
 
 #: ../src/Merge/_MergePlace.py:77 ../src/Merge/_MergePlace.py:97
 #: ../src/Merge/_MergePlace.py:175
@@ -3057,8 +3060,9 @@ msgid "Merge Places"
 msgstr "Flett sammen steder"
 
 #: ../src/Merge/_MergeSource.py:42
+#, fuzzy
 msgid "manual|Merge_Sources"
-msgstr ""
+msgstr "Flett_sammen_kilder"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
 msgid "Merge Sources"
@@ -4433,8 +4437,9 @@ msgid "Child Reference"
 msgstr "Behandler for barnereferanser"
 
 #: ../src/Editors/_EditEvent.py:60
+#, fuzzy
 msgid "manual|Editing_Information_About_Events"
-msgstr ""
+msgstr "Editer_informasjon_om_hendelser"
 
 #: ../src/Editors/_EditEvent.py:87 ../src/Editors/_EditEventRef.py:221
 #, python-format
@@ -5547,8 +5552,9 @@ msgid "This is the final step. Use the buttons on this page to start a web brows
 msgstr "Dette er siste steg. Bruk knappene på denne siden for å starte en nettleser og legg inn en feilrapport i Gramps' feilhåndteringssystem."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
+#, fuzzy
 msgid "manual|General"
-msgstr ""
+msgstr "Generell"
 
 #: ../src/GrampsLogger/_ErrorView.py:58
 msgid "Error Report"
@@ -7157,8 +7163,9 @@ msgid "Enter Python expressions"
 msgstr "Skriv inn Python-uttrykk"
 
 #: ../src/plugins/DefaultGramplets.py:631
+#, fuzzy
 msgid "class name|Date"
-msgstr ""
+msgstr "Dato"
 
 #: ../src/plugins/DefaultGramplets.py:641
 msgid "Error"
@@ -10201,8 +10208,9 @@ msgid "Title Page"
 msgstr "Tittelside"
 
 #: ../src/plugins/SoundGen.py:56
+#, fuzzy
 msgid "manual|Generate_SoundEx_codes"
-msgstr ""
+msgstr "Lage_SoundEx_koder"
 
 #: ../src/plugins/SoundGen.py:66
 msgid "SoundEx code generator"
@@ -10441,8 +10449,9 @@ msgid "Charts 2"
 msgstr "Diagrammer 2"
 
 #: ../src/plugins/StatisticsChart.py:751
+#, fuzzy
 msgid "Include charts with indicated data"
-msgstr ""
+msgstr "Ta med diagram med markerte data"
 
 #: ../src/plugins/StatisticsChart.py:791
 msgid "The style used for the items and values."
@@ -10507,8 +10516,9 @@ msgid "Generates a timeline graph."
 msgstr "Lager en tidslinjegraf."
 
 #: ../src/plugins/Verify.py:66
+#, fuzzy
 msgid "manual|Verify_the_Data..."
-msgstr ""
+msgstr "Verifiser_dataene..."
 
 #: ../src/plugins/Verify.py:219
 msgid "Database Verify tool"
@@ -11523,12 +11533,14 @@ msgid "The minimum amount of free space, in inches, between individual nodes.  F
 msgstr "Minste størrelse på tomrom, i tommer, mellom individuelle knutepunkt.  For loddrette grafer samsvarer dette med avstand mellom kolonner.  For vannrette grafer samsvarer dette med avstand mellom rader."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:807
+#, fuzzy
 msgid "Rank spacing"
-msgstr ""
+msgstr "Rangordningsavstand"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:808
+#, fuzzy
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
-msgstr ""
+msgstr "Minimumsmellomrommet, i tommer, mellom nivåer. For vertikale diagrammer tilsvarer dette mellomrommet mellom rader. For horisontale diagrammer tilsvarer dette mellomrommet mellom kolonner."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:819
@@ -17549,8 +17561,9 @@ msgid "Mo_nth"
 msgstr "Må_ned"
 
 #: ../src/glade/gramps.glade.h:89
+#, fuzzy
 msgid "Name Child:"
-msgstr ""
+msgstr "Navn på barn:"
 
 #: ../src/glade/gramps.glade.h:91
 msgid "O_verride"
@@ -18086,11 +18099,15 @@ msgid "Width:"
 msgstr "Bredde:"
 
 #: ../src/plugins/NotRelated.glade.h:1
+#, fuzzy
 msgid ""
 "\n"
 "ToDo\n"
 "NotRelated"
 msgstr ""
+"\n"
+"Gjøremål\n"
+"Ikke relatert"
 
 #: ../src/plugins/NotRelated.glade.h:4
 msgid "_Marker"
