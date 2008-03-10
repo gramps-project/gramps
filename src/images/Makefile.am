@@ -82,5 +82,5 @@ CLEANFILES = $(map_tile_images)\
 	world.topo.200407.3x3200x1600.jpg\
 	world.topo.200407.3x5400x2700.jpg
 
-world.topo.200407%: mk_blue_marble.py
+world.topo.200407: mk_blue_marble.py
 	python mk_blue_marble.py
