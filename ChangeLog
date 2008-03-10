@@ -1,3 +1,7 @@
+2008-03-09  Douglas S. Blank  <dblank@cs.brynmawr.edu>
+	* src/images/Makefile.am (world.topo.200407): percent sign typo?
+	* data/man/pl/Makefile.am: missing file added
+
 2008-03-09 Łukasz Rymarczyk <yenidai@poczta.onet.pl>
 	* data/man/Makefile.am
 	* data/man/pl/gramps.1.in
