@@ -159,9 +159,9 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
         self.window.show()
 
     def handle_response(self, object, response):
-        if response == gtk.RESPONSE_CLOSE:
+        if response in [gtk.RESPONSE_CLOSE, gtk.STOCK_CLOSE]:
             self.close()
-        else:
+        elif response == gtk.RESPONSE_HELP:
             # translated name:
             GrampsDisplay.help('gramplet', WIKI_HELP_PAGE, 
                                self.gramplet.tname.replace(" ", "_"))
