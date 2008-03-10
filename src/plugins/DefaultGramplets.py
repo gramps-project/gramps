@@ -821,6 +821,14 @@ class TODOGramplet(Gramplet):
         self.gui.data = [] # clear out old data
         self.save_text_to_data()
 
+class FAQGramplet(Gramplet):
+    def init(self):
+        self.set_use_markup(True)
+        self.clear_text()
+        self.render_text("Draft of a <a wiki='FAQ'>Frequently Asked Questions</a> Gramplet\n\n")
+        self.render_text("  1. <a href='http://bugs.gramps-project.org/'>Test 1</a>\n")
+        self.render_text("  2. <a href='http://gramps-project.org//'>Test 2</a>\n")
+
 def make_welcome_content(gui):
     text = _(
         'Welcome to GRAMPS!\n\n'
@@ -952,6 +960,7 @@ class AgeOnDateGramplet(Gramplet):
         # label, entry
         description = gtk.TextView()
         description.set_wrap_mode(gtk.WRAP_WORD)
+        description.set_editable(False)
         buffer = description.get_buffer()
         buffer.set_text(_("Enter a date in the entry below and click Run."
                           " This will compute the ages for everyone in your"
@@ -1087,3 +1096,12 @@ register(type="gramplet",
          detached_width = 600,
          detached_height = 400,
          )
+
+register(type="gramplet", 
+         name="FAQ Gramplet", 
+         tname=_("FAQ Gramplet"), 
+         height=300,
+         content = FAQGramplet,
+         title=_("FAQ"),
+         )
+

@@ -86,6 +86,21 @@ def register(**data):
     else:
         print ("Plugin did not define type.")
 
+def parse_tag_attr(text):
+    text = text.strip()
+    parts = text.split(" ", 1)
+    attrs = {}
+    if len(parts) == 2:
+        attr_values = parts[1].split(" ") # "name=value name=value"
+        for av in attr_values:
+            attribute, value = av.split("=")
+            value = value.strip()
+            # trim off quotes:
+            if value[0] == value[-1] and value[0] in ['"', "'"]:
+                value = value[1:-1]
+            attrs[attribute.strip().lower()] = value
+    return [parts[0].upper(), attrs]
+
 def get_gramplet_opts(name, opts):
     if name in AVAILABLE_GRAMPLETS:
         data = AVAILABLE_GRAMPLETS[name]
@@ -256,6 +271,11 @@ class Gramplet(object):
         if debug: print "%s is connecting" % self.gui.title
         pass
 
+    def link_region(self, start, stop, link_type, url):
+        link_data = (LinkTag(self.gui.buffer), link_type, url, url)
+        self._tags.append(link_data)
+        self.gui.buffer.apply_tag(link_data[0], start, stop)
+
     def link(self, text, link_type, data, size=None, tooltip=None):
         buffer = self.gui.buffer
         iter = buffer.get_end_iter()
@@ -288,9 +308,6 @@ class Gramplet(object):
 
     def append_text(self, text, scroll_to="end"):
         self.gui.append_text(text, scroll_to)
-
-    def render_text(self, text):
-        self.gui.render_text(text)
 
     def set_use_markup(self, value):
         self.gui.set_use_markup(value)
@@ -437,6 +454,15 @@ class Gramplet(object):
                                                      self.gui.uistate, 
                                                      'filterbyname', 
                                                      handle)
+                    return True
+                elif link_type == 'URL':
+                    if event.button == 1: # left mouse
+                        GrampsDisplay.url(handle)
+                    return True
+                elif link_type == 'WIKI':
+                    if event.button == 1: # left mouse
+                        GrampsDisplay.help('gramplet', 
+                                           handle.replace(" ", "_"))
                     return True
                 elif link_type == 'PersonList':
                     if event.button == 1: # left mouse
@@ -605,24 +631,34 @@ class GuiGramplet:
         self.buffer.insert_at_cursor(text)
 
     def render_text(self, text):
-        markup_pos = {"B": [], "I": [], "U": []}
+        markup_pos = {"B": [], "I": [], "U": [], "A": []}
         retval = ""
         i = 0
         r = 0
+        tag = ""
         while i < len(text):
-            if text[i] == "<":
-                if text[i+1] == "/" and text[i+3] == ">":
-                    markup = text[i+2].upper()
-                    markup_pos[markup][-1].append(r)
-                    i += 4
-                elif text[i+2] == ">":
-                    markup = text[i+1].upper()
-                    markup_pos[markup].append([r])
-                    i += 3
-                else:
+            if text[i:i+2] == "</":
+                # start of ending tag
+                stop = text[i:].find(">")
+                if stop < 0:
                     retval += text[i]
                     r += 1
                     i += 1
+                else:
+                    markup = text[i+2:i+stop].upper() # close tag
+                    markup_pos[markup][-1].append(r)
+                    i = i + stop + 1
+            elif text[i] == "<":
+                # start of start tag
+                stop = text[i:].find(">")
+                if stop < 0:
+                    retval += text[i]
+                    r += 1
+                    i += 1
+                else:
+                    markup, attr = parse_tag_attr(text[i+1:i+stop])
+                    markup_pos[markup].append([r, attr])
+                    i = i + stop + 1
             elif text[i] == "\\":
                 retval += text[i+1]
                 r += 1
@@ -638,18 +674,29 @@ class GuiGramplet:
                 i += 1
         offset = len(self.get_text())
         self.append_text(retval)
-        for (a,b) in markup_pos["B"]:
+        for (a,attributes,b) in markup_pos["B"]:
             start = self.buffer.get_iter_at_offset(a + offset)
             stop = self.buffer.get_iter_at_offset(b + offset)
             self.buffer.apply_tag_by_name("bold", start, stop)
-        for (a,b) in markup_pos["I"]:
+        for (a,attributes,b) in markup_pos["I"]:
             start = self.buffer.get_iter_at_offset(a + offset)
             stop = self.buffer.get_iter_at_offset(b + offset)
             self.buffer.apply_tag_by_name("italic", start, stop)
-        for (a,b) in markup_pos["U"]:
+        for (a,attributes,b) in markup_pos["U"]:
             start = self.buffer.get_iter_at_offset(a + offset)
             stop = self.buffer.get_iter_at_offset(b + offset)
             self.buffer.apply_tag_by_name("underline", start, stop)
+        for (a,attributes,b) in markup_pos["A"]:
+            start = self.buffer.get_iter_at_offset(a + offset)
+            stop = self.buffer.get_iter_at_offset(b + offset)
+            if "href" in attributes:
+                url = attributes["href"]
+                self.pui.link_region(start, stop, "URL", url) # tooltip?
+            elif "wiki" in attributes:
+                url = attributes["wiki"]
+                self.pui.link_region(start, stop, "WIKI", url) # tooltip?
+            else:
+                print "warning: no url on link: '%s'" % text[start, stop]
 
     def set_use_markup(self, value):
         if self.use_markup == value: return
