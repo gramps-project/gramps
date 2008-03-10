@@ -28,7 +28,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +49,7 @@ import ManagedWindow
 
 from QuestionDialog import OkDialog
 from PluginUtils import Tool, register_tool
-
+from TransUtils import sgettext as _
 #-------------------------------------------------------------------------
 #
 # constants
@@ -64,7 +63,8 @@ prefix_list = [
     "um", "una", "uno",
     ]
 
-
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names...')
 
 #-------------------------------------------------------------------------
 #
@@ -231,7 +231,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-db')
+        GrampsDisplay.help('tools-db', WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
         self.trans = self.db.transaction_begin("",batch=True)
