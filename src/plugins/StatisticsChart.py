@@ -263,7 +263,7 @@ class Extract:
 
     def get_handle_count(self, data):
         "return number of handles in given (person, handle_list) used for child count, family count"
-        return [str(len(data[1]))]
+        return ["%3d" % len(data[1])]
 
     # ------------------- utility methods -------------------------
     
