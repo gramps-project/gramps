@@ -96,9 +96,11 @@ _HGAP = 30
 _SHADOW = 5
 _XOFFSET = 5
 
-#This information defines the list of styles in the Narrative Web options dialog as well as the location of the corresponding SCREEN stylesheets.
+# This information defines the list of styles in the Narrative Web
+# options dialog as well as the location of the corresponding SCREEN
+# stylesheets.
 _CSS_FILES = [
-
+    # First is used as default selection.
     [_("Basic - Ash"),     'NWeb-Screen_Basic-Ash.css'],
     [_("Basic - Cypress"), 'NWeb-Screen_Basic-Cypress.css'],
     [_("Basic - Lilac"),   'NWeb-Screen_Basic-Lilac.css'],
@@ -110,6 +112,7 @@ _CSS_FILES = [
     ]
 
 _CHARACTER_SETS = [
+    # First is used as default selection.
     [_('Unicode (recommended)'), 'utf-8'],
     ['ISO-8859-1',  'iso-8859-1' ],
     ['ISO-8859-2',  'iso-8859-2' ],
@@ -221,6 +224,11 @@ class BasePage:
         self.warn_dir = True
         self.cur_name = None            # Internal use. The name of the output file, to be used for the tar archive.
 
+        self.author = get_researcher().get_name()
+        if self.author:
+            self.author = self.author.replace(',,,', '')
+        self.up = False
+
         # TODO. All of these attributes are not necessary, because we have
         # als the options in self.options.  Besides, we need to check which
         # are still required.
@@ -290,8 +298,8 @@ class BasePage:
         self.cur_name = name + self.ext
         if self.archive:
             self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io, 'utf-8', self.encoding,
-                                    'xmlcharrefreplace')
+            of = codecs.EncodedFile(self.string_io, 'utf-8',
+                                    self.encoding, 'xmlcharrefreplace')
         else:
             page_name = os.path.join(self.html_dir, self.cur_name)
             of = codecs.EncodedFile(open(page_name, "w"), 'utf-8',
@@ -371,7 +379,6 @@ class BasePage:
             of.write('\t<div id="copyright">\n')
             of.write('\t\t<p>')
             if self.author:
-                self.author = self.author.replace(',,,', '')
                 year = time.localtime(time.time())[0]
                 cright = _('&copy; %(year)d %(person)s') % {
                     'person' : self.author,
@@ -379,7 +386,7 @@ class BasePage:
                 of.write('%s' % cright)
             of.write('</p>\n')
             of.write('\t</div>\n')
-        elif self.copyright <=6:
+        elif self.copyright <= 6:
             of.write('\t<div id="copyright">')
             text = _CC[self.copyright-1]
             if self.up:
@@ -393,14 +400,11 @@ class BasePage:
         of.write('</body>\n')
         of.write('</html>')
 
-    def display_header(self, of, db, title, author="", up=False):
-        self.up = up
-        if up:
+    def display_header(self, of, db, title):
+        if self.up:
             path = "../../.."
         else:
             path = ""
-
-        self.author = author
 
         of.write('<!DOCTYPE html PUBLIC ')
         of.write('"-//W3C//DTD XHTML 1.0 Strict//EN" ')
@@ -446,7 +450,7 @@ class BasePage:
         if self.linkhome:
             home_person = db.get_default_person()
             if home_person:
-                fname = self.build_path_fname('ppl', home_person.handle, up)
+                fname = self.build_path_fname('ppl', home_person.handle, self.up)
                 home_person_url = fname
                 home_person_name = home_person.get_primary_name().get_regular_name()
                 msg += _('<br />for <a href="%s">%s</a>') % (home_person_url, home_person_name)
@@ -841,8 +845,7 @@ class IndividualListPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("individuals")
-        self.display_header(of, db, _('Individuals'),
-                            get_researcher().get_name())
+        self.display_header(of, db, _('Individuals'))
 
         msg = _("This page contains an index of all the individuals in the "
                 "database, sorted by their last names. Selecting the person&#8217;s "
@@ -986,7 +989,8 @@ class SurnamePage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_link_file('srn', self.lnkfmt(title))
-        self.display_header(of, db, title, get_researcher().get_name(), True)
+        self.up = True
+        self.display_header(of, db, title)
 
         msg = _("This page contains an index of all the individuals in the "
                 "database with the surname of %s. Selecting the person&#8217;s name "
@@ -1110,9 +1114,9 @@ class PlaceListPage(BasePage):
     def __init__(self, db, title, place_handles, src_list, options, archive,
                  media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
+
         of = self.create_file("places")
-        self.display_header(of, db, _('Places'),
-                            get_researcher().get_name())
+        self.display_header(of, db, _('Places'))
 
         msg = _("This page contains an index of all the places in the "
                 "database, sorted by their title. Clicking on a place&#8217;s "
@@ -1177,9 +1181,11 @@ class PlacePage(BasePage):
         place = db.get_place_from_handle( place_handle)
         BasePage.__init__(self, title, options, archive, media_list,
                           place.gramps_id)
+
         of = self.create_link_file('plc', place.get_handle())
         self.page_title = ReportUtils.place_name(db, place_handle)
-        self.display_header(of, db, "%s - %s" % (_('Places'), self.page_title), get_researcher().get_name(), up=True)
+        self.up = True
+        self.display_header(of, db, "%s - %s" % (_('Places'), self.page_title))
 
         media_list = place.get_media_list()
         self.display_first_image_as_thumbnail(of, db, media_list)
@@ -1262,9 +1268,10 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        self.display_header(of, db, "%s - %s" % (_('Gallery'), self.page_title), get_researcher().get_name(), up=True)
+        self.up = True
+        self.display_header(of, db, "%s - %s" % (_('Gallery'), self.page_title))
 
-        of.write('\t<h2>Gallery:</h2>\n')
+        of.write('\t<h2>%s:</h2>\n' % _('Gallery'))
 
         # gallery navigation
         of.write('\t<div id="GalleryNav">\n')
@@ -1453,12 +1460,11 @@ class SurnameListPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
         if order_by == self.ORDER_BY_NAME:
             of = self.create_file(filename)
-            self.display_header(of, db, _('Surnames'), get_researcher().get_name())
+            self.display_header(of, db, _('Surnames'))
             of.write('\t<h2>%s</h2>\n' % _('Surnames'))
         else:
             of = self.create_file("surnames_count")
-            self.display_header(of, db, _('Surnames by person count'),
-                            get_researcher().get_name())
+            self.display_header(of, db, _('Surnames by person count'))
             of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
 
         of.write('\t<p id="description">%s</p>\n' % _(
@@ -1541,19 +1547,16 @@ class IntroductionPage(BasePage):
 
     def __init__(self, db, title, options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
-        note_id = options['intronote']
-        pic_id =  options['introimg']
 
         if self.use_home:
             of = self.create_file("introduction")
         else:
             of = self.create_file("index")
-
-        author = get_researcher().get_name()
-        self.display_header(of, db, _('Introduction'), author)
+        self.display_header(of, db, _('Introduction'))
 
         of.write('\t<h2>%s</h2>\n' % _('Introduction'))
 
+        pic_id = options['introimg']
         if pic_id:
             obj = db.get_object_from_gramps_id(pic_id)
             mime_type = obj.get_mime_type()
@@ -1570,6 +1573,7 @@ class IntroductionPage(BasePage):
                 except (IOError, OSError), msg:
                     WarningDialog(_("Could not add photo to page"), str(msg))
 
+        note_id = options['intronote']
         if note_id:
             note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
@@ -1594,14 +1598,12 @@ class HomePage(BasePage):
     def __init__(self, db, title, options, archive, media_list):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
-        note_id = options['homenote']
-        pic_id =  options['homeimg']
         of = self.create_file("index")
-        author = get_researcher().get_name()
-        self.display_header(of, db, _('Home'), author)
+        self.display_header(of, db, _('Home'))
 
         of.write('\t<h2>%s</h2>\n' % _('Home'))
 
+        pic_id = options['homeimg']
         if pic_id:
             obj = db.get_object_from_gramps_id(pic_id)
             mime_type = obj.get_mime_type()
@@ -1618,6 +1620,7 @@ class HomePage(BasePage):
                 except (IOError, OSError), msg:
                     WarningDialog(_("Could not add photo to page"), str(msg))
 
+        note_id = options['homenote']
         if note_id:
             note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
@@ -1643,8 +1646,7 @@ class SourcesPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("sources")
-        author = get_researcher().get_name()
-        self.display_header(of, db, _('Sources'), author)
+        self.display_header(of, db, _('Sources'))
 
         handle_list = list(handle_set)
         source_dict = {}
@@ -1702,15 +1704,16 @@ class SourcePage(BasePage):
         source = db.get_source_from_handle( handle)
         BasePage.__init__(self, title, options, archive, media_list,
                           source.gramps_id)
+
         of = self.create_link_file('src', source.get_handle())
         self.page_title = source.get_title()
-        self.display_header(of, db, "%s - %s" % (_('Sources'), self.page_title),
-                            get_researcher().get_name(), up=True)
+        self.up = True
+        self.display_header(of, db, "%s - %s" % (_('Sources'), self.page_title))
 
         media_list = source.get_media_list()
         self.display_first_image_as_thumbnail(of, db, media_list)
 
-        of.write('\t<h2>Sources:</h2>\n')
+        of.write('\t<h2>%s:</h2>\n' % _('Sources'))
         of.write('\t<h3>%s</h3>\n\n' % html_escape(self.page_title.strip()))
         of.write('\t<div id="summaryarea">\n')
         of.write('\t\t<table class="infolist source">\n')
@@ -1749,7 +1752,7 @@ class GalleryPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("gallery")
-        self.display_header(of, db, _('Gallery'), get_researcher().get_name())
+        self.display_header(of, db, _('Gallery'))
 
         of.write('\t<h2>%s</h2>\n\n' % _('Gallery'))
         of.write('\t<p id="description">')
@@ -1809,8 +1812,7 @@ class DownloadPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("download")
-        self.display_header(of, db, _('Download'),
-                            get_researcher().get_name())
+        self.display_header(of, db, _('Download'))
 
         of.write('\t<h2>%s</h2>\n\n' % _('Download'))
 
@@ -1828,13 +1830,11 @@ class ContactPage(BasePage):
         BasePage.__init__(self, title, options, archive, media_list, "")
 
         of = self.create_file("contact")
-        self.display_header(of, db, _('Contact'),
-                            get_researcher().get_name())
+        self.display_header(of, db, _('Contact'))
 
         of.write('\t<h2>%s</h2>\n\n' % _('Contact'))
         of.write('\t<div id="summaryarea">\n')
 
-        note_id = options['contactnote']
         pic_id = options['contactimg']
         if pic_id:
             obj = db.get_object_from_gramps_id(pic_id)
@@ -1871,6 +1871,7 @@ class ContactPage(BasePage):
         of.write('\t\t</div>\n')
         of.write('\t\t<div class="fullclear"></div>\n')
 
+        note_id = options['contactnote']
         if note_id:
             note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get(markup=True)
@@ -1915,8 +1916,9 @@ class IndividualPage(BasePage):
         self.name = _nd.sorted(self.person)
 
         of = self.create_link_file('ppl', person.handle)
-        self.display_header(of, db, self.sort_name,
-                            get_researcher().get_name(), up=True)
+        self.up = True
+        self.display_header(of, db, self.sort_name)
+
         self.display_ind_general(of)
         self.display_ind_events(of)
         self.display_attr_list(of, self.person.get_attribute_list())
@@ -2573,7 +2575,6 @@ class IndividualPage(BasePage):
 
         for sref in source_ref_list:
             handle = sref.get_reference_handle()
-            source = self.db.get_source_from_handle(handle)
             gid_list.append(sref)
 
             if self.src_list.has_key(handle):
@@ -2993,7 +2994,7 @@ class NavWebOptions(MenuReportOptions):
         cright.set_help( _("The copyright to be used for the web files"))
         menu.add_option(category_name, "cright", cright)
 
-        encoding = EnumeratedListOption(_('Character set encoding'), 'utf-8' )
+        encoding = EnumeratedListOption(_('Character set encoding'), _CHARACTER_SETS[0][1] )
         for eopt in _CHARACTER_SETS:
             encoding.add_item(eopt[1], eopt[0])
         encoding.set_help( _("The encoding to be used for the web files"))
@@ -3191,8 +3192,6 @@ class NavWebOptions(MenuReportOptions):
 
 
 def sort_people(db, handle_list):
-    flist = set(handle_list)
-
     sname_sub = {}
     sortnames = {}
 
