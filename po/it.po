@@ -60,7 +60,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-08 13:21+0100\n"
-"PO-Revision-Date: 2008-03-11 01:59+0100\n"
+"PO-Revision-Date: 2008-03-11 18:21+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -520,17 +520,19 @@ msgid "Could not rename family tree"
 msgstr "Impossibile rinominare l'albero genealogico."
 
 #: ../src/DbManager.py:664
+#, fuzzy
 msgid "Extracting archive..."
-msgstr ""
+msgstr "Estrazione archivio..."
 
 #: ../src/DbManager.py:669
+#, fuzzy
 msgid "Importing archive..."
-msgstr ""
+msgstr "Importazione archivio..."
 
 #: ../src/DbManager.py:685
 #, python-format
 msgid "Remove the '%s' family tree?"
-msgstr "Rimuovere l'albero genealogico '%s'?"
+msgstr "Rimuovere l'albero genealogico «%s»?"
 
 #: ../src/DbManager.py:686
 msgid "Removing this family tree will permanently destroy the data."
@@ -538,12 +540,13 @@ msgstr ""
 
 #: ../src/DbManager.py:687
 msgid "Remove family tree"
-msgstr "Rimuovi albero genealogico"
+msgstr "Rimuove albero genealogico"
 
 #: ../src/DbManager.py:693
 #, python-format
+#, fuzzy
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr ""
+msgstr "Rimovere la versione «%(revision)s» di «%(database)s»"
 
 #: ../src/DbManager.py:697
 msgid "Removing this version will prevent you from extracting it in the future."
@@ -561,7 +564,7 @@ msgstr "Impossibile cancellare l'albero genealogico"
 #: ../src/DbManager.py:753
 #, fuzzy
 msgid "Deletion failed"
-msgstr "Apre il file"
+msgstr "Cancellazione non riuscita"
 
 #: ../src/DbManager.py:754
 #, python-format
@@ -1172,7 +1175,6 @@ msgid "Missing surname"
 msgstr "Cognomi univoci"
 
 #: ../src/GrampsCfg.py:698
-#, fuzzy
 msgid "Missing given name"
 msgstr "Nome mancante"
 
@@ -1187,7 +1189,6 @@ msgid "Private surname"
 msgstr "Cognome privato"
 
 #: ../src/GrampsCfg.py:707
-#, fuzzy
 msgid "Private given name"
 msgstr "Nome privato"
 
@@ -1370,7 +1371,7 @@ msgstr "Genitori"
 #: ../src/gramps_main.py:115
 #, fuzzy
 msgid "Add Parents"
-msgstr "Genitore"
+msgstr "Aggiunge genitori"
 
 #: ../src/gramps_main.py:116
 msgid "Select Parents"
@@ -1410,7 +1411,7 @@ msgstr "Fonti"
 #: ../src/gramps_main.py:124
 #, fuzzy
 msgid "Add Spouse"
-msgstr "Ricerca fonte"
+msgstr "Aggiunge coniuge"
 
 #: ../src/gramps_main.py:125
 msgid "Tools"
@@ -1564,16 +1565,16 @@ msgstr "Modifica luogo"
 #: ../src/GrampsWidgets.py:926
 #, fuzzy
 msgid "Select an existing place"
-msgstr "_Apri un database esistente"
+msgstr "Seleziona un luogo esistente"
 
 #: ../src/GrampsWidgets.py:927 ../src/DataViews/PlaceView.py:80
 #, fuzzy
 msgid "Add a new place"
-msgstr "Aggiunge un nuovo filtro"
+msgstr "Aggiunge un nuovo luogo"
 
 #: ../src/GrampsWidgets.py:928
 msgid "Remove place"
-msgstr "Rimuovi luogo"
+msgstr "Rimuove luogo"
 
 #: ../src/GrampsWidgets.py:976
 msgid "To select a media object, use drag-and-drop or use the buttons"
@@ -1591,17 +1592,17 @@ msgstr "Modifica oggetto multimediale"
 #: ../src/GrampsWidgets.py:980 ../src/PluginUtils/_GuiOptions.py:724
 #, fuzzy
 msgid "Select an existing media object"
-msgstr "Selezionare un oggetto multimediale esistente"
+msgstr "Seleziona un oggetto multimediale esistente"
 
 #: ../src/GrampsWidgets.py:981 ../src/DataViews/MediaView.py:88
 #, fuzzy
 msgid "Add a new media object"
-msgstr "Aggiunge nuovo oggetto multimediale"
+msgstr "Aggiunge un nuovo oggetto multimediale"
 
 #: ../src/GrampsWidgets.py:982
 #, fuzzy
 msgid "Remove media object"
-msgstr "Rimuovi oggetto multimediale"
+msgstr "Rimuove oggetto multimediale"
 
 #: ../src/GrampsWidgets.py:1030
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -1620,7 +1621,7 @@ msgstr "Modifica nota"
 #: ../src/GrampsWidgets.py:1034 ../src/PluginUtils/_GuiOptions.py:642
 #, fuzzy
 msgid "Select an existing note"
-msgstr "_Apri un database esistente"
+msgstr "Seleziona una nota esistente"
 
 #: ../src/GrampsWidgets.py:1035 ../src/DataViews/NoteView.py:73
 #, fuzzy
@@ -1628,9 +1629,8 @@ msgid "Add a new note"
 msgstr "Aggiunge un nuovo elemento"
 
 #: ../src/GrampsWidgets.py:1036
-#, fuzzy
 msgid "Remove note"
-msgstr "Rimuovi nota"
+msgstr "Rimuove nota"
 
 #: ../src/GrampsWidgets.py:2806
 #, python-format
@@ -1728,7 +1728,6 @@ msgid "_Home"
 msgstr "_Casa"
 
 #: ../src/PageView.py:398 ../src/DataViews/GrampletView.py:989
-#, fuzzy
 msgid "Go to the default person"
 msgstr "Va alla persona predefinita"
 
@@ -2839,7 +2838,7 @@ msgstr "Azione"
 #: ../src/UndoHistory.py:176
 #, fuzzy
 msgid "Delete confirmation"
-msgstr "Conferma eliminazione"
+msgstr "Conferma cancellazione"
 
 #: ../src/UndoHistory.py:177
 #, fuzzy
@@ -2881,7 +2880,7 @@ msgstr "Apri _recenti"
 #: ../src/ViewManager.py:386
 #, fuzzy
 msgid "Open an existing database"
-msgstr "Apertura di un database esistente"
+msgstr "Apre un database esistente"
 
 #: ../src/ViewManager.py:387
 msgid "_Quit"
@@ -3264,7 +3263,6 @@ msgid "Family ID"
 msgstr "ID famiglia"
 
 #: ../src/Merge/_MergePerson.py:168
-#, fuzzy
 msgid "No parents found"
 msgstr "Nessun genitore trovato"
 
@@ -3322,7 +3320,7 @@ msgstr "Salvare le modifiche?"
 
 #: ../src/DataViews/EventView.py:77 ../src/DisplayTabs/_EventEmbedList.py:53
 msgid "Add a new event"
-msgstr "Aggiungi un nuovo evento"
+msgstr "Aggiunge un nuovo evento"
 
 #: ../src/DataViews/EventView.py:78 ../src/DisplayTabs/_EventEmbedList.py:55
 msgid "Edit the selected event"
@@ -3330,7 +3328,7 @@ msgstr "Modifica l'evento selezionato"
 
 #: ../src/DataViews/EventView.py:79
 msgid "Delete the selected event"
-msgstr "Elimina l'evento selezionato"
+msgstr "Cancella l'evento selezionato"
 
 #: ../src/DataViews/EventView.py:181
 #, fuzzy
@@ -3355,7 +3353,7 @@ msgid ""
 "database and from all people and families that reference it."
 msgstr ""
 "Questo evento è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutti le persone e le famiglie che ne fanno "
+"rimozione dal database e da tutte le persone e le famiglie che ne fanno "
 "riferimento."
 
 #: ../src/DataViews/EventView.py:241
@@ -3371,9 +3369,8 @@ msgid "Delete %s?"
 msgstr "Cancellare %s?"
 
 #: ../src/DataViews/EventView.py:250
-#, fuzzy
 msgid "_Delete Event"
-msgstr "_Elimina evento"
+msgstr "_Cancella evento"
 
 #: ../src/DataViews/FamilyList.py:66
 #, fuzzy
@@ -3386,12 +3383,10 @@ msgid "Add a new family"
 msgstr "Aggiunge una nuova famiglia"
 
 #: ../src/DataViews/FamilyList.py:71
-#, fuzzy
 msgid "Edit the selected family"
 msgstr "Modifica la famiglia selezionata"
 
 #: ../src/DataViews/FamilyList.py:72
-#, fuzzy
 msgid "Delete the selected family"
 msgstr "Cancella la famiglia selezionata"
 
@@ -3415,14 +3410,12 @@ msgid "Family Filter Editor"
 msgstr "Editor filtri famiglia"
 
 #: ../src/DataViews/MediaView.py:89
-#, fuzzy
 msgid "Edit the selected media object"
-msgstr "Modifica l'evento selezionato"
+msgstr "Modifica l'oggetto multimediale selezionato"
 
 #: ../src/DataViews/MediaView.py:90
-#, fuzzy
 msgid "Delete the selected media object"
-msgstr "Cancella il filtro selezionato"
+msgstr "Cancella l'oggetto multimediale selezionato"
 
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 #, fuzzy
@@ -3432,7 +3425,7 @@ msgstr "Oggetto multimediale"
 #: ../src/DataViews/MediaView.py:215
 #, fuzzy
 msgid "Media Filter Editor"
-msgstr "Editor filtri di sistema"
+msgstr "Editor filtri oggetti multimediali"
 
 #: ../src/DataViews/MediaView.py:218
 #, fuzzy
@@ -3442,7 +3435,7 @@ msgstr "Mostra nel visualizzatore predefinito"
 #: ../src/DataViews/MediaView.py:236
 #, fuzzy, python-format
 msgid "Cannot view %s"
-msgstr "Impossibile importare %s"
+msgstr "Impossibile visualizzare %s"
 
 #: ../src/DataViews/MediaView.py:237
 #, python-format
@@ -3452,7 +3445,7 @@ msgstr ""
 #: ../src/DataViews/MediaView.py:247
 #, fuzzy
 msgid "Select Media Columns"
-msgstr "Seleziona persona"
+msgstr "Seleziona colonne multimedia"
 
 #: ../src/DataViews/MediaView.py:292 ../src/glade/gramps.glade.h:67
 msgid "Double click image to view in an external viewer"
@@ -3502,8 +3495,9 @@ msgid "_Add a gramplet"
 msgstr ""
 
 #: ../src/DataViews/GrampletView.py:960
+#, fuzzy
 msgid "_Undelete gramplet"
-msgstr ""
+msgstr "_Ripristina gramplet"
 
 #: ../src/DataViews/GrampletView.py:961
 #, fuzzy
@@ -3534,14 +3528,12 @@ msgid "Marker"
 msgstr "Marcatore"
 
 #: ../src/DataViews/NoteView.py:74 ../src/DisplayTabs/_NoteTab.py:65
-#, fuzzy
 msgid "Edit the selected note"
-msgstr "Modifica l'evento selezionato"
+msgstr "Modifica la nota selezionata"
 
 #: ../src/DataViews/NoteView.py:75
-#, fuzzy
 msgid "Delete the selected note"
-msgstr "Elimina l'evento selezionato"
+msgstr "Cancella la nota selezionata"
 
 #: ../src/DataViews/NoteView.py:167
 #, fuzzy
@@ -3569,9 +3561,8 @@ msgid "Deleting note will remove it from the database."
 msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
 
 #: ../src/DataViews/NoteView.py:218
-#, fuzzy
 msgid "_Delete Note"
-msgstr "_Elimina fonte"
+msgstr "_Cancella nota"
 
 #. ------------------------------------------------------------------------
 #.
@@ -3625,7 +3616,7 @@ msgstr "Relazione con la madre"
 #: ../src/DataViews/PedigreeView.py:1265
 #, fuzzy
 msgid "A person was found to be his/her own ancestor."
-msgstr "Errore nel database: %s è definito come ascendente di se stesso/a"
+msgstr "Trovata persona definita come ascendente di se stessa."
 
 #. (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
 #. (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
@@ -3802,17 +3793,16 @@ msgstr "Scegliere una persona dal database"
 
 #: ../src/DataViews/PersonView.py:608
 msgid "_Delete Person"
-msgstr "_Elimina persona"
+msgstr "_Cancella persona"
 
 #: ../src/DataViews/PersonView.py:623
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Person (%s)"
-msgstr "_Elimina persona"
+msgstr "Cancella persona (%s)"
 
 #: ../src/DataViews/PersonView.py:898
-#, fuzzy
 msgid "Go to default person"
-msgstr "_Persona predefinita"
+msgstr "Va alla persona predefinita"
 
 #: ../src/DataViews/PersonView.py:903
 #, fuzzy
@@ -3820,7 +3810,6 @@ msgid "Edit selected person"
 msgstr "Modifica l'evento selezionato"
 
 #: ../src/DataViews/PersonView.py:909
-#, fuzzy
 msgid "Delete selected person"
 msgstr "Cancella la persona selezionata"
 
@@ -3847,14 +3836,12 @@ msgid "State"
 msgstr "Regione"
 
 #: ../src/DataViews/PlaceView.py:74 ../src/plugins/NarrativeWeb.py:1203
-#, fuzzy
 msgid "Longitude"
-msgstr "Lon_gitudine:"
+msgstr "Longitudine"
 
 #: ../src/DataViews/PlaceView.py:75 ../src/plugins/NarrativeWeb.py:1208
-#, fuzzy
 msgid "Latitude"
-msgstr "Lat_itudine:"
+msgstr "Latitudine"
 
 #: ../src/DataViews/PlaceView.py:77 ../src/DataViews/RepositoryView.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:52
@@ -3863,19 +3850,17 @@ msgid "Street"
 msgstr "Via"
 
 #: ../src/DataViews/PlaceView.py:81
-#, fuzzy
 msgid "Edit the selected place"
-msgstr "Modifica il filtro selezionato"
+msgstr "Modifica il luogo selezionato"
 
 #: ../src/DataViews/PlaceView.py:82
-#, fuzzy
 msgid "Delete the selected place"
-msgstr "Cancella il filtro selezionato"
+msgstr "Cancella il luogo selezionato"
 
 #: ../src/DataViews/PlaceView.py:118
 #, fuzzy
 msgid "_Merge..."
-msgstr "_Fondi"
+msgstr "_Fondi..."
 
 #: ../src/DataViews/PlaceView.py:120
 msgid "_Google Maps"
@@ -3893,7 +3878,7 @@ msgstr "Editor filtro luoghi"
 #: ../src/DataViews/PlaceView.py:157
 #, fuzzy
 msgid "Select Place Columns"
-msgstr "Seleziona persona"
+msgstr "Seleziona colonne luoghi"
 
 #: ../src/DataViews/PlaceView.py:244
 #, fuzzy
@@ -3947,7 +3932,6 @@ msgstr "Modifica la persona attiva"
 #: ../src/DataViews/RelationView.py:331 ../src/plugins/all_relations.py:282
 #: ../src/plugins/NarrativeWeb.py:877 ../src/plugins/NarrativeWeb.py:1011
 #: ../src/plugins/NarrativeWeb.py:2332 ../src/plugins/NarrativeWeb.py:2334
-#, fuzzy
 msgid "Partner"
 msgstr "Partner"
 
@@ -3955,7 +3939,7 @@ msgstr "Partner"
 #: ../src/DataViews/RelationView.py:705
 #, fuzzy
 msgid "Add a new family with person as parent"
-msgstr "Aggiunge una nuova coppia di genitori alla persona attiva"
+msgstr "Aggiunge una famiglia con questa persona come genitore"
 
 #: ../src/DataViews/RelationView.py:333
 #, fuzzy
@@ -3991,8 +3975,9 @@ msgid "Add person as child to an existing family"
 msgstr "Aggiunge figlio ad una famiglia esistente"
 
 #: ../src/DataViews/RelationView.py:343
+#, fuzzy
 msgid "Add Existing Parents..."
-msgstr ""
+msgstr "Aggiunge genitori esistenti..."
 
 #: ../src/DataViews/RelationView.py:351
 msgid "Show Details"
@@ -4010,9 +3995,9 @@ msgid "Edit %s"
 msgstr "Modifica %s"
 
 #: ../src/DataViews/RelationView.py:615 ../src/DataViews/RelationView.py:642
-#, fuzzy, python-format
+#, python-format
 msgid "%(date)s in %(place)s"
-msgstr "%(date)s in quel di %(place)s."
+msgstr "%(date)s in quel di %(place)s"
 
 #: ../src/DataViews/RelationView.py:701
 msgid "Edit parents"
@@ -4023,8 +4008,9 @@ msgid "Reorder parents"
 msgstr "Riordina genitori"
 
 #: ../src/DataViews/RelationView.py:703
+#, fuzzy
 msgid "Remove person as child of these parents"
-msgstr ""
+msgstr "Rimuove la persona come figlio dei genitori correnti"
 
 #: ../src/DataViews/RelationView.py:707
 msgid "Edit family"
@@ -4066,7 +4052,7 @@ msgstr "I loro figli:"
 #: ../src/DataViews/RelationView.py:807 ../src/DataViews/RelationView.py:1194
 #, fuzzy
 msgid "Add new child to family"
-msgstr "Aggiunta figlio alla famiglia"
+msgstr "Aggiunge figlio alla famiglia"
 
 #: ../src/DataViews/RelationView.py:813 ../src/DataViews/RelationView.py:1200
 #, fuzzy
@@ -4142,7 +4128,6 @@ msgstr "Aggiunta figlio alla famiglia"
 
 #: ../src/DataViews/RelationView.py:1328 ../src/Editors/_EditFamily.py:246
 #: ../src/Editors/_EditFamily.py:259
-#, fuzzy
 msgid "Select Child"
 msgstr "Seleziona figlio"
 
@@ -4197,7 +4182,7 @@ msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
 #: ../src/DataViews/RepositoryView.py:211
 #, fuzzy
 msgid "_Delete Repository"
-msgstr "_Elimina deposito"
+msgstr "_Cancella deposito"
 
 #: ../src/DataViews/SourceView.py:74
 msgid "Add a new source"
@@ -4238,11 +4223,11 @@ msgstr ""
 #: ../src/DataViews/SourceView.py:197
 #, fuzzy
 msgid "Deleting source will remove it from the database."
-msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
+msgstr "Cancella la fonte e tutti i suoi riferimenti dal database"
 
 #: ../src/DataViews/SourceView.py:206
 msgid "_Delete Source"
-msgstr "_Elimina fonte"
+msgstr "_Cancella fonte"
 
 #: ../src/DataViews/SourceView.py:225
 #, fuzzy
@@ -4384,19 +4369,17 @@ msgid "Quick View"
 msgstr ""
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
-#, fuzzy
 msgid "Create and add a new address"
-msgstr "Crea una nuova fonte"
+msgstr "Crea e aggiunge un nuovo indirizzo"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:62
 #, fuzzy
 msgid "Remove the existing address"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove l'indirizzo esistente"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:63
-#, fuzzy
 msgid "Edit the selected address"
-msgstr "Modifica la regola selezionata"
+msgstr "Modifica l'indirizzo selezionato"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:64
 msgid "Move the selected address upwards"
@@ -4413,17 +4396,17 @@ msgstr "I_ndirizzi"
 #: ../src/DisplayTabs/_AttrEmbedList.py:52
 #, fuzzy
 msgid "Create and add a new attribute"
-msgstr "Crea una nuova fonte"
+msgstr "Crea e aggiunge un nuovo attributo"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:53
 #, fuzzy
 msgid "Remove the existing attribute"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove l'attributo esistente"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:54
 #, fuzzy
 msgid "Edit the selected attribute"
-msgstr "Modifica la regola selezionata"
+msgstr "Modifica l'attributo selezionato"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:55
 msgid "Move the selected attribute upwards"
@@ -4466,12 +4449,12 @@ msgstr "Sposta in basso"
 #: ../src/DisplayTabs/_DataEmbedList.py:49
 #, fuzzy
 msgid "Create and add a new data entry"
-msgstr "Crea una nuova fonte"
+msgstr "Crea e aggiunge un nuovo dato"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:50
 #, fuzzy
 msgid "Remove the existing data entry"
-msgstr "Editor fonti"
+msgstr "Rimuove il dato esistente"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:51
 #, fuzzy
@@ -4499,13 +4482,12 @@ msgid "_Data"
 msgstr "_Dati"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:54
-#, fuzzy
 msgid "Remove the selected event"
 msgstr "Rimuove l'evento selezionato"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:56
 msgid "Share an existing event"
-msgstr "Condividi un evento esistente"
+msgstr "Condivide un evento esistente"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:57
 msgid "Move the selected event upwards"
@@ -4563,17 +4545,17 @@ msgstr ""
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
 #, fuzzy
 msgid "Create and add a new LDS ordinance"
-msgstr "Crea una nuova fonte"
+msgstr "Crea e aggiunge una nuova ordinazione LDS"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:52
 #, fuzzy
 msgid "Remove the existing LDS ordinance"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove l'ordinazione LDS esistente"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:53
 #, fuzzy
 msgid "Edit the selected LDS ordinance"
-msgstr "Modifica il coniuge selezionato"
+msgstr "Modifica l'ordinazione LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
 #, fuzzy
@@ -4594,19 +4576,17 @@ msgid "Alternate _Locations"
 msgstr "_Località alternative"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:59
-#, fuzzy
 msgid "Create and add a new name"
 msgstr "Crea e aggiunge un nuovo nome"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:60
 #, fuzzy
 msgid "Remove the existing name"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove il nome esistente"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:61
-#, fuzzy
 msgid "Edit the selected name"
-msgstr "Modifica il filtro selezionato"
+msgstr "Modifica il nome selezionato"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:62
 msgid "Move the selected name upwards"
@@ -4625,19 +4605,18 @@ msgid "Set as default name"
 msgstr ""
 
 #: ../src/DisplayTabs/_NoteTab.py:63
-#, fuzzy
 msgid "Create and add a new note"
-msgstr "Crea e aggiunge una nuova fonte"
+msgstr "Crea e aggiunge una nuova nota"
 
 #: ../src/DisplayTabs/_NoteTab.py:64
 #, fuzzy
 msgid "Remove the existing note"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove la nota esistente"
 
 #: ../src/DisplayTabs/_NoteTab.py:66
 #, fuzzy
 msgid "Add an existing note"
-msgstr "_Apri un database esistente"
+msgstr "Aggiunge nota esistente"
 
 #: ../src/DisplayTabs/_NoteTab.py:67
 msgid "Move the selected note upwards"
@@ -4654,17 +4633,17 @@ msgstr "_Note"
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:52
 #, fuzzy
 msgid "Create and add a new association"
-msgstr "Crea una nuova fonte"
+msgstr "Crea e aggiunge una nuova associazione"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:53
 #, fuzzy
 msgid "Remove the existing association"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove l'associazione esistente"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:54
 #, fuzzy
 msgid "Edit the selected association"
-msgstr "Modifica la persona selezionata"
+msgstr "Modifica l'associazione selezionata"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:55
 #, fuzzy
@@ -4694,17 +4673,17 @@ msgstr "Padrino"
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
 #, fuzzy
 msgid "Create and add a new repository"
-msgstr "Crea una nuova fonte"
+msgstr "Crea e aggiunge un nuovo deposito"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:54
 #, fuzzy
 msgid "Remove the existing repository"
-msgstr "Editor fonti"
+msgstr "Rimuove il deposito esistente"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:56
 #, fuzzy
 msgid "Add an existing repository"
-msgstr "Editor fonti"
+msgstr "Aggiunge deposito esistente"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:57
 #, fuzzy
@@ -4736,19 +4715,17 @@ msgid ""
 msgstr ""
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
-#, fuzzy
 msgid "Create and add a new source"
 msgstr "Crea e aggiunge una nuova fonte"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:54
 #, fuzzy
 msgid "Remove the existing source"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove la fonte esistente"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:56
-#, fuzzy
 msgid "Add an existing source"
-msgstr "_Apri un database esistente"
+msgstr "Aggiunge fonte esistente"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
 msgid "Move the selected source upwards"
@@ -4772,19 +4749,17 @@ msgid ""
 msgstr ""
 
 #: ../src/DisplayTabs/_WebEmbedList.py:53
-#, fuzzy
 msgid "Create and add a new web address"
-msgstr "Crea una nuova fonte"
+msgstr "Crea e aggiunge un nuovo indirizzo web"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:54
 #, fuzzy
 msgid "Remove the existing web address"
-msgstr "Elimina il coniuge selezionato"
+msgstr "Rimuove l'indirizzo web esistente"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:55
-#, fuzzy
 msgid "Edit the selected web address"
-msgstr "Modifica la persona selezionata"
+msgstr "Modifica l'indirizzo web selezionato"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:56
 msgid "Move the selected web address upwards"
@@ -4921,9 +4896,9 @@ msgid "Add Event"
 msgstr "Evento"
 
 #: ../src/Editors/_EditEvent.py:326
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Event (%s)"
-msgstr "Cancellazione %s"
+msgstr "Cancella evento (%s)"
 
 #: ../src/Editors/_EditEventRef.py:79 ../src/Editors/_EditEventRef.py:224
 #, fuzzy
@@ -4948,7 +4923,7 @@ msgstr "Rende attivi come famiglia i genitori della persona attiva"
 #: ../src/Editors/_EditFamily.py:92
 #, fuzzy
 msgid "Remove the child from the family"
-msgstr "Cancella il figlio selezionato dalla famiglia selezionata"
+msgstr "Rimuove il figlio dalla famiglia"
 
 #: ../src/Editors/_EditFamily.py:93
 #, fuzzy
@@ -4958,9 +4933,7 @@ msgstr "Modifica il nome selezionato"
 #: ../src/Editors/_EditFamily.py:94
 #, fuzzy
 msgid "Add an existing person as a child of the family"
-msgstr ""
-"Seleziona una persona esistente dal database e la aggiunge come figlio alla "
-"famiglia corrente"
+msgstr "Aggiunge alla famiglia corrente una persona esistente come figlio"
 
 #: ../src/Editors/_EditFamily.py:95
 #, fuzzy
@@ -4998,7 +4971,7 @@ msgstr "Elenca i figli"
 #: ../src/Editors/_EditFamily.py:125
 #, fuzzy
 msgid "Add an existing child"
-msgstr "_Apri un database esistente"
+msgstr "Aggiunge figlio esistente"
 
 #: ../src/Editors/_EditFamily.py:127
 msgid "Edit relationship"
@@ -5055,7 +5028,7 @@ msgstr "Selezionare una persona per determinarne la relazione"
 #: ../src/Editors/_EditFamily.py:643
 #, fuzzy
 msgid "Remove the person as the father"
-msgstr "Fu figlio di %(father)s."
+msgstr "Rimuove la persona dal ruolo di padre"
 
 #: ../src/Editors/_EditFamily.py:649
 #, fuzzy
@@ -5065,7 +5038,7 @@ msgstr "Selezionare una persona per determinarne la relazione"
 #: ../src/Editors/_EditFamily.py:650
 #, fuzzy
 msgid "Remove the person as the mother"
-msgstr "Fu figlio di %(mother)s."
+msgstr "Rimuove la persona dal ruolo di madre"
 
 #: ../src/Editors/_EditFamily.py:714
 #, fuzzy
@@ -5147,7 +5120,7 @@ msgstr "Famiglia"
 #: ../src/Editors/_EditFamily.py:974 ../src/gen/utils/dbutils.py:98
 #, fuzzy
 msgid "Remove Family"
-msgstr "Rimuovi famiglia"
+msgstr "Rimuove famiglia"
 
 #: ../src/Editors/_EditLdsOrd.py:151 ../src/Editors/_EditLdsOrd.py:301
 #: ../src/Editors/_EditLdsOrd.py:337 ../src/Editors/_EditLdsOrd.py:417
@@ -5220,7 +5193,7 @@ msgstr "Oggetto multimediale"
 #: ../src/Editors/_EditMedia.py:339
 #, fuzzy
 msgid "Remove Media Object"
-msgstr "Rimuovi oggetto multimediale"
+msgstr "Rimuove oggetto multimediale"
 
 #: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:377
 msgid "Media Reference Editor"
@@ -5335,14 +5308,13 @@ msgid "Add Note"
 msgstr "Note"
 
 #: ../src/Editors/_EditNote.py:592
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Note (%s)"
-msgstr "_Elimina fonte"
+msgstr "Cancella nota (%s)"
 
 #: ../src/Editors/_EditPerson.py:119
-#, fuzzy
 msgid "New Person"
-msgstr "Persona"
+msgstr "Nuova persona"
 
 #: ../src/Editors/_EditPerson.py:266
 msgid "Patronymic:"
@@ -5480,12 +5452,12 @@ msgstr ""
 #: ../src/Editors/_EditPlace.py:274
 #, fuzzy
 msgid "Cannot save place. ID already exists."
-msgstr "Il file esiste già"
+msgstr "Impossibile salvare il luogo. ID già esistente."
 
 #: ../src/Editors/_EditPlace.py:287
 #, fuzzy, python-format
 msgid "Add Place (%s)"
-msgstr "Modifica persona"
+msgstr "Aggiunge luogo (%s)"
 
 #: ../src/Editors/_EditPlace.py:292
 #, fuzzy, python-format
@@ -5493,9 +5465,9 @@ msgid "Edit Place (%s)"
 msgstr "Modifica persona"
 
 #: ../src/Editors/_EditPlace.py:339
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Place (%s)"
-msgstr "_Cancella luogo"
+msgstr "Cancella luogo (%s)"
 
 #: ../src/Editors/_EditPrimary.py:163
 msgid "Save Changes?"
@@ -5567,7 +5539,7 @@ msgstr ""
 #: ../src/Editors/_EditRepository.py:203
 #, fuzzy, python-format
 msgid "Delete Repository (%s)"
-msgstr "Resoconto discendenza per %s"
+msgstr "Cancella deposito (%s)"
 
 #: ../src/Editors/_EditSource.py:77 ../src/Editors/_EditSourceRef.py:197
 #, fuzzy
@@ -5604,9 +5576,9 @@ msgid "Edit Source (%s)"
 msgstr "Fonti citazioni"
 
 #: ../src/Editors/_EditSource.py:255
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Source (%s)"
-msgstr "_Elimina fonte"
+msgstr "Cancella fonte (%s)"
 
 #: ../src/Editors/_EditSourceRef.py:68 ../src/Editors/_EditSourceRef.py:198
 #, fuzzy
@@ -6315,9 +6287,8 @@ msgstr "Tutti gli eventi"
 #: ../src/plugins/Summary.py:186 ../src/plugins/TimeLine.py:444
 #: ../src/plugins/Verify.py:1525 ../src/plugins/WebCal.py:1232
 #: ../src/plugins/RebuildRefMap.py:120 ../src/PluginUtils/_Plugins.py:417
-#, fuzzy
 msgid "Stable"
-msgstr "Regione"
+msgstr "Stabile"
 
 #: ../src/plugins/all_events.py:146
 #, fuzzy
@@ -6807,18 +6778,18 @@ msgstr "Fonti da rimuovere o aggiungere"
 #: ../src/plugins/CalculateEstimatedDates.py:81
 #, fuzzy
 msgid "Remove previously added dates"
-msgstr "Gestisce i libri creati in precedenza"
+msgstr "Rimuove le date aggiunge precedentemente"
 
 #: ../src/plugins/CalculateEstimatedDates.py:85
 #, fuzzy
 msgid "Add estimated birth dates"
-msgstr "Stima date mancanti"
+msgstr "Aggiunge date di nascita stimate"
 
 #: ../src/plugins/CalculateEstimatedDates.py:89
 #: ../src/plugins/CalculateEstimatedDates.py:90
 #, fuzzy
 msgid "Add estimated death dates"
-msgstr "deceduto/a il %(date)s%(endnotes)s."
+msgstr "Aggiunge date di decesso stimate"
 
 #: ../src/plugins/CalculateEstimatedDates.py:93
 #, fuzzy
@@ -6900,8 +6871,9 @@ msgid "Beta"
 msgstr "Beta"
 
 #: ../src/plugins/CalculateEstimatedDates.py:495
+#, fuzzy
 msgid "Calculates estimated dates for birth and death."
-msgstr ""
+msgstr "Calcola date stimate per nascita e decesso"
 
 #: ../src/plugins/Calendar.py:149
 #, fuzzy
@@ -7291,7 +7263,7 @@ msgid "Media object could not be found"
 msgstr "L'oggetto multimediale non è stato trovato"
 
 #: ../src/plugins/Check.py:553
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The file:\n"
 " %(file_name)s \n"
@@ -7300,9 +7272,11 @@ msgid ""
 "the reference from the database, keep the reference to the missing file, or "
 "select a new file."
 msgstr ""
-"%(file_name)s possiede un riferimento all'interno del database, ma è più "
-"presente. Il file potrebbe essere stato cancellato o spostato in una diversa "
-"locazione. È possibile scegliere se eliminare il riferimento dal database, "
+"Il file:\n"
+" %(file_name)s \n"
+"possiede un riferimento all'interno del database, ma non è più presente. "
+"Il file potrebbe essere stato cancellato o spostato in una posizione "
+"diversa. È possibile scegliere se eliminare il riferimento dal database, "
 "tenere il riferimento al file mancante o selezionare un nuovo file."
 
 #: ../src/plugins/Check.py:592
@@ -7381,9 +7355,8 @@ msgid "Looking for media object reference problems"
 msgstr "Numero totale di riferimenti ad oggetti multimediali"
 
 #: ../src/plugins/Check.py:1126
-#, fuzzy
 msgid "Looking for note reference problems"
-msgstr "Ometti persone duplicate"
+msgstr ""
 
 #: ../src/plugins/Check.py:1291
 msgid "No errors were found"
@@ -7404,7 +7377,7 @@ msgstr "Sono stati riparati %d collegamenti non funzionanti a figli/famiglie\n"
 
 #: ../src/plugins/Check.py:1306
 msgid "Non existing child"
-msgstr ""
+msgstr "Figlio non esistente"
 
 #: ../src/plugins/Check.py:1313
 #, python-format
@@ -7422,7 +7395,7 @@ msgstr "Sono stati riparati %d collegamenti non funzionanti a coniugi/famiglie\n
 
 #: ../src/plugins/Check.py:1325 ../src/plugins/Check.py:1344
 msgid "Non existing person"
-msgstr ""
+msgstr "Persona non esistente"
 
 #: ../src/plugins/Check.py:1332 ../src/plugins/Check.py:1351
 #, python-format
@@ -7544,12 +7517,12 @@ msgstr "Sono stati modificati %d elementi evento"
 #: ../src/plugins/Check.py:1410
 #, fuzzy
 msgid "1 place was referenced but not found\n"
-msgstr "Era presente 1 riferimento ad oggetti multimediali mancanti\n"
+msgstr "Era presente un riferimento a un luogo mancante\n"
 
 #: ../src/plugins/Check.py:1412
 #, fuzzy, python-format
 msgid "%d places were referenced, but not found\n"
-msgstr "Erano presenti %d riferimenti ad oggetti multimediali mancanti\n"
+msgstr "Erano presenti %d riferimenti a luoghi mancanti\n"
 
 #: ../src/plugins/Check.py:1415
 #, fuzzy
@@ -7588,6 +7561,7 @@ msgstr "Sono stati modificati %d elementi evento"
 
 #: ../src/plugins/Check.py:1438
 #, python-format
+#, fuzzy
 msgid ""
 "%d empty objects removed:\n"
 "   %d person objects\n"
@@ -7599,6 +7573,15 @@ msgid ""
 "   %d repository objects\n"
 "   %d note objects\n"
 msgstr ""
+"Romossi %d oggetti vuoti:\n"
+"   %d persone\n"
+"   %d famiglie\n"
+"   %d eventi\n"
+"   %d fonti\n"
+"   %d oggetti multimediali\n"
+"   %d luoghi\n"
+"   %d depositi\n"
+"   %d note\n"
 
 #: ../src/plugins/Check.py:1485
 msgid "Integrity Check Results"
@@ -7756,23 +7739,24 @@ msgstr ""
 #: ../src/plugins/DefaultGramplets.py:172
 #, fuzzy
 msgid "Added"
-msgstr "Aggiungi"
+msgstr "Aggiunto"
 
 #: ../src/plugins/DefaultGramplets.py:168
 #: ../src/plugins/DefaultGramplets.py:174
 #, fuzzy
 msgid "Deleted"
-msgstr "Modello"
+msgstr "Cancellato"
 
 #: ../src/plugins/DefaultGramplets.py:170
 #: ../src/plugins/DefaultGramplets.py:176
+#, fuzzy
 msgid "Updated"
-msgstr ""
+msgstr "Aggiornato"
 
 #: ../src/plugins/DefaultGramplets.py:178
 #, fuzzy
 msgid "Selected"
-msgstr "Seleziona"
+msgstr "Selezionato"
 
 #: ../src/plugins/DefaultGramplets.py:197
 #: ../src/plugins/DefaultGramplets.py:274
@@ -7793,7 +7777,7 @@ msgstr "Nessun albero genealogico caricato."
 #: ../src/plugins/DefaultGramplets.py:592
 #, fuzzy
 msgid "Processing..."
-msgstr "Modifica..."
+msgstr "Elaborazione in corso..."
 
 #: ../src/plugins/DefaultGramplets.py:258
 #: ../src/plugins/DefaultGramplets.py:349
@@ -7827,8 +7811,9 @@ msgstr "%d. partner: "
 
 #: ../src/plugins/DefaultGramplets.py:405
 #, python-format
+#, fuzzy
 msgid "%d. Partner: Not known"
-msgstr ""
+msgstr "%d. partner: sconosciuto"
 
 #: ../src/plugins/DefaultGramplets.py:420
 msgid "Parents:"
@@ -7838,13 +7823,13 @@ msgstr "Genitori:"
 #: ../src/plugins/DefaultGramplets.py:436
 #, python-format
 msgid "   %d.a Mother: "
-msgstr ""
+msgstr "   %d.a madre: "
 
 #: ../src/plugins/DefaultGramplets.py:443
 #: ../src/plugins/DefaultGramplets.py:447
 #, python-format
 msgid "   %d.b Father: "
-msgstr ""
+msgstr "   %d.b padre: "
 
 #: ../src/plugins/DefaultGramplets.py:562
 #, fuzzy
@@ -7861,7 +7846,7 @@ msgstr "Generazione 1"
 #, python-format
 #, fuzzy
 msgid " has 1 of 1 individual (100.00% complete)\n"
-msgstr " comprende 1 individuo in totale (completa al 100,00%)\n"
+msgstr " comprende un individuo in totale (completa al 100,00%)\n"
 
 #: ../src/plugins/DefaultGramplets.py:574
 #, fuzzy, python-format
@@ -7906,7 +7891,7 @@ msgstr "Femmine"
 #: ../src/plugins/DefaultGramplets.py:668 ../src/plugins/Summary.py:120
 #, fuzzy
 msgid "Individuals with unknown gender"
-msgstr "Persone senza matrimoni"
+msgstr "Individui dal sesso sconosciuto"
 
 #: ../src/plugins/DefaultGramplets.py:672 ../src/plugins/Summary.py:121
 msgid "Individuals with incomplete names"
@@ -8708,7 +8693,7 @@ msgstr "Luogo di nascita"
 #: ../src/plugins/ExportCSV.py:367 ../src/plugins/ImportCSV.py:181
 #, fuzzy
 msgid "Birth source"
-msgstr "Luogo di nascita"
+msgstr "Fonte nascita"
 
 #: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:185
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
@@ -8759,9 +8744,9 @@ msgid "Marriage of %s"
 msgstr "Matrimonio"
 
 #: ../src/plugins/ExportVCalendar.py:260 ../src/plugins/ExportVCalendar.py:262
-#, fuzzy, python-format
+#, python-format
 msgid "Birth of %s"
-msgstr "Nascita"
+msgstr "Nascita di %s"
 
 #: ../src/plugins/ExportVCalendar.py:273 ../src/plugins/ExportVCalendar.py:275
 #, fuzzy, python-format
@@ -9683,7 +9668,6 @@ msgid "Produces relationship graphs using Graphviz"
 msgstr "Produce un grafico delle relazioni usando Graphviz."
 
 #: ../src/plugins/ImportCSV.py:158
-#, fuzzy
 msgid "Given name"
 msgstr "Nome"
 
@@ -9711,7 +9695,6 @@ msgid "Parent1"
 msgstr "Genitore1"
 
 #: ../src/plugins/ImportCSV.py:222
-#, fuzzy
 msgid "given name"
 msgstr "nome"
 
@@ -9735,18 +9718,17 @@ msgid "note"
 msgstr "nota"
 
 #: ../src/plugins/ImportCSV.py:241
-#, fuzzy
 msgid "birth place"
 msgstr "luogo di nascita"
 
 #: ../src/plugins/ImportCSV.py:243
-#, fuzzy
 msgid "birth date"
 msgstr "data di nascita"
 
 #: ../src/plugins/ImportCSV.py:245
+#, fuzzy
 msgid "birth source"
-msgstr ""
+msgstr "fonte nascita"
 
 #: ../src/plugins/ImportCSV.py:247
 #, fuzzy
@@ -10814,7 +10796,7 @@ msgstr ""
 #: ../src/plugins/NarrativeWeb.py:3004
 #, fuzzy
 msgid "Suppress GRAMPS ID"
-msgstr "Rimuovi ID GRAMPS"
+msgstr "Rimuove ID GRAMPS"
 
 #: ../src/plugins/NarrativeWeb.py:3005
 msgid "Whether to include the Gramps ID of objects"
@@ -11211,14 +11193,12 @@ msgid "Mark"
 msgstr "Marzo"
 
 #: ../src/plugins/RemoveUnused.py:294
-#, fuzzy
 msgid "Remove unused objects"
 msgstr "Rimuove oggetti non usati"
 
 #: ../src/plugins/RemoveUnused.py:409
-#, fuzzy
 msgid "Remove Unused Objects"
-msgstr "Rimuovi oggetto non usati..."
+msgstr "Rimuovi oggetti non usati"
 
 #: ../src/plugins/RemoveUnused.py:413
 msgid "Removes unused objects from the database"
@@ -11599,7 +11579,7 @@ msgstr "Figli mancanti"
 #: ../src/plugins/StatisticsChart.py:281
 #, fuzzy
 msgid "Birth missing"
-msgstr "Nome alla nascita"
+msgstr "Data di nascita mancante"
 
 #: ../src/plugins/StatisticsChart.py:382
 msgid "Personal information missing"
@@ -11679,7 +11659,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:719
 #, fuzzy
 msgid "Include people without known birth years"
-msgstr "Persone senza data di nascita"
+msgstr "Include persone senza anno di nascita noto"
 
 #: ../src/plugins/StatisticsChart.py:721
 #, fuzzy
@@ -11818,8 +11798,9 @@ msgid "Death before baptism"
 msgstr "Decesso prima del battesimo"
 
 #: ../src/plugins/Verify.py:899
+#, fuzzy
 msgid "Burial before birth"
-msgstr ""
+msgstr "Sepoltura prima della nascita"
 
 #: ../src/plugins/Verify.py:913
 msgid "Burial before death"
@@ -11891,7 +11872,7 @@ msgstr ""
 #: ../src/plugins/Verify.py:1161
 #, fuzzy
 msgid "Marriage before birth"
-msgstr "Contratto matrimoniale"
+msgstr "Matrimonio prima della nascita"
 
 #: ../src/plugins/Verify.py:1192
 #, fuzzy
@@ -11957,12 +11938,12 @@ msgstr "Numero massimo d'anni fra un figlio e l'altro"
 #: ../src/plugins/Verify.py:1511
 #, fuzzy
 msgid "Disconnected individual"
-msgstr "Individui senza nessi"
+msgstr "Individuo senza nessi"
 
 #: ../src/plugins/Verify.py:1524
 #, fuzzy
 msgid "Verify the Data"
-msgstr "Verifica database"
+msgstr "Verifica i dati"
 
 #: ../src/plugins/Verify.py:1528
 msgid "Verifies the data against user-defined tests"
@@ -12307,7 +12288,7 @@ msgid ""
 "either remove the reference from the database, keep the reference to the "
 "missing file, or select a new file."
 msgstr ""
-"%(file_name)s possiede un riferimento all'interno del database, ma è più "
+"%(file_name)s possiede un riferimento all'interno del database, ma non è più "
 "presente. Il file potrebbe essere stato cancellato o spostato in una diversa "
 "locazione. È possibile scegliere se eliminare il riferimento dal database, "
 "tenere il riferimento al file mancante o selezionare un nuovo file."
@@ -13096,7 +13077,7 @@ msgstr "%(female_name)s nacque il %(birth_date)s in quel di %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:67
 #, fuzzy, python-format
 msgid "Born %(birth_date)s in %(birth_place)s."
-msgstr "%(date)s in quel di %(place)s."
+msgstr "Nacque %(birth_date) in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:72
 #, python-format
@@ -13168,7 +13149,7 @@ msgstr "%(female_name)s nacque il %(birth_date)s."
 #: ../src/ReportBase/_ReportUtils.py:95
 #, fuzzy, python-format
 msgid "Born %(birth_date)s."
-msgstr " il %(specific_date)s"
+msgstr "Nato/a %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:100
 #, python-format
@@ -13238,7 +13219,7 @@ msgstr "%(female_name)s nacque nel %(month_year)s in quel di %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:123
 #, fuzzy, python-format
 msgid "Born %(month_year)s in %(birth_place)s."
-msgstr "Nacque il %(month_year)s in quel di %(birth_place)s."
+msgstr "Nato/a il %(month_year)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:128
 #, python-format
@@ -13308,7 +13289,7 @@ msgstr "%(female_name)s nacque in quel di %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:151
 #, fuzzy, python-format
 msgid "Born in %(birth_place)s."
-msgstr " in quel di %(place)s"
+msgstr "Nato/a in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:162
 #, python-format
@@ -16371,78 +16352,88 @@ msgstr "%(female_name)s%(endnotes)s."
 #, fuzzy, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
-"%(male_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s e morì "
-"il %(death_date)s%(death_endnotes)s."
+"Nato/a il %(birth_date)s%(birth_place)s, deceduto/a il "
+"%(death_date)s%(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2415
 #, fuzzy, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
-msgstr "nato/a il %(date)s a %(place)s%(endnotes)s"
+msgstr ""
+"Nato/a il %(birth_date)s in quel di %(birth_place)s, deceduto/a il"
+"%(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2419
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
 msgstr ""
+"Nato/a il %(birth_date)s in quel di %(birth_place)s, deceduto/a in quel di"
+"%(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2422
 #, fuzzy, python-format
 msgid "Born: %(birth_date)s %(birth_place)s."
-msgstr "%(date)s in quel di %(place)s."
+msgstr "Nato/a il %(birth_date)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2426
 #, fuzzy, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s morì %(death_date)s%(death_endnotes)s."
+msgstr ""
+"Nato/a il %(birth_date)s, deceduto/a il %(death_date)s in quel di "
+"%(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2429
 #, fuzzy, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
-msgstr "dal %(start_date)s al %(stop_date)s"
+msgstr "Nato/a il %(birth_date)s, deceduto/a il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2432
 #, fuzzy, python-format
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
-msgstr "%(date)s in quel di %(place)s."
+msgstr "Nato/a il %(birth_date)s, deceduto/a il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2434
 #, fuzzy, python-format
 msgid "Born: %(birth_date)s."
-msgstr " il %(specific_date)s"
+msgstr "Nato/a il %(birth_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2439
 #, fuzzy, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s morì %(death_date)s%(death_endnotes)s."
+msgstr ""
+"Nato/a in quel di %(birth_place)s, deceduto/a il %(death_date)s in quel di "
+"%(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2442
 #, python-format
+#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
-msgstr ""
+msgstr "Nato/a in quel di %(birth_place)s, deceduto/a il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2446
 #, python-format
+#, fuzzy
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
-msgstr ""
+msgstr "Nato/a in quel di %(birth_place)s, deceduto/a in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2449
 #, fuzzy, python-format
 msgid "Born: %(birth_place)s."
-msgstr " in quel di %(place)s"
+msgstr "Nato/a in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2453
 #, fuzzy, python-format
 msgid "Died: %(death_date)s %(death_place)s."
-msgstr "%(date)s in quel di %(place)s."
+msgstr "Deceduto/a il %(death_date)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2455
 #, fuzzy, python-format
 msgid "Died: %(death_date)s."
-msgstr "deceduto/a il %(date)s%(endnotes)s."
+msgstr "Deceduto/a il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2458
 #, fuzzy, python-format
 msgid "Died: %(death_place)s."
-msgstr " in quel di %(place)s"
+msgstr "Deceduto/a in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:2675
 #, python-format
@@ -16451,7 +16442,7 @@ msgstr "Famiglie discendenti da %s"
 
 #: ../src/ReportBase/_StyleEditor.py:84
 msgid "Document Styles"
-msgstr "Stile documenti"
+msgstr "Stili documenti"
 
 #: ../src/ReportBase/_StyleEditor.py:137
 msgid "Error saving stylesheet"
@@ -16523,7 +16514,7 @@ msgstr "Persone con il nome incompleto"
 #: ../src/gen/db/base.py:1752
 #, python-format
 msgid "_Undo %s"
-msgstr ""
+msgstr "_Annulla %s"
 
 #: ../src/gen/db/base.py:1718 ../src/gen/db/base.py:1760
 #, python-format
@@ -17426,9 +17417,8 @@ msgid "Matches markers of a partikular type"
 msgstr "Estrae la persona che possiede una specifica relazione"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:45
-#, fuzzy
 msgid "Disconnected people"
-msgstr "Individui senza nessi"
+msgstr "Persone senza nessi"
 
 #: ../src/Filters/Rules/Person/_Disconnected.py:47
 #, fuzzy
@@ -17806,9 +17796,8 @@ msgid "Matches children of anybody matched by a filter"
 msgstr "Estrae la persona che è figlio di qualcuno estratto con un filtro"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:45
-#, fuzzy
 msgid "Default person"
-msgstr "_Persona predefinita"
+msgstr "Persona predefinita"
 
 #: ../src/Filters/Rules/Person/_IsDefaultPerson.py:47
 #, fuzzy
@@ -18153,9 +18142,8 @@ msgid ""
 msgstr ""
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:45
-#, fuzzy
 msgid "Every family"
-msgstr "Rimuovi"
+msgstr "Tutte le famiglie"
 
 #: ../src/Filters/Rules/Family/_AllFamilies.py:46
 #, fuzzy
@@ -19229,7 +19217,7 @@ msgstr "Editor filtri personalizzati"
 #: ../src/FilterEditor/_FilterEditor.py:189
 #, fuzzy
 msgid "Delete Filter?"
-msgstr "_Seleziona file"
+msgstr "Cancellare il filtro?"
 
 #: ../src/FilterEditor/_FilterEditor.py:190
 #, fuzzy
@@ -19244,7 +19232,7 @@ msgstr ""
 #: ../src/FilterEditor/_FilterEditor.py:194
 #, fuzzy
 msgid "Delete Filter"
-msgstr "_Seleziona file"
+msgstr "Cancella filtro"
 
 #: ../src/FilterEditor/_EditFilter.py:77
 msgid "Define filter"
@@ -19264,8 +19252,9 @@ msgstr "Modifica regola"
 
 #: ../src/FilterEditor/_EditRule.py:194 ../src/FilterEditor/_EditRule.py:203
 #: ../src/FilterEditor/_EditRule.py:210
+#, fuzzy
 msgid "equal to"
-msgstr ""
+msgstr "uguale a"
 
 #: ../src/FilterEditor/_EditRule.py:293
 msgid "Select..."
@@ -19479,7 +19468,6 @@ msgid ""
 msgstr ""
 
 #: ../src/glade/edit_person.glade.h:14
-#, fuzzy
 msgid "Gi_ven:"
 msgstr "_Nome:"
 
@@ -19488,7 +19476,6 @@ msgid "Indicates if the record is private"
 msgstr ""
 
 #: ../src/glade/edit_person.glade.h:16
-#, fuzzy
 msgid "S_uffix:"
 msgstr "S_uffisso:"
 
@@ -19644,7 +19631,6 @@ msgid "<b>Referenced Region</b>"
 msgstr "<b>Informazioni ricercatore</b>"
 
 #: ../src/glade/gramps.glade.h:28
-#, fuzzy
 msgid "<b>Relationship Information</b>"
 msgstr "<b>Informazioni relazione</b>"
 
@@ -19657,7 +19643,6 @@ msgid "<b>Shared Information</b>"
 msgstr "<b>Informazioni condivise</b>"
 
 #: ../src/glade/gramps.glade.h:31
-#, fuzzy
 msgid "<b>Shared information</b>"
 msgstr "<b>Informazioni condivise</b>"
 
@@ -19771,7 +19756,7 @@ msgstr "Sta_to:"
 
 #: ../src/glade/gramps.glade.h:61
 msgid "D_ay"
-msgstr "Gi_orno:"
+msgstr "G_iorno:"
 
 #: ../src/glade/gramps.glade.h:62
 msgid "Dat_e:"
@@ -20195,7 +20180,7 @@ msgstr ""
 
 #: ../src/glade/gramps.glade.h:177
 msgid "_State/Province:"
-msgstr "_Regione:"
+msgstr "_Provincia:"
 
 #: ../src/glade/gramps.glade.h:178
 msgid "_State:"
@@ -20802,11 +20787,12 @@ msgstr "Stima date mancanti"
 #: ../data/gramps.desktop.in.h:1
 #, fuzzy
 msgid "GRAMPS Genealogy System"
-msgstr "ID GRAMPS interni"
+msgstr "GRAMPS - sistema genealogico"
 
 #: ../data/gramps.desktop.in.h:2
+#, fuzzy
 msgid "Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
+msgstr "Gestisce informazioni genealogiche, effettua ricerche ed analisi genealogiche"
 
 #: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:2
 msgid "GRAMPS XML database"
@@ -20849,47 +20835,50 @@ msgstr ""
 #: ../data/gramps.schemas.in.h:7
 #, fuzzy
 msgid "Date display format"
-msgstr ""
-"Formato di\n"
-"visualizzazione"
+msgstr "Formato visualizzazione data"
 
 #: ../data/gramps.schemas.in.h:8
+#, fuzzy
 msgid "Default event GRAMPS ID pattern"
-msgstr ""
+msgstr "Modello predefinito ID evento GRAMPS"
 
 #: ../data/gramps.schemas.in.h:9
 msgid "Default family GRAMPS ID pattern"
-msgstr ""
+msgstr "Modello predefinito ID famiglia GRAMPS"
 
 #: ../data/gramps.schemas.in.h:10
+#, fuzzy
 msgid "Default media object GRAMPS ID pattern"
-msgstr ""
+msgstr "Modello predefinito ID oggetto multimediale GRAMPS"
 
 #: ../data/gramps.schemas.in.h:11
 #, fuzzy
 msgid "Default note GRAMPS ID pattern"
-msgstr "Formato predefinito (definito dalla preferenze di GRAMPS)"
+msgstr "Modello predefinito ID nota GRAMPS"
 
 #: ../data/gramps.schemas.in.h:12
+#, fuzzy
 msgid "Default person GRAMPS ID pattern"
-msgstr ""
+msgstr "Modello predefinito ID persona GRAMPS"
 
 #: ../data/gramps.schemas.in.h:13
+#, fuzzy
 msgid "Default place GRAMPS ID pattern"
-msgstr ""
+msgstr "Modello predefinito ID luogo GRAMPS"
 
 #: ../data/gramps.schemas.in.h:14
-#, fuzzy
 msgid "Default report directory"
-msgstr "Directory _resoconti predefinita:"
+msgstr "Directory predefinita resoconti"
 
 #: ../data/gramps.schemas.in.h:15
+#, fuzzy
 msgid "Default repository GRAMPS ID pattern"
-msgstr ""
+msgstr "Modello predefinito ID deposito GRAMPS"
 
 #: ../data/gramps.schemas.in.h:16
+#, fuzzy
 msgid "Default source GRAMPS ID pattern"
-msgstr ""
+msgstr "Modello predefinito ID fonte GRAMPS"
 
 #: ../data/gramps.schemas.in.h:17
 #, fuzzy
@@ -20897,9 +20886,8 @@ msgid "Default surname guessing style"
 msgstr "Deduzione _cognome:"
 
 #: ../data/gramps.schemas.in.h:18
-#, fuzzy
 msgid "Default website directory"
-msgstr "Directory _sito web predefinita:"
+msgstr "Directory predefinita sito web"
 
 #: ../data/gramps.schemas.in.h:19
 #, fuzzy
@@ -20943,18 +20931,17 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:29
-#, fuzzy
 msgid "Full pathname of the default report directory."
-msgstr "Selezione directory predefinita resoconti - GRAMPS"
+msgstr "Percorso completo directory predefinita resoconti."
 
 #: ../data/gramps.schemas.in.h:30
-#, fuzzy
 msgid "Full pathname of the default website directory."
-msgstr "Directory _sito web predefinita:"
+msgstr "Percorso completo directory predefinita sito web."
 
 #: ../data/gramps.schemas.in.h:31
+#, fuzzy
 msgid "Full pathname of the directory from which GRAMPS has last imported data."
-msgstr ""
+msgstr "Percorso completo della directory sorgente dell'ultima importazione dati di GRAMPS."
 
 #: ../data/gramps.schemas.in.h:32
 msgid "Full pathname of the directory into which GRAMPS has last exported data."
