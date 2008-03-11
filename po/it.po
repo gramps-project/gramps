@@ -60,7 +60,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-08 13:21+0100\n"
-"PO-Revision-Date: 2008-03-08 20:10+0100\n"
+"PO-Revision-Date: 2008-03-11 01:59+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -684,7 +684,7 @@ msgstr ""
 #: ../src/ExportAssistant.py:364 ../src/PluginUtils/_PluginWindows.py:121
 #, fuzzy
 msgid "Summary"
-msgstr "Riassunto"
+msgstr "Riepilogo"
 
 #: ../src/ExportAssistant.py:442
 #, python-format
@@ -862,11 +862,8 @@ msgid "Text"
 msgstr "Testo"
 
 #: ../src/GrampsCfg.py:157
-#, fuzzy
 msgid "ID Formats"
-msgstr ""
-"Formato di\n"
-"visualizzazione"
+msgstr "Formato ID"
 
 #: ../src/GrampsCfg.py:159
 msgid "Warnings"
@@ -1087,9 +1084,8 @@ msgstr "Nome"
 #: ../src/GrampsCfg.py:353 ../src/GrampsCfg.py:355 ../src/GrampsCfg.py:360
 #: ../src/ScratchPad.py:586 ../src/Utils.py:1155
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:169
-#, fuzzy
 msgid "Suffix"
-msgstr "Suffisso:"
+msgstr "Suffisso"
 
 #: ../src/GrampsCfg.py:345 ../src/GrampsCfg.py:350 ../src/GrampsCfg.py:356
 #: ../src/GrampsCfg.py:357 ../src/Utils.py:1158
@@ -1133,9 +1129,8 @@ msgstr "Esempio"
 
 #. label for the combo
 #: ../src/GrampsCfg.py:624 ../src/plugins/Calendar.py:503
-#, fuzzy
 msgid "Name format"
-msgstr "Formato data"
+msgstr "Formato nome"
 
 #: ../src/GrampsCfg.py:628 ../src/DisplayTabs/_ButtonTab.py:69
 #: ../src/plugins/BookReport.py:942
@@ -1340,7 +1335,7 @@ msgstr ""
 #: ../src/gramps_main.py:109
 #, fuzzy
 msgid "Font Background Color"
-msgstr "<b>Sfondo</b>"
+msgstr "Carattere colore di sfondo"
 
 #: ../src/gramps_main.py:110 ../src/DataViews/GrampletView.py:699
 msgid "Gramplets"
@@ -1662,9 +1657,8 @@ msgid "Underline"
 msgstr "_Sottolineato"
 
 #: ../src/MarkupText.py:500
-#, fuzzy
 msgid "Background Color"
-msgstr "<b>Sfondo</b>"
+msgstr "Colore di sfondo"
 
 #: ../src/MarkupText.py:502 ../src/UndoHistory.py:178
 #, fuzzy
@@ -1679,7 +1673,7 @@ msgstr "Selezione file"
 #: ../src/MarkupText.py:856
 #, fuzzy
 msgid "Select background color"
-msgstr "<b>Sfondo</b>"
+msgstr "Seleziona colore di sfondo"
 
 #: ../src/MarkupText.py:866
 #, fuzzy
@@ -2207,7 +2201,7 @@ msgstr "Numero ID"
 #: ../src/plugins/PatchNames.py:256 ../src/plugins/PatchNames.py:268
 #, fuzzy
 msgid "Prefix"
-msgstr "Anteprima"
+msgstr "Prefisso"
 
 #: ../src/ScratchPad.py:666 ../src/ScratchPad.py:678
 #, fuzzy
@@ -2805,11 +2799,11 @@ msgstr "NOME"
 
 #: ../src/Utils.py:1153
 msgid "PREFIX"
-msgstr ""
+msgstr "PREFISSO"
 
 #: ../src/Utils.py:1155
 msgid "SUFFIX"
-msgstr ""
+msgstr "SUFFISSO"
 
 #: ../src/Utils.py:1156
 msgid "PATRONYMIC"
@@ -3124,17 +3118,14 @@ msgid "Default format (defined by GRAMPS preferences)"
 msgstr "Formato predefinito (definito dalla preferenze di GRAMPS)"
 
 #: ../src/BasicUtils/_NameDisplay.py:104
-#, fuzzy
 msgid "Surname, Given Patronymic"
 msgstr "Cognome, patronimico"
 
 #: ../src/BasicUtils/_NameDisplay.py:105
-#, fuzzy
 msgid "Given Surname"
 msgstr "Cognome"
 
 #: ../src/BasicUtils/_NameDisplay.py:106
-#, fuzzy
 msgid "Patronymic, Given"
 msgstr "Patronimico, nome"
 
@@ -3156,7 +3147,7 @@ msgstr "nome"
 #: ../src/plugins/ImportCSV.py:231
 #, fuzzy
 msgid "prefix"
-msgstr "Anteprima"
+msgstr "prefisso"
 
 #: ../src/BasicUtils/_NameDisplay.py:282 ../src/BasicUtils/_NameDisplay.py:321
 #: ../src/plugins/ImportCSV.py:219
@@ -3166,7 +3157,6 @@ msgstr "prefisso"
 
 #: ../src/BasicUtils/_NameDisplay.py:283 ../src/BasicUtils/_NameDisplay.py:322
 #: ../src/plugins/ImportCSV.py:233
-#, fuzzy
 msgid "suffix"
 msgstr "suffisso"
 
@@ -3281,9 +3271,8 @@ msgstr "Nessun genitore trovato"
 #. Go over spouses and build their menu
 #: ../src/Merge/_MergePerson.py:170 ../src/DataViews/PedigreeView.py:1451
 #: ../src/plugins/KinshipReport.py:105
-#, fuzzy
 msgid "Spouses"
-msgstr "Coniuge"
+msgstr "Coniugi"
 
 #: ../src/Merge/_MergePerson.py:186 ../src/DataViews/RelationView.py:1088
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:341
@@ -3602,20 +3591,22 @@ msgstr "d."
 #: ../src/DataViews/PedigreeView.py:74
 #, fuzzy
 msgid "bap."
-msgstr "n."
+msgstr "batt."
 
 #: ../src/DataViews/PedigreeView.py:75
+#, fuzzy
 msgid "chr."
-msgstr ""
+msgstr "batt."
 
 #: ../src/DataViews/PedigreeView.py:76
 #, fuzzy
 msgid "bur."
-msgstr "n."
+msgstr "sep."
 
 #: ../src/DataViews/PedigreeView.py:77
+#, fuzzy
 msgid "crem."
-msgstr ""
+msgstr "crem."
 
 #: ../src/DataViews/PedigreeView.py:973
 msgid "Jump to child..."
@@ -3997,18 +3988,15 @@ msgstr "Condividi"
 #: ../src/DataViews/RelationView.py:700
 #, fuzzy
 msgid "Add person as child to an existing family"
-msgstr ""
-"Seleziona una persona esistente dal database e la aggiunge come figlio alla "
-"famiglia corrente"
+msgstr "Aggiunge figlio ad una famiglia esistente"
 
 #: ../src/DataViews/RelationView.py:343
 msgid "Add Existing Parents..."
 msgstr ""
 
 #: ../src/DataViews/RelationView.py:351
-#, fuzzy
 msgid "Show Details"
-msgstr "Mostra _tutto"
+msgstr "Mostra dettagli"
 
 #: ../src/DataViews/RelationView.py:354
 msgid "Show Siblings"
@@ -4017,9 +4005,9 @@ msgstr "Mostra fratelli"
 #: ../src/DataViews/RelationView.py:528 ../src/DataViews/RelationView.py:857
 #: ../src/DataViews/RelationView.py:896 ../src/DataViews/RelationView.py:957
 #: ../src/DataViews/RelationView.py:1055 ../src/Editors/_EditFamily.py:836
-#, fuzzy, python-format
+#, python-format
 msgid "Edit %s"
-msgstr "Modifica"
+msgstr "Modifica %s"
 
 #: ../src/DataViews/RelationView.py:615 ../src/DataViews/RelationView.py:642
 #, fuzzy, python-format
@@ -4035,14 +4023,12 @@ msgid "Reorder parents"
 msgstr "Riordina genitori"
 
 #: ../src/DataViews/RelationView.py:703
-#, fuzzy
 msgid "Remove person as child of these parents"
-msgstr "Fu figlio di %(father)s."
+msgstr ""
 
 #: ../src/DataViews/RelationView.py:707
-#, fuzzy
 msgid "Edit family"
-msgstr "Famiglia"
+msgstr "Modifica famiglia"
 
 #: ../src/DataViews/RelationView.py:708
 #, fuzzy
@@ -4052,7 +4038,7 @@ msgstr "Riordina famiglie"
 #: ../src/DataViews/RelationView.py:709
 #, fuzzy
 msgid "Remove person as parent in this family"
-msgstr "Fu figlio di %(father)s."
+msgstr "Rimuove dal ruolo di genitore per la famiglia corrente"
 
 #: ../src/DataViews/RelationView.py:761
 #, python-format
@@ -4061,16 +4047,16 @@ msgstr " (%d fratelli)"
 
 #: ../src/DataViews/RelationView.py:766
 msgid " (1 brother)"
-msgstr ""
+msgstr " (un fratello)"
 
 #: ../src/DataViews/RelationView.py:768
 msgid " (1 sister)"
-msgstr ""
+msgstr " (una sorella)"
 
 #: ../src/DataViews/RelationView.py:770
 #, fuzzy
 msgid " (1 sibling)"
-msgstr "Mostra nodi di famiglia"
+msgstr " (un fratello)"
 
 #: ../src/DataViews/RelationView.py:772
 #, fuzzy
@@ -4088,24 +4074,23 @@ msgid "Add existing child to family"
 msgstr "Aggiunta figlio alla famiglia"
 
 #: ../src/DataViews/RelationView.py:844 ../src/plugins/all_relations.py:278
-#, fuzzy
 msgid "and"
-msgstr "Gennaio"
+msgstr "e"
 
 #: ../src/DataViews/RelationView.py:1007
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
-msgstr "dal %(start_date)s al %(stop_date)s"
+msgstr "n. %(birthdate)s, d. %(deathdate)s"
 
 #: ../src/DataViews/RelationView.py:1012
-#, fuzzy, python-format
+#, python-format
 msgid "b. %s"
-msgstr "- %s"
+msgstr "n. %s"
 
 #: ../src/DataViews/RelationView.py:1014
-#, fuzzy, python-format
+#, python-format
 msgid "d. %s"
-msgstr "- %s"
+msgstr "d. %s"
 
 #: ../src/DataViews/RelationView.py:1075
 #, python-format
@@ -4138,19 +4123,17 @@ msgid "Please run the Check and Repair Database tool"
 msgstr "Controlla e ripara database"
 
 #: ../src/DataViews/RelationView.py:1156
-#, fuzzy, python-format
+#, python-format
 msgid " (%d children)"
-msgstr "Elenca i figli"
+msgstr " (%d figli)"
 
 #: ../src/DataViews/RelationView.py:1158
-#, fuzzy
 msgid " (1 child)"
-msgstr "Elenca i figli"
+msgstr " (un figlio)"
 
 #: ../src/DataViews/RelationView.py:1160
-#, fuzzy
 msgid " (no children)"
-msgstr "I loro figli:"
+msgstr " (nessun figlio)"
 
 #: ../src/DataViews/RelationView.py:1315
 #, fuzzy
@@ -4161,7 +4144,7 @@ msgstr "Aggiunta figlio alla famiglia"
 #: ../src/Editors/_EditFamily.py:259
 #, fuzzy
 msgid "Select Child"
-msgstr "Selezione file"
+msgstr "Seleziona figlio"
 
 #: ../src/DataViews/RepositoryView.py:70
 #, fuzzy
@@ -4175,18 +4158,18 @@ msgstr ""
 #: ../src/DataViews/RepositoryView.py:82
 #, fuzzy
 msgid "Add a new repository"
-msgstr "Aggiunge un nuovo filtro"
+msgstr "Aggiunge un nuovo deposito"
 
 #: ../src/DataViews/RepositoryView.py:83
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
 #, fuzzy
 msgid "Edit the selected repository"
-msgstr "Modifica il filtro selezionato"
+msgstr "Modifica il deposito selezionato"
 
 #: ../src/DataViews/RepositoryView.py:84
 #, fuzzy
 msgid "Delete the selected repository"
-msgstr "Cancella il filtro selezionato"
+msgstr "Cancella il deposito selezionato"
 
 #: ../src/DataViews/RepositoryView.py:121
 #, fuzzy
@@ -4194,9 +4177,8 @@ msgid "Repository Filter Editor"
 msgstr "Editor località"
 
 #: ../src/DataViews/RepositoryView.py:128
-#, fuzzy
 msgid "Select Repository Columns"
-msgstr "Resoconto discendenza per %s"
+msgstr ""
 
 #: ../src/DataViews/RepositoryView.py:202
 #, fuzzy
@@ -4215,22 +4197,19 @@ msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
 #: ../src/DataViews/RepositoryView.py:211
 #, fuzzy
 msgid "_Delete Repository"
-msgstr "_Elimina persona"
+msgstr "_Elimina deposito"
 
 #: ../src/DataViews/SourceView.py:74
-#, fuzzy
 msgid "Add a new source"
-msgstr "Crea una nuova fonte"
+msgstr "Aggiunge una nuova fonte"
 
 #: ../src/DataViews/SourceView.py:75 ../src/DisplayTabs/_SourceEmbedList.py:55
-#, fuzzy
 msgid "Edit the selected source"
-msgstr "Modifica il coniuge selezionato"
+msgstr "Modifica la fonte selezionata"
 
 #: ../src/DataViews/SourceView.py:76
-#, fuzzy
 msgid "Delete the selected source"
-msgstr "Cancella il filtro selezionato"
+msgstr "Cancella la fonte selezionata"
 
 #: ../src/DataViews/SourceView.py:114
 msgid "_Merge"
@@ -4244,7 +4223,7 @@ msgstr "Editor filtri di sistema"
 #: ../src/DataViews/SourceView.py:123
 #, fuzzy
 msgid "Select Source Columns"
-msgstr "Seleziona persona"
+msgstr "Seleziona colonne fonte"
 
 #. quick test for non-emptiness
 #: ../src/DataViews/SourceView.py:193
@@ -4333,7 +4312,6 @@ msgstr "È richiesto PyGtk versione 2.10 o successiva"
 #. ------------------------------------------------------------------------
 #: ../src/docgen/GtkPrint.py:611 ../src/docgen/GtkPrint.py:612
 #: ../src/docgen/GtkPrint.py:613
-#, fuzzy
 msgid "Print..."
 msgstr "Stampa..."
 
@@ -4344,10 +4322,11 @@ msgstr "Il marcatore \"<!-- START -->\" non è presente nel modello"
 #: ../src/docgen/HtmlDoc.py:159 ../src/docgen/HtmlDoc.py:184
 #, fuzzy
 msgid "Template Error"
-msgstr "Modello"
+msgstr "Errore nel modello"
 
 #: ../src/docgen/HtmlDoc.py:194 ../src/docgen/HtmlDoc.py:200
 #, python-format
+#, fuzzy
 msgid ""
 "Could not open %s\n"
 "Using the default template"
@@ -4374,7 +4353,7 @@ msgstr "LaTeX"
 #: ../src/docgen/ODFDoc.py:1160
 #, fuzzy
 msgid "Open Document Text"
-msgstr "Stile documenti"
+msgstr "Open Document Text"
 
 #: ../src/docgen/PSDrawDoc.py:64 ../src/docgen/PSDrawDoc.py:156
 #: ../src/ReportBase/_DocReportDialog.py:113
@@ -4402,7 +4381,7 @@ msgstr "SVG (Scalable Vector Graphics)"
 #: ../src/docgen/TextBufDoc.py:80 ../src/docgen/TextBufDoc.py:151
 #, fuzzy
 msgid "Quick View"
-msgstr "Resoconto libro"
+msgstr ""
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:61
 #, fuzzy
@@ -4420,14 +4399,12 @@ msgid "Edit the selected address"
 msgstr "Modifica la regola selezionata"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:64
-#, fuzzy
 msgid "Move the selected address upwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in alto l'indirizzo selezionato"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:65
-#, fuzzy
 msgid "Move the selected address downwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in basso l'indirizzo selezionato"
 
 #: ../src/DisplayTabs/_AddrEmbedList.py:78
 msgid "_Addresses"
@@ -4449,14 +4426,12 @@ msgid "Edit the selected attribute"
 msgstr "Modifica la regola selezionata"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:55
-#, fuzzy
 msgid "Move the selected attribute upwards"
-msgstr "Cancella il filtro selezionato"
+msgstr "Sposta in alto l'attributo selezionato"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:56
-#, fuzzy
 msgid "Move the selected attribute downwards"
-msgstr "Cancella il filtro selezionato"
+msgstr "Sposta in basso l'attributo selezionato"
 
 #: ../src/DisplayTabs/_AttrEmbedList.py:66
 msgid "_Attributes"
@@ -4482,11 +4457,11 @@ msgstr ""
 
 #: ../src/DisplayTabs/_ButtonTab.py:72
 msgid "Move Up"
-msgstr ""
+msgstr "Sposta in alto"
 
 #: ../src/DisplayTabs/_ButtonTab.py:73
 msgid "Move Down"
-msgstr ""
+msgstr "Sposta in basso"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:49
 #, fuzzy
@@ -4501,17 +4476,17 @@ msgstr "Editor fonti"
 #: ../src/DisplayTabs/_DataEmbedList.py:51
 #, fuzzy
 msgid "Edit the selected data entry"
-msgstr "Modifica l'evento selezionato"
+msgstr "Modifica i dati selezionati"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:52
 #, fuzzy
 msgid "Move the selected data entry upwards"
-msgstr "Cancella l'evento selezionato"
+msgstr "Sposta in alto i dati selezionati"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:53
 #, fuzzy
 msgid "Move the selected data entry downwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in basso i dati selezionati"
 
 #: ../src/DisplayTabs/_DataEmbedList.py:57
 #, fuzzy
@@ -4526,21 +4501,19 @@ msgstr "_Dati"
 #: ../src/DisplayTabs/_EventEmbedList.py:54
 #, fuzzy
 msgid "Remove the selected event"
-msgstr "Rimuovi l'evento selezionato"
+msgstr "Rimuove l'evento selezionato"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:56
 msgid "Share an existing event"
 msgstr "Condividi un evento esistente"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:57
-#, fuzzy
 msgid "Move the selected event upwards"
-msgstr "Cancella l'evento selezionato"
+msgstr "Sposta in alto l'evento selezionato"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:58
-#, fuzzy
 msgid "Move the selected event downwards"
-msgstr "Cancella l'evento selezionato"
+msgstr "Sposta in basso l'evento selezionato"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:67
 msgid "Role"
@@ -4605,11 +4578,12 @@ msgstr "Modifica il coniuge selezionato"
 #: ../src/DisplayTabs/_LdsEmbedList.py:54
 #, fuzzy
 msgid "Move the selected LDS ordinance upwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in alto l'ordinazione LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:55
+#, fuzzy
 msgid "Move the selected LDS ordinance downwards"
-msgstr ""
+msgstr "Sposta in basso l'ordinazione LDS selezionata"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:68
 msgid "_LDS"
@@ -4635,14 +4609,12 @@ msgid "Edit the selected name"
 msgstr "Modifica il filtro selezionato"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:62
-#, fuzzy
 msgid "Move the selected name upwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in alto il nome selezionato"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:63
-#, fuzzy
 msgid "Move the selected name downwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in basso il nome selezionato"
 
 #: ../src/DisplayTabs/_NameEmbedList.py:76
 msgid "_Names"
@@ -4668,14 +4640,12 @@ msgid "Add an existing note"
 msgstr "_Apri un database esistente"
 
 #: ../src/DisplayTabs/_NoteTab.py:67
-#, fuzzy
 msgid "Move the selected note upwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in alto la nota selezionata"
 
 #: ../src/DisplayTabs/_NoteTab.py:68
-#, fuzzy
 msgid "Move the selected note downwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in basso la nota selezionata"
 
 #: ../src/DisplayTabs/_NoteTab.py:82
 msgid "_Notes"
@@ -4699,12 +4669,12 @@ msgstr "Modifica la persona selezionata"
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:55
 #, fuzzy
 msgid "Move the selected association upwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in alto l'associazione selezionata"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:56
 #, fuzzy
 msgid "Move the selected association downwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in basso l'associazione selezionata"
 
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:62
 #, fuzzy
@@ -4739,12 +4709,12 @@ msgstr "Editor fonti"
 #: ../src/DisplayTabs/_RepoEmbedList.py:57
 #, fuzzy
 msgid "Move the selected repository upwards"
-msgstr "Cancella il filtro selezionato"
+msgstr "Sposta in alto il deposito selezionato"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:58
 #, fuzzy
 msgid "Move the selected repository downwards"
-msgstr "Cancella il filtro selezionato"
+msgstr "Sposta in basso il deposito selezionato"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:71
 #, fuzzy
@@ -4781,14 +4751,12 @@ msgid "Add an existing source"
 msgstr "_Apri un database esistente"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:57
-#, fuzzy
 msgid "Move the selected source upwards"
-msgstr "Cancella il filtro selezionato"
+msgstr "Sposta in alto la fonte selezionata"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:58
-#, fuzzy
 msgid "Move the selected source downwards"
-msgstr "Cancella il filtro selezionato"
+msgstr "Sposta in basso la fonte selezionata"
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:70
 msgid "_Sources"
@@ -4819,14 +4787,12 @@ msgid "Edit the selected web address"
 msgstr "Modifica la persona selezionata"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:56
-#, fuzzy
 msgid "Move the selected web address upwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in alto l'indirizzo web selezionato"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:57
-#, fuzzy
 msgid "Move the selected web address downwards"
-msgstr "Cancella la persona selezionata"
+msgstr "Sposta in basso l'indirizzo web selezionato"
 
 #: ../src/DisplayTabs/_WebEmbedList.py:58
 #, fuzzy
@@ -4999,12 +4965,12 @@ msgstr ""
 #: ../src/Editors/_EditFamily.py:95
 #, fuzzy
 msgid "Move the child up in the childrens list"
-msgstr "Lo stile usato per i titoli."
+msgstr "Sposta il figlio più in alto nella lista"
 
 #: ../src/Editors/_EditFamily.py:96
 #, fuzzy
 msgid "Move the child down in the childrens list"
-msgstr "Lo stile usato per i titoli."
+msgstr "Sposta il figlio più in basso nella lista"
 
 #: ../src/Editors/_EditFamily.py:100
 msgid "#"
@@ -5021,9 +4987,8 @@ msgid "Maternal"
 msgstr "Materno"
 
 #: ../src/Editors/_EditFamily.py:117 ../src/plugins/csvexport.glade.h:5
-#, fuzzy
 msgid "_Children"
-msgstr "Figli"
+msgstr "_Figli"
 
 #: ../src/Editors/_EditFamily.py:122
 #, fuzzy
@@ -6046,7 +6011,7 @@ msgstr "Esportazione GEDCOM"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:23
 msgid "Report a bug"
-msgstr "_Segnala un bug"
+msgstr "Segnala un bug"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:24
 msgid ""
@@ -6062,29 +6027,24 @@ msgid ""
 msgstr ""
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
-#, fuzzy
 msgid "Report a bug: Step 1 of 5"
-msgstr "Segnala un bug: passo 1 di 5"
+msgstr "Segnalazione bug: passo 1 di 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:38
-#, fuzzy
 msgid "Report a bug: Step 2 of 5"
-msgstr "Segnala un bug: passo 2 di 5"
+msgstr "Segnalazione bug: passo 2 di 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:39
-#, fuzzy
 msgid "Report a bug: Step 3 of 5"
-msgstr "Segnala un bug: passo 3 di 5"
+msgstr "Segnalazione bug: passo 3 di 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:42
-#, fuzzy
 msgid "Report a bug: Step 4 of 5"
-msgstr "Segnala un bug: passo 4 di 5"
+msgstr "Segnalazione bug: passo 4 di 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:44
-#, fuzzy
 msgid "Report a bug: Step 5 of 5"
-msgstr "Segnala un bug: passo 5 di 5"
+msgstr "Segnalazione bug: passo 5 di 5"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:48
 #, fuzzy
@@ -6197,7 +6157,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:483
 #, fuzzy
 msgid "Send Bug Report"
-msgstr "Resoconto discendenza"
+msgstr "Invia segnalazione bug"
 
 #. side_label = gtk.Label(_("This is the final step. Use the buttons on this "
 #. "page to transfer the bug report to your email client."))
@@ -6215,7 +6175,7 @@ msgstr "Generale"
 #: ../src/GrampsLogger/_ErrorView.py:58
 #, fuzzy
 msgid "Error Report"
-msgstr "Progresso resoconto"
+msgstr "Resoconto errori"
 
 #: ../src/GrampsLogger/_ErrorView.py:69
 msgid "GRAMPS has experienced an unexpected error"
@@ -6410,7 +6370,7 @@ msgstr ""
 #: ../src/plugins/all_relations.py:265
 #, fuzzy
 msgid "Name Common ancestor"
-msgstr "Numero ascendenti"
+msgstr "Nome ascendente comune"
 
 #: ../src/plugins/all_relations.py:266
 #, fuzzy
@@ -6640,7 +6600,7 @@ msgstr "Opzioni resoconto"
 #: ../src/plugins/KinshipReport.py:338
 #, fuzzy
 msgid "The center person for the report"
-msgstr "La persona centrale del resoconto"
+msgstr "Persona centrale del resoconto"
 
 #: ../src/plugins/AncestorReport.py:253 ../src/plugins/DescendReport.py:202
 #: ../src/plugins/DetAncestralReport.py:685
@@ -6699,17 +6659,17 @@ msgstr "Non applicabile"
 #: ../src/plugins/BookReport.py:158 ../src/PluginUtils/_GuiOptions.py:582
 #, fuzzy
 msgid "unknown father"
-msgstr "sconosciuto"
+msgstr "padre ignoto"
 
 #: ../src/plugins/BookReport.py:164 ../src/PluginUtils/_GuiOptions.py:588
 #, fuzzy
 msgid "unknown mother"
-msgstr "sconosciuto"
+msgstr "madre ignota"
 
 #: ../src/plugins/BookReport.py:166 ../src/PluginUtils/_GuiOptions.py:590
-#, fuzzy, python-format
+#, python-format
 msgid "%s and %s (%s)"
-msgstr "%s e %s"
+msgstr "%s e %s (%s)"
 
 #: ../src/plugins/BookReport.py:593
 msgid "Available Books"
@@ -6951,9 +6911,8 @@ msgstr "Opzioni resoconto"
 #. initialize the dict to fill:
 #: ../src/plugins/Calendar.py:214 ../src/plugins/Calendar.py:925
 #: ../src/plugins/DefaultGramplets.py:1051
-#, fuzzy
 msgid "Calendar"
-msgstr "<b>Calendari</b>"
+msgstr "Calendario"
 
 #. generate the report:
 #: ../src/plugins/Calendar.py:222 ../src/plugins/Calendar.py:443
@@ -6976,17 +6935,18 @@ msgstr ""
 #: ../src/plugins/Calendar.py:415 ../src/plugins/Calendar.py:638
 #: ../src/plugins/Calendar.py:938
 msgid "Birthday and Anniversary Report"
-msgstr ""
+msgstr "Resoconto compleanni ed anniversari"
 
 #: ../src/plugins/Calendar.py:441
-#, fuzzy, python-format
+#, python-format
+#, fuzzy
 msgid "Relationships shown are to %s"
-msgstr "Tipo relazione:"
+msgstr "Le relazioni mostrate sono relative a %s"
 
 #: ../src/plugins/Calendar.py:486 ../src/plugins/Calendar.py:488
 #: ../src/plugins/WebCal.py:736 ../src/plugins/WebCal.py:738
 msgid "Year of calendar"
-msgstr ""
+msgstr "Anno del calendario"
 
 #: ../src/plugins/Calendar.py:493 ../src/plugins/NarrativeWeb.py:2900
 #: ../src/plugins/WebCal.py:743
@@ -6996,11 +6956,12 @@ msgstr ""
 #: ../src/plugins/Calendar.py:506
 #, fuzzy
 msgid "Select the format to display names"
-msgstr "Selezione file"
+msgstr "Seleziona il formato con cui mostrare i nomi"
 
 #: ../src/plugins/Calendar.py:509 ../src/plugins/WebCal.py:754
+#, fuzzy
 msgid "Country for holidays"
-msgstr ""
+msgstr "Nazione per le vacanze"
 
 #: ../src/plugins/Calendar.py:514
 msgid "Select the country to see associated holidays"
@@ -7008,16 +6969,16 @@ msgstr ""
 
 #: ../src/plugins/Calendar.py:517
 msgid "First day of week"
-msgstr ""
+msgstr "Primo giorno della settimana"
 
 #: ../src/plugins/Calendar.py:521
 msgid "Select the first day of the week for the calendar"
-msgstr ""
+msgstr "Seleziona il primo giorno della settimana per il calendario"
 
 #: ../src/plugins/Calendar.py:524
 #, fuzzy
 msgid "Birthday surname"
-msgstr "Nome alla nascita"
+msgstr "Cognome alla nascita"
 
 #: ../src/plugins/Calendar.py:525
 msgid "Wives use husband's surname (from first family listed)"
@@ -7033,82 +6994,76 @@ msgstr ""
 
 #: ../src/plugins/Calendar.py:528
 msgid "Select married women's displayed surname"
-msgstr ""
+msgstr "Seleziona il cognome da visualizzare per le donne sposate"
 
 #: ../src/plugins/Calendar.py:531 ../src/plugins/WebCal.py:763
-#, fuzzy
 msgid "Include only living people"
-msgstr "Limita i dati delle persone in vita"
+msgstr "Includere solo persone in vita"
 
 #: ../src/plugins/Calendar.py:532 ../src/plugins/WebCal.py:764
 msgid "Include only living people in the calendar"
-msgstr ""
+msgstr "Include nel calendario solo le persone in vita"
 
 #: ../src/plugins/Calendar.py:535 ../src/plugins/WebCal.py:767
-#, fuzzy
 msgid "Include birthdays"
-msgstr "Includi le note"
+msgstr "Includere compleanni"
 
 #: ../src/plugins/Calendar.py:536 ../src/plugins/WebCal.py:768
-#, fuzzy
 msgid "Include birthdays in the calendar"
-msgstr "Includi le note"
+msgstr "Include i compleanni nel calendario"
 
 #: ../src/plugins/Calendar.py:539 ../src/plugins/WebCal.py:771
-#, fuzzy
 msgid "Include anniversaries"
-msgstr "Includi le note"
+msgstr "Includere anniversari"
 
 #: ../src/plugins/Calendar.py:540 ../src/plugins/WebCal.py:772
-#, fuzzy
 msgid "Include anniversaries in the calendar"
-msgstr "Includi le note"
+msgstr "Include gli anniversari nel calendario"
 
 #: ../src/plugins/Calendar.py:543 ../src/plugins/Calendar.py:636
-#, fuzzy
 msgid "Text Options"
-msgstr "Opzioni resoconto"
+msgstr "Opzioni testo"
 
 #: ../src/plugins/Calendar.py:545
-#, fuzzy
 msgid "Text Area 1"
-msgstr "Testo"
+msgstr "Area di testo 1"
 
 #: ../src/plugins/Calendar.py:545
-#, fuzzy
 msgid "My Calendar"
-msgstr "<b>Calendari</b>"
+msgstr "Il mio calendario"
 
 #: ../src/plugins/Calendar.py:546
+#, fuzzy
 msgid "First line of text at bottom of calendar"
-msgstr ""
+msgstr "Prima riga di testo in fondo al calendario"
+
+#: ../src/plugins/Calendar.py:549
+msgid "Text Area 2"
+msgstr "Area di testo 2"
 
 #: ../src/plugins/Calendar.py:549
 #, fuzzy
-msgid "Text Area 2"
-msgstr "Testo"
-
-#: ../src/plugins/Calendar.py:549
 msgid "Produced with GRAMPS"
-msgstr ""
+msgstr "Generato con GRAMPS"
 
 #: ../src/plugins/Calendar.py:550
+#, fuzzy
 msgid "Second line of text at bottom of calendar"
-msgstr ""
+msgstr "Seconda riga di testo in fondo al calendario"
 
 #: ../src/plugins/Calendar.py:553
-#, fuzzy
 msgid "Text Area 3"
-msgstr "Testo"
+msgstr "Area di testo 3"
 
 #: ../src/plugins/Calendar.py:554
+#, fuzzy
 msgid "Third line of text at bottom of calendar"
-msgstr ""
+msgstr "Terza riga di testo in fondo al calendario"
 
 #: ../src/plugins/Calendar.py:608
 #, fuzzy
 msgid "Title text and background color"
-msgstr "<b>Sfondo</b>"
+msgstr "Titolo e colore di sfondo"
 
 #: ../src/plugins/Calendar.py:612
 #, fuzzy
@@ -7127,30 +7082,33 @@ msgid "Days of the week text"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:621 ../src/plugins/Calendar.py:661
+#, fuzzy
 msgid "Text at bottom, line 1"
-msgstr ""
+msgstr "Testo in basso, riga 1"
 
 #: ../src/plugins/Calendar.py:623 ../src/plugins/Calendar.py:663
+#, fuzzy
 msgid "Text at bottom, line 2"
-msgstr ""
+msgstr "Testo in basso, riga 2"
 
 #: ../src/plugins/Calendar.py:625 ../src/plugins/Calendar.py:665
+#, fuzzy
 msgid "Text at bottom, line 3"
-msgstr ""
+msgstr "Testo in basso, riga 3"
 
 #: ../src/plugins/Calendar.py:627
 #, fuzzy
 msgid "Borders"
-msgstr "<b>Bordi</b>"
+msgstr "Bordi"
 
 #: ../src/plugins/Calendar.py:637
 #, fuzzy
 msgid "Title text"
-msgstr "Titolo pagina"
+msgstr "Titolo"
 
 #: ../src/plugins/Calendar.py:639
 msgid "Title of calendar"
-msgstr ""
+msgstr "Titolo del calendario"
 
 #: ../src/plugins/Calendar.py:643
 #, fuzzy
@@ -7189,7 +7147,7 @@ msgstr "Includi le note"
 #: ../src/plugins/Calendar.py:929
 #, fuzzy
 msgid "Produces a graphical calendar"
-msgstr "Produce un grafico ad albero dell'ascendenza"
+msgstr "Produce un calendario"
 
 #: ../src/plugins/Calendar.py:942
 msgid "Produces a report of birthdays and anniversaries"
@@ -7276,12 +7234,12 @@ msgstr "È stato modificato 1 elemento evento"
 #: ../src/plugins/ChangeTypes.py:142
 #, fuzzy
 msgid "1 event record was modified."
-msgstr "È stato modificato 1 elemento evento"
+msgstr "È stato modificato 1 elemento evento,"
 
 #: ../src/plugins/ChangeTypes.py:144
 #, fuzzy, python-format
 msgid "%d event records were modified."
-msgstr "Sono stati modificati %d elementi evento"
+msgstr "Sono stati modificati %d elementi evento."
 
 #: ../src/plugins/ChangeTypes.py:204
 #, fuzzy
@@ -7827,7 +7785,6 @@ msgstr ""
 #: ../src/plugins/DefaultGramplets.py:359
 #: ../src/plugins/DefaultGramplets.py:453
 #: ../src/plugins/DefaultGramplets.py:582
-#, fuzzy
 msgid "No Family Tree loaded."
 msgstr "Nessun albero genealogico caricato."
 
@@ -7864,9 +7821,9 @@ msgid "Active person: %s"
 msgstr "Persona attiva: %s"
 
 #: ../src/plugins/DefaultGramplets.py:401
-#, fuzzy, python-format
+#, python-format
 msgid "%d. Partner: "
-msgstr "Partner"
+msgstr "%d. partner: "
 
 #: ../src/plugins/DefaultGramplets.py:405
 #, python-format
@@ -8178,12 +8135,12 @@ msgstr "Ascendenza"
 
 #: ../src/plugins/Desbrowser.py:56
 msgid "manual|Interactive_Descendant_Browser"
-msgstr "Navigatore interattivo discendenza"
+msgstr "Navigatore interattivo discendenti"
 
 #: ../src/plugins/Desbrowser.py:73
 #, fuzzy, python-format
 msgid "Descendant Browser: %s"
-msgstr "Navigatore discendenza"
+msgstr "Navigatore discendenti: %s"
 
 #: ../src/plugins/Desbrowser.py:102
 #, fuzzy
@@ -8193,7 +8150,7 @@ msgstr "Navigatore discendenza"
 #: ../src/plugins/Desbrowser.py:167
 #, fuzzy
 msgid "Interactive Descendant Browser"
-msgstr "Navigatore interattivo discendeza"
+msgstr "Navigatore interattivo discendenza"
 
 #: ../src/plugins/Desbrowser.py:171
 msgid "Provides a browsable hierarchy based on the active person"
@@ -8219,29 +8176,29 @@ msgid "Produces a graphical descendant tree"
 msgstr "Produce un grafico ad albero della discendenza"
 
 #: ../src/plugins/DescendReport.py:118
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s - %(place)s"
-msgstr "%(date)s in quel di %(place)s."
+msgstr "n. %(birth_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "b. %(birth_date)s"
-msgstr " n. %(date)s"
+msgstr "n. %(birth_date)s"
 
 #: ../src/plugins/DescendReport.py:131
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s - %(place)s"
-msgstr "%(date)s in quel di %(place)s."
+msgstr "d. %(death_date)s - %(place)s"
 
 #: ../src/plugins/DescendReport.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "d. %(death_date)s"
-msgstr " d. %(date)s)"
+msgstr "d. %(death_date)s"
 
 #: ../src/plugins/DescendReport.py:171
 #, python-format
 msgid "sp. %(spouse)s"
-msgstr ""
+msgstr "con. %(spouse)s"
 
 #: ../src/plugins/DescendReport.py:230
 #, python-format
@@ -8348,9 +8305,9 @@ msgstr "Figli di %(mother_name)s e %(father_name)s"
 
 #: ../src/plugins/DetAncestralReport.py:554
 #: ../src/plugins/DetDescendantReport.py:463
-#, fuzzy, python-format
+#, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
-msgstr "Altre informazioni su %(person_name)s:"
+msgstr "Altre informazioni su %(mother_name)s e %(father_name)s:"
 
 #: ../src/plugins/DetAncestralReport.py:693
 #: ../src/plugins/DetDescendantReport.py:654
@@ -8640,7 +8597,7 @@ msgstr ""
 #: ../src/plugins/EndOfLineReport.py:318
 #, fuzzy
 msgid "Produces a textual end of line report"
-msgstr "Produce un resoconto dell'ascendenza testuale"
+msgstr "Produce un resoconto testuale dell'ascendenza"
 
 #: ../src/plugins/Eval.py:58
 msgid "Python evaluation window"
@@ -9107,9 +9064,8 @@ msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr "Forma del grafico: cerchio completo, semicerchio, quarto di cerchio."
 
 #: ../src/plugins/FanChart.py:359
-#, fuzzy
 msgid "Background color"
-msgstr "<b>Sfondo</b>"
+msgstr "Colore di sfondo"
 
 #: ../src/plugins/FanChart.py:360
 #, fuzzy
@@ -9513,9 +9469,9 @@ msgid "Writing family lines"
 msgstr "Mostra nodi di famiglia"
 
 #: ../src/plugins/GVFamilyLines.py:809
-#, fuzzy, python-format
+#, python-format
 msgid "%d children"
-msgstr "Elenca i figli"
+msgstr "%d figli"
 
 #: ../src/plugins/GVFamilyLines.py:876
 #, fuzzy
@@ -9535,7 +9491,7 @@ msgstr "Lo stile usato per i pié di pagina."
 #: ../src/plugins/GVHourGlass.py:181 ../src/plugins/KinshipReport.py:341
 #, fuzzy
 msgid "Max Descendant Generations"
-msgstr "Discendente - Ascendente"
+msgstr "Numero massimo generazioni di discendenti"
 
 #: ../src/plugins/GVHourGlass.py:182
 msgid "The number of generations of descendants to include in the graph"
@@ -9944,7 +9900,7 @@ msgstr "Eventi personali"
 #: ../src/plugins/IndivComplete.py:400
 #, python-format
 msgid "Summary of %s"
-msgstr "Riassunto di %s"
+msgstr "Riepilogo di %s"
 
 #: ../src/plugins/IndivComplete.py:420 ../src/plugins/NarrativeWeb.py:587
 #: ../src/plugins/NarrativeWeb.py:620 ../src/plugins/NarrativeWeb.py:632
@@ -9996,9 +9952,9 @@ msgid "Produces a complete report on the selected people"
 msgstr "Produce un resoconto completo delle persone selezionate"
 
 #: ../src/plugins/KinshipReport.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "Kinship Report for %s"
-msgstr "Resoconto Ahnentafel per %s"
+msgstr "Resoconto parentela per %s"
 
 #: ../src/plugins/KinshipReport.py:132
 #, fuzzy, python-format
@@ -10008,7 +9964,7 @@ msgstr "Ascendenti di %s"
 #: ../src/plugins/KinshipReport.py:342
 #, fuzzy
 msgid "The maximum number of descendant generations"
-msgstr "Numero di generazioni:"
+msgstr "Numero massimo di generazioni di discendenti"
 
 #: ../src/plugins/KinshipReport.py:346
 #, fuzzy
@@ -10043,14 +9999,12 @@ msgid "The basic style used for sub-headings."
 msgstr "Lo stile base usato per la visualizzazione solo testo."
 
 #: ../src/plugins/KinshipReport.py:404
-#, fuzzy
 msgid "Kinship Report"
-msgstr "Resoconto Ahnentafel per %s"
+msgstr "Resoconto parentela"
 
 #: ../src/plugins/KinshipReport.py:406
-#, fuzzy
 msgid "Produces a textual report of kinship for a given person"
-msgstr "Produce un resoconto dell'ascendenza testuale"
+msgstr "Produce un resoconto testuale della parentela per una data persona"
 
 #: ../src/plugins/Leak.py:59
 #, fuzzy
@@ -10975,7 +10929,7 @@ msgstr "Produce delle pagine web (HTML) per gli individui o un insieme di indivi
 #: ../src/plugins/NotRelated.py:63
 #, python-format
 msgid "Not related to \"%s\""
-msgstr ""
+msgstr "Non in relazione con «%s»"
 
 #: ../src/plugins/NotRelated.py:210
 #, python-format
@@ -11007,9 +10961,8 @@ msgid "Looking up the names for %d people"
 msgstr "Ometti persone duplicate"
 
 #: ../src/plugins/NotRelated.py:404
-#, fuzzy
 msgid "Not Related"
-msgstr "Modello"
+msgstr "Non in relazione"
 
 #: ../src/plugins/NotRelated.py:408
 msgid "Find people who are not in any way related to the selected person"
@@ -11617,7 +11570,7 @@ msgstr "(sesso sconosciuto)"
 #: ../src/plugins/StatisticsChart.py:292
 #, fuzzy
 msgid "Date(s) missing"
-msgstr "Deduzione dati"
+msgstr "data mancante"
 
 #: ../src/plugins/StatisticsChart.py:195 ../src/plugins/StatisticsChart.py:209
 #, fuzzy
@@ -11641,7 +11594,7 @@ msgstr "Confronto eventi"
 #: ../src/plugins/StatisticsChart.py:254 ../src/plugins/StatisticsChart.py:262
 #, fuzzy
 msgid "Children missing"
-msgstr "Figli"
+msgstr "Figli mancanti"
 
 #: ../src/plugins/StatisticsChart.py:281
 #, fuzzy
@@ -11681,9 +11634,9 @@ msgid "Saving charts..."
 msgstr "Sto salvando %s..."
 
 #: ../src/plugins/StatisticsChart.py:606 ../src/plugins/StatisticsChart.py:642
-#, fuzzy, python-format
+#, python-format
 msgid "%s (persons):"
-msgstr "%s (revisione %s)"
+msgstr "%s (persone):"
 
 #: ../src/plugins/StatisticsChart.py:685 ../src/plugins/TimeLine.py:303
 msgid "Determines what people are included in the report"
@@ -11769,21 +11722,21 @@ msgid "The style used for the items and values."
 msgstr "Lo stile usato per i titoli."
 
 #: ../src/plugins/StatisticsChart.py:906
+#, fuzzy
 msgid "Produces statistical bar and pie charts of the people in the database"
-msgstr ""
+msgstr "Produce istogrammi statistici e grafici a torta relativi alle persone nel database"
 
 #: ../src/plugins/Summary.py:151
 msgid "Database summary"
-msgstr "Riassunto database"
+msgstr "Riepilogo database"
 
 #: ../src/plugins/Summary.py:185
-#, fuzzy
 msgid "Summary of the Database"
-msgstr "Riassunto database"
+msgstr "Riepilogo del database"
 
 #: ../src/plugins/Summary.py:187
 msgid "Provides a summary of the current database"
-msgstr "Fornisce un riassunto del database attuale"
+msgstr "Fornisce un riepilogo del database attuale"
 
 #: ../src/plugins/TimeLine.py:92
 #, python-format
@@ -12322,14 +12275,12 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/WebCal.py:1231
-#, fuzzy
 msgid "Web Calendar"
-msgstr "Calendari web"
+msgstr "Calendario web"
 
 #: ../src/plugins/WebCal.py:1235
-#, fuzzy
 msgid "Produces web (HTML) calendars."
-msgstr "Genera calendari web (HTML)"
+msgstr "Genera calendari web (HTML)."
 
 #: ../src/plugins/WriteCD.py:54
 msgid "WriteCD is a GNOME plugin and you are not running GNOME"
@@ -12708,7 +12659,6 @@ msgid "Books"
 msgstr "Libri"
 
 #: ../src/ReportBase/_Constants.py:59
-#, fuzzy
 msgid "Graphs"
 msgstr "Grafici"
 
@@ -12877,7 +12827,7 @@ msgstr "SVG (Structured Vector Graphics)"
 #: ../src/ReportBase/_GraphvizReportDialog.py:608
 #, fuzzy
 msgid "Compressed Structured Vector Graphs (SVG)"
-msgstr "SVG (Scalable Vector Graphics)"
+msgstr "SVG (Scalable Vector Graphics compresso)"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:614
 msgid "JPEG image"
@@ -12912,7 +12862,7 @@ msgstr ""
 #: ../src/ReportBase/_GraphvizReportDialog.py:730
 #, fuzzy
 msgid "Font size"
-msgstr "Famiglia"
+msgstr "Dimensione carattere"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:731
 msgid "The font size, in points."
@@ -14588,230 +14538,229 @@ msgid "Died (age %(age)d days)."
 msgstr " all'età di %d giorni"
 
 #: ../src/ReportBase/_ReportUtils.py:545
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %(birth_place)s"
-"%(birth_endnotes)s."
+msgstr "%(male_name)s fu seppellito il %(burial_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:546
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried on %(burial_date)s in %(burial_place)s."
-msgstr "nacque il %(date)s in quel di %(place)s%(endnotes)s"
+msgstr "Fu seppellito il %(burial_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:549
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
-"(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s fu seppellita il %(burial_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:550
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried on %(burial_date)s in %(burial_place)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Fu seppellita il %(burial_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:553
 #, python-format
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
 msgstr ""
+"%(unknown_gender_name)s fu seppellito/a il %(burial_date)s in quel di "
+"%(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:554
 #, python-format
+#, fuzzy
 msgid "This person was buried on %(burial_date)s in %(burial_place)s."
-msgstr ""
+msgstr "Fu seppellito il %(burial_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:560
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried on %(burial_date)s."
-msgstr "%(male_name)s%(endnotes)s nacque il %(birth_date)s%(birth_endnotes)s."
+msgstr "%(male_name)s fu seppellito il %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:561
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried on %(burial_date)s."
-msgstr "Fu figlio di %(father)s."
+msgstr "Fu seppellito il %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:564
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried on %(burial_date)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "%(female_name)s fu seppellita il %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:565
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried on %(burial_date)s."
-msgstr " e fu sepellito/a il %s."
+msgstr "Fu seppellita il %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:568
 #, python-format
+#, fuzzy
 msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s fu seppellito/a il %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:569
 #, fuzzy, python-format
 msgid "This person was buried on %(burial_date)s."
-msgstr " e fu sepellito/a il %s."
+msgstr "Questa persona fu seppellita il %(burial_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:575
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %(birth_place)s"
-"%(birth_endnotes)s."
+msgstr "%(male_name)s fu seppellito nel %(month_year)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:576
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(month_year)s in %(burial_place)s."
-msgstr " e fu sepellito/a nel %s in quel di %s."
+msgstr "Fu seppellito nel %(month_year)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:579
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
-"(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s fu seppellita nel %(month_year)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:580
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(month_year)s in %(burial_place)s."
-msgstr " e fu sepellito/a nel %s in quel di %s."
+msgstr "Fu seppellita nel %(month_year)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
+#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
 msgstr ""
+"%(unknown_gender_name)s fu seppellito/a nel %(month_year)s in quel di "
+"%(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:584
 #, fuzzy, python-format
 msgid "This person was buried in %(month_year)s in %(burial_place)s."
-msgstr " e fu sepellito/a nel %s in quel di %s."
+msgstr "Questa persona fu seppellita nel %(month_year)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:590
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(month_year)s."
-msgstr " e fu sepellito/a nel %s."
+msgstr "%(male_name)s fu seppellito nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:591
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(month_year)s."
-msgstr "Fu figlio di %(mother)s."
+msgstr "Fu seppellito nel %(month_year)s"
 
 #: ../src/ReportBase/_ReportUtils.py:594
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "%(female_name)s fu seppellita nel %(month_year)s"
 
 #: ../src/ReportBase/_ReportUtils.py:595
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(month_year)s."
-msgstr " e fu sepellito/a nel %s."
+msgstr "Fu seppellita nel %(month_year)s"
 
 #: ../src/ReportBase/_ReportUtils.py:598
 #, python-format
+#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(month_year)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s fu seppellito/a nel %(month_year)s"
 
 #: ../src/ReportBase/_ReportUtils.py:599
 #, fuzzy, python-format
 msgid "This person was buried in %(month_year)s."
-msgstr " e fu sepellito/a nel %s."
+msgstr "Questa persona fu seppellita nel %(month_year)s"
 
 #: ../src/ReportBase/_ReportUtils.py:605
 #, fuzzy, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(male_name)s%(endnotes)s nacque il %(birth_date)s in quel di %(birth_place)s"
-"%(birth_endnotes)s."
+msgstr "%(male_name)s fu seppellito il %(modified_date) in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:606
 #, fuzzy, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Fu seppellito il %(modified_date) in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:609
 #, fuzzy, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
-"%(female_name)s%(endnotes)s nacque il %(birth_date)s in quel di %"
-"(birth_place)s%(birth_endnotes)s."
+msgstr "%(female_name)s fu seppellita il %(modified_date) in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:610
 #, fuzzy, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Fu seppellita il %(modified_date) in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:613
 #, python-format
+#, fuzzy
 msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
+msgstr "%(unknow_gender_name)s fu seppellito/a il %(modified_date) in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
+#, fuzzy
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr ""
+msgstr "Questa persona fu seppellita il %(modified_date) in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:620
 #, fuzzy, python-format
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s fu seppellito il %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:621
 #, python-format
+#, fuzzy
 msgid "He was buried %(modified_date)s."
-msgstr ""
+msgstr "Fu seppellito il %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:624
 #, fuzzy, python-format
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "%(female_name)s fu seppellita il %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
+#, fuzzy
 msgid "She was buried %(modified_date)s."
-msgstr ""
+msgstr "Fu seppellita il %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:628
 #, python-format
+#, fuzzy
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s fu seppellito/a il %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:629
 #, python-format
+#, fuzzy
 msgid "This person was buried %(modified_date)s."
-msgstr ""
+msgstr "Questa persona fu seppellita il %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:635
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried in %(burial_place)s."
-msgstr ""
-"%(male_name)s%(endnotes)s nacque in quel di %(birth_place)s%(birth_endnotes)"
-"s."
+msgstr "%(male_name)s fu seppellito in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:636
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried in %(burial_place)s."
-msgstr " e fu sepellito/a in quel di %s."
+msgstr "Fu seppellito in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:639
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried in %(burial_place)s."
-msgstr ""
-"%(female_name)s%(endnotes)s nacque in quel di %(birth_place)s%"
-"(birth_endnotes)s."
+msgstr "%(female_name)s fu seppellita in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:640
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried in %(burial_place)s."
-msgstr " e fu sepellito/a in quel di %s."
+msgstr "Fu seppellita in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:643
 #, python-format
+#, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s fu seppellito/a in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:644
 #, fuzzy, python-format
 msgid "This person was buried in %(burial_place)s."
-msgstr " e fu sepellito/a in quel di %s."
+msgstr "Questa persona fu seppellita in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
@@ -14820,7 +14769,7 @@ msgstr "%(male_name)s fu seppellito."
 
 #: ../src/ReportBase/_ReportUtils.py:651
 msgid "He was buried."
-msgstr "Egli fu sepellito."
+msgstr "Fu seppellito."
 
 #: ../src/ReportBase/_ReportUtils.py:654
 #, python-format
@@ -14829,7 +14778,7 @@ msgstr "%(female_name)s fu seppellita."
 
 #: ../src/ReportBase/_ReportUtils.py:655
 msgid "She was buried."
-msgstr "Ella fu seppellita."
+msgstr "Fu seppellita."
 
 #: ../src/ReportBase/_ReportUtils.py:658
 #, fuzzy, python-format
@@ -14837,6 +14786,7 @@ msgid "%(unknown_gender_name)s was buried."
 msgstr "%(unknow_gender_name)s fu seppellito/a."
 
 #: ../src/ReportBase/_ReportUtils.py:659
+#, fuzzy
 msgid "This person was buried."
 msgstr "Questa persona fu seppellita."
 
@@ -17186,12 +17136,12 @@ msgstr "Inviato"
 #: ../src/gen/lib/ldsord.py:112
 #, fuzzy
 msgid "Uncleared"
-msgstr "Celibe/nubile"
+msgstr ""
 
 #: ../src/gen/utils/dbutils.py:117
 #, fuzzy
 msgid "Remove father from family"
-msgstr "Rimuovi il padre dalla famiglia"
+msgstr "Rimuove il padre dalla famiglia"
 
 #: ../src/gen/utils/dbutils.py:119
 #, fuzzy
@@ -17201,12 +17151,12 @@ msgstr "Rimuove la madre dalla famiglia"
 #: ../src/gen/utils/dbutils.py:166
 #, fuzzy
 msgid "Remove child from family"
-msgstr "Rimuovi"
+msgstr "Rimuove figlio dalla famiglia"
 
 #: ../src/gen/utils/dbutils.py:199
 #, fuzzy
 msgid "Add child to family"
-msgstr "Aggiunta figlio alla famiglia"
+msgstr "Aggiunge figlio alla famiglia"
 
 #: ../src/gen/utils/progressmon.py:64
 #, fuzzy
@@ -17899,7 +17849,7 @@ msgstr "Estrae le persone discendenti da qualcuno estratto con un filtro"
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:47
 #, fuzzy
 msgid "Descendants of <person>"
-msgstr "Discendenti di %s"
+msgstr "Discendenti di <person>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:49
 msgid "Matches all descendants for the specified person"
@@ -19589,9 +19539,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Allineamento</b>"
 
 #: ../src/glade/gramps.glade.h:5
-#, fuzzy
 msgid "<b>Background color</b>"
-msgstr "<b>Sfondo</b>"
+msgstr "<b>Colore di sfondo</b>"
 
 #: ../src/glade/gramps.glade.h:6
 msgid "<b>Borders</b>"
@@ -19623,9 +19572,8 @@ msgid "<b>Font options</b>"
 msgstr "<b>Opzioni carattere</b>"
 
 #: ../src/glade/gramps.glade.h:14
-#, fuzzy
 msgid "<b>Indentation</b>"
-msgstr "<b>Identificativo</b>"
+msgstr "<b>Rientro</b>"
 
 #: ../src/glade/gramps.glade.h:15
 #, fuzzy
@@ -19864,7 +19812,7 @@ msgstr "Famiglia:"
 
 #: ../src/glade/gramps.glade.h:72
 msgid "First li_ne:"
-msgstr ""
+msgstr "Prima ri_ga:"
 
 #: ../src/glade/gramps.glade.h:73
 #, fuzzy
@@ -19934,9 +19882,8 @@ msgid "Mo_nth"
 msgstr "Me_se"
 
 #: ../src/glade/gramps.glade.h:89
-#, fuzzy
 msgid "Name Child:"
-msgstr "Nome:"
+msgstr "Nome figlio/a:"
 
 #: ../src/glade/gramps.glade.h:91
 #, fuzzy
@@ -20007,9 +19954,8 @@ msgid "Show all"
 msgstr "Mostra tutto"
 
 #: ../src/glade/gramps.glade.h:109
-#, fuzzy
 msgid "Style n_ame:"
-msgstr "_Nome stile:"
+msgstr "N_ome stile:"
 
 #: ../src/glade/gramps.glade.h:110
 msgid "Suffi_x:"
@@ -20021,6 +19967,7 @@ msgstr "_Commento:"
 
 #: ../src/glade/gramps.glade.h:113
 #, no-c-format
+#, fuzzy
 msgid ""
 "The following conventions are used:\n"
 "<tt>  <b>%f</b> - Given Name       <b>%F</b> - GIVEN NAME\n"
@@ -20031,6 +19978,14 @@ msgid ""
 "  <b>%c</b> - Call name        <b>%C</b> - CALL NAME\n"
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
+"Sono in uso le seguenti convenzioni:\n"
+"<tt>  <b>%f</b> - Nome             <b>%F</b> - NOME\n"
+"  <b>%l</b> - Cognome          <b>%L</b> - COGNOME\n"
+"  <b>%t</b> - Titolo           <b>%T</b> - TITOLO\n"
+"  <b>%p</b> - Prefisso         <b>%P</b> - PREFISSO\n"
+"  <b>%s</b> - Suffisso         <b>%S</b> - SUFFISSO\n"
+"  <b>%c</b> - Soprannome       <b>%C</b> - SOPRANNOME\n"
+"  <b>%y</b> - Patronimico      <b>%Y</b> - PATRONIMICO</tt>"
 
 #: ../src/glade/gramps.glade.h:122
 msgid ""
@@ -20443,18 +20398,16 @@ msgid "2.54"
 msgstr "2.54"
 
 #: ../src/glade/paper_settings.glade.h:2
-#, fuzzy
 msgid "Bottom:"
-msgstr "Basso:"
+msgstr "Inferiore:"
 
 #: ../src/glade/paper_settings.glade.h:3
 msgid "Height:"
 msgstr "Altezza:"
 
 #: ../src/glade/paper_settings.glade.h:4
-#, fuzzy
 msgid "Left:"
-msgstr "Sinistra:"
+msgstr "A sinistra:"
 
 #: ../src/glade/paper_settings.glade.h:5
 msgid "Margins"
@@ -20470,23 +20423,20 @@ msgid "Orientation:"
 msgstr "Orientamento:"
 
 #: ../src/glade/paper_settings.glade.h:8
-#, fuzzy
 msgid "Paper format"
-msgstr "Formato carta"
+msgstr "Dimensione carta"
 
 #: ../src/glade/paper_settings.glade.h:9
-#, fuzzy
 msgid "Right:"
-msgstr "Destra:"
+msgstr "A destra:"
 
 #: ../src/glade/paper_settings.glade.h:10
 msgid "Size:"
 msgstr "Formato:"
 
 #: ../src/glade/paper_settings.glade.h:11
-#, fuzzy
 msgid "Top:"
-msgstr "Sopra:"
+msgstr "Superiore:"
 
 #: ../src/glade/paper_settings.glade.h:12
 msgid "Width:"
@@ -21625,9 +21575,8 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:166
-#, fuzzy
 msgid "This key enables display of edit buttons in Relationship View"
-msgstr "Relazione con %(mother)s"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:167
 msgid ""
