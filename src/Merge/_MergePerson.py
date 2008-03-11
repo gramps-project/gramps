@@ -286,20 +286,20 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         
-        glade = glade.XML(const.MERGE_GLADE, 'merge_people')
-        window = glade.get_widget('merge_people')
+        glade_xml = glade.XML(const.MERGE_GLADE, 'merge_people')
+        window = glade_xml.get_widget('merge_people')
 
-        self.set_window(window, glade.get_widget('title'), _("Merge People"))
+        self.set_window(window, glade_xml.get_widget('title'), _("Merge People"))
 
-        p1 = glade.get_widget('person1')
-        p2 = glade.get_widget('person2')
+        p1 = glade_xml.get_widget('person1')
+        p2 = glade_xml.get_widget('person2')
         n1 = name_of(person1)
         n2 = name_of(person2)
 
         p1.set_label(n1)
         p2.set_label(n2)
 
-        glade.get_widget('help').connect('clicked', self.help)
+        glade_xml.get_widget('help').connect('clicked', self.help)
 
         ret = gtk.RESPONSE_HELP
         while ret == gtk.RESPONSE_HELP:
