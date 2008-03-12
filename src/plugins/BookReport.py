@@ -643,7 +643,7 @@ class BookListDisplay:
         if not the_iter:
             return
         data = self.blist.get_data(the_iter, [0])
-        self.booklist.delete_book(data[0])
+        self.booklist.delete_book(unicode(data[0]))
         self.blist.remove(the_iter)
         self.top.run()
 
