@@ -135,12 +135,12 @@ class CommandLineReport:
             }
 
         self.options_help = {
-            'of'        : ["=filename","Output file name. MANDATORY"],
-            'off'       : ["=format","Output file format."],
-            'style'     : ["=name","Style name."],
-            'papers'    : ["=name","Paper size name."],
-            'papero'    : ["=num","Paper orientation number."],
-            'template'  : ["=name","Template name (HTML only)."],
+            'of'        : ["=filename", "Output file name. MANDATORY", "", ""],
+            'off'       : ["=format", "Output file format.", "", ""],
+            'style'     : ["=name", "Style name.", "", ""],
+            'papers'    : ["=name", "Paper size name.", "", ""],
+            'papero'    : ["=num", "Paper orientation number.", "", ""],
+            'template'  : ["=name", "Template name (HTML only).", "", ""],
             }
 
         if noopt:
@@ -157,10 +157,9 @@ class CommandLineReport:
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = PluginUtils.textdoc_list[0][1]
-            self.options_help['off'].append(
+            self.options_help['off'][2] = \
                 [ item[7] for item in PluginUtils.textdoc_list ]
-            )
-            self.options_help['off'].append(False)
+            self.options_help['off'][3] = False
         elif self.category == CATEGORY_DRAW:
             for item in PluginUtils.drawdoc_list:
                 if item[6] == self.options_dict['off']:
@@ -168,10 +167,9 @@ class CommandLineReport:
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = PluginUtils.drawdoc_list[0][1]
-            self.options_help['off'].append(
+            self.options_help['off'][2] = \
                 [ item[6] for item in PluginUtils.drawdoc_list ]
-            )
-            self.options_help['off'].append(False)
+            self.options_help['off'][3] = False
         elif self.category == CATEGORY_BOOK:
             for item in PluginUtils.bookdoc_list:
                 if item[6] == self.options_dict['off']:
@@ -179,10 +177,9 @@ class CommandLineReport:
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = PluginUtils.bookdoc_list[0][1]
-            self.options_help['off'].append(
+            self.options_help['off'][2] = \
                 [ item[6] for item in PluginUtils.bookdoc_list ]
-            )
-            self.options_help['off'].append(False)
+            self.options_help['off'][3] = False
         else:
             self.format = None
 
@@ -190,20 +187,20 @@ class CommandLineReport:
             if paper.get_name() == self.options_dict['papers']:
                 self.paper = paper
         self.option_class.handler.set_paper(self.paper)
-        self.options_help['papers'].append(
+        self.options_help['papers'][2] = \
             [ paper.get_name() for paper in paper_sizes 
-                        if paper.get_name() != _("Custom Size") ] )
-        self.options_help['papers'].append(False)
+                        if paper.get_name() != _("Custom Size") ]
+        self.options_help['papers'][3] = False
 
         self.orien = self.options_dict['papero']
-        self.options_help['papero'].append([
+        self.options_help['papero'][2] = [
             "%d\tPortrait" % BaseDoc.PAPER_PORTRAIT,
-            "%d\tLandscape" % BaseDoc.PAPER_LANDSCAPE ] )
-        self.options_help['papero'].append(False)
+            "%d\tLandscape" % BaseDoc.PAPER_LANDSCAPE ]
+        self.options_help['papero'][3] = False
 
         self.template_name = self.options_dict['template']
-        self.options_help['template'].append(os.path.join(const.USER_HOME,
-                                                          "whatever_name"))
+        self.options_help['template'][2] = os.path.join(const.USER_HOME,
+                                                          "whatever_name")
 
         if self.category in (CATEGORY_TEXT, CATEGORY_DRAW):
             default_style = BaseDoc.StyleSheet()
@@ -217,8 +214,8 @@ class CommandLineReport:
             style_name = self.option_class.handler.get_default_stylesheet_name()
             self.selected_style = self.style_list.get_style_sheet(style_name)
             
-            self.options_help['style'].append(self.style_list.get_style_names())
-            self.options_help['style'].append(False)
+            self.options_help['style'][2] = self.style_list.get_style_names()
+            self.options_help['style'][3] = False
             
     def init_report_options(self):
         """
@@ -291,12 +288,17 @@ class CommandLineReport:
             elif isinstance(option, PluginUtils.StringOption):
                 self.options_help[name].append("Any text")
                 self.options_help[name].append(False)
+            elif isinstance(option, PluginUtils.TextOption):
+                self.options_help[name].append("Any text")
+                self.options_help[name].append(False)
             elif isinstance(option, PluginUtils.EnumeratedListOption):
                 ilist = []
                 for (value, description) in option.get_items():
                     ilist.append("%s\t%s" % (value, description))
                 self.options_help[name].append(ilist)
                 self.options_help[name].append(False)
+            else:
+                print "Unknown option: ", option
                 
     def parse_options(self):
         """
