@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2005  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008       Peter Landgren
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -202,8 +203,6 @@ class StyleEditor:
         ManagedWindow.set_titles( self.window, 
                                   self.top.get_widget('title'), 
                                   _('Style editor'))
-
-        self.first = 1
         
         titles = [(_('Paragraph'), 0, 130)]
         self.plist = ListModel.ListModel(self.top.get_widget("ptree"), titles, 
@@ -270,24 +269,32 @@ class StyleEditor:
         self.top.get_widget("bborder").set_active(p.get_bottom_border())
 
         self.fg_color = font.get_color()
-        c = Color(self.fg_color[0], self.fg_color[1], self.fg_color[2])
+        c = Color(self.fg_color[0] << 8, 
+                  self.fg_color[1] << 8, 
+                  self.fg_color[2] << 8)
         self.top.get_widget("color").set_color(c)
-        self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
+        self.top.get_widget('color_code').set_text(
+                                               "#%02X%02X%02X" % self.fg_color)
 
         self.bg_color = p.get_background_color()
-        c = Color(self.bg_color[0], self.bg_color[1], self.bg_color[2])
+        c = Color(self.bg_color[0] << 8, 
+                  self.bg_color[1] << 8, 
+                  self.bg_color[2] << 8)
         self.top.get_widget("bgcolor").set_color(c)
-        self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
+        self.top.get_widget('bgcolor_code').set_text(
+                                                "#%02X%02X%02X" % self.bg_color)
 
     def bg_color_set(self, x):
         c = x.get_color()
         self.bg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
-        self.top.get_widget('bgcolor_code').set_text("#%02X%02X%02X" % self.bg_color)
+        self.top.get_widget('bgcolor_code').set_text(
+                                                "#%02X%02X%02X" % self.bg_color)
 
     def fg_color_set(self, x):
         c = x.get_color()
         self.fg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
-        self.top.get_widget('color_code').set_text("#%02X%02X%02X" % self.fg_color)
+        self.top.get_widget('color_code').set_text(
+                                                "#%02X%02X%02X" % self.fg_color)
         
     def save_paragraph(self):
         """Saves the current paragraph displayed on the dialog"""
@@ -344,13 +351,13 @@ class StyleEditor:
     def change_display(self, obj):
         """Called when the paragraph selection has been changed. Saves the
         old paragraph, then draws the newly selected paragraph"""
-
+        # Don't save until current_name is defined
+        # If it's defined, save under the current paragraph name
+        if self.current_name:
+            self.save_paragraph()
+        # Then change to new paragraph
         objs = self.plist.get_selected_objects()
         store, node = self.plist.get_selected()
         self.current_name =  store.get_value(node, 0)
-        if self.first == 0:
-            self.save_paragraph()
-        else:
-            self.first = 0
         self.current_p = objs[0]
         self.draw()
