@@ -60,7 +60,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-08 13:21+0100\n"
-"PO-Revision-Date: 2008-03-11 18:21+0100\n"
+"PO-Revision-Date: 2008-03-12 01:44+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr ""
 #: ../src/ArgHandler.py:509
 #, fuzzy
 msgid "Database is locked, cannot open it!"
-msgstr "Verifica database"
+msgstr "Il database è bloccato, non è possibile aprirlo."
 
 #: ../src/ArgHandler.py:510
 #, python-format
@@ -293,9 +293,8 @@ msgid "manual|Editing_Dates"
 msgstr ""
 
 #: ../src/DateEdit.py:149
-#, fuzzy
 msgid "Bad Date"
-msgstr "Data"
+msgstr "Data non corretta"
 
 #: ../src/DateEdit.py:197 ../src/DateEdit.py:288
 #, fuzzy
@@ -342,36 +341,37 @@ msgstr "GRAMPS: importa database"
 
 #: ../src/DbLoader.py:159
 msgid "Cannot import from current file"
-msgstr ""
+msgstr "Impossibile importare il file corrente"
 
 #: ../src/DbLoader.py:189
 #, python-format
+#, fuzzy
 msgid ""
 "File type \"%s\" is unknown to GRAMPS.\n"
 "\n"
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
+"GRAMPS non riconosce il tipo di file \"%s\".\n"
+"\n"
+"Tipi validi sono: database GRAMPS, GRAMPS XML, pacchetto GRAMPS e GEDCOM."
 
 #: ../src/DbLoader.py:213 ../src/DbLoader.py:220
-#, fuzzy
 msgid "Cannot open database"
 msgstr "Impossibile aprire il database"
 
 #: ../src/DbLoader.py:214
-#, fuzzy
 msgid ""
 "The selected file is a directory, not a file.\n"
 "A GRAMPS database must be a file."
 msgstr ""
 "Il file selezionato è una cartella, non un file.\n"
-"Un database di GRAMPS deve essere un file . "
+"Un database di GRAMPS deve essere un file ."
 
 #: ../src/DbLoader.py:221
 msgid "You do not have read access to the selected file."
 msgstr ""
 
 #: ../src/DbLoader.py:231
-#, fuzzy
 msgid "Cannot create database"
 msgstr "Impossibile creare il database"
 
@@ -388,9 +388,9 @@ msgid "Read only database"
 msgstr "Database in sola lettura"
 
 #: ../src/DbLoader.py:301
-#, fuzzy, python-format
+#, python-format
 msgid "Could not import file: %s"
-msgstr "Impossibile importare %s"
+msgstr "Impossibile importare il file: %s"
 
 #: ../src/DbLoader.py:302
 msgid ""
@@ -403,9 +403,8 @@ msgid "All GRAMPS files"
 msgstr "Tutti i file GRAMPS"
 
 #: ../src/DbLoader.py:368
-#, fuzzy
 msgid "GRAMPS 2.x databases"
-msgstr "Database GRAMPS"
+msgstr "Database GRAMPS 2.x"
 
 #: ../src/DbLoader.py:377
 msgid "GRAMPS XML databases"
@@ -445,22 +444,24 @@ msgstr "Archivio"
 #: ../src/DbManager.py:170
 #, fuzzy, python-format
 msgid "Starting Import, %s"
-msgstr "Impossibile importare %s"
+msgstr "Avvio importazione, %s"
 
 #: ../src/DbManager.py:176
+#, fuzzy
 msgid "Import finished..."
-msgstr ""
+msgstr "Importazione terminata..."
 
 #: ../src/DbManager.py:195 ../src/DbManager.py:839 ../src/DbManager.py:931
+#, fuzzy
 msgid "Never"
-msgstr ""
+msgstr "Mai"
 
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
 #: ../src/DbManager.py:215 ../src/plugins/ImportCSV.py:374
 #, fuzzy
 msgid "Importing data..."
-msgstr "Crea database"
+msgstr "Importazione dati..."
 
 #: ../src/DbManager.py:436
 msgid "Family tree name"
@@ -478,9 +479,9 @@ msgid "Last modified"
 msgstr "Ultima modifica"
 
 #: ../src/DbManager.py:521
-#, fuzzy, python-format
+#, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "Verifica database"
+msgstr "Rimuovere il blocco sul database «%s»?"
 
 #: ../src/DbManager.py:522
 msgid ""
@@ -492,12 +493,12 @@ msgstr ""
 
 #: ../src/DbManager.py:528
 msgid "Break lock"
-msgstr ""
+msgstr "Rimozione blocco"
 
 #: ../src/DbManager.py:600
 #, fuzzy
 msgid "Rename failed"
-msgstr "Apre il file"
+msgstr ""
 
 #: ../src/DbManager.py:601
 #, python-format
@@ -512,8 +513,9 @@ msgid "Could not rename the Family Tree."
 msgstr "Impossibile rinominare l'albero genealogico."
 
 #: ../src/DbManager.py:617
+#, fuzzy
 msgid "Family Tree already exists, choose a unique name."
-msgstr ""
+msgstr "Albero genealogico già esistente, scegliere un nome unico."
 
 #: ../src/DbManager.py:630
 msgid "Could not rename family tree"
@@ -912,7 +914,6 @@ msgstr "Stato"
 
 #: ../src/GrampsCfg.py:180 ../src/DataViews/PlaceView.py:69
 #: ../src/DataViews/RepositoryView.py:72
-#, fuzzy
 msgid "ZIP/Postal Code"
 msgstr "CAP"
 
@@ -2193,7 +2194,7 @@ msgstr "Riferimento eventi"
 #: ../src/ScratchPad.py:580
 #, fuzzy
 msgid "Call Name"
-msgstr "Numero ID"
+msgstr "Pseudonimo"
 
 #: ../src/ScratchPad.py:584 ../src/Utils.py:1153
 #: ../src/plugins/ExportCSV.py:365 ../src/plugins/ImportCSV.py:167
@@ -6496,11 +6497,12 @@ msgstr ""
 #: ../src/plugins/AncestorTree.py:477 ../src/plugins/DescendTree.py:432
 #, fuzzy
 msgid "Include Blank Pages"
-msgstr "Includi le note"
+msgstr "Includere pagine bianche"
 
 #: ../src/plugins/AncestorTree.py:478 ../src/plugins/DescendTree.py:433
+#, fuzzy
 msgid "Whether to include pages that are blank."
-msgstr ""
+msgstr "Indica se includere le pagine bianche"
 
 #: ../src/plugins/AncestorTree.py:481 ../src/plugins/DescendTree.py:436
 #, fuzzy
@@ -6508,8 +6510,9 @@ msgid "Co_mpress tree"
 msgstr "Co_mprimere albero"
 
 #: ../src/plugins/AncestorTree.py:482
+#, fuzzy
 msgid "Whether to compress the tree."
-msgstr ""
+msgstr "Indica se comprimere l'albero"
 
 #: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:329
 #: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:822
@@ -6589,7 +6592,7 @@ msgstr "Interruzioni di pagina tra le generazioni"
 #: ../src/plugins/DetAncestralReport.py:690
 #: ../src/plugins/DetDescendantReport.py:651
 msgid "Whether to start a new page after each generation."
-msgstr ""
+msgstr "Indica se iniziare una nuova pagina dopo ogni generazione."
 
 #: ../src/plugins/AncestorReport.py:261
 msgid "Add linebreak after each name"
@@ -7114,7 +7117,7 @@ msgstr ""
 #: ../src/plugins/Calendar.py:895 ../src/plugins/WebCal.py:1213
 #, fuzzy
 msgid "Don't include holidays"
-msgstr "Includi le note"
+msgstr "Non includere le festività"
 
 #: ../src/plugins/Calendar.py:929
 #, fuzzy
@@ -8149,7 +8152,7 @@ msgstr "Grafico discendenza per %s"
 #: ../src/plugins/DescendTree.py:437
 #, fuzzy
 msgid "Whether to compress tree."
-msgstr "Cancella il filtro selezionato"
+msgstr "Indica se comprimere l'albero."
 
 #: ../src/plugins/DescendTree.py:488
 msgid "Descendant Tree"
@@ -8306,8 +8309,9 @@ msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:696
 #: ../src/plugins/DetDescendantReport.py:657
+#, fuzzy
 msgid "Whether to use the call name as the first name."
-msgstr ""
+msgstr "Indica se usare lo pseudonimo come primo nome."
 
 #: ../src/plugins/DetAncestralReport.py:700
 #: ../src/plugins/DetDescendantReport.py:661
@@ -8316,9 +8320,8 @@ msgstr "Usa la data completa e non solo l'anno"
 
 #: ../src/plugins/DetAncestralReport.py:701
 #: ../src/plugins/DetDescendantReport.py:662
-#, fuzzy
 msgid "Whether to use full dates instead of just year."
-msgstr "Usa la data completa e non solo l'anno"
+msgstr "Indica se usare la data completa e non solo l'anno."
 
 #: ../src/plugins/DetAncestralReport.py:704
 #: ../src/plugins/DetDescendantReport.py:665
@@ -8327,9 +8330,8 @@ msgstr "Elenca i figli"
 
 #: ../src/plugins/DetAncestralReport.py:705
 #: ../src/plugins/DetDescendantReport.py:666
-#, fuzzy
 msgid "Whether to list children."
-msgstr "Elenca i figli"
+msgstr "Indica se elencare i figli."
 
 #: ../src/plugins/DetAncestralReport.py:708
 #: ../src/plugins/DetDescendantReport.py:669
@@ -8339,7 +8341,7 @@ msgstr "Calcola l'età"
 #: ../src/plugins/DetAncestralReport.py:709
 #: ../src/plugins/DetDescendantReport.py:670
 msgid "Whether to compute age."
-msgstr ""
+msgstr "Indica se calcolare l'età."
 
 #: ../src/plugins/DetAncestralReport.py:712
 #: ../src/plugins/DetDescendantReport.py:673
@@ -8348,9 +8350,8 @@ msgstr "Ometti gli ascendenti duplicati"
 
 #: ../src/plugins/DetAncestralReport.py:713
 #: ../src/plugins/DetDescendantReport.py:674
-#, fuzzy
 msgid "Whether to omit duplicate ancestors."
-msgstr "Ometti gli ascendenti duplicati"
+msgstr "Indica se omettere gli ascendenti duplicati."
 
 #: ../src/plugins/DetAncestralReport.py:716
 #: ../src/plugins/DetDescendantReport.py:677
@@ -8369,9 +8370,8 @@ msgstr "Aggiunge un riferimento ai discendenti nell'elenco dei figli"
 
 #: ../src/plugins/DetAncestralReport.py:723
 #: ../src/plugins/DetDescendantReport.py:684
-#, fuzzy
 msgid "Whether to add descendant references in child list."
-msgstr "Aggiunge un riferimento ai discendenti nell'elenco dei figli"
+msgstr "Indica se aggiungere un riferimento ai discendenti nell'elenco dei figli."
 
 #. #########################
 #: ../src/plugins/DetAncestralReport.py:726
@@ -8379,114 +8379,104 @@ msgstr "Aggiunge un riferimento ai discendenti nell'elenco dei figli"
 #: ../src/plugins/NarrativeWeb.py:3022
 #, fuzzy
 msgid "Include"
-msgstr "Includi ID"
+msgstr "Includi"
 
 #: ../src/plugins/DetAncestralReport.py:728
 #: ../src/plugins/DetDescendantReport.py:689
 msgid "Include notes"
-msgstr "Includi le note"
+msgstr "Includere le note"
 
 #: ../src/plugins/DetAncestralReport.py:729
 #: ../src/plugins/DetDescendantReport.py:690
-#, fuzzy
 msgid "Whether to include notes."
-msgstr "Includi le note"
+msgstr "Indica se includere le note."
 
 #: ../src/plugins/DetAncestralReport.py:732
 #: ../src/plugins/DetDescendantReport.py:693
 msgid "Include attributes"
-msgstr "Includi attributi"
+msgstr "Includere gli attributi"
 
 #: ../src/plugins/DetAncestralReport.py:733
 #: ../src/plugins/DetDescendantReport.py:694 ../src/plugins/FamilyGroup.py:621
-#, fuzzy
 msgid "Whether to include attributes."
-msgstr "Attributo personale:"
+msgstr "Indica se includere gli attributi."
 
 #: ../src/plugins/DetAncestralReport.py:736
 #: ../src/plugins/DetDescendantReport.py:697
 msgid "Include Photo/Images from Gallery"
-msgstr "Includi le foto/immagini dalla galleria"
+msgstr "Includere le foto/immagini dalla galleria"
 
 #: ../src/plugins/DetAncestralReport.py:737
 #: ../src/plugins/DetDescendantReport.py:698
 msgid "Whether to include images."
-msgstr ""
+msgstr "Indica se includere le immagini."
 
 #: ../src/plugins/DetAncestralReport.py:740
 #: ../src/plugins/DetDescendantReport.py:701
-#, fuzzy
 msgid "Include alternative names"
-msgstr "Nomi alternativi"
+msgstr "Includere i nomi alternativi"
 
 #: ../src/plugins/DetAncestralReport.py:741
 #: ../src/plugins/DetDescendantReport.py:702
-#, fuzzy
 msgid "Whether to include other names."
-msgstr "Persone con il nome incompleto"
+msgstr "Indica se includere gli altri nomi."
 
 #: ../src/plugins/DetAncestralReport.py:744
 #: ../src/plugins/DetDescendantReport.py:705
-#, fuzzy
 msgid "Include events"
-msgstr "Includi gli eventi"
+msgstr "Includere gli eventi"
 
 #: ../src/plugins/DetAncestralReport.py:745
 #: ../src/plugins/DetDescendantReport.py:706
-#, fuzzy
 msgid "Whether to include events."
-msgstr "Includi le note"
+msgstr "Indica se includere gli eventi."
 
 #: ../src/plugins/DetAncestralReport.py:748
 #: ../src/plugins/DetDescendantReport.py:709
-#, fuzzy
 msgid "Include addresses"
-msgstr "Includi gli indirizzi"
+msgstr "Includere gli indirizzi"
 
 #: ../src/plugins/DetAncestralReport.py:749
 #: ../src/plugins/DetDescendantReport.py:710
 msgid "Whether to include addresses."
-msgstr ""
+msgstr "Indica se includere gli indirizzi."
 
 #: ../src/plugins/DetAncestralReport.py:752
 #: ../src/plugins/DetDescendantReport.py:713
 msgid "Include sources"
-msgstr "Includi fonti"
+msgstr "Includere le fonti"
 
 #: ../src/plugins/DetAncestralReport.py:753
 #: ../src/plugins/DetDescendantReport.py:714
 msgid "Whether to include source references."
-msgstr ""
+msgstr "Indica se includere i riferimenti alle fonti."
 
 #: ../src/plugins/DetAncestralReport.py:756
 #: ../src/plugins/DetDescendantReport.py:721
-#, fuzzy
 msgid "Missing information"
-msgstr "Informazioni pubblicazione:"
+msgstr "Informazioni mancanti"
 
 #: ../src/plugins/DetAncestralReport.py:758
 #: ../src/plugins/DetDescendantReport.py:723
 #, fuzzy
 msgid "Replace missing places with ______"
-msgstr "Sostituisci i luoghi con ______"
+msgstr "Sostituisce i luoghi mancanti con ______"
 
 #: ../src/plugins/DetAncestralReport.py:759
 #: ../src/plugins/DetDescendantReport.py:724
-#, fuzzy
 msgid "Whether to replace missing Places with blanks."
-msgstr "Sostituisci i luoghi con ______"
+msgstr "Indica se sostituire i luoghi mancanti con degli spazi."
 
 #: ../src/plugins/DetAncestralReport.py:762
 #: ../src/plugins/DetDescendantReport.py:727
 #, fuzzy
 msgid "Replace missing dates with ______"
-msgstr "Sostituisci le date con ______"
+msgstr "Sostituisce le date mancanti con ______"
 
 #: ../src/plugins/DetAncestralReport.py:763
 #: ../src/plugins/DetDescendantReport.py:728
-#, fuzzy
 msgid "Whether to replace missing Dates with blanks."
-msgstr "Sostituisci le date con ______"
+msgstr "Indica se sostituire le date mancanti con degli spazi."
 
 #: ../src/plugins/DetAncestralReport.py:796
 #: ../src/plugins/DetDescendantReport.py:761
@@ -8533,13 +8523,13 @@ msgstr "Resoconto discendenza per %(person_name)s"
 
 #: ../src/plugins/DetDescendantReport.py:717
 #: ../src/plugins/KinshipReport.py:349
-#, fuzzy
 msgid "Include spouses"
-msgstr "Includi le note"
+msgstr "Includere i coniugi"
 
 #: ../src/plugins/DetDescendantReport.py:718
+#, fuzzy
 msgid "Whether to include detailed spouse information."
-msgstr ""
+msgstr "Indica se includere le informazioni dettagliate sul coniuge."
 
 #: ../src/plugins/DetDescendantReport.py:830
 msgid "Detailed Descendant Report"
@@ -8550,14 +8540,15 @@ msgid "Produces a detailed descendant report"
 msgstr "Produce un resoconto dettagliato della discendenza"
 
 #: ../src/plugins/EndOfLineReport.py:134
-#, fuzzy, python-format
+#, python-format
 msgid "End of Line Report for %s"
 msgstr ""
 
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
+#, fuzzy
 msgid "All the ancestors of %s who are missing a parent"
-msgstr ""
+msgstr "Tutti gli ascendenti di %s che non hanno un genitore"
 
 #: ../src/plugins/EndOfLineReport.py:185 ../src/plugins/KinshipReport.py:308
 #, python-format
@@ -8567,12 +8558,12 @@ msgstr " (%(birth_date)s - %(death_date)s)"
 #: ../src/plugins/EndOfLineReport.py:260 ../src/plugins/MarkerReport.py:476
 #, fuzzy
 msgid "The style used for the section headers."
-msgstr "Lo stile usato per la generazione dell'intestazione."
+msgstr "Lo stile usato per l'intestazione di sezionesezion."
 
 #: ../src/plugins/EndOfLineReport.py:278
 #, fuzzy
 msgid "The basic style used for generation headings."
-msgstr "Lo stile usato per la generazione dell'intestazione."
+msgstr "Lo stile base usato per le intestazioni delle generazioni."
 
 #: ../src/plugins/EndOfLineReport.py:316
 #, fuzzy
@@ -8589,7 +8580,6 @@ msgid "Python evaluation window"
 msgstr "Finestra valutazione Python"
 
 #: ../src/plugins/Eval.py:128
-#, fuzzy
 msgid "Python Evaluation Window"
 msgstr "Finestra valutazione Python"
 
@@ -8604,22 +8594,22 @@ msgstr "Selezione filtro confronto eventi"
 #: ../src/plugins/EventCmp.py:154
 #, fuzzy
 msgid "Filter selection"
-msgstr "Selezione resoconti"
+msgstr "Selezione filtri"
 
 #: ../src/plugins/EventCmp.py:154
 #, fuzzy
 msgid "Event Comparison tool"
-msgstr "Confronto eventi"
+msgstr "Strumento di confronto eventi"
 
 #: ../src/plugins/EventCmp.py:167
 #, fuzzy
 msgid "Comparing events"
-msgstr "Confronta eventi individuali"
+msgstr "Confronta eventi"
 
 #: ../src/plugins/EventCmp.py:168
 #, fuzzy
 msgid "Selecting people"
-msgstr "Selezione file"
+msgstr "Selezione persone"
 
 #: ../src/plugins/EventCmp.py:180
 msgid "No matches were found"
@@ -8628,23 +8618,21 @@ msgstr "Nessuna corrispondenza trovata"
 #: ../src/plugins/EventCmp.py:230 ../src/plugins/EventCmp.py:253
 #, fuzzy
 msgid "Event Comparison Results"
-msgstr "Confronto eventi"
+msgstr "Risultati del confronto eventi"
 
 #: ../src/plugins/EventCmp.py:240
-#, fuzzy
 msgid " Date"
-msgstr "Data"
+msgstr " Data"
 
 #. This won't be shown in a tree
 #: ../src/plugins/EventCmp.py:242
-#, fuzzy
 msgid " Place"
-msgstr "Luogo"
+msgstr " Luogo"
 
 #: ../src/plugins/EventCmp.py:286
 #, fuzzy
 msgid "Comparing Events"
-msgstr "Confronta eventi individuali"
+msgstr "Confronta eventi"
 
 #: ../src/plugins/EventCmp.py:287
 msgid "Building data"
@@ -8916,8 +8904,9 @@ msgid "Generation numbers (recursive only)"
 msgstr ""
 
 #: ../src/plugins/FamilyGroup.py:604
+#, fuzzy
 msgid "Whether to include the generation on each report (recursive only)."
-msgstr ""
+msgstr "Indica se includere le generazioni in ogni resoconto (solo ricorsivo)."
 
 #: ../src/plugins/FamilyGroup.py:608
 #, fuzzy
@@ -8925,8 +8914,9 @@ msgid "Parent Events"
 msgstr "Eventi dei genitori"
 
 #: ../src/plugins/FamilyGroup.py:609
+#, fuzzy
 msgid "Whether to include events for parents."
-msgstr ""
+msgstr "Indica se includere gli eventi per i genitori."
 
 #: ../src/plugins/FamilyGroup.py:612
 #, fuzzy
@@ -8934,8 +8924,9 @@ msgid "Parent Addresses"
 msgstr "Indirizzi dei genitori"
 
 #: ../src/plugins/FamilyGroup.py:613
+#, fuzzy
 msgid "Whether to include addresses for parents."
-msgstr ""
+msgstr "Indica se includere gli indirizzi per i genitori."
 
 #: ../src/plugins/FamilyGroup.py:616
 #, fuzzy
@@ -8943,8 +8934,9 @@ msgid "Parent Notes"
 msgstr "Note genitori"
 
 #: ../src/plugins/FamilyGroup.py:617
+#, fuzzy
 msgid "Whether to include notes for parents."
-msgstr ""
+msgstr "Indica se includere le note per i genitori."
 
 #: ../src/plugins/FamilyGroup.py:620
 #, fuzzy
@@ -8959,7 +8951,7 @@ msgstr "Genitori alternativi"
 #: ../src/plugins/FamilyGroup.py:625
 #, fuzzy
 msgid "Whether to include alternate names for parents."
-msgstr "Nomi alternativi"
+msgstr "Indica se includere i nomi alternativi per i genitori."
 
 #: ../src/plugins/FamilyGroup.py:629
 #, fuzzy
@@ -8967,8 +8959,9 @@ msgid "Parent Marriage"
 msgstr "Matrimonio alternativo"
 
 #: ../src/plugins/FamilyGroup.py:630
+#, fuzzy
 msgid "Whether to include marriage information for parents."
-msgstr ""
+msgstr "Indica se includere le informazioni matrimoniali per i genitori."
 
 #: ../src/plugins/FamilyGroup.py:634
 msgid "Dates of Relatives"
@@ -8976,7 +8969,7 @@ msgstr ""
 
 #: ../src/plugins/FamilyGroup.py:635
 msgid "Whether to include dates for relatives (father, mother, spouse)."
-msgstr ""
+msgstr "Indica se includere le informazioni relative ai parenti (padre, madre, coniuge)."
 
 #: ../src/plugins/FamilyGroup.py:639
 #, fuzzy
@@ -8984,8 +8977,9 @@ msgid "Children Marriages"
 msgstr "Matrimonio alternativo"
 
 #: ../src/plugins/FamilyGroup.py:640
+#, fuzzy
 msgid "Whether to include marriage information for children."
-msgstr ""
+msgstr "Indica se includere le informazioni matrimoniali relative ai figli."
 
 #. #########################
 #: ../src/plugins/FamilyGroup.py:645
@@ -9002,7 +8996,7 @@ msgstr "Per selezionare la fonte di questa informazione"
 #: ../src/plugins/FamilyGroup.py:650
 #, fuzzy
 msgid "Whether to include fields for missing information."
-msgstr "Per selezionare la fonte di questa informazione"
+msgstr "Indica se includere i campi relativi alle informazioni mancanti."
 
 #: ../src/plugins/FamilyGroup.py:688
 msgid "The style used for the text related to the children."
@@ -9380,8 +9374,9 @@ msgid "Include dates"
 msgstr "Includi le note"
 
 #: ../src/plugins/GVFamilyLines.py:196
+#, fuzzy
 msgid "Whether to include dates for people and families."
-msgstr ""
+msgstr "Indica se includere le date relative alle persone ed alle famiglie."
 
 #: ../src/plugins/GVFamilyLines.py:199
 #, fuzzy
@@ -9401,7 +9396,7 @@ msgstr "Numero figli:"
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
-msgstr ""
+msgstr "Indica se includere il numero dei figli per le famiglie con più di un figlio."
 
 #: ../src/plugins/GVFamilyLines.py:207
 #, fuzzy
@@ -9409,10 +9404,13 @@ msgid "Include researcher and date"
 msgstr "Includi date di nascita, matrimonio e decesso"
 
 #: ../src/plugins/GVFamilyLines.py:208
+#, fuzzy
 msgid ""
 "Whether to include at the bottom the researchers name, e-mail, and the date "
 "the graph was generated."
 msgstr ""
+"Indica se includere in basso il nome e l'email del ricercatore e la data di "
+"generazione del grafico."
 
 #: ../src/plugins/GVFamilyLines.py:211
 #, fuzzy
@@ -9422,7 +9420,7 @@ msgstr "Includi informazioni private"
 #: ../src/plugins/GVFamilyLines.py:212
 #, fuzzy
 msgid "Whether to include names, dates, and families that are marked as private."
-msgstr "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+msgstr "Indica se includere nomi, date e famiglie marcate come private."
 
 #. inherited method; called by report() in _ReportDialog.py
 #.
@@ -9601,8 +9599,9 @@ msgid "Include individual and family IDs."
 msgstr "Include l'ID degli individui e delle famiglie."
 
 #: ../src/plugins/GVRelGraph.py:476
+#, fuzzy
 msgid "Whether to include thumbnails of people."
-msgstr ""
+msgstr "Indica se includere le miniature delle persone."
 
 #: ../src/plugins/GVRelGraph.py:480
 #, fuzzy
@@ -9674,7 +9673,7 @@ msgstr "Nome"
 #: ../src/plugins/ImportCSV.py:162
 #, fuzzy
 msgid "Call name"
-msgstr "Numero ID"
+msgstr "Pseudonimo"
 
 #: ../src/plugins/ImportCSV.py:189
 msgid "Death cause"
@@ -9701,7 +9700,7 @@ msgstr "nome"
 #: ../src/plugins/ImportCSV.py:226
 #, fuzzy
 msgid "call name"
-msgstr "Numero ID"
+msgstr "pseudonimo"
 
 #: ../src/plugins/ImportCSV.py:235
 msgid "gender"
@@ -9915,7 +9914,7 @@ msgstr "Includi le informazioni sulle fonti"
 #: ../src/plugins/IndivComplete.py:530
 #, fuzzy
 msgid "Whether to cite sources."
-msgstr "Cancella il filtro selezionato"
+msgstr "Indica se citare le fonti."
 
 #: ../src/plugins/IndivComplete.py:579
 msgid "The style used for category labels."
@@ -9956,7 +9955,7 @@ msgstr "Numero massimo di coniugi per persona"
 #: ../src/plugins/KinshipReport.py:350
 #, fuzzy
 msgid "Whether to include spouses"
-msgstr "Includi le note"
+msgstr "Indica se includere i coniugi"
 
 #: ../src/plugins/KinshipReport.py:353
 #, fuzzy
@@ -9964,16 +9963,18 @@ msgid "Include cousins"
 msgstr "Includi cugini"
 
 #: ../src/plugins/KinshipReport.py:354
+#, fuzzy
 msgid "Whether to include cousins"
-msgstr ""
+msgstr "Indica se includere i cugini"
 
 #: ../src/plugins/KinshipReport.py:357
 msgid "Include aunts/uncles/nephews/nieces"
 msgstr ""
 
 #: ../src/plugins/KinshipReport.py:358
+#, fuzzy
 msgid "Whether to include aunts/uncles/nephews/nieces"
-msgstr ""
+msgstr "Indica se includere zii e nipoti"
 
 #: ../src/plugins/KinshipReport.py:382
 #, fuzzy
@@ -10616,8 +10617,9 @@ msgid "Store web pages in .tar.gz archive"
 msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2885
+#, fuzzy
 msgid "Whether to store the web pages in an archive file"
-msgstr ""
+msgstr "Indica se memorizzare le pagine web in un file di archivio"
 
 #: ../src/plugins/NarrativeWeb.py:2890 ../src/plugins/WebCal.py:704
 #, fuzzy
@@ -10686,8 +10688,9 @@ msgid "Include ancestor graph"
 msgstr "Includi grafico ascendenti"
 
 #: ../src/plugins/NarrativeWeb.py:2942
+#, fuzzy
 msgid "Whether to include an ancestor graph on each individual page"
-msgstr ""
+msgstr "Indica se includere un grafico degli ascendenti nella pagina di ogni individuo"
 
 #: ../src/plugins/NarrativeWeb.py:2947
 #, fuzzy
@@ -10782,7 +10785,7 @@ msgstr "Individui con oggetti multimediali"
 #: ../src/plugins/NarrativeWeb.py:2997
 #, fuzzy
 msgid "Whether to include a gallery of media objects"
-msgstr "Individui con oggetti multimediali"
+msgstr "Indica se includere una galleria di oggetti multimediali"
 
 #: ../src/plugins/NarrativeWeb.py:3000
 #, fuzzy
@@ -10800,7 +10803,7 @@ msgstr "Rimuove ID GRAMPS"
 
 #: ../src/plugins/NarrativeWeb.py:3005
 msgid "Whether to include the Gramps ID of objects"
-msgstr ""
+msgstr "Indica se includere gli ID Gramps degli oggetti"
 
 #: ../src/plugins/NarrativeWeb.py:3012
 msgid "Privacy"
@@ -10813,7 +10816,7 @@ msgstr "Non includere gli elementi marcati come privati"
 
 #: ../src/plugins/NarrativeWeb.py:3015
 msgid "Whether to include private objects"
-msgstr ""
+msgstr "Indica se includere gli oggetti privati"
 
 #: ../src/plugins/NarrativeWeb.py:3018
 #, fuzzy
@@ -10864,7 +10867,7 @@ msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:3050
 msgid "Whether to include a birth column"
-msgstr ""
+msgstr "Individui con oggetti multimediali"
 
 #: ../src/plugins/NarrativeWeb.py:3053
 msgid "Include a column for death dates on the index pages"
@@ -11664,7 +11667,7 @@ msgstr "Include persone senza anno di nascita noto"
 #: ../src/plugins/StatisticsChart.py:721
 #, fuzzy
 msgid "Whether to include people without known birth years"
-msgstr "Persone senza data di nascita"
+msgstr "Indica se includere le persone senza anno di nascita noto"
 
 #: ../src/plugins/StatisticsChart.py:725
 msgid "Genders included"
@@ -12049,177 +12052,159 @@ msgstr "Proprietà"
 
 #: ../src/plugins/WebCal.py:813
 msgid "Whether to repeat the background image"
-msgstr ""
+msgstr "Indica se ripetere l'immagine di sfondo"
 
 #: ../src/plugins/WebCal.py:820
 msgid "Months 1-6 Notes"
-msgstr ""
+msgstr "Note mesi 1-6"
 
 #: ../src/plugins/WebCal.py:822
-#, fuzzy
 msgid "Jan Note"
-msgstr "_Genitori:"
+msgstr "Note gen"
 
 #: ../src/plugins/WebCal.py:822
 msgid "This prints in January"
-msgstr ""
+msgstr "Note relative a gennaio"
 
 #: ../src/plugins/WebCal.py:823
 msgid "The note for the month of January"
-msgstr ""
+msgstr "Le note per il mese di gennaio"
 
 #: ../src/plugins/WebCal.py:826
-#, fuzzy
 msgid "Feb Note"
-msgstr "Note"
+msgstr "Note feb"
 
 #: ../src/plugins/WebCal.py:826
 msgid "This prints in February"
-msgstr ""
+msgstr "Note relative a febbraio"
 
 #: ../src/plugins/WebCal.py:827
 msgid "The note for the month of February"
-msgstr ""
+msgstr "Le note per il mese di febbraio"
 
 #: ../src/plugins/WebCal.py:830
-#, fuzzy
 msgid "Mar Note"
-msgstr "_Genitori:"
+msgstr "Note mar"
 
 #: ../src/plugins/WebCal.py:830
 msgid "This prints in March"
-msgstr ""
+msgstr "Note relative a marzo"
 
 #: ../src/plugins/WebCal.py:831
 msgid "The note for the month of March"
-msgstr ""
+msgstr "Le note per il mese di marzo"
 
 #: ../src/plugins/WebCal.py:834
-#, fuzzy
 msgid "Apr Note"
-msgstr "Note"
+msgstr "Note apr"
 
 #: ../src/plugins/WebCal.py:834
 msgid "This prints in April"
-msgstr ""
+msgstr "Note relative ad aprile"
 
 #: ../src/plugins/WebCal.py:835
-#, fuzzy
 msgid "The note for the month of April"
-msgstr "Lo stile usato per i titoli."
+msgstr "Le note per il mese di aprile"
 
 #: ../src/plugins/WebCal.py:838
-#, fuzzy
 msgid "May Note"
-msgstr "Famiglie"
+msgstr "Note mag"
 
 #: ../src/plugins/WebCal.py:838
 msgid "This prints in May"
-msgstr ""
+msgstr "Note relative a maggio"
 
 #: ../src/plugins/WebCal.py:839
-#, fuzzy
 msgid "The note for the month of May"
-msgstr "Lo stile usato per il titolo della pagina."
+msgstr "Le note per il mese di maggio"
 
 #: ../src/plugins/WebCal.py:842
-#, fuzzy
 msgid "Jun Note"
-msgstr "Note"
+msgstr "Note giu"
 
 #: ../src/plugins/WebCal.py:842
-#, fuzzy
 msgid "This prints in June"
-msgstr "Il nome della persona"
+msgstr "Note relative a giugno"
 
 #: ../src/plugins/WebCal.py:843
-#, fuzzy
 msgid "The note for the month of June"
-msgstr "Lo stile usato per il nome del genitore"
+msgstr "Le note per il mese di giugno"
 
 #: ../src/plugins/WebCal.py:846
 msgid "Months 7-12 Notes"
-msgstr ""
+msgstr "Note mesi 7-12"
 
 #: ../src/plugins/WebCal.py:848
-#, fuzzy
 msgid "Jul Note"
-msgstr "Note"
+msgstr "Note lug"
 
 #: ../src/plugins/WebCal.py:848
 msgid "This prints in July"
-msgstr ""
+msgstr "Note relative a luglio"
 
 #: ../src/plugins/WebCal.py:849
 msgid "The note for the month of July"
-msgstr ""
+msgstr "Le note per il mese di luglio"
 
 #: ../src/plugins/WebCal.py:852
-#, fuzzy
 msgid "Aug Note"
-msgstr "Note"
+msgstr "Note ago"
 
 #: ../src/plugins/WebCal.py:852
 msgid "This prints in August"
-msgstr ""
+msgstr "Note relative a agosto"
 
 #: ../src/plugins/WebCal.py:853
 msgid "The note for the month of August"
-msgstr ""
+msgstr "Le note per il mese di agosto"
 
 #: ../src/plugins/WebCal.py:856
-#, fuzzy
 msgid "Sep Note"
-msgstr "Note"
+msgstr "Note set"
 
 #: ../src/plugins/WebCal.py:856
 msgid "This prints in September"
-msgstr ""
+msgstr "Note relative a settembre"
 
 #: ../src/plugins/WebCal.py:857
-#, fuzzy
 msgid "The note for the month of September"
-msgstr "Lo stile usato per i pié di pagina."
+msgstr "Le note per il mese di settembre"
 
 #: ../src/plugins/WebCal.py:860
-#, fuzzy
 msgid "Oct Note"
-msgstr "Note"
+msgstr "Note ott"
 
 #: ../src/plugins/WebCal.py:860
 msgid "This prints in October"
-msgstr ""
+msgstr "Note relative a ottobre"
 
 #: ../src/plugins/WebCal.py:861
-#, fuzzy
 msgid "The note for the month of October"
-msgstr "Lo stile usato per i pié di pagina."
+msgstr "Le note per il mese di ottobre"
 
 #: ../src/plugins/WebCal.py:864
-#, fuzzy
 msgid "Nov Note"
-msgstr "Note"
+msgstr "Note nov"
 
 #: ../src/plugins/WebCal.py:864
 msgid "This prints in November"
-msgstr ""
+msgstr "Note relative a novembre"
 
 #: ../src/plugins/WebCal.py:865
 msgid "The note for the month of November"
-msgstr ""
+msgstr "Le note per il mese di novembre"
 
 #: ../src/plugins/WebCal.py:868
-#, fuzzy
 msgid "Dec Note"
-msgstr "Note"
+msgstr "Note dic"
 
 #: ../src/plugins/WebCal.py:868
 msgid "This prints in December"
-msgstr ""
+msgstr "Note relative a dicembre"
 
 #: ../src/plugins/WebCal.py:869
 msgid "The note for the month of December"
-msgstr ""
+msgstr "Le note per il mese di dicembre"
 
 #: ../src/plugins/WebCal.py:915
 msgid ""
@@ -13456,28 +13441,22 @@ msgstr ""
 #: ../src/ReportBase/_ReportUtils.py:200 ../src/ReportBase/_ReportUtils.py:247
 #, fuzzy, python-format
 msgid "Died %(death_date)s in %(death_place)s."
-msgstr "%(date)s in quel di %(place)s."
+msgstr "Morì il %(death_date)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:201 ../src/ReportBase/_ReportUtils.py:248
 #, fuzzy, python-format
 msgid "Died %(death_date)s in %(death_place)s (age %(age)d years)."
-msgstr ""
-"%(male_name)s%(endnotes)s morì %(death_date)s in quel di %(death_place)s%"
-"(death_endnotes)s."
+msgstr "Morì il %(death_date)s in quel di %(death_place)s (età %(age)d anni)."
 
 #: ../src/ReportBase/_ReportUtils.py:202 ../src/ReportBase/_ReportUtils.py:249
 #, fuzzy, python-format
 msgid "Died %(death_date)s in %(death_place)s (age %(age)d months)."
-msgstr ""
-"%(male_name)s%(endnotes)s morì %(death_date)s in quel di %(death_place)s%"
-"(death_endnotes)s."
+msgstr "Morì il %(death_date)s in quel di %(death_place)s (età %(age)d mesi)."
 
 #: ../src/ReportBase/_ReportUtils.py:203 ../src/ReportBase/_ReportUtils.py:250
 #, fuzzy, python-format
 msgid "Died %(death_date)s in %(death_place)s (age %(age)d days)."
-msgstr ""
-"%(male_name)s%(endnotes)s morì %(death_date)s in quel di %(death_place)s%"
-"(death_endnotes)s."
+msgstr "Morì il %(death_date)s in quel di %(death_place)s (età %(age)d giorni)."
 
 #: ../src/ReportBase/_ReportUtils.py:209
 #, fuzzy, python-format
@@ -13940,9 +13919,9 @@ msgid ""
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:356
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s in %(death_place)s."
-msgstr "Morì nel %s in quel di %s"
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:357
 #, python-format
@@ -19969,7 +19948,7 @@ msgstr ""
 "  <b>%t</b> - Titolo           <b>%T</b> - TITOLO\n"
 "  <b>%p</b> - Prefisso         <b>%P</b> - PREFISSO\n"
 "  <b>%s</b> - Suffisso         <b>%S</b> - SUFFISSO\n"
-"  <b>%c</b> - Soprannome       <b>%C</b> - SOPRANNOME\n"
+"  <b>%c</b> - Pseudonimo       <b>%C</b> - PSEUDONIMO\n"
 "  <b>%y</b> - Patronimico      <b>%Y</b> - PATRONIMICO</tt>"
 
 #: ../src/glade/gramps.glade.h:122
