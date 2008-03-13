@@ -60,7 +60,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-08 13:21+0100\n"
-"PO-Revision-Date: 2008-03-12 01:44+0100\n"
+"PO-Revision-Date: 2008-03-13 17:31+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -474,7 +474,6 @@ msgid "Status"
 msgstr "Stato"
 
 #: ../src/DbManager.py:451
-#, fuzzy
 msgid "Last modified"
 msgstr "Ultima modifica"
 
@@ -498,7 +497,7 @@ msgstr "Rimozione blocco"
 #: ../src/DbManager.py:600
 #, fuzzy
 msgid "Rename failed"
-msgstr ""
+msgstr "Rinominazione non riuscita"
 
 #: ../src/DbManager.py:601
 #, python-format
@@ -564,7 +563,6 @@ msgid "Could not delete family tree"
 msgstr "Impossibile cancellare l'albero genealogico"
 
 #: ../src/DbManager.py:753
-#, fuzzy
 msgid "Deletion failed"
 msgstr "Cancellazione non riuscita"
 
@@ -998,9 +996,8 @@ msgstr "Evento"
 #: ../src/Simple/_SimpleTable.py:219 ../src/Editors/_EditRepository.py:67
 #: ../src/Editors/_EditRepository.py:69 ../src/plugins/References.py:35
 #: ../src/plugins/References.py:94 ../src/FilterEditor/_EditRule.py:278
-#, fuzzy
 msgid "Repository"
-msgstr "Deposito"
+msgstr "Depositi"
 
 #. ###############################
 #: ../src/GrampsCfg.py:207 ../src/ScratchPad.py:311 ../src/ToolTips.py:159
@@ -1410,7 +1407,6 @@ msgid "Sources"
 msgstr "Fonti"
 
 #: ../src/gramps_main.py:124
-#, fuzzy
 msgid "Add Spouse"
 msgstr "Aggiunge coniuge"
 
@@ -1429,21 +1425,21 @@ msgstr "Visualizza"
 
 #: ../src/gramps_main.py:128
 msgid "Zoom In"
-msgstr ""
+msgstr "Aumenta ingrandimento"
 
 #: ../src/gramps_main.py:129
 msgid "Zoom Out"
-msgstr ""
+msgstr "Riduce ingrandimento"
 
 #: ../src/gramps_main.py:130
 #, fuzzy
 msgid "Fit Width"
-msgstr "Larghezza"
+msgstr "Adatta in larghezza"
 
 #: ../src/gramps_main.py:131
 #, fuzzy
 msgid "Fit Page"
-msgstr "Titolo pagina"
+msgstr "Adatta alla pagina"
 
 #: ../src/gramps_main.py:136
 msgid "Export"
@@ -1485,7 +1481,6 @@ msgstr ""
 
 #: ../src/gramps_main.py:237 ../src/gramps_main.py:239
 #: ../src/gramps_main.py:249
-#, fuzzy
 msgid "Configuration error"
 msgstr "Errore nella configurazione"
 
@@ -1516,22 +1511,27 @@ msgstr ""
 
 #: ../src/gramps.py:99
 #, python-format
+#, fuzzy
 msgid ""
 "Your Python version does not meet the requirements. At least python %d.%d.%d "
 "is needed to start GRAMPS.\n"
 "\n"
 "GRAMPS will terminate now."
 msgstr ""
+"La versione di Python installata non soddisfa i requisiti minimi. È richiesta "
+"almeno la versione %d.%d.%d per eseguire GRAMPS.\n"
+"\n"
+"GRAMPS sarà chiuso adesso."
 
 #: ../src/GrampsWidgets.py:110
 #, fuzzy
 msgid "Expand this section"
-msgstr "Selezione data"
+msgstr "Espandere sezione"
 
 #: ../src/GrampsWidgets.py:113
 #, fuzzy
 msgid "Collapse this section"
-msgstr "Selezione strumenti"
+msgstr "Contrarre sezione"
 
 #: ../src/GrampsWidgets.py:130
 msgid ""
@@ -2174,7 +2174,7 @@ msgstr "Pagina"
 #: ../src/ScratchPad.py:516 ../src/ScratchPad.py:529
 #, fuzzy
 msgid "Repository Reference"
-msgstr "Preferenze resoconti"
+msgstr "Riferimento depositi"
 
 #: ../src/ScratchPad.py:531 ../src/DisplayTabs/_RepoEmbedList.py:64
 #, fuzzy
@@ -2254,7 +2254,7 @@ msgstr "Informazioni pubblicazione:"
 #: ../src/ScratchPad.py:809 ../src/ScratchPad.py:824
 #, fuzzy
 msgid "Repository Link"
-msgstr "Editor località"
+msgstr "Collegamenti depositi"
 
 #: ../src/ScratchPad.py:1192 ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
@@ -2666,7 +2666,7 @@ msgstr "Casa"
 #: ../src/ToolTips.py:168
 #, fuzzy
 msgid "Sources in repository"
-msgstr "Editor fonti"
+msgstr "Fonti nei depositi"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
@@ -4142,38 +4142,34 @@ msgid "Search URL"
 msgstr ""
 
 #: ../src/DataViews/RepositoryView.py:82
-#, fuzzy
 msgid "Add a new repository"
 msgstr "Aggiunge un nuovo deposito"
 
 #: ../src/DataViews/RepositoryView.py:83
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
-#, fuzzy
 msgid "Edit the selected repository"
 msgstr "Modifica il deposito selezionato"
 
 #: ../src/DataViews/RepositoryView.py:84
-#, fuzzy
 msgid "Delete the selected repository"
 msgstr "Cancella il deposito selezionato"
 
 #: ../src/DataViews/RepositoryView.py:121
 #, fuzzy
 msgid "Repository Filter Editor"
-msgstr "Editor località"
+msgstr "Editor filtri depositi"
 
 #: ../src/DataViews/RepositoryView.py:128
 msgid "Select Repository Columns"
 msgstr ""
 
 #: ../src/DataViews/RepositoryView.py:202
-#, fuzzy
 msgid ""
 "This repository is currently being used. Deleting it will remove it from the "
 "database and from all sources that reference it."
 msgstr ""
-"Questa fonte è attualmente in uso. La sua cancellazione ne provocherà la "
-"rimozione dal database e da tutti gli elementi che ne fanno riferimento."
+"Questo deposito è attualmente in uso. La sua cancellazione ne provocherà la "
+"rimozione dal database e da tutte le fonti che ne fanno riferimento."
 
 #: ../src/DataViews/RepositoryView.py:206
 #, fuzzy
@@ -4181,7 +4177,6 @@ msgid "Deleting repository will remove it from the database."
 msgstr "Elimina l'oggetto e tutti i suoi riferimenti dal database"
 
 #: ../src/DataViews/RepositoryView.py:211
-#, fuzzy
 msgid "_Delete Repository"
 msgstr "_Cancella deposito"
 
@@ -4672,7 +4667,6 @@ msgid "Godfather"
 msgstr "Padrino"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:53
-#, fuzzy
 msgid "Create and add a new repository"
 msgstr "Crea e aggiunge un nuovo deposito"
 
@@ -4687,12 +4681,10 @@ msgid "Add an existing repository"
 msgstr "Aggiunge deposito esistente"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:57
-#, fuzzy
 msgid "Move the selected repository upwards"
 msgstr "Sposta in alto il deposito selezionato"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:58
-#, fuzzy
 msgid "Move the selected repository downwards"
 msgstr "Sposta in basso il deposito selezionato"
 
@@ -4702,9 +4694,8 @@ msgid "_Repositories"
 msgstr "_Depositi"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:115
-#, fuzzy
 msgid "Select repository"
-msgstr "_Elimina persona"
+msgstr "Seleziona deposito"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:153
 msgid ""
@@ -5014,12 +5005,12 @@ msgstr "Modifica famiglia"
 #: ../src/Editors/_EditFamily.py:532
 #, fuzzy
 msgid "Add a new person as the mother"
-msgstr "Aggiunge una nuova coppia di genitori alla persona attiva"
+msgstr "Aggiunge una nuova persona come madre"
 
 #: ../src/Editors/_EditFamily.py:534
 #, fuzzy
 msgid "Add a new person as the father"
-msgstr "Modifica il filtro selezionato"
+msgstr "Aggiunge una nuova persona come padre"
 
 #: ../src/Editors/_EditFamily.py:642
 #, fuzzy
@@ -5264,9 +5255,8 @@ msgid "New Note - %(context)s"
 msgstr "Nuova nota - %(context)s"
 
 #: ../src/Editors/_EditNote.py:171
-#, fuzzy
 msgid "New Note"
-msgstr "Nome regola"
+msgstr "Nuova nota"
 
 #: ../src/Editors/_EditNote.py:203
 #, fuzzy
@@ -5481,17 +5471,16 @@ msgstr "Se si chiude senza salvare, le modifiche apportate andranno perdute."
 #: ../src/Editors/_EditRepoRef.py:72
 #, fuzzy
 msgid "Repository Reference Editor"
-msgstr "Editor eventi"
+msgstr "Editor riferimenti depositi"
 
 #: ../src/Editors/_EditRepoRef.py:185
-#, fuzzy, python-format
+#, python-format
 msgid "Repository: %s"
-msgstr "Resoconti"
+msgstr "Deposito: %s"
 
 #: ../src/Editors/_EditRepoRef.py:187 ../src/Editors/_EditRepository.py:71
-#, fuzzy
 msgid "New Repository"
-msgstr "_Elimina persona"
+msgstr "Nuovo deposito"
 
 #: ../src/Editors/_EditRepoRef.py:188
 #, fuzzy
@@ -5499,24 +5488,21 @@ msgid "Repo Reference Editor"
 msgstr "Editor eventi"
 
 #: ../src/Editors/_EditRepoRef.py:195
-#, fuzzy
 msgid "Modify Repository"
-msgstr "Modifica genitori"
+msgstr "Modifica deposito"
 
 #: ../src/Editors/_EditRepoRef.py:198
-#, fuzzy
 msgid "Add Repository"
-msgstr "Aggiunge un nuovo filtro"
+msgstr "Aggiunge deposito"
 
 #: ../src/Editors/_EditRepository.py:85
-#, fuzzy
 msgid "Edit Repository"
-msgstr "Aggiunge un nuovo filtro"
+msgstr "Modifica deposito"
 
 #: ../src/Editors/_EditRepository.py:144
 #, fuzzy
 msgid "Cannot save repository"
-msgstr "Editor fonti"
+msgstr "Impossibile salvare il deposito"
 
 #: ../src/Editors/_EditRepository.py:145
 msgid "No data exists for this repository. Please enter data or cancel the edit."
@@ -5525,25 +5511,24 @@ msgstr ""
 #: ../src/Editors/_EditRepository.py:154
 #, fuzzy
 msgid "Cannot save repository. ID already exists."
-msgstr "Editor fonti"
+msgstr "Impossibile salvare il deposito. ID già esistente."
 
 #: ../src/Editors/_EditRepository.py:167
-#, fuzzy, python-format
+#, python-format
 msgid "Add Repository (%s)"
-msgstr "Aggiunge un nuovo filtro"
+msgstr "Aggiunge deposito (%s)"
 
 #: ../src/Editors/_EditRepository.py:172
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr ""
+msgstr "Modifica deposito (%s)"
 
 #: ../src/Editors/_EditRepository.py:203
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Repository (%s)"
 msgstr "Cancella deposito (%s)"
 
 #: ../src/Editors/_EditSource.py:77 ../src/Editors/_EditSourceRef.py:197
-#, fuzzy
 msgid "New Source"
 msgstr "Nuova fonte"
 
@@ -5754,7 +5739,7 @@ msgstr ""
 #: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:256
 #, fuzzy
 msgid "Import database"
-msgstr "Crea database"
+msgstr "Importa database"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
 #: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:307
@@ -5819,9 +5804,9 @@ msgid "  Place %(id)s\n"
 msgstr "Modifica persona"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:250
-#, fuzzy, python-format
+#, python-format
 msgid "  Repository %(id)s\n"
-msgstr "Resoconti"
+msgstr "  Deposito %(id)s\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:252
 #, python-format
@@ -5871,7 +5856,7 @@ msgstr "  Note: %d\n"
 #: ../src/GrampsDbUtils/_ReadXML.py:268
 #, fuzzy
 msgid "Number of new objects imported:\n"
-msgstr "Numero di oggetti multimediali univoci"
+msgstr "Numero di nuovi oggetti importati:\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:277
 msgid ""
@@ -6202,9 +6187,8 @@ msgid "Select Place"
 msgstr "_Cancella luogo"
 
 #: ../src/Selectors/_SelectRepository.py:46
-#, fuzzy
 msgid "Select Repository"
-msgstr "_Elimina persona"
+msgstr "Seleziona deposito"
 
 #: ../src/Selectors/_SelectSource.py:46
 #, fuzzy
@@ -7222,9 +7206,8 @@ msgid "Rename Event Types"
 msgstr "Rinomina tipi evento"
 
 #: ../src/plugins/ChangeTypes.py:208
-#, fuzzy
 msgid "Allows all the events of a certain name to be renamed to a new name."
-msgstr "Permette di rinominare con un nuovo nome tutti gli eventi con un certo nome"
+msgstr "Permette di rinominare con un nuovo nome tutti gli eventi con un certo nome."
 
 #: ../src/plugins/Check.py:195
 msgid "Check Integrity"
@@ -7564,7 +7547,6 @@ msgstr "Sono stati modificati %d elementi evento"
 
 #: ../src/plugins/Check.py:1438
 #, python-format
-#, fuzzy
 msgid ""
 "%d empty objects removed:\n"
 "   %d person objects\n"
@@ -7576,15 +7558,15 @@ msgid ""
 "   %d repository objects\n"
 "   %d note objects\n"
 msgstr ""
-"Romossi %d oggetti vuoti:\n"
-"   %d persone\n"
-"   %d famiglie\n"
-"   %d eventi\n"
-"   %d fonti\n"
-"   %d oggetti multimediali\n"
-"   %d luoghi\n"
-"   %d depositi\n"
-"   %d note\n"
+"Romossi %d oggetto/i vuoti:\n"
+"   %d oggetto/i persona\n"
+"   %d oggetto/i famiglia\n"
+"   %d oggetto/i evento\n"
+"   %d oggetto/i fonte\n"
+"   %d oggetto/i oggetto multimediale\n"
+"   %d oggetto/i luogo\n"
+"   %d oggetto/i deposito\n"
+"   %d oggetto/i nota\n"
 
 #: ../src/plugins/Check.py:1485
 msgid "Integrity Check Results"
@@ -8003,8 +7985,9 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/DefaultGramplets.py:855
+#, fuzzy
 msgid "Read news from the GRAMPS wiki"
-msgstr ""
+msgstr "Leggi le notizie dal wiki di GRAMPS"
 
 #: ../src/plugins/DefaultGramplets.py:899
 #, fuzzy
@@ -8093,14 +8076,12 @@ msgid "Calendar Gramplet"
 msgstr "Gramplet calendario"
 
 #: ../src/plugins/DefaultGramplets.py:1056
-#, fuzzy
 msgid "News Gramplet"
 msgstr "Gramplet notizie"
 
 #: ../src/plugins/DefaultGramplets.py:1060
-#, fuzzy
 msgid "News"
-msgstr "_Nuovo"
+msgstr "Notizie"
 
 #: ../src/plugins/DefaultGramplets.py:1065
 msgid "Age on Date Gramplet"
@@ -11245,7 +11226,7 @@ msgstr "Riordina ID GRAMPS"
 #: ../src/plugins/ReorderIds.py:130
 #, fuzzy
 msgid "Reordering Repository IDs"
-msgstr "Riordina ID GRAMPS"
+msgstr "Riordina ID depositi"
 
 #: ../src/plugins/ReorderIds.py:141
 #, fuzzy
@@ -12326,18 +12307,16 @@ msgstr "Cancella il filtro selezionato"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/plugins/WriteGeneWeb.py:640
-#, fuzzy
 msgid "_GeneWeb"
-msgstr "_Genera"
+msgstr "_GeneWeb"
 
 #: ../src/plugins/WriteGeneWeb.py:641
 msgid "GeneWeb is a web based genealogy program."
 msgstr ""
 
 #: ../src/plugins/WriteGeneWeb.py:642
-#, fuzzy
 msgid "GeneWeb export options"
-msgstr "Opzioni resoconto"
+msgstr "Opzioni di esportazione GeneWeb"
 
 #. -------------------------------------------------------------------------
 #.
@@ -13067,39 +13046,39 @@ msgstr "Nacque %(birth_date) in quel di %(birth_place)s."
 #: ../src/ReportBase/_ReportUtils.py:72
 #, python-format
 msgid "This person was born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque il %(modified_date)s in quel di %(birth_place)s."
+msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:73
 #, python-format
 msgid "He was born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque il %(modified_date)s in quel di %(birth_place)s."
+msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:74
 #, python-format
 msgid "She was born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque il %(modified_date)s in quel di %(birth_place)s."
+msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:77
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s in %(birth_place)s."
 msgstr ""
-"%(unknown_gender_name)s nacque il %(modified_date)s in quel di %(birth_place)"
+"%(unknown_gender_name)s nacque %(modified_date)s in quel di %(birth_place)"
 "s."
 
 #: ../src/ReportBase/_ReportUtils.py:78
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(male_name)s nacque il %(modified_date)s in quel di %(birth_place)s."
+msgstr "%(male_name)s nacque %(modified_date)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:79
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s in %(birth_place)s."
-msgstr "%(female_name)s nacque il %(modified_date)s in quel di %(birth_place)s."
+msgstr "%(female_name)s nacque %(modified_date)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Born %(modified_date)s in %(birth_place)s."
-msgstr "Nacque il %(modified_date)s in quel di %(birth_place)s."
+msgstr "Nacque %(modified_date)s in quel di %(birth_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:86
 #, python-format
@@ -13139,37 +13118,38 @@ msgstr "Nato/a %(birth_date)s."
 #: ../src/ReportBase/_ReportUtils.py:100
 #, python-format
 msgid "This person was born %(modified_date)s."
-msgstr "Nacque il %(modified_date)s."
+msgstr "Nacque %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:101
 #, python-format
 msgid "He was born %(modified_date)s."
-msgstr "Nacque il %(modified_date)s."
+msgstr "Nacque %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:102
 #, python-format
 msgid "She was born %(modified_date)s."
-msgstr "Nacque il %(modified_date)s."
+msgstr "Nacque %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:105
 #, python-format
 msgid "%(unknown_gender_name)s was born %(modified_date)s."
-msgstr "%(unknown_gender_name)s nacque il %(modified_date)s."
+msgstr "%(unknown_gender_name)s nacque %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:106
 #, python-format
 msgid "%(male_name)s was born %(modified_date)s."
-msgstr "%(male_name)s nacque il %(modified_date)s."
+msgstr "%(male_name)s nacque %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:107
 #, python-format
 msgid "%(female_name)s was born %(modified_date)s."
-msgstr "%(female_name)s nacque il %(modified_date)s."
+msgstr "%(female_name)s nacque %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:109
-#, fuzzy, python-format
+#, python-format
+#, fuzzy
 msgid "Born %(modified_date)s."
-msgstr "Nacque il %(modified_date)s."
+msgstr "Nato/a %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:114
 #, python-format
@@ -14602,94 +14582,92 @@ msgstr "%(male_name)s fu seppellito nel %(month_year)s."
 #: ../src/ReportBase/_ReportUtils.py:591
 #, python-format
 msgid "He was buried in %(month_year)s."
-msgstr "Fu seppellito nel %(month_year)s"
+msgstr "Fu seppellito nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:594
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s."
-msgstr "%(female_name)s fu seppellita nel %(month_year)s"
+msgstr "%(female_name)s fu seppellita nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:595
 #, python-format
 msgid "She was buried in %(month_year)s."
-msgstr "Fu seppellita nel %(month_year)s"
+msgstr "Fu seppellita nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:598
 #, python-format
 #, fuzzy
 msgid "%(unknown_gender_name)s was buried in %(month_year)s."
-msgstr "%(unknown_gender_name)s fu seppellito/a nel %(month_year)s"
+msgstr "%(unknown_gender_name)s fu seppellito/a nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:599
 #, fuzzy, python-format
 msgid "This person was buried in %(month_year)s."
-msgstr "Questa persona fu seppellita nel %(month_year)s"
+msgstr "Questa persona fu seppellita nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:605
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(male_name)s fu seppellito il %(modified_date) in quel di %(burial_place)s."
+msgstr "%(male_name)s fu seppellito %(modified_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:606
-#, fuzzy, python-format
+#, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s."
-msgstr "Fu seppellito il %(modified_date) in quel di %(burial_place)s."
+msgstr "Fu seppellito %(modified_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:609
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(female_name)s fu seppellita il %(modified_date) in quel di %(burial_place)s."
+msgstr "%(female_name)s fu seppellita %(modified_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:610
-#, fuzzy, python-format
+#, python-format
 msgid "She was buried %(modified_date)s in %(burial_place)s."
-msgstr "Fu seppellita il %(modified_date) in quel di %(burial_place)s."
+msgstr "Fu seppellita %(modified_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:613
 #, python-format
 #, fuzzy
 msgid "%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
-msgstr "%(unknow_gender_name)s fu seppellito/a il %(modified_date) in quel di %(burial_place)s."
+msgstr "%(unknow_gender_name)s fu seppellito/a %(modified_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
 #, fuzzy
 msgid "This person was buried %(modified_date)s in %(burial_place)s."
-msgstr "Questa persona fu seppellita il %(modified_date) in quel di %(burial_place)s."
+msgstr "Questa persona fu seppellita %(modified_date)s in quel di %(burial_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:620
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was buried %(modified_date)s."
-msgstr "%(male_name)s fu seppellito il %(modified_date)."
+msgstr "%(male_name)s fu seppellito %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:621
 #, python-format
-#, fuzzy
 msgid "He was buried %(modified_date)s."
-msgstr "Fu seppellito il %(modified_date)."
+msgstr "Fu seppellito %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:624
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was buried %(modified_date)s."
-msgstr "%(female_name)s fu seppellita il %(modified_date)."
+msgstr "%(female_name)s fu seppellita %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:625
 #, python-format
-#, fuzzy
 msgid "She was buried %(modified_date)s."
-msgstr "Fu seppellita il %(modified_date)."
+msgstr "Fu seppellita %(modified_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:628
 #, python-format
 #, fuzzy
 msgid "%(unknown_gender_name)s was buried %(modified_date)s."
-msgstr "%(unknown_gender_name)s fu seppellito/a il %(modified_date)."
+msgstr "%(unknown_gender_name)s fu seppellito/a %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:629
 #, python-format
 #, fuzzy
 msgid "This person was buried %(modified_date)s."
-msgstr "Questa persona fu seppellita il %(modified_date)."
+msgstr "Questa persona fu seppellita %(modified_date)."
 
 #: ../src/ReportBase/_ReportUtils.py:635
 #, python-format
@@ -14763,7 +14741,7 @@ msgstr "Sposò %(spouse)s il %(full_date)s in quel di %(place)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:673
 #, fuzzy, python-format
 msgid "This person married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(modified_date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:676
 #, fuzzy, python-format
@@ -14776,9 +14754,9 @@ msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr "Sposò %(spouse)s il %(full_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:678
-#, fuzzy, python-format
+#, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(modified_date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:681
 #, fuzzy, python-format
@@ -14791,90 +14769,96 @@ msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
 msgstr "Sposò %(spouse)s il %(full_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:683
-#, fuzzy, python-format
+#, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(modified_date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:686
-#, fuzzy, python-format
+#, python-format
 msgid "Married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:687
-#, fuzzy, python-format
+#, python-format
 msgid "Married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò %(spouse)s il %(full_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:688
-#, fuzzy, python-format
+#, python-format
 msgid "Married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:694
 #, fuzzy, python-format
 msgid ""
 "This person also married %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Questa persona sposò inoltre %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:695
 #, fuzzy, python-format
 msgid ""
 "This person also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Questa persona sposò inoltre %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:696
 #, fuzzy, python-format
 msgid ""
 "This person also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Questa persona sposò inoltre %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:699
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:700
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s il %(full_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:701
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:704
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:705
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s il %(full_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:706
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:709
-#, fuzzy, python-format
+#, python-format
 msgid "Also married %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s nel %(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:710
-#, fuzzy, python-format
+#, python-format
 msgid "Also married %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s il %(full_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:711
-#, fuzzy, python-format
+#, python-format
 msgid "Also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:717
 #, fuzzy, python-format
@@ -14883,16 +14867,17 @@ msgstr "Sposò %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:718
 #, python-format
+#, fuzzy
 msgid "This person married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr "Sposò %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:719
 #, fuzzy, python-format
 msgid "This person married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(modified_date)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:722
-#, fuzzy, python-format
+#, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr "Sposò %(spouse)s nel %(partial_date)s%(endnotes)s."
 
@@ -14902,12 +14887,12 @@ msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr "Sposò %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:724
-#, fuzzy, python-format
+#, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(modified_date)s%(endnotes)s."
+msgstr "Sposò %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:727
-#, fuzzy, python-format
+#, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
 msgstr "Sposò %(spouse)s nel %(partial_date)s%(endnotes)s."
 
@@ -14917,84 +14902,85 @@ msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
 msgstr "Sposò %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:729
-#, fuzzy, python-format
+#, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(modified_date)s%(endnotes)s."
+msgstr "Sposò %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:732
-#, fuzzy, python-format
+#, python-format
 msgid "Married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:733
-#, fuzzy, python-format
+#, python-format
 msgid "Married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:734
-#, fuzzy, python-format
+#, python-format
 msgid "Married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:740
 #, fuzzy, python-format
 msgid "This person also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:741
 #, fuzzy, python-format
 msgid "This person also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:742
-#, fuzzy, python-format
+#, python-format
+#, fuzzy
 msgid "This person also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:745
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:746
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:747
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:750
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:751
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:752
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:755
-#, fuzzy, python-format
+#, python-format
 msgid "Also married %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:756
-#, fuzzy, python-format
+#, python-format
 msgid "Also married %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:757
-#, fuzzy, python-format
+#, python-format
 msgid "Also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:762
 #, python-format
@@ -15012,32 +14998,33 @@ msgid "She married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:765
-#, fuzzy, python-format
+#, python-format
 msgid "Married %(spouse)s in %(place)s%(endnotes)s."
 msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:769
 #, fuzzy, python-format
 msgid "This person also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:770
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:771
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:772
 #, fuzzy, python-format
 msgid "Also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:776
 #, python-format
+#, fuzzy
 msgid "This person married %(spouse)s%(endnotes)s."
 msgstr "Sposò %(spouse)s%(endnotes)s."
 
@@ -15059,767 +15046,911 @@ msgstr "Sposò %(spouse)s%(endnotes)s."
 #: ../src/ReportBase/_ReportUtils.py:783
 #, fuzzy, python-format
 msgid "This person also married %(spouse)s%(endnotes)s."
-msgstr "Sposò %(spouse)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:784
-#, fuzzy, python-format
+#, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr "Sposò %(spouse)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:785
-#, fuzzy, python-format
+#, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
-msgstr "Sposò %(spouse)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:786
 #, fuzzy, python-format
 msgid "Also married %(spouse)s%(endnotes)s."
-msgstr "Sposò %(spouse)s%(endnotes)s."
+msgstr "Sposò inoltre %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:797
 #, fuzzy, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)"
 "s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s in "
+"quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:798
 #, fuzzy, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s "
 "in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:799
 #, fuzzy, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s "
 "in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:802
 #, fuzzy, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s in "
+"quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:803
 #, fuzzy, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s in %(place)"
 "s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:804
 #, fuzzy, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:807
 #, fuzzy, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s in "
+"quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:808
 #, fuzzy, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:809
 #, fuzzy, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:812 ../src/ReportBase/_ReportUtils.py:835
 #, fuzzy, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s in "
+"quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:813 ../src/ReportBase/_ReportUtils.py:836
 #, fuzzy, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:814 ../src/ReportBase/_ReportUtils.py:837
 #, fuzzy, python-format
 msgid ""
 "Unmarried relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:820
 #, fuzzy, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %"
 "(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s in "
+"quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:821
 #, fuzzy, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on %"
 "(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:822
 #, fuzzy, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s %"
 "(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s in quel "
+"di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:825
 #, fuzzy, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s in "
 "%(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s nel "
+"%(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:826
 #, fuzzy, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il %(full_date)s "
+"in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:827
 #, fuzzy, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s "
+"in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:830
 #, fuzzy, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s "
 "in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s nel "
+"%(partial_date)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:831
 #, fuzzy, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s in %(full_date)s "
+"in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:832
 #, fuzzy, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s "
+"in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:843
 #, fuzzy, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(partial_date)s"
 "%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:844
 #, fuzzy, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:845
 #, fuzzy, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:848
 #, fuzzy, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:849
 #, fuzzy, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:850
 #, fuzzy, python-format
 msgid ""
 "He had an unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:853
 #, fuzzy, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:854
 #, fuzzy, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:855
 #, fuzzy, python-format
 msgid ""
 "She had an unmarried relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:858
 #, fuzzy, python-format
 msgid "Unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Relazione extramatrimoniale con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:859
 #, fuzzy, python-format
 msgid "Unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Relazione extramatrimoniale con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:860
 #, fuzzy, python-format
 msgid "Unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Relazione extramatrimoniale con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:866
 #, fuzzy, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %"
 "(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s nel "
+"%(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:867
 #, fuzzy, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s on %"
 "(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:868
 #, fuzzy, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s %"
 "(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:871
 #, fuzzy, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s nel "
+"%(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:872
 #, fuzzy, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:873
 #, fuzzy, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:876
 #, fuzzy, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s nel "
+"%(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:877
 #, fuzzy, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:878
 #, fuzzy, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:881
 #, fuzzy, python-format
 msgid "Also unmarried relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Inoltre relazione extramatrimoniale con %(spouse)s nel %(partial_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:882
 #, fuzzy, python-format
 msgid "Also unmarried relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Inoltre relazione extramatrimoniale con %(spouse)s il %(full_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:883
 #, fuzzy, python-format
 msgid "Also unmarried relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr ""
+"Inoltre relazione extramatrimoniale con %(spouse)s %(modified_date)s"
+"%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:888
 #, fuzzy, python-format
 msgid ""
 "This person had an unmarried relationship with %(spouse)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:889
 #, fuzzy, python-format
 msgid "He had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:890
 #, fuzzy, python-format
 msgid "She had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione extramatrimoniale con %(spouse)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:891 ../src/ReportBase/_ReportUtils.py:898
 #, fuzzy, python-format
 msgid "Unmarried relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Relazione extramatrimoniale con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:895
 #, fuzzy, python-format
 msgid ""
 "This person also had an unmarried relationship with %(spouse)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:896
 #, fuzzy, python-format
 msgid ""
 "He also had an unmarried relationship with %(spouse)s in %(place)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:897
 #, fuzzy, python-format
 msgid ""
 "She also had an unmarried relationship with %(spouse)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione extramatrimoniale con %(spouse)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:902
 #, fuzzy, python-format
 msgid "This person had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "%(person)s è %(relationship)s di %(active_person)s."
+msgstr "Ebbe una relazione extramatrimoniale con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:903
 #, fuzzy, python-format
 msgid "He had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Relazione con %(mother)s"
+msgstr "Ebbe una relazione extramatrimoniale con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:904
 #, fuzzy, python-format
 msgid "She had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Relazione con %(mother)s"
+msgstr "Ebbe una relazione extramatrimoniale con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:905 ../src/ReportBase/_ReportUtils.py:912
 #, fuzzy, python-format
 msgid "Unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Relazione con %(mother)s"
+msgstr "Relazione extramatrimoniale con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:909
 #, fuzzy, python-format
 msgid "This person also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "%(person)s è %(relationship)s di %(active_person)s."
+msgstr "Ebbe inoltre una relazione extramatrimoniale con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:910
 #, fuzzy, python-format
 msgid "He also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Possiede le relazioni"
+msgstr "Ebbe inoltre una relazione extramatrimoniale con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:911
 #, fuzzy, python-format
 msgid "She also had an unmarried relationship with %(spouse)s%(endnotes)s."
-msgstr "Sposò %(spouse)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione extramatrimoniale con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:924
 #, fuzzy, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:925
 #, fuzzy, python-format
 msgid ""
 "This person had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:926
 #, fuzzy, python-format
 msgid ""
 "This person had a relationship with %(spouse)s %(modified_date)s in %(place)s"
 "%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:929
 #, fuzzy, python-format
 msgid ""
 "He had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:930
 #, fuzzy, python-format
 msgid ""
 "He had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:931
 #, fuzzy, python-format
 msgid ""
 "He had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:934
 #, fuzzy, python-format
 msgid ""
 "She had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:935
 #, fuzzy, python-format
 msgid ""
 "She had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:936
 #, fuzzy, python-format
 msgid ""
 "She had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe una relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:939
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:940
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:941
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:947
 #, fuzzy, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:948
 #, fuzzy, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:949
 #, fuzzy, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s in %"
 "(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:952
 #, fuzzy, python-format
 msgid ""
 "He also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:953
 #, fuzzy, python-format
 msgid ""
 "He also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:954
 #, fuzzy, python-format
 msgid ""
 "He also had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:957
 #, fuzzy, python-format
 msgid ""
 "She also had a relationship with %(spouse)s in %(partial_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:958
 #, fuzzy, python-format
 msgid ""
 "She also had a relationship with %(spouse)s on %(full_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:959
 #, fuzzy, python-format
 msgid ""
 "She also had a relationship with %(spouse)s %(modified_date)s in %(place)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Ebbe inoltre una relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:962
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Inoltre relazione con %(spouse)s nel %(partial_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:963
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Inoltre relazione con %(spouse)s il %(full_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:964
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s in quel di %(place)s%(endnotes)s."
+msgstr ""
+"Inoltre relazione con %(spouse)s %(modified_date)s in quel di "
+"%(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:970
 #, fuzzy, python-format
 msgid ""
 "This person had a relationship with %(spouse)s in %(partial_date)s%(endnotes)"
 "s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:971
 #, fuzzy, python-format
 msgid "This person had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:972
 #, fuzzy, python-format
 msgid "This person had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:975
 #, fuzzy, python-format
 msgid "He had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:976
 #, fuzzy, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:977
 #, fuzzy, python-format
 msgid "He had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:980
 #, fuzzy, python-format
 msgid "She had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:981
 #, fuzzy, python-format
 msgid "She had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:982
 #, fuzzy, python-format
 msgid "She had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:985
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:986
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Relazione con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:987
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:993
 #, fuzzy, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s in %(partial_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:994
 #, fuzzy, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s on %(full_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:995
 #, fuzzy, python-format
 msgid ""
 "This person also had a relationship with %(spouse)s %(modified_date)s%"
 "(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:998
 #, fuzzy, python-format
 msgid "He also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:999
 #, fuzzy, python-format
 msgid "He also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s nel %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1000
 #, fuzzy, python-format
 msgid "He also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1003
 #, fuzzy, python-format
 msgid "She also had a relationship with %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1004
 #, fuzzy, python-format
 msgid "She also had a relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s nel %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1005
 #, fuzzy, python-format
 msgid "She also had a relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1008
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Inoltre relazione con %(spouse)s nel %(partial_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1009
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s %(full_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Inoltre relazione con %(spouse)s il %(full_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1010
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Sposò %(spouse)s il %(date)s%(endnotes)s."
+msgstr "Inoltre relazione con %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1015
 #, fuzzy, python-format
 msgid "This person had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1016
 #, fuzzy, python-format
 msgid "He had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1017
 #, fuzzy, python-format
 msgid "She had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe una relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1018
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1022
 #, fuzzy, python-format
 msgid "This person also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1023
 #, fuzzy, python-format
 msgid "He also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1024
 #, fuzzy, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1025
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Sposò %(spouse)s in quel di %(place)s%(endnotes)s."
+msgstr "Inoltre relazione con %(spouse)s in quel di %(place)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1029
 #, fuzzy, python-format
 msgid "This person had a relationship with %(spouse)s%(endnotes)s."
-msgstr "%(person)s è %(relationship)s di %(active_person)s."
+msgstr "Ebbe una relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1030
 #, fuzzy, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Relazione con %(mother)s"
+msgstr "Ebbe una relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1031
 #, fuzzy, python-format
 msgid "She had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Relazione con %(mother)s"
+msgstr "Ebbe una relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1032
 #, fuzzy, python-format
 msgid "Relationship with %(spouse)s%(endnotes)s."
-msgstr "Relazione con %(mother)s"
+msgstr "Relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1036
 #, fuzzy, python-format
 msgid "This person also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "%(person)s è %(relationship)s di %(active_person)s."
+msgstr "Ebbe inoltre una relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1037
 #, fuzzy, python-format
 msgid "He also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Possiede le relazioni"
+msgstr "Ebbe inoltre una relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1038
 #, fuzzy, python-format
 msgid "She also had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Possiede le relazioni"
+msgstr "Ebbe inoltre una relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1039
 #, fuzzy, python-format
 msgid "Also relationship with %(spouse)s%(endnotes)s."
-msgstr "Possiede le relazioni"
+msgstr "Inoltre relazione con %(spouse)s%(endnotes)s."
 
 #: ../src/ReportBase/_ReportUtils.py:1051
 #, python-format
@@ -16597,7 +16728,6 @@ msgid "Place Note"
 msgstr "Nota luogo"
 
 #: ../src/gen/lib/notetype.py:99
-#, fuzzy
 msgid "Repository Note"
 msgstr "Nota deposito"
 
@@ -18890,9 +19020,8 @@ msgid "Matches media objects whose GRAMPS ID matches the regular expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
-#, fuzzy
 msgid "Every repository"
-msgstr "Editor fonti"
+msgstr "Tutti i depositi"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 #, fuzzy
@@ -18902,7 +19031,7 @@ msgstr "Estrae tutte le persone nel database"
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 #, fuzzy
 msgid "Repository with <Id>"
-msgstr "Editor località"
+msgstr "Depositi con <Id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 #, fuzzy
@@ -19178,7 +19307,7 @@ msgstr "Oggetti multimediali"
 #: ../src/FilterEditor/_FilterEditor.py:71
 #, fuzzy
 msgid "Repository Filters"
-msgstr "Editor località"
+msgstr "Filtri deposito"
 
 #: ../src/FilterEditor/_FilterEditor.py:72
 #, fuzzy
@@ -20495,7 +20624,6 @@ msgid "_Accept changes and close"
 msgstr "_Accetta modifiche e chiudi"
 
 #: ../src/plugins/changetype.glade.h:1
-#, fuzzy
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
@@ -21467,48 +21595,65 @@ msgid ""
 "The new GRAMPS IDs for the events are generated according to this format "
 "string."
 msgstr ""
+"I nuovi ID GRAMPS per gli eventi saranno generati in base a questa stringa "
+"di formato."
 
 #: ../data/gramps.schemas.in.h:155
 msgid ""
 "The new GRAMPS IDs for the family are generated according to this format "
 "string."
 msgstr ""
+"I nuovi ID GRAMPS per le famiglie saranno generati in base a questa stringa "
+"di formato."
 
 #: ../data/gramps.schemas.in.h:156
 msgid ""
 "The new GRAMPS IDs for the media object are generated according to this "
 "format string."
 msgstr ""
+"I nuovi ID GRAMPS per gli oggetti multimediali saranno generati in base a "
+"questa stringa di formato."
 
 #: ../data/gramps.schemas.in.h:157
 msgid ""
 "The new GRAMPS IDs for the notes are generated according to this format "
 "string."
 msgstr ""
+"I nuovi ID GRAMPS per le note saranno generati in base a questa stringa "
+"di formato."
 
 #: ../data/gramps.schemas.in.h:158
 msgid ""
 "The new GRAMPS IDs for the person are generated according to this format "
 "string."
 msgstr ""
+"I nuovi ID GRAMPS per le persone saranno generati in base a questa stringa "
+"di formato."
 
 #: ../data/gramps.schemas.in.h:159
 msgid ""
 "The new GRAMPS IDs for the place are generated according to this format "
 "string."
 msgstr ""
+"I nuovi ID GRAMPS per i luoghi saranno generati in base a questa stringa "
+"di formato."
 
 #: ../data/gramps.schemas.in.h:160
+#, fuzzy
 msgid ""
 "The new GRAMPS IDs for the repositories are generated according to this "
 "format string."
 msgstr ""
+"I nuovi ID GRAMPS per i depositi saranno generati in base a questa stringa "
+"di formato."
 
 #: ../data/gramps.schemas.in.h:161
 msgid ""
 "The new GRAMPS IDs for the source are generated according to this format "
 "string."
 msgstr ""
+"I nuovi ID GRAMPS per le fonti saranno generati in base a questa stringa "
+"di formato."
 
 #: ../data/gramps.schemas.in.h:162
 msgid ""
@@ -21636,9 +21781,8 @@ msgid "Width of the repository editor interface."
 msgstr ""
 
 #: ../data/gramps.schemas.in.h:189
-#, fuzzy
 msgid "Width of the repository reference editor interface."
-msgstr "Editor eventi"
+msgstr ""
 
 #: ../data/gramps.schemas.in.h:190
 msgid "Width of the source editor interface."
