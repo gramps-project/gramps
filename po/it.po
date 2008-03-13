@@ -60,7 +60,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-08 13:21+0100\n"
-"PO-Revision-Date: 2008-03-13 17:31+0100\n"
+"PO-Revision-Date: 2008-03-13 18:36+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -351,7 +351,7 @@ msgid ""
 "\n"
 "Valid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM."
 msgstr ""
-"GRAMPS non riconosce il tipo di file \"%s\".\n"
+"GRAMPS non riconosce il tipo di file «%s».\n"
 "\n"
 "Tipi validi sono: database GRAMPS, GRAMPS XML, pacchetto GRAMPS e GEDCOM."
 
@@ -585,7 +585,7 @@ msgstr "Impossibile creare l'albero genealogico"
 #: ../src/DbManager.py:917
 #, fuzzy
 msgid "Could not make database directory: "
-msgstr "Impossibile creare la directory: %s"
+msgstr "Impossibile creare la directory del database: "
 
 #: ../src/DbManager.py:1005 ../src/ScratchPad.py:94
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
@@ -634,7 +634,7 @@ msgstr "Controlla e ripara database"
 #: ../src/DbManager.py:1066
 #, fuzzy
 msgid "Saving archive..."
-msgstr "Sto salvando %s..."
+msgstr "Salvataggio archivio..."
 
 #: ../src/DbManager.py:1076
 #, fuzzy
@@ -3026,7 +3026,7 @@ msgstr ""
 #: ../src/ViewManager.py:600
 #, fuzzy
 msgid "Loading document formats..."
-msgstr "Sto caricando %s..."
+msgstr "Caricamento formati documenti ..."
 
 #. load plugins
 #: ../src/ViewManager.py:605
@@ -3664,9 +3664,9 @@ msgid "Automatic"
 msgstr "Automatico"
 
 #: ../src/DataViews/PedigreeView.py:1390
-#, fuzzy, python-format
+#, python-format
 msgid "%d generations"
-msgstr "%s generazione"
+msgstr "%d generazioni"
 
 #: ../src/DataViews/PedigreeView.py:1403 ../src/DataViews/PedigreeView.py:1423
 msgid "People Menu"
@@ -5147,7 +5147,7 @@ msgstr "Editor località"
 #: ../src/Editors/_EditMedia.py:84 ../src/Editors/_EditMediaRef.py:374
 #, fuzzy, python-format
 msgid "Media: %s"
-msgstr "Multimedia"
+msgstr "Oggetto multimediale: %s"
 
 #: ../src/Editors/_EditMedia.py:86 ../src/Editors/_EditMediaRef.py:376
 #, fuzzy
@@ -5178,9 +5178,9 @@ msgid "Add Media Object (%s)"
 msgstr "Aggiungere oggetto multimediale (%s)"
 
 #: ../src/Editors/_EditMedia.py:272 ../src/Editors/_EditMediaRef.py:462
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Oggetto multimediale"
+msgstr "Modifica oggetto multimediale (%s)"
 
 #: ../src/Editors/_EditMedia.py:339
 #, fuzzy
@@ -5359,17 +5359,17 @@ msgstr "Persona centrale"
 #: ../src/Editors/_EditPerson.py:710
 #, fuzzy, python-format
 msgid "Add Person (%s)"
-msgstr "Modifica persona"
+msgstr "Aggiunge persona (%s)"
 
 #: ../src/Editors/_EditPerson.py:715
 #, fuzzy, python-format
 msgid "Edit Person (%s)"
-msgstr "Modifica persona"
+msgstr "Modifica persona (%s)"
 
 #: ../src/Editors/_EditPerson.py:871
 #, fuzzy
 msgid "Unknown gender specified"
-msgstr "Sesso sconosciuto per %s.\n"
+msgstr "Specificato sesso sconosciuto"
 
 #: ../src/Editors/_EditPerson.py:873
 msgid ""
@@ -5451,9 +5451,9 @@ msgid "Add Place (%s)"
 msgstr "Aggiunge luogo (%s)"
 
 #: ../src/Editors/_EditPlace.py:292
-#, fuzzy, python-format
+#, python-format
 msgid "Edit Place (%s)"
-msgstr "Modifica persona"
+msgstr "Modifica luogo (%s)"
 
 #: ../src/Editors/_EditPlace.py:339
 #, python-format
@@ -5554,12 +5554,12 @@ msgstr "Crea una nuova fonte"
 #: ../src/Editors/_EditSource.py:184
 #, fuzzy, python-format
 msgid "Add Source (%s)"
-msgstr "Fonti citazioni"
+msgstr "Aggiunge fonte (%s)"
 
 #: ../src/Editors/_EditSource.py:189
 #, fuzzy, python-format
 msgid "Edit Source (%s)"
-msgstr "Fonti citazioni"
+msgstr "Modifica fonte (%s)"
 
 #: ../src/Editors/_EditSource.py:255
 #, python-format
@@ -5762,7 +5762,7 @@ msgstr "%s non può essere importato"
 #: ../src/GrampsDbUtils/_ReadGedcom.py:146
 #, fuzzy
 msgid "Error reading GEDCOM file"
-msgstr "Errore nella lettura di %s"
+msgstr "Errore nella lettura del file GEDCOM"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:121 ../src/GrampsDbUtils/_ReadXML.py:131
 #, python-format
@@ -5816,12 +5816,12 @@ msgstr ""
 #: ../src/GrampsDbUtils/_ReadXML.py:259
 #, fuzzy, python-format
 msgid "  People: %d\n"
-msgstr "Persone"
+msgstr "  Persone: %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:260
 #, fuzzy, python-format
 msgid "  Families: %d\n"
-msgstr "Famiglie"
+msgstr "  Famiglie: %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:261
 #, python-format
@@ -5836,17 +5836,17 @@ msgstr "  Eventi: %d\n"
 #: ../src/GrampsDbUtils/_ReadXML.py:263
 #, fuzzy, python-format
 msgid "  Media Objects: %d\n"
-msgstr "Oggetti multimediali"
+msgstr "  Oggetti multimediali: %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:264
 #, fuzzy, python-format
 msgid "  Places: %d\n"
-msgstr "Luoghi"
+msgstr "  Luoghi: %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:265
 #, fuzzy, python-format
 msgid "  Repositories: %d\n"
-msgstr "Depositi"
+msgstr "  Depositi: %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:266
 #, python-format
@@ -5877,7 +5877,7 @@ msgstr ""
 #: ../src/GrampsDbUtils/_ReadXML.py:765
 #, fuzzy
 msgid "Could not change media path"
-msgstr "Impossibile aprire %s"
+msgstr "Impossibile cambiare il percorso dei file multimediali"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:766
 #, python-format
@@ -5895,12 +5895,12 @@ msgstr ""
 #: ../src/GrampsDbUtils/_ReadXML.py:885 ../src/GrampsDbUtils/_ReadXML.py:1969
 #, fuzzy, python-format
 msgid "Witness name: %s"
-msgstr "Testimoni"
+msgstr "Nome testimone: %s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:1857
 #, fuzzy, python-format
 msgid "Witness comment: %s"
-msgstr "Testimoni"
+msgstr "Commento testimone: %s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:2405
 #, python-format
@@ -6026,7 +6026,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:179
 #, fuzzy
 msgid "Error Details"
-msgstr "Errore nella lettura di %s"
+msgstr "Dettagli errore"
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:184
 msgid ""
@@ -6150,7 +6150,7 @@ msgstr ""
 #: ../src/GrampsLogger/_ErrorView.py:87 ../src/GrampsLogger/_ErrorView.py:100
 #, fuzzy
 msgid "Error Detail"
-msgstr "Errore nella lettura di %s"
+msgstr "Dettaglio errore"
 
 #: ../src/GrampsLogger/_ErrorView.py:108 ../src/gen/lib/notetype.py:83
 #, fuzzy
@@ -6407,12 +6407,12 @@ msgstr "Età"
 #: ../src/plugins/AgeOnDate.py:71 ../src/plugins/AgeOnDate.py:74
 #, python-format
 msgid "%d years"
-msgstr ""
+msgstr "%d anni"
 
 #: ../src/plugins/AgeOnDate.py:72
-#, fuzzy, python-format
+#, python-format
 msgid "%d months"
-msgstr "Altro"
+msgstr "%d mesi"
 
 #: ../src/plugins/AgeOnDate.py:103 ../src/plugins/DefaultGramplets.py:1068
 #, fuzzy
@@ -8197,7 +8197,7 @@ msgstr "Resoconto ascendenza per %s"
 #: ../src/plugins/DetDescendantReport.py:240
 #, fuzzy, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr " e [%s] sono la stessa persona."
+msgstr "%(name)s e [%(id_str)] sono la stessa persona."
 
 #: ../src/plugins/DetAncestralReport.py:280
 #: ../src/plugins/DetDescendantReport.py:523
@@ -8710,7 +8710,7 @@ msgstr "Opzioni resoconto"
 #: ../src/plugins/ExportVCalendar.py:241
 #, fuzzy, python-format
 msgid "Marriage of %s"
-msgstr "Matrimonio"
+msgstr "Matrimonio di %s"
 
 #: ../src/plugins/ExportVCalendar.py:260 ../src/plugins/ExportVCalendar.py:262
 #, python-format
@@ -8851,7 +8851,7 @@ msgstr ""
 #: ../src/plugins/FamilyGroup.py:515
 #, fuzzy, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Resoconto gruppo famigliare per %s"
+msgstr "Resoconto gruppo famigliare - generazione %d"
 
 #: ../src/plugins/FamilyGroup.py:517 ../src/plugins/FamilyGroup.py:566
 #: ../src/plugins/FamilyGroup.py:771
@@ -9075,7 +9075,7 @@ msgstr "Produce grafici a ventaglio"
 #: ../src/plugins/FilterByName.py:46
 #, fuzzy, python-format
 msgid "Filtering on %s"
-msgstr "Filtro"
+msgstr "Filtro su %s"
 
 #: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
 #: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
@@ -9795,7 +9795,7 @@ msgstr ""
 #: ../src/plugins/ImportCSV.py:372
 #, fuzzy
 msgid "Reading data..."
-msgstr "Sto salvando %s..."
+msgstr "Lettura dati..."
 
 #: ../src/plugins/ImportCSV.py:639 ../src/plugins/ImportGeneWeb.py:187
 #: ../src/plugins/ImportvCard.py:151
@@ -9919,9 +9919,9 @@ msgid "Kinship Report for %s"
 msgstr "Resoconto parentela per %s"
 
 #: ../src/plugins/KinshipReport.py:132
-#, fuzzy, python-format
+#, python-format
 msgid "spouses of %s"
-msgstr "Ascendenti di %s"
+msgstr "coniugi di %s"
 
 #: ../src/plugins/KinshipReport.py:342
 #, fuzzy
@@ -9998,9 +9998,9 @@ msgstr "Fornisce una finestra elencante tutti gli oggetto non raccolti"
 
 #. display the results
 #: ../src/plugins/lineage.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "Father lineage for %s"
-msgstr "Matrimonio"
+msgstr ""
 
 #: ../src/plugins/lineage.py:54
 msgid ""
@@ -10025,9 +10025,9 @@ msgstr ""
 
 #. display the results
 #: ../src/plugins/lineage.py:82
-#, fuzzy, python-format
+#, python-format
 msgid "Mother lineage for %s"
-msgstr "Matrimonio"
+msgstr ""
 
 #: ../src/plugins/lineage.py:84
 msgid ""
@@ -10054,9 +10054,8 @@ msgstr ""
 
 #: ../src/plugins/lineage.py:157 ../src/plugins/lineage.py:177
 #: ../src/plugins/Verify.py:970
-#, fuzzy
 msgid "Unknown gender"
-msgstr "Sesso sconosciuto per %s.\n"
+msgstr "Sesso sconosciuto"
 
 #: ../src/plugins/lineage.py:239
 #, fuzzy
@@ -10685,7 +10684,7 @@ msgstr "Numero di generazioni da includere nel grafico ascendenti"
 #: ../src/plugins/NarrativeWeb.py:2962
 #, fuzzy
 msgid "Page Generation"
-msgstr "%s generazione"
+msgstr "Generazione pagina"
 
 #: ../src/plugins/NarrativeWeb.py:2964
 #, fuzzy
@@ -10905,7 +10904,7 @@ msgstr ""
 #: ../src/plugins/NotRelated.py:242
 #, fuzzy, python-format
 msgid "Finding relationships between %d people"
-msgstr "Calcola la relazione fra due persone"
+msgstr "Calcola le relazioni fra %d persone"
 
 #: ../src/plugins/NotRelated.py:307
 #, fuzzy
@@ -10913,18 +10912,18 @@ msgid "Looking for 1 person"
 msgstr "Ometti persone duplicate"
 
 #: ../src/plugins/NotRelated.py:309
-#, fuzzy, python-format
+#, python-format
 msgid "Looking for %d people"
-msgstr "Ometti persone duplicate"
+msgstr ""
 
 #: ../src/plugins/NotRelated.py:332
 msgid "Looking up the name for 1 person"
 msgstr ""
 
 #: ../src/plugins/NotRelated.py:334
-#, fuzzy, python-format
+#, python-format
 msgid "Looking up the names for %d people"
-msgstr "Ometti persone duplicate"
+msgstr ""
 
 #: ../src/plugins/NotRelated.py:404
 msgid "Not Related"
@@ -11335,7 +11334,7 @@ msgstr ""
 #: ../src/plugins/SameSurnames.py:73
 #, fuzzy, python-format
 msgid "People with the surname '%s'"
-msgstr "Persone con il nome incompleto"
+msgstr "Persone con il cognome «%s»"
 
 #: ../src/plugins/SameSurnames.py:90
 #, python-format
@@ -11595,7 +11594,7 @@ msgstr ""
 #: ../src/plugins/StatisticsChart.py:559
 #, fuzzy
 msgid "Saving charts..."
-msgstr "Sto salvando %s..."
+msgstr "Salvataggio grafico..."
 
 #: ../src/plugins/StatisticsChart.py:606 ../src/plugins/StatisticsChart.py:642
 #, python-format
@@ -11709,9 +11708,8 @@ msgstr "Grafico temporale per %s"
 
 #: ../src/plugins/TimeLine.py:105 ../src/ReportBase/_ReportDialog.py:316
 #: ../src/ReportBase/_ReportDialog.py:321
-#, fuzzy
 msgid "Report could not be created"
-msgstr "%s non può essere aperto"
+msgstr "Impossibile creare il resoconto"
 
 #: ../src/plugins/TimeLine.py:106
 msgid "The range of dates chosen was not valid"
@@ -11807,7 +11805,7 @@ msgstr "Decesso alternativo"
 #: ../src/plugins/Verify.py:980
 #, fuzzy
 msgid "Multiple parents"
-msgstr "Troppi genitori per %s.\n"
+msgstr "Troppi genitori"
 
 #: ../src/plugins/Verify.py:997
 #, fuzzy
@@ -11842,16 +11840,12 @@ msgstr "Moglie"
 #: ../src/plugins/Verify.py:1105
 #, fuzzy
 msgid "Husband and wife with the same surname"
-msgstr ""
-"Marito e moglie con lo stesso cognome: %s, appartenente alla famiglia %s, e %"
-"s.\n"
+msgstr "Marito e moglie con lo stesso cognome"
 
 #: ../src/plugins/Verify.py:1130
 #, fuzzy
 msgid "Large age difference between spouses"
 msgstr ""
-"Marito e moglie con lo stesso cognome: %s, appartenente alla famiglia %s, e %"
-"s.\n"
 
 #: ../src/plugins/Verify.py:1161
 #, fuzzy
@@ -12940,7 +12934,7 @@ msgstr ""
 #: ../src/ReportBase/_GraphvizReportDialog.py:912
 #, fuzzy
 msgid "Open with application"
-msgstr "Apri in %s"
+msgstr "Apri con applicazione"
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
@@ -13192,27 +13186,27 @@ msgid "This person was born in %(month_year)s."
 msgstr "Nacque nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:129
-#, fuzzy, python-format
+#, python-format
 msgid "He was born in %(month_year)s."
 msgstr "Nacque nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:130
-#, fuzzy, python-format
+#, python-format
 msgid "She was born in %(month_year)s."
 msgstr "Nacque nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:133
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
 msgstr "%(unknown_gender_name)s nacque nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:134
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s was born in %(month_year)s."
 msgstr "%(male_name)s nacque nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:135
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s was born in %(month_year)s."
 msgstr "%(female_name)s nacque nel %(month_year)s."
 
@@ -13723,24 +13717,22 @@ msgstr "%(female_name)s morì il %(death_date)s all'età di %(age)d giorni."
 #: ../src/ReportBase/_ReportUtils.py:294 ../src/ReportBase/_ReportUtils.py:341
 #, fuzzy, python-format
 msgid "Died %(death_date)s."
-msgstr "deceduto/a il %(date)s%(endnotes)s."
+msgstr "Deceduto %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:295 ../src/ReportBase/_ReportUtils.py:342
 #, fuzzy, python-format
 msgid "Died %(death_date)s (age %(age)d years)."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Deceduto %(death_date)s (età %(age)d anni)."
 
 #: ../src/ReportBase/_ReportUtils.py:296 ../src/ReportBase/_ReportUtils.py:343
 #, fuzzy, python-format
 msgid "Died %(death_date)s (age %(age)d months)."
-msgstr " all'età di %d mesi"
+msgstr "Deceduto %(death_date)s (età %(age)d mesi)."
 
 #: ../src/ReportBase/_ReportUtils.py:297 ../src/ReportBase/_ReportUtils.py:344
 #, fuzzy, python-format
 msgid "Died %(death_date)s (age %(age)d days)."
-msgstr " all'età di %d giorni"
+msgstr "Deceduto %(death_date)s (età %(age)d giorni)."
 
 #: ../src/ReportBase/_ReportUtils.py:303
 #, fuzzy, python-format
@@ -13748,155 +13740,155 @@ msgid "This person died %(death_date)s."
 msgstr "Morì il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:304
-#, fuzzy, python-format
+#, python-format
 msgid "This person died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Morì il %(death_date)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:305
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d months."
-msgstr ""
+msgstr "Morì il %(death_date)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:306
 #, python-format
 msgid "This person died %(death_date)s at the age of %(age)d days."
-msgstr ""
+msgstr "Morì il %(death_date)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:309
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s."
-msgstr "deceduto/a il %(date)s%(endnotes)s."
+msgstr "Morì il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:310
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Morì il %(death_date)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:311
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Morì il %(death_date)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:312
-#, fuzzy, python-format
+#, python-format
 msgid "He died %(death_date)s at the age of %(age)d days."
-msgstr " all'età di %d giorni"
+msgstr "Morì il %(death_date)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:315
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s."
-msgstr "deceduto/a il %(date)s%(endnotes)s."
+msgstr "Morì il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:316
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Morì il %(death_date)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:317
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Morì il %(death_date)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:318
-#, fuzzy, python-format
+#, python-format
 msgid "She died %(death_date)s at the age of %(age)d days."
-msgstr " all'età di %d giorni"
+msgstr "Morì il %(death_date)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:322
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:323
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(unknown_gender_name)s morì il %(death_date)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:324
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì il %(death_date)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:325
 #, python-format
 msgid "%(unknown_gender_name)s died %(death_date)s at the age of %(age)d days."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì il %(death_date)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:328
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s morì il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:329
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(male_name)s morì il %(death_date)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:330
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d months."
-msgstr ""
-"Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+msgstr "%(male_name)s morì il %(death_date)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:331
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(male_name)s%(endnotes)s morì %(death_date)s%(death_endnotes)s."
+msgstr "%(male_name)s morì il %(death_date)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:334
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "%(female_name)s morì il %(death_date)s."
 
 #: ../src/ReportBase/_ReportUtils.py:335
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "%(female_name)s morì il %(death_date)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d months."
-msgstr "%(female_name)s%(endnotes)s morì il %(death_date)s%(death_endotes)s."
+msgstr "%(female_name)s morì il %(death_date)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:337
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died %(death_date)s at the age of %(age)d days."
-msgstr "%(female_name)s%(endnotes)s morì il %(death_date)s%(death_endotes)s."
+msgstr "%(female_name)s morì il %(death_date)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:350
 #, python-format
+#, fuzzy
 msgid "This person died in %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "Questa persona morì nel %(month_year)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:351
 #, python-format
+#, fuzzy
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "years."
 msgstr ""
+"Questa persona morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:352
 #, python-format
+#, fuzzy
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "months."
 msgstr ""
+"Questa persona morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:353
 #, python-format
+#, fuzzy
 msgid ""
 "This person died in %(month_year)s in %(death_place)s at the age of %(age)d "
 "days."
 msgstr ""
+"Questa persona morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:356
 #, python-format
@@ -13906,42 +13898,42 @@ msgstr "Morì nel %(month_year)s in quel di %(death_place)s."
 #: ../src/ReportBase/_ReportUtils.py:357
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:358
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:359
 #, python-format
 msgid "He died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:362
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s in %(death_place)s."
-msgstr "Morì nel %s in quel di %s"
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:363
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d years."
-msgstr ""
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:364
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:365
 #, python-format
 msgid "She died in %(month_year)s in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "Morì nel %(month_year)s in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:369
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì nel %(month_year)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:370
 #, python-format
@@ -13949,6 +13941,8 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d years."
 msgstr ""
+"%(unknown_gender_name)s morì nel %(month_year)s in quel di %(death_place)s "
+"all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:371
 #, python-format
@@ -13956,6 +13950,8 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d months."
 msgstr ""
+"%(unknown_gender_name)s morì nel %(month_year)s in quel di %(death_place)s "
+"all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:372
 #, python-format
@@ -13963,268 +13959,262 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)d days."
 msgstr ""
+"%(unknown_gender_name)s morì nel %(month_year)s in quel di %(death_place)s "
+"all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:375
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s in %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s morì nel %(month_year)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:376
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d years."
 msgstr ""
-"Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+"%(male_name)s morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:377
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d months."
 msgstr ""
-"Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+"%(male_name)s morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:378
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of %(age)"
 "d days."
 msgstr ""
-"%(male_name)s%(endnotes)s morì %(death_date)s in quel di %(death_place)s%"
-"(death_endnotes)s."
+"%(male_name)s morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:381
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s in %(death_place)s."
-msgstr ""
-"%(female_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
-"s."
+msgstr "%(female_name)s morì nel %(month_year)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:382
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d years."
 msgstr ""
-"Ecessiva età: %(female_name)s nata il %(byear)d e deceduta il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+"%(female_name)s morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:383
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d months."
 msgstr ""
-"Ecessiva età: %(female_name)s nata il %(byear)d e deceduta il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+"%(female_name)s morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:384
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)d days."
 msgstr ""
-"%(female_name)s%(endnotes)s morì il %(death_date)s in quel di %(death_place)s"
-"%(death_endnotes)s."
+"%(female_name)s morì nel %(month_year)s in quel di %(death_place)s all'età di "
+"%(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:388
-#, fuzzy, python-format
+#, python-format
+#, fuzzy
 msgid "Died %(month_year)s in %(death_place)s."
-msgstr "Morì nel %s in quel di %s"
+msgstr "Deceduto/a nel %(month_year)s in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:389
 #, fuzzy, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d years)."
-msgstr ""
-"Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+msgstr "Deceduto/a nel %(month_year)s in quel di %(death_place)s (età %(age)d anni)."
 
 #: ../src/ReportBase/_ReportUtils.py:390
 #, fuzzy, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d months)."
-msgstr ""
-"Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+msgstr "Deceduto/a nel %(month_year)s in quel di %(death_place)s (età %(age)d mesi)."
 
 #: ../src/ReportBase/_ReportUtils.py:391
 #, fuzzy, python-format
 msgid "Died %(month_year)s in %(death_place)s (age %(age)d days)."
-msgstr ""
-"%(male_name)s%(endnotes)s morì %(death_date)s in quel di %(death_place)s%"
-"(death_endnotes)s."
+msgstr "Deceduto/a nel %(month_year)s in quel di %(death_place)s (età %(age)d giorni)."
 
 #: ../src/ReportBase/_ReportUtils.py:397
-#, fuzzy, python-format
+#, python-format
+#, fuzzy
 msgid "This person died in %(month_year)s."
-msgstr " nel %(month_or_year)s"
+msgstr "Questa persona morì nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:398
 #, python-format
+#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d years."
-msgstr ""
+msgstr "Questa persona morì nel %(month_year)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:399
 #, python-format
+#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d months."
-msgstr ""
+msgstr "Questa persona morì nel %(month_year)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:400
 #, python-format
+#, fuzzy
 msgid "This person died in %(month_year)s at the age of %(age)d days."
-msgstr ""
+msgstr "Questa persona morì nel %(month_year)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:403
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s."
-msgstr " nel %(month_or_year)s"
+msgstr "Morì nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:404
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "Morì nel %(month_year)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:405
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(month_year)s at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Morì nel %(month_year)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:406
 #, python-format
 msgid "He died in %(month_year)s at the age of %(age)d days."
-msgstr ""
+msgstr "Morì nel %(month_year)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:409
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s."
-msgstr "Morì nel %s"
+msgstr "Morì nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:410
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "Morì nel %(month_year)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:411
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(month_year)s at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Morì nel %(month_year)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:412
 #, python-format
 msgid "She died in %(month_year)s at the age of %(age)d days."
-msgstr ""
+msgstr "Morì nel %(month_year)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:416
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:417
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(unknown_gender_name)s morì nel %(month_year)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:418
 #, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì nel %(month_year)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:419
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(unknown_gender_name)s morì nel %(month_year)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:422
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s."
-msgstr "%(male_name)s%(endnotes)s."
+msgstr "%(male_name)s morì nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:423
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(male_name)s morì nel %(month_year)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:424
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+msgstr "%(male_name)s morì nel %(month_year)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:425
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"Ecessiva età: %(male_name)s nato il %(byear)d e deceduto il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+msgstr "%(male_name)s morì nel %(month_year)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:428
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s."
-msgstr "%(female_name)s%(endnotes)s."
+msgstr "%(female_name)s morì nel %(month_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:429
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "%(female_name)s morì nel %(month_year)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:430
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d months."
-msgstr ""
-"Ecessiva età: %(female_name)s nata il %(byear)d e deceduta il %(dyear)d "
-"all'età di anni %(ageatdeath)d.\n"
+msgstr "%(female_name)s morì nel %(month_year)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:431
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(month_year)s at the age of %(age)d days."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "%(female_name)s morì nel %(month_year)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:435
-#, fuzzy, python-format
+#, python-format
+#, fuzzy
 msgid "Died %(month_year)s."
-msgstr " nel %(month_or_year)s"
+msgstr "Deceduto nel %(month_or_year)s."
 
 #: ../src/ReportBase/_ReportUtils.py:436
 #, fuzzy, python-format
 msgid "Died %(month_year)s (age %(age)d years)."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "Deceduto nel %(month_year)s (età %(age)d anni)."
 
 #: ../src/ReportBase/_ReportUtils.py:437
 #, fuzzy, python-format
 msgid "Died %(month_year)s (age %(age)d months)."
-msgstr " all'età di %d mesi"
+msgstr "Deceduto nel %(month_year)s (età %(age)d mesi)."
 
 #: ../src/ReportBase/_ReportUtils.py:438
 #, fuzzy, python-format
 msgid "Died %(month_year)s (age %(age)d days)."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "Deceduto nel %(month_year)s (età %(age)d giorni)."
 
 #: ../src/ReportBase/_ReportUtils.py:445
 #, python-format
+#, fuzzy
 msgid "This person died in %(death_place)s."
-msgstr ""
+msgstr "Questa persona morì in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:446
 #, python-format
+#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d years."
-msgstr ""
+msgstr "Questa persona morì in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:447
 #, python-format
+#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "Questa persona morì in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:448
 #, python-format
+#, fuzzy
 msgid "This person died in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "Questa persona morì in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:451
 #, python-format
@@ -14232,250 +14222,224 @@ msgid "He died in %(death_place)s."
 msgstr "Morì in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:452
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Morì in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:453
-#, fuzzy, python-format
+#, python-format
 msgid "He died in %(death_place)s at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Morì in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:454
 #, python-format
 msgid "He died in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "Morì in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:457
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(death_place)s."
-msgstr "%(date)s in quel di %(place)s."
+msgstr "Morì in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:458
-#, fuzzy, python-format
+#, python-format
 msgid "She died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Morì in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:459
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "Morì in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:460
 #, python-format
 msgid "She died in %(death_place)s at the age of %(age)d days."
-msgstr ""
+msgstr "Morì in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:464
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s."
-msgstr ""
-"%(female_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
-"s."
+msgstr "%(unknown_gender_name)s morì in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:465
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(unknown_gender_name)s morì in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:466
 #, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:467
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
-"s."
+msgstr "%(unknown_gender_name)s morì in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:470
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s."
-msgstr "%(male_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s morì in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:471
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr "%(male_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s morì in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:472
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr "%(male_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s morì in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:473
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr "%(male_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)s."
+msgstr "%(male_name)s morì in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:476
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s."
-msgstr ""
-"%(female_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
-"s."
+msgstr "%(female_name)s morì in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:477
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
-msgstr ""
-"%(female_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
-"s."
+msgstr "%(female_name)s morì in quel di %(death_place)s all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:478
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d months."
-msgstr ""
-"%(female_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
-"s."
+msgstr "%(female_name)s morì in quel di %(death_place)s all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:479
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died in %(death_place)s at the age of %(age)d days."
-msgstr ""
-"%(female_name)s%(endnotes)s morì in quel di %(death_place)s%(death_endnotes)"
-"s."
+msgstr "%(female_name)s morì in quel di %(death_place)s all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:483
 #, fuzzy, python-format
 msgid "Died in %(death_place)s."
-msgstr " in quel di %(place)s"
+msgstr "Deceduto in quel di %(death_place)s."
 
 #: ../src/ReportBase/_ReportUtils.py:484
 #, fuzzy, python-format
 msgid "Died in %(death_place)s (age %(age)d years)."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Deceduto in quel di %(death_place)s (età %(age)d anni)."
 
 #: ../src/ReportBase/_ReportUtils.py:485
 #, fuzzy, python-format
 msgid "Died in %(death_place)s (age %(age)d months)."
-msgstr " all'età di %d mesi"
+msgstr "Deceduto in quel di %(death_place)s (età %(age)d mesi)."
 
 #: ../src/ReportBase/_ReportUtils.py:486
 #, fuzzy, python-format
 msgid "Died in %(death_place)s (age %(age)d days)."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "Deceduto in quel di %(death_place)s (età %(age)d giorni)."
 
 #: ../src/ReportBase/_ReportUtils.py:493
 #, fuzzy, python-format
 msgid "This person died at the age of %(age)d years."
-msgstr " all'età di %d anni"
+msgstr "Questa persona morì all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:494
 #, fuzzy, python-format
 msgid "This person died at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Questa persona morì all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:495
 #, fuzzy, python-format
 msgid "This person died at the age of %(age)d days."
-msgstr " all'età di %d giorni"
+msgstr "Questa persona morì all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:499
-#, fuzzy, python-format
+#, python-format
 msgid "He died at the age of %(age)d years."
-msgstr " all'età di %d anni"
+msgstr "Morì all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:500
-#, fuzzy, python-format
+#, python-format
 msgid "He died at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Morì all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:501
-#, fuzzy, python-format
+#, python-format
 msgid "He died at the age of %(age)d days."
-msgstr " all'età di %d giorni"
+msgstr "Morì all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:505
-#, fuzzy, python-format
+#, python-format
 msgid "She died at the age of %(age)d years."
-msgstr " all'età di %d anni"
+msgstr "Morì all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "She died at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "Morì all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:507
-#, fuzzy, python-format
+#, python-format
 msgid "She died at the age of %(age)d days."
-msgstr " all'età di %d giorni"
+msgstr "Morì all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:512
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(unknown_gender_name)s morì all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:513
 #, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)d months."
-msgstr ""
+msgstr "%(unknown_gender_name)s morì all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:514
-#, fuzzy, python-format
+#, python-format
 msgid "%(unknown_gender_name)s died at the age of %(age)d days."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(unknown_gender_name)s morì all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:518
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died at the age of %(age)d years."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(male_name)s morì all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:519
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died at the age of %(age)d months."
-msgstr " all'età di %d mesi"
+msgstr "%(male_name)s morì all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:520
-#, fuzzy, python-format
+#, python-format
 msgid "%(male_name)s died at the age of %(age)d days."
-msgstr "Anziano e celibe: %(male_name)s morì celibe all'età di anni %(ageatdeath)d.\n"
+msgstr "%(male_name)s morì all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:524
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died at the age of %(age)d years."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "%(female_name)s morì all'età di %(age)d anni."
 
 #: ../src/ReportBase/_ReportUtils.py:525
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died at the age of %(age)d months."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "%(female_name)s morì all'età di %(age)d mesi."
 
 #: ../src/ReportBase/_ReportUtils.py:526
-#, fuzzy, python-format
+#, python-format
 msgid "%(female_name)s died at the age of %(age)d days."
-msgstr ""
-"Anziana e nubile: %(female_name)s morì nubile all'età di anni %(ageatdeath)"
-"d.\n"
+msgstr "%(female_name)s morì all'età di %(age)d giorni."
 
 #: ../src/ReportBase/_ReportUtils.py:531
 #, fuzzy, python-format
 msgid "Died (age %(age)d years)."
-msgstr " all'età di %d anni"
+msgstr "Deceduto (età %(age)d anni)."
 
 #: ../src/ReportBase/_ReportUtils.py:532
 #, fuzzy, python-format
 msgid "Died (age %(age)d months)."
-msgstr " all'età di %d mesi"
+msgstr "Deceduto (età %(age)d mesi)."
 
 #: ../src/ReportBase/_ReportUtils.py:533
 #, fuzzy, python-format
 msgid "Died (age %(age)d days)."
-msgstr " all'età di %d giorni"
+msgstr "Deceduto (età %(age)d giorni)."
 
 #: ../src/ReportBase/_ReportUtils.py:545
 #, python-format
@@ -17606,7 +17570,7 @@ msgstr "Filtri ascendenza"
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:47
 #, fuzzy
 msgid "People with a common ancestor with <person>"
-msgstr "Persone il cui ascendente comune è %s"
+msgstr "Persone il cui ascendente comune è <person>"
 
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:49
 msgid "Matches people that have a common ancestor with a specified person"
@@ -17878,7 +17842,7 @@ msgstr "Inclusivo:"
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:46
 #, fuzzy
 msgid "Ancestors of <person>"
-msgstr "Ascendenti di %s"
+msgstr "Ascendenti di <person>"
 
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:48
 msgid "Matches people that are ancestors of a specified person"
@@ -17916,7 +17880,7 @@ msgstr "È estratto dal filtro con nome"
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:51
 #, fuzzy
 msgid "Descendant family members of <person>"
-msgstr "Membri della famiglia discendenti da %s"
+msgstr "Membri della famiglia discendenti da <person>"
 
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:52
 #: ../src/Filters/Rules/Person/_IsDescendantOfFilterMatch.py:49
@@ -19371,7 +19335,7 @@ msgstr "Seleziona..."
 #: ../src/FilterEditor/_EditRule.py:299
 #, fuzzy, python-format
 msgid "Select %s from a list"
-msgstr "Selezionare una persona dall'elenco"
+msgstr "Selezionare %s dall'elenco"
 
 #: ../src/FilterEditor/_EditRule.py:350
 #, fuzzy
