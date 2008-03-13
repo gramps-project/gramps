@@ -67,8 +67,6 @@ USE_LAST_VIEW        = ('preferences', 'use-last-view', 0)
 FAMILY_SIBLINGS      = ('preferences', 'family-siblings', 0)
 AUTOLOAD             = ('behavior', 'autoload', 0)
 SPELLCHECK           = ('behavior', 'spellcheck', 0)
-BETAWARN             = ('behavior', 'betawarn', 0)
-WELCOME              = ('behavior', 'welcome', 1)
 DATE_FORMAT          = ('preferences', 'date-format', 1)
 DONT_ASK             = ('interface', 'dont-ask', 0)
 RELEDITBTN           = ('interface', 'releditbtn', 0)
@@ -188,8 +186,6 @@ default_value = {
     FAMILY_SIBLINGS      : True, 
     AUTOLOAD             : False, 
     SPELLCHECK           : False, 
-    BETAWARN             : False, 
-    WELCOME              : 100, 
     DATE_FORMAT          : 0, 
     DONT_ASK             : False, 
     RELEDITBTN           : False, 

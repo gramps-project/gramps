@@ -183,37 +183,11 @@ def register_stock_icons ():
             
         factory.add (data[0], icon_set)
 
-
 def build_user_paths():
     """ check/make user-dirs on each Gramps session"""
     for path in const.USER_DIRLIST:
         if not os.path.isdir(path):
             os.mkdir(path)
-            
-def _display_welcome_message():
-    """
-    Display a welcome message to the user.
-    """
-    if not Config.get(Config.BETAWARN):
-        from QuestionDialog import WarningDialog
-        WarningDialog(
-            _('Danger: This is unstable code!'), 
-            _("This GRAMPS 3.0 Beta release is an early, experimental "
-              "peek at the future 3.0 release. This version is "
-              "not meant for normal usage. Use at your own risk.\n\n"
-              "This version may:\n"
-              "1) Work differently than you expect.\n"
-              "2) Fail to run at all.\n"
-              "3) Crash often.\n"
-              "4) Corrupt your data.\n"
-              "5) Save data in a format that is incompatible with the "
-                 "official release.\n"
-              "\n<b>BACKUP</b> your existing databases "
-              "before opening them with this version, and make "
-              "sure to export your data to XML every now and then."))
-        Config.set(Config.AUTOLOAD, False)
-#        Config.set(Config.BETAWARN, True)
-        Config.set(Config.BETAWARN, Config.get(Config.BETAWARN))
 
 #-------------------------------------------------------------------------
 #
@@ -231,8 +205,7 @@ class Gramps:
     def __init__(self, args):
         stopload = False
         try:
-            build_user_paths()
-            _display_welcome_message()    
+            build_user_paths()  
         except OSError, msg:
             ErrorDialog(_("Configuration error"), str(msg))
         except Errors.GConfSchemaError, val:
@@ -286,5 +259,3 @@ class Gramps:
 
         if Config.get(Config.USE_TIPS):
             TipOfDay.TipOfDay(self.vm.uistate)
-
-                            
