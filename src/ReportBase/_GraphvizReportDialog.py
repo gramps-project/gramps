@@ -961,6 +961,7 @@ class GraphvizReportDialog(ReportDialog):
         # offset a lot
         # Note margins are always in cm.
         warn_text1 = ""
+        warn_text2 = ""
         if self.paper_frame.get_paper_metric():
             warn_marg = "1.3 cm."
         else:
@@ -971,8 +972,8 @@ class GraphvizReportDialog(ReportDialog):
         pm_t = self.paper_frame.get_paper_margins()[2] / 2.54
         pm_b = self.paper_frame.get_paper_margins()[3] / 2.54
 
-        if (self.h_pages.get_value() > 1) or (self.h_pages.get_value() > 1) and \
-            (self.format_menu.get_clname() == 'gvpdf'):
+        if ((self.h_pages.get_value() > 1) or (self.h_pages.get_value() > 1)) and \
+            (self.format_menu.get_clname() != 'gspdf'):
             warn_text1 = _("You have used more than one page as output.")
             warn_text2 = _("This will cause incorrect and/or partial graphs.")
             warn_marg = ""
