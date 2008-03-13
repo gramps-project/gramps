@@ -51,6 +51,7 @@ from _Constants import CATEGORY_GRAPHVIZ
 from _ReportDialog import ReportDialog
 from _PaperMenu import PaperFrame
 from PluginUtils import NumberOption, EnumeratedListOption, TextOption
+from QuestionDialog import WarningDialog
 
 #-------------------------------------------------------------------------------
 #
@@ -155,7 +156,7 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         
         sizew = sizew * self.hpages         
         sizeh = sizeh * self.vpages
-                      
+
         self.write( 'digraph GRAMPS_graph\n'        )
         self.write( '{\n'                           )
         self.write( '  bgcolor=white;\n'            )
@@ -790,6 +791,8 @@ class GraphvizReportDialog(ReportDialog):
         self.options.add_menu_option(category, "ratio", aspect_ratio)
 
         dpi = NumberOption(_("DPI"), 75, 20, 1200)
+        # Remember dpi until later margins check
+        self.dpi = dpi
         dpi.set_help(_( "Dots per inch.  When creating images such as "
                         ".gif or .png files for the web, try numbers "
                         "such as 75 or 100 DPI.  When printing, try"
@@ -939,10 +942,6 @@ class GraphvizReportDialog(ReportDialog):
         the output file name before doing anything else.  If there is
         a file name, gather the options and create the report."""
 
-        # Is there a filename?  This should also test file permissions, etc.
-        if not self.parse_target_frame():
-            self.window.run()
-
         # Preparation
         self.parse_format_frame()
         self.parse_user_options()
@@ -952,6 +951,58 @@ class GraphvizReportDialog(ReportDialog):
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
         self.options.handler.set_margins(self.paper_frame.get_paper_margins())
         self.options.handler.set_custom_paper_size(self.paper_frame.get_custom_paper_size())
+        #=====================================================================
+        # First check for small margins
+        # Warn if margins less than 0.5", which can generate wrong ouput:
+        #      pdf via Graphviz generates pdf errors
+        #      pdf via Ghostscrip generetes 4 pages is stead of one,
+        #         which are without errors, but only one was wanted.
+        # If all margins are >1.0" then graphs are OK, but some graphs are
+        # offset a lot
+        # Note margins are always in cm.
+        warn_text1 = ""
+        if self.paper_frame.get_paper_metric():
+            warn_marg = "1.3 cm."
+        else:
+            warn_marg = "0.5 in."
+
+        pm_l = self.paper_frame.get_paper_margins()[0] / 2.54
+        pm_r = self.paper_frame.get_paper_margins()[1] / 2.54
+        pm_t = self.paper_frame.get_paper_margins()[2] / 2.54
+        pm_b = self.paper_frame.get_paper_margins()[3] / 2.54
+
+        if (self.h_pages.get_value() > 1) or (self.h_pages.get_value() > 1) and \
+            (self.format_menu.get_clname() == 'gvpdf'):
+            warn_text1 = _("You have used more than one page as output.")
+            warn_text2 = _("This will cause incorrect and/or partial graphs.")
+            warn_marg = ""
+
+        if ((pm_l < 0.5 and pm_r < 0.5) or (pm_t < 0.5 and pm_b < 0.5)) and \
+            (self.format_menu.get_clname() == 'gvpdf'):
+            warn_text1 = _("Two or more opposite paper margins are less than ")
+            warn_text2 = _("This will cause incorrect and/or partial graphs.")
+
+        if ((pm_l < 0.5 and pm_r < 0.5) or (pm_t < 0.5 and pm_b < 0.5)) and \
+            (self.format_menu.get_clname() == 'gspdf') or (self.format_menu.get_clname() == 'ps'):
+            warn_text1 = _("Two or more opposite paper margins are less than ")
+            warn_text2 = _("More than expected number of pages will be generated.")
+
+        if warn_text1: 
+            WarningDialog(warn_text1 + warn_marg, warn_text2)
+            warn_text1 = ""
+
+        if (self.format_menu.get_clname() == 'gspdf') and (self.dpi.get_value() != 75 ):
+            warn_text1 = _("You have not used 75 dpi for Ghostscript.")
+            warn_text2 = _("Using other dpi's will cause incorrect graphs.")
+            warn_marg = "" 
+
+        if warn_text1: 
+            WarningDialog(warn_text1 + warn_marg, warn_text2)
+        #======================================================================
+
+        # Is there a filename?  This should also test file permissions, etc.
+        if not self.parse_target_frame():
+            self.window.run()
         
         # Create the output document.
         self.make_document()
