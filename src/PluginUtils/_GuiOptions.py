@@ -659,7 +659,7 @@ class GuiNoteOption(gtk.HBox):
         """
         if note:
             note_id = note.get_gramps_id()
-            txt = " ".join(note.get(markup=False).split())
+            txt = " ".join(note.get().split())
             if len(txt) > 35:
                 txt = txt[:35]+"..."
             else:

@@ -29,7 +29,6 @@ Note class for GRAMPS.
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import re
 from types import InstanceType
 
 #-------------------------------------------------------------------------
@@ -40,8 +39,6 @@ from types import InstanceType
 from gen.lib.primaryobj import BasicPrimaryObject
 from gen.lib.notetype import NoteType
 from gen.lib.markertype import MarkerType
-
-#ROOT_START_TAG = '<gramps>'
 
 #-------------------------------------------------------------------------
 #
@@ -107,39 +104,15 @@ class Note(BasicPrimaryObject):
         """
         self.text = text
 
-    def get(self, markup=False):
+    def get(self):
         """
         Return the text string associated with the note.
 
-        @param markup: If note should be returned with markup or plain text
-        @type markup: boolean
         @returns: Returns the text string defining the note contents.
         @rtype: str
         """
         text = self.text
-#
-#        if not markup and text.startswith(ROOT_START_TAG):
-#            text = self.delete_tags(text)
-        
         return text
-#            
-#    def delete_tags(self, markup_text):
-#        """
-#        Create a plain text version of the note text by removing all pango 
-#        markup tags.
-#
-#        @param markup_text: Pango style markup text
-#        @type markup_text: str
-#        @return: Plain text
-#        @rtype: str
-#        """
-#        text = re.sub(r'(<.*?>)', '', markup_text)
-#        
-#        text = text.replace('&amp;', '&')
-#        text = text.replace('&lt;', '<')
-#        text = text.replace('&gt;', '>')
-#        
-#        return text
 
     def append(self, text):
         """
@@ -188,14 +161,3 @@ class Note(BasicPrimaryObject):
         @rtype: str
         """
         return self.type
-
-if __name__ == "__main__":
-    import hotshot
-    prof = hotshot.Profile("note.profile")
-
-    f = open("notetest3_10.txt")
-    note = Note(f.read())
-
-    for i in range(100000):
-        prof.runcall(note.get)
-    prof.close()

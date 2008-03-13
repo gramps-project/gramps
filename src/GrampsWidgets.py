@@ -1064,7 +1064,7 @@ class NoteEntry(ObjEntry):
         return self.db.get_note_from_handle(handle)
 
     def get_label(self, note):
-        txt = " ".join(note.get(markup=False).split())
+        txt = " ".join(note.get().split())
         if len(txt) > 35:
             txt = txt[:35]+"..."
         else:

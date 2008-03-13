@@ -400,7 +400,7 @@ class GrampsDbXmlWriter(UpdateCallback):
 
         ntype = escxml(note.get_type().xml_str())
         format = note.get_format()
-        text = note.get(markup=True)
+        text = note.get()
 
         self.g.write(' type="%s"' % ntype)
         if format != note.FLOWED:

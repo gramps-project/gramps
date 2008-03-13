@@ -387,7 +387,7 @@ class EditNote(EditPrimary):
         if self.obj:
             self.empty = False
             self.flow_changed(self.obj.get_format())
-            buffer_.set_text(self.obj.get(markup=True))
+            buffer_.set_text(self.obj.get())
         else:
             self.empty = True
             

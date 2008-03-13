@@ -915,8 +915,8 @@ class MergePeople:
             print "Deleted empty family %s" % family_handle
 
     def merge_notes(self, note1, note2):
-        t1 = note1.get(markup=True)
-        t2 = note2.get(markup=True)
+        t1 = note1.get()
+        t2 = note2.get()
         if not t2:
             return note1
         elif not t1:
