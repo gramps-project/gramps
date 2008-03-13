@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 15:17+0100\n"
+"POT-Creation-Date: 2008-03-13 07:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1322,33 +1322,12 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: ../src/gramps_main.py:200
-msgid "Danger: This is unstable code!"
-msgstr ""
-
-#: ../src/gramps_main.py:201
-msgid ""
-"This GRAMPS 3.0 Beta release is an early, experimental peek at the future "
-"3.0 release. This version is not meant for normal usage. Use at your own "
-"risk.\n"
-"\n"
-"This version may:\n"
-"1) Work differently than you expect.\n"
-"2) Fail to run at all.\n"
-"3) Crash often.\n"
-"4) Corrupt your data.\n"
-"5) Save data in a format that is incompatible with the official release.\n"
-"\n"
-"<b>BACKUP</b> your existing databases before opening them with this version, "
-"and make sure to export your data to XML every now and then."
-msgstr ""
-
-#: ../src/gramps_main.py:237 ../src/gramps_main.py:239
-#: ../src/gramps_main.py:249
+#: ../src/gramps_main.py:210 ../src/gramps_main.py:212
+#: ../src/gramps_main.py:222
 msgid "Configuration error"
 msgstr ""
 
-#: ../src/gramps_main.py:240
+#: ../src/gramps_main.py:213
 msgid ""
 "\n"
 "\n"
@@ -1356,7 +1335,7 @@ msgid ""
 "schema of GRAMPS is properly installed."
 msgstr ""
 
-#: ../src/gramps_main.py:250
+#: ../src/gramps_main.py:223
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -2899,25 +2878,25 @@ msgstr ""
 msgid "initials"
 msgstr ""
 
-#: ../src/Config/_GrampsConfigKeys.py:294
+#: ../src/Config/_GrampsConfigKeys.py:290
 msgid "Missing Surname"
 msgstr ""
 
-#: ../src/Config/_GrampsConfigKeys.py:295
+#: ../src/Config/_GrampsConfigKeys.py:291
 msgid "Missing Given Name"
 msgstr ""
 
-#: ../src/Config/_GrampsConfigKeys.py:296
+#: ../src/Config/_GrampsConfigKeys.py:292
 msgid "Missing Record"
 msgstr ""
 
-#: ../src/Config/_GrampsConfigKeys.py:297
-#: ../src/Config/_GrampsConfigKeys.py:298 ../src/plugins/WriteGeneWeb.py:475
+#: ../src/Config/_GrampsConfigKeys.py:293
+#: ../src/Config/_GrampsConfigKeys.py:294 ../src/plugins/WriteGeneWeb.py:475
 #: ../src/plugins/WriteGeneWeb.py:485 ../src/gen/proxy/living.py:415
 msgid "Living"
 msgstr ""
 
-#: ../src/Config/_GrampsConfigKeys.py:299
+#: ../src/Config/_GrampsConfigKeys.py:295
 msgid "Private Record"
 msgstr ""
 
@@ -11450,18 +11429,18 @@ msgstr ""
 
 #. Styles Frame
 #: ../src/ReportBase/_BareReportDialog.py:309
-#: ../src/ReportBase/_StyleEditor.py:100
+#: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr ""
 
 #: ../src/ReportBase/_BareReportDialog.py:313
-#: ../src/ReportBase/_StyleEditor.py:96
+#: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr ""
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:195
+#: ../src/ReportBase/_CommandLineReport.py:192
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:260
 #: ../src/ReportBase/_PaperMenu.py:362 ../src/ReportBase/_PaperMenu.py:384
 msgid "Custom Size"
@@ -15107,23 +15086,23 @@ msgstr ""
 msgid "Descendant Families of %s"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:84
+#: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:137
+#: ../src/ReportBase/_StyleEditor.py:138
 msgid "Error saving stylesheet"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:204
+#: ../src/ReportBase/_StyleEditor.py:205
 msgid "Style editor"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:208
+#: ../src/ReportBase/_StyleEditor.py:207
 msgid "Paragraph"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:242
+#: ../src/ReportBase/_StyleEditor.py:241
 msgid "No description available"
 msgstr ""
 

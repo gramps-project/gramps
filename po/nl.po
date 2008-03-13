@@ -1,4 +1,4 @@
-# translation of newnl.po to dutch
+# translation of nl.po to Dutch
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -34,14 +34,15 @@
 # Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008.
 # Erik De Richter <frederik.de.richter@gmail.com>, 2007, 2008.
 # Frederik De Richter <frederik.de.richter@pandora.be>, 2008.
+# Frederik De richter <frederik.de.richter@pandora.be>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: newnl\n"
+"Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 20:47+0100\n"
-"PO-Revision-Date: 2008-03-09 21:28+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@gmail.com>\n"
-"Language-Team: dutch <en@li.org>\n"
+"POT-Creation-Date: 2008-03-13 07:59+0100\n"
+"PO-Revision-Date: 2008-03-13 08:34+0100\n"
+"Last-Translator: Frederik De richter <frederik.de.richter@pandora.be>\n"
+"Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -988,7 +989,7 @@ msgstr "Bron"
 #: ../src/GrampsCfg.py:201 ../src/ScratchPad.py:632 ../src/ScratchPad.py:645
 #: ../src/Editors/_EditPerson.py:470 ../src/FilterEditor/_EditRule.py:277
 msgid "Media Object"
-msgstr "Mediaobject"
+msgstr "Media-object"
 
 # Gebeuren (korter)
 #: ../src/GrampsCfg.py:203 ../src/plugins/References.py:34
@@ -1248,12 +1249,12 @@ msgstr "Gegevensbestandspad"
 
 #: ../src/GrampsCfg.py:764
 msgid "Automatically load last database"
-msgstr "Laatste database automatisch laden"
+msgstr "Laatste gegevensbestand automatisch laden"
 
 # dit is een soort titel in een file-selector
 #: ../src/GrampsCfg.py:842
 msgid "Select media directory"
-msgstr "Selecteer mediaobjectmap"
+msgstr "Selecteer media-objectmap"
 
 #: ../src/GrampsCfg.py:930
 msgid "Name Format Editor"
@@ -1451,48 +1452,12 @@ msgstr "Geschiedenis van Ongedaan maken"
 msgid "URL"
 msgstr "URL"
 
-#: ../src/gramps_main.py:200
-msgid "Danger: This is unstable code!"
-msgstr "Let op: dit is onstabiele code!"
-
-#: ../src/gramps_main.py:201
-msgid ""
-"This GRAMPS 3.0 Beta release is an early, experimental peek at the future "
-"3.0 release. This version is not meant for normal usage. Use at your own "
-"risk.\n"
-"\n"
-"This version may:\n"
-"1) Work differently than you expect.\n"
-"2) Fail to run at all.\n"
-"3) Crash often.\n"
-"4) Corrupt your data.\n"
-"5) Save data in a format that is incompatible with the official release.\n"
-"\n"
-"<b>BACKUP</b> your existing databases before opening them with this version, "
-"and make sure to export your data to XML every now and then."
-msgstr ""
-"Deze GRAMPS 3.0 Beta versie is een vroege, experimentele versie van de 3.0 "
-"uitgave. Deze versie is niet bedoeld voor normaal gebruik. Gebruik deze "
-"versie dus op eigen risico.\n"
-"\n"
-"Het kan zijn dat deze versie:\n"
-"1) anders werkt dan u zou verwachten.\n"
-"2) helemaal niet werkt.\n"
-"3) vaak vastloopt.\n"
-"4) uw gegevens beschadigd.\n"
-"5) uw gegevens opslaat in een formaat dat niet compatibel is met de\n"
-"officiële uitgave.\n"
-"\n"
-"Maak dus zejker een <b>reserve kopie</b> van uw bestaande gegevens-\n"
-"bestanden voor u deze bestanden opent met deze versie en stel zeker dat u uw "
-"gegevens van tijd tot tijd exporteert naar XML."
-
-#: ../src/gramps_main.py:237 ../src/gramps_main.py:239
-#: ../src/gramps_main.py:249
+#: ../src/gramps_main.py:210 ../src/gramps_main.py:212
+#: ../src/gramps_main.py:222
 msgid "Configuration error"
 msgstr "Configuratiefout"
 
-#: ../src/gramps_main.py:240
+#: ../src/gramps_main.py:213
 msgid ""
 "\n"
 "\n"
@@ -1504,7 +1469,7 @@ msgstr ""
 "Mogelijk is uw installatie van GRAMPS onvolledig. Controleer dat de GConf "
 "schema van GRAMPS op de juiste wijze is geïnstalleerd."
 
-#: ../src/gramps_main.py:250
+#: ../src/gramps_main.py:223
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -1585,7 +1550,7 @@ msgstr "Locatie verwijderen"
 #: ../src/GrampsWidgets.py:976
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
-"Om een mediaobject te selecteren gebruik 'drag' en 'drop' of gebruik de "
+"Om een media-object te selecteren gebruik 'drag' en 'drop' of gebruik de "
 "knoppen"
 
 #: ../src/GrampsWidgets.py:978 ../src/PluginUtils/_GuiOptions.py:749
@@ -1594,20 +1559,20 @@ msgstr "Geen afbeelding gekozen, klik op knop om er één te kiezen"
 
 #: ../src/GrampsWidgets.py:979
 msgid "Edit media object"
-msgstr "Mediaobject bewerken"
+msgstr "Media-object bewerken"
 
 # dit is een soort titel in een file-selector
 #: ../src/GrampsWidgets.py:980 ../src/PluginUtils/_GuiOptions.py:724
 msgid "Select an existing media object"
-msgstr "Selecteer een bestaand mediaobject"
+msgstr "Selecteer een bestaand media-object"
 
 #: ../src/GrampsWidgets.py:981 ../src/DataViews/MediaView.py:88
 msgid "Add a new media object"
-msgstr "Een mediaobject toevoegen"
+msgstr "Een media-object toevoegen"
 
 #: ../src/GrampsWidgets.py:982
 msgid "Remove media object"
-msgstr "Mediaobject verwijderen"
+msgstr "Media-object verwijderen"
 
 #: ../src/GrampsWidgets.py:1030
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -1810,7 +1775,7 @@ msgstr "%(west_longitude)s W"
 
 #: ../src/QuestionDialog.py:187
 msgid "Error detected in database"
-msgstr "Een fout is gevonden in het gegevensbestand"
+msgstr "Fout gevonden in het gegevensbestand"
 
 #: ../src/QuestionDialog.py:188
 msgid ""
@@ -1870,7 +1835,7 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"De familistamboom gaat verder dan de maximum %d generaties die werden "
+"De familiestamboom gaat verder dan de maximum %d generaties die werden "
 "doorzocht.\n"
 "Het is dus mogelijk dat bepaalde verwantschappen werden gemist"
 
@@ -2185,7 +2150,7 @@ msgstr "Voorvoegsel"
 
 #: ../src/ScratchPad.py:666 ../src/ScratchPad.py:678
 msgid "Media Reference"
-msgstr "Media-referentie"
+msgstr "Mediareferentie"
 
 #: ../src/ScratchPad.py:692 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference"
@@ -3117,26 +3082,26 @@ msgstr "gewoon"
 msgid "initials"
 msgstr "initialen"
 
-#: ../src/Config/_GrampsConfigKeys.py:294
+#: ../src/Config/_GrampsConfigKeys.py:290
 msgid "Missing Surname"
 msgstr "Ontbrekende achternaam"
 
-#: ../src/Config/_GrampsConfigKeys.py:295
+#: ../src/Config/_GrampsConfigKeys.py:291
 msgid "Missing Given Name"
 msgstr "Ontbrekende voornaam"
 
 # complete/volledige/volledig ingevulde  kaarten/archieven
-#: ../src/Config/_GrampsConfigKeys.py:296
+#: ../src/Config/_GrampsConfigKeys.py:292
 msgid "Missing Record"
 msgstr "Ontbrekend gegeven"
 
-#: ../src/Config/_GrampsConfigKeys.py:297
-#: ../src/Config/_GrampsConfigKeys.py:298 ../src/plugins/WriteGeneWeb.py:475
+#: ../src/Config/_GrampsConfigKeys.py:293
+#: ../src/Config/_GrampsConfigKeys.py:294 ../src/plugins/WriteGeneWeb.py:475
 #: ../src/plugins/WriteGeneWeb.py:485 ../src/gen/proxy/living.py:415
 msgid "Living"
 msgstr "Levend"
 
-#: ../src/Config/_GrampsConfigKeys.py:299
+#: ../src/Config/_GrampsConfigKeys.py:295
 msgid "Private Record"
 msgstr "Gegevens privé"
 
@@ -3347,7 +3312,7 @@ msgstr "Het geselecteerde media object verwijderen"
 
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 msgid "Drag Media Object"
-msgstr "mediaobject slepen"
+msgstr "media-object slepen"
 
 #: ../src/DataViews/MediaView.py:215
 msgid "Media Filter Editor"
@@ -3387,23 +3352,23 @@ msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
 msgstr ""
-"Dit mediaobject wordt momenteel gebruikt. Als u dit object verwijdert zal "
+"Dit media-object wordt momenteel gebruikt. Als u dit object verwijdert zal "
 "het uit het gegevensbestand worden gehaald en uit alle archieven die er naar "
 "verwijzen."
 
 #: ../src/DataViews/MediaView.py:401
 msgid "Deleting media object will remove it from the database."
 msgstr ""
-"Bij het verwijderen van een mediaobject zal het uit het gegevensbestand "
+"Bij het verwijderen van een media-object zal het uit het gegevensbestand "
 "worden gehaald."
 
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
-msgstr "mediaobject verwijderen?"
+msgstr "media-object verwijderen?"
 
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
-msgstr "Mediaobject verwijderen"
+msgstr "Media-object verwijderen"
 
 #: ../src/DataViews/GrampletView.py:73 ../src/DataViews/GrampletView.py:840
 msgid "Unnamed Gramplet"
@@ -3412,7 +3377,7 @@ msgstr "Onbenoemde gramplet"
 #: ../src/DataViews/GrampletView.py:125
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
-"Versleep de eigenschappenknop om te veerplaatsen en klik op deze knop voor "
+"Versleep de eigenschappenknop om te verplaatsen en klik op deze knop voor "
 "instellingen"
 
 #: ../src/DataViews/GrampletView.py:146
@@ -4648,12 +4613,12 @@ msgstr "_Internet"
 # dit is een soort titel in een file-selector
 #: ../src/Editors/AddMedia.py:103
 msgid "Select a media object"
-msgstr "Selecteer een mediaobject"
+msgstr "Selecteer een media-object"
 
 # dit is een soort titel in een file-selector
 #: ../src/Editors/AddMedia.py:146
 msgid "Select media object"
-msgstr "Selecteer mediaobject"
+msgstr "Selecteer media-object"
 
 #: ../src/Editors/AddMedia.py:156
 msgid "Import failed"
@@ -5020,7 +4985,7 @@ msgstr "Nieuwe media"
 
 #: ../src/Editors/_EditMedia.py:201
 msgid "Edit Media Object"
-msgstr "mediaobject bewerken"
+msgstr "media-object bewerken"
 
 #: ../src/Editors/_EditMedia.py:239
 msgid "Cannot save media object"
@@ -5048,7 +5013,7 @@ msgstr "Media-object (%s) bewerken"
 
 #: ../src/Editors/_EditMedia.py:339
 msgid "Remove Media Object"
-msgstr "mediaobject verwijderen"
+msgstr "media-object verwijderen"
 
 #: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:377
 msgid "Media Reference Editor"
@@ -5329,7 +5294,7 @@ msgstr "Nieuwe bibliotheek"
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/Editors/_EditRepoRef.py:188
 msgid "Repo Reference Editor"
-msgstr "Bib Verwijzings-editor"
+msgstr "Bib verwijzing aanpassen"
 
 #: ../src/Editors/_EditRepoRef.py:195
 msgid "Modify Repository"
@@ -5431,7 +5396,7 @@ msgstr "Een bron toevoegen"
 
 #: ../src/Editors/_EditUrl.py:68 ../src/Editors/_EditUrl.py:98
 msgid "Internet Address Editor"
-msgstr "Internetadres-editor"
+msgstr "Internetadres bewerken"
 
 #: ../src/GrampsDbUtils/_Backup.py:89
 msgid "Error saving backup data"
@@ -5549,7 +5514,7 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"De database kan niet worden opgeslagen omdat u geen rechten heeft om in de "
+"Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om in de "
 "map te schrijven. Zorg dat u schrijftoegang krijgt tot de map en probeer dan "
 "opnieuw."
 
@@ -5558,7 +5523,7 @@ msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"De database kan niet worden opgeslagen omdat u geen rechten heeft om het "
+"Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om het "
 "bestand te beschrijven. Zorg dat u schrijftoegang krijgt tot het bestand en "
 "probeer dan opnieuw."
 
@@ -5584,7 +5549,7 @@ msgstr ""
 
 #: ../src/GrampsDbUtils/importdbdir.py:77 ../src/plugins/ReadGrdb.py:101
 msgid "The Database version is not supported by this version of GRAMPS."
-msgstr "De database-versie wordt niet door deze versie van GRAMPS ondersteund."
+msgstr "De versie van het gegevensbestand wordt niet door deze versie van GRAMPS ondersteund."
 
 #: ../src/GrampsDbUtils/importdbdir.py:218
 #: ../src/GrampsDbUtils/_ReadXML.py:1309 ../src/plugins/ReadGrdb.py:242
@@ -5965,12 +5930,12 @@ msgid ""
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
 "Controleer aub of de informatie juist is, het is niet zo belangrijk dat u de "
-"detailsvan de foutboodschap begrijpt. Kijk wel na of deze informatie niets "
+"details van de foutboodschap begrijpt. Kijk wel na of deze informatie niets "
 "bevat wat u liever niet naar de ontwikkelaars stuurt."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:367
 msgid "Bug Report Summary"
-msgstr "Samenvatting Fout Rapport"
+msgstr "Samenvatting foutverslag"
 
 #. side_label = gtk.Label(_("This is the completed bug report. The next page "#. "of the assistant will help you to send the report "#. "to the bug report mailing list."))
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:376
@@ -6009,7 +5974,7 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"Gebruik eze knop om het foutverslag naar het klembord te copiëren. Ga "
+"Gebruik deze knop om het foutverslag naar het klembord te copiëren. Ga "
 "vervolgens naar de foutopvolgingswebstek door de knop onderaan te gebruiken, "
 "plak het verslag  en klik op verzenden"
 
@@ -6025,7 +5990,7 @@ msgid ""
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
 "Dit is de laatste stap. Gebruik de knoppen op deze pagina om een webbrowser "
-"te startent en het foutverslag op te sturen naar het GRAMPS "
+"te starten en het foutverslag op te sturen naar het GRAMPS "
 "foutopvolgingssysteem."
 
 #: ../src/GrampsLogger/_ErrorView.py:23
@@ -6034,7 +5999,7 @@ msgstr "Algemeen"
 
 #: ../src/GrampsLogger/_ErrorView.py:58
 msgid "Error Report"
-msgstr "Foutrapport"
+msgstr "Foutverslag"
 
 #: ../src/GrampsLogger/_ErrorView.py:69
 msgid "GRAMPS has experienced an unexpected error"
@@ -6058,7 +6023,7 @@ msgstr "Foutdetail"
 
 #: ../src/GrampsLogger/_ErrorView.py:108 ../src/gen/lib/notetype.py:83
 msgid "Report"
-msgstr "Rapport"
+msgstr "Verslag"
 
 #: ../src/Selectors/_SelectEvent.py:46
 msgid "Select Event"
@@ -6074,7 +6039,7 @@ msgstr "Selecteer opmerking"
 
 #: ../src/Selectors/_SelectObject.py:60
 msgid "Select Media Object"
-msgstr "Selecteer mediaobject"
+msgstr "Selecteer media-object"
 
 #: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:881
 msgid "Select Person"
@@ -6367,7 +6332,7 @@ msgstr "Lege pagina's bijvoegen"
 
 #: ../src/plugins/AncestorTree.py:478 ../src/plugins/DescendTree.py:433
 msgid "Whether to include pages that are blank."
-msgstr "met blanco pagina's."
+msgstr "Met/zonder blanco pagina's."
 
 #: ../src/plugins/AncestorTree.py:481 ../src/plugins/DescendTree.py:436
 msgid "Co_mpress tree"
@@ -6440,7 +6405,7 @@ msgstr "De centrale persoon voor dit verslag"
 #: ../src/plugins/DetAncestralReport.py:685
 #: ../src/plugins/DetDescendantReport.py:646 ../src/plugins/FanChart.py:348
 msgid "The number of generations to include in the report"
-msgstr "Het aantal generaties dat gettond wordt in het verslag"
+msgstr "Het aantal generaties dat getoond wordt in het verslag"
 
 #: ../src/plugins/AncestorReport.py:256
 #: ../src/plugins/DetAncestralReport.py:688
@@ -6476,7 +6441,7 @@ msgstr "De gebruikte stijl voor de titel van de pagina."
 #: ../src/plugins/DetAncestralReport.py:786
 #: ../src/plugins/DetDescendantReport.py:751 ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
-msgstr "De gebruikte stijl voor de generatie-kop."
+msgstr "De gebruikte stijl voor de generatiehoofding."
 
 #: ../src/plugins/AncestorReport.py:343
 msgid "Ahnentafel Report"
@@ -6568,7 +6533,7 @@ msgstr "Instellingen"
 
 #: ../src/plugins/BookReport.py:946
 msgid "Book Menu"
-msgstr "Boek menu"
+msgstr "Boekmenu"
 
 #: ../src/plugins/BookReport.py:969
 msgid "Available Items Menu"
@@ -6945,6 +6910,10 @@ msgstr "Levert een grafische kalender"
 msgid "Produces a report of birthdays and anniversaries"
 msgstr "Levert een verslag met geboortedatums en verjaardagen"
 
+#: ../src/plugins/ChangeNames.py:67
+msgid "manual|Fix_Capitalization_of_Family_Names..."
+msgstr "Verbeter de hoofdletters van familienamen..."
+
 #: ../src/plugins/ChangeNames.py:77 ../src/plugins/ChangeNames.py:255
 msgid "Capitalization changes"
 msgstr "Hoofdletterwijzigingen"
@@ -7013,12 +6982,12 @@ msgstr "Geen gebeurtenis-archief is aangepast."
 
 #: ../src/plugins/ChangeTypes.py:142
 msgid "1 event record was modified."
-msgstr "Er is 1 gebeurtenis-archief aangepast."
+msgstr "1 gebeurtenisgegeven werd aangepast."
 
 #: ../src/plugins/ChangeTypes.py:144
 #, python-format
 msgid "%d event records were modified."
-msgstr "Er zijn %d gebeurtenis-archieven aangepast."
+msgstr "%d gebeurtenisgegevens werden aangepast."
 
 #: ../src/plugins/ChangeTypes.py:204
 msgid "Rename Event Types"
@@ -7049,7 +7018,7 @@ msgstr "Mogelijke dubbele echtgenoten zoeken"
 
 #: ../src/plugins/Check.py:323
 msgid "Looking for character encoding errors"
-msgstr "Mogelijke tekenset fouten zoeken"
+msgstr "Mogelijke lettertypefouten zoeken"
 
 #: ../src/plugins/Check.py:350
 msgid "Looking for broken family links"
@@ -7066,7 +7035,7 @@ msgstr "Bestand selecteren"
 
 #: ../src/plugins/Check.py:552 ../src/plugins/WriteCD.py:257
 msgid "Media object could not be found"
-msgstr "Mediaobject kon niet worden gevonden"
+msgstr "Media-object kon niet worden gevonden"
 
 #: ../src/plugins/Check.py:553
 #, python-format
@@ -7106,7 +7075,7 @@ msgstr "Zoeken naar lege locatiegegevens"
 
 #: ../src/plugins/Check.py:631
 msgid "Looking for empty media records"
-msgstr "Zoeken naar lege mediaobjectengegevens"
+msgstr "Zoeken naar lege media-objectengegevens"
 
 #: ../src/plugins/Check.py:640
 msgid "Looking for empty repository records"
@@ -7146,7 +7115,7 @@ msgstr "Zoeken naar bron referentie problemen"
 
 #: ../src/plugins/Check.py:1034
 msgid "Looking for media object reference problems"
-msgstr "Zoeken naar mediaobject referentie problemen"
+msgstr "Zoeken naar media-object referentie problemen"
 
 #: ../src/plugins/Check.py:1126
 msgid "Looking for note reference problems"
@@ -7244,39 +7213,39 @@ msgstr "Er waren verwijzingen naar %d bronnen, die niet zijn gevonden\n"
 
 #: ../src/plugins/Check.py:1375
 msgid "1 media object was referenced, but not found\n"
-msgstr "Er was een verwijzing naar 1 mediaobject welke niet werd gevonden\n"
+msgstr "Er was een verwijzing naar 1 media-object welke niet werd gevonden\n"
 
 #: ../src/plugins/Check.py:1377 ../src/plugins/Check.py:1422
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr "Er waren verwijzingen naar %d mediaobjecten, welke niet werden gevonden\n"
+msgstr "Er waren verwijzingen naar %d media-objecten, welke niet werden gevonden\n"
 
 #: ../src/plugins/Check.py:1380
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Verwijzing naar 1 ontbrekend mediaobject werd behouden\n"
+msgstr "Verwijzing naar 1 ontbrekend media-object werd behouden\n"
 
 #: ../src/plugins/Check.py:1382
 #, python-format
 msgid "References to %d media objects were kept\n"
-msgstr "Verwijzingen naar %d mediaobjecten werden behouden\n"
+msgstr "Verwijzingen naar %d media-objecten werden behouden\n"
 
 #: ../src/plugins/Check.py:1385
 msgid "1 missing media object was replaced\n"
-msgstr "Er is 1 ontbrekend mediaobject vervangen\n"
+msgstr "Er is 1 ontbrekend media-object vervangen\n"
 
 #: ../src/plugins/Check.py:1387
 #, python-format
 msgid "%d missing media objects were replaced\n"
-msgstr "Er zijn %d ontbrekende mediaobjecten vervangen\n"
+msgstr "Er zijn %d ontbrekende media-objecten vervangen\n"
 
 #: ../src/plugins/Check.py:1390
 msgid "1 missing media object was removed\n"
-msgstr "Er is 1 ontbrekend mediaobject verwijderd\n"
+msgstr "Er is 1 ontbrekend media-object verwijderd\n"
 
 #: ../src/plugins/Check.py:1392
 #, python-format
 msgid "%d missing media objects were removed\n"
-msgstr "Er zijn %d ontbrekende mediaobjecten verwijderd\n"
+msgstr "Er zijn %d ontbrekende media-objecten verwijderd\n"
 
 #: ../src/plugins/Check.py:1395
 msgid "1 invalid event reference was removed\n"
@@ -7325,7 +7294,7 @@ msgstr "Er waren verwijzingen naar %d bronnen, die niet zijn gevonden\n"
 
 #: ../src/plugins/Check.py:1420
 msgid "1 media object was referenced but not found\n"
-msgstr "Er was een verwijzing naar 1 mediaobject welke niet werd gevonden\n"
+msgstr "Er was een verwijzing naar 1 media-object welke niet werd gevonden\n"
 
 #: ../src/plugins/Check.py:1426
 msgid "1 note object was referenced but not found\n"
@@ -7363,7 +7332,7 @@ msgstr ""
 "   %d families\n"
 "   %d gebeurtenissen\n"
 "   %d bronnen\n"
-"   %d mediaobjecten\n"
+"   %d media-objecten\n"
 "   %d locaties\n"
 "   %d bibliotheken\n"
 "   %d opmerkingen\n"
@@ -7395,8 +7364,8 @@ msgid ""
 "Produces a DocBook XML file that contains a parameter reference of Reports "
 "and Tools."
 msgstr ""
-"Maakt een DocBook XML-bestand aan dat een "
-"parameterverwijzing naar verslagen en gereedschappen bevat."
+"Maakt een DocBook XML-bestand aan dat een parameterverwijzing naar verslagen "
+"en gereedschappen bevat."
 
 #: ../src/plugins/CountAncestors.py:61
 #, python-format
@@ -7475,7 +7444,9 @@ msgstr "Datumtest starten?"
 msgid ""
 "This test will create many persons and events in the current database. Do "
 "you really want to run this test?"
-msgstr "Deze test zal vele personen en gebeurtenissen aanmaken i het huisige gegevensbestand. Wilt u absoluut deze test lopen?"
+msgstr ""
+"Deze test zal vele personen en gebeurtenissen aanmaken i het huisige "
+"gegevensbestand. Wilt u absoluut deze test lopen?"
 
 #: ../src/plugins/DateParserDisplayTest.py:62
 msgid "Run test"
@@ -7705,23 +7676,23 @@ msgstr "Unieke achternamen"
 
 #: ../src/plugins/DefaultGramplets.py:694 ../src/plugins/Summary.py:128
 msgid "Media Objects"
-msgstr "mediaobjecten"
+msgstr "Media-objecten"
 
 #: ../src/plugins/DefaultGramplets.py:696 ../src/plugins/Summary.py:130
 msgid "Individuals with media objects"
-msgstr "Personen met mediaobjecten"
+msgstr "Personen met media-objecten"
 
 #: ../src/plugins/DefaultGramplets.py:700 ../src/plugins/Summary.py:131
 msgid "Total number of media object references"
-msgstr "Totaal aantal verwijzingen naar mediaobjecten"
+msgstr "Totaal aantal verwijzingen naar media-objecten"
 
 #: ../src/plugins/DefaultGramplets.py:704 ../src/plugins/Summary.py:132
 msgid "Number of unique media objects"
-msgstr "Aantal unieke mediaobjecten"
+msgstr "Aantal unieke media-objecten"
 
 #: ../src/plugins/DefaultGramplets.py:709 ../src/plugins/Summary.py:133
 msgid "Total size of media objects"
-msgstr "Totale grootte van mediaobjecten"
+msgstr "Totale grootte van media-objecten"
 
 #: ../src/plugins/DefaultGramplets.py:711 ../src/plugins/Summary.py:134
 msgid "bytes"
@@ -7729,7 +7700,7 @@ msgstr "byte"
 
 #: ../src/plugins/DefaultGramplets.py:713 ../src/plugins/Summary.py:137
 msgid "Missing Media Objects"
-msgstr "Ontbrekende mediaobjecten"
+msgstr "Ontbrekende media-objecten"
 
 #: ../src/plugins/DefaultGramplets.py:720
 msgid "Enter Python expressions"
@@ -9841,11 +9812,11 @@ msgid ""
 "outside of GRAMPS. Then you can adjust the paths using this tool so that the "
 "media objects store the correct file locations."
 msgstr ""
-"Dit hulpmiddel laat batch-operaties toe voor mediaobjecten opgeslagen in "
+"Dit hulpmiddel laat batch-operaties toe voor media-objecten opgeslagen in "
 "GRAMPS. Er dient een belangrijk onderscheid gemaakt te worden tussen een "
-"GRAMPS mediaobject en het mediabestand.\n"
+"GRAMPS media-object en het mediabestand.\n"
 "\n"
-"Een GRAMPS mediaobject is een verzameling van gegevens van het media-"
+"Een GRAMPS media-object is een verzameling van gegevens van het media-"
 "objectbestand: de bestandsnaam en/of pad, de beschrijving, ID, opmerkingen, "
 "bronreferenties, enz. Deze gegevens <b>omvatten het eigenlijke bestand niet</"
 "b>.\n"
@@ -10136,7 +10107,8 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Deze pagina bevat een index van alle personen in het gegevensbestand, "
-"gesorteerd op achternaam. Door een &#8217;persoonsnaam te kiezen kunt u naar de &#8217;pagina van deze persoon gaan."
+"gesorteerd op achternaam. Door een &#8217;persoonsnaam te kiezen kunt u naar "
+"de &#8217;pagina van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:976
 #, python-format
@@ -10146,7 +10118,8 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Deze pagina bevat een index van alle personen in het gegevensbestand met "
-"achternaam %s. Door de &#8217;naam te kiezen kunt u naar de &#8217;pagina van deze persoon gaan."
+"achternaam %s. Door de &#8217;naam te kiezen kunt u naar de &#8217;pagina "
+"van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:1102
 msgid ""
@@ -10155,7 +10128,8 @@ msgid ""
 "place&#8217;s page."
 msgstr ""
 "Deze pagina bevat een index van alle locaties in het gegevensbestand, "
-"gesorteerd op titel. Door een &#8217;titel te kiezen gaat u naar de &#8217;pagina van deze locatie."
+"gesorteerd op titel. Door een &#8217;titel te kiezen gaat u naar de &#8217;"
+"pagina van deze locatie."
 
 #: ../src/plugins/NarrativeWeb.py:1112 ../src/plugins/NarrativeWeb.py:1463
 msgid "Letter"
@@ -10202,7 +10176,7 @@ msgstr "Kenmerken"
 
 #: ../src/plugins/NarrativeWeb.py:1397
 msgid "Missing media object:"
-msgstr "Ontbrekend mediaobject:"
+msgstr "Ontbrekend media-object:"
 
 #: ../src/plugins/NarrativeWeb.py:1445 ../src/plugins/NarrativeWeb.py:1447
 msgid "Surnames by person count"
@@ -10229,8 +10203,8 @@ msgid ""
 "source&#8217;s page."
 msgstr ""
 "Deze pagina bevat een index van alle bronnen van het gegevensbestand, "
-"gesorteerd volgens titel. Aanklikken van de &#8217;brontitel brengt u naar de "
-"&#8217;bronpagina."
+"gesorteerd volgens titel. Aanklikken van de &#8217;brontitel brengt u naar "
+"de &#8217;bronpagina."
 
 #: ../src/plugins/NarrativeWeb.py:1709
 msgid "Publication information"
@@ -10911,7 +10885,7 @@ msgstr "Gebeurtenissen ID's herschikken"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
-msgstr "mediaobject herordenen"
+msgstr "media-object herordenen"
 
 #: ../src/plugins/ReorderIds.py:110
 msgid "Reordering Source IDs"
@@ -11350,7 +11324,9 @@ msgstr "De gebruikte stijl voor de items en waardes."
 
 #: ../src/plugins/StatisticsChart.py:906
 msgid "Produces statistical bar and pie charts of the people in the database"
-msgstr "Genereert statistische staaf- en taartdiagrammen van de personen in het gegevensbestand"
+msgstr ""
+"Genereert statistische staaf- en taartdiagrammen van de personen in het "
+"gegevensbestand"
 
 # samenvatting?
 #: ../src/plugins/Summary.py:151
@@ -12198,18 +12174,18 @@ msgstr "Documentopties"
 
 #. Styles Frame
 #: ../src/ReportBase/_BareReportDialog.py:309
-#: ../src/ReportBase/_StyleEditor.py:100
+#: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr "Stijl"
 
 #: ../src/ReportBase/_BareReportDialog.py:313
-#: ../src/ReportBase/_StyleEditor.py:96
+#: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stijleditor"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:195
+#: ../src/ReportBase/_CommandLineReport.py:192
 #: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:260
 #: ../src/ReportBase/_PaperMenu.py:362 ../src/ReportBase/_PaperMenu.py:384
 msgid "Custom Size"
@@ -16167,24 +16143,24 @@ msgstr "Overleden: in %(death_place)s."
 msgid "Descendant Families of %s"
 msgstr "Familie-afstammelingen van %s"
 
-#: ../src/ReportBase/_StyleEditor.py:84
+#: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr "Documentstijlen"
 
-#: ../src/ReportBase/_StyleEditor.py:137
+#: ../src/ReportBase/_StyleEditor.py:138
 msgid "Error saving stylesheet"
 msgstr "Fout bij opslaan stylesheet"
 
-#: ../src/ReportBase/_StyleEditor.py:204
+#: ../src/ReportBase/_StyleEditor.py:205
 msgid "Style editor"
 msgstr "Stijl-editor"
 
 # paragraaf?
-#: ../src/ReportBase/_StyleEditor.py:208
+#: ../src/ReportBase/_StyleEditor.py:207
 msgid "Paragraph"
 msgstr "Alinea"
 
-#: ../src/ReportBase/_StyleEditor.py:242
+#: ../src/ReportBase/_StyleEditor.py:241
 msgid "No description available"
 msgstr "Geen beschrijving beschikbaar"
 
@@ -16223,7 +16199,7 @@ msgstr "Brongegevens verwerken"
 
 #: ../src/gen/proxy/dbbase.py:120 ../src/gen/db/base.py:355
 msgid "Processing Media records"
-msgstr "Mediaobjectgegevens verwerken"
+msgstr "Media-objectgegevens verwerken"
 
 #: ../src/gen/proxy/dbbase.py:126 ../src/gen/db/base.py:361
 msgid "Processing Repository records"
@@ -17014,7 +16990,7 @@ msgstr "Objecten waarnaar <x aantal keer> naar verwezen wordt"
 
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:45
 msgid "Matches objects with a certain reference count"
-msgstr "Vindt mediaobjecten waarnaar een bepaald aantal maal verwezen wordt"
+msgstr "Vindt media-objecten waarnaar een bepaald aantal maal verwezen wordt"
 
 #. things we want to do just once, not for every handle
 #: ../src/Filters/Rules/_HasReferenceCountBase.py:51
@@ -18394,7 +18370,7 @@ msgstr "Vindt bronnen met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
-msgstr "Alle mediaobjecten"
+msgstr "Alle media-objecten"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
@@ -18422,7 +18398,7 @@ msgstr "Pad:"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr "Parameters voor mediaobjecten"
+msgstr "Parameters voor media-objecten"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
@@ -18450,15 +18426,15 @@ msgstr ""
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr "Mediaobjecten waarnaar <x aantal keer> naar verwezen wordt"
+msgstr "Media-objecten waarnaar <x aantal keer> naar verwezen wordt"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr "Vindt mediaobjecten waarnaar een bepaald aantal keer wordt verwezen"
+msgstr "Vindt media-objecten waarnaar een bepaald aantal keer wordt verwezen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Media objecten die uit het <filter> komen"
+msgstr "Media-objecten die uit het <filter> komen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
@@ -18466,7 +18442,7 @@ msgstr "Vindt media objecten met een opgegeven filter"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr "Media objecten met de aanduiding: privé"
+msgstr "Media-objecten met de aanduiding: privé"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
@@ -18474,11 +18450,11 @@ msgstr "Vindt Media objecten die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Media objecten met <Id> die voldoen aan een reguliere uitdrukking"
+msgstr "Media-objecten met <Id> die voldoen aan een reguliere uitdrukking"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr "Vindt media objecten wiens GRAMPS ID voldoet aan de reguliere uitdrukking"
+msgstr "Vindt media-objecten wiens GRAMPS ID voldoet aan de reguliere uitdrukking"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
@@ -18629,7 +18605,7 @@ msgstr "Opmerkingen waarnaar <x aantal maal> verwezen wordt"
 
 #: ../src/Filters/Rules/Note/_HasReferenceCountOf.py:44
 msgid "Matches notes with a certain reference count"
-msgstr "Vindt opmerkingenwaarnaar een bepaald aantal maal naar verwezen wordt"
+msgstr "Vindt opmerkingen waarnaar een bepaald aantal maal naar verwezen wordt"
 
 #: ../src/Filters/Rules/Note/_MatchesFilter.py:45
 msgid "Notes matching the <filter>"
@@ -18760,7 +18736,7 @@ msgid ""
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
-"Deze filter wordt momenteel als basis voor anderefilters gebruikt. Indien "
+"Deze filter wordt momenteel als basis voor andere filters gebruikt. Indien "
 "deze filter verwijderd wordt, zullen alle onderliggende filters ook "
 "verwijderd worden."
 
@@ -19211,7 +19187,7 @@ msgstr "A_fkorting:"
 
 #: ../src/glade/gramps.glade.h:40
 msgid "Abo_ve:"
-msgstr "Bo_ven"
+msgstr "Bo_ven:"
 
 #: ../src/glade/gramps.glade.h:42
 msgid "Add_ress:"
@@ -19244,7 +19220,7 @@ msgstr "_Parochie:"
 
 #: ../src/glade/gramps.glade.h:50
 msgid "Click to delete gramplet from view"
-msgstr "Klik om gramplet te verwijderen van vanster"
+msgstr "Klik om gramplet te verwijderen van venster"
 
 #: ../src/glade/gramps.glade.h:51
 msgid "Click to expand/collapse"
@@ -19353,7 +19329,7 @@ msgid ""
 "(0,0) is the top left corner. Do this by giving two corners on a diagonal of "
 "the rectangular region you want to use."
 msgstr ""
-"Als het mediaobject een beeld is, kies dan een gedeelte van het beeld "
+"Als het media-object een beeld is, kies dan een gedeelte van het beeld "
 "waarnaar verwezen wordt. Punt (0,0) is de linkerbovenhoek. Geef dan twee "
 "hoeken van een diagonaal op zodat een rechthoekig gebied ontstaat, die u "
 "wilt gebruiken."
@@ -20196,7 +20172,7 @@ msgstr "Zoek naar gebeurtenissen"
 
 #: ../src/plugins/unused.glade.h:4
 msgid "Search for media"
-msgstr "Zoek naar mediaobjecten"
+msgstr "Zoek naar media-objecten"
 
 #: ../src/plugins/unused.glade.h:5
 msgid "Search for places"
