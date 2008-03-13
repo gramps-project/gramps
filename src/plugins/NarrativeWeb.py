@@ -676,11 +676,9 @@ class BasePage:
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n\n')
 
-    # Probably only used in IndividualPage.display_ind_sources
+    # Only used in IndividualPage.display_ind_sources
     # and MediaPage.display_media_sources
-    def display_source_refs(self, of):
-        bibli = self.bibli
-
+    def display_source_refs(self, of, bibli):
         if bibli.get_citation_count() == 0:
             return
 
@@ -1347,7 +1345,7 @@ class MediaPage(BasePage):
         self.display_note_list(of, photo.get_note_list())
         self.display_attr_list(of, photo.get_attribute_list())
         self.display_media_sources(of, photo)
-        self.display_references(of, media_list)
+        self.display_references(of, my_media_list)
 
         self.display_footer(of)
         self.close_file(of)
@@ -1355,7 +1353,7 @@ class MediaPage(BasePage):
     def display_media_sources(self, of, photo):
         for sref in photo.get_source_references():
             self.bibli.add_reference(sref)
-        self.display_source_refs(of)
+        self.display_source_refs(of, self.bibli)
 
     def display_attr_list(self, of, attrlist=None):
         if not attrlist:
@@ -2009,7 +2007,7 @@ class IndividualPage(BasePage):
     def display_ind_sources(self, of):
         for sref in self.person.get_source_references():
             self.bibli.add_reference(sref)
-        self.display_source_refs(of)
+        self.display_source_refs(of, self.bibli)
 
     def display_ind_pedigree(self, of):
         db = self.report.database
