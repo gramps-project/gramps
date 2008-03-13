@@ -230,7 +230,7 @@ class BasePage:
         self.up = False
 
         # TODO. All of these attributes are not necessary, because we have
-        # als the options in self.options.  Besides, we need to check which
+        # also the options in self.options.  Besides, we need to check which
         # are still required.
         self.inc_download = options['incdownload']
         self.html_dir = options['target']
@@ -255,34 +255,13 @@ class BasePage:
         self.photo_list = photo_list
         self.usegraph = options['graph']
         self.graphgens = options['graphgens']
-        self.use_home = self.options['homenote'] != "" or \
-                        self.options['homeimg'] != ""
-
-    def store_file(self, archive, html_dir, from_path, to_path):
-        if archive:
-            archive.add(str(from_path), str(to_path))
-        else:
-            dest = os.path.join(html_dir, to_path)
-            dirname = os.path.dirname(dest)
-            if not os.path.isdir(dirname):
-                os.makedirs(dirname)
-            if from_path != dest:
-                shutil.copyfile(from_path, dest)
-            elif self.warn_dir:
-                WarningDialog(
-                    _("Possible destination error") + "\n" +
-                    _("You appear to have set your target directory "
-                      "to a directory used for data storage. This "
-                      "could create problems with file management. "
-                      "It is recommended that you consider using "
-                      "a different directory to store your generated "
-                      "web pages."))
-                self.warn_dir = False
+        self.use_home = options['homenote'] != "" or \
+                        options['homeimg'] != ""
 
     def copy_media(self, photo, store_ref=True):
         handle = photo.get_handle()
         if store_ref:
-            lnk = (self.cur_name, self.page_title, self.gid)
+            lnk = (self.cur_fname, self.page_title, self.gid)
             if handle in self.photo_list:
                 if lnk not in self.photo_list[handle]:
                     self.photo_list[handle].append(lnk)
@@ -295,13 +274,13 @@ class BasePage:
         return (real_path, thumb_path)
 
     def create_file(self, name):
-        self.cur_name = name + self.ext
+        self.cur_fname = name + self.ext
         if self.archive:
             self.string_io = StringIO()
             of = codecs.EncodedFile(self.string_io, 'utf-8',
                                     self.encoding, 'xmlcharrefreplace')
         else:
-            page_name = os.path.join(self.html_dir, self.cur_name)
+            page_name = os.path.join(self.html_dir, self.cur_fname)
             of = codecs.EncodedFile(open(page_name, "w"), 'utf-8',
                                     self.encoding, 'xmlcharrefreplace')
         return of
@@ -320,7 +299,7 @@ class BasePage:
         """
         path = self.build_path(path, name, up)
         return path + '/' + name + self.ext
-        
+
     def link_path(self, path, name):
         path = "%s/%s/%s" % (path, name[0].lower(), name[1].lower())
         return path + '/' + name + self.ext
@@ -331,7 +310,7 @@ class BasePage:
         for the first two directory levels.  For example
         0/2/02c0d8f888f566ae95ffbdca64274b51
         """
-        self.cur_name = self.link_path(path, name)
+        self.cur_fname = self.link_path(path, name)
         if self.archive:
             self.string_io = StringIO()
             of = codecs.EncodedFile(self.string_io, 'utf-8',
@@ -348,7 +327,7 @@ class BasePage:
 
     def close_file(self, of):
         if self.archive:
-            tarinfo = tarfile.TarInfo(self.cur_name)
+            tarinfo = tarfile.TarInfo(self.cur_fname)
             tarinfo.size = len(self.string_io.getvalue())
             tarinfo.mtime = time.time()
             if os.sys.platform != "win32":
@@ -359,7 +338,7 @@ class BasePage:
             of.close()
         else:
             of.close()
-        self.cur_name = None
+        self.cur_fname = None
 
     def lnkfmt(self, text):
         """This creates an MD5 hex string to be used as filename."""
@@ -372,7 +351,7 @@ class BasePage:
             note = db.get_note_from_gramps_id(self.footer)
             of.write('\t<div id="user_footer">\n')
             of.write('\t\t<p>')
-            of.write(note.get(markup=True))
+            of.write(note.get())
             of.write('</p>\n')
             of.write('\t</div>\n')
         if self.copyright == 0:
@@ -460,7 +439,7 @@ class BasePage:
         if self.header:
             note = db.get_note_from_gramps_id(self.header)
             of.write('\t<p id="user_header">')
-            of.write(note.get(markup=True))
+            of.write(note.get())
             of.write('</p>\n')
         of.write('</div>\n\n')
 
@@ -483,7 +462,7 @@ class BasePage:
 
         # Define 'self.currentsection' to correctly set navlink item CSS id
         # 'CurrentSection' for Navigation styling.
-        # Use 'self.cur_name' to determine 'CurrentSection' for individual
+        # Use 'self.cur_fname' to determine 'CurrentSection' for individual
         # elements for Navigation styling.
         self.currentsection = title
 
@@ -507,33 +486,33 @@ class BasePage:
         # Because of how this script was originally written, the appropriate section
         # ID is determined by looking for a directory or HTML file name to associate
         # with that section.
-        if "index" in self.cur_name:
+        if "index" in self.cur_fname:
             divid = "Home"
-        elif "introduction" in self.cur_name:
+        elif "introduction" in self.cur_fname:
             divid = "Introduction"
-        elif "surnames" in self.cur_name:
+        elif "surnames" in self.cur_fname:
             divid = "Surnames"
-        elif "srn" in self.cur_name:
+        elif "srn" in self.cur_fname:
             divid = "SurnameDetail"
-        elif "individuals" in self.cur_name:
+        elif "individuals" in self.cur_fname:
             divid = "Individuals"
-        elif "ppl" in self.cur_name:
+        elif "ppl" in self.cur_fname:
             divid = "IndividualDetail"
-        elif "sources" in self.cur_name:
+        elif "sources" in self.cur_fname:
             divid = "Sources"
-        elif "src" in self.cur_name:
+        elif "src" in self.cur_fname:
             divid = "SourceDetail"
-        elif "places" in self.cur_name:
+        elif "places" in self.cur_fname:
             divid = "Places"
-        elif "plc" in self.cur_name:
+        elif "plc" in self.cur_fname:
             divid = "PlaceDetail"
-        elif "gallery" in self.cur_name:
+        elif "gallery" in self.cur_fname:
             divid = "Gallery"
-        elif "img" in self.cur_name:
+        elif "img" in self.cur_fname:
             divid = "GalleryDetail"
-        elif "download" in self.cur_name:
+        elif "download" in self.cur_fname:
             divid = "Download"
-        elif "contact" in self.cur_name:
+        elif "contact" in self.cur_fname:
             divid = "Contact"
         else:
             divid = ''
@@ -556,28 +535,27 @@ class BasePage:
         if self.currentsection == title:
             cs = True
         elif title == "Surnames":
-            if "srn" in self.cur_name:
+            if "srn" in self.cur_fname:
                 cs = True
             elif "Surnames" in self.currentsection:
                 cs = True
         elif title == "Individuals":
-            if "ppl" in self.cur_name:
+            if "ppl" in self.cur_fname:
                 cs = True
         elif title == "Sources":
-            if "src" in self.cur_name:
+            if "src" in self.cur_fname:
                 cs = True
         elif title == "Places":
-            if "plc" in self.cur_name:
+            if "plc" in self.cur_fname:
                 cs = True
         elif title == "Gallery":
-            if "img" in self.cur_name:
+            if "img" in self.cur_fname:
                 cs = True
 
         cs = cs and ' id="CurrentSection"' or ''
         of.write('\t\t<li%s><a href="%s%s">%s</a></li>\n' % (cs, lpath, self.ext, title))
 
     def display_first_image_as_thumbnail( self, of, db, photolist=None):
-
         if not photolist or not self.use_gallery:
             return
 
@@ -599,7 +577,7 @@ class BasePage:
             self.doc_link(of, photo_handle, descr, up=True)
             of.write('\t</div>\n\n')
 
-            lnk = (self.cur_name, self.page_title, self.gid)
+            lnk = (self.cur_fname, self.page_title, self.gid)
             if photo_handle in self.photo_list:
                 if lnk not in self.photo_list[photo_handle]:
                     self.photo_list[photo_handle].append(lnk)
@@ -631,7 +609,7 @@ class BasePage:
                     descr = " ".join(wrapper.wrap(title))
                     self.doc_link(of, photo_handle, descr, up=True)
 
-                    lnk = (self.cur_name, self.page_title, self.gid)
+                    lnk = (self.cur_fname, self.page_title, self.gid)
                     if photo_handle in self.photo_list:
                         if lnk not in self.photo_list[photo_handle]:
                             self.photo_list[photo_handle].append(lnk)
@@ -648,9 +626,9 @@ class BasePage:
             return
 
         for notehandle in notelist:
-            noteobj = db.get_note_from_handle(notehandle)
-            format = noteobj.get_format()
-            text = noteobj.get(markup=True)
+            note = db.get_note_from_handle(notehandle)
+            format = note.get_format()
+            text = note.get()
             try:
                 text = unicode(text)
             except UnicodeDecodeError:
@@ -692,9 +670,12 @@ class BasePage:
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n\n')
 
+    # Probably only used in IndividualPage.display_ind_sources
+    # and MediaPage.display_media_sources
     def display_source_refs(self, of, db, bibli):
         if bibli.get_citation_count() == 0:
             return
+
         of.write('\t<div id="sourcerefs" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('Source References'))
         of.write('\t\t<ol>\n')
@@ -704,9 +685,9 @@ class BasePage:
             cindex += 1
             # Add this source to the global list of sources to be displayed
             # on each source page.
-            lnk = (self.cur_name, self.page_title, self.gid)
+            lnk = (self.cur_fname, self.page_title, self.gid)
             shandle = citation.get_source_handle()
-            if self.src_list.has_key(shandle):
+            if shandle in self.src_list:
                 if lnk not in self.src_list[shandle]:
                     self.src_list[shandle].append(lnk)
             else:
@@ -734,7 +715,7 @@ class BasePage:
                 notelist = sref.get_note_list()
                 for notehandle in notelist:
                     note = db.get_note_from_handle(notehandle)
-                    tmp.append("%s: %s" % (_('Text'), note.get(True)))
+                    tmp.append("%s: %s" % (_('Text'), note.get()))
                 if len(tmp) > 0:
                     of.write('\t\t\t\t\t<li><a name="sref%d%s">' % (cindex, key))
                     of.write('; &nbsp; '.join(tmp))
@@ -747,6 +728,7 @@ class BasePage:
     def display_references(self, of, db, handlelist):
         if not handlelist:
             return
+
         of.write('\t<div id="references" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('References'))
         of.write('\t\t<ol>\n')
@@ -758,16 +740,13 @@ class BasePage:
         index = 1
         for (path, name, gid) in sortlist:
             of.write('\t\t\t<li>')
-            self.person_link(of, path, name, gid)
+            self.person_link(of, "../../../" + path, name, gid)
             of.write('</li>\n')
             index = index + 1
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n')
 
-    def person_link(self, of, path, name, gid="", up=True):
-        if up:
-            path = "../../../" + path
-
+    def person_link(self, of, path, name, gid=""):
         of.write('<a href="%s">%s' % (path, name))
         if not self.noid and gid != "":
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
@@ -895,7 +874,7 @@ class IndividualListPage(BasePage):
                 of.write('\t\t\t<td class="ColumnName">')
                 fname = self.build_path_fname('ppl', person.handle)
                 self.person_link(of, fname,
-                                 _nd.display_given(person), person.gramps_id, False)
+                                 _nd.display_given(person), person.gramps_id)
                 of.write('</td>\n')
 
                 # birth column
@@ -1024,7 +1003,7 @@ class SurnamePage(BasePage):
             fname = self.build_path_fname('ppl', person.handle, True)
             self.person_link(of, fname,
                              person.get_primary_name().get_first_name(),
-                             person.gramps_id, False)
+                             person.gramps_id)
             of.write('</td>\n')
 
             # birth column
@@ -1576,7 +1555,7 @@ class IntroductionPage(BasePage):
         note_id = options['intronote']
         if note_id:
             note_obj = db.get_note_from_gramps_id(note_id)
-            text = note_obj.get(markup=True)
+            text = note_obj.get()
             if note_obj.get_format():
                 of.write('\t<pre>\n%s\n' % text)
                 of.write('\t</pre>\n')
@@ -1623,7 +1602,7 @@ class HomePage(BasePage):
         note_id = options['homenote']
         if note_id:
             note_obj = db.get_note_from_gramps_id(note_id)
-            text = note_obj.get(markup=True)
+            text = note_obj.get()
             if note_obj.get_format():
                 of.write('\t<pre>\n%s\n' % text)
                 of.write('\t</pre>\n')
@@ -1874,7 +1853,7 @@ class ContactPage(BasePage):
         note_id = options['contactnote']
         if note_id:
             note_obj = db.get_note_from_gramps_id(note_id)
-            text = note_obj.get(markup=True)
+            text = note_obj.get()
             if note_obj.get_format():
                 text = u"\t\t<pre>%s</pre>" % text
             else:
@@ -1977,7 +1956,7 @@ class IndividualPage(BasePage):
         of.write('\t\t\t\t<div class="box">')
         if person.handle in self.ind_list:
             person_name = _nd.display(person)
-            fname = self.build_path_fname('ppl', person.handle)
+            fname = self.build_path_fname('ppl', person.handle, True)
             self.person_link(of, fname, person_name)
         else:
             of.write(_nd.display(person))
@@ -2245,7 +2224,7 @@ class IndividualPage(BasePage):
         if child_handle in self.ind_list:
             of.write("\t\t\t\t\t\t<li>")
             child_name = _nd.display(child)
-            fname = self.build_path_fname('ppl', child_handle)
+            fname = self.build_path_fname('ppl', child_handle, True)
             self.person_link(of, fname, child_name, gid)
         else:
             of.write("\t\t\t\t\t\t<li>")
@@ -2258,7 +2237,7 @@ class IndividualPage(BasePage):
         of.write('\t\t\t\t<td class="ColumnValue">')
         gid = person.gramps_id
         if handle in self.ind_list:
-            fname = self.build_path_fname('ppl', handle)
+            fname = self.build_path_fname('ppl', handle, True)
             self.person_link(of, fname, _nd.display(person), gid)
         else:
             of.write(_nd.display(person))
@@ -2428,7 +2407,7 @@ class IndividualPage(BasePage):
             gid = spouse.get_gramps_id()
             if spouse_id in self.ind_list:
                 spouse_name = _nd.display(spouse)
-                fname = self.build_path_fname('ppl', spouse.handle)
+                fname = self.build_path_fname('ppl', spouse.handle, True)
                 self.person_link(of, fname, spouse_name, gid)
             else:
                 of.write(name)
@@ -2454,10 +2433,10 @@ class IndividualPage(BasePage):
             of.write('\t\t\t</tr>\n')
         notelist = family.get_note_list()
         for notehandle in notelist:
-            nobj = self.db.get_note_from_handle(notehandle)
-            if nobj:
-                text = nobj.get(markup=True)
-                format = nobj.get_format()
+            note = self.db.get_note_from_handle(notehandle)
+            if note:
+                text = note.get()
+                format = note.get_format()
                 if text:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
@@ -2473,10 +2452,9 @@ class IndividualPage(BasePage):
                     of.write('\t\t\t</tr>\n')
 
     def pedigree_person(self, of, person):
-        person_link = person.handle in self.ind_list
         person_name = _nd.display(person)
-        if person_link:
-            fname = self.build_path_fname('ppl', person.handle)
+        if person.handle in self.ind_list:
+            fname = self.build_path_fname('ppl', person.handle, True)
             self.person_link(of, fname, person_name)
         else:
             of.write(person_name)
@@ -2504,7 +2482,7 @@ class IndividualPage(BasePage):
                 of.write('</li>\n')
 
     def format_event(self, event, event_ref):
-        lnk = (self.cur_name, self.page_title, self.gid)
+        lnk = (self.cur_fname, self.page_title, self.gid)
         descr = event.get_description()
         place_handle = event.get_place_handle()
         if place_handle:
@@ -2555,10 +2533,10 @@ class IndividualPage(BasePage):
         notelist = event.get_note_list()
         notelist.extend(event_ref.get_note_list())
         for notehandle in notelist:
-            nobj = self.db.get_note_from_handle(notehandle)
-            if nobj:
-                note_text = nobj.get(markup=True)
-                format = nobj.get_format()
+            note = self.db.get_note_from_handle(notehandle)
+            if note:
+                note_text = note.get()
+                format = note.get_format()
                 if note_text:
                     if format:
                         text += u"<pre>%s</pre>" % note_text
@@ -2570,7 +2548,7 @@ class IndividualPage(BasePage):
 
     def get_citation_links(self, source_ref_list):
         gid_list = []
-        lnk = (self.cur_name, self.page_title, self.gid)
+        lnk = (self.cur_fname, self.page_title, self.gid)
         text = ""
 
         for sref in source_ref_list:
