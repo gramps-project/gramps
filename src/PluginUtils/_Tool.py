@@ -161,6 +161,7 @@ class CommandLineTool:
         self.database = database
         self.category = category
         self.option_class = option_class(name)
+        self.option_class.load_previous_values()
         self.show = options_str_dict.pop('show',None)
         self.options_str_dict = options_str_dict
         self.init_options(noopt)
