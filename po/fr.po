@@ -2023,7 +2023,7 @@ msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
-"L'arbre familial descend sur plus des %d générations maximum recherchées.\n"
+"L'arbre familial descend sur plus de %d générations.\n"
 "Il est possible que certaines relations ont été oubliées"
 
 #: ../src/Relationship.py:927
@@ -5928,7 +5928,7 @@ msgstr "  Note %(id)s\n"
 #: ../src/GrampsDbUtils/_ReadXML.py:259
 #, python-format
 msgid "  People: %d\n"
-msgstr "  Individu : %d\n"
+msgstr "  Individus : %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:260
 #, python-format
@@ -17176,7 +17176,7 @@ msgstr "Événements correspondants au <filtre>"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
-msgstr "Correspond aux descendants de tout individu issu d'un filtrage"
+msgstr "Correspond aux individus dont les événements sont issus d'un filtrage"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Person/_MatchesFilter.py:45
