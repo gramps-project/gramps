@@ -971,29 +971,31 @@ class GraphvizReportDialog(ReportDialog):
         pm_b = self.paper_frame.get_paper_margins()[3] / 2.54
 
         if ((pm_l < 0.5 and pm_r < 0.5) or (pm_t < 0.5 and pm_b < 0.5)) and \
-            (self.format_menu.get_clname() == 'gvpdf'):
+                (self.format_menu.get_clname() == 'gvpdf'):
             warn_text1 = _("Two or more opposite paper margins are less than ")
-            warn_text2 = _("This will cause incorrect and/or partial graphs.")
+            warn_text2 = _("This can cause incorrect and/or partial graphs.")
             WarningDialog(warn_text1 + warn_marg, warn_text2)
 
         if ((pm_l < 0.5 and pm_r < 0.5) or (pm_t < 0.5 and pm_b < 0.5)) and \
-            (self.format_menu.get_clname() == 'gspdf') or (self.format_menu.get_clname() == 'ps'):
+                ((self.format_menu.get_clname() == 'gspdf') or \
+                (self.format_menu.get_clname() == 'ps') or \
+                (self.format_menu.get_clname() == 'dot')):
             warn_text1 = _("Two or more opposite paper margins are less than ")
-            warn_text2 = _("More than expected number of pages will be generated.")
+            warn_text2 = _("More than expected number of pages can be generated.")
             WarningDialog(warn_text1 + warn_marg, warn_text2)
 
         if ((self.h_pages.get_value() > 1) or (self.h_pages.get_value() > 1)) and \
-            (self.format_menu.get_clname() != 'gspdf'):
+            not ((self.format_menu.get_clname() == 'gspdf') or \
+                (self.format_menu.get_clname() == 'ps') or \
+                (self.format_menu.get_clname() == 'dot')):
             warn_text1 = _("You have used more than one page as output.")
-            warn_text2 = _("This will cause incorrect and/or partial graphs.")
-            warn_marg = ""
-            WarningDialog(warn_text1 + warn_marg, warn_text2)
+            warn_text2 = _("This can cause incorrect and/or partial graphs.")
+            WarningDialog(warn_text1, warn_text2)
 
         if (self.format_menu.get_clname() == 'gspdf') and (self.dpi.get_value() != 75 ):
             warn_text1 = _("You have not used 75 dpi for Ghostscript.")
             warn_text2 = _("Using other dpi's will cause incorrect graphs.")
-            warn_marg = "" 
-            WarningDialog(warn_text1 + warn_marg, warn_text2)
+            WarningDialog(warn_text1, warn_text2)
         #======================================================================
 
         # Is there a filename?  This should also test file permissions, etc.
