@@ -1,4 +1,4 @@
-# translation of nl.po to Dutch
+# translation of nl.po to dutch
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -39,10 +39,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-13 07:59+0100\n"
-"PO-Revision-Date: 2008-03-13 08:34+0100\n"
-"Last-Translator: Frederik De richter <frederik.de.richter@pandora.be>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"POT-Creation-Date: 2008-03-14 12:46+0100\n"
+"PO-Revision-Date: 2008-03-14 17:43+0100\n"
+"Last-Translator: Erik De Richter <frederik.de.richter@gmail.com>\n"
+"Language-Team: dutch <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1012,7 +1012,7 @@ msgstr "Bibliotheek"
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:816
+#: ../src/ReportBase/_GraphvizReportDialog.py:819
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
@@ -4181,7 +4181,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1151
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:683
+#: ../src/ReportBase/_GraphvizReportDialog.py:684
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Openen met %(program_name)s"
@@ -5514,18 +5514,18 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om in de "
-"map te schrijven. Zorg dat u schrijftoegang krijgt tot de map en probeer dan "
-"opnieuw."
+"Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om "
+"in de map te schrijven. Zorg dat u schrijftoegang krijgt tot de map en "
+"probeer dan opnieuw."
 
 #: ../src/GrampsDbUtils/_GrampsDbWriteXML.py:139
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om het "
-"bestand te beschrijven. Zorg dat u schrijftoegang krijgt tot het bestand en "
-"probeer dan opnieuw."
+"Het gegevensbestand kan niet worden opgeslagen omdat u geen rechten heeft om "
+"het bestand te beschrijven. Zorg dat u schrijftoegang krijgt tot het bestand "
+"en probeer dan opnieuw."
 
 #: ../src/GrampsDbUtils/importdbdir.py:63
 #: ../src/GrampsDbUtils/importdbdir.py:76
@@ -5549,7 +5549,9 @@ msgstr ""
 
 #: ../src/GrampsDbUtils/importdbdir.py:77 ../src/plugins/ReadGrdb.py:101
 msgid "The Database version is not supported by this version of GRAMPS."
-msgstr "De versie van het gegevensbestand wordt niet door deze versie van GRAMPS ondersteund."
+msgstr ""
+"De versie van het gegevensbestand wordt niet door deze versie van GRAMPS "
+"ondersteund."
 
 #: ../src/GrampsDbUtils/importdbdir.py:218
 #: ../src/GrampsDbUtils/_ReadXML.py:1309 ../src/plugins/ReadGrdb.py:242
@@ -6105,7 +6107,7 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1263
+#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1267
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
@@ -6124,7 +6126,7 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
 #: ../src/plugins/NarrativeWeb.py:3226 ../src/plugins/NotRelated.py:405
 #: ../src/plugins/OnThisDay.py:145 ../src/plugins/PatchNames.py:360
-#: ../src/plugins/Rebuild.py:119 ../src/plugins/References.py:103
+#: ../src/plugins/Rebuild.py:118 ../src/plugins/References.py:103
 #: ../src/plugins/RelCalc.py:267 ../src/plugins/RemoveUnused.py:410
 #: ../src/plugins/ReorderIds.py:237 ../src/plugins/SameSurnames.py:103
 #: ../src/plugins/SoundGen.py:152 ../src/plugins/StatisticsChart.py:903
@@ -6477,7 +6479,7 @@ msgid "Book List"
 msgstr "Boekenlijst"
 
 #: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1073
-#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1262
+#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1266
 msgid "Book Report"
 msgstr "Boekverslag"
 
@@ -6543,7 +6545,7 @@ msgstr "Beschikbare items menu"
 msgid "GRAMPS Book"
 msgstr "GRAMPS-boek"
 
-#: ../src/plugins/BookReport.py:1264
+#: ../src/plugins/BookReport.py:1268
 msgid "Produces a book containing several reports."
 msgstr "Maakt boek aan, met verschillende verslagen."
 
@@ -10746,23 +10748,23 @@ msgstr "GRAMPS-pakketten"
 msgid "GRAMPS package"
 msgstr "GRAMPS-pakket"
 
-#: ../src/plugins/Rebuild.py:74
+#: ../src/plugins/Rebuild.py:75
 msgid "Rebuilding secondary indices..."
 msgstr "Secundaire indexen opnieuw bouwen..."
 
-#: ../src/plugins/Rebuild.py:88
+#: ../src/plugins/Rebuild.py:84
 msgid "Secondary indices rebuilt"
 msgstr "Secundaire indexen zijn opnieuw gebouwd"
 
-#: ../src/plugins/Rebuild.py:89
+#: ../src/plugins/Rebuild.py:85
 msgid "All secondary indices have been rebuilt."
 msgstr "Alle secundaire indexen zijn opnieuw gebouwd."
 
-#: ../src/plugins/Rebuild.py:118
+#: ../src/plugins/Rebuild.py:117
 msgid "Rebuild Secondary Indices"
 msgstr "Secundaire indexen opnieuw bouwen"
 
-#: ../src/plugins/Rebuild.py:122
+#: ../src/plugins/Rebuild.py:121
 msgid "Rebuilds secondary indices"
 msgstr "De secundaire indexen worden opnieuw gebouwd"
 
@@ -12220,7 +12222,7 @@ msgid "Graphics"
 msgstr "Grafisch"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:885
+#: ../src/ReportBase/_GraphvizReportDialog.py:888
 msgid "Paper Options"
 msgstr "Papieropties"
 
@@ -12229,7 +12231,7 @@ msgid "HTML Options"
 msgstr "HTML-opties"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:865
+#: ../src/ReportBase/_GraphvizReportDialog.py:868
 msgid "Output Format"
 msgstr "Uitvoerformaat"
 
@@ -12263,133 +12265,133 @@ msgstr "Eindopmerkingen"
 #. Private Contstants
 #.
 #. -------------------------------------------------------------------------------
-#: ../src/ReportBase/_GraphvizReportDialog.py:60
+#: ../src/ReportBase/_GraphvizReportDialog.py:61
 msgid "Default"
 msgstr "Standaard"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:61
+#: ../src/ReportBase/_GraphvizReportDialog.py:62
 msgid "Postscript / Helvetica"
 msgstr "Postscript / Helvetica"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:62
+#: ../src/ReportBase/_GraphvizReportDialog.py:63
 msgid "Truetype / FreeSans"
 msgstr "Truetype / FreeSans"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:64
+#: ../src/ReportBase/_GraphvizReportDialog.py:65
 msgid "Vertical (top to bottom)"
 msgstr "Verticaal (van boven naar onder)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:65
+#: ../src/ReportBase/_GraphvizReportDialog.py:66
 msgid "Vertical (bottom to top)"
 msgstr "Verticaal (van onder naar boven)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:66
+#: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "Horizontal (left to right)"
 msgstr "Horizontaal (van links naar rechts)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:67
+#: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "Horizontal (right to left)"
 msgstr "Horizontaal (van rechts naar links)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:69
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Bottom, left"
 msgstr "Onder, links"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Bottom, right"
 msgstr "Onder, rechts"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
 msgid "Top, left"
 msgstr "Boven, links"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Top, Right"
 msgstr "Boven, rechts"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:73
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Right, bottom"
 msgstr "Rechts, onder"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
+#: ../src/ReportBase/_GraphvizReportDialog.py:75
 msgid "Right, top"
 msgstr "Rechts, boven"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:75
+#: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Left, bottom"
 msgstr "Links, onder"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:76
+#: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Left, top"
 msgstr "Links, boven"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:78
+#: ../src/ReportBase/_GraphvizReportDialog.py:79
 msgid "Minimal size"
 msgstr "Minimale grootte"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:79
+#: ../src/ReportBase/_GraphvizReportDialog.py:80
 msgid "Fill the given area"
 msgstr "Het opgegeven bereik wordt gevuld"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:80
+#: ../src/ReportBase/_GraphvizReportDialog.py:81
 msgid "Use optimal number of pages"
 msgstr "Gebruik het optimaal aantal pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:82
+#: ../src/ReportBase/_GraphvizReportDialog.py:83
 msgid "Top"
 msgstr "Boven"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:83
+#: ../src/ReportBase/_GraphvizReportDialog.py:84
 msgid "Bottom"
 msgstr "Onder"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:575
+#: ../src/ReportBase/_GraphvizReportDialog.py:576
 msgid "Graphviz Dot File"
 msgstr "Graphviz Dot bestand"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:584
+#: ../src/ReportBase/_GraphvizReportDialog.py:585
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:590
+#: ../src/ReportBase/_GraphvizReportDialog.py:591
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:596
+#: ../src/ReportBase/_GraphvizReportDialog.py:597
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:602
+#: ../src/ReportBase/_GraphvizReportDialog.py:603
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:608
+#: ../src/ReportBase/_GraphvizReportDialog.py:609
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Gecomprimeerde Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:614
+#: ../src/ReportBase/_GraphvizReportDialog.py:615
 msgid "JPEG image"
 msgstr "JPEG-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:620
+#: ../src/ReportBase/_GraphvizReportDialog.py:621
 msgid "GIF image"
 msgstr "GIF-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:626
+#: ../src/ReportBase/_GraphvizReportDialog.py:627
 msgid "PNG image"
 msgstr "PNG-afbeelding"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:717
+#: ../src/ReportBase/_GraphvizReportDialog.py:718
 msgid "GraphViz Layout"
 msgstr "GraphViz-layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:719
+#: ../src/ReportBase/_GraphvizReportDialog.py:720
 msgid "Font family"
 msgstr "Lettertypefamilie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:724
+#: ../src/ReportBase/_GraphvizReportDialog.py:725
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12398,27 +12400,27 @@ msgstr ""
 "gebruik dan het FreeSans lettertype. Dit lettertype is verkrijgbaar bij "
 "http://www.nongnu.org/freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:730
+#: ../src/ReportBase/_GraphvizReportDialog.py:731
 msgid "Font size"
 msgstr "Lettergrootte"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:731
+#: ../src/ReportBase/_GraphvizReportDialog.py:732
 msgid "The font size, in points."
 msgstr "Lettertypegrootte in pts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:734
+#: ../src/ReportBase/_GraphvizReportDialog.py:735
 msgid "Graph Direction"
 msgstr "Grafiekrichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:739
+#: ../src/ReportBase/_GraphvizReportDialog.py:740
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Grafiek van boven naar onder gaan, of van links naar rechts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:743
+#: ../src/ReportBase/_GraphvizReportDialog.py:744
 msgid "Number of Horizontal Pages"
 msgstr "Aantal horizontale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:744
+#: ../src/ReportBase/_GraphvizReportDialog.py:745
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12428,11 +12430,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld "
 "horizontaal."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:750
+#: ../src/ReportBase/_GraphvizReportDialog.py:751
 msgid "Number of Vertical Pages"
 msgstr "Aantal verticale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:752
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12442,11 +12444,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld "
 "vertikaal."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:757
+#: ../src/ReportBase/_GraphvizReportDialog.py:758
 msgid "Paging Direction"
 msgstr "Paginarichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:762
+#: ../src/ReportBase/_GraphvizReportDialog.py:763
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12456,24 +12458,24 @@ msgstr ""
 "dan 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:780
+#: ../src/ReportBase/_GraphvizReportDialog.py:781
 msgid "GraphViz Options"
 msgstr "GraphViz-opties"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Aspect ratio"
 msgstr "Weergave verhouding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:788
+#: ../src/ReportBase/_GraphvizReportDialog.py:789
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Bepaalt in grote mate hoe grafieken geschikt worden op de pagina."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:792
+#: ../src/ReportBase/_GraphvizReportDialog.py:793
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:793
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
@@ -12482,11 +12484,11 @@ msgstr ""
 "voor een webstek, gebruik dan best 75 of 100 DPI. Voor het uitdrukken, "
 "probeer dan 300 of 600 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:799
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "Node spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:800
+#: ../src/ReportBase/_GraphvizReportDialog.py:803
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12496,11 +12498,11 @@ msgstr ""
 "grafieken, is dit de afstand tussen de kolommen. Voor horizontale frafieken "
 "is dit de afstand tussen de rijen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:807
+#: ../src/ReportBase/_GraphvizReportDialog.py:810
 msgid "Rank spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:808
+#: ../src/ReportBase/_GraphvizReportDialog.py:811
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12511,34 +12513,60 @@ msgstr ""
 "grafieken is dit de ruimte tussen de kolommen."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:819
+#: ../src/ReportBase/_GraphvizReportDialog.py:822
 msgid "Note to add to the graph"
 msgstr "Bijschrift toevoegen aan grafiek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:821
+#: ../src/ReportBase/_GraphvizReportDialog.py:824
 msgid "This text will be added to the graph."
 msgstr "Deze tekst wordt toegevoegd aan de grafiek."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:824
+#: ../src/ReportBase/_GraphvizReportDialog.py:827
 msgid "Note location"
 msgstr "Opmerking locatie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:827
+#: ../src/ReportBase/_GraphvizReportDialog.py:830
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Of de notitie boven of onder aan de pagina zal verschijnen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:831
+#: ../src/ReportBase/_GraphvizReportDialog.py:834
 msgid "Note size"
 msgstr "Grootte opmerkingen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:832
+#: ../src/ReportBase/_GraphvizReportDialog.py:835
 msgid "The size of note text, in points."
 msgstr "De tekstgrootte, in 'points'."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:857
-#: ../src/ReportBase/_GraphvizReportDialog.py:912
+#: ../src/ReportBase/_GraphvizReportDialog.py:860
+#: ../src/ReportBase/_GraphvizReportDialog.py:915
 msgid "Open with application"
 msgstr "Openen met toepassing"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:975
+#: ../src/ReportBase/_GraphvizReportDialog.py:983
+msgid "Two or more opposite paper margins are less than "
+msgstr "Twee of meer tegenovergestelde papiermarges zijn kleiner dan"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
+#: ../src/ReportBase/_GraphvizReportDialog.py:992
+msgid "This can cause incorrect and/or partial graphs."
+msgstr "Dit kan leiden tot onjuiste en/of gedeeltelijke grafieken."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:984
+msgid "More than expected number of pages can be generated."
+msgstr "Meer dan de verwachte aantal pagina's kunnen aangemaakt worden."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:991
+msgid "You have used more than one page as output."
+msgstr "U hebt meer dan 1 pagina opgegeven voor uitvoer."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:996
+msgid "You have not used 75 dpi for Ghostscript."
+msgstr "U hebt geen 75 dpi voor Ghostscript gebruikt."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:997
+msgid "Using other dpi's will cause incorrect graphs."
+msgstr ""
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
