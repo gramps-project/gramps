@@ -1182,6 +1182,10 @@ def cl_report(database, name, category, options_str_dict):
     # Exit here if show option was given
     if clr.show:
         return
+    
+    if not clr.options_dict.has_key('bookname'):
+        print "Please Specify a book name"
+        return
 
     book_list = BookList('books.xml', database)
     book_name = clr.options_dict['bookname']
