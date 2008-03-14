@@ -1077,7 +1077,7 @@ msgstr "Source"
 #: ../src/Editors/_EditPerson.py:470
 #: ../src/FilterEditor/_EditRule.py:277
 msgid "Media Object"
-msgstr "Objet media"
+msgstr "Objet média"
 
 #: ../src/GrampsCfg.py:203
 #: ../src/plugins/References.py:34
@@ -1393,7 +1393,7 @@ msgstr "Charger automatiquement la dernière base de données"
 
 #: ../src/GrampsCfg.py:842
 msgid "Select media directory"
-msgstr "Sélectionner un répertoire media"
+msgstr "Sélectionner un répertoire média"
 
 #: ../src/GrampsCfg.py:930
 msgid "Name Format Editor"
@@ -1720,7 +1720,7 @@ msgstr "Enlever le lieu"
 
 #: ../src/GrampsWidgets.py:976
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr "Pour sélectionner un objet media, faites un glisser-déposer ou utilisez les boutons"
+msgstr "Pour sélectionner un objet média, faites un glisser-déposer ou utilisez les boutons"
 
 #: ../src/GrampsWidgets.py:978
 #: ../src/PluginUtils/_GuiOptions.py:749
@@ -1729,22 +1729,22 @@ msgstr "Aucune image choisie, cliquez sur le bouton pour en sélectionner une"
 
 #: ../src/GrampsWidgets.py:979
 msgid "Edit media object"
-msgstr "Éditer l'objet media"
+msgstr "Éditer l'objet média"
 
 #: ../src/GrampsWidgets.py:980
 #: ../src/PluginUtils/_GuiOptions.py:724
 msgid "Select an existing media object"
-msgstr "Sélectionner un objet media existant"
+msgstr "Sélectionner un objet média existant"
 
 #: ../src/GrampsWidgets.py:981
 #: ../src/DataViews/MediaView.py:88
 msgid "Add a new media object"
-msgstr "Ajouter un nouveau media"
+msgstr "Ajouter un nouveau média"
 
 # enlever la référence au media
 #: ../src/GrampsWidgets.py:982
 msgid "Remove media object"
-msgstr "Enlever un objet media"
+msgstr "Enlever un objet média"
 
 #: ../src/GrampsWidgets.py:1030
 msgid "To select a note, use drag-and-drop or use the buttons"
@@ -2384,7 +2384,7 @@ msgstr "Numéro d'identifiant"
 
 #: ../src/ScratchPad.py:532
 msgid "Media Type"
-msgstr "Type de media"
+msgstr "Type de média"
 
 #: ../src/ScratchPad.py:544
 msgid "Event Reference"
@@ -2406,7 +2406,7 @@ msgstr "Préfixe"
 #: ../src/ScratchPad.py:666
 #: ../src/ScratchPad.py:678
 msgid "Media Reference"
-msgstr "Référence de media"
+msgstr "Référence de média"
 
 #: ../src/ScratchPad.py:692
 #: ../src/Editors/_EditPersonRef.py:142
@@ -3621,20 +3621,20 @@ msgstr "Éditeur de filtre sur la famille"
 
 #: ../src/DataViews/MediaView.py:89
 msgid "Edit the selected media object"
-msgstr "Éditer l'objet media sélectionné"
+msgstr "Éditer l'objet média sélectionné"
 
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
-msgstr "Supprimer l'objet media sélectionné"
+msgstr "Supprimer l'objet média sélectionné"
 
 #: ../src/DataViews/MediaView.py:196
 #: ../src/DisplayTabs/_GalleryTab.py:461
 msgid "Drag Media Object"
-msgstr "Glisser un objet media"
+msgstr "Glisser un objet média"
 
 #: ../src/DataViews/MediaView.py:215
 msgid "Media Filter Editor"
-msgstr "Éditeur de filtre sur le media"
+msgstr "Éditeur de filtre sur le média"
 
 #: ../src/DataViews/MediaView.py:218
 msgid "View in the default viewer"
@@ -3662,7 +3662,7 @@ msgstr "Cliquer deux fois sur l'image pour l'afficher dans un visualiseur extern
 #. quick test for non-emptiness
 #: ../src/DataViews/MediaView.py:397
 msgid "This media object is currently being used. If you delete this object, it will be removed from the database and from all records that reference it."
-msgstr "Ce media est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
+msgstr "Ce média est actuellement utilisé, le supprimer l'enlèvera de la base et des enregistrements qui y font référence."
 
 #: ../src/DataViews/MediaView.py:401
 msgid "Deleting media object will remove it from the database."
@@ -3670,11 +3670,11 @@ msgstr "Supprimer l'objet le supprimera de la base de données."
 
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
-msgstr "Supprimer un media ?"
+msgstr "Supprimer un média ?"
 
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
-msgstr "Supprimer un me_dia"
+msgstr "Supprimer un mé_dia"
 
 #: ../src/DataViews/GrampletView.py:73
 #: ../src/DataViews/GrampletView.py:840
@@ -4731,7 +4731,7 @@ msgstr "Ouvrir avec %s"
 
 #: ../src/DisplayTabs/_GalleryTab.py:231
 msgid "Non existing media found in the Gallery"
-msgstr "Objet media inexistant trouvé dans la galerie"
+msgstr "Objet média inexistant trouvé dans la galerie"
 
 #: ../src/DisplayTabs/_LdsEmbedList.py:51
 msgid "Create and add a new LDS ordinance"
@@ -4954,11 +4954,11 @@ msgstr "_Internet"
 
 #: ../src/Editors/AddMedia.py:103
 msgid "Select a media object"
-msgstr "Sélectionner un objet media"
+msgstr "Sélectionner un objet média"
 
 #: ../src/Editors/AddMedia.py:146
 msgid "Select media object"
-msgstr "Sélectionner un objet media"
+msgstr "Sélectionner un objet média"
 
 #: ../src/Editors/AddMedia.py:156
 msgid "Import failed"
@@ -5310,41 +5310,41 @@ msgstr "Nouveau media"
 
 #: ../src/Editors/_EditMedia.py:201
 msgid "Edit Media Object"
-msgstr "Éditer l'objet media"
+msgstr "Éditer l'objet média"
 
 #: ../src/Editors/_EditMedia.py:239
 msgid "Cannot save media object"
-msgstr "Impossible d'enregistrer l'objet media"
+msgstr "Impossible d'enregistrer l'objet média"
 
 #: ../src/Editors/_EditMedia.py:240
 msgid "No data exists for this media object. Please enter data or cancel the edit."
-msgstr "Aucune donnée n'existe pour cet objet media. Veuillez entrer une donnée ou annuler l'édition."
+msgstr "Aucune donnée n'existe pour cet objet média. Veuillez entrer une donnée ou annuler l'édition."
 
 #: ../src/Editors/_EditMedia.py:249
 msgid "Cannot save media object. ID already exists."
-msgstr "Impossible d'enregistrer l'objet media. L'identifiant existe déjà."
+msgstr "Impossible d'enregistrer l'objet média. L'identifiant existe déjà."
 
 #: ../src/Editors/_EditMedia.py:267
 #: ../src/Editors/_EditMediaRef.py:466
 #, python-format
 msgid "Add Media Object (%s)"
-msgstr "Ajouter l'objet media (%s)"
+msgstr "Ajouter l'objet média (%s)"
 
 #: ../src/Editors/_EditMedia.py:272
 #: ../src/Editors/_EditMediaRef.py:462
 #, python-format
 msgid "Edit Media Object (%s)"
-msgstr "Éditer l'objet media (%s)"
+msgstr "Éditer l'objet média (%s)"
 
 # enlever la référence au media
 #: ../src/Editors/_EditMedia.py:339
 msgid "Remove Media Object"
-msgstr "Enlever un objet media"
+msgstr "Enlever un objet média"
 
 #: ../src/Editors/_EditMediaRef.py:81
 #: ../src/Editors/_EditMediaRef.py:377
 msgid "Media Reference Editor"
-msgstr "Éditeur de référence de media"
+msgstr "Éditeur de référence de média"
 
 #: ../src/Editors/_EditName.py:116
 #: ../src/Editors/_EditName.py:277
@@ -5908,7 +5908,7 @@ msgstr "  Événement %(id)s\n"
 #: ../src/GrampsDbUtils/_ReadXML.py:246
 #, python-format
 msgid "  Media Object %(id)s\n"
-msgstr "  Objet Media %(id)s\n"
+msgstr "  Objet Média %(id)s\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:248
 #, python-format
@@ -5948,7 +5948,7 @@ msgstr "  Événements : %d\n"
 #: ../src/GrampsDbUtils/_ReadXML.py:263
 #, python-format
 msgid "  Media Objects: %d\n"
-msgstr "  Objets Media : %d\n"
+msgstr "  Objets Média : %d\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:264
 #, python-format
@@ -5988,19 +5988,19 @@ msgid ""
 "or, if not set, relative to the user directory.\n"
 msgstr ""
 "\n"
-"Les objets media avec chemins relatifs ont été\n"
+"Les objets média avec chemins relatifs ont été\n"
 "importés. Ces chemins sont considérés comme\n"
 "relatifs par rapport au répertoire défini dans les\n"
 "préférences, ou, si absent, le répertoire utilisateur.\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:765
 msgid "Could not change media path"
-msgstr "Impossible de changer le chemin media"
+msgstr "Impossible de changer le chemin média"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:766
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
-msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin media de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin media de la base de données dans les Préférences."
+msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin média de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin média de la base de données dans les Préférences."
 
 #: ../src/GrampsDbUtils/_ReadXML.py:778
 msgid "GRAMPS XML import"
@@ -6224,7 +6224,7 @@ msgstr "Sélectionner la note"
 
 #: ../src/Selectors/_SelectObject.py:60
 msgid "Select Media Object"
-msgstr "Sélectionner un objet media"
+msgstr "Sélectionner un objet média"
 
 #: ../src/Selectors/_SelectPerson.py:72
 #: ../src/PluginUtils/_GuiOptions.py:881
@@ -7336,7 +7336,7 @@ msgstr "Sélectionner un fichier"
 #: ../src/plugins/Check.py:552
 #: ../src/plugins/WriteCD.py:257
 msgid "Media object could not be found"
-msgstr "Le media est introuvable"
+msgstr "Le média est introuvable"
 
 #: ../src/plugins/Check.py:553
 #, python-format
@@ -7371,7 +7371,7 @@ msgstr "Recherche de problèmes dans les lieux"
 
 #: ../src/plugins/Check.py:631
 msgid "Looking for empty media records"
-msgstr "Recherche de problèmes dans les objets media"
+msgstr "Recherche de problèmes dans les objets média"
 
 #: ../src/plugins/Check.py:640
 msgid "Looking for empty repository records"
@@ -7411,7 +7411,7 @@ msgstr "Recherche de problèmes dans la référence de la source"
 
 #: ../src/plugins/Check.py:1034
 msgid "Looking for media object reference problems"
-msgstr "Recherche de problèmes dans la référence de l'objet media"
+msgstr "Recherche de problèmes dans la référence de l'objet média"
 
 #: ../src/plugins/Check.py:1126
 msgid "Looking for note reference problems"
@@ -7511,42 +7511,42 @@ msgstr "%d dépôts ont été référencés, mais non trouvés\n"
 
 #: ../src/plugins/Check.py:1375
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 objet media a été référencé, mais non trouvé\n"
+msgstr "1 objet média a été référencé, mais non trouvé\n"
 
 #: ../src/plugins/Check.py:1377
 #: ../src/plugins/Check.py:1422
 #, python-format
 msgid "%d media objects were referenced, but not found\n"
-msgstr "%d objets media ont été référencés, mais non trouvés\n"
+msgstr "%d objets média ont été référencés, mais non trouvés\n"
 
 #: ../src/plugins/Check.py:1380
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Une référence à 1 media manquant a été conservée\n"
+msgstr "Une référence à 1 média manquant a été conservée\n"
 
 #: ../src/plugins/Check.py:1382
 #, python-format
 msgid "References to %d media objects were kept\n"
-msgstr "Les références à %d objets media ont été conservées\n"
+msgstr "Les références à %d objets média ont été conservées\n"
 
 #: ../src/plugins/Check.py:1385
 msgid "1 missing media object was replaced\n"
-msgstr "1 media manquant a été remplacé\n"
+msgstr "1 média manquant a été remplacé\n"
 
 #: ../src/plugins/Check.py:1387
 #, python-format
 msgid "%d missing media objects were replaced\n"
-msgstr "%d objets media manquants ont été remplacés\n"
+msgstr "%d objets média manquants ont été remplacés\n"
 
 # référence ou non, enlever ou supprimer
 #: ../src/plugins/Check.py:1390
 msgid "1 missing media object was removed\n"
-msgstr "1 media manquant a été supprimé\n"
+msgstr "1 média manquant a été supprimé\n"
 
 # référence ou non, enlever ou supprimer
 #: ../src/plugins/Check.py:1392
 #, python-format
 msgid "%d missing media objects were removed\n"
-msgstr "%d objets media manquants ont été supprimés\n"
+msgstr "%d objets média manquants ont été supprimés\n"
 
 #: ../src/plugins/Check.py:1395
 msgid "1 invalid event reference was removed\n"
@@ -7595,7 +7595,7 @@ msgstr "%d sources ont été référencées, mais non trouvées\n"
 
 #: ../src/plugins/Check.py:1420
 msgid "1 media object was referenced but not found\n"
-msgstr "1 objet media a été référencé, mais non trouvé\n"
+msgstr "1 objet média a été référencé, mais non trouvé\n"
 
 #: ../src/plugins/Check.py:1426
 msgid "1 note object was referenced but not found\n"
@@ -7633,7 +7633,7 @@ msgstr ""
 "   %d familles\n"
 "   %d événements\n"
 "   %d sources\n"
-"   %d objets media\n"
+"   %d objets média\n"
 "   %d lieux\n"
 "   %d dépôts\n"
 "   %d notes\n"
@@ -7981,7 +7981,7 @@ msgstr "Noms uniques"
 #: ../src/plugins/DefaultGramplets.py:694
 #: ../src/plugins/Summary.py:128
 msgid "Media Objects"
-msgstr "Objets media"
+msgstr "Objets média"
 
 #: ../src/plugins/DefaultGramplets.py:696
 #: ../src/plugins/Summary.py:130
@@ -8011,7 +8011,7 @@ msgstr "octets"
 #: ../src/plugins/DefaultGramplets.py:713
 #: ../src/plugins/Summary.py:137
 msgid "Missing Media Objects"
-msgstr "Objets media manquants"
+msgstr "Objets média manquants"
 
 #: ../src/plugins/DefaultGramplets.py:720
 msgid "Enter Python expressions"
@@ -9133,11 +9133,11 @@ msgstr "media"
 
 #: ../src/plugins/FilterByName.py:172
 msgid "Unique Media"
-msgstr "Media unique"
+msgstr "Média unique"
 
 #: ../src/plugins/FilterByName.py:180
 msgid "Missing Media"
-msgstr "Media manquant"
+msgstr "Média manquant"
 
 #: ../src/plugins/FilterByName.py:191
 msgid "Size in bytes"
@@ -10014,7 +10014,7 @@ msgstr "Gérer les media"
 
 #: ../src/plugins/MediaManager.py:80
 msgid "GRAMPS Media Manager"
-msgstr "Gestionnaire de media GRAMPS"
+msgstr "Gestionnaire de média GRAMPS"
 
 #: ../src/plugins/MediaManager.py:82
 msgid "Selecting operation"
@@ -10030,13 +10030,13 @@ msgid ""
 "\n"
 "This tool allows you to only modify the records within your GRAMPS database. If you want to move or rename the files then you need to do it on your own, outside of GRAMPS. Then you can adjust the paths using this tool so that the media objects store the correct file locations."
 msgstr ""
-"Cet outil permet des opérations groupées sur les objets media stockés dans GRAMPS. Une distinction importante doit être faite entre un objet media de GRAMPS et son fichier.\n"
+"Cet outil permet des opérations groupées sur les objets média stockés dans GRAMPS. Une distinction importante doit être faite entre un objet média de GRAMPS et son fichier.\n"
 "\n"
-"L'objet media de GRAMPS est une collection de données sur un fichier objet media : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
+"L'objet média de GRAMPS est une collection de données sur un fichier objet média : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
 "\n"
 "Les fichiers contenant une image, du son, de la vidéo, etc. existent séparément sur votre disque dur. Ces fichiers ne sont pas gérés par GRAMPS et ne sont pas inclus dans la base de données GRAMPS. La base de données GRAMPS ne stocke que le chemin et les noms de fichiers.\n"
 "\n"
-"Cet outil vous permet de modifier seulement les enregistrements internes à la base de données GRAMPS. Si vous voulez déplacer ou renommer les fichiers vous aurez besoin de le faire vous même, en dehors de GRAMPS. Alors vous pourrez ajuster les chemins en utilisant cet outil pour que les objets media conservent les bons emplacements de fichiers."
+"Cet outil vous permet de modifier seulement les enregistrements internes à la base de données GRAMPS. Si vous voulez déplacer ou renommer les fichiers vous aurez besoin de le faire vous même, en dehors de GRAMPS. Alors vous pourrez ajuster les chemins en utilisant cet outil pour que les objets média conservent les bons emplacements de fichiers."
 
 #: ../src/plugins/MediaManager.py:246
 msgid "Affected path"
@@ -10079,7 +10079,7 @@ msgstr "Remplacer les _sous-chaînes dans le chemin"
 
 #: ../src/plugins/MediaManager.py:404
 msgid "This tool allows replacing specified substring in the path of media objects with another substring. This can be useful when you move your media files from one directory to another"
-msgstr "Cet outil permet de substituer une sous-chaîne spécifiée dans le chemin des objets media pour une autre sous-chaîne. Cela peut être utile en cas de déplacement de vos fichiers media"
+msgstr "Cet outil permet de substituer une sous-chaîne spécifiée dans le chemin des objets média pour une autre sous-chaîne. Cela peut être utile en cas de déplacement de vos fichiers média"
 
 #: ../src/plugins/MediaManager.py:410
 msgid "Replace substring settings"
@@ -10114,7 +10114,7 @@ msgstr "Convertir les chemins relatifs en chemins _absolus"
 
 #: ../src/plugins/MediaManager.py:487
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends your home directory."
-msgstr "Cet outil permet de convertir les chemins media relatifs en chemins absolus. Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur."
+msgstr "Cet outil permet de convertir les chemins média relatifs en chemins absolus. Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur."
 
 #: ../src/plugins/MediaManager.py:524
 msgid "Convert paths from absolute to r_elative"
@@ -10122,11 +10122,11 @@ msgstr "Convertir les chemins absolus en chemins r_elatifs"
 
 #: ../src/plugins/MediaManager.py:525
 msgid "This tool allows converting absolute media paths to the a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, your home directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Cet outil permet de convertir les chemins media absolus en chemins relatifs.  Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur. Un chemin relatif permet de lier l'emplacement du fichier avec celui de la base de données."
+msgstr "Cet outil permet de convertir les chemins média absolus en chemins relatifs.  Le chemin de base est défini dans les Préférences, dans le cas contraire, c'est votre répertoire d'utilisateur. Un chemin relatif permet de lier l'emplacement du fichier avec celui de la base de données."
 
 #: ../src/plugins/MediaManager.py:589
 msgid "Manages batch operations on media files"
-msgstr "Gère des opérations groupées sur les fichiers media"
+msgstr "Gère des opérations groupées sur les fichiers média"
 
 #: ../src/plugins/NarrativeWeb.py:103
 msgid "Basic - Ash"
@@ -10341,7 +10341,7 @@ msgstr "Attributs"
 
 #: ../src/plugins/NarrativeWeb.py:1397
 msgid "Missing media object:"
-msgstr "Objet media absent :"
+msgstr "Objet média absent :"
 
 #: ../src/plugins/NarrativeWeb.py:1445
 #: ../src/plugins/NarrativeWeb.py:1447
@@ -10366,7 +10366,7 @@ msgstr "Informations de publication"
 
 #: ../src/plugins/NarrativeWeb.py:1742
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page."
-msgstr "Cette page contient un index de tous les media de la base de données, classés par titre. Cliquez sur un media pour accéder à sa page."
+msgstr "Cette page contient un index de tous les media de la base de données, classés par titre. Cliquez sur un média pour accéder à sa page."
 
 #: ../src/plugins/NarrativeWeb.py:2010
 msgid "Ancestors"
@@ -10457,7 +10457,7 @@ msgstr "Création des pages lieu"
 
 #: ../src/plugins/NarrativeWeb.py:2850
 msgid "Creating media pages"
-msgstr "Création des pages media"
+msgstr "Création des pages média"
 
 #: ../src/plugins/NarrativeWeb.py:2939
 msgid "Store web pages in .tar.gz archive"
@@ -10617,7 +10617,7 @@ msgstr "Inclure images et media"
 
 #: ../src/plugins/NarrativeWeb.py:3053
 msgid "Whether to include a gallery of media objects"
-msgstr "Inclure ou non une galerie des objets media"
+msgstr "Inclure ou non une galerie des objets média"
 
 #: ../src/plugins/NarrativeWeb.py:3056
 msgid "Include download page"
@@ -11034,7 +11034,7 @@ msgstr "Réorganiser les identifiants des événements"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
-msgstr "Réorganiser les identifiants des objets media"
+msgstr "Réorganiser les identifiants des objets média"
 
 #: ../src/plugins/ReorderIds.py:110
 msgid "Reordering Source IDs"
@@ -15783,7 +15783,7 @@ msgstr "Traitement des enregistrements source"
 #: ../src/gen/proxy/dbbase.py:120
 #: ../src/gen/db/base.py:355
 msgid "Processing Media records"
-msgstr "Traitement des enregistrements media"
+msgstr "Traitement des enregistrements média"
 
 #: ../src/gen/proxy/dbbase.py:126
 #: ../src/gen/db/base.py:361
@@ -15900,11 +15900,11 @@ msgstr "Note de la référence du dépôt"
 
 #: ../src/gen/lib/notetype.py:102
 msgid "Media Note"
-msgstr "Note du media"
+msgstr "Note du média"
 
 #: ../src/gen/lib/notetype.py:103
 msgid "Media Reference Note"
-msgstr "Note de la référence du media"
+msgstr "Note de la référence du média"
 
 #: ../src/gen/lib/notetype.py:104
 msgid "Child Reference Note"
@@ -17942,21 +17942,21 @@ msgstr "Correspond à une source avec l'identifiant GRAMPS spécifié"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:45
 msgid "Every media object"
-msgstr "Chaque objet media"
+msgstr "Chaque objet média"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
-msgstr "Correspond à tous les objets media de la base"
+msgstr "Correspond à tous les objets média de la base"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Objet media avec l'<Id>"
+msgstr "Objet média avec l'<Id>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Correspond à un objet media avec l'identifiant GRAMPS spécifié"
+msgstr "Correspond à un objet média avec l'identifiant GRAMPS spécifié"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -17971,68 +17971,68 @@ msgstr "Chemin :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:52
 msgid "Media objects matching parameters"
-msgstr "Objets media correspondants aux paramètres"
+msgstr "Objets média correspondants aux paramètres"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
-msgstr "Correspond aux objets media ayant un paramètre précis"
+msgstr "Correspond aux objets média ayant un paramètre précis"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Objets media dont les notes contiennent la <sous-chaîne>"
+msgstr "Objets média dont les notes contiennent la <sous-chaîne>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
-msgstr "Correspond aux objets media dont les notes contiennent une sous-chaîne"
+msgstr "Correspond aux objets média dont les notes contiennent une sous-chaîne"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Objets media dont les notes contiennent une <expression rationnelle>"
+msgstr "Objets média dont les notes contiennent une <expression rationnelle>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
-msgstr "Correspond aux objets media dont les notes contiennent du texte avec l'expression rationnelle"
+msgstr "Correspond aux objets média dont les notes contiennent du texte avec l'expression rationnelle"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
 msgid "Media objects with a reference count of <count>"
-msgstr "Les objets media avec un nombre de références de <nb>"
+msgstr "Les objets média avec un nombre de références de <nb>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:44
 msgid "Matches media objects with a certain reference count"
-msgstr "Correspond aux objets media avec un certain nombre de références"
+msgstr "Correspond aux objets média avec un certain nombre de références"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:45
 msgid "Media objects matching the <filter>"
-msgstr "Objets media correspondants au <filtre>"
+msgstr "Objets média correspondants au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Correspond aux objets media trouvés par le filtre spécifié"
+msgstr "Correspond aux objets média trouvés par le filtre spécifié"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
-msgstr "Objets media marqués comme privés"
+msgstr "Objets média marqués comme privés"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr "Correspond aux objets media marqués comme privés"
+msgstr "Correspond aux objets média marqués comme privés"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
-msgstr "Objets media avec l'<Id> correspondant à une expression rationnelle"
+msgstr "Objets média avec l'<Id> correspondant à une expression rationnelle"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose GRAMPS ID matches the regular expression"
-msgstr "Correspond aux objets media dont l'ID GRAMPS contient une expression rationnelle"
+msgstr "Correspond aux objets média dont l'ID GRAMPS contient une expression rationnelle"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
@@ -18298,7 +18298,7 @@ msgstr "Filtres sources"
 
 #: ../src/FilterEditor/_FilterEditor.py:70
 msgid "Media Object Filters"
-msgstr "Filtres objets media"
+msgstr "Filtres objets média"
 
 #: ../src/FilterEditor/_FilterEditor.py:71
 msgid "Repository Filters"
@@ -18897,11 +18897,11 @@ msgstr "G_rouper comme :"
 
 #: ../src/glade/gramps.glade.h:79
 msgid "If media is an image, select a region of the image that is referenced. Point (0,0) is the top left corner. Do this by giving two corners on a diagonal of the rectangular region you want to use."
-msgstr "Si le media est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
+msgstr "Si le média est une image, sélectionnez une région référencée de l'image. Le point (0,0) est le coin haut gauche. Définissez deux coins pour la diagonale de la région rectangulaire que vous souhaitez définir."
 
 #: ../src/glade/gramps.glade.h:80
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
-msgstr "Si vous valider cette option, tous les media seront automatiquement traités selon les options actuellement retenues, aucun message ne vous avertira lors de fichiers media manquants."
+msgstr "Si vous valider cette option, tous les media seront automatiquement traités selon les options actuellement retenues, aucun message ne vous avertira lors de fichiers média manquants."
 
 #: ../src/glade/gramps.glade.h:82
 msgid "Invoke date editor"
@@ -19160,7 +19160,7 @@ msgstr "_Longitude :"
 # éviter le raccourci sur le y ou le p
 #: ../src/glade/gramps.glade.h:157
 msgid "_Media Type:"
-msgstr "_Type de media :"
+msgstr "_Type de média :"
 
 #: ../src/glade/gramps.glade.h:158
 msgid "_Month"
@@ -19268,7 +19268,7 @@ msgstr "_Souligné"
 
 #: ../src/glade/gramps.glade.h:185
 msgid "_Use this selection for all missing media files"
-msgstr "_Utiliser cette option pour tous les fichiers media absents"
+msgstr "_Utiliser cette option pour tous les fichiers média absents"
 
 #: ../src/glade/gramps.glade.h:186
 msgid "_Value:"
@@ -19870,7 +19870,7 @@ msgstr "Modèle par défaut d'identifiant GRAMPS de famille"
 
 #: ../data/gramps.schemas.in.h:10
 msgid "Default media object GRAMPS ID pattern"
-msgstr "Modèle par défaut d'identifiant GRAMPS d'objet media"
+msgstr "Modèle par défaut d'identifiant GRAMPS d'objet média"
 
 #: ../data/gramps.schemas.in.h:11
 msgid "Default note GRAMPS ID pattern"
@@ -19994,11 +19994,11 @@ msgstr "Hauteur de l'interface pour l'éditeur d'emplacement."
 
 #: ../data/gramps.schemas.in.h:42
 msgid "Height of the media editor interface."
-msgstr "Hauteur de l'interface pour l'éditeur de media."
+msgstr "Hauteur de l'interface pour l'éditeur de média."
 
 #: ../data/gramps.schemas.in.h:43
 msgid "Height of the media reference editor interface."
-msgstr "Hauteur de l'interface pour l'éditeur de référence du media."
+msgstr "Hauteur de l'interface pour l'éditeur de référence du média."
 
 #: ../data/gramps.schemas.in.h:44
 msgid "Height of the name editor interface."
@@ -20310,11 +20310,11 @@ msgstr "Spécifie la hauteur de l'interface pour l'éditeur d'emplacement."
 
 #: ../data/gramps.schemas.in.h:121
 msgid "Specifies the height of the media editor interface."
-msgstr "Spécifie la hauteur de l'interface pour l'éditeur de media."
+msgstr "Spécifie la hauteur de l'interface pour l'éditeur de média."
 
 #: ../data/gramps.schemas.in.h:122
 msgid "Specifies the height of the media reference editor interface."
-msgstr "Spécifie la hauteur de l'interface pour l'éditeur de référence du media."
+msgstr "Spécifie la hauteur de l'interface pour l'éditeur de référence du média."
 
 #: ../data/gramps.schemas.in.h:123
 msgid "Specifies the height of the name editor interface."
@@ -20390,11 +20390,11 @@ msgstr "Spécifie la largeur de l'interface pour l'éditeur d'emplacement."
 
 #: ../data/gramps.schemas.in.h:141
 msgid "Specifies the width of the media editor interface."
-msgstr "Spécifie la largeur de l'interface pour l'éditeur de media."
+msgstr "Spécifie la largeur de l'interface pour l'éditeur de média."
 
 #: ../data/gramps.schemas.in.h:142
 msgid "Specifies the width of the media reference editor interface."
-msgstr "Spécifie la largeur de l'interface pour l'éditeur de référence du media."
+msgstr "Spécifie la largeur de l'interface pour l'éditeur de référence du média."
 
 #: ../data/gramps.schemas.in.h:143
 msgid "Specifies the width of the name editor interface."
@@ -20450,7 +20450,7 @@ msgstr "Les nouveaux identifiants GRAMPS pour la famille sont générés selon c
 
 #: ../data/gramps.schemas.in.h:156
 msgid "The new GRAMPS IDs for the media object are generated according to this format string."
-msgstr "Les nouveaux identifiants GRAMPS pour l'objet media sont générés selon ce format de chaîne."
+msgstr "Les nouveaux identifiants GRAMPS pour l'objet média sont générés selon ce format de chaîne."
 
 #: ../data/gramps.schemas.in.h:157
 msgid "The new GRAMPS IDs for the notes are generated according to this format string."
@@ -20550,11 +20550,11 @@ msgstr "Largeur de l'interface pour l'éditeur d'emplacement."
 
 #: ../data/gramps.schemas.in.h:181
 msgid "Width of the media editor interface."
-msgstr "Largeur de l'interface pour l'éditeur de media."
+msgstr "Largeur de l'interface pour l'éditeur de média."
 
 #: ../data/gramps.schemas.in.h:182
 msgid "Width of the media reference editor interface."
-msgstr "Largeur de l'interface pour l'éditeur de référence du media."
+msgstr "Largeur de l'interface pour l'éditeur de référence du média."
 
 #: ../data/gramps.schemas.in.h:183
 msgid "Width of the name editor interface."
@@ -20811,7 +20811,7 @@ msgstr "Allez de ce que vous savez vers ce que vous ne savez pas. Enregistrez to
 
 #: ../src/data/tips.xml.in.h:54
 msgid "In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the relationship editor."
-msgstr "Dans la plupart des cas, en double-cliquant sur un nom, une source, un lieux ou un media, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquer sur un parent ou un enfant ouvre l'éditeur de relations."
+msgstr "Dans la plupart des cas, en double-cliquant sur un nom, une source, un lieu ou un média, apparaîtra une fenêtre d'édition de l'objet. Par exemple, dans la vue &quot;Relations&quot;, cliquer sur un parent ou un enfant ouvre l'éditeur de relations."
 
 #: ../src/data/tips.xml.in.h:55
 msgid "Interested in getting notified when a new version of GRAMPS is released? Join the gramps-announce mailing list at http://lists.sourceforge.net/lists/listinfo/gramps-announce"
@@ -20891,4 +20891,4 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
-msgstr "Vous pouvez relier un media électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+msgstr "Vous pouvez relier un média électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
