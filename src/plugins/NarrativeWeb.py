@@ -28,6 +28,15 @@ Narrative Web Page generator.
 
 #------------------------------------------------------------------------
 #
+# Suggested pylint usage:
+#      --max-line-length=100     Yes, I know PEP8 suggest 80, but this has longer lines
+#      --argument-rgx='[a-z_][a-z0-9_]{1,30}$'    Several identifiers are two characters
+#      --variable-rgx='[a-z_][a-z0-9_]{1,30}$'    Several identifiers are two characters
+#
+#------------------------------------------------------------------------
+
+#------------------------------------------------------------------------
+#
 # python modules
 #
 #------------------------------------------------------------------------
@@ -344,7 +353,8 @@ class BasePage:
         return md5.new(text).hexdigest()
 
     def display_footer(self, of):
-        of.write('</div>\n\n')
+        of.write('</div>\n\n')          # Terminate div_content
+
         of.write('<div id="footer">\n')
         if self.footer:
             note = self.report.database.get_note_from_gramps_id(self.footer)
@@ -353,6 +363,7 @@ class BasePage:
             of.write(note.get())
             of.write('</p>\n')
             of.write('\t</div>\n')
+
         if self.copyright == 0:
             of.write('\t<div id="copyright">\n')
             of.write('\t\t<p>')
@@ -373,6 +384,7 @@ class BasePage:
                 text = text.replace('#PATH#', '')
             of.write(text)
             of.write('</div>\n')
+
         of.write('\t<div class="fullclear"></div>\n')
         of.write('</div>\n\n')
         of.write('</body>\n')
@@ -443,7 +455,6 @@ class BasePage:
             of.write('</p>\n')
         of.write('</div>\n\n')
 
-
         of.write('<div id="Navigation">\n')
         of.write('\t<ol>\n')
 
@@ -464,55 +475,65 @@ class BasePage:
         # 'CurrentSection' for Navigation styling.
         # Use 'self.cur_fname' to determine 'CurrentSection' for individual
         # elements for Navigation styling.
-        self.currentsection = title
 
+        # TODO. This currentsection can be better determined from the caller
+        # of display_header. Notice that the caller uses a language translation
+        # of the title.
         if self.use_home:
-            self.show_navlink(of, index_page, _('Home'), path)
+            self.show_navlink(of, index_page, _('Home'), path, title)
         if self.use_intro:
-            self.show_navlink(of, intro_page, _('Introduction'), path)
-        self.show_navlink(of, surname_page, _('Surnames'), path)
-        self.show_navlink(of, 'individuals', _('Individuals'), path)
-        self.show_navlink(of, 'sources', _('Sources'), path)
-        self.show_navlink(of, 'places', _('Places'), path)
+            self.show_navlink(of, intro_page, _('Introduction'), path, title)
+        self.show_navlink(of, surname_page, _('Surnames'), path, title)
+        self.show_navlink(of, 'individuals', _('Individuals'), path, title)
+        self.show_navlink(of, 'sources', _('Sources'), path, title)
+        self.show_navlink(of, 'places', _('Places'), path, title)
         if self.use_gallery:
-            self.show_navlink(of, 'gallery', _('Gallery'), path)
+            self.show_navlink(of, 'gallery', _('Gallery'), path, title)
         if self.inc_download:
-            self.show_navlink(of, 'download', _('Download'), path)
+            self.show_navlink(of, 'download', _('Download'), path, title)
         if self.use_contact:
-            self.show_navlink(of, 'contact', _('Contact'),  path)
-        of.write('\t</ol>\n</div>\n\n')
+            self.show_navlink(of, 'contact', _('Contact'),  path, title)
 
-        # Give unique ID to 'content' div for styling specific sections separately.
-        # Because of how this script was originally written, the appropriate section
-        # ID is determined by looking for a directory or HTML file name to associate
-        # with that section.
-        if "index" in self.cur_fname:
+        of.write('\t</ol>\n')
+        of.write('</div>\n\n')
+
+        self.start_div_content(of, self.cur_fname)
+
+    def start_div_content(self, of, fname):
+        """
+        Give unique ID to 'content' div for styling specific sections separately.
+        Because of how this script was originally written, the appropriate section
+        ID is determined by looking for a directory or HTML file name to associate
+        with that section.
+        """
+
+        if "index" in fname:
             divid = "Home"
-        elif "introduction" in self.cur_fname:
+        elif "introduction" in fname:
             divid = "Introduction"
-        elif "surnames" in self.cur_fname:
+        elif "surnames" in fname:
             divid = "Surnames"
-        elif "srn" in self.cur_fname:
+        elif "srn" in fname:
             divid = "SurnameDetail"
-        elif "individuals" in self.cur_fname:
+        elif "individuals" in fname:
             divid = "Individuals"
-        elif "ppl" in self.cur_fname:
+        elif "ppl" in fname:
             divid = "IndividualDetail"
-        elif "sources" in self.cur_fname:
+        elif "sources" in fname:
             divid = "Sources"
-        elif "src" in self.cur_fname:
+        elif "src" in fname:
             divid = "SourceDetail"
-        elif "places" in self.cur_fname:
+        elif "places" in fname:
             divid = "Places"
-        elif "plc" in self.cur_fname:
+        elif "plc" in fname:
             divid = "PlaceDetail"
-        elif "gallery" in self.cur_fname:
+        elif "gallery" in fname:
             divid = "Gallery"
-        elif "img" in self.cur_fname:
+        elif "img" in fname:
             divid = "GalleryDetail"
-        elif "download" in self.cur_fname:
+        elif "download" in fname:
             divid = "Download"
-        elif "contact" in self.cur_fname:
+        elif "contact" in fname:
             divid = "Contact"
         else:
             divid = ''
@@ -526,18 +547,19 @@ class BasePage:
             lpath = path + '/' + lpath
         of.write('<a href="%s%s">%s</a>\n' % (lpath, self.ext, title))
 
-    def show_navlink(self, of, lpath, title, path):
+    # TODO. Move this logic to a higher level (caller of display_header).
+    def show_navlink(self, of, lpath, title, path, currentsection):
         if path:
             lpath = path + '/' + lpath
 
         # Figure out if we need <li id="CurrentSection"> of just plain <li>
         cs = False
-        if self.currentsection == title:
+        if currentsection == title:
             cs = True
         elif title == "Surnames":
             if "srn" in self.cur_fname:
                 cs = True
-            elif "Surnames" in self.currentsection:
+            elif "Surnames" in currentsection:
                 cs = True
         elif title == "Individuals":
             if "ppl" in self.cur_fname:
@@ -961,21 +983,20 @@ class IndividualListPage(BasePage):
 
 class SurnamePage(BasePage):
 
-    def __init__(self, report, title, person_handle_list):
-
+    def __init__(self, report, title, surname, person_handle_list):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        of = self.create_link_file('srn', self.lnkfmt(title))
+        of = self.create_link_file('srn', self.lnkfmt(surname))
         self.up = True
-        self.display_header(of, title)
+        self.display_header(of, "%s - %s" % (_('Surname'), surname))
 
         msg = _("This page contains an index of all the individuals in the "
                 "database with the surname of %s. Selecting the person&#8217;s name "
-                "will take you to that person&#8217;s individual page.") % title
+                "will take you to that person&#8217;s individual page.") % surname
 
-        of.write('\t<h2>Surnames:</h2>\n')
-        of.write('\t<h3>%s</h3>\n' % html_escape(title))
+        of.write('\t<h2>%s:</h2>\n' % _('Surnames'))
+        of.write('\t<h3>%s</h3>\n' % html_escape(surname))
         of.write('\t<p id="description">%s</p>\n' % msg)
         of.write('\t<table class="infolist surname">\n')
         of.write('\t<thead>\n')
@@ -1086,7 +1107,6 @@ class SurnamePage(BasePage):
 class PlaceListPage(BasePage):
 
     def __init__(self, report, title, place_handles, src_list):
-
         BasePage.__init__(self, report, title)
         self.src_list = src_list        # TODO verify that this is correct
 
@@ -1421,11 +1441,6 @@ class MediaPage(BasePage):
             except IOError:
                 print "Could not copy file"
 
-#------------------------------------------------------------------------
-#
-#
-#
-#------------------------------------------------------------------------
 class SurnameListPage(BasePage):
     ORDER_BY_NAME = 0
     ORDER_BY_COUNT = 1
@@ -1971,38 +1986,38 @@ class IndividualPage(BasePage):
         of.write('\t\t</div>\n')
         of.write('\t</div>\n')
 
-    def draw_tree(self, of, gen, maxgen, max_size, old_center, new_center, phandle):
-        if gen > maxgen:
+    def draw_tree(self, of, gen_nr, maxgen, max_size, old_center, new_center, phandle):
+        if gen_nr > maxgen:
             return
-        gen_offset = int(max_size / pow(2, gen+1))
+        gen_offset = int(max_size / pow(2, gen_nr+1))
         db = self.report.database
         person = db.get_person_from_handle(phandle)
         if not person:
             return
 
-        if gen == 1:
+        if gen_nr == 1:
             self.draw_box(of, new_center, 0, person)
         else:
-            self.draw_connected_box(of, old_center, new_center, gen-1, phandle)
+            self.draw_connected_box(of, old_center, new_center, gen_nr-1, phandle)
 
-        if gen == maxgen:
+        if gen_nr == maxgen:
             return
 
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            line_offset = _XOFFSET + (gen)*_WIDTH + (gen-1)*_HGAP
+            line_offset = _XOFFSET + gen_nr*_WIDTH + (gen_nr-1)*_HGAP
             self.extend_line(of, new_center, line_offset)
 
-            gen = gen + 1
+            gen_nr = gen_nr + 1
             family = db.get_family_from_handle(family_handle)
 
             f_center = new_center-gen_offset
             f_handle = family.get_father_handle()
-            self.draw_tree(of, gen, maxgen, max_size, new_center, f_center, f_handle)
+            self.draw_tree(of, gen_nr, maxgen, max_size, new_center, f_center, f_handle)
 
             m_center = new_center+gen_offset
             m_handle = family.get_mother_handle()
-            self.draw_tree(of, gen, maxgen, max_size, new_center, m_center, m_handle)
+            self.draw_tree(of, gen_nr, maxgen, max_size, new_center, m_center, m_handle)
 
     def display_ind_sources(self, of):
         for sref in self.person.get_source_references():
@@ -2080,7 +2095,6 @@ class IndividualPage(BasePage):
 
     def display_ind_general(self, of):
         self.page_title = self.sort_name
-        db = self.report.database
         self.display_first_image_as_thumbnail(of,
                                               self.person.get_media_list())
 
@@ -2100,9 +2114,9 @@ class IndividualPage(BasePage):
         for name in [self.person.get_primary_name()] + self.person.get_alternate_names():
             pname = _nd.display_name(name)
             pname += self.get_citation_links( name.get_source_references() )
-            type = str( name.get_type() )
+            type_ = str( name.get_type() )
             of.write('\t\t\t<tr>\n')
-            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _(type))
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % type_)
             of.write('\t\t\t\t<td class="ColumnValue">%s' % pname)
             of.write('</td>\n')
             of.write('\t\t\t</tr>\n')
@@ -2532,8 +2546,8 @@ class IndividualPage(BasePage):
             text = text + " <sup>"
             for ref in gid_list:
                 index, key = self.bibli.add_reference(ref)
-                id = "%d%s" % (index+1, key)
-                text = text + ' <a href="#sref%s">%s</a>' % (id, id)
+                id_ = "%d%s" % (index+1, key)
+                text = text + ' <a href="#sref%s">%s</a>' % (id_, id_)
             text = text + "</sup>"
 
         return text
@@ -2600,6 +2614,7 @@ class NavWebReport(Report):
         else:
             self.html_dir = self.target_path
         self.warn_dir = True        # Only give warning once.
+        self.photo_list = {}
 
     def write_report(self):
         if not self.use_archive:
@@ -2680,7 +2695,6 @@ class NavWebReport(Report):
 
         place_list = {}
         source_list = {}
-        self.photo_list = {}
 
         self.base_pages()
         self.person_pages(ind_list, place_list, source_list)
@@ -2756,7 +2770,7 @@ class NavWebReport(Report):
         SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_COUNT, "surnames_count")
 
         for (surname, handle_list) in local_list:
-            SurnamePage(self, surname, handle_list)
+            SurnamePage(self, self.title, surname, handle_list)
             self.progress.step()
 
     def source_pages(self, source_list):
