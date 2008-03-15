@@ -220,16 +220,18 @@ class PaperFrame(gtk.HBox):
         if checkbox.get_active():
             self.paper_unit = 'cm'
             self.paper_unit_multiplier = 1.0
+            paper_unit_text = _("cm")
         else:
             self.paper_unit = 'in.'
             self.paper_unit_multiplier = 2.54
+            paper_unit_text = _("in.")
             
-        self.lunits1.set_text(self.paper_unit)
-        self.lunits2.set_text(self.paper_unit)
-        self.lunits3.set_text(self.paper_unit)
-        self.lunits4.set_text(self.paper_unit)
-        self.lunits5.set_text(self.paper_unit)
-        self.lunits6.set_text(self.paper_unit)
+        self.lunits1.set_text(paper_unit_text)
+        self.lunits2.set_text(paper_unit_text)
+        self.lunits3.set_text(paper_unit_text)
+        self.lunits4.set_text(paper_unit_text)
+        self.lunits5.set_text(paper_unit_text)
+        self.lunits6.set_text(paper_unit_text)
         
         if self.paper_unit == 'cm':
             self.pwidth.set_text("%.2f" % paper_size.get_width())
