@@ -6,8 +6,8 @@ pkgdata_PYTHON = \
 	_AllNotes.py\
 	_HasIdOf.py\
 	_HasMarkerOf.py\
-	_HasNoteMatchingSubstringOf.py\
-	_HasNoteRegexp.py\
+	_MatchesSubstringOf.py\
+	_MatchesRegexpOf.py\
 	_HasNote.py\
 	_HasReferenceCountOf.py\
 	_MatchesFilter.py\
