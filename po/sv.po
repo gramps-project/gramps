@@ -34,8 +34,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 15:17+0100\n"
-"PO-Revision-Date: 2008-03-10 15:18+0100\n"
+"POT-Creation-Date: 2008-03-15 08:32+0100\n"
+"PO-Revision-Date: 2008-03-15 08:36+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -989,7 +989,7 @@ msgstr "Arkivplats"
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:816
+#: ../src/ReportBase/_GraphvizReportDialog.py:819
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
@@ -1412,46 +1412,12 @@ msgstr "Redigeringshistorik"
 msgid "URL"
 msgstr "URL"
 
-#: ../src/gramps_main.py:200
-msgid "Danger: This is unstable code!"
-msgstr "Varning: Detta är ostabil kod!"
-
-#: ../src/gramps_main.py:201
-msgid ""
-"This GRAMPS 3.0 Beta release is an early, experimental peek at the future "
-"3.0 release. This version is not meant for normal usage. Use at your own "
-"risk.\n"
-"\n"
-"This version may:\n"
-"1) Work differently than you expect.\n"
-"2) Fail to run at all.\n"
-"3) Crash often.\n"
-"4) Corrupt your data.\n"
-"5) Save data in a format that is incompatible with the official release.\n"
-"\n"
-"<b>BACKUP</b> your existing databases before opening them with this version, "
-"and make sure to export your data to XML every now and then."
-msgstr ""
-"Denna GRAMPS 3.0 Beta utgåva är en tidig, experimentell titt på den kommande "
-"3.0 utgåvan. Denna version är ej avsedd för normalt användande. Du använder "
-"den på egen risk!\n"
-"\n"
-"Denna version kan:\n"
-"1) Fungera annorlunda än vad du förväntat.\n"
-"2) Misslyckas med att köra över huvud taget.\n"
-"3) Krascha ofta.\n"
-"4) Förstöra dina data.\n"
-"5) Spara data i ett format som är inkompatibelt med den officella utgåvan.\n"
-"\n"
-"<b>SÄKERHETSKOPIERA</b> dina befintliga databaser före öppning med denna "
-"version samt säkerställ att du exporterar dina data till XML då och då."
-
-#: ../src/gramps_main.py:237 ../src/gramps_main.py:239
-#: ../src/gramps_main.py:249
+#: ../src/gramps_main.py:210 ../src/gramps_main.py:212
+#: ../src/gramps_main.py:222
 msgid "Configuration error"
 msgstr "Konfigurationsfel"
 
-#: ../src/gramps_main.py:240
+#: ../src/gramps_main.py:213
 msgid ""
 "\n"
 "\n"
@@ -1463,7 +1429,7 @@ msgstr ""
 "Möjligen var inte GRAMPS-installationen fullständig. Säkerställ att GRAMPS "
 "GConf-schema är korrekt installerat."
 
-#: ../src/gramps_main.py:250
+#: ../src/gramps_main.py:223
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -3044,25 +3010,25 @@ msgstr "common"
 msgid "initials"
 msgstr "initialer"
 
-#: ../src/Config/_GrampsConfigKeys.py:294
+#: ../src/Config/_GrampsConfigKeys.py:290
 msgid "Missing Surname"
 msgstr "Saknar efternamn"
 
-#: ../src/Config/_GrampsConfigKeys.py:295
+#: ../src/Config/_GrampsConfigKeys.py:291
 msgid "Missing Given Name"
 msgstr "Saknar förnamn"
 
-#: ../src/Config/_GrampsConfigKeys.py:296
+#: ../src/Config/_GrampsConfigKeys.py:292
 msgid "Missing Record"
 msgstr "Saknar poster"
 
-#: ../src/Config/_GrampsConfigKeys.py:297
-#: ../src/Config/_GrampsConfigKeys.py:298 ../src/plugins/WriteGeneWeb.py:475
+#: ../src/Config/_GrampsConfigKeys.py:293
+#: ../src/Config/_GrampsConfigKeys.py:294 ../src/plugins/WriteGeneWeb.py:475
 #: ../src/plugins/WriteGeneWeb.py:485 ../src/gen/proxy/living.py:415
 msgid "Living"
 msgstr "Levande"
 
-#: ../src/Config/_GrampsConfigKeys.py:299
+#: ../src/Config/_GrampsConfigKeys.py:295
 msgid "Private Record"
 msgstr "Privat post"
 
@@ -4106,7 +4072,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1151
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:683
+#: ../src/ReportBase/_GraphvizReportDialog.py:684
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Öppna i %(program_name)s"
@@ -5981,7 +5947,7 @@ msgstr "Alla händelser"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1263
+#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1267
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
@@ -6000,7 +5966,7 @@ msgstr "Alla händelser"
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
 #: ../src/plugins/NarrativeWeb.py:3226 ../src/plugins/NotRelated.py:405
 #: ../src/plugins/OnThisDay.py:145 ../src/plugins/PatchNames.py:360
-#: ../src/plugins/Rebuild.py:119 ../src/plugins/References.py:103
+#: ../src/plugins/Rebuild.py:118 ../src/plugins/References.py:103
 #: ../src/plugins/RelCalc.py:267 ../src/plugins/RemoveUnused.py:410
 #: ../src/plugins/ReorderIds.py:237 ../src/plugins/SameSurnames.py:103
 #: ../src/plugins/SoundGen.py:152 ../src/plugins/StatisticsChart.py:903
@@ -6348,7 +6314,7 @@ msgid "Book List"
 msgstr "Boklista"
 
 #: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1073
-#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1262
+#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1266
 msgid "Book Report"
 msgstr "Bokrapport"
 
@@ -6413,7 +6379,7 @@ msgstr "Tillgängliga objektmeny"
 msgid "GRAMPS Book"
 msgstr "GRAMPS-bok"
 
-#: ../src/plugins/BookReport.py:1264
+#: ../src/plugins/BookReport.py:1268
 msgid "Produces a book containing several reports."
 msgstr "Skapar en bok som innehåller flera rapporter."
 
@@ -7460,7 +7426,7 @@ msgstr "Generation 1"
 #: ../src/plugins/DefaultGramplets.py:570
 #, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
-msgstr " har 1 av 1 individual (100 % fulltalig)\n"
+msgstr " har 1 av 1 individ (100 % fulltalig)\n"
 
 #: ../src/plugins/DefaultGramplets.py:574
 #, python-format
@@ -10538,23 +10504,23 @@ msgstr "GRAMPS-paket"
 msgid "GRAMPS package"
 msgstr "GRAMPS-paket"
 
-#: ../src/plugins/Rebuild.py:74
+#: ../src/plugins/Rebuild.py:75
 msgid "Rebuilding secondary indices..."
 msgstr "Rekonstruerar sekundärindex..."
 
-#: ../src/plugins/Rebuild.py:88
+#: ../src/plugins/Rebuild.py:84
 msgid "Secondary indices rebuilt"
 msgstr "Sekundärindex rekonstruerat"
 
-#: ../src/plugins/Rebuild.py:89
+#: ../src/plugins/Rebuild.py:85
 msgid "All secondary indices have been rebuilt."
 msgstr "Alla sekundärindex har rekonstruerats."
 
-#: ../src/plugins/Rebuild.py:118
+#: ../src/plugins/Rebuild.py:117
 msgid "Rebuild Secondary Indices"
 msgstr "Rekonstruera sekundärindex"
 
-#: ../src/plugins/Rebuild.py:122
+#: ../src/plugins/Rebuild.py:121
 msgid "Rebuilds secondary indices"
 msgstr "Rekonstruerar sekundärindex."
 
@@ -10826,8 +10792,8 @@ msgstr "Sidfot"
 msgid "From gallery..."
 msgstr "Från galleri..."
 
-#: ../src/plugins/SimpleBookTitle.py:207 ../src/glade/gramps.glade.h:192
-#: ../src/glade/paper_settings.glade.h:13
+#: ../src/plugins/SimpleBookTitle.py:207 ../src/ReportBase/_PaperMenu.py:223
+#: ../src/glade/gramps.glade.h:192 ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
 
@@ -11937,20 +11903,20 @@ msgstr "Dokumentalternativ"
 
 #. Styles Frame
 #: ../src/ReportBase/_BareReportDialog.py:309
-#: ../src/ReportBase/_StyleEditor.py:100
+#: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr "Stil"
 
 #: ../src/ReportBase/_BareReportDialog.py:313
-#: ../src/ReportBase/_StyleEditor.py:96
+#: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stilmallsredigerare"
 
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
-#: ../src/ReportBase/_CommandLineReport.py:195
-#: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:260
-#: ../src/ReportBase/_PaperMenu.py:362 ../src/ReportBase/_PaperMenu.py:384
+#: ../src/ReportBase/_CommandLineReport.py:192
+#: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
+#: ../src/ReportBase/_PaperMenu.py:364 ../src/ReportBase/_PaperMenu.py:386
 msgid "Custom Size"
 msgstr "Anpassad storlek"
 
@@ -11983,7 +11949,7 @@ msgid "Graphics"
 msgstr "Grafik"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:885
+#: ../src/ReportBase/_GraphvizReportDialog.py:888
 msgid "Paper Options"
 msgstr "Pappersalternativ"
 
@@ -11992,7 +11958,7 @@ msgid "HTML Options"
 msgstr "HTML-alternativ"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:865
+#: ../src/ReportBase/_GraphvizReportDialog.py:868
 msgid "Output Format"
 msgstr "Format för utdata"
 
@@ -12029,133 +11995,133 @@ msgstr "Slutnoter"
 #. Private Contstants
 #.
 #. -------------------------------------------------------------------------------
-#: ../src/ReportBase/_GraphvizReportDialog.py:60
+#: ../src/ReportBase/_GraphvizReportDialog.py:61
 msgid "Default"
 msgstr "Standard"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:61
+#: ../src/ReportBase/_GraphvizReportDialog.py:62
 msgid "Postscript / Helvetica"
 msgstr "Postscript / Helvetica"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:62
+#: ../src/ReportBase/_GraphvizReportDialog.py:63
 msgid "Truetype / FreeSans"
 msgstr "Truetype / FreeSans"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:64
+#: ../src/ReportBase/_GraphvizReportDialog.py:65
 msgid "Vertical (top to bottom)"
 msgstr "Vertikalt (uppifrån och ner)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:65
+#: ../src/ReportBase/_GraphvizReportDialog.py:66
 msgid "Vertical (bottom to top)"
 msgstr "Vertikalt (nerifrån och upp)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:66
+#: ../src/ReportBase/_GraphvizReportDialog.py:67
 msgid "Horizontal (left to right)"
 msgstr "Horisontellt (vänster till höger)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:67
+#: ../src/ReportBase/_GraphvizReportDialog.py:68
 msgid "Horizontal (right to left)"
 msgstr "Horisontellt (höger till vänster)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:69
+#: ../src/ReportBase/_GraphvizReportDialog.py:70
 msgid "Bottom, left"
 msgstr "Nederkant, vänster"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:70
+#: ../src/ReportBase/_GraphvizReportDialog.py:71
 msgid "Bottom, right"
 msgstr "Nederkant, höger"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:71
+#: ../src/ReportBase/_GraphvizReportDialog.py:72
 msgid "Top, left"
 msgstr "Överkant, vänster"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:72
+#: ../src/ReportBase/_GraphvizReportDialog.py:73
 msgid "Top, Right"
 msgstr "Överkant, höger"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:73
+#: ../src/ReportBase/_GraphvizReportDialog.py:74
 msgid "Right, bottom"
 msgstr "Höger, nederkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:74
+#: ../src/ReportBase/_GraphvizReportDialog.py:75
 msgid "Right, top"
 msgstr "Höger, överkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:75
+#: ../src/ReportBase/_GraphvizReportDialog.py:76
 msgid "Left, bottom"
 msgstr "Vänster, nederkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:76
+#: ../src/ReportBase/_GraphvizReportDialog.py:77
 msgid "Left, top"
 msgstr "Vänster, överkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:78
+#: ../src/ReportBase/_GraphvizReportDialog.py:79
 msgid "Minimal size"
 msgstr "Minsta storlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:79
+#: ../src/ReportBase/_GraphvizReportDialog.py:80
 msgid "Fill the given area"
 msgstr "Fyll givet område"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:80
+#: ../src/ReportBase/_GraphvizReportDialog.py:81
 msgid "Use optimal number of pages"
 msgstr "Använd optimalt antal sidor"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:82
+#: ../src/ReportBase/_GraphvizReportDialog.py:83
 msgid "Top"
 msgstr "Överkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:83
+#: ../src/ReportBase/_GraphvizReportDialog.py:84
 msgid "Bottom"
 msgstr "Nederkant"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:575
+#: ../src/ReportBase/_GraphvizReportDialog.py:576
 msgid "Graphviz Dot File"
 msgstr "Graphviz dot-fil"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:584
+#: ../src/ReportBase/_GraphvizReportDialog.py:585
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:590
+#: ../src/ReportBase/_GraphvizReportDialog.py:591
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:596
+#: ../src/ReportBase/_GraphvizReportDialog.py:597
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:602
+#: ../src/ReportBase/_GraphvizReportDialog.py:603
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:608
+#: ../src/ReportBase/_GraphvizReportDialog.py:609
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Compressed Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:614
+#: ../src/ReportBase/_GraphvizReportDialog.py:615
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:620
+#: ../src/ReportBase/_GraphvizReportDialog.py:621
 msgid "GIF image"
 msgstr "GIF-bild"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:626
+#: ../src/ReportBase/_GraphvizReportDialog.py:627
 msgid "PNG image"
 msgstr "PNG-bild"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:717
+#: ../src/ReportBase/_GraphvizReportDialog.py:718
 msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:719
+#: ../src/ReportBase/_GraphvizReportDialog.py:720
 msgid "Font family"
 msgstr "Teckensnittsfamilj"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:724
+#: ../src/ReportBase/_GraphvizReportDialog.py:725
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12164,27 +12130,27 @@ msgstr ""
 "FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/"
 "freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:730
+#: ../src/ReportBase/_GraphvizReportDialog.py:731
 msgid "Font size"
 msgstr "Typsnittsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:731
+#: ../src/ReportBase/_GraphvizReportDialog.py:732
 msgid "The font size, in points."
 msgstr "Teckenstorleken i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:734
+#: ../src/ReportBase/_GraphvizReportDialog.py:735
 msgid "Graph Direction"
 msgstr "Riktning för diagram"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:739
+#: ../src/ReportBase/_GraphvizReportDialog.py:740
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:743
+#: ../src/ReportBase/_GraphvizReportDialog.py:744
 msgid "Number of Horizontal Pages"
 msgstr "Antal sidor i horisontalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:744
+#: ../src/ReportBase/_GraphvizReportDialog.py:745
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12194,11 +12160,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
 "horisontellt."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:750
+#: ../src/ReportBase/_GraphvizReportDialog.py:751
 msgid "Number of Vertical Pages"
 msgstr "Antal sidor i vertikalled"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:752
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12208,11 +12174,11 @@ msgstr ""
 "rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
 "vertikalled."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:757
+#: ../src/ReportBase/_GraphvizReportDialog.py:758
 msgid "Paging Direction"
 msgstr "Sidriktning"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:762
+#: ../src/ReportBase/_GraphvizReportDialog.py:763
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12221,24 +12187,24 @@ msgstr ""
 "horisontella eller vertikala sidor är större än 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:780
+#: ../src/ReportBase/_GraphvizReportDialog.py:781
 msgid "GraphViz Options"
 msgstr "GraphViz-alternativ"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Aspect ratio"
 msgstr "Aspektförhållande"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:788
+#: ../src/ReportBase/_GraphvizReportDialog.py:789
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Avgör väsentligt hur grafen placeras på papperet."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:792
+#: ../src/ReportBase/_GraphvizReportDialog.py:793
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:793
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
@@ -12246,11 +12212,11 @@ msgstr ""
 "Punkter per tum. När .gif- eller .png-filer skapas för för Internet, försök "
 "med tal som 75 eller 100 DPI. För utskrift, försök med 300 eller 600 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:799
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "Node spacing"
 msgstr "Nodavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:800
+#: ../src/ReportBase/_GraphvizReportDialog.py:803
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12260,11 +12226,11 @@ msgstr ""
 "diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram "
 "motsvara detta avståndet mellan rader."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:807
+#: ../src/ReportBase/_GraphvizReportDialog.py:810
 msgid "Rank spacing"
 msgstr "Rangordningsavstånd"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:808
+#: ../src/ReportBase/_GraphvizReportDialog.py:811
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12275,34 +12241,60 @@ msgstr ""
 "detta avståndet mellan rader."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:819
+#: ../src/ReportBase/_GraphvizReportDialog.py:822
 msgid "Note to add to the graph"
 msgstr "Notis att lägga till grafen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:821
+#: ../src/ReportBase/_GraphvizReportDialog.py:824
 msgid "This text will be added to the graph."
 msgstr "Den här texten läggs till grafen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:824
+#: ../src/ReportBase/_GraphvizReportDialog.py:827
 msgid "Note location"
 msgstr "Placering av notis"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:827
+#: ../src/ReportBase/_GraphvizReportDialog.py:830
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:831
+#: ../src/ReportBase/_GraphvizReportDialog.py:834
 msgid "Note size"
 msgstr "Anteckningsstorlek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:832
+#: ../src/ReportBase/_GraphvizReportDialog.py:835
 msgid "The size of note text, in points."
 msgstr "Storlek på notis, i punkter."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:857
-#: ../src/ReportBase/_GraphvizReportDialog.py:912
+#: ../src/ReportBase/_GraphvizReportDialog.py:860
+#: ../src/ReportBase/_GraphvizReportDialog.py:915
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:975
+#: ../src/ReportBase/_GraphvizReportDialog.py:983
+msgid "Two or more opposite paper margins are less than "
+msgstr "Två eller fler motsatta pappersmarginaler är mindre än "
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
+#: ../src/ReportBase/_GraphvizReportDialog.py:992
+msgid "This can cause incorrect and/or partial graphs."
+msgstr "Detta kan ge felaktiga och/eller partiella diagram."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:984
+msgid "More than expected number of pages can be generated."
+msgstr "Fler än förväntat antal sidor kan skapas."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:991
+msgid "You have used more than one page as output."
+msgstr "Du har använt mer än en sida för resultat."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:996
+msgid "You have not used 75 dpi for Ghostscript."
+msgstr "Du har inte använt 75 dpi för Ghostscript."
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:997
+msgid "Using other dpi's will cause incorrect graphs."
+msgstr "Att använda annan dpi kan ge felaktiga diagram."
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
@@ -12311,6 +12303,10 @@ msgstr "Stående"
 #: ../src/ReportBase/_PaperMenu.py:119
 msgid "Landscape"
 msgstr "Liggande"
+
+#: ../src/ReportBase/_PaperMenu.py:227
+msgid "in."
+msgstr "tum"
 
 #: ../src/ReportBase/_ReportDialog.py:165
 msgid "Directory"
@@ -15754,23 +15750,23 @@ msgstr "död i %(death_place)s."
 msgid "Descendant Families of %s"
 msgstr "Ättlingafamiljer till %s"
 
-#: ../src/ReportBase/_StyleEditor.py:84
+#: ../src/ReportBase/_StyleEditor.py:85
 msgid "Document Styles"
 msgstr "Dokumentstilar"
 
-#: ../src/ReportBase/_StyleEditor.py:137
+#: ../src/ReportBase/_StyleEditor.py:138
 msgid "Error saving stylesheet"
 msgstr "Fel när stilmall skulle sparas"
 
-#: ../src/ReportBase/_StyleEditor.py:204
+#: ../src/ReportBase/_StyleEditor.py:205
 msgid "Style editor"
 msgstr "Stilmallsredigerare"
 
-#: ../src/ReportBase/_StyleEditor.py:208
+#: ../src/ReportBase/_StyleEditor.py:207
 msgid "Paragraph"
 msgstr "Paragraf"
 
-#: ../src/ReportBase/_StyleEditor.py:242
+#: ../src/ReportBase/_StyleEditor.py:241
 msgid "No description available"
 msgstr "Beskrivning saknas"
 
