@@ -261,8 +261,8 @@ class PaperFrame(gtk.HBox):
         # How can we distinguish custom size though?
         if papername == _('Custom Size'):
             try:
-                h = float(unicode(self.pheight.get_text()))
-                w = float(unicode(self.pwidth.get_text()))
+                h = float(unicode(self.pheight.get_text().replace(",",".")))
+                w = float(unicode(self.pwidth.get_text().replace(",",".")))
                 
                 if h <= 1.0 or w <= 1.0:
                     papersize.set_height(29.7)
@@ -273,7 +273,7 @@ class PaperFrame(gtk.HBox):
             except:
                 papersize.set_height(29.7)
                 papersize.set_width(21.0)
-                
+                1.30
         return papersize, papername
 
     def get_paper_margins(self):
@@ -287,10 +287,9 @@ class PaperFrame(gtk.HBox):
         paper_margins.append(unicode(self.rmargin.get_text()))
         paper_margins.append(unicode(self.tmargin.get_text()))
         paper_margins.append(unicode(self.bmargin.get_text()))
-        
         for i, margin in enumerate(paper_margins):
             try:
-                paper_margins[i] = float(margin)
+                paper_margins[i] = float(margin.replace(",","."))
                 paper_margins[i] = paper_margins[i] * self.paper_unit_multiplier
                 paper_margins[i] = max(paper_margins[i], 0)
             except:
@@ -299,8 +298,8 @@ class PaperFrame(gtk.HBox):
         return paper_margins
 
     def get_custom_paper_size(self):
-        width   = float(self.pwidth.get_text() ) * self.paper_unit_multiplier
-        height  = float(self.pheight.get_text()) * self.paper_unit_multiplier
+        width   = float(self.pwidth.get_text().replace(",",".")) * self.paper_unit_multiplier
+        height  = float(self.pheight.get_text().replace(",",".")) * self.paper_unit_multiplier
 
         paper_size = []
         paper_size.append(max(width, 1.0))
