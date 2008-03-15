@@ -12706,7 +12706,7 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportDialog.py:275
 msgid "You must select an active person for this report to work properly."
-msgstr "Vous devez activer un individu pour que ce rapport fonctionne proprement."
+msgstr "Vous devez activer un individu pour que ce rapport fonctionne correctement."
 
 #: ../src/ReportBase/_ReportUtils.py:58
 #, python-format
@@ -18769,7 +18769,7 @@ msgstr "Ad_resse :"
 
 #: ../src/glade/gramps.glade.h:43
 msgid "Belo_w:"
-msgstr "Au dess_ous :"
+msgstr "En dess_ous :"
 
 #: ../src/glade/gramps.glade.h:44
 msgid "Birth:"
