@@ -633,8 +633,8 @@ src/Filters/Rules/Repository/__init__.py
 src/Filters/Rules/Note/_AllNotes.py
 src/Filters/Rules/Note/_HasIdOf.py
 src/Filters/Rules/Note/_HasMarkerOf.py
-src/Filters/Rules/Note/_HasNoteMatchingSubstringOf.py
-src/Filters/Rules/Note/_HasNoteRegexp.py
+src/Filters/Rules/Note/_MatchesSubstringOf.py
+src/Filters/Rules/Note/_MatchesRegexpOf.py
 src/Filters/Rules/Note/_HasNote.py
 src/Filters/Rules/Note/_HasReferenceCountOf.py
 src/Filters/Rules/Note/_MatchesFilter.py

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,14 +33,23 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
+from Filters.Rules import Rule
 
 #-------------------------------------------------------------------------
-# "Repos having notes that contain a substring"
+# "Events having notes that contain a substring"
 #-------------------------------------------------------------------------
-class HasNoteRegexp(HasNoteRegexBase):
+class MatchesSubstringOf(Rule):
+    """Notes having notes containing <subtring>"""
 
-    name        = _('Notes having notes '
-                    'containing <regular expression>')
-    description = _("Matches notes whose notes contain text "
-                    "matching a regular expression")
+    labels      = [ _('Substring:')]
+    name        = _('Notes containing <substring>')
+    description = _("Matches notes who contain text "
+                    "matching a substring")
+    category    = _('General filters')
+
+    def apply(self, db, note):
+        """ Apply the filter """
+        text = unicode(note.get())
+        if text.upper().find(self.list[0].upper()) != -1:
+            return True
+        return False

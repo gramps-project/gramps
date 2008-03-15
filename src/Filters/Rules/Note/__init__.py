@@ -29,8 +29,8 @@ from _AllNotes import AllNotes
 from _HasIdOf import HasIdOf
 from _HasMarkerOf import HasMarkerOf
 from _RegExpIdOf import RegExpIdOf
-from _HasNoteRegexp import HasNoteRegexp
-from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
+from _MatchesRegexpOf import MatchesRegexpOf
+from _MatchesSubstringOf import MatchesSubstringOf
 from _HasReferenceCountOf import HasReferenceCountOf
 from _NotePrivate import NotePrivate
 from _MatchesFilter import MatchesFilter
@@ -42,8 +42,8 @@ editor_rule_list = [
     HasMarkerOf,
     RegExpIdOf,
     HasNote,
-    HasNoteRegexp,
-    HasNoteMatchingSubstringOf,
+    MatchesRegexpOf,
+    MatchesSubstringOf,
     HasReferenceCountOf,
     NotePrivate,
     MatchesFilter,
