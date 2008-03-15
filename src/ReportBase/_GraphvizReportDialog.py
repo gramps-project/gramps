@@ -547,10 +547,12 @@ class GVPdfGsDoc(GVDocBase):
         command = 'dot -Tps -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         os.system(command)
 
-        # Add .5 to remove rounding errors.
+        #  dot creates ps with a ceratin dpi; the paper size, in points, has to be
+        #  adjusted according to what the user has defined. The paper will be large,
+        #  but pdf-printers adjust to actual printer paper size.
         paper_size = self.paper.get_size()
-        width_pt = int( (paper_size.get_width_inches() * 72) + 0.5 )
-        height_pt = int( (paper_size.get_height_inches() * 72) + 0.5 )
+        width_pt = int( (paper_size.get_width_inches() * self.dpi))
+        height_pt = int( (paper_size.get_height_inches() * self.dpi))
         
         # Convert to PDF using ghostscript
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
@@ -961,9 +963,9 @@ class GraphvizReportDialog(ReportDialog):
         # offset a lot
         # Note margins are always in cm.
         if self.paper_frame.get_paper_metric():
-            warn_marg = "1.3 cm."
+            warn_marg = "1.3 " + _("cm") + "."
         else:
-            warn_marg = "0.5 in."
+            warn_marg = "0.5 " + _("in") + "."
 
         pm_l = self.paper_frame.get_paper_margins()[0] / 2.54
         pm_r = self.paper_frame.get_paper_margins()[1] / 2.54
@@ -992,10 +994,6 @@ class GraphvizReportDialog(ReportDialog):
             warn_text2 = _("This can cause incorrect and/or partial graphs.")
             WarningDialog(warn_text1, warn_text2)
 
-        if (self.format_menu.get_clname() == 'gspdf') and (self.dpi.get_value() != 75 ):
-            warn_text1 = _("You have not used 75 dpi for Ghostscript.")
-            warn_text2 = _("Using other dpi's will cause incorrect graphs.")
-            WarningDialog(warn_text1, warn_text2)
         #======================================================================
 
         # Is there a filename?  This should also test file permissions, etc.
