@@ -527,7 +527,7 @@ died_no_date_no_place = [
     ], 
   },
   [
-  _(""),
+  "",
   _("Died (age %(age)d years)."),
   _("Died (age %(age)d months)."),
   _("Died (age %(age)d days)."),
