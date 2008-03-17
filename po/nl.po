@@ -1,7 +1,13 @@
-# translation of nl.po to dutch
+# translation of nl.po to Dutch
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
+# Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
+# Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
+# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008.
+# Erik De Richter <frederik.de.richter@gmail.com>, 2007, 2008.
+# Frederik De Richter <frederik.de.richter@pandora.be>, 2008.
+# Frederik De richter <frederik.de.richter@pandora.be>, 2008.
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
 # --------------------------------------------------
@@ -28,21 +34,14 @@
 # reference	waarnaar verwezen wordt
 # count		aantal maal
 # lineage	lijn
-#: ../src/ReportBase/_ReportUtils.py:530
-# Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
-# Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
-# Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008.
-# Erik De Richter <frederik.de.richter@gmail.com>, 2007, 2008.
-# Frederik De Richter <frederik.de.richter@pandora.be>, 2008.
-# Frederik De richter <frederik.de.richter@pandora.be>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-14 12:46+0100\n"
-"PO-Revision-Date: 2008-03-14 17:43+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@gmail.com>\n"
-"Language-Team: dutch <en@li.org>\n"
+"POT-Creation-Date: 2008-03-17 11:12+0100\n"
+"PO-Revision-Date: 2008-03-17 11:25+0100\n"
+"Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
+"Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1012,7 +1011,7 @@ msgstr "Bibliotheek"
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:819
+#: ../src/ReportBase/_GraphvizReportDialog.py:821
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
@@ -1299,7 +1298,7 @@ msgstr "Bladwijzer toevoegen"
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
-#: ../src/plugins/DefaultGramplets.py:962 ../src/plugins/ExportCSV.py:435
+#: ../src/plugins/DefaultGramplets.py:956 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/ImportCSV.py:213 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:693 ../src/plugins/NarrativeWeb.py:1345
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
@@ -1370,7 +1369,7 @@ msgid "Select Parents"
 msgstr "Selecteer ouders"
 
 #: ../src/gramps_main.py:117 ../src/DataViews/PedigreeView.py:457
-#: ../src/plugins/DefaultGramplets.py:1086 ../src/plugins/NarrativeWeb.py:2073
+#: ../src/plugins/DefaultGramplets.py:1080 ../src/plugins/NarrativeWeb.py:2073
 msgid "Pedigree"
 msgstr "Stamboom"
 
@@ -4181,7 +4180,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1151
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:684
+#: ../src/ReportBase/_GraphvizReportDialog.py:686
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Openen met %(program_name)s"
@@ -6270,7 +6269,7 @@ msgstr "%d jaren"
 msgid "%d months"
 msgstr "%d maanden"
 
-#: ../src/plugins/AgeOnDate.py:103 ../src/plugins/DefaultGramplets.py:1068
+#: ../src/plugins/AgeOnDate.py:103 ../src/plugins/DefaultGramplets.py:1062
 msgid "Age on Date"
 msgstr "Leeftijd op datum"
 
@@ -6371,7 +6370,7 @@ msgstr "Levert een grafische voorouderstamboom"
 msgid "Ahnentafel Report for %s"
 msgstr "Ahnentafel verslag voor %s"
 
-#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:573
+#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:567
 #: ../src/plugins/DetAncestralReport.py:165
 #: ../src/plugins/DetDescendantReport.py:195
 #: ../src/plugins/EndOfLineReport.py:161
@@ -6691,7 +6690,7 @@ msgstr "Kalenderverslag"
 
 #. initialize the dict to fill:
 #: ../src/plugins/Calendar.py:214 ../src/plugins/Calendar.py:925
-#: ../src/plugins/DefaultGramplets.py:1051
+#: ../src/plugins/DefaultGramplets.py:1045
 msgid "Calendar"
 msgstr "Kalender"
 
@@ -6729,8 +6728,7 @@ msgstr "Getoonde verwantschappen van  %s"
 msgid "Year of calendar"
 msgstr "Kalenderjaar"
 
-#: ../src/plugins/Calendar.py:493 ../src/plugins/NarrativeWeb.py:2956
-#: ../src/plugins/WebCal.py:743
+#: ../src/plugins/Calendar.py:493 ../src/plugins/WebCal.py:743
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 "Kies een filter om het aantal personen te beperken dat getoond wordt op de "
@@ -7529,13 +7527,13 @@ msgstr "Dubbelklikken op de achternaam voor meer details"
 #: ../src/plugins/DefaultGramplets.py:276
 #: ../src/plugins/DefaultGramplets.py:359
 #: ../src/plugins/DefaultGramplets.py:453
-#: ../src/plugins/DefaultGramplets.py:582
+#: ../src/plugins/DefaultGramplets.py:576
 msgid "No Family Tree loaded."
 msgstr "Geen familiestamboom geladen."
 
 #: ../src/plugins/DefaultGramplets.py:214
 #: ../src/plugins/DefaultGramplets.py:291
-#: ../src/plugins/DefaultGramplets.py:592
+#: ../src/plugins/DefaultGramplets.py:586
 msgid "Processing..."
 msgstr "Wordt verwerkt..."
 
@@ -7590,7 +7588,7 @@ msgstr "   %d. a moeder: "
 msgid "   %d.b Father: "
 msgstr "   %d. b vader: "
 
-#: ../src/plugins/DefaultGramplets.py:562
+#: ../src/plugins/DefaultGramplets.py:556
 msgid ""
 "\n"
 "Breakdown by generation:\n"
@@ -7598,134 +7596,134 @@ msgstr ""
 "\n"
 "Opsplitsen per generatie:\n"
 
-#: ../src/plugins/DefaultGramplets.py:569
+#: ../src/plugins/DefaultGramplets.py:563
 msgid "Generation 1"
 msgstr "Generatie 1"
 
-#: ../src/plugins/DefaultGramplets.py:570
+#: ../src/plugins/DefaultGramplets.py:564
 #, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
 msgstr " heeft 1 van 1 individu (100.00% complete)\n"
 
-#: ../src/plugins/DefaultGramplets.py:574
+#: ../src/plugins/DefaultGramplets.py:568
 #, python-format
 msgid " has %d of %d individuals (%.2f%% complete)\n"
 msgstr " heeft %d van %d personen (%.2f%% voltooid)\n"
 
-#: ../src/plugins/DefaultGramplets.py:576
+#: ../src/plugins/DefaultGramplets.py:570
 msgid "All generations"
 msgstr "Alle generaties"
 
-#: ../src/plugins/DefaultGramplets.py:577
+#: ../src/plugins/DefaultGramplets.py:571
 #, python-format
 msgid " have %d individuals\n"
 msgstr " heeft %d personen\n"
 
-#: ../src/plugins/DefaultGramplets.py:583
+#: ../src/plugins/DefaultGramplets.py:577
 msgid "Double-click item to see matches"
 msgstr "Dubbelklikken element om overkomsten te zien"
 
 # Individuen
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:656 ../src/plugins/GVFamilyLines.py:123
+#: ../src/plugins/DefaultGramplets.py:650 ../src/plugins/GVFamilyLines.py:123
 #: ../src/plugins/NarrativeWeb.py:461 ../src/plugins/NarrativeWeb.py:829
 #: ../src/plugins/NarrativeWeb.py:836 ../src/plugins/Summary.py:115
 msgid "Individuals"
 msgstr "Personen"
 
-#: ../src/plugins/DefaultGramplets.py:658 ../src/plugins/Summary.py:117
+#: ../src/plugins/DefaultGramplets.py:652 ../src/plugins/Summary.py:117
 msgid "Number of individuals"
 msgstr "Aantal personen"
 
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:662 ../src/plugins/GVFamilyLines.py:126
+#: ../src/plugins/DefaultGramplets.py:656 ../src/plugins/GVFamilyLines.py:126
 #: ../src/plugins/Summary.py:118 ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Mannen"
 
-#: ../src/plugins/DefaultGramplets.py:665 ../src/plugins/GVFamilyLines.py:130
+#: ../src/plugins/DefaultGramplets.py:659 ../src/plugins/GVFamilyLines.py:130
 #: ../src/plugins/Summary.py:119 ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Vrouwen"
 
-#: ../src/plugins/DefaultGramplets.py:668 ../src/plugins/Summary.py:120
+#: ../src/plugins/DefaultGramplets.py:662 ../src/plugins/Summary.py:120
 msgid "Individuals with unknown gender"
 msgstr "Personen met onbekend geslacht"
 
-#: ../src/plugins/DefaultGramplets.py:672 ../src/plugins/Summary.py:121
+#: ../src/plugins/DefaultGramplets.py:666 ../src/plugins/Summary.py:121
 msgid "Individuals with incomplete names"
 msgstr "Personen met onvolledige namen"
 
-#: ../src/plugins/DefaultGramplets.py:676 ../src/plugins/Summary.py:122
+#: ../src/plugins/DefaultGramplets.py:670 ../src/plugins/Summary.py:122
 msgid "Individuals missing birth dates"
 msgstr "Personen zonder geboortedatum"
 
-#: ../src/plugins/DefaultGramplets.py:680 ../src/plugins/Summary.py:123
+#: ../src/plugins/DefaultGramplets.py:674 ../src/plugins/Summary.py:123
 msgid "Disconnected individuals"
 msgstr "Personen zonder relatie"
 
-#: ../src/plugins/DefaultGramplets.py:684 ../src/plugins/Summary.py:124
+#: ../src/plugins/DefaultGramplets.py:678 ../src/plugins/Summary.py:124
 msgid "Family Information"
 msgstr "Familie-informatie"
 
-#: ../src/plugins/DefaultGramplets.py:686 ../src/plugins/Summary.py:126
+#: ../src/plugins/DefaultGramplets.py:680 ../src/plugins/Summary.py:126
 msgid "Number of families"
 msgstr "Aantal families"
 
-#: ../src/plugins/DefaultGramplets.py:690 ../src/plugins/Summary.py:127
+#: ../src/plugins/DefaultGramplets.py:684 ../src/plugins/Summary.py:127
 msgid "Unique surnames"
 msgstr "Unieke achternamen"
 
-#: ../src/plugins/DefaultGramplets.py:694 ../src/plugins/Summary.py:128
+#: ../src/plugins/DefaultGramplets.py:688 ../src/plugins/Summary.py:128
 msgid "Media Objects"
 msgstr "Media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:696 ../src/plugins/Summary.py:130
+#: ../src/plugins/DefaultGramplets.py:690 ../src/plugins/Summary.py:130
 msgid "Individuals with media objects"
 msgstr "Personen met media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:700 ../src/plugins/Summary.py:131
+#: ../src/plugins/DefaultGramplets.py:694 ../src/plugins/Summary.py:131
 msgid "Total number of media object references"
 msgstr "Totaal aantal verwijzingen naar media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:704 ../src/plugins/Summary.py:132
+#: ../src/plugins/DefaultGramplets.py:698 ../src/plugins/Summary.py:132
 msgid "Number of unique media objects"
 msgstr "Aantal unieke media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:709 ../src/plugins/Summary.py:133
+#: ../src/plugins/DefaultGramplets.py:703 ../src/plugins/Summary.py:133
 msgid "Total size of media objects"
 msgstr "Totale grootte van media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:711 ../src/plugins/Summary.py:134
+#: ../src/plugins/DefaultGramplets.py:705 ../src/plugins/Summary.py:134
 msgid "bytes"
 msgstr "byte"
 
-#: ../src/plugins/DefaultGramplets.py:713 ../src/plugins/Summary.py:137
+#: ../src/plugins/DefaultGramplets.py:707 ../src/plugins/Summary.py:137
 msgid "Missing Media Objects"
 msgstr "Ontbrekende media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:720
+#: ../src/plugins/DefaultGramplets.py:714
 msgid "Enter Python expressions"
 msgstr "Python-uitdrukkingen invoeren"
 
-#: ../src/plugins/DefaultGramplets.py:724
+#: ../src/plugins/DefaultGramplets.py:718
 msgid "class name|Date"
 msgstr "Datum"
 
-#: ../src/plugins/DefaultGramplets.py:734
+#: ../src/plugins/DefaultGramplets.py:728
 msgid "Error"
 msgstr "Fout"
 
 #. GUI setup:
-#: ../src/plugins/DefaultGramplets.py:813
+#: ../src/plugins/DefaultGramplets.py:807
 msgid "Enter text"
 msgstr "Tekst ingeven"
 
-#: ../src/plugins/DefaultGramplets.py:815
+#: ../src/plugins/DefaultGramplets.py:809
 msgid "Enter your TODO list here."
 msgstr "Vul hier uw NOG TE DOEN lijst in."
 
-#: ../src/plugins/DefaultGramplets.py:826
+#: ../src/plugins/DefaultGramplets.py:820
 msgid ""
 "Welcome to GRAMPS!\n"
 "\n"
@@ -7786,21 +7784,21 @@ msgstr ""
 "het GRAMPS-programma sluit met een ontkoppeld gramplet-venster wordt de "
 "volgende keer u GRAMPS opstart, ook losgekoppeld getoond."
 
-#: ../src/plugins/DefaultGramplets.py:855
+#: ../src/plugins/DefaultGramplets.py:849
 msgid "Read news from the GRAMPS wiki"
 msgstr "Nieuws lezen van de GRAMPS-wiki"
 
 # Classificatie, taxering
-#: ../src/plugins/DefaultGramplets.py:899
+#: ../src/plugins/DefaultGramplets.py:893
 msgid "Reading"
 msgstr "Wordt ingelezen"
 
 #. GUI setup:
-#: ../src/plugins/DefaultGramplets.py:949
+#: ../src/plugins/DefaultGramplets.py:943
 msgid "Enter a date, click Run"
 msgstr "Geef een datum op en klik op start"
 
-#: ../src/plugins/DefaultGramplets.py:956
+#: ../src/plugins/DefaultGramplets.py:950
 msgid ""
 "Enter a date in the entry below and click Run. This will compute the ages "
 "for everyone in your Family Tree on that date. You can then sort by the age "
@@ -7811,92 +7809,92 @@ msgstr ""
 "kunt vervolgens sorteren via de leeftijdskolom. Dubbelklikken op de rij "
 "maakt bewerken mogelijk."
 
-#: ../src/plugins/DefaultGramplets.py:964
+#: ../src/plugins/DefaultGramplets.py:958
 msgid "Run"
 msgstr "Uitvoeren"
 
-#: ../src/plugins/DefaultGramplets.py:987
+#: ../src/plugins/DefaultGramplets.py:981
 msgid "Top Surnames Gramplet"
 msgstr "Top achternamen gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:990
+#: ../src/plugins/DefaultGramplets.py:984
 msgid "Top Surnames"
 msgstr "Top achternamen"
 
-#: ../src/plugins/DefaultGramplets.py:995
+#: ../src/plugins/DefaultGramplets.py:989
 msgid "Surname Cloud Gramplet"
 msgstr "Achternamenwolk gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:999
+#: ../src/plugins/DefaultGramplets.py:993
 msgid "Surname Cloud"
 msgstr "Achternamenwolk"
 
-#: ../src/plugins/DefaultGramplets.py:1004
+#: ../src/plugins/DefaultGramplets.py:998
 msgid "Statistics Gramplet"
 msgstr "Statistiekengramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1008
+#: ../src/plugins/DefaultGramplets.py:1002
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: ../src/plugins/DefaultGramplets.py:1013
+#: ../src/plugins/DefaultGramplets.py:1007
 msgid "Session Log Gramplet"
 msgstr "Log gramplet"
 
 # Huwelijkszegen?
-#: ../src/plugins/DefaultGramplets.py:1017
+#: ../src/plugins/DefaultGramplets.py:1011
 msgid "Session Log"
 msgstr "Log sessie"
 
-#: ../src/plugins/DefaultGramplets.py:1022
+#: ../src/plugins/DefaultGramplets.py:1016
 msgid "Python Gramplet"
 msgstr "Python Gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1025
+#: ../src/plugins/DefaultGramplets.py:1019
 msgid "Python Shell"
 msgstr "Python Shell"
 
-#: ../src/plugins/DefaultGramplets.py:1030
+#: ../src/plugins/DefaultGramplets.py:1024
 msgid "TODO Gramplet"
 msgstr "NOG TE DOEN gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1034
+#: ../src/plugins/DefaultGramplets.py:1028
 msgid "TODO List"
 msgstr "NOG TE DOEN lijst"
 
-#: ../src/plugins/DefaultGramplets.py:1039
+#: ../src/plugins/DefaultGramplets.py:1033
 msgid "Welcome Gramplet"
 msgstr "Welkom gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1043
+#: ../src/plugins/DefaultGramplets.py:1037
 msgid "Welcome to GRAMPS!"
 msgstr "Welkom bij GRAMPS!"
 
-#: ../src/plugins/DefaultGramplets.py:1048
+#: ../src/plugins/DefaultGramplets.py:1042
 msgid "Calendar Gramplet"
 msgstr "Kalendergramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1056
+#: ../src/plugins/DefaultGramplets.py:1050
 msgid "News Gramplet"
 msgstr "Nieuwsgramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1060
+#: ../src/plugins/DefaultGramplets.py:1054
 msgid "News"
 msgstr "Nieuws"
 
-#: ../src/plugins/DefaultGramplets.py:1065
+#: ../src/plugins/DefaultGramplets.py:1059
 msgid "Age on Date Gramplet"
 msgstr "Leeftijd op datum gramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1073
+#: ../src/plugins/DefaultGramplets.py:1067
 msgid "Relatives Gramplet"
 msgstr "Aanverwantengramplet"
 
-#: ../src/plugins/DefaultGramplets.py:1076
+#: ../src/plugins/DefaultGramplets.py:1070
 msgid "Active Person's Relatives"
 msgstr "Aanverwanten van de actieve persoon"
 
-#: ../src/plugins/DefaultGramplets.py:1083
+#: ../src/plugins/DefaultGramplets.py:1077
 msgid "Pedigree Gramplet"
 msgstr "Stamboomgramplet"
 
@@ -9288,7 +9286,7 @@ msgid ""
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
-"Een URL bij elk grafiekknoopunt voegen zodat PDF en imagemap-bestanden "
+"Een URL bij elk grafiekknooppunt toevoegen zodat PDF en imagemap-bestanden "
 "kunnen worden gegenereerd die actieve links bevatten naar de bestanden die "
 "gegenereerd zijn met het 'Websiteverslag ."
 
@@ -10312,7 +10310,7 @@ msgstr "Media-pagina's aanmaken"
 
 #: ../src/plugins/NarrativeWeb.py:2939
 msgid "Store web pages in .tar.gz archive"
-msgstr "Sla de web pagina's op in een tar.gz archief"
+msgstr "Sla de webpagina's op in een tar.gz archief"
 
 #: ../src/plugins/NarrativeWeb.py:2941
 msgid "Whether to store the web pages in an archive file"
@@ -10324,11 +10322,15 @@ msgstr "Bestemming"
 
 #: ../src/plugins/NarrativeWeb.py:2948 ../src/plugins/WebCal.py:706
 msgid "The destination directory for the web files"
-msgstr "De bestemmingsmap voor de webpagina's"
+msgstr "De map waar de webpagina's worden opgeslagen"
+
+#: ../src/plugins/NarrativeWeb.py:2956
+msgid "Select filter to restrict people that appear on web files"
+msgstr "Kies een filter om het aantal personen te beperken voor aanmaak webpagina's"
 
 #: ../src/plugins/NarrativeWeb.py:2967
 msgid "Web site title"
-msgstr "Website titel"
+msgstr "Titel voor de website"
 
 #: ../src/plugins/NarrativeWeb.py:2967
 msgid "My Family Tree"
@@ -10353,7 +10355,7 @@ msgstr "Copyright"
 
 #: ../src/plugins/NarrativeWeb.py:2982 ../src/plugins/WebCal.py:721
 msgid "The copyright to be used for the web files"
-msgstr "Autheursrecht gebruiken voor de webpagina's"
+msgstr "Welk auteursrecht gebruiken voor de webpagina's"
 
 # Doping
 #: ../src/plugins/NarrativeWeb.py:2985 ../src/plugins/WebCal.py:724
@@ -10362,15 +10364,15 @@ msgstr "Tekenset codering"
 
 #: ../src/plugins/NarrativeWeb.py:2988 ../src/plugins/WebCal.py:727
 msgid "The encoding to be used for the web files"
-msgstr "De gebruikte ''encodingstijl'' voor de webpagina's"
+msgstr "Welke decodeerstijl gebruiken voor de webpagina's"
 
 #: ../src/plugins/NarrativeWeb.py:2991
 msgid "Stylesheet"
 msgstr "Stijlblad"
 
 #: ../src/plugins/NarrativeWeb.py:2994
-msgid "The style sheet to be used for the web page"
-msgstr "De gebruikte stijlblad voor de webpagina's"
+msgid "The style sheet to be used for the web pages"
+msgstr "Het gebruikte stijlblad voor de webpagina's"
 
 #: ../src/plugins/NarrativeWeb.py:2997
 msgid "Include ancestor graph"
@@ -10579,7 +10581,7 @@ msgstr "Website"
 
 #: ../src/plugins/NarrativeWeb.py:3229
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Genereert web-pagina's (HTML) voor personen, of een groep personen"
+msgstr "Maak webpagina's aan (HTML) voor personen, of een groep personen"
 
 #: ../src/plugins/NotRelated.py:63
 #, python-format
@@ -10970,6 +10972,8 @@ msgstr "Vindt personen wiens achternaam ontbreekt"
 #: ../src/Filters/Rules/Source/_HasSource.py:51
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:54
 #: ../src/Filters/Rules/Repository/_HasRepo.py:54
+#: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:48
+#: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:48
 #: ../src/Filters/Rules/Note/_HasNote.py:52
 msgid "General filters"
 msgstr "Algemene filters"
@@ -10981,6 +10985,7 @@ msgstr "Algemene filters"
 #: ../src/Filters/Rules/Person/_HasNoteMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_SearchName.py:45
+#: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
 msgstr "Deeltekenreeks:"
 
@@ -11041,7 +11046,9 @@ msgstr "Voetnoot"
 msgid "From gallery..."
 msgstr "Uit galerij..."
 
-#: ../src/plugins/SimpleBookTitle.py:207 ../src/glade/gramps.glade.h:192
+#: ../src/plugins/SimpleBookTitle.py:207
+#: ../src/ReportBase/_GraphvizReportDialog.py:966
+#: ../src/ReportBase/_PaperMenu.py:223 ../src/glade/gramps.glade.h:192
 #: ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
@@ -11913,7 +11920,7 @@ msgstr "Web familiestamboomformaat."
 
 #: ../src/plugins/WriteFtree.py:312
 msgid "Web Family Tree export options"
-msgstr "Web familiestamboom export opties"
+msgstr "Web familiestamboom exportopties"
 
 #: ../src/plugins/WriteGeneWeb.py:264
 msgid "No families matched by selected filter"
@@ -12188,8 +12195,8 @@ msgstr "Stijleditor"
 #. FIXME it is wrong to use translatable text in comparison.
 #. How can we distinguish custom size though?
 #: ../src/ReportBase/_CommandLineReport.py:192
-#: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:260
-#: ../src/ReportBase/_PaperMenu.py:362 ../src/ReportBase/_PaperMenu.py:384
+#: ../src/ReportBase/_PaperMenu.py:201 ../src/ReportBase/_PaperMenu.py:262
+#: ../src/ReportBase/_PaperMenu.py:363 ../src/ReportBase/_PaperMenu.py:385
 msgid "Custom Size"
 msgstr "Aangepast formaat"
 
@@ -12222,7 +12229,7 @@ msgid "Graphics"
 msgstr "Grafisch"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:888
+#: ../src/ReportBase/_GraphvizReportDialog.py:890
 msgid "Paper Options"
 msgstr "Papieropties"
 
@@ -12231,7 +12238,7 @@ msgid "HTML Options"
 msgstr "HTML-opties"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:868
+#: ../src/ReportBase/_GraphvizReportDialog.py:870
 msgid "Output Format"
 msgstr "Uitvoerformaat"
 
@@ -12345,53 +12352,53 @@ msgstr "Boven"
 msgid "Bottom"
 msgstr "Onder"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:576
+#: ../src/ReportBase/_GraphvizReportDialog.py:578
 msgid "Graphviz Dot File"
 msgstr "Graphviz Dot bestand"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:585
+#: ../src/ReportBase/_GraphvizReportDialog.py:587
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:591
+#: ../src/ReportBase/_GraphvizReportDialog.py:593
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:597
+#: ../src/ReportBase/_GraphvizReportDialog.py:599
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:603
+#: ../src/ReportBase/_GraphvizReportDialog.py:605
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:609
+#: ../src/ReportBase/_GraphvizReportDialog.py:611
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Gecomprimeerde Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:615
+#: ../src/ReportBase/_GraphvizReportDialog.py:617
 msgid "JPEG image"
 msgstr "JPEG-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:621
+#: ../src/ReportBase/_GraphvizReportDialog.py:623
 msgid "GIF image"
 msgstr "GIF-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:627
+#: ../src/ReportBase/_GraphvizReportDialog.py:629
 msgid "PNG image"
 msgstr "PNG-afbeelding"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:718
+#: ../src/ReportBase/_GraphvizReportDialog.py:720
 msgid "GraphViz Layout"
 msgstr "GraphViz-layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:720
+#: ../src/ReportBase/_GraphvizReportDialog.py:722
 msgid "Font family"
 msgstr "Lettertypefamilie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:725
+#: ../src/ReportBase/_GraphvizReportDialog.py:727
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12400,27 +12407,27 @@ msgstr ""
 "gebruik dan het FreeSans lettertype. Dit lettertype is verkrijgbaar bij "
 "http://www.nongnu.org/freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:731
+#: ../src/ReportBase/_GraphvizReportDialog.py:733
 msgid "Font size"
 msgstr "Lettergrootte"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#: ../src/ReportBase/_GraphvizReportDialog.py:734
 msgid "The font size, in points."
 msgstr "Lettertypegrootte in pts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:735
+#: ../src/ReportBase/_GraphvizReportDialog.py:737
 msgid "Graph Direction"
 msgstr "Grafiekrichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:740
+#: ../src/ReportBase/_GraphvizReportDialog.py:742
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Grafiek van boven naar onder gaan, of van links naar rechts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:744
+#: ../src/ReportBase/_GraphvizReportDialog.py:746
 msgid "Number of Horizontal Pages"
 msgstr "Aantal horizontale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:745
+#: ../src/ReportBase/_GraphvizReportDialog.py:747
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12430,11 +12437,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld "
 "horizontaal."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:751
+#: ../src/ReportBase/_GraphvizReportDialog.py:753
 msgid "Number of Vertical Pages"
 msgstr "Aantal verticale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:752
+#: ../src/ReportBase/_GraphvizReportDialog.py:754
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12444,11 +12451,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld "
 "vertikaal."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:758
+#: ../src/ReportBase/_GraphvizReportDialog.py:760
 msgid "Paging Direction"
 msgstr "Paginarichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:765
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12458,24 +12465,24 @@ msgstr ""
 "dan 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:781
+#: ../src/ReportBase/_GraphvizReportDialog.py:783
 msgid "GraphViz Options"
 msgstr "GraphViz-opties"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:784
+#: ../src/ReportBase/_GraphvizReportDialog.py:786
 msgid "Aspect ratio"
 msgstr "Weergave verhouding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:789
+#: ../src/ReportBase/_GraphvizReportDialog.py:791
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Bepaalt in grote mate hoe grafieken geschikt worden op de pagina."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:793
+#: ../src/ReportBase/_GraphvizReportDialog.py:795
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:798
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
@@ -12484,11 +12491,11 @@ msgstr ""
 "voor een webstek, gebruik dan best 75 of 100 DPI. Voor het uitdrukken, "
 "probeer dan 300 of 600 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:802
+#: ../src/ReportBase/_GraphvizReportDialog.py:804
 msgid "Node spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:803
+#: ../src/ReportBase/_GraphvizReportDialog.py:805
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12498,11 +12505,11 @@ msgstr ""
 "grafieken, is dit de afstand tussen de kolommen. Voor horizontale frafieken "
 "is dit de afstand tussen de rijen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:810
+#: ../src/ReportBase/_GraphvizReportDialog.py:812
 msgid "Rank spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:811
+#: ../src/ReportBase/_GraphvizReportDialog.py:813
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12513,60 +12520,56 @@ msgstr ""
 "grafieken is dit de ruimte tussen de kolommen."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:824
 msgid "Note to add to the graph"
 msgstr "Bijschrift toevoegen aan grafiek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:824
+#: ../src/ReportBase/_GraphvizReportDialog.py:826
 msgid "This text will be added to the graph."
 msgstr "Deze tekst wordt toegevoegd aan de grafiek."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:827
+#: ../src/ReportBase/_GraphvizReportDialog.py:829
 msgid "Note location"
 msgstr "Opmerking locatie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:830
+#: ../src/ReportBase/_GraphvizReportDialog.py:832
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Of de notitie boven of onder aan de pagina zal verschijnen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:834
+#: ../src/ReportBase/_GraphvizReportDialog.py:836
 msgid "Note size"
 msgstr "Grootte opmerkingen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:835
+#: ../src/ReportBase/_GraphvizReportDialog.py:837
 msgid "The size of note text, in points."
 msgstr "De tekstgrootte, in 'points'."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:860
-#: ../src/ReportBase/_GraphvizReportDialog.py:915
+#: ../src/ReportBase/_GraphvizReportDialog.py:862
+#: ../src/ReportBase/_GraphvizReportDialog.py:917
 msgid "Open with application"
 msgstr "Openen met toepassing"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:975
-#: ../src/ReportBase/_GraphvizReportDialog.py:983
+#: ../src/ReportBase/_GraphvizReportDialog.py:968
+msgid "in"
+msgstr "in"
+
+#: ../src/ReportBase/_GraphvizReportDialog.py:977
+#: ../src/ReportBase/_GraphvizReportDialog.py:985
 msgid "Two or more opposite paper margins are less than "
 msgstr "Twee of meer tegenovergestelde papiermarges zijn kleiner dan"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:976
-#: ../src/ReportBase/_GraphvizReportDialog.py:992
+#: ../src/ReportBase/_GraphvizReportDialog.py:978
+#: ../src/ReportBase/_GraphvizReportDialog.py:994
 msgid "This can cause incorrect and/or partial graphs."
 msgstr "Dit kan leiden tot onjuiste en/of gedeeltelijke grafieken."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:984
+#: ../src/ReportBase/_GraphvizReportDialog.py:986
 msgid "More than expected number of pages can be generated."
 msgstr "Meer dan de verwachte aantal pagina's kunnen aangemaakt worden."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:991
+#: ../src/ReportBase/_GraphvizReportDialog.py:993
 msgid "You have used more than one page as output."
 msgstr "U hebt meer dan 1 pagina opgegeven voor uitvoer."
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:996
-msgid "You have not used 75 dpi for Ghostscript."
-msgstr "U hebt geen 75 dpi voor Ghostscript gebruikt."
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:997
-msgid "Using other dpi's will cause incorrect graphs."
-msgstr ""
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
@@ -12575,6 +12578,10 @@ msgstr "Staand"
 #: ../src/ReportBase/_PaperMenu.py:119
 msgid "Landscape"
 msgstr "Liggend"
+
+#: ../src/ReportBase/_PaperMenu.py:227
+msgid "in."
+msgstr "in."
 
 #: ../src/ReportBase/_ReportDialog.py:165
 msgid "Directory"
@@ -16978,6 +16985,7 @@ msgstr "Vindt objecten met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/_HasNoteRegexBase.py:44
 #: ../src/Filters/Rules/_RegExpIdBase.py:48
+#: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:44
 msgid "Regular expression:"
 msgstr "Reguliere uitdrukking:"
 
@@ -18590,25 +18598,23 @@ msgstr "Opmerkingen met <aanduiding>"
 msgid "Matches Notes with a marker of a particular value"
 msgstr "Vindt alle opmerkingen waarvan de aanduiding een bepaalde waarde heeft"
 
-#: ../src/Filters/Rules/Note/_HasNoteMatchingSubstringOf.py:43
-msgid "Notes having notes containing <substring>"
-msgstr "Vindt opmerkingen met opmerkingen welke <deeltekenreeks> bevatten"
+#: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:45
+msgid "Notes containing <substring>"
+msgstr "Opmerkingen die <deeltekenreeks> bevatten"
 
-#: ../src/Filters/Rules/Note/_HasNoteMatchingSubstringOf.py:44
-msgid "Matches notes whose notes contain text matching a substring"
+#: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
+msgid "Matches notes who contain text matching a substring"
 msgstr ""
-"Vindt opmerkingen waarvan de opmerkingen tekst bevatten die met een "
+"Vindt opmerkingen die een tekst bevatten die met een "
 "deeltekenreeks overeenkomen"
 
-#: ../src/Filters/Rules/Note/_HasNoteRegexp.py:42
-msgid "Notes having notes containing <regular expression>"
-msgstr "Vindt opmerkingen waarvan de opmerkingen een <reguliere uitdrukking> bevatten"
+#: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
+msgid "Notes containing <regular expression>"
+msgstr "Vindt opmerkingen die een <reguliere uitdrukking> bevatten"
 
-#: ../src/Filters/Rules/Note/_HasNoteRegexp.py:44
-msgid "Matches notes whose notes contain text matching a regular expression"
-msgstr ""
-"Vindt opmerkingen waarvan de notities tekst bevatten die met reguliere "
-"uitdrukking overeenkomen"
+#: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
+msgid "Matches notes who contain text "
+msgstr "Vindt opmerkingen die tekst bevatten"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
