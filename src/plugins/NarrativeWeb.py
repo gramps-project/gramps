@@ -140,6 +140,8 @@ _CHARACTER_SETS = [
     ]
 
 _CC = [
+    '',
+
     '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/">'
     '<img alt="Creative Commons License - By attribution" '
     'title="Creative Commons License - By attribution" '
@@ -239,12 +241,10 @@ class BasePage:
         # also the options in self.options.  Besides, we need to check which
         # are still required.
         options = report.options
-        self.inc_download = options['incdownload']
         self.html_dir = options['target']
         self.copyright = options['cright']
         self.ext = options['ext']
         self.encoding = options['encoding']
-        self.css = options['css']
         self.noid = options['nogid']
         self.linkhome = options['linkhome']
         self.showbirth = options['showbirth']
@@ -252,22 +252,12 @@ class BasePage:
         self.showspouse = options['showspouse']
         self.showparents = options['showparents']
         self.showhalfsiblings = options['showhalfsiblings']
-        self.use_intro = options['intronote'] != u""\
-                    or options['introimg'] != u""
-        self.use_contact = options['contactnote'] != u""\
-                    or options['contactimg'] != u""
         self.use_gallery = options['gallery']
-        self.header = options['headernote']
-        self.footer = options['footernote']
-        self.usegraph = options['graph']
-        self.graphgens = options['graphgens']
-        self.use_home = options['homenote'] != "" or \
-                        options['homeimg'] != ""
 
     def copy_media(self, photo, store_ref=True):
         handle = photo.get_handle()
         if store_ref:
-            lnk = (self.cur_fname, self.page_title, self.gid)
+            lnk = (self.report.cur_fname, self.page_title, self.gid)
             # FIXME. Is it OK to add to the photo_list of report?
             photo_list = self.report.photo_list
             if handle in photo_list:
@@ -280,18 +270,6 @@ class BasePage:
         real_path = "%s/%s" % (self.build_path('images', handle), handle+ext)
         thumb_path = "%s/%s.png" % (self.build_path('thumb', handle), handle)
         return (real_path, thumb_path)
-
-    def create_file(self, name):
-        self.cur_fname = name + self.ext
-        if self.report.archive:
-            self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io, 'utf-8',
-                                    self.encoding, 'xmlcharrefreplace')
-        else:
-            page_name = os.path.join(self.html_dir, self.cur_fname)
-            of = codecs.EncodedFile(open(page_name, "w"), 'utf-8',
-                                    self.encoding, 'xmlcharrefreplace')
-        return of
 
     def build_path(self, dirroot, name, up=False):
         path = '%s/%s/%s' % (dirroot, name[0].lower(), name[1].lower())
@@ -308,46 +286,6 @@ class BasePage:
         path = self.build_path(path, name, up)
         return path + '/' + name + self.ext
 
-    def link_path(self, path, name):
-        path = "%s/%s/%s" % (path, name[0].lower(), name[1].lower())
-        return path + '/' + name + self.ext
-
-    def create_link_file(self, path, name):
-        """
-        Create a file in a directory tree using the first to characters
-        for the first two directory levels.  For example
-        0/2/02c0d8f888f566ae95ffbdca64274b51
-        """
-        self.cur_fname = self.link_path(path, name)
-        if self.report.archive:
-            self.string_io = StringIO()
-            of = codecs.EncodedFile(self.string_io, 'utf-8',
-                                    self.encoding, 'xmlcharrefreplace')
-        else:
-            dirname = os.path.join(self.html_dir,
-                                   path, name[0].lower(), name[1].lower())
-            if not os.path.isdir(dirname):
-                os.makedirs(dirname)
-            page_name = dirname + '/' + name + self.ext
-            of = codecs.EncodedFile(open(page_name, "w"), 'utf-8',
-                                    self.encoding, 'xmlcharrefreplace')
-        return of
-
-    def close_file(self, of):
-        if self.report.archive:
-            tarinfo = tarfile.TarInfo(self.cur_fname)
-            tarinfo.size = len(self.string_io.getvalue())
-            tarinfo.mtime = time.time()
-            if os.sys.platform != "win32":
-                tarinfo.uid = os.getuid()
-                tarinfo.gid = os.getgid()
-            self.string_io.seek(0)
-            self.report.archive.addfile(tarinfo, self.string_io)
-            of.close()
-        else:
-            of.close()
-        self.cur_fname = None
-
     def lnkfmt(self, text):
         """This creates an MD5 hex string to be used as filename."""
         return md5.new(text).hexdigest()
@@ -356,8 +294,9 @@ class BasePage:
         of.write('</div>\n\n')          # Terminate div_content
 
         of.write('<div id="footer">\n')
-        if self.footer:
-            note = self.report.database.get_note_from_gramps_id(self.footer)
+        footer = self.report.options['footernote']
+        if footer:
+            note = self.report.database.get_note_from_gramps_id(footer)
             of.write('\t<div id="user_footer">\n')
             of.write('\t\t<p>')
             of.write(note.get())
@@ -377,7 +316,7 @@ class BasePage:
             of.write('\t</div>\n')
         elif self.copyright <= 6:
             of.write('\t<div id="copyright">')
-            text = _CC[self.copyright-1]
+            text = _CC[self.copyright]
             if self.up:
                 text = text.replace('#PATH#', '../../../')
             else:
@@ -391,11 +330,6 @@ class BasePage:
         of.write('</html>')
 
     def display_header(self, of, title):
-        if self.up:
-            path = "../../.."
-        else:
-            path = ""
-
         of.write('<!DOCTYPE html PUBLIC ')
         of.write('"-//W3C//DTD XHTML 1.0 Strict//EN" ')
         of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
@@ -406,29 +340,28 @@ class BasePage:
         of.write('<title>%s - %s</title>\n' % (html_escape(self.title_str), html_escape(title)))
         of.write('<meta http-equiv="Content-Type" content="text/html; ')
         of.write('charset=%s" />\n' % self.encoding)
+
         # Link to narrative.css
-        if path:
-            of.write('<link href="%s/%s" ' % (path, _NARRATIVE))
-        else:
-            of.write('<link href="%s" ' % _NARRATIVE)
-        of.write('rel="stylesheet" type="text/css" title="GRAMPS Style" media="screen" />\n')
+        fname = _NARRATIVE
+        if self.up:
+            fname = "../../../" + fname
+        of.write('<link href="%s" rel="stylesheet" type="text/css" title="GRAMPS Style" media="screen" />\n' % fname)
 
         # Link to narrativePrint.css
-        if path:
-            of.write('<link href="%s/%s" ' % (path, _NARRATIVEPRINT))
-        else:
-            of.write('<link href="%s" ' % _NARRATIVEPRINT)
-        of.write('rel="stylesheet" type="text/css" media="print" />\n')
+        fname = _NARRATIVEPRINT
+        if self.up:
+            fname = "../../../" + fname
+        of.write('<link href="%s" rel="stylesheet" type="text/css" media="print" />\n' % fname)
 
         # Link to favicon.ico
-        if path:
-            of.write('<link href="%s/images/favicon.ico" rel="Shortcut Icon" />\n' % path)
-        else:
-            of.write('<link href="images/favicon.ico" rel="Shortcut Icon" />\n')
+        fname = "images/favicon.ico"
+        if self.up:
+            fname = "../../../" + fname
+        of.write('<link href="%s" rel="Shortcut Icon" />\n' % fname)
         of.write('<!-- %sId%s -->\n' % ('$', '$'))
         of.write('</head>\n\n')
-        of.write('<body>\n')
 
+        of.write('<body>\n')
         of.write('<div id="Header">\n')
 
         value = _dp.parse(time.strftime('%b %d %Y'))
@@ -448,8 +381,9 @@ class BasePage:
 
         of.write('\t<div id="GRAMPSinfo">%s</div>\n' % msg)
         of.write('\t<h1 id="SiteTitle">%s</h1>\n' % html_escape(self.title_str))
-        if self.header:
-            note = db.get_note_from_gramps_id(self.header)
+        header = self.report.options['headernote']
+        if header:
+            note = db.get_note_from_gramps_id(header)
             of.write('\t<p id="user_header">')
             of.write(note.get())
             of.write('</p>\n')
@@ -458,46 +392,32 @@ class BasePage:
         of.write('<div id="Navigation">\n')
         of.write('\t<ol>\n')
 
-        if self.use_home:
-            index_page = "index"
-            surname_page = "surnames"
-            intro_page = "introduction"
-        elif self.use_intro:
-            index_page = ""
-            surname_page = "surnames"
-            intro_page = "index"
-        else:
-            index_page = ""
-            surname_page = "index"
-            intro_page = ""
-
-        # Define 'self.currentsection' to correctly set navlink item CSS id
-        # 'CurrentSection' for Navigation styling.
-        # Use 'self.cur_fname' to determine 'CurrentSection' for individual
-        # elements for Navigation styling.
-
         # TODO. This currentsection can be better determined from the caller
         # of display_header. Notice that the caller uses a language translation
         # of the title.
-        if self.use_home:
-            self.show_navlink(of, index_page, _('Home'), path, title)
-        if self.use_intro:
-            self.show_navlink(of, intro_page, _('Introduction'), path, title)
-        self.show_navlink(of, surname_page, _('Surnames'), path, title)
-        self.show_navlink(of, 'individuals', _('Individuals'), path, title)
-        self.show_navlink(of, 'sources', _('Sources'), path, title)
-        self.show_navlink(of, 'places', _('Places'), path, title)
+        subdir = None
+        if self.up:
+            subdir = "../../.."
+
+        if self.report.use_home:
+            self.show_navlink(of, self.report.index_fname, _('Home'), subdir, title)
+        if self.report.use_intro:
+            self.show_navlink(of, self.report.intro_fname, _('Introduction'), subdir, title)
+        self.show_navlink(of, self.report.surname_fname, _('Surnames'), subdir, title)
+        self.show_navlink(of, 'individuals', _('Individuals'), subdir, title)
+        self.show_navlink(of, 'sources', _('Sources'), subdir, title)
+        self.show_navlink(of, 'places', _('Places'), subdir, title)
         if self.use_gallery:
-            self.show_navlink(of, 'gallery', _('Gallery'), path, title)
-        if self.inc_download:
-            self.show_navlink(of, 'download', _('Download'), path, title)
-        if self.use_contact:
-            self.show_navlink(of, 'contact', _('Contact'),  path, title)
+            self.show_navlink(of, 'gallery', _('Gallery'), subdir, title)
+        if self.report.inc_download:
+            self.show_navlink(of, 'download', _('Download'), subdir, title)
+        if self.report.use_contact:
+            self.show_navlink(of, 'contact', _('Contact'),  subdir, title)
 
         of.write('\t</ol>\n')
         of.write('</div>\n\n')
 
-        self.start_div_content(of, self.cur_fname)
+        self.start_div_content(of, self.report.cur_fname)
 
     def start_div_content(self, of, fname):
         """
@@ -542,40 +462,41 @@ class BasePage:
             divid = ' id="%s"' % divid
         of.write('<div%s class="content">\n' % divid)
 
-    def show_link(self, of, lpath, title, path):
-        if path:
-            lpath = path + '/' + lpath
-        of.write('<a href="%s%s">%s</a>\n' % (lpath, self.ext, title))
-
     # TODO. Move this logic to a higher level (caller of display_header).
-    def show_navlink(self, of, lpath, title, path, currentsection):
-        if path:
-            lpath = path + '/' + lpath
 
+    # Define 'currentsection' to correctly set navlink item CSS id
+    # 'CurrentSection' for Navigation styling.
+    # Use 'self.report.cur_fname' to determine 'CurrentSection' for individual
+    # elements for Navigation styling.
+
+    def show_navlink(self, of, fname, title, subdir, currentsection):
         # Figure out if we need <li id="CurrentSection"> of just plain <li>
         cs = False
-        if currentsection == title:
+        if title == currentsection:
             cs = True
-        elif title == "Surnames":
-            if "srn" in self.cur_fname:
+        elif title == _('Surnames'):
+            if "srn" in self.report.cur_fname:
                 cs = True
-            elif "Surnames" in currentsection:
+            elif _('Surnames') in currentsection:
                 cs = True
-        elif title == "Individuals":
-            if "ppl" in self.cur_fname:
+        elif title == _('Individuals'):
+            if "ppl" in self.report.cur_fname:
                 cs = True
-        elif title == "Sources":
-            if "src" in self.cur_fname:
+        elif title == _('Sources'):
+            if "src" in self.report.cur_fname:
                 cs = True
-        elif title == "Places":
-            if "plc" in self.cur_fname:
+        elif title == _('Places'):
+            if "plc" in self.report.cur_fname:
                 cs = True
-        elif title == "Gallery":
-            if "img" in self.cur_fname:
+        elif title == _('Gallery'):
+            if "img" in self.report.cur_fname:
                 cs = True
 
+        fname = fname + self.ext
+        if subdir:
+            fname = subdir + '/' + fname
         cs = cs and ' id="CurrentSection"' or ''
-        of.write('\t\t<li%s><a href="%s%s">%s</a></li>\n' % (cs, lpath, self.ext, title))
+        of.write('\t\t<li%s><a href="%s">%s</a></li>\n' % (cs, fname, title))
 
     def display_first_image_as_thumbnail( self, of, photolist=None):
         if not photolist or not self.use_gallery:
@@ -599,7 +520,7 @@ class BasePage:
             self.doc_link(of, photo_handle, descr, up=True)
             of.write('\t</div>\n\n')
 
-            lnk = (self.cur_fname, self.page_title, self.gid)
+            lnk = (self.report.cur_fname, self.page_title, self.gid)
             # FIXME. Is it OK to add to the photo_list of report?
             photo_list = self.report.photo_list
             if photo_handle in photo_list:
@@ -634,7 +555,7 @@ class BasePage:
                     descr = " ".join(wrapper.wrap(title))
                     self.doc_link(of, photo_handle, descr, up=True)
 
-                    lnk = (self.cur_fname, self.page_title, self.gid)
+                    lnk = (self.report.cur_fname, self.page_title, self.gid)
                     # FIXME. Is it OK to add to the photo_list of report?
                     photo_list = self.report.photo_list
                     if photo_handle in photo_list:
@@ -714,7 +635,7 @@ class BasePage:
             cindex += 1
             # Add this source to the global list of sources to be displayed
             # on each source page.
-            lnk = (self.cur_fname, self.page_title, self.gid)
+            lnk = (self.report.cur_fname, self.page_title, self.gid)
             shandle = citation.get_source_handle()
             if shandle in self.src_list:
                 if lnk not in self.src_list[shandle]:
@@ -847,7 +768,7 @@ class IndividualListPage(BasePage):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        of = self.create_file("individuals")
+        of = self.report.create_file("individuals")
         self.display_header(of, _('Individuals'))
 
         msg = _("This page contains an index of all the individuals in the "
@@ -979,7 +900,7 @@ class IndividualListPage(BasePage):
         of.write('\t</table>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class SurnamePage(BasePage):
 
@@ -987,7 +908,7 @@ class SurnamePage(BasePage):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        of = self.create_link_file('srn', self.lnkfmt(surname))
+        of = self.report.create_link_file('srn', self.lnkfmt(surname))
         self.up = True
         self.display_header(of, "%s - %s" % (_('Surname'), surname))
 
@@ -1102,7 +1023,7 @@ class SurnamePage(BasePage):
         of.write('\t</table>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class PlaceListPage(BasePage):
 
@@ -1111,7 +1032,7 @@ class PlaceListPage(BasePage):
         self.src_list = src_list        # TODO verify that this is correct
 
         db = report.database
-        of = self.create_file("places")
+        of = self.report.create_file("places")
         self.display_header(of, _('Places'))
 
         msg = _("This page contains an index of all the places in the "
@@ -1164,7 +1085,7 @@ class PlaceListPage(BasePage):
         of.write('\t</table>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class PlacePage(BasePage):
 
@@ -1174,9 +1095,9 @@ class PlacePage(BasePage):
         BasePage.__init__(self, report, title, place.gramps_id)
         self.src_list = src_list        # TODO verify that this is correct
 
-        of = self.create_link_file('plc', place.get_handle())
-        self.page_title = ReportUtils.place_name(db, place_handle)
+        of = self.report.create_link_file('plc', place.get_handle())
         self.up = True
+        self.page_title = ReportUtils.place_name(db, place_handle)
         self.display_header(of, "%s - %s" % (_('Places'), self.page_title))
 
         media_list = place.get_media_list()
@@ -1230,7 +1151,7 @@ class PlacePage(BasePage):
         self.display_references(of, place_list[place.handle])
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class MediaPage(BasePage):
 
@@ -1240,7 +1161,9 @@ class MediaPage(BasePage):
         photo = db.get_object_from_handle(handle)
         # TODO. How do we pass my_media_list down for use in BasePage?
         BasePage.__init__(self, report, title, photo.gramps_id)
-        of = self.create_link_file('img', handle)
+
+        of = self.report.create_link_file('img', handle)
+        self.up = True
 
         self.src_list = src_list
         self.bibli = Bibliography()
@@ -1257,7 +1180,6 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        self.up = True
         self.display_header(of, "%s - %s" % (_('Gallery'), self.page_title))
 
         of.write('\t<h2>%s:</h2>\n' % _('Gallery'))
@@ -1368,7 +1290,7 @@ class MediaPage(BasePage):
         self.display_references(of, my_media_list)
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
     def display_media_sources(self, of, photo):
         for sref in photo.get_source_references():
@@ -1449,11 +1371,11 @@ class SurnameListPage(BasePage):
         BasePage.__init__(self, report, title)
         db = report.database
         if order_by == self.ORDER_BY_NAME:
-            of = self.create_file(filename)
+            of = self.report.create_file(filename)
             self.display_header(of, _('Surnames'))
             of.write('\t<h2>%s</h2>\n' % _('Surnames'))
         else:
-            of = self.create_file("surnames_count")
+            of = self.report.create_file("surnames_count")
             self.display_header(of, _('Surnames by person count'))
             of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
 
@@ -1473,11 +1395,10 @@ class SurnameListPage(BasePage):
             of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnLetter">%s</th>\n' % _('Letter'))
 
-        if not self.use_home and not self.use_intro:
-            of.write('\t\t\t<th class="ColumnSurname"><a href="%s%s">%s</a></th>\n' % ("index", self.ext,  _('Surname')))
-        else:
-            of.write('\t\t\t<th class="ColumnSurname"><a href="%s%s">%s</a></th>\n' % ("surnames", self.ext, _('Surname')))
-        of.write('\t\t\t<th class="ColumnQuantity"><a href="%s%s">%s</a></th>\n' % ("surnames_count", self.ext, _('Number of people')))
+        fname = self.report.surname_fname + self.ext
+        of.write('\t\t\t<th class="ColumnSurname"><a href="%s">%s</a></th>\n' % (fname, _('Surname')))
+        fname = "surnames_count" + self.ext
+        of.write('\t\t\t<th class="ColumnQuantity"><a href="%s">%s</a></th>\n' % (fname, _('Number of people')))
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n')
@@ -1526,7 +1447,7 @@ class SurnameListPage(BasePage):
         of.write('\t</table>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class IntroductionPage(BasePage):
 
@@ -1534,10 +1455,7 @@ class IntroductionPage(BasePage):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        if self.use_home:
-            of = self.create_file("introduction")
-        else:
-            of = self.create_file("index")
+        of = self.report.create_file(report.intro_fname)
         self.display_header(of, _('Introduction'))
 
         of.write('\t<h2>%s</h2>\n' % _('Introduction'))
@@ -1571,7 +1489,7 @@ class IntroductionPage(BasePage):
                 of.write('</p>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class HomePage(BasePage):
 
@@ -1579,7 +1497,7 @@ class HomePage(BasePage):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        of = self.create_file("index")
+        of = self.report.create_file("index")
         self.display_header(of, _('Home'))
 
         of.write('\t<h2>%s</h2>\n' % _('Home'))
@@ -1613,7 +1531,7 @@ class HomePage(BasePage):
                 of.write('</p>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class SourcesPage(BasePage):
 
@@ -1621,7 +1539,7 @@ class SourcesPage(BasePage):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        of = self.create_file("sources")
+        of = self.report.create_file("sources")
         self.display_header(of, _('Sources'))
 
         handle_list = list(handle_set)
@@ -1666,7 +1584,7 @@ class SourcesPage(BasePage):
         of.write('\t</table>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class SourcePage(BasePage):
 
@@ -1675,9 +1593,9 @@ class SourcePage(BasePage):
         source = db.get_source_from_handle( handle)
         BasePage.__init__(self, report, title, source.gramps_id)
 
-        of = self.create_link_file('src', source.get_handle())
-        self.page_title = source.get_title()
+        of = self.report.create_link_file('src', source.get_handle())
         self.up = True
+        self.page_title = source.get_title()
         self.display_header(of, "%s - %s" % (_('Sources'), self.page_title))
 
         media_list = source.get_media_list()
@@ -1710,7 +1628,7 @@ class SourcePage(BasePage):
         self.display_references(of, src_list[source.handle])
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class GalleryPage(BasePage):
 
@@ -1720,7 +1638,7 @@ class GalleryPage(BasePage):
         # TODO. What to do with handle_set?
 
         db = report.database
-        of = self.create_file("gallery")
+        of = self.report.create_file("gallery")
         self.display_header(of, _('Gallery'))
 
         of.write('\t<h2>%s</h2>\n\n' % _('Gallery'))
@@ -1767,20 +1685,20 @@ class GalleryPage(BasePage):
         of.write('\t</table>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class DownloadPage(BasePage):
 
     def __init__(self, report, title):
         BasePage.__init__(self, report, title)
 
-        of = self.create_file("download")
+        of = self.report.create_file("download")
         self.display_header(of, _('Download'))
 
         of.write('\t<h2>%s</h2>\n\n' % _('Download'))
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class ContactPage(BasePage):
 
@@ -1788,7 +1706,7 @@ class ContactPage(BasePage):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        of = self.create_file("contact")
+        of = self.report.create_file("contact")
         self.display_header(of, _('Contact'))
 
         of.write('\t<h2>%s</h2>\n\n' % _('Contact'))
@@ -1842,7 +1760,7 @@ class ContactPage(BasePage):
         of.write('\t</div>\n')
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
 class IndividualPage(BasePage):
     """
@@ -1866,7 +1784,7 @@ class IndividualPage(BasePage):
         self.name = _nd.sorted(self.person)
 
         db = report.database
-        of = self.create_link_file('ppl', person.handle)
+        of = self.report.create_link_file('ppl', person.handle)
         self.up = True
         self.display_header(of, self.sort_name)
 
@@ -1897,11 +1815,11 @@ class IndividualPage(BasePage):
         self.display_url_list(of, self.person.get_url_list())
         self.display_ind_sources(of)
         self.display_ind_pedigree(of)
-        if self.usegraph:
+        if self.report.options['graph']:
             self.display_tree(of)
 
         self.display_footer(of)
-        self.close_file(of)
+        self.report.close_file(of)
 
     def display_attr_list(self, of, attrlist=None):
         if not attrlist:
@@ -1972,7 +1890,7 @@ class IndividualPage(BasePage):
         if not self.person.get_main_parents_family_handle():
             return
 
-        generations = self.graphgens
+        generations = self.report.options['graphgens']
         max_in_col = 1 << (generations-1)
         max_size = _HEIGHT*max_in_col + _VGAP*(max_in_col+1)
         center = int(max_size/2)
@@ -2463,7 +2381,7 @@ class IndividualPage(BasePage):
 
     def format_event(self, event, event_ref):
         db = self.report.database
-        lnk = (self.cur_fname, self.page_title, self.gid)
+        lnk = (self.report.cur_fname, self.page_title, self.gid)
         descr = event.get_description()
         place_handle = event.get_place_handle()
         if place_handle:
@@ -2529,7 +2447,7 @@ class IndividualPage(BasePage):
 
     def get_citation_links(self, source_ref_list):
         gid_list = []
-        lnk = (self.cur_fname, self.page_title, self.gid)
+        lnk = (self.report.cur_fname, self.page_title, self.gid)
 
         for sref in source_ref_list:
             handle = sref.get_reference_handle()
@@ -2593,19 +2511,36 @@ class NavWebReport(Report):
         filters_option = menu.get_option_by_name('filter')
         self.filter = filters_option.get_filter()
 
-        self.target_path = self.options['target']
         self.copyright = self.options['cright']
+        self.target_path = self.options['target']
+        self.ext = self.options['ext']
         self.css = self.options['css']
+        self.encoding = self.options['encoding']
         self.title = self.options['title']
         self.inc_gallery = self.options['gallery']
-        self.inc_contact = self.options['contactnote'] != u"" or \
-                           self.options['contactimg'] != u""
+        self.inc_contact = self.options['contactnote'] or \
+                           self.options['contactimg']
         self.inc_download = self.options['incdownload']
         self.use_archive = self.options['archive']
-        self.use_intro = self.options['intronote'] != u"" or \
-                         self.options['introimg'] != u""
-        self.use_home = self.options['homenote'] != u"" or \
-                        self.options['homeimg'] != u""
+        self.use_intro = self.options['intronote'] or \
+                         self.options['introimg']
+        self.use_home = self.options['homenote'] or \
+                        self.options['homeimg']
+        self.use_contact = self.options['contactnote'] or \
+                           self.options['contactimg']
+
+        if self.use_home:
+            self.index_fname = "index"
+            self.surname_fname = "surnames"
+            self.intro_fname = "introduction"
+        elif self.use_intro:
+            self.index_fname = None
+            self.surname_fname = "surnames"
+            self.intro_fname = "index"
+        else:
+            self.index_fname = None
+            self.surname_fname = "index"
+            self.intro_fname = None
 
         self.archive = None
         self.cur_fname = None            # Internal use. The name of the output file, to be used for the tar archive.
@@ -2760,12 +2695,7 @@ class NavWebReport(Report):
         local_list = sort_people(self.database, ind_list)
         self.progress.set_pass(_("Creating surname pages"), len(local_list))
 
-        if self.use_home or self.use_intro:
-            defname = "surnames"
-        else:
-            defname = "index"
-
-        SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_NAME, defname)
+        SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_NAME, self.surname_fname)
 
         SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_COUNT, "surnames_count")
 
@@ -2834,6 +2764,58 @@ class NavWebReport(Report):
 
         if self.use_intro:
             IntroductionPage(self, self.title)
+
+    def create_file(self, name):
+        self.cur_fname = name + self.ext
+        if self.archive:
+            self.string_io = StringIO()
+            of = codecs.EncodedFile(self.string_io, 'utf-8',
+                                    self.encoding, 'xmlcharrefreplace')
+        else:
+            page_name = os.path.join(self.html_dir, self.cur_fname)
+            of = codecs.EncodedFile(open(page_name, "w"), 'utf-8',
+                                    self.encoding, 'xmlcharrefreplace')
+        return of
+
+    def link_path(self, path, name):
+        path = "%s/%s/%s" % (path, name[0].lower(), name[1].lower())
+        return path + '/' + name + self.ext
+
+    def create_link_file(self, path, name):
+        """
+        Create a file in a directory tree using the first to characters
+        for the first two directory levels.  For example
+        0/2/02c0d8f888f566ae95ffbdca64274b51
+        """
+        self.cur_fname = self.link_path(path, name)
+        if self.archive:
+            self.string_io = StringIO()
+            of = codecs.EncodedFile(self.string_io, 'utf-8',
+                                    self.encoding, 'xmlcharrefreplace')
+        else:
+            dirname = os.path.join(self.html_dir,
+                                   path, name[0].lower(), name[1].lower())
+            if not os.path.isdir(dirname):
+                os.makedirs(dirname)
+            page_name = dirname + '/' + name + self.ext
+            of = codecs.EncodedFile(open(page_name, "w"), 'utf-8',
+                                    self.encoding, 'xmlcharrefreplace')
+        return of
+
+    def close_file(self, of):
+        if self.archive:
+            tarinfo = tarfile.TarInfo(self.cur_fname)
+            tarinfo.size = len(self.string_io.getvalue())
+            tarinfo.mtime = time.time()
+            if os.sys.platform != "win32":
+                tarinfo.uid = os.getuid()
+                tarinfo.gid = os.getgid()
+            self.string_io.seek(0)
+            self.archive.addfile(tarinfo, self.string_io)
+            of.close()
+        else:
+            of.close()
+        self.cur_fname = None
 
     def store_file(self, from_path, to_path):
         """
