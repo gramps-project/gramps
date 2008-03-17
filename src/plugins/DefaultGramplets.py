@@ -220,8 +220,8 @@ class TopSurnamesGramplet(Gramplet):
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
-                for name in allnames:
-                    surname = name.get_group_name().strip()
+                allnames = set([name.get_group_name().strip() for name in allnames])
+                for surname in allnames:
                     surnames[surname] = surnames.get(surname, 0) + 1
                     representative_handle[surname] = person_handle
             if cnt % 350 == 0:
@@ -297,8 +297,8 @@ class SurnameCloudGramplet(Gramplet):
             person = self.dbstate.db.get_person_from_handle(person_handle)
             if person:
                 allnames = [person.get_primary_name()] + person.get_alternate_names()
-                for name in allnames:
-                    surname = name.get_group_name().strip()
+                allnames = set([name.get_group_name().strip() for name in allnames])
+                for surname in allnames:
                     surnames[surname] = surnames.get(surname, 0) + 1
                     representative_handle[surname] = person_handle
             if cnt % 350 == 0:
@@ -455,15 +455,9 @@ class PedigreeGramplet(Gramplet):
                          _("Right-click name to edit person")
         self.max_generations = 100
         self.set_use_markup(True)
-        #self.set_options( {"max_generations": 
-        #                   NumberOption(_("Maximum generations"), 
-        #                                100, -1, 500),
-        #                   "expand": 
-        #                   BooleanOption(_("Expandable"), False),
-        #                   "height": 
-        #                   NumberOption(_("Height"), 
-        #                                300, 1, 1024),
-        #                   } )
+        #self.set_option("max_generations", 
+        #                NumberOption(_("Maximum generations"),
+        #                             100, -1, 500))
 
     def db_changed(self):
         """
