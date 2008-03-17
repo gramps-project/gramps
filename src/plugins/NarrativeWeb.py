@@ -2953,7 +2953,7 @@ class NavWebOptions(MenuReportOptions):
 
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
-               _("Select filter to restrict people that appear on calendar"))
+               _("Select filter to restrict people that appear on web files"))
         menu.add_option(category_name, "filter", self.__filter)
         self.__filter.connect('value-changed', self.__filter_changed)
 
@@ -2991,7 +2991,7 @@ class NavWebOptions(MenuReportOptions):
         css = EnumeratedListOption(_('Stylesheet'), _CSS_FILES[0][1])
         for style in _CSS_FILES:
             css.add_item(style[1], style[0])
-        css.set_help( _("The style sheet to be used for the web page"))
+        css.set_help( _("The style sheet to be used for the web pages"))
         menu.add_option(category_name, "css", css)
 
         self.__graph = BooleanOption(_("Include ancestor graph"), True)
