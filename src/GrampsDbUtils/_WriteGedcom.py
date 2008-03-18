@@ -1416,6 +1416,24 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             self.__writeln(level+2, 'LATI', latitude)
             self.__writeln(level+2, 'LONG', longitude)
 
+        # The Gedcom standard shows that an optional address structure can
+        # be written out in the event detail.
+        # http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#EVENT_DETAIL
+        location = place.get_main_location()
+        if location:
+            if location.get_street():
+                self.__writeln(level, "ADDR", location.get_street())
+            if location.get_city():
+                self.__writeln(level + 1, 'CITY', location.get_city())
+            if location.get_state():
+                self.__writeln(level + 1, 'STAE', location.get_state())
+            if location.get_postal_code():
+                self.__writeln(level + 1, 'POST', location.get_postal_code())
+            if location.get_country():
+                self.__writeln(level + 1, 'CTRY', location.get_country())
+            if location.get_phone():
+                self.__writeln(level, 'PHON', location.get_phone())
+
 #-------------------------------------------------------------------------
 #
 #
