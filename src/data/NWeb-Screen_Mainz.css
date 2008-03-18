@@ -36,7 +36,7 @@ body {
 	color:#7D5925;
 	margin:0;
 	padding:0;
-	background:url(images/NWeb_Certificate_Bkgd.png) #000 repeat;
+	background:url(images/NWeb_Mainz_Bkgd.png) #000 repeat;
 }
 div {
 	margin:0;
@@ -53,7 +53,7 @@ img {
 	width:900px;
 	margin:0 auto;
 	padding-bottom:.5em;
-	background:url(images/NWeb_Certificate_Mid.png) #FFF2C6 repeat;
+	background:url(images/NWeb_Mainz_Mid.png) #FFF2C6 repeat;
 }
 .content div.snapshot {
 	margin:0;
@@ -152,7 +152,7 @@ a:visited {
 	width:900px;
 	margin:0 auto;
 	padding:5em 0 2px 0;
-	background:url(images/NWeb_Certificate_Header.png) no-repeat top;
+	background:url(images/NWeb_Mainz_Header.png) no-repeat top;
 }
 #SiteTitle {
 	color:#7D5925;
@@ -181,7 +181,7 @@ a:visited {
 	width:900px;
 	margin:0 auto;
 	padding:0;
-	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6;
+	background:url(images/NWeb_Mainz_MidLight.png) #FFF2C6;
 }
 #Navigation ol {
 	list-style:none;
@@ -230,7 +230,7 @@ a:visited {
 	margin:0 auto;
 	padding:0;
 	clear:both;
-	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6;
+	background:url(images/NWeb_Mainz_MidLight.png) #FFF2C6;
 	border-top:dashed 1px #7D5925;
 }
 #user_footer {
@@ -346,7 +346,7 @@ table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr t
 }
 table.infolist tbody tr td.ColumnSurname {
 	padding:0;
-	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6 repeat;
+	background:url(images/NWeb_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 table.infolist tbody tr td.ColumnSurname a {
 	padding:.1em 10px;
@@ -363,7 +363,7 @@ table.surname tbody tr:last-child td {
 table.surname tbody tr td.ColumnName {
 	width:20%;
 	padding:0;
-	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6 repeat;
+	background:url(images/NWeb_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 table.surname tbody tr td.ColumnName a {
 	display:block;
@@ -399,7 +399,7 @@ table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbo
 }
 table.individuallist tbody tr td.ColumnName {
 	padding:0;
-	background:url(images/NWeb_Certificate_MidLight.png) #FFF2C6 repeat;
+	background:url(images/NWeb_Mainz_MidLight.png) #FFF2C6 repeat;
 }
 table.individuallist tbody tr td.ColumnName a {
 	display:block;
@@ -473,7 +473,7 @@ table.individuallist tbody tr td.ColumnName a {
 	font-style:italic;
 	color:#FFF2C6;
 	text-decoration:none;
-	background:url(images/NWeb_Certificate_Bkgd.png) #7D5925 repeat;
+	background:url(images/NWeb_Mainz_Bkgd.png) #7D5925 repeat;
 	border:outset 3px #000;
 }
 #GalleryNav a:hover {
