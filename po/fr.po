@@ -1990,7 +1990,7 @@ msgstr "Corruption de bas niveau détectée dans la base de données"
 
 #: ../src/QuestionDialog.py:199
 msgid "GRAMPS has detected a problem in the underlying Berkeley database. This can be repaired by from the Family Tree Manager. Select the database and click on the Repair button"
-msgstr "GRAMPS a détecté un problème sous-jacent à la base de données Berkeley. Ceci peut être réparé depuis le gestionnaire d'arbres familiaux. Sélectionnez la base de données et cliquez sur le bouton &quot;Réparer&quot;."
+msgstr "GRAMPS a détecté un problème sous-jacent à la base de données Berkeley. Ceci peut être réparé depuis le gestionnaire d'arbres familiaux. Sélectionnez la base de données et cliquez sur le bouton Réparer."
 
 #: ../src/QuestionDialog.py:310
 #: ../src/Utils.py:1075
@@ -8587,7 +8587,7 @@ msgstr "Rapport de fin de lignée pour %s"
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr "Tous les ascendants de %s sans parent"
+msgstr "Tous les ascendants de %s sans parents connus"
 
 #: ../src/plugins/EndOfLineReport.py:185
 #: ../src/plugins/KinshipReport.py:308
@@ -10641,7 +10641,7 @@ msgstr "Vie privée"
 
 #: ../src/plugins/NarrativeWeb.py:3070
 msgid "Include records marked private"
-msgstr "Inclure ou non les enregistrements marqués comme privés"
+msgstr "Inclure les enregistrements marqués comme privés"
 
 #: ../src/plugins/NarrativeWeb.py:3071
 msgid "Whether to include private objects"
@@ -11354,7 +11354,7 @@ msgstr "Encore en vie"
 #: ../src/plugins/StatisticsChart.py:234
 #: ../src/plugins/StatisticsChart.py:246
 msgid "Events missing"
-msgstr "Événement manquant"
+msgstr "Événements manquants"
 
 #: ../src/plugins/StatisticsChart.py:254
 #: ../src/plugins/StatisticsChart.py:262
@@ -11499,11 +11499,11 @@ msgstr "Statistiques sur la base"
 msgid "Provides a summary of the current database"
 msgstr "Fournit un résumé de la base de donnée active"
 
-# de ou pour ?
+# des car toujours groupe (ascendants, etc ...)
 #: ../src/plugins/TimeLine.py:92
 #, python-format
 msgid "Timeline Graph for %s"
-msgstr "Graphique temporel de %s"
+msgstr "Graphique temporel des %s"
 
 #: ../src/plugins/TimeLine.py:105
 #: ../src/ReportBase/_ReportDialog.py:316
