@@ -75,6 +75,8 @@ class NoteSidebarFilter(SidebarFilter):
 
     def create_widget(self):
         cell = gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
         self.generic.pack_start(cell, True)
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Note')
