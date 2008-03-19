@@ -27,7 +27,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gettext import gettext as _
+
 from cStringIO import StringIO
 
 #-------------------------------------------------------------------------
@@ -54,6 +54,15 @@ import GrampsDisplay
 from BasicUtils import name_displayer
 import ListModel
 import Utils
+from TransUtils import sgettext as _
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Navigation'
+WIKI_HELP_SEC = _('manual|Bookmarks')
 
 #-------------------------------------------------------------------------
 #
@@ -293,7 +302,8 @@ class Bookmarks :
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual."""
-        GrampsDisplay.help('gramps-nav')
+        GrampsDisplay.help('gramps-nav', webpage=WIKI_HELP_PAGE, 
+                                   section=WIKI_HELP_SEC))
         self.response = self.top.run()
 
 class ListBookmarks(Bookmarks):
