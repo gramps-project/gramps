@@ -274,7 +274,7 @@ class DbManager(CLIDbManager):
         if parent:
             self.top.set_transient_for(parent)
 
-        self.connect = self.glade.get_widget('ok')
+        self.connect = self.glade.get_widget('connect')
         self.cancel  = self.glade.get_widget('cancel')
         self.new     = self.glade.get_widget('new')
         self.remove  = self.glade.get_widget('remove')
@@ -303,6 +303,7 @@ class DbManager(CLIDbManager):
         self.top.drag_dest_set(gtk.DEST_DEFAULT_ALL, ddtargets, ACTION_COPY)
 
         self.remove.connect('clicked', self.__remove_db)
+        self.connect.connect('clicked', self.__load_selected)
         self.new.connect('clicked', self.__new_db)
         self.rename.connect('clicked', self.__rename_db)
         self.repair.connect('clicked', self.__repair_db)
@@ -327,7 +328,7 @@ class DbManager(CLIDbManager):
                 return self.__load_selected()
         return False
 
-    def __load_selected(self):
+    def __load_selected(self, obj=None):
         """
         Load the selected family tree if possible, return True
         if ok, and set RESPONSE_OK
