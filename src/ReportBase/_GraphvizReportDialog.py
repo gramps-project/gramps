@@ -110,8 +110,8 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
     inherit from this class will only need to implement the close function.
     The close function will generate the actual file of the appropriate type.
     """
-    def __init__(self, options,paper_style):
-        BaseDoc.BaseDoc.__init__(self,None,paper_style,None)
+    def __init__(self, options, paper_style):
+        BaseDoc.BaseDoc.__init__(self, None, paper_style, None)
 
         self.options        = options.handler.options_dict
         self.dot            = StringIO()
@@ -132,28 +132,20 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         self.vpages         =           self.options['v_pages'      ]
 
         paper_size          = paper_style.get_size()
-        pheight             = paper_size.get_height_inches()
-        pwidth              = paper_size.get_width_inches()
 
-        # graph size
-        if self.paper.get_orientation() == BaseDoc.PAPER_LANDSCAPE:
-            rotate = 90
-            sizew = ( paper_size.get_height()      - 
-                      self.paper.get_top_margin()  -
-                      self.paper.get_bottom_margin() ) / 2.54            
-            sizeh = ( paper_size.get_width()       - 
-                      self.paper.get_left_margin() - 
-                      self.paper.get_right_margin() ) / 2.54
-
-        else:
-            rotate = 0
-            sizew = ( paper_size.get_width()       - 
-                      self.paper.get_left_margin() - 
-                      self.paper.get_right_margin() ) / 2.54
-            sizeh = ( paper_size.get_height()      - 
-                      self.paper.get_top_margin()  -
-                      self.paper.get_bottom_margin() ) / 2.54
+        sizew = ( paper_size.get_width()       - 
+                  self.paper.get_left_margin() - 
+                  self.paper.get_right_margin() ) / 2.54
+        sizeh = ( paper_size.get_height()      - 
+                  self.paper.get_top_margin()  -
+                  self.paper.get_bottom_margin() ) / 2.54
+                  
+        pheight = paper_size.get_height_inches()
+        pwidth = paper_size.get_width_inches()
         
+        xmargin = self.paper.get_left_margin() / 2.54
+        ymargin = self.paper.get_top_margin() / 2.54
+
         sizew = sizew * self.hpages         
         sizeh = sizeh * self.vpages
 
@@ -173,9 +165,9 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         self.write( '  rankdir="%s";\n'             % self.rankdir      )
         self.write( '  ranksep="%.2f";\n'           % self.ranksep      )
         self.write( '  ratio="%s";\n'               % self.ratio        )
-        self.write( '  rotate="%d";\n'              % rotate            )
         self.write( '  searchsize="100";\n'         )
         self.write( '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh)    )
+        self.write( '  margin="%3.2f,%3.2f"; \n'    % (xmargin, ymargin))
         self.write( '  splines="true";\n'           )
         self.write( '\n'                            )
         self.write( '  edge [len=0.5 style=solid arrowhead=none '
@@ -322,6 +314,13 @@ class GVDotDoc(GVDocBase):
 #
 #-------------------------------------------------------------------------------
 class GVPsDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # DPI must always be 72 for PDF. 
+        # GV documentation says dpi is only for image formats.
+        options.handler.options_dict['dpi'] = 72
+        GVDocBase.__init__(self, options, paper_style)
+    
     def close(self):
         GVDocBase.close(self)
         
@@ -496,6 +495,13 @@ class GVGifDoc(GVDocBase):
 #
 #-------------------------------------------------------------------------------
 class GVPdfGvDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # DPI must always be 72 for PDF. 
+        # GV documentation says dpi is only for image formats.
+        options.handler.options_dict['dpi'] = 72
+        GVDocBase.__init__(self, options, paper_style)
+    
     def close(self):
         GVDocBase.close(self)
         
@@ -519,13 +525,19 @@ class GVPdfGvDoc(GVDocBase):
             app = Mime.get_application("application/pdf")
             Utils.launch(app[0], self.filename)
 
-     
 #-------------------------------------------------------------------------------
 #
 # GVPdfGsDoc
 #
 #-------------------------------------------------------------------------------
 class GVPdfGsDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # DPI must always be 72 for PDF. 
+        # GV documentation says dpi is only for image formats.
+        options.handler.options_dict['dpi'] = 72
+        GVDocBase.__init__(self, options, paper_style)
+    
     def close(self):
         GVDocBase.close(self)
         
@@ -547,12 +559,10 @@ class GVPdfGsDoc(GVDocBase):
         command = 'dot -Tps -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         os.system(command)
 
-        #  dot creates ps with a ceratin dpi; the paper size, in points, has to be
-        #  adjusted according to what the user has defined. The paper will be large,
-        #  but pdf-printers adjust to actual printer paper size.
+        # Add .5 to remove rounding errors.
         paper_size = self.paper.get_size()
-        width_pt = int( (paper_size.get_width_inches() * self.dpi))
-        height_pt = int( (paper_size.get_height_inches() * self.dpi))
+        width_pt = int( (paper_size.get_width_inches() * 72) + 0.5 )
+        height_pt = int( (paper_size.get_height_inches() * 72) + 0.5 )
         
         # Convert to PDF using ghostscript
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
@@ -566,7 +576,7 @@ class GVPdfGsDoc(GVDocBase):
         if self.print_req:
             app = Mime.get_application("application/pdf")
             Utils.launch(app[0], self.filename) 
-      
+
 #-------------------------------------------------------------------------------
 #
 # Various Graphviz formats.
@@ -797,8 +807,8 @@ class GraphvizReportDialog(ReportDialog):
         self.dpi = dpi
         dpi.set_help(_( "Dots per inch.  When creating images such as "
                         ".gif or .png files for the web, try numbers "
-                        "such as 75 or 100 DPI.  When printing, try"
-                        "300 or 600 DPI."))
+                        "such as 100 or 300 DPI.  When creating postscript or "
+                        "pdf files, use 72 DPI."))
         self.options.add_menu_option(category, "dpi", dpi)
 
         nodesep = NumberOption(_("Node spacing"), 0.20, 0.01, 5.00, 0.01)
