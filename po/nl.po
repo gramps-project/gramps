@@ -1,4 +1,4 @@
-# translation of nl.po to Dutch
+# translation of nl.po to dutch
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -38,10 +38,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-17 11:12+0100\n"
-"PO-Revision-Date: 2008-03-17 11:25+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@pandora.be>\n"
-"Language-Team: Dutch\n"
+"POT-Creation-Date: 2008-03-19 21:23-0700\n"
+"PO-Revision-Date: 2008-03-20 20:28+0100\n"
+"Last-Translator: Erik De Richter <frederik.de.richter@gmail.com>\n"
+"Language-Team: dutch <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -122,20 +122,24 @@ msgstr "Tel:"
 msgid "Email:"
 msgstr "E-mail:"
 
-#: ../src/Bookmarks.py:191
+#: ../src/Bookmarks.py:65
+msgid "manual|Bookmarks"
+msgstr "Bladwijzers"
+
+#: ../src/Bookmarks.py:200
 #, python-format
 msgid "%(title)s - GRAMPS"
 msgstr "%(title)s - GRAMPS"
 
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
-#: ../src/Bookmarks.py:191 ../src/Bookmarks.py:198 ../src/gramps_main.py:101
+#: ../src/Bookmarks.py:200 ../src/Bookmarks.py:207 ../src/gramps_main.py:101
 #: ../src/PageView.py:354
 msgid "Organize Bookmarks"
 msgstr "Bladwijzers organiseren"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:204 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
+#: ../src/Bookmarks.py:213 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
 #: ../src/ScratchPad.py:372 ../src/ScratchPad.py:428 ../src/ScratchPad.py:461
 #: ../src/ScratchPad.py:530 ../src/ScratchPad.py:561 ../src/ScratchPad.py:578
 #: ../src/ScratchPad.py:579 ../src/ScratchPad.py:598 ../src/ScratchPad.py:648
@@ -157,8 +161,8 @@ msgstr "Bladwijzers organiseren"
 #: ../src/plugins/RelCalc.py:113 ../src/plugins/RemoveUnused.py:185
 #: ../src/plugins/TimeLine.py:59 ../src/plugins/Verify.py:544
 #: ../src/PluginUtils/_GuiOptions.py:787
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:124
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:89
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:81
 #: ../src/FilterEditor/_ShowResults.py:86
 msgid "Name"
@@ -166,7 +170,7 @@ msgstr "Naam"
 
 #. GRAMPS ID
 #. Add column with object gramps_id
-#: ../src/Bookmarks.py:204 ../src/PageView.py:458 ../src/PageView.py:635
+#: ../src/Bookmarks.py:213 ../src/PageView.py:458 ../src/PageView.py:635
 #: ../src/Merge/_MergePerson.py:133 ../src/DataViews/EventView.py:70
 #: ../src/DataViews/FamilyList.py:62 ../src/DataViews/MediaView.py:81
 #: ../src/DataViews/NoteView.py:68 ../src/DataViews/PersonView.py:68
@@ -185,14 +189,14 @@ msgstr "Naam"
 #: ../src/plugins/NotRelated.py:97 ../src/plugins/PatchNames.py:203
 #: ../src/plugins/RelCalc.py:55 ../src/plugins/RemoveUnused.py:179
 #: ../src/plugins/Verify.py:537 ../src/PluginUtils/_GuiOptions.py:788
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:88
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:109
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:125
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:76
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:79
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:78
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:88
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:82
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:90
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:78
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:81
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:80
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:90
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:84
 #: ../src/FilterEditor/_ShowResults.py:89
 msgid "ID"
 msgstr "ID"
@@ -431,7 +435,7 @@ msgstr "Import gestart, %s"
 msgid "Import finished..."
 msgstr "Importeren beëindigd..."
 
-#: ../src/DbManager.py:195 ../src/DbManager.py:839 ../src/DbManager.py:931
+#: ../src/DbManager.py:195 ../src/DbManager.py:840 ../src/DbManager.py:932
 msgid "Never"
 msgstr "Nooit"
 
@@ -441,26 +445,26 @@ msgstr "Nooit"
 msgid "Importing data..."
 msgstr "Importen van gegevens..."
 
-#: ../src/DbManager.py:436
+#: ../src/DbManager.py:437
 msgid "Family tree name"
 msgstr "Stamboomnaam"
 
-#: ../src/DbManager.py:445 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:446 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:80
 msgid "Status"
 msgstr "Status"
 
-#: ../src/DbManager.py:451
+#: ../src/DbManager.py:452
 msgid "Last modified"
 msgstr "Laatst veranderd op"
 
-#: ../src/DbManager.py:521
+#: ../src/DbManager.py:522
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Het slot openbreken voor het gegevensbestand %s?"
 
-#: ../src/DbManager.py:522
+#: ../src/DbManager.py:523
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -473,15 +477,15 @@ msgstr ""
 "gebruikt, kunt u veilig dit slot openen. Maar is dit wel het geval en u "
 "verbreekt toch het slot, kan u het bestand beschadigen."
 
-#: ../src/DbManager.py:528
+#: ../src/DbManager.py:529
 msgid "Break lock"
 msgstr "Open slot"
 
-#: ../src/DbManager.py:600
+#: ../src/DbManager.py:601
 msgid "Rename failed"
 msgstr "Herbenoemen is mislukt"
 
-#: ../src/DbManager.py:601
+#: ../src/DbManager.py:602
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -492,61 +496,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:616
+#: ../src/DbManager.py:617
 msgid "Could not rename the Family Tree."
 msgstr "Kon de familiestamboom niet herbenoemen."
 
-#: ../src/DbManager.py:617
+#: ../src/DbManager.py:618
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Deze familiestamboom bestaat reeds,kies een unieke naam."
 
-#: ../src/DbManager.py:630
+#: ../src/DbManager.py:631
 msgid "Could not rename family tree"
 msgstr "Kon de familiestamboom niet herbenoemen"
 
-#: ../src/DbManager.py:664
+#: ../src/DbManager.py:665
 msgid "Extracting archive..."
 msgstr "Archief ophalen..."
 
-#: ../src/DbManager.py:669
+#: ../src/DbManager.py:670
 msgid "Importing archive..."
 msgstr "Importeren van archief..."
 
-#: ../src/DbManager.py:685
+#: ../src/DbManager.py:686
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "De familieDeHet gegevensbestand '%s' verwijderen?"
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:687
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Het verwijderen van deze familistamboom zal de gegevens blijven verwijderen."
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:688
 msgid "Remove family tree"
 msgstr "Familiestamboom verwijderen"
 
-#: ../src/DbManager.py:693
+#: ../src/DbManager.py:694
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Remove the '%(revision)s' version of '%(database)s'"
 
-#: ../src/DbManager.py:697
+#: ../src/DbManager.py:698
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Door deze versie te verwijderen, kunt u het in de toekomst niet meer ophalen."
 
-#: ../src/DbManager.py:699
+#: ../src/DbManager.py:700
 msgid "Remove version"
 msgstr "Versie verwijderen"
 
-#: ../src/DbManager.py:728
+#: ../src/DbManager.py:729
 msgid "Could not delete family tree"
 msgstr "Kon de familiestamboom niet verwijderen"
 
-#: ../src/DbManager.py:753
+#: ../src/DbManager.py:754
 msgid "Deletion failed"
 msgstr "Verwijderen mislukt"
 
-#: ../src/DbManager.py:754
+#: ../src/DbManager.py:755
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -557,19 +561,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:793
+#: ../src/DbManager.py:794
 msgid "Rebuilding database from backup files"
 msgstr "Het gegevensbestand wordt opnieuw opgebouwd vanuit opgeslagen bestanden"
 
-#: ../src/DbManager.py:828
+#: ../src/DbManager.py:829
 msgid "Could not create family tree"
 msgstr "Kon geen familiestamboom aanmaken"
 
-#: ../src/DbManager.py:917
+#: ../src/DbManager.py:918
 msgid "Could not make database directory: "
 msgstr "Kon geen gegevensbestandsmap aanmaken: "
 
-#: ../src/DbManager.py:1005 ../src/ScratchPad.py:94
+#: ../src/DbManager.py:1006 ../src/ScratchPad.py:94
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
 #: ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -595,11 +599,11 @@ msgstr "Kon geen gegevensbestandsmap aanmaken: "
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../src/DbManager.py:1024
+#: ../src/DbManager.py:1025
 msgid "Retrieve failed"
 msgstr "Ophalen mislukte"
 
-#: ../src/DbManager.py:1025
+#: ../src/DbManager.py:1026
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -610,19 +614,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1059
+#: ../src/DbManager.py:1060
 msgid "Creating data to be archived..."
 msgstr "Gegevens worden aangemaakt om te archiveren..."
 
-#: ../src/DbManager.py:1066
+#: ../src/DbManager.py:1067
 msgid "Saving archive..."
 msgstr "Archief wordt opgeslagen..."
 
-#: ../src/DbManager.py:1076
+#: ../src/DbManager.py:1077
 msgid "Archiving failed"
 msgstr "Archieveren is mislukt"
 
-#: ../src/DbManager.py:1077
+#: ../src/DbManager.py:1078
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -815,14 +819,14 @@ msgstr "Achternaam vader"
 #: ../src/GrampsCfg.py:67 ../src/Spell.py:168 ../src/Spell.py:247
 #: ../src/Spell.py:249 ../src/plugins/Check.py:1349
 #: ../src/gen/lib/childreftype.py:58
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:151
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:208
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:249
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:135
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:151
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:141
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:151
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:129
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:153
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:210
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:251
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:137
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:153
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:143
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:153
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:131
 msgid "None"
 msgstr "Geen"
 
@@ -864,7 +868,7 @@ msgstr "Gegevensbestand"
 #: ../src/plugins/NarrativeWeb.py:701 ../src/plugins/SimpleBookTitle.py:167
 #: ../src/plugins/SimpleBookTitle.py:168 ../src/plugins/SimpleBookTitle.py:169
 #: ../src/ReportBase/_Constants.py:63
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:83
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
 msgid "Text"
 msgstr "Tekst"
 
@@ -887,7 +891,7 @@ msgstr "Aanduidingskleuren"
 #: ../src/GrampsCfg.py:176 ../src/gramps_main.py:97 ../src/ScratchPad.py:152
 #: ../src/ScratchPad.py:169 ../src/DisplayTabs/_AddrEmbedList.py:70
 #: ../src/Editors/_EditAddress.py:148 ../src/plugins/FamilyGroup.py:285
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
 msgid "Address"
 msgstr "Adres"
 
@@ -897,7 +901,7 @@ msgstr "Adres"
 #: ../src/DisplayTabs/_AddrEmbedList.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
 #: ../src/plugins/ExtractCity.py:372 ../src/plugins/NarrativeWeb.py:1186
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "City"
 msgstr "Dorp of stad"
 
@@ -911,7 +915,7 @@ msgstr "Deelstaat/Provincie"
 #: ../src/DisplayTabs/_AddrEmbedList.py:73
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
 #: ../src/plugins/ExtractCity.py:375 ../src/plugins/NarrativeWeb.py:1191
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "Country"
 msgstr "Land"
 
@@ -972,7 +976,7 @@ msgstr "Familie"
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79 ../src/plugins/References.py:35
 #: ../src/plugins/References.py:93
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:92
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:94
 #: ../src/FilterEditor/_EditRule.py:275
 msgid "Place"
 msgstr "Locatie"
@@ -993,7 +997,7 @@ msgstr "Media-object"
 # Gebeuren (korter)
 #: ../src/GrampsCfg.py:203 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:91
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
 #: ../src/FilterEditor/_EditRule.py:274
 msgid "Event"
 msgstr "Gebeurtenis"
@@ -1011,13 +1015,13 @@ msgstr "Bibliotheek"
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:152
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:821
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:93
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:133
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:93
+#: ../src/ReportBase/_GraphvizReportDialog.py:831
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:95
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:89
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:85
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:95
 #: ../src/FilterEditor/_EditRule.py:279
 msgid "Note"
 msgstr "Opmerking"
@@ -1303,8 +1307,8 @@ msgstr "Bladwijzer toevoegen"
 #: ../src/plugins/NarrativeWeb.py:693 ../src/plugins/NarrativeWeb.py:1345
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:91
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:93
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
 msgid "Date"
 msgstr "Datum"
 
@@ -1447,7 +1451,7 @@ msgstr "Importer"
 msgid "Undo History"
 msgstr "Geschiedenis van Ongedaan maken"
 
-#: ../src/gramps_main.py:139 ../src/Filters/SideBar/_RepoSidebarFilter.py:92
+#: ../src/gramps_main.py:139 ../src/Filters/SideBar/_RepoSidebarFilter.py:94
 msgid "URL"
 msgstr "URL"
 
@@ -1957,7 +1961,7 @@ msgstr "vorige partner"
 #: ../src/plugins/IndivComplete.py:216 ../src/plugins/IndivComplete.py:218
 #: ../src/plugins/IndivComplete.py:474 ../src/plugins/MarkerReport.py:205
 #: ../src/plugins/NarrativeWeb.py:2287
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:110
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Vader"
 
@@ -1970,7 +1974,7 @@ msgstr "Vader"
 #: ../src/plugins/IndivComplete.py:225 ../src/plugins/IndivComplete.py:227
 #: ../src/plugins/IndivComplete.py:479 ../src/plugins/MarkerReport.py:211
 #: ../src/plugins/NarrativeWeb.py:2292
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Moeder"
 
@@ -1983,7 +1987,7 @@ msgstr "Echtgenoot"
 
 #: ../src/Reorder.py:32 ../src/DataViews/FamilyList.py:65
 #: ../src/plugins/MarkerReport.py:217
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
 msgid "Relationship"
 msgstr "Relatie"
 
@@ -2010,7 +2014,7 @@ msgid "Event Link"
 msgstr "Gebeurtenissen koppeling"
 
 #: ../src/ScratchPad.py:344 ../src/ScratchPad.py:357
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
 msgid "Family Event"
 msgstr "Familiegebeurtenis"
 
@@ -2036,10 +2040,10 @@ msgstr "Familiegebeurtenis"
 #: ../src/plugins/MarkerReport.py:381 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/PatchNames.py:206 ../src/plugins/References.py:70
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:90
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:80
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:90
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:84
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:92
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:82
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:92
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:86
 msgid "Type"
 msgstr "Type"
 
@@ -2051,7 +2055,7 @@ msgstr "Oorzaak"
 #: ../src/DataViews/EventView.py:69 ../src/DisplayTabs/_EventEmbedList.py:63
 #: ../src/DisplayTabs/_WebEmbedList.py:64 ../src/Selectors/_SelectEvent.py:53
 #: ../src/plugins/MarkerReport.py:307 ../src/gen/lib/attrtype.py:65
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:89
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:91
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -2067,7 +2071,7 @@ msgstr "Url"
 # Locatie
 #: ../src/ScratchPad.py:394 ../src/DataViews/MediaView.py:83
 #: ../src/DisplayTabs/_WebEmbedList.py:63
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:83
 msgid "Path"
 msgstr "Pad"
 
@@ -2110,8 +2114,8 @@ msgstr "Volume/Pagina: %(pag)s -- %(sourcetext)s"
 #: ../src/Selectors/_SelectRepository.py:53
 #: ../src/Selectors/_SelectSource.py:53 ../src/plugins/ExportCSV.py:366
 #: ../src/plugins/ImportCSV.py:165 ../src/plugins/PatchNames.py:244
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:77
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:79
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:81
 msgid "Title"
 msgstr "Titel"
 
@@ -2130,7 +2134,7 @@ msgstr "Telefoonnummer"
 
 #: ../src/ScratchPad.py:532
 msgid "Media Type"
-msgstr "Media type"
+msgstr "Mediatype"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/ScratchPad.py:544
@@ -2181,7 +2185,7 @@ msgstr "Afkorting"
 #: ../src/ScratchPad.py:789 ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
 #: ../src/plugins/NarrativeWeb.py:1708
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:78
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Auteur"
 
@@ -2585,7 +2589,7 @@ msgstr "Bronnen in bibliotheek"
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
 #: ../src/plugins/ExportCSV.py:474 ../src/plugins/ImportCSV.py:196
 #: ../src/gen/lib/ldsord.py:102
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:114
 msgid "Child"
 msgstr "Kind"
 
@@ -3144,7 +3148,7 @@ msgstr ""
 #: ../src/plugins/ImportCSV.py:171 ../src/plugins/IndivComplete.py:437
 #: ../src/plugins/NarrativeWeb.py:2159 ../src/plugins/RelCalc.py:56
 #: ../src/plugins/StatisticsChart.py:96
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 msgid "Gender"
 msgstr "Geslacht"
 
@@ -3303,19 +3307,19 @@ msgstr "Naam-filter-editor"
 
 #: ../src/DataViews/MediaView.py:89
 msgid "Edit the selected media object"
-msgstr "Het geselecteerde media object bewerken"
+msgstr "Het geselecteerde media-object bewerken"
 
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
-msgstr "Het geselecteerde media object verwijderen"
+msgstr "Het geselecteerde media-object verwijderen"
 
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 msgid "Drag Media Object"
-msgstr "media-object slepen"
+msgstr "Media-object slepen"
 
 #: ../src/DataViews/MediaView.py:215
 msgid "Media Filter Editor"
-msgstr "Mediafilter-editor"
+msgstr "Aanpassen mediafilter"
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
@@ -3363,7 +3367,7 @@ msgstr ""
 
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
-msgstr "media-object verwijderen?"
+msgstr "Media-object verwijderen?"
 
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
@@ -3414,8 +3418,8 @@ msgstr "Voorbeeld"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:61
 #: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:99
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:115
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
 msgstr "Aanduiding"
 
@@ -3699,7 +3703,7 @@ msgstr "De geselecteerde persoon verwijderen"
 
 # Plaatsnaam
 #: ../src/DataViews/PlaceView.py:66
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:80
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
 msgid "Place Name"
 msgstr "Locatienaam"
 
@@ -3710,14 +3714,14 @@ msgstr "Parochie"
 #: ../src/DataViews/PlaceView.py:71 ../src/DataViews/RepositoryView.py:74
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
 #: ../src/plugins/NarrativeWeb.py:1188
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
 msgid "County"
 msgstr "Provincie"
 
 # Provincie
 #: ../src/DataViews/PlaceView.py:72 ../src/DataViews/RepositoryView.py:75
 #: ../src/DisplayTabs/_AddrEmbedList.py:72 ../src/plugins/ExtractCity.py:373
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:87
 msgid "State"
 msgstr "Deelstaat"
 
@@ -4122,8 +4126,8 @@ msgstr ""
 #: ../src/docgen/PSDrawDoc.py:119 ../src/docgen/PSDrawDoc.py:122
 #: ../src/docgen/RTFDoc.py:83 ../src/docgen/RTFDoc.py:86
 #: ../src/docgen/SvgDrawDoc.py:75 ../src/docgen/SvgDrawDoc.py:77
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1434
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1439 ../src/plugins/ExportCSV.py:332
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1452
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1457 ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCalendar.py:211 ../src/plugins/ExportVCard.py:184
 #: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2702
@@ -4180,7 +4184,7 @@ msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1151
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:686
+#: ../src/ReportBase/_GraphvizReportDialog.py:696
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Openen met %(program_name)s"
@@ -4984,7 +4988,7 @@ msgstr "Nieuwe media"
 
 #: ../src/Editors/_EditMedia.py:201
 msgid "Edit Media Object"
-msgstr "media-object bewerken"
+msgstr "Media-object bewerken"
 
 #: ../src/Editors/_EditMedia.py:239
 msgid "Cannot save media object"
@@ -5012,11 +5016,11 @@ msgstr "Media-object (%s) bewerken"
 
 #: ../src/Editors/_EditMedia.py:339
 msgid "Remove Media Object"
-msgstr "media-object verwijderen"
+msgstr "Media-object verwijderen"
 
 #: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:377
 msgid "Media Reference Editor"
-msgstr "Media-referentie editor"
+msgstr "Aanpassen mediareferentie"
 
 #: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
@@ -5758,7 +5762,7 @@ msgstr "Sorteren"
 msgid "Writing"
 msgstr "Schrijven"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1437
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1455
 msgid "Export failed"
 msgstr "Export is mislukt"
 
@@ -5767,11 +5771,11 @@ msgstr "Export is mislukt"
 #.
 #.
 #. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1447
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1465
 msgid "GE_DCOM"
 msgstr "GE_DCOM"
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1448
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1466
 msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
@@ -5780,7 +5784,7 @@ msgstr ""
 "wisselen. Vrijwel alle genealogische softwareprogramma's accepteren GEDCOM-"
 "bestanden."
 
-#: ../src/GrampsDbUtils/_WriteGedcom.py:1450
+#: ../src/GrampsDbUtils/_WriteGedcom.py:1468
 msgid "GEDCOM export options"
 msgstr "GEDCOM-export opties"
 
@@ -7075,7 +7079,7 @@ msgstr "Zoeken naar lege locatiegegevens"
 
 #: ../src/plugins/Check.py:631
 msgid "Looking for empty media records"
-msgstr "Zoeken naar lege media-objectengegevens"
+msgstr "Zoeken naar lege mediagegevens"
 
 #: ../src/plugins/Check.py:640
 msgid "Looking for empty repository records"
@@ -7115,7 +7119,7 @@ msgstr "Zoeken naar bron referentie problemen"
 
 #: ../src/plugins/Check.py:1034
 msgid "Looking for media object reference problems"
-msgstr "Zoeken naar media-object referentie problemen"
+msgstr "Zoeken naar media-object referentieproblemen"
 
 #: ../src/plugins/Check.py:1126
 msgid "Looking for note reference problems"
@@ -8431,7 +8435,7 @@ msgid "Extracts event descriptions from the event data"
 msgstr "Haal de gebeurtenisbeschrijvingen uit de gebeurtenissengegevens"
 
 #: ../src/plugins/ExportCSV.py:366 ../src/plugins/ImportCSV.py:179
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr "Geboortedatum"
 
@@ -8445,7 +8449,7 @@ msgid "Birth source"
 msgstr "Geboortebron"
 
 #: ../src/plugins/ExportCSV.py:368 ../src/plugins/ImportCSV.py:185
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr "Sterfdatum"
 
@@ -9783,11 +9787,11 @@ msgstr "Maakt een lijst van personen met een bepaalde aanduiding"
 
 #: ../src/plugins/MediaManager.py:76 ../src/plugins/MediaManager.py:585
 msgid "Media Manager"
-msgstr "Media manager"
+msgstr "Mediamanager"
 
 #: ../src/plugins/MediaManager.py:80
 msgid "GRAMPS Media Manager"
-msgstr "GRAMPS media manager"
+msgstr "GRAMPS mediamanager"
 
 #: ../src/plugins/MediaManager.py:82
 msgid "Selecting operation"
@@ -9887,9 +9891,8 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media "
-"objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer "
-"u uw media bestanden van een map naar een map wilt verplaatsen"
+"Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media-objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer "
+"u uw mediabestanden van een map naar een map wilt verplaatsen"
 
 #: ../src/plugins/MediaManager.py:410
 msgid "Replace substring settings"
@@ -9944,7 +9947,7 @@ msgid ""
 "Preferences, or if that is not set, your home directory. A relative path "
 "allows to tie the file location to a base path that can change to your needs."
 msgstr ""
-"Dit hulpmiddel laat toe om absolute media paden om te zetten naar een "
+"Dit hulpmiddel laat toe om absolute mediapaden om te zetten naar een "
 "relatief pad. Een relatief pad wordt gerelateerd t.o.v. het basispad dat in "
 "Voorkeuren wordt opgegeven. Indien dit niet werd opgegeven wordt uw thuismap "
 "gebruikt. Een relatief pad laat toe om de bestandslocatie te verbinden met "
@@ -10306,7 +10309,7 @@ msgstr "Plaats-pagina's aanmaken"
 
 #: ../src/plugins/NarrativeWeb.py:2850
 msgid "Creating media pages"
-msgstr "Media-pagina's aanmaken"
+msgstr "Mediapagina's aanmaken"
 
 #: ../src/plugins/NarrativeWeb.py:2939
 msgid "Store web pages in .tar.gz archive"
@@ -10460,7 +10463,7 @@ msgstr "Een opmerking gebruiken voor de voetnoot van de pagina"
 
 #: ../src/plugins/NarrativeWeb.py:3052
 msgid "Include images and media objects"
-msgstr "Plaatjes en media bijvoegen"
+msgstr "Plaatjes en media-objecten bijvoegen"
 
 #: ../src/plugins/NarrativeWeb.py:3053
 msgid "Whether to include a gallery of media objects"
@@ -10889,7 +10892,7 @@ msgstr "Gebeurtenissen ID's herschikken"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
-msgstr "media-object herordenen"
+msgstr "Media-object ID's herschikken"
 
 #: ../src/plugins/ReorderIds.py:110
 msgid "Reordering Source IDs"
@@ -11047,7 +11050,7 @@ msgid "From gallery..."
 msgstr "Uit galerij..."
 
 #: ../src/plugins/SimpleBookTitle.py:207
-#: ../src/ReportBase/_GraphvizReportDialog.py:966
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
 #: ../src/ReportBase/_PaperMenu.py:223 ../src/glade/gramps.glade.h:192
 #: ../src/glade/paper_settings.glade.h:13
 msgid "cm"
@@ -11900,8 +11903,7 @@ msgid ""
 "Creator. You may later burn the CD with this data, and that copy will be "
 "completely portable across different machines and binary architectures."
 msgstr ""
-"Exporteren naar CD kopieert alle gegevens en media objecten naar de het CD "
-"aanmaakprogramma. Je kan dan later een gegevens CD branden, en deze kopie is "
+"Exporteren naar CD kopieert alle gegevens en media-objecten naar het CD-aanmaakprogramma. Je kan dan later een gegevens CD branden, en deze kopie is "
 "volledig porteerbaar naar andere computers en verschillende binaire "
 "architecturen."
 
@@ -11958,7 +11960,7 @@ msgid ""
 "files."
 msgstr ""
 "Een GRAMPS pakket bestaat uit een gearchiveerd XML-gegevensbestand samen met "
-"media objecten."
+"media-objecten."
 
 #: ../src/plugins/WritePkg.py:225
 msgid "GRAMPS package export options"
@@ -12229,7 +12231,7 @@ msgid "Graphics"
 msgstr "Grafisch"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:890
+#: ../src/ReportBase/_GraphvizReportDialog.py:900
 msgid "Paper Options"
 msgstr "Papieropties"
 
@@ -12238,7 +12240,7 @@ msgid "HTML Options"
 msgstr "HTML-opties"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:870
+#: ../src/ReportBase/_GraphvizReportDialog.py:880
 msgid "Output Format"
 msgstr "Uitvoerformaat"
 
@@ -12352,53 +12354,53 @@ msgstr "Boven"
 msgid "Bottom"
 msgstr "Onder"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:578
+#: ../src/ReportBase/_GraphvizReportDialog.py:588
 msgid "Graphviz Dot File"
 msgstr "Graphviz Dot bestand"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:587
+#: ../src/ReportBase/_GraphvizReportDialog.py:597
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:593
+#: ../src/ReportBase/_GraphvizReportDialog.py:603
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:599
+#: ../src/ReportBase/_GraphvizReportDialog.py:609
 msgid "Postscript"
 msgstr "Postscript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:605
+#: ../src/ReportBase/_GraphvizReportDialog.py:615
 msgid "Structured Vector Graphics (SVG)"
 msgstr "Structured Vector Graphics (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:611
+#: ../src/ReportBase/_GraphvizReportDialog.py:621
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "Gecomprimeerde Structured Vector Graphs (SVG)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:617
+#: ../src/ReportBase/_GraphvizReportDialog.py:627
 msgid "JPEG image"
 msgstr "JPEG-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:623
+#: ../src/ReportBase/_GraphvizReportDialog.py:633
 msgid "GIF image"
 msgstr "GIF-afbeelding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:629
+#: ../src/ReportBase/_GraphvizReportDialog.py:639
 msgid "PNG image"
 msgstr "PNG-afbeelding"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:720
+#: ../src/ReportBase/_GraphvizReportDialog.py:730
 msgid "GraphViz Layout"
 msgstr "GraphViz-layout"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:722
+#: ../src/ReportBase/_GraphvizReportDialog.py:732
 msgid "Font family"
 msgstr "Lettertypefamilie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:727
+#: ../src/ReportBase/_GraphvizReportDialog.py:737
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
@@ -12407,27 +12409,27 @@ msgstr ""
 "gebruik dan het FreeSans lettertype. Dit lettertype is verkrijgbaar bij "
 "http://www.nongnu.org/freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:733
+#: ../src/ReportBase/_GraphvizReportDialog.py:743
 msgid "Font size"
 msgstr "Lettergrootte"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:734
+#: ../src/ReportBase/_GraphvizReportDialog.py:744
 msgid "The font size, in points."
 msgstr "Lettertypegrootte in pts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:737
+#: ../src/ReportBase/_GraphvizReportDialog.py:747
 msgid "Graph Direction"
 msgstr "Grafiekrichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:742
+#: ../src/ReportBase/_GraphvizReportDialog.py:752
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Grafiek van boven naar onder gaan, of van links naar rechts."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:746
+#: ../src/ReportBase/_GraphvizReportDialog.py:756
 msgid "Number of Horizontal Pages"
 msgstr "Aantal horizontale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:747
+#: ../src/ReportBase/_GraphvizReportDialog.py:757
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12437,11 +12439,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld "
 "horizontaal."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:753
+#: ../src/ReportBase/_GraphvizReportDialog.py:763
 msgid "Number of Vertical Pages"
 msgstr "Aantal verticale pagina's"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:754
+#: ../src/ReportBase/_GraphvizReportDialog.py:764
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -12451,11 +12453,11 @@ msgstr ""
 "rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld "
 "vertikaal."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:760
+#: ../src/ReportBase/_GraphvizReportDialog.py:770
 msgid "Paging Direction"
 msgstr "Paginarichting"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:765
+#: ../src/ReportBase/_GraphvizReportDialog.py:775
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
@@ -12465,37 +12467,37 @@ msgstr ""
 "dan 1."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:783
+#: ../src/ReportBase/_GraphvizReportDialog.py:793
 msgid "GraphViz Options"
 msgstr "GraphViz-opties"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:786
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid "Aspect ratio"
 msgstr "Weergave verhouding"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:791
+#: ../src/ReportBase/_GraphvizReportDialog.py:801
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Bepaalt in grote mate hoe grafieken geschikt worden op de pagina."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:795
+#: ../src/ReportBase/_GraphvizReportDialog.py:805
 msgid "DPI"
 msgstr "DPI"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:798
+#: ../src/ReportBase/_GraphvizReportDialog.py:808
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
-"try numbers such as 75 or 100 DPI.  When printing, try300 or 600 DPI."
+"try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, "
+"use 72 DPI."
 msgstr ""
 "Dots per inch. Indien u van plan bent om gif of png bestanden aan te maken "
-"voor een webstek, gebruik dan best 75 of 100 DPI. Voor het uitdrukken, "
-"probeer dan 300 of 600 DPI."
+"voor een webstek, gebruik dan best 100 of 300 DPI. Voor het aanmaken van postscript of PDF-bestanden gebruikt u best 72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:804
+#: ../src/ReportBase/_GraphvizReportDialog.py:814
 msgid "Node spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:805
+#: ../src/ReportBase/_GraphvizReportDialog.py:815
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
@@ -12505,11 +12507,11 @@ msgstr ""
 "grafieken, is dit de afstand tussen de kolommen. Voor horizontale frafieken "
 "is dit de afstand tussen de rijen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:812
+#: ../src/ReportBase/_GraphvizReportDialog.py:822
 msgid "Rank spacing"
 msgstr "Spatie tussen rijen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:813
+#: ../src/ReportBase/_GraphvizReportDialog.py:823
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12520,54 +12522,54 @@ msgstr ""
 "grafieken is dit de ruimte tussen de kolommen."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:824
+#: ../src/ReportBase/_GraphvizReportDialog.py:834
 msgid "Note to add to the graph"
 msgstr "Bijschrift toevoegen aan grafiek"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:826
+#: ../src/ReportBase/_GraphvizReportDialog.py:836
 msgid "This text will be added to the graph."
 msgstr "Deze tekst wordt toegevoegd aan de grafiek."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:829
+#: ../src/ReportBase/_GraphvizReportDialog.py:839
 msgid "Note location"
 msgstr "Opmerking locatie"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:832
+#: ../src/ReportBase/_GraphvizReportDialog.py:842
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Of de notitie boven of onder aan de pagina zal verschijnen."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:846
 msgid "Note size"
 msgstr "Grootte opmerkingen"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:837
+#: ../src/ReportBase/_GraphvizReportDialog.py:847
 msgid "The size of note text, in points."
 msgstr "De tekstgrootte, in 'points'."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:862
-#: ../src/ReportBase/_GraphvizReportDialog.py:917
+#: ../src/ReportBase/_GraphvizReportDialog.py:872
+#: ../src/ReportBase/_GraphvizReportDialog.py:927
 msgid "Open with application"
 msgstr "Openen met toepassing"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:968
+#: ../src/ReportBase/_GraphvizReportDialog.py:978
 msgid "in"
 msgstr "in"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:977
-#: ../src/ReportBase/_GraphvizReportDialog.py:985
+#: ../src/ReportBase/_GraphvizReportDialog.py:987
+#: ../src/ReportBase/_GraphvizReportDialog.py:995
 msgid "Two or more opposite paper margins are less than "
-msgstr "Twee of meer tegenovergestelde papiermarges zijn kleiner dan"
+msgstr "Twee of meer tegenovergestelde papiermarges zijn kleiner dan "
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:978
-#: ../src/ReportBase/_GraphvizReportDialog.py:994
+#: ../src/ReportBase/_GraphvizReportDialog.py:988
+#: ../src/ReportBase/_GraphvizReportDialog.py:1004
 msgid "This can cause incorrect and/or partial graphs."
 msgstr "Dit kan leiden tot onjuiste en/of gedeeltelijke grafieken."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:986
+#: ../src/ReportBase/_GraphvizReportDialog.py:996
 msgid "More than expected number of pages can be generated."
 msgstr "Meer dan de verwachte aantal pagina's kunnen aangemaakt worden."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:993
+#: ../src/ReportBase/_GraphvizReportDialog.py:1003
 msgid "You have used more than one page as output."
 msgstr "U hebt meer dan 1 pagina opgegeven voor uitvoer."
 
@@ -16234,7 +16236,7 @@ msgstr "Brongegevens verwerken"
 
 #: ../src/gen/proxy/dbbase.py:120 ../src/gen/db/base.py:355
 msgid "Processing Media records"
-msgstr "Media-objectgegevens verwerken"
+msgstr "Mediagegevens verwerken"
 
 #: ../src/gen/proxy/dbbase.py:126 ../src/gen/db/base.py:361
 msgid "Processing Repository records"
@@ -16315,7 +16317,7 @@ msgid "LDS Note"
 msgstr "Opmerking over LDS"
 
 #: ../src/gen/lib/notetype.py:93
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:116
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:118
 msgid "Family Note"
 msgstr "Familie Notitie"
 
@@ -18410,16 +18412,16 @@ msgstr "Alle media-objecten"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
-msgstr "Vindt alle media objecten in het gegevensbestand"
+msgstr "Vindt alle media-objecten in het gegevensbestand"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Media Object met <Id>"
+msgstr "Media-object met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Vindt media objecten met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt media-objecten met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -18438,26 +18440,26 @@ msgstr "Parameters voor media-objecten"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
-msgstr "Vindt media objecten die bepaalde parameters"
+msgstr "Vindt media-objecten die bepaalde parameters"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Vindt media objecten met notities welke <deeltekenreeks> bevatten"
+msgstr "Vindt media-objecten met notities welke <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Vindt media objecten van wie de notities tekst bevatten die met een "
+"Vindt media-objecten van wie de notities tekst bevatten die met een "
 "deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Vindt media objecten met notities welke <reguliere uitdrukking> bevatten"
+msgstr "Vindt media-objecten met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt media objecten van wie de notities tekst bevatten die met reguliere "
+"Vindt media-objecten van wie de notities tekst bevatten die met reguliere "
 "uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
@@ -18474,7 +18476,7 @@ msgstr "Media-objecten die uit het <filter> komen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Vindt media objecten met een opgegeven filter"
+msgstr "Vindt media-objecten met een opgegeven filter"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
@@ -18482,7 +18484,7 @@ msgstr "Media-objecten met de aanduiding: privé"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr "Vindt Media objecten die aangegeven zijn als privé"
+msgstr "Vindt media-objecten die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
@@ -18605,8 +18607,8 @@ msgstr "Opmerkingen die <deeltekenreeks> bevatten"
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
 msgid "Matches notes who contain text matching a substring"
 msgstr ""
-"Vindt opmerkingen die een tekst bevatten die met een "
-"deeltekenreeks overeenkomen"
+"Vindt opmerkingen die een tekst bevatten die met een deeltekenreeks "
+"overeenkomen"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
 msgid "Notes containing <regular expression>"
@@ -18614,7 +18616,7 @@ msgstr "Vindt opmerkingen die een <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes who contain text "
-msgstr "Vindt opmerkingen die tekst bevatten"
+msgstr "Vindt opmerkingen die tekst bevatten "
 
 #: ../src/Filters/Rules/Note/_HasNote.py:47
 msgid "Text:"
@@ -18679,14 +18681,14 @@ msgstr "Vindt opmerkingen die aangegeven zijn als privé"
 msgid "Use regular expressions"
 msgstr "Reguliere uitdrukkingen toepassen"
 
-#: ../src/Filters/SideBar/_EventSidebarFilter.py:94
-#: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
-#: ../src/Filters/SideBar/_MediaSidebarFilter.py:84
-#: ../src/Filters/SideBar/_RepoSidebarFilter.py:94
-#: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
+#: ../src/Filters/SideBar/_EventSidebarFilter.py:96
+#: ../src/Filters/SideBar/_FamilySidebarFilter.py:119
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:136
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:83
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:90
+#: ../src/Filters/SideBar/_MediaSidebarFilter.py:86
+#: ../src/Filters/SideBar/_RepoSidebarFilter.py:96
+#: ../src/Filters/SideBar/_NoteSidebarFilter.py:87
 msgid "Custom filter"
 msgstr "Eigengemaakte filters"
 
@@ -18694,29 +18696,29 @@ msgstr "Eigengemaakte filters"
 msgid "any"
 msgstr "alle"
 
-#: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:130
+#: ../src/Filters/SideBar/_PersonSidebarFilter.py:132
 #, python-format
 msgid "example: \"%s\" or \"%s\""
 msgstr "voorbeeld: \"%s\" of \"%s\""
 
-#: ../src/Filters/SideBar/_SidebarFilter.py:50
+#: ../src/Filters/SideBar/_SidebarFilter.py:54
 msgid "<b>Filter</b>"
 msgstr "<b>Filter</b>"
 
-#: ../src/Filters/SideBar/_SidebarFilter.py:73
+#: ../src/Filters/SideBar/_SidebarFilter.py:77
 msgid "Reset"
 msgstr "Herzetten"
 
-#: ../src/Filters/SideBar/_SourceSidebarFilter.py:79
+#: ../src/Filters/SideBar/_SourceSidebarFilter.py:81
 msgid "Publication"
 msgstr "Publicatie"
 
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:81
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:83
 msgid "Church parish"
 msgstr "Parochie"
 
-#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:82
+#: ../src/Filters/SideBar/_PlaceSidebarFilter.py:84
 msgid "Zip/Postal code"
 msgstr "Postcode"
 
@@ -19637,7 +19639,7 @@ msgstr "_Lengtegraad:"
 
 #: ../src/glade/gramps.glade.h:157
 msgid "_Media Type:"
-msgstr "_Media type:"
+msgstr "_Mediatype:"
 
 #: ../src/glade/gramps.glade.h:158
 msgid "_Month"
@@ -20359,7 +20361,7 @@ msgstr "Standaard GRAMPS ID patroon voor families"
 
 #: ../data/gramps.schemas.in.h:10
 msgid "Default media object GRAMPS ID pattern"
-msgstr "Standaard GRAMPS ID patroon voor media objecten"
+msgstr "Standaard GRAMPS ID patroon voor media-objecten"
 
 #: ../data/gramps.schemas.in.h:11
 msgid "Default note GRAMPS ID pattern"
@@ -20948,7 +20950,7 @@ msgstr "Bepaalt de breedte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:141
 msgid "Specifies the width of the media editor interface."
-msgstr "Bepaalt de breedte van het media-venster."
+msgstr "Bepaalt de breedte van het mediavenster."
 
 #: ../data/gramps.schemas.in.h:142
 msgid "Specifies the width of the media reference editor interface."
@@ -21019,7 +21021,7 @@ msgid ""
 "The new GRAMPS IDs for the media object are generated according to this "
 "format string."
 msgstr ""
-"De nieuwe GRAMPS ID's voor media objecten zullen volgens dit deelteken "
+"De nieuwe GRAMPS ID's voor media-objecten zullen volgens dit deelteken "
 "formaat aangemaakt worden."
 
 #: ../data/gramps.schemas.in.h:157
