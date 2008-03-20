@@ -246,7 +246,7 @@ class RelGraphReport(Report):
                             label = "%s (%s)" % (label, fam_id)
                         color = ""
                         fill = ""
-                        style = ""
+                        style = "solid"
                         if self.colorize == 'colored':
                             color = self.colors['family']
                         elif self.colorize == 'filled':
@@ -266,6 +266,7 @@ class RelGraphReport(Report):
         fill = ""
         if gender == person.MALE:
             shape="box"
+            style="solid"
         elif gender == person.FEMALE:
             shape="box"
             style="rounded"
