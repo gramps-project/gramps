@@ -33,7 +33,7 @@ from _MenuOptions import (NumberOption, BooleanOption, TextOption,
                           ColourOption, PersonOption, PersonListOption, 
                           SurnameColourOption, FamilyOption, DestinationOption,
                           NoteOption, MediaOption)
-from _GuiOptions import GuiMenuOptions
+from _GuiOptions import GuiMenuOptions, make_gui_option
 from _PluginMgr import (register_export, register_import, register_tool, 
                         register_report, register_relcalc, relationship_class, 
                         textdoc_list, drawdoc_list, bookdoc_list, 
