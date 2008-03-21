@@ -254,12 +254,15 @@ class Bookmarks :
         self.namemodel.connect_model()
 
         self.modified = False
-        self.response = self.top.run()
-        if self.response == gtk.RESPONSE_HELP:
-            self.help_clicked()
-        if self.modified:
-            self.redraw_and_report_change()
-        self.top.destroy()
+        while True:
+            self.response = self.top.run()
+            if self.response == gtk.RESPONSE_HELP:
+                self.help_clicked()
+            elif self.response == gtk.RESPONSE_CLOSE:
+                if self.modified:
+                    self.redraw_and_report_change()
+                self.top.destroy()
+                break
 
     def delete_clicked(self, obj):
         """Remove the current selection from the list."""
@@ -304,7 +307,6 @@ class Bookmarks :
         """Display the relevant portion of GRAMPS manual."""
         GrampsDisplay.help('gramps-nav', webpage=WIKI_HELP_PAGE, 
                                    section=WIKI_HELP_SEC)
-        self.response = self.top.run()
 
 class ListBookmarks(Bookmarks):
 
