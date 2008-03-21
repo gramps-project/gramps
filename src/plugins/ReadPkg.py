@@ -54,7 +54,8 @@ import gtk
 #-------------------------------------------------------------------------
 import const
 from GrampsDbUtils import gramps_db_reader_factory
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
+import Utils
 from PluginUtils import register_import
 
 #-------------------------------------------------------------------------
@@ -65,30 +66,28 @@ from PluginUtils import register_import
 def impData(database, name, cb=None, cl=0):
     # Create tempdir, if it does not exist, then check for writability
     #     THE TEMP DIR is named as the filname.gpkg.media and is created
-    #     in the same dir as the database that we are importing into.
-    db_path = os.path.dirname(database.get_save_path())
+    #     in the mediapath dir of the family tree we import too
+    oldmediapath = database.get_mediapath()
+    #use home dir if no media path
+    media_path = Utils.media_path(database)
     media_dir = "%s.media" % os.path.basename(name)
-    tmpdir_path = os.path.join(db_path, media_dir)
+    tmpdir_path = os.path.join(media_path, media_dir)
     if not os.path.isdir(tmpdir_path):
         try:
             os.mkdir(tmpdir_path, 0700)
         except:
-            ErrorDialog( _("Could not create temporary directory %s") % 
+            ErrorDialog( _("Could not create media directory %s") % 
                          tmpdir_path )
             return
     elif not os.access(tmpdir_path, os.W_OK):
-        ErrorDialog(_("Temporary directory %s is not writable") % tmpdir_path)
+        ErrorDialog(_("Media directory %s is not writable") % tmpdir_path)
         return
-    else:    # tempdir exists and writable -- clean it up if not empty
-        files = os.listdir(tmpdir_path) ;
-        for filename in files:
-            try:
-                os.remove(os.path.join(tmpdir_path, filename))
-            except OSError:
-                try:
-                    os.removedirs(os.path.join(tmpdir_path, filename))
-                except:
-                    print "could not remove: '%s'" % os.path.join(tmpdir_path, filename)
+    else:    
+        # mediadir exists and writable -- User could have valuable stuff in
+        # it, have him remove it!
+        ErrorDialog(_("Media directory %s exists. Delete it first, then"
+                      " restart the import process") % tmpdir_path)
+        return
     try:
         archive = tarfile.open(name)
         for tarinfo in archive:
@@ -101,12 +100,43 @@ def impData(database, name, cb=None, cl=0):
     imp_db_name = os.path.join(tmpdir_path, const.XMLFILE)  
 
     importer = gramps_db_reader_factory(const.APP_GRAMPS_XML)
-    importer(database, imp_db_name, cb)
+    info = importer(database, imp_db_name, cb)
+    newmediapath = database.get_mediapath()
+    #import of gpkg should not change media path as all media has new paths!
+    if not oldmediapath == newmediapath :
+        database.set_mediapath(oldmediapath)
 
-    # Clean up tempdir after ourselves
-    #     THIS HAS BEEN CHANGED, because now we want to keep images
-    #     stay after the import is over. Just delete the XML file.
+    # Set correct media dir if possible, complain if problems
+    if oldmediapath is None:
+        database.set_mediapath(tmpdir_path)
+        WarningDialog(
+                _("Base path for relative media set"),
+                _("The base media path of this family tree has been set to "
+                    "%s. Consider taking a simpler path. You can change this "
+                    "in the Preferences, while moving your media files to the "
+                    "new position, and using the media manager tool, option "
+                    "'Replace substring in the path' to set"
+                    " correct paths in your media objects."
+                 ) % tmpdir_path)
+    else:
+        WarningDialog(
+                _("Cannot set base media path"),
+                _("The family tree you imported into already has a base media "
+                    "path: %(orig_path)s. The imported media objects however "
+                    "are relative from the path %(path)s. You can change the "
+                    "media path in the Preferences or you can convert the "
+                    "imported files to the existing base media path. You can "
+                    "do that by moving your media files to the "
+                    "new position, and using the media manager tool, option "
+                    "'Replace substring in the path' to set"
+                    " correct paths in your media objects."
+                    ) % {'orig_path': oldmediapath, 'path': tmpdir_path}
+                    )
+    
+    # Remove xml file extracted to media dir we imported from
     os.remove(imp_db_name)
+    
+    return info
 
 ##     files = os.listdir(tmpdir_path) 
 ##     for filename in files:
