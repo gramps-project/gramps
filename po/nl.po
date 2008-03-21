@@ -1,4 +1,4 @@
-# translation of nl.po to dutch
+# translation of nl.po to
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 #
@@ -35,14 +35,15 @@
 # Erik De Richter <frederik.de.richter@gmail.com>, 2007, 2008.
 # Frederik De Richter <frederik.de.richter@pandora.be>, 2008.
 # Frederik De richter <frederik.de.richter@pandora.be>, 2008.
+# Frederik De Richter <frederik@googlemail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-14 17:49+0100\n"
-"PO-Revision-Date: 2008-03-14 17:54+0100\n"
-"Last-Translator: Erik De Richter <frederik.de.richter@gmail.com>\n"
-"Language-Team: dutch <en@li.org>\n"
+"PO-Revision-Date: 2008-03-20 20:45+0100\n"
+"Last-Translator: Frederik De Richter <frederik@googlemail.com>\n"
+"Language-Team:  <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2160,7 +2161,7 @@ msgstr "Telefoonnummer"
 
 #: ../src/ScratchPad.py:532
 msgid "Media Type"
-msgstr "Media type"
+msgstr "Mediatype"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../src/ScratchPad.py:544
@@ -3333,19 +3334,19 @@ msgstr "Naam-filter-editor"
 
 #: ../src/DataViews/MediaView.py:89
 msgid "Edit the selected media object"
-msgstr "Het geselecteerde media object bewerken"
+msgstr "Het geselecteerde media-object bewerken"
 
 #: ../src/DataViews/MediaView.py:90
 msgid "Delete the selected media object"
-msgstr "Het geselecteerde media object verwijderen"
+msgstr "Het geselecteerde media-object verwijderen"
 
 #: ../src/DataViews/MediaView.py:196 ../src/DisplayTabs/_GalleryTab.py:461
 msgid "Drag Media Object"
-msgstr "media-object slepen"
+msgstr "Media-object slepen"
 
 #: ../src/DataViews/MediaView.py:215
 msgid "Media Filter Editor"
-msgstr "Mediafilter-editor"
+msgstr "Bewerken mediafilter"
 
 # komt overeen met de genoemde filter?
 # Vindt de filter genaamd?
@@ -3380,20 +3381,15 @@ msgstr ""
 msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
-msgstr ""
-"Dit media-object wordt momenteel gebruikt. Als u dit object verwijdert zal "
-"het uit het gegevensbestand worden gehaald en uit alle archieven die er naar "
-"verwijzen."
+msgstr "Dit media-object wordt momenteel gebruikt. Als u dit object verwijdert zal het uit het gegevensbestand worden gehaald en uit alle archieven die er naar verwijzen."
 
 #: ../src/DataViews/MediaView.py:401
 msgid "Deleting media object will remove it from the database."
-msgstr ""
-"Bij het verwijderen van een media-object zal het uit het gegevensbestand "
-"worden gehaald."
+msgstr "Bij het verwijderen van een media-object zal het uit het gegevensbestand worden gehaald."
 
 #: ../src/DataViews/MediaView.py:405
 msgid "Delete Media Object?"
-msgstr "media-object verwijderen?"
+msgstr "Media-object verwijderen?"
 
 #: ../src/DataViews/MediaView.py:406
 msgid "_Delete Media Object"
@@ -5014,7 +5010,7 @@ msgstr "Nieuwe media"
 
 #: ../src/Editors/_EditMedia.py:201
 msgid "Edit Media Object"
-msgstr "media-object bewerken"
+msgstr "Media-object bewerken"
 
 #: ../src/Editors/_EditMedia.py:239
 msgid "Cannot save media object"
@@ -5042,11 +5038,11 @@ msgstr "Media-object (%s) bewerken"
 
 #: ../src/Editors/_EditMedia.py:339
 msgid "Remove Media Object"
-msgstr "media-object verwijderen"
+msgstr "Media-object verwijderen"
 
 #: ../src/Editors/_EditMediaRef.py:81 ../src/Editors/_EditMediaRef.py:377
 msgid "Media Reference Editor"
-msgstr "Media-referentie editor"
+msgstr "Bewerken van mediareferentie"
 
 #: ../src/Editors/_EditName.py:116 ../src/Editors/_EditName.py:277
 msgid "Name Editor"
@@ -7106,7 +7102,7 @@ msgstr "Zoeken naar lege locatiegegevens"
 
 #: ../src/plugins/Check.py:631
 msgid "Looking for empty media records"
-msgstr "Zoeken naar lege media-objectengegevens"
+msgstr "Zoeken naar lege mediagegevens"
 
 #: ../src/plugins/Check.py:640
 msgid "Looking for empty repository records"
@@ -7146,7 +7142,7 @@ msgstr "Zoeken naar bron referentie problemen"
 
 #: ../src/plugins/Check.py:1034
 msgid "Looking for media object reference problems"
-msgstr "Zoeken naar media-object referentie problemen"
+msgstr "Zoeken naar media-object referentieproblemen"
 
 #: ../src/plugins/Check.py:1126
 msgid "Looking for note reference problems"
@@ -9822,11 +9818,11 @@ msgstr "Maakt een lijst van personen met een bepaalde aanduiding"
 
 #: ../src/plugins/MediaManager.py:76 ../src/plugins/MediaManager.py:585
 msgid "Media Manager"
-msgstr "Media manager"
+msgstr "Mediamanager"
 
 #: ../src/plugins/MediaManager.py:80
 msgid "GRAMPS Media Manager"
-msgstr "GRAMPS media manager"
+msgstr "GRAMPS mediamanager"
 
 #: ../src/plugins/MediaManager.py:82
 msgid "Selecting operation"
@@ -9926,9 +9922,8 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media "
-"objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer "
-"u uw media bestanden van een map naar een map wilt verplaatsen"
+"Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media-objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer "
+"u uw mediabestanden van een map naar een map wilt verplaatsen"
 
 #: ../src/plugins/MediaManager.py:410
 msgid "Replace substring settings"
@@ -9983,7 +9978,7 @@ msgid ""
 "Preferences, or if that is not set, your home directory. A relative path "
 "allows to tie the file location to a base path that can change to your needs."
 msgstr ""
-"Dit hulpmiddel laat toe om absolute media paden om te zetten naar een "
+"Dit hulpmiddel laat toe om absolute mediapaden om te zetten naar een "
 "relatief pad. Een relatief pad wordt gerelateerd t.o.v. het basispad dat in "
 "Voorkeuren wordt opgegeven. Indien dit niet werd opgegeven wordt uw thuismap "
 "gebruikt. Een relatief pad laat toe om de bestandslocatie te verbinden met "
@@ -10332,7 +10327,7 @@ msgstr "Plaats-pagina's aanmaken"
 
 #: ../src/plugins/NarrativeWeb.py:2786
 msgid "Creating media pages"
-msgstr "Media-pagina's aanmaken"
+msgstr "Mediapagina's aanmaken"
 
 #: ../src/plugins/NarrativeWeb.py:2839
 msgid "Possible destination error"
@@ -10497,7 +10492,7 @@ msgstr "Een opmerking gebruiken voor de voetnoot van de pagina"
 
 #: ../src/plugins/NarrativeWeb.py:2994
 msgid "Include images and media objects"
-msgstr "Plaatjes en media bijvoegen"
+msgstr "Plaatjes en media-objecten bijvoegen"
 
 #: ../src/plugins/NarrativeWeb.py:2995
 msgid "Whether to include a gallery of media objects"
@@ -10926,7 +10921,7 @@ msgstr "Gebeurtenissen ID's herschikken"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
-msgstr "media-object herordenen"
+msgstr "Media-object ID's herschikken"
 
 #: ../src/plugins/ReorderIds.py:110
 msgid "Reordering Source IDs"
@@ -11932,7 +11927,7 @@ msgid ""
 "Creator. You may later burn the CD with this data, and that copy will be "
 "completely portable across different machines and binary architectures."
 msgstr ""
-"Exporteren naar CD kopieert alle gegevens en media objecten naar de het CD "
+"Exporteren naar CD kopieert alle gegevens en media-objecten naar de het CD "
 "aanmaakprogramma. Je kan dan later een gegevens CD branden, en deze kopie is "
 "volledig porteerbaar naar andere computers en verschillende binaire "
 "architecturen."
@@ -11990,7 +11985,7 @@ msgid ""
 "files."
 msgstr ""
 "Een GRAMPS pakket bestaat uit een gearchiveerd XML-gegevensbestand samen met "
-"media objecten."
+"media-objecten."
 
 #: ../src/plugins/WritePkg.py:225
 msgid "GRAMPS package export options"
@@ -16240,7 +16235,7 @@ msgstr "Brongegevens verwerken"
 
 #: ../src/gen/proxy/dbbase.py:120 ../src/gen/db/base.py:355
 msgid "Processing Media records"
-msgstr "Media-objectgegevens verwerken"
+msgstr "Mediagegevens verwerken"
 
 #: ../src/gen/proxy/dbbase.py:126 ../src/gen/db/base.py:361
 msgid "Processing Repository records"
@@ -18415,16 +18410,16 @@ msgstr "Alle media-objecten"
 
 #: ../src/Filters/Rules/MediaObject/_AllMedia.py:46
 msgid "Matches every media object in the database"
-msgstr "Vindt alle media objecten in het gegevensbestand"
+msgstr "Vindt alle media-objecten in het gegevensbestand"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
-msgstr "Media Object met <Id>"
+msgstr "Media-Object met <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:46
 msgid "Matches a media object with a specified GRAMPS ID"
-msgstr "Vindt media objecten met de gespecificeerde GRAMPS-ID"
+msgstr "Vindt media-objecten met de gespecificeerde GRAMPS-ID"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:48
 #: ../src/Filters/Rules/Repository/_HasRepo.py:48
@@ -18443,26 +18438,26 @@ msgstr "Parameters voor media-objecten"
 
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:53
 msgid "Matches media objects with particular parameters"
-msgstr "Vindt media objecten die bepaalde parameters"
+msgstr "Vindt media-objecten die bepaalde parameters"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:43
 msgid "Media objects having notes containing <substring>"
-msgstr "Vindt media objecten met notities welke <deeltekenreeks> bevatten"
+msgstr "Vindt media-objecten met notities welke <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches media objects whose notes contain text matching a substring"
 msgstr ""
-"Vindt media objecten van wie de notities tekst bevatten die met een "
+"Vindt media-objecten van wie de notities tekst bevatten die met een "
 "deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
 msgid "Media objects having notes containing <regular expression>"
-msgstr "Vindt media objecten met notities welke <reguliere uitdrukking> bevatten"
+msgstr "Vindt media-objecten met notities welke <reguliere uitdrukking> bevatten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
-"Vindt media objecten van wie de notities tekst bevatten die met reguliere "
+"Vindt media-objecten van wie de notities tekst bevatten die met reguliere "
 "uitdrukking overeenkomen"
 
 #: ../src/Filters/Rules/MediaObject/_HasReferenceCountOf.py:43
@@ -18479,7 +18474,7 @@ msgstr "Media-objecten die uit het <filter> komen"
 
 #: ../src/Filters/Rules/MediaObject/_MatchesFilter.py:46
 msgid "Matches media objects matched by the specified filter name"
-msgstr "Vindt media objecten met een opgegeven filter"
+msgstr "Vindt media-objecten met een opgegeven filter"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:43
 msgid "Media objects marked private"
@@ -18487,7 +18482,7 @@ msgstr "Media-objecten met de aanduiding: privé"
 
 #: ../src/Filters/Rules/MediaObject/_MediaPrivate.py:44
 msgid "Matches Media objects that are indicated as private"
-msgstr "Vindt Media objecten die aangegeven zijn als privé"
+msgstr "Vindt media-objecten die aangegeven zijn als privé"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
 msgid "Media Objects with <Id> matching regular expression"
@@ -19644,7 +19639,7 @@ msgstr "_Lengtegraad:"
 
 #: ../src/glade/gramps.glade.h:157
 msgid "_Media Type:"
-msgstr "_Media type:"
+msgstr "_Mediatype:"
 
 #: ../src/glade/gramps.glade.h:158
 msgid "_Month"
@@ -20366,7 +20361,7 @@ msgstr "Standaard GRAMPS ID patroon voor families"
 
 #: ../data/gramps.schemas.in.h:10
 msgid "Default media object GRAMPS ID pattern"
-msgstr "Standaard GRAMPS ID patroon voor media objecten"
+msgstr "Standaard GRAMPS ID patroon voor media-objecten"
 
 #: ../data/gramps.schemas.in.h:11
 msgid "Default note GRAMPS ID pattern"
@@ -20504,7 +20499,7 @@ msgstr "Hoogte van het mediavenster."
 
 #: ../data/gramps.schemas.in.h:43
 msgid "Height of the media reference editor interface."
-msgstr "Hoogte van het mediareferentie venster."
+msgstr "Hoogte van het mediareferentievenster."
 
 #: ../data/gramps.schemas.in.h:44
 msgid "Height of the name editor interface."
@@ -20955,7 +20950,7 @@ msgstr "Bepaalt de breedte van het locatievenster."
 
 #: ../data/gramps.schemas.in.h:141
 msgid "Specifies the width of the media editor interface."
-msgstr "Bepaalt de breedte van het media-venster."
+msgstr "Bepaalt de breedte van het mediavenster."
 
 #: ../data/gramps.schemas.in.h:142
 msgid "Specifies the width of the media reference editor interface."
@@ -21026,7 +21021,7 @@ msgid ""
 "The new GRAMPS IDs for the media object are generated according to this "
 "format string."
 msgstr ""
-"De nieuwe GRAMPS ID's voor media objecten zullen volgens dit deelteken "
+"De nieuwe GRAMPS ID's voor media-objecten zullen volgens dit deelteken "
 "formaat aangemaakt worden."
 
 #: ../data/gramps.schemas.in.h:157
