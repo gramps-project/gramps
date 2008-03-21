@@ -174,8 +174,9 @@ class PackageWriter:
         for m_id in self.db.get_media_object_handles():
             mobject = self.db.get_object_from_handle(m_id)
             filename = str(Utils.media_path_full(self.db, mobject.get_path()))
+            archname = str(mobject.get_path())
             if os.path.isfile(filename):
-                archive.add(filename)
+                archive.add(filename, archname)
 #             else:
 #                 # File is lost => ask what to do
 #                 if missmedia_action == 0:
