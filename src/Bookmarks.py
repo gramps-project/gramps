@@ -201,6 +201,7 @@ class Bookmarks :
         self.top = gtk.Dialog(title)
         self.top.set_default_size(400, 350)
         self.top.set_modal(True)
+        self.top.set_transient_for(self.uistate.window)
         self.top.set_has_separator(False)
         self.top.vbox.set_spacing(5)
         label = gtk.Label('<span size="larger" weight="bold">%s</span>'
