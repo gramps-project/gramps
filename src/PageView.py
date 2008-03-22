@@ -801,7 +801,7 @@ class ListView(BookMarkView):
         # set the search column to be the sorted column
         search_col = self.column_order()[data][1]
         self.list.set_search_column(search_col)
-        
+
     def build_columns(self):
         for column in self.columns:
             self.list.remove_column(column)
@@ -830,7 +830,6 @@ class ListView(BookMarkView):
 
     def build_tree(self):
         if self.active:
-
             if Config.get(Config.FILTER):
                 filter_info = (True, self.generic_filter)
             else:
@@ -839,6 +838,7 @@ class ListView(BookMarkView):
             self.model = self.make_model(self.dbstate.db, self.sort_col, 
                                          search=filter_info)
             self.list.set_model(self.model)
+            self.build_columns()
 
             if const.USE_TIPS and self.model.tooltip_column != None:
                 self.tooltips = TreeTips.TreeTips(
@@ -881,8 +881,6 @@ class ListView(BookMarkView):
     def change_db(self, db):
         for sig in self.signal_map:
             db.connect(sig, self.signal_map[sig])
-
-        self.build_columns()
         self.bookmarks.update_bookmarks(self.get_bookmarks())
         if self.active:
             self.build_tree()
