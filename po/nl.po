@@ -5,9 +5,6 @@
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
 # Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008.
-# Erik De Richter <frederik.de.richter@gmail.com>, 2007, 2008.
-# Frederik De Richter <frederik.de.richter@pandora.be>, 2008.
-# Frederik De richter <frederik.de.richter@pandora.be>, 2008.
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
 # --------------------------------------------------
@@ -6579,7 +6576,7 @@ msgstr "Kies een filter om aantal personen te beperken"
 #: ../src/plugins/NarrativeWeb.py:2960 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 msgid "Filter Person"
-msgstr "Filter persoon"
+msgstr "Filter Persoonsfilter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:437 ../src/plugins/IndivComplete.py:523
@@ -6602,7 +6599,7 @@ msgstr "Bron om te verwijderen en/of toe te voegen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:81
 msgid "Remove previously added dates"
-msgstr "Eerder togevoegde datums verwijderen"
+msgstr "Eerder toegevoegde datums verwijderen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:85
 msgid "Add estimated birth dates"
@@ -6725,7 +6722,7 @@ msgstr "Geboortedatum en verjaardagsverslag"
 #: ../src/plugins/Calendar.py:441
 #, python-format
 msgid "Relationships shown are to %s"
-msgstr "Getoonde verwantschappen van  %s"
+msgstr "Getoonde verwantschappen van %s"
 
 #: ../src/plugins/Calendar.py:486 ../src/plugins/Calendar.py:488
 #: ../src/plugins/WebCal.py:736 ../src/plugins/WebCal.py:738
