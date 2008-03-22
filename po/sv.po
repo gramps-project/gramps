@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-20 09:08+0100\n"
-"PO-Revision-Date: 2008-03-20 10:29+0100\n"
+"POT-Creation-Date: 2008-03-22 14:52+0100\n"
+"PO-Revision-Date: 2008-03-22 14:53+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team:  <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -126,13 +126,13 @@ msgstr "%(title)s - GRAMPS"
 
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
-#: ../src/Bookmarks.py:200 ../src/Bookmarks.py:207 ../src/gramps_main.py:101
+#: ../src/Bookmarks.py:200 ../src/Bookmarks.py:208 ../src/gramps_main.py:101
 #: ../src/PageView.py:354
 msgid "Organize Bookmarks"
 msgstr "Organisera bokmärken"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:213 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
+#: ../src/Bookmarks.py:214 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
 #: ../src/ScratchPad.py:372 ../src/ScratchPad.py:428 ../src/ScratchPad.py:461
 #: ../src/ScratchPad.py:530 ../src/ScratchPad.py:561 ../src/ScratchPad.py:578
 #: ../src/ScratchPad.py:579 ../src/ScratchPad.py:598 ../src/ScratchPad.py:648
@@ -163,7 +163,7 @@ msgstr "Namn"
 
 #. GRAMPS ID
 #. Add column with object gramps_id
-#: ../src/Bookmarks.py:213 ../src/PageView.py:458 ../src/PageView.py:635
+#: ../src/Bookmarks.py:214 ../src/PageView.py:458 ../src/PageView.py:635
 #: ../src/Merge/_MergePerson.py:133 ../src/DataViews/EventView.py:70
 #: ../src/DataViews/FamilyList.py:62 ../src/DataViews/MediaView.py:81
 #: ../src/DataViews/NoteView.py:68 ../src/DataViews/PersonView.py:68
@@ -5963,7 +5963,7 @@ msgstr "Alla händelser"
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:227
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:881
-#: ../src/plugins/GVHourGlass.py:203 ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVHourGlass.py:204 ../src/plugins/GVRelGraph.py:559
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
@@ -6131,7 +6131,7 @@ msgstr "Trädalternativ"
 #: ../src/plugins/DetAncestralReport.py:680
 #: ../src/plugins/DetDescendantReport.py:641
 #: ../src/plugins/EndOfLineReport.py:234 ../src/plugins/FanChart.py:343
-#: ../src/plugins/GVHourGlass.py:177 ../src/plugins/KinshipReport.py:337
+#: ../src/plugins/GVHourGlass.py:178 ../src/plugins/KinshipReport.py:337
 msgid "Center Person"
 msgstr "Huvudperson"
 
@@ -6389,7 +6389,7 @@ msgstr "Skapar en bok som innehåller flera rapporter."
 #. ---------------------
 #: ../src/plugins/CalculateEstimatedDates.py:62
 #: ../src/plugins/CalculateEstimatedDates.py:152
-#: ../src/plugins/GVFamilyLines.py:185 ../src/plugins/GVHourGlass.py:175
+#: ../src/plugins/GVFamilyLines.py:185 ../src/plugins/GVHourGlass.py:176
 #: ../src/glade/gramps.glade.h:93
 msgid "Options"
 msgstr "Alternativ"
@@ -8963,31 +8963,31 @@ msgstr "Släktlinjediagram"
 msgid "Produces family line graphs using GraphViz"
 msgstr "Skapar ett diagram för en släktlinje med GraphViz."
 
-#: ../src/plugins/GVHourGlass.py:178
+#: ../src/plugins/GVHourGlass.py:179
 msgid "The center person for the graph"
 msgstr "Huvudpersonen för rapporten"
 
-#: ../src/plugins/GVHourGlass.py:181 ../src/plugins/KinshipReport.py:341
+#: ../src/plugins/GVHourGlass.py:182 ../src/plugins/KinshipReport.py:341
 msgid "Max Descendant Generations"
 msgstr "Maximalt antal ättlingsgenerationer"
 
-#: ../src/plugins/GVHourGlass.py:182
+#: ../src/plugins/GVHourGlass.py:183
 msgid "The number of generations of descendants to include in the graph"
 msgstr "Antal ättlingsgenerationer, som skall ingå i rapporten"
 
-#: ../src/plugins/GVHourGlass.py:186 ../src/plugins/KinshipReport.py:345
+#: ../src/plugins/GVHourGlass.py:187 ../src/plugins/KinshipReport.py:345
 msgid "Max Ancestor Generations"
 msgstr "Maximalt antal förfadersgenerationer"
 
-#: ../src/plugins/GVHourGlass.py:187
+#: ../src/plugins/GVHourGlass.py:188
 msgid "The number of generations of ancestors to include in the graph"
 msgstr "Antal förfadersgenerationer, som skall ingå i rapporten"
 
-#: ../src/plugins/GVHourGlass.py:202
+#: ../src/plugins/GVHourGlass.py:203
 msgid "Hourglass Graph"
 msgstr "Timglasdiagram"
 
-#: ../src/plugins/GVHourGlass.py:206
+#: ../src/plugins/GVHourGlass.py:207
 msgid "Produces an hourglass graph using Graphviz"
 msgstr "Skapar ett timglasdiagram med Graphviz"
 
@@ -10486,26 +10486,74 @@ msgstr ""
 "Söker i hela databasen och försöker att hämta titlar, smeknamn och "
 "efternamnsprefix, som kan finnas inbäddade i en persons förnamnsfält."
 
-#: ../src/plugins/ReadPkg.py:76
+#: ../src/plugins/ReadPkg.py:79
 #, python-format
-msgid "Could not create temporary directory %s"
-msgstr "Kunde inte skapa temporärkatalogen %s"
+msgid "Could not create media directory %s"
+msgstr "Kunde inte skapa mediamappen %s"
 
-#: ../src/plugins/ReadPkg.py:80
+#: ../src/plugins/ReadPkg.py:83
 #, python-format
-msgid "Temporary directory %s is not writable"
-msgstr "Temporärkatalogen %s är inte skrivbar"
+msgid "Media directory %s is not writable"
+msgstr "Mediamappen %s är inte skrivbar"
 
-#: ../src/plugins/ReadPkg.py:98
+#. mediadir exists and writable -- User could have valuable stuff in
+#. it, have him remove it!
+#: ../src/plugins/ReadPkg.py:88
+#, python-format
+msgid "Media directory %s exists. Delete it first, then restart the import process"
+msgstr "Mediamappen %s finns. Tag bort den först och starta sedan om importen."
+
+#: ../src/plugins/ReadPkg.py:97
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Fel vid extrahering till %s"
 
+#: ../src/plugins/ReadPkg.py:113
+msgid "Base path for relative media set"
+msgstr "Grundsökväg för relativ mediamängd"
+
+#: ../src/plugins/ReadPkg.py:114
+#, python-format
+msgid ""
+"The base media path of this family tree has been set to %s. Consider taking "
+"a simpler path. You can change this in the Preferences, while moving your "
+"media files to the new position, and using the media manager tool, option "
+"'Replace substring in the path' to set correct paths in your media objects."
+msgstr ""
+"Den grundläggande mediasökvägen för detta släktträd har satts till %s. "
+"Fundera på en enklare sökväg. Du kan ändra denna i Inställningar under det "
+"att du flyttar dina mediafiler till den nya platsen och använder "
+"mediahanteringshjälpmedlet, alternativ 'Byt ut delsträng i sökvägen' för att "
+"ställa in riktiga sökvägar för dina mediaobjekt."
+
 #: ../src/plugins/ReadPkg.py:123
+msgid "Cannot set base media path"
+msgstr "Kan inte ställa in mediasökväg"
+
+#: ../src/plugins/ReadPkg.py:124
+#, python-format
+msgid ""
+"The family tree you imported into already has a base media path: %(orig_path)"
+"s. The imported media objects however are relative from the path %(path)s. "
+"You can change the media path in the Preferences or you can convert the "
+"imported files to the existing base media path. You can do that by moving "
+"your media files to the new position, and using the media manager tool, "
+"option 'Replace substring in the path' to set correct paths in your media "
+"objects."
+msgstr ""
+"Det släktträd, som du importerat till, har redan en grundsökväg för media: %"
+"(orig_path)s. De importerade mediaobjekten är emellertid relativa från %"
+"(path)s. Du kan ändra mediasökvägen i 'Inställningar eller också så kan du "
+"omvandla de importerade filerna till den befintliga grundsökvägen för media. "
+"Du kan göra detta genom att flytta dina mediafiler till den nya platsen och "
+"använda mediahanteringshjälpmedlet, alternativ 'Byt ut delsträng i sökväg' "
+"för att ställa in riktiga sökvägar för dina mediaobjekt."
+
+#: ../src/plugins/ReadPkg.py:153
 msgid "GRAMPS packages"
 msgstr "GRAMPS-paket"
 
-#: ../src/plugins/ReadPkg.py:125 ../data/gramps.keys.in.h:4
+#: ../src/plugins/ReadPkg.py:155 ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
 msgid "GRAMPS package"
 msgstr "GRAMPS-paket"
@@ -10801,10 +10849,8 @@ msgstr "Sidfot"
 msgid "From gallery..."
 msgstr "Från galleri..."
 
-#: ../src/plugins/SimpleBookTitle.py:207
-#: ../src/ReportBase/_GraphvizReportDialog.py:976
-#: ../src/ReportBase/_PaperMenu.py:223 ../src/glade/gramps.glade.h:192
-#: ../src/glade/paper_settings.glade.h:13
+#: ../src/plugins/SimpleBookTitle.py:207 ../src/ReportBase/_PaperMenu.py:223
+#: ../src/glade/gramps.glade.h:192 ../src/glade/paper_settings.glade.h:13
 msgid "cm"
 msgstr "cm"
 
@@ -11683,17 +11729,17 @@ msgstr "Alternativ för GeneWeb-export"
 #. Register the plugin
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/WritePkg.py:222
+#: ../src/plugins/WritePkg.py:223
 msgid "GRAM_PS package (portable XML)"
 msgstr "GRAM_PS-paket (portabel XML)"
 
-#: ../src/plugins/WritePkg.py:223
+#: ../src/plugins/WritePkg.py:224
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
 msgstr "GRAMPS-paket är en arkiverad XML-databas tillsammans med mediaobjektfiler."
 
-#: ../src/plugins/WritePkg.py:225
+#: ../src/plugins/WritePkg.py:226
 msgid "GRAMPS package export options"
 msgstr "Alternativ vid GRAMPS-paket-export"
 
@@ -12221,8 +12267,8 @@ msgid ""
 "try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, "
 "use 72 DPI."
 msgstr ""
-"Punkter per tum. När bilder, som .gif- eller .png-filer skapas för Internet, försök "
-"med tal som 100 eller 300 DPI. För postscript eller pdf använd 72 DPI."
+"Punkter per tum. När bilder, som .gif- eller .png-filer skapas för Internet, "
+"försök med tal som 100 eller 300 DPI. För postscript eller pdf använd 72 DPI."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:814
 msgid "Node spacing"
@@ -12282,9 +12328,13 @@ msgstr "Storlek på notis, i punkter."
 msgid "Open with application"
 msgstr "Öppna med tillämpning"
 
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
+msgid "1.3 cm."
+msgstr "1,3 cm."
+
 #: ../src/ReportBase/_GraphvizReportDialog.py:978
-msgid "in"
-msgstr "tum"
+msgid "0.5 in."
+msgstr "0,5 tum."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:987
 #: ../src/ReportBase/_GraphvizReportDialog.py:995
