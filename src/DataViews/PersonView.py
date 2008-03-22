@@ -419,7 +419,6 @@ class PersonView(PageView.PersonNavView):
         is no need to store the database, since we will get the value
         from self.state.db
         """
-        self.build_columns()
         self.setup_filter()
         self.db = db
         db.connect('person-add', self.person_added)
