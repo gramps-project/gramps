@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-19 21:23-0700\n"
-"PO-Revision-Date: 2008-03-20 17:31+0100\n"
+"POT-Creation-Date: 2008-03-22 19:46+0100\n"
+"PO-Revision-Date: 2008-03-22 20:02+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -116,14 +116,14 @@ msgstr "%(title)s - GRAMPS"
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
 #: ../src/Bookmarks.py:200
-#: ../src/Bookmarks.py:207
+#: ../src/Bookmarks.py:208
 #: ../src/gramps_main.py:101
 #: ../src/PageView.py:354
 msgid "Organize Bookmarks"
 msgstr "Édition des signets"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:213
+#: ../src/Bookmarks.py:214
 #: ../src/GrampsCfg.py:175
 #: ../src/ScratchPad.py:186
 #: ../src/ScratchPad.py:372
@@ -178,7 +178,7 @@ msgstr "Nom"
 
 #. GRAMPS ID
 #. Add column with object gramps_id
-#: ../src/Bookmarks.py:213
+#: ../src/Bookmarks.py:214
 #: ../src/PageView.py:458
 #: ../src/PageView.py:635
 #: ../src/Merge/_MergePerson.py:133
@@ -1010,9 +1010,9 @@ msgstr "Adresse électronique"
 #: ../src/plugins/FilterByName.py:85
 #: ../src/plugins/FilterByName.py:95
 #: ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:150
-#: ../src/plugins/FilterByName.py:161
-#: ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:151
+#: ../src/plugins/FilterByName.py:162
+#: ../src/plugins/FilterByName.py:204
 #: ../src/plugins/ImportCSV.py:193
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89
@@ -1187,7 +1187,7 @@ msgstr "Détails format personn_alisé"
 #: ../src/GrampsCfg.py:354
 #: ../src/Utils.py:1154
 #: ../src/plugins/ExportCSV.py:364
-#: ../src/plugins/FilterByName.py:140
+#: ../src/plugins/FilterByName.py:141
 #: ../src/plugins/ImportCSV.py:155
 #: ../src/plugins/NarrativeWeb.py:841
 #: ../src/plugins/NarrativeWeb.py:1466
@@ -1502,7 +1502,7 @@ msgstr "Public"
 #: ../src/gramps_main.py:112
 #: ../src/Simple/_SimpleTable.py:215
 #: ../src/DataViews/MediaView.py:105
-#: ../src/plugins/FilterByName.py:191
+#: ../src/plugins/FilterByName.py:192
 msgid "Media"
 msgstr "Media"
 
@@ -3904,7 +3904,7 @@ msgstr "Menu Famille"
 #: ../src/plugins/FilterByName.py:76
 #: ../src/plugins/FilterByName.py:85
 #: ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:204
 #: ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:57
 #: ../src/plugins/SameSurnames.py:75
@@ -6324,11 +6324,11 @@ msgstr "Tous les événements"
 #: ../src/plugins/ExtractCity.py:631
 #: ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443
-#: ../src/plugins/FilterByName.py:227
+#: ../src/plugins/FilterByName.py:228
 #: ../src/plugins/FindDupes.py:697
 #: ../src/plugins/GVFamilyLines.py:881
 #: ../src/plugins/GVHourGlass.py:203
-#: ../src/plugins/GVRelGraph.py:558
+#: ../src/plugins/GVRelGraph.py:559
 #: ../src/plugins/IndivComplete.py:643
 #: ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129
@@ -6639,7 +6639,7 @@ msgstr "Génération %d"
 #: ../src/plugins/EndOfLineReport.py:232
 #: ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341
-#: ../src/plugins/GVRelGraph.py:427
+#: ../src/plugins/GVRelGraph.py:428
 #: ../src/plugins/IndivComplete.py:513
 #: ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436
@@ -6832,8 +6832,8 @@ msgstr "Options"
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64
 #: ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:226
-#: ../src/plugins/GVRelGraph.py:430
+#: ../src/plugins/FilterByName.py:227
+#: ../src/plugins/GVRelGraph.py:431
 #: ../src/plugins/IndivComplete.py:516
 #: ../src/plugins/NarrativeWeb.py:2954
 #: ../src/plugins/StatisticsChart.py:683
@@ -6848,7 +6848,7 @@ msgid "Select filter to restrict people"
 msgstr "Sélectionne un filtre pour restreindre les individus"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:436
+#: ../src/plugins/GVRelGraph.py:437
 #: ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2960
 #: ../src/plugins/StatisticsChart.py:689
@@ -6858,7 +6858,7 @@ msgid "Filter Person"
 msgstr "Filtre sur l'individu"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:437
+#: ../src/plugins/GVRelGraph.py:438
 #: ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2961
 #: ../src/plugins/StatisticsChart.py:690
@@ -9096,16 +9096,40 @@ msgstr "Produit des roues des ascendants"
 msgid "Filtering on %s"
 msgstr "Filtrage sur %s"
 
+#: ../src/plugins/FilterByName.py:49
+msgid "all people"
+msgstr "tous les individus"
+
 #: ../src/plugins/FilterByName.py:50
 #: ../src/plugins/FilterByName.py:58
 #: ../src/plugins/FilterByName.py:67
 #: ../src/plugins/FilterByName.py:76
 #: ../src/plugins/FilterByName.py:85
 #: ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:204
 #: ../src/plugins/SameSurnames.py:75
 msgid "Name type"
 msgstr "Type de nom"
+
+#: ../src/plugins/FilterByName.py:57
+msgid "males"
+msgstr "hommes"
+
+#: ../src/plugins/FilterByName.py:66
+msgid "females"
+msgstr "femmes"
+
+#: ../src/plugins/FilterByName.py:75
+msgid "people with unknown gender"
+msgstr "les individus sans genre"
+
+#: ../src/plugins/FilterByName.py:84
+msgid "people with incomplete names"
+msgstr "les individus avec des noms incomplets"
+
+#: ../src/plugins/FilterByName.py:94
+msgid "people with missing birth dates"
+msgstr "les individus sans date de naissance"
 
 #: ../src/plugins/FilterByName.py:104
 msgid "birth event but no date"
@@ -9115,17 +9139,37 @@ msgstr "événement naissance mais pas de date"
 msgid "missing birth event"
 msgstr "événement naissance manquant"
 
-#: ../src/plugins/FilterByName.py:140
+#: ../src/plugins/FilterByName.py:109
+msgid "disconnected people"
+msgstr "les individus déconnectés"
+
+#: ../src/plugins/FilterByName.py:120
+msgid "all families"
+msgstr "toutes les familles"
+
+#: ../src/plugins/FilterByName.py:129
+msgid "unique surnames"
+msgstr "les noms uniques"
+
+#: ../src/plugins/FilterByName.py:141
 #: ../src/PluginUtils/_GuiOptions.py:81
 msgid "Count"
 msgstr "Compter"
 
-# à voir dans le contexte
 #: ../src/plugins/FilterByName.py:150
+msgid "people with media"
+msgstr "les individus avec des images"
+
+# à voir dans le contexte
+#: ../src/plugins/FilterByName.py:151
 msgid "Media count"
 msgstr "Calcul des media"
 
 #: ../src/plugins/FilterByName.py:161
+msgid "media references"
+msgstr "les références de média"
+
+#: ../src/plugins/FilterByName.py:162
 #: ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79
@@ -9133,29 +9177,45 @@ msgstr "Calcul des media"
 msgid "Reference"
 msgstr "Référence"
 
-#: ../src/plugins/FilterByName.py:169
+#: ../src/plugins/FilterByName.py:170
 #: ../src/plugins/genewebexport.glade.h:10
 msgid "media"
 msgstr "media"
 
 #: ../src/plugins/FilterByName.py:172
+msgid "unique media"
+msgstr "le média unique"
+
+#: ../src/plugins/FilterByName.py:173
 msgid "Unique Media"
 msgstr "Média unique"
 
 #: ../src/plugins/FilterByName.py:180
+msgid "missing media"
+msgstr "le média manquant"
+
+#: ../src/plugins/FilterByName.py:181
 msgid "Missing Media"
 msgstr "Média manquant"
 
 #: ../src/plugins/FilterByName.py:191
+msgid "media by size"
+msgstr "la taille du média"
+
+#: ../src/plugins/FilterByName.py:192
 msgid "Size in bytes"
 msgstr "Taille en bytes"
 
-#: ../src/plugins/FilterByName.py:212
+#: ../src/plugins/FilterByName.py:203
+msgid "list of people"
+msgstr "le nombre d'individus"
+
+#: ../src/plugins/FilterByName.py:213
 #, python-format
 msgid "Filter matched %d records."
 msgstr "Le filtre a trouvé %d enregistrements. "
 
-#: ../src/plugins/FilterByName.py:228
+#: ../src/plugins/FilterByName.py:229
 msgid "Display filtered data"
 msgstr "Affichage des données filtrées"
 
@@ -9318,7 +9378,7 @@ msgid "Images"
 msgstr "Images"
 
 #: ../src/plugins/GVFamilyLines.py:171
-#: ../src/plugins/GVRelGraph.py:474
+#: ../src/plugins/GVRelGraph.py:475
 msgid "Include thumbnail images of people"
 msgstr "Inclure une image miniature des individus"
 
@@ -9327,17 +9387,17 @@ msgid "Thumbnail location"
 msgstr "Emplacement de la miniature"
 
 #: ../src/plugins/GVFamilyLines.py:178
-#: ../src/plugins/GVRelGraph.py:481
+#: ../src/plugins/GVRelGraph.py:482
 msgid "Above the name"
 msgstr "Au-dessus du nom"
 
 #: ../src/plugins/GVFamilyLines.py:179
-#: ../src/plugins/GVRelGraph.py:482
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Beside the name"
 msgstr "À côté du nom"
 
 #: ../src/plugins/GVFamilyLines.py:181
-#: ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVRelGraph.py:485
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "L'emplacement de la miniature associée au nom"
 
@@ -9493,101 +9553,101 @@ msgstr "Descendants <-> Ascendants"
 msgid "Descendants - Ancestors"
 msgstr "Descendants - Ascendants"
 
-#: ../src/plugins/GVRelGraph.py:432
+#: ../src/plugins/GVRelGraph.py:433
 msgid "Determines what people are included in the graph"
 msgstr "Détermine quels individus seront inclus dans le rapport"
 
-#: ../src/plugins/GVRelGraph.py:444
+#: ../src/plugins/GVRelGraph.py:445
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Inclure les dates de naissance, de mariage et de décès"
 
-#: ../src/plugins/GVRelGraph.py:445
+#: ../src/plugins/GVRelGraph.py:446
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "Inclure les dates de naissance, mariage et/ou décès sur le graphique."
 
-#: ../src/plugins/GVRelGraph.py:449
+#: ../src/plugins/GVRelGraph.py:450
 msgid "Limit dates to years only"
 msgstr "Limiter les dates à l'année seule"
 
-#: ../src/plugins/GVRelGraph.py:450
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "N'imprimer que les années des dates, pas le mois ni le jour, pas plus que les dates approximatives ou les intervalles."
 
-#: ../src/plugins/GVRelGraph.py:455
+#: ../src/plugins/GVRelGraph.py:456
 msgid "Use place when no date"
 msgstr "Utiliser le lieu en l'absence de date"
 
-#: ../src/plugins/GVRelGraph.py:456
+#: ../src/plugins/GVRelGraph.py:457
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
 msgstr "Lorsque ni les dates de naissance, ni les dates de mariage, ni les dates de décès ne sont disponibles, le lieu correspondant sera utilisé."
 
-#: ../src/plugins/GVRelGraph.py:461
+#: ../src/plugins/GVRelGraph.py:462
 msgid "Include URLs"
 msgstr "Inclure les URL"
 
-#: ../src/plugins/GVRelGraph.py:462
+#: ../src/plugins/GVRelGraph.py:463
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Inclure une URL dans chaque cellule du graphique afin que les fichiers PDF et les images puissent être générés avec des liens valides par le &quot; générateur de site internet &quot;."
 
-#: ../src/plugins/GVRelGraph.py:469
+#: ../src/plugins/GVRelGraph.py:470
 msgid "Include IDs"
 msgstr "Inclure les identifiants"
 
-#: ../src/plugins/GVRelGraph.py:470
+#: ../src/plugins/GVRelGraph.py:471
 msgid "Include individual and family IDs."
 msgstr "Inclure les identifiants individuels et familiaux."
 
-#: ../src/plugins/GVRelGraph.py:476
+#: ../src/plugins/GVRelGraph.py:477
 msgid "Whether to include thumbnails of people."
 msgstr "Où inclure les images miniatures des individus."
 
-#: ../src/plugins/GVRelGraph.py:480
+#: ../src/plugins/GVRelGraph.py:481
 msgid "Thumbnail Location"
 msgstr "Emplacement de la miniature"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:489
+#: ../src/plugins/GVRelGraph.py:490
 msgid "Graph Style"
 msgstr "Style du graphique"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:492
+#: ../src/plugins/GVRelGraph.py:493
 msgid "Graph coloring"
 msgstr "Coloration du graphique"
 
-#: ../src/plugins/GVRelGraph.py:495
+#: ../src/plugins/GVRelGraph.py:496
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Les hommes seront en bleu, les femmes en rouge. Si le sexe d'un individu est indéterminé, celui-ci sera en gris."
 
-#: ../src/plugins/GVRelGraph.py:500
+#: ../src/plugins/GVRelGraph.py:501
 msgid "Arrowhead direction"
 msgstr "Sens des flèches"
 
-#: ../src/plugins/GVRelGraph.py:503
+#: ../src/plugins/GVRelGraph.py:504
 msgid "Choose the direction that the arrows point."
 msgstr "Choisir le sens des flèches."
 
-#: ../src/plugins/GVRelGraph.py:507
+#: ../src/plugins/GVRelGraph.py:508
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indiquer les relations autres que la naissance avec des pointillés"
 
-#: ../src/plugins/GVRelGraph.py:508
+#: ../src/plugins/GVRelGraph.py:509
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Les relations autres que la naissance seront en pointillé sur le graphique."
 
-#: ../src/plugins/GVRelGraph.py:512
+#: ../src/plugins/GVRelGraph.py:513
 msgid "Show family nodes"
 msgstr "Afficher les nœuds familiaux"
 
-#: ../src/plugins/GVRelGraph.py:513
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Les familles seront affichées en cercles, reliées aux parents et aux enfants."
 
-#: ../src/plugins/GVRelGraph.py:557
+#: ../src/plugins/GVRelGraph.py:558
 msgid "Relationship Graph"
 msgstr "Graphique relationnel"
 
-#: ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVRelGraph.py:560
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Génère des graphiques relationnels avec GraphViz"
 
@@ -10878,26 +10938,51 @@ msgstr "Extraction de données depuis le champ prénom"
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
 msgstr "Recherche dans la base les titres, surnoms et particules inclus dans le prénom d'un individu."
 
-#: ../src/plugins/ReadPkg.py:76
+#: ../src/plugins/ReadPkg.py:79
 #, python-format
-msgid "Could not create temporary directory %s"
-msgstr "Impossible de créer le répertoire : %s"
+msgid "Could not create media directory %s"
+msgstr "Impossible de créer le répertoire média %s"
 
-#: ../src/plugins/ReadPkg.py:80
+#: ../src/plugins/ReadPkg.py:83
 #, python-format
-msgid "Temporary directory %s is not writable"
-msgstr "Le répertoire temporaire %s n'est pas accessible en écriture"
+msgid "Media directory %s is not writable"
+msgstr "Le répertoire média %s n'est pas accessible en écriture"
 
-#: ../src/plugins/ReadPkg.py:98
+#. mediadir exists and writable -- User could have valuable stuff in
+#. it, have him remove it!
+#: ../src/plugins/ReadPkg.py:88
+#, python-format
+msgid "Media directory %s exists. Delete it first, then restart the import process"
+msgstr "Le répertoire média %s existe. Supprimez le, puis redémarrez le processus d'importation."
+
+#: ../src/plugins/ReadPkg.py:97
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Erreur d'extraction vers %s"
 
+#: ../src/plugins/ReadPkg.py:113
+msgid "Base path for relative media set"
+msgstr "Base pour le chemin relatif des media défini"
+
+#: ../src/plugins/ReadPkg.py:114
+#, python-format
+msgid "The base media path of this family tree has been set to %s. Consider taking a simpler path. You can change this in the Preferences, while moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
+msgstr "La base du chemin média pour cette arbre familial a été défini à %s. Utilisez un chemin simple. Vous pouvez le changer dans les Préférences, déplacez vos fichiers média vers un autre emplacement, et utilisez le gestionnaire de média, l'option 'Remplacer la sous-chaîne dans le chemin' pour définir les chemins corrects de vos objets média."
+
 #: ../src/plugins/ReadPkg.py:123
+msgid "Cannot set base media path"
+msgstr "Impossible de définir le chemin média"
+
+#: ../src/plugins/ReadPkg.py:124
+#, python-format
+msgid "The family tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
+msgstr "L'arbre familial que vous venez d'importer a déjà un chemin média : %(orig_path)s. Les objets média importés sont relatifs selon le chemin %(path)s. Vous pouvez changer le chemin média dans les Préférences ou vous pouvez convertir les fichiers importés vers le chemin média de base. Vous pouvez déplacer vos fichiers média vers une nouvelle position, et utiliser le gestionnaire de média, l'option 'Remplacer la sous-chaîne dans le chemin' pour définir les chemins corrects de vos objets média."
+
+#: ../src/plugins/ReadPkg.py:153
 msgid "GRAMPS packages"
 msgstr "Paquets GRAMPS"
 
-#: ../src/plugins/ReadPkg.py:125
+#: ../src/plugins/ReadPkg.py:155
 #: ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
 msgid "GRAMPS package"
@@ -12079,15 +12164,15 @@ msgstr "Options d'exportation en format GeneWeb"
 #. Register the plugin
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/WritePkg.py:222
+#: ../src/plugins/WritePkg.py:223
 msgid "GRAM_PS package (portable XML)"
 msgstr "Paquet GRAM_PS (XML portable)"
 
-#: ../src/plugins/WritePkg.py:223
+#: ../src/plugins/WritePkg.py:224
 msgid "GRAMPS package is an archived XML database together with the media object files."
 msgstr "Le paquet GRAMPS est une base de donnée XML comprenant les media."
 
-#: ../src/plugins/WritePkg.py:225
+#: ../src/plugins/WritePkg.py:226
 msgid "GRAMPS package export options"
 msgstr "Options d'exportation du paquet GRAMPS"
 
@@ -20909,3 +20994,7 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
+
+#~ msgid "Could not create temporary directory %s"
+#~ msgstr "Impossible de créer le répertoire : %s"
+
