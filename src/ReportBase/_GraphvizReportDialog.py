@@ -973,9 +973,9 @@ class GraphvizReportDialog(ReportDialog):
         # offset a lot
         # Note margins are always in cm.
         if self.paper_frame.get_paper_metric():
-            warn_marg = "1.3 " + _("cm") + "."
+            warn_marg = _("1.3 cm.")
         else:
-            warn_marg = "0.5 " + _("in") + "."
+            warn_marg = _("0.5 in.")
 
         pm_l = self.paper_frame.get_paper_margins()[0] / 2.54
         pm_r = self.paper_frame.get_paper_margins()[1] / 2.54
