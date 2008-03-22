@@ -7913,7 +7913,7 @@ msgstr "Toutes les générations"
 #: ../src/plugins/DefaultGramplets.py:571
 #, python-format
 msgid " have %d individuals\n"
-msgstr " contient %d individus\n"
+msgstr " contiennent %d individus\n"
 
 #: ../src/plugins/DefaultGramplets.py:577
 msgid "Double-click item to see matches"
