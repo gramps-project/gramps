@@ -67,7 +67,6 @@ class AttributeType(GrampsType):
         (NATIONAL    , _("National Origin"), "National Origin"),
         (NUM_CHILD   , _("Number of Children"), "Number of Children"),
         (SSN         , _("Social Security Number"), "Social Security Number"),
-        (NUM_CHILD   , _("Number of Children"), "Number of Children"),
         (NICKNAME    , _("Nickname"), "Nickname"),
         (CAUSE       , _("Cause"), "Cause"),
         (AGENCY      , _("Agency"), "Agency"),
