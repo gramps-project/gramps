@@ -896,7 +896,6 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
                                      self.track)
         response = item_dialog.window.run()
         if response == RESPONSE_OK:
-            _initialize_options(option_class, self.dbstate)
             subject = _get_subject(option_class, self.db)
             self.bk_model.model.set_value(the_iter, 2, subject)
             self.book.set_item(row, item)
