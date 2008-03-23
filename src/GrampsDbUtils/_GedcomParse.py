@@ -165,10 +165,6 @@ MIME_MAP = {
     'text' : 'text/plain',   'w8bn' : 'application/msword', 
     'wav'  : 'audio/x-wav',  'mov'  : 'video/quicktime', 
     }
-    
-
-EVENT_FAMILY_STR = _("%(event_name)s of %(family)s")
-EVENT_PERSON_STR = _("%(event_name)s of %(person)s")
 
 FTW_BAD_PLACE = [
     gen.lib.EventType.OCCUPATION, 
@@ -1497,7 +1493,6 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
 
-        person_event_name(event, state.person)
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
         state.person.add_event_ref(event_ref)
@@ -1667,7 +1662,6 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
 
-        person_event_name(event, state.person)
         self.dbase.add_event(event, self.trans)
         event_ref.ref = event.handle
         state.person.add_event_ref(event_ref)
@@ -2488,7 +2482,6 @@ class GedcomParser(UpdateCallback):
             else:
                 state.family.type.set(gen.lib.FamilyRelType.MARRIED)
 
-        family_event_name(event, state.family, self.dbase)
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
         state.family.add_event_ref(event_ref)
@@ -2519,8 +2512,6 @@ class GedcomParser(UpdateCallback):
         sub_state.event_ref = event_ref
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
-
-        family_event_name(event, state.family, self.dbase)
 
         self.dbase.commit_event(event, self.trans)
         event_ref.ref = event.handle
@@ -4365,8 +4356,6 @@ class GedcomParser(UpdateCallback):
 
         if description and description != 'Y':
             event.set_description(description)
-        else:
-            person_event_name(event, state.person)
         self.dbase.add_event(event, self.trans)
 
         sub_state = GedcomUtils.CurrentState()
@@ -4389,8 +4378,6 @@ class GedcomParser(UpdateCallback):
         event.set_type(event_type)
         if description and description != 'Y':
             event.set_description(description)
-        else:
-            family_event_name(event, state.family, self.dbase)
 
         self.dbase.add_event(event, self.trans)
 
@@ -4402,9 +4389,7 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(sub_state, event_map, self.__undefined)
 
-        family_event_name(event, state.family, self.dbase)
         self.dbase.commit_event(event, self.trans)
-
         event_ref.set_reference_handle(event.handle)
         return event_ref
 
@@ -4438,25 +4423,4 @@ class GedcomParser(UpdateCallback):
             sref.set_reference_handle(self.def_src.handle)
             obj.add_source_reference(sref)
 
-#-------------------------------------------------------------------------
-#
-# Support functions
-#
-#-------------------------------------------------------------------------
-def person_event_name(event, person):
-    ename = str(event.get_type())
-
-    if not event.get_description() and ename:
-        text = EVENT_PERSON_STR % {
-            'event_name' : ename, 
-            'person' : name_displayer.display(person), 
-            }
-        event.set_description(text)
-
-def family_event_name(event, family, dbase):
-    if not event.get_description() or event.get_description() == "Y":
-        text = EVENT_FAMILY_STR % {
-            'event_name' : str(event.get_type()), 
-            'family' : Utils.family_name(family, dbase), 
-            }
-        event.set_description(text)
+#===eof===
