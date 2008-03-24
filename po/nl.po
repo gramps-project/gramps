@@ -8973,7 +8973,7 @@ msgstr "Mogelijke samenvoegingen"
 # Classificatie, taxering
 #: ../src/plugins/FindDupes.py:573
 msgid "Rating"
-msgstr "Klasse"
+msgstr "Kwaliteit"
 
 #: ../src/plugins/FindDupes.py:573
 msgid "First Person"
@@ -10723,7 +10723,7 @@ msgstr "Laat toe om de eigenaarsinformatie aan te passen."
 # betere vertaling voor extractie tool
 #: ../src/plugins/PatchNames.py:92
 msgid "Name and title extraction tool"
-msgstr "Naam en titel extractie tool"
+msgstr "Informatie uit namen"
 
 #: ../src/plugins/PatchNames.py:107
 msgid "Extracting Information from Names"
@@ -20047,7 +20047,7 @@ msgid ""
 "Select the names you wish GRAMPS to convert. "
 msgstr ""
 "Onderstaande lijst bevat de familienamen \n"
-"die GRAMPS kan omzetten naar de juiste kapitalisatie. \n"
+"die GRAMPS kan omzetten naar de juiste schrijfwijze. \n"
 "Kies de namen die u wilt omzetten. "
 
 #: ../src/plugins/changenames.glade.h:4
