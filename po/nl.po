@@ -9888,9 +9888,9 @@ msgid ""
 "with another substring. This can be useful when you move your media files "
 "from one directory to another"
 msgstr ""
-"Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media-"
-"objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer "
-"u uw mediabestanden van een map naar een map wilt verplaatsen"
+"Dit hulpmiddel laat toe een opgegeven deeltekenreeks in het pad van media-"
+"objecten te vervangen door een andere deeltekenreeks. Dit kan handig zijn wanneer "
+"u uw mediabestanden van een map naar een andere map wilt verplaatsen"
 
 #: ../src/plugins/MediaManager.py:410
 msgid "Replace substring settings"
@@ -9898,7 +9898,7 @@ msgstr "Instellingen veranderen deeltekenreeks"
 
 #: ../src/plugins/MediaManager.py:422
 msgid "_Replace:"
-msgstr "Vervangen:"
+msgstr "Vervang:"
 
 #: ../src/plugins/MediaManager.py:431
 msgid "_With:"
@@ -9930,7 +9930,7 @@ msgid ""
 "that is not set, it prepends your home directory."
 msgstr ""
 "Dit hulpmiddel laat toe om relatieve mediapaden om te zetten naar absolute "
-"paden. Dit gebeurt op de volgende wijze: een basispad zoals opgegen in de "
+"paden. Dit gebeurt op de volgende wijze: een basispad zoals opgegeven in "
 "Voorkeuren zal gebruikt worden of indien hier niets werd opgegeven, zal uw "
 "thuismap gebruikt worden."
 
@@ -10769,7 +10769,7 @@ msgstr ""
 
 #: ../src/plugins/ReadPkg.py:123
 msgid "Cannot set base media path"
-msgstr "Kan media-object niet opslaan"
+msgstr "Kan basis mediapad niet instellen"
 
 #: ../src/plugins/ReadPkg.py:124
 #, python-format
