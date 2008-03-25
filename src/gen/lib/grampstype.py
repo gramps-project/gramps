@@ -75,7 +75,7 @@ class GrampsType(object):
         Create a new type, initialize the value from one of several possible 
         states.
         """
-        if value:
+        if value is not None:
             self.set(value)
         else:
             self.val = self._DEFAULT
