@@ -33,6 +33,13 @@ import DateHandler
 import posixpath
 from gettext import gettext as _
 
+# force translation
+[_('all people'), _('males'), _('females'), _('people with unknown gender'),
+ _('people with incomplete names'), _('people with missing birth dates'),
+ _('disconnected people'), _('all families'), _('unique surnames'),
+ _('people with media'), _('media references'), _('unique media'), 
+ _('missing media'), _('media by size'), _('list of people')]
+
 def run(database, document, filter_name, *args, **kwargs):
     """
     Loops through the families that the person is a child in, and display
@@ -43,7 +50,7 @@ def run(database, document, filter_name, *args, **kwargs):
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb, sdoc)
     # display the title
-    sdoc.title(_("Filtering on %s") % filter_name)
+    sdoc.title(_("Filtering on %s") % _(filter_name)) # listed above
     sdoc.paragraph("")
     matches = 0
     if (filter_name == 'all people'):

@@ -194,7 +194,7 @@ class SimpleTable:
                     text += " " + self.access.name(father)
                 else:
                     text += " " + _("Unknown father")
-                text += " and"
+                text += " " + _("and")
                 if mother:
                     text += " " + self.access.name(mother)
                 else:
