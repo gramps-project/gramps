@@ -5,17 +5,17 @@ dnl May need to run automake && aclocal first
 
 AC_PREREQ(2.57)
 dnl NOTE: 1st arg to macro below becomes the "VERSION"
-AC_INIT(gramps, 3.0.0, [gramps-bugs@lists.sourceforge.net])
+AC_INIT(gramps, 3.0.1, [gramps-bugs@lists.sourceforge.net])
 AC_CONFIG_SRCDIR(configure.in)
 AM_INIT_AUTOMAKE([1.6.3 foreign])
 
 AC_CONFIG_MACRO_DIR([m4])
 GNOME_DOC_INIT
 
-dnl RELEASE=0.SVN$(svnversion -n .)
+RELEASE=0.SVN$(svnversion -n .)
 dnl RELEASE=0beta
 dnl RELEASE=0rc1
-RELEASE=1
+dnl RELEASE=1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
