@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.grampstype import GrampsType, init_map
+from gen.lib.grampstype import GrampsType
 
 class EventType(GrampsType):
     """
@@ -139,11 +139,6 @@ class EventType(GrampsType):
         (ANNULMENT       , _("Annulment"), "Annulment"),
         (MARR_ALT        , _("Alternate Marriage"), "Alternate Marriage"),
         ]
-
-    _I2SMAP = init_map(_DATAMAP, 0, 1)
-    _S2IMAP = init_map(_DATAMAP, 1, 0)
-    _I2EMAP = init_map(_DATAMAP, 0, 2)
-    _E2IMAP = init_map(_DATAMAP, 2, 0)
 
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

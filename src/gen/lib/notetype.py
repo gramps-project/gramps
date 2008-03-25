@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.grampstype import GrampsType, init_map
+from gen.lib.grampstype import GrampsType
 
 class NoteType(GrampsType):
 
@@ -106,11 +106,6 @@ class NoteType(GrampsType):
         
     _DATAMAP = _DATAMAPREAL + _DATAMAPIGNORE
 
-    _I2SMAP = init_map(_DATAMAP, 0, 1)
-    _S2IMAP = init_map(_DATAMAP, 1, 0)
-    _I2EMAP = init_map(_DATAMAP, 0, 2)
-    _E2IMAP = init_map(_DATAMAP, 2, 0)
-
     def __init__(self, value=None):
         GrampsType.__init__(self, value)
         
@@ -126,12 +121,13 @@ class NoteType(GrampsType):
         @returns: list of integers corresponding with the types to ignore when 
             showing a list of different NoteType's
         @rtype: list
+        
         """
         ignlist = [x[0] for x in self._DATAMAPIGNORE]
         if exception:
-            for type in exception :
+            for type_ in exception:
                 try: 
-                    del ignlist[ignlist.index(type)]
+                    del ignlist[ignlist.index(type_)]
                 except ValueError:
                     pass
         return ignlist

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ Base type for all gramps types.
 #------------------------------------------------------------------------
 from gettext import gettext as _
 
-def init_map(data, key_col, data_col):
+def __init_map(data, key_col, data_col):
     """
     Initialize the map, building a new map from the specified columns.
     """
@@ -40,18 +40,36 @@ def init_map(data, key_col, data_col):
         new_data[item[key_col]] = item[data_col]
     return new_data
 
-class GrampsType:
-
+class GrampsTypeMeta(type):
+    """Metaclass for L{GrampsType}.
+    
+    The only thing this metaclass does is calling __class_init__ class method,
+    in order to create the class specific integer/string maps.
+    
+    """
+    def __init__(mcs, name, bases, namespace):
+        type.__init__(mcs, name, bases, namespace)
+        mcs.__class_init__(namespace)
+        
+class GrampsType(object):
+    """Base class for all Gramps object types."""
+    (VALUE_POS, STRING_POS) = range(2)
+    
     _CUSTOM = 0
     _DEFAULT = 0
 
     _DATAMAP = []
     
-    _I2SMAP = init_map(_DATAMAP, 0, 1)
-    _S2IMAP = init_map(_DATAMAP, 1, 0)
-    _I2EMAP = init_map(_DATAMAP, 0, 2)
-    _E2IMAP = init_map(_DATAMAP, 2, 0)
-
+    __metaclass__ = GrampsTypeMeta
+    
+    def __class_init__(cls, namespace):
+        cls._I2SMAP = __init_map(cls._DATAMAP, 0, 1)
+        cls._S2IMAP = __init_map(cls._DATAMAP, 1, 0)
+        cls._I2EMAP = __init_map(cls._DATAMAP, 0, 2)
+        cls._E2IMAP = __init_map(cls._DATAMAP, 2, 0)
+    
+    __class_init__ = classmethod(__class_init__)
+    
     def __init__(self, value=None):
         """
         Create a new type, initialize the value from one of several possible 
