@@ -5,7 +5,6 @@
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
 # Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008.
-# Frederik De Richter <frederik@googlemail.com>, 2008.
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
 # --------------------------------------------------
@@ -9932,7 +9931,7 @@ msgid ""
 msgstr ""
 "Dit hulpmiddel laat toe een opgegeven deelreeks in het pad van media-"
 "objecten te vervangen door een andere deelreeks. Dit kan handig zijn wanneer "
-"u uw mediabestanden van een map naar een map wilt verplaatsen"
+"u uw mediabestanden van een map naar een andere map wilt verplaatsen"
 
 #: ../src/plugins/MediaManager.py:410
 msgid "Replace substring settings"
@@ -9940,7 +9939,7 @@ msgstr "Instellingen veranderen deeltekenreeks"
 
 #: ../src/plugins/MediaManager.py:422
 msgid "_Replace:"
-msgstr "Vervangen:"
+msgstr "Vervang:"
 
 #: ../src/plugins/MediaManager.py:431
 msgid "_With:"
@@ -9972,7 +9971,7 @@ msgid ""
 "that is not set, it prepends your home directory."
 msgstr ""
 "Dit hulpmiddel laat toe om relatieve mediapaden om te zetten naar absolute "
-"paden. Dit gebeurt op de volgende wijze: een basispad zoals opgegen in de "
+"paden. Dit gebeurt op de volgende wijze: een basispad zoals opgegeven in "
 "Voorkeuren zal gebruikt worden of indien hier niets werd opgegeven, zal uw "
 "thuismap gebruikt worden."
 
