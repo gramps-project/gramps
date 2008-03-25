@@ -26,13 +26,6 @@ Place object for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from types import InstanceType
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -128,13 +121,17 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
          main_loc, alt_loc, urls, media_list, source_list, note_list,
          self.change, marker, self.private) = data
 
-        if main_loc == None:
+        if main_loc is None:
             self.main_loc = None
         else:
-            self.main_loc = InstanceType(Location).unserialize(main_loc)
-        self.alt_loc = [InstanceType(Location).unserialize(al) 
-                        for al in alt_loc]
-        self.marker = InstanceType(MarkerType)
+            self.main_loc = Location()
+            self.main_loc.unserialize(main_loc)
+        self.alt_loc = []
+        for al in alt_loc:
+            location = Location()
+            location.unserialize(al)
+            self.alt_loc.append(location)
+        self.marker = MarkerType()
         self.marker.unserialize(marker)
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)

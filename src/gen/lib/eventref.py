@@ -24,13 +24,6 @@
 Event Reference class for GRAMPS
 """
 
-#------------------------------------------------------------------------
-#
-# Python modules
-#
-#------------------------------------------------------------------------
-from types import InstanceType
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -90,7 +83,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
-        self.role = InstanceType(EventRoleType)
+        self.role = EventRoleType()
         self.role.unserialize(role)
         return self
 

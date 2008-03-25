@@ -26,13 +26,6 @@ Source object for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from types import InstanceType
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -85,12 +78,15 @@ class Source(MediaBase, NoteBase, PrimaryObject):
          self.abbrev, self.change, self.datamap, reporef_list,
          marker, self.private) = data
 
-        self.marker = InstanceType(MarkerType)
+        self.marker = MarkerType()
         self.marker.unserialize(marker)
         NoteBase.unserialize(self, note_list)
         MediaBase.unserialize(self, media_list)
-        self.reporef_list = [InstanceType(RepoRef).unserialize(rr) 
-                             for rr in reporef_list]
+        self.reporef_list = []
+        for rr in reporef_list:
+            reporef = RepoRef()
+            reporef.unserialize(rr) 
+            self.reporef_list.append(reporef)
         
     def _has_handle_reference(self, classname, handle):
         """

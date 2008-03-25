@@ -26,13 +26,6 @@ Repository Reference class for GRAMPS
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from types import InstanceType
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -79,7 +72,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         Convert a serialized tuple of data to an object.
         """
         (note_list, ref, self.call_number, media_type, privacy) = data
-        self.media_type = InstanceType(SourceMediaType)
+        self.media_type = SourceMediaType()
         self.media_type.unserialize(media_type)
         PrivacyBase.unserialize(self, privacy)
         NoteBase.unserialize(self, note_list)

@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gen.lib.grampstype import GrampsType, init_map
+from gen.lib.grampstype import GrampsType
 
 class AttributeType(GrampsType):
 

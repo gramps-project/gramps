@@ -39,8 +39,6 @@ from gen.lib.placebase import PlaceBase
 from gen.lib.eventtype import EventType
 from gen.lib.markertype import MarkerType
 
-from types import InstanceType
-
 #-------------------------------------------------------------------------
 #
 # Event class
@@ -120,9 +118,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
          source_list, note_list, media_list, attribute_list,
          self.change, marker, self.private) = data
 
-        self.marker = InstanceType(MarkerType)
+        self.marker = MarkerType()
         self.marker.unserialize(marker)
-        self.type = InstanceType(EventType)
+        self.type = EventType()
         self.type.unserialize(the_type)
         DateBase.unserialize(self, date)
         MediaBase.unserialize(self, media_list)

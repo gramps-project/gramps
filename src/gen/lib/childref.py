@@ -25,13 +25,6 @@ Child Reference class for GRAMPS.
 """
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-from types import InstanceType
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -88,9 +81,9 @@ class ChildRef(SecondaryObject, PrivacyBase, SourceBase, NoteBase, RefBase):
         SourceBase.unserialize(self, source_list)
         NoteBase.unserialize(self, note_list)
         RefBase.unserialize(self, ref)
-        self.frel = InstanceType(ChildRefType)
+        self.frel = ChildRefType()
         self.frel.unserialize(frel)
-        self.mrel = InstanceType(ChildRefType)
+        self.mrel = ChildRefType()
         self.mrel.unserialize(mrel)
         return self
 

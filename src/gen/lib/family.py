@@ -30,7 +30,6 @@ Family object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from warnings import warn
-from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -136,14 +135,20 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
          attribute_list, lds_seal_list, source_list, note_list,
          self.change, marker, self.private) = data
 
-        self.marker = InstanceType(MarkerType)
+        self.marker = MarkerType()
         self.marker.unserialize(marker)
-        self.type = InstanceType(FamilyRelType)
+        self.type = FamilyRelType()
         self.type.unserialize(the_type)
-        self.event_ref_list = [InstanceType(EventRef).unserialize(er)
-                               for er in event_ref_list]
-        self.child_ref_list = [InstanceType(ChildRef).unserialize(cr)
-                               for cr in child_ref_list]
+        self.event_ref_list = []
+        for er in event_ref_list:
+            eventref = EventRef()
+            eventref.unserialize(er)
+            self.event_ref_list.append(eventref)
+        self.child_ref_list = []
+        for cr in child_ref_list:
+            childref = ChildRef()
+            childref.unserialize(cr)
+            self.child_ref_list.append(childref)
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)

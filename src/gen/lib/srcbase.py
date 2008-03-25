@@ -26,13 +26,6 @@ SourceBase class for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from types import InstanceType
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -70,8 +63,11 @@ class SourceBase:
         """
         Convert a serialized tuple of data to an object.
         """
-        self.source_list = [InstanceType(SourceRef).unserialize(item) 
-                            for item in data]
+        self.source_list = []
+        for item in data:
+            sourceref = SourceRef()
+            sourceref.unserialize(item) 
+            self.source_list.append(sourceref)
 
     def add_source_reference(self, src_ref) :
         """

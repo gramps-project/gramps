@@ -26,13 +26,6 @@ Repository object for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from types import InstanceType
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -81,9 +74,9 @@ class Repository(NoteBase, AddressBase, UrlBase, PrimaryObject):
         (self.handle, self.gramps_id, the_type, self.name, note_list,
          address_list, urls, self.change, marker, self.private) = data
 
-        self.marker = InstanceType(MarkerType)
+        self.marker = MarkerType()
         self.marker.unserialize(marker)
-        self.type = InstanceType(RepositoryType)
+        self.type = RepositoryType()
         self.type.unserialize(the_type)
         NoteBase.unserialize(self, note_list)
         AddressBase.unserialize(self, address_list)

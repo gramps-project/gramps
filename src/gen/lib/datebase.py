@@ -24,13 +24,6 @@
 DateBase class for GRAMPS.
 """
 
-#------------------------------------------------------------------------
-#
-# Python modules
-#
-#------------------------------------------------------------------------
-from types import InstanceType
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -74,10 +67,8 @@ class DateBase:
         """
         Convert a serialized tuple of data to an object.
         """
-        if data == None:
-            self.date = Date()
-        else:
-            self.date = InstanceType(Date)
+        self.date = Date()
+        if data is not None:
             self.date.unserialize(data)
 
     def get_date_object(self):

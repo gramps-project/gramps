@@ -30,7 +30,6 @@ Media object for GRAMPS.
 #
 #-------------------------------------------------------------------------
 import os
-from types import InstanceType
 
 #-------------------------------------------------------------------------
 #
@@ -122,7 +121,7 @@ class MediaObject(SourceBase, NoteBase, DateBase, AttributeBase,
          attribute_list, source_list, note_list, self.change,
          date, marker, self.private) = data
 
-        self.marker = InstanceType(MarkerType)
+        self.marker = MarkerType()
         self.marker.unserialize(marker)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)

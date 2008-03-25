@@ -31,7 +31,7 @@ Base type for all gramps types.
 #------------------------------------------------------------------------
 from gettext import gettext as _
 
-def __init_map(data, key_col, data_col):
+def _init_map(data, key_col, data_col):
     """
     Initialize the map, building a new map from the specified columns.
     """
@@ -63,10 +63,10 @@ class GrampsType(object):
     __metaclass__ = GrampsTypeMeta
     
     def __class_init__(cls, namespace):
-        cls._I2SMAP = __init_map(cls._DATAMAP, 0, 1)
-        cls._S2IMAP = __init_map(cls._DATAMAP, 1, 0)
-        cls._I2EMAP = __init_map(cls._DATAMAP, 0, 2)
-        cls._E2IMAP = __init_map(cls._DATAMAP, 2, 0)
+        cls._I2SMAP = _init_map(cls._DATAMAP, 0, 1)
+        cls._S2IMAP = _init_map(cls._DATAMAP, 1, 0)
+        cls._I2EMAP = _init_map(cls._DATAMAP, 0, 2)
+        cls._E2IMAP = _init_map(cls._DATAMAP, 2, 0)
     
     __class_init__ = classmethod(__class_init__)
     
