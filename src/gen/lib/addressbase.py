@@ -52,8 +52,7 @@ class AddressBase:
         @type source: AddressBase
         """
         if source:
-            self.address_list = [ Address(address) \
-                                      for address in source.address_list ]
+            self.address_list = [Address(addr) for addr in source.address_list]
         else:
             self.address_list = []
 

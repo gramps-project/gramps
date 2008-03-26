@@ -139,16 +139,10 @@ class Family(SourceBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         self.marker.unserialize(marker)
         self.type = FamilyRelType()
         self.type.unserialize(the_type)
-        self.event_ref_list = []
-        for er in event_ref_list:
-            eventref = EventRef()
-            eventref.unserialize(er)
-            self.event_ref_list.append(eventref)
-        self.child_ref_list = []
-        for cr in child_ref_list:
-            childref = ChildRef()
-            childref.unserialize(cr)
-            self.child_ref_list.append(childref)
+        self.event_ref_list = [EventRef().unserialize(er)
+                               for er in event_ref_list]
+        self.child_ref_list = [ChildRef().unserialize(cr)
+                               for cr in child_ref_list]
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
         SourceBase.unserialize(self, source_list)

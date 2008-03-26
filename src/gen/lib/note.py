@@ -26,13 +26,6 @@ Note class for GRAMPS.
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-from types import InstanceType
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -81,9 +74,9 @@ class Note(BasicPrimaryObject):
         (self.handle, self.gramps_id, self.text, self.format,
          the_type, self.change, the_marker, self.private) = data
 
-        self.marker = InstanceType(MarkerType)
+        self.marker = MarkerType()
         self.marker.unserialize(the_marker)
-        self.type = InstanceType(NoteType)
+        self.type = NoteType()
         self.type.unserialize(the_type)
 
     def get_text_data_list(self):

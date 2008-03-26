@@ -63,11 +63,7 @@ class SourceBase:
         """
         Convert a serialized tuple of data to an object.
         """
-        self.source_list = []
-        for item in data:
-            sourceref = SourceRef()
-            sourceref.unserialize(item) 
-            self.source_list.append(sourceref)
+        self.source_list = [SourceRef().unserialize(item) for item in data]
 
     def add_source_reference(self, src_ref) :
         """
