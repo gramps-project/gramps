@@ -35,9 +35,8 @@ def _init_map(data, key_col, data_col):
     """
     Initialize the map, building a new map from the specified columns.
     """
-    new_data = {}
-    for item in data:
-        new_data[item[key_col]] = item[data_col]
+    new_data = dict([ (item[key_col], item[data_col]) 
+                    for item in data ])
     return new_data
 
 class GrampsTypeMeta(type):
@@ -53,7 +52,6 @@ class GrampsTypeMeta(type):
         
 class GrampsType(object):
     """Base class for all Gramps object types."""
-    (VALUE_POS, STRING_POS) = range(2)
     
     _CUSTOM = 0
     _DEFAULT = 0
@@ -75,11 +73,7 @@ class GrampsType(object):
         Create a new type, initialize the value from one of several possible 
         states.
         """
-        if value is not None:
-            self.set(value)
-        else:
-            self.val = self._DEFAULT
-            self.string = u''
+        self.set(value)
 
     def __set_tuple(self, value):
         v,s = self._DEFAULT,u''
