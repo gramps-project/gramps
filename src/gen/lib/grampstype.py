@@ -82,8 +82,13 @@ class GrampsType(object):
             self.string = u''
 
     def __set_tuple(self, value):
-        self.val = value[0]
-        self.string = value[1]
+        v,s = self._DEFAULT,u''
+        if len(value) > 0:
+            v = value[0]
+            if len(value) > 1:
+                s = value[1]
+        self.val = v
+        self.string = s
 
     def __set_int(self, value):
         self.val = value
