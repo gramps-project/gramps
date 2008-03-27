@@ -31,12 +31,17 @@ Base type for all gramps types.
 #------------------------------------------------------------------------
 from gettext import gettext as _
 
-def _init_map(data, key_col, data_col):
+def _init_map(data, key_col, data_col, blacklist=None):
     """
     Initialize the map, building a new map from the specified columns.
     """
-    new_data = dict([ (item[key_col], item[data_col]) 
-                    for item in data ])
+    if blacklist:
+        new_data = dict([ (item[key_col], item[data_col]) 
+                        for item in data 
+                        if not item[0] in blacklist ])
+    else:
+        new_data = dict([ (item[key_col], item[data_col]) 
+                        for item in data ])
     return new_data
 
 class GrampsTypeMeta(type):
@@ -51,20 +56,28 @@ class GrampsTypeMeta(type):
         mcs.__class_init__(namespace)
         
 class GrampsType(object):
-    """Base class for all Gramps object types."""
+    """Base class for all Gramps object types.
+        
+    _DATAMAP is a 3-tuple like (index, localized_string, english_string)
+    _BLACKLIST is a list of indices to ignore (obsolete/retired entries)
+      (gramps policy is never to delete type values, 
+       or reuse the name (TOKEN) of any specific type value)
+
+    """
     
     _CUSTOM = 0
     _DEFAULT = 0
 
     _DATAMAP = []
+    _BLACKLIST = None
     
     __metaclass__ = GrampsTypeMeta
     
     def __class_init__(cls, namespace):
-        cls._I2SMAP = _init_map(cls._DATAMAP, 0, 1)
-        cls._S2IMAP = _init_map(cls._DATAMAP, 1, 0)
-        cls._I2EMAP = _init_map(cls._DATAMAP, 0, 2)
-        cls._E2IMAP = _init_map(cls._DATAMAP, 2, 0)
+        cls._I2SMAP = _init_map(cls._DATAMAP, 0, 1, cls._BLACKLIST)
+        cls._S2IMAP = _init_map(cls._DATAMAP, 1, 0, cls._BLACKLIST)
+        cls._I2EMAP = _init_map(cls._DATAMAP, 0, 2, cls._BLACKLIST)
+        cls._E2IMAP = _init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)
     
     __class_init__ = classmethod(__class_init__)
     

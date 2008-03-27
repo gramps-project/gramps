@@ -8,17 +8,28 @@ from gen.lib.grampstype import GrampsType, _init_map
 # some simple map items to test with
 vals = "zz ab cd ef".split()
 keys = range(len(vals))
-MAP = [ (k,v*2,v) for (k,v) in zip(keys, vals) ]
+MAP  = [ (k,v*2,v) for (k,v) in zip(keys, vals) ]
+BLIST= [1,3]
 
 class GT0(GrampsType):
     _DEFAULT  = 1 # just avoiding the pre-coded 0
     _CUSTOM   = 3 # just avoiding the pre-coded 0
     _DATAMAP = MAP
 
+# NOTE: this type of code might be used in a migration utility
+#   to allow conversions or other handling of retired type-values 
+# A migration utility might instantiate several of these with
+#   varying blacklist-specs
+class GT1(GT0):
+    _BLACKLIST = BLIST
+
+class GT2(GT1):
+    _BLACKLIST=None
+
 class Test1(U.TestCase):
 
     # some basic tests
-    def test1a(s):
+    def test1a_basic(s):
         s.gt=GT0()
         s.assertTrue(isinstance(s.gt, GrampsType))
         # spot-check that MAPs get built
@@ -30,7 +41,7 @@ class Test1(U.TestCase):
     # (we ignore instance here -- maybe SB tested, too?)
     # this test depends on having _DEFAULT=1, _CUSTOM=3
     # NB: tuple tests w/ lengths < 2 fail before release 10403
-    def test1b(s):
+    def test1b_init_value(s):
         for i,v,u in ( 
                 (None, 1,u''),      # all DEFAULT
                 (0, 0,u''), 
@@ -50,6 +61,22 @@ class Test1(U.TestCase):
             g= s.gt.string
             s.assertEquals(g,u, 
                 msg(g,u, "initialization string from '%s'" % `i`))
+
+# test blacklist functionality added to enable fix of bug #1680
+class Test2(U.TestCase):
+    def test2a_blacklist(s):
+        s.gt=GT1()
+        # check that MAPs have lengths reduced by blacklist 
+        e= len(keys) - len(BLIST) 
+        g= len(s.gt._E2IMAP)
+        s.assertEquals(g,e, msg(g,e, "expected length of blacklisted MAP"))
+
+        s.ub=GT2()
+        # check that these MAPS are now un-blacklisted
+        e= len(keys) 
+        g= len(s.ub._E2IMAP)
+        s.assertEquals(g,e, msg(g,e, "expected length of un-blacklisted MAP"))
+
 
 if __name__ == "__main__":
     U.main()
