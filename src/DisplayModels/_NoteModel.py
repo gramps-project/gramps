@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2000-2007  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #
 #-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".")
+_LOG = logging.getLogger(".DisplayModels.NoteModel")
 
 #-------------------------------------------------------------------------
 #
@@ -40,20 +40,19 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from _BaseModel import BaseModel
-import gen.lib
+from gen.lib import (Note, NoteType, MarkerType, StyledText)
 
 #-------------------------------------------------------------------------
 #
-# PlaceModel
+# NoteModel
 #
 #-------------------------------------------------------------------------
 class NoteModel(BaseModel):
-
-    HANDLE_COL = 4
-    _MARKER_COL = 6
-
-    def __init__(self,db,scol=0, order=gtk.SORT_ASCENDING,search=None,
+    """
+    """
+    def __init__(self, db, scol=0, order=gtk.SORT_ASCENDING, search=None,
                  skip=set(), sort_map=None):
+        """Setup initial values for instance variables."""
         self.gen_cursor = db.get_note_cursor
         self.map = db.get_raw_note_data
         self.fmap = [
@@ -63,7 +62,7 @@ class NoteModel(BaseModel):
             self.column_marker,
             self.column_handle,
             self.column_marker_color
-            ]
+        ]
         self.smap = [
             self.column_preview,
             self.column_id,
@@ -71,48 +70,57 @@ class NoteModel(BaseModel):
             self.column_marker,
             self.column_handle,
             self.column_marker_color
-            ]
+        ]
         self.marker_color_column = 5
-        BaseModel.__init__(self, db, scol, order,
-                           search=search, skip=skip, sort_map=sort_map)
+        BaseModel.__init__(self, db, scol, order, search=search,
+                           skip=skip, sort_map=sort_map)
 
     def on_get_n_columns(self):
-        return len(self.fmap)+1
+        """Return the column number of the Note tab."""
+        return len(self.fmap) + 1
 
-    def column_handle(self,data):
-        return data[0]
+    def column_handle(self, data):
+        """Return the handle of the Note."""
+        return data[Note.POS_HANDLE]
 
-    def column_id(self,data):
-        return unicode(data[1])
+    def column_id(self, data):
+        """Return the id of the Note."""
+        return unicode(data[Note.POS_ID])
 
-    def column_type(self,data):
-        temp = gen.lib.NoteType()
-        temp.set(data[4])
+    def column_type(self, data):
+        """Return the type of the Note in readable format."""
+        temp = NoteType()
+        temp.set(data[Note.POS_TYPE])
         return unicode(str(temp))
 
     def column_marker(self, data):
-        temp = gen.lib.MarkerType()
-        temp.set(data[6])
+        """Return the marker type of the Note in readable format."""
+        temp = MarkerType()
+        temp.set(data[Note.POS_MARKER])
         return unicode(str(temp))
     
-    def column_preview(self,data):
+    def column_preview(self, data):
+        """Return a shortend version of the Note's text."""
         #data is the encoding in the database, make it a unicode object
         #for universal work
-        note = " ".join(unicode(data[2]).split())
+        note = unicode(data[Note.POS_TEXT][StyledText.POS_TEXT])
+        note = " ".join(note.split())
         if len(note) > 80:
-            return note[:80]+"..."
+            return note[:80] + "..."
         else:
             return note
 
     def column_marker_color(self, data):
+        """Return the color of the Note's marker type if exist."""
         try:
-            col = data[NoteModel._MARKER_COL][0]
-            if col == gen.lib.MarkerType.COMPLETE:
+            col = data[Note.POS_MARKER][MarkerType.POS_VALUE]
+            if col == MarkerType.COMPLETE:
                 return self.complete_color
-            elif col == gen.lib.MarkerType.TODO_TYPE:
+            elif col == MarkerType.TODO_TYPE:
                 return self.todo_color
-            elif col == gen.lib.MarkerType.CUSTOM:
+            elif col == MarkerType.CUSTOM:
                 return self.custom_color
+            else:
+                return None
         except IndexError:
-            pass
-        return None
+            return None

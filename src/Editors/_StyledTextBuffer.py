@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2007-2008  Zsolt Foldvari
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,28 +20,18 @@
 
 # $Id$
 
-"Handling formatted ('rich text') strings"
+"Text buffer subclassed from gtk.TextBuffer handling L{StyledText}."
 
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-from xml.sax import saxutils, xmlreader, ContentHandler
-from xml.sax import parseString, SAXParseException
+from gettext import gettext as _
 import re
-try:
-    from cStringIO import StringIO
-except:
-    from StringIO import StringIO
 
-#-------------------------------------------------------------------------
-#
-# Set up logging
-#
-#-------------------------------------------------------------------------
 import logging
-log = logging.getLogger(".MarkupText")
+_LOG = logging.getLogger(".StyledTextBuffer")
 
 #-------------------------------------------------------------------------
 #
@@ -50,318 +40,49 @@ log = logging.getLogger(".MarkupText")
 #-------------------------------------------------------------------------
 import gtk
 from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
-import gobject
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-ROOT_ELEMENT = 'gramps'
-ROOT_START_TAG = '<' + ROOT_ELEMENT + '>'
-ROOT_END_TAG = '</' + ROOT_ELEMENT + '>'
-LEN_ROOT_START_TAG = len(ROOT_START_TAG)
-LEN_ROOT_END_TAG = len(ROOT_END_TAG)
-
 (MATCH_START,
  MATCH_END,
  MATCH_FLAVOR,
  MATCH_STRING,) = range(4)
 
-def is_gramps_markup(text):
-    return (text[:LEN_ROOT_START_TAG] == ROOT_START_TAG and
-            text[-LEN_ROOT_END_TAG:] == ROOT_END_TAG)
-
-def clear_root_tags(text):
-    return text[LEN_ROOT_START_TAG:len(text)-LEN_ROOT_END_TAG]
-    
-class MarkupParser(ContentHandler):
-    """A simple ContentHandler class to parse Gramps markup'ed text.
-    
-    Use it with xml.sax.parse() or xml.sax.parseString(). A root tag is
-    required. Parsing result can be obtained via the public attributes of
-    the class:    
-    @attr content: clean text
-    @attr type: str
-    @attr elements: list of markup elements 
-    @attr type: list[tuple((start, end), name, attrs),]
-    
-    """
-    def startDocument(self):
-        self._open_document = False
-        self._open_elements = []
-        self.elements = []
-        self.content = ""
-        
-    def endDocument(self):
-        self._open_document = False
-        if len(self._open_elements):
-            raise SAXParseException('Unclosed tags')
-
-    def startElement(self, name, attrs):
-        if not self._open_document:
-            if name == ROOT_ELEMENT:
-                self._open_document = True
-            else:
-                raise SAXParseException('Root element missing')
-        else:
-            self._open_elements.append({'name': name,
-                                        'attrs': attrs.copy(),
-                                        'start': len(self.content),
-                                    })
-
-    def endElement(self, name):
-        # skip root element
-        if name == ROOT_ELEMENT:
-            return
-        
-        for e in self._open_elements:
-            if e['name'] == name:
-                self.elements.append(((e['start'], len(self.content)),
-                                       e['name'], e['attrs']))
-
-                self._open_elements.remove(e)
-                return
-
-    def characters (self, chunk):
-        self.content += chunk
-
-class MarkupWriter:
-    """Generate XML markup text for Notes.
-    
-    Provides additional feature of accounting opened tags and closing them
-    properly in case of partially overlapping elements.
-    
-    """
-    (EVENT_START,
-     EVENT_END) = range(2)
-
-    def __init__(self, encoding='utf-8'):
-        self._output = StringIO()
-        self._encoding = encoding
-        self._writer = saxutils.XMLGenerator(self._output, self._encoding)
-        
-        self._attrs = xmlreader.AttributesImpl({})
-        
-        self._open_elements = []
-        self.content = ''
-
-    # Private
-
-    def _elements_to_events(self, elements):
-        """Create an event list for XML writer.
-        
-        @param elements: list of XML elements with start/end indices and attrs
-        @param type: [((start, end), xml_element_name, attrs),]
-        @return: eventdict
-        @rtype: {index: [(xml_element_name, attrs, event_type, pair_index),]}
-         index: place of the event
-         xml_element_name: element to apply
-         attrs: attributes of the tag (xml.sax.xmlreader.AttrubutesImpl)
-         event_type: START or END event
-         pair_index: index of the pair event, used for sorting
-        
-        """
-        eventdict = {}
-        for (start, end), name, attrs in elements:
-            # append START events
-            if eventdict.has_key(start):
-                eventdict[start].append((name, attrs, self.EVENT_START, end))
-            else:
-                eventdict[start] = [(name, attrs, self.EVENT_START, end)]
-            # END events have to prepended to avoid creating empty elements
-            if eventdict.has_key(end):
-                eventdict[end].insert(0, (name, attrs, self.EVENT_END, start))
-            else:
-                eventdict[end] = [(name, attrs, self.EVENT_END, start)]
-
-        # first round optimization
-        active_tags = {}
-        active_idx = {}
-        
-        indices = eventdict.keys()
-        indices.sort()
-        for index in indices:
-            # separate the events by tag names
-            tagdict = {}
-            for event in eventdict[index]:
-                # we care only about tags having attributes
-                if event[1].getLength():
-                    if tagdict.has_key(event[0]):
-                        tagdict[event[0]].append(event)
-                    else:
-                        tagdict[event[0]] = [event]
-            
-            # let's handle each tag
-            for tag_name in tagdict.keys():
-                
-                # first we close the tag if it's already open
-                if active_tags.has_key(tag_name):
-                    tmp_attrs = xmlreader.AttributesImpl({})
-                    tmp_attrs._attrs.update(active_tags[tag_name])
-                    eventdict[index].insert(0, (name, tmp_attrs,
-                                                self.EVENT_END,
-                                                active_idx[tag_name]))
-                    # go back where the tag was opened and update the pair_idx,
-                    # i.e. with the current index.
-                    # FIXME this is ugly
-                    for event in eventdict[active_idx[tag_name]]:
-                        if (event[0] == tag_name and
-                            event[2] == self.EVENT_START):
-                            new_event = (event[0], event[1], event[2], index)
-                            eventdict[active_idx[tag_name]].remove(event)
-                            eventdict[active_idx[tag_name]].append(new_event)
-                else:
-                    active_tags[tag_name] = xmlreader.AttributesImpl({})
-
-                # update 
-                for event in tagdict[tag_name]:
-                    # remove this event, we will insert new ones instead
-                    eventdict[index].remove(event)
-                    
-                    # update the active attribute object for the tag
-                    (name, attrs, type, pair_idx) = event
-                    if type == self.EVENT_START:
-                        active_tags[name]._attrs.update(attrs)
-                    elif type == self.EVENT_END:
-                        for attr_name in attrs.getNames():
-                            try:
-                                del active_tags[name]._attrs[attr_name]
-                            except:
-                                pass # error
-                    else:
-                        pass # error
-
-                # if the tag's attr list is empty after the updates
-                # delete the tag completely from the list of active tags
-                if not active_tags[name].getLength():
-                    del active_tags[name]
-                    ##del active_idx[name]
-                    
-                # re-open all tags with updated attrs
-                if active_tags.has_key(tag_name):
-                    tmp_attrs = xmlreader.AttributesImpl({})
-                    tmp_attrs._attrs.update(active_tags[tag_name])
-                    eventdict[index].append((tag_name, tmp_attrs,
-                                             self.EVENT_START, 0))
-                    # also save the index of tag opening
-                    active_idx[tag_name] = index
-
-        # sort events at the same index
-        indices = eventdict.keys()
-        for idx in indices:
-            if len(eventdict[idx]) > 1:
-                eventdict[idx].sort(self._sort_events)
-
-        return eventdict
-
-    def _sort_events(self, event_a, event_b):
-        """Sort events that are at the same index.
-        
-        Sorting with the following rules:
-        1. END event goes always before START event;
-        2. from two START events the one goes first, which has it's own END
-        event later;
-        3. from two END events the one goes first, which has it's own START
-        event later.
-        
-        """
-        tag_a, attr_a, type_a, pair_a = event_a
-        tag_b, attr_b, type_b, pair_b = event_b
-        
-        if (type_a + type_b) == (self.EVENT_START + self.EVENT_END):
-            return type_b - type_a
-        else:
-            return pair_b - pair_a
-
-    def _startElement(self, name, attrs=None):
-        """Insert start tag."""
-        if not attrs:
-            attrs = self._attrs
-        self._writer.startElement(name, attrs)
-        self._open_elements.append((name, attrs))
-        
-    def _endElement(self, name):
-        """Insert end tag."""
-        if not len(self._open_elements):
-            log.debug("Trying to close element '%s' when non is open" % name)
-            return
-        
-        tmp_list = []
-        elem = ''
-        
-        # close all open elements until we reach to the requested one
-        while elem != name:
-            try:
-                elem, attrs = self._open_elements.pop()
-                self._writer.endElement(elem)
-                if elem != name:
-                    tmp_list.append((elem, attrs))
-            except:
-                # we need to do something smart here...
-                log.debug("Trying to close non open element '%s'" % name)
-                break
-        
-        # open all other elements again
-        while True:
-            try:
-                elem, attrs = tmp_list.pop()
-                self._startElement(elem, attrs)
-            except:
-                break
-
-    # Public
-
-    def generate(self, text, elements):
-        # reset output and start root element
-        self._output.truncate(0)
-        self._writer.startElement(ROOT_ELEMENT, self._attrs)
-        
-        # split the elements to events
-        events = self._elements_to_events(elements)
-        
-        # feed the events into the xml generator
-        last_pos = 0
-        indices = events.keys()
-        indices.sort()
-        for index in indices:
-            self._writer.characters(text[last_pos:index])
-            for name, attrs, event_type, p in events[index]:
-                if event_type == self.EVENT_START:
-                    self._startElement(name, attrs)
-                elif event_type == self.EVENT_END:
-                    self._endElement(name)
-            last_pos = index
-        self._writer.characters(text[last_pos:])
-        
-        # close root element and end doc
-        self._writer.endElement(ROOT_ELEMENT)
-        self._writer.endDocument()
-        
-        # copy result
-        self.content = self._output.getvalue()
-        log.debug("Gramps XML: %s" % self.content)
-        
+#-------------------------------------------------------------------------
+#
+# GtkSpellState class
+#
+#-------------------------------------------------------------------------
 class GtkSpellState:
     """A simple state machine kinda thingy.
     
-    Try tracking gtk.Spell activities on a buffer and reapply formatting
+    Trying to track gtk.Spell activities on a buffer and re-apply formatting
     after gtk.Spell replaces a misspelled word.
-    
+        
     """
     (STATE_NONE,
      STATE_CLICKED,
      STATE_DELETED,
      STATE_INSERTING) = range(4)
 
-    def __init__(self, buffer):
-        if not isinstance(buffer, gtk.TextBuffer):
+    def __init__(self, textbuffer):
+        if not isinstance(textbuffer, gtk.TextBuffer):
             raise TypeError("Init parameter must be instance of gtk.TextBuffer")
             
-        buffer.connect('mark-set', self.on_buffer_mark_set)
-        buffer.connect('delete-range', self.on_buffer_delete_range)
-        buffer.connect('insert-text', self.on_buffer_insert_text)
-        buffer.connect_after('insert-text', self.after_buffer_insert_text)
+        textbuffer.connect('mark-set', self.on_buffer_mark_set)
+        textbuffer.connect('delete-range', self.on_buffer_delete_range)
+        textbuffer.connect('insert-text', self.on_buffer_insert_text)
+        textbuffer.connect_after('insert-text', self.after_buffer_insert_text)
         
         self.reset_state()
         
@@ -371,36 +92,37 @@ class GtkSpellState:
         self.end = 0
         self.tags = None
         
-    def on_buffer_mark_set(self, buffer, iter, mark):
+    def on_buffer_mark_set(self, textbuffer, iter, mark):
         mark_name = mark.get_name()
         if  mark_name == 'gtkspell-click':
             self.state = self.STATE_CLICKED
-            self.start, self.end = self.get_word_extents_from_mark(buffer, mark)
-            log.debug("SpellState got start %d end %d" % (self.start, self.end))
+            self.start, self.end = self.get_word_extents_from_mark(textbuffer,
+                                                                   mark)
+            _LOG.debug("SpellState got start %d end %d" % (self.start, self.end))
         elif mark_name == 'insert':
             self.reset_state()
 
-    def on_buffer_delete_range(self, buffer, start, end):
+    def on_buffer_delete_range(self, textbuffer, start, end):
         if ((self.state == self.STATE_CLICKED) and
             (start.get_offset() == self.start) and
             (end.get_offset() == self.end)):
             self.state = self.STATE_DELETED
             self.tags = start.get_tags()
     
-    def on_buffer_insert_text(self, buffer, iter, text, length):
+    def on_buffer_insert_text(self, textbuffer, iter, text, length):
         if self.state == self.STATE_DELETED and iter.get_offset() == self.start:
             self.state = self.STATE_INSERTING
 
-    def after_buffer_insert_text(self, buffer, iter, text, length):
+    def after_buffer_insert_text(self, textbuffer, iter, text, length):
         if self.state == self.STATE_INSERTING:
-            mark = buffer.get_mark('gtkspell-insert-start')
-            insert_start = buffer.get_iter_at_mark(mark)
+            mark = textbuffer.get_mark('gtkspell-insert-start')
+            insert_start = textbuffer.get_iter_at_mark(mark)
             for tag in self.tags:
-                buffer.apply_tag(tag, insert_start, iter)
+                textbuffer.apply_tag(tag, insert_start, iter)
         
         self.reset_state()
 
-    def get_word_extents_from_mark(self, buffer, mark):
+    def get_word_extents_from_mark(self, textbuffer, mark):
         """Get the word extents as gtk.Spell does.
         
         Used to get the beginning of the word, in which user right clicked.
@@ -408,7 +130,7 @@ class GtkSpellState:
         misspelled words.
         
         """
-        start = buffer.get_iter_at_mark(mark)
+        start = textbuffer.get_iter_at_mark(mark)
         if not start.starts_word():
             #start.backward_word_start()
             self.backward_word_start(start)
@@ -455,14 +177,27 @@ class GtkSpellState:
         
         return True
     
-class MarkupBuffer(gtk.TextBuffer):
-    """An extended TextBuffer with Gramps XML markup string interface.
+#-------------------------------------------------------------------------
+#
+# StyledTextBuffer class
+#
+#-------------------------------------------------------------------------
+class StyledTextBuffer(gtk.TextBuffer):
+    """An extended TextBuffer for handling StyledText strings.
     
-    It implements MarkupParser and MarkupWriter on the input/output interfaces.
-    Also translates Gramps XML markup language to gtk.TextTag's and vice versa.
+    StyledTextBuffer is an interface between GRAMPS' L{StyledText} format
+    and gtk.TextBuffer. To get/set the text use the L{get_text} and 
+    L{set_text} methods.
+    
+    It provides an action group (L{format_action_group}) for GUIs.
+    
+    StyledTextBuffer has a regexp pattern matching mechanism too. To add a
+    regexp pattern to match in the text use the L{match_add} method. To check
+    if there's a match at a certain position in the text use the L{match_check}
+    method.
     
     """
-    __gtype_name__ = 'MarkupBuffer'
+    __gtype_name__ = 'StyledTextBuffer'
     
     formats = ('italic', 'bold', 'underline',
                'font', 'foreground', 'background',)
@@ -470,9 +205,6 @@ class MarkupBuffer(gtk.TextBuffer):
     def __init__(self):
         gtk.TextBuffer.__init__(self)
 
-        self.parser = MarkupParser()
-        self.writer = MarkupWriter()
-        
         # Create fix tags.
         # Other tags (e.g. color) have to be created on the fly
         self.create_tag('bold', weight=WEIGHT_BOLD)
@@ -520,6 +252,8 @@ class MarkupBuffer(gtk.TextBuffer):
         self.bold = False
         self.underline = False
         self.font = None
+        # TODO could we separate font name and size?
+        ##self.size = None
         self.foreground = None
         self.background = None
         
@@ -545,15 +279,15 @@ class MarkupBuffer(gtk.TextBuffer):
         
     # Virtual methods
 
-    def on_insert_text(self, buffer, iter, text, length):
-        log.debug("Will insert at %d length %d" % (iter.get_offset(), length))
+    def on_insert_text(self, textbuffer, iter, text, length):
+        _LOG.debug("Will insert at %d length %d" % (iter.get_offset(), length))
         
         # let's remember where we started inserting
         self.move_mark(self.mark_insert, iter)
 
-    def after_insert_text(self, buffer, iter, text, length):
+    def after_insert_text(self, textbuffer, iter, text, length):
         """Format inserted text."""
-        log.debug("Have inserted at %d length %d (%s)" %
+        _LOG.debug("Have inserted at %d length %d (%s)" %
                   (iter.get_offset(), length, text))
                   
         if not length:
@@ -572,8 +306,8 @@ class MarkupBuffer(gtk.TextBuffer):
                 self.apply_tag(self._find_tag_by_name(format, value),
                                insert_start, iter)
     
-    def after_delete_range(self, buffer, start, end):
-        log.debug("Deleted from %d till %d" %
+    def after_delete_range(self, textbuffer, start, end):
+        _LOG.debug("Deleted from %d till %d" %
                   (start.get_offset(), end.get_offset()))
         
         # move 'insert' marker to have the format attributes updated
@@ -592,16 +326,15 @@ class MarkupBuffer(gtk.TextBuffer):
                     match = iter.next()
                     self.matches.append((match.start(), match.end(),
                                          flavor, match.group()))
-                    log.debug("Matches: %d, %d: %s [%d]" %
+                    _LOG.debug("Matches: %d, %d: %s [%d]" %
                               (match.start(), match.end(),
                                match.group(), flavor))
                 except StopIteration:
                     break
-            
 
     def do_mark_set(self, iter, mark):
         """Update format attributes each time the cursor moves."""
-        log.debug("Setting mark %s at %d" %
+        _LOG.debug("Setting mark %s at %d" %
                   (mark.get_name(), iter.get_offset()))
         
         if mark.get_name() != 'insert':
@@ -629,72 +362,32 @@ class MarkupBuffer(gtk.TextBuffer):
 
     # Private
     
-    def _xmltag_to_texttag(self, name, attrs):
-        """Convert XML tag to gtk.TextTag.
-                
-        Return only the name of the TextTag.
+    def _tagname_to_tagtype(self, name):
+        """Convert gtk.TextTag names to StyledTextTagType values."""
+        tag2type = {
+            'bold': StyledTextTagType.BOLD,
+            'italic': StyledTextTagType.ITALIC,
+            'underline': StyledTextTagType.UNDERLINE,
+            'foreground': StyledTextTagType.FONTCOLOR,
+            'background': StyledTextTagType.HIGHLIGHT,
+            'font': StyledTextTagType.FONTFACE,
+        }
         
-        @param name: name of the XML tag
-        @param type: string
-        @param attrs: attributes of the XML tag
-        @param type: xmlreader.AttributesImpl
-        @return: property of gtk.TextTag, value of property
-        @rtype: [(string, string), ]
+        return StyledTextTagType(tag2type[name])
+    
+    def _tagtype_to_tagname(self, tagtype):
+        """Convert StyledTextTagType values to gtk.TextTag names."""
+        type2tag = {
+            StyledTextTagType.BOLD: 'bold',
+            StyledTextTagType.ITALIC: 'italic',
+            StyledTextTagType.UNDERLINE: 'underline',
+            StyledTextTagType.FONTCOLOR: 'foreground',
+            StyledTextTagType.HIGHLIGHT: 'background',
+            StyledTextTagType.FONTFACE: 'font',
+        }
         
-        """
-        if name == 'b':
-            return [('bold', None)]
-        elif name == 'i':
-            return [('italic', None)]
-        elif name == 'u':
-            return [('underline', None)]
-        elif name == 'font':
-            ret = []
-            attr_names = attrs.getNames()
-            if 'color' in attr_names:
-                ret.append(('foreground', attrs.getValue('color')))
-            if 'highlight' in attr_names:
-                ret.append(('background', attrs.getValue('highlight')))
-            if ('face' in attr_names) and ('size' in attr_names):
-                ret.append(('font', '%s %s' % (attrs.getValue('face'),
-                                               attrs.getValue('size'))))
-            if len(ret):
-                return ret
-            else:
-                return [(None, None)]
-        else:
-            return [(None, None)]
-        
-    def _texttag_to_xmltag(self, name):
-        """Convert gtk.TextTag to XML tag.
-        
-        @param name: name of the gtk.TextTag
-        @param type: string
-        @return: XML tag name, attribute
-        @rtype: string, xmlreader.AttributesImpl
-        
-        """
-        attrs = xmlreader.AttributesImpl({})
-        if name == 'bold':
-            return 'b', attrs
-        elif name == 'italic':
-            return 'i', attrs
-        elif name == 'underline':
-            return 'u', attrs
-        elif name.startswith('foreground'):
-            attrs._attrs['color'] = name.split()[1]
-            return 'font', attrs
-        elif name.startswith('background'):
-            attrs._attrs['highlight'] = name.split()[1]
-            return 'font', attrs
-        elif name.startswith('font'):
-            name = name.replace('font ', '')
-            attrs._attrs['face'] = name.rsplit(' ', 1)[0]
-            attrs._attrs['size'] = name.rsplit(' ', 1)[1]
-            return 'font', attrs
-        else:
-            return None, None
-        
+        return type2tag[tagtype]
+    
     ##def get_tag_value_at_insert(self, name):
         ##"""Get the value of the given tag at the insertion point."""
         ##tags = self.get_iter_at_mark(self._insert).get_tags()
@@ -835,12 +528,7 @@ class MarkupBuffer(gtk.TextBuffer):
         setattr(self, action.get_name(), action.get_active())
 
     def on_action_activate(self, action):
-        """Apply a format.
-        
-        Other tags for the same format have to be removed from the range
-        first otherwise XML would get messy.
-        
-        """
+        """Apply a format."""
         format = action.get_name()
         
         if format == 'foreground':
@@ -870,11 +558,11 @@ class MarkupBuffer(gtk.TextBuffer):
             value = font_selection.fontsel.get_font_name()
             font_selection.destroy()
         else:
-            log.debug("unknown format: '%s'" % format)
+            _LOG.debug("unknown format: '%s'" % format)
             return
 
         if response == gtk.RESPONSE_OK:
-            log.debug("applying format '%s' with value '%s'" % (format, value))
+            _LOG.debug("applying format '%s' with value '%s'" % (format, value))
             
             tag = self._find_tag_by_name(format, value)
             self.remove_format_from_selection(format)
@@ -905,64 +593,51 @@ class MarkupBuffer(gtk.TextBuffer):
         
     # Public API
 
-    def set_text(self, xmltext):
+    def set_text(self, r_text):
         """Set the content of the buffer with markup tags."""
-        try:
-            parseString(xmltext.encode('utf-8'), self.parser)
-            text = self.parser.content
-        except:
-            # if parse fails remove all tags and use clear text instead
-            text = re.sub(r'(<.*?>)', '', xmltext)
-            text = saxutils.unescape(text)
-        
-        gtk.TextBuffer.set_text(self, text)
-
-        for element in self.parser.elements:
-            (start, end), xmltag_name, attrs = element
-
-            #texttag_name, value = self._xmltag_to_texttag(xmltag_name, attrs)
-            tags = self._xmltag_to_texttag(xmltag_name, attrs)
-
-            for texttag_name, value in tags:
-                if texttag_name is not None:
+        gtk.TextBuffer.set_text(self, str(r_text))
+    
+        r_tags = r_text.get_tags()
+        for r_tag in r_tags:
+            tagname = self._tagtype_to_tagname(int(r_tag.name))
+            g_tag = self._find_tag_by_name(tagname, r_tag.value)
+            if g_tag is not None:
+                for (start, end) in r_tag.ranges:
                     start_iter = self.get_iter_at_offset(start)
                     end_iter = self.get_iter_at_offset(end)
-                    tag = self._find_tag_by_name(texttag_name, value)
-                    if tag is not None:
-                        self.apply_tag(tag, start_iter, end_iter)
-
+                    self.apply_tag(g_tag, start_iter, end_iter)
+                    
     def get_text(self, start=None, end=None, include_hidden_chars=True):
-        """Return the buffer text with xml markup tags.
-        
-        If no markup was applied returns clean text
-        (i.e. without even root tags).
-        
-        """
-        # get the clear text from the buffer
+        """Return the buffer text."""
         if not start:
             start = self.get_start_iter()
         if not end:
             end = self.get_end_iter()
-        txt = unicode(gtk.TextBuffer.get_text(self, start, end))
 
+        txt = gtk.TextBuffer.get_text(self, start, end, include_hidden_chars)
+        txt = unicode(txt)
+        
         # extract tags out of the buffer
-        texttag = self.get_tag_from_range()
+        g_tags = self.get_tag_from_range()
+        r_tags = []
         
-        if len(texttag):
-            # convert the texttags to xml elements
-            xml_elements = []
-            for texttag_name, indices in texttag.items():
-                xml_tag_name, attrs = self._texttag_to_xmltag(texttag_name)
-                if xml_tag_name is not None:
-                    for start_idx, end_idx in indices:
-                        xml_elements.append(((start_idx, end_idx+1),
-                                             xml_tag_name, attrs))
+        for g_tagname, g_ranges in g_tags.items():
+            name_value = g_tagname.split(' ', 1)
 
-            # feed the elements into the xml writer
-            self.writer.generate(txt, xml_elements)
-            txt = self.writer.content
+            if len(name_value) == 1:
+                name = name_value[0]
+                r_value = None
+            else:
+                (name, r_value) = name_value
+
+            if name in self.formats:
+                r_tagtype = self._tagname_to_tagtype(name)
+                r_ranges = [(start, end+1) for (start, end) in g_ranges]
+                r_tag = StyledTextTag(r_tagtype, r_value, r_ranges)
+                                      
+                r_tags.append(r_tag)
         
-        return txt
+        return StyledText(txt, r_tags)
 
     def match_add(self, pattern, flavor):
         """Add a pattern to look for in the text."""
@@ -972,11 +647,7 @@ class MarkupBuffer(gtk.TextBuffer):
     def match_check(self, pos):
         """Check if pos falls into any of the matched patterns."""
         for match in self.matches:
-            if pos >= match[0] and pos <= match[1]:
+            if pos >= match[MATCH_START] and pos <= match[MATCH_END]:
                 return match
 
         return None
-
-        
-if gtk.pygtk_version < (2,8,0):
-    gobject.type_register(MarkupBuffer)

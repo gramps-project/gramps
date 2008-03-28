@@ -39,7 +39,7 @@ from gettext import gettext as _
 from bsddb import dbshelve, db
 import logging
 
-log = logging.getLogger(".GrampsDb")
+_LOG = logging.getLogger(".GrampsDb")
 
 #-------------------------------------------------------------------------
 #
@@ -56,7 +56,7 @@ from gen.db.cursor import GrampsCursor
 import Errors
 
 _MINVERSION = 9
-_DBVERSION = 13
+_DBVERSION = 14
 
 IDTRANS     = "person_id"
 FIDTRANS    = "family_id"
@@ -1485,7 +1485,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             # under certain circumstances during a database reload,
             # data_map can be none. If so, then don't report an error
             if data_map:
-                log.error("Failed to get from handle", exc_info=True)
+                _LOG.error("Failed to get from handle", exc_info=True)
         if data:
             newobj = InstanceType(class_type)
             newobj.unserialize(data)
@@ -1665,13 +1665,42 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
     def gramps_upgrade(self, callback=None):
         UpdateCallback.__init__(self, callback)
         
-#        version = self.metadata.get('version', default=_MINVERSION)
+        version = self.metadata.get('version', default=_MINVERSION)
 
         t = time.time()
-#        if version < 13:
-#            self.gramps_upgrade_13()
+
+        if version < 14:
+            self.gramps_upgrade_14()
+
         print "Upgrade time:", int(time.time()-t), "seconds"
+
+    def gramps_upgrade_14(self):
+        """Upgrade database from version 13 to 14."""
+        # This upgrade modifies notes
+        length = len(self.note_map)
+        self.set_total(length)
+        
+        # replace clear text with StyledText in Notes
+        for handle in self.note_map.keys():
+            note = self.note_map[handle]
             
+            (junk_handle, gramps_id, text, format, note_type,
+             change, marker, private) = note
+            
+            styled_text = (text, [])
+            
+            new_note = (handle, gramps_id, styled_text, format, note_type,
+                        change, marker, private)
+            
+            the_txn = self.env.txn_begin()
+            self.note_map.put(str(handle), new_note, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # Bump up database version. Separate transaction to save metadata.
+        the_txn = self.env.txn_begin()
+        self.metadata.put('version', 14, txn=the_txn)
+        the_txn.commit()
 
 class BdbTransaction(Transaction):
     def __init__(self, msg, db, batch=False, no_magic=False):

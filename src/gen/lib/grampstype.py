@@ -31,19 +31,26 @@ Base type for all gramps types.
 #------------------------------------------------------------------------
 from gettext import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# _init_map function
+#
+#-------------------------------------------------------------------------
 def _init_map(data, key_col, data_col, blacklist=None):
-    """
-    Initialize the map, building a new map from the specified columns.
-    """
+    """Initialize the map, building a new map from the specified columns."""
     if blacklist:
-        new_data = dict([ (item[key_col], item[data_col]) 
-                        for item in data 
-                        if not item[0] in blacklist ])
+        new_data = dict([(item[key_col], item[data_col]) 
+                        for item in data if not item[0] in blacklist])
     else:
-        new_data = dict([ (item[key_col], item[data_col]) 
-                        for item in data ])
+        new_data = dict([(item[key_col], item[data_col]) for item in data])
+        
     return new_data
 
+#-------------------------------------------------------------------------
+#
+# GrampsTypeMeta class
+#
+#-------------------------------------------------------------------------
 class GrampsTypeMeta(type):
     """Metaclass for L{GrampsType}.
     
@@ -55,15 +62,30 @@ class GrampsTypeMeta(type):
         type.__init__(mcs, name, bases, namespace)
         mcs.__class_init__(namespace)
         
+#-------------------------------------------------------------------------
+#
+# GrampsType class
+#
+#-------------------------------------------------------------------------
 class GrampsType(object):
     """Base class for all Gramps object types.
         
-    _DATAMAP is a 3-tuple like (index, localized_string, english_string)
-    _BLACKLIST is a list of indices to ignore (obsolete/retired entries)
-      (gramps policy is never to delete type values, 
-       or reuse the name (TOKEN) of any specific type value)
+    @cvar _DATAMAP: 3-tuple like (index, localized_string, english_string).
+    @type _DATAMAP: list
+    @cvar _BLACKLIST: List of indices to ignore (obsolete/retired entries).
+    (gramps policy is never to delete type values, or reuse the name (TOKEN)
+    of any specific type value)
+    @type _BLACKLIST: list
+    @cvar POS_<x>: Position of <x> attribute in the serialized format of
+    an instance.
+    @type POS_<x>: int
+
+    @attention: The POS_<x> class variables reflect the serialized object, they
+    have to be updated in case the data structure or the L{serialize} method
+    changes!
 
     """
+    (POS_VALUE, POS_STRING) = range(2)
     
     _CUSTOM = 0
     _DEFAULT = 0
@@ -89,8 +111,8 @@ class GrampsType(object):
         self.set(value)
 
     def __set_tuple(self, value):
-        v,s = self._DEFAULT,u''
-        if len(value) > 0:
+        v, s = self._DEFAULT, u''
+        if value:
             v = value[0]
             if len(value) > 1:
                 s = value[1]
@@ -148,15 +170,11 @@ class GrampsType(object):
             return self._I2EMAP[self.val]
 
     def serialize(self):
-        """
-        Convert the object to a serialized tuple of data.
-        """
+        """Convert the object to a serialized tuple of data. """
         return (self.val, self.string)
 
     def unserialize(self, data):
-        """
-        Convert a serialized tuple of data to an object.
-        """
+        """Convert a serialized tuple of data to an object."""
         self.val, self.string = data
 
     def __str__(self):
@@ -172,16 +190,12 @@ class GrampsType(object):
         return self._I2SMAP
 
     def get_standard_names(self):
-        """
-        Return the list of localized names for all standard types.
-        """
+        """Return the list of localized names for all standard types."""
         return [s for (i, s) in self._I2SMAP.items()
                 if (i != self._CUSTOM) and s.strip()]
 
     def get_standard_xml(self):
-        """
-        Return the list of XML (english) names for all standard types.
-        """
+        """Return the list of XML (english) names for all standard types."""
         return [s for (i, s) in self._I2EMAP.items()
                 if (i != self._CUSTOM) and s.strip()]
 

@@ -69,3 +69,8 @@ from gen.lib.srcmediatype import SourceMediaType
 from gen.lib.eventroletype import EventRoleType
 from gen.lib.markertype import MarkerType
 from gen.lib.notetype import NoteType
+from gen.lib.styledtexttagtype import StyledTextTagType
+
+# Text
+from gen.lib.styledtexttag import StyledTextTag
+from gen.lib.styledtext import StyledText

@@ -28,7 +28,8 @@
 from gettext import gettext as _
 
 import logging
-log = logging.getLogger(".")
+_LOG = logging.getLogger(".Editors.EditNote")
+
 #-------------------------------------------------------------------------
 #
 # GTK libraries
@@ -41,19 +42,20 @@ import pango
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import const
-import Spell
 import Config
-import GrampsDisplay
-import MarkupText
+from const import GLADE_FILE
+from Spell import Spell
+from GrampsDisplay import url
+from Editors._StyledTextBuffer import (StyledTextBuffer, MATCH_START,
+                                       MATCH_END, MATCH_FLAVOR, MATCH_STRING)
 from Editors._EditPrimary import EditPrimary
 from DisplayTabs import GrampsTab, NoteBackRefList
 from GrampsWidgets import (MonitoredDataType, MonitoredCheckbox, 
                            MonitoredEntry, PrivacyButton)
-import gen.lib
+from gen.lib import Note
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -61,17 +63,16 @@ from QuestionDialog import ErrorDialog
 # Constants
 #
 #-------------------------------------------------------------------------
-#USERCHARS = "-A-Za-z0-9"
-#PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
-#HOSTCHARS = "-A-Za-z0-9"
-#PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
-##SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
-#SCHEME = "(file:/|https?:|ftps?:|webcal:)"
-#USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
-#URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
-#
-#(GENERAL, HTTP, MAIL) = range(3)
+USERCHARS = "-A-Za-z0-9"
+PASSCHARS = "-A-Za-z0-9,?;.:/!%$^*&~\"#'"
+HOSTCHARS = "-A-Za-z0-9"
+PATHCHARS = "-A-Za-z0-9_$.+!*(),;:@&=?/~#%"
+#SCHEME = "(news:|telnet:|nntp:|file:/|https?:|ftps?:|webcal:)"
+SCHEME = "(file:/|https?:|ftps?:|webcal:)"
+USER = "[" + USERCHARS + "]+(:[" + PASSCHARS + "]+)?"
+URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
 
+(GENERAL, HTTP, MAIL) = range(3)
 
 
 #-------------------------------------------------------------------------
@@ -91,17 +92,17 @@ class NoteTab(GrampsTab):
         the database, along with other state information. The GrampsTab
         uses this to access the database and to pass to and created
         child windows (such as edit dialogs).
-        @type dbstate: DbState
+        @type dbstate: L{DbState.DbState}
         @param uistate: The UI state. Used primarily to pass to any created
         subwindows.
-        @type uistate: DisplayState
+        @type uistate: L{DisplayState.DisplayState}
         @param track: The window tracking mechanism used to manage windows.
         This is only used to pass to generted child windows.
         @type track: list
         @param name: Notebook label name
         @type name: str/unicode
         @param widget: widget to be shown in the tab
-        @type widge: gtk widget
+        @type widget: gtk widget
         """
         GrampsTab.__init__(self, dbstate, uistate, track, name)
         eventbox = gtk.EventBox()
@@ -131,11 +132,12 @@ class EditNote(EditPrimary):
                  callertitle = None, extratype = None):
         """Create an EditNote window. Associate a note with the window.
         
-        @param callertitle: a text passed by calling object to add to title 
+        @param callertitle: Text passed by calling object to add to title 
         @type callertitle: str
-        @param extratype: extra NoteType values to add to the default types 
-            They are removed from the ignorelist of NoteType.
+        @param extratype: Extra L{NoteType} values to add to the default types.
+        They are removed from the ignorelist of L{NoteType}.
         @type extratype: list of int
+        
         """
         self.callertitle = callertitle
         self.extratype = extratype
@@ -146,9 +148,10 @@ class EditNote(EditPrimary):
     def empty_object(self):
         """Return an empty Note object for comparison for changes.
         
-        It is used by the base class (EditPrimary).
+        It is used by the base class L{EditPrimary}.
+        
         """
-        empty_note = gen.lib.Note();
+        empty_note = Note();
         if self.extratype:
             empty_note.set_type(self.extratype[0])
         return empty_note
@@ -157,16 +160,16 @@ class EditNote(EditPrimary):
         if self.obj.get_handle():
             if self.callertitle :
                 title = _('Note: %(id)s - %(context)s') % {
-                                        'id'      : self.obj.get_gramps_id(),
-                                        'context' : self.callertitle
-                                        }
+                    'id'      : self.obj.get_gramps_id(),
+                    'context' : self.callertitle
+                }
             else :
                 title = _('Note: %s') % self.obj.get_gramps_id()
         else:
             if self.callertitle :
                 title = _('New Note - %(context)s') % {
-                                        'context' : self.callertitle
-                                        }
+                    'context' : self.callertitle
+                }
             else :
                 title = _('New Note')  
             
@@ -179,11 +182,11 @@ class EditNote(EditPrimary):
         """Local initialization function.
         
         Perform basic initialization, including setting up widgets
-        and the glade interface. It is called by the base class (EditPrimary),
+        and the glade interface. It is called by the base class L{EditPrimary},
         and overridden here.
         
         """
-        self.top = glade.XML(const.GLADE_FILE, "edit_note", "gramps")
+        self.top = glade.XML(GLADE_FILE, "edit_note", "gramps")
         win = self.top.get_widget("edit_note")
         self.set_window(win, None, self.get_menu_title())
 
@@ -242,7 +245,7 @@ class EditNote(EditPrimary):
     def _connect_signals(self):
         """Connects any signals that need to be connected.
         
-        Called by the init routine of the base class (_EditPrimary).
+        Called by the init routine of the base class L{EditPrimary}.
         
         """
         self.define_ok_button(self.top.get_widget('ok'), self.save)
@@ -250,122 +253,68 @@ class EditNote(EditPrimary):
         self.define_help_button(self.top.get_widget('help'), '')
     
     def _create_tabbed_pages(self):
-        """
-        Create the notebook tabs and inserts them into the main
-        window.
-        """
+        """Create the notebook tabs and inserts them into the main window."""
         notebook = self.top.get_widget("note_notebook")
 
         self._add_tab(notebook, self.ntab)
 
-        self.backref_tab = self._add_tab(
-            notebook,
-            NoteBackRefList(self.dbstate, self.uistate, self.track,
-                            self.dbstate.db.find_backlink_handles(
-                                                            self.obj.handle))
-                                        )
+        handles = self.dbstate.db.find_backlink_handles(self.obj.handle)
+        rlist = NoteBackRefList(self.dbstate, self.uistate, self.track, handles)
+        self.backref_tab = self._add_tab(notebook, rlist)
         
-        self._setup_notebook_tabs( notebook)
+        self._setup_notebook_tabs(notebook)
 
 # THIS IS THE MARKUP VERSION - enable for markup
-#    def build_interface(self):
-#        FORMAT_TOOLBAR = '''
-#        <ui>
-#        <toolbar name="ToolBar">
-#          <toolitem action="italic"/>  
-#          <toolitem action="bold"/>  
-#          <toolitem action="underline"/>
-#          <separator/>
-#          <toolitem action="font"/>
-#          <toolitem action="foreground"/>
-#          <toolitem action="background"/>
-#          <separator/>
-#          <toolitem action="clear"/>
-#        </toolbar>
-#        </ui>
-#        '''
-#
-#        buffer_ = MarkupText.MarkupBuffer()
-#        buffer_.create_tag('hyperlink',
-#                          underline=pango.UNDERLINE_SINGLE,
-#                          foreground='blue')
-#        buffer_.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
-#                         ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", HTTP)
-#        buffer_.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
-#                         "(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
-#        buffer_.match_add(SCHEME + "//(" + USER + "@)?[" + HOSTCHARS + ".]+" +
-#                             "(:[0-9]+)?(" + URLPATH + ")?/?", GENERAL)
-#        self.match = None
-#        self.last_match = None
-#
-#        self.text = self.top.get_widget('text')
-#        self.text.set_editable(not self.dbstate.db.readonly)
-#        self.text.set_buffer(buffer_)
-#        self.text.connect('key-press-event',
-#                          self.on_textview_key_press_event)
-#        self.text.connect('insert-at-cursor',
-#                          self.on_textview_insert_at_cursor)
-#        self.text.connect('delete-from-cursor',
-#                          self.on_textview_delete_from_cursor)
-#        self.text.connect('paste-clipboard',
-#                          self.on_textview_paste_clipboard)
-#        self.text.connect('motion-notify-event',
-#                          self.on_textview_motion_notify_event)
-#        self.text.connect('button-press-event',
-#                          self.on_textview_button_press_event)
-#        self.text.connect('populate-popup',
-#                          self.on_textview_populate_popup)
-#        
-#        # setup spell checking interface
-#        spellcheck = Spell.Spell(self.text)
-#        liststore = gtk.ListStore(gobject.TYPE_STRING)
-#        cell = gtk.CellRendererText()
-#        lang_selector = self.top.get_widget('spell')
-#        lang_selector.set_model(liststore)
-#        lang_selector.pack_start(cell, True)
-#        lang_selector.add_attribute(cell, 'text', 0)
-#        act_lang = spellcheck.get_active_language()
-#        idx = 0
-#        for lang in spellcheck.get_all_languages():
-#            lang_selector.append_text(lang)
-#            if lang == act_lang:
-#                act_idx = idx
-#            idx = idx + 1
-#        lang_selector.set_active(act_idx)
-#        lang_selector.connect('changed', self.on_spell_change, spellcheck)
-#        #lang_selector.set_sensitive(Config.get(Config.SPELLCHECK))
-#
-#        # create a formatting toolbar
-#        if not self.dbstate.db.readonly:
-#            uimanager = gtk.UIManager()
-#            uimanager.insert_action_group(buffer_.format_action_group, 0)
-#            uimanager.add_ui_from_string(FORMAT_TOOLBAR)
-#            uimanager.ensure_update()
-#
-#            toolbar = uimanager.get_widget('/ToolBar')      
-#            toolbar.set_style(gtk.TOOLBAR_ICONS)
-#            vbox = self.top.get_widget('container')
-#            vbox.pack_start(toolbar)
-#                
-#        # setup initial values for textview and buffer_
-#        if self.obj:
-#            self.empty = False
-#            self.flow_changed(self.obj.get_format())
-#            buffer_.set_text(self.obj.get(markup=True))
-#            log.debug("Initial Note: %s" % buffer_.get_text())
-#        else:
-#            self.empty = True
-
-# NON-MARKUP VERSION - Disable for markup
     def build_interface(self):
-        buffer_ = gtk.TextBuffer()
+        FORMAT_TOOLBAR = '''
+        <ui>
+        <toolbar name="ToolBar">
+          <toolitem action="italic"/>  
+          <toolitem action="bold"/>  
+          <toolitem action="underline"/>
+          <separator/>
+          <toolitem action="font"/>
+          <toolitem action="foreground"/>
+          <toolitem action="background"/>
+          <separator/>
+          <toolitem action="clear"/>
+        </toolbar>
+        </ui>
+        '''
+
+        textbuffer = StyledTextBuffer()
+        textbuffer.create_tag('hyperlink',
+                              underline=pango.UNDERLINE_SINGLE,
+                              foreground='blue')
+        textbuffer.match_add("(www|ftp)[" + HOSTCHARS + "]*\\.[" + HOSTCHARS +
+                             ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", HTTP)
+        textbuffer.match_add("(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9][a-z0-9-]*"
+                             "(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
+        textbuffer.match_add(SCHEME + "//(" + USER + "@)?[" + HOSTCHARS +
+                             ".]+" + "(:[0-9]+)?(" + URLPATH + ")?/?", GENERAL)
+        self.match = None
+        self.last_match = None
 
         self.text = self.top.get_widget('text')
         self.text.set_editable(not self.dbstate.db.readonly)
-        self.text.set_buffer(buffer_)
+        self.text.set_buffer(textbuffer)
+        self.text.connect('key-press-event',
+                          self.on_textview_key_press_event)
+        self.text.connect('insert-at-cursor',
+                          self.on_textview_insert_at_cursor)
+        self.text.connect('delete-from-cursor',
+                          self.on_textview_delete_from_cursor)
+        self.text.connect('paste-clipboard',
+                          self.on_textview_paste_clipboard)
+        self.text.connect('motion-notify-event',
+                          self.on_textview_motion_notify_event)
+        self.text.connect('button-press-event',
+                          self.on_textview_button_press_event)
+        self.text.connect('populate-popup',
+                          self.on_textview_populate_popup)
         
         # setup spell checking interface
-        spellcheck = Spell.Spell(self.text)
+        spellcheck = Spell(self.text)
         liststore = gtk.ListStore(gobject.TYPE_STRING)
         cell = gtk.CellRendererText()
         lang_selector = self.top.get_widget('spell')
@@ -382,14 +331,62 @@ class EditNote(EditPrimary):
         lang_selector.set_active(act_idx)
         lang_selector.connect('changed', self.on_spell_change, spellcheck)
         #lang_selector.set_sensitive(Config.get(Config.SPELLCHECK))
+
+        # create a formatting toolbar
+        if not self.dbstate.db.readonly:
+            uimanager = gtk.UIManager()
+            uimanager.insert_action_group(textbuffer.format_action_group, 0)
+            uimanager.add_ui_from_string(FORMAT_TOOLBAR)
+            uimanager.ensure_update()
+
+            toolbar = uimanager.get_widget('/ToolBar')      
+            toolbar.set_style(gtk.TOOLBAR_ICONS)
+            vbox = self.top.get_widget('container')
+            vbox.pack_start(toolbar)
                 
-        # setup initial values for textview and buffer_
+        # setup initial values for textview and textbuffer
         if self.obj:
             self.empty = False
             self.flow_changed(self.obj.get_format())
-            buffer_.set_text(self.obj.get())
+            textbuffer.set_text(self.obj.get_styledtext())
+            _LOG.debug("Initial Note: %s" % str(textbuffer.get_text()))
         else:
             self.empty = True
+
+# NON-MARKUP VERSION - Disable for markup
+    #def build_interface(self):
+        #textbuffer = gtk.TextBuffer()
+
+        #self.text = self.top.get_widget('text')
+        #self.text.set_editable(not self.dbstate.db.readonly)
+        #self.text.set_buffer(textbuffer)
+        
+        ## setup spell checking interface
+        #spellcheck = Spell(self.text)
+        #liststore = gtk.ListStore(gobject.TYPE_STRING)
+        #cell = gtk.CellRendererText()
+        #lang_selector = self.top.get_widget('spell')
+        #lang_selector.set_model(liststore)
+        #lang_selector.pack_start(cell, True)
+        #lang_selector.add_attribute(cell, 'text', 0)
+        #act_lang = spellcheck.get_active_language()
+        #idx = 0
+        #for lang in spellcheck.get_all_languages():
+            #lang_selector.append_text(lang)
+            #if lang == act_lang:
+                #act_idx = idx
+            #idx = idx + 1
+        #lang_selector.set_active(act_idx)
+        #lang_selector.connect('changed', self.on_spell_change, spellcheck)
+        ##lang_selector.set_sensitive(Config.get(Config.SPELLCHECK))
+                
+        ## setup initial values for textview and textbuffer
+        #if self.obj:
+            #self.empty = False
+            #self.flow_changed(self.obj.get_format())
+            #textbuffer.set_text(self.obj.get())
+        #else:
+            #self.empty = True
             
     def build_menu_names(self, person):
         """
@@ -401,119 +398,116 @@ class EditNote(EditPrimary):
     def _post_init(self):
         self.text.grab_focus()
 
-# enable for markup
-#    def on_textview_key_press_event(self, textview, event):
-#        """Handle shortcuts in the TextView."""
-#        return textview.get_buffer().on_key_press_event(textview, event)
-#    
-#    def on_textview_insert_at_cursor(self, textview, string):
-#        log.debug("Textview insert '%s'" % string)
-#        
-#    def on_textview_delete_from_cursor(self, textview, type, count):
-#        log.debug("Textview delete type %d count %d" % (type, count))
-#        
-#    def on_textview_paste_clipboard(self, textview):
-#        log.debug("Textview paste clipboard")
-#    
-#    def on_textview_motion_notify_event(self, textview, event):
-#        window = textview.get_window(gtk.TEXT_WINDOW_TEXT)
-#        x, y = textview.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
-#                                                int(event.x), int(event.y))
-#        iter = textview.get_iter_at_location(x, y)
-#        buffer_ = textview.get_buffer()
-#        self.match = buffer_.match_check(iter.get_offset())
-#        
-#        if self.match != self.last_match:
-#            start, end = buffer_.get_bounds()
-#            buffer_.remove_tag_by_name('hyperlink', start, end)
-#            if self.match:
-#                start_offset = self.match[MarkupText.MATCH_START]
-#                end_offset = self.match[MarkupText.MATCH_END]
-#                
-#                start = buffer_.get_iter_at_offset(start_offset)
-#                end = buffer_.get_iter_at_offset(end_offset)
-#
-#                buffer_.apply_tag_by_name('hyperlink', start, end)
-#                window.set_cursor(self.hand_cursor)
-#            else:
-#                window.set_cursor(self.regular_cursor)
-#
-#        self.last_match = self.match
-#        
-#        textview.window.get_pointer()
-#        return False
-#
-#    def on_textview_button_press_event(self, textview, event):
-#        if ((event.type == gtk.gdk.BUTTON_PRESS) and
-#            (event.button == 1) and
-#            (event.state and gtk.gdk.CONTROL_MASK) and
-#            (self.match)):
-#            
-#            flavor = self.match[MarkupText.MATCH_FLAVOR]
-#            url = self.match[MarkupText.MATCH_STRING]
-#            self.open_url_cb(None, url, flavor)
-#            
-#        return False
-#        
-#    def on_textview_populate_popup(self, textview, menu):
-#        """Insert extra menuitems according to matched pattern."""
-#        if self.match:
-#            flavor = self.match[MarkupText.MATCH_FLAVOR]
-#            url = self.match[MarkupText.MATCH_STRING]
-#            
-#            if flavor == MAIL:
-#                open_menu = gtk.MenuItem(_('_Send Mail To...'))
-#                copy_menu = gtk.MenuItem(_('Copy _E-mail Address'))
-#            else:
-#                open_menu = gtk.MenuItem(_('_Open Link'))
-#                copy_menu = gtk.MenuItem(_('Copy _Link Address'))
-#
-#            copy_menu.connect('activate', self.copy_url_cb, url, flavor)
-#            copy_menu.show()
-#            menu.prepend(copy_menu)
-#            
-#            open_menu.connect('activate', self.open_url_cb, url, flavor)
-#            open_menu.show()
-#            menu.prepend(open_menu)
+    def on_textview_key_press_event(self, textview, event):
+        """Handle shortcuts in the TextView."""
+        return textview.get_buffer().on_key_press_event(textview, event)
+    
+    def on_textview_insert_at_cursor(self, textview, string):
+        _LOG.debug("Textview insert '%s'" % string)
+        
+    def on_textview_delete_from_cursor(self, textview, type, count):
+        _LOG.debug("Textview delete type %d count %d" % (type, count))
+        
+    def on_textview_paste_clipboard(self, textview):
+        _LOG.debug("Textview paste clipboard")
+    
+    def on_textview_motion_notify_event(self, textview, event):
+        window = textview.get_window(gtk.TEXT_WINDOW_TEXT)
+        x, y = textview.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
+                                                int(event.x), int(event.y))
+        iter = textview.get_iter_at_location(x, y)
+        textbuffer = textview.get_buffer()
+        self.match = textbuffer.match_check(iter.get_offset())
+        
+        if self.match != self.last_match:
+            start, end = textbuffer.get_bounds()
+            textbuffer.remove_tag_by_name('hyperlink', start, end)
+            if self.match:
+                start_offset = self.match[MATCH_START]
+                end_offset = self.match[MATCH_END]
+                
+                start = textbuffer.get_iter_at_offset(start_offset)
+                end = textbuffer.get_iter_at_offset(end_offset)
+
+                textbuffer.apply_tag_by_name('hyperlink', start, end)
+                window.set_cursor(self.hand_cursor)
+            else:
+                window.set_cursor(self.regular_cursor)
+
+        self.last_match = self.match
+        
+        textview.window.get_pointer()
+        return False
+
+    def on_textview_button_press_event(self, textview, event):
+        if ((event.type == gtk.gdk.BUTTON_PRESS) and
+            (event.button == 1) and
+            (event.state and gtk.gdk.CONTROL_MASK) and
+            (self.match)):
+            
+            flavor = self.match[MATCH_FLAVOR]
+            url = self.match[MATCH_STRING]
+            self.open_url_cb(None, url, flavor)
+            
+        return False
+        
+    def on_textview_populate_popup(self, textview, menu):
+        """Insert extra menuitems according to matched pattern."""
+        if self.match:
+            flavor = self.match[MATCH_FLAVOR]
+            url = self.match[MATCH_STRING]
+            
+            if flavor == MAIL:
+                open_menu = gtk.MenuItem(_('_Send Mail To...'))
+                copy_menu = gtk.MenuItem(_('Copy _E-mail Address'))
+            else:
+                open_menu = gtk.MenuItem(_('_Open Link'))
+                copy_menu = gtk.MenuItem(_('Copy _Link Address'))
+
+            copy_menu.connect('activate', self.copy_url_cb, url, flavor)
+            copy_menu.show()
+            menu.prepend(copy_menu)
+            
+            open_menu.connect('activate', self.open_url_cb, url, flavor)
+            open_menu.show()
+            menu.prepend(open_menu)
 
     def on_spell_change(self, combobox, spell):
         """Set spell checker language according to user selection."""
         lang = combobox.get_active_text()
         spell.set_active_language(lang)
 
-# enable for markup
-#    def open_url_cb(self, menuitem, url, flavor):
-#        if not url:
-#            return
-#        
-#        if flavor == HTTP:
-#            url = 'http:' + url
-#        elif flavor == MAIL:
-#            if not url.startswith('mailto:'):
-#                url = 'mailto:' + url
-#        elif flavor == GENERAL:
-#            pass
-#        else:
-#            return
-#        
-#        GrampsDisplay.url(url)
-#    
-#    def copy_url_cb(self, menuitem, url, flavor):
-#        """Copy url to both useful selections."""
-#        clipboard = gtk.Clipboard(selection="CLIPBOARD")
-#        clipboard.set_text(url)
-#        
-#        clipboard = gtk.Clipboard(selection="PRIMARY")
-#        clipboard.set_text(url)
+    def open_url_cb(self, menuitem, url, flavor):
+        if not url:
+            return
+        
+        if flavor == HTTP:
+            url = 'http:' + url
+        elif flavor == MAIL:
+            if not url.startswith('mailto:'):
+                url = 'mailto:' + url
+        elif flavor == GENERAL:
+            pass
+        else:
+            return
+        
+        url(url)
+    
+    def copy_url_cb(self, menuitem, url, flavor):
+        """Copy url to both useful selections."""
+        clipboard = gtk.Clipboard(selection="CLIPBOARD")
+        clipboard.set_text(url)
+        
+        clipboard = gtk.Clipboard(selection="PRIMARY")
+        clipboard.set_text(url)
     
     def update_note(self):
         """Update the Note object with current value."""
         if self.obj:
-            buffer_ = self.text.get_buffer()
-            (start, stop) = buffer_.get_bounds()
-            text = buffer_.get_text(start, stop)
-            self.obj.set(text)
-            log.debug(text)
+            textbuffer = self.text.get_buffer()
+            text = textbuffer.get_text()
+            self.obj.set_styledtext(text)
+            _LOG.debug(str(text))
 
     def flow_changed(self, active):
         if active:
