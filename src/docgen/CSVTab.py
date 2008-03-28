@@ -50,7 +50,7 @@ class CSVTab(TabbedDoc):
         else:
             self.filename = filename
 
-        self.f = open(filename, "wb")
+        self.f = open(self.filename, "wb")
         self.writer = csv.writer(self.f)
 
     def close(self):
