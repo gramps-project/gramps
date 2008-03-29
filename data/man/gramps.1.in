@@ -278,6 +278,18 @@ To run the Verify tool from the commandline and output the result to stdout:
 Finally, to start normal interactive session type: 
 \fBgramps\fR 
 
+.SH ENVIRONMENT VARIABLES
+The program checks whether these environment variables are set:
+
+\fBLANG\fR - describe, which language to use:
+Ex.: for polish language this variable has to be set to pl_PL.UTF-8.
+
+\fBGRAMPSHOME\fR - if set, force GRAMPS to use the specified directory to keep 
+program settings and databases there. By default, this variable is not set and 
+gramps assumes that the folder with all databases and profile settings 
+should be created within the user profile folder (described by environment 
+variable HOME for Linux or USERPROFILE for Windows 2000/XP).
+
 .SH CONCEPTS
 Supports a python\-based plugin system, allowing import and export writers, 
 report generators, tools, and display filters to be added without modification 
