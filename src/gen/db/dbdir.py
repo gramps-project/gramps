@@ -1185,7 +1185,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         raise FileVersionError(
             "The database version is not supported by this "
             "version of GRAMPS.\nPlease upgrade to the "
-            "corresponding version or use XML for porting"
+            "corresponding version or use XML for porting "
             "data between different database versions.")
 
     def close(self):
