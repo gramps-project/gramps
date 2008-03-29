@@ -488,7 +488,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
         # If we cannot work with this DB version,
         # it makes no sense to go further
-        if not self.version_supported:
+        if not self.version_supported():
             self.__close_early()
 
         self.family_map     = self.__open_table(self.full_name, FAMILY_TBL)
