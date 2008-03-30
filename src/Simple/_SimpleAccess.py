@@ -571,6 +571,18 @@ class SimpleAccess:
         else:
             return u''
 
+    def event_date_obj(self, event):
+        """
+        Return a string indicating the date of the event
+
+        @param event: Event object
+        @type event: L{gen.lib.Event}
+        @return: Returns a string indicating the date of the event
+        @rtype: unicode
+        """
+        assert(isinstance(event, (gen.lib.Event, NoneType)))
+        return event.get_date_object()
+
     def event_type(self, event):
         """
         Return a string indicating the type of the event

@@ -59,7 +59,7 @@ def run(database, document, person):
 
     for event in event_list:
         stab.row(event, 
-                 sdb.event_date(event), 
+                 sdb.event_date_obj(event), 
                  sdb.event_place(event))
     stab.write()
 
@@ -104,7 +104,7 @@ def run_fam(database, document, family):
 
     for (person, event) in event_list:
         stab.row(person, sdb.event_type(event), 
-                 sdb.event_date(event), 
+                 sdb.event_date_obj(event), 
                  sdb.event_place(event))
     stab.write()
 
@@ -114,7 +114,7 @@ def run_fam(database, document, family):
                  _("Event Date"), _("Event Place"))
     for (person, event) in event_list_children:
         stab.row(person, sdb.event_type(event), 
-                 sdb.event_date(event), 
+                 sdb.event_date_obj(event), 
                  sdb.event_place(event))
     stab.write()
                                 

@@ -113,8 +113,8 @@ def make_details(gender, person, sa, sd, database, stab) :
     rem_str = ""
     while person:
         person_handle = person.handle
-        stab.row(person, sa.birth_date(person),
-                 sa.death_date(person), rem_str)
+        stab.row(person, sa.birth_date_obj(person),
+                 sa.death_date_obj(person), rem_str)
         #if rem_str:
         #    sd.paragraph(__FMT_REM % (_("Remark"), rem_str))
 
