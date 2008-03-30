@@ -537,9 +537,19 @@ class GtkPrint(CairoDoc):
         # run print dialog
         while True:
             self.preview = None
-            res = operation.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG, None)
-            if self.preview is None:
+            res = operation.run(gtk.PRINT_OPERATION_ACTION_PRINT_DIALOG)
+            if self.preview is None: # cancel or print
                 break
+            # set up printing again; can't reuse PrintOperation?
+            operation = gtk.PrintOperation()
+            operation.set_default_page_setup(page_setup)
+            operation.connect("begin_print", self.on_begin_print)
+            operation.connect("draw_page", self.on_draw_page)
+            operation.connect("paginate", self.on_paginate)
+            operation.connect("preview", self.on_preview)
+            # set print settings if it was stored previously
+            if PRINT_SETTINGS is not None:
+                operation.set_print_settings(PRINT_SETTINGS)
         
         # store print settings if printing was successful
         if res == gtk.PRINT_OPERATION_RESULT_APPLY:
