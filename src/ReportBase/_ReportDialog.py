@@ -48,8 +48,8 @@ import Config
 import Errors
 from QuestionDialog import ErrorDialog, OptionDialog
 from _Constants import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK, 
-                        CATEGORY_VIEW, CATEGORY_CODE, CATEGORY_WEB, 
-                        CATEGORY_GRAPHVIZ, standalone_categories)
+                        CATEGORY_CODE, CATEGORY_WEB, CATEGORY_GRAPHVIZ, 
+                        standalone_categories)
 from _BareReportDialog import BareReportDialog
 from _FileEntry import FileEntry
 
@@ -287,7 +287,7 @@ def report(dbstate,uistate,person,report_class, options_class,
     elif category == CATEGORY_WEB:
         from _WebReportDialog import WebReportDialog
         dialog_class = WebReportDialog
-    elif category in (CATEGORY_BOOK,CATEGORY_CODE,CATEGORY_VIEW):
+    elif category in (CATEGORY_BOOK, CATEGORY_CODE):
         try:
             report_class(dbstate,uistate)
         except Errors.WindowActiveError:

@@ -45,16 +45,14 @@ CATEGORY_TEXT     = 0
 CATEGORY_DRAW     = 1
 CATEGORY_CODE     = 2
 CATEGORY_WEB      = 3
-CATEGORY_VIEW     = 4
-CATEGORY_BOOK     = 5
-CATEGORY_GRAPHVIZ = 6
+CATEGORY_BOOK     = 4
+CATEGORY_GRAPHVIZ = 5
 
 standalone_categories = {
     CATEGORY_TEXT     : _("Text Reports"),
     CATEGORY_DRAW     : _("Graphical Reports"),
     CATEGORY_CODE     : _("Code Generators"),
     CATEGORY_WEB      : _("Web Pages"),
-    CATEGORY_VIEW     : _("View"),
     CATEGORY_BOOK     : _("Books"),
     CATEGORY_GRAPHVIZ : _("Graphs"),
 }
