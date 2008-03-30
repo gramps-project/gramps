@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,23 +21,15 @@
 
 # $Id$
 
-"""Reports/View/Summary of the Database"""
+"""Reports/Text Reports/Summary of the Database"""
 
 #------------------------------------------------------------------------
 #
 # standard python modules
 #
 #------------------------------------------------------------------------
-import os
 import posixpath
 from gettext import gettext as _
-
-#------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#------------------------------------------------------------------------
-from gtk import glade
 
 #------------------------------------------------------------------------
 #
@@ -45,147 +38,268 @@ from gtk import glade
 #------------------------------------------------------------------------
 import gen.lib
 from PluginUtils import register_report
+from ReportBase import Report, ReportUtils, MenuReportOptions, \
+     CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
+import BaseDoc
 from Utils import media_path_full
-from ReportBase import CATEGORY_VIEW, MODE_GUI
 import DateHandler
-import ManagedWindow
+
 
 #------------------------------------------------------------------------
 #
-# Build the text of the report
+# SummaryReport
 #
 #------------------------------------------------------------------------
-def build_report(database):
-
-    personList = database.get_person_handles(sort_handles=False)
-    familyList = database.get_family_handles()
-
-    with_photos = 0
-    total_photos = 0
-    incomp_names = 0
-    disconnected = 0
-    missing_bday = 0
-    males = 0
-    females = 0
-    unknowns = 0
-    bytes = 0
-    namelist = []
-    notfound = []
-    
-    pobjects = len(database.get_media_object_handles())
-    for photo_id in database.get_media_object_handles():
-        photo = database.get_object_from_handle(photo_id)
-        try:
-            bytes = bytes + posixpath.getsize(media_path_full(database, 
-                                                            photo.get_path()))
-        except:
-            notfound.append(photo.get_path())
+class SummaryReport(Report):
+    """
+    This report produces a summary of the objects in the database.
+    """
+    def __init__(self, database, options_class):
+        """
+        Create the SummaryReport object that produces the report.
         
-    for person_handle in personList:
-        person = database.get_person_from_handle(person_handle)
-        if not person:
-            continue
-        length = len(person.get_media_list())
-        if length > 0:
-            with_photos = with_photos + 1
-            total_photos = total_photos + length
-                
-        person = database.get_person_from_handle(person_handle)
-        name = person.get_primary_name()
-        if name.get_first_name() == "" or name.get_surname() == "":
-            incomp_names = incomp_names + 1
-        if (not person.get_main_parents_family_handle()) and (not len(person.get_family_handle_list())):
-            disconnected = disconnected + 1
-        birth_ref = person.get_birth_ref()
-        if birth_ref:
-            birth = database.get_event_from_handle(birth_ref.ref)
-            if not DateHandler.get_date(birth):
-                missing_bday = missing_bday + 1
-        else:
-            missing_bday = missing_bday + 1
-        if person.get_gender() == gen.lib.Person.FEMALE:
-            females = females + 1
-        elif person.get_gender() == gen.lib.Person.MALE:
-            males = males + 1
-        else:
-            unknowns += 1
-        if name.get_surname() not in namelist:
-            namelist.append(name.get_surname())
+        The arguments are:
+
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        """
+        Report.__init__(self, database, options_class)
+        self.__db = database
+        
+    def write_report(self):
+        """
+        Overridden function to generate the report.
+        """
+        self.doc.start_paragraph("SR-Title")
+        title = _("Database Summary Report")
+        self.doc.write_text(title)
+        self.doc.end_paragraph()
+        
+        self.summarize_people()
+        self.summarize_families()
+        self.summarize_media()
             
-    text = _("Individuals") + "\n"
-    text = text + "----------------------------\n"
-    text = text + "%s: %d\n" % (_("Number of individuals"),len(personList))
-    text = text + "%s: %d\n" % (_("Males"),males)
-    text = text + "%s: %d\n" % (_("Females"),females)
-    text = text + "%s: %d\n" % (_("Individuals with unknown gender"),unknowns)
-    text = text + "%s: %d\n" % (_("Individuals with incomplete names"),incomp_names)
-    text = text + "%s: %d\n" % (_("Individuals missing birth dates"),missing_bday)
-    text = text + "%s: %d\n" % (_("Disconnected individuals"),disconnected)
-    text = text + "\n%s\n" % _("Family Information")
-    text = text + "----------------------------\n"
-    text = text + "%s: %d\n" % (_("Number of families"),len(familyList))
-    text = text + "%s: %d\n" % (_("Unique surnames"),len(namelist))
-    text = text + "\n%s\n" % _("Media Objects")
-    text = text + "----------------------------\n"
-    text = text + "%s: %d\n" % (_("Individuals with media objects"),with_photos)
-    text = text + "%s: %d\n" % (_("Total number of media object references"),total_photos)
-    text = text + "%s: %d\n" % (_("Number of unique media objects"),pobjects)
-    text = text + "%s: %d %s\n" % (_("Total size of media objects"),bytes,\
-                                    _("bytes"))
+    def summarize_people(self):
+        """
+        Write a summary of all the people in the database.
+        """
+        with_media = 0
+        incomp_names = 0
+        disconnected = 0
+        missing_bday = 0
+        males = 0
+        females = 0
+        unknowns = 0
+        namelist = []
+        
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(_("Individuals"))
+        self.doc.end_paragraph()
+        
+        person_list = self.__db.get_person_handles(sort_handles=False)
+        for person_handle in person_list:
+            person = self.__db.get_person_from_handle(person_handle)
+            if not person:
+                continue
+            
+            # Count people with media.
+            length = len(person.get_media_list())
+            if length > 0:
+                with_media = with_media + 1
+            
+            # Count people with incomplete names.
+            name = person.get_primary_name()
+            if name.get_first_name() == "" or name.get_surname() == "":
+                incomp_names = incomp_names + 1
+                
+            # Count people without families.
+            if (not person.get_main_parents_family_handle()) and \
+               (not len(person.get_family_handle_list())):
+                disconnected = disconnected + 1
+            
+            # Count missing birthdays.
+            birth_ref = person.get_birth_ref()
+            if birth_ref:
+                birth = self.__db.get_event_from_handle(birth_ref.ref)
+                if not DateHandler.get_date(birth):
+                    missing_bday = missing_bday + 1
+            else:
+                missing_bday = missing_bday + 1
+                
+            # Count genders.
+            if person.get_gender() == gen.lib.Person.FEMALE:
+                females = females + 1
+            elif person.get_gender() == gen.lib.Person.MALE:
+                males = males + 1
+            else:
+                unknowns += 1
+                
+            # Count unique surnames
+            if name.get_surname() not in namelist:
+                namelist.append(name.get_surname())
+        
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Number of individuals: %d") % len(person_list))
+        self.doc.end_paragraph()
+        
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Males: %d") % males)
+        self.doc.end_paragraph()
+        
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Females: %d") % females)
+        self.doc.end_paragraph()
+        
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Individuals with unknown gender: %d") % unknowns)
+        self.doc.end_paragraph()
+                            
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Individuals with incomplete names: %d") % 
+                            incomp_names)
+        self.doc.end_paragraph()
+        
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Individuals missing birth dates: %d") % 
+                            missing_bday)
+        self.doc.end_paragraph()
 
-    if len(notfound) > 0:
-        text = text + "\n%s\n" % _("Missing Media Objects")
-        text = text + "----------------------------\n"
-        for p in notfound:
-            text = text + "%s\n" % p
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Disconnected individuals: %d") % disconnected)
+        self.doc.end_paragraph()
+                            
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Unique surnames: %d") % len(namelist))
+        self.doc.end_paragraph()
+        
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Individuals with media objects: %d") % 
+                            with_media)
+        self.doc.end_paragraph()
+
+    def summarize_families(self):
+        """
+        Write a summary of all the families in the database.
+        """
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(_("Family Information"))
+        self.doc.end_paragraph()
+        
+        family_list = self.__db.get_family_handles()
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Number of families: %d") % len(family_list))
+        self.doc.end_paragraph()
+
+    def summarize_media(self):
+        """
+        Write a summary of all the media in the database.
+        """
+        total_media = 0
+        bytes = 0
+        notfound = []
+        
+        self.doc.start_paragraph("SR-Heading")
+        self.doc.write_text(_("Media Objects"))
+        self.doc.end_paragraph()
+        
+        total_media = len(self.__db.get_media_object_handles())
+        for media_id in self.__db.get_media_object_handles():
+            media = self.__db.get_object_from_handle(media_id)
+            try:
+                bytes = bytes + posixpath.getsize(media_path_full(self.__db, 
+                                                            media.get_path()))
+            except:
+                notfound.append(media.get_path())
+                
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Number of unique media objects: %d") % 
+                            total_media)
+        self.doc.end_paragraph()
+        
+        self.doc.start_paragraph("SR-Normal")
+        self.doc.write_text(_("Total size of media objects: %d bytes") % bytes)
+        self.doc.end_paragraph()
     
-    return text
-    
+        if len(notfound) > 0:
+            self.doc.start_paragraph("SR-Heading")
+            self.doc.write_text(_("Missing Media Objects"))
+            self.doc.end_paragraph()
+
+            for media_path in notfound:
+                self.doc.start_paragraph("SR-Normal")
+                self.doc.write_text(media_path)
+                self.doc.end_paragraph()
+
 #------------------------------------------------------------------------
 #
-# Output report in a window
+# SummaryOptions
 #
 #------------------------------------------------------------------------
-class SummaryReport(ManagedWindow.ManagedWindow):
-    def __init__(self, dbstate, uistate):
-        self.title = _('Database summary')
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+class SummaryOptions(MenuReportOptions):
+    """
+    SummaryOptions provides the options for the SummaryReport.
+    """
+    def __init__(self, name, dbase):
+        MenuReportOptions.__init__(self, name, dbase)
+        
+    def add_menu_options(self, menu):
+        """
+        Add options to the menu for the marker report.
+        """
+        pass
 
-        database = dbstate.db
-        text = build_report(database)
-    
-        base = os.path.dirname(__file__)
-        glade_file = "%s/summary.glade" % base
-
-        topDialog = glade.XML(glade_file,"summary","gramps")
-        topDialog.signal_autoconnect({
-            "destroy_passed_object" : self.close,
-        })
-
-        window = topDialog.get_widget("summary")
-        self.set_window(window,topDialog.get_widget('title'),self.title)
-        textwindow = topDialog.get_widget("textwindow")
-        textwindow.get_buffer().set_text(text)
-        self.show()
-
-    def build_menu_names(self, obj):
-        return (self.title,None)
+    def make_default_style(self, default_style):
+        """Make the default output style for the Summary Report."""
+        font = BaseDoc.FontStyle()
+        font.set_size(16)
+        font.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        font.set_bold(1)
+        para = BaseDoc.ParagraphStyle()
+        para.set_header_level(1)
+        para.set_bottom_border(1)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_font(font)
+        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_description(_("The style used for the title of the page."))
+        default_style.add_paragraph_style("SR-Title", para)
+        
+        font = BaseDoc.FontStyle()
+        font.set_size(12)
+        font.set_bold(True)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_top_margin(0)
+        para.set_description(_('The basic style used for sub-headings.'))
+        default_style.add_paragraph_style("SR-Heading", para)
+        
+        font = BaseDoc.FontStyle()
+        font.set_size(12)
+        para = BaseDoc.ParagraphStyle()
+        para.set(first_indent=-0.75, lmargin=.75)
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_paragraph_style("SR-Normal", para)
 
 #-------------------------------------------------------------------------
 #
-#
+# register_report
 #
 #-------------------------------------------------------------------------
 register_report(
     name = 'summary',
-    category = CATEGORY_VIEW,
+    category = CATEGORY_TEXT,
     report_class = SummaryReport,
-    options_class = None,
-    modes = MODE_GUI,
-    translated_name = _("Summary of the Database"),
+    options_class = SummaryOptions,
+    modes = MODE_GUI | MODE_BKI | MODE_CLI,
+    translated_name = _("Database Summary Report"),
     status = _("Stable"),
-    description= _("Provides a summary of the current database"),
-    author_name="Brian G. Matherly",
-    author_email="brian@gramps-project.org",
-    require_active=False
+    description = _("Provides a summary of the current database"),
+    author_name = "Brian G. Matherly",
+    author_email = "brian@gramps-project.org",
+    require_active = False
     )
