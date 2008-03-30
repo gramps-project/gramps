@@ -1,7 +1,8 @@
 #
-# NotRelated.py - Plugin for Gramps
+# Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007 Stephane Charette
+# Copyright (C) 2008 Brian Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,10 +43,9 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
-from ReportBase import ReportUtils, CATEGORY_VIEW, MODE_GUI
+from PluginUtils import register_tool, Tool
+from ReportBase import ReportUtils
 from Editors import EditPerson, EditFamily
-from QuestionDialog import WarningDialog
 import ManagedWindow
 import Utils
 import GrampsDisplay
@@ -64,9 +64,10 @@ WIKI_HELP_SEC = _('manual|Not_Related...')
 # 
 #
 #------------------------------------------------------------------------
-class NotRelated(ManagedWindow.ManagedWindow) :
+class NotRelated(Tool.Tool, ManagedWindow.ManagedWindow) :
 
-    def __init__(self, dbstate, uistate) :
+    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+        Tool.Tool.__init__(self, dbstate, options_class, name)
         person = dbstate.get_active_person()
         self.name = person.get_primary_name().get_regular_name()
         self.title = _('Not related to "%s"') % self.name
@@ -406,18 +407,31 @@ class NotRelated(ManagedWindow.ManagedWindow) :
 
     def build_menu_names(self, obj):
         return (self.title, None)
+    
+#------------------------------------------------------------------------
+#
+# NotRelatedOptions
+#
+#------------------------------------------------------------------------
+class NotRelatedOptions(Tool.ToolOptions):
+    """
+    Defines options and provides handling interface.
+    """
+    def __init__(self, name, person_id=None):
+        """ Initialize the options class """
+        Tool.ToolOptions.__init__(self, name, person_id)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-register_report(
+register_tool(
     name = 'not_related',
-    category = CATEGORY_VIEW,
-    report_class = NotRelated,
-    options_class = None,
-    modes = MODE_GUI,
+    category = Tool.TOOL_UTILS,
+    tool_class = NotRelated,
+    options_class = NotRelatedOptions,
+    modes = Tool.MODE_GUI,
     translated_name = _("Not Related"),
     status = _("Stable"),
     author_name = "Stephane Charette",
