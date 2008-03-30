@@ -74,7 +74,8 @@ class SummaryReport(Report):
         """
         self.doc.start_paragraph("SR-Title")
         title = _("Database Summary Report")
-        self.doc.write_text(title)
+        mark = BaseDoc.IndexMark(title, BaseDoc.INDEX_TYPE_TOC, 1)
+        self.doc.write_text(title, mark)
         self.doc.end_paragraph()
         
         self.summarize_people()
