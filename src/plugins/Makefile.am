@@ -18,7 +18,6 @@ pkgdata_PYTHON = \
 	ChangeNames.py\
 	Check.py\
 	CmdRef.py\
-	CountAncestors.py\
 	CustomBookText.py\
 	DateParserDisplayTest.py\
 	DefaultGramplets.py\
@@ -53,6 +52,7 @@ pkgdata_PYTHON = \
 	MediaManager.py\
 	NarrativeWeb.py\
 	NotRelated.py\
+	NumberOfAncestorsReport.py\
 	OnThisDay.py\
 	OwnerEditor.py\
 	PatchNames.py\

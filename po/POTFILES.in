@@ -258,7 +258,6 @@ src/plugins/ChangeNames.py
 src/plugins/ChangeTypes.py
 src/plugins/Check.py
 src/plugins/CmdRef.py
-src/plugins/CountAncestors.py
 src/plugins/CustomBookText.py
 src/plugins/DateParserDisplayTest.py
 src/plugins/DefaultGramplets.py
@@ -293,6 +292,7 @@ src/plugins/MarkerReport.py
 src/plugins/MediaManager.py
 src/plugins/NarrativeWeb.py
 src/plugins/NotRelated.py
+src/plugins/NumberOfAncestorsReport.py
 src/plugins/OnThisDay.py
 src/plugins/OwnerEditor.py
 src/plugins/PatchNames.py
