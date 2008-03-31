@@ -303,7 +303,6 @@ class DbManager(CLIDbManager):
         self.top.drag_dest_set(gtk.DEST_DEFAULT_ALL, ddtargets, ACTION_COPY)
 
         self.remove.connect('clicked', self.__remove_db)
-        self.connect.connect('clicked', self.__load_selected)
         self.new.connect('clicked', self.__new_db)
         self.rename.connect('clicked', self.__rename_db)
         self.repair.connect('clicked', self.__repair_db)
@@ -325,27 +324,9 @@ class DbManager(CLIDbManager):
         """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             if self.connect.get_property('sensitive'):
-                return self.__load_selected()
+                self.top.response(gtk.RESPONSE_OK)
+                return True
         return False
-
-    def __load_selected(self, obj=None):
-        """
-        Load the selected family tree if possible, return True
-        if ok, and set RESPONSE_OK
-        """
-        store, node = self.selection.get_selected()
-        if not node:
-            return
-        # don't open a locked file
-        if store.get_value(node, STOCK_COL) == 'gramps-lock':
-            self.__ask_to_break_lock(store, node)
-            return
-        # don't open a version
-        if len(store.get_path(node)) > 1:
-            return
-        if store.get_value(node, PATH_COL):
-            self.top.response(gtk.RESPONSE_OK)
-        return True
 
     def __key_press(self, obj, event):
         """
@@ -355,7 +336,8 @@ class DbManager(CLIDbManager):
         if not event.state or event.state in (gtk.gdk.MOD2_MASK,):
             if event.keyval in (_RETURN, _KP_ENTER):
                 if self.connect.get_property('sensitive'):
-                    return self.__load_selected()
+                    self.top.response(gtk.RESPONSE_OK)
+                    return True
         return False
 
     def __selection_changed(self, selection):
@@ -500,15 +482,24 @@ class DbManager(CLIDbManager):
         Runs the dialog, returning None if nothing has been chosen,
         or the path and name if something has been selected
         """
-        value = self.top.run()
-        if value == gtk.RESPONSE_OK:
-            (model, node) = self.selection.get_selected()
-            if node:
+        while True:
+            value = self.top.run()
+            if value == gtk.RESPONSE_OK:
+                store, node = self.selection.get_selected()
+                # don't open a locked file
+                if store.get_value(node, STOCK_COL) == 'gramps-lock':
+                    self.__ask_to_break_lock(store, node)
+                    continue 
+                # don't open a version
+                if len(store.get_path(node)) > 1:
+                    continue
+                if node:
+                    self.top.destroy()
+                    return (store.get_value(node, PATH_COL),
+                            store.get_value(node, NAME_COL))
+            else:
                 self.top.destroy()
-                return (model.get_value(node, PATH_COL),
-                        model.get_value(node, NAME_COL))
-        self.top.destroy()
-        return None
+                return None
 
     def __ask_to_break_lock(self, store, node):
         """
