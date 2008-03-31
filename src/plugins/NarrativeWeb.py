@@ -48,7 +48,7 @@ import shutil
 import codecs
 import tarfile
 import operator
-from gettext import gettext as _
+from TransUtils import sgettext as _
 from cStringIO import StringIO
 from textwrap import TextWrapper
 from unicodedata import normalize
@@ -213,6 +213,11 @@ def html_escape(text):
     return ''.join([html_escape_table.get(c, c) for c in text])
 
 
+def name_to_md5(text):
+    """This creates an MD5 hex string to be used as filename."""
+    return md5.new(text).hexdigest()
+
+
 class BasePage:
     """
     This the base class to write certain HTML pages.
@@ -246,10 +251,6 @@ class BasePage:
         self.noid = options['nogid']
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
-
-    def lnkfmt(self, text):
-        """This creates an MD5 hex string to be used as filename."""
-        return md5.new(text).hexdigest()
 
     def display_footer(self, of):
         of.write('</div>\n\n')          # Terminate div_content
@@ -357,7 +358,10 @@ class BasePage:
         of.write('\t</ol>\n')
         of.write('</div>\n\n')
 
-        self.start_div_content(of, self.report.cur_fname, content_divid)
+        divid = ''
+        if content_divid:
+            divid = ' id="%s"' % content_divid
+        of.write('<div%s class="content">\n' % divid)
 
     def display_nav_links(self, of, currentsection):
         navs = [
@@ -378,47 +382,6 @@ class BasePage:
                     # TODO. Check if build_url_fname can be used.
                     url = '/'.join(['..']*3 + [url])
                 self.display_nav_link(of, url, nav_text, currentsection)
-
-    def start_div_content(self, of, fname, content_divid=None):
-        """
-        Give unique ID to 'content' div for styling specific sections separately.
-        Because of how this script was originally written, the appropriate section
-        ID is determined by looking for a directory or HTML file name to associate
-        with that section.
-
-        Note. The divid for the content is determined by the caller of display_header.
-        """
-
-        if content_divid:
-            divid = content_divid
-        elif "index" in fname:
-            divid = "Home"
-        elif "introduction" in fname:
-            divid = "Introduction"
-        elif "surnames" in fname:
-            divid = "Surnames"
-        elif "ppl" in fname:
-            divid = "IndividualDetail"
-        elif "sources" in fname:
-            divid = "Sources"
-        elif "src" in fname:
-            divid = "SourceDetail"
-        elif "plc" in fname:
-            divid = "PlaceDetail"
-        elif "gallery" in fname:
-            divid = "Gallery"
-        elif "img" in fname:
-            divid = "GalleryDetail"
-        elif "download" in fname:
-            divid = "Download"
-        elif "contact" in fname:
-            divid = "Contact"
-        else:
-            divid = ''
-
-        if divid:
-            divid = ' id="%s"' % divid
-        of.write('<div%s class="content">\n' % divid)
 
     # TODO. Move this logic to a higher level (caller of display_header).
 
@@ -496,9 +459,11 @@ class BasePage:
         of.write('\t<div id="indivgallery" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('Gallery'))
         for mediaref in photolist:
+
             photo_handle = mediaref.get_reference_handle()
             photo = db.get_object_from_handle(photo_handle)
             mime_type = photo.get_mime_type()
+
             title = photo.get_description()
             if title == "":
                 title = "(untitled)"
@@ -667,24 +632,6 @@ class BasePage:
             of.write('&nbsp;<span class="grampsid">[%s]</span>' % gid)
         of.write('</a>')
 
-    def surname_link(self, of, name, opt_val=None, up=False):
-        url = self.report.build_url_fname_html(self.lnkfmt(name), 'srn', up)
-        of.write('<a href="%s">%s' % (url, name))
-        if opt_val != None:
-            of.write('&nbsp;(%d)' % opt_val)
-        of.write('</a>')
-
-    def galleryNav_link(self, of, handle, name, up=False):
-        # TODO. Check name, if it already has extension
-        url = self.report.build_url_fname(handle, 'img', up)
-        of.write('<a id="%s" href="%s">%s</a>' % (html_escape(name), url, html_escape(name)))
-
-    def media_ref_link(self, of, handle, name, up=False):
-        # TODO. Check name, if it already has extension
-        # TODO. Combine with galleryNav_link
-        url = self.report.build_url_fname(handle, 'img', up)
-        of.write('<a href="%s">%s</a>' % (url, html_escape(name)))
-
     # TODO. Check img_url of callers
     def media_link(self, of, handle, img_url, name, up, usedescr=True):
         url = self.report.build_url_fname(handle, 'img', up)
@@ -781,7 +728,7 @@ class IndividualListPage(BasePage):
                 # surname column
                 if first:
                     of.write('\t\t<tr class="BeginSurname">\n')
-                    of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' % (self.lnkfmt(surname), surname))
+                    of.write('\t\t\t<td class="ColumnSurname"><a name="%s">%s</a>' % (name_to_md5(surname), surname))
                 else:
                     of.write('\t\t<tr>\n')
                     of.write('\t\t\t<td class="ColumnSurname">&nbsp;')
@@ -880,7 +827,7 @@ class SurnamePage(BasePage):
         BasePage.__init__(self, report, title)
 
         db = report.database
-        of = self.report.create_file(self.lnkfmt(surname), 'srn')
+        of = self.report.create_file(name_to_md5(surname), 'srn')
         self.up = True
         self.display_header(of, "%s - %s" % (_('Surname'), surname), content_divid='SurnameDetail')
 
@@ -1075,7 +1022,7 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), 'plc')
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        self.display_header(of, "%s - %s" % (_('Places'), self.page_title))
+        self.display_header(of, "%s - %s" % (_('Places'), self.page_title), content_divid='PlaceDetail')
 
         media_list = place.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
@@ -1157,7 +1104,7 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        self.display_header(of, "%s - %s" % (_('Gallery'), self.page_title))
+        self.display_header(of, "%s - %s" % (_('Gallery'), self.page_title), content_divid='GalleryDetail')
 
         of.write('\t<h2>%s:</h2>\n' % _('Gallery'))
 
@@ -1276,6 +1223,11 @@ class MediaPage(BasePage):
         self.display_footer(of)
         self.report.close_file(of)
 
+    def galleryNav_link(self, of, handle, name, up=False):
+        # TODO. Check name, if it already has extension
+        url = self.report.build_url_fname(handle, 'img', up)
+        of.write('<a id="%s" href="%s">%s</a>' % (html_escape(name), url, html_escape(name)))
+
     def display_media_sources(self, of, photo):
         for sref in photo.get_source_references():
             self.bibli.add_reference(sref)
@@ -1334,7 +1286,7 @@ class MediaPage(BasePage):
         else:
             from_path = os.path.join(const.IMAGE_DIR, "document.png")
 
-        # FIXME. Why not use copy_file()?
+        # FIXME. Why not use store_file()?
         if self.report.archive:
             self.report.archive.add(from_path, to_path)
         else:
@@ -1356,11 +1308,11 @@ class SurnameListPage(BasePage):
         db = report.database
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            self.display_header(of, _('Surnames'))
+            self.display_header(of, _('Surnames'), content_divid='Surnames')
             of.write('\t<h2>%s</h2>\n' % _('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
-            self.display_header(of, _('Surnames by person count'))
+            self.display_header(of, _('Surnames by person count'), content_divid='Surnames')
             of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
 
         of.write('\t<p id="description">%s</p>\n' % _(
@@ -1415,13 +1367,13 @@ class SurnameListPage(BasePage):
                 of.write('\t\t<tr class="BeginLetter">\n')
                 of.write('\t\t\t<td class="ColumnLetter">%s</td>\n' % last_letter)
                 of.write('\t\t\t<td class="ColumnSurname">')
-                self.surname_link(of, surname)
+                self.surname_link(of, name_to_md5(surname), surname)
                 of.write('</td>\n')
             elif surname != last_surname:
                 of.write('\t\t<tr>\n')
                 of.write('\t\t\t<td class="ColumnLetter">&nbsp;</td>\n')
                 of.write('\t\t\t<td class="ColumnSurname">')
-                self.surname_link(of, surname)
+                self.surname_link(of, name_to_md5(surname), surname)
                 of.write('</td>\n')
                 last_surname = surname
             of.write('\t\t\t<td class="ColumnQuantity">%d</td>\n' % len(data_list))
@@ -1433,6 +1385,13 @@ class SurnameListPage(BasePage):
         self.display_footer(of)
         self.report.close_file(of)
 
+    def surname_link(self, of, fname, name, opt_val=None, up=False):
+        url = self.report.build_url_fname_html(fname, 'srn', up)
+        of.write('<a href="%s">%s' % (url, name))
+        if opt_val != None:
+            of.write('&nbsp;(%d)' % opt_val)
+        of.write('</a>')
+
 class IntroductionPage(BasePage):
 
     def __init__(self, report, title):
@@ -1440,7 +1399,8 @@ class IntroductionPage(BasePage):
 
         db = report.database
         of = self.report.create_file(report.intro_fname)
-        self.display_header(of, _('Introduction'))
+        # Note. In old NarrativeWeb.py the content_divid depended on filename.
+        self.display_header(of, _('Introduction'), content_divid='Introduction')
 
         of.write('\t<h2>%s</h2>\n' % _('Introduction'))
 
@@ -1468,7 +1428,7 @@ class HomePage(BasePage):
 
         db = report.database
         of = self.report.create_file("index")
-        self.display_header(of, _('Home'))
+        self.display_header(of, _('Home'), content_divid='Home')
 
         of.write('\t<h2>%s</h2>\n' % _('Home'))
 
@@ -1496,7 +1456,7 @@ class SourcesPage(BasePage):
 
         db = report.database
         of = self.report.create_file("sources")
-        self.display_header(of, _('Sources'))
+        self.display_header(of, _('Sources'), content_divid='Sources')
 
         handle_list = list(handle_set)
         source_dict = {}
@@ -1552,7 +1512,7 @@ class SourcePage(BasePage):
         of = self.report.create_file(source.get_handle(), 'src')
         self.up = True
         self.page_title = source.get_title()
-        self.display_header(of, "%s - %s" % (_('Sources'), self.page_title))
+        self.display_header(of, "%s - %s" % (_('Sources'), self.page_title), content_divid='SourceDetail')
 
         media_list = source.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
@@ -1595,7 +1555,7 @@ class GalleryPage(BasePage):
 
         db = report.database
         of = self.report.create_file("gallery")
-        self.display_header(of, _('Gallery'))
+        self.display_header(of, _('Gallery'), content_divid='Gallery')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Gallery'))
         of.write('\t<p id="description">')
@@ -1643,6 +1603,11 @@ class GalleryPage(BasePage):
         self.display_footer(of)
         self.report.close_file(of)
 
+    def media_ref_link(self, of, handle, name, up=False):
+        # TODO. Check name, if it already has extension
+        url = self.report.build_url_fname(handle, 'img', up)
+        of.write('<a href="%s">%s</a>' % (url, html_escape(name)))
+
 class DownloadPage(BasePage):
 
     def __init__(self, report, title):
@@ -1651,7 +1616,7 @@ class DownloadPage(BasePage):
         of = self.report.create_file("download")
         self.display_header(of, _('Download'))
 
-        of.write('\t<h2>%s</h2>\n\n' % _('Download'))
+        of.write('\t<h2>%s</h2>\n\n' % _('Download'), content_divid='Download')
 
         self.display_footer(of)
         self.report.close_file(of)
@@ -1663,7 +1628,7 @@ class ContactPage(BasePage):
 
         db = report.database
         of = self.report.create_file("contact")
-        self.display_header(of, _('Contact'))
+        self.display_header(of, _('Contact'), content_divid='Contact')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Contact'))
         of.write('\t<div id="summaryarea">\n')
@@ -1728,7 +1693,7 @@ class IndividualPage(BasePage):
         db = report.database
         of = self.report.create_file(person.handle, 'ppl')
         self.up = True
-        self.display_header(of, self.sort_name)
+        self.display_header(of, self.sort_name, content_divid='IndividualDetail')
 
         self.display_ind_general(of)
         self.display_ind_events(of)
@@ -1954,8 +1919,7 @@ class IndividualPage(BasePage):
 
     def display_ind_general(self, of):
         self.page_title = self.sort_name
-        self.display_first_image_as_thumbnail(of,
-                                              self.person.get_media_list())
+        self.display_first_image_as_thumbnail(of, self.person.get_media_list())
 
         of.write('\t<h2>Individuals:</h2>\n')
         of.write('\t<h3>%s</h3>\n' % self.sort_name.strip())
@@ -2350,7 +2314,7 @@ class IndividualPage(BasePage):
         if place:
             if text:
                 text += '&nbsp;&nbsp;'
-            text += _('at') + '&nbsp;&nbsp;' + place
+            text += _('place|at') + '&nbsp;&nbsp;' + place
 
         text += self.get_citation_links(event.get_source_references())
 
@@ -2827,6 +2791,33 @@ class NavWebReport(Report):
         real_path = os.path.join(self.build_path('images', handle), handle + ext)
         thumb_path = os.path.join(self.build_path('thumb', handle), handle + '.png')
         return (real_path, thumb_path)
+
+    def copy_file(self, from_fname, to_fname, to_dir=''):
+        """
+        Copy a file from a source to a (report) destination.
+        If to_dir is not present and if the target is not an archive,
+        then the destination directory will be created.
+        """
+        if self.archive:
+            dest = os.path.join(to_dir, to_fname)
+            self.archive.add(from_fname, dest)
+        else:
+            dest = os.path.join(self.html_dir, to_dir)
+            if not os.path.isdir(dest):
+                os.makedirs(dest)
+            dest = os.path.join(dest, to_fname)
+            if from_path != dest:
+                shutil.copyfile(from_path, dest)
+            elif self.warn_dir:
+                WarningDialog(
+                    _("Possible destination error") + "\n" +
+                    _("You appear to have set your target directory "
+                      "to a directory used for data storage. This "
+                      "could create problems with file management. "
+                      "It is recommended that you consider using "
+                      "a different directory to store your generated "
+                      "web pages."))
+                self.warn_dir = False
 
     def store_file(self, from_path, to_path):
         """
