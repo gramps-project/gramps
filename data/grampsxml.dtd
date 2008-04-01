@@ -342,7 +342,7 @@ NAME MAPS
 <!ELEMENT namemaps (map)*>
 <!ELEMENT map EMPTY>
 <!ATTLIST map 
-        type  CDATA #REUIRED
+        type  CDATA #REQUIRED
         key   CDATA #REQUIRED
         value CDATA #REQUIRED
 >
