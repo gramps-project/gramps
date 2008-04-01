@@ -1,3 +1,9 @@
+gramps (3.0.0-1) gutsy; urgency=low
+
+  * New upstream release
+
+ -- Stephane Charette <stephanecharette@gmail.com>  Mon, 31 Mar 2008 19:42:05 -0700
+
 gramps (2.90.0-0beta) unstable; urgency=low
 
   * New upstream release
