@@ -37,6 +37,19 @@ from gen.lib.styledtexttag import StyledTextTag
 class StyledText(object):
     """Helper class to enable character based text formatting.
     
+    StyledText is a wrapper class binding the clear text string and it's
+    formatting tags together.
+    
+    StyledText provides several string methods in order to manipulate
+    formatted strings, such as L{join}, L{replace}, L{split}, and also
+    supports the '+' operation (L{__add__}).
+    
+    To get the clear text of the StyledText use the built-in str() function.
+    To get the list of formatting tags use the L{get_tags} method.
+    
+    StyledText supports the I{creation} of formatted texts too. This feature
+    is intended to replace (or extend) the current report interface.
+    To be continued... FIXME
     
     @ivar string: The clear text part.
     @type string: str
@@ -50,26 +63,27 @@ class StyledText(object):
     an instance.
     @type POS_TAGS: int
 
-    @attention: The POS_<x> class variables reflect the serialized object, they
-    have to be updated in case the data structure or the L{serialize} method
-    changes!
-      
-    """
-    ##StyledText provides interface 
-    ##Provide interface for:
-    ##- tag manipulation for editor access:
-      ##. get_tags
-      ##. set_tags
-    ##- explicit formatting for reports; at the moment:
-      ##. start_bold() - end_bold()
-      ##. start_superscript() - end_superscript()
+    @attention: The POS_<x> class variables reflect the serialized object,
+    they have to be updated in case the data structure or the L{serialize}
+    method changes!
+    
+    @note:
+    1. There is no sanity check of tags in L{__init__}, because when a
+    StyledText is displayed it is passed to a StyledTextBuffer, which
+    in turn will 'eat' all invalid tags (including out-of-range tags too).
+    
+    2. After string methods the tags can become fragmented. That means the
+    same tag may appear more than once in the tag list with different ranges.
+    There could be a 'merge_tags' functionality in L{__init__}, however
+    StyledTextBuffer will merge them automatically if the text is displayed.
 
+    """
     (POS_TEXT, POS_TAGS) = range(2)
     
     def __init__(self, text="", tags=None):
         """Setup initial instance variable values."""
         self._string = text
-        # TODO we might want to make simple sanity check first
+
         if tags:
             self._tags = tags
         else:
@@ -81,29 +95,123 @@ class StyledText(object):
     def __repr__(self): return self._string.__repr__()
 
     def __add__(self, other):
+        """Implement '+' operation on the class.
+        
+        @param other: string to concatenate to self
+        @type other: basestring or StyledText
+        @returns: concatenated strings
+        @returntype: StyledText
+        
+        """
+        offset = len(self._string)
+
         if isinstance(other, StyledText):
-            # FIXME merging tags missing
-            return self.__class__("".join([self._string, other.string]))
+            # need to join strings and merge tags
+            for tag in other._tags:
+                tag.ranges = [(start + offset, end + offset)
+                              for (start, end) in tag.ranges]
+            
+            return self.__class__("".join([self._string, other._string]),
+                                  self._tags + other._tags)
         elif isinstance(other, basestring):
-            # in this case tags remain the same, only text becomes longer
-            return self.__class__("".join([self._string, other]))
+            # tags remain the same, only text becomes longer
+            return self.__class__("".join([self._string, other]), self._tags)
         else:
-            return self.__class__("".join([self._string, str(other)]))
+            return self.__class__("".join([self._string, str(other)]),
+                                  self._tags)
+
+    # private methods
+    
 
     # string methods in alphabetical order:
 
     def join(self, seq):
-        # FIXME handling tags missing
-        return self.__class__(self._string.join(seq))
+        """Emulate __builtin__.str.join method.
+        
+        @param seq: list of strings to join
+        @type seq: basestring or StyledText
+        @returns: joined strings
+        @returntype: StyledText
+        
+        """
+        new_string = self._string.join([str(string) for string in seq])
+        
+        offset = 0
+        new_tags = []
+        self_len = len(self._string)
+        
+        for text in seq:
+            if isinstance(text, StyledText):
+                for tag in text._tags:
+                    tag.ranges = [(start + offset, end + offset)
+                                  for (start, end) in tag.ranges]
+                    new_tags += [tag]
+            
+            offset = offset + len(str(text)) + self_len
+        
+        return self.__class__(new_string, new_tags)
     
-    def replace(self, old, new, maxsplit=-1):
-        # FIXME handling tags missing
-        return self.__class__(self._string.replace(old, new, maxsplit))
+    def replace(self, old, new, count=-1):
+        """Emulate __builtin__.str.replace method.
+        
+        @param old: substring to be replaced
+        @type old: basestring or StyledText
+        @param new: substring to replace by
+        @type new: StyledText
+        @param count: if given, only the first count occurrences are replaced
+        @type count: int
+        @returns: copy of the string with replaced substring(s)
+        @returntype: StyledText
+        
+        @attention: by the correct implementation parameter I{new}
+        should be StyledText or basestring, however only StyledText
+        is currently supported.
+        """
+        # quick and dirty solution: works only if new.__class__ == StyledText
+        return new.join(self.split(old, count))
     
     def split(self, sep=None, maxsplit=-1):
-        # FIXME handling tags missing
+        """Emulate __builtin__.str.split method.
+        
+        @param sep: the delimiter string
+        @type seq: basestring or StyledText
+        @param maxsplit: if given, at most maxsplit splits are done
+        @type maxsplit: int
+        @returns: a list of the words in the string
+        @returntype: list of StyledText
+        
+        """
+        # split the clear text first
+        if sep is not None:
+            sep = str(sep)
         string_list = self._string.split(sep, maxsplit)
-        return [self.__class__(string) for string in string_list]
+        
+        # then split the tags too
+        end_string = 0
+        styledtext_list = []
+        
+        for string in string_list:
+            start_string = self._string.find(string, end_string)
+            end_string = start_string + len(string)
+
+            new_tags = []
+            
+            for tag in self._tags:
+                new_tag = StyledTextTag(int(tag.name), tag.value)
+                for (start_tag, end_tag) in tag.ranges:
+                    start = max(start_string, start_tag)
+                    end = min(end_string, end_tag)
+
+                    if start < end:
+                        new_tag.ranges.append((start - start_string,
+                                               end - start_string))
+                        
+                if new_tag.ranges:
+                    new_tags.append(new_tag)
+            
+            styledtext_list.append(self.__class__(string, new_tags))
+                                   
+        return styledtext_list
 
     # other public methods
     
@@ -133,9 +241,9 @@ class StyledText(object):
         # I really wonder why this doesn't work... it does for all other types
         #self._tags = [StyledTextTag().unserialize(tag) for tag in the_tags]
         for tag in the_tags:
-            gtt = StyledTextTag()
-            gtt.unserialize(tag)
-            self._tags.append(gtt)
+            stt = StyledTextTag()
+            stt.unserialize(tag)
+            self._tags.append(stt)
     
     def get_tags(self):
         """Return the list of formatting tags.
@@ -145,18 +253,23 @@ class StyledText(object):
         
         """
         return self._tags
-    
-    ##def set_tags(self, tags):
-        ##"""Set all the formatting tags at once.
-        
-        ##@param tags: The formatting tags to be applied on the text.
-        ##@type tags: list of 0 or more StyledTextTag instances.
-        
-        ##"""
-        ### TODO we might want to make simple sanity check first
-        ##self._tags = tags
-        
+
 
 if __name__ == '__main__':
-    GT = StyledText("asbcde")
-    print GT
+    from styledtexttagtype import StyledTextTagType
+    T1 = StyledTextTag(StyledTextTagType(1), 'v1', [(0, 2), (2, 4), (4, 6)])
+    T2 = StyledTextTag(StyledTextTagType(2), 'v2', [(1, 3), (3, 5), (0, 7)])
+    
+    A = StyledText('123X456', [T1])
+    B = StyledText("abcXdef", [T2])
+    
+    C = StyledText('\n')
+    
+    S = 'cleartext'
+    
+    C = C.join([A, S, B])
+    L = C.split()
+    C = C.replace('X', StyledText('_'))
+    A = A + B
+
+    print A
