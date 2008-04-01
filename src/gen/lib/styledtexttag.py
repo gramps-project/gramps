@@ -37,7 +37,9 @@ from gen.lib.styledtexttagtype import StyledTextTagType
 class StyledTextTag():
     """Hold formatting information for StyledText.
     
-    @ivar name: Type or name of the tag instance. E.g. bold, etc.
+    StyledTextTag is a container class, it's attributes are directly accessed.
+    
+    @ivar name: Type (or name) of the tag instance. E.g. 'bold', etc.
     @type name: L{gen.lib.StyledTextTagType} instace
     @ivar value: Value of the tag. E.g. color hex string for font color, etc.
     @type value: str or None
@@ -49,7 +51,10 @@ class StyledTextTag():
         """Setup initial instance variable values."""
         self.name = StyledTextTagType(name)
         self.value = value
-        self.ranges = ranges
+        if ranges is None:
+            self.ranges = []
+        else:
+            self.ranges = ranges
 
     def serialize(self):
         """Convert the object to a serialized tuple of data.
