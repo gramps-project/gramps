@@ -41,9 +41,6 @@ from gtk import glade
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import os
-import sys
-import re
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -52,12 +49,9 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import const
-import Config
-import Errors
 from ReportBase import report, standalone_categories
 import _Tool
 import _PluginMgr
-import _PluginWindows
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -74,13 +68,12 @@ UNSUPPORTED = _("Unsupported")
 # PluginDialog interface class
 #
 #-------------------------------------------------------------------------
-
 class PluginDialog(ManagedWindow.ManagedWindow):
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,state, uistate, track, item_list,categories,msg,
-                 label=None,button_label=None,tool_tip=None,content=REPORTS):
+    def __init__(self, state, uistate, track, item_list, categories, msg,
+                 label=None, button_label=None, tool_tip=None, content=REPORTS):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -90,12 +83,12 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.msg = msg
         self.content = content
 
-        ManagedWindow.ManagedWindow.__init__(self,uistate,[],self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
 
         self.state = state
         self.uistate = uistate
         
-        self.dialog = glade.XML(const.PLUGINS_GLADE,"report","gramps")
+        self.dialog = glade.XML(const.PLUGINS_GLADE, "report", "gramps")
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "destroy_passed_object"   : self.close,
@@ -110,7 +103,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.store = gtk.TreeStore(str)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self.on_node_selected)
-        col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+        col = gtk.TreeViewColumn('', gtk.CellRendererText(), text=0)
         self.tree.append_column(col)
         self.tree.set_model(self.store)
         
@@ -130,34 +123,35 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.apply_button.set_use_underline(True)
         if tool_tip:
             try:
-                tt = gtk.tooltips_data_get(self.apply_button)
-                if tt:
-                    tt[0].set_tip(self.apply_button,tool_tip)
+                tttips = gtk.tooltips_data_get(self.apply_button)
+                if tttips:
+                    tttips[0].set_tip(self.apply_button, tool_tip)
             except AttributeError:
                 pass
 
         self.item = None
-        self.build_plugin_tree(item_list,categories)
-        uistate.connect('plugins-reloaded',self.rebuild)
+        self.build_plugin_tree(item_list, categories)
+        uistate.connect('plugins-reloaded', self.rebuild)
         self.show()
 
-    def rebuild(self,tool_list,report_list):
+    def rebuild(self, tool_list, report_list):
         # This method needs to be overridden in the subclass
         assert False, "This method needs to be overridden in the subclass."
 
     def build_menu_names(self, obj):
-        return (self.msg,None)
+        return (self.msg, None)
 
     def on_apply_clicked(self, obj):
         """Execute the selected report"""
         try:
-            (item_class, options_class,title,category,
-             name,require_active) = self.item
+            (item_class, options_class, title, category,
+             name, require_active) = self.item
             if self.content == REPORTS:
-                report(self.state,self.uistate,self.state.active,
-                       item_class, options_class,title, name,category,require_active)
+                report(self.state, self.uistate, self.state.active,
+                       item_class, options_class, title, name, 
+                       category, require_active)
             else:
-                _Tool.gui_tool(self.state,self.uistate, 
+                _Tool.gui_tool(self.state, self.uistate, 
                               item_class, options_class,title, name,category,
                               self.state.db.request_rebuild)
         except TypeError:
@@ -174,7 +168,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
             return 
         data = self.imap[path]
 
-        (report_class, options_class,title,category, name,
+        (report_class, options_class, title, category, name,
          doc,status,author,email,unsupported,require_active) = data
         self.description.set_text(doc)
         if unsupported:
@@ -185,10 +179,10 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         self.title.set_use_markup(1)
         self.author_name.set_text(author)
         self.author_email.set_text(email)
-        self.item = (report_class, options_class,title,category,
-                     name,require_active)
+        self.item = (report_class, options_class, title, category,
+                     name, require_active)
 
-    def build_plugin_tree(self,item_list,categories):
+    def build_plugin_tree(self, item_list, categories):
         """Populates a GtkTree with each menu item assocated with a entry
         in the lists. The list must consist of a tuples with the following
         format:
@@ -225,25 +219,25 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         if item_hash.has_key(UNSUPPORTED):
             key = UNSUPPORTED
             data = item_hash[key]
-            node = self.store.insert_after(None,prev)
-            self.store.set(node,0,key)
+            node = self.store.insert_after(None, prev)
+            self.store.set(node, 0, key)
             next = None
-            data.sort(lambda x,y: cmp(x[2],y[2]))
+            data.sort(lambda x, y: cmp(x[2], y[2]))
             for item in data:
                 next = self.store.insert_after(node, next)
-                ilist.append((next,item))
-                self.store.set(next,0,item[2])
+                ilist.append((next, item))
+                self.store.set(next, 0, item[2])
         for key in key_list:
             data = item_hash[key]
-            node = self.store.insert_after(None,prev)
-            self.store.set(node,0,key)
+            node = self.store.insert_after(None, prev)
+            self.store.set(node, 0, key)
             next = None
-            data.sort(lambda x,y: cmp(x[2],y[2]))
+            data.sort(lambda x, y: cmp(x[2], y[2]))
             for item in data:
                 next = self.store.insert_after(node, next)
-                ilist.append((next,item))
-                self.store.set(next,0,item[2])
-        for next,tab in ilist:
+                ilist.append((next, item))
+                self.store.set(next, 0, item[2])
+        for next, tab in ilist:
             path = self.store.get_path(next)
             self.imap[path] = tab
 
@@ -256,7 +250,7 @@ class ReportPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,dbstate,uistate,track):
+    def __init__(self, dbstate, uistate, track):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -273,8 +267,8 @@ class ReportPlugins(PluginDialog):
             _("_Generate"), _("Generate selected report"),
             REPORTS)
 
-    def rebuild(self,tool_list,report_list):
-        self.build_plugin_tree(report_list,standalone_categories)
+    def rebuild(self, tool_list, report_list):
+        self.build_plugin_tree(report_list, standalone_categories)
 
 #-------------------------------------------------------------------------
 #
@@ -288,7 +282,7 @@ class ToolPlugins(PluginDialog):
     __signals__ = {
         'plugins-reloaded' : (list,list),
         }
-    def __init__(self,dbstate,uistate,track):
+    def __init__(self, dbstate, uistate, track):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -306,117 +300,5 @@ class ToolPlugins(PluginDialog):
             _("Run selected tool"),
             TOOLS)
 
-    def rebuild(self,tool_list,report_list):
-        self.build_plugin_tree(tool_list,_Tool.tool_categories)
-
-#-------------------------------------------------------------------------
-#
-# Reload plugins
-#
-#-------------------------------------------------------------------------
-class Reload(_Tool.Tool):
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        """
-        Treated as a callback, causes all plugins to get reloaded.
-        This is useful when writing and debugging a plugin.
-        """
-        _Tool.Tool.__init__(self,dbstate, options_class, name)
-    
-        pymod = re.compile(r"^(.*)\.py$")
-
-        oldfailmsg = _PluginMgr.failmsg_list[:]
-        _PluginMgr.failmsg_list = []
-
-        # attempt to reload all plugins that have succeeded in the past
-        for plugin in _PluginMgr.success_list:
-            filename = plugin[0]
-            filename = filename.replace('pyc','py')
-            filename = filename.replace('pyo','py')
-            try: 
-                reload(plugin[1])
-            except:
-                _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
-            
-        # Remove previously good plugins that are now bad
-        # from the registered lists
-        _PluginMgr.purge_failed()
-
-        # attempt to load the plugins that have failed in the past
-        for (filename,message) in oldfailmsg:
-            name = os.path.split(filename)
-            match = pymod.match(name[1])
-            if not match:
-                continue
-            _PluginMgr.attempt_list.append(filename)
-            plugin = match.groups()[0]
-            try: 
-                # For some strange reason second importing of a failed plugin
-                # results in success. Then reload reveals the actual error.
-                # Looks like a bug in Python.
-                a = __import__(plugin)
-                reload(a)
-                _PluginMgr.success_list.append((filename,a))
-            except:
-                _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
-
-        # attempt to load any new files found
-        for directory in _PluginMgr.loaddir_list:
-            for filename in os.listdir(directory):
-                name = os.path.split(filename)
-                match = pymod.match(name[1])
-                if not match:
-                    continue
-                if filename in _PluginMgr.attempt_list:
-                    continue
-                _PluginMgr.attempt_list.append(filename)
-                plugin = match.groups()[0]
-                try: 
-                    a = __import__(plugin)
-                    if a not in [plugin[1]
-                                 for plugin in _PluginMgr.success_list]:
-                        _PluginMgr.success_list.append((filename,a))
-                except:
-                    _PluginMgr.failmsg_list.append((filename,sys.exc_info()))
-
-        if Config.get(Config.POP_PLUGIN_STATUS) \
-               and len(_PluginMgr.failmsg_list):
-            try:
-                _PluginWindows.PluginStatus(dbstate,uistate)
-            except Errors.WindowActiveError:
-                old_win = uistate.gwm.get_item_from_id(
-                    _PluginWindows.PluginStatus)
-                old_win.close()
-                _PluginWindows.PluginStatus(dbstate,uistate)
-
-        # Emit signal to re-generate tool and report menus
-        uistate.emit('plugins-reloaded',
-                     (_PluginMgr.tool_list,_PluginMgr.report_list))
-
-class ReloadOptions(_Tool.ToolOptions):
-    """
-    Defines options and provides handling interface.
-    """
-
-    def __init__(self, name,person_id=None):
-        _Tool.ToolOptions.__init__(self, name,person_id)
-
-#-------------------------------------------------------------------------
-#
-# Register the plugin reloading tool
-#
-#-------------------------------------------------------------------------
-
-if __debug__:
-    _PluginMgr.register_tool(
-        name = 'reload',
-        category = _Tool.TOOL_DEBUG,
-        tool_class = Reload,
-        options_class = ReloadOptions,
-        modes = _Tool.MODE_GUI,
-        translated_name = _("Reload Plugins"),
-        status=(_("Stable")),
-        author_name = "Donald N. Allingham",
-        author_email = "don@gramps-project.org",
-        description=_("Attempt to reload plugins. "
-                      "Note: This tool itself is not reloaded!"),
-        )
+    def rebuild(self, tool_list, report_list):
+        self.build_plugin_tree(tool_list, _Tool.tool_categories)

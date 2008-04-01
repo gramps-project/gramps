@@ -402,7 +402,7 @@ class ViewManager:
             ('About', gtk.STOCK_ABOUT, _('_About'), None, None, 
              display_about_box),
             ('PluginStatus', None, _('_Plugin Status'), None, None, 
-             self.plugin_status), 
+             self.__plugin_status), 
             ('FAQ', None, _('_FAQ'), None, None, faq_activate), 
             ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
             ('UserManual', gtk.STOCK_HELP, _('_User Manual'), 'F1', None, 
@@ -607,14 +607,8 @@ class ViewManager:
         error |= load_plugins(const.USER_PLUGINS)
 
         #  get to ssee if we need to open the plugin status window
-        if Config.get(Config.POP_PLUGIN_STATUS) and error:
-            try:
-                PluginWindows.PluginStatus(self.state, self.uistate, [])
-            except Errors.WindowActiveError:
-                old_win = self.uistate.gwm.get_item_from_id(
-                    PluginWindows.PluginStatus)
-                old_win.close()
-                PluginWindows.PluginStatus(self.state, self.uistate, [])
+        if error and Config.get(Config.POP_PLUGIN_STATUS):
+            self.__plugin_status()
 
         self.uistate.push_message(self.state, _('Ready'))
 
@@ -734,17 +728,17 @@ class ViewManager:
         import TipOfDay
         TipOfDay.TipOfDay(self.uistate)
 
-    def plugin_status(self, obj):
+    def __plugin_status(self, obj=None):
         """
         Display plugin status dialog
         """
         try:
-            PluginWindows.PluginStatus(self.state, self.uistate, [])
+            PluginWindows.PluginStatus(self.uistate, [])
         except Errors.WindowActiveError:
             old_win = self.uistate.gwm.get_item_from_id(
                 PluginWindows.PluginStatus)
             old_win.close()
-            PluginWindows.PluginStatus(self.state, self.uistate, [])
+            PluginWindows.PluginStatus(self.uistate, [])
 
     def sidebar_toggle(self, obj):
         """

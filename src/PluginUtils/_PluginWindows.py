@@ -55,16 +55,17 @@ import _Tool as Tool
 class PluginStatus(ManagedWindow.ManagedWindow):
     """Displays a dialog showing the status of loaded plugins"""
     
-    def __init__(self, state, uistate, track=[]):
-
+    def __init__(self, uistate, track=[]):
+        self.__uistate = uistate
         self.title = _("Plugin Status")
-        ManagedWindow.ManagedWindow.__init__(self,uistate,track,self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track,
+                                             self.__class__)
 
-        self.set_window(gtk.Dialog("",uistate.window,
+        self.set_window(gtk.Dialog("", uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, self.title)
-        self.window.set_size_request(600,400)
+        self.window.set_size_request(600, 400)
         self.window.connect('response', self.close)
         
         scrolled_window = gtk.ScrolledWindow()
@@ -88,8 +89,19 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
         scrolled_window.add(self.list)
         self.window.vbox.add(scrolled_window)
+        
+        if __debug__:
+            # Only show the "Reload" button when in debug mode 
+            # (without -O on the command line)
+            self.__reload_btn = gtk.Button("Reload")
+            self.window.action_area.add(self.__reload_btn)
+            self.__reload_btn.connect('clicked', self.__reload)
+        
         self.window.show_all()
+        self.__populate_list()
 
+    def __populate_list(self):
+        """ Build the list of plugins """
         for i in PluginMgr.failmsg_list:
             err = i[1][0]
             
@@ -110,6 +122,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                 i[0], descr, None])
 
     def button_press(self, obj, event):
+        """ Callback function from the user clicking on a line """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             model, node = self.selection.get_selected()
             data = model.get_value(node, 3)
@@ -118,8 +131,16 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                 PluginTrace(self.uistate, self.track, data, name)
                 
     def build_menu_names(self, obj):
-        return ( _('Summary'),self.title)
-
+        return (self.title, "")
+    
+    def __reload(self, obj):
+        """ Callback function from the "Reload" button """
+        PluginMgr.reload_plugins()
+        self.__uistate.emit('plugins-reloaded', 
+                            (PluginMgr.tool_list, PluginMgr.report_list))
+        self.model.clear()
+        self.__populate_list()
+        
 #-------------------------------------------------------------------------
 #
 # Details for an individual plugin that failed
@@ -133,15 +154,15 @@ class PluginTrace(ManagedWindow.ManagedWindow):
         title = "%s: %s" % (_("Plugin Status"), name)
         ManagedWindow.ManagedWindow.__init__(self, uistate, track, self)
 
-        self.set_window(gtk.Dialog("",uistate.window,
+        self.set_window(gtk.Dialog("", uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
                         None, title)
-        self.window.set_size_request(600,400)
+        self.window.set_size_request(600, 400)
         self.window.connect('response', self.close)
         
         scrolled_window = gtk.ScrolledWindow()
-        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
+        scrolled_window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.text = gtk.TextView()
         scrolled_window.add(self.text)
         self.text.get_buffer().set_text(
@@ -189,18 +210,18 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.style_button = None
 
         window = gtk.Dialog('Tool')
-        self.set_window(window,None,self.get_title())
+        self.set_window(window, None, self.get_title())
         #self.window.set_has_separator(False)
 
         #self.window.connect('response', self.close)
         self.cancel = self.window.add_button(gtk.STOCK_CLOSE,
                                              gtk.RESPONSE_CANCEL)
-        self.cancel.connect('clicked',self.close)
+        self.cancel.connect('clicked', self.close)
 
         self.ok = self.window.add_button(gtk.STOCK_APPLY, gtk.RESPONSE_OK)
-        self.ok.connect('clicked',self.on_ok_clicked)
+        self.ok.connect('clicked', self.on_ok_clicked)
 
-        self.window.set_default_size(600,-1)
+        self.window.set_default_size(600, -1)
 
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some
@@ -208,7 +229,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
 
         self.setup_title()
         self.setup_header()
-        self.tbl = gtk.Table(4,4,False)
+        self.tbl = gtk.Table(4, 4, False)
         self.tbl.set_col_spacings(12)
         self.tbl.set_row_spacings(6)
         self.tbl.set_border_width(6)
@@ -241,7 +262,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     # Callback functions from the dialog
     #
     #------------------------------------------------------------------------
-    def on_cancel(self,*obj):
+    def on_cancel(self, *obj):
         pass # cancel just closes
 
     def on_ok_clicked(self, obj):
@@ -266,7 +287,8 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         iter = view.get_iter_at_location(*buffer_location)
         for (tag, person_handle) in self.tags:
             if iter.has_tag(tag):
-                view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.link_cursor)
+                _window = view.get_window(gtk.TEXT_WINDOW_TEXT)
+                _window.set_cursor(self.link_cursor)
                 return False # handle event further, if necessary
         view.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(self.standard_cursor)
         return False # handle event further, if necessary
@@ -299,7 +321,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         self.results_write(text)
         start = buffer.get_iter_at_offset(offset)
         end = buffer.get_end_iter()
-        self.tags.append((LinkTag(person_handle, buffer),person_handle))
+        self.tags.append((LinkTag(person_handle, buffer), person_handle))
         buffer.apply_tag(self.tags[-1][0], start, end)
         
     def results_write(self, text):
@@ -366,7 +388,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, True, True, self.border_pad)
 
-    def add_frame_option(self,frame_name,label_text,widget,tooltip=None):
+    def add_frame_option(self, frame_name, label_text, widget, tooltip=None):
         """Similar to add_option this method takes a frame_name, a
         text string and a Gtk Widget. When the interface is built,
         all widgets with the same frame_name are grouped into a
@@ -377,12 +399,12 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         the add_user_options task."""
         
         if self.frames.has_key(frame_name):
-            self.frames[frame_name].append((label_text,widget))
+            self.frames[frame_name].append((label_text, widget))
         else:
-            self.frames[frame_name] = [(label_text,widget)]
+            self.frames[frame_name] = [(label_text, widget)]
             self.frame_names.append(frame_name)
         if tooltip:
-            self.add_tooltip(widget,tooltip)
+            self.add_tooltip(widget, tooltip)
 
     def set_current_frame(self, name):
         if name == None:
@@ -396,7 +418,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
                         self.notebook.set_current_page(page)
                     return
 
-    def add_results_frame(self,frame_name="Results"):
+    def add_results_frame(self, frame_name="Results"):
         if frame_name not in self.frames:
             window = gtk.ScrolledWindow()
             window.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -423,18 +445,18 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         the add_user_options task."""
         for key in self.frame_names:
             flist = self.frames[key]
-            table = gtk.Table(3,len(flist))
+            table = gtk.Table(3, len(flist))
             table.set_col_spacings(12)
             table.set_row_spacings(6)
             table.set_border_width(6)
             l = gtk.Label("<b>%s</b>" % key)
             l.set_use_markup(True)
-            self.notebook.append_page(table,l)
+            self.notebook.append_page(table, l)
             row = 0
-            for (text,widget) in flist:
+            for (text, widget) in flist:
                 if text:
                     text_widget = gtk.Label('%s:' % text)
-                    text_widget.set_alignment(0.0,0.5)
+                    text_widget.set_alignment(0.0, 0.5)
                     table.attach(text_widget, 1, 2, row, row+1,
                                  gtk.SHRINK|gtk.FILL, gtk.SHRINK)
                     table.attach(widget, 2, 3, row, row+1,
@@ -467,7 +489,7 @@ class ToolManagedWindowBatch(Tool.BatchTool, ToolManagedWindowBase):
         # This constructor will ask a question, set self.fail:
         self.dbstate = dbstate
         self.uistate = uistate
-        Tool.BatchTool.__init__(self,dbstate, options_class, name)
+        Tool.BatchTool.__init__(self, dbstate, options_class, name)
         if not self.fail:
             ToolManagedWindowBase.__init__(self, dbstate, uistate, 
                                            options_class, name, callback)
@@ -476,6 +498,6 @@ class ToolManagedWindow(Tool.Tool, ToolManagedWindowBase):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
         self.dbstate = dbstate
         self.uistate = uistate
-        Tool.Tool.__init__(self,dbstate, options_class, name)
+        Tool.Tool.__init__(self, dbstate, options_class, name)
         ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
                                        name, callback)

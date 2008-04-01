@@ -95,7 +95,7 @@ def load_plugins(direct):
     responsible for registering itself in the correct manner. No attempt
     is done in this routine to register the tasks. Returns True on error. """
     
-    global success_list,attempt_list,loaddir_list,failmsg_list
+    global success_list, attempt_list, loaddir_list, failmsg_list
 
     # if the directory does not exist, do nothing
     if not os.path.isdir(direct):
@@ -131,6 +131,71 @@ def load_plugins(direct):
             failmsg_list.append((filename,sys.exc_info()))
 
     return len(failmsg_list) != 0 # return True if there are errors
+
+#-------------------------------------------------------------------------
+#
+# reload_plugins
+#
+#-------------------------------------------------------------------------
+def reload_plugins():
+    """ Reload previously loaded plugins """
+    global success_list, attempt_list, loaddir_list, failmsg_list
+    
+    pymod = re.compile(r"^(.*)\.py$")
+
+    oldfailmsg = failmsg_list[:]
+    failmsg_list = []
+
+    # attempt to reload all plugins that have succeeded in the past
+    for plugin in success_list:
+        filename = plugin[0]
+        filename = filename.replace('pyc','py')
+        filename = filename.replace('pyo','py')
+        try: 
+            reload(plugin[1])
+        except:
+            failmsg_list.append((filename, sys.exc_info()))
+        
+    # Remove previously good plugins that are now bad
+    # from the registered lists
+    purge_failed()
+
+    # attempt to load the plugins that have failed in the past
+    for (filename, message) in oldfailmsg:
+        name = os.path.split(filename)
+        match = pymod.match(name[1])
+        if not match:
+            continue
+        attempt_list.append(filename)
+        plugin = match.groups()[0]
+        try: 
+            # For some strange reason second importing of a failed plugin
+            # results in success. Then reload reveals the actual error.
+            # Looks like a bug in Python.
+            a = __import__(plugin)
+            reload(a)
+            success_list.append((filename, a))
+        except:
+            failmsg_list.append((filename, sys.exc_info()))
+
+    # attempt to load any new files found
+    for directory in loaddir_list:
+        for filename in os.listdir(directory):
+            name = os.path.split(filename)
+            match = pymod.match(name[1])
+            if not match:
+                continue
+            if filename in attempt_list:
+                continue
+            attempt_list.append(filename)
+            plugin = match.groups()[0]
+            try: 
+                a = __import__(plugin)
+                if a not in [plugin[1]
+                             for plugin in success_list]:
+                    success_list.append((filename, a))
+            except:
+                failmsg_list.append((filename, sys.exc_info()))
 
 #-------------------------------------------------------------------------
 #
