@@ -1,3 +1,4 @@
+# translation of sv.po to Svenska
 # translation of svny1.po to
 # translation of sv99.po to
 # translation of svny.po to
@@ -33,10 +34,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-22 14:52+0100\n"
-"PO-Revision-Date: 2008-03-22 14:53+0100\n"
+"POT-Creation-Date: 2008-04-02 11:10+0200\n"
+"PO-Revision-Date: 2008-04-02 11:13+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team:  <sv@li.org>\n"
+"Language-Team: Svenska <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -139,8 +140,8 @@ msgstr "Organisera bokmärken"
 #: ../src/ScratchPad.py:681 ../src/ScratchPad.py:735 ../src/ScratchPad.py:746
 #: ../src/ScratchPad.py:825 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
-#: ../src/DataViews/PersonView.py:507 ../src/DataViews/PersonView.py:643
-#: ../src/DataViews/PersonView.py:649 ../src/DataViews/RepositoryView.py:67
+#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:642
+#: ../src/DataViews/PersonView.py:648 ../src/DataViews/RepositoryView.py:67
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:67
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
@@ -420,7 +421,7 @@ msgstr "Påbörjar importera %s"
 msgid "Import finished..."
 msgstr "Import avslutat..."
 
-#: ../src/DbManager.py:195 ../src/DbManager.py:840 ../src/DbManager.py:932
+#: ../src/DbManager.py:195 ../src/DbManager.py:831 ../src/DbManager.py:923
 msgid "Never"
 msgstr "Aldrig"
 
@@ -430,26 +431,26 @@ msgstr "Aldrig"
 msgid "Importing data..."
 msgstr "Importerar data..."
 
-#: ../src/DbManager.py:437
+#: ../src/DbManager.py:419
 msgid "Family tree name"
 msgstr "Släktträdsnamn"
 
-#: ../src/DbManager.py:446 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:428 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:80
 msgid "Status"
 msgstr "Status"
 
-#: ../src/DbManager.py:452
+#: ../src/DbManager.py:434
 msgid "Last modified"
 msgstr "Senast ändrat"
 
-#: ../src/DbManager.py:522
+#: ../src/DbManager.py:513
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Bryta låset på '%s'-databasen?"
 
-#: ../src/DbManager.py:523
+#: ../src/DbManager.py:514
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -461,15 +462,15 @@ msgstr ""
 "redigera databasen kan du utan risk bryta låset. Men om någon annan "
 "redigerar databasen och du bryter låset kan databasen förstöras."
 
-#: ../src/DbManager.py:529
+#: ../src/DbManager.py:520
 msgid "Break lock"
 msgstr "Bryt låsning"
 
-#: ../src/DbManager.py:601
+#: ../src/DbManager.py:592
 msgid "Rename failed"
 msgstr "Omdöpning misslyckades"
 
-#: ../src/DbManager.py:602
+#: ../src/DbManager.py:593
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -480,61 +481,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:617
+#: ../src/DbManager.py:608
 msgid "Could not rename the Family Tree."
 msgstr "Kunde inte döpa om släktträdet."
 
-#: ../src/DbManager.py:618
+#: ../src/DbManager.py:609
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Släktträdet finns reda, välj ett unikt namn."
 
-#: ../src/DbManager.py:631
+#: ../src/DbManager.py:622
 msgid "Could not rename family tree"
 msgstr "Kunde inte döpa om släktträd"
 
-#: ../src/DbManager.py:665
+#: ../src/DbManager.py:656
 msgid "Extracting archive..."
 msgstr "Extraherar arkiv..."
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:661
 msgid "Importing archive..."
 msgstr "Importerar arkiv..."
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:677
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Tag bort 'släktträdet %s'?"
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:678
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Genom att ta bort detta släktträd, förstörs data oåterkalleligen."
 
-#: ../src/DbManager.py:688
+#: ../src/DbManager.py:679
 msgid "Remove family tree"
 msgstr "Ta bort släktträd"
 
-#: ../src/DbManager.py:694
+#: ../src/DbManager.py:685
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Tag bort '%(revision)s'-versionen av '%(database)s'"
 
-#: ../src/DbManager.py:698
+#: ../src/DbManager.py:689
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Genom att ta bort denna version kan du senare inte extrahera den."
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:691
 msgid "Remove version"
 msgstr "Tag bort version"
 
-#: ../src/DbManager.py:729
+#: ../src/DbManager.py:720
 msgid "Could not delete family tree"
 msgstr "Kunde inte ta bort släktträd"
 
-#: ../src/DbManager.py:754
+#: ../src/DbManager.py:745
 msgid "Deletion failed"
 msgstr "Borttagandet misslyckades"
 
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:746
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -545,19 +546,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:794
+#: ../src/DbManager.py:785
 msgid "Rebuilding database from backup files"
 msgstr "Bygger om databasen från säkerhetskopia"
 
-#: ../src/DbManager.py:829
+#: ../src/DbManager.py:820
 msgid "Could not create family tree"
 msgstr "Kunde inte skapa släktträd"
 
-#: ../src/DbManager.py:918
+#: ../src/DbManager.py:909
 msgid "Could not make database directory: "
 msgstr "Kunde inte skapa databasmappen: "
 
-#: ../src/DbManager.py:1006 ../src/ScratchPad.py:94
+#: ../src/DbManager.py:997 ../src/ScratchPad.py:94
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
 #: ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -583,11 +584,11 @@ msgstr "Kunde inte skapa databasmappen: "
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../src/DbManager.py:1025
+#: ../src/DbManager.py:1016
 msgid "Retrieve failed"
 msgstr "Återläsning misslyckades"
 
-#: ../src/DbManager.py:1026
+#: ../src/DbManager.py:1017
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -598,19 +599,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1060
+#: ../src/DbManager.py:1051
 msgid "Creating data to be archived..."
 msgstr "Skapar data för arkivering..."
 
-#: ../src/DbManager.py:1067
+#: ../src/DbManager.py:1058
 msgid "Saving archive..."
 msgstr "Sparar arkiv..."
 
-#: ../src/DbManager.py:1077
+#: ../src/DbManager.py:1068
 msgid "Archiving failed"
 msgstr "Misslyckades att arkivera"
 
-#: ../src/DbManager.py:1078
+#: ../src/DbManager.py:1069
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -920,11 +921,11 @@ msgstr "E-post"
 #: ../src/GrampsCfg.py:193 ../src/gramps_main.py:118 ../src/ToolTips.py:198
 #: ../src/Editors/_EditPerson.py:117 ../src/plugins/AgeOnDate.py:53
 #: ../src/plugins/EventCmp.py:238 ../src/plugins/ExportCSV.py:364
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:95
-#: ../src/plugins/FilterByName.py:110 ../src/plugins/FilterByName.py:150
-#: ../src/plugins/FilterByName.py:161 ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
+#: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
+#: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
 #: ../src/plugins/ImportCSV.py:193 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:272
@@ -939,7 +940,7 @@ msgstr "Person"
 #: ../src/DataViews/RelationView.py:1148 ../src/DataViews/RelationView.py:1172
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266 ../src/plugins/ExportCSV.py:474
-#: ../src/plugins/FilterByName.py:122 ../src/plugins/ImportCSV.py:200
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:200
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:273
 msgid "Family"
@@ -1049,7 +1050,7 @@ msgstr "Detaljer för _anpassat format"
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1154
-#: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:140
+#: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:841
 #: ../src/plugins/NarrativeWeb.py:1466 ../src/plugins/NarrativeWeb.py:1468
 #: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:80
@@ -1117,7 +1118,7 @@ msgid "Name format"
 msgstr "Namnformat"
 
 #: ../src/GrampsCfg.py:628 ../src/DisplayTabs/_ButtonTab.py:69
-#: ../src/plugins/BookReport.py:942
+#: ../src/plugins/BookReport.py:941
 msgid "Edit"
 msgstr "Redigera"
 
@@ -1308,7 +1309,7 @@ msgid "Public"
 msgstr "Allmän"
 
 #: ../src/gramps_main.py:112 ../src/Simple/_SimpleTable.py:215
-#: ../src/DataViews/MediaView.py:105 ../src/plugins/FilterByName.py:191
+#: ../src/DataViews/MediaView.py:105 ../src/plugins/FilterByName.py:198
 msgid "Media"
 msgstr "Media"
 
@@ -1670,39 +1671,39 @@ msgstr "Fel: %s är inte ett giltigt GRAMPS-ID"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Inget bokmärke kunde läggas till eftersom inget valts."
 
-#: ../src/PageView.py:928 ../src/DataViews/PersonView.py:157
+#: ../src/PageView.py:926 ../src/DataViews/PersonView.py:157
 msgid "_Add..."
 msgstr "_Lägg till..."
 
-#: ../src/PageView.py:930 ../src/DataViews/PersonView.py:159
+#: ../src/PageView.py:928 ../src/DataViews/PersonView.py:159
 msgid "_Remove"
 msgstr "_Ta bort"
 
-#: ../src/PageView.py:932 ../src/DataViews/PersonView.py:167
+#: ../src/PageView.py:930 ../src/DataViews/PersonView.py:167
 msgid "Export View..."
 msgstr "Exportera vy..."
 
-#: ../src/PageView.py:937 ../src/DataViews/PersonView.py:147
+#: ../src/PageView.py:935 ../src/DataViews/PersonView.py:147
 msgid "action|_Edit..."
 msgstr "Redigera..."
 
-#: ../src/PageView.py:942
+#: ../src/PageView.py:940
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../src/PageView.py:1008 ../src/DataViews/PersonView.py:913
+#: ../src/PageView.py:1006 ../src/DataViews/PersonView.py:912
 msgid "Export View as Spreadsheet"
 msgstr "Exportera vy som kalkylblad"
 
-#: ../src/PageView.py:1016 ../src/DataViews/PersonView.py:921
+#: ../src/PageView.py:1014 ../src/DataViews/PersonView.py:920
 msgid "Format:"
 msgstr "Format:"
 
-#: ../src/PageView.py:1021 ../src/DataViews/PersonView.py:926
+#: ../src/PageView.py:1019 ../src/DataViews/PersonView.py:925
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1022 ../src/DataViews/PersonView.py:927
+#: ../src/PageView.py:1020 ../src/DataViews/PersonView.py:926
 msgid "Open Document Spreadsheet"
 msgstr "Open Document kalkylblad"
 
@@ -1983,7 +1984,7 @@ msgstr "Familjehändelse"
 #: ../src/DisplayTabs/_WebEmbedList.py:62 ../src/Selectors/_SelectEvent.py:55
 #: ../src/Selectors/_SelectNote.py:60 ../src/Selectors/_SelectObject.py:75
 #: ../src/plugins/siblings.py:44 ../src/plugins/BookReport.py:739
-#: ../src/plugins/BookReport.py:743 ../src/plugins/FilterByName.py:95
+#: ../src/plugins/BookReport.py:743 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/MarkerReport.py:381 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/PatchNames.py:206 ../src/plugins/References.py:70
@@ -1994,7 +1995,7 @@ msgstr "Familjehändelse"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:72
+#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Orsak"
 
@@ -2948,6 +2949,11 @@ msgstr "GRAMPS hemsida"
 msgid "Unknown father"
 msgstr "Okänd far"
 
+#: ../src/Simple/_SimpleTable.py:197 ../src/DataViews/RelationView.py:844
+#: ../src/plugins/all_relations.py:278
+msgid "and"
+msgstr "och"
+
 #: ../src/Simple/_SimpleTable.py:201
 msgid "Unknown mother"
 msgstr "Okänd mor"
@@ -3186,7 +3192,7 @@ msgid "Deleting event will remove it from the database."
 msgstr "Att ta bort händelsen innebär att den tas bort från databasen."
 
 #: ../src/DataViews/EventView.py:249 ../src/DataViews/NoteView.py:217
-#: ../src/DataViews/PersonView.py:606 ../src/DataViews/PlaceView.py:256
+#: ../src/DataViews/PersonView.py:605 ../src/DataViews/PlaceView.py:256
 #: ../src/DataViews/RepositoryView.py:210 ../src/DataViews/SourceView.py:205
 #, python-format
 msgid "Delete %s?"
@@ -3489,10 +3495,10 @@ msgstr "Familjemeny"
 
 #: ../src/DataViews/PersonView.py:70 ../src/Editors/_EditFamily.py:106
 #: ../src/Selectors/_SelectPerson.py:52 ../src/plugins/siblings.py:44
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203 ../src/plugins/lineage.py:61
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210 ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:57 ../src/plugins/SameSurnames.py:75
 #: ../src/plugins/TimeLine.py:58
 msgid "Birth Date"
@@ -3566,36 +3572,36 @@ msgstr ""
 msgid "Select Person Columns"
 msgstr "Välj kolumner för personer"
 
-#: ../src/DataViews/PersonView.py:498
+#: ../src/DataViews/PersonView.py:497
 msgid "Active person not visible"
 msgstr "Aktiv person är inte synlig"
 
-#: ../src/DataViews/PersonView.py:582 ../src/Filters/_SearchBar.py:146
+#: ../src/DataViews/PersonView.py:581 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
 msgstr "Uppdaterar visning..."
 
-#: ../src/DataViews/PersonView.py:603
+#: ../src/DataViews/PersonView.py:602
 msgid "Deleting the person will remove the person from the database."
 msgstr "Att radera personen innebär att personen raderas från databasen."
 
-#: ../src/DataViews/PersonView.py:608
+#: ../src/DataViews/PersonView.py:607
 msgid "_Delete Person"
 msgstr "_Ta bort person"
 
-#: ../src/DataViews/PersonView.py:623
+#: ../src/DataViews/PersonView.py:622
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Ta bort person (%s)"
 
-#: ../src/DataViews/PersonView.py:898
+#: ../src/DataViews/PersonView.py:897
 msgid "Go to default person"
 msgstr "Gå till hemperson"
 
-#: ../src/DataViews/PersonView.py:903
+#: ../src/DataViews/PersonView.py:902
 msgid "Edit selected person"
 msgstr "Redigera vald person"
 
-#: ../src/DataViews/PersonView.py:909
+#: ../src/DataViews/PersonView.py:908
 msgid "Delete selected person"
 msgstr "Ta bort vald person"
 
@@ -3826,10 +3832,6 @@ msgstr "Lägg till nytt barn till familjen"
 #: ../src/DataViews/RelationView.py:813 ../src/DataViews/RelationView.py:1200
 msgid "Add existing child to family"
 msgstr "Lägg till befintligt barn till familjen"
-
-#: ../src/DataViews/RelationView.py:844 ../src/plugins/all_relations.py:278
-msgid "and"
-msgstr "och"
 
 #: ../src/DataViews/RelationView.py:1007
 #, python-format
@@ -5300,62 +5302,45 @@ msgstr "Ogiltig rad %d i GEDCOM-fil."
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Din GEDCOM-fil är trasig. Den verkar ha blivit trunkerad."
 
-#. -------------------------------------------------------------------------
-#.
-#. Support functions
-#.
-#. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_GedcomParse.py:170
-#: ../src/GrampsDbUtils/_ReadXML.py:74 ../src/plugins/EventNames.py:111
-#, python-format
-msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s mellan %(family)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:171
-#: ../src/GrampsDbUtils/_ReadXML.py:75 ../src/plugins/EventNames.py:112
-#, python-format
-msgid "%(event_name)s of %(person)s"
-msgstr "%(person)s: %(event_name)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:280
+#: ../src/GrampsDbUtils/_GedcomParse.py:276
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Import från GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:838
+#: ../src/GrampsDbUtils/_GedcomParse.py:834
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1092
+#: ../src/GrampsDbUtils/_GedcomParse.py:1088
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Rad %d gick inte att förstå, så den ignorerades."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:3059
+#: ../src/GrampsDbUtils/_GedcomParse.py:3050
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Rad %d: tom händelseanteckning ignorerades."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3742
-#: ../src/GrampsDbUtils/_GedcomParse.py:4327
+#: ../src/GrampsDbUtils/_GedcomParse.py:3733
+#: ../src/GrampsDbUtils/_GedcomParse.py:4318
 #, python-format
 msgid "Could not import %s"
 msgstr "Kunde inte importera %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4103
+#: ../src/GrampsDbUtils/_GedcomParse.py:4094
 #, python-format
 msgid "Import from %s"
 msgstr "Import från %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4193
-#: ../src/GrampsDbUtils/_GedcomParse.py:4205
+#: ../src/GrampsDbUtils/_GedcomParse.py:4184
+#: ../src/GrampsDbUtils/_GedcomParse.py:4196
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Rad %d: tom anteckning ignorerades."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4244
+#: ../src/GrampsDbUtils/_GedcomParse.py:4235
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "hoppade över %d underordnad(e) på rad %d"
@@ -5446,6 +5431,21 @@ msgstr "%s kunde inte importeras"
 #: ../src/GrampsDbUtils/_ReadGedcom.py:146
 msgid "Error reading GEDCOM file"
 msgstr "Fel vid läsning av GEDCOM-fil"
+
+#. -------------------------------------------------------------------------
+#.
+#. Support functions
+#.
+#. -------------------------------------------------------------------------
+#: ../src/GrampsDbUtils/_ReadXML.py:74 ../src/plugins/EventNames.py:111
+#, python-format
+msgid "%(event_name)s of %(family)s"
+msgstr "%(event_name)s mellan %(family)s"
+
+#: ../src/GrampsDbUtils/_ReadXML.py:75 ../src/plugins/EventNames.py:112
+#, python-format
+msgid "%(event_name)s of %(person)s"
+msgstr "%(person)s: %(event_name)s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:121 ../src/GrampsDbUtils/_ReadXML.py:131
 #, python-format
@@ -5950,7 +5950,7 @@ msgstr "Alla händelser"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1267
+#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1266
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
@@ -5961,9 +5961,9 @@ msgstr "Alla händelser"
 #: ../src/plugins/EndOfLineReport.py:317 ../src/plugins/Eval.py:129
 #: ../src/plugins/EventCmp.py:456 ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
-#: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:227
+#: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:881
-#: ../src/plugins/GVHourGlass.py:204 ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVHourGlass.py:203 ../src/plugins/GVRelGraph.py:559
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
@@ -6094,7 +6094,7 @@ msgid "People probably alive and their ages on %s"
 msgstr "Personer som troligen lever och deras ålder av %s"
 
 #: ../src/plugins/AgeOnDate.py:53 ../src/plugins/StatisticsChart.py:124
-#: ../src/gen/lib/attrtype.py:74
+#: ../src/gen/lib/attrtype.py:73
 msgid "Age"
 msgstr "Ålder"
 
@@ -6131,7 +6131,7 @@ msgstr "Trädalternativ"
 #: ../src/plugins/DetAncestralReport.py:680
 #: ../src/plugins/DetDescendantReport.py:641
 #: ../src/plugins/EndOfLineReport.py:234 ../src/plugins/FanChart.py:343
-#: ../src/plugins/GVHourGlass.py:178 ../src/plugins/KinshipReport.py:337
+#: ../src/plugins/GVHourGlass.py:177 ../src/plugins/KinshipReport.py:337
 msgid "Center Person"
 msgstr "Huvudperson"
 
@@ -6316,8 +6316,8 @@ msgstr "Tillgängliga böcker"
 msgid "Book List"
 msgstr "Boklista"
 
-#: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1073
-#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1266
+#: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1072
+#: ../src/plugins/BookReport.py:1123 ../src/plugins/BookReport.py:1265
 msgid "Book Report"
 msgstr "Bokrapport"
 
@@ -6366,37 +6366,37 @@ msgstr ""
 "Därför ställs centralpersonen för varje objekt in till den aktiva personen i "
 "den för tillfället öppna databasen."
 
-#: ../src/plugins/BookReport.py:936
+#: ../src/plugins/BookReport.py:935
 msgid "Setup"
 msgstr "Inställningar"
 
-#: ../src/plugins/BookReport.py:946
+#: ../src/plugins/BookReport.py:945
 msgid "Book Menu"
 msgstr "Bokmeny"
 
-#: ../src/plugins/BookReport.py:969
+#: ../src/plugins/BookReport.py:968
 msgid "Available Items Menu"
 msgstr "Tillgängliga objektmeny"
 
-#: ../src/plugins/BookReport.py:1127
+#: ../src/plugins/BookReport.py:1126
 msgid "GRAMPS Book"
 msgstr "GRAMPS-bok"
 
-#: ../src/plugins/BookReport.py:1268
+#: ../src/plugins/BookReport.py:1267
 msgid "Produces a book containing several reports."
 msgstr "Skapar en bok som innehåller flera rapporter."
 
 #. ---------------------
 #: ../src/plugins/CalculateEstimatedDates.py:62
 #: ../src/plugins/CalculateEstimatedDates.py:152
-#: ../src/plugins/GVFamilyLines.py:185 ../src/plugins/GVHourGlass.py:176
+#: ../src/plugins/GVFamilyLines.py:185 ../src/plugins/GVHourGlass.py:175
 #: ../src/glade/gramps.glade.h:93
 msgid "Options"
 msgstr "Alternativ"
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:226 ../src/plugins/GVRelGraph.py:431
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:431
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2954
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
@@ -8618,63 +8618,124 @@ msgstr "Antavla i cirkelformat"
 msgid "Produces fan charts"
 msgstr "Skapar en grafisk antavla i cirkelformat."
 
+#. force translation
+#: ../src/plugins/FilterByName.py:37
+msgid "all people"
+msgstr "alla personer"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "males"
+msgstr "män"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "females"
+msgstr "kvinnor"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "people with unknown gender"
+msgstr "personer med okänt kön"
+
+#: ../src/plugins/FilterByName.py:38
+msgid "people with incomplete names"
+msgstr "personer med ofullständiga namn"
+
+#: ../src/plugins/FilterByName.py:38
+msgid "people with missing birth dates"
+msgstr "personer utan känt födelsedatum"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "disconnected people"
+msgstr "isolerade personer"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "all families"
+msgstr "alla familjer"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "unique surnames"
+msgstr "unika efternamn"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "people with media"
+msgstr "personer med media"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "media references"
+msgstr "mediareferens"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "unique media"
+msgstr "unikt media"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "missing media"
+msgstr "saknade media"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "media by size"
+msgstr "media i storlek"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "list of people"
+msgstr "lista på personer"
+
 #. display the title
-#: ../src/plugins/FilterByName.py:46
+#: ../src/plugins/FilterByName.py:53
 #, python-format
 msgid "Filtering on %s"
 msgstr "Filtrering av %s"
 
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203 ../src/plugins/SameSurnames.py:75
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210 ../src/plugins/SameSurnames.py:75
 msgid "Name type"
 msgstr "Namntyp"
 
-#: ../src/plugins/FilterByName.py:104
+#: ../src/plugins/FilterByName.py:111
 msgid "birth event but no date"
 msgstr "födelse men inget datum"
 
-#: ../src/plugins/FilterByName.py:107
+#: ../src/plugins/FilterByName.py:114
 msgid "missing birth event"
 msgstr "saknar födelse"
 
-#: ../src/plugins/FilterByName.py:140 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:81
 msgid "Count"
 msgstr "Räkna"
 
-#: ../src/plugins/FilterByName.py:150
+#: ../src/plugins/FilterByName.py:157
 msgid "Media count"
 msgstr "Mediaräknare"
 
-#: ../src/plugins/FilterByName.py:161 ../src/plugins/OnThisDay.py:77
+#: ../src/plugins/FilterByName.py:168 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:70
 msgid "Reference"
 msgstr "Referens"
 
-#: ../src/plugins/FilterByName.py:169 ../src/plugins/genewebexport.glade.h:10
+#: ../src/plugins/FilterByName.py:176 ../src/plugins/genewebexport.glade.h:10
 msgid "media"
 msgstr "media"
 
-#: ../src/plugins/FilterByName.py:172
+#: ../src/plugins/FilterByName.py:179
 msgid "Unique Media"
 msgstr "Unikt media"
 
-#: ../src/plugins/FilterByName.py:180
+#: ../src/plugins/FilterByName.py:187
 msgid "Missing Media"
 msgstr "Saknade media"
 
-#: ../src/plugins/FilterByName.py:191
+#: ../src/plugins/FilterByName.py:198
 msgid "Size in bytes"
 msgstr "Storlek i byte"
 
-#: ../src/plugins/FilterByName.py:212
+#: ../src/plugins/FilterByName.py:219
 #, python-format
 msgid "Filter matched %d records."
 msgstr "Filter matchade %d poster."
 
-#: ../src/plugins/FilterByName.py:228
+#: ../src/plugins/FilterByName.py:235
 msgid "Display filtered data"
 msgstr "Visa filtrerade data"
 
@@ -8963,31 +9024,31 @@ msgstr "Släktlinjediagram"
 msgid "Produces family line graphs using GraphViz"
 msgstr "Skapar ett diagram för en släktlinje med GraphViz."
 
-#: ../src/plugins/GVHourGlass.py:179
+#: ../src/plugins/GVHourGlass.py:178
 msgid "The center person for the graph"
 msgstr "Huvudpersonen för rapporten"
 
-#: ../src/plugins/GVHourGlass.py:182 ../src/plugins/KinshipReport.py:341
+#: ../src/plugins/GVHourGlass.py:181 ../src/plugins/KinshipReport.py:341
 msgid "Max Descendant Generations"
 msgstr "Maximalt antal ättlingsgenerationer"
 
-#: ../src/plugins/GVHourGlass.py:183
+#: ../src/plugins/GVHourGlass.py:182
 msgid "The number of generations of descendants to include in the graph"
 msgstr "Antal ättlingsgenerationer, som skall ingå i rapporten"
 
-#: ../src/plugins/GVHourGlass.py:187 ../src/plugins/KinshipReport.py:345
+#: ../src/plugins/GVHourGlass.py:186 ../src/plugins/KinshipReport.py:345
 msgid "Max Ancestor Generations"
 msgstr "Maximalt antal förfadersgenerationer"
 
-#: ../src/plugins/GVHourGlass.py:188
+#: ../src/plugins/GVHourGlass.py:187
 msgid "The number of generations of ancestors to include in the graph"
 msgstr "Antal förfadersgenerationer, som skall ingå i rapporten"
 
-#: ../src/plugins/GVHourGlass.py:203
+#: ../src/plugins/GVHourGlass.py:202
 msgid "Hourglass Graph"
 msgstr "Timglasdiagram"
 
-#: ../src/plugins/GVHourGlass.py:207
+#: ../src/plugins/GVHourGlass.py:206
 msgid "Produces an hourglass graph using Graphviz"
 msgstr "Skapar ett timglasdiagram med Graphviz"
 
@@ -9995,7 +10056,7 @@ msgid "Ancestors"
 msgstr "Anor"
 
 #: ../src/plugins/NarrativeWeb.py:2153 ../src/plugins/PatchNames.py:232
-#: ../src/gen/lib/attrtype.py:71
+#: ../src/gen/lib/attrtype.py:70
 msgid "Nickname"
 msgstr "Smeknamn"
 
@@ -16030,7 +16091,7 @@ msgstr "Identifikationsnummer"
 msgid "National Origin"
 msgstr "Ursprungsland"
 
-#: ../src/gen/lib/attrtype.py:68 ../src/gen/lib/attrtype.py:70
+#: ../src/gen/lib/attrtype.py:68
 msgid "Number of Children"
 msgstr "Antal barn"
 
@@ -16038,19 +16099,19 @@ msgstr "Antal barn"
 msgid "Social Security Number"
 msgstr "Personnummer"
 
-#: ../src/gen/lib/attrtype.py:73
+#: ../src/gen/lib/attrtype.py:72
 msgid "Agency"
 msgstr "Byrå"
 
-#: ../src/gen/lib/attrtype.py:75
+#: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
 msgstr "Faderns ålder"
 
-#: ../src/gen/lib/attrtype.py:76
+#: ../src/gen/lib/attrtype.py:75
 msgid "Mother's Age"
 msgstr "Moderns ålder"
 
-#: ../src/gen/lib/attrtype.py:77 ../src/gen/lib/eventroletype.py:65
+#: ../src/gen/lib/attrtype.py:76 ../src/gen/lib/eventroletype.py:65
 msgid "Witness"
 msgstr "Vittne"
 
