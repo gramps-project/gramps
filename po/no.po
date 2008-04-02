@@ -12,9 +12,9 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-21 14:56+0100\n"
-"PO-Revision-Date: 2008-03-28 23:31+0100\n"
+"PO-Revision-Date: 2008-04-02 11:15+0200\n"
 "Last-Translator: \n"
-"Language-Team:  <nb@li.org>\n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9286,7 +9286,7 @@ msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:118
 msgid "Mainz"
-msgstr ""
+msgstr "Mainz"
 
 #: ../src/plugins/NarrativeWeb.py:119
 msgid "Nebraska"
@@ -9490,7 +9490,7 @@ msgstr "Halvsøsken"
 
 #: ../src/plugins/NarrativeWeb.py:2353
 msgid "at"
-msgstr ""
+msgstr "ved"
 
 #: ../src/plugins/NarrativeWeb.py:2362
 #, python-format
