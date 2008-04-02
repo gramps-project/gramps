@@ -31,7 +31,7 @@ from gettext import gettext as _
 import re
 
 import logging
-_LOG = logging.getLogger(".StyledTextBuffer")
+_LOG = logging.getLogger(".Editors.StyledTextBuffer")
 
 #-------------------------------------------------------------------------
 #
@@ -186,15 +186,16 @@ class StyledTextBuffer(gtk.TextBuffer):
     """An extended TextBuffer for handling StyledText strings.
     
     StyledTextBuffer is an interface between GRAMPS' L{StyledText} format
-    and gtk.TextBuffer. To get/set the text use the L{get_text} and 
-    L{set_text} methods.
+    and gtk.TextBuffer. To set and get the text use the L{set_text} and 
+    L{get_text} methods.
     
-    It provides an action group (L{format_action_group}) for GUIs.
+    StyledTextBuffer provides an action group (L{format_action_group})
+    for GUIs.
     
     StyledTextBuffer has a regexp pattern matching mechanism too. To add a
     regexp pattern to match in the text use the L{match_add} method. To check
     if there's a match at a certain position in the text use the L{match_check}
-    method.
+    method. For an example how to use the matching see L{EditNote}.
     
     """
     __gtype_name__ = 'StyledTextBuffer'
@@ -214,22 +215,22 @@ class StyledTextBuffer(gtk.TextBuffer):
         # Setup action group used from user interface
         format_toggle_actions = [
             ('italic', gtk.STOCK_ITALIC, None, None,
-             _('Italic'), self.on_toggle_action_activate),
+             _('Italic'), self._on_toggle_action_activate),
             ('bold', gtk.STOCK_BOLD, None, None,
-             _('Bold'), self.on_toggle_action_activate),
+             _('Bold'), self._on_toggle_action_activate),
             ('underline', gtk.STOCK_UNDERLINE, None, None,
-             _('Underline'), self.on_toggle_action_activate),
+             _('Underline'), self._on_toggle_action_activate),
         ]
         
         self.toggle_actions = [action[0] for action in format_toggle_actions]
 
         format_actions = [
             ('font', 'gramps-font', None, None,
-             _('Font'), self.on_action_activate),
+             _('Font'), self._on_action_activate),
             ('foreground', 'gramps-font-color', None, None,
-             _('Font Color'), self.on_action_activate),
+             _('Font Color'), self._on_action_activate),
             ('background', 'gramps-font-bgcolor', None, None,
-             _('Background Color'), self.on_action_activate),
+             _('Background Color'), self._on_action_activate),
             ('clear', gtk.STOCK_CLEAR, None, None,
              _('Clear'), self._format_clear_cb),
         ]
@@ -418,7 +419,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         color = gtk.gdk.color_parse(hex)
         return color
 
-    def get_selection(self):
+    def _get_selection(self):
         bounds = self.get_selection_bounds()
         if not bounds:
             iter = self.get_iter_at_mark(self._insert)
@@ -435,19 +436,19 @@ class StyledTextBuffer(gtk.TextBuffer):
                 bounds = (iter, self.get_iter_at_offset(iter.get_offset() + 1))
         return bounds
 
-    def apply_tag_to_selection(self, tag):
-        selection = self.get_selection()
+    def _apply_tag_to_selection(self, tag):
+        selection = self._get_selection()
         if selection:
             self.apply_tag(tag, *selection)
 
-    def remove_tag_from_selection(self, tag):
-        selection = self.get_selection()
+    def _remove_tag_from_selection(self, tag):
+        selection = self._get_selection()
         if selection:
             self.remove_tag(tag, *selection)
             
-    def remove_format_from_selection(self, format):
-        start, end = self.get_selection()
-        tags = self.get_tag_from_range(start.get_offset(), end.get_offset())
+    def _remove_format_from_selection(self, format):
+        start, end = self._get_selection()
+        tags = self._get_tag_from_range(start.get_offset(), end.get_offset())
         for tag_name in tags.keys():
             if tag_name.startswith(format):
                 for start, end in tags[tag_name]:
@@ -455,7 +456,7 @@ class StyledTextBuffer(gtk.TextBuffer):
                                             self.get_iter_at_offset(start),
                                             self.get_iter_at_offset(end+1))
                     
-    def get_tag_from_range(self, start=None, end=None):
+    def _get_tag_from_range(self, start=None, end=None):
         """Extract gtk.TextTags from buffer.
         
         Return only the name of the TextTag from the specified range.
@@ -509,7 +510,7 @@ class StyledTextBuffer(gtk.TextBuffer):
 
     # Callbacks
     
-    def on_toggle_action_activate(self, action):
+    def _on_toggle_action_activate(self, action):
         """Toggle a format.
         
         Toggle formats are e.g. 'bold', 'italic', 'underline'.
@@ -518,7 +519,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         if self._internal_toggle:
             return
 
-        start, end = self.get_selection()
+        start, end = self._get_selection()
         
         if action.get_active():
             self.apply_tag_by_name(action.get_name(), start, end)
@@ -527,7 +528,7 @@ class StyledTextBuffer(gtk.TextBuffer):
             
         setattr(self, action.get_name(), action.get_active())
 
-    def on_action_activate(self, action):
+    def _on_action_activate(self, action):
         """Apply a format."""
         format = action.get_name()
         
@@ -565,8 +566,8 @@ class StyledTextBuffer(gtk.TextBuffer):
             _LOG.debug("applying format '%s' with value '%s'" % (format, value))
             
             tag = self._find_tag_by_name(format, value)
-            self.remove_format_from_selection(format)
-            self.apply_tag_to_selection(tag)
+            self._remove_format_from_selection(format)
+            self._apply_tag_to_selection(tag)
             
             setattr(self, format, value)
 
@@ -578,7 +579,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         
         """
         for format in self.formats:
-            self.remove_format_from_selection(format)
+            self._remove_format_from_selection(format)
 
     def on_key_press_event(self, widget, event):
         """Handle formatting shortcuts."""
@@ -618,7 +619,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         txt = unicode(txt)
         
         # extract tags out of the buffer
-        g_tags = self.get_tag_from_range()
+        g_tags = self._get_tag_from_range()
         r_tags = []
         
         for g_tagname, g_ranges in g_tags.items():
