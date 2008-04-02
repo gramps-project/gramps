@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-22 18:48+0100\n"
-"PO-Revision-Date: 2008-03-22 21:37+0100\n"
+"POT-Creation-Date: 2008-03-29 11:56+0100\n"
+"PO-Revision-Date: 2008-04-02 15:26+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -909,11 +909,11 @@ msgstr "E-Mail"
 #: ../src/GrampsCfg.py:193 ../src/gramps_main.py:118 ../src/ToolTips.py:198
 #: ../src/Editors/_EditPerson.py:117 ../src/plugins/AgeOnDate.py:53
 #: ../src/plugins/EventCmp.py:238 ../src/plugins/ExportCSV.py:364
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:95
-#: ../src/plugins/FilterByName.py:110 ../src/plugins/FilterByName.py:150
-#: ../src/plugins/FilterByName.py:161 ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
+#: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
+#: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
 #: ../src/plugins/ImportCSV.py:193 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:272
@@ -928,7 +928,7 @@ msgstr "Person"
 #: ../src/DataViews/RelationView.py:1148 ../src/DataViews/RelationView.py:1172
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266 ../src/plugins/ExportCSV.py:474
-#: ../src/plugins/FilterByName.py:122 ../src/plugins/ImportCSV.py:200
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:200
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:273
 msgid "Family"
@@ -1038,7 +1038,7 @@ msgstr "Details zum selbstdefinierten Format"
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1154
-#: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:140
+#: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:841
 #: ../src/plugins/NarrativeWeb.py:1466 ../src/plugins/NarrativeWeb.py:1468
 #: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:80
@@ -1106,7 +1106,7 @@ msgid "Name format"
 msgstr "Namenformat"
 
 #: ../src/GrampsCfg.py:628 ../src/DisplayTabs/_ButtonTab.py:69
-#: ../src/plugins/BookReport.py:942
+#: ../src/plugins/BookReport.py:941
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -1299,7 +1299,7 @@ msgid "Public"
 msgstr "Öffentlich"
 
 #: ../src/gramps_main.py:112 ../src/Simple/_SimpleTable.py:215
-#: ../src/DataViews/MediaView.py:105 ../src/plugins/FilterByName.py:191
+#: ../src/DataViews/MediaView.py:105 ../src/plugins/FilterByName.py:198
 msgid "Media"
 msgstr "Medien"
 
@@ -1976,7 +1976,7 @@ msgstr "Familiäres Ereignis"
 #: ../src/DisplayTabs/_WebEmbedList.py:62 ../src/Selectors/_SelectEvent.py:55
 #: ../src/Selectors/_SelectNote.py:60 ../src/Selectors/_SelectObject.py:75
 #: ../src/plugins/siblings.py:44 ../src/plugins/BookReport.py:739
-#: ../src/plugins/BookReport.py:743 ../src/plugins/FilterByName.py:95
+#: ../src/plugins/BookReport.py:743 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/MarkerReport.py:381 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/PatchNames.py:206 ../src/plugins/References.py:70
@@ -1987,7 +1987,7 @@ msgstr "Familiäres Ereignis"
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:72
+#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Ursache"
 
@@ -2945,6 +2945,11 @@ msgstr "GRAMPS-Homepage"
 msgid "Unknown father"
 msgstr "Unbekannter Vater"
 
+#: ../src/Simple/_SimpleTable.py:197 ../src/DataViews/RelationView.py:844
+#: ../src/plugins/all_relations.py:278
+msgid "and"
+msgstr "und"
+
 #: ../src/Simple/_SimpleTable.py:201
 msgid "Unknown mother"
 msgstr "Unbekannte Mutter"
@@ -3484,10 +3489,10 @@ msgstr "Familienmenü"
 
 #: ../src/DataViews/PersonView.py:70 ../src/Editors/_EditFamily.py:106
 #: ../src/Selectors/_SelectPerson.py:52 ../src/plugins/siblings.py:44
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203 ../src/plugins/lineage.py:61
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210 ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:57 ../src/plugins/SameSurnames.py:75
 #: ../src/plugins/TimeLine.py:58
 msgid "Birth Date"
@@ -3821,14 +3826,10 @@ msgstr "Neues Kind zur Familie hinzufügen"
 msgid "Add existing child to family"
 msgstr "Bestehendes Kind zur Familie hinzufügen"
 
-#: ../src/DataViews/RelationView.py:844 ../src/plugins/all_relations.py:278
-msgid "and"
-msgstr "und"
-
 #: ../src/DataViews/RelationView.py:1007
 #, python-format
 msgid "b. %(birthdate)s, d. %(deathdate)s"
-msgstr "b. %(birthdate)s, d. %(deathdate)s"
+msgstr "geb. %(birthdate)s, gest. %(deathdate)s"
 
 #: ../src/DataViews/RelationView.py:1012
 #, python-format
@@ -5304,62 +5305,45 @@ msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Ihre GEDCOM-Datei is defekt. Vermutlich ist die Datei unvollständig."
 
-#. -------------------------------------------------------------------------
-#.
-#. Support functions
-#.
-#. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_GedcomParse.py:170
-#: ../src/GrampsDbUtils/_ReadXML.py:74 ../src/plugins/EventNames.py:111
-#, python-format
-msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s von %(family)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:171
-#: ../src/GrampsDbUtils/_ReadXML.py:75 ../src/plugins/EventNames.py:112
-#, python-format
-msgid "%(event_name)s of %(person)s"
-msgstr "%(event_name)s für %(person)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:280
+#: ../src/GrampsDbUtils/_GedcomParse.py:276
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:838
+#: ../src/GrampsDbUtils/_GedcomParse.py:834
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1092
+#: ../src/GrampsDbUtils/_GedcomParse.py:1088
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Zeile %d wurde nicht verstanden und deshalb ignoriert."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:3059
+#: ../src/GrampsDbUtils/_GedcomParse.py:3050
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Zeile %d: leere Ereignisnotiz wurde ignoriert."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3742
-#: ../src/GrampsDbUtils/_GedcomParse.py:4327
+#: ../src/GrampsDbUtils/_GedcomParse.py:3733
+#: ../src/GrampsDbUtils/_GedcomParse.py:4318
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4103
+#: ../src/GrampsDbUtils/_GedcomParse.py:4094
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4193
-#: ../src/GrampsDbUtils/_GedcomParse.py:4205
+#: ../src/GrampsDbUtils/_GedcomParse.py:4184
+#: ../src/GrampsDbUtils/_GedcomParse.py:4196
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Zeile %d: leere Notiz wurde ignoriert."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4244
+#: ../src/GrampsDbUtils/_GedcomParse.py:4235
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "übersprungen %d untergeornet(e) in Zeile %d"
@@ -5451,6 +5435,21 @@ msgstr "%s konnte nicht importiert werden"
 #: ../src/GrampsDbUtils/_ReadGedcom.py:146
 msgid "Error reading GEDCOM file"
 msgstr "Fehler beim Lesen der GEDCOM-Datei"
+
+#. -------------------------------------------------------------------------
+#.
+#. Support functions
+#.
+#. -------------------------------------------------------------------------
+#: ../src/GrampsDbUtils/_ReadXML.py:74 ../src/plugins/EventNames.py:111
+#, python-format
+msgid "%(event_name)s of %(family)s"
+msgstr "%(event_name)s von %(family)s"
+
+#: ../src/GrampsDbUtils/_ReadXML.py:75 ../src/plugins/EventNames.py:112
+#, python-format
+msgid "%(event_name)s of %(person)s"
+msgstr "%(event_name)s für %(person)s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:121 ../src/GrampsDbUtils/_ReadXML.py:131
 #, python-format
@@ -5966,7 +5965,7 @@ msgstr "Alle Ereignisse"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1267
+#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1266
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
@@ -5977,7 +5976,7 @@ msgstr "Alle Ereignisse"
 #: ../src/plugins/EndOfLineReport.py:317 ../src/plugins/Eval.py:129
 #: ../src/plugins/EventCmp.py:456 ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
-#: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:227
+#: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:881
 #: ../src/plugins/GVHourGlass.py:203 ../src/plugins/GVRelGraph.py:559
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
@@ -6110,7 +6109,7 @@ msgid "People probably alive and their ages on %s"
 msgstr "Personen, die wahrscheinlich leben und ihr Alter am %s"
 
 #: ../src/plugins/AgeOnDate.py:53 ../src/plugins/StatisticsChart.py:124
-#: ../src/gen/lib/attrtype.py:74
+#: ../src/gen/lib/attrtype.py:73
 msgid "Age"
 msgstr "Alter"
 
@@ -6332,8 +6331,8 @@ msgstr "Verfügbare Bücher"
 msgid "Book List"
 msgstr "Bücherliste"
 
-#: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1073
-#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1266
+#: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1072
+#: ../src/plugins/BookReport.py:1123 ../src/plugins/BookReport.py:1265
 msgid "Book Report"
 msgstr "Buchbericht"
 
@@ -6383,23 +6382,23 @@ msgstr ""
 "Deswegen wurde jeweils die Hauptperson auf die aktive Person in der "
 "geöffneten Datenbank gesetzt."
 
-#: ../src/plugins/BookReport.py:936
+#: ../src/plugins/BookReport.py:935
 msgid "Setup"
 msgstr "Einrichten"
 
-#: ../src/plugins/BookReport.py:946
+#: ../src/plugins/BookReport.py:945
 msgid "Book Menu"
 msgstr "Buch Menü"
 
-#: ../src/plugins/BookReport.py:969
+#: ../src/plugins/BookReport.py:968
 msgid "Available Items Menu"
 msgstr "Verfügbare Artikel Menü"
 
-#: ../src/plugins/BookReport.py:1127
+#: ../src/plugins/BookReport.py:1126
 msgid "GRAMPS Book"
 msgstr "GRAMPS-Buch"
 
-#: ../src/plugins/BookReport.py:1268
+#: ../src/plugins/BookReport.py:1267
 msgid "Produces a book containing several reports."
 msgstr "Erstellt ein Buch mit mehreren Berichten"
 
@@ -6413,7 +6412,7 @@ msgstr "Optionen"
 
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:226 ../src/plugins/GVRelGraph.py:431
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:431
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2954
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
@@ -8638,63 +8637,124 @@ msgstr "Fächergrafik"
 msgid "Produces fan charts"
 msgstr "Gibt eine Fächergrafik aus"
 
+#. force translation
+#: ../src/plugins/FilterByName.py:37
+msgid "all people"
+msgstr "alle Personen"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "males"
+msgstr "Männer"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "females"
+msgstr "Frauen"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "people with unknown gender"
+msgstr "Personen mit unbekanntem Geschlecht"
+
+#: ../src/plugins/FilterByName.py:38
+msgid "people with incomplete names"
+msgstr "Personen mit unvollständigen Namen"
+
+#: ../src/plugins/FilterByName.py:38
+msgid "people with missing birth dates"
+msgstr "Personen ohne bekanntes Geburtsdatum"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "disconnected people"
+msgstr "Einzelstehende Personen"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "all families"
+msgstr "Alle Familien"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "unique surnames"
+msgstr "Eindeutige Nachnamen"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "people with media"
+msgstr "Personen mit Medien"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "media references"
+msgstr "Medien-Referenzen"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "unique media"
+msgstr "einzelne Medien"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "missing media"
+msgstr "fehlende Medien"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "media by size"
+msgstr "Medien nach Größe"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "list of people"
+msgstr "Liste von Personen"
+
 #. display the title
-#: ../src/plugins/FilterByName.py:46
+#: ../src/plugins/FilterByName.py:53
 #, python-format
 msgid "Filtering on %s"
 msgstr "Filtern nach %s"
 
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203 ../src/plugins/SameSurnames.py:75
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210 ../src/plugins/SameSurnames.py:75
 msgid "Name type"
 msgstr "Namen Art"
 
-#: ../src/plugins/FilterByName.py:104
+#: ../src/plugins/FilterByName.py:111
 msgid "birth event but no date"
 msgstr "Geburtereignis aber kein Datum"
 
-#: ../src/plugins/FilterByName.py:107
+#: ../src/plugins/FilterByName.py:114
 msgid "missing birth event"
 msgstr "Geburtereignis fehlt"
 
-#: ../src/plugins/FilterByName.py:140 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:81
 msgid "Count"
 msgstr "Zahl"
 
-#: ../src/plugins/FilterByName.py:150
+#: ../src/plugins/FilterByName.py:157
 msgid "Media count"
 msgstr "Medien Anzahl"
 
-#: ../src/plugins/FilterByName.py:161 ../src/plugins/OnThisDay.py:77
+#: ../src/plugins/FilterByName.py:168 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:70
 msgid "Reference"
 msgstr "Referenz"
 
-#: ../src/plugins/FilterByName.py:169 ../src/plugins/genewebexport.glade.h:10
+#: ../src/plugins/FilterByName.py:176 ../src/plugins/genewebexport.glade.h:10
 msgid "media"
 msgstr "Medien"
 
-#: ../src/plugins/FilterByName.py:172
+#: ../src/plugins/FilterByName.py:179
 msgid "Unique Media"
 msgstr "Einzelnes Medium"
 
-#: ../src/plugins/FilterByName.py:180
+#: ../src/plugins/FilterByName.py:187
 msgid "Missing Media"
 msgstr "Fehlende Medien"
 
-#: ../src/plugins/FilterByName.py:191
+#: ../src/plugins/FilterByName.py:198
 msgid "Size in bytes"
 msgstr "Größe in Bytes"
 
-#: ../src/plugins/FilterByName.py:212
+#: ../src/plugins/FilterByName.py:219
 #, python-format
 msgid "Filter matched %d records."
 msgstr "Filter passt auf %d Datensätze"
 
-#: ../src/plugins/FilterByName.py:228
+#: ../src/plugins/FilterByName.py:235
 msgid "Display filtered data"
 msgstr "Gefilterte Daten anzeigen"
 
@@ -10030,7 +10090,7 @@ msgid "Ancestors"
 msgstr "Vorfahren"
 
 #: ../src/plugins/NarrativeWeb.py:2153 ../src/plugins/PatchNames.py:232
-#: ../src/gen/lib/attrtype.py:71
+#: ../src/gen/lib/attrtype.py:70
 msgid "Nickname"
 msgstr "Spitzname"
 
@@ -10558,9 +10618,11 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Der Medienbasispfad dieses Stammbaum wurde gesetzt auf %s. Überlegen Sie einen einfacheren Pfad zu wählen. Sie können dies in den Einstellungen ändern, durch verschieben ihrer Medienobjekte an die neue "
-"Position und das Multimediamanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, "
-"um die korrekten Pfade in ihren Medienobjekten zu setzen, erledigen."
+"Der Medienbasispfad dieses Stammbaum wurde gesetzt auf %s. Überlegen Sie "
+"einen einfacheren Pfad zu wählen. Sie können dies in den Einstellungen "
+"ändern, durch verschieben ihrer Medienobjekte an die neue Position und das "
+"Multimediamanagerwerkzeug mit Ersetze Zeichenfolge im Pfad, um die korrekten "
+"Pfade in ihren Medienobjekten zu setzen, erledigen."
 
 #: ../src/plugins/ReadPkg.py:123
 msgid "Cannot set base media path"
@@ -16155,7 +16217,7 @@ msgstr "Identifikationsnummer"
 msgid "National Origin"
 msgstr "Nationale Herkunft"
 
-#: ../src/gen/lib/attrtype.py:68 ../src/gen/lib/attrtype.py:70
+#: ../src/gen/lib/attrtype.py:68
 msgid "Number of Children"
 msgstr "Kinderzahl"
 
@@ -16163,19 +16225,19 @@ msgstr "Kinderzahl"
 msgid "Social Security Number"
 msgstr "Sozialversicherungsnummer"
 
-#: ../src/gen/lib/attrtype.py:73
+#: ../src/gen/lib/attrtype.py:72
 msgid "Agency"
 msgstr "Agentur"
 
-#: ../src/gen/lib/attrtype.py:75
+#: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
 msgstr "Alter des Vaters"
 
-#: ../src/gen/lib/attrtype.py:76
+#: ../src/gen/lib/attrtype.py:75
 msgid "Mother's Age"
 msgstr "Alter der Mutter"
 
-#: ../src/gen/lib/attrtype.py:77 ../src/gen/lib/eventroletype.py:65
+#: ../src/gen/lib/attrtype.py:76 ../src/gen/lib/eventroletype.py:65
 msgid "Witness"
 msgstr "Zeuge"
 
