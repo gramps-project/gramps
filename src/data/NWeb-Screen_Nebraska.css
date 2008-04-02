@@ -1,13 +1,34 @@
-/* ---------------------------------------------------------------------------- */
-/* GRAMPS Cascading Style Sheet */
-/* Style Name: Nebraska */
-/* Style Author: Jason Simanek (2008) */
-/* ---------------------------------------------------------------------------- */
-
-/* ---------------------------------------------------------------------------- */
-/* Color Palette */
-/* ---------------------------------------------------------------------------- */
 /*
+----------------------------------------------------------------------------
+GRAMPS Cascading Style Sheet
+Style Name: Nebraska
+Style Author: Jason Simanek (2008)
+----------------------------------------------------------------------------
+
+This website was created with GRAMPS
+----------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+
+Go to www.gramps-project.org to learn more!
+
+License
+----------------------------------------------------------------------------
+Copyright 2008 Jason M. Simanek
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by 
+the Free Software Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+----------------------------------------------------------------------------
+
+
+Color Palette
+----------------------------------------------------------------------------
 brown darkest				#453619
 brown dark					#542
 brown							#A97
@@ -15,8 +36,8 @@ brown light					#C1B398
 brown lightest				#F6F2EE
 gray								#696969
 green							#5D835F
+----------------------------------------------------------------------------
 */
-/* ---------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------- */
 /* General Element Styles */
@@ -767,6 +788,12 @@ div#narrative {
 
 /* SubSection Styles : Source References */
 /* ------------------------------------------------------------------------------ */
+div#sourcerefs ol {
+	list-style-type:decimal;
+}
+div#sourcerefs ol li ol {
+	list-style-type:lower-alpha;
+}
 
 /* SubSection Styles : Summary Area */
 /* ------------------------------------------------------------------------------ */

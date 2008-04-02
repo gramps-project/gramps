@@ -1,22 +1,43 @@
-/* ---------------------------------------------------------------------------- */
-/* GRAMPS Cascading Style Sheet */
-/* Style Name: Basic - Lilac */
-/* Style Author: Jason Simanek (2008) */
-/* Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the original 'Business' stylesheet */
-/* ---------------------------------------------------------------------------- */
-
-/* ---------------------------------------------------------------------------- */
-/* Color Palette */
-/* ---------------------------------------------------------------------------- */
 /*
+----------------------------------------------------------------------------
+GRAMPS Cascading Style Sheet
+Style Name: Basic - Lilac
+Style Author: Jason Simanek (2008)
+Note: Adapted from GRAMPS original Modern Style stylesheet with colors from the original 'Business' stylesheet
+----------------------------------------------------------------------------
+
+This website was created with GRAMPS
+----------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+
+Go to www.gramps-project.org to learn more!
+
+License
+----------------------------------------------------------------------------
+Copyright 2008 Jason M. Simanek
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by 
+the Free Software Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+----------------------------------------------------------------------------
+
+
+Color Palette
+----------------------------------------------------------------------------
 black							#000
 lilac dark						#2E2E61
 lilac								#669
 lilac light						#B4B4CB
 lilac very light				#E0E0E9
 white							#FAFAFF
+----------------------------------------------------------------------------
 */
-/* ---------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------- */
 /* General Element Styles */
@@ -743,6 +764,12 @@ div#narrative {
 
 /* SubSection Styles : Source References */
 /* ------------------------------------------------------------------------------ */
+div#sourcerefs ol {
+	list-style-type:decimal;
+}
+div#sourcerefs ol li ol {
+	list-style-type:lower-alpha;
+}
 
 /* SubSection Styles : Weblinks */
 /* ------------------------------------------------------------------------------ */
