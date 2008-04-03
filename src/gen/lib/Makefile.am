@@ -57,6 +57,9 @@ pkgdata_PYTHON = \
 	srcnote.py \
 	src.py \
 	srcref.py \
+	styledtext.py \
+	styledtexttag.py \
+	styledtexttagtype.py \
 	urlbase.py \
 	url.py \
 	urltype.py \
