@@ -29,7 +29,6 @@ src/GrampsWidgets.py
 src/ImgManip.py
 src/ListModel.py
 src/ManagedWindow.py
-src/MarkupText.py
 src/Navigation.py
 src/PageView.py
 src/PlaceUtils.py
@@ -195,6 +194,7 @@ src/Editors/_EditSecondary.py
 src/Editors/_EditSource.py
 src/Editors/_EditSourceRef.py
 src/Editors/_EditUrl.py
+src/Editors/_StyledTextBuffer.py
 src/Editors/__init__.py
 
 # GrampsDbUtils package
