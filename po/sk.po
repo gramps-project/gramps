@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: GRAMPS 3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-10 15:17+0100\n"
-"PO-Revision-Date: 2008-03-11 13:19+0100\n"
+"PO-Revision-Date: 2008-03-28 17:33+0100\n"
 "Last-Translator: Lubo Vasko <pgval@inmail.sk>\n"
 "Language-Team:  <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -190,7 +190,7 @@ msgstr "Lubo Vasko"
 #: ../src/const.py:183 ../src/const.py:184 ../src/gen/lib/date.py:1016
 #: ../src/gen/lib/date.py:1030
 msgid "none"
-msgstr "žiadne"
+msgstr "nie"
 
 #: ../src/DateEdit.py:78 ../src/DateEdit.py:87
 msgid "Regular"
@@ -978,7 +978,7 @@ msgstr "Nezobrazovať varovanie pri zrušení po zmenených údajoch"
 
 #: ../src/GrampsCfg.py:225
 msgid "Suppress warning about missing researcher when exporting to GEDCOM"
-msgstr "Pri exporte do GEDCOM nezobrazovaťvarovanie ochýbajúcombádateľovi·"
+msgstr "Pri exporte do GEDCOM nezobrazovať varovanie o chýbajúcom bádateľovi"
 
 #: ../src/GrampsCfg.py:230
 msgid "Show plugin status dialog on plugin load error"
@@ -3289,8 +3289,7 @@ msgstr "Neoznačený applet Grampsu"
 #: ../src/DataViews/GrampletView.py:125
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
-"Presuňte tlačitko vlastnosti pre zmenu umiestnenia, kliknite pre zmenu "
-"nastavenia"
+"Tlačitkom vlastnosti presunúť, kliknutím nastaviť"
 
 #: ../src/DataViews/GrampletView.py:146
 msgid "Gramplet"
@@ -3298,7 +3297,7 @@ msgstr "Gramplet"
 
 #: ../src/DataViews/GrampletView.py:711
 msgid "Right click to add gramplets"
-msgstr "Pravým klikom prídáte gramplety"
+msgstr "Pridať gramplet kliknutím pravého tlačítka myši"
 
 #: ../src/DataViews/GrampletView.py:969
 msgid "_Add a gramplet"
@@ -3429,7 +3428,7 @@ msgstr "Ukázať obrázky"
 
 #: ../src/DataViews/PedigreeView.py:1340
 msgid "Show marriage data"
-msgstr "Zobraziť údaje o svatbe"
+msgstr "Zobraziť údaj o manželstve"
 
 #: ../src/DataViews/PedigreeView.py:1349
 msgid "Tree style"
@@ -4213,7 +4212,7 @@ msgstr "Zmazať označenú udalosť"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:56
 msgid "Share an existing event"
-msgstr "Zdieľať existujúcue udalosť"
+msgstr "Zdieľať existujúcu udalosť"
 
 #: ../src/DisplayTabs/_EventEmbedList.py:57
 msgid "Move the selected event upwards"
@@ -4256,7 +4255,7 @@ msgstr ""
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:62
 msgid "Temple"
-msgstr "Chrám"
+msgstr "Temple"
 
 #: ../src/DisplayTabs/_GalleryTab.py:76
 msgid "_Gallery"
@@ -5068,7 +5067,7 @@ msgstr "Žena"
 
 #: ../src/Editors/_EditPerson.py:878
 msgid "_Unknown"
-msgstr "Neznámy"
+msgstr "Neznáme"
 
 #: ../src/Editors/_EditPersonRef.py:82 ../src/Editors/_EditPersonRef.py:142
 msgid "Person Reference Editor"
@@ -7116,7 +7115,7 @@ msgstr "Nenašiel sa 1 mediálny objekt na ktorý ukazuje odkaz\n"
 
 #: ../src/plugins/Check.py:1426
 msgid "1 note object was referenced but not found\n"
-msgstr "Nenašiela sa poznámka na ktorú ukazuje odkaz\n"
+msgstr "Nenašla sa poznámka na ktorú ukazuje odkaz\n"
 
 #: ../src/plugins/Check.py:1428
 #, python-format
@@ -7305,7 +7304,7 @@ msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
 msgstr ""
-"Pre aktiváciu kliknúť na meno\n"
+"Kliknutím sa meno aktivuje\n"
 "Dvojklikom sa meno edituje"
 
 #: ../src/plugins/DefaultGramplets.py:142
@@ -7417,11 +7416,11 @@ msgstr "Generácia 1"
 #: ../src/plugins/DefaultGramplets.py:570
 #, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
-msgstr " má 1 z 1 jedinca (100.00% kompletné)\n"
+msgstr " má 1 osobu z 1 (100.00% kompletné)\n"
 
 #: ../src/plugins/DefaultGramplets.py:574
 msgid " has %d of %d individuals (%.2f%% complete)\n"
-msgstr " obsahuje %d z %d jedincov (%.2f%% kompl.)\n"
+msgstr " obsahuje %d z %d osôb (%.2f%% kompl.)\n"
 
 #: ../src/plugins/DefaultGramplets.py:576
 msgid "All generations"
@@ -7429,7 +7428,7 @@ msgstr "Všetky generácie"
 
 #: ../src/plugins/DefaultGramplets.py:577
 msgid " have %d individuals\n"
-msgstr " má %d jednotlivcov\n"
+msgstr " majú  %d osôb\n"
 
 #: ../src/plugins/DefaultGramplets.py:583
 msgid "Double-click item to see matches"
@@ -7566,31 +7565,30 @@ msgid ""
 msgstr ""
 "Vitajte v GRAMPSe!\n"
 "\n"
-"GRAMPS je software určený na genealogický výskum. Podobá sa na ostatné "
-"genealogické programy, ale oproti nim má naviac niektoré unikátne a účinné "
+"GRAMPS je software určený pre genealogický výskum. Podobá sa na ostatné "
+"genealogické programy, ale má oproti iným naviac niektoré účinné a unikátne "
 "nástroje.\n"
 "\n"
-"GRAMPS software typu Open Source, čo znači, že je možné ho voľne šíriiť a "
-"kopírovať. copies and distribute it to anyone you like. It's developed and "
-"maintained by a worldwide team of volunteers whose goal is to make GRAMPS "
-"powerful, yet easy to use.\n"
+"GRAMPS je software typu Open Source, čo znači, že je možné ho voľne šíriť a "
+"kopírovať. Vyvíja ho tím dobrovoľníkov z celého sveta ktorých cieľom je "
+"aby bol GRAMPS čo najvýkonnejší pri zachovaní jednoduchosti pri jeho používaní.\n"
 "\n"
 "Začíname\n"
 "\n"
-"The first thing you must do is to create a new Family Tree. To create a new "
-"Family Tree (sometimes called a database) select \"Family Trees\" from the "
-"menu, pick \"Manage Family Trees\", press \"New\" and name your database. "
-"For more details, please read the User Manual, or the on-line manual at "
+"Najprv je treba vytvoriť nový rodinný strom (niekedy sa označuje ako databáza). "
+"V menu zvoľte  \"Stromy rodiny\" ďalej vyberte \"Správa rodinných stromov\", "
+"stlačte \"Nový\" a pomenujte svoju databázu. "
+"Viac podrobností nájdete v užívateľskej príručke, prípadne si pozrite on-line manuál na "
 "http://gramps-project.org.\n"
 "\n"
-"You are currently reading from the \"Gramplets\" page, where you can add "
-"your own gramplets.\n"
+"Momentálne ste na stránke \"Gramplets\" kde si môžete pridávať svoje vlastné "
+"gramplety (applety Grampsu).\n"
 "\n"
-"You can right-click on the background of this page to add additional "
-"gramplets and change the number of columns. You can also drag the Properties "
-"button to reposition the gramplet on this page, and detach the gramplet to "
-"float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-"
-"opened detached the next time you start GRAMPS."
+"Kliknutím pravým tlačítkom na pozadie stránky sa pridávajú gramplety "
+"a mení sa počet stĺpcov. Je tiež možné presunúť tlačítko Vlastnosti "
+"a umiestniť gramplet na túto stránku, prípadne odpojiť gramplet aby sa mohol "
+"nad GRAMPSom pohybovať. Ak je pri zavretí GRAMPSu gramplet odpojený, "
+"ostane tak aj pri nasledujúcom štarte GRAMPSu."
 
 #: ../src/plugins/DefaultGramplets.py:855
 msgid "Read news from the GRAMPS wiki"
@@ -7629,11 +7627,11 @@ msgstr "Najčastejšie priezviská"
 
 #: ../src/plugins/DefaultGramplets.py:995
 msgid "Surname Cloud Gramplet"
-msgstr "Gramplet pre obláčik s priezviskom"
+msgstr "Gramplet panela s priezviskom"
 
 #: ../src/plugins/DefaultGramplets.py:999
 msgid "Surname Cloud"
-msgstr "Obláčik s priezviskom"
+msgstr "Panel s priezviskom"
 
 #: ../src/plugins/DefaultGramplets.py:1004
 msgid "Statistics Gramplet"
@@ -7641,7 +7639,7 @@ msgstr "Štatistický gramplet"
 
 #: ../src/plugins/DefaultGramplets.py:1008
 msgid "Statistics"
-msgstr "Štatisticka"
+msgstr "Štatistika"
 
 #: ../src/plugins/DefaultGramplets.py:1013
 msgid "Session Log Gramplet"
@@ -8110,7 +8108,7 @@ msgstr "Vytvorí podrobnú výstupnú zostavu potomkov"
 #: ../src/plugins/EndOfLineReport.py:134
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Koniec zostavy línie pre %s"
+msgstr "Zostava Koniec línie pre %s"
 
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
@@ -8377,7 +8375,7 @@ msgid ""
 "Below is a list of Places with the possible data that can be extracted from "
 "the place title. Select the places you wish GRAMPS to convert."
 msgstr ""
-"Nasleduje zoznam lokalít s možnými údajmi ktoré sa dajú extrahovať  z názvu. "
+"Nasleduje zoznam lokalít s možnými údajmi ktoré sa dajú extrahovať z názvu. "
 "Označte mená, ktoré má GRAMPS konvertovať."
 
 #: ../src/plugins/ExtractCity.py:630
@@ -8770,7 +8768,7 @@ msgstr "Pri určovaní \"rodinných línií\" sa budú skúmať deti."
 
 #: ../src/plugins/GVFamilyLines.py:110
 msgid "Try to remove extra people and families"
-msgstr "Pokus odstrániť rodiny a osoby uvedené naviac"
+msgstr "Pokúsiť sa odstrániť rodiny a osoby uvedené naviac"
 
 #: ../src/plugins/GVFamilyLines.py:111
 msgid ""
@@ -9698,7 +9696,7 @@ msgstr ""
 
 #: ../src/plugins/MediaManager.py:524
 msgid "Convert paths from absolute to r_elative"
-msgstr "Prevádza cesty z absolútnych na r_elatívne"
+msgstr "Previesť cesty z absolútnych na r_elatívne"
 
 #: ../src/plugins/MediaManager.py:525
 msgid ""
@@ -10252,7 +10250,7 @@ msgstr "Nevložiť"
 
 #: ../src/plugins/NarrativeWeb.py:3077
 msgid "Restrict"
-msgstr "Vylúčiť"
+msgstr "Obmedziť"
 
 #: ../src/plugins/NarrativeWeb.py:3079
 msgid "How to handle living people"
@@ -10282,7 +10280,7 @@ msgstr "Otázka-vložiť link na domovskú osobu"
 
 #: ../src/plugins/NarrativeWeb.py:3104
 msgid "Include a column for birth dates on the index pages"
-msgstr "Vložiť stĺpec pre dátumy narodenie do indexových stránok"
+msgstr "Vložiť stĺpec pre dátumy narodenia do indexových stránok"
 
 #: ../src/plugins/NarrativeWeb.py:3106
 msgid "Whether to include a birth column"
@@ -11796,7 +11794,7 @@ msgstr "Zaviesť pluginy znovu"
 #: ../src/PluginUtils/_Plugins.py:420
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
 msgstr ""
-"Pokus o znovuzavedenie pluginov. Pozn.:Tento samotný nástroj sa znovu "
+"Pokus o znovuzavedenie pluginov. Pozn.: tento samotný nástroj sa znovu "
 "nenahráva!"
 
 #: ../src/PluginUtils/_Tool.py:64
@@ -18195,7 +18193,7 @@ msgstr "Vlastný filter užívateľa"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "any"
-msgstr "každý"
+msgstr "všetci"
 
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:130
@@ -18753,7 +18751,7 @@ msgstr "Kliknutie odstráni gramplet z pohľadu"
 
 #: ../src/glade/gramps.glade.h:51
 msgid "Click to expand/collapse"
-msgstr "Kliknutím roztiahnuť/zmenšiť"
+msgstr "Kliknutím zväčšiť/zmenšiť"
 
 #: ../src/glade/gramps.glade.h:52
 msgid "Close _without saving"
@@ -18813,7 +18811,7 @@ msgstr "Nezobrazovať tento dialóg"
 
 #: ../src/glade/gramps.glade.h:68
 msgid "Drag to move; click to detach"
-msgstr "Pre presun ťahajte, pre oddelenie kliknite"
+msgstr "Kliknutím sa okno oddelí a môžete ho presunúť"
 
 #: ../src/glade/gramps.glade.h:69
 msgid "Example:"
@@ -19116,7 +19114,7 @@ msgstr "Vľavo"
 
 #: ../src/glade/gramps.glade.h:154
 msgid "_Load Family Tree"
-msgstr "Otvoriťrodinný strom"
+msgstr "Otvoriť rodinný strom"
 
 #: ../src/glade/gramps.glade.h:155
 msgid "_Longitude:"
@@ -19196,7 +19194,7 @@ msgstr "Triediť ako:"
 
 #: ../src/glade/gramps.glade.h:176
 msgid "_Spelling:"
-msgstr "slovom:"
+msgstr "Kontrola zápisu:"
 
 #: ../src/glade/gramps.glade.h:177
 msgid "_State/Province:"
@@ -20545,7 +20543,7 @@ msgid ""
 "style."
 msgstr ""
 "Táto hodnota určuje štýl dopĺňania priezviska pri pridávaní novej osoby do "
-"databázy.Použiť 0 pre priezvisko otca, 1 pre vypnutie doplňovania, 2 pre "
+"databázy. Použiť 0 pre priezvisko otca, 1 pre vypnutie doplňovania, 2 pre "
 "kombináciu priezvisk matky a otca, a 3 pre islandský štýl."
 
 #: ../data/gramps.schemas.in.h:165
@@ -20693,8 +20691,8 @@ msgid ""
 "To create a bookmark for a person, make them the Active Person, right click "
 "on their name and click on 'add bookmark'."
 msgstr ""
-"<b>Označovanie osôb záložkou</b>: Vhodným miestom na ukladanie mien ľudí ku "
-"ktorým sa vraciate častejšie, je menu Záložky na hornom okraji okna. "
+"<b>Označovanie osôb záložkou</b>: Vhodným miestom na ukladanie mien osôb ku "
+"ktorým sa budete vracať častejšie, je menu Záložky na hornom okraji okna. "
 "Kliknutie na osobu v záložke spôsobí, že sa táto stane aktívnou osobou. "
 "Záložku vytvoríte tak, že označíte osobu za aktívnu, kliknete na meno pravým "
 "tlačítkom a kliknete na 'pridať záložku'."
@@ -20735,7 +20733,7 @@ msgid ""
 "introducing yourself. Subscription information can be found at lists.sf.net."
 msgstr ""
 "<b>Ako prispieť do GRAMPSu</b>: Chcete pomôcť GRAMPSu, ale nie ste "
-"programátor?  Žiaden problém. Projekt takého rozsahu akým GRAMPS je, "
+"programátor?  Žiaden problém. Projekt takého rozsahu akým je GRAMPS "
 "potrebuje ľudí všetkých zameraní. Váš prínos môže byť rôzneho druhu, od "
 "písania dokumentácie, k testovaniu vývojových verzií až po pomoc s webovou "
 "stránkou. Začnite tým, že sa prihlásite do konferencie pre vývojárov 'gramps-"
@@ -21083,7 +21081,7 @@ msgid ""
 "birth dates, by using drag and drop."
 msgstr ""
 "Uchopením a upustením je možné zostaviť poradie detí v rodine podľa "
-"narodenia aj v prípade, keď ich dátumy narodenie nie sú vedené."
+"narodenia aj v prípade, keď ich dátumy narodenia nie sú uvedené."
 
 #: ../src/data/tips.xml.in.h:34
 msgid ""
