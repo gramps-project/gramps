@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "Février 2008" "@VERSION@"
+.TH gramps 1 "@VERSION@" "Avril 2008" "@VERSION@"
 .SH NOM
 gramps \- GRAMPS est une application de généalogie. GRAMPS est l'acronyme de Genealogical Research and Analysis Management Programming System (Systeme de Programmation pour Recherche, Analyse et Gestion de données généalogiques)
 
@@ -236,7 +236,16 @@ Pour lire trois ensembles de données puis lancer une session interactive de gra
 Pour lancer l'outil de vérification de la base de données depuis la ligne de commande et obtenir le résultat: 
 \fBgramps\fR \fB\-O\fR \fIfile.grdb\fR \fB-a\fR \fItool\fR \fB-p\fR \fBname\fR=\fIverify\fR
 .TP
-Enfin, pour lancer une session interactive normale, entrer : \fBgramps\fR 
+Enfin, pour lancer une session interactive normale, entrer : \fBgramps\fR
+
+.SH VARIABLES D'ENVIRONMENT 
+Le programme vérifie si ces variables d'environnement sont déclarées:
+
+\fBLANG\fR - décrit, quelle langue est utilisée:
+Ex.: pour le français on peut définir fr_FR.UTF-8.
+
+\fBGRAMPSHOME\fR - si défini, force GRAMPS à utiliser un répertoire spécifique pour y conserver ses préférences et bases de données. Par défaut, cette variable n'est pas active et GRAMPS sait que les options et bases de données doivent être créées
+dans le répertoire par défaut de l'utilisateur (la variable d'environnement HOME pour Linux ou USERPROFILE pour Windows 2000/XP).
 
 .SH CONCEPTS
 GRAMPS est un système basé sur le support de plugin-python, permettant d'importer et d'exporter, la saisie, 
