@@ -31,7 +31,8 @@ pkgdata_PYTHON = \
 	_EditSourceRef.py \
 	_EditNote.py \
 	_EditUrl.py \
-	_StyledTextBuffer.py
+	_StyledTextBuffer.py \
+	_StyledTextEditor.py
 
 pkgpyexecdir = @pkgpyexecdir@/Editors
 pkgpythondir = @pkgpythondir@/Editors
