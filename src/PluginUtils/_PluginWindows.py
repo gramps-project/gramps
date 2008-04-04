@@ -93,7 +93,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         if __debug__:
             # Only show the "Reload" button when in debug mode 
             # (without -O on the command line)
-            self.__reload_btn = gtk.Button("Reload")
+            self.__reload_btn = gtk.Button(_("Reload"))
             self.window.action_area.add(self.__reload_btn)
             self.__reload_btn.connect('clicked', self.__reload)
         
