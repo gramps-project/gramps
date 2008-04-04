@@ -27,6 +27,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
+from gettext import gettext as _
+
 import logging
 _LOG = logging.getLogger(".Editors.StyledTextEditor")
 
@@ -90,7 +92,39 @@ URLPATH = "/[" + PATHCHARS + "]*[^]'.}>) \t\r\n,\\\"]"
 #
 #-------------------------------------------------------------------------
 class StyledTextEditor(gtk.TextView):
-    """
+    """StyledTextEditor is an enhanced gtk.TextView to edit L{StyledText}.
+    
+    StyledTextEditor is a gui object for L{StyledTextBuffer}. It offers
+    L{set_text} and L{get_text} convenience methods to set and get the 
+    buffer's text.
+    
+    StyledTextEditor provides a formatting toolbar, which can be retrieved
+    by the L{get_toolbar} method.
+    
+    StyledTextEdit defines a new signal: 'match-changed', which is raised
+    whenever the mouse cursor reaches or leaves a matched string in the text.
+    The feature uses the regexp pattern mathing mechanism L{StyledTextBuffer}.
+    The signal's default handler highlights the URL strings. URL's can be
+    followed from the editor's popup menu.
+    
+    @ivar last_match: previously matched string, used for generating the
+    'match-changed' signal.
+    @type last_match: tuple or None
+    @ivar match: currently matched string, used for generating the
+    'match-changed' signal.
+    @type match: tuple or None
+    @ivar show_unicode: stores the user's gtk.settings['gtk-show-unicode-menu']
+    value.
+    @type show_unicode: bool
+    @ivar spellcheck: spell checker object created for the editor instance.
+    @type spellcheck: L{Spell}
+    @ivar textbuffer: text buffer assigned to the edit instance.
+    @type textbuffer: L{StyledTextBuffer}
+    @ivar toolbar: toolbar to be used for text formatting.
+    @type toolbar: gtk.Toolbar
+    @ivar url_match: stores the matched URL and other mathing parameters.
+    @type url_match: tuple or None
+    
     """
     __gtype_name__ = 'StyledTextEditor'
     
@@ -101,19 +135,19 @@ class StyledTextEditor(gtk.TextView):
     }    
 
     def __init__(self):
-        """
-        """
+        """Setup initial instance variable values."""
         self.textbuffer = StyledTextBuffer()
         gtk.TextView.__init__(self, self.textbuffer)
 
         self.match = None
         self.last_match = None
+        self._init_url_match()
+        self.url_match = None
+
+        self.toolbar = self._create_toolbar()
+        self.spellcheck = Spell(self)
 
         self._connect_signals()
-        self._create_toolbar()
-        self._init_url_match()
-
-        self.spellcheck = Spell(self)
 
         # we want to disable the unicode menu in the popup
         settings = gtk.settings_get_default()
@@ -126,6 +160,9 @@ class StyledTextEditor(gtk.TextView):
         """Default signal handler.
         
         URL highlighting.
+        
+        @param match: the new match parameters
+        @type match: tuple or None
         
         @attention: Do not override the handler, but connect to the signal.
         
@@ -148,7 +185,7 @@ class StyledTextEditor(gtk.TextView):
             self.url_match = None
         
     def on_unrealize(self, widget):
-        """Signal callback.
+        """Signal handler.
         
         Set the default Gtk settings back before leaving.
         
@@ -157,23 +194,37 @@ class StyledTextEditor(gtk.TextView):
         settings.set_property('gtk-show-unicode-menu', self.show_unicode)
         
     def on_key_press_event(self, widget, event):
-        """Handle shortcuts in the TextView."""
+        """Signal handler.
+        
+        Handle shortcuts in the TextView.
+        
+        """
         return self.get_buffer().on_key_press_event(self, event)
     
     def on_insert_at_cursor(self, widget, string):
+        """Signal handler. for debugging only."""
         _LOG.debug("Textview insert '%s'" % string)
         
-    def on_delete_from_cursor(self, widget, type, count):
-        _LOG.debug("Textview delete type %d count %d" % (type, count))
+    def on_delete_from_cursor(self, widget, mode, count):
+        """Signal handler. for debugging only."""
+        _LOG.debug("Textview delete type %d count %d" % (mode, count))
         
     def on_paste_clipboard(self, widget):
+        """Signal handler. for debugging only."""
         _LOG.debug("Textview paste clipboard")
     
     def on_motion_notify_event(self, widget, event):
+        """Signal handler.
+        
+        As the mouse cursor moves the handler checks if there's a new
+        regexp match at the new location. If match changes the
+        'match-changed' signal is raised.
+        
+        """
         x, y = self.window_to_buffer_coords(gtk.TEXT_WINDOW_WIDGET,
                                             int(event.x), int(event.y))
-        iter = self.get_iter_at_location(x, y)
-        self.match = self.textbuffer.match_check(iter.get_offset())
+        iter_at_location = self.get_iter_at_location(x, y)
+        self.match = self.textbuffer.match_check(iter_at_location.get_offset())
         
         if self.match != self.last_match:
             self.emit('match-changed', self.match)
@@ -184,6 +235,11 @@ class StyledTextEditor(gtk.TextView):
         return False
 
     def on_button_press_event(self, widget, event):
+        """Signal handler.
+        
+        Handles the <CTRL> + Left click over a URL match.
+        
+        """
         if ((event.type == gtk.gdk.BUTTON_PRESS) and
             (event.button == 1) and
             (event.state and gtk.gdk.CONTROL_MASK) and
@@ -196,18 +252,20 @@ class StyledTextEditor(gtk.TextView):
         return False
         
     def on_populate_popup(self, widget, menu):
-        """Insert extra menuitems.
+        """Signal handler.
         
+        Insert extra menuitems:
         1. Insert language selector submenu for spell checking.
-        
         2. Insert extra menus depending on ULR match result.
         
         """
+        # spell checker submenu
         spell_menu = gtk.MenuItem(_('Spell'))
         spell_menu.set_submenu(self._create_spell_menu())
         spell_menu.show_all()
         menu.prepend(spell_menu)
         
+        # url menu items
         if self.url_match:
             flavor = self.url_match[MATCH_FLAVOR]
             url = self.url_match[MATCH_STRING]
@@ -227,13 +285,10 @@ class StyledTextEditor(gtk.TextView):
             open_menu.show()
             menu.prepend(open_menu)
 
-    def on_spell_change(self, menuitem, language):
-        """Set spell checker language according to user selection."""
-        self.spellcheck.set_active_language(language)
-
     # private methods
     
     def _connect_signals(self):
+        """Connect to several signals of the super class gtk.TextView."""
         self.connect('key-press-event', self.on_key_press_event)
         self.connect('insert-at-cursor', self.on_insert_at_cursor)
         self.connect('delete-from-cursor', self.on_delete_from_cursor)
@@ -244,17 +299,25 @@ class StyledTextEditor(gtk.TextView):
         self.connect('unrealize', self.on_unrealize)
         
     def _create_toolbar(self):
+        """Create a formatting toolbar.
+        
+        @returns: toolbar according to L{StyedTextBuffer} formatting
+        capabilities.
+        @returntype: gtk.Toolbar
+        
+        """
         uimanager = gtk.UIManager()
         uimanager.insert_action_group(self.textbuffer.format_action_group, 0)
         uimanager.add_ui_from_string(FORMAT_TOOLBAR)
         uimanager.ensure_update()
         
-        self.toolbar = uimanager.get_widget('/ToolBar')      
-        self.toolbar.set_style(gtk.TOOLBAR_ICONS)
+        toolbar = uimanager.get_widget('/ToolBar')      
+        toolbar.set_style(gtk.TOOLBAR_ICONS)
+        
+        return toolbar
         
     def _init_url_match(self):
-        """
-        """
+        """Setup regexp matching for URL match."""
         self.textbuffer.create_tag('hyperlink',
                                    underline=UNDERLINE_SINGLE,
                                    foreground='blue')
@@ -267,10 +330,15 @@ class StyledTextEditor(gtk.TextView):
                                   HOSTCHARS + ".]+" + "(:[0-9]+)?(" +
                                   URLPATH + ")?/?", GENURL)
         
-        self.url_match = None
-        
     def _create_spell_menu(self):
-        """
+        """Create a menu with all the installed languages.
+        
+        It is called each time the popup menu is opened. Each language
+        forms a radio menu item, and the selected language is set as active.
+        
+        @returns: menu containing all the installed languages.
+        @returntype: gtk.Menu
+        
         """
         active_language = self.spellcheck.get_active_language()
 
@@ -279,7 +347,7 @@ class StyledTextEditor(gtk.TextView):
         for lang in self.spellcheck.get_all_languages():
             menuitem = gtk.RadioMenuItem(group, lang)
             menuitem.set_active(lang == active_language)
-            menuitem.connect('activate', self.on_spell_change, lang)
+            menuitem.connect('activate', self._spell_change_cb, lang)
             menu.append(menuitem)
             
             if group is None:
@@ -287,7 +355,14 @@ class StyledTextEditor(gtk.TextView):
             
         return menu
 
+    # Callback functions
+    
+    def _spell_change_cb(self, menuitem, language):
+        """Set spell checker language according to user selection."""
+        self.spellcheck.set_active_language(language)
+
     def _open_url_cb(self, menuitem, url, flavor):
+        """Open the URL in a browser."""
         if not url:
             return
         
@@ -314,10 +389,28 @@ class StyledTextEditor(gtk.TextView):
     # public methods
     
     def set_text(self, text):
+        """Set the text of the text buffer of the editor.
+        
+        @param text: formatted text to edit in the view.
+        @type text: L{StyledText}
+        
+        """
         self.textbuffer.set_text(text)
 
     def get_text(self):
+        """Get the text of the text buffer of the editor.
+        
+        @returns: the formatted text from the editor.
+        @returntype: L{StyledText}
+        
+        """
         return self.textbuffer.get_text()
     
     def get_toolbar(self):
+        """Get the formatting toolbar of the editor.
+        
+        @returns: toolbar widget to use as formatting GUI.
+        @returntype: gtk.Toolbar
+        
+        """
         return self.toolbar
