@@ -205,7 +205,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
             log.error("Failed to parse user options.", exc_info=True)
             
 
-    def add_option(self,label_text,widget,tooltip=None):
+    def add_option(self, label_text, widget):
         """Takes a text string and a Gtk Widget, and stores them to be
         appended to the Options section of the dialog. The text string
         is used to create a label for the passed widget. This allows the
@@ -213,11 +213,9 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         subclass is reponsible for all managing of the widgets, including
         extracting the final value before the report executes. This task
         should only be called in the add_user_options task."""
-        self.widgets.append((label_text,widget))
-        if tooltip:
-            self.add_tooltip(widget,tooltip)
+        self.widgets.append((label_text, widget))
 
-    def add_frame_option(self,frame_name,label_text,widget,tooltip=None):
+    def add_frame_option(self, frame_name, label_text, widget):
         """Similar to add_option this method takes a frame_name, a
         text string and a Gtk Widget. When the interface is built,
         all widgets with the same frame_name are grouped into a
@@ -232,8 +230,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         else:
             self.frames[frame_name] = [(label_text,widget)]
             self.frame_names.append(frame_name)
-        if tooltip:
-            self.add_tooltip(widget,tooltip)
         
     #------------------------------------------------------------------------
     #
@@ -487,15 +483,3 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         better yet, should create a subclass of a Report that will
         write the data to a file."""
         pass
-
-    #------------------------------------------------------------------------
-    #
-    # Miscellaneous functions.
-    #
-    #------------------------------------------------------------------------
-    def add_tooltip(self,widget,string):
-        """Add a tooltip to the specified widget"""
-        if not widget or not string:
-            return
-        tip = gtk.Tooltips()
-        tip.set_tip(widget,string)

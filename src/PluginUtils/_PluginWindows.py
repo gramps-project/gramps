@@ -388,7 +388,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         label.set_use_markup(True)
         self.window.vbox.pack_start(label, True, True, self.border_pad)
 
-    def add_frame_option(self, frame_name, label_text, widget, tooltip=None):
+    def add_frame_option(self, frame_name, label_text, widget):
         """Similar to add_option this method takes a frame_name, a
         text string and a Gtk Widget. When the interface is built,
         all widgets with the same frame_name are grouped into a
@@ -403,8 +403,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
         else:
             self.frames[frame_name] = [(label_text, widget)]
             self.frame_names.append(frame_name)
-        if tooltip:
-            self.add_tooltip(widget, tooltip)
 
     def set_current_frame(self, name):
         if name == None:
