@@ -196,8 +196,10 @@ class CLIDbManager:
         newdb = gen.db.GrampsDBDir()
         newdb.write_version(new_path)
 
-        self.current_names.append((title, new_path, path_name, _("Never"), 0, 
-                                   False, ""))
+        (tval, last) = time_val(new_path)
+        
+        self.current_names.append((title, new_path, path_name,
+                                   last, tval, False, ""))
         return new_path, title
 
     def _create_new_db(self, title=None):
@@ -831,8 +833,9 @@ class DbManager(CLIDbManager):
         """
         new_path, title = self._create_new_db_cli(title)
         path_name = os.path.join(new_path, NAME_FILE)
+        (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name, 
-                                        _("Never"), 0, False, ''])
+                                        last, tval, False, ''])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
         self.dblist.set_cursor(path, focus_column=self.column, 
