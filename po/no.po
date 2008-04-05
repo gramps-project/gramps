@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-03 21:46+0200\n"
-"PO-Revision-Date: 2008-04-03 22:00+0200\n"
+"POT-Creation-Date: 2008-04-03 22:58+0200\n"
+"PO-Revision-Date: 2008-04-05 21:23+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -186,11 +186,11 @@ msgstr "Kolonnenavn"
 msgid "Column Editor"
 msgstr "Kolonnebehandler"
 
-#: ../src/const.py:151
+#: ../src/const.py:155
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "GRAMPS (Genealogical Research and Analysis Management Programming System) er et program for slektsforskning."
 
-#: ../src/const.py:169
+#: ../src/const.py:173
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 " Frode Jemtland\n"
@@ -198,7 +198,7 @@ msgstr ""
 " Jørgen Grønlund\n"
 " Espen Berg"
 
-#: ../src/const.py:179 ../src/const.py:180 ../src/gen/lib/date.py:1018
+#: ../src/const.py:183 ../src/const.py:184 ../src/gen/lib/date.py:1018
 #: ../src/gen/lib/date.py:1032
 msgid "none"
 msgstr "ingen"
@@ -2439,7 +2439,7 @@ msgstr "Hjemmeside"
 
 #: ../src/ToolTips.py:168
 msgid "Sources in repository"
-msgstr "Kilder i biblioteket"
+msgstr "Kilder i oppbevaringsstedet"
 
 #. ----------------------------------
 #: ../src/ToolTips.py:243 ../src/Merge/_MergePerson.py:189
@@ -3779,16 +3779,16 @@ msgstr "Let etter nettadresse (URL)"
 
 #: ../src/DataViews/RepositoryView.py:82
 msgid "Add a new repository"
-msgstr "Legg til et nytt bibliotek"
+msgstr "Legg til et nytt oppbevaringssted"
 
 #: ../src/DataViews/RepositoryView.py:83
 #: ../src/DisplayTabs/_RepoEmbedList.py:55
 msgid "Edit the selected repository"
-msgstr "Rediger det valgte biblioteket"
+msgstr "Rediger det valgte oppbevaringssted"
 
 #: ../src/DataViews/RepositoryView.py:84
 msgid "Delete the selected repository"
-msgstr "Slett det valgte biblioteket"
+msgstr "Slett det valgte oppbevaringsstedet"
 
 #: ../src/DataViews/RepositoryView.py:121
 msgid "Repository Filter Editor"
@@ -3796,19 +3796,19 @@ msgstr "Filter for Depotbehandler"
 
 #: ../src/DataViews/RepositoryView.py:128
 msgid "Select Repository Columns"
-msgstr "Velg bibliotekskolonner"
+msgstr "Velg oppbevaringsstedskolonner"
 
 #: ../src/DataViews/RepositoryView.py:202
 msgid "This repository is currently being used. Deleting it will remove it from the database and from all sources that reference it."
-msgstr "Denne biblioteket er for øyeblikket i bruk. Hvis du sletter det vil det bli fjernet fra databasen og alle henviste poster."
+msgstr "Dette oppbevaringsstedet er for øyeblikket i bruk. Hvis du sletter det vil det bli fjernet fra databasen og alle henviste poster."
 
 #: ../src/DataViews/RepositoryView.py:206
 msgid "Deleting repository will remove it from the database."
-msgstr "Sletting av biblioteket vil fjerne den fra databasen."
+msgstr "Sletting av oppbevaringsstedet vil fjerne den fra databasen."
 
 #: ../src/DataViews/RepositoryView.py:211
 msgid "_Delete Repository"
-msgstr "_Slett bibliotek"
+msgstr "_Slett Oppbevaringssted"
 
 #: ../src/DataViews/SourceView.py:74
 msgid "Add a new source"
@@ -4261,11 +4261,11 @@ msgstr "Legg til et eksisterende depot"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:57
 msgid "Move the selected repository upwards"
-msgstr "Flytt det valgte biblioteket oppover"
+msgstr "Flytt det valgte oppbevaringsstedet oppover"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:58
 msgid "Move the selected repository downwards"
-msgstr "Flytt det valgte biblioteket nedover"
+msgstr "Flytt det valgte oppbevaringsstedet nedover"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:71
 msgid "_Repositories"
@@ -4281,9 +4281,9 @@ msgid ""
 "\n"
 "To edit this repository reference, you need to close the repository."
 msgstr ""
-"Denne biblioteksreferansen kan ikke bli endret nå.  Enten er det tilhørende biblioteket allerede blitt endret, eller en annen biblioteksreferanse som tilhører det samme biblioteket er endret.\n"
+"Denne oppbevaringsstedsreferansen kan ikke bli endret nå.  Enten er det tilhørende oppbevaringsstedet allerede blitt endret, eller en annen oppbevaringsstedsreferanse som tilhører det samme oppbevaringsstedet er endret.\n"
 "\n"
-"For å endre denne biblioteksreferansen må du lukke biblioteket."
+"For å endre denne oppbevaringsstedsreferansen må du lukke oppbevaringsstedet."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
 msgid "Create and add a new source"
@@ -4776,15 +4776,15 @@ msgstr "_Send e-post til..."
 
 #: ../src/Editors/_EditNote.py:462
 msgid "Copy _E-mail Address"
-msgstr "Kopiere e-postadresse"
+msgstr "Kopiere _e-postadresse"
 
 #: ../src/Editors/_EditNote.py:464
 msgid "_Open Link"
-msgstr "_Åpne Lenke"
+msgstr "_Åpne lenke"
 
 #: ../src/Editors/_EditNote.py:465
 msgid "Copy _Link Address"
-msgstr "Kopiere _Lenkeadresse"
+msgstr "Kopiere _lenkeadresse"
 
 #: ../src/Editors/_EditNote.py:529
 msgid "Cannot save note"
@@ -4959,7 +4959,7 @@ msgstr "Hvis du lukker uten å lagre, vil dine endringer gå tapt"
 
 #: ../src/Editors/_EditRepoRef.py:72
 msgid "Repository Reference Editor"
-msgstr "Referansebehandler for bibliotek"
+msgstr "Referansebehandler for oppbevaringssted"
 
 #: ../src/Editors/_EditRepoRef.py:185
 #, python-format
@@ -4984,34 +4984,34 @@ msgstr "Legg til Bibliotek"
 
 #: ../src/Editors/_EditRepository.py:85
 msgid "Edit Repository"
-msgstr "Rediger bibliotek"
+msgstr "Rediger oppbevaringssted"
 
 #: ../src/Editors/_EditRepository.py:144
 msgid "Cannot save repository"
-msgstr "Kan ikke lagre bibliotek"
+msgstr "Kan ikke lagre oppbevaringssted"
 
 #: ../src/Editors/_EditRepository.py:145
 msgid "No data exists for this repository. Please enter data or cancel the edit."
-msgstr "Det finnes ikke data for dette biblioteket.  Skriv inn data eller avbryt endringen."
+msgstr "Det finnes ikke data for dette oppbevaringsstedet.  Skriv inn data eller avbryt endringen."
 
 #: ../src/Editors/_EditRepository.py:154
 msgid "Cannot save repository. ID already exists."
-msgstr "Kan ikke lagre bibliotek. ID finnes allerede."
+msgstr "Kan ikke lagre oppbevaringssted. ID finnes allerede."
 
 #: ../src/Editors/_EditRepository.py:167
 #, python-format
 msgid "Add Repository (%s)"
-msgstr "Legg til bibliotek (%s)"
+msgstr "Legg til oppbevaringssted (%s)"
 
 #: ../src/Editors/_EditRepository.py:172
 #, python-format
 msgid "Edit Repository (%s)"
-msgstr "Rediger bibliotek (%s)"
+msgstr "Rediger oppbevaringssted (%s)"
 
 #: ../src/Editors/_EditRepository.py:203
 #, python-format
 msgid "Delete Repository (%s)"
-msgstr "Slett bibliotek (%s)"
+msgstr "Slett oppbevaringssted (%s)"
 
 #: ../src/Editors/_EditSource.py:77 ../src/Editors/_EditSourceRef.py:197
 msgid "New Source"
@@ -6621,7 +6621,7 @@ msgstr "Ser etter tomme mediaforekomster"
 
 #: ../src/plugins/Check.py:640
 msgid "Looking for empty repository records"
-msgstr "Søker etter tomme biblioteksforekomster"
+msgstr "Søker etter tomme oppbevaringsstedsforekomster"
 
 #: ../src/plugins/Check.py:648
 msgid "Looking for empty note records"
@@ -6645,7 +6645,7 @@ msgstr "Søker etter problemer med personreferanser"
 
 #: ../src/plugins/Check.py:847
 msgid "Looking for repository reference problems"
-msgstr "Søker etter problemer med bibliotekreferanser"
+msgstr "Søker etter problemer med oppbevaringsstedreferanser"
 
 #: ../src/plugins/Check.py:864
 msgid "Looking for place reference problems"
@@ -6745,12 +6745,12 @@ msgstr "%d personer ble referert til, men ikke funnet\n"
 
 #: ../src/plugins/Check.py:1370
 msgid "1 repository was referenced but not found\n"
-msgstr "Et bibliotek ble referert til, men ikke funnet\n"
+msgstr "Et oppbevaringssted ble referert til, men ikke funnet\n"
 
 #: ../src/plugins/Check.py:1372
 #, python-format
 msgid "%d repositories were referenced, but not found\n"
-msgstr "%d bibliotek ble referert til, men ikke funnet\n"
+msgstr "%d oppbevaringssted ble referert til, men ikke funnet\n"
 
 #: ../src/plugins/Check.py:1375
 msgid "1 media object was referenced, but not found\n"
@@ -6875,7 +6875,7 @@ msgstr ""
 "   %d kildeobjekt\n"
 "   %d mediaobjekt\n"
 "   %d stedsobjekt\n"
-"   %d biblioteksobjekt\n"
+"   %d oppbevaringsstedsobjekt\n"
 "   %d notatobjekt\n"
 
 #: ../src/plugins/Check.py:1485
@@ -8271,7 +8271,7 @@ msgstr "personer med ufullstendige navn"
 
 #: ../src/plugins/FilterByName.py:38
 msgid "people with missing birth dates"
-msgstr "personer som mangler fødselsdato"
+msgstr "personer uten en kjent fødselsdato"
 
 #: ../src/plugins/FilterByName.py:39
 msgid "disconnected people"
@@ -8279,7 +8279,7 @@ msgstr "slektsløse personer"
 
 #: ../src/plugins/FilterByName.py:39
 msgid "all families"
-msgstr "alle familier"
+msgstr "alle filer"
 
 #: ../src/plugins/FilterByName.py:39
 msgid "unique surnames"
@@ -8287,15 +8287,15 @@ msgstr "unike etternavn"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "people with media"
-msgstr "personer med media"
+msgstr "personer med bilder"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "media references"
-msgstr "mediareferanser"
+msgstr "mediareferanse"
 
 #: ../src/plugins/FilterByName.py:40
 msgid "unique media"
-msgstr "unikt media"
+msgstr "unike media"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "missing media"
@@ -8303,7 +8303,7 @@ msgstr "mangler media"
 
 #: ../src/plugins/FilterByName.py:41
 msgid "media by size"
-msgstr "media etter størrelse"
+msgstr ""
 
 #: ../src/plugins/FilterByName.py:41
 msgid "list of people"
@@ -9889,7 +9889,7 @@ msgstr "Setter markering for %d personer"
 #: ../src/plugins/NotRelated.py:260
 #, python-format
 msgid "Finding relationships between %d people"
-msgstr "Beregner relasjonen mellem %d personer"
+msgstr "Beregner relasjonen mellom %d personer"
 
 #: ../src/plugins/NotRelated.py:325
 msgid "Looking for 1 person"
@@ -9939,7 +9939,7 @@ msgstr "Totalt antall aner i generasjonene 2 til %d er %d. (%3.2f%%)"
 
 #: ../src/plugins/NumberOfAncestorsReport.py:198
 msgid "Number of Ancestors Report"
-msgstr "Rapport over antall forfedre"
+msgstr "Rapport for antall forfedre"
 
 #: ../src/plugins/NumberOfAncestorsReport.py:200
 msgid "Counts number of ancestors of selected person"
@@ -10041,19 +10041,19 @@ msgstr "Søker gjennom hele databasen og forsøker å trekke ut titler, kallenav
 #: ../src/plugins/ReadPkg.py:79
 #, python-format
 msgid "Could not create media directory %s"
-msgstr "Klarte ikke å opprette mappe for media %s"
+msgstr "Klarte ikke å opprette mappa %s"
 
 #: ../src/plugins/ReadPkg.py:83
 #, python-format
 msgid "Media directory %s is not writable"
-msgstr "Mediamappa %s er skrivebeskyttet"
+msgstr "Mediemappe %s er skrivebeskyttet"
 
 #. mediadir exists and writable -- User could have valuable stuff in
 #. it, have him remove it!
 #: ../src/plugins/ReadPkg.py:88
 #, python-format
 msgid "Media directory %s exists. Delete it first, then restart the import process"
-msgstr "Mediamappa %s finnes.  Slett den først og importer på nytt"
+msgstr "Mediakatalog %s finnes. Slett den først og start deretter importen"
 
 #: ../src/plugins/ReadPkg.py:97
 #, python-format
@@ -10071,7 +10071,7 @@ msgstr ""
 
 #: ../src/plugins/ReadPkg.py:123
 msgid "Cannot set base media path"
-msgstr "Kan ikke angi basissti for media"
+msgstr "Kan ikke sette mediasti"
 
 #: ../src/plugins/ReadPkg.py:124
 #, python-format
@@ -10140,7 +10140,7 @@ msgstr "Relasjonsberegning: %(person_name)s"
 #: ../src/plugins/RelCalc.py:97
 #, python-format
 msgid "Relationship to %(person_name)s"
-msgstr "Relasjons til %(person_name)s"
+msgstr "Slektskap til %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:143 ../src/PluginUtils/_Tool.py:139
 #: ../src/ReportBase/_ReportDialog.py:273
@@ -10180,7 +10180,7 @@ msgstr "Relasjonsberegning"
 
 #: ../src/plugins/RelCalc.py:270
 msgid "Calculates the relationship between two people"
-msgstr "Beregner relasjonen mellem to personer"
+msgstr "Beregner relasjonen mellom to personer"
 
 #: ../src/plugins/RemoveUnused.py:73
 msgid "Unused Objects"
@@ -10678,7 +10678,7 @@ msgstr "Kvinner: %d"
 #: ../src/plugins/Summary.py:157
 #, python-format
 msgid "Individuals with unknown gender: %d"
-msgstr "Personer med ukjent kjønn: %d"
+msgstr " Personer med ukjent kjønn: %d"
 
 #: ../src/plugins/Summary.py:161
 #, python-format
@@ -14878,7 +14878,7 @@ msgstr "Behandler mediaposter"
 
 #: ../src/gen/proxy/dbbase.py:126 ../src/gen/db/base.py:361
 msgid "Processing Repository records"
-msgstr "Behandler biblioteksposter"
+msgstr "Behandler oppbevaringsstedsposter"
 
 #: ../src/gen/proxy/dbbase.py:132 ../src/gen/db/base.py:367
 msgid "Processing Note records"
@@ -14983,7 +14983,7 @@ msgstr "Biblioteksnotat"
 
 #: ../src/gen/lib/notetype.py:100
 msgid "Repository Reference Note"
-msgstr "Notat for biblioteksenvisning"
+msgstr "Notat for oppbevaringsstedshenvisning"
 
 #: ../src/gen/lib/notetype.py:102
 msgid "Media Note"
@@ -16947,11 +16947,11 @@ msgstr "Samsvarende mediaobjekter hvor GRAMPS ID samsvarer med det regulære utt
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:45
 msgid "Every repository"
-msgstr "Alle bibliotek"
+msgstr "Alle oppbevaringssteder"
 
 #: ../src/Filters/Rules/Repository/_AllRepos.py:46
 msgid "Matches every repository in the database"
-msgstr "Samsvarer med alle bibliotekene i databasen"
+msgstr "Samsvarer med alle oppbevaringsstedene i databasen"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:45
 msgid "Repository with <Id>"
@@ -16959,7 +16959,7 @@ msgstr "Bibliotek med <Id>"
 
 #: ../src/Filters/Rules/Repository/_HasIdOf.py:46
 msgid "Matches a repository with a specified GRAMPS ID"
-msgstr "Samsvarer med biblioteket med en spesifikk GRAMPS ID"
+msgstr "Samsvarer med oppbevaringsstedet med en spesifikk GRAMPS ID"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:43
 msgid "Repositories having notes containing <substring>"
@@ -16967,7 +16967,7 @@ msgstr "Bibliotek med tekstfelt som inneholder <substring>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteMatchingSubstringOf.py:44
 msgid "Matches repositories whose notes contain text matching a substring"
-msgstr "Samsvarer med bibliotek som har notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med oppbevaringssted som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
 msgid "Repositoriess having notes containing <regular expression>"
@@ -16975,7 +16975,7 @@ msgstr "Bibliotek med tekstfelt som inneholder <substring>"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
-msgstr "Samsvarer med bibliotek som har notater som inneholder tekst fra et treff på en delstreng"
+msgstr "Samsvarer med oppbevaringssted som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
@@ -16983,7 +16983,7 @@ msgstr "Bibliotek som er blitt referert til <count> ganger"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 msgid "Matches repositories with a certain reference count"
-msgstr "Samsvarer med bibliotek med et antall referanser"
+msgstr "Samsvarer med oppbevaringssted med et antall referanser"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:50
 msgid "URL:"
@@ -16995,7 +16995,7 @@ msgstr "Bibliotek har samsvarende parametre"
 
 #: ../src/Filters/Rules/Repository/_HasRepo.py:53
 msgid "Matches Repositories with particular parameters"
-msgstr "Samsvarer med bibliotek som har bestemte parametre"
+msgstr "Samsvarer med oppbevaringssted som har bestemte parametre"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:45
 msgid "Repositories matching the <filter>"
@@ -17003,7 +17003,7 @@ msgstr "Bibliotek samsvarer med <filter>"
 
 #: ../src/Filters/Rules/Repository/_MatchesFilter.py:46
 msgid "Matches repositories matched by the specified filter name"
-msgstr "Samsvarer med bibliotek fra et bestemt filternavn"
+msgstr "Samsvarer med oppbevaringssted fra et bestemt filternavn"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
 msgid "Repositories with <Id> matching regular expression"
@@ -17011,7 +17011,7 @@ msgstr "Bibliotek med <Id> samsvarer med regulært uttrykk"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose GRAMPS ID matches the regular expression"
-msgstr "Samsvarer med bibliotek hvor GRAMPS ID samsvarer med det regulære uttrykket"
+msgstr "Samsvarer med oppbevaringssted hvor GRAMPS ID samsvarer med det regulære uttrykket"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:43
 msgid "Repositories marked private"
@@ -17019,7 +17019,7 @@ msgstr "Bibliotek er merket som privat"
 
 #: ../src/Filters/Rules/Repository/_RepoPrivate.py:44
 msgid "Matches repositories that are indicated as private"
-msgstr "Samsvarer med bibliotek som er merket private"
+msgstr "Samsvarer med oppbevaringssted som er merket private"
 
 #: ../src/Filters/Rules/Note/_AllNotes.py:45
 msgid "Every note"
@@ -17540,7 +17540,7 @@ msgstr "<b>Merk:</b> Alle endringer under delt hendelsesinformasjon blir overskr
 
 #: ../src/glade/gramps.glade.h:18
 msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
-msgstr "<b>Merk:</b> Alle endringer i delt biblioteksinformasjon vil bli endret i biblioteket selv og for alle objekt som henviser til biblioteket."
+msgstr "<b>Merk:</b> Alle endringer i delt oppbevaringsstedsinformasjon vil bli endret i oppbevaringsstedet selv og for alle objekt som henviser til oppbevaringsstedet."
 
 #: ../src/glade/gramps.glade.h:19
 msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
@@ -18570,7 +18570,7 @@ msgstr "Søk etter steder"
 
 #: ../src/plugins/unused.glade.h:6
 msgid "Search for repositories"
-msgstr "Søk etter bibliotek"
+msgstr "Søk etter oppbevaringssted"
 
 #: ../src/plugins/unused.glade.h:7
 msgid "Search for sources"
@@ -18734,7 +18734,7 @@ msgstr "Standard rapportkatalog"
 
 #: ../data/gramps.schemas.in.h:15
 msgid "Default repository GRAMPS ID pattern"
-msgstr "Standard bibliotek GRAMPS ID-mønster"
+msgstr "Standard oppbevaringssted GRAMPS ID-mønster"
 
 #: ../data/gramps.schemas.in.h:16
 msgid "Default source GRAMPS ID pattern"
@@ -18866,11 +18866,11 @@ msgstr "Høyde på stedseditoren."
 
 #: ../data/gramps.schemas.in.h:49
 msgid "Height of the repository editor interface."
-msgstr "Høyde på bibliotekseditoren."
+msgstr "Høyde på oppbevaringsstedseditoren."
 
 #: ../data/gramps.schemas.in.h:50
 msgid "Height of the repository reference editor interface."
-msgstr "Høyde på editoren til biblioteksreferanser."
+msgstr "Høyde på editoren til oppbevaringsstedsreferanser."
 
 #: ../data/gramps.schemas.in.h:51
 msgid "Height of the source editor interface."
@@ -19182,11 +19182,11 @@ msgstr "Spesifiserer høyden på skjermbildet til stedseditoren."
 
 #: ../data/gramps.schemas.in.h:128
 msgid "Specifies the height of the repository editor interface."
-msgstr "Spesifiserer høyden på skjermbildet til bibliotekseditoren."
+msgstr "Spesifiserer høyden på skjermbildet til oppbevaringsstedseditoren."
 
 #: ../data/gramps.schemas.in.h:129
 msgid "Specifies the height of the repository reference editor interface."
-msgstr "Spesifiserer høyden på skjermbildet til editoren for biblioteksreferanser."
+msgstr "Spesifiserer høyden på skjermbildet til editoren for oppbevaringsstedsreferanser."
 
 #: ../data/gramps.schemas.in.h:130
 msgid "Specifies the height of the source editor interface."
@@ -19262,11 +19262,11 @@ msgstr "Spesifiserer bredden på skjermbildet til stedseditoren."
 
 #: ../data/gramps.schemas.in.h:148
 msgid "Specifies the width of the repository editor interface."
-msgstr "Spesifiserer bredden på skjermbildet til bibliotekseditoren."
+msgstr "Spesifiserer bredden på skjermbildet til oppbevaringsstedseditoren."
 
 #: ../data/gramps.schemas.in.h:149
 msgid "Specifies the width of the repository reference editor interface."
-msgstr "Spesifiserer bredden på skjermbildet til editoren for biblioteksreferanser."
+msgstr "Spesifiserer bredden på skjermbildet til editoren for oppbevaringsstedsreferanser."
 
 #: ../data/gramps.schemas.in.h:150
 msgid "Specifies the width of the source editor interface."
@@ -19310,7 +19310,7 @@ msgstr "De nye GRAMPS IDene for stedene blir laget på bakgrunn av denne formate
 
 #: ../data/gramps.schemas.in.h:160
 msgid "The new GRAMPS IDs for the repositories are generated according to this format string."
-msgstr "De nye GRAMPS IDene for bibliotekene blir laget på bakgrunn av denne formateringssetningen."
+msgstr "De nye GRAMPS IDene for oppbevaringsstedene blir laget på bakgrunn av denne formateringssetningen."
 
 #: ../data/gramps.schemas.in.h:161
 msgid "The new GRAMPS IDs for the source are generated according to this format string."
@@ -19422,11 +19422,11 @@ msgstr "Bredden på skjermbildet til stedseditoren."
 
 #: ../data/gramps.schemas.in.h:188
 msgid "Width of the repository editor interface."
-msgstr "Bredden på skjermbildet til bibliotekseditoren."
+msgstr "Bredden på skjermbildet til oppbevaringsstedseditoren."
 
 #: ../data/gramps.schemas.in.h:189
 msgid "Width of the repository reference editor interface."
-msgstr "Bredden på skjermbildet til editoren for biblioteksreferanser."
+msgstr "Bredden på skjermbildet til editoren for oppbevaringsstedsreferanser."
 
 #: ../data/gramps.schemas.in.h:190
 msgid "Width of the source editor interface."
@@ -19529,7 +19529,7 @@ msgstr "<b>&quot;Vis alle&quot;</b>: Når man legger til en ektefelle eller et b
 
 #: ../src/data/tips.xml.in.h:22
 msgid "<b>SoundEx can help with family research</b>: SoundEx solves a long standing problem in genealogy---how to handle spelling variations. The SoundEx utility takes a surname and generates a simplified form that is equivalent for similar sounding names. Knowing the SoundEx Code for a surname is very helpful for researching Census Data files (microfiche) at a library or other research facility. To get the SoundEx codes for surnames in your database, go to <b>Tools &gt; Utilities &gt; Generate SoundEx codes</b>."
-msgstr "<b>SoundEx kan hjelpe deg med familiesøk</b>: SoundEx løser et gammelt problem i slektsforskningen---hvordan håndtere stavevariasjoner. SoundEx-verktøyet tar et etternavn og lager en forenklet form som er lik for likt lydende navn (fonetisk). Vet man SoundEx koden for et navn, så letter det jobben når man for eksempel jobber med folketellinger (microfiche) ved biblioteket eller andre forskningsteder. For å finne SoundEx koder for etternavn i din database, gå til <b>Verktøy &gt; Redskaper &gt; Lag SoundEx-koder</b>."
+msgstr "<b>SoundEx kan hjelpe deg med familiesøk</b>: SoundEx løser et gammelt problem i slektsforskningen---hvordan håndtere stavevariasjoner. SoundEx-verktøyet tar et etternavn og lager en forenklet form som er lik for likt lydende navn (fonetisk). Vet man SoundEx koden for et navn, så letter det jobben når man for eksempel jobber med folketellinger (microfiche) ved oppbevaringsstedet eller andre forskningsteder. For å finne SoundEx koder for etternavn i din database, gå til <b>Verktøy &gt; Redskaper &gt; Lag SoundEx-koder</b>."
 
 #: ../src/data/tips.xml.in.h:23
 msgid "<b>Starting a New Family Tree</b>: A good way to start a new family tree is to enter all the members of the family into the database (use <b>Edit &gt; Add</b> or click on the Add button under the People menu). Then go to the Relationship View and create relationships between people."
@@ -19629,7 +19629,7 @@ msgstr "GRAMPS er Genealogical Research and Analysis Management Program System. 
 
 #: ../src/data/tips.xml.in.h:47
 msgid "GRAMPS is written in a computer language called Python using the GTK and GNOME libraries for the graphical interface. GRAMPS is supported on any computer system where these programs have been ported."
-msgstr "GRAMPS er skrevet i et programmeringspråk som heter Python, og bruker GTK- og GNOME-bibliotekene for den grafiske fremvisningen. GRAMPS er støttet på alle datasystemer hvor disse programmene offisielt kjører."
+msgstr "GRAMPS er skrevet i et programmeringspråk som heter Python, og bruker GTK- og GNOME-oppbevaringsstedene for den grafiske fremvisningen. GRAMPS er støttet på alle datasystemer hvor disse programmene offisielt kjører."
 
 #: ../src/data/tips.xml.in.h:48
 msgid "GRAMPS maintains a list of previous Active People. You can move forward and backward through the list using <b>Go &gt; Forward</b> and <b>Go &gt; Back</b>."
@@ -19645,7 +19645,7 @@ msgstr "GRAMPS tilbyr full Unicode-støtte. Særtegn for alle språk skal vises 
 
 #: ../src/data/tips.xml.in.h:51
 msgid "GRAMPS works even when using KDE, as long as the required GNOME libraries are installed."
-msgstr "GRAMPS fungerer også når man bruker KDE, så lenge de nødvendige GNOME-bibliotekene er installert."
+msgstr "GRAMPS fungerer også når man bruker KDE, så lenge de nødvendige GNOME-oppbevaringsstedene er installert."
 
 #: ../src/data/tips.xml.in.h:52
 msgid "Genealogy isn't only about dates and names. It is about people. Be descriptive. Include the <b>why</b> of how things happened, and how descendants might have been shaped by the events they went through. Narratives go a long way in making your family history come alive."
@@ -19738,4 +19738,22 @@ msgstr "Du kan enkelt eksportere ditt familietre til en nettside. Velg hele data
 #: ../src/data/tips.xml.in.h:74
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Du kan lenke alle typer elektroniske media (inkludert ikke-tekst informasjon) og andre filtyper til ditt GRAMPS-familietre."
+
+msgid "Ancestors of \"%s\""
+msgstr "Aner av \"%s\""
+
+msgid "at"
+msgstr "ved"
+
+msgid "Could not create temporary directory %s"
+msgstr "Klarte ikke å opprette midlertidig mappe %s"
+
+msgid "Summary of the Database"
+msgstr "Sammendrag av databasen"
+
+msgid "Reload Plugins"
+msgstr "Laste inn programtillegg"
+
+msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
+msgstr "Prøve å laste programtillegg. Mekr: Dette verktøyet er ikke selv lastet"
 
