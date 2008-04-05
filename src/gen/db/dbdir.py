@@ -39,7 +39,7 @@ from gettext import gettext as _
 from bsddb import dbshelve, db
 import logging
 
-log = logging.getLogger(".GrampsDb")
+_LOG = logging.getLogger(".GrampsDb")
 
 #-------------------------------------------------------------------------
 #
@@ -104,6 +104,11 @@ def find_primary_handle(key, data):
 def find_referenced_handle(key, data):
     return str((data)[1][1])
 
+#-------------------------------------------------------------------------
+#
+# GrampsDBDirCursor
+#
+#-------------------------------------------------------------------------
 class GrampsDBDirCursor(GrampsCursor):
 
     def __init__(self, source, txn=None):
@@ -131,6 +136,11 @@ class GrampsDBDirCursor(GrampsCursor):
     def get_length(self):
         return self.source.stat()['ndata']
 
+#-------------------------------------------------------------------------
+#
+# GrampsDBDirAssocCursor
+#
+#-------------------------------------------------------------------------
 class GrampsDBDirAssocCursor(GrampsCursor):
 
     def __init__(self, source, txn=None):
@@ -158,6 +168,11 @@ class GrampsDBDirAssocCursor(GrampsCursor):
     def get_length(self):
         return self.source.stat()['ndata']
 
+#-------------------------------------------------------------------------
+#
+# GrampsDBDirDupCursor
+#
+#-------------------------------------------------------------------------
 class GrampsDBDirDupCursor(GrampsDBDirAssocCursor):
     """Cursor that includes handling for duplicate keys."""
 
@@ -1485,7 +1500,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             # under certain circumstances during a database reload,
             # data_map can be none. If so, then don't report an error
             if data_map:
-                log.error("Failed to get from handle", exc_info=True)
+                _LOG.error("Failed to get from handle", exc_info=True)
         if data:
             newobj = InstanceType(class_type)
             newobj.unserialize(data)
@@ -1672,7 +1687,48 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 #            self.gramps_upgrade_13()
         print "Upgrade time:", int(time.time()-t), "seconds"
             
+    def write_version(self, name):
+        """Write version number for a newly created DB."""
+        full_name = os.path.abspath(name)
 
+        self.env = db.DBEnv()
+        self.env.set_cachesize(0, 0x4000000)         # 32MB
+
+        # These env settings are only needed for Txn environment
+        self.env.set_lk_max_locks(25000)
+        self.env.set_lk_max_objects(25000)
+        self.env.set_flags(db.DB_LOG_AUTOREMOVE, 1)  # clean up unused logs
+
+        # The DB_PRIVATE flag must go if we ever move to multi-user setup
+        env_flags = db.DB_CREATE | db.DB_PRIVATE |\
+                    db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
+                    db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
+
+        # As opposed to before, we always try recovery on databases
+        #  in _GrampsBSDDB.py we only do that on existing filenames
+        env_flags = env_flags | db.DB_RECOVER
+
+        # Environment name is now based on the filename
+        env_name = name
+
+        self.env.open(env_name, env_flags)
+        self.env.txn_checkpoint()
+
+        self.metadata  = self.__open_table(full_name, META)
+        
+        the_txn = self.env.txn_begin()
+        self.metadata.put('version', _DBVERSION, txn=the_txn)
+        the_txn.commit()
+        
+        self.metadata.close()
+        self.env.close()
+        
+
+#-------------------------------------------------------------------------
+#
+# BdbTransaction
+#
+#-------------------------------------------------------------------------
 class BdbTransaction(Transaction):
     def __init__(self, msg, db, batch=False, no_magic=False):
         Transaction.__init__(self, msg, db, batch, no_magic)
