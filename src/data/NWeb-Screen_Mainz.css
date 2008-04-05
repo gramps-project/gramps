@@ -69,7 +69,7 @@ img {
 	background:none;
 }
 .content {
-	width:900px;
+	width:965px;
 	margin:0 auto;
 	padding-bottom:.5em;
 	background:url(images/NWeb_Mainz_Mid.png) #FFF2C6 repeat;
@@ -168,10 +168,10 @@ a:visited {
 /* Header/Navigation Styles */
 /* ------------------------------------------------------------------------------ */
 #Header {
-	width:900px;
+	width:965px;
 	margin:0 auto;
 	padding:5em 0 2px 0;
-	background:url(images/NWeb_Mainz_Header.png) no-repeat top;
+	background:url(images/NWeb_Mainz_Header.png) repeat-x top left;
 }
 #SiteTitle {
 	color:#7D5925;
@@ -197,7 +197,7 @@ a:visited {
 }
 #Navigation {
 	font-family:sans-serif;
-	width:900px;
+	width:965px;
 	margin:0 auto;
 	padding:0;
 	background:url(images/NWeb_Mainz_MidLight.png) #FFF2C6;
@@ -245,7 +245,7 @@ a:visited {
 /* Footer Styles */
 /* ------------------------------------------------------------------------------ */
 #footer {
-	width:900px;
+	width:965px;
 	margin:0 auto;
 	padding:0;
 	clear:both;
