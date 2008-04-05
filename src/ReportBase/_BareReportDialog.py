@@ -53,6 +53,13 @@ log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
+# Private Constants
+#
+#-------------------------------------------------------------------------
+URL_REPORT_PAGE = "Gramps_3.0_Wiki_Manual_-_Reports"
+
+#-------------------------------------------------------------------------
+#
 # BareReportDialog class
 #
 #-------------------------------------------------------------------------
@@ -448,7 +455,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
     def on_help_clicked(self, *obj):
         import GrampsDisplay
         GrampsDisplay.help(None, 
-                           "Gramps_3.0_Wiki_Manual_-_Reports", 
+                           URL_REPORT_PAGE, 
                            self.report_name.replace(" ", "_") )
 
     def on_ok_clicked(self, obj):
