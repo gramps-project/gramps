@@ -53,6 +53,13 @@ log = logging.getLogger(".")
 
 #-------------------------------------------------------------------------
 #
+# Private Constants
+#
+#-------------------------------------------------------------------------
+URL_REPORT_PAGE = "Gramps_3.0_Wiki_Manual_-_Reports"
+
+#-------------------------------------------------------------------------
+#
 # BareReportDialog class
 #
 #-------------------------------------------------------------------------
@@ -68,7 +75,6 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
     frame_pad = 5
     border_pad = 6
-    HELP_TOPIC = None
 
     def __init__(self, dbstate, uistate, option_class,
                  name, translated_name, track=[]):
@@ -113,9 +119,8 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         self.window.set_has_separator(False)
         self.window.set_modal(True)
 
-        if self.HELP_TOPIC:
-            self.help = self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
-            self.help.connect('clicked',self.on_help_clicked)
+        self.help = self.window.add_button(gtk.STOCK_HELP, gtk.RESPONSE_HELP)
+        self.help.connect('clicked',self.on_help_clicked)
 
         self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
         self.cancel.connect('clicked',self.on_cancel)
@@ -447,9 +452,10 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
         pass
 
     def on_help_clicked(self, *obj):
-        if self.HELP_TOPIC:
-            import GrampsDisplay
-            GrampsDisplay.help(self.HELP_TOPIC)
+        import GrampsDisplay
+        GrampsDisplay.help(None, 
+                           URL_REPORT_PAGE, 
+                           self.report_name.replace(" ", "_") )
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
