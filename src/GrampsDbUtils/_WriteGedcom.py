@@ -252,11 +252,17 @@ def breakup(txt, limit):
     maximum length specified, while breaking words in the middle of a word
     to avoid issues with spaces.
     """
+    if limit < 1:
+        raise ValueError("breakup: unexpected limit: %r" % limit)
     data = []
-    while limit < len(txt)+1:
-        idx = limit-1
-        while txt[idx-1].isspace() or txt[idx].isspace() :
+    while len(txt) > limit:
+        # look for non-space pair to break between
+        idx = limit
+        while idx>0 and (txt[idx-1].isspace() or txt[idx].isspace()):
             idx -= 1
+        if idx == 0:
+            #no words to break on, just break at limit anyway
+            idx = limit
         data.append(txt[:idx])
         txt = txt[idx:]
     if len(txt) > 0:
