@@ -192,6 +192,11 @@ class CLIDbManager:
         name_file.write(title)
         name_file.close()
 
+        # open and close the db to write version number in metadata
+        newdb = gen.db.GrampsDBDir()
+        newdb.load(new_path, None)
+        newdb.close()
+
         self.current_names.append((title, new_path, path_name, _("Never"), 0, 
                                    False, ""))
         return new_path, title
