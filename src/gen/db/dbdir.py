@@ -428,7 +428,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def version_supported(self):
         try:
-            dbversion = self.metadata.get('version', default=_DBVERSION)
+            dbversion = self.metadata.get('version', default=0)
             return ((dbversion <= _DBVERSION) and (dbversion >= _MINVERSION))
         except DBERRS, msg:
             self.__log_error()
