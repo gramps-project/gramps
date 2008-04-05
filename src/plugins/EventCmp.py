@@ -148,7 +148,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        help('tools-util')
+        help()
 
     def build_menu_names(self, obj):
         return (_("Filter selection"),_("Event Comparison tool"))
@@ -247,7 +247,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        help('tools-ae')
+        help()
 
     def build_menu_names(self, obj):
         return (_("Event Comparison Results"),None)

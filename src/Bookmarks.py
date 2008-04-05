@@ -306,8 +306,7 @@ class Bookmarks :
 
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual."""
-        GrampsDisplay.help('gramps-nav', webpage=WIKI_HELP_PAGE, 
-                                   section=WIKI_HELP_SEC)
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
 class ListBookmarks(Bookmarks):
 

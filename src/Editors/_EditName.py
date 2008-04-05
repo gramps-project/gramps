@@ -141,7 +141,7 @@ class EditName(EditSecondary):
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('button119'))
-        self.define_help_button(self.top.get_widget('button131'),'adv-an')
+        self.define_help_button(self.top.get_widget('button131'))
         self.define_ok_button(self.top.get_widget('button118'),self.save)
 
     def _setup_fields(self):

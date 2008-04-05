@@ -579,7 +579,7 @@ class EditRule(ManagedWindow.ManagedWindow):
         """
         Display the relevant portion of GRAMPS manual.
         """
-        GrampsDisplay.help('append-filtref')
+        GrampsDisplay.help()
 
     def close_window(self, obj):
         self.close()

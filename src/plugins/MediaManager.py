@@ -152,7 +152,7 @@ class MediaMan(Tool.Tool):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-other')
+        GrampsDisplay.help()
 
     def build_batch_ops(self):
         self.batch_ops = []

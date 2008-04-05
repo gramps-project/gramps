@@ -1459,13 +1459,13 @@ def key_bindings(obj):
     """
     Display key bindings
     """
-    GrampsDisplay.help('keybind-lists', const.WIKI_KEYBINDINGS)
+    GrampsDisplay.help(const.WIKI_KEYBINDINGS)
 
 def manual_activate(obj):
     """
     Display the GRAMPS manual
     """
-    GrampsDisplay.help('index')
+    GrampsDisplay.help()
 
 def report_bug_activate(obj):
     """
@@ -1495,7 +1495,7 @@ def faq_activate(obj):
     """
     Display FAQ
     """
-    GrampsDisplay.help("faq", webpage=const.WIKI_FAQ)
+    GrampsDisplay.help(webpage=const.WIKI_FAQ)
 
 def by_menu_name(first, second):
     """

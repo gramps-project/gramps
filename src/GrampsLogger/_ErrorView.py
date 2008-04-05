@@ -52,7 +52,7 @@ class ErrorView(object):
     def help_clicked(self):
         """Display the relevant portion of GRAMPS manual"""
         
-        GrampsDisplay.help('faq', WIKI_HELP_PAGE, WIKI_HELP_SEC)
+        GrampsDisplay.help(WIKI_HELP_PAGE, WIKI_HELP_SEC)
 
     def draw_window(self):
         title = "%s - GRAMPS" % _("Error Report")

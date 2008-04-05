@@ -91,7 +91,7 @@ class EditSource(EditPrimary):
     def _connect_signals(self):
         self.define_ok_button(self.glade.get_widget('ok'),self.save)
         self.define_cancel_button(self.glade.get_widget('cancel'))
-        self.define_help_button(self.glade.get_widget('help'),'adv-src')
+        self.define_help_button(self.glade.get_widget('help'))
 
     def _setup_fields(self):
         self.author = MonitoredEntry(self.glade.get_widget("author"),

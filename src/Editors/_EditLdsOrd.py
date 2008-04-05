@@ -155,7 +155,7 @@ class EditLdsOrd(EditSecondary):
     def _connect_signals(self):
         self.parents_select.connect('clicked',self.select_parents_clicked)
         self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'),'adv-at')
+        self.define_help_button(self.top.get_widget('help'))
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 
     def _get_types(self):
@@ -340,7 +340,7 @@ class EditFamilyLdsOrd(EditSecondary):
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'),'adv-at')
+        self.define_help_button(self.top.get_widget('help'))
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 
     def _get_types(self):

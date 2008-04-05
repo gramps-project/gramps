@@ -178,7 +178,7 @@ class GrampletWindow(ManagedWindow.ManagedWindow):
             self.close()
         elif response == gtk.RESPONSE_HELP:
             # translated name:
-            GrampsDisplay.help('gramplet', WIKI_HELP_PAGE, 
+            GrampsDisplay.help(WIKI_HELP_PAGE, 
                                self.gramplet.tname.replace(" ", "_"))
         
     def build_menu_names(self, obj):
@@ -461,8 +461,7 @@ class Gramplet(object):
                     return True
                 elif link_type == 'WIKI':
                     if event.button == 1: # left mouse
-                        GrampsDisplay.help('gramplet', 
-                                           handle.replace(" ", "_"))
+                        GrampsDisplay.help(handle.replace(" ", "_"))
                     return True
                 elif link_type == 'PersonList':
                     if event.button == 1: # left mouse

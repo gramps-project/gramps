@@ -71,7 +71,7 @@ class EditUrl(EditSecondary):
         self.jump.connect('clicked', self.jump_to)
         self.define_cancel_button(self.top.get_widget('button125'))
         self.define_ok_button(self.top.get_widget('button124'), self.save)
-        self.define_help_button(self.top.get_widget('button130'), 'gramps-edit_complete')
+        self.define_help_button(self.top.get_widget('button130'))
         
     def jump_to(self, obj):
         if self.obj.get_path():

@@ -146,7 +146,7 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-db')
+        GrampsDisplay.help()
 
     def ancestors_of(self,p1_id,id_list):
         if (not p1_id) or (p1_id in id_list):
@@ -583,7 +583,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-db')
+        GrampsDisplay.help()
 
     def redraw(self):
         list = []

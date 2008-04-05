@@ -263,7 +263,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         while True:
             response = self.window.run()
             if response == gtk.RESPONSE_HELP:
-                GrampsDisplay.help('adv-dates', webpage=WIKI_HELP_PAGE, 
+                GrampsDisplay.help(webpage=WIKI_HELP_PAGE,
                                    section=WIKI_HELP_SEC)
             elif response == gtk.RESPONSE_DELETE_EVENT:
                 break

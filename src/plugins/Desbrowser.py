@@ -109,8 +109,7 @@ class DesBrowse(Tool.ActivePersonTool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-ae',webpage=WIKI_HELP_PAGE, 
-                                   section=WIKI_HELP_SEC)
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def add_to_tree(self, parent_id, sib_id, person_handle):
         item_id = self.model.insert_after(parent_id, sib_id)

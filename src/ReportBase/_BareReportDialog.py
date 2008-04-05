@@ -454,9 +454,7 @@ class BareReportDialog(ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, *obj):
         import GrampsDisplay
-        GrampsDisplay.help(None, 
-                           URL_REPORT_PAGE, 
-                           self.report_name.replace(" ", "_") )
+        GrampsDisplay.help(URL_REPORT_PAGE, self.report_name.replace(" ", "_"))
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options

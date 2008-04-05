@@ -231,7 +231,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-db', WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
         self.trans = self.db.transaction_begin("",batch=True)

@@ -110,7 +110,7 @@ class EditLocation(EditSecondary):
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('button119'))
         self.define_ok_button(self.top.get_widget('button118'),self.save)
-        self.define_help_button(self.top.get_widget('button128'),'gramps-edit-complete')
+        self.define_help_button(self.top.get_widget('button128'))
         
     def save(self,*obj):
         if self.callback:

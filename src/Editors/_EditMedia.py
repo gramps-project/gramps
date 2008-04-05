@@ -100,8 +100,7 @@ class EditMedia(EditPrimary):
     def _connect_signals(self):
         self.define_cancel_button(self.glade.get_widget('button91'))
         self.define_ok_button(self.glade.get_widget('ok'), self.save)
-        self.define_help_button(self.glade.get_widget('button102'), 
-                                'adv-media')
+        self.define_help_button(self.glade.get_widget('button102'))
 
     def _setup_fields(self):
         self.date_field = MonitoredDate(self.glade.get_widget("date_entry"),

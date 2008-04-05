@@ -294,8 +294,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-other', webpage=WIKI_HELP_PAGE, 
-                                   section=WIKI_HELP_SEC)
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_apply_clicked(self, obj):
         self.options.handler.options_dict['oldage'] = self.top.get_widget(

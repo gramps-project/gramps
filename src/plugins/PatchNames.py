@@ -276,7 +276,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-db')
+        GrampsDisplay.help()
 
     def on_ok_clicked(self, obj):
         self.trans = self.db.transaction_begin("",batch=True)

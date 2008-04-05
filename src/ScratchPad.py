@@ -1245,7 +1245,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-scratch-pad')
+        GrampsDisplay.help()
 
     def on_clear_clicked(self, obj):
         """Deletes the selected object from the object list"""

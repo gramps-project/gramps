@@ -106,7 +106,7 @@ class EditEventRef(EditReference):
         self.define_ok_button(self.top.get_widget('ok'),self.ok_clicked)
         self.define_cancel_button(self.top.get_widget('cancel'))
         # FIXME: activate when help page is available
-        #self.define_help_button(self.top.get_widget('help'), 'tag')
+        #self.define_help_button(self.top.get_widget('help'))
 
     def _setup_fields(self):
         

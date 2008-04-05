@@ -55,19 +55,10 @@ try:
 except KeyError:
     pass
 
-def help(target, webpage='', section=''):
+def help(webpage='', section=''):
     """
-    Display the specified target in a help window. If this fails,
-    open the manual on the web site.
+    Display the specified webpage and section from the Gramps 3.0 wiki.
     """
-    #try:
-    #    import gnome
-    #    gnome.help_display('gramps',target)
-    #except:
-    #    url(const.URL_MANUAL+'en/')
-    
-    # 3.0 Beta, direct to the wiki 3.0 Manual
-
     if not webpage:
         link = const.URL_WIKISTRING + const.URL_MANUAL_PAGE + EXTENSION
     else:

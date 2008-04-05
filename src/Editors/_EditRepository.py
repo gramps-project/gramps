@@ -134,7 +134,7 @@ class EditRepository(EditPrimary):
         self.glade.get_widget("vbox").pack_start(notebook, True, True)
 
     def _connect_signals(self):
-        self.define_help_button(self.glade.get_widget('help'),'adv-src')
+        self.define_help_button(self.glade.get_widget('help'))
         self.define_cancel_button(self.glade.get_widget('cancel'))
         self.define_ok_button(self.glade.get_widget('ok'), self.save)
 

@@ -122,7 +122,7 @@ class FilterEditor(ManagedWindow.ManagedWindow):
         
     def help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-cfe')
+        GrampsDisplay.help()
 
     def filter_select_row(self, obj):
         store, node = self.clist.get_selected()

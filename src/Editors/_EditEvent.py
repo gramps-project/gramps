@@ -195,8 +195,7 @@ class EditEvent(EditPrimary):
 
     def help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-ev', webpage=WIKI_HELP_PAGE, 
-                                   section=WIKI_HELP_SEC)
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
         if self.object_is_empty():

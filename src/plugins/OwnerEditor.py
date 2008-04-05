@@ -145,7 +145,7 @@ class OwnerEditor(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def on_help_button_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-db')
+        GrampsDisplay.help()
 
     def on_button_press_event(self, obj, event):
         """Shows popup-menu for db <-> preferences copying"""

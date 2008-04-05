@@ -118,7 +118,7 @@ class EditFilter(ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-cfe')
+        GrampsDisplay.help()
 
     def close_window(self, obj):
         self.close()

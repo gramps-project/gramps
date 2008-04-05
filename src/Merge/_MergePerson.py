@@ -89,7 +89,7 @@ class PersonCompare(ManagedWindow.ManagedWindow):
 
     def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-merge-people', webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        GrampsDisplay.help(webpage = WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
     def merge(self, obj):
         if check_for_spouse(self.p1, self.p2):
@@ -333,7 +333,7 @@ class MergePeopleUI(ManagedWindow.ManagedWindow):
 
     def help(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('adv-merge-people', webpage=WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section = WIKI_HELP_SEC)
 
 
 def name_of(p):

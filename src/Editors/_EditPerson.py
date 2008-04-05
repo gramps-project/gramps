@@ -174,7 +174,7 @@ class EditPerson(EditPrimary):
         """
         self.define_cancel_button(self.top.get_widget("button15"))
         self.define_ok_button(self.top.get_widget("ok"), self.save)
-        self.define_help_button(self.top.get_widget("button134"), 'adv-pers')
+        self.define_help_button(self.top.get_widget("button134"))
 
         self.given.connect("focus_out_event", self._given_focus_out_event)
         self.top.get_widget("button177").connect("clicked",

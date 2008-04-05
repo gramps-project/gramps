@@ -223,7 +223,7 @@ class EditNote(EditPrimary):
         """
         self.define_ok_button(self.top.get_widget('ok'), self.save)
         self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'), '')
+        self.define_help_button(self.top.get_widget('help'))
     
     def _create_tabbed_pages(self):
         """Create the notebook tabs and inserts them into the main window."""

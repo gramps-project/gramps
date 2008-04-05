@@ -214,7 +214,7 @@ class NotRelated(Tool.Tool, ManagedWindow.ManagedWindow) :
 #   
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-other', WIKI_HELP_PAGE , WIKI_HELP_SEC)    
+        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)    
 
 
     def applyMarkerClicked(self, button) :

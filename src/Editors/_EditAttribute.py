@@ -86,7 +86,7 @@ class EditAttribute(EditSecondary):
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_widget('cancel'))
-        self.define_help_button(self.top.get_widget('help'),'adv-at')
+        self.define_help_button(self.top.get_widget('help'))
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 
     def _setup_fields(self):

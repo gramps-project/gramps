@@ -118,7 +118,7 @@ class EditAddress(EditSecondary):
                                   self.obj, self.db.readonly)
 
     def _connect_signals(self):
-        self.define_help_button(self.top.get_widget('help'),'adv-ad')
+        self.define_help_button(self.top.get_widget('help'))
         self.define_cancel_button(self.top.get_widget('cancel'))
         self.define_ok_button(self.top.get_widget('ok'),self.save)
 

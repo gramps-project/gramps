@@ -145,8 +145,8 @@ class EditPrimary(ManagedWindow.ManagedWindow):
     def define_cancel_button(self, button):
         button.connect('clicked', self.close)
 
-    def define_help_button(self, button, tag, webpage='', section=''):
-        button.connect('clicked', lambda x: GrampsDisplay.help(tag, webpage, 
+    def define_help_button(self, button, webpage='', section=''):
+        button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
                                                                section))
 
     def _do_close(self, *obj):

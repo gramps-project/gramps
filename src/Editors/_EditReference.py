@@ -198,9 +198,9 @@ class EditReference(ManagedWindow.ManagedWindow):
         self._cleanup_on_exit()
         self.close(obj)
 
-    def define_help_button(self, button, tag, webpage='', section=''):
+    def define_help_button(self, button, webpage='', section=''):
         import GrampsDisplay
-        button.connect('clicked', lambda x: GrampsDisplay.help(tag, webpage,
+        button.connect('clicked', lambda x: GrampsDisplay.help(webpage,
                                                                section))
         button.set_sensitive(True)
 

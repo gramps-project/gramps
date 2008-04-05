@@ -112,7 +112,7 @@ class SoundGen(Tool.Tool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help('tools-util-other', WIKI_HELP_PAGE , WIKI_HELP_SEC)
+        GrampsDisplay.help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (self.label,None)
