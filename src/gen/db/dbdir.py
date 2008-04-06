@@ -499,7 +499,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
         if callback:
             callback(25)
-        self.metadata  = self.__open_table(self.full_name, META)
+        self.metadata = self.__open_table(self.full_name, META)
 
         # If we cannot work with this DB version,
         # it makes no sense to go further
@@ -1712,11 +1712,32 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             the_txn.commit()
             self.update()
 
+        # modifies dates: adds an integer for newyear code.
+        length = len(self.event_map)
+        self.set_total(length)
+        for handle in self.event_map.keys():
+            event = self.event_map[handle]
+            (junk_handle, gramps_id, the_type, date, description, place, 
+             source_list, note_list, media_list, attribute_list,
+             change, marker, private) = event
+            if date != None:
+                (calendar, modifier, quality, dateval, text, sortval) = date
+                newyear = 0
+                new_date = (calendar, modifier, quality, dateval,text,sortval, 
+                            newyear)
+                new_event = (junk_handle, gramps_id, the_type, new_date,
+                             description, place, source_list, note_list, 
+                             media_list, attribute_list, change,marker,private)
+                the_txn = self.env.txn_begin()
+                self.event_map.put(str(handle), new_event, txn=the_txn)
+                the_txn.commit()
+                self.update()
+
         # Bump up database version. Separate transaction to save metadata.
         the_txn = self.env.txn_begin()
         self.metadata.put('version', 14, txn=the_txn)
         the_txn.commit()
-        
+
     def write_version(self, name):
         """Write version number for a newly created DB."""
         full_name = os.path.abspath(name)
@@ -1753,7 +1774,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.metadata.close()
         self.env.close()
         
-
 #-------------------------------------------------------------------------
 #
 # BdbTransaction
