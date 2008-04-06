@@ -982,7 +982,9 @@ class PersonView(PageView.PersonNavView):
 
         path = (0, )
         node = self.model.on_get_iter(path)
-        while node:
+
+        # Node might be null if the surname is not known so test against None
+        while node != None:
             real_iter = self.model.get_iter(path)
             for subindex in range(0, self.model.iter_n_children(real_iter)):
                 subpath = ((path[0], subindex))
