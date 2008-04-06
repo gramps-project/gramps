@@ -60,7 +60,6 @@ gdir_PYTHON = \
 	ListModel.py\
 	Lru.py\
 	ManagedWindow.py\
-	MarkupText.py\
 	Navigation.py\
 	PageView.py\
 	QuestionDialog.py\
