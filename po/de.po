@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-29 11:56+0100\n"
-"PO-Revision-Date: 2008-04-02 15:26+0200\n"
+"POT-Creation-Date: 2008-04-06 15:27+0200\n"
+"PO-Revision-Date: 2008-04-06 20:33+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -126,7 +126,7 @@ msgstr "Lesezeichen organisieren"
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
 #: ../src/Editors/_EditFamily.py:102 ../src/Editors/_EditName.py:274
 #: ../src/Selectors/_SelectPerson.py:49 ../src/Selectors/_SelectPerson.py:125
-#: ../src/Selectors/_SelectPerson.py:131 ../src/plugins/BookReport.py:738
+#: ../src/Selectors/_SelectPerson.py:131 ../src/plugins/BookReport.py:739
 #: ../src/plugins/IndivComplete.py:426 ../src/plugins/MarkerReport.py:118
 #: ../src/plugins/NarrativeWeb.py:842 ../src/plugins/NarrativeWeb.py:986
 #: ../src/plugins/NarrativeWeb.py:1113 ../src/plugins/NotRelated.py:96
@@ -276,12 +276,12 @@ msgid ""
 "If you think you may want to revert the import, please stop here and backup "
 "your database."
 msgstr ""
-"Während des Importes werden die \"Rückgängig - Chronik\" für diese Sitzung "
-"gelöscht. Sie können vor allem nicht den Import und die davor gemachten "
+"Während des Importes wird die \"Rückgängig - Chronik\" für diese Sitzung "
+"gelöscht. Du kannst vor allem nicht den Import und die davor gemachten "
 "Änderungen rückgängig machen.\n"
 "\n"
-"Wenn Sie den Import möglicherweise rückgängig machen wollen, sicheren Sie "
-"bitte ihre Datenbank!"
+"Wenn du den Import möglicherweise rückgängig machen willst, sichere bitte "
+"deine Datenbank!"
 
 #: ../src/DbLoader.py:105
 msgid "_Proceed with import"
@@ -324,7 +324,7 @@ msgstr ""
 
 #: ../src/DbLoader.py:221
 msgid "You do not have read access to the selected file."
-msgstr "Sie haben keinen Lesezugriff auf die ausgewählte Datei."
+msgstr "Du hast keinen Lesezugriff auf die ausgewählte Datei."
 
 #: ../src/DbLoader.py:231
 msgid "Cannot create database"
@@ -332,7 +332,7 @@ msgstr "Kann Datenbank nicht erstellen"
 
 #: ../src/DbLoader.py:232 ../src/DbLoader.py:256
 msgid "You do not have write access to the selected file."
-msgstr "Sie haben keinen Schreibzugriff auf die ausgewählte Datei."
+msgstr "Du hast keinen Schreibzugriff auf die ausgewählte Datei."
 
 #: ../src/DbLoader.py:255
 msgid "Read only database"
@@ -349,8 +349,8 @@ msgid ""
 "accurately imported. Please fix the encoding, and import again"
 msgstr ""
 "Diese GEDCOM-Datei gibt ihren Zeichensatz falsch an, daher kann sie nicht "
-"korrekt importiert werden. Bitte korrigieren Sie den Zeichensatz und "
-"importieren sie erneut."
+"korrekt importiert werden. Bitte korrigiere den Zeichensatz und importiere "
+"sie erneut."
 
 #: ../src/DbLoader.py:358
 msgid "All GRAMPS files"
@@ -381,78 +381,74 @@ msgstr "Datei_typ auswählen:"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:84
+#: ../src/DbManager.py:86
 msgid "Family Tree"
 msgstr "Family Tree"
 
-#: ../src/DbManager.py:98
+#: ../src/DbManager.py:100
 msgid "Extract"
 msgstr "Auszug"
 
-#: ../src/DbManager.py:98 ../src/gen/lib/repotype.py:64
+#: ../src/DbManager.py:100 ../src/gen/lib/repotype.py:64
 msgid "Archive"
 msgstr "Archiv"
 
-#: ../src/DbManager.py:170
+#: ../src/DbManager.py:172
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Starte Import, %s"
 
-#: ../src/DbManager.py:176
+#: ../src/DbManager.py:178
 msgid "Import finished..."
 msgstr "Import abgeschlossen..."
 
-#: ../src/DbManager.py:195 ../src/DbManager.py:840 ../src/DbManager.py:932
-msgid "Never"
-msgstr "Nie"
-
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
-#: ../src/DbManager.py:215 ../src/plugins/ImportCSV.py:374
+#: ../src/DbManager.py:223 ../src/plugins/ImportCSV.py:374
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
-#: ../src/DbManager.py:437
+#: ../src/DbManager.py:427
 msgid "Family tree name"
 msgstr "Stammbaumname:"
 
-#: ../src/DbManager.py:446 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:436 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:80
 msgid "Status"
 msgstr "Status"
 
-#: ../src/DbManager.py:452
+#: ../src/DbManager.py:442
 msgid "Last modified"
 msgstr "Zuletzt geändert"
 
-#: ../src/DbManager.py:522
+#: ../src/DbManager.py:521
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Sperre der Datenbank '%s' aufheben?"
 
-#: ../src/DbManager.py:523
+#: ../src/DbManager.py:522
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
 "database you may safely break the lock. However, if someone else is editing "
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
-"GRAMPS glaubt, daß jemand anderes aktiv diese Datenbank bearbeitet. Sie "
-"können diese Datenbank nicht bearbeiten, während sie gesperrt ist. Wenn "
+"GRAMPS glaubt, dass jemand anderes aktiv diese Datenbank bearbeitet. Du "
+"kannst diese Datenbank nicht bearbeiten, während sie gesperrt ist. Wenn "
 "niemand die Datenbank bearbeitet, kannst du die Sperrung sicher aufheben. "
-"Jedoch wenn jemand anderes die Datenbank bearbeited und Sie die Sperrung "
-"aufheben, können Sie die Datenbank beschädigen."
+"Jedoch wenn jemand anderes die Datenbank bearbeitet und du die Sperrung "
+"aufhebst, kannst du die Datenbank beschädigen."
 
-#: ../src/DbManager.py:529
+#: ../src/DbManager.py:528
 msgid "Break lock"
 msgstr "Sperre aufheben"
 
-#: ../src/DbManager.py:601
+#: ../src/DbManager.py:600
 msgid "Rename failed"
 msgstr "Umbenennung ist fehlgeschlagen"
 
-#: ../src/DbManager.py:602
+#: ../src/DbManager.py:601
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -464,61 +460,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:617
+#: ../src/DbManager.py:616
 msgid "Could not rename the Family Tree."
 msgstr "Kann diesen Stammbaum nicht umbenennen."
 
-#: ../src/DbManager.py:618
+#: ../src/DbManager.py:617
 msgid "Family Tree already exists, choose a unique name."
-msgstr "Stammbaum besteht bereits, wählen Sie einen einmaligen Namen."
+msgstr "Stammbaum besteht bereits, wähle einen einmaligen Namen."
 
-#: ../src/DbManager.py:631
+#: ../src/DbManager.py:630
 msgid "Could not rename family tree"
 msgstr "Kann Stammbaum nicht umbenennen"
 
-#: ../src/DbManager.py:665
+#: ../src/DbManager.py:664
 msgid "Extracting archive..."
 msgstr "Entpacke Archiv..."
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:669
 msgid "Importing archive..."
 msgstr "Importiere Archiv..."
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:685
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Den '%s' Stammbaum entfernen?"
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:686
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Das Entfernen dieses Stammbaum zerstört die Daten dauerhaft."
 
-#: ../src/DbManager.py:688
+#: ../src/DbManager.py:687
 msgid "Remove family tree"
 msgstr "Entferne Stammbaum"
 
-#: ../src/DbManager.py:694
+#: ../src/DbManager.py:693
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Entfernt die '%(revision)s' Version von %(database)s'"
 
-#: ../src/DbManager.py:698
+#: ../src/DbManager.py:697
 msgid "Removing this version will prevent you from extracting it in the future."
-msgstr "Das Entfernen dieser Version verhindert, das Sie sie in Zukunft auswählen."
+msgstr "Das Entfernen dieser Version verhindert, das du sie in Zukunft auswählst."
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:699
 msgid "Remove version"
 msgstr "Entferne Version"
 
-#: ../src/DbManager.py:729
+#: ../src/DbManager.py:728
 msgid "Could not delete family tree"
 msgstr "Kann Stammbaum nicht löschen"
 
-#: ../src/DbManager.py:754
+#: ../src/DbManager.py:753
 msgid "Deletion failed"
 msgstr "Löschung fehlgeschlagen"
 
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:754
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -530,17 +526,21 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:794
+#: ../src/DbManager.py:793
 msgid "Rebuilding database from backup files"
 msgstr "Datenbank aus Sicherungsdateien wiederherstellen"
 
-#: ../src/DbManager.py:829
+#: ../src/DbManager.py:828
 msgid "Could not create family tree"
 msgstr "Konnte Stammbaum nicht erstellen"
 
 #: ../src/DbManager.py:918
 msgid "Could not make database directory: "
 msgstr "Konnte Datenbankverzeichnis nicht erstellen:"
+
+#: ../src/DbManager.py:932
+msgid "Never"
+msgstr "Nie"
 
 #: ../src/DbManager.py:1006 ../src/ScratchPad.py:94
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
@@ -658,8 +658,8 @@ msgstr ""
 "Name:\t%s\n"
 "Ordner:\t%s\n"
 "\n"
-"Klicken Sie zum starten auf OK, auf Zurück um Ihre Einstellungen zu "
-"überprüfen oder auf Abbrechen."
+"Klicke zum starten auf OK, auf Zurück um deine Einstellungen zu überprüfen "
+"oder auf Abbrechen."
 
 #: ../src/ExportAssistant.py:449
 msgid ""
@@ -670,7 +670,7 @@ msgstr ""
 "Die für das Speichern gewählte Datei und der Ordner können nicht erstellt "
 "oder gefunden werden. \n"
 "\n"
-"Gehen Sie zurück und wählen einen gültigen Dateinamen."
+"Gehe zurück und wähle einen gültigen Dateinamen."
 
 #: ../src/ExportAssistant.py:468
 msgid "Your data has been saved"
@@ -685,11 +685,11 @@ msgid ""
 "you have just saved. Future editing of the currently opened database will "
 "not alter the copy you have just made. "
 msgstr ""
-"Die Kopie von Ihren Daten wurde erfolgreich gespeichert. Sie können nun auf "
+"Die Kopie von deinen Daten wurde erfolgreich gespeichert. Du kannst nun auf "
 "Schließen klicken um fortzufahren.\n"
 "\n"
-"Anmerkung: Die Datenbank, die gerade in Ihrem GRAMPS-Fenster geöffnet ist, "
-"ist NICHT die Datei, die Sie gerade gespeichert haben. Zukünftige Änderungen "
+"Anmerkung: Die Datenbank, die gerade in deinem GRAMPS-Fenster geöffnet ist, "
+"ist NICHT die Datei, die du gerade gespeichert hast. Zukünftige Änderungen "
 "werden die gerade erstellte Kopie nicht verändern."
 
 #: ../src/ExportAssistant.py:480
@@ -704,11 +704,11 @@ msgid ""
 "Note: your currently opened database is safe. It was only a copy of your "
 "data that failed to save."
 msgstr ""
-"Beim Speichern Ihrer Daten trat ein Fehler auf. Bitte gehen Sie zurück und "
+"Beim Speichern deiner Daten trat ein Fehler auf. Bitte gehen zurück und "
 "versuchen es nochmal.\n"
 "\n"
-"Anmerkung: Ihre momentan geöffnete Datenbank ist sicher. Nur die Kopie Ihre "
-"Daten konnte nicht gespeichert werden."
+"Anmerkung: deine momentan geöffnete Datenbank ist sicher. Nur die Kopie "
+"deiner Daten konnte nicht gespeichert werden."
 
 #: ../src/ExportAssistant.py:519
 msgid ""
@@ -723,18 +723,18 @@ msgid ""
 "If you change your mind during this process, you can safely press the Cancel "
 "button at any time and your present database will still be intact."
 msgstr ""
-"Unter normalen Umständen erfordert es GRAMPS nicht, dass Sie Ihre Änderungen "
-"direkt speichern. Alle Änderungen, die Sie machen, werden sofort in der "
+"Unter normalen Umständen erfordert es GRAMPS nicht, dass du deine Änderungen "
+"direkt speicherst. Alle Änderungen, die du machst, werden sofort in der "
 "Datenbank gespeichert.\n"
 "\n"
-"Dieser Vorgang hilft Ihnen Ihre Daten in eines der verschiedenen Formate, "
-"die GRAMPS unterstützt, zu speichern. Dies kann dazu benutzt werden, eine "
-"Kopie ihrer Daten zu erstellen, Ihre Daten zu sichern oder sie in ein Format "
-"zu konvertieren, das es Ihnen erlaubt sie in ein anderes Programm zu "
+"Dieser Vorgang hilft dir deine Daten in eines der verschiedenen Formate, die "
+"GRAMPS unterstützt, zu speichern. Dies kann dazu benutzt werden, eine Kopie "
+"deiner Daten zu erstellen, deine Daten zu sichern oder sie in ein Format zu "
+"konvertieren, das es dir erlaubt sie in ein anderes Programm zu "
 "transferieren.\n"
 "\n"
-"Falls Sie während des Vorgangs Ihre Meinung ändern, können Sie jederzeit "
-"gefahrlos auf den Abbrechen-Knopf klicken und Ihre aktuelle Datenbank wird "
+"Falls du während des Vorgangs deine Meinung änderst, kannst du jederzeit "
+"gefahrlos auf den Abbrechen-Knopf klicken und deine aktuelle Datenbank wird "
 "weiterhin intakt bleiben."
 
 #: ../src/ExportOptions.py:67
@@ -1090,7 +1090,7 @@ msgstr "Dieses Format existiert bereits"
 
 #: ../src/GrampsCfg.py:438 ../src/GrampsCfg.py:977
 msgid "Invalid or incomplete format definition"
-msgstr "Unggültige oder unvollständige Formatdefinition"
+msgstr "Ungültige oder unvollständige Formatdefinition"
 
 #: ../src/GrampsCfg.py:455
 msgid "Format"
@@ -1106,7 +1106,7 @@ msgid "Name format"
 msgstr "Namenformat"
 
 #: ../src/GrampsCfg.py:628 ../src/DisplayTabs/_ButtonTab.py:69
-#: ../src/plugins/BookReport.py:941
+#: ../src/plugins/BookReport.py:942
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -1225,7 +1225,7 @@ msgstr "Formatdefinition ist ungültig"
 
 #: ../src/GrampsCfg.py:955
 msgid "What would you like to do?"
-msgstr "Was wollen Sie tun?"
+msgstr "Was willst du tun?"
 
 #: ../src/GrampsCfg.py:956
 msgid "_Continue anyway"
@@ -1420,8 +1420,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Eventuell ist die Installation von GRAMPS nicht vollständig. Stellen Sie "
-"sicher, dass das GConf-Schema von GRAMPS richtig installiert ist."
+"Eventuell ist die Installation von GRAMPS nicht vollständig. Stelle sicher, "
+"dass das GConf-Schema von GRAMPS richtig installiert ist."
 
 #: ../src/gramps_main.py:223
 #, python-format
@@ -1433,8 +1433,8 @@ msgid ""
 msgstr ""
 "Eine Definition für den MIME-Typ %s konnte nicht gefunden werden\n"
 "\n"
-"Eventuell ist die Installation von GRAMPS nicht vollständig. Stellen Sie "
-"sicher, dass die MIME-Typen von GRAMPS richtig installiert sind."
+"Eventuell ist die Installation von GRAMPS nicht vollständig. Stelle sicher, "
+"dass die MIME-Typen von GRAMPS richtig installiert sind."
 
 #: ../src/gramps.py:99
 #, python-format
@@ -1444,7 +1444,7 @@ msgid ""
 "\n"
 "GRAMPS will terminate now."
 msgstr ""
-"Ihre Pythonversion erfüllt nicht Vorgaben. Mindestens python %d.%d.%d wird "
+"Ihre Pythonversion erfüllt nicht Vorgaben. Mindestens Python %d.%d.%d wird "
 "benötigt um GRAMPS zu starten.\n"
 "\n"
 "GRAMPS wird nun beendet."
@@ -1479,7 +1479,7 @@ msgstr "Akte ist öffentlich"
 
 #: ../src/GrampsWidgets.py:922
 msgid "To select a place, use drag-and-drop or use the buttons"
-msgstr "Um einen Ort auszuwählen, benutzen Sie Drag-und-Drop oder die Schaltflächen"
+msgstr "Um einen Ort auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
 
 #: ../src/GrampsWidgets.py:924
 msgid "No place given, click button to select one"
@@ -1503,9 +1503,7 @@ msgstr "Ort löschen"
 
 #: ../src/GrampsWidgets.py:976
 msgid "To select a media object, use drag-and-drop or use the buttons"
-msgstr ""
-"Um ein Medienobjekt auszuwählen, benutzen Sie Drag-und-Drop oder die "
-"Schaltflächen"
+msgstr "Um ein Medienobjekt auszuwählen, benutze Drag-und-Drop oder die Schaltflächen"
 
 #: ../src/GrampsWidgets.py:978 ../src/PluginUtils/_GuiOptions.py:749
 msgid "No image given, click button to select one"
@@ -1529,7 +1527,7 @@ msgstr "Medienobjekt entfernen"
 
 #: ../src/GrampsWidgets.py:1030
 msgid "To select a note, use drag-and-drop or use the buttons"
-msgstr "Um eine Notiz zuwählen, benutzen Sie Drag-und-Drop oder die Schaltflächen"
+msgstr "Um eine Notiz zu wählen, benutze Drag-und-Drop oder die Schaltflächen"
 
 #: ../src/GrampsWidgets.py:1032 ../src/PluginUtils/_GuiOptions.py:672
 msgid "No note given, click button to select one"
@@ -1733,10 +1731,10 @@ msgid ""
 "\n"
 msgstr ""
 "GRAMPS hat einen Fehler in der Datenbank entdeckt. Dies kann meist durch "
-"Verwendung des Wekzeuges \"Datenbank prüfen und reparieren\" behoben "
+"Verwendung des Werkzeugs \"Datenbank prüfen und reparieren\" behoben "
 "werden.\n"
-"n\"Wenn der Fehler nach Einsatz dieses Werkzeuges nicht behoben wurde, so "
-"schreiben Sie bitte einen Fehlerbericht auf http://bugs.gramps-project.org\n"
+"n\"Wenn der Fehler nach Einsatz dieses Werkzeugs nicht behoben wurde, so "
+"schreibe bitte einen Fehlerbericht auf http://bugs.gramps-project.org\n"
 "\n"
 
 #: ../src/QuestionDialog.py:198
@@ -1751,7 +1749,7 @@ msgid ""
 msgstr ""
 "GRAMPS hat ein Problem in der darunter liegenden Berkeley Datenbank "
 "festgestellt. Dies kann mit dem Stammbaum-Manager repariert werden. Die "
-"Datenbank wählen und auf die Reperatur-Schaltfläche klicken"
+"Datenbank wählen und auf die Reparatur-Schaltfläche klicken"
 
 #: ../src/QuestionDialog.py:310 ../src/Utils.py:1075
 msgid "Attempt to force closing the dialog"
@@ -1762,8 +1760,8 @@ msgid ""
 "Please do not force closing this important dialog.\n"
 "Instead select one of the available options"
 msgstr ""
-"Bitte versuchen Sie nicht diesen wichtigen Dialog zu Umgehen.\n"
-"Stattdessen wählen Sie eine der verfügbaren Optionen"
+"Bitte versuche nicht diesen wichtigen Dialog zu Umgehen.\n"
+"Stattdessen wähle eine der verfügbaren Optionen"
 
 #: ../src/QuickReports.py:82 ../src/DataViews/EventView.py:186
 #: ../src/DataViews/FamilyList.py:174 ../src/DataViews/PersonView.py:151
@@ -1782,7 +1780,7 @@ msgid ""
 msgstr ""
 "Stammbaum reicht weiter zurück als die maximal %d durchsuchten "
 "Generationen.\n"
-"Es ist möglich, das Verwandschaftsverhältnisse fehlen"
+"Es ist möglich, das Verwandtschaftsverhältnisse fehlen"
 
 #: ../src/Relationship.py:927
 msgid "Relationship loop detected:"
@@ -1975,8 +1973,8 @@ msgstr "Familiäres Ereignis"
 #: ../src/DisplayTabs/_RepoEmbedList.py:65
 #: ../src/DisplayTabs/_WebEmbedList.py:62 ../src/Selectors/_SelectEvent.py:55
 #: ../src/Selectors/_SelectNote.py:60 ../src/Selectors/_SelectObject.py:75
-#: ../src/plugins/siblings.py:44 ../src/plugins/BookReport.py:739
-#: ../src/plugins/BookReport.py:743 ../src/plugins/FilterByName.py:102
+#: ../src/plugins/siblings.py:44 ../src/plugins/BookReport.py:740
+#: ../src/plugins/BookReport.py:744 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/MarkerReport.py:381 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/PatchNames.py:206 ../src/plugins/References.py:70
@@ -2030,7 +2028,7 @@ msgstr "Quellen-Referenz"
 
 #: ../src/ScratchPad.py:485
 msgid "not available|NA"
-msgstr "NV"
+msgstr "N.V."
 
 #: ../src/ScratchPad.py:491
 #, python-format
@@ -2253,7 +2251,7 @@ msgstr "Irisch"
 
 #: ../src/Spell.py:102
 msgid "Scottish Gaelic"
-msgstr "Schottland gälisch"
+msgstr "Schottland Gälisch"
 
 #: ../src/Spell.py:103
 msgid "Galician"
@@ -2265,7 +2263,7 @@ msgstr "Gujarati"
 
 #: ../src/Spell.py:105
 msgid "Manx Gaelic"
-msgstr "Insel Man gälisch"
+msgstr "Insel Man Gälisch"
 
 #: ../src/Spell.py:106 ../src/gen/lib/date.py:141
 msgid "Hebrew"
@@ -2499,7 +2497,7 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Kann die Tips nicht von externer Datei lesen.\n"
+"Kann die Tipps nicht von externer Datei lesen.\n"
 "\n"
 "%s"
 
@@ -2637,7 +2635,7 @@ msgstr "Datenbankfehler: %s wurde als Ihr Vorfahre festgelegt"
 
 #: ../src/Utils.py:1076
 msgid "Please do not force closing this important dialog."
-msgstr "Bitte versuchen Sie nicht diesen wichtigen Dialog zu Umgehen."
+msgstr "Bitte versuche nicht diesen wichtigen Dialog zu Umgehen."
 
 #: ../src/Utils.py:1151
 msgid "TITLE"
@@ -2669,11 +2667,11 @@ msgstr "RUFNAME"
 
 #: ../src/Utils.py:1159
 msgid "Initials"
-msgstr "Initialien"
+msgstr "Initialen"
 
 #: ../src/Utils.py:1159
 msgid "INITIALS"
-msgstr "INITIALIEN"
+msgstr "INITIALEN"
 
 #: ../src/UndoHistory.py:95
 msgid "Original time"
@@ -2689,7 +2687,7 @@ msgstr "Bestätigung zum Löschen"
 
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
-msgstr "Sind Sie sich sicher, die Vorwärts-Chronik zu leeren?"
+msgstr "Bist du sich sicher, die Vorwärts-Chronik zu leeren?"
 
 #: ../src/UndoHistory.py:217
 msgid "Database opened"
@@ -2697,7 +2695,7 @@ msgstr "Datenbank geöffnet"
 
 #: ../src/UndoHistory.py:219
 msgid "History cleared"
-msgstr "History gelöscht"
+msgstr "Historie gelöscht"
 
 #: ../src/ViewManager.py:359 ../src/ViewManager.py:360
 msgid "Connect to a recent database"
@@ -2766,7 +2764,7 @@ msgstr "_Info"
 
 #: ../src/ViewManager.py:404
 msgid "_Plugin Status"
-msgstr "_Plugin Status"
+msgstr "_PlugIn Status"
 
 #: ../src/ViewManager.py:406
 msgid "_FAQ"
@@ -2932,7 +2930,7 @@ msgid ""
 "license."
 msgstr ""
 "Viel der Gestaltungsarbeit von GRAMPS ist\n"
-"entweder von dem Tango Project oder ist\n"
+"entweder von dem Tango Projekt oder ist\n"
 "von diesem abgeleitet. Diese Gestaltungsarbeit\n"
 "steht unter der Create Commons\n"
 "Attribution-ShareAlike 2.5 Lizens."
@@ -3013,7 +3011,7 @@ msgstr "gewöhnlich"
 
 #: ../src/BasicUtils/_NameDisplay.py:292 ../src/BasicUtils/_NameDisplay.py:327
 msgid "initials"
-msgstr "Initialien"
+msgstr "Initialen"
 
 #: ../src/Config/_GrampsConfigKeys.py:290
 msgid "Missing Surname"
@@ -3060,7 +3058,7 @@ msgid ""
 "relationship between them."
 msgstr ""
 "Ehepaare können nicht zusammengefasst werden. Um diese Personen "
-"zusammenzufassen, müssen Sie zuerst die Verbindung zwischen ihnen lösen."
+"zusammenzufassen, mußt du zuerst die Verbindung zwischen ihnen lösen."
 
 #: ../src/Merge/_MergePerson.py:103 ../src/Merge/_MergePerson.py:282
 #: ../src/Merge/_MergePerson.py:318
@@ -3069,7 +3067,7 @@ msgid ""
 "break the relationship between them."
 msgstr ""
 "Ein Elternteil und ein Kind können nicht zusammengefasst werden. Um diese "
-"Personen zusammenzufassen, müssen Sie zuerst die Verbindung der beiden lösen."
+"Personen zusammenzufassen, mußt du zuerst die Verbindung der beiden lösen."
 
 #: ../src/Merge/_MergePerson.py:134 ../src/DataViews/PersonView.py:69
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
@@ -3248,7 +3246,7 @@ msgstr "Filtereditor für Medien-Objekte"
 
 #: ../src/DataViews/MediaView.py:218
 msgid "View in the default viewer"
-msgstr "In standard Programm betrachten"
+msgstr "In voreingestellten Programm anzeigen"
 
 #: ../src/DataViews/MediaView.py:236
 #, python-format
@@ -3274,8 +3272,8 @@ msgid ""
 "This media object is currently being used. If you delete this object, it "
 "will be removed from the database and from all records that reference it."
 msgstr ""
-"Dieses Medien-Objekt wird derzeit verwendet. Wenn Sie es löschen, wird es "
-"aus der Datenbank und allen referenzierenden Datensätzen entfernt."
+"Dieses Medien-Objekt wird derzeit verwendet. Wenn du es löscht, wird es aus "
+"der Datenbank und allen referenzierenden Datensätzen entfernt."
 
 #: ../src/DataViews/MediaView.py:401
 msgid "Deleting media object will remove it from the database."
@@ -3718,7 +3716,7 @@ msgstr "Partner"
 #: ../src/DataViews/RelationView.py:332 ../src/DataViews/RelationView.py:334
 #: ../src/DataViews/RelationView.py:705
 msgid "Add a new family with person as parent"
-msgstr "Füge eine neue Famile mit aktiver Person als Elter"
+msgstr "Füge eine neue Familie mit aktiver Person als Elter"
 
 #: ../src/DataViews/RelationView.py:333
 msgid "Add Partner..."
@@ -3867,7 +3865,7 @@ msgstr "Fehler in Familie entdeckt"
 
 #: ../src/DataViews/RelationView.py:1135
 msgid "Please run the Check and Repair Database tool"
-msgstr "Bitte benutzen Sie das Werkzeug \"Datenbank prüfen und reparieren\""
+msgstr "Bitte benutze das Werkzeug \"Datenbank prüfen und reparieren\""
 
 #: ../src/DataViews/RelationView.py:1156
 #, python-format
@@ -4001,7 +3999,7 @@ msgstr ""
 #: ../src/docgen/ODSDoc.py:424 ../src/docgen/ODSDoc.py:428
 #: ../src/docgen/ODSDoc.py:456 ../src/docgen/ODSDoc.py:460
 #: ../src/docgen/ODSDoc.py:505 ../src/docgen/ODSDoc.py:509
-#: ../src/docgen/ODFDoc.py:540 ../src/docgen/ODFDoc.py:543
+#: ../src/docgen/ODFDoc.py:544 ../src/docgen/ODFDoc.py:547
 #: ../src/docgen/ODSTab.py:74 ../src/docgen/ODSTab.py:76
 #: ../src/docgen/ODSTab.py:168 ../src/docgen/ODSTab.py:171
 #: ../src/docgen/ODSTab.py:191 ../src/docgen/ODSTab.py:195
@@ -4030,7 +4028,7 @@ msgstr "Öffne in %s"
 
 #: ../src/docgen/AsciiDoc.py:388
 msgid "Plain Text"
-msgstr "EInfacher Text"
+msgstr "Einfacher Text"
 
 #: ../src/docgen/GtkPrint.py:67
 msgid "PyGtk 2.10 or later is required"
@@ -4067,7 +4065,7 @@ msgstr ""
 msgid "HTML"
 msgstr "HTML"
 
-#: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1151
+#: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
 #: ../src/ReportBase/_GraphvizReportDialog.py:696
 #, python-format
@@ -4078,8 +4076,8 @@ msgstr "Öffnen mit %(program_name)s"
 msgid "LaTex"
 msgstr "LaTex"
 
-#: ../src/docgen/ODFDoc.py:1158 ../src/docgen/ODFDoc.py:1159
-#: ../src/docgen/ODFDoc.py:1160
+#: ../src/docgen/ODFDoc.py:1159 ../src/docgen/ODFDoc.py:1160
+#: ../src/docgen/ODFDoc.py:1161
 msgid "Open Document Text"
 msgstr "Open Document Text"
 
@@ -4255,7 +4253,7 @@ msgstr ""
 "verbundene Ereignis wird schon bearbeitet oder eine andere Ereignis-"
 "Referenz, die mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
 "\n"
-"Um die Ereignis-Referenz zu bearbeiten, müssen Sie die Quelle schließen."
+"Um die Ereignis-Referenz zu bearbeiten, mußt du die Quelle schließen."
 
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:52
 #: ../src/DisplayTabs/_LdsEmbedList.py:62
@@ -4428,7 +4426,7 @@ msgstr ""
 "Referenz, die mit dem selben Ereignis verbunden ist, wird gerade "
 "bearbeitet.\n"
 "\n"
-"Um die Ereignis-Referenz zu bearbeiten, müssen Sie das Ereignis schließen."
+"Um die Ereignis-Referenz zu bearbeiten, mußt du das Ereignis schließen."
 
 #: ../src/DisplayTabs/_SourceEmbedList.py:53
 msgid "Create and add a new source"
@@ -4466,7 +4464,7 @@ msgstr ""
 "verbundene Ereignis wird schon bearbeitet oder eine andere Ereignis-"
 "Referenz, die mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
 "\n"
-"Um die Ereignis-Referenz zu bearbeiten, müssen Sie die Quelle schließen."
+"Um die Ereignis-Referenz zu bearbeiten, mußt du die Quelle schließen."
 
 #: ../src/DisplayTabs/_WebEmbedList.py:53
 msgid "Create and add a new web address"
@@ -4582,14 +4580,14 @@ msgstr "Ereignis kann nicht gespeichert werden"
 #: ../src/Editors/_EditEvent.py:204
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für dieses Ereignis. Bitte geben Sie Daten ein "
-"oder brechen Sie ab."
+"Es existieren keine Daten für dieses Ereignis. Bitte gib Daten ein oder "
+"breche ab."
 
 #: ../src/Editors/_EditEvent.py:213
 msgid "Cannot save event. ID already exists."
 msgstr "Kann Ereignis nicht speichern ID existiert bereits"
 
-#: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditMedia.py:250
+#: ../src/Editors/_EditEvent.py:214 ../src/Editors/_EditMedia.py:249
 #: ../src/Editors/_EditPerson.py:690 ../src/Editors/_EditPlace.py:275
 #: ../src/Editors/_EditRepository.py:155 ../src/Editors/_EditSource.py:172
 #, python-format
@@ -4598,10 +4596,10 @@ msgid ""
 "value is already used by '%(prim_object)s'. Please enter a different ID or "
 "leave blank to get the next available ID value."
 msgstr ""
-"Sie haben versucht eine existierende GRAMPS ID mit dem Wert %(id)s zu "
-"verwenden. Dieser Wert wird bereits von '%(prim_object)s' benutzt. Bitte "
-"geben Sie eine andere ID ein oder lassen sie leer um den nächsten "
-"verfügbaren ID Wert zu erhalten."
+"Du habst versucht eine existierende GRAMPS ID mit dem Wert %(id)s zu "
+"verwenden. Dieser Wert wird bereits von '%(prim_object)s' benutzt. Bitte gib "
+"eine andere ID ein oder lasse sie leer um den nächsten verfügbaren ID Wert "
+"zu erhalten."
 
 #: ../src/Editors/_EditEvent.py:227
 msgid "The event type cannot be empty"
@@ -4614,7 +4612,7 @@ msgstr "Ereignis hinzufügen"
 #: ../src/Editors/_EditEvent.py:326
 #, python-format
 msgid "Delete Event (%s)"
-msgstr "Ereigns löschen (%s)"
+msgstr "Ereignis löschen (%s)"
 
 #: ../src/Editors/_EditEventRef.py:79 ../src/Editors/_EditEventRef.py:224
 msgid "Event Reference Editor"
@@ -4710,10 +4708,10 @@ msgid ""
 "not corrupted, GRAMPS has updated the family to reflect these changes. Any "
 "edits you have made may have been lost."
 msgstr ""
-"Die Familie, die Sie gerade bearbeiten, wurde verändert.Um sicherzustellen, "
+"Die Familie, die du gerade bearbeitest, wurde verändert.Um sicherzustellen, "
 "dass die Datenbank nicht inkonsistent wird, hat GRAMPS die Familie "
-"aktualisiert, um die Änderungen darzustellen. Alle Änderungen die sie "
-"vorgenommen haben, sind möglicherweise verloren."
+"aktualisiert, um die Änderungen darzustellen. Alle Änderungen die du "
+"vorgenommen hast, sind möglicherweise verloren."
 
 #: ../src/Editors/_EditFamily.py:496 ../src/Editors/_EditFamily.py:499
 msgid "New Family"
@@ -4766,7 +4764,7 @@ msgid ""
 "editing of this window, and select the existing family"
 msgstr ""
 "Eine Familie mit diesen Eltern existiert bereits in dieser Datenbank. Wenn "
-"Sie speichern, wird eine doppelte Familie erstellt. Es wird empfohlen "
+"du speicherst, wird eine doppelte Familie erstellt. Es wird empfohlen "
 "abzubrechen und die bestehende Familie zu bearbeiten."
 
 #: ../src/Editors/_EditFamily.py:823
@@ -4802,8 +4800,8 @@ msgstr "Konnte Familie nicht sichern"
 #: ../src/Editors/_EditFamily.py:921
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für diese Familie. Bitte geben Sie Daten ein oder "
-"brechen Sie ab."
+"Es existieren keine Daten für diese Familie. Bitte gib Daten ein oder brich "
+"ab."
 
 #: ../src/Editors/_EditFamily.py:928
 msgid "Cannot save family. ID already exists."
@@ -4816,9 +4814,9 @@ msgid ""
 "value is already used. Please enter a different ID or leave blank to get the "
 "next available ID value."
 msgstr ""
-"Sie haben versucht eine existierende GRAMPS ID mit dem Wert %(id)s zu "
-"verwenden. Dieser Wert wird bereits benutzt. Bitte geben Sie eine andere ID "
-"ein oder lassen sie leer um den nächsten verfügbaren ID Wert zu erhalten."
+"Du hast versucht eine existierende GRAMPS ID mit dem Wert %(id)s zu "
+"verwenden. Dieser Wert wird bereits benutzt. Bitte gib eine andere ID ein "
+"oder lass sie leer um den nächsten verfügbaren ID Wert zu erhalten."
 
 #: ../src/Editors/_EditFamily.py:970
 msgid "Add Family"
@@ -4865,35 +4863,35 @@ msgstr "Medien: %s"
 msgid "New Media"
 msgstr "Neue Medien"
 
-#: ../src/Editors/_EditMedia.py:201
+#: ../src/Editors/_EditMedia.py:200
 msgid "Edit Media Object"
 msgstr "Medien-Objekt bearbeiten"
 
-#: ../src/Editors/_EditMedia.py:239
+#: ../src/Editors/_EditMedia.py:238
 msgid "Cannot save media object"
 msgstr "Kann Medienobjekt nicht speichern"
 
-#: ../src/Editors/_EditMedia.py:240
+#: ../src/Editors/_EditMedia.py:239
 msgid "No data exists for this media object. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für dieses Medienobjekt. Bitte geben Sie Daten ein "
-"oder brechen Sie die Bearbeitung ab."
+"Es existieren keine Daten für dieses Medienobjekt. Bitte gib Daten ein oder "
+"brich die Bearbeitung ab."
 
-#: ../src/Editors/_EditMedia.py:249
+#: ../src/Editors/_EditMedia.py:248
 msgid "Cannot save media object. ID already exists."
 msgstr "Kann Medienobjekt nicht speichern. ID existiert bereits."
 
-#: ../src/Editors/_EditMedia.py:267 ../src/Editors/_EditMediaRef.py:466
+#: ../src/Editors/_EditMedia.py:266 ../src/Editors/_EditMediaRef.py:466
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Medien-Objekt (%s)hinzufügen"
 
-#: ../src/Editors/_EditMedia.py:272 ../src/Editors/_EditMediaRef.py:462
+#: ../src/Editors/_EditMedia.py:271 ../src/Editors/_EditMediaRef.py:462
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Medien-Objekt (%s) bearbeiten"
 
-#: ../src/Editors/_EditMedia.py:339
+#: ../src/Editors/_EditMedia.py:338
 msgid "Remove Media Object"
 msgstr "Medien-Objekt entfernen"
 
@@ -4940,7 +4938,7 @@ msgid ""
 "You have the choice of grouping all people with the name of %(surname)s with "
 "the name of %(group_name)s, or just mapping this particular name."
 msgstr ""
-"Sie haben die Wahl, alle Personen mit dem Namen %(surname)s unter dem Namen %"
+"Du hast die Wahl, alle Personen mit dem Namen %(surname)s unter dem Namen %"
 "(group_name)s zu gruppieren, oder nur diesen einzelnen Namen."
 
 #: ../src/Editors/_EditName.py:377
@@ -4981,8 +4979,8 @@ msgstr "Kann Notiz nicht speichern"
 #: ../src/Editors/_EditNote.py:536
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für diese Notiz. Bitte geben Sie Daten ein oder "
-"brechen Sie die Bearbeitung ab."
+"Es existieren keine Daten für diese Notiz. Bitte gib Daten ein oder brich "
+"die Bearbeitung ab."
 
 #: ../src/Editors/_EditNote.py:543
 msgid "Cannot save note. ID already exists."
@@ -5031,7 +5029,7 @@ msgid ""
 "Please check the person's marriages."
 msgstr ""
 "Änderung des Geschlechts verursachte Probleme bei den Eheinformationen.\n"
-"Bitte überprüfen Sie die Ehen der Person."
+"Bitte überprüfe die Ehen der Person."
 
 #: ../src/Editors/_EditPerson.py:679
 msgid "Cannot save person"
@@ -5040,8 +5038,8 @@ msgstr "Die Person kann nicht gespeichert werden"
 #: ../src/Editors/_EditPerson.py:680
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr ""
-"Es bestehen keine Daten für diese Person. Brechen Sie das Eingeben der Daten "
-"oder das Editieren ab."
+"Es existieren keine Daten für diese Person. Gib bitte Daten ein oder brich "
+"das Bearbeiten ab."
 
 #: ../src/Editors/_EditPerson.py:689
 msgid "Cannot save person. ID already exists."
@@ -5067,7 +5065,7 @@ msgid ""
 "Please specify the gender."
 msgstr ""
 "Das Geschlecht der Person ist im Moment unbekannt. Gewöhnlich ist dies ein "
-"Fehler. Bitte wählen Sie das Geschlecht aus."
+"Fehler. Bitte wähle das Geschlecht aus."
 
 #: ../src/Editors/_EditPerson.py:876
 msgid "_Male"
@@ -5091,7 +5089,7 @@ msgstr "Keine Person ausgewählt"
 
 #: ../src/Editors/_EditPersonRef.py:159
 msgid "You must either select a person or Cancel the edit"
-msgstr "Sie müssen entweder eine Person auswählen oder das Bearbeiten abbrechen."
+msgstr "Du mußt entweder eine Person auswählen oder das Bearbeiten abbrechen."
 
 #: ../src/Editors/_EditPlace.py:128
 msgid "_Location"
@@ -5125,8 +5123,8 @@ msgstr "Kann Ort nicht speichern"
 #: ../src/Editors/_EditPlace.py:265
 msgid "No data exists for this place. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für diesen Ort. Bitte geben Sie Daten ein oder "
-"brechen Sie die Bearbeitung ab."
+"Es existieren keine Daten für diesen Ort. Bitte gib Daten ein oder brich die "
+"Bearbeitung ab."
 
 #: ../src/Editors/_EditPlace.py:274
 msgid "Cannot save place. ID already exists."
@@ -5153,7 +5151,7 @@ msgstr "Änderungen speichern?"
 
 #: ../src/Editors/_EditPrimary.py:164
 msgid "If you close without saving, the changes you have made will be lost"
-msgstr "Wenn Sie ohne zu speichern schließen, gehen Ihre Änderungen verloren"
+msgstr "Wenn du ohne zu speichern schließt, gehen deine Änderungen verloren"
 
 #: ../src/Editors/_EditRepoRef.py:72
 msgid "Repository Reference Editor"
@@ -5191,8 +5189,8 @@ msgstr "Konnte Aufbewahrungsort nicht speichern"
 #: ../src/Editors/_EditRepository.py:145
 msgid "No data exists for this repository. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für diesen Aufbewahrungsort. Bitte geben Sie Daten "
-"ein oder brechen Sie das Bearbeiten ab."
+"Es existieren keine Daten für diesen Aufbewahrungsort. Bitte gib Daten ein "
+"oder brich die Bearbeitung ab."
 
 #: ../src/Editors/_EditRepository.py:154
 msgid "Cannot save repository. ID already exists."
@@ -5228,7 +5226,7 @@ msgstr "Die Quelle konnte nicht gespeichert werden"
 #: ../src/Editors/_EditSource.py:162
 msgid "No data exists for this source. Please enter data or cancel the edit."
 msgstr ""
-"Es existieren keine Daten für diese Quelle. Brechen Sie ab oder geben Sie "
+"Es existieren keine Daten für diese Quelle. Breche ab oder gib "
 "Daten ein!"
 
 #: ../src/Editors/_EditSource.py:171
@@ -5290,7 +5288,7 @@ msgid ""
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
 "Ihre GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
-"aber die BOM Makierung fehlt."
+"aber die BOM Markierung fehlt."
 
 #: ../src/GrampsDbUtils/_GedcomStageOne.py:58
 msgid "Your GEDCOM file is empty."
@@ -5303,7 +5301,7 @@ msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:133
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
-msgstr "Ihre GEDCOM-Datei is defekt. Vermutlich ist die Datei unvollständig."
+msgstr "Ihre GEDCOM-Datei ist defekt. Vermutlich ist die Datei unvollständig."
 
 #: ../src/GrampsDbUtils/_GedcomParse.py:276
 #, python-format
@@ -5348,7 +5346,7 @@ msgstr "Zeile %d: leere Notiz wurde ignoriert."
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "übersprungen %d untergeornet(e) in Zeile %d"
 
-#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1095
+#: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073 ../src/gen/db/dbdir.py:1110
 msgid "Rebuild reference map"
 msgstr "Interne Referenzen neu erstellen"
 
@@ -5365,18 +5363,18 @@ msgid ""
 "the directory. Please make sure you have write access to the directory and "
 "try again."
 msgstr ""
-"Die Datenbank kann nicht gespeichert werden, weil Sie keine Berechtigung "
-"haben in dieses Verzeichnis zu schreiben. Bitte stellen Sie sicher, dass Sie "
-"Schreibzugriff aufdieses Verzeichnis haben, und versuchen Sie es erneut."
+"Die Datenbank kann nicht gespeichert werden, weil du keine Berechtigung "
+"hast in dieses Verzeichnis zu schreiben. Bitte stelle sicher, dass du "
+"Schreibzugriff aufdieses Verzeichnis hast, und versuche es erneut."
 
 #: ../src/GrampsDbUtils/_GrampsDbWriteXML.py:139
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
 msgstr ""
-"Die Datenbank kann nicht gespeichert werden, weil Sie keine Berechtigung "
-"haben in diese Datei zu schreiben. Bitte stellen Sie sicher, dass sie "
-"Schreibzugriff auf diese Datei besitzen, und versuchen Sie es erneut."
+"Die Datenbank kann nicht gespeichert werden, weil du keine Berechtigung "
+"hast in diese Datei zu schreiben. Bitte stelle sicher, dass du "
+"Schreibzugriff auf diese Datei besitzt, und versuche es erneut."
 
 #: ../src/GrampsDbUtils/importdbdir.py:63
 #: ../src/GrampsDbUtils/importdbdir.py:76
@@ -5394,7 +5392,7 @@ msgid ""
 "between different database versions."
 msgstr ""
 "Die Version der Datenbank wird nicht von dieser GRAMPS Version unterstützt.\n"
-"Bitte updaten Sie die entsprechende Version oder verwenden Sie XML um die "
+"Bitte update die entsprechende Version oder verwende XML um die "
 "Daten zwischen verschiedenen Datenbankversionen zu portieren."
 
 #: ../src/GrampsDbUtils/importdbdir.py:77 ../src/plugins/ReadGrdb.py:101
@@ -5565,7 +5563,7 @@ msgstr ""
 "\n"
 "Medienobjekte mit relativen Pfaden wurden\n"
 "importiert. Diese Pfade sind relativ zum\n"
-"Medienverzeichnis das Sie in den Einstellungen festlegen\n"
+"Medienverzeichnis das du in den Einstellungen festlegst\n"
 "oder wenn nicht angegeben relativ zum Benutzerverzeichnis.\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:765
@@ -5581,9 +5579,9 @@ msgid ""
 "Preferences."
 msgstr ""
 "Die geöffnete Datei hat den Medienpfad %s, er steht im Wiederspruch zum "
-"Medienpfad des Stammbaum in den Sie importieren wollen. Der original Pfad "
-"wurde behalten. Kopieren Sie die Dateien in das korrekte Verzeichnis oder "
-"ändern den Medienpfad der Datenbank in den Einstellungen."
+"Medienpfad des Stammbaum in den du importieren willst. Der original Pfad "
+"wurde behalten. Kopiere die Dateien in das korrekte Verzeichnis oder "
+"ändere den Medienpfad der Datenbank in den Einstellungen."
 
 #: ../src/GrampsDbUtils/_ReadXML.py:778
 msgid "GRAMPS XML import"
@@ -5606,9 +5604,9 @@ msgid ""
 "you are running an older version %s. The file will not be imported. Please "
 "upgrade to the latest version of GRAMPS and try again."
 msgstr ""
-"Die GRAMPS Dateidie sie importieren stammt aus Version %s von GRAMPS, sie "
-"benutzen eine ältere Version %s. Die Datei wird nicht importiert. Bitte "
-"wechseln sie auf die neuste Version von GRAMPS und versuchen es erneut."
+"Die GRAMPS Datei die du importierst stammt aus Version %s von GRAMPS, du "
+"benutzt eine ältere Version %s. Die Datei wird nicht importiert. Bitte "
+"wechsele auf die neuste Version von GRAMPS und versuche es erneut."
 
 #: ../src/GrampsDbUtils/_WriteGedcom.py:504
 msgid "Sorting"
@@ -5636,7 +5634,7 @@ msgid ""
 "GEDCOM is used to transfer data between genealogy programs. Most genealogy "
 "software will accept a GEDCOM file as input."
 msgstr ""
-"GEDCOM wird verwendet um Daten zwischen Ahnenforschungs-Programmen zu "
+"GEDCOM wird verwendet um Daten zwischen Ahnenforschungsprogrammen zu "
 "transferieren. Die meisten Genealogieprogramme können GEDCOM-Dateien "
 "importieren."
 
@@ -5681,15 +5679,15 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"Dieser Assistenten für Fehlerberichte. Wird Ihnen helfen, einen "
+"Dieser Assistenten für Fehlerberichte. Wird dir helfen, einen "
 "Fehlerbericht mit so vielen Informationen wie möglich an die Gramps-"
 "Entwickler zu schicken.\n"
 "\n"
-"Der Assistent wird Ihnen einige Fragen über das Entstehen des Fehler und das "
-"eingesetzte System stellen. Am Ende des Assistenten werden Sie gebeten einen "
+"Der Assistent wird dir einige Fragen über das Entstehen des Fehler und das "
+"eingesetzte System stellen. Am Ende des Assistenten wirst du gebeten einen "
 "Fehlerbericht im Gramps bug tracking System anzulegen. Der Assistent wird "
-"den Fehlerbericht in die Zwischenablage kopieren, sodass Sie ihn in das "
-"Formular auf der bug tracking Webseite einfügen können und genau sehen, "
+"den Fehlerbericht in die Zwischenablage kopieren, sodass du ihn in das "
+"Formular auf der bug tracking Webseite einfügen kannst und genau siehst, "
 "welche Informationen der Bericht enthalten soll."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:37
@@ -5718,16 +5716,16 @@ msgid ""
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
 "GRAMPS ist ein Open Source-Projekt. Sein Erfolg hängt von den Benutzern ab. "
-"Rückmeldungen der Benutzer sind wichtig. Danke, dass Sie sich für das "
-"Ausfüllen eines Fehlerberichtes Zeit genommen haben."
+"Rückmeldungen der Benutzer sind wichtig. Danke, dass du dich für das "
+"Ausfüllen eines Fehlerberichtes Zeit genommen hast."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:134
 msgid ""
 "If you can see that there is any personal information included in the error "
 "please remove it."
 msgstr ""
-"Wenn Sie irgendwelche persönliche Informationen in dem Fehler finden, "
-"entfernen Sie diesen."
+"Wenn du irgendwelche persönliche Informationen in dem Fehler findest, "
+"entferne diesen."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:179
 msgid "Error Details"
@@ -5739,10 +5737,10 @@ msgid ""
 "understand it. You will have the opportunity to add further detail about the "
 "error in the following pages of the assistant."
 msgstr ""
-"Detailierten Gramps-Fehlerinformationen. Sie brauchen sich keine Sorgen "
-"machen, wenn Sie es nicht verstehen. Sie werden die Möglichkeit haben, "
+"Detaillierten Gramps-Fehlerinformationen. Du brauchst dir keine Sorgen "
+"machen, wenn du sie nicht verstehst. Du wirst die Möglichkeit haben, "
 "weitere Details über den Fehler auf den folgenden Seiten des Assistenten "
-"hinzufügen."
+"hinzuzufügen."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:202
 msgid ""
@@ -5750,8 +5748,8 @@ msgid ""
 "wrong or remove anything that you would rather not have included in the bug "
 "report."
 msgstr ""
-"Bitte überprüfen Sie die Informationen unterhalb und verbessern Sie, was "
-"falsch ist oder dass Sie nicht mit dem Fehlerbericht verschicken möchten."
+"Bitte überprüfe die Informationen unterhalb und verbessere, was "
+"falsch ist oder dass du nicht mit dem Fehlerbericht verschicken möchtst."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:249
 msgid "System Information"
@@ -5763,14 +5761,14 @@ msgid ""
 "fix the bug."
 msgstr ""
 "Hierbei handelt es sich um die Informationen über Ihr System, dass den "
-"Entwicklerin hilft den Fehler zu schließen."
+"Entwicklern hilft den Fehler zu schließen."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:270
 msgid ""
 "Please provide as much information as you can about what you were doing when "
 "the error occured. "
 msgstr ""
-"Bitte geben Sie so viele Informationen wie möglich an, was Sie getan haben, "
+"Bitte gib so viele Informationen wie möglich an, was du getan hast, "
 "als der Fehler auftrat."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:311
@@ -5789,10 +5787,10 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
-"Bitte überprüfen Sie, dass die Informationen richtig sind. Sie müssen sich "
-"keine Sorgen machen, wenn Sie die Details des Fehlers nicht verstehen. "
-"Vergewissern Sie sich, dass nichts enthalten ist, was Sie nicht an die "
-"Entwickler senden wollen."
+"Bitte überprüfe, dass die Informationen richtig sind. Du musst dir "
+"keine Sorgen machen, wenn du die Details des Fehlers nicht verstehst. "
+"Vergewissere dich, dass nichts enthalten ist, was du nicht an die "
+"Entwickler senden willst."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:367
 msgid "Bug Report Summary"
@@ -5813,7 +5811,7 @@ msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
-"Benutzen sie die zwei Schaltflächen unten um erst den Fehlerbericht in die "
+"Benutze die zwei Schaltflächen unten um erst den Fehlerbericht in die "
 "Zwischenablage zu kopieren und dann einen Webbrowser öffnen um einen "
 "Fehlerbericht aus zu füllen auf "
 
@@ -5823,7 +5821,7 @@ msgid ""
 "Use this button to start a web browser and file a bug report on the Gramps "
 "bug tracking system."
 msgstr ""
-"Benutzen sie diese Schaltfläche um einen Webbrowser zu öffnen und einen "
+"Benutze diese Schaltfläche um einen Webbrowser zu öffnen und einen "
 "Fehlerbericht auszufüllen im Gramps bug tracking system."
 
 #. clip_label = gtk.Label(_("If your email program fails to start you can use this button "
@@ -5836,9 +5834,9 @@ msgid ""
 "bug tracking website by using the button below, paste the report and click "
 "submit report"
 msgstr ""
-"Benutzen sie diese Schaltfläche um den Fehlerbericht in die Zwischenablage "
-"zu kopieren.Gehen sie dann zur bug tracking Webseite indem sie die "
-"Schaltfläche unten benutzen, kopieren den Bericht und klicken submit report."
+"Benutze diese Schaltfläche um den Fehlerbericht in die Zwischenablage "
+"zu kopieren.Gehe dann zur bug tracking Webseite indem du die "
+"Schaltfläche unten benutzt, kopiere den Bericht und klicke submit report."
 
 #: ../src/GrampsLogger/_ErrorReportAssistant.py:483
 msgid "Send Bug Report"
@@ -5851,7 +5849,7 @@ msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
-"Der letzte Schritt. Benutzen Sie die Schaltflächen auf der Seite um den den "
+"Der letzte Schritt. Benutze die Schaltflächen auf der Seite um den "
 "Webbrowser zu starten und einen Fehlerbericht in dem Gramps bug tracking "
 "system auszufüllen."
 
@@ -5874,9 +5872,9 @@ msgid ""
 "please click Report and the Error Reporting Wizard will help you to make a "
 "bug report."
 msgstr ""
-"Ihre Daten werden gesichert, es wird abe empfohlen, GRAMPS neu zu starten. "
-"Wenn Sie das Problem dem GRAMPS Team melden wollen, klicken Sie bitte auf "
-"Bericht und den Fehlerberichtsassistenten, der Ihnen helfen wird, einen "
+"Deine Daten werden gesichert, es wird aber empfohlen, GRAMPS neu zu starten. "
+"Wenn du das Problem dem GRAMPS Team melden willst, klicke bitte auf "
+"Bericht und den Fehlerberichtsassistenten, der dir helfen wird, einen "
 "Fehlerbericht zu erstellen."
 
 #: ../src/GrampsLogger/_ErrorView.py:87 ../src/GrampsLogger/_ErrorView.py:100
@@ -5965,7 +5963,7 @@ msgstr "Alle Ereignisse"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1266
+#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1267
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
@@ -6243,7 +6241,7 @@ msgstr "Generation %d"
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2937
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:299
-#: ../src/plugins/WebCal.py:702 ../src/ReportBase/_BareReportDialog.py:352
+#: ../src/plugins/WebCal.py:702 ../src/ReportBase/_BareReportDialog.py:357
 msgid "Report Options"
 msgstr "Berichtsoptionen"
 
@@ -6323,48 +6321,48 @@ msgstr "Unbekannte Mutter"
 msgid "%s and %s (%s)"
 msgstr "%s und %s (%s)"
 
-#: ../src/plugins/BookReport.py:593
+#: ../src/plugins/BookReport.py:594
 msgid "Available Books"
 msgstr "Verfügbare Bücher"
 
-#: ../src/plugins/BookReport.py:606
+#: ../src/plugins/BookReport.py:607
 msgid "Book List"
 msgstr "Bücherliste"
 
-#: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1072
-#: ../src/plugins/BookReport.py:1123 ../src/plugins/BookReport.py:1265
+#: ../src/plugins/BookReport.py:695 ../src/plugins/BookReport.py:1073
+#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1266
 msgid "Book Report"
 msgstr "Buchbericht"
 
-#: ../src/plugins/BookReport.py:727
+#: ../src/plugins/BookReport.py:728
 msgid "New Book"
 msgstr "Neues Buch"
 
-#: ../src/plugins/BookReport.py:730
+#: ../src/plugins/BookReport.py:731
 msgid "_Available items"
 msgstr "Verfügbare _Artikel"
 
-#: ../src/plugins/BookReport.py:734
+#: ../src/plugins/BookReport.py:735
 msgid "Current _book"
 msgstr "Aktuelles _Buch"
 
-#: ../src/plugins/BookReport.py:742 ../src/plugins/StatisticsChart.py:70
+#: ../src/plugins/BookReport.py:743 ../src/plugins/StatisticsChart.py:70
 msgid "Item name"
 msgstr "Artikelname"
 
-#: ../src/plugins/BookReport.py:745
+#: ../src/plugins/BookReport.py:746
 msgid "Subject"
 msgstr "Betreff"
 
-#: ../src/plugins/BookReport.py:757
+#: ../src/plugins/BookReport.py:758
 msgid "Book selection list"
 msgstr "Liste zur Auswahl eines Buches"
 
-#: ../src/plugins/BookReport.py:796
+#: ../src/plugins/BookReport.py:797
 msgid "Different database"
 msgstr "Verschiedene Datenbank"
 
-#: ../src/plugins/BookReport.py:797
+#: ../src/plugins/BookReport.py:798
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -6382,23 +6380,23 @@ msgstr ""
 "Deswegen wurde jeweils die Hauptperson auf die aktive Person in der "
 "geöffneten Datenbank gesetzt."
 
-#: ../src/plugins/BookReport.py:935
+#: ../src/plugins/BookReport.py:936
 msgid "Setup"
 msgstr "Einrichten"
 
-#: ../src/plugins/BookReport.py:945
+#: ../src/plugins/BookReport.py:946
 msgid "Book Menu"
 msgstr "Buch Menü"
 
-#: ../src/plugins/BookReport.py:968
+#: ../src/plugins/BookReport.py:969
 msgid "Available Items Menu"
 msgstr "Verfügbare Artikel Menü"
 
-#: ../src/plugins/BookReport.py:1126
+#: ../src/plugins/BookReport.py:1127
 msgid "GRAMPS Book"
 msgstr "GRAMPS-Buch"
 
-#: ../src/plugins/BookReport.py:1267
+#: ../src/plugins/BookReport.py:1268
 msgid "Produces a book containing several reports."
 msgstr "Erstellt ein Buch mit mehreren Berichten"
 
@@ -6421,7 +6419,7 @@ msgstr "Filter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:65
 msgid "Select filter to restrict people"
-msgstr "Filter wählem um Personen zu beschränken"
+msgstr "Filter wählen um Personen zu beschränken"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:437 ../src/plugins/IndivComplete.py:522
@@ -6447,7 +6445,7 @@ msgstr "Berechnete Datums Schätzungen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:78
 msgid "Source to remove and/or add"
-msgstr "Quelle zum entfenen und/oder hinzufügen"
+msgstr "Quelle zum entfernen und/oder hinzufügen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:81
 msgid "Remove previously added dates"
@@ -6581,7 +6579,7 @@ msgstr "Kalenderjahr"
 
 #: ../src/plugins/Calendar.py:493 ../src/plugins/WebCal.py:743
 msgid "Select filter to restrict people that appear on calendar"
-msgstr "Filter wählem um Personen, die im Kalender erscheinen zu begrenzen"
+msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 
 #: ../src/plugins/Calendar.py:506
 msgid "Select the format to display names"
@@ -6681,7 +6679,7 @@ msgstr "Textbereich 3"
 
 #: ../src/plugins/Calendar.py:554
 msgid "Third line of text at bottom of calendar"
-msgstr "Drittee Zeile des Text am Fuß des Kalenders"
+msgstr "Dritte Zeile des Text am Fuß des Kalenders"
 
 #: ../src/plugins/Calendar.py:608
 msgid "Title text and background color"
@@ -6872,7 +6870,7 @@ msgstr "Suche ungültige Familien-Verknüpfungen"
 
 #: ../src/plugins/Check.py:473
 msgid "Looking for unused objects"
-msgstr "Nach unbenutzen Objekten prüfen"
+msgstr "Nach unbenutzten Objekten prüfen"
 
 #: ../src/plugins/Check.py:533 ../src/plugins/WriteCD.py:235
 #: ../src/plugins/WritePkg.py:162
@@ -6896,7 +6894,7 @@ msgstr ""
 "Die Datei:\n"
 " %(file_name)s \n"
 "wird referenziert in der Datenbank, aber existiert nicht mehr. Die Datei "
-"könnte gelöscht oder an einen anderen Ort verschoben worden sein. Sie können "
+"könnte gelöscht oder an einen anderen Ort verschoben worden sein. Du kannst "
 "entweder die Verknüpfung aus der Datenbank entfernen, die Verknüpfung zur "
 "fehlenden Datei behalten, oder eine neue Datei auswählen."
 
@@ -7113,7 +7111,7 @@ msgstr "%d ungültige Geburtsereignis-Namen wurden korrigiert\n"
 
 #: ../src/plugins/Check.py:1405
 msgid "1 invalid death event name was fixed\n"
-msgstr "1 ungultiger Todesereignis-Name wurde korrigiert\n"
+msgstr "1 ungültiger Todesereignis-Name wurde korrigiert\n"
 
 #: ../src/plugins/Check.py:1407
 #, python-format
@@ -7184,7 +7182,7 @@ msgstr ""
 
 #: ../src/plugins/Check.py:1485
 msgid "Integrity Check Results"
-msgstr "Resultate der Integritäts-Überprüfung"
+msgstr "Resultate der Integritätsprüfung"
 
 #: ../src/plugins/Check.py:1490
 msgid "Check and Repair"
@@ -7200,7 +7198,7 @@ msgstr "Überprüft die Datenbank und repariert die Probleme soweit möglich."
 
 #: ../src/plugins/CmdRef.py:243
 msgid "Generate Commandline Plugin Reference"
-msgstr "Erstellt Kommandozeile Plugin Referenz"
+msgstr "Erstellt Kommandozeile PlugIn Referenz"
 
 #: ../src/plugins/CmdRef.py:247
 msgid ""
@@ -7289,7 +7287,7 @@ msgid ""
 "you really want to run this test?"
 msgstr ""
 "Dieser Test erstellt viele Personen und Ereignisse in der aktuellen "
-"Datenbank. Wollen Sie diesen Test wirklich starten?"
+"Datenbank. Willst du diesen Test wirklich starten?"
 
 #: ../src/plugins/DateParserDisplayTest.py:62
 msgid "Run test"
@@ -7306,7 +7304,7 @@ msgstr "Erzeuge Daten"
 
 #: ../src/plugins/DateParserDisplayTest.py:218
 msgid "Date Test Plugin"
-msgstr "Datum Test Plugin"
+msgstr "Datum Test PlugIn"
 
 #: ../src/plugins/DateParserDisplayTest.py:235
 msgid "Check Localized Date Displayer and Parser"
@@ -7320,8 +7318,8 @@ msgid ""
 "be parsed back in correctly."
 msgstr ""
 "Dieses Werkzeug erstellt viele Personen die alle verschiedenen Datums "
-"Varianten als Geburt. Das Todesdatum wird erstellt durch Analyse der "
-"Datumsanzeige für das Geburtsdatum. Auf diese Weise können sie sicherstellen "
+"Varianten als Geburtsdatum zeigen. Das Todesdatum wird erstellt durch Analyse der "
+"Datumsanzeige für das Geburtsdatum. Auf diese Weise kannst du sicherstellen "
 "das Daten die gedruckt werden können auch korrekt Analysiert werden können."
 
 #: ../src/plugins/DefaultGramplets.py:70
@@ -7362,7 +7360,7 @@ msgstr "Ausgewählt"
 #: ../src/plugins/DefaultGramplets.py:197
 #: ../src/plugins/DefaultGramplets.py:274
 msgid "Double-click surname for details"
-msgstr "Nachnamen für Details doppel-klicken"
+msgstr "Nachnamen für Details doppelt-klicken"
 
 #. will be overwritten in load
 #: ../src/plugins/DefaultGramplets.py:199
@@ -7382,12 +7380,12 @@ msgstr "Verarbeitung..."
 #: ../src/plugins/DefaultGramplets.py:258
 #: ../src/plugins/DefaultGramplets.py:349
 msgid "Total unique surnames"
-msgstr "Eindeutige Nachnamen gesammt"
+msgstr "Eindeutige Nachnamen gesamt"
 
 #: ../src/plugins/DefaultGramplets.py:260
 #: ../src/plugins/DefaultGramplets.py:351
 msgid "Total people"
-msgstr "Personen gesammt"
+msgstr "Personen gesamt"
 
 #: ../src/plugins/DefaultGramplets.py:360
 #: ../src/plugins/DefaultGramplets.py:454
@@ -7562,7 +7560,7 @@ msgstr "Text eingeben"
 
 #: ../src/plugins/DefaultGramplets.py:809
 msgid "Enter your TODO list here."
-msgstr "Geben Sie ihre zu erledigen Liste hier ein."
+msgstr "Gib deine zu erledigen Liste hier ein."
 
 #: ../src/plugins/DefaultGramplets.py:820
 msgid ""
@@ -7594,9 +7592,9 @@ msgid ""
 "float above GRAMPS. If you close GRAMPS with a gramplet detached, it will re-"
 "opened detached the next time you start GRAMPS."
 msgstr ""
-"Wilkommen zu GRAMPS!\n"
+"Willkommen zu GRAMPS!\n"
 "\n"
-"GRAMPS ist ein Softwarepacket entwickelt für die Ahnenforschung.Trotz "
+"GRAMPS ist ein Softwarepaket entwickelt für die Ahnenforschung.Trotz "
 "Ähnlichkeiten zu anderen Ahnenforschungsprogrammen bietet GRAMPS einige "
 "einmalige und leistungsstarke Funktionen.\n"
 "\n"
@@ -7609,7 +7607,7 @@ msgstr ""
 "\n"
 "Das erste was sie tun müssen ist einen neuen Stammbaum erstellen. Zum "
 "anlegen eines neuen Stammbaum (auch genannt Datenbank) wähle \"Stammbäume\" "
-"aus dem Menü, pick \"Stammbäume verwalten\", drücke \"Neu\" und geben ihrer "
+"aus dem Menü, wähle \"Stammbäume verwalten\", drücke \"Neu\" und geben ihrer "
 "Datenbank einen Namen. Für mehr Details lesen sie bitte das "
 "Benutzerhandbuch, oder das Onlinehandbuch auf http://gramps-project.org.\n"
 "\n"
@@ -7642,8 +7640,8 @@ msgid ""
 "for everyone in your Family Tree on that date. You can then sort by the age "
 "column, and double-click the row to view or edit."
 msgstr ""
-"Geben sie ein Datum im Eingabefeld unten ein und klicken start.Dies "
-"berechnet das Alter für in ihrem Stammbaum an diesem Datum. Sie können dann "
+"Gib ein Datum im Eingabefeld unten ein und klicke Start.Dies "
+"berechnet das Alter für in deinem Stammbaum an diesem Datum. Du kannst dann "
 "die Alters Spalte sortieren und dann die Zeile doppelt klicken um sie "
 "anzuzeigen oder zu bearbeiten."
 
@@ -7677,7 +7675,7 @@ msgstr "Statistik"
 
 #: ../src/plugins/DefaultGramplets.py:1007
 msgid "Session Log Gramplet"
-msgstr "Sitzungs Aufzeichnung Gramplet"
+msgstr "Sitzungsaufzeichnung Gramplet"
 
 #: ../src/plugins/DefaultGramplets.py:1011
 msgid "Session Log"
@@ -7701,7 +7699,7 @@ msgstr "Zu erledigen Liste"
 
 #: ../src/plugins/DefaultGramplets.py:1033
 msgid "Welcome Gramplet"
-msgstr "Wilkommen Gramplet"
+msgstr "Willkommen Gramplet"
 
 #: ../src/plugins/DefaultGramplets.py:1037
 msgid "Welcome to GRAMPS!"
@@ -8140,7 +8138,7 @@ msgstr "Erstellt eine ausführliche Nachkommenübersicht"
 #: ../src/plugins/EndOfLineReport.py:134
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Todendenbericht für %s"
+msgstr "Totendenbericht für %s"
 
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
@@ -8223,7 +8221,7 @@ msgstr "Ereignisse Vergleichen"
 
 #: ../src/plugins/EventCmp.py:287
 msgid "Building data"
-msgstr "Daten erstelen"
+msgstr "Daten erstellen"
 
 #: ../src/plugins/EventCmp.py:379
 msgid "Select filename"
@@ -8299,7 +8297,7 @@ msgstr "Ehefrau"
 #. -------------------------------------------------------------------------
 #: ../src/plugins/ExportCSV.py:502
 msgid "Comma _Separated Values Spreadsheet (CSV)"
-msgstr "Durch Komma getrennte Werte Tabelle (C_SV)"
+msgstr "Durch _Komma getrennte Werte Tabelle (CSV)"
 
 #: ../src/plugins/ExportCSV.py:503
 msgid "CSV is a common spreadsheet format."
@@ -8340,11 +8338,11 @@ msgstr "vK_alender"
 
 #: ../src/plugins/ExportVCalendar.py:354
 msgid "vCalendar is used in many calendaring and pim applications."
-msgstr "vCalender wird von vielen Kalender- und PIM-Anwendungen verwendet."
+msgstr "vKalender wird von vielen Kalender- und PIM-Anwendungen verwendet."
 
 #: ../src/plugins/ExportVCalendar.py:355
 msgid "vCalendar export options"
-msgstr "vCalender-Export-Optionen"
+msgstr "vKalender-Export-Optionen"
 
 #. -------------------------------------------------------------------------
 #.
@@ -8357,15 +8355,15 @@ msgstr "_vKarte"
 
 #: ../src/plugins/ExportVCard.py:270
 msgid "vCard is used in many addressbook and pim applications."
-msgstr "vCard wird von vielen Adressbuch- und PIM-Anwendungen verwendet."
+msgstr "vKarte wird von vielen Adressbuch- und PIM-Anwendungen verwendet."
 
 #: ../src/plugins/ExportVCard.py:271
 msgid "vCard export options"
-msgstr "vCard-Export-Optionen"
+msgstr "vKarte-Export-Optionen"
 
 #: ../src/plugins/ExtractCity.py:60
 msgid "United States of America"
-msgstr "USA"
+msgstr "United States of America"
 
 #: ../src/plugins/ExtractCity.py:60
 msgid "Canada"
@@ -8409,7 +8407,7 @@ msgid ""
 "the place title. Select the places you wish GRAMPS to convert."
 msgstr ""
 "Es folgt eine Liste von Orten, mit den möglichen Daten, die aus dem "
-"Ortstitel extrahiert werden können. Wählen Sie die Orte aus, die GRAMPS "
+"Ortstitel extrahiert werden können. Wähle die Orte aus, die GRAMPS "
 "konvertieren soll. "
 
 #: ../src/plugins/ExtractCity.py:630
@@ -8587,7 +8585,7 @@ msgstr "Halbkreis"
 
 #: ../src/plugins/FanChart.py:354
 msgid "quarter circle"
-msgstr "ein Viertel"
+msgstr "Viertelkreis"
 
 #: ../src/plugins/FanChart.py:355
 msgid "The form of the graph: full circle, half circle, or quarter circle."
@@ -8599,7 +8597,7 @@ msgstr "Hintergrundfarbe"
 
 #: ../src/plugins/FanChart.py:360
 msgid "white"
-msgstr "weiß"
+msgstr "Weiß"
 
 #: ../src/plugins/FanChart.py:361
 msgid "generation dependent"
@@ -8772,7 +8770,7 @@ msgstr "Werkzeugeinstellungen"
 
 #: ../src/plugins/FindDupes.py:145
 msgid "Find Duplicates tool"
-msgstr "Finden von Doubletten"
+msgstr "Finden von Dubletten"
 
 #: ../src/plugins/FindDupes.py:178
 msgid "No matches found"
@@ -8846,7 +8844,7 @@ msgstr ""
 
 #: ../src/plugins/GVFamilyLines.py:102
 msgid "Follow parents to determine family lines"
-msgstr "Den Eltern folgen um Familienlienien fest zu stellen"
+msgstr "Den Eltern folgen um Familienlinien fest zu stellen"
 
 #: ../src/plugins/GVFamilyLines.py:103
 msgid ""
@@ -8858,7 +8856,7 @@ msgstr ""
 
 #: ../src/plugins/GVFamilyLines.py:106
 msgid "Follow children to determine family lines"
-msgstr "Den Kindern folgen um Familienlienien fest zu stellen"
+msgstr "Den Kindern folgen um Familienlinien fest zu stellen"
 
 #: ../src/plugins/GVFamilyLines.py:107
 msgid "Children will be considered when determining \"family lines\"."
@@ -8873,8 +8871,8 @@ msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
-"Personen und Familien die nicht direkt mit den Personen von interesse "
-"verwand sind werden entfernt wenn \"Familienlinien\" bestimmt werden."
+"Personen und Familien die nicht direkt mit den Personen von Interesse "
+"verwandt sind werden entfernt wenn \"Familienlinien\" bestimmt werden."
 
 #. ----------------------------
 #: ../src/plugins/GVFamilyLines.py:115
@@ -8951,7 +8949,7 @@ msgstr "Wo das Miniaturbild im Verhältnis zum Namen erscheinen soll."
 #. ---------------------
 #: ../src/plugins/GVFamilyLines.py:188
 msgid "Use subgraphs"
-msgstr "Bennutze Unterdiagramme"
+msgstr "Benutze Unterdiagramme"
 
 #: ../src/plugins/GVFamilyLines.py:189
 msgid ""
@@ -8976,7 +8974,7 @@ msgstr "Orte aufnehmen"
 
 #: ../src/plugins/GVFamilyLines.py:200
 msgid "Whether to include placenames for people and families."
-msgstr "Ob Ortenamenfür Personen und Familien enthalten sind."
+msgstr "Ob Ortenamen für Personen und Familien enthalten sind."
 
 #: ../src/plugins/GVFamilyLines.py:203
 msgid "Include the number of children"
@@ -8997,7 +8995,7 @@ msgid ""
 "Whether to include at the bottom the researchers name, e-mail, and the date "
 "the graph was generated."
 msgstr ""
-"Ob der Name des Forschers, e-mail und das Datum an dem die Grafik erstellt "
+"Ob der Name des Forschers, E-Mail und das Datum an dem die Grafik erstellt "
 "wurde in der Fußzeile enthalten ist."
 
 #: ../src/plugins/GVFamilyLines.py:211
@@ -9006,7 +9004,7 @@ msgstr "Private Daten aufnehmen"
 
 #: ../src/plugins/GVFamilyLines.py:212
 msgid "Whether to include names, dates, and families that are marked as private."
-msgstr "Ob Namen, Daten und Familien die als privat makiert sind enthalten sind."
+msgstr "Ob Namen, Daten und Familien die als privat markiert sind enthalten sind."
 
 #. inherited method; called by report() in _ReportDialog.py
 #.
@@ -9082,11 +9080,11 @@ msgstr "Erstellt ein Stundenglasdiagramm mit Graphviz"
 #. ------------------------------------------------------------------------
 #: ../src/plugins/GVRelGraph.py:59
 msgid "B&W outline"
-msgstr "Schwarz-Weiß umranded"
+msgstr "Schwarz-Weiß umrandet"
 
 #: ../src/plugins/GVRelGraph.py:60
 msgid "Colored outline"
-msgstr "Farbig umranded"
+msgstr "Farbig umrandet"
 
 #: ../src/plugins/GVRelGraph.py:61
 msgid "Color fill"
@@ -9206,11 +9204,11 @@ msgstr "Richtung der Pfeile auswählen"
 
 #: ../src/plugins/GVRelGraph.py:508
 msgid "Indicate non-birth relationships with dotted lines"
-msgstr "Nicht-leiblich Verwandtschaften durch gestrichelte Linie andeuten"
+msgstr "Nicht-leiblich Verwandtschaft durch gestrichelte Linie andeuten"
 
 #: ../src/plugins/GVRelGraph.py:509
 msgid "Non-birth relationships will show up as dotted lines in the graph."
-msgstr "Nicht-leibliche Verwandtschaften erscheinen im Graph als gestrichelte Linien."
+msgstr "Nicht-leibliche Verwandtschaft erscheint im Graph als gestrichelte Linie."
 
 #: ../src/plugins/GVRelGraph.py:513
 msgid "Show family nodes"
@@ -9393,11 +9391,11 @@ msgstr "GeneWeb"
 
 #: ../src/plugins/ImportvCard.py:153
 msgid "vCard import"
-msgstr "vCard importieren"
+msgstr "vKarte importieren"
 
 #: ../src/plugins/ImportvCard.py:224
 msgid "vCard files"
-msgstr "vCard-Dateien"
+msgstr "vKarte-Dateien"
 
 #: ../src/plugins/IndivComplete.py:105
 #, python-format
@@ -9442,7 +9440,7 @@ msgstr "Weiblich"
 
 #: ../src/plugins/IndivComplete.py:518
 msgid "Select the filter to be applied to the report"
-msgstr "Filter wählen um ihn auf den Bericht anzu wenden"
+msgstr "Filter wählen um ihn auf den Bericht anzuwenden"
 
 #: ../src/plugins/IndivComplete.py:529
 msgid "Include Source Information"
@@ -9512,15 +9510,15 @@ msgstr "Der Standard Stil für Untertitel"
 
 #: ../src/plugins/KinshipReport.py:404
 msgid "Kinship Report"
-msgstr "Verwandschaftsericht"
+msgstr "Verwandtschaftsbericht"
 
 #: ../src/plugins/KinshipReport.py:406
 msgid "Produces a textual report of kinship for a given person"
-msgstr "Erstellt einen Textbericht über die Verwandschaft einer gegeben Person"
+msgstr "Erstellt einen Textbericht über die Verwandtschaft einer gegeben Person"
 
 #: ../src/plugins/Leak.py:59
 msgid "Uncollected Objects Tool"
-msgstr "Ungesammelte Objekte Werkzeug"
+msgstr "Nicht gesammelte Objekte Werkzeug"
 
 #: ../src/plugins/Leak.py:93
 msgid ""
@@ -9532,7 +9530,7 @@ msgstr ""
 
 #: ../src/plugins/Leak.py:96
 msgid "No uncollected objects\n"
-msgstr "Keine ungesammelten Objekte\n"
+msgstr "Keine nicht gesammelten Objekte\n"
 
 #: ../src/plugins/Leak.py:128
 msgid "Show Uncollected Objects"
@@ -9683,19 +9681,19 @@ msgstr ""
 "Unterscheidung zwischen GRAMPS Multimedia-Objekten und dessen Dateien "
 "gemacht werden.\n"
 "\n"
-"Das GRAMPS Mulitmedia-Objekt ist eine Sammlung von Daten über die "
+"Das GRAMPS Multimedia-Objekt ist eine Sammlung von Daten über die "
 "entsprechende Datei: Der Dateiname und/oder Pfad, seine Bezeichnung, ID, "
 "Notizen, Quellenreferenzen, usw. Diese Daten <b> sind nicht in der Datei "
 "selber enthalten</b>.\n"
-"Die Dateien umfassenden Bilder, Sound, Video usw. bestehen getrennt auf der "
+"Die Dateien umfassenden Bilder, Klang, Video usw. bestehen getrennt auf der "
 "Festplatte. Diese Dateien werden nicht von GRAMPS verwaltet und gehören "
 "nicht in die GRAMPS Datenbank. Die GRAMPS Datenbank speichert nur den Pfad "
 "und Dateinamen ab.\n"
 "\n"
 "Dieses Werkzeug erlaubt es, die Aufzeichnungen in der GRAMPS Datenbank zu "
 "modifizieren. Wenn die Dateien verschoben oder umbenannt werden sollen, "
-"müssen Sie das selber von Hand im entsprechenden Verzeichnis, nicht in "
-"GRAMPS, vornehmen. Danach können Sie die Pfade mit Hilfe des Werkzeuges mit "
+"musst du das selber von Hand im entsprechenden Verzeichnis, nicht in "
+"GRAMPS, vornehmen. Danach kannst du die Pfade mit Hilfe des Werkzeugs mit "
 "den neuen Dateiorten abgleichen."
 
 #: ../src/plugins/MediaManager.py:246
@@ -9705,7 +9703,7 @@ msgstr "betreffendes Verzeichnis"
 #: ../src/plugins/MediaManager.py:255
 msgid "Press OK to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Drücken Sie OK um fortzufahren, Abbrechen um abzubrechen oder Zurück um die "
+"Drücke OK um fortzufahren, Abbrechen um abzubrechen oder Zurück um die "
 "Optionen zu ändern."
 
 #: ../src/plugins/MediaManager.py:286
@@ -9717,7 +9715,7 @@ msgid ""
 "The operation you requested has finished successfully. You may press OK "
 "button now to continue."
 msgstr ""
-"Der gewählte Vorgang wurde erfolgreich abgeschlossen. Sie können jetzt OK "
+"Der gewählte Vorgang wurde erfolgreich abgeschlossen. Du kannst jetzt OK "
 "zum Fortfahren drücken."
 
 #: ../src/plugins/MediaManager.py:291
@@ -9729,8 +9727,8 @@ msgid ""
 "There was an error while performing the requested operation. You may try "
 "starting the tool again."
 msgstr ""
-"Es gab einen Fehler währen des Laufens der ausgewählten Operation. Sie "
-"sollten versuchen, das Werkzeug erneut zu starten. "
+"Es gab einen Fehler während des Laufens der ausgewählten Operation. Du "
+"solltest versuchen, das Werkzeug erneut zu starten. "
 
 #: ../src/plugins/MediaManager.py:330
 #, python-format
@@ -9755,12 +9753,12 @@ msgid ""
 msgstr ""
 "Dieses Werkzeug erlaubt eine bestimmte Zeichenfolge in den Pfaden von "
 "Multimedia-Objekten mit anderen Zeichenfolge zu ersetzen. Es ist sehr "
-"nützlcih beim Verschieben von Multimediadateien von einem in ein anderes "
+"nützlich beim Verschieben von Multimediadateien von einem in ein anderes "
 "Verzeichnis"
 
 #: ../src/plugins/MediaManager.py:410
 msgid "Replace substring settings"
-msgstr "Ersetze Zeilenfolgeneinstellungen"
+msgstr "Ersetze Zeichenfolgeneinstellungen"
 
 #: ../src/plugins/MediaManager.py:422
 msgid "_Replace:"
@@ -9901,10 +9899,10 @@ msgid ""
 "that you consider using a different directory to store your generated web "
 "pages."
 msgstr ""
-"Es scheint Sie haben ihr Zielverzeichnis auf ein Verzeichnis, das für "
+"Es scheint Du hast dein Zielverzeichnis auf ein Verzeichnis, das für "
 "Datenspeicherung benutzt wird gesetzt. Dies kann zu Problemen mit dem "
-"Dateimanagement führen. Es wird empfohlen das Sie ein anderes Verzeichnis "
-"für ihre erstellten Webseiten wählen."
+"Dateimanagement führen. Es wird empfohlen das du ein anderes Verzeichnis "
+"für deine erstellten Webseiten wählst."
 
 #: ../src/plugins/NarrativeWeb.py:344
 #, python-format
@@ -9974,7 +9972,7 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Diese Seite enthält einen Index aller Personen in der Datenbank, die nach "
-"Familiennamen sortiert sind . Das Auswählen des Personennamens wird Sie zur "
+"Familiennamen sortiert sind . Das Auswählen des Personennamens wird dich zur "
 "eigenen Seite der Person bringen."
 
 #: ../src/plugins/NarrativeWeb.py:976
@@ -9986,7 +9984,7 @@ msgid ""
 msgstr ""
 "Diese Seite enthält einen Index von allen in der Datenbank vorkommenden "
 "Personen, die den Familiennamen %s tragen. Durch das Wählen des "
-"Personennamens gelangen Sie zur Seite der Person."
+"Personennamens gelangst du zur Seite der Person."
 
 #: ../src/plugins/NarrativeWeb.py:1102
 msgid ""
@@ -9995,8 +9993,8 @@ msgid ""
 "place&#8217;s page."
 msgstr ""
 "Diese Seite enthält einen Index mit allen Orten in der Datenbank, die nach "
-"ihrem Titel sortiert sind. Wenn Sie auf den Ortstitel klicken, gelangen Sie "
-"zur Seite des Ortes bringen."
+"ihrem Titel sortiert sind. Wenn du auf den Ortstitel klickst, gelangst du "
+"zur Seite des Ortes."
 
 #: ../src/plugins/NarrativeWeb.py:1112 ../src/plugins/NarrativeWeb.py:1463
 msgid "Letter"
@@ -10141,7 +10139,7 @@ msgstr "Ungültiger Dateiname"
 
 #: ../src/plugins/NarrativeWeb.py:2697
 msgid "The archive file must be a file, not a directory"
-msgstr "Das Archiv muss eine Datei sein, kein Verzeichinis"
+msgstr "Das Archiv muss eine Datei sein, kein Verzeichnis"
 
 #: ../src/plugins/NarrativeWeb.py:2706
 msgid "Generate HTML reports"
@@ -10534,7 +10532,7 @@ msgstr "Hauptfenster"
 
 #: ../src/plugins/OwnerEditor.py:156
 msgid "Edit database owner information"
-msgstr "Informationen über Datenbankeigner beareiten"
+msgstr "Informationen über Datenbankeigner bearbeiten"
 
 #. translated_name = _("Database Owner Information"),
 #: ../src/plugins/OwnerEditor.py:191
@@ -10704,7 +10702,7 @@ msgstr "Todesursache"
 #: ../src/plugins/RelCalc.py:92
 #, python-format
 msgid "Relationship calculator: %(person_name)s"
-msgstr "Verwandtschaftsrechner: %(person_name)s"
+msgstr "Verwandtschaftrechner: %(person_name)s"
 
 #: ../src/plugins/RelCalc.py:97
 #, python-format
@@ -10724,7 +10722,7 @@ msgstr ""
 
 #: ../src/plugins/RelCalc.py:160
 msgid "Relationship Calculator tool"
-msgstr "Verwandtschafts-Berechner"
+msgstr "Verwandtschaftrechner Werkzeug"
 
 #: ../src/plugins/RelCalc.py:187
 #, python-format
@@ -10747,11 +10745,11 @@ msgstr "Ihre gemeinsamen Vorfahren sind: "
 
 #: ../src/plugins/RelCalc.py:266
 msgid "Relationship Calculator"
-msgstr "Beziehungsrechner"
+msgstr "Verwandtschaftrechner"
 
 #: ../src/plugins/RelCalc.py:270
 msgid "Calculates the relationship between two people"
-msgstr "Bestimmt die Verwandschaftsbeziehung zwischen zwei Personen."
+msgstr "Bestimmt die Verwandtschaftbeziehung zwischen zwei Personen."
 
 #: ../src/plugins/RemoveUnused.py:73
 msgid "Unused Objects"
@@ -10789,7 +10787,7 @@ msgstr "Familien-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:90
 msgid "Reordering Event IDs"
-msgstr "Event-IDs neu ordnen"
+msgstr "Ereignis-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:100
 msgid "Reordering Media Object IDs"
@@ -10817,7 +10815,7 @@ msgstr "GRAMPS-IDs neu ordnen"
 
 #: ../src/plugins/ReorderIds.py:203
 msgid "Finding and assigning unused IDs"
-msgstr "Finden und Markieren von unbenutzen IDs"
+msgstr "Finden und Markieren von unbenutzten IDs"
 
 #: ../src/plugins/ReorderIds.py:240
 msgid "Reorders the gramps IDs according to Gramps' default rules."
@@ -11055,7 +11053,7 @@ msgstr "Kinderzahl"
 
 #: ../src/plugins/StatisticsChart.py:120
 msgid "Age at marriage"
-msgstr "Hochzeitsalter"
+msgstr "Alter bei Hochzeit"
 
 #: ../src/plugins/StatisticsChart.py:122
 msgid "Age at death"
@@ -11742,7 +11740,7 @@ msgstr "Erstellt Web (HTML) Kalender."
 
 #: ../src/plugins/WriteCD.py:54
 msgid "WriteCD is a GNOME plugin and you are not running GNOME"
-msgstr "CD brennen ist ein GNOME Plugin und bei Ihnen läuft kein GNOME"
+msgstr "CD brennen ist ein GNOME PlugIn und bei Ihnen läuft kein GNOME"
 
 #: ../src/plugins/WriteCD.py:60
 msgid "Cannot be loaded because python bindings for GNOME are not installed"
@@ -11973,12 +11971,12 @@ msgstr "Ausgewähltes Werkzeug ausführen"
 
 #: ../src/PluginUtils/_Plugins.py:416
 msgid "Reload Plugins"
-msgstr "Plugins neu laden"
+msgstr "PlugIns neu laden"
 
 #: ../src/PluginUtils/_Plugins.py:420
 msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
 msgstr ""
-"Es wird versucht die Plugins neu zu laden. Anmerkung: Dieses Werkzeug selbst "
+"Es wird versucht die PlugIns neu zu laden. Anmerkung: Dieses Werkzeug selbst "
 "wird nicht neu geladen!"
 
 #: ../src/PluginUtils/_Tool.py:64
@@ -12028,7 +12026,7 @@ msgstr "_Mit dem Werkzeug fortfahren"
 #: ../src/PluginUtils/_PluginWindows.py:60
 #: ../src/PluginUtils/_PluginWindows.py:133
 msgid "Plugin Status"
-msgstr "Plugin-Status"
+msgstr "PlugIn-Status"
 
 #: ../src/PluginUtils/_PluginWindows.py:83
 msgid "File"
@@ -12050,28 +12048,28 @@ msgstr "Fehler"
 msgid "OK"
 msgstr "OK"
 
-#: ../src/ReportBase/_BareReportDialog.py:100
+#: ../src/ReportBase/_BareReportDialog.py:106
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: ../src/ReportBase/_BareReportDialog.py:170
+#: ../src/ReportBase/_BareReportDialog.py:175
 #, python-format
 msgid "%(report_name)s for GRAMPS Book"
 msgstr "%(report_name)s für GRAMPS-Buch"
 
 #. Save Frame
-#: ../src/ReportBase/_BareReportDialog.py:287
+#: ../src/ReportBase/_BareReportDialog.py:292
 #: ../src/ReportBase/_ReportDialog.py:151
 msgid "Document Options"
 msgstr "Dokumentoptionen"
 
 #. Styles Frame
-#: ../src/ReportBase/_BareReportDialog.py:309
+#: ../src/ReportBase/_BareReportDialog.py:314
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr "Stil"
 
-#: ../src/ReportBase/_BareReportDialog.py:313
+#: ../src/ReportBase/_BareReportDialog.py:318
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stileditor"
@@ -16071,7 +16069,7 @@ msgstr "_Rückgängig %s"
 msgid "_Redo %s"
 msgstr "_Wiederherstellen %s"
 
-#: ../src/gen/db/dbdir.py:1705
+#: ../src/gen/db/dbdir.py:1761
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
@@ -16515,7 +16513,7 @@ msgstr "Pensionierung"
 
 #: ../src/gen/lib/eventtype.py:130
 msgid "Will"
-msgstr "Letzter Wille"
+msgstr "Testament"
 
 #: ../src/gen/lib/eventtype.py:132
 msgid "Marriage Settlement"
@@ -18401,7 +18399,7 @@ msgstr "Als privat markierte Notizen"
 
 #: ../src/Filters/Rules/Note/_NotePrivate.py:44
 msgid "Matches notes that are indicated as private"
-msgstr "Paßt auf Notizen die als privat makiert sind"
+msgstr "Paßt auf Notizen die als privat markiert sind"
 
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:97
@@ -19485,11 +19483,11 @@ msgstr "_Jahr"
 
 #: ../src/glade/gramps.glade.h:190
 msgid "_ZIP/Postal code:"
-msgstr "Postleit_zahl:"
+msgstr "PLZ/Postleit_zahl:"
 
 #: ../src/glade/gramps.glade.h:191
 msgid "_Zip/Postal code:"
-msgstr "Postleit_zahl:"
+msgstr "PlzPostleit_zahl:"
 
 #: ../src/glade/gramps.glade.h:193
 msgid "pt"
@@ -19587,7 +19585,7 @@ msgid ""
 "At least one rule must apply\n"
 "Exactly one rule must apply"
 msgstr ""
-"Alle Reglen müssen angelegt werden\n"
+"Alle Regeln müssen angelegt werden\n"
 "Mindestens eine Regel muss angelegt werden\n"
 "Genau eine Regel muss angelegt werden"
 
@@ -19848,7 +19846,7 @@ msgstr "B_eziehe Bilder vom Pfad:  "
 
 #: ../src/plugins/genewebexport.glade.h:7
 msgid "Use _Living as first name"
-msgstr "_Living als Vorname benutzen"
+msgstr "_Lebt als Vorname benutzen"
 
 #: ../src/plugins/leak.glade.h:1
 msgid "<b>Uncollected Objects</b>"
@@ -19872,11 +19870,11 @@ msgstr "_Vergleichen"
 
 #: ../src/plugins/ownereditor.glade.h:3
 msgid "Copy from DB to Preferences"
-msgstr "Von DB in Päferenzen kopieren"
+msgstr "Von DB in Präferenzen kopieren"
 
 #: ../src/plugins/ownereditor.glade.h:4
 msgid "Copy from Preferences to DB"
-msgstr "Von Päferenzen in DB kopieren"
+msgstr "Von Präferenzen in DB kopieren"
 
 #: ../src/plugins/patchnames.glade.h:1
 msgid ""
@@ -19942,7 +19940,7 @@ msgstr "_alles markieren"
 
 #: ../src/plugins/unused.glade.h:9 ../src/plugins/verify.glade.h:25
 msgid "_Unmark all"
-msgstr "_Makierung komplett aufheben"
+msgstr "_Markierung komplett aufheben"
 
 #: ../src/plugins/verify.glade.h:2
 msgid "<b>Families</b>"
@@ -19966,7 +19964,7 @@ msgstr "Ma_ximales Alter bei der Zeugung eines Kindes"
 
 #: ../src/plugins/verify.glade.h:9
 msgid "Ma_ximum age to marry"
-msgstr "Ma_ximales Hochzeitsalter"
+msgstr "Ma_ximales Alter bei Hochzeit"
 
 #: ../src/plugins/verify.glade.h:10
 msgid "Maximum _age"
@@ -19995,7 +19993,7 @@ msgstr "Maximale Anza_hl an Kindern"
 #: ../src/plugins/verify.glade.h:16
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
 msgstr ""
-"Maximale Anzahl aufeinander folgender Jahre der Wittwenschaft, vor der "
+"Maximale Anzahl aufeinander folgender Jahre der Witwenschaft, vor der "
 "nächsten Hochzeit"
 
 #: ../src/plugins/verify.glade.h:17
@@ -20012,7 +20010,7 @@ msgstr "Mi_nimales Alter bei der Zeugung eines Kindes"
 
 #: ../src/plugins/verify.glade.h:20
 msgid "Mi_nimum age to marry"
-msgstr "Mi_nimales Hochzeitsalter"
+msgstr "Mi_nimales Alter bei Heirat"
 
 #: ../src/plugins/verify.glade.h:21
 msgid "_Estimate missing dates"
@@ -20046,7 +20044,7 @@ msgstr "Zusätzlicher Pfad wo die Datenbank sein kann"
 
 #: ../data/gramps.schemas.in.h:2
 msgid "Automatically pop plugin status window"
-msgstr "Plugin-Statusfenster automatisch anzeigen"
+msgstr "PlugIn-Statusfenster automatisch anzeigen"
 
 #: ../data/gramps.schemas.in.h:3
 msgid "Color used to highlight TODO items in a list"
@@ -20058,7 +20056,9 @@ msgstr "Farbe zum Hervorheben kompletter Einträge in der Liste"
 
 #: ../data/gramps.schemas.in.h:5
 msgid "Color used to highlight custom marker items in a list"
-msgstr "Nutze farbige Makierungen um ausgewählte Einträge in einer Liste zu markieren"
+msgstr ""
+"Nutze farbige Markierungen um ausgewählte Einträge in einer Liste zu "
+"markieren"
 
 #: ../data/gramps.schemas.in.h:6
 msgid "Create default source on import"
@@ -20118,7 +20118,7 @@ msgstr "Zeige Filterkontrollen an"
 
 #: ../data/gramps.schemas.in.h:21
 msgid "Display edit buttons in Relationship View"
-msgstr "Zeige Bearbeiten-Knöpfe in der Beziehungsansicht"
+msgstr "Zeige Bearbeiten-Knöpfe in der Beziehungansicht"
 
 #: ../data/gramps.schemas.in.h:22
 msgid "Display informational message when editing a person"
@@ -20271,7 +20271,7 @@ msgstr ""
 #: ../data/gramps.schemas.in.h:57
 msgid "If True, shading is used to highlight data in Relationship View"
 msgstr ""
-"Wenn Ja, werden Schattierungen benutzt um Daten in der Beziehungsansicht "
+"Wenn Ja, werden Schattierungen benutzt um Daten in der Beziehungansicht "
 "hervorzuheben"
 
 #: ../data/gramps.schemas.in.h:58
@@ -20295,8 +20295,8 @@ msgid ""
 "If set to 1, Plugin Status Window will pop automatically when problems are "
 "detected on plugins load and reload."
 msgstr ""
-"Beim Setzen auf 1 wird das Pluginstatusfenster autmatisch erscheinen, wenn "
-"Probleme beim Laden oder erneuten Laden von Plugins entdeckt wurden."
+"Beim Setzen auf 1 wird das PlugInstatusfenster automatisch erscheinen, wenn "
+"Probleme beim Laden oder erneuten Laden von PlugIns entdeckt wurden."
 
 #: ../data/gramps.schemas.in.h:61
 msgid "If set to 1, Tip of the Day will be displayed on startup."
@@ -20381,8 +20381,8 @@ msgid ""
 "If set to True, an informational dialog will be displayed whenever the user "
 "edits a person."
 msgstr ""
-"Beim Setzen auf Ja wird immer beim Bearbeiten einer Peson ein "
-"Informationsdialog angezeigt."
+"Beim Setzen auf Ja wird immer beim Bearbeiten einer Person ein "
+"Informationdialog angezeigt."
 
 #: ../data/gramps.schemas.in.h:73
 msgid "If set to True, event reports are shown on the Family View."
@@ -20451,7 +20451,7 @@ msgstr "Bevorzugtes Format für graphische Berichte"
 
 #: ../data/gramps.schemas.in.h:87
 msgid "Preferred format for graphical reports."
-msgstr "Beforzugtes Format für graphische Berichte."
+msgstr "Bevorzugtes Format für graphische Berichte."
 
 #: ../data/gramps.schemas.in.h:88
 msgid "Preferred format for text reports"
@@ -20507,7 +20507,7 @@ msgstr "Telefonnummer des Forschers"
 
 #: ../data/gramps.schemas.in.h:101
 msgid "Researcher phone."
-msgstr "Telefonnnummer des Forschers."
+msgstr "Telefonnummer des Forschers."
 
 #: ../data/gramps.schemas.in.h:102
 msgid "Researcher postal code"
@@ -20715,7 +20715,7 @@ msgstr "Spezifiziert die Breite der URL Editorschnittstelle."
 
 #: ../data/gramps.schemas.in.h:153
 msgid "Startup druid has been run"
-msgstr "Einführungsassistent wurde gestartet"
+msgstr "Einführungassistent wurde gestartet"
 
 #: ../data/gramps.schemas.in.h:154
 msgid ""
@@ -20816,21 +20816,21 @@ msgstr ""
 "Dieser Schlüssel legt das Format für die automatische Nachnamenauswahl beim "
 "Hinzufügen einer neuen Person zur Datenbank fest. Benutzen Sie 0 für den "
 "Nachnamen des Vaters, 1 für keine automatische Auswahl, 2 für Kombination "
-"aus mütterlichem und väterlichen Nachmanes und 3 für das isländische Format."
+"aus mütterlichem und väterlichen Nachname und 3 für das isländische Format."
 
 #: ../data/gramps.schemas.in.h:165
 msgid ""
 "This key disables prompting when data has changed and the Cancel button has "
 "been pressed."
 msgstr ""
-"Dieser Schlüssel erscheint, wenn Daten geändert wurden und die \"Abbrech-"
+"Dieser Schlüssel erscheint, wenn Daten geändert wurden und die \"Abbruch-"
 "Schaltfläche\" gedrückt wurde."
 
 #: ../data/gramps.schemas.in.h:166
 msgid "This key enables display of edit buttons in Relationship View"
 msgstr ""
 "Diese Schlüssel aktiviert das Anzeigen der Bearbeiten-Knöpfe in der "
-"Beziehungsansicht"
+"Beziehungansicht"
 
 #: ../data/gramps.schemas.in.h:167
 msgid ""
@@ -20839,7 +20839,7 @@ msgid ""
 "200 denotes the 2.0.0 version."
 msgstr ""
 "dieser Schlüssel enthält die Version, für die bereits eine "
-"Willkommensnachricht angezeigt wurde. Das bezeichnet die Major, minur und "
+"Willkommennachricht angezeigt wurde. Das bezeichnet die Major, Minor und "
 "Release Numeralen, wie z.b. 200 für die Version 2.0.0 steht."
 
 #: ../data/gramps.schemas.in.h:168
@@ -20852,7 +20852,7 @@ msgstr "Benutze Online-Karten"
 
 #: ../data/gramps.schemas.in.h:170
 msgid "Use shading to highlight data in Relationship View"
-msgstr "Nutze die Schattierung auf den oberen Daten in der Beziehungsansicht"
+msgstr "Nutze die Schattierung auf den oberen Daten in der Beziehungansicht"
 
 #: ../data/gramps.schemas.in.h:171
 msgid "Warn when adding parents in a way that may cause duplicate families."
@@ -20862,7 +20862,7 @@ msgstr ""
 
 #: ../data/gramps.schemas.in.h:172
 msgid "Welcome message has already been displayed for this version"
-msgstr "Die Willkommensnachricht für diese Version wurde bereits angezeigt"
+msgstr "Die Willkommennachricht für diese Version wurde bereits angezeigt"
 
 #: ../data/gramps.schemas.in.h:173
 msgid "Width of the LDS editor interface."
@@ -20999,7 +20999,7 @@ msgid ""
 msgstr ""
 "<b>Bevorzugten Namen ändern</b>: In GRAMPS ist es einfach Personen mit "
 "verschiedenen Namen zu verwalten. Machen Sie die Person zur aktiven Person "
-"indem Sie mit einem Doppelklick den Editiermodus gelangen und den Reiter "
+"indem Sie mit einem Doppelklick den Bearbeitungmodus gelangen und den Reiter "
 "&quot;Namen&quot; auswählen. Es können verschiedene Typen von Namen "
 "hinzugefügt werden, wie etwa Ehename, Geburtsname, usw. Um den bevorzugten "
 "Namen zu wählen, klicken Sie einfach auf den Namen und wählen nur den "
@@ -21017,9 +21017,9 @@ msgstr ""
 "<b> Mitarbeiten an GRAMPS</b>: Wollen sie bei GRAMPS helfen, können aber "
 "nicht programmieren? Kein Problem. Ein so großes Projekt wie GRAMPS benötigt "
 "Menschen mit vielen unterschiedlichen Qualifikationen. Mitarbeit kann sowohl "
-"das Schreiben von Dokumentation, das Teasten von Entwicklungsversionen als "
+"das Schreiben von Dokumentation, das Testen von Entwicklungversionen als "
 "auch das Helfen bei der Webseite beinhalten. Beginnen Sie mit dem Eintragen "
-"in die Gramps Entwicklungsmailingliste, gramps-devel und arbeiten Sie sich "
+"in die Gramps Entwicklermailingliste, gramps-devel und arbeiten Sie sich "
 "ein. Informationen zum Anmelden finden Sie auf lists.sf.net."
 
 #: ../src/data/tips.xml.in.h:6
@@ -21115,7 +21115,7 @@ msgid ""
 msgstr ""
 "<b>GRAMPS Berichte</b>: GRAMPS ermöglicht Ihnen viele verschiedene "
 "Möglichkeiten an Berichten. Die Textberichte sind vor allem für das "
-"Versenden von Ergebnissen ihres Stammbaumes an Familienmitglieder via Email "
+"Versenden von Ergebnissen ihres Stammbaumes an Familienmitglieder via E-Mail "
 "geeignet. "
 
 #: ../src/data/tips.xml.in.h:13
@@ -21139,9 +21139,9 @@ msgid ""
 "http://bugs.gramps-project.org Filing a Feature Request is preferred."
 msgstr ""
 "<b>GRAMPS verbessern</b>: Benutzer sind dazu angeregt, Weiterentwicklungen "
-"an GRAMPS vorzuschlagen. Vorschläge zur Weiterentwicklung  können  zu den "
+"an GRAMPS vorzuschlagen. Vorschläge zur Weiterentwicklung können zu den "
 "gramps-users oder gramps-devel Mailinglisten gesendet werden, oder am besten "
-"erstellen Sie einen Feature Request auf http://bugs.gramps-project.org"
+"erstellst du einen Feature Request auf http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:15
 msgid ""
@@ -21153,7 +21153,7 @@ msgstr ""
 "<b>Fehlerhafte Daten</b>: Jeder trägt gelegentlich Daten mit ungültigem "
 "Format ein. Fehlerhafte Datenformate werden neben dem Datum mit einem roten "
 "Punkt gekennzeichnet.  Grün bedeutet gut und gelb bedeutet akzeptabel. Durch "
-"das Klicken auf den farben Knopf kann die Datumsauswahl aufgerufen werden."
+"das Klicken auf den Farbenknopf kann die Datumsauswahl aufgerufen werden."
 
 #: ../src/data/tips.xml.in.h:16
 msgid ""
@@ -21201,7 +21201,7 @@ msgid ""
 "GRAMPS? <b>Edit &gt; Preferences</b> lets you to modify a number of "
 "settings, allowing you to tailor GRAMPS to your needs."
 msgstr ""
-"<b>Eigene Einstellungen vornhmen</b>: Sind Sie nicht mit einigen "
+"<b>Eigene Einstellungen vornehmen</b>: Sind Sie nicht mit einigen "
 "Standardeinstellungen von GRAMPS zufrieden? Unter <b>Bearbeiten &gt; "
 "Einstellungen </b> können Sie eine Menge an Einstellungen nach Ihren "
 "Wünschen modifzieren."
@@ -21272,7 +21272,7 @@ msgid ""
 "you will get to hear some great stories. Don't forget to record the "
 "conversations!"
 msgstr ""
-"<b>Sprechen Sie mit Verwanden bevor es zu spät ist</b>: Ihre ältersten "
+"<b>Sprechen Sie mit Verwandten bevor es zu spät ist</b>: Ihre ältesten "
 "Verwandten können diewichtigste Quelle für Informationen sein. Sie wissen "
 "meistens Dinge über die Familie, die nicht aufgeschrieben sind. "
 "Möglicherweise erzählen sie alles mögliche, das eines Tages Ihnen einen Tipp "
@@ -21295,8 +21295,8 @@ msgid ""
 "1908&quot; is a valid entry for a birth date in GRAMPS. See section 3.7.2.2 "
 "of the GRAMPS manual for a complete description of date entry options."
 msgstr ""
-"<b>Sind Sie sich bei einem Datum unsicher?</b> Wenn Sie sicht bei einem "
-"vorkommenden Datum unsicher sind (zum Beispiel beim Sterbedatum), erlaubt "
+"<b>Sind Sie sich bei einem Datum unsicher?</b> Wenn du dir bei einem "
+"vorkommenden Datum unsicher bist (zum Beispiel beim Sterbedatum), erlaubt "
 "Ihnen GRAMPS einen weiten Umfang an Daten, die auf einer Vermutung oder "
 "Einschätzung beruhen. Im Fall von &quot;etwa 1908&quot; ist dies ein "
 "erlaubter Eintrag für ein Geburtsdatum in GRAMPS. Schauen Sie in den "
@@ -21311,9 +21311,9 @@ msgid ""
 "database."
 msgstr ""
 "<b>Wer wurde wann geboren</b>: Das Werkzeug &quot;Einzelne Ereignisse "
-"vergleichen&quot; erlaubt Ihnen die Daten von allen (oder einigen) Personen "
-"aus Ihrer Datenbank zu vergleichen. Das ist nützlich, wenn Sie wünchen, dass "
-"die Geburtsdaten von jedem aus Ihrer Datenbank angezeigt werden sollen."
+"vergleichen &quot; erlaubt Ihnen die Daten von allen (oder einigen) Personen "
+"aus Ihrer Datenbank zu vergleichen. Das ist nützlich, wenn Sie wünschen, "
+"dass die Geburtsdaten von jedem aus Ihrer Datenbank angezeigt werden sollen."
 
 #: ../src/data/tips.xml.in.h:28
 msgid ""
@@ -21362,7 +21362,7 @@ msgid ""
 "the Latin 'sic' is recommended to confirm the accurate transcription of what "
 "appears to be an error in a source."
 msgstr ""
-"Seien Sie genau beim Aufschreiben von genealogischen Informationen. Stellen "
+"Seien Sie genau beim Aufschreiben von genealogische Informationen. Stellen "
 "Sie nicht eine Hypothese auf, während Sie erste Informationen haben, "
 "schreiben Sie genau auf, wie Sie es sehen. Verwenden Sie eingeklammerte "
 "Kommentare um Anfügungen, Löschungen und Kommentare anzugeben. Es ist zu "
@@ -21422,10 +21422,10 @@ msgid ""
 "Experiment with the reports under the <b>Reports</b> menu to get an idea of "
 "how powerful GRAMPS is."
 msgstr ""
-"GRAMPS erlaubt Ihnen eine Menge an Berichten (sowohl text als auch grafisch) "
+"GRAMPS erlaubt Ihnen eine Menge an Berichten (sowohl Text als auch grafisch) "
 "zu erstellen, die Ihre genealogische Informationen enthalten. Eine große "
-"Flexibiltät gibt es sowohl bei der Auswahl der Personen für den Bericht als "
-"auch für das Ausgabeformat (html, pdf, OpenOffice, RTF, AbiWord, KWord, "
+"Flexibilität gibt es sowohl bei der Auswahl der Personen für den Bericht als "
+"auch für das Ausgabeformat (HTML, PDF, OpenOffice, RTF, AbiWord, KWord, "
 "LaTeX und normaler Text). Probieren Sie die Berichte im Menü unter "
 "<b>Berichte</b> um einen Einblick zu bekommen, wie mächtig GRAMPS ist."
 
@@ -21448,7 +21448,7 @@ msgid ""
 "many html files."
 msgstr ""
 "GRAMPS kann Daten in das Web Family Tree (WFT) Format exportieren. Dieses "
-"Format erlaubt Ihnen, einen Stammbaum anstatt vieler html Dateien in einer "
+"Format erlaubt Ihnen, einen Stammbaum anstatt vieler HTML Dateien in einer "
 "Datei online zu stellen."
 
 #: ../src/data/tips.xml.in.h:40
@@ -21461,7 +21461,7 @@ msgid ""
 msgstr ""
 "GRAMPS enthält eine Menge von nützlichen Werkzeugen. Diese erlauben "
 "Operationen wie die Überprüfung der Datenbank auf Fehler und Konsistenz "
-"einfach durchzuführen. Zum Beispiel Forschungs- und Analysierungswerkzeuge, "
+"einfach durchzuführen. Zum Beispiel Forschung- und Analysewerkzeuge, "
 "Vergleich von Ereignissen, das Finden von doppelten Personen, eine "
 "interaktive Übersicht der Nachkommen und vieles mehr. Alle Werkzeuge können "
 "Sie im Menü unter <b>Werkzeuge</b> finden."
@@ -21474,7 +21474,7 @@ msgid ""
 msgstr ""
 "GRAMPS wurde so programmiert, dass neue Übersetzungen einfach mit einem "
 "kleinen Entwicklungsaufwand integriert werden können. Wenn Sie am Übersetzen "
-"interessiert sind, senden Sie bitte eine Email an gramps-devel@lists.sf.net"
+"interessiert sind, senden Sie bitte eine E-Mail an gramps-devel@lists.sf.net"
 
 #: ../src/data/tips.xml.in.h:42
 msgid ""
@@ -21494,10 +21494,10 @@ msgid ""
 "correlation with the potential of filling relationship gaps."
 msgstr ""
 "GRAMPS hat einige einzigartige Eigenschaften wie etwa die Möglichkeit einen "
-"Informationsteil direkt in GRAMPS zu importieren. Alle daten in der "
+"Informationsteil direkt in GRAMPS zu importieren. Alle Daten in der "
 "Datenbank können neu angeordnet/geändert werden, um dem Benutzer während des "
-"Forschens zu helfen Auswertungen und Beziehungen vorzugenehmen, mit der "
-"Möglichkeit eine Verwandtschaftslücke zu füllen."
+"Forschens zu helfen Auswertungen und Beziehungen vorzunehmen, mit der "
+"Möglichkeit eine Verwandtschaftlücke zu füllen."
 
 #: ../src/data/tips.xml.in.h:44
 msgid ""
@@ -21506,7 +21506,7 @@ msgid ""
 "and data exports."
 msgstr ""
 "GRAMPS hilft Ihnen persönliche Informationen geheim zu halten, indem man "
-"Informationen als privat makiert. Als privat makierte Daten können von den "
+"Informationen als privat markiert. Als privat markierte Daten können von den "
 "Berichten und Datenexporten ausgeschlossen werden."
 
 #: ../src/data/tips.xml.in.h:45
@@ -21588,7 +21588,7 @@ msgid ""
 msgstr ""
 "Ahnenforschung beschäftigt sich nicht nur mit Daten und Namen. Es geht um "
 "Menschen, die man versucht zu beschreiben. Es enthält das <b>warum</b> etwas "
-"passiert und wie die Nachkommen durch diese Ereignisse gebrägt wurden. "
+"passiert und wie die Nachkommen durch diese Ereignisse geprägt wurden. "
 "Erzählungen können eine Möglichkeit sein, Ihre Familiengeschichte zu erleben."
 
 #: ../src/data/tips.xml.in.h:53
@@ -21601,7 +21601,7 @@ msgstr ""
 "Gehen Sie von dem aus was Sie wissen, um zu erfahren, was Sie nicht wissen. "
 "Schreiben Sie immer alles Bekannte auf bevor Sie Vermutungen aufstellen. Oft "
 "können die vorhandenen Fakten eine Fülle an Anweisungen enthalten. "
-"Verbringen Sie nicht die Zeit damit, Tausende von Aufzeichungen zu "
+"Verbringen Sie nicht die Zeit damit, Tausende von Aufzeichnungen zu "
 "durchsuchen, um eine Spur zu finden, wenn Sie einen unentdeckten "
 "Anhaltspunkt haben."
 
@@ -21689,7 +21689,7 @@ msgid ""
 "The Media View shows a list of all media entered in the database. These can "
 "be graphic images, videos, sound clips, spreadsheets, documents, and more."
 msgstr ""
-"Die Multimediansicht zeigt Ihnen alle in der Datenbank vorhandenen "
+"Die Multimediaansicht zeigt Ihnen alle in der Datenbank vorhandenen "
 "Multimediaobjekte. Das können Bilder, Videos, Tonaufnahmen, Tabellen, "
 "Dokumente und vieles mehr."
 
@@ -21731,8 +21731,8 @@ msgid ""
 "The best way to report a bug in GRAMPS is to use the GRAMPS bug tracking "
 "system at http://bugs.gramps-project.org"
 msgstr ""
-"Der beste Weg einen Fehler in GRAMPS zu melden, ist das Benützen des GRAMPS "
-"Bug Tracker auf http://bugs.gramps-project.org"
+"Der beste Weg einen Fehler in GRAMPS zu melden, ist das  GRAMPS bug tracking "
+"system auf http://bugs.gramps-project.org"
 
 #: ../src/data/tips.xml.in.h:68
 msgid ""
