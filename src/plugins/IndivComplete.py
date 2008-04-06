@@ -111,7 +111,7 @@ class IndivCompleteReport(Report):
 
         description = event.get_description()
         if description:
-            text = '%s%s. ' % (text, description)
+            text = '%s, %s' % (description, text)
         endnotes = ""
         if self.use_srcs:
             endnotes = Endnotes.cite_source(self.bibli, event)
@@ -414,7 +414,7 @@ class IndivCompleteReport(Report):
                 filename = media_path_full(self.database, object.get_path())
                 if os.path.exists(filename):
                     self.doc.start_paragraph("IDS-Normal")
-                    self.doc.add_media_object(filename, "center", 4.0, 4.0)
+                    self.doc.add_media_object(filename, "right", 4.0, 4.0)
                     self.doc.end_paragraph()
                 else:
                     WarningDialog(_("Could not add photo to page"),
