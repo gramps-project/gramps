@@ -4,7 +4,7 @@
  <author uid="rshura" title="author">
   Alex Roitman &lt;<html:a href="mailto:shura@gramps-project.org">shura@gramps-project.org</html:a>&gt;
  </author>
- <author uid="bmcage" title="contributor">
+ <author uid="bmcage" title="author">
   Benny Malengier &lt;<html:a href="mailto:benny.malengier@gramps-project.org">benny.malengier@gramps-project.org</html:a>&gt;
  </author>
  <author uid="pez4brian" title="author">
@@ -14,9 +14,9 @@
   Don Allingham &lt;<html:a href="mailto:don@gramps-project.org">don@gramps-project.org</html:a>&gt;
  </author>
  <author uid="dpeterso" title="author">
-  Donald A. Peterson &lt;<html:a href="mailto:?@?.???">?@?.???</html:a>&gt;
+  Donald A. Peterson &lt;<html:a href="mailto:"></html:a>&gt;
  </author>
- <author uid="dsblank" title="contributor">
+ <author uid="dsblank" title="author">
   Doug Blank &lt;<html:a href="mailto:dblank@cs.brynmawr.edu">dblank@cs.brynmawr.edu</html:a>&gt;
  </author>
  <author uid="eerot" title="contributor">
@@ -71,9 +71,9 @@
   Zsolt Foldvari &lt;<html:a href="mailto:zfoldvar@users.sourceforge.net">zfoldvar@users.sourceforge.net</html:a>&gt;
  </author>
  <author uid="noirauds" title="contributor">
-  ? &lt;<html:a href="mailto:?@?.???">?@?.???</html:a>&gt;
+   &lt;<html:a href="mailto:"></html:a>&gt;
  </author>
  <author uid="matlas" title="contributor">
-  ? &lt;<html:a href="mailto:?@?.???">?@?.???</html:a>&gt;
+   &lt;<html:a href="mailto:"></html:a>&gt;
  </author>
 </authors>
