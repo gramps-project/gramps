@@ -34,7 +34,7 @@ _LOG = logging.getLogger(".GrampsAboutDialog")
 
 try:
     from xml.sax import make_parser, handler, SAXParseException
-except:
+except ImportError:
     from _xmlplus.sax import make_parser, handler, SAXParseException
 
 
@@ -87,7 +87,7 @@ class GrampsAboutDialog(gtk.AboutDialog):
             ifile = open(const.LICENSE_FILE, "r")
             self.set_license(ifile.read().replace('\x0c', ''))
             ifile.close()
-        except:
+        except IOError:
             self.set_license("License file is missing")
 
         self.set_comments(_(const.COMMENTS))
@@ -125,16 +125,14 @@ class AuthorParser(handler.ContentHandler):
         self.text = ""
         
     def startElement(self, tag, attrs):
-        """
-        """
+        """Override default method, handle the start of an element."""
         if tag == "author":
             self.uid = attrs['uid']
             self.title = attrs['title']
             self.text = ""
             
     def endElement(self, tag):
-        """
-        """
+        """Override default method, handle the end of an element."""
         if tag == "author":
             if (self.title == 'author' and
                 self.text not in self.author_list):
@@ -144,8 +142,7 @@ class AuthorParser(handler.ContentHandler):
                 self.contributor_list.append(self.text.strip())
         
     def characters(self, chunk):
-        """
-        """
+        """Override default method, receive notification of character data."""
         if chunk != '\n':
             self.text += chunk
 
