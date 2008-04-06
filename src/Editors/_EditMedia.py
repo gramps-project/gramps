@@ -153,8 +153,7 @@ class EditMedia(EditPrimary):
     def draw_preview(self):
         mtype = self.obj.get_mime_type()
         if mtype:
-            pb = ThumbNails.get_thumbnail_image(Utils.find_file(
-                        Utils.media_path_full(self.db, self.obj.get_path())), 
+            pb = ThumbNails.get_thumbnail_image(Utils.media_path_full(self.db, self.obj.get_path()), 
                         mtype)
             self.pixmap.set_from_pixbuf(pb)
         else:
