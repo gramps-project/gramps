@@ -75,17 +75,9 @@ import UndoHistory
 from DbLoader import DbLoader
 import GrampsDisplay
 from gen.utils import ProgressMonitor
+from GrampsAboutDialog import GrampsAboutDialog
 
 import ProgressDialog
-
-def show_url(dialog, link, user_data):
-    """
-    Set the about dialog callback for showing the URL. Call the GrampsDisplay
-    function to display the link
-    """
-    GrampsDisplay.url(link)
-
-gtk.about_dialog_set_url_hook(show_url, None)
 
 #-------------------------------------------------------------------------
 #
@@ -1412,39 +1404,8 @@ class ViewManager:
         return (ofile.getvalue(), actions)
 
 def display_about_box(obj):
-    """
-    Displays the About box.
-    """
-    about = gtk.AboutDialog()
-    about.set_name(const.PROGRAM_NAME)
-    about.set_version(const.VERSION)
-    about.set_copyright(const.COPYRIGHT_MSG)
-    about.set_artists([
-            _("Much of GRAMPS' artwork is either from\n"
-              "the Tango Project or derived from the Tango\n"
-              "Project. This artwork is released under the\n"
-              "Create Commons Attribution-ShareAlike 2.5\n"
-              "license.")
-            ])
-    try:
-        ifile = open(const.LICENSE_FILE, "r")
-        about.set_license(ifile.read().replace('\x0c', ''))
-        ifile.close()
-    except:
-        about.set_license("License file is missing")
-    about.set_comments(_(const.COMMENTS))
-    about.set_website_label(_('GRAMPS Homepage'))
-    about.set_website(const.URL_HOMEPAGE)
-    about.set_authors(const.AUTHORS)
-    
-        # Only set translation credits if they are translated
-    trans_credits = _(const.TRANSLATORS)
-    if trans_credits != const.TRANSLATORS:
-        about.set_translator_credits(trans_credits)
-        
-    about.set_documenters(const.DOCUMENTERS)
-    about.set_logo(gtk.gdk.pixbuf_new_from_file(const.SPLASH))
-    about.set_modal(True)
+    """Display the About box."""
+    about = GrampsAboutDialog()
     about.run()
     about.destroy()
 

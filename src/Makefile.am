@@ -49,6 +49,7 @@ gdir_PYTHON = \
 	ExportAssistant.py\
 	ExportOptions.py\
 	FontScale.py\
+	GrampsAboutDialog.py\
 	GrampsCfg.py\
 	GrampsDisplay.py\
 	gramps_main.py\

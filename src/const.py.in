@@ -165,6 +165,8 @@ AUTHORS        = [
     "Donald A. Peterson", 
     "David Hampton", 
     ]
+    
+AUTHORS_FILE = os.path.join(ROOT_DIR, "authors.xml")
 
 DOCUMENTERS    = [
     'Alexander Roitman', 
