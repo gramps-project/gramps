@@ -390,6 +390,7 @@ class RelativesGramplet(Gramplet):
         for family_handle in active_person.get_family_handle_list():
             famc += 1
             family = database.get_family_from_handle(family_handle)
+            if not family: continue
             if active_person.handle == family.get_father_handle():
                 spouse_handle = family.get_mother_handle()
             else:
