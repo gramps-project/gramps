@@ -79,13 +79,13 @@ class SearchBar:
         return self.filterbar
         
     def setup_filter( self, column_data ):
+        self.filter_model.clear()
         old_value = self.filter_list.get_active()
         
         cell = gtk.CellRendererText()
         self.filter_list.clear()
         self.filter_list.pack_start(cell, True)
         self.filter_list.add_attribute(cell, 'text', 0)
-
 
         maxval = 0
         for col, index in column_data:
