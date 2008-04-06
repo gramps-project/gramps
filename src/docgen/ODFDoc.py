@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import md5
 import zipfile
 import time
 import locale
@@ -434,11 +435,11 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             app = Mime.get_application(_apptype)
             Utils.launch(app[0], self.filename)
 
-    def add_media_object(self, name, pos, x_cm, y_cm):
+    def add_media_object(self, file_name, pos, x_cm, y_cm):
 
         # try to open the image. If the open fails, it probably wasn't
         # a valid image (could be a PDF, or a non-image)
-        (x, y) = ImgManip.image_size(name)
+        (x, y) = ImgManip.image_size(file_name)
         if (x, y) == (0, 0):
             return
         
@@ -449,12 +450,15 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         else:
             act_height = y_cm
             act_width = x_cm/ratio
+            
+        not_extension, extension = os.path.splitext(file_name)
+        odf_name = md5.new(file_name).hexdigest() + extension
 
-        media_list_item = (name, act_width, act_height)
+        media_list_item = (file_name, odf_name)
         if not media_list_item in self.media_list:
             self.media_list.append(media_list_item)
 
-        base = escape(os.path.basename(name))
+        base = escape(os.path.basename(file_name))
         tag = base.replace('.', '_')
         
         if self.new_cell:
@@ -474,7 +478,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self.cntnt.write('svg:height="%.2fcm" ' % act_height)
         self.cntnt.write('draw:z-index="1" >')
         self.cntnt.write('<draw:image xlink:href="Pictures/')
-        self.cntnt.write(base)
+        self.cntnt.write(odf_name)
         self.cntnt.write('" xlink:type="simple" xlink:show="embed" ')
         self.cntnt.write('xlink:actuate="onLoad"/>\n')
         self.cntnt.write('</draw:frame>\n')
@@ -559,8 +563,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         for image in self.media_list:
             try:
                 ifile = open(image[0], mode='rb')
-                base = os.path.basename(image[0])
-                self._add_zip(zfile, "Pictures/%s" % base, ifile.read(), t)
+                self._add_zip(zfile, "Pictures/%s" % image[1], ifile.read(), t)
                 ifile.close()
             except:
                 print "Could not open %s" % image[0]
@@ -903,11 +906,9 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
         self.mfile.write('manifest:media-type="%s" ' % _apptype)
         self.mfile.write('manifest:full-path="/"/>')
         for image in self.media_list:
-            i = image[0]
-            base = escape(os.path.basename(i))
             self.mfile.write('<manifest:file-entry manifest:media-type="" ')
             self.mfile.write('manifest:full-path="Pictures/')
-            self.mfile.write(base)
+            self.mfile.write(image[1])
             self.mfile.write('"/>')
         self.mfile.write('<manifest:file-entry manifest:media-type="" ')
         self.mfile.write('manifest:full-path="Pictures/"/>')
