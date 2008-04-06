@@ -490,7 +490,8 @@ class BookList:
             the_file = open(self.file)
             p.parse(the_file)
             the_file.close()
-        except (IOError,OSError,ValueError,SAXParseException):
+        except (IOError, OSError, ValueError, SAXParseException, KeyError, \
+               AttributeError):
             pass
 
 
