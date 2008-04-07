@@ -1206,7 +1206,7 @@ class MediaPage(BasePage):
             of.write('\t\t\t</tr>\n')
 
         date = _dd.display(photo.get_date_object())
-        if date != "":
+        if date:
             of.write('\t\t\t<tr>\n')
             of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Date'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % date)
@@ -1866,10 +1866,9 @@ class IndividualPage(BasePage):
         of.write('\t<div id="pedigree" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('Pedigree'))
         of.write('\t\t<ol class="pedigreegen">\n')
-        of.write('\t\t\t')
 
         if father and mother:
-            of.write('<li>')
+            of.write('\t\t\t<li>')
             self.pedigree_person(of, father)
             of.write('\n')
             of.write('\t\t\t\t<ol>\n')
@@ -1879,12 +1878,12 @@ class IndividualPage(BasePage):
             of.write('\n')
             of.write('\t\t\t\t\t\t<ol>\n')
         elif father:
-            of.write('<li>')
+            of.write('\t\t\t<li>')
             self.pedigree_person(of, father)
             of.write('\n')
             of.write('\t\t\t\t<ol>\n')
         elif mother:
-            of.write('<li class="spouse">')
+            of.write('\t\t\t<li class="spouse">')
             self.pedigree_person(of, mother)
             of.write('\n')
             of.write('\t\t\t\t<ol>\n')
@@ -1913,7 +1912,8 @@ class IndividualPage(BasePage):
             of.write('\t\t\t\t\t\t')
             self.pedigree_family(of)
         of.write('\t\t\t\t</ol>\n')
-        of.write('\t\t\t</li>\n')
+        if father or mother:
+            of.write('\t\t\t</li>\n')
         of.write('\t\t</ol>\n')
         of.write('\t</div>\n\n')
 
@@ -2019,13 +2019,12 @@ class IndividualPage(BasePage):
         db = self.report.database
         child = db.get_person_from_handle(child_handle)
         gid = child.get_gramps_id()
+        of.write("\t\t\t\t\t\t<li>")
         if child_handle in self.ind_list:
-            of.write("\t\t\t\t\t\t<li>")
             child_name = _nd.display(child)
             url = self.report.build_url_fname_html(child_handle, 'ppl', True)
             self.person_link(of, url, child_name, gid)
         else:
-            of.write("\t\t\t\t\t\t<li>")
             of.write(_nd.display(child))
         of.write(u"</li>\n")
 
@@ -2095,8 +2094,11 @@ class IndividualPage(BasePage):
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
-                    for child_ref in child_ref_list:
-                        child_handle = child_ref.ref
+                    childlist = [child_ref.ref for child_ref in child_ref_list]
+                    # TODO. Optionally sort children by birthdate
+                    sort = Sort.Sort(self.report.database)
+                    childlist.sort(sort.by_birthdate)
+                    for child_handle in childlist:
                         sibling.add(child_handle)   # remember that we've already "seen" this child
                         if child_handle != self.person.handle:
                             self.display_child_link(of, child_handle)
@@ -2170,8 +2172,12 @@ class IndividualPage(BasePage):
                 of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Children"))
                 of.write('\t\t\t\t<td class="ColumnValue">\n')
                 of.write('\t\t\t\t\t<ol>\n')
-                for child_ref in childlist:
-                    self.display_child_link(of, child_ref.ref)
+                # TODO. Optionally sort on birthdate
+                childlist = [child_ref.ref for child_ref in childlist]
+                sort = Sort.Sort(self.report.database)
+                childlist.sort(sort.by_birthdate)
+                for child_handle in childlist:
+                    self.display_child_link(of, child_handle)
                 of.write('\t\t\t\t\t</ol>\n')
                 of.write('\t\t\t\t</td>\n')
                 of.write('\t\t\t</tr>\n')
@@ -2225,13 +2231,16 @@ class IndividualPage(BasePage):
             of.write(self.format_event(event, event_ref))
             of.write('</td>\n')
             of.write('\t\t\t</tr>\n')
+
         for attr in family.get_attribute_list():
             attrType = str(attr.get_type())
-            of.write('\t\t\t<tr>\n')
-            of.write('\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
-            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>' % attrType)
-            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % attr.get_value())
-            of.write('\t\t\t</tr>\n')
+            if attrType:
+                of.write('\t\t\t<tr>\n')
+                of.write('\t\t\t\t<td class="ColumnType">&nbsp;</td>\n')
+                of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>' % attrType)
+                of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % attr.get_value())
+                of.write('\t\t\t</tr>\n')
+
         notelist = family.get_note_list()
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
@@ -2304,6 +2313,8 @@ class IndividualPage(BasePage):
 
         date = _dd.display(event.get_date_object())
 
+        # TODO. This logic does not work for LTR languages. We should go
+        # back to what it was. (Sorry, I (keestux) messed up.)
         text = ''
         if descr:
             text += descr
