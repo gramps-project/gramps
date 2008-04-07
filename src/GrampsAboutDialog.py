@@ -29,8 +29,8 @@
 #-------------------------------------------------------------------------
 from gettext import gettext as _
 
-import logging
-_LOG = logging.getLogger(".GrampsAboutDialog")
+##import logging
+##_LOG = logging.getLogger(".GrampsAboutDialog")
 
 try:
     from xml.sax import make_parser, handler, SAXParseException
@@ -58,8 +58,8 @@ from GrampsDisplay import url as display_url
 # Constants
 #
 #-------------------------------------------------------------------------
-AUTHORS_TITLE = _('==== Authors ====\n')
-CONTRIB_TITLE = _('\n==== Contributors ====\n')
+AUTHORS_HEADER = _('==== Authors ====\n')
+CONTRIB_HEADER = _('\n==== Contributors ====\n')
 
 #-------------------------------------------------------------------------
 #
@@ -111,7 +111,17 @@ class GrampsAboutDialog(gtk.AboutDialog):
 #
 #-------------------------------------------------------------------------
 class AuthorParser(handler.ContentHandler):
-    """Parse the 'authors.xml file to show in the About dialog."""
+    """Parse the 'authors.xml file to show in the About dialog.
+    
+    The C{authors.xml} file has the same format as the one in the U{svn2cl
+    <http://ch.tudelft.nl/~arthur/svn2cl/>} package, with an additional
+    C{title} tag in the C{author} element. For example::
+    
+      <author uid="dallingham" title="author">
+        Don Allingham &lt;<html:a href="mailto:don@gramps-project.org">don@gramps-project.org</html:a>&gt;
+      </author>}
+    
+    """
     def __init__(self, author_list, contributor_list):
         """Setup initial instance variable values."""
         handler.ContentHandler.__init__(self)
@@ -125,14 +135,14 @@ class AuthorParser(handler.ContentHandler):
         self.text = ""
         
     def startElement(self, tag, attrs):
-        """Override default method, handle the start of an element."""
+        """Handle the start of an element."""
         if tag == "author":
             self.uid = attrs['uid']
             self.title = attrs['title']
             self.text = ""
             
     def endElement(self, tag):
-        """Override default method, handle the end of an element."""
+        """Handle the end of an element."""
         if tag == "author":
             if (self.title == 'author' and
                 self.text not in self.author_list):
@@ -142,7 +152,7 @@ class AuthorParser(handler.ContentHandler):
                 self.contributor_list.append(self.text.strip())
         
     def characters(self, chunk):
-        """Override default method, receive notification of character data."""
+        """Receive notification of character data."""
         if chunk != '\n':
             self.text += chunk
 
@@ -154,8 +164,11 @@ class AuthorParser(handler.ContentHandler):
 def _get_authors():
     """Return all the authors and contributors in a string.
     
-    Parse the I{authors.xml} file if found, or return the default
-    list from L{const} module in case of IO or parsing failure.
+    Parse the C{authors.xml} file if found, or return the default
+    list from L{const} module in case of I/O or parsing failure.
+    
+    If the C{authors.xml} file is successfully parsed the I{Authors} and
+    I{Contributors} are grouped separately with an appropriate header.
     
     """
     try:
@@ -169,8 +182,8 @@ def _get_authors():
         parser.parse(authors_file)
         authors_file.close()
         
-        authors_text = ([AUTHORS_TITLE] + authors +
-                        [CONTRIB_TITLE] + contributors)
+        authors_text = ([AUTHORS_HEADER] + authors +
+                        [CONTRIB_HEADER] + contributors)
         
     except (IOError, OSError, SAXParseException):
         authors_text = const.AUTHORS
