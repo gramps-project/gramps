@@ -58,26 +58,34 @@ import gen.lib
 #
 #-------------------------------------------------------------------------
 
+# List of possible surname prefixes. Notice that you must run the tool
+# multiple times for prefixes such as "van der".
 prefix_list = [
     "de", "van", "von", "di", "le", "du", "dela", "della",
     "des", "vande", "ten", "da", "af", "den", "das", "dello",
     "del", "en", "ein", "el" "et", "les", "lo", "los", "un",
-    "um", "una", "uno",
+    "um", "una", "uno", "der", "ter", "te", "die",
     ]
 
 
-_title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
-_nick_re = re.compile(r"(.+)\s*[(\"](.*)[)\"]")
-_fn_prefix_re = re.compile("(.*)\s+(%s)\s*$" % '|'.join(prefix_list),
+_title_re = re.compile(r"^ ([A-Za-z][A-Za-z]+\.) \s+ (.+) $", re.VERBOSE)
+_nick_re = re.compile(r"(.+) \s* [(\"] (.+) [)\"]", re.VERBOSE)
+
+# Find a prefix in the first_name
+_fn_prefix_re = re.compile("(\S+)\s+(%s)\s*$" % '|'.join(prefix_list),
                            re.IGNORECASE)
-_sn_prefix_re = re.compile("^\s*(%s)\s+(.*)" % '|'.join(prefix_list),
+
+# Find a prefix in the surname
+_sn_prefix_re = re.compile("^\s*(%s)\s+(.+)" % '|'.join(prefix_list),
                            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
 # Search each name in the database, and compare the firstname against the
 # form of "Name (Nickname)".  If it matches, change the first name entry
-# to "Name" and add "Nickname" into the nickname field.
+# to "Name" and add "Nickname" into the nickname field.  Also, search for
+# surname prefixes. If found, change the name entry and put the prefix in
+# the name prefix field.
 #
 #-------------------------------------------------------------------------
 
@@ -137,20 +145,28 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
             old_prefix = name.get_surname_prefix()
 
+            # First try to find the name prefix in the first_name
             match = _fn_prefix_re.match(first)
             if match:
                 groups = match.groups()
-                self.prefix1_list.append((key, groups[0],
-                                          " ".join([groups[1], old_prefix]))
-                                         )
+                if old_prefix:
+                    # Put the found prefix before the old prefix
+                    new_prefix = " ".join([groups[1], old_prefix])
+                else:
+                    new_prefix = groups[1]
+                self.prefix1_list.append((key, groups[0], new_prefix))
                 continue
 
+            # Next, try to find the name prefix in the surname
             match = _sn_prefix_re.match(sname)
             if match:
                 groups = match.groups()
-                self.prefix2_list.append((key, groups[1],
-                                          " ".join([old_prefix, groups[0]]))
-                                         )
+                if old_prefix:
+                    # Put the found prefix after the old prefix
+                    new_prefix = " ".join([old_prefix, groups[0]])
+                else:
+                    new_prefix = groups[0]
+                self.prefix2_list.append((key, groups[1], new_prefix))
 
             self.progress.step()
 
@@ -160,7 +176,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             self.progress.close()
             self.close()
             OkDialog(_('No modifications made'),
-                     _("No titles or nicknames were found"))
+                     _("No titles, nicknames or prefixes were found"))
 
     def build_menu_names(self, obj):
         return (self.label, None)
@@ -215,7 +231,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
         self.prefix1_hash = {}
         self.prefix2_hash = {}
 
-        self.progress.set_pass(_('Bulding display'),
+        self.progress.set_pass(_('Building display'),
                                len(self.nick_list)+len(self.title_list)
                                +len(self.prefix1_list)+len(self.prefix2_list))
 
