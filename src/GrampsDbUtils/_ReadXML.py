@@ -374,6 +374,8 @@ class GrampsParser(UpdateCallback):
         self.in_note = 0
         self.in_stext = 0
         self.in_scomments = 0
+        self.note_text = None
+        self.note_tags = []
         self.in_witness = False
         self.db = database
         self.photo = None
@@ -432,108 +434,111 @@ class GrampsParser(UpdateCallback):
         self.eidswap = {}
 
         self.func_map = {
-            "address"    : (self.start_address, self.stop_address), 
-            "addresses"  : (None, None), 
-            "childlist"  : (None, None), 
-            "aka"        : (self.start_name, self.stop_aka), 
-            "attribute"  : (self.start_attribute, self.stop_attribute), 
-            "attr_type"  : (None, self.stop_attr_type), 
-            "attr_value" : (None, self.stop_attr_value), 
-            "bookmark"   : (self.start_bmark, None), 
-            "bookmarks"  : (None, None), 
-            "format"     : (self.start_format, None), 
-            "name-formats"  : (None, None), 
-            "child"      : (self.start_child, None), 
-            "childof"    : (self.start_childof, None), 
-            "childref"   : (self.start_childref, self.stop_childref), 
-            "personref"  : (self.start_personref, self.stop_personref), 
-            "city"       : (None, self.stop_city), 
-            "county"     : (None, self.stop_county), 
-            "country"    : (None, self.stop_country), 
-            "comment"    : (None, self.stop_comment), 
-            "created"    : (self.start_created, None), 
-            "ref"        : (None, self.stop_ref), 
-            "database"   : (self.start_database, self.stop_database), 
-            "phone"      : (None, self.stop_phone), 
-            "date"       : (None, self.stop_date), 
-            "cause"      : (None, self.stop_cause), 
+            "address": (self.start_address, self.stop_address), 
+            "addresses": (None, None), 
+            "childlist": (None, None), 
+            "aka": (self.start_name, self.stop_aka), 
+            "attribute": (self.start_attribute, self.stop_attribute), 
+            "attr_type": (None, self.stop_attr_type), 
+            "attr_value": (None, self.stop_attr_value), 
+            "bookmark": (self.start_bmark, None), 
+            "bookmarks": (None, None), 
+            "format": (self.start_format, None), 
+            "name-formats": (None, None), 
+            "child": (self.start_child, None), 
+            "childof": (self.start_childof, None), 
+            "childref": (self.start_childref, self.stop_childref), 
+            "personref": (self.start_personref, self.stop_personref), 
+            "city": (None, self.stop_city), 
+            "county": (None, self.stop_county), 
+            "country": (None, self.stop_country), 
+            "comment": (None, self.stop_comment), 
+            "created": (self.start_created, None), 
+            "ref": (None, self.stop_ref), 
+            "database": (self.start_database, self.stop_database), 
+            "phone": (None, self.stop_phone), 
+            "date": (None, self.stop_date), 
+            "cause": (None, self.stop_cause), 
             "description": (None, self.stop_description), 
-            "event"      : (self.start_event, self.stop_event), 
-            "type"       : (None, self.stop_type), 
-            "witness"    : (self.start_witness, self.stop_witness), 
-            "eventref"   : (self.start_eventref, self.stop_eventref), 
-            "data_item"  : (self.start_data_item, None), 
-            "families"   : (None, self.stop_families), 
-            "family"     : (self.start_family, self.stop_family), 
-            "rel"        : (self.start_rel, None), 
-            "region"     : (self.start_region, None),
-            "father"     : (self.start_father, None), 
-            "first"      : (None, self.stop_first), 
-            "call"       : (None, self.stop_call), 
-            "gender"     : (None, self.stop_gender), 
-            "header"     : (None, None), 
-            "last"       : (self.start_last, self.stop_last),
-            "map"        : (self.start_namemap, None),
-            "mediapath"  : (None, self.stop_mediapath),
-            "mother"     : (self.start_mother, None), 
-            "name"       : (self.start_name, self.stop_name),
-            "namemaps"   : (None, None),
-            "nick"       : (None, self.stop_nick), 
-            "note"       : (self.start_note, self.stop_note), 
-            "noteref"    : (self.start_noteref, None), 
-            "p"          : (None, self.stop_ptag), 
-            "parentin"   : (self.start_parentin, None), 
-            "people"     : (self.start_people, self.stop_people), 
-            "person"     : (self.start_person, self.stop_person), 
-            "img"        : (self.start_photo, self.stop_photo), 
-            "objref"     : (self.start_objref, self.stop_objref), 
-            "object"     : (self.start_object, self.stop_object), 
-            "file"       : (self.start_file, None), 
-            "place"      : (self.start_place, self.stop_place), 
-            "dateval"    : (self.start_dateval, None), 
-            "daterange"  : (self.start_daterange, None), 
-            "datespan"   : (self.start_datespan, None), 
-            "datestr"    : (self.start_datestr, None), 
-            "places"     : (None, self.stop_places), 
-            "placeobj"   : (self.start_placeobj, self.stop_placeobj), 
-            "ptitle"     : (None, self.stop_ptitle), 
-            "location"   : (self.start_location, None), 
-            "lds_ord"    : (self.start_lds_ord, self.stop_lds_ord), 
-            "temple"     : (self.start_temple, None), 
-            "status"     : (self.start_status, None), 
-            "sealed_to"  : (self.start_sealed_to, None), 
-            "coord"      : (self.start_coord, None), 
-            "patronymic" : (None, self.stop_patronymic), 
-            "pos"        : (self.start_pos, None), 
-            "postal"     : (None, self.stop_postal), 
-            "researcher" : (None, self.stop_research), 
-            "resname"    : (None, self.stop_resname ), 
-            "resaddr"    : (None, self.stop_resaddr ), 
-            "rescity"    : (None, self.stop_rescity ), 
-            "resstate"   : (None, self.stop_resstate ), 
-            "rescountry" : (None, self.stop_rescountry), 
-            "respostal"  : (None, self.stop_respostal), 
-            "resphone"   : (None, self.stop_resphone), 
-            "resemail"   : (None, self.stop_resemail), 
-            "sauthor"    : (None, self.stop_sauthor), 
-            "sabbrev"    : (None, self.stop_sabbrev), 
-            "scomments"  : (None, self.stop_scomments), 
-            "source"     : (self.start_source, self.stop_source), 
-            "sourceref"  : (self.start_sourceref, self.stop_sourceref), 
-            "sources"    : (None, None), 
-            "spage"      : (None, self.stop_spage), 
-            "spubinfo"   : (None, self.stop_spubinfo), 
-            "state"      : (None, self.stop_state), 
-            "stext"      : (None, self.stop_stext), 
-            "stitle"     : (None, self.stop_stitle), 
-            "street"     : (None, self.stop_street), 
-            "suffix"     : (None, self.stop_suffix), 
-            "title"      : (None, self.stop_title), 
-            "url"        : (self.start_url, None), 
-            "repository" : (self.start_repo, self.stop_repo), 
-            "reporef"    : (self.start_reporef, self.stop_reporef), 
-            "rname"      : (None, self.stop_rname), 
-            }
+            "event": (self.start_event, self.stop_event), 
+            "type": (None, self.stop_type), 
+            "witness": (self.start_witness, self.stop_witness), 
+            "eventref": (self.start_eventref, self.stop_eventref), 
+            "data_item": (self.start_data_item, None), 
+            "families": (None, self.stop_families), 
+            "family": (self.start_family, self.stop_family), 
+            "rel": (self.start_rel, None), 
+            "region": (self.start_region, None),
+            "father": (self.start_father, None), 
+            "first": (None, self.stop_first), 
+            "call": (None, self.stop_call), 
+            "gender": (None, self.stop_gender), 
+            "header": (None, None), 
+            "last": (self.start_last, self.stop_last),
+            "map": (self.start_namemap, None),
+            "mediapath": (None, self.stop_mediapath),
+            "mother": (self.start_mother, None), 
+            "name": (self.start_name, self.stop_name),
+            "namemaps": (None, None),
+            "nick": (None, self.stop_nick), 
+            "note": (self.start_note, self.stop_note), 
+            "noteref": (self.start_noteref, None), 
+            "p": (None, self.stop_ptag), 
+            "parentin": (self.start_parentin, None), 
+            "people": (self.start_people, self.stop_people), 
+            "person": (self.start_person, self.stop_person), 
+            "img": (self.start_photo, self.stop_photo), 
+            "objref": (self.start_objref, self.stop_objref), 
+            "object": (self.start_object, self.stop_object), 
+            "file": (self.start_file, None), 
+            "place": (self.start_place, self.stop_place), 
+            "dateval": (self.start_dateval, None), 
+            "daterange": (self.start_daterange, None), 
+            "datespan": (self.start_datespan, None), 
+            "datestr": (self.start_datestr, None), 
+            "places": (None, self.stop_places), 
+            "placeobj": (self.start_placeobj, self.stop_placeobj), 
+            "ptitle": (None, self.stop_ptitle), 
+            "location": (self.start_location, None), 
+            "lds_ord": (self.start_lds_ord, self.stop_lds_ord), 
+            "temple": (self.start_temple, None), 
+            "status": (self.start_status, None), 
+            "sealed_to": (self.start_sealed_to, None), 
+            "coord": (self.start_coord, None), 
+            "patronymic": (None, self.stop_patronymic), 
+            "pos": (self.start_pos, None), 
+            "postal": (None, self.stop_postal),
+            "range": (self.start_range, None),
+            "researcher": (None, self.stop_research), 
+            "resname": (None, self.stop_resname ), 
+            "resaddr": (None, self.stop_resaddr ), 
+            "rescity": (None, self.stop_rescity ), 
+            "resstate": (None, self.stop_resstate ), 
+            "rescountry": (None, self.stop_rescountry), 
+            "respostal": (None, self.stop_respostal), 
+            "resphone": (None, self.stop_resphone), 
+            "resemail": (None, self.stop_resemail), 
+            "sauthor": (None, self.stop_sauthor), 
+            "sabbrev": (None, self.stop_sabbrev), 
+            "scomments": (None, self.stop_scomments), 
+            "source": (self.start_source, self.stop_source), 
+            "sourceref": (self.start_sourceref, self.stop_sourceref), 
+            "sources": (None, None), 
+            "spage": (None, self.stop_spage), 
+            "spubinfo": (None, self.stop_spubinfo), 
+            "state": (None, self.stop_state), 
+            "stext": (None, self.stop_stext), 
+            "stitle": (None, self.stop_stitle), 
+            "street": (None, self.stop_street), 
+            "suffix": (None, self.stop_suffix),
+            "tag": (self.start_tag, None),
+            "text": (None, self.stop_text),
+            "title": (None, self.stop_title), 
+            "url": (self.start_url, None), 
+            "repository": (self.start_repo, self.stop_repo), 
+            "reporef": (self.start_reporef, self.stop_reporef), 
+            "rname": (None, self.stop_rname), 
+        }
 
     def find_person_by_gramps_id(self, gramps_id):
         intid = self.gid2id.get(gramps_id)
@@ -1317,6 +1322,21 @@ class GrampsParser(UpdateCallback):
         self.name.prefix = attrs.get('prefix', '')
         self.name.group_as = attrs.get('group', '')
         
+    def start_tag(self, attrs):
+        tagtype = gen.lib.StyledTextTagType()
+        tagtype.set_from_xml_str(attrs['name'])
+        
+        try:
+            tagvalue = attrs['value']
+        except KeyError:
+            tagvalue = None
+        
+        self.note_tags.append(gen.lib.StyledTextTag(tagtype, tagvalue))
+    
+    def start_range(self, attrs):
+        self.note_tags[-1].ranges.append((int(attrs['start']),
+                                          int(attrs['end'])))
+        
     def start_note(self, attrs):
         self.in_note = 0
         if 'handle' in attrs:
@@ -1339,6 +1359,13 @@ class GrampsParser(UpdateCallback):
                 self.info.add('merge-overwrite', NOTE_KEY, self.note)
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
+            
+            # Since StyledText was introduced (XML v1.2.1?) the clear text
+            # part of the note is moved between <text></text> tags.
+            # To catch the different versions here we reset the note_text
+            # variable. It will be checked in stop_note() then.
+            self.note_text = None
+            self.note_tags = []
         else:
             # GRAMPS LEGACY: old notes that were written inside other objects
             # We need to create a top-level note, it's type depends on 
@@ -2174,14 +2201,20 @@ class GrampsParser(UpdateCallback):
             attr.set_value(tag)
             self.person.add_attribute(attr)
 
+    def stop_text(self, tag):
+        self.note_text = tag
+        
     def stop_note(self, tag):
         self.in_note = 0
         if self.use_p:
             self.use_p = 0
             text = fix_spaces(self.note_list)
+        elif self.note_text is not None:
+            text = self.note_text
         else:
             text = tag
-        self.note.set(text)
+            
+        self.note.set_styledtext(gen.lib.StyledText(text, self.note_tags))
 
         if self.address:
             self.address.add_note(self.note.handle)

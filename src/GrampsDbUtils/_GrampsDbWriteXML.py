@@ -295,7 +295,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             self.g.write("  <notes>\n")
             for key in self.db.get_note_handles():
                 note = self.db.get_note_from_handle(key)
-                self.write_note(note,2)
+                self.write_note(note, 2)
                 self.update()
             self.g.write("  </notes>\n")
 
@@ -392,29 +392,53 @@ class GrampsDbXmlWriter(UpdateCallback):
         for handle in note_list:
             self.write_ref("noteref", handle,indent)
 
-    def write_note(self, note,index=1):
+    def write_note(self, note, index=2):
         if not note:
             return
 
-        self.write_primary_tag("note", note,2,close=False)
+        self.write_primary_tag('note', note, index, close=False)
 
         ntype = escxml(note.get_type().xml_str())
         format = note.get_format()
-        text = note.get()
+        text = note.get_styledtext()
+        tags = text.get_tags()
+        text = str(text)
 
         self.g.write(' type="%s"' % ntype)
         if format != note.FLOWED:
             self.g.write(' format="%d"' % format)
-        self.g.write('>')
+        self.g.write('>\n')
+        
+        self.write_text('text', text, index + 1)
 
-        self.g.write(self.fix(text.rstrip()))
-        self.g.write("</note>\n")
+        if tags:
+            self.write_texttags(tags, index + 1)
 
-    def write_text(self,val,text,indent=0):
+        self.g.write('  ' * index + '</note>\n')
+
+        
+    def write_texttags(self, tags, index=3):
+        for tag in tags:
+            name = tag.name.xml_str()
+            value = tag.value
+            
+            self.g.write('  ' * index + '<tag name="%s"' % name)
+            if value:
+                self.g.write(' value="%s"' % value)
+            self.g.write('>\n')
+            
+            for (start, end) in tag.ranges:
+                self.g.write(('  ' * (index + 1)) +
+                             '<range start="%d" end="%d"/>\n' % (start, end))
+            
+            self.g.write('  ' * index + '</tag>\n')
+    
+    def write_text(self, val, text, indent=0):
         if not text:
             return
-        if indent != 0:
-            self.g.write("  " * indent)
+        
+        if indent:
+            self.g.write('  ' * indent)
         
         self.g.write('<%s>' % val)
         self.g.write(self.fix(text.rstrip()))
