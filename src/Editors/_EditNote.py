@@ -312,7 +312,7 @@ class EditNote(EditPrimary):
     def flow_changed(self, active):
         if active:
             # Set the text style to monospace
-            self.text.set_wrap_mode(gtk.WRAP_NONE)
+            self.texteditor.set_wrap_mode(gtk.WRAP_NONE)
             self.texteditor.modify_font(pango.FontDescription("monospace"))
         else:
             # Set the text style to normal
