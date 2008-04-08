@@ -15414,12 +15414,23 @@ Very High</property>
 		  <property name="spacing">6</property>
 
 		  <child>
-		    <widget class="Custom" id="texteditor">
+		    <widget class="GtkScrolledWindow" id="scrolledwindow90">
 		      <property name="visible">True</property>
-		      <property name="creation_function">StyledTextEditor</property>
-		      <property name="int1">0</property>
-		      <property name="int2">0</property>
-		      <property name="last_modification_time">Fri, 04 Apr 2008 11:46:59 GMT</property>
+		      <property name="can_focus">True</property>
+		      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+		      <property name="shadow_type">GTK_SHADOW_NONE</property>
+		      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
+
+		      <child>
+			<widget class="Custom" id="texteditor">
+			  <property name="visible">True</property>
+			  <property name="creation_function">StyledTextEditor</property>
+			  <property name="int1">0</property>
+			  <property name="int2">0</property>
+			  <property name="last_modification_time">Fri, 04 Apr 2008 11:46:59 GMT</property>
+			</widget>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
