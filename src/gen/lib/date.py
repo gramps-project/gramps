@@ -80,7 +80,7 @@ class Date:
     
     Supports partial dates, compound dates and alternate calendars.
     """
-    MOD_NONE       = 0
+    MOD_NONE       = 0  # CODE
     MOD_BEFORE     = 1
     MOD_AFTER      = 2
     MOD_ABOUT      = 3
@@ -88,16 +88,22 @@ class Date:
     MOD_SPAN       = 5
     MOD_TEXTONLY   = 6
 
-    QUAL_NONE       = 0
-    QUAL_ESTIMATED  = 1
-    QUAL_CALCULATED = 2
+    QUAL_NONE        = 0 # BITWISE
+    QUAL_ESTIMATED   = 1
+    QUAL_CALCULATED  = 2
+    QUAL_INTERPRETED = 4
 
-    CAL_GREGORIAN  = 0
+    CAL_GREGORIAN  = 0 # CODE
     CAL_JULIAN     = 1
     CAL_HEBREW     = 2
     CAL_FRENCH     = 3
     CAL_PERSIAN    = 4
     CAL_ISLAMIC    = 5
+
+    NEWYEAR_JAN1   = 0 # CODE
+    NEWYEAR_MAR1   = 1
+    NEWYEAR_MAR25  = 2
+    NEWYEAR_SEP1   = 3
 
     EMPTY = (0, 0, 0, False)
 
@@ -181,6 +187,7 @@ class Date:
             self.dateval  = Date.EMPTY
             self.text     = u""
             self.sortval  = 0
+            self.newyear = 0
             self.set_yr_mon_day(*source)
         elif type(source) == str:
             if (calendar != None or 
@@ -196,6 +203,7 @@ class Date:
             self.dateval  = source.dateval
             self.text     = source.text
             self.sortval  = source.sortval
+            self.newyear  = source.newyear
         elif source:
             self.calendar = source.calendar
             self.modifier = source.modifier
@@ -203,6 +211,7 @@ class Date:
             self.dateval  = source.dateval
             self.text     = source.text
             self.sortval  = source.sortval
+            self.newyear  = source.newyear
         else:
             self.calendar = Date.CAL_GREGORIAN
             self.modifier = Date.MOD_NONE
@@ -210,6 +219,7 @@ class Date:
             self.dateval  = Date.EMPTY
             self.text     = u""
             self.sortval  = 0
+            self.newyear  = Date.NEWYEAR_JAN1
 
     def serialize(self, no_text_date=False):
         """
@@ -221,14 +231,14 @@ class Date:
             text = self.text
         
         return (self.calendar, self.modifier, self.quality, 
-                self.dateval, text, self.sortval)
+                self.dateval, text, self.sortval, self.newyear)
 
     def unserialize(self, data):
         """
         Load from the format created by serialize.
         """
         (self.calendar, self.modifier, self.quality, 
-         self.dateval, self.text, self.sortval) = data
+         self.dateval, self.text, self.sortval, self.newyear) = data
         return self
 
     def copy(self, source):
@@ -242,6 +252,7 @@ class Date:
         self.dateval  = source.dateval
         self.text     = source.text
         self.sortval  = source.sortval
+        self.newyear  = source.newyear
 
     def __cmp__(self, other):
         """

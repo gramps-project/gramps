@@ -499,7 +499,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
         if callback:
             callback(25)
-        self.metadata  = self.__open_table(self.full_name, META)
+        self.metadata = self.__open_table(self.full_name, META)
 
         # If we cannot work with this DB version,
         # it makes no sense to go further
@@ -1691,24 +1691,169 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def gramps_upgrade_14(self):
         """Upgrade database from version 13 to 14."""
-        # This upgrade modifies notes
-        length = len(self.note_map)
+        # This upgrade modifies notes and dates
+        length = (len(self.note_map) + len(self.person_map) +
+                  len(self.event_map) + len(self.family_map) +
+                  len(self.repository_map))
         self.set_total(length)
-        
+
+        # ---------------------------------
+        # Modify Notes
+        # ---------------------------------
         # replace clear text with StyledText in Notes
         for handle in self.note_map.keys():
             note = self.note_map[handle]
-            
             (junk_handle, gramps_id, text, format, note_type,
              change, marker, private) = note
-            
             styled_text = (text, [])
-            
             new_note = (handle, gramps_id, styled_text, format, note_type,
                         change, marker, private)
-            
             the_txn = self.env.txn_begin()
             self.note_map.put(str(handle), new_note, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # ---------------------------------
+        # Modify Event
+        # ---------------------------------
+        # update dates with newyear
+        for handle in self.event_map.keys():
+            event = self.event_map[handle]
+            (junk_handle, gramps_id, the_type, date, description, place, 
+             source_list, note_list, media_list, attribute_list,
+             change, marker, private) = event
+            new_date = self.convert_date_14(date)
+            new_event = (junk_handle, gramps_id, the_type, new_date,
+                         description, place, source_list, note_list, 
+                         media_list, attribute_list, change,marker,private)
+            the_txn = self.env.txn_begin()
+            self.event_map.put(str(handle), new_event, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # ---------------------------------
+        # Modify Person
+        # ---------------------------------
+        # update dates with newyear
+        for handle in self.person_map.keys():
+            person = self.person_map[handle]
+            (junk_handle,        #  0
+             gramps_id,          #  1
+             gender,             #  2
+             primary_name,       #  3
+             alternate_names,    #  4
+             death_ref_index,    #  5
+             birth_ref_index,    #  6
+             event_ref_list,     #  7
+             family_list,        #  8
+             arent_family_list,  #  9
+             media_list,         # 10
+             address_list,       # 11
+             attribute_list,     # 12
+             urls,               # 13
+             lds_ord_list,       # 14
+             psource_list,       # 15
+             pnote_list,         # 16
+             change,             # 17
+             marker,             # 18
+             pprivate,           # 19
+             person_ref_list,    # 20
+             ) = person
+
+            new_address_list = []
+            for address in address_list:
+                (privacy, asource_list, anote_list, date, location) = address
+                new_date = self.convert_date_14(date)
+                new_address_list.append((privacy, asource_list, anote_list, 
+                                         new_date, location))
+            new_ord_list = []
+            for ldsord in lds_ord_list:
+                (lsource_list, lnote_list, date, type, place,
+                 famc, temple, status, lprivate) = ldsord
+                new_date = self.convert_date_14(date)
+                new_ord_list.append( (lsource_list, lnote_list, new_date, type, 
+                                      place, famc, temple, status, lprivate))
+
+            new_primary_name = self.convert_name_14(primary_name)
+
+            new_alternate_names = [self.convert_name_14(name) for name 
+                                   in alternate_names]
+            
+            new_person = (junk_handle,        #  0
+                          gramps_id,          #  1
+                          gender,             #  2
+                          new_primary_name,       #  3
+                          new_alternate_names,    #  4
+                          death_ref_index,    #  5
+                          birth_ref_index,    #  6
+                          event_ref_list,     #  7
+                          family_list,        #  8
+                          arent_family_list,  #  9
+                          media_list,         # 10
+                          new_address_list,       # 11
+                          attribute_list,     # 12
+                          urls,               # 13
+                          new_ord_list,          # 14
+                          psource_list,       # 15
+                          pnote_list,         # 16
+                          change,             # 17
+                          marker,             # 18
+                          pprivate,           # 19
+                          person_ref_list,    # 20
+                          )
+            the_txn = self.env.txn_begin()
+            self.person_map.put(str(handle), new_person, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # ---------------------------------
+        # Modify Family
+        # ---------------------------------
+        # update dates with newyear
+        for handle in self.family_map.keys():
+            family = self.family_map[handle]
+            (junk_handle, gramps_id, father_handle, mother_handle,
+             child_ref_list, the_type, event_ref_list, media_list,
+             attribute_list, lds_seal_list, source_list, note_list,
+             change, marker, private) = family
+            new_seal_list = []
+            for ldsord in lds_seal_list:
+                (lsource_list, lnote_list, date, type, place,
+                 famc, temple, status, lprivate) = ldsord
+                new_date = self.convert_date_14(date)
+                new_seal_list.append( (lsource_list, lnote_list, new_date, type, 
+                                       place, famc, temple, status, lprivate))
+            new_family = (junk_handle, gramps_id, father_handle, mother_handle,
+                          child_ref_list, the_type, event_ref_list, media_list,
+                          attribute_list, new_seal_list, source_list, note_list,
+                          change, marker, private)
+            the_txn = self.env.txn_begin()
+            self.family_map.put(str(handle), new_family, txn=the_txn)
+            the_txn.commit()
+            self.update()
+
+        # ---------------------------------
+        # Modify Repository
+        # ---------------------------------
+        # update dates with newyear
+        for handle in self.repository_map.keys():
+            repository = self.repository_map[handle]
+            # address
+            (junk_handle, gramps_id, the_type, name, note_list,
+             address_list, urls, change, marker, private) = repository
+
+            new_address_list = []
+            for address in address_list:
+                (privacy, asource_list, anote_list, date, location) = address
+                new_date = self.convert_date_14(date)
+                new_address_list.append((privacy, asource_list, anote_list, 
+                                         new_date, location))
+
+            new_repository = (junk_handle, gramps_id, the_type, name, note_list,
+                              new_address_list, urls, change, marker, private)
+
+            the_txn = self.env.txn_begin()
+            self.repository_map.put(str(handle), new_repository, txn=the_txn)
             the_txn.commit()
             self.update()
 
@@ -1716,7 +1861,25 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         the_txn = self.env.txn_begin()
         self.metadata.put('version', 14, txn=the_txn)
         the_txn.commit()
-        
+            
+    def convert_date_14(self, date):
+        if date:
+            (calendar, modifier, quality, dateval, text, sortval) = date
+            return (calendar, modifier, quality, dateval, text, sortval, 0)
+        else:
+            return None
+
+    def convert_name_14(self, name):
+        (privacy, source_list, note_list, date, 
+         first_name, surname, suffix, title,
+         name_type, prefix, patronymic,
+         group_as, sort_as, display_as, call) = name
+        new_date = self.convert_date_14(date)
+        return (privacy, source_list, note_list, new_date, 
+                first_name, surname, suffix, title,
+                name_type, prefix, patronymic,
+                group_as, sort_as, display_as, call)
+
     def write_version(self, name):
         """Write version number for a newly created DB."""
         full_name = os.path.abspath(name)
@@ -1753,7 +1916,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.metadata.close()
         self.env.close()
         
-
 #-------------------------------------------------------------------------
 #
 # BdbTransaction
