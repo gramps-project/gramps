@@ -2095,9 +2095,7 @@ class IndividualPage(BasePage):
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
                     childlist = [child_ref.ref for child_ref in child_ref_list]
-                    # TODO. Optionally sort children by birthdate
-                    sort = Sort.Sort(self.report.database)
-                    childlist.sort(sort.by_birthdate)
+                    # TODO. Optionally sort on birthdate                    
                     for child_handle in childlist:
                         sibling.add(child_handle)   # remember that we've already "seen" this child
                         if child_handle != self.person.handle:
@@ -2172,10 +2170,8 @@ class IndividualPage(BasePage):
                 of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Children"))
                 of.write('\t\t\t\t<td class="ColumnValue">\n')
                 of.write('\t\t\t\t\t<ol>\n')
-                # TODO. Optionally sort on birthdate
                 childlist = [child_ref.ref for child_ref in childlist]
-                sort = Sort.Sort(self.report.database)
-                childlist.sort(sort.by_birthdate)
+                # TODO. Optionally sort on birthdate
                 for child_handle in childlist:
                     self.display_child_link(of, child_handle)
                 of.write('\t\t\t\t\t</ol>\n')
