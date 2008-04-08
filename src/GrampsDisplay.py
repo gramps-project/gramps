@@ -29,6 +29,7 @@ import os
 #nl for Dutch (nl_BE, nl_NL language code)
 MANUALS = {
     'nl' : '/nl',
+    'fr' : '/fr',
 }
 
 #first, determine language code, so nl_BE --> wiki /nl
