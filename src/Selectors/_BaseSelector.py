@@ -76,6 +76,7 @@ class BaseSelector(ManagedWindow.ManagedWindow):
         self.tree.set_headers_visible(True)
         self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
+        self.tree.grab_focus()
         
         self.colinfo = self.column_view_names()
         #add the search bar
