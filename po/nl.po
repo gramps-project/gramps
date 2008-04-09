@@ -5,6 +5,7 @@
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Kees Bakker <kees.bakker@xs4all.nl>, 2005, 2006, 2007.
 # Erik De Richter <frederik.de.richter@pandora.be>, 2006, 2007, 2008.
+# Frederik De Richter <frederik@googlemail.com>, 2008.
 # --------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
 # --------------------------------------------------
@@ -35,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-21 14:56+0100\n"
-"PO-Revision-Date: 2008-03-21 15:00+0100\n"
+"POT-Creation-Date: 2008-04-03 22:58+0200\n"
+"PO-Revision-Date: 2008-04-09 16:08+0200\n"
 "Last-Translator: Frederik De Richter <frederik@googlemail.com>\n"
 "Language-Team:  <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -130,21 +131,21 @@ msgstr "%(title)s - GRAMPS"
 
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
-#: ../src/Bookmarks.py:200 ../src/Bookmarks.py:207 ../src/gramps_main.py:101
+#: ../src/Bookmarks.py:200 ../src/Bookmarks.py:208 ../src/gramps_main.py:101
 #: ../src/PageView.py:354
 msgid "Organize Bookmarks"
 msgstr "Bladwijzers organiseren"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:213 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
+#: ../src/Bookmarks.py:214 ../src/GrampsCfg.py:175 ../src/ScratchPad.py:186
 #: ../src/ScratchPad.py:372 ../src/ScratchPad.py:428 ../src/ScratchPad.py:461
 #: ../src/ScratchPad.py:530 ../src/ScratchPad.py:561 ../src/ScratchPad.py:578
 #: ../src/ScratchPad.py:579 ../src/ScratchPad.py:598 ../src/ScratchPad.py:648
 #: ../src/ScratchPad.py:681 ../src/ScratchPad.py:735 ../src/ScratchPad.py:746
 #: ../src/ScratchPad.py:825 ../src/ToolTips.py:173 ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210 ../src/DataViews/PersonView.py:67
-#: ../src/DataViews/PersonView.py:507 ../src/DataViews/PersonView.py:643
-#: ../src/DataViews/PersonView.py:649 ../src/DataViews/RepositoryView.py:67
+#: ../src/DataViews/PersonView.py:506 ../src/DataViews/PersonView.py:642
+#: ../src/DataViews/PersonView.py:648 ../src/DataViews/RepositoryView.py:67
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:67
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:60
@@ -152,8 +153,8 @@ msgstr "Bladwijzers organiseren"
 #: ../src/Selectors/_SelectPerson.py:49 ../src/Selectors/_SelectPerson.py:125
 #: ../src/Selectors/_SelectPerson.py:131 ../src/plugins/BookReport.py:738
 #: ../src/plugins/IndivComplete.py:426 ../src/plugins/MarkerReport.py:118
-#: ../src/plugins/NarrativeWeb.py:756 ../src/plugins/NarrativeWeb.py:902
-#: ../src/plugins/NarrativeWeb.py:1026 ../src/plugins/NotRelated.py:109
+#: ../src/plugins/NarrativeWeb.py:703 ../src/plugins/NarrativeWeb.py:849
+#: ../src/plugins/NarrativeWeb.py:973 ../src/plugins/NotRelated.py:110
 #: ../src/plugins/PatchNames.py:212 ../src/plugins/RelCalc.py:54
 #: ../src/plugins/RelCalc.py:113 ../src/plugins/RemoveUnused.py:185
 #: ../src/plugins/TimeLine.py:59 ../src/plugins/Verify.py:544
@@ -167,7 +168,7 @@ msgstr "Naam"
 
 #. GRAMPS ID
 #. Add column with object gramps_id
-#: ../src/Bookmarks.py:213 ../src/PageView.py:458 ../src/PageView.py:635
+#: ../src/Bookmarks.py:214 ../src/PageView.py:458 ../src/PageView.py:635
 #: ../src/Merge/_MergePerson.py:133 ../src/DataViews/EventView.py:70
 #: ../src/DataViews/FamilyList.py:62 ../src/DataViews/MediaView.py:81
 #: ../src/DataViews/NoteView.py:68 ../src/DataViews/PersonView.py:68
@@ -183,7 +184,7 @@ msgstr "Naam"
 #: ../src/Selectors/_SelectPerson.py:50 ../src/Selectors/_SelectPlace.py:54
 #: ../src/Selectors/_SelectRepository.py:54
 #: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:238
-#: ../src/plugins/NotRelated.py:110 ../src/plugins/PatchNames.py:203
+#: ../src/plugins/NotRelated.py:111 ../src/plugins/PatchNames.py:203
 #: ../src/plugins/RelCalc.py:55 ../src/plugins/RemoveUnused.py:179
 #: ../src/plugins/Verify.py:537 ../src/PluginUtils/_GuiOptions.py:788
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
@@ -432,7 +433,7 @@ msgstr "Import gestart, %s"
 msgid "Import finished..."
 msgstr "Importeren beëindigd..."
 
-#: ../src/DbManager.py:195 ../src/DbManager.py:840 ../src/DbManager.py:932
+#: ../src/DbManager.py:195 ../src/DbManager.py:831 ../src/DbManager.py:923
 msgid "Never"
 msgstr "Nooit"
 
@@ -442,26 +443,26 @@ msgstr "Nooit"
 msgid "Importing data..."
 msgstr "Importen van gegevens..."
 
-#: ../src/DbManager.py:437
+#: ../src/DbManager.py:419
 msgid "Family tree name"
 msgstr "Stamboomnaam"
 
-#: ../src/DbManager.py:446 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:428 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
-#: ../src/PluginUtils/_PluginWindows.py:80
+#: ../src/PluginUtils/_PluginWindows.py:81
 msgid "Status"
 msgstr "Status"
 
-#: ../src/DbManager.py:452
+#: ../src/DbManager.py:434
 msgid "Last modified"
 msgstr "Laatst veranderd op"
 
-#: ../src/DbManager.py:522
+#: ../src/DbManager.py:513
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Het slot openbreken voor het gegevensbestand %s?"
 
-#: ../src/DbManager.py:523
+#: ../src/DbManager.py:514
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -474,15 +475,15 @@ msgstr ""
 "gebruikt, kunt u veilig dit slot openen. Maar is dit wel het geval en u "
 "verbreekt toch het slot, kan u het bestand beschadigen."
 
-#: ../src/DbManager.py:529
+#: ../src/DbManager.py:520
 msgid "Break lock"
 msgstr "Open slot"
 
-#: ../src/DbManager.py:601
+#: ../src/DbManager.py:592
 msgid "Rename failed"
 msgstr "Herbenoemen is mislukt"
 
-#: ../src/DbManager.py:602
+#: ../src/DbManager.py:593
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -493,61 +494,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:617
+#: ../src/DbManager.py:608
 msgid "Could not rename the Family Tree."
 msgstr "Kon de familiestamboom niet herbenoemen."
 
-#: ../src/DbManager.py:618
+#: ../src/DbManager.py:609
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Deze familiestamboom bestaat reeds,kies een unieke naam."
 
-#: ../src/DbManager.py:631
+#: ../src/DbManager.py:622
 msgid "Could not rename family tree"
 msgstr "Kon de familiestamboom niet herbenoemen"
 
-#: ../src/DbManager.py:665
+#: ../src/DbManager.py:656
 msgid "Extracting archive..."
 msgstr "Archief ophalen..."
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:661
 msgid "Importing archive..."
 msgstr "Importeren van archief..."
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:677
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "De familieDeHet gegevensbestand '%s' verwijderen?"
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:678
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Het verwijderen van deze familistamboom zal de gegevens blijven verwijderen."
 
-#: ../src/DbManager.py:688
+#: ../src/DbManager.py:679
 msgid "Remove family tree"
 msgstr "Familiestamboom verwijderen"
 
-#: ../src/DbManager.py:694
+#: ../src/DbManager.py:685
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Remove the '%(revision)s' version of '%(database)s'"
 
-#: ../src/DbManager.py:698
+#: ../src/DbManager.py:689
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Door deze versie te verwijderen, kunt u het in de toekomst niet meer ophalen."
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:691
 msgid "Remove version"
 msgstr "Versie verwijderen"
 
-#: ../src/DbManager.py:729
+#: ../src/DbManager.py:720
 msgid "Could not delete family tree"
 msgstr "Kon de familiestamboom niet verwijderen"
 
-#: ../src/DbManager.py:754
+#: ../src/DbManager.py:745
 msgid "Deletion failed"
 msgstr "Verwijderen mislukt"
 
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:746
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -558,19 +559,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:794
+#: ../src/DbManager.py:785
 msgid "Rebuilding database from backup files"
 msgstr "Het gegevensbestand wordt opnieuw opgebouwd vanuit opgeslagen bestanden"
 
-#: ../src/DbManager.py:829
+#: ../src/DbManager.py:820
 msgid "Could not create family tree"
 msgstr "Kon geen familiestamboom aanmaken"
 
-#: ../src/DbManager.py:918
+#: ../src/DbManager.py:909
 msgid "Could not make database directory: "
 msgstr "Kon geen gegevensbestandsmap aanmaken: "
 
-#: ../src/DbManager.py:1006 ../src/ScratchPad.py:94
+#: ../src/DbManager.py:997 ../src/ScratchPad.py:94
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:863
 #: ../src/DataViews/RelationView.py:901
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -579,28 +580,28 @@ msgstr "Kon geen gegevensbestandsmap aanmaken: "
 #: ../src/plugins/DefaultGramplets.py:192
 #: ../src/plugins/DefaultGramplets.py:437
 #: ../src/plugins/DefaultGramplets.py:448 ../src/plugins/GVFamilyLines.py:134
-#: ../src/plugins/IndivComplete.py:443 ../src/plugins/NarrativeWeb.py:620
-#: ../src/PluginUtils/_PluginMgr.py:181 ../src/PluginUtils/_PluginMgr.py:183
-#: ../src/PluginUtils/_PluginMgr.py:184 ../src/PluginUtils/_PluginMgr.py:214
-#: ../src/PluginUtils/_PluginMgr.py:215 ../src/PluginUtils/_PluginMgr.py:216
-#: ../src/PluginUtils/_PluginMgr.py:255 ../src/PluginUtils/_PluginMgr.py:257
-#: ../src/PluginUtils/_PluginMgr.py:258 ../src/PluginUtils/_PluginMgr.py:292
-#: ../src/PluginUtils/_PluginMgr.py:293 ../src/PluginUtils/_PluginMgr.py:413
-#: ../src/PluginUtils/_PluginMgr.py:415 ../src/PluginUtils/_PluginMgr.py:416
+#: ../src/plugins/IndivComplete.py:443 ../src/plugins/NarrativeWeb.py:585
+#: ../src/PluginUtils/_PluginMgr.py:246 ../src/PluginUtils/_PluginMgr.py:248
+#: ../src/PluginUtils/_PluginMgr.py:249 ../src/PluginUtils/_PluginMgr.py:279
+#: ../src/PluginUtils/_PluginMgr.py:280 ../src/PluginUtils/_PluginMgr.py:281
+#: ../src/PluginUtils/_PluginMgr.py:320 ../src/PluginUtils/_PluginMgr.py:322
+#: ../src/PluginUtils/_PluginMgr.py:323 ../src/PluginUtils/_PluginMgr.py:357
+#: ../src/PluginUtils/_PluginMgr.py:358 ../src/PluginUtils/_PluginMgr.py:478
+#: ../src/PluginUtils/_PluginMgr.py:480 ../src/PluginUtils/_PluginMgr.py:481
 #: ../src/ReportBase/_ReportUtils.py:1164 ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76 ../src/gen/lib/repotype.py:59
 #: ../src/gen/lib/attrtype.py:62 ../src/gen/lib/childreftype.py:64
-#: ../src/gen/lib/srcmediatype.py:62 ../src/gen/lib/grampstype.py:136
+#: ../src/gen/lib/srcmediatype.py:62 ../src/gen/lib/grampstype.py:184
 #: ../src/gen/lib/eventroletype.py:57 ../src/gen/lib/nametype.py:53
 #: ../src/gen/lib/eventtype.py:95 ../src/gen/lib/familyreltype.py:51
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../src/DbManager.py:1025
+#: ../src/DbManager.py:1016
 msgid "Retrieve failed"
 msgstr "Ophalen mislukte"
 
-#: ../src/DbManager.py:1026
+#: ../src/DbManager.py:1017
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -611,19 +612,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1060
+#: ../src/DbManager.py:1051
 msgid "Creating data to be archived..."
 msgstr "Gegevens worden aangemaakt om te archiveren..."
 
-#: ../src/DbManager.py:1067
+#: ../src/DbManager.py:1058
 msgid "Saving archive..."
 msgstr "Archief wordt opgeslagen..."
 
-#: ../src/DbManager.py:1077
+#: ../src/DbManager.py:1068
 msgid "Archiving failed"
 msgstr "Archieveren is mislukt"
 
-#: ../src/DbManager.py:1078
+#: ../src/DbManager.py:1069
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -664,7 +665,7 @@ msgstr "Een laatste bevestiging"
 msgid "Please wait while your data is selected and exported"
 msgstr "Wacht tot uw geselecteerde gegevens zijn geëxporteerd"
 
-#: ../src/ExportAssistant.py:364 ../src/PluginUtils/_PluginWindows.py:121
+#: ../src/ExportAssistant.py:364
 msgid "Summary"
 msgstr "Samenvatting"
 
@@ -862,9 +863,9 @@ msgstr "Gegevensbestand"
 
 #: ../src/GrampsCfg.py:155 ../src/ScratchPad.py:611 ../src/ScratchPad.py:619
 #: ../src/plugins/CustomBookText.py:113 ../src/plugins/MarkerReport.py:387
-#: ../src/plugins/NarrativeWeb.py:631 ../src/plugins/SimpleBookTitle.py:167
+#: ../src/plugins/NarrativeWeb.py:596 ../src/plugins/SimpleBookTitle.py:167
 #: ../src/plugins/SimpleBookTitle.py:168 ../src/plugins/SimpleBookTitle.py:169
-#: ../src/ReportBase/_Constants.py:63
+#: ../src/ReportBase/_Constants.py:61
 #: ../src/Filters/SideBar/_NoteSidebarFilter.py:85
 msgid "Text"
 msgstr "Tekst"
@@ -897,13 +898,13 @@ msgstr "Adres"
 #: ../src/DataViews/RepositoryView.py:73
 #: ../src/DisplayTabs/_AddrEmbedList.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
-#: ../src/plugins/ExtractCity.py:372 ../src/plugins/NarrativeWeb.py:1097
+#: ../src/plugins/ExtractCity.py:372 ../src/plugins/NarrativeWeb.py:1044
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "City"
 msgstr "Dorp of stad"
 
 #: ../src/GrampsCfg.py:178 ../src/DisplayTabs/_LocationEmbedList.py:55
-#: ../src/plugins/NarrativeWeb.py:1100
+#: ../src/plugins/NarrativeWeb.py:1047
 msgid "State/Province"
 msgstr "Deelstaat/Provincie"
 
@@ -911,7 +912,7 @@ msgstr "Deelstaat/Provincie"
 #: ../src/DataViews/RepositoryView.py:76
 #: ../src/DisplayTabs/_AddrEmbedList.py:73
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
-#: ../src/plugins/ExtractCity.py:375 ../src/plugins/NarrativeWeb.py:1102
+#: ../src/plugins/ExtractCity.py:375 ../src/plugins/NarrativeWeb.py:1049
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "Country"
 msgstr "Land"
@@ -939,11 +940,11 @@ msgstr "E-mail"
 #: ../src/GrampsCfg.py:193 ../src/gramps_main.py:118 ../src/ToolTips.py:198
 #: ../src/Editors/_EditPerson.py:117 ../src/plugins/AgeOnDate.py:53
 #: ../src/plugins/EventCmp.py:238 ../src/plugins/ExportCSV.py:364
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:95
-#: ../src/plugins/FilterByName.py:110 ../src/plugins/FilterByName.py:150
-#: ../src/plugins/FilterByName.py:161 ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:102
+#: ../src/plugins/FilterByName.py:117 ../src/plugins/FilterByName.py:157
+#: ../src/plugins/FilterByName.py:168 ../src/plugins/FilterByName.py:210
 #: ../src/plugins/ImportCSV.py:193 ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89 ../src/plugins/SameSurnames.py:75
 #: ../src/FilterEditor/_EditRule.py:272
@@ -958,7 +959,7 @@ msgstr "Persoon"
 #: ../src/DataViews/RelationView.py:1148 ../src/DataViews/RelationView.py:1172
 #: ../src/Editors/_EditFamily.py:497 ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266 ../src/plugins/ExportCSV.py:474
-#: ../src/plugins/FilterByName.py:122 ../src/plugins/ImportCSV.py:200
+#: ../src/plugins/FilterByName.py:129 ../src/plugins/ImportCSV.py:200
 #: ../src/plugins/References.py:34 ../src/plugins/References.py:90
 #: ../src/gen/lib/eventroletype.py:66 ../src/FilterEditor/_EditRule.py:273
 msgid "Family"
@@ -1076,9 +1077,9 @@ msgstr "Detail eigen aangemaakte formaten"
 #: ../src/GrampsCfg.py:344 ../src/GrampsCfg.py:346 ../src/GrampsCfg.py:350
 #: ../src/GrampsCfg.py:351 ../src/GrampsCfg.py:352 ../src/GrampsCfg.py:353
 #: ../src/GrampsCfg.py:354 ../src/Utils.py:1154
-#: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:140
-#: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:755
-#: ../src/plugins/NarrativeWeb.py:885 ../src/plugins/NarrativeWeb.py:1383
+#: ../src/plugins/ExportCSV.py:364 ../src/plugins/FilterByName.py:147
+#: ../src/plugins/ImportCSV.py:155 ../src/plugins/NarrativeWeb.py:702
+#: ../src/plugins/NarrativeWeb.py:832 ../src/plugins/NarrativeWeb.py:1335
 #: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:80
 #: ../src/PluginUtils/_GuiOptions.py:933
 msgid "Surname"
@@ -1145,7 +1146,7 @@ msgid "Name format"
 msgstr "Naamformaat"
 
 #: ../src/GrampsCfg.py:628 ../src/DisplayTabs/_ButtonTab.py:69
-#: ../src/plugins/BookReport.py:942
+#: ../src/plugins/BookReport.py:941
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -1301,7 +1302,7 @@ msgstr "Bladwijzer toevoegen"
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
 #: ../src/plugins/DefaultGramplets.py:965 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/ImportCSV.py:213 ../src/plugins/MarkerReport.py:295
-#: ../src/plugins/NarrativeWeb.py:623 ../src/plugins/NarrativeWeb.py:1264
+#: ../src/plugins/NarrativeWeb.py:588 ../src/plugins/NarrativeWeb.py:1211
 #: ../src/plugins/OnThisDay.py:77 ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:93
@@ -1316,15 +1317,15 @@ msgstr "Datum bewerken"
 # Gebeuren (korter)
 #: ../src/gramps_main.py:105 ../src/Merge/_MergePerson.py:150
 #: ../src/DataViews/EventView.py:101 ../src/plugins/MarkerReport.py:278
-#: ../src/plugins/NarrativeWeb.py:2007
+#: ../src/plugins/NarrativeWeb.py:1971
 msgid "Events"
 msgstr "Gebeurtenissen"
 
-#: ../src/gramps_main.py:107 ../src/MarkupText.py:496
+#: ../src/gramps_main.py:107 ../src/Editors/_StyledTextBuffer.py:229
 msgid "Font"
 msgstr "Lettertype"
 
-#: ../src/gramps_main.py:108 ../src/MarkupText.py:498
+#: ../src/gramps_main.py:108 ../src/Editors/_StyledTextBuffer.py:231
 msgid "Font Color"
 msgstr "Tekstkleur"
 
@@ -1341,7 +1342,7 @@ msgid "Public"
 msgstr "Openbaar"
 
 #: ../src/gramps_main.py:112 ../src/Simple/_SimpleTable.py:215
-#: ../src/DataViews/MediaView.py:105 ../src/plugins/FilterByName.py:191
+#: ../src/DataViews/MediaView.py:105 ../src/plugins/FilterByName.py:198
 msgid "Media"
 msgstr "Media"
 
@@ -1355,9 +1356,9 @@ msgstr "Opmerkingen"
 #: ../src/gramps_main.py:114 ../src/Merge/_MergePerson.py:159
 #: ../src/DataViews/PedigreeView.py:1565 ../src/DataViews/RelationView.py:452
 #: ../src/DataViews/RelationView.py:751 ../src/DataViews/RelationView.py:785
-#: ../src/plugins/all_relations.py:301 ../src/plugins/NarrativeWeb.py:768
-#: ../src/plugins/NarrativeWeb.py:910 ../src/plugins/NarrativeWeb.py:2090
-#: ../src/plugins/NotRelated.py:111
+#: ../src/plugins/all_relations.py:301 ../src/plugins/NarrativeWeb.py:715
+#: ../src/plugins/NarrativeWeb.py:857 ../src/plugins/NarrativeWeb.py:2054
+#: ../src/plugins/NotRelated.py:112
 msgid "Parents"
 msgstr "Ouders"
 
@@ -1370,15 +1371,15 @@ msgid "Select Parents"
 msgstr "Selecteer ouders"
 
 #: ../src/gramps_main.py:117 ../src/DataViews/PedigreeView.py:457
-#: ../src/plugins/DefaultGramplets.py:1089 ../src/plugins/NarrativeWeb.py:1902
+#: ../src/plugins/DefaultGramplets.py:1089 ../src/plugins/NarrativeWeb.py:1867
 msgid "Pedigree"
 msgstr "Stamboom"
 
 # Plaatsen
 #: ../src/gramps_main.py:119 ../src/DataViews/PlaceView.py:100
-#: ../src/plugins/NarrativeWeb.py:369 ../src/plugins/NarrativeWeb.py:446
-#: ../src/plugins/NarrativeWeb.py:1013 ../src/plugins/NarrativeWeb.py:1019
-#: ../src/plugins/NarrativeWeb.py:1078
+#: ../src/plugins/NarrativeWeb.py:373 ../src/plugins/NarrativeWeb.py:409
+#: ../src/plugins/NarrativeWeb.py:960 ../src/plugins/NarrativeWeb.py:966
+#: ../src/plugins/NarrativeWeb.py:1025
 msgid "Places"
 msgstr "Locaties"
 
@@ -1397,9 +1398,9 @@ msgstr "Bibliotheken"
 
 #: ../src/gramps_main.py:123 ../src/ScratchPad.py:185 ../src/ScratchPad.py:427
 #: ../src/ScratchPad.py:460 ../src/DataViews/SourceView.py:94
-#: ../src/plugins/NarrativeWeb.py:368 ../src/plugins/NarrativeWeb.py:443
-#: ../src/plugins/NarrativeWeb.py:1499 ../src/plugins/NarrativeWeb.py:1516
-#: ../src/plugins/NarrativeWeb.py:1555 ../src/plugins/NarrativeWeb.py:1560
+#: ../src/plugins/NarrativeWeb.py:372 ../src/plugins/NarrativeWeb.py:406
+#: ../src/plugins/NarrativeWeb.py:1459 ../src/plugins/NarrativeWeb.py:1476
+#: ../src/plugins/NarrativeWeb.py:1515 ../src/plugins/NarrativeWeb.py:1520
 msgid "Sources"
 msgstr "Bronnen"
 
@@ -1418,7 +1419,6 @@ msgstr "Persoonlijk"
 
 # het gaat om het weergeven van de voorouders of een samenvatting van de db.
 #: ../src/gramps_main.py:127 ../src/DataViews/MediaView.py:217
-#: ../src/ReportBase/_Constants.py:57
 msgid "View"
 msgstr "Weergeven"
 
@@ -1615,8 +1615,8 @@ msgid "No note given, click button to select one"
 msgstr "Geen opmerking gekozen, klik op knop om er één te selecteren"
 
 # Bronnen vermelden/citeren
-#: ../src/GrampsWidgets.py:1033 ../src/Editors/_EditNote.py:399
-#: ../src/Editors/_EditNote.py:562
+#: ../src/GrampsWidgets.py:1033 ../src/Editors/_EditNote.py:396
+#: ../src/Editors/_EditNote.py:556
 msgid "Edit Note"
 msgstr "Opmerking bewerken"
 
@@ -1641,51 +1641,17 @@ msgstr "'%s' is geen geldige waarde voor dit veld"
 msgid "This field is mandatory"
 msgstr "Dit veld is verplicht"
 
-#: ../src/MarkupText.py:485
-msgid "Italic"
-msgstr "_Cursief"
-
-#: ../src/MarkupText.py:487
-msgid "Bold"
-msgstr "_Vet"
-
-#: ../src/MarkupText.py:489
-msgid "Underline"
-msgstr "_Onderstreept"
-
-#: ../src/MarkupText.py:500
-msgid "Background Color"
-msgstr "Achtergrondkleur"
-
-# zie ook uncleared.
-# is dit goed?
-#: ../src/MarkupText.py:502 ../src/UndoHistory.py:178
-msgid "Clear"
-msgstr "Gewist"
-
-#: ../src/MarkupText.py:847
-msgid "Select font color"
-msgstr "Selecteer tekstkleur"
-
-#: ../src/MarkupText.py:856
-msgid "Select background color"
-msgstr "Selecteer achtergrondkleur"
-
-#: ../src/MarkupText.py:866
-msgid "Select font"
-msgstr "Kies lettertype"
-
-#: ../src/PageView.py:323 ../src/ViewManager.py:1248
+#: ../src/PageView.py:323 ../src/ViewManager.py:1242
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "Er is een bladwijzer voor %s aangemaakt"
 
-#: ../src/PageView.py:327 ../src/PageView.py:620 ../src/ViewManager.py:1251
+#: ../src/PageView.py:327 ../src/PageView.py:620 ../src/ViewManager.py:1245
 #: ../src/DataViews/FamilyList.py:191
 msgid "Could Not Set a Bookmark"
 msgstr "Kon geen bladwijzer instellen"
 
-#: ../src/PageView.py:328 ../src/ViewManager.py:1252
+#: ../src/PageView.py:328 ../src/ViewManager.py:1246
 #: ../src/DataViews/FamilyList.py:192
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
@@ -1748,40 +1714,40 @@ msgstr "Fout: %s is geen geldige GRAMPS ID"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
 
-#: ../src/PageView.py:928 ../src/DataViews/PersonView.py:157
+#: ../src/PageView.py:926 ../src/DataViews/PersonView.py:157
 msgid "_Add..."
 msgstr "Toevoegen..."
 
-#: ../src/PageView.py:930 ../src/DataViews/PersonView.py:159
+#: ../src/PageView.py:928 ../src/DataViews/PersonView.py:159
 msgid "_Remove"
 msgstr "_Verwijderen"
 
-#: ../src/PageView.py:932 ../src/DataViews/PersonView.py:167
+#: ../src/PageView.py:930 ../src/DataViews/PersonView.py:167
 msgid "Export View..."
 msgstr "Exporteer scherm..."
 
-#: ../src/PageView.py:937 ../src/DataViews/PersonView.py:147
+#: ../src/PageView.py:935 ../src/DataViews/PersonView.py:147
 msgid "action|_Edit..."
 msgstr "Aanpassen..."
 
 # Filteren? ik vermoed dat het hier om het znw gaat
-#: ../src/PageView.py:942
+#: ../src/PageView.py:940
 msgid "_Filter"
 msgstr "_Filter"
 
-#: ../src/PageView.py:1008 ../src/DataViews/PersonView.py:913
+#: ../src/PageView.py:1006 ../src/DataViews/PersonView.py:912
 msgid "Export View as Spreadsheet"
 msgstr "Exporteer scherm als een rekenblad"
 
-#: ../src/PageView.py:1016 ../src/DataViews/PersonView.py:921
+#: ../src/PageView.py:1014 ../src/DataViews/PersonView.py:920
 msgid "Format:"
 msgstr "Formaat:"
 
-#: ../src/PageView.py:1021 ../src/DataViews/PersonView.py:926
+#: ../src/PageView.py:1019 ../src/DataViews/PersonView.py:925
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1022 ../src/DataViews/PersonView.py:927
+#: ../src/PageView.py:1020 ../src/DataViews/PersonView.py:926
 msgid "Open Document Spreadsheet"
 msgstr "Open Document Rekenblad"
 
@@ -1989,7 +1955,7 @@ msgstr "vorige partner"
 #: ../src/plugins/FamilyGroup.py:196 ../src/plugins/ImportCSV.py:207
 #: ../src/plugins/IndivComplete.py:216 ../src/plugins/IndivComplete.py:218
 #: ../src/plugins/IndivComplete.py:474 ../src/plugins/MarkerReport.py:205
-#: ../src/plugins/NarrativeWeb.py:2120
+#: ../src/plugins/NarrativeWeb.py:2084
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Vader"
@@ -2002,7 +1968,7 @@ msgstr "Vader"
 #: ../src/plugins/FamilyGroup.py:213 ../src/plugins/ImportCSV.py:203
 #: ../src/plugins/IndivComplete.py:225 ../src/plugins/IndivComplete.py:227
 #: ../src/plugins/IndivComplete.py:479 ../src/plugins/MarkerReport.py:211
-#: ../src/plugins/NarrativeWeb.py:2125
+#: ../src/plugins/NarrativeWeb.py:2089
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Moeder"
@@ -2065,7 +2031,7 @@ msgstr "Familiegebeurtenis"
 #: ../src/DisplayTabs/_WebEmbedList.py:62 ../src/Selectors/_SelectEvent.py:55
 #: ../src/Selectors/_SelectNote.py:60 ../src/Selectors/_SelectObject.py:75
 #: ../src/plugins/siblings.py:44 ../src/plugins/BookReport.py:739
-#: ../src/plugins/BookReport.py:743 ../src/plugins/FilterByName.py:95
+#: ../src/plugins/BookReport.py:743 ../src/plugins/FilterByName.py:102
 #: ../src/plugins/MarkerReport.py:381 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/PatchNames.py:206 ../src/plugins/References.py:70
@@ -2076,7 +2042,7 @@ msgstr "Familiegebeurtenis"
 msgid "Type"
 msgstr "Type"
 
-#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:72
+#: ../src/ScratchPad.py:361 ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Oorzaak"
 
@@ -2149,7 +2115,7 @@ msgid "Title"
 msgstr "Titel"
 
 #: ../src/ScratchPad.py:504 ../src/DisplayTabs/_SourceEmbedList.py:65
-#: ../src/plugins/NarrativeWeb.py:624
+#: ../src/plugins/NarrativeWeb.py:589
 msgid "Page"
 msgstr "Pagina"
 
@@ -2196,8 +2162,8 @@ msgstr "Verwijzing naar persoon"
 #: ../src/Merge/_MergePerson.py:137 ../src/DataViews/RelationView.py:556
 #: ../src/plugins/all_relations.py:266 ../src/plugins/FamilyGroup.py:436
 #: ../src/plugins/FamilyGroup.py:438 ../src/plugins/lineage.py:92
-#: ../src/plugins/MarkerReport.py:124 ../src/plugins/NarrativeWeb.py:759
-#: ../src/plugins/NarrativeWeb.py:904 ../src/gen/lib/childreftype.py:59
+#: ../src/plugins/MarkerReport.py:124 ../src/plugins/NarrativeWeb.py:706
+#: ../src/plugins/NarrativeWeb.py:851 ../src/gen/lib/childreftype.py:59
 #: ../src/gen/lib/eventtype.py:98
 msgid "Birth"
 msgstr "Geboorte"
@@ -2207,13 +2173,13 @@ msgid "Source Link"
 msgstr "Verwijzing naar bron"
 
 #: ../src/ScratchPad.py:788 ../src/DataViews/SourceView.py:69
-#: ../src/plugins/NarrativeWeb.py:1572
+#: ../src/plugins/NarrativeWeb.py:1532
 msgid "Abbreviation"
 msgstr "Afkorting"
 
 #: ../src/ScratchPad.py:789 ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
-#: ../src/plugins/NarrativeWeb.py:1570
+#: ../src/plugins/NarrativeWeb.py:1530
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Auteur"
@@ -2624,14 +2590,14 @@ msgstr "Kind"
 
 #: ../src/Utils.py:82 ../src/Merge/_MergePerson.py:63
 #: ../src/DisplayModels/_PeopleModel.py:237 ../src/Editors/_EditPerson.py:238
-#: ../src/plugins/NarrativeWeb.py:1713
+#: ../src/plugins/NarrativeWeb.py:1678
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "mannelijk"
 
 #: ../src/Utils.py:83 ../src/Merge/_MergePerson.py:63
 #: ../src/DisplayModels/_PeopleModel.py:237 ../src/Editors/_EditPerson.py:237
-#: ../src/plugins/NarrativeWeb.py:1714
+#: ../src/plugins/NarrativeWeb.py:1679
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
 msgstr "vrouwelijk"
@@ -2654,8 +2620,8 @@ msgstr "vrouwelijk"
 #: ../src/plugins/DetDescendantReport.py:401
 #: ../src/plugins/DetDescendantReport.py:449
 #: ../src/plugins/DetDescendantReport.py:456
-#: ../src/plugins/IndivComplete.py:319 ../src/plugins/NarrativeWeb.py:1715
-#: ../src/plugins/NarrativeWeb.py:2237
+#: ../src/plugins/IndivComplete.py:319 ../src/plugins/NarrativeWeb.py:1680
+#: ../src/plugins/NarrativeWeb.py:2201
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr "onbekend"
@@ -2674,7 +2640,7 @@ msgid "High"
 msgstr "Hoog"
 
 #: ../src/Utils.py:93 ../src/Editors/_EditSourceRef.py:131
-#: ../src/plugins/NarrativeWeb.py:621
+#: ../src/plugins/NarrativeWeb.py:586
 msgid "Normal"
 msgstr "Normaal"
 
@@ -2786,6 +2752,12 @@ msgstr "Bevestiging teniet doen"
 #: ../src/UndoHistory.py:177
 msgid "Are you sure you want to clear the Undo history?"
 msgstr "Bent U zeker dat u de 'ongedaan maken' geschiedenis wilt wissen?"
+
+# zie ook uncleared.
+# is dit goed?
+#: ../src/UndoHistory.py:178 ../src/Editors/_StyledTextBuffer.py:235
+msgid "Clear"
+msgstr "Gewist"
 
 #: ../src/UndoHistory.py:217
 msgid "Database opened"
@@ -2942,11 +2914,11 @@ msgstr "Werkbalk"
 msgid "_Filter Sidebar"
 msgstr "_Filterzijbalk"
 
-#: ../src/ViewManager.py:470 ../src/ViewManager.py:1184
+#: ../src/ViewManager.py:470 ../src/ViewManager.py:1178
 msgid "_Undo"
 msgstr "Ongedaan maken"
 
-#: ../src/ViewManager.py:475 ../src/ViewManager.py:1201
+#: ../src/ViewManager.py:475 ../src/ViewManager.py:1195
 msgid "_Redo"
 msgstr "Opnieuw"
 
@@ -2969,19 +2941,19 @@ msgstr "Laden van de document formaten..."
 msgid "Loading plugins..."
 msgstr "Laden van de 'plugins'..."
 
-#: ../src/ViewManager.py:619
+#: ../src/ViewManager.py:613
 msgid "Ready"
 msgstr "Klaar"
 
-#: ../src/ViewManager.py:651
+#: ../src/ViewManager.py:645
 msgid "Autobackup..."
 msgstr "Automatisch reservekopie maken..."
 
-#: ../src/ViewManager.py:663
+#: ../src/ViewManager.py:657
 msgid "Abort changes?"
 msgstr "Veranderingen niet doorvoeren?"
 
-#: ../src/ViewManager.py:664
+#: ../src/ViewManager.py:658
 msgid ""
 "Aborting changes will return the database to the state is was before you "
 "started this editing session."
@@ -2989,19 +2961,19 @@ msgstr ""
 "Teniet doen van de veranderingen brengt het gegevensbestand opnieuw in die "
 "toestand voor u de veranderingen hebt doorgevoerd."
 
-#: ../src/ViewManager.py:666
+#: ../src/ViewManager.py:660
 msgid "Abort changes"
 msgstr "Veranderingen teniet doen"
 
-#: ../src/ViewManager.py:667
+#: ../src/ViewManager.py:661
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: ../src/ViewManager.py:676
+#: ../src/ViewManager.py:670
 msgid "Cannot abandon session's changes"
 msgstr "Kan deze veranderingen aan deze sessie niet ongedaan maken"
 
-#: ../src/ViewManager.py:677
+#: ../src/ViewManager.py:671
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -3009,23 +2981,23 @@ msgstr ""
 "Veranderingen kunnen niet volledig ongedaan gemaakt worden omdat het aantal "
 "veranderingen van de sessie het maximum overschrijdt."
 
-#: ../src/ViewManager.py:1043
+#: ../src/ViewManager.py:1037
 msgid "Import Statistics"
 msgstr "Statistieken importeren"
 
-#: ../src/ViewManager.py:1073
+#: ../src/ViewManager.py:1067
 msgid "Could not load a recent Family Tree."
 msgstr "Kon de familiestamboom niet laden."
 
-#: ../src/ViewManager.py:1074
+#: ../src/ViewManager.py:1068
 msgid "Family Tree does not exists, as it has been deleted."
 msgstr "Deze familiestamboom bestaat niet meer omdat dit bestand werd verwijderd."
 
-#: ../src/ViewManager.py:1130
+#: ../src/ViewManager.py:1124
 msgid "Read Only"
 msgstr "Alleen lezen"
 
-#: ../src/ViewManager.py:1429
+#: ../src/ViewManager.py:1423
 msgid ""
 "Much of GRAMPS' artwork is either from\n"
 "the Tango Project or derived from the Tango\n"
@@ -3039,13 +3011,18 @@ msgstr ""
 "de Create Commons Attribution-Share\n"
 "Alike 2.5 licensie."
 
-#: ../src/ViewManager.py:1442
+#: ../src/ViewManager.py:1436
 msgid "GRAMPS Homepage"
 msgstr "GRAMPS homepagina"
 
 #: ../src/Simple/_SimpleTable.py:196
 msgid "Unknown father"
 msgstr "Vader onbekend"
+
+#: ../src/Simple/_SimpleTable.py:197 ../src/DataViews/RelationView.py:844
+#: ../src/plugins/all_relations.py:278
+msgid "and"
+msgstr "en"
 
 #: ../src/Simple/_SimpleTable.py:201
 msgid "Unknown mother"
@@ -3175,7 +3152,7 @@ msgstr ""
 #: ../src/Editors/_EditFamily.py:103 ../src/Selectors/_SelectPerson.py:51
 #: ../src/plugins/siblings.py:44 ../src/plugins/ExportCSV.py:366
 #: ../src/plugins/ImportCSV.py:171 ../src/plugins/IndivComplete.py:437
-#: ../src/plugins/NarrativeWeb.py:1993 ../src/plugins/RelCalc.py:56
+#: ../src/plugins/NarrativeWeb.py:1957 ../src/plugins/RelCalc.py:56
 #: ../src/plugins/StatisticsChart.py:96
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 msgid "Gender"
@@ -3184,8 +3161,8 @@ msgstr "Geslacht"
 # Gebeurtenistype: overlijden/sterven/sterfgeval/doodgaan
 #: ../src/Merge/_MergePerson.py:140 ../src/DataViews/RelationView.py:567
 #: ../src/plugins/FamilyGroup.py:442 ../src/plugins/FamilyGroup.py:444
-#: ../src/plugins/MarkerReport.py:130 ../src/plugins/NarrativeWeb.py:762
-#: ../src/plugins/NarrativeWeb.py:906 ../src/gen/lib/eventtype.py:99
+#: ../src/plugins/MarkerReport.py:130 ../src/plugins/NarrativeWeb.py:709
+#: ../src/plugins/NarrativeWeb.py:853 ../src/gen/lib/eventtype.py:99
 msgid "Death"
 msgstr "Overlijden"
 
@@ -3218,7 +3195,7 @@ msgid "No spouses or children found"
 msgstr "Geen echtgenoten of kinderen gevonden"
 
 #: ../src/Merge/_MergePerson.py:195 ../src/plugins/IndivComplete.py:272
-#: ../src/plugins/NarrativeWeb.py:2038
+#: ../src/plugins/NarrativeWeb.py:2002
 msgid "Addresses"
 msgstr "Adressen"
 
@@ -3291,7 +3268,7 @@ msgstr ""
 "gehaald."
 
 #: ../src/DataViews/EventView.py:249 ../src/DataViews/NoteView.py:217
-#: ../src/DataViews/PersonView.py:606 ../src/DataViews/PlaceView.py:256
+#: ../src/DataViews/PersonView.py:605 ../src/DataViews/PlaceView.py:256
 #: ../src/DataViews/RepositoryView.py:210 ../src/DataViews/SourceView.py:205
 #, python-format
 msgid "Delete %s?"
@@ -3318,7 +3295,7 @@ msgid "Delete the selected family"
 msgstr "De geselecteerde familie verwijderen"
 
 #: ../src/DataViews/FamilyList.py:91 ../src/plugins/GVFamilyLines.py:138
-#: ../src/plugins/MarkerReport.py:188 ../src/plugins/NarrativeWeb.py:2195
+#: ../src/plugins/MarkerReport.py:188 ../src/plugins/NarrativeWeb.py:2159
 msgid "Families"
 msgstr "Families"
 
@@ -3446,7 +3423,7 @@ msgid "Preview"
 msgstr "Voorbeeld"
 
 #: ../src/DataViews/NoteView.py:70 ../src/Selectors/_SelectNote.py:61
-#: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:112
+#: ../src/plugins/MarkerReport.py:438 ../src/plugins/NotRelated.py:113
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:117
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 msgid "Marker"
@@ -3549,8 +3526,8 @@ msgstr "Er werd een persoon gevonden die zijn/haar eigen voorouder is."
 #. (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
 #. FIXME: remove when German gtk translation is fixed
 #: ../src/DataViews/PedigreeView.py:1308 ../src/DataViews/PedigreeView.py:1317
-#: ../src/plugins/NarrativeWeb.py:364 ../src/plugins/NarrativeWeb.py:1471
-#: ../src/plugins/NarrativeWeb.py:1473
+#: ../src/plugins/NarrativeWeb.py:368 ../src/plugins/NarrativeWeb.py:1431
+#: ../src/plugins/NarrativeWeb.py:1433
 msgid "Home"
 msgstr "Startpagina"
 
@@ -3594,14 +3571,14 @@ msgstr "Personen menu"
 
 #. Go over siblings and build their menu
 #: ../src/DataViews/PedigreeView.py:1485 ../src/DataViews/RelationView.py:794
-#: ../src/plugins/siblings.py:74 ../src/plugins/NarrativeWeb.py:2131
+#: ../src/plugins/siblings.py:74 ../src/plugins/NarrativeWeb.py:2095
 msgid "Siblings"
 msgstr "Broers en zussen"
 
 #. Go over children and build their menu
 #: ../src/DataViews/PedigreeView.py:1528 ../src/DataViews/RelationView.py:1181
 #: ../src/plugins/FamilyGroup.py:543 ../src/plugins/IndivComplete.py:333
-#: ../src/plugins/NarrativeWeb.py:2206
+#: ../src/plugins/NarrativeWeb.py:2170
 msgid "Children"
 msgstr "Kinderen"
 
@@ -3616,10 +3593,10 @@ msgstr "Familie Menu"
 
 #: ../src/DataViews/PersonView.py:70 ../src/Editors/_EditFamily.py:106
 #: ../src/Selectors/_SelectPerson.py:52 ../src/plugins/siblings.py:44
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203 ../src/plugins/lineage.py:61
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210 ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:57 ../src/plugins/SameSurnames.py:75
 #: ../src/plugins/TimeLine.py:58
 msgid "Birth Date"
@@ -3695,38 +3672,38 @@ msgstr ""
 msgid "Select Person Columns"
 msgstr "Persoonskolommen selecteren"
 
-#: ../src/DataViews/PersonView.py:498
+#: ../src/DataViews/PersonView.py:497
 msgid "Active person not visible"
 msgstr "Actieve persoon niet zichtbaar"
 
-#: ../src/DataViews/PersonView.py:582 ../src/Filters/_SearchBar.py:146
+#: ../src/DataViews/PersonView.py:581 ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
 msgstr "Weergave bijwerken..."
 
-#: ../src/DataViews/PersonView.py:603
+#: ../src/DataViews/PersonView.py:602
 msgid "Deleting the person will remove the person from the database."
 msgstr ""
 "Bij het verwijderen van de persoon wordt deze uit het gegevensbestand "
 "gehaald."
 
-#: ../src/DataViews/PersonView.py:608
+#: ../src/DataViews/PersonView.py:607
 msgid "_Delete Person"
 msgstr "Persoon verwijderen"
 
-#: ../src/DataViews/PersonView.py:623
+#: ../src/DataViews/PersonView.py:622
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Persoon verwijderen (%s)"
 
-#: ../src/DataViews/PersonView.py:898
+#: ../src/DataViews/PersonView.py:897
 msgid "Go to default person"
 msgstr "Ga naar standaardpersoon"
 
-#: ../src/DataViews/PersonView.py:903
+#: ../src/DataViews/PersonView.py:902
 msgid "Edit selected person"
 msgstr "De geselecteerde persoon bewerken"
 
-#: ../src/DataViews/PersonView.py:909
+#: ../src/DataViews/PersonView.py:908
 msgid "Delete selected person"
 msgstr "De geselecteerde persoon verwijderen"
 
@@ -3736,13 +3713,13 @@ msgstr "De geselecteerde persoon verwijderen"
 msgid "Place Name"
 msgstr "Locatienaam"
 
-#: ../src/DataViews/PlaceView.py:68 ../src/plugins/NarrativeWeb.py:1098
+#: ../src/DataViews/PlaceView.py:68 ../src/plugins/NarrativeWeb.py:1045
 msgid "Church Parish"
 msgstr "Parochie"
 
 #: ../src/DataViews/PlaceView.py:71 ../src/DataViews/RepositoryView.py:74
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
-#: ../src/plugins/NarrativeWeb.py:1099
+#: ../src/plugins/NarrativeWeb.py:1046
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
 msgid "County"
 msgstr "Provincie"
@@ -3754,17 +3731,17 @@ msgstr "Provincie"
 msgid "State"
 msgstr "Deelstaat"
 
-#: ../src/DataViews/PlaceView.py:74 ../src/plugins/NarrativeWeb.py:1111
+#: ../src/DataViews/PlaceView.py:74 ../src/plugins/NarrativeWeb.py:1058
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#: ../src/DataViews/PlaceView.py:75 ../src/plugins/NarrativeWeb.py:1117
+#: ../src/DataViews/PlaceView.py:75 ../src/plugins/NarrativeWeb.py:1064
 msgid "Latitude"
 msgstr "Breedtegraad"
 
 #: ../src/DataViews/PlaceView.py:77 ../src/DataViews/RepositoryView.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:52
-#: ../src/plugins/NarrativeWeb.py:1096
+#: ../src/plugins/NarrativeWeb.py:1043
 msgid "Street"
 msgstr "Straat"
 
@@ -3844,8 +3821,8 @@ msgid "Edit the active person"
 msgstr "De actieve persoon aanpassen"
 
 #: ../src/DataViews/RelationView.py:331 ../src/plugins/all_relations.py:282
-#: ../src/plugins/NarrativeWeb.py:765 ../src/plugins/NarrativeWeb.py:908
-#: ../src/plugins/NarrativeWeb.py:2228 ../src/plugins/NarrativeWeb.py:2230
+#: ../src/plugins/NarrativeWeb.py:712 ../src/plugins/NarrativeWeb.py:855
+#: ../src/plugins/NarrativeWeb.py:2192 ../src/plugins/NarrativeWeb.py:2194
 msgid "Partner"
 msgstr "Partners"
 
@@ -3960,10 +3937,6 @@ msgstr "Nieuw kind aan familie toevoegen"
 #: ../src/DataViews/RelationView.py:813 ../src/DataViews/RelationView.py:1200
 msgid "Add existing child to family"
 msgstr "Bestaand kind aan familie toevoegen"
-
-#: ../src/DataViews/RelationView.py:844 ../src/plugins/all_relations.py:278
-msgid "and"
-msgstr "en"
 
 #: ../src/DataViews/RelationView.py:1007
 #, python-format
@@ -4159,7 +4132,7 @@ msgstr ""
 #: ../src/GrampsDbUtils/_WriteGedcom.py:1457 ../src/plugins/ExportCSV.py:332
 #: ../src/plugins/ExportCSV.py:336 ../src/plugins/ExportVCalendar.py:207
 #: ../src/plugins/ExportVCalendar.py:211 ../src/plugins/ExportVCard.py:184
-#: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2538
+#: ../src/plugins/ExportVCard.py:188 ../src/plugins/NarrativeWeb.py:2502
 #: ../src/plugins/WriteCD.py:158 ../src/plugins/WriteCD.py:171
 #: ../src/plugins/WriteGeneWeb.py:256 ../src/plugins/WriteGeneWeb.py:260
 #, python-format
@@ -4185,8 +4158,8 @@ msgstr "PyGtk 2.10 of hoger is vereist"
 #. Register the document generator with the GRAMPS plugin system
 #.
 #. ------------------------------------------------------------------------
-#: ../src/docgen/GtkPrint.py:611 ../src/docgen/GtkPrint.py:612
-#: ../src/docgen/GtkPrint.py:613
+#: ../src/docgen/GtkPrint.py:621 ../src/docgen/GtkPrint.py:622
+#: ../src/docgen/GtkPrint.py:623
 msgid "Print..."
 msgstr "Afdrukken..."
 
@@ -4959,7 +4932,7 @@ msgstr ""
 msgid "Cannot save family. ID already exists."
 msgstr "Kan familie niet opslaan. ID bestaat reeds."
 
-#: ../src/Editors/_EditFamily.py:929 ../src/Editors/_EditNote.py:544
+#: ../src/Editors/_EditFamily.py:929 ../src/Editors/_EditNote.py:538
 #, python-format
 msgid ""
 "You have attempted to use the existing GRAMPS ID with value %(id)s. This "
@@ -5101,48 +5074,64 @@ msgstr "Alles groeperen"
 msgid "Group this name only"
 msgstr "Alleen deze naam groeperen"
 
-#: ../src/Editors/_EditNote.py:159
+#: ../src/Editors/_EditNote.py:162
 #, python-format
 msgid "Note: %(id)s - %(context)s"
 msgstr "Opmerking: %(id)s - %(context)s"
 
-#: ../src/Editors/_EditNote.py:164
+#: ../src/Editors/_EditNote.py:167
 #, python-format
 msgid "Note: %s"
 msgstr "Opmerking: %s"
 
-#: ../src/Editors/_EditNote.py:167
+#: ../src/Editors/_EditNote.py:170
 #, python-format
 msgid "New Note - %(context)s"
 msgstr "Nieuwe opmerking - %(context)s"
 
-#: ../src/Editors/_EditNote.py:171
+#: ../src/Editors/_EditNote.py:174
 msgid "New Note"
 msgstr "Nieuwe opmerking"
 
-#: ../src/Editors/_EditNote.py:203
+#: ../src/Editors/_EditNote.py:206
 msgid "_Note"
 msgstr "_Opmerking"
 
-#: ../src/Editors/_EditNote.py:535
+#: ../src/Editors/_EditNote.py:461
+msgid "_Send Mail To..."
+msgstr "Stuur mail naar..."
+
+#: ../src/Editors/_EditNote.py:462
+msgid "Copy _E-mail Address"
+msgstr "Kopieer e-mailadres"
+
+#: ../src/Editors/_EditNote.py:464
+msgid "_Open Link"
+msgstr "Koppeling openen"
+
+#: ../src/Editors/_EditNote.py:465
+msgid "Copy _Link Address"
+msgstr "Kopieer koppelingsadres"
+
+#: ../src/Editors/_EditNote.py:529
 msgid "Cannot save note"
 msgstr "Kan de opmerking niet opslaan"
 
-#: ../src/Editors/_EditNote.py:536
+#: ../src/Editors/_EditNote.py:530
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
 "Er bestaan geen gegevens voor deze opmerking. Gelieve gegevens in te voeren "
 "of de aanpassingen te verwijderen."
 
-#: ../src/Editors/_EditNote.py:543
+#: ../src/Editors/_EditNote.py:537
 msgid "Cannot save note. ID already exists."
 msgstr "Kan opmerking niet opslaan. ID bestaat reeds."
 
-#: ../src/Editors/_EditNote.py:557
+#: ../src/Editors/_EditNote.py:551
 msgid "Add Note"
 msgstr "Opmerking toeveogen"
 
-#: ../src/Editors/_EditNote.py:634
+#: ../src/Editors/_EditNote.py:628
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Opmerking (%s) verwijderen"
@@ -5430,6 +5419,34 @@ msgstr "Een bron toevoegen"
 msgid "Internet Address Editor"
 msgstr "Internetadres bewerken"
 
+#: ../src/Editors/_StyledTextBuffer.py:218
+msgid "Italic"
+msgstr "_Cursief"
+
+#: ../src/Editors/_StyledTextBuffer.py:220
+msgid "Bold"
+msgstr "_Vet"
+
+#: ../src/Editors/_StyledTextBuffer.py:222
+msgid "Underline"
+msgstr "_Onderstreept"
+
+#: ../src/Editors/_StyledTextBuffer.py:233
+msgid "Background Color"
+msgstr "Achtergrondkleur"
+
+#: ../src/Editors/_StyledTextBuffer.py:536
+msgid "Select font color"
+msgstr "Selecteer tekstkleur"
+
+#: ../src/Editors/_StyledTextBuffer.py:545
+msgid "Select background color"
+msgstr "Selecteer achtergrondkleur"
+
+#: ../src/Editors/_StyledTextBuffer.py:555
+msgid "Select font"
+msgstr "Kies lettertype"
+
 #: ../src/GrampsDbUtils/_Backup.py:89
 msgid "Error saving backup data"
 msgstr "Er is een fout onstaan bij het backuppen van de gegevens"
@@ -5466,34 +5483,17 @@ msgstr ""
 "Uw GEDCOM bestand is corrupt. Het lijkt erop dat bepaaldegegevens niet "
 "volledig zijn."
 
-#. -------------------------------------------------------------------------
-#.
-#. Support functions
-#.
-#. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_GedcomParse.py:170
-#: ../src/GrampsDbUtils/_ReadXML.py:74 ../src/plugins/EventNames.py:111
-#, python-format
-msgid "%(event_name)s of %(family)s"
-msgstr "%(event_name)s van %(family)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:171
-#: ../src/GrampsDbUtils/_ReadXML.py:75 ../src/plugins/EventNames.py:112
-#, python-format
-msgid "%(event_name)s of %(person)s"
-msgstr "%(event_name)s van %(person)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:280
+#: ../src/GrampsDbUtils/_GedcomParse.py:276
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Geïmporteerd uit GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:838
+#: ../src/GrampsDbUtils/_GedcomParse.py:834
 msgid "GEDCOM import"
 msgstr "GEDCOM-import"
 
 # Let op, ipv waarschuwing
-#: ../src/GrampsDbUtils/_GedcomParse.py:1092
+#: ../src/GrampsDbUtils/_GedcomParse.py:1088
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
@@ -5501,30 +5501,30 @@ msgstr "Regel %d werd niet begrepen en is daarom genegeerd."
 # Let op, ipv waarschuwing
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:3059
+#: ../src/GrampsDbUtils/_GedcomParse.py:3050
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Regel %d: lege gebeurtenis opmerking werd genegeerd."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3742
-#: ../src/GrampsDbUtils/_GedcomParse.py:4327
+#: ../src/GrampsDbUtils/_GedcomParse.py:3733
+#: ../src/GrampsDbUtils/_GedcomParse.py:4318
 #, python-format
 msgid "Could not import %s"
 msgstr "Kon %s niet importeren"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4103
+#: ../src/GrampsDbUtils/_GedcomParse.py:4094
 #, python-format
 msgid "Import from %s"
 msgstr "Geïmporteerd uit %s"
 
 # Let op, ipv waarschuwing
-#: ../src/GrampsDbUtils/_GedcomParse.py:4193
-#: ../src/GrampsDbUtils/_GedcomParse.py:4205
+#: ../src/GrampsDbUtils/_GedcomParse.py:4184
+#: ../src/GrampsDbUtils/_GedcomParse.py:4196
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Regel %d: lege opmerking werd genegeerd."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4244
+#: ../src/GrampsDbUtils/_GedcomParse.py:4235
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
 msgstr "sloeg %d subordinaten over op lijn %d"
@@ -5617,6 +5617,21 @@ msgstr "%s kon niet worden geïmporteerd"
 #: ../src/GrampsDbUtils/_ReadGedcom.py:146
 msgid "Error reading GEDCOM file"
 msgstr "Fout bij lezen van GEDCOM bestand"
+
+#. -------------------------------------------------------------------------
+#.
+#. Support functions
+#.
+#. -------------------------------------------------------------------------
+#: ../src/GrampsDbUtils/_ReadXML.py:74 ../src/plugins/EventNames.py:111
+#, python-format
+msgid "%(event_name)s of %(family)s"
+msgstr "%(event_name)s van %(family)s"
+
+#: ../src/GrampsDbUtils/_ReadXML.py:75 ../src/plugins/EventNames.py:112
+#, python-format
+msgid "%(event_name)s of %(person)s"
+msgstr "%(event_name)s van %(person)s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:121 ../src/GrampsDbUtils/_ReadXML.py:131
 #, python-format
@@ -6139,32 +6154,33 @@ msgstr "Alle gebeurtenissen"
 #: ../src/plugins/all_events.py:145 ../src/plugins/all_events.py:156
 #: ../src/plugins/all_relations.py:350 ../src/plugins/siblings.py:75
 #: ../src/plugins/AgeOnDate.py:104 ../src/plugins/AncestorTree.py:535
-#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1267
+#: ../src/plugins/AncestorReport.py:344 ../src/plugins/BookReport.py:1266
 #: ../src/plugins/Calendar.py:926 ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289 ../src/plugins/ChangeTypes.py:205
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
-#: ../src/plugins/CountAncestors.py:143 ../src/plugins/Desbrowser.py:168
-#: ../src/plugins/DescendTree.py:489 ../src/plugins/DescendReport.py:255
+#: ../src/plugins/Desbrowser.py:168 ../src/plugins/DescendTree.py:489
+#: ../src/plugins/DescendReport.py:255
 #: ../src/plugins/DetAncestralReport.py:866
 #: ../src/plugins/DetDescendantReport.py:831
 #: ../src/plugins/EndOfLineReport.py:317 ../src/plugins/Eval.py:129
 #: ../src/plugins/EventCmp.py:456 ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
-#: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:227
+#: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697 ../src/plugins/GVFamilyLines.py:881
 #: ../src/plugins/GVHourGlass.py:203 ../src/plugins/GVRelGraph.py:559
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251 ../src/plugins/MarkerReport.py:525
-#: ../src/plugins/NarrativeWeb.py:3169 ../src/plugins/NotRelated.py:422
+#: ../src/plugins/NarrativeWeb.py:3160 ../src/plugins/NotRelated.py:436
+#: ../src/plugins/NumberOfAncestorsReport.py:199
 #: ../src/plugins/OnThisDay.py:145 ../src/plugins/PatchNames.py:360
 #: ../src/plugins/Rebuild.py:118 ../src/plugins/References.py:103
 #: ../src/plugins/RelCalc.py:267 ../src/plugins/RemoveUnused.py:410
 #: ../src/plugins/ReorderIds.py:237 ../src/plugins/SameSurnames.py:103
 #: ../src/plugins/SoundGen.py:152 ../src/plugins/StatisticsChart.py:903
-#: ../src/plugins/Summary.py:186 ../src/plugins/TimeLine.py:444
+#: ../src/plugins/Summary.py:301 ../src/plugins/TimeLine.py:444
 #: ../src/plugins/Verify.py:1525 ../src/plugins/WebCal.py:1232
-#: ../src/plugins/RebuildRefMap.py:120 ../src/PluginUtils/_Plugins.py:417
+#: ../src/plugins/RebuildRefMap.py:120
 msgid "Stable"
 msgstr "Stabiel"
 
@@ -6287,7 +6303,7 @@ msgstr "Personen die waarschijnlijk in leven zijn en hun leeftijden op %s"
 
 # enkelvoud beter?
 #: ../src/plugins/AgeOnDate.py:53 ../src/plugins/StatisticsChart.py:124
-#: ../src/gen/lib/attrtype.py:74
+#: ../src/gen/lib/attrtype.py:73
 msgid "Age"
 msgstr "Leeftijd"
 
@@ -6326,6 +6342,7 @@ msgstr "Stamboomopties"
 #: ../src/plugins/DetDescendantReport.py:641
 #: ../src/plugins/EndOfLineReport.py:234 ../src/plugins/FanChart.py:343
 #: ../src/plugins/GVHourGlass.py:177 ../src/plugins/KinshipReport.py:337
+#: ../src/plugins/NumberOfAncestorsReport.py:161
 msgid "Center Person"
 msgstr "Centraal persoon"
 
@@ -6346,7 +6363,7 @@ msgstr "Het aantal generaties dat in de stamboom wordt voorzien"
 
 #: ../src/plugins/AncestorTree.py:468 ../src/plugins/DescendTree.py:423
 msgid "Display Format"
-msgstr "Weergave-formaat"
+msgstr "Weergaveformaat"
 
 #: ../src/plugins/AncestorTree.py:470 ../src/plugins/DescendTree.py:425
 msgid "Display format for the outputbox."
@@ -6374,7 +6391,7 @@ msgstr "Stamboom co_mprimeren"
 
 #: ../src/plugins/AncestorTree.py:482
 msgid "Whether to compress the tree."
-msgstr "Stamboom al of niet co_mprimeren."
+msgstr "Stamboom al of niet comprimeren."
 
 #: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:329
 #: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:822
@@ -6383,6 +6400,7 @@ msgstr "Stamboom al of niet co_mprimeren."
 #: ../src/plugins/FamilyGroup.py:679 ../src/plugins/FanChart.py:403
 #: ../src/plugins/IndivComplete.py:599 ../src/plugins/KinshipReport.py:390
 #: ../src/plugins/MarkerReport.py:486
+#: ../src/plugins/NumberOfAncestorsReport.py:184 ../src/plugins/Summary.py:286
 msgid "The basic style used for the text display."
 msgstr "De gebruikte basisstijl voor de tekstweergave."
 
@@ -6420,7 +6438,8 @@ msgstr "Generatie %d"
 #: ../src/plugins/EndOfLineReport.py:232 ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:428
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
-#: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2886
+#: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2877
+#: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/StatisticsChart.py:681 ../src/plugins/TimeLine.py:299
 #: ../src/plugins/WebCal.py:702 ../src/ReportBase/_BareReportDialog.py:354
 msgid "Report Options"
@@ -6432,6 +6451,7 @@ msgstr "Verslagopties"
 #: ../src/plugins/DetDescendantReport.py:642
 #: ../src/plugins/EndOfLineReport.py:235 ../src/plugins/FanChart.py:344
 #: ../src/plugins/KinshipReport.py:338
+#: ../src/plugins/NumberOfAncestorsReport.py:162
 msgid "The center person for the report"
 msgstr "De centrale persoon voor dit verslag"
 
@@ -6466,8 +6486,10 @@ msgstr "De lijn afbreken na de naam."
 #: ../src/plugins/DetDescendantReport.py:741
 #: ../src/plugins/EndOfLineReport.py:251 ../src/plugins/FamilyGroup.py:670
 #: ../src/plugins/IndivComplete.py:567 ../src/plugins/KinshipReport.py:373
-#: ../src/plugins/MarkerReport.py:466 ../src/plugins/SimpleBookTitle.py:272
-#: ../src/plugins/StatisticsChart.py:800 ../src/plugins/TimeLine.py:370
+#: ../src/plugins/MarkerReport.py:466
+#: ../src/plugins/NumberOfAncestorsReport.py:177
+#: ../src/plugins/SimpleBookTitle.py:272 ../src/plugins/StatisticsChart.py:800
+#: ../src/plugins/Summary.py:267 ../src/plugins/TimeLine.py:370
 msgid "The style used for the title of the page."
 msgstr "De gebruikte stijl voor de titel van de pagina."
 
@@ -6510,8 +6532,8 @@ msgstr "Beschikbare boeken"
 msgid "Book List"
 msgstr "Boekenlijst"
 
-#: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1073
-#: ../src/plugins/BookReport.py:1124 ../src/plugins/BookReport.py:1266
+#: ../src/plugins/BookReport.py:694 ../src/plugins/BookReport.py:1072
+#: ../src/plugins/BookReport.py:1123 ../src/plugins/BookReport.py:1265
 msgid "Book Report"
 msgstr "Boekverslag"
 
@@ -6561,23 +6583,23 @@ msgstr ""
 "Daarom wordt de centrale persoon voor elk item gezet op de actieve persoon "
 "van het gegevensbestand dat nu geopend is."
 
-#: ../src/plugins/BookReport.py:936
+#: ../src/plugins/BookReport.py:935
 msgid "Setup"
 msgstr "Instellingen"
 
-#: ../src/plugins/BookReport.py:946
+#: ../src/plugins/BookReport.py:945
 msgid "Book Menu"
 msgstr "Boekmenu"
 
-#: ../src/plugins/BookReport.py:969
+#: ../src/plugins/BookReport.py:968
 msgid "Available Items Menu"
 msgstr "Beschikbare items menu"
 
-#: ../src/plugins/BookReport.py:1127
+#: ../src/plugins/BookReport.py:1126
 msgid "GRAMPS Book"
 msgstr "GRAMPS-boek"
 
-#: ../src/plugins/BookReport.py:1268
+#: ../src/plugins/BookReport.py:1267
 msgid "Produces a book containing several reports."
 msgstr "Maakt boek aan, met verschillende verslagen."
 
@@ -6592,8 +6614,8 @@ msgstr "Opties"
 # Filteren? ik vermoed dat het hier om het znw gaat
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64 ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:226 ../src/plugins/GVRelGraph.py:431
-#: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2903
+#: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:431
+#: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2894
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
@@ -6605,14 +6627,14 @@ msgstr "Kies een filter om aantal personen te beperken"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:437 ../src/plugins/IndivComplete.py:522
-#: ../src/plugins/NarrativeWeb.py:2909 ../src/plugins/StatisticsChart.py:689
+#: ../src/plugins/NarrativeWeb.py:2900 ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307 ../src/plugins/WebCal.py:747
 msgid "Filter Person"
 msgstr "Filter Persoonsfilter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:438 ../src/plugins/IndivComplete.py:523
-#: ../src/plugins/NarrativeWeb.py:2910 ../src/plugins/StatisticsChart.py:690
+#: ../src/plugins/NarrativeWeb.py:2901 ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308 ../src/plugins/WebCal.py:748
 msgid "The center person for the filter"
 msgstr "De centrale persoon voor de filter"
@@ -6761,7 +6783,7 @@ msgstr "Getoonde verwantschappen van %s"
 msgid "Year of calendar"
 msgstr "Kalenderjaar"
 
-#: ../src/plugins/Calendar.py:493 ../src/plugins/NarrativeWeb.py:2905
+#: ../src/plugins/Calendar.py:493 ../src/plugins/NarrativeWeb.py:2896
 #: ../src/plugins/WebCal.py:743
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
@@ -7401,34 +7423,6 @@ msgstr ""
 "Maakt een DocBook XML-bestand aan dat een parameterverwijzing naar verslagen "
 "en gereedschappen bevat."
 
-#: ../src/plugins/CountAncestors.py:61
-#, python-format
-msgid "Ancestors of \"%s\""
-msgstr "Voorouders van \"%s\""
-
-#: ../src/plugins/CountAncestors.py:95
-#, python-format
-msgid "Generation %d has 1 individual. (%3.2f%%)\n"
-msgstr "Generatie %d bevat 1 persoon. (%3.2f%%)\n"
-
-#: ../src/plugins/CountAncestors.py:98
-#, python-format
-msgid "Generation %d has %d individuals. (%3.2f%%)\n"
-msgstr "Generatie %d bevat %d personen. (%3.2f%%)\n"
-
-#: ../src/plugins/CountAncestors.py:121
-#, python-format
-msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)\n"
-msgstr "Totaal aantal voorouders in generaties 2 tot %d is %d. (%3.2f%%)\n"
-
-#: ../src/plugins/CountAncestors.py:142
-msgid "Number of Ancestors"
-msgstr "Aantal voorouders"
-
-#: ../src/plugins/CountAncestors.py:144
-msgid "Counts number of ancestors of selected person"
-msgstr "Telt het aantal voorouders van de geselecteerde persoon"
-
 #: ../src/plugins/CustomBookText.py:115
 msgid "Initial Text"
 msgstr "Begintekst"
@@ -7660,80 +7654,80 @@ msgstr "Dubbelklikken element om overkomsten te zien"
 # Individuen
 #. -------------------------
 #: ../src/plugins/DefaultGramplets.py:650 ../src/plugins/GVFamilyLines.py:123
-#: ../src/plugins/NarrativeWeb.py:367 ../src/plugins/NarrativeWeb.py:440
-#: ../src/plugins/NarrativeWeb.py:739 ../src/plugins/NarrativeWeb.py:750
-#: ../src/plugins/Summary.py:115
+#: ../src/plugins/NarrativeWeb.py:371 ../src/plugins/NarrativeWeb.py:403
+#: ../src/plugins/NarrativeWeb.py:686 ../src/plugins/NarrativeWeb.py:697
+#: ../src/plugins/Summary.py:99
 msgid "Individuals"
 msgstr "Personen"
 
-#: ../src/plugins/DefaultGramplets.py:652 ../src/plugins/Summary.py:117
+#: ../src/plugins/DefaultGramplets.py:652
 msgid "Number of individuals"
 msgstr "Aantal personen"
 
 #. -------------------------
 #: ../src/plugins/DefaultGramplets.py:656 ../src/plugins/GVFamilyLines.py:126
-#: ../src/plugins/Summary.py:118 ../src/Filters/Rules/Person/_IsMale.py:46
+#: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Mannen"
 
 #: ../src/plugins/DefaultGramplets.py:659 ../src/plugins/GVFamilyLines.py:130
-#: ../src/plugins/Summary.py:119 ../src/Filters/Rules/Person/_IsFemale.py:46
+#: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Vrouwen"
 
-#: ../src/plugins/DefaultGramplets.py:662 ../src/plugins/Summary.py:120
+#: ../src/plugins/DefaultGramplets.py:662
 msgid "Individuals with unknown gender"
 msgstr "Personen met onbekend geslacht"
 
-#: ../src/plugins/DefaultGramplets.py:666 ../src/plugins/Summary.py:121
+#: ../src/plugins/DefaultGramplets.py:666
 msgid "Individuals with incomplete names"
 msgstr "Personen met onvolledige namen"
 
-#: ../src/plugins/DefaultGramplets.py:670 ../src/plugins/Summary.py:122
+#: ../src/plugins/DefaultGramplets.py:670
 msgid "Individuals missing birth dates"
 msgstr "Personen zonder geboortedatum"
 
-#: ../src/plugins/DefaultGramplets.py:674 ../src/plugins/Summary.py:123
+#: ../src/plugins/DefaultGramplets.py:674
 msgid "Disconnected individuals"
 msgstr "Personen zonder relatie"
 
-#: ../src/plugins/DefaultGramplets.py:678 ../src/plugins/Summary.py:124
+#: ../src/plugins/DefaultGramplets.py:678 ../src/plugins/Summary.py:188
 msgid "Family Information"
 msgstr "Familie-informatie"
 
-#: ../src/plugins/DefaultGramplets.py:680 ../src/plugins/Summary.py:126
+#: ../src/plugins/DefaultGramplets.py:680
 msgid "Number of families"
 msgstr "Aantal families"
 
-#: ../src/plugins/DefaultGramplets.py:684 ../src/plugins/Summary.py:127
+#: ../src/plugins/DefaultGramplets.py:684
 msgid "Unique surnames"
 msgstr "Unieke achternamen"
 
-#: ../src/plugins/DefaultGramplets.py:688 ../src/plugins/Summary.py:128
+#: ../src/plugins/DefaultGramplets.py:688 ../src/plugins/Summary.py:205
 msgid "Media Objects"
 msgstr "Media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:690 ../src/plugins/Summary.py:130
+#: ../src/plugins/DefaultGramplets.py:690
 msgid "Individuals with media objects"
 msgstr "Personen met media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:694 ../src/plugins/Summary.py:131
+#: ../src/plugins/DefaultGramplets.py:694
 msgid "Total number of media object references"
 msgstr "Totaal aantal verwijzingen naar media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:698 ../src/plugins/Summary.py:132
+#: ../src/plugins/DefaultGramplets.py:698
 msgid "Number of unique media objects"
 msgstr "Aantal unieke media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:703 ../src/plugins/Summary.py:133
+#: ../src/plugins/DefaultGramplets.py:703
 msgid "Total size of media objects"
 msgstr "Totale grootte van media-objecten"
 
-#: ../src/plugins/DefaultGramplets.py:705 ../src/plugins/Summary.py:134
+#: ../src/plugins/DefaultGramplets.py:705
 msgid "bytes"
 msgstr "byte"
 
-#: ../src/plugins/DefaultGramplets.py:707 ../src/plugins/Summary.py:137
+#: ../src/plugins/DefaultGramplets.py:707 ../src/plugins/Summary.py:228
 msgid "Missing Media Objects"
 msgstr "Ontbrekende media-objecten"
 
@@ -8194,7 +8188,7 @@ msgstr "Al of niet afstammelingverwijzingen in kinderenlijst toevoegen."
 #. #########################
 #: ../src/plugins/DetAncestralReport.py:726
 #: ../src/plugins/DetDescendantReport.py:687 ../src/plugins/FamilyGroup.py:599
-#: ../src/plugins/NarrativeWeb.py:3027
+#: ../src/plugins/NarrativeWeb.py:3018
 msgid "Include"
 msgstr "Bijvoegen"
 
@@ -8502,12 +8496,12 @@ msgid "Death source"
 msgstr "Overlijdensbron"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:524
-#: ../src/plugins/ImportCSV.py:208 ../src/plugins/NarrativeWeb.py:2224
+#: ../src/plugins/ImportCSV.py:208 ../src/plugins/NarrativeWeb.py:2188
 msgid "Husband"
 msgstr "Man"
 
 #: ../src/plugins/ExportCSV.py:434 ../src/plugins/FamilyGroup.py:533
-#: ../src/plugins/ImportCSV.py:204 ../src/plugins/NarrativeWeb.py:2226
+#: ../src/plugins/ImportCSV.py:204 ../src/plugins/NarrativeWeb.py:2190
 msgid "Wife"
 msgstr "Vrouw"
 
@@ -8861,64 +8855,128 @@ msgstr "Waaiergrafiek"
 msgid "Produces fan charts"
 msgstr "Levert waaiergrafieken"
 
+#. force translation
+#: ../src/plugins/FilterByName.py:37
+msgid "all people"
+msgstr "Alle personen"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "males"
+msgstr "mannen"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "females"
+msgstr "vrouwen"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "people with unknown gender"
+msgstr "personen met onbekend geslacht"
+
+#: ../src/plugins/FilterByName.py:38
+msgid "people with incomplete names"
+msgstr "personen met onvolledige namen"
+
+# zonder een bekende/zonder
+# met onbekende geboortedatum
+#: ../src/plugins/FilterByName.py:38
+msgid "people with missing birth dates"
+msgstr "personen met onbekende geboortedatum"
+
+# zonder relatie, ongebonden personen
+#: ../src/plugins/FilterByName.py:39
+msgid "disconnected people"
+msgstr "personen zonder relatie"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "all families"
+msgstr "Alle families"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "unique surnames"
+msgstr "unieke achternamen"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "people with media"
+msgstr "personen met afbeeldingen"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "media references"
+msgstr "mediareferenties"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "unique media"
+msgstr "uniek media-object"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "missing media"
+msgstr "ontbrekende media-objecten"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "media by size"
+msgstr "media volgens grootte"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "list of people"
+msgstr "personenlijst"
+
 #. display the title
-#: ../src/plugins/FilterByName.py:46
+#: ../src/plugins/FilterByName.py:53
 #, python-format
 msgid "Filtering on %s"
 msgstr "Filteren op %s"
 
-#: ../src/plugins/FilterByName.py:50 ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67 ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85 ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203 ../src/plugins/SameSurnames.py:75
+#: ../src/plugins/FilterByName.py:57 ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74 ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92 ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210 ../src/plugins/SameSurnames.py:75
 msgid "Name type"
 msgstr "Naamtype"
 
-#: ../src/plugins/FilterByName.py:104
+#: ../src/plugins/FilterByName.py:111
 msgid "birth event but no date"
 msgstr "geboortegebeurtenis maar geen datum"
 
-#: ../src/plugins/FilterByName.py:107
+#: ../src/plugins/FilterByName.py:114
 msgid "missing birth event"
 msgstr "ontbrekende geboortegebeurtenis"
 
-#: ../src/plugins/FilterByName.py:140 ../src/PluginUtils/_GuiOptions.py:81
+#: ../src/plugins/FilterByName.py:147 ../src/PluginUtils/_GuiOptions.py:81
 msgid "Count"
 msgstr "Tellen"
 
-#: ../src/plugins/FilterByName.py:150
+#: ../src/plugins/FilterByName.py:157
 msgid "Media count"
 msgstr "Telling media-objecten"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../src/plugins/FilterByName.py:161 ../src/plugins/OnThisDay.py:77
+#: ../src/plugins/FilterByName.py:168 ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78 ../src/plugins/OnThisDay.py:79
 #: ../src/plugins/References.py:70
 msgid "Reference"
 msgstr "Referentie"
 
-#: ../src/plugins/FilterByName.py:169 ../src/plugins/genewebexport.glade.h:10
+#: ../src/plugins/FilterByName.py:176 ../src/plugins/genewebexport.glade.h:10
 msgid "media"
 msgstr "media"
 
-#: ../src/plugins/FilterByName.py:172
+#: ../src/plugins/FilterByName.py:179
 msgid "Unique Media"
 msgstr "Uniek media-object"
 
-#: ../src/plugins/FilterByName.py:180
+#: ../src/plugins/FilterByName.py:187
 msgid "Missing Media"
 msgstr "Ontbrekende media-objecten"
 
-#: ../src/plugins/FilterByName.py:191
+#: ../src/plugins/FilterByName.py:198
 msgid "Size in bytes"
 msgstr "Grootte in bytes"
 
-#: ../src/plugins/FilterByName.py:212
+#: ../src/plugins/FilterByName.py:219
 #, python-format
 msgid "Filter matched %d records."
 msgstr "Filter vond %d gegevens."
 
-#: ../src/plugins/FilterByName.py:228
+#: ../src/plugins/FilterByName.py:235
 msgid "Display filtered data"
 msgstr "Toon gefilterde gegevens"
 
@@ -9188,8 +9246,8 @@ msgstr "Aanmaken familielijnen"
 
 # Classificatie, taxering
 #. start the progress indicator
-#: ../src/plugins/GVFamilyLines.py:301 ../src/plugins/NotRelated.py:96
-#: ../src/plugins/NotRelated.py:226
+#: ../src/plugins/GVFamilyLines.py:301 ../src/plugins/NotRelated.py:97
+#: ../src/plugins/NotRelated.py:227
 msgid "Starting"
 msgstr "Start"
 
@@ -9597,9 +9655,9 @@ msgid "Summary of %s"
 msgstr "Samenvatting van %s"
 
 # individu
-#: ../src/plugins/IndivComplete.py:420 ../src/plugins/NarrativeWeb.py:475
-#: ../src/plugins/NarrativeWeb.py:515 ../src/plugins/NarrativeWeb.py:530
-#: ../src/plugins/NarrativeWeb.py:2723 ../src/ReportBase/_ReportUtils.py:1574
+#: ../src/plugins/IndivComplete.py:420 ../src/plugins/NarrativeWeb.py:438
+#: ../src/plugins/NarrativeWeb.py:480 ../src/plugins/NarrativeWeb.py:495
+#: ../src/plugins/NarrativeWeb.py:2687 ../src/ReportBase/_ReportUtils.py:1574
 msgid "Could not add photo to page"
 msgstr "Kon foto niet toevoegen aan de pagina"
 
@@ -9681,7 +9739,7 @@ msgstr "Meenemen van tantes/nonkels/neven/nichten"
 msgid "Whether to include aunts/uncles/nephews/nieces"
 msgstr "Al of niet tantes/nonkels/neven/nichten toevoegen"
 
-#: ../src/plugins/KinshipReport.py:382
+#: ../src/plugins/KinshipReport.py:382 ../src/plugins/Summary.py:276
 msgid "The basic style used for sub-headings."
 msgstr "De gebruikte basisstijl voor de ondertitels."
 
@@ -10066,72 +10124,73 @@ msgstr "Creative Commons - By attribution, Non-commercial, Share-alike"
 msgid "No copyright notice"
 msgstr "Geen copyright notitie"
 
-#: ../src/plugins/NarrativeWeb.py:273
+#: ../src/plugins/NarrativeWeb.py:274
 #, python-format
 msgid "&copy; %(year)d %(person)s"
 msgstr "&copy; %(year)d %(person)s"
 
-#: ../src/plugins/NarrativeWeb.py:331 ../src/plugins/WebCal.py:406
+#: ../src/plugins/NarrativeWeb.py:332 ../src/plugins/WebCal.py:406
 #, python-format
 msgid "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
 msgstr "Gegenereerd met <a href=\"http://gramps-project.org\">GRAMPS</a> op %(date)s"
 
-#: ../src/plugins/NarrativeWeb.py:340
+#: ../src/plugins/NarrativeWeb.py:341
 #, python-format
 msgid "<br />for <a href=\"%s\">%s</a>"
 msgstr "<br />voor <a href=\"%s\">%s</a>"
 
-#: ../src/plugins/NarrativeWeb.py:365 ../src/plugins/NarrativeWeb.py:1443
-#: ../src/plugins/NarrativeWeb.py:1445
+#. Note. In old NarrativeWeb.py the content_divid depended on filename.
+#: ../src/plugins/NarrativeWeb.py:369 ../src/plugins/NarrativeWeb.py:1403
+#: ../src/plugins/NarrativeWeb.py:1405
 msgid "Introduction"
 msgstr "Inleiding"
 
-#: ../src/plugins/NarrativeWeb.py:366 ../src/plugins/NarrativeWeb.py:435
-#: ../src/plugins/NarrativeWeb.py:438 ../src/plugins/NarrativeWeb.py:896
-#: ../src/plugins/NarrativeWeb.py:1359 ../src/plugins/NarrativeWeb.py:1360
+#: ../src/plugins/NarrativeWeb.py:370 ../src/plugins/NarrativeWeb.py:398
+#: ../src/plugins/NarrativeWeb.py:401 ../src/plugins/NarrativeWeb.py:843
+#: ../src/plugins/NarrativeWeb.py:1311 ../src/plugins/NarrativeWeb.py:1312
 msgid "Surnames"
 msgstr "Achternamen"
 
-#: ../src/plugins/NarrativeWeb.py:370 ../src/plugins/NarrativeWeb.py:449
-#: ../src/plugins/NarrativeWeb.py:497 ../src/plugins/NarrativeWeb.py:1160
-#: ../src/plugins/NarrativeWeb.py:1162 ../src/plugins/NarrativeWeb.py:1598
-#: ../src/plugins/NarrativeWeb.py:1600
+#: ../src/plugins/NarrativeWeb.py:374 ../src/plugins/NarrativeWeb.py:412
+#: ../src/plugins/NarrativeWeb.py:460 ../src/plugins/NarrativeWeb.py:1107
+#: ../src/plugins/NarrativeWeb.py:1109 ../src/plugins/NarrativeWeb.py:1558
+#: ../src/plugins/NarrativeWeb.py:1560
 msgid "Gallery"
 msgstr "Galerij"
 
-#: ../src/plugins/NarrativeWeb.py:371 ../src/plugins/NarrativeWeb.py:1652
-#: ../src/plugins/NarrativeWeb.py:1654
+#: ../src/plugins/NarrativeWeb.py:375 ../src/plugins/NarrativeWeb.py:1617
+#: ../src/plugins/NarrativeWeb.py:1619
 msgid "Download"
 msgstr "Download"
 
-#: ../src/plugins/NarrativeWeb.py:372 ../src/plugins/NarrativeWeb.py:1666
-#: ../src/plugins/NarrativeWeb.py:1668
+#: ../src/plugins/NarrativeWeb.py:376 ../src/plugins/NarrativeWeb.py:1631
+#: ../src/plugins/NarrativeWeb.py:1633
 msgid "Contact"
 msgstr "Contact"
 
-#: ../src/plugins/NarrativeWeb.py:551 ../src/plugins/NarrativeWeb.py:2280
+#: ../src/plugins/NarrativeWeb.py:516 ../src/plugins/NarrativeWeb.py:2244
 msgid "Narrative"
 msgstr "Verhaal"
 
-#: ../src/plugins/NarrativeWeb.py:563
+#: ../src/plugins/NarrativeWeb.py:528
 msgid "Weblinks"
 msgstr "Weblinks"
 
-#: ../src/plugins/NarrativeWeb.py:593
+#: ../src/plugins/NarrativeWeb.py:558
 msgid "Source References"
 msgstr "Bronverwijzing"
 
 # Vertrouwen
-#: ../src/plugins/NarrativeWeb.py:625
+#: ../src/plugins/NarrativeWeb.py:590
 msgid "Confidence"
 msgstr "Zekerheid"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
-#: ../src/plugins/NarrativeWeb.py:646
+#: ../src/plugins/NarrativeWeb.py:611
 msgid "References"
 msgstr "Referenties"
 
-#: ../src/plugins/NarrativeWeb.py:741
+#: ../src/plugins/NarrativeWeb.py:688
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person&#8217;s name will take you to that "
@@ -10141,7 +10200,7 @@ msgstr ""
 "gesorteerd op achternaam. Door een &#8217;persoonsnaam te kiezen kunt u naar "
 "de &#8217;pagina van deze persoon gaan."
 
-#: ../src/plugins/NarrativeWeb.py:887
+#: ../src/plugins/NarrativeWeb.py:834
 #, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
@@ -10152,7 +10211,7 @@ msgstr ""
 "achternaam %s. Door de &#8217;naam te kiezen kunt u naar de &#8217;pagina "
 "van deze persoon gaan."
 
-#: ../src/plugins/NarrativeWeb.py:1015
+#: ../src/plugins/NarrativeWeb.py:962
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -10162,24 +10221,24 @@ msgstr ""
 "gesorteerd op titel. Door een &#8217;titel te kiezen gaat u naar de &#8217;"
 "pagina van deze locatie."
 
-#: ../src/plugins/NarrativeWeb.py:1025 ../src/plugins/NarrativeWeb.py:1380
+#: ../src/plugins/NarrativeWeb.py:972 ../src/plugins/NarrativeWeb.py:1332
 msgid "Letter"
 msgstr "Letter"
 
-#: ../src/plugins/NarrativeWeb.py:1090 ../src/plugins/NarrativeWeb.py:1251
-#: ../src/plugins/NarrativeWeb.py:1569 ../src/plugins/NarrativeWeb.py:1968
+#: ../src/plugins/NarrativeWeb.py:1037 ../src/plugins/NarrativeWeb.py:1198
+#: ../src/plugins/NarrativeWeb.py:1529 ../src/plugins/NarrativeWeb.py:1932
 msgid "GRAMPS ID"
 msgstr "GRAMPS ID"
 
-#: ../src/plugins/NarrativeWeb.py:1101
+#: ../src/plugins/NarrativeWeb.py:1048
 msgid "Postal Code"
 msgstr "Postcode"
 
-#: ../src/plugins/NarrativeWeb.py:1168
+#: ../src/plugins/NarrativeWeb.py:1115
 msgid "Previous"
 msgstr "Vorige"
 
-#: ../src/plugins/NarrativeWeb.py:1169
+#: ../src/plugins/NarrativeWeb.py:1116
 #, python-format
 msgid ""
 "<strong id=\"GalleryCurrent\">%(page_number)d</strong> of <strong id="
@@ -10188,32 +10247,32 @@ msgstr ""
 "<strong id=\"GalleryCurrent\">%(page_number)d</strong> van <strong id="
 "\"GalleryTotal\">%(total_pages)d</strong>"
 
-#: ../src/plugins/NarrativeWeb.py:1173
+#: ../src/plugins/NarrativeWeb.py:1120
 msgid "Next"
 msgstr "Volgende"
 
-#: ../src/plugins/NarrativeWeb.py:1205 ../src/plugins/NarrativeWeb.py:1238
+#: ../src/plugins/NarrativeWeb.py:1152 ../src/plugins/NarrativeWeb.py:1185
 msgid "The file has been moved or deleted"
 msgstr "Het bestand is verplaatst of verwijderd"
 
 # Filteren? ik vermoed dat het hier om het znw gaat
-#: ../src/plugins/NarrativeWeb.py:1257
+#: ../src/plugins/NarrativeWeb.py:1204
 msgid "File type"
 msgstr "Bestandstype"
 
-#: ../src/plugins/NarrativeWeb.py:1288 ../src/plugins/NarrativeWeb.py:1770
+#: ../src/plugins/NarrativeWeb.py:1240 ../src/plugins/NarrativeWeb.py:1735
 msgid "Attributes"
 msgstr "Kenmerken"
 
-#: ../src/plugins/NarrativeWeb.py:1318
+#: ../src/plugins/NarrativeWeb.py:1270
 msgid "Missing media object:"
 msgstr "Ontbrekend media-object:"
 
-#: ../src/plugins/NarrativeWeb.py:1363 ../src/plugins/NarrativeWeb.py:1364
+#: ../src/plugins/NarrativeWeb.py:1315 ../src/plugins/NarrativeWeb.py:1316
 msgid "Surnames by person count"
 msgstr "Telling Achternamen per persoon"
 
-#: ../src/plugins/NarrativeWeb.py:1367
+#: ../src/plugins/NarrativeWeb.py:1319
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
 "link will lead to a list of individuals in the database with this same "
@@ -10223,11 +10282,11 @@ msgstr ""
 "Door de link te selecteren, verkrijgt u een lijst van alle personen in het "
 "gegevensbestand met dezelfde achternaam."
 
-#: ../src/plugins/NarrativeWeb.py:1385
+#: ../src/plugins/NarrativeWeb.py:1337
 msgid "Number of people"
 msgstr "Aantal personen"
 
-#: ../src/plugins/NarrativeWeb.py:1512
+#: ../src/plugins/NarrativeWeb.py:1472
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
@@ -10237,11 +10296,11 @@ msgstr ""
 "gesorteerd volgens titel. Aanklikken van de &#8217;brontitel brengt u naar "
 "de &#8217;bronpagina."
 
-#: ../src/plugins/NarrativeWeb.py:1571
+#: ../src/plugins/NarrativeWeb.py:1531
 msgid "Publication information"
 msgstr "Publicatie-informatie"
 
-#: ../src/plugins/NarrativeWeb.py:1603
+#: ../src/plugins/NarrativeWeb.py:1563
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -10251,83 +10310,83 @@ msgstr ""
 "Deze zijn gesorteerd op titel. Aanklikken van de titel brengt u naar de "
 "desbetreffende &#8217;pagina."
 
-#: ../src/plugins/NarrativeWeb.py:1841
+#: ../src/plugins/NarrativeWeb.py:1806
 msgid "Ancestors"
 msgstr "Voorouders"
 
-#: ../src/plugins/NarrativeWeb.py:1987 ../src/plugins/PatchNames.py:232
-#: ../src/gen/lib/attrtype.py:71
+#: ../src/plugins/NarrativeWeb.py:1951 ../src/plugins/PatchNames.py:232
+#: ../src/gen/lib/attrtype.py:70
 msgid "Nickname"
 msgstr "Bijnaam"
 
-#: ../src/plugins/NarrativeWeb.py:2178
+#: ../src/plugins/NarrativeWeb.py:2142
 msgid "Half Siblings"
 msgstr "Half-broers en zussen"
 
-#: ../src/plugins/NarrativeWeb.py:2353
-msgid "at"
+#: ../src/plugins/NarrativeWeb.py:2317
+msgid "place|at"
 msgstr "te"
 
-#: ../src/plugins/NarrativeWeb.py:2362
+#: ../src/plugins/NarrativeWeb.py:2326
 #, python-format
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br />%(type)s: %(value)s"
 
-#: ../src/plugins/NarrativeWeb.py:2499 ../src/plugins/WebCal.py:462
+#: ../src/plugins/NarrativeWeb.py:2463 ../src/plugins/WebCal.py:462
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Noch %s noch %s zijn mappen"
 
-#: ../src/plugins/NarrativeWeb.py:2506 ../src/plugins/NarrativeWeb.py:2510
-#: ../src/plugins/NarrativeWeb.py:2523 ../src/plugins/NarrativeWeb.py:2527
+#: ../src/plugins/NarrativeWeb.py:2470 ../src/plugins/NarrativeWeb.py:2474
+#: ../src/plugins/NarrativeWeb.py:2487 ../src/plugins/NarrativeWeb.py:2491
 #: ../src/plugins/WebCal.py:469 ../src/plugins/WebCal.py:473
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Kon de map %s niet aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2532
+#: ../src/plugins/NarrativeWeb.py:2496
 msgid "Invalid file name"
 msgstr "Ongeldige bestandsnaam"
 
-#: ../src/plugins/NarrativeWeb.py:2533
+#: ../src/plugins/NarrativeWeb.py:2497
 msgid "The archive file must be a file, not a directory"
 msgstr "Het archief moet een bestand zijn, niet een map"
 
-#: ../src/plugins/NarrativeWeb.py:2542
+#: ../src/plugins/NarrativeWeb.py:2506
 msgid "Generate HTML reports"
 msgstr "HTML-verslagen aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2591
+#: ../src/plugins/NarrativeWeb.py:2555
 msgid "Filtering"
 msgstr "Filter"
 
 # afzonderlijke/individuele
 # seperate/individual
-#: ../src/plugins/NarrativeWeb.py:2613
+#: ../src/plugins/NarrativeWeb.py:2577
 msgid "Creating individual pages"
 msgstr "Individuele pagina's maken"
 
-#: ../src/plugins/NarrativeWeb.py:2633
+#: ../src/plugins/NarrativeWeb.py:2597
 msgid "Creating surname pages"
 msgstr "Familienaam-pagina's aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2645
+#: ../src/plugins/NarrativeWeb.py:2609
 msgid "Creating source pages"
 msgstr "Bron-pagina's aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2656
+#: ../src/plugins/NarrativeWeb.py:2620
 msgid "Creating place pages"
 msgstr "Plaats-pagina's aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2667
+#: ../src/plugins/NarrativeWeb.py:2631
 msgid "Creating media pages"
 msgstr "Mediapagina's aanmaken"
 
-#: ../src/plugins/NarrativeWeb.py:2846
+#: ../src/plugins/NarrativeWeb.py:2813 ../src/plugins/NarrativeWeb.py:2837
 msgid "Possible destination error"
 msgstr "Mogelijk een doelfout"
 
-#: ../src/plugins/NarrativeWeb.py:2847
+#: ../src/plugins/NarrativeWeb.py:2814 ../src/plugins/NarrativeWeb.py:2838
 msgid ""
 "You appear to have set your target directory to a directory used for data "
 "storage. This could create problems with file management. It is recommended "
@@ -10338,209 +10397,209 @@ msgstr ""
 "slaan. Dit kan tot problemen leiden met het bestandbeheersysteem. Het is "
 "aangeraden om een aparte map te gebruiken om uw webpagina's in op te slaan."
 
-#: ../src/plugins/NarrativeWeb.py:2888
+#: ../src/plugins/NarrativeWeb.py:2879
 msgid "Store web pages in .tar.gz archive"
 msgstr "Sla de web pagina's op in een tar.gz archief"
 
-#: ../src/plugins/NarrativeWeb.py:2890
+#: ../src/plugins/NarrativeWeb.py:2881
 msgid "Whether to store the web pages in an archive file"
 msgstr "Sla de webpagina's op in een archiefbestand"
 
-#: ../src/plugins/NarrativeWeb.py:2895 ../src/plugins/WebCal.py:704
+#: ../src/plugins/NarrativeWeb.py:2886 ../src/plugins/WebCal.py:704
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ../src/plugins/NarrativeWeb.py:2897 ../src/plugins/WebCal.py:706
+#: ../src/plugins/NarrativeWeb.py:2888 ../src/plugins/WebCal.py:706
 msgid "The destination directory for the web files"
 msgstr "De bestemmingsmap voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:2916
+#: ../src/plugins/NarrativeWeb.py:2907
 msgid "Web site title"
 msgstr "Website titel"
 
-#: ../src/plugins/NarrativeWeb.py:2916
+#: ../src/plugins/NarrativeWeb.py:2907
 msgid "My Family Tree"
 msgstr "Mijn familiestamboom"
 
-#: ../src/plugins/NarrativeWeb.py:2917
+#: ../src/plugins/NarrativeWeb.py:2908
 msgid "The title of the web site"
 msgstr "De titel voor de webstek"
 
 # Bestandsuitgang/extensie
-#: ../src/plugins/NarrativeWeb.py:2920 ../src/plugins/WebCal.py:710
+#: ../src/plugins/NarrativeWeb.py:2911 ../src/plugins/WebCal.py:710
 msgid "File extension"
 msgstr "Bestandsextensie"
 
-#: ../src/plugins/NarrativeWeb.py:2923 ../src/plugins/WebCal.py:713
+#: ../src/plugins/NarrativeWeb.py:2914 ../src/plugins/WebCal.py:713
 msgid "The extension to be used for the web files"
 msgstr "De gebruikte extensie voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:2926 ../src/plugins/WebCal.py:716
+#: ../src/plugins/NarrativeWeb.py:2917 ../src/plugins/WebCal.py:716
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../src/plugins/NarrativeWeb.py:2931 ../src/plugins/WebCal.py:721
+#: ../src/plugins/NarrativeWeb.py:2922 ../src/plugins/WebCal.py:721
 msgid "The copyright to be used for the web files"
 msgstr "Autheursrecht gebruiken voor de webpagina's"
 
 # Doping
-#: ../src/plugins/NarrativeWeb.py:2934 ../src/plugins/WebCal.py:724
+#: ../src/plugins/NarrativeWeb.py:2925 ../src/plugins/WebCal.py:724
 msgid "Character set encoding"
 msgstr "Tekenset codering"
 
-#: ../src/plugins/NarrativeWeb.py:2937 ../src/plugins/WebCal.py:727
+#: ../src/plugins/NarrativeWeb.py:2928 ../src/plugins/WebCal.py:727
 msgid "The encoding to be used for the web files"
 msgstr "De gebruikte ''encodingstijl'' voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:2940
+#: ../src/plugins/NarrativeWeb.py:2931
 msgid "Stylesheet"
 msgstr "Stijlblad"
 
-#: ../src/plugins/NarrativeWeb.py:2943
+#: ../src/plugins/NarrativeWeb.py:2934
 msgid "The style sheet to be used for the web page"
 msgstr "De gebruikte stijlblad voor de webpagina's"
 
-#: ../src/plugins/NarrativeWeb.py:2946
+#: ../src/plugins/NarrativeWeb.py:2937
 msgid "Include ancestor graph"
 msgstr "Voorouder-grafiek bijvoegen"
 
-#: ../src/plugins/NarrativeWeb.py:2947
+#: ../src/plugins/NarrativeWeb.py:2938
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Al of niet een vooroudergrafiek toevoegen aan ieder afzonderlijk blad"
 
-#: ../src/plugins/NarrativeWeb.py:2952
+#: ../src/plugins/NarrativeWeb.py:2943
 msgid "Graph generations"
 msgstr "Grafiekgeneraties"
 
-#: ../src/plugins/NarrativeWeb.py:2957
+#: ../src/plugins/NarrativeWeb.py:2948
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Het aantal generaties dat getoond wordt in het verslag"
 
-#: ../src/plugins/NarrativeWeb.py:2967
+#: ../src/plugins/NarrativeWeb.py:2958
 msgid "Page Generation"
 msgstr "Pagina genereren"
 
-#: ../src/plugins/NarrativeWeb.py:2969
+#: ../src/plugins/NarrativeWeb.py:2960
 msgid "Home page note"
 msgstr "Opmerking Home Page webstek"
 
-#: ../src/plugins/NarrativeWeb.py:2970
+#: ../src/plugins/NarrativeWeb.py:2961
 msgid "A note to be used on the home page"
 msgstr "Een opmerking gebruikt op de home page"
 
-#: ../src/plugins/NarrativeWeb.py:2973
+#: ../src/plugins/NarrativeWeb.py:2964
 msgid "Home page image"
 msgstr "Afbeelding voor \"home page\""
 
-#: ../src/plugins/NarrativeWeb.py:2974
+#: ../src/plugins/NarrativeWeb.py:2965
 msgid "An image to be used on the home page"
 msgstr "Een afbeelding gebruiken voor de home page"
 
-#: ../src/plugins/NarrativeWeb.py:2977
+#: ../src/plugins/NarrativeWeb.py:2968
 msgid "Introduction note"
 msgstr "Inleidingsopmerking"
 
-#: ../src/plugins/NarrativeWeb.py:2978
+#: ../src/plugins/NarrativeWeb.py:2969
 msgid "A note to be used as the introduction"
 msgstr "Een opmerking gebruiken als inleiding"
 
-#: ../src/plugins/NarrativeWeb.py:2981
+#: ../src/plugins/NarrativeWeb.py:2972
 msgid "Introduction image"
 msgstr "Introductieafbeelding"
 
-#: ../src/plugins/NarrativeWeb.py:2982
+#: ../src/plugins/NarrativeWeb.py:2973
 msgid "An image to be used as the introduction"
 msgstr "Een afbeelding gebruiken als inleiding"
 
-#: ../src/plugins/NarrativeWeb.py:2985
+#: ../src/plugins/NarrativeWeb.py:2976
 msgid "Publisher contact note"
 msgstr "Contactgegevens uitgever"
 
-#: ../src/plugins/NarrativeWeb.py:2986
+#: ../src/plugins/NarrativeWeb.py:2977
 msgid "A note to be used as the publisher contact"
 msgstr "Een opmerking gebruiken voor contact uitgever"
 
-#: ../src/plugins/NarrativeWeb.py:2989
+#: ../src/plugins/NarrativeWeb.py:2980
 msgid "Publisher contact image"
 msgstr "Afbeelding uitgever"
 
-#: ../src/plugins/NarrativeWeb.py:2990
+#: ../src/plugins/NarrativeWeb.py:2981
 msgid "An image to be used as the publisher contact"
 msgstr "Een afbeelding gebruiken voor contact uitgever"
 
-#: ../src/plugins/NarrativeWeb.py:2993
+#: ../src/plugins/NarrativeWeb.py:2984
 msgid "HTML user header"
 msgstr "Zelf aangemaakte HTML-hoofding"
 
-#: ../src/plugins/NarrativeWeb.py:2994
+#: ../src/plugins/NarrativeWeb.py:2985
 msgid "A note to be used as the page header"
 msgstr "Een opmerking gebruiken als paginahoofding"
 
-#: ../src/plugins/NarrativeWeb.py:2997
+#: ../src/plugins/NarrativeWeb.py:2988
 msgid "HTML user footer"
 msgstr "HTML gebruiker voetnoot"
 
-#: ../src/plugins/NarrativeWeb.py:2998
+#: ../src/plugins/NarrativeWeb.py:2989
 msgid "A note to be used as the page footer"
 msgstr "Een opmerking gebruiken voor de voetnoot van de pagina"
 
-#: ../src/plugins/NarrativeWeb.py:3001
+#: ../src/plugins/NarrativeWeb.py:2992
 msgid "Include images and media objects"
 msgstr "Plaatjes en media-objecten bijvoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3002
+#: ../src/plugins/NarrativeWeb.py:2993
 msgid "Whether to include a gallery of media objects"
 msgstr "Al of niet een galerij van de media-objecten toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3005
+#: ../src/plugins/NarrativeWeb.py:2996
 msgid "Include download page"
 msgstr "Download pagina bijvoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3006
+#: ../src/plugins/NarrativeWeb.py:2997
 msgid "Whether to include a database download option"
 msgstr "Al of niet een optie toevoegen om het gegevensbestand te kunnen downloaden"
 
-#: ../src/plugins/NarrativeWeb.py:3009
+#: ../src/plugins/NarrativeWeb.py:3000
 msgid "Suppress GRAMPS ID"
 msgstr "Onderdrukken GRAMPS ID"
 
-#: ../src/plugins/NarrativeWeb.py:3010
+#: ../src/plugins/NarrativeWeb.py:3001
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Al of niet de GRAMPS-ID van objecten toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3017
+#: ../src/plugins/NarrativeWeb.py:3008
 msgid "Privacy"
 msgstr "Privacy"
 
-#: ../src/plugins/NarrativeWeb.py:3019
+#: ../src/plugins/NarrativeWeb.py:3010
 msgid "Include records marked private"
 msgstr "Gegevens gemarkeerd als privé, bijvoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3020
+#: ../src/plugins/NarrativeWeb.py:3011
 msgid "Whether to include private objects"
 msgstr "Al of niet privé-objecten toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3023
+#: ../src/plugins/NarrativeWeb.py:3014
 msgid "Living People"
 msgstr "Nog in levenzijnde personen"
 
-#: ../src/plugins/NarrativeWeb.py:3025
+#: ../src/plugins/NarrativeWeb.py:3016
 msgid "Exclude"
 msgstr "Niet toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3026
+#: ../src/plugins/NarrativeWeb.py:3017
 msgid "Restrict"
 msgstr "Beperk"
 
-#: ../src/plugins/NarrativeWeb.py:3028
+#: ../src/plugins/NarrativeWeb.py:3019
 msgid "How to handle living people"
 msgstr "Hoe nog levende personen behandelen"
 
-#: ../src/plugins/NarrativeWeb.py:3032
+#: ../src/plugins/NarrativeWeb.py:3023
 msgid "Years from death to consider living"
 msgstr "Jaren van overlijden om levende personen te bepalen"
 
-#: ../src/plugins/NarrativeWeb.py:3034
+#: ../src/plugins/NarrativeWeb.py:3025
 msgid ""
 "This allows you to restrict information on people who have not been dead for "
 "very long"
@@ -10548,64 +10607,64 @@ msgstr ""
 "Dit laadt u toe om informatie over personen die nog niet lang overleden "
 "zijn, te beperken"
 
-#: ../src/plugins/NarrativeWeb.py:3046
+#: ../src/plugins/NarrativeWeb.py:3037
 msgid "Advanced"
 msgstr "Gevorderd"
 
-#: ../src/plugins/NarrativeWeb.py:3048
+#: ../src/plugins/NarrativeWeb.py:3039
 msgid "Include link to home person on every page"
 msgstr "Een link voorzien naar de basispersoon op iedere pagina"
 
-#: ../src/plugins/NarrativeWeb.py:3050
+#: ../src/plugins/NarrativeWeb.py:3041
 msgid "Whether to include a link to the home person"
 msgstr "Al of niet een verwijzing naar de basispersoon toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3053
+#: ../src/plugins/NarrativeWeb.py:3044
 msgid "Include a column for birth dates on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de geboortedatums"
 
-#: ../src/plugins/NarrativeWeb.py:3055
+#: ../src/plugins/NarrativeWeb.py:3046
 msgid "Whether to include a birth column"
 msgstr "Al of niet een geboortekolom toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3058
+#: ../src/plugins/NarrativeWeb.py:3049
 msgid "Include a column for death dates on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de overlijdensdatums"
 
-#: ../src/plugins/NarrativeWeb.py:3060
+#: ../src/plugins/NarrativeWeb.py:3051
 msgid "Whether to include a death column"
 msgstr "Al of niet een overlijdenskolom toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3063
+#: ../src/plugins/NarrativeWeb.py:3054
 msgid "Include a column for partners on the index pages"
 msgstr "Een kolom voorzien n de indexpagina's voor de partners"
 
-#: ../src/plugins/NarrativeWeb.py:3065
+#: ../src/plugins/NarrativeWeb.py:3056
 msgid "Whether to include a partners column"
 msgstr "Al of niet een partnerkolom toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3068
+#: ../src/plugins/NarrativeWeb.py:3059
 msgid "Include a column for parents on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de ouders"
 
-#: ../src/plugins/NarrativeWeb.py:3070
+#: ../src/plugins/NarrativeWeb.py:3061
 msgid "Whether to include a parents column"
 msgstr "Al of niet een ouderkolom toevoegen"
 
-#: ../src/plugins/NarrativeWeb.py:3073
+#: ../src/plugins/NarrativeWeb.py:3064
 msgid "Include a column for half-siblings on the index pages"
 msgstr "Een kolom voorzien in de indexpagina's voor de halfbroers en hallfzusters"
 
-#: ../src/plugins/NarrativeWeb.py:3075
+#: ../src/plugins/NarrativeWeb.py:3066
 msgid "Whether to include a half-siblings column"
 msgstr "Al of niet een halfbroer/zus kolom toevoegen"
 
 # webstek
-#: ../src/plugins/NarrativeWeb.py:3168
+#: ../src/plugins/NarrativeWeb.py:3159
 msgid "Narrated Web Site"
 msgstr "Website"
 
-#: ../src/plugins/NarrativeWeb.py:3172
+#: ../src/plugins/NarrativeWeb.py:3163
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Genereert web-pagina's (HTML) voor personen, of een groep personen"
 
@@ -10613,50 +10672,78 @@ msgstr "Genereert web-pagina's (HTML) voor personen, of een groep personen"
 msgid "manual|Not_Related..."
 msgstr "Heeft geen relatie..."
 
-#: ../src/plugins/NotRelated.py:72
+#: ../src/plugins/NotRelated.py:73
 #, python-format
 msgid "Not related to \"%s\""
 msgstr "Geen relatie met \"%s\""
 
-#: ../src/plugins/NotRelated.py:227
+#: ../src/plugins/NotRelated.py:228
 #, python-format
 msgid "Setting marker for %d people"
 msgstr "Plaats aanduiding voor %d personen"
 
-#: ../src/plugins/NotRelated.py:259
+#: ../src/plugins/NotRelated.py:260
 #, python-format
 msgid "Finding relationships between %d people"
 msgstr "Relaties zoeken tussen %d personen"
 
-#: ../src/plugins/NotRelated.py:324
+#: ../src/plugins/NotRelated.py:325
 msgid "Looking for 1 person"
 msgstr "Naar 1 persoon zoeken"
 
 # Duplicaat-voorouders
-#: ../src/plugins/NotRelated.py:326
+#: ../src/plugins/NotRelated.py:327
 #, python-format
 msgid "Looking for %d people"
 msgstr "Naar %d personen zoeken"
 
-#: ../src/plugins/NotRelated.py:349
+#: ../src/plugins/NotRelated.py:350
 msgid "Looking up the name for 1 person"
 msgstr "De naam opzoeken van 1 persoon"
 
 # Duplicaat-voorouders
-#: ../src/plugins/NotRelated.py:351
+#: ../src/plugins/NotRelated.py:352
 #, python-format
 msgid "Looking up the names for %d people"
 msgstr "De naam opzoeken van %d personen"
 
-#: ../src/plugins/NotRelated.py:421
+#: ../src/plugins/NotRelated.py:435
 msgid "Not Related"
 msgstr "Heeft geen relatie"
 
-#: ../src/plugins/NotRelated.py:425
+#: ../src/plugins/NotRelated.py:439
 msgid "Find people who are not in any way related to the selected person"
 msgstr ""
 "Zoek personen die op geen enkele manier een relatie hebben met de "
 "geselecteerde persoon"
+
+#: ../src/plugins/NumberOfAncestorsReport.py:83
+#, python-format
+msgid "Number of Ancestors for %s"
+msgstr "Aantal voorouders van %s"
+
+#: ../src/plugins/NumberOfAncestorsReport.py:99
+#, python-format
+msgid "Generation %d has 1 individual. (%3.2f%%)"
+msgstr "Generatie %d bevat 1 persoon. (%3.2f%%)"
+
+#: ../src/plugins/NumberOfAncestorsReport.py:102
+#, python-format
+msgid "Generation %d has %d individuals. (%3.2f%%)"
+msgstr "Generatie %d bevat %d personen. (%3.2f%%)"
+
+#: ../src/plugins/NumberOfAncestorsReport.py:136
+#, python-format
+msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)"
+msgstr "Totaal aantal voorouders in generaties 2 tot %d is %d. (%3.2f%%)"
+
+#: ../src/plugins/NumberOfAncestorsReport.py:198
+msgid "Number of Ancestors Report"
+msgstr "Aantal voorouders verslag"
+
+#: ../src/plugins/NumberOfAncestorsReport.py:200
+msgid "Counts number of ancestors of selected person"
+msgstr "Telt het aantal voorouders van de geselecteerde persoon"
 
 #. display the title
 #: ../src/plugins/OnThisDay.py:74
@@ -10702,7 +10789,7 @@ msgstr "Toont gebeurtenissen op een bepaalde dag"
 msgid "Database Owner Editor"
 msgstr "Aanpassen gegevensbestandseigenaar"
 
-#: ../src/plugins/OwnerEditor.py:156 ../src/PluginUtils/_PluginWindows.py:461
+#: ../src/plugins/OwnerEditor.py:156 ../src/PluginUtils/_PluginWindows.py:483
 msgid "Main window"
 msgstr "Hoofdscherm"
 
@@ -10756,26 +10843,62 @@ msgstr ""
 "Doorzoekt de gehele database en tracht titels en bijnamen te extraheren die "
 "mogelijk in het voornaamsveld van een persoon zijn ingebed."
 
-#: ../src/plugins/ReadPkg.py:76
+#: ../src/plugins/ReadPkg.py:79
 #, python-format
-msgid "Could not create temporary directory %s"
-msgstr "Kon de tijdelijke map %s niet aanmaken"
+msgid "Could not create media directory %s"
+msgstr "Kon de mediamap %s niet aanmaken"
 
-#: ../src/plugins/ReadPkg.py:80
+#: ../src/plugins/ReadPkg.py:83
 #, python-format
-msgid "Temporary directory %s is not writable"
-msgstr "Tijdelijke map %s is niet beschrijfbaar"
+msgid "Media directory %s is not writable"
+msgstr "Mediamap %s is niet beschrijfbaar"
 
-#: ../src/plugins/ReadPkg.py:98
+#. mediadir exists and writable -- User could have valuable stuff in
+#. it, have him remove it!
+#: ../src/plugins/ReadPkg.py:88
+#, python-format
+msgid "Media directory %s exists. Delete it first, then restart the import process"
+msgstr "Mediamap %s bestaat reeds. Eerst verwijderen, dan het importproces nieuw starten"
+
+#: ../src/plugins/ReadPkg.py:97
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Fout bij uitpakken naar %s"
 
+#: ../src/plugins/ReadPkg.py:113
+msgid "Base path for relative media set"
+msgstr "Standaardpad voor relatieve media ingesteld"
+
+#: ../src/plugins/ReadPkg.py:114
+#, python-format
+msgid ""
+"The base media path of this family tree has been set to %s. Consider taking "
+"a simpler path. You can change this in the Preferences, while moving your "
+"media files to the new position, and using the media manager tool, option "
+"'Replace substring in the path' to set correct paths in your media objects."
+msgstr "Het standaard ingestelde mediapad voor deze familistamboom is %s. Overweeg om een eenvoudiger pad in te stellen. Dat doet u in 'Voorkeuren' en gerbruik te maken van het mediamanager hulpmiddel. U kunt ook bepaalde deeltekenreeksen vervangen."
+
 #: ../src/plugins/ReadPkg.py:123
+msgid "Cannot set base media path"
+msgstr "Kan mediamap niet instellen"
+
+#: ../src/plugins/ReadPkg.py:124
+#, python-format
+msgid ""
+"The family tree you imported into already has a base media path: %(orig_path)"
+"s. The imported media objects however are relative from the path %(path)s. "
+"You can change the media path in the Preferences or you can convert the "
+"imported files to the existing base media path. You can do that by moving "
+"your media files to the new position, and using the media manager tool, "
+"option 'Replace substring in the path' to set correct paths in your media "
+"objects."
+msgstr "De familiestamboom die u importeerde, heeft al een standaard mediapad: %(orig_path)s. De geïmporteerde media-objecten zijn afhankelijk van pad %(path)s. U kunt het mediapad veranderen in 'Voorkeuren' of u kunt de geïmporteerde bestanden aanpassen aan het bestaand e mediapad. U kunt dit doen door het hulpmiddel mediamanager te gebruiken. U kunt zo deeltekenreeksen eenvoudiger vervangen om het pad juist in te stellen."
+
+#: ../src/plugins/ReadPkg.py:153
 msgid "GRAMPS packages"
 msgstr "GRAMPS-pakketten"
 
-#: ../src/plugins/ReadPkg.py:125 ../data/gramps.keys.in.h:4
+#: ../src/plugins/ReadPkg.py:155 ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
 msgid "GRAMPS package"
 msgstr "GRAMPS-pakket"
@@ -11366,15 +11489,71 @@ msgstr ""
 "gegevensbestand"
 
 # samenvatting?
-#: ../src/plugins/Summary.py:151
-msgid "Database summary"
-msgstr "Database overzicht"
+#: ../src/plugins/Summary.py:76 ../src/plugins/Summary.py:300
+msgid "Database Summary Report"
+msgstr "Overzicht gegevensbestand verslag"
 
-#: ../src/plugins/Summary.py:185
-msgid "Summary of the Database"
-msgstr "Samenvatting van het gegevensbestand"
+#: ../src/plugins/Summary.py:145
+#, python-format
+msgid "Number of individuals: %d"
+msgstr "Aantal personen: %d"
 
-#: ../src/plugins/Summary.py:187
+#: ../src/plugins/Summary.py:149
+#, python-format
+msgid "Males: %d"
+msgstr "Man: %d"
+
+#: ../src/plugins/Summary.py:153
+#, python-format
+msgid "Females: %d"
+msgstr "Vrouwen: %d"
+
+#: ../src/plugins/Summary.py:157
+#, python-format
+msgid "Individuals with unknown gender: %d"
+msgstr "Personen met onbekend geslacht: %d"
+
+#: ../src/plugins/Summary.py:161
+#, python-format
+msgid "Individuals with incomplete names: %d"
+msgstr "Personen met onvolledige namen: %d"
+
+#: ../src/plugins/Summary.py:166
+#, python-format
+msgid "Individuals missing birth dates: %d"
+msgstr "Personen zonder geboortedatum: %d"
+
+#: ../src/plugins/Summary.py:171
+#, python-format
+msgid "Disconnected individuals: %d"
+msgstr "Personen zonder relatie: %d"
+
+#: ../src/plugins/Summary.py:175
+#, python-format
+msgid "Unique surnames: %d"
+msgstr "Unieke achternamen: %d"
+
+#: ../src/plugins/Summary.py:179
+#, python-format
+msgid "Individuals with media objects: %d"
+msgstr "Personen met media-objecten: %d"
+
+#: ../src/plugins/Summary.py:193
+#, python-format
+msgid "Number of families: %d"
+msgstr "Aantal families: %d"
+
+#: ../src/plugins/Summary.py:218
+#, python-format
+msgid "Number of unique media objects: %d"
+msgstr "Aantal unieke media-objecten: %d"
+
+#: ../src/plugins/Summary.py:223
+#, python-format
+msgid "Total size of media objects: %d bytes"
+msgstr "Totale grootte van media-objecten: %d bytes"
+
+#: ../src/plugins/Summary.py:302
 msgid "Provides a summary of the current database"
 msgstr "Levert een samenvatting van de huidige database"
 
@@ -11976,11 +12155,11 @@ msgstr "GeneWeb exportopties"
 #. Register the plugin
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/WritePkg.py:222
+#: ../src/plugins/WritePkg.py:223
 msgid "GRAM_PS package (portable XML)"
 msgstr "GRAM_PS pakket (porteerbaar XML)"
 
-#: ../src/plugins/WritePkg.py:223
+#: ../src/plugins/WritePkg.py:224
 msgid ""
 "GRAMPS package is an archived XML database together with the media object "
 "files."
@@ -11988,7 +12167,7 @@ msgstr ""
 "Een GRAMPS pakket bestaat uit een gearchiveerd XML-gegevensbestand samen met "
 "media-objecten."
 
-#: ../src/plugins/WritePkg.py:225
+#: ../src/plugins/WritePkg.py:226
 msgid "GRAMPS package export options"
 msgstr "GRAMPS-pakketten export opties"
 
@@ -12073,54 +12252,46 @@ msgstr "Opslaan als"
 msgid "No description was provided"
 msgstr "Geen beschrijving gegeven"
 
-#: ../src/PluginUtils/_Plugins.py:70
+#: ../src/PluginUtils/_Plugins.py:64
 msgid "Unsupported"
 msgstr "Niet ondersteund"
 
-#: ../src/PluginUtils/_Plugins.py:129
+#: ../src/PluginUtils/_Plugins.py:122
 msgid "_Apply"
 msgstr "_Toepassen"
 
-#: ../src/PluginUtils/_Plugins.py:271
+#: ../src/PluginUtils/_Plugins.py:265
 msgid "Report Selection"
 msgstr "Verslag selectie"
 
-#: ../src/PluginUtils/_Plugins.py:272 ../src/glade/plugins.glade.h:4
+#: ../src/PluginUtils/_Plugins.py:266 ../src/glade/plugins.glade.h:4
 msgid "Select a report from those available on the left."
 msgstr "Kies een rapport uit de lijst aan de linkerkant."
 
-#: ../src/PluginUtils/_Plugins.py:273
+#: ../src/PluginUtils/_Plugins.py:267
 msgid "_Generate"
 msgstr "_Genereren"
 
-#: ../src/PluginUtils/_Plugins.py:273
+#: ../src/PluginUtils/_Plugins.py:267
 msgid "Generate selected report"
 msgstr "Geselecteerde verslagen aanmaken"
 
-#: ../src/PluginUtils/_Plugins.py:303
+#: ../src/PluginUtils/_Plugins.py:297
 msgid "Tool Selection"
 msgstr "Extra selectie"
 
-#: ../src/PluginUtils/_Plugins.py:304
+#: ../src/PluginUtils/_Plugins.py:298
 msgid "Select a tool from those available on the left."
 msgstr "Kies een functie uit de lijst aan de linkerkant."
 
-#: ../src/PluginUtils/_Plugins.py:305 ../src/plugins/verify.glade.h:24
+#: ../src/PluginUtils/_Plugins.py:299 ../src/plugins/verify.glade.h:24
 msgid "_Run"
 msgstr "_Uitvoeren"
 
 # actie ipv functie?
-#: ../src/PluginUtils/_Plugins.py:306
+#: ../src/PluginUtils/_Plugins.py:300
 msgid "Run selected tool"
 msgstr "Geselecteerde functie uitvoeren"
-
-#: ../src/PluginUtils/_Plugins.py:416
-msgid "Reload Plugins"
-msgstr "Plugins herladen"
-
-#: ../src/PluginUtils/_Plugins.py:420
-msgid "Attempt to reload plugins. Note: This tool itself is not reloaded!"
-msgstr "Poging plugins opnieuw te laden. Merk op: deze tool zelf wordt niet herladen!"
 
 #: ../src/PluginUtils/_Tool.py:64
 msgid "Debug"
@@ -12167,28 +12338,28 @@ msgid "_Proceed with the tool"
 msgstr "Doorgaan met dit hulpmiddel"
 
 #: ../src/PluginUtils/_PluginWindows.py:60
-#: ../src/PluginUtils/_PluginWindows.py:133
+#: ../src/PluginUtils/_PluginWindows.py:154
 msgid "Plugin Status"
 msgstr "Plugin-status"
 
-#: ../src/PluginUtils/_PluginWindows.py:83
+#: ../src/PluginUtils/_PluginWindows.py:84
 msgid "File"
 msgstr "Bestand"
 
-#: ../src/PluginUtils/_PluginWindows.py:86
+#: ../src/PluginUtils/_PluginWindows.py:87
 msgid "Message"
 msgstr "Boodschap"
 
-#: ../src/PluginUtils/_PluginWindows.py:98
+#: ../src/PluginUtils/_PluginWindows.py:110
 msgid "Unavailable"
 msgstr "Niet beschikbaar"
 
-#: ../src/PluginUtils/_PluginWindows.py:102
+#: ../src/PluginUtils/_PluginWindows.py:114
 msgid "Fail"
 msgstr "Mislukt"
 
 # Media Object
-#: ../src/PluginUtils/_PluginWindows.py:109
+#: ../src/PluginUtils/_PluginWindows.py:121
 msgid "OK"
 msgstr "OK"
 
@@ -12228,31 +12399,31 @@ msgstr "Stijleditor"
 msgid "Custom Size"
 msgstr "Aangepast formaat"
 
-#: ../src/ReportBase/_Constants.py:53
+#: ../src/ReportBase/_Constants.py:52
 msgid "Text Reports"
 msgstr "Tekstverslagen"
 
-#: ../src/ReportBase/_Constants.py:54
+#: ../src/ReportBase/_Constants.py:53
 msgid "Graphical Reports"
 msgstr "Grafische verslagen"
 
-#: ../src/ReportBase/_Constants.py:55
+#: ../src/ReportBase/_Constants.py:54
 msgid "Code Generators"
 msgstr "Codegenerators"
 
-#: ../src/ReportBase/_Constants.py:56
+#: ../src/ReportBase/_Constants.py:55
 msgid "Web Pages"
 msgstr "Webpaginas"
 
-#: ../src/ReportBase/_Constants.py:58
+#: ../src/ReportBase/_Constants.py:56
 msgid "Books"
 msgstr "Boeken"
 
-#: ../src/ReportBase/_Constants.py:59
+#: ../src/ReportBase/_Constants.py:57
 msgid "Graphs"
 msgstr "Grafieken"
 
-#: ../src/ReportBase/_Constants.py:64
+#: ../src/ReportBase/_Constants.py:62
 msgid "Graphics"
 msgstr "Grafisch"
 
@@ -12517,7 +12688,8 @@ msgid ""
 "use 72 DPI."
 msgstr ""
 "Dots per inch. Indien u van plan bent om gif of png bestanden aan te maken "
-"voor een webstek, gebruik dan best 100 of 300 DPI. Voor het aanmaken van postscript of PDF-bestanden, gebruik 75 DPI."
+"voor een webstek, gebruik dan best 100 of 300 DPI. Voor het aanmaken van "
+"postscript of PDF-bestanden, gebruik 75 DPI."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:813
 msgid "Node spacing"
@@ -16262,7 +16434,7 @@ msgstr "Ongedaan maken %s"
 msgid "_Redo %s"
 msgstr "%s opnieuw doen"
 
-#: ../src/gen/db/dbdir.py:1705
+#: ../src/gen/db/dbdir.py:1734
 #, python-format
 msgid "Locked by %s"
 msgstr "Op slot door %s"
@@ -16411,7 +16583,7 @@ msgstr "Identificatienummer"
 msgid "National Origin"
 msgstr "Nationale oorsprong"
 
-#: ../src/gen/lib/attrtype.py:68 ../src/gen/lib/attrtype.py:70
+#: ../src/gen/lib/attrtype.py:68
 msgid "Number of Children"
 msgstr "Aantal kinderen"
 
@@ -16420,19 +16592,19 @@ msgid "Social Security Number"
 msgstr "Sofinummer"
 
 # enkelvoud beter?
-#: ../src/gen/lib/attrtype.py:73
+#: ../src/gen/lib/attrtype.py:72
 msgid "Agency"
 msgstr "Leeftijd"
 
-#: ../src/gen/lib/attrtype.py:75
+#: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
 msgstr "Leeftijd vader"
 
-#: ../src/gen/lib/attrtype.py:76
+#: ../src/gen/lib/attrtype.py:75
 msgid "Mother's Age"
 msgstr "Leeftijd moeder"
 
-#: ../src/gen/lib/attrtype.py:77 ../src/gen/lib/eventroletype.py:65
+#: ../src/gen/lib/attrtype.py:76 ../src/gen/lib/eventroletype.py:65
 msgid "Witness"
 msgstr "Getuige"
 
@@ -18610,9 +18782,7 @@ msgstr "Vindt opmerkingen die de <deeltekenreeks> bevatten"
 
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:46
 msgid "Matches notes who contain text matching a substring"
-msgstr ""
-"Vindt opmerkingen die tekst bevatten die met een "
-"deeltekenreeks overeenkomen"
+msgstr "Vindt opmerkingen die tekst bevatten die met een deeltekenreeks overeenkomen"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
 msgid "Notes containing <regular expression>"
