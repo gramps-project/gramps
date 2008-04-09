@@ -11,9 +11,6 @@ The following packages *MUST* be installed in order for Gramps to work:
    librsvg2 (svg icon view)
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
-   Reportlab         Enable creation of PDF documents 
-                     http://www.reportlab.com
-
    GraphViz         Enable creation of graphs using GraphViz engine
                     http://www.graphviz.org
    xdg              Freedesktop utilities, eg xdg-open
