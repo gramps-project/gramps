@@ -493,7 +493,7 @@ class PrintPreview:
         ##self._page_numbers = [0,]
         ##self._page_surfaces = {}
         self._page_no = self._operation.get_property('n_pages')
-        self._pages_label.set_text('of %d' % self._page_no)
+        self._pages_label.set_text(_('of %d') % self._page_no)
 
         # set zoom level and initial page number
         self._zoom_mode = ZOOM_FREE
