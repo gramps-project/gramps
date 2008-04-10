@@ -50,10 +50,11 @@ from gen.lib import (GenderStats, Person, Family, Event, Place, Source,
                      MediaObject, Repository, Note)
 from gen.db import (GrampsDbBase, KEY_TO_CLASS_MAP, CLASS_TO_KEY_MAP, 
                     REFERENCE_KEY, Transaction)
-from gen.db.exceptions import FileVersionError
 from BasicUtils import UpdateCallback
 from gen.db.cursor import GrampsCursor
+from gen.db.exceptions import FileVersionError, FileVersionDeclineToUpgrade
 import Errors
+from QuestionDialog import QuestionDialog2
 
 _MINVERSION = 9
 _DBVERSION = 14
@@ -505,6 +506,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # it makes no sense to go further
         if not self.version_supported():
             self.__close_early()
+            return 0
 
         self.family_map     = self.__open_table(self.full_name, FAMILY_TBL)
         self.place_map      = self.__open_table(self.full_name, PLACES_TBL)
@@ -554,7 +556,18 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # self.secondary_connected flag should be set accordingly.
         
         if self.need_upgrade():
-            self.gramps_upgrade(callback)
+            if QuestionDialog2(_("Need to upgrade database!"), 
+                               _("You cannot open this database "
+                                 "without upgrading it.\n"
+                                 "If you upgrade then you won't be able "
+                                 "to use previous versions of GRAMPS.\n" 
+                                 "You might want to make a backup copy "
+                                 "first."), 
+                               _("Upgrade now"), 
+                               _("Cancel")).run():
+                self.gramps_upgrade(callback)
+            else:
+                raise FileVersionDeclineToUpgrade()
 
         if callback:
             callback(50)
@@ -1198,10 +1211,10 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         self.env        = None
         self.db_is_open = False
         raise FileVersionError(
-            "The database version is not supported by this "
-            "version of GRAMPS.\nPlease upgrade to the "
-            "corresponding version or use XML for porting "
-            "data between different database versions.")
+            _("The database version is not supported by this "
+              "version of GRAMPS.\nPlease upgrade to the "
+              "corresponding version or use XML for porting "
+              "data between different database versions."))
 
     def close(self):
         try:

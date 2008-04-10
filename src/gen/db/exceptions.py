@@ -58,3 +58,9 @@ class FileVersionError(Exception):
 
     def __str__(self):
         return self.value
+
+class FileVersionDeclineToUpgrade(Exception):
+    """
+    Error raised when user decides not to upgrade a necessary upgrade.
+    """
+    pass

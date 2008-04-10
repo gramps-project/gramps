@@ -271,6 +271,11 @@ class DbLoader:
         try:
             self.dbstate.db.load(filename, self.uistate.pulse_progressbar, mode)
             self.dbstate.db.set_save_path(filename)
+        except gen.db.FileVersionDeclineToUpgrade:
+            self.dbstate.no_database()
+        except gen.db.exceptions.FileVersionError, msg:
+            ErrorDialog( _("Cannot open database"), str(msg))
+            self.dbstate.no_database()
         except OSError, msg:
             ErrorDialog(
                 _("Could not open file: %s") % filename, str(msg))
@@ -280,8 +285,6 @@ class DbLoader:
         except Exception:
             _LOG.error("Failed to open database.", exc_info=True)
         return True
-
-
 
     def do_import(self, dialog, importer, filename):
         self.import_info = None
