@@ -352,9 +352,13 @@ class ArgHandler:
         """
 
         if self.list:
-            print 'List of known family trees in your database path\n'
-            for name, dirname in self.dbman.family_tree_list():
-                print dirname, ', with name ', name 
+            print 'GRAMPS Family Trees:'
+            list = self.dbman.family_tree_summary()
+            for dict in list:
+                print "Family Tree \"%s\":" % dict["Family tree"]
+                for item in dict:
+                    if item != "Family tree":
+                        print "   %s: %s" % (item, dict[item])
             sys.exit(0)
         if self.help:
             print _help

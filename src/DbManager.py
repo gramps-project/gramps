@@ -89,13 +89,17 @@ META_NAME     = "meta_data.db"
 ARCHIVE       = "rev.gramps"
 ARCHIVE_V     = "rev.gramps,v"
 
-NAME_COL  = 0
-PATH_COL  = 1
-FILE_COL  = 2
-DATE_COL  = 3
-DSORT_COL = 4
-OPEN_COL  = 5
-STOCK_COL = 6
+NAME_COL     = 0
+PATH_COL     = 1
+FILE_COL     = 2
+DATE_COL     = 3
+DSORT_COL    = 4
+OPEN_COL     = 5
+STOCK_COL    = 6
+PEOPLE_COL   = 7
+SPEOPLE_COL  = 8
+VERSION_COL  = 9
+SVERSION_COL = 10
 
 RCS_BUTTON = { True : _('Extract'), False : _('Archive') }
 
@@ -121,6 +125,34 @@ class CLIDbManager:
         """
         pass
 
+    def get_dbdir_summary(self, file_name):
+        """
+        Returns (people_count, version_number) of current DB.
+        Returns (None, None) if invalid DB or other error.
+        """
+        from bsddb import dbshelve, db
+        from gen.db import META, PERSON_TBL
+        env = db.DBEnv()
+        flags = db.DB_CREATE | db.DB_PRIVATE |\
+            db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
+            db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
+        try:
+            env.open(file_name, flags)
+        except:
+            return None, None
+        dbmap1 = dbshelve.DBShelf(env)
+        fname = os.path.join(file_name, META + ".db")
+        dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
+        version = dbmap1.get('version', default=None)
+        dbmap1.close()
+        dbmap2 = dbshelve.DBShelf(env)
+        fname = os.path.join(file_name, PERSON_TBL + ".db")
+        dbmap2.open(fname, PERSON_TBL, db.DB_HASH, db.DB_RDONLY)
+        count = len(dbmap2)
+        dbmap2.close()
+        env.close()
+        return (count, version)
+
     def _populate_cli(self):
         """ Get the list of current names in the database dir
         """
@@ -136,6 +168,13 @@ class CLIDbManager:
             if os.path.isfile(path_name):
                 name = file(path_name).readline().strip()
 
+                version, count = None, None
+                if self.active == dirpath: # current, opened db
+                    count, version = (len(self.dbstate.db.person_map),
+                                      self.dbstate.db.metadata.get('version'))
+                else:
+                    count, version = self.get_dbdir_summary(dirpath)
+
                 (tval, last) = time_val(dirpath)
                 (enable, stock_id) = icon_values(dirpath, self.active, 
                                                  self.dbstate.db.is_open())
@@ -143,9 +182,21 @@ class CLIDbManager:
                 if (stock_id == 'gramps-lock'):
                     last = find_locker_name(dirpath)
 
+                if version == None:
+                    version = -1
+                    sversion = ""
+                else:
+                    sversion = str(version)
+                if count == None:
+                    count = -1
+                    scount = ""
+                else:
+                    scount = str(count)
+
                 self.current_names.append(
                     (name, os.path.join(dbdir, dpath), path_name,
-                     last, tval, enable, stock_id))
+                     last, tval, enable, stock_id, 
+                     count, scount, version, sversion))
 
         self.current_names.sort()
 
@@ -155,15 +206,40 @@ class CLIDbManager:
            if a known database name
         """
         for data in self.current_names:
-            if data[0] == name:
-                return data[1], 'x-directory/normal', name
+            if data[NAME_COL] == name:
+                return data[PATH_COL], 'x-directory/normal', name
         return None
 
     def family_tree_list(self):
         """Return a list of name, dirname of the known family trees
         """
-        lst = [(x[0], x[1]) for x in self.current_names]
+        lst = [(x[NAME_COL], x[PATH_COL]) for x in self.current_names]
         return lst
+
+    def family_tree_summary(self):
+        """
+        Return a list of dictionaries of the known family trees.
+        """
+        list = []
+        for item in self.current_names:
+            retval = {}
+            if item[PEOPLE_COL] == -1:
+                retval["Number of people"] = "Unknown"
+            else:
+                retval["Number of people"] = item[PEOPLE_COL]
+            if item[OPEN_COL]:
+                retval["Locked?"] = "yes"
+            else:
+                retval["Locked?"] = "no"
+            if item[VERSION_COL] == -1:
+                retval["DB version"] = "Unknown"
+            else:
+                retval["DB version"] = item[VERSION_COL]
+            retval["Family tree"] = item[NAME_COL]
+            retval["Path"] = item[PATH_COL]
+            retval["Last accessed"] = item[DATE_COL]
+            list.append( retval )
+        return list
 
     def __start_cursor(self, msg):
         """
@@ -187,7 +263,7 @@ class CLIDbManager:
         path_name = os.path.join(new_path, NAME_FILE)
 
         if title == None:
-            name_list = [ name[0] for name in self.current_names ]
+            name_list = [ name[NAME_COL] for name in self.current_names ]
             title = find_next_db_name(name_list)
         
         name_file = open(path_name, "w")
@@ -201,7 +277,8 @@ class CLIDbManager:
         (tval, last) = time_val(new_path)
         
         self.current_names.append((title, new_path, path_name,
-                                   last, tval, False, ""))
+                                   last, tval, False, "",
+                                   0, "0", -1, ""))
         return new_path, title
 
     def _create_new_db(self, title=None):
@@ -437,10 +514,24 @@ class DbManager(CLIDbManager):
                                          stock_id=STOCK_COL)
         self.dblist.append_column(icon_column)
 
-        # build the last modified cocolumn
+        # build the last modified column
         render = gtk.CellRendererText()
         column = gtk.TreeViewColumn(_('Last modified'), render, text=DATE_COL)
         column.set_sort_column_id(DSORT_COL)
+        self.dblist.append_column(column)
+
+        # build the people count column
+        render = gtk.CellRendererText()
+        render.set_property("xalign", 1.0)
+        column = gtk.TreeViewColumn(_('People'), render, text=SPEOPLE_COL)
+        column.set_sort_column_id(PEOPLE_COL)
+        self.dblist.append_column(column)
+
+        # build the version number column
+        render = gtk.CellRendererText()
+        render.set_property("xalign", 1.0)
+        column = gtk.TreeViewColumn(_('Version'), render, text=SVERSION_COL)
+        column.set_sort_column_id(VERSION_COL)
         self.dblist.append_column(column)
 
         # set the rules hit
@@ -457,15 +548,16 @@ class DbManager(CLIDbManager):
         """
         Builds the display model.
         """
-        self.model = gtk.TreeStore(str, str, str, str, int, bool, str)
+        self.model = gtk.TreeStore(str, str, str, str, int, bool, str, 
+                                   int, str, int, str)
 
         #use current names to set up the model
         for items in self.current_names:
-            data = [items[0], items[1], items[2], items[3], 
-                    items[4], items[5], items[6]]
-            node = self.model.append(None, data)
-            for rdata in find_revisions(os.path.join(items[1], ARCHIVE_V)):
-                data = [ rdata[2], rdata[0], items[1], rdata[1], 0, False, "" ]
+            node = self.model.append(None, items)
+            for rdata in find_revisions(os.path.join(items[PATH_COL],ARCHIVE_V)):
+                data = [rdata[2], rdata[0], items[PATH_COL], rdata[1], 
+                        0, False, "", 
+                        -1, "", -1, ""]
                 self.model.append(node, data)
         self.dblist.set_model(self.model)
 
@@ -837,7 +929,8 @@ class DbManager(CLIDbManager):
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name, 
-                                        last, tval, False, ''])
+                                        last, tval, False, '',
+                                        0,'0',-1,''])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
         self.dblist.set_cursor(path, focus_column=self.column, 
