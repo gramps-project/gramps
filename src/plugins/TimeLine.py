@@ -47,6 +47,8 @@ import BaseDoc
 import Sort
 from QuestionDialog import ErrorDialog
 from BasicUtils import name_displayer
+from Utils import probably_alive, ProgressMeter
+import gen.lib
 
 #------------------------------------------------------------------------
 #
@@ -94,8 +96,10 @@ class TimeLine(Report):
         sort_func_num = menu.get_option_by_name('sortby').get_value()
         sort_functions = _get_sort_functions(Sort.Sort(database))
         self.sort_func = sort_functions[sort_func_num][1]
+        self.calendar = gen.lib.date.Date.ui_calendar_names[menu.get_option_by_name('calendar').get_value()]
 
     def write_report(self):
+        self.progress = ProgressMeter(_('Timeline'))
 
         (low, high) = self.find_year_range()
 
@@ -128,19 +132,22 @@ class TimeLine(Report):
         
         length = len(self.plist)
 
+        self.progress.set_pass(_('Sorting dates...'), 1)
         self.plist.sort(self.sort_func)
+        self.progress.set_pass(_('Calculating timeline...'), len(self.plist))
         
         for p_id in self.plist:
+            self.progress.step()
             p = self.database.get_person_from_handle(p_id)
             birth = ReportUtils.get_birth_or_fallback(self.database, p)
             if birth:
-                b = birth.get_date_object().get_year()
+                b = birth.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 b = None
 
             death = ReportUtils.get_death_or_fallback(self.database, p)
             if death:
-                d = death.get_date_object().get_year()
+                d = death.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 d = None
 
@@ -183,7 +190,7 @@ class TimeLine(Report):
             else:
                 index += 1;
             current += 1
-            
+        self.progress.close()
         self.build_grid(low, high,start,stop)
         self.doc.end_page()    
 
@@ -232,13 +239,13 @@ class TimeLine(Report):
             p = self.database.get_person_from_handle(p_id)
             birth = ReportUtils.get_birth_or_fallback(self.database, p)
             if birth:
-                b = birth.get_date_object().get_year()
+                b = birth.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 b = None
 
             death = ReportUtils.get_death_or_fallback(self.database, p)
             if death:
-                d = death.get_date_object().get_year()
+                d = death.get_date_object().to_calendar(self.calendar).get_year()
             else:
                 d = None
 
@@ -308,7 +315,7 @@ class TimeLineOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
-        
+
         self.__update_filters()
         
         sortby = EnumeratedListOption(_('Sort by'), 0 )
@@ -318,6 +325,14 @@ class TimeLineOptions(MenuReportOptions):
             idx += 1
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
+        
+        self.__calendar = EnumeratedListOption(_("Calendar"), 0)
+        self.__calendar.set_help(_("The calendar which determines the year span"))
+        idx = 0
+        for calendar in gen.lib.date.Date.ui_calendar_names:
+            self.__calendar.add_item(idx, calendar)
+            idx += 1
+        menu.add_option(category_name, "calendar", self.__calendar)
         
     def __update_filters(self):
         """
