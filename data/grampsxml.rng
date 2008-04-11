@@ -31,7 +31,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.2.0/"
+  ns="http://gramps-project.org/xml/1.3.0/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -413,7 +413,6 @@
     <zeroOrMore><element name="sourceref">
         <ref name="sourceref-content"/>
     </element></zeroOrMore>
-
   </define>
 
   <define name="object-content">
@@ -488,7 +487,19 @@
         <value>1</value>
     </choice></attribute></optional>
     <attribute name="type"><text/></attribute>
-    <text/>
+    <ref name="styledtext"/>
+  </define>
+
+  <define name="styledtext">
+    <element name="text"><text/></element>
+    <zeroOrMore><element name="tag">
+      <attribute name="name"><text/></attribute>
+      <optional><attribute name="value"><text/></attribute></optional>
+      <oneOrMore><element name="range">
+        <attribute name="start"><data type="int"/></attribute>
+        <attribute name="end"><data type="int"/></attribute>
+      </element></oneOrMore>
+    </element></zeroOrMore>
   </define>
 
   <define name="sourceref-content">

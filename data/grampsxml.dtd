@@ -24,15 +24,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.2.0
+    This is the Document Type Definition file for v1.3.0
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.2.0//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.3.0//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.2.0//EN"
-                "http://gramps-project.org/xml/1.2.0/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.3.0//EN"
+                "http://gramps-project.org/xml/1.3.0/grampsxml.dtd"
                 [...]>
 -->
 
@@ -55,7 +55,7 @@ DATABASE
 <!ELEMENT database (header, name-formats?, events?, people?, families?,
                     sources?, places?, objects?, repositories?, notes?,
                     bookmarks?,namemaps?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.2.0/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.3.0/">
 
 <!--	************************************************************
 HEADER
@@ -313,7 +313,7 @@ NOTES
 
 <!ELEMENT notes (note)*>
 
-<!ELEMENT note (#PCDATA)>
+<!ELEMENT note (text,tag*)>
 <!ATTLIST note
         id        CDATA #REQUIRED
         handle    ID    #REQUIRED
@@ -324,6 +324,19 @@ NOTES
 	type      CDATA #REQUIRED
 >
 
+<!ELEMENT text (#PCDATA)>
+
+<!ELEMENT tag (range+)>
+<!ATTLIST tag
+	name	CDATA #REQUIRED
+	value	CDATA #IMPLIED
+>
+
+<!ELEMENT range EMPTY>
+<!ATTLIST range
+	start	CDATA #REQUIRED
+	end	CDATA #REQUIRED
+>
 
 <!--	************************************************************
 BOOKMARKS
