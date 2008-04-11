@@ -68,7 +68,7 @@ try:
 except:
     _gzip_ok = 0
 
-XML_VERSION = "1.2.0"
+XML_VERSION = "1.3.0"
 
 # table for skipping control chars from XML
 strip_dict = dict.fromkeys(range(9)+range(12,20))
