@@ -53,7 +53,6 @@ else:
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 from gtk import glade
 from gtk.gdk import ACTION_COPY
@@ -99,8 +98,6 @@ OPEN_COL  = 5
 STOCK_COL = 6
 
 RCS_BUTTON = { True : _('Extract'), False : _('Archive') }
-
-DOUBLE_CLICK_TIMEOUT = gtk.settings_get_default().get_property('gtk-double-click-time') + 100
 
 class CLIDbManager:
     """
@@ -305,10 +302,7 @@ class DbManager(CLIDbManager):
         self.__connect_signals()
         self.__build_interface()
         self._populate_model()
-        
-        self.timer_on = False
-        self.selection_changed = False
-        
+
     def __connect_signals(self):
         """
         Connects the signals to the buttons on the interface. 
@@ -336,35 +330,12 @@ class DbManager(CLIDbManager):
         treat a double click as if it was OK button press. However, we have
         to make sure that an item was selected first.
         """
-        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 1:
-            if not self.timer_on:
-                new_event = event.copy()
-                gobject.timeout_add(DOUBLE_CLICK_TIMEOUT,
-                                    self.__really_single_button_press,
-                                    new_event)
-                self.timer_on = True
-                
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.timer_on = False
             if self.connect.get_property('sensitive'):
                 self.top.response(gtk.RESPONSE_OK)
                 return True
-            
         return False
 
-    def __really_single_button_press(self, event):
-        if self.timer_on:
-            if not self.selection_changed:
-                self.name_renderer.set_property('editable', True)
-                self.dblist.emit('button-press-event', event)
-                self.name_renderer.set_property('editable', False)
-
-            self.timer_on = False
-            
-        self.selection_changed = False
-        
-        return False
-    
     def __key_press(self, obj, event):
         """
         Grab ENTER so it does not start editing the cell, but behaves
@@ -378,8 +349,9 @@ class DbManager(CLIDbManager):
         return False
 
     def __selection_changed(self, selection):
-        """Called when the selection is changed in the TreeView."""
-        self.selection_changed = True
+        """
+        Called when the selection is changed in the TreeView. 
+        """
         self.__update_buttons(selection)
 
     def __update_buttons(self, selection):
@@ -447,7 +419,6 @@ class DbManager(CLIDbManager):
 
         # build the database name column
         render = gtk.CellRendererText()
-        #render.set_property('editable', True)
         render.set_property('ellipsize', pango.ELLIPSIZE_END)
         render.connect('edited', self.__change_name)
         render.connect('editing-canceled', self.__stop_edit)
@@ -458,8 +429,7 @@ class DbManager(CLIDbManager):
         self.column.set_resizable(True)
         self.column.set_min_width(275)
         self.dblist.append_column(self.column)
-        self.name_renderer = render
-        
+
         # build the icon column
         render = gtk.CellRendererPixbuf()
         icon_column = gtk.TreeViewColumn(_('Status'), render, 
