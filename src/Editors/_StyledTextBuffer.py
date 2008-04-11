@@ -552,7 +552,7 @@ class StyledTextBuffer(gtk.TextBuffer):
             value = self._color_to_hex(color)
             color_selection.destroy()
         elif format == 'font':
-            font_selection = gtk.FontSelectionDialog(_("Select font"))
+            font_selection = CustomFontSelectionDialog(_("Select font"))
             if self.font:
                 font_selection.fontsel.set_font_name(self.font)
             response = font_selection.run()
@@ -652,3 +652,27 @@ class StyledTextBuffer(gtk.TextBuffer):
                 return match
 
         return None
+
+#-------------------------------------------------------------------------
+#
+# CustomFontSelectionDialog class
+#
+#-------------------------------------------------------------------------
+class CustomFontSelectionDialog(gtk.FontSelectionDialog):
+    """A FontSelectionDialog without the Style treeview.
+    
+    This should be only a workaround until a real custom font selector
+    is created, because this solution is gtk implementation dependent.
+    
+    """
+    def __init__(self, title):
+        gtk.FontSelectionDialog.__init__(self, title)
+        
+        # hide the Style label and treeview
+        for widget in self.fontsel.get_children():
+            if isinstance(widget, gtk.Table):
+                table = widget
+        
+        for child in table.get_children():
+            if table.child_get_property(child, 'left-attach') == 1:
+                child.hide()
