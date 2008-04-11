@@ -232,7 +232,7 @@ class StyledTextBuffer(gtk.TextBuffer):
             ('background', 'gramps-font-bgcolor', None, None,
              _('Background Color'), self._on_action_activate),
             ('clear', gtk.STOCK_CLEAR, None, None,
-             _('Clear'), self._format_clear_cb),
+             _('Clear Markup'), self._format_clear_cb),
         ]
         
         self.action_accels = {
