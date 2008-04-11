@@ -419,7 +419,6 @@ class DbManager(CLIDbManager):
 
         # build the database name column
         render = gtk.CellRendererText()
-        render.set_property('editable', True)
         render.set_property('ellipsize', pango.ELLIPSIZE_END)
         render.connect('edited', self.__change_name)
         render.connect('editing-canceled', self.__stop_edit)
