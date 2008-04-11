@@ -362,44 +362,45 @@ class DbManager(CLIDbManager):
         buttons are disabled, and the Open button is disabled if the
         row represents a open database.
         """
+        if not RCS_FOUND:
+            self.rcs.hide()
+            
         # Get the current selection
         store, node = selection.get_selected()
+        
+        # if nothing is selected
         if not node:
             self.connect.set_sensitive(False)
             self.rename.set_sensitive(False)
-            self.rcs.hide()
-            self.repair.hide()
+            self.rcs.set_sensitive(False)
+            self.repair.set_sensitive(False)
             self.remove.set_sensitive(False)
+            return
+        
+        path = self.model.get_path(node)
+        if path is None:
+            return
+
+        is_rev = len(path) > 1
+
+        self.rcs.set_label(RCS_BUTTON[is_rev])
+        self.rename.set_sensitive(True)
+
+        if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
+            self.connect.set_sensitive(False)
+            self.rcs.set_sensitive(True)
         else:
-            path = self.model.get_path(node)
-            if path == None:
-                return
-            is_rev = len(path) > 1
+            self.connect.set_sensitive(not is_rev)
+            self.rcs.set_sensitive(is_rev)
 
-            self.rcs.set_label(RCS_BUTTON[is_rev])
-            self.rename.set_sensitive(True)
-
-            if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
-                self.connect.set_sensitive(False)
-                if RCS_FOUND:
-                    self.rcs.show()
-            else:
-                self.connect.set_sensitive(not is_rev)
-                if RCS_FOUND and is_rev:
-                    self.rcs.show()
-                else:
-                    self.rcs.hide()
-
-            if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
-                path = store.get_value(node, PATH_COL)
-                if os.path.isfile(os.path.join(path,"person.gbkp")):
-                    self.repair.show()
-                else:
-                    self.repair.hide()
-            else:
-                self.repair.hide()
-                
-            self.remove.set_sensitive(True)
+        if store.get_value(node, STOCK_COL) == gtk.STOCK_DIALOG_ERROR:
+            path = store.get_value(node, PATH_COL)
+            backup = os.path.join(path, "person.gbkp")
+            self.repair.set_sensitive(os.path.isfile(backup))
+        else:
+            self.repair.set_sensitive(False)
+            
+        self.remove.set_sensitive(True)
 
     def __build_interface(self):
         """
@@ -556,6 +557,7 @@ class DbManager(CLIDbManager):
         sends a 'editing-canceled' signal loosing the new name
         """
         self.connect.set_sensitive(False)
+        self.rename.set_sensitive(False)
 
     def __change_name(self, renderer_sel, path, new_text):
         """
@@ -844,6 +846,7 @@ class DbManager(CLIDbManager):
                                         last, tval, False, ''])
         self.selection.select_iter(node)
         path = self.model.get_path(node)
+        self.name_renderer.set_property('editable', True)
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
         return new_path, title

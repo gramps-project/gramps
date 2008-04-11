@@ -15986,8 +15986,8 @@ Very High</property>
 		      <child>
 			<widget class="GtkVButtonBox" id="vbuttonbox2">
 			  <property name="visible">True</property>
-			  <property name="layout_style">GTK_BUTTONBOX_SPREAD</property>
-			  <property name="spacing">0</property>
+			  <property name="layout_style">GTK_BUTTONBOX_START</property>
+			  <property name="spacing">6</property>
 
 			  <child>
 			    <widget class="GtkButton" id="new">
@@ -16039,6 +16039,7 @@ Very High</property>
 
 			  <child>
 			    <widget class="GtkButton" id="rcs">
+			      <property name="visible">True</property>
 			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">_Archive</property>
