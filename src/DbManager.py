@@ -429,6 +429,7 @@ class DbManager(CLIDbManager):
         self.column.set_resizable(True)
         self.column.set_min_width(275)
         self.dblist.append_column(self.column)
+        self.name_renderer = render
 
         # build the icon column
         render = gtk.CellRendererPixbuf()
@@ -545,6 +546,7 @@ class DbManager(CLIDbManager):
             return
 
     def __stop_edit(self, *args):
+        self.name_renderer.set_property('editable', False)
         self.__update_buttons(self.selection)
 
     def __start_edit(self, *args):
@@ -571,6 +573,8 @@ class DbManager(CLIDbManager):
                     self.__rename_revision(path, new_text)
                 else:
                     self.__rename_database(path, new_text)
+        
+        self.name_renderer.set_property('editable', False)
         self.__update_buttons(self.selection)
 
     def __rename_revision(self, path, new_text):
@@ -764,6 +768,7 @@ class DbManager(CLIDbManager):
         """
         store, node = self.selection.get_selected()
         path = self.model.get_path(node)
+        self.name_renderer.set_property('editable', True)
         self.dblist.set_cursor(path, focus_column=self.column, 
                                start_editing=True)
 
