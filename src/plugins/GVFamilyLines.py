@@ -54,6 +54,14 @@ from ReportBase import Report, ReportUtils, MenuReportOptions, \
 from PluginUtils import register_report, EnumeratedListOption, BooleanOption, \
     NumberOption, ColourOption, PersonListOption, SurnameColourOption
 
+#------------------------------------------------------------------------
+#
+# Constant options items
+#
+#------------------------------------------------------------------------
+_COLORS = [ { 'name' : _("B&W outline"),     'value' : "outline" },
+            { 'name' : _("Coloured outline"), 'value' : "colored" },
+            { 'name' : _("Colour fill"),      'value' : "filled"  }]
 
 #------------------------------------------------------------------------
 #
@@ -163,6 +171,15 @@ class FamilyLinesOptions(MenuReportOptions):
                                _('The maximum number of children to include.'))
         menu.add_option(category, 'FLmaxChildren', self.max_children)
 
+        color = EnumeratedListOption(_("Graph coloring"), "filled")
+        for i in range( 0, len(_COLORS) ):
+            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
+        color.set_help(_("Males will be shown with blue, females "
+                         "with red, unless otherwise set above for filled."
+                         " If the sex of an individual "
+                         "is unknown it will be shown with gray."))
+        menu.add_option(category, "FLcolor", color)
+
         # --------------------
         category = _('Images')
         # --------------------
@@ -246,6 +263,19 @@ class FamilyLinesReport(Report):
         """
         Report.__init__(self, database, options)
 
+        colored = {
+            'male': 'dodgerblue4',
+            'female': 'deeppink',
+            'unknown': 'black',
+            'family': 'darkgreen'
+        }
+        filled = {
+            'male': 'lightblue',
+            'female': 'lightpink',
+            'unknown': 'lightgray',
+            'family': 'lightyellow'
+        }
+
         # initialize several convenient variables
         self.options            = options
         self.db                 = database
@@ -291,6 +321,11 @@ class FamilyLinesReport(Report):
             colour = tmp.pop(0)
             self.surnameColours[surname] = colour
 
+        self.colorize = options.handler.options_dict['FLcolor']
+        if self.colorize == 'colored':
+            self.colors = colored
+        elif self.colorize == 'filled':
+            self.colors = filled
 
     def begin_report(self):
         # inherited method; called by report() in _ReportDialog.py
@@ -756,13 +791,40 @@ class FamilyLinesReport(Report):
             if imagePath:
                 label += '</TD></TR></TABLE>'
 
-            self.doc.add_node(
-                id=person.get_gramps_id(),
-                label=label,
-                shape='box',
-                fillcolor=colour,
-                htmloutput=bUseHtmlOutput)
+            gender = person.get_gender()
+            shape = "box"
+            style = ""
+            color = ""
+            fill = ""
+            if gender == person.MALE:
+                shape = "box"
+                style = "solid"
+            elif gender == person.FEMALE:
+                shape = "box"
+                style = "rounded"
+            else:
+                shape = "hexagon"
+            if self.colorize == 'colored':
+                if gender == person.MALE:
+                    color = self.colors['male']
+                elif gender == person.FEMALE:
+                    color = self.colors['female']
+                else:
+                    color = self.colors['unknown']
+            elif self.colorize == 'filled':
+                if style != "":
+                    style += ",filled"
+                    fill = colour
+                else:
+                    style = "filled"
 
+            self.doc.add_node(id=person.get_gramps_id(),
+                 label=label,
+                 shape=shape,
+                 color=color,
+                 style=style,
+                 fillcolor=fill,
+                 htmloutput=bUseHtmlOutput)
 
     def writeFamilies(self):
 
@@ -821,8 +883,17 @@ class FamilyLinesReport(Report):
                 if label != '':
                     label += '\\n'
                 label += '%s' % childrenStr
-            self.doc.add_node(fgid, label, "ellipse", "", "filled", self.colourFamilies)
-            
+
+            color = ""
+            fill = ""
+            style = "solid"
+            if self.colorize == 'colored':
+                color = self.colors['family']
+            elif self.colorize == 'filled':
+                fill = self.colourFamilies
+                style = "filled"
+            self.doc.add_node(fgid, label, "ellipse", color, style, fill)
+
 
         # now that we have the families written, go ahead and link the parents and children to the families
         for familyHandle in self.familiesToOutput:
