@@ -195,15 +195,15 @@ wrapper.width = 20
 # appropriately typesetting curly quotes and apostrophes.
 html_escape_table = {
     "&"  : "&#38;",
-    ' "' : " &#8220;",
-    '" ' : "&#8221; ",
-    " '" : " &#8216;",
-    "' " : "&#8217; ",
-    "'s ": "&#8217;s ",
-    '"'  : "&quot;",
-    "'"  : "&apos;",
-    ">"  : "&gt;",
-    "<"  : "&lt;",
+    ' "'  : " &#8220;",
+    '" '  : "&#8221; ",
+    " '"  : " &#8216;",
+    "' "  : "&#8217; ",
+    "'s "  : "&#8217;s ",
+    '"'  : "&#34;",
+    "'"  : "&#39;",
+    ">"  : "&#62;",
+    "<"  : "&#60;",
     }
 
 # This command then defines the 'html_escape' option for escaping
