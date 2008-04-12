@@ -95,6 +95,7 @@ class TimeLine(Report):
 
         sort_func_num = menu.get_option_by_name('sortby').get_value()
         sort_functions = _get_sort_functions(Sort.Sort(database))
+        self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.calendar = gen.lib.date.Date.ui_calendar_names[menu.get_option_by_name('calendar').get_value()]
 
@@ -152,7 +153,8 @@ class TimeLine(Report):
                 d = None
 
             n = name_displayer.display_formal(p)
-            self.doc.draw_text('TLG-text', n,incr+pad,self.header + (incr+pad)*index)
+            self.doc.draw_text('TLG-text', n,incr+pad,
+                               self.header + (incr+pad)*index)
             
             y1 = self.header + (pad+incr)*index
             y2 = self.header + ((pad+incr)*index)+incr
@@ -212,7 +214,11 @@ class TimeLine(Report):
         normal_font = style_sheet.get_paragraph_style('TLG-Name').get_font()
         label_font = style_sheet.get_paragraph_style('TLG-Label').get_font()
 
-        self.doc.center_text('TLG-title',self.title,width/2.0,0)
+        byline = _("%(calendar_type)s Calendar, Sorted by %(sortby)s" % 
+                   {"calendar_type": self.calendar,
+                    "sortby": self.sort_name})
+
+        self.doc.center_text('TLG-title',self.title + "\n" + byline,width/2.0,0)
         
         label_y = self.header - (pt2cm(normal_font.get_size())*1.2)
         top_y = self.header
