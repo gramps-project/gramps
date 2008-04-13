@@ -458,10 +458,13 @@ class BasePage:
         db = self.report.database
         of.write('\t<div id="indivgallery" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('Gallery'))
+        displayed = []
         for mediaref in photolist:
 
             photo_handle = mediaref.get_reference_handle()
             photo = db.get_object_from_handle(photo_handle)
+            if photo_handle in displayed:
+                continue
             mime_type = photo.get_mime_type()
 
             title = photo.get_description()
@@ -493,6 +496,7 @@ class BasePage:
                         photo_list[photo_handle] = [lnk]
                 except (IOError, OSError), msg:
                     WarningDialog(_("Could not add photo to page"), str(msg))
+            displayed.append(photo_handle)
 
         of.write('\t\t<div class="fullclear"></div>\n')
         of.write('\t</div>\n\n')
