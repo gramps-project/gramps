@@ -329,7 +329,7 @@ class AllRelReport():
             else:
                 sdoc.header1(_("Remarks"))
             sdoc.paragraph("")
-            sdoc.paragraph(_("The following problems where encountered:"))
+            sdoc.paragraph(_("The following problems were encountered:"))
             
             for msg in msg_list :
                 sdoc.paragraph(msg)
