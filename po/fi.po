@@ -238,7 +238,7 @@ msgstr "Laskettu"
 
 #: ../src/DateEdit.py:100
 msgid "manual|Editing_Dates"
-msgstr "Päivämäärien muokkaus"
+msgstr "Päivämäärien_muokkaus"
 
 #: ../src/DateEdit.py:149
 msgid "Bad Date"
@@ -3010,7 +3010,7 @@ msgstr "Yksityinen tietue"
 
 #: ../src/Merge/_MergePerson.py:45
 msgid "manual|Merge_People"
-msgstr "Yhdistä henkilöitä"
+msgstr "Yhdistä_henkilöitä"
 
 #: ../src/Merge/_MergePerson.py:82
 msgid "Compare People"
@@ -3098,7 +3098,7 @@ msgstr "Yhdistä henkilöitä"
 
 #: ../src/Merge/_MergePlace.py:52
 msgid "manual|Merge_Places"
-msgstr "Yhdistä paikkoja"
+msgstr "Yhdistä_paikkoja"
 
 #: ../src/Merge/_MergePlace.py:77 ../src/Merge/_MergePlace.py:97
 #: ../src/Merge/_MergePlace.py:175
@@ -3107,7 +3107,7 @@ msgstr "Yhdistä paikkoja"
 
 #: ../src/Merge/_MergeSource.py:42
 msgid "manual|Merge_Sources"
-msgstr "Yhdistä lähteitä"
+msgstr "Yhdistä_lähteitä"
 
 #: ../src/Merge/_MergeSource.py:78 ../src/Merge/_MergeSource.py:206
 msgid "Merge Sources"
@@ -4520,7 +4520,7 @@ msgstr "Lapsiviite"
 
 #: ../src/Editors/_EditEvent.py:60
 msgid "manual|Editing_Information_About_Events"
-msgstr "Tapahtumatietojen muokkaus"
+msgstr "Tapahtumatietojen_muokkaus"
 
 #: ../src/Editors/_EditEvent.py:87 ../src/Editors/_EditEventRef.py:221
 #, python-format
@@ -6705,7 +6705,7 @@ msgstr "Tuottaa raportin syntymä- ja vuosipäivistä"
 
 #: ../src/plugins/ChangeNames.py:67
 msgid "manual|Fix_Capitalization_of_Family_Names..."
-msgstr "Korjaa sukunimien Alkukirjaimet..."
+msgstr "Korjaa_sukunimien_Alkukirjaimet..."
 
 #: ../src/plugins/ChangeNames.py:77 ../src/plugins/ChangeNames.py:255
 msgid "Capitalization changes"
@@ -7635,7 +7635,7 @@ msgstr "FAQ (usein kysytyt)"
 
 #: ../src/plugins/Desbrowser.py:56
 msgid "manual|Interactive_Descendant_Browser"
-msgstr "Vuorovaikutteinen jälkeläisselain"
+msgstr "Vuorovaikutteinen_jälkeläisselain"
 
 #: ../src/plugins/Desbrowser.py:73
 #, python-format
@@ -11178,7 +11178,7 @@ msgstr "Tuottaa aikajanakaavion."
 
 #: ../src/plugins/Verify.py:66
 msgid "manual|Verify_the_Data..."
-msgstr "Tarkista tiedot..."
+msgstr "Tarkista_tiedot..."
 
 #: ../src/plugins/Verify.py:219
 msgid "Database Verify tool"
