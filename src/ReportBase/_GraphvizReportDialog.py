@@ -59,8 +59,8 @@ from PluginUtils import NumberOption, EnumeratedListOption, TextOption
 #
 #-------------------------------------------------------------------------------
 _FONTS = [ { 'name' : _("Default"),                   'value' : ""          },
-           { 'name' : _("Postscript / Helvetica"),    'value' : "Helvetica" },
-           { 'name' : _("Truetype / FreeSans"),       'value' : "FreeSans"  }  ]
+           { 'name' : _("PostScript / Helvetica"),    'value' : "Helvetica" },
+           { 'name' : _("TrueType / FreeSans"),       'value' : "FreeSans"  }  ]
 
 _RANKDIR = [ { 'name' : _("Vertical (top to bottom)"),      'value' : "TB" },
              { 'name' : _("Vertical (bottom to top)"),      'value' : "BT" },
@@ -552,11 +552,11 @@ class GVPdfGsDoc(GVDocBase):
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
-        # Create a temporary Postscript file
+        # Create a temporary PostScript file
         (handle,tmp_ps) = tempfile.mkstemp(".ps" )
         os.close( handle )
 
-        # Generate Postscript using dot
+        # Generate PostScript using dot
         command = 'dot -Tps -o"%s" "%s"' % ( tmp_ps, tmp_dot )
         os.system(command)
 
@@ -607,7 +607,7 @@ if _dot_found:
     
     _formats += [{ 'type' : "ps",
                    'ext'  : "ps",
-                   'descr': _("Postscript"), 
+                   'descr': _("PostScript"), 
                    'mime' : "application/postscript", 
                    'class': GVPsDoc }]
     
@@ -806,8 +806,8 @@ class GraphvizReportDialog(ReportDialog):
         dpi = NumberOption(_("DPI"), 75, 20, 1200)
         dpi.set_help(_( "Dots per inch.  When creating images such as "
                         ".gif or .png files for the web, try numbers "
-                        "such as 100 or 300 DPI.  When creating postscript or "
-                        "pdf files, use 72 DPI."))
+                        "such as 100 or 300 DPI.  When creating PostScript "
+                        "or PDF files, use 72 DPI."))
         self.options.add_menu_option(category, "dpi", dpi)
 
         nodesep = NumberOption(_("Node spacing"), 0.20, 0.01, 5.00, 0.01)
