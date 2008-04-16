@@ -8038,7 +8038,7 @@ msgstr "Tuottaa yksityiskohtaisen jälkeläisraportin"
 #: ../src/plugins/EndOfLineReport.py:134
 #, python-format
 msgid "End of Line Report for %s"
-msgstr "Rivin loppuraportti %s:lle"
+msgstr "Suvun pääteraportti %s:lle"
 
 #: ../src/plugins/EndOfLineReport.py:140
 #, python-format
@@ -8060,11 +8060,11 @@ msgstr "Sukupolviotsakkeiden perustyyli."
 
 #: ../src/plugins/EndOfLineReport.py:316
 msgid "End of Line Report"
-msgstr "Rivin loppuraportti"
+msgstr "Suvun pääteraportti"
 
 #: ../src/plugins/EndOfLineReport.py:318
 msgid "Produces a textual end of line report"
-msgstr "Tuottaa tekstimuotoisen rivin loppuraportin"
+msgstr "Tuottaa tekstimuotoisen suvun pääteraportin"
 
 #: ../src/plugins/Eval.py:58
 msgid "Python evaluation window"
