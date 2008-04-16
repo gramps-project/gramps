@@ -2313,19 +2313,18 @@ class IndividualPage(BasePage):
 
         date = _dd.display(event.get_date_object())
 
-        # TODO. This logic does not work for LTR languages. We should go
-        # back to what it was. (Sorry, I (keestux) messed up.)
-        text = ''
+        if date and place:
+            text = _("(%(date) s&nbsp;&nbsp; at &nbsp;&nbsp; %(place)s") % { 'date': date, 'place': place }
+        elif place:
+            text = _("at &nbsp;&nbsp; %(place)s") % { 'place': place }
+        elif date:
+            text = date
+        else:
+            text = ''
         if descr:
+            if text:
+                text += "<br />"
             text += descr
-        if date:
-            if text:
-                text += ',&nbsp;&nbsp;'
-            text += date
-        if place:
-            if text:
-                text += '&nbsp;&nbsp;'
-            text += _('place|at') + '&nbsp;&nbsp;' + place
 
         text += self.get_citation_links(event.get_source_references())
 
