@@ -758,14 +758,14 @@ class GraphvizReportDialog(ReportDialog):
         h_pages.set_help(_("GraphViz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
-                           "pages in the array horizontally."))
+                           "of pages in the array horizontally."))
         self.options.add_menu_option(category, "h_pages", h_pages)
         
         v_pages = NumberOption(_("Number of Vertical Pages"), 1, 1, 25)
         v_pages.set_help(_("GraphViz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
-                           "pages in the array vertically."))
+                           "of pages in the array vertically."))
         self.options.add_menu_option(category, "v_pages", v_pages)
 
         page_dir = EnumeratedListOption(_("Paging Direction"), 0)
