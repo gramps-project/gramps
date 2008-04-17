@@ -283,7 +283,7 @@ class ImportInfo:
             txt += _("\nMedia objects with relative paths have been\n"
                      "imported. These paths are considered relative to\n"
                      "the media directory you can set in the preferences,\n"
-                     "or, if not set, relative to the user directory.\n"
+                     "or, if not set, relative to the user's directory.\n"
                     )
         return txt
 

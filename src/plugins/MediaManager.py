@@ -484,10 +484,10 @@ class PathChange(BatchOp):
 #------------------------------------------------------------------------
 class Convert2Abs(BatchOp):
     title       = _('Convert paths from relative to _absolute')
-    description = _('This tool allows converting relative media paths '
-                    'to the absolute ones. It does this by prepending '
-                    'the base path as given in the Preferences, or if '
-                    'that is not set, it prepends your home directory.')
+    description = _("This tool allows converting relative media paths "
+                    "to the absolute ones. It does this by prepending "
+                    "the base path as given in the Preferences, or if "
+                    "that is not set, it prepends user's directory.")
 
     def _prepare(self):
         cursor = self.db.get_media_cursor()
@@ -522,12 +522,12 @@ class Convert2Abs(BatchOp):
 #------------------------------------------------------------------------
 class Convert2Rel(BatchOp):
     title       = _('Convert paths from absolute to r_elative')
-    description = _('This tool allows converting absolute media paths '
-                    'to the a relative path. The relative path is relative '
-                    'viz-a-viz the base path as given in the Preferences, '
-                    'or if that is not set, your home directory. '
-                    'A relative path allows to tie the file location to a '
-                    'base path that can change to your needs.')
+    description = _("This tool allows converting absolute media paths "
+                    "to the a relative path. The relative path is relative "
+                    "viz-a-viz the base path as given in the Preferences, "
+                    "or if that is not set, user's directory. "
+                    "A relative path allows to tie the file location to "
+                    "a base path that can change to your needs.")
 
     def _prepare(self):
         cursor = self.db.get_media_cursor()
