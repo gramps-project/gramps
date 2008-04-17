@@ -189,7 +189,7 @@ class Date:
             self.sortval  = 0
             self.newyear = 0
             self.set_yr_mon_day(*source)
-        elif type(source) == str:
+        elif type(source) == str and source != "":
             if (calendar != None or 
                 modifier != None or 
                 quality != None):
@@ -355,10 +355,16 @@ class Date:
     #    return self.sortval == other.sortval
 
     def __lt__(self, other):
-        return self.sortval < other.sortval
+        """
+        Comparison for less than.
+        """
+        return self.match(other, comparison="<")
 
     def __gt__(self, other):
-        return self.sortval > other.sortval
+        """
+        Comparison for greater than.
+        """
+        return self.match(other, comparison=">")
 
     def is_equal(self, other):
         """
@@ -467,7 +473,9 @@ class Date:
         comparison >> :
             Returns True if all parts of other_date > all parts of self
         """
-        if (other_date.modifier == Date.MOD_TEXTONLY or
+        if (self.sortval == 0 or other_date.sortval == 0):
+            return False
+        elif (other_date.modifier == Date.MOD_TEXTONLY or
             self.modifier == Date.MOD_TEXTONLY):
             if comparison in ["=", "=="]:
                 return (self.text.upper().find(other_date.text.upper()) != -1)
