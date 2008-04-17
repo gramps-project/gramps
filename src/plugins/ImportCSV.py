@@ -149,8 +149,9 @@ def rd(line_number, row, col, key, default = None):
         return default
 
 def cleanup_column_name(column):
-    """ Handle column aliases """
+    """ Handle column aliases for CSV spreadsheet import and SQL """
     retval = column
+    # Title case:
     if retval in ["Lastname", 
                   "Surname", _("Surname")]:
         return "surname"
@@ -174,21 +175,29 @@ def cleanup_column_name(column):
         return "source"
     elif retval in ["Note", _("Note")]:
         return "note"
-    elif retval in ["Birthplace", "Birth place", _("Birth place")]:
+    elif retval in ["Birthplace", 
+                    "Birth place", _("Birth place")]:
         return "birthplace"
-    elif retval in ["Birthdate", "Birth date", _("Birth date")]:
+    elif retval in ["Birthdate", 
+                    "Birth date", _("Birth date")]:
         return "birthdate"
-    elif retval in ["Birthsource", "Birth source", _("Birth source")]:
+    elif retval in ["Birthsource", 
+                    "Birth source", _("Birth source")]:
         return "birthsource"
-    elif retval in ["Deathplace", "Death place", _("Death place")]:
+    elif retval in ["Deathplace", 
+                    "Death place", _("Death place")]:
         return "deathplace"
-    elif retval in ["Deathdate", "Death date", _("Death date")]:
+    elif retval in ["Deathdate", 
+                    "Death date", _("Death date")]:
         return "deathdate"
-    elif retval in ["Deathsource", "Death source", _("Death source")]:
+    elif retval in ["Deathsource", 
+                    "Death source", _("Death source")]:
         return "deathsource"
-    elif retval in ["Deathcause", "Death cause", _("Death cause")]:
+    elif retval in ["Deathcause", 
+                    "Death cause", _("Death cause")]:
         return "deathcause"
-    elif retval in ["Grampsid", "Gramps id", _("Gramps id")]:
+    elif retval in ["Grampsid", "ID",
+                    "Gramps id", _("Gramps id")]:
         return "grampsid"
     elif retval in ["Person", _("Person")]:
         return "person"
@@ -215,15 +224,15 @@ def cleanup_column_name(column):
     elif retval in ["Place", _("Place")]:
         return "place"
     # lowercase
-    elif retval in ["lastname", 
+    elif retval in ["lastname", "last_name", 
                   "surname", _("surname")]:
         return "surname"
-    elif retval in ["firstname", 
+    elif retval in ["firstname", "first_name", "given_name",
                     "given name", _("given name"), 
                     "given", _("given")]:
         return "firstname"
-    elif retval in ["callname", 
-                    "call name", _("call name"),
+    elif retval in ["callname", "call_name",
+                    "call name", 
                     "call", _("call")]:
         return "callname"
     elif retval in ["title", _("title")]:
@@ -238,21 +247,29 @@ def cleanup_column_name(column):
         return "source"
     elif retval in ["note", _("note")]:
         return "note"
-    elif retval in ["birthplace", "birth place", _("birth place")]:
+    elif retval in ["birthplace", "birth_place",
+                    "birth place", _("birth place")]:
         return "birthplace"
-    elif retval in ["birthdate", "birth date", _("birth date")]:
+    elif retval in ["birthdate", "birth_date",
+                    "birth date", _("birth date")]:
         return "birthdate"
-    elif retval in ["birthsource", "birth source", _("birth source")]:
+    elif retval in ["birthsource", "birth_source",
+                    "birth source", _("birth source")]:
         return "birthsource"
-    elif retval in ["deathplace", "death place", _("death place")]:
+    elif retval in ["deathplace", "death_place",
+                    "death place", _("death place")]:
         return "deathplace"
-    elif retval in ["deathdate", "death date", _("death date")]:
+    elif retval in ["deathdate", "death_date",
+                    "death date", _("death date")]:
         return "deathdate"
-    elif retval in ["deathsource", "death source", _("death source")]:
+    elif retval in ["deathsource", "death_source",
+                    "death source", _("death source")]:
         return "deathsource"
-    elif retval in ["deathcause", "death cause", _("death cause")]:
+    elif retval in ["deathcause", "death_cause",
+                    "death cause", _("death cause")]:
         return "deathcause"
-    elif retval in ["grampsid", "gramps id", _("gramps id")]:
+    elif retval in ["grampsid", "id", "gramps_id", 
+                    "gramps id", _("gramps id")]:
         return "grampsid"
     elif retval in ["person", _("person")]:
         return "person"
