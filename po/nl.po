@@ -427,7 +427,7 @@ msgstr "Archief"
 #: ../src/DbManager.py:172
 #, python-format
 msgid "Starting Import, %s"
-msgstr "Import gestart, %s"
+msgstr "Importeren gestart, %s"
 
 #: ../src/DbManager.py:178
 msgid "Import finished..."
@@ -437,7 +437,7 @@ msgstr "Importeren beëindigd..."
 #. based on the DBDir
 #: ../src/DbManager.py:223 ../src/plugins/ImportCSV.py:374
 msgid "Importing data..."
-msgstr "Importen van gegevens..."
+msgstr "Importeren van gegevens..."
 
 #: ../src/DbManager.py:427
 msgid "Family tree name"
@@ -1442,7 +1442,7 @@ msgstr "Exporteren"
 
 #: ../src/gramps_main.py:137
 msgid "Import"
-msgstr "Importer"
+msgstr "Importeren"
 
 #: ../src/gramps_main.py:138 ../src/UndoHistory.py:63
 msgid "Undo History"
@@ -10200,8 +10200,8 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Deze pagina bevat een index van alle personen in het gegevensbestand, "
-"gesorteerd op achternaam. Door een &#8217;persoonsnaam te kiezen kunt u naar "
-"de &#8217;pagina van deze persoon gaan."
+"gesorteerd op achternaam. Door een persoonsnaam te kiezen kunt u naar "
+"de pagina van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:838
 #, python-format
@@ -10211,7 +10211,7 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Deze pagina bevat een index van alle personen in het gegevensbestand met "
-"achternaam %s. Door de &#8217;naam te kiezen kunt u naar de &#8217;pagina "
+"achternaam %s. Door de naam te kiezen kunt u naar de pagina "
 "van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:966
@@ -10221,7 +10221,7 @@ msgid ""
 "place&#8217;s page."
 msgstr ""
 "Deze pagina bevat een index van alle locaties in het gegevensbestand, "
-"gesorteerd op titel. Door een &#8217;titel te kiezen gaat u naar de &#8217;"
+"gesorteerd op titel. Door een titel te kiezen gaat u naar de "
 "pagina van deze locatie."
 
 #: ../src/plugins/NarrativeWeb.py:976 ../src/plugins/NarrativeWeb.py:1336
@@ -10296,8 +10296,8 @@ msgid ""
 "source&#8217;s page."
 msgstr ""
 "Deze pagina bevat een index van alle bronnen van het gegevensbestand, "
-"gesorteerd volgens titel. Aanklikken van de &#8217;brontitel brengt u naar "
-"de &#8217;bronpagina."
+"gesorteerd volgens titel. Aanklikken van de brontitel brengt u naar "
+"de bronpagina."
 
 #: ../src/plugins/NarrativeWeb.py:1535
 msgid "Publication information"
@@ -10311,7 +10311,7 @@ msgid ""
 msgstr ""
 "Deze pagina bevat een index van alle media-objecten in het gegevensbestand. "
 "Deze zijn gesorteerd op titel. Aanklikken van de titel brengt u naar de "
-"desbetreffende &#8217;pagina."
+"desbetreffende pagina."
 
 #: ../src/plugins/NarrativeWeb.py:1810
 msgid "Ancestors"
@@ -10646,7 +10646,7 @@ msgstr "Al of niet een overlijdenskolom toevoegen"
 
 #: ../src/plugins/NarrativeWeb.py:3064
 msgid "Include a column for partners on the index pages"
-msgstr "Een kolom voorzien n de indexpagina's voor de partners"
+msgstr "Een kolom voorzien in de indexpagina's voor de partners"
 
 #: ../src/plugins/NarrativeWeb.py:3066
 msgid "Whether to include a partners column"
