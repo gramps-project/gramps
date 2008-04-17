@@ -76,7 +76,6 @@ from DbLoader import DbLoader
 import GrampsDisplay
 from gen.utils import ProgressMonitor
 from GrampsAboutDialog import GrampsAboutDialog
-
 import ProgressDialog
 
 #-------------------------------------------------------------------------
@@ -174,6 +173,9 @@ UIDEFAULT = '''<ui>
 </ui>
 '''
 
+WIKI_HELP_PAGE_FAQ = 'Gramps_3.0_Wiki_Manual_-_FAQ'
+WIKI_HELP_PAGE_KEY = 'Gramps_3.0_Wiki_Manual_-_Keybindings'
+WIKI_HELP_PAGE_MAN = 'Gramps_3.0_Wiki_Manual'
 #-------------------------------------------------------------------------
 #
 # ViewManager
@@ -1420,13 +1422,13 @@ def key_bindings(obj):
     """
     Display key bindings
     """
-    GrampsDisplay.help(const.WIKI_KEYBINDINGS)
+    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_KEY)
 
 def manual_activate(obj):
     """
     Display the GRAMPS manual
     """
-    GrampsDisplay.help()
+    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_MAN)
 
 def report_bug_activate(obj):
     """
@@ -1456,7 +1458,7 @@ def faq_activate(obj):
     """
     Display FAQ
     """
-    GrampsDisplay.help(webpage=const.WIKI_FAQ)
+    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_FAQ)
 
 def by_menu_name(first, second):
     """
