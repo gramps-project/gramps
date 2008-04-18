@@ -1758,7 +1758,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
              birth_ref_index,    #  6
              event_ref_list,     #  7
              family_list,        #  8
-             arent_family_list,  #  9
+             parent_family_list, #  9
              media_list,         # 10
              address_list,       # 11
              attribute_list,     # 12
@@ -1800,7 +1800,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                           birth_ref_index,    #  6
                           event_ref_list,     #  7
                           family_list,        #  8
-                          arent_family_list,  #  9
+                          parent_family_list, #  9
                           media_list,         # 10
                           new_address_list,       # 11
                           attribute_list,     # 12

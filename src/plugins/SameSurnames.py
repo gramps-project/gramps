@@ -62,7 +62,7 @@ def run(database, document, person):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
     if type(person) == str:
         surname = person
         rsurname = person
@@ -88,7 +88,7 @@ def run(database, document, person):
                  str(person.get_primary_name().get_type()))
         matches += 1
     sdoc.paragraph(_("There are %d people with a matching name, or alternate name.\n") % matches)
-    stab.write()
+    stab.write(sdoc)
                     
 #------------------------------------------------------------------------
 #

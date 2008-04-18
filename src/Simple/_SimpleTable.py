@@ -34,12 +34,11 @@ class SimpleTable:
     Provide a simplified table creation interface.
     """
 
-    def __init__(self, access, doc, title=None):
+    def __init__(self, access, title=None):
         """
-        Initialize the class with a simpledb, and simpledoc
+        Initialize the class with a simpledb
         """
         self.access = access
-        self.simpledoc = doc # simpledoc; simpledoc.doc = docgen object
         self.title = title
         self.__columns = []
         self.__rows = []
@@ -250,7 +249,8 @@ class SimpleTable:
         else:
             self.__rows.sort(lambda a, b: cmp(a[idx],b[idx]))
 
-    def write(self):
+    def write(self, document):
+        self.simpledoc = document # simpledoc; simpledoc.doc = docgen object
         if self.simpledoc.doc.type == "standard":
             doc = self.simpledoc.doc
             doc.start_table('simple','Table')

@@ -712,6 +712,7 @@ class StatsGramplet(Gramplet):
 
 class PythonGramplet(Gramplet):
     def init(self):
+        self.prompt = ">"
         self.tooltip = _("Enter Python expressions")
         self.env = {"dbstate": self.gui.dbstate,
                     "uistate": self.gui.uistate,
@@ -720,7 +721,7 @@ class PythonGramplet(Gramplet):
                     }
         # GUI setup:
         self.gui.textview.set_editable(True)
-        self.set_text("Python %s\n> " % sys.version)
+        self.set_text("Python %s\n%s " % (sys.version, self.prompt))
         self.gui.textview.connect('key-press-event', self.on_key_press)
 
     def format_exception(self, max_tb_level=10):
@@ -728,6 +729,29 @@ class PythonGramplet(Gramplet):
         cla, exc, trbk = sys.exc_info()
         retval += _("Error") + (" : %s %s" %(cla, exc))
         return retval
+
+    def process_command(self, command):
+        # update states, in case of change:
+        self.env["dbstate"] = self.gui.dbstate
+        self.env["uistate"] = self.gui.uistate
+        _retval = None
+        if "_retval" in self.env:
+            del self.env["_retval"]
+        exp1 = """_retval = """ + command
+        exp2 = command.strip()
+        try:
+            _retval = eval(exp2, self.env)
+        except:
+            try:
+                exec exp1 in self.env
+            except:
+                try:
+                    exec exp2 in self.env
+                except:
+                    _retval = self.format_exception()
+        if "_retval" in self.env:
+            _retval = self.env["_retval"]
+        return _retval
 
     def on_key_press(self, widget, event):
         import gtk
@@ -764,39 +788,20 @@ class PythonGramplet(Gramplet):
             end = buffer.get_iter_at_line_offset(line_cnt, line_len)
             line = buffer.get_text(start, end)
             self.append_text("\n")
-            if line.startswith(">"):
+            if line.startswith(self.prompt):
                 line = line[1:].strip()
             else:
-                self.append_text("> ")
+                self.append_text("%s " % self.prompt)
                 return True
             if echo:
-                self.append_text("> " + line)
+                self.append_text(("%s " % self.prompt) + line)
                 end = buffer.get_end_iter()
                 buffer.place_cursor(end)
                 return True
-            # update states, in case of change:
-            self.env["dbstate"] = self.gui.dbstate
-            self.env["uistate"] = self.gui.uistate
-            _retval = None
-            if "_retval" in self.env:
-                del self.env["_retval"]
-            exp1 = """_retval = """ + line
-            exp2 = line.strip()
-            try:
-                _retval = eval(exp2, self.env)
-            except:
-                try:
-                    exec exp1 in self.env
-                except:
-                    try:
-                        exec exp2 in self.env
-                    except:
-                        _retval = self.format_exception()
-            if "_retval" in self.env:
-                _retval = self.env["_retval"]
+            _retval = self.process_command(line)
             if _retval != None:
                 self.append_text("%s" % str(_retval))
-            self.append_text("\n> ")
+            self.append_text("\n%s " % self.prompt)
             end = buffer.get_end_iter()
             buffer.place_cursor(end)
             return True
@@ -985,6 +990,21 @@ class AgeOnDateGramplet(Gramplet):
                                  'ageondate', 
                                  date)
 
+class QueryGramplet(PythonGramplet):
+    def init(self):
+        self.prompt = "$"
+        self.tooltip = _("Enter SQL query")
+        # GUI setup:
+        self.gui.textview.set_editable(True)
+        self.set_text("Structured Query Language\n%s " % self.prompt)
+        self.gui.textview.connect('key-press-event', self.on_key_press)
+
+    def process_command(self, command):
+        retval = run_quick_report_by_name(self.gui.dbstate, 
+                                          self.gui.uistate, 
+                                          'query', 
+                                          command)
+        return retval
 
 register(type="gramplet", 
          name= "Top Surnames Gramplet", 
@@ -1098,5 +1118,15 @@ register(type="gramplet",
          height=300,
          content = FAQGramplet,
          title=_("FAQ"),
+         )
+
+register(type="gramplet", 
+         name="Query Gramplet", 
+         tname=_("Query Gramplet"), 
+         height=300,
+         content = QueryGramplet,
+         title=_("Query"),
+         detached_width = 600,
+         detached_height = 400,
          )
 

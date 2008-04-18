@@ -36,7 +36,7 @@ def run(database, document, person):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
     rel_class = relationship_class()
     # display the title
     sdoc.title(_("Siblings of %s") % sdb.name(person))
@@ -60,7 +60,7 @@ def run(database, document, person):
                      sdb.gender(child), 
                      sdb.birth_date_obj(child), 
                      rel_str)
-    stab.write()
+    stab.write(sdoc)
                     
 #------------------------------------------------------------------------
 #

@@ -38,7 +38,7 @@ def run(database, document, date):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
     if not date.get_valid():
         sdoc.paragraph("Date is not a valid date.")
         return
@@ -67,16 +67,12 @@ def run(database, document, date):
                 if ((death_date != None) or
                     (death_date == None and 
                      diff_tuple[0] <= Config.get(Config.MAX_AGE_PROB_ALIVE))):
-                    if diff_tuple[1] != 0:
-                        birth_str = ((_("%d years") % diff_tuple[0])+ ", " +
-                                     (_("%d months") % diff_tuple[1]))
-                    else:
-                        birth_str = (_("%d years") % diff_tuple[0])
-                    birth_sort = int(diff_tuple[0] * 12 + diff_tuple[1]) # months
+                    birth_str = str(diff_tuple)
+                    birth_sort = int(diff_tuple)
         if birth_str != "":
             stab.row(person, birth_str)
             stab.row_sort_val(1, birth_sort)
-    stab.write()
+    stab.write(sdoc)
     sdoc.paragraph("")
 
 def get_event_date_from_ref(database, ref):

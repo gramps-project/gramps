@@ -69,6 +69,26 @@ class DateError(Exception):
     def __str__(self):
         return self.value
 
+class Span:
+    """ Class used in date differences """
+    def __init__(self, *diff_tuple):
+        self.diff_tuple = diff_tuple
+
+    def __getitem__(self, pos):
+        return self.diff_tuple[pos]
+
+    def __repr__(self):
+        if self.diff_tuple[1] != 0:
+            retval = ((_("%d years") % self.diff_tuple[0])+ ", " +
+                      (_("%d months") % self.diff_tuple[1]))
+        else:
+            retval = (_("%d years") % self.diff_tuple[0])
+        return retval
+
+    def __int__(self):
+        return int(self.diff_tuple[0] * 12 + self.diff_tuple[1]) # months
+
+
 #-------------------------------------------------------------------------
 #
 # Date class
@@ -302,9 +322,9 @@ class Date:
                 d1, d2 = d2, d1
                 date1, date2 = date2, date1
             # d1 - d2 (1998, 12, 32) - (1982, 12, 15)
-            if self.calendar != other.calendar:
+            if date1.calendar != date2.calendar:
                 diff = date1.sortval - date2.sortval
-                return (diff/365, (diff % 365)/30, (diff % 365) % 30)
+                return Span(diff/365, (diff % 365)/30, (diff % 365) % 30)
             # days:
             if d2[2] > d1[2]:
                 # months:
@@ -329,24 +349,24 @@ class Date:
             # estimate: (years, months, days)
             # Check transitivity:
             eDate = date1 - (years, months, days)
-            if eDate < date2: # too small
+            if eDate << date2: # too small, strictly less than
                 diff = 0
                 while eDate < date2 and diff < 60:
                     diff += 1
                     eDate = eDate + (0, 0, diff)
                 if diff == 60:
-                    return None
-                return (years, months, days - diff)
-            elif eDate > date2:
+                    return Span(-1, -1, -1)
+                return Span(years, months, days - diff)
+            elif eDate >> date2:
                 diff = 0
                 while eDate > date2 and diff > -60:
                     diff -= 1
                     eDate = eDate - (0, 0, abs(diff))
                 if diff == -60:
-                    return None
-                return (years, months, days + diff)
+                    return Span(-1, -1, -1)
+                return Span(years, months, days + diff)
             else:
-                return (years, months, days)
+                return Span(years, months, days)
         else:
             raise AttributeError, "unknown date sub type: %s " % type(other)
 
@@ -354,11 +374,29 @@ class Date:
     #def __eq__(self, other):
     #    return self.sortval == other.sortval
 
+    def __contains__(self, string):
+        """
+        For use with "x in Date" syntax.
+        """
+        return (str(string) in self.text)
+
+    def __lshift__(self, other):
+        """
+        Comparison for strictly less than.
+        """
+        return self.match(other, comparison="<<")
+
     def __lt__(self, other):
         """
         Comparison for less than.
         """
         return self.match(other, comparison="<")
+
+    def __rshift__(self, other):
+        """
+        Comparison for strictly greater than.
+        """
+        return self.match(other, comparison=">>")
 
     def __gt__(self, other):
         """

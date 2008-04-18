@@ -37,7 +37,7 @@ def run(database, document, person):
     
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
 
     # get the personal events
     event_list = sdb.events(person)
@@ -61,7 +61,7 @@ def run(database, document, person):
         stab.row(event, 
                  sdb.event_date_obj(event), 
                  sdb.event_place(event))
-    stab.write()
+    stab.write(sdoc)
 
 def run_fam(database, document, family):
     """
@@ -71,7 +71,7 @@ def run_fam(database, document, family):
     
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
     
     # get the family events
     event_list = [(_('Family'), x) for x in sdb.events(family)]
@@ -106,9 +106,9 @@ def run_fam(database, document, family):
         stab.row(person, sdb.event_type(event), 
                  sdb.event_date_obj(event), 
                  sdb.event_place(event))
-    stab.write()
+    stab.write(sdoc)
 
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
     sdoc.header1(_("Personal events of the children"))
     stab.columns(_("Family Member"), _("Event Type"), 
                  _("Event Date"), _("Event Place"))
@@ -116,7 +116,7 @@ def run_fam(database, document, family):
         stab.row(person, sdb.event_type(event), 
                  sdb.event_date_obj(event), 
                  sdb.event_place(event))
-    stab.write()
+    stab.write(sdoc)
                                 
 def fam_sort(event1, event2):
     """

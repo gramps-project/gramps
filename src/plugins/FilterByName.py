@@ -48,7 +48,7 @@ def run(database, document, filter_name, *args, **kwargs):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
     # display the title
     sdoc.title(_("Filtering on %s") % _(filter_name)) # listed above
     sdoc.paragraph("")
@@ -219,7 +219,7 @@ def run(database, document, filter_name, *args, **kwargs):
     sdoc.paragraph(_("Filter matched %d records.") % matches)
     sdoc.paragraph("")
     if matches > 0:
-        stab.write()
+        stab.write(sdoc)
                     
 #------------------------------------------------------------------------
 #

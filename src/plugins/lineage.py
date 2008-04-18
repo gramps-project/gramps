@@ -57,10 +57,10 @@ def run_father(database, document, person):
         " People in this lineage all share the same Y-chromosone."
         ))
     sd.paragraph("")
-    stab = SimpleTable(sa, sd)
+    stab = SimpleTable(sa)
     stab.columns(_("Name Father"), _("Birth Date"), _("Death Date"), _("Remark"))
     make_details(gen.lib.Person.MALE, person, sa, sd, database, stab)
-    stab.write()
+    stab.write(sd)
     sd.paragraph("")
     
     if person.gender == gen.lib.Person.FEMALE :
@@ -88,10 +88,10 @@ def run_mother(database, document, person):
         ))
     sd.paragraph("")
     
-    stab = SimpleTable(sa, sd)
+    stab = SimpleTable(sa)
     stab.columns(_("Name Mother"), _("Birth"), _("Death Date"), _("Remark"))
     make_details(gen.lib.Person.FEMALE, person, sa, sd, database, stab)
-    stab.write()
+    stab.write(sd)
     sd.paragraph("")
     
     if person.gender == gen.lib.Person.MALE :

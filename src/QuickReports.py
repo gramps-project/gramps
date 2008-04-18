@@ -121,7 +121,7 @@ def run_quick_report_by_name(dbstate, uistate, report_name, handle, **kwargs):
             report = item
             break
     if report:
-        run_report(dbstate, uistate, report[2], handle, report[0], **kwargs)
+        return run_report(dbstate, uistate, report[2], handle, report[0], **kwargs)
     else:
         raise AttributeError, ("No such quick report '%s'" % report_name)
 
@@ -143,8 +143,9 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
         d.dbstate = document.dbstate
         d.uistate = document.uistate
         d.open("")
-        report[0](database, d, handle)
+        retval = report[0](database, d, handle)
         d.close()
+        return retval
     else:
         raise AttributeError, ("No such quick report '%s'" % report_name)
                             
@@ -177,6 +178,6 @@ def run_report(dbstate, uistate, category, handle, func, **kwargs):
                 obj = handle
             if obj:
                 d.open("")
-                func(dbstate.db, d, obj, **kwargs)
+                retval = func(dbstate.db, d, obj, **kwargs)
                 d.close()
-
+                return retval

@@ -63,11 +63,11 @@ def run(database, document, main_event):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
     stab.set_link_col(3)
-    yeartab = SimpleTable(sdb, sdoc)
+    yeartab = SimpleTable(sdb)
     yeartab.set_link_col(3)
-    histab = SimpleTable(sdb, sdoc)
+    histab = SimpleTable(sdb)
     histab.set_link_col(3)
 
     # display the title
@@ -108,7 +108,7 @@ def run(database, document, main_event):
 
     if stab.get_row_count() > 0:
         sdoc.paragraph(_("Events on this exact date"))
-        stab.write()
+        stab.write(sdoc)
     else:
         sdoc.paragraph(_("No events on this exact date"))
         sdoc.paragraph("")
@@ -116,7 +116,7 @@ def run(database, document, main_event):
 
     if histab.get_row_count() > 0:
         sdoc.paragraph(_("Other events on this month/day in history"))
-        histab.write()
+        histab.write(sdoc)
     else:
         sdoc.paragraph(_("No other events on this month/day in history"))
         sdoc.paragraph("")
@@ -125,7 +125,7 @@ def run(database, document, main_event):
     if yeartab.get_row_count() > 0:
         sdoc.paragraph(_("Other events in %(year)d") % 
                        {"year":main_date.get_year()})
-        yeartab.write()
+        yeartab.write(sdoc)
     else:
         sdoc.paragraph(_("No other events in %(year)d") % 
                        {"year":main_date.get_year()})

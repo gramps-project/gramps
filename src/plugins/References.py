@@ -62,7 +62,7 @@ def run(database, document, object, item, trans):
     # setup the simple access functions
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
-    stab = SimpleTable(sdb, sdoc)
+    stab = SimpleTable(sdb)
 
     # display the title
     sdoc.title(_("References for this %s") % trans)
@@ -74,7 +74,7 @@ def run(database, document, object, item, trans):
         stab.row(_(objclass), ref) # translation are explicit (above)
 
     if stab.get_row_count() > 0:
-        stab.write()
+        stab.write(sdoc)
     else:
         sdoc.paragraph(_("No references for this %s") % trans)
         sdoc.paragraph("")
