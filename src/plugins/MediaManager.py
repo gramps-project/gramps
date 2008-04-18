@@ -31,7 +31,6 @@
 #
 #------------------------------------------------------------------------
 import os
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -53,6 +52,15 @@ from gen.lib import MediaObject
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
 from Utils import media_path_full, relative_path, media_path
+from TransUtils import sgettext as _
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Media_Manager...')
 
 #-------------------------------------------------------------------------
 #
@@ -152,7 +160,7 @@ class MediaMan(Tool.Tool):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help()
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_batch_ops(self):
         self.batch_ops = []
