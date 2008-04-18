@@ -284,9 +284,7 @@ class DBI:
         self.stab = SimpleTable(self.sdb)
         self.select = 0
         self.progress = Utils.ProgressMeter(_('Processing Query'))
-        # display the title
-        if self.command == "select":
-            self.select_table()
+        self.process_table()
         if self.select > 0:
             self.sdoc = SimpleDoc(self.document)
             self.sdoc.title(self.query)
@@ -306,8 +304,16 @@ class DBI:
             return ("grampsid", "type", "date", 
                     "description", "place", 
                     "change", "marker", "private")
+        # families = grampsid, father, mother, relationship, date
+        # sources = 
+        # places =
+        # media =
+        # repos = 
+        # notes = 
+        else:
+            raise AttributeError("unknown table: '%s'" % table)
     
-    def select_table(self):
+    def process_table(self):
         for col_name in self.columns[:]: # copy
             if col_name == "*":
                 self.columns.remove('*')
@@ -385,10 +391,19 @@ class DBI:
                     result = True
                 if result:
                     self.select += 1
-                    self.stab.row(*row)
-                    for (col, value) in sorts:
-                        self.stab.row_sort_val(col, value)
-
+                    if self.command == "select":
+                        self.stab.row(*row)
+                        for (col, value) in sorts:
+                            self.stab.row_sort_val(col, value)
+                    elif self.command == "delete":
+                        self.database.active = person
+                        trans = self.database.transaction_begin()
+                        active_name = _("Delete Person (%s)") % self.sdb.name(person)
+                        gen.utils.delete_person_from_database(self.database, person, trans)
+                        # FIXME: delete familes, events, notes, resources, etc, if possible
+                        self.database.transaction_commit(trans, active_name)
+                    else:
+                        raise AttributeError("unknown command: '%s'", self.command)
 
 def run(database, document, query):
     """

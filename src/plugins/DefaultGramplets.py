@@ -792,6 +792,8 @@ class PythonGramplet(Gramplet):
                 line = line[1:].strip()
             else:
                 self.append_text("%s " % self.prompt)
+                end = buffer.get_end_iter()
+                buffer.place_cursor(end)
                 return True
             if echo:
                 self.append_text(("%s " % self.prompt) + line)
@@ -806,6 +808,22 @@ class PythonGramplet(Gramplet):
             buffer.place_cursor(end)
             return True
         return False
+
+class QueryGramplet(PythonGramplet):
+    def init(self):
+        self.prompt = "$"
+        self.tooltip = _("Enter SQL query")
+        # GUI setup:
+        self.gui.textview.set_editable(True)
+        self.set_text("Structured Query Language\n%s " % self.prompt)
+        self.gui.textview.connect('key-press-event', self.on_key_press)
+
+    def process_command(self, command):
+        retval = run_quick_report_by_name(self.gui.dbstate, 
+                                          self.gui.uistate, 
+                                          'query', 
+                                          command)
+        return retval
 
 class TODOGramplet(Gramplet):
     def init(self):
@@ -989,22 +1007,6 @@ class AgeOnDateGramplet(Gramplet):
                                  self.gui.uistate, 
                                  'ageondate', 
                                  date)
-
-class QueryGramplet(PythonGramplet):
-    def init(self):
-        self.prompt = "$"
-        self.tooltip = _("Enter SQL query")
-        # GUI setup:
-        self.gui.textview.set_editable(True)
-        self.set_text("Structured Query Language\n%s " % self.prompt)
-        self.gui.textview.connect('key-press-event', self.on_key_press)
-
-    def process_command(self, command):
-        retval = run_quick_report_by_name(self.gui.dbstate, 
-                                          self.gui.uistate, 
-                                          'query', 
-                                          command)
-        return retval
 
 register(type="gramplet", 
          name= "Top Surnames Gramplet", 
