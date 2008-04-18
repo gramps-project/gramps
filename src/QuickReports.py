@@ -152,8 +152,8 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
 def run_report(dbstate, uistate, category, handle, func, **kwargs):
         from docgen import TextBufDoc
         from Simple import make_basic_stylesheet
-
-        if dbstate.active and handle:
+        
+        if handle:
             d = TextBufDoc(make_basic_stylesheet(), None, None)
             d.dbstate = dbstate
             d.uistate = uistate
@@ -181,3 +181,7 @@ def run_report(dbstate, uistate, category, handle, func, **kwargs):
                 retval = func(dbstate.db, d, obj, **kwargs)
                 d.close()
                 return retval
+            else:
+                print "QuickView Error: failed to run report: no obj"
+        else:
+            print "QuickView Error: handle is not set"
