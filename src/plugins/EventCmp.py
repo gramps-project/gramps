@@ -29,7 +29,6 @@
 #------------------------------------------------------------------------
 import os
 import sys
-from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -54,12 +53,22 @@ import DateHandler
 from QuestionDialog import WarningDialog
 from PluginUtils import Tool, register_tool
 from ReportBase import ReportUtils
-from GrampsDisplay import help
+import GrampsDisplay 
 import ManagedWindow
+from TransUtils import sgettext as _
+
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Compare_Individual_Events')
 
 #------------------------------------------------------------------------
 #
-# 
+# EventCmp
 #
 #------------------------------------------------------------------------
 class TableReport:
@@ -148,7 +157,7 @@ class EventComparison(Tool.Tool,ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        help()
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (_("Filter selection"),_("Event Comparison tool"))
@@ -247,7 +256,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        help()
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def build_menu_names(self, obj):
         return (_("Event Comparison Results"),None)
