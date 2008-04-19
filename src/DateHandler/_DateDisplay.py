@@ -162,12 +162,12 @@ class DateDisplay:
             val = - val
             
         if slash:
-            if val % 100 == 99:
-                year = "%d/%d" % (val, (val%1000)+1)
-            elif val % 10 == 9:
-                year = "%d/%d" % (val, (val%100)+1)
+            if (val-1) % 100 == 99:
+                year = "%d/%d" % (val - 1, (val%1000))
+            elif (val-1) % 10 == 9:
+                year = "%d/%d" % (val - 1, (val%100))
             else:
-                year = "%d/%d" % (val, (val%10)+1)
+                year = "%d/%d" % (val - 1, (val%10))
         else:
             year = "%d" % (val)
         

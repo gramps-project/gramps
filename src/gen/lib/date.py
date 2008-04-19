@@ -578,6 +578,12 @@ class Date:
             
         if self.modifier == Date.MOD_TEXTONLY:
             val = self.text
+        elif self.get_slash():
+            val = "%04d/%d-%02d-%02d" % (
+                self.dateval[Date._POS_YR] - 1, 
+                (self.dateval[Date._POS_YR]) % 10, 
+                self.dateval[Date._POS_MON], 
+                self.dateval[Date._POS_DAY])
         elif self.modifier == Date.MOD_RANGE or self.modifier == Date.MOD_SPAN:
             val = "%04d-%02d-%02d - %04d-%02d-%02d" % (
                 self.dateval[Date._POS_YR], self.dateval[Date._POS_MON], 
@@ -961,6 +967,14 @@ class Date:
             self.sortval = func(year, month, day)
         if text:
             self.text = text
+
+    def recalc_sort_value(self):
+        """
+        Recalculates the numerical sort value associated with the date
+        and returns it. Public method.
+        """
+        self._calc_sort_value()
+        return self.sortval
 
     def _calc_sort_value(self):
         """

@@ -328,8 +328,12 @@ class DateParser:
                 s = False
             else:
                 d = self._get_int(groups[1])
-                y = int(groups[3])
-                s = groups[4] != None
+                if groups[4] != None: # slash year digit
+                    y = int(groups[3][:-1] + groups[4])
+                    s = True
+                else: # regular, non-slash date
+                    y = int(groups[3])
+                    s = False
             value = (d, m, y, s)
             if check and not check((d, m, y)):
                 value = Date.EMPTY
@@ -349,8 +353,12 @@ class DateParser:
                 y = None
                 s = False
             else:
-                y = int(groups[3])
-                s = groups[4] != None
+                if groups[4] != None: # slash year digit
+                    y = int(groups[3][:-1] + groups[4])
+                    s = True
+                else:
+                    y = int(groups[3])
+                    s = False
             value = (d, m, y, s)
             if check and not check((d, m, y)):
                 value = Date.EMPTY
@@ -382,8 +390,8 @@ class DateParser:
             d = self._get_int(groups[4])
             if check and not check((d, m, y)):
                 return Date.EMPTY
-            if groups[2]:
-                return (d, m, y, True)
+            if groups[2]: # slash year digit
+                return (d, m, y + 1, True)
             else:
                 return (d, m, y, False)
 
@@ -595,7 +603,7 @@ class DateParser:
 
         if date.get_slash():
             date.set_calendar(Date.CAL_JULIAN)
-            date.set_year(date.get_year() + 1) # year++ and forces recalc
+            date.recalc_sort_value() # needed after the calendar change
 
     def invert_year(self, subdate):
         return (subdate[0], subdate[1], -subdate[2], subdate[3])
