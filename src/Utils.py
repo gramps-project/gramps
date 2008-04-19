@@ -578,7 +578,7 @@ def probably_alive(person, db, current_date=None, limit=0):
                    (defaults to today)
     limit        - number of years to check beyond death_date
     """
-    if not current_date:
+    if current_date == None:
         current_date = gen.lib.Date()
         # yr, mon, day:
         current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])
@@ -617,15 +617,18 @@ def probably_alive(person, db, current_date=None, limit=0):
     birth_ref = person.get_birth_ref()
     if birth_ref and birth_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
         birth = db.get_event_from_handle(birth_ref.ref)
-        if birth.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
+        if (birth.get_date_object().get_start_date() != gen.lib.Date.EMPTY):
             if not birth_date:
                 birth_date = birth.get_date_object()
             # Check whether the birth event is too old because the
             # code above did not look at birth, only at other events
-            if too_old(birth.get_date_object(), current_date.get_year()):
-                return False
-            if not_too_old(birth.get_date_object(), current_date.get_year()):
-                return True
+            birth_obj = birth.get_date_object()
+            if birth_obj.get_valid():
+                # only if this is a valid birth:
+                if too_old(birth_obj, current_date.get_year()):
+                    return False
+                if not_too_old(birth_obj, current_date.get_year()):
+                    return True
     
     if not birth_date and death_date:
         if death_date.match(current_date.copy_offset_ymd(year=_MAX_AGE_PROB_ALIVE), ">>"):

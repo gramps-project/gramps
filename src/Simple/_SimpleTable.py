@@ -232,6 +232,10 @@ class SimpleTable:
                 self.row_sort_val(col, item.sortval)
                 if (self.__link_col == col or link == None):
                     link = ('Date', item)
+            elif isinstance(item, gen.lib.Span):
+                text = str(item)
+                retval.append(text)
+                self.row_sort_val(col, float(item))
             else:
                 raise AttributeError, ("unknown object type: '%s': %s" % 
                                        (item, type(item)))

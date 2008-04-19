@@ -23,7 +23,7 @@
 """The core library of GRAMPS objects"""
 
 # Dates
-from gen.lib.date import Date, DateError
+from gen.lib.date import Date, DateError, Span
 
 # Secondary objects
 from gen.lib.secondaryobj import SecondaryObject

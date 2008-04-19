@@ -86,9 +86,19 @@ class Span:
         return retval
 
     def __int__(self):
-        return int(self.diff_tuple[0] * 12 + self.diff_tuple[1]) # months
+        return int(self.diff_tuple[0] * 12 + 
+                   self.diff_tuple[1]
+                   ) # number of months, for sorting
+
+    def __float__(self):
+        return float(self.diff_tuple[0] * 12 + 
+                     self.diff_tuple[1] +
+                     self.diff_tuple[2]/31.0 
+                     ) # number of months, for sorting
     
     def __eq__(self, other):
+        if other == None:
+            return False
         return self.diff_tuple == other.diff_tuple
 
 #-------------------------------------------------------------------------
@@ -353,7 +363,7 @@ class Date:
             eDate = date1 - (years, months, days)
             if eDate << date2: # too small, strictly less than
                 diff = 0
-                while eDate < date2 and diff < 60:
+                while eDate << date2 and diff < 60:
                     diff += 1
                     eDate = eDate + (0, 0, diff)
                 if diff == 60:
@@ -361,7 +371,7 @@ class Date:
                 return Span(years, months, days - diff)
             elif eDate >> date2:
                 diff = 0
-                while eDate > date2 and diff > -60:
+                while eDate >> date2 and diff > -60:
                     diff -= 1
                     eDate = eDate - (0, 0, abs(diff))
                 if diff == -60:

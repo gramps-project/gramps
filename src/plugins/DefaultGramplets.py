@@ -862,8 +862,8 @@ class PythonGramplet(Gramplet):
                 return True
             _retval = self.process_command(line)
             if _retval != None:
-                self.append_text("%s" % str(_retval))
-            self.append_text("\n%s " % self.prompt)
+                self.append_text("%s\n" % str(_retval))
+            self.append_text("%s " % self.prompt)
             end = buffer.get_end_iter()
             buffer.place_cursor(end)
             return True
