@@ -87,7 +87,9 @@ class Span:
 
     def __int__(self):
         return int(self.diff_tuple[0] * 12 + self.diff_tuple[1]) # months
-
+    
+    def __eq__(self, other):
+        return self.diff_tuple == other.diff_tuple
 
 #-------------------------------------------------------------------------
 #
@@ -511,14 +513,14 @@ class Date:
         comparison >> :
             Returns True if all parts of other_date > all parts of self
         """
-        if (self.sortval == 0 or other_date.sortval == 0):
-            return False
-        elif (other_date.modifier == Date.MOD_TEXTONLY or
+        if (other_date.modifier == Date.MOD_TEXTONLY or
             self.modifier == Date.MOD_TEXTONLY):
             if comparison in ["=", "=="]:
                 return (self.text.upper().find(other_date.text.upper()) != -1)
             else:
                 return False
+        if (self.sortval == 0 or other_date.sortval == 0):
+            return False
 
         # Obtain minimal start and maximal stop in Gregorian calendar
         other_start, other_stop = other_date.get_start_stop_range()

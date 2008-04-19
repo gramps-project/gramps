@@ -328,8 +328,8 @@ class DateParser:
                 s = False
             else:
                 d = self._get_int(groups[1])
-                if groups[4] != None: # slash year digit
-                    y = int(groups[3][:-1] + groups[4])
+                if groups[4] != None: # slash year "/80"
+                    y = int(groups[3]) + 1 # fullyear + 1
                     s = True
                 else: # regular, non-slash date
                     y = int(groups[3])
@@ -354,7 +354,7 @@ class DateParser:
                 s = False
             else:
                 if groups[4] != None: # slash year digit
-                    y = int(groups[3][:-1] + groups[4])
+                    y = int(groups[3]) + 1 # fullyear + 1
                     s = True
                 else:
                     y = int(groups[3])
@@ -517,7 +517,7 @@ class DateParser:
             try:
                 text = match.group(1) + match.group(3)
             except:
-                print "MATCH:", match.groups()
+                print "ERROR MATCH:", match.groups()
             bc = True
         return (text, bc)
 

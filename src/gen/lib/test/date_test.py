@@ -49,7 +49,7 @@ import Config
 import DateHandler
 from DateHandler import parser as _dp
 from DateHandler import displayer as _dd
-from gen.lib import Date
+from gen.lib.date import Date, Span
 
 gettext.textdomain("gramps")
 gettext.install("gramps",loc,unicode=1)
@@ -228,12 +228,6 @@ class Tester(unittest.TestCase):
         """
         if expected2 == None:
             expected2 = expected1
-        pos1 = 1
-        if expected1 :
-            pos1 = 0
-        pos2 = 1
-        if expected2 :
-            pos2 = 0
         date1 = _dp.parse(d1)
         date2 = _dp.parse(d2)
         if part == 1:
@@ -358,12 +352,12 @@ def suite2():
         ("Date(2000, 1, 1) - 1", "Date(1999, 1, 1)"),
         ("Date(2000) - 1", "Date(1999)"),
         ("Date(2000) + 1", "Date(2001)"),
-        # Date +/- Date -> tuple
-        ("Date(1876,5,7) - Date(1876,5,1)", "(0, 0, 6)"),
-        ("Date(1876,5,7) - Date(1876,4,30)", "(0, 0, 7)"),
-        ("Date(2000,1,1) - Date(1999,2,1)", "(0, 11, 0)"),
-        ("Date(2000,1,1) - Date(1999,12,1)", "(0, 1, 0)"),
-        ("Date(2007, 12, 23) - Date(1963, 12, 4)", "(44, 0, 19)"),
+        # Date +/- Date -> Span
+        ("Date(1876,5,7) - Date(1876,5,1)", "Span(0, 0, 6)"),
+        ("Date(1876,5,7) - Date(1876,4,30)", "Span(0, 0, 7)"),
+        ("Date(2000,1,1) - Date(1999,2,1)", "Span(0, 11, 0)"),
+        ("Date(2000,1,1) - Date(1999,12,1)", "Span(0, 1, 0)"),
+        ("Date(2007, 12, 23) - Date(1963, 12, 4)", "Span(44, 0, 19)"),
         ]
     suite = unittest.TestSuite()            
     count = 1
