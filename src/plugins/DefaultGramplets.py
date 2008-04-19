@@ -482,9 +482,9 @@ class PedigreeGramplet(Gramplet):
                 retval += "     "
         if retval[-1] == ' ':
             if what == 'sf':
-                retval = retval[:-6] + " /"
+                retval = retval[:-6] + "/"
             elif what == 'sm':
-                retval = retval[:-6] + " \\"
+                retval = retval[:-6] + "\\"
         elif retval.endswith("|    |"):
             retval = retval[:-6] + "+"
         return retval + "---"
@@ -501,11 +501,14 @@ class PedigreeGramplet(Gramplet):
             if len(family_list) > 0:
                 family = self.dbstate.db.get_family_from_handle(family_list[0])
                 father = family.get_father_handle()
+                mother = family.get_mother_handle()
                 if father:
                     self.process_person(father, generation + 1, "f")
                     self.set_box(generation, 1)
                     self.process_person(father, generation + 1, "sf")
                     self.process_person(father, generation + 1, "m")
+                elif mother:
+                    self.set_box(generation, 1)
         elif what[0] == "s":
             boxes = self.get_boxes(generation, what)
             if what[-1] == 'f':
