@@ -77,6 +77,10 @@ def get_date(date_base) :
     """
     return displayer.display(date_base.get_date_object())
 
+def get_date_valid(date_base):
+    date_obj = date_base.get_date_object()
+    return date_obj.get_valid()
+
 def get_quote_date(date_base):
     """
     Return a string representation of the date of the DateBase instance.

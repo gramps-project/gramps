@@ -417,7 +417,10 @@ class EmbeddedList(ButtonTab):
             name = self._column_names[pair[1]][0]
             renderer = gtk.CellRendererText()
             renderer.set_property('ellipsize', pango.ELLIPSIZE_END)
-            column = gtk.TreeViewColumn(name, renderer, text=pair[1])
+            if name == _("Date"):
+                column = gtk.TreeViewColumn(name, renderer, markup=pair[1])
+            else:
+                column = gtk.TreeViewColumn(name, renderer, text=pair[1])
 
             # insert the colum into the tree
             column.set_resizable(True)

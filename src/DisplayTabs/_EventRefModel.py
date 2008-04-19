@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk
+import cgi
 
 #-------------------------------------------------------------------------
 #
@@ -46,23 +47,26 @@ class EventRefModel(gtk.ListStore):
         self.db = db
         for event_ref in event_list:
             event = db.get_event_from_handle(event_ref.ref)
-            self.append(row=[
-                str(event.get_type()), 
-                event.get_description(), 
-                event.get_gramps_id(), 
-                self.column_date(event_ref), 
-                self.column_place(event_ref), 
-                self.column_role(event_ref), 
-                self.column_sort_date(event_ref),
-                event_ref
-                ])
+            self.append(row=[str(event.get_type()), 
+                             event.get_description(), 
+                             event.get_gramps_id(), 
+                             self.column_date(event_ref), 
+                             self.column_place(event_ref), 
+                             self.column_role(event_ref), 
+                             self.column_sort_date(event_ref),
+                             event_ref
+                             ])
 
     def column_role(self, event_ref):
         return str(event_ref.get_role())
 
     def column_date(self, event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)
-        return DateHandler.get_date(event)
+        retval = DateHandler.get_date(event)
+        if not DateHandler.get_date_valid(event):
+            return u'<span background="#ffd5d5">%s</span>' % cgi.escape(retval)
+        else:
+            return retval
 
     def column_sort_date(self, event_ref):
         event = self.db.get_event_from_handle(event_ref.ref)

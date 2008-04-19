@@ -547,7 +547,11 @@ class PeopleModel(gtk.GenericTreeModel):
                 birth = self.db.get_event_from_handle(b.ref)
                 date_str = DateHandler.get_date(birth)
                 if date_str != "":
-                    return cgi.escape(date_str)
+                    retval = cgi.escape(date_str)
+                if not DateHandler.get_date_valid(birth):
+                    return u'<span background="#ffd5d5">%s</span>' % retval
+                else:
+                    return retval
             except:
                 return u''
         
@@ -560,7 +564,11 @@ class PeopleModel(gtk.GenericTreeModel):
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN]
                 and er.get_role() == EventRoleType.PRIMARY
                 and date_str != ""):
-                return "<i>%s</i>" % cgi.escape(date_str)
+                retval = u"<i>%s</i>" % cgi.escape(date_str)
+                if not DateHandler.get_date_valid(event):
+                    return u'<span background="#ffd5d5">%s</span>' % retval
+                else:
+                    return retval
         
         return u""
 
@@ -583,7 +591,11 @@ class PeopleModel(gtk.GenericTreeModel):
                 event = self.db.get_event_from_handle(ref.ref)
                 date_str = DateHandler.get_date(event)
                 if date_str != "":
-                    return cgi.escape(date_str)
+                    retval = cgi.escape(date_str)
+                if not DateHandler.get_date_valid(event):
+                    return u'<span background="#ffd5d5">%s</span>' % retval
+                else:
+                    return retval
             except:
                 return u''
         
@@ -596,8 +608,11 @@ class PeopleModel(gtk.GenericTreeModel):
             if (etype in [EventType.BURIAL, EventType.CREMATION]
                 and er.get_role() == EventRoleType.PRIMARY
                 and date_str):
-                return "<i>%s</i>" % cgi.escape(date_str)
-        
+                retval = "<i>%s</i>" % cgi.escape(date_str)
+                if not DateHandler.get_date_valid(event):
+                    return u'<span background="#ffd5d5">%s</span>' % retval
+                else:
+                    return retval
         return u""
 
     def column_birth_place(self, data, node):
