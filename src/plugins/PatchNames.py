@@ -29,7 +29,6 @@
 #-------------------------------------------------------------------------
 import os
 import re
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -51,6 +50,15 @@ from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
 import gen.lib
+from TransUtils import sgettext as _
+
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+WIKI_HELP_PAGE = 'Gramps_3.0_Wiki_Manual_-_Tools'
+WIKI_HELP_SEC = _('manual|Extract_Information_from_Names')
 
 #-------------------------------------------------------------------------
 #
@@ -288,7 +296,7 @@ class PatchNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
-        GrampsDisplay.help()
+        GrampsDisplay.help(webpage=WIKI_HELP_PAGE, section=WIKI_HELP_SEC)
 
     def on_ok_clicked(self, obj):
         trans = self.db.transaction_begin("", batch=True)
