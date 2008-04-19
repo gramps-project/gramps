@@ -228,8 +228,12 @@ class SimpleTable:
                     link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
                 text = DateHandler.displayer.display(item)
-                retval.append(text)
-                self.row_sort_val(col, item.sortval)
+                if item.get_valid():
+                    retval.append(text)
+                    self.row_sort_val(col, item.sortval)
+                else:
+                    retval.append("Invalid: " + text)
+                    self.row_sort_val(col, -1)
                 if (self.__link_col == col or link == None):
                     link = ('Date', item)
             elif isinstance(item, gen.lib.Span):
