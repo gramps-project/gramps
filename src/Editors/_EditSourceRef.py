@@ -40,6 +40,7 @@ from gtk import glade
 #
 #-------------------------------------------------------------------------
 import const
+import Config
 import gen.lib
 
 from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList, 
@@ -54,6 +55,10 @@ from _EditReference import RefTab, EditReference
 #
 #-------------------------------------------------------------------------
 class EditSourceRef(EditReference):
+
+    WIDTH_KEY = Config.SOURCE_REF_WIDTH
+    HEIGHT_KEY = Config.SOURCE_REF_HEIGHT
+
     def __init__(self, state, uistate, track, source, source_ref, update):
 
         EditReference.__init__(self, state, uistate, track, source,
