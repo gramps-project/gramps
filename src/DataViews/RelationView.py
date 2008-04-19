@@ -983,21 +983,29 @@ class RelationshipView(PageView.PersonNavView):
         box.add(GrampsWidgets.BasicLabel(title))
 
     def info_string(self, handle):
-        child = self.dbstate.db.get_person_from_handle(handle)
-        if not child:
+        person = self.dbstate.db.get_person_from_handle(handle)
+        if not person:
             return None
 
-        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, child)
+        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
         if birth and birth.get_type != gen.lib.EventType.BIRTH:
-            bdate  = "<i>%s</i>" % cgi.escape(DateHandler.get_date(birth))
+            sdate = DateHandler.get_date(birth)
+            if sdate:
+                bdate  = "<i>%s</i>" % cgi.escape(sdate)
+            else:
+                bdate = ""
         elif birth:
             bdate  = cgi.escape(DateHandler.get_date(birth))
         else:
             bdate = ""
 
-        death = ReportUtils.get_death_or_fallback(self.dbstate.db, child)
+        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
         if death and death.get_type != gen.lib.EventType.DEATH:
-            ddate  = "<i>%s</i>" % cgi.escape(DateHandler.get_date(death))
+            sdate = DateHandler.get_date(death)
+            if sdate:
+                ddate  = "<i>%s</i>" % cgi.escape(sdate)
+            else:
+                ddate = ""
         elif death:
             ddate  = cgi.escape(DateHandler.get_date(death))
         else:

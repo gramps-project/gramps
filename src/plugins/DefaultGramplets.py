@@ -20,16 +20,18 @@ import sys
 import re
 import urllib
 import posixpath
+import cgi
 
-import gen.lib
+from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from PluginUtils import *
-from BasicUtils import name_displayer
-from Utils import media_path_full
 from QuickReports import run_quick_report_by_name
-import DateHandler
+from ReportBase import ReportUtils
 from TransUtils import sgettext as _
+from Utils import media_path_full
 import Config
+import DateHandler
+import gen.lib
 
 #
 # Hello World, in Gramps Gramplets
@@ -154,6 +156,8 @@ class LogGramplet(Gramplet):
     def on_load(self):
         if len(self.gui.data) > 0:
             self.show_duplicates = self.gui.data[0]
+        else:
+            self.show_duplicates = "no"
 
     def on_save(self):
         self.gui.data = [self.show_duplicates]
@@ -454,11 +458,21 @@ class PedigreeGramplet(Gramplet):
         self.set_text(_("No Family Tree loaded."))
         self.tooltip = _("Click name to make person active\n") + \
                          _("Right-click name to edit person")
-        self.max_generations = 100
         self.set_use_markup(True)
+        self.max_generations = 100
+        self.show_dates = 1
         #self.set_option("max_generations", 
         #                NumberOption(_("Maximum generations"),
         #                             100, -1, 500))
+
+    def on_load(self):
+        if len(self.gui.data) > 0:
+            self.max_generations = int(self.gui.data[0])
+        if len(self.gui.data) > 1:
+            self.show_dates = int(self.gui.data[1])
+
+    def on_save(self):
+        self.gui.data = [self.max_generations, self.show_dates]
 
     def db_changed(self):
         """
@@ -518,13 +532,18 @@ class PedigreeGramplet(Gramplet):
             self.append_text(boxes)
             self.link(name_displayer.display_name(person.get_primary_name()),
                       'Person', person.handle)
+            if self.show_dates:
+                self.append_text("  ")
+                self.render_text(self.info_string(person))
             self.append_text("\n")
             if generation not in self._generations:
                 self._generations[generation] = []
             self._generations[generation].append(handle)
         elif what == "a":
             self.append_text("o------")
-            self.render_text("<b>%s</b>" % name_displayer.display_name(person.get_primary_name()))
+            self.render_text("<b>%s</b>  " % name_displayer.display_name(person.get_primary_name()))
+            if self.show_dates:
+                self.render_text(self.info_string(person))
             self.append_text("\n")
             if generation not in self._generations:
                 self._generations[generation] = []
@@ -539,6 +558,44 @@ class PedigreeGramplet(Gramplet):
                     self.set_box(generation, 0)
                     self.process_person(mother, generation + 1, "m")
             self.set_box(generation, 0) # regardless, turn off line if on
+
+    def info_string(self, person):
+        birth = ReportUtils.get_birth_or_fallback(self.dbstate.db, person)
+        if birth and birth.get_type != gen.lib.EventType.BIRTH:
+            sdate = DateHandler.get_date(birth)
+            if sdate:
+                bdate  = "<i>%s</i>" % cgi.escape(sdate)
+            else:
+                bdate = ""
+        elif birth:
+            bdate  = cgi.escape(DateHandler.get_date(birth))
+        else:
+            bdate = ""
+
+        death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
+        if death and death.get_type != gen.lib.EventType.DEATH:
+            sdate = DateHandler.get_date(death)
+            if sdate:
+                ddate  = "<i>%s</i>" % cgi.escape(sdate)
+            else:
+                ddate = ""
+        elif death:
+            ddate  = cgi.escape(DateHandler.get_date(death))
+        else:
+            ddate = ""
+
+        if bdate and ddate:
+            value = _("b. %(birthdate)s, d. %(deathdate)s") % {
+                'birthdate' : bdate, 
+                'deathdate' : ddate
+                }
+        elif bdate:
+            value = _("b. %s") % (bdate)
+        elif ddate:
+            value = _("d. %s") % (ddate)
+        else:
+            value = ""
+        return value
 
     def main(self): # return false finishes
         """
