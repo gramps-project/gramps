@@ -361,7 +361,7 @@ class Date:
             # estimate: (years, months, days)
             # Check transitivity:
             eDate = date1 - (years, months, days)
-            if eDate << date2: # too small, strictly less than
+            if eDate < date2: # too small, strictly less than
                 diff = 0
                 while eDate << date2 and diff < 60:
                     diff += 1
@@ -369,7 +369,7 @@ class Date:
                 if diff == 60:
                     return Span(-1, -1, -1)
                 return Span(years, months, days - diff)
-            elif eDate >> date2:
+            elif eDate > date2:
                 diff = 0
                 while eDate >> date2 and diff > -60:
                     diff -= 1
