@@ -127,7 +127,7 @@
 		<widget class="GtkTable" id="table8">
 		  <property name="border_width">12</property>
 		  <property name="visible">True</property>
-		  <property name="n_rows">7</property>
+		  <property name="n_rows">8</property>
 		  <property name="n_columns">2</property>
 		  <property name="homogeneous">False</property>
 		  <property name="row_spacing">6</property>
@@ -451,6 +451,27 @@
 		      <property name="right_attach">2</property>
 		      <property name="top_attach">6</property>
 		      <property name="bottom_attach">7</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkCheckButton" id="invdate">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">_Identify invalid dates</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <property name="active">False</property>
+		      <property name="inconsistent">False</property>
+		      <property name="draw_indicator">True</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">0</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">7</property>
+		      <property name="bottom_attach">8</property>
 		      <property name="y_options"></property>
 		    </packing>
 		  </child>

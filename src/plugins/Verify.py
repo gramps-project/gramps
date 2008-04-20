@@ -286,6 +286,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
             self.options.handler.options_dict['oldunm'])
         self.top.get_widget("estimate").set_active(
             self.options.handler.options_dict['estimate_age'])
+        self.top.get_widget("invdate").set_active(
+            self.options.handler.options_dict['invdate'])
                                                           
         self.show()
 
@@ -329,9 +331,9 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
             "oldunm").get_value_as_int()
 
         self.options.handler.options_dict['estimate_age'] = \
-                                                          self.top.get_widget(
-            "estimate").get_active()
-
+                      self.top.get_widget("estimate").get_active()
+        self.options.handler.options_dict['invdate'] = \
+                      self.top.get_widget("invdate").get_active()
         try:
             self.vr = VerifyResults(self.dbstate, self.uistate, self.track)
             self.add_results = self.vr.add_results
@@ -380,6 +382,7 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
         lngwdw = self.options.handler.options_dict['lngwdw']
         oldunm = self.options.handler.options_dict['oldunm']
         estimate_age = self.options.handler.options_dict['estimate_age']
+        invdate = self.options.handler.options_dict['invdate']
 
         self.vr.real_model.clear()
 
@@ -403,6 +406,8 @@ class Verify(Tool.Tool, ManagedWindow, UpdateCallback):
                 OldUnmarried(self.db,person, oldunm,estimate_age),
                 TooManyChildren(self.db,person,mxchilddad,mxchildmom),
                 Disconnected(self.db,person),
+                InvalidBirthDate(self.db,person,invdate),
+                InvalidDeathDate(self.db,person,invdate),
                 ]
 
             for rule in rule_list:
@@ -736,6 +741,7 @@ class VerifyOptions(Tool.ToolOptions):
             'lngwdw'       : 30,
             'oldunm'       : 99,
             'estimate_age' : 0,
+            'invdate'      : 1,
         }
         self.options_help = {
             'oldage'       : ("=num","Maximum age","Age in years"),
@@ -771,6 +777,9 @@ class VerifyOptions(Tool.ToolOptions):
             'estimate_age' : ("=0/1","Whether to estimate missing dates",
                               ["Do not estimate","Estimate dates"],
                               True),
+            'invdate'      : ("=0/1","Whether to check for invalid dates"
+                              "Do not identify invalid dates", 
+                              "Identify invalid dates", True),
         }
 
 #-------------------------------------------------------------------------
@@ -1508,6 +1517,50 @@ class Disconnected(PersonRule):
 
     def get_message(self):
         return _("Disconnected individual")
+
+class InvalidBirthDate(PersonRule):
+    ID = 29
+    SEVERITY = Rule.ERROR
+    def __init__(self, db, person, invdate):
+        PersonRule.__init__(self, db, person)
+        self._invdate = invdate
+
+    def broken(self):
+        if not self._invdate: return False # should we check?
+        # if so, let's get the birth date
+        person = self.obj
+        birth_ref = person.get_birth_ref()
+        if birth_ref:
+            birth_event = self.db.get_event_from_handle(birth_ref.ref)
+            birth_date = birth_event.get_date_object()
+            if birth_date and not birth_date.get_valid():
+                return True
+        return False
+
+    def get_message(self):
+        return _("Invalid birth date")
+
+class InvalidDeathDate(PersonRule):
+    ID = 30
+    SEVERITY = Rule.ERROR
+    def __init__(self, db, person, invdate):
+        PersonRule.__init__(self, db, person)
+        self._invdate = invdate
+
+    def broken(self):
+        if not self._invdate: return False # should we check?
+        # if so, let's get the death date
+        person = self.obj
+        death_ref = person.get_death_ref()
+        if death_ref:
+            death_event = self.db.get_event_from_handle(death_ref.ref)
+            death_date = death_event.get_date_object()
+            if death_date and not death_date.get_valid():
+                return True
+        return False
+
+    def get_message(self):
+        return _("Invalid death date")
 
 #-------------------------------------------------------------------------
 #
