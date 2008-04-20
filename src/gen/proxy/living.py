@@ -26,6 +26,13 @@ Proxy class for the GRAMPS databases. Filter out all living people.
 
 #-------------------------------------------------------------------------
 #
+# Python libraries
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
@@ -46,16 +53,16 @@ class LivingProxyDb(ProxyDbBase):
     MODE_EXCLUDE  = 0
     MODE_RESTRICT = 1
 
-    def __init__(self,db,mode,current_year=None,years_after_death=0):
+    def __init__(self, dbase, mode, current_year=None, years_after_death=0):
         """
         Create a new LivingProxyDb instance.
         
-        @param db: The database to be a proxy for
-        @type db: DbBase
+        @param dbase: The database to be a proxy for
+        @type dbase: DbBase
         @param mode: The method for handling living people. 
          LivingProxyDb.MODE_EXCLUDE will remove living people altogether. 
-         LivingProxyDb.MODE_RESTRICT will remove all information and change their
-         given name to "Living". 
+         LivingProxyDb.MODE_RESTRICT will remove all information and change 
+         their given name to "Living". 
         @type mode: int
         @param current_year: The current year to use for living determination.
          If None is supplied, the current year will be found from the system.
@@ -64,7 +71,7 @@ class LivingProxyDb(ProxyDbBase):
         still consider them living.
         @type years_after_death: int
         """
-        ProxyDbBase.__init__(self, db)
+        ProxyDbBase.__init__(self, dbase)
         self.mode = mode
         if current_year != None:
             self.current_date = Date()
@@ -364,13 +371,26 @@ class LivingProxyDb(ProxyDbBase):
             yield (class_name, handle)
         return
     
-    def __is_living(self,person):
+    def __is_living(self, person):
+        """
+        Check if a person is considered living.
+        Returns True if the person is considered living.
+        Returns False if the person is not considered living.
+        """
         return probably_alive( person,
                                self.db,
                                self.current_date,
                                self.years_after_death )
     
-    def __remove_living_from_family(self,family):
+    def __remove_living_from_family(self, family):
+        """
+        Remove information from a family that pertains to living people.
+        Returns a family instance with information about living people removed.
+        Returns None if family is None.
+        """
+        if family is None:
+            return None
+        
         parent_is_living = False
         
         father_handle = family.get_father_handle()
@@ -403,6 +423,9 @@ class LivingProxyDb(ProxyDbBase):
         return family
 
 def _restrict_person(person):
+    """
+    Remove information from a person and replace the first name with "Living".
+    """
     new_person = Person()
     new_name = Name()
     old_name = person.get_primary_name()
