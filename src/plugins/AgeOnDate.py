@@ -49,8 +49,8 @@ def run(database, document, date):
     else:
         sdoc.title(_("People probably alive and their ages on %s") % 
                DateHandler.displayer.display(date))
-    sdoc.paragraph("\n")
     stab.columns(_("Person"), _("Age")) # Actual Date makes column unicode
+    matches = 0
     for person in sdb.all_people():
         birth_date = None
         birth_str = ""
@@ -72,6 +72,8 @@ def run(database, document, date):
         if birth_str != "":
             stab.row(person, birth_str)
             stab.row_sort_val(1, birth_sort)
+            matches += 1
+    sdoc.paragraph("\n%d matches.\n" % matches)
     stab.write(sdoc)
     sdoc.paragraph("")
 
