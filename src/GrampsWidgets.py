@@ -114,14 +114,22 @@ class ExpandCollapseArrow(gtk.EventBox):
         else:
             self.arrow = gtk.Arrow(gtk.ARROW_DOWN, gtk.SHADOW_OUT)
             self.tooltips.set_tip(self, _("Collapse this section"))
-
         self.add(self.arrow)
         self.connect('button-press-event', onbuttonpress, pair)
         self.connect('realize', realize_cb)
 
 class LinkLabel(gtk.EventBox):
 
-    def __init__(self, label, func, handle, decoration='underline="single"'):
+    def __init__(self, label, func, handle, decoration=None):
+        if decoration == None:
+            relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
+            if relation_display_theme == "CLASSIC":
+                decoration = 'underline="single"'
+            elif relation_display_theme == "WEBPAGE":
+                decoration = 'foreground="blue"'
+            else:
+                raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
+
         gtk.EventBox.__init__(self)
         self.orig_text = cgi.escape(label[0])
         self.gender = label[1]
@@ -158,7 +166,13 @@ class LinkLabel(gtk.EventBox):
         self.label.set_padding(x, y)
         
     def enter_text(self, obj, event, handle):
-        text = '<span foreground="blue" %s>%s</span>' % (self.decoration, self.orig_text)
+        relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
+        if relation_display_theme == "CLASSIC":
+            text = '<span foreground="blue" %s>%s</span>' % (self.decoration, self.orig_text)
+        elif relation_display_theme == "WEBPAGE":
+            text = '<span underline="single" %s>%s</span>' % (self.decoration, self.orig_text)
+        else:
+            raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
         self.label.set_text(text)
         self.label.set_use_markup(True)
 
@@ -253,18 +267,18 @@ class GenderLabel(gtk.Label):
 
 class MarkupLabel(gtk.Label):
 
-    def __init__(self, text):
+    def __init__(self, text, x_align=0, y_align=0.5):
         gtk.Label.__init__(self, text)
-        self.set_alignment(0, 0.5)
+        self.set_alignment(x_align, y_align)
         self.set_use_markup(True)
         self.show_all()
 
 class DualMarkupLabel(gtk.HBox):
 
-    def __init__(self, text, alt):
+    def __init__(self, text, alt, x_align=0, y_align=0.5):
         gtk.HBox.__init__(self)
         label = gtk.Label(text)
-        label.set_alignment(0, 0.5)
+        label.set_alignment(x_align, y_align)
         label.set_use_markup(True)
 
         self.pack_start(label, False, False, 0)

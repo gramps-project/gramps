@@ -1,4 +1,4 @@
-# Gramps - a GTK+/GNOME based genealogy program
+
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
 #
@@ -486,7 +486,7 @@ class RelationshipView(PageView.PersonNavView):
         self.child = gtk.Table(self.attach.max_y, cols)
         self.child.set_border_width(12)
         self.child.set_col_spacings(12)
-        self.child.set_row_spacings(9)
+        self.child.set_row_spacings(0)
 
         for d in self.attach.list:
             x0 = d[1]
@@ -515,13 +515,14 @@ class RelationshipView(PageView.PersonNavView):
 
         table = gtk.Table(2, 3)
         table.set_col_spacings(12)
-        table.set_row_spacings(6)
+        table.set_row_spacings(0)
 
         # name and edit button
         name = name_displayer.display(person)
         fmt = '<span size="larger" weight="bold">%s</span>'
         text = fmt % cgi.escape(name)
-        label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender])
+        label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender],
+                                              x_align=1, y_align=0)
         if Config.get(Config.RELEDITBTN):
             button = GrampsWidgets.IconButton(self.edit_button_press, 
                                               person.handle)
@@ -538,7 +539,7 @@ class RelationshipView(PageView.PersonNavView):
         table.attach(eventbox, 1, 2, 1, 2)
         subtbl = gtk.Table(3, 3)
         subtbl.set_col_spacings(12)
-        subtbl.set_row_spacings(6)
+        subtbl.set_row_spacings(0)
         eventbox.add(subtbl)
                 
         # GRAMPS ID
@@ -659,10 +660,10 @@ class RelationshipView(PageView.PersonNavView):
     def write_label(self, title, family, is_parent, person = None):
         msg = '<span style="italic" weight="heavy">%s</span>' % cgi.escape(title)
         hbox = gtk.HBox()
-        label = GrampsWidgets.MarkupLabel(msg)
+        label = GrampsWidgets.MarkupLabel(msg, x_align=1)
         # Draw the collapse/expand button:
         if family != None:
-            if self.check_collapsed(person, family.handle):
+            if self.check_collapsed(person.handle, family.handle):
                 arrow = GrampsWidgets.ExpandCollapseArrow(True,
                                                 self.expand_collapse_press,
                                                 (person, family.handle))
@@ -673,8 +674,7 @@ class RelationshipView(PageView.PersonNavView):
         else :
             arrow = gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_OUT)
         hbox.pack_start(arrow, False)
-
-        hbox.pack_start(label, False)
+        hbox.pack_start(label, True)
         self.attach.attach(hbox,
                            _LABEL_START, _LABEL_STOP, 
                            self.row, self.row+1, gtk.SHRINK|gtk.FILL)
@@ -687,7 +687,7 @@ class RelationshipView(PageView.PersonNavView):
                            _DATA_START, _DATA_STOP, 
                            self.row, self.row+1, gtk.SHRINK|gtk.FILL)
 
-        if family and self.check_collapsed(person, family.handle):
+        if family and self.check_collapsed(person.handle, family.handle):
             # show family names later
             pass
         else:
@@ -746,7 +746,7 @@ class RelationshipView(PageView.PersonNavView):
         family = self.dbstate.db.get_family_from_handle(family_handle)
         if not family:
             return
-        if person and self.check_collapsed(person, family_handle):
+        if person and self.check_collapsed(person.handle, family_handle):
             # don't show rest
             self.write_label("%s:" % _('Parents'), family, True, person)
             self.row -= 1 # back up one row for summary names
@@ -788,51 +788,90 @@ class RelationshipView(PageView.PersonNavView):
 
             if self.show_siblings:
                 active = self.dbstate.active.handle
-
-                child_list = [ref.ref for ref in family.get_child_ref_list()]
-
-                label_cell = self.build_label_cell(_('Siblings'))
-                label_cell.set_alignment(0, 0)
-                self.attach.attach(
-                    label_cell, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
-                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                    yoptions=gtk.FILL)
-
                 hbox = gtk.HBox()
-                addchild = GrampsWidgets.IconButton(
-                                self.add_child_to_fam, 
-                                family.handle, 
-                                gtk.STOCK_ADD)
-                self.tooltips.set_tip(addchild, 
-                                      _('Add new child to family'))
-                selchild = GrampsWidgets.IconButton(
-                                self.sel_child_to_fam, 
-                                family.handle, 
-                                gtk.STOCK_INDEX)
-                self.tooltips.set_tip(selchild, 
-                                      _('Add existing child to family'))
-                hbox.pack_start(addchild, False)
-                hbox.pack_start(selchild, False)
-
+                if self.check_collapsed(person.handle, "SIBLINGS"):
+                    arrow = GrampsWidgets.ExpandCollapseArrow(True,
+                                                self.expand_collapse_press,
+                                                (person, "SIBLINGS"))
+                else:
+                    arrow = GrampsWidgets.ExpandCollapseArrow(False,
+                                                self.expand_collapse_press,
+                                                (person, "SIBLINGS"))
+                hbox.pack_start(arrow, False)
+                label_cell = self.build_label_cell(_('Siblings'))
+                hbox.pack_start(label_cell, True)
                 self.attach.attach(
-                    hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
+                    hbox, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
                     self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                     yoptions=gtk.FILL)
 
-                self.row += 1
-                vbox = gtk.VBox()
-                i = 1
-                for child_handle in child_list:
-                    child_should_be_linked = (child_handle != active)
-                    self.write_child(vbox, child_handle, i, child_should_be_linked)
-                    i += 1
-                eventbox = gtk.EventBox()
-                if self.use_shade:
-                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
-                eventbox.add(vbox)
-                self.attach.attach(
-                    eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
-                    self.row+1)
+                if self.check_collapsed(person.handle, "SIBLINGS"):
+                    hbox = gtk.HBox()
+                    child_list = [ref.ref for ref in family.get_child_ref_list()
+                                  if ref.ref != active]
+                    if child_list:
+                        count = len(child_list)
+                    else:
+                        count = 0
+                    if count > 1 :
+                        childmsg = _(" (%d siblings)") % count
+                    elif count == 1 :
+                        gender = self.dbstate.db.get_person_from_handle(\
+                                                child_list[0]).gender
+                        if gender == gen.lib.Person.MALE :
+                            childmsg = _(" (1 brother)")
+                        elif gender == gen.lib.Person.FEMALE :
+                            childmsg = _(" (1 sister)")
+                        else :
+                            childmsg = _(" (1 sibling)")
+                    else :
+                        childmsg = _(" (only child)")
+                    box = self.get_people_box(post_msg=childmsg)
+                    eventbox = gtk.EventBox()
+                    if self.use_shade:
+                        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                    eventbox.add(box)
+                    self.attach.attach(
+                        eventbox, _PDATA_START, _PDATA_STOP,
+                        self.row, self.row+1)
+                    self.row += 1 # now advance it
+                else:
+                    hbox = gtk.HBox()
+                    addchild = GrampsWidgets.IconButton(
+                                    self.add_child_to_fam, 
+                                    family.handle, 
+                                    gtk.STOCK_ADD)
+                    self.tooltips.set_tip(addchild, 
+                                          _('Add new child to family'))
+                    selchild = GrampsWidgets.IconButton(
+                                    self.sel_child_to_fam, 
+                                    family.handle, 
+                                    gtk.STOCK_INDEX)
+                    self.tooltips.set_tip(selchild, 
+                                          _('Add existing child to family'))
+                    hbox.pack_start(addchild, False)
+                    hbox.pack_start(selchild, False)
+
+                    self.attach.attach(
+                        hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
+                        self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                        yoptions=gtk.FILL)
+
+                    self.row += 1
+                    vbox = gtk.VBox()
+                    i = 1
+                    child_list = [ref.ref for ref in family.get_child_ref_list()]
+                    for child_handle in child_list:
+                        child_should_be_linked = (child_handle != active)
+                        self.write_child(vbox, child_handle, i, child_should_be_linked)
+                        i += 1
+                    eventbox = gtk.EventBox()
+                    if self.use_shade:
+                        eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                    eventbox.add(vbox)
+                    self.attach.attach(
+                        eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
+                        self.row+1)
 
             self.row += 1
 
@@ -875,8 +914,8 @@ class RelationshipView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        label = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
-        label.set_alignment(0, 0)
+        label = GrampsWidgets.MarkupLabel(format % cgi.escape(title),
+                                          x_align=1, y_align=0)
         if Config.get(Config.RELEDITBTN):
             label.set_padding(0, 5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
@@ -924,22 +963,42 @@ class RelationshipView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        lbl = GrampsWidgets.MarkupLabel(format % cgi.escape(title))
+        lbl = GrampsWidgets.MarkupLabel(format % cgi.escape(title),
+                                        x_align=1, y_align=.5)
         if Config.get(Config.RELEDITBTN):
             lbl.set_padding(0, 5)
         return lbl
 
     def write_child(self, vbox, handle, index, child_should_be_linked):
+        if not child_should_be_linked:
+            original_vbox = vbox
+            vbox = gtk.VBox()
+            frame = gtk.Frame()
+            frame.set_shadow_type(gtk.SHADOW_ETCHED_IN)
+            frame.add(vbox)
+            original_vbox.add(frame)
+        
         parent = has_children(self.dbstate.db,
                               self.dbstate.db.get_person_from_handle(handle))
 
         format = ''
+        relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
         if child_should_be_linked and parent:
-            format = 'underline="single" weight="heavy" style="italic"'
+            if relation_display_theme == "CLASSIC":
+                format = 'underline="single" weight="heavy" style="italic"'
+            elif relation_display_theme == "WEBPAGE":
+                format = 'foreground="blue" weight="heavy"'
+            else:
+                raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
         elif child_should_be_linked and not parent:
-            format = 'underline="single"'
+            if relation_display_theme == "CLASSIC":
+                format = 'underline="single"'
+            elif relation_display_theme == "WEBPAGE":
+                format = 'foreground="blue"'
+            else:
+                raise AttributeError("invalid relation-display-theme: '%s'" % relation_display_theme)
         elif parent and not child_should_be_linked:
-            format = 'weight="heavy" style="italic"'
+            format = 'weight="heavy"'
 
         if child_should_be_linked:
             link_func = self._button_press
@@ -959,11 +1018,8 @@ class RelationshipView(PageView.PersonNavView):
             button = None
 
         hbox = gtk.HBox()
-        if child_should_be_linked:
-            l = GrampsWidgets.BasicLabel("%d." % index)
-        else:
-            l = GrampsWidgets.BasicLabel("> %d." % index)
-        l.set_width_chars(5)
+        l = GrampsWidgets.BasicLabel("%d." % index)
+        l.set_width_chars(3)
         l.set_alignment(1.0, 0.5)
         hbox.pack_start(l, False, False, 0)
         hbox.pack_start(GrampsWidgets.LinkBox(link_label, button),
@@ -977,7 +1033,7 @@ class RelationshipView(PageView.PersonNavView):
                 l = GrampsWidgets.MarkupLabel(value)
                 l.set_padding(48, 0)
                 vbox.add(l)
-        
+
     def write_data(self, box, title, start_col=_SDATA_START,
                    stop_col=_SDATA_STOP):
         box.add(GrampsWidgets.BasicLabel(title))
@@ -1024,9 +1080,9 @@ class RelationshipView(PageView.PersonNavView):
             value = ""
         return value
 
-    def check_collapsed(self, person, handle):
+    def check_collapsed(self, person_handle, handle):
         """ Return true if collapsed. """
-        return (handle in self.collapsed_items.get(person.handle, []))
+        return (handle in self.collapsed_items.get(person_handle, []))
 
     def expand_collapse_press(self, obj, event, pair):
         """ Calback function for ExpandCollapseArrow, user param is pair,
@@ -1151,7 +1207,7 @@ class RelationshipView(PageView.PersonNavView):
             handle = father_handle
 
         # collapse button
-        if self.check_collapsed(person, family_handle):
+        if self.check_collapsed(person.handle, family_handle):
             # show "> Family: ..." and nothing else
             self.write_label("%s:" % _('Family'), family, False, person)
             self.row -= 1 # back up
@@ -1184,50 +1240,82 @@ class RelationshipView(PageView.PersonNavView):
                 if not self.write_marriage(box, family):
                     self.write_relationship(box, family)
 
-            child_list = family.get_child_ref_list()
-
-            label_cell = self.build_label_cell(_('Children'))
-            label_cell.set_alignment(0, 0)
-            self.attach.attach(
-                label_cell, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
-                self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
-                yoptions=gtk.FILL)
-
             hbox = gtk.HBox()
-            addchild = GrampsWidgets.IconButton(
-                            self.add_child_to_fam, 
-                            family.handle, 
-                            gtk.STOCK_ADD)
-            self.tooltips.set_tip(addchild, 
-                                  _('Add new child to family'))
-            selchild = GrampsWidgets.IconButton(
-                            self.sel_child_to_fam, 
-                            family.handle, 
-                            gtk.STOCK_INDEX)
-            self.tooltips.set_tip(selchild, 
-                                  _('Add existing child to family'))
-            hbox.pack_start(addchild, False)
-            hbox.pack_start(selchild, False)
+            if self.check_collapsed(person.handle, "CHILDREN"):
+                arrow = GrampsWidgets.ExpandCollapseArrow(True,
+                                            self.expand_collapse_press,
+                                            (person, "CHILDREN"))
+            else:
+                arrow = GrampsWidgets.ExpandCollapseArrow(False,
+                                            self.expand_collapse_press,
+                                            (person, "CHILDREN"))
+            hbox.pack_start(arrow, True)
+            label_cell = self.build_label_cell(_('Children'))
+            hbox.pack_start(label_cell, True)
             self.attach.attach(
-                hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
+                hbox, _CLABEL_START-1, _CLABEL_STOP-1, self.row, 
                 self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
                 yoptions=gtk.FILL)
 
-            vbox = gtk.VBox()
-            i = 1
-            for child_ref in child_list:
-                self.write_child(vbox, child_ref.ref, i, True)
-                i += 1
+            if self.check_collapsed(person.handle, "CHILDREN"):
+                hbox = gtk.HBox()
+                child_list = family.get_child_ref_list()
+                if child_list:
+                    count = len(child_list)
+                else:
+                    count = 0
+                if count > 1 :
+                    childmsg = _(" (%d children)") % count
+                elif count == 1 :
+                    childmsg = _(" (1 child)")
+                else :
+                    childmsg = _(" (no children)")
+                box = self.get_people_box(post_msg=childmsg)
+                eventbox = gtk.EventBox()
+                if self.use_shade:
+                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                eventbox.add(box)
+                self.attach.attach(
+                    eventbox, _PDATA_START, _PDATA_STOP,
+                    self.row, self.row+1)
+                self.row += 1 # now advance it
+            else:
+                hbox = gtk.HBox()
+                addchild = GrampsWidgets.IconButton(
+                                self.add_child_to_fam, 
+                                family.handle, 
+                                gtk.STOCK_ADD)
+                self.tooltips.set_tip(addchild, 
+                                      _('Add new child to family'))
+                selchild = GrampsWidgets.IconButton(
+                                self.sel_child_to_fam, 
+                                family.handle, 
+                                gtk.STOCK_INDEX)
+                self.tooltips.set_tip(selchild, 
+                                      _('Add existing child to family'))
+                hbox.pack_start(addchild, False)
+                hbox.pack_start(selchild, False)
+                self.attach.attach(
+                    hbox, _CLABEL_START, _CLABEL_STOP, self.row, 
+                    self.row+1, xoptions=gtk.FILL|gtk.SHRINK,
+                    yoptions=gtk.FILL)
 
-            self.row += 1
-            eventbox = gtk.EventBox()
-            if self.use_shade:
-                eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
-            eventbox.add(vbox)
-            self.attach.attach(
-                eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
-                self.row+1)
-            self.row += 1
+                vbox = gtk.VBox()
+                i = 1
+                child_list = family.get_child_ref_list()
+                for child_ref in child_list:
+                    self.write_child(vbox, child_ref.ref, i, True)
+                    i += 1
+
+                self.row += 1
+                eventbox = gtk.EventBox()
+                if self.use_shade:
+                    eventbox.modify_bg(gtk.STATE_NORMAL, self.color)
+                eventbox.add(vbox)
+                self.attach.attach(
+                    eventbox, _CDATA_START-1, _CDATA_STOP-1, self.row,
+                    self.row+1)
+                self.row += 1
 
     def edit_button_press(self, obj, event, handle):
         if button_activated(event, _LEFT_BUTTON):
@@ -1322,7 +1410,7 @@ class RelationshipView(PageView.PersonNavView):
         self.dbstate.db.commit_family(family, trans)
         self.dbstate.db.transaction_commit(trans, _("Add Child to Family"))
 
-    def sel_child_to_fam(self, obj, event, handle):
+    def sel_child_to_fam(self, obj, event, handle, surname=None):
         from Selectors import selector_factory
         if button_activated(event, _LEFT_BUTTON):
             SelectPerson = selector_factory('Person')
