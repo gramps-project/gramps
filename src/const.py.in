@@ -241,5 +241,5 @@ LONGOPTS = [
     "version", 
 ]
 
-SHORTOPTS = "O:i:o:f:a:p:d:lhu?"
+SHORTOPTS = "O:i:o:f:a:p:d:lLhu?"
 
