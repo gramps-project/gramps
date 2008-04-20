@@ -47,8 +47,10 @@ log = logging.getLogger(".BookReport")
 #-------------------------------------------------------------------------
 try:
     from xml.sax import make_parser, handler, SAXParseException
+    from xml.sax.saxutils import escape
 except:
     from _xmlplus.sax import make_parser, handler, SAXParseException
+    from _xmlplus.sax.saxutils import escape
 
 #-------------------------------------------------------------------------
 #
@@ -458,21 +460,35 @@ class BookList:
             for item in book.get_item_list():
                 f.write('  <item name="%s" trans_name="%s">\n' % 
                             (item.get_name(),item.get_translated_name() ) )
-                option_handler = item.option_class.handler
-                for option_name in option_handler.options_dict.keys():
-                    option_value = option_handler.options_dict[option_name]
-                    if type(option_value) in (list, tuple):
-                        f.write('    <option name="%s" length="%d">\n' % (
-                                option_name, len(option_value) ) )
-                        for list_index in range(len(option_value)):
-                            option_type = Utils.type_name(option_value[list_index])
-                            f.write('      <listitem number="%d" type="%s" value="%s"/>\n' % (
-                                    list_index, option_type, option_value[list_index]) )
-                        f.write('    </option>\n')
+                options = item.option_class.handler.options_dict
+                for option_name in options.keys():
+                    option_value = options[option_name]
+                    if type(option_value) in (type(list()), type(tuple())):
+                        f.write('  <option name="%s" value="" '
+                                'length="%d">\n' % (
+                                    escape(option_name),
+                                    len(options[option_name]) ) )
+                        for list_index in range(len(options[option_name])):
+                            option_type = \
+                                Utils.type_name(option_value[list_index])
+                            value = escape(unicode(option_value[list_index]))
+                            value = value.replace('"', '&quot;')
+                            f.write('    <listitem number="%d" type="%s" '
+                                    'value="%s"/>\n' % (
+                                    list_index,
+                                    option_type,
+                                    value ) )
+                        f.write('  </option>\n')
                     else:
                         option_type = Utils.type_name(option_value)
-                        f.write('    <option name="%s" type="%s" value="%s"/>\n' % (
-                                option_name, option_type, option_value) )
+                        value = escape(unicode(option_value))
+                        value = value.replace('"', '&quot;')
+                        f.write('  <option name="%s" type="%s" '
+                                'value="%s"/>\n' % (
+                                escape(option_name),
+                                option_type,
+                                value) )
+
                 f.write('    <style name="%s"/>\n' % item.get_style_name() )
                 f.write('  </item>\n')
             f.write('</book>\n')
