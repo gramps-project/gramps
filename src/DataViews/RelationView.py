@@ -1249,7 +1249,7 @@ class RelationshipView(PageView.PersonNavView):
                 arrow = GrampsWidgets.ExpandCollapseArrow(False,
                                             self.expand_collapse_press,
                                             (person, "CHILDREN"))
-            hbox.pack_start(arrow, True)
+            hbox.pack_start(arrow, False)
             label_cell = self.build_label_cell(_('Children'))
             hbox.pack_start(label_cell, True)
             self.attach.attach(
