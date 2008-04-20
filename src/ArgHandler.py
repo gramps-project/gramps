@@ -84,6 +84,7 @@ Application options
   -p, --options=OPTIONS_STRING           Specify options
   -d, --debug=LOGGER_NAME                Enable debug logs
   -l                                     List Family Trees
+  -L                                     List Family Tree Details
   -u                                     Force unlock of family tree
 """
 
@@ -131,6 +132,7 @@ class ArgHandler:
         self.imports = []
         self.imp_db_path = None
         self.list = False
+        self.list_more = False
         self.help = False
         self.force_unlock = False
         self.dbman = CLIDbManager(self.state)
@@ -313,6 +315,8 @@ class ArgHandler:
                 logger.setLevel(logging.DEBUG)
             elif option in ('-l',):
                 self.list = True
+            elif option in ('-L',):
+                self.list_more = True
             elif option in ('-h', '-?', '--help'):
                 self.help = True
             elif option in ('-u', '--force-unlock'):
@@ -355,6 +359,15 @@ class ArgHandler:
             print 'List of known family trees in your database path\n'
             for name, dirname in self.dbman.family_tree_list():
                 print dirname, ', with name ', name 
+            sys.exit(0)
+        if self.list_more:
+            print 'GRAMPS Family Trees:'
+            list = self.dbman.family_tree_summary()
+            for dict in list:
+                print "Family Tree \"%s\":" % dict["Family tree"]
+                for item in dict:
+                    if item != "Family tree":
+                        print "   %s: %s" % (item, dict[item])
             sys.exit(0)
         if self.help:
             print _help

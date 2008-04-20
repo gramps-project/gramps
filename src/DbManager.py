@@ -121,6 +121,62 @@ class CLIDbManager:
         """
         pass
 
+    def get_dbdir_summary(self, file_name):
+        """
+        Returns (people_count, version_number) of current DB.
+        Returns ("Unknown", "Unknown") if invalid DB or other error.
+        """
+        from bsddb import dbshelve, db
+        from gen.db import META, PERSON_TBL
+        env = db.DBEnv()
+        flags = db.DB_CREATE | db.DB_PRIVATE |\
+            db.DB_INIT_MPOOL | db.DB_INIT_LOCK |\
+            db.DB_INIT_LOG | db.DB_INIT_TXN | db.DB_THREAD
+        try:
+            env.open(file_name, flags)
+        except:
+            return "Unknown", "Unknown"
+        dbmap1 = dbshelve.DBShelf(env)
+        fname = os.path.join(file_name, META + ".db")
+        dbmap1.open(fname, META, db.DB_HASH, db.DB_RDONLY)
+        version = dbmap1.get('version', default=None)
+        dbmap1.close()
+        dbmap2 = dbshelve.DBShelf(env)
+        fname = os.path.join(file_name, PERSON_TBL + ".db")
+        try:
+            dbmap2.open(fname, PERSON_TBL, db.DB_HASH, db.DB_RDONLY)
+        except:
+            env.close()
+            return "Unknown", "Unknown"
+        count = len(dbmap2)
+        dbmap2.close()
+        env.close()
+        return (count, version)
+
+    def family_tree_summary(self):
+        """
+        Return a list of dictionaries of the known family trees.
+        """
+        # make the default directory if it does not exist
+        list = []
+        for item in self.current_names:
+            (name, dirpath, path_name, last, 
+             tval, enable, stock_id) = item
+            count, version = self.get_dbdir_summary(dirpath)
+            retval = {}
+            retval["Number of people"] = count
+            if enable:
+                retval["Locked?"] = "yes"
+            else:
+                retval["Locked?"] = "no"
+            retval["DB version"] = version
+            retval["Family tree"] = name
+            retval["Path"] = dirpath
+            retval["Last accessed"] = time.strftime('%x %X', 
+                                                    time.localtime(tval))
+            list.append( retval )
+        return list
+
     def _populate_cli(self):
         """ Get the list of current names in the database dir
         """
