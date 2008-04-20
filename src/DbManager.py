@@ -789,6 +789,9 @@ class DbManager(CLIDbManager):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
+        newdb = gen.db.GrampsDBDir()
+        newdb.write_version(dirname)
+
         dbclass = gen.db.GrampsDBDir
         dbase = dbclass()
         dbase.set_save_path(dirname)
