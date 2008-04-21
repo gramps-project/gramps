@@ -73,6 +73,8 @@ class CalendarGramplet(Gramplet):
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
         self.gui.calendar.connect('month-changed', self.refresh)
+        self.dbstate.db.connect('person-rebuild', self.update)
+
         db_signals = ['event-add',
                       'event-update', 
                       'event-delete', 
@@ -206,6 +208,8 @@ class TopSurnamesGramplet(Gramplet):
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('person-update', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def on_load(self):
         if len(self.gui.data) > 0:
@@ -283,6 +287,8 @@ class SurnameCloudGramplet(Gramplet):
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('person-update', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def on_load(self):
         if len(self.gui.data) > 0:
@@ -373,6 +379,8 @@ class RelativesGramplet(Gramplet):
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -489,6 +497,8 @@ class PedigreeGramplet(Gramplet):
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -674,6 +684,8 @@ class StatsGramplet(Gramplet):
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def main(self):
         self.set_text(_("Processing..."))

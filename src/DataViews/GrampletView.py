@@ -1164,6 +1164,7 @@ class GrampletView(PageView.PersonNavView):
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
                 self.drop_widget(self.widget, gramplet, 0, 0, 0)
+            g.pui.update()
         else:
             print "Can't make gramplet of type '%s'." % name
 
