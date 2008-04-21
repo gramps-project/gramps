@@ -368,7 +368,7 @@ class RelativesGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
         self.tooltip = _("Click name to make person active\n") + \
-                         _("Right-click name to edit person")
+            _("Right-click name to edit person")
 
     def db_changed(self):
         """
@@ -464,8 +464,7 @@ class RelativesGramplet(Gramplet):
 class PedigreeGramplet(Gramplet):
     def init(self):
         self.set_text(_("No Family Tree loaded."))
-        self.tooltip = _("Click name to make person active\n") + \
-                         _("Right-click name to edit person")
+        self.tooltip = _("Move mouse over links for options")
         self.set_use_markup(True)
         self.max_generations = 100
         self.show_dates = 1
@@ -566,7 +565,9 @@ class PedigreeGramplet(Gramplet):
                     boxes = boxes.replace("+", u"\\")
             self.append_text(boxes)
             self.link(name_displayer.display_name(person.get_primary_name()),
-                      'Person', person.handle)
+                      'Person', person.handle, 
+                      tooltip=_("Click to make active\n") + \
+                          _("Right-click to edit"))
             if self.show_dates:
                 self.append_text(" ")
                 self.render_text(self.info_string(person))
@@ -659,14 +660,17 @@ class PedigreeGramplet(Gramplet):
             handles = self._generations[g]
             self.append_text("     ")
             if g == 0:
-                self.link(_("Generation 1"), 'PersonList', handles)
+                self.link(_("Generation 1"), 'PersonList', handles, 
+                          tooltip=_("Double-click to see people in generation"))
                 self.append_text(_(" has 1 of 1 individual (100.00% complete)\n"))
             else:
                 all.extend(handles)
-                self.link(_("Generation %d") % g, 'PersonList', handles)
+                self.link(_("Generation %d") % g, 'PersonList', handles,
+                          tooltip=_("Double-click to see people in generation"))
                 self.append_text(_(" has %d of %d individuals (%.2f%% complete)\n") % 
                                  (count, 2**(g-1), float(count)/2**(g-1) * 100))
-        self.link(_("All generations"), 'PersonList', all)
+        self.link(_("All generations"), 'PersonList', all,
+                  tooltip=_("Double-click to see all generations"))
         self.append_text(_(" have %d individuals\n") % len(all))
         # Set to a fixed font
         if self.box_mode == "UTF":
