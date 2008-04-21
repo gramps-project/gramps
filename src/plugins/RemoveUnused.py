@@ -46,6 +46,7 @@ log = logging.getLogger(".RemoveUnused")
 import gtk
 from gtk import glade
 import gobject
+from gen.lib import StyledText
 
 #-------------------------------------------------------------------------
 #
@@ -109,6 +110,11 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
                          'editor'  : 'EditRepository',
                          'stock'   : 'gramps-repository',
                          'name_ix' : 3},
+            'notes'   : {'get_func': self.db.get_note_from_handle,
+                         'remove'  : self.db.remove_note,
+                         'editor'  : 'EditNote',
+                         'stock'   : 'gramps-notes',
+                         'name_ix' : 2},
             }
 
         self.init_gui()
@@ -126,6 +132,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.places_box = self.top.get_widget('places_box')
         self.media_box = self.top.get_widget('media_box')
         self.repos_box = self.top.get_widget('repos_box')
+        self.notes_box = self.top.get_widget('notes_box')
         self.find_button = self.top.get_widget('find_button')
         self.remove_button = self.top.get_widget('remove_button')
 
@@ -136,6 +143,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
             self.options.handler.options_dict['places'])
         self.media_box.set_active(self.options.handler.options_dict['media'])
         self.repos_box.set_active(self.options.handler.options_dict['repos'])
+        self.notes_box.set_active(self.options.handler.options_dict['notes'])
 
         self.warn_tree = self.top.get_widget('warn_tree')
         self.warn_tree.connect('button_press_event', self.double_click)
@@ -218,6 +226,8 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
                                         int(self.media_box.get_active())
         self.options.handler.options_dict['repos'] = \
                                         int(self.repos_box.get_active())
+        self.options.handler.options_dict['notes'] = \
+                                        int(self.notes_box.get_active())
 
         for item in self.sensitive_list:
             item.set_sensitive(True)
@@ -252,6 +262,8 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
                          'total_func' : self.db.get_number_of_media_objects},
             'repos'   : {'cursor_func': self.db.get_repository_cursor,
                          'total_func' : self.db.get_number_of_repositories},
+            'notes'   : {'cursor_func': self.db.get_note_cursor,
+                         'total_func' : self.db.get_number_of_notes},
             }
 
         for the_type in tables.keys():
@@ -352,7 +364,16 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
 
         gramps_id = data[1]
         name_ix = self.tables[the_type]['name_ix']
-        name = data[name_ix]
+
+        if the_type == 'notes':
+            note = unicode(data[name_ix][StyledText.POS_TEXT])
+            note = " ".join(note.split())
+            if len(note) > 80:
+                name = note[:80] + "..."
+            else:
+                name = note
+        else:
+            name = data[name_ix]
         
         self.real_model.append(row=[False,gramps_id, name,the_type, handle])
         
@@ -376,6 +397,7 @@ class CheckOptions(Tool.ToolOptions):
             'places'  : 1,
             'media'   : 1,
             'repos'   : 1,
+            'notes'   : 1,
         }
         self.options_help = {
             'events'  : ("=0/1","Whether to use check for unused events",
@@ -392,6 +414,9 @@ class CheckOptions(Tool.ToolOptions):
                           True),
             'repos'   : ("=0/1","Whether to use check for unused repositories",
                           ["Do not check repositories","Check repositories"],
+                          True),
+            'notes'   : ("=0/1","Whether to use check for unused notes",
+                          ["Do not check notes","Check notes"],
                           True),
             }
 
