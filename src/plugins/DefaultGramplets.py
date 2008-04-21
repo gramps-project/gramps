@@ -461,6 +461,7 @@ class PedigreeGramplet(Gramplet):
         self.set_use_markup(True)
         self.max_generations = 100
         self.show_dates = 1
+        self.box_mode = "UTF"
         #self.set_option("max_generations", 
         #                NumberOption(_("Maximum generations"),
         #                             100, -1, 500))
@@ -470,9 +471,14 @@ class PedigreeGramplet(Gramplet):
             self.max_generations = int(self.gui.data[0])
         if len(self.gui.data) > 1:
             self.show_dates = int(self.gui.data[1])
+        if len(self.gui.data) > 2:
+            self.box_mode = self.gui.data[2] # ASCII or UTF
+        # in case we need it:
+        tag = self.gui.buffer.create_tag("fixed")
+        tag.set_property("font", "Courier 8")
 
     def on_save(self):
-        self.gui.data = [self.max_generations, self.show_dates]
+        self.gui.data = [self.max_generations, self.show_dates, self.box_mode]
 
     def db_changed(self):
         """
@@ -488,20 +494,33 @@ class PedigreeGramplet(Gramplet):
         self.update()
 
     def get_boxes(self, generation, what):
-        retval = ""
+        retval = u""
+        if self.box_mode == "UTF":
+            space = u"  "
+        elif self.box_mode == "ASCII":
+            space = u"    "
+        space_len = len(space) + 2
         for i in range(generation+1):
             if self._boxes[i]:
-                retval += "    |"
+                retval += space + u"|"
             else:
-                retval += "     "
-        if retval[-1] == ' ':
+                retval += space + u" "
+        if retval[-1] == u' ':
             if what == 'sf':
-                retval = retval[:-6] + "/"
+                retval = retval[:-space_len] + u"/"
             elif what == 'sm':
-                retval = retval[:-6] + "\\"
-        elif retval.endswith("|    |"):
-            retval = retval[:-6] + "+"
-        return retval + "---"
+                retval = retval[:-space_len] + u"\\"
+        elif retval.endswith(u"|" + space + u"|"):
+            retval = retval[:-space_len] + u"+"
+        if self.box_mode == "UTF":
+            retval += u"-"
+            retval = retval.replace(u"\\", u"\u2514")
+            retval = retval.replace(u"-",  u"\u2500")
+            retval = retval.replace(u"|",  u"\u2502")
+            retval = retval.replace(u"/",  u"\u250c")
+        elif self.box_mode == "ASCII":
+            retval += u"--"
+        return retval
 
     def set_box(self, pos, value):
         self._boxes[pos] = value
@@ -526,21 +545,30 @@ class PedigreeGramplet(Gramplet):
         elif what[0] == "s":
             boxes = self.get_boxes(generation, what)
             if what[-1] == 'f':
-                boxes = boxes.replace("+", "/")
+                if self.box_mode == "UTF":
+                    boxes = boxes.replace("+", u"\u250c")
+                else:
+                    boxes = boxes.replace("+", u"/")
             else:
-                boxes = boxes.replace("+", "\\")
+                if self.box_mode == "UTF":
+                    boxes = boxes.replace("+", u"\u2514")
+                else:
+                    boxes = boxes.replace("+", u"\\")
             self.append_text(boxes)
             self.link(name_displayer.display_name(person.get_primary_name()),
                       'Person', person.handle)
             if self.show_dates:
-                self.append_text("  ")
+                self.append_text(" ")
                 self.render_text(self.info_string(person))
             self.append_text("\n")
             if generation not in self._generations:
                 self._generations[generation] = []
             self._generations[generation].append(handle)
         elif what == "a":
-            self.append_text("o------")
+            if self.box_mode == "UTF":
+                self.append_text(u"o" + (u"\u2500" * 3))
+            elif self.box_mode == "ASCII":
+                self.append_text(u"o---")
             self.render_text("<b>%s</b>  " % name_displayer.display_name(person.get_primary_name()))
             if self.show_dates:
                 self.render_text(self.info_string(person))
@@ -585,14 +613,14 @@ class PedigreeGramplet(Gramplet):
             ddate = ""
 
         if bdate and ddate:
-            value = _("b. %(birthdate)s, d. %(deathdate)s") % {
+            value = _("(b. %(birthdate)s, d. %(deathdate)s)") % {
                 'birthdate' : bdate, 
                 'deathdate' : ddate
                 }
         elif bdate:
-            value = _("b. %s") % (bdate)
+            value = _("(b. %s)") % (bdate)
         elif ddate:
-            value = _("d. %s") % (ddate)
+            value = _("(d. %s)") % (ddate)
         else:
             value = ""
         return value
@@ -603,7 +631,7 @@ class PedigreeGramplet(Gramplet):
         """
         self._boxes = [0] * self.max_generations
         self._generations = {}
-        self.set_text("")
+        self.gui.buffer.set_text("")
         active_person = self.dbstate.get_active_person()
         if not active_person:
             return False
@@ -630,6 +658,10 @@ class PedigreeGramplet(Gramplet):
                                  (count, 2**(g-1), float(count)/2**(g-1) * 100))
         self.link(_("All generations"), 'PersonList', all)
         self.append_text(_(" have %d individuals\n") % len(all))
+        # Set to a fixed font
+        if self.box_mode == "UTF":
+            start, end = self.gui.buffer.get_bounds()
+            self.gui.buffer.apply_tag_by_name("fixed", start, end)
         self.append_text("", scroll_to="begin")
 
 class StatsGramplet(Gramplet):
@@ -1170,6 +1202,7 @@ register(type="gramplet",
          height=300,
          content = PedigreeGramplet,
          title=_("Pedigree"),
+         expand=True,
          detached_width = 600,
          detached_height = 400,
          )
