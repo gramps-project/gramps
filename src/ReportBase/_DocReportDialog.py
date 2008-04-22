@@ -129,16 +129,15 @@ class DocReportDialog(ReportDialog):
             self.notebook.insert_page(self.html_table,self.html_label,0)
             self.html_table.show_all()
 
-        if not self.get_target_is_directory():
-            fname = self.target_fileentry.get_full_path(0)
-            (spath,ext) = os.path.splitext(fname)
+        fname = self.target_fileentry.get_full_path(0)
+        (spath,ext) = os.path.splitext(fname)
 
-            ext_val = obj.get_ext()
-            if ext_val:
-                fname = spath + ext_val
-            else:
-                fname = spath
-            self.target_fileentry.set_filename(fname)
+        ext_val = obj.get_ext()
+        if ext_val:
+            fname = spath + ext_val
+        else:
+            fname = spath
+        self.target_fileentry.set_filename(fname)
 
         # Does this report format use styles?
         if self.style_button:
@@ -170,12 +169,9 @@ class DocReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            if self.get_target_is_directory():
-                self.target_fileentry.set_filename(spath)
-            else:
-                base = self.get_default_basename()
-                spath = os.path.normpath("%s/%s%s" % (spath,base,ext))
-                self.target_fileentry.set_filename(spath)
+            base = self.get_default_basename()
+            spath = os.path.normpath("%s/%s%s" % (spath, base, ext))
+            self.target_fileentry.set_filename(spath)
                 
     def setup_report_options_frame(self):
         self.paper_frame = PaperFrame(self.options.handler.get_paper_metric(),

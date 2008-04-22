@@ -887,12 +887,9 @@ class GraphvizReportDialog(ReportDialog):
             ext = ""
         else:
             spath = self.get_default_directory()
-            if self.get_target_is_directory():
-                self.target_fileentry.set_filename(spath)
-            else:
-                base = self.get_default_basename()
-                spath = os.path.normpath("%s/%s%s" % (spath,base,ext))
-                self.target_fileentry.set_filename(spath)
+            base = self.get_default_basename()
+            spath = os.path.normpath("%s/%s%s" % (spath, base, ext))
+            self.target_fileentry.set_filename(spath)
                 
     def setup_report_options_frame(self):
         self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
@@ -980,5 +977,5 @@ class GraphvizReportDialog(ReportDialog):
         self.options.handler.set_format_name(format_name)
             
     def setup_style_frame(self):
-        """Required by ReportDialog:BareReportDialog"""
+        """Required by ReportDialog"""
         pass

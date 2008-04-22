@@ -341,7 +341,6 @@ src/PluginUtils/_PluginWindows.py
 src/PluginUtils/_MenuOptions.py
 
 # ReportBase package
-src/ReportBase/_BareReportDialog.py
 src/ReportBase/_BookFormatComboBox.py
 src/ReportBase/_CommandLineReport.py
 src/ReportBase/_Constants.py

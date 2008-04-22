@@ -425,7 +425,7 @@ class ManagedWindow:
             Connect the OK button to a method that checks if all is ok, 
                 Do not call close, close is called here.
                 (if not ok, do self.window.run() to obtain new response )
-                TODO: remove close here and do close in BareReportDialog,
+                TODO: remove close here and do close in ReportDialog,
                       this can only be done, once all methods use modal_call()
                       instead of their own implementation
             Connect Cancel to do close, delete event is connected to close 

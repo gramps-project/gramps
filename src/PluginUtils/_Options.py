@@ -445,7 +445,7 @@ class Options:
         Set up UI controls (widgets) for the options specific for this modul.
 
         This method MUST be overridden by modules that define new options.
-        The single argument 'dialog' is the Report.BareReportDialog instance.
+        The single argument 'dialog' is the Report.ReportDialog instance.
         Any attribute of the dialog is available.
         
         After the widgets are defined, they MUST be added to the dialog
@@ -463,7 +463,7 @@ class Options:
         Parses UI controls (widgets) for the options specific for this module.
 
         This method MUST be overridden by modules that define new options.
-        The single argument 'dialog' is the Report.BareReportDialog instance.
+        The single argument 'dialog' is the Report.ReportDialog instance.
         Any attribute of the dialog is available.
         
         After obtaining values from the widgets, they MUST be used to set the

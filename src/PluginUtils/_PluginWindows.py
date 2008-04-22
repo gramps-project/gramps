@@ -195,7 +195,6 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
     """
     Copied from src/ReportBase/_BareReportDialog.py BareReportDialog
     """
-    frame_pad = 5
     border_pad = 6
     HELP_TOPIC = None
     def __init__(self, dbstate, uistate, option_class, name, callback=None):
