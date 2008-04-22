@@ -173,6 +173,7 @@ PRIVATE_SURNAME_TEXT = ('preferences', 'private-surname-text', 2)
 PRIVATE_GIVEN_TEXT   = ('preferences', 'private-given-text', 2)
 PRIVATE_RECORD_TEXT  = ('preferences', 'private-record-text', 2)
 RELATION_DISPLAY_THEME= ('preferences', 'relation-display-theme', 2)
+INVALID_DATE_FORMAT  = ('preferences', 'invalid-date-format', 2)
 
 default_value = {
     DEFAULT_SOURCE       : False, 
@@ -299,4 +300,5 @@ default_value = {
     PRIVATE_GIVEN_TEXT   : "[%s]" % _("Living"),
     PRIVATE_RECORD_TEXT  : "[%s]" % _("Private Record"),
     RELATION_DISPLAY_THEME: "CLASSIC",
+    INVALID_DATE_FORMAT  : "<b>%s</b>",
 }

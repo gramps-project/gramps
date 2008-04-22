@@ -34,6 +34,14 @@ import cgi
 #
 #-------------------------------------------------------------------------
 import DateHandler
+import Config
+
+#-------------------------------------------------------------------------
+#
+# Globals
+#
+#-------------------------------------------------------------------------
+invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
 
 #-------------------------------------------------------------------------
 #
@@ -64,7 +72,7 @@ class EventRefModel(gtk.ListStore):
         event = self.db.get_event_from_handle(event_ref.ref)
         retval = DateHandler.get_date(event)
         if not DateHandler.get_date_valid(event):
-            return u'<span background="#ffd5d5">%s</span>' % cgi.escape(retval)
+            return invalid_date_format % cgi.escape(retval)
         else:
             return retval
 

@@ -66,6 +66,7 @@ from Filters import SearchFilter, ExactSearchFilter
 from Lru import LRU
 
 _CACHE_SIZE = 250
+invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
 
 def locale_sort(mylist):
     """
@@ -549,7 +550,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 if date_str != "":
                     retval = cgi.escape(date_str)
                 if not DateHandler.get_date_valid(birth):
-                    return u'<span background="#ffd5d5">%s</span>' % retval
+                    return invalid_date_format % retval
                 else:
                     return retval
             except:
@@ -566,7 +567,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 and date_str != ""):
                 retval = u"<i>%s</i>" % cgi.escape(date_str)
                 if not DateHandler.get_date_valid(event):
-                    return u'<span background="#ffd5d5">%s</span>' % retval
+                    return invalid_date_format % retval
                 else:
                     return retval
         
@@ -593,7 +594,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 if date_str != "":
                     retval = cgi.escape(date_str)
                 if not DateHandler.get_date_valid(event):
-                    return u'<span background="#ffd5d5">%s</span>' % retval
+                    return invalid_date_format % retval
                 else:
                     return retval
             except:
@@ -610,7 +611,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 and date_str):
                 retval = "<i>%s</i>" % cgi.escape(date_str)
                 if not DateHandler.get_date_valid(event):
-                    return u'<span background="#ffd5d5">%s</span>' % retval
+                    return invalid_date_format % retval
                 else:
                     return retval
         return u""

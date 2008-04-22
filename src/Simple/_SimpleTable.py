@@ -22,11 +22,13 @@
 Provide a simplified table creation interface
 """
 
+import cgi
 import copy
 from gettext import gettext as _
 
 import gen.lib
 import Errors
+import Config
 import DateHandler
 
 class SimpleTable:
@@ -41,6 +43,7 @@ class SimpleTable:
         self.access = access
         self.title = title
         self.__columns = []
+        self.__cell_markup = {} # [col][row] = "<b>data</b>"
         self.__rows = []
         self.__link = []
         self.__sort_col = None
@@ -172,6 +175,7 @@ class SimpleTable:
         """
         retval = [] 
         link   = None
+        row = len(self.__rows)
         for col in range(len(data)):
             item = data[col]
             # FIXME: add better text representations of these objects
@@ -228,12 +232,16 @@ class SimpleTable:
                     link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
                 text = DateHandler.displayer.display(item)
+                retval.append(text)
                 if item.get_valid():
-                    retval.append(text)
                     self.row_sort_val(col, item.sortval)
                 else:
-                    retval.append("Invalid: " + text)
+                    # sort before others:
                     self.row_sort_val(col, -1)
+                    # give formatted version:
+                    invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
+                    self.set_cell_markup(col, row,
+                                         invalid_date_format % text)
                 if (self.__link_col == col or link == None):
                     link = ('Date', item)
             elif isinstance(item, gen.lib.Span):
@@ -309,7 +317,10 @@ class SimpleTable:
             sort_data_types = []
             for col in self.__columns:
                 types.append(type(col))
-                column = gtk.TreeViewColumn(col,renderer,text=model_index)
+                if self.get_cell_markup(cnt):
+                    column = gtk.TreeViewColumn(col,renderer,markup=model_index)
+                else:
+                    column = gtk.TreeViewColumn(col,renderer,text=model_index)
                 if self.__sort_vals[cnt] != []:
                     sort_data.append(self.__sort_vals[cnt])
                     column.set_sort_column_id(len(self.__columns) + 
@@ -333,8 +344,41 @@ class SimpleTable:
             text_view.add_child_at_anchor(treeview, anchor)
             count = 0
             for data in self.__rows:
-                model.append(row=([count] + list(data) + [col[count] for col in sort_data]))
+                col = 0
+                rowdata = []
+                for cell in data:
+                    rowdata.append(self.get_cell_markup(col, count, cell))
+                    col += 1
+                model.append(row=([count] + list(rowdata) + [col[count] for col in sort_data]))
                 count += 1
             text_view.show_all()
             self.simpledoc.paragraph("")
             self.simpledoc.paragraph("")
+
+    def get_cell_markup(self, x, y=None, data=None):
+        """
+        See if a column has formatting (if x and y are supplied) or
+        see if a cell has formatting. If it does, return the formatted 
+        string, otherwise return data that is escaped (if that column
+        has formatting), or just the plain data.
+        """
+        if x in self.__cell_markup:
+            if y == None: 
+                return True # markup for this column
+            elif y in self.__cell_markup[x]:
+                return self.__cell_markup[x][y]
+            else:
+                return cgi.escape(data)
+        else:
+            if y == None: 
+                return False # no markup for this column
+            else:
+                return data
+
+    def set_cell_markup(self, x, y, data):
+        """
+        Set the cell at position [x][y] to a formatted string.
+        """
+        col_dict = self.__cell_markup.get(x, {})
+        col_dict[y] = data
+        self.__cell_markup[x] = col_dict
