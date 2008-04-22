@@ -180,42 +180,15 @@ class BookItem:
     Interface into the book item -- a smallest element of the book.
     """
 
-    def __init__(self, dbase, name=None):
+    def __init__(self, dbase, name):
         """
         Create a new empty BookItem.
         
-        name:   if not None then the book item is retreived 
+        name:   the book item is retreived 
                 from the book item registry using name for lookup
         """
         self.dbase = dbase
-        if name:
-            self.get_registered_item(name)
-        else:
-            self.clear()
-        
-    def clear(self):
-        """
-        Clear the contents of the book item.
-        
-        Everything gets set to empty values except for the style_name"""
-
-        self.translated_name = ""
-        self.category = ""
-        self.write_item = None
-        self.option_class = None
-        self.style_file = ""
         self.style_name = "default"
-        self.make_default_style = None
-        self.name = ""
-
-    def get_registered_item(self, name):
-        """ 
-        Retrieve the item from the book item registry.
-        
-        name:   a name used for lookup.
-        """
-
-        self.clear()
         for item in bkitems_list:
             if item[4] == name:
                 self.translated_name = item[0]
@@ -265,18 +238,6 @@ class BookItem:
         Return the style name of the item.
         """
         return self.style_name
-
-    def get_style_file(self):
-        """
-        Return the style file name for the item.
-        """
-        return self.style_file
-
-    def get_make_default_style(self):
-        """
-        Return the function to make default style for the item.
-        """
-        return self.make_default_style
 
 #------------------------------------------------------------------------
 #
