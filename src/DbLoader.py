@@ -302,7 +302,7 @@ class DbLoader:
         except UnicodeError, msg:
             ErrorDialog(
                 _("Could not import file: %s") % filename, 
-                _("This GEDCOM file incorrectly identifies its character "
+                _("This file incorrectly identifies its character "
                   "set, so it cannot be accurately imported. Please fix the "
                   "encoding, and import again") + "\n\n %s" % msg)
         except Exception:
