@@ -38,6 +38,7 @@ _LOG = logging.getLogger(".Editors.StyledTextBuffer")
 # GTK modules
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk
 from pango import WEIGHT_BOLD, STYLE_ITALIC, UNDERLINE_SINGLE
 
@@ -53,6 +54,43 @@ from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 # Constants
 #
 #-------------------------------------------------------------------------
+# FIXME
+ALLOWED_STYLES = [i for (i, s, e) in StyledTextTagType._DATAMAP]
+
+STYLE_TYPE = {
+    StyledTextTagType.BOLD: bool,
+    StyledTextTagType.ITALIC: bool,
+    StyledTextTagType.UNDERLINE: bool,
+    StyledTextTagType.FONTCOLOR: str,
+    StyledTextTagType.HIGHLIGHT: str,
+    StyledTextTagType.FONTFACE: str,
+    StyledTextTagType.FONTSIZE: int,
+    StyledTextTagType.SUPERSCRIPT: bool,
+}
+
+STYLE_DEFAULT = {
+    StyledTextTagType.BOLD: False,
+    StyledTextTagType.ITALIC: False,
+    StyledTextTagType.UNDERLINE: False,
+    StyledTextTagType.FONTCOLOR: '#000000',
+    StyledTextTagType.HIGHLIGHT: '#FFFFFF',
+    StyledTextTagType.FONTFACE: 'Sans',
+    StyledTextTagType.FONTSIZE: 10,
+    StyledTextTagType.SUPERSCRIPT: False,
+}
+
+STYLE_TO_PROPERTY = {
+    StyledTextTagType.BOLD: 'weight', # permanent tag is used instead
+    StyledTextTagType.ITALIC: 'style', # permanent tag is used instead
+    StyledTextTagType.UNDERLINE: 'underline', # permanent tag is used instead
+    StyledTextTagType.FONTCOLOR: 'foreground',
+    StyledTextTagType.HIGHLIGHT: 'background',
+    StyledTextTagType.FONTFACE: 'family',
+    StyledTextTagType.FONTSIZE: 'size-points',
+    StyledTextTagType.SUPERSCRIPT: 'rise',
+}
+
+
 (MATCH_START,
  MATCH_END,
  MATCH_FLAVOR,
@@ -189,8 +227,14 @@ class StyledTextBuffer(gtk.TextBuffer):
     and gtk.TextBuffer. To set and get the text use the L{set_text} and 
     L{get_text} methods.
     
-    StyledTextBuffer provides an action group (L{format_action_group})
-    for GUIs.
+    To set a style to (a portion of) the text (e.g. from GUI) use the
+    L{apply_style} and L{remove_style} methods.
+    
+    To receive information about the style of the text at the cursor position
+    StyledTextBuffer provides two mechanism: message driven and polling.
+    To receive notification of style change as cursor moves connect to the
+    C{style-changed} signal. To get the value of a certain style at the cursor
+    use the L{get_style_at_cursor) method.
     
     StyledTextBuffer has a regexp pattern matching mechanism too. To add a
     regexp pattern to match in the text use the L{match_add} method. To check
@@ -200,66 +244,30 @@ class StyledTextBuffer(gtk.TextBuffer):
     """
     __gtype_name__ = 'StyledTextBuffer'
     
-    formats = ('italic', 'bold', 'underline',
-               'font', 'foreground', 'background',)
+    __gsignals__ = {
+        'style-changed': (gobject.SIGNAL_RUN_FIRST, 
+                          gobject.TYPE_NONE, #return value
+                          (gobject.TYPE_PYOBJECT,)), # arguments
+    }    
 
     def __init__(self):
         gtk.TextBuffer.__init__(self)
 
         # Create fix tags.
         # Other tags (e.g. color) have to be created on the fly
-        self.create_tag('bold', weight=WEIGHT_BOLD)
-        self.create_tag('italic', style=STYLE_ITALIC)
-        self.create_tag('underline', underline=UNDERLINE_SINGLE)
+        # see self._find_tag_by_name
+        self.create_tag(str(StyledTextTagType.BOLD), weight=WEIGHT_BOLD)
+        self.create_tag(str(StyledTextTagType.ITALIC), style=STYLE_ITALIC)
+        self.create_tag(str(StyledTextTagType.UNDERLINE),
+                        underline=UNDERLINE_SINGLE)
         
-        # Setup action group used from user interface
-        format_toggle_actions = [
-            ('italic', gtk.STOCK_ITALIC, None, None,
-             _('Italic'), self._on_toggle_action_activate),
-            ('bold', gtk.STOCK_BOLD, None, None,
-             _('Bold'), self._on_toggle_action_activate),
-            ('underline', gtk.STOCK_UNDERLINE, None, None,
-             _('Underline'), self._on_toggle_action_activate),
-        ]
-        
-        self.toggle_actions = [action[0] for action in format_toggle_actions]
-
-        format_actions = [
-            ('font', 'gramps-font', None, None,
-             _('Font'), self._on_action_activate),
-            ('foreground', 'gramps-font-color', None, None,
-             _('Font Color'), self._on_action_activate),
-            ('background', 'gramps-font-bgcolor', None, None,
-             _('Background Color'), self._on_action_activate),
-            ('clear', gtk.STOCK_CLEAR, None, None,
-             _('Clear Markup'), self._format_clear_cb),
-        ]
-        
-        self.action_accels = {
-            '<Control>i': 'italic',
-            '<Control>b': 'bold',
-            '<Control>u': 'underline',
-        }
-
-        self.format_action_group = gtk.ActionGroup('Format')
-        self.format_action_group.add_toggle_actions(format_toggle_actions)
-        self.format_action_group.add_actions(format_actions)
-
         # internal format state attributes
         ## 1. are used to format inserted characters (self.after_insert_text)
         ## 2. are set each time the Insert marker is set (self.do_mark_set)
-        ## 3. are set when format actions are activated (self.*_action_activate)
-        self.italic = False
-        self.bold = False
-        self.underline = False
-        self.font = None
-        # TODO could we separate font name and size?
-        ##self.size = None
-        self.foreground = None
-        self.background = None
+        ## 3. are set when a style is set (self._apply_style_to_selection)
+        self.style_state = STYLE_DEFAULT.copy()
         
         # internally used attribute
-        self._internal_toggle = False
         self._insert = self.get_insert()
         
         # create a mark used for text formatting
@@ -298,13 +306,10 @@ class StyledTextBuffer(gtk.TextBuffer):
         insert_start = self.get_iter_at_mark(self.mark_insert)
 
         # apply active formats for the inserted text
-        for format in self.__class__.formats:
-            value = getattr(self, format)
-            if value:
-                if format in self.toggle_actions:
-                    value = None
-                    
-                self.apply_tag(self._find_tag_by_name(format, value),
+        for style in ALLOWED_STYLES:
+            value = self.style_state[style]
+            if value and (value != STYLE_DEFAULT[style]):
+                self.apply_tag(self._find_tag_by_name(style, value),
                                insert_start, iter)
     
     def after_delete_range(self, textbuffer, start, end):
@@ -334,7 +339,7 @@ class StyledTextBuffer(gtk.TextBuffer):
                     break
 
     def do_mark_set(self, iter, mark):
-        """Update format attributes each time the cursor moves."""
+        """Update style state each time the cursor moves."""
         _LOG.debug("Setting mark %s at %d" %
                   (mark.get_name(), iter.get_offset()))
         
@@ -345,49 +350,27 @@ class StyledTextBuffer(gtk.TextBuffer):
             iter.backward_char()
             
         tag_names = [tag.get_property('name') for tag in iter.get_tags()]
-        for format in self.__class__.formats:
-            if format in self.toggle_actions:
-                value = format in tag_names
-                # set state of toggle action
-                action = self.format_action_group.get_action(format)
-                self._internal_toggle = True
-                action.set_active(value)
-                self._internal_toggle = False
+        changed_styles = {}
+        
+        for style in ALLOWED_STYLES:
+            if STYLE_TYPE[style] == bool:
+                value = str(style) in tag_names
             else:
-                value = None
+                value = STYLE_DEFAULT[style]
                 for tname in tag_names:
-                    if tname.startswith(format):
+                    if tname.startswith(str(style)):
                         value = tname.split(' ', 1)[1]
+                        value = STYLE_TYPE[style](value)
             
-            setattr(self, format, value)
+            if self.style_state[style] != value:
+                changed_styles[style] = value
+            
+            self.style_state[style] = value
+            
+        if changed_styles:
+            self.emit('style-changed', changed_styles)
 
     # Private
-    
-    def _tagname_to_tagtype(self, name):
-        """Convert gtk.TextTag names to StyledTextTagType values."""
-        tag2type = {
-            'bold': StyledTextTagType.BOLD,
-            'italic': StyledTextTagType.ITALIC,
-            'underline': StyledTextTagType.UNDERLINE,
-            'foreground': StyledTextTagType.FONTCOLOR,
-            'background': StyledTextTagType.HIGHLIGHT,
-            'font': StyledTextTagType.FONTFACE,
-        }
-        
-        return StyledTextTagType(tag2type[name])
-    
-    def _tagtype_to_tagname(self, tagtype):
-        """Convert StyledTextTagType values to gtk.TextTag names."""
-        type2tag = {
-            StyledTextTagType.BOLD: 'bold',
-            StyledTextTagType.ITALIC: 'italic',
-            StyledTextTagType.UNDERLINE: 'underline',
-            StyledTextTagType.FONTCOLOR: 'foreground',
-            StyledTextTagType.HIGHLIGHT: 'background',
-            StyledTextTagType.FONTFACE: 'font',
-        }
-        
-        return type2tag[tagtype]
     
     ##def get_tag_value_at_insert(self, name):
         ##"""Get the value of the given tag at the insertion point."""
@@ -403,21 +386,6 @@ class StyledTextBuffer(gtk.TextBuffer):
                 ##if tag.get_name().startswith(name):
                     ##return tag.get_name().split()[1]
             ##return None
-
-    def _color_to_hex(self, color):
-        """Convert gtk.gdk.Color to hex string."""
-        hexstring = ""
-        for col in 'red', 'green', 'blue':
-            hexfrag = hex(getattr(color, col) / (16 * 16)).split("x")[1]
-            if len(hexfrag) < 2:
-                hexfrag = "0" + hexfrag
-            hexstring += hexfrag
-        return '#' + hexstring
-        
-    def _hex_to_color(self, hex):
-        """Convert hex string to gtk.gdk.Color."""
-        color = gtk.gdk.color_parse(hex)
-        return color
 
     def _get_selection(self):
         bounds = self.get_selection_bounds()
@@ -446,11 +414,34 @@ class StyledTextBuffer(gtk.TextBuffer):
         if selection:
             self.remove_tag(tag, *selection)
             
-    def _remove_format_from_selection(self, format):
+    def _apply_style_to_selection(self, style, value):
+        # FIXME can this be unified?
+        if STYLE_TYPE[style] == bool:
+            start, end = self._get_selection()
+            
+            if value:
+                self.apply_tag_by_name(str(style), start, end)
+            else:
+                self.remove_tag_by_name(str(style), start, end)
+        elif STYLE_TYPE[style] == str:
+            tag = self._find_tag_by_name(style, value)
+            self._remove_style_from_selection(style)
+            self._apply_tag_to_selection(tag)
+        elif STYLE_TYPE[style] == int:
+            tag = self._find_tag_by_name(style, value)
+            self._remove_style_from_selection(style)
+            self._apply_tag_to_selection(tag)
+        else:
+            # we should never get until here
+            return
+
+        self.style_state[style] = value
+
+    def _remove_style_from_selection(self, style):
         start, end = self._get_selection()
         tags = self._get_tag_from_range(start.get_offset(), end.get_offset())
         for tag_name in tags.keys():
-            if tag_name.startswith(format):
+            if tag_name.startswith(str(style)):
                 for start, end in tags[tag_name]:
                     self.remove_tag_by_name(tag_name,
                                             self.get_iter_at_offset(start),
@@ -461,6 +452,8 @@ class StyledTextBuffer(gtk.TextBuffer):
         
         Return only the name of the TextTag from the specified range.
         If range is not given, tags extracted from the whole buffer.
+        
+        @note: TextTag names are always composed like: (%s %s) % (style, value)
         
         @param start: an offset pointing to the start of the range of text
         @param type: int
@@ -489,130 +482,61 @@ class StyledTextBuffer(gtk.TextBuffer):
                     tagdict[name]=[(pos, pos)]
         return tagdict
 
-    def _find_tag_by_name(self, name, value):
+    def _find_tag_by_name(self, style, value):
         """Fetch TextTag from buffer's tag table by it's name.
         
         If TextTag does not exist yet, it is created.
         
         """
-        if value is None:
-            tag_name = name
+        if STYLE_TYPE[style] == bool:
+            tag_name = str(style)
+        elif STYLE_TYPE[style] == str:
+            tag_name = "%d %s" % (style, value)
+        elif STYLE_TYPE[style] == int:
+            tag_name = "%d %d" % (style, value)
         else:
-            tag_name = "%s %s" % (name, value)
+            raise ValueError("Unknown style (%s) value type: %s" %
+                             (style, value.__class__))
+            
         tag = self.get_tag_table().lookup(tag_name)
+
         if not tag:
-            if value is not None:
+            if STYLE_TYPE[style] != bool:
+                # bool style tags are not created here, but in constuctor
                 tag = self.create_tag(tag_name)
-                tag.set_property(name, value)
+                tag.set_property(STYLE_TO_PROPERTY[style], value)
             else:
                 return None
         return tag
 
-    # Callbacks
-    
-    def _on_toggle_action_activate(self, action):
-        """Toggle a format.
-        
-        Toggle formats are e.g. 'bold', 'italic', 'underline'.
-        
-        """
-        if self._internal_toggle:
-            return
-
-        start, end = self._get_selection()
-        
-        if action.get_active():
-            self.apply_tag_by_name(action.get_name(), start, end)
-        else:
-            self.remove_tag_by_name(action.get_name(), start, end)
-            
-        setattr(self, action.get_name(), action.get_active())
-
-    def _on_action_activate(self, action):
-        """Apply a format."""
-        format = action.get_name()
-        
-        if format == 'foreground':
-            color_selection = gtk.ColorSelectionDialog(_("Select font color"))
-            if self.foreground:
-                color_selection.colorsel.set_current_color(
-                    self._hex_to_color(self.foreground))
-            response = color_selection.run()
-            color = color_selection.colorsel.get_current_color()
-            value = self._color_to_hex(color)
-            color_selection.destroy()
-        elif format == 'background':
-            color_selection = gtk.ColorSelectionDialog(_("Select "
-                                                         "background color"))
-            if self.background:
-                color_selection.colorsel.set_current_color(
-                    self._hex_to_color(self.background))
-            response = color_selection.run()
-            color = color_selection.colorsel.get_current_color()
-            value = self._color_to_hex(color)
-            color_selection.destroy()
-        elif format == 'font':
-            font_selection = CustomFontSelectionDialog(_("Select font"))
-            if self.font:
-                font_selection.fontsel.set_font_name(self.font)
-            response = font_selection.run()
-            value = font_selection.fontsel.get_font_name()
-            font_selection.destroy()
-        else:
-            _LOG.debug("unknown format: '%s'" % format)
-            return
-
-        if response == gtk.RESPONSE_OK:
-            _LOG.debug("applying format '%s' with value '%s'" % (format, value))
-            
-            tag = self._find_tag_by_name(format, value)
-            self._remove_format_from_selection(format)
-            self._apply_tag_to_selection(tag)
-            
-            setattr(self, format, value)
-
-    def _format_clear_cb(self, action):
-        """Remove all formats from the selection.
-        
-        Remove only our own tags without touching other ones (e.g. gtk.Spell),
-        thus remove_all_tags() can not be used.
-        
-        """
-        for format in self.formats:
-            self._remove_format_from_selection(format)
-
-    def on_key_press_event(self, widget, event):
-        """Handle formatting shortcuts."""
-        for accel in self.action_accels.keys():
-            key, mod = gtk.accelerator_parse(accel)
-            if (event.keyval, event.state) == (key, mod):
-                action_name = self.action_accels[accel]
-                action = self.format_action_group.get_action(action_name)
-                action.activate()
-                return True
-        return False
-        
     # Public API
 
-    def set_text(self, r_text):
-        """Set the content of the buffer with markup tags."""
-        gtk.TextBuffer.set_text(self, str(r_text))
+    def set_text(self, s_text):
+        """Set the content of the buffer with markup tags.
+        
+        @note: 's_' prefix means StyledText*, while 'g_' prefix means gtk.*.
+        
+        """
+        gtk.TextBuffer.set_text(self, str(s_text))
     
-        r_tags = r_text.get_tags()
-        for r_tag in r_tags:
-            tagname = self._tagtype_to_tagname(int(r_tag.name))
-            g_tag = self._find_tag_by_name(tagname, r_tag.value)
+        s_tags = s_text.get_tags()
+        for s_tag in s_tags:
+            g_tag = self._find_tag_by_name(int(s_tag.name), s_tag.value)
             if g_tag is not None:
-                for (start, end) in r_tag.ranges:
+                for (start, end) in s_tag.ranges:
                     start_iter = self.get_iter_at_offset(start)
                     end_iter = self.get_iter_at_offset(end)
                     self.apply_tag(g_tag, start_iter, end_iter)
                     
     def get_text(self, start=None, end=None, include_hidden_chars=True):
-        """Return the buffer text."""
-        if not start:
+        """Return the buffer text.
+        
+        @note: 's_' prefix means StyledText*, while 'g_' prefix means gtk.*.
+        
+        """
+        if start is None:
             start = self.get_start_iter()
-        if not end:
+        if end is None:
             end = self.get_end_iter()
 
         txt = gtk.TextBuffer.get_text(self, start, end, include_hidden_chars)
@@ -620,26 +544,60 @@ class StyledTextBuffer(gtk.TextBuffer):
         
         # extract tags out of the buffer
         g_tags = self._get_tag_from_range()
-        r_tags = []
+        s_tags = []
         
         for g_tagname, g_ranges in g_tags.items():
-            name_value = g_tagname.split(' ', 1)
+            style_and_value = g_tagname.split(' ', 1)
 
-            if len(name_value) == 1:
-                name = name_value[0]
-                r_value = None
+            style = int(style_and_value[0])
+            if len(style_and_value) == 1:
+                s_value = None
             else:
-                (name, r_value) = name_value
+                s_value = STYLE_TYPE[style](style_and_value[1])
 
-            if name in self.formats:
-                r_tagtype = self._tagname_to_tagtype(name)
-                r_ranges = [(start, end+1) for (start, end) in g_ranges]
-                r_tag = StyledTextTag(r_tagtype, r_value, r_ranges)
+            if style in ALLOWED_STYLES:
+                s_ranges = [(start, end+1) for (start, end) in g_ranges]
+                s_tag = StyledTextTag(style, s_value, s_ranges)
                                       
-                r_tags.append(r_tag)
-        
-        return StyledText(txt, r_tags)
+                s_tags.append(s_tag)
 
+        return StyledText(txt, s_tags)
+    
+    def apply_style(self, style, value):
+        """Apply a style with the given value to the selection.
+        
+        @param style: style type to apply
+        @type style: L{StyledTextTagStyle} int value
+        @param value: value of the style type
+        @type value: depends on the I{style} type
+        
+        """
+        if not isinstance(value, STYLE_TYPE[style]):
+            raise TypeError("Style (%d) value must be %s and not %s" %
+                            (style, STYLE_TYPE[style], value.__class__))
+
+        self._apply_style_to_selection(style, value)
+        
+    def remove_style(self, style):
+        """Delete all occurences with any value of the given style.
+        
+        @param style: style type to apply
+        @type style: L{StyledTextTagStyle} int value
+        
+        """
+        self._remove_style_from_selection(style)
+        
+    def get_style_at_cursor(self, style):
+        """Get the actual value of the given style at the cursor position.
+
+        @param style: style type to apply
+        @type style: L{StyledTextTagStyle} int value
+        @returns: value of the style type
+        @returntype: depends on the C{style} type
+        
+        """
+        return self.style_state[style]
+        
     def match_add(self, pattern, flavor):
         """Add a pattern to look for in the text."""
         regex = re.compile(pattern)
@@ -652,27 +610,3 @@ class StyledTextBuffer(gtk.TextBuffer):
                 return match
 
         return None
-
-#-------------------------------------------------------------------------
-#
-# CustomFontSelectionDialog class
-#
-#-------------------------------------------------------------------------
-class CustomFontSelectionDialog(gtk.FontSelectionDialog):
-    """A FontSelectionDialog without the Style treeview.
-    
-    This should be only a workaround until a real custom font selector
-    is created, because this solution is gtk implementation dependent.
-    
-    """
-    def __init__(self, title):
-        gtk.FontSelectionDialog.__init__(self, title)
-        
-        # hide the Style label and treeview
-        for widget in self.fontsel.get_children():
-            if isinstance(widget, gtk.Table):
-                table = widget
-        
-        for child in table.get_children():
-            if table.child_get_property(child, 'left-attach') == 1:
-                child.hide()

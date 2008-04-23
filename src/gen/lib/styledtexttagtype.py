@@ -47,23 +47,25 @@ class StyledTextTagType(GrampsType):
     Here we only define new class variables. For details see L{GrampsType}.
     
     """
-    NONE_ = -1
+    NONE_TYPE = -1
     BOLD = 0
     ITALIC = 1
     UNDERLINE = 2
     FONTFACE = 3
-    FONTCOLOR = 4
-    HIGHLIGHT = 5
-    SUPERSCRIPT = 6
+    FONTSIZE = 4
+    FONTCOLOR = 5
+    HIGHLIGHT = 6
+    SUPERSCRIPT = 7
     
-    _CUSTOM = NONE_
-    _DEFAULT = NONE_
+    _CUSTOM = NONE_TYPE
+    _DEFAULT = NONE_TYPE
     
     _DATAMAP = [
         (BOLD, _("Bold"), "bold"),
         (ITALIC, _("Italic"), "italic"),
         (UNDERLINE, _("Underline"), "underline"),
         (FONTFACE, _("Fontface"), "fontface"),
+        (FONTSIZE, _("Fontsize"), "fontsize"),
         (FONTCOLOR, _("Fontcolor"), "fontcolor"),
         (HIGHLIGHT, _("Highlight"), "highlight"),
         (SUPERSCRIPT, _("Superscript"), "superscript"),
