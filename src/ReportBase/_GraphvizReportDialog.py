@@ -83,28 +83,29 @@ _RATIO = [ { 'name' : _("Minimal size"),                'value' : "compress" },
 _NOTELOC = [ { 'name' : _("Top"),    'value' : "t" },
              { 'name' : _("Bottom"), 'value' : "b" }]
 
-_dot_found = 0
-_gs_cmd = ""
-
 if os.sys.platform == "win32":
-    _dot_found = Utils.search_for("dot.exe")
+    _DOT_FOUND = Utils.search_for("dot.exe")
     
     if Utils.search_for("gswin32c.exe") == 1:
-        _gs_cmd = "gswin32c.exe"
+        _GS_CMD = "gswin32c.exe"
     elif Utils.search_for("gswin32.exe") == 1:
-        _gs_cmd = "gswin32.exe"
+        _GS_CMD = "gswin32.exe"
+    else:
+        _GS_CMD = ""
 else:
-    _dot_found = Utils.search_for("dot")
+    _DOT_FOUND = Utils.search_for("dot")
     
     if Utils.search_for("gs") == 1:
-        _gs_cmd = "gs"
+        _GS_CMD = "gs"
+    else:
+        _GS_CMD = ""
 
 #-------------------------------------------------------------------------------
 #
 # GVDocBase
 #
 #-------------------------------------------------------------------------------
-class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
+class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
     """
     Base document generator for all Graphiz document generators. Classes that
     inherit from this class will only need to implement the close function.
@@ -181,7 +182,7 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         self.write( '\n' )
 
     def write(self, text):
-        self.dot.write(text.encode('iso-8859-1','xmlcharrefreplace'))
+        self.dot.write(text.encode('iso-8859-1', 'xmlcharrefreplace'))
 
     def open(self, filename):
         self.filename = os.path.normpath(os.path.abspath(filename))
@@ -280,7 +281,7 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
             else:
                 self.write('# %s\n' % text)
 
-    def start_subgraph(self,id):
+    def start_subgraph(self, id):
         self.write('  subgraph cluster_%s\n' % id)
         self.write('  {\n')
     
@@ -300,7 +301,7 @@ class GVDotDoc(GVDocBase):
         if self.filename[-4:] != ".dot":
             self.filename += ".dot"
 
-        file = open(self.filename,"w")
+        file = open(self.filename, "w")
         file.write(self.dot.getvalue())
         file.close()
         
@@ -329,13 +330,13 @@ class GVPsDoc(GVDocBase):
             self.filename += ".ps"
 
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Generate the PS file.
-        os.system( 'dot -Tps2 -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tps2 -o"%s" "%s"' % (self.filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -358,13 +359,13 @@ class GVSvgDoc(GVDocBase):
             self.filename += ".svg"
 
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Generate the PS file.
-        os.system( 'dot -Tsvg -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tsvg -o"%s" "%s"' % (self.filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -387,13 +388,13 @@ class GVSvgzDoc(GVDocBase):
             self.filename += ".svgz"
 
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Generate the PS file.
-        os.system( 'dot -Tsvgz -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tsvgz -o"%s" "%s"' % (self.filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -416,13 +417,13 @@ class GVPngDoc(GVDocBase):
             self.filename += ".png"
 
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Generate the PS file.
-        os.system( 'dot -Tpng -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tpng -o"%s" "%s"' % (self.filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -445,13 +446,13 @@ class GVJpegDoc(GVDocBase):
             self.filename += ".jpg"
 
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Generate the PS file.
-        os.system( 'dot -Tjpg -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tjpg -o"%s" "%s"' % (self.filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -474,13 +475,13 @@ class GVGifDoc(GVDocBase):
             self.filename += ".gif"
 
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Generate the PS file.
-        os.system( 'dot -Tgif -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tgif -o"%s" "%s"' % (self.filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -510,13 +511,13 @@ class GVPdfGvDoc(GVDocBase):
             self.filename += ".pdf"
 
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Generate the PDF file.
-        os.system( 'dot -Tpdf -o"%s" "%s"' % (self.filename,tmp_dot) )
+        os.system( 'dot -Tpdf -o"%s" "%s"' % (self.filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -547,13 +548,13 @@ class GVPdfGsDoc(GVDocBase):
             self.filename += ".pdf"
             
         # Create a temporary dot file
-        (handle,tmp_dot) = tempfile.mkstemp(".dot" )
+        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
         dotfile = os.fdopen(handle,"w")
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
         # Create a temporary PostScript file
-        (handle,tmp_ps) = tempfile.mkstemp(".ps" )
+        (handle, tmp_ps) = tempfile.mkstemp(".ps" )
         os.close( handle )
 
         # Generate PostScript using dot
@@ -568,7 +569,7 @@ class GVPdfGsDoc(GVDocBase):
         # Convert to PDF using ghostscript
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
                   ' -dDEVICEHEIGHTPOINTS=%d -sOutputFile="%s" "%s" -c quit' \
-                  % ( _gs_cmd, width_pt, height_pt, self.filename, tmp_ps )
+                  % ( _GS_CMD, width_pt, height_pt, self.filename, tmp_ps )
         os.system(command)
 
         os.remove(tmp_ps)
@@ -590,9 +591,9 @@ _formats += [{ 'type' : "dot",
                'mime' : "text/x-graphviz", 
                'class': GVDotDoc }]
 
-if _dot_found:
+if _DOT_FOUND:
     
-    if _gs_cmd != "":
+    if _GS_CMD != "":
         _formats += [{ 'type' : "gspdf",
                        'ext'  : "pdf",
                        'descr': _("PDF (Ghostscript)"), 
@@ -650,12 +651,12 @@ class GraphvizFormatComboBox(gtk.ComboBox):
     """
     Format combo box class for Graphviz report.
     """
-    def set(self,active=None):
+    def set(self, active=None):
         self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
 
         out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
@@ -743,7 +744,7 @@ class GraphvizReportDialog(ReportDialog):
 
         font_size = NumberOption(_("Font size"), 14, 8, 128)
         font_size.set_help(_("The font size, in points."))
-        self.options.add_menu_option(category,"font_size", font_size)
+        self.options.add_menu_option(category, "font_size", font_size)
         
         rank_dir = EnumeratedListOption(_("Graph Direction"), 0)
         index = 0
@@ -869,16 +870,16 @@ class GraphvizReportDialog(ReportDialog):
         """Set up the format frame of the dialog."""
         self.format_menu = GraphvizFormatComboBox()
         self.format_menu.set(self.options.handler.get_format_name())
-        self.format_menu.connect('changed',self.doc_type_changed)
+        self.format_menu.connect('changed', self.doc_type_changed)
         label = gtk.Label("%s:" % _("Output Format"))
-        label.set_alignment(0.0,0.5)
-        self.tbl.attach(label,1,2,self.row,self.row+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.format_menu,2,4,self.row,self.row+1,
+        label.set_alignment(0.0, 0.5)
+        self.tbl.attach(label, 1, 2, self.row, self.row+1, gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.format_menu, 2, 4, self.row, self.row+1,
                         yoptions=gtk.SHRINK)
         self.row += 1
 
-        self.print_report = gtk.CheckButton (_("Open with application"))
-        self.tbl.attach(self.print_report,2,4,self.row,self.row+1,
+        self.print_report = gtk.CheckButton(_("Open with application"))
+        self.tbl.attach(self.print_report, 2, 4, self.row, self.row+1,
                         yoptions=gtk.SHRINK)
         self.row += 1
 
@@ -895,13 +896,14 @@ class GraphvizReportDialog(ReportDialog):
         self.paper_label = gtk.Label('<b>%s</b>'%_("Paper Options"))
         self.paper_label.set_use_markup(True)
 
-        self.paper_frame = PaperFrame(self.options.handler.get_paper_metric(),
-                                      self.options.handler.get_paper_name(),
-                                      self.options.handler.get_orientation(),
-                                      self.options.handler.get_margins(),
-                                      self.options.handler.get_custom_paper_size()
+        self.paper_frame = PaperFrame(
+                                  self.options.handler.get_paper_metric(),
+                                  self.options.handler.get_paper_name(),
+                                  self.options.handler.get_orientation(),
+                                  self.options.handler.get_margins(),
+                                  self.options.handler.get_custom_paper_size()
                                       )
-        self.notebook.insert_page(self.paper_frame,self.paper_label,0)
+        self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
         self.paper_frame.show_all()
 
         ReportDialog.setup_report_options_frame(self)
@@ -923,7 +925,7 @@ class GraphvizReportDialog(ReportDialog):
             self.print_report.set_sensitive (False)
             
         fname = self.target_fileentry.get_full_path(0)
-        (spath,ext) = os.path.splitext(fname)
+        (spath, ext) = os.path.splitext(fname)
 
         ext_val = obj.get_ext()
         if ext_val:
@@ -957,11 +959,13 @@ class GraphvizReportDialog(ReportDialog):
         self.parse_format_frame()
         self.parse_user_options()
 
-        self.options.handler.set_paper_metric(self.paper_frame.get_paper_metric())
+        self.options.handler.set_paper_metric(
+                                          self.paper_frame.get_paper_metric())
         self.options.handler.set_paper_name(self.paper_frame.get_paper_name())
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
         self.options.handler.set_margins(self.paper_frame.get_paper_margins())
-        self.options.handler.set_custom_paper_size(self.paper_frame.get_custom_paper_size())
+        self.options.handler.set_custom_paper_size(
+                                       self.paper_frame.get_custom_paper_size())
         
         # Create the output document.
         self.make_document()
