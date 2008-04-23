@@ -351,7 +351,13 @@ class Reader:
 
     def __fix_token_conc(self, data):
         line = self.current_list[0]
-        new_value = line[2] + data[2]
+        if len(line[2]) == 4:
+            # The previous line contains only a tag and no data so concat a
+            # space to separate the new line from the tag. This prevents the
+            # first letter of the new line being lost later.
+            new_value = line[2] + ' ' + data[2]
+        else:
+            new_value = line[2] + data[2]
         self.current_list[0] = (line[0], line[1], new_value, line[3], line[4])
 
     def __readahead(self):
