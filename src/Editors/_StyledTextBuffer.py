@@ -57,28 +57,6 @@ from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 # FIXME
 ALLOWED_STYLES = [i for (i, s, e) in StyledTextTagType._DATAMAP]
 
-STYLE_TYPE = {
-    StyledTextTagType.BOLD: bool,
-    StyledTextTagType.ITALIC: bool,
-    StyledTextTagType.UNDERLINE: bool,
-    StyledTextTagType.FONTCOLOR: str,
-    StyledTextTagType.HIGHLIGHT: str,
-    StyledTextTagType.FONTFACE: str,
-    StyledTextTagType.FONTSIZE: int,
-    StyledTextTagType.SUPERSCRIPT: bool,
-}
-
-STYLE_DEFAULT = {
-    StyledTextTagType.BOLD: False,
-    StyledTextTagType.ITALIC: False,
-    StyledTextTagType.UNDERLINE: False,
-    StyledTextTagType.FONTCOLOR: '#000000',
-    StyledTextTagType.HIGHLIGHT: '#FFFFFF',
-    StyledTextTagType.FONTFACE: 'Sans',
-    StyledTextTagType.FONTSIZE: 10,
-    StyledTextTagType.SUPERSCRIPT: False,
-}
-
 STYLE_TO_PROPERTY = {
     StyledTextTagType.BOLD: 'weight', # permanent tag is used instead
     StyledTextTagType.ITALIC: 'style', # permanent tag is used instead
@@ -89,7 +67,6 @@ STYLE_TO_PROPERTY = {
     StyledTextTagType.FONTSIZE: 'size-points',
     StyledTextTagType.SUPERSCRIPT: 'rise',
 }
-
 
 (MATCH_START,
  MATCH_END,
@@ -265,7 +242,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         ## 1. are used to format inserted characters (self.after_insert_text)
         ## 2. are set each time the Insert marker is set (self.do_mark_set)
         ## 3. are set when a style is set (self._apply_style_to_selection)
-        self.style_state = STYLE_DEFAULT.copy()
+        self.style_state = StyledTextTagType.STYLE_DEFAULT.copy()
         
         # internally used attribute
         self._insert = self.get_insert()
@@ -308,7 +285,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         # apply active formats for the inserted text
         for style in ALLOWED_STYLES:
             value = self.style_state[style]
-            if value and (value != STYLE_DEFAULT[style]):
+            if value and (value != StyledTextTagType.STYLE_DEFAULT[style]):
                 self.apply_tag(self._find_tag_by_name(style, value),
                                insert_start, iter)
     
@@ -353,14 +330,14 @@ class StyledTextBuffer(gtk.TextBuffer):
         changed_styles = {}
         
         for style in ALLOWED_STYLES:
-            if STYLE_TYPE[style] == bool:
+            if StyledTextTagType.STYLE_TYPE[style] == bool:
                 value = str(style) in tag_names
             else:
-                value = STYLE_DEFAULT[style]
+                value = StyledTextTagType.STYLE_DEFAULT[style]
                 for tname in tag_names:
                     if tname.startswith(str(style)):
                         value = tname.split(' ', 1)[1]
-                        value = STYLE_TYPE[style](value)
+                        value = StyledTextTagType.STYLE_TYPE[style](value)
             
             if self.style_state[style] != value:
                 changed_styles[style] = value
@@ -416,18 +393,18 @@ class StyledTextBuffer(gtk.TextBuffer):
             
     def _apply_style_to_selection(self, style, value):
         # FIXME can this be unified?
-        if STYLE_TYPE[style] == bool:
+        if StyledTextTagType.STYLE_TYPE[style] == bool:
             start, end = self._get_selection()
             
             if value:
                 self.apply_tag_by_name(str(style), start, end)
             else:
                 self.remove_tag_by_name(str(style), start, end)
-        elif STYLE_TYPE[style] == str:
+        elif StyledTextTagType.STYLE_TYPE[style] == str:
             tag = self._find_tag_by_name(style, value)
             self._remove_style_from_selection(style)
             self._apply_tag_to_selection(tag)
-        elif STYLE_TYPE[style] == int:
+        elif StyledTextTagType.STYLE_TYPE[style] == int:
             tag = self._find_tag_by_name(style, value)
             self._remove_style_from_selection(style)
             self._apply_tag_to_selection(tag)
@@ -488,11 +465,11 @@ class StyledTextBuffer(gtk.TextBuffer):
         If TextTag does not exist yet, it is created.
         
         """
-        if STYLE_TYPE[style] == bool:
+        if StyledTextTagType.STYLE_TYPE[style] == bool:
             tag_name = str(style)
-        elif STYLE_TYPE[style] == str:
+        elif StyledTextTagType.STYLE_TYPE[style] == str:
             tag_name = "%d %s" % (style, value)
-        elif STYLE_TYPE[style] == int:
+        elif StyledTextTagType.STYLE_TYPE[style] == int:
             tag_name = "%d %d" % (style, value)
         else:
             raise ValueError("Unknown style (%s) value type: %s" %
@@ -501,7 +478,7 @@ class StyledTextBuffer(gtk.TextBuffer):
         tag = self.get_tag_table().lookup(tag_name)
 
         if not tag:
-            if STYLE_TYPE[style] != bool:
+            if StyledTextTagType.STYLE_TYPE[style] != bool:
                 # bool style tags are not created here, but in constuctor
                 tag = self.create_tag(tag_name)
                 tag.set_property(STYLE_TO_PROPERTY[style], value)
@@ -554,7 +531,8 @@ class StyledTextBuffer(gtk.TextBuffer):
                 if len(style_and_value) == 1:
                     s_value = None
                 else:
-                    s_value = STYLE_TYPE[style](style_and_value[1])
+                    s_value = StyledTextTagType.STYLE_TYPE[style]\
+                            (style_and_value[1])
     
                 if style in ALLOWED_STYLES:
                     s_ranges = [(start, end+1) for (start, end) in g_ranges]
@@ -575,9 +553,10 @@ class StyledTextBuffer(gtk.TextBuffer):
         @type value: depends on the I{style} type
         
         """
-        if not isinstance(value, STYLE_TYPE[style]):
+        if not isinstance(value, StyledTextTagType.STYLE_TYPE[style]):
             raise TypeError("Style (%d) value must be %s and not %s" %
-                            (style, STYLE_TYPE[style], value.__class__))
+                            (style, StyledTextTagType.STYLE_TYPE[style],
+                             value.__class__))
 
         self._apply_style_to_selection(style, value)
         

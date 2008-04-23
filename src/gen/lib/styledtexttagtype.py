@@ -70,6 +70,28 @@ class StyledTextTagType(GrampsType):
         (HIGHLIGHT, _("Highlight"), "highlight"),
         (SUPERSCRIPT, _("Superscript"), "superscript"),
     ]
+
+    STYLE_TYPE = {
+        BOLD: bool,
+        ITALIC: bool,
+        UNDERLINE: bool,
+        FONTCOLOR: str,
+        HIGHLIGHT: str,
+        FONTFACE: str,
+        FONTSIZE: int,
+        SUPERSCRIPT: bool,
+    }
     
+    STYLE_DEFAULT = {
+        BOLD: False,
+        ITALIC: False,
+        UNDERLINE: False,
+        FONTCOLOR: '#000000',
+        HIGHLIGHT: '#FFFFFF',
+        FONTFACE: 'Sans',
+        FONTSIZE: 10,
+        SUPERSCRIPT: False,
+    }
+
     def __init__(self, value=None):
         GrampsType.__init__(self, value)

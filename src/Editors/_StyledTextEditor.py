@@ -48,7 +48,6 @@ from pango import UNDERLINE_SINGLE
 #-------------------------------------------------------------------------
 from gen.lib import StyledTextTagType
 from Editors._StyledTextBuffer import (StyledTextBuffer, ALLOWED_STYLES,
-                                       STYLE_TYPE, STYLE_DEFAULT,
                                        MATCH_START, MATCH_END,
                                        MATCH_FLAVOR, MATCH_STRING)
 from Spell import Spell
@@ -482,7 +481,7 @@ class StyledTextEditor(gtk.TextView):
         if self._internal_style_change:
             return
         
-        value = STYLE_TYPE[style](combobox.get_active_text())
+        value = StyledTextTagType.STYLE_TYPE[style](combobox.get_active_text())
         _LOG.debug("applying style '%d' with value '%s'" % (style, str(value)))
         self.textbuffer.apply_style(style, value)
 
@@ -513,8 +512,8 @@ class StyledTextEditor(gtk.TextView):
                 model = combo.get_model()
                 iter = model.get_iter_first()
                 while iter:
-                    if (STYLE_TYPE[style](model.get_value(iter, 0)) ==
-                        changed_styles[style]):
+                    if (StyledTextTagType.STYLE_TYPE[style](
+                        model.get_value(iter, 0)) == changed_styles[style]):
                         break
                     iter = model.iter_next(iter)
 
@@ -685,7 +684,8 @@ def set_fontface_toolitem(combotoolitem, callback):
         fontface.append_text(family)
             
     try:
-        default = families.index(STYLE_DEFAULT[StyledTextTagType.FONTFACE])
+        def_fam = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTFACE]
+        default = families.index(def_fam)
     except ValueError:
         default = 0
     fontface.set_active(default)
@@ -702,7 +702,8 @@ def set_fontsize_toolitem(combotoolitem, callback):
         fontsize.append_text(str(size))
         
     try:
-        default = FONT_SIZES.index(STYLE_DEFAULT[StyledTextTagType.FONTSIZE])
+        def_size = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTSIZE]
+        default = FONT_SIZES.index(def_size)
     except ValueError:
         default = 0
     fontsize.set_active(default)
