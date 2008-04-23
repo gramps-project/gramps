@@ -549,17 +549,20 @@ class StyledTextBuffer(gtk.TextBuffer):
         for g_tagname, g_ranges in g_tags.items():
             style_and_value = g_tagname.split(' ', 1)
 
-            style = int(style_and_value[0])
-            if len(style_and_value) == 1:
-                s_value = None
-            else:
-                s_value = STYLE_TYPE[style](style_and_value[1])
-
-            if style in ALLOWED_STYLES:
-                s_ranges = [(start, end+1) for (start, end) in g_ranges]
-                s_tag = StyledTextTag(style, s_value, s_ranges)
-                                      
-                s_tags.append(s_tag)
+            try:
+                style = int(style_and_value[0])
+                if len(style_and_value) == 1:
+                    s_value = None
+                else:
+                    s_value = STYLE_TYPE[style](style_and_value[1])
+    
+                if style in ALLOWED_STYLES:
+                    s_ranges = [(start, end+1) for (start, end) in g_ranges]
+                    s_tag = StyledTextTag(style, s_value, s_ranges)
+                                          
+                    s_tags.append(s_tag)
+            except ValueError:
+                _LOG.debug("silently skipping gtk.TextTag '%s'" % g_tagname)
 
         return StyledText(txt, s_tags)
     
