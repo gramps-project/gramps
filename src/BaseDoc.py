@@ -1581,20 +1581,26 @@ class GVDoc:
     for Graphviz reports must implment this interface to be used by the
     report system.
     """
-    def add_node(self, id, label, shape="box", fillcolor="white", url="", htmloutput=False):
+    def add_node(self, node_id, label, shape="", color="", 
+                 style="", fillcolor="", url="", htmloutput=False):
         """
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
         
-        @param id: A unique identification value for this node.
+        @param node_id: A unique identification value for this node.
             Example: "p55"
-        @type id: string
+        @type node_id: string
         @param label: The text to be displayed in the node.
             Example: "John Smith"
         @type label: string
         @param shape: The shape for the node.
             Examples: "box", "ellipse", "circle"
         @type shape: string
+        @param color: The color of the node line.
+            Examples: "blue", "lightyellow"
+        @type color: string
+        @param style: The style of the node.
+        @type style: string
         @param fillcolor: The fill color for the node.
             Examples: "blue", "lightyellow"
         @type fillcolor: string
@@ -1634,7 +1640,7 @@ class GVDoc:
         """
         raise NotImplementedError
 
-    def start_subgraph(self,id):
+    def start_subgraph(self, graph_id):
         """
         Start a subgraph in this graph.
         
