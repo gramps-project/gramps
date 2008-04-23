@@ -424,7 +424,7 @@ class GrampsDbXmlWriter(UpdateCallback):
             
             self.g.write('  ' * index + '<tag name="%s"' % name)
             if value:
-                self.g.write(' value="%s"' % value)
+                self.g.write(' value="%s"' % str(value))
             self.g.write('>\n')
             
             for (start, end) in tag.ranges:

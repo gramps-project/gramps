@@ -1327,9 +1327,12 @@ class GrampsParser(UpdateCallback):
         tagtype.set_from_xml_str(attrs['name'])
         
         try:
-            tagvalue = attrs['value']
+            val = attrs['value']
+            tagvalue = gen.lib.StyledTextTagType.STYLE_TYPE[int(tagtype)](val)
         except KeyError:
             tagvalue = None
+        except ValueError:
+            return
         
         self.note_tags.append(gen.lib.StyledTextTag(tagtype, tagvalue))
     
@@ -1360,7 +1363,7 @@ class GrampsParser(UpdateCallback):
             self.note.format = int(attrs.get('format', gen.lib.Note.FLOWED))
             self.note.type.set_from_xml_str(attrs['type'])
             
-            # Since StyledText was introduced (XML v1.2.1?) the clear text
+            # Since StyledText was introduced (XML v1.3.0) the clear text
             # part of the note is moved between <text></text> tags.
             # To catch the different versions here we reset the note_text
             # variable. It will be checked in stop_note() then.
