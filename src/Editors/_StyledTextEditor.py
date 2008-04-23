@@ -72,7 +72,7 @@ FORMAT_TOOLBAR = '''
   <toolitem action="%d"/>
   <toolitem action="%d"/>
   <toolitem action="%d"/>
-  <separator/>
+  <toolitem action="spring"/>
   <toolitem action="clear"/>
 </toolbar>
 </ui>
@@ -357,6 +357,9 @@ class StyledTextEditor(gtk.TextView):
         fontsize_action = ComboToolAction(str(StyledTextTagType.FONTSIZE),
                                           _("Font size"),
                                           _("Font size"), None)
+        spring = SpringSeparatorAction("spring", "", "", None)
+        
+        # action accelerators
         self.action_accels = {
             '<Control>i': 'italic',
             '<Control>b': 'bold',
@@ -369,6 +372,7 @@ class StyledTextEditor(gtk.TextView):
         self.action_group.add_actions(format_actions)
         self.action_group.add_action(fontface_action)
         self.action_group.add_action(fontsize_action)
+        self.action_group.add_action(spring)
 
         # define the toolbar and create the proxies via ensure_update()
         uimanager = gtk.UIManager()
@@ -385,11 +389,7 @@ class StyledTextEditor(gtk.TextView):
                                         StyledTextTagType.FONTSIZE)
         set_fontsize_toolitem(fontsize, self._on_combotoolitem_changed)
 
-        ##separator = uimanager.get_widget('/ToolBar/abcdef')
-        ##separator = gtk.SeparatorToolItem()
-        ##separator.set_expand(True)
-        ##separator.set_draw(False)
-        
+        # get the toolbar and set it's style
         toolbar = uimanager.get_widget('/ToolBar')      
         toolbar.set_style(gtk.TOOLBAR_ICONS)
         
@@ -637,6 +637,35 @@ class ComboToolAction(gtk.Action):
     ##def changed(self, combobox):
         ##self.activate()
 ComboToolAction.set_tool_item_type(ComboToolItem)
+
+#-------------------------------------------------------------------------
+#
+# SpringSeparatorToolItem class
+#
+#-------------------------------------------------------------------------
+class SpringSeparatorToolItem(gtk.SeparatorToolItem):
+    
+    __gtype_name__ = "SpringSeparatorToolItem"
+    
+    def __init__(self):
+        gtk.SeparatorToolItem.__init__(self)
+        
+        self.set_draw(False)
+        self.set_expand(True)
+        
+#-------------------------------------------------------------------------
+#
+# SpringSeparatorAction class
+#
+#-------------------------------------------------------------------------
+class SpringSeparatorAction(gtk.Action):
+    
+    __gtype_name__ = "SpringSeparatorAction"
+    
+    def __init__(self, name, label, tooltip, stock_id):
+        gtk.Action.__init__(self, name, label, tooltip, stock_id)
+
+SpringSeparatorAction.set_tool_item_type(SpringSeparatorToolItem)
 
 #-------------------------------------------------------------------------
 #
