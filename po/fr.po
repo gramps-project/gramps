@@ -8055,7 +8055,7 @@ msgstr "Entrer une date, puis Exécuter"
 
 #: ../src/plugins/DefaultGramplets.py:1043
 msgid "Enter a date in the entry below and click Run. This will compute the ages for everyone in your Family Tree on that date. You can then sort by the age column, and double-click the row to view or edit."
-msgstr "Entrer une date dans le champ suivant et cliquer sur Exécuter. Ceci calculera les âges de tous les individus de votre arbre familial pour cette date. Vous pourrez trier la colonne âge, et double cliquer sur le rang pour éditer."
+msgstr "Entrer une date dans le champ suivant et cliquer sur Exécuter. Ceci calculera les âges de tous les individus de votre arbre familial pour cette date. Vous pourrez trier la colonne âge, et double cliquer sur la ligne pour éditer."
 
 #: ../src/plugins/DefaultGramplets.py:1051
 msgid "Run"
@@ -10962,7 +10962,7 @@ msgstr "Analyse des noms"
 
 #: ../src/plugins/PatchNames.py:179
 msgid "No titles, nicknames or prefixes were found"
-msgstr "Aucun titres ou surnoms détectés"
+msgstr "Aucun titre ou surnom détecté"
 
 #: ../src/plugins/PatchNames.py:341
 msgid "Extract information from names"
@@ -12794,15 +12794,15 @@ msgstr "Espacement de nœud"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:814
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
-msgstr "L'espace libre minimum réservé, en inches, entre les nœuds. Pour les graphiques verticaux, ceci correspond à l'espace entre les colonnes. Pour les graphiques horizontaux, ceci correspond à l'espace entre les rangées."
+msgstr "L'espace libre minimum réservé, en inches, entre les nœuds. Pour les graphiques verticaux, ceci correspond à l'espace entre les colonnes. Pour les graphiques horizontaux, ceci correspond à l'espace entre les lignes."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:821
 msgid "Rank spacing"
-msgstr "Espacement de rang"
+msgstr "Espacement du rang"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:822
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
-msgstr "L'espace libre minimum réservé, en inches, entre les rangs. Pour les graphiques verticaux, ceci correspond à l'espace entre les rangées. Pour les graphiques horizontaux, ceci correspond à l'espace entre les colonnes."
+msgstr "L'espace libre minimum réservé, en inches, entre les rangs. Pour les graphiques verticaux, ceci correspond à l'espace entre les lignes. Pour les graphiques horizontaux, ceci correspond à l'espace entre les colonnes."
 
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:833
@@ -19922,7 +19922,7 @@ msgstr "Code SoundEx :"
 #: ../src/plugins/unused.glade.h:1
 #: ../src/plugins/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
-msgstr "<b>Double-cliquer sur un rang pour voir/éditer les données</b>"
+msgstr "<b>Double-cliquer sur une ligne pour voir/éditer les données</b>"
 
 #: ../src/plugins/unused.glade.h:2
 #: ../src/plugins/verify.glade.h:6
