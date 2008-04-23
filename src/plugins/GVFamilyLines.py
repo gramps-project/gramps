@@ -818,7 +818,7 @@ class FamilyLinesReport(Report):
                 else:
                     style = "filled"
 
-            self.doc.add_node(id=person.get_gramps_id(),
+            self.doc.add_node(person.get_gramps_id(),
                  label=label,
                  shape=shape,
                  color=color,
