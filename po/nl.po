@@ -37,7 +37,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-22 09:13+0200\n"
-"PO-Revision-Date: 2008-04-22 09:20+0200\n"
+"PO-Revision-Date: 2008-04-24 11:37+0200\n"
 "Last-Translator: Frederik De Richter <frederik@googlemail.com>\n"
 "Language-Team:  <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -339,7 +339,7 @@ msgid ""
 msgstr ""
 "Bestandstype \"%s\" is onbekend bij GRAMPS.\n"
 "\n"
-"Geldige typen zijn: GRAMPS database, GRAMPS XML, GRAMPS pakket, en GEDCOM."
+"Geldige typen zijn: GRAMPS gegevensbestand, GRAMPS XML, GRAMPS pakket, en GEDCOM."
 
 #: ../src/DbLoader.py:213 ../src/DbLoader.py:220 ../src/DbLoader.py:277
 msgid "Cannot open database"
@@ -525,7 +525,7 @@ msgstr "Familiestamboom verwijderen"
 #: ../src/DbManager.py:754
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Remove the '%(revision)s' version of '%(database)s'"
+msgstr "Verwijder de '%(revision)s' versie van '%(database)s'"
 
 #: ../src/DbManager.py:758
 msgid "Removing this version will prevent you from extracting it in the future."
@@ -717,7 +717,7 @@ msgstr ""
 "\n"
 "Merk op: het gegevensbestand die in uw GRAMPS-venster wordt weergegeven is "
 "NIET het bestand dat u zojuist heeft opgeslagen. Alle toekomstige "
-"bewerkingen in de huidige weergegeven database zullen geen wijzigingen "
+"bewerkingen in het huidige weergegeven gegevensbestand zullen geen wijzigingen "
 "aanbrengen in de kopie die u zojuist heeft opgeslagen. "
 
 #: ../src/ExportAssistant.py:480
@@ -735,7 +735,7 @@ msgstr ""
 "Er was een fout bij het opslaan van uw gegevens. Ga terug en probeer "
 "opnieuw.\n"
 "\n"
-"Merk op: uw huidige geopende database is veilig. Het was slechts een kopie "
+"Merk op: uw huidige geopend gegevensbestand is veilig. Het was slechts een kopie "
 "van uw gegevens die niet kon worden opgeslagen."
 
 #: ../src/ExportAssistant.py:519
@@ -782,7 +782,7 @@ msgstr "_Gegevens over levende personen beperken"
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/WriteFtree.py:87
 #: ../src/plugins/WriteGeneWeb.py:92 ../src/ReportBase/_ReportUtils.py:2667
 msgid "Entire Database"
-msgstr "Gehele database"
+msgstr "Volledig gegevensbestand"
 
 #: ../src/ExportOptions.py:114 ../src/plugins/DescendReport.py:145
 #: ../src/plugins/ExportCSV.py:189 ../src/plugins/ExportVCalendar.py:95
@@ -2696,7 +2696,7 @@ msgstr "standaard"
 #: ../src/Utils.py:716 ../src/plugins/CalculateEstimatedDates.py:415
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
-msgstr "Database fout: %s is gedefinieerd als zijn of haar eigen voorouder"
+msgstr "Fout gegevensbestand: %s is gedefinieerd als zijn of haar eigen voorouder"
 
 #: ../src/Utils.py:1079
 msgid "Please do not force closing this important dialog."
@@ -2763,7 +2763,7 @@ msgstr "Gewist"
 
 #: ../src/UndoHistory.py:217
 msgid "Database opened"
-msgstr "Database geopend"
+msgstr "Gegevensbestand geopend"
 
 #: ../src/UndoHistory.py:219
 msgid "History cleared"
@@ -3762,8 +3762,8 @@ msgid ""
 "This place is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
 msgstr ""
-"Deze plaats is momenteel in gebruik. Als u het verwijdert zal het uit de "
-"database worden gehaald en uit alle archieven die ernaar verwijzen."
+"Deze plaats is momenteel in gebruik. Als u de plaats verwijdert zal deze locatie uit het "
+"gegevensbestand worden gehaald en uit alle archieven die ernaar verwijzen."
 
 #: ../src/DataViews/PlaceView.py:248
 msgid "Deleting place will remove it from the database."
@@ -4065,9 +4065,7 @@ msgstr "Kolommen selecteren"
 msgid ""
 "This source is currently being used. Deleting it will remove it from the "
 "database and from all people and families that reference it."
-msgstr ""
-"Deze bron is momenteel in gebruik. Als u het verwijdert zal het uit de "
-"database worden gehaald en uit alle archieven die ernaar verwijzen."
+msgstr "Deze bron is momenteel in gebruik. Als u deze bron verwijdert zal de bron uit het gegevensbestand worden gehaald en uit alle archieven die ernaar verwijzen."
 
 #: ../src/DataViews/SourceView.py:197
 msgid "Deleting source will remove it from the database."
@@ -5395,15 +5393,15 @@ msgstr "Internetadres bewerken"
 
 #: ../src/Editors/_StyledTextBuffer.py:218
 msgid "Italic"
-msgstr "_Cursief"
+msgstr "Cursief"
 
 #: ../src/Editors/_StyledTextBuffer.py:220
 msgid "Bold"
-msgstr "_Vet"
+msgstr "Vet"
 
 #: ../src/Editors/_StyledTextBuffer.py:222
 msgid "Underline"
-msgstr "_Onderstreept"
+msgstr "Onderstreept"
 
 #: ../src/Editors/_StyledTextBuffer.py:233
 msgid "Background Color"
@@ -5574,7 +5572,7 @@ msgstr "Uw familiestambomengroepnaam %s samen met %s, werd niet veranderd naar %
 
 #: ../src/GrampsDbUtils/importdbdir.py:228 ../src/plugins/ReadGrdb.py:256
 msgid "Import database"
-msgstr "Database importeren"
+msgstr "Gegevensbestand importeren"
 
 #: ../src/GrampsDbUtils/_ReadGedcom.py:122
 #: ../src/GrampsDbUtils/_ReadGedcom.py:139 ../src/plugins/ImportCSV.py:324
@@ -5620,7 +5618,7 @@ msgstr "Fout bij lezen van %s"
 # verknoeid/bedorven/beschadigd als vertaling voor corrupt.
 #: ../src/GrampsDbUtils/_ReadXML.py:132
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Het bestand is waarschijnlijk beschadigd of geen geldige GRAMPS-database."
+msgstr "Het bestand is waarschijnlijk beschadigd of geen geldig GRAMPS-gegevensbestand."
 
 #: ../src/GrampsDbUtils/_ReadXML.py:236
 #, python-format
@@ -5818,15 +5816,15 @@ msgstr "GEDCOM-export opties"
 #. -------------------------------------------------------------------------
 #: ../src/GrampsDbUtils/_WriteXML.py:129
 msgid "GRAMPS _XML database"
-msgstr "GRAMPS _XML-database"
+msgstr "GRAMPS _XML-gegevensbestand"
 
 #: ../src/GrampsDbUtils/_WriteXML.py:130
 msgid ""
 "The GRAMPS XML database is a text version of a family tree. It is read-write "
 "compatible with the present GRAMPS database format."
 msgstr ""
-"Het GRAMPS XML-gegevensbestanddatabase is een tekstversie van een "
-"familiestamboom. Het is compatibel ((zowel lezen als schrijven) met het "
+"Het GRAMPS XML-gegevensbestand is een tekstversie van een "
+"familiestamboom. Het is compatibel (zowel lezen als schrijven) met het "
 "huidige gegevensbestandsformaat van GRAMPS."
 
 #: ../src/GrampsDbUtils/_WriteXML.py:133
@@ -6532,7 +6530,7 @@ msgstr "Boek selectielijst"
 
 #: ../src/plugins/BookReport.py:774
 msgid "Different database"
-msgstr "Andere database"
+msgstr "Ander gegevensbestand"
 
 #: ../src/plugins/BookReport.py:775
 #, python-format
@@ -6985,7 +6983,7 @@ msgstr "Verbeter de hoofdletters van familienamen"
 #: ../src/plugins/ChangeNames.py:292
 msgid "Searches the entire database and attempts to fix capitalization of the names."
 msgstr ""
-"Doorzoekt de gehele database en probeert de namen met of zonder hoofdletters "
+"Doorzoekt het volledige gegevensbestand en probeert de namen met of zonder hoofdletters "
 "te verbeteren."
 
 #: ../src/plugins/ChangeTypes.py:67
@@ -7151,7 +7149,7 @@ msgstr "Er zijn geen fouten gevonden"
 
 #: ../src/plugins/Check.py:1292
 msgid "The database has passed internal checks"
-msgstr "De database is goed door de interne controle gekomen"
+msgstr "Het gegevensbestand is goed door de interne controle gekomen"
 
 # gebroken link, klinkt zo stom, verkeerd is duidelijker, komt op hetzelfde neer.
 #: ../src/plugins/Check.py:1298
@@ -9074,8 +9072,8 @@ msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
 msgstr ""
-"De gehele database doorzoeken op personen die mogelijk representaties zijn "
-"van een en dezelfde persoon."
+"Het volledige gegevensbestand doorzoeken naar personen die mogelijk dubbels zijn "
+"van één en dezelfde persoon."
 
 #. ------------------------------------------------------------------------
 #.
@@ -10894,8 +10892,8 @@ msgid ""
 "Searches the entire database and attempts to extract titles, nicknames and "
 "surname prefixes that may be embedded in a person's given name field."
 msgstr ""
-"Doorzoekt de gehele database en tracht titels en bijnamen te extraheren die "
-"mogelijk in het voornaamsveld van een persoon zijn ingebed."
+"Doorzoekt het volledige gegevensbestand en tracht er titels en bijnamen uit te halen die "
+"mogelijk in verborgen zijn in het het voornaamsveld van een persoon."
 
 #: ../src/plugins/ReadPkg.py:79
 #, python-format
@@ -11509,7 +11507,7 @@ msgstr "Personen geboren na"
 
 #: ../src/plugins/StatisticsChart.py:711
 msgid "Birth year from which to include people"
-msgstr "Geboortejaar vanaf hetwelk personen moeten meegenomen worden"
+msgstr "Vanaf dit geboortejaar worden personen in het verslag opgenomen"
 
 #: ../src/plugins/StatisticsChart.py:714
 msgid "People Born Before"
@@ -11638,7 +11636,7 @@ msgstr "Totale grootte van media-objecten: %d bytes"
 
 #: ../src/plugins/Summary.py:302
 msgid "Provides a summary of the current database"
-msgstr "Levert een samenvatting van de huidige database"
+msgstr "Levert een samenvatting van het huidig gegevensbestand"
 
 #: ../src/plugins/TimeLine.py:94
 #, python-format
@@ -12415,11 +12413,11 @@ msgstr "Analyse en verkenning"
 
 #: ../src/PluginUtils/_Tool.py:66
 msgid "Database Processing"
-msgstr "Database verwerken"
+msgstr "Gegevensbestand verwerken"
 
 #: ../src/PluginUtils/_Tool.py:67
 msgid "Database Repair"
-msgstr "Database repareren"
+msgstr "Gegevensbestand herstellen"
 
 #: ../src/PluginUtils/_Tool.py:68
 msgid "Revision Control"
@@ -22077,8 +22075,7 @@ msgid ""
 "correlation with the potential of filling relationship gaps."
 msgstr ""
 "GRAMPS heeft enkele unieke functies, zoals de mogelijkheid om gelijk welk "
-"soort informatie direct te kunnen ingeven in GRAMPS. Alle gegevens in de "
-"database kunnen gemanipuleerd worden of herschikt om de gebruiker in staat "
+"soort informatie direct te kunnen ingeven in GRAMPS. Alle gegevens in het gegevensbestand kunnen bewerkt of herschikt worden om de gebruiker in staat "
 "te stellen om analyses en onderzoek te doen. Dit geeft de mogelijkheid om "
 "gaten in ontbrekende relaties te kunnen vullen."
 
