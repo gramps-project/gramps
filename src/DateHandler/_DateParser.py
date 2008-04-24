@@ -570,7 +570,7 @@ class DateParser:
         """
         Parses the text and sets the date according to the parsing.
         """
-
+        text = text.strip() # otherwise spaces can make it a bad date
         date.set_text_value(text)
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
