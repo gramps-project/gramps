@@ -94,8 +94,6 @@ def load_plugins(direct):
     successfully loads, it is added to the success_list list. Each plugin is
     responsible for registering itself in the correct manner. No attempt
     is done in this routine to register the tasks. Returns True on error. """
-    
-    global success_list, attempt_list, loaddir_list, failmsg_list
 
     # if the directory does not exist, do nothing
     if not os.path.isdir(direct):
@@ -125,10 +123,10 @@ def load_plugins(direct):
         attempt_list.append(filename)
         plugin = match.groups()[0]
         try: 
-            a = __import__(plugin)
-            success_list.append((filename,a))
+            _module = __import__(plugin)
+            success_list.append((filename, _module))
         except:
-            failmsg_list.append((filename,sys.exc_info()))
+            failmsg_list.append((filename, sys.exc_info()))
 
     return len(failmsg_list) != 0 # return True if there are errors
 
@@ -139,7 +137,7 @@ def load_plugins(direct):
 #-------------------------------------------------------------------------
 def reload_plugins():
     """ Reload previously loaded plugins """
-    global success_list, attempt_list, loaddir_list, failmsg_list
+    global failmsg_list
     
     pymod = re.compile(r"^(.*)\.py$")
 
@@ -172,9 +170,9 @@ def reload_plugins():
             # For some strange reason second importing of a failed plugin
             # results in success. Then reload reveals the actual error.
             # Looks like a bug in Python.
-            a = __import__(plugin)
-            reload(a)
-            success_list.append((filename, a))
+            _module = __import__(plugin)
+            reload(_module)
+            success_list.append((filename, _module))
         except:
             failmsg_list.append((filename, sys.exc_info()))
 
@@ -190,10 +188,10 @@ def reload_plugins():
             attempt_list.append(filename)
             plugin = match.groups()[0]
             try: 
-                a = __import__(plugin)
-                if a not in [plugin[1]
+                _module = __import__(plugin)
+                if _module not in [plugin[1]
                              for plugin in success_list]:
-                    success_list.append((filename, a))
+                    success_list.append((filename, _module))
             except:
                 failmsg_list.append((filename, sys.exc_info()))
 
@@ -202,7 +200,8 @@ def reload_plugins():
 # Plugin registering
 #
 #-------------------------------------------------------------------------
-def register_export(exportData, title, description='', config=None, filename=''):
+def register_export(exportData, title, description='', config=None, 
+                    filename=''):
     """
     Register an export filter, taking the task, file filter, 
     and the list of patterns for the filename matching.
@@ -261,19 +260,19 @@ def register_tool(
 
     import _Tool
 
-    (junk,gui_task) = divmod(modes,2**_Tool.MODE_GUI)
+    (junk, gui_task) = divmod(modes, 2**_Tool.MODE_GUI)
     if gui_task:
-        _register_gui_tool(tool_class, options_class,translated_name,
-                           name,category,description,
-                           status,author_name,author_email,unsupported,
+        _register_gui_tool(tool_class, options_class, translated_name,
+                           name, category, description,
+                           status, author_name, author_email, unsupported,
                            require_active)
 
-    (junk,cli_task) = divmod(modes-gui_task,2**_Tool.MODE_CLI)
+    (junk, cli_task) = divmod(modes-gui_task, 2**_Tool.MODE_CLI)
     if cli_task:
-        _register_cli_tool(name,category,tool_class, options_class,
-                           translated_name,unsupported)
+        _register_cli_tool(name, category, tool_class, options_class,
+                           translated_name, unsupported)
 
-def _register_gui_tool(tool_class, options_class,translated_name,
+def _register_gui_tool(tool_class, options_class, translated_name,
                        name,category,
                        description=_unavailable,
                        status=_("Unknown"),
@@ -282,28 +281,28 @@ def _register_gui_tool(tool_class, options_class,translated_name,
                        unsupported=False,
                        require_active=True):
     del_index = -1
-    for i in range(0,len(tool_list)):
+    for i in range(0, len(tool_list)):
         val = tool_list[i]
         if val[4] == name:
             del_index = i
     if del_index != -1:
         del tool_list[del_index]
     mod2text[tool_class.__module__] = description
-    tool_list.append((tool_class, options_class,translated_name,
-                      category, name,description,status,
-                      author_name,author_email,unsupported, require_active))
+    tool_list.append((tool_class, options_class, translated_name,
+                      category, name, description, status,
+                      author_name, author_email, unsupported, require_active))
 
-def _register_cli_tool(name,category,tool_class, options_class,
-                       translated_name,unsupported=False):
+def _register_cli_tool(name, category, tool_class, options_class,
+                       translated_name, unsupported=False):
     del_index = -1
-    for i in range(0,len(cli_tool_list)):
+    for i in range(0, len(cli_tool_list)):
         val = cli_tool_list[i]
         if val[0] == name:
             del_index = i
     if del_index != -1:
         del cli_tool_list[del_index]
-    cli_tool_list.append((name,category,tool_class, options_class,
-                          translated_name,unsupported, None))
+    cli_tool_list.append((name, category, tool_class, options_class,
+                          translated_name, unsupported, None))
 
 #-------------------------------------------------------------------------
 #
@@ -332,25 +331,25 @@ def register_report(
     The low-level functions (starting with '_') should not be used
     on their own. Instead, this function will call them as needed.
     """
-    (junk,standalone_task) = divmod(modes,2**MODE_GUI)
+    (junk, standalone_task) = divmod(modes, 2**MODE_GUI)
     if standalone_task:
-        _register_standalone(report_class, options_class,translated_name,
-                             name,category,description,
-                             status,author_name,author_email,unsupported,
+        _register_standalone(report_class, options_class, translated_name,
+                             name, category, description,
+                             status, author_name, author_email, unsupported,
                              require_active)
 
-    (junk,book_item_task) = divmod(modes-standalone_task,2**MODE_BKI)
+    (junk, book_item_task) = divmod(modes-standalone_task, 2**MODE_BKI)
     if book_item_task:
         book_item_category = book_categories[category]
-        register_book_item(translated_name,book_item_category,
-                           report_class, options_class, name,unsupported,
+        register_book_item(translated_name, book_item_category,
+                           report_class, options_class, name, unsupported,
                            require_active)
 
-    (junk,command_line_task) = divmod(modes-standalone_task-book_item_task,
+    (junk, command_line_task) = divmod(modes-standalone_task-book_item_task,
                                         2**MODE_CLI)
     if command_line_task:
-        _register_cl_report(name,category,report_class, options_class,
-                            translated_name,unsupported, require_active)
+        _register_cl_report(name, category, report_class, options_class,
+                            translated_name, unsupported, require_active)
 
 def _register_standalone(report_class, options_class, translated_name, name,
                          category, description=_unavailable, 
@@ -360,7 +359,7 @@ def _register_standalone(report_class, options_class, translated_name, name,
     """Register a report with the plugin system."""
     
     del_index = -1
-    for i in range(0,len(report_list)):
+    for i in range(0, len(report_list)):
         val = report_list[i]
         if val[4] == name:
             del_index = i
@@ -377,7 +376,7 @@ def register_book_item(translated_name, category, report_class,
     """Register a book item."""
     
     del_index = -1
-    for i in range(0,len(bkitems_list)):
+    for i in range(0, len(bkitems_list)):
         val = bkitems_list[i]
         if val[4] == name:
             del_index = i
@@ -390,7 +389,7 @@ def register_book_item(translated_name, category, report_class,
 def _register_cl_report(name, category, report_class, options_class,
                         translated_name, unsupported, require_active):
     del_index = -1
-    for i in range(0,len(cl_list)):
+    for i in range(0, len(cl_list)):
         val = cl_list[i]
         if val[0] == name:
             del_index = i
@@ -404,11 +403,11 @@ def _register_cl_report(name, category, report_class, options_class,
 # Text document generator registration
 #
 #-------------------------------------------------------------------------
-def register_text_doc(name,classref, table, paper, style, ext,
+def register_text_doc(name, classref, table, paper, style, ext,
                       print_report_label=None, clname=''):
     """Register a text document generator."""
     del_index = -1
-    for i in range(0,len(textdoc_list)):
+    for i in range(0, len(textdoc_list)):
         val = textdoc_list[i]
         if val[0] == name:
             del_index = i
@@ -428,11 +427,11 @@ def register_text_doc(name,classref, table, paper, style, ext,
 # Book document generator registration
 #
 #-------------------------------------------------------------------------
-def register_book_doc(name,classref, table, paper, style, ext, 
+def register_book_doc(name, classref, table, paper, style, ext, 
                       print_report_label=None, clname=''):
     """Register a text document generator"""
     del_index = -1
-    for i in range(0,len(bookdoc_list)):
+    for i in range(0, len(bookdoc_list)):
         val = bookdoc_list[i]
         if val[0] == name:
             del_index = i
@@ -441,19 +440,19 @@ def register_book_doc(name,classref, table, paper, style, ext,
 
     if not clname:
         clname = ext[1:]
-    bookdoc_list.append((name,classref,table,paper,style,ext,
-                         print_report_label,clname))
+    bookdoc_list.append((name, classref, table, paper, style, ext,
+                         print_report_label, clname))
 
 #-------------------------------------------------------------------------
 #
 # Drawing document generator registration
 #
 #-------------------------------------------------------------------------
-def register_draw_doc(name,classref,paper,style, ext,
-                      print_report_label=None,clname=''):
+def register_draw_doc(name, classref, paper, style, ext,
+                      print_report_label=None, clname=''):
     """Register a drawing document generator"""
     del_index = -1
-    for i in range(0,len(drawdoc_list)):
+    for i in range(0, len(drawdoc_list)):
         val = drawdoc_list[i]
         if val[0] == name:
             del_index = i
@@ -461,7 +460,7 @@ def register_draw_doc(name,classref,paper,style, ext,
         del drawdoc_list[del_index]
     if not clname:
         clname = ext[1:]
-    drawdoc_list.append((name, classref, paper,style, ext,
+    drawdoc_list.append((name, classref, paper, style, ext,
                          print_report_label, clname))
     mod2text[classref.__module__] = name
 
@@ -490,11 +489,8 @@ def register_quick_report(
     The low-level functions (starting with '_') should not be used
     on their own. Instead, this function will call them as needed.
     """
-    """Register a report with the plugin system"""
-    global quick_report_list
-    
     del_index = -1
-    for i in range(0,len(quick_report_list)):
+    for i in range(0, len(quick_report_list)):
         val = quick_report_list[i]
         if val[3] == name:
             del_index = i
@@ -520,7 +516,7 @@ def purge_failed():
 
     failed_module_names = [
         os.path.splitext(os.path.basename(filename))[0]
-        for filename,junk in failmsg_list
+        for filename, junk in failmsg_list
         ]
 
     #although these are global variables, we may not change the pointer of 
@@ -567,16 +563,3 @@ def register_relcalc(relclass, languages):
 def relationship_class():
     global _relcalc_class
     return _relcalc_class()
-
-#-------------------------------------------------------------------------
-#
-# Image attributes
-#
-#-------------------------------------------------------------------------
-_image_attributes = []
-def register_image_attribute(name):
-    if name not in _image_attributes:
-        _image_attributes.append(name)
-
-def get_image_attributes():
-    return _image_attributes
