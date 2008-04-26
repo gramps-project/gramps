@@ -1225,7 +1225,7 @@ class ScratchPadWindow(ManagedWindow.ManagedWindow):
         self.show()
 
     def build_menu_names(self, obj):
-        return (_('ScratchPad'),None)
+        return (_('Clipboard'),None)
 
     def database_changed(self,database):
         self.db = database
