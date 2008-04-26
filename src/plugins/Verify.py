@@ -75,25 +75,25 @@ _family_cache = {}
 _event_cache = {}
 
 def find_event(db, handle):
-    try:
+    if handle in _event_cache:
         obj = _event_cache[handle]
-    except KeyError:
+    else:
         obj = db.get_event_from_handle(handle)
         _event_cache[handle] = obj
     return obj
 
 def find_person(db, handle):
-    try:
+    if handle in _person_cache:
         obj = _person_cache[handle]
-    except KeyError:
+    else:
         obj = db.get_person_from_handle(handle)
         _person_cache[handle] = obj
     return obj
 
 def find_family(db, handle):
-    try:
+    if handle in _family_cache:
         obj = _family_cache[handle]
-    except KeyError:
+    else:
         obj = db.get_family_from_handle(handle)
         _family_cache[handle] = obj
     return obj
@@ -195,7 +195,8 @@ def get_n_children(db,person):
     n = 0
     for family_handle in person.get_family_handle_list():
         family = find_family(db,family_handle)
-        n += len(family.get_child_ref_list())
+        if family:
+            n += len(family.get_child_ref_list())
     return n
 
 def get_marriage_date(db,family):
@@ -584,9 +585,9 @@ class VerifyResults(ManagedWindow):
             return False
 
     def get_marking(self, handle,rule_id):
-        try:
+        if handle in self.ignores:
             return (rule_id in self.ignores[handle])
-        except KeyError:
+        else:
             return False
 
     def get_new_marking(self):
