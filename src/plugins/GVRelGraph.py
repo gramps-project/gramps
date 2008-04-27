@@ -225,7 +225,7 @@ class RelGraphReport(Report):
                 dirpath = dirpath.lower()
                 url = "%s/%s.html" % (dirpath, h)
                 
-            self.doc.add_node(p_id,label,shape,color,style,fill)
+            self.doc.add_node(p_id,label,shape,color,style,fill,url)
   
             # Output families where person is a parent
             if self.show_families:
@@ -252,7 +252,7 @@ class RelGraphReport(Report):
                         elif self.colorize == 'filled':
                             fill = self.colors['family']
                             style = "filled"
-                        self.doc.add_node(fam_id,label,"ellipse",color,style,fill)
+                        self.doc.add_node(fam_id,label,"ellipse",color,style,fill,url)
                     # Link this person to all his/her families.
                     self.doc.add_link( fam_id, p_id, "", 
                                       self.arrowheadstyle, self.arrowtailstyle )
