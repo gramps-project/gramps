@@ -225,7 +225,7 @@ class RelGraphReport(Report):
                 dirpath = dirpath.lower()
                 url = "%s/%s.html" % (dirpath, h)
                 
-            self.doc.add_node(p_id,label,shape,color,style,fill)
+            self.doc.add_node(p_id,label,shape,color,style,fill,url)
   
             # Output families where person is a parent
             if self.show_families:
