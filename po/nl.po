@@ -512,11 +512,11 @@ msgstr "Importeren van archief..."
 #: ../src/DbManager.py:746
 #, python-format
 msgid "Remove the '%s' family tree?"
-msgstr "De familieDeHet gegevensbestand '%s' verwijderen?"
+msgstr "Het gegevensbestand '%s' verwijderen?"
 
 #: ../src/DbManager.py:747
 msgid "Removing this family tree will permanently destroy the data."
-msgstr "Het verwijderen van deze familistamboom zal de gegevens blijven verwijderen."
+msgstr "Het verwijderen van deze familiestamboom zal de gegevens blijvend verwijderen."
 
 #: ../src/DbManager.py:748
 msgid "Remove family tree"
@@ -7838,7 +7838,7 @@ msgid ""
 "column, and double-click the row to view or edit."
 msgstr ""
 "Geef een datum op in het ingaveveld en klik op start. Voor iedereen in uw "
-"familistamboom wordt nu op basis van deze datum, een leeftijd berekend. U "
+"familiestamboom wordt nu op basis van deze datum, een leeftijd berekend. U "
 "kunt vervolgens sorteren via de leeftijdskolom. Dubbelklikken op de rij "
 "maakt bewerken mogelijk."
 
@@ -10931,8 +10931,8 @@ msgid ""
 "media files to the new position, and using the media manager tool, option "
 "'Replace substring in the path' to set correct paths in your media objects."
 msgstr ""
-"Het standaard ingestelde mediapad voor deze familistamboom is %s. Overweeg "
-"om een eenvoudiger pad in te stellen. Dat doet u in 'Voorkeuren' en gerbruik "
+"Het standaard ingestelde mediapad voor deze familiestamboom is %s. Overweeg "
+"om een eenvoudiger pad in te stellen. Dat doet u in 'Voorkeuren' en gebruik "
 "te maken van het mediamanager hulpmiddel. U kunt ook bepaalde "
 "deeltekenreeksen vervangen."
 
