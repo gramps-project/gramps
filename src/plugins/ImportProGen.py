@@ -141,6 +141,7 @@ def _read_recs(table, bname):
         recs.append(tups)
 
     log.info("# length %s.recs[] = %d" % (table['name1'], len(recs)))
+    print "# length %s.recs[] = %d" % (table['name1'], len(recs))
     return recs
 
 
@@ -424,6 +425,7 @@ class ProgenParser:
 
         self.gid2id = {}                # Maps person id
         self.fid2id = {}                # Maps family id
+        self.fm2fam = {}
         self.pkeys = {}                 # Caching place handles
 
     def parse_progen_file(self):
@@ -441,7 +443,7 @@ class ProgenParser:
 
         self.create_persons()
         self.create_families()
-        #self.add_children()
+        self.add_children()
 
         self.db.transaction_commit(self.trans, _("Pro-Gen import"))
         self.db.enable_signals()
@@ -800,12 +802,14 @@ class ProgenParser:
         f05 = table.get_record_field_index('Relatie code')
         f06 = table.get_record_field_index('Relatie klad')
         f07 = table.get_record_field_index('Relatie info')
+
         f08 = table.get_record_field_index('Samenwonen datum')
         f09 = table.get_record_field_index('Samenwonen plaats')
         f10 = table.get_record_field_index('Samenwonen bron')
         f11 = table.get_record_field_index('Samenwonen akte')
         f12 = table.get_record_field_index('Samenwonen brontekst')
         f13 = table.get_record_field_index('Samenwonen info')
+
         f14 = table.get_record_field_index('Ondertrouw datum')
         f15 = table.get_record_field_index('Ondertrouw plaats')
         f16 = table.get_record_field_index('Ondertrouw getuigen')
@@ -813,6 +817,7 @@ class ProgenParser:
         f18 = table.get_record_field_index('Ondertrouw akte')
         f19 = table.get_record_field_index('Ondertrouw brontekst')
         f20 = table.get_record_field_index('Ondertrouw info')
+
         f21 = table.get_record_field_index('Wettelijk datum')
         f22 = table.get_record_field_index('Wettelijk plaats')
         f23 = table.get_record_field_index('Wettelijk getuigen')
@@ -820,6 +825,7 @@ class ProgenParser:
         f25 = table.get_record_field_index('Wettelijk akte')
         f26 = table.get_record_field_index('Wettelijk brontekst')
         f27 = table.get_record_field_index('Wettelijk info')
+
         f28 = table.get_record_field_index('Kerkelijk datum')
         f29 = table.get_record_field_index('Kerkelijk plaats')
         f30 = table.get_record_field_index('Kerk')
@@ -828,6 +834,7 @@ class ProgenParser:
         f33 = table.get_record_field_index('Kerkelijk akte')
         f34 = table.get_record_field_index('Kerkelijk brontekst')
         f35 = table.get_record_field_index('Kerkelijk info')
+
         f36 = table.get_record_field_index('Scheiding datum')
         f37 = table.get_record_field_index('Scheiding plaats')
         f38 = table.get_record_field_index('Scheiding bron')
@@ -842,39 +849,76 @@ class ProgenParser:
             husband = rec[man_ix]
             wife = rec[vrouw_ix]
             if husband > 0 or wife > 0:
+                self.highest_fam_id = fam_id
                 fam = self.__find_or_create_family("F%d" % fam_id)
+                husband_handle = None
                 if husband > 0:
                     husband_handle = self.__find_person_handle("I%d" % husband)
                     fam.set_father_handle(husband_handle)
                     husband_person = self.db.get_person_from_handle(husband_handle)
                     husband_person.add_family_handle(fam.get_handle())
-                    self.db.commit_person(husband_person,self.trans)
+                    self.db.commit_person(husband_person, self.trans)
+                wife_handle = None
                 if wife > 0:
                     wife_handle = self.__find_person_handle("I%d" % wife)
                     fam.set_mother_handle(wife_handle)
                     wife_person = self.db.get_person_from_handle(wife_handle)
                     wife_person.add_family_handle(fam.get_handle())
-                    self.db.commit_person(wife_person,self.trans)
+                    self.db.commit_person(wife_person, self.trans)
+                self.fm2fam[husband_handle, wife_handle] = fam
                 self.db.commit_family(fam, self.trans)
 
             self.progress.step()
 
-    def add_children():
+    def add_children(self):
         # Once more to record the father and mother
-        # The records are numbered 1..N
+        table = self.def_['Table_1']
         self.progress.set_pass(_('Adding children'), len(self.pers))
+
+        father_ix = table.get_record_field_index('Vader')
+        mother_ix = table.get_record_field_index('Moeder')
+
+        # The records are numbered 1..N
         for i, rec in enumerate(self.pers):
             pers_id = i + 1
             father = rec[father_ix]
             mother = rec[mother_ix]
             if father > 0 or mother > 0:
-                person = self.__find_or_create_person("I%d" % pers_id)
-                if father > 0:
-                    father_handle = self.__find_person("I%d" % father)
-                if mother > 0:
-                    mother_handle = self.__find_person("I%d" % mother)
+                # Find the family with this father and mother
+                person_handle = self.__find_person_handle("I%d" % pers_id)
+                father_handle = father > 0 and self.__find_person_handle("I%d" % father) or None
+                mother_handle = mother > 0 and self.__find_person_handle("I%d" % mother) or None
+                if father > 0 and not father_handle:
+                    log.warning(_("cannot find father for I%s (father=%d)") % (pers_id, father))
+                elif mother > 0 and not mother_handle:
+                    log.warning(_("cannot find mother for I%s (mother=%d)") % (pers_id, mother))
+                else:
+                    fam = self.fm2fam.get((father_handle, mother_handle), None)
+                    if not fam:
+                        # Family not present in REL. Create a new one.
+                        self.highest_fam_id = self.highest_fam_id + 1
+                        fam_id = self.highest_fam_id
+                        fam = self.__find_or_create_family("F%d" % fam_id)
+                        if father_handle:
+                            fam.set_father_handle(father_handle)
+                            father_person = self.db.get_person_from_handle(father_handle)
+                            father_person.add_family_handle(fam.get_handle())
+                            self.db.commit_person(father_person, self.trans)
+                        if mother_handle:
+                            fam.set_mother_handle(mother_handle)
+                            mother_person = self.db.get_person_from_handle(mother_handle)
+                            mother_person.add_family_handle(fam.get_handle())
+                            self.db.commit_person(mother_person, self.trans)
+
+                if fam:
+                    childref = gen.lib.ChildRef()
+                    childref.set_reference_handle(person_handle)
+                    fam.add_child_ref(childref)
+                    self.db.commit_family(fam, self.trans)
+                    person = self.db.get_person_from_handle(person_handle)
+                    person.add_parent_family_handle(fam.get_handle())
+                    self.db.commit_person(person, self.trans)
             self.progress.step()
-                
                 
 
 _mime_type = "application/x-progen"
