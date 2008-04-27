@@ -342,6 +342,7 @@ class NameDisplay:
         d_keys.sort(_make_cmp) # reverse sort by ikeyword
         for (code, ikeyword) in d_keys:
             exp, keyword, ikeyword = d[code]
+            ikeyword = unicode(ikeyword, "utf8")
             format_str = format_str.replace(ikeyword,"%"+ code)
             format_str = format_str.replace(ikeyword.title(),"%"+ code)
             format_str = format_str.replace(ikeyword.upper(),"%"+ code.upper())
@@ -353,6 +354,7 @@ class NameDisplay:
         d_keys.sort(_make_cmp) # reverse sort by keyword
         for (code, keyword) in d_keys:
             exp, keyword, ikeyword = d[code]
+            keyword = unicode(keyword, "utf8")
             format_str = format_str.replace(keyword,"%"+ code)
             format_str = format_str.replace(keyword.title(),"%"+ code)
             format_str = format_str.replace(keyword.upper(),"%"+ code.upper())
