@@ -252,7 +252,7 @@ class RelGraphReport(Report):
                         elif self.colorize == 'filled':
                             fill = self.colors['family']
                             style = "filled"
-                        self.doc.add_node(fam_id,label,"ellipse",color,style,fill,url)
+                        self.doc.add_node(fam_id,label,"ellipse",color,style,fill)
                     # Link this person to all his/her families.
                     self.doc.add_link( fam_id, p_id, "", 
                                       self.arrowheadstyle, self.arrowtailstyle )
