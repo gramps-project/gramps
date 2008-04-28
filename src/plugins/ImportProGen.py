@@ -199,7 +199,12 @@ def _get_mem_text(mems, i):
     # ESC-^Z is end of string
     text = esc_ctrlz_pat.sub('', text)
 
-    # TODO. Strip trailing empty lines.
+    # There can be nul bytes. Remove them.
+    text = text.replace('\0', '')
+
+    # Strip leading/trailing whitespace
+    text = text.strip()
+
     #print text.encode('utf-8')
     return text
 
@@ -427,6 +432,7 @@ class ProgenParser:
         self.fid2id = {}                # Maps family id
         self.fm2fam = {}
         self.pkeys = {}                 # Caching place handles
+        self.skeys = {}                 # Caching source handles
 
     def parse_progen_file(self):
         self.progress = Utils.ProgressMeter(_("Import from Pro-Gen"), '')
@@ -510,6 +516,29 @@ class ProgenParser:
             self.pkeys[place_name] = place.get_handle()
         return place
 
+    def __get_or_create_source(self, source_name, aktenr=None):
+        if not source_name:
+            return None
+
+        source = None
+
+        # Aktenr is something very special and it belongs with the source_name
+        if aktenr:
+            source_name = "%(source_name)s, aktenr: %(aktenr)s" % locals()
+
+        if source_name in self.skeys:
+            source = self.db.get_source_from_handle(self.skeys[source_name])
+        else:
+            # Create a new Source
+            source = gen.lib.Source()
+            source.set_title(source_name)
+            self.db.add_source(source, self.trans)
+            self.db.commit_source(source, self.trans)
+            self.skeys[source_name] = source.get_handle()
+        sref = gen.lib.SourceRef()
+        sref.set_reference_handle(source.get_handle())
+        return sref
+
     def __create_event_and_ref(self, type_, desc=None, date=None, place=None, source=None):
         event = gen.lib.Event()
         event.set_type(gen.lib.EventType(type_))
@@ -521,8 +550,8 @@ class ProgenParser:
             event.set_place_handle(place.get_handle())
         if source:
             event.add_source_reference(source)
-        self.db.add_event(event,self.trans)
-        self.db.commit_event(event,self.trans)
+        self.db.add_event(event, self.trans)
+        self.db.commit_event(event, self.trans)
         event_ref = gen.lib.EventRef()
         event_ref.set_reference_handle(event.get_handle())
         return event, event_ref
@@ -531,7 +560,7 @@ class ProgenParser:
     __date_pat2 = re.compile(r'(?P<month>\d{1,2}) (-|=) (?P<year>\d{4})', re.VERBOSE)
     __date_pat3 = re.compile(r'(?P<year>\d{4})', re.VERBOSE)
     __date_pat4 = re.compile(ur'(v|vóór|voor|na|circa|ca|rond) \s* (?P<year>\d{4})', re.VERBOSE)
-    __date_pat5 = re.compile(r'(oo) (-|=) (oo) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
+    __date_pat5 = re.compile(r'(oo|OO) (-|=) (oo|OO) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
     def __create_date_from_text(self, txt, diag_msg=None):
         '''
         Pro-Gen has a text field for the date. It can be anything. Mostly it will be dd-mm-yyyy,
@@ -547,6 +576,10 @@ class ProgenParser:
         This function tries to parse the text and create a proper Gramps Date() object.
         If all else fails we create a MOD_TEXTONLY Date() object.
         '''
+
+        if not txt or txt == 'onbekend' or txt == '??':
+            return None
+
         date = gen.lib.Date()
 
         # dd-mm-yyyy
@@ -639,16 +672,16 @@ class ProgenParser:
         birth_place_ix = table.get_record_field_index('Geboorte plaats')
         birth_time_ix = table.get_record_field_index('Geboorte tijd')
         birth_source_ix = table.get_record_field_index('Geboorte bron')
-        birth_cert_ix = table.get_record_field_index('Geboorte akte')
+        birth_aktenr_ix = table.get_record_field_index('Geboorte akte')
         birth_source_text_ix = table.get_record_field_index('Geboorte brontekst')
         birth_info_ix = table.get_record_field_index('Geboorte info')
 
         bapt_date_ix = table.get_record_field_index('Doop datum')
         bapt_place_ix = table.get_record_field_index('Doop plaats')
         bapt_reli_ix = table.get_record_field_index('Gezindte')
-        bapt_wit_ix = table.get_record_field_index('Doop getuigen')
+        bapt_witn_ix = table.get_record_field_index('Doop getuigen')
         bapt_source_ix = table.get_record_field_index('Doop bron')
-        bapt_cert_ix = table.get_record_field_index('Doop akte')
+        bapt_aktenr_ix = table.get_record_field_index('Doop akte')
         bapt_source_text_ix = table.get_record_field_index('Doop brontekst')
         bapt_info_ix = table.get_record_field_index('Doop info')
 
@@ -656,21 +689,21 @@ class ProgenParser:
         death_place_ix = table.get_record_field_index('Overlijden plaats')
         death_time_ix = table.get_record_field_index('Overlijden tijd')
         death_source_ix = table.get_record_field_index('Overlijden bron')
-        death_cert_ix = table.get_record_field_index('Overlijden akte')
+        death_aktenr_ix = table.get_record_field_index('Overlijden akte')
         death_source_text_ix = table.get_record_field_index('Overlijden brontekst')
         death_info_ix = table.get_record_field_index('Overlijden info')
 
         crem_date_ix = table.get_record_field_index('Crematie datum')
         crem_place_ix = table.get_record_field_index('Crematie plaats')
         crem_source_ix = table.get_record_field_index('Crematie bron')
-        crem_cert_ix = table.get_record_field_index('Crematie akte')
+        crem_aktenr_ix = table.get_record_field_index('Crematie akte')
         crem_source_text_ix = table.get_record_field_index('Crematie brontekst')
         crem_info_ix = table.get_record_field_index('Crematie info')
 
         bur_date_ix = table.get_record_field_index('Begrafenis datum')
         bur_place_ix = table.get_record_field_index('Begrafenis plaats')
         bur_source_ix = table.get_record_field_index('Begrafenis bron')
-        bur_cert_ix = table.get_record_field_index('Begrafenis akte')
+        bur_aktenr_ix = table.get_record_field_index('Begrafenis akte')
         bur_source_text_ix = table.get_record_field_index('Begrafenis brontekst')
         bur_info_ix = table.get_record_field_index('Begrafenis info')
 
@@ -724,65 +757,84 @@ class ProgenParser:
                     event, event_ref = self.__create_event_and_ref(gen.lib.EventType.OCCUPATION, recflds[occu_ix])
                     person.add_event_ref(event_ref)
 
-                if recflds[birth_date_ix]:
-                    place = self.__get_or_create_place(recflds[birth_place_ix])
-                    time = recflds[birth_time_ix]
-                    source = recflds[birth_source_ix]
-                    cert = recflds[birth_cert_ix]
-                    source_text = recflds[birth_source_text_ix]
-                    info = recflds[birth_info_ix]
-
-                    date = self.__create_date_from_text(recflds[birth_date_ix], diag_msg)
-                    event, birth_ref = self.__create_event_and_ref(gen.lib.EventType.BIRTH, info, date, place)
+                # Birth
+                date = self.__create_date_from_text(recflds[birth_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[birth_place_ix])
+                time = recflds[birth_time_ix]
+                srcref = self.__get_or_create_source(recflds[birth_source_ix], recflds[birth_aktenr_ix])
+                source_text = recflds[birth_source_text_ix]
+                info = recflds[birth_info_ix]
+                if date or place or info or srcref:
+                    desc = filter(lambda x: x, [info, time, source_text])
+                    desc = desc and ' '.join(desc) or None
+                    event, birth_ref = self.__create_event_and_ref(gen.lib.EventType.BIRTH, desc, date, place, srcref)
                     person.set_birth_ref(birth_ref)
+                # Debug
+                for v,t in ((time, 'time'), (source_text, 'source_text')):
+                    if v:
+                        log.warning("Birth, %s: %s: '%s'" % (diag_msg, t, v))
 
-                if recflds[bapt_date_ix]:
-                    place = self.__get_or_create_place(recflds[bapt_place_ix])
-                    reli = recflds[bapt_reli_ix]
-                    witness = recflds[bapt_wit_ix]
-                    source = recflds[bapt_source_ix]
-                    cert = recflds[bapt_cert_ix]
-                    source_text = recflds[bapt_source_text_ix]
-                    info = recflds[bapt_info_ix]
+                # Baptism
+                date = self.__create_date_from_text(recflds[bapt_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[bapt_place_ix])
+                reli = recflds[bapt_reli_ix]
+                witness = recflds[bapt_witn_ix]
+                srcref = self.__get_or_create_source(recflds[bapt_source_ix], recflds[bapt_aktenr_ix])
+                source_text = recflds[bapt_source_text_ix]
+                info = recflds[bapt_info_ix]
+                if date or place or info or srcref or reli or witness:
+                    desc = filter(lambda x: x, [info, reli, source_text])
+                    desc = desc and ' '.join(desc) or None
+                    event, bapt_ref = self.__create_event_and_ref(gen.lib.EventType.BAPTISM, desc, date, place, srcref)
+                    if witness:
+                        attr = gen.lib.Attribute()
+                        attr.set_type(gen.lib.AttributeType.WITNESS)
+                        attr.set_value(witness)
+                        event.add_attribute(attr)
+                        self.db.commit_event(event, self.trans)
 
-                    date = self.__create_date_from_text(recflds[bapt_date_ix], diag_msg)
-                    event, bapt_ref = self.__create_event_and_ref(gen.lib.EventType.BAPTISM, info, date, place)
-                    # ???? reli
-                    # ???? witness
                     person.add_event_ref(bapt_ref)
+                # Debug
+                for v,t in ((witness, 'witness'), (source_text, 'source_text'),):
+                    if v:
+                        log.warning("Baptism, %s: %s: '%s'" % (diag_msg, t, v))
 
-                if recflds[death_date_ix]:
-                    place = self.__get_or_create_place(recflds[death_place_ix])
-                    time = recflds[death_time_ix]
-                    source = recflds[death_source_ix]
-                    cert = recflds[death_cert_ix]
-                    source_text = recflds[death_source_text_ix]
-                    info = recflds[death_info_ix]
-
-                    date = self.__create_date_from_text(recflds[death_date_ix], diag_msg)
-                    event, death_ref = self.__create_event_and_ref(gen.lib.EventType.DEATH, info, date, place)
+                # Death
+                date = self.__create_date_from_text(recflds[death_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[death_place_ix])
+                time = recflds[death_time_ix]
+                srcref = self.__get_or_create_source(recflds[death_source_ix], recflds[death_aktenr_ix])
+                source_text = recflds[death_source_text_ix]
+                info = recflds[death_info_ix]
+                if date or place or info or srcref:
+                    desc = filter(lambda x: x, [info, time, source_text])
+                    desc = desc and ' '.join(desc) or None
+                    event, death_ref = self.__create_event_and_ref(gen.lib.EventType.DEATH, desc, date, place, srcref)
                     person.set_death_ref(death_ref)
+                # Debug
+                for v,t in ((time, 'time'), (source_text, 'source_text')):
+                    if v:
+                        log.warning("Death, %s: %s: '%s'" % (diag_msg, t, v))
 
-                if recflds[bur_date_ix]:
-                    place = self.__get_or_create_place(recflds[bur_place_ix])
-                    source = recflds[bur_source_ix]
-                    cert = recflds[bur_cert_ix]
-                    source_text = recflds[bur_source_text_ix]
-                    info = recflds[bur_info_ix]
-
-                    date = self.__create_date_from_text(recflds[bur_date_ix], diag_msg)
-                    event, burial_ref = self.__create_event_and_ref(gen.lib.EventType.BURIAL, info, date, place)
+                # Burial
+                date = self.__create_date_from_text(recflds[bur_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[bur_place_ix])
+                srcref = self.__get_or_create_source(recflds[bur_source_ix], recflds[bur_aktenr_ix])
+                source_text = recflds[bur_source_text_ix]
+                info = recflds[bur_info_ix]
+                if date or place or info or srcref:
+                    event, burial_ref = self.__create_event_and_ref(gen.lib.EventType.BURIAL, info, date, place, srcref)
                     person.add_event_ref(burial_ref)
 
-                elif recflds[crem_date_ix]:
-                    place = self.__get_or_create_place(recflds[crem_place_ix])
-                    source = recflds[crem_source_ix]
-                    cert = recflds[crem_cert_ix]
-                    source_text = recflds[crem_source_text_ix]
-                    info = recflds[crem_info_ix]
-
-                    date = self.__create_date_from_text(recflds[crem_date_ix], diag_msg)
-                    event, cremation_ref = self.__create_event_and_ref(gen.lib.EventType.CREMATION, info, date, place)
+                # Cremation
+                date = self.__create_date_from_text(recflds[crem_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[crem_place_ix])
+                srcref = self.__get_or_create_source(recflds[crem_source_ix], recflds[crem_aktenr_ix])
+                source_text = recflds[crem_source_text_ix]
+                info = recflds[crem_info_ix]
+                if date or place or info or srcref:
+                    # TODO. Check that not both burial and cremation took place.
+                    event, cremation_ref = self.__create_event_and_ref(gen.lib.EventType.CREMATION, info, date, place, srcref)
                     person.add_event_ref(cremation_ref)
 
                 self.db.commit_person(person, self.trans)
@@ -799,16 +851,17 @@ class ProgenParser:
 
         man_ix = table.get_record_field_index('Man')
         vrouw_ix = table.get_record_field_index('Vrouw')
+
         f05 = table.get_record_field_index('Relatie code')
         f06 = table.get_record_field_index('Relatie klad')
         f07 = table.get_record_field_index('Relatie info')
 
-        f08 = table.get_record_field_index('Samenwonen datum')
-        f09 = table.get_record_field_index('Samenwonen plaats')
-        f10 = table.get_record_field_index('Samenwonen bron')
-        f11 = table.get_record_field_index('Samenwonen akte')
-        f12 = table.get_record_field_index('Samenwonen brontekst')
-        f13 = table.get_record_field_index('Samenwonen info')
+        civu_date_ix = table.get_record_field_index('Samenwonen datum')
+        civu_place_ix = table.get_record_field_index('Samenwonen plaats')
+        civu_source_ix = table.get_record_field_index('Samenwonen bron')
+        civu_aktenr_ix = table.get_record_field_index('Samenwonen akte')
+        civu_source_text_ix = table.get_record_field_index('Samenwonen brontekst')
+        civu_info_ix = table.get_record_field_index('Samenwonen info')
 
         f14 = table.get_record_field_index('Ondertrouw datum')
         f15 = table.get_record_field_index('Ondertrouw plaats')
@@ -818,13 +871,13 @@ class ProgenParser:
         f19 = table.get_record_field_index('Ondertrouw brontekst')
         f20 = table.get_record_field_index('Ondertrouw info')
 
-        f21 = table.get_record_field_index('Wettelijk datum')
-        f22 = table.get_record_field_index('Wettelijk plaats')
-        f23 = table.get_record_field_index('Wettelijk getuigen')
-        f24 = table.get_record_field_index('Wettelijk bron')
-        f25 = table.get_record_field_index('Wettelijk akte')
-        f26 = table.get_record_field_index('Wettelijk brontekst')
-        f27 = table.get_record_field_index('Wettelijk info')
+        mar_date_ix = table.get_record_field_index('Wettelijk datum')
+        mar_place_ix = table.get_record_field_index('Wettelijk plaats')
+        mar_witn_ix = table.get_record_field_index('Wettelijk getuigen')
+        mar_source_ix = table.get_record_field_index('Wettelijk bron')
+        mar_aktenr_ix = table.get_record_field_index('Wettelijk akte')
+        mar_source_text_ix = table.get_record_field_index('Wettelijk brontekst')
+        mar_info_ix = table.get_record_field_index('Wettelijk info')
 
         f28 = table.get_record_field_index('Kerkelijk datum')
         f29 = table.get_record_field_index('Kerkelijk plaats')
@@ -835,12 +888,12 @@ class ProgenParser:
         f34 = table.get_record_field_index('Kerkelijk brontekst')
         f35 = table.get_record_field_index('Kerkelijk info')
 
-        f36 = table.get_record_field_index('Scheiding datum')
-        f37 = table.get_record_field_index('Scheiding plaats')
-        f38 = table.get_record_field_index('Scheiding bron')
-        f39 = table.get_record_field_index('Scheiding akte')
-        f40 = table.get_record_field_index('Scheiding brontekst')
-        f41 = table.get_record_field_index('Scheiding info')
+        div_date_ix = table.get_record_field_index('Scheiding datum')
+        div_place_ix = table.get_record_field_index('Scheiding plaats')
+        div_source_ix = table.get_record_field_index('Scheiding bron')
+        div_aktenr_ix = table.get_record_field_index('Scheiding akte')
+        div_source_text_ix = table.get_record_field_index('Scheiding brontekst')
+        div_info_ix = table.get_record_field_index('Scheiding info')
 
         # The records are numbered 1..N
         self.progress.set_pass(_('Adding families'), len(self.rels))
@@ -849,7 +902,9 @@ class ProgenParser:
             husband = rec[man_ix]
             wife = rec[vrouw_ix]
             if husband > 0 or wife > 0:
+                recflds = table.convert_record_to_list(rec, self.mems)
                 self.highest_fam_id = fam_id
+
                 fam = self.__find_or_create_family("F%d" % fam_id)
                 husband_handle = None
                 if husband > 0:
@@ -865,7 +920,50 @@ class ProgenParser:
                     wife_person = self.db.get_person_from_handle(wife_handle)
                     wife_person.add_family_handle(fam.get_handle())
                     self.db.commit_person(wife_person, self.trans)
+                diag_msg = "F%d: I%d I%d" % (fam_id, husband, wife)
                 self.fm2fam[husband_handle, wife_handle] = fam
+
+                # Wettelijk => Marriage
+                date = self.__create_date_from_text(recflds[mar_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[mar_place_ix])
+                witness = recflds[mar_witn_ix]
+                srcref = self.__get_or_create_source(recflds[mar_source_ix], recflds[mar_aktenr_ix])
+                source_text = recflds[mar_source_text_ix]
+                info = recflds[mar_info_ix]
+                if date or place or info or srcref:
+                    event, mar_ref = self.__create_event_and_ref(gen.lib.EventType.MARRIAGE, info, date, place, srcref)
+                    fam.add_event_ref(mar_ref)
+                    if witness:
+                        attr = gen.lib.Attribute()
+                        attr.set_type(gen.lib.AttributeType.WITNESS)
+                        attr.set_value(witness)
+                        event.add_attribute(attr)
+
+                    # Type of relation
+                    fam.set_relationship(gen.lib.FamilyRelType(gen.lib.FamilyRelType.MARRIED))
+
+                # Samenwonen => Civil Union
+                date = self.__create_date_from_text(recflds[civu_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[civu_place_ix])
+                srcref = self.__get_or_create_source(recflds[civu_source_ix], recflds[civu_aktenr_ix])
+                source_text = recflds[civu_source_text_ix]
+                info = recflds[civu_info_ix]
+                if date or place or info or srcref:
+                    event, civu_ref = self.__create_event_and_ref(gen.lib.EventType.UNKNOWN, info, date, place, srcref)
+                    fam.add_event_ref(civu_ref)
+                    # Type of relation
+                    fam.set_relationship(gen.lib.FamilyRelType(gen.lib.FamilyRelType.CIVIL_UNION))
+
+                # Scheiding => Divorce
+                date = self.__create_date_from_text(recflds[div_date_ix], diag_msg)
+                place = self.__get_or_create_place(recflds[div_place_ix])
+                srcref = self.__get_or_create_source(recflds[div_source_ix], recflds[div_aktenr_ix])
+                source_text = recflds[div_source_text_ix]
+                info = recflds[div_info_ix]
+                if date or place or info or srcref:
+                    event, div_ref = self.__create_event_and_ref(gen.lib.EventType.DIVORCE, info, date, place, srcref)
+                    fam.add_event_ref(div_ref)
+
                 self.db.commit_family(fam, self.trans)
 
             self.progress.step()
