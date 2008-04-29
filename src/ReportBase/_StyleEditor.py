@@ -130,7 +130,8 @@ class StyleListDisplay:
     def on_ok_clicked(self, obj):
         """Called with the OK button is clicked; Calls the callback task, 
         then saves the stylesheet."""
-        self.callback()
+        if self.callback is not None:
+            self.callback()
         try:
             self.sheetlist.save()
         except IOError, msg:

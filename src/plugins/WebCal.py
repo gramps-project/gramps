@@ -71,7 +71,7 @@ from PluginUtils import register_report
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, 
                         MODE_GUI)
 from PluginUtils import FilterOption, EnumeratedListOption, PersonOption, \
-    BooleanOption, NumberOption, StringOption, DestinationOption
+    BooleanOption, NumberOption, StringOption, DestinationOption, StyleOption
 import Utils
 import GrampsLocale
 from QuestionDialog import ErrorDialog
@@ -200,6 +200,8 @@ class WebCalReport(Report):
                        menu.get_option_by_name('note_oct').get_value(),
                        menu.get_option_by_name('note_nov').get_value(),
                        menu.get_option_by_name('note_dec').get_value()]
+        
+        self.__style = menu.get_option_by_name("style").get_style()
 
     def get_short_name(self, person, maiden_name = None):
         """ Return person's name, unless maiden_name given, unless married_name listed. """
@@ -268,18 +270,7 @@ class WebCalReport(Report):
         
         # use user defined font families
         font_family = [self.SanSerif_fonts,self.Serif_fonts]
-        
-        default_style = BaseDoc.StyleSheet()
-        self.options.make_default_style(default_style)
 
-        # Read all style sheets available for this item
-        style_file = self.options.handler.get_stylesheet_savefile()
-        self.style_list = BaseDoc.StyleSheetList(style_file,default_style)
-
-        # Get the selected stylesheet
-        style_name = self.options.handler.get_default_stylesheet_name()
-        self.selected_style = self.style_list.get_style_sheet(style_name)
-        default_style = BaseDoc.StyleSheet(self.selected_style)
         #
         # NAVIGATION BLOCK
         #
@@ -298,7 +289,7 @@ class WebCalReport(Report):
         # HEADER / BODY BACKGROUND 
         #
         of.write('h1 {')
-        style = default_style.get_paragraph_style("WC-Title")
+        style = self.__style.get_paragraph_style("WC-Title")
         font = style.get_font()
         italic =  font_style[font.get_italic()]
         bold =  font_weight[font.get_bold()]
@@ -314,7 +305,7 @@ class WebCalReport(Report):
         # CALENDAR TABLE
         #
         of.write('.calendar { ') 
-        style = default_style.get_paragraph_style("WC-Table")
+        style = self.__style.get_paragraph_style("WC-Table")
         font = style.get_font()
         italic =  font_style[font.get_italic()]
         bold =  font_weight[font.get_bold()]
@@ -329,7 +320,7 @@ class WebCalReport(Report):
         #
         # MONTH NAME
         #
-        style = default_style.get_paragraph_style("WC-Month")
+        style = self.__style.get_paragraph_style("WC-Month")
         of.write('.cal_month { border-bottom-width: 0;\n')
         font = style.get_font()
         italic =  font_style[font.get_italic()]
@@ -360,7 +351,7 @@ class WebCalReport(Report):
         #
         # CALENDAR ENTRY TEXT
         #
-        style = default_style.get_paragraph_style("WC-Text")
+        style = self.__style.get_paragraph_style("WC-Text")
         of.write('.cal_text { vertical-align:bottom;\n')
         font = style.get_font()
         italic =  font_style[font.get_italic()]
@@ -377,7 +368,7 @@ class WebCalReport(Report):
         #
         # CALENDAR NOTE TEXT
         #
-        style = default_style.get_paragraph_style("WC-Note")
+        style = self.__style.get_paragraph_style("WC-Note")
         font = style.get_font()
         italic =  font_style[font.get_italic()]
         bold =  font_weight[font.get_bold()]
@@ -727,6 +718,12 @@ class WebCalOptions(MenuReportOptions):
         encoding.set_help( _("The encoding to be used for the web files"))
         menu.add_option(category_name, "encoding", encoding)
         
+        default_style = BaseDoc.StyleSheet()
+        self.__make_default_style(default_style)
+        style = StyleOption("Style", default_style, "WebCal")
+        style.set_help( _("The style to be used for the web files"))
+        menu.add_option(category_name, "style", style)
+        
     def __add_content_options(self, menu):
         """
         Options on the "Content Options" tab.
@@ -891,7 +888,7 @@ class WebCalOptions(MenuReportOptions):
             # The rest don't
             self.__pid.set_available(False)
 
-    def make_default_style(self, default_style):
+    def __make_default_style(self, default_style):
         """Make the default output style for the Web Calendar
         There are 5 named styles for this report.
 

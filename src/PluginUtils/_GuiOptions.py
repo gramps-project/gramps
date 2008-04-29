@@ -316,16 +316,18 @@ class GuiBooleanOption(gtk.CheckButton):
 # GuiEnumeratedListOption class
 #
 #-------------------------------------------------------------------------
-class GuiEnumeratedListOption(gtk.EventBox):
+class GuiEnumeratedListOption(gtk.HBox):
     """
     This class displays an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
     def __init__(self, option, dbstate, uistate, track, tooltip):
-        gtk.EventBox.__init__(self)
+        gtk.HBox.__init__(self)
+        evtBox = gtk.EventBox()
         self.__option = option
         self.__combo = gtk.combo_box_new_text()
-        self.add(self.__combo)
+        evtBox.add(self.__combo)
+        self.pack_start(evtBox, True, True)
         
         self.__update_options()
 
@@ -1043,7 +1045,8 @@ class GuiSurnameColourOption(gtk.HBox):
 #-------------------------------------------------------------------------
 class GuiDestinationOption(gtk.HBox):
     """
-    This class displays an option that is a simple one-line string.
+    This class displays an option that allows the user to select a 
+    DestinationOption.
     """
     def __init__(self, option, dbstate, uistate, track, tooltip):
         """
@@ -1130,6 +1133,44 @@ class GuiDestinationOption(gtk.HBox):
             self.__option.set_value(value)
         
         self.__entry.set_text( self.__option.get_value() )
+        
+#-------------------------------------------------------------------------
+#
+# GuiStyleOption class
+#
+#-------------------------------------------------------------------------
+class GuiStyleOption(GuiEnumeratedListOption):
+    """
+    This class displays a StyleOption.
+    """
+    def __init__(self, option, dbstate, uistate, track, tooltip):
+        """
+        @param option: The option to display.
+        @type option: MenuOption.StyleOption
+        @return: nothing
+        """
+        GuiEnumeratedListOption.__init__(self, option, dbstate, uistate, track, tooltip)
+        self.__option = option
+        
+        self.__button = gtk.Button("%s..." % _("Style Editor"))
+        self.__button.connect('clicked', self.__on_style_edit_clicked)
+        
+        self.pack_end(self.__button, False, False)
+
+    def __on_style_edit_clicked(self, *obj):
+        """The user has clicked on the 'Edit Styles' button.  Create a
+        style sheet editor object and let them play.  When they are
+        done, update the displayed styles."""
+        import BaseDoc
+        from ReportBase._StyleEditor import StyleListDisplay
+        style_list = BaseDoc.StyleSheetList(self.__option.get_style_file(), 
+                                            self.__option.get_default_style())
+        StyleListDisplay(style_list, None, None)
+
+        new_items = []
+        for style_name in style_list.get_style_names():
+            new_items.append( (style_name, style_name) )
+        self.__option.set_items(new_items)
 
 #------------------------------------------------------------------------
 #
@@ -1257,6 +1298,8 @@ def make_gui_option(option, tooltips, dbstate, uistate, track):
         widget = GuiStringOption(option, dbstate, 
                                  uistate, track, 
                                  tooltips)
+    elif isinstance(option, _MenuOptions.StyleOption):
+        widget = GuiStyleOption(option, dbstate, uistate, track, tooltips)
     elif isinstance(option, _MenuOptions.EnumeratedListOption):
         widget = GuiEnumeratedListOption(option, dbstate, 
                                  uistate, track, 
