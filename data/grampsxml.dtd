@@ -328,7 +328,8 @@ NOTES
 
 <!ELEMENT tag (range+)>
 <!ATTLIST tag
-	name	CDATA #REQUIRED
+	name	(bold|italic|underline|fontface|fontsize|
+		fontcolor|highlight|superscript) #REQUIRED
 	value	CDATA #IMPLIED
 >
 

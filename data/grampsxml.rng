@@ -493,7 +493,16 @@
   <define name="styledtext">
     <element name="text"><text/></element>
     <zeroOrMore><element name="tag">
-      <attribute name="name"><text/></attribute>
+      <attribute name="name"><choice>
+          <value>bold</value>
+          <value>italic</value>
+          <value>underline</value>
+          <value>fontface</value>
+          <value>fontsize</value>
+          <value>fontcolor</value>
+          <value>highlight</value>
+          <value>superscript</value>
+      </choice></attribute>
       <optional><attribute name="value"><text/></attribute></optional>
       <oneOrMore><element name="range">
         <attribute name="start"><data type="int"/></attribute>
