@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-22 09:13+0200\n"
+"POT-Creation-Date: 2008-05-01 10:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,8 +124,8 @@ msgstr ""
 #: ../src/plugins/NarrativeWeb.py:977 ../src/plugins/NotRelated.py:110
 #: ../src/plugins/PatchNames.py:232 ../src/plugins/RelCalc.py:54
 #: ../src/plugins/RelCalc.py:113 ../src/plugins/RemoveUnused.py:193
-#: ../src/plugins/TimeLine.py:61 ../src/plugins/Verify.py:548
-#: ../src/PluginUtils/_GuiOptions.py:787
+#: ../src/plugins/TimeLine.py:61 ../src/plugins/Verify.py:549
+#: ../src/PluginUtils/_GuiOptions.py:789
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:126
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:91
 #: ../src/FilterEditor/_EditFilter.py:88
@@ -153,7 +153,7 @@ msgstr ""
 #: ../src/Selectors/_SelectSource.py:54 ../src/plugins/EventCmp.py:247
 #: ../src/plugins/NotRelated.py:111 ../src/plugins/PatchNames.py:223
 #: ../src/plugins/RelCalc.py:55 ../src/plugins/RemoveUnused.py:187
-#: ../src/plugins/Verify.py:541 ../src/PluginUtils/_GuiOptions.py:788
+#: ../src/plugins/Verify.py:542 ../src/PluginUtils/_GuiOptions.py:790
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:90
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
@@ -514,15 +514,15 @@ msgstr ""
 #: ../src/plugins/all_relations.py:290 ../src/plugins/Check.py:1311
 #: ../src/plugins/DefaultGramplets.py:198
 #: ../src/plugins/DefaultGramplets.py:450
-#: ../src/plugins/DefaultGramplets.py:461 ../src/plugins/GVFamilyLines.py:142
+#: ../src/plugins/DefaultGramplets.py:461 ../src/plugins/GVFamilyLines.py:150
 #: ../src/plugins/IndivComplete.py:443 ../src/plugins/NarrativeWeb.py:589
-#: ../src/PluginUtils/_PluginMgr.py:246 ../src/PluginUtils/_PluginMgr.py:248
-#: ../src/PluginUtils/_PluginMgr.py:249 ../src/PluginUtils/_PluginMgr.py:279
-#: ../src/PluginUtils/_PluginMgr.py:280 ../src/PluginUtils/_PluginMgr.py:281
-#: ../src/PluginUtils/_PluginMgr.py:320 ../src/PluginUtils/_PluginMgr.py:322
-#: ../src/PluginUtils/_PluginMgr.py:323 ../src/PluginUtils/_PluginMgr.py:357
-#: ../src/PluginUtils/_PluginMgr.py:358 ../src/PluginUtils/_PluginMgr.py:478
-#: ../src/PluginUtils/_PluginMgr.py:480 ../src/PluginUtils/_PluginMgr.py:481
+#: ../src/PluginUtils/_PluginMgr.py:245 ../src/PluginUtils/_PluginMgr.py:247
+#: ../src/PluginUtils/_PluginMgr.py:248 ../src/PluginUtils/_PluginMgr.py:278
+#: ../src/PluginUtils/_PluginMgr.py:279 ../src/PluginUtils/_PluginMgr.py:280
+#: ../src/PluginUtils/_PluginMgr.py:319 ../src/PluginUtils/_PluginMgr.py:321
+#: ../src/PluginUtils/_PluginMgr.py:322 ../src/PluginUtils/_PluginMgr.py:356
+#: ../src/PluginUtils/_PluginMgr.py:357 ../src/PluginUtils/_PluginMgr.py:477
+#: ../src/PluginUtils/_PluginMgr.py:479 ../src/PluginUtils/_PluginMgr.py:480
 #: ../src/ReportBase/_ReportUtils.py:1164 ../src/gen/lib/urltype.py:54
 #: ../src/gen/lib/notetype.py:76 ../src/gen/lib/repotype.py:59
 #: ../src/gen/lib/attrtype.py:62 ../src/gen/lib/childreftype.py:64
@@ -900,7 +900,7 @@ msgstr ""
 #: ../src/Editors/_EditMedia.py:83 ../src/Editors/_EditMedia.py:151
 #: ../src/plugins/ExportCSV.py:369 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303 ../src/plugins/ImportCSV.py:176
-#: ../src/ReportBase/_GraphvizReportDialog.py:830
+#: ../src/ReportBase/_GraphvizReportDialog.py:861
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -961,7 +961,7 @@ msgstr ""
 #: ../src/plugins/ImportCSV.py:156 ../src/plugins/NarrativeWeb.py:706
 #: ../src/plugins/NarrativeWeb.py:836 ../src/plugins/NarrativeWeb.py:1339
 #: ../src/plugins/StatisticsChart.py:92 ../src/PluginUtils/_GuiOptions.py:80
-#: ../src/PluginUtils/_GuiOptions.py:933
+#: ../src/PluginUtils/_GuiOptions.py:935
 msgid "Surname"
 msgstr ""
 
@@ -1196,11 +1196,11 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
-#: ../src/gramps_main.py:107 ../src/Editors/_StyledTextBuffer.py:229
+#: ../src/gramps_main.py:107
 msgid "Font"
 msgstr ""
 
-#: ../src/gramps_main.py:108 ../src/Editors/_StyledTextBuffer.py:231
+#: ../src/gramps_main.py:108
 msgid "Font Color"
 msgstr ""
 
@@ -1431,7 +1431,7 @@ msgstr ""
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/GrampsWidgets.py:995 ../src/PluginUtils/_GuiOptions.py:749
+#: ../src/GrampsWidgets.py:995 ../src/PluginUtils/_GuiOptions.py:751
 msgid "No image given, click button to select one"
 msgstr ""
 
@@ -1439,7 +1439,7 @@ msgstr ""
 msgid "Edit media object"
 msgstr ""
 
-#: ../src/GrampsWidgets.py:997 ../src/PluginUtils/_GuiOptions.py:724
+#: ../src/GrampsWidgets.py:997 ../src/PluginUtils/_GuiOptions.py:726
 msgid "Select an existing media object"
 msgstr ""
 
@@ -1455,7 +1455,7 @@ msgstr ""
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/GrampsWidgets.py:1049 ../src/PluginUtils/_GuiOptions.py:672
+#: ../src/GrampsWidgets.py:1049 ../src/PluginUtils/_GuiOptions.py:674
 msgid "No note given, click button to select one"
 msgstr ""
 
@@ -1464,7 +1464,7 @@ msgstr ""
 msgid "Edit Note"
 msgstr ""
 
-#: ../src/GrampsWidgets.py:1051 ../src/PluginUtils/_GuiOptions.py:642
+#: ../src/GrampsWidgets.py:1051 ../src/PluginUtils/_GuiOptions.py:644
 msgid "Select an existing note"
 msgstr ""
 
@@ -2017,12 +2017,9 @@ msgstr ""
 msgid "Repository Link"
 msgstr ""
 
-#: ../src/ScratchPad.py:1199 ../src/glade/scratchpad.glade.h:2
+#: ../src/ScratchPad.py:1199 ../src/ScratchPad.py:1235
+#: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
-msgstr ""
-
-#: ../src/ScratchPad.py:1235
-msgid "ScratchPad"
 msgstr ""
 
 #: ../src/Spell.py:58
@@ -3062,7 +3059,7 @@ msgstr ""
 msgid "Delete the selected family"
 msgstr ""
 
-#: ../src/DataViews/FamilyList.py:91 ../src/plugins/GVFamilyLines.py:146
+#: ../src/DataViews/FamilyList.py:91 ../src/plugins/GVFamilyLines.py:155
 #: ../src/plugins/MarkerReport.py:188 ../src/plugins/NarrativeWeb.py:2163
 msgid "Families"
 msgstr ""
@@ -3902,7 +3899,7 @@ msgstr ""
 
 #: ../src/docgen/LaTeXDoc.py:529 ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:697
+#: ../src/ReportBase/_GraphvizReportDialog.py:728
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr ""
@@ -3923,7 +3920,7 @@ msgid "Print a copy"
 msgstr ""
 
 #: ../src/docgen/PSDrawDoc.py:370
-#: ../src/ReportBase/_GraphvizReportDialog.py:610
+#: ../src/ReportBase/_GraphvizReportDialog.py:635
 msgid "PostScript"
 msgstr ""
 
@@ -5044,38 +5041,6 @@ msgstr ""
 msgid "Internet Address Editor"
 msgstr ""
 
-#: ../src/Editors/_StyledTextBuffer.py:218
-msgid "Italic"
-msgstr ""
-
-#: ../src/Editors/_StyledTextBuffer.py:220
-msgid "Bold"
-msgstr ""
-
-#: ../src/Editors/_StyledTextBuffer.py:222
-msgid "Underline"
-msgstr ""
-
-#: ../src/Editors/_StyledTextBuffer.py:233
-msgid "Background Color"
-msgstr ""
-
-#: ../src/Editors/_StyledTextBuffer.py:235
-msgid "Clear Markup"
-msgstr ""
-
-#: ../src/Editors/_StyledTextBuffer.py:536
-msgid "Select font color"
-msgstr ""
-
-#: ../src/Editors/_StyledTextBuffer.py:545
-msgid "Select background color"
-msgstr ""
-
-#: ../src/Editors/_StyledTextBuffer.py:555
-msgid "Select font"
-msgstr ""
-
 #: ../src/GrampsDbUtils/_Backup.py:89
 msgid "Error saving backup data"
 msgstr ""
@@ -5177,7 +5142,7 @@ msgstr ""
 
 #: ../src/GrampsDbUtils/importdbdir.py:63
 #: ../src/GrampsDbUtils/importdbdir.py:76
-#: ../src/GrampsDbUtils/_ReadXML.py:2420 ../src/GrampsDbUtils/_ReadXML.py:2426
+#: ../src/GrampsDbUtils/_ReadXML.py:2423 ../src/GrampsDbUtils/_ReadXML.py:2429
 #: ../src/GrampsDbUtils/_WriteGrdb.py:63 ../src/plugins/ReadGrdb.py:87
 #: ../src/plugins/ReadGrdb.py:100
 #, python-format
@@ -5370,17 +5335,17 @@ msgstr ""
 msgid "GRAMPS XML import"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_ReadXML.py:890 ../src/GrampsDbUtils/_ReadXML.py:1996
+#: ../src/GrampsDbUtils/_ReadXML.py:890 ../src/GrampsDbUtils/_ReadXML.py:1999
 #, python-format
 msgid "Witness name: %s"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_ReadXML.py:1884
+#: ../src/GrampsDbUtils/_ReadXML.py:1887
 #, python-format
 msgid "Witness comment: %s"
 msgstr ""
 
-#: ../src/GrampsDbUtils/_ReadXML.py:2438
+#: ../src/GrampsDbUtils/_ReadXML.py:2441
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %s of GRAMPS, while "
@@ -5633,7 +5598,7 @@ msgstr ""
 msgid "Select Media Object"
 msgstr ""
 
-#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:881
+#: ../src/Selectors/_SelectPerson.py:72 ../src/PluginUtils/_GuiOptions.py:883
 msgid "Select Person"
 msgstr ""
 
@@ -5705,7 +5670,7 @@ msgstr ""
 #: ../src/plugins/EventCmp.py:465 ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443 ../src/plugins/FilterByName.py:234
-#: ../src/plugins/FindDupes.py:699 ../src/plugins/GVFamilyLines.py:952
+#: ../src/plugins/FindDupes.py:699 ../src/plugins/GVFamilyLines.py:1041
 #: ../src/plugins/GVHourGlass.py:282 ../src/plugins/GVRelGraph.py:559
 #: ../src/plugins/IndivComplete.py:643 ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129 ../src/plugins/lineage.py:240
@@ -5718,8 +5683,8 @@ msgstr ""
 #: ../src/plugins/ReorderIds.py:237 ../src/plugins/SameSurnames.py:103
 #: ../src/plugins/SimpleBookTitle.py:187 ../src/plugins/SoundGen.py:152
 #: ../src/plugins/StatisticsChart.py:903 ../src/plugins/Summary.py:301
-#: ../src/plugins/TimeLine.py:465 ../src/plugins/Verify.py:1577
-#: ../src/plugins/WebCal.py:1232 ../src/plugins/RebuildRefMap.py:120
+#: ../src/plugins/TimeLine.py:465 ../src/plugins/Verify.py:1578
+#: ../src/plugins/WebCal.py:1229 ../src/plugins/RebuildRefMap.py:120
 msgid "Stable"
 msgstr ""
 
@@ -5777,11 +5742,11 @@ msgstr ""
 msgid "Parent"
 msgstr ""
 
-#: ../src/plugins/all_relations.py:302 ../src/PluginUtils/_GuiOptions.py:884
+#: ../src/plugins/all_relations.py:302 ../src/PluginUtils/_GuiOptions.py:886
 msgid "Yes"
 msgstr ""
 
-#: ../src/plugins/all_relations.py:306 ../src/PluginUtils/_GuiOptions.py:883
+#: ../src/plugins/all_relations.py:306 ../src/PluginUtils/_GuiOptions.py:885
 msgid "No"
 msgstr ""
 
@@ -5965,7 +5930,7 @@ msgstr ""
 #: ../src/plugins/MarkerReport.py:436 ../src/plugins/NarrativeWeb.py:2887
 #: ../src/plugins/NumberOfAncestorsReport.py:159
 #: ../src/plugins/SimpleBookTitle.py:117 ../src/plugins/StatisticsChart.py:681
-#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:702
+#: ../src/plugins/TimeLine.py:312 ../src/plugins/WebCal.py:693
 #: ../src/ReportBase/_ReportDialog.py:342
 msgid "Report Options"
 msgstr ""
@@ -6036,15 +6001,15 @@ msgstr ""
 msgid "Not Applicable"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:160 ../src/PluginUtils/_GuiOptions.py:582
+#: ../src/plugins/BookReport.py:160 ../src/PluginUtils/_GuiOptions.py:584
 msgid "unknown father"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:166 ../src/PluginUtils/_GuiOptions.py:588
+#: ../src/plugins/BookReport.py:166 ../src/PluginUtils/_GuiOptions.py:590
 msgid "unknown mother"
 msgstr ""
 
-#: ../src/plugins/BookReport.py:168 ../src/PluginUtils/_GuiOptions.py:590
+#: ../src/plugins/BookReport.py:168 ../src/PluginUtils/_GuiOptions.py:592
 #, python-format
 msgid "%s and %s (%s)"
 msgstr ""
@@ -6124,7 +6089,7 @@ msgstr ""
 #. ---------------------
 #: ../src/plugins/CalculateEstimatedDates.py:62
 #: ../src/plugins/CalculateEstimatedDates.py:152
-#: ../src/plugins/GVFamilyLines.py:202 ../src/plugins/GVHourGlass.py:241
+#: ../src/plugins/GVFamilyLines.py:211 ../src/plugins/GVHourGlass.py:241
 #: ../src/glade/gramps.glade.h:93
 msgid "Options"
 msgstr ""
@@ -6134,7 +6099,7 @@ msgstr ""
 #: ../src/plugins/FilterByName.py:233 ../src/plugins/GVRelGraph.py:431
 #: ../src/plugins/IndivComplete.py:516 ../src/plugins/NarrativeWeb.py:2904
 #: ../src/plugins/StatisticsChart.py:683 ../src/plugins/TimeLine.py:314
-#: ../src/plugins/WebCal.py:741 ../src/FilterEditor/_FilterEditor.py:114
+#: ../src/plugins/WebCal.py:738 ../src/FilterEditor/_FilterEditor.py:114
 msgid "Filter"
 msgstr ""
 
@@ -6145,14 +6110,14 @@ msgstr ""
 #: ../src/plugins/CalculateEstimatedDates.py:69
 #: ../src/plugins/GVRelGraph.py:437 ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2910 ../src/plugins/StatisticsChart.py:689
-#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:747
+#: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:744
 msgid "Filter Person"
 msgstr ""
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:438 ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2911 ../src/plugins/StatisticsChart.py:690
-#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:748
+#: ../src/plugins/TimeLine.py:321 ../src/plugins/WebCal.py:745
 msgid "The center person for the filter"
 msgstr ""
 
@@ -6273,7 +6238,7 @@ msgstr ""
 msgid "Filtering data..."
 msgstr ""
 
-#: ../src/plugins/Calendar.py:400 ../src/plugins/WebCal.py:666
+#: ../src/plugins/Calendar.py:400 ../src/plugins/WebCal.py:657
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -6292,12 +6257,12 @@ msgid "Relationships shown are to %s"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:486 ../src/plugins/Calendar.py:488
-#: ../src/plugins/WebCal.py:736 ../src/plugins/WebCal.py:738
+#: ../src/plugins/WebCal.py:733 ../src/plugins/WebCal.py:735
 msgid "Year of calendar"
 msgstr ""
 
 #: ../src/plugins/Calendar.py:493 ../src/plugins/NarrativeWeb.py:2906
-#: ../src/plugins/WebCal.py:743
+#: ../src/plugins/WebCal.py:740
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
@@ -6305,7 +6270,7 @@ msgstr ""
 msgid "Select the format to display names"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:509 ../src/plugins/WebCal.py:754
+#: ../src/plugins/Calendar.py:509 ../src/plugins/WebCal.py:751
 msgid "Country for holidays"
 msgstr ""
 
@@ -6341,27 +6306,27 @@ msgstr ""
 msgid "Select married women's displayed surname"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:531 ../src/plugins/WebCal.py:763
+#: ../src/plugins/Calendar.py:531 ../src/plugins/WebCal.py:760
 msgid "Include only living people"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:532 ../src/plugins/WebCal.py:764
+#: ../src/plugins/Calendar.py:532 ../src/plugins/WebCal.py:761
 msgid "Include only living people in the calendar"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:535 ../src/plugins/WebCal.py:767
+#: ../src/plugins/Calendar.py:535 ../src/plugins/WebCal.py:764
 msgid "Include birthdays"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:536 ../src/plugins/WebCal.py:768
+#: ../src/plugins/Calendar.py:536 ../src/plugins/WebCal.py:765
 msgid "Include birthdays in the calendar"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:539 ../src/plugins/WebCal.py:771
+#: ../src/plugins/Calendar.py:539 ../src/plugins/WebCal.py:768
 msgid "Include anniversaries"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:540 ../src/plugins/WebCal.py:772
+#: ../src/plugins/Calendar.py:540 ../src/plugins/WebCal.py:769
 msgid "Include anniversaries in the calendar"
 msgstr ""
 
@@ -6465,7 +6430,7 @@ msgstr ""
 msgid "Month text style"
 msgstr ""
 
-#: ../src/plugins/Calendar.py:895 ../src/plugins/WebCal.py:1213
+#: ../src/plugins/Calendar.py:895 ../src/plugins/WebCal.py:1210
 msgid "Don't include holidays"
 msgstr ""
 
@@ -7163,7 +7128,7 @@ msgid "Double-click item to see matches"
 msgstr ""
 
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:759 ../src/plugins/GVFamilyLines.py:131
+#: ../src/plugins/DefaultGramplets.py:759 ../src/plugins/GVFamilyLines.py:139
 #: ../src/plugins/NarrativeWeb.py:371 ../src/plugins/NarrativeWeb.py:403
 #: ../src/plugins/NarrativeWeb.py:690 ../src/plugins/NarrativeWeb.py:701
 #: ../src/plugins/Summary.py:99
@@ -7175,12 +7140,12 @@ msgid "Number of individuals"
 msgstr ""
 
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:765 ../src/plugins/GVFamilyLines.py:134
+#: ../src/plugins/DefaultGramplets.py:765 ../src/plugins/GVFamilyLines.py:142
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:768 ../src/plugins/GVFamilyLines.py:138
+#: ../src/plugins/DefaultGramplets.py:768 ../src/plugins/GVFamilyLines.py:146
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr ""
@@ -8452,7 +8417,7 @@ msgstr ""
 msgid "Find Possible Duplicate People"
 msgstr ""
 
-#: ../src/plugins/FindDupes.py:146 ../src/plugins/Verify.py:295
+#: ../src/plugins/FindDupes.py:146 ../src/plugins/Verify.py:296
 msgid "Tool settings"
 msgstr ""
 
@@ -8529,103 +8494,103 @@ msgid "Colour fill"
 msgstr ""
 
 #. --------------------------------
-#: ../src/plugins/GVFamilyLines.py:103
+#: ../src/plugins/GVFamilyLines.py:102
 msgid "People of Interest"
 msgstr ""
 
 #. --------------------------------
-#: ../src/plugins/GVFamilyLines.py:106
+#: ../src/plugins/GVFamilyLines.py:105
 msgid "People of interest"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:107
+#: ../src/plugins/GVFamilyLines.py:106
 msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:110
+#: ../src/plugins/GVFamilyLines.py:111
 msgid "Follow parents to determine family lines"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:111
+#: ../src/plugins/GVFamilyLines.py:112
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:114
-msgid "Follow children to determine family lines"
-msgstr ""
-
-#: ../src/plugins/GVFamilyLines.py:115
-msgid "Children will be considered when determining \"family lines\"."
+#: ../src/plugins/GVFamilyLines.py:116
+msgid "Follow children to determine \"family lines\""
 msgstr ""
 
 #: ../src/plugins/GVFamilyLines.py:118
+msgid "Children will be considered when determining \"family lines\"."
+msgstr ""
+
+#: ../src/plugins/GVFamilyLines.py:123
 msgid "Try to remove extra people and families"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:119
+#: ../src/plugins/GVFamilyLines.py:124
 msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
 
 #. ----------------------------
-#: ../src/plugins/GVFamilyLines.py:123
+#: ../src/plugins/GVFamilyLines.py:131
 msgid "Family Colours"
 msgstr ""
 
 #. ----------------------------
-#: ../src/plugins/GVFamilyLines.py:126
+#: ../src/plugins/GVFamilyLines.py:134
 msgid "Family colours"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:127
+#: ../src/plugins/GVFamilyLines.py:135
 msgid "Colours to use for various family lines."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:135
+#: ../src/plugins/GVFamilyLines.py:143
 msgid "The colour to use to display men."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:139
+#: ../src/plugins/GVFamilyLines.py:147
 msgid "The colour to use to display women."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:143
+#: ../src/plugins/GVFamilyLines.py:151
 msgid "The colour to use when the gender is unknown."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:147
+#: ../src/plugins/GVFamilyLines.py:156
 msgid "The colour to use to display families."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:150
+#: ../src/plugins/GVFamilyLines.py:159
 msgid "Limit the number of parents"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:153 ../src/plugins/GVFamilyLines.py:159
+#: ../src/plugins/GVFamilyLines.py:162 ../src/plugins/GVFamilyLines.py:168
 msgid "The maximum number of ancestors to include."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:162
+#: ../src/plugins/GVFamilyLines.py:171
 msgid "Limit the number of children"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:165 ../src/plugins/GVFamilyLines.py:171
-#: ../src/plugins/GVFamilyLines.py:190
+#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVFamilyLines.py:180
+#: ../src/plugins/GVFamilyLines.py:199
 msgid "The maximum number of children to include."
 msgstr ""
 
 #. ###############################
-#: ../src/plugins/GVFamilyLines.py:174 ../src/plugins/GVHourGlass.py:261
+#: ../src/plugins/GVFamilyLines.py:183 ../src/plugins/GVHourGlass.py:261
 #: ../src/plugins/GVRelGraph.py:493
 msgid "Graph coloring"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:177
+#: ../src/plugins/GVFamilyLines.py:186
 msgid ""
 "Males will be shown with blue, females with red, unless otherwise set above "
 "for filled. If the sex of an individual is unknown it will be shown with "
@@ -8633,122 +8598,114 @@ msgid ""
 msgstr ""
 
 #. --------------------
-#: ../src/plugins/GVFamilyLines.py:184
+#: ../src/plugins/GVFamilyLines.py:193
 msgid "Images"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:188 ../src/plugins/GVRelGraph.py:475
+#: ../src/plugins/GVFamilyLines.py:197 ../src/plugins/GVRelGraph.py:475
 msgid "Include thumbnail images of people"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:194
+#: ../src/plugins/GVFamilyLines.py:203
 msgid "Thumbnail location"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:195 ../src/plugins/GVRelGraph.py:482
+#: ../src/plugins/GVFamilyLines.py:204 ../src/plugins/GVRelGraph.py:482
 msgid "Above the name"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:196 ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVFamilyLines.py:205 ../src/plugins/GVRelGraph.py:483
 msgid "Beside the name"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:198 ../src/plugins/GVRelGraph.py:485
+#: ../src/plugins/GVFamilyLines.py:207 ../src/plugins/GVRelGraph.py:485
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr ""
 
 #. ---------------------
-#: ../src/plugins/GVFamilyLines.py:205
+#: ../src/plugins/GVFamilyLines.py:214
 msgid "Use subgraphs"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:206
+#: ../src/plugins/GVFamilyLines.py:215
 msgid ""
 "Subgraphs can help GraphViz position certain linked nodes closer together, "
 "but with non-trivial graphs will result in longer lines and larger graphs."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:212
+#: ../src/plugins/GVFamilyLines.py:221
 msgid "Include dates"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:213
+#: ../src/plugins/GVFamilyLines.py:222
 msgid "Whether to include dates for people and families."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:216
+#: ../src/plugins/GVFamilyLines.py:226
 msgid "Include places"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:217
+#: ../src/plugins/GVFamilyLines.py:227
 msgid "Whether to include placenames for people and families."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:220
+#: ../src/plugins/GVFamilyLines.py:232
 msgid "Include the number of children"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:221
+#: ../src/plugins/GVFamilyLines.py:233
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:224
+#: ../src/plugins/GVFamilyLines.py:239
 msgid "Include researcher and date"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:225
+#: ../src/plugins/GVFamilyLines.py:240
 msgid ""
 "Whether to include at the bottom the researchers name, e-mail, and the date "
 "the graph was generated."
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:228
+#: ../src/plugins/GVFamilyLines.py:245
 msgid "Include private records"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:229
+#: ../src/plugins/GVFamilyLines.py:246
 msgid ""
 "Whether to include names, dates, and families that are marked as private."
 msgstr ""
 
-#. inherited method; called by report() in _ReportDialog.py
-#.
-#. this is where we'll do all of the work of figuring out who
-#. from the database is going to be output into the report
-#: ../src/plugins/GVFamilyLines.py:336
+#: ../src/plugins/GVFamilyLines.py:397
 msgid "Generating Family Lines"
 msgstr ""
 
 #. start the progress indicator
-#: ../src/plugins/GVFamilyLines.py:336 ../src/plugins/NotRelated.py:97
+#: ../src/plugins/GVFamilyLines.py:398 ../src/plugins/NotRelated.py:97
 #: ../src/plugins/NotRelated.py:227
 msgid "Starting"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:341
+#: ../src/plugins/GVFamilyLines.py:403
 msgid "Finding ancestors and children"
 msgstr ""
 
-#. inherited method; called by report() in _ReportDialog.py
-#. since we know the exact number of people and families,
-#. we can then restart the progress bar with the exact
-#. number
-#: ../src/plugins/GVFamilyLines.py:361
+#: ../src/plugins/GVFamilyLines.py:426
 msgid "Writing family lines"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:871
+#: ../src/plugins/GVFamilyLines.py:960
 #, python-format
 msgid "%d children"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:947
+#: ../src/plugins/GVFamilyLines.py:1036
 msgid "Family Lines Graph"
 msgstr ""
 
-#: ../src/plugins/GVFamilyLines.py:955
+#: ../src/plugins/GVFamilyLines.py:1044
 msgid "Produces family line graphs using GraphViz"
 msgstr ""
 
@@ -9267,7 +9224,7 @@ msgid "No birth relation with child"
 msgstr ""
 
 #: ../src/plugins/lineage.py:157 ../src/plugins/lineage.py:177
-#: ../src/plugins/Verify.py:978
+#: ../src/plugins/Verify.py:979
 msgid "Unknown gender"
 msgstr ""
 
@@ -9520,7 +9477,7 @@ msgstr ""
 msgid "&copy; %(year)d %(person)s"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:332 ../src/plugins/WebCal.py:406
+#: ../src/plugins/NarrativeWeb.py:332 ../src/plugins/WebCal.py:397
 #, python-format
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">GRAMPS</a> on %(date)s"
@@ -9707,14 +9664,14 @@ msgstr ""
 msgid "<br />%(type)s: %(value)s"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2473 ../src/plugins/WebCal.py:462
+#: ../src/plugins/NarrativeWeb.py:2473 ../src/plugins/WebCal.py:453
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr ""
 
 #: ../src/plugins/NarrativeWeb.py:2480 ../src/plugins/NarrativeWeb.py:2484
 #: ../src/plugins/NarrativeWeb.py:2497 ../src/plugins/NarrativeWeb.py:2501
-#: ../src/plugins/WebCal.py:469 ../src/plugins/WebCal.py:473
+#: ../src/plugins/WebCal.py:460 ../src/plugins/WebCal.py:464
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr ""
@@ -9775,11 +9732,11 @@ msgstr ""
 msgid "Whether to store the web pages in an archive file"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2896 ../src/plugins/WebCal.py:704
+#: ../src/plugins/NarrativeWeb.py:2896 ../src/plugins/WebCal.py:695
 msgid "Destination"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2898 ../src/plugins/WebCal.py:706
+#: ../src/plugins/NarrativeWeb.py:2898 ../src/plugins/WebCal.py:697
 msgid "The destination directory for the web files"
 msgstr ""
 
@@ -9795,27 +9752,27 @@ msgstr ""
 msgid "The title of the web site"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2921 ../src/plugins/WebCal.py:710
+#: ../src/plugins/NarrativeWeb.py:2921 ../src/plugins/WebCal.py:701
 msgid "File extension"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2924 ../src/plugins/WebCal.py:713
+#: ../src/plugins/NarrativeWeb.py:2924 ../src/plugins/WebCal.py:704
 msgid "The extension to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2927 ../src/plugins/WebCal.py:716
+#: ../src/plugins/NarrativeWeb.py:2927 ../src/plugins/WebCal.py:707
 msgid "Copyright"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2932 ../src/plugins/WebCal.py:721
+#: ../src/plugins/NarrativeWeb.py:2932 ../src/plugins/WebCal.py:712
 msgid "The copyright to be used for the web files"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2935 ../src/plugins/WebCal.py:724
+#: ../src/plugins/NarrativeWeb.py:2935 ../src/plugins/WebCal.py:715
 msgid "Character set encoding"
 msgstr ""
 
-#: ../src/plugins/NarrativeWeb.py:2938 ../src/plugins/WebCal.py:727
+#: ../src/plugins/NarrativeWeb.py:2938 ../src/plugins/WebCal.py:718
 msgid "The encoding to be used for the web files"
 msgstr ""
 
@@ -10367,7 +10324,7 @@ msgstr ""
 
 #. Add mark column
 #. Add ignore column
-#: ../src/plugins/RemoveUnused.py:176 ../src/plugins/Verify.py:523
+#: ../src/plugins/RemoveUnused.py:176 ../src/plugins/Verify.py:524
 msgid "Mark"
 msgstr ""
 
@@ -10983,448 +10940,452 @@ msgstr ""
 msgid "manual|Verify_the_Data..."
 msgstr ""
 
-#: ../src/plugins/Verify.py:219
+#: ../src/plugins/Verify.py:220
 msgid "Database Verify tool"
 msgstr ""
 
-#: ../src/plugins/Verify.py:469
+#: ../src/plugins/Verify.py:470
 msgid "Database Verification Results"
 msgstr ""
 
 #. Add column with the warning text
-#: ../src/plugins/Verify.py:534
+#: ../src/plugins/Verify.py:535
 msgid "Warning"
 msgstr ""
 
-#: ../src/plugins/Verify.py:614
+#: ../src/plugins/Verify.py:615
 msgid "_Show all"
 msgstr ""
 
-#: ../src/plugins/Verify.py:624 ../src/plugins/verify.glade.h:22
+#: ../src/plugins/Verify.py:625 ../src/plugins/verify.glade.h:22
 msgid "_Hide marked"
 msgstr ""
 
-#: ../src/plugins/Verify.py:879
+#: ../src/plugins/Verify.py:880
 msgid "Baptism before birth"
 msgstr ""
 
-#: ../src/plugins/Verify.py:893
+#: ../src/plugins/Verify.py:894
 msgid "Death before baptism"
 msgstr ""
 
-#: ../src/plugins/Verify.py:907
+#: ../src/plugins/Verify.py:908
 msgid "Burial before birth"
 msgstr ""
 
-#: ../src/plugins/Verify.py:921
+#: ../src/plugins/Verify.py:922
 msgid "Burial before death"
 msgstr ""
 
-#: ../src/plugins/Verify.py:935
+#: ../src/plugins/Verify.py:936
 msgid "Death before birth"
 msgstr ""
 
-#: ../src/plugins/Verify.py:949
+#: ../src/plugins/Verify.py:950
 msgid "Burial before baptism"
 msgstr ""
 
-#: ../src/plugins/Verify.py:967
+#: ../src/plugins/Verify.py:968
 msgid "Old age at death"
 msgstr ""
 
-#: ../src/plugins/Verify.py:988
+#: ../src/plugins/Verify.py:989
 msgid "Multiple parents"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1005
+#: ../src/plugins/Verify.py:1006
 msgid "Married often"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1024
+#: ../src/plugins/Verify.py:1025
 msgid "Old and unmarried"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1051
+#: ../src/plugins/Verify.py:1052
 msgid "Too many children"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1066
+#: ../src/plugins/Verify.py:1067
 msgid "Same sex marriage"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1076
+#: ../src/plugins/Verify.py:1077
 msgid "Female husband"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1086
+#: ../src/plugins/Verify.py:1087
 msgid "Male wife"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1113
+#: ../src/plugins/Verify.py:1114
 msgid "Husband and wife with the same surname"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1138
+#: ../src/plugins/Verify.py:1139
 msgid "Large age difference between spouses"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1169
+#: ../src/plugins/Verify.py:1170
 msgid "Marriage before birth"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1200
+#: ../src/plugins/Verify.py:1201
 msgid "Marriage after death"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1234
+#: ../src/plugins/Verify.py:1235
 msgid "Early marriage"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1266
+#: ../src/plugins/Verify.py:1267
 msgid "Late marriage"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1327
+#: ../src/plugins/Verify.py:1328
 msgid "Old father"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1330
+#: ../src/plugins/Verify.py:1331
 msgid "Old mother"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1372
+#: ../src/plugins/Verify.py:1373
 msgid "Young father"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1375
+#: ../src/plugins/Verify.py:1376
 msgid "Young mother"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1414
+#: ../src/plugins/Verify.py:1415
 msgid "Unborn father"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1417
+#: ../src/plugins/Verify.py:1418
 msgid "Unborn mother"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1462
+#: ../src/plugins/Verify.py:1463
 msgid "Dead father"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1465
+#: ../src/plugins/Verify.py:1466
 msgid "Dead mother"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1487
+#: ../src/plugins/Verify.py:1488
 msgid "Large year span for all children"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1509
+#: ../src/plugins/Verify.py:1510
 msgid "Large age differences between children"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1519
+#: ../src/plugins/Verify.py:1520
 msgid "Disconnected individual"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1541
+#: ../src/plugins/Verify.py:1542
 msgid "Invalid birth date"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1563
+#: ../src/plugins/Verify.py:1564
 msgid "Invalid death date"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1576
+#: ../src/plugins/Verify.py:1577
 msgid "Verify the Data"
 msgstr ""
 
-#: ../src/plugins/Verify.py:1580
+#: ../src/plugins/Verify.py:1581
 msgid "Verifies the data against user-defined tests"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:479
+#: ../src/plugins/WebCal.py:470
 msgid "Generate HTML Calendars"
 msgstr ""
 
 #. generate the report:
-#: ../src/plugins/WebCal.py:490
+#: ../src/plugins/WebCal.py:481
 msgid "Creating Calendar pages"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:734
+#: ../src/plugins/WebCal.py:724
+msgid "The style to be used for the web files"
+msgstr ""
+
+#: ../src/plugins/WebCal.py:731
 msgid "Content Options"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:759
+#: ../src/plugins/WebCal.py:756
 msgid "Holidays will be included for the selected country"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:775
+#: ../src/plugins/WebCal.py:772
 msgid "Check for wives to use maiden name"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:776
+#: ../src/plugins/WebCal.py:773
 msgid "Attempt to use maiden names of women"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:783
+#: ../src/plugins/WebCal.py:780
 msgid "Misc Options"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:785
+#: ../src/plugins/WebCal.py:782
 msgid "Calendar Title"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:785
+#: ../src/plugins/WebCal.py:782
 msgid "My Family Calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:786
+#: ../src/plugins/WebCal.py:783
 msgid "The title of the calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:789
+#: ../src/plugins/WebCal.py:786
 msgid "Home link"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:790
+#: ../src/plugins/WebCal.py:787
 msgid ""
 "The link to be included to direct the user to the main page of the web site"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:794 ../src/plugins/WebCal.py:796
+#: ../src/plugins/WebCal.py:791 ../src/plugins/WebCal.py:793
 msgid "Serif font family"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:799 ../src/plugins/WebCal.py:801
+#: ../src/plugins/WebCal.py:796 ../src/plugins/WebCal.py:798
 msgid "San-Serif font family"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:804
+#: ../src/plugins/WebCal.py:801
 msgid "Background Image"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:805
+#: ../src/plugins/WebCal.py:802
 msgid "The image to be used as the page background"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:808
+#: ../src/plugins/WebCal.py:805
 msgid "Image Repeat"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:809
+#: ../src/plugins/WebCal.py:806
 msgid "no-repeat"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:810
+#: ../src/plugins/WebCal.py:807
 msgid "repeat"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:811
+#: ../src/plugins/WebCal.py:808
 msgid "repeat-x"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:812
+#: ../src/plugins/WebCal.py:809
 msgid "repeat-y"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:813
+#: ../src/plugins/WebCal.py:810
 msgid "Whether to repeat the background image"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:820
+#: ../src/plugins/WebCal.py:817
 msgid "Months 1-6 Notes"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:822
+#: ../src/plugins/WebCal.py:819
 msgid "Jan Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:822
+#: ../src/plugins/WebCal.py:819
 msgid "This prints in January"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:823
+#: ../src/plugins/WebCal.py:820
 msgid "The note for the month of January"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:826
+#: ../src/plugins/WebCal.py:823
 msgid "Feb Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:826
+#: ../src/plugins/WebCal.py:823
 msgid "This prints in February"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:827
+#: ../src/plugins/WebCal.py:824
 msgid "The note for the month of February"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:830
+#: ../src/plugins/WebCal.py:827
 msgid "Mar Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:830
+#: ../src/plugins/WebCal.py:827
 msgid "This prints in March"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:831
+#: ../src/plugins/WebCal.py:828
 msgid "The note for the month of March"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:834
+#: ../src/plugins/WebCal.py:831
 msgid "Apr Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:834
+#: ../src/plugins/WebCal.py:831
 msgid "This prints in April"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:835
+#: ../src/plugins/WebCal.py:832
 msgid "The note for the month of April"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:838
+#: ../src/plugins/WebCal.py:835
 msgid "May Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:838
+#: ../src/plugins/WebCal.py:835
 msgid "This prints in May"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:839
+#: ../src/plugins/WebCal.py:836
 msgid "The note for the month of May"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:842
+#: ../src/plugins/WebCal.py:839
 msgid "Jun Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:842
+#: ../src/plugins/WebCal.py:839
 msgid "This prints in June"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:843
+#: ../src/plugins/WebCal.py:840
 msgid "The note for the month of June"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:846
+#: ../src/plugins/WebCal.py:843
 msgid "Months 7-12 Notes"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:848
+#: ../src/plugins/WebCal.py:845
 msgid "Jul Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:848
+#: ../src/plugins/WebCal.py:845
 msgid "This prints in July"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:849
+#: ../src/plugins/WebCal.py:846
 msgid "The note for the month of July"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:852
+#: ../src/plugins/WebCal.py:849
 msgid "Aug Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:852
+#: ../src/plugins/WebCal.py:849
 msgid "This prints in August"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:853
+#: ../src/plugins/WebCal.py:850
 msgid "The note for the month of August"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:856
+#: ../src/plugins/WebCal.py:853
 msgid "Sep Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:856
+#: ../src/plugins/WebCal.py:853
 msgid "This prints in September"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:857
+#: ../src/plugins/WebCal.py:854
 msgid "The note for the month of September"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:860
+#: ../src/plugins/WebCal.py:857
 msgid "Oct Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:860
+#: ../src/plugins/WebCal.py:857
 msgid "This prints in October"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:861
+#: ../src/plugins/WebCal.py:858
 msgid "The note for the month of October"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:864
+#: ../src/plugins/WebCal.py:861
 msgid "Nov Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:864
+#: ../src/plugins/WebCal.py:861
 msgid "This prints in November"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:865
+#: ../src/plugins/WebCal.py:862
 msgid "The note for the month of November"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:868
+#: ../src/plugins/WebCal.py:865
 msgid "Dec Note"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:868
+#: ../src/plugins/WebCal.py:865
 msgid "This prints in December"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:869
+#: ../src/plugins/WebCal.py:866
 msgid "The note for the month of December"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:915
+#: ../src/plugins/WebCal.py:912
 msgid ""
 "The style used for the title (\"My Family Calendar\") of the page. The "
 "background color sets the PAGE background. Borders DO NOT work."
 msgstr ""
 
-#: ../src/plugins/WebCal.py:930
+#: ../src/plugins/WebCal.py:927
 msgid ""
 "The style used for the month name and year, it controls the font face, size, "
 "style, color and the background color of the block, including the day-name "
 "area. Inclusion of a graphic does not cover the day-name area."
 msgstr ""
 
-#: ../src/plugins/WebCal.py:946
+#: ../src/plugins/WebCal.py:943
 msgid ""
 "The style used for text in the body of the calendar, it controls font size, "
 "face, style, color, and alignment. The background color is used ONLY for "
 "cells containing text, allowing for high-lighting of dates."
 msgstr ""
 
-#: ../src/plugins/WebCal.py:961
+#: ../src/plugins/WebCal.py:958
 msgid ""
 "The style used for notes at the bottom of the calendar, it controls font "
 "size, face, style, color and positioning. The background color setting "
 "affect all EMPTY calendar cells."
 msgstr ""
 
-#: ../src/plugins/WebCal.py:975
+#: ../src/plugins/WebCal.py:972
 msgid ""
 "The style used for the table itself. This affects the color of the table "
 "lines and the color, font, size, and positioning of the calendar date "
 "numbers. It also controls the color of the day names."
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1231
+#: ../src/plugins/WebCal.py:1228
 msgid "Web Calendar"
 msgstr ""
 
-#: ../src/plugins/WebCal.py:1235
+#: ../src/plugins/WebCal.py:1232
 msgid "Produces web (HTML) calendars."
 msgstr ""
 
@@ -11572,30 +11533,35 @@ msgstr ""
 msgid "Finding surnames"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:412
+#: ../src/PluginUtils/_GuiOptions.py:414
 msgid "Select a different person"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:441
+#: ../src/PluginUtils/_GuiOptions.py:443
 msgid "Select a person for the report"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:500
+#: ../src/PluginUtils/_GuiOptions.py:502
 msgid "Select a different family"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:879
+#: ../src/PluginUtils/_GuiOptions.py:881
 #, python-format
 msgid "Also include %s?"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:934
+#: ../src/PluginUtils/_GuiOptions.py:936
 msgid "Colour"
 msgstr ""
 
-#: ../src/PluginUtils/_GuiOptions.py:1088
+#: ../src/PluginUtils/_GuiOptions.py:1091
 #: ../src/ReportBase/_ReportDialog.py:446
 msgid "Save As"
+msgstr ""
+
+#: ../src/PluginUtils/_GuiOptions.py:1155
+#: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
+msgid "Style Editor"
 msgstr ""
 
 #. -------------------------------------------------------------------------
@@ -11753,7 +11719,7 @@ msgid "Graphics"
 msgstr ""
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:895
+#: ../src/ReportBase/_GraphvizReportDialog.py:926
 msgid "Paper Options"
 msgstr ""
 
@@ -11762,7 +11728,7 @@ msgid "HTML Options"
 msgstr ""
 
 #: ../src/ReportBase/_DocReportDialog.py:155
-#: ../src/ReportBase/_GraphvizReportDialog.py:873
+#: ../src/ReportBase/_GraphvizReportDialog.py:904
 msgid "Output Format"
 msgstr ""
 
@@ -11875,143 +11841,143 @@ msgstr ""
 msgid "Bottom"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:589
-msgid "Graphviz Dot File"
-msgstr ""
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:598
+#: ../src/ReportBase/_GraphvizReportDialog.py:623
 msgid "PDF (Ghostscript)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:604
+#: ../src/ReportBase/_GraphvizReportDialog.py:629
 msgid "PDF (Graphviz)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:616
+#: ../src/ReportBase/_GraphvizReportDialog.py:641
 msgid "Structured Vector Graphics (SVG)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:622
+#: ../src/ReportBase/_GraphvizReportDialog.py:647
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:628
+#: ../src/ReportBase/_GraphvizReportDialog.py:653
 msgid "JPEG image"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:634
+#: ../src/ReportBase/_GraphvizReportDialog.py:659
 msgid "GIF image"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:640
+#: ../src/ReportBase/_GraphvizReportDialog.py:665
 msgid "PNG image"
 msgstr ""
 
+#: ../src/ReportBase/_GraphvizReportDialog.py:671
+msgid "Graphviz Dot File"
+msgstr ""
+
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:731
+#: ../src/ReportBase/_GraphvizReportDialog.py:762
 msgid "GraphViz Layout"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:733
+#: ../src/ReportBase/_GraphvizReportDialog.py:764
 msgid "Font family"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:738
+#: ../src/ReportBase/_GraphvizReportDialog.py:769
 msgid ""
 "Choose the font family. If international characters don't show, use FreeSans "
 "font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:744
+#: ../src/ReportBase/_GraphvizReportDialog.py:775
 msgid "Font size"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:745
+#: ../src/ReportBase/_GraphvizReportDialog.py:776
 msgid "The font size, in points."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:748
+#: ../src/ReportBase/_GraphvizReportDialog.py:779
 msgid "Graph Direction"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:753
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:757
+#: ../src/ReportBase/_GraphvizReportDialog.py:788
 msgid "Number of Horizontal Pages"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:758
+#: ../src/ReportBase/_GraphvizReportDialog.py:789
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number of pages in the array "
 "horizontally."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:764
+#: ../src/ReportBase/_GraphvizReportDialog.py:795
 msgid "Number of Vertical Pages"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:765
+#: ../src/ReportBase/_GraphvizReportDialog.py:796
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number of pages in the array "
 "vertically."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:771
+#: ../src/ReportBase/_GraphvizReportDialog.py:802
 msgid "Paging Direction"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:776
+#: ../src/ReportBase/_GraphvizReportDialog.py:807
 msgid ""
 "The order in which the graph pages are output. This option only applies if "
 "the horizontal pages or vertical pages are greater than 1."
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:794
+#: ../src/ReportBase/_GraphvizReportDialog.py:825
 msgid "GraphViz Options"
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:797
+#: ../src/ReportBase/_GraphvizReportDialog.py:828
 msgid "Aspect ratio"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:802
+#: ../src/ReportBase/_GraphvizReportDialog.py:833
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:806
+#: ../src/ReportBase/_GraphvizReportDialog.py:837
 msgid "DPI"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:807
+#: ../src/ReportBase/_GraphvizReportDialog.py:838
 msgid ""
 "Dots per inch.  When creating images such as .gif or .png files for the web, "
 "try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, "
 "use 72 DPI."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:813
+#: ../src/ReportBase/_GraphvizReportDialog.py:844
 msgid "Node spacing"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:845
 msgid ""
 "The minimum amount of free space, in inches, between individual nodes.  For "
 "vertical graphs, this corresponds to spacing between columns.  For "
 "horizontal graphs, this corresponds to spacing between rows."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:821
+#: ../src/ReportBase/_GraphvizReportDialog.py:852
 msgid "Rank spacing"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:853
 msgid ""
 "The minimum amount of free space, in inches, between ranks.  For vertical "
 "graphs, this corresponds to spacing between rows.  For horizontal graphs, "
@@ -12019,32 +11985,32 @@ msgid ""
 msgstr ""
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:833
+#: ../src/ReportBase/_GraphvizReportDialog.py:864
 msgid "Note to add to the graph"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:835
+#: ../src/ReportBase/_GraphvizReportDialog.py:866
 msgid "This text will be added to the graph."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:838
+#: ../src/ReportBase/_GraphvizReportDialog.py:869
 msgid "Note location"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:841
+#: ../src/ReportBase/_GraphvizReportDialog.py:872
 msgid "Whether note will appear on top or bottom of the page."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:845
+#: ../src/ReportBase/_GraphvizReportDialog.py:876
 msgid "Note size"
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:846
+#: ../src/ReportBase/_GraphvizReportDialog.py:877
 msgid "The size of note text, in points."
 msgstr ""
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:880
-#: ../src/ReportBase/_GraphvizReportDialog.py:922
+#: ../src/ReportBase/_GraphvizReportDialog.py:911
+#: ../src/ReportBase/_GraphvizReportDialog.py:954
 msgid "Open with application"
 msgstr ""
 
@@ -12073,10 +12039,6 @@ msgstr ""
 #: ../src/ReportBase/_ReportDialog.py:299
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
-msgstr ""
-
-#: ../src/ReportBase/_ReportDialog.py:303 ../src/ReportBase/_StyleEditor.py:97
-msgid "Style Editor"
 msgstr ""
 
 #. need any labels at top:
@@ -15390,19 +15352,19 @@ msgstr ""
 msgid "Document Styles"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:138
+#: ../src/ReportBase/_StyleEditor.py:139
 msgid "Error saving stylesheet"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:205
+#: ../src/ReportBase/_StyleEditor.py:206
 msgid "Style editor"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:207
+#: ../src/ReportBase/_StyleEditor.py:208
 msgid "Paragraph"
 msgstr ""
 
-#: ../src/ReportBase/_StyleEditor.py:241
+#: ../src/ReportBase/_StyleEditor.py:242
 msgid "No description available"
 msgstr ""
 
