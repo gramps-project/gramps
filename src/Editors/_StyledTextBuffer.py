@@ -54,8 +54,15 @@ from gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 # Constants
 #
 #-------------------------------------------------------------------------
-# FIXME
-ALLOWED_STYLES = [i for (i, s, e) in StyledTextTagType._DATAMAP]
+ALLOWED_STYLES = (
+    StyledTextTagType.BOLD,
+    StyledTextTagType.ITALIC,
+    StyledTextTagType.UNDERLINE,
+    StyledTextTagType.FONTCOLOR,
+    StyledTextTagType.HIGHLIGHT,
+    StyledTextTagType.FONTFACE,
+    StyledTextTagType.FONTSIZE,
+)
 
 STYLE_TO_PROPERTY = {
     StyledTextTagType.BOLD: 'weight', # permanent tag is used instead
@@ -65,7 +72,6 @@ STYLE_TO_PROPERTY = {
     StyledTextTagType.HIGHLIGHT: 'background',
     StyledTextTagType.FONTFACE: 'family',
     StyledTextTagType.FONTSIZE: 'size-points',
-    StyledTextTagType.SUPERSCRIPT: 'rise',
 }
 
 (MATCH_START,
