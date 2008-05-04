@@ -521,7 +521,7 @@ class BasePage:
                 if format:
                     text = u"<pre>%s</pre>" % text
                 else:
-                    text = u"</p>\n\t\t<p>".join(text.split("\n"))
+                    text = u"<br />".join(text.split("\n"))
                 of.write('\t\t<p>%s</p>\n' % text)
                 of.write('\t</div>\n\n')
 
@@ -1415,12 +1415,9 @@ class IntroductionPage(BasePage):
             note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get()
             if note_obj.get_format():
-                of.write('\t<pre>\n%s\n' % text)
-                of.write('\t</pre>\n')
+                of.write(u'\t<pre>%s</pre>\n' % text)
             else:
-                of.write('\t<p>')
-                of.write(u'</p>\n\t<p>'.join(text.split("\n")))
-                of.write('</p>\n')
+                of.write(u'<br />'.join(text.split("\n")))
 
         self.display_footer(of)
         self.report.close_file(of)
@@ -1443,12 +1440,9 @@ class HomePage(BasePage):
             note_obj = db.get_note_from_gramps_id(note_id)
             text = note_obj.get()
             if note_obj.get_format():
-                of.write('\t<pre>\n%s\n' % text)
-                of.write('\t</pre>\n')
+                of.write(u'\t<pre>%s</pre>' % text)
             else:
-                of.write('\t<p>')
-                of.write(u'</p>\n\t<p>'.join(text.split("\n")))
-                of.write('</p>\n')
+                of.write(u'<br />'.join(text.split("\n")))
 
         self.display_footer(of)
         self.report.close_file(of)
@@ -2256,8 +2250,7 @@ class IndividualPage(BasePage):
                     if format:
                         of.write(u"<pre>%s</pre>" % text )
                     else:
-                        # TODO. Verify that </p> is correct here.
-                        of.write(u"</p>\n\t\t\t\t\t<p>".join(text.split("\n")))
+                        of.write(u"<br />".join(text.split("\n")))
                     of.write('</p>\n')
                     of.write('\t\t\t\t</td>\n')
                     of.write('\t\t\t</tr>\n')
@@ -2350,9 +2343,7 @@ class IndividualPage(BasePage):
                     if format:
                         text += u"<pre>%s</pre>" % note_text
                     else:
-                        text += u"<p>"
                         text += u"<br />".join(note_text.split("\n"))
-                        text += u"</p>"
         return text
 
     def get_citation_links(self, source_ref_list):
