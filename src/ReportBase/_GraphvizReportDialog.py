@@ -990,8 +990,7 @@ class GraphvizReportDialog(ReportDialog):
 
         if ((pm_l < 0.5 and pm_r < 0.5) or (pm_t < 0.5 and pm_b < 0.5)) and \
                 ((self.format_menu.get_clname() == 'gspdf') or \
-                (self.format_menu.get_clname() == 'ps') or \
-                (self.format_menu.get_clname() == 'dot')):
+                (self.format_menu.get_clname() == 'ps')):
             warn_text1 = _("Two or more opposite paper margins are less than ")
             warn_text2 = _("More than expected number of pages can be generated.")
             WarningDialog(warn_text1 + warn_marg, warn_text2)
