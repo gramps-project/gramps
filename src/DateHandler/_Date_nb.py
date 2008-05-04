@@ -44,7 +44,7 @@ from _DateHandler import register_datehandler
 
 #-------------------------------------------------------------------------
 #
-# Swedish parser class
+# Norwegian parser class
 #
 #-------------------------------------------------------------------------
 class DateParserNb(DateParser):
