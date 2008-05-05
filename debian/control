@@ -9,9 +9,9 @@ XS-Python-Version: current
 Package: gramps
 Architecture: all
 Depends: ${python:Depends}, python-gnome2, python-glade2, ${misc:Depends}
-Replaces: gramps-manual, gramps-extending-doc gramps-help
+Replaces: gramps-manual, gramps-extending-doc, gramps-help
 Conflicts: gramps-manual, gramps-extending-doc, gramps-common
-Recommends: gramps-help, graphviz, ttf-freefont, python-reportlab, python-gnome2-extras
+Recommends: graphviz, ttf-freefont, python-reportlab, python-gnome2-extras
 Description: Genealogical Research and Analysis Management Program
  GRAMPS, the Genealogical Research and Analysis Management Programming
  System, is an Open Source genealogy program written in Python, using
