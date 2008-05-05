@@ -426,7 +426,7 @@ msgstr "Archief"
 #: ../src/DbManager.py:170
 #, python-format
 msgid "Starting Import, %s"
-msgstr "Import gestart, %s"
+msgstr "Importeren gestart, %s"
 
 #: ../src/DbManager.py:176
 msgid "Import finished..."
@@ -440,7 +440,7 @@ msgstr "Nooit"
 #. based on the DBDir
 #: ../src/DbManager.py:215 ../src/plugins/ImportCSV.py:374
 msgid "Importing data..."
-msgstr "Importen van gegevens..."
+msgstr "Importeren van gegevens..."
 
 #: ../src/DbManager.py:437
 msgid "Family tree name"
@@ -516,11 +516,11 @@ msgstr "Importeren van archief..."
 #: ../src/DbManager.py:686
 #, python-format
 msgid "Remove the '%s' family tree?"
-msgstr "De familieDeHet gegevensbestand '%s' verwijderen?"
+msgstr "Het gegevensbestand '%s' verwijderen?"
 
 #: ../src/DbManager.py:687
 msgid "Removing this family tree will permanently destroy the data."
-msgstr "Het verwijderen van deze familistamboom zal de gegevens blijven verwijderen."
+msgstr "Het verwijderen van deze familiestamboom zal de gegevens blijven verwijderen."
 
 #: ../src/DbManager.py:688
 msgid "Remove family tree"
@@ -529,7 +529,7 @@ msgstr "Familiestamboom verwijderen"
 #: ../src/DbManager.py:694
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
-msgstr "Remove the '%(revision)s' version of '%(database)s'"
+msgstr "Verwijder de '%(revision)s' versie van '%(database)s'"
 
 #: ../src/DbManager.py:698
 msgid "Removing this version will prevent you from extracting it in the future."
@@ -1442,7 +1442,7 @@ msgstr "Exporteren"
 
 #: ../src/gramps_main.py:137
 msgid "Import"
-msgstr "Importer"
+msgstr "Importeren"
 
 #: ../src/gramps_main.py:138 ../src/UndoHistory.py:63
 msgid "Undo History"
@@ -6639,7 +6639,7 @@ msgstr "Maximum leeftijdsverschil tussen broers en zussen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:108
 msgid "Maximum age difference between siblings"
-msgstr "Maximum leeftsijdsverschil tussen broers en zussen"
+msgstr "Maximum leeftijdsverschil tussen broers en zussen"
 
 #: ../src/plugins/CalculateEstimatedDates.py:111
 msgid "Minimum years between generations"
@@ -7806,7 +7806,7 @@ msgid ""
 "column, and double-click the row to view or edit."
 msgstr ""
 "Geef een datum op in het ingaveveld en klik op start. Voor iedereen in uw "
-"familistamboom wordt nu op basis van deze datum, een leeftijd berekend. U "
+"familiestamboom wordt nu op basis van deze datum, een leeftijd berekend. U "
 "kunt vervolgens sorteren via de leeftijdskolom. Dubbelklikken op de rij "
 "maakt bewerken mogelijk."
 
@@ -9000,7 +9000,7 @@ msgid ""
 "removed when determining \"family lines\"."
 msgstr ""
 "Personen en families die niet direct gerelateerd zijn naar interessante "
-"personen zullen verwijderd worden bij het bepalen van de \"familistambomen\"."
+"personen zullen verwijderd worden bij het bepalen van de \"familiestambomen\"."
 
 #. ----------------------------
 #: ../src/plugins/GVFamilyLines.py:115
@@ -10108,8 +10108,8 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Deze pagina bevat een index van alle personen in het gegevensbestand, "
-"gesorteerd op achternaam. Door een &#8217;persoonsnaam te kiezen kunt u naar "
-"de &#8217;pagina van deze persoon gaan."
+"gesorteerd op achternaam. Door een persoonsnaam te kiezen kunt u naar "
+"de pagina van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:976
 #, python-format
@@ -10119,7 +10119,7 @@ msgid ""
 "person&#8217;s individual page."
 msgstr ""
 "Deze pagina bevat een index van alle personen in het gegevensbestand met "
-"achternaam %s. Door de &#8217;naam te kiezen kunt u naar de &#8217;pagina "
+"achternaam %s. Door de naam te kiezen kunt u naar de pagina "
 "van deze persoon gaan."
 
 #: ../src/plugins/NarrativeWeb.py:1102
@@ -10129,7 +10129,7 @@ msgid ""
 "place&#8217;s page."
 msgstr ""
 "Deze pagina bevat een index van alle locaties in het gegevensbestand, "
-"gesorteerd op titel. Door een &#8217;titel te kiezen gaat u naar de &#8217;"
+"gesorteerd op titel. Door een titel te kiezen gaat u naar de "
 "pagina van deze locatie."
 
 #: ../src/plugins/NarrativeWeb.py:1112 ../src/plugins/NarrativeWeb.py:1463
@@ -10204,8 +10204,8 @@ msgid ""
 "source&#8217;s page."
 msgstr ""
 "Deze pagina bevat een index van alle bronnen van het gegevensbestand, "
-"gesorteerd volgens titel. Aanklikken van de &#8217;brontitel brengt u naar "
-"de &#8217;bronpagina."
+"gesorteerd volgens titel. Aanklikken van de brontitel brengt u naar "
+"de bronpagina."
 
 #: ../src/plugins/NarrativeWeb.py:1709
 msgid "Publication information"
@@ -10219,7 +10219,7 @@ msgid ""
 msgstr ""
 "Deze pagina bevat een index van alle media-objecten in het gegevensbestand. "
 "Deze zijn gesorteerd op titel. Aanklikken van de titel brengt u naar de "
-"desbetreffende &#8217;pagina."
+"desbetreffende pagina."
 
 #: ../src/plugins/NarrativeWeb.py:2010
 msgid "Ancestors"
@@ -10553,7 +10553,7 @@ msgstr "Al of niet een overlijdenskolom toevoegen"
 
 #: ../src/plugins/NarrativeWeb.py:3114
 msgid "Include a column for partners on the index pages"
-msgstr "Een kolom voorzien n de indexpagina's voor de partners"
+msgstr "Een kolom voorzien in de indexpagina's voor de partners"
 
 #: ../src/plugins/NarrativeWeb.py:3116
 msgid "Whether to include a partners column"
