@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2008       Stefan Siegel
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,10 +22,20 @@
 
 # $Id$
 
-# Written by Alex Roitman, largely based on Relationship.py by Don Allingham.
-# and on valuable input from Dr. Martin Senftleben
+# Original version written by Alex Roitman, largely based on Relationship.py
+# by Don Allingham and on valuable input from Dr. Martin Senftleben
 # Modified by Joachim Breitner to not use „Großcousine“, in accordance with
 # http://de.wikipedia.org/wiki/Verwandtschaftsbeziehung
+# Rewritten from scratch for GRAMPS 3 by Stefan Siegel,
+# loosely based on rel_fr.py
+
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
+
+import re
 
 #-------------------------------------------------------------------------
 #
@@ -34,358 +45,258 @@
 
 import gen.lib
 import Relationship
-import types
 from PluginUtils import register_relcalc
 
 #-------------------------------------------------------------------------
 #
-# German-specific definitions of relationships
+#
 #
 #-------------------------------------------------------------------------
 
-_removed_level = [ "",
-		"", # " ersten Grades", but is usually omitted
-		" zweiten Grades",
-		" dritten Grades",
-		" vierten Grades",
-		" fünften Grades",
-		" sechsten Grades",
-		" siebten Grades",
-		" achten Grades",
-		" neunten Grades",
-		" zehnten Grades",
-		" elften Grades",
-		" zwölften Grades",
-		" dreizehnten Grades",
-		" vierzehnten Grades",
-		" fünfzehnten Grades",
-		" sechzehnten Grades",
-		" siebzehnten Grades",
-		" achtzehnten Grades",
-		" neunzehnten Grades",
-		" zwanzigsten Grades",
-	]
-
-_father_level = [ "", "Vater (Ebene 1)", "Großvater (Ebene 2)", "Urgroßvater (Ebene 3)", 
-    "Altvater (Ebene 4)", "Altgroßvater (Ebene 5)", "Alturgroßvater (Ebene 6)", 
-    "Obervater (Ebene 7)", "Obergroßvater (Ebene 8)", "Oberurgroßvater (Ebene 9)",
-    "Stammvater (Ebene 10)", "Stammgroßvater (Ebene 11)", "Stammurgroßvater (Ebene 12)",
-    "Ahnenvater (Ebene 13)", "Ahnengroßvater (Ebene 14)", "Ahnenurgroßvater (Ebene 15)",
-    "Urahnenvater (Ebene 16)", "Urahnengroßvater (Ebene 17)", "Urahnenurgroßvater (Ebene 18)",
-    "Erzvater (Ebene 19)", "Erzgroßvater (Ebene 20)", "Erzurgroßvater (Ebene 21)", 
-    "Erzahnenvater (Ebene 22)", "Erzahnengroßvater (Ebene 23)", "Erzahnenurgroßvater (Ebene 24)" ]
-
-_mother_level = [ "", "Mutter (Ebene 1)", "Großmutter (Ebene 2)", "Urgroßmutter (Ebene 3)",
-    "Altmutter (Ebene 4)", "Altgroßmutter (Ebene 5)", "Alturgroßmutter (Ebene 6)", 
-    "Obermutter (Ebene 7)", "Obergroßmutter (Ebene 8)", "Oberurgroßmutter (Ebene 9)", 
-    "Stammmutter (Ebene 10)", "Stammgroßmutter (Ebene 11)", "Stammurgroßmutter (Ebene 12)", 
-    "Ahnenmutter (Ebene 13)", "Ahnengroßmutter (Ebene 14)", "Ahnenurgroßmutter (Ebene 15)", 
-    "Urahnenmutter (Ebene 16)", "Urahnengroßmutter (Ebene 17)", "Urahnenurgroßmutter (Ebene 18)", 
-    "Erzmutter (Ebene 19)", "Erzgroßmutter (Ebene 20)", "Erzurgroßmutter (Ebene 21)", 
-    "Erzahnenmutter (Ebene 22)", "Erzahnengroßmutter (Ebene 23)", 
-    "Erzahnenurgroßmutter (Ebene 24)" ]
-
-_son_level = [ "", "Sohn", 
-  "Enkel", 
-  "Urenkel", 
-  "Ururenkel", 
-  "Urururenkel", 
-  "Ururururenkel", 
-  "Urururururenkel",
-  "Ururururururenkel",
-  "Urururururururenkel",
-  "Ururururururururenkel",
-  "Urururururururururenkel",
-  "Ururururururururururenkel",
-  "Urururururururururururenkel",
-  "Ururururururururururururenkel",
-  "Urururururururururururururenkel",
-  "Ururururururururururururururenkel",
-  "Urururururururururururururururenkel",
-  "Ururururururururururururururururenkel",
-  "Urururururururururururururururururenkel",
-  "Ururururururururururururururururururenkel",
-  "Urururururururururururururururururururenkel",
-  "Ururururururururururururururururururururenkel",
-  "Urururururururururururururururururururururenkel",
+_ordinal = [ u'nullte',
+    u'erste', u'zweite', u'dritte', u'vierte', u'fünfte', u'sechste',
+    u'siebte', u'achte', u'neunte', u'zehnte', u'elfte', u'zwölfte',
 ]
 
-_daughter_level = [ "", "Tochter", 
-  "Enkelin", 
-  "Urenkelin", 
-  "Ururenkelin", 
-  "Urururenkelin", 
-  "Ururururenkelin",
-  "Urururururenkelin", 
-  "Ururururururenkelin", 
-  "Urururururururenkelin", 
-  "Ururururururururenkelin", 
-  "Urururururururururenkelin", 
-  "Ururururururururururenkelin", 
-  "Urururururururururururenkelin", 
-  "Ururururururururururururenkelin", 
-  "Urururururururururururururenkelin", 
-  "Ururururururururururururururenkelin", 
-  "Urururururururururururururururenkelin", 
-  "Ururururururururururururururururenkelin", 
-  "Urururururururururururururururururenkelin", 
-  "Ururururururururururururururururururenkelin", 
-  "Urururururururururururururururururururenkelin", 
-  "Ururururururururururururururururururururenkelin", 
-  "Urururururururururururururururururururururenkelin", 
+_removed = [ u'',
+    u'', u'Groß', u'Urgroß',
+    u'Alt', u'Altgroß', u'Alturgroß',
+    u'Ober', u'Obergroß', u'Oberurgroß',
+    u'Stamm', u'Stammgroß', u'Stammurgroß',
+    u'Ahnen', u'Ahnengroß', u'Ahnenurgroß',
+    u'Urahnen', u'Urahnengroß', u'Urahnenurgroß',
+    u'Erz', u'Erzgroß', u'Erzurgroß',
+    u'Erzahnen', u'Erzahnengroß', u'Erzahnenurgroß',
 ]
 
-_aunt_level = [ "", "Tante", 
-  "Großtante", 
-  "Urgroßtante", 
-  "Ururgroßtante", 
-  "Urururgroßtante", 
-  "Ururururgroßtante", 
-  "Urururururgroßtante", 
-  "Ururururururgroßtante", 
-  "Urururururururgroßtante", 
-  "Ururururururururgroßtante", 
-  "Urururururururururgroßtante", 
-  "Ururururururururururgroßtante", 
-  "Urururururururururururgroßtante", 
-  "Ururururururururururururgroßtante", 
-  "Urururururururururururururgroßtante", 
-  "Ururururururururururururururgroßtante", 
-  "Urururururururururururururururgroßtante", 
-  "Ururururururururururururururururgroßtante", 
-  "Urururururururururururururururururgroßtante", 
-  "Ururururururururururururururururururgroßtante", 
-  "Urururururururururururururururururururgroßtante", 
-  "Ururururururururururururururururururururgroßtante", 
-]
+_lineal_up = {
+    'many':    u'%(p)sEltern%(s)s',
+    'unknown': u'%(p)sElter%(s)s', # "Elter" sounds strange but is correct
+    'male':    u'%(p)sVater%(s)s',
+    'female':  u'%(p)sMutter%(s)s',
+}
+_lineal_down = {
+    'many':    u'%(p)sKinder%(s)s',
+    'unknown': u'%(p)sKind%(s)s',
+    'male':    u'%(p)sSohn%(s)s',
+    'female':  u'%(p)sTochter%(s)s',
+}
+_collateral_up = {
+    'many':    u'%(p)sOnkel und %(p)sTanten%(s)s',
+    'unknown': u'%(p)sOnkel oder %(p)sTante%(s)s',
+    'male':    u'%(p)sOnkel%(s)s',
+    'female':  u'%(p)sTante%(s)s',
+}
+_collateral_down = {
+    'many':    u'%(p)sNeffen und %(p)sNichten%(s)s',
+    'unknown': u'%(p)sNeffe oder %(p)sNichte%(s)s',
+    'male':    u'%(p)sNeffe%(s)s',
+    'female':  u'%(p)sNichte%(s)s',
+}
+_collateral_same = {
+    'many':    u'%(p)sCousins und %(p)sCousinen%(s)s',
+    'unknown': u'%(p)sCousin oder %(p)sCousine%(s)s',
+    'male':    u'%(p)sCousin%(s)s',
+    'female':  u'%(p)sCousine%(s)s',
+}
+_collateral_sib = {
+    'many':    u'%(p)sGeschwister%(s)s',
+    'unknown': u'%(p)sGeschwisterkind%(s)s',
+    'male':    u'%(p)sBruder%(s)s',
+    'female':  u'%(p)sSchwester%(s)s',
+}
 
-_uncle_level = [ "", "Onkel", 
-  "Großonkel", 
-  "Urgroßonkel", 
-  "Ururgroßonkel",
-  "Urururgroßonkel", 
-  "Ururururgroßonkel", 
-  "Urururururgroßonkel", 
-  "Ururururururgroßonkel", 
-  "Urururururururgroßonkel", 
-  "Ururururururururgroßonkel", 
-  "Urururururururururgroßonkel", 
-  "Ururururururururururgroßonkel", 
-  "Urururururururururururgroßonkel", 
-  "Ururururururururururururgroßonkel", 
-  "Urururururururururururururgroßonkel", 
-  "Ururururururururururururururgroßonkel", 
-  "Urururururururururururururururgroßonkel", 
-  "Ururururururururururururururururgroßonkel", 
-  "Urururururururururururururururururgroßonkel", 
-  "Ururururururururururururururururururgroßonkel", 
-  "Urururururururururururururururururururgroßonkel", 
-  "Ururururururururururururururururururururgroßonkel", 
-]
-
-_nephew_level = [ "", "Neffe", 
-  "Großneffe", 
-  "Urgroßneffe", 
-  "Ururgroßneffe", 
-  "Urururgroßneffe", 
-  "Ururururgroßneffe", 
-  "Urururururgroßneffe", 
-  "Ururururururgroßneffe", 
-  "Urururururururgroßneffe", 
-  "Ururururururururgroßneffe", 
-  "Urururururururururgroßneffe", 
-  "Ururururururururururgroßneffe", 
-  "Urururururururururururgroßneffe", 
-  "Ururururururururururururgroßneffe", 
-  "Urururururururururururururgroßneffe", 
-  "Ururururururururururururururgroßneffe", 
-  "Urururururururururururururururgroßneffe", 
-  "Ururururururururururururururururgroßneffe", 
-  "Urururururururururururururururururgroßneffe", 
-  "Ururururururururururururururururururgroßneffe", 
-  "Urururururururururururururururururururgroßneffe", 
-  "Ururururururururururururururururururururgroßneffe", 
-]
-
-_niece_level = [ "", "Nichte", 
-  "Großnichte", 
-  "Urgroßnichte", 
-  "Ururgroßnichte", 
-  "Urururgroßnichte", 
-  "Ururururgroßnichte", 
-  "Urururururgroßnichte", 
-  "Ururururururgroßnichte", 
-  "Urururururururgroßnichte", 
-  "Ururururururururgroßnichte", 
-  "Urururururururururgroßnichte", 
-  "Ururururururururururgroßnichte", 
-  "Urururururururururururgroßnichte", 
-  "Ururururururururururururgroßnichte", 
-  "Urururururururururururururgroßnichte", 
-  "Ururururururururururururururgroßnichte", 
-  "Urururururururururururururururgroßnichte", 
-  "Ururururururururururururururururgroßnichte", 
-  "Urururururururururururururururururgroßnichte", 
-  "Ururururururururururururururururururgroßnichte", 
-  "Urururururururururururururururururururgroßnichte", 
-]
-
-_parents_level = [ "", "Eltern", "Großeltern", "Urgroßeltern", 
-"Alteltern", "Altgroßeltern", "Alturgroßeltern", "Obereltern", 
-"Obergroßeltern", "Oberurgroßeltern", "Stammeltern", "Stammgroßeltern", 
-"Stammurgroßeltern", "Ahneneltern", "Ahnengroßeltern", "Ahnenurgroßeltern", 
-"Urahneneltern", "Urahnengroßeltern", "Urahnenurgroßeltern",
-"Erzeltern", "Erzgroßeltern", "Erzurgroßeltern", "Erzahneneltern",
-"Erzahnengroßeltern", "Erzahnenurgroßeltern", 
-]
+_schwager = {
+    'many':    u'%(p)sSchwager%(s)s',
+    'unknown': u'%(p)sSchwager%(s)s',
+    'male':    u'%(p)sSchwager%(s)s',
+    'female':  u'%(p)sSchwägerin%(s)s',
+}
+_schwippschwager = {
+    'many':    u'%(p)sSchwippschwager%(s)s',
+    'unknown': u'%(p)sSchwippschwager%(s)s',
+    'male':    u'%(p)sSchwippschwager%(s)s',
+    'female':  u'%(p)sSchwippschwägerin%(s)s',
+}
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
+
 class RelationshipCalculator(Relationship.RelationshipCalculator):
-
     def __init__(self):
         Relationship.RelationshipCalculator.__init__(self)
 
-    def get_parents(self,level):
-        if level>len(_parents_level)-1:
-            return "remote ancestors"
+    def _make_roman(self, num):
+        roman = ''
+        for v, r in [(1000, u'M'), (900, u'CM'), (500, u'D'), (400, u'CD'),
+                     ( 100, u'C'), ( 90, u'XC'), ( 50, u'L'), ( 40, u'XL'),
+                     (  10, u'X'), (  9, u'IX'), (  5, u'V'), (  4, u'IV'),
+                     (   1, u'I')]:
+            while num > v:
+                num -= v
+                roman += r
+        return roman
+
+    def _fix_caps(self, string):
+        return re.sub(r'(?<=[^\s(/A-Z])[A-Z]', lambda m: m.group().lower(), string)
+
+    def _removed_text(self, degree, removed):
+        if (degree, removed) == (0, -2):
+            return u'Enkel'
+        elif (degree, removed) == (0, -3):
+            return u'Urenkel'
+        removed = abs(removed)
+        if removed < len(_removed):
+            return _removed[removed]
         else:
-            return _parents_level[level]
+            return u'(%s)' % self._make_roman(removed-2)
 
-    def get_father(self,level):
-        if level>len(_father_level)-1:
-            return "remote ancestor"
+    def _degree_text(self, degree, removed):
+        if removed == 0:
+            degree -= 1  # a cousin has same degree as his parent (uncle/aunt)
+        if degree <= 1:
+            return u''
+        if degree < len(_ordinal):
+            return u' %sn Grades' % _ordinal[degree]
         else:
-            return _father_level[level]
+            return u' %d. Grades' % degree
 
-    def get_son(self,level):
-        if level>len(_son_level)-1:
-            return "remote descendant"
+    def _gender_convert(self, gender):
+        if gender == gen.lib.Person.MALE:
+            return 'male'
+        elif gender == gen.lib.Person.FEMALE:
+            return 'female'
         else:
-            return _son_level[level]
+            return 'unknown'
 
-    def get_mother(self,level):
-        if level>len(_mother_level)-1:
-            return "remote ancestor"
-        else:
-            return _mother_level[level]
+    def _get_relationship_string(self, Ga, Gb, gender,
+                                 reltocommon_a='', reltocommon_b='',
+				 only_birth=True,
+				 in_law_a=False, in_law_b=False):
+        common_ancestor_count = 0
+        if reltocommon_a == '':
+            reltocommon_a = self.REL_FAM_BIRTH
+        if reltocommon_b == '':
+            reltocommon_b = self.REL_FAM_BIRTH
+        if reltocommon_a[-1] in [self.REL_MOTHER, self.REL_FAM_BIRTH,
+	                         self.REL_FAM_BIRTH_MOTH_ONLY] and \
+           reltocommon_b[-1] in [self.REL_MOTHER, self.REL_FAM_BIRTH,
+	                         self.REL_FAM_BIRTH_MOTH_ONLY]:
+            common_ancestor_count += 1  # same female ancestor
+        if reltocommon_a[-1] in [self.REL_FATHER, self.REL_FAM_BIRTH,
+	                         self.REL_FAM_BIRTH_FATH_ONLY] and \
+           reltocommon_b[-1] in [self.REL_FATHER, self.REL_FAM_BIRTH,
+	                         self.REL_FAM_BIRTH_FATH_ONLY]:
+            common_ancestor_count += 1  # same male ancestor
 
-    def get_daughter(self,level):
-        if level>len(_daughter_level)-1:
-            return "remote descendant"
-        else:
-            return _daughter_level[level]
+        degree = min(Ga, Gb)
+        removed = Ga-Gb
 
-    def get_aunt(self,level,removed):
-        if level>len(_aunt_level)-1 or removed > len(_removed_level)-1:
-            return "remote ancestor"
-        else:
-            return _aunt_level[level] + _removed_level[removed]
+        if degree == 0 and removed < 0:
+	    # for descendants the "in-law" logic is reversed
+            (in_law_a, in_law_b) = (in_law_b, in_law_a) 
 
-    def get_uncle(self,level,removed):
-        if level>len(_uncle_level)-1 or removed > len(_removed_level)-1:
-            return "remote ancestor"
-        else:
-            return _uncle_level[level] + _removed_level[removed]
+        rel_str = u''
+        pre = u''
+        post = u''
 
-    def get_niece(self,level,removed):
-        if level>len(_niece_level)-1 or removed > len(_removed_level)-1:
-            return "remote ancestor"
-        else:
-            return _niece_level[level] + _removed_level[removed]
+        if in_law_b and degree == 0:
+            pre += u'Stief'
+        elif (not only_birth) or common_ancestor_count == 0:
+            pre += u'Stief-/Adoptiv'
+        if in_law_a and (degree, removed) != (1, 0):
+	    # A "Schwiegerbruder" really is a "Schwager" (handled later)
+            pre += u'Schwieger'
+        if degree != 0 and common_ancestor_count == 1:
+            pre += u'Halb'
+        pre += self._removed_text(degree, removed)
+        post += self._degree_text(degree, removed)
+        if in_law_b and degree != 0 and (degree, removed) != (1, 0):
+	    # A "Bruder (angeheiratet)" also is a "Schwager" (handled later)
+            post += u' (angeheiratet)'
 
-    def get_nephew(self,level,removed):
-        if level>len(_nephew_level)-1 or removed > len(_removed_level)-1:
-            return "remote ancestor"
-        else:
-            return _nephew_level[level] + _removed_level[removed]
-
-    def get_male_cousin(self,removed):
-        if removed>len(_removed_level)-1:
-            return "remote descendant"
-        elif removed==0:
-            return "Bruder"
-        else:
-            return "Cousin"+_removed_level[removed]
-
-    def get_female_cousin(self,removed):
-        if removed>len(_removed_level)-1:
-            return "remote descendant"
-        elif removed==0:
-            return "Schwester"
-        else:
-            return "Cousine"+_removed_level[removed]
-
-    def get_relationship(self,db, orig_person, other_person):
-        """
-        Return a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-        
-        Special cases: relation strings "", "undefined" and "spouse".
-        """
-
-        if orig_person == None:
-            return ("undefined",[])
-    
-        if orig_person.get_handle() == other_person.get_handle():
-            return ('', [])
-
-        is_spouse = self.is_spouse(db, orig_person, other_person)
-        if is_spouse:
-            return (is_spouse,[])
-
-        #get_relationship_distance changed, first data is relation to 
-        #orig person, apperently secondRel in this function
-        (secondRel,firstRel,common) = \
-                     self.get_relationship_distance(db, orig_person, other_person)
-        
-        if type(common) == types.StringType or \
-           type(common) == types.UnicodeType:
-            return (common,[])
-        elif common:
-            person_handle = common[0]
-        else:
-            return ("",[])
-
-        firstRel = len(firstRel)
-        secondRel = len(secondRel)
-
-        if firstRel == 0:
-            if secondRel == 0:
-                return ('',common)
-            elif other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_father(secondRel),common)
+        if degree == 0:
+            # lineal relationship
+            if removed > 0:
+                rel_str = _lineal_up[gender]
+            elif removed < 0:
+                rel_str = _lineal_down[gender]
             else:
-                return (self.get_mother(secondRel),common)
-        elif secondRel == 0:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_son(firstRel),common)
+                rel_str = u'Proband'
+        else:
+            # collateral relationship
+            if removed > 0:
+                rel_str = _collateral_up[gender]
+            elif removed < 0:
+                rel_str = _collateral_down[gender]
+            elif degree == 1:
+                if in_law_a or in_law_b:
+                    if in_law_a and in_law_b:
+                        rel_str = _schwippschwager[gender]
+                    else:
+                        rel_str = _schwager[gender]
+                else:
+                    rel_str = _collateral_sib[gender]
             else:
-                return (self.get_daughter(firstRel),common)
-        elif secondRel > firstRel:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_uncle(secondRel-firstRel,firstRel),common)
-            else:
-                return (self.get_aunt(secondRel-firstRel,firstRel),common)
-        elif secondRel < firstRel:
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_nephew(firstRel-secondRel,secondRel),common)
-            else:
-                return (self.get_niece(firstRel-secondRel,secondRel),common)
-        else: # obviously secondRel == firstRel
-            if other_person.get_gender() == gen.lib.Person.MALE:
-                return (self.get_male_cousin(firstRel-1),common)
-            else:
-                return (self.get_female_cousin(firstRel-1),common)
-    
+                rel_str = _collateral_same[gender]
+        return self._fix_caps(rel_str % {'p': pre, 's': post})
+
+    def get_plural_relationship_string(self, Ga, Gb):
+        return self._get_relationship_string(Ga, Gb, 'many')
+
+    def get_single_relationship_string(self, Ga, Gb, gender_a, gender_b,
+                                       reltocommon_a, reltocommon_b,
+                                       only_birth=True,
+                                       in_law_a=False, in_law_b=False):
+        return self._get_relationship_string(Ga, Gb,
+	                                     self._gender_convert(gender_b),
+                                             reltocommon_a, reltocommon_b,
+					     only_birth, in_law_a, in_law_b)
+
+    def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
+                                        in_law_a=False, in_law_b=False):
+        if sib_type in [self.NORM_SIB, self.UNKNOWN_SIB]:
+	    # the NORM_SIB translation is generic and suitable for UNKNOWN_SIB
+            rel = self.REL_FAM_BIRTH
+            only_birth = True
+        elif sib_type == self.HALF_SIB_FATHER:
+            rel = self.REL_FAM_BIRTH_FATH_ONLY
+            only_birth = True
+        elif sib_type == self.HALF_SIB_MOTHER:
+            rel = self.REL_FAM_BIRTH_MOTH_ONLY
+            only_birth = True
+        elif sib_type == self.STEP_SIB:
+            rel = self.REL_FAM_NONBIRTH
+            only_birth = False
+        return self._get_relationship_string(1, 1,
+	                                     self._gender_convert(gender_b),
+	                                     rel, rel,
+					     only_birth, in_law_a, in_law_b)
+
 #-------------------------------------------------------------------------
 #
 # Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
+
 register_relcalc(RelationshipCalculator,
     ["de","DE","de_DE","deutsch","Deutsch","de_DE.UTF8","de_DE@euro","de_DE.UTF8@euro",
             "german","German", "de_DE.UTF-8", "de_DE.utf-8", "de_DE.utf8"])
+
+if __name__ == "__main__":
+    # Test function. Call it as follows from the command line (so as to find
+    #        imported modules):
+    #    export PYTHONPATH=/path/to/gramps/src 
+    # python src/plugins/rel_fr.py 
+    # (Above not needed here)
+    
+    """TRANSLATORS, copy this if statement at the bottom of your 
+        rel_xx.py module, and test your work with:
+        python src/plugins/rel_xx.py
+    """
+    from Relationship import test
+    rc = RelationshipCalculator()
+    test(rc, True)
