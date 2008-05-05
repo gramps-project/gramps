@@ -1192,7 +1192,7 @@ msgstr "Détails format personn_alisé"
 #: ../src/PluginUtils/_GuiOptions.py:80
 #: ../src/PluginUtils/_GuiOptions.py:933
 msgid "Surname"
-msgstr "Noms de famille"
+msgstr "Nom de famille"
 
 #: ../src/GrampsCfg.py:344
 #: ../src/GrampsCfg.py:346
