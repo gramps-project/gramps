@@ -71,8 +71,8 @@ class PlaceView(PageView.ListView):
         _('County'),
         _('State'),
         _('Country'),
-        _('Longitude'),
         _('Latitude'),
+        _('Longitude'),
         _('Last Changed'),
         _('Street'),
         ]
