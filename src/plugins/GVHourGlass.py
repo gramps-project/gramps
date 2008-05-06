@@ -201,6 +201,7 @@ class HourGlassReport(Report):
             style = "rounded"
         else:
             shape = "hexagon"
+            style = "solid"
         if self.colorize == 'colored':
             if gender == person.MALE:
                 color = self.colors['male']

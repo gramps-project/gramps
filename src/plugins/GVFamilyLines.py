@@ -893,6 +893,7 @@ class FamilyLinesReport(Report):
                 style = "rounded"
             else:
                 shape = "hexagon"
+                style = "solid"
             if self._colorize == 'colored':
                 if gender == person.MALE:
                     color = self._colors['male']
