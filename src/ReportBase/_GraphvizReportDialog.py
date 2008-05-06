@@ -157,17 +157,17 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         self.write( '  concentrate="false";\n'      )
         self.write( '  dpi="%d";\n'                 % self.dpi          )
         self.write( '  graph [fontsize=%d];\n'      % self.fontsize     )
+        self.write( '  margin="%3.2f,%3.2f"; \n'    % (xmargin, ymargin))
         self.write( '  mclimit="99";\n'             )
         self.write( '  nodesep="%.2f";\n'           % self.nodesep      )
         self.write( '  outputorder="edgesfirst";\n' )
-        self.write( '  page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )
+        self.write( '# page="%3.2f,%3.2f";\n'       % (pwidth, pheight) )   # see bug report #2121
         self.write( '  pagedir="%s";\n'             % self.pagedir      )
         self.write( '  rankdir="%s";\n'             % self.rankdir      )
         self.write( '  ranksep="%.2f";\n'           % self.ranksep      )
         self.write( '  ratio="%s";\n'               % self.ratio        )
         self.write( '  searchsize="100";\n'         )
         self.write( '  size="%3.2f,%3.2f"; \n'      % (sizew, sizeh)    )
-        self.write( '  margin="%3.2f,%3.2f"; \n'    % (xmargin, ymargin))
         self.write( '  splines="true";\n'           )
         self.write( '\n'                            )
         self.write( '  edge [len=0.5 style=solid arrowhead=none '
@@ -963,47 +963,6 @@ class GraphvizReportDialog(ReportDialog):
         self.options.handler.set_orientation(self.paper_frame.get_orientation())
         self.options.handler.set_margins(self.paper_frame.get_paper_margins())
         self.options.handler.set_custom_paper_size(self.paper_frame.get_custom_paper_size())
-        #=====================================================================
-        # First check for small margins
-        # Warn if margins less than 0.5", which can generate wrong ouput:
-        #      pdf via Graphviz generates pdf errors
-        #      pdf via Ghostscrip generetes 4 pages is stead of one,
-        #         which are without errors, but only one was wanted.
-        # If all margins are >1.0" then graphs are OK, but some graphs are
-        # offset a lot
-        # Note margins are always in cm.
-        if self.paper_frame.get_paper_metric():
-            warn_marg = _("1.3 cm.")
-        else:
-            warn_marg = _("0.5 in.")
-
-        pm_l = self.paper_frame.get_paper_margins()[0] / 2.54
-        pm_r = self.paper_frame.get_paper_margins()[1] / 2.54
-        pm_t = self.paper_frame.get_paper_margins()[2] / 2.54
-        pm_b = self.paper_frame.get_paper_margins()[3] / 2.54
-
-        if ((pm_l < 0.5 and pm_r < 0.5) or (pm_t < 0.5 and pm_b < 0.5)) and \
-                (self.format_menu.get_clname() == 'gvpdf'):
-            warn_text1 = _("Two or more opposite paper margins are less than ")
-            warn_text2 = _("This can cause incorrect and/or partial graphs.")
-            WarningDialog(warn_text1 + warn_marg, warn_text2)
-
-        if ((pm_l < 0.5 and pm_r < 0.5) or (pm_t < 0.5 and pm_b < 0.5)) and \
-                ((self.format_menu.get_clname() == 'gspdf') or \
-                (self.format_menu.get_clname() == 'ps')):
-            warn_text1 = _("Two or more opposite paper margins are less than ")
-            warn_text2 = _("More than expected number of pages can be generated.")
-            WarningDialog(warn_text1 + warn_marg, warn_text2)
-
-        if ((self.h_pages.get_value() > 1) or (self.h_pages.get_value() > 1)) and \
-            not ((self.format_menu.get_clname() == 'gspdf') or \
-                (self.format_menu.get_clname() == 'ps') or \
-                (self.format_menu.get_clname() == 'dot')):
-            warn_text1 = _("You have used more than one page as output.")
-            warn_text2 = _("This can cause incorrect and/or partial graphs.")
-            WarningDialog(warn_text1, warn_text2)
-
-        #======================================================================
 
         # Is there a filename?  This should also test file permissions, etc.
         if not self.parse_target_frame():
