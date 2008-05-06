@@ -272,6 +272,7 @@ class RelGraphReport(Report):
             style="rounded"
         else:
             shape="hexagon"
+	    style = "solid"
         if self.colorize == 'colored':
             if gender == person.MALE:
                 color = self.colors['male']
@@ -290,7 +291,7 @@ class RelGraphReport(Report):
                 fill = self.colors['female']
             else:
                 fill = self.colors['unknown']
-        return(shape,style,color,fill)
+	return(shape,style,color,fill)
 
     def get_person_label(self, person):
         "return person label string"
