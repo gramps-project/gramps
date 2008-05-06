@@ -1199,16 +1199,16 @@ class PlacePage(BasePage):
                     of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % val[1])
                     of.write('\t\t\t</tr>\n')
 
-        if place.long:
-            of.write('\t\t\t<tr>\n')
-            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Longitude'))
-            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % place.long)
-            of.write('\t\t\t</tr>\n')
-
         if place.lat:
             of.write('\t\t\t<tr>\n')
             of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Latitude'))
             of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % place.lat)
+            of.write('\t\t\t</tr>\n')
+
+        if place.long:
+            of.write('\t\t\t<tr>\n')
+            of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _('Longitude'))
+            of.write('\t\t\t\t<td class="ColumnValue">%s</td>\n' % place.long)
             of.write('\t\t\t</tr>\n')
 
         of.write('\t\t</table>\n')
