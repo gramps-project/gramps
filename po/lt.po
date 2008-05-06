@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-19 21:23-0700\n"
-"PO-Revision-Date: 2008-03-21 09:12+0300\n"
+"POT-Creation-Date: 2008-05-02 11:03+0200\n"
+"PO-Revision-Date: 2008-05-06 14:05+0300\n"
 "Last-Translator: Arturas Sleinius <asleinius@gmail.com>\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -115,14 +115,14 @@ msgstr "%(title)s - GRAMPS"
 #. ('gramps-bookmark', _('Bookmarks'), gtk.gdk.CONTROL_MASK, 0, ''),
 #. ('gramps-bookmark-delete', _('Delete bookmark'), gtk.gdk.CONTROL_MASK, 0, ''),
 #: ../src/Bookmarks.py:200
-#: ../src/Bookmarks.py:207
+#: ../src/Bookmarks.py:208
 #: ../src/gramps_main.py:101
 #: ../src/PageView.py:354
 msgid "Organize Bookmarks"
 msgstr "Tvarkyti žymeles"
 
 #. Add column with object name
-#: ../src/Bookmarks.py:213
+#: ../src/Bookmarks.py:214
 #: ../src/GrampsCfg.py:175
 #: ../src/ScratchPad.py:186
 #: ../src/ScratchPad.py:372
@@ -142,9 +142,9 @@ msgstr "Tvarkyti žymeles"
 #: ../src/ToolTips.py:199
 #: ../src/ToolTips.py:210
 #: ../src/DataViews/PersonView.py:67
-#: ../src/DataViews/PersonView.py:507
-#: ../src/DataViews/PersonView.py:643
-#: ../src/DataViews/PersonView.py:649
+#: ../src/DataViews/PersonView.py:506
+#: ../src/DataViews/PersonView.py:642
+#: ../src/DataViews/PersonView.py:648
 #: ../src/DataViews/RepositoryView.py:67
 #: ../src/DisplayTabs/_BackRefList.py:58
 #: ../src/DisplayTabs/_NameEmbedList.py:67
@@ -154,12 +154,12 @@ msgstr "Tvarkyti žymeles"
 #: ../src/Selectors/_SelectPerson.py:49
 #: ../src/Selectors/_SelectPerson.py:125
 #: ../src/Selectors/_SelectPerson.py:131
-#: ../src/plugins/BookReport.py:738
+#: ../src/plugins/BookReport.py:755
 #: ../src/plugins/IndivComplete.py:426
 #: ../src/plugins/MarkerReport.py:118
-#: ../src/plugins/NarrativeWeb.py:842
-#: ../src/plugins/NarrativeWeb.py:986
-#: ../src/plugins/NarrativeWeb.py:1113
+#: ../src/plugins/NarrativeWeb.py:846
+#: ../src/plugins/NarrativeWeb.py:990
+#: ../src/plugins/NarrativeWeb.py:1117
 #: ../src/plugins/NotRelated.py:96
 #: ../src/plugins/PatchNames.py:212
 #: ../src/plugins/RelCalc.py:54
@@ -177,7 +177,7 @@ msgstr "Vardas"
 
 #. GRAMPS ID
 #. Add column with object gramps_id
-#: ../src/Bookmarks.py:213
+#: ../src/Bookmarks.py:214
 #: ../src/PageView.py:458
 #: ../src/PageView.py:635
 #: ../src/Merge/_MergePerson.py:133
@@ -426,74 +426,68 @@ msgstr "Pasirinkite bylos _tipą"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/DbManager.py:84
+#: ../src/DbManager.py:86
 msgid "Family Tree"
 msgstr "Šeimos medis"
 
-#: ../src/DbManager.py:98
+#: ../src/DbManager.py:100
 msgid "Extract"
 msgstr "Ištraukti"
 
-#: ../src/DbManager.py:98
+#: ../src/DbManager.py:100
 #: ../src/gen/lib/repotype.py:64
 msgid "Archive"
 msgstr "Archyvas"
 
-#: ../src/DbManager.py:170
+#: ../src/DbManager.py:172
 #, python-format
 msgid "Starting Import, %s"
 msgstr "Pradedamas %s įkėlimas"
 
-#: ../src/DbManager.py:176
+#: ../src/DbManager.py:178
 msgid "Import finished..."
 msgstr "Duomenų įkėlimas baigtas..."
 
-#: ../src/DbManager.py:195
-#: ../src/DbManager.py:840
-#: ../src/DbManager.py:932
-msgid "Never"
-msgstr "Niekada"
-
 #. get the import function using the filetype, but create a db
 #. based on the DBDir
-#: ../src/DbManager.py:215
+#: ../src/DbManager.py:223
 #: ../src/plugins/ImportCSV.py:374
 msgid "Importing data..."
 msgstr "Įkeliami duomenys..."
 
-#: ../src/DbManager.py:437
+#: ../src/DbManager.py:426
 msgid "Family tree name"
 msgstr "Šeimos medžio vardas"
 
-#: ../src/DbManager.py:446
+#: ../src/DbManager.py:436
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:80
 msgid "Status"
 msgstr "Būsena"
 
-#: ../src/DbManager.py:452
+#: ../src/DbManager.py:442
 msgid "Last modified"
 msgstr "Paskutinis pataisymas"
 
-#: ../src/DbManager.py:522
+#: ../src/DbManager.py:521
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr "Panaikinti '%s' duomenų bazės užrakinimą?"
 
-#: ../src/DbManager.py:523
+#: ../src/DbManager.py:522
 msgid "GRAMPS believes that someone else is actively editing this database. You cannot edit this database while it is locked. If no one is editing the database you may safely break the lock. However, if someone else is editing the database and you break the lock, you may corrupt the database."
 msgstr "GRAMPS įsitikinęs, kad kažkas kitas aktyviai koreguoja duomenų bazę. Kol bazė užrakinta Jūs negalite jos koreguoti. Jei niekas kitas jos nenaudoja, tai galite saugai nutraukti užrakinimą. Bet jei kažkas kitas koreguoja bazę ir Jūs nutrauksite užrakinimą, tai galite sugadinti duomenų bazę."
 
-#: ../src/DbManager.py:529
+#: ../src/DbManager.py:528
 msgid "Break lock"
 msgstr "Nutraukti užrakinimą"
 
-#: ../src/DbManager.py:601
+#: ../src/DbManager.py:603
 msgid "Rename failed"
 msgstr "Pervadinimas nepavyko"
 
-#: ../src/DbManager.py:602
+#: ../src/DbManager.py:604
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -504,61 +498,61 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:617
+#: ../src/DbManager.py:619
 msgid "Could not rename the Family Tree."
 msgstr "Negalėjau pervadinti šeimos medžio."
 
-#: ../src/DbManager.py:618
+#: ../src/DbManager.py:620
 msgid "Family Tree already exists, choose a unique name."
 msgstr "Šeimos medis jau egzistuoja. Pasirinkite unikalų vardą."
 
-#: ../src/DbManager.py:631
+#: ../src/DbManager.py:633
 msgid "Could not rename family tree"
 msgstr "Negalėjau pervadinti šeimos medžio"
 
-#: ../src/DbManager.py:665
+#: ../src/DbManager.py:667
 msgid "Extracting archive..."
 msgstr "Išspaudžiamas archyvas..."
 
-#: ../src/DbManager.py:670
+#: ../src/DbManager.py:672
 msgid "Importing archive..."
 msgstr "Importuojamas archyvas..."
 
-#: ../src/DbManager.py:686
+#: ../src/DbManager.py:688
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr "Ištrinti '%s' šeimos medį?"
 
-#: ../src/DbManager.py:687
+#: ../src/DbManager.py:689
 msgid "Removing this family tree will permanently destroy the data."
 msgstr "Šio šeimos medžio pašalinimas visam laikui ištrins duomenis."
 
-#: ../src/DbManager.py:688
+#: ../src/DbManager.py:690
 msgid "Remove family tree"
 msgstr "Ištrinti šeimos medį"
 
-#: ../src/DbManager.py:694
+#: ../src/DbManager.py:696
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr "Išmesti  bazės  '%(database)s' versiją  '%(revision)s'"
 
-#: ../src/DbManager.py:698
+#: ../src/DbManager.py:700
 msgid "Removing this version will prevent you from extracting it in the future."
 msgstr "Versijos ištrynimas nebeleis jos ateityje  atstatyti ."
 
-#: ../src/DbManager.py:700
+#: ../src/DbManager.py:702
 msgid "Remove version"
 msgstr "Ištrinti versiją"
 
-#: ../src/DbManager.py:729
+#: ../src/DbManager.py:731
 msgid "Could not delete family tree"
 msgstr "Negalėjau ištrinti šeimos medžio"
 
-#: ../src/DbManager.py:754
+#: ../src/DbManager.py:756
 msgid "Deletion failed"
 msgstr "Ištrynimas nepavyko"
 
-#: ../src/DbManager.py:755
+#: ../src/DbManager.py:757
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -569,19 +563,23 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:794
+#: ../src/DbManager.py:800
 msgid "Rebuilding database from backup files"
 msgstr "Duomenų bazė atkuriama iš atsarginės kopijos"
 
-#: ../src/DbManager.py:829
+#: ../src/DbManager.py:835
 msgid "Could not create family tree"
 msgstr "Negalėjau sukurti šeimos medžio"
 
-#: ../src/DbManager.py:918
+#: ../src/DbManager.py:925
 msgid "Could not make database directory: "
 msgstr "Nepavyko sukurti duomenų bazės direktorijos: "
 
-#: ../src/DbManager.py:1006
+#: ../src/DbManager.py:939
+msgid "Never"
+msgstr "Niekada"
+
+#: ../src/DbManager.py:1013
 #: ../src/ScratchPad.py:94
 #: ../src/DataViews/RelationView.py:400
 #: ../src/DataViews/RelationView.py:863
@@ -596,7 +594,7 @@ msgstr "Nepavyko sukurti duomenų bazės direktorijos: "
 #: ../src/plugins/DefaultGramplets.py:448
 #: ../src/plugins/GVFamilyLines.py:134
 #: ../src/plugins/IndivComplete.py:443
-#: ../src/plugins/NarrativeWeb.py:690
+#: ../src/plugins/NarrativeWeb.py:694
 #: ../src/PluginUtils/_PluginMgr.py:181
 #: ../src/PluginUtils/_PluginMgr.py:183
 #: ../src/PluginUtils/_PluginMgr.py:184
@@ -626,11 +624,11 @@ msgstr "Nepavyko sukurti duomenų bazės direktorijos: "
 msgid "Unknown"
 msgstr "Nežinomas"
 
-#: ../src/DbManager.py:1025
+#: ../src/DbManager.py:1032
 msgid "Retrieve failed"
 msgstr "Ištraukimas nepavyko"
 
-#: ../src/DbManager.py:1026
+#: ../src/DbManager.py:1033
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -641,19 +639,19 @@ msgstr ""
 "\n"
 "%s"
 
-#: ../src/DbManager.py:1060
+#: ../src/DbManager.py:1067
 msgid "Creating data to be archived..."
 msgstr "Kuriami duomenys  archyvavimui..."
 
-#: ../src/DbManager.py:1067
+#: ../src/DbManager.py:1074
 msgid "Saving archive..."
 msgstr "Išsaugomas archyvas..."
 
-#: ../src/DbManager.py:1077
+#: ../src/DbManager.py:1084
 msgid "Archiving failed"
 msgstr "Archyvavimas nutrūko"
 
-#: ../src/DbManager.py:1078
+#: ../src/DbManager.py:1085
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
@@ -880,8 +878,8 @@ msgstr "Nustatymai"
 #: ../src/Editors/_EditEventRef.py:90
 #: ../src/Editors/_EditMediaRef.py:89
 #: ../src/Editors/_EditRepoRef.py:82
-#: ../src/Editors/_EditSourceRef.py:78
-#: ../src/Editors/_EditSourceRef.py:84
+#: ../src/Editors/_EditSourceRef.py:83
+#: ../src/Editors/_EditSourceRef.py:89
 #: ../src/gen/lib/notetype.py:78
 #: ../src/glade/gramps.glade.h:78
 msgid "General"
@@ -896,7 +894,7 @@ msgstr "Duomenų bazė"
 #: ../src/ScratchPad.py:619
 #: ../src/plugins/CustomBookText.py:113
 #: ../src/plugins/MarkerReport.py:387
-#: ../src/plugins/NarrativeWeb.py:701
+#: ../src/plugins/NarrativeWeb.py:705
 #: ../src/plugins/SimpleBookTitle.py:167
 #: ../src/plugins/SimpleBookTitle.py:168
 #: ../src/plugins/SimpleBookTitle.py:169
@@ -938,14 +936,14 @@ msgstr "Adresas"
 #: ../src/DisplayTabs/_AddrEmbedList.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:53
 #: ../src/plugins/ExtractCity.py:372
-#: ../src/plugins/NarrativeWeb.py:1186
+#: ../src/plugins/NarrativeWeb.py:1190
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:85
 msgid "City"
 msgstr "Miestas"
 
 #: ../src/GrampsCfg.py:178
 #: ../src/DisplayTabs/_LocationEmbedList.py:55
-#: ../src/plugins/NarrativeWeb.py:1189
+#: ../src/plugins/NarrativeWeb.py:1193
 msgid "State/Province"
 msgstr "Valstija/Provincija"
 
@@ -955,7 +953,7 @@ msgstr "Valstija/Provincija"
 #: ../src/DisplayTabs/_AddrEmbedList.py:73
 #: ../src/DisplayTabs/_LocationEmbedList.py:56
 #: ../src/plugins/ExtractCity.py:375
-#: ../src/plugins/NarrativeWeb.py:1191
+#: ../src/plugins/NarrativeWeb.py:1195
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:88
 msgid "Country"
 msgstr "Šalis"
@@ -989,16 +987,16 @@ msgstr "Elektroninis paštas"
 #: ../src/plugins/AgeOnDate.py:53
 #: ../src/plugins/EventCmp.py:238
 #: ../src/plugins/ExportCSV.py:364
-#: ../src/plugins/FilterByName.py:50
-#: ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67
-#: ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85
-#: ../src/plugins/FilterByName.py:95
-#: ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:150
-#: ../src/plugins/FilterByName.py:161
-#: ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:57
+#: ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74
+#: ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92
+#: ../src/plugins/FilterByName.py:102
+#: ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:157
+#: ../src/plugins/FilterByName.py:168
+#: ../src/plugins/FilterByName.py:210
 #: ../src/plugins/ImportCSV.py:193
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:89
@@ -1021,7 +1019,7 @@ msgstr "Asmuo"
 #: ../src/plugins/all_events.py:77
 #: ../src/plugins/all_relations.py:266
 #: ../src/plugins/ExportCSV.py:474
-#: ../src/plugins/FilterByName.py:122
+#: ../src/plugins/FilterByName.py:129
 #: ../src/plugins/ImportCSV.py:200
 #: ../src/plugins/References.py:34
 #: ../src/plugins/References.py:90
@@ -1173,11 +1171,11 @@ msgstr "V_artotojo formato detalės"
 #: ../src/GrampsCfg.py:354
 #: ../src/Utils.py:1154
 #: ../src/plugins/ExportCSV.py:364
-#: ../src/plugins/FilterByName.py:140
+#: ../src/plugins/FilterByName.py:147
 #: ../src/plugins/ImportCSV.py:155
-#: ../src/plugins/NarrativeWeb.py:841
-#: ../src/plugins/NarrativeWeb.py:1466
-#: ../src/plugins/NarrativeWeb.py:1468
+#: ../src/plugins/NarrativeWeb.py:845
+#: ../src/plugins/NarrativeWeb.py:1470
+#: ../src/plugins/NarrativeWeb.py:1472
 #: ../src/plugins/StatisticsChart.py:92
 #: ../src/PluginUtils/_GuiOptions.py:80
 #: ../src/PluginUtils/_GuiOptions.py:933
@@ -1279,7 +1277,7 @@ msgstr "Vardo formatas"
 
 #: ../src/GrampsCfg.py:628
 #: ../src/DisplayTabs/_ButtonTab.py:69
-#: ../src/plugins/BookReport.py:942
+#: ../src/plugins/BookReport.py:958
 msgid "Edit"
 msgstr "Taisyti"
 
@@ -1438,8 +1436,8 @@ msgstr "Pridėti žymę"
 #: ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/ImportCSV.py:213
 #: ../src/plugins/MarkerReport.py:295
-#: ../src/plugins/NarrativeWeb.py:693
-#: ../src/plugins/NarrativeWeb.py:1345
+#: ../src/plugins/NarrativeWeb.py:697
+#: ../src/plugins/NarrativeWeb.py:1349
 #: ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79
@@ -1456,7 +1454,7 @@ msgstr "Redaguoti Datą"
 #: ../src/Merge/_MergePerson.py:150
 #: ../src/DataViews/EventView.py:101
 #: ../src/plugins/MarkerReport.py:278
-#: ../src/plugins/NarrativeWeb.py:2173
+#: ../src/plugins/NarrativeWeb.py:2177
 msgid "Events"
 msgstr "Įvykiai"
 
@@ -1486,7 +1484,7 @@ msgstr "Viešas"
 #: ../src/gramps_main.py:112
 #: ../src/Simple/_SimpleTable.py:215
 #: ../src/DataViews/MediaView.py:105
-#: ../src/plugins/FilterByName.py:191
+#: ../src/plugins/FilterByName.py:198
 msgid "Media"
 msgstr "Vaizdas/garsas"
 
@@ -1506,9 +1504,9 @@ msgstr "Pastabos"
 #: ../src/DataViews/RelationView.py:751
 #: ../src/DataViews/RelationView.py:785
 #: ../src/plugins/all_relations.py:301
-#: ../src/plugins/NarrativeWeb.py:854
-#: ../src/plugins/NarrativeWeb.py:994
-#: ../src/plugins/NarrativeWeb.py:2258
+#: ../src/plugins/NarrativeWeb.py:858
+#: ../src/plugins/NarrativeWeb.py:998
+#: ../src/plugins/NarrativeWeb.py:2262
 #: ../src/plugins/NotRelated.py:98
 msgid "Parents"
 msgstr "Tėvai"
@@ -1524,16 +1522,16 @@ msgstr "Pasirinkite Tėvus"
 #: ../src/gramps_main.py:117
 #: ../src/DataViews/PedigreeView.py:457
 #: ../src/plugins/DefaultGramplets.py:1080
-#: ../src/plugins/NarrativeWeb.py:2073
+#: ../src/plugins/NarrativeWeb.py:2077
 msgid "Pedigree"
 msgstr "Kilmė"
 
 #: ../src/gramps_main.py:119
 #: ../src/DataViews/PlaceView.py:100
 #: ../src/plugins/NarrativeWeb.py:463
-#: ../src/plugins/NarrativeWeb.py:1099
-#: ../src/plugins/NarrativeWeb.py:1106
-#: ../src/plugins/NarrativeWeb.py:1167
+#: ../src/plugins/NarrativeWeb.py:1103
+#: ../src/plugins/NarrativeWeb.py:1110
+#: ../src/plugins/NarrativeWeb.py:1171
 msgid "Places"
 msgstr "Vietovės"
 
@@ -1557,9 +1555,9 @@ msgstr "Saugyklos"
 #: ../src/ScratchPad.py:460
 #: ../src/DataViews/SourceView.py:94
 #: ../src/plugins/NarrativeWeb.py:462
-#: ../src/plugins/NarrativeWeb.py:1632
-#: ../src/plugins/NarrativeWeb.py:1649
-#: ../src/plugins/NarrativeWeb.py:1692
+#: ../src/plugins/NarrativeWeb.py:1636
+#: ../src/plugins/NarrativeWeb.py:1653
+#: ../src/plugins/NarrativeWeb.py:1696
 msgid "Sources"
 msgstr "Šaltiniai"
 
@@ -1889,47 +1887,47 @@ msgstr "Klaida: %s netinkamas GRAMPS ID"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Žymė negali būti uždėta, nes nieko nėra pažymėta."
 
-#: ../src/PageView.py:928
+#: ../src/PageView.py:926
 #: ../src/DataViews/PersonView.py:157
 msgid "_Add..."
 msgstr "_Įdėti..."
 
-#: ../src/PageView.py:930
+#: ../src/PageView.py:928
 #: ../src/DataViews/PersonView.py:159
 msgid "_Remove"
 msgstr "_Pašalinti"
 
-#: ../src/PageView.py:932
+#: ../src/PageView.py:930
 #: ../src/DataViews/PersonView.py:167
 msgid "Export View..."
 msgstr "Eksportuoti Vaizdą.."
 
-#: ../src/PageView.py:937
+#: ../src/PageView.py:935
 #: ../src/DataViews/PersonView.py:147
 msgid "action|_Edit..."
 msgstr "_Redaguoti..."
 
-#: ../src/PageView.py:942
+#: ../src/PageView.py:940
 msgid "_Filter"
 msgstr "_Filtas"
 
-#: ../src/PageView.py:1008
-#: ../src/DataViews/PersonView.py:913
+#: ../src/PageView.py:1006
+#: ../src/DataViews/PersonView.py:912
 msgid "Export View as Spreadsheet"
 msgstr "Išsaugoti Vaizdą Skaičiuoklės Dokumentu"
 
-#: ../src/PageView.py:1016
-#: ../src/DataViews/PersonView.py:921
+#: ../src/PageView.py:1014
+#: ../src/DataViews/PersonView.py:920
 msgid "Format:"
 msgstr "Formatas:"
 
-#: ../src/PageView.py:1021
-#: ../src/DataViews/PersonView.py:926
+#: ../src/PageView.py:1019
+#: ../src/DataViews/PersonView.py:925
 msgid "CSV"
 msgstr "CSV"
 
-#: ../src/PageView.py:1022
-#: ../src/DataViews/PersonView.py:927
+#: ../src/PageView.py:1020
+#: ../src/DataViews/PersonView.py:926
 msgid "Open Document Spreadsheet"
 msgstr "Atviro Dokumento Skaičiuoklė"
 
@@ -2136,7 +2134,7 @@ msgstr "buvęs partneris"
 #: ../src/plugins/IndivComplete.py:218
 #: ../src/plugins/IndivComplete.py:474
 #: ../src/plugins/MarkerReport.py:205
-#: ../src/plugins/NarrativeWeb.py:2287
+#: ../src/plugins/NarrativeWeb.py:2291
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:112
 msgid "Father"
 msgstr "Tėvas"
@@ -2156,7 +2154,7 @@ msgstr "Tėvas"
 #: ../src/plugins/IndivComplete.py:227
 #: ../src/plugins/IndivComplete.py:479
 #: ../src/plugins/MarkerReport.py:211
-#: ../src/plugins/NarrativeWeb.py:2292
+#: ../src/plugins/NarrativeWeb.py:2296
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:113
 msgid "Mother"
 msgstr "Motina"
@@ -2239,9 +2237,9 @@ msgstr "Šeimos įvykis"
 #: ../src/Selectors/_SelectNote.py:60
 #: ../src/Selectors/_SelectObject.py:75
 #: ../src/plugins/siblings.py:44
-#: ../src/plugins/BookReport.py:739
-#: ../src/plugins/BookReport.py:743
-#: ../src/plugins/FilterByName.py:95
+#: ../src/plugins/BookReport.py:756
+#: ../src/plugins/BookReport.py:760
+#: ../src/plugins/FilterByName.py:102
 #: ../src/plugins/MarkerReport.py:381
 #: ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78
@@ -2256,7 +2254,7 @@ msgid "Type"
 msgstr "Tipas"
 
 #: ../src/ScratchPad.py:361
-#: ../src/gen/lib/attrtype.py:72
+#: ../src/gen/lib/attrtype.py:71
 msgid "Cause"
 msgstr "Priežastis"
 
@@ -2352,7 +2350,7 @@ msgstr "Antraštė"
 
 #: ../src/ScratchPad.py:504
 #: ../src/DisplayTabs/_SourceEmbedList.py:65
-#: ../src/plugins/NarrativeWeb.py:694
+#: ../src/plugins/NarrativeWeb.py:698
 msgid "Page"
 msgstr "Puslapis"
 
@@ -2411,8 +2409,8 @@ msgstr "Asmens  Nuoroda"
 #: ../src/plugins/FamilyGroup.py:438
 #: ../src/plugins/lineage.py:92
 #: ../src/plugins/MarkerReport.py:124
-#: ../src/plugins/NarrativeWeb.py:845
-#: ../src/plugins/NarrativeWeb.py:988
+#: ../src/plugins/NarrativeWeb.py:849
+#: ../src/plugins/NarrativeWeb.py:992
 #: ../src/gen/lib/childreftype.py:59
 #: ../src/gen/lib/eventtype.py:98
 msgid "Birth"
@@ -2425,14 +2423,14 @@ msgstr "Šaltinio Nuoroda"
 
 #: ../src/ScratchPad.py:788
 #: ../src/DataViews/SourceView.py:69
-#: ../src/plugins/NarrativeWeb.py:1710
+#: ../src/plugins/NarrativeWeb.py:1714
 msgid "Abbreviation"
 msgstr "Sutrumpinimas"
 
 #: ../src/ScratchPad.py:789
 #: ../src/DataViews/SourceView.py:68
 #: ../src/DisplayTabs/_SourceEmbedList.py:64
-#: ../src/plugins/NarrativeWeb.py:1708
+#: ../src/plugins/NarrativeWeb.py:1712
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:80
 msgid "Author"
 msgstr "Autorius"
@@ -2448,13 +2446,10 @@ msgid "Repository Link"
 msgstr "Saugyklos Nuoroda"
 
 #: ../src/ScratchPad.py:1192
+#: ../src/ScratchPad.py:1228
 #: ../src/glade/scratchpad.glade.h:2
 msgid "Clipboard"
 msgstr "Talpyklė"
-
-#: ../src/ScratchPad.py:1228
-msgid "ScratchPad"
-msgstr "Bloknotėlis"
 
 #: ../src/Spell.py:58
 msgid "Spelling checker is not installed"
@@ -2847,7 +2842,7 @@ msgstr "Vaikas"
 #: ../src/Merge/_MergePerson.py:63
 #: ../src/DisplayModels/_PeopleModel.py:237
 #: ../src/Editors/_EditPerson.py:238
-#: ../src/plugins/NarrativeWeb.py:1881
+#: ../src/plugins/NarrativeWeb.py:1885
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "male"
 msgstr "vyras"
@@ -2856,7 +2851,7 @@ msgstr "vyras"
 #: ../src/Merge/_MergePerson.py:63
 #: ../src/DisplayModels/_PeopleModel.py:237
 #: ../src/Editors/_EditPerson.py:237
-#: ../src/plugins/NarrativeWeb.py:1882
+#: ../src/plugins/NarrativeWeb.py:1886
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "female"
 msgstr "moteris"
@@ -2886,8 +2881,8 @@ msgstr "moteris"
 #: ../src/plugins/DetDescendantReport.py:449
 #: ../src/plugins/DetDescendantReport.py:456
 #: ../src/plugins/IndivComplete.py:319
-#: ../src/plugins/NarrativeWeb.py:1883
-#: ../src/plugins/NarrativeWeb.py:2403
+#: ../src/plugins/NarrativeWeb.py:1887
+#: ../src/plugins/NarrativeWeb.py:2407
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:97
 msgid "unknown"
 msgstr "nežinomas"
@@ -2897,30 +2892,30 @@ msgid "Invalid"
 msgstr "Netinkamas"
 
 #: ../src/Utils.py:91
-#: ../src/Editors/_EditSourceRef.py:133
+#: ../src/Editors/_EditSourceRef.py:138
 msgid "Very High"
 msgstr "Labai aukštas"
 
 #: ../src/Utils.py:92
-#: ../src/Editors/_EditSourceRef.py:132
+#: ../src/Editors/_EditSourceRef.py:137
 #: ../src/plugins/FindDupes.py:66
 msgid "High"
 msgstr "Aukštas"
 
 #: ../src/Utils.py:93
-#: ../src/Editors/_EditSourceRef.py:131
-#: ../src/plugins/NarrativeWeb.py:691
+#: ../src/Editors/_EditSourceRef.py:136
+#: ../src/plugins/NarrativeWeb.py:695
 msgid "Normal"
 msgstr "Normalus"
 
 #: ../src/Utils.py:94
-#: ../src/Editors/_EditSourceRef.py:130
+#: ../src/Editors/_EditSourceRef.py:135
 #: ../src/plugins/FindDupes.py:64
 msgid "Low"
 msgstr "Žemas"
 
 #: ../src/Utils.py:95
-#: ../src/Editors/_EditSourceRef.py:129
+#: ../src/Editors/_EditSourceRef.py:134
 msgid "Very Low"
 msgstr "Labai žemas"
 
@@ -3275,6 +3270,12 @@ msgstr "GRAMPS namų puslapis"
 msgid "Unknown father"
 msgstr "Nežinomas tėvas"
 
+#: ../src/Simple/_SimpleTable.py:197
+#: ../src/DataViews/RelationView.py:844
+#: ../src/plugins/all_relations.py:278
+msgid "and"
+msgstr "ir"
+
 #: ../src/Simple/_SimpleTable.py:201
 msgid "Unknown mother"
 msgstr "Nežinoma motina"
@@ -3365,7 +3366,7 @@ msgstr "Trūksta įrašo"
 #: ../src/Config/_GrampsConfigKeys.py:294
 #: ../src/plugins/WriteGeneWeb.py:475
 #: ../src/plugins/WriteGeneWeb.py:485
-#: ../src/gen/proxy/living.py:415
+#: ../src/gen/proxy/living.py:438
 msgid "Living"
 msgstr "Gyvenantys"
 
@@ -3414,7 +3415,7 @@ msgstr "Tėvas ir vaikas negali būti sujungti. Norint sujungti šiuos žmonės,
 #: ../src/plugins/ExportCSV.py:366
 #: ../src/plugins/ImportCSV.py:171
 #: ../src/plugins/IndivComplete.py:437
-#: ../src/plugins/NarrativeWeb.py:2159
+#: ../src/plugins/NarrativeWeb.py:2163
 #: ../src/plugins/RelCalc.py:56
 #: ../src/plugins/StatisticsChart.py:96
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
@@ -3426,8 +3427,8 @@ msgstr "Lytis"
 #: ../src/plugins/FamilyGroup.py:442
 #: ../src/plugins/FamilyGroup.py:444
 #: ../src/plugins/MarkerReport.py:130
-#: ../src/plugins/NarrativeWeb.py:848
-#: ../src/plugins/NarrativeWeb.py:990
+#: ../src/plugins/NarrativeWeb.py:852
+#: ../src/plugins/NarrativeWeb.py:994
 #: ../src/gen/lib/eventtype.py:99
 msgid "Death"
 msgstr "Mirtis"
@@ -3468,7 +3469,7 @@ msgstr "Sutuoktinių ar vaikų nerasta"
 
 #: ../src/Merge/_MergePerson.py:195
 #: ../src/plugins/IndivComplete.py:272
-#: ../src/plugins/NarrativeWeb.py:2203
+#: ../src/plugins/NarrativeWeb.py:2207
 msgid "Addresses"
 msgstr "Adresai"
 
@@ -3546,7 +3547,7 @@ msgstr "Trinant šaltinį, jis bus išmestas iš duomenų bazės."
 
 #: ../src/DataViews/EventView.py:249
 #: ../src/DataViews/NoteView.py:217
-#: ../src/DataViews/PersonView.py:606
+#: ../src/DataViews/PersonView.py:605
 #: ../src/DataViews/PlaceView.py:256
 #: ../src/DataViews/RepositoryView.py:210
 #: ../src/DataViews/SourceView.py:205
@@ -3577,7 +3578,7 @@ msgstr "Iškirpti pažymėtą šeimą"
 #: ../src/DataViews/FamilyList.py:91
 #: ../src/plugins/GVFamilyLines.py:138
 #: ../src/plugins/MarkerReport.py:188
-#: ../src/plugins/NarrativeWeb.py:2361
+#: ../src/plugins/NarrativeWeb.py:2365
 msgid "Families"
 msgstr "Šeimos"
 
@@ -3793,8 +3794,8 @@ msgstr "Asmuo negali būti susietas kaip  jo/jos vienas iš protėvių."
 #: ../src/DataViews/PedigreeView.py:1308
 #: ../src/DataViews/PedigreeView.py:1317
 #: ../src/plugins/NarrativeWeb.py:457
-#: ../src/plugins/NarrativeWeb.py:1586
-#: ../src/plugins/NarrativeWeb.py:1588
+#: ../src/plugins/NarrativeWeb.py:1590
+#: ../src/plugins/NarrativeWeb.py:1592
 msgid "Home"
 msgstr "Namai"
 
@@ -3840,7 +3841,7 @@ msgstr "Asmenų meniu"
 #: ../src/DataViews/PedigreeView.py:1485
 #: ../src/DataViews/RelationView.py:794
 #: ../src/plugins/siblings.py:74
-#: ../src/plugins/NarrativeWeb.py:2298
+#: ../src/plugins/NarrativeWeb.py:2302
 msgid "Siblings"
 msgstr "broliai ir seserys"
 
@@ -3849,7 +3850,7 @@ msgstr "broliai ir seserys"
 #: ../src/DataViews/RelationView.py:1181
 #: ../src/plugins/FamilyGroup.py:543
 #: ../src/plugins/IndivComplete.py:333
-#: ../src/plugins/NarrativeWeb.py:2373
+#: ../src/plugins/NarrativeWeb.py:2377
 msgid "Children"
 msgstr "Vaikai"
 
@@ -3866,13 +3867,13 @@ msgstr "Šeimos meniu"
 #: ../src/Editors/_EditFamily.py:106
 #: ../src/Selectors/_SelectPerson.py:52
 #: ../src/plugins/siblings.py:44
-#: ../src/plugins/FilterByName.py:50
-#: ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67
-#: ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85
-#: ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:57
+#: ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74
+#: ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92
+#: ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210
 #: ../src/plugins/lineage.py:61
 #: ../src/plugins/RelCalc.py:57
 #: ../src/plugins/SameSurnames.py:75
@@ -3953,37 +3954,37 @@ msgstr "Norint atlikti sujungimą, turi būti pažymėti du asmenys. Antras asmu
 msgid "Select Person Columns"
 msgstr "Pažymėkite Asmens stulpelius"
 
-#: ../src/DataViews/PersonView.py:498
+#: ../src/DataViews/PersonView.py:497
 msgid "Active person not visible"
 msgstr "Aktyvus asmuo nematomas"
 
-#: ../src/DataViews/PersonView.py:582
+#: ../src/DataViews/PersonView.py:581
 #: ../src/Filters/_SearchBar.py:146
 msgid "Updating display..."
 msgstr "Atnaujinamas vaizdas..."
 
-#: ../src/DataViews/PersonView.py:603
+#: ../src/DataViews/PersonView.py:602
 msgid "Deleting the person will remove the person from the database."
 msgstr "Asmens ištrynimas išmes jį iš duomenų bazės."
 
-#: ../src/DataViews/PersonView.py:608
+#: ../src/DataViews/PersonView.py:607
 msgid "_Delete Person"
 msgstr "_Ištrinti Asmenį"
 
-#: ../src/DataViews/PersonView.py:623
+#: ../src/DataViews/PersonView.py:622
 #, python-format
 msgid "Delete Person (%s)"
 msgstr "Ištrinti Asmenį (%s)"
 
-#: ../src/DataViews/PersonView.py:898
+#: ../src/DataViews/PersonView.py:897
 msgid "Go to default person"
 msgstr "Nueiti iki asmens pagal nutylėjimą"
 
-#: ../src/DataViews/PersonView.py:903
+#: ../src/DataViews/PersonView.py:902
 msgid "Edit selected person"
 msgstr "Koreguoti pažymėtą asmenį"
 
-#: ../src/DataViews/PersonView.py:909
+#: ../src/DataViews/PersonView.py:908
 msgid "Delete selected person"
 msgstr "Ištrinti pažymėtą asmenį"
 
@@ -3993,14 +3994,14 @@ msgid "Place Name"
 msgstr "Vietovės vardas"
 
 #: ../src/DataViews/PlaceView.py:68
-#: ../src/plugins/NarrativeWeb.py:1187
+#: ../src/plugins/NarrativeWeb.py:1191
 msgid "Church Parish"
 msgstr "Bažnyčios parapija:"
 
 #: ../src/DataViews/PlaceView.py:71
 #: ../src/DataViews/RepositoryView.py:74
 #: ../src/DisplayTabs/_LocationEmbedList.py:54
-#: ../src/plugins/NarrativeWeb.py:1188
+#: ../src/plugins/NarrativeWeb.py:1192
 #: ../src/Filters/SideBar/_PlaceSidebarFilter.py:86
 msgid "County"
 msgstr "Apygarda"
@@ -4014,19 +4015,19 @@ msgid "State"
 msgstr "Valstija"
 
 #: ../src/DataViews/PlaceView.py:74
-#: ../src/plugins/NarrativeWeb.py:1200
+#: ../src/plugins/NarrativeWeb.py:1204
 msgid "Longitude"
 msgstr "Ilguma"
 
 #: ../src/DataViews/PlaceView.py:75
-#: ../src/plugins/NarrativeWeb.py:1206
+#: ../src/plugins/NarrativeWeb.py:1210
 msgid "Latitude"
 msgstr "Platuma"
 
 #: ../src/DataViews/PlaceView.py:77
 #: ../src/DataViews/RepositoryView.py:71
 #: ../src/DisplayTabs/_LocationEmbedList.py:52
-#: ../src/plugins/NarrativeWeb.py:1185
+#: ../src/plugins/NarrativeWeb.py:1189
 msgid "Street"
 msgstr "Gatvė"
 
@@ -4096,10 +4097,10 @@ msgstr "Koreguoja pažymėtą asmenį"
 
 #: ../src/DataViews/RelationView.py:331
 #: ../src/plugins/all_relations.py:282
-#: ../src/plugins/NarrativeWeb.py:851
-#: ../src/plugins/NarrativeWeb.py:992
-#: ../src/plugins/NarrativeWeb.py:2394
-#: ../src/plugins/NarrativeWeb.py:2396
+#: ../src/plugins/NarrativeWeb.py:855
+#: ../src/plugins/NarrativeWeb.py:996
+#: ../src/plugins/NarrativeWeb.py:2398
+#: ../src/plugins/NarrativeWeb.py:2400
 msgid "Partner"
 msgstr "Partneris"
 
@@ -4224,11 +4225,6 @@ msgstr "Pridėti į šeimą  naują vaiką"
 #: ../src/DataViews/RelationView.py:1200
 msgid "Add existing child to family"
 msgstr "Pridėti į šeimą egzistuojanį vaiką"
-
-#: ../src/DataViews/RelationView.py:844
-#: ../src/plugins/all_relations.py:278
-msgid "and"
-msgstr "ir"
 
 #: ../src/DataViews/RelationView.py:1007
 #, python-format
@@ -4403,8 +4399,8 @@ msgstr "Norint atlikti sujungimą, turi būti pažymėti du šaltiniai. Antras �
 #: ../src/docgen/ODSDoc.py:460
 #: ../src/docgen/ODSDoc.py:505
 #: ../src/docgen/ODSDoc.py:509
-#: ../src/docgen/ODFDoc.py:540
-#: ../src/docgen/ODFDoc.py:543
+#: ../src/docgen/ODFDoc.py:544
+#: ../src/docgen/ODFDoc.py:547
 #: ../src/docgen/ODSTab.py:74
 #: ../src/docgen/ODSTab.py:76
 #: ../src/docgen/ODSTab.py:168
@@ -4431,7 +4427,7 @@ msgstr "Norint atlikti sujungimą, turi būti pažymėti du šaltiniai. Antras �
 #: ../src/plugins/ExportVCalendar.py:211
 #: ../src/plugins/ExportVCard.py:184
 #: ../src/plugins/ExportVCard.py:188
-#: ../src/plugins/NarrativeWeb.py:2702
+#: ../src/plugins/NarrativeWeb.py:2706
 #: ../src/plugins/WriteCD.py:158
 #: ../src/plugins/WriteCD.py:171
 #: ../src/plugins/WriteGeneWeb.py:256
@@ -4455,6 +4451,11 @@ msgstr "Tik tekstas"
 #: ../src/docgen/GtkPrint.py:67
 msgid "PyGtk 2.10 or later is required"
 msgstr "Reikalingas PyGtk 2.10  arba naujesnis"
+
+#: ../src/docgen/GtkPrint.py:496
+#, python-format
+msgid "of %d"
+msgstr "iš %d"
 
 #. ------------------------------------------------------------------------
 #.
@@ -4493,7 +4494,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../src/docgen/LaTeXDoc.py:529
-#: ../src/docgen/ODFDoc.py:1151
+#: ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
 #: ../src/ReportBase/_GraphvizReportDialog.py:696
 #, python-format
@@ -4504,9 +4505,9 @@ msgstr "Atidaryti su  %(program_name)s"
 msgid "LaTex"
 msgstr "LaTeX"
 
-#: ../src/docgen/ODFDoc.py:1158
 #: ../src/docgen/ODFDoc.py:1159
 #: ../src/docgen/ODFDoc.py:1160
+#: ../src/docgen/ODFDoc.py:1161
 msgid "Open Document Text"
 msgstr "Atviro Dokumento Teksto formatas"
 
@@ -5009,7 +5010,7 @@ msgid "Cannot save event. ID already exists."
 msgstr "Nepavyko išsaugoti įvykio. Toks ID jau egzistuoja."
 
 #: ../src/Editors/_EditEvent.py:214
-#: ../src/Editors/_EditMedia.py:250
+#: ../src/Editors/_EditMedia.py:251
 #: ../src/Editors/_EditPerson.py:690
 #: ../src/Editors/_EditPlace.py:275
 #: ../src/Editors/_EditRepository.py:155
@@ -5262,35 +5263,35 @@ msgstr "Vaizdas/garsas: %s"
 msgid "New Media"
 msgstr "Naujas audio/video objektas"
 
-#: ../src/Editors/_EditMedia.py:201
+#: ../src/Editors/_EditMedia.py:200
 msgid "Edit Media Object"
 msgstr "Redaguoti vaizdo/garso bylą"
 
-#: ../src/Editors/_EditMedia.py:239
+#: ../src/Editors/_EditMedia.py:240
 msgid "Cannot save media object"
 msgstr "Negaliu išsaugoti audio/video objekto"
 
-#: ../src/Editors/_EditMedia.py:240
+#: ../src/Editors/_EditMedia.py:241
 msgid "No data exists for this media object. Please enter data or cancel the edit."
 msgstr "Šiam audio/video objektui nėra duomenų. Prašom įvesti duomenis arba atšaukti redagavimą."
 
-#: ../src/Editors/_EditMedia.py:249
+#: ../src/Editors/_EditMedia.py:250
 msgid "Cannot save media object. ID already exists."
 msgstr "Negalima užsaugoti audio/video objekto. Toks ID jau egzistuoja."
 
-#: ../src/Editors/_EditMedia.py:267
+#: ../src/Editors/_EditMedia.py:268
 #: ../src/Editors/_EditMediaRef.py:466
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Pridėti audio/video objektą (%s)"
 
-#: ../src/Editors/_EditMedia.py:272
+#: ../src/Editors/_EditMedia.py:273
 #: ../src/Editors/_EditMediaRef.py:462
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Redaguoti vaizdo/garso objektą (%s)"
 
-#: ../src/Editors/_EditMedia.py:339
+#: ../src/Editors/_EditMedia.py:340
 msgid "Remove Media Object"
 msgstr "Ištrinti audio/video bylą"
 
@@ -5595,7 +5596,7 @@ msgid "Delete Repository (%s)"
 msgstr "Ištrinti Saugyklą (%s)"
 
 #: ../src/Editors/_EditSource.py:77
-#: ../src/Editors/_EditSourceRef.py:197
+#: ../src/Editors/_EditSourceRef.py:202
 msgid "New Source"
 msgstr "Naujas Šaltinis"
 
@@ -5630,21 +5631,21 @@ msgstr "Redaguoti Šaltinį (%s)"
 msgid "Delete Source (%s)"
 msgstr "Ištrinti šaltinį (%s)"
 
-#: ../src/Editors/_EditSourceRef.py:68
-#: ../src/Editors/_EditSourceRef.py:198
+#: ../src/Editors/_EditSourceRef.py:73
+#: ../src/Editors/_EditSourceRef.py:203
 msgid "Source Reference Editor"
 msgstr "Šaltinių nuorodų redaktorius"
 
-#: ../src/Editors/_EditSourceRef.py:195
+#: ../src/Editors/_EditSourceRef.py:200
 #, python-format
 msgid "Source: %s"
 msgstr "Šaltinis:  %s"
 
-#: ../src/Editors/_EditSourceRef.py:205
+#: ../src/Editors/_EditSourceRef.py:210
 msgid "Modify Source"
 msgstr "Redaguoti Šaltinius"
 
-#: ../src/Editors/_EditSourceRef.py:208
+#: ../src/Editors/_EditSourceRef.py:213
 msgid "Add Source"
 msgstr "Pridėti Šaltinį"
 
@@ -5683,70 +5684,51 @@ msgstr "GEDCOM byloje  bloga  %d eilutė."
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Jūsų GEDCOM byla yra sugadinta. Atrodo, kad ji yra nukąsta."
 
-#. -------------------------------------------------------------------------
-#.
-#. Support functions
-#.
-#. -------------------------------------------------------------------------
-#: ../src/GrampsDbUtils/_GedcomParse.py:170
-#: ../src/GrampsDbUtils/_ReadXML.py:74
-#: ../src/plugins/EventNames.py:111
-#, python-format
-msgid "%(event_name)s of %(family)s"
-msgstr "%(family)s %(event_name)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:171
-#: ../src/GrampsDbUtils/_ReadXML.py:75
-#: ../src/plugins/EventNames.py:112
-#, python-format
-msgid "%(event_name)s of %(person)s"
-msgstr "%(person)s %(event_name)s"
-
-#: ../src/GrampsDbUtils/_GedcomParse.py:280
+#: ../src/GrampsDbUtils/_GedcomParse.py:276
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importuoti iš GEDCOM (%s)"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:838
+#: ../src/GrampsDbUtils/_GedcomParse.py:834
 msgid "GEDCOM import"
 msgstr "GEDCOM Importavimas"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:1092
+#: ../src/GrampsDbUtils/_GedcomParse.py:1088
 #, python-format
 msgid "Line %d was not understood, so it was ignored."
 msgstr "Eilutė %d nebuvo suprasta, todėl buvo atmesta."
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/GrampsDbUtils/_GedcomParse.py:3059
+#: ../src/GrampsDbUtils/_GedcomParse.py:3050
 #, python-format
 msgid "Line %d: empty event note was ignored."
 msgstr "Eilutė %d: tuščio įvykio pastaba ignoruota."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:3742
-#: ../src/GrampsDbUtils/_GedcomParse.py:4327
+#: ../src/GrampsDbUtils/_GedcomParse.py:3733
+#: ../src/GrampsDbUtils/_GedcomParse.py:4318
 #, python-format
 msgid "Could not import %s"
 msgstr "Negalėjau importuoti %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4103
+#: ../src/GrampsDbUtils/_GedcomParse.py:4094
 #, python-format
 msgid "Import from %s"
 msgstr "Importuoti iš %s"
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4193
-#: ../src/GrampsDbUtils/_GedcomParse.py:4205
+#: ../src/GrampsDbUtils/_GedcomParse.py:4184
+#: ../src/GrampsDbUtils/_GedcomParse.py:4196
 #, python-format
 msgid "Line %d: empty note was ignored."
 msgstr "Eilutė %d: tuščia pastaba ignoruota."
 
-#: ../src/GrampsDbUtils/_GedcomParse.py:4244
+#: ../src/GrampsDbUtils/_GedcomParse.py:4235
 #, python-format
 msgid "skipped %d subordinate(s) at line %d"
-msgstr ""
+msgstr "praleista %d įrašai(ų) eilutėje %d"
 
 #: ../src/GrampsDbUtils/_GrampsBSDDB.py:1073
-#: ../src/gen/db/dbdir.py:1095
+#: ../src/gen/db/dbdir.py:1110
 msgid "Rebuild reference map"
 msgstr "Perkurti nuorodų žemėlapį"
 
@@ -5825,6 +5807,23 @@ msgstr "%s negali būti įkeltas"
 #: ../src/GrampsDbUtils/_ReadGedcom.py:146
 msgid "Error reading GEDCOM file"
 msgstr "Klaida skaitant GEDCOM bylą"
+
+#. -------------------------------------------------------------------------
+#.
+#. Support functions
+#.
+#. -------------------------------------------------------------------------
+#: ../src/GrampsDbUtils/_ReadXML.py:74
+#: ../src/plugins/EventNames.py:111
+#, python-format
+msgid "%(event_name)s of %(family)s"
+msgstr "%(family)s %(event_name)s"
+
+#: ../src/GrampsDbUtils/_ReadXML.py:75
+#: ../src/plugins/EventNames.py:112
+#, python-format
+msgid "%(event_name)s of %(person)s"
+msgstr "%(person)s %(event_name)s"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:121
 #: ../src/GrampsDbUtils/_ReadXML.py:131
@@ -6247,7 +6246,7 @@ msgstr "Visi Įvykiai"
 #: ../src/plugins/AgeOnDate.py:104
 #: ../src/plugins/AncestorTree.py:535
 #: ../src/plugins/AncestorReport.py:344
-#: ../src/plugins/BookReport.py:1267
+#: ../src/plugins/BookReport.py:1283
 #: ../src/plugins/Calendar.py:926
 #: ../src/plugins/Calendar.py:939
 #: ../src/plugins/ChangeNames.py:289
@@ -6267,18 +6266,18 @@ msgstr "Visi Įvykiai"
 #: ../src/plugins/ExtractCity.py:631
 #: ../src/plugins/FamilyGroup.py:772
 #: ../src/plugins/FanChart.py:443
-#: ../src/plugins/FilterByName.py:227
+#: ../src/plugins/FilterByName.py:234
 #: ../src/plugins/FindDupes.py:697
 #: ../src/plugins/GVFamilyLines.py:881
 #: ../src/plugins/GVHourGlass.py:203
-#: ../src/plugins/GVRelGraph.py:558
+#: ../src/plugins/GVRelGraph.py:559
 #: ../src/plugins/IndivComplete.py:643
 #: ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129
 #: ../src/plugins/lineage.py:240
 #: ../src/plugins/lineage.py:251
 #: ../src/plugins/MarkerReport.py:525
-#: ../src/plugins/NarrativeWeb.py:3226
+#: ../src/plugins/NarrativeWeb.py:3230
 #: ../src/plugins/NotRelated.py:405
 #: ../src/plugins/OnThisDay.py:145
 #: ../src/plugins/PatchNames.py:360
@@ -6419,7 +6418,7 @@ msgstr "Tikriausiai gyvi asmenys ir jų amžius  %s"
 
 #: ../src/plugins/AgeOnDate.py:53
 #: ../src/plugins/StatisticsChart.py:124
-#: ../src/gen/lib/attrtype.py:74
+#: ../src/gen/lib/attrtype.py:73
 msgid "Age"
 msgstr "Amžius"
 
@@ -6579,15 +6578,15 @@ msgstr "%d Karta"
 #: ../src/plugins/EndOfLineReport.py:232
 #: ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341
-#: ../src/plugins/GVRelGraph.py:427
+#: ../src/plugins/GVRelGraph.py:428
 #: ../src/plugins/IndivComplete.py:513
 #: ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436
-#: ../src/plugins/NarrativeWeb.py:2937
+#: ../src/plugins/NarrativeWeb.py:2941
 #: ../src/plugins/StatisticsChart.py:681
 #: ../src/plugins/TimeLine.py:299
 #: ../src/plugins/WebCal.py:702
-#: ../src/ReportBase/_BareReportDialog.py:352
+#: ../src/ReportBase/_BareReportDialog.py:357
 msgid "Report Options"
 msgstr "Ataskaitos nuostatos"
 
@@ -6660,72 +6659,72 @@ msgstr "Ahnentafel tipo Protėvių Ataskaita"
 msgid "Produces a textual ancestral report"
 msgstr "Sukuria tekstinę protėvių (ancestral) ataskaitą"
 
-#: ../src/plugins/BookReport.py:132
-#: ../src/plugins/BookReport.py:169
+#: ../src/plugins/BookReport.py:134
+#: ../src/plugins/BookReport.py:171
 msgid "Not Applicable"
 msgstr "Nereikalaujama"
 
-#: ../src/plugins/BookReport.py:158
+#: ../src/plugins/BookReport.py:160
 #: ../src/PluginUtils/_GuiOptions.py:582
 msgid "unknown father"
 msgstr "nežinomas tėvas"
 
-#: ../src/plugins/BookReport.py:164
+#: ../src/plugins/BookReport.py:166
 #: ../src/PluginUtils/_GuiOptions.py:588
 msgid "unknown mother"
 msgstr "nežinoma motina"
 
-#: ../src/plugins/BookReport.py:166
+#: ../src/plugins/BookReport.py:168
 #: ../src/PluginUtils/_GuiOptions.py:590
 #, python-format
 msgid "%s and %s (%s)"
 msgstr "%s ir %s (%s)"
 
-#: ../src/plugins/BookReport.py:593
+#: ../src/plugins/BookReport.py:610
 msgid "Available Books"
 msgstr "Galimos  knygos"
 
-#: ../src/plugins/BookReport.py:606
+#: ../src/plugins/BookReport.py:623
 msgid "Book List"
 msgstr "Knygų sąrašas"
 
-#: ../src/plugins/BookReport.py:694
-#: ../src/plugins/BookReport.py:1073
-#: ../src/plugins/BookReport.py:1124
-#: ../src/plugins/BookReport.py:1266
+#: ../src/plugins/BookReport.py:711
+#: ../src/plugins/BookReport.py:1089
+#: ../src/plugins/BookReport.py:1140
+#: ../src/plugins/BookReport.py:1282
 msgid "Book Report"
 msgstr "Knygos tipo ataskaita"
 
-#: ../src/plugins/BookReport.py:727
+#: ../src/plugins/BookReport.py:744
 msgid "New Book"
 msgstr "Nauja knyga"
 
-#: ../src/plugins/BookReport.py:730
+#: ../src/plugins/BookReport.py:747
 msgid "_Available items"
 msgstr "_Galimi  elementai"
 
-#: ../src/plugins/BookReport.py:734
+#: ../src/plugins/BookReport.py:751
 msgid "Current _book"
 msgstr "Esama _knyga"
 
-#: ../src/plugins/BookReport.py:742
+#: ../src/plugins/BookReport.py:759
 #: ../src/plugins/StatisticsChart.py:70
 msgid "Item name"
 msgstr "Elemento pavadinimas"
 
-#: ../src/plugins/BookReport.py:745
+#: ../src/plugins/BookReport.py:762
 msgid "Subject"
 msgstr "Tema"
 
-#: ../src/plugins/BookReport.py:757
+#: ../src/plugins/BookReport.py:774
 msgid "Book selection list"
 msgstr "Knygos pasirinkimų sąrašas"
 
-#: ../src/plugins/BookReport.py:796
+#: ../src/plugins/BookReport.py:813
 msgid "Different database"
 msgstr "Kita duomenų bazė"
 
-#: ../src/plugins/BookReport.py:797
+#: ../src/plugins/BookReport.py:814
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -6740,23 +6739,23 @@ msgstr ""
 "\n"
 "Todėl pagrindinis asmuo kaskart yra nustatytas į šiuo metu  atidarytos duomenų bazės aktyvų asmenį."
 
-#: ../src/plugins/BookReport.py:936
+#: ../src/plugins/BookReport.py:952
 msgid "Setup"
 msgstr "Suderinimas"
 
-#: ../src/plugins/BookReport.py:946
+#: ../src/plugins/BookReport.py:962
 msgid "Book Menu"
 msgstr "Knygos meniu"
 
-#: ../src/plugins/BookReport.py:969
+#: ../src/plugins/BookReport.py:985
 msgid "Available Items Menu"
 msgstr "Galimi Meniu punktai"
 
-#: ../src/plugins/BookReport.py:1127
+#: ../src/plugins/BookReport.py:1143
 msgid "GRAMPS Book"
 msgstr "GRAMPS knyga"
 
-#: ../src/plugins/BookReport.py:1268
+#: ../src/plugins/BookReport.py:1284
 msgid "Produces a book containing several reports."
 msgstr "Sukuria knygą iš kelių ataskaitų."
 
@@ -6772,10 +6771,10 @@ msgstr "Parinktys"
 #. ###############################
 #: ../src/plugins/CalculateEstimatedDates.py:64
 #: ../src/plugins/Calendar.py:491
-#: ../src/plugins/FilterByName.py:226
-#: ../src/plugins/GVRelGraph.py:430
+#: ../src/plugins/FilterByName.py:233
+#: ../src/plugins/GVRelGraph.py:431
 #: ../src/plugins/IndivComplete.py:516
-#: ../src/plugins/NarrativeWeb.py:2954
+#: ../src/plugins/NarrativeWeb.py:2958
 #: ../src/plugins/StatisticsChart.py:683
 #: ../src/plugins/TimeLine.py:301
 #: ../src/plugins/WebCal.py:741
@@ -6788,9 +6787,9 @@ msgid "Select filter to restrict people"
 msgstr "Pasirinkite filtrą asmenų apribojimui"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:436
+#: ../src/plugins/GVRelGraph.py:437
 #: ../src/plugins/IndivComplete.py:522
-#: ../src/plugins/NarrativeWeb.py:2960
+#: ../src/plugins/NarrativeWeb.py:2964
 #: ../src/plugins/StatisticsChart.py:689
 #: ../src/plugins/TimeLine.py:307
 #: ../src/plugins/WebCal.py:747
@@ -6798,9 +6797,9 @@ msgid "Filter Person"
 msgstr "Filtruoti asmenį"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:437
+#: ../src/plugins/GVRelGraph.py:438
 #: ../src/plugins/IndivComplete.py:523
-#: ../src/plugins/NarrativeWeb.py:2961
+#: ../src/plugins/NarrativeWeb.py:2965
 #: ../src/plugins/StatisticsChart.py:690
 #: ../src/plugins/TimeLine.py:308
 #: ../src/plugins/WebCal.py:748
@@ -7849,8 +7848,8 @@ msgstr "Norėdami pamatyti rezultatus du kartus pele spragtelėkite įrašą"
 #: ../src/plugins/DefaultGramplets.py:650
 #: ../src/plugins/GVFamilyLines.py:123
 #: ../src/plugins/NarrativeWeb.py:461
-#: ../src/plugins/NarrativeWeb.py:829
-#: ../src/plugins/NarrativeWeb.py:836
+#: ../src/plugins/NarrativeWeb.py:833
+#: ../src/plugins/NarrativeWeb.py:840
 #: ../src/plugins/Summary.py:115
 msgid "Individuals"
 msgstr "Asmenys"
@@ -8350,7 +8349,7 @@ msgstr "Ar pridėti palikuonių nuorodas į vaikų sąrašą."
 #: ../src/plugins/DetAncestralReport.py:726
 #: ../src/plugins/DetDescendantReport.py:687
 #: ../src/plugins/FamilyGroup.py:599
-#: ../src/plugins/NarrativeWeb.py:3078
+#: ../src/plugins/NarrativeWeb.py:3082
 msgid "Include"
 msgstr "Intarpas"
 
@@ -8657,14 +8656,14 @@ msgstr "Mirties šaltinis"
 #: ../src/plugins/ExportCSV.py:434
 #: ../src/plugins/FamilyGroup.py:524
 #: ../src/plugins/ImportCSV.py:208
-#: ../src/plugins/NarrativeWeb.py:2390
+#: ../src/plugins/NarrativeWeb.py:2394
 msgid "Husband"
 msgstr "Vyras"
 
 #: ../src/plugins/ExportCSV.py:434
 #: ../src/plugins/FamilyGroup.py:533
 #: ../src/plugins/ImportCSV.py:204
-#: ../src/plugins/NarrativeWeb.py:2392
+#: ../src/plugins/NarrativeWeb.py:2396
 msgid "Wife"
 msgstr "Žmona"
 
@@ -9008,41 +9007,102 @@ msgstr "Ventiliatoriaus Diagrama"
 msgid "Produces fan charts"
 msgstr "Sukuria ventiliatoriaus diagramas"
 
+#. force translation
+#: ../src/plugins/FilterByName.py:37
+msgid "all people"
+msgstr "Visi asmenys"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "males"
+msgstr "vyrai"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "females"
+msgstr "moterys"
+
+#: ../src/plugins/FilterByName.py:37
+msgid "people with unknown gender"
+msgstr "Asmenys su nežinoma lytimi"
+
+#: ../src/plugins/FilterByName.py:38
+msgid "people with incomplete names"
+msgstr "Asmenys su nepilnais vardais"
+
+#: ../src/plugins/FilterByName.py:38
+msgid "people with missing birth dates"
+msgstr "Asmenys be žinomos gimimo datos"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "disconnected people"
+msgstr "Nesusiję asmenys"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "all families"
+msgstr "Visos šeimos"
+
+#: ../src/plugins/FilterByName.py:39
+msgid "unique surnames"
+msgstr "Skirtingos pavardės"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "people with media"
+msgstr "Asmenys su nuotraukomis"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "media references"
+msgstr "Audio/Video nuorodos"
+
+#: ../src/plugins/FilterByName.py:40
+msgid "unique media"
+msgstr "Unikalūs audio/video objektai"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "missing media"
+msgstr "Trūkstami audio/video objektai"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "media by size"
+msgstr "Vaizdo/garso bylos pagal dydį"
+
+#: ../src/plugins/FilterByName.py:41
+msgid "list of people"
+msgstr "Asmenų sąrašas"
+
 #. display the title
-#: ../src/plugins/FilterByName.py:46
+#: ../src/plugins/FilterByName.py:53
 #, python-format
 msgid "Filtering on %s"
 msgstr "Filtruoja %s"
 
-#: ../src/plugins/FilterByName.py:50
-#: ../src/plugins/FilterByName.py:58
-#: ../src/plugins/FilterByName.py:67
-#: ../src/plugins/FilterByName.py:76
-#: ../src/plugins/FilterByName.py:85
-#: ../src/plugins/FilterByName.py:110
-#: ../src/plugins/FilterByName.py:203
+#: ../src/plugins/FilterByName.py:57
+#: ../src/plugins/FilterByName.py:65
+#: ../src/plugins/FilterByName.py:74
+#: ../src/plugins/FilterByName.py:83
+#: ../src/plugins/FilterByName.py:92
+#: ../src/plugins/FilterByName.py:117
+#: ../src/plugins/FilterByName.py:210
 #: ../src/plugins/SameSurnames.py:75
 msgid "Name type"
 msgstr "Vardo tipas"
 
-#: ../src/plugins/FilterByName.py:104
+#: ../src/plugins/FilterByName.py:111
 msgid "birth event but no date"
 msgstr "gimimo įvykis, bet nėra datos"
 
-#: ../src/plugins/FilterByName.py:107
+#: ../src/plugins/FilterByName.py:114
 msgid "missing birth event"
 msgstr "trūksta gimimo datos"
 
-#: ../src/plugins/FilterByName.py:140
+#: ../src/plugins/FilterByName.py:147
 #: ../src/PluginUtils/_GuiOptions.py:81
 msgid "Count"
 msgstr "Kiekis"
 
-#: ../src/plugins/FilterByName.py:150
+#: ../src/plugins/FilterByName.py:157
 msgid "Media count"
 msgstr "Audio/video objektų skaičius"
 
-#: ../src/plugins/FilterByName.py:161
+#: ../src/plugins/FilterByName.py:168
 #: ../src/plugins/OnThisDay.py:77
 #: ../src/plugins/OnThisDay.py:78
 #: ../src/plugins/OnThisDay.py:79
@@ -9050,29 +9110,29 @@ msgstr "Audio/video objektų skaičius"
 msgid "Reference"
 msgstr "Nuoroda"
 
-#: ../src/plugins/FilterByName.py:169
+#: ../src/plugins/FilterByName.py:176
 #: ../src/plugins/genewebexport.glade.h:10
 msgid "media"
 msgstr "vaizdas/garsas"
 
-#: ../src/plugins/FilterByName.py:172
+#: ../src/plugins/FilterByName.py:179
 msgid "Unique Media"
 msgstr "Unikalus audio/video objektas"
 
-#: ../src/plugins/FilterByName.py:180
+#: ../src/plugins/FilterByName.py:187
 msgid "Missing Media"
 msgstr "Trūksta audio/video objektų"
 
-#: ../src/plugins/FilterByName.py:191
+#: ../src/plugins/FilterByName.py:198
 msgid "Size in bytes"
 msgstr "Dydis baitais"
 
-#: ../src/plugins/FilterByName.py:212
+#: ../src/plugins/FilterByName.py:219
 #, python-format
 msgid "Filter matched %d records."
 msgstr "Filtras atitiko %d įrašus."
 
-#: ../src/plugins/FilterByName.py:228
+#: ../src/plugins/FilterByName.py:235
 msgid "Display filtered data"
 msgstr "Rodyti filtruotus duomenis"
 
@@ -9235,7 +9295,7 @@ msgid "Images"
 msgstr "Paveikslai"
 
 #: ../src/plugins/GVFamilyLines.py:171
-#: ../src/plugins/GVRelGraph.py:474
+#: ../src/plugins/GVRelGraph.py:475
 msgid "Include thumbnail images of people"
 msgstr "Įtraukti asmenų mažas nuotraukas"
 
@@ -9244,17 +9304,17 @@ msgid "Thumbnail location"
 msgstr "Mažo paveikslėlio vieta"
 
 #: ../src/plugins/GVFamilyLines.py:178
-#: ../src/plugins/GVRelGraph.py:481
+#: ../src/plugins/GVRelGraph.py:482
 msgid "Above the name"
 msgstr "virš vardo"
 
 #: ../src/plugins/GVFamilyLines.py:179
-#: ../src/plugins/GVRelGraph.py:482
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Beside the name"
 msgstr "Šalia vardo"
 
 #: ../src/plugins/GVFamilyLines.py:181
-#: ../src/plugins/GVRelGraph.py:484
+#: ../src/plugins/GVRelGraph.py:485
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "ar patalpinti mažą  nuotrauką virš vardo"
 
@@ -9410,101 +9470,101 @@ msgstr "Palikuonys <-> Protėviai"
 msgid "Descendants - Ancestors"
 msgstr "Palikuonys - Protėviai"
 
-#: ../src/plugins/GVRelGraph.py:432
+#: ../src/plugins/GVRelGraph.py:433
 msgid "Determines what people are included in the graph"
 msgstr "Nustato kurie asmenys turi būti įtraukti į diagramą"
 
-#: ../src/plugins/GVRelGraph.py:444
+#: ../src/plugins/GVRelGraph.py:445
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Įtraukti gimimo, santuokos ir mirties datas"
 
-#: ../src/plugins/GVRelGraph.py:445
+#: ../src/plugins/GVRelGraph.py:446
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "Įtraukti į diagramas datas kada asmuo gimė, vedė/ištekėjo ir/arba mirė."
 
-#: ../src/plugins/GVRelGraph.py:449
+#: ../src/plugins/GVRelGraph.py:450
 msgid "Limit dates to years only"
 msgstr "Apriboti datas tik metais"
 
-#: ../src/plugins/GVRelGraph.py:450
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "Spausdina tik datų metus. Nerodoma nei mėnuo ar diena, nei apytikrė data ar intervalas."
 
-#: ../src/plugins/GVRelGraph.py:455
+#: ../src/plugins/GVRelGraph.py:456
 msgid "Use place when no date"
 msgstr "Kai nėra datos, naudoti vietovę"
 
-#: ../src/plugins/GVRelGraph.py:456
+#: ../src/plugins/GVRelGraph.py:457
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
 msgstr "Kai nėra gimimo, santuokos arba mirties datos, naudoti atitinkamus vietovės įrašus."
 
-#: ../src/plugins/GVRelGraph.py:461
+#: ../src/plugins/GVRelGraph.py:462
 msgid "Include URLs"
 msgstr "Įtraukti URL"
 
-#: ../src/plugins/GVRelGraph.py:462
+#: ../src/plugins/GVRelGraph.py:463
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Kiekvienam diagramos mazgui sugeneruoti URL. Tada galės būti sugeneruotos  PDF ir imagemap bylos, kurios turės aktyvias nuorodas į bylas, sugeneruotas  naudojant 'Pasakojamasis Interneto puslapis' ataskaitą."
 
-#: ../src/plugins/GVRelGraph.py:469
+#: ../src/plugins/GVRelGraph.py:470
 msgid "Include IDs"
 msgstr "Įtraukti ID"
 
-#: ../src/plugins/GVRelGraph.py:470
+#: ../src/plugins/GVRelGraph.py:471
 msgid "Include individual and family IDs."
 msgstr "Įtraukti asmens ir šeimos ID."
 
-#: ../src/plugins/GVRelGraph.py:476
+#: ../src/plugins/GVRelGraph.py:477
 msgid "Whether to include thumbnails of people."
 msgstr "Ar įtraukti asmenų mažus paveikslėlius."
 
-#: ../src/plugins/GVRelGraph.py:480
+#: ../src/plugins/GVRelGraph.py:481
 msgid "Thumbnail Location"
 msgstr "Mažo paveikslėlio vieta"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:489
+#: ../src/plugins/GVRelGraph.py:490
 msgid "Graph Style"
 msgstr "Diagramos Stilius"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:492
+#: ../src/plugins/GVRelGraph.py:493
 msgid "Graph coloring"
 msgstr "Diagramos spalvos"
 
-#: ../src/plugins/GVRelGraph.py:495
+#: ../src/plugins/GVRelGraph.py:496
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Vyrai vaizduojami mėlynai, moterys - raudonai. Jei asmens lytis yra nežinoma, tai bus vaizduojama pilkai."
 
-#: ../src/plugins/GVRelGraph.py:500
+#: ../src/plugins/GVRelGraph.py:501
 msgid "Arrowhead direction"
 msgstr "Rodyklės kryptis"
 
-#: ../src/plugins/GVRelGraph.py:503
+#: ../src/plugins/GVRelGraph.py:504
 msgid "Choose the direction that the arrows point."
 msgstr "Pasirinkti kryptį, kur rodys  rodyklė."
 
-#: ../src/plugins/GVRelGraph.py:507
+#: ../src/plugins/GVRelGraph.py:508
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Pažymėti ne gimimo ryšius punktyrine linija"
 
-#: ../src/plugins/GVRelGraph.py:508
+#: ../src/plugins/GVRelGraph.py:509
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Ne-gimimo ryšiai (įvaikinimas,globa) diagramoje bus vaizduojami punktyrine linija."
 
-#: ../src/plugins/GVRelGraph.py:512
+#: ../src/plugins/GVRelGraph.py:513
 msgid "Show family nodes"
 msgstr "Parodyti pastabas apie šeimą"
 
-#: ../src/plugins/GVRelGraph.py:513
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Šeimos bus rodomos kaip elipsės, susietos tarp tėvų ir vaikų."
 
-#: ../src/plugins/GVRelGraph.py:557
+#: ../src/plugins/GVRelGraph.py:558
 msgid "Relationship Graph"
 msgstr "Ryšių Diagrama"
 
-#: ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVRelGraph.py:560
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Naudojant Graphviz, sukuria ryšių diagramą"
 
@@ -9704,11 +9764,11 @@ msgstr "Informacija apie %s"
 
 #: ../src/plugins/IndivComplete.py:420
 #: ../src/plugins/NarrativeWeb.py:560
-#: ../src/plugins/NarrativeWeb.py:593
-#: ../src/plugins/NarrativeWeb.py:605
-#: ../src/plugins/NarrativeWeb.py:1556
-#: ../src/plugins/NarrativeWeb.py:1604
-#: ../src/plugins/NarrativeWeb.py:1838
+#: ../src/plugins/NarrativeWeb.py:596
+#: ../src/plugins/NarrativeWeb.py:608
+#: ../src/plugins/NarrativeWeb.py:1560
+#: ../src/plugins/NarrativeWeb.py:1608
+#: ../src/plugins/NarrativeWeb.py:1842
 #: ../src/ReportBase/_ReportUtils.py:1574
 msgid "Could not add photo to page"
 msgstr "Negalima prijungti nuotrauką į šį puslapį"
@@ -10052,31 +10112,31 @@ msgstr "Tvarko audio/video bylų nuorodų paketines operacijas"
 
 #: ../src/plugins/NarrativeWeb.py:103
 msgid "Basic - Ash"
-msgstr ""
+msgstr "Pagrindinis - Uosis"
 
 #: ../src/plugins/NarrativeWeb.py:104
 msgid "Basic - Cypress"
-msgstr ""
+msgstr "Pagrindinis - Kiparisas"
 
 #: ../src/plugins/NarrativeWeb.py:105
 msgid "Basic - Lilac"
-msgstr ""
+msgstr "Pagrindinis - Alyva"
 
 #: ../src/plugins/NarrativeWeb.py:106
 msgid "Basic - Peach"
-msgstr ""
+msgstr "Pagrindinis - Persikas"
 
 #: ../src/plugins/NarrativeWeb.py:107
 msgid "Basic - Spruce"
-msgstr ""
+msgstr "Pagrindinis -  Eglė"
 
 #: ../src/plugins/NarrativeWeb.py:108
 msgid "Mainz"
-msgstr ""
+msgstr "Mainz"
 
 #: ../src/plugins/NarrativeWeb.py:109
 msgid "Nebraska"
-msgstr ""
+msgstr "Nebraska"
 
 #: ../src/plugins/NarrativeWeb.py:110
 msgid "No style sheet"
@@ -10152,507 +10212,507 @@ msgid "<br />for <a href=\"%s\">%s</a>"
 msgstr "<br> <a href=\"%s\">%s</a>"
 
 #: ../src/plugins/NarrativeWeb.py:459
-#: ../src/plugins/NarrativeWeb.py:1538
-#: ../src/plugins/NarrativeWeb.py:1540
+#: ../src/plugins/NarrativeWeb.py:1542
+#: ../src/plugins/NarrativeWeb.py:1544
 msgid "Introduction"
 msgstr "Įžanga"
 
 #: ../src/plugins/NarrativeWeb.py:460
-#: ../src/plugins/NarrativeWeb.py:1441
-#: ../src/plugins/NarrativeWeb.py:1442
+#: ../src/plugins/NarrativeWeb.py:1445
+#: ../src/plugins/NarrativeWeb.py:1446
 msgid "Surnames"
 msgstr "Pavardės"
 
 #: ../src/plugins/NarrativeWeb.py:465
 #: ../src/plugins/NarrativeWeb.py:579
-#: ../src/plugins/NarrativeWeb.py:1250
-#: ../src/plugins/NarrativeWeb.py:1737
-#: ../src/plugins/NarrativeWeb.py:1739
+#: ../src/plugins/NarrativeWeb.py:1254
+#: ../src/plugins/NarrativeWeb.py:1741
+#: ../src/plugins/NarrativeWeb.py:1743
 msgid "Gallery"
 msgstr "Galerija"
 
 #: ../src/plugins/NarrativeWeb.py:467
-#: ../src/plugins/NarrativeWeb.py:1797
-#: ../src/plugins/NarrativeWeb.py:1800
+#: ../src/plugins/NarrativeWeb.py:1801
+#: ../src/plugins/NarrativeWeb.py:1804
 msgid "Download"
 msgstr "Parsiųsti"
 
 #: ../src/plugins/NarrativeWeb.py:469
-#: ../src/plugins/NarrativeWeb.py:1816
-#: ../src/plugins/NarrativeWeb.py:1819
+#: ../src/plugins/NarrativeWeb.py:1820
+#: ../src/plugins/NarrativeWeb.py:1823
 msgid "Contact"
 msgstr "Susisiekti"
 
-#: ../src/plugins/NarrativeWeb.py:625
-#: ../src/plugins/NarrativeWeb.py:2448
+#: ../src/plugins/NarrativeWeb.py:629
+#: ../src/plugins/NarrativeWeb.py:2452
 msgid "Narrative"
 msgstr "Pasakojamasis"
 
-#: ../src/plugins/NarrativeWeb.py:637
+#: ../src/plugins/NarrativeWeb.py:641
 msgid "Weblinks"
 msgstr "Nuorodos"
 
-#: ../src/plugins/NarrativeWeb.py:663
+#: ../src/plugins/NarrativeWeb.py:667
 msgid "Source References"
 msgstr "Šaltinių nuorodos"
 
-#: ../src/plugins/NarrativeWeb.py:695
+#: ../src/plugins/NarrativeWeb.py:699
 msgid "Confidence"
 msgstr "Slaptumas"
 
-#: ../src/plugins/NarrativeWeb.py:715
+#: ../src/plugins/NarrativeWeb.py:719
 msgid "References"
 msgstr "Nuorodos"
 
-#: ../src/plugins/NarrativeWeb.py:832
+#: ../src/plugins/NarrativeWeb.py:836
 msgid "This page contains an index of all the individuals in the database, sorted by their last names. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Šiame puslapyje yra visų duomenų bazėje esančių asmenų rodyklė, surūšiuota pagal pavardes. Pasirinkus asmens vardą, būsite nukreipti į  to asmens puslapį."
 
-#: ../src/plugins/NarrativeWeb.py:976
+#: ../src/plugins/NarrativeWeb.py:980
 #, python-format
 msgid "This page contains an index of all the individuals in the database with the surname of %s. Selecting the person&#8217;s name will take you to that person&#8217;s individual page."
 msgstr "Šiame puslapyje yra išvardinti visi asmenys iš duomenų bazės su pavarde %s. Pasirinkus asmens vardą Jūs pateksite į asmens individualų puslapį."
 
-#: ../src/plugins/NarrativeWeb.py:1102
+#: ../src/plugins/NarrativeWeb.py:1106
 msgid "This page contains an index of all the places in the database, sorted by their title. Clicking on a place&#8217;s title will take you to that place&#8217;s page."
 msgstr "Šiame puslapyje yra visų duomenų bazėje esančių vietovių rodyklė, išrūšiuota pagal antraštę. Pasirinkus antraštę, būsite nukreipti į tos vietovės puslapį."
 
-#: ../src/plugins/NarrativeWeb.py:1112
-#: ../src/plugins/NarrativeWeb.py:1463
+#: ../src/plugins/NarrativeWeb.py:1116
+#: ../src/plugins/NarrativeWeb.py:1467
 msgid "Letter"
 msgstr "Raidė"
 
-#: ../src/plugins/NarrativeWeb.py:1179
-#: ../src/plugins/NarrativeWeb.py:1334
-#: ../src/plugins/NarrativeWeb.py:1707
-#: ../src/plugins/NarrativeWeb.py:2134
+#: ../src/plugins/NarrativeWeb.py:1183
+#: ../src/plugins/NarrativeWeb.py:1338
+#: ../src/plugins/NarrativeWeb.py:1711
+#: ../src/plugins/NarrativeWeb.py:2138
 msgid "GRAMPS ID"
 msgstr "GRAMPS ID"
 
-#: ../src/plugins/NarrativeWeb.py:1190
+#: ../src/plugins/NarrativeWeb.py:1194
 msgid "Postal Code"
 msgstr "Pašto indeksas"
 
-#: ../src/plugins/NarrativeWeb.py:1258
+#: ../src/plugins/NarrativeWeb.py:1262
 msgid "Previous"
 msgstr "Ankstesnis"
 
-#: ../src/plugins/NarrativeWeb.py:1259
+#: ../src/plugins/NarrativeWeb.py:1263
 #, python-format
 msgid "<strong id=\"GalleryCurrent\">%(page_number)d</strong> of <strong id=\"GalleryTotal\">%(total_pages)d</strong>"
 msgstr "<strong id=\"Esamas\">%(page_number)d</strong> iš <strong id=\"viso\">%(total_pages)d</strong>"
 
-#: ../src/plugins/NarrativeWeb.py:1263
+#: ../src/plugins/NarrativeWeb.py:1267
 msgid "Next"
 msgstr "Sekantis"
 
-#: ../src/plugins/NarrativeWeb.py:1293
-#: ../src/plugins/NarrativeWeb.py:1321
+#: ../src/plugins/NarrativeWeb.py:1297
+#: ../src/plugins/NarrativeWeb.py:1325
 msgid "The file has been moved or deleted"
 msgstr "Byla buvo perkelta arba ištrinta"
 
-#: ../src/plugins/NarrativeWeb.py:1339
+#: ../src/plugins/NarrativeWeb.py:1343
 msgid "File type"
 msgstr "Bylos tipas"
 
-#: ../src/plugins/NarrativeWeb.py:1368
-#: ../src/plugins/NarrativeWeb.py:1938
+#: ../src/plugins/NarrativeWeb.py:1372
+#: ../src/plugins/NarrativeWeb.py:1942
 msgid "Attributes"
 msgstr "Požymiai"
 
-#: ../src/plugins/NarrativeWeb.py:1397
+#: ../src/plugins/NarrativeWeb.py:1401
 msgid "Missing media object:"
 msgstr "Trūkstamos audio/video bylos:"
 
-#: ../src/plugins/NarrativeWeb.py:1445
-#: ../src/plugins/NarrativeWeb.py:1447
+#: ../src/plugins/NarrativeWeb.py:1449
+#: ../src/plugins/NarrativeWeb.py:1451
 msgid "Surnames by person count"
 msgstr "Pavardžių pagal asmenis skaičius"
 
-#: ../src/plugins/NarrativeWeb.py:1450
+#: ../src/plugins/NarrativeWeb.py:1454
 msgid "This page contains an index of all the surnames in the database. Selecting a link will lead to a list of individuals in the database with this same surname."
 msgstr "Šiame puslapyje yra visų duomenų bazėje esančių pavardžių rodyklė. Pasirinkus nuorodą, būsite nukreipti į sąrašą žmonių kurie duomenų bazėje turi tas pačias pavardes."
 
-#: ../src/plugins/NarrativeWeb.py:1469
+#: ../src/plugins/NarrativeWeb.py:1473
 msgid "Number of people"
 msgstr "Asmenų skaičius"
 
-#: ../src/plugins/NarrativeWeb.py:1645
+#: ../src/plugins/NarrativeWeb.py:1649
 msgid "This page contains an index of all the sources in the database, sorted by their title. Clicking on a source&#8217;s title will take you to that source&#8217;s page."
 msgstr "Šiame puslapyje yra visų duomenų bazėje esančių šaltinių rodyklė, išrūšiuota pagal antraštę. Pasirinkus šaltinio vardą, būsite nukreipti į šaltinio puslapį."
 
-#: ../src/plugins/NarrativeWeb.py:1709
+#: ../src/plugins/NarrativeWeb.py:1713
 msgid "Publication information"
 msgstr "Paskelbimo informacija"
 
-#: ../src/plugins/NarrativeWeb.py:1742
+#: ../src/plugins/NarrativeWeb.py:1746
 msgid "This page contains an index of all the media objects in the database, sorted by their title. Clicking on the title will take you to that media object&#8217;s page."
 msgstr "Šiame puslapyje yra visų duomenų bazėje esančių audio/video objektų rodyklė, išrūšiuota pagal antraštę. Pasirinkus antraštę, būsite nukreipti į to objekto puslapį."
 
-#: ../src/plugins/NarrativeWeb.py:2010
+#: ../src/plugins/NarrativeWeb.py:2014
 msgid "Ancestors"
 msgstr "Protėviai"
 
-#: ../src/plugins/NarrativeWeb.py:2153
+#: ../src/plugins/NarrativeWeb.py:2157
 #: ../src/plugins/PatchNames.py:232
-#: ../src/gen/lib/attrtype.py:71
+#: ../src/gen/lib/attrtype.py:70
 msgid "Nickname"
 msgstr "Pravardė"
 
-#: ../src/plugins/NarrativeWeb.py:2344
+#: ../src/plugins/NarrativeWeb.py:2348
 msgid "Half Siblings"
 msgstr "Įbroliai ir įseserės"
 
-#: ../src/plugins/NarrativeWeb.py:2514
+#: ../src/plugins/NarrativeWeb.py:2518
 #, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 
-#: ../src/plugins/NarrativeWeb.py:2516
+#: ../src/plugins/NarrativeWeb.py:2520
 #, python-format
 msgid "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 msgstr "%(description)s,&nbsp;&nbsp;%(date)s&nbsp;&nbsp;"
 
-#: ../src/plugins/NarrativeWeb.py:2518
+#: ../src/plugins/NarrativeWeb.py:2522
 #, python-format
 msgid "%(description)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(description)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 
-#: ../src/plugins/NarrativeWeb.py:2522
+#: ../src/plugins/NarrativeWeb.py:2526
 #, python-format
 msgid "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 msgstr "%(date)s&nbsp;&nbsp;at&nbsp;&nbsp;%(place)s"
 
-#: ../src/plugins/NarrativeWeb.py:2536
+#: ../src/plugins/NarrativeWeb.py:2540
 #, python-format
 msgid "<br />%(type)s: %(value)s"
 msgstr "<br>%(type)s: %(value)s"
 
-#: ../src/plugins/NarrativeWeb.py:2662
+#: ../src/plugins/NarrativeWeb.py:2666
 #: ../src/plugins/WebCal.py:462
 #, python-format
 msgid "Neither %s nor %s are directories"
 msgstr "Nei %s, nei  %s  nėra direktorijos"
 
-#: ../src/plugins/NarrativeWeb.py:2669
 #: ../src/plugins/NarrativeWeb.py:2673
-#: ../src/plugins/NarrativeWeb.py:2686
+#: ../src/plugins/NarrativeWeb.py:2677
 #: ../src/plugins/NarrativeWeb.py:2690
+#: ../src/plugins/NarrativeWeb.py:2694
 #: ../src/plugins/WebCal.py:469
 #: ../src/plugins/WebCal.py:473
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Nepavyko sukurti direktorijos: %s"
 
-#: ../src/plugins/NarrativeWeb.py:2696
+#: ../src/plugins/NarrativeWeb.py:2700
 msgid "Invalid file name"
 msgstr "Blogas bylos vardas"
 
-#: ../src/plugins/NarrativeWeb.py:2697
+#: ../src/plugins/NarrativeWeb.py:2701
 msgid "The archive file must be a file, not a directory"
 msgstr "Archyvo byla turi būti bylos pavadinimas, o ne direktorija"
 
-#: ../src/plugins/NarrativeWeb.py:2706
+#: ../src/plugins/NarrativeWeb.py:2710
 msgid "Generate HTML reports"
 msgstr "Generuoti HTML ataskaitas"
 
-#: ../src/plugins/NarrativeWeb.py:2756
+#: ../src/plugins/NarrativeWeb.py:2760
 msgid "Filtering"
 msgstr "Filtruoja"
 
-#: ../src/plugins/NarrativeWeb.py:2777
+#: ../src/plugins/NarrativeWeb.py:2781
 msgid "Creating individual pages"
 msgstr "Kuriu asmenų puslapius"
 
-#: ../src/plugins/NarrativeWeb.py:2801
+#: ../src/plugins/NarrativeWeb.py:2805
 msgid "Creating surname pages"
 msgstr "Kuriu pavardžių puslapius"
 
-#: ../src/plugins/NarrativeWeb.py:2823
+#: ../src/plugins/NarrativeWeb.py:2827
 msgid "Creating source pages"
 msgstr "Kuriu šaltinių puslapius"
 
-#: ../src/plugins/NarrativeWeb.py:2836
+#: ../src/plugins/NarrativeWeb.py:2840
 msgid "Creating place pages"
 msgstr "Kuriu vietovių puslapius"
 
-#: ../src/plugins/NarrativeWeb.py:2850
+#: ../src/plugins/NarrativeWeb.py:2854
 msgid "Creating media pages"
 msgstr "Kuriu vaizdo/garso puslapius"
 
-#: ../src/plugins/NarrativeWeb.py:2939
+#: ../src/plugins/NarrativeWeb.py:2943
 msgid "Store web pages in .tar.gz archive"
 msgstr "Išsaugoti interneto puslapius suspaustus .tar.gz  archyve"
 
-#: ../src/plugins/NarrativeWeb.py:2941
+#: ../src/plugins/NarrativeWeb.py:2945
 msgid "Whether to store the web pages in an archive file"
 msgstr "Išsaugoti interneto puslapius suspaustus  archyve"
 
-#: ../src/plugins/NarrativeWeb.py:2946
+#: ../src/plugins/NarrativeWeb.py:2950
 #: ../src/plugins/WebCal.py:704
 msgid "Destination"
 msgstr "Paskirties vieta"
 
-#: ../src/plugins/NarrativeWeb.py:2948
+#: ../src/plugins/NarrativeWeb.py:2952
 #: ../src/plugins/WebCal.py:706
 msgid "The destination directory for the web files"
 msgstr "Paskirties vietos katalogas internetinėms byloms"
 
-#: ../src/plugins/NarrativeWeb.py:2956
+#: ../src/plugins/NarrativeWeb.py:2960
 msgid "Select filter to restrict people that appear on web files"
 msgstr "Norėdami apriboti asmenis internetiniame puslapyje, pasirinkite filtrą"
 
-#: ../src/plugins/NarrativeWeb.py:2967
+#: ../src/plugins/NarrativeWeb.py:2971
 msgid "Web site title"
 msgstr "Pagrindinio puslapio antraštė"
 
-#: ../src/plugins/NarrativeWeb.py:2967
+#: ../src/plugins/NarrativeWeb.py:2971
 msgid "My Family Tree"
 msgstr "Mano Šeimos medis"
 
-#: ../src/plugins/NarrativeWeb.py:2968
+#: ../src/plugins/NarrativeWeb.py:2972
 msgid "The title of the web site"
 msgstr "Pagrindinio internetinio puslapio antraštė"
 
-#: ../src/plugins/NarrativeWeb.py:2971
+#: ../src/plugins/NarrativeWeb.py:2975
 #: ../src/plugins/WebCal.py:710
 msgid "File extension"
 msgstr "Bylos plėtinys"
 
-#: ../src/plugins/NarrativeWeb.py:2974
+#: ../src/plugins/NarrativeWeb.py:2978
 #: ../src/plugins/WebCal.py:713
 msgid "The extension to be used for the web files"
 msgstr "Internetinių bylų naudojamas praplėtimas"
 
-#: ../src/plugins/NarrativeWeb.py:2977
+#: ../src/plugins/NarrativeWeb.py:2981
 #: ../src/plugins/WebCal.py:716
 msgid "Copyright"
 msgstr "Autoriaus teisės"
 
-#: ../src/plugins/NarrativeWeb.py:2982
+#: ../src/plugins/NarrativeWeb.py:2986
 #: ../src/plugins/WebCal.py:721
 msgid "The copyright to be used for the web files"
 msgstr "Internetinių bylų naudojama autorinių teisių apsauga"
 
-#: ../src/plugins/NarrativeWeb.py:2985
+#: ../src/plugins/NarrativeWeb.py:2989
 #: ../src/plugins/WebCal.py:724
 msgid "Character set encoding"
 msgstr "Simbolių koduotė"
 
-#: ../src/plugins/NarrativeWeb.py:2988
+#: ../src/plugins/NarrativeWeb.py:2992
 #: ../src/plugins/WebCal.py:727
 msgid "The encoding to be used for the web files"
 msgstr "Internetinių bylų naudojama koduotė"
 
-#: ../src/plugins/NarrativeWeb.py:2991
+#: ../src/plugins/NarrativeWeb.py:2995
 msgid "Stylesheet"
 msgstr "Stilius"
 
-#: ../src/plugins/NarrativeWeb.py:2994
+#: ../src/plugins/NarrativeWeb.py:2998
 msgid "The style sheet to be used for the web pages"
 msgstr "Internetiniam puslapiui naudojamas style sheet"
 
-#: ../src/plugins/NarrativeWeb.py:2997
+#: ../src/plugins/NarrativeWeb.py:3001
 msgid "Include ancestor graph"
 msgstr "Įtraukti trumpą protėvių medį"
 
-#: ../src/plugins/NarrativeWeb.py:2998
+#: ../src/plugins/NarrativeWeb.py:3002
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Ar kiekvieno asmenis puslapyje įdėti protėvių diagramą"
 
-#: ../src/plugins/NarrativeWeb.py:3003
+#: ../src/plugins/NarrativeWeb.py:3007
 msgid "Graph generations"
 msgstr "Kartų skaičius diagramai"
 
-#: ../src/plugins/NarrativeWeb.py:3008
+#: ../src/plugins/NarrativeWeb.py:3012
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Į protėvių diagramą įtraukiamų kartų skaičius"
 
-#: ../src/plugins/NarrativeWeb.py:3018
+#: ../src/plugins/NarrativeWeb.py:3022
 msgid "Page Generation"
 msgstr "Puslapio generavimas"
 
-#: ../src/plugins/NarrativeWeb.py:3020
+#: ../src/plugins/NarrativeWeb.py:3024
 msgid "Home page note"
 msgstr "Namų puslapio pastaba"
 
-#: ../src/plugins/NarrativeWeb.py:3021
+#: ../src/plugins/NarrativeWeb.py:3025
 msgid "A note to be used on the home page"
 msgstr "Pastaba, naudojama pagrindiniame puslapyje"
 
-#: ../src/plugins/NarrativeWeb.py:3024
+#: ../src/plugins/NarrativeWeb.py:3028
 msgid "Home page image"
 msgstr "Namų puslapio paveikslas"
 
-#: ../src/plugins/NarrativeWeb.py:3025
+#: ../src/plugins/NarrativeWeb.py:3029
 msgid "An image to be used on the home page"
 msgstr "Paveikslėlis, kuris bus naudojamas namų puslapyje"
 
-#: ../src/plugins/NarrativeWeb.py:3028
+#: ../src/plugins/NarrativeWeb.py:3032
 msgid "Introduction note"
 msgstr "Įžangos pastaba"
 
-#: ../src/plugins/NarrativeWeb.py:3029
+#: ../src/plugins/NarrativeWeb.py:3033
 msgid "A note to be used as the introduction"
 msgstr "Pastaba, kuris bus naudojama kaip įžanga"
 
-#: ../src/plugins/NarrativeWeb.py:3032
+#: ../src/plugins/NarrativeWeb.py:3036
 msgid "Introduction image"
 msgstr "Įžangos paveikslas"
 
-#: ../src/plugins/NarrativeWeb.py:3033
+#: ../src/plugins/NarrativeWeb.py:3037
 msgid "An image to be used as the introduction"
 msgstr "Paveikslėlis, kuris bus naudojamas kaip įžanga"
 
-#: ../src/plugins/NarrativeWeb.py:3036
+#: ../src/plugins/NarrativeWeb.py:3040
 msgid "Publisher contact note"
 msgstr "Autoriaus  pastaba"
 
-#: ../src/plugins/NarrativeWeb.py:3037
+#: ../src/plugins/NarrativeWeb.py:3041
 msgid "A note to be used as the publisher contact"
 msgstr "Pastaba, kuris bus naudojama kaip sudarytojo kontaktas"
 
-#: ../src/plugins/NarrativeWeb.py:3040
+#: ../src/plugins/NarrativeWeb.py:3044
 msgid "Publisher contact image"
 msgstr "Autoriaus nuotrauka"
 
-#: ../src/plugins/NarrativeWeb.py:3041
+#: ../src/plugins/NarrativeWeb.py:3045
 msgid "An image to be used as the publisher contact"
 msgstr "Paveikslėlis, kuris bus naudojamas kaip sudarytojo kontaktas"
 
-#: ../src/plugins/NarrativeWeb.py:3044
+#: ../src/plugins/NarrativeWeb.py:3048
 msgid "HTML user header"
 msgstr "HTML puslapio  antraštė"
 
-#: ../src/plugins/NarrativeWeb.py:3045
+#: ../src/plugins/NarrativeWeb.py:3049
 msgid "A note to be used as the page header"
 msgstr "Pastaba, kuri naudojama puslapio antraštei"
 
-#: ../src/plugins/NarrativeWeb.py:3048
+#: ../src/plugins/NarrativeWeb.py:3052
 msgid "HTML user footer"
 msgstr "HTML puslapio apačia"
 
-#: ../src/plugins/NarrativeWeb.py:3049
+#: ../src/plugins/NarrativeWeb.py:3053
 msgid "A note to be used as the page footer"
 msgstr "Pastaba, kuri naudojama apatinei puslapio eilutei"
 
-#: ../src/plugins/NarrativeWeb.py:3052
+#: ../src/plugins/NarrativeWeb.py:3056
 msgid "Include images and media objects"
 msgstr "Įtraukti paveikslus ir audio/video objektus"
 
-#: ../src/plugins/NarrativeWeb.py:3053
+#: ../src/plugins/NarrativeWeb.py:3057
 msgid "Whether to include a gallery of media objects"
 msgstr "Ar įtraukti audio/video objektų galeriją"
 
-#: ../src/plugins/NarrativeWeb.py:3056
+#: ../src/plugins/NarrativeWeb.py:3060
 msgid "Include download page"
 msgstr "Įtraukti parsisiuntimo puslapį"
 
-#: ../src/plugins/NarrativeWeb.py:3057
+#: ../src/plugins/NarrativeWeb.py:3061
 msgid "Whether to include a database download option"
 msgstr "Ar įtraukti duomenų bazės parsisiuntimo galimybę"
 
-#: ../src/plugins/NarrativeWeb.py:3060
+#: ../src/plugins/NarrativeWeb.py:3064
 msgid "Suppress GRAMPS ID"
 msgstr "Nuslėpti GRAMPS ID"
 
-#: ../src/plugins/NarrativeWeb.py:3061
+#: ../src/plugins/NarrativeWeb.py:3065
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Ar įtraukti objektų Gramps ID"
 
-#: ../src/plugins/NarrativeWeb.py:3068
+#: ../src/plugins/NarrativeWeb.py:3072
 msgid "Privacy"
 msgstr "Slaptumas"
 
-#: ../src/plugins/NarrativeWeb.py:3070
+#: ../src/plugins/NarrativeWeb.py:3074
 msgid "Include records marked private"
 msgstr "Įtraukti įrašus pažymėtų asmeniniais"
 
-#: ../src/plugins/NarrativeWeb.py:3071
+#: ../src/plugins/NarrativeWeb.py:3075
 msgid "Whether to include private objects"
 msgstr "Ar įtraukti asmeninius objektus"
 
-#: ../src/plugins/NarrativeWeb.py:3074
+#: ../src/plugins/NarrativeWeb.py:3078
 msgid "Living People"
 msgstr "Gyvenantys žmonės"
 
-#: ../src/plugins/NarrativeWeb.py:3076
+#: ../src/plugins/NarrativeWeb.py:3080
 msgid "Exclude"
 msgstr "Neįtraukti"
 
-#: ../src/plugins/NarrativeWeb.py:3077
+#: ../src/plugins/NarrativeWeb.py:3081
 msgid "Restrict"
 msgstr "Apriboti"
 
-#: ../src/plugins/NarrativeWeb.py:3079
+#: ../src/plugins/NarrativeWeb.py:3083
 msgid "How to handle living people"
 msgstr "Kaip apdoroti dabar gyvenančius žmonės"
 
-#: ../src/plugins/NarrativeWeb.py:3083
+#: ../src/plugins/NarrativeWeb.py:3087
 msgid "Years from death to consider living"
 msgstr "Kiek metų apriboti duomenis po asmens mirties"
 
-#: ../src/plugins/NarrativeWeb.py:3085
+#: ../src/plugins/NarrativeWeb.py:3089
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Tai įgalina apriboti žmonių, kurie yra gyvi labai ilgai, informaciją"
 
-#: ../src/plugins/NarrativeWeb.py:3097
+#: ../src/plugins/NarrativeWeb.py:3101
 msgid "Advanced"
 msgstr "Papildomi"
 
-#: ../src/plugins/NarrativeWeb.py:3099
+#: ../src/plugins/NarrativeWeb.py:3103
 msgid "Include link to home person on every page"
 msgstr "Kiekviename puslapyje įdėti nuorodą į pagrindinį asmenį"
 
-#: ../src/plugins/NarrativeWeb.py:3101
+#: ../src/plugins/NarrativeWeb.py:3105
 msgid "Whether to include a link to the home person"
 msgstr "Ar įtraukti nuorodą į pagrindinį asmenį"
 
-#: ../src/plugins/NarrativeWeb.py:3104
+#: ../src/plugins/NarrativeWeb.py:3108
 msgid "Include a column for birth dates on the index pages"
 msgstr "Rodyklės puslapyje įdėti gimimo datos stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3106
+#: ../src/plugins/NarrativeWeb.py:3110
 msgid "Whether to include a birth column"
 msgstr "Ar įtraukti gimimo stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3109
+#: ../src/plugins/NarrativeWeb.py:3113
 msgid "Include a column for death dates on the index pages"
 msgstr "Rodyklės puslapyje įdėti mirimo datos stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3111
+#: ../src/plugins/NarrativeWeb.py:3115
 msgid "Whether to include a death column"
 msgstr "Ar įtraukti mirties stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3114
+#: ../src/plugins/NarrativeWeb.py:3118
 msgid "Include a column for partners on the index pages"
 msgstr "Rodyklės puslapyje įdėti partnerių stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3116
+#: ../src/plugins/NarrativeWeb.py:3120
 msgid "Whether to include a partners column"
 msgstr "Ar įtraukti partnerių stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3119
+#: ../src/plugins/NarrativeWeb.py:3123
 msgid "Include a column for parents on the index pages"
 msgstr "Rodyklės puslapyje įdėti tėvų stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3121
+#: ../src/plugins/NarrativeWeb.py:3125
 msgid "Whether to include a parents column"
 msgstr "Ar įtraukti tėvų stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3124
+#: ../src/plugins/NarrativeWeb.py:3128
 msgid "Include a column for half-siblings on the index pages"
 msgstr "Rodyklės puslapyje įdėti pusbrolių/pusseserių stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3126
+#: ../src/plugins/NarrativeWeb.py:3130
 msgid "Whether to include a half-siblings column"
 msgstr "Ar įtraukti pusbrolių/pusseserių stulpelį"
 
-#: ../src/plugins/NarrativeWeb.py:3225
+#: ../src/plugins/NarrativeWeb.py:3229
 msgid "Narrated Web Site"
 msgstr "Pasakojamasis Interneto Puslapis"
 
-#: ../src/plugins/NarrativeWeb.py:3229
+#: ../src/plugins/NarrativeWeb.py:3233
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
 msgstr "Sukuria interneto puslapį (HTML) asmenims arba jų grupėms"
 
@@ -10791,26 +10851,51 @@ msgstr "Ištraukiama Informacija iš Vardų"
 msgid "Searches the entire database and attempts to extract titles, nicknames and surname prefixes that may be embedded in a person's given name field."
 msgstr "Paieška visoje duomenų bazėje siekiant surasti antraštes, pravardes ir pavardžių prefiksus, kurie gali būti įterpti į asmens vardo lauką."
 
-#: ../src/plugins/ReadPkg.py:76
+#: ../src/plugins/ReadPkg.py:79
 #, python-format
-msgid "Could not create temporary directory %s"
-msgstr "Negalėjau sukurti laikino katalogo %s"
+msgid "Could not create media directory %s"
+msgstr "Nepavyko sukurti direktorijos audio/video katalogo %s"
 
-#: ../src/plugins/ReadPkg.py:80
+#: ../src/plugins/ReadPkg.py:83
 #, python-format
-msgid "Temporary directory %s is not writable"
-msgstr "Laikinai direktorija  %s nėra įrašymo teisių"
+msgid "Media directory %s is not writable"
+msgstr "Audio/video direktorijoje  %s nėra įrašymo teisių"
 
-#: ../src/plugins/ReadPkg.py:98
+#. mediadir exists and writable -- User could have valuable stuff in
+#. it, have him remove it!
+#: ../src/plugins/ReadPkg.py:88
+#, python-format
+msgid "Media directory %s exists. Delete it first, then restart the import process"
+msgstr "Audio/video katalogas %s jau egzistuoja. Iš pradžių pašalinkite jį, o po to kartokite įkėlimo procesą"
+
+#: ../src/plugins/ReadPkg.py:97
 #, python-format
 msgid "Error extracting into %s"
 msgstr "Klaida ištraukiant į  %s"
 
+#: ../src/plugins/ReadPkg.py:113
+msgid "Base path for relative media set"
+msgstr "Pagrindinis kelias sąlyginiam audio/video bylų saugojimui"
+
+#: ../src/plugins/ReadPkg.py:114
+#, python-format
+msgid "The base media path of this family tree has been set to %s. Consider taking a simpler path. You can change this in the Preferences, while moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
+msgstr "Šiame šeimos medyje pagrindinis kelias  audio/video byloms nustatytas į %s. Pasirinkite  paprastesnį kelią. Tai galite padaryti perkeliant audio/video bylas į nauja vietą Nustatymuose arba naudojant audio/video tvarkymo įrankį, pasirinkimas ' Pakeisti eilutės dalį kelyje' ir nustatyti teisingus kelius į Jūsų  audio/video objektus."
+
 #: ../src/plugins/ReadPkg.py:123
+msgid "Cannot set base media path"
+msgstr "Negaliu nustatyti audio/video objekto pagrindinio kelio"
+
+#: ../src/plugins/ReadPkg.py:124
+#, python-format
+msgid "The family tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
+msgstr "Jūsų įkeltas šeimos medis jau turi pagrindinį kelią audio/video byloms: %(orig_path)s, bet įkelti objektai turi sąsajų su  keliu  %(path)s.  Jūs galite pakeisti  audio/video bylų kelią Nustatymuose arba galite konvertuoti įkeltas bylas į egzistuojantį bazinį audio/video bylų kelią. Tai galite padaryti arba perkeliant audio/video bylas į nauja vietą, arba naudojant audio/video tvarkymo įrankį, pasirinkimas ' Pakeisti eilutės dalį kelyje' ir nustatyti teisingus kelius į Jūsų  audio/video objektus."
+
+#: ../src/plugins/ReadPkg.py:153
 msgid "GRAMPS packages"
 msgstr "GRAMPS paketai"
 
-#: ../src/plugins/ReadPkg.py:125
+#: ../src/plugins/ReadPkg.py:155
 #: ../data/gramps.keys.in.h:4
 #: ../data/gramps.xml.in.h:4
 msgid "GRAMPS package"
@@ -11113,7 +11198,6 @@ msgid "From gallery..."
 msgstr "Iš galerijos ..."
 
 #: ../src/plugins/SimpleBookTitle.py:207
-#: ../src/ReportBase/_GraphvizReportDialog.py:976
 #: ../src/ReportBase/_PaperMenu.py:223
 #: ../src/glade/gramps.glade.h:192
 #: ../src/glade/paper_settings.glade.h:13
@@ -11963,15 +12047,15 @@ msgstr "GeneWeb eksporto parametrai"
 #. Register the plugin
 #.
 #. -------------------------------------------------------------------------
-#: ../src/plugins/WritePkg.py:222
+#: ../src/plugins/WritePkg.py:223
 msgid "GRAM_PS package (portable XML)"
 msgstr "GRAM_PS paketas (perkeliamas XML)"
 
-#: ../src/plugins/WritePkg.py:223
+#: ../src/plugins/WritePkg.py:224
 msgid "GRAMPS package is an archived XML database together with the media object files."
 msgstr "GRAMPS paketas yra suarchyvuota XML duomenų bazė kartu su vaizdo/garso bylomis."
 
-#: ../src/plugins/WritePkg.py:225
+#: ../src/plugins/WritePkg.py:226
 msgid "GRAMPS package export options"
 msgstr "GRAMPS paketo  eksportavimo parametrai"
 
@@ -12169,28 +12253,28 @@ msgstr "Nepasisekė"
 msgid "OK"
 msgstr "Gerai"
 
-#: ../src/ReportBase/_BareReportDialog.py:100
+#: ../src/ReportBase/_BareReportDialog.py:106
 msgid "Configuration"
 msgstr "Parinktys"
 
-#: ../src/ReportBase/_BareReportDialog.py:170
+#: ../src/ReportBase/_BareReportDialog.py:175
 #, python-format
 msgid "%(report_name)s for GRAMPS Book"
 msgstr " GRAMPS Knygos %(report_name)s"
 
 #. Save Frame
-#: ../src/ReportBase/_BareReportDialog.py:287
+#: ../src/ReportBase/_BareReportDialog.py:292
 #: ../src/ReportBase/_ReportDialog.py:151
 msgid "Document Options"
 msgstr "Dokumento nuostatos"
 
 #. Styles Frame
-#: ../src/ReportBase/_BareReportDialog.py:309
+#: ../src/ReportBase/_BareReportDialog.py:314
 #: ../src/ReportBase/_StyleEditor.py:101
 msgid "Style"
 msgstr "Stilius"
 
-#: ../src/ReportBase/_BareReportDialog.py:313
+#: ../src/ReportBase/_BareReportDialog.py:318
 #: ../src/ReportBase/_StyleEditor.py:97
 msgid "Style Editor"
 msgstr "Stilių redaktorius"
@@ -12514,9 +12598,13 @@ msgstr "Pastabos teksto dydis taškais."
 msgid "Open with application"
 msgstr "Atidaryti su programa"
 
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
+msgid "1.3 cm."
+msgstr "1.3 cm."
+
 #: ../src/ReportBase/_GraphvizReportDialog.py:978
-msgid "in"
-msgstr "col"
+msgid "0.5 in."
+msgstr "0.5 col."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:987
 #: ../src/ReportBase/_GraphvizReportDialog.py:995
@@ -15650,7 +15738,7 @@ msgstr "Atša_ukti  %s"
 msgid "_Redo %s"
 msgstr "_Atša_ukti  %s"
 
-#: ../src/gen/db/dbdir.py:1705
+#: ../src/gen/db/dbdir.py:1761
 #, python-format
 msgid "Locked by %s"
 msgstr "Užrakinta %s"
@@ -15797,7 +15885,6 @@ msgid "National Origin"
 msgstr "Kilmės tautybė"
 
 #: ../src/gen/lib/attrtype.py:68
-#: ../src/gen/lib/attrtype.py:70
 msgid "Number of Children"
 msgstr "Vaikų skaičius"
 
@@ -15805,19 +15892,19 @@ msgstr "Vaikų skaičius"
 msgid "Social Security Number"
 msgstr "Socialinio draudimo pažymėjimo numeris"
 
-#: ../src/gen/lib/attrtype.py:73
+#: ../src/gen/lib/attrtype.py:72
 msgid "Agency"
 msgstr "Tarpininkas"
 
-#: ../src/gen/lib/attrtype.py:75
+#: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
 msgstr "Tėvo amžius"
 
-#: ../src/gen/lib/attrtype.py:76
+#: ../src/gen/lib/attrtype.py:75
 msgid "Mother's Age"
 msgstr "Motinos amžius"
 
-#: ../src/gen/lib/attrtype.py:77
+#: ../src/gen/lib/attrtype.py:76
 #: ../src/gen/lib/eventroletype.py:65
 msgid "Witness"
 msgstr "Liudininkas"
@@ -20525,6 +20612,12 @@ msgstr "Šeimos medį galima lengvai išsaugoti internetinio puslapio formatu. P
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Su  GRAMPS  šeimos medžiu galima susieti su  bet kokiame elektroniniame formate (įskaitant ne tekstinę informaciją) esančią informaciją."
 
+#~ msgid "ScratchPad"
+#~ msgstr "Bloknotėlis"
+#~ msgid "Could not create temporary directory %s"
+#~ msgstr "Negalėjau sukurti laikino katalogo %s"
+#~ msgid "in"
+#~ msgstr "col"
 #~ msgid "You have not used 75 dpi for Ghostscript."
 #~ msgstr "Ghostscripui  Jūs nenaudojote  75 dpi."
 #~ msgid "Using other dpi's will cause incorrect graphs."
