@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-01 10:34+0200\n"
-"PO-Revision-Date: 2008-05-05 12:33+0200\n"
+"PO-Revision-Date: 2008-05-07 22:55+0200\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -10072,7 +10072,7 @@ msgstr "Grunnsti for relative medier er angitt"
 #: ../src/plugins/ReadPkg.py:114
 #, python-format
 msgid "The base media path of this family tree has been set to %s. Consider taking a simpler path. You can change this in the Preferences, while moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr ""
+msgstr "Basisstien for media for dette slektsteet er satt til %s. Du bør vurdere å bruke en enklere sti. Du kan endre dette i Innstillinger.  Samtidig flytter du over dine media til en ny katalog, bruker verktøyet Mediahåndterer og velger opsjonen 'Erstatte del av stien' for å sette korrekt sti til dine mediaobjekt."
 
 #: ../src/plugins/ReadPkg.py:123
 msgid "Cannot set base media path"
@@ -10081,7 +10081,7 @@ msgstr "Kan ikke sette mediasti"
 #: ../src/plugins/ReadPkg.py:124
 #, python-format
 msgid "The family tree you imported into already has a base media path: %(orig_path)s. The imported media objects however are relative from the path %(path)s. You can change the media path in the Preferences or you can convert the imported files to the existing base media path. You can do that by moving your media files to the new position, and using the media manager tool, option 'Replace substring in the path' to set correct paths in your media objects."
-msgstr ""
+msgstr "Slektstreet du importerte har allerede en basissti for media: %(orig_path)s. De importerte mediaobjektene derimot er angitt til å være relativt til %(path)s. Du kan endre mediastien i Innstillinger eller du kan konvertere de importerte filene til å ligge i den allerede angitte basisstien for media. Du kan gjøre dette ved å flytte dine media til en ny posisjon og bruke verktøyet 'Erstatte del av stien' for å sette korrekte stier til dine mediaobjekter."
 
 #: ../src/plugins/ReadPkg.py:153
 msgid "GRAMPS packages"
@@ -10784,7 +10784,7 @@ msgstr "Sorteringsmetode som skal brukes"
 
 #: ../src/plugins/TimeLine.py:336
 msgid "The calendar which determines the year span"
-msgstr ""
+msgstr "Kalenderen som beregner årsspennet"
 
 #: ../src/plugins/TimeLine.py:373
 msgid "The style used for the person's name."
@@ -11510,7 +11510,7 @@ msgstr "Beskjed"
 #. (without -O on the command line)
 #: ../src/PluginUtils/_PluginWindows.py:96
 msgid "Reload"
-msgstr ""
+msgstr "Last om igjen"
 
 #: ../src/PluginUtils/_PluginWindows.py:110
 msgid "Unavailable"
