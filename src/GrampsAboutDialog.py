@@ -144,12 +144,13 @@ class AuthorParser(handler.ContentHandler):
     def endElement(self, tag):
         """Handle the end of an element."""
         if tag == "author":
+            developer = self.text.strip()
             if (self.title == 'author' and
-                self.text not in self.author_list):
-                self.author_list.append(self.text.strip())
+                developer not in self.author_list):
+                self.author_list.append(developer)
             elif (self.title == 'contributor' and
-                  self.text not in self.contributor_list):
-                self.contributor_list.append(self.text.strip())
+                  developer not in self.contributor_list):
+                self.contributor_list.append(developer)
         
     def characters(self, chunk):
         """Receive notification of character data."""
