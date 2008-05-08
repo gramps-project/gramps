@@ -25,7 +25,8 @@ SUBDIRS = \
 	glade \
 	docgen \
 	images \
-	plugins
+	plugins \
+	widgets
 
 gdirdir=$(prefix)/share/gramps
 
@@ -54,7 +55,6 @@ gdir_PYTHON = \
 	GrampsDisplay.py\
 	gramps_main.py\
 	gramps.py\
-	GrampsWidgets.py\
 	ImgManip.py\
 	LdsUtils.py \
 	ListModel.py\
