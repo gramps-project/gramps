@@ -45,7 +45,7 @@ from gtk import glade
 import Config
 import GrampsCfg
 import GrampsDisplay
-from GrampsWidgets import MonitoredEntry
+from widgets import MonitoredEntry
 import ManagedWindow
 from PluginUtils import Tool, register_tool
 from TransUtils import sgettext as _

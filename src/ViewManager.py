@@ -70,7 +70,7 @@ import PageView
 import Navigation
 import RecentFiles
 from BasicUtils import name_displayer
-import GrampsWidgets
+import widgets
 import UndoHistory
 from DbLoader import DbLoader
 import GrampsDisplay
@@ -313,10 +313,10 @@ class ViewManager:
         self.progress.set_size_request(100, -1)
         self.progress.hide()
 
-        self.statusbar = GrampsWidgets.Statusbar()
+        self.statusbar = widgets.Statusbar()
         self.statusbar.show()
 
-        self.warnbtn = GrampsWidgets.WarnButton()
+        self.warnbtn = widgets.WarnButton()
 
         hbox2 = gtk.HBox()
         hbox2.set_spacing(4)

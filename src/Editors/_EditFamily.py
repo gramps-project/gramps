@@ -64,8 +64,8 @@ from ReportBase import ReportUtils
 from DisplayTabs import (EmbeddedList, EventEmbedList, SourceEmbedList, 
                          FamilyAttrEmbedList, NoteTab, GalleryTab, 
                          FamilyLdsEmbedList, ChildModel)
-from GrampsWidgets import (PrivacyButton, MonitoredEntry, MonitoredDataType, 
-                           IconButton, LinkBox, BasicLabel)
+from widgets import (PrivacyButton, MonitoredEntry, MonitoredDataType, 
+                     IconButton, LinkBox, BasicLabel)
 from ReportBase import CATEGORY_QR_FAMILY
 from QuestionDialog import (ErrorDialog, RunDatabaseRepair, WarningDialog,
                             MessageHideDialog)

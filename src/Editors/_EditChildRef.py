@@ -51,7 +51,7 @@ from gen.lib import NoteType
 import Errors
 
 from DisplayTabs import SourceEmbedList, NoteTab
-from GrampsWidgets import MonitoredDataType, PrivacyButton
+from widgets import MonitoredDataType, PrivacyButton
 from BasicUtils import name_displayer
 
 #-------------------------------------------------------------------------

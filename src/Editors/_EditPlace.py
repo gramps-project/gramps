@@ -49,7 +49,7 @@ import gen.lib
 from Editors._EditPrimary import EditPrimary
 from DisplayTabs import (GrampsTab, LocationEmbedList, SourceEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from GrampsWidgets import MonitoredEntry, PrivacyButton
+from widgets import MonitoredEntry, PrivacyButton
 from Errors import ValidationError
 from PlaceUtils import conv_lat_lon
 from QuestionDialog import ErrorDialog

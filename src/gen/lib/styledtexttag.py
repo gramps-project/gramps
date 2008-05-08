@@ -48,7 +48,14 @@ class StyledTextTag():
     
     """
     def __init__(self, name=None, value=None, ranges=None):
-        """Setup initial instance variable values."""
+        """Setup initial instance variable values.
+        
+        @note: Since L{GrampsType} supports the instance initialization
+        with several different base types, please note that C{name} parameter
+        can be int, str, unicode, tuple, or even another L{StyledTextTagType}
+        instance.
+        
+        """
         self.name = StyledTextTagType(name)
         self.value = value
         if ranges is None:

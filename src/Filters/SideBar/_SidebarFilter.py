@@ -24,7 +24,7 @@ from gettext import gettext as _
 import gtk
 import pango
 
-import GrampsWidgets
+import widgets
 import Config
 
 _RETURN = gtk.gdk.keyval_from_name("Return")
@@ -51,7 +51,7 @@ class SidebarFilter:
         self.dbstate = dbstate
 
     def _init_interface(self):
-        self.table.attach(GrampsWidgets.MarkupLabel(_('<b>Filter</b>')),
+        self.table.attach(widgets.MarkupLabel(_('<b>Filter</b>')),
                           0, 2, 0, 1, xoptions=gtk.FILL|gtk.EXPAND, yoptions=0)
         btn = gtk.Button()
         img = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
@@ -129,7 +129,7 @@ class SidebarFilter:
 
     def add_entry(self, name, widget):
         if name:
-            self.table.attach(GrampsWidgets.BasicLabel(name),
+            self.table.attach(widgets.BasicLabel(name),
                               1, 2, self.position, self.position+1,
                               xoptions=gtk.FILL, yoptions=0)
         self.table.attach(widget, 2, 4, self.position, self.position+1,

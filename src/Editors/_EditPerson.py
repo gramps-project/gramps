@@ -50,7 +50,7 @@ import const
 import Utils
 import Mime
 import gen.lib
-import GrampsWidgets
+import widgets
 from BasicUtils import name_displayer
 import Errors
 
@@ -224,12 +224,12 @@ class EditPerson(EditPrimary):
         
         """
 
-        self.private = GrampsWidgets.PrivacyButton(
+        self.private = widgets.PrivacyButton(
             self.top.get_widget('private'), 
             self.obj, 
             self.db.readonly)
 
-        self.gender = GrampsWidgets.MonitoredMenu(
+        self.gender = widgets.MonitoredMenu(
             self.top.get_widget('gender'), 
             self.obj.set_gender, 
             self.obj.get_gender, 
@@ -240,7 +240,7 @@ class EditPerson(EditPrimary):
             ), 
             self.db.readonly)
 
-        self.marker = GrampsWidgets.MonitoredDataType(
+        self.marker = widgets.MonitoredDataType(
             self.top.get_widget('marker'), 
             self.obj.set_marker, 
             self.obj.get_marker, 
@@ -248,7 +248,7 @@ class EditPerson(EditPrimary):
             self.db.get_marker_types(),
             )
         
-        self.ntype_field = GrampsWidgets.MonitoredDataType(
+        self.ntype_field = widgets.MonitoredDataType(
             self.top.get_widget("ntype"), 
             self.pname.set_type, 
             self.pname.get_type,
@@ -256,7 +256,7 @@ class EditPerson(EditPrimary):
             self.db.get_name_types())
 
         if self.use_patronymic:
-            self.prefix = GrampsWidgets.MonitoredEntry(
+            self.prefix = widgets.MonitoredEntry(
                 self.top.get_widget("prefix"), 
                 self.pname.set_patronymic, 
                 self.pname.get_patronymic, 
@@ -266,44 +266,44 @@ class EditPerson(EditPrimary):
             prefix_label.set_text(_('Patronymic:'))
             prefix_label.set_use_underline(True)
         else:
-            self.prefix = GrampsWidgets.MonitoredEntry(
+            self.prefix = widgets.MonitoredEntry(
                 self.top.get_widget("prefix"), 
                 self.pname.set_surname_prefix, 
                 self.pname.get_surname_prefix, 
                 self.db.readonly)
 
-        self.suffix = GrampsWidgets.MonitoredEntry(
+        self.suffix = widgets.MonitoredEntry(
             self.top.get_widget("suffix"), 
             self.pname.set_suffix, 
             self.pname.get_suffix, 
             self.db.readonly)
 
-        self.call = GrampsWidgets.MonitoredEntry(
+        self.call = widgets.MonitoredEntry(
             self.top.get_widget("call"), 
             self.pname.set_call_name, 
             self.pname.get_call_name, 
             self.db.readonly)
 
-        self.given = GrampsWidgets.MonitoredEntry(
+        self.given = widgets.MonitoredEntry(
             self.top.get_widget("given_name"), 
             self.pname.set_first_name, 
             self.pname.get_first_name, 
             self.db.readonly)
 
-        self.title = GrampsWidgets.MonitoredEntry(
+        self.title = widgets.MonitoredEntry(
             self.top.get_widget("title"), 
             self.pname.set_title, 
             self.pname.get_title, 
             self.db.readonly)
         
-        self.surname_field = GrampsWidgets.MonitoredEntry(
+        self.surname_field = widgets.MonitoredEntry(
             self.top.get_widget("surname"), 
             self.pname.set_surname, 
             self.pname.get_surname, 
             self.db.readonly, 
             autolist=self.db.get_surname_list())
 
-        self.gid = GrampsWidgets.MonitoredEntry(
+        self.gid = widgets.MonitoredEntry(
             self.top.get_widget("gid"), 
             self.obj.set_gramps_id, 
             self.obj.get_gramps_id, 

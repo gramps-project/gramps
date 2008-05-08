@@ -46,8 +46,8 @@ from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 from DisplayTabs import GrampsTab,SourceEmbedList,NoteTab
-from GrampsWidgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
-                           MonitoredDataType, PrivacyButton)
+from widgets import (MonitoredEntry, MonitoredMenu, MonitoredDate, 
+                     MonitoredDataType, PrivacyButton)
 
 
 #-------------------------------------------------------------------------

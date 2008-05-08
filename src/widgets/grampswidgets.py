@@ -75,15 +75,15 @@ except:
     INFO_ICON = gtk.STOCK_DIALOG_INFO
 
 # Enabling custom widgets to be included in Glade
-def get_custom_handler(glade, function_name, widget_name, 
-                       str1, str2, int1, int2):
-    from Editors._StyledTextEditor import StyledTextEditor
-    if function_name == 'ValidatableMaskedEntry':
-        return ValidatableMaskedEntry()
-    if function_name == 'StyledTextEditor':
-        return StyledTextEditor()
+##def get_custom_handler(glade, function_name, widget_name, 
+                       ##str1, str2, int1, int2):
+    ##from Editors._StyledTextEditor import StyledTextEditor
+    ##if function_name == 'ValidatableMaskedEntry':
+        ##return ValidatableMaskedEntry()
+    ##if function_name == 'StyledTextEditor':
+        ##return StyledTextEditor()
 
-gtk.glade.set_custom_handler(get_custom_handler)
+##gtk.glade.set_custom_handler(get_custom_handler)
 
 
 hand_cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)

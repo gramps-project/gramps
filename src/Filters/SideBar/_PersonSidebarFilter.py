@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsWidgets
+import widgets
 import gen.lib
 import DateHandler
 
@@ -79,7 +79,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_event = gen.lib.Event()
         self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
         self.etype = gtk.ComboBoxEntry()
-        self.event_menu = GrampsWidgets.MonitoredDataType(
+        self.event_menu = widgets.MonitoredDataType(
             self.etype, 
             self.filter_event.set_type, 
             self.filter_event.get_type)
@@ -87,7 +87,7 @@ class PersonSidebarFilter(SidebarFilter):
         self.filter_marker = gen.lib.Person()
         self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM, u''))
         self.mtype = gtk.ComboBoxEntry()
-        self.marker_menu = GrampsWidgets.MonitoredDataType(
+        self.marker_menu = widgets.MonitoredDataType(
             self.mtype, 
             self.filter_marker.set_marker, 
             self.filter_marker.get_marker)

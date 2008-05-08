@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsWidgets
+import widgets
 import gen.lib
 
 from Filters.SideBar import SidebarFilter
@@ -64,11 +64,11 @@ class EventSidebarFilter(SidebarFilter):
         self.filter_event.set_type((gen.lib.EventType.CUSTOM, u''))
         self.etype = gtk.ComboBoxEntry()
        
-        self.event_menu = GrampsWidgets.MonitoredDataType(
+        self.event_menu = widgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
             self.filter_event.get_type)
-
+        
         self.filter_date = gtk.Entry()
         self.filter_place = gtk.Entry()
         self.filter_note = gtk.Entry()

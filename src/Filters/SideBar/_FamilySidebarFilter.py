@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsWidgets
+import widgets
 import gen.lib
 
 from Filters.SideBar import SidebarFilter
@@ -74,12 +74,12 @@ class FamilySidebarFilter(SidebarFilter):
         self.family_stub.set_relationship((gen.lib.FamilyRelType.CUSTOM, u''))
         self.rtype = gtk.ComboBoxEntry()
         
-        self.event_menu = GrampsWidgets.MonitoredDataType(
+        self.event_menu = widgets.MonitoredDataType(
             self.etype,
             self.filter_event.set_type,
             self.filter_event.get_type)
 
-        self.rel_menu = GrampsWidgets.MonitoredDataType(
+        self.rel_menu = widgets.MonitoredDataType(
             self.rtype,
             self.family_stub.set_relationship,
             self.family_stub.get_relationship)
@@ -87,7 +87,7 @@ class FamilySidebarFilter(SidebarFilter):
         self.filter_marker = gen.lib.Family()
         self.filter_marker.set_marker((gen.lib.MarkerType.CUSTOM, u''))
         self.mtype = gtk.ComboBoxEntry()
-        self.marker_menu = GrampsWidgets.MonitoredDataType(
+        self.marker_menu = widgets.MonitoredDataType(
             self.mtype,
             self.filter_marker.set_marker,
             self.filter_marker.get_marker)

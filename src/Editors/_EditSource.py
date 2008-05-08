@@ -50,7 +50,7 @@ from Editors._EditPrimary import EditPrimary
 
 from DisplayTabs import (NoteTab, GalleryTab, DataEmbedList,
                          SourceBackRefList, RepoEmbedList)
-from GrampsWidgets import MonitoredEntry, PrivacyButton
+from widgets import MonitoredEntry, PrivacyButton
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------

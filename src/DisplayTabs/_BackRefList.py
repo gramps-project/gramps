@@ -40,7 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import Errors
-from GrampsWidgets import SimpleButton
+from widgets import SimpleButton
 from _EmbeddedList import EmbeddedList
 
 #-------------------------------------------------------------------------

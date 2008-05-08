@@ -47,9 +47,9 @@ from pango import UNDERLINE_SINGLE
 #
 #-------------------------------------------------------------------------
 from gen.lib import StyledTextTagType
-from Editors._StyledTextBuffer import (StyledTextBuffer, ALLOWED_STYLES,
-                                       MATCH_START, MATCH_END,
-                                       MATCH_FLAVOR, MATCH_STRING)
+from widgets import (StyledTextBuffer, ALLOWED_STYLES,
+                     MATCH_START, MATCH_END,
+                     MATCH_FLAVOR, MATCH_STRING)
 from Spell import Spell
 from GrampsDisplay import url as display_url
 

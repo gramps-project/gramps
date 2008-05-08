@@ -47,7 +47,7 @@ import Mime
 import ThumbNails
 import Utils
 from Editors import EditPrimary
-from GrampsWidgets import MonitoredDate, MonitoredEntry, PrivacyButton
+from widgets import MonitoredDate, MonitoredEntry, PrivacyButton
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, NoteTab, 
                          MediaBackRefList)
 from Editors.AddMedia import AddMediaObject

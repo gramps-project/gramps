@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsWidgets
+import widgets
 from gen.lib import Repository, RepositoryType
 
 from Filters.SideBar import SidebarFilter
@@ -66,7 +66,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.repo = Repository()
         self.repo.set_type((RepositoryType.CUSTOM,''))
         self.rtype = gtk.ComboBoxEntry()
-        self.event_menu = GrampsWidgets.MonitoredDataType(
+        self.event_menu = widgets.MonitoredDataType(
             self.rtype,
             self.repo.set_type,
             self.repo.get_type)

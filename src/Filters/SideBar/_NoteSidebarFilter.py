@@ -39,7 +39,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import GrampsWidgets
+import widgets
 from gen.lib import Note, NoteType
 
 from Filters.SideBar import SidebarFilter
@@ -62,7 +62,7 @@ class NoteSidebarFilter(SidebarFilter):
         self.note = Note()
         self.note.set_type((NoteType.CUSTOM,''))
         self.ntype = gtk.ComboBoxEntry()
-        self.event_menu = GrampsWidgets.MonitoredDataType(
+        self.event_menu = widgets.MonitoredDataType(
             self.ntype,
             self.note.set_type,
             self.note.get_type)

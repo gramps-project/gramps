@@ -42,7 +42,7 @@ from gtk import glade
 import const
 import Config
 from _EditSecondary import EditSecondary
-from GrampsWidgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 
 #-------------------------------------------------------------------------
 #

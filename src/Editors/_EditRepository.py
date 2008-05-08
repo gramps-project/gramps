@@ -44,7 +44,7 @@ import const
 import Config
 import gen.lib
 
-from GrampsWidgets import MonitoredEntry, MonitoredDataType, PrivacyButton
+from widgets import MonitoredEntry, MonitoredDataType, PrivacyButton
 from DisplayTabs import AddrEmbedList, WebEmbedList, NoteTab, SourceBackRefList
 from Editors._EditPrimary import EditPrimary
 from QuestionDialog import ErrorDialog

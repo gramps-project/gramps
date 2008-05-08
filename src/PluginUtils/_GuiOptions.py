@@ -45,7 +45,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import Utils
-import GrampsWidgets
+import widgets
 import ManagedWindow
 from QuestionDialog import OptionDialog
 from Selectors import selector_factory
@@ -398,8 +398,8 @@ class GuiPersonOption(gtk.HBox):
         
         pevt = gtk.EventBox()
         pevt.add(self.__person_label)
-        person_button = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
-                                                   self.__get_person_clicked)
+        person_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+                                             self.__get_person_clicked)
         person_button.set_relief(gtk.RELIEF_NORMAL)
 
         self.pack_start(pevt, False)
@@ -489,8 +489,8 @@ class GuiFamilyOption(gtk.HBox):
         
         pevt = gtk.EventBox()
         pevt.add(self.__family_label)
-        family_button = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
-                                                   self.__get_family_clicked)
+        family_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+                                             self.__get_family_clicked)
         family_button.set_relief(gtk.RELIEF_NORMAL)
 
         self.pack_start(pevt, False)
@@ -628,8 +628,8 @@ class GuiNoteOption(gtk.HBox):
         
         pevt = gtk.EventBox()
         pevt.add(self.__note_label)
-        note_button = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
-                                                   self.__get_note_clicked)
+        note_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+                                           self.__get_note_clicked)
         note_button.set_relief(gtk.RELIEF_NORMAL)
 
         self.pack_start(pevt, False)
@@ -710,8 +710,8 @@ class GuiMediaOption(gtk.HBox):
         
         pevt = gtk.EventBox()
         pevt.add(self.__media_label)
-        media_button = GrampsWidgets.SimpleButton(gtk.STOCK_INDEX, 
-                                                   self.__get_media_clicked)
+        media_button = widgets.SimpleButton(gtk.STOCK_INDEX, 
+                                            self.__get_media_clicked)
         media_button.set_relief(gtk.RELIEF_NORMAL)
 
         self.pack_start(pevt, False)
@@ -813,9 +813,9 @@ class GuiPersonListOption(gtk.HBox):
 
         # now setup the '+' and '-' pushbutton for adding/removing people from 
         # the container
-        self.__add_person = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, 
+        self.__add_person = widgets.SimpleButton(gtk.STOCK_ADD, 
                                                  self.__add_person_clicked)
-        self.__del_person = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, 
+        self.__del_person = widgets.SimpleButton(gtk.STOCK_REMOVE, 
                                                  self.__del_person_clicked)
         self.__vbbox = gtk.VButtonBox()
         self.__vbbox.add(self.__add_person)
@@ -948,10 +948,10 @@ class GuiSurnameColourOption(gtk.HBox):
         self.scrolled_window.set_shadow_type(gtk.SHADOW_OUT)
         self.pack_start(self.scrolled_window, expand=True, fill=True)
 
-        self.add_surname = GrampsWidgets.SimpleButton(gtk.STOCK_ADD, 
-                                                     self.__add_clicked)
-        self.del_surname = GrampsWidgets.SimpleButton(gtk.STOCK_REMOVE, 
-                                                     self.__del_clicked)
+        self.add_surname = widgets.SimpleButton(gtk.STOCK_ADD, 
+                                                self.__add_clicked)
+        self.del_surname = widgets.SimpleButton(gtk.STOCK_REMOVE, 
+                                                self.__del_clicked)
         self.vbbox = gtk.VButtonBox()
         self.vbbox.add(self.add_surname)
         self.vbbox.add(self.del_surname)

@@ -51,7 +51,7 @@ from _EditSecondary import EditSecondary
 from gen.lib import NoteType
 
 from DisplayTabs import SourceEmbedList, NoteTab
-from GrampsWidgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 
 #-------------------------------------------------------------------------
 #

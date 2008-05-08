@@ -49,7 +49,7 @@ from gen.lib import NoteType
 
 from DisplayTabs import (SourceEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
-from GrampsWidgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
+from widgets import MonitoredSpinButton, MonitoredEntry, PrivacyButton
 from _EditReference import RefTab, EditReference
 from AddMedia import AddMediaObject
 

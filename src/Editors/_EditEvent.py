@@ -48,8 +48,8 @@ from Editors import EditPrimary
 from QuestionDialog import ErrorDialog
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
-from GrampsWidgets import (MonitoredEntry, PlaceEntry, PrivacyButton, 
-                           MonitoredDataType, MonitoredDate)
+from widgets import (MonitoredEntry, PlaceEntry, PrivacyButton, 
+                     MonitoredDataType, MonitoredDate)
 
 #-------------------------------------------------------------------------
 #

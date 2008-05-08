@@ -50,7 +50,7 @@ import Config
 from BasicUtils import name_displayer
 from _EditSecondary import EditSecondary
 from gen.lib import NoteType
-from GrampsWidgets import MonitoredEntry, PrivacyButton
+from widgets import MonitoredEntry, PrivacyButton
 from DisplayTabs import SourceEmbedList, NoteTab
 
 #-------------------------------------------------------------------------

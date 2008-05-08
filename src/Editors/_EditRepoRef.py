@@ -45,7 +45,7 @@ import Config
 from gen.lib import NoteType
 
 from DisplayTabs import NoteTab,AddrEmbedList,WebEmbedList,SourceBackRefList
-from GrampsWidgets import MonitoredEntry, PrivacyButton, MonitoredDataType
+from widgets import MonitoredEntry, PrivacyButton, MonitoredDataType
 from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------

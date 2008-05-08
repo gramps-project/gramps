@@ -54,8 +54,8 @@ import LdsUtils
 from _EditSecondary import EditSecondary
 
 from DisplayTabs import SourceEmbedList,NoteTab
-from GrampsWidgets import (PrivacyButton, MonitoredDate, PlaceEntry, 
-                           MonitoredMenu, MonitoredStrMenu)
+from widgets import (PrivacyButton, MonitoredDate, PlaceEntry, 
+                     MonitoredMenu, MonitoredStrMenu)
 
 _DATA_MAP = {
     gen.lib.LdsOrd.BAPTISM : [

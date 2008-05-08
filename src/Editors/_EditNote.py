@@ -47,11 +47,11 @@ import pango
 #-------------------------------------------------------------------------
 import Config
 from const import GLADE_FILE
-from Editors._StyledTextEditor import StyledTextEditor
+from widgets import StyledTextEditor
 from Editors._EditPrimary import EditPrimary
 from DisplayTabs import GrampsTab, NoteBackRefList
-from GrampsWidgets import (MonitoredDataType, MonitoredCheckbox, 
-                           MonitoredEntry, PrivacyButton)
+from widgets import (MonitoredDataType, MonitoredCheckbox, 
+                     MonitoredEntry, PrivacyButton)
 from gen.lib import Note
 from QuestionDialog import ErrorDialog
 

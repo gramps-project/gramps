@@ -45,8 +45,8 @@ import gen.lib
 
 from DisplayTabs import (NoteTab, GalleryTab, SourceBackRefList, 
                          DataEmbedList, RepoEmbedList)
-from GrampsWidgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
-                           MonitoredDate)
+from widgets import (PrivacyButton, MonitoredEntry, MonitoredMenu, 
+                     MonitoredDate)
 from _EditReference import RefTab, EditReference
 
 #-------------------------------------------------------------------------

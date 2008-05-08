@@ -50,7 +50,7 @@ from Utils import media_path_full
 import DateHandler
 import ThumbNails
 import Config
-import GrampsWidgets
+import widgets
 import Errors
 import gen.utils
 
@@ -521,15 +521,15 @@ class RelationshipView(PageView.PersonNavView):
         name = name_displayer.display(person)
         fmt = '<span size="larger" weight="bold">%s</span>'
         text = fmt % cgi.escape(name)
-        label = GrampsWidgets.DualMarkupLabel(text, _GenderCode[person.gender],
-                                              x_align=1, y_align=0)
+        label = widgets.DualMarkupLabel(text, _GenderCode[person.gender],
+                                        x_align=1, y_align=0)
         if Config.get(Config.RELEDITBTN):
-            button = GrampsWidgets.IconButton(self.edit_button_press, 
-                                              person.handle)
+            button = widgets.IconButton(self.edit_button_press, 
+                                        person.handle)
             self.tooltips.set_tip(button, _('Edit %s') % name)
         else:
             button = None
-        hbox = GrampsWidgets.LinkBox(label, button)
+        hbox = widgets.LinkBox(label, button)
 
         table.attach(hbox, 0, 2, 0, 1)
 
@@ -544,9 +544,9 @@ class RelationshipView(PageView.PersonNavView):
                 
         # GRAMPS ID
 
-        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % _('ID')),
+        subtbl.attach(widgets.BasicLabel("%s:" % _('ID')),
                       1, 2, 0, 1, xoptions=gtk.FILL, yoptions=0)
-        subtbl.attach(GrampsWidgets.BasicLabel(person.gramps_id),
+        subtbl.attach(widgets.BasicLabel(person.gramps_id),
                       2, 3, 0, 1, yoptions=0)
 
         # Birth event.
@@ -556,9 +556,9 @@ class RelationshipView(PageView.PersonNavView):
         else:
             birth_title = _("Birth")
 
-        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % birth_title),
+        subtbl.attach(widgets.BasicLabel("%s:" % birth_title),
                       1, 2, 1, 2, xoptions=gtk.FILL, yoptions=0)
-        subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(birth)),
+        subtbl.attach(widgets.BasicLabel(self.format_event(birth)),
                       2, 3, 1, 2, yoptions=0)
 
         death = ReportUtils.get_death_or_fallback(self.dbstate.db, person)
@@ -567,9 +567,9 @@ class RelationshipView(PageView.PersonNavView):
         else:
             death_title = _("Death")
 
-        subtbl.attach(GrampsWidgets.BasicLabel("%s:" % death_title),
+        subtbl.attach(widgets.BasicLabel("%s:" % death_title),
                       1, 2, 2, 3, xoptions=gtk.FILL, yoptions=0)
-        subtbl.attach(GrampsWidgets.BasicLabel(self.format_event(death)),
+        subtbl.attach(widgets.BasicLabel(self.format_event(death)),
                       2, 3, 2, 3, yoptions=0)
 
 
@@ -649,10 +649,10 @@ class RelationshipView(PageView.PersonNavView):
             return ''
 
     def write_person_data(self, title, data):
-        self.attach.attach(GrampsWidgets.BasicLabel(title), _ALABEL_START, 
+        self.attach.attach(widgets.BasicLabel(title), _ALABEL_START, 
                            _ALABEL_STOP, self.row, self.row+1, 
                            xoptions=gtk.FILL|gtk.SHRINK)
-        self.attach.attach(GrampsWidgets.BasicLabel(data), 
+        self.attach.attach(widgets.BasicLabel(data), 
                            _ADATA_START, _ADATA_STOP, 
                            self.row, self.row+1)
         self.row += 1
@@ -660,17 +660,17 @@ class RelationshipView(PageView.PersonNavView):
     def write_label(self, title, family, is_parent, person = None):
         msg = '<span style="italic" weight="heavy">%s</span>' % cgi.escape(title)
         hbox = gtk.HBox()
-        label = GrampsWidgets.MarkupLabel(msg, x_align=1)
+        label = widgets.MarkupLabel(msg, x_align=1)
         # Draw the collapse/expand button:
         if family != None:
             if self.check_collapsed(person.handle, family.handle):
-                arrow = GrampsWidgets.ExpandCollapseArrow(True,
-                                                self.expand_collapse_press,
-                                                (person, family.handle))
+                arrow = widgets.ExpandCollapseArrow(True,
+                                                    self.expand_collapse_press,
+                                                    (person, family.handle))
             else:
-                arrow = GrampsWidgets.ExpandCollapseArrow(False,
-                                                self.expand_collapse_press,
-                                                (person, family.handle))
+                arrow = widgets.ExpandCollapseArrow(False,
+                                                    self.expand_collapse_press,
+                                                    (person, family.handle))
         else :
             arrow = gtk.Arrow(gtk.ARROW_RIGHT, gtk.SHADOW_OUT)
         hbox.pack_start(arrow, False)
@@ -683,7 +683,7 @@ class RelationshipView(PageView.PersonNavView):
             value = family.gramps_id
         else:
             value = ""
-        self.attach.attach(GrampsWidgets.BasicLabel(value), 
+        self.attach.attach(widgets.BasicLabel(value), 
                            _DATA_START, _DATA_STOP, 
                            self.row, self.row+1, gtk.SHRINK|gtk.FILL)
 
@@ -713,28 +713,29 @@ class RelationshipView(PageView.PersonNavView):
             if not self.toolbar_visible and not self.dbstate.db.readonly:
                 # Show edit-Buttons if toolbar is not visible
                 if self.reorder_sensitive:
-                    add = GrampsWidgets.IconButton(self.reorder, None, 
-                                                   gtk.STOCK_SORT_ASCENDING)
+                    add = widgets.IconButton(self.reorder, None, 
+                                             gtk.STOCK_SORT_ASCENDING)
                     self.tooltips.set_tip(add, ord_msg)
                     hbox.pack_start(add, False)
 
-                add = GrampsWidgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
+                add = widgets.IconButton(call_fcn, None, gtk.STOCK_ADD)
                 self.tooltips.set_tip(add, add_msg)
                 hbox.pack_start(add, False)
 
                 if is_parent:
-                    add = GrampsWidgets.IconButton(self.select_family, None, gtk.STOCK_INDEX)
+                    add = widgets.IconButton(self.select_family, None,
+                                             gtk.STOCK_INDEX)
                     self.tooltips.set_tip(add, sel_msg)
                     hbox.pack_start(add, False)
 
             if family:
-                edit = GrampsWidgets.IconButton(self.edit_family, family.handle, 
-                                                gtk.STOCK_EDIT)
+                edit = widgets.IconButton(self.edit_family, family.handle, 
+                                          gtk.STOCK_EDIT)
                 self.tooltips.set_tip(edit, edit_msg)
                 hbox.pack_start(edit, False)
                 if not self.dbstate.db.readonly:
-                    delete = GrampsWidgets.IconButton(del_fcn, family.handle, 
-                                                      gtk.STOCK_REMOVE)
+                    delete = widgets.IconButton(del_fcn, family.handle, 
+                                                gtk.STOCK_REMOVE)
                     self.tooltips.set_tip(delete, del_msg)
                     hbox.pack_start(delete, False)
             self.attach.attach(hbox, _BTN_START, _BTN_STOP, self.row, self.row+1)
@@ -790,13 +791,13 @@ class RelationshipView(PageView.PersonNavView):
                 active = self.dbstate.active.handle
                 hbox = gtk.HBox()
                 if self.check_collapsed(person.handle, "SIBLINGS"):
-                    arrow = GrampsWidgets.ExpandCollapseArrow(True,
-                                                self.expand_collapse_press,
-                                                (person, "SIBLINGS"))
+                    arrow = widgets.ExpandCollapseArrow(True,
+                                                        self.expand_collapse_press,
+                                                        (person, "SIBLINGS"))
                 else:
-                    arrow = GrampsWidgets.ExpandCollapseArrow(False,
-                                                self.expand_collapse_press,
-                                                (person, "SIBLINGS"))
+                    arrow = widgets.ExpandCollapseArrow(False,
+                                                        self.expand_collapse_press,
+                                                        (person, "SIBLINGS"))
                 hbox.pack_start(arrow, False)
                 label_cell = self.build_label_cell(_('Siblings'))
                 hbox.pack_start(label_cell, True)
@@ -837,16 +838,14 @@ class RelationshipView(PageView.PersonNavView):
                     self.row += 1 # now advance it
                 else:
                     hbox = gtk.HBox()
-                    addchild = GrampsWidgets.IconButton(
-                                    self.add_child_to_fam, 
-                                    family.handle, 
-                                    gtk.STOCK_ADD)
+                    addchild = widgets.IconButton(self.add_child_to_fam, 
+                                                  family.handle, 
+                                                  gtk.STOCK_ADD)
                     self.tooltips.set_tip(addchild, 
                                           _('Add new child to family'))
-                    selchild = GrampsWidgets.IconButton(
-                                    self.sel_child_to_fam, 
-                                    family.handle, 
-                                    gtk.STOCK_INDEX)
+                    selchild = widgets.IconButton(self.sel_child_to_fam, 
+                                                  family.handle, 
+                                                  gtk.STOCK_INDEX)
                     self.tooltips.set_tip(selchild, 
                                           _('Add existing child to family'))
                     hbox.pack_start(addchild, False)
@@ -886,17 +885,16 @@ class RelationshipView(PageView.PersonNavView):
             initial_name = False
             if handle:
                 name = self.get_name(handle, True)
-                link_label = GrampsWidgets.LinkLabel(
-                    name, self._button_press, handle)
+                link_label = widgets.LinkLabel(name, self._button_press, handle)
                 if self.use_shade:
                     link_label.modify_bg(gtk.STATE_NORMAL, self.color)
                 if Config.get(Config.RELEDITBTN):
-                    button = GrampsWidgets.IconButton(self.edit_button_press, 
-                                                            handle)
+                    button = widgets.IconButton(self.edit_button_press, 
+                                                handle)
                     self.tooltips.set_tip(button, _('Edit %s') % name[0])
                 else:
                     button = None
-                vbox.pack_start(GrampsWidgets.LinkBox(link_label, button),
+                vbox.pack_start(widgets.LinkBox(link_label, button),
                                 expand=False)
             else:
                 link_label = gtk.Label(_('Unknown'))
@@ -914,8 +912,8 @@ class RelationshipView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        label = GrampsWidgets.MarkupLabel(format % cgi.escape(title),
-                                          x_align=1, y_align=0)
+        label = widgets.MarkupLabel(format % cgi.escape(title),
+                                    x_align=1, y_align=0)
         if Config.get(Config.RELEDITBTN):
             label.set_padding(0, 5)
         self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
@@ -926,16 +924,15 @@ class RelationshipView(PageView.PersonNavView):
         
         if handle:
             name = self.get_name(handle, True)
-            link_label = GrampsWidgets.LinkLabel(
-                name, self._button_press, handle)
+            link_label = widgets.LinkLabel(name, self._button_press, handle)
             if self.use_shade:
                 link_label.modify_bg(gtk.STATE_NORMAL, self.color)
             if Config.get(Config.RELEDITBTN):
-                button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+                button = widgets.IconButton(self.edit_button_press, handle)
                 self.tooltips.set_tip(button, _('Edit %s') % name[0])
             else:
                 button = None
-            vbox.pack_start(GrampsWidgets.LinkBox(link_label, button))
+            vbox.pack_start(widgets.LinkBox(link_label, button))
         else:
             link_label = gtk.Label(_('Unknown'))
             link_label.set_alignment(0, 1)
@@ -945,7 +942,7 @@ class RelationshipView(PageView.PersonNavView):
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                vbox.pack_start(GrampsWidgets.MarkupLabel(value))
+                vbox.pack_start(widgets.MarkupLabel(value))
 
         eventbox = gtk.EventBox()
         if self.use_shade:
@@ -963,8 +960,8 @@ class RelationshipView(PageView.PersonNavView):
         else:
             format = "%s"
 
-        lbl = GrampsWidgets.MarkupLabel(format % cgi.escape(title),
-                                        x_align=1, y_align=.5)
+        lbl = widgets.MarkupLabel(format % cgi.escape(title),
+                                  x_align=1, y_align=.5)
         if Config.get(Config.RELEDITBTN):
             lbl.set_padding(0, 5)
         return lbl
@@ -1006,23 +1003,23 @@ class RelationshipView(PageView.PersonNavView):
             link_func = None
 
         name = self.get_name(handle, True)
-        link_label = GrampsWidgets.LinkLabel(name, link_func, handle, format)
+        link_label = widgets.LinkLabel(name, link_func, handle, format)
 
         if self.use_shade:
             link_label.modify_bg(gtk.STATE_NORMAL, self.color)
         link_label.set_padding(3, 0)
         if child_should_be_linked and Config.get(Config.RELEDITBTN):
-            button = GrampsWidgets.IconButton(self.edit_button_press, handle)
+            button = widgets.IconButton(self.edit_button_press, handle)
             self.tooltips.set_tip(button, _('Edit %s') % name[0])
         else:
             button = None
 
         hbox = gtk.HBox()
-        l = GrampsWidgets.BasicLabel("%d." % index)
+        l = widgets.BasicLabel("%d." % index)
         l.set_width_chars(3)
         l.set_alignment(1.0, 0.5)
         hbox.pack_start(l, False, False, 0)
-        hbox.pack_start(GrampsWidgets.LinkBox(link_label, button),
+        hbox.pack_start(widgets.LinkBox(link_label, button),
                         False, False, 4)
         hbox.show()
         vbox.pack_start(hbox)
@@ -1030,13 +1027,13 @@ class RelationshipView(PageView.PersonNavView):
         if self.show_details:
             value = self.info_string(handle)
             if value:
-                l = GrampsWidgets.MarkupLabel(value)
+                l = widgets.MarkupLabel(value)
                 l.set_padding(48, 0)
                 vbox.add(l)
 
     def write_data(self, box, title, start_col=_SDATA_START,
                    stop_col=_SDATA_STOP):
-        box.add(GrampsWidgets.BasicLabel(title))
+        box.add(widgets.BasicLabel(title))
 
     def info_string(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)
@@ -1137,7 +1134,7 @@ class RelationshipView(PageView.PersonNavView):
 
     def write_relationship(self, box, family):
         msg = _('Relationship type: %s') % cgi.escape(str(family.get_relationship()))
-        box.add(GrampsWidgets.MarkupLabel(msg))
+        box.add(widgets.MarkupLabel(msg))
 
     def place_name(self, handle):
         p = self.dbstate.db.get_place_from_handle(handle)
@@ -1242,13 +1239,13 @@ class RelationshipView(PageView.PersonNavView):
 
             hbox = gtk.HBox()
             if self.check_collapsed(person.handle, "CHILDREN"):
-                arrow = GrampsWidgets.ExpandCollapseArrow(True,
-                                            self.expand_collapse_press,
-                                            (person, "CHILDREN"))
+                arrow = widgets.ExpandCollapseArrow(True,
+                                                    self.expand_collapse_press,
+                                                    (person, "CHILDREN"))
             else:
-                arrow = GrampsWidgets.ExpandCollapseArrow(False,
-                                            self.expand_collapse_press,
-                                            (person, "CHILDREN"))
+                arrow = widgets.ExpandCollapseArrow(False,
+                                                    self.expand_collapse_press,
+                                                    (person, "CHILDREN"))
             hbox.pack_start(arrow, False)
             label_cell = self.build_label_cell(_('Children'))
             hbox.pack_start(label_cell, True)
@@ -1281,16 +1278,14 @@ class RelationshipView(PageView.PersonNavView):
                 self.row += 1 # now advance it
             else:
                 hbox = gtk.HBox()
-                addchild = GrampsWidgets.IconButton(
-                                self.add_child_to_fam, 
-                                family.handle, 
-                                gtk.STOCK_ADD)
+                addchild = widgets.IconButton(self.add_child_to_fam, 
+                                              family.handle, 
+                                              gtk.STOCK_ADD)
                 self.tooltips.set_tip(addchild, 
                                       _('Add new child to family'))
-                selchild = GrampsWidgets.IconButton(
-                                self.sel_child_to_fam, 
-                                family.handle, 
-                                gtk.STOCK_INDEX)
+                selchild = widgets.IconButton(self.sel_child_to_fam, 
+                                              family.handle, 
+                                              gtk.STOCK_INDEX)
                 self.tooltips.set_tip(selchild, 
                                       _('Add existing child to family'))
                 hbox.pack_start(addchild, False)

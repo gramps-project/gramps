@@ -36,7 +36,7 @@ import const
 import Config
 from _EditSecondary import EditSecondary
 
-from GrampsWidgets import MonitoredEntry
+from widgets import MonitoredEntry
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
