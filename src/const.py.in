@@ -31,6 +31,7 @@ Provides constants for other modules
 #
 #-------------------------------------------------------------------------
 import os
+import sys
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -94,7 +95,14 @@ else:
 # this one, and that the plugins directory is in a directory below this.
 #
 #-------------------------------------------------------------------------
-ROOT_DIR       = os.path.abspath(os.path.dirname(__file__))
+# test for sys.frozen to detect a py2exe executable on Windows
+if hasattr(sys, "frozen"):
+    ROOT_DIR = os.path.abspath(os.path.dirname(
+        unicode(sys.executable, sys.getfilesystemencoding())))
+else:
+    ROOT_DIR = os.path.abspath(os.path.dirname(
+        unicode(__file__, sys.getfilesystemencoding())))
+
 IMAGE_DIR      = os.path.join(ROOT_DIR, "images")
 
 CUSTOM_FILTERS = os.path.join(HOME_DIR, "custom_filters.xml")
@@ -243,4 +251,5 @@ LONGOPTS = [
 ]
 
 SHORTOPTS = "O:i:o:f:a:p:d:lhu?"
+
 
