@@ -31,7 +31,7 @@ from gettext import gettext as _
 import re
 
 import logging
-_LOG = logging.getLogger(".Editors.StyledTextBuffer")
+_LOG = logging.getLogger(".widgets.styledtextbuffer")
 
 #-------------------------------------------------------------------------
 #
