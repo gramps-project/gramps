@@ -23,6 +23,8 @@
 """Custom widgets."""
 
 from grampswidgets import *
+from multitypecomboentry import MultiTypeComboEntry
+from toolbarwidgets import *
 from styledtextbuffer import *
 from styledtexteditor import *
 

@@ -8,6 +8,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/widgets
 pkgdata_PYTHON = \
 	__init__.py \
 	grampswidgets.py \
+	multitypecomboentry.py \
+	toolbarwidgets.py \
 	styledtextbuffer.py \
 	styledtexteditor.py
 

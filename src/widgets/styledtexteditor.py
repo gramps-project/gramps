@@ -30,7 +30,7 @@
 from gettext import gettext as _
 
 import logging
-_LOG = logging.getLogger(".Editors.StyledTextEditor")
+_LOG = logging.getLogger(".widgets.styledtexteditor")
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +49,8 @@ from pango import UNDERLINE_SINGLE
 from gen.lib import StyledTextTagType
 from widgets import (StyledTextBuffer, ALLOWED_STYLES,
                      MATCH_START, MATCH_END,
-                     MATCH_FLAVOR, MATCH_STRING)
+                     MATCH_FLAVOR, MATCH_STRING,
+                     ComboToolAction, SpringSeparatorAction)
 from Spell import Spell
 from GrampsDisplay import url as display_url
 
@@ -350,19 +351,36 @@ class StyledTextEditor(gtk.TextView):
         ]
         
         # ...last the custom actions, which have custom proxies
+        items = [f.get_name() for f in self.get_pango_context().list_families()]
+        default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTFACE]
         fontface_action = ComboToolAction(str(StyledTextTagType.FONTFACE),
                                           _("Font family"),
-                                          _("Font family"), None)
+                                          _("Font family"),
+                                          None,
+                                          items,
+                                          str(default),
+                                          editable=False)
+        fontface_action.connect('activate', self._on_comboaction_activate)
+
+        items = [str(size) for size in FONT_SIZES]
+        default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTSIZE]
         fontsize_action = ComboToolAction(str(StyledTextTagType.FONTSIZE),
                                           _("Font size"),
-                                          _("Font size"), None)
+                                          _("Font size"),
+                                          None,
+                                          items,
+                                          str(default),
+                                          sortable=False,
+                                          validator=is_valid_fontsize)
+        fontsize_action.connect('activate', self._on_comboaction_activate)
+
         spring = SpringSeparatorAction("spring", "", "", None)
         
         # action accelerators
         self.action_accels = {
-            '<Control>i': 'italic',
-            '<Control>b': 'bold',
-            '<Control>u': 'underline',
+            '<Control>i': str(StyledTextTagType.ITALIC),
+            '<Control>b': str(StyledTextTagType.BOLD),
+            '<Control>u': str(StyledTextTagType.UNDERLINE),
         }
 
         # create the action group and insert all the actions
@@ -379,15 +397,6 @@ class StyledTextEditor(gtk.TextView):
         uimanager.add_ui_from_string(FORMAT_TOOLBAR)
         uimanager.ensure_update()
         
-        # now that widget is created for the custom actions set them up
-        fontface = uimanager.get_widget('/ToolBar/%d' %
-                                        StyledTextTagType.FONTFACE)
-        set_fontface_toolitem(fontface, self._on_combotoolitem_changed)
-
-        fontsize = uimanager.get_widget('/ToolBar/%d' %
-                                        StyledTextTagType.FONTSIZE)
-        set_fontsize_toolitem(fontsize, self._on_combotoolitem_changed)
-
         # get the toolbar and set it's style
         toolbar = uimanager.get_widget('/ToolBar')      
         toolbar.set_style(gtk.TOOLBAR_ICONS)
@@ -477,13 +486,21 @@ class StyledTextEditor(gtk.TextView):
                        (style, str(value)))
             self.textbuffer.apply_style(style, value)
 
-    def _on_combotoolitem_changed(self, combobox, style):
+    def _on_comboaction_activate(self, action):
         if self._internal_style_change:
             return
         
-        value = StyledTextTagType.STYLE_TYPE[style](combobox.get_active_text())
-        _LOG.debug("applying style '%d' with value '%s'" % (style, str(value)))
-        self.textbuffer.apply_style(style, value)
+        style = int(action.get_name())
+
+        text = action.get_active_value()
+        try:
+            value = StyledTextTagType.STYLE_TYPE[style](text)
+            _LOG.debug("applying style '%d' with value '%s'" %
+                       (style, str(value)))
+            self.textbuffer.apply_style(style, value)
+        except ValueError:
+            _LOG.debug("unable to convert '%s' to '%s'" %
+                       (text, StyledTextTagType.STYLE_TYPE[style]))
 
     def _format_clear_cb(self, action):
         """Remove all formats from the selection.
@@ -496,7 +513,7 @@ class StyledTextEditor(gtk.TextView):
             self.textbuffer.remove_style(style)
 
     def _on_buffer_style_changed(self, buffer, changed_styles):
-        # set state of toggle action
+        # update action values
         for style in changed_styles.keys():
             if str(style) in self.toggle_actions:
                 action = self.action_group.get_action(str(style))
@@ -506,25 +523,9 @@ class StyledTextEditor(gtk.TextView):
             
             if ((style == StyledTextTagType.FONTFACE) or
                 (style == StyledTextTagType.FONTSIZE)):
-                
                 action = self.action_group.get_action(str(style))
-                combo = action.get_proxies()[0].child
-                model = combo.get_model()
-                iter = model.get_iter_first()
-                while iter:
-                    if (StyledTextTagType.STYLE_TYPE[style](
-                        model.get_value(iter, 0)) == changed_styles[style]):
-                        break
-                    iter = model.iter_next(iter)
-
                 self._internal_style_change = True
-                if iter is None:
-                    combo.child.set_text(str(changed_styles[style]))
-                    if style == StyledTextTagType.FONTFACE:
-                        _LOG.debug('font family "%s" is not installed' %
-                                   changed_styles[style])
-                else:
-                    combo.set_active_iter(iter)
+                action.set_active_value(str(changed_styles[style]))
                 self._internal_style_change = False
             
     def _spell_change_cb(self, menuitem, language):
@@ -588,128 +589,9 @@ class StyledTextEditor(gtk.TextView):
 
 #-------------------------------------------------------------------------
 #
-# ComboToolItem class
-#
-#-------------------------------------------------------------------------
-class ComboToolItem(gtk.ToolItem):
-    
-    __gtype_name__ = "ComboToolItem"
-    
-    def __init__(self):
-        gtk.ToolItem.__init__(self)
-        
-        self.set_border_width(2)
-        self.set_homogeneous(False)
-        self.set_expand(False)
-        
-        self.combobox = gtk.combo_box_entry_new_text()
-        self.combobox.show()
-        self.add(self.combobox)
-        
-    def set_entry_editable(self, editable):
-        self.combobox.child.set_editable(editable)
-
-#-------------------------------------------------------------------------
-#
-# ComboToolAction class
-#
-#-------------------------------------------------------------------------
-class ComboToolAction(gtk.Action):
-    
-    __gtype_name__ = "ComboToolAction"
-    
-    def __init__(self, name, label, tooltip, stock_id):
-        gtk.Action.__init__(self, name, label, tooltip, stock_id)
-        ##self.set_tool_item_type(ComboToolItem)
-        
-    ##def create_tool_item(self):
-        ##combobox = ComboToolButton()
-        ###self.connect_proxy(combobox)
-        ##return combobox
-        
-    ##def connect_proxy(self, proxy):
-        ##gtk.Action.connect_proxy(self, proxy)
-        
-        ##if isinstance(proxy, ComboToolButton):
-            ##proxy.combobox.connect('changed', self.changed)
-
-    ##def changed(self, combobox):
-        ##self.activate()
-ComboToolAction.set_tool_item_type(ComboToolItem)
-
-#-------------------------------------------------------------------------
-#
-# SpringSeparatorToolItem class
-#
-#-------------------------------------------------------------------------
-class SpringSeparatorToolItem(gtk.SeparatorToolItem):
-    
-    __gtype_name__ = "SpringSeparatorToolItem"
-    
-    def __init__(self):
-        gtk.SeparatorToolItem.__init__(self)
-        
-        self.set_draw(False)
-        self.set_expand(True)
-        
-#-------------------------------------------------------------------------
-#
-# SpringSeparatorAction class
-#
-#-------------------------------------------------------------------------
-class SpringSeparatorAction(gtk.Action):
-    
-    __gtype_name__ = "SpringSeparatorAction"
-    
-    def __init__(self, name, label, tooltip, stock_id):
-        gtk.Action.__init__(self, name, label, tooltip, stock_id)
-
-SpringSeparatorAction.set_tool_item_type(SpringSeparatorToolItem)
-
-#-------------------------------------------------------------------------
-#
 # Module functions
 #
 #-------------------------------------------------------------------------
-def set_fontface_toolitem(combotoolitem, callback):
-    """Setup font family comboboxentry."""
-    combotoolitem.set_entry_editable(False)
-
-    fontface = combotoolitem.child
-
-    families = [family.get_name()
-                for family in fontface.get_pango_context().list_families()]
-    families.sort()
-    for family in families:
-        fontface.append_text(family)
-            
-    try:
-        def_fam = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTFACE]
-        default = families.index(def_fam)
-    except ValueError:
-        default = 0
-    fontface.set_active(default)
-
-    fontface.connect('changed', callback, StyledTextTagType.FONTFACE)
-    
-def set_fontsize_toolitem(combotoolitem, callback):
-    """Setup font size comboboxentry."""
-    combotoolitem.set_size_request(60, -1)
-
-    fontsize = combotoolitem.child
-
-    for size in FONT_SIZES:
-        fontsize.append_text(str(size))
-        
-    try:
-        def_size = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTSIZE]
-        default = FONT_SIZES.index(def_size)
-    except ValueError:
-        default = 0
-    fontsize.set_active(default)
-    
-    fontsize.connect('changed', callback, StyledTextTagType.FONTSIZE)
-
 def color_to_hex(color):
     """Convert gtk.gdk.Color to hex string."""
     hexstring = ""
@@ -724,3 +606,10 @@ def hex_to_color(hex):
     """Convert hex string to gtk.gdk.Color."""
     color = gtk.gdk.color_parse(hex)
     return color
+
+def is_valid_fontsize(text):
+    try:
+        size = int(text)
+        return (size > 0) and (size < 73)
+    except ValueError:
+        return False
