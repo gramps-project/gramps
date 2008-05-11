@@ -2307,7 +2307,7 @@ class IndividualPage(BasePage):
         date = _dd.display(event.get_date_object())
 
         if date and place:
-            text = _("(%(date) s&nbsp;&nbsp; at &nbsp;&nbsp; %(place)s") % { 'date': date, 'place': place }
+            text = _("%(date) s&nbsp;&nbsp; at &nbsp;&nbsp; %(place)s") % { 'date': date, 'place': place }
         elif place:
             text = _("at &nbsp;&nbsp; %(place)s") % { 'place': place }
         elif date:
@@ -2343,6 +2343,7 @@ class IndividualPage(BasePage):
                     if format:
                         text += u"<pre>%s</pre>" % note_text
                     else:
+                        text += "<br />"
                         text += u"<br />".join(note_text.split("\n"))
         return text
 
