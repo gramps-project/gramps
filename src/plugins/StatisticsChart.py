@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006 Donald N. Allingham
+# Copyright (C) 2004-2005 Eero Tamminen
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
 #
@@ -18,9 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-#
-# Statistics plugin (w) 2004-2005 by Eero Tamminen with lots of help
-# from Alex Roitman.
 #
 # To see things still missing, search for "TODO"...
 #

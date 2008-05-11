@@ -5,6 +5,7 @@
 #
 # Adapted from GraphViz.py (now deprecated)
 #    Copyright (C) 2000-2007  Donald N. Allingham
+#    Copyright (C) 2005-2006  Eero Tamminen
 #    Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 #    Contributions by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>
 #
