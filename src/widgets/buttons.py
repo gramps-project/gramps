@@ -26,6 +26,8 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from gettext import gettext as _
+
 import logging
 _LOG = logging.getLogger(".widgets.buttons")
 
