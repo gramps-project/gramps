@@ -329,7 +329,7 @@ class GVPsDoc(GVDocBase):
     def __init__(self, options, paper_style):
         # DPI must always be 72 for PDF. 
         # GV documentation says dpi is only for image formats.
-        options.handler.options_dict['dpi'] = 72
+        options.menu.get_option_by_name('dpi').set_value(72)
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
@@ -527,7 +527,7 @@ class GVPdfGvDoc(GVDocBase):
     def __init__(self, options, paper_style):
         # DPI must always be 72 for PDF. 
         # GV documentation says dpi is only for image formats.
-        options.handler.options_dict['dpi'] = 72
+        options.menu.get_option_by_name('dpi').set_value(72)
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
@@ -565,7 +565,7 @@ class GVPdfGsDoc(GVDocBase):
     def __init__(self, options, paper_style):
         # DPI must always be 72 for PDF. 
         # GV documentation says dpi is only for image formats.
-        options.handler.options_dict['dpi'] = 72
+        options.menu.get_option_by_name('dpi').set_value(72)
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
