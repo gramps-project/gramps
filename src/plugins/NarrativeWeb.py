@@ -2037,7 +2037,7 @@ class IndividualPage(BasePage):
             self.person_link(of, url, _nd.display(person), gid)
         else:
             of.write(_nd.display(person))
-        if rel != gen.lib.ChildRefType.BIRTH:
+        if rel and rel != gen.lib.ChildRefType.BIRTH:
             of.write('&nbsp;&nbsp;&nbsp;(%s)' % str(rel))
         of.write('</td>\n')
 
@@ -2058,15 +2058,15 @@ class IndividualPage(BasePage):
                 family = db.get_family_from_handle(family_handle)
 
                 # Get the mother and father relationships
-                frel = ""
-                mrel = ""
+                frel = None
+                mrel = None
                 sibling = set()
                 child_handle = self.person.get_handle()
                 child_ref_list = family.get_child_ref_list()
                 for child_ref in child_ref_list:
                     if child_ref.ref == child_handle:
-                        frel = str(child_ref.get_father_relation())
-                        mrel = str(child_ref.get_mother_relation())
+                        frel = child_ref.get_father_relation()
+                        mrel = child_ref.get_mother_relation()
 
                 if not first:
                     of.write('\t\t\t<tr>\n')
