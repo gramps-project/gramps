@@ -44,11 +44,12 @@ import Config
 import gen.lib
 import GrampsDisplay
 from Editors import EditPrimary
+from objectentries import PlaceEntry
 
 from QuestionDialog import ErrorDialog
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
-from widgets import (MonitoredEntry, PlaceEntry, PrivacyButton, 
+from widgets import (MonitoredEntry, PrivacyButton, 
                      MonitoredDataType, MonitoredDate)
 
 #-------------------------------------------------------------------------

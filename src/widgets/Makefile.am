@@ -7,11 +7,19 @@ pkgdatadir = $(datadir)/@PACKAGE@/widgets
 
 pkgdata_PYTHON = \
 	__init__.py \
+	buttons.py \
+	expandcollapsearrow.py \
 	grampswidgets.py \
+	labels.py \
+	linkbox.py \
+	monitoredwidgets.py \
 	multitypecomboentry.py \
-	toolbarwidgets.py \
+	statusbar.py \
 	styledtextbuffer.py \
-	styledtexteditor.py
+	styledtexteditor.py \
+	toolbarwidgets.py \
+	unused.py \
+	validatedmaskedentry.py
 
 pkgpyexecdir = @pkgpyexecdir@/widgets
 pkgpythondir = @pkgpythondir@/widgets
@@ -24,3 +32,4 @@ GRAMPS_PY_MODPATH = "../"
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
 	pychecker $(pkgdata_PYTHON));
+

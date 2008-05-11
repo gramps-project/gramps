@@ -52,9 +52,10 @@ from BasicUtils import name_displayer
 import LdsUtils
 
 from _EditSecondary import EditSecondary
+from objectentries import PlaceEntry
 
 from DisplayTabs import SourceEmbedList,NoteTab
-from widgets import (PrivacyButton, MonitoredDate, PlaceEntry, 
+from widgets import (PrivacyButton, MonitoredDate, 
                      MonitoredMenu, MonitoredStrMenu)
 
 _DATA_MAP = {

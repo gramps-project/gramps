@@ -45,9 +45,11 @@ import gen.lib
 
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 
                          EventBackRefList, AttrEmbedList)
-from widgets import (PrivacyButton, MonitoredEntry, PlaceEntry, 
+from widgets import (PrivacyButton, MonitoredEntry,
                      MonitoredDate, MonitoredDataType)
 from _EditReference import RefTab, EditReference
+
+from objectentries import PlaceEntry
 
 #-------------------------------------------------------------------------
 #

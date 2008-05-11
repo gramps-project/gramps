@@ -22,12 +22,22 @@
 
 """Custom widgets."""
 
-from grampswidgets import *
+from monitoredwidgets import *
+from labels import *
+from buttons import *
+from expandcollapsearrow import ExpandCollapseArrow
+from linkbox import LinkBox
+from statusbar import Statusbar
+from validatedmaskedentry import ValidatableMaskedEntry
 from multitypecomboentry import MultiTypeComboEntry
 from toolbarwidgets import *
 from styledtextbuffer import *
 from styledtexteditor import *
+# moved to src/ because of circular dependency
+#from objectentries import *
+from unused import *
 
+# Enabling custom widgets to be included in Glade
 from gtk.glade import set_custom_handler
 
 def get_custom_handler(glade, function_name, widget_name, 
