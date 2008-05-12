@@ -30,7 +30,8 @@ pkgdata_PYTHON = \
 	_EditSource.py \
 	_EditSourceRef.py \
 	_EditNote.py \
-	_EditUrl.py
+	_EditUrl.py \
+	ObjectEntries.py
 
 pkgpyexecdir = @pkgpyexecdir@/Editors
 pkgpythondir = @pkgpythondir@/Editors

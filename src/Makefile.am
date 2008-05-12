@@ -81,8 +81,7 @@ gdir_PYTHON = \
 	ViewManager.py\
 	UndoHistory.py\
 	PlaceUtils.py\
-	ProgressDialog.py \
-	objectentries.py
+	ProgressDialog.py
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo

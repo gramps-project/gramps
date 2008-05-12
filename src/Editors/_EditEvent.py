@@ -43,8 +43,8 @@ import const
 import Config
 import gen.lib
 import GrampsDisplay
-from Editors import EditPrimary
-from objectentries import PlaceEntry
+from _EditPrimary import EditPrimary
+from ObjectEntries import PlaceEntry
 
 from QuestionDialog import ErrorDialog
 from DisplayTabs import (SourceEmbedList, NoteTab, GalleryTab, 

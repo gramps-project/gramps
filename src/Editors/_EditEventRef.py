@@ -49,7 +49,7 @@ from widgets import (PrivacyButton, MonitoredEntry,
                      MonitoredDate, MonitoredDataType)
 from _EditReference import RefTab, EditReference
 
-from objectentries import PlaceEntry
+from ObjectEntries import PlaceEntry
 
 #-------------------------------------------------------------------------
 #
