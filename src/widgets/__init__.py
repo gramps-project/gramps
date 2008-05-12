@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008  The Gramps Developers
+# Copyright (C) 2008  Zsolt Foldvari
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,8 +33,6 @@ from multitypecomboentry import MultiTypeComboEntry
 from toolbarwidgets import *
 from styledtextbuffer import *
 from styledtexteditor import *
-# moved to src/ because of circular dependency
-#from objectentries import *
 from unused import *
 
 # Enabling custom widgets to be included in Glade
