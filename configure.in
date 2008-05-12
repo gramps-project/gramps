@@ -176,6 +176,7 @@ src/PluginUtils/Makefile
 src/ReportBase/Makefile
 src/plugins/Makefile
 src/DateHandler/Makefile
+src/widgets/Makefile
 src/gen/Makefile
 src/gen/proxy/Makefile
 src/gen/db/Makefile
