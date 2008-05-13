@@ -133,12 +133,15 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
 
         paper_size          = paper_style.get_size()
 
+        # Subtract 0.01" from the drawing area to make some room between
+        # this area and the margin in order to compensate for different
+        # rounding errors internally in dot
         sizew = ( paper_size.get_width()       - 
                   self.paper.get_left_margin() - 
-                  self.paper.get_right_margin() ) / 2.54
+                  self.paper.get_right_margin() ) / 2.54 - 0.01
         sizeh = ( paper_size.get_height()      - 
                   self.paper.get_top_margin()  -
-                  self.paper.get_bottom_margin() ) / 2.54
+                  self.paper.get_bottom_margin() ) / 2.54 - 0.01
                   
         pheight = paper_size.get_height_inches()
         pwidth = paper_size.get_width_inches()
@@ -350,6 +353,14 @@ class GVPsDoc(GVDocBase):
 #
 #-------------------------------------------------------------------------------
 class GVSvgDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # GV documentation allow multiple pages only for ps format,
+        # which also includes pdf via ghostscript.
+        options.handler.options_dict['v_pages'] = 1
+        options.handler.options_dict['h_pages'] = 1
+        GVDocBase.__init__(self, options, paper_style)
+
     def close(self):
         GVDocBase.close(self)
         
@@ -363,7 +374,7 @@ class GVSvgDoc(GVDocBase):
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
-        # Generate the PS file.
+        # Generate the SVG file.
         os.system( 'dot -Tsvg -o"%s" "%s"' % (self.filename,tmp_dot) )
         
         # Delete the temporary dot file
@@ -379,6 +390,14 @@ class GVSvgDoc(GVDocBase):
 #
 #-------------------------------------------------------------------------------
 class GVSvgzDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # GV documentation allow multiple pages only for ps format,
+        # which also includes pdf via ghostscript.
+        options.handler.options_dict['v_pages'] = 1
+        options.handler.options_dict['h_pages'] = 1
+        GVDocBase.__init__(self, options, paper_style)
+
     def close(self):
         GVDocBase.close(self)
         
@@ -392,7 +411,7 @@ class GVSvgzDoc(GVDocBase):
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
-        # Generate the PS file.
+        # Generate the SVGZ file.
         os.system( 'dot -Tsvgz -o"%s" "%s"' % (self.filename,tmp_dot) )
         
         # Delete the temporary dot file
@@ -408,6 +427,14 @@ class GVSvgzDoc(GVDocBase):
 #
 #-------------------------------------------------------------------------------
 class GVPngDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # GV documentation allow multiple pages only for ps format,
+        # which also includes pdf via ghostscript.
+        options.handler.options_dict['v_pages'] = 1
+        options.handler.options_dict['h_pages'] = 1
+        GVDocBase.__init__(self, options, paper_style)
+
     def close(self):
         GVDocBase.close(self)
         
@@ -421,7 +448,7 @@ class GVPngDoc(GVDocBase):
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
-        # Generate the PS file.
+        # Generate the PNG file.
         os.system( 'dot -Tpng -o"%s" "%s"' % (self.filename,tmp_dot) )
         
         # Delete the temporary dot file
@@ -437,6 +464,14 @@ class GVPngDoc(GVDocBase):
 #
 #-------------------------------------------------------------------------------
 class GVJpegDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # GV documentation allow multiple pages only for ps format,
+        # which also includes pdf via ghostscript.
+        options.handler.options_dict['v_pages'] = 1
+        options.handler.options_dict['h_pages'] = 1
+        GVDocBase.__init__(self, options, paper_style)
+
     def close(self):
         GVDocBase.close(self)
         
@@ -450,7 +485,7 @@ class GVJpegDoc(GVDocBase):
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
-        # Generate the PS file.
+        # Generate the JPG file.
         os.system( 'dot -Tjpg -o"%s" "%s"' % (self.filename,tmp_dot) )
         
         # Delete the temporary dot file
@@ -466,6 +501,14 @@ class GVJpegDoc(GVDocBase):
 #
 #-------------------------------------------------------------------------------
 class GVGifDoc(GVDocBase):
+    
+    def __init__(self, options, paper_style):
+        # GV documentation allow multiple pages only for ps format,
+        # which also includes pdf via ghostscript.
+        options.handler.options_dict['v_pages'] = 1
+        options.handler.options_dict['h_pages'] = 1
+        GVDocBase.__init__(self, options, paper_style)
+
     def close(self):
         GVDocBase.close(self)
         
@@ -479,7 +522,7 @@ class GVGifDoc(GVDocBase):
         dotfile.write(self.dot.getvalue())
         dotfile.close()
 
-        # Generate the PS file.
+        # Generate the GIF file.
         os.system( 'dot -Tgif -o"%s" "%s"' % (self.filename,tmp_dot) )
         
         # Delete the temporary dot file
@@ -500,6 +543,10 @@ class GVPdfGvDoc(GVDocBase):
         # DPI must always be 72 for PDF. 
         # GV documentation says dpi is only for image formats.
         options.handler.options_dict['dpi'] = 72
+        # GV documentation allow multiple pages only for ps format,
+        # which also includes pdf via ghostscript.
+        options.handler.options_dict['v_pages'] = 1
+        options.handler.options_dict['h_pages'] = 1
         GVDocBase.__init__(self, options, paper_style)
     
     def close(self):
@@ -757,14 +804,16 @@ class GraphvizReportDialog(ReportDialog):
         h_pages.set_help(_("GraphViz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
-                           "pages in the array horizontally."))
+                           "pages in the array horizontally. "
+                           "Only valid for dot, postscript and pdf via Ghostscript."))
         self.options.add_menu_option(category, "h_pages", h_pages)
         
         v_pages = NumberOption(_("Number of Vertical Pages"), 1, 1, 25)
         v_pages.set_help(_("GraphViz can create very large graphs by "
                            "spreading the graph across a rectangular "
                            "array of pages. This controls the number "
-                           "pages in the array vertically."))
+                           "pages in the array vertically. "
+                           "Only valid for dot, postscript and pdf via Ghostscript."))
         self.options.add_menu_option(category, "v_pages", v_pages)
 
         page_dir = EnumeratedListOption(_("Paging Direction"), 0)
