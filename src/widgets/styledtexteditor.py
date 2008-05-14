@@ -47,10 +47,10 @@ from pango import UNDERLINE_SINGLE
 #
 #-------------------------------------------------------------------------
 from gen.lib import StyledTextTagType
-from widgets import (StyledTextBuffer, ALLOWED_STYLES,
-                     MATCH_START, MATCH_END,
-                     MATCH_FLAVOR, MATCH_STRING,
-                     ComboToolAction, SpringSeparatorAction)
+from widgets.styledtextbuffer import (StyledTextBuffer, ALLOWED_STYLES,
+                                      MATCH_START, MATCH_END,
+                                      MATCH_FLAVOR, MATCH_STRING)
+from widgets.toolbarwidgets import (ComboToolAction, SpringSeparatorAction)
 from Spell import Spell
 from GrampsDisplay import url as display_url
 
@@ -116,9 +116,11 @@ class StyledTextEditor(gtk.TextView):
     
     StyledTextEdit defines a new signal: 'match-changed', which is raised
     whenever the mouse cursor reaches or leaves a matched string in the text.
-    The feature uses the regexp pattern mathing mechanism L{StyledTextBuffer}.
+    The feature uses the regexp pattern mathing mechanism of
+    L{StyledTextBuffer}.
     The signal's default handler highlights the URL strings. URL's can be
-    followed from the editor's popup menu.
+    followed from the editor's popup menu or by pressing the <CTRL>Left
+    mouse button.
     
     @ivar last_match: previously matched string, used for generating the
     'match-changed' signal.
@@ -459,7 +461,7 @@ class StyledTextEditor(gtk.TextView):
         self.textbuffer.apply_style(style, value)
 
     def _on_action_activate(self, action):
-        """Apply a format."""
+        """Apply a format set from a gtk.Action type of action."""
         style = int(action.get_name())
         current_value = self.textbuffer.get_style_at_cursor(style)
 
@@ -487,6 +489,7 @@ class StyledTextEditor(gtk.TextView):
             self.textbuffer.apply_style(style, value)
 
     def _on_comboaction_activate(self, action):
+        """Apply a format set by a ComboToolAction type of action."""
         if self._internal_style_change:
             return
         
@@ -513,7 +516,7 @@ class StyledTextEditor(gtk.TextView):
             self.textbuffer.remove_style(style)
 
     def _on_buffer_style_changed(self, buffer, changed_styles):
-        # update action values
+        """Synchronize actions as the format changes at the buffer's cursor."""
         for style in changed_styles.keys():
             if str(style) in self.toggle_actions:
                 action = self.action_group.get_action(str(style))
@@ -608,6 +611,7 @@ def hex_to_color(hex):
     return color
 
 def is_valid_fontsize(text):
+    """Validator function for font size selector widget."""
     try:
         size = int(text)
         return (size > 0) and (size < 73)
