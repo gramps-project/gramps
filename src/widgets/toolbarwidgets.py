@@ -43,7 +43,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from multitypecomboentry import MultiTypeComboEntry
+from .multitypecomboentry import MultiTypeComboEntry
 
 #-------------------------------------------------------------------------
 #
@@ -136,7 +136,7 @@ class ComboToolAction(gtk.Action):
         # set the first row as separator
         self.model.set_value(self.model.get_iter_first(), COLUMN_IS_SEP, True)
 
-        # remember if the proxy combo is editable
+        # remember initial parameters
         self.editable = editable
         self.validator = validator
         
@@ -161,45 +161,74 @@ class ComboToolAction(gtk.Action):
         @type proxy: gtk.Widget
         
         """
-        # do this before hand, so that we don't call the "activate" handler
         if isinstance(proxy, ComboToolItem):
+            # do this before hand, so that we don't call the "changed" handler
             proxy.set_active_iter(self.active_iter)
             proxy.connect('changed', self._on_proxy_changed)
 
+        # if this is called the proxy will appear on the proxy list twice. why?
         #gtk.Action.connect_proxy(self, proxy)
 
     def _on_proxy_changed(self, proxy):
+        """Signal handler.
+        
+        Called when any of the proxies is changed.
+        
+        """
+        # blocking proxies when they are synchronized from the action
+        if self._internal_change:
+            return
+        
+        # get active value from the changed proxy
         if isinstance(proxy, ComboToolItem):
-            self.active_iter = proxy.get_active_iter()
+            iter = proxy.get_active_iter()
 
-            if self.active_iter:
-                value = self.model.get_value(self.active_iter, COLUMN_ITEM)
+            if iter is not None:
+                value = self.model.get_value(iter, COLUMN_ITEM)
             else:
                 value = proxy.get_active_text()
 
             self.set_active_value(value)
-        
-    def set_active_value(self, value):
-        self.active_value = value
+            
+            # emit the 'activate' signal
+            self.activate()
 
+    def set_active_value(self, value):
+        """Set the active value of the action.
+        
+        Depending wheter the new value is in the model the active_iter
+        attribute is set to position or set to None. The active_value
+        attribute will contain the new value independently.
+        
+        Proxies are also updated accordingly.
+        
+        """
+        # check first if the value is in the model
         iter = self.model.get_iter_first()
         while iter:
             if self.model.get_value(iter, COLUMN_ITEM) == value:
-                self.active_iter = iter
                 break
             iter = self.model.iter_next(iter)
+
+        # here iter either points to the model or is set to None
+        self.active_value = value
+        self.active_iter = iter
             
+        # update the proxies with signalling loop cut
+        self._internal_change = True
+        
         for proxy in self.get_proxies():
             if isinstance(proxy, ComboToolItem):
-                if iter:
+                if self.active_iter is not None:
                     proxy.set_active_iter(self.active_iter)
                 else:
                     proxy.set_active_text(self.active_value)
             else:
                 _LOG.warning("Don't know how to activate %s widget" %
                              proxy.__class__)
-        self.activate()
-    
+
+        self._internal_change = False
+
     def get_active_value(self):
         return self.active_value
     
@@ -211,7 +240,12 @@ ComboToolAction.set_tool_item_type(ComboToolItem)
 #
 #-------------------------------------------------------------------------
 class SpringSeparatorToolItem(gtk.SeparatorToolItem):
+    """Custom separator toolitem.
     
+    Its only purpose is to push following tool items to the right end
+    of the toolbar.
+    
+    """
     __gtype_name__ = "SpringSeparatorToolItem"
     
     def __init__(self):
@@ -226,6 +260,7 @@ class SpringSeparatorToolItem(gtk.SeparatorToolItem):
 #
 #-------------------------------------------------------------------------
 class SpringSeparatorAction(gtk.Action):
+    """Custom Action to hold a SpringSeparatorToolItem."""
     
     __gtype_name__ = "SpringSeparatorAction"
     

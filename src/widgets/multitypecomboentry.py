@@ -85,6 +85,7 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         self._validator = validator
         
         self._entry.connect('activate', self._on_entry_activate)
+        self._entry.connect('focus-in-event', self._on_entry_focus_in_event)
         self._entry.connect('focus-out-event', self._on_entry_focus_out_event)
         self._entry.connect('key-press-event', self._on_entry_key_press_event)
         self.changed_cb_id = self.connect('changed', self._on_changed)
@@ -111,13 +112,23 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         """
         self._entry_changed(entry)
     
+    def _on_entry_focus_in_event(self, widget, event):
+        """Signal handler.
+        
+        Called when the focus enters the entry, and is used for saving
+        the entry's text for later comparison.
+        
+        """
+        self._text_on_focus_in = self._entry.get_text()
+        
     def _on_entry_focus_out_event(self, widget, event):
         """Signal handler.
         
         Called when the focus leaves the entry.
         
         """
-        self._entry_changed(widget)
+        if (self._entry.get_text() != self._text_on_focus_in):
+            self._entry_changed(widget)
     
     def _on_entry_key_press_event(self, entry, event):
         """Signal handler.
@@ -188,7 +199,7 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
     def set_active_text(self, text):
         if self._entry:
             self._entry.set_text(text)
-            #self._entry.activate()
+            self._entry_changed(self._entry)
 
     def get_active_text(self):
         if self._entry:
