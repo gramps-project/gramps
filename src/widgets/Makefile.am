@@ -9,7 +9,6 @@ pkgdata_PYTHON = \
 	__init__.py \
 	buttons.py \
 	expandcollapsearrow.py \
-	grampswidgets.py \
 	labels.py \
 	linkbox.py \
 	monitoredwidgets.py \

@@ -25,7 +25,6 @@ src/GrampsCfg.py
 src/GrampsDisplay.py
 src/gramps_main.py
 src/gramps.py
-src/GrampsWidgets.py
 src/ImgManip.py
 src/ListModel.py
 src/ManagedWindow.py
@@ -171,6 +170,7 @@ src/DisplayTabs/__init__.py
 
 # Editors package
 src/Editors/AddMedia.py
+src/Editors/ObjectEntries.py
 src/Editors/_EditAddress.py
 src/Editors/_EditAttribute.py
 src/Editors/_EditChildRef.py
@@ -194,7 +194,6 @@ src/Editors/_EditSecondary.py
 src/Editors/_EditSource.py
 src/Editors/_EditSourceRef.py
 src/Editors/_EditUrl.py
-src/Editors/_StyledTextBuffer.py
 src/Editors/__init__.py
 
 # GrampsDbUtils package
@@ -657,6 +656,13 @@ src/FilterEditor/_FilterEditor.py
 src/FilterEditor/_EditFilter.py
 src/FilterEditor/_EditRule.py
 src/FilterEditor/_ShowResults.py
+
+# widgets package
+src/widgets/buttons.py
+src/widgets/expandcollapsearrow.py
+src/widgets/labels.py
+src/widgets/styledtexteditor.py
+src/widgets/validatedmaskedentry.py
 
 #
 #	Glade files
