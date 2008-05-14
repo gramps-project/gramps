@@ -29,7 +29,7 @@ import os
 import cgi
 
 import logging
-_LOG = logging.getLogger(".widgets.objectentries")
+_LOG = logging.getLogger(".widgets.labels")
 
 #-------------------------------------------------------------------------
 #
