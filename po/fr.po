@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-04 16:54-0700\n"
-"PO-Revision-Date: 2008-05-05 17:42+0100\n"
+"POT-Creation-Date: 2008-05-13 18:41+0200\n"
+"PO-Revision-Date: 2008-05-15 16:50+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -236,11 +236,11 @@ msgstr "Nom de la colonne"
 msgid "Column Editor"
 msgstr "Éditeur de colonnes"
 
-#: ../src/const.py:155
+#: ../src/const.py:164
 msgid "GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
 msgstr "GRAMPS (Genealogical Research et Analysis Management Programming System) est un logiciel de généalogie."
 
-#: ../src/const.py:173
+#: ../src/const.py:184
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 "Michel Guitel     (Documentation)\n"
@@ -250,8 +250,8 @@ msgstr ""
 "Frédéric Chateaux (Logiciel)\n"
 "Jérôme Rapinat    (Logiciel et Documentation)"
 
-#: ../src/const.py:183
-#: ../src/const.py:184
+#: ../src/const.py:194
+#: ../src/const.py:195
 #: ../src/gen/lib/date.py:1016
 #: ../src/gen/lib/date.py:1030
 msgid "none"
@@ -1112,7 +1112,7 @@ msgstr "Dépôt"
 #: ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/FamilyGroup.py:303
 #: ../src/plugins/ImportCSV.py:175
-#: ../src/ReportBase/_GraphvizReportDialog.py:831
+#: ../src/ReportBase/_GraphvizReportDialog.py:880
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:95
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:135
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:82
@@ -1821,20 +1821,20 @@ msgid "Select font"
 msgstr "Sélectionner la police"
 
 #: ../src/PageView.py:323
-#: ../src/ViewManager.py:1248
+#: ../src/ViewManager.py:1239
 #, python-format
 msgid "%s has been bookmarked"
 msgstr "%s a été défini comme signet"
 
 #: ../src/PageView.py:327
 #: ../src/PageView.py:620
-#: ../src/ViewManager.py:1251
+#: ../src/ViewManager.py:1242
 #: ../src/DataViews/FamilyList.py:191
 msgid "Could Not Set a Bookmark"
 msgstr "Impossible d'établir un signet"
 
 #: ../src/PageView.py:328
-#: ../src/ViewManager.py:1252
+#: ../src/ViewManager.py:1243
 #: ../src/DataViews/FamilyList.py:192
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Impossible de créer un signet car aucun individu n'est sélectionné."
@@ -2817,7 +2817,7 @@ msgstr "Zoulou"
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
 #: ../src/TipOfDay.py:120
-#: ../src/ViewManager.py:410
+#: ../src/ViewManager.py:401
 msgid "Tip of the Day"
 msgstr "Astuce du jour"
 
@@ -3045,247 +3045,228 @@ msgstr "Base de données ouverte"
 msgid "History cleared"
 msgstr "Historique effacé"
 
-#: ../src/ViewManager.py:359
-#: ../src/ViewManager.py:360
+#: ../src/ViewManager.py:350
+#: ../src/ViewManager.py:351
 msgid "Connect to a recent database"
 msgstr "Connecter à une base de données récente"
 
-#: ../src/ViewManager.py:364
-#: ../src/ViewManager.py:365
-#: ../src/ViewManager.py:384
+#: ../src/ViewManager.py:355
+#: ../src/ViewManager.py:356
+#: ../src/ViewManager.py:375
 msgid "Manage databases"
 msgstr "Gestion des bases de données"
 
-#: ../src/ViewManager.py:382
+#: ../src/ViewManager.py:373
 msgid "_Family Trees"
 msgstr "Arbres _familiaux"
 
-#: ../src/ViewManager.py:383
+#: ../src/ViewManager.py:374
 msgid "_Manage Family Trees..."
 msgstr "_Gestion des arbres familiaux..."
 
-#: ../src/ViewManager.py:385
+#: ../src/ViewManager.py:376
 msgid "Open _Recent"
 msgstr "Fichiers _récemment ouverts"
 
-#: ../src/ViewManager.py:386
+#: ../src/ViewManager.py:377
 msgid "Open an existing database"
 msgstr "Ouvrir une base de données existante"
 
-#: ../src/ViewManager.py:387
+#: ../src/ViewManager.py:378
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: ../src/ViewManager.py:389
+#: ../src/ViewManager.py:380
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/ViewManager.py:390
-#: ../src/ViewManager.py:455
+#: ../src/ViewManager.py:381
+#: ../src/ViewManager.py:446
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../src/ViewManager.py:391
+#: ../src/ViewManager.py:382
 msgid "_Preferences..."
 msgstr "_Préférences..."
 
-#: ../src/ViewManager.py:393
+#: ../src/ViewManager.py:384
 msgid "_Help"
 msgstr "Aid_e"
 
-#: ../src/ViewManager.py:394
+#: ../src/ViewManager.py:385
 msgid "GRAMPS _Home Page"
 msgstr "Page d'accueil de _GRAMPS"
 
-#: ../src/ViewManager.py:396
+#: ../src/ViewManager.py:387
 msgid "GRAMPS _Mailing Lists"
 msgstr "Liste de diffusion de GRA_MPS"
 
-#: ../src/ViewManager.py:398
+#: ../src/ViewManager.py:389
 msgid "_Report a Bug"
 msgstr "_Rapporter un bogue"
 
-#: ../src/ViewManager.py:400
+#: ../src/ViewManager.py:391
 msgid "_Extra Reports/Tools"
 msgstr "R_apports et outils supplémentaires"
 
-#: ../src/ViewManager.py:402
+#: ../src/ViewManager.py:393
 msgid "_About"
 msgstr "À _propos"
 
-#: ../src/ViewManager.py:404
+#: ../src/ViewManager.py:395
 msgid "_Plugin Status"
 msgstr "État du _greffon"
 
-#: ../src/ViewManager.py:406
+#: ../src/ViewManager.py:397
 msgid "_FAQ"
 msgstr "_Foire aux questions (FAQ)"
 
-#: ../src/ViewManager.py:407
+#: ../src/ViewManager.py:398
 msgid "_Key Bindings"
 msgstr "Raccourcis clavier"
 
-#: ../src/ViewManager.py:408
+#: ../src/ViewManager.py:399
 msgid "_User Manual"
 msgstr "_Manuel utilisateur"
 
-#: ../src/ViewManager.py:415
+#: ../src/ViewManager.py:406
 msgid "_Export..."
 msgstr "_Exporter..."
 
-#: ../src/ViewManager.py:418
+#: ../src/ViewManager.py:409
 msgid "_Abandon Changes and Quit"
 msgstr "_Abandonner les modifications et quitter"
 
-#: ../src/ViewManager.py:419
-#: ../src/ViewManager.py:422
+#: ../src/ViewManager.py:410
+#: ../src/ViewManager.py:413
 msgid "_Reports"
 msgstr "_Rapports"
 
-#: ../src/ViewManager.py:420
+#: ../src/ViewManager.py:411
 msgid "Open the reports dialog"
 msgstr "Ouvrir le dialogue des rapports"
 
-#: ../src/ViewManager.py:421
+#: ../src/ViewManager.py:412
 msgid "_Go"
 msgstr "A_ller à"
 
-#: ../src/ViewManager.py:423
+#: ../src/ViewManager.py:414
 msgid "_Windows"
 msgstr "Fenê_tres"
 
-#: ../src/ViewManager.py:449
+#: ../src/ViewManager.py:440
 msgid "Clip_board"
 msgstr "Presse-papiers"
 
-#: ../src/ViewManager.py:450
+#: ../src/ViewManager.py:441
 msgid "Open the Clipboard dialog"
 msgstr "Ouvrir le presse-papiers"
 
-#: ../src/ViewManager.py:451
+#: ../src/ViewManager.py:442
 msgid "_Import..."
 msgstr "_Importer..."
 
-#: ../src/ViewManager.py:453
-#: ../src/ViewManager.py:457
+#: ../src/ViewManager.py:444
+#: ../src/ViewManager.py:448
 msgid "_Tools"
 msgstr "_Outils"
 
-#: ../src/ViewManager.py:454
+#: ../src/ViewManager.py:445
 msgid "Open the tools dialog"
 msgstr "Ouvrir le dialogue d'outils"
 
-#: ../src/ViewManager.py:456
+#: ../src/ViewManager.py:447
 msgid "_Bookmarks"
 msgstr "_Signets"
 
-#: ../src/ViewManager.py:461
+#: ../src/ViewManager.py:452
 msgid "_Sidebar"
 msgstr "_Barre latérale"
 
-#: ../src/ViewManager.py:463
+#: ../src/ViewManager.py:454
 msgid "_Toolbar"
 msgstr "Barre d'ou_tils"
 
-#: ../src/ViewManager.py:465
+#: ../src/ViewManager.py:456
 msgid "_Filter Sidebar"
 msgstr "_Filtres"
 
-#: ../src/ViewManager.py:470
-#: ../src/ViewManager.py:1184
+#: ../src/ViewManager.py:461
+#: ../src/ViewManager.py:1175
 msgid "_Undo"
 msgstr "Ann_uler"
 
-#: ../src/ViewManager.py:475
-#: ../src/ViewManager.py:1201
+#: ../src/ViewManager.py:466
+#: ../src/ViewManager.py:1192
 msgid "_Redo"
 msgstr "_Rétablir"
 
-#: ../src/ViewManager.py:481
+#: ../src/ViewManager.py:472
 msgid "Undo History..."
 msgstr "Défaire l'historique..."
 
-#: ../src/ViewManager.py:500
+#: ../src/ViewManager.py:491
 #, python-format
 msgid "Key %s is not bound"
 msgstr "La clé %s n'est pas définie"
 
 #. load document generators
-#: ../src/ViewManager.py:600
+#: ../src/ViewManager.py:591
 msgid "Loading document formats..."
 msgstr "Chargement des formats…"
 
 #. load plugins
-#: ../src/ViewManager.py:605
+#: ../src/ViewManager.py:596
 msgid "Loading plugins..."
 msgstr "Chargement des greffons…"
 
-#: ../src/ViewManager.py:619
+#: ../src/ViewManager.py:610
 msgid "Ready"
 msgstr "Prêt"
 
-#: ../src/ViewManager.py:651
+#: ../src/ViewManager.py:642
 msgid "Autobackup..."
 msgstr "Sauvegarde automatique…"
 
-#: ../src/ViewManager.py:663
+#: ../src/ViewManager.py:654
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
-#: ../src/ViewManager.py:664
+#: ../src/ViewManager.py:655
 msgid "Aborting changes will return the database to the state is was before you started this editing session."
 msgstr "Abandonner les changements ramènera la base de données à son état du début de session."
 
-#: ../src/ViewManager.py:666
+#: ../src/ViewManager.py:657
 msgid "Abort changes"
 msgstr "Abandonner les changements"
 
-#: ../src/ViewManager.py:667
+#: ../src/ViewManager.py:658
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../src/ViewManager.py:676
+#: ../src/ViewManager.py:667
 msgid "Cannot abandon session's changes"
 msgstr "Impossible d'abandonner les changements de la session"
 
-#: ../src/ViewManager.py:677
+#: ../src/ViewManager.py:668
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/ViewManager.py:1043
+#: ../src/ViewManager.py:1034
 msgid "Import Statistics"
 msgstr "Les statistiques d'importation"
 
-#: ../src/ViewManager.py:1073
+#: ../src/ViewManager.py:1064
 msgid "Could not load a recent Family Tree."
 msgstr "Impossible de charger l'arbre familial récent."
 
-#: ../src/ViewManager.py:1074
+#: ../src/ViewManager.py:1065
 msgid "Family Tree does not exists, as it has been deleted."
 msgstr "Cet arbre familial n'existe pas, puisqu'il a été supprimé."
 
-#: ../src/ViewManager.py:1130
+#: ../src/ViewManager.py:1121
 msgid "Read Only"
 msgstr "Lecture seule"
-
-#: ../src/ViewManager.py:1429
-msgid ""
-"Much of GRAMPS' artwork is either from\n"
-"the Tango Project or derived from the Tango\n"
-"Project. This artwork is released under the\n"
-"Create Commons Attribution-ShareAlike 2.5\n"
-"license."
-msgstr ""
-"La plupart des graphismes GRAMPS\n"
-"sont soit issus du projet Tango soit dérivés\n"
-"de ce dernier. Ces graphismes sont sous \n"
-"licence Creative Commons par paternité \n"
-"et partage des conditions initiales à \n"
-"l'identique 2.5."
-
-#: ../src/ViewManager.py:1442
-msgid "GRAMPS Homepage"
-msgstr "Page d'accueil de GRAMPS"
 
 #: ../src/Simple/_SimpleTable.py:196
 msgid "Unknown father"
@@ -4044,13 +4025,13 @@ msgstr "Région"
 
 #: ../src/DataViews/PlaceView.py:74
 #: ../src/plugins/NarrativeWeb.py:1204
-msgid "Longitude"
-msgstr "Longitude"
+msgid "Latitude"
+msgstr "Latitude"
 
 #: ../src/DataViews/PlaceView.py:75
 #: ../src/plugins/NarrativeWeb.py:1210
-msgid "Latitude"
-msgstr "Latitude"
+msgid "Longitude"
+msgstr "Longitude"
 
 #: ../src/DataViews/PlaceView.py:77
 #: ../src/DataViews/RepositoryView.py:71
@@ -4528,7 +4509,7 @@ msgstr "HTML"
 #: ../src/docgen/LaTeXDoc.py:529
 #: ../src/docgen/ODFDoc.py:1152
 #: ../src/docgen/PSDrawDoc.py:57
-#: ../src/ReportBase/_GraphvizReportDialog.py:696
+#: ../src/ReportBase/_GraphvizReportDialog.py:743
 #, python-format
 msgid "Open in %(program_name)s"
 msgstr "Ouvrir dans %(program_name)s"
@@ -6321,7 +6302,7 @@ msgstr "Tous les événements"
 #: ../src/plugins/FindDupes.py:697
 #: ../src/plugins/GVFamilyLines.py:881
 #: ../src/plugins/GVHourGlass.py:203
-#: ../src/plugins/GVRelGraph.py:559
+#: ../src/plugins/GVRelGraph.py:560
 #: ../src/plugins/IndivComplete.py:643
 #: ../src/plugins/KinshipReport.py:405
 #: ../src/plugins/Leak.py:129
@@ -6632,7 +6613,7 @@ msgstr "Génération %d"
 #: ../src/plugins/EndOfLineReport.py:232
 #: ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341
-#: ../src/plugins/GVRelGraph.py:428
+#: ../src/plugins/GVRelGraph.py:429
 #: ../src/plugins/IndivComplete.py:513
 #: ../src/plugins/KinshipReport.py:335
 #: ../src/plugins/MarkerReport.py:436
@@ -6826,7 +6807,7 @@ msgstr "Options"
 #: ../src/plugins/CalculateEstimatedDates.py:64
 #: ../src/plugins/Calendar.py:491
 #: ../src/plugins/FilterByName.py:233
-#: ../src/plugins/GVRelGraph.py:431
+#: ../src/plugins/GVRelGraph.py:432
 #: ../src/plugins/IndivComplete.py:516
 #: ../src/plugins/NarrativeWeb.py:2950
 #: ../src/plugins/StatisticsChart.py:683
@@ -6841,7 +6822,7 @@ msgid "Select filter to restrict people"
 msgstr "Sélectionne un filtre pour restreindre les individus"
 
 #: ../src/plugins/CalculateEstimatedDates.py:69
-#: ../src/plugins/GVRelGraph.py:437
+#: ../src/plugins/GVRelGraph.py:438
 #: ../src/plugins/IndivComplete.py:522
 #: ../src/plugins/NarrativeWeb.py:2956
 #: ../src/plugins/StatisticsChart.py:689
@@ -6851,7 +6832,7 @@ msgid "Filter Person"
 msgstr "Filtre sur l'individu"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
-#: ../src/plugins/GVRelGraph.py:438
+#: ../src/plugins/GVRelGraph.py:439
 #: ../src/plugins/IndivComplete.py:523
 #: ../src/plugins/NarrativeWeb.py:2957
 #: ../src/plugins/StatisticsChart.py:690
@@ -9371,7 +9352,7 @@ msgid "Images"
 msgstr "Images"
 
 #: ../src/plugins/GVFamilyLines.py:171
-#: ../src/plugins/GVRelGraph.py:475
+#: ../src/plugins/GVRelGraph.py:476
 msgid "Include thumbnail images of people"
 msgstr "Inclure une image miniature des individus"
 
@@ -9380,17 +9361,17 @@ msgid "Thumbnail location"
 msgstr "Emplacement de la miniature"
 
 #: ../src/plugins/GVFamilyLines.py:178
-#: ../src/plugins/GVRelGraph.py:482
+#: ../src/plugins/GVRelGraph.py:483
 msgid "Above the name"
 msgstr "Au-dessus du nom"
 
 #: ../src/plugins/GVFamilyLines.py:179
-#: ../src/plugins/GVRelGraph.py:483
+#: ../src/plugins/GVRelGraph.py:484
 msgid "Beside the name"
 msgstr "À côté du nom"
 
 #: ../src/plugins/GVFamilyLines.py:181
-#: ../src/plugins/GVRelGraph.py:485
+#: ../src/plugins/GVRelGraph.py:486
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "L'emplacement de la miniature associée au nom"
 
@@ -9546,101 +9527,101 @@ msgstr "Descendants <-> Ascendants"
 msgid "Descendants - Ancestors"
 msgstr "Descendants - Ascendants"
 
-#: ../src/plugins/GVRelGraph.py:433
+#: ../src/plugins/GVRelGraph.py:434
 msgid "Determines what people are included in the graph"
 msgstr "Détermine quels individus seront inclus dans le rapport"
 
-#: ../src/plugins/GVRelGraph.py:445
+#: ../src/plugins/GVRelGraph.py:446
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Inclure les dates de naissance, de mariage et de décès"
 
-#: ../src/plugins/GVRelGraph.py:446
+#: ../src/plugins/GVRelGraph.py:447
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr "Inclure les dates de naissance, mariage et/ou décès sur le graphique."
 
-#: ../src/plugins/GVRelGraph.py:450
+#: ../src/plugins/GVRelGraph.py:451
 msgid "Limit dates to years only"
 msgstr "Limiter les dates à l'année seule"
 
-#: ../src/plugins/GVRelGraph.py:451
+#: ../src/plugins/GVRelGraph.py:452
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr "N'imprimer que les années des dates, pas le mois ni le jour, pas plus que les dates approximatives ou les intervalles."
 
-#: ../src/plugins/GVRelGraph.py:456
+#: ../src/plugins/GVRelGraph.py:457
 msgid "Use place when no date"
 msgstr "Utiliser le lieu en l'absence de date"
 
-#: ../src/plugins/GVRelGraph.py:457
+#: ../src/plugins/GVRelGraph.py:458
 msgid "When no birth, marriage, or death date is available, the correspondent place field will be used."
 msgstr "Lorsque ni les dates de naissance, ni les dates de mariage, ni les dates de décès ne sont disponibles, le lieu correspondant sera utilisé."
 
-#: ../src/plugins/GVRelGraph.py:462
+#: ../src/plugins/GVRelGraph.py:463
 msgid "Include URLs"
 msgstr "Inclure les URL"
 
-#: ../src/plugins/GVRelGraph.py:463
+#: ../src/plugins/GVRelGraph.py:464
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Narrated Web Site' report."
 msgstr "Inclure une URL dans chaque cellule du graphique afin que les fichiers PDF et les images puissent être générés avec des liens valides par le générateur de site internet."
 
-#: ../src/plugins/GVRelGraph.py:470
+#: ../src/plugins/GVRelGraph.py:471
 msgid "Include IDs"
 msgstr "Inclure les identifiants"
 
-#: ../src/plugins/GVRelGraph.py:471
+#: ../src/plugins/GVRelGraph.py:472
 msgid "Include individual and family IDs."
 msgstr "Inclure les identifiants individuels et familiaux."
 
-#: ../src/plugins/GVRelGraph.py:477
+#: ../src/plugins/GVRelGraph.py:478
 msgid "Whether to include thumbnails of people."
 msgstr "Inclure ou non les images miniatures des individus."
 
-#: ../src/plugins/GVRelGraph.py:481
+#: ../src/plugins/GVRelGraph.py:482
 msgid "Thumbnail Location"
 msgstr "Emplacement de la miniature"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:490
+#: ../src/plugins/GVRelGraph.py:491
 msgid "Graph Style"
 msgstr "Style du graphique"
 
 #. ###############################
-#: ../src/plugins/GVRelGraph.py:493
+#: ../src/plugins/GVRelGraph.py:494
 msgid "Graph coloring"
 msgstr "Coloration du graphique"
 
-#: ../src/plugins/GVRelGraph.py:496
+#: ../src/plugins/GVRelGraph.py:497
 msgid "Males will be shown with blue, females with red.  If the sex of an individual is unknown it will be shown with gray."
 msgstr "Les hommes seront en bleu, les femmes en rouge. Si le sexe d'un individu est indéterminé, celui-ci sera en gris."
 
-#: ../src/plugins/GVRelGraph.py:501
+#: ../src/plugins/GVRelGraph.py:502
 msgid "Arrowhead direction"
 msgstr "Sens des flèches"
 
-#: ../src/plugins/GVRelGraph.py:504
+#: ../src/plugins/GVRelGraph.py:505
 msgid "Choose the direction that the arrows point."
 msgstr "Choisir le sens des flèches."
 
-#: ../src/plugins/GVRelGraph.py:508
+#: ../src/plugins/GVRelGraph.py:509
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Indiquer les relations autres que la naissance avec des pointillés"
 
-#: ../src/plugins/GVRelGraph.py:509
+#: ../src/plugins/GVRelGraph.py:510
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Les relations autres que la naissance seront en pointillé sur le graphique."
 
-#: ../src/plugins/GVRelGraph.py:513
+#: ../src/plugins/GVRelGraph.py:514
 msgid "Show family nodes"
 msgstr "Afficher les nœuds familiaux"
 
-#: ../src/plugins/GVRelGraph.py:514
+#: ../src/plugins/GVRelGraph.py:515
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Les familles seront affichées en cercles, reliées aux parents et aux enfants."
 
-#: ../src/plugins/GVRelGraph.py:558
+#: ../src/plugins/GVRelGraph.py:559
 msgid "Relationship Graph"
 msgstr "Graphique relationnel"
 
-#: ../src/plugins/GVRelGraph.py:560
+#: ../src/plugins/GVRelGraph.py:561
 msgid "Produces relationship graphs using Graphviz"
 msgstr "Génère des graphiques relationnels avec GraphViz"
 
@@ -12427,7 +12408,7 @@ msgid "Graphics"
 msgstr "Graphique"
 
 #: ../src/ReportBase/_DocReportDialog.py:122
-#: ../src/ReportBase/_GraphvizReportDialog.py:900
+#: ../src/ReportBase/_GraphvizReportDialog.py:949
 msgid "Paper Options"
 msgstr "Options Papier"
 
@@ -12436,7 +12417,7 @@ msgid "HTML Options"
 msgstr "Options HTML"
 
 #: ../src/ReportBase/_DocReportDialog.py:161
-#: ../src/ReportBase/_GraphvizReportDialog.py:880
+#: ../src/ReportBase/_GraphvizReportDialog.py:929
 msgid "Output Format"
 msgstr "Format de sortie"
 
@@ -12549,191 +12530,164 @@ msgstr "Haut"
 msgid "Bottom"
 msgstr "Bas"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:588
+#: ../src/ReportBase/_GraphvizReportDialog.py:635
 msgid "Graphviz Dot File"
 msgstr "Fichier dot GraphViz"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:597
+#: ../src/ReportBase/_GraphvizReportDialog.py:644
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:603
+#: ../src/ReportBase/_GraphvizReportDialog.py:650
 msgid "PDF (Graphviz)"
 msgstr "PDF (GraphViz)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:609
+#: ../src/ReportBase/_GraphvizReportDialog.py:656
 msgid "Postscript"
 msgstr "PostScript"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:615
+#: ../src/ReportBase/_GraphvizReportDialog.py:662
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:621
+#: ../src/ReportBase/_GraphvizReportDialog.py:668
 msgid "Compressed Structured Vector Graphs (SVG)"
 msgstr "SVG compressé (SVGZ)"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:627
+#: ../src/ReportBase/_GraphvizReportDialog.py:674
 msgid "JPEG image"
 msgstr "Image JPEG"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:633
+#: ../src/ReportBase/_GraphvizReportDialog.py:680
 msgid "GIF image"
 msgstr "Image GIF"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:639
+#: ../src/ReportBase/_GraphvizReportDialog.py:686
 msgid "PNG image"
 msgstr "Image PNG"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:730
+#: ../src/ReportBase/_GraphvizReportDialog.py:777
 msgid "GraphViz Layout"
 msgstr "Mise en page de GraphViz"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:732
+#: ../src/ReportBase/_GraphvizReportDialog.py:779
 msgid "Font family"
 msgstr "Famille de police"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:737
+#: ../src/ReportBase/_GraphvizReportDialog.py:784
 msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
 msgstr "Choisissez la famille de police. Si les caractères internationaux n'apparaissent pas, utilisez les polices FreeSans disponibles sur : http://www.nongnu.org/freefont/"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:743
+#: ../src/ReportBase/_GraphvizReportDialog.py:790
 msgid "Font size"
 msgstr "Taille de la police"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:744
+#: ../src/ReportBase/_GraphvizReportDialog.py:791
 msgid "The font size, in points."
 msgstr "Taille de la police (pt)."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:747
+#: ../src/ReportBase/_GraphvizReportDialog.py:794
 msgid "Graph Direction"
 msgstr "Sens du graphique"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:752
+#: ../src/ReportBase/_GraphvizReportDialog.py:799
 msgid "Whether graph goes from top to bottom or left to right."
 msgstr "Générations de haut en bas ou de gauche à droite."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:756
+#: ../src/ReportBase/_GraphvizReportDialog.py:803
 msgid "Number of Horizontal Pages"
 msgstr "Nombre de pages horizontales"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:757
-msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally."
-msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface horizontale."
+#: ../src/ReportBase/_GraphvizReportDialog.py:804
+msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot, postscript and pdf via Ghostscript."
+msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface horizontale. Seulement valide pour le format dot, postscript et pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:763
+#: ../src/ReportBase/_GraphvizReportDialog.py:811
 msgid "Number of Vertical Pages"
 msgstr "Nombre de pages verticales"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:764
-msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically."
-msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface verticale."
+#: ../src/ReportBase/_GraphvizReportDialog.py:812
+msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot, postscript and pdf via Ghostscript."
+msgstr "GraphViz peut créer des graphiques de grande taille en étalant le graphique sur plusieurs pages. Cela permet d'optimiser le nombre de page sur une surface verticale. Seulement valide pour le format dot, postscript et pdf via Ghostscript."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:770
+#: ../src/ReportBase/_GraphvizReportDialog.py:819
 msgid "Paging Direction"
 msgstr "Direction de la mise en page"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:775
+#: ../src/ReportBase/_GraphvizReportDialog.py:824
 msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
 msgstr "L'ordre dans lequel les pages du graphique sont générées. Cette option ne s'applique que pour les pages horizontales ou verticales multiples."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:793
+#: ../src/ReportBase/_GraphvizReportDialog.py:842
 msgid "GraphViz Options"
 msgstr "Options de GraphViz"
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:796
+#: ../src/ReportBase/_GraphvizReportDialog.py:845
 msgid "Aspect ratio"
 msgstr "Ratio d'aspect"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:801
+#: ../src/ReportBase/_GraphvizReportDialog.py:850
 msgid "Affects greatly how the graph is layed out on the page."
 msgstr "Affecte grandement comment le graphique est mis en place dans la page."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:805
+#: ../src/ReportBase/_GraphvizReportDialog.py:854
 msgid "DPI"
 msgstr "Résolution"
 
 # 254 DPI pour les imprimantes standards du commerce
-#: ../src/ReportBase/_GraphvizReportDialog.py:808
+#: ../src/ReportBase/_GraphvizReportDialog.py:857
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating postscript or pdf files, use 72 DPI."
 msgstr "Points par pouce (inch). Quand on veut créer une image .gif ou .png pour internet, on utilise des valeurs entre 75 et 100 DPI et 300 ou 600 DPI pour l'impression. Quand on veut créer un fichier postscript ou pdf, utilisez 72 DPI."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:814
+#: ../src/ReportBase/_GraphvizReportDialog.py:863
 msgid "Node spacing"
 msgstr "Espacement de nœud"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:815
+#: ../src/ReportBase/_GraphvizReportDialog.py:864
 msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
 msgstr "L'espace libre minimum réservé, en inches, entre les nœuds. Pour les graphiques verticaux, ceci correspond à l'espace entre les colonnes. Pour les graphiques horizontaux, ceci correspond à l'espace entre les lignes."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:822
+#: ../src/ReportBase/_GraphvizReportDialog.py:871
 msgid "Rank spacing"
 msgstr "Espacement de rang"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:823
+#: ../src/ReportBase/_GraphvizReportDialog.py:872
 msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
 msgstr "L'espace libre minimum réservé, en inches, entre les rangs. Pour les graphiques verticaux, ceci correspond à l'espace entre les lignes. Pour les graphiques horizontaux, ceci correspond à l'espace entre les colonnes."
 
 #. ###############################
-#: ../src/ReportBase/_GraphvizReportDialog.py:834
+#: ../src/ReportBase/_GraphvizReportDialog.py:883
 msgid "Note to add to the graph"
 msgstr "Note à ajouter au graphique"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:836
+#: ../src/ReportBase/_GraphvizReportDialog.py:885
 msgid "This text will be added to the graph."
 msgstr "Ce texte sera ajouté au graphique."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:839
+#: ../src/ReportBase/_GraphvizReportDialog.py:888
 msgid "Note location"
 msgstr "Disposition de la note"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:842
+#: ../src/ReportBase/_GraphvizReportDialog.py:891
 msgid "Whether note will appear on top or bottom of the page."
 msgstr "Quoi qu'il en soit la note apparaîtra en haut ou en bas de la page."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:846
+#: ../src/ReportBase/_GraphvizReportDialog.py:895
 msgid "Note size"
 msgstr "Taille de la note"
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:847
+#: ../src/ReportBase/_GraphvizReportDialog.py:896
 msgid "The size of note text, in points."
 msgstr "La taille de la note, en points."
 
-#: ../src/ReportBase/_GraphvizReportDialog.py:872
-#: ../src/ReportBase/_GraphvizReportDialog.py:927
+#: ../src/ReportBase/_GraphvizReportDialog.py:921
+#: ../src/ReportBase/_GraphvizReportDialog.py:976
 msgid "Open with application"
 msgstr "Ouvrir avec l'application"
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:976
-msgid "1.3 cm."
-msgstr "1.3 cm."
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:978
-msgid "0.5 in."
-msgstr "0.5 in."
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:987
-#: ../src/ReportBase/_GraphvizReportDialog.py:994
-msgid "Two or more opposite paper margins are less than "
-msgstr "Deux marges opposées ou plus sont plus petites que"
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:988
-#: ../src/ReportBase/_GraphvizReportDialog.py:1003
-msgid "This can cause incorrect and/or partial graphs."
-msgstr "Ceci peut générer des graphiques incomplets ou incorrects."
-
-# !!! contexte ?
-#: ../src/ReportBase/_GraphvizReportDialog.py:995
-msgid "More than expected number of pages can be generated."
-msgstr "Plus de pages que prévu peuvent être générées."
-
-#: ../src/ReportBase/_GraphvizReportDialog.py:1002
-msgid "You have used more than one page as output."
-msgstr "Vous avez utilisé plus qu'une page à la sortie."
 
 #: ../src/ReportBase/_PaperMenu.py:118
 msgid "Portrait"
@@ -20988,8 +20942,29 @@ msgstr "Vous pouvez facilement exporter votre arbre vers une page Web. Sélectio
 msgid "You can link any electronic media (including non-text information) and other file types to your GRAMPS family tree."
 msgstr "Vous pouvez relier un média électronique (comprenant les informations sans texte) et d'autres types de fichiers dans votre arbre généalogique GRAMPS."
 
-#~ msgid "ScratchPad"
-#~ msgstr "Presse-papiers"
-#~ msgid "Could not create temporary directory %s"
-#~ msgstr "Impossible de créer le répertoire : %s"
+msgid ""
+"Much of GRAMPS' artwork is either from\n"
+"the Tango Project or derived from the Tango\n"
+"Project. This artwork is released under the\n"
+"Create Commons Attribution-ShareAlike 2.5\n"
+"license."
+msgstr ""
+"La plupart des graphismes GRAMPS\n"
+"sont soit issus du projet Tango soit dérivés\n"
+"de ce dernier. Ces graphismes sont sous \n"
+"licence Creative Commons par paternité \n"
+"et partage des conditions initiales à \n"
+"l'identique 2.5."
+
+msgid "GRAMPS Homepage"
+msgstr "Page d'accueil de GRAMPS"
+
+#~ msgid "1.3 cm."
+#~ msgstr "1.3 cm."
+#~ msgid "0.5 in."
+#~ msgstr "0.5 in."
+#~ msgid "Two or more opposite paper margins are less than "
+#~ msgstr "Deux marges opposées ou plus sont plus petites que"
+#~ msgid "This can cause incorrect and/or partial graphs."
+#~ msgstr "Ceci peut générer des graphiques incomplets ou incorrects."
 
