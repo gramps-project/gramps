@@ -136,6 +136,7 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         Its purpose is to handle escape button.
         
         """
+        # FIXME Escape never reaches here, the dialog eats it, I assume.
         if event.keyval == gtk.keysyms.Escape:
             entry.set_text(self._active_text)
 
@@ -150,8 +151,8 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         iter = self.get_active_iter()
         if iter:
             model = self.get_model()
-            new_text = model.get_value(iter, self._text_column)
-            self._entry.set_text(new_text)
+            self._active_text = model.get_value(iter, self._text_column)
+            self._entry.set_text(self._active_text)
 
     def _on_notify(self, object, gparamspec):
         """Signal handler.
