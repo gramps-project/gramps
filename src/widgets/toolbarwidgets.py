@@ -43,7 +43,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .multitypecomboentry import MultiTypeComboEntry
+from widgets.multitypecomboentry import MultiTypeComboEntry
 
 #-------------------------------------------------------------------------
 #
