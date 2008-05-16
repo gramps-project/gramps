@@ -11341,7 +11341,6 @@ msgstr "Huwelijksplaats"
 msgid "Number of relationships"
 msgstr "Aantal relaties"
 
-# enkelvoud beter?
 #: ../src/plugins/StatisticsChart.py:114
 msgid "Age when first child born"
 msgstr "Leeftijd bij eerstgeboren kind"
@@ -16690,10 +16689,9 @@ msgstr "Aantal kinderen"
 msgid "Social Security Number"
 msgstr "Sofinummer"
 
-# enkelvoud beter?
 #: ../src/gen/lib/attrtype.py:72
 msgid "Agency"
-msgstr "Leeftijd"
+msgstr "Agentschap"
 
 #: ../src/gen/lib/attrtype.py:74
 msgid "Father's Age"
