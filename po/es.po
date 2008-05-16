@@ -18433,7 +18433,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:43
 msgid "Repositories with a reference count of <count>"
-msgstr "Repositorios referenciados <veces> veces\n"
+msgstr "Repositorios referenciados <veces> veces"
 
 #: ../src/Filters/Rules/Repository/_HasReferenceCountOf.py:44
 #, fuzzy
