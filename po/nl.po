@@ -9134,7 +9134,7 @@ msgstr "Te gebruiken kleuren voor de verschillende familielijnen."
 
 #: ../src/plugins/GVFamilyLines.py:143
 msgid "The colour to use to display men."
-msgstr "Kleur om manne weer te geven."
+msgstr "Kleur om mannen weer te geven."
 
 #: ../src/plugins/GVFamilyLines.py:147
 msgid "The colour to use to display women."
@@ -9178,7 +9178,7 @@ msgid ""
 "gray."
 msgstr ""
 "Mannen krijgen een blauwe kleur, vrouwen een rode kleur. Als het geslacht "
-"van een persoon niet bekend is krijg de persoon een grijze kleur."
+"van een persoon niet bekend is krijgt de persoon een grijze kleur."
 
 #. --------------------
 #: ../src/plugins/GVFamilyLines.py:193
@@ -9208,15 +9208,15 @@ msgstr "Plaats waar de verkleinde weergave wordt getoond t.o.v. de de naam"
 #. ---------------------
 #: ../src/plugins/GVFamilyLines.py:214
 msgid "Use subgraphs"
-msgstr "Gebruik van onverdeling van grafieken"
+msgstr "Gebruik van onderverdeling van grafieken"
 
 #: ../src/plugins/GVFamilyLines.py:215
 msgid ""
 "Subgraphs can help GraphViz position certain linked nodes closer together, "
 "but with non-trivial graphs will result in longer lines and larger graphs."
 msgstr ""
-"Onderverdeling van de grafieken stellen \"GraphViz\" in de mogelijkheid om "
-"echtgenoten dichter bij mekaar te plaatsen, maar dit kan resulteren in "
+"Onderverdeling van de grafieken stelt \"GraphViz\" in de gelegenheid om "
+"echtgenoten dichter bij elkaar te plaatsen, maar dit kan resulteren in "
 "langere lijnen en grotere grafieken."
 
 #: ../src/plugins/GVFamilyLines.py:221
@@ -9338,7 +9338,7 @@ msgid ""
 "individual is unknown it will be shown with gray."
 msgstr ""
 "Mannen krijgen een blauwe kleur, vrouwen een rode kleur. Als het geslacht "
-"van een persoon niet bekend is krijg de persoon een grijze kleur."
+"van een persoon niet bekend is krijgt de persoon een grijze kleur."
 
 #: ../src/plugins/GVHourGlass.py:281
 msgid "Hourglass Graph"
