@@ -705,5 +705,4 @@ src/plugins/writeftree.glade
 data/gramps.desktop.in
 data/gramps.keys.in
 data/gramps.xml.in
-data/gramps.schemas.in
 src/data/tips.xml.in

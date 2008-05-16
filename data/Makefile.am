@@ -14,10 +14,6 @@ keys_in_files = gramps.keys.in
 keys_files = $(keys_in_files:.keys.in=.keys)
 @INTLTOOL_KEYS_RULE@
 
-schemas_in_files = gramps.schemas.in
-schemas_files = $(schemas_in_files:.schemas.in=.schemas)
-@INTLTOOL_SCHEMAS_RULE@
-
 # Rules for files with translatable strings
 # These are taken care of by the intltool
 xml_in_files = gramps.xml.in
@@ -32,9 +28,6 @@ mime_DATA = $(keys_files) gramps.mime
 
 xmldir = $(SHARED_MIME_DIR)/packages
 xml_DATA = $(xml_files)
-
-schemasdir = $(SHARED_MIME_DIR)/packages
-schemas_DATA = $(schemas_files)
 
 pngdir = $(datadir)/icons/gnome/48x48/mimetypes
 png_DATA = \
@@ -61,18 +54,15 @@ EXTRA_DIST = \
 	$(mime_DATA) \
 	$(xml_DATA) \
 	$(desktop_DATA) \
-	$(xml_in_files) \
-	$(schemas_DATA) \
-	$(schemas_in_files)
+	$(xml_in_files)
 
 CLEANFILES = \
 	$(desktop_DATA) \
 	$(keys_files) \
-	$(xml_files) \
-	$(schemas_files)
+	$(xml_files)
 
-# Conditionally enable/disable gconf schemas or mime types,
-# or disable both in a packager mode
+# Conditionally enable/disable mime types,
+# or disable unconditionally if in a packager mode
 SHARED_MIME_INSTALLATION =
 SHARED_MIME_UNINSTALLATION =
 

@@ -24,9 +24,8 @@ missing.
 
 Regular vs local installation
 -----------------------------
-This version of gramps requires, among others, the following to be done:
-
-mime types for gramps MUST be properly installed.
+This version of gramps REQUIRES, among other things, the mime types for 
+gramps be properly installed.
 
 The usual ./configure, make, and make install as a root should do the trick.
 
@@ -41,16 +40,15 @@ Most likely, such local install will also need some prefix with write
 permissions for you:
    --prefix=$HOME/my_gramps_path
 
-Whether you're doing local install or regular install,
-YOU MUST INSTALL MIME TYPES.
-YOU HAVE BEEN WARNED!
+Whether you're doing local install or regular install, YOU MUST INSTALL 
+MIME TYPES. YOU HAVE BEEN WARNED!
 
 
 Installing under non-default prefix
 -----------------------------------
 As hinted above, mime types for gramps MUST be properly installed. 
-The "proper install" means installing
-them where the shared mime system will find them.
+The "proper install" means installing them where the shared mime system 
+will find them.
 
 By default, the shared mime systems will look in these places:
    1. /usr/share/mime
@@ -71,8 +69,10 @@ something like --prefix=/usr/local/my_gramps, /var/gramps123/blah, etc.
 
 Packager's issues
 ------------------
-The above mime types must be installed.
-However, the update-mime-database to process the newly installed types and schemas must be done in POST-INSTALLATION.
+The above mime types must be installed. However, the 
+update-mime-database call to process the newly installed types and 
+schemas must be done in POST-INSTALLATION.
+
 In packager's world, the install happens on packager's machine
 into something like /tmp/gramps-tmp. However, the postinstall
 should happen on the user's machine.
@@ -85,5 +85,5 @@ This argument should disable postinstall calls made during
 make install, and print a nasty warning during configure.
 IT IS PACKAGER'S RESPONSIBILITY to follow the advice given
 by the configure output and to copy the appropriate code
-from the src/data/Makefile.am into the post-install (and post-uninstall)
+from the data/Makefile.am into the post-install (and post-uninstall)
 of the particular packaging system.
