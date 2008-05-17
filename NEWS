@@ -1,3 +1,11 @@
+Version 3.0.1 -- the "Don't call me "Señor!" release!
+* Translation updates for de, es, fi, fr, hr, lt, nb, nl, pl, sk, and sv!
+* Bug fixes for the book report!
+* Various improvements for the Relationship, Familylines and Hourglass graphs!
+* Improvements to the narrative web report!
+* Many miscellaneous bug fixes!
+* See ChangeLog for full list of changes!
+
 Version 3.0.0 -- the "It was just getting interesting." release
 * Rewrite of the GEDCOM parser
 * Export views to a spreadsheet
