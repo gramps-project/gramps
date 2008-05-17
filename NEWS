@@ -1,4 +1,12 @@
-Version 3.0.0 -- the "" release
+Version 3.0.1 -- the "Don't call me "Señor!" release!
+* Translation updates for de, es, fi, fr, hr, lt, nb, nl, pl, sk, and sv!
+* Bug fixes for the book report!
+* Various improvements for the Relationship, Familylines and Hourglass graphs!
+* Improvements to the narrative web report!
+* Many miscellaneous bug fixes!
+* See ChangeLog for full list of changes!
+
+Version 3.0.0 -- the "It was just getting interesting." release
 * Rewrite of the GEDCOM parser
 * Export views to a spreadsheet
 * Formatted notes
@@ -7,6 +15,14 @@ Version 3.0.0 -- the "" release
 * New database format, using hidden directory, old grdb format deprecated
 * New database manager, allowing create, deletion, renaming, repair and
   revison control
+
+Version 2.2.10 -- the "Lemon Curry?" release
+
+Version 2.2.9 -- the "Here's your ninepence" release
+
+Version 2.2.8 -- the "You sons of a silly person" release
+
+Version 2.2.7 -- the "Well, I didn't vote for you." release
 
 Version 2.2.6 -- the "Summarize Proust Competition" release
 * Fix report option saving
