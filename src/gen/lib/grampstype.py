@@ -95,13 +95,12 @@ class GrampsType(object):
     
     __metaclass__ = GrampsTypeMeta
     
+    @classmethod
     def __class_init__(cls, namespace):
         cls._I2SMAP = _init_map(cls._DATAMAP, 0, 1, cls._BLACKLIST)
         cls._S2IMAP = _init_map(cls._DATAMAP, 1, 0, cls._BLACKLIST)
         cls._I2EMAP = _init_map(cls._DATAMAP, 0, 2, cls._BLACKLIST)
         cls._E2IMAP = _init_map(cls._DATAMAP, 2, 0, cls._BLACKLIST)
-    
-    __class_init__ = classmethod(__class_init__)
     
     def __init__(self, value=None):
         """
