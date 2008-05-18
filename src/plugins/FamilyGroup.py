@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report, BooleanOption, FamilyOption
+from PluginUtils import PluginManager, BooleanOption, FamilyOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -762,7 +762,8 @@ class FamilyGroupOptions(MenuReportOptions):
 #
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'family_group',
     category = CATEGORY_TEXT,
     report_class = FamilyGroup,

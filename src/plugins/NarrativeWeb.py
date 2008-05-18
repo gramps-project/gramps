@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Copyright (C) 2007       Gary Burton <gary.burton@zen.co.uk>
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,7 +71,7 @@ import gen.lib
 import const
 from GrampsCfg import get_researcher
 import Sort
-from PluginUtils import (register_report, FilterOption, EnumeratedListOption,
+from PluginUtils import (PluginManager, FilterOption, EnumeratedListOption,
                          PersonOption, BooleanOption, NumberOption,
                          StringOption, DestinationOption, NoteOption,
                          MediaOption)
@@ -3152,7 +3153,8 @@ def sort_people(db, handle_list):
         sorted_lists.append((name, entries))
     return sorted_lists
 
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'navwebpage',
     category = CATEGORY_WEB,
     report_class = NavWebReport,

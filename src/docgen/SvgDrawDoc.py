@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ import StringIO
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import register_draw_doc
+from PluginUtils import PluginManager
 import BaseDoc
 import Errors
 
@@ -262,4 +262,6 @@ def units(val):
 # Register document generator
 #
 #-------------------------------------------------------------------------
-register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc,1,1,".svg");
+pmgr = PluginManager.get_instance()
+pmgr.register_draw_doc(_("SVG (Scalable Vector Graphics)"),
+                       SvgDrawDoc, 1, 1, ".svg");

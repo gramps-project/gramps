@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,7 @@ import const
 import Errors
 import DateHandler
 from QuestionDialog import WarningDialog
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 from ReportBase import ReportUtils
 import GrampsDisplay 
 import ManagedWindow
@@ -455,7 +456,8 @@ class EventComparisonOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'eventcmp',
     category = Tool.TOOL_ANAL,
     tool_class = EventComparison,

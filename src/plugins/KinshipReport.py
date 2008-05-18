@@ -35,7 +35,7 @@ from string import capitalize
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, relationship_class, NumberOption, \
+from PluginUtils import PluginManager, NumberOption, \
     BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
@@ -82,7 +82,9 @@ class KinshipReport(Report):
         self.person = database.get_person_from_gramps_id(pid)
 
         self.__db = database
-        self.rel_calc = relationship_class()
+        pmgr = PluginManager.get_instance()
+        self.rel_calc = pmgr.get_relationship_calculator()
+
         self.kinship_map = {}
         self.spouse_map = {}
 
@@ -395,7 +397,8 @@ class KinshipOptions(MenuReportOptions):
 # Register the plugin
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'kinship_report',
     category = CATEGORY_TEXT,
     report_class = KinshipReport,

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,7 @@ from gettext import gettext as _
 import const
 from ReportBase import report, standalone_categories
 import _Tool
-import _PluginMgr
+from PluginUtils import PluginManager
 import ManagedWindow
 
 #-------------------------------------------------------------------------
@@ -131,10 +132,9 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         self.item = None
         self.build_plugin_tree(item_list, categories)
-        uistate.connect('plugins-reloaded', self.rebuild)
         self.show()
 
-    def rebuild(self, tool_list, report_list):
+    def rebuild(self):
         # This method needs to be overridden in the subclass
         assert False, "This method needs to be overridden in the subclass."
 
@@ -254,20 +254,24 @@ class ReportPlugins(PluginDialog):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
+        self.__pmgr = PluginManager.get_instance()
 
         PluginDialog.__init__(
             self,
             dbstate,
             uistate,
             track,
-            _PluginMgr.report_list,
+            self.__pmgr.get_report_list(),
             standalone_categories,
             _("Report Selection"),
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
             REPORTS)
+        
+        self.__pmgr.connect('plugins-reloaded', self.rebuild)
 
-    def rebuild(self, tool_list, report_list):
+    def rebuild(self):
+        report_list = self.__pmgr.get_report_list()
         self.build_plugin_tree(report_list, standalone_categories)
 
 #-------------------------------------------------------------------------
@@ -279,20 +283,18 @@ class ToolPlugins(PluginDialog):
     """Displays the dialog box that allows the user to select the tool
     that is desired."""
 
-    __signals__ = {
-        'plugins-reloaded' : (list,list),
-        }
     def __init__(self, dbstate, uistate, track):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
+        self.__pmgr = PluginManager.get_instance()
 
         PluginDialog.__init__(
             self,
             dbstate,
             uistate,
             track,
-            _PluginMgr.tool_list,
+            self.__pmgr.get_tool_list(),
             _Tool.tool_categories,
             _("Tool Selection"),
             _("Select a tool from those available on the left."),
@@ -300,5 +302,6 @@ class ToolPlugins(PluginDialog):
             _("Run selected tool"),
             TOOLS)
 
-    def rebuild(self, tool_list, report_list):
+    def rebuild(self):
+        tool_list = self.__pmgr.get_tool_list()
         self.build_plugin_tree(tool_list, _Tool.tool_categories)

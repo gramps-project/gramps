@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@ Tools/Debug/Check Localized Date Parser and Displayer
 #-------------------------------------------------------------------------
 import traceback
 import sys
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,7 +43,7 @@ import sys
 #
 #-------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 import Utils
 from QuestionDialog import QuestionDialog
 from DateHandler import parser as _dp
@@ -226,7 +228,8 @@ class DateParserDisplayTest(Tool.Tool):
 #
 #-------------------------------------------------------------------------
 
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'test_for_date_parser_and_displayer',
     category = Tool.TOOL_DEBUG,
     tool_class = DateParserDisplayTest,
@@ -236,9 +239,9 @@ register_tool(
     status = _("Beta"),
     author_name = "Martin Hawlisch",
     author_email = "martin@hawlisch.de",
-    description = _("This test tool will create many people showing all different"
-                    " date variants as birth. The death date is created by"
-                    " parsing the result of the date displayer for the birth"
-                    " date. This way you can ensure that dates printed can"
-                    " be parsed back in correctly.")
+    description = _("This test tool will create many people showing all"
+                    " different date variants as birth. The death date is"
+                    " created by parsing the result of the date displayer for"
+                    " the birth date. This way you can ensure that dates"
+                    " printed can be parsed back in correctly.")
     )

@@ -37,7 +37,7 @@ from gettext import gettext as _
 import gen.lib
 import BaseDoc
 import DateHandler
-from PluginUtils import register_report, FilterOption, BooleanOption, \
+from PluginUtils import PluginManager, FilterOption, BooleanOption, \
     PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
@@ -633,7 +633,8 @@ class IndivCompleteOptions(MenuReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'indiv_complete',
     category = CATEGORY_TEXT,
     report_class = IndivCompleteReport,

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,9 +55,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Plugins, Tool, PluginWindows, \
-     relationship_class, load_plugins, \
-     tool_list, report_list
+from PluginUtils import Plugins, Tool, PluginWindows, PluginManager
 
 import ReportBase
 import DisplayState
@@ -223,6 +222,8 @@ class ViewManager:
         self.show_sidebar = Config.get(Config.VIEW)
         self.show_toolbar = Config.get(Config.TOOLBAR_ON)
         self.show_filter = Config.get(Config.FILTER)
+        
+        self.__pmgr = PluginManager.get_instance()
 
         self.__build_main_window()
         self.__connect_signals()
@@ -239,7 +240,7 @@ class ViewManager:
         self.window.set_icon_from_file(const.ICON)
         self.window.set_default_size(width, height)
         
-        self.rel_class = relationship_class
+        self.rel_class = self.__pmgr.get_relationship_calculator()
 
         vbox = gtk.VBox()
         self.window.add(vbox)
@@ -538,10 +539,10 @@ class ViewManager:
             self.actiongroup.set_visible(False)
             self.readonlygroup.set_visible(False)
         self.fileactions.set_sensitive(False)
-        self.__build_tools_menu(tool_list)
-        self.__build_report_menu(report_list)
+        self.__build_tools_menu(self.__pmgr.get_tool_list())
+        self.__build_report_menu(self.__pmgr.get_report_list())
         self.uistate.set_relationship_class()
-        self.uistate.connect('plugins-reloaded', 
+        self.__pmgr.connect('plugins-reloaded', 
                              self.__rebuild_report_and_tool_menus)
         self.fileactions.set_sensitive(True)
         self.uistate.widget.set_sensitive(True)
@@ -589,16 +590,15 @@ class ViewManager:
         generators and the plugins. The plugin status window is opened
         on an error if the user has requested.
         """
-        
         # load document generators
         self.uistate.status_text(_('Loading document formats...'))
-        error  = load_plugins(const.DOCGEN_DIR)
-        error |= load_plugins(const.USER_DOCGEN)
+        error  = self.__pmgr.load_plugins(const.DOCGEN_DIR)
+        error |= self.__pmgr.load_plugins(const.USER_DOCGEN)
 
         # load plugins
         self.uistate.status_text(_('Loading plugins...'))
-        error |= load_plugins(const.PLUGINS_DIR)
-        error |= load_plugins(const.USER_PLUGINS)
+        error |= self.__pmgr.load_plugins(const.PLUGINS_DIR)
+        error |= self.__pmgr.load_plugins(const.USER_PLUGINS)
 
         #  get to ssee if we need to open the plugin status window
         if error and Config.get(Config.POP_PLUGIN_STATUS):
@@ -1311,10 +1311,12 @@ class ViewManager:
             except Errors.WindowActiveError:
                 return
 
-    def __rebuild_report_and_tool_menus(self, tool_menu_list, report_menu_list):
+    def __rebuild_report_and_tool_menus(self):
         """
         Callback that rebuilds the tools and reports menu
         """
+        tool_menu_list = self.__pmgr.get_tool_list()
+        report_menu_list = self.__pmgr.get_report_list()
         self.__build_tools_menu(tool_menu_list)
         self.__build_report_menu(report_menu_list)
         self.uistate.set_relationship_class()

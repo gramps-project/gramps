@@ -33,7 +33,7 @@ from TransUtils import sgettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, NumberOption, StringOption, MediaOption
+from PluginUtils import PluginManager, NumberOption, StringOption, MediaOption
 from Utils import media_path_full
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc
@@ -177,7 +177,8 @@ class SimpleBookTitleOptions(MenuReportOptions):
 # register_report
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'simple_book_title',
     category = CATEGORY_TEXT,
     report_class = SimpleBookTitle,

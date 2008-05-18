@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import register_text_doc
+from PluginUtils import PluginManager
 import ImgManip
 import Errors
 import Mime
@@ -440,6 +440,7 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
+pmgr = PluginManager.get_instance()
 try:
     mprog = Mime.get_application(mime_type)
     mtype = Mime.get_description(mime_type)
@@ -448,6 +449,6 @@ try:
         print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
-    register_text_doc(mtype, RTFDoc, 1, 1, 1, ".rtf", print_label)
+    pmgr.register_text_doc(mtype, RTFDoc, 1, 1, 1, ".rtf", print_label)
 except:
-    register_text_doc(_('RTF document'), RTFDoc, 1, 1, 1, ".rtf", None)
+    pmgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, 1, ".rtf", None)

@@ -38,7 +38,7 @@ import math
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, PersonOption
+from PluginUtils import PluginManager, PersonOption
 from ReportBase import Report, MenuReportOptions, ReportUtils, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 from BasicUtils import name_displayer
@@ -189,7 +189,8 @@ class NumberOfAncestorsOptions(MenuReportOptions):
 # register_report
 #
 #-------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'number_of_ancestors_report',
     category = CATEGORY_TEXT,
     report_class = NumberOfAncestorsReport,

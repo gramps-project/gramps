@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, NumberOption, PersonOption, \
+from PluginUtils import PluginManager, NumberOption, PersonOption, \
      EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
@@ -273,7 +273,8 @@ class HourGlassOptions(MenuReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name            = 'hourglass_graph',
     category        = CATEGORY_GRAPHVIZ,
     report_class    = HourGlassReport,

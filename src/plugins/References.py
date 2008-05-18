@@ -28,7 +28,7 @@ from ReportBase import (CATEGORY_QR_SOURCE, CATEGORY_QR_PERSON,
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import register_quick_report
+from PluginUtils import PluginManager
 
 # mention so that will be translated for below
 [_('Person'), _('Family'), _('Event'), _('Source'), 
@@ -93,8 +93,10 @@ refitems = [(CATEGORY_QR_PERSON, 'person', _("Person")),
             (CATEGORY_QR_PLACE, 'place', _("Place")), 
             (CATEGORY_QR_REPOSITORY, 'repository', _("Repository")), 
             ]
+pmgr = PluginManager.get_instance()
+
 for (category,item,trans) in refitems:
-    register_quick_report(
+    pmgr.register_quick_report(
         name = item + 'refereneces',
         category = category,
         run_func = lambda db, doc, obj, item=item, trans=trans: \

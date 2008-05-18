@@ -36,7 +36,7 @@ import time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import Tool, register_tool, PluginWindows, \
+from PluginUtils import Tool, PluginManager, PluginWindows, \
     MenuToolOptions, BooleanOption, FilterOption, StringOption, \
     NumberOption, PersonOption
 import gen.lib
@@ -482,7 +482,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
 # Register the tool
 #
 #-------------------------------------------------------------------------
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'calculateestimateddates',
     category = Tool.TOOL_DBPROC,
     tool_class = CalcToolManagedWindow,

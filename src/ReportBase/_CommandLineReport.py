@@ -4,6 +4,7 @@
 # Copyright (C) 2001-2007  Donald N. Allingham
 # Copyright (C) 2008 Lukasz Rymarczyk
 # Copyright (C) 2008 Raphael Ackermann
+# Copyright (C) 2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -124,6 +125,11 @@ class CommandLineReport:
         """
         Initialize the options that are hard-coded into the report system.
         """
+        pmgr = PluginUtils.PluginManager.get_instance()
+        _textdoc_list = pmgr.get_text_doc_list()
+        _drawdoc_list = pmgr.get_draw_doc_list()
+        _bookdoc_list = pmgr.get_book_doc_list()
+        
         self.options_dict = {
             'of'        : self.option_class.handler.module_name,
             'off'       : self.option_class.handler.get_format_name(),
@@ -151,34 +157,34 @@ class CommandLineReport:
                                                     "whatever_name"))
 
         if self.category == CATEGORY_TEXT:
-            for item in PluginUtils.textdoc_list:
+            for item in _textdoc_list:
                 if item[7] == self.options_dict['off']:
                     self.format = item[1]
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = PluginUtils.textdoc_list[0][1]
+                self.format = _textdoc_list[0][1]
             self.options_help['off'][2] = \
-                [ item[7] for item in PluginUtils.textdoc_list ]
+                [ item[7] for item in _textdoc_list ]
             self.options_help['off'][3] = False
         elif self.category == CATEGORY_DRAW:
-            for item in PluginUtils.drawdoc_list:
+            for item in _drawdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = PluginUtils.drawdoc_list[0][1]
+                self.format = _drawdoc_list[0][1]
             self.options_help['off'][2] = \
-                [ item[6] for item in PluginUtils.drawdoc_list ]
+                [ item[6] for item in _drawdoc_list ]
             self.options_help['off'][3] = False
         elif self.category == CATEGORY_BOOK:
-            for item in PluginUtils.bookdoc_list:
+            for item in _bookdoc_list:
                 if item[6] == self.options_dict['off']:
                     self.format = item[1]
             if self.format is None:
                 # Pick the first one as the default.
-                self.format = PluginUtils.bookdoc_list[0][1]
+                self.format = _bookdoc_list[0][1]
             self.options_help['off'][2] = \
-                [ item[6] for item in PluginUtils.bookdoc_list ]
+                [ item[6] for item in _bookdoc_list ]
             self.options_help['off'][3] = False
         else:
             self.format = None

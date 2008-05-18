@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008-2008  Kees Bakker
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +54,7 @@ import Utils
 import gen.lib
 import const
 from QuestionDialog import ErrorDialog
-from PluginUtils import register_import
+from PluginUtils import PluginManager
 
 
 class ProgenError(Exception):
@@ -1207,4 +1208,5 @@ _filter.set_name(_('Pro-Gen files'))
 _filter.add_mime_type(_mime_type)
 _format_name = _('Pro-Gen')
 
-register_import(_importData, _filter, [_mime_type], 0, _format_name)
+pmgr = PluginManager.get_instance()
+pmgr.register_import(_importData, _filter, [_mime_type], 0, _format_name)

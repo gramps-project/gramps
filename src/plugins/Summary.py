@@ -37,7 +37,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report
+from PluginUtils import PluginManager
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -291,7 +291,8 @@ class SummaryOptions(MenuReportOptions):
 # register_report
 #
 #-------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'summary',
     category = CATEGORY_TEXT,
     report_class = SummaryReport,

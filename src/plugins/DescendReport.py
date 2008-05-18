@@ -35,7 +35,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, NumberOption, PersonOption
+from PluginUtils import PluginManager, NumberOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -245,7 +245,8 @@ class DescendantOptions(MenuReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'descend_report',
     category = CATEGORY_TEXT,
     report_class = DescendantReport,

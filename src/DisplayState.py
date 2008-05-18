@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,7 +56,7 @@ import Config
 from BasicUtils import name_displayer
 import const
 import ManagedWindow
-from PluginUtils import _PluginMgr
+from PluginUtils import PluginManager
 
 DISABLED = -1
 
@@ -299,7 +300,6 @@ class DisplayState(gen.utils.Callback):
         'filters-changed' : (str, ), 
         'filter-name-changed' : (str, unicode, unicode), 
         'nameformat-changed' : None, 
-        'plugins-reloaded' : (list, list), 
         }
 
     def __init__(self, window, status, progress, warnbtn, uimanager, 
@@ -344,7 +344,8 @@ class DisplayState(gen.utils.Callback):
         """method that rebinds the relationship to the current rel calc
            Should be called after load or reload of plugins
         """
-        self.relationship = _PluginMgr.relationship_class()
+        pmgr = PluginManager.get_instance()
+        self.relationship = pmgr.get_relationship_calculator()
 
     def set_gendepth(self, value):
         """ Set the generations we search back for showing relationships

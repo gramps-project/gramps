@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -37,7 +38,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool, cl_list, cli_tool_list, register_tool
+from PluginUtils import Tool, PluginManager
 from ReportBase import CATEGORY_BOOK, CATEGORY_WEB
 from ReportBase._CommandLineReport import CommandLineReport
 
@@ -55,7 +56,7 @@ _tags = [
 
 #-------------------------------------------------------------------------
 #
-# 
+# CmdRef
 #
 #-------------------------------------------------------------------------
 class CmdRef(Tool.Tool):
@@ -94,12 +95,14 @@ class CmdRef(Tool.Tool):
         f.write('    <title>Reports</title>\n')
 
         # Common report options
-        item = cl_list[0]
+        pmgr = PluginManager.get_instance()
+        _cl_list = pmgr.get_cl_list()
+        item = _cl_list[0]
         clr = CommandLineReport(self.__db, item[0], item[1], item[3], {}, True)
         self.write_ref(f,clr,level+2,id_counter,True)
         id_counter = id_counter + 1
 
-        for item in cl_list:
+        for item in _cl_list:
             unsupported = item[5]
             if unsupported is True:
                 continue
@@ -116,13 +119,14 @@ class CmdRef(Tool.Tool):
         f.write('    <title>Tools</title>\n')
 
         # Common tool options
-        item = cli_tool_list[0]
+        _cl_tool_list = pmgr.get_cl_tool_list()
+        item = _cl_tool_list[0]
         clr = Tool.CommandLineTool(self.__db, item[0], 
                                    item[1], item[3], {}, True)
         self.write_ref(f,clr,level+2,id_counter,True)
         id_counter = id_counter + 1
 
-        for item in cli_tool_list:
+        for item in _cl_tool_list:
             self.write_ref(f,item,level+2,id_counter)
             id_counter = id_counter + 1
         f.write('  </%s>\n' % _tags[level+1] )
@@ -202,7 +206,7 @@ class CmdRef(Tool.Tool):
     
 #------------------------------------------------------------------------
 #
-# 
+# CmdRefOptions
 #
 #------------------------------------------------------------------------
 class CmdRefOptions(Tool.ToolOptions):
@@ -231,10 +235,10 @@ class CmdRefOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-
 if __debug__:
 
-    register_tool(
+    pmgr = PluginManager.get_instance()
+    pmgr.register_tool(
         name = 'cmdref',
         category = Tool.TOOL_DEBUG,
         tool_class = CmdRef,

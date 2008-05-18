@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ Display a people who have a person's same surname
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import register_quick_report
+from PluginUtils import PluginManager
 from ReportBase import CATEGORY_QR_PERSON
 from Filters.Rules import Rule
 from Filters import GenericFilterFactory
@@ -95,7 +95,8 @@ def run(database, document, person):
 # 
 #
 #------------------------------------------------------------------------
-register_quick_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_quick_report(
     name = 'samesurnames',
     category = CATEGORY_QR_PERSON,
     run_func = run,

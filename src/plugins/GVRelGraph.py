@@ -42,7 +42,7 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, FilterOption, \
+from PluginUtils import PluginManager, FilterOption, \
                         EnumeratedListOption, BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
@@ -551,7 +551,8 @@ class RelGraphOptions(MenuReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'rel_graph',
     category = CATEGORY_GRAPHVIZ,
     report_class = RelGraphReport,

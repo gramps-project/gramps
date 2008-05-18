@@ -29,7 +29,7 @@
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from PluginUtils import register_report, NumberOption, BooleanOption, \
+from PluginUtils import PluginManager, NumberOption, BooleanOption, \
     TextOption, PersonOption
 from ReportBase import Report, MenuReportOptions, \
     ReportUtils, CATEGORY_DRAW, MODE_GUI, MODE_BKI, MODE_CLI
@@ -479,7 +479,8 @@ class DescendTreeOptions(MenuReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'descend_chart',
     category = CATEGORY_DRAW,
     report_class = DescendTree,

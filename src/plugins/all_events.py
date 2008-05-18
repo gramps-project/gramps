@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ Display a person's events, both personal and family
 
 from Simple import SimpleAccess, by_date, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import register_quick_report
+from PluginUtils import PluginManager
 from ReportBase import CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY
 
 def run(database, document, person):
@@ -137,7 +137,9 @@ def fam_sort(event1, event2):
 # 
 #
 #------------------------------------------------------------------------
-register_quick_report(
+pmgr = PluginManager.get_instance()
+
+pmgr.register_quick_report(
     name = 'all_events',
     category = CATEGORY_QR_PERSON,
     run_func = run,
@@ -148,7 +150,7 @@ register_quick_report(
     author_email="don@gramps-project.org"
     )
     
-register_quick_report(
+pmgr.register_quick_report(
     name = 'all_events_fam',
     category = CATEGORY_QR_FAMILY,
     run_func = run_fam,

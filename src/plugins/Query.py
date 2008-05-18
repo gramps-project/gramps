@@ -25,7 +25,7 @@ Run a query on the tables
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import register_quick_report
+from PluginUtils import PluginManager
 import Utils
 from ReportBase import CATEGORY_QR_MISC
 import DateHandler
@@ -427,8 +427,8 @@ def run(database, document, query):
 # Register the report
 #
 #------------------------------------------------------------------------
-
-register_quick_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_quick_report(
     name = 'query',
     category = CATEGORY_QR_MISC,
     run_func = run,

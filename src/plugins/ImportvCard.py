@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,7 +56,7 @@ import Errors
 import gen.lib
 import const
 from QuestionDialog import ErrorDialog
-from PluginUtils import register_import
+from PluginUtils import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -225,4 +226,5 @@ _filter.set_name(_('vCard files'))
 for mime in _mime_type:
     _filter.add_mime_type(mime)
 
-register_import(importData, _filter, _mime_type, 1)
+pmgr = PluginManager.get_instance()
+pmgr.register_import(importData, _filter, _mime_type, 1)

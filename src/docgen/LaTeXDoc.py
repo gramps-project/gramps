@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2008       Raphael Ackermann
 #
 # Modifications and feature additions:
@@ -43,7 +43,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import register_text_doc
+from PluginUtils import PluginManager
 import ImgManip
 import Errors
 import Mime
@@ -522,6 +522,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 #
 #------------------------------------------------------------------------
 print_label = None
+pmgr = PluginManager.get_instance()
 try:
     mprog = Mime.get_application(_apptype)
 
@@ -533,4 +534,4 @@ try:
 except:
     print_label = None
 
-register_text_doc(_('LaTex'), LaTeXDoc, 1, 1, 0, ".tex", print_label)
+pmgr.register_text_doc(_('LaTex'), LaTeXDoc, 1, 1, 0, ".tex", print_label)

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007 Donald N. Allingham
+# Copyright (C) 2008      Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -51,7 +52,7 @@ import gtk
 
 import const
 import Config
-from PluginUtils import export_list
+from PluginUtils import PluginManager
 import Utils
 import ManagedWindow
 
@@ -509,11 +510,12 @@ class ExportAssistant(gtk.Assistant, ManagedWindow.ManagedWindow) :
         """
         This method builds its own list of available exports. 
         
-        The list is built from the PluginMgr.export_list list and from the 
-        locally defined exports (i.e. native export defined here).
+        The list is built from the list of exporters in the PluginManager and 
+        from the locally defined exports (i.e. native export defined here).
         
         """
-        self.exportformats = [item for item in export_list]
+        pmgr = PluginManager.get_instance()
+        self.exportformats = [item for item in pmgr.get_export_list()]
         
     def get_intro_text(self):
         return _('Under normal circumstances, GRAMPS does not require you '

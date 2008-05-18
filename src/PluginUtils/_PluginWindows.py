@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,7 @@ import gobject
 #-------------------------------------------------------------------------
 import ManagedWindow
 import Errors
-import _PluginMgr as PluginMgr
+from PluginUtils import PluginManager
 import _Tool as Tool
 
 #-------------------------------------------------------------------------
@@ -61,6 +62,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, track,
                                              self.__class__)
 
+        self.__pmgr = PluginManager.get_instance()
         self.set_window(gtk.Dialog("", uistate.window,
                                    gtk.DIALOG_DESTROY_WITH_PARENT,
                                    (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)),
@@ -102,7 +104,9 @@ class PluginStatus(ManagedWindow.ManagedWindow):
 
     def __populate_list(self):
         """ Build the list of plugins """
-        for i in PluginMgr.failmsg_list:
+        fail_list = self.__pmgr.get_fail_list()
+        
+        for i in fail_list:
             err = i[1][0]
             
             if err == Errors.UnavailableError:
@@ -114,9 +118,10 @@ class PluginStatus(ManagedWindow.ManagedWindow):
                     '<span weight="bold" color="red">%s</span>' % _('Fail'),
                     i[0], str(i[1][1]), i[1]])
 
-        for i in PluginMgr.success_list:
+        success_list = self.__pmgr.get_success_list()
+        for i in success_list:
             modname = i[1].__name__
-            descr = PluginMgr.mod2text.get(modname,'')
+            descr = self.__pmgr.get_module_description(modname)
             self.model.append(row=[
                 '<span weight="bold" color="#267726">%s</span>' % _("OK"),
                 i[0], descr, None])
@@ -135,9 +140,7 @@ class PluginStatus(ManagedWindow.ManagedWindow):
     
     def __reload(self, obj):
         """ Callback function from the "Reload" button """
-        PluginMgr.reload_plugins()
-        self.__uistate.emit('plugins-reloaded', 
-                            (PluginMgr.tool_list, PluginMgr.report_list))
+        self.__pmgr.reload_plugins()
         self.model.clear()
         self.__populate_list()
         

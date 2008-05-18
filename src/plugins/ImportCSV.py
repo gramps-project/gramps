@@ -1,9 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007  Douglas S. Blank
-# Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2008 Raphael Ackerman
+# Copyright (C) 2007       Douglas S. Blank
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Raphael Ackerman
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,7 +59,7 @@ import gtk
 import gen.lib
 from QuestionDialog import ErrorDialog
 from DateHandler import parser as _dp
-from PluginUtils import register_import
+from PluginUtils import PluginManager
 from Utils import gender as gender_map
 from Utils import ProgressMeter
 
@@ -806,5 +807,7 @@ _filter.set_name(_('CSV spreadsheet files'))
 _filter.add_mime_type(_mime_type)
 _filter.add_mime_type(_mime_type_rfc_4180)
 _format_name = _('CSV Spreadheet')
-register_import(importData, _filter, [_mime_type, _mime_type_rfc_4180],
+
+pmgr = PluginManager.get_instance()
+pmgr.register_import(importData, _filter, [_mime_type, _mime_type_rfc_4180],
                 0, _format_name)

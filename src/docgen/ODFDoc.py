@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2005-2006  Serge Noiraud
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ from xml.sax.saxutils import escape
 #-------------------------------------------------------------------------
 import BaseDoc
 import const
-from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
+from PluginUtils import PluginManager
 from ReportBase import ReportUtils
 import ImgManip
 import FontScale
@@ -1145,6 +1145,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
 #
 #--------------------------------------------------------------------------
 print_label = None
+pmgr = PluginManager.get_instance()
 try:
     mprog = Mime.get_application(_apptype)
 
@@ -1156,6 +1157,9 @@ try:
 except:
     print_label = None
 
-register_text_doc(_('Open Document Text'), ODFDoc, 1, 1, 1, ".odt", print_label)
-register_book_doc(_("Open Document Text"), ODFDoc, 1, 1, 1, ".odt", print_label)
-register_draw_doc(_("Open Document Text"), ODFDoc, 1, 1, ".odt", print_label);
+pmgr.register_text_doc(_('Open Document Text'), 
+                       ODFDoc, 1, 1, 1, ".odt", print_label)
+pmgr.register_book_doc(_("Open Document Text"), 
+                       ODFDoc, 1, 1, 1, ".odt", print_label)
+pmgr.register_draw_doc(_("Open Document Text"), 
+                       ODFDoc, 1, 1, ".odt", print_label);

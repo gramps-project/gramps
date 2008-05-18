@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2004  Martin Hawlisch
 # Copyright (C) 2004-2006, 2008 Donald N. Allingham
+# Copyright (C) 2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,7 +57,7 @@ from Filters import GenericFilter, Rules, build_filter_menu
 import Utils
 import Errors
 from QuestionDialog import ErrorDialog
-from PluginUtils import register_export
+from PluginUtils import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -642,4 +643,5 @@ _description = _('GeneWeb is a web based genealogy program.')
 _config = (_('GeneWeb export options'), GeneWebWriterOptionBox)
 _filename = 'gw'
 
-register_export(exportData, _title, _description, _config, _filename)
+pmgr = PluginManager.get_instance()
+pmgr.register_export(exportData, _title, _description, _config, _filename)

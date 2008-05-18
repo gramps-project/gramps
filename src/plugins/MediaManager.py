@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2008  B. Malengier
+# Copyright (C) 2008       B. Malengier
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,7 @@ import Assistant
 import Errors
 from gen.lib import MediaObject
 from BasicUtils import UpdateCallback
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 from Utils import media_path_full, relative_path, media_path
 from TransUtils import sgettext as _
 
@@ -584,7 +585,8 @@ class MediaManOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'mediaman',
     category = Tool.TOOL_UTILS,
     tool_class = MediaMan,

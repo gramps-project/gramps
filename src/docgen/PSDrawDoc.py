@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ from gettext import gettext as _
 #Gramps modules
 #-------------------------------------------------------------------------
 from ReportBase import ReportUtils, run_print_dialog, get_print_dialog_app
-from PluginUtils import register_draw_doc
+from PluginUtils import PluginManager
 import BaseDoc
 import Errors
 
@@ -367,4 +367,5 @@ class PSDrawDoc(BaseDoc.BaseDoc,BaseDoc.DrawDoc):
                 self.f.write("(%s) show\n" % lines[i])
         self.f.write('grestore\n')
 
-register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps", print_label);
+pmgr = PluginManager.get_instance()
+pmgr.register_draw_doc(_("PostScript"), PSDrawDoc, 1, 1, ".ps", print_label);

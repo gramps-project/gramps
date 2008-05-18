@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,7 +60,7 @@ import Mime
 import gen.db
 import GrampsDbUtils
 import Utils
-from PluginUtils import import_list
+from PluginUtils import PluginManager
 from QuestionDialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
 import Errors
@@ -106,7 +107,9 @@ class DbLoader:
                 self.uistate.window)
             if not warn_dialog.run():
                 return False
-
+            
+        pmgr = PluginManager.get_instance()
+        
         choose_db_dialog = gtk.FileChooserDialog(_('GRAMPS: Import database'), 
                                        self.uistate.window, 
                                        gtk.FILE_CHOOSER_ACTION_OPEN, 
@@ -123,7 +126,7 @@ class DbLoader:
         format_list = OPEN_FORMATS[:]
 
         # Add more data type selections if opening existing db
-        for data in import_list:
+        for data in pmgr.get_import_list():
             mime_filter = data[1]
             mime_types = data[2]
             native_format = data[3]
@@ -178,7 +181,7 @@ class DbLoader:
                 Config.set(Config.RECENT_IMPORT_DIR, the_path)
                 # Then we try all the known plugins
                 for (importData, mime_filter, mime_types, native_format, 
-                     format_name) in import_list:
+                     format_name) in pmgr.get_import_list():
                     if filetype in mime_types:
                         self.do_import(choose_db_dialog, importData, filename)
                         return True

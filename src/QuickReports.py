@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007  B. Malengier
+# Copyright (C) 2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,15 +54,13 @@ import gtk
 #
 #-------------------------------------------------------------------------
 
-#from PluginUtils import Plugins
+from PluginUtils import PluginManager
 from ReportBase  import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY,
                         CATEGORY_QR_EVENT, CATEGORY_QR_SOURCE, CATEGORY_QR_MISC,
                         CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY)
 
 
 def create_quickreport_menu(category,dbstate,uistate, handle) :
-    #import present version of the 
-    from PluginUtils import quick_report_list
     """ This functions querries the registered quick reports with 
             quick_report_list of _PluginMgr.py
         It collects the reports of the requested category, which must be one of
@@ -86,7 +85,8 @@ def create_quickreport_menu(category,dbstate,uistate, handle) :
     
     #select the reports to show
     showlst = []
-    for item in quick_report_list:
+    pmgr = PluginManager.get_instance()
+    for item in pmgr.get_quick_report_list():
         if not item[8] and item[2] == category :
             #add tuple function, translated name, name, status
             showlst.append((item[0], item[1], item[3], item[5]))
@@ -109,14 +109,14 @@ def make_quick_report_callback(lst, category, dbstate, uistate, handle):
     return lambda x: run_report(dbstate, uistate, category, handle, lst[0])
 
 def run_quick_report_by_name(dbstate, uistate, report_name, handle, **kwargs):
-    from PluginUtils import quick_report_list
     # [0] - function 
     # [1] - translated name
     # [2] - category
     # [3] - name
     # [5] - status
     report = None
-    for item in quick_report_list:
+    pmgr = PluginManager.get_instance()
+    for item in pmgr.get_quick_report_list():
         if item[3] == report_name:
             report = item
             break
@@ -129,11 +129,11 @@ def run_quick_report_by_name_direct(report_name, database, document, handle):
     """
     Useful for running one quick report from another
     """
-    from PluginUtils import quick_report_list
     from docgen import TextBufDoc
     from Simple import make_basic_stylesheet
     report = None
-    for item in quick_report_list:
+    pmgr = PluginManager.get_instance()
+    for item in pmgr.get_quick_report_list():
         if item[3] == report_name:
             report = item
             break

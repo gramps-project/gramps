@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ Display filtered data
 """
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
-from PluginUtils import register_quick_report
+from PluginUtils import PluginManager
 from Utils import media_path_full
 from QuickReports import run_quick_report_by_name_direct
 from gen.lib import Person
@@ -226,7 +226,8 @@ def run(database, document, filter_name, *args, **kwargs):
 # 
 #
 #------------------------------------------------------------------------
-register_quick_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_quick_report(
     name = 'filterbyname',
     category = -1, # stand-alone
     run_func = run,

@@ -34,7 +34,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, PersonOption
+from PluginUtils import PluginManager, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -307,7 +307,8 @@ class EndOfLineOptions(MenuReportOptions):
 # Register the plugin
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'endofline_report',
     category = CATEGORY_TEXT,
     report_class = EndOfLineReport,

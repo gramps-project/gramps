@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,6 +44,12 @@ import PluginUtils
 #-------------------------------------------------------------------------
 class BookFormatComboBox(gtk.ComboBox):
 
+    def __init__(self):
+        pmgr = PluginUtils.PluginManager.get_instance()
+        self.__book_doc_list = pmgr.get_book_doc_list()
+        self.__book_doc_list.sort()
+        gtk.ComboBox.__init__(self)
+
     def set(self,tables,callback, obj=None,active=None):
         self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
@@ -52,10 +59,9 @@ class BookFormatComboBox(gtk.ComboBox):
 
         out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
-        PluginUtils.drawdoc_list.sort()
         active_index = 0
         self.data = []
-        for item in PluginUtils.bookdoc_list:
+        for item in self.__book_doc_list:
             if tables and item[2] == 0:
                 continue
             self.data.append(item)

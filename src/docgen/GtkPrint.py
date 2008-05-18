@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007  Zsolt Foldvari
+# Copyright (C) 2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ import os
 #------------------------------------------------------------------------
 import BaseDoc
 from CairoDoc import CairoDoc
-from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
+from PluginUtils import PluginManager
 import Errors
 
 #------------------------------------------------------------------------
@@ -618,6 +619,7 @@ class GtkPrint(CairoDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-register_text_doc(_('Print...'), GtkPrint, 1, 1, 1, "", None)
-register_draw_doc(_('Print...'), GtkPrint, 1, 1, "", None)
-register_book_doc(_('Print...'), GtkPrint, 1, 1, 1, "", None)
+pmgr = PluginManager.get_instance()
+pmgr.register_text_doc(_('Print...'), GtkPrint, 1, 1, 1, "", None)
+pmgr.register_draw_doc(_('Print...'), GtkPrint, 1, 1, "", None)
+pmgr.register_book_doc(_('Print...'), GtkPrint, 1, 1, 1, "", None)

@@ -25,7 +25,7 @@ Display references for any object
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import register_quick_report
+from PluginUtils import PluginManager
 from ReportBase import CATEGORY_QR_DATE
 import DateHandler
 import gen.lib
@@ -94,7 +94,8 @@ def get_event_date_from_ref(database, ref):
 #
 #------------------------------------------------------------------------
 
-register_quick_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_quick_report(
     name = 'ageondate',
     category = CATEGORY_QR_DATE,
     run_func = run,

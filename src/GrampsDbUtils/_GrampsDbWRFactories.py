@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007 Donald N. Allingham
+# Copyright (C) 2008      Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ import logging
 log = logging.getLogger(".GrampDb")
 
 from gen.db import GrampsDbException
-from PluginUtils import import_list
+from PluginUtils import PluginManager
 
 def gramps_db_reader_factory(db_type):
     """Factory class for obtaining a Gramps database importer.
@@ -65,7 +66,8 @@ def gramps_db_reader_factory(db_type):
     else:
         #see if registered importer
         found = False
-        for data in import_list:
+        pmgr = PluginManager.get_instance()
+        for data in pmgr.get_import_list():
             if db_type in data[2]:
                 print "Found import plugin for %s" % data[4]
                 found = True

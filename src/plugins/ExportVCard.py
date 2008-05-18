@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2004  Martin Hawlisch
 # Copyright (C) 2005-2008  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,7 +56,7 @@ from Filters import GenericFilter, Rules, build_filter_menu
 from gen.lib import Date
 import Errors
 from QuestionDialog import ErrorDialog
-from PluginUtils import register_export
+from PluginUtils import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -271,4 +272,5 @@ _description = _('vCard is used in many addressbook and pim applications.')
 _config = (_('vCard export options'), CardWriterOptionBox)
 _filename = 'vcf'
 
-register_export(exportData, _title, _description, _config, _filename)
+pmgr = PluginManager.get_instance()
+pmgr.register_export(exportData, _title, _description, _config, _filename)

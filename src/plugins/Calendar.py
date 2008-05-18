@@ -37,7 +37,7 @@ import os
 #------------------------------------------------------------------------
 import BaseDoc
 from BasicUtils import name_displayer
-from PluginUtils import register_report, relationship_class
+from PluginUtils import PluginManager
 from ReportBase import (Report, ReportUtils, MenuReportOptions, 
                         CATEGORY_DRAW, CATEGORY_TEXT, 
                         MODE_GUI, MODE_BKI, MODE_CLI)
@@ -314,7 +314,9 @@ class Calendar(Report):
         self.progress.set_pass(_('Filtering data...'), 0)
         people = self.filter.apply(self.database, 
                                    self.database.get_person_handles(sort_handles=False))
-        rel_calc = relationship_class()
+        pmgr = PluginManager.get_instance()
+        rel_calc = pmgr.get_relationship_calculator()
+
         self.progress.set_pass(_('Filtering data...'), len(people))
         for person_handle in people:
             self.progress.step()
@@ -916,7 +918,8 @@ _countries = get_countries()
 # Register the plugins
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'calendar', 
     category = CATEGORY_DRAW, 
     report_class = Calendar, 
@@ -929,7 +932,7 @@ register_report(
     description = _("Produces a graphical calendar"), 
     )
 
-register_report(
+pmgr.register_report(
     name = 'birthday_report', 
     category = CATEGORY_TEXT, 
     report_class = CalendarReport, 

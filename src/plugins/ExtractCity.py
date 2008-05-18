@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,7 +50,7 @@ import gobject
 import ManagedWindow
 import GrampsDisplay
 
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 import Utils
 
 CITY_STATE_ZIP = re.compile("((\w|\s)+)\s*,\s*((\w|\s)+)\s*(,\s*((\d|-)+))", re.UNICODE)
@@ -621,7 +622,8 @@ class ExtractCityOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'excity', 
     category = Tool.TOOL_DBPROC, 
     tool_class = ExtractCity, 

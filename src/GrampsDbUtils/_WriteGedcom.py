@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1474,5 +1475,6 @@ DESCRIPTION = _('GEDCOM is used to transfer data between genealogy programs. '
 CONFIG = (_('GEDCOM export options'), ExportOptions.WriterOptionBox)
 FILENAME = 'ged'
 
-from PluginUtils import register_export
-register_export(export_data, TITLE, DESCRIPTION, CONFIG, FILENAME)
+from PluginUtils import PluginManager
+pmgr = PluginManager.get_instance()
+pmgr.register_export(export_data, TITLE, DESCRIPTION, CONFIG, FILENAME)

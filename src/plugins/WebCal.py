@@ -67,7 +67,7 @@ import gen.lib
 import const
 import BaseDoc
 from GrampsCfg import get_researcher
-from PluginUtils import register_report
+from PluginUtils import PluginManager
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, 
                         MODE_GUI)
 from PluginUtils import FilterOption, EnumeratedListOption, PersonOption, \
@@ -1219,7 +1219,8 @@ _COUNTRIES = _get_countries()
 #
 #
 #-------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'WebCal',
     category = CATEGORY_WEB,
     report_class = WebCalReport,

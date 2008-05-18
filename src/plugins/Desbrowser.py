@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ from gtk import glade
 #
 #------------------------------------------------------------------------
 from BasicUtils import name_displayer
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 import GrampsDisplay
 import ManagedWindow
 from TransUtils import sgettext as _
@@ -157,7 +158,8 @@ class DesBrowseOptions(Tool.ToolOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'dbrowse',
     category = Tool.TOOL_ANAL,
     tool_class = DesBrowse,

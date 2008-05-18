@@ -37,7 +37,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from CairoDoc import CairoDoc
-from PluginUtils import register_text_doc, register_draw_doc, register_book_doc
+from PluginUtils import PluginManager
 import Utils
 import Mime
 
@@ -149,8 +149,9 @@ def register_docgen():
         mtype = _('PDF document')
         print_label = None
         
-    register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
-    register_draw_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
-    register_book_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
+    pmgr = PluginManager.get_instance()
+    pmgr.register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
+    pmgr.register_draw_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
+    pmgr.register_book_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
 
 register_docgen()

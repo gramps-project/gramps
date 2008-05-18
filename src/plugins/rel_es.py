@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2005  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@
 import gen.lib
 import Relationship
 import types
-from PluginUtils import register_relcalc
+from PluginUtils import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -334,6 +335,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 # Register this function with the Plugins system 
 #
 #-------------------------------------------------------------------------
-register_relcalc(RelationshipCalculator,
+pmgr = PluginManager.get_instance()
+pmgr.register_relcalc(RelationshipCalculator,
     ["es","ES","es_ES","espanol","Espanol","es_ES.UTF8","es_ES@euro","es_ES.UTF8@euro",
             "spanish","Spanish", "es_ES.UTF-8", "es_ES.utf-8", "es_ES.utf8"])

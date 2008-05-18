@@ -36,7 +36,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, NumberOption, \
+from PluginUtils import PluginManager, NumberOption, \
      BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
@@ -334,7 +334,8 @@ class AncestorOptions(MenuReportOptions):
 # Register the plugin
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'ancestor_report',
     category = CATEGORY_TEXT,
     report_class = AncestorReport,

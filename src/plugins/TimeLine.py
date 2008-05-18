@@ -37,7 +37,7 @@ from TransUtils import sgettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report
+from PluginUtils import PluginManager
 from PluginUtils import FilterOption, EnumeratedListOption, \
     PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
@@ -455,7 +455,8 @@ class TimeLineOptions(MenuReportOptions):
 #
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'timeline',
     category = CATEGORY_DRAW,
     report_class = TimeLine,

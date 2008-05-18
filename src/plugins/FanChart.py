@@ -34,7 +34,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import BaseDoc
-from PluginUtils import register_report
+from PluginUtils import PluginManager
 from PluginUtils import NumberOption, EnumeratedListOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, CATEGORY_DRAW, \
     MODE_GUI, MODE_BKI, MODE_CLI
@@ -433,7 +433,8 @@ class FanChartOptions(MenuReportOptions):
 #
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'fan_chart',
     category = CATEGORY_DRAW,
     report_class = FanChart,

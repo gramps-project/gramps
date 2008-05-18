@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007  B. Malengier
+# Copyright (C) 2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +30,7 @@ Display a person's relations to the home person
 
 from Simple import SimpleAccess, SimpleDoc
 from gettext import gettext as _
-from PluginUtils import register_quick_report, relationship_class
+from PluginUtils import PluginManager
 from ReportBase import CATEGORY_QR_PERSON
 
 # define the formatting string once as a constant. Since this is reused
@@ -57,7 +58,10 @@ class AllRelReport():
         self.person   = person
         self.sdb = SimpleAccess(database)
         self.sdoc = SimpleDoc(document)
-        self.rel_class = relationship_class()
+        
+        pmgr = PluginManager.get_instance()
+        self.rel_class = pmgr.get_relationship_calculator()
+
         self.msg_list = []
 
     def run(self):
@@ -342,7 +346,8 @@ class AllRelReport():
 # 
 #
 #------------------------------------------------------------------------
-register_quick_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_quick_report(
     name = 'all_relations',
     category = CATEGORY_QR_PERSON,
     run_func = run,

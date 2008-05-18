@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006, 2008  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,7 +56,7 @@ import Utils
 from Filters import GenericFilter, Rules, build_filter_menu
 import Errors
 from QuestionDialog import ErrorDialog
-from PluginUtils import register_export
+from PluginUtils import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -312,4 +313,5 @@ _description = _('Web Family Tree format.')
 _config = (_('Web Family Tree export options'), FtreeWriterOptionBox)
 _filename = 'wft'
 
-register_export(writeData, _title, _description, _config,_filename)
+pmgr = PluginManager.get_instance()
+pmgr.register_export(writeData, _title, _description, _config,_filename)

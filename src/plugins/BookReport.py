@@ -72,7 +72,7 @@ import ListModel
 import Errors
 import BaseDoc
 from QuestionDialog import WarningDialog, ErrorDialog
-from PluginUtils import bkitems_list, register_report, Plugins
+from PluginUtils import PluginManager, Plugins
 from PluginUtils import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 
@@ -189,7 +189,9 @@ class BookItem:
         """
         self.dbase = dbase
         self.style_name = "default"
-        for item in bkitems_list:
+        pmgr = PluginManager.get_instance()
+
+        for item in pmgr.get_book_item_list():
             if item[4] == name:
                 self.translated_name = item[0]
                 if item[5]:
@@ -740,11 +742,11 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
         
         The selections are read from the book item registry.
         """
-
-        if not bkitems_list:
+        pmgr = PluginManager.get_instance()
+        if not pmgr.get_book_item_list():
             return
 
-        for book_item in bkitems_list:
+        for book_item in pmgr.get_book_item_list():
             if book_item[5]:
                 category = Plugins.UNSUPPORTED
             else:
@@ -1234,7 +1236,8 @@ def write_book_item(database, report_class, options_class):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'book',
     category = CATEGORY_BOOK,
     report_class = BookReportSelector,

@@ -5,6 +5,7 @@
 # Copyright (C) 2007-2008  B. Malengier
 # Copyright (C) 2008 Lukasz Rymarczyk
 # Copyright (C) 2008 Raphael Ackermann
+# Copyright (C) 2008 Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +61,7 @@ import Utils
 import gen.db.exceptions as GX
 from DbManager import CLIDbManager, NAME_FILE, find_locker_name
 
-from PluginUtils import Tool, cl_list, cli_tool_list
+from PluginUtils import Tool, PluginManager
 from ReportBase import CATEGORY_BOOK, CATEGORY_CODE, CATEGORY_WEB, cl_report
 
 IMPORT_TYPES = (const.APP_GRAMPS_XML, const.APP_GEDCOM, 
@@ -721,6 +722,7 @@ class ArgHandler:
         """
         Command-line action routine. Try to perform specified action.
         """
+        pmgr = PluginManager.get_instance()
         if action == 'check':
             import Check
             checker = Check.CheckIntegrity(self.state.db, None, None)
@@ -744,8 +746,9 @@ class ArgHandler:
                 print "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
+            _cl_list = pmgr.get_cl_list()
             if name:
-                for item in cl_list:
+                for item in _cl_list:
                     if name == item[0]:
                         category = item[1]
                         report_class = item[2]
@@ -763,7 +766,7 @@ class ArgHandler:
                 msg = "Report name not given. Please use -p name=reportname."
             
             print "%s\n Available names are:" % msg
-            for item in cl_list:
+            for item in _cl_list:
                 # Print cli report name ([item[0]) and GUI report name (item[4])
                 if len(item[0]) <= 25:
                     print "   %s%s- %s" % (item[0], 
@@ -780,8 +783,9 @@ class ArgHandler:
                 print "Ignoring invalid options string."
 
             name = options_str_dict.pop('name', None)
+            _cli_tool_list = pmgr.get_cl_tool_list()
             if name:
-                for item in cli_tool_list:
+                for item in _cli_tool_list:
                     if name == item[0]:
                         category = item[1]
                         tool_class = item[2]
@@ -794,7 +798,7 @@ class ArgHandler:
                 msg = "Tool name not given. Please use -p name=toolname."
             
             print "%s\n Available names are:" % msg
-            for item in cli_tool_list:
+            for item in _cli_tool_list:
                 print "   %s" % item[0]
         else:
             print "Unknown action: %s." % action

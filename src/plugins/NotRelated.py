@@ -43,7 +43,7 @@ import gobject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_tool, Tool
+from PluginUtils import PluginManager, Tool
 from ReportBase import ReportUtils
 from Editors import EditPerson, EditFamily
 import ManagedWindow
@@ -426,7 +426,8 @@ class NotRelatedOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'not_related',
     category = Tool.TOOL_UTILS,
     tool_class = NotRelated,

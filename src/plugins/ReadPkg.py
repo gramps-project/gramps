@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,7 +57,7 @@ import const
 from GrampsDbUtils import gramps_db_reader_factory
 from QuestionDialog import ErrorDialog, WarningDialog
 import Utils
-from PluginUtils import register_import
+from PluginUtils import PluginManager
 
 #-------------------------------------------------------------------------
 #
@@ -154,4 +155,5 @@ _filter.set_name(_('GRAMPS packages'))
 _filter.add_mime_type(_mime_type)
 _format_name = _('GRAMPS package')
 
-register_import(impData, _filter, [_mime_type], 0, _format_name)
+pmgr = PluginManager.get_instance()
+pmgr.register_import(impData, _filter, [_mime_type], 0, _format_name)

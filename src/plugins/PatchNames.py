@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +46,7 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import Utils
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 from QuestionDialog import OkDialog
 import ManagedWindow
 import GrampsDisplay
@@ -362,7 +363,8 @@ class PatchNamesOptions(Tool.ToolOptions):
         Tool.ToolOptions.__init__(self, name, person_id)
 
 
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'patchnames',
     category = Tool.TOOL_DBPROC,
     tool_class = PatchNames,

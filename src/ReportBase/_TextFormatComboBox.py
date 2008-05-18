@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,6 +33,12 @@ import PluginUtils
 #-------------------------------------------------------------------------
 class TextFormatComboBox(gtk.ComboBox):
 
+    def __init__(self):
+        pmgr = PluginUtils.PluginManager.get_instance()
+        self.__text_doc_list = pmgr.get_text_doc_list()
+        self.__text_doc_list.sort()
+        gtk.ComboBox.__init__(self)
+
     def set(self,tables,callback, obj=None,active=None):
         self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
@@ -41,9 +48,8 @@ class TextFormatComboBox(gtk.ComboBox):
 
         out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
-        PluginUtils.textdoc_list.sort()
         active_index = 0
-        for item in PluginUtils.textdoc_list:
+        for item in self.__text_doc_list:
             if tables and item[2] == 0:
                 continue
             name = item[0]
@@ -56,22 +62,22 @@ class TextFormatComboBox(gtk.ComboBox):
         self.set_active(active_index)
 
     def get_label(self):
-        return PluginUtils.textdoc_list[self.get_active()][0]
+        return self.__text_doc_list[self.get_active()][0]
 
     def get_reference(self):
-        return PluginUtils.textdoc_list[self.get_active()][1]
+        return self.__text_doc_list[self.get_active()][1]
 
     def get_paper(self):
-        return PluginUtils.textdoc_list[self.get_active()][3]
+        return self.__text_doc_list[self.get_active()][3]
 
     def get_styles(self):
-        return PluginUtils.textdoc_list[self.get_active()][4]
+        return self.__text_doc_list[self.get_active()][4]
 
     def get_ext(self):
-        return PluginUtils.textdoc_list[self.get_active()][5]
+        return self.__text_doc_list[self.get_active()][5]
 
     def get_printable(self):
-        return PluginUtils.textdoc_list[self.get_active()][6]
+        return self.__text_doc_list[self.get_active()][6]
 
     def get_clname(self):
-        return PluginUtils.textdoc_list[self.get_active()][7]
+        return self.__text_doc_list[self.get_active()][7]

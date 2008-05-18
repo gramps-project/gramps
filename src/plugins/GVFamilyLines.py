@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Stephane Charette
-# Copyright (C) 2007  Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -51,7 +51,7 @@ import ThumbNails
 from DateHandler import displayer as _dd
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     CATEGORY_GRAPHVIZ, MODE_GUI
-from PluginUtils import register_report, EnumeratedListOption, BooleanOption, \
+from PluginUtils import PluginManager, EnumeratedListOption, BooleanOption, \
     NumberOption, ColourOption, PersonListOption, SurnameColourOption
 
 #------------------------------------------------------------------------
@@ -1032,7 +1032,8 @@ class FamilyLinesReport(Report):
 # appears in the "Reports" menu options
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name            = 'familylines_graph',
     translated_name = _("Family Lines Graph"),
     category        = CATEGORY_GRAPHVIZ,

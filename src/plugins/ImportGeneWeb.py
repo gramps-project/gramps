@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,7 +56,7 @@ import Errors
 import gen.lib
 import const
 from QuestionDialog import ErrorDialog
-from PluginUtils import register_import
+from PluginUtils import PluginManager
 from htmlentitydefs import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
@@ -934,4 +935,5 @@ _filter.set_name(_('GeneWeb files'))
 _filter.add_mime_type(_mime_type)
 _format_name = _('GeneWeb')
 
-register_import(importData, _filter, [_mime_type], 0, _format_name)
+pmgr = PluginManager.get_instance()
+pmgr.register_import(importData, _filter, [_mime_type], 0, _format_name)

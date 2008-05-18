@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ Display a person's siblings in a report window
 
 from Simple import SimpleAccess, SimpleDoc, SimpleTable
 from gettext import gettext as _
-from PluginUtils import register_quick_report, relationship_class
+from PluginUtils import PluginManager
 from ReportBase import CATEGORY_QR_PERSON
 
 def run(database, document, person):
@@ -37,7 +37,9 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb)
-    rel_class = relationship_class()
+    pmgr = PluginManager.get_instance()
+    rel_class = pmgr.get_relationship_calculator()
+
     # display the title
     sdoc.title(_("Siblings of %s") % sdb.name(person))
     sdoc.paragraph("")
@@ -67,7 +69,8 @@ def run(database, document, person):
 # 
 #
 #------------------------------------------------------------------------
-register_quick_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_quick_report(
     name = 'siblings',
     category = CATEGORY_QR_PERSON,
     run_func = run,

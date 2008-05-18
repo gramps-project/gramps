@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2008  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -75,7 +76,7 @@ except:
 from GrampsDbUtils import XmlWriter
 from Utils import media_path_full
 from QuestionDialog import ErrorDialog, MissingMediaDialog
-from PluginUtils import register_export
+from PluginUtils import PluginManager
 
 _title_string = _("Export to CD")
 
@@ -306,4 +307,5 @@ _description = _('Exporting to CD copies all your data and media '
 _config = None
 _filename = 'burn'
 
-register_export(writeData, _title, _description, _config, _filename)
+pmgr = PluginManager.get_instance()
+pmgr.register_export(writeData, _title, _description, _config, _filename)

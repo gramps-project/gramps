@@ -44,7 +44,7 @@ from TransUtils import sgettext as _
 from gen.lib import Person, FamilyRelType, EventType
 # gender and report type names
 import BaseDoc
-from PluginUtils import register_report
+from PluginUtils import PluginManager
 from PluginUtils import BooleanOption, FilterOption, PersonOption, \
     EnumeratedListOption, NumberOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
@@ -891,7 +891,8 @@ class StatisticsChartOptions(MenuReportOptions):
 # Register report/options
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'statistics_chart',
     category = CATEGORY_DRAW,
     report_class = StatisticsChart,

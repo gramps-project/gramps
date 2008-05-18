@@ -38,7 +38,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gen.lib
-from PluginUtils import register_report, NumberOption, \
+from PluginUtils import PluginManager, NumberOption, \
     BooleanOption, PersonOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
@@ -821,7 +821,8 @@ class DetDescendantOptions(MenuReportOptions):
 #
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'det_descendant_report',
     category = CATEGORY_TEXT,
     report_class = DetDescendantReport,

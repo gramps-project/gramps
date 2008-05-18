@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +51,7 @@ log = logging.getLogger(".RebuildRefMap")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 from QuestionDialog import OkDialog
 from BasicUtils import UpdateCallback
 
@@ -110,7 +111,8 @@ class RebuildRefMapOptions(Tool.ToolOptions):
 #
 #
 #-------------------------------------------------------------------------
-register_tool(
+pmgr = PluginManager.get_instance()
+pmgr.register_tool(
     name = 'rebuild_refmap',
     category = Tool.TOOL_DBFIX,
     tool_class = RebuildRefMap,

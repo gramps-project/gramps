@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,12 +25,12 @@
     
     Tools/Debug/Dump Gender Statistics
 """
-
+from gettext import gettext as _
 import gtk
 import ListModel
 import ManagedWindow
 
-from PluginUtils import Tool, register_tool
+from PluginUtils import Tool, PluginManager
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
 #-------------------------------------------------------------------------
@@ -108,7 +109,8 @@ class DumpGenderStatsOptions(Tool.ToolOptions):
 
 if __debug__:
     
-    register_tool(
+    pmgr = PluginManager.get_instance()
+    pmgr.register_tool(
         name = 'dgenstats',
         category = Tool.TOOL_DEBUG,
         tool_class = DumpGenderStats,

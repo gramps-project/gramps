@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ from gettext import gettext as _
 # GRAMPS modules 
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_text_doc
+from PluginUtils import PluginManager
 import ImgManip
 import tarfile
 import const
@@ -481,6 +481,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 #
 #------------------------------------------------------------------------
 print_label = None
+pmgr = PluginManager.get_instance()
 try:
     prog = Mime.get_application("text/html")
     mtype = Mime.get_description("text/html")
@@ -493,6 +494,6 @@ try:
     if mtype == _("unknown"):
         mtype = _('HTML')
         
-    register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
+    pmgr.register_text_doc(mtype, HtmlDoc, 1, 0, 1, ".html", print_label)
 except:
-    register_text_doc(_('HTML'),HtmlDoc,1,0,1,".html", None)
+    pmgr.register_text_doc(_('HTML'), HtmlDoc, 1, 0, 1, ".html", None)

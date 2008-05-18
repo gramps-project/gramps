@@ -34,7 +34,7 @@ from gettext import gettext as _
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, EnumeratedListOption
+from PluginUtils import PluginManager, EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
      CATEGORY_TEXT, MODE_GUI, MODE_BKI, MODE_CLI
 import BaseDoc
@@ -515,7 +515,8 @@ class MarkerOptions(MenuReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'marker_report',
     category = CATEGORY_TEXT,
     report_class = MarkerReport,

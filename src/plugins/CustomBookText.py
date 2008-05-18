@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2003-2006  Donald N. Allingham
+# Copyright (C) 2008       Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,7 +41,7 @@ from gettext import gettext as _
 # gramps modules
 #
 #------------------------------------------------------------------------
-from PluginUtils import register_report, TextOption
+from PluginUtils import PluginManager, TextOption
 from ReportBase import Report, MenuReportOptions, CATEGORY_TEXT, MODE_BKI
 import BaseDoc
 
@@ -158,7 +159,8 @@ class CustomTextOptions(MenuReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-register_report(
+pmgr = PluginManager.get_instance()
+pmgr.register_report(
     name = 'custom_text',
     category = CATEGORY_TEXT,
     report_class = CustomText,
