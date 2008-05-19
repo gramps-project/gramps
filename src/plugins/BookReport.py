@@ -88,6 +88,13 @@ from BasicUtils import name_displayer as _nd
 
 #------------------------------------------------------------------------
 #
+# Private Constants
+#
+#------------------------------------------------------------------------
+_UNSUPPORTED = _("Unsupported")
+
+#------------------------------------------------------------------------
+#
 # Private Functions
 #
 #------------------------------------------------------------------------
@@ -195,7 +202,7 @@ class BookItem:
             if item[4] == name:
                 self.translated_name = item[0]
                 if item[5]:
-                    self.category = Plugins.UNSUPPORTED
+                    self.category = _UNSUPPORTED
                 else:
                     self.category = item[1]
                 self.write_item = item[2]
@@ -748,7 +755,7 @@ class BookReportSelector(ManagedWindow.ManagedWindow):
 
         for book_item in pmgr.get_book_item_list():
             if book_item[5]:
-                category = Plugins.UNSUPPORTED
+                category = _UNSUPPORTED
             else:
                 category = book_item[1]
             

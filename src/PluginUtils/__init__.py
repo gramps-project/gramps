@@ -31,7 +31,7 @@ from _Options import Options, OptionListCollection, OptionList, OptionHandler
 from _PluginMgr import PluginManager
 
 import _Tool as Tool
-import _Plugins as Plugins
+from _PluginDialogs import ReportPluginDialog, ToolPluginDialog
 import _PluginWindows as PluginWindows
 
 # This needs to go above Tool and MenuOption as it needs both

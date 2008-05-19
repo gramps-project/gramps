@@ -55,8 +55,8 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from PluginUtils import Plugins, Tool, PluginWindows, PluginManager
-
+from PluginUtils import Tool, PluginWindows, PluginManager, \
+    ReportPluginDialog, ToolPluginDialog
 import ReportBase
 import DisplayState
 import const
@@ -82,6 +82,7 @@ import ProgressDialog
 # Constants
 #
 #-------------------------------------------------------------------------
+_UNSUPPORTED = _("Unsupported")
 
 UIDEFAULT = '''<ui>
 <menubar name="MenuBar">
@@ -1251,7 +1252,7 @@ class ViewManager:
         Displays the Reports dialog
         """
         try:
-            Plugins.ReportPlugins(self.state, self.uistate, [])
+            ReportPluginDialog(self.state, self.uistate, [])
         except Errors.WindowActiveError:
             return
 
@@ -1260,7 +1261,7 @@ class ViewManager:
         Displays the Tools dialog
         """
         try:
-            Plugins.ToolPlugins(self.state, self.uistate, [])
+            ToolPluginDialog(self.state, self.uistate, [])
         except Errors.WindowActiveError:
             return          
         
@@ -1361,7 +1362,7 @@ class ViewManager:
         hash_data = {}
         for item in item_list:
             if item[9]:
-                category = Plugins.UNSUPPORTED
+                category = _UNSUPPORTED
             else:
                 category = categories[item[3]]
             if hash_data.has_key(category):
@@ -1373,7 +1374,7 @@ class ViewManager:
                 
         # Sort categories, skipping the unsupported
         catlist = [item for item in hash_data.keys()
-                   if item != Plugins.UNSUPPORTED]
+                   if item != _UNSUPPORTED]
         catlist.sort()
         for key in catlist:
             new_key = key.replace(' ', '-')
@@ -1391,11 +1392,11 @@ class ViewManager:
 
         # If there are any unsupported items we add separator
         # and the unsupported category at the end of the menu
-        if hash_data.has_key(Plugins.UNSUPPORTED):
+        if hash_data.has_key(_UNSUPPORTED):
             ofile.write('<separator/>')
-            ofile.write('<menu action="%s">' % Plugins.UNSUPPORTED)
-            actions.append((Plugins.UNSUPPORTED, None, Plugins.UNSUPPORTED))
-            lst = hash_data[Plugins.UNSUPPORTED]
+            ofile.write('<menu action="%s">' % _UNSUPPORTED)
+            actions.append((_UNSUPPORTED, None, _UNSUPPORTED))
+            lst = hash_data[_UNSUPPORTED]
             lst.sort(by_menu_name)
             for name in lst:
                 new_key = name[3].replace(' ', '-')

@@ -335,7 +335,7 @@ src/PluginUtils/__init__.py
 src/PluginUtils/_GuiOptions.py
 src/PluginUtils/_Options.py
 src/PluginUtils/_PluginMgr.py
-src/PluginUtils/_Plugins.py
+src/PluginUtils/_PluginDialogs.py
 src/PluginUtils/_Tool.py
 src/PluginUtils/_PluginWindows.py
 src/PluginUtils/_MenuOptions.py

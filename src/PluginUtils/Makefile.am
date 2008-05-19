@@ -13,7 +13,7 @@ pkgdata_PYTHON = \
 	_Tool.py\
 	_PluginMgr.py\
 	_PluginWindows.py\
-	_Plugins.py
+	_PluginDialogs.py
 
 pkgpyexecdir = @pkgpyexecdir@/PluginUtils
 pkgpythondir = @pkgpythondir@/PluginUtils

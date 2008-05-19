@@ -20,15 +20,6 @@
 #
 # $Id$
 
-"""
-The core of the GRAMPS plugin system. This module provides tasks to load
-plugins from specfied directories, build menus for the different categories,
-and provide dialog to select and execute plugins.
-
-Plugins are divided into several categories. This are: reports, tools,
-importers, exporters, and document generators.
-"""
-
 #-------------------------------------------------------------------------
 #
 # GTK libraries
@@ -60,9 +51,9 @@ import ManagedWindow
 # Constants
 #
 #-------------------------------------------------------------------------
-REPORTS = 0
-TOOLS   = 1
-UNSUPPORTED = _("Unsupported")
+_REPORTS = 0
+_TOOLS   = 1
+_UNSUPPORTED = _("Unsupported")
 
 #-------------------------------------------------------------------------
 #
@@ -70,21 +61,26 @@ UNSUPPORTED = _("Unsupported")
 #
 #-------------------------------------------------------------------------
 class PluginDialog(ManagedWindow.ManagedWindow):
-    """Displays the dialog box that allows the user to select the
-    report that is desired."""
-
+    """
+    Displays the dialog box that allows the user to select the
+    plugin that is desired.
+    """
     def __init__(self, state, uistate, track, item_list, categories, msg,
-                 label=None, button_label=None, tool_tip=None, content=REPORTS):
-        """Display the dialog box, and build up the list of available
+                 label=None, button_label=None, tool_tip=None, 
+                 content=_REPORTS):
+        """
+        Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
-        hand side of the dailog box."""
+        hand side of the dialog box.
+        """
         
         self.active = state.active
         self.imap = {}
         self.msg = msg
         self.content = content
 
-        ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, 
+                                             self.__class__)
 
         self.state = state
         self.uistate = uistate
@@ -146,7 +142,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         try:
             (item_class, options_class, title, category,
              name, require_active) = self.item
-            if self.content == REPORTS:
+            if self.content == _REPORTS:
                 report(self.state, self.uistate, self.state.active,
                        item_class, options_class, title, name, 
                        category, require_active)
@@ -172,7 +168,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
          doc,status,author,email,unsupported,require_active) = data
         self.description.set_text(doc)
         if unsupported:
-            status = UNSUPPORTED
+            status = _UNSUPPORTED
         self.status.set_text(status)
         self.title.set_text('<span weight="bold" size="larger">%s</span>' \
                             % title)
@@ -201,7 +197,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         item_hash = {}
         for plugin in item_list:
             if plugin[9]:
-                category = UNSUPPORTED
+                category = _UNSUPPORTED
             else:
                 category = categories[plugin[3]]
             if item_hash.has_key(category):
@@ -211,13 +207,13 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
         # add a submenu for each category, and populate it with the
         # GtkTreeItems that are associated with it.
-        key_list = [ item for item in item_hash.keys() if item != UNSUPPORTED]
+        key_list = [ item for item in item_hash.keys() if item != _UNSUPPORTED]
         key_list.sort()
         key_list.reverse()
         
         prev = None
-        if item_hash.has_key(UNSUPPORTED):
-            key = UNSUPPORTED
+        if item_hash.has_key(_UNSUPPORTED):
+            key = _UNSUPPORTED
             data = item_hash[key]
             node = self.store.insert_after(None, prev)
             self.store.set(node, 0, key)
@@ -243,12 +239,14 @@ class PluginDialog(ManagedWindow.ManagedWindow):
 
 #-------------------------------------------------------------------------
 #
-# ReportPlugins interface class
+# ReportPluginDialog
 #
 #-------------------------------------------------------------------------
-class ReportPlugins(PluginDialog):
-    """Displays the dialog box that allows the user to select the
-    report that is desired."""
+class ReportPluginDialog(PluginDialog):
+    """
+    Displays the dialog box that allows the user to select the
+    report that is desired.
+    """
 
     def __init__(self, dbstate, uistate, track):
         """Display the dialog box, and build up the list of available
@@ -266,7 +264,7 @@ class ReportPlugins(PluginDialog):
             _("Report Selection"),
             _("Select a report from those available on the left."),
             _("_Generate"), _("Generate selected report"),
-            REPORTS)
+            _REPORTS)
         
         self.__pmgr.connect('plugins-reloaded', self.rebuild)
 
@@ -276,10 +274,10 @@ class ReportPlugins(PluginDialog):
 
 #-------------------------------------------------------------------------
 #
-# ToolPlugins interface class
+# ToolPluginDialog
 #
 #-------------------------------------------------------------------------
-class ToolPlugins(PluginDialog):
+class ToolPluginDialog(PluginDialog):
     """Displays the dialog box that allows the user to select the tool
     that is desired."""
 
@@ -300,7 +298,7 @@ class ToolPlugins(PluginDialog):
             _("Select a tool from those available on the left."),
             _("_Run"),
             _("Run selected tool"),
-            TOOLS)
+            _TOOLS)
 
     def rebuild(self):
         tool_list = self.__pmgr.get_tool_list()
