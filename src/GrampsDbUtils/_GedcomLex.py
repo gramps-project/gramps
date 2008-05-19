@@ -269,7 +269,7 @@ def extract_date(text):
         # parse the range if we match, if so, return
         match = RANGE.match(text)
         if match:
-            (cal1, data1, ignore, cal2, data2) = match.groups()
+            (cal1, data1, cal2, data2) = match.groups()
 
             cal = CALENDAR_MAP.get(cal1, gen.lib.Date.CAL_GREGORIAN)
                     
@@ -309,7 +309,12 @@ def extract_date(text):
         dateobj = DATE_CNV.parse(text)
         dateobj.set_quality(qual)
         return dateobj
+    
+    # FIXME: explain where/why an IOError might arise
+    # and also: is such a long try-clause needed
+    # having this fallback invites "what about other exceptions?"
     except IOError:
+        # fallback strategy (evidently)
         return DATE_CNV.set_text(text)
 
 #-------------------------------------------------------------------------
