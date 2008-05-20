@@ -1997,7 +1997,7 @@ class IndividualPage(BasePage):
         for event_ref in evt_ref_list:
             event = db.get_event_from_handle(event_ref.ref)
             if event:
-                self.display_event_row(of, event, event_ref)
+                self.display_event_row(of, db, event, event_ref)
 
         of.write('\t\t\t</tbody>\n')
         of.write('\t\t\t<tfoot />\n')
@@ -2005,7 +2005,7 @@ class IndividualPage(BasePage):
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
 
-    def display_event_row(self, of, event, event_ref):
+    def display_event_row(self, of, db, event, event_ref):
         evt_name = str(event.get_type())
 
         of.write('\t\t\t\t<tr>\n')
