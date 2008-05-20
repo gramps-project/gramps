@@ -72,7 +72,7 @@ import ListModel
 import Errors
 import BaseDoc
 from QuestionDialog import WarningDialog, ErrorDialog
-from PluginUtils import PluginManager, Plugins
+from PluginUtils import PluginManager
 from PluginUtils import PersonOption, FilterOption, FamilyOption
 import ManagedWindow
 
