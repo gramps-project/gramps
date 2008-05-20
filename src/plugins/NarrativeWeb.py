@@ -42,6 +42,7 @@ Narrative Web Page generator.
 #
 #------------------------------------------------------------------------
 import os
+import re
 import md5
 import time
 import locale
@@ -190,19 +191,11 @@ wrapper = TextWrapper()
 wrapper.break_log_words = True
 wrapper.width = 20
 
-# This list of characters defines which hexadecimal entity certain
-# 'special characters' with be transformed into for valid HTML
-# rendering.  The variety of quotes with spaces are to assist in
-# appropriately typesetting curly quotes and apostrophes.
-html_escape_table = {
+
+_html_dbl_quotes = re.compile(r'([^"]*) " ([^"]*) " (.*)', re.VERBOSE)
+_html_sng_quotes = re.compile(r"([^']*) ' ([^']*) ' (.*)", re.VERBOSE)
+_html_replacement = {
     "&"  : "&#38;",
-    ' "'  : " &#8220;",
-    '" '  : "&#8221; ",
-    " '"  : " &#8216;",
-    "' "  : "&#8217; ",
-    "'s "  : "&#8217;s ",
-    '"'  : "&#34;",
-    "'"  : "&#39;",
     ">"  : "&#62;",
     "<"  : "&#60;",
     }
@@ -211,7 +204,30 @@ html_escape_table = {
 # special characters for presentation in HTML based on the above list.
 def html_escape(text):
     """Convert the text and replace some characters with a &# variant."""
-    return ''.join([html_escape_table.get(c, c) for c in text])
+
+    # First single characters, no quotes
+    text = ''.join([_html_replacement.get(c, c) for c in text])
+
+    # Deal with double quotes.
+    while 1:
+        m = _html_dbl_quotes.match(text)
+        if not m:
+            break
+        text = m.group(1) + '&#8220;' + m.group(2) + '&#8221;' + m.group(3)
+    # Replace remaining double quotes.
+    text = text.replace('"', '&#34;')
+
+    # Deal with single quotes.
+    text = text.replace("'s ", '&#8217;s ')
+    while 1:
+        m = _html_sng_quotes.match(text)
+        if not m:
+            break
+        text = m.group(1) + '&#8216;' + m.group(2) + '&#8217;' + m.group(3)
+    # Replace remaining single quotes.
+    text = text.replace("'", '&#39;')
+
+    return text
 
 
 def name_to_md5(text):
@@ -580,6 +596,7 @@ class BasePage:
             source = db.get_source_from_handle(shandle)
             title = source.get_title()
             of.write('\t\t\t<li><a name="sref%d"' % cindex)
+            # Note. The closing > is done in source_link()
             self.source_link(of, source.handle, title, source.gramps_id, True)
 
             of.write('\n')
@@ -989,7 +1006,7 @@ class PlaceListPage(BasePage):
             place = db.get_place_from_handle(handle)
             n = ReportUtils.place_name(db, handle)
 
-            if not n or len(n) == 0:
+            if not n:
                 continue
 
             letter = normalize('NFD', n)[0].upper()
@@ -1505,7 +1522,7 @@ class SourcePage(BasePage):
 
     def __init__(self, report, title, handle, src_list):
         db = report.database
-        source = db.get_source_from_handle( handle)
+        source = db.get_source_from_handle(handle)
         BasePage.__init__(self, report, title, source.gramps_id)
 
         of = self.report.create_file(source.get_handle(), 'src')
@@ -1547,10 +1564,8 @@ class SourcePage(BasePage):
 
 class GalleryPage(BasePage):
 
-    def __init__(self, report, title, handle_set):
+    def __init__(self, report, title):
         BasePage.__init__(self, report, title)
-
-        # TODO. What to do with handle_set?
 
         db = report.database
         of = self.report.create_file("gallery")
@@ -1966,30 +1981,99 @@ class IndividualPage(BasePage):
         if not evt_ref_list:
             return
 
+        db = self.report.database
+
         of.write('\t<div id="events" class="subsection">\n')
         of.write('\t\t<h4>%s</h4>\n' % _('Events'))
         of.write('\t\t<table class="infolist">\n')
 
-        db = self.report.database
+        # table head
+        of.write('\t\t\t<thead>\n')
+        for h in (_('event|Type'), _('Date'), _('Place'), _('Description'), _('Notes')):
+            of.write('\t\t\t\t<th>%s</th>' % h)
+        of.write('\t\t\t</thead>\n')
+        of.write('\t\t\t<tbody>\n')
+
         for event_ref in evt_ref_list:
             event = db.get_event_from_handle(event_ref.ref)
             if event:
-                evt_name = str(event.get_type())
+                self.display_event_row(of, event, event_ref)
 
-                if event_ref.get_role() == EventRoleType.PRIMARY:
-                    of.write('\t\t\t<tr>\n')
-                    of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % evt_name)
-                else:
-                    of.write('\t\t\t<tr>\n')
-                    of.write('\t\t\t\t<td class="ColumnAttribute">%s (%s)</td>\n' \
-                        % (evt_name, event_ref.get_role()))
+        of.write('\t\t\t</tbody>\n')
+        of.write('\t\t\t<tfoot />\n')
 
-                of.write('\t\t\t\t<td class="ColumnValue">')
-                of.write(self.format_event(event, event_ref))
-                of.write('</td>\n')
-                of.write('\t\t\t</tr>\n')
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
+
+    def display_event_row(self, of, event, event_ref):
+        evt_name = str(event.get_type())
+
+        of.write('\t\t\t\t<tr>\n')
+
+        # Type
+        if event_ref.get_role() == EventRoleType.PRIMARY:
+            txt = u"%(evt_name)s" % locals()
+        else:
+            event_role = event_ref.get_role()
+            txt = u"%(evt_name)s (%(evt_role)s)" % locals()
+        txt = txt or '&nbsp;'
+        of.write('\t\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % txt)
+
+        # Date
+        txt = _dd.display(event.get_date_object())
+        txt = txt or '&nbsp;'
+        of.write('\t\t\t\t\t<td class="ColumnValue Date">%s</td>\n' % txt)
+
+        # Place
+        place_handle = event.get_place_handle()
+        if place_handle:
+            # TODO. Figure out what this is for.
+            #if self.place_list.has_key(place_handle):
+            #    if lnk not in self.place_list[place_handle]:
+            #        self.place_list[place_handle].append(lnk)
+            #else:
+            #    self.place_list[place_handle] = [lnk]
+
+            place = self.place_link_str(place_handle,
+                                        ReportUtils.place_name(self.report.database, place_handle),
+                                        up=True)
+        else:
+            place = None
+        txt = place or '&nbsp;'
+        of.write('\t\t\t\t\t<td class="ColumnValue Place">%s</td>\n' % txt)
+
+        # Description
+        txt = event.get_description()
+        txt = txt or '&nbsp;'
+        of.write('\t\t\t\t\t<td class="ColumnValue Description">%s</td>\n' % txt)
+
+        # Attributes
+        # TODO. See format_event
+
+        # Notes. Deal with list of notes.
+        of.write('\t\t\t\t\t<td class="ColumnValue Notes">\n')
+        done_first_note = False
+        notelist = event.get_note_list()
+        notelist.extend(event_ref.get_note_list())
+        for notehandle in notelist:
+            note = db.get_note_from_handle(notehandle)
+            if note:
+                note_text = note.get()
+                if note_text:
+                    if note.get_format():
+                        txt = u"<pre>%s</pre>" % note_text
+                    else:
+                        # TODO. Decide what to do with multiline notes.
+                        txt = u" ".join(note_text.split("\n"))
+                    if not done_first_note:
+                        of.write('\t\t\t\t\t\t<ol>\n')
+                    txt = txt or '&nbsp;'
+                    of.write('\t\t\t\t\t\t\t<li>%s</li>\n' % txt)
+        if done_first_note:
+            of.write('\t\t\t\t\t\t</ol>\n')
+        of.write('\t\t\t\t\t</td>\n')
+
+        of.write('\t\t\t\t</tr>\n')
 
     def display_addresses(self, of):
         alist = self.person.get_address_list()
@@ -2283,10 +2367,12 @@ class IndividualPage(BasePage):
                     of.write('<li>')
                     self.pedigree_person(of, child)
                     of.write('</li>\n')
-                of.write('\t\t\t\t\t\t\t\t\t\t</ol>\n\t\t\t\t\t\t\t\t\t</li>\n')
+                of.write('\t\t\t\t\t\t\t\t\t\t</ol>\n')
+                of.write('\t\t\t\t\t\t\t\t\t</li>\n')
             else:
                 of.write('</li>\n')
 
+    # TODO. This function must be converted similar to display_ind_events and display_event_row
     def format_event(self, event, event_ref):
         db = self.report.database
         lnk = (self.report.cur_fname, self.page_title, self.gid)
@@ -2308,9 +2394,9 @@ class IndividualPage(BasePage):
         date = _dd.display(event.get_date_object())
 
         if date and place:
-            text = _("%(date) s&nbsp;&nbsp; at &nbsp;&nbsp; %(place)s") % { 'date': date, 'place': place }
+            text = _("%(date)s &nbsp; at &nbsp; %(place)s") % { 'date': date, 'place': place }
         elif place:
-            text = _("at &nbsp;&nbsp; %(place)s") % { 'place': place }
+            text = _("at &nbsp; %(place)s") % { 'place': place }
         elif date:
             text = date
         else:
@@ -2613,7 +2699,7 @@ class NavWebReport(Report):
 
         SourcesPage(self, self.title, source_list.keys())
 
-        for key in list(source_list):
+        for key in source_list:
             SourcePage(self, self.title, key, source_list)
             self.progress.step()
 
@@ -2633,7 +2719,7 @@ class NavWebReport(Report):
 
         self.progress.set_pass(_("Creating media pages"), len(self.photo_list))
 
-        GalleryPage(self, self.title, source_list)
+        GalleryPage(self, self.title)
 
         prev = None
         total = len(self.photo_list)
