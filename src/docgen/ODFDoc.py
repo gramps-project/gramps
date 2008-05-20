@@ -1158,8 +1158,8 @@ except:
     print_label = None
 
 pmgr.register_text_doc(_('Open Document Text'), 
-                       ODFDoc, 1, 1, 1, ".odt", print_label)
+                       ODFDoc, 1, 1, ".odt", print_label)
 pmgr.register_book_doc(_("Open Document Text"), 
-                       ODFDoc, 1, 1, 1, ".odt", print_label)
+                       ODFDoc, 1, 1, ".odt", print_label)
 pmgr.register_draw_doc(_("Open Document Text"), 
                        ODFDoc, 1, 1, ".odt", print_label);

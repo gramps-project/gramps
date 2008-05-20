@@ -50,24 +50,22 @@ class BookFormatComboBox(gtk.ComboBox):
         self.__book_doc_list.sort()
         gtk.ComboBox.__init__(self)
 
-    def set(self,tables,callback, obj=None,active=None):
+    def set(self, callback, obj=None, active=None):
         self.store = gtk.ListStore(gobject.TYPE_STRING)
         self.set_model(self.store)
         cell = gtk.CellRendererText()
-        self.pack_start(cell,True)
-        self.add_attribute(cell,'text',0)
+        self.pack_start(cell, True)
+        self.add_attribute(cell, 'text', 0)
 
         out_pref = Config.get(Config.OUTPUT_PREFERENCE)
         index = 0
         active_index = 0
         self.data = []
         for item in self.__book_doc_list:
-            if tables and item[2] == 0:
-                continue
             self.data.append(item)
             name = item[0]
             self.store.append(row=[name])
-            if item[7] == active:
+            if item[6] == active:
                 active_index = index
             elif not active and name == out_pref:
                 active_index = index
@@ -81,13 +79,13 @@ class BookFormatComboBox(gtk.ComboBox):
         return self.data[self.get_active()][0]
 
     def get_paper(self):
-        return self.data[self.get_active()][3]
+        return self.data[self.get_active()][2]
 
     def get_ext(self):
-        return self.data[self.get_active()][5]
+        return self.data[self.get_active()][4]
 
     def get_printable(self):
-        return self.data[self.get_active()][6]
+        return self.data[self.get_active()][5]
 
     def get_clname(self):
-        return self.data[self.get_active()][7]
+        return self.data[self.get_active()][6]

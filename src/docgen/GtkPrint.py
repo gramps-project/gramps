@@ -620,6 +620,6 @@ class GtkPrint(CairoDoc):
 #
 #------------------------------------------------------------------------
 pmgr = PluginManager.get_instance()
-pmgr.register_text_doc(_('Print...'), GtkPrint, 1, 1, 1, "", None)
+pmgr.register_text_doc(_('Print...'), GtkPrint, 1, 1, "", None)
 pmgr.register_draw_doc(_('Print...'), GtkPrint, 1, 1, "", None)
-pmgr.register_book_doc(_('Print...'), GtkPrint, 1, 1, 1, "", None)
+pmgr.register_book_doc(_('Print...'), GtkPrint, 1, 1, "", None)

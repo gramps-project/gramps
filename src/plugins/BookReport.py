@@ -1103,9 +1103,6 @@ class BookReportDialog(DocReportDialog):
     def setup_other_frames(self): pass
     def parse_style_frame(self): pass
 
-    def doc_uses_tables(self):
-        return 1
-
     def get_title(self):
         return _("Book Report")
 
@@ -1121,8 +1118,7 @@ class BookReportDialog(DocReportDialog):
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
         self.format_menu = BookFormatComboBox()
-        self.format_menu.set(self.doc_uses_tables(),
-                             self.doc_type_changed, None, active)
+        self.format_menu.set(self.doc_type_changed, None, active)
 
     def make_document(self):
         """Create a document of the type requested by the user."""

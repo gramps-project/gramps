@@ -449,6 +449,6 @@ try:
         print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
-    pmgr.register_text_doc(mtype, RTFDoc, 1, 1, 1, ".rtf", print_label)
+    pmgr.register_text_doc(mtype, RTFDoc, 1, 1, ".rtf", print_label)
 except:
-    pmgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, 1, ".rtf", None)
+    pmgr.register_text_doc(_('RTF document'), RTFDoc, 1, 1, ".rtf", None)

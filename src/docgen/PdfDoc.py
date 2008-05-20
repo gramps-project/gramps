@@ -150,8 +150,8 @@ def register_docgen():
         print_label = None
         
     pmgr = PluginManager.get_instance()
-    pmgr.register_text_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
+    pmgr.register_text_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
     pmgr.register_draw_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
-    pmgr.register_book_doc(mtype, PdfDoc, 1, 1, 1, ".pdf", print_label)
+    pmgr.register_book_doc(mtype, PdfDoc, 1, 1, ".pdf", print_label)
 
 register_docgen()

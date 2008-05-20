@@ -447,7 +447,7 @@ class PluginManager(gen.utils.Callback):
         self.__cl_list.append( (name, category, report_class, options_class,
                                 translated_name, unsupported, require_active) )
 
-    def register_text_doc(self, name, classref, table, paper, style, ext,
+    def register_text_doc(self, name, classref, paper, style, ext,
                           print_report_label=None, clname=''):
         """
         Register a text document generator.
@@ -463,11 +463,11 @@ class PluginManager(gen.utils.Callback):
         if not clname:
             clname = ext[1:]
     
-        self.__textdoc_list.append( (name, classref, table, paper, style,
+        self.__textdoc_list.append( (name, classref, paper, style,
                                      ext, print_report_label, clname) )
         self.__mod2text[classref.__module__] = name
 
-    def register_book_doc(self, name, classref, table, paper, style, ext, 
+    def register_book_doc(self, name, classref, paper, style, ext, 
                           print_report_label=None, clname=''):
         """
         Register a text document generator.
@@ -482,7 +482,7 @@ class PluginManager(gen.utils.Callback):
     
         if not clname:
             clname = ext[1:]
-        self.__bookdoc_list.append( (name, classref, table, paper, style, ext,
+        self.__bookdoc_list.append( (name, classref, paper, style, ext,
                                      print_report_label, clname) )
 
     def register_draw_doc(self, name, classref, paper, style, ext,

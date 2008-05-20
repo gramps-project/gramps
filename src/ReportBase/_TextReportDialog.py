@@ -42,17 +42,6 @@ class TextReportDialog(DocReportDialog):
 
     #------------------------------------------------------------------------
     #
-    # Customization hooks for subclasses
-    #
-    #------------------------------------------------------------------------
-    def doc_uses_tables(self):
-        """Does this report require the ability to generate tables in
-        the file format.  Override this for documents that do need
-        table support."""
-        return 0
-
-    #------------------------------------------------------------------------
-    #
     # Functions related to selecting/changing the current file format.
     #
     #------------------------------------------------------------------------
@@ -61,5 +50,4 @@ class TextReportDialog(DocReportDialog):
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
         self.format_menu = TextFormatComboBox()
-        self.format_menu.set(self.doc_uses_tables(),
-                             self.doc_type_changed, None, active)
+        self.format_menu.set(self.doc_type_changed, None, active)

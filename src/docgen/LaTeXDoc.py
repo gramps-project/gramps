@@ -534,4 +534,4 @@ try:
 except:
     print_label = None
 
-pmgr.register_text_doc(_('LaTex'), LaTeXDoc, 1, 1, 0, ".tex", print_label)
+pmgr.register_text_doc(_('LaTex'), LaTeXDoc, 1, 0, ".tex", print_label)

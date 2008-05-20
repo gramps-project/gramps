@@ -494,6 +494,6 @@ try:
     if mtype == _("unknown"):
         mtype = _('HTML')
         
-    pmgr.register_text_doc(mtype, HtmlDoc, 1, 0, 1, ".html", print_label)
+    pmgr.register_text_doc(mtype, HtmlDoc, 0, 1, ".html", print_label)
 except:
-    pmgr.register_text_doc(_('HTML'), HtmlDoc, 1, 0, 1, ".html", None)
+    pmgr.register_text_doc(_('HTML'), HtmlDoc, 0, 1, ".html", None)

@@ -384,7 +384,7 @@ try:
     else:
         print_label=None
 
-    pmgr.register_text_doc(mtype, AsciiDoc, 1, 1, 1, ".txt", print_label)
+    pmgr.register_text_doc(mtype, AsciiDoc, 1, 1, ".txt", print_label)
 except:
-    pmgr.register_text_doc(_("Plain Text"), AsciiDoc, 1, 1, 1, ".txt", None)
+    pmgr.register_text_doc(_("Plain Text"), AsciiDoc, 1, 1, ".txt", None)
 
