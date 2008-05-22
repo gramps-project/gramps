@@ -2,7 +2,6 @@ EXTRA_DIST = \
 	codeset.m4 \
 	gettext.m4 \
 	glibc21.m4 \
-	gnome-doc-utils.m4 \
 	iconv.m4 \
 	intltool.m4 \
 	isc-posix.m4 \

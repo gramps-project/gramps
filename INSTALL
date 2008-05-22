@@ -35,7 +35,6 @@ to install without being root.
 The latter is possible, but you should supply additional arguments to
 autogen or configure:
    --with-mime-dir=$HOME/.local/share/mime
-   --disable-scrollkeeper
 Most likely, such local install will also need some prefix with write
 permissions for you:
    --prefix=$HOME/my_gramps_path
