@@ -25,6 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from gettext import gettext as _
 import cPickle as pickle
 
 import logging
@@ -49,7 +50,7 @@ from Editors._EditNote import EditNote
 from Selectors import selector_factory
 from DdTargets import DdTargets
 from Errors import WindowActiveError
-
+from Selectors import selector_factory
 
 class ObjEntry:
     """
@@ -57,6 +58,13 @@ class ObjEntry:
     to select the object.
     This is the base class to create a real entry
     """
+    EMPTY_TEXT = ""
+    EMPTY_TEXT_RED = ""
+    EDIT_STR = ""
+    SHARE_STR = ""
+    ADD_STR = ""
+    DEL_STR = ""
+
     def __init__(self, dbstate, uistate, track, label, set_val, 
                  get_val, add_edt, share):
         """Pass the dbstate and uistate and present track.
@@ -327,7 +335,6 @@ class MediaEntry(ObjEntry):
             pass
 
     def call_selector(self):
-        from Selectors import selector_factory
         cls = selector_factory('MediaObject')
         return cls(self.dbstate, self.uistate, self.track)
     
