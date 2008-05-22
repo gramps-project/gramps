@@ -7,7 +7,7 @@ EXTRA_DIST = \
 	config.rpath autogen.sh \
 	FAQ COPYING \
 	intltool-extract.in intltool-merge.in intltool-update.in \
-	config.sub config.guess gnome-doc-utils.make
+	config.sub config.guess
 
 bin_SCRIPTS = gramps
 
@@ -17,8 +17,6 @@ distuninstallcheck_listfiles = find . -type -f -print | grep -E -v '/(globs|magi
 
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update \
 	gnome-doc-utils.make
-
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
 gramps: gramps.sh
 	cp gramps.sh gramps
