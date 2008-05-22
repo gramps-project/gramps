@@ -48,6 +48,7 @@ from Editors._EditMedia import EditMedia
 from Editors._EditNote import EditNote
 from Selectors import selector_factory
 from DdTargets import DdTargets
+from Errors import WindowActiveError
 
 
 class ObjEntry:
