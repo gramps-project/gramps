@@ -69,7 +69,7 @@ Les formats disponibles pour l'importation sont \fBgrdb\fR, \fBgramps\-xml\fR, \
 .br
 
 Les formats disponibles pour l'exportation sont  
-.ig.
+.ig
 \fBgrdb\fR,
 ..
 \fBgramps\-xml\fR, \fBgedcom\fR,
