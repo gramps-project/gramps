@@ -123,44 +123,41 @@ class FamilyLinesOptions(MenuReportOptions):
         category = _('Individuals')
         # -------------------------
 
-        colourMales = ColourOption(   _('Males'), '#e0e0ff')
+        colourMales = ColourOption(         _('Males'), '#e0e0ff')
         colourMales.set_help(               _('The colour to use to display men.'))
         menu.add_option(category, 'FLcolourMales', colourMales)
 
-        colourFemales = ColourOption( _('Females'), '#ffe0e0')
+        colourFemales = ColourOption(       _('Females'), '#ffe0e0')
         colourFemales.set_help(             _('The colour to use to display women.'))
         menu.add_option(category, 'FLcolourFemales', colourFemales)
 
-        colourUnknown = ColourOption( _('Unknown'), '#e0e0e0')
+        colourUnknown = ColourOption(       _('Unknown'), '#e0e0e0')
         colourUnknown.set_help(             _('The colour to use when the gender is unknown.'))
         menu.add_option(category, 'FLcolourUnknown', colourUnknown)
 
-        colourFamily = ColourOption(  _('Families'), '#ffffe0')
+        colourFamily = ColourOption(        _('Families'), '#ffffe0')
         colourFamily.set_help(              _('The colour to use to display families.'))
         menu.add_option(category, 'FLcolourFamilies', colourFamily)
 
         self.limit_parents = BooleanOption(_('Limit the number of parents'), 
                                            False)
-        self.limit_parents.set_help(
-                            _('The maximum number of ancestors to include.'))
+        self.limit_parents.set_help(        _('The maximum number of ancestors to include.'))
         menu.add_option(category, 'FLlimitParents', self.limit_parents)
         self.limit_parents.connect('value-changed', self.limit_changed)
 
         self.max_parents = NumberOption('', 50, 10, 9999)
-        self.max_parents.set_help(
-                              _('The maximum number of ancestors to include.'))
+        self.max_parents.set_help(          _('The maximum number of ancestors to include.'))
         menu.add_option(category, 'FLmaxParents', self.max_parents)
 
         self.limit_children = BooleanOption(_('Limit the number of children'), 
                                             False)
-        self.limit_children.set_help(
-                             _('The maximum number of children to include.'))
+        self.limit_children.set_help(       _('The maximum number of children to include.'))
         menu.add_option(category, 'FLlimitChildren', self.limit_children)
         self.limit_children.connect('value-changed', self.limit_changed)
 
         self.max_children = NumberOption('', 50, 10, 9999)
         self.max_children.set_help(
-                               _('The maximum number of children to include.'))
+                                            _('The maximum number of children to include.'))
         menu.add_option(category, 'FLmaxChildren', self.max_children)
 
         # --------------------
@@ -168,15 +165,14 @@ class FamilyLinesOptions(MenuReportOptions):
         # --------------------
 
         self.include_images = BooleanOption(
-                                  _('Include thumbnail images of people'), True)
-        self.include_images.set_help(
-                                _('The maximum number of children to include.'))
+                                            _('Include thumbnail images of people'), True)
+        self.include_images.set_help(       _('The maximum number of children to include.'))
         menu.add_option(category, 'FLincludeImages', self.include_images)
         self.include_images.connect('value-changed', self.images_changed)
 
         self.image_location = EnumeratedListOption(_('Thumbnail location'), 0)
-        self.image_location.add_item(0, _('Above the name'))
-        self.image_location.add_item(1, _('Beside the name'))
+        self.image_location.add_item(0,     _('Above the name'))
+        self.image_location.add_item(1,     _('Beside the name'))
         self.image_location.set_help(
              _('Where the thumbnail image should appear relative to the name'))
         menu.add_option(category, 'FLimageOnTheSide', self.image_location)
@@ -203,10 +199,6 @@ class FamilyLinesOptions(MenuReportOptions):
         includeNumChildren = BooleanOption( _('Include the number of children'), True)
         includeNumChildren.set_help(        _('Whether to include the number of children for families with more than 1 child.'))
         menu.add_option(category, 'FLincludeNumChildren', includeNumChildren)
-
-        includeResearcher = BooleanOption(  _('Include researcher and date'), True)
-        includeResearcher.set_help(         _('Whether to include at the bottom the researcher''s name, e-mail, and the date the graph was generated.'))
-        menu.add_option(category, 'FLincludeResearcher', includeResearcher)
 
         includePrivate = BooleanOption(     _('Include private records'), False)
         includePrivate.set_help(            _('Whether to include names, dates, and families that are marked as private.'))
@@ -272,7 +264,6 @@ class FamilyLinesReport(Report):
         self.includeDates       = options.handler.options_dict['FLincludeDates'         ] 
         self.includePlaces      = options.handler.options_dict['FLincludePlaces'        ]
         self.includeNumChildren = options.handler.options_dict['FLincludeNumChildren'   ]
-        self.includeResearcher  = options.handler.options_dict['FLincludeResearcher'    ]
         self.includePrivate     = options.handler.options_dict['FLincludePrivate'       ]
 
         # the gidlist is annoying for us to use since we always have to convert
@@ -287,7 +278,7 @@ class FamilyLinesReport(Report):
         self.surnameColours = {}
         tmp = options.handler.options_dict['FLsurnameColours'].split()
         while len(tmp) > 1:
-            surname = tmp.pop(0).encode('iso-8859-1','xmlcharrefreplace')
+            surname = tmp.pop(0).encode('iso-8859-1', 'xmlcharrefreplace')
             colour = tmp.pop(0)
             self.surnameColours[surname] = colour
 
@@ -298,7 +289,7 @@ class FamilyLinesReport(Report):
         # this is where we'll do all of the work of figuring out who
         # from the database is going to be output into the report
 
-        self.progress = Utils.ProgressMeter(_('Generating Family Lines'),_('Starting'))
+        self.progress = Utils.ProgressMeter(_('Generating Family Lines'), _('Starting'))
 
         # starting with the people of interest, we then add parents:
         self.peopleToOutput.clear()
@@ -834,10 +825,10 @@ class FamilyLinesReport(Report):
             fatherHandle = family.get_father_handle()
             motherHandle = family.get_mother_handle()
 
+            self.doc.add_comment('')
+
             if self.useSubgraphs and fatherHandle and motherHandle:
                 self.doc.start_subgraph(fgid)
-
-            self.doc.add_comment('')
 
             # see if we have a father to link to this family
             if fatherHandle:

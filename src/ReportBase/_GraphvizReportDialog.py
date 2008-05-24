@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2007-2008  Stephane Charette
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -195,14 +196,23 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
         actually generate a file.
         """
         if self.note:
-            self.write( 'labelloc="%s";\n' % self.noteloc )
-            self.write( 'label="' )
-            for line in self.note:
-                self.write( '%s\\n' % line.replace('"', '\\\"') )
-            self.write( '";\n')
-            self.write( 'fontsize="%d";\n' % self.notesize )
-        
-        self.write( '}'  )
+            # build up the label
+            label = u''
+            for line in self.note:  # for every line in the note...
+                line = line.strip() # ...strip whitespace from this line...
+                if line != '':      # ...and if we still have a line...
+                    if label != '': # ...see if we need to insert a newline...
+                        label += '\\n'
+                    label += line.replace('"', '\\\"')
+
+            # after all that, see if we have a label to display
+            if label != '':
+                self.write( '\n')
+                self.write( '  label="%s";\n'    % label         )
+                self.write( '  labelloc="%s";\n' % self.noteloc  )
+                self.write( '  fontsize="%d";\n' % self.notesize )
+
+        self.write( '}\n\n' )
     
     def add_node(self, id, label, shape="", color="", 
                  style="", fillcolor="", url="", htmloutput=False ):
@@ -286,6 +296,7 @@ class GVDocBase(BaseDoc.BaseDoc,BaseDoc.GVDoc):
     def start_subgraph(self,id):
         self.write('  subgraph cluster_%s\n' % id)
         self.write('  {\n')
+        self.write('  style="invis";\n') # no border around subgraph (#0002176)
     
     def end_subgraph(self):
         self.write('  }\n')
