@@ -165,19 +165,19 @@ class FamilyLinesOptions(MenuReportOptions):
 
         self.max_parents = NumberOption('', 50, 10, 9999)
         self.max_parents.set_help(
-                              _('The maximum number of ancestors to include.'))
+                            _('The maximum number of ancestors to include.'))
         menu.add_option(category, 'maxparents', self.max_parents)
 
         self.limit_children = BooleanOption(_('Limit the number of children'), 
                                             False)
         self.limit_children.set_help(
-                             _('The maximum number of children to include.'))
+                            _('The maximum number of children to include.'))
         menu.add_option(category, 'limitchildren', self.limit_children)
         self.limit_children.connect('value-changed', self.limit_changed)
 
         self.max_children = NumberOption('', 50, 10, 9999)
         self.max_children.set_help(
-                               _('The maximum number of children to include.'))
+                            _('The maximum number of children to include.'))
         menu.add_option(category, 'maxchildren', self.max_children)
 
         color = EnumeratedListOption(_("Graph coloring"), "filled")
@@ -194,7 +194,7 @@ class FamilyLinesOptions(MenuReportOptions):
         # --------------------
 
         self.include_images = BooleanOption(
-                                  _('Include thumbnail images of people'), True)
+                                _('Include thumbnail images of people'), True)
         self.include_images.set_help(
                                 _('The maximum number of children to include.'))
         menu.add_option(category, 'incimages', self.include_images)
@@ -234,13 +234,6 @@ class FamilyLinesOptions(MenuReportOptions):
                                         'children for families with more ' \
                                         'than 1 child.'))
         menu.add_option(category, 'incchildcnt', include_num_children)
-
-        include_researcher = BooleanOption(
-                                         _('Include researcher and date'), True)
-        include_researcher.set_help(_('Whether to include at the bottom the ' \
-                                      'researcher''s name, e-mail, and the ' \
-                                      'date the graph was generated.'))
-        menu.add_option(category, 'incresearcher', include_researcher)
 
         include_private = BooleanOption(_('Include private records'), False)
         include_private.set_help(_('Whether to include names, dates, and ' \
@@ -357,9 +350,6 @@ class FamilyLinesReport(Report):
         _opt = menu.get_option_by_name('incchildcnt')
         self._incchildcount = _opt.get_value()
         
-        _opt = menu.get_option_by_name('incresearcher')
-        self._incresearcher = _opt.get_value()
-        
         _opt = menu.get_option_by_name('incprivate')
         self._incprivate = _opt.get_value()
 
@@ -376,7 +366,7 @@ class FamilyLinesReport(Report):
         _opt = menu.get_option_by_name('surnamecolors')
         tmp = _opt.get_value().split()
         while len(tmp) > 1:
-            surname = tmp.pop(0).encode('iso-8859-1','xmlcharrefreplace')
+            surname = tmp.pop(0).encode('iso-8859-1', 'xmlcharrefreplace')
             colour = tmp.pop(0)
             self._surnamecolors[surname] = colour
 
@@ -995,10 +985,10 @@ class FamilyLinesReport(Report):
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
 
+            self.doc.add_comment('')
+
             if self._usesubgraphs and father_handle and mother_handle:
                 self.doc.start_subgraph(fgid)
-
-            self.doc.add_comment('')
 
             # see if we have a father to link to this family
             if father_handle:
