@@ -180,15 +180,6 @@ class FamilyLinesOptions(MenuReportOptions):
                             _('The maximum number of children to include.'))
         menu.add_option(category, 'maxchildren', self.max_children)
 
-        color = EnumeratedListOption(_("Graph coloring"), "filled")
-        for i in range( 0, len(_COLORS) ):
-            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
-        color.set_help(_("Males will be shown with blue, females "
-                         "with red, unless otherwise set above for filled."
-                         " If the sex of an individual "
-                         "is unknown it will be shown with gray."))
-        menu.add_option(category, "color", color)
-
         # --------------------
         category = _('Images')
         # --------------------
@@ -210,6 +201,20 @@ class FamilyLinesOptions(MenuReportOptions):
         # ---------------------
         category = _('Options')
         # ---------------------
+
+        color = EnumeratedListOption(_("Graph coloring"), "filled")
+        for i in range( 0, len(_COLORS) ):
+            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
+        color.set_help(_("Males will be shown with blue, females "
+                         "with red, unless otherwise set above for filled."
+                         " If the sex of an individual "
+                         "is unknown it will be shown with gray."))
+        menu.add_option(category, "color", color)
+
+        use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
+        use_roundedcorners.set_help(_('Use rounded corners to differentiate '
+                                      'between women and men.'))
+        menu.add_option(category, "useroundedcorners", use_roundedcorners)
 
         use_subgraphs = BooleanOption(_('Use subgraphs'), False)
         use_subgraphs.set_help(_("Subgraphs can help GraphViz position "
@@ -274,19 +279,6 @@ class FamilyLinesReport(Report):
         """
         Report.__init__(self, database, options)
 
-        colored = {
-            'male': 'dodgerblue4',
-            'female': 'deeppink',
-            'unknown': 'black',
-            'family': 'darkgreen'
-        }
-        filled = {
-            'male': 'lightblue',
-            'female': 'lightpink',
-            'unknown': 'lightgray',
-            'family': 'lightyellow'
-        }
-
         # initialize several convenient variables
         self._db = database
         self._people = set() # handle of people we need in the report
@@ -337,7 +329,10 @@ class FamilyLinesReport(Report):
         
         _opt = menu.get_option_by_name('imageonside')
         self._imageonside = _opt.get_value()
-        
+
+        _opt = menu.get_option_by_name('useroundedcorners')
+        self._useroundedcorners = _opt.get_value()
+
         _opt = menu.get_option_by_name('usesubgraphs')
         self._usesubgraphs = _opt.get_value()
         
@@ -371,10 +366,6 @@ class FamilyLinesReport(Report):
             self._surnamecolors[surname] = colour
 
         self._colorize = menu.get_option_by_name('color').get_value()
-        if self._colorize == 'colored':
-            self._colors = colored
-        elif self._colorize == 'filled':
-            self._colors = filled
 
     def begin_report(self):
         """
@@ -752,10 +743,11 @@ class FamilyLinesReport(Report):
             name = person.get_primary_name().get_regular_name()
 
             # figure out what colour to use
+            gender = person.get_gender()
             colour = self._colorunknown
-            if person.get_gender() ==  gen.lib.Person.MALE:
+            if gender == gen.lib.Person.MALE:
                 colour = self._colormales
-            if person.get_gender() ==  gen.lib.Person.FEMALE:
+            elif gender == gen.lib.Person.FEMALE:
                 colour = self._colorfemales
 
             # see if we have surname colours that match this person
@@ -870,38 +862,31 @@ class FamilyLinesReport(Report):
             if imagePath:
                 label += '</TD></TR></TABLE>'
 
-            gender = person.get_gender()
-            shape = "box"
-            style = ""
-            color = ""
-            fill = ""
-            if gender == person.MALE:
-                shape = "box"
-                style = "solid"
-            elif gender == person.FEMALE:
-                shape = "box"
-                style = "rounded"
-            else:
-                shape = "hexagon"
-                style = "solid"
-            if self._colorize == 'colored':
-                if gender == person.MALE:
-                    color = self._colors['male']
-                elif gender == person.FEMALE:
-                    color = self._colors['female']
-                else:
-                    color = self._colors['unknown']
-            elif self._colorize == 'filled':
-                if style != "":
-                    style += ",filled"
-                    fill = colour
-                else:
-                    style = "filled"
+            shape   = "box"
+            style   = "solid"
+            border  = colour
+            fill    = colour
 
+            # do not use colour if this is B&W outline
+            if self._colorize == 'outline':
+                border  = ""
+                fill    = ""
+
+            if gender == person.FEMALE and self._useroundedcorners:
+                style = "rounded"
+            elif gender == person.UNKNOWN:
+                shape = "hexagon"
+
+            # if we're filling the entire node:
+            if self._colorize == 'filled':
+                style += ",filled"
+                border = ""
+
+            # we're done -- add the node
             self.doc.add_node(person.get_gramps_id(),
                  label=label,
                  shape=shape,
-                 color=color,
+                 color=border,
                  style=style,
                  fillcolor=fill,
                  htmloutput=bUseHtmlOutput)
@@ -964,16 +949,23 @@ class FamilyLinesReport(Report):
                     label += '\\n'
                 label += '%s' % childrenStr
 
-            color = ""
-            fill = ""
-            style = "solid"
-            if self._colorize == 'colored':
-                color = self._colors['family']
-            elif self._colorize == 'filled':
-                fill = self._colorfamilies
-                style = "filled"
-            self.doc.add_node(fgid, label, "ellipse", color, style, fill)
+            shape   = "ellipse"
+            style   = "solid"
+            border  = self._colorfamilies
+            fill    = self._colorfamilies
 
+            # do not use colour if this is B&W outline
+            if self._colorize == 'outline':
+                border  = ""
+                fill    = ""
+
+            # if we're filling the entire node:
+            if self._colorize == 'filled':
+                style += ",filled"
+                border = ""
+
+            # we're done -- add the node
+            self.doc.add_node(fgid, label, shape, border, style, fill)
 
         # now that we have the families written, go ahead and link the parents and children to the families
         for family_handle in self._families:
