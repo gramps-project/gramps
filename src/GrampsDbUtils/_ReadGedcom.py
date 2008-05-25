@@ -106,7 +106,7 @@ def import2(database, filename, callback, code_set, use_trans):
     Import the gedcom file.
     """
 
-    assert(type(code_set) == str or type(code_set) == unicode)
+    assert(isinstance(code_set, basestring))
 
     try:
         ifile = open(filename, "rU")

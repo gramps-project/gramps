@@ -124,7 +124,7 @@ data_recover_msg = _('The data can only be recovered by Undo operation '
             'or by quitting with abandoning changes.')
 
 def fix_encoding(value):
-    if type(value) != unicode:
+    if not isinstance(value, unicode):
         try:
             return unicode(value)
         except:
@@ -150,7 +150,7 @@ def xml_lang():
 #-------------------------------------------------------------------------
 
 def force_unicode(n):
-    if type(n) != unicode:
+    if not isinstance(n, unicode):
         return (unicode(n).lower(), unicode(n))
     else:
         return (n.lower(), n)

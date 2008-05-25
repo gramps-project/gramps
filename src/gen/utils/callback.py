@@ -397,8 +397,8 @@ class Callback(object):
                 for (key, fn) in self.__callback_map[signal_name]:
                     self._log("Calling callback with key: %s\n" % (key, ))
                     try:
-                        if type(fn) == types.FunctionType or \
-                                type(fn) == types.MethodType: # call func
+                        if isinstance(fn, types.FunctionType) or \
+                                isinstance(fn, types.MethodType): # call func
                             fn(*args)                        
                         else:
                             self._warn("Badly formed entry in callback map.\n")

@@ -164,10 +164,10 @@ def get_default(key, sample=''):
     value = client.get_default_from_schema(token)
     if value == None:
         raise Errors.GConfSchemaError("No default value for key "+key[1])
-    if type(sample) in (str, unicode):
+    if isinstance(sample, basestring):
         return value.get_string()
-    elif type(sample) == int:
+    elif isinstance(sample, int):
         return value.get_int()
-    elif type(sample) == bool:
+    elif isinstance(sample, bool):
         return value.get_bool()
     return None

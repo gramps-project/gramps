@@ -71,17 +71,17 @@ class MarkerType(GrampsType):
             else:
                 self.val = value.val
                 self.string = value.string
-        elif type(value) == tuple:
+        elif isinstance(value, tuple):
             if value[0] == self.CUSTOM and value[1] == u'':
                 self.value = self.NONE
                 self.string = u''
             else:
                 self.val = value[0]
                 self.string = value[1]
-        elif type(value) == int:
+        elif isinstance(value, int):
             self.val = value
             self.string = u''
-        elif type(value) == str:
+        elif isinstance(value, str):
             self.val = self._S2IMAP.get(value, self._CUSTOM)
             if self.val == self._CUSTOM:
                 self.string = value

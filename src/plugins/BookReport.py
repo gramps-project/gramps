@@ -433,7 +433,7 @@ class BookList:
                 options = item.option_class.handler.options_dict
                 for option_name in options.keys():
                     option_value = options[option_name]
-                    if type(option_value) in (type(list()), type(tuple())):
+                    if isinstance(option_value, (list, tuple)):
                         f.write('  <option name="%s" value="" '
                                 'length="%d">\n' % (
                                     escape(option_name),

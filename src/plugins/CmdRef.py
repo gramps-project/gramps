@@ -180,7 +180,7 @@ class CmdRef(Tool.Tool):
                     % escape(oclass.options_help[arg][1]))
 
             if len(oclass.options_help[arg])>2:
-                if type(oclass.options_help[arg][2]) in [list,tuple]:
+                if isinstance(oclass.options_help[arg][2], (list, tuple)):
                     if oclass.options_help[arg][3]:
                         f.write('          <orderedlist>\n')
                         for val in oclass.options_help[arg][2]:

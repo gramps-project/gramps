@@ -213,26 +213,26 @@ class TestCallback(unittest.TestCase):
 
         t = TestSignals()
         t.connect('test-int',fn), t.emit('test-int',(1,))
-        assert type(rl[0]) == int, "not int"
+        assert isinstance(rl[0], int), "not int"
 
         t.connect('test-list',fn), t.emit('test-list',([1,2],))
-        assert type(rl[1]) == list, "not list"
+        assert isinstance(rl[1], list), "not list"
 
         t.connect('test-object',fn), t.emit('test-object',(t,))
         assert isinstance(rl[2], object), "not object"
 
         t.connect('test-float',fn), t.emit('test-float',(2.3,))
-        assert type(rl[3]) == float, "not float"
+        assert isinstance(rl[3], float), "not float"
 
         t.connect('test-dict',fn), t.emit('test-dict',({1:2},))
-        assert type(rl[4]) == dict, "not dict"
+        assert isinstance(rl[4], dict), "not dict"
 
         rl = []
         def fn2(i,s,l, o,f,r=rl):
             rl.append(i)
 
         t.connect('test-lots',fn2), t.emit('test-lots',(1,'a',[1,2],t,1.2))
-        assert type(rl[0]) == int, "not lots"
+        assert isinstance(rl[0], int), "not lots"
 
         # This should fail because the type of arg1 is wrong
         res=[]

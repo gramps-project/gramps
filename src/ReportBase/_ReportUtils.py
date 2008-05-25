@@ -1528,7 +1528,7 @@ def estimate_age_on_date(db, person, ddata=_TODAY):
 #-------------------------------------------------------------------------
 def roman(num):
     """ Integer to Roman numeral converter for 0 < num < 4000 """
-    if type(num) != int:
+    if not isinstance(num, int):
         return "?"
     if not 0 < num < 4000:
         return "?"

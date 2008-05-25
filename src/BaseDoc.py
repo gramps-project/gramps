@@ -872,7 +872,7 @@ class ParagraphStyle:
         return self.bmargin
 
     def set_tabs(self, tab_stops):
-        assert(type(tab_stops) == type([]))
+        assert isinstance(tab_stops, list)
         self.tabs = tab_stops
 
     def get_tabs(self):

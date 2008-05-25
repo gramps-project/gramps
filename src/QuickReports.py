@@ -157,7 +157,7 @@ def run_report(dbstate, uistate, category, handle, func, **kwargs):
             d = TextBufDoc(make_basic_stylesheet(), None, None)
             d.dbstate = dbstate
             d.uistate = uistate
-            if type(handle) in [str, unicode]: # a handle
+            if isinstance(handle, basestring): # a handle
                 if category == CATEGORY_QR_PERSON :
                     obj = dbstate.db.get_person_from_handle(handle)
                 elif category == CATEGORY_QR_FAMILY :

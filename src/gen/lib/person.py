@@ -709,7 +709,7 @@ class Person(SourceBase, NoteBase, AttributeBase, MediaBase,
             Person's L{Family} list.
         @type family_handle: str
         """
-        if type(family_handle) not in (str, unicode):
+        if not isinstance(family_handle, basestring):
             raise ValueError("expecting handle")
         if family_handle not in self.parent_family_list:
             self.parent_family_list.append(family_handle)

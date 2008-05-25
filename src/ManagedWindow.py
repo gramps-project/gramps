@@ -138,7 +138,7 @@ class GrampsWindowManager:
         # starting with the given item.
         # Eventualy, every non-list item (leaf) will be reached
         # and the func(item,*args) will be called on that item.
-        if type(item) == list:
+        if isinstance(item, list):
             # If this item is a branch
             # close the children except for the first one
             for sub_item in item[1:]:
@@ -198,7 +198,7 @@ class GrampsWindowManager:
 
         # Make sure we have a track
         parent_item = self.get_item_from_track(track)
-        assert type(parent_item) == list or track == [], \
+        assert isinstance(parent_item, list) or track == [], \
                "Gwm: add_item: Incorrect track - Is parent not a leaf?"
 
         # Prepare a new item, depending on whether it is branch or leaf
@@ -220,7 +220,7 @@ class GrampsWindowManager:
         return new_track
 
     def call_back_factory(self, item):
-        if type(item) != list:
+        if not isinstance(item, list):
             def func(obj):
                 if item.window_id and self.id2item.get(item.window_id):
                     self.id2item[item.window_id].present()
@@ -233,7 +233,7 @@ class GrampsWindowManager:
         return str(item.window_id)
 
     def display_menu_list(self, data, action_data, mlist):
-        if type(mlist) in (list, tuple):
+        if isinstance(mlist, (list, tuple)):
             i = mlist[0]
             idval = self.generate_id(i)
             data.write('<menu action="M:%s">' % idval)
@@ -247,9 +247,9 @@ class GrampsWindowManager:
         action_data.append((idval, None, i.menu_label, None, None,
                             self.call_back_factory(i)))
 
-        if (type(mlist) in (list, tuple)) and (len(mlist) > 1):
+        if isinstance(mlist, (list, tuple)) and (len(mlist) > 1):
             for i in mlist[1:]:
-                if type(i) == list:
+                if isinstance(i, list):
                     self.display_menu_list(data, action_data, i)
                 else:
                     idval = self.generate_id(i)
@@ -257,7 +257,7 @@ class GrampsWindowManager:
                                % self.generate_id(i))        
                     action_data.append((idval, None, i.menu_label, None, None,
                                         self.call_back_factory(i)))
-        if type(mlist) in (list, tuple):
+        if isinstance(mlist, (list, tuple)):
             data.write('</menu>')
         
     def build_windows_menu(self):

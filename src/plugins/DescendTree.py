@@ -90,7 +90,7 @@ class GenChart:
 
     def not_blank(self,line):
         for i in line:
-            if i and type(i) == tuple:
+            if i and isinstance(i, tuple):
                 return 1
         return 0
 
@@ -352,7 +352,7 @@ class DescendTree(Report):
             phys_x = 0
             for x in range(startx,stopx):
                 value = self.genchart.get_xy(x,y)
-                if type(value) == str or type(value) == unicode:
+                if isinstance(value, basestring):
                     text = '\n'.join(self.text[(x,y)])
                     xbegin = phys_x*self.delta
                     yend   = phys_y*bh+self.offset

@@ -76,7 +76,7 @@ class AttributeBase:
         @param attribute: L{Attribute} instance to add.
         @type attribute: L{Attribute}
         """
-        assert type(attribute) != unicode
+        assert not isinstance(attribute, unicode)
         self.attribute_list.append(attribute)
 
     def remove_attribute(self, attribute):

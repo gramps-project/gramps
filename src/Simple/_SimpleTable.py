@@ -179,9 +179,9 @@ class SimpleTable:
         for col in range(len(data)):
             item = data[col]
             # FIXME: add better text representations of these objects
-            if type(item) in [str, unicode]:
+            if isinstance(item, basestring):
                 retval.append(item)
-            elif type(item) in [int, float, long]:
+            elif isinstance(item, (int, float, long)):
                 retval.append(item)
                 self.row_sort_val(col, item)
             elif isinstance(item, gen.lib.Person):

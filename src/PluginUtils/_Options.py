@@ -199,7 +199,7 @@ class OptionListCollection:
             f.write('<module name="%s">\n' % escape(module_name))
             options = option_list.get_options()
             for option_name in options.keys():
-                if type(options[option_name]) in (type(list()),type(tuple())):
+                if isinstance(options[option_name], (list, tuple)):
                     f.write('  <option name="%s" value="" length="%d">\n' % (
                                 escape(option_name),
                                 len(options[option_name]) ) )

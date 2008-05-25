@@ -167,10 +167,10 @@ class StandardCustomSelector:
 
         if self.additional:
             for event_type in self.additional:
-                if type(event_type) == str or type(event_type) == unicode :
+                if isinstance(event_type, basestring):
                     if event_type:
                         self.store.append(row=[self.custom_key, event_type])
-                elif type(event_type) == tuple:
+                elif isinstance(event_type, tuple):
                     if event_type[1]:
                         self.store.append(row=[event_type[0], event_type[1]])
                 else:

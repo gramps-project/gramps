@@ -105,7 +105,7 @@ class GrampsTab(gtk.HBox):
         hbox = gtk.HBox()
         icon = self.get_icon_name()
 
-        if type(icon) == tuple:
+        if isinstance(icon, tuple):
             if icon[0] == 0:
                 func = gtk.image_new_from_icon_name
             else:

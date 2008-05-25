@@ -88,9 +88,9 @@ class Tool:
         if issubclass(options_class, MenuToolOptions):
             # FIXME: pass in person_id
             self.options = options_class(name, None, dbstate)
-        elif type(options_class) == ClassType:
+        elif isinstance(options_class, ClassType):
             self.options = options_class(name)
-        elif type(options_class) == InstanceType:
+        elif isinstance(options_class, InstanceType):
             self.options = options_class
         self.options.load_previous_values()
 
@@ -219,7 +219,7 @@ class CommandLineTool:
                                     self.options_help[self.show][1])
             print "   Available values are:"
             vals = self.options_help[self.show][2]
-            if type(vals) in [list,tuple]:
+            if isinstance(vals, (list, tuple)):
                 if self.options_help[self.show][3]:
                     for num in range(len(vals)):
                         print "      %d\t%s" % (num,vals[num])

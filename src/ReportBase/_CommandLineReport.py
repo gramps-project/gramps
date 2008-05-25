@@ -353,7 +353,7 @@ class CommandLineReport:
                                     self.options_help[self.show][1])
             print "   Available values are:"
             vals = self.options_help[self.show][2]
-            if type(vals) in [list,tuple]:
+            if isinstance(vals, (list, tuple)):
                 if self.options_help[self.show][3]:
                     for num in range(len(vals)):
                         print "      %d\t%s" % (num,vals[num])

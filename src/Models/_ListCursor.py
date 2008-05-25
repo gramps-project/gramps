@@ -157,7 +157,7 @@ class ListCursor(object):
         automatically unpickle it. So this method provides
         a convenient way to unpickle the object.
         """
-        if rec and type(rec[1]) == type(""):
+        if rec and isinstance(rec[1], str):
             tmp = [rec[0],None]
             tmp[1] = cPickle.loads(rec[1])
             rec = tmp

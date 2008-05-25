@@ -134,13 +134,13 @@ class GrampsType(object):
             self.string = u''
 
     def set(self, value):
-        if type(value) == tuple:
+        if isinstance(value, tuple):
             self.__set_tuple(value)
-        elif type(value) == int:
+        elif isinstance(value, int):
             self.__set_int(value)
         elif isinstance(value, self.__class__):
             self.__set_instance(value)
-        elif type(value) in (str,unicode):
+        elif isinstance(value, basestring):
             self.__set_str(value)
         else:
             self.val = self._DEFAULT
@@ -208,14 +208,14 @@ class GrampsType(object):
         return self._CUSTOM
     
     def __cmp__(self, value):
-        if type(value) == int:
+        if isinstance(value, int):
             return cmp(self.val, value)
-        elif type(value) in (str, unicode):
+        elif isinstance(value, basestring):
             if self.val == self._CUSTOM:
                 return cmp(self.string, value)
             else:
                 return cmp(self._I2SMAP.get(self.val), value)
-        elif type(value) == tuple:
+        elif isinstance(value, tuple):
             return cmp((self.val, self.string), value)
         else:
             if value.val == self._CUSTOM:

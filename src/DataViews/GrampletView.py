@@ -364,7 +364,7 @@ class Gramplet(object):
         Runs the generator.
         """
         if debug: print "%s _updater" % self.gui.title
-        if type(self._generator) != types.GeneratorType:
+        if not isinstance(self._generator, types.GeneratorType):
             self._idle_id = 0
             return False
         try:
@@ -925,7 +925,7 @@ class GrampletView(PageView.PersonNavView):
                         elif key == "column": continue
                         elif key == "row": continue
                         elif key == "data":
-                            if type(base_opts["data"]) not in [list, tuple]:
+                            if not isinstance(base_opts["data"], (list, tuple)):
                                 fp.write(("data[0]=%s" + NL) % base_opts["data"])
                             else:
                                 cnt = 0
@@ -950,7 +950,7 @@ class GrampletView(PageView.PersonNavView):
                     if key == "content": continue
                     elif key == "title": continue
                     elif key == "data":
-                        if type(base_opts["data"]) not in [list, tuple]:
+                        if not isinstance(base_opts["data"], (list, tuple)):
                             fp.write(("data[0]=%s" + NL) % base_opts["data"])
                         else:
                             cnt = 0

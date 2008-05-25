@@ -192,7 +192,7 @@ class Date:
         if len(source) == 0:
             source = None
         elif len(source) == 1:
-            if type(source[0]) == int:
+            if isinstance(source[0], int):
                 source = (source[0], 0, 0)
             else:
                 source = source[0]
@@ -203,7 +203,7 @@ class Date:
         else:
             raise AttributeError, "invalid args to Date: %s" % source
         #### ok, process either date or tuple
-        if type(source) == tuple:
+        if isinstance(source, tuple):
             if calendar == None:
                 self.calendar = Date.CAL_GREGORIAN
             else:
@@ -221,7 +221,7 @@ class Date:
             self.sortval  = 0
             self.newyear = 0
             self.set_yr_mon_day(*source)
-        elif type(source) == str and source != "":
+        elif isinstance(source, str) and source != "":
             if (calendar != None or 
                 modifier != None or 
                 quality != None):
@@ -302,9 +302,9 @@ class Date:
         """
         Date arithmetic: Date() + years, or Date() + (years, [months, [days]]).
         """
-        if type(other) == int:
+        if isinstance(other, int):
             return self.copy_offset_ymd(other)
-        elif type(other) in [tuple, list]:
+        elif isinstance(other, (tuple, list)):
             return self.copy_offset_ymd(*other)
         else:
             raise AttributeError, "unknown date add type: %s " % type(other)
@@ -319,11 +319,11 @@ class Date:
         """
         Date arithmetic: Date() - years, Date - (y,m,d), or Date() - Date().
         """
-        if type(other) == int:                # Date - value -> Date
+        if isinstance(other, int):                # Date - value -> Date
             return self.copy_offset_ymd(-other)
-        elif type(other) in [tuple, list]:    # Date - (y, m, d) -> Date
+        elif isinstance(other, (tuple, list)):    # Date - (y, m, d) -> Date
             return self.copy_offset_ymd(*map(lambda x: -x, other))
-        elif type(other) == type(self):       # Date1 - Date2 -> tuple
+        elif isinstance(other, self):             # Date1 - Date2 -> tuple
             # We should make sure that Date2 + tuple -> Date1 and
             #                          Date1 - tuple -> Date2
             d1 = map(lambda i: i or 1, self.get_ymd())

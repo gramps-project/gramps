@@ -165,7 +165,7 @@ class StageOne:
             elif key in ("CHIL", "CHILD") and is_xref_value(value):
                 add_to_list(self.famc, value[1:-1], current_family_id)
             elif key == 'CHAR' and not self.enc:
-                assert(type(value) == str or type(value) == unicode)
+                assert(isinstance(value, basestring))
                 self.enc = value
 
     def get_famc_map(self):
@@ -190,7 +190,7 @@ class StageOne:
         """
         Forces the encoding
         """
-        assert(type(enc) == str or type(enc) == unicode)
+        assert(isinstance(enc, basestring))
         self.enc = enc
 
     def get_person_count(self):

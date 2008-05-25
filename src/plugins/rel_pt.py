@@ -264,7 +264,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         #orig person, apperently secondRel in this function
         (secondRel,firstRel,common) = self.get_relationship_distance(orig_person, other_person)
 
-        if type(common) == types.StringType or type(common) == types.UnicodeType:
+        if isinstance(common, basestring):
             return (common,[])
         elif common:
             person_handle = common[0]

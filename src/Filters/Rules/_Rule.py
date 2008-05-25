@@ -40,8 +40,8 @@ class Rule:
     category    = _('Miscellaneous filters')
     description = _('No description')
 
-    def __init__(self, list):
-        self.set_list(list)
+    def __init__(self, arg):
+        self.set_list(arg)
 
     def is_empty(self):
         return False
@@ -51,13 +51,13 @@ class Rule:
 
     def reset(self):
         pass
-
-    def set_list(self, list):
-        assert type(list) == type([]) or list == None, "Argument is not a list"
-        assert len(list) == len(self.labels), \
+ 
+    def set_list(self, arg):
+        assert isinstance(arg, list) or arg == None, "Argument is not a list"
+        assert len(arg) == len(self.labels), \
                "Number of arguments does not match number of labels.\n"\
-               "list: %s\nlabels: %s" % (list,self.labels)
-        self.list = list
+               "list: %s\nlabels: %s" % (arg,self.labels)
+        self.list = arg
 
     def values(self):
         return self.list

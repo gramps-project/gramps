@@ -326,13 +326,13 @@ class CheckIntegrity:
 
         for handle in self.db.media_map.keys():
             data = self.db.media_map[handle]
-            if type(data[2]) != unicode or type(data[4]) != unicode:
+            if not isinstance(data[2], unicode) or not isinstance(data[4], unicode):
                 obj = self.db.get_object_from_handle(handle)
                 obj.path = Utils.fix_encoding( obj.path)
                 obj.desc = Utils.fix_encoding( obj.desc)
                 self.db.commit_media_object(obj,self.trans)
             # Once we are here, fix the mime string if not str
-            if type(data[3]) != str:
+            if not isinstance(data[3], str):
                 obj = self.db.get_object_from_handle(handle)
                 try:
                     if data[3] == str(data[3]):
@@ -798,7 +798,7 @@ class CheckIntegrity:
                         person.get_event_ref_list().remove(event_ref)
                         self.db.commit_person(person,self.trans)
                         self.invalid_events.append(key)
-            elif type(person.get_event_ref_list()) != list:
+            elif not isinstance(person.get_event_ref_list(), list):
                 # event_list is None or other garbage
                 person.set_event_ref_list([])
                 self.db.commit_person(person,self.trans)
@@ -820,7 +820,7 @@ class CheckIntegrity:
                         family.set_event_ref_list(nlist)
                         self.db.commit_family(family,self.trans)
                         self.invalid_events.append(key)
-            elif type(family.get_event_ref_list()) != list:
+            elif not isinstance(family.get_event_ref_list(), list):
                 # event_list is None or other garbage
                 family.set_event_ref_list([])
                 self.db.commit_family(family,self.trans)

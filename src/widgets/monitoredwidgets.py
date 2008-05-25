@@ -375,7 +375,7 @@ class MonitoredDataType:
 
     def update(self):
         val = self.get_val()
-        if type(val) == tuple :
+        if isinstance(val, tuple):
             self.sel.set_values(val)
         else:
             self.sel.set_values((int(val), str(val)))

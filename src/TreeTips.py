@@ -193,7 +193,7 @@ class TreeTips(gtk.Widget):
             tip = model.get_value(rowIter, self.column)
             # The tip can be either a string or
             # a function that returns a string.
-            if type(tip) == str:
+            if isinstance(tip, str):
                 text = tip
             elif callable(tip):
                 text = tip()

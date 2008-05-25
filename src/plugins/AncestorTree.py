@@ -147,7 +147,7 @@ class GenChart:
 
     def not_blank(self,line):
         for i in line:
-            if i and type(i) == tuple:
+            if i and isinstance(i, tuple):
                 return 1
         return 0
 
@@ -377,7 +377,7 @@ class AncestorTree(Report):
             for x in range(startx,stopx):
                 value = self.genchart.get_xy(x,y)
                 if value:
-                    if type(value) == tuple:
+                    if isinstance(value, tuple):
                         (person,index) = value
                         text = '\n'.join(self.text[index])
                         self.doc.draw_box("AC2-box",
@@ -426,7 +426,7 @@ class AncestorTree(Report):
                 value = self.genchart.get_xy(x,y)
                 if not value:
                     continue
-                if type(value) == tuple:
+                if isinstance(value, tuple):
                     (person,index) = value
                     if self.genchart.get(index*2):
                         (px,py) = self.genchart.index_to_xy(index*2)

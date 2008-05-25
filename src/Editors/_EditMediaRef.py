@@ -136,7 +136,7 @@ class EditMediaRef(EditReference):
 
         self.draw_preview()
 
-        if coord and type(coord) == tuple:
+        if coord and isinstance(coord, tuple):
             self.top.get_widget("corner1_x").set_value(coord[0])
             self.top.get_widget("corner1_y").set_value(coord[1])
             self.top.get_widget("corner2_x").set_value(coord[2])

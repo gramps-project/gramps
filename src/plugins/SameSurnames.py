@@ -63,7 +63,7 @@ def run(database, document, person):
     sdb = SimpleAccess(database)
     sdoc = SimpleDoc(document)
     stab = SimpleTable(sdb)
-    if type(person) == str:
+    if isinstance(person, str):
         surname = person
         rsurname = person
     else:

@@ -1160,10 +1160,10 @@ class Holidays:
                     d = int(d)
             ndate = datetime.date(y, m, d)
             if self.debug: print ndate, offset, type(offset)
-            if type(offset) == int:
+            if isinstance(offset, int):
                 if offset != 0:
                     ndate = ndate.fromordinal(ndate.toordinal() + offset)
-            elif type(offset) in [type(u''), str]:
+            elif isinstance(offset, basestring):
                 dir = 1
                 if offset[0] == "-":
                     dir = -1

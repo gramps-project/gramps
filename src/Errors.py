@@ -143,7 +143,7 @@ class DbError(Exception):
     """Error used to report that the request window is already displayed."""
     def __init__(self, value):
         Exception.__init__(self)
-        if type(value) == tuple:
+        if isinstance(value, tuple):
             self.value = value[1]
         else:
             self.value = value

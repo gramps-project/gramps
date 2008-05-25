@@ -204,7 +204,7 @@ class DbLoader:
         
         """
 
-        if type(filename) not in (str, unicode):
+        if not isinstance(filename, basestring):
             return True
 
         filename = os.path.normpath(os.path.abspath(filename))
