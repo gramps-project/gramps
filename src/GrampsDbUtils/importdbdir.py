@@ -58,22 +58,22 @@ def importData(database, dirname, callback=None, cl=0, use_trans=True):
         other_database.load(name, callback)
     except:
         if cl:
-            print "Error: %s could not be opened. Exiting." % filename
+            print "Error: %s could not be opened. Exiting." % name
         else:
-            ErrorDialog(_("%s could not be opened") % filename)
+            ErrorDialog(_("%s could not be opened") % name)
         return
 
     if not other_database.version_supported():
         if cl:
             print "Error: %s could not be opened.\n%s  Exiting." \
-                  % (filename,
+                  % (name,
                      _("The database version is not supported "
                        "by this version of GRAMPS.\n"\
                        "Please upgrade to the corresponding version "
                        "or use XML for porting data between different "
                        "database versions."))
         else:
-            ErrorDialog(_("%s could not be opened") % filename,
+            ErrorDialog(_("%s could not be opened") % name,
                         _("The Database version is not supported "
                           "by this version of GRAMPS."))
         return
