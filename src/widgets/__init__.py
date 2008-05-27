@@ -22,18 +22,22 @@
 
 """Custom widgets."""
 
-from monitoredwidgets import *
-from labels import *
 from buttons import *
-from expandcollapsearrow import ExpandCollapseArrow
-from linkbox import LinkBox
+from expandcollapsearrow import *
+from labels import *
+from linkbox import *
+from monitoredwidgets import *
+from shortlistcomboentry import *
+from springseparator import *
 from statusbar import Statusbar
-from validatedmaskedentry import ValidatableMaskedEntry
-from multitypecomboentry import MultiTypeComboEntry
-from toolbarwidgets import *
 from styledtextbuffer import *
 from styledtexteditor import *
+from toolcomboentry import *
 from unused import *
+from validatedcomboentry import *
+from validatedmaskedentry import *
+from valueaction import *
+from valuetoolitem import *
 
 # Enabling custom widgets to be included in Glade
 from gtk.glade import set_custom_handler

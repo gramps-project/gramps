@@ -22,6 +22,8 @@
 
 "Text editor subclassed from gtk.TextView handling L{StyledText}."
 
+__all__ = ["StyledTextEditor"]
+
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -50,7 +52,9 @@ from gen.lib import StyledTextTagType
 from widgets.styledtextbuffer import (StyledTextBuffer, ALLOWED_STYLES,
                                       MATCH_START, MATCH_END,
                                       MATCH_FLAVOR, MATCH_STRING)
-from widgets.toolbarwidgets import (ComboToolAction, SpringSeparatorAction)
+from widgets.valueaction import ValueAction
+from widgets.toolcomboentry import ToolComboEntry
+from widgets.springseparator import SpringSeparatorAction
 from Spell import Spell
 from GrampsDisplay import url as display_url
 
@@ -74,6 +78,7 @@ FORMAT_TOOLBAR = '''
   <toolitem action="%d"/>
   <toolitem action="spring"/>
   <toolitem action="clear"/>
+  <toolitem action="test"/>
 </toolbar>
 </ui>
 ''' % (StyledTextTagType.ITALIC,
@@ -354,27 +359,29 @@ class StyledTextEditor(gtk.TextView):
         
         # ...last the custom actions, which have custom proxies
         items = [f.get_name() for f in self.get_pango_context().list_families()]
+        items.sort()
         default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTFACE]
-        fontface_action = ComboToolAction(str(StyledTextTagType.FONTFACE),
-                                          _("Font family"),
-                                          _("Font family"),
-                                          None,
-                                          items,
-                                          str(default),
-                                          editable=False)
-        fontface_action.connect('activate', self._on_comboaction_activate)
+        fontface_action = ValueAction(str(StyledTextTagType.FONTFACE),
+                                      _("Font family"),
+                                      default,
+                                      ToolComboEntry,
+                                      items,
+                                      False, #editable
+                                      True, #shortlist
+                                      None) # validator
+        fontface_action.connect('changed', self._on_comboaction_changed)
 
-        items = [str(size) for size in FONT_SIZES]
+        items = FONT_SIZES
         default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTSIZE]
-        fontsize_action = ComboToolAction(str(StyledTextTagType.FONTSIZE),
-                                          _("Font size"),
-                                          _("Font size"),
-                                          None,
-                                          items,
-                                          str(default),
-                                          sortable=False,
-                                          validator=is_valid_fontsize)
-        fontsize_action.connect('activate', self._on_comboaction_activate)
+        fontsize_action = ValueAction(str(StyledTextTagType.FONTSIZE),
+                                      _("Font size"),
+                                      default,
+                                      ToolComboEntry,
+                                      items,
+                                      True, #editable
+                                      False, #shortlist
+                                      is_valid_fontsize) #validator
+        fontsize_action.connect('changed', self._on_comboaction_changed)
 
         spring = SpringSeparatorAction("spring", "", "", None)
         
@@ -392,7 +399,7 @@ class StyledTextEditor(gtk.TextView):
         self.action_group.add_action(fontface_action)
         self.action_group.add_action(fontsize_action)
         self.action_group.add_action(spring)
-
+        
         # define the toolbar and create the proxies via ensure_update()
         uimanager = gtk.UIManager()
         uimanager.insert_action_group(self.action_group, 0)
@@ -488,16 +495,16 @@ class StyledTextEditor(gtk.TextView):
                        (style, str(value)))
             self.textbuffer.apply_style(style, value)
 
-    def _on_comboaction_activate(self, action):
+    def _on_comboaction_changed(self, action):
         """Apply a format set by a ComboToolAction type of action."""
         if self._internal_style_change:
             return
         
         style = int(action.get_name())
 
-        text = action.get_active_value()
+        value = action.get_value()
         try:
-            value = StyledTextTagType.STYLE_TYPE[style](text)
+            value = StyledTextTagType.STYLE_TYPE[style](value)
             _LOG.debug("applying style '%d' with value '%s'" %
                        (style, str(value)))
             self.textbuffer.apply_style(style, value)
@@ -528,7 +535,7 @@ class StyledTextEditor(gtk.TextView):
                 (style == StyledTextTagType.FONTSIZE)):
                 action = self.action_group.get_action(str(style))
                 self._internal_style_change = True
-                action.set_active_value(str(changed_styles[style]))
+                action.set_value(changed_styles[style])
                 self._internal_style_change = False
             
     def _spell_change_cb(self, menuitem, language):
@@ -610,10 +617,6 @@ def hex_to_color(hex):
     color = gtk.gdk.color_parse(hex)
     return color
 
-def is_valid_fontsize(text):
+def is_valid_fontsize(size):
     """Validator function for font size selector widget."""
-    try:
-        size = int(text)
-        return (size > 0) and (size < 73)
-    except ValueError:
-        return False
+    return (size > 0) and (size < 73)

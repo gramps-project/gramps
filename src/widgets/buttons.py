@@ -20,6 +20,8 @@
 
 # $Id$
 
+__all__ = ["IconButton", "WarnButton", "SimpleButton", "PrivacyButton"]
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules

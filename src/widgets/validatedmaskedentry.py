@@ -20,6 +20,8 @@
 
 # $Id$
 
+__all__ = ["MaskedEntry", "ValidatableMaskedEntry"]
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules

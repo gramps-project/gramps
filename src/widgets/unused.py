@@ -20,6 +20,8 @@
 
 # $Id$
 
+__all__ = ["IntEdit", "TypeCellRenderer"]
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules

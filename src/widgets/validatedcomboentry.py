@@ -20,7 +20,9 @@
 
 # $Id$
 
-"The MultiTypeComboEntry widget class."
+"The ValidatedComboEntry widget class."
+
+__all__ = ["ValidatedComboEntry"]
 
 #-------------------------------------------------------------------------
 #
@@ -28,7 +30,7 @@
 #
 #-------------------------------------------------------------------------
 import logging
-_LOG = logging.getLogger(".widgets.multitypecomboentry")
+_LOG = logging.getLogger(".widgets.validatedcomboentry")
 
 #-------------------------------------------------------------------------
 #
@@ -39,18 +41,19 @@ import gtk
 
 #-------------------------------------------------------------------------
 #
-# MultiTypeComboEntry class
+# ValidatedComboEntry class
 #
 #-------------------------------------------------------------------------
-class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
+class ValidatedComboEntry(gtk.ComboBox, gtk.CellLayout):
     """A ComboBoxEntry widget with validation.
     
-    MultiTypeComboEntry may have data type other then string (tbd.).
+    ValidatedComboEntry may have data type other then string, and is set
+    with the C{datatype} contructor parameter.
     
     Its behaviour is different from gtk.ComboBoxEntry in the way how
     the entry part of the widget is handled. While gtk.ComboBoxEntry
     emits the 'changed' signal immediatelly the text in the entry is 
-    changed, MultiTypeComboEntry emits the signal only after the text is
+    changed, ValidatedComboEntry emits the signal only after the text is
     activated (enter is pressed, the focus is moved out) and validated.
     
     Validation function is an optional feature and activated only if a
@@ -60,13 +63,13 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
     L{set_entry_editable} method.
     
     """
-    __gtype_name__ = "MultiTypeComboEntry"
+    __gtype_name__ = "ValidatedComboEntry"
     
-    def __init__(self, model=None, column=-1, validator=None):
+    def __init__(self, datatype, model=None, column=-1, validator=None):
         gtk.ComboBox.__init__(self, model)
 
         self._entry = gtk.Entry()
-        # <hack description="set the GTK_ENTRY (self._entry)->is_cell_renderer
+        # <hack description="set the GTK_ENTRY(self._entry)->is_cell_renderer
         # flag to TRUE in order to tell the entry to fill its allocation.">
         dummy_event = gtk.gdk.Event(gtk.gdk.NOTHING)
         self._entry.start_editing(dummy_event)
@@ -77,9 +80,12 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         self._text_renderer = gtk.CellRendererText()
         self.pack_start(self._text_renderer, False)
         
-        self._text_column = -1
-        self.set_text_column(column)
+        self._data_type = datatype
+        self._data_column = -1
+        self.set_data_column(column)
+
         self._active_text = ''
+        self._active_data = None
         self.set_active(-1)
         
         self._validator = validator
@@ -88,7 +94,8 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         self._entry.connect('focus-in-event', self._on_entry_focus_in_event)
         self._entry.connect('focus-out-event', self._on_entry_focus_out_event)
         self._entry.connect('key-press-event', self._on_entry_key_press_event)
-        self.changed_cb_id = self.connect('changed', self._on_changed)
+        self.connect('changed', self._on_changed)
+        self._internal_change = False
         
         self._has_frame_changed()
         self.connect('notify', self._on_notify)
@@ -139,6 +146,8 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         # FIXME Escape never reaches here, the dialog eats it, I assume.
         if event.keyval == gtk.keysyms.Escape:
             entry.set_text(self._active_text)
+            entry.set_position(-1)
+            return True
 
         return False
 
@@ -148,10 +157,14 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
         Called when the active row is changed in the combo box.
         
         """
+        if self._internal_change:
+            return
+        
         iter = self.get_active_iter()
         if iter:
             model = self.get_model()
-            self._active_text = model.get_value(iter, self._text_column)
+            self._active_data = model.get_value(iter, self._data_column)
+            self._active_text = str(self._active_data)
             self._entry.set_text(self._active_text)
 
     def _on_notify(self, object, gparamspec):
@@ -168,45 +181,78 @@ class MultiTypeComboEntry(gtk.ComboBox, gtk.CellLayout):
     def _entry_changed(self, entry):
         new_text = entry.get_text()
         
-        if (self._validator is not None) and not self._validator(new_text):
+        try:
+            new_data = self._data_type(new_text)
+        
+            if (self._validator is not None) and not self._validator(new_data):
+                raise ValueError
+        except ValueError:
             entry.set_text(self._active_text)
+            entry.set_position(-1)
             return
         
         self._active_text = new_text
-        self.handler_block(self.changed_cb_id)
-        self.set_active(-1)
-        self.handler_unblock(self.changed_cb_id)
+        self._active_data = new_data
+        
+        self._internal_change = True
+        new_iter = self._is_in_model(new_data)
+        if new_iter is None:
+            self.set_active(-1)
+        else:
+            self.set_active_iter(new_iter)
+        self._internal_change = False
 
     def _has_frame_changed(self):
         has_frame = self.get_property('has-frame')
         self._entry.set_has_frame(has_frame)
+        
+    def _is_in_model(self, data):
+        """Check if given data is in the model or not.
+        
+        @param data: data value to check
+        @type data: depends on the actual data type of the object
+        @returns: position of 'data' in the model
+        @returntype: gtk.TreeIter or None
+        
+        """
+        model = self.get_model()
+        
+        iter = model.get_iter_first()
+        while iter:
+            if model.get_value(iter, self._data_column) == data:
+                break
+            iter = model.iter_next(iter)
+
+        return iter
 
     # Public methods
     
-    def set_text_column(self, text_column):
-        if text_column < 0:
+    def set_data_column(self, data_column):
+        if data_column < 0:
             return
         
-        if text_column > self.get_model().get_n_columns():
+        model = self.get_model()
+        if model is None:
             return
         
-        if self._text_column == -1:
-            self._text_column = text_column
-            self.set_attributes(self._text_renderer, text=text_column)
+        if data_column > model.get_n_columns():
+            return
         
-    def get_text_column(self):
-        return self._text_column
+        if self._data_column == -1:
+            self._data_column = data_column
+            self.set_attributes(self._text_renderer, text=data_column)
+        
+    def get_data_column(self):
+        return self._data_column
     
-    def set_active_text(self, text):
+    def set_active_data(self, data):
+        # set it via entry so that it will be also validated
         if self._entry:
-            self._entry.set_text(text)
+            self._entry.set_text(str(data))
             self._entry_changed(self._entry)
 
-    def get_active_text(self):
-        if self._entry:
-            return self._entry.get_text()
-        
-        return None
+    def get_active_data(self):
+        return self._active_data
 
     def set_entry_editable(self, is_editable):
         self._entry.set_editable(is_editable)

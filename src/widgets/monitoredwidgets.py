@@ -20,6 +20,10 @@
 
 # $Id$
 
+__all__ = ["MonitoredCheckbox", "MonitoredEntry", "MonitoredSpinButton",
+           "MonitoredText", "MonitoredType", "MonitoredDataType",
+           "MonitoredMenu", "MonitoredStrMenu", "MonitoredDate"]
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules

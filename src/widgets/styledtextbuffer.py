@@ -22,6 +22,9 @@
 
 "Text buffer subclassed from gtk.TextBuffer handling L{StyledText}."
 
+__all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",
+           "MATCH_STRING", "StyledTextBuffer"]
+
 #-------------------------------------------------------------------------
 #
 # Python modules
