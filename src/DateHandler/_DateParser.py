@@ -258,9 +258,9 @@ class DateParser:
         self._modifier_after = re.compile('(.*)\s+%s' % self._mod_after_str,
                                           re.IGNORECASE)
         self._abt2     = re.compile('<(.*)>', re.IGNORECASE)
-        self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
+        self._text     = re.compile('%s\.?\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                                     re.IGNORECASE)
-        self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
+        self._text2    = re.compile('(\d+)?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$' % self._mon_str,
                                     re.IGNORECASE)
         self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?\s*$' % self._jmon_str,
                                     re.IGNORECASE)
