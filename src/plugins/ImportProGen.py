@@ -158,7 +158,7 @@ def _get_defname(fname):
     We will strip the C: and convert the rest to a native pathname. Next, this pathname
     is compared with <fname>.
     '''
-    lines = open( fname ).readlines()
+    lines = open(fname).readlines()
     if not lines[0].startswith(r'\0') or len(lines) < 2:
         raise ProgenError(_("Not a Pro-Gen file"))
         return None, '?'
@@ -177,8 +177,14 @@ def _get_defname(fname):
     dir_, f = os.path.split(os.path.abspath(fname))
     while dir_:
         newdefname = os.path.join(dir_, defname)
+
         if os.path.exists(newdefname):
             return newdefname, defname
+        newdefname = newdefname.upper()
+        if os.path.exists(newdefname):
+            return newdefname, defname
+
+        # One level up
         dir_, f = os.path.split(dir_)
 
     return None, defname
@@ -424,8 +430,8 @@ class PG30_Def:
 class ProgenParser:
     def __init__(self, dbase, file_):
         self.bname, ext = os.path.splitext(file_)
-        if ext.lower() != '.def':
-            raise ProgenError(_("Expecting a file with .def extension"))
+        if ext.lower() in ('.per', '.rel', '.mem'):
+            file_ = self.bname + '.def'
         self.db = dbase
         self.fname = file_
 
@@ -560,7 +566,7 @@ class ProgenParser:
     __date_pat1 = re.compile(r'(?P<day>\d{1,2}) (-|=) (?P<month>\d{1,2}) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
     __date_pat2 = re.compile(r'(?P<month>\d{1,2}) (-|=) (?P<year>\d{4})', re.VERBOSE)
     __date_pat3 = re.compile(r'(?P<year>\d{4})', re.VERBOSE)
-    __date_pat4 = re.compile(ur'(v|vóór|voor|na|circa|ca|rond) \s* (?P<year>\d{4})', re.VERBOSE)
+    __date_pat4 = re.compile(ur'(v|vóór|voor|na|circa|ca|rond|±) \s* (?P<year>\d{4})', re.VERBOSE)
     __date_pat5 = re.compile(r'(oo|OO) (-|=) (oo|OO) (-|=) (?P<year>\d{2,4})', re.VERBOSE)
     def __create_date_from_text(self, txt, diag_msg=None):
         '''
@@ -738,7 +744,8 @@ class ProgenParser:
                 if recflds[call_name_ix]:
                     name.set_call_name(recflds[call_name_ix])
                 if patronym:
-                    name.set_patronymic(patronym)
+                    log.warning("Patroniem, %s: '%s'" % (diag_msg, patronym))
+                    #name.set_patronymic(patronym)
                 person.set_primary_name(name)
                 person.set_gender(gender)
 
@@ -829,6 +836,14 @@ class ProgenParser:
                         attr.set_type(gen.lib.AttributeType.WITNESS)
                         attr.set_value(witness)
                         event.add_attribute(attr)
+                    if source_text:
+                        note_text = "Brontekst: " + source_text
+                        log.warning("Baptism, %s: '%s'" % (diag_msg, note_text))
+                        note = gen.lib.Note()
+                        note.set(note_txt)
+                        note.set_type(gen.lib.NoteType.EVENT)
+                        self.db.add_note(note, self.trans)
+                        event.add_note(note.handle)
                     if source_text:
                         note_text = "Brontekst: " + source_text
                         log.warning("Baptism, %s: '%s'" % (diag_msg, note_text))
