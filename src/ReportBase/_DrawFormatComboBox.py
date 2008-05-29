@@ -35,8 +35,8 @@ class DrawFormatComboBox(gtk.ComboBox):
 
     def __init__(self):
         pmgr = PluginUtils.PluginManager.get_instance()
-        self.__draw_doc_list = pmgr.get_draw_doc_list()
-        self.__draw_doc_list.sort()
+        self.__drawdoc_list = pmgr.get_draw_doc_list()
+        self.__drawdoc_list.sort()
         gtk.ComboBox.__init__(self)
 
     def set(self,tables,callback, obj=None,active=None):
