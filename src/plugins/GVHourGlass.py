@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2008      Stephane Charette <stephanecharette@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 from PluginUtils import PluginManager, NumberOption, PersonOption, \
-     EnumeratedListOption
+     BooleanOption, EnumeratedListOption
 from ReportBase import Report, ReportUtils, MenuReportOptions, \
     MODE_GUI, MODE_CLI, CATEGORY_GRAPHVIZ
 from BasicUtils import name_displayer
@@ -67,6 +68,10 @@ class HourGlassReport(Report):
         """
         Report.__init__(self, database, options_class)
         
+        # Would be nice to get rid of these 2 hard-coded arrays of colours
+        # and instead allow the user to pick-and-choose whatever colour they
+        # want.  When/if this is done, take a look at the colour-selection
+        # widget and code used in the FamilyLines graph.
         colored = {
             'male': 'dodgerblue4',
             'female': 'deeppink',
@@ -92,6 +97,7 @@ class HourGlassReport(Report):
             self.colors = colored
         elif self.colorize == 'filled':
             self.colors = filled
+        self.use_roundedcorners = menu.get_option_by_name('useroundedcorners').get_value()
 
     def write_report(self):
         """
@@ -190,18 +196,15 @@ class HourGlassReport(Report):
         "return gender specific person style"
         gender = person.get_gender()
         shape = "box"
-        style = ""
+        style = "solid"
         color = ""
         fill = ""
-        if gender == person.MALE:
-            shape = "box"
-            style = "solid"
-        elif gender == person.FEMALE:
-            shape = "box"
+
+        if gender == person.FEMALE and self.use_roundedcorners:
             style = "rounded"
-        else:
+        elif gender == person.UNKNOWN:
             shape = "hexagon"
-            style = "solid"
+
         if self.colorize == 'colored':
             if gender == person.MALE:
                 color = self.colors['male']
@@ -210,10 +213,7 @@ class HourGlassReport(Report):
             else:
                 color = self.colors['unknown']
         elif self.colorize == 'filled':
-            if style != "":
-                style += ",filled"
-            else:
-                style = "filled"
+            style += ",filled"
             if gender == person.MALE:
                 fill = self.colors['male']
             elif gender == person.FEMALE:
@@ -266,6 +266,13 @@ class HourGlassOptions(MenuReportOptions):
                          "with red.  If the sex of an individual "
                          "is unknown it will be shown with gray."))
         menu.add_option(category_name, "color", color)
+
+        roundedcorners = BooleanOption(     # see bug report #2180
+                    _("Use rounded corners"), False)
+        roundedcorners.set_help(
+                    _("Use rounded corners to differentiate "
+                      "between women and men."))
+        menu.add_option(category_name, "useroundedcorners", roundedcorners)
         
 
 #------------------------------------------------------------------------
