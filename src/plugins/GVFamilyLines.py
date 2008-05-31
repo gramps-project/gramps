@@ -359,7 +359,12 @@ class FamilyLinesReport(Report):
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}
         _opt = menu.get_option_by_name('surnamecolors')
-        tmp = _opt.get_value().split()
+        tmp = _opt.get_value()
+        if (tmp.find(u'\xb0') >= 0):
+            tmp = tmp.split(u'\xb0')    # new style delimiter (see bug report #2162)
+        else:
+            tmp = tmp.split(' ')        # old style delimiter
+
         while len(tmp) > 1:
             surname = tmp.pop(0).encode('iso-8859-1', 'xmlcharrefreplace')
             colour = tmp.pop(0)

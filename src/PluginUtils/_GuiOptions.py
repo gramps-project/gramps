@@ -959,7 +959,17 @@ class GuiSurnameColourOption(gtk.HBox):
         self.pack_end(self.vbbox, expand=False)
 
         # populate the surname/colour treeview
-        tmp = self.__option.get_value().split()
+        #
+        # For versions prior to 3.0.2, the fields were delimited with
+        # whitespace.  However, this causes problems when the surname
+        # also has a space within it.  When populating the control,
+        # support both the new and old format -- look for the \xb0
+        # delimiter, and if it isn't there, assume this is the old-
+        # style space-delimited format.  (Bug #2162.)
+        if (self.__option.get_value().find(u'\xb0') >= 0):
+            tmp = self.__option.get_value().split(u'\xb0')
+        else:
+            tmp = self.__option.get_value().split(' ')
         while len(tmp) > 1:
             surname = tmp.pop(0)
             colour = tmp.pop(0)
@@ -977,10 +987,16 @@ class GuiSurnameColourOption(gtk.HBox):
             surname = self.__model.get_value(i, 0) 
             #surname = surname.encode('iso-8859-1','xmlcharrefreplace')
             colour = self.__model.get_value(i, 1)
-            # tried to use a dictionary, and tried to save it as a tuple,
+            # Tried to use a dictionary, and tried to save it as a tuple,
             # but coulnd't get this to work right -- this is lame, but now
             # the surnames and colours are saved as a plain text string
-            surname_colours += surname + ' ' + colour + ' '
+            #
+            # Hmmm...putting whitespace between the fields causes
+            # problems when the surname has whitespace -- for example,
+            # with surnames like "Del Monte".  So now we insert a non-
+            # whitespace character which is unlikely to appear in
+            # a surname.  (See bug report #2162.)
+            surname_colours += surname + u'\xb0' + colour + u'\xb0'
             i = self.__model.iter_next(i)
         self.__option.set_value( surname_colours )
 
