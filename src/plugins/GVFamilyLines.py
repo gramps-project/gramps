@@ -276,7 +276,12 @@ class FamilyLinesReport(Report):
 
         # convert the 'surnameColours' string to a dictionary of names and colours
         self.surnameColours = {}
-        tmp = options.handler.options_dict['FLsurnameColours'].split()
+        tmp = options.handler.options_dict['FLsurnameColours']
+        if (tmp.find(u'\xb0') >= 0):
+            tmp = tmp.split(u'\xb0')    # new style delimiter (see bug report #2162)
+        else:
+            tmp = tmp.split(' ')        # old style delimiter
+
         while len(tmp) > 1:
             surname = tmp.pop(0).encode('iso-8859-1', 'xmlcharrefreplace')
             colour = tmp.pop(0)
