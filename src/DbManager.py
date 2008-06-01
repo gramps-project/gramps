@@ -45,6 +45,9 @@ LOG = logging.getLogger(".DbManager")
 
 if os.sys.platform == "win32":
     RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
+    if RCS_FOUND and not os.environ.has_key("TZ"):
+        # RCS requires the "TZ" variable be set.
+        os.environ["TZ"] = str(time.timezone)
 else:
     RCS_FOUND = os.system("rcs -V >/dev/null 2>/dev/null") == 0
 
@@ -590,7 +593,7 @@ class DbManager(CLIDbManager):
         rev = self.model.get_value(node, PATH_COL)
         archive = os.path.join(db_dir, ARCHIVE_V)
 
-        cmd = [ "rcs", "-m%s:%s" % (rev, new_text), archive ]
+        cmd = [ "rcs", "-x,v", "-m%s:%s" % (rev, new_text), archive ]
 
         proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
         status = proc.wait()
@@ -743,7 +746,7 @@ class DbManager(CLIDbManager):
         rev = self.data_to_delete[PATH_COL]
         archive = os.path.join(db_dir, ARCHIVE_V)
 
-        cmd = [ "rcs", "-o%s" % rev, "-q", archive ]
+        cmd = [ "rcs", "-x,v", "-o%s" % rev, "-q", archive ]
 
         proc = subprocess.Popen(cmd, stderr = subprocess.PIPE)
         status = proc.wait()
@@ -965,7 +968,7 @@ def find_revisions(name):
     if not os.path.isfile(name):
         return []
 
-    rlog = [ "rlog", "-zLT" , name ]
+    rlog = [ "rlog", "-x,v", "-zLT" , name ]
 
     proc = subprocess.Popen(rlog, stdout = subprocess.PIPE)
     proc.wait()
@@ -1018,8 +1021,8 @@ def check_out(dbase, rev, path, callback):
     Checks out the revision from rcs, and loads the resulting XML file
     into the database.
     """
-    co_cmd   = [ "co", "-q%s" % rev] + [ os.path.join(path, ARCHIVE),
-                                         os.path.join(path, ARCHIVE_V)]
+    co_cmd   = [ "co", "-x,v", "-q%s" % rev] + [ os.path.join(path, ARCHIVE),
+                                                 os.path.join(path, ARCHIVE_V)]
 
     proc = subprocess.Popen(co_cmd, stderr = subprocess.PIPE)
     status = proc.wait()
@@ -1044,8 +1047,9 @@ def check_in(dbase, filename, callback, cursor_func = None):
     """
     Checks in the specified file into RCS
     """
-    init   = [ "rcs", '-i', '-U', '-q', '-t-"GRAMPS database"', ]
-    ci_cmd = [ "ci", "-q", "-f" ]
+    init   = [ "rcs", '-x,v', '-i', '-U', '-q', '-t-"GRAMPS database"' ]
+    ci_cmd = [ "ci", '-x,v', "-q", "-f" ]
+    archive_name = filename + ",v"
 
     glade_xml_file = glade.XML(const.GLADE_FILE, "comment", "gramps")
     top = glade_xml_file.get_widget('comment')
@@ -1055,27 +1059,36 @@ def check_in(dbase, filename, callback, cursor_func = None):
     comment = text.get_text()
     top.destroy()
 
-    if not os.path.isfile(filename + ",v") :
-        proc = subprocess.Popen(init + [filename + ",v"],
+    if not os.path.isfile(archive_name):
+        cmd = init + [archive_name]
+        proc = subprocess.Popen(cmd,
                                 stderr = subprocess.PIPE)
         status = proc.wait()
         message = "\n".join(proc.stderr.readlines())
         proc.stderr.close()
         del proc
+        
+        if status != 0:
+            ErrorDialog(
+                _("Archiving failed"),
+                _("An attempt to create the archive failed "
+                  "with the following message:\n\n%s") % message
+                )
 
     if cursor_func:
         cursor_func(_("Creating data to be archived..."))
     xmlwrite = GrampsDbUtils.XmlWriter(dbase, callback, False, 0)
     xmlwrite.write(filename)
-            
-    cmd = ci_cmd + ['-m%s' % comment, filename, filename + ",v" ]
 
     if cursor_func:
         cursor_func(_("Saving archive..."))
+        
+    cmd = ci_cmd + ['-m%s' % comment, filename, archive_name ]
+    proc = subprocess.Popen(cmd, 
+                            stderr = subprocess.PIPE)
 
-    proc = subprocess.Popen(cmd, stderr = subprocess.PIPE )
-    message = "\n".join(proc.stderr.readlines())
     status = proc.wait()
+    message = "\n".join(proc.stderr.readlines())
     proc.stderr.close()
     del proc
 
