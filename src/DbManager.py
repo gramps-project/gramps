@@ -44,12 +44,12 @@ import logging
 LOG = logging.getLogger(".DbManager")
 
 if os.sys.platform == "win32":
-    RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
-    if RCS_FOUND and not os.environ.has_key("TZ"):
+    _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
+    if _RCS_FOUND and not os.environ.has_key("TZ"):
         # RCS requires the "TZ" variable be set.
         os.environ["TZ"] = str(time.timezone)
 else:
-    RCS_FOUND = os.system("rcs -V >/dev/null 2>/dev/null") == 0
+    _RCS_FOUND = os.system("rcs -V >/dev/null 2>/dev/null") == 0
 
 #-------------------------------------------------------------------------
 #
@@ -380,7 +380,7 @@ class DbManager(CLIDbManager):
         self.top.connect('drag_motion', drag_motion)
         self.top.connect('drag_drop', drop_cb)
 
-        if RCS_FOUND:
+        if _RCS_FOUND:
             self.rcs.connect('clicked', self.__rcs)
 
     def __button_press(self, obj, event):
@@ -421,7 +421,7 @@ class DbManager(CLIDbManager):
         buttons are disabled, and the Open button is disabled if the
         row represents a open database.
         """
-        if not RCS_FOUND:
+        if not _RCS_FOUND:
             self.rcs.hide()
             
         # Get the current selection
@@ -442,8 +442,16 @@ class DbManager(CLIDbManager):
 
         is_rev = len(path) > 1
 
-        self.rcs.set_label(RCS_BUTTON[is_rev])
-        self.rename.set_sensitive(True)
+        if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
+            self.connect.set_sensitive(False)
+            if _RCS_FOUND:
+                self.rcs.show()
+        else:
+            self.connect.set_sensitive(not is_rev)
+            if _RCS_FOUND and is_rev:
+                self.rcs.show()
+            else:
+                self.rcs.hide()
 
         if store.get_value(node, STOCK_COL) == gtk.STOCK_OPEN:
             self.connect.set_sensitive(False)
@@ -1024,7 +1032,7 @@ def find_revisions(name):
     rev  = re.compile("\s*revision\s+([\d\.]+)")
     date = re.compile("date:\s+(\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)[-+]\d\d;")
 
-    if not os.path.isfile(name):
+    if not os.path.isfile(name) or not _RCS_FOUND:
         return []
 
     rlog = [ "rlog", "-x,v", "-zLT" , name ]
