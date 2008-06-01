@@ -560,23 +560,18 @@ class DetAncestorReport(Report):
 
     def write_mate(self, mate):
         """Output birth, death, parentage, marriage and notes information """
-
+        ind = None
+        
         for family_handle in mate.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
-            person_name = ""
             ind_handle = None
             has_info = False
-            person_key = ""
             if mate.get_gender() == gen.lib.Person.MALE:
                 ind_handle = family.get_mother_handle()
             else:
                 ind_handle = family.get_father_handle()
             if ind_handle:
                 ind = self.database.get_person_from_handle(ind_handle)
-                person_name = _nd.display(ind)
-                person_mark = ReportUtils.get_person_mark(self.database,ind)
-                firstName = ReportUtils.common_name(ind,self.usecall)
-
                 for event_ref in ind.get_primary_event_ref_list():
                     event = self.database.get_event_from_handle(event_ref.ref)
                     if event:
@@ -592,44 +587,44 @@ class DetAncestorReport(Report):
                         f = self.database.get_family_from_handle(family_handle)
                         if f.get_mother_handle() or f.get_father_handle():
                             has_info = True
-            else:
-                firstName = 0
 
-            print_name = ReportUtils.common_name(ind, self.usecall)
-            
-            if person_name and has_info:
+            if has_info:
                 self.doc.start_paragraph("DAR-Entry")
 
-                self.doc.write_text(person_name,person_key)
-                #self.doc.write_text(". ")
+                person_name = _nd.display(ind)
+                person_mark = ReportUtils.get_person_mark(self.database, ind)
+                self.doc.write_text(person_name, person_mark)
+
+                first_name = ReportUtils.common_name(ind, self.usecall)
+                print_name = first_name
 
                 text = ReportUtils.born_str(self.database, ind, print_name, 
                             self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE)
                 if text:
                     self.doc.write_text(text)
-                    print_name = 0;
+                    print_name = 0
 
-                age,units = self.calc_age(ind)
-                text = ReportUtils.died_str(self.database,ind,print_name, 
-                           self.verbose, self.EMPTY_DATE,self.EMPTY_PLACE,
-                           age,units)
+                age, units = self.calc_age(ind)
+                text = ReportUtils.died_str(self.database, ind, print_name, 
+                           self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE,
+                           age, units)
                 if text:
                     self.doc.write_text(text)
-                    print_name = 0;
+                    print_name = 0
                 
-                text = ReportUtils.buried_str(self.database,ind,print_name,
-                        self.EMPTY_DATE,self.EMPTY_PLACE)
+                text = ReportUtils.buried_str(self.database, ind, print_name,
+                        self.EMPTY_DATE, self.EMPTY_PLACE)
                 if text:
                     self.doc.write_text(text)
-                    print_name = 0;
+                    print_name = 0
 
                 if print_name == 0:
-                    print_name = firstName
+                    print_name = first_name
                 self.write_parents(ind, print_name)
 
                 self.doc.end_paragraph()
 
-            if person_name and mate.get_gender()==gen.lib.Person.MALE:
+            if has_info and mate.get_gender() == gen.lib.Person.MALE:
                 if self.listchildren:
                     self.write_children(family)
                 if self.inc_events:
