@@ -12,13 +12,17 @@ pkgdata_PYTHON = \
 	labels.py \
 	linkbox.py \
 	monitoredwidgets.py \
-	multitypecomboentry.py \
+	shortlistcomboentry.py \
+	springseparator.py \
 	statusbar.py \
 	styledtextbuffer.py \
 	styledtexteditor.py \
-	toolbarwidgets.py \
+	toolcomboentry.py \
 	unused.py \
-	validatedmaskedentry.py
+	validatedcomboentry.py \
+	validatedmaskedentry.py \
+	valueaction.py \
+	valuetoolitem.py
 
 pkgpyexecdir = @pkgpyexecdir@/widgets
 pkgpythondir = @pkgpythondir@/widgets
