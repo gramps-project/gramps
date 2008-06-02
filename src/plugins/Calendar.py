@@ -383,10 +383,10 @@ class Calendar(Report):
                             are_married = None
                             for event_ref in fam.get_event_ref_list():
                                 event = self.database.get_event_from_handle(event_ref.ref)
-                                if int(event.get_type()) in [gen.lib.EventType.MARRIAGE, 
+                                if event.type in [gen.lib.EventType.MARRIAGE, 
                                                              gen.lib.EventType.MARR_ALT]:
                                     are_married = event
-                                elif int(event.get_type()) in [gen.lib.EventType.DIVORCE, 
+                                elif event.type in [gen.lib.EventType.DIVORCE, 
                                                                gen.lib.EventType.ANNULMENT, 
                                                                gen.lib.EventType.DIV_FILING]:
                                     are_married = None

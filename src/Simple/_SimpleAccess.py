@@ -361,7 +361,7 @@ class SimpleAccess:
                         elist = [ self.dbase.get_event_from_handle(ref.ref) 
                                   for ref in reflist ]
                         events = [ evnt for evnt in elist 
-                                   if int(evnt.get_type()) == EventType.MARRIAGE ]
+                                   if event.type == EventType.MARRIAGE ]
                         if events:
                             place_handle = events[0].get_place_handle()
                             return ReportUtils.place_name(self.dbase, place_handle)
@@ -391,7 +391,7 @@ class SimpleAccess:
                         elist = [ self.dbase.get_event_from_handle(ref.ref) 
                                   for ref in reflist ]
                         events = [ evnt for evnt in elist 
-                                   if int(evnt.get_type()) == EventType.MARRIAGE ]
+                                   if event.type == EventType.MARRIAGE ]
                         if events:
                             date_obj = events[0].get_date_object()
                             if date_obj:

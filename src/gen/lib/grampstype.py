@@ -94,6 +94,7 @@ class GrampsType(object):
     _BLACKLIST = None
     
     __metaclass__ = GrampsTypeMeta
+    __slots__ = ('__value','__string')
     
     @classmethod
     def __class_init__(cls, namespace):
@@ -115,23 +116,23 @@ class GrampsType(object):
             v = value[0]
             if len(value) > 1:
                 s = value[1]
-        self.val = v
-        self.string = s
+        self.__value = v
+        self.__string = s
 
     def __set_int(self, value):
-        self.val = value
-        self.string = u''
+        self.__value = value
+        self.__string = u''
 
     def __set_instance(self, value):
-        self.val = value.val
-        self.string = value.string
+        self.__value = value.value
+        self.__string = value.string
 
     def __set_str(self, value):
-        self.val = self._S2IMAP.get(value, self._CUSTOM)
-        if self.val == self._CUSTOM:
-            self.string = value
+        self.__value = self._S2IMAP.get(value, self._CUSTOM)
+        if self.__value == self._CUSTOM:
+            self.__string = value
         else:
-            self.string = u''
+            self.__string = u''
 
     def set(self, value):
         if isinstance(value, tuple):
@@ -143,8 +144,8 @@ class GrampsType(object):
         elif isinstance(value, basestring):
             self.__set_str(value)
         else:
-            self.val = self._DEFAULT
-            self.string = u''
+            self.__value = self._DEFAULT
+            self.__string = u''
 
     def set_from_xml_str(self, value):
         """
@@ -152,38 +153,38 @@ class GrampsType(object):
         (obtained e.g. from XML).
         """
         if self._E2IMAP.has_key(value):
-            self.val = self._E2IMAP[value]
-            self.string = u''
+            self.__value = self._E2IMAP[value]
+            self.__string = u''
         else:
-            self.val = self._CUSTOM
-            self.string = value
+            self.__value = self._CUSTOM
+            self.__string = value
 
     def xml_str(self):
         """
         Return the untranslated string (e.g. suitable for XML) corresponding 
         to the type.
         """
-        if self.val == self._CUSTOM:
-            return self.string
+        if self.__value == self._CUSTOM:
+            return self.__string
         else:
-            return self._I2EMAP[self.val]
+            return self._I2EMAP[self.__value]
 
     def serialize(self):
         """Convert the object to a serialized tuple of data. """
-        return (self.val, self.string)
+        return (self.__value, self.__string)
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
-        self.val, self.string = data
+        self.__value, self.__string = data
 
     def __str__(self):
-        if self.val == self._CUSTOM:
-            return self.string
+        if self.__value == self._CUSTOM:
+            return self.__string
         else:
-            return self._I2SMAP.get(self.val, _('Unknown'))
+            return self._I2SMAP.get(self.__value, _('Unknown'))
 
     def __int__(self):
-        return self.val
+        return self.__value
 
     def get_map(self):
         return self._I2SMAP
@@ -199,26 +200,28 @@ class GrampsType(object):
                 if (i != self._CUSTOM) and s.strip()]
 
     def is_custom(self):
-        return self.val == self._CUSTOM
+        return self.__value == self._CUSTOM
 
     def is_default(self):
-        return self.val == self._DEFAULT
+        return self.__value == self._DEFAULT
 
     def get_custom(self):
         return self._CUSTOM
     
     def __cmp__(self, value):
         if isinstance(value, int):
-            return cmp(self.val, value)
+            return cmp(self.__value, value)
         elif isinstance(value, basestring):
-            if self.val == self._CUSTOM:
-                return cmp(self.string, value)
+            if self.__value == self._CUSTOM:
+                return cmp(self.__string, value)
             else:
-                return cmp(self._I2SMAP.get(self.val), value)
+                return cmp(self._I2SMAP.get(self.__value), value)
         elif isinstance(value, tuple):
-            return cmp((self.val, self.string), value)
+            return cmp((self.__value, self.__string), value)
         else:
-            if value.val == self._CUSTOM:
-                return cmp(self.string, value.string)
+            if value.value == self._CUSTOM:
+                return cmp(self.__string, value.string)
             else:
-                return cmp(self.val, value.val)
+                return cmp(self.__value, value.value)
+    value = property(__int__, __set_int, None, "Returns or sets integer value")
+    string = property(__str__, __set_str, None, "Returns or sets string value")

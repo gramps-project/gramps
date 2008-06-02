@@ -71,11 +71,11 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         PlaceBase.__init__(self, source)
         
         if source:
-            self.description = source.description
-            self.type = source.type
+            self.__description = source.__description
+            self.__type = source.__type
         else:
-            self.description = ""
-            self.type = EventType()
+            self.__description = ""
+            self.__type = EventType()
 
     def serialize(self, no_text_date = False):
         """
@@ -95,9 +95,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
             be considered persistent.
         @rtype: tuple
         """
-        return (self.handle, self.gramps_id, self.type.serialize(),
+        return (self.handle, self.gramps_id, self.__type.serialize(),
                 DateBase.serialize(self, no_text_date),
-                self.description, self.place, 
+                self.__description, self.place, 
                 SourceBase.serialize(self),
                 NoteBase.serialize(self),
                 MediaBase.serialize(self),
@@ -114,14 +114,14 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @type data: tuple
         """
         (self.handle, self.gramps_id, the_type, date,
-         self.description, self.place, 
+         self.__description, self.place, 
          source_list, note_list, media_list, attribute_list,
          self.change, marker, self.private) = data
 
         self.marker = MarkerType()
         self.marker.unserialize(marker)
-        self.type = EventType()
-        self.type.unserialize(the_type)
+        self.__type = EventType()
+        self.__type.unserialize(the_type)
         DateBase.unserialize(self, date)
         MediaBase.unserialize(self, media_list)
         AttributeBase.unserialize(self, attribute_list)
@@ -178,7 +178,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description, str(self.type), self.gramps_id]
+        return [self.__description, str(self.__type), self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -241,8 +241,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         date = self.get_date_object()
         place = self.get_place_handle()
-        description = self.description
-        the_type = self.type
+        description = self.__description
+        the_type = self.__type
         return (the_type == EventType.CUSTOM and date.is_empty()
                 and not place and not description) 
 
@@ -258,9 +258,9 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         if other == None:
             other = Event (None)
 
-        if self.type != other.type or \
+        if self.__type != other.__type or \
            ((self.place or other.place) and (self.place != other.place)) or \
-           self.description != other.description \
+           self.__description != other.__description \
            or self.private != other.private or \
            (not self.get_date_object().is_equal(other.get_date_object())) or \
            len(self.get_source_references()) != len(other.get_source_references()):
@@ -282,7 +282,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @param the_type: Type to assign to the Event
         @type the_type: tuple
         """
-        self.type.set(the_type)
+        self.__type.set(the_type)
 
     def get_type(self):
         """
@@ -291,7 +291,8 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @return: Type of the Event
         @rtype: tuple
         """
-        return self.type
+        return self.__type
+    type = property(get_type, get_type, None, 'Returns or sets type of the event')
 
     def set_description(self, description):
         """
@@ -302,7 +303,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @param description: Description to assign to the Event
         @type description: str
         """
-        self.description = description
+        self.__description = description
 
     def get_description(self) :
         """
@@ -311,4 +312,5 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @return: Returns the description of the Event
         @rtype: str
         """
-        return self.description
+        return self.__description
+    description = property(get_description, set_description, None, 'Returns or sets description of the event')

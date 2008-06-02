@@ -247,7 +247,7 @@ class RelGraphReport(Report):
                         for event_ref in fam.get_event_ref_list():
                             event = self.database.get_event_from_handle(
                                 event_ref.ref)
-                            if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
+                            if event.type == gen.lib.EventType.MARRIAGE:
                                 label = self.get_event_string(event)
                                 break
                         if self.includeid:
@@ -376,10 +376,10 @@ class RelGraphReport(Report):
         # missing info, use (first) christening/burial instead
         for event_ref in person.get_primary_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
-            if int(event.get_type()) == gen.lib.EventType.CHRISTEN:
+            if event.type == gen.lib.EventType.CHRISTEN:
                 if not birth:
                     birth = self.get_event_string(event)
-            elif int(event.get_type()) ==  gen.lib.EventType.BURIAL:
+            elif event.type ==  gen.lib.EventType.BURIAL:
                 if not death:
                     death = self.get_event_string(event)
         return (birth, death)
@@ -572,5 +572,6 @@ pmgr.register_report(
     author_name = "Brian G. Matherly",
     author_email = "brian@gramps-project.org"
     )
+
 
 

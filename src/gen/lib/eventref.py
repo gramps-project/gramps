@@ -49,6 +49,8 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
     to the refereneced event.
     """
 
+    __slots__=('.__role')
+
     def __init__(self, source=None):
         """
         Create a new EventRef instance, copying from the source if present.
@@ -58,9 +60,9 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         AttributeBase.__init__(self, source)
         RefBase.__init__(self, source)
         if source:
-            self.role = source.role
+            self.__role = source.__role
         else:
-            self.role = EventRoleType()
+            self.__role = EventRoleType()
 
     def serialize(self):
         """
@@ -71,7 +73,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
             NoteBase.serialize(self),
             AttributeBase.serialize(self),
             RefBase.serialize(self),
-            self.role.serialize()
+            self.__role.serialize()
             )
 
     def unserialize(self, data):
@@ -83,8 +85,8 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         NoteBase.unserialize(self, note_list)
         AttributeBase.unserialize(self, attribute_list)
         RefBase.unserialize(self, ref)
-        self.role = EventRoleType()
-        self.role.unserialize(role)
+        self.__role = EventRoleType()
+        self.__role.unserialize(role)
         return self
 
     def get_text_data_list(self):
@@ -94,7 +96,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [str(self.role)]
+        return self.__role.string
 
     def get_text_data_child_list(self):
         """
@@ -194,10 +196,11 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         """
         Return the tuple corresponding to the preset role.
         """
-        return self.role
+        return self.__role
 
     def set_role(self, role):
         """
         Set the role according to the given argument.
         """
-        self.role.set(role)
+        self.__role.set(role)
+    role = property(get_role, set_role, None, 'Returns or sets role property')

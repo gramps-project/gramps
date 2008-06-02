@@ -453,7 +453,7 @@ class FamilyGroup(Report):
                 for event_ref in family.get_event_ref_list():
                     if event_ref:
                         event = self.database.get_event_from_handle(event_ref.ref)
-                        if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
+                        if event.type == gen.lib.EventType.MARRIAGE:
                             m = event
                             break  
                 

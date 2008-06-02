@@ -313,7 +313,7 @@ class GeneWebWriter:
         event_ref_list = family.get_event_ref_list()
         for event_ref in event_ref:
             event = self.db.get_event_from_handle(event_ref.ref)
-            if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
+            if event.type == gen.lib.EventType.MARRIAGE:
                 w_list = event.get_witness_list()
                 if w_list:
                     for witness in w_list:

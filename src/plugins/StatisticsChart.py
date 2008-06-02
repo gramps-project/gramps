@@ -339,7 +339,7 @@ class Extract:
             if int(family.get_relationship()) == FamilyRelType.MARRIED:
                 for event_ref in family.get_event_ref_list():
                     event = self.db.get_event_from_handle(event_ref.ref)
-                    if int(event.get_type()) == EventType.MARRIAGE:
+                    if event.type == EventType.MARRIAGE:
                         marriages.append(event_ref.ref)
         if marriages:
             return (person, marriages)

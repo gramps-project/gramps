@@ -2471,7 +2471,7 @@ class GedcomParser(UpdateCallback):
 
         self.__parse_level(sub_state, self.event_parse_tbl, self.__undefined)
 
-        if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
+        if event.type == gen.lib.EventType.MARRIAGE:
             descr = event.get_description()
             if descr == "Civil Union":
                 state.family.type.set(gen.lib.FamilyRelType.CIVIL_UNION)
@@ -2881,7 +2881,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        if self.is_ftw and int(state.event.get_type()) in FTW_BAD_PLACE:
+        if self.is_ftw and state.event.type in FTW_BAD_PLACE:
             state.event.set_description(line.data)
         else:
             place = self.__find_or_create_place(line.data)

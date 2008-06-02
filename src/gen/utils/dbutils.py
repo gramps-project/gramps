@@ -168,7 +168,7 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
 def marriage_from_eventref_list(db, eventref_list):
     for eventref in eventref_list:
         event = db.get_event_from_handle(eventref.ref)
-        if int(event.get_type()) == gen.lib.EventType.MARRIAGE:
+        if event.type == gen.lib.EventType.MARRIAGE:
             return event
     else:
         return None
@@ -305,12 +305,12 @@ def set_birth_death_index(db, person):
     for index in range(len(event_ref_list)):
         ref = event_ref_list[index]
         event = db.get_event_from_handle(ref.ref)
-        if (int(event.get_type()) == gen.lib.EventType.BIRTH) \
-               and (int(ref.get_role()) == gen.lib.EventRoleType.PRIMARY) \
+        if (event.type == gen.lib.EventType.BIRTH) \
+               and (ref.role == gen.lib.EventRoleType.PRIMARY) \
                and (birth_ref_index == -1):
             birth_ref_index = index
-        elif (int(event.get_type()) == gen.lib.EventType.DEATH) \
-                 and (int(ref.get_role()) == gen.lib.EventRoleType.PRIMARY) \
+        elif (event.type == gen.lib.EventType.DEATH) \
+                 and (ref.role == gen.lib.EventRoleType.PRIMARY) \
                  and (death_ref_index == -1):
             death_ref_index = index
 

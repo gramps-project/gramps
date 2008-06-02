@@ -309,9 +309,9 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         # These are fairly good indications that someone's not alive.
         for ev_ref in person.get_primary_event_ref_list():
             ev = self.db.get_event_from_handle(ev_ref.ref)
-            if ev and int(ev.get_type()) in [gen.lib.EventType.CAUSE_DEATH, 
-                                             gen.lib.EventType.BURIAL, 
-                                             gen.lib.EventType.CREMATION]:
+            if ev and ev.type in [gen.lib.EventType.CAUSE_DEATH, 
+                                  gen.lib.EventType.BURIAL, 
+                                  gen.lib.EventType.CREMATION]:
                 if not death_date:
                     death_date = ev.get_date_object()
 
