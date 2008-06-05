@@ -330,7 +330,8 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             # If the restrict flag is set, apply the LivingProxyDb
             if option_box.restrict:
                 self.dbase = gen.proxy.LivingProxyDb(
-                    self.dbase, gen.proxy.LivingProxyDb.MODE_RESTRICT)
+                            self.dbase, 
+                            gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
 
             # If the filter returned by cfilter is not empty, apply the 
             # FilterProxyDb

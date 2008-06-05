@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2007       Brian G. Matherly
+# 
+# Copyright (C) 2007-2008  Brian G. Matherly
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,8 +50,9 @@ class LivingProxyDb(ProxyDbBase):
     A proxy to a Gramps database. This proxy will act like a Gramps database,
     but all living people will be hidden from the user.
     """
-    MODE_EXCLUDE  = 0
-    MODE_RESTRICT = 1
+    MODE_EXCLUDE_ALL  = 0
+    MODE_INCLUDE_LAST_NAME_ONLY = 1
+    MODE_INCLUDE_FULL_NAME_ONLY = 2
 
     def __init__(self, dbase, mode, current_year=None, years_after_death=0):
         """
@@ -60,9 +61,11 @@ class LivingProxyDb(ProxyDbBase):
         @param dbase: The database to be a proxy for
         @type dbase: DbBase
         @param mode: The method for handling living people. 
-         LivingProxyDb.MODE_EXCLUDE will remove living people altogether. 
-         LivingProxyDb.MODE_RESTRICT will remove all information and change 
-         their given name to "Living". 
+         LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether. 
+         LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all information 
+         and change their given name to "Living".
+         LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all information
+         but leave the entire name intact.
         @type mode: int
         @param current_year: The current year to use for living determination.
          If None is supplied, the current year will be found from the system.
@@ -87,10 +90,10 @@ class LivingProxyDb(ProxyDbBase):
         """
         person = self.db.get_person_from_handle(handle)
         if person and self.__is_living(person):
-            if self.mode == self.MODE_EXCLUDE:
+            if self.mode == self.MODE_EXCLUDE_ALL:
                 person = None
-            elif self.mode == self.MODE_RESTRICT:
-                person = _restrict_person(person)
+            else:
+                person = self.__restrict_person(person)
         return person
 
     def get_source_from_handle(self, handle):
@@ -151,10 +154,10 @@ class LivingProxyDb(ProxyDbBase):
         """
         person = self.db.get_person_from_gramps_id(val)
         if self.__is_living(person):
-            if self.mode == self.MODE_EXCLUDE:
+            if self.mode == self.MODE_EXCLUDE_ALL:
                 return None
             else:
-                return _restrict_person(person)
+                return self.__restrict_person(person)
         else:
             return person
 
@@ -215,12 +218,12 @@ class LivingProxyDb(ProxyDbBase):
         the database. If sort_handles is True, the list is sorted by surnames
         """
         handles = []
-        if self.mode == self.MODE_EXCLUDE:
+        if self.mode == self.MODE_EXCLUDE_ALL:
             for handle in self.db.get_person_handles(sort_handles):
                 person = self.db.get_person_from_handle(handle)
                 if not self.__is_living(person):
                     handles.append(handle)
-        elif self.mode == self.MODE_RESTRICT:
+        else:
             handles = self.db.get_person_handles(sort_handles)
         return handles
 
@@ -398,7 +401,7 @@ class LivingProxyDb(ProxyDbBase):
             father = self.db.get_person_from_handle(father_handle)
             if  self.__is_living(father):
                 parent_is_living = True
-                if self.mode == self.MODE_EXCLUDE:
+                if self.mode == self.MODE_EXCLUDE_ALL:
                     family.set_father_handle(None)
     
         mother_handle = family.get_mother_handle()
@@ -406,14 +409,14 @@ class LivingProxyDb(ProxyDbBase):
             mother = self.db.get_person_from_handle(mother_handle)
             if self.__is_living(mother):
                 parent_is_living = True
-                if self.mode == self.MODE_EXCLUDE:
+                if self.mode == self.MODE_EXCLUDE_ALL:
                     family.set_mother_handle(None)
                     
         if parent_is_living:
             # Clear all events for families where a parent is living.
             family.set_event_ref_list([])
             
-        if self.mode == self.MODE_EXCLUDE:
+        if self.mode == self.MODE_EXCLUDE_ALL:
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
                 child = self.db.get_person_from_handle(child_handle)
@@ -422,33 +425,37 @@ class LivingProxyDb(ProxyDbBase):
         
         return family
 
-def _restrict_person(person):
-    """
-    Remove information from a person and replace the first name with "Living".
-    """
-    new_person = Person()
-    new_name = Name()
-    old_name = person.get_primary_name()
+    def __restrict_person(self, person):
+        """
+        Remove information from a person and replace the first name with 
+        "Living".
+        """
+        new_person = Person()
+        new_name = Name()
+        old_name = person.get_primary_name()
+        
+        new_name.set_group_as(old_name.get_group_as())
+        new_name.set_sort_as(old_name.get_sort_as())
+        new_name.set_display_as(old_name.get_display_as())
+        new_name.set_surname_prefix(old_name.get_surname_prefix())
+        new_name.set_type(old_name.get_type())
+        if self.mode == self.MODE_INCLUDE_LAST_NAME_ONLY:
+            new_name.set_first_name(_(u'Living'))
+        else: # self.mode == self.MODE_INCLUDE_FULL_NAME_ONLY
+            new_name.set_first_name(old_name.get_first_name())
+        new_name.set_patronymic(old_name.get_patronymic())
+        new_name.set_surname(old_name.get_surname())
+        new_name.set_privacy(old_name.get_privacy())
     
-    new_name.set_group_as(old_name.get_group_as())
-    new_name.set_sort_as(old_name.get_sort_as())
-    new_name.set_display_as(old_name.get_display_as())
-    new_name.set_surname_prefix(old_name.get_surname_prefix())
-    new_name.set_type(old_name.get_type())
-    new_name.set_first_name(_(u'Living'))
-    new_name.set_patronymic(old_name.get_patronymic())
-    new_name.set_surname(old_name.get_surname())
-    new_name.set_privacy(old_name.get_privacy())
-
-    new_person.set_primary_name(new_name)
-    new_person.set_privacy(person.get_privacy())
-    new_person.set_gender(person.get_gender())
-    new_person.set_gramps_id(person.get_gramps_id())
-    new_person.set_handle(person.get_handle())
-    new_person.set_family_handle_list(person.get_family_handle_list())
-    new_person.set_parent_family_handle_list( 
+        new_person.set_primary_name(new_name)
+        new_person.set_privacy(person.get_privacy())
+        new_person.set_gender(person.get_gender())
+        new_person.set_gramps_id(person.get_gramps_id())
+        new_person.set_handle(person.get_handle())
+        new_person.set_family_handle_list(person.get_family_handle_list())
+        new_person.set_parent_family_handle_list( 
                                         person.get_parent_family_handle_list() )
-
-    return new_person
+    
+        return new_person
 
 
