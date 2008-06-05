@@ -78,7 +78,7 @@ def writeData(database, filename, person, option_box, callback=None):
 
     if restrict:
         database = gen.proxy.LivingProxyDb(
-            database, gen.proxy.LivingProxyDb.MODE_RESTRICT)
+            database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
 
     if not option_box.cfilter.is_empty():
         database = gen.proxy.FilterProxyDb(database, option_box.cfilter)

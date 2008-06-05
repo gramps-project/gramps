@@ -94,6 +94,7 @@ from gen.lib.eventroletype import EventRoleType
 # constants
 #
 #------------------------------------------------------------------------
+_INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 _NARRATIVE = "narrative.css"
 _NARRATIVEPRINT = "narrative-print.css"
 _NAME_COL  = 3
@@ -2486,14 +2487,9 @@ class NavWebReport(Report):
         livinginfo = self.options['living']
         yearsafterdeath = self.options['yearsafterdeath']
 
-        if livinginfo == LivingProxyDb.MODE_EXCLUDE:
+        if livinginfo != _INCLUDE_LIVING_VALUE:
             self.database = LivingProxyDb(self.database,
-                                          LivingProxyDb.MODE_EXCLUDE,
-                                          None,
-                                          yearsafterdeath)
-        elif livinginfo == LivingProxyDb.MODE_RESTRICT:
-            self.database = LivingProxyDb(self.database,
-                                          LivingProxyDb.MODE_RESTRICT,
+                                          livinginfo,
                                           None,
                                           yearsafterdeath)
 
@@ -2936,7 +2932,6 @@ class NavWebOptions(MenuReportOptions):
     """
     Defines options and provides handling interface.
     """
-    __INCLUDE_LIVING_VALUE = 99 # Arbitrary number
 
     def __init__(self, name, dbase):
         self.__db = dbase
@@ -3101,10 +3096,15 @@ class NavWebOptions(MenuReportOptions):
         menu.add_option(category_name, 'incpriv', incpriv)
 
         self.__living = EnumeratedListOption(_("Living People"),
-                                             self.__INCLUDE_LIVING_VALUE )
-        self.__living.add_item(LivingProxyDb.MODE_EXCLUDE, _("Exclude"))
-        self.__living.add_item(LivingProxyDb.MODE_RESTRICT, _("Restrict"))
-        self.__living.add_item(self.__INCLUDE_LIVING_VALUE, _("Include"))
+                                             _INCLUDE_LIVING_VALUE )
+        self.__living.add_item(LivingProxyDb.MODE_EXCLUDE_ALL, 
+                               _("Exclude"))
+        self.__living.add_item(LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY, 
+                               _("Include Last Name Only"))
+        self.__living.add_item(LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY, 
+                               _("Include Full Name Only"))
+        self.__living.add_item(_INCLUDE_LIVING_VALUE, 
+                               _("Include"))
         self.__living.set_help(_("How to handle living people"))
         menu.add_option(category_name, "living", self.__living)
         self.__living.connect('value-changed', self.__living_changed)
@@ -3198,7 +3198,7 @@ class NavWebOptions(MenuReportOptions):
         """
         Handle a change in the living option
         """
-        if self.__living.get_value() == self.__INCLUDE_LIVING_VALUE:
+        if self.__living.get_value() == _INCLUDE_LIVING_VALUE:
             self.__yearsafterdeath.set_available(False)
         else:
             self.__yearsafterdeath.set_available(True)
