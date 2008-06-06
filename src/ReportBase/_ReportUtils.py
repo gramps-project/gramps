@@ -2112,7 +2112,8 @@ def find_spouse(person, family):
 def find_marriage(database, family):    
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event and int(event.get_type()) == gen.lib.EventType.MARRIAGE:
+        if event and event.get_type() == gen.lib.EventType.MARRIAGE \
+            and event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
             return event
     return None
 
@@ -2333,10 +2334,10 @@ def buried_str(database, person, person_name=None, empty_date="", empty_place=""
     burial = None
     for event_ref in person.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event and int(event.get_type()) == gen.lib.EventType.BURIAL:
+        if event and event.get_type() == gen.lib.EventType.BURIAL \
+            and event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
             burial = event
             break
-
     if burial:
         bdate = DateHandler.get_date(burial)
         bplace_handle = burial.get_place_handle()
@@ -2467,7 +2468,8 @@ def get_birth_or_fallback(database, person):
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event.get_type() in [gen.lib.EventType.CHRISTEN, gen.lib.EventType.BAPTISM]:
+        if event.get_type() in [gen.lib.EventType.CHRISTEN, gen.lib.EventType.BAPTISM] \
+            and event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
             return event
     return None    
 
@@ -2478,7 +2480,8 @@ def get_death_or_fallback(database, person):
     # now search the event list for fallbacks
     for event_ref in person.get_primary_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event.get_type() in [gen.lib.EventType.BURIAL, gen.lib.EventType.CREMATION]:
+        if event.get_type() in [gen.lib.EventType.BURIAL, gen.lib.EventType.CREMATION] \
+            and event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
             return event
     return None    
 
@@ -2689,5 +2692,6 @@ def get_person_filters(person, include_single=True):
         the_filters = [all, des, df, ans, com]
     the_filters.extend(CustomFilters.get_filters('Person'))
     return the_filters
+
 
 
