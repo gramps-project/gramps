@@ -86,6 +86,7 @@ class HourGlassReport(Report):
         }
 
         self.__db = database
+        self.__used_people = []
         
         menu = options_class.menu
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
@@ -97,7 +98,7 @@ class HourGlassReport(Report):
             self.colors = colored
         elif self.colorize == 'filled':
             self.colors = filled
-        self.use_roundedcorners = menu.get_option_by_name('useroundedcorners').get_value()
+        self.roundcorners = menu.get_option_by_name('roundcorners').get_value()
 
     def write_report(self):
         """
@@ -116,13 +117,19 @@ class HourGlassReport(Report):
         for family_handle in person.get_family_handle_list():
             family = self.__db.get_family_from_handle(family_handle)
             self.add_family(family)
-            self.doc.add_link( person.get_gramps_id(), family.get_gramps_id(), head='normal', tail='none' )
+            self.doc.add_link( person.get_gramps_id(), family.get_gramps_id(), 
+                               head='normal', tail='none' )
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
-                child = self.__db.get_person_from_handle(child_handle)
-                self.add_person(child)
-                self.doc.add_link(family.get_gramps_id(), child.get_gramps_id(), head='normal', tail='none' )
-                self.traverse_down(child, gen+1)
+                if child_handle not in self.__used_people:
+                    # Avoid going down paths twice when descendant cousins marry
+                    self.__used_people.append(child_handle)
+                    child = self.__db.get_person_from_handle(child_handle)
+                    self.add_person(child)
+                    self.doc.add_link(family.get_gramps_id(), 
+                                      child.get_gramps_id(), 
+                                      head='normal', tail='none' )
+                    self.traverse_down(child, gen+1)
                 
     def traverse_up(self, person, gen):
         """
@@ -135,18 +142,23 @@ class HourGlassReport(Report):
             family = self.__db.get_family_from_handle(family_handle)
             family_id = family.get_gramps_id()
             self.add_family(family)
-            self.doc.add_link( family_id, person.get_gramps_id(), head='none', tail='normal' )
+            self.doc.add_link( family_id, person.get_gramps_id(), 
+                               head='none', tail='normal' )
             father_handle = family.get_father_handle()
-            if father_handle:
+            if father_handle and father_handle not in self.__used_people:
+                self.__used_people.append(father_handle)
                 father = self.__db.get_person_from_handle(father_handle)
                 self.add_person(father)
-                self.doc.add_link( father.get_gramps_id(), family_id, head='none', tail='normal' )
+                self.doc.add_link( father.get_gramps_id(), family_id, 
+                                   head='none', tail='normal' )
                 self.traverse_up(father, gen+1)
             mother_handle = family.get_mother_handle()
-            if mother_handle:
+            if mother_handle and mother_handle not in self.__used_people:
+                self.__used_people.append(mother_handle)
                 mother = self.__db.get_person_from_handle( mother_handle )
                 self.add_person( mother )
-                self.doc.add_link( mother.get_gramps_id(), family_id, head='none', tail='normal' )
+                self.doc.add_link( mother.get_gramps_id(), family_id, 
+                                   head='none', tail='normal' )
                 self.traverse_up( mother, gen+1 )
 
     def add_person(self, person):
@@ -200,7 +212,7 @@ class HourGlassReport(Report):
         color = ""
         fill = ""
 
-        if gender == person.FEMALE and self.use_roundedcorners:
+        if gender == person.FEMALE and self.roundcorners:
             style = "rounded"
         elif gender == person.UNKNOWN:
             shape = "hexagon"
@@ -272,7 +284,7 @@ class HourGlassOptions(MenuReportOptions):
         roundedcorners.set_help(
                     _("Use rounded corners to differentiate "
                       "between women and men."))
-        menu.add_option(category_name, "useroundedcorners", roundedcorners)
+        menu.add_option(category_name, "roundcorners", roundedcorners)
         
 
 #------------------------------------------------------------------------
