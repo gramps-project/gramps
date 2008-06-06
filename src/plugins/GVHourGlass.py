@@ -56,6 +56,7 @@ class HourGlassReport(Report):
         """
         Report.__init__(self, database, options_class)
         self.__db = database
+        self.__used_people = []
         
         menu = options_class.menu
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
@@ -83,10 +84,14 @@ class HourGlassReport(Report):
             self.doc.add_link( person.get_gramps_id(), family.get_gramps_id() )
             for child_ref in family.get_child_ref_list():
                 child_handle = child_ref.get_reference_handle()
-                child = self.__db.get_person_from_handle(child_handle)
-                self.add_person(child)
-                self.doc.add_link(family.get_gramps_id(), child.get_gramps_id())
-                self.traverse_down(child, gen+1)
+                if child_handle not in self.__used_people:
+                    # Avoid going down paths twice when descendant cousins marry
+                    self.__used_people.append(child_handle)
+                    child = self.__db.get_person_from_handle(child_handle)
+                    self.add_person(child)
+                    self.doc.add_link(family.get_gramps_id(), 
+                                      child.get_gramps_id())
+                    self.traverse_down(child, gen+1)
                 
     def traverse_up(self, person, gen):
         """
@@ -101,13 +106,15 @@ class HourGlassReport(Report):
             self.add_family(family)
             self.doc.add_link( family_id, person.get_gramps_id() )
             father_handle = family.get_father_handle()
-            if father_handle:
+            if father_handle and father_handle not in self.__used_people:
+                self.__used_people.append(father_handle)
                 father = self.__db.get_person_from_handle(father_handle)
                 self.add_person(father)
                 self.doc.add_link( father.get_gramps_id(), family_id )
                 self.traverse_up(father, gen+1)
             mother_handle = family.get_mother_handle()
-            if mother_handle:
+            if mother_handle and mother_handle not in self.__used_people:
+                self.__used_people.append(mother_handle)
                 mother = self.__db.get_person_from_handle( mother_handle )
                 self.add_person( mother )
                 self.doc.add_link( mother.get_gramps_id(), family_id )
