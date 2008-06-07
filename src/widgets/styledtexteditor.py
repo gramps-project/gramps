@@ -78,7 +78,6 @@ FORMAT_TOOLBAR = '''
   <toolitem action="%d"/>
   <toolitem action="spring"/>
   <toolitem action="clear"/>
-  <toolitem action="test"/>
 </toolbar>
 </ui>
 ''' % (StyledTextTagType.ITALIC,
