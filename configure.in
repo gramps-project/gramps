@@ -58,7 +58,7 @@ def out(line):
     f.close()
 "
 
-AC_MSG_CHECKING(Python bindings for gtk2.10 (pygtk2>=2.10.0))
+AC_MSG_CHECKING(Python bindings for gtk 2.10 (pygtk2>=2.10.0))
 cat > conftest.py <<EOF
 $pygtk_require
 try:
@@ -81,7 +81,7 @@ if test NO = "$has_pygtk"
 then
    AC_MSG_ERROR([
 
-**** The python bindings for gtk 2.4 (pygtk2>=2.10.0) could not be found.])
+**** The python bindings for gtk 2.10 (pygtk2>=2.10.0) could not be found.])
 fi
 AC_MSG_RESULT($has_pygtk)
 
