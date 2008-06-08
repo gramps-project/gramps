@@ -14,12 +14,12 @@ running ./autogen.sh and then "make" and, finally, "make install".
 
 Running ./autogen.sh on this branch of gramps requires the following
 packages to be installed:
-   * automake-1.9
-   * gnome-common
-   * intltool
-   * libglib2.0-dev (may be called differently on other distros) and
-maybe something else. If autogen.sh fails, it should inform you what's
-missing.
+   * autoconf >=2.53
+   * automake >=1.9
+   * intltool >=0.25
+   * glib-gettext >=2.2.0, included in libglib2.0-dev (may be called
+differently on other distros) and maybe something else. If autogen.sh
+fails, it should inform you what's missing.
 
 
 Regular vs local installation

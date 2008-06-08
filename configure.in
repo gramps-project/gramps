@@ -85,29 +85,6 @@ then
 fi
 AC_MSG_RESULT($has_pygtk)
 
-AC_MSG_CHECKING(Python bindings for gnome)
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    import gnome
-    # Do not import gnome.ui, this can kill python if the
-    # display cannot be opened.  Just search it.
-    import imp
-    imp.find_module('gnome/ui')
-    out("gnome.ui")
-except ImportError:
-    out("NO")
-EOF
-$PYTHON conftest.py
-has_pygnome=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test NO = "$has_pygnome"
-then
-   AC_MSG_ERROR([
-**** The python bindings for gnome2 (gnome2-python) could not be found.])
-fi
-AC_MSG_RESULT($has_pygnome)
-
 AC_MSG_CHECKING(Python bindings for glade)
 cat > conftest.py <<EOF
 $pygtk_require
