@@ -28,6 +28,8 @@
 import os
 from cStringIO import StringIO
 import tempfile
+import thread
+import threading
 from types import ClassType, InstanceType
 from gettext import gettext as _
 
@@ -218,7 +220,54 @@ class GVDocBase(BaseDoc.BaseDoc, BaseDoc.GVDoc):
                 self.write( '  fontsize="%d";\n' % self.notesize )
 
         self.write( '}\n\n' )
-    
+
+    def animate_progress_bar(self):
+        """
+        The progress bar wont animate unless it is pulsed,
+        so a timer is created to regularly call this method.
+        """
+        self.progress.pbar.pulse()
+
+        # Schedule the next pulse
+        self.progress_timer = threading.Timer(1.0, self.animate_progress_bar)
+        self.progress_timer.start()
+
+    def generate_output_file_from_dot_file(self, dotcommand, mimetype):
+        """
+        We now have the entire content of the .dot file.  Last thing
+        we need to do is to call dot (part of the Graphviz package)
+        to generate the .png, .gif, ...etc... output file.  Note that
+        this can take a relatively long time for large or complicated
+        graphs, so this method is called on a 2nd thread to prevent
+        GRAMPS from appearing to have "hung".
+        """
+
+        self.progress = Utils.ProgressMeter(_('Processing File'), '')
+        self.progress.set_pass(self._filename, 10)
+        self.progress.pbar.set_pulse_step(0.1)
+
+        # Start a timer to ensure the progress bar is animated
+        self.animate_progress_bar()
+
+        # Create a temporary dot file
+        (handle, tmp_dot) = tempfile.mkstemp(".dot")
+        dotfile = os.fdopen(handle, "w")
+        dotfile.write(self._dot.getvalue())
+        dotfile.close()
+
+        # Use the temporary dot file to generate the final output file
+        os.system(dotcommand % (self._filename, tmp_dot))
+
+        # Delete the temporary dot file
+        os.remove(tmp_dot)
+
+        if mimetype and self.print_req:
+            app = Mime.get_application(mimetype)
+            Utils.launch(app[0], self._filename)     
+
+        self.progress_timer.cancel()
+        self.progress.close()
+
     def add_node(self, node_id, label, shape="", color="", 
                  style="", fillcolor="", url="", htmloutput=False):
         """
@@ -354,21 +403,9 @@ class GVPsDoc(GVDocBase):
         if self._filename[-3:] != ".ps":
             self._filename += ".ps"
 
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
-
-        # Generate the PS file.
-        os.system( 'dot -Tps2 -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
-        # Delete the temporary dot file
-        os.remove(tmp_dot)
-        
-        if self.print_req:
-            app = Mime.get_application("application/postscript")
-            Utils.launch(app[0], self._filename)
+        thread.start_new_thread(
+            self.generate_output_file_from_dot_file,
+            ('dot -Tps2 -o"%s" "%s"', "application/postscript"))
 
 #-------------------------------------------------------------------------------
 #
@@ -393,21 +430,9 @@ class GVSvgDoc(GVDocBase):
         if self._filename[-4:] != ".svg":
             self._filename += ".svg"
 
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
-
-        # Generate the SVG file.
-        os.system( 'dot -Tsvg -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
-        # Delete the temporary dot file
-        os.remove(tmp_dot)
-        
-        if self.print_req:
-            app = Mime.get_application("image/svg")
-            Utils.launch(app[0], self._filename)
+        thread.start_new_thread(
+            self.generate_output_file_from_dot_file,
+            ('dot -Tsvg -o"%s" "%s"', "image/svg"))
             
 #-------------------------------------------------------------------------------
 #
@@ -432,21 +457,9 @@ class GVSvgzDoc(GVDocBase):
         if self._filename[-5:] != ".svgz":
             self._filename += ".svgz"
 
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
-
-        # Generate the SVGZ file.
-        os.system( 'dot -Tsvgz -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
-        # Delete the temporary dot file
-        os.remove(tmp_dot)
-        
-        if self.print_req:
-            app = Mime.get_application("image/svgz")
-            Utils.launch(app[0], self._filename)
+        thread.start_new_thread(
+            self.generate_output_file_from_dot_file,
+            ('dot -Tsvgz -o"%s" "%s"', "image/svgz"))
             
 #-------------------------------------------------------------------------------
 #
@@ -466,27 +479,15 @@ class GVPngDoc(GVDocBase):
     def close(self):
         """ Implements GVDocBase.close() """
         GVDocBase.close(self)
-        
+
         # Make sure the extension is correct
         if self._filename[-4:] != ".png":
             self._filename += ".png"
 
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
+        thread.start_new_thread(
+            self.generate_output_file_from_dot_file,
+            ('dot -Tpng -o"%s" "%s"', "image/png"))
 
-        # Generate the PNG file.
-        os.system( 'dot -Tpng -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
-        # Delete the temporary dot file
-        os.remove(tmp_dot)
-        
-        if self.print_req:
-            app = Mime.get_application("image/png")
-            Utils.launch(app[0], self._filename)     
-            
 #-------------------------------------------------------------------------------
 #
 # GVJpegDoc
@@ -510,22 +511,10 @@ class GVJpegDoc(GVDocBase):
         if self._filename[-4:] != ".jpg":
             self._filename += ".jpg"
 
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
+        thread.start_new_thread(
+            self.generate_output_file_from_dot_file,
+            ('dot -Tjpg -o"%s" "%s"', "image/jpeg"))
 
-        # Generate the JPEG file.
-        os.system( 'dot -Tjpg -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
-        # Delete the temporary dot file
-        os.remove(tmp_dot)
-        
-        if self.print_req:
-            app = Mime.get_application("image/jpeg")
-            Utils.launch(app[0], self._filename)
-            
 #-------------------------------------------------------------------------------
 #
 # GVGifDoc
@@ -549,21 +538,9 @@ class GVGifDoc(GVDocBase):
         if self._filename[-4:] != ".gif":
             self._filename += ".gif"
 
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
-
-        # Generate the GIF file.
-        os.system( 'dot -Tgif -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
-        # Delete the temporary dot file
-        os.remove(tmp_dot)
-        
-        if self.print_req:
-            app = Mime.get_application("image/gif")
-            Utils.launch(app[0], self._filename)     
+        thread.start_new_thread(
+            self.generate_output_file_from_dot_file,
+            ('dot -Tgif -o"%s" "%s"', "image/gif"))
 
 #-------------------------------------------------------------------------------
 #
@@ -591,23 +568,10 @@ class GVPdfGvDoc(GVDocBase):
         if self._filename[-4:] != ".pdf":
             self._filename += ".pdf"
 
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
+        thread.start_new_thread(
+            self.generate_output_file_from_dot_file,
+            ('dot -Tpdf -o"%s" "%s"', "application/pdf"))
 
-        # Generate the PDF file.
-        os.system( 'dot -Tpdf -o"%s" "%s"' % (self._filename, tmp_dot) )
-        
-        # Delete the temporary dot file
-        os.remove(tmp_dot)
-        
-        if self.print_req:
-            app = Mime.get_application("application/pdf")
-            Utils.launch(app[0], self._filename)
-
-     
 #-------------------------------------------------------------------------------
 #
 # GVPdfGsDoc
@@ -620,34 +584,31 @@ class GVPdfGsDoc(GVDocBase):
         # GV documentation says dpi is only for image formats.
         options.menu.get_option_by_name('dpi').set_value(72)
         GVDocBase.__init__(self, options, paper_style)
-    
+
     def close(self):
         """ Implements GVDocBase.close() """
         GVDocBase.close(self)
         
+        # First step is to create a temporary .ps file
+        original_name = self._filename
+        if self._filename[-3:] != ".ps":
+            self._filename += ".ps"
+
+        self.generate_output_file_from_dot_file(
+            'dot -Tps -o"%s" "%s"', None)
+
+        tmp_ps = self._filename
+
         # Make sure the extension is correct
+        self._filename = original_name
         if self._filename[-4:] != ".pdf":
             self._filename += ".pdf"
-            
-        # Create a temporary dot file
-        (handle, tmp_dot) = tempfile.mkstemp(".dot" )
-        dotfile = os.fdopen(handle,"w")
-        dotfile.write(self._dot.getvalue())
-        dotfile.close()
-
-        # Create a temporary PostScript file
-        (handle, tmp_ps) = tempfile.mkstemp(".ps" )
-        os.close( handle )
-
-        # Generate PostScript using dot
-        command = 'dot -Tps -o"%s" "%s"' % ( tmp_ps, tmp_dot )
-        os.system(command)
 
         # Add .5 to remove rounding errors.
         paper_size = self._paper.get_size()
         width_pt = int( (paper_size.get_width_inches() * 72) + 0.5 )
         height_pt = int( (paper_size.get_height_inches() * 72) + 0.5 )
-        
+
         # Convert to PDF using ghostscript
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
                   ' -dDEVICEHEIGHTPOINTS=%d -sOutputFile="%s" "%s" -c quit' \
@@ -655,7 +616,6 @@ class GVPdfGsDoc(GVDocBase):
         os.system(command)
 
         os.remove(tmp_ps)
-        os.remove(tmp_dot)
 
         if self.print_req:
             app = Mime.get_application("application/pdf")
