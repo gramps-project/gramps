@@ -2084,7 +2084,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         if name == 'Note':
             # Special case: we are way down at the very bottom.
             # Create note, commit it, return a list with one handle.
-            if (isinstance(obj, tuple) and (len(obj) > 0) and \
+            if isinstance(obj, tuple) and (len(obj) > 0) and \
                    ('strip' in dir(obj[0])) and (obj[0].strip()):
                 # Some notes may be None, from early databases.
                 (text, format) = obj
