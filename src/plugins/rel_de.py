@@ -174,29 +174,29 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 
     def _get_relationship_string(self, Ga, Gb, gender,
                                  reltocommon_a='', reltocommon_b='',
-				 only_birth=True,
-				 in_law_a=False, in_law_b=False):
+                                 only_birth=True,
+                                 in_law_a=False, in_law_b=False):
         common_ancestor_count = 0
         if reltocommon_a == '':
             reltocommon_a = self.REL_FAM_BIRTH
         if reltocommon_b == '':
             reltocommon_b = self.REL_FAM_BIRTH
         if reltocommon_a[-1] in [self.REL_MOTHER, self.REL_FAM_BIRTH,
-	                         self.REL_FAM_BIRTH_MOTH_ONLY] and \
+                                 self.REL_FAM_BIRTH_MOTH_ONLY] and \
            reltocommon_b[-1] in [self.REL_MOTHER, self.REL_FAM_BIRTH,
-	                         self.REL_FAM_BIRTH_MOTH_ONLY]:
+                                 self.REL_FAM_BIRTH_MOTH_ONLY]:
             common_ancestor_count += 1  # same female ancestor
         if reltocommon_a[-1] in [self.REL_FATHER, self.REL_FAM_BIRTH,
-	                         self.REL_FAM_BIRTH_FATH_ONLY] and \
+                                 self.REL_FAM_BIRTH_FATH_ONLY] and \
            reltocommon_b[-1] in [self.REL_FATHER, self.REL_FAM_BIRTH,
-	                         self.REL_FAM_BIRTH_FATH_ONLY]:
+                                 self.REL_FAM_BIRTH_FATH_ONLY]:
             common_ancestor_count += 1  # same male ancestor
 
         degree = min(Ga, Gb)
         removed = Ga-Gb
 
         if degree == 0 and removed < 0:
-	    # for descendants the "in-law" logic is reversed
+            # for descendants the "in-law" logic is reversed
             (in_law_a, in_law_b) = (in_law_b, in_law_a) 
 
         rel_str = u''
@@ -208,14 +208,14 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif (not only_birth) or common_ancestor_count == 0:
             pre += u'Stief-/Adoptiv'
         if in_law_a and (degree, removed) != (1, 0):
-	    # A "Schwiegerbruder" really is a "Schwager" (handled later)
+            # A "Schwiegerbruder" really is a "Schwager" (handled later)
             pre += u'Schwieger'
         if degree != 0 and common_ancestor_count == 1:
             pre += u'Halb'
         pre += self._removed_text(degree, removed)
         post += self._degree_text(degree, removed)
         if in_law_b and degree != 0 and (degree, removed) != (1, 0):
-	    # A "Bruder (angeheiratet)" also is a "Schwager" (handled later)
+            # A "Bruder (angeheiratet)" also is a "Schwager" (handled later)
             post += u' (angeheiratet)'
 
         if degree == 0:
@@ -252,14 +252,14 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                                        only_birth=True,
                                        in_law_a=False, in_law_b=False):
         return self._get_relationship_string(Ga, Gb,
-	                                     self._gender_convert(gender_b),
+                                             self._gender_convert(gender_b),
                                              reltocommon_a, reltocommon_b,
-					     only_birth, in_law_a, in_law_b)
+                                             only_birth, in_law_a, in_law_b)
 
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
         if sib_type in [self.NORM_SIB, self.UNKNOWN_SIB]:
-	    # the NORM_SIB translation is generic and suitable for UNKNOWN_SIB
+            # the NORM_SIB translation is generic and suitable for UNKNOWN_SIB
             rel = self.REL_FAM_BIRTH
             only_birth = True
         elif sib_type == self.HALF_SIB_FATHER:
@@ -272,9 +272,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             rel = self.REL_FAM_NONBIRTH
             only_birth = False
         return self._get_relationship_string(1, 1,
-	                                     self._gender_convert(gender_b),
-	                                     rel, rel,
-					     only_birth, in_law_a, in_law_b)
+                                             self._gender_convert(gender_b),
+                                             rel, rel,
+                                             only_birth, in_law_a, in_law_b)
 
 #-------------------------------------------------------------------------
 #
@@ -292,7 +292,7 @@ if __name__ == "__main__":
     #    export PYTHONPATH=/path/to/gramps/src 
     # python src/plugins/rel_fr.py 
     # (Above not needed here)
-    
+
     """TRANSLATORS, copy this if statement at the bottom of your 
         rel_xx.py module, and test your work with:
         python src/plugins/rel_xx.py
