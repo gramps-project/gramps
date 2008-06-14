@@ -276,7 +276,6 @@ class GedcomParser(UpdateCallback):
             self.def_src.set_title(_("Import from GEDCOM (%s)") % fname)
         self.dir_path = os.path.dirname(filename)
         self.is_ftw = False
-        self.is_ancestry_com = False
         self.groups = None
         self.want_parse_warnings = True
 
@@ -1247,11 +1246,6 @@ class GedcomParser(UpdateCallback):
 
         # set up the state for the parsing
         state = GedcomUtils.CurrentState(person=person, level=1)
-
-        # Ancestry.com GEDCOM files are massively broken, not providing 
-        # the FAMC and FAMS values for a person
-        if self.is_ancestry_com:
-            self.map_ancestry_com(person, line.token_text.strip())
 
         # do the actual parsing
         self.__parse_level(state, self.indi_parse_tbl, self.__person_event)
@@ -4020,30 +4014,6 @@ class GedcomParser(UpdateCallback):
             state.location = gen.lib.Location()
         self.__parse_note(line, state.event, state.level+1)
 
-    def map_ancestry_com(self, person, original_gid):
-        """
-        GEDCOM files created by Ancestry.com for some reason do not include
-        the FAMC and FAMS mappings in the INDI record. If we don't fix this, 
-        we end up with a bunch of broken family connections. The family 
-        references the people, but the people do not reference the family.
-
-        To resolve this, we use the mappings acquired from the first pass
-        of the parsing. The StageOne parser will grab the mappins from the
-        family to the child on the first pass, and we can use them here.
-
-        We have to make sure we use the original person ID, since the StageOne
-        parser does not remap colliding IDs.
-        """
-        for fams_id in self.fams_map.get(original_gid, []):
-            mapped_id = self.fid_map[fams_id]
-            fams_handle = self.__find_family_handle(mapped_id)
-            person.add_family_handle(fams_handle)
-
-        for famc_id in self.famc_map.get(original_gid, []):
-            mapped_id = self.fid_map[famc_id]
-            famc_handle = self.__find_family_handle(mapped_id)
-            person.add_parent_family_handle(famc_handle)
-
     def __optional_note(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -4067,8 +4037,6 @@ class GedcomParser(UpdateCallback):
         self.gedsource = self.gedmap.get_from_source_tag(line.data)
         if line.data.strip() == "FTW":
             self.is_ftw = True
-        elif line.data == "Ancestry.com Family Trees":
-            self.is_ancestry_com = True
         state.genby = line.data
 
     def __header_vers(self, line, state):
