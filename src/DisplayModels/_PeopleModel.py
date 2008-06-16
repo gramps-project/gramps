@@ -159,20 +159,20 @@ class NodeTreeMap:
             return self.path2iter.get((surname, val+1))
 
     def first_child(self, node):
-        if node == None:
+        if node is None:
             return self.top_path2iter[0]
         else:
             return self.path2iter.get((node, 0))
 
     def has_child(self, node):
-        if node == None:
+        if node is None:
             return len(self.sname_sub)
         if self.sname_sub.has_key(node) and len(self.sname_sub[node]) > 0:
             return True
         return False
 
     def number_of_children(self, node):
-        if node == None:
+        if node is None:
             return len(self.sname_sub)
         try:
             return len(self.sname_sub[node])
@@ -181,7 +181,7 @@ class NodeTreeMap:
 
     def get_nth_child(self, node, n):
         try:
-            if node == None:
+            if node is None:
                 return self.top_path2iter[n]
             try:
                 return self.path2iter[(node, n)]

@@ -143,7 +143,6 @@ class PluginManager(gen.utils.Callback):
                 self.__success_list.append((filename, _module))
             except:
                 self.__failmsg_list.append((filename, sys.exc_info()))
-        
         return len(self.__failmsg_list) != 0 # return True if there are errors
 
     def reload_plugins(self):

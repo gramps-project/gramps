@@ -101,20 +101,20 @@ def get(key):
             val = get_string(token)
         except:
             val = default_value[key]
-    if val == None:
+    if val is None:
         val = default_value[key]
     return val
 
 def get_bool(key):
     val = client.get(key)
-    if val == None:
+    if val is None:
         return None
     val = client.get_bool(key)
     if val in (True, False):
         return val
     else:
         val = client.get_default_from_schema(key)
-        if val == None:
+        if val is None:
             raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_bool()
 
@@ -124,14 +124,14 @@ def set_bool(key, val):
 
 def get_int(key, correct_tuple=None):
     val = client.get(key)
-    if val == None:
+    if val is None:
         return None
     val = client.get_int(key)
     if not correct_tuple or val in correct_tuple:
         return val
     else:
         val = client.get_default_from_schema(key)
-        if val == None:
+        if val is None:
             raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_int()
 
@@ -141,14 +141,14 @@ def set_int(key, val, correct_tuple=None):
 
 def get_string(key, test_func=None):
     val = client.get(key)
-    if val == None:
+    if val is None:
         return None
     val = client.get_string(key)
     if not test_func or test_func(val):
         return val
     else:
         val = client.get_default_from_schema(key)
-        if val == None:
+        if val is None:
             raise Errors.GConfSchemaError("No default value for key "+key)
         return val.get_string()
 
@@ -162,7 +162,7 @@ def sync():
 def get_default(key, sample=''):
     token = "/apps/gramps/%s/%s" % (key[0], key[1])
     value = client.get_default_from_schema(token)
-    if value == None:
+    if value is None:
         raise Errors.GConfSchemaError("No default value for key "+key[1])
     if isinstance(sample, basestring):
         return value.get_string()

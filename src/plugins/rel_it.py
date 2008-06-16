@@ -319,7 +319,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         along with a list of common ancestors (typically father,mother)
         """
 
-        if orig_person == None:
+        if orig_person is None:
             return ("non definito",[])
 
         if orig_person.get_handle() == other_person.get_handle():

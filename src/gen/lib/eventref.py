@@ -204,3 +204,4 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
         """
         self.__role.set(role)
     role = property(get_role, set_role, None, 'Returns or sets role property')
+

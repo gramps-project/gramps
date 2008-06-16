@@ -219,7 +219,7 @@ class AllRelReport():
                         and self.rel_class.only_birth(relation[4])
             distorig = len(relation[4])
             distother = len(relation[2])
-            if distorig == 1 and distother == 1 and not inlawa \
+            if distorig == distother == 1 and not inlawa \
                     and not inlawb:
                 rel_str = self.rel_class.get_sibling_relationship_string(
                             self.rel_class.get_sibling_type(

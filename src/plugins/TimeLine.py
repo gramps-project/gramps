@@ -271,9 +271,9 @@ class TimeLine(Report):
         # on a decade.
         low -= 50 - ((high-low) % 50)
         
-        if low == None:
+        if low is None:
             low = high
-        if high == None:
+        if high is None:
             high = low
         
         return (low, high)

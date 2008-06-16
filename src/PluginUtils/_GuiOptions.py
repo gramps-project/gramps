@@ -1252,7 +1252,7 @@ class GuiMenuOptions:
                 widget, label = make_gui_option(option, self.__tooltips, 
                                                 dialog.dbstate, dialog.uistate, dialog.track)
 
-                if widget == None:
+                if widget is None:
                     print "UNKNOWN OPTION: ", option
                 else:
                     if label:

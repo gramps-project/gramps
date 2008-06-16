@@ -216,7 +216,7 @@ class MediaMan(Tool.Tool):
             self.batch_settings = ix
             box.show_all()
         else:
-            if self.batch_settings != None:
+            if self.batch_settings is not None:
                 self.w.remove_page(self.settings_page)
                 self.settings_page = None
                 self.confirm_page -= 1

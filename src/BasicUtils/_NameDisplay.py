@@ -166,7 +166,7 @@ class NameDisplay:
         for (num, name,fmt_str,act) in formats:
             func = self._format_fn(fmt_str)
             func_raw = raw_func_dict.get(num)
-            if func_raw == None:
+            if func_raw is None:
                 func_raw = self._format_raw_fn(fmt_str)
             self.name_formats[num] = (name,fmt_str,act,func,func_raw)
 
@@ -427,7 +427,7 @@ def fn(%s):
         method call and we need all the speed we can squeeze out of this.
         """
         func = self.__class__.raw_format_funcs.get(format_str)
-        if func == None:
+        if func is None:
             func = self._gen_raw_func(format_str)
             self.__class__.raw_format_funcs[format_str] = func
 
@@ -455,7 +455,7 @@ def fn(%s):
         All the other characters in the fmt_str are unaffected.
         """
         func = self.__class__.format_funcs.get(format_str)
-        if func == None:
+        if func is None:
             func = self._gen_cooked_func(format_str)
             self.__class__.format_funcs[format_str] = func
         try:
@@ -555,7 +555,7 @@ def fn(%s):
         @returns: Returns the L{Name} string representation
         @rtype: str
         """
-        if name == None:
+        if name is None:
             return ""
 
         num = self._is_format_valid(name.display_as)

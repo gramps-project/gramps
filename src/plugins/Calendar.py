@@ -159,8 +159,8 @@ class Calendar(Report):
                 married_name = n
                 break # use first
         # Now, decide which to use:
-        if maiden_name != None:
-            if married_name != None:
+        if maiden_name is not None:
+            if married_name is not None:
                 name = gen.lib.Name(married_name)
             else:
                 name = gen.lib.Name(primary_name)
@@ -326,7 +326,7 @@ class Calendar(Report):
             if birth_ref:
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
-            if self.birthdays and birth_date != None:
+            if self.birthdays and birth_date is not None:
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -347,7 +347,7 @@ class Calendar(Report):
                             if mother_handle == person_handle:
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
-                                    if father != None:
+                                    if father is not None:
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_name(person, father_lastname)
                 if age >= 0:
@@ -390,7 +390,7 @@ class Calendar(Report):
                                                                gen.lib.EventType.ANNULMENT, 
                                                                gen.lib.EventType.DIV_FILING]:
                                     are_married = None
-                            if are_married != None:
+                            if are_married is not None:
                                 for event_ref in fam.get_event_ref_list():
                                     event = self.database.get_event_from_handle(event_ref.ref)
                                     event_obj = event.get_date_object()
@@ -598,7 +598,7 @@ class CalendarOptions(MenuReportOptions):
         g.set_paragraph_style(name)
         if shadow:
             g.set_shadow(*shadow)
-        if color != None:
+        if color is not None:
             g.set_fill_color(color)
         if not borders:
             g.set_line_width(0)

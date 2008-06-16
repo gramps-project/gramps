@@ -57,7 +57,7 @@ class DateBase:
         """
         Convert the object to a serialized tuple of data.
         """
-        if self.date == None or (self.date.is_empty() and not self.date.text):
+        if self.date is None or (self.date.is_empty() and not self.date.text):
             date = None
         else:
             date = self.date.serialize(no_text_date)

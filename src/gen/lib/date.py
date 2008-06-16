@@ -97,7 +97,7 @@ class Span:
                      ) # number of months, for sorting
     
     def __eq__(self, other):
-        if other == None:
+        if other is None:
             return False
         return self.diff_tuple == other.diff_tuple
 
@@ -204,15 +204,15 @@ class Date:
             raise AttributeError, "invalid args to Date: %s" % source
         #### ok, process either date or tuple
         if isinstance(source, tuple):
-            if calendar == None:
+            if calendar is None:
                 self.calendar = Date.CAL_GREGORIAN
             else:
                 self.calendar = self.lookup_calendar(calendar)
-            if modifier == None:
+            if modifier is None:
                 self.modifier = Date.MOD_NONE
             else:
                 self.modifier = self.lookup_modifier(modifier)
-            if quality == None:
+            if quality is None:
                 self.quality  = Date.QUAL_NONE
             else:
                 self.quality = self.lookup_quality(quality)
@@ -222,9 +222,9 @@ class Date:
             self.newyear = 0
             self.set_yr_mon_day(*source)
         elif isinstance(source, str) and source != "":
-            if (calendar != None or 
-                modifier != None or 
-                quality != None):
+            if (calendar is not None or 
+                modifier is not None or 
+                quality is not None):
                 raise AttributeError("can't set calendar, modifier, or "
                                      "quality with string date")
             import DateHandler
@@ -972,7 +972,7 @@ class Date:
         year = max(value[Date._POS_YR], 1)
         month = max(value[Date._POS_MON], 1)
         day = max(value[Date._POS_DAY], 1)
-        if year == 0 and month == 0 and day == 0:
+        if year == month == 0 and day == 0:
             self.sortval = 0
         else:
             func = Date._calendar_convert[calendar]
@@ -995,7 +995,7 @@ class Date:
         year = max(self.dateval[Date._POS_YR], 1)
         month = max(self.dateval[Date._POS_MON], 1)
         day = max(self.dateval[Date._POS_DAY], 1)
-        if year == 0 and month == 0 and day == 0:
+        if year == month == 0 and day == 0:
             self.sortval = 0
         else:
             func = Date._calendar_convert[self.calendar]

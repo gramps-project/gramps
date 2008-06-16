@@ -60,4 +60,4 @@ class RegExpIdBase(Rule):
             self.match = re.compile('')
 
     def apply(self, db, obj):
-        return self.match.match(obj.gramps_id) != None
+        return self.match.match(obj.gramps_id) is not None

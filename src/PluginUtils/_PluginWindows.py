@@ -407,7 +407,7 @@ class ToolManagedWindowBase(ManagedWindow.ManagedWindow):
             self.frame_names.append(frame_name)
 
     def set_current_frame(self, name):
-        if name == None:
+        if name is None:
             self.notebook.set_current_page(0)
         else:
             for frame_name in self.frame_names:

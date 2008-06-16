@@ -143,7 +143,7 @@ class GeneWebParser:
         try:
             while 1:
                 line = self.get_next_line()
-                if line == None:
+                if line is None:
                     break
                 if line == "":
                     continue
@@ -238,7 +238,7 @@ class GeneWebParser:
         rel_person = self.db.get_person_from_handle(self.current_relationship_person_handle)
         while 1:
             line = self.get_next_line()
-            if line == None or line == "end":
+            if line is None or line == "end":
                 break
             if line == "":
                 continue
@@ -315,7 +315,7 @@ class GeneWebParser:
             return None
         while 1:
             line = self.get_next_line()
-            if line == None:
+            if line is None:
                 break
             if line == "":
                 continue
@@ -384,7 +384,7 @@ class GeneWebParser:
         note_txt = ""
         while True:
             line = self.get_next_line()
-            if line == None:
+            if line is None:
                 break
 
             fields = line.split(" ")
@@ -529,7 +529,7 @@ class GeneWebParser:
         name.set_first_name(firstname)
         name.set_surname(surname)
         person.set_primary_name(name)
-        if person.get_gender() == gen.lib.Person.UNKNOWN and gender != None:
+        if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
             person.set_gender(gender)
         self.db.commit_person(person,self.trans)
         personDataRe = re.compile("^[kmes0-9<>~#\[({!].*$")

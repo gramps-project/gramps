@@ -288,7 +288,7 @@ class DateParser:
         Convert the string to an integer if the value is not None. If the
         value is None, a zero is returned
         """
-        if val == None:
+        if val is None:
             return 0
         else:
             return int(val)
@@ -317,18 +317,18 @@ class DateParser:
         match = regex1.match(text.lower())
         if match:
             groups = match.groups()
-            if groups[0] == None:
+            if groups[0] is None:
                 m = 0
             else:
                 m = mmap[groups[0].lower()]
 
-            if groups[2] == None:
+            if groups[2] is None:
                 y = self._get_int(groups[1])
                 d = 0
                 s = False
             else:
                 d = self._get_int(groups[1])
-                if groups[4] != None: # slash year "/80"
+                if groups[4] is not None: # slash year "/80"
                     y = int(groups[3]) + 1 # fullyear + 1
                     s = True
                 else: # regular, non-slash date
@@ -342,18 +342,18 @@ class DateParser:
         match = regex2.match(text.lower())
         if match:
             groups = match.groups()
-            if groups[1] == None:
+            if groups[1] is None:
                 m = 0
             else:
                 m = mmap[groups[1].lower()]
 
             d = self._get_int(groups[0])
 
-            if groups[2] == None:
+            if groups[2] is None:
                 y = None
                 s = False
             else:
-                if groups[4] != None: # slash year digit
+                if groups[4] is not None: # slash year digit
                     y = int(groups[3]) + 1 # fullyear + 1
                     s = True
                 else:
@@ -370,7 +370,7 @@ class DateParser:
         """
         Convert only the date portion of a date.
         """
-        if subparser == None:
+        if subparser is None:
             subparser = self._parse_greg_julian
 
         if subparser == self._parse_greg_julian:
@@ -411,7 +411,7 @@ class DateParser:
             groups = match.groups()
             if self.ymd:
                 # '1789' and ymd: incomplete date
-                if groups[1] == None:
+                if groups[1] is None:
                     y = self._get_int(groups[4])
                     m = 0
                     d = 0

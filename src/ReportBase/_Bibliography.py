@@ -187,11 +187,11 @@ class Bibliography:
                 return True
         if ( self.mode & self.MODE_DATE ) == self.MODE_DATE:
             date = source_ref.get_date_object()
-            if date != None and not date.is_empty():
+            if date is not None and not date.is_empty():
                 return True
         if ( self.mode & self.MODE_CONF ) == self.MODE_CONF:
             confidence = source_ref.get_confidence_level()
-            if confidence != None and confidence != SourceRef.CONF_NORMAL:
+            if confidence is not None and confidence != SourceRef.CONF_NORMAL:
                 return True
         if ( self.mode & self.MODE_NOTE ) == self.MODE_NOTE:
             if len(source_ref.get_note_list()) != 0:

@@ -185,7 +185,7 @@ class TreeTips(gtk.Widget):
             return False
         pathReturn = tree.get_path_at_pos(xEvent, yEvent)
         model = tree.get_model()
-        if pathReturn == None:
+        if pathReturn is None:
             self.path = None
         elif self.path != pathReturn[0]:
             self.path = pathReturn[0]

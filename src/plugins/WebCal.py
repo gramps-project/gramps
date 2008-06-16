@@ -213,8 +213,8 @@ class WebCalReport(Report):
             if int(n.get_type()) == gen.lib.NameType.MARRIED:
                 married_name = n
         # Now, decide which to use:
-        if maiden_name != None:
-            if married_name != None:
+        if maiden_name is not None:
+            if married_name is not None:
                 first_name, family_name = married_name.get_first_name(), married_name.get_surname()
                 call_name = married_name.get_call_name()
             else:
@@ -224,7 +224,7 @@ class WebCalReport(Report):
             first_name, family_name = primary_name.get_first_name(), primary_name.get_surname()
             call_name = primary_name.get_call_name()
         # If they have a nickname use it
-        if call_name != None and call_name.strip() != "":
+        if call_name is not None and call_name.strip() != "":
             first_name = call_name.strip()
         else: # else just get the first name:
             first_name = first_name.strip()
@@ -599,7 +599,7 @@ class WebCalReport(Report):
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
             living = probably_alive(person, self.database, make_date(self.Year, 1, 1), 0)
-            if self.Birthday and birth_date != None and ((self.Alive and living) or not self.Alive):
+            if self.Birthday and birth_date is not None and ((self.Alive and living) or not self.Alive):
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -617,7 +617,7 @@ class WebCalReport(Report):
                             if mother_handle == person_handle:
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
-                                    if father != None:
+                                    if father is not None:
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_short_name(person, father_lastname)
                 self.add_day_item("%s, %d" % (short_name, age), year, month, day)

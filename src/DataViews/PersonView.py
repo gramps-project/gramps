@@ -527,7 +527,7 @@ class PersonView(PageView.PersonNavView):
             active = self.dbstate.active
             self.tree.set_model(self.model)
 
-            if const.USE_TIPS and self.model.tooltip_column != None:
+            if const.USE_TIPS and self.model.tooltip_column is not None:
                 self.tooltips = TreeTips.TreeTips(self.tree, 
                                                   self.model.tooltip_column, 
                                                   True)
@@ -984,7 +984,7 @@ class PersonView(PageView.PersonNavView):
         node = self.model.on_get_iter(path)
 
         # Node might be null if the surname is not known so test against None
-        while node != None:
+        while node is not None:
             real_iter = self.model.get_iter(path)
             for subindex in range(0, self.model.iter_n_children(real_iter)):
                 subpath = ((path[0], subindex))

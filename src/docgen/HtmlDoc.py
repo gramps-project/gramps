@@ -146,7 +146,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                     top_add = 0
             elif bottom_add == 0:
                 match = stop.search(line)
-                if match != None:
+                if match is not None:
                     bottom_add = 1
                     self.bottom.append(line)
             else:
@@ -172,7 +172,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                     top_add = 0
             elif bottom_add == 0:
                 match = stop.search(line)
-                if match != None:
+                if match is not None:
                     bottom_add = 1
                     self.bottom.append(line)
             else:
@@ -245,7 +245,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         self.fix_title("".join(self.top))
 
     def fix_title(self,msg=None):
-        if msg == None:
+        if msg is None:
             match = t_header_line_re.match(self.file_header)
         else:
             match = t_header_line_re.match(msg)
@@ -428,7 +428,7 @@ class HtmlDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
 
     def start_paragraph(self,style_name,leader=None):
         self.f.write('<p class="' + style_name + '">')
-        if leader != None:
+        if leader is not None:
             self.f.write(leader)
             self.f.write(' ')
 

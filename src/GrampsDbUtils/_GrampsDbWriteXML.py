@@ -834,7 +834,7 @@ class GrampsDbXmlWriter(UpdateCallback):
                          %(sp,self.fix(date.get_text())))
 
     def write_force_line(self,label,value,indent=1):
-        if value != None:
+        if value is not None:
             self.g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,self.fix(value),label))
 
     def dump_name(self, name,alternative=False,index=1):
@@ -962,15 +962,13 @@ class GrampsDbXmlWriter(UpdateCallback):
                 corner1_y = rect[1]
                 corner2_x = rect[2]
                 corner2_y = rect[3]
-                if corner1_x==None : corner1_x = 0
-                if corner1_y==None : corner1_y = 0
-                if corner2_x==None : corner2_x = 100
-                if corner2_y==None : corner2_y = 100
+                if corner1_x is None : corner1_x = 0
+                if corner1_y is None : corner1_y = 0
+                if corner2_x is None : corner2_x = 100
+                if corner2_y is None : corner2_y = 100
                 #don't output not set rectangle
-                if (corner1_x == 0 and corner1_y == 0
-                    and corner2_x == 0 and corner2_y == 0
-                   ) or (corner1_x == 0 and corner1_y == 0
-                    and corner2_x == 100 and corner2_y == 100
+                if (corner1_x == corner1_y == corner2_x == corner2_y == 0) or \
+                   (corner1_x == corner1_y == 0 and corner2_x == corner2_y == 100
                    ):
                     rect = None
             if (len(proplist) + len(nreflist) + len(refslist)) == 0 \

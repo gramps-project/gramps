@@ -233,49 +233,49 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         """
         returns True if the handle exists in the current Person database.
         """
-        return self.person_map.get(str(handle), txn=self.txn) != None
+        return self.person_map.get(str(handle), txn=self.txn) is not None
 
     def has_family_handle(self, handle):            
         """
         returns True if the handle exists in the current Family database.
         """
-        return self.family_map.get(str(handle), txn=self.txn) != None
+        return self.family_map.get(str(handle), txn=self.txn) is not None
 
     def has_object_handle(self, handle):
         """
         returns True if the handle exists in the current MediaObjectdatabase.
         """
-        return self.media_map.get(str(handle), txn=self.txn) != None
+        return self.media_map.get(str(handle), txn=self.txn) is not None
 
     def has_repository_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.repository_map.get(str(handle), txn=self.txn) != None
+        return self.repository_map.get(str(handle), txn=self.txn) is not None
 
     def has_note_handle(self, handle):
         """
         returns True if the handle exists in the current Note database.
         """
-        return self.note_map.get(str(handle), txn=self.txn) != None
+        return self.note_map.get(str(handle), txn=self.txn) is not None
 
     def has_event_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.event_map.get(str(handle), txn=self.txn) != None
+        return self.event_map.get(str(handle), txn=self.txn) is not None
 
     def has_place_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.place_map.get(str(handle), txn=self.txn) != None
+        return self.place_map.get(str(handle), txn=self.txn) is not None
 
     def has_source_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.source_map.get(str(handle), txn=self.txn) != None
+        return self.source_map.get(str(handle), txn=self.txn) is not None
 
     def get_raw_person_data(self, handle):
         """
@@ -474,7 +474,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             else:
                 the_txn = None
 
-            if gstats == None:
+            if gstats is None:
                 # New database. Set up the current version.
                 self.metadata.put('version', _DBVERSION, txn=the_txn)
             elif not self.metadata.has_key('version'):
@@ -820,7 +820,7 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
                 data = self.reference_map.get(data)
             else:
                 data = pickle.loads(data)
-            if include_classes == None or \
+            if include_classes is None or \
                    KEY_TO_CLASS_MAP[data[0][0]] in include_classes:
                 yield (KEY_TO_CLASS_MAP[data[0][0]], data[0][1])
                 
@@ -1599,13 +1599,13 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
         return status
 
     def undo_reference(self, data, handle):
-        if data == None:
+        if data is None:
             self.reference_map.delete(handle, txn=self.txn)
         else:
             self.reference_map.put(handle, data, txn=self.txn)
 
     def undo_data(self, data, handle, db_map, signal_root):
-        if data == None:
+        if data is None:
             self.emit(signal_root + '-delete', ([handle], ))
             db_map.delete(handle, txn=self.txn)
         else:

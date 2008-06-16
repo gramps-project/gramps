@@ -931,7 +931,7 @@ class GraphvizReportDialog(ReportDialog):
         self.row += 1
 
         ext = self.format_menu.get_ext()
-        if ext == None:
+        if ext is None:
             ext = ""
         else:
             spath = self.get_default_directory()

@@ -226,7 +226,7 @@ class Tester(unittest.TestCase):
         """
         Tests two GRAMPS dates to see if they match.
         """
-        if expected2 == None:
+        if expected2 is None:
             expected2 = expected1
         date1 = _dp.parse(d1)
         date2 = _dp.parse(d2)

@@ -237,18 +237,18 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
                     else:
                         error = True
             # degs should have a value now
-            if degs == None:
+            if degs is None:
                 error = True  
 
         if error:
             return None
-        if v != None:
+        if v is not None:
             return v
         #we have a degree notation, convert to float
         v = float(degs) 
-        if secs != None:
+        if secs is not None:
             v += secs / 3600.
-        if mins != None:
+        if mins is not None:
             v += float(mins) / 60.
         if sign =="-":
             v = v * -1.
@@ -277,7 +277,7 @@ def conv_lat_lon(latitude, longitude, format="D.D4"):
     lon_float = convert_float_val(longitude, 'lon')
     
     # give output (localized if needed)
-    if lat_float == None or lon_float == None:
+    if lat_float is None or lon_float is None:
         if format == "ISO-D" or format == "ISO-DM" or format == "ISO-DMS":
             return None
         else:

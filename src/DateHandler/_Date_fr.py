@@ -216,7 +216,7 @@ class DateDisplayFR(DateDisplay):
             if date_val[2] < 0 or date_val[3]: 
                 return self.display_iso(date_val)    
             else:
-                if date_val[0] == 0 and date_val[1] == 0:
+                if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
                     value = self._tformat.replace('%m', str(date_val[1]))

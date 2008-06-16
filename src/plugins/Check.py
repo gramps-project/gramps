@@ -151,7 +151,7 @@ class Check(Tool.BatchTool):
         if self.fail:
             return
 
-        cli = uistate == None
+        cli = uistate is None
 
         if self.db.readonly:
             # TODO: split plugin in a check and repair part to support

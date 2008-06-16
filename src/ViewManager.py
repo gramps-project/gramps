@@ -969,12 +969,12 @@ class ViewManager:
         Initialize the navigation scheme
         """
         old_nav = self._navigation_type[self.prev_nav]
-        if old_nav[0] != None:
+        if old_nav[0] is not None:
             old_nav[0].disable()
 
         page_type = self.active_page.navigation_type()
         nav_type = self._navigation_type[page_type]
-        if nav_type[0] != None:
+        if nav_type[0] is not None:
             nav_type[0].enable()
 
     def change_page(self, obj, page, num=-1):

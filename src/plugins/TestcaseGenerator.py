@@ -625,7 +625,7 @@ class TestcaseGenerator(Tool.Tool):
         self.fill_object(np)
         
         # Gender
-        if gender == None:
+        if gender is None:
             gender = randint(0,1)
         if randint(0,10) == 1:  # Set some persons to unknown gender
             np.set_gender(gen.lib.Person.UNKNOWN)

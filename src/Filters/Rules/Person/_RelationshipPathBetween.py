@@ -77,14 +77,14 @@ class RelationshipPathBetween(Rule):
     
     def apply_filter(self,rank, handle,plist,pmap):
         person = self.db.get_person_from_handle(handle)
-        if person == None:
+        if person is None:
             return
         plist.append(handle)
         pmap[person.get_handle()] = rank
         
         fam_id = person.get_main_parents_family_handle()
         family = self.db.get_family_from_handle(fam_id)
-        if family != None:
+        if family is not None:
             self.apply_filter(rank+1,family.get_father_handle(),plist,pmap)
             self.apply_filter(rank+1,family.get_mother_handle(),plist,pmap)
 

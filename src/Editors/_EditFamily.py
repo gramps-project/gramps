@@ -141,7 +141,7 @@ class ChildEmbedList(EmbeddedList):
 
     def _find_row(self, x, y):
         row = self.tree.get_path_at_pos(x, y)
-        if row == None:
+        if row is None:
             return len(self.family.get_child_ref_list())
         else:
             return row[0][0]
@@ -415,8 +415,8 @@ class EditFamily(EditPrimary):
         # look for the scenerio of a child and no parents on a new
         # family
         
-        if self.added and self.obj.get_father_handle() == None and \
-               self.obj.get_mother_handle() == None and \
+        if self.added and self.obj.get_father_handle() is None and \
+               self.obj.get_mother_handle() is None and \
                len(self.obj.get_child_ref_list()) == 1:
             self.add_parent = True
             if not Config.get(Config.FAMILY_WARN):
@@ -450,7 +450,7 @@ class EditFamily(EditPrimary):
         # Add a signal pick up changes to events, bug #1329
         self._add_db_signal('event-update', self.event_updated)
         
-        self.added = self.obj.handle == None
+        self.added = self.obj.handle is None
         if self.added:
             self.obj.handle = Utils.create_id()
             
@@ -802,7 +802,7 @@ class EditFamily(EditPrimary):
     def load_parent(self, handle, box, birth_obj, birth_label, death_obj,
                     death_label, btn_obj, btn2_obj, add_msg, del_msg):
 
-        is_used = handle != None
+        is_used = handle is not None
 
         for i in box.get_children():
             box.remove(i)
@@ -872,8 +872,8 @@ class EditFamily(EditPrimary):
                 self.db.commit_person(person, trans)
 
     def object_is_empty(self):
-        return self.obj.get_father_handle() == None and \
-               self.obj.get_mother_handle() == None and \
+        return self.obj.get_father_handle() is None and \
+               self.obj.get_mother_handle() is None and \
                len(self.obj.get_child_ref_list()) == 0
             
     def save(self, *obj):

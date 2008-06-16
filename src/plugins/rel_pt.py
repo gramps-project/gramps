@@ -250,7 +250,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         along with a list of common ancestors (typically father,mother) 
         """
 
-        if orig_person == None:
+        if orig_person is None:
             return ("indefinido",[])
 
         if orig_person.get_handle() == other_person.get_handle():
@@ -296,7 +296,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 return (self.get_nephew(firstRel-1),common)
             else:
                 return (self.get_niece(firstRel-1),common)
-        elif firstRel == 2 and secondRel == 2:
+        elif firstRel == secondRel == 2:
             if other_person.get_gender() == gen.lib.Person.MALE:
                 return ('primo irmão',common)
             else:

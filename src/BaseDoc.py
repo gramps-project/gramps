@@ -347,17 +347,17 @@ class FontStyle:
             in the range of 0-255 represeting the red, green, and blue
             components of a color.
         """
-        if face != None:
+        if face is not None:
             self.set_type_face(face)
-        if size != None:
+        if size is not None:
             self.set_size(size)
-        if italic != None:
+        if italic is not None:
             self.set_italic(italic)
-        if bold != None:
+        if bold is not None:
             self.set_bold(bold)
-        if underline != None:
+        if underline is not None:
             self.set_underline(underline)
-        if color != None:
+        if color is not None:
             self.set_color(color)
 
     def set_italic(self, val):
@@ -671,31 +671,31 @@ class ParagraphStyle:
         @param bgcolor: background color of the paragraph as an RGB tuple.
         @param font: FontStyle instance that defines the font
         """
-        if font != None:
+        if font is not None:
             self.font = FontStyle(font)
-        if pad != None:
+        if pad is not None:
             self.set_padding(pad)
-        if tborder != None:
+        if tborder is not None:
             self.set_top_border(tborder)
-        if bborder != None:
+        if bborder is not None:
             self.set_bottom_border(bborder)
-        if rborder != None:
+        if rborder is not None:
             self.set_right_border(rborder)
-        if lborder != None:
+        if lborder is not None:
             self.set_left_border(lborder)
-        if bgcolor != None:
+        if bgcolor is not None:
             self.set_background_color(bgcolor)
-        if align != None:
+        if align is not None:
             self.set_alignment(align)
-        if rmargin != None:
+        if rmargin is not None:
             self.set_right_margin(rmargin)
-        if lmargin != None:
+        if lmargin is not None:
             self.set_left_margin(lmargin)
-        if first_indent != None:
+        if first_indent is not None:
             self.set_first_indent(first_indent)
-        if tmargin != None:
+        if tmargin is not None:
             self.set_top_margin(tmargin)
-        if bmargin != None:
+        if bmargin is not None:
             self.set_bottom_margin(bmargin)
             
     def set_header_level(self, level):
@@ -1028,7 +1028,7 @@ class StyleSheet:
         self.table_styles = {}
         self.cell_styles = {}
         self.name = ""
-        if obj != None:
+        if obj is not None:
             for style_name in obj.para_styles.keys():
                 style = obj.para_styles[style_name]
                 self.para_styles[style_name] = ParagraphStyle(style)

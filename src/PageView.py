@@ -840,7 +840,7 @@ class ListView(BookMarkView):
             self.list.set_model(self.model)
             self.build_columns()
 
-            if const.USE_TIPS and self.model.tooltip_column != None:
+            if const.USE_TIPS and self.model.tooltip_column is not None:
                 self.tooltips = TreeTips.TreeTips(
                     self.list, self.model.tooltip_column, True)
             self.dirty = False

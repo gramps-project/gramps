@@ -756,7 +756,7 @@ class GrampsParser(UpdateCallback):
             name_displayer.set_name_format(self.db.name_formats)
 
         self.db.set_researcher(self.owner)
-        if self.home != None:
+        if self.home is not None:
             person = self.db.get_person_from_handle(self.home)
             self.db.set_default_person_handle(person.handle)
 
@@ -971,11 +971,11 @@ class GrampsParser(UpdateCallback):
             event.personal = True
             if (event.type == gen.lib.EventType.BIRTH) \
                    and (self.eventref.role == gen.lib.EventRoleType.PRIMARY) \
-                   and (self.person.get_birth_ref() == None):
+                   and (self.person.get_birth_ref() is None):
                 self.person.set_birth_ref(self.eventref)
             elif (event.type == gen.lib.EventType.DEATH) \
                      and (self.eventref.role == gen.lib.EventRoleType.PRIMARY) \
-                     and (self.person.get_death_ref() == None):
+                     and (self.person.get_death_ref() is None):
                 self.person.set_death_ref(self.eventref)
             else:
                 self.person.add_event_ref(self.eventref)
@@ -1881,7 +1881,7 @@ class GrampsParser(UpdateCallback):
         else:
             text = None
 
-        if text != None:
+        if text is not None:
             note = gen.lib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness comment: %s") % text)
@@ -1963,10 +1963,10 @@ class GrampsParser(UpdateCallback):
             ref.private = self.event.private
             ref.role.set(gen.lib.EventRoleType.PRIMARY)
             if (self.event.type == gen.lib.EventType.BIRTH) \
-                   and (self.person.get_birth_ref() == None):
+                   and (self.person.get_birth_ref() is None):
                 self.person.set_birth_ref(ref)
             elif (self.event.type == gen.lib.EventType.DEATH) \
-                     and (self.person.get_death_ref() == None):
+                     and (self.person.get_death_ref() is None):
                 self.person.set_death_ref(ref)
             else:
                 self.person.add_event_ref(ref)
@@ -2037,7 +2037,7 @@ class GrampsParser(UpdateCallback):
         """
         ##place = None
         ##handle = None
-        ##if self.place_ref == None:  #todo, add place_ref in start and init
+        ##if self.place_ref is None:  #todo, add place_ref in start and init
         ##    #legacy cody? I see no reason for this, but it was present
         ##    if self.place_map.has_key(tag):
         ##        place = self.place_map[tag]

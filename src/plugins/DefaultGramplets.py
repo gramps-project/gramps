@@ -120,7 +120,7 @@ class CalendarGramplet(Gramplet):
             if birth_ref:
                 birth_event = self.gui.dbstate.db.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
-            if self.birthdays and birth_date != None:
+            if self.birthdays and birth_date is not None:
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -909,7 +909,7 @@ class PythonGramplet(Gramplet):
                 buffer.place_cursor(end)
                 return True
             _retval = self.process_command(line)
-            if _retval != None:
+            if _retval is not None:
                 self.append_text("%s\n" % str(_retval))
             self.append_text("%s " % self.prompt)
             end = buffer.get_end_iter()

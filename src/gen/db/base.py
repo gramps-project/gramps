@@ -1717,7 +1717,7 @@ class GrampsDbBase(Callback):
         if self.undoindex >= _UNDO_SIZE or self.readonly:
             return False
 
-        if self.translist[self.undoindex+1] == None:
+        if self.translist[self.undoindex+1] is None:
             return False
 
         return True
@@ -1811,7 +1811,7 @@ class GrampsDbBase(Callback):
         pass
 
     def undo_data(self, data, handle, db_map, signal_root):
-        if data == None:
+        if data is None:
             self.emit(signal_root + '-delete', ([handle], ))
             del db_map[handle]
         else:
@@ -1924,7 +1924,7 @@ class GrampsDbBase(Callback):
 
     def set_default_person_handle(self, handle):
         """Set the default Person to the passed instance."""
-        if (self.metadata != None) and (not self.readonly):
+        if (self.metadata is not None) and (not self.readonly):
             self.metadata['default'] = str(handle)
 
     def get_default_person(self):
@@ -1932,13 +1932,13 @@ class GrampsDbBase(Callback):
         person = self.get_person_from_handle(self.get_default_handle())
         if person:
             return person
-        elif (self.metadata != None) and (not self.readonly):
+        elif (self.metadata is not None) and (not self.readonly):
             self.metadata['default'] = None
         return None
 
     def get_default_handle(self):
         """Return the default Person of the database."""
-        if self.metadata != None:
+        if self.metadata is not None:
             return self.metadata.get('default')
         return None
 
@@ -2252,17 +2252,17 @@ class GrampsDbBase(Callback):
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
-        if (self.metadata != None) and (not self.readonly):
+        if (self.metadata is not None) and (not self.readonly):
             self.metadata['mediapath'] = path
 
     def get_mediapath(self):
         """Return the default media path of the database."""
-        if self.metadata != None:
+        if self.metadata is not None:
             return self.metadata.get('mediapath', None)
         return None
 
     def set_column_order(self, col_list, name):
-        if (self.metadata != None) and (not self.readonly):
+        if (self.metadata is not None) and (not self.readonly):
             self.metadata[name] = col_list
 
     def set_person_column_order(self, col_list):
@@ -2321,7 +2321,7 @@ class GrampsDbBase(Callback):
         self.set_column_order(col_list, NOTE_COL_KEY)
 
     def __get_column_order(self, name, default):
-        if self.metadata == None:
+        if self.metadata is None:
             return default
         else:
             cols = self.metadata.get(name, default)
@@ -2496,7 +2496,7 @@ class GrampsDbBase(Callback):
 
 
         # Find which tables to iterate over
-        if (include_classes == None):
+        if (include_classes is None):
             the_tables = primary_tables.keys()
         else:
             the_tables = include_classes
@@ -2627,7 +2627,7 @@ class Transaction:
         """
         self.last = self.db.append(
             cPickle.dumps((obj_type, handle, old_data, new_data), 1))
-        if self.first == None:
+        if self.first is None:
             self.first = self.last
 
     def get_recnos(self):

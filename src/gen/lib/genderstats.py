@@ -44,7 +44,7 @@ class GenderStats:
     indicating the gender of the person.
     """
     def __init__ (self, stats={}):
-        if stats == None:
+        if stats is None:
             self.stats = {}
         else:
             self.stats = stats

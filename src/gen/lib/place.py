@@ -95,7 +95,7 @@ class Place(SourceBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         @rtype: tuple
         """
 
-        if self.main_loc == None or self.main_loc.serialize() == _EMPTY_LOC:
+        if self.main_loc is None or self.main_loc.serialize() == _EMPTY_LOC:
             main_loc = None
         else:
             main_loc = self.main_loc.serialize()

@@ -76,7 +76,7 @@ def cite_source(bibliography, obj):
             first = 0
             (cindex, key) = bibliography.add_reference(ref)
             txt += "%d" % (cindex + 1)
-            if key != None:
+            if key is not None:
                 txt += key
     return txt
 

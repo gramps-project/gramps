@@ -345,12 +345,12 @@ class CSVParser:
         return data
 
     def lookup(self, type, id):
-        if id == None: return None
+        if id is None: return None
         if type == "family":
             if id.startswith("[") and id.endswith("]"):
                 id = id[1:-1]
                 db_lookup = self.db.get_family_from_gramps_id(id)
-                if db_lookup == None:
+                if db_lookup is None:
                     return self.lookup(type, id)
                 else:
                     return db_lookup
@@ -362,7 +362,7 @@ class CSVParser:
             if id.startswith("[") and id.endswith("]"):
                 id = id[1:-1]
                 db_lookup = self.db.get_person_from_gramps_id(id)
-                if db_lookup == None:
+                if db_lookup is None:
                     return self.lookup(type, id)
                 else:
                     return db_lookup
@@ -408,7 +408,7 @@ class CSVParser:
                 header = None # clear headers, ready for next "table"
                 continue
             ######################################
-            if header == None:
+            if header is None:
                 header = map(cleanup_column_name, row)
                 col = {}
                 count = 0
@@ -430,7 +430,7 @@ class CSVParser:
                 note = rd(line_number, row, col, "note")
                 wife = self.lookup("person", wife)
                 husband = self.lookup("person", husband)
-                if husband == None and wife == None:
+                if husband is None and wife is None:
                     # might have children, so go ahead and add
                     print "Warning: no parents on line %d; adding family anyway" % line_number
                 family = self.get_or_create_family(marriage_ref, husband, wife)
@@ -475,7 +475,7 @@ class CSVParser:
             elif "family" in header:
                 # family, child
                 family_ref   = rd(line_number, row, col, "family")
-                if family_ref == None:
+                if family_ref is None:
                     print "Error: no family reference found for family on line %d" % line_number
                     continue # required
                 child   = rd(line_number, row, col, "child")
@@ -484,10 +484,10 @@ class CSVParser:
                 gender  = rd(line_number, row, col, "gender")
                 child = self.lookup("person", child)
                 family = self.lookup("family", family_ref)
-                if family == None:
+                if family is None:
                     print "Error: no matching family reference found for family on line %d" % line_number
                     continue
-                if child == None:
+                if child is None:
                     print "Error: no matching child reference found for family on line %d" % line_number
                     continue
                 # is this child already in this family? If so, don't add
@@ -557,8 +557,8 @@ class CSVParser:
                 #########################################################
                 # if this person already exists, don't create them
                 person = self.lookup("person", person_ref)
-                if person == None:
-                    if surname == None:
+                if person is None:
+                    if surname is None:
                         print "Warning: empty surname for new person on line %d" % line_number
                         surname = ""
                     # new person
@@ -571,31 +571,31 @@ class CSVParser:
                 else:
                     name = person.get_primary_name()
                 #########################################################
-                if person_ref != None:
+                if person_ref is not None:
                     self.storeup("person", person_ref, person)
                 # replace
-                if callname != None:
+                if callname is not None:
                     name.set_call_name(callname)
-                if title != None:
+                if title is not None:
                     name.set_title(title)
-                if prefix != None:
+                if prefix is not None:
                     name.prefix   = prefix
                     name.group_as = '' # HELP? what should I do here?
-                if suffix != None:
+                if suffix is not None:
                     name.set_suffix(suffix)
-                if note != None:
+                if note is not None:
                     # append notes, if previous notes
                     previous_notes = person.get_note()
                     if previous_notes != "":
                         if note not in previous_notes:
                             note = previous_notes + "\n" + note
                     person.set_note(note)
-                if grampsid != None:
+                if grampsid is not None:
                     person.gramps_id = grampsid
-                elif person_ref != None:
+                elif person_ref is not None:
                     if person_ref.startswith("[") and person_ref.endswith("]"):
                         person.gramps_id = person_ref[1:-1]
-                if person.get_gender() == gen.lib.Person.UNKNOWN and gender != None:
+                if person.get_gender() == gen.lib.Person.UNKNOWN and gender is not None:
                     gender = gender.lower()
                     if gender == gender_map[gen.lib.Person.MALE]:
                         gender = gen.lib.Person.MALE
@@ -606,25 +606,25 @@ class CSVParser:
                     person.set_gender(gender)
                 #########################################################
                 # add if new, replace if different
-                if birthdate != None:
+                if birthdate is not None:
                     birthdate = _dp.parse(birthdate)
-                if birthplace != None:
+                if birthplace is not None:
                     new, birthplace = self.get_or_create_place(birthplace)
-                if birthsource != None:
+                if birthsource is not None:
                     new, birthsource = self.get_or_create_source(birthsource)
                 if birthdate or birthplace or birthsource:
                     new, birth = self.get_or_create_event(person, gen.lib.EventType.BIRTH, birthdate, birthplace, birthsource)
                     birth_ref = person.get_birth_ref()
-                    if birth_ref == None:
+                    if birth_ref is None:
                         # new
                         birth_ref = gen.lib.EventRef()
                     birth_ref.set_reference_handle( birth.get_handle())
                     person.set_birth_ref( birth_ref)
-                if deathdate != None:
+                if deathdate is not None:
                     deathdate = _dp.parse(deathdate)
-                if deathplace != None:
+                if deathplace is not None:
                     new, deathplace = self.get_or_create_place(deathplace)
-                if deathsource != None:
+                if deathsource is not None:
                     new, deathsource = self.get_or_create_source(deathsource)
                 if deathdate or deathplace or deathsource or deathcause:
                     new, death = self.get_or_create_event(person, gen.lib.EventType.DEATH, deathdate, deathplace, deathsource)
@@ -632,7 +632,7 @@ class CSVParser:
                         death.set_description(deathcause)
                         self.db.commit_event(death, self.trans)
                     death_ref = person.get_death_ref()
-                    if death_ref == None:
+                    if death_ref is None:
                         # new
                         death_ref = gen.lib.EventRef()
                     death_ref.set_reference_handle(death.get_handle())

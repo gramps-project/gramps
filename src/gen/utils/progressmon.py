@@ -83,14 +83,14 @@ class ProgressMonitor(object):
         self._title = title
         self._popup_time = popup_time
         
-        if self._popup_time == None:
+        if self._popup_time is None:
             self._popup_time = self.__class__.__default_popup_time
             
         self._status_stack = [] # list of current status objects
         self._dlg = None
     
     def _get_dlg(self):
-        if self._dlg == None:
+        if self._dlg is None:
             self._dlg = self._dialog_class(self._dialog_class_params,
                                            self._title)
             
@@ -134,7 +134,7 @@ class ProgressMonitor(object):
         if facade.active:
             dlg = self._get_dlg()
             
-            if facade.pbar_idx == None:
+            if facade.pbar_idx is None:
                 facade.pbar_idx = dlg.add(facade.status_obj)
          
             dlg.show()

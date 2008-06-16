@@ -343,7 +343,7 @@ class Callback(object):
             self._current_signals.append(signal_name)
 
             # check that args is a tuple. This is a common programming error.
-            if not (isinstance(args, tuple) or args == None):
+            if not (isinstance(args, tuple) or args is None):
                 self._warn("Signal emitted with argument that is not a tuple.\n"
                            "  emit() takes two arguments, the signal name and a \n"
                            "  tuple that contains the arguments that are to be \n"
@@ -359,7 +359,7 @@ class Callback(object):
 
             # type check arguments
             arg_types = self.__signal_map[signal_name]
-            if arg_types == None and len(args) > 0:
+            if arg_types is None and len(args) > 0:
                 self._warn("Signal emitted with "
                            "wrong number of args: %s\n"
                            "         from: file: %s\n"
@@ -378,7 +378,7 @@ class Callback(object):
                                % ((str(signal_name), ) + inspect.stack()[1][1:4]))
                     return
 
-                if arg_types != None:
+                if arg_types is not None:
                     for i in range(0, len(arg_types)):
                         if not isinstance(args[i], arg_types[i]):
                             self._warn("Signal emitted with "

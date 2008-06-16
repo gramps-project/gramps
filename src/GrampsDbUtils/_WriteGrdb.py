@@ -49,7 +49,7 @@ def cli_callback(val):
 
 def exportData(database, filename, person=None, callback=None, cl=False):
     
-    if callback == None:
+    if callback is None:
         callback = cli_callback
 
     filename = os.path.normpath(filename)

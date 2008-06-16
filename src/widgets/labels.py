@@ -72,7 +72,7 @@ def realize_cb(widget):
 class LinkLabel(gtk.EventBox):
 
     def __init__(self, label, func, handle, decoration=None):
-        if decoration == None:
+        if decoration is None:
             relation_display_theme = Config.get(Config.RELATION_DISPLAY_THEME)
             if relation_display_theme == "CLASSIC":
                 decoration = 'underline="single"'

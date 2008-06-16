@@ -107,7 +107,7 @@ class VCardParser:
         try:
             while 1:
                 line = self.get_next_line()
-                if line == None:
+                if line is None:
                     break
                 if line == "":
                     continue

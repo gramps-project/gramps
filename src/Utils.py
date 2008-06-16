@@ -138,7 +138,7 @@ def fix_encoding(value):
 
 def xml_lang():
     loc = locale.getlocale()
-    if loc[0] == None:
+    if loc[0] is None:
         return ""
     else:
         return loc[0].replace('_', '-')
@@ -578,7 +578,7 @@ def probably_alive(person, db, current_date=None, limit=0):
                    (defaults to today)
     limit        - number of years to check beyond death_date
     """
-    if current_date == None:
+    if current_date is None:
         current_date = gen.lib.Date()
         # yr, mon, day:
         current_date.set_yr_mon_day(*time.localtime(time.time())[0:3])

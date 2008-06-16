@@ -705,7 +705,7 @@ class MergePeople:
 ##                 fam.set_father_handle(self.p1)
 ##             if self.p2 == fam.get_mother_handle():
 ##                 fam.set_mother_handle(self.p1)
-##             if fam.get_father_handle() == None and fam.get_mother_handle() == None:
+##             if fam.get_father_handle() is None and fam.get_mother_handle() is None:
 ##                 self.delete_empty_family(fam, trans)
 ##             data = cursor.next()
 

@@ -1060,7 +1060,7 @@ class ScratchPadListView:
 
         self._widget.unset_rows_drag_source()
 
-        if node != None:
+        if node is not None:
             o = model.get_value(node,1)
 
             targets = [ScratchPadListView.LOCAL_DRAG_TARGET] + \

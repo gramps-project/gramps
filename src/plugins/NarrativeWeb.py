@@ -1120,7 +1120,7 @@ class MediaPage(BasePage):
         if mime_type:
             note_only = False
             newpath = self.copy_source_file(handle, photo)
-            target_exists = newpath != None
+            target_exists = newpath is not None
         else:
             note_only = True
             target_exists = False
@@ -1411,7 +1411,7 @@ class SurnameListPage(BasePage):
     def surname_link(self, of, fname, name, opt_val=None, up=False):
         url = self.report.build_url_fname_html(fname, 'srn', up)
         of.write('<a href="%s">%s' % (url, name))
-        if opt_val != None:
+        if opt_val is not None:
             of.write('&nbsp;(%d)' % opt_val)
         of.write('</a>')
 
@@ -2540,7 +2540,7 @@ class NavWebReport(Report):
     def write_report(self):
         if not self.use_archive:
             dir_name = self.target_path
-            if dir_name == None:
+            if dir_name is None:
                 dir_name = os.getcwd()
             elif not os.path.isdir(dir_name):
                 parent_dir = os.path.dirname(dir_name)

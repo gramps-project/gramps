@@ -187,7 +187,7 @@ class SimpleTable:
             elif isinstance(item, gen.lib.Person):
                 name = self.access.name(item)
                 retval.append(name)
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Person', item.handle)
             elif isinstance(item, gen.lib.Family): 
                 father = self.access.father(item)
@@ -203,32 +203,32 @@ class SimpleTable:
                 else:
                     text += " " + _("Unknown mother")
                 retval.append(text)
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Family', item.handle)
             elif isinstance(item, gen.lib.Source): 
                 retval.append(_('Source'))
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Souce', item.handle)
             elif isinstance(item, gen.lib.Event):
                 name = self.access.event_type(item)
                 retval.append(name)
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Event', item.handle)
             elif isinstance(item, gen.lib.MediaObject):
                 retval.append(_('Media'))
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Media', item.handle)
             elif isinstance(item, gen.lib.Place):
                 retval.append(_('Place'))
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Place', item.handle)
             elif isinstance(item, gen.lib.Repository):
                 retval.append(_('Repository'))
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Repository', item.handle)
             elif isinstance(item, gen.lib.Note):
                 retval.append(_('Note'))
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Note', item.handle)
             elif isinstance(item, gen.lib.Date):
                 text = DateHandler.displayer.display(item)
@@ -242,7 +242,7 @@ class SimpleTable:
                     invalid_date_format = Config.get(Config.INVALID_DATE_FORMAT)
                     self.set_cell_markup(col, row,
                                          invalid_date_format % text)
-                if (self.__link_col == col or link == None):
+                if (self.__link_col == col or link is None):
                     link = ('Date', item)
             elif isinstance(item, gen.lib.Span):
                 text = str(item)
@@ -363,14 +363,14 @@ class SimpleTable:
         has formatting), or just the plain data.
         """
         if x in self.__cell_markup:
-            if y == None: 
+            if y is None: 
                 return True # markup for this column
             elif y in self.__cell_markup[x]:
                 return self.__cell_markup[x][y]
             else:
                 return cgi.escape(data)
         else:
-            if y == None: 
+            if y is None: 
                 return False # no markup for this column
             else:
                 return data

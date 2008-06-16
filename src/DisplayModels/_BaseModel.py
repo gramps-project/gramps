@@ -271,7 +271,7 @@ class BaseModel(gtk.GenericTreeModel):
             self.node_map.set_path_map([ x[1] for x in self.sort_data ])
 
             index = self.node_map.get_path(handle)
-            if index != None:
+            if index is not None:
                 node = self.get_iter(index)
                 self.row_inserted(index, node)
 
@@ -332,23 +332,23 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_iter_children(self, node):
         """Return the first child of the node"""
-        if node == None and len(self.node_map):
+        if node is None and len(self.node_map):
             return self.node_map.get_first_handle()
         return None
 
     def on_iter_has_child(self, node):
         """returns true if this node has children"""
-        if node == None:
+        if node is None:
             return len(self.node_map) > 0
         return False
 
     def on_iter_n_children(self, node):
-        if node == None:
+        if node is None:
             return len(self.node_map)
         return 0
 
     def on_iter_nth_child(self, node, n):
-        if node == None:
+        if node is None:
             return self.node_map.get_handle(n)
         return None
 

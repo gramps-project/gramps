@@ -151,7 +151,7 @@ class DateDisplayFI(DateDisplay):
             text = u"%s - %s" % (d1, d2)
         elif mod == Date.MOD_RANGE:
             stop = date.get_stop_date()
-            if start[0] == 0 and start[1] == 0 and stop[0] == 0 and stop[1] == 0:
+            if start[0] == start[1] == 0 and stop[0] == 0 and stop[1] == 0:
                 d1 = self.display_cal[cal](start)
                 d2 = self.display_cal[cal](stop)
                 text = u"vuosien %s ja %s välillä" % (d1, d2)

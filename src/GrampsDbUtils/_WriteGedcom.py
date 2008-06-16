@@ -1111,7 +1111,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         +2 MEDI <SOURCE_MEDIA_TYPE> {0:1}
         """
 
-        if reporef.ref == None:
+        if reporef.ref is None:
             return
 
         repo = self.dbase.get_repository_from_handle(reporef.ref)
@@ -1339,7 +1339,7 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         """
 
         src_handle = ref.get_reference_handle()
-        if src_handle == None:
+        if src_handle is None:
             return
 
         src = self.dbase.get_source_from_handle(src_handle)

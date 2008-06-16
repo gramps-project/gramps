@@ -106,7 +106,7 @@ class FilterParser(handler.ContentHandler):
             self.a.append(attrs['value'])
 
     def endElement(self, tag):
-        if tag == "rule" and self.r != None:
+        if tag == "rule" and self.r is not None:
             if len(self.r.labels) < len(self.a):
                 print "WARNING: Invalid number of arguments in filter '%s'!" %\
                       self.f.get_name()

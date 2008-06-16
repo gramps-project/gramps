@@ -177,7 +177,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Special cases: relation strings "", "undefined" and "spouse".
         """
 
-        if orig_person == None:
+        if orig_person is None:
             return ("undefined",[])
     
         if orig_person.get_handle() == other_person.get_handle():

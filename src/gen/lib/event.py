@@ -255,7 +255,7 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         @returns: True if the Events are equal
         @rtype: bool
         """
-        if other == None:
+        if other is None:
             other = Event (None)
 
         if self.__type != other.__type or \
@@ -314,3 +314,4 @@ class Event(SourceBase, NoteBase, MediaBase, AttributeBase,
         """
         return self.__description
     description = property(get_description, set_description, None, 'Returns or sets description of the event')
+

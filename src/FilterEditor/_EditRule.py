@@ -307,7 +307,7 @@ class MyID(gtk.HBox):
         selector = selector_factory(obj_class)
         inst = selector(self.dbstate, self.uistate, self.track)
         val = inst.run()
-        if val == None:
+        if val is None:
             self.set_text('')
         else:
             self.set_text(val.get_gramps_id())

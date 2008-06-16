@@ -96,7 +96,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             lSP = len(namesplitSP)
             namesplitHY= name.split('-')
             lHY = len(namesplitHY)
-            if lSP == 1 and lHY == 1:
+            if lSP == lHY == 1:
                 if name != name.capitalize():
                     # Single surname without hyphen(s)
                     self.name_list.append(name)
@@ -156,7 +156,7 @@ class ChangeNames(Tool.BatchTool, ManagedWindow.ManagedWindow):
             namesep = '-'
             namesplitSP = name.replace(namesep,' ').split()
             lSP= len(namesplitSP)
-        if lSP == 1 and lHY == 1:
+        if lSP == lHY == 1:
             #if name != name.capitalize():
             # Single surname without space(s) or hyphen(s), normal case
             return name.capitalize()

@@ -188,7 +188,7 @@ class GeneWebWriter:
             self.images = self.option_box.images
             self.images_path = self.option_box.images_path
             
-            if self.option_box.cfilter == None:
+            if self.option_box.cfilter is None:
                 for p in self.db.get_person_handles(sort_handles=False):
                     self.plist[p] = 1
             else:

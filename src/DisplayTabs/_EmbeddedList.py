@@ -241,7 +241,7 @@ class EmbeddedList(ButtonTab):
 
     def _find_row(self, x, y):
         row = self.tree.get_path_at_pos(x, y)
-        if row == None:
+        if row is None:
             return len(self.get_data())
         else:
             return row[0][0]

@@ -326,15 +326,15 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
         self.indent = ltxstyle.leftIndent
         self.FLindent = ltxstyle.firstLineIndent
     
-        if self.indent != None and not self.in_table:
+        if self.indent is not None and not self.in_table:
             myspace = '%scm' % str(self.indent)
             self.f.write('\\grampsindent{%s}\n' % myspace)
             self.fix_indent = 1
     
-            if leader != None and not self.in_list:
+            if leader is not None and not self.in_list:
                 self.f.write('\\begin{enumerate}\n')
                 self.in_list = 1
-            if leader != None:
+            if leader is not None:
                 # try obtaining integer
                 leader_1 = leader[:-1]
                 num = roman2arabic(leader_1)
@@ -356,7 +356,7 @@ class LaTeXDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
                 self.f.write('  \\addtocounter{enumi}{-1}\n')
                 self.f.write('  \\item ')
 
-        if leader == None and not self.in_list and not self.in_table:
+        if leader is None and not self.in_list and not self.in_table:
             self.f.write('\n')
         
             self.f.write('%s ' % self.fbeg)

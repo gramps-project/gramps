@@ -73,7 +73,7 @@ def delete_person_from_database(db, person, trans):
 def remove_family_relationships(db, family_handle, trans=None):
     family = db.get_family_from_handle(family_handle)
 
-    if trans == None:
+    if trans is None:
         need_commit = True
         trans = db.transaction_begin()
     else:
@@ -105,7 +105,7 @@ def remove_parent_from_family(db, person_handle, family_handle, trans=None):
     person = db.get_person_from_handle(person_handle)
     family = db.get_family_from_handle(family_handle)
 
-    if trans == None:
+    if trans is None:
         need_commit = True
         trans = db.transaction_begin()
     else:
@@ -144,7 +144,7 @@ def remove_child_from_family(db, person_handle, family_handle, trans=None):
     person.remove_parent_family_handle(family_handle)
     family.remove_child_handle(person_handle)
 
-    if trans == None:
+    if trans is None:
         need_commit = True
         trans = db.transaction_begin()
     else:
@@ -186,7 +186,7 @@ def add_child_to_family(db, family, child,
     family.add_child_ref(cref)
     child.add_parent_family_handle(family.handle)
 
-    if trans == None:
+    if trans is None:
         need_commit = True
         trans = db.transaction_begin()
     else:

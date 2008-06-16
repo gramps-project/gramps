@@ -231,7 +231,7 @@ class ListModel:
         Return the row at the specified (x,y) coordinates
         """
         path = self.tree.get_path_at_pos(xpos, ypos)
-        if path == None:
+        if path is None:
             return self.count -1
         else:
             return path[0][0]-1

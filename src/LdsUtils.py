@@ -66,14 +66,14 @@ class LdsTemples:
         returns True if the code is a valid LDS temple code according
         to the lds.xml file
         """
-        return self.__temple_to_abrev.get(code) != None
+        return self.__temple_to_abrev.get(code) is not None
 
     def is_valid_name(self, name):
         """
         returns True if the name matches a temple name (not code) in
         the lds.xml file
         """
-        return self.__temple_codes.get(name) != None
+        return self.__temple_codes.get(name) is not None
 
     def code(self, name):
         """
@@ -110,7 +110,7 @@ class LdsTemples:
         text = ''.join(self.__tlist)
 
         if tag == "code":
-            if self.__temple_codes.get(self.__current_temple) == None:
+            if self.__temple_codes.get(self.__current_temple) is None:
                 self.__temple_codes[self.__current_temple] = text
             self.__temple_to_abrev[text] = self.__current_temple
 

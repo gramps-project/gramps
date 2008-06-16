@@ -112,7 +112,7 @@ class DateDisplay:
             ]
 
         self.verify_format(format)
-        if format == None:
+        if format is None:
             self.format = 0
         else:
             self.format = format
@@ -177,7 +177,7 @@ class DateDisplay:
         # YYYY-MM-DD (ISO)
         year = self._slash_year(date_val[2], date_val[3])
         # This produces 1789, 1789-00-11 and 1789-11-00 for incomplete dates.
-        if date_val[0] == 0 and date_val[1] == 0:
+        if date_val[0] == date_val[1] == 0:
             # No month and no day -> year
             value = year
         else:
@@ -203,7 +203,7 @@ class DateDisplay:
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
-                if date_val[0] == 0 and date_val[1] == 0:
+                if date_val[0] == date_val[1] == 0:
                     value = str(date_val[2])
                 else:
                     value = self._tformat.replace('%m', str(date_val[1]))

@@ -115,7 +115,7 @@ class GenericFilter:
     def check_func(self, db, id_list, task):
         final_list = []
         
-        if id_list == None:
+        if id_list is None:
             cursor = self.get_cursor(db)
             data = cursor.first()
             while data:
@@ -135,7 +135,7 @@ class GenericFilter:
     def check_and(self, db, id_list):
         final_list = []
         flist = self.flist
-        if id_list == None:
+        if id_list is None:
             cursor = self.get_cursor(db)
             data = cursor.first()
             while data:

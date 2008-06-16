@@ -245,7 +245,7 @@ class CLIDbManager:
         os.mkdir(new_path)
         path_name = os.path.join(new_path, NAME_FILE)
 
-        if title == None:
+        if title is None:
             name_list = [ name[0] for name in self.current_names ]
             title = find_next_db_name(name_list)
         

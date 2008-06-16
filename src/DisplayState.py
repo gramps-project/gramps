@@ -368,7 +368,7 @@ class DisplayState(gen.utils.Callback):
         self.relationship.connect_db_signals(dbstate)
         default_person = dbstate.db.get_default_person()
         active = dbstate.get_active_person()
-        if default_person == None or active == None:
+        if default_person is None or active is None:
             return u''
         if default_person.handle == self.disprel_defpers and \
                 active.handle == self.disprel_active :
@@ -428,7 +428,7 @@ class DisplayState(gen.utils.Callback):
 
     def modify_statusbar(self, dbstate, active=None):
         self.status.pop(self.status_id)
-        if dbstate.active == None:
+        if dbstate.active is None:
             self.status.push(self.status_id, "")
         else:
             person = dbstate.get_active_person()

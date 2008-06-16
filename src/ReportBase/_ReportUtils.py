@@ -1436,7 +1436,7 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
     if dhandle:
         ddata = db.get_event_from_handle(dhandle).get_date_object()
     else:
-        if today != None:
+        if today is not None:
             ddata = today
         else:
             return (-1, -1)
@@ -1461,7 +1461,7 @@ def estimate_age(db, person, end_handle=None, start_handle=None, today=_TODAY):
         else:
             return high[2] - low[2]
 
-    if bstop == Date.EMPTY and dstop == Date.EMPTY:
+    if bstop == dstop == Date.EMPTY:
         lower = _calc_diff(bstart, dstart)
         age = (lower, lower)
     elif bstop == Date.EMPTY:
@@ -1504,7 +1504,7 @@ def estimate_age_on_date(db, person, ddata=_TODAY):
             return high[2] - low[2] - 1
         else:
             return high[2] - low[2]
-    if bstop == Date.EMPTY and dstop == Date.EMPTY:
+    if bstop == dstop == Date.EMPTY:
         lower = _calc_diff(bstart, dstart)
         age = [lower, lower]
     elif bstop == Date.EMPTY:
@@ -1655,7 +1655,7 @@ def born_died_str(database, person, endnotes=None, name_object=None, person_name
     if not name_object:
         name_object = person.get_primary_name()
 
-    if person_name == None:
+    if person_name is None:
         person_name = _nd.display_name(name_object)
     elif person_name == 0:
         if person.get_gender() == Person.MALE:
@@ -2140,7 +2140,7 @@ def born_str(database, person, person_name=None, verbose=True,
     """
 
     name_index = 1
-    if person_name == None:
+    if person_name is None:
         person_name = _nd.display(person)
     elif person_name == 0:
         name_index = 0
@@ -2238,7 +2238,7 @@ def died_str(database, person, person_name=None, verbose=True,
     """
 
     name_index = 1
-    if person_name == None:
+    if person_name is None:
         person_name = _nd.display(person)
     elif person_name == 0:
         name_index = 0
@@ -2321,7 +2321,7 @@ def buried_str(database, person, person_name=None, empty_date="", empty_place=""
     """
 
     name_index = 0
-    if person_name == None:
+    if person_name is None:
         person_name = _nd.display(person)
     elif person_name == 0:
         name_index = 1
@@ -2606,7 +2606,7 @@ def get_person_mark(db, person):
         deathEvt = db.get_event_from_handle(death_ref.ref)
         death = DateHandler.get_date(deathEvt)
 
-    if birth == " " and death == " ":
+    if birth == death == " ":
         key = name
     else:
         key = "%s (%s - %s)" % (name, birth, death)

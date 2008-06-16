@@ -847,7 +847,7 @@ class ODFDoc(BaseDoc.BaseDoc, BaseDoc.TextDoc, BaseDoc.DrawDoc):
             self.cntnt.write('<text:h text:style-name="')
             self.cntnt.write(name)
             self.cntnt.write('" text:outline-level="' + str(self.level) + '">')
-        if leader != None:
+        if leader is not None:
             self.cntnt.write(leader)
             self.cntnt.write('<text:tab/>')
         self.new_cell = 0

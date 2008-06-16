@@ -990,9 +990,9 @@ class GedcomParser(UpdateCallback):
         # if we haven't we need to get a new GRAMPS ID
         
         intid = self.place_names.get(title)
-        if intid == None:
+        if intid is None:
             intid = self.lid2id.get(title)
-            if intid == None:
+            if intid is None:
                 new_id = self.dbase.find_next_place_gramps_id()
             else:
                 new_id = None
@@ -2382,7 +2382,7 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(state, self.family_func, self.__family_even)
 
         # handle addresses attached to families
-        if state.addr != None:
+        if state.addr is not None:
             father_handle = family.get_father_handle()
             father = self.dbase.get_person_from_handle(father_handle)
             if father:
@@ -4286,7 +4286,7 @@ class GedcomParser(UpdateCallback):
                 self.__warn(_("Could not import %s") % filename)
                 path = filename.replace('\\', os.path.sep)
             photo_handle = self.media_map.get(path)
-            if photo_handle == None:
+            if photo_handle is None:
                 photo = gen.lib.MediaObject()
                 photo.set_path(path)
                 photo.set_description(title)

@@ -136,7 +136,7 @@ def make_requested_gramplet(viewpage, name, opts, dbstate, uistate):
         msg = None
         if gui.pui:
             msg = gui.pui.tooltip
-        if msg == None:
+        if msg is None:
             msg = _("Drag Properties Button to move and click it for setup")
         if msg:
             gui.tooltips = gtk.Tooltips()
@@ -415,7 +415,7 @@ class Gramplet(object):
             if iter.has_tag(tag):
                 if link_type == 'Person':
                     person = self.dbstate.db.get_person_from_handle(handle)
-                    if person != None:
+                    if person is not None:
                         if event.button == 1: # left mouse
                             if event.type == gtk.gdk._2BUTTON_PRESS: # double
                                 try:
@@ -726,7 +726,7 @@ class MyScrolledWindow(gtk.ScrolledWindow):
         # Hack to get around show_all that shows hidden items
         # do once, the first time showing
         if self.viewpage:
-            gramplets = [g for g in self.viewpage.gramplet_map.values() if g != None]
+            gramplets = [g for g in self.viewpage.gramplet_map.values() if g is not None]
             self.viewpage = None
             for gramplet in gramplets:
                 gramplet.gvoptions.hide()
@@ -820,7 +820,7 @@ class GrampletView(PageView.PersonNavView):
         """
         Detach all of the mainframe gramplets from the columns.
         """
-        gramplets = [g for g in self.gramplet_map.values() if g != None]
+        gramplets = [g for g in self.gramplet_map.values() if g is not None]
         for gramplet in gramplets:
             if (gramplet.state == "windowed" or gramplet.state == "closed"):
                 continue
@@ -832,7 +832,7 @@ class GrampletView(PageView.PersonNavView):
         """
         Place the gramplet mainframes in the columns.
         """
-        gramplets = [g for g in self.gramplet_map.values() if g != None]
+        gramplets = [g for g in self.gramplet_map.values() if g is not None]
         # put the gramplets where they go:
         # sort by row
         gramplets.sort(lambda a, b: cmp(a.row, b.row))
@@ -913,7 +913,7 @@ class GrampletView(PageView.PersonNavView):
             for gframe in self.columns[col]:
                 gramplet = self.frame_map[str(gframe)]
                 opts = get_gramplet_options_by_name(gramplet.name)
-                if opts != None:
+                if opts is not None:
                     base_opts = opts.copy()
                     for key in base_opts:
                         if key in gramplet.__dict__:
@@ -940,7 +940,7 @@ class GrampletView(PageView.PersonNavView):
                 row += 1
         for gramplet in self.detached_gramplets:
             opts = get_gramplet_options_by_name(gramplet.name)
-            if opts != None:
+            if opts is not None:
                 base_opts = opts.copy()
                 for key in base_opts:
                     if key in gramplet.__dict__:
@@ -1093,7 +1093,7 @@ class GrampletView(PageView.PersonNavView):
             if gramplet.title == name:
                 #gramplet.state = "maximized"
                 self.closed_gramplets.remove(gramplet)
-                if self._popup_xy != None:
+                if self._popup_xy is not None:
                     self.drop_widget(self.widget, gramplet, 
                                      self._popup_xy[0], self._popup_xy[1], 0)
                 else:
@@ -1122,7 +1122,7 @@ class GrampletView(PageView.PersonNavView):
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
-            if self._popup_xy != None:
+            if self._popup_xy is not None:
                 self.drop_widget(self.widget, gramplet, 
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
@@ -1132,7 +1132,7 @@ class GrampletView(PageView.PersonNavView):
         tname = obj.get_child().get_label()
         all_opts = get_gramplet_options_by_tname(tname)
         name = all_opts["name"]
-        if all_opts == None:
+        if all_opts is None:
             print "Unknown gramplet type: '%s'; bad gramplets.ini file?" % name
             return
         if "title" not in all_opts:
@@ -1159,7 +1159,7 @@ class GrampletView(PageView.PersonNavView):
             # set height on gramplet.scrolledwindow here:
             gramplet.scrolledwindow.set_size_request(-1, gramplet.height)
             ## now drop it in right place
-            if self._popup_xy != None:
+            if self._popup_xy is not None:
                 self.drop_widget(self.widget, gramplet, 
                                  self._popup_xy[0], self._popup_xy[1], 0)
             else:
@@ -1223,7 +1223,7 @@ class GrampletView(PageView.PersonNavView):
             ag_menu = self.uistate.uimanager.get_widget('/Popup/AddGramplet')
             if ag_menu:
                 qr_menu = ag_menu.get_submenu()
-                if qr_menu == None:
+                if qr_menu is None:
                     qr_menu = gtk.Menu()
                     names = [AVAILABLE_GRAMPLETS[key]["tname"] for key 
                              in AVAILABLE_GRAMPLETS.keys()]
@@ -1235,7 +1235,7 @@ class GrampletView(PageView.PersonNavView):
             rg_menu = self.uistate.uimanager.get_widget('/Popup/RestoreGramplet')
             if rg_menu:
                 qr_menu = rg_menu.get_submenu()
-                if qr_menu != None:
+                if qr_menu is not None:
                     rg_menu.remove_submenu()
                 names = []
                 for gramplet in self.closed_gramplets:
@@ -1255,7 +1255,7 @@ class GrampletView(PageView.PersonNavView):
         return False
 
     def on_delete(self):
-        gramplets = [g for g in self.gramplet_map.values() if g != None]
+        gramplets = [g for g in self.gramplet_map.values() if g is not None]
         for gramplet in gramplets:
             # this is the only place where the gui runs user code directly
             if gramplet.pui:

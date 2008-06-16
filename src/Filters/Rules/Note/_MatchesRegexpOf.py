@@ -58,6 +58,6 @@ class MatchesRegexpOf(Rule):
     def apply(self, db, note):
         """ Apply the filter """
         text = unicode(note.get())
-        if self.match.match(text) != None:
+        if self.match.match(text) is not None:
             return True
         return False

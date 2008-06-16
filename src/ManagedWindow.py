@@ -394,7 +394,7 @@ class ManagedWindow:
         return id(obj)
 
     def define_glade(self, top_module, glade_file=None):
-        if glade_file == None:
+        if glade_file is None:
             glade_file = const.GLADE_FILE
         self._gladeobj = glade.XML(glade_file, top_module, "gramps")
         return self._gladeobj

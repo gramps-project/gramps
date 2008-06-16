@@ -258,7 +258,7 @@ class CSVWriter:
             self.include_marriages = self.option_box.include_marriages
             self.include_children = self.option_box.include_children
             
-            if self.option_box.cfilter == None:
+            if self.option_box.cfilter is None:
                 for p in self.db.get_person_handles(sort_handles=False):
                     self.plist[p] = 1
             else:

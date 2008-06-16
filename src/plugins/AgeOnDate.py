@@ -62,10 +62,10 @@ def run(database, document, date):
         if birth_date:
             if (birth_date.get_valid() and birth_date < date and
                 birth_date.get_year() != 0 and
-                ((death_date == None) or (death_date > date))):
+                ((death_date is None) or (death_date > date))):
                 diff_tuple = (date - birth_date)
-                if ((death_date != None) or
-                    (death_date == None and 
+                if ((death_date is not None) or
+                    (death_date is None and 
                      diff_tuple[0] <= Config.get(Config.MAX_AGE_PROB_ALIVE))):
                     birth_str = str(diff_tuple)
                     birth_sort = int(diff_tuple)

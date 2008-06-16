@@ -78,7 +78,7 @@ class RelationshipPathBetweenBookmarks(Rule):
             person = self.db.get_person_from_handle(handle)
         except:
             return None
-        if person == None:
+        if person is None:
             return None
         try:
             name = person.get_primary_name().get_name()
@@ -96,11 +96,11 @@ class RelationshipPathBetweenBookmarks(Rule):
         for handle in generation:
             try:
                 person = self.db.get_person_from_handle(handle)
-                if person == None:
+                if person is None:
                     continue
                 fam_id = person.get_main_parents_family_handle()
                 family = self.db.get_family_from_handle(fam_id)
-                if family == None:
+                if family is None:
                     continue
                 fhandle = family.get_father_handle()
                 mhandle = family.get_mother_handle()

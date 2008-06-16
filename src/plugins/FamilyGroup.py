@@ -407,7 +407,7 @@ class FamilyGroup(Report):
                     spouse_count = spouse_count + 1
 
         self.doc.start_row()
-        if spouse_count != 0 or self.missingInfo or death != None or birth != None:
+        if spouse_count != 0 or self.missingInfo or death is not None or birth is not None:
             self.doc.start_cell('FGR-TextChild1')
         else:
             self.doc.start_cell('FGR-TextChild2')
@@ -431,13 +431,13 @@ class FamilyGroup(Report):
         self.doc.end_cell()
         self.doc.end_row()
 
-        if self.missingInfo or birth != None:
-            if spouse_count != 0 or self.missingInfo or death != None:
+        if self.missingInfo or birth is not None:
+            if spouse_count != 0 or self.missingInfo or death is not None:
                 self.dump_child_event('FGR-TextChild1',_('Birth'),birth)
             else:
                 self.dump_child_event('FGR-TextChild2',_('Birth'),birth)
                 
-        if self.missingInfo or death != None:
+        if self.missingInfo or death is not None:
             if spouse_count == 0 or not self.incChiMar:
                 self.dump_child_event('FGR-TextChild2',_('Death'),death)
             else:

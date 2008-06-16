@@ -270,7 +270,7 @@ class DBI:
             else:
                 raise AttributeError("unknown state: '%s'" % state)
             i += 1
-        if self.table == None:
+        if self.table is None:
             raise AttributeError("malformed query: no table in '%s'\n" % self.query)
 
     def close(self):

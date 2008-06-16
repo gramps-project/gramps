@@ -262,7 +262,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def __has_handle(self, table, handle):
         try:
-            return table.get(str(handle), txn=self.txn) != None
+            return table.get(str(handle), txn=self.txn) is not None
         except DBERRS, msg:
             self.__log_error()
             raise Errors.DbError(msg)
@@ -537,7 +537,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             # Start transaction
             the_txn = self.env.txn_begin()
 
-            if gstats == None:
+            if gstats is None:
                 # New database. Set up the current version.
                 self.metadata.put('version', _DBVERSION, txn=the_txn)
             elif not self.metadata.has_key('version'):
@@ -876,7 +876,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
                 data = self.reference_map.get(data)
             else:
                 data = pickle.loads(data)
-            if include_classes == None or \
+            if include_classes is None or \
                    KEY_TO_CLASS_MAP[data[0][0]] in include_classes:
                 yield (KEY_TO_CLASS_MAP[data[0][0]], data[0][1])
                 
@@ -1664,7 +1664,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def undo_reference(self, data, handle):
         try:
-            if data == None:
+            if data is None:
                 self.reference_map.delete(handle, txn=self.txn)
             else:
                 self.reference_map.put(handle, data, txn=self.txn)
@@ -1674,7 +1674,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def undo_data(self, data, handle, db_map, signal_root):
         try:
-            if data == None:
+            if data is None:
                 self.emit(signal_root + '-delete', ([handle],))
                 db_map.delete(handle, txn=self.txn)
             else:

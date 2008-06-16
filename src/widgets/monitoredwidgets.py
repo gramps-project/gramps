@@ -352,7 +352,7 @@ class MonitoredDataType:
                     i = ignore_values.index(key)
                 except ValueError:
                     i = None
-                if (not i==None) and (not ignore_values[i] == default) :
+                if (i is not None) and (not ignore_values[i] == default) :
                     del map[key]
 
         self.sel = AutoComp.StandardCustomSelector(

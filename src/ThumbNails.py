@@ -121,7 +121,7 @@ def __build_thumb_path(path, rectangle=None):
     @returns: full path name to the corresponding thumbnail file.
     """
     extra = ""
-    if rectangle != None:
+    if rectangle is not None:
         extra = "?" + str(rectangle)
     md5_hash = md5.md5(path+extra)
     return os.path.join(const.THUMB_DIR, md5_hash.hexdigest()+'.png')
@@ -158,7 +158,7 @@ def __create_thumbnail_image(src_file, mtype=None, rectangle=None):
             width = pixbuf.get_width()
             height = pixbuf.get_height()
 
-            if rectangle != None:
+            if rectangle is not None:
                 upper_x = min(rectangle[0], rectangle[2])/100.
                 lower_x = max(rectangle[0], rectangle[2])/100.
                 upper_y = min(rectangle[1], rectangle[3])/100.

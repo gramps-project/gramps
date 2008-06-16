@@ -203,7 +203,7 @@ class GalleryTab(ButtonTab):
     def _update_internal_list(self, *obj):
         newlist = []
         node = self.iconmodel.get_iter_first()
-        while node != None:
+        while node is not None:
             newlist.append(self.iconmodel.get_value(node, 2))
             node = self.iconmodel.iter_next(node)
         for i in xrange(len(self.media_list)):

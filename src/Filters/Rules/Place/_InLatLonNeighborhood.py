@@ -59,7 +59,7 @@ class InLatLonNeighborhood(Rule):
                 self.halfheight = float(self.list[2])/2.
             except ValueError :
                 self.halfheight = None
-            if self.halfheight != None and self.halfheight<= 0. :
+            if self.halfheight is not None and self.halfheight<= 0. :
                 self.halfheight = None
         else :
             self.halfheight = -1
@@ -71,7 +71,7 @@ class InLatLonNeighborhood(Rule):
                 self.halfwidth = float(self.list[3])/2.
             except ValueError :
                 self.halfwidth = None
-            if self.halfwidth!=None and self.halfwidth<= 0. :
+            if self.halfwidth is not None and self.halfwidth<= 0. :
                 self.halfwidth = None
         else :
             self.halfwidth = -1
@@ -80,7 +80,7 @@ class InLatLonNeighborhood(Rule):
             
         #we allow a band instead of a triangle
         self.lat, self.lon = PlaceUtils.conv_lat_lon(self.list[0],self.list[1],"D.D8")
-        if self.lat != None and self.lon != None :
+        if self.lat is not None and self.lon is not None :
             self.lat = float(self.lat)
             self.lon = float(self.lon)
         else :
@@ -88,13 +88,13 @@ class InLatLonNeighborhood(Rule):
             
         #we define the two squares we must look in
         #    can be 0, so check on None
-        if self.lat!=None and self.halfheight!=None and self.halfheight != -1 :
+        if self.lat is not None and self.halfheight is not None and self.halfheight != -1 :
             self.S = self.lat + self.halfheight 
             if self.S > 90. : self.S = 90.
             self.N = self.lat - self.halfheight 
             if self.N < -90. : self.N = -90.
         self.doublesquares = False
-        if self.lon!=None and self.halfwidth!=None and self.halfwidth != -1 :
+        if self.lon is not None and self.halfwidth is not None and self.halfwidth != -1 :
             if self.halfwidth >= 180. : 
                 #the entire longitude is allowed, reset values
                 self.lon = 0.
@@ -122,11 +122,11 @@ class InLatLonNeighborhood(Rule):
             return False
         
         # when given, must be valid
-        if self.lat == None or self.lon == None :
+        if self.lat is None or self.lon is None :
             return False
         
         # if height/width given, they must be valid
-        if self.halfheight == None or self.halfwidth == None :
+        if self.halfheight is None or self.halfwidth is None :
             return False
         
         #now we know at least one is given in the filter and is valid

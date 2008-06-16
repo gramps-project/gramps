@@ -124,13 +124,13 @@ class EditMediaRef(EditReference):
         
         coord = self.source_ref.get_rectangle()
         #upgrade path: set invalid (from eg old db) to none
-        if coord is not None and ((coord[0] == None and coord[1] == None
-                and coord[2] == None and coord[3] == None) or (
-            coord[0] == 0 and coord[1] == 0
-                and coord[2] == 100 and coord[3] == 100) or (
-            coord[0] == coord[2] and coord[1] == coord[3]
-           )):
+        if coord is not None and (
+            (coord[0] is coord[1] is coord[2] is coord[3] is None) or \
+            (coord[0] == coord[1] == 0 and coord[2] == coord[3] == 100) or \
+            (coord[0] == coord[2] and coord[1] == coord[3])
+            ):
             coord = None
+
         self.rectangle = coord
         self.subpixmap = self.top.get_widget("subpixmap")
 
@@ -474,13 +474,13 @@ class EditMediaRef(EditReference):
             self.top.get_widget("corner2_y").get_value_as_int(),
             )
         #do not set unset or invalid coord
-        if (coord[0] == None and coord[1] == None
-                and coord[2] == None and coord[3] == None) or (
-            coord[0] == 0 and coord[1] == 0
-                and coord[2] == 100 and coord[3] == 100) or (
-            coord[0] == coord[2] and coord[1] == coord[3]
-           ):
+        if coord is not None and (
+            (coord[0] is coord[1] is coord[2] is coord[3] is None) or \
+            (coord[0] == coord[1] == 0 and coord[2] == coord[3] == 100) or \
+            (coord[0] == coord[2] and coord[1] == coord[3])
+            ):
             coord = None
+
         self.source_ref.set_rectangle(coord)
 
         #call callback if given

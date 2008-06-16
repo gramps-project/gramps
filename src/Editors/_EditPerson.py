@@ -571,7 +571,7 @@ class EditPerson(EditPrimary):
         """
         self.load_obj = path
         self.load_rect = rectangle
-        if path == None:
+        if path is None:
             self.obj_photo.hide()
         else:
             try:
@@ -579,7 +579,7 @@ class EditPerson(EditPrimary):
                 width = i.get_width()
                 height = i.get_height()
 
-                if rectangle != None:
+                if rectangle is not None:
                     upper_x = min(rectangle[0], rectangle[2])/100.
                     lower_x = max(rectangle[0], rectangle[2])/100.
                     upper_y = min(rectangle[1], rectangle[3])/100.
@@ -633,7 +633,7 @@ class EditPerson(EditPrimary):
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_mother_handle():
-                        if temp_family.get_father_handle() != None:
+                        if temp_family.get_father_handle() is not None:
                             error = True
                         else:
                             temp_family.set_mother_handle(None)
@@ -642,7 +642,7 @@ class EditPerson(EditPrimary):
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
-                        if temp_family.get_mother_handle() != None:
+                        if temp_family.get_mother_handle() is not None:
                             error = True
                         else:
                             temp_family.set_father_handle(None)
@@ -651,13 +651,13 @@ class EditPerson(EditPrimary):
                 for tmp_handle in self.obj.get_family_handle_list():
                     temp_family = self.db.get_family_from_handle(tmp_handle)
                     if self.obj == temp_family.get_father_handle():
-                        if temp_family.get_mother_handle() != None:
+                        if temp_family.get_mother_handle() is not None:
                             error = True
                         else:
                             temp_family.set_father_handle(None)
                             temp_family.set_mother_handle(self.obj)
                     if self.obj == temp_family.get_mother_handle():
-                        if temp_family.get_father_handle() != None:
+                        if temp_family.get_father_handle() is not None:
                             error = True
                         else:
                             temp_family.set_mother_handle(None)

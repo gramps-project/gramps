@@ -56,6 +56,6 @@ class FamilyRelType(GrampsType):
         ]
 
     def __init__(self, value=None):
-        if value == None:
+        if value is None:
             value = self.UNKNOWN
         GrampsType.__init__(self, value)

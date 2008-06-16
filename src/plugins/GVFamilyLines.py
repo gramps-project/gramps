@@ -579,8 +579,8 @@ class FamilyLinesReport(Report):
                                                            'xmlcharrefreplace')
 
                     # see if the spouse has parents
-                    if spouse_father_handle == None and \
-                       spouse_mother_handle == None:
+                    if spouse_father_handle is None and \
+                       spouse_mother_handle is None:
                         for family_handle in \
                           spouse.get_parent_family_handle_list():
                             family = self._db.get_family_from_handle(
@@ -616,12 +616,12 @@ class FamilyLinesReport(Report):
 
             # if this person has parents, then we automatically keep
             # this person
-            if father_handle != None or mother_handle != None:
+            if father_handle is not None or mother_handle is not None:
                 continue
 
             # if the spouse has parents, then we automatically keep
             # this person
-            if spouse_father_handle != None or spouse_mother_handle != None:
+            if spouse_father_handle is not None or spouse_mother_handle is not None:
                 continue
 
             # if this is a person of interest, then we automatically keep

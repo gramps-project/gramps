@@ -83,7 +83,7 @@ class IndivCompleteReport(Report):
 
     def write_fact(self,event_ref):
         event = self.database.get_event_from_handle(event_ref.ref)
-        if event == None:
+        if event is None:
             return
         text = ""
         if event_ref.get_role() == gen.lib.EventRoleType.PRIMARY or \

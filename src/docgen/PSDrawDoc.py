@@ -58,9 +58,9 @@ try:
 except:
     pass
 
-if print_label == None:
+if print_label is None:
     # Second, try to print directly
-    if get_print_dialog_app() != None:
+    if get_print_dialog_app() is not None:
         print_label = _("Print a copy")
 
 #-------------------------------------------------------------------------

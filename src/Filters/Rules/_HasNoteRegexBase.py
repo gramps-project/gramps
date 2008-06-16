@@ -60,6 +60,6 @@ class HasNoteRegexBase(Rule):
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
             n = unicode(note.get(False))
-            if self.match.match(n) != None:
+            if self.match.match(n) is not None:
                 return True
         return False

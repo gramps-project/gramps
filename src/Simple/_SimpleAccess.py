@@ -612,7 +612,7 @@ class SimpleAccess:
         @rtype: list
         """
         assert(isinstance(obj, (gen.lib.Person, gen.lib.Family, NoneType)))
-        assert(isinstance(restrict, list) or restrict == None)
+        assert(isinstance(restrict, list) or restrict is None)
 
         if obj:
             event_handles = [ ref.ref for ref in obj.get_event_ref_list() ]

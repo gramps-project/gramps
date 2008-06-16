@@ -383,7 +383,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         """
         model = self.fmt_obox.get_model()
         iter = model.get_iter_first()
-        while iter != None:
+        while iter is not None:
             othernum = model.get_value(iter, COL_NUM)
             oldnum = model.get_value(oldnode, COL_NUM)
             if othernum == oldnum: 
@@ -531,7 +531,7 @@ class GrampsPreferences(ManagedWindow.ManagedWindow):
         
         """
         model, self.iter = tree_selection.get_selected()
-        if self.iter == None:
+        if self.iter is None:
             tree_selection.select_path(0)
             model, self.iter = tree_selection.get_selected()
         self.selected_fmt = model.get(self.iter, 0, 1, 2)

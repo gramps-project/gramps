@@ -180,7 +180,7 @@ class RelCalc(Tool.Tool, ManagedWindow.ManagedWindow):
         p2 = name_displayer.display(other_person)
 
         text = []
-        if other_person == None: 
+        if other_person is None: 
             pass
         elif self.person.handle == other_person.handle:
             rstr = _("%s and %s are the same person.") % (p1, p2)

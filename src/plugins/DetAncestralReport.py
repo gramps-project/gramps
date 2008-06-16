@@ -180,7 +180,7 @@ class DetAncestorReport(Report):
                     for family_handle in person.get_family_handle_list():
                         family = self.database.get_family_from_handle(family_handle)
                         mother_handle = family.get_mother_handle()
-                        if mother_handle == None or                            \
+                        if mother_handle is None or                            \
                            person.get_gender() == gen.lib.Person.FEMALE:
                             if self.listchildren:
                                 self.write_children(family)

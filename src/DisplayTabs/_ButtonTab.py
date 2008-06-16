@@ -274,7 +274,7 @@ class ButtonTab(GrampsTab):
         # explicitly, dirty_selection must make sure they do not interact
         if self.dirty_selection:
             return
-        if self.get_selected() != None:
+        if self.get_selected() is not None:
             self.edit_btn.set_sensitive(True)
             if self.jump_btn:
                 self.jump_btn.set_sensitive(True)

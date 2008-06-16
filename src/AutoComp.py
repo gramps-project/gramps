@@ -141,7 +141,7 @@ class StandardCustomSelector:
             self.selector.set_text_column(1)
         else:
             self.selector = gtk.ComboBoxEntry(self.store, 1)
-        if self.active_key != None:
+        if self.active_key is not None:
             self.selector.set_active(self.active_index)
 
         # make autocompletion work
@@ -222,7 +222,7 @@ class StandardCustomSelector:
         key, text = val
         if key in self.mapping.keys() and key != self.custom_key:
             self.store.foreach(self.set_int_value, key)
-        elif self.custom_key != None:
+        elif self.custom_key is not None:
             self.selector.child.set_text(text)
         else:
             print "StandardCustomSelector.set(): Option not available:", val

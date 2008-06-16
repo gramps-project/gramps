@@ -545,7 +545,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             
             
         # b is the same person as a
-        if Ga == 0 and Gb == 0:
+        if Ga == Gb == 0:
             rel_str = 'ta sama osoba'
 
         elif Ga == 0:
@@ -588,7 +588,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 rel_str = self.get_parent_unknown(Ga, inlaw)
 
 
-        elif Ga == 1 and Gb == 1:
+        elif Ga == Gb == 1:
             # rodzeństwo
             if gender_b == gen.lib.Person.MALE:                
                 if inlaw and not step:

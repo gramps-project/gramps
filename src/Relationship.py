@@ -888,7 +888,7 @@ class RelationshipCalculator:
             will be looked up anyway an stored if common. At end the doubles
             are filtered out
         """
-        if person == None or not person.handle :
+        if person is None or not person.handle :
             return
         
         if depth > self.__max_depth:
@@ -1189,7 +1189,7 @@ class RelationshipCalculator:
         (relation_string, distance_common_orig, distance_common_other)
         """
         stop = False
-        if orig_person == None:
+        if orig_person is None:
             rel_str = _("undefined")
             stop = True
 
@@ -1233,7 +1233,7 @@ class RelationshipCalculator:
         dist_other= len(rel[4])
         if len(databest) == 1:
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
-            if dist_orig == 1 and dist_other == 1:
+            if dist_orig == dist_other == 1:
                 rel_str = self.get_sibling_relationship_string(
                             self.get_sibling_type(
                                                 db, orig_person, other_person), 
@@ -1287,7 +1287,7 @@ class RelationshipCalculator:
             dist_orig = len(rel[2])
             dist_other= len(rel[4])
             birth = self.only_birth(rel[2]) and self.only_birth(rel[4])
-            if dist_orig == 1 and dist_other == 1:
+            if dist_orig == dist_other == 1:
                 rel_str =  self.get_sibling_relationship_string(
                             self.get_sibling_type(
                                                 db, orig_person, other_person), 
@@ -1314,7 +1314,7 @@ class RelationshipCalculator:
         """
         relstrings = []
         commons = {}
-        if orig_person == None:
+        if orig_person is None:
             return ([], [])
 
         if orig_person.get_handle() == other_person.get_handle():
@@ -1342,7 +1342,7 @@ class RelationshipCalculator:
                     rel4 = rel4 + self.REL_FAM_BIRTH
                     rel1 = None
                 birth = self.only_birth(rel2) and self.only_birth(rel4)
-                if dist_orig == 1 and dist_other == 1:
+                if dist_orig == dist_other == 1:
                     rel_str = self.get_sibling_relationship_string(
                                 self.get_sibling_type(
                                                 db, orig_person, other_person), 

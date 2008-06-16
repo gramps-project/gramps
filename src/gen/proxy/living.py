@@ -76,7 +76,7 @@ class LivingProxyDb(ProxyDbBase):
         """
         ProxyDbBase.__init__(self, dbase)
         self.mode = mode
-        if current_year != None:
+        if current_year is not None:
             self.current_date = Date()
             self.current_date.set_year(current_year)
         else:

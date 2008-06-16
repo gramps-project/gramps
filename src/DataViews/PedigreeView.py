@@ -1255,7 +1255,7 @@ class PedigreeView(PageView.PersonNavView):
     def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
 
-        if depth > 5 or person == None:
+        if depth > 5 or person is None:
             return
 
         try:
@@ -1276,7 +1276,7 @@ class PedigreeView(PageView.PersonNavView):
         mrel = True
         frel = True
         family = self.dbstate.db.get_family_from_handle(family_handle)
-        if family != None:
+        if family is not None:
             for child_ref in family.get_child_ref_list():
                 if child_ref.ref == person.handle:
                     mrel = child_ref.mrel == gen.lib.ChildRefType.BIRTH
@@ -1284,11 +1284,11 @@ class PedigreeView(PageView.PersonNavView):
             
                     lst[index] = (person,val,family,alive)
                     father_handle = family.get_father_handle()
-                    if father_handle != None:
+                    if father_handle is not None:
                         father = self.dbstate.db.get_person_from_handle(father_handle)
                         self.find_tree(father,(2*index)+1,depth+1,lst,frel)
                     mother_handle = family.get_mother_handle()
-                    if mother_handle != None:
+                    if mother_handle is not None:
                         mother = self.dbstate.db.get_person_from_handle(mother_handle)
                         self.find_tree(mother,(2*index)+2,depth+1,lst,mrel)
 

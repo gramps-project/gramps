@@ -662,7 +662,7 @@ class RelationshipView(PageView.PersonNavView):
         hbox = gtk.HBox()
         label = widgets.MarkupLabel(msg, x_align=1)
         # Draw the collapse/expand button:
-        if family != None:
+        if family is not None:
             if self.check_collapsed(person.handle, family.handle):
                 arrow = widgets.ExpandCollapseArrow(True,
                                                     self.expand_collapse_press,
@@ -1189,7 +1189,7 @@ class RelationshipView(PageView.PersonNavView):
 
     def write_family(self, family_handle, person = None):
         family = self.dbstate.db.get_family_from_handle(family_handle)
-        if family == None:
+        if family is None:
             from QuestionDialog import WarningDialog
             WarningDialog(
                 _('Broken family detected'),

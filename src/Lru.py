@@ -97,7 +97,7 @@ class LRU:
         Iterate over the LRU
         """
         cur = self.first
-        while cur != None:
+        while cur is not None:
             cur2 = cur.next
             yield cur.value[1]
             cur = cur2
@@ -108,7 +108,7 @@ class LRU:
         Return items in the LRU using a generator
         """
         cur = self.first
-        while cur != None:
+        while cur is not None:
             cur2 = cur.next
             yield cur.value
             cur = cur2
