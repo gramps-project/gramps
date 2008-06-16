@@ -368,7 +368,7 @@ class StyledTextEditor(gtk.TextView):
                                       False, #editable
                                       True, #shortlist
                                       None) # validator
-        fontface_action.connect('changed', self._on_comboaction_changed)
+        fontface_action.connect('changed', self._on_valueaction_changed)
 
         items = FONT_SIZES
         default = StyledTextTagType.STYLE_DEFAULT[StyledTextTagType.FONTSIZE]
@@ -380,7 +380,7 @@ class StyledTextEditor(gtk.TextView):
                                       True, #editable
                                       False, #shortlist
                                       is_valid_fontsize) #validator
-        fontsize_action.connect('changed', self._on_comboaction_changed)
+        fontsize_action.connect('changed', self._on_valueaction_changed)
 
         spring = SpringSeparatorAction("spring", "", "", None)
         
@@ -494,8 +494,8 @@ class StyledTextEditor(gtk.TextView):
                        (style, str(value)))
             self.textbuffer.apply_style(style, value)
 
-    def _on_comboaction_changed(self, action):
-        """Apply a format set by a ComboToolAction type of action."""
+    def _on_valueaction_changed(self, action):
+        """Apply a format set by a ValueAction type of action."""
         if self._internal_style_change:
             return
         
