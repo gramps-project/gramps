@@ -54,7 +54,7 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
     def __getstate__(self):
         return{'__role': self.__role}
     def __setstate__(self,dict_):
-        self.__role = dict_('__role')
+        self.__role = dict_['__role']
 
     def __init__(self, source=None):
         """
