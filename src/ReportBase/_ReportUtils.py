@@ -2113,7 +2113,7 @@ def find_marriage(database, family):
     for event_ref in family.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
         if event and event.get_type() == gen.lib.EventType.MARRIAGE \
-            and event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+            and event_ref.get_role() == gen.lib.EventRoleType.FAMILY:
             return event
     return None
 
