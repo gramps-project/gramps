@@ -95,6 +95,12 @@ class GrampsType(object):
     
     __metaclass__ = GrampsTypeMeta
     __slots__ = ('__value','__string')
+
+    def __getstate__(self):
+        return {'__value': self.__value,'__string': self.__string}
+    def __setstate__(self,dict_):
+        self.__value = dict_['__value']
+        self.__string = dict_['__string']
     
     @classmethod
     def __class_init__(cls, namespace):

@@ -49,7 +49,12 @@ class EventRef(SecondaryObject, PrivacyBase, NoteBase, AttributeBase, RefBase):
     to the refereneced event.
     """
 
-    __slots__=('.__role')
+    __slots__=('__role')
+
+    def __getstate__(self):
+        return{'__role': self.__role}
+    def __setstate__(self,dict_):
+        self.__role = dict_('__role')
 
     def __init__(self, source=None):
         """
