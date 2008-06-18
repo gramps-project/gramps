@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Copyright (C) 2007       Gary Burton <gary.burton@zen.co.uk>
+# Copyright (C) 2007-2008  Stephane Charette <stephanecharette@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -2243,7 +2244,7 @@ class IndividualPage(BasePage):
                              val)
         else:
             of.write(_nd.display(person))
-        if rel != gen.lib.ChildRefType.BIRTH:
+        if rel != gen.lib.ChildRefType(gen.lib.ChildRefType.BIRTH):
             of.write('&nbsp;&nbsp;&nbsp;(%s)' % str(rel))
         of.write('</td>\n')
 
@@ -2272,6 +2273,7 @@ class IndividualPage(BasePage):
                     if child_ref.ref == child_handle:
                         frel = str(child_ref.get_father_relation())
                         mrel = str(child_ref.get_mother_relation())
+                        break
 
                 if not first:
                     of.write('\t\t\t<tr>\n')
@@ -3117,10 +3119,10 @@ class NavWebOptions(MenuReportOptions):
         showparents.set_help(_('Whether to include a parents column'))
         menu.add_option(category_name, 'showparents', showparents)
 
-        showhalfsiblings = BooleanOption(_("Include a column for half-siblings"
-                                           " on the index pages"), False)
-        showhalfsiblings.set_help(_("Whether to include a half-siblings "
-                                    "column"))
+        showhalfsiblings = BooleanOption(_("Include half-siblings on the "
+                                           "individual pages"), False)
+        showhalfsiblings.set_help(_("Whether to include half-siblings "
+                                    "with the parents and siblings"))
         menu.add_option(category_name, 'showhalfsiblings', showhalfsiblings)
 
     def __archive_changed(self):
