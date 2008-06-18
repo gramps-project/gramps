@@ -157,14 +157,17 @@ class CommandLineReport:
                                                     "whatever_name"))
 
         if self.category == CATEGORY_TEXT:
+            print len(_textdoc_list), _textdoc_list 
+            print len(self.options_dict), self.options_dict
             for item in _textdoc_list:
-                if item[7] == self.options_dict['off']:
+                print len(item), item
+                if item[6] == self.options_dict['off']:
                     self.format = item[1]
             if self.format is None:
                 # Pick the first one as the default.
                 self.format = _textdoc_list[0][1]
             self.options_help['off'][2] = \
-                [ item[7] for item in _textdoc_list ]
+                [ item[6] for item in _textdoc_list ]
             self.options_help['off'][3] = False
         elif self.category == CATEGORY_DRAW:
             for item in _drawdoc_list:
