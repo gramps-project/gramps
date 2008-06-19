@@ -2016,7 +2016,7 @@ class IndividualPage(BasePage):
         if event_ref.get_role() == EventRoleType.PRIMARY:
             txt = u"%(evt_name)s" % locals()
         else:
-            event_role = event_ref.get_role()
+            evt_role = event_ref.get_role()
             txt = u"%(evt_name)s (%(evt_role)s)" % locals()
         txt = txt or '&nbsp;'
         of.write('\t\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % txt)
