@@ -17,7 +17,7 @@ then
   echo You are missing gramps-autogen.sh
   exit 1
 fi
-. gramps-autogen.sh
+. ./gramps-autogen.sh
 
 CONFIGURE_DEF_OPT='--enable-maintainer-mode'
 
