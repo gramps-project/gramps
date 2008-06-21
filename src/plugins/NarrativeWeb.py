@@ -2430,11 +2430,13 @@ class IndividualPage(BasePage):
                 note_text = note.get()
                 format = note.get_format()
                 if note_text:
+                    text += u'\n\t\t\t\t\t<p class="EventNote">\n\t\t\t\t\t'
                     if format:
                         text += u"<pre>%s</pre>" % note_text
                     else:
                         text += "<br />"
                         text += u"<br />".join(note_text.split("\n"))
+                    text += u'\n\t\t\t\t\t</p>\n\t\t\t\t'
         return text
 
     def get_citation_links(self, source_ref_list):
