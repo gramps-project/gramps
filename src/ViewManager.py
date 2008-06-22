@@ -114,6 +114,7 @@ UIDEFAULT = '''<ui>
     <menuitem action="Sidebar"/>
     <menuitem action="Toolbar"/>    
     <menuitem action="Filter"/>    
+    <menuitem action="Fullscreen"/>    
     <separator/>
   </menu>
   <menu action="GoMenu">
@@ -223,6 +224,7 @@ class ViewManager:
         self.show_sidebar = Config.get(Config.VIEW)
         self.show_toolbar = Config.get(Config.TOOLBAR_ON)
         self.show_filter = Config.get(Config.FILTER)
+        self.fullscreen = Config.get(Config.FULLSCREEN)
         
         self.__pmgr = PluginManager.get_instance()
 
@@ -301,6 +303,9 @@ class ViewManager:
             self.toolbar.show()
         else:
             self.toolbar.hide()
+
+        if self.fullscreen:
+            self.window.fullscreen()
 
         # Showing the main window is deferred so that
         # ArgHandler can work without it always shown
@@ -460,6 +465,8 @@ class ViewManager:
              self.show_toolbar ), 
             ('Filter', None, _('_Filter Sidebar'), None, None, 
              filter_toggle, self.show_filter), 
+            ('Fullscreen', None, _('F_ull Screen'), "F11", None, 
+             self.fullscreen_toggle, self.fullscreen), 
             ]
 
         self._undo_action_list = [
@@ -763,6 +770,19 @@ class ViewManager:
         else:
             self.toolbar.hide()
             Config.set(Config.TOOLBAR_ON, False)
+        Config.sync()
+
+    def fullscreen_toggle(self, obj):
+        """
+        Set the main Granps window fullscreen based on the value of the
+        toggle button. Save the setting in the config file.
+        """
+        if obj.get_active():
+            self.window.fullscreen()
+            Config.set(Config.FULLSCREEN, True)
+        else:
+            self.window.unfullscreen()
+            Config.set(Config.FULLSCREEN, False)
         Config.sync()
 
     def register_view(self, view):
