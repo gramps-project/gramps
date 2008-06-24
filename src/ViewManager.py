@@ -255,6 +255,7 @@ class ViewManager:
         hbox.show_all()
 
         self.notebook = gtk.Notebook()
+        self.notebook.set_scrollable(True)
         self.notebook.set_show_tabs(False)
         self.notebook.show()
         self.__init_lists()
