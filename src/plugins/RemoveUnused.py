@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2008       Stephane Charette
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,6 +55,7 @@ import gobject
 #-------------------------------------------------------------------------
 import Errors
 import ManagedWindow
+from DateHandler import displayer as _dd
 from BasicUtils import UpdateCallback
 from PluginUtils import Tool, register_tool
 
@@ -86,26 +88,31 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         self.tables = {
             'events'  : {'get_func': self.db.get_event_from_handle,
                          'remove'  : self.db.remove_event,
+                         'get_text': self.get_event_text,
                          'editor'  : 'EditEvent',
                          'stock'   : 'gramps-event',
                          'name_ix' : 4},
             'sources' : {'get_func': self.db.get_source_from_handle,
                          'remove'  : self.db.remove_source,
+                         'get_text': None,
                          'editor'  : 'EditSource',
                          'stock'   : 'gramps-source',
                          'name_ix' : 2},
             'places'  : {'get_func': self.db.get_place_from_handle,
                          'remove'  : self.db.remove_place,
+                         'get_text': None,
                          'editor'  : 'EditPlace',
                          'stock'   : 'gramps-place',
                          'name_ix' : 2},
             'media'   : {'get_func': self.db.get_object_from_handle,
                          'remove'  : self.db.remove_object,
+                         'get_text': None,
                          'editor'  : 'EditMedia',
                          'stock'   : 'gramps-media',
                          'name_ix' : 4},
             'repos'   : {'get_func': self.db.get_repository_from_handle,
                          'remove'  : self.db.remove_repository,
+                         'get_text': None,
                          'editor'  : 'EditRepository',
                          'stock'   : 'gramps-repository',
                          'name_ix' : 3},
@@ -268,7 +275,7 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
 
                 hlist = [x for x in self.db.find_backlink_handles(handle)]
                 if len(hlist) == 0:
-                    self.add_results((the_type, handle,data))
+                    self.add_results((the_type, handle, data))
                 item = cursor.next()
                 self.update()
             cursor.close()
@@ -347,14 +354,56 @@ class RemoveUnused(Tool.Tool,ManagedWindow.ManagedWindow,UpdateCallback):
         the_stock = self.tables[the_type]['stock']
         cell.set_property('stock-id', the_stock)
 
-    def add_results(self,results):
-        (the_type, handle,data) = results
-
+    def add_results(self, results):
+        (the_type, handle, data) = results
         gramps_id = data[1]
-        name_ix = self.tables[the_type]['name_ix']
-        name = data[name_ix]
+
+        # if we have a function that will return to us some type
+        # of text summary, then we should use it; otherwise we'll
+        # use the generic field index provided in the tables above
+        if self.tables[the_type]['get_text']:
+            text = self.tables[the_type]['get_text'](the_type, handle, data)
+        else:
+            # grab the text field index we know about, and hope
+            # it represents something useful to the user
+            name_ix = self.tables[the_type]['name_ix']
+            text = data[name_ix]
+
+        # insert a new row into the table        
+        self.real_model.append(row=[False, gramps_id, text, the_type, handle])
+
+    def get_event_text(self, the_type, handle, data):
+        """
+        Come up with a short line of text that we can use as
+        a summary to represent this event.
+        """
+
+        # get the event:
+        event = self.tables[the_type]['get_func'](handle)
+
+        # first check to see if the event has a descriptive name
+        text = event.get_description()  # (this is rarely set for events)
+
+        # if we don't have a description...
+        if text == '':
+            # ... then we merge together several fields
+
+            # get the event type (marriage, birth, death, etc.)
+            text = str(event.get_type())
+
+            # see if there is a date
+            date = _dd.display(event.get_date_object())
+            if date != '':
+                text += '; %s' % date
+
+            # see if there is a place
+            place_handle = event.get_place_handle()
+            if place_handle:
+                place = self.db.get_place_from_handle(place_handle)
+                text += '; %s' % place.get_title()
+
+        return text
         
-        self.real_model.append(row=[False,gramps_id, name,the_type, handle])
         
 #------------------------------------------------------------------------
 #
