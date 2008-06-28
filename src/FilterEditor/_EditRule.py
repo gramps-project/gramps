@@ -371,7 +371,7 @@ class MySelect(gtk.ComboBoxEntry):
     def set_text(self, val):
         tc = self.type_class()
         tc.set_from_xml_str(val)
-        self.sel.set_values((tc.val, tc.string))
+        self.sel.set_values((int(tc), str(tc)))
 
 #-------------------------------------------------------------------------
 #
