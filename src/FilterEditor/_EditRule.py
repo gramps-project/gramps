@@ -81,6 +81,8 @@ _name2typeclass = {
     _('Event type:')         : gen.lib.EventType,
     _('Personal attribute:') : gen.lib.AttributeType,
     _('Family attribute:')   : gen.lib.AttributeType,
+    _('Event attribute:')    : gen.lib.AttributeType,
+    _('Media attribute:')    : gen.lib.AttributeType,
     _('Relationship type:')  : gen.lib.FamilyRelType,
     _('Marker type:')        : gen.lib.MarkerType,
     _('Note type:')          : gen.lib.NoteType,

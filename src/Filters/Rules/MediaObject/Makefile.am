@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	_HasReferenceCountOf.py\
 	_MatchesFilter.py\
 	_MediaPrivate.py\
+	_HasAttribute.py\
 	_RegExpIdOf.py\
 	__init__.py
 

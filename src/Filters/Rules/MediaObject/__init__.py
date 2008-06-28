@@ -33,6 +33,7 @@ from _HasReferenceCountOf import HasReferenceCountOf
 from _MediaPrivate import MediaPrivate
 from _MatchesFilter import MatchesFilter
 from _HasMedia import HasMedia
+from _HasAttribute import HasAttribute
 
 editor_rule_list = [
     AllMedia,
@@ -43,4 +44,5 @@ editor_rule_list = [
     HasReferenceCountOf,
     MediaPrivate,
     MatchesFilter,
+    HasAttribute,
 ]
