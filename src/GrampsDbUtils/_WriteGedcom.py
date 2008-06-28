@@ -1428,9 +1428,8 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         # be written out in the event detail.
         # http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#EVENT_DETAIL
         location = place.get_main_location()
-        if location:
-            if location.get_street():
-                self.__writeln(level, "ADDR", location.get_street())
+        if location and not location.is_empty():
+            self.__writeln(level, "ADDR", location.get_street())
             if location.get_city():
                 self.__writeln(level + 1, 'CITY', location.get_city())
             if location.get_state():
