@@ -1630,9 +1630,9 @@ class DownloadPage(BasePage):
         BasePage.__init__(self, report, title)
 
         of = self.report.create_file("download")
-        self.display_header(of, _('Download'))
+        self.display_header(of, _('Download'), content_divid='Download')
 
-        of.write('\t<h2>%s</h2>\n\n' % _('Download'), content_divid='Download')
+        of.write('\t<h2>%s</h2>\n\n' % _('Download'))
 
         self.display_footer(of)
         self.report.close_file(of)
@@ -2895,8 +2895,8 @@ class NavWebReport(Report):
             if not os.path.isdir(dest):
                 os.makedirs(dest)
             dest = os.path.join(dest, to_fname)
-            if from_path != dest:
-                shutil.copyfile(from_path, dest)
+            if from_fname != dest:
+                shutil.copyfile(from_fname, dest)
             elif self.warn_dir:
                 WarningDialog(
                     _("Possible destination error") + "\n" +
