@@ -322,12 +322,13 @@ class Date:
         if isinstance(other, int):                # Date - value -> Date
             return self.copy_offset_ymd(-other)
         elif isinstance(other, (tuple, list)):    # Date - (y, m, d) -> Date
-            return self.copy_offset_ymd(*map(lambda x: -x, other))
-        elif isinstance(other, self):             # Date1 - Date2 -> tuple
+            return self.copy_offset_ymd(*[-i for i in other])
+        elif isinstance(other, type(self)):             # Date1 - Date2 -> tuple
             # We should make sure that Date2 + tuple -> Date1 and
             #                          Date1 - tuple -> Date2
-            d1 = map(lambda i: i or 1, self.get_ymd())
-            d2 = map(lambda i: i or 1, other.get_ymd())
+            d1 = [i or 1 for i in self.get_ymd()]
+            d2 = [i or 1 for i in other.get_ymd()]
+
             date1 = self
             date2 = other
             if d1 < d2:
