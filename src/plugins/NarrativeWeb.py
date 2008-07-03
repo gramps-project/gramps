@@ -658,7 +658,7 @@ class BasePage:
 
     # TODO. Check img_url of callers
     def media_link(self, of, handle, img_url, name, up, usedescr=True):
-        url = self.report.build_url_fname(handle, 'img', up)
+        url = self.report.build_url_fname_html(handle, 'img', up)
         of.write('\t\t<div class="thumbnail">\n')
         of.write('\t\t\t<a href="%s">' % url)
         of.write('<img src="%s" ' % img_url)
@@ -1620,8 +1620,7 @@ class GalleryPage(BasePage):
         self.report.close_file(of)
 
     def media_ref_link(self, of, handle, name, up=False):
-        # TODO. Check name, if it already has extension
-        url = self.report.build_url_fname(handle, 'img', up)
+        url = self.report.build_url_fname_html(handle, 'img', up)
         of.write('<a href="%s">%s</a>' % (url, html_escape(name)))
 
 class DownloadPage(BasePage):
@@ -2723,11 +2722,11 @@ class NavWebReport(Report):
 
         prev = None
         total = len(self.photo_list)
-        index = 1
         photo_keys = self.photo_list.keys()
         sort = Sort.Sort(self.database)
         photo_keys.sort(sort.by_media_title)
 
+        index = 1
         for photo_handle in photo_keys:
             gc.collect() # Reduce memory usage when there are many images.
             if index == total:
