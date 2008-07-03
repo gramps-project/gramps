@@ -124,10 +124,11 @@ class EditMediaRef(EditReference):
         
         coord = self.source_ref.get_rectangle()
         #upgrade path: set invalid (from eg old db) to none
-        if coord is not None and (
-            (coord[0] is coord[1] is coord[2] is coord[3] is None) or \
-            (coord[0] == coord[1] == 0 and coord[2] == coord[3] == 100) or \
-            (coord[0] == coord[2] and coord[1] == coord[3])
+
+        if coord is not None and coord in (
+                (None, None, None, None),  
+                (0, 0, 100, 100),
+                (coord[0], coord[1], coord[0], coord[1])
             ):
             coord = None
 
@@ -473,11 +474,13 @@ class EditMediaRef(EditReference):
             self.top.get_widget("corner2_x").get_value_as_int(),
             self.top.get_widget("corner2_y").get_value_as_int(),
             )
+
         #do not set unset or invalid coord
-        if coord is not None and (
-            (coord[0] is coord[1] is coord[2] is coord[3] is None) or \
-            (coord[0] == coord[1] == 0 and coord[2] == coord[3] == 100) or \
-            (coord[0] == coord[2] and coord[1] == coord[3])
+
+        if coord is not None and coord in (
+                (None, None, None, None),  
+                (0, 0, 100, 100),
+                (coord[0], coord[1], coord[0], coord[1])
             ):
             coord = None
 
