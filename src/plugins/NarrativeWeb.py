@@ -1136,12 +1136,12 @@ class MediaPage(BasePage):
         of.write('\t<div id="GalleryNav">\n')
         of.write('\t\t')
         if prev:
-            self.galleryNav_link(of, prev, _('Previous'), True)
+            self.gallery_nav_link(of, prev, _('Previous'), True)
         data = _('<strong id="GalleryCurrent">%(page_number)d</strong> of <strong id="GalleryTotal">%(total_pages)d</strong>' ) % {
             'page_number' : page_number, 'total_pages' : total_pages }
         of.write(' <span id="GalleryPages">%s</span> ' % data)
         if next:
-            self.galleryNav_link(of, next, _('Next'), True)
+            self.gallery_nav_link(of, next, _('Next'), True)
         of.write('\n')
         of.write('\t</div>\n\n')
 
@@ -1247,9 +1247,8 @@ class MediaPage(BasePage):
         self.display_footer(of)
         self.report.close_file(of)
 
-    def galleryNav_link(self, of, handle, name, up=False):
-        # TODO. Check name, if it already has extension
-        url = self.report.build_url_fname(handle, 'img', up)
+    def gallery_nav_link(self, of, handle, name, up=False):
+        url = self.report.build_url_fname_html(handle, 'img', up)
         of.write('<a id="%s" href="%s">%s</a>' % (html_escape(name), url, html_escape(name)))
 
     def display_media_sources(self, of, photo):
