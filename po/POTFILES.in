@@ -563,18 +563,19 @@ src/Filters/Rules/Family/_MemberBase.py
 src/Filters/Rules/Family/_HasMarkerOf.py
 
 # Filters.Rules.Event package
-src/Filters/Rules/Event/_MatchesFilter.py
-src/Filters/Rules/Event/_EventPrivate.py
-src/Filters/Rules/Event/_HasNoteRegexp.py
-src/Filters/Rules/Event/_HasReferenceCountOf.py
-src/Filters/Rules/Event/_RegExpIdOf.py
 src/Filters/Rules/Event/_AllEvents.py
+src/Filters/Rules/Event/_EventPrivate.py
+src/Filters/Rules/Event/_HasAttribute.py
 src/Filters/Rules/Event/_HasIdOf.py
 src/Filters/Rules/Event/_HasMarkerOf.py
-src/Filters/Rules/Event/_HasType.py
 src/Filters/Rules/Event/_HasNoteMatchingSubstringOf.py
+src/Filters/Rules/Event/_HasNoteRegexp.py
+src/Filters/Rules/Event/_HasReferenceCountOf.py
+src/Filters/Rules/Event/_HasType.py
+src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_MatchesPersonFilter.py
 src/Filters/Rules/Event/_MatchesSourceFilter.py
+src/Filters/Rules/Event/_RegExpIdOf.py
 src/Filters/Rules/Event/__init__.py
 
 # Filters.Rules.Place package
@@ -606,6 +607,7 @@ src/Filters/Rules/Source/__init__.py
 
 # Filters.Rules.MediaObject package
 src/Filters/Rules/MediaObject/_AllMedia.py
+src/Filters/Rules/MediaObject/_HasAttribute.py
 src/Filters/Rules/MediaObject/_HasIdOf.py
 src/Filters/Rules/MediaObject/_HasMedia.py
 src/Filters/Rules/MediaObject/_HasNoteMatchingSubstringOf.py
