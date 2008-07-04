@@ -1364,7 +1364,7 @@ class GrampsDbBase(Callback):
                     data = cursor.next()
                 cursor.close()
                 slist.sort()
-                return map(lambda x: x[1], slist)
+                return [x[1] for x in slist]
             else:
                 return self.all_handles(self.person_map)
         return []
@@ -1386,8 +1386,7 @@ class GrampsDbBase(Callback):
                     data = cursor.next()
                 cursor.close()
                 slist.sort()
-                val = map(lambda x: x[1], slist)
-                return val
+                return [x[1] for x in slist]
             else:
                 return self.all_handles(self.place_map)
         return []

@@ -3235,9 +3235,9 @@ def sort_people(db, handle_list):
     temp_list = sname_sub.keys()
     temp_list.sort(locale.strcoll)
     for name in temp_list:
-        slist = map(lambda x: (sortnames[x], x), sname_sub[name])
+        slist = [(sortnames[x], x) for x in sname_sub[name]]
         slist.sort(lambda x, y: locale.strcoll(x[0], y[0]))
-        entries = map(lambda x: x[1], slist)
+        entries = [x[1] for x in slist]
         sorted_lists.append((name, entries))
     return sorted_lists
 

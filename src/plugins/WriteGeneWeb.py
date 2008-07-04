@@ -129,10 +129,10 @@ class GeneWebWriterOptionBox:
 
     def on_restrict_toggled(self, restrict):
         active = restrict.get_active ()
-        map (lambda x: x.set_sensitive (active),
-             [self.topDialog.get_widget("living"),
-              self.topDialog.get_widget("notes"),
-              self.topDialog.get_widget("sources")])
+        for x in [self.topDialog.get_widget("living"),
+                  self.topDialog.get_widget("notes"),
+                  self.topDialog.get_widget("sources")]:
+            x.set_sensitive(active)
 
     def parse_options(self):
         self.restrict = self.topDialog.get_widget("restrict").get_active()
