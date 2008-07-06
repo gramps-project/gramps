@@ -239,7 +239,7 @@ def name_to_md5(text):
 
 class BasePage:
     """
-    This the base class to write certain HTML pages.
+    This is the base class to write certain HTML pages.
     """
 
     def __init__(self, report, title, gid=None):
@@ -2179,7 +2179,6 @@ class IndividualPage(BasePage):
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
                     childlist = [child_ref.ref for child_ref in child_ref_list]
-                    # TODO. Optionally sort on birthdate                    
                     for child_handle in childlist:
                         sibling.add(child_handle)   # remember that we've already "seen" this child
                         if child_handle != self.person.handle:
@@ -2189,11 +2188,11 @@ class IndividualPage(BasePage):
                     of.write('\t\t\t</tr>\n')
 
                 # Also try to identify half-siblings
-                other_siblings = set()
+                half_siblings = set()
 
                 # if we have a known father...
-                showhalfsiblings = self.report.options['showhalfsiblings']
-                if father_handle and showhalfsiblings:
+                showallsiblings = self.report.options['showhalfsiblings']
+                if father_handle and showallsiblings:
                     # 1) get all of the families in which this father is involved
                     # 2) get all of the children from those families
                     # 3) if the children are not already listed as siblings...
@@ -2201,36 +2200,116 @@ class IndividualPage(BasePage):
                     father = db.get_person_from_handle(father_handle)
                     for family_handle in father.get_family_handle_list():
                         family = db.get_family_from_handle(family_handle)
-                        for step_child_ref in family.get_child_ref_list():
-                            step_child_handle = step_child_ref.ref
-                            if step_child_handle not in sibling:
-                                if step_child_handle != self.person.handle:
+                        for half_child_ref in family.get_child_ref_list():
+                            half_child_handle = half_child_ref.ref
+                            if half_child_handle not in sibling:
+                                if half_child_handle != self.person.handle:
                                     # we have a new step/half sibling
-                                    other_siblings.add(step_child_ref.ref)
+                                    half_siblings.add(half_child_handle)
 
                 # do the same thing with the mother (see "father" just above):
-                if mother_handle and showhalfsiblings:
+                if mother_handle and showallsiblings:
                     mother = db.get_person_from_handle(mother_handle)
                     for family_handle in mother.get_family_handle_list():
                         family = db.get_family_from_handle(family_handle)
-                        for step_child_ref in family.get_child_ref_list():
-                            step_child_handle = step_child_ref.ref
-                            if step_child_handle not in sibling:
-                                if step_child_handle != self.person.handle:
-                                    # we have a new step/half sibling
-                                    other_siblings.add(step_child_ref.ref)
+                        for half_child_ref in family.get_child_ref_list():
+                            half_child_handle = half_child_ref.ref
+                            if half_child_handle not in sibling:
+                                if half_child_handle != self.person.handle:
+                                    # we have a new half sibling
+                                    half_siblings.add(half_child_handle)
 
-                # now that we have all of the step-siblings/half-siblings, print them out
-                if len(other_siblings) > 0:
+                # now that we have all of the half-siblings, print them out
+                if len(half_siblings) > 0:
                     of.write('\t\t\t<tr>\n')
                     of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Half Siblings"))
                     of.write('\t\t\t\t<td class="ColumnValue">\n')
                     of.write('\t\t\t\t\t<ol>\n')
-                    for child_handle in other_siblings:
+                    for child_handle in half_siblings:
                         self.display_child_link(of, child_handle)
                     of.write('\t\t\t\t\t</ol>\n')
                     of.write('\t\t\t\t</td>\n')
                     of.write('\t\t\t</tr>\n')
+
+                # get step-siblings
+                step_siblings = set()
+                if showallsiblings:
+
+                    # to find the step-siblings, we need to identify
+                    # all of the families that can be linked back to
+                    # the current person, and then extract the children
+                    # from those families
+                    all_family_handles = set()
+                    all_parent_handles = set()
+                    tmp_parent_handles = set()
+
+                    # first we queue up the parents we know about
+                    if mother_handle:
+                        tmp_parent_handles.add(mother_handle)
+                    if father_handle:
+                        tmp_parent_handles.add(father_handle)
+
+                    while len(tmp_parent_handles) > 0:
+                        # pop the next parent from the set
+                        parent_handle = tmp_parent_handles.pop()
+
+                        # add this parent to our official list
+                        all_parent_handles.add(parent_handle)
+
+                        # get all families with this parent
+                        parent = db.get_person_from_handle(parent_handle)
+                        for family_handle in parent.get_family_handle_list():
+
+                            all_family_handles.add(family_handle)
+
+                            # we already have 1 parent from this family
+                            # (see "parent" above) so now see if we need
+                            # to queue up the other parent
+                            family = db.get_family_from_handle(family_handle)
+                            tmp_mother_handle = family.get_mother_handle()
+                            if  tmp_mother_handle and \
+                                tmp_mother_handle != parent and \
+                                tmp_mother_handle not in tmp_parent_handles and \
+                                tmp_mother_handle not in all_parent_handles:
+                                tmp_parent_handles.add(tmp_mother_handle)
+                            tmp_father_handle = family.get_father_handle()
+                            if  tmp_father_handle and \
+                                tmp_father_handle != parent and \
+                                tmp_father_handle not in tmp_parent_handles and \
+                                tmp_father_handle not in all_parent_handles:
+                                tmp_parent_handles.add(tmp_father_handle)
+
+                    # once we get here, we have all of the families
+                    # that could result in step-siblings; note that
+                    # we can only have step-siblings if the number
+                    # of families involved is > 1
+
+                    if len(all_family_handles) > 1:
+                        while len(all_family_handles) > 0:
+                            # pop the next family from the set
+                            family_handle = all_family_handles.pop()
+                            # look in this family for children we haven't yet seen
+                            family = db.get_family_from_handle(family_handle)
+                            for step_child_ref in family.get_child_ref_list():
+                                step_child_handle = step_child_ref.ref
+                                if  step_child_handle not in sibling and \
+                                    step_child_handle not in half_siblings and \
+                                    step_child_handle != self.person.handle:
+                                        # we have a new step sibling
+                                        step_siblings.add(step_child_handle)
+
+                # now that we have all of the step-siblings, print them out
+                if len(step_siblings) > 0:
+                    of.write('\t\t\t<tr>\n')
+                    of.write('\t\t\t\t<td class="ColumnAttribute">%s</td>\n' % _("Step Siblings"))
+                    of.write('\t\t\t\t<td class="ColumnValue">\n')
+                    of.write('\t\t\t\t\t<ol>\n')
+                    for child_handle in step_siblings:
+                        self.display_child_link(of, child_handle)
+                    of.write('\t\t\t\t\t</ol>\n')
+                    of.write('\t\t\t\t</td>\n')
+                    of.write('\t\t\t</tr>\n')
+
         of.write('\t\t</table>\n')
         of.write('\t</div>\n\n')
 
@@ -3152,11 +3231,13 @@ class NavWebOptions(MenuReportOptions):
         showparents.set_help(_('Whether to include a parents column'))
         menu.add_option(category_name, 'showparents', showparents)
 
-        showhalfsiblings = BooleanOption(_("Include half-siblings on the "
-                                           "individual pages"), False)
-        showhalfsiblings.set_help(_("Whether to include half-siblings "
-                                    "with the parents and siblings"))
-        menu.add_option(category_name, 'showhalfsiblings', showhalfsiblings)
+        showallsiblings = BooleanOption(_("Include half-siblings and "
+                                           "step-siblings on the individual "
+                                           "pages"), False)
+        showallsiblings.set_help(_( "Whether to include half-siblings and "
+                                    "step-siblings with the parents and "
+                                    "siblings"))
+        menu.add_option(category_name, 'showhalfsiblings', showallsiblings)
 
     def __archive_changed(self):
         """
