@@ -393,7 +393,7 @@ class MediaView(PageView.ListView):
         the_lists = Utils.get_media_referents(handle, self.dbstate.db)
 
         ans = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
-        if filter(None, the_lists): # quick test for non-emptiness
+        if any(the_lists): # quick test for non-emptiness
             msg = _('This media object is currently being used. '
                     'If you delete this object, it will be removed from '
                     'the database and from all records that reference it.')

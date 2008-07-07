@@ -204,7 +204,7 @@ class NoteView(PageView.ListView):
 
             ans = DeleteNoteQuery(self.dbstate, self.uistate, note, the_lists)
 
-            if filter(None, the_lists): # quick test for non-emptiness
+            if any(the_lists): # quick test for non-emptiness
                 msg = _('This note is currently being used. Deleting it '
                         'will remove it from the database and from all '
                         'other objects that reference it.')

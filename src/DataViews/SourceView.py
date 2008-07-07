@@ -188,8 +188,7 @@ class SourceView(PageView.ListView):
             source = db.get_source_from_handle(source_handle)
 
             ans = DelSrcQuery(self.dbstate,self.uistate,source,the_lists)
-
-            if filter(None, the_lists): # quick test for non-emptiness
+            if any(the_lists): # quick test for non-emptiness
                 msg = _('This source is currently being used. Deleting it '
                         'will remove it from the database and from all '
                         'people and families that reference it.')
