@@ -426,7 +426,6 @@ class PrivateProxyDb(ProxyDbBase):
         >    result_list = [i for i in find_backlink_handles(handle)]
         """
         
-        raise NotImplementedError
         # This isn't done yet because it doesn't check if references are
         # private (like a SourceRef or MediaRef). It only checks if the 
         # referenced object is private.

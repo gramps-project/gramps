@@ -11,6 +11,7 @@ pkgdata_PYTHON = \
 	filter.py \
 	living.py \
 	private.py \
+	referenced.py \
 	proxybase.py
 
 pkgpyexecdir = @pkgpyexecdir@/gen/proxy

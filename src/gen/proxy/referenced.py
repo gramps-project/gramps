@@ -1,8 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2007-2008       Brian G. Matherly
-# Copyright (C) 2008            Gary Burton
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +21,8 @@
 # $Id$
 
 """
-Proxy class for the GRAMPS databases. Apply filter
+Proxy class for the GRAMPS databases. Returns objects which are referenced
+by at least one other object.
 """
 
 #-------------------------------------------------------------------------
@@ -30,76 +30,35 @@ Proxy class for the GRAMPS databases. Apply filter
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-#from gen.lib import *
 from proxybase import ProxyDbBase
 
-class FilterProxyDb(ProxyDbBase):
+class ReferencedProxyDb(ProxyDbBase):
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,
-    but all data marked private will be hidden from the user.
+    but returning all objects which are referenced by at least one other object.
     """
 
-    def __init__(self, db, person_filter=None, event_filter=None):
+    def __init__(self, dbase):
         """
-        Create a new PrivateProxyDb instance. 
+        Create a new ReferencedProxyDb instance. 
         """
-        ProxyDbBase.__init__(self, db)
-        self.person_filter = person_filter
+        ProxyDbBase.__init__(self, dbase)
+        self.unreferenced_events = []
+        self.unreferenced_places = []
+        self.unreferenced_sources = []
+        self.unreferenced_repositories = []
+        self.unreferenced_media_objects = []
+        self.unreferenced_notes = []
 
-        if person_filter:
-            self.plist = set(person_filter.apply(
-                    self.db, self.db.get_person_handles(sort_handles=False)))
-        else:
-            self.plist = self.db.get_person_handles(sort_handles=False)
-
-        if event_filter:
-            self.elist = set(event_filter.apply(
-                    self.db, self.db.get_event_handles()))
-        else:
-            self.elist = self.db.get_event_handles()
-
-        self.flist = set()
-        for handle in list(self.plist):
-            person = self.db.get_person_from_handle(handle)
-            for family_handle in person.get_family_handle_list():
-                self.flist.add(family_handle)
+        # Build lists of unreferenced objects
+        self.__find_unreferenced_objects()
 
     def get_person_from_handle(self, handle):
         """
         Finds a Person in the database from the passed gramps' ID.
         If no such Person exists, None is returned.
         """
-        if handle in self.plist:
-            person = self.db.get_person_from_handle(handle)
-
-            person.set_person_ref_list(
-                [ ref for ref in person.get_person_ref_list()
-                  if ref.ref in self.plist ])
-
-            person.set_family_handle_list(
-                [ hndl for hndl in person.get_family_handle_list()
-                  if hndl in self.flist ])
-
-            person.set_parent_family_handle_list(
-                [ hndl for hndl in person.get_parent_family_handle_list()
-                  if hndl in self.flist ])
-
-            eref_list = person.get_event_ref_list()
-            bref = person.get_birth_ref()
-            dref = person.get_death_ref()
-
-            new_eref_list = [ ref for ref in eref_list
-                              if ref.ref in self.elist]
-
-            person.set_event_ref_list(new_eref_list)
-            if bref in new_eref_list:
-                person.set_birth_ref(bref)
-            if dref in new_eref_list:
-                person.set_death_ref(dref)
-
-            return person
-        else:
-            return None
+        return self.db.get_person_from_handle(handle)
 
     def get_source_from_handle(self, handle):
         """
@@ -127,35 +86,14 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Event in the database from the passed gramps' ID.
         If no such Event exists, None is returned.
         """
-        if handle in self.elist:
-            return self.db.get_event_from_handle(handle)
-        else:
-            return None
+        return self.db.get_event_from_handle(handle)
 
     def get_family_from_handle(self, handle):
         """
         Finds a Family in the database from the passed gramps' ID.
         If no such Family exists, None is returned.
         """
-        if handle in self.flist:
-            family = self.db.get_family_from_handle(handle)
-        
-            eref_list = [ eref for eref in family.get_event_ref_list()
-                          if eref.ref in self.elist ]
-            family.set_event_ref_list(eref_list)
-
-            if family.get_father_handle() not in self.plist:
-                family.set_father_handle(None)
-                
-            if family.get_mother_handle() not in self.plist:
-                family.set_mother_handle(None)
-
-            clist = [ cref for cref in family.get_child_ref_list()
-                      if cref.ref in self.plist ]
-            family.set_child_ref_list(clist)
-            return family
-        else:
-            return None
+        return self.db.get_family_from_handle(handle)
 
     def get_repository_from_handle(self, handle):
         """
@@ -176,11 +114,7 @@ class FilterProxyDb(ProxyDbBase):
         Finds a Person in the database from the passed GRAMPS ID.
         If no such Person exists, None is returned.
         """
-        person = self.db.get_person_from_gramps_id(val)
-        if person.get_handle() not in self.plist:
-            return None
-        else:
-            return person
+        return self.db.get_person_from_gramps_id(val)
 
     def get_family_from_gramps_id(self, val):
         """
@@ -194,11 +128,7 @@ class FilterProxyDb(ProxyDbBase):
         Finds an Event in the database from the passed GRAMPS ID.
         If no such Event exists, None is returned.
         """
-        event = self.db.get_event_from_gramps_id(val)
-        if event.get_handle() not in self.elist:
-            return None
-        else:
-            return event
+        return self.db.get_event_from_gramps_id(val)
 
     def get_place_from_gramps_id(self, val):
         """
@@ -240,58 +170,65 @@ class FilterProxyDb(ProxyDbBase):
         Return a list of database handles, one handle for each Person in
         the database. If sort_handles is True, the list is sorted by surnames
         """
-        return list(self.plist)
+        return self.db.get_person_handles(sort_handles)
 
     def get_place_handles(self, sort_handles=True):
         """
-        Return a list of database handles, one handle for each Place in
-        the database. If sort_handles is True, the list is sorted by
-        Place title.
+        Return a list of database handles, one handle for each Place still
+        referenced in the database. If sort_handles is True, the list is
+        sorted by Place title.
         """
-        return self.db.get_place_handles(sort_handles)
+        return list(set(self.db.get_place_handles(sort_handles)) -
+                    set(self.unreferenced_places))
 
     def get_source_handles(self, sort_handles=True):
         """
-        Return a list of database handles, one handle for each Source in
-        the database. If sort_handles is True, the list is sorted by
-        Source title.
+        Return a list of database handles, one handle for each Source still
+        referenced in the database. If sort_handles is True, the list is
+        sorted by Source title.
         """
-        return self.db.get_source_handles(sort_handles)
+        return list(set(self.db.get_source_handles(sort_handles)) -
+                    set(self.unreferenced_sources))
 
     def get_media_object_handles(self, sort_handles=True):
         """
-        Return a list of database handles, one handle for each MediaObject in
-        the database. If sort_handles is True, the list is sorted by title.
+        Return a list of database handles, one handle for each MediaObject
+        still referenced in the database. If sort_handles is True, the list
+        is sorted by title.
         """
-        return self.db.get_media_object_handles(sort_handles)
+        return list(set(self.db.get_media_object_handles(sort_handles)) -
+                    set(self.unreferenced_media_objects))
 
     def get_event_handles(self):
         """
-        Return a list of database handles, one handle for each Event in
-        the database. 
+        Return a list of database handles, one handle for each Event
+        still referenced in the database.
         """
-        return list(self.elist)
+        return list(set(self.db.get_event_handles()) -
+                    set(self.unreferenced_events))
 
     def get_family_handles(self):
         """
         Return a list of database handles, one handle for each Family in
         the database.
         """
-        return list(self.flist)
+        return self.db.get_family_handles()
 
     def get_repository_handles(self):
         """
-        Return a list of database handles, one handle for each Repository in
-        the database.
+        Return a list of database handles, one handle for each Repository still
+        referenced in the database.
         """
-        return self.db.get_repository_handles()
+        return list(set(self.db.get_repository_handles()) -
+                    set(self.unreferenced_repositories))
 
     def get_note_handles(self):
         """
-        Return a list of database handles, one handle for each Note in
-        the database.
+        Return a list of database handles, one handle for each Note still
+        referenced in the database.
         """
-        return self.db.get_note_handles()
+        return list(set(self.db.get_note_handles()) -
+                    set(self.unreferenced_notes))
 
     def get_researcher(self):
         """returns the Researcher instance, providing information about
@@ -300,67 +237,59 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_default_person(self):
         """returns the default Person of the database"""
-        person = self.db.get_default_person()
-        if person and person.get_handle() in self.plist:
-            return person
-        else:
-            return None
+        return self.db.get_default_person()
 
     def get_default_handle(self):
         """returns the default Person of the database"""
-        handle = self.db.get_default_handle()
-        if handle in self.plist:
-            return handle
-        else:
-            return None
+        return self.db.get_default_handle()
     
     def has_person_handle(self, handle):
         """
         returns True if the handle exists in the current Person database.
         """
-        return handle in self.plist
+        return handle in self.get_person_handles()
 
     def has_event_handle(self, handle):
         """
         returns True if the handle exists in the current Event database.
         """
-        return handle in self.elist
+        return handle in self.get_event_handles()
 
     def has_source_handle(self, handle):
         """
         returns True if the handle exists in the current Source database.
         """
-        return self.db.has_source_handle(handle)
+        return handle in self.get_source_handles()
 
     def has_place_handle(self, handle):
         """
         returns True if the handle exists in the current Place database.
         """
-        return self.db.has_place_handle(handle)
+        return handle in self.get_place_handles()
 
     def has_family_handle(self, handle):            
         """
         returns True if the handle exists in the current Family database.
         """
-        return self.db.has_family_handle(handle)
+        return handle in self.get_family_handles()
 
     def has_object_handle(self, handle):
         """
         returns True if the handle exists in the current MediaObjectdatabase.
         """
-        return self.db.has_object_handle(handle)
+        return handle in self.get_media_object_handles()
 
     def has_repository_handle(self, handle):
         """
         returns True if the handle exists in the current Repository database.
         """
-        return self.db.has_repository_handle(handle)
+        return handle in self.get_repository_handles()
 
     def has_note_handle(self, handle):
         """
         returns True if the handle exists in the current Note database.
         """
-        return self.db.has_note_handle(handle)
+        return handle in self.get_note_handles()
 
     def find_backlink_handles(self, handle, include_classes=None):
         """
@@ -383,4 +312,76 @@ class FilterProxyDb(ProxyDbBase):
 
         >    result_list = [i for i in find_backlink_handles(handle)]
         """
-        return self.db.find_backlink_handles(handle, include_classes)
+        handle_itr = self.db.find_backlink_handles(handle, include_classes)
+        for (class_name, handle) in handle_itr:
+            if class_name == 'Person':
+                if not self.has_person_handle(handle):
+                    continue
+            elif class_name == 'Family':
+                if not self.has_family_handle(handle):
+                    continue
+            elif class_name == 'Event':
+                if handle in self.unreferenced_events:
+                    continue
+            elif class_name == 'Place':
+                if handle in self.unreferenced_places:
+                    continue
+            elif class_name == 'Source':
+                if handle in self.unreferenced_sources:
+                    continue
+            elif class_name == 'Repository':
+                if handle in self.unreferenced_repositories:
+                    continue
+            elif class_name == 'MediaObject':
+                if handle in self.unreferenced_media_objects:
+                    continue
+            elif class_name == 'Note':
+                if handle in self.unreferenced_notes:
+                    continue
+            yield (class_name, handle)
+        return
+
+    def __find_unreferenced_objects(self):
+        """
+        Builds lists of all objects that are not referenced by another object.
+        These may be objects that are really unreferenced or because they
+        are referenced by something or someone that has already been filtered
+        by one of the other proxy decorators.
+        By adding an object to a list, other referenced objects could
+        effectively become unreferenced, so the action is performed in a loop
+        until there are no more objects to unreference.
+        """
+        object_types = {
+            'Event': {'unref_list': self.unreferenced_events,
+                      'handle_list': self.get_event_handles},
+            'Place': {'unref_list': self.unreferenced_places,
+                      'handle_list': self.get_place_handles},
+            'Source': {'unref_list': self.unreferenced_sources,
+                       'handle_list': self.get_source_handles},
+            'Repositories': {'unref_list': self.unreferenced_repositories,
+                             'handle_list': self.get_repository_handles},
+            'MediaObjects': {'unref_list': self.unreferenced_media_objects,
+                             'handle_list': self.get_media_object_handles},
+            'Notes': {'unref_list': self.unreferenced_notes,
+                      'handle_list': self.get_note_handles}
+            }
+
+        has_unreferenced_handles = True
+
+        last_count = 0
+        while has_unreferenced_handles:
+            current_count = 0
+            for object_type in object_types.keys():
+                unref_list = object_types[object_type]['unref_list']
+                handle_list = object_types[object_type]['handle_list']()
+                for handle in handle_list:
+                    ref_handles = [i for i in \
+                        self.find_backlink_handles(handle)]
+                    if len(ref_handles) == 0:
+                        unref_list.append(handle)
+                current_count += len(unref_list)
+
+            if current_count == last_count:
+                has_unreferenced_handles = False
+            else:
+                last_count = current_count
