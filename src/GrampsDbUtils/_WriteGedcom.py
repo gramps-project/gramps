@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -339,6 +340,12 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             if not option_box.cfilter.is_empty():
                 self.dbase = gen.proxy.FilterProxyDb(
                     self.dbase, option_box.cfilter)
+
+            # Apply the ReferencedProxyDb to remove any objects not referenced
+            # after any of the other proxies have been applied
+            if option_box.private or option_box.restrict \
+                or not option_box.cfilter.is_empty():
+                self.dbase = gen.proxy.ReferencedProxyDb(self.dbase)
 
     def write_gedcom_file(self, filename):
         """
