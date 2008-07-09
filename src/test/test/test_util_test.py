@@ -109,7 +109,7 @@ class Test2(U.TestCase):
 class Test3(U.TestCase):
     here = tu.absdir()
     bases = (here, tempfile.gettempdir())
-    asubs = map(lambda b: os.path.join(b,"test_sub"), bases)
+    asubs = [os.path.join(b,"test_sub") for b in bases]
     home= os.environ["HOME"]
     if home:
         home_junk = os.path.join(home,"test_junk")
