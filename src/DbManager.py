@@ -467,6 +467,7 @@ class DbManager(CLIDbManager):
         else:
             self.repair.set_sensitive(False)
             
+        self.rename.set_sensitive(True)
         self.remove.set_sensitive(True)
 
     def __build_interface(self):
