@@ -32,7 +32,6 @@
 import time
 from gettext import gettext as _
 import csv
-import string
 import codecs
 import cStringIO
 
@@ -329,11 +328,8 @@ class CSVParser:
             except:
                 pass
             return None
-        data = []
         try:
-            for row in reader:
-                row = map(string.strip, row)
-                data.append( row )
+            data = [[r.strip() for r in row] for row in reader]
         except csv.Error, e:
             ErrorDialog(_('format error: file %s, line %d: %s') %
                         (self.filename, reader.line_num, e))
@@ -409,7 +405,7 @@ class CSVParser:
                 continue
             ######################################
             if header is None:
-                header = map(cleanup_column_name, row)
+                header = [cleanup_column_name(r) for r in row]
                 col = {}
                 count = 0
                 for key in header:
