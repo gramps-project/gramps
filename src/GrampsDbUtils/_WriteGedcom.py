@@ -257,8 +257,10 @@ def breakup(txt, limit):
     data = []
     while len(txt) > limit:
         # look for non-space pair to break between
+        # Don't break within a UTF-8 byte sequence, i. e. first ch >127
         idx = limit
-        while idx>0 and (txt[idx-1].isspace() or txt[idx].isspace()):
+        while (idx>0 and (txt[idx-1].isspace() or txt[idx].isspace()
+                                               or ord(txt[idx-1]) > 127)):
             idx -= 1
         if idx == 0:
             #no words to break on, just break at limit anyway
