@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-09 20:47+0200\n"
-"PO-Revision-Date: 2008-07-09 20:53+0200\n"
+"PO-Revision-Date: 2008-07-13 19:55+0200\n"
 "Last-Translator: Erik De Richter <frederik.de.richter@googlemail.com>\n"
 "Language-Team: nederlands <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -6593,7 +6593,7 @@ msgstr "Kies een filter om aantal personen te beperken"
 #: ../src/plugins/NarrativeWeb.py:3065 ../src/plugins/StatisticsChart.py:687
 #: ../src/plugins/TimeLine.py:320 ../src/plugins/WebCal.py:744
 msgid "Filter Person"
-msgstr "Filter Persoonsfilter"
+msgstr "Persoonsfilter"
 
 #: ../src/plugins/CalculateEstimatedDates.py:70
 #: ../src/plugins/GVRelGraph.py:441 ../src/plugins/IndivComplete.py:523
@@ -9079,7 +9079,7 @@ msgstr ""
 #: ../src/plugins/GVFamilyLines.py:62 ../src/plugins/GVHourGlass.py:51
 #: ../src/plugins/GVRelGraph.py:61
 msgid "B&W outline"
-msgstr "Z&W omtrek"
+msgstr "Omtrek in zwartwit"
 
 #: ../src/plugins/GVFamilyLines.py:63
 msgid "Coloured outline"
@@ -9087,7 +9087,7 @@ msgstr "Gekleurde omtrek"
 
 #: ../src/plugins/GVFamilyLines.py:64
 msgid "Colour fill"
-msgstr "Kleurenopvulling"
+msgstr "Opvullen met kleuren"
 
 #. --------------------------------
 #: ../src/plugins/GVFamilyLines.py:102
@@ -9193,7 +9193,7 @@ msgstr "Afbeeldingen"
 
 #: ../src/plugins/GVFamilyLines.py:188 ../src/plugins/GVRelGraph.py:478
 msgid "Include thumbnail images of people"
-msgstr "Verkleinde beelden van personen toevoegen"
+msgstr "Miniaturen van personen toevoegen"
 
 #: ../src/plugins/GVFamilyLines.py:194
 msgid "Thumbnail location"
@@ -9209,7 +9209,7 @@ msgstr "Naast de naam"
 
 #: ../src/plugins/GVFamilyLines.py:198 ../src/plugins/GVRelGraph.py:488
 msgid "Where the thumbnail image should appear relative to the name"
-msgstr "Plaats waar de verkleinde weergave wordt getoond t.o.v. de de naam"
+msgstr "Plaats waar de miniaturen wordt getoond t.o.v. de naam"
 
 #. ---------------------
 #. ###############################
@@ -9236,7 +9236,7 @@ msgstr "Gebruik afgeronde hoeken"
 #: ../src/plugins/GVFamilyLines.py:215 ../src/plugins/GVHourGlass.py:285
 #: ../src/plugins/GVRelGraph.py:513
 msgid "Use rounded corners to differentiate between women and men."
-msgstr "ronde hoeken"
+msgstr "Gebruik afgeronde hoeken om een verschil te kunnen zien tussen mannen en vrouwen."
 
 #: ../src/plugins/GVFamilyLines.py:219
 msgid "Use subgraphs"
@@ -9325,7 +9325,7 @@ msgstr "Gekleurde omtrek"
 
 #: ../src/plugins/GVHourGlass.py:53 ../src/plugins/GVRelGraph.py:63
 msgid "Color fill"
-msgstr "Kleuren opvulling"
+msgstr "Opvullen met kleuren"
 
 #: ../src/plugins/GVHourGlass.py:257
 msgid "The Center person for the graph"
@@ -9386,7 +9386,7 @@ msgstr "Afstammelingen - Voorouders"
 
 #: ../src/plugins/GVRelGraph.py:436
 msgid "Determines what people are included in the graph"
-msgstr "Bepaald welke personen in de grafiek worden meegenomen worden"
+msgstr "Bepaald welke personen in de grafiek getoond worden "
 
 #: ../src/plugins/GVRelGraph.py:448
 msgid "Include Birth, Marriage and Death dates"
@@ -9408,9 +9408,7 @@ msgstr "Datums beperken tot jaren alleen"
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
-msgstr ""
-"Geeft alleen het jaar van een datum. Noch de maand, dag, datumbenadering of "
-"interval wordt getoond."
+msgstr "Geeft alleen het jaartal. Er worden geen maanden, dagen of tijdsintervallen getoond."
 
 #: ../src/plugins/GVRelGraph.py:459
 msgid "Use place when no date"
@@ -9435,8 +9433,8 @@ msgid ""
 "Web Site' report."
 msgstr ""
 "Een URL bij elk grafiekknoopunt voegen zodat PDF en imagemap-bestanden "
-"kunnen worden gegenereerd die actieve links bevatten naar de bestanden die "
-"gegenereerd zijn met het 'Websiteverslag ."
+" worden aangemaakt met actieve links naar de bestanden die "
+"gegenereerd zijn met het 'Website'-verslag ."
 
 #: ../src/plugins/GVRelGraph.py:473
 msgid "Include IDs"
@@ -9448,15 +9446,15 @@ msgstr "Persoonlijke en familie-IDs bijvoegen."
 
 #: ../src/plugins/GVRelGraph.py:480
 msgid "Whether to include thumbnails of people."
-msgstr "Al of niet verkleinde weergave van personen."
+msgstr "Al of niet miniaturen van personen."
 
 #: ../src/plugins/GVRelGraph.py:484
 msgid "Thumbnail Location"
-msgstr "Plaats van de 'thumbnails'"
+msgstr "Plaats van de miniaturen"
 
 #: ../src/plugins/GVRelGraph.py:504
 msgid "Arrowhead direction"
-msgstr "Pijlpunt-richting"
+msgstr "Richting van de pijlen"
 
 #: ../src/plugins/GVRelGraph.py:507
 msgid "Choose the direction that the arrows point."
@@ -9479,7 +9477,7 @@ msgstr "Familieknooppunten tonen"
 
 #: ../src/plugins/GVRelGraph.py:524
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "Families zijn te zien als ellipsen met verbindingen naar ouders en kinderen."
+msgstr "Families worden als ovalen weergegeven met verbindingen naar ouders en kinderen."
 
 #: ../src/plugins/GVRelGraph.py:569
 msgid "Relationship Graph"
@@ -10706,7 +10704,9 @@ msgstr "Halfbroers/zussen en stiefbroers/zussen toevoegen aan de individuele pag
 msgid ""
 "Whether to include half-siblings and step-siblings with the parents and "
 "siblings"
-msgstr "Al of niet halfbroers/zussen en stiefbroers/zussen toevoegen aan de ouders en andere kinderen"
+msgstr ""
+"Al of niet halfbroers/zussen en stiefbroers/zussen toevoegen aan de ouders "
+"en andere kinderen"
 
 # webstek
 #: ../src/plugins/NarrativeWeb.py:3332
@@ -12708,7 +12708,7 @@ msgstr "Lettergrootte"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:789
 msgid "The font size, in points."
-msgstr "Lettertypegrootte in pts."
+msgstr "Lettergrootte in pts."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:792
 msgid "Graph Direction"
@@ -12768,7 +12768,7 @@ msgstr "GraphViz-opties"
 #. ###############################
 #: ../src/ReportBase/_GraphvizReportDialog.py:845
 msgid "Aspect ratio"
-msgstr "Weergave verhouding"
+msgstr "Weergaveverhouding"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:850
 msgid "Affects greatly how the graph is layed out on the page."
@@ -12790,7 +12790,7 @@ msgstr ""
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:861
 msgid "Node spacing"
-msgstr "Spatie tussen rijen"
+msgstr "Spatie tussen knooppunten"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:862
 msgid ""
