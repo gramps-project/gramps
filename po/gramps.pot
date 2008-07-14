@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-09 20:47+0200\n"
+"POT-Creation-Date: 2008-07-14 20:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -384,26 +384,26 @@ msgstr ""
 msgid "Importing data..."
 msgstr ""
 
-#: ../src/DbManager.py:494
+#: ../src/DbManager.py:495
 msgid "Family tree name"
 msgstr ""
 
-#: ../src/DbManager.py:504 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
+#: ../src/DbManager.py:505 ../src/DisplayTabs/_FamilyLdsEmbedList.py:51
 #: ../src/DisplayTabs/_LdsEmbedList.py:61
 #: ../src/PluginUtils/_PluginWindows.py:83
 msgid "Status"
 msgstr ""
 
-#: ../src/DbManager.py:510
+#: ../src/DbManager.py:511
 msgid "Last modified"
 msgstr ""
 
-#: ../src/DbManager.py:589
+#: ../src/DbManager.py:590
 #, python-format
 msgid "Break the lock on the '%s' database?"
 msgstr ""
 
-#: ../src/DbManager.py:590
+#: ../src/DbManager.py:591
 msgid ""
 "GRAMPS believes that someone else is actively editing this database. You "
 "cannot edit this database while it is locked. If no one is editing the "
@@ -411,15 +411,15 @@ msgid ""
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
 
-#: ../src/DbManager.py:596
+#: ../src/DbManager.py:597
 msgid "Break lock"
 msgstr ""
 
-#: ../src/DbManager.py:672
+#: ../src/DbManager.py:673
 msgid "Rename failed"
 msgstr ""
 
-#: ../src/DbManager.py:673
+#: ../src/DbManager.py:674
 #, python-format
 msgid ""
 "An attempt to rename a version failed with the following message:\n"
@@ -427,62 +427,62 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:688
+#: ../src/DbManager.py:689
 msgid "Could not rename the Family Tree."
 msgstr ""
 
-#: ../src/DbManager.py:689
+#: ../src/DbManager.py:690
 msgid "Family Tree already exists, choose a unique name."
 msgstr ""
 
-#: ../src/DbManager.py:702
+#: ../src/DbManager.py:703
 msgid "Could not rename family tree"
 msgstr ""
 
-#: ../src/DbManager.py:736
+#: ../src/DbManager.py:737
 msgid "Extracting archive..."
 msgstr ""
 
-#: ../src/DbManager.py:741
+#: ../src/DbManager.py:742
 msgid "Importing archive..."
 msgstr ""
 
-#: ../src/DbManager.py:757
+#: ../src/DbManager.py:758
 #, python-format
 msgid "Remove the '%s' family tree?"
 msgstr ""
 
-#: ../src/DbManager.py:758
+#: ../src/DbManager.py:759
 msgid "Removing this family tree will permanently destroy the data."
 msgstr ""
 
-#: ../src/DbManager.py:759
+#: ../src/DbManager.py:760
 msgid "Remove family tree"
 msgstr ""
 
-#: ../src/DbManager.py:765
+#: ../src/DbManager.py:766
 #, python-format
 msgid "Remove the '%(revision)s' version of '%(database)s'"
 msgstr ""
 
-#: ../src/DbManager.py:769
+#: ../src/DbManager.py:770
 msgid ""
 "Removing this version will prevent you from extracting it in the future."
 msgstr ""
 
-#: ../src/DbManager.py:771
+#: ../src/DbManager.py:772
 msgid "Remove version"
 msgstr ""
 
-#: ../src/DbManager.py:800
+#: ../src/DbManager.py:801
 msgid "Could not delete family tree"
 msgstr ""
 
-#: ../src/DbManager.py:825
+#: ../src/DbManager.py:826
 msgid "Deletion failed"
 msgstr ""
 
-#: ../src/DbManager.py:826
+#: ../src/DbManager.py:827
 #, python-format
 msgid ""
 "An attempt to delete a version failed with the following message:\n"
@@ -490,23 +490,23 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:869
+#: ../src/DbManager.py:870
 msgid "Rebuilding database from backup files"
 msgstr ""
 
-#: ../src/DbManager.py:904
+#: ../src/DbManager.py:905
 msgid "Could not create family tree"
 msgstr ""
 
-#: ../src/DbManager.py:995
+#: ../src/DbManager.py:996
 msgid "Could not make database directory: "
 msgstr ""
 
-#: ../src/DbManager.py:1009
+#: ../src/DbManager.py:1010
 msgid "Never"
 msgstr ""
 
-#: ../src/DbManager.py:1083 ../src/ScratchPad.py:101
+#: ../src/DbManager.py:1084 ../src/ScratchPad.py:101
 #: ../src/DataViews/RelationView.py:400 ../src/DataViews/RelationView.py:900
 #: ../src/DataViews/RelationView.py:937
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
@@ -532,11 +532,11 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: ../src/DbManager.py:1102
+#: ../src/DbManager.py:1103
 msgid "Retrieve failed"
 msgstr ""
 
-#: ../src/DbManager.py:1103
+#: ../src/DbManager.py:1104
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -544,11 +544,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:1140 ../src/DbManager.py:1164
+#: ../src/DbManager.py:1141 ../src/DbManager.py:1165
 msgid "Archiving failed"
 msgstr ""
 
-#: ../src/DbManager.py:1141
+#: ../src/DbManager.py:1142
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -556,15 +556,15 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/DbManager.py:1146
+#: ../src/DbManager.py:1147
 msgid "Creating data to be archived..."
 msgstr ""
 
-#: ../src/DbManager.py:1151
+#: ../src/DbManager.py:1152
 msgid "Saving archive..."
 msgstr ""
 
-#: ../src/DbManager.py:1165
+#: ../src/DbManager.py:1166
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"
