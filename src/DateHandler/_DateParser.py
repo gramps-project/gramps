@@ -197,8 +197,10 @@ class DateParser:
         fmt = GrampsLocale.tformat
         match = self._fmt_parse.match(fmt.lower())
         if match:
-            self.dmy = (match.groups() == ('d', 'm', 'y'))
-            self.ymd = (match.groups() == ('y', 'm', 'd'))
+            self.dmy = (match.groups() == ('d', 'm', 'y') or \
+                       match.groups() == ('d', 'b', 'y'))
+            self.ymd = (match.groups() == ('y', 'm', 'd') or \
+                       match.groups() == ('y', 'b', 'd'))
         else:
             self.dmy = True
             self.ymd = False
