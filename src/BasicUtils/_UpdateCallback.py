@@ -53,7 +53,7 @@ class UpdateCallback:
         @param interval: number of seconds at most between the updates
         @type interval: int
         """
-        if '__call__' in dir(callback): # callback is really callable
+        if callable(callback): # callback is really callable
             self.update = self.update_real
             self.callback = callback
             self.interval = interval

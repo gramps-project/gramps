@@ -136,7 +136,7 @@ class CalendarWriter:
         self.cl = cl
         self.filename = filename
         self.callback = callback
-        if '__call__' in dir(self.callback): # callback is really callable
+        if callable(self.callback): # callback is really callable
             self.update = self.update_real
         else:
             self.update = self.update_empty
