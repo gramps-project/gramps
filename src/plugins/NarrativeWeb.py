@@ -96,7 +96,7 @@ from gen.lib.eventroletype import EventRoleType
 #
 #------------------------------------------------------------------------
 _INCLUDE_LIVING_VALUE = 99 # Arbitrary number
-_NARRATIVE = "narrative.css"
+_NARRATIVESCREEN = "narrative-screen.css"
 _NARRATIVEPRINT = "narrative-print.css"
 _NAME_COL  = 3
 
@@ -271,8 +271,9 @@ class BasePage:
         self.linkhome = options['linkhome']
         self.use_gallery = options['gallery']
 
-    def display_footer(self, of):
-        of.write('</div>\n\n')          # Terminate div_content
+    def write_footer(self, of):
+
+        of.write('</div>\n')          # Terminate div_content
 
         of.write('<div id="footer">\n')
         footer = self.report.options['footernote']
@@ -289,7 +290,7 @@ class BasePage:
             of.write('\t<div id="copyright">\n')
             of.write('\t\t<p>')
             if self.author:
-                year = time.localtime(time.time())[0]
+                year = time.localtime()[0]
                 cright = _('&copy; %(year)d %(person)s') % {
                     'person' : self.author,
                     'year' : year }
@@ -307,42 +308,43 @@ class BasePage:
             of.write(text)
             of.write('</div>\n')
 
-        of.write('\t<div class="fullclear"></div>\n')
-        of.write('</div>\n\n')
+        of.write('\t\t<div class="fullclear"></div>\n')
+        of.write('</div>\n')
         of.write('</body>\n')
         of.write('</html>')
 
-    def display_header(self, of, title, content_divid=None):
+    def write_header(self, of, title, content_divid=None):
         """
         Note. 'title' is used as currentsection in the navigation links.
         """
-        of.write('<!DOCTYPE html PUBLIC ')
-        of.write('"-//W3C//DTD XHTML 1.0 Strict//EN" ')
-        of.write('"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
+
+        of.write('<!DOCTYPE html PUBLIC \n')
+        of.write('         "-//W3C//DTD XHTML 1.0 Strict//EN" \n')
+        of.write('         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n')
         of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
         xmllang = Utils.xml_lang()
-        of.write('xml:lang="%s" lang="%s">\n\n' % (xmllang, xmllang))
+        of.write('xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
 
         of.write('<head>\n')
-        of.write('<title>%s - %s</title>\n' % (html_escape(self.title_str), html_escape(title)))
-        of.write('<meta http-equiv="Content-Type" content="text/html; ')
+        of.write('     <title>%s - %s</title>\n' % (html_escape(self.title_str), html_escape(title)))
+        of.write('     <meta http-equiv="Content-Type" content="text/html; ')
         of.write('charset=%s" />\n' % self.report.encoding)
 
         # Link to narrative.css
-        url = self.report.build_url_fname(_NARRATIVE, None, self.up)
-        of.write('<link href="%s" rel="stylesheet" type="text/css" title="GRAMPS Style" media="screen" />\n' % url)
+        url = self.report.build_url_fname(_NARRATIVESCREEN, None, self.up)
+        of.write('     <link href="%s" rel="stylesheet" type="text/css" title="GRAMPS Style" media="screen" />\n' % url)
 
         # Link to narrativePrint.css
         url = self.report.build_url_fname(_NARRATIVEPRINT, None, self.up)
-        of.write('<link href="%s" rel="stylesheet" type="text/css" media="print" />\n' % url)
+        of.write('     <link href="%s" rel="stylesheet" type="text/css" media="print" />\n' % url)
 
         # Link to favicon.ico
         url = self.report.build_url_image('favicon.ico', 'images', self.up)
-        of.write('<link href="%s" rel="Shortcut Icon" />\n' % url)
-        of.write('<!-- %sId%s -->\n' % ('$', '$'))
+        of.write('     <link href="%s" rel="Shortcut Icon" />\n' % url)
+        of.write('     <!-- %sId%s -->\n' % ('$', '$'))
         of.write('</head>\n\n')
 
-        of.write('<body>\n')        # Terminated in display_footer()
+        of.write('<body>\n')        # Terminated in write_footer()
 
         of.write('<div id="Header">\n')
         value = _dp.parse(time.strftime('%b %d %Y'))
@@ -359,23 +361,24 @@ class BasePage:
                 home_person_name = home_person.get_primary_name().get_regular_name()
                 msg += _('<br />for <a href="%s">%s</a>') % (home_person_url, home_person_name)
 
-        of.write('\t<div id="GRAMPSinfo">%s</div>\n' % msg)
-        of.write('\t<h1 id="SiteTitle">%s</h1>\n' % html_escape(self.title_str))
+        of.write('         <div id="GRAMPSinfo">%s</div>\n' % msg)
+        of.write('         <h1 id="SiteTitle">%s</h1>\n' % html_escape(self.title_str))
         header = self.report.options['headernote']
         if header:
             note = db.get_note_from_gramps_id(header)
-            of.write('\t<p id="user_header">')
+            of.write('         <p id="user_header">')
             of.write(note.get())
             of.write('</p>\n')
-        of.write('</div>\n\n')
+        of.write('\t</div>\n')
 
-        of.write('<div id="Navigation">\n')
-        of.write('\t<ol>\n')
+	# Begin Navigation Menu
+        of.write('         <div id="Navigation">\n')
+        of.write('             <ol>\n')
 
         self.display_nav_links(of, title)
 
-        of.write('\t</ol>\n')
-        of.write('</div>\n\n')
+        of.write('             </ol>\n')
+        of.write('         </div>\n') # End Navigation Menu
 
         divid = ''
         if content_divid:
@@ -388,12 +391,13 @@ class BasePage:
             (self.report.intro_fname, _('Introduction'), self.report.use_intro),
             (self.report.surname_fname, _('Surnames'), True),
             ('individuals', _('Individuals'), True),
-            ('sources', _('Sources'), True),
             ('places', _('Places'), True),
             ('gallery', _('Gallery'), self.use_gallery),
             ('download', _('Download'), self.report.inc_download),
             ('contact', _('Contact'), self.report.use_contact),
+            ('sources', _('Sources'), True),
                 ]
+
         for url_fname, nav_text, cond in navs:
             if cond:
                 url = url_fname + self.ext
@@ -402,7 +406,7 @@ class BasePage:
                     url = '/'.join(['..']*3 + [url])
                 self.display_nav_link(of, url, nav_text, currentsection)
 
-    # TODO. Move this logic to a higher level (caller of display_header).
+    # TODO. Move this logic to a higher level (caller of write_header).
 
     # Define 'currentsection' to correctly set navlink item CSS id
     # 'CurrentSection' for Navigation styling.
@@ -707,7 +711,7 @@ class IndividualListPage(BasePage):
 
         db = report.database
         of = self.report.create_file("individuals")
-        self.display_header(of, _('Individuals'), content_divid='Individuals')
+        self.write_header(of, _('Individuals'), content_divid='Individuals')
 
         msg = _("This page contains an index of all the individuals in the "
                 "database, sorted by their last names. Selecting the person&#8217;s "
@@ -842,7 +846,7 @@ class IndividualListPage(BasePage):
         of.write('\t</tbody>\n')
         of.write('\t</table>\n')
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class SurnamePage(BasePage):
@@ -853,7 +857,7 @@ class SurnamePage(BasePage):
         db = report.database
         of = self.report.create_file(name_to_md5(surname), 'srn')
         self.up = True
-        self.display_header(of, "%s - %s" % (_('Surname'), surname), content_divid='SurnameDetail')
+        self.write_header(of, "%s - %s" % (_('Surname'), surname), content_divid='SurnameDetail')
 
         msg = _("This page contains an index of all the individuals in the "
                 "database with the surname of %s. Selecting the person&#8217;s name "
@@ -970,7 +974,7 @@ class SurnamePage(BasePage):
         of.write('\t</tbody>\n')
         of.write('\t</table>\n')
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class PlaceListPage(BasePage):
@@ -981,7 +985,7 @@ class PlaceListPage(BasePage):
 
         db = report.database
         of = self.report.create_file("places")
-        self.display_header(of, _('Places'), content_divid='Places')
+        self.write_header(of, _('Places'), content_divid='Places')
 
         msg = _("This page contains an index of all the places in the "
                 "database, sorted by their title. Clicking on a place&#8217;s "
@@ -1032,7 +1036,7 @@ class PlaceListPage(BasePage):
         of.write('\t</tbody>\n')
         of.write('\t</table>\n')
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class PlacePage(BasePage):
@@ -1046,7 +1050,7 @@ class PlacePage(BasePage):
         of = self.report.create_file(place.get_handle(), 'plc')
         self.up = True
         self.page_title = ReportUtils.place_name(db, place_handle)
-        self.display_header(of, "%s - %s" % (_('Places'), self.page_title), content_divid='PlaceDetail')
+        self.write_header(of, "%s - %s" % (_('Places'), self.page_title), content_divid='PlaceDetail')
 
         media_list = place.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
@@ -1098,7 +1102,7 @@ class PlacePage(BasePage):
         self.display_url_list(of, place.get_url_list())
         self.display_references(of, place_list[place.handle])
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class MediaPage(BasePage):
@@ -1128,7 +1132,7 @@ class MediaPage(BasePage):
 
         self.copy_thumbnail(handle, photo)
         self.page_title = photo.get_description()
-        self.display_header(of, "%s - %s" % (_('Gallery'), self.page_title), content_divid='GalleryDetail')
+        self.write_header(of, "%s - %s" % (_('Gallery'), self.page_title), content_divid='GalleryDetail')
 
         of.write('\t<h2>%s:</h2>\n' % _('Gallery'))
 
@@ -1244,7 +1248,7 @@ class MediaPage(BasePage):
         self.display_media_sources(of, photo)
         self.display_references(of, my_media_list)
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
     def gallery_nav_link(self, of, handle, name, up=False):
@@ -1331,11 +1335,11 @@ class SurnameListPage(BasePage):
         db = report.database
         if order_by == self.ORDER_BY_NAME:
             of = self.report.create_file(filename)
-            self.display_header(of, _('Surnames'), content_divid='Surnames')
+            self.write_header(of, _('Surnames'), content_divid='Surnames')
             of.write('\t<h2>%s</h2>\n' % _('Surnames'))
         else:
             of = self.report.create_file("surnames_count")
-            self.display_header(of, _('Surnames by person count'), content_divid='Surnames')
+            self.write_header(of, _('Surnames by person count'), content_divid='Surnames')
             of.write('\t<h2>%s</h2>\n' % _('Surnames by person count'))
 
         of.write('\t<p id="description">%s</p>\n' % _(
@@ -1405,7 +1409,7 @@ class SurnameListPage(BasePage):
         of.write('\t</tbody>\n')
         of.write('\t</table>\n')
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
     def surname_link(self, of, fname, name, opt_val=None, up=False):
@@ -1423,7 +1427,7 @@ class IntroductionPage(BasePage):
         db = report.database
         of = self.report.create_file(report.intro_fname)
         # Note. In old NarrativeWeb.py the content_divid depended on filename.
-        self.display_header(of, _('Introduction'), content_divid='Introduction')
+        self.write_header(of, _('Introduction'), content_divid='Introduction')
 
         of.write('\t<h2>%s</h2>\n' % _('Introduction'))
 
@@ -1438,7 +1442,7 @@ class IntroductionPage(BasePage):
             else:
                 of.write(u'<br />'.join(text.split("\n")))
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class HomePage(BasePage):
@@ -1448,7 +1452,7 @@ class HomePage(BasePage):
 
         db = report.database
         of = self.report.create_file("index")
-        self.display_header(of, _('Home'), content_divid='Home')
+        self.write_header(of, _('Home'), content_divid='Home')
 
         of.write('\t<h2>%s</h2>\n' % _('Home'))
 
@@ -1463,7 +1467,7 @@ class HomePage(BasePage):
             else:
                 of.write(u'<br />'.join(text.split("\n")))
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class SourcesPage(BasePage):
@@ -1473,7 +1477,7 @@ class SourcesPage(BasePage):
 
         db = report.database
         of = self.report.create_file("sources")
-        self.display_header(of, _('Sources'), content_divid='Sources')
+        self.write_header(of, _('Sources'), content_divid='Sources')
 
         handle_list = list(handle_set)
         source_dict = {}
@@ -1516,7 +1520,7 @@ class SourcesPage(BasePage):
         of.write('\t</tbody>\n')
         of.write('\t</table>\n')
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class SourcePage(BasePage):
@@ -1529,7 +1533,7 @@ class SourcePage(BasePage):
         of = self.report.create_file(source.get_handle(), 'src')
         self.up = True
         self.page_title = source.get_title()
-        self.display_header(of, "%s - %s" % (_('Sources'), self.page_title), content_divid='SourceDetail')
+        self.write_header(of, "%s - %s" % (_('Sources'), self.page_title), content_divid='SourceDetail')
 
         media_list = source.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
@@ -1560,7 +1564,7 @@ class SourcePage(BasePage):
         self.display_note_list(of, source.get_note_list())
         self.display_references(of, src_list[source.handle])
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class GalleryPage(BasePage):
@@ -1570,7 +1574,7 @@ class GalleryPage(BasePage):
 
         db = report.database
         of = self.report.create_file("gallery")
-        self.display_header(of, _('Gallery'), content_divid='Gallery')
+        self.write_header(of, _('Gallery'), content_divid='Gallery')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Gallery'))
         of.write('\t<p id="description">')
@@ -1615,7 +1619,7 @@ class GalleryPage(BasePage):
         of.write('\t</tbody>\n')
         of.write('\t</table>\n')
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
     def media_ref_link(self, of, handle, name, up=False):
@@ -1628,11 +1632,11 @@ class DownloadPage(BasePage):
         BasePage.__init__(self, report, title)
 
         of = self.report.create_file("download")
-        self.display_header(of, _('Download'), content_divid='Download')
+        self.write_header(of, _('Download'), content_divid='Download')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Download'))
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class ContactPage(BasePage):
@@ -1642,7 +1646,7 @@ class ContactPage(BasePage):
 
         db = report.database
         of = self.report.create_file("contact")
-        self.display_header(of, _('Contact'), content_divid='Contact')
+        self.write_header(of, _('Contact'), content_divid='Contact')
 
         of.write('\t<h2>%s</h2>\n\n' % _('Contact'))
         of.write('\t<div id="summaryarea">\n')
@@ -1680,7 +1684,7 @@ class ContactPage(BasePage):
 
         of.write('\t</div>\n')
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
 class IndividualPage(BasePage):
@@ -1707,7 +1711,7 @@ class IndividualPage(BasePage):
         db = report.database
         of = self.report.create_file(person.handle, 'ppl')
         self.up = True
-        self.display_header(of, self.sort_name, content_divid='IndividualDetail')
+        self.write_header(of, self.sort_name, content_divid='IndividualDetail')
 
         self.display_ind_general(of)
         self.display_ind_events(of)
@@ -1739,7 +1743,7 @@ class IndividualPage(BasePage):
         if report.options['graph']:
             self.display_tree(of)
 
-        self.display_footer(of)
+        self.write_footer(of)
         self.report.close_file(of)
 
     def display_attr_list(self, of, attrlist=None):
@@ -2669,7 +2673,7 @@ class NavWebReport(Report):
                             value)
                 return
 
-        self.progress = Utils.ProgressMeter(_("Generate HTML reports"), '')
+        self.progress = Utils.ProgressMeter(_("Generate XHTML Reports"), '')
 
         # Build the person list
         ind_list = self.build_person_list()
@@ -2685,7 +2689,7 @@ class NavWebReport(Report):
                 "NWeb_Mainz_MidLight.png",
                 "document.png",
                 "favicon.ico"]
-        # Copy the Creative Commons icon if the a Creative Commons
+        # Copy the Creative Commons icon if the Creative Commons
         # license is requested
         if 0 < self.copyright < 7:
             imgs += ["somerights20.gif"]
@@ -2729,12 +2733,12 @@ class NavWebReport(Report):
 
         if self.archive:
             fname = os.path.join(const.DATA_DIR, css_file)
-            self.archive.add(fname, _NARRATIVE)
+            self.archive.add(fname, _NARRATIVESCREEN)
             gname = os.path.join(const.DATA_DIR, "NWeb-Print_Default.css")
             self.archive.add(gname, _NARRATIVEPRINT)
         else:
             shutil.copyfile(os.path.join(const.DATA_DIR, css_file),
-                            os.path.join(self.html_dir, _NARRATIVE))
+                            os.path.join(self.html_dir, _NARRATIVESCREEN))
             shutil.copyfile(os.path.join(const.DATA_DIR, "NWeb-Print_Default.css"),
                             os.path.join(self.html_dir, _NARRATIVEPRINT))
 
@@ -3096,7 +3100,7 @@ class NavWebOptions(MenuReportOptions):
         css = EnumeratedListOption(_('Stylesheet'), _CSS_FILES[0][1])
         for style in _CSS_FILES:
             css.add_item(style[1], style[0])
-        css.set_help( _("The style sheet to be used for the web page"))
+        css.set_help( _('The stylesheet to be used for the web page'))
         menu.add_option(category_name, "css", css)
 
         self.__graph = BooleanOption(_("Include ancestor graph"), True)
