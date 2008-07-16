@@ -24,7 +24,9 @@ dist_pkgdata_DATA = \
 	Web_Nebraska.css\
 	Web_Print-Default.css\
 	Web_Simply-Red.css\
-	Web_Visually.css
+	Web_Visually.css\
+	Web_styleswitcher.js\
+	Web_styleswitcherMenu.js
 
 # Rules for files with translatable strings
 # These are taken care of by the intltool
