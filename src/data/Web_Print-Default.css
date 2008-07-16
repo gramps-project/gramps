@@ -1,0 +1,710 @@
+/*
+----------------------------------------------------------------------------
+GRAMPS Cascading Style Sheet
+Style Name: Standard Styles for Printing
+Style Author: Jason Simanek (2008)
+----------------------------------------------------------------------------
+
+This website was created with GRAMPS
+----------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+
+Go to www.gramps-project.org to learn more!
+
+License
+----------------------------------------------------------------------------
+Copyright 2008 Jason M. Simanek
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by 
+the Free Software Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+----------------------------------------------------------------------------
+
+
+Color Palette
+----------------------------------------------------------------------------
+gray                    #A7A7A7
+red                        #520
+----------------------------------------------------------------------------
+*/
+
+/* ---------------------------------------------------------------------------- */
+/* General Element Styles */
+/* ---------------------------------------------------------------------------- */
+body {
+    color:#000;
+    margin:0;
+    padding:0;
+    background-color:#FFF;
+}
+div {
+    margin:0;
+    padding:0;
+}
+img {
+    border:none;
+    margin:0;
+}
+.content {  }
+.content div.snapshot {
+    float:right;
+    margin:1.6em;
+    padding:0;
+    background:none;
+}
+.content div.snapshot div.thumbnail {
+    margin:0;
+    padding:0;
+    background:none;
+}
+.content .thumbnail a:link:after, .content .thumbnail a:visited:after {
+    content:"";
+}
+.fullclear {
+    width:100%;
+    height:1pt;
+    margin:0;
+    padding:0;
+    clear:both;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* General Text Styles */
+/* ------------------------------------------------------------------------------ */
+h1 {
+    font:normal 16pt/18pt serif;
+    margin:0;
+    padding:0;
+}
+h2 {
+    font:normal 18pt/23pt serif;
+    display:inline;
+    margin:0;
+    padding:0;
+}
+h3 {
+    font:normal 18pt/23pt serif;
+    text-align:left;
+    display:inline;
+    margin:0 0 0 8pt;
+    padding:0;
+}
+h4 {
+    display:block;
+    clear:both;
+    font:normal 14pt/16pt serif;
+    margin:8pt 0 0 0;
+    padding:8pt 0 1pt 0;
+    border-top:solid .5pt #A7A7A7
+}
+h5, h6 {
+    font:normal 14pt/16pt serif;
+    font-style:italic;
+    margin:0;
+    padding:0;
+}
+p {
+    font:normal 11pt/14pt serif;
+}
+p#description {
+    margin:0 0 14pt 0;
+}
+a:link, a:visited {
+    color:#520;
+    text-decoration:underline;
+}
+.content a:link:after, content a:visited:after {
+    font-size:70%;
+    font-family:sans-serif;
+    content:" (" attr(href) ") ";
+}
+.content ol li a:link {
+    text-decoration:none;
+}
+.content ol li a:link:after, .content ol li a:visited:after {
+    content:"";
+}
+sup {
+    line-height:0;
+}
+ol {
+    font:normal .9em/1.6em sans-serif;
+    margin-top:0;
+    margin-bottom:0;
+    padding-top:.5em;
+    padding-bottom:0;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Header/Navigation Styles */
+/* ------------------------------------------------------------------------------ */
+#Header {
+    padding:0 0 8pt 0;
+    margin:0 0 8pt 0;
+    border-bottom:solid .5pt #000;
+}
+#SiteTitle {
+    text-align:center;
+    margin:0;
+    padding:0;
+}
+#user_header {
+    font-style:italic;
+    text-align:center;
+    margin:0;
+    padding:0
+}
+#GRAMPSinfo {
+    font:normal 7pt/9pt sans-serif;
+    text-align:right;
+    margin:0;
+    padding:0;
+}
+.grampsid {
+    font-size:60%;
+    font-family:monospace;
+    color:#A7A7A7
+}
+#Navigation { display:none; }
+
+/* ------------------------------------------------------------------------------ */
+/* Footer Styles */
+/* ------------------------------------------------------------------------------ */
+#footer {
+    width:100%;
+    margin:0;
+    padding:0;
+    clear:both;
+    border-top:solid .5pt #000;
+}
+#user_footer {
+    float:left;
+    width:70%;
+}
+#user_footer p {
+    font-style:italic;
+}
+#copyright {
+    margin:14pt 0 0 0;
+    font:normal .9em/1.2em sans-serif;
+    text-align:right;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Main Table Styles */
+/* ------------------------------------------------------------------------------ */
+table {
+    width:100%;
+    margin:0;
+    padding:0;
+    border:none;
+    border-collapse:collapse;
+    border-bottom:solid .5pt #FFF;
+}
+table thead tr th {
+    font:normal 11pt/13pt serif;
+    color:#000;
+    margin:0;
+    padding:0;
+    padding-bottom:1pt;
+    border-bottom:solid .5pt #000;
+}
+.content table thead tr th a {
+    text-decoration:none;
+}
+.content table thead tr th a:link:after, .content table thead tr th a:visited:after {
+    content:"";
+}
+table tbody tr td {
+    font:normal 9pt/11pt sans-serif;
+    vertical-align:middle;
+    padding:2pt 6pt 1pt 0;
+    border-bottom:dashed .5pt #A7A7A7;
+}
+.content table tbody tr td a {
+    text-decoration:none;
+}
+.content table tbody tr td a:link:after, .content table tbody tr td a:visited:after {
+    content:"";
+}
+table tr.BeginLetter td, table.infolist tr.BeginSurname td {
+    border-top:solid .5pt #A7A7A7;
+}
+table tbody tr td.ColumnRowLabel {
+    width:2%;
+    color:#A7A7A7;
+    text-align:center;
+}
+table tr td.ColumnLetter {
+    width:3%;
+    text-align:center;
+}
+table tr td.ColumnAttribute {
+    width:10%;
+}
+.content table tbody tr td.ColumnName a {
+    text-decoration:none;
+}
+table tbody tr td.ColumnBirth {
+    width:10%;
+}
+table tbody tr td.ColumnDeath {
+    width:10%;
+    text-decoration:underline;
+}
+table tbody tr td.ColumnParents {
+    font-size:70%;
+}
+table tbody tr td.ColumnParents span.mother:before {
+    content:"+ ";
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Home/Welcome Styles */
+/* ------------------------------------------------------------------------------ */
+#Home p {
+    margin:0 0 9pt 0;
+}
+#Home img {
+    float:right;
+    margin:0;
+    padding:0 0 9pt 9pt;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Introduction Styles */
+/* ------------------------------------------------------------------------------ */
+#Introduction p {
+    margin:0 0 9pt 0;
+}
+#Introduction img {
+    float:right;
+    margin:0;
+    padding:0 0 9pt 9pt;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Surnames Styles */
+/* ------------------------------------------------------------------------------ */
+#Surnames {  }
+table.surnamelist tr thead th.ColumnSurname, #Surnames table.surnamelist tbody tr td.ColumnSurname {
+    width:50%;
+}
+table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr th.ColumnQuantity a:after {
+    content:" ↓";
+}
+table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents {
+    width:35%;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Individuals Styles */
+/* ------------------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------------------ */
+/* Gallery Styles */
+/* ------------------------------------------------------------------------------ */
+#GalleryDetail h2 {
+    display:none;
+}
+#GalleryNav {
+    display:none;
+}
+#GalleryDisplay {
+    text-align:center;
+}
+#GalleryDisplay img {
+    margin:0 auto;
+    border:solid 1pt #542;
+}
+#GalleryDetail h3 {
+    display:block;
+    text-align:center;
+    margin:2pt 0 8pt 0;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Download Styles */
+/* ------------------------------------------------------------------------------ */
+#Download p {
+    margin:0 0 9pt 0;
+}
+#Download img {
+    float:right;
+    margin:0;
+    padding:0 0 9pt 9pt;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Contact Styles */
+/* ------------------------------------------------------------------------------ */
+#researcher {
+    margin:16pt 0 0 0;
+}
+#Contact img {
+    float:right;
+    margin:0;
+    padding:0 0 9pt 9pt;
+}
+#researcher h3 {
+    margin:0;
+}
+#researcher span {
+    font:normal .9em/1.4em serif;
+    display:block;
+    float:left;
+    margin-right:.4em;
+}
+#city {
+    clear:left;
+}
+#city:after {
+    content:",";
+}
+#email {
+    clear:left;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* SubSection Styles */
+/* ------------------------------------------------------------------------------ */
+#Home, #Introduction, #Download, #Contact {
+    padding:3em 20px;
+}
+
+/* SubSection Styles : Events */
+/* ------------------------------------------------------------------------------ */
+#IndividualDetail .ColumnValue {
+    padding:4pt 0;
+}
+.ColumnValue p {
+    font:normal 9pt/11pt sans-serif;
+    margin:1pt 0 0 18pt;
+}
+
+/* SubSection Styles : Gallery */
+/* ------------------------------------------------------------------------------ */
+#indivgallery h4 {
+    margin-bottom:1em;
+}
+#indivgallery .thumbnail {
+    margin:0;
+    float:left;
+    width:130px;
+    height:150px;
+    text-align:center;
+}
+#indivgallery .thumbnail a {
+    display:block;
+    margin:0;
+    padding:0;
+    background:none;
+}
+#indivgallery .thumbnail a img {
+    margin:0;
+    padding:0;
+    border:solid .5pt #000;
+}
+#indivgallery div.thumbnail p {
+    font:normal 7pt/9pt sans-serif;
+    text-align:center;
+    width:80%;
+    margin:0 auto;
+    padding:0;
+}
+
+/* SubSection Styles : Source References */
+/* ------------------------------------------------------------------------------ */
+div#sourcerefs ol {
+    list-style-type:decimal;
+}
+div#sourcerefs ol li ol {
+    list-style-type:lower-alpha;
+}
+
+/* SubSection Styles : Pedigree */
+/* ------------------------------------------------------------------------------ */
+#pedigree a {
+    text-decoration:none;
+}
+.content #pedigree a:link:after, .content #pedigree a:visited:after {
+    content:"";
+}
+.pedigreegen {
+    font:normal 10pt/12pt sans-serif;
+    list-style:none;
+    margin:8pt 0 0 0;
+    padding:0 0 0 20px;
+}
+.pedigreegen li ol {
+    list-style:none;
+    margin-left:16pt;
+}
+.pedigreegen li ol li ol {
+    font:normal 9pt/11pt sans-serif;
+    list-style:decimal;
+    margin-left:16pt;
+}
+.pedigreegen li ol li ol li ol.spouselist {
+    list-style:none;
+    margin-left:0;
+}
+.spouselist li.spouse ol {
+    list-style:decimal;
+    margin-left:16pt;
+}
+.spouse a {
+    font-weight:normal;
+    font-style:normal;
+}
+.spouse:before {
+    content: "+ ";
+}
+.thisperson {
+    font-weight:bold;
+}
+
+/* SubSection Styles : Ancestors Tree */
+/* ------------------------------------------------------------------------------ */
+#tree {
+    page-break-before:always;
+    margin:0;
+    padding:0;
+}
+#treeContainer {
+    position:relative;
+    z-index:1;
+}
+#treeContainer div.boxbg div.box a:link:after, #treeContainer div.boxbg div.box a:visited:after {
+    font-size:70%;
+    font-family:sans-serif;
+    content:"";
+}
+.boxbg {
+    position:absolute;
+    margin:0;
+    padding:0;
+    background:none;
+}
+.boxbg div a {
+    position:relative;
+    z-index:10;
+    display:block;
+    font:normal .7em/1.4em sans-serif;
+    text-align:center;
+    text-decoration:none;
+    width:75pt;
+    padding:5pt 8pt;
+    margin:5pt 0 0 0;
+    background-color:#FFF;
+    border:solid 1pt #000;
+}
+.shadow {
+    display:none;
+}
+#tree div div.bvline {
+    position:absolute;
+    z-index:2;
+    height:1pt;
+    margin:0;
+    padding:0;
+    background-color:#FFF;
+    border-bottom:solid .5pt #A7A7A7
+}
+#tree div div.bhline {
+    position:absolute;
+    z-index:2;
+    width:1pt;
+    margin:0;
+    padding:0;
+    background-color:#FFF;
+    border-right:solid .5pt #A7A7A7
+}
+.ghline, .gvline {
+    display:none;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Web Calendar Styles */
+/* ------------------------------------------------------------------------------ */
+
+/* Web Calendar: Primary Elements */
+/* ------------------------------------------------------------------------------ */
+body#WebCal {
+    font-family:sans-serif;
+    font-weight:normal;
+    line-height:100%;
+    color:#000;
+    margin:0;
+    padding:0 .5em;
+}
+body#WebCal img {
+    border:0;
+}
+body#WebCal a:link {
+    color:#F00;
+    text-decoration:none;
+}
+body#WebCal h1, body#WebCal h2 {
+    font-family:sans-serif;
+    font-size:11pt;
+    line-height:100%;
+    font-weight:normal;
+    color:#000;
+    margin-bottom:.1in;
+    padding:0;
+}
+body#WebCal h1 {
+    float:left;
+    text-align:left;
+}
+body#WebCal h2 {
+    float:right;
+    text-align:right;
+}
+
+/* Web Calendar: Navigation Elements */
+/* ------------------------------------------------------------------------------ */
+body#WebCal ul#Navigation { 
+    display:none;
+}
+
+/* Web Calendar: Calendar Elements */
+/* ------------------------------------------------------------------------------ */
+.calendar {
+    clear:both;
+    empty-cells:show;
+    width:100%;
+    font-size:16pt;
+    font-weight:normal;
+    margin:0;
+    padding:0;
+    border:none;
+    border-collapse:collapse;
+}
+.calendar thead, .calendar tbody {
+    border-style:solid;
+    border-width:2pt 2pt 2pt 2pt;
+    border-color:#000;
+}
+.calendar tbody {
+    border-top:none;
+}
+.calendar thead tr th {
+    width:12%;
+    font-family:sans-serif;
+    font-size:10pt;
+    font-weight:bold;
+    text-align:center;
+    text-transform:uppercase;
+    padding:.2em 0 .1em 0;
+}
+.calendar thead tr th.monthName {
+    width:100%;
+    font-size:20pt;
+    line-height:100%;
+    text-transform:none;
+    padding:5pt;
+    border-width:0;
+}
+.calendar tbody tr td {
+    vertical-align:top;
+    height:4em;
+    padding:0;
+    border-width:1px 0 0 1px;
+    border-style:solid;
+    border-color:#999;
+}
+.calendar tbody tr td:first-child {
+    border-left:none;
+}
+.calendar tbody tr:first-child td {
+    border-top:none;
+}
+.calendar tbody tr td:first-child, .calendar tbody tr td:last-child {
+    color:#000;
+}
+.calendar tbody tr td ul {
+    list-style:none;
+    font-family:sans-serif;
+    font-size:10pt;
+    margin:30pt 0 5pt 0;
+    padding:0;
+}
+.calendar tbody tr td ul li {
+    display:block;
+    width:92%;
+    margin:0 4%;
+    padding:.2em 0 .3em 0;
+    border-top:dashed 1pt #999;
+}
+.calendar tbody tr td ul li:first-child {
+    border:none;
+}
+.calendar tbody tr td ul li em {
+    font-style:normal;
+    color:#000;
+}
+.calendar tbody tr td ul li span.yearsmarried em {
+    color:#000;
+}
+.calendar tfoot {
+    border:none;
+}
+.calendar tfoot tr td {
+    font-size:12pt;
+    font-style:italic;
+    padding:.7em 5% 1em 5%;
+}
+.calendar td div.date {
+    float:right;
+    display:block;
+    font-size:16pt;
+    line-height:100%;
+    font-weight:bold;
+    text-align:center;
+    color:#999;
+    margin:0 0 0 .5em;
+    padding:7pt;
+}
+.calendar td.highlight div.date {
+    color:#F00;
+}
+
+/* Web Calendar: Footer Elements */
+/* ------------------------------------------------------------------------------ */
+body#WebCal div.Footer {
+    font-family:sans-serif;
+    font-size:8pt;
+    text-align:center;
+    color:#000;
+    margin:1em 0 0 0;
+    padding:0;
+}
+body#WebCal div.Footer p {
+    font-family:sans-serif;
+    font-size:8pt;
+    margin:0;
+    padding:0;
+}
+body#WebCal div.Footer p#createdate {
+    float:left;
+    width:40%;
+    text-align:left;
+    margin-left:.25in;
+}
+body#WebCal div.Footer p#copyright {
+    float:right;
+    width:40%;
+    text-align:right;
+    margin-right:.25in;
+}
+body#WebCal div.Footer p#quality {
+    display:none;
+}

@@ -19,7 +19,12 @@ dist_pkgdata_DATA = \
 	NWeb-Screen_Basic-Spruce.css\
 	NWeb-Screen_Mainz.css\
 	NWeb-Screen_Nebraska.css\
-	NWeb-Screen_Sharp.css
+	NWeb-Screen_Sharp.css\
+	Web_Evergreen.css\
+	Web_Nebraska.css\
+	Web_Print-Default.css\
+	Web_Simply-Red.css\
+	Web_Visually.css
 
 # Rules for files with translatable strings
 # These are taken care of by the intltool

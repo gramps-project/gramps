@@ -1,0 +1,1130 @@
+/*
+----------------------------------------------------------------------------
+                  GRAMPS Cascading Style Sheet
+                      Style Name: Simply Red
+		Style Author: Jason Simanek (2008)
+		Modified July 2008 by Rob G. Healey
+----------------------------------------------------------------------------
+
+This website was created with GRAMPS
+----------------------------------------------------------------------------
+GRAMPS is a Free Software Project for Genealogy, offering a professional genealogy program, 
+and a wiki open to all. It is a community project, created, developed and governed by genealogists.
+
+Go to www.gramps-project.org to learn more!
+
+License
+----------------------------------------------------------------------------
+Copyright 2008 Rob G. Healey
+This file is part of the GRAMPS program.
+
+GRAMPS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by 
+the Free Software Foundation, version 2 of the License.
+
+GRAMPS is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with GRAMPS. If not, see <http://www.gnu.org/licenses/>.
+----------------------------------------------------------------------------
+
+
+Color Palette
+----------------------------------------------------------------------------
+green darkest		426e40
+green dark						#C47170
+green								#F33
+blue						#DD9091
+green very light				#F6F2EE
+gray			#D3D3D3
+green			#5D835F
+black			#000
+white							#FAFAFF
+
+###############################Sex based color cheme ############################
+Males		#1E90FF
+fAMALES		#F3C
+uNKNOWN		#000
+----------------------------------------------------------------------------
+*/
+
+/* ---------------------------------------------------------------------------- */
+/* General Element Styles */
+/* ---------------------------------------------------------------------------- */
+body {
+	font-family:Verdana, "Bitstream Vera Sans", Helvetica, sans-serif;
+	color:#000;
+	margin:0;
+	padding:0;
+	background-color:#FAFAFF;
+}
+div {
+	margin:0;
+	padding:0;
+}
+img {
+	border:none;
+	margin:0;
+}
+.thumbnail a:hover {
+	background:none;
+}
+.content {
+	background-color:#FAFAFF;
+}
+.content div.snapshot {
+	float:right;
+	margin:20px;
+	padding:0;
+	background:none;
+}
+.content div.snapshot div.thumbnail {
+	margin:0;
+	padding:0;
+	background:none;
+}
+.fullclear {
+	width:100%;
+	height:1px;
+	margin:0;
+	padding:0;
+	clear:both;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* General Text Styles */
+/* ------------------------------------------------------------------------------ */
+h1 {
+	font-size:1.4em;
+	font-weight:bold;
+}
+h2 {
+	display:none;
+}
+h3 {
+	font-size:1.2em;
+	font-weight:bold;
+	margin-left:12px;
+	text-align:left;
+	margin:0;
+	padding:.5em 20px .2em 20px;
+}
+h4 {
+	font-size:.8em;
+	color:#C47170;
+	margin:0;
+	padding:.2em 0 .2em 20px;
+	background-color:#FFF;
+	border-bottom:solid 1px #F33;
+}
+h5, h6 {
+	font-style:italic;
+	margin:1.3em 0 .5em 1em;
+}
+p {
+	font-size:14px;
+	line-height:17px;
+}
+p#description {
+	padding:0 15px 1em 15px;
+}
+p a:link {
+	text-decoration:underline;
+}
+sup {
+	line-height:0;
+}
+ol {
+}
+ol li a {
+	text-decoration:none;
+}
+a {
+	color:#000;
+	text-decoration:none;
+}
+a:hover, a:active {
+	background-color:#DD9091;
+	color:#FFF;
+	text-decoration:none;
+}
+a:visited {
+	color:#903;
+	text-decoration:none;
+}
+
+/*
+------------------------------------------------------------------------------ 
+			Header/Navigation Styles 
+------------------------------------------------------------------------------ 
+*/
+#header {
+	margin:0;
+	padding:0;
+	background-color:#D30;
+	height:2cm;
+}
+#header h1 {
+	font-size:.7cm;
+	float:center;
+	text-align:center;
+	color:#FFF;
+	margin:0;
+	padding:0;
+}
+#header h1#SiteTitle {
+	font-size:1cm;
+}
+#header p {
+	font-weight:bold;
+	color:#F33;
+	margin:0;
+}
+#GRAMPSinfo {
+	font-size:14px;
+	line-height:120%;
+	float:right;
+	margin:10px;
+	padding:0;
+	color:#FFF;
+}
+#GRAMPSinfo a {
+	color:#FFF;
+}
+.grampsid {
+	font:normal .8em/1.2em monospace;
+	color:#903;
+}
+#navigation {
+	margin:0;
+	padding:4px 0 0 0;
+	background-color:#F33;
+}
+#navigation ul {
+	list-style:none;
+	min-width:770px;
+	height:32px;
+	margin:0;
+	padding:0 0 0 12px;
+	border-bottom:1px solid #903;
+}
+#navigation ul li {
+	margin:0;
+	padding:0;
+	float:left;
+}
+#navigation ul li a {
+	display:block;
+	font-size:16px;
+	line-height:100%;
+	font-weight:bold;
+	text-decoration:none;
+	margin:0;
+	padding:5px 5px;
+	color:#FFF;
+}
+#navigation ul li a:hover {
+	background-color:#C47170;
+	border-bottom:solid 1px #5D835F;
+}
+#navigation ul li#CurrentSection a {
+	padding-bottom:4px;
+	border-top:solid 1px #F33;
+	border-right:solid 1px #F6F2EE;
+	border-left:solid 1px #F6F2EE;
+	border-bottom:solid 1px #F6F2EE;
+	background-color:#FFF;
+	color:#903;
+}
+#navigation ul li#CurrentSection a:hover {
+	background-color:#000;
+	color:#FFF;
+}
+
+/*
+**************************************************************************************************
+					Calendar Elements
+**************************************************************************************************
+*/
+.calendar {
+	empty-cells:show;
+	width:100%;
+	font-size:1em;
+	font-weight:normal;
+	margin:0;
+	padding:0;
+	border:none;
+	border-collapse:collapse;
+}
+.calendar thead tr th {
+	width:14%;
+	text-align:center;
+	text-transform:uppercase;
+	padding:.2em 0 .1em 0;
+}
+.calendar thead tr th.monthName {
+	font-style:italic;
+	width:100%;
+	font-size:2em;
+	line-height:100%;
+	text-transform:none;
+	padding:.3em 0 .2em 0;
+	background-color:#FFF;
+	color:#C47170;
+}
+.calendar thead tr th.weekend, .calendar thead tr th.weekday {
+	border:solid 1px #000;
+	background-color:#C47170;
+	color:#FFF;
+}
+.calendar thead tr th.saturday, .calendar thead tr th.sunday { }
+
+.calendar tbody tr td {
+	vertical-align:top;
+	height:10em;
+	padding:0;
+	border-width:1px 0 0 1px;
+	border-style:solid;
+	border-color:#903;
+}
+.calendar tbody tr td.weekday {
+	background-color:#FFF;
+}
+.calendar tbody tr td.weekend {
+	background-color:#F6F2EE;
+}
+.calendar tbody tr td.saturday {
+	border-right:solid 1px #903;
+ }
+.calendar tbody tr td.sunday {
+	border-left:solid 1px #903;
+}
+.calendar tbody tr td#emptyDays {
+	background-color:#D3D3D3;
+	line-height:100%;
+	border:solid 1px #903;
+}
+.calendar tbody tr td:first-child {
+	border-left:none;
+}
+.calendar tbody tr:first-child td {
+	border-top:none;
+}
+.calendar tbody tr td:first-child, .calendar tbody tr td:last-child {
+	background-color:#F6F2EE;
+}
+.calendar tbody tr td ul {
+	list-style:none;
+	font-family:sans-serif;
+	font-size:.8em;
+	margin:2.3em 0 .3em 0;
+	padding:0;
+}
+.calendar tbody tr td ul li {
+	display:block;
+	width:92%;
+	margin:0 4%;
+	padding:.2em 0 .3em 0;
+	border-top:dashed 1px #C1B398;
+}
+.calendar tbody tr td ul li:first-child {
+	border:none;
+}
+.calendar tbody tr td ul li em {
+	font-style:normal;
+	color:#0A65B5;
+}
+.calendar tbody tr td ul li span.yearsmarried em {
+	color:#903;
+}
+.calendar tfoot tr td {
+	padding:.7em 5% 1em 5%;
+}
+.calendar tfoot tr td.note {
+	border-top:solid 2px #F33;
+	background-color:#000;
+	vertical-align:middle;
+	font-size:.8em;
+	height:1cm;
+	color:#FFF;
+}
+.date {
+	float:right;
+	display:block;
+	width:1.8em;
+	font-size:1.2em;
+	line-height:100%;
+	text-align:center;
+	color:#FFF;
+	margin:0 0 0 .5em;
+	padding:.2em 0;
+	background-color:#F33;
+}
+.highlight div.date {
+	background-color:#1E90FF;
+	color:#FFF;
+}
+
+.next div.date, .previous div.date {
+	background-color:#903;
+	color:#FFF;
+}
+
+/*
+------------------------------------------------------------------------------ 
+Main Table Styles - infolist variations
+------------------------------------------------------------------------------ 
+*/
+table {
+	font-size:14px;
+	margin:0 15px;
+	padding:0;
+	border:none;
+	border-collapse:collapse;
+}
+table tr th {
+	font-weight: bold;
+	text-align: left;
+	margin:0;
+	padding:.1em 10px;
+	background-color:#DD9091;
+	border-top:solid 1px #F33;
+	border-bottom:solid 1px #F33;
+}
+table.infolist tr th:first-child {
+	border-left:solid 1px #F33;
+}
+table.infolist tr th:last-child {
+	border-right:solid 1px #F33;
+}
+table.infolist tr th a {
+	text-decoration:none;
+}
+table tr td {
+	vertical-align:middle;
+	padding:.1em 10px;
+}
+table.infolist tr td a {
+	display:block;
+	text-decoration:none;
+}
+table.infolist tr.BeginLetter td, table.infolist tr.BeginSurname td {
+	border-top:solid 1px #DD909A;
+}
+table.infolist tr th.ColumnQuantity {
+	width:30%;
+}
+table.infolist tr td.ColumnLetter {
+	font-weight:bold;
+}
+table.infolist tbody tr td.ColumnBirth {
+	font-size:.9em;
+	width:10%;
+}
+table.infolist tbody tr td.ColumnDeath {
+	font-size:.9em;
+	width:10%;
+}
+table.infolist tbody tr td.ColumnRowLabel {
+	font-weight:bold;
+	width:2%;
+}
+table.infolist tbody tr td.ColumnType {
+	width:6%;
+	padding-left:20px;
+}
+table.infolist tbody tr td.ColumnPartner {
+	font-size:.9em;
+}
+table.infolist tbody tr td.ColumnParents {
+	font-size:.9em;
+}
+table.infolist tbody tr td.ColumnParents span.father, table.infolist tbody tr td.ColumnParents span.mother {
+	display:block;
+}
+table.infolist tbody tr td.ColumnParents span.mother:before {
+	content:"+ ";
+}
+table.infolist tbody p.EventNote {
+	border-top:dashed 1px #DD9091;
+	padding-top:1em;
+	padding-bottom:1em;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Surnames Styles */
+/* ------------------------------------------------------------------------------ */
+#Surnames {  }
+#SurnameDetail p#description { padding-top:0; }
+table.surnamelist tbody tr td.ColumnSurname {
+	width:50%;
+}
+table.surnamelist thead tr th.ColumnSurname {
+	background-color:#DD9091;
+	color:#FFF;
+	padding:0;
+}
+table.surnamelist thead tr th.ColumnQuantity {
+	background-color:#DD9091;
+	color:#FFF;
+	width:40%;
+	padding:0;
+}
+table.infolist thead tr th.ColumnSurname a, table.infolist thead tr th.ColumnQuantity a {
+	display:block;
+	padding:.1em 10px;
+}
+table#SortByName thead tr th.ColumnSurname a, table#SortByCount thead tr th.ColumnQuantity a {
+	background-color:#DD9091;
+	color:#FFF;
+}
+table#SortByName thead tr th.ColumnSurname a:after, table#SortByCount thead tr th.ColumnQuantity a:after {
+	content:" ↓";
+}
+table.infolist tbody tr td.ColumnSurname {
+	padding:0;
+	background-color:#FFF;
+}
+table.infolist tbody tr td.ColumnSurname a {
+	padding:.1em 10px;
+}
+table.infolist tbody tr td.ColumnSurname a:hover {
+	padding:.1em 10px;
+	background-color:#DD9091;
+}
+table.surname {
+	border-bottom:solid 1px #5D835F;
+}
+table.surname tbody tr td {
+	border-bottom:dashed 1px #DD9091;
+}
+table.surname tbody tr td.ColumnName {
+	width:20%;
+	padding:0;
+	background-color:#DD9091;
+}
+table.surname tbody tr td.ColumnName a {
+	display:block;
+	padding:.6em 10px .6em 20px;
+}
+table.surname tbody tr td.ColumnName a:hover {
+	background-color:#DD9091;
+}
+table.surname tbody tr td.ColumnName a span.grampsid {
+	display:none;
+}
+table.surname thead tr th.ColumnParents, table.surname tbody tr td.ColumnParents {
+	width:25%;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Individuals Styles */
+/* ------------------------------------------------------------------------------ */
+#Individuals {  }
+#Individuals table.individuallist {
+	border-bottom:solid 1px #F33;
+}
+#Individuals table.individuallist tbody tr td {
+	border-bottom:dashed 1px #DD9091;
+}
+#Individuals table.individuallist tbody tr td a:hover {
+	background-color:#DD9091;
+	text-decoration:none;
+	color:#FFF;
+}
+table.individuallist tbody tr td.ColumnSurname {
+	background:none;
+}
+table.individuallist tbody tr td.ColumnSurname a:hover, table.individuallist tbody tr td.ColumnSurname a:active {
+	cursor:default;
+	color:black;
+	background:none;
+}
+table.individuallist tbody tr td.ColumnName {
+	background-color:#FFF;
+	padding:0;
+}
+table.individuallist tbody tr td.ColumnName a {
+	display:block;
+	padding:.6em 10px;
+}
+table.individuallist tbody tr td.ColumnName a:hover { }
+
+#IndividualDetail div table.infolist tr td, #Individuals div table.infolist tr td p {
+	vertical-align:top;
+}
+#IndividualDetail div table.infolist tr td a, #Individuals div table.infolist tr td p a {
+	display:inline;
+}
+#IndividualDetail table.infolist tr td a:hover {
+	text-decoration:underline;
+}
+#IndividualDetail table.infolist tbody tr td.ColumnAttribute {
+	width:10%;
+	color:#F33;
+	padding-left:5px;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Sources Styles */
+/* ------------------------------------------------------------------------------ */
+#Sources table.infolist tbody tr td.ColumnRowLabel {
+	padding-bottom:0;
+}
+#Sources table.infolist tbody tr td.ColumnName {
+	padding:0;
+}
+#Sources table.infolist tbody tr td.ColumnName a {
+	padding:.1em 10px .3em 10px;
+}
+#SourceDetail div#references ol li {
+	padding-bottom:.5em;
+}
+#SourceDetail div#references ol li a:hover {
+	background-color:#DD9091;
+	text-decoration:none;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Places Styles */
+/* ------------------------------------------------------------------------------ */
+#Places table.infolist tbody tr td.ColumnName {
+	padding:0;
+}
+#Places table.infolist tbody tr td.ColumnName a {
+	padding:.1em 10px .3em 10px;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Gallery Styles */
+/* ------------------------------------------------------------------------------ */
+#Gallery table.infolist tbody tr td.ColumnRowLabel, #Gallery table.infolist tbody tr td.ColumnDate {
+	padding-bottom:0;
+}
+#Gallery table.infolist tbody tr td.ColumnName {
+	padding:0;
+}
+#Gallery table.infolist tbody tr td.ColumnName a {
+	padding:.1em 10px .3em 10px;
+}
+#Gallery table.infolist tbody tr td.ColumnName a:hover {
+	color:#FFF;
+}
+#GalleryNav {
+	font-size:.8em;
+	margin:1em 0 0 0;
+	padding:1.2em 0 0 0;
+	text-align:center;
+}
+#GalleryNav a {
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#FFF;
+	border:solid 1px #DD909A;
+}
+#GalleryNav a:hover {
+	background-color:#DD9091;
+	color:#FFF;
+}
+#GalleryNav a#Previous {
+	padding:.4em .7em .3em .7em;
+}
+#GalleryNav a#Next {
+	padding:.4em 1.9em .3em 1.9em;
+}
+#GalleryPages {
+	margin:0 1em;
+}
+#GalleryCurrent {
+	font-size:1.2em;
+	font-weight:bold;
+}
+#GalleryTotal {
+	font-weight:normal;
+}
+#GalleryDisplay {
+	text-align:center;
+}
+#GalleryDisplay img {
+	margin:0 auto;
+	border:solid 1px #F33;
+}
+#GalleryDetail div#summaryarea{
+	margin:0;
+	padding:1.4em 0 0 0;
+}
+#GalleryDetail div#summaryarea h3 {
+	text-align:center;
+}
+#GalleryDetail div h4 {
+	margin-top:0;
+}
+#GalleryDetail div#summaryarea table.gallery {
+	width:100%;
+	margin-top:1.5em;
+	margin-bottom:0;
+	padding-bottom:0;
+	background-color:#FFF;
+	border-style:solid;
+	border-width:8px 0 0 0;
+	border-color:#DD9091;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Contact Styles */
+/* ------------------------------------------------------------------------------ */
+#Contact #summaryarea {
+	width:500px;
+	margin:2em auto;
+	padding:3em;
+	background-color:#F6F2EE;
+	border:solid 1px #F33;
+}
+#Contact #summaryarea img {
+	float:right;
+	margin:0;
+	padding:0;
+	border:solid 1px #F33;
+}
+#researcher {
+	margin-top:.3em;
+}
+#researcher h3 {
+	padding:0;
+}
+#researcher span {
+	display:block;
+	float:left;
+	margin-right:.4em;
+}
+#streetaddress {
+	background-color:#208BAA;
+	color:#FFF;
+	width:85%;
+}
+#city:after {
+	content:",";
+}
+#country {
+	clear:left;
+}
+#email {
+	clear:left;
+}
+#email a {
+	text-decoration:none;
+}
+#email a:hover {
+	text-decoration:underline;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* SubSection Styles */
+/* ------------------------------------------------------------------------------ */
+#Home, #Introduction, #Download, #Contact {
+	padding:1.5em 0 3em 0;
+}
+#Home p, #Introduction p, #Download p, #Contact p {
+	margin:0 20px 1em 20px;
+}
+#Home img, #Introduction img, #Download img, #Contact img {
+	float:right;
+	margin:0;
+	padding:0 20px 3em 20px;
+}
+div.subsection{
+	padding-bottom:.5em;
+	background-color:#FAFAFF;
+}
+div.subsection h4 {
+	margin-bottom:.5em;
+}
+div.subsection table, div.subsection ol, div.subsection p {
+	font-size:.9em;
+}
+div.subsection a {
+	text-decoration:none;
+}
+div.subsection a:hover {
+	text-decoration:underline;
+	background:none;
+}
+div.subsection table.infolist {
+	width:100%;
+	margin:0;
+}
+#IndividualDetail div.subsection table tr td:first-child {
+	padding-left:20px;
+}
+
+/* SubSection Styles : Summary Area */
+/* ------------------------------------------------------------------------------ */
+div#summaryarea {
+	min-height:100px;
+	background:none;
+}
+div#summaryarea table.infolist {
+	margin:0;
+	padding:0;
+	background:#FAFAFF;
+	border-bottom:solid .7em #FAFAFF;
+}
+div#summaryarea table.infolist tr td, div#summaryarea table.infolist tr td p {
+	vertical-align:top;
+}
+div#summaryarea table.infolist tr td a, div#summaryarea table.infolist tr td p a {
+	display:inline;
+}
+div#summaryarea table.infolist tbody tr td.ColumnAttribute {
+	width:14%;
+	padding-left:20px;
+}
+
+/* SubSection Styles : Events */
+/* ------------------------------------------------------------------------------ */
+div#events {
+	padding-bottom:0;
+}
+div#events h4 {
+	margin-bottom:0;
+}
+div#events table.infolist {
+	border-bottom:solid 1px #FAFAFF;
+}
+div#events table.infolist tbody tr td {
+	padding-top:.2em;
+	padding-bottom:.2em;
+}
+div#events table.infolist tbody tr td.ColumnAttribute {
+	border-bottom:dashed 1px #DD9091;
+}
+div#events table.infolist tbody tr td.ColumnValue {
+	border-bottom:dashed 1px #DD9091;
+}
+div#events table.infolist tbody tr td.ColumnValue p {
+	margin:.1em 2em;
+}
+
+/* SubSection Styles : Parents */
+/* ------------------------------------------------------------------------------ */
+div#parents table.infolist tbody tr td.ColumnValue ol {
+	margin:0;
+	padding-top:0;
+}
+div#parents table.infolist tbody tr td.ColumnValue ol li {
+	padding-bottom:.2em;
+}
+
+/* SubSection Styles : Families */
+/* ------------------------------------------------------------------------------ */
+div#families table.infolist tbody tr td.ColumnValue p {
+	margin-top:0;
+}
+div#families table.infolist tbody tr td.ColumnValue ol {
+	margin:0;
+	padding-top:0;
+}
+div#families table.infolist tbody tr td.ColumnValue ol li {
+	padding-bottom:.2em;
+}
+
+/* SubSection Styles : Addresses */
+/* ------------------------------------------------------------------------------ */
+div#addresses {
+	padding-bottom:0;
+}
+div#addresses h4 {
+	margin-bottom:0;
+}
+div#addresses table.infolist {
+	border-bottom:solid 1px #FAFAFF;
+}
+div#addresses table.infolist tbody tr td {
+	padding-top:.2em;
+	padding-bottom:.2em;
+}
+div#addresses table.infolist tbody tr td.ColumnAttribute {
+	width:30%;
+	border-bottom:dashed 1px #DD9091;
+}
+div#addresses table.infolist tbody tr td.ColumnValue {
+	border-bottom:dashed 1px #DD9091;
+}
+
+/* SubSection Styles : Attributes */
+/* ------------------------------------------------------------------------------ */
+
+/* SubSection Styles : Gallery */
+/* ------------------------------------------------------------------------------ */
+#indivgallery h4 {
+	margin-bottom:1em;
+}
+#indivgallery .thumbnail {
+	margin:0;
+    float:left;
+    width:130px;
+    height:150px;
+    text-align:center;
+}
+#indivgallery .thumbnail a {
+	display:block;
+	margin:0;
+	padding:0;
+	background:none;
+}
+#indivgallery .thumbnail a img {
+	margin:0;
+	padding:0;
+	border:solid 1px #F33;
+}
+#indivgallery div.thumbnail p {
+	font-size:.6em;
+	text-align:center;
+	width:80%;
+	margin:0 auto;
+	padding:0;
+}
+
+/* SubSection Styles : Narrative */
+/* ------------------------------------------------------------------------------ */
+div#narrative {
+	padding-bottom:0;
+}
+#narrative p {
+	margin-top:.5em;
+	margin-bottom:0;
+	padding:0 20px 1em 20px;
+}
+
+/* SubSection Styles : References */
+/* ------------------------------------------------------------------------------ */
+#references ol {
+	margin-top:0;
+	margin-bottom:0;
+}
+
+/* SubSection Styles : Source References */
+/* ------------------------------------------------------------------------------ */
+div#sourcerefs ol {
+	list-style-type:decimal;
+}
+div#sourcerefs ol li ol {
+	list-style-type:lower-alpha;
+}
+
+/* SubSection Styles : Weblinks */
+/* ------------------------------------------------------------------------------ */
+
+/* SubSection Styles : Pedigree */
+/* ------------------------------------------------------------------------------ */
+.pedigreegen {
+	font-size:.9em;
+	list-style:none;
+	margin:.5em 0 0 0;
+	padding:0 0 .7em 20px;
+}
+.pedigreegen li ol {
+	list-style:none;
+	margin-left:.5em;
+}
+.pedigreegen li ol li {
+	padding-bottom:.2em;
+}
+.pedigreegen li ol li ol {
+	list-style:decimal;
+	margin-left:1.6em;
+}
+.pedigreegen li ol li ol li ol.spouselist {
+	font-size:1em;
+	list-style:none;
+	margin-left:0;
+}
+.spouselist li.spouse ol {
+	font-size:1em;
+	list-style:decimal;
+	margin-left:1.6em;
+}
+.spouse a {
+	font-weight:normal;
+}
+.spouse:before {
+	content: "+ ";
+}
+.thisperson {
+	font-weight:bold;
+}
+
+/* SubSection Styles : Ancestors Tree */
+/* ------------------------------------------------------------------------------ */
+#tree {
+	page-break-before:always;
+	margin:0;
+	padding:0;
+}
+#treeContainer {
+	position:relative;
+	z-index:1;
+	margin-bottom:1.4em;
+}
+.boxbg {
+	font:normal .3cm sans-serif;
+        position:absolute;
+        margin:0;
+        padding:0;
+}
+.boxbg div {
+	position:relative;
+	z-index:10;
+	display:block;
+	color:#FFF;
+	text-align:center;
+	vertical-align:middle;
+	text-decoration:none;
+	margin:5px;
+	width:160px;
+	padding:5px 5px 7px 5px;
+}
+.boxbg div a {
+        position:relative;
+        z-index:10;
+        display:block;
+        text-align:center;
+	vertical-align:middle;
+        text-decoration:none;
+	margin:5px;
+        width:160px;
+        padding:5px 5px 7px 5px;
+	color:#FFF;
+}
+.boxbg div:hover {
+	position:relative;
+	z-index:999;
+	font-size:1.3em;
+	width:210px;
+	padding:10px 4px 12px 4px;
+	background-color:#153282;
+	color:#FFF;
+}
+.boxbg div a:hover {
+        position:relative;
+        z-index:999;
+        font-size:1em;
+        width:210px;
+	color:#FFF;
+}
+.male {
+        background-color:#1E90FF;
+        color:#FFF;
+}
+.male div {
+	background-color:#1e90ff;
+	color:#FFF;
+}
+.female {
+        background-color:#F3C;
+        color:#FFF;
+}
+.female div {
+	background-color:#F3C;
+	color:#FFF;
+}
+.unknown {
+        background-color:#000;
+        color:#FFF;
+}
+.unknown div {
+	background-color:#000;
+	color:#FFF;
+}
+.shadow {
+	
+}
+#tree div div.bvline {
+	position:absolute;
+	z-index:2;
+	height:3px;
+	margin:0 0 0 16px;
+	padding:0;
+	background-color:#903;
+}
+#tree div div.bhline {
+	position:absolute;
+	z-index:2;
+	width:2px;
+	margin:0 0 0 16px;
+	padding:0;
+	background-color:#903;
+}
+#tree div div.gvline {
+	position:absolute;
+	z-index:1;
+	height:3px;
+	margin:0 0 0 14px;
+	padding:0;
+	background-color:#903;
+}
+#tree div div.ghline {
+	position:absolute;
+	z-index:1;
+	width:2px;
+	margin:0 0 0 14px;
+	padding:0;
+	background-color:#903;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Footer Styles */
+/* ------------------------------------------------------------------------------ */
+#footer {
+	width:100%;
+	height:1.5cm;
+	color:#C47170;
+	margin:0;
+	padding:0;
+	clear:both;
+	background-color:#D30;
+	border-top:solid 1px #DD909A;
+}
+#footer img {
+	border:0;
+}
+#footer p#copyright {
+	margin:1em;
+	float:right;
+	color:#FFF;
+}
+#footer p#copyright p {
+	margin:0;
+}
+#footer p#copyright img {
+	margin-right:10px;
+	float:right;
+}
+#footer p#createdate {
+	float:left;
+	margin-left:10px;
+	color:#FFF;
+}
+#footer p#createdate a {
+	color:#FFF;
+	text-decoration:none;
+}
+#footer p#quality {
+	float:center;
+	text-align:center;
+	color:#FFF;
+}
+#footer p#quality a {
+	color:#FFF;
+	text-decoration:none;
+}
+#footer p#quality img {
+	float:center;
+}
+#user_footer {
+	width:70%;
+	float:left;
+	margin:1em;
+}
+#user_footer p {
+	margin:0;
+}
