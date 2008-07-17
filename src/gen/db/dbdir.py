@@ -540,7 +540,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
             if gstats is None:
                 # New database. Set up the current version.
                 self.metadata.put('version', _DBVERSION, txn=the_txn)
-            elif not self.metadata.has_key('version'):
+            elif 'version' not in self.metadata:
                 # Not new database, but the version is missing.
                 # Use 0, but it is likely to fail anyway.
                 self.metadata.put('version', 0, txn=the_txn)
@@ -930,7 +930,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # from the primary object 'obj' or any of its secondary objects.
 
         handle = obj.handle
-        update = self.reference_map_primary_map.has_key(str(handle))
+        update = str(handle) in self.reference_map_primary_map
 
         if update:
             # First thing to do is get hold of all rows in the reference_map
@@ -1373,7 +1373,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
 
     def __get_obj_from_gramps_id(self, val, tbl, class_init, prim_tbl):
         try:
-            if tbl.has_key(str(val)):
+            if str(val) in tbl:
                 data = tbl.get(str(val), txn=self.txn)
                 obj = class_init()
                 ### FIXME: this is a dirty hack that works without no
@@ -1532,7 +1532,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         obj = class_type()
         handle = str(handle)
         new = True
-        if dmap.has_key(handle):
+        if handle in dmap:
             data = dmap.get(handle, txn=self.txn)
             obj.unserialize(data)
             #references create object with id None before object is really made

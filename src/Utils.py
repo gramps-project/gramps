@@ -1114,7 +1114,7 @@ def launch(prog_str, path):
     
         if len(prog_data) > 1:
             for item in prog_data:
-                if subval.has_key(item):
+                if item in subval:
                     need_path = False
                     value = subval[item]
                 else:

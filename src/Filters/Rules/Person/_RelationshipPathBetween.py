@@ -89,7 +89,7 @@ class RelationshipPathBetween(Rule):
             self.apply_filter(rank+1,family.get_mother_handle(),plist,pmap)
 
     def apply(self,db,person):
-        return self.map.has_key(person.handle)
+        return person.handle in self.map
 
     def init_list(self,p1_handle,p2_handle):
         firstMap = {}
@@ -129,5 +129,5 @@ class RelationshipPathBetween(Rule):
 
     def get_intersection(self,target, map1, map2):
         for e in map1.keys():
-            if map2.has_key(e):
+            if e in map2:
                 target[e] = map2[e]

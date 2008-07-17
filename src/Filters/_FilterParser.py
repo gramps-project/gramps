@@ -57,7 +57,7 @@ class FilterParser(handler.ContentHandler):
 
     def startElement(self, tag, attrs):
         if tag == "object":
-            if attrs.has_key('type'):
+            if 'type' in attrs:
                 self.namespace = attrs['type']
                 if self.namespace == 'Media':
                     self.namespace = 'MediaObject'
@@ -66,7 +66,7 @@ class FilterParser(handler.ContentHandler):
         elif tag == "filter":
             self.f = GenericFilterFactory(self.namespace)()
             self.f.set_name(attrs['name'])
-            if attrs.has_key('function'):
+            if 'function' in attrs:
                 try:
                     if int(attrs['function']):
                         op = 'or'
@@ -75,9 +75,9 @@ class FilterParser(handler.ContentHandler):
                 except ValueError:
                     op = attrs['function']
                 self.f.set_logical_op(op)
-            if attrs.has_key('invert'):
+            if 'invert' in attrs:
                 self.f.set_invert(attrs['invert'])
-            if attrs.has_key('comment'):
+            if 'comment' in attrs:
                 self.f.set_comment(attrs['comment'])
             self.gfilter_list.add(self.namespace, self.f)
         elif tag == "rule":

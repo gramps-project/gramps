@@ -54,7 +54,7 @@ class ErrorReportAssistant:
         self.w.show()
 
     def on_page_changed(self, obj,page,data=None):
-        if self.cb.has_key(page):
+        if page in self.cb:
             self.cb[page]()
             
     def complete(self):

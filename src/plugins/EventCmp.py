@@ -304,7 +304,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
             for ievent_ref in individual.get_event_ref_list():
                 ievent = self.db.get_event_from_handle(ievent_ref.ref)
                 event_name = str(ievent.get_type())
-                if the_map.has_key(event_name):
+                if event_name in the_map:
                     the_map[event_name].append(ievent_ref.ref)
                 else:
                     the_map[event_name] = [ievent_ref.ref]
@@ -318,7 +318,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 else:
                     tlist = ["",""]
                 for ename in self.event_titles:
-                    if the_map.has_key(ename) and len(the_map[ename]) > 0:
+                    if ename in the_map and len(the_map[ename]) > 0:
                         event_handle = the_map[ename][0]
                         del the_map[ename][0]
                         date = ""
@@ -364,7 +364,7 @@ class DisplayChart(ManagedWindow.ManagedWindow):
                 name = str(event.get_type())
                 if not name:
                     break
-                if the_map.has_key(name):
+                if name in the_map:
                     the_map[name] = the_map[name] + 1
                 else:
                     the_map[name] = 1
@@ -375,11 +375,11 @@ class DisplayChart(ManagedWindow.ManagedWindow):
 ## Presently there's no Birth and Death. Instead there's Birth Date and
 ## Birth Place, as well as Death Date and Death Place.
 ##         # Move birth and death to the begining of the list
-##         if the_map.has_key(_("Death")):
+##         if _("Death") in the_map:
 ##             sort_list.remove(_("Death"))
 ##             sort_list = [_("Death")] + sort_list
             
-##         if the_map.has_key(_("Birth")):
+##         if _("Birth") in the_map:
 ##             sort_list.remove(_("Birth"))
 ##             sort_list = [_("Birth")] + sort_list
 

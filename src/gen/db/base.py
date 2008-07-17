@@ -650,7 +650,7 @@ class GrampsDbBase(Callback):
         person ID prefix.
         """
         index = self.person_prefix % self.pmap_index
-        while self.id_trans.has_key(str(index)):
+        while str(index) in self.id_trans:
             self.pmap_index += 1
             index = self.person_prefix % self.pmap_index
         self.pmap_index += 1
@@ -662,7 +662,7 @@ class GrampsDbBase(Callback):
         place ID prefix.
         """
         index = self.place_prefix % self.lmap_index
-        while self.pid_trans.has_key(str(index)):
+        while str(index) in self.pid_trans:
             self.lmap_index += 1
             index = self.place_prefix % self.lmap_index
         self.lmap_index += 1
@@ -674,7 +674,7 @@ class GrampsDbBase(Callback):
         event ID prefix.
         """
         index = self.event_prefix % self.emap_index
-        while self.eid_trans.has_key(str(index)):
+        while str(index) in self.eid_trans:
             self.emap_index += 1
             index = self.event_prefix % self.emap_index
         self.emap_index += 1
@@ -686,7 +686,7 @@ class GrampsDbBase(Callback):
         off the media object ID prefix.
         """
         index = self.mediaobject_prefix % self.omap_index
-        while self.oid_trans.has_key(str(index)):
+        while str(index) in self.oid_trans:
             self.omap_index += 1
             index = self.mediaobject_prefix % self.omap_index
         self.omap_index += 1
@@ -698,7 +698,7 @@ class GrampsDbBase(Callback):
         source ID prefix.
         """
         index = self.source_prefix % self.smap_index
-        while self.sid_trans.has_key(str(index)):
+        while str(index) in self.sid_trans:
             self.smap_index += 1
             index = self.source_prefix % self.smap_index
         self.smap_index += 1
@@ -710,7 +710,7 @@ class GrampsDbBase(Callback):
         family ID prefix.
         """
         index = self.family_prefix % self.fmap_index
-        while self.fid_trans.has_key(str(index)):
+        while str(index) in self.fid_trans:
             self.fmap_index += 1
             index = self.family_prefix % self.fmap_index
         self.fmap_index += 1
@@ -722,7 +722,7 @@ class GrampsDbBase(Callback):
         off the repository ID prefix.
         """
         index = self.repository_prefix % self.rmap_index
-        while self.rid_trans.has_key(str(index)):
+        while str(index) in self.rid_trans:
             self.rmap_index += 1
             index = self.repository_prefix % self.rmap_index
         self.rmap_index += 1
@@ -734,7 +734,7 @@ class GrampsDbBase(Callback):
         note ID prefix.
         """
         index = self.note_prefix % self.nmap_index
-        while self.nid_trans.has_key(str(index)):
+        while str(index) in self.nid_trans:
             self.nmap_index += 1
             index = self.note_prefix % self.nmap_index
         self.nmap_index += 1
@@ -826,7 +826,7 @@ class GrampsDbBase(Callback):
         obj = class_type()
         handle = str(handle)
         new = True
-        if dmap.has_key(handle):
+        if handle in dmap:
             obj.unserialize(dmap.get(handle))
             #references create object with id None before object is really made
             if obj.gramps_id is not None:
@@ -839,7 +839,7 @@ class GrampsDbBase(Callback):
     def __check_from_handle(self, handle, transaction, class_type, dmap,
                             add_func, set_gid=True):
         handle = str(handle)
-        if not dmap.has_key(handle):
+        if handle not in dmap:
             obj = class_type()
             obj.set_handle(handle)
             add_func(obj, transaction, set_gid=set_gid)
@@ -1283,7 +1283,7 @@ class GrampsDbBase(Callback):
         """
         Return if a key exists in the name_group table.
         """
-        return self.name_group.has_key(str(name))
+        return str(name) in self.name_group
 
     def set_name_group_mapping(self, name, group):
         """
@@ -1483,7 +1483,7 @@ class GrampsDbBase(Callback):
             }
 
         table = key2table[obj_key]
-        return table.has_key(str(gramps_id))
+        return str(gramps_id) in table
 
     def find_initial_person(self):
         person = self.get_default_person()
@@ -1814,7 +1814,7 @@ class GrampsDbBase(Callback):
             self.emit(signal_root + '-delete', ([handle], ))
             del db_map[handle]
         else:
-            if db_map.has_key(handle):
+            if handle in db_map:
                 signal = signal_root + '-update'
             else:
                 signal = signal_root + '-add'
@@ -2191,49 +2191,49 @@ class GrampsDbBase(Callback):
         """
         Return True if the handle exists in the current Person database.
         """
-        return self.person_map.has_key(str(handle))
+        return str(handle) in self.person_map
 
     def has_event_handle(self, handle):
         """
         Return True if the handle exists in the current Event database.
         """
-        return self.event_map.has_key(str(handle))
+        return str(handle) in self.event_map
 
     def has_source_handle(self, handle):
         """
         Return True if the handle exists in the current Source database.
         """
-        return self.source_map.has_key(str(handle))
+        return str(handle) in self.source_map
 
     def has_place_handle(self, handle):
         """
         Return True if the handle exists in the current Place database.
         """
-        return self.place_map.has_key(str(handle))
+        return str(handle) in self.place_map
 
     def has_family_handle(self, handle):            
         """
         Return True if the handle exists in the current Family database.
         """
-        return self.family_map.has_key(str(handle))
+        return str(handle) in self.family_map
 
     def has_object_handle(self, handle):
         """
         Return True if the handle exists in the current MediaObjectdatabase.
         """
-        return self.media_map.has_key(str(handle))
+        return str(handle) in self.media_map
 
     def has_repository_handle(self, handle):
         """
         Return True if the handle exists in the current Repository database.
         """
-        return self.repository_map.has_key(str(handle))
+        return str(handle) in self.repository_map
 
     def has_note_handle(self, handle):
         """
         Return True if the handle exists in the current Note database.
         """
-        return self.note_map.has_key(str(handle))
+        return str(handle) in self.note_map
 
     def __sortbyplace(self, first, second):
         return locale.strcoll(self.place_map.get(str(first))[2], 

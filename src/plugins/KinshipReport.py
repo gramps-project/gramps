@@ -129,8 +129,8 @@ class KinshipReport(Report):
                 self.write_people(title,self.kinship_map[Ga][Gb])
                 
                 if self.inc_spouses and \
-                   self.spouse_map.has_key(Ga) and \
-                   self.spouse_map[Ga].has_key(Gb):
+                   Ga in self.spouse_map and \
+                   Gb in self.spouse_map[Ga]:
                     title = _("spouses of %s") % title
                     self.write_people(title,self.spouse_map[Ga][Gb])
 
@@ -189,9 +189,9 @@ class KinshipReport(Report):
         """
         Add a person handle to the kin map.
         """
-        if not self.kinship_map.has_key(Ga):
+        if Ga not in self.kinship_map:
             self.kinship_map[Ga] = {}
-        if not self.kinship_map[Ga].has_key(Gb):
+        if Gb not in self.kinship_map[Ga]:
             self.kinship_map[Ga][Gb] = []
         if person_handle not in self.kinship_map[Ga][Gb]:
             self.kinship_map[Ga][Gb].append(person_handle)
@@ -200,9 +200,9 @@ class KinshipReport(Report):
         """
         Add a person handle to the spouse map.
         """
-        if not self.spouse_map.has_key(Ga):
+        if Ga not in self.spouse_map:
             self.spouse_map[Ga] = {}
-        if not self.spouse_map[Ga].has_key(Gb):
+        if Gb not in self.spouse_map[Ga]:
             self.spouse_map[Ga][Gb] = []
         if spouse_handle not in self.spouse_map[Ga][Gb]:
             self.spouse_map[Ga][Gb].append(spouse_handle)

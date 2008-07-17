@@ -72,7 +72,7 @@ class MarkerReport(Report):
     def write_report(self):
         markerstr = self.marker
         # Use localized name if this is not a custom marker
-        if MarkerType._E2IMAP.has_key(self.marker):
+        if self.marker in MarkerType._E2IMAP:
             mtype = MarkerType._E2IMAP[self.marker]
             markerstr = MarkerType._I2SMAP[mtype]
         

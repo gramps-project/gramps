@@ -75,7 +75,7 @@ class IniKeyClient:
         data = {}
         for sec in cp.sections():
             name = sec.lower()
-            if not data.has_key(name):
+            if name not in data:
                 data[name] = {}
             for opt in cp.options(sec):
                 data[name][opt.lower()] = cp.get(sec, opt).strip()

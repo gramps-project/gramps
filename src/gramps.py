@@ -62,7 +62,7 @@ gobject.threads_init()
 # Load internationalization setup
 #
 #-------------------------------------------------------------------------
-if os.environ.has_key("GRAMPSI18N"):
+if "GRAMPSI18N" in os.environ:
     loc = os.environ["GRAMPSI18N"]
 elif os.path.exists( os.path.join(const.ROOT_DIR, "lang") ):
     loc = os.path.join(const.ROOT_DIR, "lang")

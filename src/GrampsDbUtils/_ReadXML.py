@@ -884,7 +884,7 @@ class GrampsParser(UpdateCallback):
         # Parse witnesses created by older gramps
         self.in_witness = True
         self.witness_comment = ""
-        if attrs.has_key('name'):
+        if 'name' in attrs:
             note = gen.lib.Note()
             note.handle = Utils.create_id()
             note.set(_("Witness name: %s") % attrs['name'])
@@ -901,7 +901,7 @@ class GrampsParser(UpdateCallback):
             handle = attrs['hlink'].replace('_', '')
             person, new = self.db.find_person_from_handle(handle, self.trans)
         except KeyError:
-            if attrs.has_key('ref'):
+            if 'ref' in attrs:
                 person, new = self.find_person_by_gramps_id(
                                     self.map_gid(attrs["ref"]))
             else:
@@ -955,7 +955,7 @@ class GrampsParser(UpdateCallback):
         self.eventref = gen.lib.EventRef()
         self.eventref.ref = attrs['hlink'].replace('_', '')
         self.eventref.private = bool(attrs.get('priv'))
-        if attrs.has_key('role'):
+        if 'role' in attrs:
             self.eventref.role.set_from_xml_str(attrs['role'])
 
         # We count here on events being already parsed prior to parsing
@@ -984,7 +984,7 @@ class GrampsParser(UpdateCallback):
         self.attribute = gen.lib.Attribute()
         self.attribute.private = bool(attrs.get("priv"))
         self.attribute.type = gen.lib.AttributeType()
-        if attrs.has_key('type'):
+        if 'type' in attrs:
             self.attribute.type.set_from_xml_str(attrs["type"])
         self.attribute.value = attrs.get("value", '')
         if self.photo:
@@ -1071,7 +1071,7 @@ class GrampsParser(UpdateCallback):
         self.name_formats.append((number, name, fmt_str, active))
 
     def remap_name_format(self, old_number):
-        if self.name_formats_map.has_key(old_number): # This should not happen
+        if old_number in self.name_formats_map: # This should not happen
             return self.name_formats_map[old_number]
         # Find the lowest new number not taken yet:
         new_number = -1
@@ -1109,7 +1109,7 @@ class GrampsParser(UpdateCallback):
             self.person.marker.set_from_xml_str(attrs.get("marker", ''))
 
     def start_people(self, attrs):
-        if attrs.has_key('home'):
+        if 'home' in attrs:
             self.home = attrs['home'].replace('_', '')
 
     def start_father(self, attrs):
@@ -1144,7 +1144,7 @@ class GrampsParser(UpdateCallback):
         # Here we are handling the old XML, in which
         # frel and mrel belonged to the "childof" tag
         # If that were the case then childref_map has the childref ready
-        if self.childref_map.has_key((self.family.handle, handle)):
+        if (self.family.handle, handle) in self.childref_map:
             self.family.add_child_ref(
                 self.childref_map[(self.family.handle, handle)])
 
@@ -1176,7 +1176,7 @@ class GrampsParser(UpdateCallback):
         self.person.add_person_ref(self.personref)
 
     def start_url(self, attrs):
-        if not attrs.has_key("href"):
+        if "href" not in attrs:
             return
         url = gen.lib.Url()
         url.path = attrs["href"]
@@ -1211,7 +1211,7 @@ class GrampsParser(UpdateCallback):
         
         # GRAMPS LEGACY: the type now belongs to <rel> tag
         # Here we need to support old format of <family type="Married">
-        if attrs.has_key('type'):
+        if 'type' in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
                 
         # Old and new markers: complete=1 and marker=word both have to work
@@ -1221,12 +1221,12 @@ class GrampsParser(UpdateCallback):
             self.family.marker.set_from_xml_str(attrs.get("marker", ''))
 
     def start_rel(self, attrs):
-        if attrs.has_key('type'):
+        if 'type' in attrs:
             self.family.type.set_from_xml_str(attrs["type"])
 
     def start_file(self, attrs):
         self.object.mime = attrs['mime']
-        if attrs.has_key('description'):
+        if 'description' in attrs:
             self.object.desc = attrs['description']
         else:
             self.object.desc = ""
@@ -1251,9 +1251,9 @@ class GrampsParser(UpdateCallback):
         # frel and mrel belonged to the "childof" tag
         mrel = gen.lib.ChildRefType()
         frel = gen.lib.ChildRefType()
-        if attrs.has_key('mrel'):
+        if 'mrel' in attrs:
             mrel.set_from_xml_str(attrs['mrel'])
-        if attrs.has_key('frel'):
+        if 'frel' in attrs:
             frel.set_from_xml_str(attrs['frel'])
 
         childref = gen.lib.ChildRef()
@@ -1292,11 +1292,11 @@ class GrampsParser(UpdateCallback):
 
                 # check if these pointers need to be remapped
                 # and set the name attributes
-                if self.name_formats_map.has_key(sort_as):
+                if sort_as in self.name_formats_map:
                     self.name.sort_as = self.name_formats_map[sort_as]
                 else:
                     self.name.sort_as = sort_as
-                if self.name_formats_map.has_key(display_as):
+                if display_as in self.name_formats_map:
                     self.name.sort_as = self.name_formats_map[display_as]
                 else:
                     self.name_display_as = display_as
@@ -1739,12 +1739,12 @@ class GrampsParser(UpdateCallback):
         except:
             rng_day = 0
 
-        if attrs.has_key("cformat"):
+        if "cformat" in attrs:
             cal = gen.lib.Date.calendar_names.index(attrs['calendar'])
         else:
             cal = gen.lib.Date.CAL_GREGORIAN
 
-        if attrs.has_key('quality'):
+        if 'quality' in attrs:
             val = attrs['quality']
             if val == 'estimated':
                 qual = gen.lib.Date.QUAL_ESTIMATED
@@ -1794,12 +1794,12 @@ class GrampsParser(UpdateCallback):
         except:
             day = 0
 
-        if attrs.has_key("cformat"):
+        if "cformat" in attrs:
             cal = gen.lib.Date.calendar_names.index(attrs['cformat'])
         else:
             cal = gen.lib.Date.CAL_GREGORIAN
 
-        if attrs.has_key('type'):
+        if 'type' in attrs:
             val = attrs['type']
             if val == "about":
                 mod = gen.lib.Date.MOD_ABOUT
@@ -1810,7 +1810,7 @@ class GrampsParser(UpdateCallback):
         else:
             mod = gen.lib.Date.MOD_NONE
 
-        if attrs.has_key('quality'):
+        if 'quality' in attrs:
             val = attrs['quality']
             if val == 'estimated':
                 qual = gen.lib.Date.QUAL_ESTIMATED
@@ -1840,11 +1840,11 @@ class GrampsParser(UpdateCallback):
         date_value.set_as_text(attrs['val'])
 
     def start_created(self, attrs):
-        if attrs.has_key('sources'):
+        if 'sources' in attrs:
             self.num_srcs = int(attrs['sources'])
         else:
             self.num_srcs = 0
-        if attrs.has_key('places'):
+        if 'places' in attrs:
             self.num_places = int(attrs['places'])
         else:
             self.num_places = 0
@@ -2039,7 +2039,7 @@ class GrampsParser(UpdateCallback):
         ##handle = None
         ##if self.place_ref is None:  #todo, add place_ref in start and init
         ##    #legacy cody? I see no reason for this, but it was present
-        ##    if self.place_map.has_key(tag):
+        ##    if tag in self.place_map:
         ##        place = self.place_map[tag]
         ##        handle = place.get_handle()
         ##        place = None
@@ -2377,10 +2377,10 @@ class VersionParser:
         
     def __element_handler(self, tag, attrs):
         " Handle XML elements "
-        if tag == "database" and attrs.has_key('xmlns'):
+        if tag == "database" and 'xmlns' in attrs:
             xmlns = attrs.get('xmlns')
             self.__xml_version = xmlns.split('/')[4]
-        elif tag == "created" and attrs.has_key('version'):
+        elif tag == "created" and 'version' in attrs:
             self.__gramps_version = attrs.get('version')
 
     def get_xmlns_version(self):

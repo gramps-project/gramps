@@ -62,10 +62,10 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         self.map = []
     
     def apply(self,db,person):
-        return self.map.has_key(person.handle)
+        return person.handle in self.map
 
     def init_ancestor_list(self, handle,gen):
-#        if self.map.has_key(p.get_handle()) == 1:
+#        if p.get_handle() in self.map:
 #            loop_error(self.orig,p)
         if not handle:
             return

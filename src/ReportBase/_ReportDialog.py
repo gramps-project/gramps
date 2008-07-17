@@ -236,7 +236,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
         before the report executes. This task should only be called in
         the add_user_options task."""
         
-        if self.frames.has_key(frame_name):
+        if frame_name in self.frames:
             self.frames[frame_name].append((label_text, widget))
         else:
             self.frames[frame_name] = [(label_text, widget)]
@@ -389,7 +389,7 @@ class ReportDialog(ManagedWindow.ManagedWindow):
                 row = row + 1
                 
     def setup_main_options(self):
-        if self.frames.has_key(""):
+        if "" in self.frames:
             flist = self.frames[""]
             for (text, widget) in flist:
                 label = gtk.Label("<b>%s</b>" % text)

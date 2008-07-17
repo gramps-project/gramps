@@ -423,7 +423,7 @@ class DetDescendantReport(Report):
                                      ReportUtils.roman(cnt).lower() + ".")
             cnt += 1
 
-            if self.henry.has_key(child_handle):
+            if child_handle in self.henry:
                 self.doc.write_text("%s [%s]. " % (child_name,
                                                    self.henry[child_handle]),
                                     child_mark )

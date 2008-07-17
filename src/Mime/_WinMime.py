@@ -153,7 +153,7 @@ def _get_extension(mime_type):
             'application/abiword' : '.abw',
             'application/rtf'     : '.rtf',
             }
-        if extmap.has_key(mime_type):
+        if mime_type in extmap:
             extension = extmap[mime_type]
     
     return extension

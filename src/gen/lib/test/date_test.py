@@ -29,7 +29,7 @@ import traceback
 import locale
 import gettext
 
-if os.environ.has_key("GRAMPSI18N"):
+if "GRAMPSI18N" in os.environ:
     loc = os.environ["GRAMPSI18N"]
 else:
     loc = "/usr/share/locale"

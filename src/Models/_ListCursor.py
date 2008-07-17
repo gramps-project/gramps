@@ -108,7 +108,7 @@ class ListCursor(object):
         """
 
         # See if the record is in the cache.
-        if self._object_cache.has_key(index) and use_cache:
+        if index in self._object_cache and use_cache:
             ret = self._object_cache[index]
 
         # If the record is not in the cache or we are ignoring the

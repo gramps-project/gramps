@@ -276,7 +276,7 @@ def import_table(id_table, add_obj, find_next_gramps_id,
         
         # Then we check gramps_id for conflicts and change it if needed
         gramps_id = str(obj.gramps_id)
-        if id_table.has_key(gramps_id):
+        if gramps_id in id_table:
             gramps_id = find_next_gramps_id()
             obj.gramps_id = gramps_id
         add_obj(obj, trans)

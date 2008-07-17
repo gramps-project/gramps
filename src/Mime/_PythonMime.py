@@ -64,7 +64,7 @@ def mime_type_is_defined(mime_type):
     """
     Return True if a description for a mime type exists.
     """
-    return _type_map.has_key(mime_type)
+    return mime_type in _type_map
 
 def find_mime_type_pixbuf(mime_type):
     return gtk.gdk.pixbuf_new_from_file(const.ICON)

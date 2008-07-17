@@ -459,7 +459,7 @@ class StyledTextBuffer(gtk.TextBuffer):
             iter = self.get_iter_at_offset(pos)
             for tag in iter.get_tags():
                 name = tag.get_property('name')
-                if tagdict.has_key(name):
+                if name in tagdict:
                     if tagdict[name][-1][1] == pos - 1:
                         tagdict[name][-1] = (tagdict[name][-1][0], pos)
                     else:

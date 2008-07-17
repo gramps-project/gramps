@@ -70,7 +70,7 @@ class IsLessThanNthGenerationAncestorOfBookmarked(Rule):
 
 
     def init_ancestor_list(self, handle,gen):
-#        if self.map.has_key(p.get_handle()) == 1:
+#        if p.get_handle() in self.map:
 #            loop_error(self.orig,p)
         if not handle:
             return

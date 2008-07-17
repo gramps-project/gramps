@@ -68,7 +68,7 @@ class IsAncestorOf(Rule):
         self.map = {}
 
     def apply(self,db,person):
-        return self.map.has_key(person.handle)
+        return person.handle in self.map
 
     def init_ancestor_list(self,db,person,first):
         if not person:

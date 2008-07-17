@@ -2827,7 +2827,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if state.event.get_type().is_custom():
-            if GED_2_GRAMPS.has_key(line.data):
+            if line.data in GED_2_GRAMPS:
                 name = gen.lib.EventType(GED_2_GRAMPS[line.data])
             else:
                 val = self.gedsource.tag2gramps(line.data)
@@ -2842,8 +2842,8 @@ class GedcomParser(UpdateCallback):
             state.event.set_type(name)
         else:
             try:
-                if not GED_2_GRAMPS.has_key(line.data) and \
-                       not GED_2_FAMILY.has_key(line.data) and \
+                if line.data not in GED_2_GRAMPS and \
+                       line.data not in GED_2_FAMILY and \
                        line.data[0] != 'Y':
                     state.event.set_description(line.data)
             except IndexError:
@@ -3802,7 +3802,7 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         if state.attr.get_type() == "":
-            if GED_2_GRAMPS.has_key(line.data):
+            if line.data in GED_2_GRAMPS:
                 name = GED_2_GRAMPS[line.data]
             else:
                 val = self.gedsource.tag2gramps(line.data)

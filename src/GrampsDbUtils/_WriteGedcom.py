@@ -210,10 +210,10 @@ def make_date(subdate, calendar, mode, quality):
     if prefix:
         retval = "%s %s" % (prefix, retval)
 
-    if DATE_MODIFIER.has_key(mode):
+    if mode in DATE_MODIFIER:
         retval = "%s %s" % (DATE_MODIFIER[mode], retval)
 
-    if DATE_QUALITY.has_key(quality):
+    if quality in DATE_QUALITY:
         retval = "%s %s" % (DATE_QUALITY[quality], retval)
         
     return retval

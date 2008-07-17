@@ -160,7 +160,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         store, node = self.selection.get_selected()
         if node:
             path = store.get_path(node)
-        if not node or not self.imap.has_key(path):
+        if not node or path not in self.imap:
             return 
         data = self.imap[path]
 
@@ -200,7 +200,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
                 category = _UNSUPPORTED
             else:
                 category = categories[plugin[3]]
-            if item_hash.has_key(category):
+            if category in item_hash:
                 item_hash[category].append(plugin)
             else:
                 item_hash[category] = [plugin]
@@ -212,7 +212,7 @@ class PluginDialog(ManagedWindow.ManagedWindow):
         key_list.reverse()
         
         prev = None
-        if item_hash.has_key(_UNSUPPORTED):
+        if _UNSUPPORTED in item_hash:
             key = _UNSUPPORTED
             data = item_hash[key]
             node = self.store.insert_after(None, prev)

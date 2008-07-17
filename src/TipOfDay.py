@@ -167,7 +167,7 @@ class TipParser:
             self.tlist = []
             # Skip all tips with xml:lang attribute, as they are
             # already in the translation catalog
-            self.skip = attrs.has_key('xml:lang')
+            self.skip = 'xml:lang' in attrs
         elif tag != "tips":
             # let all the other tags through, except for the "tips" tag
             self.tlist.append("<%s>" % tag)

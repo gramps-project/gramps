@@ -63,7 +63,7 @@ class IsChildOfFilterMatch(MatchesFilter):
         self.map = {}
 
     def apply(self,db,person):
-        return self.map.has_key(person.handle)
+        return person.handle in self.map
 
     def init_list(self,person):
         if not person:

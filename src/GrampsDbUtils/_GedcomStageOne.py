@@ -79,7 +79,7 @@ def add_to_list(table, key, value):
     Add the value to the table entry associated with key. If the entry 
     does not exist, it is added.
     """
-    if table.has_key(key):
+    if key in table:
         table[key].append(value)
     else:
         table[key] = [value]

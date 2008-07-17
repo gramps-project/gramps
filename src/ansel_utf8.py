@@ -332,10 +332,10 @@ def ansel_to_utf8(s):
                 head = ' '
             s = s[1:]
         else:
-            if _twobyte.has_key(s[0:2]):
+            if s[0:2] in _twobyte:
                 head = _twobyte[s[0:2]]
                 s = s[2:]
-            elif _onebyte.has_key(s[0]):
+            elif s[0] in _onebyte:
                 head = _onebyte[s[0]]
                 s = s[1:]
             elif s[0] in _acombiners.keys():

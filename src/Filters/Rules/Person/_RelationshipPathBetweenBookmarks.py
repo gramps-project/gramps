@@ -172,6 +172,6 @@ class RelationshipPathBetweenBookmarks(Rule):
                     pass
 
     def apply(self,db,person):
-        return self.map.has_key(person.handle)
+        return person.handle in self.map
 
 

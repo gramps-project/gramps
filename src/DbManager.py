@@ -45,7 +45,7 @@ LOG = logging.getLogger(".DbManager")
 
 if os.sys.platform == "win32":
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
-    if _RCS_FOUND and not os.environ.has_key("TZ"):
+    if _RCS_FOUND and "TZ" not in os.environ:
         # RCS requires the "TZ" variable be set.
         os.environ["TZ"] = str(time.timezone)
 else:

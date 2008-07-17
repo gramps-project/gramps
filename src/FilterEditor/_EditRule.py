@@ -490,7 +490,7 @@ class EditRule(ManagedWindow.ManagedWindow):
                     t = MyFilters(self.filterdb.get_filters('Event'))
                 elif v == _('Source filter name:'):
                     t = MyFilters(self.filterdb.get_filters('Source'))
-                elif _name2typeclass.has_key(v):
+                elif v in _name2typeclass:
                     t = MySelect(_name2typeclass[v])
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))

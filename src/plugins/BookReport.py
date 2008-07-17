@@ -524,7 +524,7 @@ class BookParser(handler.ContentHandler):
             self.o = {}
         elif tag == "option":
             self.an_o_name = attrs['name']
-            if attrs.has_key('length'):
+            if 'length' in attrs:
                 self.an_o_value = []
             else:
                 converter = Utils.get_type_converter_by_name(attrs['type'])
@@ -1165,7 +1165,7 @@ def cl_report(database, name, category, options_str_dict):
     if clr.show:
         return
     
-    if not clr.options_dict.has_key('bookname'):
+    if 'bookname' not in clr.options_dict:
         print "Please Specify a book name"
         return
 

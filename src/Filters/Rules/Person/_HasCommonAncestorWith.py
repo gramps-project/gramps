@@ -79,5 +79,5 @@ class HasCommonAncestorWith(Rule):
         handle = person.handle
         return for_each_ancestor(
             db,[handle],
-            lambda self, handle: self.ancestor_cache.has_key(handle),
+            lambda self, handle: handle in self.ancestor_cache,
             self);

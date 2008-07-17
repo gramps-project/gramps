@@ -431,7 +431,7 @@ def format_maker(formats):
     """
     format_list = [ ('auto', _('Automatically detected')) ]
     for format in formats:
-        if _KNOWN_FORMATS.has_key(format):
+        if format in _KNOWN_FORMATS:
             format_list.append( (format, _KNOWN_FORMATS[format][0]) )
 
     type_selector = GrampsFormatWidget()

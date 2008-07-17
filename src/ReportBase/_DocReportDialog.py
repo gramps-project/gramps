@@ -186,7 +186,7 @@ class DocReportDialog(ReportDialog):
     def html_file_enable(self, obj):
         active = obj.get_active()
         text = unicode(obj.get_model()[active][0])
-        if _template_map.has_key(text):
+        if text in _template_map:
             if _template_map[text]:
                 self.html_fileentry.set_sensitive(0)
             else:
@@ -266,7 +266,7 @@ class DocReportDialog(ReportDialog):
         model = self.template_combo.get_model()
         text = unicode(model[self.template_combo.get_active()][0])
 
-        if _template_map.has_key(text):
+        if text in _template_map:
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
             else:

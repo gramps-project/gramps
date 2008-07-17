@@ -600,7 +600,7 @@ class VerifyResults(ManagedWindow):
             if ignore:
                 handle = row[VerifyResults.OBJ_HANDLE_COL]
                 rule_id = row[VerifyResults.RULE_ID_COL]
-                if not new_ignores.has_key(handle):
+                if handle not in new_ignores:
                     new_ignores[handle] = set()
                 new_ignores[handle].add(rule_id)
         return new_ignores

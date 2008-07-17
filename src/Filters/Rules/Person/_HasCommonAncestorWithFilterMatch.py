@@ -60,7 +60,7 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith,MatchesFilter):
         filt.prepare(db)
         def init(self, h): self.ancestor_cache[h] = 1
         for handle in db.get_person_handles(sort_handles=False):
-            if (not self.ancestor_cache.has_key (handle)
+            if (handle not in self.ancestor_cache
                 and filt.apply (db, db.get_person_from_handle(handle))):
                 for_each_ancestor(db,[handle],init,self)
         filt.reset()

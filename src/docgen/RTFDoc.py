@@ -100,11 +100,11 @@ class RTFDoc(BaseDoc.BaseDoc,BaseDoc.TextDoc):
             style = style_sheet.get_paragraph_style(style_name)
             fgcolor = style.get_font().get_color()
             bgcolor = style.get_background_color()
-            if not self.color_map.has_key(fgcolor):
+            if fgcolor not in self.color_map:
                 self.color_map[fgcolor] = index
                 self.f.write('\\red%d\\green%d\\blue%d;' % fgcolor)
                 index = index + 1
-            if not self.color_map.has_key(bgcolor):
+            if bgcolor not in self.color_map:
                 self.f.write('\\red%d\\green%d\\blue%d;' % bgcolor)
                 self.color_map[bgcolor] = index
                 index = index + 1

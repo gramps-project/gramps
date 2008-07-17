@@ -260,7 +260,7 @@ class PG30_Def_Table:
 
         # If there is a n_fields entry then this is a table that
         # has details about the record format of another file (PER or REL).
-        if self.parms.has_key('n_fields'):
+        if 'n_fields' in self.parms:
             self.get_fields()
             self.recfmt = self.get_recfmt()
             self.nam2fld = {}
@@ -374,7 +374,7 @@ class PG30_Def_Table:
 
     def diag(self):
         txt = self.name + '\n'
-        if self.parms.has_key('n_fields'):
+        if 'n_fields' in self.parms:
             txt += 'n_fields = %s\n' % self.parms['n_fields']
             # Just grab a field
             f = self.flds[1]

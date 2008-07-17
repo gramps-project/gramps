@@ -73,7 +73,7 @@ class GenChart:
         self.max_y = 0
         
     def get_xy(self,x,y):
-        if not self.array.has_key(y):
+        if y not in self.array:
             return 0
         return self.array[y].get(x,0)
 
@@ -81,7 +81,7 @@ class GenChart:
         self.max_x = max(self.max_x,x)
         self.max_y = max(self.max_y,y)
 
-        if not self.array.has_key(y):
+        if y not in self.array:
             self.array[y] = {}
         self.array[y][x] = value
 

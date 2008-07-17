@@ -237,12 +237,12 @@ class GedcomDescription:
         self.tag2gramps_map[tag] = value
 
     def gramps2tag(self,key):
-        if self.gramps2tag_map.has_key(key):
+        if key in self.gramps2tag_map:
             return self.gramps2tag_map[key]
         return ""
 
     def tag2gramps(self,key):
-        if self.tag2gramps_map.has_key(key):
+        if key in self.tag2gramps_map:
             return self.tag2gramps_map[key]
         return key
 
@@ -267,7 +267,7 @@ class GedcomInfoDB:
         self.map[name] = obj
 
     def get_description(self, name):
-        if self.map.has_key(name):
+        if name in self.map:
             return self.map[name]
         return self.standard
 

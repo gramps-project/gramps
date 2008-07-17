@@ -183,7 +183,7 @@ class IdMapper:
         
     def get_translate(self, gid):
         gid = self.clean(gid)
-        if self.swap.has_key(gid):
+        if gid in self.swap:
             return self.swap[gid]
         else:
             if self.trans.get(str(gid)):

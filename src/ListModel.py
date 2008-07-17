@@ -160,7 +160,7 @@ class ListModel:
         Callback executed when the text of the cell renderer has changed
         """
         self.model[path][col] = new_text
-        if self.function.has_key(col):
+        if col in self.function:
             self.function[col](int(path), new_text)
 
     def unselect(self):

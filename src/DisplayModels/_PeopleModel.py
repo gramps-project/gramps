@@ -133,7 +133,7 @@ class NodeTreeMap:
             return (self.top_iter2path[surname], index)
 
     def has_entry(self, handle):
-        return self.iter2path.has_key(handle)
+        return handle in self.iter2path
 
     def get_iter(self, path):
         try:
@@ -146,7 +146,7 @@ class NodeTreeMap:
             return None
         
     def has_top_node(self, node):
-        return self.sname_sub.has_key(node)
+        return node in self.sname_sub
 
     def find_next_node(self, node):
         try:
@@ -167,7 +167,7 @@ class NodeTreeMap:
     def has_child(self, node):
         if node is None:
             return len(self.sname_sub)
-        if self.sname_sub.has_key(node) and len(self.sname_sub[node]) > 0:
+        if node in self.sname_sub and len(self.sname_sub[node]) > 0:
             return True
         return False
 

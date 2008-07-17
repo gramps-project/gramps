@@ -1089,7 +1089,7 @@ class RelationshipView(PageView.PersonNavView):
         """
         if button_activated(event, _LEFT_BUTTON):
             person, handle = pair
-            if self.collapsed_items.has_key(person.handle):
+            if person.handle in self.collapsed_items:
                 if handle in self.collapsed_items[person.handle]:
                     self.collapsed_items[person.handle].remove(handle)
                 else:

@@ -1386,7 +1386,7 @@ class ViewManager:
                 category = _UNSUPPORTED
             else:
                 category = categories[item[3]]
-            if hash_data.has_key(category):
+            if category in hash_data:
                 hash_data[category].append(
                     (item[0], item[1], item[2], item[4], item[3], item[10]))
             else:
@@ -1413,7 +1413,7 @@ class ViewManager:
 
         # If there are any unsupported items we add separator
         # and the unsupported category at the end of the menu
-        if hash_data.has_key(_UNSUPPORTED):
+        if _UNSUPPORTED in hash_data:
             ofile.write('<separator/>')
             ofile.write('<menu action="%s">' % _UNSUPPORTED)
             actions.append((_UNSUPPORTED, None, _UNSUPPORTED))

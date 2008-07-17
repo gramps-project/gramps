@@ -96,7 +96,7 @@ class OptionList:
         @param name: name of the option to remove.
         @type name: str
         """
-        if self.options.has_key(name):
+        if name in self.options:
             del self.options[name]
 
     def get_option(self, name):
@@ -268,7 +268,7 @@ class OptionParser(handler.ContentHandler):
             self.o = {}
         elif tag == "option":
             self.oname = attrs['name']
-            if attrs.has_key('length'):
+            if 'length' in attrs:
                 self.an_o = []
             else:
                 self.an_o = attrs['value']
@@ -335,7 +335,7 @@ class OptionHandler:
         options = self.saved_option_list.get_options()
         bad_opts = []
         for option_name in options.keys():
-            if not self.options_dict.has_key(option_name):
+            if option_name not in self.options_dict:
                 print "Option %s is present in the %s but is not known "\
                       "to the module." % (option_name,
                                           self.option_list_collection.filename)

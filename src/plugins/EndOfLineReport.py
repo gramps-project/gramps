@@ -114,9 +114,9 @@ class EndOfLineReport(Report):
         if person_is_eol:
             # This person is the end of a line
             person_handle = person.get_handle()
-            if not self.eol_map.has_key(gen):
+            if gen not in self.eol_map:
                 self.eol_map[gen] = {}
-            if not self.eol_map[gen].has_key(person_handle):
+            if person_handle not in self.eol_map[gen]:
                 self.eol_map[gen][person_handle] = []
             self.eol_map[gen][person_handle].append( list(pedigree) )
         

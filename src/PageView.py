@@ -812,7 +812,7 @@ class ListView(BookMarkView):
         for pair in [pair for pair in self.column_order() if pair[0]]:
             name = self.colinfo[pair[1]]
 
-            if self.model and self.model.__dict__.has_key('marker_color_column'):
+            if self.model and 'marker_color_column' in self.model.__dict__:
                 mcol = self.model.marker_color_column
                 column = gtk.TreeViewColumn(name, self.renderer, text=pair[1], 
                                             foreground=mcol)

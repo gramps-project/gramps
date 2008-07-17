@@ -45,7 +45,7 @@ import _Date_sv
 
 # Initialize global parser
 try:
-    if LANG_TO_PARSER.has_key(LANG):
+    if LANG in LANG_TO_PARSER:
         parser = LANG_TO_PARSER[LANG]()
     else:
         parser = LANG_TO_PARSER[LANG_SHORT]()
@@ -64,7 +64,7 @@ except:
         val = 0
 
 try:
-    if LANG_TO_DISPLAY.has_key(LANG):
+    if LANG in LANG_TO_DISPLAY:
         displayer = LANG_TO_DISPLAY[LANG](val)
     else:
         displayer = LANG_TO_DISPLAY[LANG_SHORT](val)

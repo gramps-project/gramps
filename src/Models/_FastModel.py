@@ -132,7 +132,7 @@ class FastModel(gtk.GenericTreeModel):
 
             # If we are at the second level we first check to see if we
             # have the number of children of this row already in the cache
-            if not self._num_children_cache.has_key(rowref[0]):
+            if rowref[0] not in self._num_children_cache:
 
                 # If not calculate the number of children and put it in the cache.
                 self._num_children_cache[rowref[0]] = self._cursor.get_n_children([rowref[0],])
@@ -179,7 +179,7 @@ class FastModel(gtk.GenericTreeModel):
         if rowref:
             # If we are at the second level we first check to see if we
             # have the number of children of this row already in the cache
-            if not self._num_children_cache.has_key(rowref[0]):
+            if rowref[0] not in self._num_children_cache:
 
                 # If not calculate the number of children and put it in the cache.
                 self._num_children_cache[rowref[0]] = self._cursor.get_n_children([rowref[0],])

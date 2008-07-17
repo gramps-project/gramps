@@ -60,7 +60,7 @@ class GenderStats:
         return name.split (' ')[0].replace ('?', '')
 
     def name_stats (self, name):
-        if self.stats.has_key (name):
+        if name in self.stats:
             return self.stats[name]
         return (0, 0, 0)
 
@@ -95,7 +95,7 @@ class GenderStats:
 
     def guess_gender (self, name):
         name = self._get_key_from_name (name)
-        if not name or not self.stats.has_key (name):
+        if not name or name not in self.stats:
             return Person.UNKNOWN
 
         (male, female, unknown) = self.stats[name]

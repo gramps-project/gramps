@@ -803,7 +803,7 @@ class RelationshipCalculator:
             self.map_handle = orig_person.handle
             
         for person_handle in secondMap.keys() :
-            if firstMap.has_key(person_handle) :
+            if person_handle in firstMap :
                 com = []
                 #a common ancestor
                 for rel1, fam1 in zip(firstMap[person_handle][0],
@@ -903,13 +903,13 @@ class RelationshipCalculator:
         store = True                            #normally we store all parents
         if stoprecursemap:
             store = False                       #but not if a stop map given
-            if stoprecursemap.has_key(person.handle):
+            if person.handle in stoprecursemap:
                 commonancestor = True
                 store = True
 
         #add person to the map, take into account that person can be obtained 
         #from different sides 
-        if pmap.has_key(person.handle):
+        if person.handle in pmap:
             #person is already a grandparent in another branch, we already have
             # had lookup of all parents, we call that a crosslink
             if not stoprecursemap:
@@ -997,7 +997,7 @@ class RelationshipCalculator:
                           if ref.ref != person.handle]
                     addstr = self.REL_SIBLING
                     for chandle in child_list :
-                        if pmap.has_key(chandle) :
+                        if chandle in pmap :
                             pmap[chandle][0] += [rel_str + addstr]
                             pmap[chandle][1] += [rel_fam_new]
                             #person is already a grandparent in another branch

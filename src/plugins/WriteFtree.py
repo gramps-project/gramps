@@ -200,11 +200,11 @@ class FtreeWriter:
                 n = sn
 
             count = -1
-            if name_map.has_key(n):
+            if n in name_map:
                 count = 0
                 while 1:
                     nn = "%s%d" % (n, count)
-                    if not name_map.has_key(nn):
+                    if nn not in name_map:
                         break;
                     count += 1
                 name_map[nn] = key
@@ -228,9 +228,9 @@ class FtreeWriter:
             family_handle = p.get_main_parents_family_handle()
             if family_handle:
                 family = self.db.get_family_from_handle(family_handle)
-                if family.get_father_handle() and id_map.has_key(family.get_father_handle()):
+                if family.get_father_handle() and family.get_father_handle() in id_map:
                     father = id_map[family.get_father_handle()]
-                if family.get_mother_handle() and id_map.has_key(family.get_mother_handle()):
+                if family.get_mother_handle() and family.get_mother_handle() in id_map:
                     mother = id_map[family.get_mother_handle()]
 
             #

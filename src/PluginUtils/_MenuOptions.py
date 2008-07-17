@@ -699,7 +699,7 @@ class Menu:
         @type option: Option
         @return: nothing
         """
-        if not self.__options.has_key(category):
+        if category not in self.__options:
             self.__categories.append(category)
             self.__options[category] = []
         self.__options[category].append((name, option))

@@ -2037,7 +2037,7 @@ class IndividualPage(BasePage):
         place_handle = event.get_place_handle()
         if place_handle:
             # TODO. Figure out what this is for.
-            #if self.place_list.has_key(place_handle):
+            #if place_handle in self.place_list:
             #    if lnk not in self.place_list[place_handle]:
             #        self.place_list[place_handle].append(lnk)
             #else:
@@ -2468,7 +2468,7 @@ class IndividualPage(BasePage):
         descr = event.get_description()
         place_handle = event.get_place_handle()
         if place_handle:
-            if self.place_list.has_key(place_handle):
+            if place_handle in self.place_list:
                 if lnk not in self.place_list[place_handle]:
                     self.place_list[place_handle].append(lnk)
             else:
@@ -2533,7 +2533,7 @@ class IndividualPage(BasePage):
             handle = sref.get_reference_handle()
             gid_list.append(sref)
 
-            if self.src_list.has_key(handle):
+            if handle in self.src_list:
                 if lnk not in self.src_list[handle]:
                     self.src_list[handle].append(lnk)
             else:
@@ -3296,7 +3296,7 @@ def sort_people(db, handle_list):
 
         sortnames[person_handle] = _nd.sort_string(primary_name)
 
-        if sname_sub.has_key(surname):
+        if surname in sname_sub:
             sname_sub[surname].append(person_handle)
         else:
             sname_sub[surname] = [person_handle]

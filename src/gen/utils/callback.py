@@ -239,7 +239,7 @@ class Callback(object):
             """A traversal function to walk through all the classes in
             the inheritance tree. The return is a list of all the
             __signals__ dictionaries."""
-            if cls.__dict__.has_key('__signals__'):
+            if '__signals__' in cls.__dict__:
                 signal_list = [cls.__signals__]
             else:
                 signal_list = []
@@ -254,7 +254,7 @@ class Callback(object):
         # Build a signal dict from the list of signal dicts
         for s in trav(self.__class__):
             for (k, v) in s.items():
-                if self.__signal_map.has_key(k):
+                if k in self.__signal_map:
                     # signal name clash
                     sys.stderr.write("Warning: signal name clash: %s\n" % str(k))
                 self.__signal_map[k] = v

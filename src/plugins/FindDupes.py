@@ -206,12 +206,12 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
             p1 = self.db.get_person_from_handle(p1_id)
             key = self.gen_key(p1.get_primary_name().get_surname())
             if p1.get_gender() == gen.lib.Person.MALE:
-                if males.has_key(key):
+                if key in males:
                     males[key].append(p1_id)
                 else:
                     males[key] = [p1_id]
             else:
-                if females.has_key(key):
+                if key in females:
                     females[key].append(p1_id)
                 else:
                     females[key] = [p1_id]
@@ -235,14 +235,14 @@ class Merge(Tool.Tool,ManagedWindow.ManagedWindow):
                 if p1key == p2key:
                     continue
                 p2 = self.db.get_person_from_handle(p2key)
-                if self.map.has_key(p2key):
+                if p2key in self.map:
                     (v,c) = self.map[p2key]
                     if v == p1key:
                         continue
                     
                 chance = self.compare_people(p1,p2)
                 if chance >= thresh:
-                    if self.map.has_key(p1key):
+                    if p1key in self.map:
                         val = self.map[p1key]
                         if val[1] > chance:
                             self.map[p1key] = (p2key,chance)
@@ -591,7 +591,7 @@ class ShowMatches(ManagedWindow.ManagedWindow):
     def redraw(self):
         list = []
         for p1key in self.map.keys():
-            if self.dellist.has_key(p1key):
+            if p1key in self.dellist:
                 continue
             (p2key,c) = self.map[p1key]
             if p1key == p2key:

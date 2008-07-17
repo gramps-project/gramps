@@ -452,7 +452,7 @@ class GeneWebWriter:
             pf_list = person.get_parent_family_handle_list()
             if pf_list:
                 for family_handle in pf_list:
-                    if self.flist.has_key(family_handle):
+                    if family_handle in self.flist:
                         is_child = 1
             if is_child == 0:
                 self.persons_details_done.append(person.get_handle())
@@ -476,7 +476,7 @@ class GeneWebWriter:
         firstname = _("Living")
         if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
-        if not self.person_ids.has_key(person.get_handle()):
+        if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
         ret = "%s %s.%d" % (surname, firstname, self.person_ids[person.get_handle()])
         return ret
@@ -486,7 +486,7 @@ class GeneWebWriter:
         firstname = _("Living")
         if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
-        if not self.person_ids.has_key(person.get_handle()):
+        if person.get_handle() not in self.person_ids:
             self.person_ids[person.get_handle()] = len(self.person_ids)
         if surname != father_lastname:
             ret = "%s.%d %s" % (firstname, self.person_ids[person.get_handle()], surname)

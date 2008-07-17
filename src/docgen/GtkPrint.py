@@ -132,7 +132,7 @@ def paperstyle_to_pagesetup(paper_style):
     
     # All sizes not included in the translation table (even if a standard size)
     # are handled as custom format, because we are not intelligent enough.
-    if gramps_to_gtk.has_key(gramps_paper_name):
+    if gramps_paper_name in gramps_to_gtk:
         paper_size = gtk.PaperSize(gramps_to_gtk[gramps_paper_name])
         log.debug("Selected paper size: %s" % gramps_to_gtk[gramps_paper_name])
     else:
@@ -257,7 +257,7 @@ class PrintPreview:
             ##log.debug("Page number %d doesn't exist." % page_no)
             ##page_no = 0
         
-        ##if not self._page_surfaces.has_key(page_no):
+        ##if page_no not in self._page_surfaces:
             ##surface = self.create_surface()
             ##cr = cairo.Context(surface)
             

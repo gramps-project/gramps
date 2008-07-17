@@ -158,7 +158,7 @@ class GrampsType(object):
         This method sets the type instance based on the untranslated string 
         (obtained e.g. from XML).
         """
-        if self._E2IMAP.has_key(value):
+        if value in self._E2IMAP:
             self.__value = self._E2IMAP[value]
             self.__string = u''
         else:
