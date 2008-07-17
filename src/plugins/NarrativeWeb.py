@@ -1065,7 +1065,7 @@ class PlacePage(BasePage):
         media_list = place.get_media_list()
         self.display_first_image_as_thumbnail(of, media_list)
 
-        of.write('\t<h2>Places:</h2>\n')
+        of.write('\t<h2>%s:</h2>\n' % _('Places'))
         of.write('\t<h3>%s</h3>\n\n' % html_escape(self.page_title.strip()))
         of.write('\t<div id="summaryarea">\n')
         of.write('\t\t<table class="infolist place">\n')
@@ -1501,7 +1501,7 @@ class SourcesPage(BasePage):
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnLabel">&nbsp;</th>\n')
-        of.write('\t\t\t<th class="ColumnName">Name</th>\n')
+        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n')
@@ -1586,8 +1586,8 @@ class GalleryPage(BasePage):
         of.write('\t<thead>\n')
         of.write('\t\t<tr>\n')
         of.write('\t\t\t<th class="ColumnRowLabel">&nbsp;</th>\n')
-        of.write('\t\t\t<th class="ColumnName">Name</th>\n')
-        of.write('\t\t\t<th class="ColumnDate">Date</th>\n')
+        of.write('\t\t\t<th class="ColumnName">%s</th>\n' % _('Name'))
+        of.write('\t\t\t<th class="ColumnDate">%s</th>\n' % _('Date'))
         of.write('\t\t</tr>\n')
         of.write('\t</thead>\n')
         of.write('\t<tbody>\n')
@@ -1944,7 +1944,7 @@ class IndividualPage(BasePage):
         self.page_title = self.sort_name
         self.display_first_image_as_thumbnail(of, self.person.get_media_list())
 
-        of.write('\t<h2>Individuals:</h2>\n')
+        of.write('\t<h2>%s:</h2>\n' % _('Individuals'))
         of.write('\t<h3>%s</h3>\n' % self.sort_name.strip())
         of.write('\t<div id="summaryarea">\n')
         of.write('\t\t<table class="infolist">\n')
