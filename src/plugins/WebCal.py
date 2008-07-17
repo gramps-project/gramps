@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007      Thom Sturgill
 # Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2008      Rob G. Healey <robhealey1@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -27,6 +28,15 @@ Web Calendar generator.
 Created 4/22/07 by Thom Sturgill based on Calendar.py (with patches) 
 by Doug Blank with input dialog based on NarrativeWeb.py by Don Allingham.
 
+2008-05-11 Jason Simanek
+Improving markup for optimal separation of content and presentation.
+
+2008-June-22 Rob G. Healey
+*** Remove StyleEditor, make it css based as is NarrativeWeb, 
+move title to first tab, re-word note tabs, complete re-write of 
+calendar build, added year glance, and blank year, added easter and 
+dst start/stop from Calendar.py, etc.
+
 Reports/Web Page/Web Calendar
 """
 
@@ -38,7 +48,8 @@ Reports/Web Page/Web Calendar
 import os
 import time
 import datetime
-#import const
+import calendar
+import math
 import codecs
 import shutil
 from gettext import gettext as _
@@ -71,18 +82,32 @@ from PluginUtils import PluginManager
 from ReportBase import (Report, ReportUtils, MenuReportOptions, CATEGORY_WEB, 
                         MODE_GUI)
 from PluginUtils import FilterOption, EnumeratedListOption, PersonOption, \
-    BooleanOption, NumberOption, StringOption, DestinationOption, StyleOption
+    BooleanOption, NumberOption, StringOption, DestinationOption
 import Utils
 import GrampsLocale
 from QuestionDialog import ErrorDialog
 from Utils import probably_alive
+from DateHandler import displayer as _dd
+from DateHandler import parser as _dp
 
 #------------------------------------------------------------------------
 #
 # constants
 #
 #------------------------------------------------------------------------
-_CALENDAR = "calendar.css"
+_CALENDARSCREEN = "calendar-screen.css"
+_CALENDARPRINT = "calendar-print.css"
+
+# This information defines the list of styles in the Web calendar
+# options dialog as well as the location of the corresponding SCREEN
+# stylesheets.
+_CSS_FILES = [
+    # First is used as default selection.
+    [_("Evergreen"),        'Web_Evergreen.css'],
+    [_("Nebraska"),         'Web_Nebraska.css'],
+    [_("Simply Red"),       'Web_Simply-Red.css'],
+    [_("No style sheet"),   ''],
+    ]
 
 _CHARACTER_SETS = [
     [_('Unicode (recommended)'), 'utf-8'],
@@ -105,32 +130,29 @@ _CHARACTER_SETS = [
 _CC = [
     '<a rel="license" href="http://creativecommons.org/licenses/by/2.5/">'
     '<img alt="Creative Commons License - By attribution" title="Creative '
-    'Commons License - By attribution" src="somerights20.gif" /></a>',
+    'Commons License - By attribution" ',
     
     '<a rel="license" href="http://creativecommons.org/licenses/by-nd/2.5/">'
     '<img alt="Creative Commons License - By attribution, No derivations" '
-    'title="Creative Commons License - By attribution, No derivations" '
-    'src="somerights20.gif" /></a>',
+    'title="Creative Commons License - By attribution, No derivations" ',
     
     '<a rel="license" href="http://creativecommons.org/licenses/by-sa/2.5/">'
     '<img alt="Creative Commons License - By attribution, Share-alike" '
-    'title="Creative Commons License - By attribution, Share-alike" '
-    'src="somerights20.gif" /></a>',
+    'title="Creative Commons License - By attribution, Share-alike" ',
     
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/">'
     '<img alt="Creative Commons License - By attribution, Non-commercial" '
-    'title="Creative Commons License - By attribution, Non-commercial" '
-    'src="somerights20.gif" /></a>',
+    'title="Creative Commons License - By attribution, Non-commercial" ',
     
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">'
     '<img alt="Creative Commons License - By attribution, Non-commercial, No '
     'derivations" title="Creative Commons License - By attribution, '
-    'Non-commercial, No derivations" src="somerights20.gif" /></a>',
+    'Non-commercial, No derivations" ',
     
     '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/">'
     '<img alt="Creative Commons License - By attribution, Non-commerical, '
     'Share-alike" title="Creative Commons License - By attribution, '
-    'Non-commerical, Share-alike" src="somerights20.gif" /></a>'
+    'Non-commerical, Share-alike" '
     ]
 
 _COPY_OPTIONS = [
@@ -174,18 +196,16 @@ class WebCalReport(Report):
         self.ext = menu.get_option_by_name('ext').get_value()
         self.copy = menu.get_option_by_name('cright').get_value()
         self.encoding = menu.get_option_by_name('encoding').get_value()
+        self.css = menu.get_option_by_name('css').get_value()
         self.Country = menu.get_option_by_name('country').get_value()
         self.Year = menu.get_option_by_name('year').get_value()
+        self.fullyear = menu.get_option_by_name('fullyear').get_value()
+        self.blankyear = menu.get_option_by_name('blankyear').get_value()
         self.Surname = menu.get_option_by_name('surname').get_value()
         self.Alive = menu.get_option_by_name('alive').get_value()
         self.Birthday = menu.get_option_by_name('birthdays').get_value()
         self.Anniv = menu.get_option_by_name('anniversaries').get_value()
         self.Title_text  = menu.get_option_by_name('title').get_value()
-        self.Month_image = menu.get_option_by_name('background').get_value()
-        self.Month_repeat = menu.get_option_by_name('repeat').get_value()
-        self.Serif_fonts = menu.get_option_by_name('serif_fonts').get_value()
-        self.SanSerif_fonts = \
-                        menu.get_option_by_name('sanserif_fonts').get_value()
         self.Home_link = menu.get_option_by_name('home_link').get_value()
         
         self.Note  = [ menu.get_option_by_name('note_jan').get_value(), 
@@ -201,7 +221,69 @@ class WebCalReport(Report):
                        menu.get_option_by_name('note_nov').get_value(),
                        menu.get_option_by_name('note_dec').get_value()]
         
-        self.__style = menu.get_option_by_name("style").get_style()
+    def store_file(self, from_path, to_path):
+        """
+        Store the file in the destination.
+        """
+        dest = os.path.join(self.html_dir, to_path)
+        dirname = os.path.dirname(dest)
+        if not os.path.isdir(dirname):
+            os.makedirs(dirname)
+        if from_path != dest:
+            shutil.copyfile(from_path, dest)
+        elif self.warn_dir:
+            WarningDialog(
+                _("Possible destination error") + "\n" +
+                _("You appear to have set your target directory "
+                  "to a directory used for data storage. This "
+                  "could create problems with file management. "
+                  "It is recommended that you consider using "
+                  "a different directory to store your generated "
+                  "web pages."))
+            self.warn_dir = False
+
+    # code snippets for east and Daylight saving start/ stop 
+    # are borrowed from Calendar.py    
+        
+    def easter(self):
+        """
+        Computes the year/month/day of easter. Based on work by
+        J.-M. Oudin (1940) and is reprinted in the "Explanatory Supplement
+        to the Astronomical Almanac", ed. P. K.  Seidelmann (1992).  Note:
+        Ash Wednesday is 46 days before Easter Sunday.
+        """
+        year = self.Year
+        c = year / 100
+        n = year - 19 * (year / 19)
+        k = (c - 17) / 25
+        i = c - c / 4 - (c - k) / 3 + 19 * n + 15
+        i = i - 30 * (i / 30)
+        i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1))
+                           * ((21 - n) / 11))
+        j = year + year / 4 + i + 2 - c + c / 4
+        j = j - 7 * (j / 7)
+        l = i - j
+        month = 3 + (l + 40) / 44
+        day = l + 28 - 31 * (month / 4)
+        return (year, month, day)
+
+    def dst(self, area="us"):
+        """
+        Return Daylight Saving Time start/stop in a given area ("us", "eu").
+        US calculation valid 1976-2099; EU 1996-2099
+        """
+        year = self.Year        
+        if area == "us":
+            if year > 2006:
+                start = (year, 3, 14 - (math.floor(1 + year * 5 / 4) % 7)) # March
+                stop = (year, 11, 7 - (math.floor(1 + year * 5 / 4) % 7)) # November
+            else:
+                start = (year, 4, (2 + 6 * year - math.floor(year / 4)) % 7 + 1) # April
+                stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # October
+        elif area == "eu":
+            start = (year, 3, (31 - (math.floor(year * 5 / 4) + 4) % 7)) # March
+            stop =  (year, 10, (31 - (math.floor(year * 5 / 4) + 1) % 7)) # Oct
+        return (start, stop)
 
     def get_short_name(self, person, maiden_name = None):
         """ Return person's name, unless maiden_name given, unless married_name listed. """
@@ -239,17 +321,30 @@ class WebCalReport(Report):
         month_dict[day] = day_list
         self.calendar[month] = month_dict
 
-    def get_holidays(self, year, country = "United States"):
-        """ Looks in multiple places for holidays.xml files """
-        locations = [const.PLUGINS_DIR, const.USER_PLUGINS]
-        holiday_file = 'holidays.xml'
-        for dir in locations:
-            holiday_full_path = os.path.join(dir, holiday_file)
-            if os.path.exists(holiday_full_path):
-                self.process_holiday_file(holiday_full_path, year, country)
+    def get_holidays(self, country = "United States"):
+        """ Looks in multiple places for holidays.xml files 
+        the holidays file will be used first if it exists in user's plugins, else
+        the GRAMPS plugins will be checked.  No more of having duel holidays files being read.
 
-    def process_holiday_file(self, filename, year, country):
+        User directory is first choice if it exists, and does not use both holiday files any longer
+        """
+
+        year = self.Year
+        holiday_file = 'holidays.xml'
+        holiday_full_path = ""
+        fname1 = os.path.join(const.USER_PLUGINS, holiday_file)
+        fname2 = os.path.join(const.PLUGINS_DIR, holiday_file)
+        if os.path.exists(fname1):
+            holiday_full_path = fname1
+        elif os.path.exists(fname2):
+            holiday_full_path = fname2
+        if holiday_full_path != "":
+            self.process_holiday_file(holiday_full_path, country)
+
+    def process_holiday_file(self, filename, country):
         """ This will process a holiday file """
+
+        year = self.Year
         parser = Xml2Obj()
         element = parser.Parse(filename)
         calendar = Holidays(element, country)
@@ -257,185 +352,321 @@ class WebCalReport(Report):
         while date.year == year:
             holidays = calendar.check_date( date )
             for text in holidays:
+                if text == "Easter":
+                    date1 = self.easter()
+                    self.add_day_item(text, date1[0], date1[1], date1[2])
+                elif text == "Daylight Saving begins":
+                    if Utils.xml_lang() == "en-US":
+                        date2 = self.dst("us")
+                    else:
+                        date2 = self.dst("eu")
+                    dst_start = date2[0]
+                    dst_stop = date2[1]
+                    self.add_day_item(text, dst_start[0], dst_start[1], dst_start[2])
+                    self.add_day_item("Daylight Saving ends", dst_stop[0], dst_stop[1], dst_stop[2])
+                elif text == "Daylight Saving ends":
+                    pass
                 self.add_day_item(text, date.year, date.month, date.day)
             date = date.fromordinal( date.toordinal() + 1)
 
-    def write_css(self):
+    def copy_css(self):
         """
-        Create the CSS file.
+        Copies all the necessary files...
         """
-        # simplify the style and weight printing
-        font_style = ['normal','italic']
-        font_weight = ['normal','bold']
-        
-        # use user defined font families
-        font_family = [self.SanSerif_fonts,self.Serif_fonts]
+        # Copy the _CALENDARSCREEN css
+        if self.css != "":
+            from_file = os.path.join(const.DATA_DIR, self.css)
+            to_file = os.path.join("styles/", _CALENDARSCREEN)
+            self.store_file(from_file, to_file)
 
-        #
-        # NAVIGATION BLOCK
-        #
-        of = self.create_file(_CALENDAR)
-        of.write('ul#navlist { padding: 0;\n\tmargin: 0;\n\tlist-style-type: none;')
-        of.write('\n\tfloat: left;\n\twidth: 100%;')
-        of.write('\n\tcolor: #FFFFFF;\n\tbackground-color: #003366;\n\t}\n')
-        of.write('ul#navlist li { display: inline; }\n')
-        of.write('ul#navlist li a { float: left;\n\twidth: 2.8em;')
-        of.write('\n\tcolor: #FFFFFF;\n\tbackground-color: #003366;')
-        of.write('\n\tpadding: 0.2em 1em;\n\ttext-decoration: none;')
-        of.write('\n\tborder-right: 1px solid #FFFFFF;\n\t}\n')
-        of.write('ul#navlist li a:hover { background-color: #336699;')
-        of.write('\n\tcolor: #FFFFFF;\n\t}\n')
-        #
-        # HEADER / BODY BACKGROUND 
-        #
-        of.write('h1 {')
-        style = self.__style.get_paragraph_style("WC-Title")
-        font = style.get_font()
-        italic =  font_style[font.get_italic()]
-        bold =  font_weight[font.get_bold()]
-        family = font_family[font.get_type_face()]
-        color = "#%02X%02X%02X" % font.get_color()
-        of.write('\tfont-family: %s;\n\tfont-size: %dpt;\n'
-         '\tfont-style: %s;\n\tfont-weight: %s;\n'
-         '\tcolor: %s;\n\ttext-align: %s;\n\t}\n'
-                 % (family, font.get_size(), italic, bold,
-                    color, style.get_alignment_text()))
-        of.write('body { background-color: #%02X%02X%02X;\n}\n' % style.get_background_color() )
-        #
-        # CALENDAR TABLE
-        #
-        of.write('.calendar { ') 
-        style = self.__style.get_paragraph_style("WC-Table")
-        font = style.get_font()
-        italic =  font_style[font.get_italic()]
-        bold =  font_weight[font.get_bold()]
-        family = font_family[font.get_type_face()]
-        color = "#%02X%02X%02X" % font.get_color()
-        of.write('font-family: %s;\n\tfont-size: %dpt;\n'
-                 '\tfont-style: %s;\n\tfont-weight: %s;\n'
-                 '\tcolor: %s;\n\ttext-align: %s;\n'
-                 % (family, font.get_size(), italic, bold, 
-                    color, style.get_alignment_text()))
-        of.write('\tbackground-color: #%02X%02X%02X;\n}\n' % style.get_background_color() )
-        #
-        # MONTH NAME
-        #
-        style = self.__style.get_paragraph_style("WC-Month")
-        of.write('.cal_month { border-bottom-width: 0;\n')
-        font = style.get_font()
-        italic =  font_style[font.get_italic()]
-        bold =  font_weight[font.get_bold()]
-        family = font_family[font.get_type_face()]
-        color = "#%02X%02X%02X" % font.get_color()
-        mon_backcolor = "#%02X%02X%02X" % style.get_background_color()
-        of.write('\tfont-family:%s;\n\tfont-size: %dpt;\n'
-         '\tfont-style: %s;\n\tfont-weight: %s;\n'
-         '\tcolor: %s;\n\ttext-align: %s;\n'
-                 % (family, font.get_size(), italic, bold, color, style.get_alignment_text()))
-        if self.Month_image.strip() != "":
-            of.write('\tbackground-image: URL( %s );\n' % self.Month_image)
-            of.write('\tbackground-repeat: %s;\n' % self.options.repeat_options[self.Month_repeat] )
-        of.write('\tbackground-color: %s;\n}\n' % mon_backcolor )
-        #
-        # WEEKDAY NAMES
-        #
-        of.write('.cal_sun { border-top-width: 0;\n\tborder-right-width: 0;')
-        of.write('\n\tborder-style: solid;  ')
-        of.write('background-color: %s }\n' % mon_backcolor )
-        of.write('.cal_weekday { border-top-width: 0;\n\tborder-left-width: 0;\n\tborder-right-width: 0;  ')
-        of.write('\n\tborder-style: solid;\n\tbackground-color: %s }\n' % mon_backcolor )
-        of.write('.cal_sat { border-top-width: 0;\n\tborder-left-width: 0;\n')
-        of.write('\tborder-right-width: 0;\n\tborder-style: solid;')
-        of.write('\n\tbackground-color: %s }\n' % mon_backcolor )
-        #of.write('.cal_day_num { text-align: right;\n\tfont-size: x-large;\n\tfont-weight: bold;}\n')
-        #
-        # CALENDAR ENTRY TEXT
-        #
-        style = self.__style.get_paragraph_style("WC-Text")
-        of.write('.cal_text { vertical-align:bottom;\n')
-        font = style.get_font()
-        italic =  font_style[font.get_italic()]
-        bold =  font_weight[font.get_bold()]
-        family = font_family[font.get_type_face()]
-        color = "#%02X%02X%02X" % font.get_color()
-        msg_backcolor = "#%02X%02X%02X" % style.get_background_color()
-        of.write('\tfont-family:%s;\n\tfont-size: %dpt;\n'
-         '\tfont-style: %s;\n\tfont-weight: %s;\n'
-         '\tcolor: %s;\n\ttext-align: %s;\n\t}\n'
-                 % (family, font.get_size(), italic, bold, color, style.get_alignment_text()))
-        of.write('.cal_row { height: 70px;\n\tborder-style: solid;\n\t}\n')
-        of.write('.cal_cell_hilite {background-color: %s;}\n' % msg_backcolor )
-        #
-        # CALENDAR NOTE TEXT
-        #
-        style = self.__style.get_paragraph_style("WC-Note")
-        font = style.get_font()
-        italic =  font_style[font.get_italic()]
-        bold =  font_weight[font.get_bold()]
-        family = font_family[font.get_type_face()]
-        color = "#%02X%02X%02X" % font.get_color()
-        backcolor = "#%02X%02X%02X" % style.get_background_color()
-        of.write('.cal_cell { background-color: %s;}\n' % backcolor )
-        of.write('.cal_note {\n')
-        of.write('\tfont-family:%s;\n\tfont-size: %dpt;\n'
-         '\tfont-style: %s;\n\tfont-weight: %s;\n'
-         '\tcolor: %s;\n\ttext-align: %s;\n'
-         '\tbackground-color: %s;\n\t}\n'
-                 % (family, font.get_size(), italic, bold, color, style.get_alignment_text(), backcolor))
-        # 
-        # FOOTER AND DONE
-        #
-        of.write('.footer { text-align: center;\n\tfont-size:small; }\n')
-        of.write('img { border: 0; }\n')
-        of.close()
+        # copy calendar-print stylesheet
+        from_file = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
+        to_file = os.path.join("styles/", _CALENDARPRINT)
+        self.store_file(from_file, to_file) 
 
+        # Copy GRAMPS favicon to target
+        from_file = os.path.join(const.IMAGE_DIR, "favicon.ico")
+        to_file = os.path.join("images/", "favicon.ico")
+        self.store_file(from_file, to_file)
 
-    def write_footer(self, of):
+        # Copy arrow image if "Year At A Glance" is requested, 
+        # and if the file exists
+        if self.fullyear:
+            from_file = os.path.join(const.IMAGE_DIR, "arrow102.gif")
+            if os.path.exists(from_file):        
+                to_file = os.path.join("images/", "arrow102.gif")
+                self.store_file(from_file, to_file)
+
+    def display_nav_links(self, of, currentsection, cal):
+
+        # Check to see if home_link will be used???
+        navs = [
+            ('January',     _('Jan'),             True),
+            ('February',    _('Feb'),             True),
+            ('March',       _('Mar'),             True),
+            ('April',       _('Apr'),             True),
+            ('May',         _('May'),             True),
+            ('June',        _('Jun'),             True),
+            ('July',        _('Jul'),             True),
+            ('August',      _('Aug'),             True),
+            ('September',   _('Sep'),            True),
+            ('October',     _('Oct'),             True),
+            ('November',    _('Nov'),             True),
+            ('December',    _('Dec'),             True),
+            ('fullyear',    _('Year Glance'),     self.fullyear),
+            ('blankyear',   _('Blank Calendar'),  self.blankyear)
+                ]
+        for url_fname, nav_text, cond in navs:
+            if cond:
+                new_dir = str(self.Year) + '/'
+                if ((cal == "yg") or (cal == "by")):
+                    url = self.subdirs("yg", new_dir, url_fname)
+                elif cal == "ip":
+                    url = self.subdirs("ip", new_dir, url_fname)
+                else:
+                    url = self.subdirs("wc", new_dir, url_fname)
+                url += self.ext
+                self.display_nav_link(of, url, nav_text, currentsection)
+
+    def display_nav_link(self, of, url, title, currentsection):
+        # Figure out if we need <li id="CurrentSection"> of just plain <li>
+        cs = False
+        if title == currentsection:
+            cs = True
+
+        cs = cs and ' id="CurrentSection"' or ''
+        of.write('            <li%s><a href="%s">%s</a></li>\n' 
+            % (cs, url, title))
+
+    def calendar_build(self, of, cal, month):
+        """
+        This does the work of building the calendar
+        """
+
+        year = self.Year
+
+        # Begin calendar head
+        title = GrampsLocale.long_months[month]
+        of.write('<!-- %s -->\n' % title)
+        of.write('    <table id="%s" class="calendar">\n' % title)
+        of.write('        <thead>\n')
+        of.write('            <tr>\n')
+        of.write('                <th colspan="7" class="monthName">')
+        of.write('%s</th>\n' % title)
+        of.write('            </tr>\n')
+
+        # Calendar weekday names header
+        of.write('            <tr>\n')
+        of.write('                <th class="weekend sunday" />')
+        if cal == "yg":
+            of.write(GrampsLocale.short_days[1])
+        else:
+            of.write(GrampsLocale.long_days[1])
+        of.write('</th>\n')
+        for day_col in range(5):
+            of.write('                <th class="weekday" />')
+            if cal == "yg":
+                of.write(GrampsLocale.short_days[day_col+2])
+            else:
+                of.write(GrampsLocale.long_days[day_col+2])
+            of.write('</th>\n')
+        of.write('                <th class="weekend saturday" />')
+        if cal == "yg":
+            of.write(GrampsLocale.short_days[7])
+        else:
+            of.write(GrampsLocale.long_days[7])
+        of.write('</th>\n')
+        of.write('            </tr>\n')
+        of.write('        </thead>\n')
+
+        of.write('        <tbody>\n')
+        monthinfo = calendar.monthcalendar(year, month)
+        nweeks = len(monthinfo)
+        current_date = datetime.date(year, month, 1) # first day of the month
+        if current_date.isoweekday() != 7: # start dow here is 7, sunday
+            current_ord = current_date.toordinal() - current_date.isoweekday()
+        else:
+            current_ord = current_date.toordinal()
+
+        # get last month's last week for previous days in the month
+        if month == 1:
+            prevmonth = calendar.monthcalendar(year-1, 12)
+        else:
+            prevmonth = calendar.monthcalendar(year, month-1)
+        num_weeks = len(prevmonth)
+        lastweek = prevmonth[num_weeks - 1]
+
+        # get next month's first week for next days in the month
+        if month == 12:
+            nextmonth = calendar.monthcalendar(year+1, 1)
+        else:
+            nextmonth = calendar.monthcalendar(year, month + 1)
+        nextweek = nextmonth[0]
+
+        # Begin calendar
+        for week_row in range(0, nweeks):
+            week = monthinfo[week_row]
+            of.write('             <tr class="week%d">\n' % week_row)
+            for days_row in range(0, 7):
+                if days_row == 0:
+                    dayclass = "weekend sunday"
+                elif days_row == 6:
+                    dayclass = "weekend saturday"
+                else:
+                    dayclass = "weekday"
+                day = week[days_row]
+                if day == 0: # previous or next month day
+                    if week_row == 0: # previous day
+                        specday = lastweek[days_row]
+                        specclass = "previous " + dayclass
+                    elif week_row == nweeks-1:
+                        specday = nextweek[days_row]
+                        specclass = "next " + dayclass
+                    of.write('                 <td id="specday%d" class="%s">\n'
+                        % (specday, specclass))
+                    of.write('                     <div class="date">%d</div>\n'
+                        % specday)
+                    of.write('                 </td>\n')
+                else: # day number
+                    if cal == "by":
+                        of.write('                 <td id="day%d" class="%s">\n' 
+                            % (day, dayclass))
+                        of.write('                     <div class="date">%d</div>\n' % day)
+                        of.write('                 </td>\n')
+                    else:
+                        of.write('                 <td id="day%d" ' % day)
+                        thisday = current_date.fromordinal(current_ord)
+                        if thisday.month == month: # Something this month
+                            list = self.calendar.get(month, {}).get(thisday.day, {})
+                            if ((thisday.day == day) and (list > [])):
+                                specclass = "highlight " + dayclass
+                                of.write('class="%s">\n' % specclass)
+                                if cal == "yg": # Year at a Glance
+                                    lng_month = GrampsLocale.long_months[month]
+                                    shrt_month = GrampsLocale.short_months[month]
+                                    of.write('                    <a href="%s/%s%d%s">\n' 
+                                        % (lng_month, shrt_month, day, self.ext))
+                                    of.write('                         <div class="date">%d'
+                                        '</div></a>\n' % day)
+                                    self.indiv_date(month, day, list)
+                                else: # WebCal
+                                    of.write('                         <div class="date">%d'
+                                        '</div>\n' % day)
+                                    of.write('                          <ul>\n')
+                                    for p in list:
+                                        lines = p.count("\n") + 1 # lines in the text
+                                        for line in p.split("\n"):
+                                            of.write('                            <li>')
+                                            of.write(line)
+                                            of.write('</li>\n')
+                                    of.write('                         </ul>\n')
+                            else:
+                                of.write('class="%s">\n' % dayclass)
+                                of.write('                         <div class="date">%d</div>\n' 
+                                    % day)
+                        else:
+                            of.write('class="%s">\n' % dayclass)
+                            of.write('                     <div class="date">%d</div>\n' % day)
+                        of.write('                 </td>\n')
+                current_ord += 1
+            of.write('             </tr>\n')
+
+        # Complete six weeks for proper styling
+        of = self.six_weeks(of, nweeks)
+
+        return of
+
+    def write_header(self, of, title, cal, mystyle):
+        """
+        This creates the header for the Calendars iincluding style embedded for special purpose
+        """
+
+        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"\n ')
+        of.write('     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\n ')
+        of.write('<html xmlns="http://www.w3.org/1999/xhtml" ')
+        xmllang = Utils.xml_lang()
+        of.write('xml:lang="%s" lang="%s">\n' % (xmllang, xmllang))
+        of.write('<head>\n')
+        of.write('     <title>%s</title>\n' % title)
+        of.write('     <meta http-equiv="Content-Type" content="text/html;charset=%s" />\n' 
+                % self.encoding)
+        of.write('     <meta name="robots" content="noindex" />\n')
+        of.write('     <meta name="generator" content="GRAMPS 3.1.x: http://www.gramps-project.org" '
+                '/>\n')
         author = get_researcher().get_name()
-        value = unicode(time.strftime('%x',time.localtime(time.time())),
-                        GrampsLocale.codeset)
-        msg = _('Generated by <a href="http://gramps-project.org">'
-                'GRAMPS</a> on %(date)s') % { 'date' : value }
-        of.write('    </table>\n')
-        of.write('   <div class="footer">')
-        of.write(msg)
-        of.write('<p><a href="http://validator.w3.org/check?uri=referer"><img ')
-        of.write('src="http://www.w3.org/Icons/valid-xhtml10" ')
-        of.write('alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></p>\n')
+        of.write('     <meta name="author" content="%s" />\n' % author)
+
+        if ((cal == "yg") or (cal == "by")): # year glance and blank_year 
+                                             # have same directory levels
+            fname1 = self.subdirs("yg", "styles/", _CALENDARSCREEN)
+            fname2 = self.subdirs("yg", "styles/", _CALENDARPRINT)
+            fname3 = self.subdirs("yg", "images/", "favicon.ico")
+        elif cal == "ip":
+            fname1 = self.subdirs("ip", "styles/", _CALENDARSCREEN)
+            fname2 = self.subdirs("ip", "styles/", _CALENDARPRINT)
+            fname3 = self.subdirs("ip", "images/", "favicon.ico")
+        else:
+            fname1 = self.subdirs("wc", "styles/", _CALENDARSCREEN)
+            fname2 = self.subdirs("wc", "styles/", _CALENDARPRINT)
+            fname3 = self.subdirs("wc", "images/", "favicon.ico")
+
+        # link to calendar-screen css
+        of.write('     <link href="%s" rel="stylesheet" type="text/css" media="screen" />\n' % fname1)
+
+        # link to calendar-print css
+        if not cal == "yg":
+            of.write('     <link href="%s" rel="stylesheet" type="text/css" media="print" />\n' 
+                % fname2)
+
+        # create a link to GRAMPS favicon
+        of.write('     <link href="%s" rel="Shortcut Icon" />\n' % fname3)
+
+        # Add calendar specific embedded style
+        of.write(mystyle)
+        of.write('</head>\n')
+
+        return (of, author)
+
+    def write_footer(self, of, cal):
+        """
+        Writes the footer section of the pages
+        """
+
+        # Display date as user set in preferences
+        value = _dp.parse(time.strftime('%b %d %Y'))
+        value = _dd.display(value)
+
+        msg = _('Generated by <a href="http://gramps-project.org" target="_blank">'
+                 'GRAMPS</a> on %(date)s') % { 'date' : value }
+
+        author = get_researcher().get_name()
+        if author:
+            author = author.replace(',,,', '')
+        of.write('     <div id="footer">\n')
+        of.write('         <p id="createdate">%s</p>\n' % msg)
+
+        # copyright license
+        if ((cal == "yg") or (cal == "by")):
+            fname = self.subdirs("yg", "images/", "somerights20.gif")
+        elif cal == "ip":
+            fname = self.subdirs("ip", "images/", "somerights20.gif")
+        else:
+            fname  = self.subdirs("wc", "images/", "somerights20.gif")
         if self.copy > 0 and self.copy <= 6:
             text = _CC[self.copy-1]
-            from_path = os.path.join(const.IMAGE_DIR,"somerights20.gif")
-            shutil.copyfile(from_path, os.path.join(self.html_dir,"somerights20.gif"))
+            text += 'src="%s"></a>' % fname
+            from_file = os.path.join(const.IMAGE_DIR,"somerights20.gif")
+            to_file = os.path.join("images/", "somerights20.gif")
+            self.store_file(from_file, to_file)
         else:
-            text = "&copy; %s %s" % (time.localtime()[0], author) 
-        of.write(text)
-        of.write('</div>\n')
-        of.write('  </body>\n')
+            text = "&copy; %s %s" % (time.localtime()[0], author)
+        of.write('         <p id="copyright">%s</p>\n' % text)
+        of.write('         <p id="quality"><a href="http://validator.w3.org/check?uri=referer">')
+        of.write('<img src="http://www.w3.org/Icons/valid-xhtml10" ')
+        of.write('alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a></p>\n')
+        of.write('     </div>\n')
+        of.write('</body>\n')
         of.write('</html>\n')
-
-    def write_header(self, of):
-        author = get_researcher().get_name()
-        of.write('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n')
-        of.write('        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-loose.dtd">\n')
-        #xmllang = Utils.xml_lang()
-        of.write('<html>\n')
-        of.write('<head>\n  <title>%s</title>\n' % self.Title_text)
-        of.write('  <meta http-equiv="Content-Type" content="text/html;charset=%s" />\n' % self.encoding)
-        of.write('  <meta name="robots" content="noindex" />\n')
-        of.write('  <meta name="generator" content="GRAMPS 2.26" />\n')
-        of.write('  <meta name="author" content="%s" />\n' % author)
-        of.write('  <link href="%s" ' % _CALENDAR)
-        of.write('rel="stylesheet" type="text/css" media="screen" />\n')
-        of.write('  <link href="/favicon.ico" rel="Shortcut Icon" />\n')
-        #of.write('<!-- %sId%s -->\n' % ('$','$'))
-        of.write('</head>\n')
-        of.write('<body>\n')
-        of.write('    <ul id="navlist">\n')
-        if self.Home_link.strip() != "":
-            of.write('      <li><a href="%s">HOME</a></li>\n' % self.Home_link)      
-        for month in range(1, 13):
-            of.write('      <li><a href="Calendar_%s%d.html">%s</a></li>\n' % (GrampsLocale.short_months[month],self.Year,GrampsLocale.short_months[month]))
-        of.write('    </ul>\n')
 
     def create_file(self, name):
         page_name = os.path.join(self.html_dir, name)
@@ -444,6 +675,304 @@ class WebCalReport(Report):
 
     def close_file(self, of):
         of.close()
+
+    def indiv_date(self, month, day_num, list):
+        """
+        This method creates the indiv pages for "Year At A Glance"
+        """
+
+        year = self.Year
+        dest_dir = self.html_dir + "/images"
+        arrow = os.path.join(dest_dir, "arrow102.gif")
+
+        # Create names for long and short month names
+        lng_month = GrampsLocale.long_months[month]
+        shrt_month = GrampsLocale.short_months[month]
+
+        new_dir = self.html_dir + "/%d/%s" % (year, lng_month)
+        if not os.path.isdir(new_dir):
+            os.mkdir(new_dir)
+
+        # Name the file, and create it
+        cal_file = '%d/%s/%s%d%s' % (year, lng_month, shrt_month, day_num, self.ext)
+        ip = self.create_file(cal_file)
+
+        mystyle = """
+        <style type="text/css">
+        <!--
+        """
+        if os.path.isfile(arrow):
+            mystyle += """
+            ul#arrow li {
+                font-size:16px;
+                list-style-image: url("../../images/arrow102.gif"); }
+            """
+        else:
+            mystyle += """
+            ul li {
+            font-size:16px; }
+            """
+        mystyle += """
+        -->
+        </style>
+        """
+
+        # Add Header to calendar
+        title = "%d %s %d" % (day_num, lng_month, year)
+        (ip, author) = self.write_header(ip, title, "ip", mystyle)
+
+        ip.write('<body id="events-%s%d">\n' % (shrt_month, day_num))
+        ip.write('    <div id="header">\n')
+        if author:
+            ip.write('         <div id="GRAMPSinfo">\n')
+            msg = 'Created for %s' % author
+            ip.write('             %s</div>\n' % msg)
+	ip.write('      <h1 id="SiteTitle">A Peak into One Day</h1>\n')
+        ip.write('    </div>\n')
+        
+        # Create navigation menu
+        ip.write('    <div id="navigation">\n')
+        ip.write('         <ul>\n')
+
+        if self.Home_link.strip() != '':
+            ip.write('                     <li>')
+            ip.write('<a href="%s">HOME</a></li>\n' % self.Home_link)
+
+        title = GrampsLocale.short_months[month]
+        self.display_nav_links(ip, title, "ip")
+
+        ip.write('         </ul>\n')
+        ip.write('     </div>\n')
+
+        ip.write('      <h2 class="monthName" style="display:block;">%s %d, %d</h2>\n' 
+            % (lng_month, day_num, year))
+
+        # if arrow file exists in IMAGE_DIR, use it
+        arrow = os.path.join(const.IMAGE_DIR, "arrow102.gif")
+        if os.path.isfile(arrow):
+            ip.write('                  <ul id="arrow">\n')
+        else:
+            ip.write('                  <ul>\n')
+        for p in list:
+            lines = p.count("\n") + 1 # lines in the text
+            for line in p.split("\n"):
+                ip.write('                         <li>')
+                ip.write(line)
+                ip.write('</li>\n')
+        ip.write('                      </ul>\n')
+
+        self.write_footer(ip, "ip")
+        self.close_file(ip)
+
+    def six_weeks(self, of, nweeks):
+        """
+        Will complete the calendar out to six weeks for 
+        proper styling of css sheets
+        """
+
+        if nweeks == 4: # four weeks, add two weeks
+            for empty_weeks in range(1, 3):
+                of.write('             <tr class="week%d">\n' % (nweeks + empty_weeks))
+                of.write('                 <td id="emptyDays" colspan="7">\n')
+                of.write('                 </td>\n') 
+                of.write('             </tr>\n')
+        elif nweeks == 5: # five weeks, add one week
+            of.write('             <tr class="week6">\n')
+            of.write('                 <td id="emptyDays" colspan="7">\n')
+            of.write('                 </td>\n')
+            of.write('             </tr>\n')
+        return of
+
+    def blank_year(self):
+        """
+        This method will create the Printable Full Year One Page Calendar...
+        """
+
+        year = self.Year
+        # if year dir doesn't exist, create it
+        new_dir = self.html_dir + "/%d" % year
+        if not os.path.isdir(new_dir):
+            os.mkdir(new_dir)
+
+        # Name the file, and create it
+        cal_file = '%d/blankyear%s' % (year, self.ext)
+        by = self.create_file(cal_file)
+
+        # Add specific styles for "Printable Full-Year Calendar" page
+        mystyle = """
+    <style type="text/css">
+    <!--
+    #header {
+        height:2cm;
+    #header h1#SiteTitle {
+        color:#FFF;
+        font-size:24px; }
+    #footer {
+        height:2cm;
+        font-size:16px;
+    -->
+    </style>
+    """
+
+        # Add header to page
+        title = str(year) + "Blank Calendar"
+        (by, author) = self.write_header(by, title, "by", mystyle)
+
+        by.write('<body id="blankca">\n')
+
+        # Header Title
+        by.write('    <div id="header">\n')
+        if author:
+            by.write('         <div id="GRAMPSinfo">\n')
+            msg = 'Created for %s' % author
+            by.write('             %s</div>\n' % msg)
+        by.write('        <h1 id="SiteTitle">%d</h1>\n' % year)
+        by.write('    </div>\n')
+
+        # Create navigation menu
+        by.write('    <div id="navigation">\n')
+        by.write('         <ul>\n')
+
+        if self.Home_link.strip() != '':
+            by.write('                     <li>')
+            by.write('<a href="%s">HOME</a></li>\n' % self.Home_link)
+
+        self.display_nav_links(by, 'Blank Calendar', "by")
+
+        by.write('         </ul>\n')
+        by.write('     </div>\n')
+        
+        # Create progress bar for it
+        self.progress.set_pass(_('Creating Printable Blank Full-Year Calendar Page'), 12)
+
+        for month in range(1, 13): # Create full year
+            self.progress.step()
+
+            # build the calendar
+            by = self.calendar_build(by, "by", month)
+
+            # close table body
+            by.write('         </tbody>\n')
+            by.write('     </table>\n')
+
+        # Write footer and close file
+        self.write_footer(by, "by")
+        self.close_file(by)
+
+    def year_glance(self):
+        """
+        This method will create the Full Year At A Glance Page...
+        """
+
+        year = self.Year
+        # if year dir doesn't exist, create it
+        new_dir = self.html_dir + "/%d/" % year
+        if not os.path.isdir(new_dir):
+            os.mkdir(new_dir)
+
+        # Name the file, and create it
+        cal_file = '%d/fullyear%s' % (year, self.ext)
+        yg = self.create_file(cal_file)
+
+        # Add specific styles for "Year At A Glance" page
+        mystyle = """
+        <style type="text/css">
+        <!--
+        .calendar {
+            float:left;
+            width:30em;
+            height:27em;
+            font-size:.8em;
+            margin:1em 1em 1em 4em;
+            padding:1em 0 0 0;
+            border-top:solid 1px #000;}
+        .calendar thead tr th {
+            height:1em;
+            font-size:.8em; }
+        .calendar thead tr th.monthName {
+            background-color:#FFF;
+            height:1.1em;
+            font-size:1em; }
+        .calendar tbody tr.week5 {
+            border-top:solid 1px #000; }
+        .calendar tbody tr.week6 {
+            border-top:solid 1px #000; }
+        .calendar tbody tr td {
+            height:1.2cm; }
+        .calendar tbody tr td.saturday {
+            border-right:solid 1px #000; }
+        .calendar tbody tr td.sunday {
+            border-left:solid 1px #000; }
+        .highlight div.date {
+            background-color:#FA0E18;
+            color:#FFF; }
+        -->
+        </style>
+        """
+
+        # Add header to page
+        title = "%d, At A Glance" % year
+        (yg, author) = self.write_header(yg, title, "yg", mystyle)
+
+        yg.write('<body id="fullyear">\n')     # body will terminate in write_footer
+
+        # Header Title
+        yg.write('    <div id="header">\n')
+        if author:
+            yg.write('         <div id="GRAMPSinfo">\n')
+            msg = 'Created for %s' % author
+            yg.write('             %s</div>\n' % msg)
+        yg.write('      <h1 id="SiteTitle">%s\n' % title)
+        yg.write('    </div>\n')
+
+        # Create navigation menu
+        yg.write('         <div id="navigation">\n')
+        yg.write('              <ul>\n')
+
+        if self.Home_link.strip() != '':
+            yg.write('                     <li>')
+            yg.write('<a href="%s">HOME</a></li>\n' % self.Home_link)
+
+        self.display_nav_links(yg, 'Year Glance', "yg")
+
+        yg.write('         </ul>\n')
+        yg.write('     </div>\n') # End Navigation Menu
+
+        yg.write('        <p id="description">\n')
+        yg.write('            This calendar is meant to give you access to all your data at a glance '
+        'compressed into one page.  Clicking on a <b>red square</b> will take you to a '
+        'page that shows all the events for that date!\n')
+        yg.write('        </p>\n\n')
+
+        # Create progress bar for it
+        self.progress.set_pass(_('Creating Year At A Glance page'), 12)
+
+        for month in range(1, 13): # Create full year
+            self.progress.step()
+
+            # build the calendar
+            yg = self.calendar_build(yg, "yg", month)
+
+
+            # close table body before writing note
+            yg.write('         </tbody>\n')
+
+            # create note section for each calendar month
+            yg.write('        <tfoot>\n')
+            yg.write('            <tr>\n')
+            yg.write('                <td class="note" colspan="7">\n')
+            if self.Note[month-1].strip() != '':
+                yg.write('                     %s\n' % self.Note[month-1])
+            else:
+                yg.write('                     &nbsp;\n')
+            yg.write('                 </td>\n')
+            yg.write('            </tr>\n')
+            yg.write('        </tfoot>\n')
+            yg.write('     </table>\n\n')
+
+        # write footer section, and close file
+        self.write_footer(yg, "yg")
+        self.close_file(yg)
 
     def write_report(self):
         """ The short method that runs through each month and creates a page. """
@@ -467,121 +996,136 @@ class WebCalReport(Report):
         
         # initialize the dict to fill:
         self.calendar = {}
-        self.progress = Utils.ProgressMeter(_("Generate HTML Calendars"),'')
+        self.progress = Utils.ProgressMeter(_("Generate XHTML Calendars"),'')
 
         # Generate the CSS file
-        self.write_css()
+        self.copy_css()
 
         # get the information, first from holidays:
         if self.Country != 0: # Don't include holidays
-            self.get_holidays(self.Year, _COUNTRIES[self.Country]) # _country is currently global
+            self.get_holidays(_COUNTRIES[self.Country]) # _country is currently global
+            self.progress.set_pass(_("Getting information from holidays file"),'')
+
         # get data from database:
         self.collect_data()
+
         # generate the report:
         self.progress.set_pass(_("Creating Calendar pages"),12)
 
         for month in range(1, 13):
             self.progress.step()
             self.print_page(month)
+
+        if self.fullyear:
+            self.year_glance()
+
+        if self.blankyear:
+            self.blank_year()
+
+        # Close the progress meter
         self.progress.close()
+
+    def subdirs(self, cal, dir, name):
+        """
+        his will add the number of subdirs to the filename depending on which 
+        calendar is being called
+        "wc" = WebCal
+        yg = Year At A Glance
+        by = Printable Pocket Calendar
+        ip = Indiv Pages
+        """
+
+        if cal == "wc":
+            subdirs = '.././'
+        elif ((cal == "yg") or (cal == "by")):
+            subdirs = '.././'
+        else:
+            subdirs = '../.././'
+        fname = subdirs + '%s%s' % (dir, name) 
+        return fname
 
     def print_page(self, month):
         """
-        This method actually writes the calendar page.
+        This method provides information and header/ footer to the calendar month
         """
+
         year = self.Year
-        title = "%s %d" % (GrampsLocale.long_months[month], year)
-        cal_file = "Calendar_%s%d.html" % (GrampsLocale.short_months[month], year)
+        # if year dir doesn't exist, create it
+        new_dir = self.html_dir + "/%d" % year
+        if not os.path.isdir(new_dir):
+            os.mkdir(new_dir)
+
+        # Name the file, and create it
+        cal_file = "%d/%s%s" % (year, GrampsLocale.long_months[month], self.ext)
         of = self.create_file(cal_file)
-        self.write_header(of)
-        of.write(' <h1>%s</h1>\n' % self.Title_text)
-        of.write('<table border="1px" cellspacing="0" cellpadding="1" width="100%" class="calendar">\n')
-        of.write('  <tr>\n    <td  colspan="7" align="center" class="cal_month">\n')
-        of.write('      %s</td></tr>\n   <tr>\n' % title)
 
-        current_date = datetime.date(year, month, 1)
-        if current_date.isoweekday() != 7: # start dow here is 7, sunday
-            current_ord = current_date.toordinal() - current_date.isoweekday()
+        # Add specific styles to calendar head
+        mystyle = """
+        <style type="text/css">
+        <! --
+        .calendar thead tr th.monthName {
+            height:1.5cm;
+            font-size:.9cm; }
+        -->
+        </style>
+            """
+
+        # Add Header to calendar
+        (of, author) = self.write_header(of, self.Title_text, "of", mystyle)
+
+        of.write('<body id="WebCal">\n')   # terminated in write_footer
+
+        # Header Title
+        of.write('    <div id="header">\n')
+        if author:
+            of.write('         <div id="GRAMPSinfo">\n')
+            msg = 'Created for %s' % author
+            of.write('             %s</div>\n' % msg)
+        of.write('        <h1 id="SiteTitle">%s</h1>\n' % self.Title_text)
+        of.write('        <h1>%d</h1>\n' % year)
+        of.write('    </div>\n')  # end header
+
+        # Create Navigation Menu
+        of.write('    <div id="navigation">\n')
+        of.write('        <ul>\n') 
+
+        if self.Home_link.strip() != '':
+            of.write('                     <li>')
+            of.write('<a href="%s">HOME</a></li>\n' % self.Home_link)
+
+        highlight = GrampsLocale.short_months[month]
+        self.display_nav_links(of, highlight, "wc")
+
+        of.write('        </ul>\n\n')
+        of.write('    </div>\n') # End Navigation Menu
+
+        # Set first weekday according to Locale
+        xmllang = Utils.xml_lang()
+        if xmllang == "en-US":
+            calendar.setfirstweekday(6) # USA calendar starts on a Sunday
+                                        # European calendar starts on Monday, default
+
+        # build the calendar
+        of = self.calendar_build(of, "wc", month)
+
+        # close table body before note section
+        of.write('         </tbody>\n')
+
+        # create note section for "WebCal"
+        of.write('        <tfoot>\n')
+        of.write('            <tr>\n')
+        of.write('                <td class="note" colspan="7">')
+        if self.Note[month-1].strip() != '':
+            of.write(self.Note[month-1])
         else:
-            current_ord = current_date.toordinal()
-        of.write('    <td width="14%" align="center" class="cal_sun">') 
-        of.write(GrampsLocale.short_days[1])
+            of.write("&nbsp;")
         of.write('</td>\n')
-        for day_col in range(5):
-            of.write('    <td width="14%" align="center" class="cal_weekday">') 
-            of.write(GrampsLocale.short_days[day_col+2])
-            of.write('</td>\n')
-        of.write('    <td width="14%" align="center" class="cal_sat">')
-        of.write(GrampsLocale.short_days[7])
-        of.write('</td>\n   </tr>\n')
+        of.write('            </tr>\n')
+        of.write('        </tfoot>\n')
+        of.write('     </table>\n\n')
 
-        for week_row in range(6):
-            first = True
-            last = True
-            of.write('     <tr valign="top" class="cal_row">\n')
-            something_this_week = 0
-            colspan = 0
-            for day_col in range(7):
-                colspan += 1
-                thisday = current_date.fromordinal(current_ord)
-                if thisday.month == month:
-                    list = self.calendar.get(month, {}).get(thisday.day, [])
-                    if list > []:
-                        cellclass = "cal_cell_hilite"
-                    else:
-                        cellclass = "cal_cell"
-                    if first:
-                        first = False
-                        if day_col > 1:
-                            of.write('      <td colspan="%s" class="cal_cell">&nbsp;</td>\n' % str(day_col))
-                        elif day_col == 1:
-                            of.write('      <td class="cal_cell">&nbsp;</td>\n')
-                    of.write('      <td class="%s">%s' % (cellclass,str(thisday.day)))
-                    something_this_week = 1
-                    if list > []:
-                        of.write('<div class="cal_text">')
-                        for p in list:
-                            lines = p.count("\n") + 1 # lines in the text
-                            current = 0
-                            for line in p.split("\n"):
-                                of.write(line)
-                                of.write('<br />')
-                                current += 1
-                        of.write('</div>')
-                    of.write('</td>\n')
-                else:
-                    # at bottom of calendar
-                    if thisday.month > month and thisday.year >= year:
-                        # only do it once per row
-                        if last:
-                            last = False
-                            of.write('      <td colspan="')
-                            of.write(str(7 - day_col))
-                            of.write('"')
-                            if week_row == 4:
-                                of.write(' class="cal_cell">&nbsp;</td>\n')
-                                continue
-                            if week_row == 5:
-                                of.write(' class="cal_note">')
-                                if self.Note[month-1].strip() != '':
-                                    of.write(self.Note[month-1])
-                                else:
-                                    of.write("&nbsp;")
-                                of.write('</td>\n')
-                                continue
-                            of.write('</div></td>\n')
-                        continue
-                #of.write('\n')
-                current_ord += 1
-            if week_row == 5 and month == 12:
-                of.write('      <td colspan="%s" class="cal_note">' % str(colspan))
-                if self.Note[month-1].strip() != '':
-                    of.write(self.Note[month-1])
-                else:
-                    of.write("&nbsp;")
-                of.write('</td>\n')
-            of.write('     </tr>\n')
-        self.write_footer(of)
+        # write footer section, and close file
+        self.write_footer(of, "of")
         self.close_file(of)
 
     def collect_data(self):
@@ -589,9 +1133,12 @@ class WebCalReport(Report):
         This method runs through the data, and collects the relevant dates
         and text.
         """
+        self.progress.set_pass(_("Filtering"),'')
         people = self.filter.apply(self.database,
                                    self.database.get_person_handles(sort_handles=False))
+        self.progress.set_pass(_("Reading database"),len(people))
         for person_handle in people:
+            self.progress.step()
             person = self.database.get_person_from_handle(person_handle)
             birth_ref = person.get_birth_ref()
             birth_date = None
@@ -599,7 +1146,7 @@ class WebCalReport(Report):
                 birth_event = self.database.get_event_from_handle(birth_ref.ref)
                 birth_date = birth_event.get_date_object()
             living = probably_alive(person, self.database, make_date(self.Year, 1, 1), 0)
-            if self.Birthday and birth_date is not None and ((self.Alive and living) or not self.Alive):
+            if self.Birthday and birth_date != None and ((self.Alive and living) or not self.Alive):
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -617,10 +1164,16 @@ class WebCalReport(Report):
                             if mother_handle == person_handle:
                                 if father_handle:
                                     father = self.database.get_person_from_handle(father_handle)
-                                    if father is not None:
+                                    if father != None:
                                         father_lastname = father.get_primary_name().get_surname()
                 short_name = self.get_short_name(person, father_lastname)
-                self.add_day_item("%s, %d" % (short_name, age), year, month, day)
+                if age == 0: # person is 0 years old, display nothing
+                    text= ""
+                elif age == 1: # person is 1, and therefore display it correctly
+                    text= '%s, <em>%d</em> year old' % (short_name, age)
+                else:
+                    text= '%s, <em>%d</em> years old' % (short_name, age)
+                self.add_day_item(text, year, month, day)
             if self.Anniv and ((self.Alive and living) or not self.Alive):
                 family_list = person.get_family_handle_list()
                 for fhandle in family_list:
@@ -654,11 +1207,15 @@ class WebCalReport(Report):
                                     month = event_obj.get_month()
                                     day = event_obj.get_day()
                                     years = self.Year - year
-                                    text = _("%(spouse)s and\n %(person)s, %(nyears)d") % {
-                                        'spouse' : spouse_name,
-                                        'person' : short_name,
-                                        'nyears' : years,
-                                        }
+                                    if years == 0:
+                                        text = "" # zero year anniversary
+                                                  # display nothing 
+                                    else:
+                                        text = _('<span class="yearsmarried">%(spouse)s and %(person)s, <em>%(nyears)d</em> year anniversary</span>') % { 
+                                            'spouse' : spouse_name,
+                                            'person' : short_name,
+                                            'nyears' : years,
+                                            }
                                     self.add_day_item(text, year, month, day)
 
 #------------------------------------------------------------------------
@@ -683,7 +1240,6 @@ class WebCalOptions(MenuReportOptions):
         """
         self.__add_report_options(menu)
         self.__add_content_options(menu)
-        self.__add_misc_options(menu)
         self.__add_notes_options(menu)
     
     def __add_report_options(self, menu):
@@ -698,6 +1254,23 @@ class WebCalOptions(MenuReportOptions):
         target.set_directory_entry(True)
         menu.add_option(category_name, "target", target)
         
+        title = StringOption(_('Calendar Title'), _('My Family Calendar')) 
+        title.set_help(_("The title of the calendar"))
+        menu.add_option(category_name, "title", title)
+        
+        self.__filter = FilterOption(_("Filter"), 0)
+        self.__filter.set_help(
+               _("Select filter to restrict people that appear on calendar"))
+        menu.add_option(category_name, "filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
+        
+        self.__pid = PersonOption(_("Filter Person"))
+        self.__pid.set_help(_("The center person for the filter"))
+        menu.add_option(category_name, "pid", self.__pid)
+        self.__pid.connect('value-changed', self.__update_filters)
+        
+        self.__update_filters()
+
         ext = EnumeratedListOption(_("File extension"), ".html" )
         for etype in ['.html', '.htm', '.shtml', '.php', '.php3', '.cgi']:
             ext.add_item(etype, etype)
@@ -717,12 +1290,12 @@ class WebCalOptions(MenuReportOptions):
             encoding.add_item(eopt[1], eopt[0])
         encoding.set_help( _("The encoding to be used for the web files"))
         menu.add_option(category_name, "encoding", encoding)
-        
-        default_style = BaseDoc.StyleSheet()
-        self.__make_default_style(default_style)
-        style = StyleOption("Style", default_style, "WebCal")
-        style.set_help( _("The style to be used for the web files"))
-        menu.add_option(category_name, "style", style)
+
+        css = EnumeratedListOption(_('StyleSheet'), _CSS_FILES[0][1])
+        for style in _CSS_FILES:
+            css.add_item(style[1], style[0])
+        css.set_help( _("The Style Sheet to be used for the web page"))
+        menu.add_option(category_name, "css", css)
         
     def __add_content_options(self, menu):
         """
@@ -735,18 +1308,13 @@ class WebCalOptions(MenuReportOptions):
         year.set_help(_("Year of calendar"))
         menu.add_option(category_name, "year", year)
 
-        self.__filter = FilterOption(_("Filter"), 0)
-        self.__filter.set_help(
-               _("Select filter to restrict people that appear on calendar"))
-        menu.add_option(category_name, "filter", self.__filter)
-        self.__filter.connect('value-changed', self.__filter_changed)
-        
-        self.__pid = PersonOption(_("Filter Person"))
-        self.__pid.set_help(_("The center person for the filter"))
-        menu.add_option(category_name, "pid", self.__pid)
-        self.__pid.connect('value-changed', self.__update_filters)
-        
-        self.__update_filters()
+        fullyear = BooleanOption(_('Create Year At A Glance'), False)
+        fullyear.set_help(_('Wheather to create A Full Year High-lighted calendar'))
+        menu.add_option(category_name, 'fullyear', fullyear)
+
+        blankyear = BooleanOption(_('Create A Printable Blank Full- Year Calendar'), False)
+        blankyear.set_help(_('Wheather to create A Full Year Printable calendar'))
+        menu.add_option(category_name, 'blankyear', blankyear)
 
         country = EnumeratedListOption(_('Country for holidays'), 0 )
         index = 0
@@ -757,6 +1325,11 @@ class WebCalOptions(MenuReportOptions):
                             "country"))
         menu.add_option(category_name, "country", country)
 
+        home_link = StringOption(_('Home link'), '../index.html') 
+        home_link.set_help(_("The link to be included to direct the user to "
+                         "the main page of the web site"))
+        menu.add_option(category_name, "home_link", home_link)
+        
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the calendar"))
         menu.add_option(category_name, "alive", alive)
@@ -773,48 +1346,11 @@ class WebCalOptions(MenuReportOptions):
         surname.set_help(_("Attempt to use maiden names of women"))
         menu.add_option(category_name, "surname", surname)
 
-    def __add_misc_options(self, menu):
-        """
-        Options on the "Misc Options" tab.
-        """
-        category_name = _("Misc Options")
-        
-        title = StringOption(_('Calendar Title'), _('My Family Calendar')) 
-        title.set_help(_("The title of the calendar"))
-        menu.add_option(category_name, "title", title)
-        
-        home_link = StringOption(_('Home link'), '../index.html') 
-        home_link.set_help(_("The link to be included to direct the user to "
-                         "the main page of the web site"))
-        menu.add_option(category_name, "home_link", home_link)
-        
-        serif_fonts = StringOption(_('Serif font family'), 
-                             '"Georgia","Times New Roman","Times",serif') 
-        serif_fonts.set_help(_("Serif font family"))
-        menu.add_option(category_name, "serif_fonts", serif_fonts)
-    
-        sanserif_fonts = StringOption(_('San-Serif font family'), 
-                             '"Verdana","Helvetica","Arial",sans-serif') 
-        sanserif_fonts.set_help(_('San-Serif font family'))
-        menu.add_option(category_name, "sanserif_fonts", sanserif_fonts)
-        
-        background = StringOption(_('Background Image'), "") 
-        background.set_help(_('The image to be used as the page background'))
-        menu.add_option(category_name, "background", background)
-
-        repeat = EnumeratedListOption(_('Image Repeat'), 1 )
-        repeat.add_item(0, _('no-repeat'))
-        repeat.add_item(1, _('repeat'))
-        repeat.add_item(2, _('repeat-x'))
-        repeat.add_item(3, _('repeat-y'))
-        repeat.set_help( _("Whether to repeat the background image"))
-        menu.add_option(category_name, "repeat", repeat)
-        
     def __add_notes_options(self, menu):
         """
         Options on the "Months Notes" tabs.
         """
-        category_name = _("Months 1-6 Notes")
+        category_name = _("Jan - Jun Notes")
 
         note_jan = StringOption(_('Jan Note'), _('This prints in January')) 
         note_jan.set_help(_("The note for the month of January"))
@@ -840,7 +1376,7 @@ class WebCalOptions(MenuReportOptions):
         note_jun.set_help(_("The note for the month of June"))
         menu.add_option(category_name, "note_jun", note_jun)
         
-        category_name = _("Months 7-12 Notes")
+        category_name = _("Jul - Dec Notes")
 
         note_jul = StringOption(_('Jul Note'), _('This prints in July')) 
         note_jul.set_help(_("The note for the month of July"))
@@ -887,94 +1423,6 @@ class WebCalOptions(MenuReportOptions):
         else:
             # The rest don't
             self.__pid.set_available(False)
-
-    def __make_default_style(self, default_style):
-        """Make the default output style for the Web Calendar
-        There are 5 named styles for this report.
-
-        WC-Title - The header for the page.
-        WC-Month - The Month name block for the calendar.
-        WC-Text  - The text format for the body of the calendar. 
-        WC-Note  - The text placed at the bottom of each calendar.
-        WC-Table - controls the overall appearance of the calendar table.
-
-        """
-        #
-        # WC-Title
-        #
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=24, bold=1, 
-                 italic=1, color=(0x80, 0x0, 0x0))
-        para = BaseDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set(bgcolor=((0xb0, 0xc4, 0xde)))
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the title ("My Family '
-                               'Calendar") of the page. The background color '
-                               'sets the PAGE background. Borders DO NOT '
-                               'work.'))
-        default_style.add_paragraph_style("WC-Title", para)
-        #
-        # WC-Month
-        #
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=48, bold=1, 
-                 italic=1, color=((0x80, 0x0, 0x0)))
-        para = BaseDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set(bgcolor=((0xf0, 0xe6, 0x8c)))
-        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-        para.set_description(_('The style used for the month name and year, it'
-                               ' controls the font face, size, style, color '
-                               'and the background color of the block, '
-                               'including the day-name area. Inclusion of a '
-                               'graphic does not cover the day-name area.'))
-        default_style.add_paragraph_style("WC-Month", para)
-        #
-        # WC-Text
-        #
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=16, 
-                 italic=1, color=((0x80, 0x0, 0x0)))
-        para = BaseDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set(bgcolor=((0xf0, 0xf8, 0xff)))
-        para.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
-        para.set_description(_('The style used for text in the body of the '
-                               'calendar, it controls font size, face, style, '
-                               'color, and alignment. The background color is '
-                               'used ONLY for cells containing text, allowing '
-                               'for high-lighting of dates.'))
-        default_style.add_paragraph_style("WC-Text", para)
-        #
-        # WC-Note
-        #
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF, size=16, color=((0x0, 0x0, 0x0)))
-        para = BaseDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set(bgcolor=((0xff, 0xff, 0xff)))
-        para.set_alignment(BaseDoc.PARA_ALIGN_LEFT)
-        para.set_description(_('The style used for notes at the bottom of the '
-                               'calendar, it controls font size, face, style, '
-                               'color and positioning. The background color '
-                               'setting affect all EMPTY calendar cells.'))
-        default_style.add_paragraph_style("WC-Note", para)
-        #
-        # WC-Table
-        #
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SERIF, size=24, color=((0x80, 0x0, 0x0)))
-        para = BaseDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set(bgcolor=((0xff, 0xff, 0xff)))
-        para.set_alignment(BaseDoc.PARA_ALIGN_RIGHT)
-        para.set_description(_('The style used for the table itself. This '
-                               'affects the color of the table lines and the '
-                               'color, font, size, and positioning of the '
-                               'calendar date numbers. It also controls the '
-                               'color of the day names.'))
-        default_style.add_paragraph_style("WC-Table", para)
 
 #------------------------------------------------------------------------
 #
