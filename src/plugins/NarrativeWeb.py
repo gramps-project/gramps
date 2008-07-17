@@ -301,7 +301,7 @@ class BasePage:
                 of.write('%s' % cright)
         elif 0 < copy_nr < 7:
             text = _CC[copy_nr]
-            fname = build_url_fname("somerights20.gif", 'images', self.up)
+            fname = self.build_url_fname("somerights20.gif", 'images', self.up)
             text = text % {'gif_fname' : fname}
             of.write(text)
         of.write('</p>\n')
@@ -461,7 +461,7 @@ class BasePage:
             try:
                 lnkref = (self.report.cur_fname, self.page_title, self.gid)
                 self.report.add_lnkref_to_photo(photo, lnkref)
-                (real_path, newpath) = self.report.copy_media(photo)
+                real_path, newpath = self.report.prepare_copy_media(photo)
                 of.write('\t<div class="snapshot">\n')
                 # TODO. Check if build_url_fname can be used.
                 newpath = '/'.join(['..']*3 + [newpath])
@@ -507,7 +507,7 @@ class BasePage:
                 try:
                     lnkref = (self.report.cur_fname, self.page_title, self.gid)
                     self.report.add_lnkref_to_photo(photo, lnkref)
-                    (real_path, newpath) = self.report.copy_media(photo)
+                    real_path, newpath = self.report.prepare_copy_media(photo)
                     descr = " ".join(wrapper.wrap(title))
                     # TODO. Check if build_url_fname can be used.
                     newpath = '/'.join(['..']*3 + [newpath])
@@ -1200,7 +1200,7 @@ class MediaPage(BasePage):
                                               thmb_path, 320):
                     try:
                         path = self.report.build_path('preview', photo.handle)
-                        self.report.store_file(thmb_path, os.path.join(path, photo.handle) + '.png')
+                        self.report.copy_file(thmb_path, os.path.join(path, photo.handle) + '.png')
                         os.unlink(thmb_path)
                     except IOError:
                         path = os.path.join('images', 'document.png')
@@ -1323,18 +1323,7 @@ class MediaPage(BasePage):
         else:
             from_path = os.path.join(const.IMAGE_DIR, "document.png")
 
-        # FIXME. Why not use store_file()?
-        if self.report.archive:
-            self.report.archive.add(from_path, to_path)
-        else:
-            to_dir = os.path.join(self.html_dir, to_dir)
-            dest = os.path.join(self.html_dir, to_path)
-            if not os.path.isdir(to_dir):
-                os.makedirs(to_dir)
-            try:
-                shutil.copyfile(from_path, dest)
-            except IOError:
-                print "Could not copy file"
+        self.report.copy_file(from_path, to_path)
 
 class SurnameListPage(BasePage):
     ORDER_BY_NAME = 0
@@ -2312,11 +2301,11 @@ class IndividualPage(BasePage):
                             family = db.get_family_from_handle(family_handle)
                             for step_child_ref in family.get_child_ref_list():
                                 step_child_handle = step_child_ref.ref
-                                if  step_child_handle not in sibling and \
-                                    step_child_handle not in half_siblings and \
-                                    step_child_handle != self.person.handle:
-                                        # we have a new step sibling
-                                        step_siblings.add(step_child_handle)
+                                if step_child_handle not in sibling and \
+                                       step_child_handle not in half_siblings and \
+                                       step_child_handle != self.person.handle:
+                                    # we have a new step sibling
+                                    step_siblings.add(step_child_handle)
 
                 # now that we have all of the step-siblings, print them out
                 if len(step_siblings) > 0:
@@ -2716,8 +2705,7 @@ class NavWebReport(Report):
 
         for f in imgs:
             from_path = os.path.join(const.IMAGE_DIR, f)
-            to_path = os.path.join("images", f)
-            self.store_file(from_path, to_path)
+            self.copy_file(from_path, f, "images")
 
         place_list = {}
         source_list = {}
@@ -2751,16 +2739,10 @@ class NavWebReport(Report):
         Copy the CSS files to the target directory.
         """
 
-        if self.archive:
-            fname = os.path.join(const.DATA_DIR, css_file)
-            self.archive.add(fname, _NARRATIVESCREEN)
-            fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
-            self.archive.add(fname, _NARRATIVEPRINT)
-        else:
-            shutil.copyfile(os.path.join(const.DATA_DIR, css_file),
-                            os.path.join(self.html_dir, "styles", _NARRATIVESCREEN))
-            shutil.copyfile(os.path.join(const.DATA_DIR, "Web_Print-Default.css"),
-                            os.path.join(self.html_dir, "styles", _NARRATIVEPRINT))
+        fname = os.path.join(const.DATA_DIR, css_file)
+        self.copy_file(fname, _NARRATIVESCREEN, "styles")
+        fname = os.path.join(const.DATA_DIR, "Web_Print-Default.css")
+        self.copy_file(fname, _NARRATIVEPRINT, "styles")
 
     def person_pages(self, ind_list, place_list, source_list):
 
@@ -2864,8 +2846,8 @@ class NavWebReport(Report):
             mime_type = obj.get_mime_type()
             if mime_type and mime_type.startswith("image"):
                 try:
-                    (newpath, thumb_path) = self.copy_media(obj)
-                    self.store_file(Utils.media_path_full(db, obj.get_path()),
+                    newpath, thumb_path = self.prepare_copy_media(obj)
+                    self.copy_file(Utils.media_path_full(db, obj.get_path()),
                                     newpath)
                     of.write('\t<img')
                     if height:
@@ -2975,53 +2957,36 @@ class NavWebReport(Report):
         else:
             photo_list[handle] = [lnkref]
 
-    def copy_media(self, photo):
+    def prepare_copy_media(self, photo):
         handle = photo.get_handle()
         ext = os.path.splitext(photo.get_path())[1]
         real_path = os.path.join(self.build_path('images', handle), handle + ext)
         thumb_path = os.path.join(self.build_path('thumb', handle), handle + '.png')
-        return (real_path, thumb_path)
+        return real_path, thumb_path
 
     def copy_file(self, from_fname, to_fname, to_dir=''):
         """
         Copy a file from a source to a (report) destination.
         If to_dir is not present and if the target is not an archive,
         then the destination directory will be created.
+
+        Normally 'to_fname' will be just a filename, without directory path.
+
+        'to_dir' is the relative path name in the destination root. It will
+        be prepended before 'to_fname'.
         """
         if self.archive:
             dest = os.path.join(to_dir, to_fname)
             self.archive.add(from_fname, dest)
         else:
-            dest = os.path.join(self.html_dir, to_dir)
-            if not os.path.isdir(dest):
-                os.makedirs(dest)
-            dest = os.path.join(dest, to_fname)
-            if from_fname != dest:
-                self.store_file(from_fname, dest)
-            elif self.warn_dir:
-                WarningDialog(
-                    _("Possible destination error") + "\n" +
-                    _("You appear to have set your target directory "
-                      "to a directory used for data storage. This "
-                      "could create problems with file management. "
-                      "It is recommended that you consider using "
-                      "a different directory to store your generated "
-                      "web pages."))
-                self.warn_dir = False
+            dest = os.path.join(self.html_dir, to_dir, to_fname)
 
-    def store_file(self, from_path, to_path):
-        """
-        Store the file in the destination.
-        """
-        if self.archive:
-            self.archive.add(str(from_path), str(to_path))
-        else:
-            dest = os.path.join(self.html_dir, to_path)
-            dirname = os.path.dirname(dest)
-            if not os.path.isdir(dirname):
-                os.makedirs(dirname)
-            if from_path != dest:
-                shutil.copyfile(from_path, dest)
+            destdir = os.path.dirname(dest)
+            if not os.path.isdir(destdir):
+                os.makedirs(destdir)
+
+            if from_fname != dest:
+                shutil.copyfile(from_fname, dest)
             elif self.warn_dir:
                 WarningDialog(
                     _("Possible destination error") + "\n" +
