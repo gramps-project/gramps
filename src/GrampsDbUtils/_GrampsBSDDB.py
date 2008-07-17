@@ -1330,7 +1330,8 @@ class GrampsBSDDB(GrampsDbBase, UpdateCallback):
             pass
 
     def __get_obj_from_gramps_id(self, val, tbl, class_init, prim_tbl):
-        if str(val) in tbl:
+        if tbl.has_key(str(val)):
+        #if str(val) in tbl:
             data = tbl.get(str(val), txn=self.txn)
             obj = class_init()
             ### FIXME: this is a dirty hack that works without no
