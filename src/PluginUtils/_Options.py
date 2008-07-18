@@ -268,7 +268,7 @@ class OptionParser(handler.ContentHandler):
             self.o = {}
         elif tag == "option":
             self.oname = attrs['name']
-            if 'length' in attrs:
+            if attrs.has_key('length'):
                 self.an_o = []
             else:
                 self.an_o = attrs['value']

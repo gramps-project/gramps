@@ -524,7 +524,7 @@ class BookParser(handler.ContentHandler):
             self.o = {}
         elif tag == "option":
             self.an_o_name = attrs['name']
-            if 'length' in attrs:
+            if attrs.has_key('length'):
                 self.an_o_value = []
             else:
                 converter = Utils.get_type_converter_by_name(attrs['type'])
