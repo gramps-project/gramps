@@ -650,7 +650,7 @@ class GrampsDbBase(Callback):
         person ID prefix.
         """
         index = self.person_prefix % self.pmap_index
-        while str(index) in self.id_trans:
+        while self.id_trans.has_key(str(index)):
             self.pmap_index += 1
             index = self.person_prefix % self.pmap_index
         self.pmap_index += 1
@@ -662,7 +662,7 @@ class GrampsDbBase(Callback):
         place ID prefix.
         """
         index = self.place_prefix % self.lmap_index
-        while str(index) in self.pid_trans:
+        while self.pid_trans.has_key(str(index)):
             self.lmap_index += 1
             index = self.place_prefix % self.lmap_index
         self.lmap_index += 1
@@ -674,7 +674,7 @@ class GrampsDbBase(Callback):
         event ID prefix.
         """
         index = self.event_prefix % self.emap_index
-        while str(index) in self.eid_trans:
+        while self.eid_trans.has_key(str(index)):
             self.emap_index += 1
             index = self.event_prefix % self.emap_index
         self.emap_index += 1
@@ -686,7 +686,7 @@ class GrampsDbBase(Callback):
         off the media object ID prefix.
         """
         index = self.mediaobject_prefix % self.omap_index
-        while str(index) in self.oid_trans:
+        while self.oid_trans.has_key(str(index)):
             self.omap_index += 1
             index = self.mediaobject_prefix % self.omap_index
         self.omap_index += 1
@@ -698,7 +698,7 @@ class GrampsDbBase(Callback):
         source ID prefix.
         """
         index = self.source_prefix % self.smap_index
-        while str(index) in self.sid_trans:
+        while self.sid_trans.has_key(str(index)):
             self.smap_index += 1
             index = self.source_prefix % self.smap_index
         self.smap_index += 1
@@ -710,7 +710,7 @@ class GrampsDbBase(Callback):
         family ID prefix.
         """
         index = self.family_prefix % self.fmap_index
-        while str(index) in self.fid_trans:
+        while self.fid_trans.has_key(str(index)):
             self.fmap_index += 1
             index = self.family_prefix % self.fmap_index
         self.fmap_index += 1
@@ -722,7 +722,7 @@ class GrampsDbBase(Callback):
         off the repository ID prefix.
         """
         index = self.repository_prefix % self.rmap_index
-        while str(index) in self.rid_trans:
+        while self.rid_trans.has_key(str(index)):
             self.rmap_index += 1
             index = self.repository_prefix % self.rmap_index
         self.rmap_index += 1
@@ -734,7 +734,7 @@ class GrampsDbBase(Callback):
         note ID prefix.
         """
         index = self.note_prefix % self.nmap_index
-        while str(index) in self.nid_trans:
+        while self.nid_trans.has_key(str(index)):
             self.nmap_index += 1
             index = self.note_prefix % self.nmap_index
         self.nmap_index += 1
@@ -1483,7 +1483,8 @@ class GrampsDbBase(Callback):
             }
 
         table = key2table[obj_key]
-        return str(gramps_id) in table
+        #return str(gramps_id) in table
+        return table.has_key(str(gramps_id))
 
     def find_initial_person(self):
         person = self.get_default_person()

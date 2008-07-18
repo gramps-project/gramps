@@ -66,7 +66,7 @@ class FilterParser(handler.ContentHandler):
         elif tag == "filter":
             self.f = GenericFilterFactory(self.namespace)()
             self.f.set_name(attrs['name'])
-            if 'function' in attrs:
+            if attrs.has_key('function'):
                 try:
                     if int(attrs['function']):
                         op = 'or'
@@ -75,9 +75,9 @@ class FilterParser(handler.ContentHandler):
                 except ValueError:
                     op = attrs['function']
                 self.f.set_logical_op(op)
-            if 'invert' in attrs:
+            if attrs.has_key('invert'):
                 self.f.set_invert(attrs['invert'])
-            if 'comment' in attrs:
+            if attrs.has_key('comment'):
                 self.f.set_comment(attrs['comment'])
             self.gfilter_list.add(self.namespace, self.f)
         elif tag == "rule":

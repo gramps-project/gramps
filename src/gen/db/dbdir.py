@@ -930,7 +930,7 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
         # from the primary object 'obj' or any of its secondary objects.
 
         handle = obj.handle
-        update = str(handle) in self.reference_map_primary_map
+        update = self.reference_map_primary_map.has_key(str(handle))
 
         if update:
             # First thing to do is get hold of all rows in the reference_map
@@ -1374,7 +1374,6 @@ class GrampsDBDir(GrampsDbBase, UpdateCallback):
     def __get_obj_from_gramps_id(self, val, tbl, class_init, prim_tbl):
         try:
             if tbl.has_key(str(val)):
-            #if str(val) in tbl:
                 data = tbl.get(str(val), txn=self.txn)
                 obj = class_init()
                 ### FIXME: this is a dirty hack that works without no
