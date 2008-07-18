@@ -57,7 +57,7 @@ class FilterParser(handler.ContentHandler):
 
     def startElement(self, tag, attrs):
         if tag == "object":
-            if 'type' in attrs:
+            if attrs.has_key('type'):
                 self.namespace = attrs['type']
                 if self.namespace == 'Media':
                     self.namespace = 'MediaObject'
