@@ -36,8 +36,12 @@ from gen.lib import *
 
 class DbBase:
     """
-    A proxy to a Gramps database. This proxy will act like a Gramps database,
-    but all data marked private will be hidden from the user.
+    DbBase is intended to be an abstract base class for building classes that 
+    implement the Gramps database. All functions raise a NotImplementedError to 
+    remind the developer to implement those functions.
+
+    Real database classes can inherit from this class to make sure the
+    database interface is properly implemented.
     """
 
     def set_prefixes(self, person, media, family, source, place, event,

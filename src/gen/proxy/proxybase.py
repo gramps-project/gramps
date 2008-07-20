@@ -33,8 +33,13 @@ from dbbase import DbBase
 
 class ProxyDbBase(DbBase):
     """
-    A proxy to a Gramps database. This proxy will act like a Gramps database,
-    but all data marked private will be hidden from the user.
+    ProxyDbBase is a base class for building a proxy to a Gramps database. 
+    This class attempts to implement functions that are likely to be common 
+    among proxy classes. Functions that are not likely to be common raise a 
+    NotImplementedError to remind the developer to implement those functions.
+
+    Real database proxy classes can inherit from this class to make sure the
+    database interface is properly implemented.
     """
 
     def __init__(self, db):
