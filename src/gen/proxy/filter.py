@@ -36,7 +36,8 @@ from proxybase import ProxyDbBase
 class FilterProxyDb(ProxyDbBase):
     """
     A proxy to a Gramps database. This proxy will act like a Gramps database,
-    but all data marked private will be hidden from the user.
+    but all data that does not match the provided filters will be hidden from
+    the user.
     """
 
     def __init__(self, db, person_filter=None, event_filter=None):
