@@ -315,10 +315,10 @@ class ReferencedProxyDb(ProxyDbBase):
         handle_itr = self.db.find_backlink_handles(handle, include_classes)
         for (class_name, handle) in handle_itr:
             if class_name == 'Person':
-                if not self.has_person_handle(handle):
+                if not self.get_person_from_handle(handle):
                     continue
             elif class_name == 'Family':
-                if not self.has_family_handle(handle):
+                if not self.get_family_from_handle(handle):
                     continue
             elif class_name == 'Event':
                 if handle in self.unreferenced_events:
