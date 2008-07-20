@@ -314,6 +314,10 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         self.cmd_line = cmd_line
         self.dirname = None
         self.gedcom_file = None
+
+        # The number of different stages other than any of the optional filters
+        # which the write_gedcom_file method will call.
+        self.progress_cnt = 5
         
         self.setup(option_box)
 
@@ -324,15 +328,36 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         to apply proxy databases.
         """
         if option_box:
-
             option_box.parse_options()
+
+            # Increment the progress count for each filter type chosen
+            if option_box.private:
+                self.progress_cnt += 1
+
+            if option_box.restrict:
+                self.progress_cnt += 1
+
+            if not option_box.cfilter.is_empty():
+                self.progress_cnt += 1
+
+            if option_box.unlinked:
+                self.progress_cnt += 1
+
+            self.set_total(self.progress_cnt)
+            self.progress_cnt = 0
 
             # If the private flag is set, apply the PrivateProxyDb
             if option_box.private:
+                self.reset(_("Filtering private data"))
+                self.progress_cnt += 1
+                self.update(self.progress_cnt)
                 self.dbase = gen.proxy.PrivateProxyDb(self.dbase)
 
             # If the restrict flag is set, apply the LivingProxyDb
             if option_box.restrict:
+                self.reset(_("Filtering living persons"))
+                self.progress_cnt += 1
+                self.update(self.progress_cnt)
                 self.dbase = gen.proxy.LivingProxyDb(
                             self.dbase, 
                             gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
@@ -340,13 +365,18 @@ class GedcomWriter(BasicUtils.UpdateCallback):
             # If the filter returned by cfilter is not empty, apply the 
             # FilterProxyDb
             if not option_box.cfilter.is_empty():
+                self.reset(_("Applying selected filter"))
+                self.progress_cnt += 1
+                self.update(self.progress_cnt)
                 self.dbase = gen.proxy.FilterProxyDb(
                     self.dbase, option_box.cfilter)
 
             # Apply the ReferencedProxyDb to remove any objects not referenced
             # after any of the other proxies have been applied
-            if option_box.private or option_box.restrict \
-                or not option_box.cfilter.is_empty():
+            if option_box.unlinked:
+                self.reset(_("Filtering unlinked records"))
+                self.progress_cnt += 1
+                self.update(self.progress_cnt)
                 self.dbase = gen.proxy.ReferencedProxyDb(self.dbase)
 
     def write_gedcom_file(self, filename):
@@ -514,25 +544,20 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         people will be confused when the progress bar is idle.
         
         """
+        self.reset(_("Writing individuals"))
+        self.progress_cnt += 1
+        self.update(self.progress_cnt)
         phandles = self.dbase.get_person_handles()
 
-        hcnt = len(phandles)
-
-        self.reset(_("Sorting"))
-        self.set_total(hcnt)
         sorted_list = []
         for handle in phandles:
             person = self.dbase.get_person_from_handle(handle)
             data = (person.get_gramps_id(), handle)
             sorted_list.append(data)
-            self.update()
         sorted_list.sort()
 
-        self.set_total(hcnt + len(self.dbase.get_family_handles()))
-        self.reset(_("Writing"))
         for data in sorted_list:
             self.__person(self.dbase.get_person_from_handle(data[1]))
-            self.update()
 
     def __person(self, person):
         """
@@ -861,7 +886,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         """
         Write out the list of families, sorting by GRAMPS ID.
         """
-
+        self.reset(_("Writing families"))
+        self.progress_cnt += 1
+        self.update(self.progress_cnt)
         # generate a list of (GRAMPS_ID, HANDLE) pairs. This list
         # can then be sorted by the sort routine, which will use the
         # first value of the tuple as the sort key. 
@@ -901,7 +928,6 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         self.__photos(family.get_media_list(), 1)
         self.__note_references(family.get_note_list(), 1)
         self.__change(family.get_change_time(), 1)
-        self.update()
 
     def __family_child_list(self, child_ref_list):
         """
@@ -1023,6 +1049,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         """
         Write out the list of sources, sorting by GRAMPS ID.
         """
+        self.reset(_("Writing sources"))
+        self.progress_cnt += 1
+        self.update(self.progress_cnt)
         sorted_list = sort_handles_by_id(self.dbase.get_source_handles(),
                                          self.dbase.get_source_from_handle)
 
@@ -1054,6 +1083,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         """
         Write out the list of notes, sorting by GRAMPS ID.
         """
+        self.reset(_("Writing notes"))
+        self.progress_cnt += 1
+        self.update(self.progress_cnt)
         sorted_list = sort_handles_by_id(self.dbase.get_note_handles(),
                                          self.dbase.get_note_from_handle)
 
@@ -1088,6 +1120,9 @@ class GedcomWriter(BasicUtils.UpdateCallback):
         +1 RIN <AUTOMATED_RECORD_ID> {0:1}
         +1 <<CHANGE_DATE>> {0:1}
         """
+        self.reset(_("Writing repositories"))
+        self.progress_cnt += 1
+        self.update(self.progress_cnt)
         sorted_list = sort_handles_by_id(self.dbase.get_repository_handles(),
                                          self.dbase.get_repository_from_handle)
 
@@ -1460,17 +1495,20 @@ def export_data(database, filename, person, option_box, callback=None):
     External interface used to register with the plugin system.
     """
     ret = False
-    try:
-        ged_write = GedcomWriter(database, person, 0,  
-                                 option_box, callback)
-        ret = ged_write.write_gedcom_file(filename)
-    except IOError, msg:
-        msg2 = _("Could not create %s") % filename
-        ErrorDialog(msg2, str(msg))
-    except Errors.DatabaseError, msg:
-        ErrorDialog(_("Export failed"), str(msg))
-    except:
-        ErrorDialog(_("Could not create %s") % filename)
+    ged_write = GedcomWriter(database, person, 0,  
+                             option_box, callback)
+    ret = ged_write.write_gedcom_file(filename)
+    #try:
+    #    ged_write = GedcomWriter(database, person, 0,  
+    #                             option_box, callback)
+    #    ret = ged_write.write_gedcom_file(filename)
+    #except IOError, msg:
+    #    msg2 = _("Could not create %s") % filename
+    #    ErrorDialog(msg2, str(msg))
+    #except Errors.DatabaseError, msg:
+    #    ErrorDialog(_("Export failed"), str(msg))
+    #except:
+    #    ErrorDialog(_("Could not create %s") % filename)
     return ret
 
 #-------------------------------------------------------------------------

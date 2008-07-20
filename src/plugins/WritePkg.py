@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2008  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,18 +71,20 @@ import Utils
 def writeData(database, filename, person, option_box, callback=None):
     option_box.parse_options()
 
-    restrict = option_box.restrict
-    private = option_box.private
-
-    if private:
+    if option_box.private:
         database = gen.proxy.PrivateProxyDb(database)
 
-    if restrict:
+    if option_box.restrict:
         database = gen.proxy.LivingProxyDb(
             database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
 
     if not option_box.cfilter.is_empty():
         database = gen.proxy.FilterProxyDb(database, option_box.cfilter)
+
+    # Apply the ReferencedProxyDb to remove any objects not referenced
+    # after any of the other proxies have been applied
+    if option_box.unlinked:
+        database = gen.proxy.ReferencedProxyDb(database)
 
     writer = PackageWriter(database, filename, callback)
     return writer.export()

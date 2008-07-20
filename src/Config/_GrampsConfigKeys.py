@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2006-2007  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,6 +54,7 @@ file, and provide a default value according to the value's type.
 
 EXPORT_NO_PRIVATE    = ('export', 'no-private', 0)
 EXPORT_RESTRICT      = ('export', 'restrict-living', 0)
+EXPORT_NO_UNLINKED   = ('export', 'no-unlinked', 0)
 DEFAULT_SOURCE       = ('preferences', 'default-source', 0)
 RELATION_SHADE       = ('preferences', 'relation-shade', 0)
 ONLINE_MAPS          = ('preferences', 'online-maps', 0)
@@ -281,6 +283,7 @@ default_value = {
     OWNER_WARN           : False, 
     EXPORT_NO_PRIVATE    : True,
     EXPORT_RESTRICT      : True,
+    EXPORT_NO_UNLINKED   : True,
     DATE_BEFORE_RANGE    : 10,
     DATE_AFTER_RANGE     : 10,
     DATE_ABOUT_RANGE     : 10,

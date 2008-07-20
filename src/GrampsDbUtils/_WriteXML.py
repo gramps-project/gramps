@@ -81,13 +81,10 @@ def export_data(database, filename, person, option_box, callback=None):
 
     option_box.parse_options()
 
-    restrict = option_box.restrict
-    private = option_box.private
-
-    if private:
+    if option_box.private:
         database = gen.proxy.PrivateProxyDb(database)
 
-    if restrict:
+    if option_box.restrict:
         database = gen.proxy.LivingProxyDb(
             database, gen.proxy.LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY)
 
@@ -96,8 +93,7 @@ def export_data(database, filename, person, option_box, callback=None):
 
     # Apply the ReferencedProxyDb to remove any objects not referenced
     # after any of the other proxies have been applied
-    if option_box.private or option_box.restrict \
-        or not option_box.cfilter.is_empty():
+    if option_box.unlinked:
         database = gen.proxy.ReferencedProxyDb(database)
 
     g = XmlWriter(database, callback, 0, compress)

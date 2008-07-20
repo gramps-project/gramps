@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007-2008 Donald N. Allingham
+# Copyright (C) 2008      Gary Burton 
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,11 +58,12 @@ class WriterOptionBox:
         self.cfilter = None
         self.restrict_check = None
         self.private_check = None
+        self.unlinked_check = None
         self.filter_obj = None
 
     def get_option_box(self):
         """Build up a gtk.Table that contains the standard options."""
-        table = gtk.Table(3, 2)
+        table = gtk.Table(4, 2)
         
         self.filter_obj = gtk.ComboBox()
         label = gtk.Label(_('Filt_er'))
@@ -72,9 +74,12 @@ class WriterOptionBox:
             _('_Do not include records marked private'))
         self.restrict_check = gtk.CheckButton(
             _('_Restrict data on living people'))
+        self.unlinked_check = gtk.CheckButton(
+            _('_Do not include unlinked records'))
 
         self.private_check.set_active(Config.get(Config.EXPORT_NO_PRIVATE))
         self.restrict_check.set_active(Config.get(Config.EXPORT_RESTRICT))
+        self.unlinked_check.set_active(Config.get(Config.EXPORT_NO_UNLINKED))
         
         table.set_border_width(12)
         table.set_row_spacings(6)
@@ -83,6 +88,7 @@ class WriterOptionBox:
         table.attach(self.filter_obj, 1, 2, 0, 1, yoptions=0)
         table.attach(self.private_check, 1, 2, 1, 2, yoptions=0)
         table.attach(self.restrict_check, 1, 2, 2, 3, yoptions=0)
+        table.attach(self.unlinked_check, 1, 2, 3, 4, yoptions=0)
 
         entire_db = GenericFilter()
         entire_db.set_name(_("Entire Database"))
@@ -138,13 +144,16 @@ class WriterOptionBox:
            private  = privacy requested
            restrict = restrict information on living peoplel
            cfitler  = return the GenericFilter selected
+           unlinked  = restrict unlinked records
 
         """
         self.restrict = self.restrict_check.get_active()
         self.private = self.private_check.get_active()
+        self.unlinked = self.unlinked_check.get_active()
 
         Config.set(Config.EXPORT_NO_PRIVATE, self.private)
         Config.set(Config.EXPORT_RESTRICT, self.restrict)
+        Config.set(Config.EXPORT_NO_UNLINKED, self.unlinked)
         Config.sync()
 
         model = self.filter_obj.get_model()
