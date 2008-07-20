@@ -4053,7 +4053,7 @@ msgstr "_Egenskaper"
 
 #: ../src/DisplayTabs/_BackRefList.py:64
 msgid "_References"
-msgstr "_Referanser"
+msgstr "Re_feranser"
 
 #: ../src/DisplayTabs/_BackRefList.py:91
 msgid "Edit reference"
@@ -4153,7 +4153,7 @@ msgstr "Tempel"
 
 #: ../src/DisplayTabs/_GalleryTab.py:76
 msgid "_Gallery"
-msgstr "_Galleri"
+msgstr "Ga_lleri"
 
 #: ../src/DisplayTabs/_GalleryTab.py:122
 #, python-format
@@ -4298,7 +4298,7 @@ msgstr "Flytt det valgte oppbevaringsstedet nedover"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:71
 msgid "_Repositories"
-msgstr "_Bibliotek"
+msgstr "B_ibliotek"
 
 #: ../src/DisplayTabs/_RepoEmbedList.py:115
 msgid "Select repository"
@@ -4614,7 +4614,7 @@ msgstr "En familie med disse foreldrene finnes allerede i databasen.  Hvis du la
 
 #: ../src/Editors/_EditFamily.py:823
 msgid "Baptism:"
-msgstr "Dåp:"
+msgstr "Dåp (voksen):"
 
 #: ../src/Editors/_EditFamily.py:827
 msgid "Burial:"
@@ -7151,7 +7151,7 @@ msgstr " Personer med ukjent kjønn"
 
 #: ../src/plugins/DefaultGramplets.py:666 ../src/plugins/Summary.py:121
 msgid "Individuals with incomplete names"
-msgstr "Personer uten fullstendige navn"
+msgstr "Personer med ufullstendig navn"
 
 #: ../src/plugins/DefaultGramplets.py:670 ../src/plugins/Summary.py:122
 msgid "Individuals missing birth dates"
@@ -15164,7 +15164,7 @@ msgstr "Voksendåp"
 
 #: ../src/gen/lib/eventtype.py:101 ../src/gen/lib/ldsord.py:91
 msgid "Baptism"
-msgstr "Dåp"
+msgstr "Dåp (voksen)"
 
 #: ../src/gen/lib/eventtype.py:102
 msgid "Bar Mitzvah"
