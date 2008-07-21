@@ -561,11 +561,11 @@ class DetAncestorReport(Report):
     def write_mate(self, mate):
         """Output birth, death, parentage, marriage and notes information """
         ind = None
+        has_info = False
         
         for family_handle in mate.get_family_handle_list():
             family = self.database.get_family_from_handle(family_handle)
             ind_handle = None
-            has_info = False
             if mate.get_gender() == gen.lib.Person.MALE:
                 ind_handle = family.get_mother_handle()
             else:
@@ -587,13 +587,25 @@ class DetAncestorReport(Report):
                         f = self.database.get_family_from_handle(family_handle)
                         if f.get_mother_handle() or f.get_father_handle():
                             has_info = True
+                            break
 
             if has_info:
                 self.doc.start_paragraph("DAR-Entry")
 
-                person_name = _nd.display(ind)
-                person_mark = ReportUtils.get_person_mark(self.database, ind)
-                self.doc.write_text(person_name, person_mark)
+                plist = ind.get_media_list()
+                
+                if self.addimages and len(plist) > 0:
+                    photo = plist[0]
+                    ReportUtils.insert_image(self.database, self.doc, photo)
+        
+                name = _nd.display_formal(ind)
+                mark = ReportUtils.get_person_mark(self.database, ind)
+        
+                self.doc.write_text(name, mark)
+                if name[-1:] == '.':
+                    self.doc.write_text("%s " % self.endnotes(ind))
+                else:
+                    self.doc.write_text("%s. " % self.endnotes(ind))
 
                 first_name = ReportUtils.common_name(ind, self.usecall)
                 print_name = first_name
