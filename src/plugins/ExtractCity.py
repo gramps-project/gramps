@@ -372,7 +372,7 @@ COLS = [
     (_('Place title'), 1), 
     (_('City'), 2), 
     (_('State'), 3), 
-    (_('Postal code'), 4), 
+    (_('ZIP/Postal Code'), 4), 
     (_('Country'), 5)
     ]
 

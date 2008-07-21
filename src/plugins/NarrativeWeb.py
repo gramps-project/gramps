@@ -1083,7 +1083,7 @@ class PlacePage(BasePage):
                         (_('Church Parish'), ml.parish),
                         (_('County'), ml.county),
                         (_('State/Province'), ml.state),
-                        (_('Postal Code'), ml.postal),
+                        (_('ZIP/Postal Code'), ml.postal),
                         (_('Country'), ml.country)]:
                 if val[1]:
                     of.write('\t\t\t<tr>\n')
