@@ -39,10 +39,10 @@ import os
 #-------------------------------------------------------------------------
 try:
     from xml.sax import make_parser, handler,SAXParseException
-    from xml.sax.saxutils import escape
+    from xml.sax.saxutils import quoteattr
 except:
     from _xmlplus.sax import make_parser, handler,SAXParseException
-    from _xmlplus.sax.saxutils import escape
+    from _xmlplus.sax.saxutils import quoteattr
 
 #-------------------------------------------------------------------------
 #
@@ -196,22 +196,22 @@ class OptionListCollection:
 
         for module_name in self.get_module_names():
             option_list = self.get_option_list(module_name)
-            f.write('<module name="%s">\n' % escape(module_name))
+            f.write('<module name=%s>\n' % quoteattr(module_name))
             options = option_list.get_options()
             for option_name in options.keys():
                 if isinstance(options[option_name], (list, tuple)):
-                    f.write('  <option name="%s" value="" length="%d">\n' % (
-                                escape(option_name),
+                    f.write('  <option name=%s value="" length="%d">\n' % (
+                                quoteattr(option_name),
                                 len(options[option_name]) ) )
                     for list_index in range(len(options[option_name])):
-                        f.write('    <listitem number="%d" value="%s"/>\n' % (
+                        f.write('    <listitem number="%d" value=%s/>\n' % (
                                 list_index,
-                                escape(unicode(options[option_name][list_index]))) )
+                                quoteattr(unicode(options[option_name][list_index]))) )
                     f.write('  </option>\n')
                 else:
-                    f.write('  <option name="%s" value="%s"/>\n' % (
-                            escape(option_name),
-                            escape(unicode(options[option_name]))) )
+                    f.write('  <option name=%s value=%s/>\n' % (
+                            quoteattr(option_name),
+                            quoteattr(unicode(options[option_name]))) )
 
             self.write_module_common(f, option_list)
 
