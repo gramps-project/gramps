@@ -1495,20 +1495,17 @@ def export_data(database, filename, person, option_box, callback=None):
     External interface used to register with the plugin system.
     """
     ret = False
-    ged_write = GedcomWriter(database, person, 0,  
-                             option_box, callback)
-    ret = ged_write.write_gedcom_file(filename)
-    #try:
-    #    ged_write = GedcomWriter(database, person, 0,  
-    #                             option_box, callback)
-    #    ret = ged_write.write_gedcom_file(filename)
-    #except IOError, msg:
-    #    msg2 = _("Could not create %s") % filename
-    #    ErrorDialog(msg2, str(msg))
-    #except Errors.DatabaseError, msg:
-    #    ErrorDialog(_("Export failed"), str(msg))
-    #except:
-    #    ErrorDialog(_("Could not create %s") % filename)
+    try:
+        ged_write = GedcomWriter(database, person, 0,  
+                                 option_box, callback)
+        ret = ged_write.write_gedcom_file(filename)
+    except IOError, msg:
+        msg2 = _("Could not create %s") % filename
+        ErrorDialog(msg2, str(msg))
+    except Errors.DatabaseError, msg:
+        ErrorDialog(_("Export failed"), str(msg))
+    except:
+        ErrorDialog(_("Could not create %s") % filename)
     return ret
 
 #-------------------------------------------------------------------------
