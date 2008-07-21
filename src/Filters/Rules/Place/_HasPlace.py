@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,6 +45,7 @@ class HasPlace(Rule):
 
 
     labels      = [ _('Name:'), 
+                    _('Street:'), 
                     _('Church Parish:'), 
                     _('ZIP/Postal Code:'),
                     _('City:'), 
@@ -55,8 +57,8 @@ class HasPlace(Rule):
     description = _("Matches places with particular parameters")
     category    = _('General filters')
 
-    def apply(self,db,place):
-        if not self.match_substring(0,place.get_title()):
+    def apply(self, db, place):
+        if not self.match_substring(0, place.get_title()):
             return False
 
         # If no location data was given then we're done: match
@@ -71,27 +73,30 @@ class HasPlace(Rule):
         # Nothing matched
         return False
 
-    def apply_location(self,loc):
+    def apply_location(self, loc):
         # Empty locaiton does not match anything
         if not loc:
             return False
 
-        if not self.match_substring(1,loc.get_parish()):
+        if not self.match_substring(1, loc.get_street()):
             return False
 
-        if not self.match_substring(2,loc.get_postal_code()):
+        if not self.match_substring(2, loc.get_parish()):
             return False
 
-        if not self.match_substring(3,loc.get_city()):
+        if not self.match_substring(3, loc.get_postal_code()):
             return False
 
-        if not self.match_substring(4,loc.get_county()):
+        if not self.match_substring(4, loc.get_city()):
             return False
 
-        if not self.match_substring(5,loc.get_state()):
+        if not self.match_substring(5, loc.get_county()):
             return False
 
-        if not self.match_substring(6,loc.get_country()):
+        if not self.match_substring(6, loc.get_state()):
+            return False
+
+        if not self.match_substring(7, loc.get_country()):
             return False
 
         # Nothing contradicted, so we're matching this location

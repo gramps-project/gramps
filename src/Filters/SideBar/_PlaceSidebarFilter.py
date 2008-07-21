@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,6 +59,7 @@ class PlaceSidebarFilter(SidebarFilter):
 
         self.filter_id = gtk.Entry()
         self.filter_title = gtk.Entry()       
+        self.filter_street = gtk.Entry()
         self.filter_parish = gtk.Entry()
         self.filter_zip = gtk.Entry()
         self.filter_city = gtk.Entry()
@@ -80,6 +82,7 @@ class PlaceSidebarFilter(SidebarFilter):
 
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Place Name'), self.filter_title)
+        self.add_text_entry(_('Street'), self.filter_street)
         self.add_text_entry(_('Church parish'), self.filter_parish)
         self.add_text_entry(_('Zip/Postal code'), self.filter_zip)
         self.add_text_entry(_('City'), self.filter_city)
@@ -93,6 +96,7 @@ class PlaceSidebarFilter(SidebarFilter):
     def clear(self, obj):
         self.filter_id.set_text('')
         self.filter_title.set_text('')
+        self.filter_street.set_text('')
         self.filter_parish.set_text('')
         self.filter_zip.set_text('')
         self.filter_city.set_text('')
@@ -105,6 +109,7 @@ class PlaceSidebarFilter(SidebarFilter):
     def get_filter(self):
         gid = unicode(self.filter_id.get_text()).strip()
         title = unicode(self.filter_title.get_text()).strip()
+        street = unicode(self.filter_street.get_text()).strip()
         parish = unicode(self.filter_parish.get_text()).strip()
         zipc = unicode(self.filter_zip.get_text()).strip()
         city = unicode(self.filter_city.get_text()).strip()
@@ -115,7 +120,7 @@ class PlaceSidebarFilter(SidebarFilter):
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or title or parish or zipc or city or county
+        empty = not (gid or title or street or parish or zipc or city or county
                      or state or country or note or regex or gen)
         if empty:
             generic_filter = None
@@ -128,7 +133,7 @@ class PlaceSidebarFilter(SidebarFilter):
                     rule = HasIdOf([gid])
                 generic_filter.add_rule(rule)
 
-            rule = HasPlace([title, parish, zipc, city, county, state, country])
+            rule = HasPlace([title, street, parish, zipc, city, county, state, country])
             generic_filter.add_rule(rule)
                 
             if note:
