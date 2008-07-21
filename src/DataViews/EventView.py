@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2007  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ import Errors
 import Bookmarks
 import Config
 from DdTargets import DdTargets
-from QuestionDialog import QuestionDialog
+from QuestionDialog import QuestionDialog, QuestionDialog2
 from Editors import EditEvent, DelEventQuery
 from Filters.SideBar import EventSidebarFilter
 from ReportBase import CATEGORY_QR_EVENT
@@ -102,7 +103,9 @@ class EventView(PageView.ListView):
             EventView.COLUMN_NAMES, len(EventView.COLUMN_NAMES), 
             DisplayModels.EventModel,
             signal_map, dbstate.db.get_event_bookmarks(),
-            Bookmarks.EventBookmarks, filter_class=EventSidebarFilter)
+            Bookmarks.EventBookmarks,
+            multiple=True,
+            filter_class=EventSidebarFilter)
 
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
@@ -218,8 +221,20 @@ class EventView(PageView.ListView):
             pass
 
     def remove(self, obj):
+        prompt = True
+        if len(self.selected_handles()) > 1:
+            q = QuestionDialog2(
+                _("Remove selected events?"),
+                _("More than one event has been selected for deletion. "
+                  "Ask before deleting each one?"),
+                _("Yes"),
+                _("No"))
+            prompt = q.run()
+            
+        if not prompt:
+            self.uistate.set_busy_cursor(1)
+
         for ehandle in self.selected_handles():
-            db = self.dbstate.db
             person_list = [
                 item[1] for item in
                 self.dbstate.db.find_backlink_handles(ehandle,['Person']) ]
@@ -228,26 +243,32 @@ class EventView(PageView.ListView):
                 item[1] for item in
                 self.dbstate.db.find_backlink_handles(ehandle,['Family']) ]
             
-            event = db.get_event_from_handle(ehandle)
+            event = self.dbstate.db.get_event_from_handle(ehandle)
 
             ans = DelEventQuery(self.dbstate, self.uistate, event, 
                                 person_list, family_list)
 
-            if len(person_list) + len(family_list) > 0:
-                msg = _('This event is currently being used. Deleting it '
-                        'will remove it from the database and from all '
-                        'people and families that reference it.')
-            else:
-                msg = _('Deleting event will remove it from the database.')
+            if prompt:
+                if len(person_list) + len(family_list) > 0:
+                    msg = _('This event is currently being used. Deleting it '
+                            'will remove it from the database and from all '
+                            'people and families that reference it.')
+                else:
+                    msg = _('Deleting event will remove it from the database.')
             
-            msg = "%s %s" % (msg, Utils.data_recover_msg)
-            descr = event.get_description()
-            if descr == "":
-                descr = event.get_gramps_id()
+                msg = "%s %s" % (msg, Utils.data_recover_msg)
+                descr = event.get_description()
+                if descr == "":
+                    descr = event.get_gramps_id()
                 
-            self.uistate.set_busy_cursor(1)
-            QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Event'), ans.query_response)
+                self.uistate.set_busy_cursor(1)
+                QuestionDialog(_('Delete %s?') % descr, msg,
+                               _('_Delete Event'), ans.query_response)
+                self.uistate.set_busy_cursor(0)
+            else:
+                ans.query_response()
+
+        if not prompt:
             self.uistate.set_busy_cursor(0)
 
     def edit(self, obj):
