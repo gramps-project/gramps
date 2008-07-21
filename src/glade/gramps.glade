@@ -15698,7 +15698,6 @@ Very High</property>
 
 <widget class="GtkDialog" id="dbmanager">
   <property name="border_width">6</property>
-  <property name="visible">True</property>
   <property name="title" translatable="yes">Family Trees - GRAMPS</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
