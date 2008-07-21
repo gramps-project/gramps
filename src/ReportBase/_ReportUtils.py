@@ -1555,7 +1555,7 @@ def place_name(db, place_handle):
         place = db.get_place_from_handle(place_handle).get_title()
     else:
         place = ""
-    return place
+    return unicode(place)
     
 #-------------------------------------------------------------------------
 #
