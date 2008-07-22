@@ -2,7 +2,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2007       Brian G. Matherly
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2008       James Friedmann <jfriedmannj@gmail.com>
 #
 #
 # This program is free software; you can redistribute it and/or modify
@@ -557,6 +558,7 @@ buried_full_date_place = {
     _("%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."), 
     _("This person was buried on %(burial_date)s in %(burial_place)s."), 
     ], 
+    'succinct' : _("Buried %(burial_date)s in %(burial_place)s."),
     }
 
 buried_full_date_no_place = {
@@ -572,6 +574,7 @@ buried_full_date_no_place = {
     _("%(unknown_gender_name)s was buried on %(burial_date)s."), 
     _("This person was buried on %(burial_date)s."), 
     ], 
+    'succinct' : _("Buried %(burial_date)s."),
     }
 
 buried_partial_date_place = {
@@ -587,6 +590,7 @@ buried_partial_date_place = {
     _("%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."), 
     _("This person was buried in %(month_year)s in %(burial_place)s."), 
     ], 
+    'succinct' : _("Buried %(month_year)s in %(burial_place)s."),
     }
 
 buried_partial_date_no_place = {
@@ -602,6 +606,7 @@ buried_partial_date_no_place = {
     _("%(unknown_gender_name)s was buried in %(month_year)s."), 
     _("This person was buried in %(month_year)s."), 
     ], 
+    'succinct' : _("Buried %(month_year)s."),
     }
 
 buried_modified_date_place = {
@@ -617,6 +622,7 @@ buried_modified_date_place = {
     _("%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."), 
     _("This person was buried %(modified_date)s in %(burial_place)s."), 
     ], 
+    'succinct' : _("Buried %(modified_date)s in %(burial_place)s."),
     }
 
 buried_modified_date_no_place = {
@@ -632,6 +638,7 @@ buried_modified_date_no_place = {
     _("%(unknown_gender_name)s was buried %(modified_date)s."), 
     _("This person was buried %(modified_date)s."), 
     ], 
+    'succinct' : _("Buried %(modified_date)s."),
     }
 
 buried_no_date_place = {
@@ -647,6 +654,7 @@ buried_no_date_place = {
     _("%(unknown_gender_name)s was buried in %(burial_place)s."), 
     _("This person was buried in %(burial_place)s."), 
     ], 
+    'succinct' : _("Buried in %(burial_place)s."),
     }
 
 buried_no_date_no_place = {
@@ -661,7 +669,8 @@ buried_no_date_no_place = {
     Person.UNKNOWN : [
     _("%(unknown_gender_name)s was buried."), 
     _("This person was buried."), 
-    ]
+    ],
+    'succinct' : _("Buried."),
     }
 
 #------------------------------------------------------------------------
@@ -2308,7 +2317,8 @@ def died_str(database, person, person_name=None, verbose=True,
 # buried_str
 #
 #-------------------------------------------------------------------------
-def buried_str(database, person, person_name=None, empty_date="", empty_place=""):
+def buried_str(database, person, person_name=None, 
+               empty_date="", empty_place="", verbose=True):
     """ 
     Check burial record.
     Statement formats name precedes this
@@ -2330,8 +2340,8 @@ def buried_str(database, person, person_name=None, empty_date="", empty_place=""
         
     text = ""
     
-    bplace = dplace = empty_place
-    bdate = ddate = empty_date
+    bplace = empty_place
+    bdate = empty_date
     bdate_full = False
     bdate_mod = False
     
@@ -2365,25 +2375,44 @@ def buried_str(database, person, person_name=None, empty_date="", empty_place=""
         'modified_date'       : bdate, 
         }
 
-    if bdate and bdate_mod:
+    if bdate and bdate_mod and verbose:
         if bplace: #male, date, place
             text = buried_modified_date_place[gender][name_index] % values
         else:      #male, date, no place
             text = buried_modified_date_no_place[gender][name_index] % values
-    elif bdate and bdate_full:
+    elif bdate and bdate_mod:
+        if bplace: #male, date, place
+            text = buried_modified_date_place['succinct'] % values
+        else:      #male, date, no place
+            text = buried_modified_date_no_place['succinct'] % values
+    elif bdate and bdate_full and verbose:
         if bplace: #male, date, place
             text = buried_full_date_place[gender][name_index] % values
         else:      #male, date, no place
             text = buried_full_date_no_place[gender][name_index] % values
-    elif bdate:
+    elif bdate and bdate_full:
+        if bplace: #male, date, place
+            text = buried_full_date_place['succinct'] % values
+        else:      #male, date, no place
+            text = buried_full_date_no_place['succinct'] % values
+    elif bdate and verbose:
         if bplace: #male, month_year, place
             text =  buried_partial_date_place[gender][name_index] % values
         else:      #male, month_year, no place
             text = buried_partial_date_no_place[gender][name_index] % values
-    elif bplace:   #male, no date, place
+    elif bdate:
+        if bplace: #male, month_year, place
+            text =  buried_partial_date_place['succinct'] % values
+        else:      #male, month_year, no place
+            text = buried_partial_date_no_place['succinct'] % values
+    elif bplace and verbose:   #male, no date, place
         text = buried_no_date_place[gender][name_index] % values
-    else:          #male, no date, no place
+    elif bplace:   #male, no date, place
+        text = buried_no_date_place['succinct'] % values
+    elif verbose:
         text = buried_no_date_no_place[gender][name_index] % values
+    else:          #male, no date, no place
+        text = buried_no_date_no_place['succinct'] % values
         
     if text:
         text = text + " "

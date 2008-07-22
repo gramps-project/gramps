@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2002 Bruce J. DeGrasse
 # Copyright (C) 2000-2007 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
+# Copyright (C) 2008      James Friedmann <jfriedmannj@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -257,8 +258,9 @@ class DetAncestorReport(Report):
             self.doc.write_text(text)
             first = 0
 
-        text = ReportUtils.buried_str(self.database,person,first,
-                                      self.EMPTY_DATE,self.EMPTY_PLACE)
+        text = ReportUtils.buried_str(self.database, person, first,
+                                      self.EMPTY_DATE, self.EMPTY_PLACE,
+                                      self.verbose)
         if text:
             self.doc.write_text(text)
 
