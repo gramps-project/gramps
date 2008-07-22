@@ -801,6 +801,7 @@ baptised_no_date_no_place = {
     _("This person was baptised."), 
     ],
     'succinct' : _("Baptised."),
+    }
 
 #------------------------------------------------------------------------
 #
@@ -2564,12 +2565,12 @@ def baptised_str(database, person, person_name=None, verbose=True, empty_date=""
     """
 
     name_index = 0
-    if person_name is None:
+    if person_name == None:
         person_name = _nd.display(person)
     elif person_name == 0:
         name_index = 1
 
-    gender = gen.lib.Person.get_gender()
+    gender = person.get_gender()
     
     text = ""
 
@@ -2579,13 +2580,12 @@ def baptised_str(database, person, person_name=None, verbose=True, empty_date=""
     bdate_mod = False
 
     baptism = None
-    for event_ref in gen.lib.Person.get_event_ref_list():
+    for event_ref in person.get_event_ref_list():
         event = database.get_event_from_handle(event_ref.ref)
-        if event and event.type.value == EventType.BAPTISM \
-            and event_ref.role.value == EventRoleType.PRIMARY:
-            baptism = event
+        if event and event.get_type() == gen.lib.EventType.BAPTISM \
+            and event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
+            burial = event
             break
-
     if baptism:
         bdate = DateHandler.get_date(baptism)
         bplace_handle = baptism.get_place_handle()
@@ -2593,7 +2593,8 @@ def baptised_str(database, person, person_name=None, verbose=True, empty_date=""
             bplace = database.get_place_from_handle(bplace_handle).get_title()
         bdate_obj = baptism.get_date_object()
         bdate_full = bdate_obj and bdate_obj.get_day_valid()
-        bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
+        bdate_mod = bdate_obj and \
+                    bdate_obj.get_modifier() != gen.lib.Date.MOD_NONE
     else:
         return text
 
