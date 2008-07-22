@@ -73,9 +73,9 @@ class EndOfLineReport(Report):
         #   values are a map whose:
         #      keys are person handles
         #      values are an array whose:
-        #         elements are an array of names that link the person handle 
-        #         to the person or interest
-        # eol_map[generation][person_handle][pedigree_index][person_name_index]
+        #         elements are an array of ancestor person handles that link 
+        #         the eol person handle to the person or interest
+        # eol_map[generation][person_handle][pedigree_idx][ancestor_handle_idx]
         #
         # There is an array of pedigrees because one person could show up twice 
         # in one generation (descendants marrying). Most people only have one
@@ -89,39 +89,39 @@ class EndOfLineReport(Report):
         """
         Recursively find the end of the line for each person
         """
-        name = name_displayer.display(person)
-        pedigree = pedigree + [name]
+        person_handle = person.get_handle()
+        new_pedigree = list(pedigree) + [person_handle]
         person_is_eol = False
         families = person.get_parent_family_handle_list()
         
-        if not families:
+        if person_handle in pedigree:
+            # This is a severe error!
+            # It indicates a loop in ancestry: A -> B -> A
             person_is_eol = True
-
-        for family_handle in families:
-            family = self.database.get_family_from_handle(family_handle)
-            father_handle = family.get_father_handle()
-            mother_handle = family.get_mother_handle()
-            if father_handle: 
-                father = self.database.get_person_from_handle(father_handle)
-                self.get_eol(father, gen+1, pedigree)
-            if mother_handle:
-                mother =  self.database.get_person_from_handle(mother_handle)
-                self.get_eol(mother, gen+1, pedigree)
-        
-            if not father_handle or not mother_handle:
-                person_is_eol = True
+        elif not families:
+            person_is_eol = True
+        else:
+            for family_handle in families:
+                family = self.database.get_family_from_handle(family_handle)
+                father_handle = family.get_father_handle()
+                mother_handle = family.get_mother_handle()
+                if father_handle: 
+                    father = self.database.get_person_from_handle(father_handle)
+                    self.get_eol(father, gen+1, new_pedigree)
+                if mother_handle:
+                    mother = self.database.get_person_from_handle(mother_handle)
+                    self.get_eol(mother, gen+1, new_pedigree)
+            
+                if not father_handle or not mother_handle:
+                    person_is_eol = True
                 
         if person_is_eol:
             # This person is the end of a line
-            person_handle = person.get_handle()
-            if not self.eol_map.has_key(gen):
+            if gen not in self.eol_map:
                 self.eol_map[gen] = {}
-            if not self.eol_map[gen].has_key(person_handle):
+            if person_handle not in self.eol_map[gen]:
                 self.eol_map[gen][person_handle] = []
-            self.eol_map[gen][person_handle].append( list(pedigree) )
-        
-        # Remove this person from the pedigree
-        pedigree = pedigree[1:len(pedigree)]
+            self.eol_map[gen][person_handle].append( new_pedigree )
 
     def write_report(self):
         """
@@ -201,7 +201,11 @@ class EndOfLineReport(Report):
         
         pedigree is an array containing the names of the people in the pedigree
         """
-        text = " -- ".join(pedigree)
+        names = []
+        for person_handle in pedigree:
+            person = self.database.get_person_from_handle(person_handle)
+            names.append(name_displayer.display(person))
+        text = " -- ".join(names)
         self.doc.start_row()
         self.doc.start_cell('EOL-TableCell')
         self.doc.end_cell()
