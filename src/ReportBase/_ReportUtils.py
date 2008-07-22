@@ -2584,7 +2584,7 @@ def baptised_str(database, person, person_name=None, verbose=True, empty_date=""
         event = database.get_event_from_handle(event_ref.ref)
         if event and event.get_type() == gen.lib.EventType.BAPTISM \
             and event_ref.get_role() == gen.lib.EventRoleType.PRIMARY:
-            burial = event
+            baptism = event
             break
     if baptism:
         bdate = DateHandler.get_date(baptism)
