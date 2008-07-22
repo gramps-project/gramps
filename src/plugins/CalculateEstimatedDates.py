@@ -152,8 +152,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         return _("Options")
 
     def run(self):
-        self.add_results_frame()
-        self.results_write("Processing...\n")
+        self.add_results_frame(_("Results"))
+        self.results_write(_("Processing...\n"))
         self.trans = self.db.transaction_begin("",batch=True)
         self.db.disable_signals()
         self.filter_option =  self.options.menu.get_option_by_name('filter')
@@ -171,8 +171,8 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         self.MAX_AGE_PROB_ALIVE = self.options.handler.options_dict['MAX_AGE_PROB_ALIVE']
         self.AVG_GENERATION_GAP = self.options.handler.options_dict['AVG_GENERATION_GAP']
         if remove_old:
-            self.results_write("Replacing...\n")
-            self.progress.set_pass(_("Removing '%s'..." % source_text), 
+            self.results_write(_("Replacing...\n"))
+            self.progress.set_pass((_("Removing '%s'...") % source_text), 
                                    len(people))
             for person_handle in people:
                 self.progress.step()
@@ -213,7 +213,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 if pupdate == 1:
                     self.db.commit_person(person, self.trans)
         if add_birth or add_death:
-            self.results_write("Calculating...\n")
+            self.results_write(_("Calculating...\n"))
             self.progress.set_pass(_('Calculating estimated dates...'), 
                                    len(people))
             source = self.get_or_create_source(source_text)
@@ -228,7 +228,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                 #print date1, date2
                 if not birth_ref and add_birth and date1:
                     #print "added birth"
-                    birth = self.create_event("Estimated birth date", 
+                    birth = self.create_event(_("Estimated birth date"), 
                                               gen.lib.EventType.BIRTH, 
                                               date1, source)
                     event_ref = gen.lib.EventRef()
@@ -244,7 +244,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                         pass # FIXME: sometimes adds one in future?
                     else:
                         #print "added death"
-                        death = self.create_event("Estimated death date", 
+                        death = self.create_event(_("Estimated death date"), 
                                                   gen.lib.EventType.DEATH, 
                                                   date2, source)
                         event_ref = gen.lib.EventRef()
@@ -256,14 +256,14 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
                     self.results_write_link(name_displayer.display(person),
                                             person, person_handle)
                     if added_birth:
-                        self.results_write(" added birth on %s" % date1)
+                        self.results_write(_(" added birth on %s") % date1)
                     if added_death:
-                        self.results_write(" added death on %s" % date2)
+                        self.results_write(_(" added death on %s") % date2)
                     self.results_write("\n")
         self.db.transaction_commit(self.trans, _("Calculate date estimates"))
         self.db.enable_signals()
         self.db.request_rebuild()
-        self.results_write("Done!\n")
+        self.results_write(_("Done!\n"))
 
     def get_or_create_source(self, source_text):
         source_list = self.db.get_source_handles()
@@ -276,7 +276,7 @@ class CalcToolManagedWindow(PluginWindows.ToolManagedWindowBatch):
         self.db.add_source(source, self.trans)
         return source
 
-    def create_event(self, description="Estimated date", 
+    def create_event(self, description=_("Estimated date"), 
                      type=None, date=None, source=None):
         event = gen.lib.Event()
         event.set_description(description)
