@@ -1095,6 +1095,11 @@ def launch(prog_str, path):
             prog_str = prog_str.replace("%1", path)
         else:
             prog_str = '%s "%s"' % (prog_str, path)
+
+        # The string must be encoded using the filesystem encoding on Windows.
+        # Otherwise, files with non-ascii characters in their names will not 
+        # open.
+        prog_str = prog_str.encode(sys.getfilesystemencoding())
         subprocess.Popen(prog_str)
 
     else:
