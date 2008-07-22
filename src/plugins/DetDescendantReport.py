@@ -483,8 +483,8 @@ class DetDescendantReport(Report):
         if not self.verbose:
             self.write_parents(person, first)
 
-        text = ReportUtils.born_str(self.database,person,first, self.verbose,
-                                    self.EMPTY_DATE,self.EMPTY_PLACE)
+        text = ReportUtils.born_str(self.database, person, first, self.verbose,
+                                    self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
             birth_ref = person.get_birth_ref()
             if birth_ref:
@@ -493,10 +493,15 @@ class DetDescendantReport(Report):
                 text = text + self.endnotes(birth) + ". "
             self.doc.write_text(text)
             first = 0
+
+        text = ReportUtils.baptised_str(self.database, person, first, self.verbose,
+                                        self.EMPTY_DATE,self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
     
         age,units = self.calc_age(person)
-        text = ReportUtils.died_str(self.database,person,first,self.verbose,
-                                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
+        text = ReportUtils.died_str(self.database, person, first, self.verbose,
+                                    self.EMPTY_DATE, self.EMPTY_PLACE, age, units)
         if text:
             death_ref = person.get_death_ref()
             if death_ref:

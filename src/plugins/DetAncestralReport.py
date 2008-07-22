@@ -235,8 +235,8 @@ class DetAncestorReport(Report):
         if not self.verbose:
             self.write_parents(person, first)
 
-        text = ReportUtils.born_str(self.database,person,first,self.verbose,
-                                    self.EMPTY_DATE,self.EMPTY_PLACE)
+        text = ReportUtils.born_str(self.database, person, first, self.verbose,
+                                    self.EMPTY_DATE, self.EMPTY_PLACE)
         if text:
             birth_ref = person.get_birth_ref()
             if birth_ref:
@@ -246,9 +246,14 @@ class DetAncestorReport(Report):
             self.doc.write_text(text)
             first = 0
 
+        text = ReportUtils.baptised_str(self.database, person, first, self.verbose, 
+                                        self.EMPTY_DATE, self.EMPTY_PLACE)
+        if text:
+            self.doc.write_text(text)
+
         age,units = self.calc_age(person)
-        text = ReportUtils.died_str(self.database,person,first,self.verbose,
-                                    self.EMPTY_DATE,self.EMPTY_PLACE,age,units)
+        text = ReportUtils.died_str(self.database, person, first, self.verbose,
+                                    self.EMPTY_DATE, self.EMPTY_PLACE, age, units)
         if text:
             death_ref = person.get_death_ref()
             if death_ref:
@@ -578,7 +583,8 @@ class DetAncestorReport(Report):
                     event = self.database.get_event_from_handle(event_ref.ref)
                     if event:
                         etype = event.get_type()
-                        if etype == gen.lib.EventType.BURIAL or \
+                        if etype == gen.lib.EventType.BAPTISM or \
+                           etype == gen.lib.EventType.BURIAL or \
                            etype == gen.lib.EventType.BIRTH  or \
                            etype == gen.lib.EventType.DEATH     :
                             has_info = True
@@ -614,6 +620,13 @@ class DetAncestorReport(Report):
 
                 text = ReportUtils.born_str(self.database, ind, print_name, 
                             self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE)
+                if text:
+                    self.doc.write_text(text)
+                    print_name = 0
+
+                text = ReportUtils.baptised_str(self.database, ind, print_name,
+                            self.verbose, self.EMPTY_DATE, self.EMPTY_PLACE)
+
                 if text:
                     self.doc.write_text(text)
                     print_name = 0

@@ -219,6 +219,8 @@ class AncestorReport(Report):
             self.doc.write_text( 
                             ReportUtils.born_str(self.database, person, first))
             self.doc.write_text(
+                            ReportUtils.baptised_str(self.database, person, 0))
+            self.doc.write_text(
                             ReportUtils.died_str(self.database, person, 0))
             self.doc.write_text(
                             ReportUtils.buried_str(self.database, person, 0))
