@@ -671,6 +671,139 @@ buried_no_date_no_place = {
 
 #------------------------------------------------------------------------
 #
+# baptised strings
+#
+#------------------------------------------------------------------------
+
+baptised_full_date_place = {
+    gen.lib.Person.MALE: [
+    _("%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    _("He was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    ], 
+    gen.lib.Person.FEMALE: [
+    _("%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    _("She was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    ], 
+    gen.lib.Person.UNKNOWN: [ 
+    _("%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    _("This person was baptised on %(baptism_date)s in %(baptism_place)s."), 
+    ],
+    'succinct' : _("Baptised %(baptism_date)s in %(baptism_place)s."), 
+    }
+
+baptised_full_date_no_place = {
+    gen.lib.Person.MALE: [
+    _("%(male_name)s was baptised on %(baptism_date)s."), 
+    _("He was baptised on %(baptism_date)s."), 
+    ], 
+    gen.lib.Person.FEMALE: [
+    _("%(female_name)s was baptised on %(baptism_date)s."), 
+    _("She was baptised on %(baptism_date)s."), 
+    ], 
+    gen.lib.Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was baptised on %(baptism_date)s."), 
+    _("This person was baptised on %(baptism_date)s."), 
+    ],
+    'succinct' : _("Baptised %(baptism_date)s.") 
+    }
+
+baptised_partial_date_place = {
+    gen.lib.Person.MALE: [
+    _("%(male_name)s was baptised in %(month_year)s in %(baptism_place)s."), 
+    _("He was baptised in %(month_year)s in %(baptism_place)s."), 
+    ], 
+gen.lib.Person.FEMALE: [
+    _("%(female_name)s was baptised in %(month_year)s in %(baptism_place)s."), 
+    _("She was baptised in %(month_year)s in %(baptism_place)s."), 
+    ], 
+gen.lib.Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s."), 
+    _("This person was baptised in %(month_year)s in %(baptism_place)s."), 
+    ],
+    'succinct' : _("Baptised %(month_year)s in %(baptism_place)s."), 
+    }
+
+baptised_partial_date_no_place = {
+    gen.lib.Person.MALE: [
+    _("%(male_name)s was baptised in %(month_year)s."), 
+    _("He was baptised in %(month_year)s."), 
+    ], 
+    gen.lib.Person.FEMALE: [
+    _("%(female_name)s was baptised in %(month_year)s."), 
+    _("She was baptised in %(month_year)s."), 
+    ], 
+    gen.lib.Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was baptised in %(month_year)s."), 
+    _("This person was baptised in %(month_year)s."), 
+    ],
+    'succinct' : _("Baptised %(month_year)s."), 
+    }
+
+baptised_modified_date_place = {
+    gen.lib.Person.MALE: [
+    _("%(male_name)s was baptised %(modified_date)s in %(baptism_place)s."), 
+    _("He was baptised %(modified_date)s in %(baptism_place)s."), 
+    ], 
+    gen.lib.Person.FEMALE: [
+    _("%(female_name)s was baptised %(modified_date)s in %(baptism_place)s."), 
+    _("She was baptised %(modified_date)s in %(baptism_place)s."), 
+    ], 
+    gen.lib.Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s."), 
+    _("This person was baptised %(modified_date)s in %(baptism_place)s."), 
+    ],
+    'succinct' : _("Baptised %(modified_date)s in %(baptism_place)s."), 
+    }
+
+baptised_modified_date_no_place = {
+    gen.lib.Person.MALE: [
+    _("%(male_name)s was baptised %(modified_date)s."), 
+    _("He was baptised %(modified_date)s."), 
+    ], 
+    gen.lib.Person.FEMALE: [
+    _("%(female_name)s was baptised %(modified_date)s."), 
+    _("She was baptised %(modified_date)s."), 
+    ], 
+    gen.lib.Person.UNKNOWN: [
+    _("%(unknown_gender_name)s was baptised %(modified_date)s."), 
+    _("This person was baptised %(modified_date)s."), 
+    ],
+    'succinct' : _("Baptised %(modified_date)s."), 
+    }
+
+baptised_no_date_place = {
+    gen.lib.Person.MALE    : [
+    _("%(male_name)s was baptised in %(baptism_place)s."), 
+    _("He was baptised in %(baptism_place)s."), 
+    ], 
+    gen.lib.Person.FEMALE  : [
+    _("%(female_name)s was baptised in %(baptism_place)s."), 
+    _("She was baptised in %(baptism_place)s."), 
+    ], 
+    gen.lib.Person.UNKNOWN : [
+    _("%(unknown_gender_name)s was baptised in %(baptism_place)s."), 
+    _("This person was baptised in %(baptism_place)s."), 
+    ],
+    'succinct' : _("Baptised in %(baptism_place)s."), 
+    }
+
+baptised_no_date_no_place = {
+    gen.lib.Person.MALE    : [
+    _("%(male_name)s was baptised."), 
+    _("He was baptised."), 
+    ], 
+    gen.lib.Person.FEMALE  : [
+    _("%(female_name)s was baptised."), 
+    _("She was baptised."), 
+    ], 
+    gen.lib.Person.UNKNOWN : [
+    _("%(unknown_gender_name)s was baptised."), 
+    _("This person was baptised."), 
+    ],
+    'succinct' : _("Baptised."),
+
+#------------------------------------------------------------------------
+#
 # Marriage strings - Relationship type MARRIED
 #
 #------------------------------------------------------------------------
@@ -2409,6 +2542,108 @@ def buried_str(database, person, person_name=None,
         text = buried_no_date_no_place[gender][name_index] % values
     else:          #male, no date, no place
         text = buried_no_date_no_place['succinct'] % values
+        
+    if text:
+        text = text + " "
+    return text
+
+# baptised_str
+#
+#-------------------------------------------------------------------------
+
+def baptised_str(database, person, person_name=None, verbose=True, empty_date="", empty_place=""):
+    """ 
+    Check baptism record.
+    Statement formats name precedes this
+        was baptised on Date.
+        was baptised on Date in Place.
+        was baptised in Month_Year.
+        was baptised in Month_Year in Place.
+        was baptised in Place.
+    ''
+    """
+
+    name_index = 0
+    if person_name is None:
+        person_name = _nd.display(person)
+    elif person_name == 0:
+        name_index = 1
+
+    gender = gen.lib.Person.get_gender()
+    
+    text = ""
+
+    bplace = dplace = empty_place
+    bdate = ddate = empty_date
+    bdate_full = False
+    bdate_mod = False
+
+    baptism = None
+    for event_ref in gen.lib.Person.get_event_ref_list():
+        event = database.get_event_from_handle(event_ref.ref)
+        if event and event.type.value == EventType.BAPTISM \
+            and event_ref.role.value == EventRoleType.PRIMARY:
+            baptism = event
+            break
+
+    if baptism:
+        bdate = DateHandler.get_date(baptism)
+        bplace_handle = baptism.get_place_handle()
+        if bplace_handle:
+            bplace = database.get_place_from_handle(bplace_handle).get_title()
+        bdate_obj = baptism.get_date_object()
+        bdate_full = bdate_obj and bdate_obj.get_day_valid()
+        bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
+    else:
+        return text
+
+    values = {
+        'unknown_gender_name' : person_name, 
+        'male_name'           : person_name, 
+        'name'                : person_name, 
+        'female_name'         : person_name, 
+        'baptism_date'        : bdate, 
+        'baptism_place'       : bplace, 
+        'month_year'          : bdate, 
+        'modified_date'       : bdate, 
+        }
+
+    if bdate and bdate_mod and verbose:
+        if bplace: #male, date, place
+            text = baptised_modified_date_place[gender][name_index] % values
+        else:      #male, date, no place
+            text = baptised_modified_date_no_place[gender][name_index] % values
+    elif bdate and bdate_mod:
+        if bplace: #male, date, place
+            text = baptised_modified_date_place['succinct'] % values
+        else:      #male, date, no place
+            text = baptised_modified_date_no_place['succinct'] % values
+    elif bdate and bdate_full and verbose:
+        if bplace: #male, date, place
+            text = baptised_full_date_place[gender][name_index] % values
+        else:      #male, date, no place
+            text = baptised_full_date_no_place[gender][name_index] % values
+    elif bdate and bdate_full:
+        if bplace: #male, date, place
+            text = baptised_full_date_place['succinct'] % values
+        else:      #male, date, no place
+            text = baptised_full_date_no_place['succinct'] % values
+    elif bdate and verbose:
+        if bplace: #male, month_year, place
+            text =  baptised_partial_date_place[gender][name_index] % values
+        else:      #male, month_year, no place
+            text = baptised_partial_date_no_place[gender][name_index] % values
+    elif bdate:
+        if bplace: #male, month_year, place
+            text =  baptised_partial_date_place['succinct'] % values
+    elif bplace:   #male, no date, place
+        text = baptised_no_date_place['succinct'] % values
+    elif verbose:
+            text = baptised_partial_date_no_place['succinct'] % values
+    elif bplace and verbose:   #male, no date, place
+        text = baptised_no_date_place[gender][name_index] % values
+    else:          #male, no date, no place
+        text = baptised_no_date_no_place['succinct'] % values
         
     if text:
         text = text + " "
