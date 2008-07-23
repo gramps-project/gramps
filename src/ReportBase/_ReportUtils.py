@@ -2527,12 +2527,12 @@ def buried_str(database, person, person_name=None,
             text = buried_full_date_no_place['succinct'] % values
     elif bdate and verbose:
         if bplace: #male, month_year, place
-            text =  buried_partial_date_place[gender][name_index] % values
+            text = buried_partial_date_place[gender][name_index] % values
         else:      #male, month_year, no place
             text = buried_partial_date_no_place[gender][name_index] % values
     elif bdate:
         if bplace: #male, month_year, place
-            text =  buried_partial_date_place['succinct'] % values
+            text = buried_partial_date_place['succinct'] % values
         else:      #male, month_year, no place
             text = buried_partial_date_no_place['succinct'] % values
     elif bplace and verbose:   #male, no date, place
@@ -2631,18 +2631,20 @@ def baptised_str(database, person, person_name=None, verbose=True, empty_date=""
             text = baptised_full_date_no_place['succinct'] % values
     elif bdate and verbose:
         if bplace: #male, month_year, place
-            text =  baptised_partial_date_place[gender][name_index] % values
+            text = baptised_partial_date_place[gender][name_index] % values
         else:      #male, month_year, no place
             text = baptised_partial_date_no_place[gender][name_index] % values
     elif bdate:
         if bplace: #male, month_year, place
-            text =  baptised_partial_date_place['succinct'] % values
-    elif bplace:   #male, no date, place
-        text = baptised_no_date_place['succinct'] % values
-    elif verbose:
+            text = baptised_partial_date_place['succinct'] % values
+        else:      #male, month_year, no place
             text = baptised_partial_date_no_place['succinct'] % values
     elif bplace and verbose:   #male, no date, place
         text = baptised_no_date_place[gender][name_index] % values
+    elif bplace:   #male, no date, place
+        text = baptised_no_date_place['succinct'] % values
+    elif verbose:
+        text = baptised_no_date_no_place[gender][name_index] % values
     else:          #male, no date, no place
         text = baptised_no_date_no_place['succinct'] % values
         
