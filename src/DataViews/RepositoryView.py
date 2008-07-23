@@ -44,9 +44,9 @@ import Errors
 import Config
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
-
 from QuestionDialog import QuestionDialog
 from Filters.SideBar import RepoSidebarFilter
+from ReportBase import CATEGORY_QR_REPOSITORY
 
 #-------------------------------------------------------------------------
 #
@@ -83,6 +83,7 @@ class RepositoryView(PageView.ListView):
     EDIT_MSG = _("Edit the selected repository")
     DEL_MSG = _("Delete the selected repository")
     FILTER_TYPE = "Repository"
+    QR_CATEGORY = CATEGORY_QR_REPOSITORY
 
     def __init__(self, dbstate, uistate):
 
@@ -120,6 +121,10 @@ class RepositoryView(PageView.ListView):
                          _('_Column Editor'), callback=self._column_editor)
         self._add_action('FilterEdit', None, _('Repository Filter Editor'),
                          callback=self.filter_editor,)
+        self._add_action('QuickReport', None, 
+                         _("Quick Report"), None, None, None)
+        self._add_action('Dummy', None, 
+                         '  ', None, None, self.dummy_report)
 
     def _column_editor(self, obj):
         import ColumnOrder
@@ -176,6 +181,10 @@ class RepositoryView(PageView.ListView):
             <menuitem action="Add"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
+            <separator/>
+            <menu name="QuickReport" action="QuickReport">
+              <menuitem action="Dummy"/>
+            </menu>
           </popup>
         </ui>'''
 
@@ -228,3 +237,10 @@ class RepositoryView(PageView.ListView):
             return obj.get_handle()
         else:
             return None
+
+    def dummy_report(self, obj):
+        """ For the xml UI definition of popup to work, the submenu 
+            Quick Report must have an entry in the xml
+            As this submenu will be dynamically built, we offer a dummy action
+        """
+        pass
