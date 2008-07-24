@@ -89,6 +89,7 @@ class DetDescendantReport(Report):
         calcageflag   - Whether to compute age.
         dubperson     - Whether to omit duplicate ancestors (e.g. when distant cousins mary).
         verbose       - Whether to use complete sentences
+        record_num    - Whether to use Record-style numbering instead of Henry-style.
         childref      - Whether to add descendant references in child list.
         addimages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
@@ -109,6 +110,7 @@ class DetDescendantReport(Report):
         self.calcageflag   = menu.get_option_by_name('computeage').get_value()
         self.dubperson     = menu.get_option_by_name('omitda').get_value()
         self.verbose       = menu.get_option_by_name('verbose').get_value()
+        self.record_num    = menu.get_option_by_name('record_num').get_value()
         self.childref      = menu.get_option_by_name('desref').get_value()
         self.addimages     = menu.get_option_by_name('incphotos').get_value()
         self.inc_names     = menu.get_option_by_name('incnames').get_value()
@@ -137,7 +139,7 @@ class DetDescendantReport(Report):
 
         self.bibli = Bibliography(Bibliography.MODE_PAGE)
 
-    def apply_filter(self,person_handle,index,pid,cur_gen=1):
+    def apply_filter(self,person_handle, index, pid, cur_gen=1):
         if (not person_handle) or (cur_gen > self.max_generations):
             return
         self.henry[person_handle] = pid
@@ -158,8 +160,40 @@ class DetDescendantReport(Report):
                                   pid+HENRY[index], cur_gen+1)
                 index += 1
 
+    # Filter for Record-style (Modified Register) numbering
+    def mod_reg_filter_aux(self, person_handle, index, cur_gen=1):
+        if (not person_handle) or (cur_gen > self.max_generations):
+            return
+        self.map[index] = person_handle
+                
+        if len(self.gen_keys) < cur_gen:
+            self.gen_keys.append([index])
+        else: 
+            self.gen_keys[cur_gen-1].append(index)
+
+        person = self.database.get_person_from_handle(person_handle)
+
+        for family_handle in person.get_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+            for child_ref in family.get_child_ref_list():
+                ix = max(self.map.keys())
+                self.mod_reg_filter_aux(child_ref.ref, ix+1, cur_gen+1)
+
+    def mod_reg_filter(self,person_handle):
+    	self.mod_reg_filter_aux(person_handle, 1, 1)
+    	mod_reg_number = 1
+        for generation in xrange(len(self.gen_keys)):
+            for key in self.gen_keys[generation]:
+                person_handle = self.map[key]
+                self.henry[person_handle] = mod_reg_number
+                mod_reg_number += 1
+
+
     def write_report(self):
-        self.apply_filter(self.center_person.get_handle(),1,"1")
+        if self.record_num:
+            self.mod_reg_filter(self.center_person.get_handle())
+        else:
+            self.apply_filter(self.center_person.get_handle(),1,"1")
 
         name = _nd.display_name(self.center_person.get_primary_name())
 
@@ -208,7 +242,7 @@ class DetDescendantReport(Report):
                 self.write_person(key)
 
         if self.inc_sources:
-            Endnotes.write_endnotes(self.bibli,self.database,self.doc)
+            Endnotes.write_endnotes(self.bibli, self.database, self.doc)
 
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
@@ -685,6 +719,11 @@ class DetDescendantOptions(MenuReportOptions):
         verbose.set_help(
                  _("Whether to use complete sentences or succinct language."))
         menu.add_option(category_name,"verbose",verbose)
+
+        record_num = BooleanOption(_("Use Record-style (Modified Register) numbering"),False)
+        record_num.set_help(
+                 _("Whether to use Record-style numbering instead of Henry-style."))
+        menu.add_option(category_name,"record_num",record_num)
 
         desref = BooleanOption(_("Add descendant reference in child list"),True)
         desref.set_help(
