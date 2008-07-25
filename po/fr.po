@@ -3734,7 +3734,7 @@ msgstr "_Ajouter un gramplet"
 
 #: ../src/DataViews/GrampletView.py:970
 msgid "_Undelete gramplet"
-msgstr "_Supprimer le gramplet"
+msgstr "_Rappeler le gramplet"
 
 #: ../src/DataViews/GrampletView.py:971
 msgid "Set Columns to _1"
