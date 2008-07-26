@@ -180,9 +180,7 @@ class FamilyListView(PageView.ListView):
         return self.dbstate.db.get_family_bookmarks()
 
     def add_bookmark(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
+        mlist = self.selected_handles()
         if mlist:
             self.bookmarks.add(mlist[0])
         else:
@@ -204,19 +202,13 @@ class FamilyListView(PageView.ListView):
         self.uistate.set_busy_cursor(1)
         import gen.utils
         
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
-        for handle in mlist:
+        for handle in self.selected_handles():
             gen.utils.remove_family_relationships(self.dbstate.db, handle)
         self.build_tree()
         self.uistate.set_busy_cursor(0)
     
     def edit(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
-        for handle in mlist:
+        for handle in self.selected_handles():
             from Editors import EditFamily
             family = self.dbstate.db.get_family_from_handle(handle)
             try:

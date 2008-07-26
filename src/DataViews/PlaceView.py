@@ -43,6 +43,7 @@ import Utils
 import Errors
 import Bookmarks
 import Config
+from QuestionDialog import ErrorDialog
 from DdTargets import DdTargets
 from Editors import EditPlace, DeletePlaceQuery
 from Filters.SideBar import PlaceSidebarFilter
@@ -244,10 +245,7 @@ class PlaceView(PageView.ListView):
         return (query, is_used, object)
 
     def edit(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
-        for handle in mlist:
+        for handle in self.selected_handles():
             place = self.dbstate.db.get_place_from_handle(handle)
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
@@ -255,8 +253,7 @@ class PlaceView(PageView.ListView):
                 pass
 
     def fast_merge(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
+        mlist = self.selected_handles()
         
         if len(mlist) != 2:
             msg = _("Cannot merge places.")

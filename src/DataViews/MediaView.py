@@ -223,10 +223,7 @@ class MediaView(PageView.ListView):
         """
         Launch external viewers based of mime types for the selected objects.
         """
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
-        for handle in mlist:
+        for handle in self.selected_handles():
             ref_obj = self.dbstate.db.get_object_from_handle(handle)
             mime_type = ref_obj.get_mime_type()
             app = Mime.get_application(mime_type)
@@ -399,17 +396,14 @@ class MediaView(PageView.ListView):
 
     def edit(self, obj):
         """
-        Edit the selected object in the EditMedia dialog
+        Edit the selected objects in the EditMedia dialog
         """
-        handle = self.first_selected()
-        if not handle:
-            return
-        
-        obj = self.dbstate.db.get_object_from_handle(handle)
-        try:
-            EditMedia(self.dbstate, self.uistate, [], obj)
-        except Errors.WindowActiveError:
-            pass
+        for handle in self.selected_handles():
+            object = self.dbstate.db.get_object_from_handle(handle)
+            try:
+                EditMedia(self.dbstate, self.uistate, [], object)
+            except Errors.WindowActiveError:
+                pass
 
     def get_handle_from_gramps_id(self, gid):
         """

@@ -206,10 +206,7 @@ class RepositoryView(PageView.ListView):
         return (query, is_used, object)
 
     def edit(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
-        for handle in mlist:
+        for handle in self.selected_handles():
             repos = self.dbstate.db.get_repository_from_handle(handle)
             try:
                 EditRepository(self.dbstate, self.uistate, [], repos)

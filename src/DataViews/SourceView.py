@@ -44,6 +44,7 @@ import Utils
 import Bookmarks
 import Errors
 from DdTargets import DdTargets
+from QuestionDialog import ErrorDialog
 from Editors import EditSource, DelSrcQuery
 from Filters.SideBar import SourceSidebarFilter
 
@@ -191,10 +192,7 @@ class SourceView(PageView.ListView):
         return (query, is_used, object)
 
     def edit(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
-
-        for handle in mlist:
+        for handle in self.selected_handles():
             source = self.dbstate.db.get_source_from_handle(handle)
             try:
                 EditSource(self.dbstate, self.uistate, [], source)
@@ -202,8 +200,7 @@ class SourceView(PageView.ListView):
                 pass
 
     def fast_merge(self, obj):
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
+        mlist = self.selected_handles()
         
         if len(mlist) != 2:
             msg = _("Cannot merge sources.")
