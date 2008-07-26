@@ -1283,7 +1283,7 @@ class GrampsDbBase(Callback):
         """
         Return if a key exists in the name_group table.
         """
-        return str(name) in self.name_group
+        return self.name_group.has_key(str(name))
 
     def set_name_group_mapping(self, name, group):
         """
