@@ -52,6 +52,7 @@ from Filters import SearchBar
 import Utils
 import const
 from TransUtils import sgettext as _
+from QuestionDialog import QuestionDialog, QuestionDialog2
 
 NAVIGATION_NONE   = -1
 NAVIGATION_PERSON = 0
@@ -255,9 +256,56 @@ class PageView:
         """
         raise NotImplementedError
 
-    def remove(self, obj):
+    def remove(self, handle):
         """
-        Template function to allow the removal of the selected object
+        Template function to allow the removal of an object by its handle
+        """
+        raise NotImplementedError
+
+    def remove_selected_objects(self):
+        """
+        Function to remove selected objects
+        """
+        prompt = True
+        if len(self.selected_handles()) > 1:
+            q = QuestionDialog2(
+                _("Remove selected items?"),
+                _("More than one item has been selected for deletion. "
+                  "Ask before deleting each one?"),
+                _("Yes"),
+                _("No"))
+            prompt = q.run()
+            
+        if not prompt:
+            self.uistate.set_busy_cursor(1)
+
+        for handle in self.selected_handles():
+            (query, is_used, object) = self.remove_object_from_handle(handle)
+            if prompt:
+                if is_used:
+                    msg = _('This item is currently being used. '
+                            'Deleting it will remove it from the database and '
+                            'from all other items that reference it.')
+                else:
+                    msg = _('Deleting item will remove it from the database.')
+                
+                msg = "%s %s" % (msg, Utils.data_recover_msg)
+                #descr = object.get_description()
+                #if descr == "":
+                descr = object.get_gramps_id()
+                self.uistate.set_busy_cursor(1)
+                QuestionDialog(_('Delete %s?') % descr, msg,
+                               _('_Delete Item'), query.query_response)
+                self.uistate.set_busy_cursor(0)
+            else:
+                query.query_response()
+
+        if not prompt:
+            self.uistate.set_busy_cursor(0)
+
+    def remove_object_from_handle(self, handle):
+        """
+        Template function to allow the removal of an object by its handle
         """
         raise NotImplementedError
 
