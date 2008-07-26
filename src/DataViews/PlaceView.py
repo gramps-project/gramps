@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,6 @@ import Bookmarks
 import Config
 from DdTargets import DdTargets
 from Editors import EditPlace, DeletePlaceQuery
-from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import PlaceSidebarFilter
 
 #-------------------------------------------------------------------------
@@ -221,41 +221,27 @@ class PlaceView(PageView.ListView):
             pass
 
     def remove(self, obj):
-        for place_handle in self.selected_handles():
-            db = self.dbstate.db
-            person_list = [
-                item[1] for item in
-                self.dbstate.db.find_backlink_handles(place_handle,['Person'])]
+        self.remove_selected_objects()
 
-            family_list = [
-                item[1] for item in
-                self.dbstate.db.find_backlink_handles(place_handle,['Family'])]
-            
-            event_list = [
-                item[1] for item in
-                self.dbstate.db.find_backlink_handles(place_handle,['Event'])]
-            
-            place = db.get_place_from_handle(place_handle)
-            
-            ans = DeletePlaceQuery(self.dbstate,self.uistate,
-                                   place,person_list,family_list,event_list)
+    def remove_object_from_handle(self, handle):
+        person_list = [
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle,['Person'])]
 
-            if len(person_list) + len(family_list) > 0:
-                msg = _('This place is currently being used. Deleting it '
-                        'will remove it from the database and from all '
-                        'people and families that reference it.')
-            else:
-                msg = _('Deleting place will remove it from the database.')
-            
-            msg = "%s %s" % (msg, Utils.data_recover_msg)
-            descr = place.get_title()
-            if descr == "":
-                descr = place.get_gramps_id()
-                
-            self.uistate.set_busy_cursor(1)
-            QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Place'), ans.query_response)
-            self.uistate.set_busy_cursor(0)
+        family_list = [
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle,['Family'])]
+        
+        event_list = [
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle,['Event'])]
+        
+        object = self.dbstate.db.get_place_from_handle(handle)
+        query = DeletePlaceQuery(self.dbstate, self.uistate, object,
+                                 person_list, family_list, event_list)
+
+        is_used = len(person_list) + len(family_list) + len(event_list) > 0
+        return (query, is_used, object)
 
     def edit(self, obj):
         mlist = []

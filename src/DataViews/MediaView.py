@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,7 +58,6 @@ import gen.lib
 
 from Editors import EditMedia, DeleteMediaQuery
 import Errors
-from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import MediaSidebarFilter
 from DdTargets import DdTargets
 
@@ -106,7 +106,8 @@ class MediaView(PageView.ListView):
             MediaView.COLUMN_NAMES, len(MediaView.COLUMN_NAMES), 
             DisplayModels.MediaModel, 
             signal_map, dbstate.db.get_media_bookmarks(), 
-            Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter)
+            Bookmarks.MediaBookmarks, filter_class=MediaSidebarFilter,
+            multiple=True)
 
         self.func_list = {
             '<CONTROL>J' : self.jump, 
@@ -383,28 +384,18 @@ class MediaView(PageView.ListView):
             pass
 
     def remove(self, obj):
+        self.remove_selected_objects()
+
+    def remove_object_from_handle(self, handle):
         """
-        Remove the selected object from the database after getting
+        Remove the selected objects from the database after getting
         user verification.
         """
-        handle = self.first_selected()
-        if not handle:
-            return
         the_lists = Utils.get_media_referents(handle, self.dbstate.db)
-
-        ans = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
-        if any(the_lists): # quick test for non-emptiness
-            msg = _('This media object is currently being used. '
-                    'If you delete this object, it will be removed from '
-                    'the database and from all records that reference it.')
-        else:
-            msg = _('Deleting media object will remove it from the database.')
-
-        msg = "%s %s" % (msg, Utils.data_recover_msg)
-        self.uistate.set_busy_cursor(1)
-        QuestionDialog(_('Delete Media Object?'), msg, 
-                      _('_Delete Media Object'), ans.query_response)
-        self.uistate.set_busy_cursor(0)
+        object = self.dbstate.db.get_object_from_handle(handle)
+        query = DeleteMediaQuery(self.dbstate, self.uistate, handle, the_lists)
+        is_used = any(the_lists)
+        return (query, is_used, object)
 
     def edit(self, obj):
         """

@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,6 @@ import Errors
 import Config
 from Editors import EditRepository, DelRepositoryQuery
 from DdTargets import DdTargets
-from QuestionDialog import QuestionDialog
 from Filters.SideBar import RepoSidebarFilter
 from ReportBase import CATEGORY_QR_REPOSITORY
 
@@ -104,7 +104,8 @@ class RepositoryView(PageView.ListView):
             RepositoryView.COLUMN_NAMES, len(RepositoryView.COLUMN_NAMES),
             DisplayModels.RepositoryModel, signal_map,
             dbstate.db.get_repo_bookmarks(),
-            Bookmarks.RepoBookmarks,filter_class=RepoSidebarFilter)
+            Bookmarks.RepoBookmarks, multiple=True,
+            filter_class=RepoSidebarFilter)
 
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
@@ -192,33 +193,17 @@ class RepositoryView(PageView.ListView):
         EditRepository(self.dbstate, self.uistate, [], gen.lib.Repository())
 
     def remove(self, obj):
-        db = self.dbstate.db
-        mlist = []
-        self.selection.selected_foreach(self.blist, mlist)
+        self.remove_selected_objects()
 
-        for repos_handle in mlist:
-
-            source_list = [
-                item[1] for item in
-                self.dbstate.db.find_backlink_handles(repos_handle,['Source'])]
-
-            repository = db.get_repository_from_handle(repos_handle)
-
-            ans = DelRepositoryQuery(self.dbstate,self.uistate,
-                                     repository,source_list)
-
-            if len(source_list) > 0:
-                msg = _('This repository is currently being used. Deleting it '
-                        'will remove it from the database and from all '
-                        'sources that reference it.')
-            else:
-                msg = _('Deleting repository will remove it from the database.')
-            
-            msg = "%s %s" % (msg, Utils.data_recover_msg)
-            self.uistate.set_busy_cursor(1)
-            QuestionDialog(_('Delete %s?') % repository.get_name(), msg,
-                           _('_Delete Repository'), ans.query_response)
-            self.uistate.set_busy_cursor(0)
+    def remove_object_from_handle(self, handle):
+        source_list = [
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle, ['Source'])]
+        object = self.dbstate.db.get_repository_from_handle(handle)
+        query = DelRepositoryQuery(self.dbstate, self.uistate, object,
+                                   source_list)
+        is_used = len(source_list) > 0
+        return (query, is_used, object)
 
     def edit(self, obj):
         mlist = []

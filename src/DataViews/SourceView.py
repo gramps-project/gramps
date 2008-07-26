@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,6 @@ import Bookmarks
 import Errors
 from DdTargets import DdTargets
 from Editors import EditSource, DelSrcQuery
-from QuestionDialog import QuestionDialog, ErrorDialog
 from Filters.SideBar import SourceSidebarFilter
 
 #-------------------------------------------------------------------------
@@ -181,29 +181,14 @@ class SourceView(PageView.ListView):
         EditSource(self.dbstate, self.uistate, [], gen.lib.Source())
 
     def remove(self, obj):
-        for source_handle in self.selected_handles():
-            db = self.dbstate.db
-            the_lists = Utils.get_source_referents(source_handle, db)
+        self.remove_selected_objects()
 
-            source = db.get_source_from_handle(source_handle)
-
-            ans = DelSrcQuery(self.dbstate,self.uistate,source,the_lists)
-            if any(the_lists): # quick test for non-emptiness
-                msg = _('This source is currently being used. Deleting it '
-                        'will remove it from the database and from all '
-                        'people and families that reference it.')
-            else:
-                msg = _('Deleting source will remove it from the database.')
-            
-            msg = "%s %s" % (msg, Utils.data_recover_msg)
-            descr = source.get_title()
-            if descr == "":
-                descr = source.get_gramps_id()
-                
-            self.uistate.set_busy_cursor(1)
-            QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Source'), ans.query_response)
-            self.uistate.set_busy_cursor(0)
+    def remove_object_from_handle(self, handle):
+        the_lists = Utils.get_source_referents(handle, self.dbstate.db)
+        object = self.dbstate.db.get_source_from_handle(handle)
+        query = DelSrcQuery(self.dbstate, self.uistate, object, the_lists)
+        is_used = any(the_lists)
+        return (query, is_used, object)
 
     def edit(self, obj):
         mlist = []

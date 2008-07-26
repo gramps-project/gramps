@@ -44,7 +44,6 @@ import Errors
 import Bookmarks
 import Config
 from DdTargets import DdTargets
-from QuestionDialog import QuestionDialog, QuestionDialog2
 from Editors import EditEvent, DelEventQuery
 from Filters.SideBar import EventSidebarFilter
 from ReportBase import CATEGORY_QR_EVENT
@@ -221,55 +220,23 @@ class EventView(PageView.ListView):
             pass
 
     def remove(self, obj):
-        prompt = True
-        if len(self.selected_handles()) > 1:
-            q = QuestionDialog2(
-                _("Remove selected events?"),
-                _("More than one event has been selected for deletion. "
-                  "Ask before deleting each one?"),
-                _("Yes"),
-                _("No"))
-            prompt = q.run()
-            
-        if not prompt:
-            self.uistate.set_busy_cursor(1)
+        self.remove_selected_objects()
 
-        for ehandle in self.selected_handles():
-            person_list = [
-                item[1] for item in
-                self.dbstate.db.find_backlink_handles(ehandle,['Person']) ]
+    def remove_object_from_handle(self, handle):
+        person_list = [
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle,['Person']) ]
 
-            family_list = [ 
-                item[1] for item in
-                self.dbstate.db.find_backlink_handles(ehandle,['Family']) ]
-            
-            event = self.dbstate.db.get_event_from_handle(ehandle)
+        family_list = [ 
+            item[1] for item in
+            self.dbstate.db.find_backlink_handles(handle,['Family']) ]
+        
+        object = self.dbstate.db.get_event_from_handle(handle)
 
-            ans = DelEventQuery(self.dbstate, self.uistate, event, 
-                                person_list, family_list)
-
-            if prompt:
-                if len(person_list) + len(family_list) > 0:
-                    msg = _('This event is currently being used. Deleting it '
-                            'will remove it from the database and from all '
-                            'people and families that reference it.')
-                else:
-                    msg = _('Deleting event will remove it from the database.')
-            
-                msg = "%s %s" % (msg, Utils.data_recover_msg)
-                descr = event.get_description()
-                if descr == "":
-                    descr = event.get_gramps_id()
-                
-                self.uistate.set_busy_cursor(1)
-                QuestionDialog(_('Delete %s?') % descr, msg,
-                               _('_Delete Event'), ans.query_response)
-                self.uistate.set_busy_cursor(0)
-            else:
-                ans.query_response()
-
-        if not prompt:
-            self.uistate.set_busy_cursor(0)
+        query = DelEventQuery(self.dbstate, self.uistate, object, 
+                              person_list, family_list)
+        is_used = len(person_list) + len(family_list) > 0
+        return (query, is_used, object)
 
     def edit(self, obj):
         mlist = []

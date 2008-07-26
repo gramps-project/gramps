@@ -1,6 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001-2006  Donald N. Allingham
+# Copyright (C) 2008       Gary Burton
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,6 @@ import Config
 import ColumnOrder
 from gen.lib import Note
 from DdTargets import DdTargets
-from QuestionDialog import QuestionDialog
 from Filters.SideBar import NoteSidebarFilter
 from Editors import EditNote, DeleteNoteQuery
 
@@ -95,7 +95,7 @@ class NoteView(PageView.ListView):
             dbstate.db.get_note_bookmarks(),
             Bookmarks.NoteBookmarks,
             filter_class=NoteSidebarFilter,
-            multiple=False)
+            multiple=True)
 
         Config.client.notify_add("/apps/gramps/interface/filter",
                                  self.filter_toggle)
@@ -196,27 +196,14 @@ class NoteView(PageView.ListView):
             pass
 
     def remove(self, obj):
-        for note_handle in self.selected_handles():
-            db = self.dbstate.db
-            the_lists = Utils.get_note_referents(note_handle, db)
+        self.remove_selected_objects()
 
-            note = db.get_note_from_handle(note_handle)
-
-            ans = DeleteNoteQuery(self.dbstate, self.uistate, note, the_lists)
-
-            if any(the_lists): # quick test for non-emptiness
-                msg = _('This note is currently being used. Deleting it '
-                        'will remove it from the database and from all '
-                        'other objects that reference it.')
-            else:
-                msg = _('Deleting note will remove it from the database.')
-            
-            msg = "%s %s" % (msg, Utils.data_recover_msg)
-            descr = note.get_gramps_id()
-            self.uistate.set_busy_cursor(1)
-            QuestionDialog(_('Delete %s?') % descr, msg,
-                           _('_Delete Note'), ans.query_response)
-            self.uistate.set_busy_cursor(0)
+    def remove_object_from_handle(self, handle):
+        the_lists = Utils.get_note_referents(handle, self.dbstate.db)
+        object = self.dbstate.db.get_note_from_handle(handle)
+        query = DeleteNoteQuery(self.dbstate, self.uistate, object, the_lists)
+        is_used = any(the_lists)
+        return (query, is_used, object)
 
     def edit(self, obj):
         mlist = []
