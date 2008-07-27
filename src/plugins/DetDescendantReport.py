@@ -691,6 +691,11 @@ class DetDescendantOptions(MenuReportOptions):
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
         menu.add_option(category_name,"pagebbg",pagebbg)
+
+        record_num = BooleanOption(_("Use Record-style (Modified Register) numbering"),False)
+        record_num.set_help(
+                 _("Whether to use Record-style numbering instead of Henry-style."))
+        menu.add_option(category_name,"record_num",record_num)
         
         category_name = _("Content")
 
@@ -719,11 +724,6 @@ class DetDescendantOptions(MenuReportOptions):
         verbose.set_help(
                  _("Whether to use complete sentences or succinct language."))
         menu.add_option(category_name,"verbose",verbose)
-
-        record_num = BooleanOption(_("Use Record-style (Modified Register) numbering"),False)
-        record_num.set_help(
-                 _("Whether to use Record-style numbering instead of Henry-style."))
-        menu.add_option(category_name,"record_num",record_num)
 
         desref = BooleanOption(_("Add descendant reference in child list"),True)
         desref.set_help(
