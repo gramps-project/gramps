@@ -21,15 +21,16 @@ import re
 import urllib
 import posixpath
 
-import gen.lib
+from BasicUtils import name_displayer
 from DataViews import register, Gramplet
 from PluginUtils import *
-from BasicUtils import name_displayer
-from Utils import media_path_full
 from QuickReports import run_quick_report_by_name
-import DateHandler
+from ReportBase import ReportUtils
 from TransUtils import sgettext as _
+from Utils import media_path_full
 import Config
+import DateHandler
+import gen.lib
 
 #
 # Hello World, in Gramps Gramplets
@@ -71,6 +72,8 @@ class CalendarGramplet(Gramplet):
         self.gui.calendar = gtk.Calendar()
         self.gui.calendar.connect('day-selected-double-click', self.double_click)
         self.gui.calendar.connect('month-changed', self.refresh)
+        self.dbstate.db.connect('person-rebuild', self.update)
+
         db_signals = ['event-add',
                       'event-update', 
                       'event-delete', 
@@ -154,6 +157,8 @@ class LogGramplet(Gramplet):
     def on_load(self):
         if len(self.gui.data) > 0:
             self.show_duplicates = self.gui.data[0]
+        else:
+            self.show_duplicates = "no"
 
     def on_save(self):
         self.gui.data = [self.show_duplicates]
@@ -196,12 +201,14 @@ class TopSurnamesGramplet(Gramplet):
     def init(self):
         self.tooltip = _("Double-click surname for details")
         self.top_size = 10 # will be overwritten in load
-        self.set_text(_("No Family Tree loaded."))
+        self.set_text(_("No Family Tree loaded or active person."))
 
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('person-update', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def on_load(self):
         if len(self.gui.data) > 0:
@@ -273,12 +280,14 @@ class SurnameCloudGramplet(Gramplet):
     def init(self):
         self.tooltip = _("Double-click surname for details")
         self.top_size = 100 # will be overwritten in load
-        self.set_text(_("No Family Tree loaded."))
+        self.set_text(_("No Family Tree loaded or active person."))
 
     def db_changed(self):
         self.dbstate.db.connect('person-add', self.update)
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('person-update', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def on_load(self):
         if len(self.gui.data) > 0:
@@ -356,7 +365,7 @@ class RelativesGramplet(Gramplet):
     Clicking them, changes the active person.
     """
     def init(self):
-        self.set_text(_("No Family Tree loaded."))
+        self.set_text(_("No Family Tree loaded or active person."))
         self.tooltip = _("Click name to make person active\n") + \
                          _("Right-click name to edit person")
 
@@ -369,6 +378,8 @@ class RelativesGramplet(Gramplet):
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -390,6 +401,7 @@ class RelativesGramplet(Gramplet):
         for family_handle in active_person.get_family_handle_list():
             famc += 1
             family = database.get_family_from_handle(family_handle)
+            if not family: continue
             if active_person.handle == family.get_father_handle():
                 spouse_handle = family.get_mother_handle()
             else:
@@ -450,11 +462,11 @@ class RelativesGramplet(Gramplet):
 
 class PedigreeGramplet(Gramplet):
     def init(self):
-        self.set_text(_("No Family Tree loaded."))
+        self.set_text(_("No Family Tree loaded or active person."))
         self.tooltip = _("Click name to make person active\n") + \
                          _("Right-click name to edit person")
-        self.max_generations = 100
         self.set_use_markup(True)
+        self.max_generations = 100
         #self.set_option("max_generations", 
         #                NumberOption(_("Maximum generations"),
         #                             100, -1, 500))
@@ -468,6 +480,8 @@ class PedigreeGramplet(Gramplet):
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def active_changed(self, handle):
         self.update()
@@ -500,11 +514,14 @@ class PedigreeGramplet(Gramplet):
             if len(family_list) > 0:
                 family = self.dbstate.db.get_family_from_handle(family_list[0])
                 father = family.get_father_handle()
+                mother = family.get_mother_handle()
                 if father:
                     self.process_person(father, generation + 1, "f")
                     self.set_box(generation, 1)
                     self.process_person(father, generation + 1, "sf")
                     self.process_person(father, generation + 1, "m")
+                elif mother:
+                    self.set_box(generation, 1)
         elif what[0] == "s":
             boxes = self.get_boxes(generation, what)
             if what[-1] == 'f':
@@ -542,7 +559,7 @@ class PedigreeGramplet(Gramplet):
         """
         self._boxes = [0] * self.max_generations
         self._generations = {}
-        self.set_text("")
+        self.gui.buffer.set_text("")
         active_person = self.dbstate.get_active_person()
         if not active_person:
             return False
@@ -573,7 +590,7 @@ class PedigreeGramplet(Gramplet):
 
 class StatsGramplet(Gramplet):
     def init(self):
-        self.set_text(_("No Family Tree loaded."))
+        self.set_text(_("No Family Tree loaded or active person."))
         self.tooltip = _("Double-click item to see matches")
 
     def db_changed(self):
@@ -581,6 +598,8 @@ class StatsGramplet(Gramplet):
         self.dbstate.db.connect('person-delete', self.update)
         self.dbstate.db.connect('family-add', self.update)
         self.dbstate.db.connect('family-delete', self.update)
+        self.dbstate.db.connect('person-rebuild', self.update)
+        self.dbstate.db.connect('family-rebuild', self.update)
 
     def main(self):
         self.set_text(_("Processing..."))
@@ -711,6 +730,7 @@ class StatsGramplet(Gramplet):
 
 class PythonGramplet(Gramplet):
     def init(self):
+        self.prompt = ">"
         self.tooltip = _("Enter Python expressions")
         self.env = {"dbstate": self.gui.dbstate,
                     "uistate": self.gui.uistate,
@@ -719,7 +739,7 @@ class PythonGramplet(Gramplet):
                     }
         # GUI setup:
         self.gui.textview.set_editable(True)
-        self.set_text("Python %s\n> " % sys.version)
+        self.set_text("Python %s\n%s " % (sys.version, self.prompt))
         self.gui.textview.connect('key-press-event', self.on_key_press)
 
     def format_exception(self, max_tb_level=10):
@@ -727,6 +747,29 @@ class PythonGramplet(Gramplet):
         cla, exc, trbk = sys.exc_info()
         retval += _("Error") + (" : %s %s" %(cla, exc))
         return retval
+
+    def process_command(self, command):
+        # update states, in case of change:
+        self.env["dbstate"] = self.gui.dbstate
+        self.env["uistate"] = self.gui.uistate
+        _retval = None
+        if "_retval" in self.env:
+            del self.env["_retval"]
+        exp1 = """_retval = """ + command
+        exp2 = command.strip()
+        try:
+            _retval = eval(exp2, self.env)
+        except:
+            try:
+                exec exp1 in self.env
+            except:
+                try:
+                    exec exp2 in self.env
+                except:
+                    _retval = self.format_exception()
+        if "_retval" in self.env:
+            _retval = self.env["_retval"]
+        return _retval
 
     def on_key_press(self, widget, event):
         import gtk
@@ -763,39 +806,22 @@ class PythonGramplet(Gramplet):
             end = buffer.get_iter_at_line_offset(line_cnt, line_len)
             line = buffer.get_text(start, end)
             self.append_text("\n")
-            if line.startswith(">"):
+            if line.startswith(self.prompt):
                 line = line[1:].strip()
             else:
-                self.append_text("> ")
-                return True
-            if echo:
-                self.append_text("> " + line)
+                self.append_text("%s " % self.prompt)
                 end = buffer.get_end_iter()
                 buffer.place_cursor(end)
                 return True
-            # update states, in case of change:
-            self.env["dbstate"] = self.gui.dbstate
-            self.env["uistate"] = self.gui.uistate
-            _retval = None
-            if "_retval" in self.env:
-                del self.env["_retval"]
-            exp1 = """_retval = """ + line
-            exp2 = line.strip()
-            try:
-                _retval = eval(exp2, self.env)
-            except:
-                try:
-                    exec exp1 in self.env
-                except:
-                    try:
-                        exec exp2 in self.env
-                    except:
-                        _retval = self.format_exception()
-            if "_retval" in self.env:
-                _retval = self.env["_retval"]
+            if echo:
+                self.append_text(("%s " % self.prompt) + line)
+                end = buffer.get_end_iter()
+                buffer.place_cursor(end)
+                return True
+            _retval = self.process_command(line)
             if _retval != None:
-                self.append_text("%s" % str(_retval))
-            self.append_text("\n> ")
+                self.append_text("%s\n" % str(_retval))
+            self.append_text("%s " % self.prompt)
             end = buffer.get_end_iter()
             buffer.place_cursor(end)
             return True
@@ -946,6 +972,7 @@ class AgeOnDateGramplet(Gramplet):
         # label, entry
         description = gtk.TextView()
         description.set_wrap_mode(gtk.WRAP_WORD)
+        description.set_editable(False)
         buffer = description.get_buffer()
         buffer.set_text(_("Enter a date in the entry below and click Run."
                           " This will compute the ages for everyone in your"
@@ -982,6 +1009,7 @@ register(type="gramplet",
          height=230,
          content = TopSurnamesGramplet,
          title=_("Top Surnames"),
+         expand=True,
          )
 
 register(type="gramplet", 
