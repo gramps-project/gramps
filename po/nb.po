@@ -6,15 +6,15 @@
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Jørgen Grønlund <jorgenhg@broadpark.no>, 2005.
 # Nils Kristian Tomren <project@nilsk.net>, 2006.
-# Espen Berg <espenbe@gmail.com>, 2006, 2007.
+# Espen Berg <espenbe@gmail.com>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-28 09:05+0200\n"
-"PO-Revision-Date: 2008-07-28 14:38+0200\n"
+"PO-Revision-Date: 2008-07-28 17:59+0200\n"
 "Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"Language-Team:  <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -339,9 +339,8 @@ msgid "Could not import file: %s"
 msgstr "Kunne ikke importere fil: %s"
 
 #: ../src/DbLoader.py:308
-#, fuzzy
 msgid "This file incorrectly identifies its character set, so it cannot be accurately imported. Please fix the encoding, and import again"
-msgstr "Denne GEDCOM-fila sier den har en annen tegnkoding enn hva den har, så den kan ikke importeres helt feilfritt. Reparer tegnkodingen og importer om igjen"
+msgstr "Denne fila sier den har en annen tegnkoding enn hva den har, så den kan ikke importeres helt feilfritt. Reparer tegnkodingen og importer om igjen"
 
 #: ../src/DbLoader.py:364
 msgid "All GRAMPS files"
@@ -1426,6 +1425,15 @@ msgid ""
 "\n"
 "<b>BACKUP</b> your existing databases before opening them with this version, and make sure to export your data to XML every now and then."
 msgstr ""
+"Denne GRAMPS 3.x-trunk er en utviklerversjon. Denne versjonen er ikke ment til å brukes i normalt bruk. Bruk den på egen risiko.\n"
+"\n"
+"Denne versjonen kan:\n"
+"1) Fungere annerledes enn du forventer.\n"
+"2) Ikke fungere i det hele tatt.\n"
+"3) Krasje ofte.\n"
+"4) Ødelegge dine data.\n"
+"5) Lagre data i et format som ikke er kompatibelt med den offisielle versjonen.\n"
+"<b>SIKKERHETSKOPIER</b> dine eksisterende databsaer før du åpner dem med denne versjonen og vær sikker på å eksportere dine data til XML i ny og ne."
 
 #: ../src/gramps_main.py:239 ../src/gramps_main.py:241
 #: ../src/gramps_main.py:251
@@ -1483,9 +1491,8 @@ msgid "No"
 msgstr "Nei"
 
 #: ../src/PageView.py:286
-#, fuzzy
 msgid "This item is currently being used. Deleting it will remove it from the database and from all other items that reference it."
-msgstr "Dette notatet er for øyeblikket i bruk. Hvis du sletter det vil det bli fjernet fra databasen og alle henviste poster."
+msgstr "Dette elementet er for øyeblikket i bruk. Hvis du sletter det vil det bli fjernet fra databasen og alle henviste poster."
 
 #: ../src/PageView.py:290
 msgid "Deleting item will remove it from the database."
@@ -5275,7 +5282,6 @@ msgstr ""
 "Objekter flettet sammen-overskrevet ved import:\n"
 
 #: ../src/GrampsDbUtils/_ReadXML.py:283
-#, fuzzy
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -7370,9 +7376,8 @@ msgid "FAQ"
 msgstr "OSS"
 
 #: ../src/plugins/DefaultGramplets.py:1236
-#, fuzzy
 msgid "Query Gramplet"
-msgstr "Smågramps for nyheter"
+msgstr "Smågramps for spørringer"
 
 #: ../src/plugins/DefaultGramplets.py:1239
 msgid "Query"
@@ -7768,9 +7773,8 @@ msgid "Use Record-style (Modified Register) numbering"
 msgstr ""
 
 #: ../src/plugins/DetDescendantReport.py:697
-#, fuzzy
 msgid "Whether to use Record-style numbering instead of Henry-style."
-msgstr "Bruk fullstendige datoer i stedet for kun årstallet."
+msgstr ""
 
 #: ../src/plugins/DetDescendantReport.py:763
 #: ../src/plugins/KinshipReport.py:351
@@ -8600,9 +8604,8 @@ msgid "Graph coloring"
 msgstr "Graffarger"
 
 #: ../src/plugins/GVFamilyLines.py:208
-#, fuzzy
 msgid "Males will be shown with blue, females with red, unless otherwise set above for filled. If the sex of an individual is unknown it will be shown with gray."
-msgstr "Menn vil bli vist med blå farge, kvinner med rød farge.  Hvis kjønnet er ukjent vil individet bli vist med grå farge."
+msgstr "Menn vil bli vist med blå farge, kvinner med rød farge om ikke annet er angitt. Hvis kjønnet er ukjent vil individet bli vist med grå farge."
 
 #. see bug report #2180
 #: ../src/plugins/GVFamilyLines.py:214 ../src/plugins/GVHourGlass.py:283
@@ -9343,18 +9346,16 @@ msgid "Convert paths from relative to _absolute"
 msgstr "Konverter fra relativ til _absolutt sti"
 
 #: ../src/plugins/MediaManager.py:496
-#, fuzzy
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends user's directory."
-msgstr "Dette verktøyet kan gjøre om fra relativ til absolutt sti. Det gjør dette ved å legge til grunnstien som angitt i Innstillinger. Hvis dette ikke er angitt legger den til din hjemmekatalog."
+msgstr "Dette verktøyet kan gjøre om fra relativ til absolutt mediasti. Det gjør dette ved å legge til grunnstien som angitt i Innstillinger. Hvis dette ikke er angitt legger den til din hjemmekatalog."
 
 #: ../src/plugins/MediaManager.py:533
 msgid "Convert paths from absolute to r_elative"
 msgstr "Konverter fra absolutt til relativ sti"
 
 #: ../src/plugins/MediaManager.py:534
-#, fuzzy
 msgid "This tool allows converting absolute media paths to the a relative path. The relative path is relative viz-a-viz the base path as given in the Preferences, or if that is not set, user's directory. A relative path allows to tie the file location to a base path that can change to your needs."
-msgstr "Dette verktøyet kan gjøre om fra absolutt til relativ stinavn for dine media. Den relative stien er relativ vis-a-vis grunnstien som er oppgitt i egenskapene, eller hvis den ikke er satt, ditt hjemmeområdet. En relativ sti gir deg muligheten til å binde filplasseringen til en grunnsti som kan endres etter dine behov."
+msgstr "Dette verktøyet kan gjøre om fra absolutt til relativ sti for dine media. Den relative stien er relativ vis-a-vis grunnstien som er oppgitt i Innstillingene, eller hvis den ikke er satt, ditt hjemmeområdet. En relativ sti gir deg muligheten til å binde filplasseringen til en grunnsti som kan endres etter dine behov."
 
 #: ../src/plugins/MediaManager.py:599
 msgid "Manages batch operations on media files"
@@ -9362,9 +9363,8 @@ msgstr "Håndtere batchoperasjoner på mediafiler"
 
 #. First is used as default selection.
 #: ../src/plugins/NarrativeWeb.py:117 ../src/plugins/WebCal.py:106
-#, fuzzy
 msgid "Evergreen"
-msgstr "Alle hendelser"
+msgstr "Eviggrønn"
 
 #: ../src/plugins/NarrativeWeb.py:118 ../src/plugins/WebCal.py:107
 msgid "Nebraska"
@@ -9372,7 +9372,7 @@ msgstr "Nebraska"
 
 #: ../src/plugins/NarrativeWeb.py:119 ../src/plugins/WebCal.py:108
 msgid "Simply Red"
-msgstr ""
+msgstr "Enkelt rød"
 
 #: ../src/plugins/NarrativeWeb.py:120 ../src/plugins/WebCal.py:109
 msgid "No style sheet"
@@ -9980,9 +9980,8 @@ msgid "Total ancestors in generations 2 to %d is %d. (%3.2f%%)"
 msgstr "Totalt antall aner i generasjonene 2 til %d er %d. (%3.2f%%)"
 
 #: ../src/plugins/NumberOfAncestorsReport.py:199
-#, fuzzy
 msgid "Number of Ancestors Report"
-msgstr "Antall Aner"
+msgstr "Rapport over antall aner"
 
 #: ../src/plugins/NumberOfAncestorsReport.py:201
 msgid "Counts number of ancestors of selected person"
@@ -10431,7 +10430,7 @@ msgstr "Bunntekst"
 
 #: ../src/plugins/SimpleBookTitle.py:131
 msgid "Footer string for the page."
-msgstr ""
+msgstr "Bunntekst for siden."
 
 #: ../src/plugins/SimpleBookTitle.py:134
 msgid "Image"
@@ -10439,7 +10438,7 @@ msgstr "Bilde"
 
 #: ../src/plugins/SimpleBookTitle.py:135
 msgid "Gramps ID of the media object to use as an image."
-msgstr ""
+msgstr "Gramps ID for mediaobjektet som skal brukes som et bilde."
 
 #: ../src/plugins/SimpleBookTitle.py:138
 msgid "Image Size"
@@ -10447,7 +10446,7 @@ msgstr "Bildestørrelse"
 
 #: ../src/plugins/SimpleBookTitle.py:139
 msgid "Size of the image in cm. A value of 0 indicates that the image should be fit to the page."
-msgstr ""
+msgstr "Størrelse på bildet i cm. Verdien 0 indikerer at bildet skal tilpasses siden."
 
 #: ../src/plugins/SimpleBookTitle.py:162
 msgid "The style used for the subtitle."
@@ -11058,14 +11057,12 @@ msgid "Dec"
 msgstr "des"
 
 #: ../src/plugins/WebCal.py:431 ../src/plugins/WebCal.py:646
-#, fuzzy
 msgid "Year Glance"
-msgstr "Dødssted"
+msgstr ""
 
 #: ../src/plugins/WebCal.py:432 ../src/plugins/WebCal.py:647
-#, fuzzy
 msgid "Blank Calendar"
-msgstr "Kalender"
+msgstr "Tom kalender"
 
 #: ../src/plugins/WebCal.py:683
 #, python-format
@@ -11079,9 +11076,8 @@ msgstr "Lager utskriftvennlige tomme helårskalendersider"
 
 #. Create progress bar for it
 #: ../src/plugins/WebCal.py:828
-#, fuzzy
 msgid "Creating Year At A Glance page"
-msgstr "Lager side over steder"
+msgstr ""
 
 #: ../src/plugins/WebCal.py:887
 msgid "Generate XHTML Calendars"
@@ -11106,7 +11102,7 @@ msgstr "Leser database"
 #: ../src/plugins/WebCal.py:1145
 #, python-format
 msgid "<span class=\"yearsmarried\">%(spouse)s and %(person)s, <em>%(nyears)d</em> year anniversary</span>"
-msgstr ""
+msgstr "<span class=\"yearsmarried\">%(spouse)s og %(person)s, <em>%(nyears)d</em> års jubileum</span>"
 
 #: ../src/plugins/WebCal.py:1188
 msgid "Calendar Title"
@@ -11138,11 +11134,11 @@ msgstr ""
 
 #: ../src/plugins/WebCal.py:1246
 msgid "Create A Printable Blank Full- Year Calendar"
-msgstr ""
+msgstr "Lag en utskriftsvennlig tom helårskalender"
 
 #: ../src/plugins/WebCal.py:1247
 msgid "Wheather to create A Full Year Printable calendar"
-msgstr ""
+msgstr "Om det skal lages en helårs utskriftsvennlig kalender"
 
 #: ../src/plugins/WebCal.py:1255
 msgid "Holidays will be included for the selected country"
@@ -11874,9 +11870,8 @@ msgid "DPI"
 msgstr "PPT"
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:855
-#, fuzzy
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, use 72 DPI."
-msgstr "Punkt per tomme.  Når du lager bilder slik som .gif eller .png for Internett, prøv tall som 100 eller 300 PPT (DPI).  For postscript- eller pdf-filer, bruk 72 PPT."
+msgstr "Punkt per tomme.  Når du lager bilder slik som .gif eller .png for Internett, prøv tall som 100 eller 300 PPT (DPI).  For PostScript- eller PDF-filer, bruk 72 PPT."
 
 #: ../src/ReportBase/_GraphvizReportDialog.py:861
 msgid "Node spacing"
@@ -17039,9 +17034,8 @@ msgid "Events with the attribute <attribute>"
 msgstr "Hendelser med egenskapen <egenskap>"
 
 #: ../src/Filters/Rules/Event/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches events with the event attribute of a particular value"
-msgstr "Samsvarer med objekter med en gitt egenskap med en bestemt verdi"
+msgstr "Samsvarer med hendelser med en gitt egenskap med en bestemt verdi"
 
 #: ../src/Filters/Rules/Event/_HasIdOf.py:45
 msgid "Event with <Id>"
@@ -17185,7 +17179,6 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr "Samsvarer med steder som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../src/Filters/Rules/Place/_HasPlace.py:48
-#, fuzzy
 msgid "Street:"
 msgstr "Gate:"
 
@@ -17376,19 +17369,16 @@ msgstr "Samsvarer med alle mediaobjektene i databasen"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 #: ../src/FilterEditor/_EditRule.py:85
-#, fuzzy
 msgid "Media attribute:"
-msgstr "Personlig egenskap:"
+msgstr "Mediaegenskap:"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:46
-#, fuzzy
 msgid "Media objects with the attribute <attribute>"
-msgstr "Objekter med <attribute>"
+msgstr "Mediaobjekter med egenskapen <egenskap>"
 
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:47
-#, fuzzy
 msgid "Matches media objects with the attribute of a particular value"
-msgstr "Samsvarer med objekter med en gitt egenskap med en bestemt verdi"
+msgstr "Samsvarer med mediaobjekter med en gitt egenskap med en bestemt verdi"
 
 #: ../src/Filters/Rules/MediaObject/_HasIdOf.py:45
 msgid "Media object with <Id>"
@@ -19162,9 +19152,8 @@ msgid "Search for media"
 msgstr "Søk etter media"
 
 #: ../src/plugins/unused.glade.h:5
-#, fuzzy
 msgid "Search for notes"
-msgstr "Søk etter hendelser"
+msgstr "Søk etter hendelse"
 
 #: ../src/plugins/unused.glade.h:6
 msgid "Search for places"
