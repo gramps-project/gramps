@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-28 09:05+0200\n"
+"POT-Creation-Date: 2008-07-28 14:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,17 +179,17 @@ msgstr ""
 msgid "Column Editor"
 msgstr ""
 
-#: ../src/const.py:164
+#: ../src/const.py:155
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
 msgstr ""
 
-#: ../src/const.py:184
+#: ../src/const.py:173
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
-#: ../src/const.py:194 ../src/const.py:195 ../src/gen/lib/date.py:1102
+#: ../src/const.py:183 ../src/const.py:184 ../src/gen/lib/date.py:1102
 #: ../src/gen/lib/date.py:1116
 msgid "none"
 msgstr ""
