@@ -495,7 +495,7 @@ class DetDescendantReport(Report):
             first = 0
 
         text = ReportUtils.baptised_str(self.database, person, first, self.verbose,
-                                        self.EMPTY_DATE,self.EMPTY_PLACE)
+                                        self.endnotes, self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
     
@@ -511,9 +511,8 @@ class DetDescendantReport(Report):
             self.doc.write_text(text)
             first = 0
 
-        text = ReportUtils.buried_str(self.database, person, first,
-                                      self.EMPTY_DATE, self.EMPTY_PLACE,
-                                      self.verbose)
+        text = ReportUtils.buried_str(self.database, person, first, self.verbose,
+                                        self.endnotes, self.EMPTY_DATE,self.EMPTY_PLACE)
         if text:
             self.doc.write_text(text)
 
