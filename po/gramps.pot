@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-22 10:39+0200\n"
+"POT-Creation-Date: 2008-07-28 15:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -513,9 +513,9 @@ msgstr ""
 #: ../src/DisplayTabs/_PersonRefEmbedList.py:119
 #: ../src/Editors/_EditMedia.py:149 ../src/plugins/all_relations.py:273
 #: ../src/plugins/all_relations.py:290 ../src/plugins/Check.py:1311
-#: ../src/plugins/DefaultGramplets.py:192
-#: ../src/plugins/DefaultGramplets.py:437
-#: ../src/plugins/DefaultGramplets.py:448 ../src/plugins/GVFamilyLines.py:134
+#: ../src/plugins/DefaultGramplets.py:197
+#: ../src/plugins/DefaultGramplets.py:449
+#: ../src/plugins/DefaultGramplets.py:460 ../src/plugins/GVFamilyLines.py:134
 #: ../src/plugins/IndivComplete.py:443 ../src/plugins/NarrativeWeb.py:696
 #: ../src/PluginUtils/_PluginMgr.py:181 ../src/PluginUtils/_PluginMgr.py:183
 #: ../src/PluginUtils/_PluginMgr.py:184 ../src/PluginUtils/_PluginMgr.py:214
@@ -683,14 +683,14 @@ msgstr ""
 #: ../src/ExportOptions.py:88 ../src/plugins/EventCmp.py:134
 #: ../src/plugins/ExportCSV.py:182 ../src/plugins/ExportVCalendar.py:88
 #: ../src/plugins/ExportVCard.py:86 ../src/plugins/WriteFtree.py:87
-#: ../src/plugins/WriteGeneWeb.py:92 ../src/ReportBase/_ReportUtils.py:2936
+#: ../src/plugins/WriteGeneWeb.py:92 ../src/ReportBase/_ReportUtils.py:2947
 msgid "Entire Database"
 msgstr ""
 
 #: ../src/ExportOptions.py:114 ../src/plugins/DescendReport.py:145
 #: ../src/plugins/ExportCSV.py:189 ../src/plugins/ExportVCalendar.py:95
 #: ../src/plugins/ExportVCard.py:93 ../src/plugins/WriteFtree.py:94
-#: ../src/plugins/WriteGeneWeb.py:99 ../src/ReportBase/_ReportUtils.py:2940
+#: ../src/plugins/WriteGeneWeb.py:99 ../src/ReportBase/_ReportUtils.py:2951
 #, python-format
 msgid "Descendants of %s"
 msgstr ""
@@ -698,7 +698,7 @@ msgstr ""
 #: ../src/ExportOptions.py:120 ../src/plugins/ExportCSV.py:195
 #: ../src/plugins/ExportVCalendar.py:101 ../src/plugins/ExportVCard.py:99
 #: ../src/plugins/WriteFtree.py:100 ../src/plugins/WriteGeneWeb.py:105
-#: ../src/ReportBase/_ReportUtils.py:2948
+#: ../src/ReportBase/_ReportUtils.py:2959
 #, python-format
 msgid "Ancestors of %s"
 msgstr ""
@@ -706,7 +706,7 @@ msgstr ""
 #: ../src/ExportOptions.py:126 ../src/plugins/ExportCSV.py:201
 #: ../src/plugins/ExportVCalendar.py:107 ../src/plugins/ExportVCard.py:105
 #: ../src/plugins/WriteFtree.py:106 ../src/plugins/WriteGeneWeb.py:111
-#: ../src/ReportBase/_ReportUtils.py:2952
+#: ../src/ReportBase/_ReportUtils.py:2963
 #, python-format
 msgid "People with common ancestor with %s"
 msgstr ""
@@ -1215,7 +1215,7 @@ msgstr ""
 #: ../src/DisplayTabs/_EventEmbedList.py:65
 #: ../src/DisplayTabs/_FamilyLdsEmbedList.py:50
 #: ../src/DisplayTabs/_LdsEmbedList.py:60 ../src/Selectors/_SelectEvent.py:56
-#: ../src/plugins/DefaultGramplets.py:956 ../src/plugins/ExportCSV.py:435
+#: ../src/plugins/DefaultGramplets.py:983 ../src/plugins/ExportCSV.py:435
 #: ../src/plugins/ImportCSV.py:213 ../src/plugins/MarkerReport.py:295
 #: ../src/plugins/NarrativeWeb.py:699 ../src/plugins/NarrativeWeb.py:1351
 #: ../src/plugins/NarrativeWeb.py:1751 ../src/plugins/OnThisDay.py:77
@@ -1285,7 +1285,7 @@ msgid "Select Parents"
 msgstr ""
 
 #: ../src/gramps_main.py:117 ../src/DataViews/PedigreeView.py:457
-#: ../src/plugins/DefaultGramplets.py:1080 ../src/plugins/NarrativeWeb.py:2073
+#: ../src/plugins/DefaultGramplets.py:1108 ../src/plugins/NarrativeWeb.py:2073
 msgid "Pedigree"
 msgstr ""
 
@@ -2468,10 +2468,10 @@ msgstr ""
 #: ../src/docgen/HtmlDoc.py:493 ../src/DisplayModels/_PeopleModel.py:237
 #: ../src/Editors/_EditPerson.py:239 ../src/Mime/_GnomeMime.py:67
 #: ../src/Mime/_GnomeMime.py:74 ../src/Mime/_PythonMime.py:53
-#: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:497
-#: ../src/plugins/DetAncestralReport.py:504
-#: ../src/plugins/DetAncestralReport.py:547
-#: ../src/plugins/DetAncestralReport.py:554
+#: ../src/Mime/_PythonMime.py:61 ../src/plugins/DetAncestralReport.py:496
+#: ../src/plugins/DetAncestralReport.py:503
+#: ../src/plugins/DetAncestralReport.py:546
+#: ../src/plugins/DetAncestralReport.py:553
 #: ../src/plugins/DetDescendantReport.py:395
 #: ../src/plugins/DetDescendantReport.py:402
 #: ../src/plugins/DetDescendantReport.py:450
@@ -5703,8 +5703,8 @@ msgstr ""
 #: ../src/plugins/Check.py:1517 ../src/plugins/CmdRef.py:244
 #: ../src/plugins/CountAncestors.py:143 ../src/plugins/Desbrowser.py:168
 #: ../src/plugins/DescendTree.py:489 ../src/plugins/DescendReport.py:255
-#: ../src/plugins/DetAncestralReport.py:888
-#: ../src/plugins/DetDescendantReport.py:838
+#: ../src/plugins/DetAncestralReport.py:887
+#: ../src/plugins/DetDescendantReport.py:837
 #: ../src/plugins/EndOfLineReport.py:321 ../src/plugins/Eval.py:129
 #: ../src/plugins/EventCmp.py:456 ../src/plugins/EventNames.py:161
 #: ../src/plugins/ExtractCity.py:631 ../src/plugins/FamilyGroup.py:772
@@ -5855,7 +5855,7 @@ msgstr ""
 msgid "%d months"
 msgstr ""
 
-#: ../src/plugins/AgeOnDate.py:103 ../src/plugins/DefaultGramplets.py:1062
+#: ../src/plugins/AgeOnDate.py:103 ../src/plugins/DefaultGramplets.py:1090
 msgid "Age on Date"
 msgstr ""
 
@@ -5875,8 +5875,8 @@ msgstr ""
 #: ../src/plugins/AncestorTree.py:460 ../src/plugins/AncestorReport.py:250
 #: ../src/plugins/Calendar.py:496 ../src/plugins/DescendTree.py:415
 #: ../src/plugins/DescendReport.py:197
-#: ../src/plugins/DetAncestralReport.py:702
-#: ../src/plugins/DetDescendantReport.py:648
+#: ../src/plugins/DetAncestralReport.py:701
+#: ../src/plugins/DetDescendantReport.py:647
 #: ../src/plugins/EndOfLineReport.py:238 ../src/plugins/FanChart.py:343
 #: ../src/plugins/GVHourGlass.py:184 ../src/plugins/KinshipReport.py:337
 msgid "Center Person"
@@ -5888,8 +5888,8 @@ msgstr ""
 
 #: ../src/plugins/AncestorTree.py:464 ../src/plugins/AncestorReport.py:254
 #: ../src/plugins/DescendTree.py:419 ../src/plugins/DescendReport.py:201
-#: ../src/plugins/DetAncestralReport.py:706
-#: ../src/plugins/DetDescendantReport.py:652 ../src/plugins/FanChart.py:347
+#: ../src/plugins/DetAncestralReport.py:705
+#: ../src/plugins/DetDescendantReport.py:651 ../src/plugins/FanChart.py:347
 msgid "Generations"
 msgstr ""
 
@@ -5930,8 +5930,8 @@ msgid "Whether to compress the tree."
 msgstr ""
 
 #: ../src/plugins/AncestorTree.py:494 ../src/plugins/AncestorReport.py:331
-#: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:844
-#: ../src/plugins/DetDescendantReport.py:794
+#: ../src/plugins/DescendTree.py:448 ../src/plugins/DetAncestralReport.py:843
+#: ../src/plugins/DetDescendantReport.py:793
 #: ../src/plugins/EndOfLineReport.py:273 ../src/plugins/EndOfLineReport.py:291
 #: ../src/plugins/FamilyGroup.py:679 ../src/plugins/FanChart.py:403
 #: ../src/plugins/IndivComplete.py:599 ../src/plugins/KinshipReport.py:390
@@ -5956,7 +5956,7 @@ msgstr ""
 msgid "Ahnentafel Report for %s"
 msgstr ""
 
-#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:567
+#: ../src/plugins/AncestorReport.py:187 ../src/plugins/DefaultGramplets.py:584
 #: ../src/plugins/DetAncestralReport.py:166
 #: ../src/plugins/DetDescendantReport.py:196
 #: ../src/plugins/EndOfLineReport.py:161
@@ -5968,8 +5968,8 @@ msgstr ""
 #. ###############################
 #: ../src/plugins/AncestorReport.py:248 ../src/plugins/Calendar.py:484
 #: ../src/plugins/Calendar.py:642 ../src/plugins/DescendReport.py:195
-#: ../src/plugins/DetAncestralReport.py:700
-#: ../src/plugins/DetDescendantReport.py:646
+#: ../src/plugins/DetAncestralReport.py:699
+#: ../src/plugins/DetDescendantReport.py:645
 #: ../src/plugins/EndOfLineReport.py:236 ../src/plugins/FamilyGroup.py:586
 #: ../src/plugins/FanChart.py:341 ../src/plugins/GVRelGraph.py:430
 #: ../src/plugins/IndivComplete.py:513 ../src/plugins/KinshipReport.py:335
@@ -5981,28 +5981,28 @@ msgstr ""
 
 #: ../src/plugins/AncestorReport.py:251 ../src/plugins/Calendar.py:497
 #: ../src/plugins/DescendReport.py:198
-#: ../src/plugins/DetAncestralReport.py:703
-#: ../src/plugins/DetDescendantReport.py:649
+#: ../src/plugins/DetAncestralReport.py:702
+#: ../src/plugins/DetDescendantReport.py:648
 #: ../src/plugins/EndOfLineReport.py:239 ../src/plugins/FanChart.py:344
 #: ../src/plugins/KinshipReport.py:338
 msgid "The center person for the report"
 msgstr ""
 
 #: ../src/plugins/AncestorReport.py:255 ../src/plugins/DescendReport.py:202
-#: ../src/plugins/DetAncestralReport.py:707
-#: ../src/plugins/DetDescendantReport.py:653 ../src/plugins/FanChart.py:348
+#: ../src/plugins/DetAncestralReport.py:706
+#: ../src/plugins/DetDescendantReport.py:652 ../src/plugins/FanChart.py:348
 msgid "The number of generations to include in the report"
 msgstr ""
 
 #: ../src/plugins/AncestorReport.py:258
-#: ../src/plugins/DetAncestralReport.py:710
-#: ../src/plugins/DetDescendantReport.py:656
+#: ../src/plugins/DetAncestralReport.py:709
+#: ../src/plugins/DetDescendantReport.py:655
 msgid "Page break between generations"
 msgstr ""
 
 #: ../src/plugins/AncestorReport.py:260
-#: ../src/plugins/DetAncestralReport.py:712
-#: ../src/plugins/DetDescendantReport.py:658
+#: ../src/plugins/DetAncestralReport.py:711
+#: ../src/plugins/DetDescendantReport.py:657
 msgid "Whether to start a new page after each generation."
 msgstr ""
 
@@ -6015,8 +6015,8 @@ msgid "Indicates if a line break should follow the name."
 msgstr ""
 
 #: ../src/plugins/AncestorReport.py:308 ../src/plugins/DescendReport.py:218
-#: ../src/plugins/DetAncestralReport.py:798
-#: ../src/plugins/DetDescendantReport.py:748
+#: ../src/plugins/DetAncestralReport.py:797
+#: ../src/plugins/DetDescendantReport.py:747
 #: ../src/plugins/EndOfLineReport.py:255 ../src/plugins/FamilyGroup.py:670
 #: ../src/plugins/IndivComplete.py:567 ../src/plugins/KinshipReport.py:373
 #: ../src/plugins/MarkerReport.py:466 ../src/plugins/SimpleBookTitle.py:272
@@ -6025,8 +6025,8 @@ msgid "The style used for the title of the page."
 msgstr ""
 
 #: ../src/plugins/AncestorReport.py:321
-#: ../src/plugins/DetAncestralReport.py:808
-#: ../src/plugins/DetDescendantReport.py:758 ../src/ReportBase/_Endnotes.py:43
+#: ../src/plugins/DetAncestralReport.py:807
+#: ../src/plugins/DetDescendantReport.py:757 ../src/ReportBase/_Endnotes.py:43
 msgid "The style used for the generation header."
 msgstr ""
 
@@ -6310,7 +6310,7 @@ msgstr ""
 
 #. initialize the dict to fill:
 #: ../src/plugins/Calendar.py:214 ../src/plugins/Calendar.py:925
-#: ../src/plugins/DefaultGramplets.py:1045
+#: ../src/plugins/DefaultGramplets.py:1073
 msgid "Calendar"
 msgstr ""
 
@@ -7069,243 +7069,243 @@ msgid ""
 "be parsed back in correctly."
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:70
+#: ../src/plugins/DefaultGramplets.py:71
 msgid "Double-click a day for details"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:141
+#: ../src/plugins/DefaultGramplets.py:144
 msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:142
+#: ../src/plugins/DefaultGramplets.py:145
 msgid "Log for this Session"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:166
-#: ../src/plugins/DefaultGramplets.py:172
+#: ../src/plugins/DefaultGramplets.py:171
+#: ../src/plugins/DefaultGramplets.py:177
 msgid "Added"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:168
-#: ../src/plugins/DefaultGramplets.py:174
+#: ../src/plugins/DefaultGramplets.py:173
+#: ../src/plugins/DefaultGramplets.py:179
 msgid "Deleted"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:170
-#: ../src/plugins/DefaultGramplets.py:176
+#: ../src/plugins/DefaultGramplets.py:175
+#: ../src/plugins/DefaultGramplets.py:181
 msgid "Updated"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:178
+#: ../src/plugins/DefaultGramplets.py:183
 msgid "Selected"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:197
-#: ../src/plugins/DefaultGramplets.py:274
+#: ../src/plugins/DefaultGramplets.py:202
+#: ../src/plugins/DefaultGramplets.py:281
 msgid "Double-click surname for details"
 msgstr ""
 
 #. will be overwritten in load
-#: ../src/plugins/DefaultGramplets.py:199
-#: ../src/plugins/DefaultGramplets.py:276
-#: ../src/plugins/DefaultGramplets.py:359
-#: ../src/plugins/DefaultGramplets.py:453
-#: ../src/plugins/DefaultGramplets.py:576
-msgid "No Family Tree loaded."
+#: ../src/plugins/DefaultGramplets.py:204
+#: ../src/plugins/DefaultGramplets.py:283
+#: ../src/plugins/DefaultGramplets.py:368
+#: ../src/plugins/DefaultGramplets.py:465
+#: ../src/plugins/DefaultGramplets.py:593
+msgid "No Family Tree loaded or active person."
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:214
-#: ../src/plugins/DefaultGramplets.py:291
-#: ../src/plugins/DefaultGramplets.py:586
+#: ../src/plugins/DefaultGramplets.py:221
+#: ../src/plugins/DefaultGramplets.py:300
+#: ../src/plugins/DefaultGramplets.py:605
 msgid "Processing..."
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:258
-#: ../src/plugins/DefaultGramplets.py:349
+#: ../src/plugins/DefaultGramplets.py:265
+#: ../src/plugins/DefaultGramplets.py:358
 msgid "Total unique surnames"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:260
-#: ../src/plugins/DefaultGramplets.py:351
+#: ../src/plugins/DefaultGramplets.py:267
+#: ../src/plugins/DefaultGramplets.py:360
 msgid "Total people"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:360
-#: ../src/plugins/DefaultGramplets.py:454
+#: ../src/plugins/DefaultGramplets.py:369
+#: ../src/plugins/DefaultGramplets.py:466
 msgid "Click name to make person active\n"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:361
-#: ../src/plugins/DefaultGramplets.py:455
+#: ../src/plugins/DefaultGramplets.py:370
+#: ../src/plugins/DefaultGramplets.py:467
 msgid "Right-click name to edit person"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:386
+#: ../src/plugins/DefaultGramplets.py:397
 #, python-format
 msgid "Active person: %s"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:401
+#: ../src/plugins/DefaultGramplets.py:413
 #, python-format
 msgid "%d. Partner: "
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:405
+#: ../src/plugins/DefaultGramplets.py:417
 #, python-format
 msgid "%d. Partner: Not known"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:420
+#: ../src/plugins/DefaultGramplets.py:432
 msgid "Parents:"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:432
-#: ../src/plugins/DefaultGramplets.py:436
+#: ../src/plugins/DefaultGramplets.py:444
+#: ../src/plugins/DefaultGramplets.py:448
 #, python-format
 msgid "   %d.a Mother: "
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:443
-#: ../src/plugins/DefaultGramplets.py:447
+#: ../src/plugins/DefaultGramplets.py:455
+#: ../src/plugins/DefaultGramplets.py:459
 #, python-format
 msgid "   %d.b Father: "
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:556
+#: ../src/plugins/DefaultGramplets.py:573
 msgid ""
 "\n"
 "Breakdown by generation:\n"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:563
+#: ../src/plugins/DefaultGramplets.py:580
 msgid "Generation 1"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:564
+#: ../src/plugins/DefaultGramplets.py:581
 #, python-format
 msgid " has 1 of 1 individual (100.00% complete)\n"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:568
+#: ../src/plugins/DefaultGramplets.py:585
 #, python-format
 msgid " has %d of %d individuals (%.2f%% complete)\n"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:570
+#: ../src/plugins/DefaultGramplets.py:587
 msgid "All generations"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:571
+#: ../src/plugins/DefaultGramplets.py:588
 #, python-format
 msgid " have %d individuals\n"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:577
+#: ../src/plugins/DefaultGramplets.py:594
 msgid "Double-click item to see matches"
 msgstr ""
 
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:650 ../src/plugins/GVFamilyLines.py:123
+#: ../src/plugins/DefaultGramplets.py:669 ../src/plugins/GVFamilyLines.py:123
 #: ../src/plugins/NarrativeWeb.py:463 ../src/plugins/NarrativeWeb.py:835
 #: ../src/plugins/NarrativeWeb.py:842 ../src/plugins/Summary.py:115
 msgid "Individuals"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:652 ../src/plugins/Summary.py:117
+#: ../src/plugins/DefaultGramplets.py:671 ../src/plugins/Summary.py:117
 msgid "Number of individuals"
 msgstr ""
 
 #. -------------------------
-#: ../src/plugins/DefaultGramplets.py:656 ../src/plugins/GVFamilyLines.py:126
+#: ../src/plugins/DefaultGramplets.py:675 ../src/plugins/GVFamilyLines.py:126
 #: ../src/plugins/Summary.py:118 ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:659 ../src/plugins/GVFamilyLines.py:130
+#: ../src/plugins/DefaultGramplets.py:678 ../src/plugins/GVFamilyLines.py:130
 #: ../src/plugins/Summary.py:119 ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:662 ../src/plugins/Summary.py:120
+#: ../src/plugins/DefaultGramplets.py:681 ../src/plugins/Summary.py:120
 msgid "Individuals with unknown gender"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:666 ../src/plugins/Summary.py:121
+#: ../src/plugins/DefaultGramplets.py:685 ../src/plugins/Summary.py:121
 msgid "Individuals with incomplete names"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:670 ../src/plugins/Summary.py:122
+#: ../src/plugins/DefaultGramplets.py:689 ../src/plugins/Summary.py:122
 msgid "Individuals missing birth dates"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:674 ../src/plugins/Summary.py:123
+#: ../src/plugins/DefaultGramplets.py:693 ../src/plugins/Summary.py:123
 msgid "Disconnected individuals"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:678 ../src/plugins/Summary.py:124
+#: ../src/plugins/DefaultGramplets.py:697 ../src/plugins/Summary.py:124
 msgid "Family Information"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:680 ../src/plugins/Summary.py:126
+#: ../src/plugins/DefaultGramplets.py:699 ../src/plugins/Summary.py:126
 msgid "Number of families"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:684 ../src/plugins/Summary.py:127
+#: ../src/plugins/DefaultGramplets.py:703 ../src/plugins/Summary.py:127
 msgid "Unique surnames"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:688 ../src/plugins/Summary.py:128
+#: ../src/plugins/DefaultGramplets.py:707 ../src/plugins/Summary.py:128
 msgid "Media Objects"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:690 ../src/plugins/Summary.py:130
+#: ../src/plugins/DefaultGramplets.py:709 ../src/plugins/Summary.py:130
 msgid "Individuals with media objects"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:694 ../src/plugins/Summary.py:131
+#: ../src/plugins/DefaultGramplets.py:713 ../src/plugins/Summary.py:131
 msgid "Total number of media object references"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:698 ../src/plugins/Summary.py:132
+#: ../src/plugins/DefaultGramplets.py:717 ../src/plugins/Summary.py:132
 msgid "Number of unique media objects"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:703 ../src/plugins/Summary.py:133
+#: ../src/plugins/DefaultGramplets.py:722 ../src/plugins/Summary.py:133
 msgid "Total size of media objects"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:705 ../src/plugins/Summary.py:134
+#: ../src/plugins/DefaultGramplets.py:724 ../src/plugins/Summary.py:134
 msgid "bytes"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:707 ../src/plugins/Summary.py:137
+#: ../src/plugins/DefaultGramplets.py:726 ../src/plugins/Summary.py:137
 msgid "Missing Media Objects"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:714
+#: ../src/plugins/DefaultGramplets.py:734
 msgid "Enter Python expressions"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:718
+#: ../src/plugins/DefaultGramplets.py:738
 msgid "class name|Date"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:728
+#: ../src/plugins/DefaultGramplets.py:748
 msgid "Error"
 msgstr ""
 
 #. GUI setup:
-#: ../src/plugins/DefaultGramplets.py:807
+#: ../src/plugins/DefaultGramplets.py:833
 msgid "Enter text"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:809
+#: ../src/plugins/DefaultGramplets.py:835
 msgid "Enter your TODO list here."
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:820
+#: ../src/plugins/DefaultGramplets.py:846
 msgid ""
 "Welcome to GRAMPS!\n"
 "\n"
@@ -7336,111 +7336,111 @@ msgid ""
 "opened detached the next time you start GRAMPS."
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:849
+#: ../src/plugins/DefaultGramplets.py:875
 msgid "Read news from the GRAMPS wiki"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:893
+#: ../src/plugins/DefaultGramplets.py:919
 msgid "Reading"
 msgstr ""
 
 #. GUI setup:
-#: ../src/plugins/DefaultGramplets.py:943
+#: ../src/plugins/DefaultGramplets.py:969
 msgid "Enter a date, click Run"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:950
+#: ../src/plugins/DefaultGramplets.py:977
 msgid ""
 "Enter a date in the entry below and click Run. This will compute the ages "
 "for everyone in your Family Tree on that date. You can then sort by the age "
 "column, and double-click the row to view or edit."
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:958
+#: ../src/plugins/DefaultGramplets.py:985
 msgid "Run"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:981
+#: ../src/plugins/DefaultGramplets.py:1008
 msgid "Top Surnames Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:984
+#: ../src/plugins/DefaultGramplets.py:1011
 msgid "Top Surnames"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:989
+#: ../src/plugins/DefaultGramplets.py:1017
 msgid "Surname Cloud Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:993
+#: ../src/plugins/DefaultGramplets.py:1021
 msgid "Surname Cloud"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:998
+#: ../src/plugins/DefaultGramplets.py:1026
 msgid "Statistics Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1002
+#: ../src/plugins/DefaultGramplets.py:1030
 msgid "Statistics"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1007
+#: ../src/plugins/DefaultGramplets.py:1035
 msgid "Session Log Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1011
+#: ../src/plugins/DefaultGramplets.py:1039
 msgid "Session Log"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1016
+#: ../src/plugins/DefaultGramplets.py:1044
 msgid "Python Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1019
+#: ../src/plugins/DefaultGramplets.py:1047
 msgid "Python Shell"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1024
+#: ../src/plugins/DefaultGramplets.py:1052
 msgid "TODO Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1028
+#: ../src/plugins/DefaultGramplets.py:1056
 msgid "TODO List"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1033
+#: ../src/plugins/DefaultGramplets.py:1061
 msgid "Welcome Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1037
+#: ../src/plugins/DefaultGramplets.py:1065
 msgid "Welcome to GRAMPS!"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1042
+#: ../src/plugins/DefaultGramplets.py:1070
 msgid "Calendar Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1050
+#: ../src/plugins/DefaultGramplets.py:1078
 msgid "News Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1054
+#: ../src/plugins/DefaultGramplets.py:1082
 msgid "News"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1059
+#: ../src/plugins/DefaultGramplets.py:1087
 msgid "Age on Date Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1067
+#: ../src/plugins/DefaultGramplets.py:1095
 msgid "Relatives Gramplet"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1070
+#: ../src/plugins/DefaultGramplets.py:1098
 msgid "Active Person's Relatives"
 msgstr ""
 
-#: ../src/plugins/DefaultGramplets.py:1077
+#: ../src/plugins/DefaultGramplets.py:1105
 msgid "Pedigree Gramplet"
 msgstr ""
 
@@ -7536,291 +7536,291 @@ msgstr ""
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:287
-#: ../src/plugins/DetDescendantReport.py:530
+#: ../src/plugins/DetAncestralReport.py:286
+#: ../src/plugins/DetDescendantReport.py:529
 #, python-format
 msgid "Notes for %s"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:298
-#: ../src/plugins/DetAncestralReport.py:321
-#: ../src/plugins/DetAncestralReport.py:332
-#: ../src/plugins/DetAncestralReport.py:351
-#: ../src/plugins/DetDescendantReport.py:541
-#: ../src/plugins/DetDescendantReport.py:559
-#: ../src/plugins/DetDescendantReport.py:570
-#: ../src/plugins/DetDescendantReport.py:589
+#: ../src/plugins/DetAncestralReport.py:297
+#: ../src/plugins/DetAncestralReport.py:320
+#: ../src/plugins/DetAncestralReport.py:331
+#: ../src/plugins/DetAncestralReport.py:350
+#: ../src/plugins/DetDescendantReport.py:540
+#: ../src/plugins/DetDescendantReport.py:558
+#: ../src/plugins/DetDescendantReport.py:569
+#: ../src/plugins/DetDescendantReport.py:588
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:305
-#: ../src/plugins/DetDescendantReport.py:548
+#: ../src/plugins/DetAncestralReport.py:304
+#: ../src/plugins/DetDescendantReport.py:547
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:340
-#: ../src/plugins/DetDescendantReport.py:578
+#: ../src/plugins/DetAncestralReport.py:339
+#: ../src/plugins/DetDescendantReport.py:577
 msgid "Address: "
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:358
-#: ../src/plugins/DetAncestralReport.py:412
+#: ../src/plugins/DetAncestralReport.py:357
+#: ../src/plugins/DetAncestralReport.py:411
 #: ../src/plugins/DetDescendantReport.py:310
-#: ../src/plugins/DetDescendantReport.py:596
+#: ../src/plugins/DetDescendantReport.py:595
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:380
+#: ../src/plugins/DetAncestralReport.py:379
 #: ../src/plugins/DetDescendantReport.py:279
 #, python-format
 msgid "%(event_name)s: %(date)s, %(place)s"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:385
+#: ../src/plugins/DetAncestralReport.py:384
 #: ../src/plugins/DetDescendantReport.py:284
 #, python-format
 msgid "%(event_name)s: %(date)s"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:389
+#: ../src/plugins/DetAncestralReport.py:388
 #: ../src/plugins/DetDescendantReport.py:288
 #, python-format
 msgid "%(event_name)s: %(place)s"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:393
+#: ../src/plugins/DetAncestralReport.py:392
 #: ../src/plugins/DetDescendantReport.py:292
 #, python-format
 msgid "%(event_name)s: "
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:401
+#: ../src/plugins/DetAncestralReport.py:400
 #, python-format
 msgid "%(endnotes)s."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:508
+#: ../src/plugins/DetAncestralReport.py:507
 #: ../src/plugins/DetDescendantReport.py:406
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:561
+#: ../src/plugins/DetAncestralReport.py:560
 #: ../src/plugins/DetDescendantReport.py:464
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:715
-#: ../src/plugins/DetDescendantReport.py:661
+#: ../src/plugins/DetAncestralReport.py:714
+#: ../src/plugins/DetDescendantReport.py:660
 msgid "Content"
+msgstr ""
+
+#: ../src/plugins/DetAncestralReport.py:716
+#: ../src/plugins/DetDescendantReport.py:662
+msgid "Use callname for common name"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:717
 #: ../src/plugins/DetDescendantReport.py:663
-msgid "Use callname for common name"
+msgid "Whether to use the call name as the first name."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:718
-#: ../src/plugins/DetDescendantReport.py:664
-msgid "Whether to use the call name as the first name."
+#: ../src/plugins/DetAncestralReport.py:721
+#: ../src/plugins/DetDescendantReport.py:667
+msgid "Use full dates instead of only the year"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:722
 #: ../src/plugins/DetDescendantReport.py:668
-msgid "Use full dates instead of only the year"
+msgid "Whether to use full dates instead of just year."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:723
-#: ../src/plugins/DetDescendantReport.py:669
-msgid "Whether to use full dates instead of just year."
+#: ../src/plugins/DetAncestralReport.py:725
+#: ../src/plugins/DetDescendantReport.py:671
+msgid "List children"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:726
 #: ../src/plugins/DetDescendantReport.py:672
-msgid "List children"
+msgid "Whether to list children."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:727
-#: ../src/plugins/DetDescendantReport.py:673
-msgid "Whether to list children."
+#: ../src/plugins/DetAncestralReport.py:729
+#: ../src/plugins/DetDescendantReport.py:675
+msgid "Compute age"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:730
 #: ../src/plugins/DetDescendantReport.py:676
-msgid "Compute age"
+msgid "Whether to compute age."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:731
-#: ../src/plugins/DetDescendantReport.py:677
-msgid "Whether to compute age."
+#: ../src/plugins/DetAncestralReport.py:733
+#: ../src/plugins/DetDescendantReport.py:679
+msgid "Omit duplicate ancestors"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:734
 #: ../src/plugins/DetDescendantReport.py:680
-msgid "Omit duplicate ancestors"
-msgstr ""
-
-#: ../src/plugins/DetAncestralReport.py:735
-#: ../src/plugins/DetDescendantReport.py:681
 msgid "Whether to omit duplicate ancestors."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:738
-#: ../src/plugins/DetDescendantReport.py:684
+#: ../src/plugins/DetAncestralReport.py:737
+#: ../src/plugins/DetDescendantReport.py:683
 msgid "Use Complete Sentences"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:740
-#: ../src/plugins/DetDescendantReport.py:686
+#: ../src/plugins/DetAncestralReport.py:739
+#: ../src/plugins/DetDescendantReport.py:685
 msgid "Whether to use complete sentences or succinct language."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:743
-#: ../src/plugins/DetDescendantReport.py:689
+#: ../src/plugins/DetAncestralReport.py:742
+#: ../src/plugins/DetDescendantReport.py:688
 msgid "Add descendant reference in child list"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:745
-#: ../src/plugins/DetDescendantReport.py:691
+#: ../src/plugins/DetAncestralReport.py:744
+#: ../src/plugins/DetDescendantReport.py:690
 msgid "Whether to add descendant references in child list."
 msgstr ""
 
 #. #########################
-#: ../src/plugins/DetAncestralReport.py:748
-#: ../src/plugins/DetDescendantReport.py:694 ../src/plugins/FamilyGroup.py:599
+#: ../src/plugins/DetAncestralReport.py:747
+#: ../src/plugins/DetDescendantReport.py:693 ../src/plugins/FamilyGroup.py:599
 #: ../src/plugins/NarrativeWeb.py:3078
 msgid "Include"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:750
-#: ../src/plugins/DetDescendantReport.py:696
+#: ../src/plugins/DetAncestralReport.py:749
+#: ../src/plugins/DetDescendantReport.py:695
 msgid "Include notes"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:751
-#: ../src/plugins/DetDescendantReport.py:697
+#: ../src/plugins/DetAncestralReport.py:750
+#: ../src/plugins/DetDescendantReport.py:696
 msgid "Whether to include notes."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:754
-#: ../src/plugins/DetDescendantReport.py:700
+#: ../src/plugins/DetAncestralReport.py:753
+#: ../src/plugins/DetDescendantReport.py:699
 msgid "Include attributes"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:755
-#: ../src/plugins/DetDescendantReport.py:701 ../src/plugins/FamilyGroup.py:621
+#: ../src/plugins/DetAncestralReport.py:754
+#: ../src/plugins/DetDescendantReport.py:700 ../src/plugins/FamilyGroup.py:621
 msgid "Whether to include attributes."
+msgstr ""
+
+#: ../src/plugins/DetAncestralReport.py:757
+#: ../src/plugins/DetDescendantReport.py:703
+msgid "Include Photo/Images from Gallery"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:758
 #: ../src/plugins/DetDescendantReport.py:704
-msgid "Include Photo/Images from Gallery"
+msgid "Whether to include images."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:759
-#: ../src/plugins/DetDescendantReport.py:705
-msgid "Whether to include images."
+#: ../src/plugins/DetAncestralReport.py:761
+#: ../src/plugins/DetDescendantReport.py:707
+msgid "Include alternative names"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:762
 #: ../src/plugins/DetDescendantReport.py:708
-msgid "Include alternative names"
+msgid "Whether to include other names."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:763
-#: ../src/plugins/DetDescendantReport.py:709
-msgid "Whether to include other names."
+#: ../src/plugins/DetAncestralReport.py:765
+#: ../src/plugins/DetDescendantReport.py:711
+msgid "Include events"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:766
 #: ../src/plugins/DetDescendantReport.py:712
-msgid "Include events"
+msgid "Whether to include events."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:767
-#: ../src/plugins/DetDescendantReport.py:713
-msgid "Whether to include events."
+#: ../src/plugins/DetAncestralReport.py:769
+#: ../src/plugins/DetDescendantReport.py:715
+msgid "Include addresses"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:770
 #: ../src/plugins/DetDescendantReport.py:716
-msgid "Include addresses"
+msgid "Whether to include addresses."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:771
-#: ../src/plugins/DetDescendantReport.py:717
-msgid "Whether to include addresses."
+#: ../src/plugins/DetAncestralReport.py:773
+#: ../src/plugins/DetDescendantReport.py:719
+msgid "Include sources"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:774
 #: ../src/plugins/DetDescendantReport.py:720
-msgid "Include sources"
-msgstr ""
-
-#: ../src/plugins/DetAncestralReport.py:775
-#: ../src/plugins/DetDescendantReport.py:721
 msgid "Whether to include source references."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:778
-#: ../src/plugins/DetDescendantReport.py:728
+#: ../src/plugins/DetAncestralReport.py:777
+#: ../src/plugins/DetDescendantReport.py:727
 msgid "Missing information"
+msgstr ""
+
+#: ../src/plugins/DetAncestralReport.py:779
+#: ../src/plugins/DetDescendantReport.py:729
+msgid "Replace missing places with ______"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:780
 #: ../src/plugins/DetDescendantReport.py:730
-msgid "Replace missing places with ______"
+msgid "Whether to replace missing Places with blanks."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:781
-#: ../src/plugins/DetDescendantReport.py:731
-msgid "Whether to replace missing Places with blanks."
+#: ../src/plugins/DetAncestralReport.py:783
+#: ../src/plugins/DetDescendantReport.py:733
+msgid "Replace missing dates with ______"
 msgstr ""
 
 #: ../src/plugins/DetAncestralReport.py:784
 #: ../src/plugins/DetDescendantReport.py:734
-msgid "Replace missing dates with ______"
-msgstr ""
-
-#: ../src/plugins/DetAncestralReport.py:785
-#: ../src/plugins/DetDescendantReport.py:735
 msgid "Whether to replace missing Dates with blanks."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:818
-#: ../src/plugins/DetDescendantReport.py:768
+#: ../src/plugins/DetAncestralReport.py:817
+#: ../src/plugins/DetDescendantReport.py:767
 msgid "The style used for the children list title."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:828
-#: ../src/plugins/DetDescendantReport.py:778
+#: ../src/plugins/DetAncestralReport.py:827
+#: ../src/plugins/DetDescendantReport.py:777
 msgid "The style used for the children list."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:851
-#: ../src/plugins/DetDescendantReport.py:801
+#: ../src/plugins/DetAncestralReport.py:850
+#: ../src/plugins/DetDescendantReport.py:800
 msgid "The style used for the first personal entry."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:861
-#: ../src/plugins/DetDescendantReport.py:811
+#: ../src/plugins/DetAncestralReport.py:860
+#: ../src/plugins/DetDescendantReport.py:810
 msgid "The style used for the More About header."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:871
-#: ../src/plugins/DetDescendantReport.py:821
+#: ../src/plugins/DetAncestralReport.py:870
+#: ../src/plugins/DetDescendantReport.py:820
 msgid "The style used for additional detail data."
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:887
+#: ../src/plugins/DetAncestralReport.py:886
 msgid "Detailed Ancestral Report"
 msgstr ""
 
-#: ../src/plugins/DetAncestralReport.py:889
+#: ../src/plugins/DetAncestralReport.py:888
 msgid "Produces a detailed ancestral report"
 msgstr ""
 
@@ -7829,20 +7829,20 @@ msgstr ""
 msgid "Descendant Report for %(person_name)s"
 msgstr ""
 
-#: ../src/plugins/DetDescendantReport.py:724
+#: ../src/plugins/DetDescendantReport.py:723
 #: ../src/plugins/KinshipReport.py:349
 msgid "Include spouses"
 msgstr ""
 
-#: ../src/plugins/DetDescendantReport.py:725
+#: ../src/plugins/DetDescendantReport.py:724
 msgid "Whether to include detailed spouse information."
 msgstr ""
 
-#: ../src/plugins/DetDescendantReport.py:837
+#: ../src/plugins/DetDescendantReport.py:836
 msgid "Detailed Descendant Report"
 msgstr ""
 
-#: ../src/plugins/DetDescendantReport.py:839
+#: ../src/plugins/DetDescendantReport.py:838
 msgid "Produces a detailed descendant report"
 msgstr ""
 
@@ -13399,561 +13399,600 @@ msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:546
 #, python-format
-msgid "%(male_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgid ""
+"%(male_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:547
 #, python-format
-msgid "He was buried on %(burial_date)s in %(burial_place)s."
+msgid "He was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:550
 #, python-format
-msgid "%(female_name)s was buried on %(burial_date)s in %(burial_place)s."
+msgid ""
+"%(female_name)s was buried on %(burial_date)s in %(burial_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:551
 #, python-format
-msgid "She was buried on %(burial_date)s in %(burial_place)s."
+msgid "She was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:554
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s."
+"%(unknown_gender_name)s was buried on %(burial_date)s in %(burial_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:555
 #, python-format
-msgid "This person was buried on %(burial_date)s in %(burial_place)s."
+msgid ""
+"This person was buried on %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:557
 #, python-format
-msgid "Buried %(burial_date)s in %(burial_place)s."
+msgid "Buried %(burial_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:562
 #, python-format
-msgid "%(male_name)s was buried on %(burial_date)s."
+msgid "%(male_name)s was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:563
 #, python-format
-msgid "He was buried on %(burial_date)s."
+msgid "He was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:566
 #, python-format
-msgid "%(female_name)s was buried on %(burial_date)s."
+msgid "%(female_name)s was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:567
 #, python-format
-msgid "She was buried on %(burial_date)s."
+msgid "She was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:570
 #, python-format
-msgid "%(unknown_gender_name)s was buried on %(burial_date)s."
+msgid "%(unknown_gender_name)s was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:571
 #, python-format
-msgid "This person was buried on %(burial_date)s."
+msgid "This person was buried on %(burial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:573
 #, python-format
-msgid "Buried %(burial_date)s."
+msgid "Buried %(burial_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:578
 #, python-format
-msgid "%(male_name)s was buried in %(month_year)s in %(burial_place)s."
+msgid ""
+"%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:579
 #, python-format
-msgid "He was buried in %(month_year)s in %(burial_place)s."
+msgid "He was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:582
 #, python-format
-msgid "%(female_name)s was buried in %(month_year)s in %(burial_place)s."
+msgid ""
+"%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:583
 #, python-format
-msgid "She was buried in %(month_year)s in %(burial_place)s."
+msgid "She was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:586
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s."
+"%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:587
 #, python-format
-msgid "This person was buried in %(month_year)s in %(burial_place)s."
+msgid ""
+"This person was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:589
 #, python-format
-msgid "Buried %(month_year)s in %(burial_place)s."
+msgid "Buried %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:594
 #, python-format
-msgid "%(male_name)s was buried in %(month_year)s."
+msgid "%(male_name)s was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:595
 #, python-format
-msgid "He was buried in %(month_year)s."
+msgid "He was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:598
 #, python-format
-msgid "%(female_name)s was buried in %(month_year)s."
+msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:599
 #, python-format
-msgid "She was buried in %(month_year)s."
+msgid "She was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:602
 #, python-format
-msgid "%(unknown_gender_name)s was buried in %(month_year)s."
+msgid "%(unknown_gender_name)s was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:603
 #, python-format
-msgid "This person was buried in %(month_year)s."
+msgid "This person was buried in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:605
 #, python-format
-msgid "Buried %(month_year)s."
+msgid "Buried %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:610
 #, python-format
-msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s."
+msgid ""
+"%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:611
 #, python-format
-msgid "He was buried %(modified_date)s in %(burial_place)s."
+msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:614
 #, python-format
-msgid "%(female_name)s was buried %(modified_date)s in %(burial_place)s."
+msgid ""
+"%(female_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:615
 #, python-format
-msgid "She was buried %(modified_date)s in %(burial_place)s."
+msgid "She was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:618
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s."
+"%(unknown_gender_name)s was buried %(modified_date)s in %(burial_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:619
 #, python-format
-msgid "This person was buried %(modified_date)s in %(burial_place)s."
+msgid ""
+"This person was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:621
 #, python-format
-msgid "Buried %(modified_date)s in %(burial_place)s."
+msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:626
 #, python-format
-msgid "%(male_name)s was buried %(modified_date)s."
+msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:627
 #, python-format
-msgid "He was buried %(modified_date)s."
+msgid "He was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:630
 #, python-format
-msgid "%(female_name)s was buried %(modified_date)s."
+msgid "%(female_name)s was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:631
 #, python-format
-msgid "She was buried %(modified_date)s."
+msgid "She was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:634
 #, python-format
-msgid "%(unknown_gender_name)s was buried %(modified_date)s."
+msgid "%(unknown_gender_name)s was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:635
 #, python-format
-msgid "This person was buried %(modified_date)s."
+msgid "This person was buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:637
 #, python-format
-msgid "Buried %(modified_date)s."
+msgid "Buried %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:642
 #, python-format
-msgid "%(male_name)s was buried in %(burial_place)s."
+msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:643
 #, python-format
-msgid "He was buried in %(burial_place)s."
+msgid "He was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:646
 #, python-format
-msgid "%(female_name)s was buried in %(burial_place)s."
+msgid "%(female_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:647
 #, python-format
-msgid "She was buried in %(burial_place)s."
+msgid "She was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:650
 #, python-format
-msgid "%(unknown_gender_name)s was buried in %(burial_place)s."
+msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:651
 #, python-format
-msgid "This person was buried in %(burial_place)s."
+msgid "This person was buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:653
 #, python-format
-msgid "Buried in %(burial_place)s."
+msgid "Buried in %(burial_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:658
 #, python-format
-msgid "%(male_name)s was buried."
+msgid "%(male_name)s was buried%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:659
-msgid "He was buried."
+#, python-format
+msgid "He was buried%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:662
 #, python-format
-msgid "%(female_name)s was buried."
+msgid "%(female_name)s was buried%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:663
-msgid "She was buried."
+#, python-format
+msgid "She was buried%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:666
 #, python-format
-msgid "%(unknown_gender_name)s was buried."
+msgid "%(unknown_gender_name)s was buried%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:667
-msgid "This person was buried."
+#, python-format
+msgid "This person was buried%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:669
-msgid "Buried."
+#, python-format
+msgid "Buried%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:680
 #, python-format
-msgid "%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s."
+msgid ""
+"%(male_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:681
 #, python-format
-msgid "He was baptised on %(baptism_date)s in %(baptism_place)s."
+msgid "He was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:684
 #, python-format
-msgid "%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s."
+msgid ""
+"%(female_name)s was baptised on %(baptism_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:685
 #, python-format
-msgid "She was baptised on %(baptism_date)s in %(baptism_place)s."
+msgid "She was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:688
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)"
-"s."
+"%(unknown_gender_name)s was baptised on %(baptism_date)s in %(baptism_place)s"
+"%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:689
 #, python-format
-msgid "This person was baptised on %(baptism_date)s in %(baptism_place)s."
+msgid ""
+"This person was baptised on %(baptism_date)s in %(baptism_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:691
 #, python-format
-msgid "Baptised %(baptism_date)s in %(baptism_place)s."
+msgid "Baptised %(baptism_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:696
 #, python-format
-msgid "%(male_name)s was baptised on %(baptism_date)s."
+msgid "%(male_name)s was baptised on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:697
 #, python-format
-msgid "He was baptised on %(baptism_date)s."
+msgid "He was baptised on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:700
 #, python-format
-msgid "%(female_name)s was baptised on %(baptism_date)s."
+msgid "%(female_name)s was baptised on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:701
 #, python-format
-msgid "She was baptised on %(baptism_date)s."
+msgid "She was baptised on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:704
 #, python-format
-msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s."
+msgid "%(unknown_gender_name)s was baptised on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:705
 #, python-format
-msgid "This person was baptised on %(baptism_date)s."
+msgid "This person was baptised on %(baptism_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:707
 #, python-format
-msgid "Baptised %(baptism_date)s."
+msgid "Baptised %(baptism_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:712
 #, python-format
-msgid "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s."
+msgid ""
+"%(male_name)s was baptised in %(month_year)s in %(baptism_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:713
 #, python-format
-msgid "He was baptised in %(month_year)s in %(baptism_place)s."
+msgid "He was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:716
 #, python-format
-msgid "%(female_name)s was baptised in %(month_year)s in %(baptism_place)s."
+msgid ""
+"%(female_name)s was baptised in %(month_year)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:717
 #, python-format
-msgid "She was baptised in %(month_year)s in %(baptism_place)s."
+msgid "She was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:720
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s."
+"%(unknown_gender_name)s was baptised in %(month_year)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:721
 #, python-format
-msgid "This person was baptised in %(month_year)s in %(baptism_place)s."
+msgid ""
+"This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:723
 #, python-format
-msgid "Baptised %(month_year)s in %(baptism_place)s."
+msgid "Baptised %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:728
 #, python-format
-msgid "%(male_name)s was baptised in %(month_year)s."
+msgid "%(male_name)s was baptised in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:729
 #, python-format
-msgid "He was baptised in %(month_year)s."
+msgid "He was baptised in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:732
 #, python-format
-msgid "%(female_name)s was baptised in %(month_year)s."
+msgid "%(female_name)s was baptised in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:733
 #, python-format
-msgid "She was baptised in %(month_year)s."
+msgid "She was baptised in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:736
 #, python-format
-msgid "%(unknown_gender_name)s was baptised in %(month_year)s."
+msgid "%(unknown_gender_name)s was baptised in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:737
 #, python-format
-msgid "This person was baptised in %(month_year)s."
+msgid "This person was baptised in %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:739
 #, python-format
-msgid "Baptised %(month_year)s."
+msgid "Baptised %(month_year)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:744
 #, python-format
-msgid "%(male_name)s was baptised %(modified_date)s in %(baptism_place)s."
+msgid ""
+"%(male_name)s was baptised %(modified_date)s in %(baptism_place)s%(endnotes)"
+"s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:745
 #, python-format
-msgid "He was baptised %(modified_date)s in %(baptism_place)s."
+msgid "He was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:748
 #, python-format
-msgid "%(female_name)s was baptised %(modified_date)s in %(baptism_place)s."
+msgid ""
+"%(female_name)s was baptised %(modified_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:749
 #, python-format
-msgid "She was baptised %(modified_date)s in %(baptism_place)s."
+msgid "She was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:752
 #, python-format
 msgid ""
-"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s."
+"%(unknown_gender_name)s was baptised %(modified_date)s in %(baptism_place)s%"
+"(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:753
 #, python-format
-msgid "This person was baptised %(modified_date)s in %(baptism_place)s."
+msgid ""
+"This person was baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:755
 #, python-format
-msgid "Baptised %(modified_date)s in %(baptism_place)s."
+msgid "Baptised %(modified_date)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:760
 #, python-format
-msgid "%(male_name)s was baptised %(modified_date)s."
+msgid "%(male_name)s was baptised %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:761
 #, python-format
-msgid "He was baptised %(modified_date)s."
+msgid "He was baptised %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:764
 #, python-format
-msgid "%(female_name)s was baptised %(modified_date)s."
+msgid "%(female_name)s was baptised %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:765
 #, python-format
-msgid "She was baptised %(modified_date)s."
+msgid "She was baptised %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:768
 #, python-format
-msgid "%(unknown_gender_name)s was baptised %(modified_date)s."
+msgid "%(unknown_gender_name)s was baptised %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:769
 #, python-format
-msgid "This person was baptised %(modified_date)s."
+msgid "This person was baptised %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:771
 #, python-format
-msgid "Baptised %(modified_date)s."
+msgid "Baptised %(modified_date)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:776
 #, python-format
-msgid "%(male_name)s was baptised in %(baptism_place)s."
+msgid "%(male_name)s was baptised in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:777
 #, python-format
-msgid "He was baptised in %(baptism_place)s."
+msgid "He was baptised in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:780
 #, python-format
-msgid "%(female_name)s was baptised in %(baptism_place)s."
+msgid "%(female_name)s was baptised in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:781
 #, python-format
-msgid "She was baptised in %(baptism_place)s."
+msgid "She was baptised in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:784
 #, python-format
-msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s."
+msgid "%(unknown_gender_name)s was baptised in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:785
 #, python-format
-msgid "This person was baptised in %(baptism_place)s."
+msgid "This person was baptised in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:787
 #, python-format
-msgid "Baptised in %(baptism_place)s."
+msgid "Baptised in %(baptism_place)s%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:792
 #, python-format
-msgid "%(male_name)s was baptised."
+msgid "%(male_name)s was baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:793
-msgid "He was baptised."
+#, python-format
+msgid "He was baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:796
 #, python-format
-msgid "%(female_name)s was baptised."
+msgid "%(female_name)s was baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:797
-msgid "She was baptised."
+#, python-format
+msgid "She was baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:800
 #, python-format
-msgid "%(unknown_gender_name)s was baptised."
+msgid "%(unknown_gender_name)s was baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:801
-msgid "This person was baptised."
+#, python-format
+msgid "This person was baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:803
-msgid "Baptised."
+#, python-format
+msgid "Baptised%(endnotes)s."
 msgstr ""
 
 #: ../src/ReportBase/_ReportUtils.py:814
@@ -15506,83 +15545,83 @@ msgstr ""
 msgid "%(female_name)s%(endnotes)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2679
+#: ../src/ReportBase/_ReportUtils.py:2690
 #, python-format
 msgid ""
 "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2682
+#: ../src/ReportBase/_ReportUtils.py:2693
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_date)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2686
+#: ../src/ReportBase/_ReportUtils.py:2697
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s, Died: %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2689
+#: ../src/ReportBase/_ReportUtils.py:2700
 #, python-format
 msgid "Born: %(birth_date)s %(birth_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2693
+#: ../src/ReportBase/_ReportUtils.py:2704
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2696
+#: ../src/ReportBase/_ReportUtils.py:2707
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_date)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2699
+#: ../src/ReportBase/_ReportUtils.py:2710
 #, python-format
 msgid "Born: %(birth_date)s, Died: %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2701
+#: ../src/ReportBase/_ReportUtils.py:2712
 #, python-format
 msgid "Born: %(birth_date)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2706
+#: ../src/ReportBase/_ReportUtils.py:2717
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2709
+#: ../src/ReportBase/_ReportUtils.py:2720
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_date)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2713
+#: ../src/ReportBase/_ReportUtils.py:2724
 #, python-format
 msgid "Born: %(birth_place)s, Died: %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2716
+#: ../src/ReportBase/_ReportUtils.py:2727
 #, python-format
 msgid "Born: %(birth_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2720
+#: ../src/ReportBase/_ReportUtils.py:2731
 #, python-format
 msgid "Died: %(death_date)s %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2722
+#: ../src/ReportBase/_ReportUtils.py:2733
 #, python-format
 msgid "Died: %(death_date)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2725
+#: ../src/ReportBase/_ReportUtils.py:2736
 #, python-format
 msgid "Died: %(death_place)s."
 msgstr ""
 
-#: ../src/ReportBase/_ReportUtils.py:2944
+#: ../src/ReportBase/_ReportUtils.py:2955
 #, python-format
 msgid "Descendant Families of %s"
 msgstr ""
